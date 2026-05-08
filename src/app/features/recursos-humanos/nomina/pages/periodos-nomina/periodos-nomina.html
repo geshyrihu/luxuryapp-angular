@@ -1,0 +1,106 @@
+<!-- Filtro de año -->
+<div class="flex gap-2 mb-3">
+  @for (anio of aniosDisponibles; track anio) {
+  <button
+    type="button"
+    class="p-button p-button-sm"
+    [class.p-button-outlined]="anioFiltro() !== anio"
+    (click)="cambiarAnio(anio)"
+  >
+    {{ anio }}
+  </button>
+  }
+</div>
+
+<!-- Tabla escritorio -->
+<p-table
+  #dt
+  [value]="data()"
+  [loading]="loading()"
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  styleClass="card hidden md:block custom-table"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      [dt]="dt"
+      (add)="openAdd()"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="quincenaDisplay">Quincena <p-sortIcon field="quincenaDisplay" /></th>
+      <th pSortableColumn="anio">Año <p-sortIcon field="anio" /></th>
+      <th>Inicio</th>
+      <th>Fin</th>
+      <th>Pago</th>
+      <th pSortableColumn="diasHabiles">Dias Habiles <p-sortIcon field="diasHabiles" /></th>
+      <th>Estado</th>
+      <th>Nominas</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.quincenaDisplay }}</td>
+      <td>{{ item.anio }}</td>
+      <td>{{ item.fechaInicio | date: "dd/MM/yyyy" }}</td>
+      <td>{{ item.fechaFin | date: "dd/MM/yyyy" }}</td>
+      <td>{{ item.fechaPago ? (item.fechaPago | date: "dd/MM/yyyy") : "-" }}</td>
+      <td>{{ item.diasHabiles }}</td>
+      <td>
+        <p-tag [severity]="getEstadoSeverity(item.estado)" [value]="item.estado" />
+      </td>
+      <td>{{ item.totalNominas }}</td>
+      <td>
+        <div class="flex gap-1">
+          <custom-button-edit (clicked)="openEdit(item)" />
+          <custom-button
+            iconClass="pi pi-calendar-times"
+            severity="secondary"
+            variant="ghost-text"
+            pTooltip="Dias no habiles"
+            (clicked)="openDiasNoHabiles(item)"
+          />
+          <custom-button-delete (confirmed)="onDelete(item)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr><td colspan="9">No hay periodos de nomina para el año seleccionado.</td></tr>
+  </ng-template>
+</p-table>
+
+<!-- Vista movil -->
+<app-data-view-mobile
+  [data]="data()"
+  [dt]="dt"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="openAdd()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding" detail="false">
+      <ion-label>
+        <h2 class="font-normal m-0">{{ item.quincenaDisplay }} {{ item.anio }}</h2>
+        <p class="text-xs m-0">
+          {{ item.fechaInicio | date: "dd/MM/yyyy" }} - {{ item.fechaFin | date: "dd/MM/yyyy" }}
+        </p>
+        <div class="flex align-items-center gap-2 mt-1">
+          <p-tag [severity]="getEstadoSeverity(item.estado)" [value]="item.estado" />
+          <span class="text-xs">{{ item.diasHabiles }} dias habiles</span>
+        </div>
+      </ion-label>
+      <div slot="end" class="flex align-items-center gap-1">
+        <custom-button-edit (clicked)="openEdit(item)" />
+        <custom-button-delete (clicked)="onDelete(item)" />
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

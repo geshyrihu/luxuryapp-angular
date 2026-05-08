@@ -1,0 +1,103 @@
+// ============================================================
+// _prime-dropdown.scss
+// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
+// Override de p-select, p-multiselect, p-autocomplete
+// ============================================================
+
+:root {
+  --p-select-border-color:            var(--ds-border);
+  --p-select-border-width:            var(--ds-control-border-width, 2px);
+  --p-select-border-radius:           var(--ds-radius-input, 4px);
+  --p-select-background:              var(--ds-bg-surface);
+  --p-select-color:                   var(--ds-text-primary);
+  --p-select-placeholder-color:       var(--ds-text-muted);
+  --p-select-hover-border-color:      var(--ds-border-strong);
+  --p-select-focus-border-color:      var(--ds-border-focus);
+  --p-select-focus-ring-color:        var(--ds-border-focus);
+  --p-select-focus-ring-width:        2px;
+  --p-select-focus-ring-offset:       0px;
+  --p-select-focus-ring-style:        solid;
+  --p-select-overlay-background:      var(--ds-bg-surface);
+  --p-select-overlay-border-color:    var(--ds-border);
+  --p-select-overlay-border-radius:   var(--ds-radius-xl);
+  --p-select-overlay-shadow:          var(--ds-shadow-lg);
+  --p-select-option-background:       transparent;
+  --p-select-option-hover-background: var(--ds-bg-sunken);
+  --p-select-option-selected-background: var(--ds-primary-light);
+  --p-select-option-selected-color:   var(--ds-primary);
+}
+
+body {
+  .p-select,
+  .p-multiselect,
+  .p-autocomplete-input {
+    border-radius: var(--ds-radius-input, 4px);
+    border-width: var(--p-select-border-width);
+    border-style: solid;
+    border-color: var(--ds-border);
+    background-color: var(--ds-bg-surface);
+    color: var(--ds-text-primary);
+    font-size: 0.875rem;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+    box-shadow: var(--ds-shadow-xs);
+
+    &:hover:not(.p-disabled):not(.p-focus) {
+      border-color: var(--ds-border-strong);
+    }
+
+    &.p-focus,
+    &:focus-within {
+      border-color: var(--ds-border-focus);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+      outline: none;
+    }
+
+    &.p-invalid {
+      border-color: var(--ds-border-error);
+      &:focus-within { box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2); }
+    }
+
+    &.p-disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      background-color: var(--ds-bg-sunken);
+    }
+  }
+
+  // Panel del overlay
+  .p-select-overlay,
+  .p-multiselect-overlay {
+    border-radius: var(--ds-radius-xl);
+    box-shadow: var(--ds-shadow-lg);
+    border: 1px solid var(--ds-border);
+    background-color: var(--ds-bg-surface);
+    overflow: hidden;
+    animation: ds-dropdown-in 150ms ease;
+  }
+
+  // Opciones
+  .p-select-option,
+  .p-multiselect-option {
+    font-size: 0.875rem;
+    padding: 0.625rem 1rem;
+    transition: background-color 100ms ease;
+
+    &:hover:not(.p-select-option-selected) {
+      background-color: var(--ds-bg-sunken);
+    }
+
+    &.p-select-option-selected,
+    &.p-highlight {
+      background-color: var(--ds-primary-light);
+      color: var(--ds-primary);
+      font-weight: 500;
+    }
+  }
+}
+
+@keyframes ds-dropdown-in {
+  from { opacity: 0; transform: translateY(-4px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+

@@ -1,0 +1,181 @@
+<!--
+  Diseóo ejecutivo y responsivo por Gemini - Usando PrimeNG y TailwindCSS
+  - Corrección de layout para que las tarjetas de asistentes se muestren una al lado de la otra.
+-->
+@if (dataSignal(); as data) {
+<div class="surface-ground px-4 py-8 md:px-6 lg:px-8 min-h-screen">
+  <div
+    class="w-full mx-auto surface-card shadow-2 border-round p-4 sm:p-6 md:p-8"
+  >
+    <!-- ======================= -->
+    <!-- CABECERA DEL REPORTE    -->
+    <!-- ======================= -->
+    <div
+      class="flex flex-column md:flex-row align-items-center border-bottom-1 surface-border pb-6 mb-6"
+    >
+      @if (data.minutaCliente?.customerLogo) {
+      <img
+        [src]="data.minutaCliente.customerLogo"
+        alt="Logo del Cliente"
+        class="w-8rem h-8rem md:w-9rem md:h-9rem object-contain"
+      />
+      }
+      <div class="text-center md:text-left">
+        @if (data.minutaCliente?.customer) {
+        <h1 class="text-3xl font-bold text-900 m-0">
+          {{ data.minutaCliente.customer }}
+        </h1>
+        } @if (data.minuta?.eTypeMeeting) {
+        <h2 class="text-xl font-semibold text-primary mt-1 m-0">
+          Minuta de Junta: {{ data.minuta.eTypeMeeting }}
+        </h2>
+        } @if (data.minuta?.date) {
+        <p class="text-base text-500 mt-2 m-0">
+          {{ data.minuta.date | date : "longDate" }}
+        </p>
+        }
+      </div>
+    </div>
+
+    <!-- ======================= -->
+    <!-- ASISTENTES              -->
+    <!-- ======================= -->
+    <div class="mb-6">
+      <h3 class="text-2xl font-semibold text-700 mb-4">Asistentes</h3>
+      <div class="flex flex-column">
+        <!-- Comité de Vigilancia -->
+        @if (data.comite && data.comite.length > 0) {
+        <div>
+          <p-card styleClass="h-full">
+            <ng-template pTemplate="title"
+              ><span class="text-lg">Comité de Vigilancia</span></ng-template
+            >
+            <ng-template pTemplate="content">
+              <p-table
+                [value]="data.comite"
+                [scrollable]="true"
+                [scrollHeight]="scrollHeight"
+                styleClass="p-datatable-sm"
+              >
+                <ng-template #header>
+                  <tr>
+                    <th>Cargo</th>
+                    <th>Nombre</th>
+                  </tr>
+                </ng-template>
+                <ng-template #body let-item>
+                  <tr>
+                    <td>{{ item.cargo }}</td>
+                    <td>{{ item.nombre }}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </ng-template>
+          </p-card>
+        </div>
+        }
+
+        <!-- Administración -->
+        @if (data.administracion && data.administracion.length > 0) {
+        <div>
+          <p-card styleClass="h-full">
+            <ng-template pTemplate="title"
+              ><span class="text-lg">Administración</span></ng-template
+            >
+            <ng-template pTemplate="content">
+              <p-table
+                [value]="data.administracion"
+                [scrollable]="true"
+                [scrollHeight]="scrollHeight"
+                styleClass="p-datatable-sm"
+              >
+                <ng-template #header>
+                  <tr>
+                    <th>Cargo</th>
+                    <th>Nombre</th>
+                  </tr>
+                </ng-template>
+                <ng-template #body let-item>
+                  <tr>
+                    <td>{{ item.cargo }}</td>
+                    <td>{{ item.nombre }}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </ng-template>
+          </p-card>
+        </div>
+        }
+
+        <!-- Invitados -->
+        @if (data.externos && data.externos.length > 0) {
+        <div class="col-12 md:col-2 mt-4">
+          <p-card>
+            <ng-template pTemplate="title"
+              ><span class="text-lg">Invitados</span></ng-template
+            >
+            <ng-template pTemplate="content">
+              <p-table
+                [value]="data.externos"
+                [scrollable]="true"
+                [scrollHeight]="scrollHeight"
+                styleClass="p-datatable-sm"
+              >
+                <ng-template #body let-item>
+                  <tr>
+                    <td>{{ item.invitado }}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </ng-template>
+          </p-card>
+        </div>
+        }
+      </div>
+    </div>
+
+    <!-- ============================================= -->
+    <!-- DETALLES DE LA JUNTA (VERSIóN SIN ACORDEóN)   -->
+    <!-- ============================================= -->
+    @if (data.asuntos && data.asuntos.length > 0) {
+    <div class="mt-6">
+      <h3 class="text-2xl font-semibold text-700 mb-4">Detalles de la Junta</h3>
+      <div class="flex flex-column">
+        @for (item of data.asuntos; track item) {
+        <p-card>
+          <ng-template pTemplate="title">
+            <span class="text-xl text-primary">{{ item.responsibleArea }}</span>
+          </ng-template>
+          <ng-template pTemplate="content">
+            <ul class="list-none p-0 m-0">
+              @for (asunto of item.items; track asunto; let i = $index) {
+              <li
+                class="mb-4 pb-4 border-bottom-1 surface-border last:border-0 last:pb-0 last:mb-0"
+              >
+                <h4 class="font-semibold text-base text-800 mb-2">
+                  {{ i + 1 }}. {{ asunto.title }}
+                </h4>
+                <div
+                  [innerHTML]="asunto.requestService | sanitizeHtml"
+                  class="prose max-w-none text-700"
+                ></div>
+              </li>
+              }
+            </ul>
+          </ng-template>
+        </p-card>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</div>
+} @else {
+<!-- Mensaje de carga o sin datos -->
+<div
+  class="flex justify-content-center align-items-center"
+  style="height: 400px"
+>
+  <p-progressSpinner></p-progressSpinner>
+</div>
+}

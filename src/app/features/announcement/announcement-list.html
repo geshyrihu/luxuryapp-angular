@@ -1,0 +1,112 @@
+<!-- 1. Contenedor Principal y Estado de Carga -->
+<div class="p-4 hidden md:block">
+  <p-card>
+    <ng-template pTemplate="title">
+      <h2 class="text-2xl font-bold">Comunicados</h2>
+    </ng-template>
+    <ng-template #content>
+      <!-- Spinner de carga -->
+
+      <!-- Mensaje si no hay anuncios vigentes -->
+      @if (!loading() && announcements().length === 0) {
+      <div class="text-center p-4">
+        <i class="pi pi-inbox" style="font-size: 2rem"></i>
+        <p class="mt-2">No hay comunicados para mostrar.</p>
+      </div>
+      }
+
+      <!-- Rejilla de Anuncios -->
+      @if (!loading() && announcements().length > 0) {
+      <div class="grid">
+        @for (anuncio of announcements(); track anuncio.id) {
+        <div class="col-12">
+          <p-card
+            (click)="navigateToDetail(anuncio.id)"
+            [style]="{ height: '100%' }"
+            styleClass="cursor-pointer hover:shadow-4 transition-duration-200 flex flex-column"
+          >
+            <ng-template #header>
+              @if(anuncio.imagePath) {
+              <img
+                [src]="anuncio.imagePath"
+                alt="Imagen del anuncio"
+                class="w-full h-10rem object-cover"
+              />
+              }
+            </ng-template>
+            <ng-template pTemplate="title">
+              <span class="text-lg font-semibold">{{ anuncio.title }}</span>
+            </ng-template>
+            <ng-template pTemplate="subtitle">
+              <div class="text-sm text-color-secondary mb-2">
+                <span>{{ anuncio.publishedAt | date: 'dd/MM/yyyy' }}</span>
+              </div>
+            </ng-template>
+            <ng-template #content>
+              <p class="m-0 text-sm">
+                {{ stripHtml(anuncio.content) | slice:0:120 }}...
+              </p>
+            </ng-template>
+            <ng-template #footer>
+              <div class="flex justify-content-end align-items-center">
+                @if (anuncio.attachmentCount > 0) {
+                <i
+                  class="pi pi-paperclip text-color-secondary"
+                  pTooltip="Contiene adjuntos"
+                ></i>
+                }
+              </div>
+            </ng-template>
+          </p-card>
+        </div>
+        }
+      </div>
+      }
+    </ng-template>
+  </p-card>
+</div>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<div class="block md:hidden pb-5">
+  @if (!loading() && announcements().length === 0) {
+  <div class="ion-text-center ion-padding mt-5">
+    <ion-icon
+      name="file-tray-outline"
+      style="font-size: 4rem; color: var(--ion-color-medium)"
+    ></ion-icon>
+    <p class="text-medium text-500 mt-2">No hay comunicados disponibles</p>
+  </div>
+  } @if (!loading() && announcements().length > 0) {
+  <div class="flex flex-column p-2">
+    @for (anuncio of announcements(); track anuncio.id) {
+    <ion-card (click)="navigateToDetail(anuncio.id)" class="m-0 cursor-pointer">
+      @if(anuncio.imagePath) {
+      <ion-img [src]="anuncio.imagePath" [alt]="anuncio.title"></ion-img>
+      }
+      <ion-card-header>
+        <ion-card-title class="text-base font-bold"
+          >{{ anuncio.title }}</ion-card-title
+        >
+        <ion-card-subtitle>
+          {{ anuncio.publishedAt | date: 'dd/MM/yyyy' }}
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p class="text-sm m-0">
+          {{ stripHtml(anuncio.content) | slice:0:100 }}...
+        </p>
+
+        @if (anuncio.attachmentCount > 0) {
+        <div class="flex justify-content-end mt-2">
+          <ion-icon
+            name="attach-outline"
+            class="text-lg text-color-secondary"
+          ></ion-icon>
+        </div>
+        }
+      </ion-card-content>
+    </ion-card>
+    }
+  </div>
+  }
+</div>

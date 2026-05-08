@@ -1,0 +1,68 @@
+<!-- 📱 Segmento para Alternar Vistas -->
+<ion-segment
+  [value]="ViewMonth ? 'month' : 'day'"
+  (ionChange)="onSegmentChange($event)"
+  class="mb-3"
+>
+  <ion-segment-button value="day">
+    <ion-label>Diario</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="month">
+    <ion-label>Mensual</ion-label>
+  </ion-segment-button>
+</ion-segment>
+
+<!-- 🎛️ Filtros Condicionales -->
+<div>
+  <!-- Filtro Mensual -->
+  @if (ViewMonth) {
+  <div>
+    <ion-card class="m-0 shadow-none surface-card border-1 border-surface-200">
+      <ion-card-content>
+        <div class="text-center font-bold mb-2">Seleccionar Rango Mensual</div>
+        <app-calendar-range></app-calendar-range>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  }
+
+  <!-- Filtro Diario -->
+  @if (ViewDay) {
+  <div>
+    <ion-card class="m-0 shadow-none surface-card border-1 border-surface-200">
+      <ion-card-content>
+        <div class="text-center font-bold mb-2">Seleccionar Rango Diario</div>
+        <app-rango-calendario-yyyymmdd
+          [mostrartextHasta]="false"
+          [mostrartextDesde]="false"
+        ></app-rango-calendario-yyyymmdd>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  }
+</div>
+
+<!-- 📊 Gráfico -->
+@if (data !== undefined) {
+<ion-card class="mt-3">
+  <ion-card-content>
+    <div style="position: relative; height: 300px; width: 100%">
+      <canvas
+        baseChart
+        [datasets]="lineBarChart.datasets"
+        chartType="bar"
+        [options]="lineBarChart.options"
+        [labels]="lineBarChart.labels"
+      ></canvas>
+    </div>
+  </ion-card-content>
+</ion-card>
+}
+
+
+
+
+
+
+
+

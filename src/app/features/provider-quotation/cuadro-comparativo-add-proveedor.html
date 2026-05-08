@@ -1,0 +1,42 @@
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <custom-input-text-signal
+    [control]="form.controls.nameProvider"
+    label="Proveedor"
+    placeholder="nombre de proveedor"
+  />
+  <custom-input-date-signal
+    [control]="form.controls.fechaCotizacion"
+    label="Fecha de cotización"
+    placeholder="fecha de cotización"
+  />
+
+  <custom-input-number-signal
+    [control]="form.controls.numeroCotizacion"
+    label="Número de cotización"
+    placeholder="Número de cotización"
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.garantia"
+    label="Garantía"
+    placeholder="Ej: 1 año"
+  />
+  <custom-input-text-signal
+    [control]="form.controls.entrega"
+    label="Tiempo de entrega"
+    placeholder="Ej: 3 días"
+  />
+  <custom-input-text-signal
+    [control]="form.controls.politicaPago"
+    label="Política de pago"
+    placeholder="Ej: Contado"
+  />
+
+  <custom-input-file-signal
+    [control]="form.controls.file"
+    [accept]="'.pdf'"
+    label="Adjuntar Cotización (PDF)"
+  />
+
+  <custom-button-save [disabled]="form.invalid" [submitting]="submitting()" />
+</form>

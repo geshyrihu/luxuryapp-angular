@@ -1,0 +1,283 @@
+<!-- Header toolbar -->
+<div class="flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+  <!-- Selector de año + periodo -->
+  <div class="flex flex-wrap align-items-center gap-2">
+    <!-- Años -->
+    <div class="flex gap-1">
+      @for (anio of aniosDisponibles; track anio) {
+      <button
+        type="button"
+        class="p-button p-button-sm p-button-secondary"
+        [class.p-button-outlined]="anioFiltro() !== anio"
+        (click)="cambiarAnio(anio)"
+      >
+        {{ anio }}
+      </button>
+      }
+    </div>
+    <!-- Periodos del año seleccionado -->
+    @if (periodos().length) {
+    <span class="text-color-secondary mx-1">|</span>
+    @for (p of periodos(); track p.value) {
+    <button
+      type="button"
+      class="p-button p-button-sm"
+      [class.p-button-outlined]="periodoSeleccionado() !== p.value"
+      (click)="cambiarPeriodo(p.value)"
+    >
+      {{ p.label }}
+    </button>
+    }
+    }
+  </div>
+
+  <!-- Leyenda + botón guardar -->
+  <div class="flex align-items-center gap-3 flex-wrap">
+    <div class="flex gap-2 flex-wrap">
+      @for (entry of statusOrden; track entry) {
+      <span
+        class="px-2 py-1 border-round text-xs font-medium"
+        [style.background]="statusConfig[entry].bgClass"
+        [style.color]="statusConfig[entry].color"
+        style="border: 1px solid currentColor; opacity: .9"
+      >
+        {{ entry }} = {{ statusConfig[entry].label }}
+      </span>
+      }
+    </div>
+    <custom-button
+      label="Guardar Hoja"
+      iconClass="pi pi-save"
+      severity="success"
+      [disabled]="!hayCambios() || guardando()"
+      [loading]="guardando()"
+      (clicked)="guardar()"
+    />
+  </div>
+</div>
+
+<!-- Loading -->
+@if (loading()) {
+<div class="flex justify-content-center align-items-center" style="min-height: 200px">
+  <i class="pi pi-spin pi-spinner text-4xl text-primary"></i>
+</div>
+}
+
+<!-- Sin periodos -->
+@if (!loading() && !periodos().length) {
+<div class="flex flex-column align-items-center justify-content-center gap-2 text-color-secondary" style="min-height: 200px">
+  <i class="pi pi-calendar-times text-5xl"></i>
+  <span class="text-lg">No hay periodos de nómina para {{ anioFiltro() }}</span>
+  <span class="text-sm">Crea un periodo desde <strong>Periodos de Nómina</strong> para comenzar.</span>
+</div>
+}
+
+<!-- Grid de incidencias -->
+@if (!loading() && hoja(); as h) {
+<div class="overflow-x-auto" style="max-height: calc(100vh - 220px); overflow-y: auto">
+  <table class="hoja-incidencias-table" style="border-collapse: collapse; min-width: max-content">
+    <!-- ENCABEZADO: días del calendario -->
+    <thead style="position: sticky; top: 0; z-index: 10; background: white">
+      <tr>
+        <!-- Columnas fijas del empleado -->
+        <th
+          class="hoja-th-fixed"
+          style="min-width: 220px; left: 0"
+          rowspan="2"
+        >
+          Empleado / Puesto
+        </th>
+        <th class="hoja-th text-center" style="min-width: 50px" rowspan="2">Dias</th>
+        <th class="hoja-th text-center" style="min-width: 38px" rowspan="2">F</th>
+        <th class="hoja-th text-center" style="min-width: 38px" rowspan="2">RE</th>
+        <th class="hoja-th text-center" style="min-width: 38px" rowspan="2">VA</th>
+        <th class="hoja-th text-center" style="min-width: 38px" rowspan="2">IN</th>
+        <!-- Columnas de días del periodo -->
+        @for (dia of h.dias; track dia.fecha) {
+        <th
+          class="hoja-th text-center"
+          style="min-width: 42px; font-size: .7rem"
+          [class.bg-slate-100]="dia.esDescanso"
+          [class.bg-blue-50]="dia.esFestivo"
+          [pTooltip]="dia.descripcionDia ?? ''"
+        >
+          {{ dia.diaSemana }}
+        </th>
+        }
+      </tr>
+      <tr>
+        @for (dia of h.dias; track dia.fecha) {
+        <th
+          class="hoja-th text-center"
+          style="min-width: 42px; font-size: .75rem; font-weight: 700"
+          [class.bg-slate-100]="dia.esDescanso"
+          [class.bg-blue-50]="dia.esFestivo"
+        >
+          {{ dia.numeroDia }}
+        </th>
+        }
+      </tr>
+    </thead>
+
+    <!-- BODY: filas por empleado -->
+    <tbody>
+      @for (emp of h.empleados; track emp.employeeId) {
+      <tr class="hoja-row">
+        <!-- Nombre fijo -->
+        <td class="hoja-td-fixed" style="left: 0; min-width: 220px">
+          <div class="font-semibold text-sm">{{ emp.nombreCompleto }}</div>
+          <div class="text-xs text-color-secondary">{{ emp.puesto }}</div>
+        </td>
+        <!-- Totales -->
+        <td class="hoja-td text-center font-bold">
+          {{ getDiasAPagar(emp) }}
+        </td>
+        <td class="hoja-td text-center text-red-700 font-semibold">
+          {{ getCountOf(emp, "F") || "" }}
+        </td>
+        <td class="hoja-td text-center text-yellow-700 font-semibold">
+          {{ getCountOf(emp, "RE") || "" }}
+        </td>
+        <td class="hoja-td text-center text-indigo-700 font-semibold">
+          {{ getCountOf(emp, "VA") || "" }}
+        </td>
+        <td class="hoja-td text-center text-violet-700 font-semibold">
+          {{ getCountOf(emp, "IN") || "" }}
+        </td>
+        <!-- Celdas de cada día -->
+        @for (celda of emp.celdas; track celda.fecha) {
+        <td
+          class="hoja-celda"
+          [class.hoja-celda-descanso]="getStatus(emp.employeeId, celda.fecha) === 'D'"
+          [class.hoja-celda-festivo]="getStatus(emp.employeeId, celda.fecha) === 'DF'"
+          [class.cursor-pointer]="!isSyncronizada(emp.employeeId, celda.fecha)"
+          [pTooltip]="
+            statusConfig[getStatus(emp.employeeId, celda.fecha)].label +
+            (isSyncronizada(emp.employeeId, celda.fecha) ? ' (sincronizada)' : ' — clic para cambiar')
+          "
+          (click)="ciclarStatus(emp.employeeId, celda.fecha)"
+          (contextmenu)="op.toggle($event); $event.preventDefault()"
+        >
+          <span
+            class="hoja-badge"
+            [style.background]="statusConfig[getStatus(emp.employeeId, celda.fecha)].color"
+            [style.opacity]="getStatus(emp.employeeId, celda.fecha) === 'A' ? '0.15' : '1'"
+            [style.color]="getStatus(emp.employeeId, celda.fecha) === 'A' ? 'transparent' : 'white'"
+          >
+            {{ getStatus(emp.employeeId, celda.fecha) }}
+          </span>
+          @if (isSyncronizada(emp.employeeId, celda.fecha)) {
+          <span style="position: absolute; top: 1px; right: 2px; font-size: .55rem; color: #64748b">S</span>
+          }
+        </td>
+        <!-- Context menu overlay para selección directa -->
+        <p-popover #op styleClass="p-0">
+          <div class="flex flex-wrap gap-1 p-2" style="max-width: 200px">
+            @for (s of statusOrden; track s) {
+            <button
+              type="button"
+              class="hoja-badge-btn"
+              [style.background]="statusConfig[s].color"
+              (click)="setStatus(emp.employeeId, celda.fecha, s); op.hide()"
+            >
+              {{ s }}
+            </button>
+            }
+          </div>
+        </p-popover>
+        }
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<!-- Estilos inline del grid -->
+<style>
+  .hoja-incidencias-table th,
+  .hoja-incidencias-table td {
+    border: 1px solid #e2e8f0;
+    padding: 0;
+  }
+  .hoja-th {
+    background: #f8fafc;
+    padding: 6px 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #475569;
+    white-space: nowrap;
+  }
+  .hoja-th-fixed {
+    background: #f1f5f9;
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #334155;
+    position: sticky;
+    z-index: 11;
+    text-align: left;
+  }
+  .hoja-td-fixed {
+    background: white;
+    padding: 6px 10px;
+    position: sticky;
+    z-index: 5;
+    border-right: 2px solid #cbd5e1;
+  }
+  .hoja-td {
+    padding: 4px 6px;
+    font-size: 0.8rem;
+    background: white;
+  }
+  .hoja-celda {
+    position: relative;
+    width: 42px;
+    height: 34px;
+    text-align: center;
+    vertical-align: middle;
+    background: white;
+    user-select: none;
+    transition: background 0.1s;
+  }
+  .hoja-celda:hover {
+    background: #f0f9ff;
+  }
+  .hoja-celda-descanso {
+    background: #f8fafc !important;
+  }
+  .hoja-celda-festivo {
+    background: #eff6ff !important;
+  }
+  .hoja-badge {
+    display: inline-block;
+    width: 30px;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 0;
+    line-height: 1.4;
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+  .hoja-badge-btn {
+    display: inline-block;
+    width: 36px;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 0;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+  }
+  .hoja-badge-btn:hover {
+    filter: brightness(0.85);
+  }
+  .hoja-row:hover .hoja-celda,
+  .hoja-row:hover .hoja-td,
+  .hoja-row:hover .hoja-td-fixed {
+    background: #fafafa;
+  }
+</style>
+}

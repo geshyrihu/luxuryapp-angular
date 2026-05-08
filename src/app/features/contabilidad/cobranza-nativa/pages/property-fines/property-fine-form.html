@@ -1,0 +1,59 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column gap-2">
+
+  @if (!id) {
+    <custom-input-select-signal
+      [control]="form.controls.propertyId"
+      [data]="properties()"
+      label="Propiedad"
+      [filter]="true"
+      required
+    />
+  }
+
+  <custom-input-select-signal
+    [control]="form.controls.regulationArticleId"
+    [data]="articles()"
+    label="Artículo del Reglamento (opcional)"
+    placeholder="Seleccionar artículo..."
+    [filter]="true"
+    [showClear]="true"
+  />
+
+  <custom-input-textarea-signal
+    [control]="form.controls.description"
+    label="Descripción de la Infracción"
+    placeholder="Describe detalladamente la infracción cometida..."
+    [rows]="3"
+    required
+  />
+
+  <div class="grid">
+    <div class="col-12 md:col-6">
+      <custom-input-date-signal
+        [control]="form.controls.infractionDate"
+        label="Fecha de la Infracción"
+        required
+      />
+    </div>
+    <div class="col-12 md:col-6">
+      <custom-input-decimal-signal
+        [control]="form.controls.amount"
+        label="Importe de la Multa (MXN)"
+        placeholder="0.00"
+        required
+      />
+    </div>
+  </div>
+
+  <custom-input-textarea-signal
+    [control]="form.controls.adminNotes"
+    label="Notas Internas (opcional)"
+    placeholder="Comentarios internos del administrador..."
+    [rows]="2"
+  />
+
+  <div class="flex justify-content-end mt-3">
+    <custom-button-save [disabled]="form.invalid || submitting()" [submitting]="submitting()" />
+  </div>
+
+</form>

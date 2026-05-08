@@ -1,0 +1,38 @@
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <!-- img -->
+  <div class="mb-3">
+    <p-fileUpload
+      mode="basic"
+      chooseLabel="Seleccionar Archivo"
+      [auto]="false"
+      [multiple]="false"
+      accept="application/pdf"
+      (onSelect)="onFileSelect($event)"
+      [fileLimit]="1"
+      [showUploadButton]="false"
+      [showCancelButton]="false"
+    ></p-fileUpload>
+
+    <!-- Mostrar nombre del archivo seleccionado -->
+    @if (selectedFileName()) {
+    <div class="mt-2 p-2 border-round surface-ground">
+      <i class="pi pi-file-pdf mr-2"></i>
+      <span class="text-sm">{{ selectedFileName() }}</span>
+      <custom-button
+        iconClass="pi pi-times"
+        (clicked)="clearFile()"
+        severity="danger"
+        [text]="true"
+        [border-round]="true"
+        customClass="ml-2"
+      />
+    </div>
+    }
+  </div>
+
+  <custom-button-save
+    [propertyId]="id"
+    [disabled]="form.invalid || !selectedFileName()"
+    [submitting]="submitting()"
+  />
+</form>

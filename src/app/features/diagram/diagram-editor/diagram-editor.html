@@ -1,0 +1,16 @@
+<div class="editor-container">
+  @if (diagram()) {
+  <iframe id="drawio-iframe" [src]="iframeUrl"></iframe>
+  } @else {
+  <div class="flex justify-content-center align-items-center h-full">
+    <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+  </div>
+  }
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,180 @@
+// =============================================================
+// DARK MODE — OVERRIDES GLOBALES
+// Selector: .theme-dark (aplicado por ThemeService en html + body)
+//
+// Por qué este archivo existe:
+//   Algunos componentes y templates usan backgrounds hardcodeados (#fff, bg-white)
+//   que no responden al sistema de tokens de PrimeNG. Este archivo es unlayered
+//   (no está dentro de ningún @layer), por lo que gana en cascada sobre
+//   cualquier @layer sin necesidad de !important.
+//
+// Tokens usados (PrimeNG 21, se invierten en dark via darkModeSelector):
+//   --p-surface-100  →  light: slate-100 (#f1f5f9)  |  dark: zinc-900 (#18181b)
+//   --p-surface-200  →  light: slate-200 (#e2e8f0)  |  dark: zinc-800 (#27272a)
+//   --p-surface-300  →  light: slate-300 (#cbd5e1)  |  dark: zinc-700 (#3f3f46)
+//   --p-surface-400  →  light: slate-400 (#94a3b8)  |  dark: zinc-600 (#52525b)
+//   --p-surface-500  →  light: slate-500 (#64748b)  |  dark: zinc-500 (#71717a)
+//   --p-surface-700  →  light: slate-700 (#334155)  |  dark: zinc-300 (#d4d4d8)
+//   --p-surface-900  →  light: slate-900 (#0f172a)  |  dark: zinc-100 (#f4f4f5)
+// =============================================================
+
+.theme-dark {
+  // ── 0. LAYOUT PRINCIPAL ───────────────────────────────────────
+  // view-employee-monitor.html usa [class]="layoutClass" (binding dinámico)
+  // por lo que no acepta clases estáticas bg-*. Se fuerza desde aquí via ID.
+
+  #pageWrapper {
+    background-color: var(--ds-bg-page);
+  }
+
+  #main-content-scroll {
+    background-color: var(--ds-bg-surface);
+  }
+
+  // ── 1. COMPAT PrimeNG v16 ────────────────────────────────────
+  // surface-card / text-color usados en 36 templates — definidos en _prime-tokens.scss,
+  // se sobreescriben aquí con los valores zinc del dark palette.
+
+  .surface-card {
+    background-color: var(--ds-bg-surface);
+    color: var(--ds-text-primary);
+  }
+
+  .surface-ground,
+  .surface-section {
+    background-color: var(--ds-bg-page);
+    color: var(--ds-text-primary);
+  }
+
+  .surface-border {
+    border-color: var(--ds-border);
+  }
+  .text-color {
+    color: var(--ds-text-primary);
+  }
+  .text-color-secondary {
+    color: var(--ds-text-secondary);
+  }
+  .text-color-muted {
+    color: var(--ds-text-muted);
+  }
+
+  // ── 2. BACKGROUNDS DE UTILIDADES (bg-white, bg-gray-*, etc.) ─
+  // Cubre los usos de bg-white/bg-gray-* en templates heredados.
+  // Unlayered gana sobre @layer utilities sin !important.
+
+  .bg-white {
+    background-color: var(--ds-bg-surface);
+    color: var(--ds-text-primary);
+  }
+
+  .bg-gray-50,
+  .bg-slate-50 {
+    background-color: var(--ds-bg-page);
+    color: var(--ds-text-primary);
+  }
+
+  .bg-gray-100,
+  .bg-slate-100 {
+    background-color: var(--ds-bg-sunken);
+    color: var(--ds-text-primary);
+  }
+
+  .bg-gray-200,
+  .bg-slate-200 {
+    background-color: var(--ds-bg-elevated);
+    color: var(--ds-text-primary);
+  }
+
+  .border-slate-100,
+  .border-slate-200,
+  .border-gray-100,
+  .border-gray-200 {
+    border-color: var(--ds-border);
+  }
+
+  .text-slate-500,
+  .text-slate-600,
+  .text-gray-500,
+  .text-gray-600 {
+    color: var(--ds-text-secondary);
+  }
+
+  .text-slate-700,
+  .text-gray-700 {
+    color: var(--ds-text-primary);
+  }
+
+  // ── 2. CUSTOM CARD (.card de _design-system-utilities.scss) ───
+
+  .card {
+    background-color: var(--ds-bg-surface);
+    border-color: var(--ds-border);
+    color: var(--ds-text-primary);
+  }
+
+  .card-header {
+    background-color: var(--ds-bg-page);
+    border-color: var(--ds-border);
+    color: var(--ds-text-primary);
+  }
+
+  .card-footer {
+    background-color: var(--ds-bg-page);
+    border-color: var(--ds-border);
+  }
+
+  // ── 3. CUSTOM INPUTS (.input-text, etc. de _design-system-utilities.scss) ──
+
+  .input-text,
+  .input-select,
+  .input-textarea {
+    background-color: var(--ds-bg-surface);
+    border-color: var(--ds-border);
+    color: var(--ds-text-primary);
+
+    &::placeholder {
+      color: var(--ds-text-muted);
+    }
+
+    &:focus {
+      border-color: var(--ds-border-focus);
+      box-shadow: 0 0 0 2px
+        color-mix(in srgb, var(--ds-border-focus), transparent 80%);
+    }
+  }
+
+  // ── 4. CDK DRAG PREVIEW ───────────────────────────────────────
+
+  .cdk-drag-preview {
+    background-color: var(--ds-bg-elevated);
+    border-color: var(--ds-border);
+    color: var(--ds-text-primary);
+  }
+
+  // ── 5. FORM HELPERS (.form-label, .text-muted, etc.) ─────────
+
+  .form-label,
+  .text-label {
+    color: var(--ds-text-secondary);
+  }
+
+  .text-muted {
+    color: var(--ds-text-muted);
+  }
+
+  // ── 6. BORDER UTILITIES ───────────────────────────────────────
+
+  .border,
+  .border-gray-200,
+  .border-slate-200 {
+    border-color: var(--ds-border);
+  }
+
+  // ── 7. ALERTS / BADGES (colores semánticos se mantienen, solo fondo) ──
+
+  .alert-warning,
+  .bg-status-pending {
+    // Los colores semánticos tienen suficiente contraste en dark — sin cambios
+  }
+}

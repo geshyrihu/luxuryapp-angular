@@ -1,0 +1,114 @@
+<div class="px-3 pt-3">
+  @if (!result) {
+  <!-- Upload View -->
+  <div class="mb-4">
+    <p-message
+      severity="info"
+      text="El archivo debe ser formato CSV con las siguientes columnas, separadas por coma (,): PropertyId (Guid), Monto (Decimal), FechaVencimiento (YYYY-MM-DD), Concepto (Opcional)."
+      styleClass="mb-3 w-full"
+    ></p-message>
+
+    <div class="flex justify-content-end mb-3">
+      <custom-button
+        iconClass="pi pi-download"
+        label="Descargar CSV de Ejemplo"
+        variant="outlined"
+        severity="secondary"
+        size="small"
+        (clicked)="downloadTemplate()"
+      />
+    </div>
+
+    <div
+      class="border-2 border-dashed border-300 border-round p-5 text-center surface-50 flex flex-column align-items-center"
+    >
+      <i class="pi pi-cloud-upload text-5xl text-400 mb-3"></i>
+      <h3 class="mt-0 text-700">Seleccionar archivo CSV</h3>
+      <custom-input-file-signal
+        accept=".csv"
+        chooseLabel="Seleccionar CSV"
+        [noMargin]="true"
+        (fileSelected)="onFileSelect($event)"
+        class="w-full"
+      />
+    </div>
+  </div>
+
+  <div class="flex justify-content-end mt-4">
+    <custom-button
+      label="Cancelar"
+      iconClass="pi pi-times"
+      variant="ghost-text"
+      severity="secondary"
+      (clicked)="onClose()"
+      [disabled]="isLoading"
+    />
+    <custom-button
+      label="Importar Cargos"
+      iconClass="pi pi-check"
+      [disabled]="!selectedFile"
+      [loading]="isLoading"
+      (clicked)="uploadFile()"
+    />
+  </div>
+
+  } @else {
+  <!-- Result View -->
+  <div class="text-center py-4">
+    @if (result.failedCount === 0) {
+    <i class="pi pi-check-circle text-green-500 text-6xl mb-3"></i>
+    <h2 class="text-green-700 m-0">¡Importación Exitosa!</h2>
+    } @else {
+    <i class="pi pi-exclamation-triangle text-orange-500 text-6xl mb-3"></i>
+    <h2 class="text-orange-700 m-0">Importación Finalizada con Errores</h2>
+    }
+
+    <p class="text-600 mt-2">
+      Se procesaron {{result.processedCount}} registros en total.
+    </p>
+
+    <div class="flex justify-content-center mt-4">
+      <div
+        class="text-center surface-50 p-3 border-round border-1 border-300 w-8rem"
+      >
+        <span class="block text-3xl font-bold text-green-600"
+          >{{result.successCount}}</span
+        >
+        <span class="block text-sm text-600">Exitosos</span>
+      </div>
+      <div
+        class="text-center surface-50 p-3 border-round border-1 border-300 w-8rem"
+      >
+        <span class="block text-3xl font-bold text-red-600"
+          >{{result.failedCount}}</span
+        >
+        <span class="block text-sm text-600">Fallidos</span>
+      </div>
+    </div>
+
+    @if (result.errors && result.errors.length > 0) {
+    <div
+      class="text-left mt-5 surface-50 p-3 border-round border-1 border-red-200"
+      style="max-height: 200px; overflow-y: auto"
+    >
+      <h4 class="text-red-700 mt-0 mb-2">
+        <i class="pi pi-list mr-2"></i>Detalle de errores
+      </h4>
+      <ul class="m-0 pl-3 text-sm text-red-600">
+        @for (err of result.errors; track $index) {
+        <li class="mb-1">{{err}}</li>
+        }
+      </ul>
+    </div>
+    }
+
+    <div class="flex justify-content-center mt-5">
+      <custom-button
+        label="Cerrar y Actualizar"
+        iconClass="pi pi-check"
+        (clicked)="onClose()"
+      />
+    </div>
+  </div>
+  }
+</div>

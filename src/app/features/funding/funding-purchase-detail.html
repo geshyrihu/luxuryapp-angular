@@ -1,0 +1,260 @@
+<!-- Spinner de carga que se muestra mientras se obtienen los datos -->
+@if (!data() && submitting()) {
+<div class="text-center my-5">
+  <p-progressSpinner styleClass="w-3rem h-3rem" strokeWidth="4" />
+  <p class="mt-2">Cargando detalle de la orden...</p>
+</div>
+}
+
+<!--
+Contenedor principal de la vista.
+Solo se muestra si la seóal 'data' tiene un objeto, evitando errores de 'null'.
+-->
+@if (data()) {
+<div class="animate__fadeIn">
+  <!-- Encabezado de la Tarjeta -->
+  <div
+    class="flex justify-content-between align-items-center border-bottom-1 surface-border p-3 surface-100"
+  >
+    <h4 class="mb-0">
+      Detalle de Orden de Compra:
+      <span class="text-primary font-bold">#{{ data().folio }}</span>
+    </h4>
+    <custom-button
+      severity="secondary"
+      variant="outlined"
+      iconClass="pi pi-print"
+      label="Imprimir"
+      (clicked)="onPrint()"
+      customClass="no-print"
+    />
+  </div>
+  <!-- Cuerpo de la Tarjeta -->
+
+  <div class="p-4">
+    <!-- SECCIóN 1: INFORMACIóN GENERAL -->
+    <h5 class="text-xl font-medium m-0">Información General</h5>
+    <hr class="my-3 surface-border" />
+    <div class="grid mb-4">
+      <div class="col-12 md:col-4">
+        <label class="block text-color-secondary font-medium"
+          >Fecha de Solicitud</label
+        >
+        <p class="font-bold">{{ data().fechaSolicitud }}</p>
+      </div>
+      <div class="col-12 md:col-4">
+        <label class="block text-color-secondary font-medium"
+          >Solicitado Por</label
+        >
+        <p>{{ data().solicitadoPor }}</p>
+      </div>
+      <div class="col-12 md:col-4">
+        <label class="block text-color-secondary font-medium"
+          >Folio Solicitud de Compra</label
+        >
+        <p>{{ data().folioSolicitudCompra }}</p>
+      </div>
+      <div class="col-12">
+        <label class="block text-color-secondary font-medium"
+          >Justificación del Gasto</label
+        >
+        <p class="text-break">{{ data().justificacionGasto }}</p>
+      </div>
+      <div class="col-12">
+        <label class="block text-color-secondary font-medium"
+          >órea, Equipo o Instalación</label
+        >
+        <p>{{ data().equipoOInstalacion }}</p>
+      </div>
+    </div>
+    <!-- SECCIóN 2: DATOS DEL PROVEEDOR Y PAGO -->
+    <h5 class="text-xl font-medium m-0 mt-4">Datos del Proveedor y Pago</h5>
+    <hr class="my-3 surface-border" />
+    <div class="grid mb-4">
+      <div class="col-12 md:col-6">
+        <label class="block text-color-secondary font-medium">Proveedor</label>
+        <p class="font-bold">{{ data().providerName }}</p>
+      </div>
+      <div class="col-12 md:col-6">
+        <label class="block text-color-secondary font-medium"
+          >Tipo de Gasto</label
+        >
+        <p>{{ data().tipoGasto }}</p>
+      </div>
+      <div class="col-12 md:col-4">
+        <label class="block text-color-secondary font-medium"
+          >Uso de CFDI</label
+        >
+        <p>{{ data().usoCFDI }}</p>
+      </div>
+      <div class="col-12 md:col-4">
+        <label class="block text-color-secondary font-medium"
+          >Mótodo de Pago</label
+        >
+        <p>{{ data().metodoDePago }}</p>
+      </div>
+      <div class="col-12 md:col-4">
+        <label class="block text-color-secondary font-medium"
+          >Forma de Pago</label
+        >
+        <p>{{ data().formaDePago }}</p>
+      </div>
+    </div>
+    <!-- SECCIóN 3: ESTADO DE LA ORDEN -->
+    <h5 class="text-xl font-medium m-0 mt-4">Estado de la Orden</h5>
+    <hr class="my-3 surface-border" />
+    <div class="grid mb-4">
+      <div class="col-12 md:col-3">
+        <label class="block text-color-secondary font-medium"
+          >Estado General</label
+        >
+        <p>
+          <p-tag
+            styleClass="text-base"
+            [severity]="data().statusOrdenCompra === 'Autorizada' ? 'success' :
+                        data().statusOrdenCompra === 'Pendiente' ? 'warning' :
+                        data().statusOrdenCompra === 'Rechazada' ? 'danger' :
+                        data().statusOrdenCompra === 'Pagada' ? 'info' : 'secondary'"
+            [value]="data().statusOrdenCompra"
+          />
+        </p>
+      </div>
+      <div class="col-12 md:col-3">
+        <label class="block text-color-secondary font-medium">Recibido</label>
+        <p>
+          <p-tag
+            styleClass="text-base"
+            [severity]="data().seRecibio ? 'success' : 'secondary'"
+            [value]="data().seRecibio ? 'Só' : 'No'"
+          />
+        </p>
+      </div>
+      <div class="col-12 md:col-3">
+        <label class="block text-color-secondary font-medium">Pagado</label>
+        <p>
+          <p-tag
+            styleClass="text-base"
+            [severity]="data().sePago ? 'success' : 'secondary'"
+            [value]="data().sePago ? 'Só' : 'No'"
+          />
+        </p>
+      </div>
+      <div class="col-12 md:col-3">
+        <label class="block text-color-secondary font-medium"
+          >Trómite de Pago</label
+        >
+        <p>
+          <p-tag
+            styleClass="text-base"
+            [severity]="data().tramitarPago ? 'info' : 'secondary'"
+            [value]="data().tramitarPago ? 'Solicitado' : 'No Solicitado'"
+          />
+        </p>
+      </div>
+      <div class="col-12 md:col-6">
+        <label class="block text-color-secondary font-medium"
+          >Autorizado Por</label
+        >
+        <p>{{ data().autorizadoPor || "N/A" }}</p>
+      </div>
+      <div class="col-12 md:col-6">
+        <label class="block text-color-secondary font-medium"
+          >Fecha de Autorización</label
+        >
+        <p>{{ data().fechaAutorizacion || "N/A" }}</p>
+      </div>
+    </div>
+    <!-- SECCIóN 4: DETALLE DE PRODUCTOS -->
+    <h5 class="text-xl font-medium m-0 mt-4">Detalle de Productos</h5>
+    <div class="py-3">
+      <p-table
+        [value]="data().detalleItems"
+        showGridlines="true"
+        stripedRows="true"
+        responsiveLayout="scroll"
+      >
+        <ng-template #header>
+          <tr>
+            <th>Producto</th>
+            <th class="text-right">Cantidad</th>
+            <th>Unidad</th>
+            <th class="text-right">Precio Unit.</th>
+            <th class="text-right">Descuento</th>
+            <th class="text-right">Subtotal</th>
+            <th class="text-right">IVA</th>
+            <th class="text-right">Total</th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-item>
+          <tr>
+            <td>{{ item.productoNombre }}</td>
+            <td class="text-right">{{ item.cantidad | number: "1.2-2" }}</td>
+            <td>{{ item.unidadMedida }}</td>
+            <td class="text-right">{{ item.precio | currency: "MXN" }}</td>
+            <td class="text-right">{{ item.descuento }}%</td>
+            <td class="text-right">{{ item.subTotal | currency: "MXN" }}</td>
+            <td class="text-right">{{ item.iva | currency: "MXN" }}</td>
+            <td class="text-right font-bold">
+              {{ item.total | currency: "MXN" }}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <!-- SECCIóN 5: TOTALES -->
+    <div class="flex justify-content-end mt-3">
+      <div class="w-full md:w-6">
+        <div class="grid">
+          <div class="col-6 text-right font-bold">Subtotal General:</div>
+          <div class="col-6 text-right">
+            {{ data().subTotalGeneral | currency: "MXN" }}
+          </div>
+
+          <div class="col-6 text-right font-bold">IVA General:</div>
+          <div class="col-6 text-right">
+            {{ data().ivaGeneral | currency: "MXN" }}
+          </div>
+
+          <div class="col-6 text-right text-xl font-bold">Total General:</div>
+          <div class="col-6 text-right text-xl font-bold text-primary">
+            {{ data().totalGeneral | currency: "MXN" }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- SECCIóN 6: AFECTACIóN PRESUPUESTAL -->
+    <h5 class="text-xl font-medium m-0 mt-4">Afectación Presupuestal</h5>
+    <div class="py-3">
+      <p-table
+        [value]="data().detallePresupuesto"
+        showGridlines="true"
+        responsiveLayout="scroll"
+      >
+        <ng-template #header>
+          <tr>
+            <th>Año Fiscal</th>
+            <th>Cuenta</th>
+            <th>Nombre de la Cuenta</th>
+            <th class="text-right">Monto</th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-budget>
+          <tr>
+            <td>{{ budget.fiscalYear }}</td>
+            <td>{{ budget.accountNumber }}</td>
+            <td>{{ budget.accountName }}</td>
+            <td class="text-right">{{ budget.amount | currency: "MXN" }}</td>
+          </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+          <tr>
+            <td colspan="4" class="text-center text-color-secondary">
+              No hay información presupuestal asociada.
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+}

@@ -1,0 +1,71 @@
+<page-title-report-maintenance title="SOLICITUDES DE COMPRA" />
+@if (solicitudes()) {
+<p-table
+  #dt
+  [value]="solicitudes()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #header>
+    <tr>
+      <th>#</th>
+      <th>FECHA</th>
+      <th>SOLICITA</th>
+      <th>AREA</th>
+      <th>JUSTIFICACION</th>
+      <th>ESTATUS</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-i="rowIndex">
+    <tr>
+      <td>{{ i + 1 }}</td>
+      <td>{{ item.fechaSolicitud }}</td>
+      <td>{{ item.solicita }}</td>
+      <td>{{ item.equipoOInstalacion }}</td>
+      <td>{{ item.justificacionGasto }}</td>
+      <td>{{ item.estatus }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+}
+<page-title-report-maintenance title="ORDENES DE COMPRA" />
+@if (ordenesCompra()) {
+<p-table
+  #dt
+  [value]="ordenesCompra()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #header>
+    <tr>
+      <th>#</th>
+      <th>FECHA</th>
+      <th>AREA</th>
+      <th>JUSTIFICACION</th>
+      <th>ESTATUS</th>
+      <th>AUTORIZO</th>
+      <th>ENTREGADO</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-i="rowIndex">
+    <tr>
+      <td>{{ i + 1 }}</td>
+      <td>{{ item.fechaSolicitud }}</td>
+      <td>{{ item.equipoOInstalacion }}</td>
+      <td>{{ item.justificacionGasto }}</td>
+      <td>{{ item.estatus }}</td>
+      <td>{{ item.autorizo }}</td>
+      <td>{{ item.entregado }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+}
+
+
+
+
+
+
+

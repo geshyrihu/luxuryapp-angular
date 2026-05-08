@@ -1,0 +1,437 @@
+🎯 Prompt profesional – Administración de Condominios
+
+Actúa como un experto en administración de condominios, auditoría operativa, control interno y procesos de entrega–recepción.
+
+Como parte del proceso de auditoría inicial e ingreso de un nuevo condominio, deberás analizar de manera exhaustiva nuestro checklist actual de entrega–recepción, que incluye aspectos legales, fiscales, contables, recursos humanos, operaciones, mantenimiento, protección civil e inventarios.
+
+El objetivo del análisis es:
+
+Detectar información crítica faltante, documentos no considerados o controles inexistentes que representen riesgos legales, financieros, operativos o reputacionales para el condominio y la administración.
+
+Identificar debilidades del proceso, como:
+
+Falta de responsables claros
+
+Ausencia de evidencia documental
+
+Controles que dependen de personas y no de procesos
+
+Riesgos de continuidad operativa en caso de cambio de administrador
+
+Evaluar el checklist desde la perspectiva de un cambio de administración, asegurando que permita:
+
+Continuidad operativa inmediata
+
+Transparencia ante comité y condóminos
+
+Trazabilidad de decisiones, contratos y recursos
+
+Para cada punto faltante o área de mejora detectada, deberás:
+
+Explicar por qué es relevante dentro de la administración condominal.
+
+Indicar qué riesgo previene o mitiga (legal, fiscal, laboral, operativo, protección civil, mantenimiento, etc.).
+
+Proponer una mejora clara, concreta y aplicable, sin entrar aún en el detalle operativo.
+
+Este análisis servirá como base para una segunda etapa, en la que se desarrollará cada punto mediante:
+
+Hoja de control
+
+Responsable
+
+Evidencia requerida
+
+Frecuencia de revisión
+
+Indicadores básicos
+
+El resultado final será un reporte de auditoría de ingreso del condominio, útil tanto para la administración como para el comité de vigilancia.
+
+🔍 Enfoque específico que debe considerar el análisis
+
+Considera buenas prácticas aplicables a administración de condominios, incluyendo:
+
+Marco legal condominal (régimen, asambleas, PROSOC, RPP)
+
+Relación con comité y comité de vigilancia
+
+Continuidad de servicios críticos (seguridad, elevadores, bombas, gas, CCTV)
+
+Control documental y trazabilidad histórica
+
+Riesgos por informalidad, falta de registros o dependencia de personas
+
+Auditoría preventiva, no reactiva
+
+🧠 Nivel “consultor senior” (opcional, recomendado)
+
+Si quieres subir todavía más el nivel del análisis, puedes agregar:
+
+Prioriza los hallazgos según su nivel de riesgo (alto, medio, bajo) y su impacto potencial en la operación y en la relación con condóminos y autoridades.
+
+Si quieres, el siguiente paso lógico sería:
+
+✅ Convertir este checklist en un modelo estándar reusable
+
+✅ Crear un semáforo de riesgo por condominio
+
+✅ Diseñar la hoja de control tipo auditoría por cada anexo
+
+✅ Armar el formato de reporte ejecutivo para comité
+
+Dime cómo quieres continuar y lo construimos paso a paso.
+
+los 4 puntos en el orden que lo mencionanste
+
+Perfecto. A continuación te desarrollo los 4 puntos en el orden indicado, ya aterrizados a administración de condominios, con enfoque profesional y reusable.
+
+1️⃣ Convertir el checklist en un modelo estándar reusable
+🎯 Objetivo
+
+Tener un checklist único y estandarizado que funcione para cualquier condominio, independientemente del tamaño, tipo (vertical/horizontal/mixto) o complejidad.
+
+🧩 Estructura propuesta
+
+El checklist debe dividirse en módulos fijos, no en personas ni en áreas informales:
+
+Legal y Régimen Condominal
+
+Fiscal y Contable
+
+Recursos Humanos y Seguridad Social
+
+Operación y Servicios
+
+Mantenimiento y Activos
+
+Protección Civil y Riesgos
+
+Tecnología, accesos y contraseñas
+
+Relación con Comité y Gobierno Interno
+
+Juicios, cobranza y morosidad
+
+Proyectos y pendientes heredados
+
+Cada módulo debe contener:
+
+Documento / control requerido
+
+¿Obligatorio o recomendable?
+
+Estatus: ✔ Completo | ◐ Parcial | ✖ No entregado
+
+Observaciones de riesgo
+
+🔑 Clave: el checklist no debe depender de nombres, sino de roles.
+
+2️⃣ Crear un semáforo de riesgo por condominio
+🎯 Objetivo
+
+Poder decirle al comité, en una sola hoja:
+
+“Este condominio entra con riesgo ALTO / MEDIO / BAJO por estas razones.”
+
+🚦 Semáforo propuesto
+Color	Definición
+🟢 Bajo	Documentación completa, operación estable
+🟡 Medio	Faltantes controlables, sin riesgo inmediato
+🔴 Alto	Riesgo legal, fiscal, laboral u operativo
+📊 Evaluación por categoría
+
+Cada módulo del checklist recibe un color:
+
+Legal
+
+Fiscal
+
+RH
+
+Operación
+
+Mantenimiento
+
+Protección civil
+
+Tecnología
+
+Comité y gobierno
+
+Juicios / cobranza
+
+Ejemplo:
+
+🔴 Legal (no hay PROSOC ni actas protocolizadas)
+🟡 Operación (contratos incompletos)
+🟢 Mantenimiento (inventarios y bitácoras completas)
+
+🔑 Valor clave: permite priorizar acciones y proteger a la administración.
+
+3️⃣ Diseñar la hoja de control tipo auditoría (por punto)
+🎯 Objetivo
+
+Pasar de “lista de documentos” a control auditable, trazable y defendible.
+
+📄 Formato estándar de hoja de control
+
+Cada punto del checklist debe tener su hoja con:
+
+Nombre del control
+
+Objetivo
+
+Riesgo que mitiga
+
+Responsable
+
+Evidencia requerida
+
+Periodicidad de revisión
+
+Estatus actual
+
+Observaciones
+
+Plan de acción (si aplica)
+
+Ejemplo:
+
+Control: Actas de asamblea protocolizadas
+Riesgo: Impugnación legal de decisiones
+Responsable: Administración / Comité
+Evidencia: Acta protocolizada + RPP
+Periodicidad: Anual / Extraordinaria
+
+🔑 Clave: esto convierte tu operación en auditoría preventiva, no reactiva.
+
+4️⃣ Armar el formato de reporte ejecutivo para comité
+🎯 Objetivo
+
+Comunicar hallazgos sin ruido técnico, con claridad y respaldo profesional.
+
+📑 Estructura del reporte ejecutivo
+
+1. Portada
+
+Condominio
+
+Fecha de recepción
+
+Administración entrante
+
+2. Resumen ejecutivo (1 página)
+
+Semáforo general
+
+Riesgos críticos detectados
+
+Recomendaciones prioritarias
+
+3. Diagnóstico por área
+
+Legal
+
+Fiscal
+
+RH
+
+Operación
+
+Mantenimiento
+
+Protección civil
+
+4. Hallazgos críticos
+
+Qué falta
+
+Qué riesgo genera
+
+Qué se recomienda
+
+5. Plan de acción sugerido
+
+Corto plazo (0–30 días)
+
+Mediano plazo (31–90 días)
+
+Largo plazo
+
+6. Anexos
+
+Checklist
+
+Hojas de control
+
+Evidencia relevante
+
+🔑 Resultado: el comité entiende, confía y respalda decisiones.
+
+🧠 En resumen
+
+Con estos 4 puntos pasas de:
+
+“Recibimos documentos”
+a
+“Auditamos, controlamos y prevenimos riesgos desde el día uno”
+
+Si quieres, el siguiente paso puede ser:
+
+🔧 Convertir esto en formatos editables (Word / Excel / App)
+
+📊 Crear un dashboard de ingreso de condominio
+
+🛡️ Alinear todo a responsabilidad legal del administrador
+
+
+			
+			ANEXO 1: CARTA ENTREGA - RECEPCIÓN  LEGAL
+			
+	CLIENTE: 		
+			
+	ID	P Q	DESCRIPCIÓN 
+			
+	1.1		EXPEDIENTE LEGAL 
+	1		Escritura Constitutiva del regimen de propiedad de condominio (Reglamento)
+	2		Constancia de registro de Administrador emitido por Prosoc.
+	3		Libros de actas de asamblea autorizado por Prosoc.
+	4		Acta constitutiva de la razón social con folio mercantil.
+	5		Poderes notariales vigentes, integración 
+	6		Libro de Actas de Asamblea General Ordinaria de Accionistas
+	7		Actas de Asamblea General Ordinaria con integración. (RPP)
+	8		Actas de Asamblea General Extraordinaria con integración. (RPP)
+	9		Actas de Sesión del Consejo de Administración, con integración  (P o NP)
+	1.2		CONTRATOS PROVEEDORES
+	1		Seguridad 
+	2		Limpieza
+	3		Jardineria
+	4		Elevadores 
+	5		Fumigacion
+	6		Gas
+	7		Poliza de Seguro del Inmueble
+	8		App
+	9		Planta de emergencia
+	10		Consultorias
+	11		Planta de tratamiento
+	12		Control de acceso
+	13		Equipo de Gimnasio
+	14		Mantenimiento de Bombas 
+	15		Instructores de Gimnasio
+	16		Lavado de Autos 
+	17		Valet Parking 
+	18		Mantenimiento Electrico 
+	19		Contratos vigentes de obra y/o remodelacion
+	20		Contrato mantenimiento del CCTV
+	21		Contratos de maquinas expendedoras a comisión mercantil
+	22		Contratos de uso, concesión y/o arrendamiento de espacios comunes
+	23		Contratos de sistemas contables, facturacion electronica y timbrado
+	1.3		JUICIOS
+	1		Cobranza judicial, juzgado, numero de expediente y estado procesal
+	2		Cobranza extrajudicial, monto de adeudo, periodo, requerimientos y convenios
+	3		Convenios de pago en parcialidades,(# de convenios)
+	4		Juicios en los que el condominio sea parte y/o tercero interesado
+	5		Juicios concluidos con sentencia condenatoria para la sociedad
+	6		Abogados o despachos externos, (datos de contacto y/o contrato litis)
+	1.4		LABORAL Y SEGURIDAD SOCIAL
+	1		Listado de trabajadores, expedientes, contratos, y altas imss
+	2		Prestamos y/o creditos a trabajadores, integracion y status 
+	3		Renuncias firmadas menores a dos meses de antigüedad
+	4		Demandas laborales en proceso
+	5		Accidentes de trabajo(IPP o IPT)
+	6		Nom 35, relacion de quejas (entorno laboral)
+	1.5		PROGRAMA INTERNO DE PROTECCIÓN CIVIL
+	1		Manual de proteccion civil vigente 
+
+ID	P U	DESCRIPCIÓN 
+		
+2.1		FISCAL   
+1		Datos fiscales generales 
+2		Firma electronica de la Compañía 
+3		Sello digital 
+4		Firma electronica y datos representante. 
+5		Alta en el SAT Cía. 
+6		Constancia de situacion fiscal 
+7		Opinion de cumplimiento a la fecha de recepción 
+8		Declaraciones anuales y complementarias  (5 años atrás ) con papel de trabajo 
+9		Declaraciones mensuales y complementarias (5 años atrás) con pt 
+10		Declaraciones informativas (en su caso)
+2.2		CONTABILIDAD 
+1		Respaldo de sistema contable u otros (indicar cual ocupan ) 
+2		Contabilidad impresa o control contable (físico y digital) 
+3		Presupuesto autorizado con el que esta trabajando e indicar periodo. 
+4		Cedula presupuestal vs gastos del año corriente. 
+5		Estados financieros del  mes de la entrega. 
+6		Balanzas de comprobación del año en curso, independiente de la fecha de recepción. 
+7		Auxiliares del año en curso, independiente de la fecha de recepción. 
+8		Estados de cuenta del año en curso
+9		Conciliación bancaria del mes de entrega. 
+10		CxC al cierre de mes que se recibe 
+11		Estados de cuenta individuales de cada condómino
+12		CxP al cierre del mes corriente e integración 
+13		Impuestos por pagar al cierre del mes corriente e integración 
+14		Capital , integración. 
+15		Proyectos extraordinarios en curso
+16		Token´s bancarios y contraseñas de acceso 
+17		Contratos bancarios
+18		Listado de cuotas (mantenimiento, extras, amenidades) 
+ID	P U	DESCRIPCIÓN 
+		
+3		RECURSOS HUMANOS
+1		Claves IDSE
+2		Claves SIPARE
+3		Claves SUA
+4		Claves ISN
+5		Alta IMSS
+6		Tarjeta Patronal 
+7		Certificado del IMSS
+8		Alta ISN 
+9		Listado de personal 
+10		Opinion de cumplimiento IMSS
+11		Expedientes del personal y contratos laborales
+12		Respaldo de sistema nomina  u otros (indicar cual ocupan ) 
+13		Nóminas impresa o control nomina  (físico y digital) , del año en curso 
+14		Listado de finiquitos del año en curso 
+15		Control de vacaciones 
+16		Declaración Riesgo de trabajo del ejercicio anterior 
+17		Declaracion sueldos y salarios, de 5 años atrás 
+18		Respaldo de SUA
+19		Mov. afiliatorios, cedulas IMSS , Infonavit y pagos 5 años atrás.
+20		ISN, declaraciones y pagos del año en curso 
+		
+		
+ID	P Q	DESCRIPCIÓN 
+		
+3.1	OPERACIONES	
+1		Inventario de equipos de oficina.
+2		Inventario de mobiliario de oficina.
+3		Inventario oficina carpetas.
+4		Inventario de insumos de oficina.
+5		Directorio de residentes actualizado.
+6		Inventario de contraseñas de equipos de computo.
+7		Inventario de contraseñas app y plataformas.
+8		Inventario de contraseñas de redes wifi.
+9		Inventario mobiliario de áreas comunes.
+10		Inventario arte y decoración.
+11		Inventario de equipos electromecánicos.
+12		Inventario de Camaras y equipo de CCTV
+13		Inventario de amenidades e instalaciones.
+14		Inventario de extintores.
+15		Inventario de llaves.
+16		Inventario de herramientas.
+17		Inventario de insumos áreas comunes.
+18		Carpeta de entrega/Compra equipos.
+19		Bitácora de servicios a equipos.
+20		Garantías de servicios.
+21		Garantías de equipos.
+22		Directorio de proveedores actuales.
+23		Listado de pendientes operativos internos.
+24		Listado de proyectos pendientes y en curso.
+25		Organigrama de operación.
+26		Planos arquitectónico.
+27		Planos eléctricos.
+28		Planos  hidrosanitarios.
+29		Planos isométricos.
+30		Planos estructurales.
+31		Planos cimentación.

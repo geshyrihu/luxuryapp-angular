@@ -1,0 +1,115 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  dzfxcvcv
+  <ng-template #caption>
+    <div class="flex justify-content-between">
+      <primeng-custom-caption (add)="onCreate()" [dt]="dt" />
+      <custom-button
+        (clicked)="onDownloadAll()"
+        [showLabelOnDesktop]="false"
+        label="Descargar Todas"
+        iconClass="icon icon-pi-download"
+      />
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="employeeName">
+        Empleado
+        <p-sortIcon field="employeeName" />
+      </th>
+      <th pSortableColumn="departament">
+        Departamento
+        <p-sortIcon field="departament" />
+      </th>
+      <th pSortableColumn="evaluationDate">
+        Fecha
+        <p-sortIcon field="evaluationDate" />
+      </th>
+      <th pSortableColumn="evaluationTemplate">
+        Evaluación
+        <p-sortIcon field="evaluationTemplate" />
+      </th>
+      <th pSortableColumn="evaluatorName">
+        Evaluador
+        <p-sortIcon field="evaluatorName" />
+      </th>
+      <th pSortableColumn="finalScore">
+        Resultado
+        <p-sortIcon field="finalScore" />
+      </th>
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.employeeName }}</td>
+      <td>{{ item.departament }}</td>
+      <td>{{ item.evaluationDate }}</td>
+      <td>{{ item.evaluationTemplate }}</td>
+      <td>{{ item.evaluatorName }}</td>
+      <td>{{ item.finalScoreFormatted }}</td>
+      <!-- Opciones -->
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-edit (clicked)="onEdit(item.id)" />
+          <custom-button-item
+            (clicked)="onDetail(item.id)"
+            label="Detalle"
+            iconClass="pi pi-receipt "
+          />
+          <custom-button-item
+            (clicked)="onDownloadIndividual(item.id, item.employeeName)"
+            label="Descargar"
+            iconClass="pi pi-upload"
+            iconClass="icon icon-pi-download"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+      <!-- Opciones -->
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onCreate()"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding" detail="false">
+      <ion-label>
+        <h2 class="font-normal m-0">{{ item.employeeName }}</h2>
+        <p class="text-medium text-500 m-0">{{ item.evaluationTemplate }}</p>
+      </ion-label>
+      <app-action-menu slot="end">
+        <ng-container actions>
+          <ion-button-item
+            (clicked)="onEdit(item.id)"
+            label="Editar"
+            iconName="create-outline"
+          />
+
+          <ion-button-delete (confirmed)="onDelete(item.id)" />
+        </ng-container>
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

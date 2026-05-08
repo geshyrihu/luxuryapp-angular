@@ -1,0 +1,73 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block"></div>
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption [showAdd]="false" />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th>#</th>
+      <th pSortableColumn="provider">
+        Proveedor
+        <p-sortIcon field="provider" />
+      </th>
+      <th pSortableColumn="description">
+        Descripción
+        <p-sortIcon field="description" />
+      </th>
+      <th pSortableColumn="startDateFilter">
+        Fecha Contratación
+        <p-sortIcon field="startDateFilter" />
+      </th>
+      <th pSortableColumn="endDateFilter">
+        Fecha de Término
+        <p-sortIcon field="endDateFilter" />
+      </th>
+      <th>Documento</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-i="rowIndex">
+    <tr>
+      <td>{{ i + 1 }}</td>
+      <td>{{ item.provider }}</td>
+      <td>{{ item.description }}</td>
+      <td>{{ item.startDate }}</td>
+      <td class="text-center">
+        <span
+          class="badge p-2 w-75"
+          [class.bg-danger-subtle]="isCloseToEndDate(item.endDateFilter)"
+          [class.text-danger]="isCloseToEndDate(item.endDateFilter)"
+          [class.bg-success-subtle]="!isCloseToEndDate(item.endDateFilter)"
+          [class.text-success]="!isCloseToEndDate(item.endDateFilter)"
+        >
+          {{ item.endDate }}
+        </span>
+      </td>
+      <td class="text-center">
+        <custom-button-view-pdf
+          [showLabelOnDesktop]="true"
+          [url]="item.path"
+          fileName="Poliza | Contrato"
+        />
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        label="Id"
+        [readonly]="true"
+      />
+
+      <div class="grid mb-2">
+        <label class="col-12 md:col-3">Imagen</label>
+        <div class="col-12 md:col-9">
+          <div class="card">
+            <custom-input-img-signal
+              (fileSelected)="uploadFile($event)"
+              [urlImgCurrent]="urlBaseImg"
+              [contentHeight]="15"
+              [contentWidth]="25"
+            />
+          </div>
+        </div>
+      </div>
+
+      <custom-input-text-signal
+        [control]="form.controls.instancia"
+        label="Instancia"
+        placeholder="instancia"
+      />
+
+      <custom-input-mask-signal
+        [control]="form.controls.telefonoUno"
+        label="Teléfono 1"
+        placeholder="(00) 0000-0000"
+        customMask="(00) 0000-0000"
+      />
+
+      <custom-input-mask-signal
+        [control]="form.controls.telefonoDos"
+        label="Teléfono 2"
+        placeholder="(00) 0000-0000"
+        customMask="(00) 0000-0000"
+      />
+
+      <custom-input-textarea-signal
+        [control]="form.controls.direccion"
+        label="Dirección"
+        placeholder="dirección"
+      />
+
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </div>
+</div>

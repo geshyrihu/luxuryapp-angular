@@ -1,0 +1,63 @@
+<!-- Encabezado -->
+<div class="mb-6">
+  <div class="flex align-items-center gap-3 mb-2">
+    <div class="flex align-items-center justify-content-center bg-primary-50 border-round-xl" style="width: 56px; height: 56px">
+      <i class="pi pi-wallet text-3xl text-primary-600"></i>
+    </div>
+    <div>
+      <h1 class="text-3xl font-bold text-900 m-0">Contabilidad</h1>
+      <p class="text-base text-500 m-0">
+        Panel central de gestión contable, cobranza, presupuestos y estados financieros
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Grupos de módulos -->
+@for (group of getVisibleGroups(); track group.label) {
+  <!-- Título del grupo -->
+  <div class="flex align-items-center gap-2 mb-4 mt-6">
+    <i [class]="group.icon + ' text-xl text-primary-600'"></i>
+    <h2 class="text-lg font-bold text-900 m-0 uppercase">
+      {{ group.label }}
+    </h2>
+    <div class="flex-grow-1 border-bottom-1 surface-border ml-3"></div>
+  </div>
+
+  <!-- Cards del grupo -->
+  <div class="grid">
+    @for (module of group.cards; track module.route) {
+      <div class="col-12 sm:col-6 md:col-3">
+        <p-card
+          styleClass="h-full border-top-3 surface-card shadow-2 cursor-pointer hover:shadow-4 transition-all transition-duration-200"
+          [style]="{'border-top-color': module.color}"
+          (click)="navigateTo(module.route)"
+        >
+          <div class="flex flex-column gap-3">
+            <!-- Icono y meta -->
+            <div class="flex align-items-center justify-content-between">
+              <div
+                class="flex align-items-center justify-content-center border-round-lg text-2xl flex-shrink-0"
+                style="width: 48px; height: 48px"
+                [style.backgroundColor]="module.bgColor"
+              >
+                <i [class]="module.icon" [style.color]="module.color"></i>
+              </div>
+              <i class="pi pi-arrow-up-right text-400"></i>
+            </div>
+
+            <!-- Título y descripción -->
+            <div>
+              <h3 class="m-0 font-bold text-900 line-height-2 text-base">
+                {{ module.title }}
+              </h3>
+              <p class="text-sm text-600 m-0 mt-2 line-height-3">
+                {{ module.description }}
+              </p>
+            </div>
+          </div>
+        </p-card>
+      </div>
+    }
+  </div>
+}

@@ -1,0 +1,84 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      [title]="'Inventario de Extintores'"
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-5">Foto</th>
+      <th class="table-col-30" pSortableColumn="eExtintor">
+        Extintor <p-sortIcon field="eExtintor" />
+      </th>
+      <th class="table-col-30" pSortableColumn="ubicacion">
+        Ubicación <p-sortIcon field="ubicacion" />
+      </th>
+      <th class="table-col-5"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <p-image [src]="item.photo" alt="." width="100" class="shadow-4" [preview]="true" />
+      </td>
+      <td><small>{{ item.eExtintor }}</small></td>
+      <td><small>{{ item.ubicacion }}</small></td>
+      <td>
+        <div class="flex">
+          <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div slot="start" style="
+        width:36px; height:36px; border-radius:10px;
+        background:#fee2e2; display:flex; align-items:center;
+        justify-content:center; flex-shrink:0; margin-left:16px;
+      ">
+        <ion-icon name="flame-outline" style="font-size:20px; color:#dc2626;"></ion-icon>
+      </div>
+      <ion-label>
+        <h3>{{ item.eExtintor }}</h3>
+        <p>{{ item.ubicacion }}</p>
+      </ion-label>
+      <app-action-menu slot="end">
+        <ion-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
+        <ion-button-delete (confirmed)="onDelete(item.id)" />
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+
+
+
+
+
+

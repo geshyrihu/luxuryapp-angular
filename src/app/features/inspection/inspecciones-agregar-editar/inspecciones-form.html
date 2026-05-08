@@ -1,0 +1,80 @@
+<p-card>
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <!-- Campo Nombre -->
+      <custom-input-text-signal
+        [control]="form.controls.name"
+        label="Nombre de la Inspección"
+        placeholder="Nombre de la Inspección"
+      />
+
+      <custom-input-select-signal
+        [control]="form.controls.departament"
+        label="Departamento"
+        [data]="cb_departament()"
+      />
+
+      <!-- Selector de Frecuencia -->
+      <custom-input-select-signal
+        id="frequency"
+        [control]="form.controls.frequency"
+        label="Frecuencia"
+        [data]="frequencyOptions"
+        optionLabel="label"
+        optionValue="value"
+        (selectionChange)="onFrequencyChange($event.value)"
+        [horizontal]="true"
+        placeholder="Seleccione una frecuencia"
+      />
+
+      <!-- Opciones de Frecuencia -->
+      @if (selectedFrequency() === 'weekly') {
+      <div class="grid align-items-center mb-3">
+        <label class="col-12 md:col-3 font-medium"
+          >Días de la semana:</label
+        >
+        <div class="col-12 md:col-9 flex flex-wrap">
+          @for (day of weekDays; track day.value) {
+          <custom-input-check-signal
+            [control]="getDayControl(day.key)"
+            [label]="day.label"
+          />
+          }
+        </div>
+      </div>
+      } @if (selectedFrequency() === 'monthly') {
+      <div class="grid mb-3 align-items-center">
+        <label for="dayOfMonth" class="col-12 md:col-3 font-medium"
+          >Dóa del Mes</label
+        >
+        <div class="col-12 md:col-9">
+          <custom-input-number-signal
+            [control]="form.controls.dayOfMonth"
+            placeholder="Ingrese el día (1-31)"
+            [min]="1"
+            [max]="31"
+            [horizontal]="false"
+          />
+        </div>
+      </div>
+      }
+
+      <!-- Selector de Activo -->
+      <custom-input-select-signal
+        id="isActive"
+        [control]="form.controls.isActive"
+        label="Activa"
+        [data]="activeStatusOptions"
+        optionLabel="label"
+        optionValue="value"
+        [horizontal]="true"
+      />
+
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </div>
+</p-card>

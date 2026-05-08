@@ -1,0 +1,84 @@
+<div class="card">
+  <!-- Filtro de estatus -->
+  <div class="mb-3 w-full sm:w-16rem">
+    <custom-input-select-signal
+      label="Estatus"
+      [data]="statusOptions"
+      optionLabel="label"
+      optionValue="value"
+      [horizontal]="false"
+      (selectionChange)="onStatusChange($event)"
+    />
+  </div>
+
+  <p-table
+    [globalFilterFields]="globalFilterFields()"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [value]="dataSignal()"
+    #dt
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    styleClass="custom-table card hidden md:block"
+  >
+    <ng-template #caption>
+      <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="table-col-sm">Foto</th>
+        <th class="table-col-lg">Nombre</th>
+        <th class="table-col-sm">No. Emp.</th>
+        <th class="table-col-lg">Puesto</th>
+        <th class="table-col-md">Departamento</th>
+        <th class="table-col-sm text-center">Estatus</th>
+        <th class="table-col-actions">Acciones</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td>
+          @if (item.photoUrl) {
+          <img
+            [src]="item.photoUrl"
+            [alt]="item.fullName"
+            class="w-3rem h-3rem border-round-circle object-cover"
+          />
+          } @else {
+          <div
+            class="w-3rem h-3rem border-round-circle surface-200 flex align-items-center justify-content-center text-500 text-sm font-bold"
+          >
+            {{ item.fullName.charAt(0) }}
+          </div>
+          }
+        </td>
+        <td class="font-medium">{{ item.fullName }}</td>
+        <td>{{ item.numberEmployee ?? '—' }}</td>
+        <td>{{ item.puesto || '—' }}</td>
+        <td>{{ item.departamento || '—' }}</td>
+        <td class="text-center">
+          <span [class]="'badge border-1 surface-border ' + getStatusBadge(item.isActive)">
+            {{ item.isActive ? 'Activo' : 'Inactivo' }}
+          </span>
+        </td>
+        <td class="text-center">
+          <custom-button-item
+            iconClass="pi pi-folder-open"
+            label="Ver Expediente"
+            (click)="onViewFile(item)"
+          />
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #paginatorleft>
+      <primeng-custom-table-footer [data]="dataSignal()" />
+    </ng-template>
+  </p-table>
+</div>

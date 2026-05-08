@@ -1,0 +1,203 @@
+<div class="nom-page">
+
+  <!-- ── Hero ──────────────────────────────────────────────── -->
+  <div class="nom-hero mb-4">
+    <div class="nom-hero__copy">
+      <p-tag value="Recursos Humanos" severity="info" />
+      <h1>Gestion de Nomina</h1>
+      <p>
+        Sistema integral de nomina quincenal. Administra periodos, genera nominas,
+        controla incidencias, tiempo extra, prestamos y evidencias desde un solo lugar.
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <custom-button
+          label="Periodos de nomina"
+          iconClass="pi pi-calendar"
+          size="small"
+          (clicked)="navigateTo('/recursos-humanos/nomina/periodos')"
+        />
+        <custom-button
+          label="Generar nomina"
+          iconClass="pi pi-file-check"
+          variant="outlined"
+          severity="secondary"
+          size="small"
+          (clicked)="navigateTo('/recursos-humanos/nomina/nominas')"
+        />
+      </div>
+    </div>
+
+    <div class="nom-hero__metrics">
+      @for (metric of heroMetrics; track metric.label) {
+        <article class="nom-metric">
+          <span [class]="'nom-metric__icon nom-metric__icon--' + metric.tone">
+            <i [class]="metric.icon"></i>
+          </span>
+          <div>
+            <strong>{{ metric.value }}</strong>
+            <span>{{ metric.label }}</span>
+            <small>{{ metric.detail }}</small>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+
+  <!-- ── Groups ────────────────────────────────────────────── -->
+  @for (group of groups; track group.label; let gi = $index) {
+    <div class="mb-4">
+
+      <div class="nom-section__header">
+        <span class="nom-kicker">{{ (gi + 1).toString().padStart(2, '0') }}</span>
+        <div>
+          <h2>{{ group.label }}</h2>
+          <p>{{ group.description }}</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        @for (card of group.cards; track card.title) {
+          <div class="col-12 sm:col-6 lg:col-4">
+            <div class="nom-card surface-card h-full flex flex-column">
+
+              <div class="nom-card__accent" [style.background]="card.bgColor"></div>
+
+              <div class="p-3 flex-1 flex flex-column">
+
+                <!-- Icon + title + roles -->
+                <div class="flex align-items-start gap-2 mb-2">
+                  <div class="nom-card__icon" [style.background]="card.bgColor">
+                    <i [class]="card.icon + ' text-sm text-800'"></i>
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-semibold text-900 text-sm">{{ card.title }}</div>
+                    <div class="flex flex-wrap gap-1 mt-1">
+                      @for (role of card.roles; track role) {
+                        <p-tag
+                          [value]="role"
+                          [severity]="roleTagSeverity(role)"
+                          styleClass="text-xs"
+                        />
+                      }
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Description -->
+                <p class="text-xs text-500 line-height-3 mt-1 mb-3 flex-1">
+                  {{ card.description }}
+                </p>
+
+                <!-- Action buttons -->
+                <div class="flex gap-2 mt-auto">
+                  @if (card.route) {
+                    <div class="flex-1">
+                      <custom-button
+                        label="Abrir"
+                        iconClass="pi pi-arrow-right"
+                        size="small"
+                        class="w-full"
+                        (clicked)="navigateTo(card.route)"
+                      />
+                    </div>
+                  } @else {
+                    <span class="flex-1 flex align-items-center justify-content-center gap-1 px-3 py-2 border-round-lg text-xs text-500 surface-100 border-1 surface-border">
+                      <i class="pi pi-window-maximize text-xs"></i>
+                      Acceso desde otra pagina
+                    </span>
+                  }
+                  <custom-button
+                    [iconClass]="isExpanded(card.title) ? 'pi pi-chevron-up' : 'pi pi-chevron-down'"
+                    variant="outlined"
+                    severity="secondary"
+                    size="small"
+                    [title]="isExpanded(card.title) ? 'Ocultar detalle' : 'Ver detalle tecnico'"
+                    (clicked)="toggleExpand(card.title)"
+                  />
+                </div>
+              </div>
+
+              <!-- Expandable detail -->
+              @if (isExpanded(card.title)) {
+                <div class="nom-expand px-3 pb-3">
+
+                  <div class="mt-3 mb-3">
+                    <div class="text-xs font-semibold text-600 uppercase mb-2">
+                      <i class="pi pi-list text-xs mr-1"></i>Que puedes hacer
+                    </div>
+                    <ul class="m-0 pl-3">
+                      @for (action of card.actions; track action.label) {
+                        <li class="text-xs text-700 line-height-3 mb-1">{{ action.label }}</li>
+                      }
+                    </ul>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="text-xs font-semibold text-600 uppercase mb-2">
+                      <i class="pi pi-server text-xs mr-1"></i>Endpoints del API
+                    </div>
+                    @for (ep of card.endpoints; track ep.path) {
+                      <div class="nom-endpoint-row text-xs">
+                        <span
+                          class="font-mono font-bold flex-shrink-0"
+                          [class]="ep.method === 'GET' ? 'text-blue-600' : ep.method === 'DELETE' ? 'text-red-600' : 'text-green-600'"
+                        >{{ ep.method }}</span>
+                        <div class="flex flex-column gap-1">
+                          <span class="font-mono text-500 break-all">{{ ep.path }}</span>
+                          <span class="text-400">{{ ep.description }}</span>
+                        </div>
+                      </div>
+                    }
+                  </div>
+
+                  @if (card.states?.length) {
+                    <div class="mb-3">
+                      <div class="text-xs font-semibold text-600 uppercase mb-2">
+                        <i class="pi pi-tag text-xs mr-1"></i>Estados posibles
+                      </div>
+                      <div class="flex flex-wrap gap-1">
+                        @for (s of card.states; track s) {
+                          <p-tag [value]="s" severity="secondary" styleClass="text-xs font-mono" />
+                        }
+                      </div>
+                    </div>
+                  }
+
+                  @if (card.notes) {
+                    <div class="p-2 bg-yellow-50 border-round border-1 border-yellow-200">
+                      <div class="text-xs text-yellow-800 line-height-3">
+                        <i class="pi pi-info-circle mr-1"></i>{{ card.notes }}
+                      </div>
+                    </div>
+                  }
+
+                </div>
+              }
+
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- ── Footer CTA ─────────────────────────────────────────── -->
+  <div class="nom-footer-cta mt-4 flex align-items-center gap-3">
+    <i class="pi pi-dollar text-primary text-2xl flex-shrink-0"></i>
+    <div class="flex-1">
+      <div class="font-semibold text-900 mb-1">Flujo recomendado de nomina</div>
+      <div class="text-sm text-500 line-height-3">
+        Crea el periodo de la quincena, registra incidencias y tiempo extra aprobado,
+        genera la nomina automaticamente, revisa y aprueba, y finalmente cierra para
+        aplicar los descuentos de prestamos.
+      </div>
+    </div>
+    <custom-button
+      label="Ver periodos"
+      iconClass="pi pi-calendar"
+      size="small"
+      (clicked)="navigateTo('/recursos-humanos/nomina/periodos')"
+    />
+  </div>
+
+</div>

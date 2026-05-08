@@ -1,0 +1,45 @@
+<div class="mb-3">
+  <custom-input-text-signal
+    [control]="searchForm.controls.searchTerm"
+    placeholder="Buscar por código o descripción"
+    [customClass]="'w-full'"
+    [horizontal]="false"
+  />
+</div>
+
+@if (filteredAccounts().length > 0) {
+<div
+  class="border-1 surface-border border-round"
+  style="max-height: 400px; overflow-y: auto"
+>
+  @for (account of filteredAccounts(); track account.codigoCuenta) {
+  <div
+    pRipple
+    class="p-3 flex justify-content-between align-items-center cursor-pointer"
+    [class.surface-200]="isSelected(account.codigoCuenta)"
+    [class.hover:surface-100]="!isSelected(account.codigoCuenta)"
+    (click)="toggleAccountSelection(account.codigoCuenta)"
+  >
+    <span>{{ account.codigoCuenta }} - {{ account.descripcionCuenta }}</span>
+    @if (isSelected(account.codigoCuenta)) {
+    <i class="pi pi-check text-primary"></i>
+    }
+  </div>
+  }
+</div>
+<div class="flex justify-content-end mt-3">
+  <custom-button
+    type="button"
+    variant="outlined"
+    size="sm"
+    (clicked)="submitSelectedAccounts()"
+    [disabled]="selectedAccounts().length === 0"
+    iconClass="pi pi-plus"
+    label="Añadir Seleccionadas ({{selectedAccounts().length}})"
+  />
+</div>
+} @else {
+<p-message severity="info"
+  >No hay cuentas disponibles que coincidan con la bósqueda.</p-message
+>
+}

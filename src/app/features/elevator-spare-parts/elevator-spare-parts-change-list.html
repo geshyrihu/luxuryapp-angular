@@ -1,0 +1,143 @@
+@if (dataSignal()) {
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block">
+  <div class="card">
+    <p-table
+      [globalFilterFields]="globalFilterFields"
+      [paginator]="true"
+      [rows]="tablePrimeNgRows"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [showCurrentPageReport]="true"
+      [value]="dataSignal()"
+      #dt
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      styleClass="custom-table"
+    >
+      <!-- styleClass="p-datatable-sm" -->
+      <ng-template #caption>
+        <primeng-custom-caption
+          (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+          [dt]="dt"
+        />
+      </ng-template>
+
+      <ng-template #header>
+        <tr>
+          <th pSortableColumn="folio">
+            FOLIO
+            <p-sortIcon field="folio" />
+          </th>
+          <th pSortableColumn="changeDate">
+            FECHA
+            <p-sortIcon field="changeDate" />
+          </th>
+          <th pSortableColumn="machinery">
+            EQUIPO
+            <p-sortIcon field="machinery" />
+          </th>
+          <th pSortableColumn="failure">
+            FALLA
+            <p-sortIcon field="failure" />
+          </th>
+
+          <th pSortableColumn="partName">
+            NOMBRE DE PIEZA
+            <p-sortIcon field="partName" />
+          </th>
+          <th pSortableColumn="partKey">
+            CLAVE DE PIEZA
+            <p-sortIcon field="partKey" />
+          </th>
+          <th pSortableColumn="price">
+            COSTO
+            <p-sortIcon field="price" />
+          </th>
+          <th pSortableColumn="supervised">
+            SUPERVISO
+            <p-sortIcon field="supervised" />
+          </th>
+          <th class="table-col-5 no-print"></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>{{ item.folio }}</td>
+          <td>{{ item.changeDate }}</td>
+          <td>{{ item.machinery }}</td>
+          <td>{{ item.failure }}</td>
+          <td>{{ item.partName }}</td>
+          <td>{{ item.partKey }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.supervised }}</td>
+          <!-- Opciones -->
+
+          <td class="no-print">
+            <div class="flex">
+              <custom-button-edit
+                (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+              />
+              <custom-button-delete (confirmed)="onDelete(item.id)" />
+            </div>
+          </td>
+          <!-- Opciones -->
+        </tr>
+      </ng-template>
+      <ng-template #paginatorleft>
+        <primeng-custom-table-footer [data]="dataSignal()" />
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<div class="block md:hidden">
+  <div class="card">
+    <app-data-view-mobile
+      [data]="dataSignal()"
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+      [globalFilterFields]="globalFilterFields"
+    >
+      <ng-template #listItemTemplate let-item>
+        <ion-item lines="full" class="ion-no-padding">
+          <ion-label>
+            <div class="flex justify-content-between align-items-center mb-1">
+              <h2 class="font-bold m-0 text-base text-wrap">
+                {{ item.partName }}
+              </h2>
+              <span class="font-bold text-lg text-green-600"
+                >{{ item.price | currency }}</span
+              >
+            </div>
+            <p class="text-sm text-500 m-0">
+              <i class="pi pi-hashtag mr-1 text-xs"></i> Folio: {{ item.folio }}
+            </p>
+            <p class="text-sm text-500 m-0">
+              <i class="pi pi-calendar mr-1 text-xs"></i> {{ item.changeDate }}
+            </p>
+            <p class="text-sm text-500 m-0">
+              <i class="pi pi-cog mr-1 text-xs"></i> {{ item.machinery }}
+            </p>
+            <p class="text-sm text-700 mt-2 mb-1">
+              <strong>Falla:</strong> {{ item.failure }}
+            </p>
+            <small class="text-xs text-500 block mt-1"
+              >Supervisó: {{ item.supervised }}</small
+            >
+          </ion-label>
+
+          <div slot="end">
+            <app-action-menu>
+              <ng-container actions>
+                <ion-button-edit
+                  (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+                />
+                <ion-button-delete (confirmed)="onDelete(item.id)" />
+              </ng-container>
+            </app-action-menu>
+          </div>
+        </ion-item>
+      </ng-template>
+    </app-data-view-mobile>
+  </div>
+</div>
+}

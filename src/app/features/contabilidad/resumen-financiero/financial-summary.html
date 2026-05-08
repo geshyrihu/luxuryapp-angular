@@ -1,0 +1,126 @@
+<!-- Contenedor principal de la vista de resumen financiero -->
+<div class="budget-view-port-container">
+  <!--
+  Tabla de resumen. La estructura es la misma, pero el contenido de las celdas es más simple.
+  -->
+  <p-table
+    [globalFilterFields]="globalFilterFields()"
+    [scrollable]="true"
+    [showCurrentPageReport]="true"
+    [value]="cuentasSignal()"
+    #dt
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} cuentas"
+    frozenWidth="500px"
+    scrollHeight="700px"
+    styleClass="financial-data-table budget-sticky-footer-table card border-none shadow-1"
+  >
+    <!-- =========================
+    CAPTION: Encabezado (Idéntico al anterior)
+    ========================= -->
+    <ng-template #caption>
+      <!-- ... (Copia y pega aquí toda la sección <ng-template #caption> de tu componente anterior. No necesita cambios.) ... -->
+    </ng-template>
+
+    <!-- =========================
+    HEADER: Encabezados (Idéntico al anterior)
+    ========================= -->
+    <ng-template #header>
+      <!-- ... (Copia y pega aquí toda la sección <ng-template #header> de tu componente anterior. No necesita cambios.) ... -->
+    </ng-template>
+
+    <!-- =========================
+    BODY: Filas de datos (¡AQUÍ ESTÁ LA SIMPLIFICACIÓN!)
+    ========================= -->
+    <ng-template #body let-cuenta>
+      <!-- Cada fila es una cuenta padre/resumen. Usamos una clase simple. -->
+      <tr class="fila-resumen">
+        <!-- Descripción de cuenta -->
+        <td pFrozenColumn class="text-xs font-bold">
+          <span class="text-xs text-500">
+            <span class="cursor-pointer" (click)="showPurchaseHistory(cuenta)"
+              >🗂️</span
+            >
+            {{ cuenta.codigo_Cuenta }}
+          </span>
+          <br />
+          <span class="text-900"> {{ cuenta.descripcion_Cuenta }} </span>
+        </td>
+        <!-- Presupuesto mensual base -->
+        <td
+          pFrozenColumn
+          class="text-right text-green-600 font-bold text-xs"
+        >
+          <!-- SIN CONDICIONALES: Mostramos el dato directamente -->
+          {{ getPresupuestoBaseMensual(cuenta) | number: '1.0-0' }}
+        </td>
+        @if (mesesVisibles.length === 0) {
+        <td class="text-center text-xs">-</td>
+        }
+        <!-- Columnas de meses visibles -->
+        @for (mes of mesesVisibles; track mes) {
+        <td class="text-right text-xs">
+          @if (preFormMonth) { @let presupMes = getPresupuestoDelMes(cuenta,
+          mes);
+          <span class="text-xs text-500">
+            {{ presupMes !== 0 ? (presupMes | number: '1.0-0') : '-' }}
+          </span>
+          <br />
+          } @let monto = getMontoMes(cuenta, mes);
+          <span
+            [class.text-red-600]="monto < 0 || monto > getPresupuestoBaseMensual(cuenta)"
+            [class.font-bold]="monto < 0 || monto > getPresupuestoBaseMensual(cuenta)"
+          >
+            {{ monto !== 0 ? (monto | number: '1.0-0') : '-' }}
+          </span>
+        </td>
+        }
+        <!-- Acumulado anual -->
+        <td class="text-right text-xs font-bold">
+          @let acumulado = getSumaGastoMesesVisiblesCuenta(cuenta);
+          <span [class.text-red-600]="acumulado < 0">
+            {{ acumulado !== 0 ? (acumulado | number: '1.0-0') : '-' }}
+          </span>
+        </td>
+        <!-- Porcentaje gastado por cuenta -->
+        <td class="text-right text-xs font-bold">
+          <span
+            [class]="
+              getPorcentajeGastadoMesesVisiblesCuenta(cuenta) > 100 ? 'text-red-600' : 'text-green-600'
+            "
+          >
+            {{ getPorcentajeGastadoMesesVisiblesCuenta(cuenta) > 0 ?
+            (getPorcentajeGastadoMesesVisiblesCuenta(cuenta) | number: '1.0-0')
+            + '%' : '-' }}
+          </span>
+        </td>
+        <!-- Presupuesto anual -->
+        <td class="text-right text-xs font-bold">
+          @let presupuesto = getSumaPresupuestoMesesVisiblesCuenta(cuenta); {{
+          presupuesto !== 0 ? (presupuesto | number: '1.0-0') : '-' }}
+        </td>
+        <!-- Presupuesto restante -->
+        <td class="text-right text-xs font-bold">
+          @let restante = getSumaPresupuestoMesesVisiblesCuenta(cuenta) -
+          getSumaGastoMesesVisiblesCuenta(cuenta);
+          <span [class.text-red-600]="restante < 0">
+            {{ restante | number: '1.0-0' }}
+          </span>
+        </td>
+      </tr>
+    </ng-template>
+
+    <!-- =========================
+      FOOTER: Totales (Idéntico al anterior)
+      ========================= -->
+    <ng-template #footer>
+      <!-- ... (Copia y pega aquí toda la sección <ng-template #footer> de tu componente anterior. No necesita cambios.) ... -->
+    </ng-template>
+
+    <!-- =========================
+      EMPTY MESSAGE: Sin datos (Idéntico al anterior)
+      ========================= -->
+    <ng-template emptymessage>
+      <!-- ... (Copia y pega aquí toda la sección <ng-template emptymessage> de tu componente anterior. No necesita cambios.) ... -->
+    </ng-template>
+  </p-table>
+</div>

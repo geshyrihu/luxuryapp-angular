@@ -1,0 +1,14 @@
+// ============================================================
+// _prime-tag.scss
+// PrimeNG 21 tag overrides
+// ============================================================
+
+:root {
+  --p-tag-border-radius: var(--ds-radius-sm, 4px);
+}
+
+body {
+  .p-tag {
+    border-radius: var(--ds-radius-sm, 4px);
+  }
+}

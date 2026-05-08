@@ -1,0 +1,53 @@
+<div class="flex align-items-end">
+  <!-- Menú de navegación -->
+  <div class="flex-flex-grow-1-1 min-w-0">
+    <div class="flex gap-1 flex-wrap">
+      @for (item of menu; track item) {
+      <a
+        [routerLink]="['/recruitment/requests/', item.path]"
+        class="btn btn-secondary btn-sm"
+        [class.btn-outline]="isActive(item.path)"
+      >{{ item.label }}</a>
+      }
+    </div>
+  </div>
+
+  <!-- Filtro de fecha -->
+  <div class="flex-shrink-0 w-15rem">
+    <custom-input-date-signal
+      id="fecha-desde"
+      label="Mostrar desde"
+      [control]="fechaFormateadaControl"
+      [horizontal]="false"
+    />
+  </div>
+
+  <!-- Filtro de estatus -->
+  <div class="flex-shrink-0 w-15rem">
+    <custom-input-select-signal
+      id="status-select"
+      label="Estatus"
+      placeholder="Mostrar todos"
+      [control]="statusRequestControl"
+      [data]="cb_status_request"
+      [showClear]="false"
+      (selectionChange)="onLoadData()"
+      [horizontal]="false"
+    />
+  </div>
+
+  <!-- Botón de exportar -->
+  <div class="flex-shrink-0 w-15rem">
+    <custom-button
+      customClass="mb-0"
+      [showLabelOnDesktop]="true"
+      iconClass="pi pi-chart-bar "
+      label="Exportar a excel"
+      (clicked)="exportToExcel()"
+      variant="outlined"
+      severity="success"
+      size="small"
+      fluid
+    />
+  </div>
+</div>

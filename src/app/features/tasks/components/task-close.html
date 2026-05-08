@@ -1,0 +1,44 @@
+<div class="w-full">
+  <div class="w-full">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        [readonly]="true"
+        label="Id"
+        [hidden]="false"
+      />
+      <custom-input-date-signal
+        [control]="form.controls.closedDate"
+        label="Fecha de término"
+        placeholder="Esta fecha se coloca cuando ya se término el ticket"
+      />
+
+      <div class="grid">
+        <div>
+          <custom-input-img-signal
+            [control]="form.controls.beforeWork"
+            [urlImgCurrent]="form.controls.beforeWorkPreview.value"
+            label="Foto de antes"
+            [required]="false"
+          />
+        </div>
+        <div>
+          <custom-input-img-signal
+            [control]="form.controls.afterWork"
+            [urlImgCurrent]="form.controls.afterWorkPreview.value"
+            label="Foto de después"
+            [required]="false"
+          />
+        </div>
+      </div>
+
+      <div class="text-center mt-3">
+        <custom-button-save
+          [propertyId]="id"
+          [disabled]="form.invalid"
+          [loading]="submitting()"
+        />
+      </div>
+    </form>
+  </div>
+</div>

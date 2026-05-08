@@ -1,0 +1,112 @@
+<div
+  class="card p-4 shadow-1 border-round-2xl border-1 surface-border surface-100"
+>
+  @if (loading) {
+  <div class="text-center">
+    <i class="pi pi-spin pi-spinner text-4xl"></i>
+    <p>Cargando detalle...</p>
+  </div>
+  } @else if (data) {
+  <div class="grid mb-2">
+    <div class="col-4 font-bold">Tipo de Solicitud</div>
+    <div class="col-8">{{ data.requestTypeName }}</div>
+  </div>
+
+  <div class="grid mb-2">
+    <div class="col-4 font-bold">Empleado</div>
+    <div class="col-8">{{ data.employeeFullName }}</div>
+  </div>
+
+  <div class="grid mb-2">
+    <div class="col-4 font-bold">Estado</div>
+    <div class="col-8">
+      <p-tag
+        [value]="data.status"
+        [severity]="getStatusSeverity(data.status)"
+      ></p-tag>
+    </div>
+  </div>
+
+  <div class="grid mb-2">
+    <div class="col-4 font-bold">Fecha de Solicitud</div>
+    <div class="col-8">{{ data.requestDate }}</div>
+  </div>
+
+  <div class="grid mb-2">
+    <div class="col-4 font-bold">Periodo</div>
+    <div class="col-8">{{ data.period }}</div>
+  </div>
+
+  @if (data.timeRange) {
+  <div class="grid mb-2">
+    <div class="col-4 font-bold">Horario</div>
+    <div class="col-8">{{ data.timeRange }}</div>
+  </div>
+  } @if (data.reason) {
+  <div class="grid mb-2">
+    <div class="col-4 font-bold">Motivo</div>
+    <div class="col-8">{{ data.reason }}</div>
+  </div>
+  } @if (data.attachmentUrl) {
+  <div class="grid mb-2">
+    <div class="col-4 font-bold">Archivo Adjunto</div>
+    <div class="col-8">
+      <custom-button
+        iconClass="pi pi-download"
+        label="Descargar"
+        (clicked)="onDownloadAttachment()"
+        size="small"
+        severity="primary"
+      />
+    </div>
+  </div>
+  } @if (data.status === 'Aprobada') { @if (data.approverName) {
+  <div class="grid mb-2">
+    <div class="col-4 font-bold">Aprobado por</div>
+    <div class="col-8">{{ data.approverName }}</div>
+  </div>
+  } @if (data.approvalDate) {
+  <div class="grid mb-2">
+    <div class="col-4 font-bold">Fecha de Aprobación</div>
+    <div class="col-8">{{ data.approvalDate }}</div>
+  </div>
+  } } @if (data.status === 'Rechazada') { @if (data.approverName) {
+  <div class="grid mb-2">
+    <div class="col-4 font-bold">Rechazado por</div>
+    <div class="col-8">{{ data.approverName }}</div>
+  </div>
+  } @if (data.approvalDate) {
+  <div class="grid mb-2">
+    <div class="col-4 font-bold">Fecha de Rechazo</div>
+    <div class="col-8">{{ data.approvalDate }}</div>
+  </div>
+  } @if (data.rejectionReason) {
+  <div class="grid mb-2">
+    <div class="col-4 font-bold">Motivo de Rechazo</div>
+    <div class="col-8 text-red-600">{{ data.rejectionReason }}</div>
+  </div>
+  } }
+
+  <div class="mt-4 flex gap-2">
+    @if (data.canEdit) {
+    <custom-button
+      iconClass="pi pi-pencil"
+      label="Editar"
+      (clicked)="onEdit()"
+      size="small"
+      severity="warning"
+    />
+    } @if (data.canDelete) {
+    <custom-button
+      iconClass="pi pi-trash"
+      label="Eliminar"
+      (clicked)="onDelete()"
+      size="small"
+      severity="danger"
+    />
+    }
+  </div>
+  } @else {
+  <p class="text-center text-color-secondary">No se encontró la solicitud.</p>
+  }
+</div>

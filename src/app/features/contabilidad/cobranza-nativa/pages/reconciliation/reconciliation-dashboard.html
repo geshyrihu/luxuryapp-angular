@@ -1,0 +1,102 @@
+<div class="card p-0 md:p-4">
+
+  <!-- Panel de accion -->
+  <div class="p-3 mb-4 surface-50 border-round border-1 surface-border">
+    <div class="flex align-items-start justify-content-between flex-wrap gap-3">
+      <div>
+        <div class="font-semibold mb-1">Bolsa de Pagos No Identificados</div>
+        <div class="text-sm text-500 line-height-3 max-w-30rem">
+          Pagos registrados en el sistema que aun no han sido aplicados a ningun cargo.
+          La auto-conciliacion intenta cruzarlos automaticamente con saldos pendientes.
+        </div>
+        @if (lastResult() !== null) {
+          <div class="mt-2 text-sm text-green-700 font-medium">
+            <i class="pi pi-check-circle mr-1"></i>
+            Ultima ejecucion: {{ lastResult() }} pagos conciliados.
+          </div>
+        }
+      </div>
+      <custom-button
+        label="Ejecutar Auto-Conciliacion"
+        iconClass="pi pi-refresh"
+        severity="primary"
+        [disabled]="reconciling() || dataSignal().length === 0"
+        (clicked)="onAutoReconcile()"
+      />
+    </div>
+  </div>
+
+  <!-- Tabla desktop -->
+  <p-table
+    [value]="dataSignal()"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+    styleClass="custom-table hidden md:block"
+    #dt
+  >
+    <ng-template pTemplate="caption">
+      <primeng-custom-caption
+        title="Pagos Sin Aplicar"
+        [showAddButton]="false"
+        [dt]="dt"
+      />
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="w-9rem text-center">Fecha</th>
+        <th class="w-10rem text-right">Monto</th>
+        <th>Referencia</th>
+        <th class="w-8rem text-center">Estado</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-pay>
+      <tr>
+        <td class="text-center text-sm">{{ pay.paymentDate | date:'dd/MM/yyyy' }}</td>
+        <td class="text-right font-bold text-orange-700">
+          {{ pay.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}
+        </td>
+        <td class="text-sm text-500">{{ pay.reference || 'Sin referencia' }}</td>
+        <td class="text-center">
+          <span class="badge bg-yellow-100 text-yellow-800 text-xs">{{ pay.status }}</span>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4" class="text-center p-4 text-500">
+          No hay pagos sin aplicar. Todos los pagos estan conciliados.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- Vista mobile -->
+  <app-data-view-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="['reference', 'status']"
+    [showAdd]="false"
+  >
+    <ng-template #listItemTemplate let-pay>
+      <ion-item lines="full" detail="false" class="ion-no-padding">
+        <div
+          slot="start"
+          class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+        >
+          <ion-icon name="git-merge-outline" class="text-orange-600 text-xl"></ion-icon>
+        </div>
+        <ion-label>
+          <h3>{{ pay.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}</h3>
+          <p>{{ pay.paymentDate | date:'dd/MM/yyyy' }} &middot; {{ pay.status }}</p>
+          <p>{{ pay.reference || 'Sin referencia' }}</p>
+        </ion-label>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
+
+</div>

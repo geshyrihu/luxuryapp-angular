@@ -1,0 +1,100 @@
+// ============================================================
+// _prime-table.scss
+// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
+// Override visual del p-table / p-datatable
+// ============================================================
+
+:root {
+  --p-datatable-border-color:              var(--ds-border);
+  --p-datatable-header-background:         var(--ds-bg-sunken);
+  --p-datatable-header-color:              var(--ds-text-secondary);
+  --p-datatable-header-font-weight:        600;
+  --p-datatable-row-background:            var(--ds-bg-surface);
+  --p-datatable-row-odd-background:        var(--ds-bg-sunken);
+  --p-datatable-row-hover-background:      var(--ds-bg-sunken);
+  --p-datatable-row-selected-background:   var(--ds-bg-page);
+  --p-datatable-row-selected-color:        var(--ds-primary);
+  --p-datatable-footer-background:         var(--ds-bg-sunken);
+  --p-datatable-cell-padding:              0.875rem 1rem;
+  --p-datatable-header-cell-padding:       0.75rem 1rem;
+}
+
+body .p-datatable {
+  font-size: 0.875rem;
+  border-radius: var(--ds-radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--ds-border);
+  box-shadow: var(--ds-shadow-sm);
+
+  .p-datatable-thead > tr > th {
+    background-color: var(--ds-bg-sunken);
+    color: var(--ds-text-secondary);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-color: var(--ds-border);
+    padding: 0.75rem 1rem;
+    white-space: nowrap;
+  }
+
+  .p-datatable-tbody > tr > td {
+    border-color: var(--ds-border);
+    color: var(--ds-text-primary);
+    padding: 0.875rem 1rem;
+    vertical-align: middle;
+  }
+
+  .p-datatable-tbody > tr {
+    transition: background-color 100ms ease;
+
+    &:hover {
+      background-color: var(--p-datatable-row-hover-background);
+    }
+
+    &.p-highlight {
+      background-color: var(--p-datatable-row-selected-background);
+      color: var(--p-datatable-row-selected-color);
+    }
+  }
+
+  .p-datatable-tfoot > tr > td {
+    background-color: var(--ds-bg-sunken);
+    font-weight: 600;
+    border-top: 2px solid var(--ds-border);
+    padding: 0.75rem 1rem;
+  }
+
+  // Paginador
+  .p-paginator {
+    background-color: var(--ds-bg-surface);
+    border-top: 1px solid var(--ds-border);
+    border-radius: 0 0 var(--ds-radius-xl) var(--ds-radius-xl);
+    padding: 0.875rem 1.25rem;
+    font-size: 0.875rem;
+    color: var(--ds-text-secondary);
+
+    .p-paginator-element {
+      border-radius: var(--ds-radius-md);
+      min-width: 2rem;
+      height: 2rem;
+      transition: all 150ms ease;
+      border: 1px solid var(--ds-border);
+      color: var(--ds-text-secondary);
+
+      &:hover:not(.p-disabled) {
+        background-color: var(--ds-bg-sunken);
+        color: var(--ds-text-primary);
+      }
+
+      &.p-highlight {
+        background-color: var(--ds-primary);
+        border-color: var(--ds-primary);
+        color: #fff;
+      }
+    }
+  }
+}
+
+
+

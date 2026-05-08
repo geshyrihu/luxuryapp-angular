@@ -1,0 +1,335 @@
+<div class="my-5">
+  <p-card>
+    <ng-template #header>
+      <div class="p-4 flex align-items-center">
+        <i class="pi pi-search-plus text-2xl text-primary"></i>
+        <div>
+          <h2 class="text-xl font-bold mb-0">Auditoría de Vacaciones</h2>
+          <p class="text-500 text-sm mt-1 mb-0">
+            Revisión de balance e historial por empleado (SuperUsuario / RRHH)
+          </p>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #content>
+      <!-- ─── Selectores: Empleado y Año ─────────────────────────── -->
+      <div class="grid mb-2">
+        <div class="col-12 md:col-6">
+          <custom-input-select-signal
+            id="employeeSelect"
+            [ngModel]="selectedEmployeeId()"
+            (selectionChange)="onEmployeeChange($event.value)"
+            [data]="employees()"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="— Seleccionar empleado —"
+            label="Empleado"
+            [filter]="true"
+            filterBy="label"
+            [horizontal]="false"
+            customClass="w-full"
+          />
+          @if (loadingEmployees()) {
+          <small class="text-500 mt-1">
+            <i class="pi pi-spin pi-spinner mr-1"></i>Cargando empleados...
+          </small>
+          }
+        </div>
+
+        @if (availableYears().length > 0) {
+        <div class="col-12 md:col-3">
+          <custom-input-select-signal
+            id="yearSelect"
+            [ngModel]="selectedYear()"
+            (selectionChange)="onYearChange($event.value)"
+            [data]="availableYears()"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Año"
+            label="Periodo de aniversario"
+            [horizontal]="false"
+            customClass="w-full"
+          />
+        </div>
+        }
+      </div>
+
+      <!-- ─── Estado: sin empleado seleccionado ─────────────────── -->
+      @if (!selectedEmployeeId()) {
+      <div
+        class="flex flex-column align-items-center justify-content-center text-center surface-100 border-round-lg p-6 min-h-15rem"
+      >
+        <i class="pi pi-users text-4xl text-300 mb-3"></i>
+        <p class="text-500 m-0">
+          Selecciona un empleado para ver su balance y historial de vacaciones.
+        </p>
+      </div>
+      }
+
+      <!-- ─── Spinner de carga ───────────────────────────────────── -->
+      @if (selectedEmployeeId() && loadingResults()) {
+      <div
+        class="flex flex-column align-items-center justify-content-center text-center min-h-20rem"
+      >
+        <p-progressSpinner styleClass="w-3rem h-3rem" strokeWidth="4" />
+        <p class="mt-3 text-500">Cargando datos del empleado...</p>
+      </div>
+      }
+
+      <!-- ─── Resultados ─────────────────────────────────────────── -->
+      @if (selectedEmployeeId() && !loadingResults() && balance()) {
+      <div>
+        <!-- Info del empleado -->
+        <div class="surface-100 border-round-lg p-4 mb-4">
+          <div class="grid">
+            <div class="col-12 md:col-3">
+              <p class="m-0">
+                <span class="text-500 text-sm uppercase font-semibold"
+                  >Empleado</span
+                ><br />
+                <strong>{{ balance()?.userName }}</strong>
+              </p>
+            </div>
+            <div class="col-12 md:col-3">
+              <p class="m-0">
+                <span class="text-500 text-sm uppercase font-semibold"
+                  >Fecha de Ingreso</span
+                ><br />
+                {{ balance()?.employeeAdmissionDate | date: 'dd/MM/yyyy' }}
+              </p>
+            </div>
+            <div class="col-12 md:col-3">
+              <p class="m-0"></p>
+              <div class="text-500 text-sm mb-1 font-semibold">Antigüedad</div>
+              <div class="text-900 font-medium whitespace-nowrap">
+                {{ balance()?.actualSeniorityYears }} año(s)
+              </div>
+            </div>
+            <div class="col-12 md:col-3">
+              <p class="m-0">
+                <span class="text-500 text-sm uppercase font-semibold"
+                  >Periodo auditado</span
+                ><br />
+                <strong>{{ balance()?.year }}</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        @if (balance()?.isAdvancePeriod) {
+        <!-- Fila Especial: Proyección LFT real para Periodo de Adelanto -->
+        <div class="surface-100 border-round-xl p-4 mb-4 border-1 border-300">
+          <h4 class="text-700 font-bold mb-3 mt-0">
+            Proyección (Días reales base LFT)
+          </h4>
+          <p class="text-500 text-sm mb-4">
+            Al cumplir su primer año de antigüedad, el empleado tendrá esta base
+            legal de días disponibles reales, tomando en cuenta los adelantos
+            que ya se le han otorgado en este periodo.
+          </p>
+          <div class="flex flex-wrap">
+            <div
+              class="bg-white border-round-lg shadow-1 p-3 flex align-items-center"
+            >
+              <span class="text-600 font-semibold uppercase text-xs mr-4"
+                >Días LFT Asignados:</span
+              >
+              <span class="text-2xl font-bold text-primary"
+                >{{ balance()?.totalLftDays }}</span
+              >
+            </div>
+            <div
+              class="bg-white border-round-lg shadow-1 p-3 flex align-items-center"
+            >
+              <span class="text-600 font-semibold uppercase text-xs mr-4"
+                >Días Reales Disponibles:</span
+              >
+              <span class="text-2xl font-bold text-green-600"
+                >{{ balance()?.availableLftDays }}</span
+              >
+            </div>
+          </div>
+        </div>
+        }
+
+        <!-- Tarjetas de balance (Desglose Explícito) -->
+        <div class="grid text-center mb-4">
+          <div class="col-12 sm:col-6 lg:col-3">
+            <div
+              class="h-full p-4 border-round-xl shadow-2 surface-card flex flex-column justify-content-between"
+            >
+              <div>
+                <i class="pi pi-calendar-plus text-3xl mb-3 text-primary"></i>
+                <div class="text-4xl font-bold">{{ balance()?.totalDays }}</div>
+                <div class="text-500 text-xs uppercase mt-1 font-semibold">
+                  Días Totales (Base Legal)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 sm:col-6 lg:col-3">
+            <div
+              class="h-full p-4 border-round-xl shadow-2 surface-card flex flex-column justify-content-between"
+            >
+              <div>
+                <i class="pi pi-calendar-minus text-3xl mb-3 text-red-500"></i>
+                <div class="text-4xl font-bold">{{ balance()?.usedDays }}</div>
+                <div class="text-500 text-xs uppercase mt-1 font-semibold">
+                  Días Usados (Total)
+                </div>
+              </div>
+              <div class="mt-3 pt-3 border-top-1 surface-border text-left">
+                <div class="flex justify-content-between text-xs mb-1">
+                  <span class="text-500">Por Adelanto:</span>
+                  <span class="font-bold text-700"
+                    >{{ balance()?.usedAdvanceDays }}</span
+                  >
+                </div>
+                <div class="flex justify-content-between text-xs">
+                  <span class="text-500">En Periodo Legal:</span>
+                  <span class="font-bold text-700"
+                    >{{ balance()?.usedNormalDays }}</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 sm:col-6 lg:col-3">
+            <div
+              class="h-full p-4 border-round-xl shadow-2 surface-card flex flex-column justify-content-between"
+            >
+              <div>
+                <i class="pi pi-calendar text-3xl mb-3 text-yellow-500"></i>
+                <div class="text-4xl font-bold">
+                  {{ balance()?.pendingDays }}
+                </div>
+                <div class="text-500 text-xs uppercase mt-1 font-semibold">
+                  En Proceso (Total)
+                </div>
+              </div>
+              <div class="mt-3 pt-3 border-top-1 surface-border text-left">
+                <div class="flex justify-content-between text-xs mb-1">
+                  <span class="text-500">Por Adelanto:</span>
+                  <span class="font-bold text-700"
+                    >{{ balance()?.pendingAdvanceDays }}</span
+                  >
+                </div>
+                <div class="flex justify-content-between text-xs">
+                  <span class="text-500">En Periodo Legal:</span>
+                  <span class="font-bold text-700"
+                    >{{ balance()?.pendingNormalDays }}</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 sm:col-6 lg:col-3">
+            <div
+              class="h-full p-4 border-round-xl shadow-2 surface-card flex flex-column justify-content-between"
+            >
+              <div>
+                <i
+                  class="pi pi-calendar-check text-3xl mb-3 text-green-500"
+                ></i>
+                <div class="text-4xl font-bold text-green-600">
+                  {{ balance()?.availableDays }}
+                </div>
+                <div class="text-500 text-xs uppercase mt-1 font-semibold">
+                  Días Disponibles
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alerta si el saldo es negativo (anomalía o exceso de adelanto) -->
+        @if ((balance()?.availableDays ?? 0) < 0) {
+        <p-message
+          severity="error"
+          text="⚠️ Saldo negativo detectado: el empleado tiene más días usados/pendientes que los permitidos o asignados para este periodo."
+          styleClass="mb-4"
+        />
+        }
+
+        <!-- Historial de solicitudes del periodo -->
+        <h3 class="text-700 font-bold border-bottom-2 border-primary pb-2 mb-3">
+          Solicitudes del periodo {{ balance()?.year }}
+        </h3>
+
+        @if (requests().length === 0) {
+        <div class="surface-100 border-round-lg p-4 text-center text-500">
+          <i class="pi pi-info-circle mr-2"></i>
+          No hay solicitudes en este periodo de aniversario.
+        </div>
+        } @else {
+        <p-table
+          [value]="requests()"
+          [paginator]="true"
+          [rows]="10"
+          [rowsPerPageOptions]="[5, 10, 20]"
+          styleClass="p-datatable-sm p-datatable-gridlines"
+          [showCurrentPageReport]="true"
+          currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords}"
+        >
+          <ng-template #header>
+            <tr>
+              <th>Inicio</th>
+              <th>Fin</th>
+              <th class="text-center">Días Sol.</th>
+              <th>Estado</th>
+              <th>Aprobador</th>
+              <th>F. Aprobación</th>
+              <th>Motivo de rechazo</th>
+            </tr>
+          </ng-template>
+          <ng-template #body let-req>
+            <tr>
+              <td>{{ req.startDate | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ req.endDate | date: 'dd/MM/yyyy' }}</td>
+              <td class="text-center">
+                <p-tag
+                  severity="info"
+                  [value]="req.requestedDays?.toString()"
+                  styleClass="text-base px-3"
+                />
+              </td>
+              <td>
+                <p-tag
+                  [value]="req.statusName"
+                  [severity]="onGetSeverity(req.statusName)"
+                />
+              </td>
+              <td>{{ req.approverName || '—' }}</td>
+              <td>
+                {{ req.requestDate ? (req.requestDate | date: 'dd/MM/yyyy') :
+                '—' }}
+              </td>
+              <td>
+                @if (req.rejectionReason) {
+                <span class="text-red-600">{{ req.rejectionReason }}</span>
+                } @else {
+                <span class="text-300">—</span>
+                }
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+        }
+      </div>
+      }
+
+      <!-- ─── Estado: empleado seleccionado pero sin balance ─────── -->
+      @if (selectedEmployeeId() && !loadingResults() && !balance()) {
+      <div class="surface-100 border-round-lg p-4 text-center text-500 mt-3">
+        <i class="pi pi-exclamation-circle mr-2 text-yellow-500"></i>
+        No se encontró balance para este empleado en el año seleccionado. Es
+        posible que el empleado no tenga periodos de aniversario registrados.
+      </div>
+      }
+    </ng-template>
+  </p-card>
+</div>

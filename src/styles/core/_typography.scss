@@ -1,0 +1,175 @@
+// ============================================================
+// _typography.scss
+// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
+// Escala tipográfica completa del sistema
+// ============================================================
+
+// ── FAMILIAS TIPOGRÁFICAS ─────────────────────────────────────
+$font-family-base:    'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif !default;
+$font-family-heading: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif !default;
+$font-family-mono:    'JetBrains Mono', 'Fira Code', 'Courier New', monospace !default;
+
+// ── ESCALA DE TAMAÑOS ─────────────────────────────────────────
+// Base: 16px (1rem) — escala modular 1.25
+$font-size-2xs:  0.625rem  !default;  // 10px
+$font-size-xs:   0.75rem   !default;  // 12px
+$font-size-sm:   0.875rem  !default;  // 14px
+$font-size-base: 1rem      !default;  // 16px  ← base
+$font-size-lg:   1.125rem  !default;  // 18px
+$font-size-xl:   1.25rem   !default;  // 20px
+$font-size-2xl:  1.5rem    !default;  // 24px
+$font-size-3xl:  1.875rem  !default;  // 30px
+$font-size-4xl:  2.25rem   !default;  // 36px
+$font-size-5xl:  3rem      !default;  // 48px
+
+// ── PESOS ─────────────────────────────────────────────────────
+$font-weight-light:     300 !default;
+$font-weight-regular:   400 !default;
+$font-weight-medium:    500 !default;
+$font-weight-semibold:  600 !default;
+$font-weight-bold:      700 !default;
+$font-weight-extrabold: 800 !default;
+
+// ── INTERLINEADO ──────────────────────────────────────────────
+$line-height-none:     1     !default;
+$line-height-tight:    1.25  !default;
+$line-height-snug:     1.375 !default;
+$line-height-normal:   1.5   !default;
+$line-height-relaxed:  1.625 !default;
+$line-height-loose:    2     !default;
+
+// ── ESPACIADO DE LETRAS ───────────────────────────────────────
+$letter-spacing-tighter: -0.05em  !default;
+$letter-spacing-tight:   -0.025em !default;
+$letter-spacing-normal:  0em      !default;
+$letter-spacing-wide:    0.025em  !default;
+$letter-spacing-wider:   0.05em   !default;
+$letter-spacing-widest:  0.1em    !default;
+
+// ── CLASES DE TEXTO ───────────────────────────────────────────
+// Clases utilitarias de tipografía para usar en templates
+
+.text-2xs   { font-size: $font-size-2xs; }
+.text-xs    { font-size: $font-size-xs; }
+.text-sm    { font-size: $font-size-sm; }
+.text-base  { font-size: $font-size-base; }
+.text-lg    { font-size: $font-size-lg; }
+.text-xl    { font-size: $font-size-xl; }
+.text-2xl   { font-size: $font-size-2xl; }
+.text-3xl   { font-size: $font-size-3xl; }
+.text-4xl   { font-size: $font-size-4xl; }
+
+.font-light     { font-weight: $font-weight-light; }
+.font-regular   { font-weight: $font-weight-regular; }
+.font-medium    { font-weight: $font-weight-medium; }
+.font-semibold  { font-weight: $font-weight-semibold; }
+.font-bold      { font-weight: $font-weight-bold; }
+
+.text-primary   { color: var(--ds-text-primary); }
+.text-secondary { color: var(--ds-text-secondary); }
+.text-muted     { color: var(--ds-text-muted); }
+.text-inverse   { color: var(--ds-text-inverse); }
+.text-link      { color: var(--ds-text-link); text-decoration: underline; cursor: pointer; }
+.text-success   { color: var(--ds-success); }
+.text-warning   { color: var(--ds-warning); }
+.text-danger    { color: var(--ds-danger); }
+.text-info      { color: var(--ds-info); }
+
+// ── ESTILOS DE ENCABEZADOS ────────────────────────────────────
+h1, .h1 {
+  font-family: $font-family-heading;
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  letter-spacing: $letter-spacing-tight;
+  color: var(--ds-text-primary);
+}
+
+h2, .h2 {
+  font-family: $font-family-heading;
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  color: var(--ds-text-primary);
+}
+
+h3, .h3 {
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-snug;
+  color: var(--ds-text-primary);
+}
+
+h4, .h4 {
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-snug;
+  color: var(--ds-text-primary);
+}
+
+h5, .h5 {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-normal;
+  color: var(--ds-text-primary);
+}
+
+h6, .h6 {
+  font-family: $font-family-heading;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-normal;
+  color: var(--ds-text-primary);
+}
+
+// ── ELEMENTOS ESPECIALES ──────────────────────────────────────
+code, .code-inline {
+  font-family: $font-family-mono;
+  font-size: $font-size-sm;
+  background-color: var(--ds-bg-sunken);
+  border: 1px solid var(--ds-border);
+  border-radius: 4px;
+  padding: 0.1em 0.4em;
+  color: var(--ds-danger);
+}
+
+.code-block {
+  font-family: $font-family-mono;
+  font-size: $font-size-sm;
+  background-color: var(--ds-bg-sunken);
+  border: 1px solid var(--ds-border);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  line-height: $line-height-relaxed;
+  color: var(--ds-text-primary);
+  white-space: pre;
+}
+
+// Truncado de texto
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.truncate-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+
+

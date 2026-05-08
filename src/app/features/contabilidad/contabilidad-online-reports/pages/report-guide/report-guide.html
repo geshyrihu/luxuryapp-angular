@@ -1,0 +1,157 @@
+<div class="card p-5">
+  <!-- Encabezado Inspiracional -->
+  <div class="text-center mb-6">
+    <i class="pi pi-chart-line text-6xl text-primary mb-3"></i>
+    <h1 class="text-4xl font-bold text-primary-900 m-0">Dominando los Reportes Dinámicos</h1>
+    <p class="text-xl text-500 max-w-30rem mx-auto mt-2">
+      Convierte los datos complejos de Aspel en información clara y accionable para tu administración.
+    </p>
+  </div>
+
+  <div class="grid">
+    <!-- SECCIÓN 1: CONCEPTOS BÁSICOS -->
+    <div class="col-12 md:col-6 mb-4">
+      <div class="surface-card p-4 border-round shadow-2 h-full border-top-3 border-primary">
+        <div class="flex align-items-center gap-2 mb-3">
+          <i class="pi pi-compass text-2xl text-primary"></i>
+          <h2 class="m-0 text-primary-900">Conceptos Clave</h2>
+        </div>
+        <ul class="list-none p-0 m-0 line-height-4">
+          <li class="flex align-items-start gap-2 mb-3">
+            <i class="pi pi-check-circle text-green-500 mt-1"></i>
+            <div>
+              <strong>Definición vs. Resultado:</strong> 
+              Tú diseñas el "molde" (la definición) y el sistema lo llena con datos reales de Aspel cada vez que lo ejecutas.
+            </div>
+          </li>
+          <li class="flex align-items-start gap-2 mb-3">
+            <i class="pi pi-check-circle text-green-500 mt-1"></i>
+            <div>
+              <strong>Filtros Inteligentes:</strong> 
+              No necesitas elegir cuenta por cuenta. Puedes usar prefijos (ej. "401") para incluir automáticamente todas sus subcuentas.
+            </div>
+          </li>
+          <li class="flex align-items-start gap-2">
+            <i class="pi pi-check-circle text-green-500 mt-1"></i>
+            <div>
+              <strong>Signos Contables:</strong> 
+              Usa "Restar" para gastos y "Sumar" para ingresos. El sistema se encarga de la matemática para que el total sea correcto.
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 2: PASOS PARA UN REPORTE EXITOSO -->
+    <div class="col-12 md:col-6 mb-4">
+      <div class="surface-card p-4 border-round shadow-2 h-full border-top-3 border-orange-500">
+        <div class="flex align-items-center gap-2 mb-3">
+          <i class="pi pi-list-check text-2xl text-orange-500"></i>
+          <h2 class="m-0 text-primary-900">Pasos para Crear uno</h2>
+        </div>
+        <div class="flex flex-column gap-3">
+          <div class="flex gap-3">
+            <span class="bg-orange-100 text-orange-700 border-circle w-2rem h-2rem flex-order-0 flex align-items-center justify-content-center font-bold">1</span>
+            <div class="flex-1">
+              <strong>Elige el Diseño:</strong> ¿Quieres una tabla simple o un comparativo Presupuesto vs Real?
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <span class="bg-orange-100 text-orange-700 border-circle w-2rem h-2rem flex align-items-center justify-content-center font-bold">2</span>
+            <div class="flex-1">
+              <strong>Define las Columnas:</strong> Añade los periodos que quieres ver (Enero, Febrero, Acumulado Anual).
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <span class="bg-orange-100 text-orange-700 border-circle w-2rem h-2rem flex align-items-center justify-content-center font-bold">3</span>
+            <div class="flex-1">
+              <strong>Crea las Secciones:</strong> Agrupa por "Ingresos", "Gastos Fijos", etc.
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <span class="bg-orange-100 text-orange-700 border-circle w-2rem h-2rem flex align-items-center justify-content-center font-bold">4</span>
+            <div class="flex-1">
+              <strong>Asigna Cuentas:</strong> Busca por nombre o código. ¡Verás los saldos reales de Aspel mientras lo haces!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 3: EJEMPLOS PRÁCTICOS -->
+    <div class="col-12 mb-4">
+      <div class="surface-card p-4 border-round shadow-2 border-top-3 border-green-500">
+        <div class="flex align-items-center justify-content-between mb-4">
+          <div class="flex align-items-center gap-2">
+            <i class="pi pi-images text-2xl text-green-500"></i>
+            <h2 class="m-0 text-primary-900">Ejemplos de Configuración</h2>
+          </div>
+          <p-tag value="Usa el botón 'Ver Ejemplos' en el constructor" severity="info" />
+        </div>
+        
+        <div class="grid">
+          <div class="col-12 md:col-4">
+            <div class="p-3 border-1 surface-border border-round bg-surface-50">
+              <h4 class="mt-0 text-primary">Estado de Resultados</h4>
+              <p class="text-sm text-600">Secciones de Ingresos (+) y Gastos (-). Al final, una fila tipo <strong>Fórmula</strong> que suma ambas secciones para dar la utilidad.</p>
+            </div>
+          </div>
+          <div class="col-12 md:col-4">
+            <div class="p-3 border-1 surface-border border-round bg-surface-50">
+              <h4 class="mt-0 text-primary">Flujo de Caja Mensual</h4>
+              <p class="text-sm text-600">Columnas para cada mes del año. Filas enfocadas solo en cuentas de Bancos y Caja para ver el movimiento de efectivo.</p>
+            </div>
+          </div>
+          <div class="col-12 md:col-4">
+            <div class="p-3 border-1 surface-border border-round bg-surface-50">
+              <h4 class="mt-0 text-primary">Gasto por Depto</h4>
+              <p class="text-sm text-600">Filas que filtran por cuentas específicas de mantenimiento, agrupadas por torre o área común.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN AVANZADA / TÉCNICA -->
+  <p-accordion class="mt-4">
+    <p-accordion-panel value="technical">
+      <p-accordion-header>
+        <i class="pi pi-cog mr-2"></i> Detalles Técnicos y Tipos de Datos (Solo Expertos)
+      </p-accordion-header>
+      <p-accordion-content>
+        <div class="grid text-sm">
+          <div class="col-12 md:col-6">
+            <h5 class="mt-0">Tipos de Renglón</h5>
+            <ul class="pl-3 line-height-3">
+              <li><strong>Account:</strong> Suma saldos Aspel por filtro.</li>
+              <li><strong>Subtotal:</strong> Suma filas de la misma sección.</li>
+              <li><strong>Grand Total:</strong> Suma global (cruza secciones).</li>
+              <li><strong>Formula:</strong> <code>[r1] + [r2] * 0.16</code> (Matemática libre).</li>
+            </ul>
+          </div>
+          <div class="col-12 md:col-6">
+            <h5 class="mt-0">Tipos de Periodo</h5>
+            <ul class="pl-3 line-height-3">
+              <li><strong>Mes:</strong> Valor puntual del mes.</li>
+              <li><strong>Acumulado:</strong> Desde Enero hasta el mes elegido.</li>
+              <li><strong>Trimestre:</strong> Suma de 3 meses (Q1-Q4).</li>
+              <li><strong>Anual:</strong> Todo el ejercicio (12 meses).</li>
+            </ul>
+          </div>
+        </div>
+      </p-accordion-content>
+    </p-accordion-panel>
+  </p-accordion>
+
+  <div class="flex justify-content-center mt-6">
+    <custom-button 
+      label="¡Entendido, vamos a crear!" 
+      iconClass="pi pi-plus" 
+      severity="success" 
+      size="large" 
+      [showLabelOnDesktop]="true" 
+      routerLink="/contabilidad/reportes/nuevo" 
+    />
+  </div>
+</div>

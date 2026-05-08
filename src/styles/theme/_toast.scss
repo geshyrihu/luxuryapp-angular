@@ -1,0 +1,152 @@
+/* =======================================
+   TOAST NOTIFICATIONS (Global Overrides)
+   ======================================= */
+
+/* -------------------------------------------------------------------------
+   1. PRIMENG TOAST (Web / Desktop)
+   ------------------------------------------------------------------------- */
+/* Aumentamos especificidad y usamos colores vibrantes */
+
+.p-toast .p-toast-message {
+  border-width: 0 0 0 8px !important; /* Borde lateral más grueso */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important; /* Sombra más fuerte */
+  opacity: 1 !important;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif !important;
+
+  .p-toast-message-content {
+    padding: 1.25rem !important;
+    align-items: center;
+  }
+
+  .p-toast-message-icon {
+    font-size: 1.8rem !important;
+    margin-right: 1rem !important;
+    font-weight: bold !important;
+  }
+
+  .p-toast-summary {
+    font-weight: 800 !important;
+    font-size: 1.1rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .p-toast-detail {
+    margin-top: 0.25rem !important;
+    font-size: 0.95rem !important;
+    line-height: 1.4 !important;
+    font-weight: 500 !important;
+  }
+}
+
+/* SUCCESS (Web) */
+.p-toast-message-success {
+  background: #f0fdf4 !important; /* Fondo muy claro */
+  border-left-color: #16a34a !important; /* Verde vibrante */
+  color: #14532d !important; /* Texto oscuro y legible */
+
+  .p-toast-message-icon {
+    color: #16a34a !important;
+  }
+}
+
+/* ERROR (Web) */
+.p-toast-message-error {
+  background: #fef2f2 !important;
+  border-left-color: #dc2626 !important; /* Rojo vibrante */
+  color: #7f1d1d !important;
+
+  .p-toast-message-icon {
+    color: #dc2626 !important;
+  }
+}
+
+/* INFO (Web) */
+.p-toast-message-info {
+  background: #eff6ff !important;
+  border-left-color: #2563eb !important; /* Azul vibrante */
+  color: #1e3a8a !important;
+
+  .p-toast-message-icon {
+    color: #2563eb !important;
+  }
+}
+
+/* WARN (Web) */
+.p-toast-message-warn {
+  background: #fffbeb !important;
+  border-left-color: #d97706 !important; /* Naranja fuerte */
+  color: #78350f !important;
+
+  .p-toast-message-icon {
+    color: #d97706 !important;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   2. IONIC TOAST (Mobile / Tablet)
+   ------------------------------------------------------------------------- */
+/* Estilos para el toast nativo de Ionic con la clase 'custom-mobile-toast' */
+
+ion-toast.custom-mobile-toast {
+  --box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --border-radius: 12px;
+  --start-padding: 16px;
+  --end-padding: 16px;
+  --opacity: 1; /* Forzar opacidad total */
+  
+  /* Sobrescribimos variables por defecto para asegurar legibilidad */
+  &::part(message) {
+    font-weight: 600;
+    font-size: 1rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  &::part(button) {
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  /* SUCCESS (Mobile) */
+  &.ion-color-success {
+    --ion-color-base: #16a34a !important;
+    --ion-color-contrast: #ffffff !important;
+    --background: #16a34a !important; 
+    --color: #ffffff !important;
+    --button-color: #ffffff !important;
+  }
+
+  /* ERROR (Mobile) */
+  &.ion-color-danger {
+    --ion-color-base: #dc2626 !important;
+    --ion-color-contrast: #ffffff !important;
+    --background: #dc2626 !important;
+    --color: #ffffff !important;
+    --button-color: #ffffff !important;
+  }
+
+  /* WARN (Mobile) */
+  &.ion-color-warning {
+    --ion-color-base: #d97706 !important;
+    --ion-color-contrast: #ffffff !important;
+    --background: #d97706 !important;
+    --color: #ffffff !important;
+    --button-color: #ffffff !important;
+  }
+
+  /* INFO / PRIMARY (Mobile) */
+  &.ion-color-primary,
+  &.ion-color-medium {
+    --ion-color-base: #2563eb !important;
+    --ion-color-contrast: #ffffff !important;
+    --background: #2563eb !important;
+    --color: #ffffff !important;
+    --button-color: #ffffff !important;
+  }
+}
+
+
+
+

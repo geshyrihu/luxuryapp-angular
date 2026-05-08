@@ -1,0 +1,163 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block"></div>
+<p-table
+  [globalFilterFields]="globalFilterFields"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="filtro">
+        Fecha
+        <p-sortIcon field="filtro" />
+      </th>
+      <th class="table-col-7">Cl</th>
+      <th class="table-col-7">Ph</th>
+      <th class="table-col-7">Ak</th>
+      <th class="table-col-7">Dureza</th>
+      <th class="table-col-7">Temp</th>
+      <th class="table-col-7">Apl Cl</th>
+      <th class="table-col-7">Apl Ph+</th>
+      <th class="table-col-7">Apl Ph-</th>
+      <th class="table-col-7">Cepillado</th>
+      <th class="table-col-7">Aspirado</th>
+      <th class="table-col-7">Cenefas</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.dateString }}</td>
+      <td class="text-center">{{ item.cl }}</td>
+      <td class="text-center">{{ item.ph }}</td>
+      <td class="text-center">{{ item.alkalinidad }}</td>
+      <td class="text-center">{{ item.dureza }}</td>
+      <td class="text-center">{{ item.temperatura }}</td>
+      <td class="text-center">{{ item.aplicationCl }}</td>
+      <td class="text-center">{{ item.aplicationPhMas }}</td>
+      <td class="text-center">{{ item.aplicationPhMenos }}</td>
+      <td class="text-center">
+        <i
+          class="icon"
+          [class]="item.cepillado ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"
+        ></i>
+      </td>
+      <td class="text-center">
+        <i
+          class="icon"
+          [class]="item.aspirado ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"
+        ></i>
+      </td>
+      <td class="text-center">
+        <i
+          class="icon"
+          [class]="item.cenefas ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"
+        ></i>
+      </td>
+
+      <!-- Opciones -->
+
+      <td class="no-print">
+        <div class="flex justify-content-center">
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+      <!-- Opciones -->
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding">
+      <ion-label>
+        <div class="flex justify-content-between align-items-center mb-1">
+          <h2 class="font-bold m-0 text-base">
+            <i class="pi pi-calendar mr-1 text-primary"></i>
+            {{ item.dateString }}
+          </h2>
+        </div>
+
+        <!-- Mediciones en Grid Compacto -->
+        <div class="grid m-0 p-0 text-sm opacity-80 mt-2 mb-2">
+          <div class="col-4 p-0 pb-1">
+            <strong class="text-primary">Cl:</strong> {{ item.cl || "ó" }}
+          </div>
+          <div class="col-4 p-0 pb-1">
+            <strong class="text-primary">Ph:</strong> {{ item.ph || "ó" }}
+          </div>
+          <div class="col-4 p-0 pb-1">
+            <strong class="text-primary">Alk:</strong> {{ item.alkalinidad ||
+            "ó" }}
+          </div>
+          <div class="col-4 p-0 pb-1">
+            <strong class="text-primary">Dur:</strong> {{ item.dureza || "ó" }}
+          </div>
+          <div class="col-4 p-0 pb-1">
+            <strong class="text-primary">Tem:</strong> {{ item.temperatura ||
+            "ó" }}
+          </div>
+        </div>
+
+        <!-- Tareas Realizadas (Iconos) -->
+        <div class="flex align-items-center mt-1">
+          <div
+            class="flex align-items-center gap-1"
+            [class.opacity-50]="!item.cepillado"
+          >
+            <i
+              class="pi"
+              [class]="item.cepillado ? 'pi-check text-green-600' : 'pi-times text-400'"
+            ></i>
+            <small class="text-xs">Cepillado</small>
+          </div>
+          <div
+            class="flex align-items-center gap-1 ml-3"
+            [class.opacity-50]="!item.aspirado"
+          >
+            <i
+              class="pi"
+              [class]="item.aspirado ? 'pi-check text-green-600' : 'pi-times text-400'"
+            ></i>
+            <small class="text-xs">Aspirado</small>
+          </div>
+        </div>
+      </ion-label>
+
+      <div slot="end">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            />
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+          </ng-container>
+        </app-action-menu>
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

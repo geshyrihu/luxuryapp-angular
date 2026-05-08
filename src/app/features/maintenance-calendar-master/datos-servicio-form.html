@@ -1,0 +1,38 @@
+<div class="grid">
+  <div class="col-12">
+    <custom-input-textarea-signal
+      label="Actividad:"
+      customClass="w-full"
+      [readonly]="true"
+      [cols]="30"
+      [control]="actividadControl"
+      [rows]="10"
+    />
+    <custom-input-textarea-signal
+      label="Observaciones:"
+      customClass="w-full"
+      [readonly]="true"
+      [cols]="30"
+      [control]="observacionesControl"
+      [rows]="5"
+    />
+    <label>Proveedores:</label>
+    <div class="surface-card p-3 border-round">
+      @for (proveedor of proveedores; track proveedor) {
+      <div
+        (click)="onDataProveedor(proveedor.id)"
+        class="cursor-pointer p-2 border-bottom-1 surface-border hover:surface-hover"
+      >
+        <span class="font-medium">{{ proveedor.nameProvider }}</span>
+      </div>
+      }
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+

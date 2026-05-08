@@ -1,0 +1,167 @@
+<form
+  class="flex flex-column"
+  autocomplete="off"
+  (ngSubmit)="onSubmit()"
+  [formGroup]="form"
+>
+  <section class="card border-1 surface-border">
+    <div class="card-header">
+      <div>
+        <h3 class="card-title text-900">Resumen de la vacante</h3>
+        <p class="text-600 m-0">Información base del puesto solicitado.</p>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="grid">
+        <div class="col-12 md:col-6 xl:col-4">
+          <div class="card flex flex-column gap-1 p-4 h-full surface-100 border-none">
+            <span class="font-semibold text-700">Puesto / profesión</span>
+            <span class="text-primary text-sm line-height-3">
+              {{ data?.applicationRoleName || "No disponible" }}
+            </span>
+          </div>
+        </div>
+
+        <div class="col-12 md:col-6 xl:col-4">
+          <div class="card flex flex-column gap-1 p-4 h-full surface-100 border-none">
+            <span class="font-semibold text-700">Nombre de la vacante</span>
+            <span class="text-primary text-sm line-height-3">
+              {{ data?.applicationRoleName || "No disponible" }}
+            </span>
+          </div>
+        </div>
+
+        <div class="col-12 md:col-6 xl:col-4">
+          <div class="card flex flex-column gap-1 p-4 h-full surface-100 border-none">
+            <span class="font-semibold text-700">Sueldo mensual neto</span>
+            <span class="text-primary font-bold text-lg">
+              {{ data?.sueldoBase || "No definido" }}
+            </span>
+          </div>
+        </div>
+
+        <div class="col-12 md:col-6 xl:col-4">
+          <div class="card flex flex-column gap-1 p-4 h-full surface-100 border-none">
+            <span class="font-semibold text-700"> Actividades que estará realizando </span>
+            <span class="text-primary text-sm line-height-3">
+              Revisar descripción de puesto en LuxuryApp.
+            </span>
+          </div>
+        </div>
+
+        <div class="col-12 md:col-6 xl:col-4">
+          <div class="card flex flex-column gap-1 p-4 h-full surface-100 border-none">
+            <span class="font-semibold text-700"> Restricciones de edad o sexo </span>
+            <span class="text-primary text-sm line-height-3">
+              Revisar descripción de puesto en LuxuryApp.
+            </span>
+          </div>
+        </div>
+
+        @if (data?.turnoTrabajo != undefined) {
+        <div class="col-12 md:col-6 xl:col-4">
+          <div class="card flex flex-column gap-1 p-4 h-full surface-100 border-none">
+            <span class="font-semibold text-700">Turno de trabajo</span>
+            <span class="text-primary text-sm line-height-3">
+              {{ data?.turnoTrabajo }}
+            </span>
+          </div>
+        </div>
+        } @if (data?.observationsWorkShift) {
+        <div class="col-12 md:col-6 xl:col-4">
+          <div class="card flex flex-column gap-1 p-4 h-full surface-100 border-none">
+            <span class="font-semibold text-700"> Observaciones del horario </span>
+            <span class="text-primary text-sm line-height-3">
+              {{ data?.observationsWorkShift }}
+            </span>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="card border-1 surface-border">
+    <div class="card-header">
+      <div>
+        <h3 class="card-title text-900">Horario semanal</h3>
+        <p class="text-600 m-0">
+          Distribución de entrada y salida por día.
+        </p>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse surface-border border-1">
+          <thead>
+            <tr class="surface-100">
+              <th class="p-3 text-left border-1 surface-border">Evento</th>
+              <th class="p-3 text-center border-1 surface-border">Lunes</th>
+              <th class="p-3 text-center border-1 surface-border">Martes</th>
+              <th class="p-3 text-center border-1 surface-border">Miércoles</th>
+              <th class="p-3 text-center border-1 surface-border">Jueves</th>
+              <th class="p-3 text-center border-1 surface-border">Viernes</th>
+              <th class="p-3 text-center border-1 surface-border">Sábado</th>
+              <th class="p-3 text-center border-1 surface-border">Domingo</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td class="p-3 font-bold text-primary border-1 surface-border">Entrada</td>
+              <td class="p-3 text-center border-1 surface-border">{{ data?.lunesEntrada || "-" }}</td>
+              <td class="p-3 text-center border-1 surface-border">{{ data?.martesEntrada || "-" }}</td>
+              <td class="p-3 text-center border-1 surface-border">{{ data?.miercolesEntrada || "-" }}</td>
+              <td class="p-3 text-center border-1 surface-border">{{ data?.juevesEntrada || "-" }}</td>
+              <td class="p-3 text-center border-1 surface-border">{{ data?.viernesEntrada || "-" }}</td>
+              <td class="p-3 text-center border-1 surface-border">{{ data?.sabadoEntrada || "-" }}</td>
+              <td class="p-3 text-center border-1 surface-border">{{ data?.domingoEntrada || "-" }}</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-bold text-primary border-1 surface-border">Salida</td>
+              <td class="p-3 text-center border-1 surface-border">{{ data?.lunesSalida || "-" }}</td>
+              <td class="p-3 text-center border-1 surface-border">{{ data?.martesSalida || "-" }}</td>
+              <td class="p-3 text-center border-1 surface-border">{{ data?.miercolesSalida || "-" }}</td>
+              <td class="p-3 text-center border-1 surface-border">{{ data?.juevesSalida || "-" }}</td>
+              <td class="p-3 text-center border-1 surface-border">{{ data?.viernesSalida || "-" }}</td>
+              <td class="p-3 text-center border-1 surface-border">{{ data?.sabadoSalida || "-" }}</td>
+              <td class="p-3 text-center border-1 surface-border">{{ data?.domingoSalida || "-" }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="card border-1 surface-border">
+    <div class="card-header">
+      <div>
+        <h3 class="card-title text-900">Comentarios adicionales</h3>
+        <p class="text-600 m-0">
+          Agrega contexto para reclutamiento antes de enviar la solicitud.
+        </p>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <textarea
+        rows="5"
+        cols="30"
+        fluid
+        pTextarea
+        formControlName="additionalInformation"
+        class="w-full"
+      ></textarea>
+    </div>
+  </section>
+
+  <div class="flex justify-content-end pt-2">
+    <custom-button-save
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+      label="Solicitar vacante"
+    />
+  </div>
+</form>

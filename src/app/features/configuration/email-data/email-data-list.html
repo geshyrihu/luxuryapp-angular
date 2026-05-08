@@ -1,0 +1,92 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<p-table
+  #dt
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="applicationUser">
+        Usuario
+        <p-sortIcon field="applicationUser" />
+      </th>
+      <th pSortableColumn="email">
+        Email
+        <p-sortIcon field="email" />
+      </th>
+      <th pSortableColumn="smtp">
+        Smtp
+        <p-sortIcon field="smtp" />
+      </th>
+      <th pSortableColumn="port">
+        Port
+        <p-sortIcon field="port" />
+      </th>
+
+      <th class="table-col-5"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.applicationUser }}</td>
+      <td>{{ item.email }}</td>
+      <td>{{ item.smtp }}</td>
+      <td>{{ item.port }}</td>
+
+      <!-- Opciones -->
+
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <custom-button-send-email (confirmed)="onSendTestEmail(item.id)" />
+        </div>
+      </td>
+
+      <!-- Opciones -->
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding" detail="false">
+      <ion-label>
+        <p class="mt-0 mb-0">{{ item.email }}</p>
+        <p class="text-color-secondary font-size-12 mt-0 mb-0">
+          {{ item.applicationUser }}
+        </p>
+      </ion-label>
+
+      <app-action-menu slot="end">
+        <ng-container actions>
+          <ion-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <ion-button-delete (confirmed)="onDelete(item.id)" />
+          <ion-button-send-email (confirmed)="onSendTestEmail(item.id)" />
+        </ng-container>
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

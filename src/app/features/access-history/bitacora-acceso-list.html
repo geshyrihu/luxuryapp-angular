@@ -1,0 +1,147 @@
+<div class="grid">
+  <div class="col-4">
+    <app-calendar-range></app-calendar-range>
+  </div>
+</div>
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<div class="hidden md:block">
+  <p-table
+    [value]="data()"
+    dataKey="employeeId"
+    styleClass="p-datatable-striped p-datatable-sm"
+  >
+    <ng-template #caption>
+      <primeng-custom-caption
+        [title]="'Historial de Acceso'"
+        [showAdd]="false"
+        [showSearch]="false"
+      />
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th class="table-col-5rem"></th>
+        <th colspan="2" pSortableColumn="fullName">
+          COLABORADOR
+          <p-sortIcon field="fullName" />
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item let-expanded="expanded">
+      <tr>
+        <td>
+          <custom-button
+            [pRowToggler]="item"
+            [customClass]="'p-button-text p-button-border-round p-button-plain'"
+            [iconClass]="'icon icon-pi-' + (expanded ? 'chevron-down' : 'chevron-right')"
+          />
+        </td>
+        <td>
+          <p-avatar
+            [image]="item.photoPath"
+            alt=""
+            shape="square"
+            size="large"
+            styleClass="b-r-8 img-70"
+          />
+        </td>
+        <td>{{ item.fullName }}</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="rowexpansion" let-item>
+      <tr>
+        <td colspan="3">
+          <div class="p-3">
+            <p-table [value]="item.historial">
+              <ng-template #header>
+                <tr>
+                  <th>EVENTO</th>
+                  <th>FECHA</th>
+                </tr>
+              </ng-template>
+              <ng-template #bodyDetail let-registro>
+                <tr>
+                  <td>
+                    <span
+                      class="badge"
+                      [class.bg-danger]="registro.evento === 'Salida'"
+                      [class.bg-success]="registro.evento === 'Ingreso'"
+                    >
+                      {{ registro.evento }}
+                    </span>
+                  </td>
+                  <td>{{ registro.fechaRegistro }}</td>
+                </tr>
+              </ng-template>
+              <ng-template emptymessage>
+                <tr>
+                  <td colspan="2">Sin ingresos al sistema.</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <!-- MEJORA 2: Aóadimos el mensaje para cuando la tabla principal estó vacóa -->
+    <ng-template emptymessage>
+      <tr>
+        <td colspan="3">
+          No se encontraron registros en el rango de fechas seleccionado.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<div class="block md:hidden">
+  @if(data().length > 0) {
+  <ion-accordion-group>
+    @for(item of data(); track item.employeeId) {
+    <ion-accordion>
+      <ion-item slot="header" color="light">
+        <ion-avatar slot="start">
+          <img [src]="item.photoPath" alt="Avatar" />
+        </ion-avatar>
+        <ion-label class="ion-text-wrap">
+          <h2>{{ item.fullName }}</h2>
+          <p class="text-xs text-medium">
+            {{ item.historial.length }} registro(s) y
+          </p>
+        </ion-label>
+      </ion-item>
+      <div slot="content" class="ion-padding p-0">
+        @if(item.historial.length > 0) {
+        <div class="flex flex-column p-2 surface-card">
+          @for(registro of item.historial; track registro) {
+          <div
+            class="flex justify-content-between align-items-center surface-card p-2 border-round shadow-1"
+          >
+            <span class="font-medium text-sm"
+              >{{ registro.fechaRegistro }}</span
+            >
+            <ion-badge
+              [color]="registro.evento === 'Ingreso' ? 'success' : 'danger'"
+            >
+              {{ registro.evento }}
+            </ion-badge>
+          </div>
+          }
+        </div>
+        } @else {
+        <div class="p-3 text-center text-medium">Sin ingresos al sistema.</div>
+        }
+      </div>
+    </ion-accordion>
+    }
+  </ion-accordion-group>
+  } @else {
+  <div class="text-center p-4">
+    <ion-icon
+      name="search-outline"
+      style="font-size: 3rem; color: var(--ion-color-medium)"
+    ></ion-icon>
+    <p class="mt-2 text-medium">No se encontraron registros.</p>
+  </div>
+  }
+</div>

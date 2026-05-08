@@ -1,0 +1,113 @@
+<div class="fadein">
+  <!-- Filtros -->
+  <div class="flex mb-4 align-items-center">
+    <div class="mb-0">
+      <input
+        pInputText
+        [ngModel]="year()"
+        (ngModelChange)="year.set($event)"
+        type="number"
+        pSize="small"
+        class="w-10rem"
+      />
+    </div>
+    <div class="mb-0">
+      <custom-button
+        label="Cargar"
+        iconClass="pi pi-refresh"
+        size="sm"
+        [loading]="loading()"
+        (clicked)="onLoad()"
+      />
+    </div>
+    @if (nombreEmpresa()) {
+    <span class="text-sm text-500">
+      <strong>{{ nombreEmpresa() }}</strong> &mdash; {{ periodo() }}
+    </span>
+    }
+  </div>
+
+  <!-- Loading -->
+  @if (loading()) {
+  <div class="flex align-items-center text-color-secondary mb-4">
+    <i class="pi pi-spin pi-spinner"></i>
+    <span>Consultando datos en Aspel...</span>
+  </div>
+  }
+
+  <!-- Sin datos -->
+  @if (!loading() && !rows().length) {
+  <p class="text-color-secondary">
+    No hay datos. Verifique el cliente y el año, luego pulse
+    <strong>Cargar</strong>.
+  </p>
+  }
+
+  <!-- Tabla -->
+  @if (rows().length) {
+  <div style="overflow-x: auto">
+    <p-table
+      [value]="rows()"
+      styleClass="p-datatable-sm p-datatable-gridlines"
+      [tableStyle]="{ 'min-width': '1200px' }"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 140px; min-width: 140px">Cuenta</th>
+          <th style="min-width: 220px">Descripción</th>
+          @for (mes of MONTHS; track mes) {
+          <th class="text-right" style="width: 90px; min-width: 80px">
+            {{ mes }}
+          </th>
+          }
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-row>
+        <!-- Fila: encabezado de clasificación -->
+        @if (row.tipo === "header") {
+        <tr [attr.style]="getHeaderStyle(row.clasificacionCodigo)">
+          <td colspan="14" class="font-bold text-sm py-2 px-3">
+            {{ row.descripcion }}
+          </td>
+        </tr>
+        }
+
+        <!-- Fila: cuenta Mayor -->
+        @if (row.tipo === "cuenta") {
+        <tr>
+          <td class="font-mono text-xs">{{ row.numeroCuenta }}</td>
+          <td class="text-sm">{{ row.descripcion }}</td>
+          @for (monto of row.montos; track $index) {
+          <td class="text-right text-sm" [class.text-red-500]="monto < 0">
+            {{ monto === 0 ? "-" : (monto | number: "1.2-2") }}
+          </td>
+          }
+        </tr>
+        }
+
+        <!-- Fila: subtotal de clasificación -->
+        @if (row.tipo === "subtotal") {
+        <tr class="font-bold surface-100">
+          <td></td>
+          <td class="text-sm">{{ row.descripcion }}</td>
+          @for (monto of row.montos; track $index) {
+          <td class="text-right text-sm" [class.text-red-500]="monto < 0">
+            {{ monto | number: "1.2-2" }}
+          </td>
+          }
+        </tr>
+        }
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="14" class="text-center py-4 text-color-secondary">
+            Sin registros.
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  }
+</div>

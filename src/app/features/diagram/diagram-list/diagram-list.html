@@ -1,0 +1,133 @@
+<div class="card p-0 md:p-4 border-none shadow-none">
+  <p-table
+    #dt
+    [value]="diagrams()"
+    [rows]="10"
+    [paginator]="true"
+    [globalFilterFields]="['name']"
+    responsiveLayout="scroll"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} diagramas"
+    [showCurrentPageReport]="true"
+    [loading]="loading()"
+    styleClass="custom-table hidden md:block"
+  >
+    <ng-template #caption>
+      <div class="flex align-items-center justify-content-between p-2">
+        <h5 class="m-0 text-xl font-bold text-700">Gestión de Diagramas</h5>
+        <div class="flex gap-2">
+          <custom-button
+            label="Galería"
+            iconClass="pi pi-images"
+            [showLabelOnDesktop]="true"
+            severity="secondary"
+            variant="ghost-text"
+            (clicked)="onOpenGallery()"
+          />
+          <custom-button-add (clicked)="onAddDiagram()" />
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th pSortableColumn="name">
+          Nombre <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="updateAt" class="table-col-15rem">
+          Última Actualización <p-sortIcon field="updateAt"></p-sortIcon>
+        </th>
+        <th class="table-col-actions">Acciones</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-diagram>
+      <tr>
+        <td class="font-medium text-700">{{ diagram.name }}</td>
+        <td class="text-500">{{ diagram.updateAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+        <td>
+          <div class="flex justify-content-center gap-2">
+            <custom-button
+              iconClass="pi pi-pencil"
+              (clicked)="onEditDiagram(diagram.id)"
+              ngbTooltip="Editar Propiedades"
+              variant="text"
+              severity="secondary"
+              [showLabelOnDesktop]="true"
+              label="Propiedades"
+            />
+            <custom-button
+              iconClass="pi pi-palette"
+              (clicked)="onOpenEditor(diagram.id)"
+              ngbTooltip="Abrir Editor Gráfico"
+              variant="text"
+              severity="info"
+              [showLabelOnDesktop]="true"
+              label="Editor"
+            />
+            <custom-button
+              iconClass="pi pi-eye"
+              (clicked)="onViewDiagram(diagram.id)"
+              ngbTooltip="Visualizar Diagrama"
+              variant="text"
+              severity="success"
+              [showLabelOnDesktop]="true"
+              label="Ver"
+            />
+            <custom-button-delete (clicked)="onDeleteDiagram(diagram.id)" />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #summary>
+      <div class="flex align-items-center justify-content-between text-500 italic">
+        En total hay {{ diagrams() ? diagrams().length : 0 }} diagramas.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<app-data-view-mobile
+  [data]="diagrams()"
+  [globalFilterFields]="['name']"
+  (add)="onAddDiagram()"
+>
+  <ng-template #listItemTemplate let-diagram>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center bg-green-50 border-round-md ml-3"
+        style="width: 40px; height: 40px; flex-shrink: 0;"
+      >
+        <ion-icon
+          name="git-branch-outline"
+          class="text-2xl text-green-600"
+        ></ion-icon>
+      </div>
+      <ion-label class="ml-3">
+        <h3 class="font-bold text-700">{{ diagram.name }}</h3>
+        <p class="text-500">{{ diagram.updateAt | date:'dd/MM/yyyy HH:mm' }}</p>
+      </ion-label>
+      <app-action-menu slot="end">
+        <ion-button-edit (clicked)="onEditDiagram(diagram.id)" />
+        <custom-button
+          iconClass="pi pi-palette"
+          (clicked)="onOpenEditor(diagram.id)"
+          label="Editor"
+          variant="text"
+          severity="info"
+        />
+        <custom-button
+          iconClass="pi pi-eye"
+          (clicked)="onViewDiagram(diagram.id)"
+          label="Ver"
+          variant="text"
+          severity="success"
+        />
+        <ion-button-delete (confirmed)="onDeleteDiagram(diagram.id)" />
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

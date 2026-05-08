@@ -1,0 +1,82 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      [title]="'Categorias'"
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th class="table-col-7 text-small" pSortableColumn="nameCotegory">
+        NOMBRE DE CATEGORIA
+        <p-sortIcon field="nameCotegory" />
+      </th>
+
+      <th class="table-col-5 text-small">.</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.nameCotegory }}</td>
+
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="data()" />
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="data()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full">
+      <ion-label>
+        <h2>{{ item.nameCotegory }}</h2>
+      </ion-label>
+      <div slot="end">
+        <app-action-menu>
+          <ion-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <ion-button-delete (confirmed)="onDelete(item.id)" />
+        </app-action-menu>
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+
+
+
+
+
+

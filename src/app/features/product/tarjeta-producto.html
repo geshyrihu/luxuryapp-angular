@@ -1,0 +1,36 @@
+<div class="p-3">
+  <div>
+    @if (producto) {
+    <div class="grid">
+      <div class="col-12 sm:col-4 flex justify-content-center">
+        <img
+          [src]="producto.urlImagen"
+          alt=""
+          class="w-full h-auto border-round shadow-2"
+          style="max-width: 200px"
+        />
+      </div>
+      <div class="col-12 sm:col-8 flex flex-column justify-content-center">
+        <h2 class="text-xl font-medium mb-2">
+          Categoría: {{ producto.category.nameCotegory }}
+        </h2>
+        <h2 class="text-2xl font-bold mb-3">
+          {{ producto.nombreProducto }}
+        </h2>
+        <div class="flex flex-column gap-2 text-600">
+          <span><strong>Modelo:</strong> {{ producto.modelo }}</span>
+          <span><strong>Marca:</strong> {{ producto.marca }}</span>
+          <span><strong>Clasificación:</strong> {{ producto.clasificacion }}</span>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+
+
+
+
+
+
+

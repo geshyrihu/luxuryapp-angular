@@ -1,0 +1,36 @@
+<p-card>
+  <ng-template #content>
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-autocomplete-signal
+        (propagar)="saveLegalMatter($event)"
+        [control]="form.controls.title"
+        [data]="cb_legal_matter()"
+        label="Asunto:"
+        placeholder="Escribe para buscar asunto"
+        [horizontal]="false"
+      />
+
+      <custom-input-textarea-signal
+        [control]="form.controls.description"
+        label="Descripción:"
+        placeholder="Descripción:"
+        [horizontal]="false"
+      />
+
+      <custom-input-autocomplete-signal
+        (propagar)="saveAssignee($event)"
+        [control]="form.controls.assignee"
+        [data]="cb_application_user_responsible()"
+        label="Responsable:"
+        placeholder="Escribe para buscar responsable"
+        [horizontal]="false"
+      />
+
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </ng-template>
+</p-card>

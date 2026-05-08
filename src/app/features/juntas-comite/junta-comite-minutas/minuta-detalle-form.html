@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        label="Id"
+        [horizontal]="false"
+        [readonly]="true"
+      />
+
+      <custom-input-select-signal
+        [control]="form.controls.eAreaMinutasDetalles"
+        label="Area"
+        [data]="cb_area()"
+        [horizontal]="false"
+      />
+
+      <custom-input-date-signal
+        [control]="form.controls.deliveryDate"
+        label="Fecha de término"
+        placeholder="fecha de término"
+        [horizontal]="false"
+      />
+
+      <custom-input-text-signal
+        [control]="form.controls.title"
+        label="Título"
+        placeholder="titulo"
+        [horizontal]="false"
+      />
+
+      <custom-input-textarea-signal
+        [control]="form.controls.requestService"
+        label="Asunto"
+        placeholder="asunto"
+        [horizontal]="false"
+      />
+
+      <custom-input-select-signal
+        [control]="form.controls.status"
+        label="Estatus"
+        [data]="cb_estatus()"
+        [horizontal]="false"
+      />
+
+      <div class="flex justify-content-end mt-2">
+        <custom-button
+          [variant]="'outlined'"
+          label="Seguimientos"
+          iconClass="pi pi-comments"
+          (clicked)="openFollowUp()"
+        />
+        <custom-button-save
+          [propertyId]="id()"
+          [disabled]="form.invalid"
+          [submitting]="submitting()"
+        />
+      </div>
+    </form>
+  </div>
+</div>

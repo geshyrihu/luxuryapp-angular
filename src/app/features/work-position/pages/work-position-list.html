@@ -1,0 +1,228 @@
+<!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block">
+  <p-table
+    [globalFilterFields]="globalFilterFields"
+    [value]="data()"
+    #dt
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+    styleClass="custom-table card hidden md:block"
+  >
+    <ng-template #caption>
+      <div class="grid">
+        <div class="col-12 sm:col-10">
+          <primeng-custom-caption
+            [title]="'Puestos de Trabajo'"
+            (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+            [dt]="dt"
+          />
+        </div>
+        <div class="col-12 sm:col-2">
+          <custom-button-active-desactive
+            [state]="state()"
+            (stateChange)="onSelectActive($event)"
+          />
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th class="w-8rem" pSortableColumn="folio">
+          CÓDIGO <p-sortIcon field="folio" />
+        </th>
+        <th class="w-auto" pSortableColumn="applicationRoleName">
+          PUESTO <p-sortIcon field="applicationRoleName" />
+        </th>
+        <th class="w-8rem" pSortableColumn="turno">
+          TURNO <p-sortIcon field="turno" />
+        </th>
+        @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento,
+        AspRole.Administrador, AspRole.SuperUsuario])) {
+        <th class="w-10rem" pSortableColumn="sueldoBase">
+          PRESUPUESTADO <p-sortIcon field="sueldoBase" />
+        </th>
+        <th class="w-10rem" pSortableColumn="sueldo">
+          ACTUAL <p-sortIcon field="sueldo" />
+        </th>
+        }
+        <th class="w-15rem" pSortableColumn="applicationUser">
+          COLABORADOR <p-sortIcon field="applicationUser" />
+        </th>
+        <th class="w-12rem text-center">ACCIONES</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-item>
+      <tr>
+        <td>{{ item.folio }}</td>
+        <td>
+          @if (necesitaActualizacion(item)) {
+          <div class="flex align-items-center">
+            <p-tag
+              severity="warn"
+              value="Actualizar puesto"
+              icon="pi pi-exclamation-triangle"
+            />
+            <custom-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
+              pTooltip="Este puesto requiere que se le asigne un rol"
+            />
+          </div>
+          } @else { {{ item.applicationRoleName }} }
+        </td>
+        <td>{{ item.turno }}</td>
+        @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento,
+        AspRole.Administrador, AspRole.SuperUsuario])) {
+        <td>{{ item.sueldoBase }}</td>
+        <td>{{ item.sueldo }}</td>
+        }
+        <td>
+          <div class="flex align-items-center">
+            @if (item.applicationUserPhoto) {
+            <p-avatar
+              [image]="item.applicationUserPhoto"
+              shape="circle"
+              size="large"
+              (click)="onCardEmployee(item.applicationUserId)"
+              class="cursor-pointer"
+            />
+            } @else {
+            <p-avatar icon="pi pi-user" shape="circle" size="large" />
+            }
+            <span>{{ item.applicationUser || 'Vacante' }}</span>
+          </div>
+        </td>
+        <td class="text-center">
+          <div class="flex justify-content-center gap-1">
+            @if (shouldShowVacancyRequest(item)) {
+            <custom-button-item
+              (clicked)="onModalSolicitudVacante(item.id)"
+              iconClass="pi pi-user-plus"
+              label="Solicitar vacante"
+              [pTooltip]="'Solicitar vacante'"
+            />
+            }
+            <custom-button-item
+              (clicked)="onModalJobDescription(item.id, item.jobDescriptionId, item.applicationRoleName)"
+              iconClass="pi pi-book"
+              label="Descripción"
+              [pTooltip]="'Descripción de puesto'"
+            />
+            <custom-button-item
+              (clicked)="onModalHoursWorkPosition(item.id)"
+              iconClass="pi pi-clock"
+              label="Horarios"
+              [pTooltip]="'Horarios de trabajo'"
+            />
+            <custom-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
+            />
+            @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
+            <custom-button-delete (confirmed)="onDelete(item.id)" />
+            }
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #summary>
+      <div class="flex align-items-center justify-content-end p-2 font-bold">
+        Total: {{ data()?.length || 0 }} puestos de trabajo.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<!-- Mobile View -->
+<div class="block md:hidden h-full">
+  <app-data-view-mobile
+    [data]="data()"
+    [globalFilterFields]="['folio', 'applicationRoleName', 'applicationUser']"
+    (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  >
+    <div
+      customFilters
+      class="flex justify-content-end p-2 border-bottom-1 surface-border"
+    >
+      <ion-button-active-desactive (stateChange)="onSelectActive($event)" />
+    </div>
+
+    <ng-template #listItemTemplate let-item>
+      <ion-item lines="full" class="ion-no-padding">
+        <ion-avatar
+          slot="start"
+          (click)="item.applicationUserPhoto ? onCardEmployee(item.applicationUserId) : null"
+        >
+          @if (item.applicationUserPhoto) {
+          <img [src]="item.applicationUserPhoto" />
+          } @else {
+          <div
+            class="flex align-items-center justify-content-center h-full w-full surface-200 text-500"
+          >
+            <i class="pi pi-user"></i>
+          </div>
+          }
+        </ion-avatar>
+
+        <ion-label>
+          <div class="flex justify-content-between align-items-center mb-1">
+            <span class="text-xs font-bold text-500">{{ item.folio }}</span>
+            <ion-badge color="light" class="text-xs"
+              >{{ item.turno }}</ion-badge
+            >
+          </div>
+          <h2 class="text-base font-bold m-0 text-900">
+            @if (necesitaActualizacion(item)) {
+            <ion-badge color="warning">
+              <i class="pi pi-exclamation-triangle mr-1"></i>Actualizar puesto
+            </ion-badge>
+            } @else { {{ item.applicationRoleName }} }
+          </h2>
+          <p class="text-sm text-600">
+            {{ item.applicationUser || 'Vacante' }}
+          </p>
+
+          @if (item.positionRequest?.status === 0 ||
+          item.positionRequest?.status === 3) {
+          <ion-badge color="danger" class="mt-1">
+            Pendiente: {{ item.positionRequest.status === 0 ? 'Nueva' : 'En
+            Proceso' }}
+          </ion-badge>
+          }
+        </ion-label>
+
+        <app-action-menu slot="end">
+          @if (shouldShowVacancyRequest(item)) {
+          <ion-button-item
+            (clicked)="onModalSolicitudVacante(item.id)"
+            iconName="person-add-outline"
+            label="Solicitar vacante"
+          />
+          }
+          <ion-button-item
+            (clicked)="onModalJobDescription(item.id, item.jobDescriptionId, item.applicationRoleName)"
+            iconName="book-outline"
+            label="Descripción"
+          />
+          <ion-button-item
+            (clicked)="onModalHoursWorkPosition(item.id)"
+            iconName="time-outline"
+            label="Horarios"
+          />
+          <ion-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
+          <ion-button-delete (confirmed)="onDelete(item.id)" />
+          }
+        </app-action-menu>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
+</div>

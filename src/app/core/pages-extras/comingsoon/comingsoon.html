@@ -1,0 +1,86 @@
+<div class="preview-img overflow-hidden">
+  <p-carousel
+    [value]="images"
+    [numVisible]="1"
+    [numScroll]="1"
+    [circular]="true"
+    [autoplayInterval]="3000"
+  >
+    <ng-template let-image pTemplate="item">
+      <div class="item event-list">
+        <div
+          class="slide-bg"
+          [style.background-image]="'url(' + image + ')'"
+        ></div>
+      </div>
+    </ng-template>
+  </p-carousel>
+</div>
+<!-- preview bg -->
+
+<div class="coming-content min-h-screen py-4 px-3 sm:py-5">
+  <div class="bg-overlay bg-primary"></div>
+  <div class="container">
+    <div class="flex justify-content-center">
+      <div class="lg:w-2/3">
+        <div class="text-center py-4 sm:py-5">
+          <div class="mb-5">
+            <a routerLink="/">
+              <img
+                src="assets/images/logo-sm.svg"
+                alt=""
+                height="30"
+                class="mr-1"
+              /><span class="logo-txt text-white font-size-22">Minia</span>
+            </a>
+          </div>
+          <h3 class="text-white mt-5">Let's get started with Minia</h3>
+          <p class="text-white-50 font-size-16">
+            Donec pede justo fringilla vel aliquet nec vulputate eget arcu. In
+            enim justo, rhoncus ut imperdiet a venenatis vitae, justo felis
+          </p>
+
+          <div class="counter-number ico-countdown mt-5">
+            <div class="coming-box">
+              <span class="count-title">Days</span>
+              <div class="count-num">{{ _days }}</div>
+            </div>
+            <div class="coming-box">
+              <span class="count-title">Hours</span>
+              <div class="count-num">{{ _hours }}</div>
+            </div>
+            <div class="coming-box">
+              <span class="count-title">Minutes</span>
+              <div class="count-num">{{ _minutes }}</div>
+            </div>
+            <div class="coming-box">
+              <span class="count-title">Seconds</span>
+              <div class="count-num">{{ _seconds }}</div>
+            </div>
+          </div>
+          <div class="mt-5 mx-auto">
+            <p-iconField iconPosition="right">
+              <p-inputIcon class="bx bx-paper-plane align-middle"></p-inputIcon>
+              <input
+                pInputText
+                type="text"
+                placeholder="Enter your email address"
+              />
+            </p-iconField>
+          </div>
+        </div>
+      </div>
+      <!-- end col -->
+    </div>
+    <!-- end row -->
+  </div>
+  <!-- end container -->
+</div>
+<!-- coming-content -->
+
+
+
+
+
+
+

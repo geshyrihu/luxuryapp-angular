@@ -1,0 +1,57 @@
+<!-- Desktop View -->
+<div class="hidden md:block">
+  <br />
+  <div class="grid">
+    @for (option of comiteMenuOptions; track $index) {
+    <div class="col-6 lg:col-3 p-2">
+      <a
+        [routerLink]="[option.routeParam]"
+        class="no-underline block committee-folder-box text-900"
+      >
+        <div class="committee-files-list">
+          <div class="committee-image-container">
+            <img
+              [src]="option.image"
+              [alt]="option.title"
+              class="committee-menu-option-image"
+            />
+          </div>
+          <div class="committee-card-content text-center mt-2">
+            <h6 class="m-0">{{ option.title }}</h6>
+          </div>
+        </div>
+      </a>
+    </div>
+    }
+  </div>
+</div>
+
+<!-- Mobile View -->
+<div class="block md:hidden">
+  <ion-grid class="p-0">
+    <ion-row>
+      @for (option of comiteMenuOptions; track $index) {
+      <ion-col size="6" class="p-0">
+        <ion-card
+          class="m-1 h-full animate__animated animate__fadeIn border-1 surface-border shadow-1"
+          (click)="navigateTo(option.routeParam)"
+        >
+          <div class="relative overflow-hidden h-9rem">
+            <ion-img
+              [src]="option.image"
+              [alt]="option.title"
+              class="w-full h-full cover-image"
+            ></ion-img>
+          </div>
+          <ion-card-content class="text-center p-2">
+            <ion-label class="text-sm font-bold text-900"
+              >{{ option.title }}</ion-label
+            >
+          </ion-card-content>
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-card>
+      </ion-col>
+      }
+    </ion-row>
+  </ion-grid>
+</div>

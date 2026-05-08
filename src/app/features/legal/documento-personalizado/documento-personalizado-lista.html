@@ -1,0 +1,98 @@
+<div class="card p-0 md:p-4">
+  <p-table
+    [globalFilterFields]="globalFilterFields()"
+    [value]="dataSignal()"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight"
+    #dt
+    styleClass="custom-table hidden md:block"
+  >
+      <ng-template #caption>
+        <primeng-custom-caption
+          (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+          [dt]="dt"
+        />
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th
+            class="bg-gradient text-white text-center"
+            pSortableColumn="folio"
+          >
+            Folio
+            <p-sortIcon field="folio" />
+          </th>
+          <th class="bg-gradient text-white text-center">Fecha</th>
+          <th class="text-center" pSortableColumn="name">
+            Nombre
+            <p-sortIcon field="name" />
+          </th>
+          <th class="text-center">Descargar</th>
+          <th class="text-center no-print table-col-5"></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td class="text-center">{{ item.folio }}</td>
+          <td class="text-center">{{ item.createAt }}</td>
+          <td class="text-center text-break">{{ item.name }}</td>
+          <td class="text-center">
+            <custom-button-view-pdf
+              [showLabelOnDesktop]="true"
+              [url]="item.path"
+              fileName="Documento"
+            />
+          </td>
+          <td class="text-center no-print">
+            <div class="flex">
+              <custom-button-edit
+                (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+                label="Editar"
+              />
+              <custom-button-delete
+                (confirmed)="onDelete(item.id)"
+                label="Eliminar"
+              >
+              </custom-button-delete>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #paginatorleft>
+        <primeng-custom-table-footer [data]="dataSignal()" />
+      </ng-template>
+  </p-table>
+</div>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div slot="start" style="
+        width:36px; height:36px; border-radius:10px;
+        background:#ede9fe; display:flex; align-items:center;
+        justify-content:center; flex-shrink:0; margin-left:16px;
+      ">
+        <ion-icon name="document-outline" style="font-size:20px; color:#7c3aed;"></ion-icon>
+      </div>
+      <ion-label>
+        <h3>{{ item.name }}</h3>
+        <p>Folio: {{ item.folio }} ó {{ item.createAt }}</p>
+      </ion-label>
+      <app-action-menu slot="end">
+        <ion-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
+        <ion-button-delete (confirmed)="onDelete(item.id)" />
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+
+
+
+
+
+

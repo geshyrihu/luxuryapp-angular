@@ -1,0 +1,61 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="container-fluid hidden md:block">
+  @if (dataSignal().length > 0) {
+  <div class="list-group mt-1">
+    @for (item of dataSignal(); track item) {
+    <div
+      class="list-group-item flex align-items-center justify-content-between w-full py-1 mb-1"
+    >
+      <div class="flex justify-content-between align-items-center w-full">
+        <div>
+          <span class="text-break">{{ item.period }}</span>
+        </div>
+        @if (item.hasDocument) {
+        <custom-button-view-pdf
+          [showLabelOnDesktop]="true"
+          [url]="item.nameFileEstadoFinanciero"
+          fileName="Informe Financiero"
+        />
+        } @if (!item.hasDocument) {
+        <p>Sin Informe</p>
+        }
+      </div>
+    </div>
+    }
+  </div>
+  } @if (dataSignal().length === 0) {
+  <div class="text-center mt-3">
+    <p>No se encontraron informes.</p>
+  </div>
+  }
+</div>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<div class="block md:hidden">
+  <app-data-view-mobile
+    [data]="dataSignal()"
+    [showAdd]="false"
+    [globalFilterFields]="[]"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ion-item lines="full" class="ion-no-padding">
+        <ion-label>
+          <div class="flex justify-content-between align-items-center mb-1">
+            <h2 class="font-bold m-0 text-base text-wrap">{{ item.period }}</h2>
+          </div>
+        </ion-label>
+
+        <div slot="end" class="flex align-items-center">
+          @if (item.hasDocument) {
+          <ion-button-view-pdf
+            [url]="item.nameFileEstadoFinanciero"
+            pdf="Informe"
+          />
+          } @else {
+          <span class="text-sm text-500">Sin Informe</span>
+          }
+        </div>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
+</div>

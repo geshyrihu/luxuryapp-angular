@@ -1,0 +1,173 @@
+<div class="hidden md:block"></div>
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  responsiveLayout="scroll"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <div class="flex justify-content-between align-items-center">
+      <primeng-custom-caption
+        [title]="'Propiedades'"
+        (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+        [dt]="dt"
+        [rolAuth]="
+          aspRoleS.hasAny([
+            AspRole.Asistente,
+            AspRole.Administrador,
+            AspRole.SuperUsuario,
+          ])
+        "
+      />
+      @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Administrador, AspRole.SuperUsuario])) {
+      <div>
+        <input
+          type="file"
+          #fileInput
+          style="display: none"
+          (change)="onFileSelected($event)"
+          accept=".xlsx, .xls"
+        />
+        <custom-button
+          label="Importar desde Excel"
+          iconClass="pi pi-upload"
+          severity="success"
+          (clicked)="fileInput.click()"
+        />
+        <custom-button
+          label="Descargar Plantilla"
+          iconClass="pi pi-download"
+          severity="secondary"
+          (clicked)="downloadTemplate()"
+        />
+      </div>
+      }
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="w-5rem text-small" pSortableColumn="accountNumber">
+        Cta.
+        <p-sortIcon field="accountNumber" />
+      </th>
+      <th class="w-6rem text-small" pSortableColumn="tower">
+        Torre
+        <p-sortIcon field="tower" />
+      </th>
+      <th class="w-9rem text-small" pSortableColumn="department">
+        Departamento
+        <p-sortIcon field="department" />
+      </th>
+      <th class="w-6rem text-small" pSortableColumn="floor">
+        Piso
+        <p-sortIcon field="floor" />
+      </th>
+      <th class="w-7rem text-small" pSortableColumn="unitNumber">
+        No. Int.
+        <p-sortIcon field="unitNumber" />
+      </th>
+      <th class="w-7rem text-small" pSortableColumn="areaM2">
+        Área m²
+        <p-sortIcon field="areaM2" />
+      </th>
+      <th class="w-8rem text-small" pSortableColumn="indivisoPercentage">
+        Indiviso
+        <p-sortIcon field="indivisoPercentage" />
+      </th>
+      <th class="w-7rem text-small" pSortableColumn="parkingSlots">
+        Cajones
+        <p-sortIcon field="parkingSlots" />
+      </th>
+      <th class="w-7rem text-small" pSortableColumn="storageUnit">
+        Bodega
+        <p-sortIcon field="storageUnit" />
+      </th>
+      <th class="w-6rem text-center text-small" pSortableColumn="isDelinquent">
+        Moroso
+        <p-sortIcon field="isDelinquent" />
+      </th>
+      @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Administrador, AspRole.SuperUsuario])) {
+      <th class="w-8rem text-small"></th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr [class.surface-50]="item.isDelinquent">
+      <td><small>{{ item.accountNumber }}</small></td>
+      <td><small>{{ item.tower }}</small></td>
+      <td><small>{{ item.department }}</small></td>
+      <td><small>{{ item.floor }}</small></td>
+      <td><small>{{ item.unitNumber }}</small></td>
+      <td><small>{{ item.areaM2 | number:'1.2-2' }}</small></td>
+      <td><small>{{ item.indivisoPercentage | percent:'1.2-5' }}</small></td>
+      <td><small>{{ item.parkingSlots | number }}</small></td>
+      <td><small>{{ item.storageUnit }}</small></td>
+      <td class="text-center">
+        @if (item.isDelinquent) {
+          <span class="badge bg-red-100 text-red-800 text-xs px-2 py-1 border-round">Moroso</span>
+        }
+      </td>
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-item
+            iconClass="pi pi-users"
+            label="Ocupantes"
+            (clicked)="showOccupantsDialog(item)"
+          />
+          @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Administrador, AspRole.SuperUsuario])) {
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<!-- Vista movil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding" detail="false">
+      <ion-label>
+        <h2 class="font-normal m-0">{{ item.tower }} - {{ item.department }}</h2>
+        <p>
+          Cta: {{ item.accountNumber }}
+          @if (item.floor) { &middot; Piso: {{ item.floor }} }
+          @if (item.unitNumber) { &middot; Int: {{ item.unitNumber }} }
+        </p>
+        <p>
+          @if (item.areaM2) { Área: {{ item.areaM2 | number:'1.2-2' }} m² }
+          @if (item.indivisoPercentage) { &middot; Indiviso: {{ item.indivisoPercentage | percent:'1.2-5' }} }
+        </p>
+        @if (item.isDelinquent) {
+          <p class="text-red-600 font-medium">Moroso</p>
+        }
+      </ion-label>
+
+      <app-action-menu slot="end">
+        <ng-container actions>
+          <ion-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <ion-button-delete (confirmed)="onDelete(item.id)" />
+        </ng-container>
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

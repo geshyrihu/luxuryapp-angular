@@ -1,0 +1,111 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <p-card>
+    <div class="card-body mt-2">
+      @if (!selectedTemplate) {
+
+      <p-message severity="info"
+        >Seleccione un empleado y una plantilla para comenzar.</p-message
+      >
+      <!-- Fila para los selectores de Empleado y Plantilla -->
+      <div class="grid mb-4">
+        <div class="col-12 md:col-6">
+          <label for="evaluatedId">Empleado a Evaluar</label>
+          <p-select
+            id="evaluatedId"
+            [options]="employees"
+            optionLabel="label"
+            optionValue="value"
+            formControlName="evaluatedId"
+            placeholder="Seleccione un empleado..."
+            fluid
+          />
+        </div>
+        <div class="col-12 md:col-6">
+          <label for="evaluationTemplateId">Plantilla de Evaluación</label>
+          <p-select
+            id="evaluationTemplateId"
+            [options]="templates"
+            optionLabel="label"
+            optionValue="value"
+            formControlName="evaluationTemplateId"
+            (onChange)="onTemplateSelect($event.value)"
+            placeholder="Seleccione una plantilla..."
+            styleClass="w-full"
+          />
+        </div>
+      </div>
+      <p-divider />
+
+      }
+
+      <!--
+      Esta sección solo se muestra si 'selectedTemplate' tiene datos.
+      Es la clave para la carga dinómica del formulario.
+      -->
+      @if (selectedTemplate) {
+      <div class="mb-4">
+        <p-message
+          severity="secondary"
+          styleClass="flex justify-content-center"
+        >
+          <span class="text-xl font-bold">
+            {{ evaluatedEmployeeName }} | {{ selectedTemplate.name }}</span
+          >
+        </p-message>
+
+        <!--
+          Contenedor para el FormArray de respuestas.
+          Es crucial para que Angular sepa dónde gestionar la lista de respuestas.
+          -->
+        <div formArrayName="answers">
+          <!--
+            Iteramos sobre las CATEGORóAS de la plantilla seleccionada solo para
+            propósitos visuales (para mostrar los Títulos de las categoróas).
+            -->
+          @for ( category of selectedTemplate.categories; track category; let
+          catIndex = $index ) {
+          <div class="mb-1">
+            <h3>📁 | {{ category.name }}</h3>
+            @for ( question of category.questions; track question; let qIndex =
+            $index ) {
+            <div class="mb-1">
+              <div
+                [formGroupName]="
+                        getQuestionControlIndex(catIndex, qIndex)
+                      "
+              >
+                <label>❓| {{ question.questionText }}</label>
+                <div class="grid">
+                  <div class="col-12 sm:col-2">
+                    <app-touchspin
+                      [control]="getScoreControl(catIndex, qIndex)"
+                      [minValue]="1"
+                      [maxValue]="5"
+                      [step]="1"
+                      (valueChanged)="onScoreChange($event, catIndex, qIndex)"
+                    />
+                  </div>
+                  <div class="col-12 sm:col-10">
+                    <custom-input-textarea-signal
+                      customClass="w-full"
+                      [rows]="1"
+                      placeholder="Añadir un comentario (opcional)..."
+                      [control]="getCommentControl(catIndex, qIndex)"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            }
+          </div>
+          }
+        </div>
+      </div>
+      }
+    </div>
+
+    @if (selectedTemplate) {
+    <custom-button-save [disabled]="form.invalid" [submitting]="submitting()" />
+    }
+  </p-card>
+</form>

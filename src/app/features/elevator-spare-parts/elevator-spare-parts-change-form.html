@@ -1,0 +1,54 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        label="Id"
+        [hidden]="false"
+      />
+
+      <custom-input-select-signal
+        [control]="form.controls.machineryId"
+        label="Elevador"
+        [data]="cb_elevators()"
+      />
+      <custom-input-date-signal
+        [control]="form.controls.changeDate"
+        label="Fecha"
+        placeholder="fecha"
+      />
+
+      <custom-input-textarea-signal
+        [control]="form.controls.failure"
+        label="Falla"
+        placeholder="falla"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.partName"
+        label="Nombre de pieza"
+        placeholder="nombre de pieza"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.partKey"
+        label="Clave de pieza"
+        placeholder="clave de pieza"
+      />
+      <custom-input-number-signal
+        [control]="form.controls.price"
+        label="Precio"
+        placeholder="precio"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.supervised"
+        label="Superviso"
+        placeholder="superviso"
+      />
+
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </div>
+</div>

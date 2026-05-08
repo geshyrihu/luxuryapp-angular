@@ -1,0 +1,39 @@
+<div class="p-4">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <custom-input-text-signal
+      [control]="form.controls.id"
+      label="Id"
+      [readonly]="true"
+    />
+    <custom-input-date-signal
+      [control]="form.controls.createAt"
+      label="Fecha de creación"
+      placeholder="Selecciona la fecha"
+    />
+
+    <custom-input-text-signal
+      [control]="form.controls.name"
+      label="Nombre del documento"
+      placeholder="Nombre"
+    />
+    <div class="grid mb-3 align-items-center">
+      <label class="col-12 sm:col-3 font-medium">Documento</label>
+      <div class="col-12 sm:col-9">
+        <custom-input-file-signal
+          accept="application/pdf"
+          (fileSelected)="change($event)"
+          [horizontal]="false"
+        />
+        @if (fileError) {
+        <small class="text-red-500"> El documento es requerido. </small>
+        }
+      </div>
+    </div>
+
+    <custom-button-save
+      [propertyId]="id"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+    />
+  </form>
+</div>

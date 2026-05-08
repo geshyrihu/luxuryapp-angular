@@ -1,0 +1,239 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <p-card>
+    <div class="grid">
+      <!-- Employee Selection -->
+      <div class="col-12 md:col-4">
+        <div class="flex flex-column mb-2">
+          <custom-input-select-signal
+            id="employeeId"
+            [control]="form.controls.employeeId"
+            label="Empleado"
+            [data]="employees()"
+            placeholder="Selecciona un empleado"
+            customClass="w-full"
+            [filter]="true"
+            filterBy="label"
+            [horizontal]="false"
+          />
+        </div>
+        @if(balance(); as b){
+        <p-message
+          severity="info"
+          [text]="'Fecha de Ingreso: ' + (b.employeeAdmissionDate | date:'dd-MM-yyyy')"
+        ></p-message>
+
+        @if (eligibilityStatus() === 'not-yet-6-months') {
+        <p-message
+          severity="error"
+          text="Este empleado no puede registrar vacaciones hasta cumplir 6 meses de antigóedad."
+          styleClass="mt-2"
+        ></p-message>
+        } @else if (eligibilityStatus() === 'not-eligible-this-year') {
+        <p-message
+          severity="error"
+          text="Este empleado no tiene derecho a vacaciones para el Año consultado."
+          styleClass="mt-2"
+        ></p-message>
+        } @else if (eligibilityStatus() === 'eligible' &&
+        allowedAdvanceDaysDisplay() !== null) {
+        <p-message
+          severity="info"
+          [text]="'Puede solicitar un adelanto de hasta ' + allowedAdvanceDaysDisplay() + ' días. Disponibles para adelanto: ' + availableAdvanceDaysDisplay()"
+          styleClass="mt-2"
+        ></p-message>
+        } }
+      </div>
+
+      <!-- Spacer -->
+
+      <!-- Date Range Picker -->
+      <div class="col-12 md:col-4">
+        <div class="flex flex-column mb-2">
+          <label for="dateRange">Rango de Fechas de las Vacaciones</label>
+          <div class="p-inputgroup">
+            <div class="flex">
+              <p-datePicker
+                id="dateRange"
+                [formControl]="form.controls.dateRange"
+                [selectionMode]="'range'"
+                [readonlyInput]="true"
+                placeholder="Selecciona el inicio y el fin"
+                styleClass="w-full"
+                dateFormat="dd/mm/yy"
+                [showClear]="true"
+                (onClear)="clearDateRange()"
+                (onSelect)="onDateSelect($event)"
+                fluid
+              />
+              <custom-button
+                (click)="clearDateRange()"
+                label="Limpiar"
+                iconClass="pi pi-times"
+                customClass="ml-2"
+                [showLabelOnDesktop]="true"
+              />
+            </div>
+          </div>
+        </div>
+        @if(requestedDays() > 0){
+        <p-message
+          severity="warn"
+          [text]="' Días solicitados: ' + requestedDays()"
+        ></p-message>
+        <p-message
+          severity="info"
+          text="Nota: Domingos y días festivos no se cuentan en el total."
+          styleClass="mt-2"
+        ></p-message>
+        }
+      </div>
+      <!-- Comments -->
+      <div class="col-12 md:col-4">
+        <div class="flex flex-column">
+          <custom-input-textarea-signal
+            id="comments"
+            [control]="form.controls.comments"
+            label="Comentarios"
+            customClass="w-full"
+            [rows]="3"
+            [horizontal]="false"
+          />
+        </div>
+      </div>
+
+      <!-- Balance Information -->
+      <div class="col-12 md:col-6">
+        @if (loadingBalance()) {
+        <p-skeleton height="8.5rem" styleClass="h-full" />
+        } @else if (balance(); as b) {
+        <div class="surface-ground p-3 border-round h-full">
+          <div class="flex justify-content-between align-items-center mb-2">
+            <h5 class="mb-0 font-semibold">Balance Anual</h5>
+          </div>
+          @if(eligibilityStatus() === 'eligible'){
+          <div class="grid text-center">
+            <div class="col-12 sm:col-3">
+              <h4 class="text-lg font-semibold text-900 mb-1">
+                {{ b.totalDays }}
+              </h4>
+              <p class="text-600 mb-0">Días por Ley</p>
+            </div>
+            <div class="col-12 sm:col-3">
+              <h4 class="text-lg font-semibold text-900 mb-1">
+                {{ b.usedDays }}
+              </h4>
+              <p class="text-600 mb-0">Días Usados</p>
+            </div>
+            <div class="col-12 sm:col-3">
+              <h4
+                class="text-lg font-bold mb-1"
+                [class.text-green-500]="b.availableDays > 0"
+                [class.text-red-500]="b.availableDays <= 0"
+              >
+                {{ b.availableDays }}
+              </h4>
+              <p class="text-600 mb-0">Disponibles</p>
+            </div>
+            <div class="col-12 sm:col-3">
+              <h4
+                class="text-lg font-bold mb-1"
+                [class.text-green-500]="effectiveAvailableDaysAfterSelection() >= 0"
+                [class.text-red-500]="effectiveAvailableDaysAfterSelection() < 0"
+              >
+                {{ effectiveAvailableDaysAfterSelection() }}
+              </h4>
+              <p class="text-600 mb-0">Restantes (Est.)</p>
+            </div>
+          </div>
+          }
+        </div>
+        }
+      </div>
+    </div>
+
+    <!-- Mostrar Aqui el listado de todas las solicitudes tomadas, fecha de solicitud , status, quien aprobo, cantidad de dias tomados,  -->
+    @if (form.controls.employeeId.value) {
+    <div class="mt-4">
+      <h5 class="m-0 mb-2">Historial de Solicitudes de Vacaciones</h5>
+      @if(loadingHistory()){
+      <p-skeleton height="10rem" />
+      } @else {
+      <p-table
+        [value]="history()"
+        responsiveLayout="scroll"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [scrollable]="true"
+        [scrollHeight]="scrollHeight"
+      >
+        <ng-template #header>
+          <tr>
+            <th>Fecha Solicitud</th>
+            <th>Fechas</th>
+            <th>Año de Antigóedad</th>
+            <th>Días</th>
+            <th>Estado</th>
+            <th>Aprobado por</th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-request>
+          <tr>
+            <td>{{ request.requestDate | date: 'dd/MM/yyyy' }}</td>
+            <td>
+              {{ request.startDate | date: 'dd/MM/yyyy' }} - {{ request.endDate
+              | date: 'dd/MM/yyyy' }}
+            </td>
+            <td>{{ request.seniorityYearDescription }}</td>
+            <td>{{ request.requestedDays }}</td>
+            <td>
+              <p-tag
+                [value]="request.statusName"
+                [severity]="request.statusName === 'Aprobada' ? 'success' : (request.statusName === 'Rechazada' ? 'danger' : 'info')"
+              />
+            </td>
+            <td>{{ request.approverName || 'N/A' }}</td>
+          </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+          <tr>
+            <td colspan="5">
+              No se encontraron solicitudes para este empleado.
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      }
+    </div>
+    }
+
+    <!-- Validation Errors -->
+    <div class="mt-3">
+      @if (form.hasError('notEnoughDays')) {
+      <p class="text-red-400 font-semibold">
+        El nómero de días solicitados ({{
+        form.getError('notEnoughDays').requested }}) excede los días disponibles
+        ({{ form.getError('notEnoughDays').available }}).
+      </p>
+      }
+      <!-- Server Error -->
+      @if (serverError()) {
+      <p-message severity="error" [text]="serverError()" styleClass="mt-2" />
+      } @if (balance()?.isEligibleForAdvance) {
+      <p-message
+        severity="info"
+        text="Este empleado puede solicitar un adelanto de hasta {{balance().allowedAdvanceDays}} días. Disponibles para adelanto: {{balance().availableAdvanceDays}}."
+        styleClass="mt-2"
+      />
+      }
+    </div>
+
+    <ng-template #footer>
+      <div class="flex justify-content-end">
+        <custom-button-save
+          [disabled]="form.invalid || submitting()"
+          [submitting]="submitting()"
+          label="Registrar Vacaciones"
+        />
+      </div>
+    </ng-template>
+  </p-card>
+</form>

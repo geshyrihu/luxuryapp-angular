@@ -1,0 +1,50 @@
+<li class="profile-nav onhover-dropdown px-0 py-0 m-0">
+  <div class="flex profile-media-committee align-items-center" (click)="toggleMenu()">
+    <img
+      class="b-r-8 img-40"
+      [src]="profileImageUrl || 'assets/images/default-avatar.png'"
+      alt="Img"
+    />
+    <div class="flex-flex-grow-1-1 ms-2">
+      <span>
+        {{ infoAccountAuthDTO?.firstName }} {{ infoAccountAuthDTO?.lastName }}
+      </span>
+      <p class="mb-0 font-outfit">
+        {{ infoAccountAuthDTO?.position }}
+        <i class="icon icon-pi-chevron-down ms-1"></i>
+      </p>
+    </div>
+  </div>
+
+  <ul
+    class="profile-dropdown onhover-show-div"
+    [class.active]="isMenuVisible"
+    (mouseleave)="closeMenu()"
+  >
+    <li>
+      <div class="ps-2 pe-2 mb-2">
+        <span>{{ customerName() }}</span>
+      </div>
+    </li>
+    <li>
+      <a [routerLink]="['/profile/update-user-profile']">
+        <i class="icon icon-pi-user m-2 txt-primary"></i>
+        <span>Cambiar contraseña</span>
+      </a>
+    </li>
+    @if (updateService.isUpdateAvailable()) {
+    <li (click)="onUpdateClick()">
+      <a>
+        <i class="icon icon-pi-sync m-2 txt-primary"></i>
+        <span>Actualizar</span>
+      </a>
+    </li>
+    }
+    <li (click)="logout()">
+      <a>
+        <i class="icon icon-pi-sign-out m-2 txt-primary"></i>
+        <span>Cerrar sesión</span>
+      </a>
+    </li>
+  </ul>
+</li>

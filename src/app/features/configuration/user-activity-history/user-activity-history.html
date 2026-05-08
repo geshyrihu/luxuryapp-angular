@@ -1,0 +1,207 @@
+<!-- Panel de Filtros -->
+<p-card>
+  <div class="hidden md:block">
+    <h5 class="text-lg mb-2">Filtros de Búsqueda</h5>
+    <div class="flex flex-wrap align-items-end gap-4">
+      <!-- Columna 1: Clientes -->
+      <div class="col-12 md:col-3">
+        <label for="Clientes">Clientes</label>
+        <custom-input-select-signal
+          [data]="customerOptions"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Seleccione un cliente"
+          [control]="filterCustomerIdControl"
+          customClass="w-full"
+          [horizontal]="false"
+        />
+      </div>
+
+      <!-- Columna 2: Tipo de Usuario -->
+      <div class="col-12 md:col-2">
+        <label for="Usuario">Tipo de Usuario</label>
+        <custom-input-select-signal
+          [data]="userTypeOptions"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Seleccione un tipo"
+          [control]="filterUserTypeControl"
+          customClass="w-full"
+          [horizontal]="false"
+        />
+      </div>
+
+      <!-- Columna 3: Rango de Fechas -->
+      <div class="col-12 md:col-3">
+        <label for="dateRangeFilter">Rango de Fechas</label>
+        <custom-input-date-signal
+          [control]="filterDateRangeControl"
+          mode="range"
+          dateFormat="Y-m-d"
+          altFormat="d/m/Y"
+          placeholder="Seleccione un rango"
+          [horizontal]="false"
+        />
+      </div>
+
+      <!-- Botón de Búsqueda -->
+      <div class="col-12 md:col-12 flex flex-column justify-content-end">
+        <div class="flex justify-content-end gap-2 mt-auto">
+          <span
+            [pTooltip]="isSearchDisabled ? 'Complete todos los filtros para buscar' : ''"
+            tooltipPosition="top"
+          >
+            <custom-button
+              label="Buscar"
+              styleClass="p-button p-button-primary w-full"
+              iconClass="pi pi-search"
+              (clicked)="onLoadData(true)"
+              [disabled]="isSearchDisabled"
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+  <div class="hidden md:block mt-3">
+    <p-table
+      #dt
+      [value]="data()"
+      [loading]="loading()"
+      [lazy]="true"
+      (onPage)="onPageChange($event)"
+      [totalRecords]="totalRecords()"
+      [paginator]="true"
+      [rows]="rows()"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [globalFilterFields]="globalFilterFields()"
+      styleClass="custom-table"
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      [showCurrentPageReport]="true"
+    >
+      <ng-template #caption>
+        <primeng-custom-caption
+          [dt]="dt"
+          (search)="onSearch($event)"
+          [showAdd]="false"
+        />
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th pSortableColumn="timestamp">
+            Fecha y Hora
+            <p-sortIcon field="timestamp" />
+          </th>
+          <th pSortableColumn="userName">
+            Usuario
+            <p-sortIcon field="userName" />
+          </th>
+          <th pSortableColumn="userType">
+            Tipo
+            <p-sortIcon field="userType" />
+          </th>
+          <th pSortableColumn="activityType">
+            Actividad
+            <p-sortIcon field="activityType" />
+          </th>
+          <th pSortableColumn="module">
+            Módulo
+            <p-sortIcon field="module" />
+          </th>
+          <th>Detalles</th>
+          <th pSortableColumn="ipAddress">
+            IP / Ubicación
+            <p-sortIcon field="ipAddress" />
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>{{ item.timestamp | date: 'dd/MM/yyyy h:mm:ss a' }}</td>
+          <td>{{ item.userName }}</td>
+          <td>
+            <p-tag [value]="item.userType"></p-tag>
+          </td>
+          <td>
+            <p-tag [value]="item.activityType" severity="info"></p-tag>
+          </td>
+          <td>{{ item.module }}</td>
+          <td>{{ item.details }}</td>
+          <td>
+            <div>{{ item.ipAddress }}</div>
+            <span class="text-color-secondary text-sm"
+              >{{ item.location }}</span
+            >
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="7" class="text-center">
+            No se encontraron registros con los filtros aplicados.
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <!-- 📱 INICIO: Componente adaptado para versión móvil -->
+  <div class="block md:hidden mt-3">
+    <app-data-view-mobile
+      [data]="data()"
+      [globalFilterFields]="globalFilterFields()"
+      (search)="onSearch($event)"
+      [showAdd]="false"
+    >
+      <ng-template #listItemTemplate let-item>
+        <ion-item lines="full" class="ion-no-padding">
+          <ion-avatar slot="start">
+            <div
+              class="flex align-items-center justify-content-center bg-primary border-circle w-full h-full text-white"
+            >
+              {{ item.userName.charAt(0).toUpperCase() }}
+            </div>
+          </ion-avatar>
+          <ion-label>
+            <div class="flex justify-content-between align-items-center mb-1">
+              <h2 class="font-bold m-0 text-base">{{ item.userName }}</h2>
+              <p-tag [value]="item.userType"></p-tag>
+            </div>
+
+            <p class="text-medium text-500 m-0 text-sm mb-1">
+              <i class="pi pi-clock mr-1 text-xs"></i> {{ item.timestamp | date:
+              "dd/MM/yyyy h:mm a" }}
+            </p>
+
+            <div class="flex align-items-center gap-2 mb-1">
+              <span class="font-bold text-sm">{{ item.module }}</span>
+              <p-tag
+                [value]="item.activityType"
+                severity="info"
+                styleClass="text-xs"
+              ></p-tag>
+            </div>
+
+            <p class="text-sm text-color-secondary m-0 text-wrap">
+              {{ item.details }}
+            </p>
+          </ion-label>
+        </ion-item>
+      </ng-template>
+    </app-data-view-mobile>
+
+    @if (data().length < totalRecords()) {
+    <custom-button
+      label="Cargar más"
+      severity="secondary"
+      [fluid]="true"
+      [loading]="loading()"
+      [showLabelOnDesktop]="true"
+      customClass="mt-3"
+      (clicked)="loadMore()"
+    />
+    }
+  </div>
+</p-card>

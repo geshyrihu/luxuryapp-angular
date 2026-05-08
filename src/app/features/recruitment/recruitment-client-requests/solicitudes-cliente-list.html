@@ -1,0 +1,145 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block"></div>
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="fechaSolicitud">
+        FECHA DE SOLICITUD
+        <p-sortIcon field="fechaSolicitud" />
+      </th>
+      <th pSortableColumn="folio">
+        FOLIO
+        <p-sortIcon field="folio" />
+      </th>
+      <th pSortableColumn="tipoSolicitud">
+        SOLICITUD
+        <p-sortIcon field="tipoSolicitud" />
+      </th>
+      <th pSortableColumn="nombreEmpleado">
+        NOMBRE
+        <p-sortIcon field="nombreEmpleado" />
+      </th>
+      <th pSortableColumn="status">
+        ESTATUS
+        <p-sortIcon field="status" />
+      </th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.fechaSolicitud }}</td>
+      <td>{{ item.folio }}</td>
+      <td>{{ item.tipoSolicitud }}</td>
+      <td>{{ item.nombreEmpleado }}</td>
+      <td>
+        <p-tag
+          [value]="item.status"
+          [severity]="getTagSeverity(item.status)"
+          [border-round]="true"
+          class="w-full md:w-auto"
+        />
+      </td>
+      <!-- Opciones -->
+      <td>
+        <div>
+          @switch (item.tipoSolicitud) { @case ('Alta') {
+          <div class="body-card">
+            <!-- Contenido específico para el caso 'pesificacion' -->
+            <custom-button-edit
+              (clicked)="onModalEditSolicitudAlta({
+                          id: item.id,
+                          })"
+            />
+          </div>
+          } @case ('Vacante') {
+          <div class="body-card">
+            <!-- Contenido específico para otro caso -->
+            <custom-button-edit
+              (clicked)="onModalEditVacante({
+                          id: item.id,
+                          })"
+            />
+          </div>
+          } @case ('Baja') {
+          <div class="body-card">
+            <!-- Contenido específico para otro caso -->
+
+            <custom-button-edit
+              (clicked)="
+                          onModalEditSolicitudBaja({
+                          id: item.id,
+                          })
+                          "
+            />
+          </div>
+          } @case ('Modificacion') {
+          <div class="body-card">
+            <!-- Contenido específico para otro caso -->
+            <custom-button-item
+              iconClass="pi pi-dollar"
+              (clicked)="
+                          onModalEditModificacionSalario({
+                          id: item.id,
+                          })
+                          "
+            />
+          </div>
+          }
+          <!-- Agrega más casos según tus necesidades -->
+          }
+        </div>
+      </td>
+      <!-- Opciones -->
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div
+        slot="start"
+        class="w-3rem h-3rem border-round flex align-items-center justify-content-center flex-shrink-0 ml-3 surface-100"
+      >
+        <ion-icon
+          name="people-outline"
+          class="text-xl text-purple-600"
+        ></ion-icon>
+      </div>
+      <ion-label>
+        <h3>{{ item.nombreEmpleado }}</h3>
+        <p>{{ item.tipoSolicitud }} · {{ item.folio }}</p>
+        <p>{{ item.fechaSolicitud }} · {{ item.status }}</p>
+      </ion-label>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+
+
+
+
+

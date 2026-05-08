@@ -1,0 +1,39 @@
+<p-table
+  [value]="products"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  styleClass="custom-table custom-table-sm"
+>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-10"></th>
+      <th class="table-col-60">PRODUCTO</th>
+      <th class="table-col-15">CANTIDAD</th>
+      <th class="table-col-15">UNIDAD</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            />
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+          </ng-container>
+        </app-action-menu>
+      </td>
+      <td>{{ item.product }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ item.unit }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+
+
+
+
+
+

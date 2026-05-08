@@ -1,0 +1,155 @@
+@if (dataSignal()) {
+<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block">
+  <div class="card">
+    <p-table
+      #dt
+      [value]="dataSignal()"
+      [globalFilterFields]="globalFilterFields()"
+      sortField="id"
+      sortMode="single"
+      rowGroupMode="subheader"
+      groupRowsBy="id"
+      [tableStyle]="{ 'min-width': '60rem' }"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight"
+      styleClass="custom-table"
+    >
+      <!-- styleClass="p-datatable-sm" -->
+      <ng-template #caption>
+        <div class="grid align-items-center">
+          <div class="col-12 md:col-10">
+            <primeng-custom-caption
+              (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+              [dt]="dt"
+              label="Agregar asunto"
+            />
+          </div>
+
+          <div class="col-12 md:col-2">
+            <custom-button
+              ngbTooltip="Agregar categoria"
+              customClass="btn-outline-primary
+              w-full"
+              icon="pi-plus mr-2"
+              label="Agregar categoria"
+              (clicked)="
+                onModalEditCategorie({ id: '', title: 'Agregar categoria' })
+              "
+            />
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th class="table-col-5">#</th>
+          <th class="table-col-60">Asunto</th>
+          <th class="table-col-20">Responsable</th>
+          <th class="table-col-15"></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="groupheader" let-category>
+        <tr pRowGroupHeader>
+          <td colspan="3">
+            <span class="font-bold ml-2 font-size-18">{{ category.name }}</span>
+          </td>
+          <td>
+            <div class="flex justify-content-center">
+              <custom-button-edit
+                (clicked)="
+                  onModalEditCategorie({ id: category.id, title: 'Editar' })
+                "
+              />
+              <custom-button-delete
+                (confirmed)="onDeleteCategorie(category.id)"
+              />
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-category let-rowIndex="rowIndex">
+        @for ( legalMatter of category.legalMatters; track legalMatter; let i =
+        $index ) {
+        <tr>
+          <!-- Ã³ndice -->
+          <td>{{ rowIndex + 1 }}.{{ i + 1 }}</td>
+          <td>{{ legalMatter.title }}</td>
+          <td>{{ legalMatter.isInternal ? "Interno" : "Externo" }}</td>
+          <!-- Opciones -->
+          <td class="no-print">
+            <app-action-menu>
+              <ng-container actions>
+                <ion-button-edit
+                  (clicked)="
+                    onModalForm({ id: legalMatter.id, title: 'Editar' })
+                  "
+                />
+                <ion-button-delete (confirmed)="onDelete(legalMatter.id)" />
+              </ng-container>
+            </app-action-menu>
+          </td>
+          <!-- Opciones -->
+        </tr>
+        }
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- ?? INICIO: Vista para mÃ³viles -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+>
+  <ng-container customFilters>
+    <custom-button
+      (clicked)="onModalEditCategorie({ id: '', title: 'Agregar categoria' })"
+      label="Agregar CategorÃ³a"
+      icon="add-outline"
+      customClass="w-full mb-2"
+    />
+  </ng-container>
+
+  <ng-template #listItemTemplate let-category>
+    <ion-item-group>
+      <ion-item-divider sticky>
+        <ion-label>
+          <div class="flex justify-content-between align-items-center w-full">
+            <span class="font-bold text-lg">{{ category.name }}</span>
+            <div class="flex">
+              <ion-button-edit
+                (clicked)="
+                  onModalEditCategorie({ id: category.id, title: 'Editar' })
+                "
+              />
+              <ion-button-delete (confirmed)="onDeleteCategorie(category.id)" />
+            </div>
+          </div>
+        </ion-label>
+      </ion-item-divider>
+
+      @for (legalMatter of category.legalMatters; track legalMatter) {
+      <ion-item lines="full" class="ion-no-padding" detail="false">
+        <ion-label>
+          <h3 class="font-bold text-wrap">{{ legalMatter.title }}</h3>
+          <p class="text-small text-color-secondary">
+            {{ legalMatter.isInternal ? "Interno" : "Externo" }}
+          </p>
+        </ion-label>
+        <div slot="end">
+          <app-action-menu>
+            <ng-container actions>
+              <ion-button-edit
+                (clicked)="onModalForm({ id: legalMatter.id, title: 'Editar' })"
+              />
+              <ion-button-delete (confirmed)="onDelete(legalMatter.id)" />
+            </ng-container>
+          </app-action-menu>
+        </div>
+      </ion-item>
+      }
+    </ion-item-group>
+  </ng-template>
+</app-data-view-mobile>
+}

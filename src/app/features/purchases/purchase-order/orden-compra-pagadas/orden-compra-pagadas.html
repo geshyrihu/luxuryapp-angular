@@ -1,0 +1,136 @@
+<p-table
+  #dt
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <div
+      class="flex flex-column md:flex-row align-items-start md:align-items-center justify-content-between mt-1"
+    >
+      <div class="w-full md:w-auto"></div>
+      <div
+        class="flex flex-wrap align-items-center w-full md:w-auto justify-content-start md:justify-content-end"
+      >
+        <primeng-custom-caption
+          [title]="'Ordenes de Compra Pagadas'"
+          [showAdd]="false"
+          [dt]="dt"
+        />
+        <p-selectButton
+          [options]="[
+      { label: 'Fijos', value: 0 },
+      { label: 'Variable', value: 1 },
+      { label: 'Caja Chica', value: 2 },
+      { label: 'Extraordinario', value: 3 },
+      { label: 'Devoluciones', value: 4 },
+      { label: 'Tarjeta Debito', value: 5 },
+      { label: 'Gastos de Proyectos', value: 6 },
+      { label: 'Nomina', value: 7 },
+      { label: 'Impuestos y contribuciones', value: 8 },
+      ]"
+          [formControl]="tipoControl"
+          optionLabel="label"
+          optionValue="value"
+          (onChange)="onLoadData(tipoControl.value)"
+        />
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th class="table-col-3">Nó</th>
+      <th class="table-col-6" pSortableColumn="fechaSolicitud">
+        Fecha
+        <p-sortIcon field="fechaSolicitud" />
+      </th>
+      <th class="table-col-6" pSortableColumn="folio">
+        Folio
+        <p-sortIcon field="folio" />
+      </th>
+      <th class="table-col-6" pSortableColumn="factura">
+        Factura
+        <p-sortIcon field="factura" />
+      </th>
+      <th class="table-col-25" pSortableColumn="proveedor">
+        Proveedor
+        <p-sortIcon field="proveedor" />
+      </th>
+      <th class="table-col-25" pSortableColumn="justificacionGasto">
+        Justificación
+        <p-sortIcon field="justificacionGasto" />
+      </th>
+      <th class="table-col-10" pSortableColumn="total">
+        Total
+        <p-sortIcon field="total" />
+      </th>
+      <th class="table-col-5">Ver</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-ri="rowIndex">
+    <tr>
+      <td>{{ ri + 1 }}</td>
+      <td>{{ item.fechaSolicitud | date }}</td>
+      <td>{{ item.folio }}</td>
+      <td>{{ item.factura }}</td>
+      <td>{{ item.proveedor }}</td>
+      <td class="p-text-justify">
+        {{ item.equipoOInstalacion }} {{ item.justificacionGasto }}
+      </td>
+      <td>{{ item.total | number: '1.2-2' }}</td>
+      <td class="text-center">
+        <custom-button-edit (clicked)="onAddOrEdit(item.id)" />
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div
+        slot="start"
+        style="
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          background: #dcfce7;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-left: 16px;
+        "
+      >
+        <ion-icon
+          name="checkmark-circle-outline"
+          style="font-size: 20px; color: #16a34a"
+        ></ion-icon>
+      </div>
+      <ion-label>
+        <h3>{{ item.proveedor }}</h3>
+        <p>Folio: {{ item.folio }} ó Factura: {{ item.factura }}</p>
+        <p>
+          Total: {{ item.total | number:'1.2-2' }} ó {{ item.fechaSolicitud |
+          date }}
+        </p>
+      </ion-label>
+      <app-action-menu slot="end">
+        <ion-button-edit (clicked)="onAddOrEdit(item.id)" />
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

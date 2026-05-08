@@ -1,0 +1,128 @@
+<!-- Filter Header -->
+<div
+  class="px-3 pt-3 pb-2 bg-white border-bottom-1 surface-border sticky top-0 z-5"
+>
+  <div class="flex overflow-x-auto align-items-center no-scrollbar pb-1">
+    <!-- AI Report Action -->
+    <ion-chip
+      class="flex-shrink-0"
+      color="tertiary"
+      (click)="generateDailyReport()"
+    >
+      <ion-icon name="sparkles" color="dark"></ion-icon>
+      <ion-label class="font-bold text-dark">Informe IA</ion-label>
+    </ion-chip>
+
+    <div class="h-2rem border-right-1 surface-border mx-1 flex-shrink-0"></div>
+
+    <!-- 'All' Filter -->
+    <ion-chip
+      class="flex-shrink-0"
+      [color]="selectedModule() === null ? 'dark' : 'medium'"
+      [outline]="selectedModule() !== null"
+      (click)="onModuleFilterChange(null)"
+    >
+      <ion-label>Todos</ion-label>
+    </ion-chip>
+
+    <!-- Dynamic Module Filters -->
+    @for (mod of uniqueModules(); track mod) {
+    <ion-chip
+      class="flex-shrink-0"
+      [color]="selectedModule() === mod ? 'primary' : 'medium'"
+      [outline]="selectedModule() !== mod"
+      (click)="onModuleFilterChange(mod)"
+    >
+      <ion-label>{{ mod }}</ion-label>
+    </ion-chip>
+    }
+  </div>
+</div>
+
+<app-data-view-mobile
+  [data]="data()"
+  [loading]="loading"
+  [showAdd]="false"
+  [globalFilterFields]="['title', 'description', 'module', 'responsible', 'status', 'formattedDate']"
+  [isGrouped]="true"
+  [groupedData]="groupedData"
+  (add)="onModalForm($event)"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item
+      (click)="onNavigate(item)"
+      button
+      detail="true"
+      lines="full"
+      class="ion-no-padding executive-item"
+    >
+      <!-- Module Strip/Icon -->
+      <div
+        slot="start"
+        class="flex flex-column align-items-center justify-content-start pt-3 gap-1 min-w-3rem h-full border-right-1 surface-border ml-0 pl-2 pr-2"
+      >
+        <ion-icon
+          [name]="getModuleIcon(item.module)"
+          [color]="getModuleColor(item.module)"
+          class="text-2xl"
+        ></ion-icon>
+        <span class="text-xs font-bold uppercase text-500"
+          >{{ item.module | slice:0:3 }}</span
+        >
+      </div>
+
+      <ion-label class="py-2 pl-1">
+        <!-- Top Row: Date & Status -->
+        <div class="flex justify-content-between align-items-center mb-1">
+          <span
+            class="text-xs font-medium text-600 bg-surface-100 px-2 border-round"
+            >{{ item.formattedDate }}</span
+          >
+          <ion-badge
+            [color]="getSeverityColor(item.status)"
+            mode="ios"
+            class="text-xs py-0 px-2 font-normal"
+            >{{ item.status }}</ion-badge
+          >
+        </div>
+
+        <!-- Title -->
+        <h3
+          class="font-bold text-900 m-0 mb-1 text-base white-space-normal line-height-2"
+        >
+          {{ item.title }}
+        </h3>
+
+        <!-- Description -->
+        <p class="text-sm text-600 white-space-normal mb-2 line-clamp-2">
+          {{ item.description }}
+        </p>
+
+        <!-- Footer: Responsible & Days Open -->
+        <div
+          class="flex justify-content-between align-items-center text-xs mt-1"
+        >
+          @if (item.responsible) {
+          <div
+            class="flex align-items-center gap-1 text-500 bg-surface-50 px-2 py-1 border-round-2xl"
+          >
+            <ion-icon name="people-outline"></ion-icon>
+            <span>{{ item.responsible?.split(' ')[0] }}</span>
+          </div>
+          } @if(item.daysOpen >= 0) {
+          <div
+            class="flex align-items-center gap-1 font-bold"
+            [class.text-red-600]="item.daysOpen > 8"
+            [class.text-orange-500]="item.daysOpen > 6 && item.daysOpen <= 8"
+            [class.text-400]="item.daysOpen <= 6"
+          >
+            @if(item.daysOpen > 6) {
+            <ion-icon name="alert-circle-outline"></ion-icon> }
+            <span>{{ item.daysOpen }} días</span>
+          </div>
+          }
+        </div>
+      </ion-label>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

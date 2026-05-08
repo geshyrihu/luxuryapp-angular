@@ -1,0 +1,128 @@
+<div class="card p-0 md:p-4">
+  <!-- Accion: evaluar y escalar -->
+  <div
+    class="p-3 mb-3 surface-50 border-round border-1 surface-border flex align-items-center justify-content-between flex-wrap gap-2"
+  >
+    <div>
+      <div class="font-semibold text-sm">
+        Evaluacion Automatica de Morosidad
+      </div>
+      <div class="text-xs text-500 mt-1">
+        Analiza deudas por antiguedad (30/60/90+ dias) y escala a gestoria las
+        propiedades que superan el umbral.
+      </div>
+    </div>
+    <custom-button
+      label="Evaluar y Escalar Ahora"
+      iconClass="pi pi-exclamation-triangle"
+      severity="warn"
+      [disabled]="escalating()"
+      (clicked)="onEvaluateAndEscalate()"
+    />
+  </div>
+
+  <!-- Tabla desktop -->
+  <p-table
+    [value]="dataSignal()"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+    styleClass="custom-table hidden md:block"
+    #dt
+  >
+    <ng-template pTemplate="caption">
+      <primeng-custom-caption
+        title="Casos de Cobranza Legal"
+        [showAddButton]="false"
+        [dt]="dt"
+      />
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Propiedad</th>
+        <th class="w-10rem text-right">Deuda Total</th>
+        <th class="w-9rem text-center">Antiguedad</th>
+        <th class="w-8rem">Asignado a</th>
+        <th class="w-8rem text-center">Estado</th>
+        <th class="w-8rem text-center">Ultimo Contacto</th>
+        <th class="w-6rem text-center">Actividades</th>
+        <th class="w-6rem text-center">Accion</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td class="font-medium text-sm">{{ item.propertyName }}</td>
+        <td class="text-right font-bold text-red-700">
+          {{ item.totalOwed | currency:'MXN':'symbol-narrow':'1.2-2' }}
+        </td>
+        <td class="text-center">
+          <span class="badge text-xs" [class]="agingClass(item.agingBucket)">
+            {{ item.agingBucket }}
+          </span>
+        </td>
+        <td class="text-sm">{{ item.assignedTo || 'Sin asignar' }}</td>
+        <td class="text-center">
+          <span class="badge text-xs" [class]="statusClass(item.status)"
+            >{{ item.status }}</span
+          >
+        </td>
+        <td class="text-center text-sm">
+          {{ item.lastContactAt | date:'dd/MM/yyyy' }}
+        </td>
+        <td class="text-center text-sm font-semibold">
+          {{ item.activities.length }}
+        </td>
+        <td class="text-center">
+          <custom-button-edit (clicked)="openDetail(item)" />
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8" class="text-center p-4 text-500">
+          No hay casos de cobranza activos. Ejecuta la evaluacion para detectar
+          morosidad grave.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- Vista mobile -->
+  <app-data-view-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="['propertyName', 'assignedTo', 'status']"
+    [showAdd]="false"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ion-item lines="full" detail="false" class="ion-no-padding">
+        <div
+          slot="start"
+          class="w-2rem h-2rem border-round-lg bg-red-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+        >
+          <ion-icon
+            name="alert-circle-outline"
+            class="text-red-600 text-xl"
+          ></ion-icon>
+        </div>
+        <ion-label>
+          <h3>{{ item.propertyName }}</h3>
+          <p>
+            {{ item.totalOwed | currency:'MXN':'symbol-narrow':'1.2-2' }}
+            &middot; {{ item.agingBucket }}
+          </p>
+          <p>
+            {{ item.status }} &middot; {{ item.activities.length }} actividades
+          </p>
+        </ion-label>
+        <app-action-menu slot="end">
+          <ion-button-edit (clicked)="openDetail(item)" />
+        </app-action-menu>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
+</div>

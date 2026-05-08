@@ -1,0 +1,113 @@
+<div class="p-4">
+  <div class="">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <!-- PRIMERA FILA -->
+      <div class="grid">
+        <div class="col-12 md:col-4">
+          <custom-input-text-signal
+            [control]="form.controls.nameTool"
+            label="Nombre del Equipo"
+            placeholder="nombre del equipo"
+          />
+        </div>
+
+        <div class="col-12 md:col-4">
+          <custom-input-select-signal
+            [control]="form.controls.categoryId"
+            label="Categoróa"
+            [filter]="true"
+            [data]="cb_category"
+          />
+        </div>
+
+        <div class="col-12 md:col-4">
+          <custom-input-text-signal
+            [control]="form.controls.brand"
+            label="Marca"
+            placeholder="marca"
+          />
+        </div>
+      </div>
+
+      <!-- SEGUNDA FILA -->
+      <div class="grid">
+        <div class="col-12 md:col-4">
+          <custom-input-text-signal
+            [control]="form.controls.model"
+            label="Modelo"
+            placeholder="modelo"
+          />
+        </div>
+
+        <div class="col-12 md:col-4">
+          <custom-input-text-signal
+            [control]="form.controls.serie"
+            label="Serie"
+            placeholder="serie"
+          />
+        </div>
+
+        <div class="col-12 md:col-4">
+          <custom-input-date-signal
+            [control]="form.controls.dateOfPurchase"
+            label="Compra/Instalación"
+            placeholder="fecha de compra/instalación"
+          />
+        </div>
+      </div>
+
+      <!-- TERCERA FILA -->
+      <div class="grid">
+        <div class="col-12 md:col-4">
+          <custom-input-select-signal
+            [control]="form.controls.state"
+            label="Estado"
+            [data]="optionActive"
+          />
+        </div>
+
+        <div class="col-12 md:col-4 flex align-items-center justify-content-center">
+          <!-- Imagen centrada -->
+          <custom-input-img-signal
+            (fileSelected)="uploadFile($event)"
+            [urlImgCurrent]="urlBaseImg"
+            [contentHeight]="'150px'"
+            [contentWidth]="'100%'"
+          />
+        </div>
+
+        <div class="col-12 md:col-4"></div>
+      </div>
+
+      <!-- CUARTA FILA -->
+      <div class="grid">
+        <div class="col-12 md:col-6">
+          <custom-input-textarea-signal
+            [control]="form.controls.technicalSpecifications"
+            label="Especificaciones Tócnicas"
+            placeholder="Especificaciones tócnicas"
+            rows="8"
+          />
+        </div>
+
+        <div class="col-12 md:col-6">
+          <custom-input-textarea-signal
+            [control]="form.controls.observations"
+            label="Observaciones"
+            placeholder="Observaciones"
+            rows="8"
+          />
+        </div>
+      </div>
+
+      <!-- BOTóN GUARDAR -->
+      <div class="flex justify-content-end mt-3">
+        <custom-button-save
+          [propertyId]="id"
+          [disabled]="form.invalid"
+          [submitting]="submitting()"
+        />
+      </div>
+    </form>
+  </div>
+</div>

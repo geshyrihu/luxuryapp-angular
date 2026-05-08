@@ -1,0 +1,58 @@
+<div
+  class="min-h-screen surface-ground flex align-items-center justify-content-center p-5"
+>
+  <div
+    class="surface-card border-round shadow-4 p-5 w-full"
+    style="max-width: 600px"
+  >
+    <div class="text-center mb-4">
+      <div class="mb-4">
+        <i class="pi pi-lock text-primary text-9xl"></i>
+      </div>
+
+      <h1 class="text-5xl font-bold text-900 mb-3">Acceso Denegado</h1>
+
+      <p class="text-500 text-xl mb-5 line-height-3">
+        No tienes permisos para acceder a esta página.<br />
+        Si crees que esto es un error, contacta al administrador del sistema.
+      </p>
+
+      <div
+        class="flex align-items-center justify-content-center gap-3 flex-wrap"
+      >
+        <p-button
+          label="Volver al Inicio"
+          icon="pi pi-home"
+          routerLink="/"
+          [rounded]="true"
+          styleClass="px-5"
+        ></p-button>
+
+        <p-button
+          label="Solicitar Acceso"
+          icon="pi pi-key"
+          [variant]="'outlined'"
+          [rounded]="true"
+          styleClass="px-5"
+        ></p-button>
+      </div>
+    </div>
+
+    <div class="mt-5">
+      <p-divider></p-divider>
+      <div class="text-center mt-4">
+        <div class="surface-100 border-round p-3">
+          <p class="text-500 text-sm mb-2">
+            <i class="pi pi-info-circle mr-2"></i>
+            <strong>¿Qué significa esto?</strong>
+          </p>
+          <p class="text-500 text-sm m-0 line-height-3">
+            Tu cuenta no tiene los privilegios necesarios para acceder al
+            recurso solicitado. Contacta a tu administrador para obtener los
+            permisos adecuados.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

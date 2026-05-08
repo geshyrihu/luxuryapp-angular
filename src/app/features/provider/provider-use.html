@@ -1,0 +1,94 @@
+<hr />
+<div class="card-body">
+  <table class="table table-bordered">
+    @for (item of data; track item) {
+    <tbody>
+      <tr >
+        <td colspan="2">
+          <div class="alert alert-default-info">
+            <h6 class="h6">Catalogo de Gastos Fijos</h6>
+          </div>
+        </td>
+      </tr>
+      @for (item1 of item.catalogoGastosFijos; track item1) {
+      <tr >
+        <td>{{ item1.folio }}</td>
+        <td>{{ item1.total }}</td>
+      </tr>
+      }
+      <tr >
+        <td colspan="2">
+          <div class="alert alert-default-info">
+            <h6 class="h6">Cotización Proveedor</h6>
+          </div>
+        </td>
+      </tr>
+      @for (item1 of item.cotizacionProveedor; track item1) {
+      <tr >
+        <td>{{ item1.cliente }}</td>
+        <td>{{ item1.folioSolicitud }}</td>
+      </tr>
+      }
+      <tr >
+        <td colspan="2">
+          <div class="alert alert-default-info">
+            <h6 class="h6">Entrada de Producto</h6>
+          </div>
+        </td>
+      </tr>
+      @for (item1 of item.entradaProducto; track item1) {
+      <tr >
+        <td>{{ item1.cliente.cliente }}</td>
+        <td>{{ item1.total }}</td>
+      </tr>
+      }
+      <tr >
+        <td colspan="2">
+          <div class="alert alert-default-info">
+            <h6 class="h6">Calendario de Mantenimiento</h6>
+          </div>
+        </td>
+      </tr>
+      @for (item1 of item.maintenanceCalendar; track item1) {
+      <tr >
+        <td>{{ item1.cliente.cliente }}</td>
+        <td>{{ item1.total }}</td>
+      </tr>
+      }
+      <tr >
+        <td colspan="2">
+          <div class="alert alert-default-info">
+            <h6 class="h6">Orden de Compra</h6>
+          </div>
+        </td>
+      </tr>
+      @for (item1 of item.ordenCompra; track item1) {
+      <tr >
+        <td>{{ item1.cliente }}</td>
+        <td>{{ item1.folio }}</td>
+      </tr>
+      }
+      <tr >
+        <td colspan="2">
+          <div class="p-2 bg-blue-50 text-blue-900 border-round font-medium">
+            <h6 class="m-0">Orden de Servicio</h6>
+          </div>
+        </td>
+      </tr>
+      @for (item1 of item.ordenServicio; track item1) {
+      <tr >
+        <td>{{ item1.cliente.cliente }}</td>
+        <td>{{ item1.total }}</td>
+      </tr>
+      }
+    </tbody>
+    }
+  </table>
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,119 @@
+<div class="card p-0 md:p-4">
+  <p-table
+    [value]="dataSignal()"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+    styleClass="custom-table hidden md:block"
+    #dt
+  >
+    <ng-template pTemplate="caption">
+      <primeng-custom-caption
+        title="Multas Reglamentarias"
+        (add)="onModalForm()"
+        [dt]="dt"
+      />
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Propiedad</th>
+        <th class="w-12rem">Artículo</th>
+        <th>Descripción</th>
+        <th class="w-8rem text-center">Fecha Infracción</th>
+        <th class="w-8rem text-right">Importe</th>
+        <th class="w-8rem text-center">Estado</th>
+        <th class="w-6rem text-center">Evidencias</th>
+        <th class="w-10rem text-center">Opciones</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td class="font-medium text-800">{{ item.propertyFullName }}</td>
+        <td class="text-xs text-500">
+          @if (item.regulationArticleNumber) {
+            <span class="font-semibold text-primary">{{ item.regulationArticleNumber }}</span>
+            <br />
+            <span>{{ item.regulationArticleTitle }}</span>
+          } @else {
+            <span class="text-400">—</span>
+          }
+        </td>
+        <td class="text-xs text-700">{{ item.description }}</td>
+        <td class="text-center text-xs">{{ item.infractionDate | date: 'dd/MM/yyyy' }}</td>
+        <td class="text-right font-semibold text-red-600">
+          {{ item.amount | currency: 'MXN' : 'symbol' : '1.2-2' }}
+        </td>
+        <td class="text-center">
+          <p-tag [value]="fineStatusLabel(item.status)" [severity]="fineStatusSeverity(item.status)" />
+        </td>
+        <td class="text-center text-xs text-500">
+          {{ item.evidences?.length ?? 0 }}
+        </td>
+        <td class="text-center">
+          <div class="flex justify-content-center gap-1">
+            @if (canIssueCharge(item.status)) {
+              <custom-button-edit
+                (clicked)="onIssueCharge(item)"
+                title="Generar cargo financiero"
+              />
+            }
+            @if (canEdit(item.status)) {
+              <custom-button-edit (clicked)="onModalForm(item.id)" />
+            }
+            @if (canVoid(item.status)) {
+              <custom-button-delete (customClick)="onVoid(item)" title="Anular multa" />
+            }
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8" class="text-center p-4 text-500">
+          No hay multas registradas para este condominio.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="['propertyFullName', 'description', 'regulationArticleNumber']"
+  (add)="onModalForm()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div
+        slot="start"
+        class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+      >
+        <ion-icon name="alert-circle-outline" class="text-orange-600 text-xl" />
+      </div>
+      <ion-label>
+        <h3>{{ item.propertyFullName }}</h3>
+        <p>{{ item.description }}</p>
+        <p>
+          {{ item.amount | currency: 'MXN' : 'symbol' : '1.2-2' }} —
+          {{ fineStatusLabel(item.status) }}
+        </p>
+      </ion-label>
+      <app-action-menu slot="end">
+        @if (canIssueCharge(item.status)) {
+          <ion-button-edit (clicked)="onIssueCharge(item)" />
+        }
+        @if (canEdit(item.status)) {
+          <ion-button-edit (clicked)="onModalForm(item.id)" />
+        }
+        @if (canVoid(item.status)) {
+          <ion-button-delete (confirmed)="onVoid(item)" />
+        }
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

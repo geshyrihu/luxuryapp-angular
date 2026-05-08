@@ -1,0 +1,50 @@
+<div>
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <custom-input-text-signal
+      [control]="form.controls.id"
+      label="Id"
+      [readonly]="true"
+      [hidden]="false"
+    />
+    <custom-input-text-signal
+      [control]="form.controls.name"
+      label="Nombre"
+      placeholder="Nombre"
+    />
+
+    <custom-input-text-signal
+      [control]="form.controls.description"
+      label="Descripcion"
+      placeholder="descripcion"
+    />
+    <custom-input-select-signal
+      [control]="form.controls.departament"
+      label="Area"
+      [data]="cb_departament()"
+    />
+    <div class="grid">
+      <div class="col-12 md:col-6">
+        <custom-input-text-signal
+          [control]="form.controls.emoji"
+          label="Icono PrimeNG"
+          placeholder="pi pi-folder"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-text-signal
+          [control]="form.controls.color"
+          label="Color"
+          placeholder="#3B82F6"
+        />
+      </div>
+    </div>
+
+    <div class="text-center mt-3">
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [loading]="submitting()"
+      />
+    </div>
+  </form>
+</div>

@@ -1,0 +1,84 @@
+<p-card>
+  <div class="grid">
+    <div class="col-12">
+      <ul class="list-none p-0 m-0">
+        <!-- Solicitud de alta -->
+        @if(solicitudAltaStatus()){
+        <li
+          class="flex align-items-center p-3 mb-2 border-1 surface-border border-round"
+        >
+          <i class="pi pi-user-plus mr-3 text-red-500 text-lg"></i>
+          <span class="text-red-500 font-medium">
+            Solicitud de alta en proceso
+          </span>
+        </li>
+        }@else{
+        <li
+          class="flex align-items-center p-3 mb-2 border-1 surface-border border-round cursor-pointer hover:surface-hover"
+          (click)="onModalSolicitudALta()"
+        >
+          <i class="pi pi-user-plus mr-3 text-lg"></i>
+          <span class="font-medium">Solicitar Alta</span>
+        </li>
+        }
+        <!-- Mensaje para baja o modificación de salario -->
+        @if (!workPosition()) {
+        <li
+          class="flex align-items-center p-3 mb-2 border-1 surface-border border-round surface-100"
+        >
+          <em class="text-red-500">
+            Para solicitar baja o modificación de salario, este empleado debe
+            estar cubriendo una vacante.
+          </em>
+        </li>
+        }
+        <!-- Solicitud de baja -->
+        @if (!solicitudBajaStatus() && workPosition()) {
+        <li
+          class="flex align-items-center p-3 mb-2 border-1 surface-border border-round cursor-pointer hover:surface-hover"
+          (click)="onModalSolicitudBaja()"
+        >
+          <i class="pi pi-user-minus mr-3 text-lg"></i>
+          <span class="font-medium">Solicitar Baja</span>
+        </li>
+        } @if (solicitudBajaStatus()) {
+        <li
+          class="flex align-items-center p-3 mb-2 border-1 surface-border border-round"
+        >
+          <i class="pi pi-user-minus mr-3 text-red-500 text-lg"></i>
+          <span class="text-red-500 font-medium"
+            >Solicitar Baja en proceso</span
+          >
+        </li>
+        }
+        <!-- Solicitud de modificación de salario -->
+        @if (!solicitudModificacionSalarioStatus() && workPosition()) {
+        <li
+          class="flex align-items-center p-3 mb-2 border-1 surface-border border-round cursor-pointer hover:surface-hover"
+          (click)="onModalSolicitudModificacionSalarion()"
+        >
+          <i class="pi pi-money-bill mr-3 text-lg"></i>
+          <span class="font-medium">Solicitar modificación de salario</span>
+        </li>
+        }
+        <!-- Solicitud de modificación de salario en proceso -->
+        @if (solicitudModificacionSalarioStatus()) {
+        <li
+          class="flex align-items-center p-3 mb-2 border-1 surface-border border-round"
+        >
+          <i class="pi pi-money-bill mr-3 text-red-500 text-lg"></i>
+          <span class="text-red-500 font-medium"
+            >Solicitar modificación de salario en proceso</span
+          >
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+</p-card>
+
+
+
+
+
+

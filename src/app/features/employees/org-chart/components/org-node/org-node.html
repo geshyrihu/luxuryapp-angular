@@ -1,0 +1,116 @@
+<div class="org-tree-item" [class.is-root]="isRoot()">
+  <!-- Conector superior -->
+  @if (!isRoot() && node().data.workPositionId !== '0') {
+  <div class="connector-top"></div>
+  }
+
+  <!-- Card del Nodo (Zona de soltado para reasignacin) -->
+  <div
+    class="node-card-wrapper"
+    [dndDropzone]="['position']"
+    dndEffectAllowed="move"
+    (dndDrop)="parent.onDrop($event, node().data)"
+  >
+    <div
+      class="org-node-card"
+      [dndDraggable]="node().data"
+      [dndType]="'position'"
+      dndEffectAllowed="move"
+      [class]="parent.getDeptoBorderClass(node().data.departmentName)"
+      [style.outline]="parent.editMode() && parent.isOrigin(node().data) ? '2px solid var(--orange-400)' : null"
+      [style.outline-offset]="'2px'"
+      [class.outline-primary]="parent.editMode() && parent.isDest(node().data)"
+      [class.opacity-50]="parent.editMode() && parent.selectedOrigin() && parent.isOrigin(node().data)"
+      [class.cursor-move]="parent.editMode()"
+      [class.border-dashed]="parent.editMode() && !parent.selectedOrigin()"
+      [class.border-2]="parent.editMode() && !parent.selectedOrigin()"
+      (click)="parent.onCardClick(node().data)"
+    >
+      <div class="flex flex-column align-items-center relative flex-flex-grow-1-1">
+        <!-- Foto arriba -->
+        @if (node().data.hasEmployee && node().data.employeePhoto) {
+        <p-avatar
+          [image]="node().data.employeePhoto"
+          shape="circle"
+          size="large"
+          styleClass="shadow-1"
+        />
+        } @else {
+        <p-avatar
+          [icon]="node().data.workPositionId === '0' ? 'pi pi-home' : 'pi pi-briefcase'"
+          shape="circle"
+          size="large"
+          styleClass="surface-100 text-400 shadow-1"
+        />
+        }
+
+        <div class="flex flex-column text-center min-w-0 flex-flex-grow-1-1 w-full">
+          <span
+            class="text-900 font-bold text-sm truncate line-height-2 block w-full px-1"
+          >
+            {{ node().data.employeeName ?? 'Vacante' }}
+          </span>
+          <span
+            class="text-500 text-xs font-semibold uppercase tracking-wider truncate block w-full px-1"
+            style="font-size: 10px"
+          >
+            {{ node().data.roleDisplayName }}
+          </span>
+
+          <div class="flex justify-content-center mt-1">
+            @if (!node().data.hasEmployee && node().data.workPositionId !== '0')
+            {
+            <p-tag
+              severity="warn"
+              value="VACANTE"
+              size="small"
+              [style]="{'font-size': '9px', 'font-weight': 'bold'}"
+            />
+            }
+          </div>
+
+          <!-- Badges de seleccin (Modo Click) -->
+          @if (parent.editMode()) { @if (parent.isOrigin(node().data)) {
+          <span
+            class="absolute bg-orange-500 text-white px-2 py-1 border-round text-xs font-bold shadow-2 z-5"
+            style="top: -0.5rem; right: -0.5rem; font-size: 10px"
+          >
+            ORIGEN
+          </span>
+          } @if (parent.isDest(node().data)) {
+          <span
+            class="absolute bg-primary-600 text-white px-2 py-1 border-round text-xs font-bold shadow-2 z-5"
+            style="top: -0.5rem; right: -0.5rem; font-size: 10px"
+          >
+            DESTINO
+          </span>
+          } }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Conector inferior (si tiene hijos) -->
+  @if (node().children && node().children.length > 0) {
+  <div class="connector-bottom"></div>
+  <!-- Hijos (Recursin) con soporte de reordenamiento horizontal -->
+  <div
+    class="children-container"
+    [class.no-wrap]="level() < 2"
+    [dndDropzone]="['position']"
+    dndEffectAllowed="move"
+    (dndDrop)="parent.onDrop($event, 'list-container')"
+  >
+    <!-- Placeholder de soltado para ngx-drag-drop -->
+    <div
+      dndPlaceholderRef
+      class="org-node-card-placeholder border-2 border-dashed border-primary-300 bg-primary-50 border-round-lg"
+      style="width: 180px; height: 120px"
+    ></div>
+
+    @for (child of node().children; track child.data.workPositionId) {
+    <app-org-node [node]="child" [level]="level() + 1"></app-org-node>
+    }
+  </div>
+  }
+</div>

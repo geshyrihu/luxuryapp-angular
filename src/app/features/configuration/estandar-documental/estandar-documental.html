@@ -1,0 +1,419 @@
+<section class="doc-standard">
+  <header class="doc-standard__hero">
+    <div class="doc-standard__stripe"></div>
+    <div class="doc-standard__header">
+      <div>
+        <p-tag value="Guia documental LuxuryApp" severity="info"></p-tag>
+        <h1>Estandar Documental</h1>
+        <p>
+          Gobierno para procedimientos, manuales, instructivos, protocolos y
+          reportes formales. La UI usa el Design System; los documentos usan una
+          paleta de soporte premium derivada de la marca.
+        </p>
+      </div>
+      <aside class="doc-standard__meta">
+        <span>Codigo: CORP-SIST-001</span>
+        <span>Version: v1.1 | 2026-04</span>
+        <p-tag value="BORRADOR" severity="warn"></p-tag>
+      </aside>
+    </div>
+    <div class="doc-standard__accent"></div>
+  </header>
+
+  <p-message
+    severity="info"
+    text="Decision de marca: #C9A84C, #6B7280, #F3F4F6, #1A1A1A y #FFFFFF quedan como paleta documental/premium. El primario ERP de aplicacion sigue siendo #0B3164."
+  ></p-message>
+
+  <p-tabs [value]="pestanaActiva()" (valueChange)="pestanaActiva.set($event)">
+    <p-tablist>
+      <p-tab value="paleta">Paleta</p-tab>
+      <p-tab value="tipografia">Tipografia</p-tab>
+      <p-tab value="documentos">Documentos</p-tab>
+      <p-tab value="nomenclatura">Nomenclatura</p-tab>
+      <p-tab value="acceso">Acceso</p-tab>
+      <p-tab value="componentes">Componentes</p-tab>
+      <p-tab value="checklist">Checklist</p-tab>
+    </p-tablist>
+
+    <p-tabpanels>
+      <p-tabpanel value="paleta">
+        <div class="doc-section">
+          <div class="doc-section__header">
+            <span class="doc-kicker">01</span>
+            <div>
+              <h2>Paleta documental y premium</h2>
+              <p>
+                Estos colores no sustituyen el primario ERP. Son soporte para
+                documentos, portadas, reportes formales y separadores de marca.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid">
+            @for (color of paleta; track color.token) {
+            <div class="col-12 md:col-6 xl:col-4">
+              <p-card styleClass="h-full surface-card shadow-1">
+                <div class="doc-color">
+                  <span
+                    class="doc-color__swatch"
+                    [style.background]="'var(' + color.token + ')'"
+                  ></span>
+                  <div>
+                    <strong>{{ color.nombre }}</strong>
+                    <span>{{ color.rol }}</span>
+                    <code>{{ color.token }}</code>
+                    <small>{{ color.hex }} - {{ color.uso }}</small>
+                  </div>
+                </div>
+              </p-card>
+            </div>
+            }
+          </div>
+
+          <p-card styleClass="border-left-3 border-primary surface-card">
+            <ng-template #title>Regla de uso</ng-template>
+            <p class="m-0 line-height-3 text-color-secondary">
+              El dorado Luxury debe aparecer como acento: linea, divisor,
+              detalle de portada o indicador formal. No debe competir con el
+              boton primario, ni usarse para estados del sistema.
+            </p>
+          </p-card>
+        </div>
+      </p-tabpanel>
+
+      <p-tabpanel value="tipografia">
+        <div class="doc-section">
+          <div class="doc-section__header">
+            <span class="doc-kicker">02</span>
+            <div>
+              <h2>Tipografia para UI y documentos</h2>
+              <p>
+                Inter es la familia oficial para la aplicacion. Los documentos
+                exportables pueden ajustar tamano y tono, pero no deben crear
+                una experiencia visual desconectada.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="col-12 lg:col-4">
+              <p-card styleClass="h-full border-top-3 border-primary">
+                <ng-template #title>UI ERP</ng-template>
+                <p class="m-0 line-height-3 text-color-secondary">
+                  Inter para Angular, PrimeNG e Ionic. Es la lectura diaria:
+                  tablas, formularios, KPIs, filtros y navegacion.
+                </p>
+              </p-card>
+            </div>
+            <div class="col-12 lg:col-4">
+              <p-card styleClass="h-full border-top-3 border-yellow-500">
+                <ng-template #title>Documentos formales</ng-template>
+                <p class="m-0 line-height-3 text-color-secondary">
+                  Mantener Inter cuando sea posible. Para PDF externo se permite
+                  una variante editorial solo si queda documentada por
+                  plantilla.
+                </p>
+              </p-card>
+            </div>
+            <div class="col-12 lg:col-4">
+              <p-card styleClass="h-full border-top-3 border-500">
+                <ng-template #title>Codigo y version</ng-template>
+                <p class="m-0 line-height-3 text-color-secondary">
+                  Usar mono solo para codigos, folios, versiones y nombres de
+                  archivo. No usarlo para parrafos.
+                </p>
+              </p-card>
+            </div>
+          </div>
+
+          <p-table
+            [value]="estilosTipografia"
+            responsiveLayout="scroll"
+            styleClass="p-datatable-sm"
+          >
+            <ng-template #header>
+              <tr>
+                <th>Elemento</th>
+                <th>Familia</th>
+                <th>Tamano</th>
+                <th>Uso</th>
+              </tr>
+            </ng-template>
+            <ng-template #body let-row>
+              <tr>
+                <td><strong>{{ row.elemento }}</strong></td>
+                <td>{{ row.familia }}</td>
+                <td>
+                  <p-tag [value]="row.tamano" severity="secondary"></p-tag>
+                </td>
+                <td>{{ row.uso }}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </p-tabpanel>
+
+      <p-tabpanel value="documentos">
+        <div class="doc-section">
+          <div class="doc-section__header">
+            <span class="doc-kicker">03</span>
+            <div>
+              <h2>Tipos de documento</h2>
+              <p>
+                Cada tipo define audiencia, clasificacion, color de referencia y
+                nomenclatura esperada.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid">
+            @for (doc of tiposDocumento; track doc.codigo) {
+            <div class="col-12 md:col-6 xl:col-4">
+              <p-card styleClass="h-full overflow-hidden">
+                <div class="doc-type__bar" [style.background]="doc.colorToken">
+                  <strong>{{ doc.codigo }}</strong>
+                  <p-tag
+                    [value]="doc.confidencialidad"
+                    [severity]="doc.severity"
+                  ></p-tag>
+                </div>
+                <div class="doc-type__body">
+                  <strong>{{ doc.tipo }}</strong>
+                  <span>Destinatario: {{ doc.destinatario }}</span>
+                  <code>{{ getNomenclaturaEjemplo(doc) }}</code>
+                </div>
+              </p-card>
+            </div>
+            }
+          </div>
+
+          <p-divider></p-divider>
+
+          <div class="doc-cover" aria-label="Portada maestra de ejemplo">
+            <div class="doc-cover__top"></div>
+            <div class="doc-cover__body">
+              <small>LUXURYAPP</small>
+              <div class="doc-cover__accent"></div>
+              <span class="doc-cover__label"
+                >PROC - PROCEDIMIENTO OPERATIVO</span
+              >
+              <h3>Titulo del Documento</h3>
+              <p>
+                Descripcion breve del documento, audiencia y alcance operativo.
+              </p>
+              <dl>
+                <div>
+                  <dt>Codigo</dt>
+                  <dd>PROC-MANT-012</dd>
+                </div>
+                <div>
+                  <dt>Version</dt>
+                  <dd>v2.1</dd>
+                </div>
+                <div>
+                  <dt>Clasificacion</dt>
+                  <dd>INTERNO</dd>
+                </div>
+                <div>
+                  <dt>Estado</dt>
+                  <dd>VIGENTE</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="doc-cover__footer">
+              <span>LuxuryApp - Uso Interno</span>
+              <span>Pagina 1 de 16</span>
+            </div>
+          </div>
+        </div>
+      </p-tabpanel>
+
+      <p-tabpanel value="nomenclatura">
+        <div class="doc-section">
+          <div class="doc-section__header">
+            <span class="doc-kicker">04</span>
+            <div>
+              <h2>Nomenclatura inteligente</h2>
+              <p>
+                El nombre del archivo debe ser auditable sin abrir el documento.
+              </p>
+            </div>
+          </div>
+
+          <div class="doc-formula">
+            <small>FORMATO OBLIGATORIO</small>
+            <code>[TIPO]-[DEPTO]-[CODIGO]_v[X.Y]_[AAAA-MM]_[ESTADO].pdf</code>
+          </div>
+
+          <p-table
+            [value]="camposNomenclatura"
+            responsiveLayout="scroll"
+            styleClass="p-datatable-sm"
+          >
+            <ng-template #header>
+              <tr>
+                <th>Campo</th>
+                <th>Valores posibles</th>
+              </tr>
+            </ng-template>
+            <ng-template #body let-row>
+              <tr>
+                <td><code>{{ row.campo }}</code></td>
+                <td>{{ row.valores }}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+          <div class="doc-examples">
+            @for (ejemplo of ejemploNomenclaturas; track ejemplo) {
+            <code>{{ ejemplo }}</code>
+            }
+          </div>
+        </div>
+      </p-tabpanel>
+
+      <p-tabpanel value="acceso">
+        <div class="doc-section">
+          <div class="doc-section__header">
+            <span class="doc-kicker">05</span>
+            <div>
+              <h2>Matriz de acceso por rol</h2>
+              <p>
+                La lectura ya no se marca como alerta. Solo ausencia de acceso,
+                aprobacion y edicion elevan jerarquia visual.
+              </p>
+            </div>
+          </div>
+
+          <p-table
+            [value]="matrizAcceso"
+            [scrollable]="true"
+            scrollHeight="400px"
+            responsiveLayout="scroll"
+            styleClass="p-datatable-sm"
+          >
+            <ng-template #header>
+              <tr>
+                <th>Documento</th>
+                <th>SuperUsuario</th>
+                <th>Direccion</th>
+                <th>Staff</th>
+                <th>Condomino</th>
+                <th>Contractor</th>
+              </tr>
+            </ng-template>
+            <ng-template #body let-row>
+              <tr>
+                <td><strong>{{ row.documento }}</strong></td>
+                <td>
+                  <p-tag
+                    [value]="row.superUsuario"
+                    [severity]="getColorAcceso(row.superUsuario)"
+                  ></p-tag>
+                </td>
+                <td>
+                  <p-tag
+                    [value]="row.direccion"
+                    [severity]="getColorAcceso(row.direccion)"
+                  ></p-tag>
+                </td>
+                <td>
+                  <p-tag
+                    [value]="row.staff"
+                    [severity]="getColorAcceso(row.staff)"
+                  ></p-tag>
+                </td>
+                <td>
+                  <p-tag
+                    [value]="row.condomino"
+                    [severity]="getColorAcceso(row.condomino)"
+                  ></p-tag>
+                </td>
+                <td>
+                  <p-tag
+                    [value]="row.contractor"
+                    [severity]="getColorAcceso(row.contractor)"
+                  ></p-tag>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </p-tabpanel>
+
+      <p-tabpanel value="componentes">
+        <div class="doc-section">
+          <div class="doc-section__header">
+            <span class="doc-kicker">06</span>
+            <div>
+              <h2>Componentes visuales documentales</h2>
+              <p>
+                Bloques reutilizables para notas, advertencias y buenas
+                practicas dentro de documentos o reportes.
+              </p>
+            </div>
+          </div>
+
+          <div class="doc-callout-grid">
+            @for (bloque of bloquesVisuales; track bloque.titulo) {
+            <article [class]="bloque.clase">
+              <div>
+                <i [class]="bloque.icono"></i>
+                <strong>{{ bloque.titulo }}</strong>
+              </div>
+              <p>{{ bloque.descripcion }}</p>
+            </article>
+            }
+          </div>
+        </div>
+      </p-tabpanel>
+
+      <p-tabpanel value="checklist">
+        <div class="doc-section">
+          <div class="doc-section__header">
+            <span class="doc-kicker">07</span>
+            <div>
+              <h2>Checklist de auditoria rapida</h2>
+              <p>
+                Usar antes de publicar cualquier documento. Requiere minimo 12
+                de 15 items aprobados.
+              </p>
+            </div>
+          </div>
+
+          <p-card
+            [styleClass]="puntajeAprobatorio ? 'border-left-3 border-green-500' : 'border-left-3 border-red-500'"
+          >
+            <div class="doc-score">
+              <span>{{ puntajeChecklist }}</span>
+              <div>
+                <strong>{{ puntajeChecklist }} / 15 items aprobados</strong>
+                <p>
+                  {{ puntajeAprobatorio ? "Documento listo para publicacion" :
+                  "Requiere correccion antes de publicar" }}
+                </p>
+              </div>
+            </div>
+          </p-card>
+
+          <div class="doc-checklist">
+            @for (item of checklist; track item.numero) {
+            <article
+              [class]="item.aprobado ? 'doc-check doc-check--ok' : 'doc-check doc-check--fail'"
+            >
+              <span>{{ item.aprobado ? "OK" : "NO" }}</span>
+              <p><strong>{{ item.numero }}.</strong> {{ item.descripcion }}</p>
+            </article>
+            }
+          </div>
+        </div>
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
+
+  <footer class="doc-standard__footer">
+    <span>LuxuryApp - Gestion documental corporativa</span>
+    <span>CORP-SIST-001 v1.1 | 2026-04 | BORRADOR</span>
+  </footer>
+</section>

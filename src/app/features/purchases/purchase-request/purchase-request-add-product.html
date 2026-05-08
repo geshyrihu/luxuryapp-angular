@@ -1,0 +1,49 @@
+<!-- <p class="font-bold text-sm mb-2">AGREGAR PRODUCTO O SERVICIO</p>
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <p-fluid>
+    <div class="grid align-items-end">
+      <div class="col-12 md:col-7">
+        <label class="block font-medium mb-1">BUSCAR</label>
+        <p-autoComplete
+          [suggestions]="products()"
+          (completeMethod)="searchProducts($event)"
+          (onSelect)="onSelectProduct($event)"
+          [formControl]="form.controls.productName"
+          optionLabel="label"
+          dataKey="value"
+          placeholder="Escribe para buscar producto o servicio..."
+          [forceSelection]="true"
+          [showClear]="true"
+          [emptyMessage]="'No se encontraron resultados'"
+          fluid
+          appendTo="body"
+        >
+          <ng-template let-item pTemplate="item">
+            {{ item.label }}
+          </ng-template>
+          <ng-template let-item pTemplate="selectedItem">
+            {{ item?.label || "" }}
+          </ng-template>
+        </p-autoComplete>
+      </div>
+      <div class="col-12 md:col-2">
+        <custom-input-text-signal
+          [control]="form.controls.quantity"
+          label="CANTIDAD"
+          type="number"
+          min="1"
+        />
+      </div>
+      <div class="col-12 md:col-2">
+        <custom-input-select-signal
+          [control]="form.controls.unitId"
+          [data]="cb_measurement_units()"
+          label="UNIDAD"
+        />
+      </div>
+      <div class="col-12 md:col-12 mb-1">
+        <custom-button-save [disabled]="form.invalid" />
+      </div>
+    </div>
+  </p-fluid>
+</form> -->

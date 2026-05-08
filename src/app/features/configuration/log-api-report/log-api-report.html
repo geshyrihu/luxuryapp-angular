@@ -1,0 +1,234 @@
+<!-- Panel de Filtros -->
+<p-card>
+  <!-- VISTA DE ESCRITORIO -->
+  <div class="hidden md:block mt-3">
+    <p-table
+      #dt
+      [value]="data()"
+      [loading]="loading()"
+      [lazy]="true"
+      (onPage)="onPageChange($event)"
+      [totalRecords]="totalRecords()"
+      [paginator]="true"
+      [rows]="rows()"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [globalFilterFields]="globalFilterFields()"
+      styleClass="custom-table"
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      [showCurrentPageReport]="true"
+    >
+      <ng-template #caption>
+        <!-- Grid en una sola línea dentro del caption -->
+        <div class="flex align-items-center">
+          <!-- Búsqueda (ocupa el espacio restante) -->
+          <div class="flex-1">
+            <primeng-custom-caption
+              [dt]="dt"
+              (search)="onSearch($event)"
+              [showAdd]="false"
+            />
+          </div>
+          <custom-button
+            label="Buscar"
+            styleClass="p-button p-button-primary"
+            iconClass="pi pi-search"
+            (clicked)="onLoadData(true)"
+            [disabled]="isSearchDisabled"
+          />
+          <custom-input-select-signal
+            [data]="levelOptions"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Seleccione un nivel"
+            [control]="filterLevelControl"
+            customClass="w-full"
+            [horizontal]="false"
+          />
+          <custom-input-date-signal
+            [control]="filterDateRangeControl"
+            mode="range"
+            dateFormat="Y-m-d"
+            altFormat="d/m/Y"
+            placeholder="Seleccione un rango"
+            [horizontal]="false"
+          />
+          <!-- Botones de acción -->
+          <div class="flex flex-shrink-0">
+            <!-- Botón Refresh -->
+            <button
+              type="button"
+              class="p-button p-button-outlined p-button-sm"
+              pTooltip="Actualizar lista"
+              tooltipPosition="top"
+              (click)="onLoadData(true)"
+            >
+              <span class="text-lg">🔄</span>
+            </button>
+            <!-- Botón Eliminar -->
+            <custom-button-delete
+              label="Eliminar todos"
+              pTooltip="Eliminar todos los registros de logs"
+              (confirmed)="onDeleteAll()"
+              iconOnly
+            />
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th style="width: 60px"></th>
+          <th pSortableColumn="timestamp">
+            Fecha y Hora
+            <p-sortIcon field="timestamp" />
+          </th>
+          <th pSortableColumn="level">
+            Nivel
+            <p-sortIcon field="level" />
+          </th>
+          <th pSortableColumn="userName">
+            Usuario
+            <p-sortIcon field="userName" />
+          </th>
+          <th>Mensaje</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <!-- Fila 1: Datos principales -->
+        <tr>
+          <td>
+            <custom-button
+              iconClass="pi pi-chevron-right"
+              variant="ghost-text"
+              size="sm"
+              (clicked)="toggleExpand(item)"
+              [customClass]="item.expanded ? 'rotate-90' : ''"
+            />
+          </td>
+          <td>{{ item.timestamp | date: 'dd/MM/yyyy h:mm:ss a' }}</td>
+          <td>
+            <p-tag
+              [value]="item.level"
+              [severity]="getLevelSeverity(item.level)"
+            ></p-tag>
+          </td>
+          <td>{{ item.userName || 'N/A' }}</td>
+          <td class="max-w-400 text-wrap">{{ item.message }}</td>
+        </tr>
+        <!-- Fila 2: Propiedades (solo si está expandido) -->
+        <tr [ngStyle]="{ display: item.expanded ? '' : 'none' }">
+          <td></td>
+          <td colspan="4" class="surface-section p-3">
+            <div class="flex align-items-center mb-2">
+              <i class="pi pi-info-circle text-primary"></i>
+              <strong class="text-sm">Propiedades:</strong>
+            </div>
+            <pre
+              class="text-xs surface-card p-3 border-round overflow-auto max-h-200"
+            >
+{{ item.properties }}</pre
+            >
+          </td>
+        </tr>
+        <!-- Fila 3: Excepción (solo si está expandido y existe) -->
+        <tr
+          [ngStyle]="{ display: item.expanded && item.exception ? '' : 'none' }"
+        >
+          <td></td>
+          <td colspan="4" class="bg-red-50 p-3">
+            <div class="flex align-items-center mb-2">
+              <i class="pi pi-exclamation-triangle text-red-600"></i>
+              <strong class="text-sm text-red-600">Excepción:</strong>
+            </div>
+            <pre
+              class="text-xs surface-card p-3 border-round border-1 border-red-200 overflow-auto max-h-300 text-red-700"
+            >
+{{ item.exception }}</pre
+            >
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="6" class="text-center">
+            No se encontraron registros con los filtros aplicados.
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <!-- VISTA MóVIL -->
+  <div class="block md:hidden mt-3">
+    <app-data-view-mobile
+      [data]="data()"
+      [globalFilterFields]="globalFilterFields()"
+      (search)="onSearch($event)"
+      [showAdd]="false"
+    >
+      <ng-template #listItemTemplate let-item>
+        <ion-item lines="full" class="ion-no-padding">
+          <div slot="start" class="mr-2">
+            <p-tag
+              [value]="item.level.charAt(0).toUpperCase()"
+              [severity]="getLevelSeverity(item.level)"
+            ></p-tag>
+          </div>
+          <ion-label>
+            <div class="flex justify-content-between align-items-center mb-1">
+              <h2 class="font-bold m-0 text-base text-wrap">
+                {{ item.level }}
+              </h2>
+              <p class="text-medium text-500 m-0 text-sm">
+                <i class="pi pi-clock mr-1 text-xs"></i>
+                {{ item.timestamp | date: "dd/MM/yyyy h:mm a" }}
+              </p>
+            </div>
+
+            @if (item.userName) {
+            <p class="text-sm text-color-secondary m-0 mb-1">
+              <i class="pi pi-user mr-1 text-xs"></i> {{ item.userName }}
+            </p>
+            }
+
+            <p class="text-sm m-0 text-wrap mb-2">{{ item.message }}</p>
+
+            @if (item.properties) {
+            <div class="mb-2">
+              <ion-note class="text-xs flex align-items-center gap-1 mb-1">
+                <i class="pi pi-info-circle"></i> Propiedades:
+              </ion-note>
+              <pre class="text-xs bg-light p-2 border-radius overflow-auto">
+{{ item.properties }}</pre
+              >
+            </div>
+            } @if (item.exception) {
+            <div>
+              <ion-note
+                class="text-xs text-danger flex align-items-center gap-1 mb-1"
+              >
+                <i class="pi pi-exclamation-triangle"></i> Excepción:
+              </ion-note>
+              <pre
+                class="text-xs bg-danger-subtle p-2 border-radius border border-danger overflow-auto"
+              >
+{{ item.exception }}</pre
+              >
+            </div>
+            }
+          </ion-label>
+        </ion-item>
+      </ng-template>
+    </app-data-view-mobile>
+
+    @if (data().length < totalRecords()) {
+    <custom-button
+      label="Cargar más"
+      severity="secondary"
+      [fluid]="true"
+      customClass="mt-3"
+      (clicked)="loadMore()"
+      [loading]="loading()"
+    />
+    }
+  </div>
+</p-card>

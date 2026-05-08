@@ -1,0 +1,117 @@
+import { Component, inject, OnInit, signal } from "@angular/core";
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { CardModule } from "primeng/card";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+
+@Component({
+  selector: "app-catalogo-descripcion-form",
+  templateUrl: "./catalogo-descripcion-form.html",
+  imports: [
+    ReactiveFormsModule,
+    CustomInputTextSignal,
+    CustomInputSelectSignal,
+    CustomButtonSave,
+    CardModule,
+  ],
+})
+export class CatalogoDescripcionForm implements OnInit {
+  apiResponseS = inject(ApiResponseService);
+  config = inject(DynamicDialogConfig);
+  ref = inject(DynamicDialogRef);
+
+  id: string = "";
+  submitting = signal(false);
+
+  cb_area_responsable = signal<ISelectItem[]>([
+    { value: "CONTABLE", label: "CONTABLE" },
+    { value: "OPERACIONES", label: " OPERACIONES" },
+    { value: "JURIDICO", label: "JURIDICO" },
+    { value: "MANTENIMIENTO", label: "MANTENIMIENTO" },
+  ]);
+
+  cb_grupo = signal<ISelectItem[]>([]);
+  cb_state = signal<ISelectItem[]>([
+    { value: 1, label: "Activo" },
+    { value: 0, label: "Inactivo" },
+  ]);
+
+  // Definición estricta del formulario
+  form = new FormGroup({
+    id: new FormControl<string>({ value: "", disabled: true }),
+    folioId: new FormControl<string>("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    departamento: new FormControl<string>("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    state: new FormControl<number | null>(null, {
+      validators: [Validators.required],
+    }),
+    descripcion: new FormControl<string>("", {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(4)],
+    }),
+    grupo: new FormControl<string>("", {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(4)],
+    }),
+  });
+
+  ngOnInit(): void {
+    this.onLoadGrupos();
+    this.id = this.config.data.id;
+    if (this.id) {
+      this.form.patchValue({ id: this.id });
+      this.onLoadData();
+    }
+  }
+
+  onLoadData() {
+    const urlApi = `CatalogoEntregaRecepcionDescripcion/${this.id}`;
+    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
+      this.form.patchValue(result);
+    });
+  }
+
+  onLoadGrupos() {
+    const urlApi = `CatalogoEntregaRecepcionDescripcion/grupos`;
+    this.apiResponseS.onGetList(urlApi).then((result: any) => {
+      this.cb_grupo.set(result);
+    });
+  }
+
+  onSubmit() {
+    if (!this.apiResponseS.validateForm(this.form)) return;
+
+    this.submitting.set(true);
+
+    if (!this.id) {
+      this.apiResponseS
+        .onPost(`CatalogoEntregaRecepcionDescripcion`, this.form.value)
+        .then((result: boolean) => {
+          result ? this.ref.close(true) : this.submitting.set(false);
+        });
+    } else {
+      this.apiResponseS
+        .onPut(
+          `CatalogoEntregaRecepcionDescripcion/${this.id}`,
+          this.form.value,
+        )
+        .then((result: boolean) => {
+          result ? this.ref.close(true) : this.submitting.set(false);
+        });
+    }
+  }
+}

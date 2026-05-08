@@ -1,0 +1,440 @@
+<div class="flex flex-column h-full">
+
+  <!-- Top Bar -->
+  <div class="surface-card p-3 shadow-1 flex align-items-center justify-content-between border-bottom-1 border-200 flex-shrink-0">
+    <div class="flex align-items-center gap-3">
+      <p-button icon="pi pi-arrow-left" [text]="true" severity="secondary" (onClick)="onGoBack()" />
+      <div>
+        <h2 class="text-xl font-bold text-900 m-0">
+          {{ manual()?.folio || 'Editor de Manual' }}
+        </h2>
+        <p class="text-500 m-0 text-xs">{{ manual()?.departament }} &mdash; v{{ manual()?.currentVersion }}</p>
+      </div>
+    </div>
+    <div class="flex align-items-center gap-2">
+      @if (activeTab() === 'pasos') {
+        <p-button
+          icon="pi pi-plus"
+          label="Agregar Paso"
+          severity="primary"
+          size="small"
+          (onClick)="onNewPaso()"
+        />
+      }
+      <p-button
+        [label]="'Pasos (' + pasos().length + ')'"
+        icon="pi pi-list"
+        [severity]="activeTab() === 'pasos' ? 'primary' : 'secondary'"
+        [outlined]="activeTab() !== 'pasos'"
+        size="small"
+        (onClick)="activeTab.set('pasos')"
+      />
+      <p-button
+        [label]="'Versiones (' + versiones().length + ')'"
+        icon="pi pi-history"
+        [severity]="activeTab() === 'versiones' ? 'primary' : 'secondary'"
+        [outlined]="activeTab() !== 'versiones'"
+        size="small"
+        (onClick)="activeTab.set('versiones')"
+      />
+      <p-button
+        [label]="'Adjuntos (' + adjuntos().length + ')'"
+        icon="pi pi-paperclip"
+        [severity]="activeTab() === 'adjuntos' ? 'primary' : 'secondary'"
+        [outlined]="activeTab() !== 'adjuntos'"
+        size="small"
+        (onClick)="activeTab.set('adjuntos')"
+      />
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- TAB: PASOS -->
+  <!-- ============================================================ -->
+  @if (activeTab() === 'pasos') {
+  <div class="flex flex-grow-1 overflow-hidden">
+
+    <!-- Panel izquierdo: lista de pasos -->
+    <div class="border-right-1 border-200 overflow-y-auto flex-shrink-0" style="width: 320px;">
+      @if (!pasos().length) {
+      <div class="p-4 text-center text-500">
+        <i class="pi pi-list text-3xl mb-2 block"></i>
+        <p class="text-sm m-0">Sin pasos. Agrega el primero.</p>
+      </div>
+      }
+      <div cdkDropList (cdkDropListDropped)="onDropPaso($event)" class="flex flex-column">
+        @for (paso of pasos(); track paso.id; let i = $index) {
+        <div
+          cdkDrag
+          class="flex align-items-center gap-2 p-3 border-bottom-1 border-200 cursor-pointer hover:surface-hover transition-colors transition-duration-150"
+          [class.surface-100]="selectedPaso()?.id === paso.id"
+          (click)="onSelectPaso(paso)"
+        >
+          <i cdkDragHandle class="pi pi-bars text-400 cursor-grab flex-shrink-0 text-xs"></i>
+
+          <div
+            class="flex-shrink-0 border-circle flex align-items-center justify-content-center text-white font-bold"
+            [class.bg-primary]="paso.tipoNota === 0"
+            [class.bg-blue-400]="paso.tipoNota === 1"
+            [class.bg-yellow-500]="paso.tipoNota === 2"
+            [class.bg-green-500]="paso.tipoNota === 3"
+            style="min-width: 1.4rem; min-height: 1.4rem; font-size: 0.65rem;"
+          >
+            {{ i + 1 }}
+          </div>
+
+          <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-900 white-space-nowrap overflow-hidden text-overflow-ellipsis">
+              {{ paso.titulo }}
+            </div>
+            @if (paso.responsableRoleNombre) {
+            <div class="text-xs text-500 mt-1">{{ paso.responsableRoleNombre }}</div>
+            }
+            @if (paso.tipoNota !== 0) {
+            <p-tag [value]="tipoNotaLabel(paso.tipoNota)" [severity]="tipoNotaSeverity(paso.tipoNota)" styleClass="text-xs mt-1" />
+            }
+          </div>
+
+          <div class="flex-shrink-0 flex gap-1" (click)="$event.stopPropagation()">
+            @if (paso.diagramaId) {
+            <p-button
+              icon="pi pi-sitemap"
+              [text]="true"
+              severity="info"
+              size="small"
+              pTooltip="Ver Diagrama"
+              (onClick)="onAbrirDiagrama(paso)"
+            />
+            }
+            <p-button
+              icon="pi pi-trash"
+              [text]="true"
+              severity="danger"
+              size="small"
+              (onClick)="onDeletePaso(paso)"
+            />
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
+    <!-- Panel derecho: formulario del paso -->
+    <div class="flex-grow-1 overflow-y-auto p-4">
+
+      @if (!selectedPaso() && !isNewPaso()) {
+      <div class="flex flex-column align-items-center justify-content-center h-full text-center">
+        <i class="pi pi-hand-pointer text-4xl text-400 mb-3"></i>
+        <p class="text-500">Selecciona un paso de la lista o agrega uno nuevo.</p>
+      </div>
+      } @else {
+
+      <div class="w-full xl:w-8 mx-auto flex flex-column gap-4">
+
+        <h3 class="text-lg font-bold text-900 m-0">
+          {{ isNewPaso() ? 'Nuevo Paso' : 'Editar Paso' }}
+        </h3>
+
+        <form [formGroup]="pasoForm" (ngSubmit)="onSavePaso()" class="flex flex-column gap-3">
+          <custom-input-text-signal
+            [control]="pasoForm.controls.titulo"
+            label="Titulo del Paso"
+            placeholder="Ej: Verificar documentos del cliente"
+            [horizontal]="false"
+          />
+
+          <custom-input-textarea-signal
+            [control]="pasoForm.controls.descripcion"
+            label="Descripcion (opcional)"
+            placeholder="Detalle del paso..."
+            [rows]="4"
+            [horizontal]="false"
+          />
+
+          <custom-input-select-signal
+            [control]="pasoForm.controls.responsableRoleId"
+            [data]="roles()"
+            label="Responsable (Rol)"
+            placeholder="Seleccionar rol..."
+            [horizontal]="false"
+          />
+
+          <div class="flex flex-column gap-2">
+            <label class="font-bold text-sm text-700">Tipo de Nota</label>
+            <p-selectButton
+              [options]="tipoNotaOpciones"
+              formControlName="tipoNota"
+              optionLabel="label"
+              optionValue="value"
+            />
+          </div>
+
+          <div class="flex justify-content-end">
+            <custom-button-save [loading]="savingPaso()" />
+          </div>
+        </form>
+
+        <!-- Diagrama de flujo (solo en edicion) -->
+        @if (!isNewPaso() && selectedPaso()) {
+        <div class="flex flex-column gap-3 pt-3 border-top-1 border-200">
+          <div class="flex align-items-center justify-content-between">
+            <h4 class="text-base font-bold text-700 m-0">Diagrama de Flujo</h4>
+            <p-button
+              [icon]="selectedPaso()!.diagramaId ? 'pi pi-sitemap' : 'pi pi-plus'"
+              [label]="selectedPaso()!.diagramaId ? 'Abrir Diagrama' : 'Crear Diagrama'"
+              [severity]="selectedPaso()!.diagramaId ? 'info' : 'secondary'"
+              size="small"
+              [loading]="creatingDiagram()"
+              (onClick)="onAbrirDiagrama(selectedPaso()!)"
+            />
+          </div>
+          @if (!selectedPaso()!.diagramaId) {
+          <p class="text-sm text-500 m-0">Este paso no tiene diagrama de flujo. Crea uno para visualizar el proceso.</p>
+          }
+          @if (selectedPaso()!.diagramaXml) {
+          <div class="border-round overflow-hidden border-1 border-200">
+            <app-diagram-preview [xml]="selectedPaso()!.diagramaXml!" />
+          </div>
+          }
+        </div>
+        }
+
+        <!-- Imagenes del paso (solo en edicion) -->
+        @if (!isNewPaso() && selectedPaso()) {
+        <div class="flex flex-column gap-3 pt-3 border-top-1 border-200">
+          <div class="flex align-items-center justify-content-between">
+            <h4 class="text-base font-bold text-700 m-0">Imagenes del Paso</h4>
+            <p-fileUpload
+              #imgUploader
+              mode="basic"
+              chooseLabel="Subir Imagen"
+              chooseIcon="pi pi-image"
+              accept="image/*"
+              [auto]="true"
+              [customUpload]="true"
+              (uploadHandler)="onSubirImagen($event, imgUploader)"
+              styleClass="p-button-sm p-button-outlined"
+              [disabled]="uploadingImagen()"
+            />
+          </div>
+
+          @if (uploadingImagen()) {
+          <div class="flex align-items-center gap-2 text-500 text-sm">
+            <i class="pi pi-spin pi-spinner"></i> Subiendo...
+          </div>
+          }
+
+          @if (selectedPaso()!.imagenes?.length) {
+          <div class="flex flex-wrap gap-3">
+            @for (img of selectedPaso()!.imagenes; track img.id) {
+            <div class="relative border-round overflow-hidden border-1 border-200">
+              <img
+                [src]="img.url"
+                class="block"
+                style="height: 120px; width: 160px; object-fit: cover;"
+                alt="imagen"
+              />
+              <div class="absolute top-0 right-0 m-1">
+                <p-button
+                  icon="pi pi-times"
+                  severity="danger"
+                  size="small"
+                  [rounded]="true"
+                  (onClick)="onEliminarImagen(img.id)"
+                />
+              </div>
+            </div>
+            }
+          </div>
+          } @else {
+          <p class="text-sm text-500 m-0">Sin imagenes para este paso.</p>
+          }
+        </div>
+        }
+
+      </div>
+      }
+    </div>
+  </div>
+  }
+
+  <!-- ============================================================ -->
+  <!-- TAB: VERSIONES -->
+  <!-- ============================================================ -->
+  @if (activeTab() === 'versiones') {
+  <div class="flex-grow-1 overflow-y-auto p-4">
+    <div class="w-full xl:w-8 mx-auto flex flex-column gap-4">
+
+      <div class="flex align-items-center justify-content-between">
+        <h3 class="text-lg font-bold text-900 m-0">Historial de Versiones</h3>
+        <p-button
+          icon="pi pi-plus"
+          label="Nueva Version"
+          severity="primary"
+          size="small"
+          (onClick)="showVersionForm.set(!showVersionForm())"
+        />
+      </div>
+
+      @if (showVersionForm()) {
+      <div class="surface-card p-4 border-round-xl border-1 border-200 shadow-1">
+        <h4 class="text-base font-bold text-700 m-0 mb-3">Agregar Version</h4>
+        <form [formGroup]="versionForm" (ngSubmit)="onAgregarVersion()" class="flex flex-column gap-3">
+          <div class="grid">
+            <div class="col-12 md:col-4">
+              <custom-input-text-signal
+                [control]="versionForm.controls.version"
+                label="Version"
+                placeholder="Ej: 2.0"
+                [horizontal]="false"
+              />
+            </div>
+            <div class="col-12 md:col-4">
+              <label class="font-bold text-sm text-700 block mb-2">Fecha</label>
+              <input
+                type="date"
+                formControlName="fechaCambio"
+                class="p-inputtext w-full"
+              />
+            </div>
+            <div class="col-12 md:col-4">
+              <custom-input-text-signal
+                [control]="versionForm.controls.autor"
+                label="Autor"
+                placeholder="Nombre del responsable"
+                [horizontal]="false"
+              />
+            </div>
+          </div>
+          <custom-input-textarea-signal
+            [control]="versionForm.controls.descripcionCambio"
+            label="Descripcion del Cambio"
+            placeholder="Que cambios se realizaron en esta version..."
+            [rows]="3"
+            [horizontal]="false"
+          />
+          <div class="flex justify-content-end gap-2">
+            <p-button label="Cancelar" severity="secondary" [outlined]="true" size="small" (onClick)="showVersionForm.set(false)" />
+            <custom-button-save [loading]="savingVersion()" />
+          </div>
+        </form>
+      </div>
+      }
+
+      @if (!versiones().length) {
+      <div class="text-center text-500 py-5">
+        <i class="pi pi-history text-4xl mb-3 block"></i>
+        <p class="text-sm m-0">Sin versiones registradas.</p>
+      </div>
+      } @else {
+      <div class="flex flex-column gap-2">
+        @for (v of versiones(); track v.id) {
+        <div class="surface-card p-3 border-round-xl border-1 border-200 flex align-items-start justify-content-between gap-3">
+          <div class="flex-1">
+            <div class="flex align-items-center gap-2 mb-1">
+              <span class="font-bold text-primary">v{{ v.version }}</span>
+              <span class="text-500 text-xs">{{ v.fechaCambio | date: 'dd/MM/yyyy' }}</span>
+              @if (v.autor) {
+              <span class="text-xs text-700">por {{ v.autor }}</span>
+              }
+            </div>
+            @if (v.descripcionCambio) {
+            <p class="text-sm text-600 m-0">{{ v.descripcionCambio }}</p>
+            }
+          </div>
+          <p-button
+            icon="pi pi-trash"
+            [text]="true"
+            severity="danger"
+            size="small"
+            (onClick)="onEliminarVersion(v.id)"
+          />
+        </div>
+        }
+      </div>
+      }
+
+    </div>
+  </div>
+  }
+
+  <!-- ============================================================ -->
+  <!-- TAB: ADJUNTOS -->
+  <!-- ============================================================ -->
+  @if (activeTab() === 'adjuntos') {
+  <div class="flex-grow-1 overflow-y-auto p-4">
+    <div class="w-full xl:w-8 mx-auto flex flex-column gap-4">
+
+      <h3 class="text-lg font-bold text-900 m-0">Archivos Adjuntos (Anexos y Referencias)</h3>
+
+      <div class="surface-card p-4 border-round-xl border-1 border-200 shadow-1">
+        <h4 class="text-base font-bold text-700 m-0 mb-3">Subir Archivo</h4>
+        <div class="flex flex-column gap-3">
+          <div class="flex flex-column gap-1">
+            <label class="font-bold text-sm text-700">Nombre del Documento</label>
+            <input
+              #adjuntoNombreInput
+              type="text"
+              class="p-inputtext w-full"
+              placeholder="Ej: Reglamento Interno v3"
+            />
+          </div>
+          <div class="flex align-items-center gap-3">
+            <p-fileUpload
+              #adjuntoUploader
+              mode="basic"
+              chooseLabel="Seleccionar Archivo"
+              chooseIcon="pi pi-upload"
+              accept=".pdf,.doc,.docx,.xls,.xlsx"
+              [auto]="true"
+              [customUpload]="true"
+              (uploadHandler)="onSubirAdjunto($event, adjuntoUploader, adjuntoNombreInput)"
+              styleClass="p-button-sm p-button-outlined"
+              [disabled]="uploadingAdjunto()"
+            />
+            @if (uploadingAdjunto()) {
+            <span class="text-500 text-sm flex align-items-center gap-1">
+              <i class="pi pi-spin pi-spinner"></i> Subiendo...
+            </span>
+            }
+          </div>
+          <p class="text-xs text-500 m-0">Formatos permitidos: PDF, Word, Excel.</p>
+        </div>
+      </div>
+
+      @if (!adjuntos().length) {
+      <div class="text-center text-500 py-5">
+        <i class="pi pi-paperclip text-4xl mb-3 block"></i>
+        <p class="text-sm m-0">Sin archivos adjuntos.</p>
+      </div>
+      } @else {
+      <div class="flex flex-column gap-2">
+        @for (adj of adjuntos(); track adj.id) {
+        <div class="surface-card p-3 border-round-xl border-1 border-200 flex align-items-center gap-3">
+          <i class="pi pi-file text-2xl text-400 flex-shrink-0"></i>
+          <div class="flex-1 min-w-0">
+            <div class="font-medium text-900 white-space-nowrap overflow-hidden text-overflow-ellipsis">{{ adj.nombre }}</div>
+            <div class="text-xs text-500 uppercase">{{ adj.fileExtension }}</div>
+          </div>
+          <div class="flex gap-1 flex-shrink-0">
+            <a [href]="adj.url" target="_blank" class="no-underline">
+              <p-button icon="pi pi-download" [text]="true" severity="info" size="small" />
+            </a>
+            <p-button
+              icon="pi pi-trash"
+              [text]="true"
+              severity="danger"
+              size="small"
+              (onClick)="onEliminarAdjunto(adj.id)"
+            />
+          </div>
+        </div>
+        }
+      </div>
+      }
+
+    </div>
+  </div>
+  }
+
+</div>

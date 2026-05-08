@@ -1,0 +1,151 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [value]="dataSignal()"
+  #dt
+  styleClass="custom-table card hidden md:block"
+  rowGroupMode="subheader"
+  groupRowsBy="departament"
+>
+  <ng-template #caption>
+    <div class="flex align-items-center justify-content-end flex-wrap">
+      <primeng-custom-caption
+        (add)="showModalAddEmployee()"
+        [dt]="dt"
+        [rolAuth]="
+          aspRoleS.hasAny([
+            AspRole.Asistente,
+            AspRole.Administrador,
+            AspRole.SuperUsuario,
+            AspRole.Reclutamiento
+          ])
+        "
+      />
+      <custom-button-active-desactive
+        [state]="activo()"
+        (stateChange)="onSelectActive($event)"
+      />
+    </div>
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th class="table-col-5">Nó</th>
+      <th colspan="2" class="table-col-30" pSortableColumn="fullName">
+        COLABORADOR
+        <p-sortIcon field="fullName" />
+      </th>
+      <th class="table-col-20" pSortableColumn="workPositionFolio">
+        PUESTO DE TRABAJO
+        <p-sortIcon field="workPositionFolio" />
+      </th>
+      <th class="table-col-10" pSortableColumn="userName" class="no-print">
+        USUARIO APP
+        <p-sortIcon field="userName" />
+      </th>
+
+      <th
+        class="table-col-30"
+        pSortableColumn="celularPersonal"
+        class="no-print"
+      >
+        Télefono
+        <p-sortIcon field="celularPersonal" />
+      </th>
+      <th class="table-col-30" pSortableColumn="email">
+        EMAIL
+        <p-sortIcon field="email" />
+      </th>
+      @if ( aspRoleS.hasAny([ AspRole.Asistente, AspRole.Administrador,
+      AspRole.SuperUsuario, AspRole.Reclutamiento ]) ) {
+      <th class="table-col-5"></th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #groupheader let-item>
+    <tr pRowGroupHeader>
+      <td colspan="8">
+        <span class="font-semibold"
+          >{{ getDepartamentLabel(item.departament) }}</span
+        >
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item let-rowIndex="rowIndex">
+    <tr>
+      <td class="no-print">{{ rowIndex + 1 }}</td>
+      <td class="text-center">
+        <p-avatar
+          [image]="item.photoPath"
+          alt=""
+          class="mr-2"
+          size="large"
+          (click)="onCardEmployee(item.applicationUserId)"
+        />
+      </td>
+      <td>{{ item.fullName }}</td>
+      <td>
+        <p class="mb-0 text-sm">{{ item.workPositionFolio }}</p>
+        <p>
+          <em> {{ item.workPositionName }} </em>
+        </p>
+      </td>
+      <td>{{ item.userName }}</td>
+      <td>{{ item.celularPersonal }}</td>
+      <td>{{ item.correoPersonal }}</td>
+      @if ( aspRoleS.hasAny([ AspRole.Asistente, AspRole.Administrador,
+      AspRole.SuperUsuario, AspRole.Reclutamiento ]) ) {
+      <td class="no-print">
+        <div class="flex justify-content-center">
+          @if ( aspRoleS.hasAny([ AspRole.SuperUsuario, AspRole.Administrador,
+          AspRole.Asistente, AspRole.Reclutamiento ]) ) {
+          <custom-button-item
+            iconClass="pi pi-ellipsis-v"
+            label="Opciones"
+            tooltipPosition="left"
+            (clicked)="onShowEditEmpleado(item.employeeId,item.applicationUserId)"
+          />
+          }
+        </div>
+      </td>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  (add)="showModalAddEmployee()"
+  [data]="dataSignal()"
+  [dt]="dt"
+  [globalFilterFields]="globalFilterFields()"
+  trackByProperty="employeeId"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding" detail="false">
+      <ion-avatar slot="start">
+        <img [src]="item.photoPath" alt="img" />
+      </ion-avatar>
+      <ion-label>
+        <h2 class="font-normal m-0">{{ item.fullName }}</h2>
+        <p class="text-medium text-500 m-0">
+          {{ item.workPositionName }} | {{ item.celularPersonal }}
+        </p>
+        <p class="text-medium text-500 m-0">{{ item.correoPersonal }}</p>
+      </ion-label>
+
+      <app-action-menu slot="end">
+        <ng-container actions>
+          <ion-button-item
+            (clicked)="onShowEditEmpleado(item.applicationUserId, item.employeeId, item.fullName)"
+            label="Editar"
+            iconName="create-outline"
+          />
+        </ng-container>
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

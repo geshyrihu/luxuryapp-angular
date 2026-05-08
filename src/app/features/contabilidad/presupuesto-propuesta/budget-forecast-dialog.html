@@ -1,0 +1,73 @@
+@if (loading()) {
+<div class="flex align-items-center justify-content-center p-4">
+  <i class="pi pi-spin pi-spinner text-4xl mr-3"></i>
+  <div class="text-lg">
+    Analizando patrones de gasto y calculando inflación
+    ({{inflationRate()}}%)...
+  </div>
+</div>
+} @if (!loading() && forecastData().length > 0) {
+<div>
+  <p class="mb-3 text-700">
+    La IA ha sugerido los siguientes montos mensuales basóndose en el
+    comportamiento histórico de cada cuenta. Revise y seleccione las que desea
+    aplicar.
+  </p>
+
+  <p-table
+    [value]="forecastData()"
+    [(selection)]="selectedForecastItems"
+    dataKey="accountNumber"
+    [scrollable]="true"
+    scrollHeight="400px"
+    styleClass="p-datatable-sm p-datatable-striped"
+  >
+    <ng-template #header>
+      <tr>
+        <th class="table-col-4rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="accountNumber">
+          Cuenta <p-sortIcon field="accountNumber"></p-sortIcon>
+        </th>
+        <th pSortableColumn="suggestedAmount">
+          Sugerido Mensual <p-sortIcon field="suggestedAmount"></p-sortIcon>
+        </th>
+        <th>Razonamiento IA</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td><p-tableCheckbox [value]="item"></p-tableCheckbox></td>
+        <td><span class="font-bold">{{item.accountNumber}}</span></td>
+        <td class="text-green-600 font-bold bg-green-50">
+          {{ item.suggestedAmount | currency:'$':'symbol':'1.0-0' }}
+        </td>
+        <td class="text-sm font-italic text-600">{{ item.reasoning }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<div class="flex justify-content-between align-items-center w-full mt-4">
+  <div class="text-500 font-italic text-sm">
+    * Los montos se redondearon a centenas.
+  </div>
+  <div>
+    <custom-button
+      iconClass="pi pi-times"
+      (clicked)="close()"
+      label="Cancelar"
+      variant="text"
+    />
+    <custom-button
+      iconClass="pi pi-check"
+      (clicked)="apply()"
+      label="Aplicar {{selectedForecastItems().length}} Cambios"
+      [disabled]="selectedForecastItems().length === 0"
+      severity="success"
+    >
+    </custom-button>
+  </div>
+</div>
+}

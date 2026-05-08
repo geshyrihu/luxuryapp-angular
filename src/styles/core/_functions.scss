@@ -1,0 +1,72 @@
+// ============================================================
+// _functions.scss
+// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
+// Funciones SCSS de utilidad
+// ============================================================
+
+@use 'sass:math';
+@use 'sass:color';
+
+// ── CONVERSIÓN px → rem ───────────────────────────────────────
+// Uso: rem(16) → 1rem
+$base-font-size: 16 !default;
+
+@function rem($px) {
+  @return math.div($px, $base-font-size) * 1rem;
+}
+
+// ── CONVERSIÓN rem → px ───────────────────────────────────────
+@function px($rem-value) {
+  @return ($rem-value / 1rem) * $base-font-size * 1px;
+}
+
+// ── OPACIDAD DE COLOR ─────────────────────────────────────────
+// Uso: alpha(#2563eb, 0.2) → rgba(#2563eb, 0.2)
+@function alpha($color, $opacity) {
+  @return rgba($color, $opacity);
+}
+
+// ── OBTENER CONTRASTE AUTOMÁTICO ─────────────────────────────
+// Devuelve negro o blanco dependiendo del fondo
+@function contrast-color($bg-color) {
+  $luminance: color.lightness($bg-color);
+  @if $luminance > 50% {
+    @return #000000;
+  } @else {
+    @return #ffffff;
+  }
+}
+
+// ── ESCALA DE ESPACIADO ───────────────────────────────────────
+// Devuelve el valor de espaciado para N unidades de 4px
+// Uso: space(4) → 1rem (16px)
+@function space($n) {
+  @return math.div($n * 4, 16) * 1rem;
+}
+
+// ── INTERPOLACIÓN CLAMP ───────────────────────────────────────
+// Para tipografía fluida entre dos tamaños
+// Uso: fluid-size(14px, 18px, 320px, 1280px)
+@function fluid-size($min-size, $max-size, $min-width: 320px, $max-width: 1280px) {
+  $slope: math.div($max-size - $min-size, $max-width - $min-width);
+  $intercept: $min-size - $slope * $min-width;
+
+  @return clamp(
+    #{$min-size},
+    #{$intercept} + #{$slope * 100}vw,
+    #{$max-size}
+  );
+}
+
+// ── PROFUNDIDAD DE SOMBRA ─────────────────────────────────────
+// Calcula sombra escalada por nivel 1-5
+@function depth-shadow($level: 1) {
+  $base-blur: $level * 4px;
+  $base-spread: math.div($level, 2) * -1px;
+  $base-opacity: 0.04 + ($level * 0.02);
+  @return 0 #{$level * 2px} #{$base-blur} #{$base-spread} rgba(0, 0, 0, $base-opacity);
+}
+
+
+
+

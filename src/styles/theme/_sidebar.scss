@@ -1,0 +1,332 @@
+/* ==========================================================================
+   SIDEBAR STYLES
+   Estilos del sidebar: layout, PrimNG PanelMenu, Guide Menu y dark header.
+   Extraídos de styles.scss (Phase 3 — Design System integration)
+   ========================================================================== */
+
+/* =======================================
+   PRIME PANELMENU (Sidebar)
+   ======================================= */
+.p-panelmenu {
+  .p-panelmenu-panel,
+  .p-panelmenu-header,
+  .p-panelmenu-content {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .p-panelmenu-header-content {
+    border-radius: 0 !important;
+    transition: background-color 0.2s;
+    &:hover {
+      background-color: var(--ds-bg-sunken) !important;
+    }
+  }
+
+  .p-panelmenu-header-action {
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem !important;
+    color: var(--ds-text-primary);
+    display: flex;
+    align-items: center;
+
+    .p-menuitem-icon {
+      order: 0;
+      margin-right: 0.75rem !important;
+      color: var(--ds-text-secondary);
+    }
+    .p-panelmenu-icon {
+      order: 1;
+      margin-left: auto !important;
+    }
+  }
+
+  /* Submenu */
+  .p-submenu-list {
+    background: transparent !important;
+    padding-left: 0 !important;
+  }
+
+  .p-menuitem-link {
+    padding: 0.6rem 1rem 0.6rem 2.5rem !important; /* Indented */
+    font-size: 0.9rem;
+    position: relative;
+    &:hover {
+      background-color: var(--ds-bg-sunken) !important;
+    }
+    &.p-menuitem-link-active {
+      font-weight: 600;
+      color: var(--ds-primary) !important;
+      background-color: var(--ds-primary-light) !important;
+      border-left: 3px solid var(--ds-primary-hover);
+
+      .p-menuitem-icon {
+        color: var(--ds-primary) !important;
+      }
+    }
+  }
+}
+
+body.theme-dark .p-panelmenu {
+  .p-panelmenu-header-content:hover,
+  .p-menuitem-link:hover {
+    background-color: var(--ds-bg-sunken) !important;
+  }
+  .p-menuitem-link.p-menuitem-link-active {
+    background-color: var(--ds-bg-elevated) !important;
+    color: var(--ds-text-primary) !important;
+    border-left-color: var(--ds-primary);
+    .p-menuitem-icon {
+      color: var(--ds-primary) !important;
+    }
+  }
+}
+
+/* =======================================
+   STRICT SIDEBAR OVERRIDES (Fix for Truncation & Layout)
+   ======================================= */
+.sidebar-layout {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  background: #18181b !important;
+  color: #f4f4f5 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.sidebar-header {
+  flex-shrink: 0 !important;
+  z-index: 50 !important;
+  position: relative !important;
+  background-color: #18181b;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  .user-name {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.25;
+    margin: 0;
+  }
+
+  .user-position {
+    color: #4ade80;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.25;
+    margin: 0.25rem 0 0 0;
+  }
+
+  .customer-divider {
+    margin: 0.25rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+  }
+
+  .customer-name {
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: #a1a1aa;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0;
+  }
+
+  .online-indicator {
+    position: absolute;
+    bottom: 0.25rem;
+    right: 0.25rem;
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 50%;
+    border: 2px solid #18181b;
+    background-color: #22c55e;
+  }
+}
+
+.sidebar-content {
+  flex: 1 1 auto !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  min-height: 0 !important;
+  padding: 0.5rem;
+  /* Scrollbar Hiding */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.sidebar-content::-webkit-scrollbar {
+  display: none;
+}
+
+.profile-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Centered */
+  min-width: 0;
+  width: 100%;
+}
+
+.force-truncate {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+  max-width: 100% !important;
+}
+
+/* =======================================
+   ANIMATIONS (Menu Transitions)
+   ======================================= */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-fade-in-down {
+  animation-name: fadeInDown;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+/* =======================================
+   STRICT CUSTOM MENU STYLES (Guide Light)
+   ======================================= */
+.guide-menu-list {
+  display: flex !important;
+  flex-direction: column !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+  .guide-menu-item {
+  display: block !important;
+  width: 100% !important;
+  margin-bottom: 0.25rem !important;
+
+  /* Link Styling */
+  a {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0.6rem 1rem !important;
+    color: #f4f4f5 !important;
+    border-radius: 0 0.5rem 0.5rem 0 !important; /* Rounded Right */
+    border-left: 3px solid transparent !important;
+    transition: all 0.2s ease-in-out !important;
+    text-decoration: none !important;
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    width: 100% !important;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.08) !important;
+      color: #ffffff !important;
+    }
+
+    /* Active State */
+    &.active-link,
+    &.router-link-active {
+      background-color: rgba(255, 255, 255, 0.12) !important;
+      color: #ffffff !important;
+      border-left-color: var(--ds-primary) !important;
+      font-weight: 500 !important;
+
+      i {
+        color: #ffffff !important;
+      }
+    }
+
+    i {
+      color: #d4d4d8 !important;
+    }
+  }
+
+  /* Sub-item specific styling: Original font size, keeping compact padding */
+  .guide-menu-list & {
+    a,
+    .menu-group-header {
+      font-size: 0.875rem !important;
+      padding: 0.5rem 1rem !important;
+    }
+  }
+
+  /* Group Header Styling */
+  .menu-group-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0.6rem 1rem !important;
+    width: 100% !important;
+    cursor: pointer !important;
+    color: #f4f4f5 !important;
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    border-radius: 0.5rem !important;
+    transition: background-color 0.2s !important;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.08) !important;
+      color: #ffffff !important;
+    }
+
+    &.expanded {
+      color: #ffffff !important;
+      font-weight: 500 !important;
+    }
+
+    i {
+      color: #d4d4d8 !important;
+    }
+  }
+}
+
+/* =======================================
+   MONITOR HEADER STYLES
+   ======================================= */
+.hidden.md\:block .p-toolbar,
+.mobile-header-toolbar {
+  background: #18181b !important;
+  color: #f4f4f5 !important;
+
+  /* Breadcrumb text visibility */
+  .p-breadcrumb {
+    background: transparent !important;
+    border: none !important;
+
+    .p-breadcrumb-list {
+      .p-menuitem-link {
+        color: #f4f4f5 !important;
+
+        &:hover {
+          color: #ffffff !important;
+        }
+      }
+
+      .p-menuitem-separator {
+        color: #a1a1aa !important;
+      }
+    }
+  }
+
+  /* Button icons visibility */
+  .p-button-text,
+  .monitor-toolbar-button {
+    color: #f4f4f5 !important;
+
+    &:hover {
+      color: #ffffff !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+    }
+  }
+}

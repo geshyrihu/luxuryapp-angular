@@ -1,0 +1,183 @@
+<!-- ═══════════════════════════════════════════════════════════════════
+     ORGANIGRAMA DE PUESTOS — Motor Custom LuxuryOrgTree (Angular 21)
+     ═══════════════════════════════════════════════════════════════════ -->
+
+<div class="flex flex-column p-4 surface-50 min-h-screen">
+  <!-- Header -->
+  <div class="flex align-items-center justify-content-between">
+    <div>
+      <h2 class="text-lg font-semibold text-900">
+        🏢 Organigrama de Puestos
+      </h2>
+      <p class="text-sm text-500">
+        {{ totalNodes() }} puestos · {{ vacantCount() }} vacantes
+      </p>
+    </div>
+    @if (reassignLoading()) {
+    <p-tag severity="info" value="⏳ Reasignando..." />
+    }
+  </div>
+
+  <!-- Tabs -->
+  <p-tabs [value]="activeTab()" (valueChange)="activeTab.set($event)">
+    <p-tablist>
+      <p-tab value="view" class="text-700">👁️ Visualizar</p-tab>
+      <p-tab value="edit" [disabled]="editTabDisabled()" class="text-700"
+        >✏️ Editar/D&D @if (editTabDisabled()) {<span
+          class="ml-1 text-xs text-orange-600"
+          >(solo SuperUsuario)</span
+        >}
+      </p-tab>
+    </p-tablist>
+
+    <p-tabpanels>
+      <!-- Vista General -->
+      <p-tabpanel value="view">
+        @if (loading()) {
+        <div class="flex justify-content-center align-items-center py-8">
+          <i class="pi pi-spin pi-spinner text-primary text-4xl"></i>
+        </div>
+        } @else if (rootNodes().length === 0) {
+        <div
+          class="flex flex-column align-items-center justify-content-center py-8 text-400"
+        >
+          <span class="text-4xl mb-3">🪑</span>
+          <p>No hay puestos definidos.</p>
+        </div>
+        } @else {
+        <div
+          class="w-full overflow-auto surface-card border-round-xl border-1 surface-border p-8 shadow-1 custom-scroll"
+          style="height: calc(100vh - 200px)"
+        >
+          <div class="org-tree-root">
+            @for (root of rootNodes(); track root.data.workPositionId) {
+            <app-org-node
+              [node]="root"
+              [isRoot]="true"
+              [level]="0"
+            ></app-org-node>
+            }
+          </div>
+        </div>
+        }
+      </p-tabpanel>
+
+      <!-- Modo Edición -->
+      <p-tabpanel value="edit">
+        @if (editTabDisabled()) {
+        <div
+          class="flex flex-column align-items-center justify-content-center py-6 text-500"
+        >
+          <span class="text-4xl mb-3">🔒</span>
+          <p class="font-medium">
+            Solo <strong>SuperUsuario</strong> puede editar.
+          </p>
+        </div>
+        } @else if (loading()) {
+        <div class="flex justify-content-center align-items-center py-8">
+          <i class="pi pi-spin pi-spinner text-primary text-4xl"></i>
+        </div>
+        } @else {
+        <div>
+          <div class="flex align-items-center mb-4 gap-2">
+            @if (!editMode()) {
+            <custom-button
+              label="✏️ Activar edición"
+              (clicked)="editMode.set(true)"
+            />
+            } @else {
+            <custom-button
+              label="❌ Cancelar edición"
+              severity="secondary"
+              variant="outlined"
+              (clicked)="editMode.set(false); selectedOrigin.set(null); selectedDest.set(null)"
+            />
+            @if (selectedOrigin()) {
+            <p-tag
+              severity="info"
+              value="📌 Origen: {{ selectedOrigin()?.folio }}"
+            />
+            } }
+          </div>
+
+          <p class="text-sm text-600 mb-4 font-medium">
+            💡 <strong>Drag & Drop:</strong> Arrastra un puesto sobre otro para
+            reasignar.<br />
+            💡 <strong>Clicks:</strong> Selecciona origen y luego destino si
+            prefieres usar el mouse.
+          </p>
+
+          <div
+            class="w-full overflow-auto surface-card border-round-xl border-1 surface-border p-8 shadow-1 custom-scroll"
+            style="height: calc(100vh - 250px)"
+            cdkScrollable
+          >
+            <div class="org-tree-root">
+              @for (root of rootNodes(); track root.data.workPositionId) {
+              <app-org-node [node]="root" [isRoot]="true"></app-org-node>
+              }
+            </div>
+          </div>
+        </div>
+        }
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
+</div>
+
+<!-- Drawer de detalles -->
+<p-drawer
+  [visible]="drawerVisible()"
+  (visibleChange)="drawerVisible.set($event)"
+  position="right"
+  [style]="{ width: '380px' }"
+  header="Detalles del Puesto"
+>
+  @if (selectedNodeForDetails(); as node) {
+  <div class="flex flex-column">
+    <div
+      class="flex align-items-center p-3 surface-100 border-round-lg border-1 surface-border gap-3"
+    >
+      @if (node.hasEmployee && node.employeePhoto) {
+      <p-avatar [image]="node.employeePhoto" shape="circle" size="large" />
+      } @else {
+      <p-avatar
+        icon="pi pi-briefcase"
+        shape="circle"
+        size="large"
+        styleClass="surface-300 text-600"
+      />
+      }
+      <div>
+        <span class="text-900 font-semibold block"
+          >{{ node.employeeName ?? 'Vacante' }}</span
+        >
+        <p class="text-500 text-sm m-0">{{ node.roleDisplayName }}</p>
+      </div>
+    </div>
+    <div class="flex flex-column text-sm text-700 mt-4 gap-2">
+      <p class="m-0"><strong class="text-900">Folio:</strong> {{ node.folio }}</p>
+      <p class="m-0">
+        <strong class="text-900">Departamento:</strong> {{
+        node.departmentName }}
+      </p>
+      <p class="m-0">
+        <strong class="text-900">Nivel:</strong> {{ node.hierarchyLevel }}
+      </p>
+      @if (node.employeeEmail) {
+      <p class="m-0">
+        <strong class="text-900">Email:</strong> {{ node.employeeEmail }}
+      </p>
+      } @if (node.employeePhone) {
+      <p class="m-0">
+        <strong class="text-900">Teléfono:</strong> {{ node.employeePhone
+        }}
+      </p>
+      }
+    </div>
+  </div>
+  }
+</p-drawer>
+
+<p-confirmDialog />
+<p-toast position="bottom-right" />

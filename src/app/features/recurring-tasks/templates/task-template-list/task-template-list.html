@@ -1,0 +1,92 @@
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Plantillas de Tareas Recurrentes</h3>
+  </div>
+  <div class="card-body">
+    <!-- Desktop View -->
+    <p-table
+      #dt
+      [value]="data()"
+      [rows]="10"
+      [paginator]="true"
+      [loading]="loading()"
+      size="small"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight"
+      styleClass="hidden md:block custom-table"
+    >
+      <ng-template #caption>
+        <div class="flex flex-row-reverse flex-wrap">
+          <custom-button-active-desactive
+            [state]="state()"
+            (stateChange)="onChangeState($event)"
+            customClass="ml-2"
+          />
+          <primeng-custom-caption (add)="showForm()" [dt]="dt" />
+        </div>
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Rol Asignado</th>
+          <th class="table-col-15">Acciones</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-template>
+        <tr>
+          <td>{{ template.name }}</td>
+          <td>{{ template.description }}</td>
+          <td>{{ template.roleName }}</td>
+          <td>
+            <div class="flex">
+              <custom-button-item
+                iconClass="pi pi-file "
+                label="Items"
+                (clicked)="onManageItems(template.id)"
+              />
+              <custom-button-edit (clicked)="showForm(template)" />
+              <custom-button-delete (confirmed)="onDelete(template.id)" />
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template emptymessage>
+        <tr>
+          <td colspan="4">No se encontraron plantillas.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <!-- Mobile View -->
+    <app-data-view-mobile
+      [data]="data()"
+      (add)="showForm()"
+      [dt]="dt"
+      class="block md:hidden"
+    >
+      <ng-template #listItemTemplate let-template>
+        <ion-item lines="full" class="ion-no-padding" detail="false">
+          <ion-label>
+            <h5 class="mb-2">{{ template.name }}</h5>
+            <p class="text-sm text-600">Rol: {{ template.roleName }}</p>
+          </ion-label>
+          <app-action-menu slot="end">
+            <ion-button-item
+              label="Administrar Items"
+              (clicked)="onManageItems(template.id)"
+            />
+            <ion-button-item label="Editar" (clicked)="showForm(template)" />
+            <ion-button-item-delete (confirmed)="onDelete(template.id)" />
+          </app-action-menu>
+        </ion-item>
+      </ng-template>
+    </app-data-view-mobile>
+  </div>
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+<div class="border p-2">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <custom-input-text-signal
+      [control]="form.controls.id"
+      label="Id"
+      [readonly]="true"
+      [hidden]="true"
+    />
+    <custom-input-text-signal
+      [control]="form.controls.folio"
+      label="Folio"
+      placeholder="folio"
+    />
+    <custom-input-text-signal
+      [control]="form.controls.name"
+      label="Nombre"
+      placeholder="Nombre"
+    />
+
+    <custom-input-select-signal
+      [control]="form.controls.assetCategory"
+      label="Categoria"
+      [data]="cb_category()"
+    />
+
+    <custom-button-save
+      [propertyId]="id"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+    />
+  </form>
+</div>

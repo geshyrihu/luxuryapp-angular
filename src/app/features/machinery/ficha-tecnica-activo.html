@@ -1,0 +1,112 @@
+@if (data != undefined) {
+<div class="p-3">
+  <div class="grid">
+    <div class="col-12">
+      <div
+        class="surface-100 border-round p-3 mb-3 font-bold text-xl text-primary"
+      >
+        {{ data.nameMachinery }}
+      </div>
+    </div>
+    <div class="col-12 md:col-3">
+      <div class="surface-card shadow-1 border-round p-2">
+        <img [src]="data.photoPath" class="w-full border-round" alt="..." />
+      </div>
+    </div>
+    <div class="col-12 md:col-9">
+      <div class="grid">
+        <div class="col-12">
+          <div class="table-responsive">
+            <table class="table custom-table">
+              <tbody>
+                <tr>
+                  <td class="font-bold">Categoróa:</td>
+                  <td>
+                    <p class="m-1">{{ data.inventoryCategory }}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-bold">Estado:</td>
+                  <td>
+                    <p class="m-1">{{ data.state }}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-bold">Clasificación:</td>
+                  <td>
+                    <p class="m-1">{{ data.equipoClasificacion }}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-bold">Marca:</td>
+                  <td>
+                    <p class="m-1">{{ data.brand }}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-bold">Modelo:</td>
+                  <td>
+                    <p class="m-1">{{ data.model }}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-bold">Serie:</td>
+                  <td>
+                    <p class="m-1">{{ data.serie }}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-bold">Adquisición:</td>
+                  <td>
+                    <p class="m-1">{{ data.dateOfPurchase }}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-bold">Ubicación</td>
+                  <td>
+                    <p class="m-1">{{ data.ubication }}</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="table-responsive mb-3">
+            <table class="table custom-table">
+              <thead class="surface-100">
+                <tr>
+                  <th class="p-2 font-bold">Especificaciones Tócnicas</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <p class="m-1">{{ data.technicalSpecifications }}</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-responsive">
+            <table class="table custom-table">
+              <thead class="surface-100">
+                <tr>
+                  <th class="p-2 font-bold">Observaciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <p class="m-1">{{ data.observations }}</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}

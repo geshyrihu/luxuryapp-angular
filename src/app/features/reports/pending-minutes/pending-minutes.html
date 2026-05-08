@@ -1,0 +1,108 @@
+<!-- (MEJORA) Indicador de carga unificado -->
+@if (loading()) {
+<div class="text-center my-5">
+  <p-progressSpinner styleClass="w-3rem h-3rem" strokeWidth="4" />
+</div>
+} @if (reportData() && !loading()) {
+<div class="surface-card shadow-2 border-round">
+  <!-- Encabezado del reporte -->
+  <div class="border-bottom-1 surface-border p-3 surface-100"></div>
+  <!-- Tabla de solicitudes pendientes -->
+  <p-table
+    [value]="reportData().pendings"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight"
+    styleClass="custom-table-report"
+  >
+    <ng-template #header>
+      <tr>
+        <th colspan="6" class="text-center">
+          <div class="grid">
+            <!-- Información del Cliente -->
+            <!-- óCAMBIO! Leemos de reportData().customer -->
+            <div class="col-12 md:col-4">
+              @if (reportData().customer.customerImage) {
+              <img
+                [src]="reportData().customer.customerImage"
+                alt="Logo del cliente"
+                class="img-fluid border mb-2"
+                style="max-width: 80px"
+              />
+              }
+              <h5>{{ reportData().customer.nombreCorto }}</h5>
+            </div>
+            <!-- Título del Reporte -->
+            <div class="col-12 md:col-4 text-center">
+              <i class="icon icon-pi-times icon-lg text-danger mr-2"></i>
+              SOLICITUDES PENDIENTES
+            </div>
+            <!-- Información de los Administradores -->
+            @if (reportData().administrador) {
+            <div class="col-12 md:col-4 text-right">
+              @for (admin of reportData().administrador; track admin) {
+              <div class="flex align-items-center mb-2">
+                <img
+                  [src]="admin.photoEmployee"
+                  alt="Foto del administrador"
+                  class="border-circle border mr-2"
+                  style="width: 40px; height: 40px"
+                />
+                <div class="text-start">
+                  <p
+                    class="mb-0 text-color-secondary"
+                    style="text-transform: none; font-size: 0.9rem"
+                  >
+                    {{ admin.nameEmployee }}
+                  </p>
+                  <p
+                    class="mb-0 text-color-secondary"
+                    style="text-transform: none; font-size: 0.9rem"
+                  >
+                    {{ admin.email }}
+                  </p>
+                  <p
+                    class="mb-0 text-color-secondary"
+                    style="text-transform: none"
+                    style="font-size: 0.9rem"
+                  >
+                    <i class="icon icon-pi-at mr-1"></i>{{ admin.phoneNumber }}
+                  </p>
+                </div>
+              </div>
+              }
+            </div>
+            }
+          </div>
+        </th>
+      </tr>
+      <tr>
+        <th class="text-center table-col-5">Nó</th>
+        <th class="text-center table-col-10">FOLIO</th>
+        <th class="text-center table-col-10">FECHA SOL.</th>
+        <th class="text-center table-col-40">SOLICITUD</th>
+        <th class="text-center table-col-5">DIAS</th>
+        <th class="text-center table-col-40">SEGUIMIENTO</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-ticket let-rowIndex="rowIndex">
+      <tr>
+        <td class="text-center">{{ rowIndex + 1 }}</td>
+        <td class="text-center">{{ ticket.folio }}</td>
+        <td class="text-center">{{ ticket.date }}</td>
+        <td>
+          <strong> {{ ticket.title }} </strong>
+          <br />{{ ticket.requestService }}
+        </td>
+        <td class="text-center">{{ ticket.dias }}</td>
+        <td>{{ ticket.fechaUltimoSeguimiento }} - {{ ticket.seguimiento }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <!-- (MEJORA) Mensaje claro si no hay datos despuós de cargar -->
+  @if (!reportData() && !loading()) {
+  <div class="p-3 surface-100 text-center border-round text-color-secondary">
+    No se encontraron minutas pendientes para este cliente.
+  </div>
+  }
+</div>
+}

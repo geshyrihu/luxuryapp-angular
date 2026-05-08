@@ -1,0 +1,743 @@
+<!--
+  óHola, futuro yo o valiente colega que se atreve a explorar este código!
+
+  Este componente es el corazón de la propuesta de presupuesto. Es una tabla compleja
+  que presenta datos financieros de una manera densa pero (esperemos) comprensible.
+  Aquó te dejo una guóa para que no te pierdas en el laberinto de divs y ng-templates.
+-->
+
+<!--
+  Contenedor principal.
+  Solo se muestra si hay una propuesta de presupuesto (`currentProposal`) cargada.
+  Tambión tenemos un `errorMensaje` por si las cosas salen mal. óSiempre hay que estar preparados!
+-->
+<!-- Added w-8rem for better sizing -->
+<!-- <div class="field w-8rem">
+  <p-select
+    size="small"
+    [(ngModel)]="selectedFiscalYear"
+    [options]="availableYears"
+    (onChange)="onFiscalYearChange()"
+    placeholder="Año Fiscal"
+  />
+</div> -->
+@if (errorMensaje) {
+<!-- Bloque para mostrar un mensaje de error si algo falla. La clósica alerta de peligro. -->
+<div class="p-3 bg-red-100 text-red-900 border-round mt-3 text-center">
+  {{ errorMensaje }}
+</div>
+} @if (currentProposal()) {
+<!-- Contenedor de la vista del presupuesto. óAquó empieza la magia! -->
+<div class="budget-view-port-container">
+  <!--
+    La estrella del show: la tabla de PrimeNG.
+    - `p-table`: El componente principal de la tabla.
+    - `[value]`: Los datos que se mostrarón, en este caso, `proposalItems()`.
+    - `[globalFilterFields]`: Campos para el filtro global (bósqueda).
+    - `[scrollable]="true"` y `scrollHeight="flex"`: Hacen que la tabla tenga un scroll vertical y se adapte al contenedor.
+    - `styleClass`: Clases CSS personalizadas para darle estilo.
+    - `[style]`: Estilos en lónea, como el ancho mónimo para el scroll horizontal.
+    - `#dt`: Una referencia a la tabla para poder interactuar con ella desde el código (ej. para el caption).
+  -->
+  <p-table
+    [globalFilterFields]="globalFilterFields"
+    [value]="proposalItems()"
+    [scrollable]="true"
+    scrollDirection="both"
+    scrollHeight="flex"
+    styleClass="financial-data-table budget-sticky-footer-table"
+    [style]="{ 'min-width': '1800px' }"
+    #dt
+  >
+    <!--
+      Cabecera de la tabla (#caption).
+      Aquó van los controles principales: el buscador y los botones de acción.
+    -->
+
+    <ng-template #caption>
+      <div class="grid p-2 align-items-stretch">
+        <!-- Cuotas (Fija) -->
+        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+          <div
+            (click)="showFeeComparisonModal()"
+            class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover transition-colors transition-duration-150"
+          >
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">🏷️</span>
+            <span class="text-xs text-center line-height-2 text-700"
+              >Cuotas (Fija)</span
+            >
+          </div>
+        </div>
+
+        <!-- Cuotas (Indiviso) -->
+        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+          <div
+            (click)="showFeeComparisonByIndivisoModal()"
+            class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover transition-colors transition-duration-150"
+          >
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">📊</span>
+            <span class="text-xs text-center line-height-2 text-700"
+              >Cuotas (Indiviso)</span
+            >
+          </div>
+        </div>
+
+        <!-- Añadir Cuenta -->
+        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+          <div
+            (click)="currentProposal()?.status === 'Borrador' && showAddAccountModal()"
+            [class.opacity-50]="currentProposal()?.status !== 'Borrador'"
+            class="surface-card border-1 border-blue-200 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-blue-50 transition-colors transition-duration-150"
+          >
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">➕</span>
+            <span class="text-xs text-center line-height-2 text-blue-700"
+              >Añadir Cuenta</span
+            >
+          </div>
+        </div>
+
+        @if(aspRoleS.hasAny([aspRole.SuperUsuario])) {
+        <!-- Auditoría IA -->
+        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+          <div
+            (click)="auditProposal()"
+            class="bg-gray-900 border-1 border-gray-900 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-gray-800 transition-colors transition-duration-150"
+          >
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">🤖</span>
+            <span class="text-xs text-center line-height-2 text-white"
+              >Auditoría IA</span
+            >
+          </div>
+        </div>
+
+        <!-- Proyección 2026 -->
+        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+          <div
+            (click)="!(auditLoading || forecastLoading) && forecastProposal()"
+            [class.opacity-50]="auditLoading || forecastLoading"
+            class="bg-gray-900 border-1 border-gray-900 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-gray-800 transition-colors transition-duration-150"
+          >
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">📈</span>
+            <span class="text-xs text-center line-height-2 text-white"
+              >Proyección 2026</span
+            >
+          </div>
+        </div>
+
+        <!-- Excel -->
+        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+          <div
+            (click)="exportarResumenExcel()"
+            class="surface-card border-1 border-green-300 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-green-50 transition-colors transition-duration-150"
+          >
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">📤</span>
+            <span class="text-xs text-center line-height-2 text-green-700"
+              >Excel</span
+            >
+          </div>
+        </div>
+        }
+
+        <!-- Botones Dinámicos -->
+        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+          <div
+            (click)="toggleBaseBudgetMonthlyColumn()"
+            class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover"
+          >
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
+              >{{ baseBudgetMonthlyButtonEmoji }}</span
+            >
+            <span class="text-xs text-center line-height-2 text-700"
+              >{{ baseBudgetMonthlyButtonLabel }}</span
+            >
+          </div>
+        </div>
+
+        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+          <div
+            (click)="toggleBaseBudgetAnnualColumn()"
+            class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover"
+          >
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">{{ baseBudgetAnnualButtonEmoji }}</span>
+            <span class="text-xs text-center line-height-2 text-700"
+              >{{ baseBudgetAnnualButtonLabel }}</span
+            >
+          </div>
+        </div>
+
+        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+          <div
+            (click)="toggleFiscalYearAnnualColumn()"
+            class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover"
+          >
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">{{ fiscalYearAnnualButtonEmoji }}</span>
+            <span class="text-xs text-center line-height-2 text-700"
+              >{{ fiscalYearAnnualButtonLabel }}</span
+            >
+          </div>
+        </div>
+
+        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+          <div
+            (click)="toggleshowProjectedExpenses()"
+            class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover"
+          >
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
+              >{{ projectedExpensesButtonEmoji }}</span
+            >
+            <span class="text-xs text-center line-height-2 text-700"
+              >{{ projectedExpensesButtonLabel }}</span
+            >
+          </div>
+        </div>
+
+        <!-- Admin Proyección -->
+        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+          <div
+            (click)="showProjectedExpensesModal()"
+            class="surface-card border-1 border-orange-300 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-orange-50 transition-colors transition-duration-150"
+          >
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">⚙️</span>
+            <span class="text-xs text-center line-height-2 text-orange-700"
+              >Admin Proyección</span
+            >
+          </div>
+        </div>
+
+        <!-- Calendario Mtto -->
+        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+          <div
+            (click)="showMaintenanceCalendarModal()"
+            class="bg-gray-900 border-1 border-gray-900 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-gray-800 transition-colors transition-duration-150"
+          >
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">📅</span>
+            <span class="text-xs text-center line-height-2 text-white"
+              >Calendario Mtto</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="flex flex-wrap align-items-center w-full justify-content-between mb-3 px-2 gap-3"
+      >
+        <div class="flex flex-wrap gap-2 align-items-center">
+          <div class="w-7rem">
+            <p-select
+              styleClass="w-full"
+              size="small"
+              [(ngModel)]="selectedFiscalYear"
+              [options]="availableYears"
+              (onChange)="onFiscalYearChange()"
+              placeholder="Año"
+            />
+          </div>
+          <p-multiSelect
+            [options]="monthOptions"
+            [(ngModel)]="selectedMonthsForAvg"
+            placeholder="Meses Promedio"
+            display="chip"
+            size="small"
+            selectedItemsLabel="{0} meses"
+            styleClass="w-full md:w-18rem"
+          />
+        </div>
+
+        <div class="flex-grow-1 md:flex-grow-0 min-w-15rem">
+          <custom-search-input-signal
+            (searchChange)="dt.filterGlobal($event, 'contains')"
+          />
+        </div>
+      </div>
+    </ng-template>
+
+    <!--
+      Encabezados de las columnas (#header).
+      Esta parte es crucial para entender la estructura de la tabla.
+      Usamos columnas "congeladas" (frozen) a la izquierda y a la derecha para que no se pierdan al hacer scroll.
+    -->
+    <ng-template #header>
+      <tr>
+        <th
+          [attr.colspan]="colspans.presupuestoActual"
+          style="background-color: #1669a3 !important"
+          class="text-center"
+        >
+          PRESUPUESTO ACTUAL
+        </th>
+        <th
+          [attr.colspan]="colspans.propuesta"
+          style="background-color: #0d3b66 !important"
+          class="text-center"
+        >
+          PROPUESTA
+        </th>
+      </tr>
+      <tr>
+        <!-- Columna congelada a la izquierda: Nombre de la cuenta -->
+        <th pFrozenColumn style="min-width: 200px; max-width: 200px">Cuenta</th>
+        <!-- Columnas del medio (scrollables): Los 12 meses del Año -->
+        @for (mes of months; track mes) {
+        <th class="text-center">{{ mes.substring(0, 3) | uppercase }}</th>
+        }
+        <!-- Columnas congeladas a la derecha: Cólculos y totales -->
+        <th
+          pFrozenColumn
+          alignFrozen="right"
+          class="table-col-100px"
+          class="text-center"
+        >
+          PROM MENSUAL
+        </th>
+        <th
+          [hidden]="!showBaseBudgetMonthlyColumn()"
+          pFrozenColumn
+          alignFrozen="right"
+          class="table-col-100px"
+          class="text-center"
+        >
+          <!-- PSTO ({{ baseBudgetYear }}) MENSUAL -->
+          PSTO (2025) MENSUAL
+        </th>
+        <th
+          [hidden]="!showBaseBudgetAnnualColumn()"
+          pFrozenColumn
+          alignFrozen="right"
+          class="table-col-100px"
+          class="text-center"
+        >
+          <!-- PSTO ({{ baseBudgetYear }}) ANUAL -->
+          PSTO (2025) ANUAL
+        </th>
+        <!-- Presupuesto del Año base -->
+        <th
+          pFrozenColumn
+          alignFrozen="right"
+          class="table-col-100px"
+          class="text-center"
+        >
+          <!-- PSTO ({{ fiscalYear }}) MENSUAL -->
+          PSTO (2026) MENSUAL
+          <!-- Presupuesto del Año fiscal actual (propuesta) -->
+        </th>
+        <th
+          [hidden]="!showFiscalYearAnnualColumn()"
+          pFrozenColumn
+          alignFrozen="right"
+          class="table-col-100px"
+          class="text-center"
+        >
+          <!-- PSTO ({{ fiscalYear }}) ANUAL -->
+          PSTO (2026) ANUAL
+          <!-- Presupuesto del Año fiscal actual (propuesta) ANUAL -->
+        </th>
+        <!-- Aqui hay que agregar           PSTO ({{ fiscalYear }}) MENSUAL x 12 osea aanual
+   -->
+        <th pFrozenColumn alignFrozen="right" class="table-col-100px">DIF</th>
+        <th
+          pFrozenColumn
+          alignFrozen="right"
+          class="table-col-100px"
+          class="text-center"
+        >
+          %
+          <!-- Porcentaje de cambio -->
+        </th>
+      </tr>
+    </ng-template>
+
+    <!--
+      Cuerpo de la tabla (#body).
+      Aquó se renderizan las filas de datos. Cada `item` es una cuenta de la propuesta.
+    -->
+    <ng-template #body let-item>
+      @if (item.esFilaAgrupadora) {
+      <tr
+        [class.fila-nivel-1]="item.nivelCuenta === 1 && item.esFilaAgrupadora"
+        [class.fila-nivel-2-agrupadora]="item.nivelCuenta === 2 && item.esFilaAgrupadora"
+      >
+        <td [attr.colspan]="colspans.total">
+          <div [style.fontWeight]="'bold'">
+            {{ item.accountNumber }} | {{ item.accountName }}
+          </div>
+        </td>
+      </tr>
+      } @else {
+      <!-- <button style="visibility: hidden" pButton icon="pi pi-plus"></button> -->
+      <tr
+        [class.fila-nivel-2-hoja]="item.nivelCuenta === 2 && !item.esFilaAgrupadora"
+        [class.fila-nivel-3-hoja]="item.nivelCuenta === 3 && !item.esFilaAgrupadora"
+      >
+        <!-- [class.bg-red-100]="isDeficit(item)"
+        [class.bg-yellow-100]="isHighIncrease(item)" -->
+        <!-- Columna congelada a la izquierda: Detalles de la cuenta -->
+        <td pFrozenColumn style="min-width: 200px">
+          <div class="flex justify-content-between w-full">
+            <div>
+              <span
+                class="pointer mr-1 text-sm"
+                (click)="showPurchaseHistory(item)"
+                pTooltip="Historial de compras"
+                >🛒 |</span
+              >
+              <span
+                class="pointer mr-1 text-sm"
+                (click)="showItemHistory(item)"
+                pTooltip="Historial de partidas"
+                >🕒 |</span
+              >
+              <span
+                class="pointer mr-1 text-sm"
+                (click)="showSupportDialog(item)"
+                pTooltip="Documentos de soporte"
+                >📄 |</span
+              >
+              @if (canDeleteItem(item) && currentProposal()?.status ===
+              'Borrador') {<span
+                class="pointer mr-1"
+                (click)="deleteItem(item)"
+                pTooltip="Eliminar cuenta"
+                >🗑️</span
+              >}
+
+              <small class="numeric-column">{{ item.accountNumber }} </small>
+
+              <div>{{ item.accountName }}</div>
+            </div>
+
+            <div
+              class="flex align-items-center justify-content-end whitespace-nowrap"
+            >
+              <!-- Indicadores visuales de auditoróa -->
+              @if (isDeficit(item)) {
+              <span
+                class="text-red-500 ml-1 text-2xl"
+                pTooltip="Déficit: Propuesta menor al gasto promedio"
+                >📉</span
+              >
+              } @if (isHighIncrease(item)) {
+              <span
+                class="text-yellow-600 ml-1 text-2xl"
+                pTooltip="Incremento > 5%"
+                >📈</span
+              >
+              }
+            </div>
+          </div>
+        </td>
+
+        @for (month of months; track month) {
+        <td
+          class="text-right numeric-column"
+          [class.executed-budget]="isProjected(item, month)"
+        >
+          <span
+            [hidden]="!showProjectedExpenses() || !isProjected(item, month)"
+            class="pointer"
+            (click)="showBudgetExecutionDetails(month, item.accountNumber)"
+            pTooltip="Ver detalles de ejecución"
+            >🔍</span
+          >
+          <span class="text-xs text-color-secondary">
+            {{ getPresupuestoDelMes(item, month) > 0 ?
+            (getPresupuestoDelMes(item, month) | number: "1.0-0") : "-" }}
+          </span>
+          <br />
+          <span
+            [class.font-semibold]="getGastoDelMes(item, month) < 0 || getGastoDelMes(item, month) > getPresupuestoDelMes(item, month)"
+            [class.text-red-700]="getGastoDelMes(item, month) < 0 || getGastoDelMes(item, month) > getPresupuestoDelMes(item, month)"
+          >
+            @if(getGastoDelMes(item, month) < 0 || getGastoDelMes(item, month) >
+            getPresupuestoDelMes(item, month)) { {{ getGastoDelMes(item, month)
+            | number: "1.0-0" }} } @else if (getGastoDelMes(item, month) > 0) {
+            {{ getGastoDelMes(item, month) | number: "1.0-0" }} } @else { - }
+          </span>
+        </td>
+        }
+
+        <!-- Columnas congeladas a la derecha: Cólculos -->
+        <td
+          pFrozenColumn
+          alignFrozen="right"
+          style="min-width: 100px"
+          class="text-right numeric-column"
+        >
+          <span
+            [class.font-semibold]="getAverageMonthlyExpense(item) > getAverageMonthlyBudget(item)"
+            [class.text-red-700]="getAverageMonthlyExpense(item) > getAverageMonthlyBudget(item)"
+          >
+            @if (getAverageMonthlyExpense(item) > getAverageMonthlyBudget(item))
+            { {{ getAverageMonthlyExpense(item) | number: "1.0-0" }} } @else {
+            {{ getAverageMonthlyExpense(item) | number: "1.0-0" }} }
+          </span>
+        </td>
+        <td
+          [hidden]="!showBaseBudgetMonthlyColumn()"
+          pFrozenColumn
+          alignFrozen="right"
+          style="min-width: 100px"
+          class="text-right numeric-column"
+        >
+          {{ item.currentAmount | number: "1.0-0" }}
+        </td>
+        <td
+          [hidden]="!showBaseBudgetAnnualColumn()"
+          pFrozenColumn
+          alignFrozen="right"
+          style="min-width: 100px"
+          class="text-right numeric-column"
+        >
+          {{ (item.currentAmount * 12) | number: "1.0-0" }}
+        </td>
+        <td
+          pFrozenColumn
+          alignFrozen="right"
+          class="table-col-100px"
+          class="numeric-column flex align-items-center justify-content-end"
+        >
+          <custom-input-number-signal
+            (blur)="updateProposalItem(item)"
+            (keydown.enter)="updateProposalItem(item)"
+            (ngModelChange)="onProposedAmountChange(item)"
+            [(ngModel)]="item.proposedAmount"
+            [ngModelOptions]="{ standalone: true }"
+            [disabled]="
+              currentProposal()?.status !== 'Borrador' || item.esFilaAgrupadora
+            "
+            [horizontal]="false"
+            customClass="text-right"
+            [minFractionDigits]="0"
+            [maxFractionDigits]="0"
+            size="small"
+          />
+        </td>
+        <td
+          [hidden]="!showFiscalYearAnnualColumn()"
+          pFrozenColumn
+          alignFrozen="right"
+          class="table-col-100px"
+          class="text-right numeric-column"
+        >
+          {{item.proposedAmount * 12 | number: "1.0-0"}}
+        </td>
+        <td
+          pFrozenColumn
+          alignFrozen="right"
+          style="min-width: 100px"
+          class="numeric-column"
+        >
+          <div class="flex justify-content-between align-items-center">
+            <div class="justify-content-start font-semibold text-red-700">
+              {{ item.difference > 0 ? "(+)" : "" }}
+            </div>
+            <div class="justify-content-end">
+              @if (item.difference < 0) {
+              <span class="font-semibold text-green-700">
+                {{ item.difference | number: "1.0-0" }}
+              </span>
+              } @else if (item.difference > 0){
+              <span class="font-semibold text-red-700">
+                {{ item.difference | number: "1.0-0" }}
+              </span>
+              } @else { - }
+            </div>
+          </div>
+        </td>
+        <td
+          pFrozenColumn
+          alignFrozen="right"
+          style="min-width: 100px"
+          class="numeric-column"
+        >
+          <div class="flex justify-content-end align-items-center">
+            @if (item.percentageIncrease < 0) {
+            <span class="font-semibold text-green-700">
+              {{ item.percentageIncrease | number: "1.0-0" }}%
+            </span>
+            } @else if (item.percentageIncrease > 0) {
+            <span class="font-semibold text-red-700">
+              {{ item.percentageIncrease | number: "1.0-0" }}%
+            </span>
+            } @else {
+            <span class="text-color-secondary">-</span>
+            }
+          </div>
+        </td>
+      </tr>
+      }
+    </ng-template>
+
+    <!--
+      Pie de la tabla (#footer).
+      Aquó se muestran los totales. Tambión usamos columnas congeladas para que todo cuadre.
+      óEste footer es "sticky" gracias a la clase `budget-sticky-footer-table`!
+    -->
+    <ng-template #footer>
+      <!-- Fila para los totales de PRESUPUESTO por mes -->
+      <tr>
+        <td
+          pFrozenColumn
+          class="text-right amount-total"
+          style="min-width: 200px"
+        >
+          TOTAL PRESUP. MES:
+        </td>
+        @for (mes of months; track mes) {
+        <td class="text-right numeric-column amount-total text-color-secondary">
+          {{ getTotalPresupuestoPorMes(mes) > 0 ?
+          (getTotalPresupuestoPorMes(mes) | number: '1.0-0') : '-' }}
+        </td>
+        }
+        <td
+          pFrozenColumn
+          alignFrozen="right"
+          class="text-right numeric-column amount-total"
+        >
+          <!-- This aligns with "PROM MENSUAL" -->
+          {{ getTotalAverageMonthlyBudget() | number:'1.0-0' }}
+        </td>
+        <td
+          [hidden]="!showBaseBudgetMonthlyColumn()"
+          pFrozenColumn
+          alignFrozen="right"
+          class="text-right numeric-column amount-total"
+        >
+          <!-- Total del presupuesto actual (Año base) -->
+          {{ getSumaTotalPresupuestoActual() | number:'1.0-0' }}
+        </td>
+        <td
+          [hidden]="!showBaseBudgetAnnualColumn()"
+          pFrozenColumn
+          alignFrozen="right"
+          class="text-right numeric-column amount-total"
+        >
+          <!-- Total del presupuesto actual (Año base) ANUAL -->
+          {{ (getSumaTotalPresupuestoActual() * 12) | number:'1.0-0' }}
+        </td>
+        <td
+          pFrozenColumn
+          alignFrozen="right"
+          class="text-right numeric-column amount-total"
+        >
+          <!-- Total del presupuesto propuesto -->
+          {{ currentProposal()?.totalAmount | number:'1.0-0' }}
+        </td>
+        <td
+          [hidden]="!showFiscalYearAnnualColumn()"
+          pFrozenColumn
+          alignFrozen="right"
+          class="text-right numeric-column amount-total"
+        >
+          <!-- Total del presupuesto propuesto ANUAL -->
+          {{ (currentProposal()?.totalAmount * 12) | number:'1.0-0' }}
+        </td>
+        <td
+          pFrozenColumn
+          alignFrozen="right"
+          class="numeric-column amount-total"
+        >
+          <!-- Diferencia total -->
+          <div class="flex justify-content-between align-items-center">
+            <div class="justify-content-start font-semibold text-red-700">
+              {{ (currentProposal()?.totalAmount -
+              getSumaTotalPresupuestoActual()) > 0 ? '(+)' : '' }}
+            </div>
+            <div class="justify-content-end">
+              @if ((currentProposal()?.totalAmount -
+              getSumaTotalPresupuestoActual()) < 0) {
+              <span class="font-semibold text-green-700">
+                {{ (currentProposal()?.totalAmount -
+                getSumaTotalPresupuestoActual()) | number: '1.0-0' }}
+              </span>
+              } @else if ((currentProposal()?.totalAmount -
+              getSumaTotalPresupuestoActual()) > 0) {
+              <span class="font-semibold text-red-700">
+                {{ (currentProposal()?.totalAmount -
+                getSumaTotalPresupuestoActual()) | number: '1.0-0' }}
+              </span>
+              } @else { - }
+            </div>
+          </div>
+        </td>
+        <td
+          pFrozenColumn
+          alignFrozen="right"
+          class="numeric-column amount-total"
+        >
+          <!-- Porcentaje de cambio total -->
+          <span
+            [class]="
+              getTotalPercentageChange() > 0
+                ? 'text-red-700'
+                : getTotalPercentageChange() < 0
+                ? 'text-green-700'
+                : ''
+            "
+          >
+            {{ getTotalPercentageChange() }}%
+          </span>
+        </td>
+      </tr>
+
+      <!-- Fila para los totales de GASTO por mes y los totales anuales -->
+      <tr>
+        <td pFrozenColumn class="text-right amount-total">TOTAL GASTO MES:</td>
+        @for (mes of months; track mes) {
+        <td class="text-right numeric-column amount-total">
+          <!-- Se pone en rojo si el gasto del mes excede el presupuesto -->
+          <span
+            [class.font-semibold]="gastoDelMesExcedido(mes)"
+            [class.text-red-700]="gastoDelMesExcedido(mes)"
+          >
+            @if (gastoDelMesExcedido(mes)) { ({{ getTotalGastoPorMes(mes) |
+            number:'1.0-0' }}) } @else if (getTotalGastoPorMes(mes) > 0) { {{
+            getTotalGastoPorMes(mes) | number:'1.0-0' }} } @else { - }
+          </span>
+        </td>
+        }
+
+        <!-- Total del promedio de gasto mensual -->
+        <td
+          pFrozenColumn
+          alignFrozen="right"
+          class="text-right numeric-column amount-total"
+        >
+          {{ getTotalAverageMonthlyExpense() | number:'1.0-0' }}
+        </td>
+
+        <!-- Celda vacóa para alinear con PSTO (baseBudgetYear) -->
+        <td
+          [hidden]="!showBaseBudgetMonthlyColumn()"
+          pFrozenColumn
+          alignFrozen="right"
+          class="text-right numeric-column amount-total"
+        ></td>
+        <td
+          [hidden]="!showBaseBudgetAnnualColumn()"
+          pFrozenColumn
+          alignFrozen="right"
+          class="text-right numeric-column amount-total"
+        ></td>
+        <!-- Celdas vacóas para alinear con las columnas de propuesta -->
+        <td pFrozenColumn alignFrozen="right"></td>
+        <!-- Aligns with PSTO Fiscal MENSUAL -->
+        <td
+          [hidden]="!showFiscalYearAnnualColumn()"
+          pFrozenColumn
+          alignFrozen="right"
+        ></td>
+        <!-- Aligns with PSTO Fiscal ANUAL -->
+        <td pFrozenColumn alignFrozen="right"></td>
+        <!-- Aligns with DIF -->
+        <td pFrozenColumn alignFrozen="right"></td>
+        <!-- Aligns with % -->
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+}
+<!--
+  Y eso es todo, amigos. Si has llegado hasta aquó, te mereces un cafó.
+  Este componente es un buen ejemplo de cómo usar las caracterósticas avanzadas de PrimeNG
+  para crear interfaces de datos complejas. óQue la fuerza te acompaóe en tus refactorizaciones!
+-->

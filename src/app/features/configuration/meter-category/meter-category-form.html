@@ -1,0 +1,30 @@
+<div>
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        label="Id"
+        [readonly]="true"
+        [hidden]="false"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.nombreMedidorCategoria"
+        label="Nombre"
+        placeholder="nombre de categoria"
+      />
+
+      <div class="text-center mt-3">
+        <custom-button-save
+          [propertyId]="id"
+          [disabled]="form.invalid"
+          [loading]="submitting()"
+        />
+      </div>
+    </form>
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,67 @@
+<!-- 🖥️ DESKTOP: visible solo md+ -->
+<div class="hidden md:block">
+  @if (dataSignal().length === 0) {
+  <div class="grid">
+    <div class="col-12">
+      <div class="empty-state-card">
+        <div class="empty-state-icon">
+          <i class="icon icon-pi-folder-open"></i>
+        </div>
+        <h5 class="empty-state-title">No hay documentos disponibles</h5>
+        <p class="empty-state-text">Los archivos aparecerán aquí una vez que sean cargados</p>
+      </div>
+    </div>
+  </div>
+  }
+  <br />
+  <h3 class="text-center p-2 text-2xl font-bold text-900">Minutas de reuniones mensuales</h3>
+  <div class="grid">
+    @for (item of dataSignal(); track item.id) {
+    <div class="col-12">
+      <a [routerLink]="['../meeting-minutes-detail', item.id]" class="file-item-link no-underline">
+        <div class="file-item flex align-items-center p-3 border-round border-1 surface-border hover:surface-hover transition-colors transition-duration-200">
+          <div class="file-item-icon mr-3">
+            <i class="icon {{ getIconForFile(item.fileExtension).icon }} {{ getIconForFile(item.fileExtension).color }} text-2xl"></i>
+          </div>
+          <div class="file-item-content flex-flex-grow-1-1">
+            <h6 class="file-item-title m-0 text-900 font-bold">{{ item.documentName }}</h6>
+            <p class="file-item-subtitle m-0 text-500 text-sm">Archivo .{{ item.fileExtension }}</p>
+          </div>
+          <div class="file-item-action">
+            <i class="pi pi-chevron-right text-400"></i>
+          </div>
+        </div>
+      </a>
+    </div>
+    }
+  </div>
+</div>
+
+<!-- 📱 MOBILE: visible solo sm -->
+<div class="block md:hidden">
+  @if (dataSignal().length === 0) {
+  <div class="text-center p-6">
+    <i class="pi pi-folder-open text-6xl text-400"></i>
+    <p class="text-500 mt-3 text-base">No hay documentos disponibles</p>
+  </div>
+  }
+
+  <ion-list-header>
+    <ion-label class="font-bold text-900">Minutas de reuniones mensuales</ion-label>
+  </ion-list-header>
+
+  <ion-list [inset]="true" class="m-0">
+    @for (item of dataSignal(); track item.id) {
+    <ion-item button detail="true" lines="full"
+      [routerLink]="['../meeting-minutes-detail', item.id]" class="ion-no-padding">
+      <div slot="start" class="w-2rem h-2rem border-round bg-purple-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
+        <i class="pi pi-file text-xl text-purple-600"></i>
+      </div>
+      <ion-label class="ml-2">
+        <h3 class="font-bold text-900">{{ item.documentName }}</h3>
+        <p class="text-sm text-500">Archivo .{{ item.fileExtension }}</p>
+      </ion-label>
+    </ion-item>
+    }
+  </ion-list>
+</div>

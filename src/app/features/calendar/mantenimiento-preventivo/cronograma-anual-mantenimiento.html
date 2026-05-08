@@ -1,0 +1,179 @@
+<!-- =================================================================
+? PLANTILLA HTML COMPLETA Y CORREGIDA ?
+================================================================== -->
+
+<ng-container>
+  <ng-container>
+    <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+    <div class="hidden md:block">
+      <p-table
+        [value]="dataSignal()"
+        [globalFilterFields]="globalFilterFields()"
+        #dt
+        groupRowsBy="sistema"
+        rowGroupMode="subheader"
+        sortMode="single"
+        styleClass="custom-table-report"
+        [loading]="loading()"
+      >
+        <ng-template #caption>
+          <div class="grid mt-1 no-print">
+            <!-- Custom Filter Buttons & Export (Left/Center) -->
+            <div class="col-12 md:col-8 flex align-items-center flex-wrap">
+              <custom-button-download
+                ngbTooltip="Exportar a Excel"
+                tooltipPosition="right"
+                iconClass="pi pi-file-excel"
+                severity="success"
+                (clicked)="exportExcel()"
+              />
+
+              @for (filtro of filtroEquipos; track trackByFiltro($index,
+              filtro)) {
+              <custom-button-item
+                [iconClass]="getFiltroIconClass(filtro.emoji)"
+                [tooltip]="'Ver ' + filtro.nombre"
+                tooltipPosition="right"
+                variant="outlined"
+                severity="info"
+                [customClass]="
+                filtroEquiposValue === filtro.nombre ? 'text-warning' : ''
+              "
+                (clicked)="clickButton(filtro)"
+              />
+              }
+            </div>
+
+            <!-- Primeng Custom Caption (Right) for Search -->
+            <div class="col-12 md:col-4">
+              <primeng-custom-caption
+                [dt]="dt"
+                [showAdd]="false"
+                [showSearch]="true"
+              />
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template #header>
+          <tr>
+            <th class="table-col-40" pSortableColumn="nameMachinery">
+              DESCRIPCIóN
+              <p-sortIcon field="nameMachinery" />
+            </th>
+            @for (mes of meses; track mes) {
+            <th class="table-col-5">{{ mes }}</th>
+            }
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="groupheader" let-customer>
+          <tr pRowGroupHeader>
+            <td [attr.colspan]="meses.length + 1">
+              <span class="font-size-16">
+                <strong>{{ customer.sistema }}</strong>
+              </span>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template #body let-customer let-rowIndex="rowIndex">
+          <tr>
+            <td>
+              <p class="text-start mb-0">{{ customer.nameMachinery }}</p>
+            </td>
+            @for (mes of meses; track trackByItem($index, mes)) {
+            <td class="text-center">
+              @if (hasService(customer, mes)) {
+              <div>
+                <span
+                  (click)="onModalForm(getServiceIdForMonth(customer, mes))"
+                  class="pi pi-check-square text-primary text-xl cursor-pointer"
+                ></span>
+              </div>
+              }
+            </td>
+            }
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <!-- 📱 INICIO: Componente adaptado para versión móvil -->
+    <div class="block md:hidden">
+      <!-- Category Filters (Chips) -->
+      <div class="flex overflow-x-auto pb-2 mb-2 px-1">
+        @for (filtro of filtroEquipos; track filtro.id) {
+        <ion-chip
+          [color]="filtroEquiposValue === filtro.nombre ? 'primary' : 'medium'"
+          [outline]="filtroEquiposValue !== filtro.nombre"
+          (click)="clickButton(filtro)"
+        >
+          <i [class]="getFiltroIconClass(filtro.emoji) + ' mr-1'"></i>
+          <ion-label>{{ filtro.nombre | titlecase }}</ion-label>
+        </ion-chip>
+        }
+      </div>
+
+      <!-- Month Selector -->
+      <ion-segment
+        scrollable="true"
+        [value]="selectedMobileMonth()"
+        (ionChange)="onMobileMonthChange($event)"
+        class="mb-3"
+      >
+        @for (mes of meses; track mes; let i = $index) {
+        <ion-segment-button [value]="i + 1">
+          <ion-label>{{ mes }}</ion-label>
+        </ion-segment-button>
+        }
+      </ion-segment>
+
+      <!-- Results List -->
+      <ion-list lines="none">
+        @for (group of mobileData(); track group.system) {
+        <ion-list-header mode="ios">
+          <ion-label class="font-bold text-lg text-primary"
+            >{{ group.system }}</ion-label
+          >
+        </ion-list-header>
+
+        @for (item of group.items; track item.id) {
+        <ion-item
+          lines="full"
+          class="mb-1"
+          button
+          detail="false"
+          (click)="onModalForm(item.serviceId)"
+        >
+          <!-- Icon based on system type could be cool here, but we don't have mapping easily available. Using generic check. -->
+          <ion-icon
+            name="checkbox-outline"
+            slot="start"
+            color="success"
+            class="text-xl"
+          ></ion-icon>
+          <ion-label class="ion-text-wrap">
+            <h3 class="text-base font-semibold">{{ item.nameMachinery }}</h3>
+            <p class="text-xs text-color-secondary">Mantenimiento Preventivo</p>
+          </ion-label>
+          <ion-icon name="create-outline" slot="end" color="medium"></ion-icon>
+        </ion-item>
+        } } @empty {
+        <div
+          class="flex flex-column align-items-center justify-content-center p-5 text-center opacity-60"
+        >
+          <i
+            class="pi pi-calendar-times text-6xl mb-3 text-color-secondary"
+          ></i>
+          <h3 class="text-lg m-0 text-color-secondary">Sin Actividades</h3>
+          <p class="text-sm m-0">
+            No hay mantenimiento programado para este mes en la categoróa
+            seleccionada.
+          </p>
+        </div>
+        }
+      </ion-list>
+    </div>
+  </ng-container>
+</ng-container>

@@ -1,0 +1,89 @@
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import {
+  IonItem,
+  IonLabel,
+  IonList,
+  IonListHeader,
+} from "@ionic/angular/standalone";
+import { addIcons } from "ionicons";
+import { documentTextOutline, folderOpenOutline } from "ionicons/icons";
+import { TableModule } from "primeng/table";
+import { PdfViewerModal } from "src/app/core/components/pdf-viewer-modal/pdf-viewer-modal";
+import { getIconForFileHelper } from "src/app/core/helpers/extension-file";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
+} from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+@Component({
+  selector: "app-informes-financieros-consejo-directivo",
+  imports: [TableModule, IonList, IonListHeader, IonItem, IonLabel],
+  templateUrl: "./informes-financieros-consejo-directivo.html",
+})
+export class InformesFinancierosConsejoDirectivo implements OnInit {
+  constructor() {
+    addIcons({ documentTextOutline, folderOpenOutline });
+  }
+  // Inyectamos los servicios necesarios
+  apiResponseS = inject(ApiResponseService);
+  customerIdS = inject(CustomerIdService); // Necesario para obtener el ID del cliente
+  private dialogHandlerS = inject(DialogHandlerService);
+  // Declaración de signals para manejar el estado, igual que en Bancos
+  dataSignal = signal<any[]>([]);
+  loading = signal(true);
+
+  // Opciones de la tabla PrimeNG, replicando la estructura de Bancos
+  tablePrimeNgRows: number = tablePrimeNgRows();
+  rowsPerPageOptions: number[] = rowsPerPageOptions();
+
+  getIconForFile = getIconForFileHelper;
+  // Computed signal para los campos de búsqueda global, se actualiza automáticamente
+  globalFilterFields = computed(() => {
+    const data = this.dataSignal();
+    // Solo calcula los campos si hay datos, para evitar errores
+    if (!data || data.length === 0) return [];
+    return globalFilterFields(data);
+  });
+
+  ngOnInit(): void {
+    this.onLoadData();
+  }
+
+  onLoadData() {
+    this.loading.set(true);
+    const customerId: string = this.customerIdS.customerId(); // Obtenemos el customerId del servicio
+
+    // Validamos que tengamos un customerId antes de llamar a la API
+    if (!customerId) {
+      console.error("Customer ID no encontrado.");
+      this.loading.set(false);
+      return;
+    }
+
+    // Construimos la URL del endpoint que creamos en el backend
+    const urlApi = `BoardDirectors/financial-reports/${customerId}`;
+
+    this.apiResponseS
+      .onGetList(urlApi)
+      .then((result: any) => {
+        // Asignamos el resultado al signal, lo que refrescará la vista
+        this.dataSignal.set(result);
+      })
+      .finally(() => {
+        // Nos aseguramos de detener el indicador de carga, incluso si hay un error
+        this.loading.set(false);
+      });
+  }
+  viewPdf(url: string, fileName: string): void {
+    this.dialogHandlerS.openDialog(
+      PdfViewerModal,
+      { pdfSrc: url, fileName: fileName },
+      fileName,
+      this.dialogHandlerS.sizeFull,
+      true, // ← autoMaximize = true
+    );
+  }
+}

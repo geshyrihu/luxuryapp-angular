@@ -1,0 +1,132 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="filteredDataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      [title]="'Productos'"
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="nombreProducto">
+        Imagen
+        <p-sortIcon field="nombreProducto" />
+      </th>
+      <th pSortableColumn="nombreProducto">
+        Nombre
+        <p-sortIcon field="nombreProducto" />
+      </th>
+      <th pSortableColumn="category">
+        Categoria
+        <p-sortIcon field="category" />
+      </th>
+      <th pSortableColumn="marca">
+        Marca
+        <p-sortIcon field="marca" />
+      </th>
+      <th pSortableColumn="modelo">
+        Modelo
+        <p-sortIcon field="modelo" />
+      </th>
+      @if ( aspRoleS.hasAny([ AspRole.Asistente, AspRole.JefeMantenimiento,
+      AspRole.SuperUsuario, AspRole.Administrador, ]) ) {
+      <th class="table-col-5"></th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td class="text-center">
+        <img
+          [src]="item.urlImagen"
+          alt="."
+          width="80px"
+          height="70px"
+          class="img-fluid img-thumbnail"
+        />
+      </td>
+      <td>
+        <small> {{ item.nombreProducto }} </small>
+      </td>
+      <td>
+        <small>{{ item.category }}</small>
+      </td>
+      <td>
+        <small>{{ item.marca }}</small>
+      </td>
+      <td>
+        <small>{{ item.modelo }}</small>
+      </td>
+      <td class="no-print">
+        <div class="flex">
+          @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento,
+          AspRole.SuperUsuario, AspRole.Administrador, ]) || item.userid ===
+          account_id ) {
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          }
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="filteredDataSignal()" />
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="filteredDataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <!-- <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <ion-avatar slot="start">
+        <img [src]="item.urlImagen" alt="Product Image" />
+      </ion-avatar>
+      <ion-label>
+        <h2 class="font-normal m-0">{{ item.nombreProducto }}</h2>
+        <p class="text-medium text-500 m-0">
+          {{ item.category }} | {{ item.marca }}
+        </p>
+      </ion-label>
+
+      <app-action-menu slot="end">
+        <ng-container actions>
+          @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento,
+          AspRole.SuperUsuario, AspRole.Administrador, ]) || item.userid ===
+          account_id ) {
+          <ion-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          }
+          <ion-button-delete (confirmed)="onDelete(item.id)" />
+        </ng-container>
+      </app-action-menu>
+    </ion-item>
+  </ng-template> -->
+</app-data-view-mobile>
+
+
+
+
+
+
+

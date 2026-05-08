@@ -1,0 +1,86 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column">
+  <custom-input-select-signal
+    [control]="form.controls.propertyId"
+    [data]="propertiesOptions()"
+    label="Propiedad"
+    placeholder="Seleccione Propiedad"
+    [filter]="true"
+    required
+  />
+
+  <custom-input-select-signal
+    [control]="form.controls.chargeTemplateId"
+    [data]="templatesOptions()"
+    label="Plantilla Base (Opcional)"
+    placeholder="Vincular a una Plantilla Configurada"
+    [filter]="true"
+    [showClear]="true"
+  />
+
+  <custom-input-select-signal
+    [control]="form.controls.type"
+    [data]="typeOptions"
+    label="Tipo de Cargo"
+    [filter]="true"
+    required
+  />
+
+  <custom-input-select-signal
+    [control]="form.controls.status"
+    [data]="statusOptions"
+    label="Estado"
+    [filter]="true"
+    required
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.concept"
+    label="Concepto"
+    placeholder="Ingrese el concepto"
+    required
+  />
+
+  <custom-input-currency-signal
+    [control]="form.controls.amount"
+    label="Monto a Cobrar"
+    required
+  />
+
+  <custom-input-date-signal
+    [control]="form.controls.dueDate"
+    label="Fecha de Vencimiento"
+    required
+  />
+
+  <custom-input-date-signal
+    [control]="form.controls.periodStart"
+    label="Inicio de Periodo (Opcional)"
+  />
+
+  <custom-input-date-signal
+    [control]="form.controls.periodEnd"
+    label="Fin de Periodo (Opcional)"
+  />
+
+  <div class="flex flex-wrap border-top-1 surface-border pt-3 mt-2"></div>
+  <custom-input-currency-signal
+    [control]="form.controls.discountAvailable"
+    label="Descuento Disponible (Opcional)"
+  />
+
+  <custom-input-date-signal
+    [control]="form.controls.discountDeadline"
+    label="Límite de Descuento (Opcional)"
+  />
+
+  <div class="mt-2">
+    <custom-input-check-signal
+      [control]="form.controls.generatedAutomatically"
+      label="Generado automáticamente (por Job)"
+    />
+  </div>
+
+  <div class="flex justify-content-end mt-4">
+    <custom-button-save [disabled]="formInvalid() || submitting()" [submitting]="submitting()" />
+  </div>
+</form>

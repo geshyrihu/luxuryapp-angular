@@ -1,0 +1,174 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1 class="page-title">Reporte de Incidencias Disciplinarias</h1>
+    <p class="page-subtitle">
+      Estadísticas y bandeja de trabajo del módulo disciplinario
+    </p>
+  </div>
+
+  <!-- Filtros -->
+  <div class="card mb-4">
+    <div class="grid align-items-end">
+      <div class="col-12 md:col-3">
+        <custom-input-date-signal
+          label="Desde"
+          [control]="form.controls.from"
+          [horizontal]="false"
+        />
+      </div>
+      <div class="col-12 md:col-3">
+        <custom-input-date-signal
+          label="Hasta"
+          [control]="form.controls.to"
+          [horizontal]="false"
+        />
+      </div>
+      <div class="col-12 md:col-2">
+        <custom-input-select-signal
+          label="Categoría"
+          [control]="form.controls.category"
+          [data]="cb_category"
+          [horizontal]="false"
+        />
+      </div>
+      <div class="col-12 md:col-2">
+        <custom-input-select-signal
+          label="Severidad"
+          [control]="form.controls.severity"
+          [data]="cb_severity"
+          [horizontal]="false"
+        />
+      </div>
+      <div class="col-12 flex gap-2">
+        <custom-button
+          label="Consultar"
+          iconClass="pi pi-search"
+          (clicked)="onLoadStats()"
+          size="small"
+        />
+        <custom-button
+          label="Excel"
+          iconClass="pi pi-file-excel"
+          severity="success"
+          variant="outlined"
+          (clicked)="onExport()"
+          size="small"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Tarjetas de resumen -->
+  @if (stats()) {
+  <div class="grid mb-4">
+    <div class="col-12 sm:col-6 md:col-4 lg:col-2">
+      <div class="card text-center">
+        <p class="text-color-secondary text-sm">Total</p>
+        <h2 class="page-title">{{ stats()!.total }}</h2>
+      </div>
+    </div>
+    <div class="col-12 sm:col-6 md:col-4 lg:col-2">
+      <div class="card text-center">
+        <p class="text-color-secondary text-sm">Pendientes</p>
+        <h2 class="page-title text-warning">{{ stats()!.pending }}</h2>
+      </div>
+    </div>
+    <div class="col-12 sm:col-6 md:col-4 lg:col-2">
+      <div class="card text-center">
+        <p class="text-color-secondary text-sm">En Investigación</p>
+        <h2 class="page-title text-info">{{ stats()!.inInvestigation }}</h2>
+      </div>
+    </div>
+    <div class="col-12 sm:col-6 md:col-4 lg:col-2">
+      <div class="card text-center">
+        <p class="text-color-secondary text-sm">Con Sanción</p>
+        <h2 class="page-title text-danger">{{ stats()!.withSanction }}</h2>
+      </div>
+    </div>
+    <div class="col-12 sm:col-6 md:col-4 lg:col-2">
+      <div class="card text-center">
+        <p class="text-color-secondary text-sm">Sin Sanción</p>
+        <h2 class="page-title text-success">{{ stats()!.withoutSanction }}</h2>
+      </div>
+    </div>
+    <div class="col-12 sm:col-6 md:col-4 lg:col-2">
+      <div class="card text-center">
+        <p class="text-color-secondary text-sm">Archivados</p>
+        <h2 class="page-title">{{ stats()!.archived }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- Por Categoría y Severidad -->
+  <div class="grid mb-4">
+    <div class="col-12 md:col-6">
+      <div class="card">
+        <h3 class="font-bold mb-3">Por Categoría</h3>
+        @for (g of stats()!.byCategory; track g.key) {
+        <div class="flex justify-content-between align-items-center py-1 border-bottom-1 surface-border">
+          <span>{{ g.key }}</span>
+          <span class="badge badge-primary">{{ g.count }}</span>
+        </div>
+        }
+      </div>
+    </div>
+    <div class="col-12 md:col-6">
+      <div class="card">
+        <h3 class="font-bold mb-3">Por Severidad</h3>
+        @for (g of stats()!.bySeverity; track g.key) {
+        <div class="flex justify-content-between align-items-center py-1 border-bottom-1 surface-border">
+          <span>{{ g.key }}</span>
+          <span [class]="'badge ' + getSeverityBadge(g.key)"
+            >{{ g.count }}</span
+          >
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  }
+
+  <!-- Bandeja de pendientes -->
+  @if (pending().length > 0) {
+  <div class="card">
+    <h3 class="font-bold mb-3">
+      Bandeja de Trabajo — Pendientes de Investigación
+    </h3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Empleado</th>
+          <th>Tipo</th>
+          <th>Severidad</th>
+          <th>Estatus</th>
+          <th class="text-right">Horas sin atender</th>
+          <th class="text-center">Alerta</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of pending(); track item.id) {
+        <tr [class.bg-red-50]="item.requiresAlert">
+          <td>{{ item.employeeName }}</td>
+          <td>{{ item.incidentTypeName }}</td>
+          <td>
+            <span [class]="'badge ' + getSeverityBadge(item.severityLevel)"
+              >{{ item.severityLevel }}</span
+            >
+          </td>
+          <td>{{ item.investigationStatus }}</td>
+          <td class="text-right">{{ item.hoursWithoutAttention }}h</td>
+          <td class="text-center">
+            @if (item.requiresAlert) {
+            <i
+              class="pi pi-exclamation-triangle text-danger"
+              title="Requiere atención urgente"
+            ></i>
+            }
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  }
+</div>

@@ -1,0 +1,40 @@
+<custom-button
+  label="Cargar Documentos"
+  (clicked)="onModalFormUploadDoc(machineryId)"
+  severity="info"
+  customClass="mr-1"
+/>
+<hr />
+@if (dataSignal()) {
+<div>
+  <div class="grid">
+    @for (item of dataSignal(); track item) {
+    <div class="col-12 sm:col-6 md:col-4 lg:col-3">
+      <div
+        class="card-body p-1 text-center border-1 surface-border border-round"
+      >
+        <a
+          [href]="url + item.document"
+          class="p-1 block no-underline text-color"
+        >
+          <i class="icon icon-pi-file-pdf text-danger icon-2x"></i>
+          <br />
+          <span
+            class="white-space-nowrap overflow-hidden text-overflow-ellipsis block"
+          >
+            {{ item.document }}
+          </span>
+        </a>
+        <div class="mt-2">
+          <custom-button-confirm
+            icon="trash"
+            ngbTooltip="Eliminar"
+            (confirmed)="onDelete(item.id)"
+          />
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+}

@@ -1,0 +1,157 @@
+@if (dataSignal()) {
+<!-- 🖥️ Pantallas medianas y grandes -->
+<div class="hidden md:block">
+  <div class="card">
+    <p-table
+      [globalFilterFields]="globalFilterFields()"
+      [paginator]="true"
+      [rows]="tablePrimeNgRows"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [showCurrentPageReport]="true"
+      [value]="dataSignal()"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight"
+      #dt
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      styleClass="custom-table"
+    >
+      <ng-template #caption>
+        <primeng-custom-caption
+          (add)="onModalForm({ id: '', title: 'AGREGAR TICKET LEGAL' })"
+          [dt]="dt"
+        />
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th class="table-col-10 font-size-12">FOLIO</th>
+          <th class="table-col-10 font-size-12">FECHA SOLICITUD</th>
+          <th class="table-col-10 font-size-12">SOLICITA</th>
+          <th class="table-col-10 font-size-12">ASUNTO</th>
+          <th class="table-col-10 font-size-12">DESCRIPCIÓN</th>
+          <th class="table-col-10 font-size-12">ESTATUS</th>
+          <th class="table-col-10 font-size-12">FECHA DE CONCLUSIÓN</th>
+          <th class="table-col-10 font-size-12">DÍAS</th>
+          <th class="table-col-10 font-size-12">SEGUIMIENTO</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>{{ item.folio }}</td>
+          <td>{{ item.requestDate }}</td>
+          <td>{{ item.creator }}</td>
+          <td>{{ item.title }}</td>
+          <td class="text-center">
+            @if (item.description && item.description.length > 0) {
+            <i
+              (click)="onModalViewDetail({ id: item.id })"
+              class="pi pi-book icon-xl cursor-pointer"
+              pTooltip="Ver detalles"
+            ></i>
+            }
+          </td>
+          <td class="text-center">
+            <p-tag
+              styleClass="p-2 cursor-pointer"
+              pTooltip="Actualizar estatus"
+              (click)="onModalUpdateStatus({ id: item.id })"
+              [severity]="
+                item.status === 0 ? 'danger' :
+                item.status === 1 ? 'info' :
+                item.status === 2 ? 'success' :
+                item.status === 4 ? 'secondary' : 'warn'
+              "
+              [value]="
+                item.status === 0 ? 'PENDIENTE' :
+                item.status === 1 ? 'EN PROCESO' :
+                item.status === 2 ? 'CONCLUIDO' :
+                item.status === 4 ? 'CANCELADO' : 'OTRO'
+              "
+            />
+          </td>
+          <td>{{ item.completionDate }}</td>
+          <td class="text-center">{{ item.diferenciaDias }}</td>
+          <td class="text-center">
+            <custom-button-tracking
+              [ticketId]="item.id"
+              [badgeCount]="item.tracking"
+              (clickTracking)="onModalSeguimientoCliente({ ticketId: item.id, title: 'Seguimiento' })"
+            />
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #paginatorleft>
+        <primeng-custom-table-footer [data]="dataSignal()" />
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- 📱 Versión móvil -->
+<div class="block md:hidden">
+  <div class="card">
+    <app-data-view-mobile
+      [data]="dataSignal()"
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+      [globalFilterFields]="globalFilterFields()"
+    >
+      <ng-template #listItemTemplate let-item>
+        <ion-item lines="full" class="ion-no-padding" detail="false">
+          <ion-label>
+            <div class="flex justify-content-between align-items-start mb-2">
+              <div class="flex flex-column">
+                <h6 class="mb-0 text-wrap">{{ item.title }}</h6>
+                <small class="text-color-secondary">
+                  Folio: {{ item.folio }} | {{ item.requestDate }}
+                </small>
+              </div>
+            </div>
+            <p class="text-color-secondary m-0 text-wrap">
+              Solicita: {{ item.creator }}
+            </p>
+            <div class="flex justify-content-between align-items-center mt-2">
+              <p-tag
+                (click)="onModalUpdateStatus({ id: item.id })"
+                styleClass="p-2 cursor-pointer"
+                [severity]="
+                  item.status === 0 ? 'danger' :
+                  item.status === 1 ? 'info' :
+                  item.status === 2 ? 'success' :
+                  item.status === 4 ? 'secondary' : 'warn'
+                "
+                [value]="
+                  item.status === 0 ? 'PENDIENTE' :
+                  item.status === 1 ? 'EN PROCESO' :
+                  item.status === 2 ? 'CONCLUIDO' :
+                  item.status === 4 ? 'CANCELADO' : 'OTRO'
+                "
+              />
+              <div class="text-right">
+                <p class="m-0">Conclusión: {{ item.completionDate ?? "Pendiente" }}</p>
+                <p class="m-0 font-bold">Días: {{ item.diferenciaDias }}</p>
+              </div>
+            </div>
+          </ion-label>
+
+          <app-action-menu slot="end">
+            <ng-container actions>
+              <ion-button-item
+                iconName="book-outline"
+                label="Ver detalles"
+                (clicked)="onModalViewDetail({ id: item.id })"
+                [disabled]="!item.description || item.description.length === 0"
+              />
+              <ion-button-item
+                iconName="ellipsis-horizontal-outline"
+                label="Seguimiento"
+                (clicked)="onModalSeguimientoCliente({ ticketId: item.id, title: 'Seguimiento' })"
+              >
+                <p-badge [value]="item.tracking" severity="danger" />
+              </ion-button-item>
+            </ng-container>
+          </app-action-menu>
+        </ion-item>
+      </ng-template>
+    </app-data-view-mobile>
+  </div>
+</div>
+}

@@ -1,0 +1,46 @@
+<div class="card">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <custom-input-img-signal
+      (propagar)="form.controls.imagen.setValue($event)"
+      [control]="form.controls.urlImagen"
+    />
+
+    <custom-input-text-signal
+      [control]="form.controls.nombreProducto"
+      label="Nombre del Producto"
+      placeholder="nombre producto"
+    />
+
+    <custom-input-autocomplete-signal
+      (propagar)="savecategoryId($event)"
+      [control]="form.controls.category"
+      [data]="cb_category()"
+      label="Categoria"
+      placeholder="Escribe para buscar categoria"
+    />
+
+    <custom-input-select-signal
+      [control]="form.controls.clasificacion"
+      [data]="cb_clasificacion()"
+      label="Clasificación"
+      dataListId="clasificacion"
+    />
+
+    <custom-input-text-signal
+      [control]="form.controls.marca"
+      label="Marca"
+      placeholder="marca"
+    />
+    <custom-input-text-signal
+      [control]="form.controls.modelo"
+      label="Modelo"
+      placeholder="modelo"
+    />
+
+    <custom-button-save
+      [propertyId]="id()"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+    />
+  </form>
+</div>

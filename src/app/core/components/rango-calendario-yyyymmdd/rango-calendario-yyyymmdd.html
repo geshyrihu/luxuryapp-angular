@@ -1,0 +1,39 @@
+<div class="grid gap-4">
+  <div class="col-12 sm:col-6">
+    @if (mostrartextDesde()) {
+    <label>Desde</label>
+    }
+    <input
+      pInputText
+      type="text"
+      monthSelectorType="dropdown"
+      mwlFlatpickr
+      [altInput]="true"
+      [convertModelValue]="true"
+      [(ngModel)]="fechaInicioDate"
+      (change)="onSendDateRange($event.target['defaultValue'], fechaFinalDate)"
+    />
+  </div>
+  <div class="col-12 sm:col-6">
+    @if (mostrartextHasta()) {
+    <label>Hasta</label>
+    }
+    <input
+      pInputText
+      type="text"
+      monthSelectorType="dropdown"
+      mwlFlatpickr
+      [altInput]="true"
+      [convertModelValue]="true"
+      [(ngModel)]="fechaFinalDate"
+      (change)="onSendDateRange(fechaInicioDate, $event.target['defaultValue'])"
+    />
+  </div>
+</div>
+
+
+
+
+
+
+

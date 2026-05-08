@@ -1,0 +1,114 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <!-- ID oculto -->
+      <div class="hidden">
+        <custom-input-text-signal
+          [hidden]="true"
+          [control]="form.controls.id"
+          label="Id"
+        />
+      </div>
+
+      <!-- PRIMERA FILA -->
+      <div class="grid">
+        <div class="col-12 md:col-6">
+          <custom-input-autocomplete-signal
+            (propagar)="saveMachineryId($event)"
+            [control]="form.controls.machineryName"
+            [data]="cb_machinery()"
+            label="Equipo o Instalación"
+            placeholder="Escribe para equipo o instalación"
+          />
+        </div>
+
+        <div class="col-6 md:col-3">
+          <custom-input-select-signal
+            [control]="form.controls.recurrence"
+            label="Recurrencia"
+            [data]="cb_recurrencia()"
+          />
+        </div>
+
+        <div class="col-6 md:col-3">
+          <custom-input-select-signal
+            [control]="form.controls.month"
+            label="Mes"
+            [data]="cb_month()"
+          />
+        </div>
+      </div>
+
+      <!-- SEGUNDA FILA -->
+      <div class="grid">
+        <div class="col-12 md:col-6">
+          <custom-input-select-signal
+            [control]="form.controls.typeMaintance"
+            label="Tipo de Mantenimiento"
+            [data]="cb_TypeMaintance()"
+          />
+        </div>
+
+        <div class="col-12 md:col-6">
+          <custom-input-number-signal
+            [control]="form.controls.price"
+            label="Precio"
+          />
+        </div>
+      </div>
+
+      <!-- TERCERA FILA -->
+      <div class="grid">
+        <div class="col-12 md:col-6">
+          <custom-input-autocomplete-signal
+            (propagar)="saveProviderId($event)"
+            [control]="form.controls.providerName"
+            [data]="cb_providers()"
+            label="Proveedor"
+            placeholder="Escribe para buscar proveedor"
+          />
+        </div>
+
+        <div class="col-12 md:col-6">
+          <custom-input-autocomplete-signal
+            (propagar)="saveAccountingCatalog($event)"
+            [control]="form.controls.accountingCatalogName"
+            [data]="cb_accountingCatalogs()"
+            label="Cuenta Afectada"
+            placeholder="Escribe para buscar cuenta contable"
+          />
+        </div>
+      </div>
+
+      <!-- CUARTA FILA -->
+      <div class="grid">
+        <div class="col-12 md:col-6">
+          <custom-input-textarea-signal
+            [control]="form.controls.activity"
+            label="Actividad"
+            placeholder="Actividad"
+            rows="10"
+          />
+        </div>
+
+        <div class="col-12 md:col-6">
+          <custom-input-textarea-signal
+            [control]="form.controls.observation"
+            label="Observaciones"
+            placeholder="Observaciones"
+            rows="10"
+          />
+        </div>
+      </div>
+
+      <!-- BOTÓN -->
+      <div class="flex justify-content-end mt-4">
+        <custom-button-save
+          [propertyId]="id"
+          [disabled]="form.invalid"
+          [submitting]="submitting()"
+        />
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,204 @@
+@if (category == 1 || category == 6 || category == 5) {
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <div class="grid">
+        <!-- Primera columna -->
+        <div class="col-12 md:col-3">
+          <custom-input-select-signal
+            [control]="form.controls.inventoryCategory"
+            label="Categoróa"
+            [data]="cb_inventoryCategory"
+            [horizontal]="false"
+          />
+          <custom-input-text-signal
+            [control]="form.controls.nameMachinery"
+            label="Nombre"
+            placeholder="Nombre"
+            [horizontal]="false"
+          />
+          <custom-input-text-signal
+            [control]="form.controls.brand"
+            label="Marca"
+            placeholder="Marca"
+            [horizontal]="false"
+          />
+        </div>
+
+        <!-- Segunda columna -->
+        <div class="col-12 md:col-3">
+          <custom-input-text-signal
+            [control]="form.controls.model"
+            label="Modelo"
+            placeholder="Modelo"
+            [horizontal]="false"
+          />
+          <custom-input-text-signal
+            [control]="form.controls.serie"
+            label="Serie"
+            placeholder="Serie"
+            [horizontal]="false"
+          />
+          <custom-input-text-signal
+            [control]="form.controls.ubication"
+            label="Ubicación"
+            placeholder="Ubicación"
+            [horizontal]="false"
+          />
+        </div>
+
+        <!-- Tercera columna -->
+        <div class="col-12 md:col-3">
+          <custom-input-date-signal
+            [control]="form.controls.dateOfPurchase"
+            label="Compra o instalación"
+            placeholder="Compra o instalación"
+            [horizontal]="false"
+          />
+          <custom-input-select-signal
+            [control]="form.controls.state"
+            label="Estado"
+            [data]="optionActive"
+            [horizontal]="false"
+          />
+          <custom-input-select-signal
+            [control]="form.controls.equipoClasificacionId"
+            label="Clasificación"
+            [data]="cb_equipoClasificacion"
+            [horizontal]="false"
+          />
+        </div>
+
+        <!-- Imagen -->
+        <div class="col-12 md:col-3">
+          <label>Imagen</label>
+          <custom-input-img-signal
+            (fileSelected)="uploadFile($event)"
+            [urlImgCurrent]="form.value?.photoPath"
+            [contentHeight]="'180px'"
+            [contentWidth]="'100%'"
+          />
+        </div>
+
+        <!-- Textareas -->
+        <div class="col-12 md:col-6">
+          <custom-input-textarea-signal
+            [control]="form.controls.technicalSpecifications"
+            label="Especificaciones Tócnicas"
+            placeholder="Especificaciones Tócnicas"
+            [horizontal]="false"
+            rows="10"
+          />
+        </div>
+
+        <div class="col-12 md:col-6">
+          <custom-input-textarea-signal
+            [control]="form.controls.observations"
+            label="Observaciones"
+            placeholder="Observaciones"
+            [horizontal]="false"
+            rows="10"
+          />
+        </div>
+      </div>
+
+      <div class="flex justify-content-end mt-4">
+        <custom-button-save [disabled]="form.invalid || submitting" />
+      </div>
+    </form>
+  </div>
+</div>
+} @if (category == 2 || category == 3 || category == 4 || category == 8 ||
+category == 7) {
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <div class="grid">
+        <!-- Columna 1 -->
+        <div class="col-12 md:col-3">
+          <custom-input-select-signal
+            [control]="form.controls.inventoryCategory"
+            label="Categoróa"
+            [data]="cb_inventoryCategory"
+            [horizontal]="false"
+          />
+          <custom-input-text-signal
+            [control]="form.controls.nameMachinery"
+            label="Nombre"
+            placeholder="Nombre"
+            [horizontal]="false"
+          />
+        </div>
+
+        <!-- Columna 2 -->
+        <div class="col-12 md:col-3">
+          <custom-input-text-signal
+            [control]="form.controls.ubication"
+            label="Ubicación"
+            placeholder="Ubicación"
+            [horizontal]="false"
+          />
+          <custom-input-date-signal
+            [control]="form.controls.dateOfPurchase"
+            label="Compra o instalación"
+            placeholder="Compra o instalación"
+            [horizontal]="false"
+          />
+        </div>
+
+        <!-- Columna 3 -->
+        <div class="col-12 md:col-3">
+          <custom-input-select-signal
+            [control]="form.controls.state"
+            label="Estado"
+            [data]="optionActive"
+            [horizontal]="false"
+          />
+          <custom-input-select-signal
+            [control]="form.controls.equipoClasificacionId"
+            label="Clasificación"
+            [data]="cb_equipoClasificacion"
+            [horizontal]="false"
+          />
+        </div>
+
+        <!-- Imagen -->
+        <div class="col-12 md:col-3">
+          <label>Imagen</label>
+          <custom-input-img-signal
+            (fileSelected)="uploadFile($event)"
+            [urlImgCurrent]="form.value?.photoPath"
+            [contentHeight]="'180px'"
+            [contentWidth]="'100%'"
+          />
+        </div>
+
+        <!-- Textareas -->
+        <div class="col-12 md:col-6">
+          <custom-input-textarea-signal
+            [control]="form.controls.technicalSpecifications"
+            label="Especificaciones Tócnicas"
+            placeholder="Especificaciones Tócnicas"
+            [horizontal]="false"
+            rows="10"
+          />
+        </div>
+
+        <div class="col-12 md:col-6">
+          <custom-input-textarea-signal
+            [control]="form.controls.observations"
+            label="Observaciones"
+            placeholder="Observaciones"
+            [horizontal]="false"
+            rows="10"
+          />
+        </div>
+      </div>
+
+      <div class="flex justify-content-end mt-4">
+        <custom-button-save [disabled]="form.invalid || submitting" />
+      </div>
+    </form>
+  </div>
+</div>
+}

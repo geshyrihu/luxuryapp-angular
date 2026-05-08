@@ -1,0 +1,46 @@
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <custom-input-text-signal
+    [control]="form.controls.id"
+    label="Id"
+    [readonly]="true"
+  />
+
+  <custom-input-select-signal
+    [control]="form.controls.roleType"
+    label="Tipo de Rol"
+    [data]="cb_roleType()"
+  />
+
+  <custom-input-select-signal
+    [control]="form.controls.departament"
+    label="Departamento"
+    [data]="cb_departament()"
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.name"
+    label="Nombre Interno (System Name)"
+    placeholder="ej. SuperUsuario"
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.displayName"
+    label="Nombre para Mostrar"
+    placeholder="ej. Súper Usuario"
+  />
+
+  <custom-input-number-signal
+    [control]="form.controls.sortOrder"
+    label="Orden de Visualización"
+    placeholder="0"
+  />
+
+  <custom-input-check-signal
+    [control]="form.controls.isActive"
+    label="Rol Activo"
+  />
+
+  <div class="text-right mt-3">
+    <custom-button-save [disabled]="form.invalid" [loading]="submitting()" />
+  </div>
+</form>

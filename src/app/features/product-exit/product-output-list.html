@@ -1,0 +1,195 @@
+@if (dataSignal()) {
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="card">
+  <p-table
+    [value]="dataSignal()"
+    [lazy]="true"
+    (onLazyLoad)="loadDataLazy($event)"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [totalRecords]="totalRecords()"
+    [loading]="loading()"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [showCurrentPageReport]="true"
+    #dt
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    styleClass="custom-table"
+    [globalFilterFields]="globalFilterFields()"
+  >
+    <ng-template #caption>
+      <div
+        class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
+      >
+        <div class="flex flex-column md:flex-row md:align-items-center">
+          <!-- Selector de Mes -->
+          <div class="p-inputgroup w-full md:w-auto">
+            <p-datepicker
+              [formControl]="selectedDateControl"
+              (onSelect)="onLoadData()"
+              [showIcon]="true"
+              view="month"
+              dateFormat="mm/yy"
+              placeholder="Filtrar por Mes"
+              [style]="{ minWidth: '200px' }"
+              readonlyInput="true"
+              appendTo="body"
+            />
+            @if (selectedDateControl.value) {
+            <custom-button
+              iconClass="pi pi-times"
+              (clicked)="clearFilter()"
+              severity="danger"
+            />
+            }
+          </div>
+
+          <!-- Botón de Reporte (funcionalidad futura) -->
+          <custom-button-download
+            label="Generar Reporte"
+            [showLabelOnDesktop]="true"
+            iconClass="pi pi-file-excel"
+            severity="success"
+            (clicked)="onGenerateReport()"
+          />
+        </div>
+
+        <!-- Filtro Global -->
+        <div class="p-inputgroup w-full md:w-auto mt-3 md:mt-0">
+          <custom-input-text-signal
+            [control]="filterControl"
+            (keyup.enter)="onLoadData()"
+            placeholder="Buscar..."
+            [horizontal]="false"
+          />
+          <custom-button
+            iconClass="pi pi-search"
+            (clicked)="onLoadData()"
+            severity="primary"
+          />
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th pSortableColumn="fechaSalida">
+          Fecha Salida
+          <p-sortIcon field="fechaSalida" />
+        </th>
+        <th pSortableColumn="producto">
+          Producto
+          <p-sortIcon field="producto" />
+        </th>
+        <th pSortableColumn="cantidad">
+          Cantidad
+          <p-sortIcon field="cantidad" />
+        </th>
+        <th pSortableColumn="unidadMedida">
+          Unidad
+          <p-sortIcon field="unidadMedida" />
+        </th>
+        <th pSortableColumn="quienUso">
+          Recibio
+          <p-sortIcon field="quienUso" />
+        </th>
+        <th pSortableColumn="usoPrducto">
+          Uso
+          <p-sortIcon field="usoPrducto" />
+        </th>
+        @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
+        <th class="table-col-5"></th>
+        }
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td>{{ item.fechaSalida | date }}</td>
+        <td>{{ item.producto }}</td>
+        <td>{{ item.cantidad }}</td>
+        <td>{{ item.unidadMedida }}</td>
+        <td>{{ item.quienUso }}</td>
+        <td>{{ item.usoPrducto }}</td>
+        <!-- Opciones -->
+        <td class="no-print">
+          <div class="flex">
+            @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
+            <custom-button-edit
+              (clicked)="
+                    onEditSalida({
+                      id: item.id,
+                      idInventarioProducto: item.idInventarioProducto,
+                      idProducto: item.productoId,
+                      almacenId: item.almacenId,
+                      nombreProducto: item.producto
+                    })
+                  "
+            />
+            }
+            <custom-button-item
+              (clicked)="onReturnProduct(item)"
+              emogi="↩️"
+              label="Devolver"
+              [disabled]="item.cantidadDevuelta >= item.cantidad"
+            />
+
+            <custom-button-delete (confirmed)="onDelete(item.id)" />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #paginatorleft>
+      <primeng-custom-table-footer [data]="dataSignal()" />
+    </ng-template>
+  </p-table>
+</div>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding">
+      <ion-label>
+        <div class="flex flex-column">
+          <h6 class="mb-0">{{ item.producto }}</h6>
+          <small class="text-color-secondary">
+            {{ item.cantidad }} {{ item.unidadMedida }} - {{ item.quienUso }}
+          </small>
+          <small class="text-color-secondary">
+            Uso: {{ item.usoPrducto }} | {{ item.fechaSalida | date }}
+          </small>
+        </div>
+      </ion-label>
+
+      <div slot="end">
+        <app-action-menu>
+          <ng-container actions>
+            @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
+            <ion-button-item
+              (clicked)="
+                onEditSalida({
+                  id: item.id,
+                  idInventarioProducto: item.idInventarioProducto,
+                  idProducto: item.productoId,
+                  almacenId: item.almacenId,
+                  nombreProducto: item.producto
+                })
+              "
+              label="Editar"
+              iconName="create-outline"
+            />
+            }
+            <ion-button-item
+              (clicked)="onReturnProduct(item)"
+              label="↩️ Devolver"
+              [disabled]="item.cantidadDevuelta >= item.cantidad"
+            />
+
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+          </ng-container>
+        </app-action-menu>
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+}

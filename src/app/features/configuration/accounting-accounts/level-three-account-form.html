@@ -1,0 +1,28 @@
+<div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <custom-input-text-signal
+      [control]="form.controls.numeroCuenta"
+      label="Nómero de Cuenta"
+      placeholder="Ej: 100-001"
+    />
+    <custom-input-text-signal
+      [control]="form.controls.descripcion"
+      label="Descripción"
+      placeholder="Descripción de la cuenta"
+    />
+    <div class="text-center mt-3">
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [loading]="submitting()"
+      />
+    </div>
+  </form>
+</div>
+
+
+
+
+
+
+

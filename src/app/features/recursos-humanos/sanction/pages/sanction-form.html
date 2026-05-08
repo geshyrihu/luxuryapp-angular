@@ -1,0 +1,83 @@
+@if (isChangeStatus()) {
+<form
+  [formGroup]="changeStatusForm"
+  (ngSubmit)="onSubmit()"
+  class="flex flex-column"
+>
+  <custom-input-select-signal
+    label="Nuevo Estatus"
+    [control]="changeStatusForm.controls.sanctionStatus"
+    [data]="cb_sanctionStatus"
+  />
+  <custom-input-textarea-signal
+    label="Notas Internas"
+    [control]="changeStatusForm.controls.internalNotes"
+    [rows]="3"
+  />
+  <div class="flex justify-content-end mt-2 gap-2">
+    <custom-button label="Cancelar" (clicked)="onCancel()" />
+    <custom-button-save
+      [propertyId]="sanctionId()"
+      [disabled]="changeStatusForm.invalid"
+      [submitting]="false"
+      label="Actualizar Estatus"
+      type="submit"
+    />
+  </div>
+</form>
+} @else {
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  class="grid"
+>
+  <div class="col-12">
+    <custom-input-select-signal
+      label="Tipo de Sancion"
+      [control]="form.controls.sanctionTypeId"
+      [data]="sanctionTypes()"
+    />
+  </div>
+  <div class="col-12 md:col-6">
+    <custom-input-date-signal
+      label="Inicio de Efecto"
+      [control]="form.controls.effectiveStartDate"
+    />
+  </div>
+  <div class="col-12 md:col-6">
+    <custom-input-date-signal
+      label="Fin de Efecto"
+      [control]="form.controls.effectiveEndDate"
+    />
+  </div>
+  <div class="col-12">
+    <custom-input-switch-signal
+      label="¿Permite Apelacion?"
+      [control]="form.controls.allowAppeal"
+    />
+  </div>
+  <div class="col-12">
+    <custom-input-textarea-signal
+      label="Condiciones de Cumplimiento"
+      [control]="form.controls.conditions"
+      [rows]="3"
+    />
+  </div>
+  <div class="col-12">
+    <custom-input-textarea-signal
+      label="Notas Internas"
+      [control]="form.controls.internalNotes"
+      [rows]="3"
+    />
+  </div>
+  <div class="col-12 flex justify-content-end gap-2">
+    <custom-button label="Cancelar" (clicked)="onCancel()" />
+    <custom-button-save
+      [disabled]="form.invalid"
+      [submitting]="false"
+      label="Aplicar Sancion"
+      type="submit"
+    />
+  </div>
+</form>
+}

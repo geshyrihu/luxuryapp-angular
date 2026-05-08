@@ -1,0 +1,63 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-3">
+  <div class="grid">
+
+    <div class="col-12">
+      <p class="text-sm font-semibold text-500 mb-2">Asistencia</p>
+    </div>
+    <div class="col-6 md:col-3">
+      <custom-input-number-signal [control]="form.controls['diasTrabajados']"   label="Trabajados" />
+    </div>
+    <div class="col-6 md:col-3">
+      <custom-input-number-signal [control]="form.controls['diasAusentes']"     label="Ausentes" />
+    </div>
+    <div class="col-6 md:col-3">
+      <custom-input-number-signal [control]="form.controls['diasIncapacidad']"  label="Incapacidad" />
+    </div>
+    <div class="col-6 md:col-3">
+      <custom-input-number-signal [control]="form.controls['domingosTrabajados']" label="Domingos" />
+    </div>
+    <div class="col-6 md:col-4">
+      <custom-input-number-signal [control]="form.controls['diasVacaciones']"     label="Vacaciones" />
+    </div>
+    <div class="col-6 md:col-4">
+      <custom-input-number-signal [control]="form.controls['diasPermisoConGoce']" label="Permiso c/Goce" />
+    </div>
+    <div class="col-6 md:col-4">
+      <custom-input-number-signal [control]="form.controls['diasPermisoSinGoce']" label="Permiso s/Goce" />
+    </div>
+
+    <div class="col-12">
+      <p class="text-sm font-semibold text-500 mb-2">Percepciones Adicionales</p>
+    </div>
+    <div class="col-12 md:col-4">
+      <custom-input-decimal-signal [control]="form.controls['tiempoExtraImporte']" label="Tiempo Extra ($)" [minFractionDigits]="2" />
+    </div>
+    <div class="col-12 md:col-4">
+      <custom-input-decimal-signal [control]="form.controls['compensacion']"       label="Compensacion ($)" [minFractionDigits]="2" />
+    </div>
+    <div class="col-12 md:col-4">
+      <custom-input-decimal-signal [control]="form.controls['otrasPercepciones']"  label="Otras Percepciones ($)" [minFractionDigits]="2" />
+    </div>
+
+    <div class="col-12">
+      <p class="text-sm font-semibold text-500 mb-2">Deducciones</p>
+    </div>
+    <div class="col-12 md:col-4">
+      <custom-input-decimal-signal [control]="form.controls['cuotaImss']"       label="Cuota IMSS ($)" [minFractionDigits]="2" />
+    </div>
+    <div class="col-12 md:col-4">
+      <custom-input-decimal-signal [control]="form.controls['isr']"             label="ISR ($)" [minFractionDigits]="2" />
+    </div>
+    <div class="col-12 md:col-4">
+      <custom-input-decimal-signal [control]="form.controls['otrasDeducciones']" label="Otras Deducciones ($)" [minFractionDigits]="2" />
+    </div>
+
+    <div class="col-12">
+      <custom-input-textarea-signal [control]="form.controls['observaciones']" label="Observaciones" />
+    </div>
+
+    <div class="col-12 flex justify-content-end">
+      <custom-button-save (clicked)="onSubmit()" [submitting]="submitting()" />
+    </div>
+  </div>
+</form>

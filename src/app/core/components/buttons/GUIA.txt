@@ -1,0 +1,153 @@
+# 📘 Catálogo de Botones — Nueva Arquitectura Independizada
+
+## 🏗️ Estructura de Carpetas
+
+```
+buttons/
+├── base/           ← Clases abstractas base
+│   ├── base-button.ts          (PrimeNG - Web/Desktop)
+│   ├── base-ionic-button.ts    (Ionic - Mobile)
+│   └── index.ts
+│
+├── web/            ← Botones PrimeNG para web/tablet/desktop
+│   ├── custom-button.ts
+│   ├── custom-button-add.ts
+│   ├── custom-button-edit.ts
+│   ├── custom-button-delete.ts        (SweetAlert2)
+│   ├── custom-button-save.ts
+│   ├── custom-button-confirm.ts       (SweetAlert2)
+│   ├── custom-button-item.ts
+│   ├── custom-button-download.ts
+│   ├── custom-button-send-email.ts    (SweetAlert2)
+│   ├── custom-button-tracking.ts      (PrimeNG OverlayBadge)
+│   ├── custom-button-view-pdf.ts
+│   ├── custom-button-active-desactive.ts
+│   └── index.ts
+│
+└── mobile/         ← Botones Ionic para vistas móviles
+    ├── ion-button-add.ts              (+ modo FAB)
+    ├── ion-button-edit.ts
+    ├── ion-button-delete.ts           (IonAlert)
+    ├── ion-button-save.ts
+    ├── ion-button-confirm.ts          (IonAlert)
+    ├── ion-button-item.ts             (genérico)
+    ├── ion-button-download.ts
+    ├── ion-button-send-email.ts       (IonAlert)
+    ├── ion-button-tracking.ts         (IonBadge)
+    ├── ion-button-view-pdf.ts
+    ├── ion-button-active-desactive.ts
+    └── index.ts
+```
+
+---
+
+## 🎯 Principio de Diseño
+
+| Aspecto | Web (`custom-button-*`) | Mobile (`ion-button-*`) |
+|---------|-------------------------|--------------------------|
+| **Base** | `BaseButton` | `BaseIonicButton` |
+| **UI Library** | PrimeNG 21 | Ionic (standalone) |
+| **Confirmaciones** | SweetAlert2 | IonAlert nativo |
+| **Iconos** | PrimeIcons (`pi pi-*`) | Ionicons (`*-outline`) |
+| **Contexto de uso** | Páginas Angular, tablas, modales PrimeNG | Páginas Ionic (`<ion-page>`) |
+
+---
+
+## 🧩 API Común (Inputs/Outputs)
+
+Ambas familias comparten el mismo contrato de API:
+
+```typescript
+// Inputs comunes
+disabled = input<boolean>(false)
+label    = input<string>('')
+mostrar  = input<boolean>(true)
+color/severity = input(...)
+clicked  = output<MouseEvent>()
+
+// Inputs de confirmación (delete, confirm, send-email)
+confirmHeader  = input<string>('...')
+confirmMessage = input<string>('...')
+confirmed      = output<void>()
+```
+
+---
+
+## 🚀 Cómo Importar
+
+### En páginas Web (Angular/PrimeNG)
+```typescript
+import { CustomButtonEdit, CustomButtonDelete } from '@core/components/buttons/web';
+// o directamente:
+import { CustomButtonEdit } from '@core/components/buttons/web/custom-button-edit';
+```
+
+### En páginas Mobile (Ionic)
+```typescript
+import { IonButtonEdit, IonButtonDelete } from '@core/components/buttons/mobile';
+// o directamente:
+import { IonButtonEdit } from '@core/components/buttons/mobile/ion-button-edit';
+```
+
+---
+
+## 💡 Patrón de Uso en Templates
+
+### Estrategia A — El padre decide explícitamente (recomendada)
+```html
+<!-- En una página Ionic -->
+<ion-button-edit [label]="'Editar'" (clicked)="onEdit()" />
+
+<!-- En una página Angular Web -->
+<custom-button-edit [label]="'Editar'" (clicked)="onEdit()" />
+```
+
+### Estrategia B — Condicional por plataforma
+```html
+@if (platform.is('mobile')) {
+  <ion-button-delete [label]="'Eliminar'" (confirmed)="onDelete()" />
+} @else {
+  <custom-button-delete [label]="'Eliminar'" (confirmed)="onDelete()" />
+}
+```
+
+---
+
+## 📋 Catálogo Completo
+
+### Botones de Acción General
+| Selector Web | Selector Mobile | Acción |
+|---|---|---|
+| `<custom-button-add>` | `<ion-button-add>` | Agregar |
+| `<custom-button-edit>` | `<ion-button-edit>` | Editar |
+| `<custom-button-delete>` | `<ion-button-delete>` | Eliminar (con confirmación) |
+| `<custom-button-save>` | `<ion-button-save>` | Guardar/Actualizar |
+| `<custom-button-download>` | `<ion-button-download>` | Descargar |
+
+### Botones de Flujo
+| Selector Web | Selector Mobile | Acción |
+|---|---|---|
+| `<custom-button-confirm>` | `<ion-button-confirm>` | Confirmar acción |
+| `<custom-button-send-email>` | `<ion-button-send-email>` | Enviar correo |
+| `<custom-button-active-desactive>` | `<ion-button-active-desactive>` | Toggle activo/inactivo |
+
+### Botones Especializados
+| Selector Web | Selector Mobile | Acción |
+|---|---|---|
+| `<custom-button-tracking>` | `<ion-button-tracking>` | Seguimiento con badge |
+| `<custom-button-view-pdf>` | `<ion-button-view-pdf>` | Ver archivo PDF |
+| `<custom-button-item>` | `<ion-button-item>` | Item de menú genérico |
+| `<custom-button>` | — | Botón genérico configurable |
+
+---
+
+## ⚠️ Reglas Importantes
+
+1. **No mezcles** `ion-button-*` en páginas Angular puras ni `custom-button-*` en páginas Ion.
+2. Los `ion-button-*` requieren estar dentro de `<ion-page>` o `<ion-content>`.
+3. Para `ion-button-item`, registra manualmente el icono si no es de los comunes.
+4. Los archivos ORIGINALES en la raíz de `buttons/` se conservan por compatibilidad — migra los imports gradualmente.
+
+---
+
+📘 Versión: 2.1 | Actualizado: Abril 2026 | Angular 21 + PrimeNG 21 + PrimeFlex 4 + Ionic

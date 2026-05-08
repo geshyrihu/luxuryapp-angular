@@ -1,0 +1,299 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<p-table
+  #dt
+  [value]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [rows]="tablePrimeNgRows"
+  [paginator]="true"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="card custom-table hidden md:block"
+  responsiveLayout="scroll"
+>
+  <ng-template #caption>
+    <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th>
+        <div class="flex align-items-center">
+          <p-tag value="1" severity="info" styleClass="mr-2"></p-tag>
+          <span class="font-semibold">PERIODO</span>
+        </div>
+      </th>
+      <th>
+        <div class="flex align-items-center">
+          <p-tag value="2" severity="info" styleClass="mr-2"></p-tag>
+          <span class="font-semibold">ARCHIVO</span>
+        </div>
+      </th>
+      <th>
+        <div class="flex align-items-center">
+          <p-tag value="3" severity="info" styleClass="mr-2"></p-tag>
+          <span class="font-semibold">AUTORIZACIóN</span>
+        </div>
+      </th>
+      <th>
+        <div class="flex align-items-center">
+          <p-tag value="4" severity="info" styleClass="mr-2"></p-tag>
+          <span class="font-semibold">ENVÍO</span>
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <div class="font-semibold">{{ item.periodoExistente }}</div>
+      </td>
+      <td>
+        @if (item.nameFileEstadoFinanciero === null) {
+        <custom-button
+          label="Cargar Informe"
+          iconClass="pi pi-upload"
+          [loading]="isProcessingUpload(item.id)"
+          (clicked)="onUploadFile({ id: item.id, title: 'CARGAR ARCHIVO DE ESTADOS FINANCIEROS' })"
+          [fluid]="true"
+        />
+        } @else {
+        <div class="flex align-items-center">
+          <div class="flex-flex-grow-1-1">
+            <div class="font-bold text-sm">{{ item.personWhoCharge }}</div>
+            <div class="text-xs text-color-secondary">
+              {{ item.uploadDate }}
+            </div>
+          </div>
+          <custom-button
+            iconClass="pi pi-download"
+            variant="ghost-text"
+            severity="secondary"
+            ngbTooltip="Descargar"
+            (clicked)="viewPdf(item.nameFileEstadoFinanciero,'Informe Financiero')"
+          />
+          @if (item.personWhoAuthorized === "" && item.personWhoSend === "") {
+          <custom-button
+            iconClass="pi pi-replay"
+            variant="ghost-text"
+            severity="warn"
+            ngbTooltip="Actualizar Informe"
+            [loading]="isProcessingUpload(item.id)"
+            (clicked)="onUploadFile({ id: item.id, title: 'CARGAR ARCHIVO DE ESTADOS FINANCIEROS' })"
+          />
+          }
+        </div>
+        }
+      </td>
+      <td>
+        @if (item.nameFileEstadoFinanciero !== null) { @if
+        (item.personWhoAuthorized === "") {
+        <custom-button
+          label="Autorizar"
+          iconClass="pi pi-check-square"
+          severity="success"
+          [loading]="isProcessingAuthorize(item.id)"
+          (clicked)="onAuthorize(item.id)"
+          [fluid]="true"
+        />
+        } @else {
+        <div class="flex align-items-center">
+          <div class="flex-flex-grow-1-1">
+            <div class="font-bold text-sm">{{ item.personWhoAuthorized }}</div>
+            <div class="text-xs text-color-secondary">
+              {{ item.authorizationDate }}
+            </div>
+          </div>
+          @if (item.personWhoSend === "") {
+          <custom-button
+            iconClass="pi pi-replay"
+            variant="ghost-text"
+            severity="warn"
+            ngbTooltip="Deshacer autorización"
+            [loading]="isProcessingDesauthorize(item.id)"
+            (clicked)="onDesauthorize(item.id)"
+          />
+          }
+        </div>
+        } }
+      </td>
+      <td class="no-print">
+        @if ( item.nameFileEstadoFinanciero !== null && item.personWhoAuthorized
+        !== "" ) { @if (item.personWhoSend === "") {
+        <custom-button-confirm
+          icon="pi pi-send"
+          label="ENVIAR PDF"
+          styleClass="p-button-primary w-full mb-2"
+          swalTitle="óEnviar estados financieros?"
+          swalText="El informe financiero (PDF) seró enviado."
+          swalConfirmButtonText="Sí, enviar"
+          swalIcon="warning"
+          (confirmed)="onSendEstadosFinancieros({
+                  id: item.id,
+                  title: 'ENVIAR A CONDOMINOS',
+                })"
+          [disabled]="isProcessingSend(item.id)"
+        />
+
+        } @else {
+        <div class="flex align-items-center">
+          <div class="flex-flex-grow-1-1">
+            <div class="font-bold text-sm">{{ item.personWhoSend }}</div>
+            <div class="text-xs text-color-secondary">{{ item.sendDate }}</div>
+          </div>
+        </div>
+        } }
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  class="block md:hidden"
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+  [showAdd]="false"
+  [viewchildBreadcrumb]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding" detail="false">
+      <ion-label>
+        <div class="flex justify-content-between mb-1">
+          <h2 class="font-bold m-0">{{ item.periodoExistente }}</h2>
+          <p-tag value="1" severity="info" class="text-xs"></p-tag>
+        </div>
+
+        <!-- Status Indicators Stack -->
+        <div class="flex flex-column mt-2">
+          <!-- Archivo -->
+          <div class="flex align-items-center">
+            <p-tag value="2" severity="info" class="text-xs"></p-tag>
+            <div class="flex flex-column">
+              <span class="text-sm font-semibold">
+                {{ item.nameFileEstadoFinanciero ? "Cargado: " + item.uploadDate
+                : "Pendiente" }}
+              </span>
+              @if (item.nameFileEstadoFinanciero) {
+              <small class="text-color-secondary">
+                {{ item.personWhoCharge }}
+              </small>
+              }
+            </div>
+          </div>
+          <!-- Autorización -->
+          <div class="flex align-items-center">
+            <p-tag value="3" severity="info" class="text-xs"></p-tag>
+            <div class="flex flex-column">
+              <span class="text-sm font-semibold">
+                {{ item.personWhoAuthorized ? "Autorizado: " +
+                item.authorizationDate : "Pendiente" }}
+              </span>
+              @if (item.personWhoAuthorized) {
+              <small class="text-color-secondary">
+                {{ item.personWhoAuthorized }}
+              </small>
+              }
+            </div>
+          </div>
+          <!-- ENVÍO -->
+          <div class="flex align-items-center">
+            <p-tag value="4" severity="info" class="text-xs"></p-tag>
+            <div class="flex flex-column">
+              <span class="text-sm font-semibold">
+                {{ item.personWhoSend ? "Enviado: " + item.sendDate :
+                "Pendiente" }}
+              </span>
+              @if (item.personWhoSend) {
+              <small class="text-color-secondary">
+                {{ item.personWhoSend }}
+              </small>
+              }
+            </div>
+          </div>
+        </div>
+      </ion-label>
+
+      <app-action-menu slot="end">
+        <ng-container actions>
+          <!-- 1. Cargar Informe (Si no hay archivo) -->
+          @if (!item.nameFileEstadoFinanciero) {
+          <ion-button-item
+            iconName="cloud-upload-outline"
+            label="Cargar Informe"
+            (clicked)="
+              onUploadFile({
+                id: item.id,
+                title: 'CARGAR ARCHIVO DE ESTADOS FINANCIEROS'
+              })
+            "
+          />
+          }
+
+          <!-- 2. Acciones si hay archivo -->
+          @if (item.nameFileEstadoFinanciero) {
+          <!-- Descargar -->
+          <ion-button-item
+            iconName="cloud-upload-outline"
+            label="Descargar PDF"
+            (clicked)="
+                viewPdf(item.nameFileEstadoFinanciero, 'Informe Financiero')
+              "
+          />
+          <!-- Actualizar (Si no autorizado ni enviado) -->
+          @if (!item.personWhoAuthorized && !item.personWhoSend) {
+          <ion-button-item
+            iconName="sync-outline"
+            label="Actualizar Archivo"
+            (clicked)="
+                onUploadFile({
+                  id: item.id,
+                  title: 'CARGAR ARCHIVO DE ESTADOS FINANCIEROS'
+                })
+              "
+          />
+          }
+          <!-- Autorizar (Si no autorizado) -->
+          @if (!item.personWhoAuthorized) {
+          <ion-button-item
+            iconName="checkmark-outline"
+            label="Autorizar"
+            (clicked)="onAuthorize(item.id)"
+          />
+          }
+          <!-- Deshacer Autorización (Si autorizado y no enviado) -->
+          @if (item.personWhoAuthorized && !item.personWhoSend) {
+          <ion-button-item
+            iconName="arrow-back-outline"
+            label="Deshacer Autorización"
+            (clicked)="onDesauthorize(item.id)"
+          />
+          }
+          <!-- Enviar (Si autorizado y no enviado) -->
+          @if (item.nameFileEstadoFinanciero && item.personWhoAuthorized &&
+          !item.personWhoSend) {
+          <ion-button-confirm
+            icon="pi pi-send"
+            label="ENVIAR"
+            styleClass="p-button-text w-full text-left"
+            swalTitle="óEnviar estados financieros?"
+            swalText="El informe financiero sera enviado."
+            swalConfirmButtonText="Sí, enviar"
+            swalIcon="warning"
+            (confirmed)="
+                onSendEstadosFinancieros({
+                  id: item.id,
+                  title: 'ENVIAR A CONDOMINOS'
+                })
+              "
+            [disabled]="isProcessingSend(item.id)"
+          />
+          } }
+        </ng-container>
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

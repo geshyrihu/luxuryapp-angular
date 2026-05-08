@@ -1,0 +1,116 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block"></div>
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+    />
+    <custom-button-download
+      label="Descargar PDF"
+      [showLabelOnDesktop]="true"
+      iconClass="pi pi-file-pdf"
+      variant="outlined"
+      severity="danger"
+      size="small"
+      customClass="mt-1"
+      (clicked)="onDownloadPdf()"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th>Img</th>
+      <th pSortableColumn="nameTool">
+        Nombre
+        <p-sortIcon field="nameTool" />
+      </th>
+      <th pSortableColumn="category">
+        Categoria
+        <p-sortIcon field="category" />
+      </th>
+      @if ( aspRoleS.anyOf([AspRole.JefeMantenimiento, AspRole.SuperUsuario])()
+      ) {
+      <th class="table-col-10"></th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <img
+          class="img-thumbnail"
+          alt="200x200"
+          width="100"
+          [src]="
+            item.photoPath ? item.photoPath : 'assets/images/default-avatar.png'
+          "
+          data-holder-rendered="true"
+        />
+      </td>
+      <td>
+        <small>{{ item.nameTool }}</small>
+      </td>
+      <td>
+        <small>{{ item.category }}</small>
+      </td>
+      <!-- Opciones -->
+
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding">
+      <ion-avatar slot="start">
+        <img
+          [src]="item.photoPath ? item.photoPath : 'assets/images/default-avatar.png'"
+          alt="Tool"
+        />
+      </ion-avatar>
+
+      <ion-label>
+        <h2 class="font-normal m-0">{{ item.nameTool }}</h2>
+        <p class="text-medium text-500 m-0">{{ item.category }}</p>
+      </ion-label>
+
+      <div slot="end">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            />
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+          </ng-container>
+        </app-action-menu>
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <div class="hidden">
+        <custom-input-text-signal
+          [control]="form.controls.id"
+          label="Id"
+          [readonly]="true"
+        />
+      </div>
+      <custom-input-text-signal
+        [control]="form.controls.name"
+        label="Nombre del documento"
+        placeholder="Nombre"
+      />
+      <custom-input-file-signal
+        label="Documento"
+        accept="application/pdf"
+        [required]="true"
+        (fileSelected)="change($event)"
+      />
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </div>
+</div>

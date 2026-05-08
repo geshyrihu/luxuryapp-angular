@@ -1,0 +1,71 @@
+@if (dataSignal()) {
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+
+<p-table
+  #dt1
+  [value]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  styleClass="custom-table"
+  [paginator]="true"
+  [rows]="40"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption [dt]="dt1" />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-70">Rol</th>
+      <th class="table-col-20 text-center" pSortableColumn="modules">
+        Módulos Asignados
+        <p-sortIcon field="modules" />
+      </th>
+      <th class="table-col-10"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr
+      class="cursor-pointer"
+      (click)="onModalForm({ roleId: item.roleId, roleName: item.roleName, title: 'Asignar Módulos' })"
+    >
+      <td>
+        <h5 class="m-0 text-lg font-medium">{{ item.roleName }}</h5>
+      </td>
+      <td class="text-center">
+        <p-tag [value]="item.modules + ' Módulos'" severity="info"></p-tag>
+      </td>
+      <td class="text-right">
+        <i class="pi pi-chevron-right"></i>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Vista para móviles -->
+<app-data-view-mobile [data]="dataSignal()" [showAdd]="false">
+  <ng-template #listItemTemplate let-item>
+    <ion-item
+      button
+      detail="true"
+      (click)="onModalForm({ roleId: item.roleId, roleName: item.roleName, title: 'Asignar Módulos' })"
+      lines="full"
+      class="ion-no-padding"
+    >
+      <ion-label>
+        <h2 class="font-normal m-0">{{ item.roleName }}</h2>
+      </ion-label>
+      <ion-note slot="end" color="medium" class="text-sm mr-2"
+        >{{ item.modules }} Módulos</ion-note
+      >
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+}
+
+
+
+
+
+
+

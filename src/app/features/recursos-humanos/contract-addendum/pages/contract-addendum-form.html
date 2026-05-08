@@ -1,0 +1,48 @@
+<div class="p-3">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <custom-input-select-signal
+      [control]="form.controls.addendumType"
+      label="Tipo de Adenda"
+      [data]="cb_addendumType"
+    />
+    <custom-input-date-signal
+      [control]="form.controls.effectiveDate"
+      label="Fecha Efectiva"
+    />
+    <custom-input-text-signal
+      [control]="form.controls.title"
+      label="Título"
+      placeholder="Ej: Modificación Salarial - Contrato CTR-2026-001"
+    />
+    <custom-input-text-signal
+      [control]="form.controls.previousValue"
+      label="Valor Anterior"
+      placeholder="Ej: $15,000.00"
+    />
+    <custom-input-text-signal
+      [control]="form.controls.newValue"
+      label="Valor Nuevo"
+      placeholder="Ej: $18,000.00"
+    />
+    <custom-input-textarea-signal
+      [control]="form.controls.content"
+      label="Contenido de la Adenda"
+      [rows]="8"
+      [placeholder]="placeholderText"
+    />
+    <custom-input-textarea-signal
+      [control]="form.controls.notes"
+      label="Notas Internas"
+      [rows]="3"
+    />
+    <div class="flex justify-content-end mt-2">
+      <custom-button-save
+        [propertyId]="item()?.id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+        label="Guardar"
+        type="submit"
+      />
+    </div>
+  </form>
+</div>

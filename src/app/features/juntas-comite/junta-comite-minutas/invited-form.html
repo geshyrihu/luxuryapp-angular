@@ -1,0 +1,25 @@
+<div class="flex flex-column">
+  <div class="p-2 surface-200 font-semibold">Invitados</div>
+  <div class="grid col-12 align-items-center">
+    <div class="col-10">
+      <div class="mb-2">
+        <custom-input-text-signal
+          [control]="invitado"
+          [horizontal]="false"
+          placeholder="Nombre del invitado"
+        />
+      </div>
+    </div>
+    <div class="col-2 mb-2">
+      @if (invitado.value) {
+      <custom-button-item iconClass="pi pi-plus " (clicked)="onSubmit()" />
+      }
+    </div>
+  </div>
+  @for (item of listaInvitados(); track item.id) {
+  <div class="flex align-items-center justify-content-between p-2">
+    {{ item.invitado }}
+    <custom-button-delete (confirmed)="onDelete(item.id)" />
+  </div>
+  }
+</div>

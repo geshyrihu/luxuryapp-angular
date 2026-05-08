@@ -1,0 +1,262 @@
+// ============================================================
+// _cards.scss
+// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
+// Sistema de tarjetas de contenido
+// ============================================================
+
+@use '../core/mixins' as m;
+
+.card {
+  background-color: var(--ds-bg-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-card, 12px);
+  box-shadow: var(--ds-shadow-sm);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  // ── Variantes visuales
+  &--flat      { box-shadow: none; }
+  &--elevated  { box-shadow: var(--ds-shadow-lg); border-color: transparent; }
+  &--bordered  { box-shadow: none; border-width: 2px; }
+
+  // ── Interactiva (con hover lift)
+  &--interactive {
+    cursor: pointer;
+    transition: box-shadow 200ms ease, transform 200ms ease, border-color 200ms ease;
+
+    &:hover {
+      box-shadow: var(--ds-shadow-md);
+      border-color: var(--ds-border-focus);
+      transform: translateY(-2px);
+    }
+
+    @include m.focus-ring;
+  }
+
+  // ── Borde oscuro (semi-negro, útil sobre fondo claro)
+  &--dark-border { border-color: rgba(0, 0, 0, 0.4); }
+
+  // ── Seleccionada
+  &--selected {
+    border-color: var(--ds-primary);
+    box-shadow: 0 0 0 3px var(--ds-primary-light);
+  }
+
+  // ── Acentos de color (borde superior de color)
+  &--primary { border-top: 3px solid var(--ds-primary); }
+  &--success { border-top: 3px solid var(--ds-success); }
+  &--warning { border-top: 3px solid var(--ds-warning); }
+  &--danger  { border-top: 3px solid var(--ds-danger); }
+  &--info    { border-top: 3px solid var(--ds-info); }
+}
+
+.card-cover {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem 0;
+  gap: 1rem;
+}
+
+.card-body {
+  padding: 1.25rem 1.5rem;
+  flex: 1;
+}
+
+.card-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--ds-border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  background-color: var(--ds-bg-sunken);
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ds-text-primary);
+  margin: 0;
+}
+
+.card-subtitle {
+  font-size: 0.875rem;
+  color: var(--ds-text-secondary);
+  margin-top: 0.25rem;
+}
+
+.card-meta {
+  font-size: 0.8125rem;
+  color: var(--ds-text-muted);
+}
+
+// Grid de cards
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+
+  &--2 { grid-template-columns: repeat(2, 1fr); }
+  &--3 { grid-template-columns: repeat(3, 1fr); }
+  &--4 { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+// ============================================================
+// _badges.scss
+// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
+// Badges, tags y chips
+// ============================================================
+
+// ── BASE ──────────────────────────────────────────────────────
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  border-radius: var(--ds-radius-full);
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+  border: 1px solid transparent;
+
+  // Ícono dentro del badge
+  &-icon { font-size: 0.625rem; }
+}
+
+// ── VARIANTES SÓLIDAS ─────────────────────────────────────────
+.badge-primary  { @extend .badge; background-color: var(--ds-primary-light); color: var(--ds-primary); border-color: #bfdbfe; }
+.badge-success  { @extend .badge; background-color: var(--ds-success-light); color: var(--ds-success); border-color: #bbf7d0; }
+.badge-warning  { @extend .badge; background-color: var(--ds-warning-light); color: #92400e; border-color: #fde68a; }
+.badge-danger   { @extend .badge; background-color: var(--ds-danger-light);  color: var(--ds-danger);  border-color: #fecaca; }
+.badge-info     { @extend .badge; background-color: var(--ds-info-light);    color: var(--ds-info);    border-color: #a5f3fc; }
+.badge-neutral  { @extend .badge; background-color: #f4f4f5; color: #52525b; border-color: #e4e4e7; }
+
+// ── VARIANTES OUTLINE ─────────────────────────────────────────
+.badge-outline-primary { @extend .badge; background: transparent; color: var(--ds-primary); border-color: var(--ds-primary); }
+.badge-outline-danger  { @extend .badge; background: transparent; color: var(--ds-danger);  border-color: var(--ds-danger); }
+.badge-outline-success { @extend .badge; background: transparent; color: var(--ds-success); border-color: var(--ds-success); }
+.badge-outline-warning { @extend .badge; background: transparent; color: #92400e; border-color: var(--ds-warning); }
+
+// ── DOT BADGE (sin texto) ─────────────────────────────────────
+.badge-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  padding: 0;
+  display: inline-block;
+
+  &--primary { background-color: var(--ds-primary); }
+  &--success { background-color: var(--ds-success); }
+  &--warning { background-color: var(--ds-warning); }
+  &--danger  { background-color: var(--ds-danger);  }
+  &--neutral { background-color: #a1a1aa; }
+}
+
+// ── TAG ───────────────────────────────────────────────────────
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border-radius: var(--ds-radius-md);
+  background-color: var(--ds-bg-sunken);
+  color: var(--ds-text-secondary);
+  border: 1px solid var(--ds-border);
+  cursor: default;
+
+  &--removable {
+    cursor: pointer;
+    padding-right: 0.375rem;
+
+    .tag-remove {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.125rem;
+      height: 1.125rem;
+      border-radius: 50%;
+      color: inherit;
+      opacity: 0.7;
+      transition: opacity 150ms, background-color 150ms;
+
+      &:hover {
+        opacity: 1;
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+}
+
+// ── AVATAR ────────────────────────────────────────────────────
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--ds-primary-light);
+  color: var(--ds-primary);
+  font-weight: 600;
+  flex-shrink: 0;
+
+  // Tamaños
+  &--xs  { width: 1.5rem;  height: 1.5rem;  font-size: 0.625rem; }
+  &--sm  { width: 2rem;    height: 2rem;    font-size: 0.75rem;  }
+  &--md  { width: 2.5rem;  height: 2.5rem;  font-size: 0.875rem; } // default
+  &--lg  { width: 3rem;    height: 3rem;    font-size: 1rem;     }
+  &--xl  { width: 4rem;    height: 4rem;    font-size: 1.25rem;  }
+  &--2xl { width: 5rem;    height: 5rem;    font-size: 1.5rem;   }
+
+  &--square { border-radius: var(--ds-radius-md); }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+// Grupo de avatares superpuestos
+.avatar-group {
+  display: inline-flex;
+
+  .avatar {
+    border: 2px solid var(--ds-bg-surface);
+    margin-left: -0.625rem;
+
+    &:first-child { margin-left: 0; }
+  }
+
+  &__overflow {
+    @extend .avatar;
+    @extend .avatar--md;
+    background-color: var(--ds-bg-sunken);
+    color: var(--ds-text-secondary);
+    font-size: 0.75rem;
+    border: 2px solid var(--ds-bg-surface);
+    margin-left: -0.625rem;
+  }
+}
+
+
+
+

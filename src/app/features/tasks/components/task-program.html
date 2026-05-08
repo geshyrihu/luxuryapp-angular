@@ -1,0 +1,34 @@
+<div class="w-full">
+  <div class="w-full">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-date-signal
+        [control]="form.controls.scheduledDate"
+        label="Fecha"
+        placeholder="fecha"
+      />
+
+      <custom-input-autocomplete-signal
+        (propagar)="saveUserId($event)"
+        [control]="form.controls.assignee"
+        [data]="cb_user()"
+        label="Asignar"
+        placeholder="Escribe para buscar colaborador"
+      />
+
+      <div class="text-center mt-3">
+        <custom-button-save
+          [propertyId]="id"
+          [disabled]="form.invalid"
+          [loading]="submitting()"
+        />
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+

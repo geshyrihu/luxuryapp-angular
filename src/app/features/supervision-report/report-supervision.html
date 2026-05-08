@@ -1,0 +1,221 @@
+<!-- Encabezado con nombre y logo del cliente -->
+<div class="grid align-items-center mb-4">
+  <div class="col-12 md:col-4 text-left">
+    @if (photoPath()) {
+    <img
+      [src]="photoPath()"
+      alt="Logo del cliente"
+      class="img-fluid border mb-2 w-5rem h-auto"
+    />
+    }
+  </div>
+  @if (nameCustomer()) {
+  <div class="col-12 md:col-4 text-center">
+    <h3 class="h3 m-0">{{ nameCustomer() }}</h3>
+  </div>
+  }
+</div>
+
+<!-- Sección de Minutas -->
+<div class="mb-4">
+  <h4>Minutas pendientes</h4>
+  @if (loadingMinutas()) {
+  <div class="text-center my-3">
+    <p-progressSpinner styleClass="w-3rem h-3rem" strokeWidth="4" />
+    <p class="mt-2">Cargando minutas...</p>
+  </div>
+  } @if (!loadingMinutas() && minutas() && minutas().length > 0) {
+  <div class="p-3">
+    @for (area of minutas(); track area) {
+    <div>
+      <table class="custom-table-report">
+        <tr>
+          <th class="table-col-5">Nó</th>
+          <th class="table-col-10">FECHA SOL.</th>
+          <th class="table-col-45">SOLICITUD</th>
+          <th class="table-col-10">FECHA DE TERMINO</th>
+          <th class="table-col-40">SEGUIMIENTO</th>
+        </tr>
+        <!-- CORREGIDO: area.minutas -->
+        @for (minuta of area.minutas; track minuta; let rowIndex = $index) {
+        <tr>
+          <td>{{ rowIndex + 1 }}</td>
+          <td>{{ minuta.date }}</td>
+          <td>
+            <p>
+              <strong>{{ minuta.title }}</strong>
+            </p>
+            <p>{{ minuta.requestService }}</p>
+          </td>
+          <td class="text-center">{{ minuta.deliveryDate }}</td>
+          <td>
+            <strong>{{ minuta.fechaUltimoSeguimiento }} - </strong>
+            {{ minuta.seguimiento }}
+          </td>
+        </tr>
+        }
+      </table>
+    </div>
+    }
+  </div>
+  } @if (!loadingMinutas() && minutas()?.length === 0) {
+  <div
+    class="p-4 surface-card border-round shadow-1 text-center text-color-secondary"
+  >
+    No hay minutas pendientes.
+  </div>
+  }
+</div>
+
+<!-- Sección de Tickets -->
+<div class="mb-4">
+  <h4>Tickets pendientes</h4>
+  @if (loadingTickets()) {
+  <div class="text-center my-3">
+    <p-progressSpinner styleClass="w-3rem h-3rem" strokeWidth="4" />
+    <p class="mt-2">Cargando tickets...</p>
+  </div>
+  } @if (!loadingTickets() && tickets() && tickets().length > 0) {
+  <div class="p-3">
+    @for (item of tickets(); track item; let i = $index) {
+    <div>
+      <table class="custom-table-report">
+        <tr>
+          <th class="table-col-5">Nó</th>
+          <th class="table-col-10">FECHA SOL.</th>
+          <th class="table-col-45">SOLICITUD</th>
+          <th class="table-col-10">FECHA DE TERMINO</th>
+          <th class="table-col-40">SEGUIMIENTO</th>
+        </tr>
+        <!-- CORREGIDO: item.tickets -->
+        @for (ticket of item.tickets; track ticket; let rowIndex = $index) {
+        <tr>
+          <td>{{ rowIndex + 1 }}</td>
+          <td>{{ ticket.date }}</td>
+          <td>
+            <p>
+              <strong>{{ ticket.title }}</strong>
+            </p>
+            <p>{{ ticket.description }}</p>
+          </td>
+          <td>
+            <div>{{ ticket.scheduledDate }}</div>
+          </td>
+          <td>
+            <strong>{{ ticket.fechaUltimoSeguimiento }} - </strong>
+            {{ ticket.seguimiento }}
+          </td>
+        </tr>
+        }
+      </table>
+    </div>
+    }
+  </div>
+  } @if (!loadingTickets() && tickets()?.length === 0) {
+  <div
+    class="p-4 surface-card border-round shadow-1 text-center text-color-secondary"
+  >
+    No hay solicitudes pendientes.
+  </div>
+  }
+</div>
+
+<!-- Sección de Pendientes Legales -->
+<div class="mb-4">
+  <h4>Pendientes legales</h4>
+  @if (loadingPendingLegal()) {
+  <div class="text-center my-3">
+    <p-progressSpinner styleClass="w-3rem h-3rem" strokeWidth="4" />
+    <p class="mt-2">Cargando pendientes legales...</p>
+  </div>
+  }
+  <!-- CORREGIDO: solo un loop si pendingLegal() es un array de tickets -->
+  @if (!loadingPendingLegal() && pendingLegal() && pendingLegal().length > 0) {
+  <div class="p-3">
+    <table class="custom-table-report">
+      <tr>
+        <th class="table-col-5">Nó</th>
+        <th class="table-col-10">FECHA</th>
+        <th class="table-col-45">Título</th>
+        <th class="table-col-40">SEGUIMIENTO</th>
+      </tr>
+      @for (ticket of pendingLegal(); track ticket; let rowIndex = $index) {
+      <tr>
+        <td>{{ rowIndex + 1 }}</td>
+        <td>{{ ticket.date }}</td>
+        <td>
+          <p>
+            <strong>{{ ticket.title }}</strong>
+          </p>
+          <p>{{ ticket.description }}</p>
+        </td>
+        <td>
+          <strong>{{ ticket.fechaUltimoSeguimiento }} - </strong>
+          {{ ticket.ultimoSeguimiento }}
+        </td>
+      </tr>
+      }
+    </table>
+  </div>
+  } @if (!loadingPendingLegal() && pendingLegal()?.length === 0) {
+  <div
+    class="p-4 surface-card border-round shadow-1 text-center text-color-secondary"
+  >
+    No hay pendientes legales.
+  </div>
+  }
+</div>
+
+<!-- Sección de Estados Financieros -->
+<div class="mb-4">
+  <h4>Estados financieros</h4>
+  @if (loadingEnvioFinancieros()) {
+  <div class="text-center my-3">
+    <p-progressSpinner styleClass="w-3rem h-3rem" strokeWidth="4" />
+    <p class="mt-2">Cargando estados financieros...</p>
+  </div>
+  }
+  <!-- CORREGIDO: solo un loop si envioFinancieros() es un array de tickets -->
+  @if ( !loadingEnvioFinancieros() && envioFinancieros() &&
+  envioFinancieros().length > 0 ) {
+  <div class="p-3">
+    <table class="custom-table-report">
+      <tr>
+        <th>Nó</th>
+        <th>PERIODO</th>
+        <th>NOMBRE</th>
+        <th>FECHA ENVÍO</th>
+      </tr>
+      @for ( ticket of envioFinancieros(); track ticket; let rowIndex = $index )
+      {
+      <tr>
+        <td>{{ rowIndex + 1 }}</td>
+        <td>
+          @if (!ticket.fullName) {
+          <p-tag
+            severity="danger"
+            [value]="ticket.period | uppercase"
+            styleClass="w-full text-base p-2"
+          />
+          } @if (ticket.fullName) {
+          <p-tag
+            severity="success"
+            [value]="ticket.period | uppercase"
+            styleClass="w-full text-base p-2"
+          />
+          }
+        </td>
+        <td>{{ ticket.fullName | uppercase }}</td>
+        <td>{{ ticket.sendDate | uppercase }}</td>
+      </tr>
+      }
+    </table>
+  </div>
+  } @if (!loadingEnvioFinancieros() && envioFinancieros()?.length === 0) {
+  <div
+    class="p-4 surface-card border-round shadow-1 text-center text-color-secondary"
+  >
+    No hay estados financieros pendientes.
+  </div>
+  }
+</div>

@@ -1,0 +1,57 @@
+import { Component, computed, effect, inject, signal } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { CheckboxModule } from "primeng/checkbox";
+import { TableModule } from "primeng/table";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
+} from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { ReportHeader } from "../../core/components/report-header/report-header";
+@Component({
+  selector: "app-entrega-recepcion-llaves",
+  templateUrl: "./entrega-recepcion-llaves.html",
+  imports: [TableModule, FormsModule, ReportHeader, CheckboxModule],
+})
+export class EntregaRecepcionLlaves {
+  apiResponseS = inject(ApiResponseService);
+  customerIdS = inject(CustomerIdService);
+  dataSignal = signal<any[]>([]);
+
+  globalFilterFields = computed(() => {
+    const data = this.dataSignal();
+    if (!data || data.length === 0) return [];
+    return globalFilterFields(data);
+  });
+  loading = signal(true);
+  tablePrimeNgRows: number = tablePrimeNgRows();
+  rowsPerPageOptions: number[] = rowsPerPageOptions();
+
+  constructor() {
+    effect(() => {
+      const customerId: string = this.customerIdS.customerId();
+      if (customerId) this.onLoadData();
+    });
+  }
+  onLoadData() {
+    const urlApi = `EntregaRecepcion/InventarioLlaves/${this.customerIdS.customerId()}`;
+    this.apiResponseS
+      .onGetList(urlApi)
+      .then((result: any) => this.dataSignal.set(result));
+  }
+
+  calcularEquiposTotal(name) {
+    let total = 0;
+    const data = this.dataSignal();
+    if (data) {
+      for (let customer of data) {
+        if (customer.descripcion === name) {
+          total++;
+        }
+      }
+    }
+    return total;
+  }
+}

@@ -1,0 +1,187 @@
+<p-table
+  [value]="dataSignal()"
+  #dt
+  styleClass="custom-table card hidden md:block"
+  rowGroupMode="subheader"
+  groupRowsBy="typeOfContract"
+  sortField="typeOfContract"
+  sortMode="single"
+  [globalFilterFields]="globalFilterFields()"
+  [tableStyle]="{ 'min-width': '60rem' }"
+>
+  <ng-template #caption>
+    <div class="grid col-12">
+      <div class="col-10">
+        <primeng-custom-caption
+          (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+          [dt]="dt"
+        />
+      </div>
+      <div class="col-2">
+        <custom-button-active-desactive
+          [state]="isCurrent"
+          (stateChange)="onSelectActive($event)"
+        />
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Encabezado de las columnas (define quó columnas se mostrarón para cada item) -->
+  <ng-template #header>
+    <tr>
+      <!-- Ajusta los pSortableColumn field a las propiedades DENTRO de los objetos 'Contracts' -->
+      <th>ID</th>
+      <th class="table-col-20" pSortableColumn="description">
+        <!-- Cambiado a Description -->
+        Servicio
+        <p-sortIcon field="description" />
+      </th>
+      <th class="table-col-20" pSortableColumn="provider">
+        <!-- Cambiado a Provider -->
+        Proveedor
+        <p-sortIcon field="Provider" />
+      </th>
+      <th pSortableColumn="startDateFilter">
+        Inicio
+        <p-sortIcon field="startDateFilter" />
+      </th>
+      <th pSortableColumn="endDateFilter">
+        Tórmino
+        <p-sortIcon field="endDateFilter" />
+      </th>
+      <th pSortableColumn="tagLabel">
+        <!-- Cambiado a tagLabel -->
+        Estado
+        <p-sortIcon field="tagLabel" />
+      </th>
+      <th pSortableColumn="validity">
+        <!-- Cambiado a validity -->
+        Vigencia
+        <p-sortIcon field="validity" />
+      </th>
+      <th>Documento</th>
+      <th></th>
+      <!-- Aóadido encabezado para columna de opciones -->
+    </tr>
+  </ng-template>
+
+  <!-- Plantilla para el encabezado de CADA GRUPO -->
+  <ng-template pTemplate="groupheader" let-group>
+    <tr pRowGroupHeader>
+      <!-- La celda abarca todas las columnas definidas en el header -->
+      <td [attr.colspan]="9">
+        <!-- 9 columnas: ID, Servicio, Proveedor, Inicio, Tórmino, Estado, Vigencia, Documento, Opciones -->
+        <!-- Muestra el nombre del grupo -->
+        <strong class="font-bold ml-2 p-0 font-size-24">
+          {{ group.typeOfContract }}
+        </strong>
+      </td>
+    </tr>
+  </ng-template>
+
+  <!-- Plantilla para el cuerpo (filas de datos dentro de cada grupo) -->
+  <ng-template #body let-item let-rowIndex="rowIndex">
+    <!-- item es un objeto del array 'Contracts' -->
+    <tr>
+      <td>
+        {{ rowIndex + 1 }}
+        <!-- Muestra el ID del contrato -->
+      </td>
+      <td>{{ item.description }}</td>
+      <td>{{ item.provider }}</td>
+      <td>
+        {{ item.startDateFormatted }}
+        <!-- Usa las propiedades formateadas -->
+      </td>
+      <td>
+        {{ item.endDateFormatted }}
+        <!-- Usa las propiedades formateadas -->
+      </td>
+      <td>
+        <p-tag
+          [severity]="getTagSeverity(item.tagLabel)"
+          fluid
+          [value]="item.tagLabel"
+        />
+      </td>
+      <td>{{ item.validity }}</td>
+      <td class="text-center">
+        <!-- Alineación opcional -->
+        @if (item.document) {
+        <custom-button-view-pdf
+          iconClass="pi pi-file-pdf"
+          [url]="item.pathDocument"
+          fileName="Poliza | Contrato"
+          label="Ver documento"
+          class="text-xl"
+        />
+        }
+      </td>
+      <!-- Opciones -->
+      <td>
+        <div class="flex">
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          @if (item.document) {
+          <custom-button-delete
+            label="Eliminar documento"
+            ngbTooltip="Eliminar documento"
+            (confirmed)="onDeleteDocument(item.id)"
+          />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [groupedData]="groupedData"
+  [isGrouped]="true"
+  [showAdd]="true"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding">
+      <ion-label>
+        <div class="flex justify-content-between align-items-center mb-1">
+          <h2 class="font-bold m-0 text-base text-wrap">{{ item.provider }}</h2>
+          <p-tag
+            [severity]="getTagSeverity(item.tagLabel)"
+            [value]="item.tagLabel"
+            class="text-sm"
+          />
+        </div>
+        <p class="text-sm text-700 m-0 mb-1">{{ item.description }}</p>
+        <p class="text-xs text-500 m-0">
+          <i class="pi pi-calendar mr-1"></i> Inicio: {{ item.startDate }}
+        </p>
+      </ion-label>
+
+      <div slot="end">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-view-pdf
+              [url]="item.pathDocument"
+              fileName="Poliza | Contrato"
+            />
+            <ion-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            />
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+            @if (item.document) {
+            <ion-button-delete
+              label="Eliminar documento"
+              ngbTooltip="Eliminar documento"
+              (confirmed)="onDeleteDocument(item.id)"
+            />
+            }
+          </ng-container>
+        </app-action-menu>
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

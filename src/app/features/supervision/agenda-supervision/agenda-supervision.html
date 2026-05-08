@@ -1,0 +1,201 @@
+<div class="h6">DEPTO : {{ depto }}</div>
+<div class="h6">NOMBRE : {{ nombre }}</div>
+<div class="h6">SEMANA : {{ semana }}</div>
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="30"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  dataKey="id"
+  styleClass="custom-table hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      class="ocultar"
+      [title]="'Bitacora SupervisiÃ³n'"
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+    />
+    <div class="grid align-items-center mb-3">
+      <div class="col-12 sm:col-5">
+        <app-rango-calendario-yyyymmdd></app-rango-calendario-yyyymmdd>
+      </div>
+      <div class="col-12 sm:col-7 text-right">
+        <custom-button
+          ngbTooltip="Actualizar InformaciÃ³n"
+          [customClass]="'btn-outline-info btn-sm'"
+          icon="pi-sync txt-primary"
+          (clicked)="onLoadData()"
+        />
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th [width]="'15%'" class="ocultar center" pSortableColumn="name.label">
+        SUPERVISOR
+        <p-sortIcon field="name.label" />
+        <p-columnFilter
+          field="name"
+          matchMode="in"
+          display="menu"
+          [showMatchModes]="false"
+          [showOperator]="false"
+          [showAddButton]="false"
+        >
+          <ng-template #headerSupervisor>
+            <div class="px-3 pt-3 pb-0">
+              <span class="font-bold">Supervisor</span>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+            <p-multiSelect
+              [ngModel]="value"
+              [options]="cb_user()"
+              placeholder="Ninguno"
+              (onChange)="filter($event.value)"
+              optionLabel="label"
+            >
+              <ng-template let-option pTemplate="item">
+                <div class="p-multiselect-representative-option">
+                  <span class="ml-1">{{ option.label }}</span>
+                </div>
+              </ng-template>
+            </p-multiSelect>
+          </ng-template>
+        </p-columnFilter>
+      </th>
+      <th [width]="'7%'" pSortableColumn="fechaSolicitud">
+        SOLICITUD
+        <p-sortIcon field="fechaSolicitud" />
+      </th>
+      <th [width]="'9%'" pSortableColumn="numeroCliente">
+        CLIENTE
+        <p-sortIcon field="numeroCliente" />
+        <p-columnFilter
+          field="customer"
+          matchMode="in"
+          display="menu"
+          [showMatchModes]="false"
+          [showOperator]="false"
+          [showAddButton]="false"
+        >
+          <ng-template #headerCliente>
+            <div class="px-3 pt-3 pb-0">
+              <span class="font-bold">Cliente</span>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+            <p-multiSelect
+              [ngModel]="value"
+              [options]="cb_customers()"
+              placeholder="Ninguno"
+              (onChange)="filter($event.value)"
+              optionLabel="label"
+            >
+              <ng-template let-option pTemplate="item">
+                <div class="p-multiselect-representative-option">
+                  <span class="ml-1">{{ option.label }}</span>
+                </div>
+              </ng-template>
+            </p-multiSelect>
+          </ng-template>
+        </p-columnFilter>
+      </th>
+      <th [width]="'20%'" pSortableColumn="problema">
+        PROBLEMA/TEMA
+        <p-sortIcon field="problema" />
+      </th>
+      <th [width]="'20%'" pSortableColumn="solucion">
+        SOLUCION/SEGUIMIENTO
+        <p-sortIcon field="solucion" />
+      </th>
+      <th [width]="'9%'" pSortableColumn="fechaConclusion">
+        CONCLUSION
+        <p-sortIcon field="fechaConclusion" />
+      </th>
+      <th pSortableColumn="duracion">
+        DIAS
+        <p-sortIcon field="duracion" />
+      </th>
+      <th pSortableColumn="estatus">
+        ESTATUS
+        <p-sortIcon field="estatus" />
+        <p-columnFilter
+          type="boolean"
+          field="estatus"
+          display="menu"
+        ></p-columnFilter>
+      </th>
+      <th class="ocultar"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr class="breakPage">
+      <td class="ocultar">
+        <img
+          alt="..."
+          [src]="item.photoPath"
+          width="32"
+          style="vertical-align: middle"
+        />
+        <span class="image-text"> {{ item.name.label }} </span>
+      </td>
+      <td>{{ item.fechaSolicitud | date }}</td>
+      <td>{{ item.customer.label }}</td>
+      <td class="text-justify">{{ item.problema }}</td>
+      <td class="text-justify">{{ item.solucion }}</td>
+      <td>{{ item.fechaConclusion | date }}</td>
+      <td class="text-center">
+        @if (item.duracion > 0) {
+        <small>{{ item.duracion }}</small>
+        }
+      </td>
+      <td class="text-center">
+        <i
+          class="icon"
+          [class]="
+            item.isAssigned
+              ? 'icon-check-double text-success'
+              : 'icon-x text-danger'
+          "
+        ></i>
+      </td>
+      <td class="no-print">
+        <app-action-menu>
+          <ng-container actions>
+            @if (applicationUserId == item.applicationUserId ||
+            aspRoleS.hasRole(AspRole.SuperUsuario)) {
+            <ion-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            />
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+
+            }
+          </ng-container>
+        </app-action-menu>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template emptymessage>
+    <tr>
+      <td colspan="9">No Hay Registros.</td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+
+
+
+
+
+

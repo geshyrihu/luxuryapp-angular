@@ -1,0 +1,38 @@
+<page-title-report-maintenance title="SALIDA INSUMOS" />
+<p-table
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #body let-item>
+    <tr pRowGroupHeader>
+      <td colspan="4">
+        <p class="card-title">{{ item.producto }}</p>
+      </td>
+    </tr>
+    @for (registro of item.registros; track registro) {
+    <tr class="breakPage">
+      <td>
+        <p class="text-sm mt-0 mb-0">{{ registro.fecha }}</p>
+      </td>
+      <td>
+        <p class="text-sm mt-0 mb-0">{{ registro.cantidad }}</p>
+      </td>
+      <td>
+        <p class="text-sm mt-0 mb-0">{{ registro.fullName }}</p>
+      </td>
+      <td>
+        <p class="text-sm mt-0 mb-0">{{ registro.usoPrducto }}</p>
+      </td>
+    </tr>
+    }
+  </ng-template>
+</p-table>
+
+
+
+
+
+
+

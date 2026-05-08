@@ -1,0 +1,98 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      [title]="'Usos de CFDI'"
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th class="text-small" pSortableColumn="codigo">
+        Código
+        <p-sortIcon field="codigo" />
+      </th>
+      <th class="text-small" pSortableColumn="descripcion">
+        Descripción
+        <p-sortIcon field="descripcion" />
+      </th>
+
+      <th class="table-col-5 text-small"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <small>{{ item.codigo }}</small>
+      </td>
+      <td>
+        <small>{{ item.descripcion }}</small>
+      </td>
+
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      
+      <!-- Avatar Estandarizado (Tailwind) -->
+      <div slot="start" class="w-9 h-9 border-round-md bg-green-50 flex align-items-center justify-content-center flex-shrink-0 ml-4 mr-3">
+        <ion-icon name="receipt-outline" class="text-xl text-green-600"></ion-icon>
+      </div>
+
+      <!-- Jerarquía Visual -->
+      <ion-label class="ion-text-wrap">
+        <h3 class="font-semibold m-0 text-color">{{ item.codigo }}</h3>
+        <p class="text-xs m-0 mt-1 text-color-secondary">{{ item.descripcion }}</p>
+      </ion-label>
+
+      <app-action-menu slot="end">
+        <ng-container actions>
+          <ion-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
+          <ion-button-delete (confirmed)="onDelete(item.id)" />
+        </ng-container>
+      </app-action-menu>
+
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+
+
+
+
+
+

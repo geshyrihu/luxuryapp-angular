@@ -1,0 +1,38 @@
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <custom-input-text-signal
+    [control]="form.controls.id"
+    label="Id"
+    [readonly]="true"
+  />
+
+  <custom-input-select-signal
+    [control]="form.controls.medidorCategoriaId"
+    [data]="cb_nombreMedidorCategoria()"
+    label="Categoría"
+    placeholder="seleccione una categoría"
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.numeroMedidor"
+    label="Número"
+    placeholder="número"
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.descripcion"
+    label="Descripción"
+    placeholder="descripción"
+  />
+
+  <custom-input-decimal-signal
+    [control]="form.controls.consumoDiarioMaximo"
+    label="Consumo diario"
+    placeholder="consumo diario"
+  />
+
+  <custom-button-save
+    [propertyId]="id()"
+    [disabled]="form.invalid"
+    [submitting]="submitting()"
+  />
+</form>

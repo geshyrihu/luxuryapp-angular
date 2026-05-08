@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column">
+  <custom-input-text-signal
+    label="Nombre"
+    [control]="form.controls.name"
+    placeholder="Ej: Amonestacion escrita"
+  />
+  <custom-input-text-signal
+    label="Descripcion"
+    [control]="form.controls.description"
+    placeholder="Descripcion opcional"
+  />
+  <custom-input-select-signal
+    label="Nivel de Severidad"
+    [control]="form.controls.severityLevel"
+    [data]="cb_severity()"
+  />
+  <custom-input-switch-signal
+    label="¿Es Terminacion de Relacion Laboral?"
+    [control]="form.controls.isTermination"
+  />
+  <custom-input-switch-signal
+    label="¿Requiere Aprobacion de RH?"
+    [control]="form.controls.requiresHRApproval"
+  />
+  <custom-input-switch-signal
+    label="Activo"
+    [control]="form.controls.isActive"
+  />
+  <div class="flex justify-content-end mt-2">
+    <custom-button-save
+      [propertyId]="id"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+      label="Guardar"
+      type="submit"
+    />
+  </div>
+</form>

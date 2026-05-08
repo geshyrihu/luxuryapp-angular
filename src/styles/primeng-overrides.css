@@ -1,0 +1,319 @@
+/*
+ * primeng-overrides.css — Overrides de marca para PrimeNG v21
+ *
+ * PROPÓSITO:
+ * Centralizar todos los overrides de componentes PrimeNG en una sola capa CSS.
+ * Usa @layer primeng-brand para garantizar la prioridad correcta sobre
+ * los estilos base de PrimeNG.
+ *
+ * CAPA CSS:
+ * Orden definido: PrimeNG base → PrimeNG overrides → utilidades de PrimeFlex
+ *
+ * REGLAS:
+ * - NO usar !important
+ * - NO usar ::ng-deep
+ * - Usar selectores simples (.p-button, no div > .p-button)
+ * - Preferir variables CSS (--p-*) antes que propiedades directas
+ * - Documentar cada override con comentario de 1 línea
+ */
+
+@layer primeng-brand {
+  /* ═══════════════════════════════════════════
+     BOTONES
+     ═══════════════════════════════════════════ */
+
+  /* Altura consistente para todos los botones */
+  .p-button {
+    height: 40px;
+    font-family: var(--brand-font-sans);
+    font-size: var(--brand-font-size-sm);
+    font-weight: 500;
+    border-radius: var(--brand-radius-btn);
+    transition: var(--brand-transition-base);
+  }
+
+  /* Botón primario - usar color de marca */
+  .p-button.p-button-primary {
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+    color: var(--brand-primary-contrast);
+  }
+
+  .p-button.p-button-primary:hover {
+    background: var(--brand-primary-hover);
+    border-color: var(--brand-primary-hover);
+  }
+
+  .p-button.p-button-primary:active {
+    background: var(--brand-primary-active);
+    border-color: var(--brand-primary-active);
+  }
+
+  /* Botón secundario */
+  .p-button.p-button-secondary {
+    background: transparent;
+    border-color: var(--brand-border);
+    color: var(--brand-text-primary);
+  }
+
+  .p-button.p-button-secondary:hover {
+    background: var(--brand-bg-sunken);
+    border-color: var(--brand-border-strong);
+  }
+
+  /* Botón de éxito */
+  .p-button.p-button-success {
+    background: var(--brand-success);
+    border-color: var(--brand-success);
+    color: white;
+  }
+
+  /* Botón de peligro */
+  .p-button.p-button-danger {
+    background: var(--brand-danger);
+    border-color: var(--brand-danger);
+    color: white;
+  }
+
+  /* Botón deshabilitado */
+  .p-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  /* ═══════════════════════════════════════════
+     INPUTS
+     ═══════════════════════════════════════════ */
+
+  /* Altura consistente para inputs (40px igual que botones) */
+  .p-inputtext {
+    height: 40px;
+    font-family: var(--brand-font-sans);
+    font-size: var(--brand-font-size-sm);
+    border-radius: var(--brand-radius-input);
+    border-color: var(--brand-border);
+    transition: var(--brand-transition-fast);
+  }
+
+  .p-inputtext:hover {
+    border-color: var(--brand-border-strong);
+  }
+
+  .p-inputtext:focus {
+    border-color: var(--brand-border-focus);
+    box-shadow: 0 0 0 2px var(--brand-border-focus);
+  }
+
+  .p-inputtext:disabled {
+    background-color: var(--brand-bg-sunken);
+    color: var(--brand-text-disabled);
+    cursor: not-allowed;
+  }
+
+  .p-inputtext.ng-dirty.ng-invalid {
+    border-color: var(--brand-danger);
+  }
+
+  /* Textarea - altura automática */
+  textarea.p-inputtext {
+    height: auto;
+    min-height: 40px;
+  }
+
+  /* ═══════════════════════════════════════════
+     SELECT / DROPDOWN
+     ═══════════════════════════════════════════ */
+
+  .p-select {
+    height: 40px;
+    font-family: var(--brand-font-sans);
+    font-size: var(--brand-font-size-sm);
+    border-radius: var(--brand-radius-input);
+    border-color: var(--brand-border);
+  }
+
+  .p-select:hover {
+    border-color: var(--brand-border-strong);
+  }
+
+  .p-select:focus {
+    border-color: var(--brand-border-focus);
+    box-shadow: 0 0 0 2px var(--brand-border-focus);
+  }
+
+  .p-select.ng-dirty.ng-invalid {
+    border-color: var(--brand-danger);
+  }
+
+  /* ═══════════════════════════════════════════
+     DATATABLE
+     ═══════════════════════════════════════════ */
+
+  /* Header con color primario de marca */
+  .p-datatable .p-datatable-header {
+    background: var(--brand-primary);
+    color: var(--brand-primary-contrast);
+    border-color: var(--brand-primary);
+    font-weight: 600;
+  }
+
+  /* Filas de la tabla */
+  .p-datatable .p-datatable-tbody > tr {
+    transition: var(--brand-transition-fast);
+  }
+
+  .p-datatable .p-datatable-tbody > tr:hover {
+    background: var(--brand-bg-sunken);
+  }
+
+  .p-datatable .p-datatable-tbody > tr.p-highlight {
+    background: color-mix(in srgb, var(--brand-primary) 10%, transparent);
+    color: var(--brand-primary);
+  }
+
+  /* Celdas */
+  .p-datatable .p-datatable-tbody > tr > td {
+    border-color: var(--brand-border);
+    padding: 0.75rem 1rem;
+  }
+
+  /* ═══════════════════════════════════════════
+     DIALOG
+     ═══════════════════════════════════════════ */
+
+  .p-dialog {
+    border-radius: var(--brand-radius-overlay);
+    box-shadow: var(--brand-shadow-xl);
+  }
+
+  .p-dialog .p-dialog-header {
+    background: var(--brand-bg-surface);
+    border-bottom: 1px solid var(--brand-border);
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+  }
+
+  .p-dialog .p-dialog-content {
+    padding: 1.5rem;
+  }
+
+  .p-dialog .p-dialog-footer {
+    border-top: 1px solid var(--brand-border);
+    padding: 1rem 1.5rem;
+    gap: 0.5rem;
+  }
+
+  /* ═══════════════════════════════════════════
+     TAG / BADGE
+     ═══════════════════════════════════════════ */
+
+  .p-tag {
+    font-size: var(--brand-font-size-xs);
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--brand-radius-btn);
+  }
+
+  .p-tag.p-tag-success {
+    background: var(--brand-success-bg);
+    color: var(--brand-success-text);
+  }
+
+  .p-tag.p-tag-warn {
+    background: var(--brand-warning-bg);
+    color: var(--brand-warning-text);
+  }
+
+  .p-tag.p-tag-danger {
+    background: var(--brand-danger-bg);
+    color: var(--brand-danger-text);
+  }
+
+  /* ═══════════════════════════════════════════
+     MESSAGE / TOAST
+     ═══════════════════════════════════════════ */
+
+  .p-message {
+    border-radius: var(--brand-radius-card);
+    border-width: 0 0 0 4px;
+  }
+
+  .p-message.p-message-success {
+    background: var(--brand-success-bg);
+    border-left-color: var(--brand-success);
+    color: var(--brand-success-text);
+  }
+
+  .p-message.p-message-warn {
+    background: var(--brand-warning-bg);
+    border-left-color: var(--brand-warning);
+    color: var(--brand-warning-text);
+  }
+
+  .p-message.p-message-error {
+    background: var(--brand-danger-bg);
+    border-left-color: var(--brand-danger);
+    color: var(--brand-danger-text);
+  }
+
+  .p-message.p-message-info {
+    background: var(--brand-info-bg);
+    border-left-color: var(--brand-info);
+    color: var(--brand-info-text);
+  }
+
+  /* ═══════════════════════════════════════════
+     CALENDAR
+     ═══════════════════════════════════════════ */
+
+  .p-calendar input {
+    height: 40px; /* Consistente con otros inputs */
+  }
+
+  .p-datepicker {
+    border-radius: var(--brand-radius-overlay);
+    box-shadow: var(--brand-shadow-lg);
+  }
+
+  /* ═══════════════════════════════════════════
+     CARD
+     ═══════════════════════════════════════════ */
+
+  .p-card {
+    border-radius: var(--brand-radius-card);
+    box-shadow: var(--brand-shadow-sm);
+    background: var(--brand-bg-surface);
+    color: var(--brand-text-primary);
+  }
+
+  .p-card .p-card-title {
+    font-size: var(--brand-font-size-lg);
+    font-weight: 600;
+    color: var(--brand-text-primary);
+  }
+
+  .p-card .p-card-subtitle {
+    color: var(--brand-text-secondary);
+  }
+
+  .p-card .p-card-content {
+    color: var(--brand-text-primary);
+  }
+
+  /* ═══════════════════════════════════════════
+     OVERLAY / MODAL
+     ═══════════════════════════════════════════ */
+
+  .p-dialog-mask {
+    background: var(--brand-bg-overlay);
+  }
+
+  /* ═══════════════════════════════════════════
+     FOCUS RING GLOBAL
+     ═══════════════════════════════════════════ */
+
+  :focus-visible {
+    outline: 2px solid var(--brand-border-focus);
+    outline-offset: 2px;
+  }
+}

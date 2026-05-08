@@ -1,0 +1,98 @@
+<div class="card">
+  <p-table
+    #dt
+    [value]="items()"
+    [globalFilterFields]="globalFilterFields"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    [scrollable]="true"
+    [scrollHeight]="tableScrollH.scrollHeight()"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    styleClass="custom-table card hidden md:block"
+  >
+    <ng-template #caption>
+      <primeng-custom-caption
+        (add)="onModalForm({ id: '', title: 'Nuevo Tipo de Incidencia' })"
+        [dt]="dt"
+      />
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="name">Nombre <p-sortIcon field="name" /></th>
+        <th pSortableColumn="category">Categoría <p-sortIcon field="category" /></th>
+        <th pSortableColumn="defaultSeverity">Severidad por Defecto <p-sortIcon field="defaultSeverity" /></th>
+        <th pSortableColumn="isActive" class="text-center">Activo <p-sortIcon field="isActive" /></th>
+        <th class="no-print">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.category }}</td>
+        <td>{{ item.defaultSeverity }}</td>
+        <td class="text-center">
+          @if (item.isActive) {
+            <span class="badge badge-success">Activo</span>
+          } @else {
+            <span class="badge badge-danger">Inactivo</span>
+          }
+        </td>
+        <td class="no-print">
+          <div class="flex">
+            <custom-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Tipo de Incidencia' })"
+            />
+            <custom-button-delete
+              (confirmed)="onDelete(item.id)"
+            />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #paginatorleft>
+      <primeng-custom-table-footer [data]="items()" />
+    </ng-template>
+  </p-table>
+
+  <!-- 📱 INICIO: Componente adaptado para versión móvil -->
+  <app-data-view-mobile
+    [data]="items()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Tipo de Incidencia' })"
+    [globalFilterFields]="globalFilterFields"
+    [dt]="dt"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ion-item lines="full" class="ion-no-padding">
+        <ion-label>
+          <h2 class="text-base font-semibold">{{ item.name }}</h2>
+          <p class="text-sm text-wrap">
+            <strong>Categoría:</strong> {{ item.category }} |
+            <strong>Severidad:</strong> {{ item.defaultSeverity }}
+          </p>
+          <p class="text-sm">
+            <strong>Estado:</strong>
+            @if (item.isActive) {
+              <span class="badge badge-success">Activo</span>
+            } @else {
+              <span class="badge badge-danger">Inactivo</span>
+            }
+          </p>
+        </ion-label>
+        <div slot="end">
+          <app-action-menu>
+            <ion-button-edit
+              (clicked)="onEdit(item)"
+            />
+            <ion-button-delete
+              (confirmed)="onDelete(item.id)"
+            />
+          </app-action-menu>
+        </div>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
+  <!-- 📱 FIN: Componente adaptado para versión móvil -->
+</div>

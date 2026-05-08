@@ -1,0 +1,77 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        label="Id"
+        [readonly]="true"
+      />
+
+      <custom-input-text-signal
+        [control]="form.controls.city"
+        label="Ciudad"
+        placeholder="ciudad"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.country"
+        label="País"
+        placeholder="País"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.longitud"
+        label="Longitud"
+        placeholder="longitud"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.latitud"
+        label="Latitud"
+        placeholder="latitud"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.number"
+        label="Número "
+        placeholder="número "
+      />
+      <custom-input-text-signal
+        [control]="form.controls.unitNumber"
+        label="Número interior"
+        placeholder="número interior"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.postalCode"
+        label="Código postal"
+        placeholder="Código postal"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.street"
+        label="Calle"
+        placeholder="Calle"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.district"
+        label="Colonia"
+        placeholder="colonia"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.townHall"
+        label="Alcaldía"
+        placeholder="Alcaldía"
+      />
+      <custom-input-textarea-signal
+        [control]="form.controls.additionalDetails"
+        label="Información adicional"
+        placeholder="información adicional"
+      />
+      <custom-button-save
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </div>
+</div>
+
+
+
+
+
+

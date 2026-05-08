@@ -1,0 +1,106 @@
+<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block"></div>
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+    />
+    <div class="mt-1">
+      <custom-button-download
+        ngbTooltip="Exportar a Excel"
+        iconClass="pi pi-file-excel"
+        severity="success"
+        (clicked)="exportExcel()"
+      />
+    </div>
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="fechaRegistro">
+        Fecha de Registro
+        <p-sortIcon field="fechaRegistro" />
+      </th>
+      <th pSortableColumn="lectura">
+        Lectura
+        <p-sortIcon field="lectura" />
+      </th>
+
+      <th class="table-col-5"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <small> {{ item.fechaRegistro | date: "dd/MM/yy" : "UTC" }} </small>
+      </td>
+      <td>
+        <small> {{ item.lectura }} </small>
+      </td>
+
+      <!-- Opciones -->
+
+      <td class="no-print">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            />
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+          </ng-container>
+        </app-action-menu>
+      </td>
+      <!-- Opciones -->
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+<!-- ðŸ“± INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding">
+      <ion-label>
+        <h2 class="font-bold m-0 text-base">{{ item.lectura }}</h2>
+        <p class="text-sm text-500 m-0 mt-1">
+          <i class="pi pi-calendar mr-1 text-xs"></i> {{ item.fechaRegistro |
+          date: "dd/MM/yy" : "UTC" }}
+        </p>
+      </ion-label>
+
+      <div slot="end">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            />
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+          </ng-container>
+        </app-action-menu>
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+
+
+
+
+

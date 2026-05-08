@@ -1,0 +1,241 @@
+<div class="w-full">
+  <div class="mb-3">
+    <div class="text-xl font-medium">MINUTAS</div>
+  </div>
+  <div class="grid">
+    <div class="col-12 md:col-4">
+      <div class="p-3 h-full">
+        <div class="flex align-items-center justify-content-between mb-3">
+          <div class="font-medium text-xl">
+            Contable (<span class="font-bold text-600">
+              {{ graficoMinutasContable.totalItems }} </span
+            >)
+          </div>
+        </div>
+        <div class="text-center"></div>
+        <div class="mt-3">
+          <div class="w-full flex justify-content-between mb-2">
+            <span class="text-sm">
+              <i class="pi pi-check text-green-600 mr-2"></i>
+              Concluido : {{ graficoMinutasContable.totalConcluido }}
+            </span>
+            <span class="text-sm">
+              <i class="pi pi-times text-red-600 mr-2"></i>
+              Pendiente: {{ graficoMinutasContable.totalPendiente }}
+            </span>
+          </div>
+
+          <div
+            class="w-full flex h-2rem border-round overflow-hidden surface-200"
+          >
+            @if (onValidateNan(graficoMinutasContable.evaluacionConcluido)) {
+            <div
+              class="bg-green-500 flex align-items-center justify-content-center text-white text-xs"
+              [style.width.%]="graficoMinutasContable.evaluacionConcluido"
+            >
+              {{ graficoMinutasContable.evaluacionConcluido }}%
+            </div>
+            } @if (onValidateNan(graficoMinutasContable.evaluacionPendiente)) {
+            <div
+              class="bg-red-500 flex align-items-center justify-content-center text-white text-xs"
+              [style.width.%]="graficoMinutasContable.evaluacionPendiente"
+            >
+              {{ graficoMinutasContable.evaluacionPendiente }}%
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 md:col-4">
+      <div class="p-3 h-full">
+        <div class="flex align-items-center justify-content-between mb-3">
+          <div class="font-medium text-xl">
+            Operaciones (<span class="font-bold text-600">
+              {{ graficoMinutasOperaciones.totalItems }} </span
+            >)
+          </div>
+        </div>
+        <div class="text-center">
+          <!-- Knob placeholder -->
+        </div>
+        <div class="mt-3">
+          <div class="w-full flex justify-content-between mb-2">
+            <span class="text-sm">
+              <i class="pi pi-check text-green-600 mr-2"></i>
+              Concluido : {{ graficoMinutasOperaciones.totalConcluido }}
+            </span>
+            <span class="text-sm">
+              <i class="pi pi-times text-red-600 mr-2"></i>
+              Pendiente: {{ graficoMinutasOperaciones.totalPendiente }}
+            </span>
+          </div>
+
+          <div
+            class="w-full flex h-2rem border-round overflow-hidden surface-200"
+          >
+            @if (onValidateNan(graficoMinutasOperaciones.evaluacionConcluido)) {
+            <div
+              class="bg-green-500 flex align-items-center justify-content-center text-white text-xs"
+              [style.width.%]="graficoMinutasOperaciones.evaluacionConcluido"
+            >
+              {{ graficoMinutasOperaciones.evaluacionConcluido }}%
+            </div>
+            } @if (onValidateNan(graficoMinutasOperaciones.evaluacionPendiente))
+            {
+            <div
+              class="bg-red-500 flex align-items-center justify-content-center text-white text-xs"
+              [style.width.%]="graficoMinutasOperaciones.evaluacionPendiente"
+            >
+              {{ graficoMinutasOperaciones.evaluacionPendiente }}%
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 md:col-4">
+      <div class="p-3 h-full">
+        <div class="flex align-items-center justify-content-between mb-3">
+          <div class="font-medium text-xl">
+            Legal (<span class="font-bold text-600">
+              {{ graficoMinutasLegal.totalItems }} </span
+            >)
+          </div>
+        </div>
+        <div class="text-center">
+          <!-- Knob placeholder -->
+        </div>
+        <div class="mt-3">
+          <div class="w-full flex justify-content-between mb-2">
+            <span class="text-sm">
+              <i class="pi pi-check text-green-600 mr-2"></i>
+              Concluido : {{ graficoMinutasLegal.totalConcluido }}
+            </span>
+            <span class="text-sm">
+              <i class="pi pi-times text-red-600 mr-2"></i>
+              Pendiente: {{ graficoMinutasLegal.totalPendiente }}
+            </span>
+          </div>
+
+          <div
+            class="w-full flex h-2rem border-round overflow-hidden surface-200"
+          >
+            @if (onValidateNan(graficoMinutasLegal.evaluacionConcluido)) {
+            <div
+              class="bg-green-500 flex align-items-center justify-content-center text-white text-xs"
+              [style.width.%]="graficoMinutasLegal.evaluacionConcluido"
+            >
+              {{ graficoMinutasLegal.evaluacionConcluido }}%
+            </div>
+            } @if (onValidateNan(graficoMinutasLegal.evaluacionPendiente)) {
+            <div
+              class="bg-red-500 flex align-items-center justify-content-center text-white text-xs"
+              [style.width.%]="graficoMinutasLegal.evaluacionPendiente"
+            >
+              {{ graficoMinutasLegal.evaluacionPendiente }}%
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid mt-4">
+    <div class="col-12 sm:col-3">
+      <div class="text-xl font-medium mb-3">Mantenimientos</div>
+    </div>
+    <div class="col-12 sm:col-4">
+      <div class="p-3 h-full">
+        <div class="flex align-items-center justify-content-between mb-3">
+          <div class="font-medium text-xl">
+            Preventivos (<span class="font-bold text-600">
+              {{ graficoMttoPreventivos.totalItems }} </span
+            >)
+          </div>
+        </div>
+        <div class="text-center">
+          <!-- Knob placeholder -->
+        </div>
+        <div class="mt-3">
+          <div class="w-full flex justify-content-between mb-2">
+            <span class="text-sm">
+              <i class="pi pi-check text-green-600 mr-2"></i>
+              Concluido : {{ graficoMttoPreventivos.totalConcluido }}
+            </span>
+            <span class="text-sm">
+              <i class="pi pi-times text-red-600 mr-2"></i>
+              Pendiente: {{ graficoMttoPreventivos.totalPendiente }}
+            </span>
+          </div>
+
+          <div
+            class="w-full flex h-2rem border-round overflow-hidden surface-200"
+          >
+            @if (onValidateNan(graficoMttoPreventivos.evaluacionConcluido)) {
+            <div
+              class="bg-green-500 flex align-items-center justify-content-center text-white text-xs"
+              [style.width.%]="graficoMttoPreventivos.evaluacionConcluido"
+            >
+              {{ graficoMttoPreventivos.evaluacionConcluido }}%
+            </div>
+            } @if (onValidateNan(graficoMttoPreventivos.evaluacionPendiente)) {
+            <div
+              class="bg-red-500 flex align-items-center justify-content-center text-white text-xs"
+              [style.width.%]="graficoMttoPreventivos.evaluacionPendiente"
+            >
+              {{ graficoMttoPreventivos.evaluacionPendiente }}%
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 sm:col-5">
+      <div class="p-3 h-full">
+        <div class="flex align-items-center justify-content-between mb-3">
+          <div class="font-medium text-xl">
+            Correctivos (<span class="font-bold text-600">
+              {{ graficosMantenimiento.totalItems }} </span
+            >)
+          </div>
+        </div>
+        <div class="text-center">
+          <!-- Knob placeholder -->
+        </div>
+        <div class="mt-3">
+          <div class="w-full flex justify-content-between mb-2">
+            <span class="text-sm">
+              <i class="pi pi-check text-green-600 mr-2"></i>
+              Concluido : {{ graficosMantenimiento.totalConcluido }}
+            </span>
+            <span class="text-sm">
+              <i class="pi pi-times text-red-600 mr-2"></i>
+              Pendiente: {{ graficosMantenimiento.totalPendiente }}
+            </span>
+          </div>
+
+          <div
+            class="w-full flex h-2rem border-round overflow-hidden surface-200"
+          >
+            @if (onValidateNan(graficosMantenimiento.evaluacionConcluido)) {
+            <div
+              class="bg-green-500 flex align-items-center justify-content-center text-white text-xs"
+              [style.width.%]="graficosMantenimiento.evaluacionConcluido"
+            >
+              {{ graficosMantenimiento.evaluacionConcluido }}%
+            </div>
+            } @if (onValidateNan(graficosMantenimiento.evaluacionPendiente)) {
+            <div
+              class="bg-red-500 flex align-items-center justify-content-center text-white text-xs"
+              [style.width.%]="graficosMantenimiento.evaluacionPendiente"
+            >
+              {{ graficosMantenimiento.evaluacionPendiente }}%
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,111 @@
+import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
+import { CommonModule } from "@angular/common";
+import { Component, inject, OnInit, ViewChild } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { TagModule } from "primeng/tag";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { AuthService } from "src/app/core/services/auth.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { PurchaseRequestAddProduct } from "./purchase-request-add-product";
+import { PurchaseRequestAddProductForm } from "./purchase-request-add-product-form";
+import { PurchaseRequestForm } from "./purchase-request-form";
+import { PurchaseRequestProducts } from "./purchase-request-products";
+@Component({
+  selector: "app-purchase-request",
+  templateUrl: "./purchase-request.html",
+  imports: [IonButtonItem, 
+    CommonModule,
+    TagModule,
+    ActionMenu,
+    PurchaseRequestAddProduct,
+    PurchaseRequestProducts,
+  ],
+})
+export class PurchaseRequest implements OnInit {
+  activatedRoute = inject(ActivatedRoute);
+  apiResponseS = inject(ApiResponseService);
+  authS = inject(AuthService);
+  router = inject(Router);
+  dialogHandlerS = inject(DialogHandlerService);
+  purchaseRequestId: any = this.activatedRoute.snapshot.params.id;
+
+  // Obtener una referencia al componente hijo del formulario
+  @ViewChild(PurchaseRequestAddProduct)
+  addProductFormComponent!: PurchaseRequestAddProduct;
+
+  // Variable para pasar el producto a editar al formulario
+  productToEdit: any | null = null;
+  purchaseOrders: any;
+  data: any;
+  ngOnInit() {
+    this.onLoadData();
+  }
+
+  onLoadData() {
+    const urlApi = `purchaserequest/datail/${this.purchaseRequestId}`;
+    this.apiResponseS.onGetList(urlApi).then((result: any) => {
+      this.data = result;
+      this.purchaseOrders = result.purchaseOrders;
+    });
+  }
+  getTagSeverity(status: string): string {
+    switch (status) {
+      case "Autorizado":
+        return "text-success";
+      case "Pendiente":
+        return "text-warning";
+      case "Denegado":
+        return "text-danger";
+    }
+  }
+
+  // PurchaseRequestComponent
+  handleEditProductRequest(productData: any) {
+    this.productToEdit = productData;
+  }
+
+  // MÃ³todo para limpiar el producto a editar una vez que el formulario se haya reseteado o enviado
+  clearProductToEdit() {
+    this.productToEdit = null;
+  }
+
+  // FunciÃ³n para abrir un cuadro de diÃ³logo modal para agregar o editar o crear
+  onModalAddProduct(data: any) {
+    this.dialogHandlerS
+      .openDialog(
+        PurchaseRequestAddProductForm,
+        { purchaseRequestId: data.purchaseRequestId },
+        data.title,
+        this.dialogHandlerS.sizeFull,
+      )
+      .then((result: boolean) => {
+        if (result) this.onLoadData();
+      });
+  }
+  onModalForm(data: any) {
+    this.dialogHandlerS
+      .openDialog(
+        PurchaseRequestForm,
+        data,
+        data.title,
+        this.dialogHandlerS.sizeLg,
+      )
+      .then((result: boolean) => {
+        if (result) this.onLoadData();
+      });
+  }
+
+  onNavigatePage(route: string) {
+    this.router.navigateByUrl(route);
+  }
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,47 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form" class="flex flex-column gap-3">
+  <div class="field">
+    <custom-input-text-signal
+      [control]="form.controls.name"
+      label="Nombre del Diagrama"
+      required
+    />
+  </div>
+
+  <div class="grid">
+    <div class="col-12 md:col-6">
+      <label class="font-bold mb-2 block text-sm">Customers Objetivo</label>
+      <p-listbox
+        [options]="allCustomers()"
+        formControlName="targetCustomerIds"
+        [multiple]="true"
+        [checkbox]="true"
+        [filter]="true"
+        optionLabel="label"
+        optionValue="value"
+        [style]="{ width: '100%' }"
+        [listStyle]="{ 'max-height': '200px' }"
+        emptyFilterMessage="No se encontraron clientes"
+      ></p-listbox>
+    </div>
+
+    <div class="col-12 md:col-6">
+      <label class="font-bold mb-2 block text-sm">Roles Objetivo</label>
+      <p-listbox
+        [options]="allRoles()"
+        formControlName="targetRoleIds"
+        [multiple]="true"
+        [checkbox]="true"
+        [filter]="true"
+        optionLabel="label"
+        optionValue="value"
+        [style]="{ width: '100%' }"
+        [listStyle]="{ 'max-height': '200px' }"
+        emptyFilterMessage="No se encontraron roles"
+      ></p-listbox>
+    </div>
+  </div>
+
+  <div class="flex justify-content-end mt-4">
+    <custom-button-save [loading]="submitting()" />
+  </div>
+</form>

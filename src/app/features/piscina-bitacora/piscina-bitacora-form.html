@@ -1,0 +1,82 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <!-- Id -->
+
+      <custom-input-text-signal
+        placeholder="id"
+        [control]="form.controls.id"
+        label="Id"
+        [disabled]="true"
+      />
+      <!-- Id -->
+      <custom-input-date-signal
+        [control]="form.controls.date"
+        label="Registro"
+      />
+
+      <custom-input-time-signal [control]="form.controls.hour" label="Hora" />
+      <custom-input-number-signal
+        placeholder="temperatura"
+        [control]="form.controls.temperatura"
+        label="Temperatura C°"
+      />
+      <custom-input-number-signal
+        placeholder="cloro (ppm)"
+        [control]="form.controls.cl"
+        label="Cloro (ppm)"
+      />
+
+      <custom-input-number-signal
+        placeholder="ph (ppm)"
+        [control]="form.controls.ph"
+        label="Ph (ppm)"
+      />
+      <custom-input-number-signal
+        placeholder="alkalinidad (ppm)"
+        [control]="form.controls.alkalinidad"
+        label="Alkalinidad (ppm)"
+      />
+      <custom-input-number-signal
+        placeholder="dureza (ppm)"
+        [control]="form.controls.dureza"
+        label="Dureza (ppm)"
+      />
+
+      <custom-input-number-signal
+        placeholder="cantidad en gramos "
+        [control]="form.controls.aplicationCl"
+        label="Cloro Aplicado"
+      />
+      <custom-input-number-signal
+        placeholder="cantidad en gramos "
+        [control]="form.controls.aplicationPhMas"
+        label="PH+ Aplicado"
+      />
+      <custom-input-number-signal
+        placeholder="cantidad en gramos "
+        [control]="form.controls.aplicationPhMenos"
+        label="PH- Aplicado"
+      />
+      <custom-input-check-signal
+        [control]="form.controls.aspirado"
+        label="Aspirado"
+      />
+      <custom-input-check-signal
+        [control]="form.controls.cepillado"
+        label="Cepillado"
+      />
+      <custom-input-check-signal
+        [control]="form.controls.cenefas"
+        label="Limpieza de cenefas"
+      />
+      <!-- boton submit -->
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+      <!-- boton submit -->
+    </form>
+  </div>
+</div>

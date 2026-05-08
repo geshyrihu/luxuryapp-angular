@@ -1,0 +1,30 @@
+@if (footerItems.length > 0) {
+<ion-tab-bar class="shadow-1 pb-3 pt-1 border-none">
+  @for (item of footerItems; track item.label) {
+  <ion-tab-button
+    [routerLink]="item.link || []"
+    (click)="item.action ? item.action() : null"
+    [selected]="item.link ? isActive(item.link!) : false"
+  >
+    <ion-icon [name]="item.icon" class="text-2xl mb-1"></ion-icon>
+
+    <ion-label class="text-xs">{{ item.label }}</ion-label>
+
+    @if (item.showNotification && messageInNotRead > 0) {
+    <ion-badge
+      color="danger"
+      class="absolute top-0 right-0 -mr-2 -mt-1 scale-75"
+      >{{ messageInNotRead }}</ion-badge
+    >
+    }
+  </ion-tab-button>
+  }
+</ion-tab-bar>
+}
+
+
+
+
+
+
+

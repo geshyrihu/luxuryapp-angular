@@ -1,0 +1,543 @@
+<div class="card">
+  <!-- Filtros Escritorio -->
+
+  <!-- Filtros Movil -->
+  <div class="block md:hidden mb-2">
+    <div class="flex overflow-x-auto pb-2 no-scrollbar">
+      @for (category of categories; track category.id) {
+      <ion-chip
+        class="flex-shrink-0"
+        [color]="inventoryCategoryId() === category.id ? 'primary' : 'medium'"
+        [outline]="inventoryCategoryId() !== category.id"
+        (click)="onSelectCategory(category.id)"
+      >
+        <ion-label class="flex align-items-center">
+          <i [class]="category.emoji"></i>
+          {{ category.name }}
+        </ion-label>
+      </ion-chip>
+      }
+    </div>
+  </div>
+
+  @if (data()) {
+  <!-- Vista Escritorio -->
+  <div class="hidden md:block">
+    <p-table
+      [globalFilterFields]="globalFilterFields()"
+      [paginator]="true"
+      [rows]="tablePrimeNgRows"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [showCurrentPageReport]="true"
+      [value]="data()"
+      [expandedRowKeys]="expandedRowKeys"
+      #dt
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      dataKey="equipoClasificacion"
+      styleClass="custom-table"
+      [expandableRowGroups]="true"
+      rowGroupMode="subheader"
+      groupRowsBy="equipoClasificacion"
+      sortField="equipoClasificacion"
+      sortMode="single"
+    >
+      <ng-template #caption>
+        <div class="hidden md:flex flex-wrap mb-2 mt-2">
+          @for (category of categories; track category.id) {
+          <div
+            class="surface-card border-1 border-round-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 flex align-items-center white-space-nowrap"
+            [class.border-primary]="inventoryCategoryId() === category.id"
+            [class.bg-primary-50]="inventoryCategoryId() === category.id"
+            (click)="onSelectCategory(category.id)"
+          >
+            <i [class]="category.emoji + ' text-xl'"></i>
+            <span class="font-medium text-sm">{{ category.name }}</span>
+          </div>
+          }
+        </div>
+        <div class="grid mt-2 align-items-center">
+          <div class="col-12 sm:col-10 flex align-items-center">
+            <primeng-custom-caption
+              [title]="title()"
+              (add)="onModalAddOrEdit({ id: 0, title: 'Nuevo Registro' })"
+              [dt]="dt"
+              [rolAuth]="
+                  aspRoleS.hasAny([
+                    AspRole.JefeMantenimiento,
+                    AspRole.Administrador,
+                    AspRole.SuperUsuario
+                  ])
+                "
+            />
+            <custom-button
+              label="PDF"
+              iconClass="pi pi-file-pdf"
+              [severity]="'danger'"
+              [size]="'small'"
+              customClass="ml-2"
+              (clicked)="onDownloadPdf()"
+              pTooltip="Descargar Inventario PDF"
+              tooltipPosition="top"
+            />
+          </div>
+          <div class="col-12 sm:col-2 ml-1">
+            <custom-button-active-desactive
+              [state]="stateFilter() === 0"
+              (stateChange)="onSelectState($event ? 0 : 1)"
+            />
+          </div>
+        </div>
+      </ng-template>
+      <ng-template
+        pTemplate="groupheader"
+        let-item
+        let-rowIndex="rowIndex"
+        let-expanded="expanded"
+      >
+        <tr pRowGroupHeader class="animate__fadeIn">
+          <td [attr.colspan]="mostrarPreventivos() ? 7 : 6">
+            <button
+              type="button"
+              [pRowToggler]="item"
+              class="p-button-text p-button-border-round p-button-plain mr-2"
+            >
+              <i
+                [class]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+              ></i>
+            </button>
+            <span class="font-bold ml-2">{{ item.equipoClasificacion }}</span>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #header>
+        <tr class="animate__fadeIn">
+          <th class="table-col-5 no-print"></th>
+          <th class="table-col-5">IMG</th>
+          <th class="table-col-20" pSortableColumn="nameMachinery">
+            NOMBRE
+            <p-sortIcon field="nameMachinery" />
+          </th>
+          <th class="table-col-20" pSortableColumn="equipoClasificacion">
+            SISTEMA
+            <p-sortIcon field="equipoClasificacion" />
+          </th>
+          <th class="table-col-20" pSortableColumn="ubication">
+            UBICACIóN
+            <p-sortIcon field="ubication" />
+          </th>
+          @if (mostrarPreventivos()) {
+          <th class="table-col-10" pSortableColumn="maintenanceCalendars">
+            SERVICIOS
+            <p-sortIcon field="maintenanceCalendars" />
+          </th>
+          }
+          <th class="table-col-10 no-print"></th>
+        </tr>
+      </ng-template>
+      <ng-template #expandedrow let-item>
+        <tr class="animate__fadeIn">
+          <td class="no-print">
+            <custom-button
+              [iconClass]="item.expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+              variant="ghost-text"
+              severity="secondary"
+              size="sm"
+              (clicked)="item.expanded = !item.expanded"
+            />
+          </td>
+          <td>
+            <p-image
+              [src]="item.photoPath"
+              alt="."
+              width="70"
+              class="shadow-4"
+              [preview]="true"
+            ></p-image>
+          </td>
+          <td>{{ item.nameMachinery }}</td>
+          <td>{{ item.equipoClasificacion }}</td>
+          <td>{{ item.ubication }}</td>
+          @if (this.mostrarPreventivos()) {
+          <td class="text-center">
+            <span
+              class="p-tag p-tag-info"
+              (click)="item.expanded = !item.expanded"
+              pTooltip="Explorar Servicios"
+            >
+              {{ item.maintenanceCalendars }}
+            </span>
+          </td>
+          }
+          <td class="no-print">
+            <div class="flex">
+              <custom-button-item
+                (clicked)="onDocumentos(item.id)"
+                iconClass="pi pi-file-pdf"
+                label="Documentos"
+                variant="text"
+              />
+
+              <!-- Histórico de servicios -->
+              <custom-button-item
+                (clicked)="onServiceHistory(item.id)"
+                iconClass="pi pi-file"
+                label="Histórico de servicios"
+                variant="text"
+              />
+
+              <!-- Bitócora -->
+              <custom-button-item
+                (clicked)="onBitacoraIndividual(item.id)"
+                iconClass="pi pi-book"
+                label="Bitócora"
+                variant="text"
+              />
+
+              <!-- Ficha tócnica -->
+              <custom-button-item
+                (clicked)="showModalFichatecnica(item.id)"
+                iconClass="pi pi-clipboard"
+                label="Ficha tócnica"
+                variant="text"
+              />
+              <!-- Editar -->
+              @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento,
+              AspRole.Administrador, AspRole.SuperUsuario, ]) ) {
+
+              <custom-button-edit
+                (clicked)="
+                    onModalAddOrEdit({
+                      id: item.id,
+                      title: 'Editar regitro ' + item.id
+                    })
+                  "
+              />
+              }
+
+              <!-- Eliminar -->
+              @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento,
+              AspRole.Administrador, AspRole.SuperUsuario, ]) ) {
+              <custom-button-delete (confirmed)="onDelete(item.id)" />
+              }
+            </div>
+          </td>
+        </tr>
+        @if (item.expanded) {
+        <tr class="animate__fadeIn">
+          <td [attr.colspan]="mostrarPreventivos() ? 7 : 6">
+            <div class="p-3">
+              <p-table [value]="item.maintenanceCalendar" dataKey="id">
+                <ng-template #header>
+                  <tr class="animate__fadeIn">
+                    <th colspan="8">
+                      <custom-button
+                        ngbTooltip="Agregar un nuevo servicio"
+                        label="Agregar"
+                        variant="text"
+                        iconClass="pi pi-plus"
+                        [showLabelOnDesktop]="false"
+                        (clicked)="
+                            showModalMaintenanceCalendar({
+                              id: 0,
+                              task: 'create',
+                              machineryId: item.id,
+                              header: 'Nuevo Servicio'
+                            })
+                          "
+                      />
+                    </th>
+                  </tr>
+                  <tr class="animate__fadeIn">
+                    <th class="table-col-5"></th>
+                    <th pSortableColumn="activity">
+                      ACTIVIDAD
+                      <p-sortIcon field="activity" />
+                    </th>
+                    <th pSortableColumn="nameProvider">
+                      PROVEEDOR
+                      <p-sortIcon field="nameProvider" />
+                    </th>
+                    <th pSortableColumn="recurrence">
+                      RECURRENCIA
+                      <p-sortIcon field="recurrence" />
+                    </th>
+                    <th pSortableColumn="month">
+                      MES
+                      <p-sortIcon field="month" />
+                    </th>
+                    <th pSortableColumn="price">
+                      COSTO
+                      <p-sortIcon field="price" />
+                    </th>
+                    @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento,
+                    AspRole.Administrador, AspRole.SuperUsuario, ]) ) {
+                    <th class="table-col-10"></th>
+                    }
+                  </tr>
+                </ng-template>
+                <ng-template #body let-order>
+                  <tr class="animate__fadeIn">
+                    <td>
+                      <span
+                        [innerHTML]="order.hasServiceOrder ? '🛠️' : '⚪'"
+                      ></span>
+                    </td>
+                    <td>
+                      <p
+                        class="mr-2 text-justify"
+                        [innerHTML]="order.activity | sanitizeHtml"
+                      ></p>
+                    </td>
+                    <td>{{ order.nameProvider }}</td>
+                    <td>{{ order.recurrence }}</td>
+                    <td>{{ order.month }}</td>
+                    <td>{{ order.price | CurrencyMexicoPipe }}</td>
+                    @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento,
+                    AspRole.Administrador, AspRole.SuperUsuario, ]) ) {
+                    <td class="no-print">
+                      <div class="flex">
+                        <custom-button-item
+                          iconClass="pi pi-file-pdf"
+                          label="Duplicar Servicio"
+                          (clicked)="
+                              showModalMaintenanceCalendar({
+                                id: order.id,
+                                task: 'copy',
+                                machineryId: order.machineryId,
+                                header: 'Duplicar Actividad'
+                              })
+                            "
+                        />
+                        <custom-button-edit
+                          (clicked)="
+                              showModalMaintenanceCalendar({
+                                id: order.id,
+                                task: 'edit',
+                                machineryId: order.machineryId,
+                                header: 'Editar Actividad'
+                              })
+                            "
+                        />
+                        <custom-button-delete
+                          (confirmed)="onDeleteOrder(order.id)"
+                          [isLinked]="order.hasServiceOrder"
+                        />
+                      </div>
+                    </td>
+                    }
+                  </tr>
+                </ng-template>
+                <ng-template emptymessage>
+                  <tr class="animate__fadeIn">
+                    <td colspan="6">Sin servicios de Mantenimiento.</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </td>
+        </tr>
+        }
+      </ng-template>
+      <ng-template pTemplate="paginatorleft">
+        <primeng-custom-table-footer [data]="data()" />
+      </ng-template>
+    </p-table>
+  </div>
+
+  <!-- Vista Movil -->
+  <div class="block md:hidden">
+    <app-data-view-mobile
+      [data]="data()"
+      [loading]="loading()"
+      (add)="onModalAddOrEdit({ id: 0, title: 'Nuevo Registro' })"
+      [title]="title()"
+      [globalFilterFields]="globalFilterFields()"
+    >
+      <ng-template select="[customFilters]">
+        <div class="px-2 pb-2">
+          <custom-button
+            label="Descargar PDF"
+            iconClass="pi pi-file-pdf"
+            [severity]="'danger'"
+            [size]="'small'"
+            [isFullWidth]="true"
+            (clicked)="onDownloadPdf()"
+          />
+        </div>
+      </ng-template>
+      <ng-template #listItemTemplate let-item>
+        <ion-item lines="full" class="ion-no-padding">
+          <ion-avatar slot="start">
+            <img [src]="item.photoPath" alt="equipo" />
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ item.nameMachinery }}</h2>
+            <h3>{{ item.equipoClasificacion }}</h3>
+            <p>{{ item.ubication }}</p>
+
+            <div class="flex flex-wrap mt-2">
+              <ion-button
+                fill="clear"
+                size="small"
+                (click)="onDocumentos(item.id)"
+              >
+                <ion-icon
+                  slot="icon-only"
+                  name="document-text-outline"
+                ></ion-icon>
+              </ion-button>
+              <ion-button
+                fill="clear"
+                size="small"
+                (click)="onServiceHistory(item.id)"
+              >
+                <ion-icon slot="icon-only" name="time-outline"></ion-icon>
+              </ion-button>
+              <ion-button
+                fill="clear"
+                size="small"
+                (click)="onBitacoraIndividual(item.id)"
+              >
+                <ion-icon slot="icon-only" name="reader-outline"></ion-icon>
+              </ion-button>
+              <ion-button
+                fill="clear"
+                size="small"
+                (click)="showModalFichatecnica(item.id)"
+              >
+                <ion-icon slot="icon-only" name="clipboard-outline"></ion-icon>
+              </ion-button>
+              <ion-button
+                fill="clear"
+                size="small"
+                (click)="item.expanded = !item.expanded"
+                [color]="item.expanded ? 'primary' : 'medium'"
+              >
+                <ion-icon slot="icon-only" name="construct-outline"></ion-icon>
+              </ion-button>
+            </div>
+
+            <!-- Expanded Services Section -->
+            @if (item.expanded) {
+            <div
+              class="w-full mt-3 border-top-1 surface-border pt-2 animate__animated animate__fadeIn"
+            >
+              <div class="flex justify-content-between align-items-center mb-2">
+                <span class="text-primary font-bold"
+                  >Servicios Programados</span
+                >
+                <ion-button
+                  fill="clear"
+                  size="small"
+                  (click)="showModalMaintenanceCalendar({ id: 0, task: 'create', machineryId: item.id, header: 'Nuevo Servicio' })"
+                >
+                  <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+                  Agregar
+                </ion-button>
+              </div>
+
+              @if (item.maintenanceCalendar?.length > 0) {
+              <div class="flex flex-column gap-2">
+                @for (service of item.maintenanceCalendar; track service.id) {
+                <div class="surface-ground p-2 border-round">
+                  <div class="flex justify-content-between align-items-center">
+                    <span
+                      class="font-bold flex-1 mr-2"
+                      [innerHTML]="service.activity | sanitizeHtml"
+                    ></span>
+                    <span
+                      [innerHTML]="service.hasServiceOrder ? '🛠️' : '⚪'"
+                    ></span>
+                  </div>
+                  <div class="grid text-sm text-600 mt-1">
+                    <div class="col-6 py-1">
+                      <span class="font-semibold">Prov:</span> {{
+                      service.nameProvider }}
+                    </div>
+                    <div class="col-6 py-1">
+                      <span class="font-semibold">Freq:</span> {{
+                      service.recurrence }}
+                    </div>
+                    <div class="col-6 py-1">
+                      <span class="font-semibold">Mes:</span> {{ service.month
+                      }}
+                    </div>
+                    <div class="col-6 py-1">
+                      <span class="font-semibold">Costo:</span> {{ service.price
+                      | CurrencyMexicoPipe }}
+                    </div>
+                  </div>
+
+                  @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento,
+                  AspRole.Administrador, AspRole.SuperUsuario ]) ) {
+                  <div
+                    class="flex justify-content-end gap-1 mt-2 border-top-1 surface-border pt-1"
+                  >
+                    <ion-button
+                      fill="clear"
+                      size="small"
+                      color="medium"
+                      (click)="showModalMaintenanceCalendar({ id: service.id, task: 'copy', machineryId: service.machineryId, header: 'Duplicar' })"
+                    >
+                      <ion-icon slot="icon-only" name="copy-outline"></ion-icon>
+                    </ion-button>
+                    <ion-button
+                      fill="clear"
+                      size="small"
+                      color="primary"
+                      (click)="showModalMaintenanceCalendar({ id: service.id, task: 'edit', machineryId: service.machineryId, header: 'Editar' })"
+                    >
+                      <ion-icon
+                        slot="icon-only"
+                        name="create-outline"
+                      ></ion-icon>
+                    </ion-button>
+                    <ion-button
+                      fill="clear"
+                      size="small"
+                      color="danger"
+                      (click)="onDeleteOrder(service.id)"
+                    >
+                      <ion-icon
+                        slot="icon-only"
+                        name="trash-outline"
+                      ></ion-icon>
+                    </ion-button>
+                  </div>
+                  }
+                </div>
+                }
+              </div>
+              } @else {
+              <div
+                class="text-center text-500 p-2 italic surface-100 border-round"
+              >
+                Sin servicios registrados
+              </div>
+              }
+            </div>
+            }
+          </ion-label>
+
+          <!-- Edit/Delete Actions -->
+          <div slot="end" class="flex flex-column gap-1">
+            @if ( aspRoleS.hasAny([ AspRole.JefeMantenimiento,
+            AspRole.Administrador, AspRole.SuperUsuario ]) ) {
+            <ion-button
+              fill="clear"
+              color="primary"
+              (click)="onModalAddOrEdit({ id: item.id, title: 'Editar' })"
+            >
+              <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" color="danger" (click)="onDelete(item.id)">
+              <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+            </ion-button>
+            }
+          </div>
+        </ion-item>
+      </ng-template>
+    </app-data-view-mobile>
+  </div>
+  }
+</div>

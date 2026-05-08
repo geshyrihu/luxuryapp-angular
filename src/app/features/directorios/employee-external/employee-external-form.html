@@ -1,0 +1,124 @@
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div class="grid col-12 md:col-6">
+    <!-- Foto -->
+    <div class="col-12 flex justify-content-center mb-4">
+      <custom-input-img-signal
+        (fileSelected)="change($event)"
+        (imageLoaded)="imgBase64 = $event"
+        [urlImgCurrent]="imgBase64"
+        [label]="'Foto del Colaborador'"
+      />
+    </div>
+
+    <div>
+      <custom-input-text-signal
+        [control]="form.controls.firstName"
+        label="Nombres"
+        placeholder="nombres"
+        [horizontal]="false"
+      />
+    </div>
+
+    <div>
+      <custom-input-text-signal
+        [control]="form.controls.lastName"
+        label="Apellidos"
+        placeholder="apellidos"
+        [horizontal]="false"
+      />
+    </div>
+
+    <div>
+      <custom-input-text-signal
+        [control]="form.controls.email"
+        label="Email"
+        placeholder="email"
+        (input)="searchExistingEmail()"
+        [horizontal]="false"
+      />
+    </div>
+
+    <div>
+      <div class="flex">
+        <custom-input-text-signal
+          [control]="form.controls.phoneNumberPrefix"
+          label="Prefijo"
+          placeholder="+52"
+          class="w-4"
+          hidden
+          [horizontal]="false"
+        />
+        <custom-input-mask-signal
+          [control]="form.controls.phoneNumber"
+          label="Teléfono"
+          customMask="(99) 9999-9999"
+          mask="(999) 9999-9999"
+          placeholder="(55) 0000-0000"
+          class="flex-1"
+          (input)="searchExistingPhone()"
+          [horizontal]="false"
+        />
+      </div>
+    </div>
+
+    <div>
+      <custom-input-select-signal
+        [control]="form.controls.applicationRoleId"
+        label="Puesto"
+        [data]="cb_applicationRole()"
+        [horizontal]="false"
+      />
+    </div>
+
+    <custom-input-autocomplete-signal
+      (propagar)="saveProviderId($event)"
+      [control]="form.controls.providerName"
+      [data]="cb_providers()"
+      label="Proveedor"
+      placeholder="Escribe para buscar proveedor"
+      [horizontal]="false"
+    />
+
+    <div class="col-12 mt-4">
+      @if (existingApplicationUser().length > 0) {
+      <div class="surface-ground p-3 border-round">
+        <p class="text-900 font-bold mb-2">Usuarios existentes encontrados:</p>
+        <div class="flex flex-column">
+          @for (user of existingApplicationUser(); track user.applicationUserId)
+          {
+          <div
+            class="flex justify-content-between align-items-center surface-card p-2 border-round shadow-1"
+          >
+            <div class="flex flex-column">
+              <span class="text-900 font-medium">{{ user.fullName }}</span>
+              <span class="text-600 text-sm"
+                >{{ user.email }} | {{ user.phoneNumber }}</span
+              >
+            </div>
+            @if (!user.hasAccessToCurrentCustomer) {
+            <custom-button
+              label="Dar Acceso"
+              iconClass="pi pi-user-plus"
+              size="small"
+              variant="outlined"
+              [showLabelOnDesktop]="true"
+              (clicked)="addAccessCustomer(user.applicationUserId)"
+            />
+            } @else {
+            <span class="text-primary text-sm font-bold">Con Acceso</span>
+            }
+          </div>
+          }
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="col-12 flex justify-content-end mt-4">
+      <custom-button-save
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </div>
+  </div>
+</form>

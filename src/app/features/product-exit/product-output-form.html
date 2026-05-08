@@ -1,0 +1,66 @@
+<p-card>
+  <ng-template #content>
+    <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        label="Id"
+        [readonly]="true"
+      />
+      <custom-input-date-signal
+        [control]="form.controls.fechaSalida"
+        label="Fecha de salida"
+        placeholder="fecha de salida"
+      />
+      <custom-input-time-signal
+        [control]="form.controls.horaSalida"
+        label="Hora de salida"
+        placeholder="hora de salida"
+      />
+      <div class="grid mb-4 align-items-center">
+        <label class="form-label col-12 md:col-3">Producto</label>
+        <div class="col-12 md:col-9">
+          <custom-input-text-signal
+            [control]="form.controls.productoId"
+            [hidden]="true"
+            [horizontal]="false"
+          />
+          <custom-input-text-signal
+            [readonly]="true"
+            [value]="nombreProducto()"
+            [horizontal]="false"
+          />
+        </div>
+      </div>
+      <div class="grid mb-4 align-items-center">
+        <label class="form-label col-12 md:col-3">Cantidad</label>
+        <div class="col-12 md:col-9">
+          <custom-input-number-signal
+            [control]="form.controls.cantidad"
+            [horizontal]="false"
+          />
+          @if (form.controls.cantidad.hasError('stockInsuficiente')) {
+          <small class="p-error block mt-1"
+            >No hay suficiente stock. Disponible: {{existenciaAlmacen()}}</small
+          >
+          }
+        </div>
+      </div>
+      <custom-input-select-signal
+        [control]="form.controls.unidadMedidaId"
+        label="Unidad"
+        [data]="cb_measurement_unit()"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.quienUso"
+        label="Entregado a:..."
+        placeholder="entregado a"
+      />
+      <custom-input-textarea-signal
+        [control]="form.controls.usoPrducto"
+        label="Uso"
+        placeholder="uso"
+      />
+      <custom-button-save [disabled]="form.invalid || submitting()" />
+    </form>
+  </ng-template>
+</p-card>

@@ -1,0 +1,93 @@
+import { Component, OnInit, effect, inject, signal } from "@angular/core";
+import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
+import { CardModule } from "primeng/card";
+import { FieldsetModule } from "primeng/fieldset";
+import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
+import { CustomInputDecimal } from "src/app/core/components/inputs/web/custom-input-decimal-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import {
+  ConfiguracionNominaDTO,
+  ConfiguracionNominaUpdateDTO,
+  FRECUENCIA_PAGO_OPTIONS,
+} from "../../interfaces/configuracion-nomina.interface";
+
+@Component({
+  selector: "app-configuracion-nomina",
+  imports: [
+    ReactiveFormsModule,
+    CardModule,
+    FieldsetModule,
+    CustomInputSelectSignal,
+    CustomInputNumberSignal,
+    CustomInputDecimal,
+    CustomButtonSave,
+  ],
+  templateUrl: "./configuracion-nomina.html",
+})
+export default class ConfiguracionNomina implements OnInit {
+  private fb = inject(FormBuilder);
+  private apiResponseS = inject(ApiResponseService);
+  private customerIdS = inject(CustomerIdService);
+
+  readonly frecuenciaPagoOptions = FRECUENCIA_PAGO_OPTIONS;
+  loading = signal(false);
+  submitting = signal(false);
+
+  form = this.fb.nonNullable.group({
+    frecuenciaPago:               [0, Validators.required],
+    diaPago1:                     [15, [Validators.required, Validators.min(1), Validators.max(31)]],
+    diaPago2:                     [30, [Validators.required, Validators.min(1), Validators.max(31)]],
+    diasAguinaldo:                [15, [Validators.required, Validators.min(15)]],
+    factorPrimaVacacional:        [0.25, [Validators.required, Validators.min(0.25)]],
+    minutosToleranciaRetardo:     [10, [Validators.required, Validators.min(0)]],
+    retardosPorFalta:             [3, [Validators.required, Validators.min(1)]],
+    porcentajeEnfermedadMaternidad: [0.00625, [Validators.required, Validators.min(0)]],
+    porcentajeIvcm:               [0.00625, [Validators.required, Validators.min(0)]],
+    porcentajeCesantiaVejez:      [0.01125, [Validators.required, Validators.min(0)]],
+  });
+
+  constructor() {
+    effect(() => {
+      const customerId = this.customerIdS.customerId();
+      if (customerId) this.loadData(customerId);
+    });
+  }
+
+  ngOnInit(): void {}
+
+  async loadData(customerId: string): Promise<void> {
+    this.loading.set(true);
+    const result = await this.apiResponseS.onGetItem<ConfiguracionNominaDTO>(
+      `hr/nomina/configuracion/${customerId}`,
+    );
+    this.loading.set(false);
+    if (result) {
+      this.form.patchValue({
+        frecuenciaPago:               result.frecuenciaPago,
+        diaPago1:                     result.diaPago1,
+        diaPago2:                     result.diaPago2,
+        diasAguinaldo:                result.diasAguinaldo,
+        factorPrimaVacacional:        result.factorPrimaVacacional,
+        minutosToleranciaRetardo:     result.minutosToleranciaRetardo,
+        retardosPorFalta:             result.retardosPorFalta,
+        porcentajeEnfermedadMaternidad: result.porcentajeEnfermedadMaternidad,
+        porcentajeIvcm:               result.porcentajeIvcm,
+        porcentajeCesantiaVejez:      result.porcentajeCesantiaVejez,
+      });
+    }
+  }
+
+  async onSubmit(): Promise<void> {
+    if (!this.apiResponseS.validateForm(this.form)) return;
+    const customerId = this.customerIdS.customerId();
+    if (!customerId) return;
+
+    this.submitting.set(true);
+    const dto: ConfiguracionNominaUpdateDTO = this.form.getRawValue();
+    await this.apiResponseS.onPut(`hr/nomina/configuracion/${customerId}`, dto);
+    this.submitting.set(false);
+  }
+}

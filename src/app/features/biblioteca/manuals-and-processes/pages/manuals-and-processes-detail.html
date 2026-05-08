@@ -1,0 +1,203 @@
+<div class="flex flex-column h-full">
+
+  <!-- Top Bar -->
+  <div class="surface-card p-3 shadow-1 flex align-items-center justify-content-between z-1 border-bottom-1 border-200">
+    <div class="flex align-items-center gap-3">
+      <p-button icon="pi pi-arrow-left" [text]="true" severity="secondary" (onClick)="onBack()" />
+      <div>
+        <h2 class="text-xl font-bold text-900 m-0">{{ manual()?.folio || 'Cargando...' }}</h2>
+        <p class="text-500 m-0 text-sm">
+          {{ manual()?.departament }} &mdash; v{{ manual()?.currentVersion }}
+        </p>
+      </div>
+    </div>
+    @if (aspRoleS.roleSignal(EApplicationRole.SuperUsuario)()) {
+    <p-button
+      icon="pi pi-cog"
+      label="Editor"
+      severity="secondary"
+      [outlined]="true"
+      size="small"
+      (onClick)="onOpenEditor(manual()!.id)"
+      [disabled]="!manual()"
+    />
+    }
+  </div>
+
+  <!-- Contenido -->
+  <div class="flex-grow-1 overflow-y-auto p-4">
+    @if (loading()) {
+    <div class="flex align-items-center justify-content-center py-8">
+      <i class="pi pi-spin pi-spinner text-primary text-4xl"></i>
+    </div>
+    } @else if (manual()) {
+    <div class="w-full xl:w-8 mx-auto flex flex-column gap-3">
+
+      <!-- Objetivo -->
+      @if (manual()!.objetivo) {
+      <div class="surface-card border-round-lg p-4 shadow-1">
+        <h3 class="text-base font-bold text-700 mt-0 mb-2">Objetivo</h3>
+        <p class="text-sm line-height-3 m-0 text-color-secondary">{{ manual()!.objetivo }}</p>
+      </div>
+      }
+
+      <!-- Marco Legal -->
+      @if (manual()!.marcoLegal) {
+      <div class="surface-card border-round-lg p-4 shadow-1">
+        <h3 class="text-base font-bold text-700 mt-0 mb-2 flex align-items-center gap-2">
+          <i class="pi pi-book text-primary"></i>Marco Legal, Referencias y Anexos
+        </h3>
+        <p class="text-sm line-height-3 m-0 text-color-secondary white-space-pre-line">{{ manual()!.marcoLegal }}</p>
+      </div>
+      }
+
+      <!-- Pasos -->
+      @if (manual()!.pasos?.length) {
+      <div class="surface-card border-round-lg p-4 shadow-1">
+        <h3 class="text-base font-bold text-700 mt-0 mb-3 flex align-items-center gap-2">
+          <i class="pi pi-list-check text-primary"></i>Pasos del Procedimiento
+        </h3>
+        <div class="flex flex-column gap-3">
+          @for (paso of manual()!.pasos; track paso.id) {
+          <div class="flex flex-column gap-2">
+
+            <!-- Cabecera segun tipo -->
+            @if (paso.tipoNota === 1) {
+            <div class="border-round-lg p-3 bg-blue-50 border-left-3 border-blue-400">
+              <div class="flex align-items-center gap-2 mb-1">
+                <i class="pi pi-info-circle text-blue-600"></i>
+                <span class="font-bold text-sm text-blue-800">NOTA</span>
+              </div>
+              <p class="m-0 text-sm text-700 line-height-3">{{ paso.titulo }}</p>
+              @if (paso.descripcion) {
+              <p class="m-0 text-sm text-600 mt-1 line-height-3">{{ paso.descripcion }}</p>
+              }
+            </div>
+            } @else if (paso.tipoNota === 2) {
+            <div class="border-round-lg p-3 bg-yellow-50 border-left-3 border-yellow-500">
+              <div class="flex align-items-center gap-2 mb-1">
+                <i class="pi pi-exclamation-triangle text-yellow-600"></i>
+                <span class="font-bold text-sm text-yellow-800">ADVERTENCIA</span>
+              </div>
+              <p class="m-0 text-sm text-700 line-height-3">{{ paso.titulo }}</p>
+              @if (paso.descripcion) {
+              <p class="m-0 text-sm text-600 mt-1 line-height-3">{{ paso.descripcion }}</p>
+              }
+            </div>
+            } @else if (paso.tipoNota === 3) {
+            <div class="border-round-lg p-3 bg-green-50 border-left-3 border-green-500">
+              <div class="flex align-items-center gap-2 mb-1">
+                <i class="pi pi-check-circle text-green-600"></i>
+                <span class="font-bold text-sm text-green-800">BUENAS PRACTICAS</span>
+              </div>
+              <p class="m-0 text-sm text-700 line-height-3">{{ paso.titulo }}</p>
+              @if (paso.descripcion) {
+              <p class="m-0 text-sm text-600 mt-1 line-height-3">{{ paso.descripcion }}</p>
+              }
+            </div>
+            } @else {
+            <div class="flex align-items-start gap-3">
+              <div class="flex-shrink-0 w-2rem h-2rem border-circle bg-primary flex align-items-center justify-content-center">
+                <span class="text-white text-xs font-bold">{{ paso.orden }}</span>
+              </div>
+              <div class="flex-1 pt-1">
+                <div class="flex align-items-center gap-2 flex-wrap">
+                  <span class="font-semibold text-900 text-sm">{{ paso.titulo }}</span>
+                  @if (paso.responsableRoleNombre) {
+                  <p-tag [value]="paso.responsableRoleNombre" severity="secondary" />
+                  }
+                </div>
+                @if (paso.descripcion) {
+                <p class="m-0 text-sm text-color-secondary mt-1 line-height-3">{{ paso.descripcion }}</p>
+                }
+              </div>
+            </div>
+            }
+
+            <!-- Diagrama (todos los tipos) -->
+            @if (paso.diagramaXml) {
+            <div class="border-round overflow-hidden border-1 border-200">
+              <app-diagram-preview [xml]="paso.diagramaXml" />
+            </div>
+            }
+
+            <!-- Imagenes (todos los tipos) -->
+            @if (paso.imagenes?.length) {
+            <div class="flex flex-wrap gap-2">
+              @for (img of paso.imagenes; track img.id) {
+              <a [href]="img.url" target="_blank">
+                <img
+                  [src]="img.url"
+                  class="border-round border-1 border-200 cursor-pointer"
+                  style="max-height: 120px; max-width: 180px; object-fit: cover;"
+                  alt="imagen"
+                />
+              </a>
+              }
+            </div>
+            }
+
+          </div>
+          }
+        </div>
+      </div>
+      } @else {
+      <div class="surface-card border-round-lg p-5 text-center shadow-1">
+        <i class="pi pi-book text-4xl mb-3 text-400"></i>
+        <p class="text-500 m-0">Este manual aun no tiene pasos definidos.</p>
+      </div>
+      }
+
+      <!-- Adjuntos -->
+      @if (manual()!.adjuntos?.length) {
+      <div class="surface-card border-round-lg p-4 shadow-1">
+        <h3 class="text-base font-bold text-700 mt-0 mb-3 flex align-items-center gap-2">
+          <i class="pi pi-paperclip text-primary"></i>Archivos Auxiliares
+        </h3>
+        <div class="flex flex-column gap-2">
+          @for (adj of manual()!.adjuntos; track adj.id) {
+          <div class="flex align-items-center justify-content-between p-3 border-round border-1 border-200">
+            <div class="flex align-items-center gap-3">
+              <i class="pi pi-file text-xl text-primary"></i>
+              <div>
+                <div class="font-medium text-sm">{{ adj.nombre }}</div>
+                <div class="text-xs text-500 mt-1">{{ adj.fileExtension?.toUpperCase() }}</div>
+              </div>
+            </div>
+            <a [href]="adj.url" target="_blank" download>
+              <p-button icon="pi pi-download" label="Descargar" [text]="true" size="small" />
+            </a>
+          </div>
+          }
+        </div>
+      </div>
+      }
+
+      <!-- Historial de versiones -->
+      @if (manual()!.versiones?.length) {
+      <div class="surface-card border-round-lg p-4 shadow-1">
+        <h3 class="text-base font-bold text-700 mt-0 mb-3 flex align-items-center gap-2">
+          <i class="pi pi-history text-primary"></i>Historial de Versiones
+        </h3>
+        <div class="flex flex-column gap-2">
+          @for (v of manual()!.versiones; track v.id) {
+          <div class="flex align-items-start gap-3 p-3 border-round border-1 border-200">
+            <span class="font-bold text-primary text-sm flex-shrink-0">v{{ v.version }}</span>
+            <div class="flex-1">
+              <div class="text-xs text-500 mb-1">
+                {{ v.fechaCambio | date:'dd/MM/yyyy' }} &mdash; {{ v.autor }}
+              </div>
+              @if (v.descripcionCambio) {
+              <div class="text-sm text-700">{{ v.descripcionCambio }}</div>
+              }
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+      }
+
+    </div>
+    }
+  </div>
+</div>

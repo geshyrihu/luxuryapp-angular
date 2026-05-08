@@ -1,0 +1,84 @@
+<page-title-report />
+<div class="no-print mb-4">
+  <div class="w-full sm:w-1/3">
+    <div class="grid align-items-center">
+      <label
+        for="horizontal-firstname-input"
+        class="col-12 sm:col-3 form-label"
+      >
+        Periodo
+      </label>
+      <div class="col-12 sm:col-9">
+        <custom-input-text-signal
+          type="month"
+          ngbTooltip="SELECCIONA PERIODO"
+          [ngModel]="periodo()"
+          (change)="onFilterPeriod($event.target.value)"
+          [horizontal]="false"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-table
+  [value]="menu()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  styleClass="custom-table hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      [title]="'REPORTES'"
+      [showAdd]="false"
+      [showSearch]="false"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th class="table-col-70">REPORTE</th>
+      <th class="table-col-30">VER</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.name }}</td>
+      <td class="text-center">
+        <a [routerLink]="[item.route]">
+          ver
+          <i class="icon icon-pi-hand-point-right icon-lg"></i>
+        </a>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="menu()"
+  [globalFilterFields]="['name']"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div slot="start" style="
+        width:36px; height:36px; border-radius:10px;
+        background:#fef9c3; display:flex; align-items:center;
+        justify-content:center; flex-shrink:0; margin-left:16px;
+      ">
+        <ion-icon name="document-text-outline" style="font-size:20px; color:#ca8a04;"></ion-icon>
+      </div>
+      <ion-label>
+        <h3>{{ item.name }}</h3>
+      </ion-label>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+
+
+
+
+
+

@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        label="Id"
+        [readonly]="true"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.nameModule"
+        label="Nombre de Modulo"
+        placeholder="Nombre de Modulo"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.label"
+        label="Label"
+        placeholder="Label"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.routerLink"
+        label="RouterLink"
+        placeholder="RouterLink"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.icon"
+        label="Icon"
+        placeholder="Icon"
+      />
+      <custom-input-check-signal
+        [control]="form.controls.viewMobil"
+        label="Modulo Celular"
+      />
+      <custom-input-select-signal
+        [control]="form.controls.pathParent"
+        label="Padre"
+        [data]="cb_pathParent()"
+      />
+      <custom-input-select-signal
+        [control]="form.controls.rolLevel"
+        label="Nivel"
+        [data]="cb_rolLevel()"
+      />
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+// ============================================================
+// _prime-dialog.scss
+// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
+// Override visual del p-dialog
+// ============================================================
+
+:root {
+  --p-dialog-border-radius:      16px;
+  --p-dialog-header-padding:     1.25rem 1.5rem;
+  --p-dialog-content-padding:    1.5rem;
+  --p-dialog-footer-padding:     1rem 1.5rem;
+  --p-dialog-header-font-size:   1.125rem;
+  --p-dialog-header-font-weight: 600;
+  --p-dialog-box-shadow:         var(--ds-shadow-2xl);
+  --p-dialog-background:         var(--ds-bg-surface);
+  --p-dialog-border-color:       transparent;
+}
+
+body .p-dialog {
+  border-radius: 16px;
+  box-shadow: var(--ds-shadow-2xl);
+  border: none;
+  overflow: hidden;
+
+  .p-dialog-header {
+    border-bottom: 1px solid var(--ds-border);
+    background-color: var(--ds-bg-surface);
+    padding: 1.25rem 1.5rem;
+
+    .p-dialog-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--ds-text-primary);
+    }
+
+    .p-dialog-header-close {
+      border-radius: var(--ds-radius-md);
+      color: var(--ds-text-muted);
+      transition: all 150ms;
+
+      &:hover {
+        background-color: var(--ds-bg-sunken);
+        color: var(--ds-text-primary);
+      }
+    }
+  }
+
+  .p-dialog-content {
+    padding: 1.5rem;
+    background-color: var(--ds-bg-surface);
+    color: var(--ds-text-primary);
+  }
+
+  .p-dialog-footer {
+    border-top: 1px solid var(--ds-border);
+    background-color: var(--ds-bg-sunken);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+  }
+}
+
+// Backdrop del dialog
+body .p-dialog-mask {
+  backdrop-filter: blur(2px);
+}
+
+
+
+

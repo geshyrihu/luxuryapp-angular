@@ -1,0 +1,101 @@
+import { CommonModule } from "@angular/common";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { ConfirmationService } from "primeng/api";
+import { DialogService } from "primeng/dynamicdialog";
+import { TableModule } from "primeng/table";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
+} from "src/app/core/helpers/table-primeng-option";
+import { AiKnowledgeBaseDTO } from "src/app/core/interfaces/ai-knowledge-base.dto";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { AiKnowledgeBaseForm } from "./ai-knowledge-base-form";
+
+@Component({
+  selector: "app-ai-knowledge-base-list",
+  templateUrl: "./ai-knowledge-base-list.html",
+  imports: [
+    CommonModule,
+    TableModule,
+    PrimeNgCustomCaption,
+    PrimeNgCustomTableFooter,
+    DataViewMobile,
+    ActionMenu,
+    CustomButtonEdit,
+    CustomButtonDelete,
+  ],
+  providers: [ConfirmationService, DialogService],
+})
+export class AiKnowledgeBaseList implements OnInit {
+  apiResponseS = inject(ApiResponseService);
+  dialogHandlerS = inject(DialogHandlerService);
+  confirmationService = inject(ConfirmationService);
+
+  dataSignal = signal<AiKnowledgeBaseDTO[]>([]);
+
+  // PrimeNG Table Options
+  loading = signal(true);
+  tablePrimeNgRows: number = tablePrimeNgRows();
+  rowsPerPageOptions: number[] = rowsPerPageOptions();
+
+  globalFilterFields = computed(() => {
+    const data = this.dataSignal();
+    if (!data || data.length === 0) return [];
+    return globalFilterFields(data);
+  });
+
+  ngOnInit(): void {
+    this.onLoadData();
+  }
+
+  async onLoadData() {
+    const urlApi = `AiKnowledgeBase`;
+    const result =
+      await this.apiResponseS.onGetList<AiKnowledgeBaseDTO[]>(urlApi);
+    if (result) {
+      this.dataSignal.set(result);
+      this.loading.set(false);
+    }
+  }
+
+  async onDelete(id: string) {
+    this.confirmationService.confirm({
+      message: "¿Estás seguro de que quieres eliminar este registro?",
+      header: "Confirmar",
+      icon: "pi pi-exclamation-triangle",
+      accept: async () => {
+        const success = await this.apiResponseS.onDelete(
+          `AiKnowledgeBase/${id}`,
+        );
+        if (success) {
+          this.dataSignal.update((currentData) =>
+            currentData.filter((item) => item.id !== id),
+          );
+        }
+      },
+    });
+  }
+
+  onModalForm(data: any) {
+    this.dialogHandlerS
+      .openDialog(
+        AiKnowledgeBaseForm,
+        data,
+        data.title,
+        this.dialogHandlerS.sizeLg,
+      )
+      .then((result: boolean) => {
+        if (result) {
+          this.onLoadData();
+        }
+      });
+  }
+}

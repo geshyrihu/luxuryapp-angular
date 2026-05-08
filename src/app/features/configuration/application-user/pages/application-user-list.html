@@ -1,0 +1,236 @@
+@if (filteredDataSignal()) {
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block">
+  <div class="card">
+    <p-table
+      [globalFilterFields]="globalFilterFields()"
+      [paginator]="true"
+      [rows]="tablePrimeNgRows"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [showCurrentPageReport]="true"
+      [value]="filteredDataSignal()"
+      #dt
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      styleClass="custom-table hidden md:block"
+    >
+      <ng-template #caption>
+        <div class="grid align-items-end">
+          <div class="col-12 md:col-7">
+            <primeng-custom-caption
+              (add)="onModalForm('', 'Crear Cuenta')"
+              [dt]="dt"
+              [noMargin]="true"
+            />
+          </div>
+          <div class="col-12 md:col-5">
+            <div class="grid align-items-end">
+              <div class="col-4">
+                <custom-input-select-signal
+                  [data]="selectCustomerSignal()"
+                  optionLabel="label"
+                  optionValue="value"
+                  placeholder="Seleccionar Cliente"
+                  (selectionChange)="onSelectForCustomer($event.value)"
+                  [horizontal]="false"
+                  [noMargin]="true"
+                  size="small"
+                />
+              </div>
+              <div class="col-4">
+                <custom-input-select-signal
+                  [data]="cbTypePersonSignal()"
+                  optionLabel="label"
+                  optionValue="value"
+                  placeholder="Tipo de Persona"
+                  [control]="typePersonControl"
+                  (selectionChange)="onSelectTypePerson($event.value)"
+                  [horizontal]="false"
+                  [noMargin]="true"
+                  size="small"
+                />
+              </div>
+              <div class="col-4">
+                <custom-button-active-desactive
+                  [state]="applicationUserState"
+                  (stateChange)="onSelectActive($event)"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th class="table-col-30" pSortableColumn="fullName">
+            NOMBRE
+            <p-sortIcon field="fullName" />
+          </th>
+          <th class="table-col-25" pSortableColumn="customer">
+            CLIENTE
+            <p-sortIcon field="customer" />
+          </th>
+          <th class="table-col-10" pSortableColumn="userName">
+            USUARIO
+            <p-sortIcon field="userName" />
+          </th>
+          <th class="table-col-25" pSortableColumn="email">
+            CORREO
+            <p-sortIcon field="email" />
+          </th>
+          <th class="table-col-15">TÉLEFONO</th>
+          <th class="table-col-5"></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>
+            <p-avatar
+              [image]="item.photoPath
+                    ? item.photoPath
+                    : 'assets/images/default-avatar.png'"
+              class="mr-2"
+              size="large"
+              (click)="onCardEmployee(item.id)"
+            />
+
+            {{ item.fullName }}
+          </td>
+          <td>{{ item.customer }}</td>
+          <td>
+            <small> {{ item.userName }} </small>
+            <small> {{ item.role }} </small>
+          </td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.phoneNumber }}</td>
+
+          <td class="no-print">
+            <div class="flex">
+              @if (item.active) {
+              <custom-button-item
+                (clicked)="onToBlockAccount(item.id)"
+                iconClass="pi pi-lock"
+                label="Bloquear"
+              />
+              } @if (!item.active) {
+              <custom-button-item
+                (clicked)="onToUnlockAccount(item.id)"
+                iconClass="pi pi-lock-open"
+                label="Desbloquear"
+              />
+              }
+              <custom-button-item
+                (clicked)="onModalEditAccount(item.id, item.email)"
+                iconClass="pi pi-user"
+                label="Permisos"
+              />
+              <custom-button-edit (clicked)="onModalForm(item.id, 'Editar')" />
+              <custom-button-delete (confirmed)="DeleteUserId(item.id)" />
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #paginatorleft>
+        <primeng-custom-table-footer [data]="dataSignal()" />
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="filteredDataSignal()"
+  (add)="onModalForm('', 'Crear Cuenta')"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <!-- Start Este bloque necesito agregarlo a data-view -->
+  <!-- Filtros personalizados usando el nuevo slot -->
+  <div customFilters>
+    <div class="grid mb-1 align-items-end">
+      <div class="col-5 m-0">
+        <custom-input-select-signal
+          [data]="selectCustomerSignal()"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Seleccionar Cliente"
+          (selectionChange)="onSelectForCustomer($event.value)"
+          [horizontal]="false"
+          [noMargin]="true"
+        />
+      </div>
+      <div class="col-5 m-0">
+        <custom-input-select-signal
+          [data]="cbTypePersonSignal()"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Tipo de Persona"
+          [control]="typePersonControl"
+          (selectionChange)="onSelectTypePerson($event.value)"
+          [horizontal]="false"
+          [noMargin]="true"
+        />
+      </div>
+      <div class="col-2 m-0">
+        <ion-button-active-desactive
+          fluid
+          [state]="applicationUserState"
+          (stateChange)="onSelectActive($event)"
+        />
+      </div>
+    </div>
+  </div>
+  <!-- End Este bloque necesito agregarlo a data-view -->
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <ion-avatar slot="start" (click)="onCardEmployee(item.id)">
+        <img
+          [src]="item.photoPath ? item.photoPath : 'assets/images/default-avatar.png'"
+          alt="User Avatar"
+        />
+      </ion-avatar>
+      <ion-label>
+        <h2 class="font-bold m-0">{{ item.fullName }}</h2>
+        <p class="text-sm m-0">
+          <span class="text-primary font-medium">{{ item.userName }}</span>
+          <span class="mx-1 text-400">|</span>
+          <span class="text-500">{{ item.role }}</span>
+        </p>
+        <p class="text-sm m-0 text-600">{{ item.customer || "Sin Cliente" }}</p>
+        <p class="text-xs m-0 text-500">
+          <i class="pi pi-envelope text-xs mr-1"></i>{{ item.email }}
+        </p>
+        @if (item.phoneNumber) {
+        <p class="text-xs m-0 text-500">
+          <i class="pi pi-phone text-xs mr-1"></i>{{ item.phoneNumber }}
+        </p>
+        }
+      </ion-label>
+
+      <app-action-menu slot="end">
+        <ng-container actions>
+          @if (item.active) {
+          <ion-button-item
+            (clicked)="onToBlockAccount(item.id)"
+            iconName="lock-closed-outline"
+            label="Bloquear"
+          />
+          } @if (!item.active) {
+          <ion-button-item
+            (clicked)="onToUnlockAccount(item.id)"
+            iconName="lock-open-outline"
+            label="Desbloquear"
+          />
+          }
+          <ion-button-item
+            (clicked)="onModalEditAccount(item.id, item.email)"
+            iconName="person-outline"
+            label="Permisos"
+          />
+          <ion-button-edit (clicked)="onModalForm(item.id, 'Editar')" />
+          <ion-button-delete (confirmed)="DeleteUserId(item.id)" />
+        </ng-container>
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+}

@@ -1,0 +1,92 @@
+<form autocomplete="off" (ngSubmit)="submit()" [formGroup]="form">
+  <custom-input-text-signal [control]="form.controls.id" label="Id" />
+
+  <custom-input-text-signal
+    [control]="form.controls.tower"
+    label="Torre"
+    placeholder="Torre"
+    required
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.department"
+    label="Departamento"
+    placeholder="Departamento"
+    required
+  />
+
+  <custom-input-mask-signal
+    [control]="form.controls.accountNumber"
+    label="Número de Cuenta"
+    placeholder="000-000-000"
+    customMask="000-000-000"
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.floor"
+    label="Nivel / Piso"
+    placeholder="Nivel / Piso"
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.unitNumber"
+    label="Número Interior"
+    placeholder="Número Interior"
+  />
+
+  <custom-input-number-signal
+    [control]="form.controls.areaM2"
+    label="Área m²"
+    placeholder="Área en metros cuadrados"
+  />
+
+  <custom-input-number-signal
+    [control]="form.controls.indivisoPercentage"
+    label="Porcentaje de Indiviso"
+    placeholder="Ej: 0.01250"
+  />
+
+  <custom-input-number-signal
+    [control]="form.controls.parkingSlots"
+    label="Cajones de Estacionamiento"
+    placeholder="Número de cajones"
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.storageUnit"
+    label="Bodega"
+    placeholder="Bodega"
+  />
+
+  @if (id) {
+  <div class="flex flex-wrap border-top-1 surface-border pt-3 mt-2 mb-3"></div>
+  <div class="flex flex-column gap-2">
+    <label class="text-500 text-sm font-medium"
+      >Estado de Morosidad (gestionado por el sistema)</label
+    >
+    <div class="flex align-items-center gap-2">
+      @if (isDelinquent) {
+      <span
+        class="badge bg-red-100 text-red-800 text-sm px-3 py-2 border-round font-medium"
+        >Moroso</span
+      >
+      @if (delinquentSince) {
+      <span class="text-500 text-sm"
+        >desde {{ delinquentSince | date:'dd/MM/yyyy' }}</span
+      >
+      } } @else {
+      <span
+        class="badge bg-green-100 text-green-800 text-sm px-3 py-2 border-round"
+        >Al corriente</span
+      >
+      }
+    </div>
+  </div>
+  }
+
+  <custom-button-save
+    [propertyId]="id"
+    [disabled]="form.invalid"
+    [submitting]="submitting()"
+  />
+</form>

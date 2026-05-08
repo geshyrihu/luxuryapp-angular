@@ -1,0 +1,58 @@
+<div class="card">
+  <p-table
+    [value]="items()"
+    styleClass="custom-table card hidden md:block"
+    [scrollable]="true"
+    [scrollHeight]="tableScrollH.scrollHeight()"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [globalFilterFields]="globalFilterFields"
+    #dt
+  >
+    <ng-template #caption>
+      <primeng-custom-caption
+        (add)="onModalForm({ id: '', title: 'Nueva Adenda' })"
+        [dt]="dt"
+      />
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="table-col-md">Número</th>
+        <th class="table-col-lg">Título</th>
+        <th class="table-col-md">Tipo</th>
+        <th class="table-col-sm text-center">Estatus</th>
+        <th class="table-col-sm">Fecha Efectiva</th>
+        <th class="table-col-sm">Fecha Firma</th>
+        <th class="table-col-actions">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td>{{ item.addendumNumber }}</td>
+        <td>{{ item.title }}</td>
+        <td>
+          <span [class]="'badge ' + getAddendumTypeBadge(item.addendumType)">{{ item.addendumType }}</span>
+        </td>
+        <td class="text-center">
+          <span [class]="'badge ' + getStatusBadge(item.addendumStatus)">{{ item.addendumStatus }}</span>
+        </td>
+        <td>{{ item.effectiveDate | date:'dd/MM/yyyy' }}</td>
+        <td>{{ item.signedDate ? (item.signedDate | date:'dd/MM/yyyy') : '—' }}</td>
+        <td class="text-center">
+          @if (item.addendumStatus === 'Borrador' || item.addendumStatus === 'Pendiente') {
+            <custom-button-item icon="pi pi-sign-in" title="Firmar" (click)="onSign(item)" />
+            <custom-button-edit (click)="onEdit(item)" />
+          }
+          @if (item.addendumStatus === 'Borrador' || item.addendumStatus === 'Pendiente') {
+            <custom-button-item icon="pi pi-times-circle" title="Cancelar" severity="danger" (click)="onCancel(item)" />
+          }
+          <custom-button-delete (click)="onDelete(item.id)" />
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #footer>
+      <primeng-custom-table-footer [data]="items()" />
+    </ng-template>
+  </p-table>
+</div>

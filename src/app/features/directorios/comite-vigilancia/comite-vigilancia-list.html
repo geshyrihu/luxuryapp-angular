@@ -1,0 +1,126 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="ePosicionComite">
+        <p class="card-title">Posición</p>
+        <p-sortIcon field="ePosicionComite" />
+      </th>
+      <th pSortableColumn="nameProperty">
+        <p class="card-title">Nombre</p>
+        <p-sortIcon field="nameProperty" />
+      </th>
+      <th pSortableColumn="departamento">
+        <p class="card-title">Departamento</p>
+        <p-sortIcon field="departamento" />
+      </th>
+      <th pSortableColumn="email">
+        <p class="card-title">Correo</p>
+        <p-sortIcon field="email" />
+      </th>
+      <th>
+        <p class="card-title">Celular</p>
+      </th>
+
+      <th class="table-col-5">
+        <p class="card-title">Opciones</p>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <p class="card-title">{{ item.ePosicionComite }}</p>
+      </td>
+      <td>
+        <p class="card-title">{{ item.nameProperty }}</p>
+      </td>
+      <td>
+        <p class="card-title">{{ item.departamento }}</p>
+      </td>
+      <td>
+        <p class="card-title">{{ item.email }}</p>
+      </td>
+      <td>
+        <p class="card-title">{{ item.celular }}</p>
+      </td>
+      <!-- Opciones -->
+
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+
+          <custom-button-send-email
+            confirmMessage="Enviar usuario y contraseña de acceso."
+            (confirmed)="onSendCredential(item.id)"
+          />
+        </div>
+      </td>
+      <!-- Opciones -->
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+  trackByProperty="id"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding" detail="false">
+      <ion-label>
+        <h2 class="font-normal m-0">{{ item.nameProperty }}</h2>
+        <p class="text-medium text-500 m-0">
+          {{ item.ePosicionComite }} | {{ item.departamento }}
+        </p>
+        <p class="text-medium text-500 m-0">{{ item.email }}</p>
+        <p class="text-medium text-500 m-0">{{ item.celular }}</p>
+      </ion-label>
+
+      <app-action-menu slot="end">
+        <ng-container actions>
+          <ion-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <ion-button-delete (confirmed)="onDelete(item.id)" />
+          <ion-button-send-email
+            confirmMessage="Enviar usuario y contraseña de acceso."
+            (confirmed)="onSendCredential(item.id)"
+          />
+        </ng-container>
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+
+
+
+
+
+

@@ -1,0 +1,120 @@
+<div class="card">
+  <p-toolbar styleClass="mb-4 ">
+    <ng-template pTemplate="left">
+      <h3 class="m-0">Mis Tareas Diarias</h3>
+    </ng-template>
+    <ng-template pTemplate="right">
+      <p-datepicker
+        [formControl]="selectedDateControl"
+        (ngModelChange)="onDateChange($event)"
+        dateFormat="dd/mm/yy"
+        [showIcon]="true"
+        inputId="calendar"
+        placeholder="Seleccionar Fecha"
+      ></p-datepicker>
+    </ng-template>
+  </p-toolbar>
+
+  <!-- Desktop View -->
+  <p-table
+    #dt
+    [value]="data()"
+    [loading]="loading()"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight"
+    styleClass="p-datatable-gridlines hidden md:block"
+  >
+    <ng-template #caption>
+      <app-primeng-custom-caption
+        [title]="'Tareas Asignadas'"
+        [showGlobalFilter]="false"
+        [showAddButton]="false"
+      />
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th>Título</th>
+        <th>Prioridad</th>
+        <th>Estado</th>
+        <th>Programada para</th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-task>
+      <tr>
+        <td>{{ task.title }}</td>
+        <td>{{ task.priorityDescription }}</td>
+        <td>
+          <app-status-badge
+            [value]="task.status"
+            [status]="task.statusDescription"
+          />
+        </td>
+        <td>{{ task.scheduledDate | date : "medium" }}</td>
+        <td>
+          <custom-button
+            (clicked)="onCompleteTask(task)"
+            icon="pi pi-check"
+            [disabled]="task.status === 1"
+            tooltip="Completar Tarea"
+          />
+          <custom-button-confirm
+            (confirmed)="onReopenTask(task.id)"
+            icon="pi pi-undo"
+            [disabled]="task.status !== 1"
+            confirmMessage="¿Estás seguro de reabrir esta tarea?"
+            tooltip="Reabrir Tarea"
+          />
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template emptymessage>
+      <tr>
+        <td colspan="5">No hay tareas para esta fecha.</td>
+      </tr>
+    </ng-template>
+    <ng-template #summary>
+      <app-primeng-custom-table-footer
+        [totalRecords]="data().length"
+        [emptyMessage]="'No hay tareas para esta fecha.'"
+      />
+    </ng-template>
+  </p-table>
+
+  <!-- Mobile View -->
+  <app-data-view-mobile
+    [data]="data()"
+    [dt]="dt"
+    [showAdd]="false"
+    class="block md:hidden"
+  >
+    <ng-template #listItemTemplate let-task>
+      <ion-item lines="full" class="ion-no-padding" detail="false">
+        <ion-label>
+          <h5 class="mb-2">{{ task.title }}</h5>
+          <p class="text-sm text-gray-500">
+            {{ task.scheduledDate | date : "medium" }}
+          </p>
+          <app-status-badge
+            [value]="task.status"
+            [status]="task.statusDescription"
+          />
+        </ion-label>
+        <app-action-menu slot="end">
+          <ion-button-item
+            label="Completar"
+            (clicked)="onCompleteTask(task)"
+            [disabled]="task.status === 1"
+          />
+          <ion-button-confirm
+            label="Reabrir"
+            (confirmed)="onReopenTask(task.id)"
+            [disabled]="task.status !== 1"
+            confirmMessage="¿Estás seguro de reabrir esta tarea?"
+          />
+        </app-action-menu>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
+</div>

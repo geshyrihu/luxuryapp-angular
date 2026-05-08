@@ -1,0 +1,52 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column">
+
+  <custom-input-select-signal
+    [control]="form.controls.propertyId"
+    [data]="propertiesOptions()"
+    label="Propiedad Asociada"
+    placeholder="Seleccione Propiedad"
+    [filter]="true"
+    required
+  />
+
+  <custom-input-currency-signal
+    [control]="form.controls.amount"
+    label="Monto del Cobro"
+    required
+  />
+
+  <custom-input-date-signal
+    [control]="form.controls.paymentDate"
+    label="Fecha de Pago"
+    required
+  />
+
+  <custom-input-select-signal
+    [control]="form.controls.method"
+    [data]="methodOptions"
+    label="Método de Pago"
+    [filter]="true"
+    required
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.reference"
+    label="Referencia"
+    placeholder="Ej. SPEI1234..."
+  />
+
+  <custom-input-select-signal
+    [control]="form.controls.status"
+    [data]="statusOptions()"
+    label="Estado de Pago"
+    [filter]="true"
+    required
+  />
+
+  <div class="flex justify-content-end mt-4">
+    <custom-button-save
+      [disabled]="form.invalid || submitting()"
+      [submitting]="submitting()"
+    />
+  </div>
+</form>

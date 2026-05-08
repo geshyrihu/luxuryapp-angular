@@ -1,0 +1,171 @@
+<!-- Encabezado con filtros -->
+<div class="flex flex-column mb-4">
+  <!-- Fila de filtros -->
+  <div class="flex flex-wrap align-items-end">
+    <!-- Filtro por email -->
+    <div class="flex flex-column gap-1">
+      <label class="text-sm font-medium text-color-secondary"
+        >Destinatario</label
+      >
+      <input
+        pInputText
+        [(ngModel)]="filtroEmail"
+        placeholder="Filtrar por email..."
+        class="p-inputtext-sm"
+        style="width: 260px"
+      />
+    </div>
+
+    <!-- Fecha de inicio -->
+    <div class="flex flex-column gap-1">
+      <label class="text-sm font-medium text-color-secondary">Desde</label>
+      <p-datepicker
+        [(ngModel)]="filtroFechaInicio"
+        [showIcon]="true"
+        dateFormat="yy-mm-dd"
+        placeholder="Fecha inicio"
+        styleClass="p-inputtext-sm"
+        style="width: 180px"
+      />
+    </div>
+
+    <!-- Fecha de fin -->
+    <div class="flex flex-column gap-1">
+      <label class="text-sm font-medium text-color-secondary">Hasta</label>
+      <p-datepicker
+        [(ngModel)]="filtroFechaFin"
+        [showIcon]="true"
+        dateFormat="yy-mm-dd"
+        placeholder="Fecha fin"
+        styleClass="p-inputtext-sm"
+        style="width: 180px"
+      />
+    </div>
+
+    <!-- Botones -->
+    <custom-button
+      label="Buscar"
+      iconClass="pi pi-search"
+      size="sm"
+      (clicked)="aplicarFiltros()"
+    />
+    <custom-button
+      label="Limpiar"
+      iconClass="pi pi-times"
+      severity="secondary"
+      size="sm"
+      variant="outlined"
+      (clicked)="limpiarFiltros()"
+    />
+  </div>
+
+  <!-- Contador de resultados -->
+  @if (!cargando()) {
+  <span class="text-sm text-color-secondary">
+    <strong>{{ totalRecords() }}</strong> registros encontrados
+  </span>
+  }
+</div>
+
+<!-- Tabla de logs -->
+<p-table
+  [value]="registros()"
+  [lazy]="true"
+  [paginator]="true"
+  [rows]="tamanioPagina"
+  [totalRecords]="totalRecords()"
+  [loading]="cargando()"
+  (onLazyLoad)="alCambiarPagina($any($event))"
+  [rowHover]="true"
+  styleClass="p-datatable-sm p-datatable-striped"
+  [scrollable]="true"
+  scrollHeight="calc(100vh - 320px)"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="email" style="min-width: 220px">
+        Destinatario <p-sortIcon field="email" />
+      </th>
+      <th style="min-width: 280px">Asunto</th>
+      <th style="min-width: 140px">Estado</th>
+      <th pSortableColumn="date" style="min-width: 160px">
+        Fecha <p-sortIcon field="date" />
+      </th>
+      <th style="min-width: 200px">Remitente</th>
+      <th style="min-width: 100px">Plantilla</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-log>
+    <tr>
+      <!-- Destinatario -->
+      <td>
+        <span class="font-medium">{{ log.email }}</span>
+      </td>
+
+      <!-- Asunto -->
+      <td>
+        <span
+          [title]="log.subject"
+          class="white-space-nowrap overflow-hidden text-overflow-ellipsis"
+          style="max-width: 280px; display: block"
+        >
+          {{ log.subject || '—' }}
+        </span>
+      </td>
+
+      <!-- Estado / Evento -->
+      <td>
+        <p-tag
+          [value]="etiquetaEvento(log.event)"
+          [severity]="severidadEvento(log.event)"
+        />
+      </td>
+
+      <!-- Fecha -->
+      <td>
+        <span class="text-sm">
+          {{ log.date ? (log.date | date: 'dd/MM/yyyy HH:mm') : '—' }}
+        </span>
+      </td>
+
+      <!-- Remitente -->
+      <td>
+        <span class="text-sm text-color-secondary">{{ log.from || '—' }}</span>
+      </td>
+
+      <!-- ID Plantilla -->
+      <td>
+        @if (log.templateId) {
+        <span class="font-mono text-sm">#{{ log.templateId }}</span>
+        } @else {
+        <span class="text-color-secondary">—</span>
+        }
+      </td>
+    </tr>
+  </ng-template>
+
+  <!-- Estado vacío -->
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="6" class="text-center py-6 text-color-secondary">
+        <i class="pi pi-inbox text-3xl mb-2 block"></i>
+        No se encontraron logs con los filtros seleccionados.
+      </td>
+    </tr>
+  </ng-template>
+
+  <!-- Esqueleto de carga -->
+  <ng-template pTemplate="loadingbody">
+    @for (i of [1, 2, 3, 4, 5]; track i) {
+    <tr>
+      <td><p-skeleton /></td>
+      <td><p-skeleton /></td>
+      <td><p-skeleton width="90px" /></td>
+      <td><p-skeleton width="120px" /></td>
+      <td><p-skeleton /></td>
+      <td><p-skeleton width="60px" /></td>
+    </tr>
+    }
+  </ng-template>
+</p-table>

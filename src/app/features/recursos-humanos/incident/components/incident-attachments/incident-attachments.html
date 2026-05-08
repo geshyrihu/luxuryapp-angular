@@ -1,0 +1,111 @@
+<div class="grid">
+  <!-- Header -->
+  <div class="col-12 flex align-items-center mb-2">
+    <i class="pi pi-paperclip text-xl text-primary mr-2"></i>
+    <h3 class="text-base font-semibold text-color m-0">Evidencias Adjuntas</h3>
+    <span class="text-sm text-color-secondary ml-2">
+      ({{ attachments().length }}/{{ MAX_FILES_PER_INCIDENT }})
+    </span>
+  </div>
+
+  <!-- Drop zone de carga -->
+  @if (attachments().length < MAX_FILES_PER_INCIDENT) {
+  <div class="col-12">
+    <file-upload
+      [formControl]="filesControl"
+      [multiple]="true"
+      [animation]="true"
+      accept="image/jpeg,image/png,application/pdf"
+    >
+      <ng-template
+        let-isFileDragDropAvailable="isFileDragDropAvailable"
+        #placeholder
+      >
+        <file-upload-drop-zone>
+          @if (isFileDragDropAvailable) {
+          <b class="text-primary">Arrastrar y soltar archivos aquí</b><br />o
+          haz clic para seleccionar } @else {
+          <b class="text-primary">Haz clic aquí</b> para seleccionar archivos }
+        </file-upload-drop-zone>
+      </ng-template>
+      <ng-template let-i="index" let-file="file" let-control="control" #item>
+        <file-upload-list-item [index]="i" [file]="file" [control]="control">
+          Quitar
+        </file-upload-list-item>
+      </ng-template>
+    </file-upload>
+    <small class="text-color-secondary mt-1 block">
+      JPG, PNG, PDF · Máx. 2 MB por archivo · Máx. {{ MAX_FILES_PER_INCIDENT }}
+      archivos
+    </small>
+  </div>
+
+  @if (selectedFiles.length > 0) {
+  <div class="col-12 flex justify-content-end">
+    <custom-button
+      iconClass="pi pi-upload"
+      label="Subir archivos"
+      [showLabelOnDesktop]="true"
+      [loading]="uploading()"
+      (clicked)="uploadFiles()"
+    />
+  </div>
+  } }
+
+  <!-- Lista de adjuntos -->
+  @if (loading()) {
+  <div class="col-12 flex justify-content-center p-4 text-color-secondary">
+    <i class="pi pi-spin pi-spinner mr-2"></i>Cargando...
+  </div>
+  } @else if (attachments().length === 0) {
+  <div
+    class="col-12 text-center p-6 text-color-secondary bg-bluegray-50 border-round"
+  >
+    <i class="pi pi-inbox text-4xl text-300"></i>
+    <p class="mt-3 m-0 font-medium">No hay archivos adjuntos</p>
+  </div>
+  } @else {
+  <div class="col-12">
+    <p-table
+      [value]="attachments()"
+      styleClass="custom-table"
+      [scrollable]="true"
+      scrollHeight="200px"
+    >
+      <ng-template #header>
+        <tr>
+          <th>Tipo</th>
+          <th>Nombre</th>
+          <th>Tamaño</th>
+          <th>Fecha</th>
+          <th class="table-col-actions"></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-attachment>
+        <tr>
+          <td>
+            <span class="flex align-items-center gap-2">
+              <i [class]="getFileIconClass(attachment.mimeType)"></i>
+              <span>{{ attachment.fileType }}</span>
+            </span>
+          </td>
+          <td>
+            <a
+              href="#"
+              (click)="downloadFile(attachment.downloadUrl); $event.preventDefault()"
+              class="text-primary font-medium"
+            >
+              {{ attachment.originalFileName }}
+            </a>
+          </td>
+          <td>{{ formatFileSize(attachment.fileSizeKB) }}</td>
+          <td>{{ attachment.createdAt | date : "dd/MM/yyyy" }}</td>
+          <td>
+            <custom-button-delete (confirmed)="deleteAttachment(attachment)" />
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  }
+</div>

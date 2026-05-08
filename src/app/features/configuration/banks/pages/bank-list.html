@@ -1,0 +1,98 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="code">
+        Codigo
+        <p-sortIcon field="code" />
+      </th>
+      <th pSortableColumn="shortName">
+        Nombre
+        <p-sortIcon field="shortName" />
+      </th>
+      <th pSortableColumn="largeName">
+        Razón social
+        <p-sortIcon field="largeName" />
+      </th>
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.code }}</td>
+      <td>{{ item.shortName }}</td>
+      <td>{{ item.largeName }}</td>
+      <!-- Opciones -->
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+      <!-- Opciones -->
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <!-- <div
+        slot="start"
+        class="w-9 h-9 border-round-md bg-blue-50 flex align-items-center justify-content-center flex-shrink-0 ml-4 mr-3"
+      >
+        <ion-icon
+          name="business-outline"
+          class="text-xl text-blue-600"
+        ></ion-icon>
+      </div> -->
+
+      <ion-label class="ion-text-wrap">
+        <h3 class="font-semibold m-0 text-color">{{ item.shortName }}</h3>
+        <p class="text-xs m-0 mt-1 text-color-secondary">
+          {{ item.code }} - {{ item.largeName }}
+        </p>
+      </ion-label>
+
+      <app-action-menu slot="end">
+        <ng-container actions>
+          <ion-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <ion-button-delete (confirmed)="onDelete(item.id)" />
+        </ng-container>
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

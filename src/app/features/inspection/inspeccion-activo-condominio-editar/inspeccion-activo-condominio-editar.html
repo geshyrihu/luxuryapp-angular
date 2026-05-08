@@ -1,0 +1,65 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-autocomplete-signal
+        (propagar)="saveCondominiumAsset($event)"
+        [control]="form.controls.condominiumAssetName"
+        [data]="cb_activos()"
+        label="Equipo o órea"
+        placeholder="Escribe para buscar equipo o órea"
+        [horizontal]="false"
+      />
+
+      <custom-input-text-signal
+        [control]="form.controls.position"
+        label="Posición"
+        placeholder="Posición del órea"
+        type="number"
+        min="1"
+        [horizontal]="false"
+      />
+
+      <custom-input-autocomplete-signal
+        (propagar)="onAddReviewAutocomplete($event)"
+        [control]="form.controls.reviewSelection"
+        [data]="cb_inspection_reviews_catalog()"
+        label="Listado de inspecciones"
+        placeholder="Seleccione una revisión"
+        [horizontal]="false"
+      />
+
+      <div class="mb-3">
+        <label>Revisiones agregadas</label>
+        <div>
+          @if (reviewsControl.controls.length === 0) {
+          <div class="text-color-secondary text-sm mb-2">No hay revisiones agregadas</div>
+          } @for (review of reviewsControl.controls; track $index; let i =
+          $index) {
+          <div
+            class="flex justify-content-between align-items-center border-1 surface-border border-round p-2 mb-2"
+          >
+            <span>{{ review.value.label }}</span>
+            <div class="ml-auto">
+              <custom-button-confirm
+                (clicked)="onRemoveReview(i)"
+                icon="trash"
+              />
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+
+      <custom-button-save
+        [disabled]="form.invalid || reviewsControl.length === 0"
+        [submitting]="submitting()"
+      />
+    </form>
+  </div>
+</div>
+
+
+
+
+
+

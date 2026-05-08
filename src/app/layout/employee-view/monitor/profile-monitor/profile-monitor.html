@@ -1,0 +1,50 @@
+<!-- Elemento que activa el Popover -->
+<div
+  class="flex align-items-center cursor-pointer"
+  (click)="profilePopover.toggle($event)"
+>
+  <p-avatar
+    [image]="profileImageUrl || 'assets/images/default-avatar.png'"
+    class="mr-2"
+    shape="circle"
+    size="large"
+  />
+</div>
+
+<!-- Popover de PrimeNG para el menó de perfil -->
+<p-popover #profilePopover [style]="{ width: '250px' }">
+  <div class="profile-dropdown-panel">
+    <!-- Acciones del Usuario -->
+    <div class="flex flex-column">
+      <p-button
+        label="Cambiar contraseña"
+        styleClass="p-button-text text-left justify-content-start"
+        icon="icon icon-pi-user"
+        [routerLink]="['/profile/update-user-profile']"
+        (onClick)="profilePopover.hide()"
+        fluid
+        size="small"
+      ></p-button>
+
+      @if (updateService.isUpdateAvailable()) {
+      <p-button
+        label="Actualizar Aplicación"
+        styleClass="p-button-text text-left justify-content-start"
+        icon="icon icon-pi-sync"
+        (onClick)="onUpdateClick(); profilePopover.hide()"
+        fluid
+        size="small"
+      ></p-button>
+      }
+
+      <p-button
+        label="Cerrar sesión"
+        styleClass="p-button-text text-left justify-content-start"
+        icon="icon icon-pi-sign-out"
+        (onClick)="logOut(); profilePopover.hide()"
+        fluid
+        size="small"
+      ></p-button>
+    </div>
+  </div>
+</p-popover>

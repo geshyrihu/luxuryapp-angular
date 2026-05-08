@@ -1,0 +1,35 @@
+@if (loading()) { } @else if (errorMensaje) {
+<div class="p-3 bg-red-100 text-red-900 border-round mt-3 text-center">{{ errorMensaje }}</div>
+} @else if (history().length === 0) {
+<div class="p-3 surface-card border-round shadow-1 mt-3 text-center text-color-secondary">
+  No hay historial de cambios para esta partida.
+</div>
+} @else {
+<p-table [value]="history()" styleClass="p-datatable-sm">
+  <ng-template #header>
+    <tr>
+      <th>Fecha</th>
+      <th>Usuario</th>
+      <th class="text-right">Monto Anterior</th>
+      <th class="text-right">Monto Nuevo</th>
+      <th>Justificación</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-record>
+    <tr>
+      <td>{{ record.changedAt | date: "short" }}</td>
+      <td>{{ record.changedByUserName }}</td>
+      <td class="text-right">{{ record.oldAmount | number: "1.0-0" }}</td>
+      <td class="text-right">{{ record.newAmount | number: "1.0-0" }}</td>
+      <td>{{ record.justification }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+}
+
+
+
+
+
+
+

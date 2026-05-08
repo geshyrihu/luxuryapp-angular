@@ -1,0 +1,161 @@
+<!-- Vista de escritorio -->
+<p-table
+  (onRowReorder)="onRowReorder($event)"
+  [globalFilterFields]="globalFilterFields"
+  [value]="dataSignal()"
+  #dt
+  styleClass="custom-table card hidden md:block"
+  [reorderableColumns]="true"
+>
+  <ng-template #caption>
+    <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-5rem"></th>
+      <th class="bg-gradient text-white text-center" pSortableColumn="folio">
+        Folio
+        <p-sortIcon field="folio" />
+      </th>
+      <th class="bg-gradient text-white text-center">Fecha</th>
+      <th class="text-center" pSortableColumn="name">
+        Nombre
+        <p-sortIcon field="name" />
+      </th>
+      <th class="text-center">Descargar</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-index="rowIndex">
+    <tr [pReorderableRow]="index">
+      <td>
+        <div>
+          <span class="icon icon-pi-bars" pReorderableRowHandle></span>
+        </div>
+      </td>
+      <td class="text-center">{{ item.folio }}</td>
+      <td class="text-center">{{ item.createAt }}</td>
+      <td class="text-center text-break">{{ item.name }}</td>
+      <td class="text-center flex justify-content-center">
+        <custom-button-view-pdf
+          [showLabelOnDesktop]="true"
+          [url]="item.path"
+          fileName="Reglamentos"
+        />
+        <custom-button
+          label="IA"
+          iconClass="pi pi-comments"
+          variant="outlined"
+          severity="info"
+          size="sm"
+          (clicked)="openConsultation(item.id)"
+          ngbTooltip="Consultar Reglamento con IA"
+        />
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<!-- Vista para móviles -->
+<!-- Vista para móviles -->
+<div class="block md:hidden">
+  <app-data-view-mobile
+    [data]="dataSignal()"
+    [showAdd]="false"
+    [globalFilterFields]="globalFilterFields()"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ion-item lines="full" class="ion-no-padding">
+        <ion-label>
+          <div class="flex justify-content-between align-items-center mb-1">
+            <h2 class="font-bold m-0 text-base text-wrap">{{ item.name }}</h2>
+          </div>
+          <p class="text-sm text-500 m-0">
+            <i class="pi pi-hashtag mr-1 text-xs"></i> Folio: {{ item.folio }}
+          </p>
+          <p class="text-sm text-500 m-0">
+            <i class="pi pi-calendar mr-1 text-xs"></i> Fecha: {{ item.createAt
+            }}
+          </p>
+        </ion-label>
+        <div slot="end" class="flex align-items-center gap-1">
+          <ion-button-view-pdf [url]="item.path" pdf="Reglamento" />
+          <custom-button
+            iconClass="pi pi-comments"
+            severity="info"
+            variant="ghost-text"
+            (clicked)="openConsultation(item.id)"
+            ngbTooltip="Consultar con IA"
+          />
+        </div>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
+</div>
+
+<p-dialog
+  header="?? Asistente Legal Virtual"
+  [(visible)]="showConsultationDialog"
+  [modal]="true"
+  [style]="{width: '50vw'}"
+  [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="flex flex-column">
+    <div class="p-message p-message-info border-none m-0 shadow-none">
+      <div class="p-message-wrapper p-3">
+        <span class="p-message-icon pi pi-info-circle text-xl"></span>
+        <span class="p-message-text ml-2"
+          >Haz una pregunta especófica sobre este reglamento y la IA analizaró
+          el documento para responderte.</span
+        >
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="query" class="font-bold block mb-2">Tu Consulta</label>
+      <textarea
+        id="query"
+        rows="4"
+        pTextarea
+        placeholder="Ej. óCuóles son las sanciones por ruido excesivo? óCuól es el horario de la alberca?"
+        [formControl]="consultationQueryControl"
+        class="w-full"
+        [disabled]="consultingDoc()"
+      ></textarea>
+    </div>
+
+    @if (aiResponse()) {
+    <div class="surface-ground p-3 border-round-xl">
+      <div class="flex align-items-center mb-2 text-primary font-bold">
+        <i class="pi pi-sparkles"></i>
+        <span>Respuesta del Asistente</span>
+      </div>
+      <div
+        [innerHTML]="aiResponse()"
+        class="line-height-3 text-900 text-justify"
+      ></div>
+    </div>
+    }
+  </div>
+
+  <ng-template #footer>
+    <custom-button
+      label="Cancelar"
+      iconClass="pi pi-times"
+      variant="ghost-text"
+      [disabled]="consultingDoc()"
+      (clicked)="showConsultationDialog.set(false)"
+    />
+    <custom-button
+      label="Consultar"
+      iconClass="pi pi-search"
+      [loading]="consultingDoc()"
+      [disabled]="!consultationQueryControl.value?.trim()"
+      (clicked)="consultAi()"
+    />
+  </ng-template>
+</p-dialog>

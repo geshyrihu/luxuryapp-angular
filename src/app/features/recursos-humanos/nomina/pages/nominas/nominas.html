@@ -1,0 +1,129 @@
+<p-table
+  #dt
+  [value]="data()"
+  [loading]="loading()"
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  styleClass="card hidden md:block custom-table"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      [dt]="dt"
+      (add)="openGenerar()"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="periodoDescripcion">Periodo <p-sortIcon field="periodoDescripcion" /></th>
+      <th>Estado</th>
+      <th class="text-right">Empleados</th>
+      <th class="text-right">Percepciones</th>
+      <th class="text-right">Deducciones</th>
+      <th class="text-right">Neto</th>
+      <th>Aprobada Por</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <a class="cursor-pointer text-primary" (click)="verDetalle(item)">
+          {{ item.periodoDescripcion }}
+        </a>
+      </td>
+      <td>
+        <p-tag [severity]="getEstadoSeverity(item.estadoValue)" [value]="item.estado" />
+      </td>
+      <td class="text-right">{{ item.totalEmpleados }}</td>
+      <td class="text-right">{{ item.totalPercepciones | currency: "MXN" : "symbol" : "1.2-2" }}</td>
+      <td class="text-right">{{ item.totalDeducciones | currency: "MXN" : "symbol" : "1.2-2" }}</td>
+      <td class="text-right font-bold">{{ item.totalNeto | currency: "MXN" : "symbol" : "1.2-2" }}</td>
+      <td>{{ item.aprobadoPor ?? "-" }}</td>
+      <td>
+        <div class="flex gap-1">
+          <custom-button
+            iconClass="pi pi-eye"
+            severity="info"
+            variant="ghost-text"
+            pTooltip="Ver detalle"
+            (clicked)="verDetalle(item)"
+          />
+          @if (puedeEnviar(item.estadoValue)) {
+          <custom-button
+            iconClass="pi pi-send"
+            severity="secondary"
+            variant="ghost-text"
+            pTooltip="Enviar a revision"
+            (clicked)="cambiarEstado(item, 'enviar-revision')"
+          />
+          }
+          @if (puedeAprobar(item.estadoValue)) {
+          <custom-button
+            iconClass="pi pi-check"
+            severity="success"
+            variant="ghost-text"
+            pTooltip="Aprobar nomina"
+            (clicked)="cambiarEstado(item, 'aprobar')"
+          />
+          }
+          @if (puedePagar(item.estadoValue)) {
+          <custom-button
+            iconClass="pi pi-dollar"
+            severity="contrast"
+            variant="ghost-text"
+            pTooltip="Marcar como pagada"
+            (clicked)="cambiarEstado(item, 'marcar-pagada')"
+          />
+          }
+          @if (puedeCerrar(item.estadoValue)) {
+          <custom-button
+            iconClass="pi pi-lock"
+            severity="secondary"
+            variant="ghost-text"
+            pTooltip="Cerrar nomina"
+            (clicked)="cambiarEstado(item, 'cerrar')"
+          />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr><td colspan="8">No hay nominas generadas para este cliente.</td></tr>
+  </ng-template>
+</p-table>
+
+<!-- Vista movil -->
+<app-data-view-mobile
+  [data]="data()"
+  [dt]="dt"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="openGenerar()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding" detail="false">
+      <ion-label>
+        <h2 class="font-normal m-0">{{ item.periodoDescripcion }}</h2>
+        <p class="text-xs m-0">{{ item.totalEmpleados }} empleados</p>
+        <div class="flex align-items-center gap-2 mt-1">
+          <p-tag [severity]="getEstadoSeverity(item.estadoValue)" [value]="item.estado" />
+          <span class="font-bold">{{ item.totalNeto | currency: "MXN" : "symbol" : "1.2-2" }}</span>
+        </div>
+      </ion-label>
+      <div slot="end">
+        <custom-button
+          iconClass="pi pi-eye"
+          severity="info"
+          variant="ghost-text"
+          (clicked)="verDetalle(item)"
+        />
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

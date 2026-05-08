@@ -1,0 +1,42 @@
+// ============================================================
+// ds-entry.scss
+// Design System | Angular 21 + PrimeNG 21 | SCSS
+// ============================================================
+// Design System entry point.
+// Loaded by angular.json before styles.scss to keep the cascade stable
+// between DS tokens, PrimeNG overrides and global legacy styles.
+//
+// Differences from the original main.scss:
+// - Does not include _reset.scss, avoiding layout resets.
+// - Does not include _typography.scss, avoiding global h1-h6 overrides.
+// - Includes DS core tokens, PrimeNG overrides and DS components.
+// ============================================================
+
+// 1. Core tokens and helpers.
+@use "core/functions";
+@use "core/colors";
+@use "core/spacing";
+@use "core/borders";
+@use "core/shadows";
+@use "core/mixins";
+
+// 2. PrimeNG overrides.
+@use "prime-overrides/prime-tokens";
+@use "prime-overrides/prime-input";
+@use "prime-overrides/prime-button";
+@use "prime-overrides/prime-card";
+@use "prime-overrides/prime-dialog";
+@use "prime-overrides/prime-tag";
+@use "prime-overrides/prime-table";
+@use "prime-overrides/prime-dropdown";
+
+// 3. Design System components.
+@use "components/buttons";
+@use "components/inputs";
+@use "components/forms";
+@use "components/cards";
+@use "components/tables";
+@use "components/alerts";
+@use "components/dropdowns";
+
+// 4. PrimeFlex utilities are loaded directly from angular.json.

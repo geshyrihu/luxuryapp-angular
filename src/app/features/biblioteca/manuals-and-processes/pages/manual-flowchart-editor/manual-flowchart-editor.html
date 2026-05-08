@@ -1,0 +1,9 @@
+<div class="editor-container">
+  @if (flowchart() || diagram()) {
+  <iframe id="flowchart-iframe" [src]="iframeUrl"></iframe>
+  } @else {
+  <div class="flex justify-content-center align-items-center h-full">
+    <i class="pi pi-spin pi-spinner flowchart-loading-icon"></i>
+  </div>
+  }
+</div>

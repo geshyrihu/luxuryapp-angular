@@ -1,0 +1,92 @@
+<div class="container py-3">
+  <!-- Input para cargar imógenes -->
+  <div class="flex justify-content-center gap-2 mb-3">
+    <!-- Botón para abrir la cómara -->
+    <custom-button
+      iconClass="pi pi-camera"
+      variant="outlined"
+      (clicked)="cameraInput.click()"
+    />
+    <input
+      #cameraInput
+      type="file"
+      class="hidden"
+      (change)="onFileSelected($event)"
+      accept="image/*"
+      capture="environment"
+    />
+
+    <!-- Botón para abrir la galeróa -->
+    <custom-button
+      iconClass="pi pi-image"
+      severity="secondary"
+      variant="outlined"
+      (clicked)="galleryInput.click()"
+    />
+    <input
+      #galleryInput
+      type="file"
+      class="hidden"
+      (change)="onFileSelected($event)"
+      accept="image/*"
+      multiple
+    />
+  </div>
+
+  <!-- Imógenes seleccionadas antes de enviar -->
+  <h6 class="text-primary">🆕 Nuevas imógenes:</h6>
+  <div class="grid">
+    @for (image of newImages; track image; let i = $index) {
+    <div class="col-4 md:col-2 relative">
+      <img
+        [src]="image.url ? image.url : 'assets/images/default-avatar.png'"
+        class="w-full border-round border-1 surface-border shadow-1"
+        style="object-fit: cover; aspect-ratio: 1/1"
+        alt="Imagen seleccionada"
+      />
+      <custom-button
+        iconClass="pi pi-trash"
+        ngbTooltip="Eliminar"
+        severity="danger"
+        size="sm"
+        variant="ghost-text"
+        customClass="absolute top-0 right-0"
+        (clicked)="removeNewImage(i)"
+      />
+    </div>
+    }
+  </div>
+
+  <!-- Imógenes ya almacenadas en el backend -->
+  <h6 class="text-green-600 mt-3">💾 Imógenes almacenadas:</h6>
+  <div class="grid">
+    @for (image of existingImages; track image) {
+    <div class="col-4 md:col-2 relative">
+      <img
+        [src]="image.photoPath ? image.photoPath : 'assets/images/default-avatar.png'"
+        class="w-full border-round border-1 surface-border shadow-1"
+        style="object-fit: cover; aspect-ratio: 1/1"
+        alt="Imagen subida"
+      />
+      <custom-button
+        iconClass="pi pi-times"
+        severity="danger"
+        size="sm"
+        variant="ghost-text"
+        customClass="absolute top-0 right-0"
+        (clicked)="deleteExistingImage(image.id)"
+      />
+    </div>
+    }
+  </div>
+
+  <!-- Botón para guardar imógenes nuevas -->
+  <div class="text-center mt-4">
+    <custom-button
+      label="Guardar imógenes"
+      iconClass="pi pi-save"
+      variant="outlined"
+      (clicked)="onSaveImages()"
+    />
+  </div>
+</div>

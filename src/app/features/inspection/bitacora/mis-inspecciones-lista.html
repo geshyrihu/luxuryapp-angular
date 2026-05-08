@@ -1,0 +1,112 @@
+<div class="card">
+  <div class="container-fluid py-3 p-2">
+    <!-- Encabezado -->
+    <div class="flex justify-content-between align-items-center mb-3">
+      <h4>
+        Inspecciones para:
+        <small>
+          <em> {{ dateSelectControl.value | date : "EEEE dd-MMM-yyyy" }} </em>
+        </small>
+      </h4>
+    </div>
+    <!-- Bindeo bidireccional -->
+    <div class="w-full md:w-6">
+      <custom-input-date-signal
+        [control]="dateSelectControl"
+        mode="single"
+        dateFormat="Y-m-d"
+        altFormat="l d-M-Y"
+        (change)="onDateChange($event)"
+        [horizontal]="false"
+      />
+    </div>
+  </div>
+  @if (dataSignal()) {
+  <h5 class="text-color-secondary px-3">{{ area }}</h5>
+
+  <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+  <div class="hidden md:block">
+    <p-table [value]="dataSignal()" styleClass="custom-table">
+      <ng-template #header>
+        <tr>
+          <th>Estado</th>
+          <th>Inspección</th>
+          <th>Departamento</th>
+          <th>Frecuencia</th>
+          <th class="table-col-10"></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>
+            @if (item.isRealized) {
+            <i class="pi pi-check text-green-600"> Realizada</i>
+            } @else {
+            <i class="pi pi-times text-red-600"> Pendiente</i>
+            }
+          </td>
+          <td>{{ item.nameInspection }}</td>
+          <td>{{ item.departament }}</td>
+          <td>{{ item.frequency }}</td>
+          <td>
+            <div class="flex">
+              @if (item.isRealized) {
+              <a
+                [routerLink]="['/inspections/result', item.id]"
+                class="btn btn-secondary btn-sm"
+                ngbTooltip="Ver resultado"
+              ><i class="pi pi-book"></i></a>
+              }
+              <a
+                [routerLink]="['/logbook/my-inspection', item.id]"
+                class="btn btn-secondary btn-sm"
+                ngbTooltip="Inspeccionar"
+              ><i class="pi pi-chevron-right"></i></a>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <!-- 📱 INICIO: Componente adaptado para versión móvil -->
+  <app-data-view-mobile
+    [data]="dataSignal()"
+    [showAdd]="false"
+    [globalFilterFields]="['nameInspection', 'departament', 'frequency']"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ion-item lines="full" class="ion-no-padding" detail="false">
+        <ion-label>
+          <div class="flex align-items-center">
+            @if (item.isRealized) {
+            <i class="pi pi-check text-green-600 mr-2"> </i>
+            } @if (!item.isRealized) {
+            <i class="pi pi-times text-red-600 mr-2"> </i>
+            }
+            <h2 class="font-normal m-0">{{ item.nameInspection }}</h2>
+          </div>
+          <p class="text-medium text-500 m-0">{{ item.departament }}</p>
+          <p class="text-medium text-500 m-0">{{ item.frequency }}</p>
+        </ion-label>
+        <app-action-menu slot="end">
+          <ng-container actions>
+            @if (item.isRealized) {
+            <ion-button-item
+              label="Ver resultado"
+              iconName="book-outline"
+              [routerLink]="['/inspections/result', item.id]"
+            />
+            }
+            <ion-button-item
+              label="Inspeccionar"
+              iconName="chevron-forward-outline"
+              [routerLink]="['/logbook/my-inspection', item.id]"
+            />
+          </ng-container>
+        </app-action-menu>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
+  }
+</div>

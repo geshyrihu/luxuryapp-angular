@@ -1,0 +1,66 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-3">
+  <div class="grid">
+    <div class="col-12">
+      <custom-input-autocomplete-signal
+        (propagar)="saveEmployee($event)"
+        [control]="form.controls['employeeName']"
+        [data]="employees()"
+        label="Empleado"
+        placeholder="Escribe para buscar empleado..."
+        [readonly]="!!item()"
+      />
+    </div>
+    <div class="col-12">
+      <custom-input-date-signal
+        [control]="form.controls['fecha']"
+        label="Fecha del Tiempo Extra"
+      />
+    </div>
+    <div class="col-12 md:col-6">
+      <custom-input-decimal-signal
+        [control]="form.controls['horasSimples']"
+        label="Horas Simples (doble pago)"
+        hint="Primeras 9 hrs semanales: pago al doble (LFT Art. 67)"
+        [minFractionDigits]="1"
+        [maxFractionDigits]="2"
+      />
+    </div>
+    <div class="col-12 md:col-6">
+      <custom-input-decimal-signal
+        [control]="form.controls['horasDobles']"
+        label="Horas Excedentes (triple pago)"
+        hint="A partir de la hora 10 semanal: pago al triple (LFT Art. 67)"
+        [minFractionDigits]="1"
+        [maxFractionDigits]="2"
+      />
+    </div>
+
+    <!-- Preview calculo -->
+    @if (horasSimples() > 0 || horasDobles() > 0) {
+    <div class="col-12">
+      <div class="p-3 border-round surface-100">
+        <p class="text-sm font-semibold m-0 mb-1">Resumen de horas registradas</p>
+        <div class="flex gap-4">
+          <span class="text-sm">Simples: <strong>{{ horasSimples() }}h</strong></span>
+          <span class="text-sm">Excedentes: <strong>{{ horasDobles() }}h</strong></span>
+          <span class="text-sm">Total: <strong>{{ horasSimples() + horasDobles() }}h</strong></span>
+        </div>
+        <p class="text-xs text-500 m-0 mt-1">
+          El importe se calculara al guardar segun el salario diario del empleado.
+        </p>
+      </div>
+    </div>
+    }
+
+    <div class="col-12">
+      <custom-input-textarea-signal
+        [control]="form.controls['observaciones']"
+        label="Observaciones"
+      />
+    </div>
+
+    <div class="col-12 flex justify-content-end">
+      <custom-button-save (clicked)="onSubmit()" [submitting]="submitting()" />
+    </div>
+  </div>
+</form>

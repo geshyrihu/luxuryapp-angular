@@ -1,0 +1,222 @@
+// ============================================================
+// _mixins.scss
+// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
+// Mixins reutilizables del sistema
+// ============================================================
+
+@use 'sass:map';
+@use 'variables' as v;
+
+// ── RESPONSIVE ────────────────────────────────────────────────
+// Uso: @include respond-to('md') { ... }
+@mixin respond-to($breakpoint) {
+  $bp-map: (
+    'xs':  0px,
+    'sm':  576px,
+    'md':  768px,
+    'lg':  1024px,
+    'xl':  1280px,
+    '2xl': 1536px
+  );
+
+  @if map.has-key($bp-map, $breakpoint) {
+    $value: map.get($bp-map, $breakpoint);
+    @if $value == 0px {
+      @content;
+    } @else {
+      @media (min-width: #{$value}) {
+        @content;
+      }
+    }
+  } @else {
+    @warn "Breakpoint `#{$breakpoint}` no existe en el mapa.";
+  }
+}
+
+// ── FOCUS RING (Accesibilidad WCAG AA) ────────────────────────
+// Uso: @include focus-ring; o @include focus-ring($color, $offset)
+@mixin focus-ring($color: var(--ds-border-focus), $offset: 2px) {
+  &:focus-visible {
+    outline: 2px solid $color;
+    outline-offset: $offset;
+    box-shadow: var(--ds-shadow-focus);
+  }
+  // Compatibilidad con navegadores que no soportan :focus-visible
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+// ── ESTADO DISABLED ───────────────────────────────────────────
+@mixin disabled-state {
+  &:disabled,
+  &[disabled],
+  &.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+// ── ESTADO LOADING ────────────────────────────────────────────
+// Spinner CSS integrado para botones e inputs
+@mixin loading-spinner($size: 1em, $color: currentColor, $thickness: 2px) {
+  &.is-loading {
+    position: relative;
+    color: transparent !important;
+    pointer-events: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: $size;
+      height: $size;
+      border: $thickness solid rgba(255, 255, 255, 0.3);
+      border-top-color: $color;
+      border-radius: 50%;
+      animation: ds-spin 0.6s linear infinite;
+    }
+  }
+}
+
+@keyframes ds-spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+// ── SKELETON ANIMATION ────────────────────────────────────────
+@mixin skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--ds-bg-sunken) 25%,
+    var(--ds-border) 37%,
+    var(--ds-bg-sunken) 63%
+  );
+  background-size: 400% 100%;
+  animation: ds-skeleton-shimmer 1.4s ease infinite;
+}
+
+@keyframes ds-skeleton-shimmer {
+  0%   { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+// ── TRUNCAR TEXTO ─────────────────────────────────────────────
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin truncate-lines($n: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $n;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// ── FLEXBOX HELPERS ───────────────────────────────────────────
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+// ── OVERLAY BACKDROP ──────────────────────────────────────────
+@mixin overlay-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: var(--ds-bg-overlay);
+  backdrop-filter: blur(2px);
+  z-index: var(--ds-z-overlay, 400);
+}
+
+// ── SCROLL PERSONALIZADO ──────────────────────────────────────
+@mixin custom-scrollbar($width: 6px) {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ds-border-strong) transparent;
+
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--ds-border-strong);
+    border-radius: 999px;
+
+    &:hover {
+      background-color: var(--ds-text-muted);
+    }
+  }
+}
+
+// ── ELEVACIÓN (Card/Panel) ────────────────────────────────────
+@mixin elevation($level: 'md') {
+  @if $level == 'xs' {
+    box-shadow: var(--ds-shadow-xs);
+  } @else if $level == 'sm' {
+    box-shadow: var(--ds-shadow-sm);
+  } @else if $level == 'md' {
+    box-shadow: var(--ds-shadow-md);
+  } @else if $level == 'lg' {
+    box-shadow: var(--ds-shadow-lg);
+  } @else if $level == 'xl' {
+    box-shadow: var(--ds-shadow-xl);
+  }
+}
+
+// ── VARIANTE DE COLOR ─────────────────────────────────────────
+// Genera estilos de color para un componente dado un token semántico
+@mixin color-variant($name, $bg, $text, $border: $bg, $bg-hover: darken($bg, 8%), $border-hover: darken($border, 8%)) {
+  &--#{$name} {
+    background-color: $bg;
+    color: $text;
+    border-color: $border;
+
+    &:hover:not(:disabled):not(.is-disabled) {
+      background-color: $bg-hover;
+      border-color: $border-hover;
+    }
+
+    @content;
+  }
+}
+
+// ── OUTLINE VARIANT ───────────────────────────────────────────
+@mixin outline-variant($name, $color) {
+  &--#{$name}-outline {
+    background-color: transparent;
+    color: $color;
+    border: 1px solid $color;
+
+    &:hover:not(:disabled):not(.is-disabled) {
+      background-color: rgba($color, 0.08);
+    }
+
+    @content;
+  }
+}
+
+
+
+

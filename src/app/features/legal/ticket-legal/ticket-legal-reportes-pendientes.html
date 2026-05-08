@@ -1,0 +1,293 @@
+@if (dataExternal().length > 0 || dataInternal().length > 0 ||
+unassignedData().length > 0) {
+<!-- DESKTOP VIEW -->
+<div class="hidden md:block">
+  <!-- External Tickets -->
+  @if (dataExternal().length > 0) {
+  <div class="card mb-4">
+    <p-table
+      #dtExternal
+      [value]="dataExternal()"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight()"
+      styleClass="custom-table-report"
+    >
+      <ng-template #caption>
+        <primeng-custom-caption
+          title="Pendientes Externos"
+          [showAdd]="false"
+          [dt]="dtExternal"
+        />
+      </ng-template>
+      <ng-template #headerExternal>
+        <tr>
+          <th class="table-col-10">FOLIO</th>
+          <th class="table-col-10">FECHA SOLICITUD</th>
+          <th class="table-col-10">CLIENTE</th>
+          <th class="table-col-30">SOLICITUD</th>
+          <th class="table-col-10">RESPONSABLE</th>
+          <th class="table-col-5">DÍAS TRANSCURRIDOS</th>
+          <th class="table-col-30">SEGUIMIENTO</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-ticket>
+        <tr>
+          <td>{{ ticket.folio }}</td>
+          <td>{{ ticket.requestDate | date: "dd/MM/yyyy" }}</td>
+          <td>{{ ticket.nombreCorto }}</td>
+          <td [innerHTML]="ticket.request"></td>
+          <td>{{ ticket.fullName }}</td>
+          <td
+            class="text-center"
+            [class.text-red-500]="ticket.diasTrasncurridos > 10"
+          >
+            {{ ticket.diasTrasncurridos }}
+          </td>
+          <td>{{ ticket.seguimiento }}</td>
+        </tr>
+      </ng-template>
+      <ng-template #summary>
+        <div class="flex align-items-center justify-content-between">
+          En total hay {{ dataExternal().length }} pendientes.
+        </div>
+      </ng-template>
+    </p-table>
+  </div>
+  }
+
+  <!-- Internal Tickets -->
+  @if (dataInternal().length > 0) {
+  <div class="card mb-4">
+    <p-table
+      #dtInternal
+      [value]="dataInternal()"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight()"
+      styleClass="custom-table-report"
+    >
+      <ng-template #caption>
+        <primeng-custom-caption
+          title="Pendientes Internos"
+          [showAdd]="false"
+          [dt]="dtInternal"
+        />
+      </ng-template>
+      <ng-template #headerInternal>
+        <tr>
+          <th class="table-col-10">FOLIO</th>
+          <th class="table-col-10">FECHA SOLICITUD</th>
+          <th class="table-col-10">CLIENTE</th>
+          <th class="table-col-30">SOLICITUD</th>
+          <th class="table-col-10">RESPONSABLE</th>
+          <th class="table-col-5">DÍAS TRANSCURRIDOS</th>
+          <th class="table-col-30">SEGUIMIENTO</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-ticket>
+        <tr>
+          <td>{{ ticket.folio }}</td>
+          <td>{{ ticket.requestDate | date: "dd/MM/yyyy" }}</td>
+          <td>{{ ticket.nombreCorto }}</td>
+          <td [innerHTML]="ticket.request"></td>
+          <td>{{ ticket.fullName }}</td>
+          <td
+            class="text-center"
+            [class.text-red-500]="ticket.diasTrasncurridos > 10"
+          >
+            {{ ticket.diasTrasncurridos }}
+          </td>
+          <td>{{ ticket.seguimiento }}</td>
+        </tr>
+      </ng-template>
+      <ng-template #summary>
+        <div class="flex align-items-center justify-content-between">
+          En total hay {{ dataInternal().length }} pendientes.
+        </div>
+      </ng-template>
+    </p-table>
+  </div>
+  }
+
+  <!-- Unassigned Tickets -->
+  @if (unassignedData().length > 0) {
+  <div class="card mb-4">
+    <p-table
+      #dtUnassigned
+      [value]="unassignedData()"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight()"
+      styleClass="custom-table-report"
+    >
+      <ng-template #caption>
+        <primeng-custom-caption
+          title="Pendientes sin Asignar"
+          [showAdd]="false"
+          [dt]="dtUnassigned"
+        />
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th class="table-col-10">FOLIO</th>
+          <th class="table-col-10">FECHA SOLICITUD</th>
+          <th class="table-col-10">CLIENTE</th>
+          <th class="table-col-55">SOLICITUD</th>
+          <th class="table-col-10">RESPONSABLE</th>
+          <th class="table-col-5">DÍAS TRANSCURRIDOS</th>
+          <th class="table-col-30">SEGUIMIENTO</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-ticket>
+        <tr>
+          <td>{{ ticket.folio }}</td>
+          <td>{{ ticket.requestDate | date: "dd/MM/yyyy" }}</td>
+          <td>{{ ticket.nombreCorto }}</td>
+          <td [innerHTML]="ticket.request"></td>
+          <td>{{ ticket.fullName }}</td>
+          <td
+            class="text-center"
+            [class.text-red-500]="ticket.diasTrasncurridos > 10"
+          >
+            {{ ticket.diasTrasncurridos }}
+          </td>
+          <td>{{ ticket.seguimiento }}</td>
+        </tr>
+      </ng-template>
+      <ng-template #summary>
+        <div class="flex align-items-center justify-content-between">
+          En total hay {{ unassignedData().length }} pendientes.
+        </div>
+      </ng-template>
+    </p-table>
+  </div>
+  }
+</div>
+
+<!-- MOBILE VIEW -->
+<div class="block md:hidden">
+  <!-- External Tickets -->
+  @if (dataExternal().length > 0) {
+  <div class="card mb-4">
+    <h5 class="p-4 m-0 border-bottom-1 border-gray-200">Pendientes Externos</h5>
+    <app-data-view-mobile [data]="dataExternal()" [showAdd]="false">
+      <ng-template #listItemTemplate let-ticket>
+        <ion-item lines="full" class="ion-no-padding" detail="false">
+          <ion-label class="ion-text-wrap">
+            <p class="mt-0 mb-1"><strong>Folio:</strong> {{ ticket.folio }}</p>
+            <p class="mt-0 mb-1">
+              <strong>Fecha:</strong>
+              {{ ticket.requestDate | date: "dd/MM/yyyy" }}
+            </p>
+            <p class="mt-0 mb-1">
+              <strong>Cliente:</strong> {{ ticket.nombreCorto }}
+            </p>
+            <p class="mt-0 mb-1">
+              <strong>Responsable:</strong> {{ ticket.fullName }}
+            </p>
+            <p class="mt-0 mb-1">
+              <strong>Días:</strong>
+              <span [class.text-red-500]="ticket.diasTrasncurridos > 10"
+                >{{ ticket.diasTrasncurridos }}</span
+              >
+            </p>
+            <p class="mt-0 mb-1"><strong>Solicitud:</strong></p>
+            <div
+              class="text-justify text-sm"
+              [innerHTML]="ticket.request"
+            ></div>
+            <p class="mt-2 mb-1"><strong>Seguimiento:</strong></p>
+            <p class="text-justify text-sm mt-0 mb-1">
+              {{ ticket.seguimiento }}
+            </p>
+          </ion-label>
+        </ion-item>
+      </ng-template>
+      <ng-template #footer>
+        <div class="p-3 text-center">
+          En total hay {{ dataExternal().length }} pendientes.
+        </div>
+      </ng-template>
+    </app-data-view-mobile>
+  </div>
+  }
+
+  <!-- Internal Tickets -->
+  @if (dataInternal().length > 0) {
+  <div class="card mb-4">
+    <h5 class="p-4 m-0 border-bottom-1 border-gray-200">Pendientes Internos</h5>
+    <app-data-view-mobile [data]="dataInternal()" [showAdd]="false">
+      <ng-template #listItemTemplate let-ticket>
+        <div class="flex flex-column p-3">
+          <p class="mt-0 mb-1"><strong>Folio:</strong> {{ ticket.folio }}</p>
+          <p class="mt-0 mb-1">
+            <strong>Fecha:</strong>
+            {{ ticket.requestDate | date: "dd/MM/yyyy" }}
+          </p>
+          <p class="mt-0 mb-1">
+            <strong>Cliente:</strong> {{ ticket.nombreCorto }}
+          </p>
+          <p class="mt-0 mb-1">
+            <strong>Responsable:</strong> {{ ticket.fullName }}
+          </p>
+          <p class="mt-0 mb-1">
+            <strong>Días:</strong>
+            <span [class.text-red-500]="ticket.diasTrasncurridos > 10"
+              >{{ ticket.diasTrasncurridos }}</span
+            >
+          </p>
+          <p class="mt-0 mb-1"><strong>Solicitud:</strong></p>
+          <div class="text-justify text-sm" [innerHTML]="ticket.request"></div>
+          <p class="mt-2 mb-1"><strong>Seguimiento:</strong></p>
+          <p class="text-justify text-sm mt-0 mb-1">{{ ticket.seguimiento }}</p>
+        </div>
+      </ng-template>
+      <ng-template #footer>
+        <div class="p-3 text-center">
+          En total hay {{ dataInternal().length }} pendientes.
+        </div>
+      </ng-template>
+    </app-data-view-mobile>
+  </div>
+  }
+
+  <!-- Unassigned Tickets -->
+  @if (unassignedData().length > 0) {
+  <div class="card mb-4">
+    <h5 class="p-4 m-0 border-bottom-1 border-gray-200">
+      Pendientes sin Asignar
+    </h5>
+    <app-data-view-mobile [data]="unassignedData()" [showAdd]="false">
+      <ng-template #listItemTemplate let-ticket>
+        <div class="flex flex-column p-3">
+          <p class="mt-0 mb-1"><strong>Folio:</strong> {{ ticket.folio }}</p>
+          <p class="mt-0 mb-1">
+            <strong>Fecha:</strong>
+            {{ ticket.requestDate | date: "dd/MM/yyyy" }}
+          </p>
+          <p class="mt-0 mb-1">
+            <strong>Cliente:</strong> {{ ticket.nombreCorto }}
+          </p>
+          <p class="mt-0 mb-1">
+            <strong>Responsable:</strong> {{ ticket.fullName }}
+          </p>
+          <p class="mt-0 mb-1">
+            <strong>Días:</strong>
+            <span [class.text-red-500]="ticket.diasTrasncurridos > 10"
+              >{{ ticket.diasTrasncurridos }}</span
+            >
+          </p>
+          <p class="mt-0 mb-1"><strong>Solicitud:</strong></p>
+          <div class="text-justify text-sm" [innerHTML]="ticket.request"></div>
+          <p class="mt-2 mb-1"><strong>Seguimiento:</strong></p>
+          <p class="text-justify text-sm mt-0 mb-1">{{ ticket.seguimiento }}</p>
+        </div>
+      </ng-template>
+      <ng-template #footer>
+        <div class="p-3 text-center">
+          En total hay {{ unassignedData().length }} pendientes.
+        </div>
+      </ng-template>
+    </app-data-view-mobile>
+  </div>
+  }
+</div>
+}

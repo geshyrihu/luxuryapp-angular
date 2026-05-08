@@ -1,0 +1,90 @@
+<div class="card shadow-3 p-3 border-round">
+  <!-- Vista de escritorio -->
+
+  <div class="hidden md:block">
+    <p-table
+      [globalFilterFields]="globalFilterFields"
+      [value]="dataSignal()"
+      #dt
+      styleClass="custom-table card hidden md:block"
+    >
+      <ng-template #caption>
+        <primeng-custom-caption
+          [showAdd]="false"
+          [showSearch]="false"
+          [dt]="dt"
+        />
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th
+            class="bg-gradient text-white text-center"
+            pSortableColumn="folio"
+          >
+            Folio
+            <p-sortIcon field="folio" />
+          </th>
+          <th class="bg-gradient text-white text-center">Fecha</th>
+          <th class="text-center" pSortableColumn="name">
+            Nombre
+            <p-sortIcon field="name" />
+          </th>
+          <th class="text-center">Descargar</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td class="text-center">{{ item.folio }}</td>
+          <td class="text-center">{{ item.createAt }}</td>
+          <td class="text-center text-break">{{ item.name }}</td>
+          <td class="text-center">
+            <custom-button-view-pdf
+              [showLabelOnDesktop]="true"
+              [url]="item.path"
+              pdf="Documento"
+            />
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #paginatorleft>
+        <primeng-custom-table-footer [data]="dataSignal()" />
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- Vista para móviles -->
+<div class="block md:hidden">
+  <app-data-view-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    [showAdd]="false"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ion-item lines="full" class="ion-no-padding">
+        <ion-label>
+          <div class="flex justify-content-between align-items-center mb-1">
+            <h2 class="font-bold m-0 text-base text-wrap">{{ item.name }}</h2>
+          </div>
+          <p class="text-sm text-500 m-0">
+            <i class="pi pi-hashtag mr-1 text-xs"></i> Folio: {{ item.folio }}
+          </p>
+          <p class="text-sm text-500 m-0">
+            <i class="pi pi-calendar mr-1 text-xs"></i> Fecha: {{ item.createAt
+            }}
+          </p>
+        </ion-label>
+        <div slot="end" class="flex align-items-center">
+          <ion-button-view-pdf [url]="item.path" pdf="Documento" />
+        </div>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,34 @@
+<!-- Este es el componente "Contenedor" o "Inteligente" -->
+<!-- Su única responsabilidad es obtener los datos y pasarlos al componente de presentación. -->
+
+<div class="card">
+  <div class="card-header p-4">
+    <h3>Aprobación de Solicitudes Pendientes</h3>
+    <p>
+      Panel centralizado para aprobar o rechazar solicitudes de diferentes
+      módulos.
+    </p>
+  </div>
+  <div class="card-body">
+    <!-- Usamos el nuevo componente genérico "tonto" -->
+    <app-generic-approval-panel
+      [requests]="requests()"
+      [columns]="columns"
+      [loading]="loading()"
+      (approve)="onApprove($event)"
+      (reject)="onReject($event)"
+    />
+  </div>
+</div>
+
+<!-- El diálogo de confirmación se puede mover aquí si es necesario, 
+     o se puede crear un servicio que lo maneje de forma más global. 
+     Por ahora, lo mantenemos en el .ts para simplicidad. -->
+<p-confirmdialog />
+
+
+
+
+
+
+

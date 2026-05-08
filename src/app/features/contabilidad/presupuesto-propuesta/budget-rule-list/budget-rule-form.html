@@ -1,0 +1,47 @@
+<div class="p-3">
+  <form
+    autocomplete="off"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    class="flex flex-column gap-3"
+  >
+    <div>
+      <custom-input-select-signal
+        label="Tipo de Regla"
+        [data]="ruleTypes"
+        controlName="ruleType"
+        [formGroup]="form"
+        placeholder="Seleccione el tipo de regla"
+        optionLabel="label"
+        optionValue="value"
+      />
+      <small class="text-500 block">
+        "Cuenta Extra" agrega la cuenta aunque no tenga saldo. "Exclusión" la
+        oculta siempre.
+      </small>
+    </div>
+
+    <div>
+      <custom-input-text-signal
+        [control]="form.controls['accountNumber']"
+        label="Nómero de Cuenta (Aspel)"
+        placeholder="Ej: 605-001-000"
+      />
+      <small class="text-500 block">
+        Debe coincidir exactamente con el código en Aspel COI.
+      </small>
+    </div>
+
+    <custom-input-text-signal
+      [control]="form.controls['accountName']"
+      label="Nombre / Descripción (Opcional)"
+      placeholder="Ej: Gastos Extraordinarios"
+    />
+
+    <custom-button-save
+      [propertyId]="id"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+    />
+  </form>
+</div>

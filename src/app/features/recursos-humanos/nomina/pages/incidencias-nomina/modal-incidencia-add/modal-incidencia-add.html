@@ -1,0 +1,81 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-3">
+  <div class="grid">
+    <div class="col-12">
+      <custom-input-autocomplete-signal
+        (propagar)="saveEmployee($event)"
+        [control]="form.controls['employeeName']"
+        [data]="employees()"
+        label="Empleado"
+        placeholder="Escribe para buscar empleado..."
+      />
+    </div>
+    <div class="col-12 md:col-6">
+      <custom-input-select-signal
+        [control]="form.controls['tipoIncidencia']"
+        label="Tipo de Incidencia"
+        [data]="tipoIncidenciaOptions"
+      />
+    </div>
+    <div class="col-12 md:col-6">
+      <custom-input-date-signal
+        [control]="form.controls['fecha']"
+        label="Fecha"
+      />
+    </div>
+
+    @if (!esRetardo()) {
+    <div class="col-12 md:col-6">
+      <custom-input-number-signal
+        [control]="form.controls['diasAfectados']"
+        label="Dias Afectados"
+      />
+    </div>
+    }
+
+    @if (esRetardo()) {
+    <div class="col-12 md:col-6">
+      <custom-input-number-signal
+        [control]="form.controls['minutosRetardo']"
+        label="Minutos de Retardo"
+      />
+    </div>
+    }
+
+    @if (esIncapacidad()) {
+    <div class="col-12 md:col-4">
+      <custom-input-select-signal
+        [control]="form.controls['tipoIncapacidad']"
+        label="Tipo de Incapacidad"
+        [data]="tipoIncapacidadOptions"
+      />
+    </div>
+    <div class="col-12 md:col-4">
+      <custom-input-text-signal
+        [control]="form.controls['numeroFolioImss']"
+        label="Folio IMSS"
+        placeholder="Numero de folio"
+      />
+    </div>
+    <div class="col-12 md:col-4">
+      <custom-input-decimal-signal
+        [control]="form.controls['porcentajePagoImss']"
+        label="% Pago IMSS"
+        hint="Ej: 60 para 60%"
+        [minFractionDigits]="0"
+        [maxFractionDigits]="2"
+      />
+    </div>
+    }
+
+    <div class="col-12">
+      <custom-input-textarea-signal
+        [control]="form.controls['observaciones']"
+        label="Observaciones"
+      />
+    </div>
+
+    <div class="col-12 flex justify-content-end">
+      <custom-button-save (clicked)="onSubmit()" [submitting]="submitting()" />
+    </div>
+  </div>
+</form>

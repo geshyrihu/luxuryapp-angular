@@ -1,0 +1,240 @@
+<!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block"></div>
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <!-- ? INICIO: Botones de Tipo de Gasto -->
+    <div class="mb-4">
+      <div class="flex gap-1 flex-wrap w-full">
+        @for (tipo of tiposDeGasto; track tipo.id) {
+        <custom-button
+          [label]="tipo.label"
+          [iconClass]="tipo.iconClass"
+          (clicked)="onSelectTipoGasto(tipo.id)"
+          [severity]="tipo.id === tipoGasto() ? 'primary' : 'secondary'"
+          [variant]="tipo.id !== tipoGasto() ? 'outlined' : null"
+          size="sm"
+          [showLabelOnDesktop]="true"
+        />
+        }
+      </div>
+    </div>
+    <!--  giu?ng FIN: Botones de Tipo de Gasto -->
+    <div class="flex flex-wrap align-items-center mb-3">
+      <!-- Título a la izquierda -->
+      <div class="flex-1">
+        <h4 class="mb-0">{{ customTitle() | uppercase }}</h4>
+      </div>
+
+      <!-- Custom-caption -->
+      <div class="flex-none flex">
+        <custom-button
+          label="Actualizar Referencias"
+          iconClass="pi pi-link"
+          (clicked)="onManageLinks()"
+          severity="warn"
+          size="sm"
+          [showLabelOnDesktop]="true"
+        />
+        <primeng-custom-caption (add)="onModalAdd()" [dt]="dt" />
+      </div>
+
+      <!-- Botones de estado -->
+      <div class="flex-none">
+        <div class="flex gap-1 flex-wrap">
+          <custom-button
+            label="Denegadas"
+            iconClass="pi pi-times-circle"
+            (clicked)="onSelectStatus(1)"
+            [variant]="statusCompra() !== 1 ? 'outlined' : null"
+            [severity]="statusCompra() === 1 ? 'primary' : 'secondary'"
+            size="sm"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button
+            label="Autorizadas"
+            iconClass="pi pi-check-circle"
+            (clicked)="onSelectStatus(0)"
+            [variant]="statusCompra() !== 0 ? 'outlined' : null"
+            [severity]="statusCompra() === 0 ? 'primary' : 'secondary'"
+            size="sm"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button
+            label="Pendientes"
+            iconClass="pi pi-clock"
+            (clicked)="onSelectStatus(2)"
+            [variant]="statusCompra() !== 2 ? 'outlined' : null"
+            [severity]="statusCompra() === 2 ? 'primary' : 'secondary'"
+            size="sm"
+            [showLabelOnDesktop]="true"
+          />
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-7" pSortableColumn="folio">
+        Folio
+        <p-sortIcon field="folio" />
+      </th>
+      <th class="table-col-7" pSortableColumn="idFondeo">
+        Id Fondeo
+        <p-sortIcon field="idFondeo" />
+      </th>
+      <th class="table-col-10">Fondeo</th>
+      <th class="table-col-7" pSortableColumn="fechaSolicitud">
+        Solicitud
+        <p-sortIcon field="fechaSolicitud" />
+      </th>
+      <th class="table-col-20" pSortableColumn="equipoOInstalacion">
+        DESCRIPCIóN
+        <p-sortIcon field="equipoOInstalacion" />
+      </th>
+      <th class="table-col-20" pSortableColumn="justificacionGasto">
+        PARTIDA PRESUPUESTAL
+        <p-sortIcon field="justificacionGasto" />
+      </th>
+      <th class="table-col-15" pSortableColumn="proveedor">
+        Proveedor
+        <p-sortIcon field="proveedor" />
+      </th>
+      <th class="table-col-15" pSortableColumn="total">
+        Total
+        <p-sortIcon field="total" />
+      </th>
+      @if (statusCompra() === 1) {
+      <th class="table-col-15" pSortableColumn="observaciones">
+        Observaciones
+        <p-sortIcon field="observaciones" />
+      </th>
+      } @if (this.statusCompra() === 0) {
+      <th class="table-col-15" pSortableColumn="fullName">
+        Autoriza
+        <p-sortIcon field="fullName" />
+      </th>
+      }
+      <th class="table-col-5"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td class="text-sm">{{ item.folio }}</td>
+      <td class="text-sm">{{ item.idFondeo }}</td>
+      <td class="text-sm">
+        @if (item.isFunded) {
+        <p-tag severity="success" [value]="item.fundingPeriodName"></p-tag>
+        } @else { Sin Asignar }
+      </td>
+      <td>{{ item.fechaSolicitud | date : 'd MMM yyyy' : 'UTC' }}</td>
+      <td class="text-sm">
+        {{ item.equipoOInstalacion }}
+        <br />
+        {{ item.justificacionGasto }}
+      </td>
+      <td class="text-sm">
+        <ul>
+          @for (budget of item.budgets; track $index) {
+          <li>
+            {{ budget.accountNumber }}
+            <br />
+            {{ budget.accountName }}
+          </li>
+          }
+        </ul>
+      </td>
+      <td class="text-sm">{{ item.proveedor }}</td>
+      <td class="text-sm">{{ item.total | number: '1.2-2'}}</td>
+      @if (statusCompra() === 1) {
+      <td>{{ item.observaciones }}</td>
+      } @if (this.statusCompra() === 0) {
+      <td class="text-sm">
+        {{ item.fullName }}
+        <br />
+        {{ item.fechaAutorizacion | date: 'short' }}
+      </td>
+      }
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-item
+            iconClass="pi pi-window-maximize"
+            label="Editar en modal"
+            (clicked)="onOrdenCompraModal(item.id)"
+          />
+          <custom-button-edit (clicked)="onAddOrEdit(item.id)" />
+
+          @if (statusCompra() === 0) {
+          <!-- routerLink="/compras/solicitud-pago-pdf/{{item.id}}" -->
+          <custom-button-item
+            iconClass="pi pi-money-bill"
+            label="Solicitud de pago"
+            (clicked)="onDownloadSolicitudPagoPdf(item.id)"
+            variant="text"
+          />
+          } @if (statusCompra() === 0) {
+          <!-- routerLink="/compras/orden-compra-pdf/{{item.id}}" -->
+          <custom-button-item
+            iconClass="pi pi-file-pdf"
+            label="Orden de compra"
+            (clicked)="onDownloadOrdenCompraPdf(item.id)"
+            variant="text"
+          />
+          } @if (statusCompra() === 2) { }
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="data()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalAdd()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div
+        slot="start"
+        style="
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          background: #fef3c7;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-left: 16px;
+        "
+      >
+        <i class="pi pi-shopping-bag text-xl text-yellow-700"></i>
+      </div>
+      <ion-label>
+        <h3>{{ item.equipoOInstalacion }}</h3>
+        <p>{{ item.proveedor }} ó Folio: {{ item.folio }}</p>
+        <p>
+          Total: ${{ item.total | number:'1.2-2' }} ó {{ item.fechaSolicitud |
+          date:'d MMM yyyy':'UTC' }}
+        </p>
+      </ion-label>
+      <app-action-menu slot="end">
+        <ion-button-edit (clicked)="onAddOrEdit(item.id)" />
+        <ion-button-delete (confirmed)="onDelete(item.id)" />
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

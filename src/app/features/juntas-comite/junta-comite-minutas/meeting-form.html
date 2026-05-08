@@ -1,0 +1,43 @@
+<div class="card p-2">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <custom-input-text-signal
+      [control]="form.controls.id"
+      label="Id"
+      [readonly]="true"
+    />
+    <custom-input-date-signal
+      [control]="form.controls.date"
+      label="Fecha de Término"
+      placeholder="fecha de término"
+    />
+    <custom-input-select-signal
+      [control]="form.controls.eTypeMeeting"
+      label="Tipo de junta"
+      [data]="cb_typeMeeting()"
+    />
+    <custom-button-save [disabled]="form.invalid" />
+  </form>
+</div>
+
+<!-- Formulario de minuta -->
+@if (id) {
+<div class="grid mt-3">
+  <div class="col-12 md:col-4">
+    <!-- Formulario comité -->
+    <app-comite-form [meetingId]="id" [customerId]="customerId" />
+  </div>
+  <div class="col-12 md:col-4">
+    <!-- Formulario Administración -->
+    <app-administration-form-list [meetingId]="id" [customerId]="customerId" />
+  </div>
+  <div class="col-12 md:col-4">
+    <!-- Formulario Invitados -->
+    <app-invited-form [meetingId]="id" [customerId]="customerId" />
+  </div>
+</div>
+}
+<br />
+<br />
+<br />
+<br />
+<br />

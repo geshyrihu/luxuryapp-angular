@@ -1,0 +1,125 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <div class="flex align-items-end mb-4">
+      <div class="flex-flex-grow-1-1 min-w-0">
+        <app-filter-requests
+          apiUrl="RequestSalaryModification/ExportRequestToExcel"
+          nameFile="Reporte Modificacion Salario.xlsx"
+        />
+      </div>
+      <div class="flex-shrink-0 flex align-items-end justify-content-end">
+        <primeng-custom-caption
+          [title]="'Lista de Solicitudes de Modificación de salario'"
+          [showAdd]="false"
+          [dt]="dt"
+        />
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th>FOLIO</th>
+      <th>SOLICITUD</th>
+      <th>CLIENTE</th>
+      <th>Colaborador</th>
+      <th>FECHA DE APLICACIÓN</th>
+      <th>PUESTO ACTUAL</th>
+      <th>SUELDO ACTUAL</th>
+      <th>PUESTO NUEVO</th>
+      <th>SUELDO NUEVO</th>
+      <th>RETROACTIVO</th>
+      <th>ESTATUS</th>
+      <!-- <th  >CONFIRMACION </th> -->
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td class="text-center">{{ item.folio }}</td>
+      <td>{{ item.requestDate }}</td>
+      <td>{{ item.customer }}</td>
+      <td>{{ item.employee }}</td>
+      <td>{{ item.executionDate }}</td>
+      <td>{{ item.applicationRoleCurrent }}</td>
+      <td>{{ item.currentSalary }}</td>
+      <td>{{ item.applicationRoleNew }}</td>
+      <td class="text-center">{{ item.finalSalary }}</td>
+      <td>{{ item.retroactive }}</td>
+      <td class="text-center">
+        <span
+          [class.bg-danger]="item.status === 'Pendiente'"
+          [class.bg-warning]="item.status === 'Proceso'"
+          [class.bg-success]="item.status === 'Concluido'"
+          [class.bg-dark]="item.status === 'Cancelado'"
+          class="badge m-3 p-2 font-size-12"
+        >
+          {{ item.status === "Pendiente" ? "Pendiente" : item.status ===
+          "Proceso" ? "En Proceso" : item.status === "Concluido" ? "Cubierta" :
+          "Cancelada" }}
+        </span>
+      </td>
+
+      <!-- Opciones -->
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-edit
+            (clicked)="onModalForm({
+                  id: item.id,
+                  title: 'Vacante ' + item.applicationRole,
+                })"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+      <!-- Opciones -->
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="paginatorleft">
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div
+        slot="start"
+        class="w-3rem h-3rem border-round flex align-items-center justify-content-center flex-shrink-0 ml-3 surface-100"
+      >
+        <ion-icon
+          name="trending-up-outline"
+          class="text-xl text-yellow-600"
+        ></ion-icon>
+      </div>
+      <ion-label>
+        <h3>{{ item.employee }}</h3>
+        <p>{{ item.applicationRoleCurrent }} → {{ item.applicationRoleNew }}</p>
+        <p>
+          {{ item.currentSalary }} → {{ item.finalSalary }} · {{ item.status }}
+        </p>
+      </ion-label>
+      <app-action-menu slot="end">
+        <ion-button-edit
+          (clicked)="onModalForm({ id: item.id, title: 'Vacante ' + item.applicationRole })"
+        />
+        <ion-button-delete (confirmed)="onDelete(item.id)" />
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

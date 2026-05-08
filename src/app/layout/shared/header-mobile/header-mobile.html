@@ -1,0 +1,17 @@
+<!-- Aqui hay un pequeóo espacio se ve lo del body cuando se hace scrool -->
+<ion-toolbar class="ion-no-border">
+  <ion-buttons slot="start">
+    <ion-button (click)="onBack()">
+      <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+  <!-- Centered Content -->
+  <div class="flex justify-content-center align-items-center w-full">
+    <app-customer-header-data-mobile />
+  </div>
+
+  <ion-buttons slot="end">
+    <app-profile-user-mobile />
+  </ion-buttons>
+</ion-toolbar>

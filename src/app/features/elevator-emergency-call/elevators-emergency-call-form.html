@@ -1,0 +1,57 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        label="Id"
+        [hidden]="false"
+        placeholder="Id"
+      />
+
+      <custom-input-select-signal
+        [control]="form.controls.machineryId"
+        label="Elevador"
+        placeholder="Elevador"
+        [data]="cb_elevators()"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.folio"
+        label="Folio del reporte"
+        placeholder="folio del reporte"
+      />
+      <custom-input-date-signal
+        [control]="form.controls.requestDate"
+        label="Fecha"
+        placeholder="fecha"
+      />
+
+      <custom-input-textarea-signal
+        [control]="form.controls.report"
+        label="Reporte"
+        placeholder="reporte"
+      />
+      <custom-input-textarea-signal
+        [control]="form.controls.request"
+        label="Respuesta"
+        placeholder="respuesta"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.personWhoReports"
+        label="Quien Reporto"
+        placeholder="quien reporte"
+      />
+
+      <custom-input-text-signal
+        [control]="form.controls.technicianWhoAttended"
+        label="Técnico"
+        placeholder="técnico"
+      />
+
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        label="Id"
+        [readonly]="true"
+      />
+
+      <custom-input-date-signal
+        [control]="form.controls.fechaRegistro"
+        label="Fecha de registro"
+        placeholder="fecha de registro"
+      />
+
+      <custom-input-number-signal
+        [control]="form.controls.lectura"
+        label="Lectura"
+        minFractionDigits="0"
+        maxFractionDigits="4"
+        placeholder="lectura"
+      />
+
+      <custom-button-save
+        [propertyId]="id()"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </div>
+</div>

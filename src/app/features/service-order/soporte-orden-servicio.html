@@ -1,0 +1,180 @@
+@if (item !== undefined && dataCustomer !== undefined) {
+<table class="table table-sm">
+  <tr>
+    <td colspan="3" class="text-center">
+      <h4 class="h4">Documento de recepción de servicio</h4>
+    </td>
+  </tr>
+  <tr>
+    <td class="table-col-10">
+      <img
+        [src]="logoCustomer"
+        alt=""
+        class="w-6rem h-auto"
+      />
+    </td>
+    <td class="table-col-50">
+      <div>
+        <p class="font-size-14 m-0">{{ dataCustomer.nameCustomer }}</p>
+        <p class="font-size-11 m-0">{{ dataCustomer.adreess }}</p>
+        <div class="flex flex-wrap align-items-start gap-3 font-size-11 m-0">
+          <div class="m-0">
+            <i class="mdi mdi-circle-medium mr-1 text-success align-middle"></i>
+            {{ dataCustomer.phoneOne }}
+          </div>
+          <div class="m-0">
+            <i class="mdi mdi-circle-medium mr-1 text-success align-middle"></i>
+            {{ dataCustomer.phoneTwo }}
+          </div>
+        </div>
+      </div>
+    </td>
+    <td class="table-col-40">
+      <div class="div">
+        <p class="m-0 font-size-11">
+          Fecha de Solicitud: {{ item.fechaSolicitud | date : "dd-MMM-yyyy" }}
+        </p>
+        <p class="m-0 font-size-11">
+          Fecha de Ejecución: {{ item.fechaTermino | date : "dd-MMM-yyyy" }}
+        </p>
+        <p class="m-0 font-size-11">
+          Tipo de servicio:
+          <i
+            class="icon icon-pi-thumbtack"
+            [class.text-success]="item.tipoServicio == 'Preventivo'"
+            [class.text-danger]="item.tipoServicio == 'Correctivo'"
+            [class.txt-primary]="item.tipoServicio == 'Predictivo'"
+          ></i>
+          {{ item.tipoServicio }}, {{ item.recurrencia }}
+        </p>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">
+      <h5 class="h5">Equipo: {{ item.nameMachinery }}</h5>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">
+      <h5 class="h5">Proveedor: {{ item.proveedor }}</h5>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="table-col-50">
+      <p class="m-0">Actividad:</p>
+      <div>
+        <p class="mb-0" [innerHTML]="item.actividad | sanitizeHtml"></p>
+      </div>
+    </td>
+    <td class="table-col-50">
+      @if (item.observaciones) {
+      <p class="m-0">Observaciones:</p>
+      }
+      <div>
+        <p class="mb-0" [innerHTML]="item.observaciones | sanitizeHtml"></p>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">
+      @if (item.fotos[0] !== undefined) {
+      <img
+        class="w-25"
+        [src]="
+          item.fotos[0] ? item.fotos[0] : 'assets/images/default-avatar.png'
+        "
+        alt=""
+      />
+      } @if (item.fotos[1] !== undefined) {
+      <img
+        class="w-25"
+        [src]="
+          item.fotos[1] ? item.fotos[1] : 'assets/images/default-avatar.png'
+        "
+        alt=""
+      />
+      } @if (item.fotos[2] !== undefined) {
+      <img
+        class="w-25"
+        [src]="
+          item.fotos[2] ? item.fotos[2] : 'assets/images/default-avatar.png'
+        "
+        alt=""
+      />
+      } @if (item.fotos[3] !== undefined) {
+      <img
+        class="w-25"
+        [src]="
+          item.fotos[3] ? item.fotos[3] : 'assets/images/default-avatar.png'
+        "
+        alt=""
+      />
+      }
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">
+      <h6>Revisiones</h6>
+      <table class="table table-sm">
+        <tr>
+          <td class="table-col-50">
+            <div>
+              <p class="m-0">
+                @if (item.cumplimientoActividades) {
+                <i class="text-success mr-1 icon icon-pi-check"></i>
+                } @if (!item.cumplimientoActividades) {
+                <i class="text-danger mr-1 icon icon-pi-times"></i>
+                } Se cumplio con las actividades correspondientes a la orden
+              </p>
+              <p>
+                @if (item.equiposOperando) {
+                <i class="text-success mr-1 icon icon-pi-check"></i>
+                } @if (!item.equiposOperando) {
+                <i class="text-danger mr-1 icon icon-pi-times"></i>
+                } Equipos/Areas operando sin ningun inconveniente
+              </p>
+            </div>
+          </td>
+          <td class="table-col-50">
+            <div>
+              <p class="m-0">
+                @if (item.ocacionoDanos) {
+                <i class="text-success mr-1 icon icon-pi-check"></i>
+                } @if (!item.ocacionoDanos) {
+                <i class="text-danger mr-1 icon icon-pi-times"></i>
+                } Afectación en el Area donde se realizo el trabajo
+              </p>
+              <p class="m-0">
+                @if (item.calidadTrabajos) {
+                <i class="text-success mr-1 icon icon-pi-check"></i>
+                } @if (!item.calidadTrabajos) {
+                <i class="text-danger mr-1 icon icon-pi-times"></i>
+                } Se cumplio con la calidad de los trabajos realizados
+              </p>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<br />
+<br />
+<table class="table">
+  <tr>
+    <td class="table-col-50">
+      <div class="text-center">
+        <p>______________________________________</p>
+        <h6>Revisado por {{ item.posicion }}</h6>
+      </div>
+    </td>
+    <td class="table-col-50">
+      <div class="text-center">
+        <p>______________________________________</p>
+        <h6>Realizado por {{ item.proveedor }}</h6>
+      </div>
+    </td>
+  </tr>
+</table>
+}

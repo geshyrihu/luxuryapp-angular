@@ -1,0 +1,57 @@
+:host ::ng-deep {
+  .table-container {
+    overflow-x: auto;
+    max-width: 100%;
+    border: 1px solid var(--ds-border);
+    border-radius: var(--ds-radius-card);
+  }
+
+  .header-cell {
+    background-color: var(--ds-bg-sunken);
+    font-weight: bold;
+    padding: 1rem 0.75rem !important;
+  }
+
+  .p-datatable .p-datatable-thead > tr > th.p-frozen-column,
+  .p-datatable .p-datatable-tbody > tr > td.p-frozen-column,
+  .sticky-column {
+    // background-color: var(--surface-card) !important;
+    background-color: var(--ds-bg-surface);
+    z-index: 100 !important;
+    position: sticky !important;
+    left: 0 !important;
+    border-right: 1px solid var(--ds-border) !important;
+  }
+
+  .p-datatable .p-datatable-thead > tr > th.p-frozen-column,
+  .header-cell.sticky-column {
+    background-color: var(--ds-bg-sunken) !important;
+    z-index: 101 !important;
+  }
+
+  .body-cell {
+    padding: 0.5rem 0.75rem !important;
+    border-top: 1px solid var(--ds-border);
+  }
+
+  .sticky-header {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+  }
+
+  .sticky-col {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background-color: var(--ds-bg-surface);
+    border-right: 1px solid var(--ds-border) !important;
+  }
+
+  p-table .p-datatable-tbody > tr:not(.p-datatable-emptymessage-row):hover {
+    background-color: var(--ds-bg-sunken) !important;
+  }
+}
+
+
+

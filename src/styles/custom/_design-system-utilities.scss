@@ -1,0 +1,1399 @@
+// ============================================================
+// LUXURY DESIGN SYSTEM — CATÁLOGO DE COMPONENTES (CSS puro)
+// Utilidades nativas de CSS — sin dependencias externas.
+//
+// Clases cubiertas por DS (fallback/dead code — DS gana en cascada):
+//   .btn-primary, .badge-*, .card, .form-*, .alert-*
+//
+// Clases ÚNICAS en este archivo:
+//   Inputs: .input-text, .input-select, .input-textarea, .input-sm/lg/error/success
+//   Botones ícono: .btn-icon-*, .btn-luxury (legado)
+//   Tablas: .table-luxury, .table-head, .table-row, .table-cell-*
+//   Tipografía: .page-title, .page-subtitle, .text-muted, .text-label
+//   Divisores: .divider, .divider-dark
+// ============================================================
+
+// ── MIXIN INTERNO: base de inputs ────────────────────────
+@mixin _input-base {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.25rem;
+  background-color: #ffffff;
+  color: #1e293b;
+  outline: none;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+
+  &::placeholder {
+    color: #94a3b8;
+  }
+
+  &:focus {
+    border-color: var(--primary-500, #0b3164);
+    box-shadow: 0 0 0 2px rgba(11, 49, 100, 0.2);
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: #f1f5f9;
+    color: #94a3b8;
+    cursor: not-allowed;
+  }
+}
+
+// ── MIXIN INTERNO: base de botones ───────────────────────
+@mixin _btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  border-width: 2px;
+  border-style: solid;
+  transition: all 200ms ease;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  text-decoration: none;
+  appearance: none;
+  -webkit-appearance: none;
+
+  &:active {
+    transform: scale(0.95);
+  }
+  &:disabled,
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    &:active {
+      transform: scale(1);
+    }
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+// 1. INPUTS
+// ══════════════════════════════════════════════════════════
+
+.input-text {
+  @include _input-base;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.input-select {
+  @include _input-base;
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.input-textarea {
+  @include _input-base;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.input-sm {
+  padding: 0.375rem 0.625rem;
+  font-size: 0.75rem;
+}
+
+.input-lg {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+}
+
+.input-error {
+  border-color: #f87171;
+  background-color: #fef2f2;
+  color: #7f1d1d;
+
+  &::placeholder {
+    color: #fca5a5;
+  }
+  &:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 2px #fecaca;
+  }
+}
+
+.input-success {
+  border-color: #4ade80;
+  &:focus {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 2px #bbf7d0;
+  }
+}
+
+.input-icon-wrap {
+  position: relative;
+  width: 100%;
+
+  .input-icon-left {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    pointer-events: none;
+    font-size: 0.875rem;
+    line-height: 1;
+  }
+
+  .input-icon-right {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    pointer-events: none;
+    font-size: 0.875rem;
+    line-height: 1;
+  }
+
+  > .input-text,
+  > .input-select {
+    padding-left: 2.25rem;
+  }
+  > .input-sm {
+    padding-left: 2rem;
+  }
+  > .input-lg {
+    padding-left: 2.75rem;
+  }
+  &.icon-right > .input-text {
+    padding-right: 2.25rem;
+    padding-left: 0.75rem;
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+// 2. BOTONES (dead code — DS gana, pero mantenemos compatibilidad)
+// ══════════════════════════════════════════════════════════
+
+.btn-sm {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  gap: 0.375rem;
+}
+.btn-lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  gap: 0.75rem;
+}
+.btn-block {
+  width: 100%;
+}
+
+.btn-primary {
+  @include _btn-base;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background-color: var(--primary-500, #0b3164);
+  border-color: var(--primary-500, #0b3164);
+  color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  &:hover:not(:disabled) {
+    background-color: var(--primary-600, #092953);
+    border-color: var(--primary-600, #092953);
+  }
+}
+
+.btn-secondary {
+  @include _btn-base;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background-color: #475569;
+  border-color: #475569;
+  color: #ffffff;
+  &:hover:not(:disabled) {
+    background-color: #334155;
+    border-color: #334155;
+  }
+}
+
+.btn-success {
+  @include _btn-base;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background-color: #15803d;
+  border-color: #15803d;
+  color: #ffffff;
+  &:hover:not(:disabled) {
+    background-color: #166534;
+    border-color: #166534;
+  }
+}
+
+.btn-warning {
+  @include _btn-base;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background-color: #d97706;
+  border-color: #d97706;
+  color: #ffffff;
+  &:hover:not(:disabled) {
+    background-color: #b45309;
+    border-color: #b45309;
+  }
+}
+
+.btn-danger {
+  @include _btn-base;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background-color: #b91c1c;
+  border-color: #b91c1c;
+  color: #ffffff;
+  &:hover:not(:disabled) {
+    background-color: #991b1b;
+    border-color: #991b1b;
+  }
+}
+
+.btn-neutral {
+  @include _btn-base;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+  color: #334155;
+  &:hover:not(:disabled) {
+    background-color: #f8fafc;
+    border-color: #94a3b8;
+  }
+}
+
+// Outline
+.btn-outline-primary {
+  @include _btn-base;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background-color: transparent;
+  border-color: var(--primary-500, #0b3164);
+  color: var(--primary-600, #092953);
+  &:hover:not(:disabled) {
+    background-color: var(--primary-50, #f0f4fa);
+  }
+}
+
+.btn-outline-secondary {
+  @include _btn-base;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background-color: transparent;
+  border-color: #94a3b8;
+  color: #475569;
+  &:hover:not(:disabled) {
+    background-color: #f8fafc;
+  }
+}
+
+.btn-outline-success {
+  @include _btn-base;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background-color: transparent;
+  border-color: #16a34a;
+  color: #15803d;
+  &:hover:not(:disabled) {
+    background-color: #f0fdf4;
+  }
+}
+
+.btn-outline-warning {
+  @include _btn-base;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background-color: transparent;
+  border-color: #f59e0b;
+  color: #b45309;
+  &:hover:not(:disabled) {
+    background-color: #fffbeb;
+  }
+}
+
+.btn-outline-danger {
+  @include _btn-base;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background-color: transparent;
+  border-color: #ef4444;
+  color: #b91c1c;
+  &:hover:not(:disabled) {
+    background-color: #fef2f2;
+  }
+}
+
+// Ghost
+.btn-ghost-primary {
+  @include _btn-base;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--primary-600, #092953);
+  &:hover:not(:disabled) {
+    background-color: var(--primary-50, #f0f4fa);
+  }
+}
+
+.btn-ghost-secondary {
+  @include _btn-base;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background-color: transparent;
+  border-color: transparent;
+  color: #475569;
+  &:hover:not(:disabled) {
+    background-color: #f1f5f9;
+  }
+}
+
+.btn-ghost-danger {
+  @include _btn-base;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background-color: transparent;
+  border-color: transparent;
+  color: #dc2626;
+  &:hover:not(:disabled) {
+    background-color: #fef2f2;
+  }
+}
+
+// Ícono solo — ÚNICOS en este archivo
+.btn-icon-primary {
+  @include _btn-base;
+  padding: 0.5rem;
+  background-color: var(--primary-500, #0b3164);
+  border-color: var(--primary-500, #0b3164);
+  color: #ffffff;
+  &:hover:not(:disabled) {
+    background-color: var(--primary-600, #092953);
+    border-color: var(--primary-600, #092953);
+  }
+}
+
+.btn-icon-secondary {
+  @include _btn-base;
+  padding: 0.5rem;
+  background-color: transparent;
+  border-color: transparent;
+  color: #64748b;
+  &:hover:not(:disabled) {
+    background-color: #f1f5f9;
+    color: #334155;
+  }
+}
+
+.btn-icon-danger {
+  @include _btn-base;
+  padding: 0.5rem;
+  background-color: transparent;
+  border-color: transparent;
+  color: #ef4444;
+  &:hover:not(:disabled) {
+    background-color: #fef2f2;
+    color: #b91c1c;
+  }
+}
+
+.btn-icon-success {
+  @include _btn-base;
+  padding: 0.5rem;
+  background-color: transparent;
+  border-color: transparent;
+  color: #16a34a;
+  &:hover:not(:disabled) {
+    background-color: #f0fdf4;
+    color: #166534;
+  }
+}
+
+.btn-icon-sm {
+  padding: 0.375rem;
+  font-size: 0.75rem;
+}
+.btn-icon-lg {
+  padding: 0.75rem;
+  font-size: 1.125rem;
+}
+
+// Legado btn-luxury
+.btn-luxury {
+  padding: 0.5rem 1rem;
+  border-radius: 0.125rem;
+  font-weight: 600;
+  transition: all 200ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  border: 2px solid;
+  &:active {
+    transform: scale(0.95);
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &-primary {
+    background-color: var(--primary-500, #0b3164);
+    border-color: var(--primary-500, #0b3164);
+    color: #fff;
+    &:hover:not(:disabled) {
+      background-color: var(--primary-600, #092953);
+      border-color: var(--primary-600, #092953);
+    }
+  }
+  &-secondary {
+    background-color: #52525b;
+    border-color: #52525b;
+    color: #fff;
+    &:hover:not(:disabled) {
+      background-color: #3f3f46;
+      border-color: #3f3f46;
+    }
+  }
+  &-success {
+    background-color: var(--success-color, #065f46);
+    border-color: var(--success-color, #065f46);
+    color: #fff;
+    &:hover:not(:disabled) {
+      opacity: 0.9;
+    }
+  }
+  &-info {
+    background-color: var(--primary-400, #6687b3);
+    border-color: var(--primary-400, #6687b3);
+    color: #fff;
+    &:hover:not(:disabled) {
+      background-color: var(--primary-500, #0b3164);
+      border-color: var(--primary-500, #0b3164);
+    }
+  }
+  &-warn {
+    background-color: var(--warning-color, #92400e);
+    border-color: var(--warning-color, #92400e);
+    color: #fff;
+    &:hover:not(:disabled) {
+      opacity: 0.9;
+    }
+  }
+  &-help {
+    background-color: #9333ea;
+    border-color: #9333ea;
+    color: #fff;
+    &:hover:not(:disabled) {
+      background-color: #7e22ce;
+      border-color: #7e22ce;
+    }
+  }
+  &-danger {
+    background-color: var(--danger-color, #991b1b);
+    border-color: var(--danger-color, #991b1b);
+    color: #fff;
+    &:hover:not(:disabled) {
+      opacity: 0.9;
+    }
+  }
+
+  &-outline {
+    background-color: transparent;
+    box-shadow: none;
+    &.btn-luxury-primary {
+      color: var(--primary-500, #0b3164);
+      border-color: var(--primary-500, #0b3164);
+      &:hover:not(:disabled) {
+        background-color: var(--primary-50, #f0f4fa);
+      }
+    }
+    &.btn-luxury-secondary {
+      color: #52525b;
+      border-color: #52525b;
+      &:hover:not(:disabled) {
+        background-color: #fafafa;
+      }
+    }
+    &.btn-luxury-success {
+      color: var(--success-color, #065f46);
+      border-color: var(--success-color, #065f46);
+      &:hover:not(:disabled) {
+        background-color: #f0fdf4;
+      }
+    }
+    &.btn-luxury-info {
+      color: var(--primary-400, #6687b3);
+      border-color: var(--primary-400, #6687b3);
+      &:hover:not(:disabled) {
+        background-color: var(--primary-50, #f0f4fa);
+      }
+    }
+    &.btn-luxury-warn {
+      color: var(--warning-color, #92400e);
+      border-color: var(--warning-color, #92400e);
+      &:hover:not(:disabled) {
+        background-color: #fffbeb;
+      }
+    }
+    &.btn-luxury-help {
+      color: #9333ea;
+      border-color: #9333ea;
+      &:hover:not(:disabled) {
+        background-color: #faf5ff;
+      }
+    }
+    &.btn-luxury-danger {
+      color: var(--danger-color, #991b1b);
+      border-color: var(--danger-color, #991b1b);
+      &:hover:not(:disabled) {
+        background-color: #fef2f2;
+      }
+    }
+  }
+
+  &-text {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    &.btn-luxury-primary {
+      color: var(--primary-500, #0b3164);
+      &:hover:not(:disabled) {
+        background-color: var(--primary-50, #f0f4fa);
+      }
+    }
+    &.btn-luxury-secondary {
+      color: #52525b;
+      &:hover:not(:disabled) {
+        background-color: #fafafa;
+      }
+    }
+    &.btn-luxury-success {
+      color: var(--success-color, #065f46);
+      &:hover:not(:disabled) {
+        background-color: #f0fdf4;
+      }
+    }
+    &.btn-luxury-info {
+      color: var(--primary-400, #6687b3);
+      &:hover:not(:disabled) {
+        background-color: var(--primary-50, #f0f4fa);
+      }
+    }
+    &.btn-luxury-warn {
+      color: var(--warning-color, #92400e);
+      &:hover:not(:disabled) {
+        background-color: #fffbeb;
+      }
+    }
+    &.btn-luxury-help {
+      color: #9333ea;
+      &:hover:not(:disabled) {
+        background-color: #faf5ff;
+      }
+    }
+    &.btn-luxury-danger {
+      color: var(--danger-color, #991b1b);
+      &:hover:not(:disabled) {
+        background-color: #fef2f2;
+      }
+    }
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+// 3. BADGES (dead code — DS gana, pero compatibilidad)
+// ══════════════════════════════════════════════════════════
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+}
+
+.badge-primary {
+  background-color: var(--primary-100, #dce7f3);
+  color: var(--primary-800, #051831);
+}
+.badge-success {
+  background-color: #dcfce7;
+  color: #166534;
+}
+.badge-warning {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+.badge-danger {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+.badge-info {
+  background-color: #e0f2fe;
+  color: #075985;
+}
+.badge-neutral {
+  background-color: #f1f5f9;
+  color: #475569;
+}
+
+.badge-outline-primary {
+  border: 1px solid var(--primary-400, #6687b3);
+  color: var(--primary-700, #072042);
+  background-color: transparent;
+}
+.badge-outline-success {
+  border: 1px solid #22c55e;
+  color: #15803d;
+  background-color: transparent;
+}
+.badge-outline-warning {
+  border: 1px solid #f59e0b;
+  color: #b45309;
+  background-color: transparent;
+}
+.badge-outline-danger {
+  border: 1px solid #f87171;
+  color: #b91c1c;
+  background-color: transparent;
+}
+.badge-outline-neutral {
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  background-color: transparent;
+}
+
+.badge-sm {
+  padding: 0 0.5rem;
+  font-size: 0.625rem;
+}
+.badge-lg {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.badge-dot::before {
+  content: "";
+  display: inline-block;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex-shrink: 0;
+}
+
+// ══════════════════════════════════════════════════════════
+// 4. TARJETAS (dead code — DS gana)
+// ══════════════════════════════════════════════════════════
+
+.card {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.card-flat {
+  box-shadow: none;
+}
+.card-lg {
+  border-radius: 0.75rem;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.card-body {
+  padding: 1rem 1.25rem;
+}
+
+.card-footer {
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid #f1f5f9;
+  background-color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+// ============================================================
+// 4. COMPATIBILIDAD LEGACY — PrimeFlex / PrimeNG v16
+// ============================================================
+
+.border-round {
+  border-radius: var(--ds-radius-card);
+}
+.border-round-sm {
+  border-radius: var(--ds-radius-sm);
+}
+.border-round-md {
+  border-radius: var(--ds-radius-md);
+}
+.border-round-lg {
+  border-radius: var(--ds-radius-lg);
+}
+.border-round-xl {
+  border-radius: var(--ds-radius-xl);
+}
+.border-round-2xl {
+  border-radius: var(--ds-radius-2xl);
+}
+
+.border-1 {
+  border-width: 1px;
+  border-style: solid;
+}
+.border-top-1 {
+  border-top-width: 1px;
+  border-top-style: solid;
+}
+.border-bottom-1 {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+.border-left-1 {
+  border-left-width: 1px;
+  border-left-style: solid;
+}
+.border-right-1 {
+  border-right-width: 1px;
+  border-right-style: solid;
+}
+
+.shadow-1 {
+  box-shadow: var(--ds-shadow-xs);
+}
+.shadow-2 {
+  box-shadow: var(--ds-shadow-sm);
+}
+.shadow-3 {
+  box-shadow: var(--ds-shadow-md);
+}
+.shadow-4 {
+  box-shadow: var(--ds-shadow-lg);
+}
+.shadow-5 {
+  box-shadow: var(--ds-shadow-xl);
+}
+.shadow-6 {
+  box-shadow: var(--ds-shadow-2xl);
+}
+.shadow-7 {
+  box-shadow: var(--ds-shadow-2xl);
+}
+.shadow-8 {
+  box-shadow: var(--ds-shadow-2xl);
+}
+
+.surface-0 {
+  background-color: var(--p-surface-0);
+  color: var(--p-surface-900);
+}
+.surface-50 {
+  background-color: var(--p-surface-50);
+  color: var(--p-surface-900);
+}
+.surface-100 {
+  background-color: var(--p-surface-100);
+  color: var(--p-surface-900);
+}
+.surface-200 {
+  background-color: var(--p-surface-200);
+  color: var(--p-surface-900);
+}
+.surface-300 {
+  background-color: var(--p-surface-300);
+  color: var(--p-surface-900);
+}
+.surface-400 {
+  background-color: var(--p-surface-400);
+  color: var(--p-surface-0);
+}
+.surface-500 {
+  background-color: var(--p-surface-500);
+  color: var(--p-surface-0);
+}
+.surface-600 {
+  background-color: var(--p-surface-600);
+  color: var(--p-surface-0);
+}
+.surface-700 {
+  background-color: var(--p-surface-700);
+  color: var(--p-surface-0);
+}
+.surface-800 {
+  background-color: var(--p-surface-800);
+  color: var(--p-surface-0);
+}
+.surface-900 {
+  background-color: var(--p-surface-900);
+  color: var(--p-surface-0);
+}
+.surface-950 {
+  background-color: var(--p-surface-950);
+  color: var(--p-surface-0);
+}
+
+.bg-surface-0 {
+  background-color: var(--p-surface-0);
+  color: var(--p-surface-900);
+}
+.bg-surface-50 {
+  background-color: var(--p-surface-50);
+  color: var(--p-surface-900);
+}
+.bg-surface-100 {
+  background-color: var(--p-surface-100);
+  color: var(--p-surface-900);
+}
+.bg-surface-200 {
+  background-color: var(--p-surface-200);
+  color: var(--p-surface-900);
+}
+.bg-surface-300 {
+  background-color: var(--p-surface-300);
+  color: var(--p-surface-900);
+}
+.bg-surface-400 {
+  background-color: var(--p-surface-400);
+  color: var(--p-surface-0);
+}
+.bg-surface-500 {
+  background-color: var(--p-surface-500);
+  color: var(--p-surface-0);
+}
+.bg-surface-600 {
+  background-color: var(--p-surface-600);
+  color: var(--p-surface-0);
+}
+.bg-surface-700 {
+  background-color: var(--p-surface-700);
+  color: var(--p-surface-0);
+}
+.bg-surface-800 {
+  background-color: var(--p-surface-800);
+  color: var(--p-surface-0);
+}
+.bg-surface-900 {
+  background-color: var(--p-surface-900);
+  color: var(--p-surface-0);
+}
+.bg-surface-950 {
+  background-color: var(--p-surface-950);
+  color: var(--p-surface-0);
+}
+
+.border-surface-50 {
+  border-color: var(--p-surface-50);
+}
+.border-surface-100 {
+  border-color: var(--p-surface-100);
+}
+.border-surface-200 {
+  border-color: var(--p-surface-200);
+}
+.border-surface-300 {
+  border-color: var(--p-surface-300);
+}
+.border-surface-400 {
+  border-color: var(--p-surface-400);
+}
+.border-surface-500 {
+  border-color: var(--p-surface-500);
+}
+.border-surface-600 {
+  border-color: var(--p-surface-600);
+}
+.border-surface-700 {
+  border-color: var(--p-surface-700);
+}
+.border-surface-800 {
+  border-color: var(--p-surface-800);
+}
+.border-surface-900 {
+  border-color: var(--p-surface-900);
+}
+
+.text-500 {
+  color: var(--ds-text-muted);
+}
+.text-600 {
+  color: var(--ds-text-secondary);
+}
+.text-700 {
+  color: var(--ds-text-primary);
+}
+.text-900 {
+  color: var(--ds-text-primary);
+}
+
+.hover\:surface-50:hover {
+  background-color: var(--p-surface-50);
+}
+.hover\:surface-100:hover {
+  background-color: var(--p-surface-100);
+}
+.hover\:surface-200:hover {
+  background-color: var(--p-surface-200);
+}
+.hover\:surface-300:hover {
+  background-color: var(--p-surface-300);
+}
+.hover\:shadow-1:hover {
+  box-shadow: var(--ds-shadow-xs);
+}
+.hover\:shadow-2:hover {
+  box-shadow: var(--ds-shadow-sm);
+}
+.hover\:shadow-3:hover {
+  box-shadow: var(--ds-shadow-md);
+}
+.hover\:shadow-4:hover {
+  box-shadow: var(--ds-shadow-lg);
+}
+
+.hover\:surface-hover:hover {
+  background-color: var(--p-surface-hover);
+}
+
+// ══════════════════════════════════════════════════════════
+// 5. FORMULARIOS (dead code — DS gana)
+// ══════════════════════════════════════════════════════════
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  width: 100%;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #334155;
+}
+
+.form-required::after {
+  content: " *";
+  color: #ef4444;
+}
+
+.form-hint {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.form-error {
+  font-size: 0.75rem;
+  color: #dc2626;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+// ══════════════════════════════════════════════════════════
+// 6. TABLAS — ÚNICAS en este archivo
+// ══════════════════════════════════════════════════════════
+
+.table-luxury {
+  width: 100%;
+  font-size: 0.875rem;
+  border-collapse: collapse;
+}
+
+.table-head {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  th {
+    background-color: #1e293b;
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+.table-head-light {
+  th {
+    background-color: #f1f5f9;
+    color: #475569;
+    padding: 0.625rem 1rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #e2e8f0;
+  }
+}
+
+.table-row {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background-color 100ms ease;
+  &:hover {
+    background-color: #f8fafc;
+  }
+}
+
+.table-row-alt {
+  &:nth-child(even) {
+    background-color: #f8fafc;
+  }
+  &:hover {
+    background-color: var(--primary-50, #f0f4fa);
+  }
+}
+
+.table-cell {
+  padding: 0.75rem 1rem;
+  color: #334155;
+}
+
+.table-cell-mono {
+  padding: 0.75rem 1rem;
+  text-align: right;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+  color: #334155;
+}
+
+.table-cell-sticky {
+  position: sticky;
+  left: 0;
+  z-index: 10;
+  background-color: #ffffff;
+}
+
+.table-row-total {
+  border-top: 2px solid #cbd5e1;
+  background-color: #f8fafc;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.table-row-total-dark {
+  background-color: #1e293b;
+  color: #ffffff;
+  font-weight: 700;
+
+  .table-cell,
+  .table-cell-mono {
+    color: #ffffff;
+  }
+}
+
+.table-row-positive {
+  background-color: #16a34a;
+  color: #ffffff;
+  font-weight: 700;
+}
+.table-row-negative {
+  background-color: #dc2626;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+// ══════════════════════════════════════════════════════════
+// 7. ALERTAS (dead code — DS gana)
+// ══════════════════════════════════════════════════════════
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  border: 1px solid;
+}
+
+.alert-info {
+  background-color: var(--primary-50, #f0f4fa);
+  color: var(--primary-800, #051831);
+  border-color: var(--primary-200, rgba(191, 207, 228, 0.2));
+}
+.alert-success {
+  background-color: #f0fdf4;
+  color: #14532d;
+  border-color: #bbf7d0;
+}
+.alert-warning {
+  background-color: #fffbeb;
+  color: #451a03;
+  border-color: #fde68a;
+}
+.alert-danger {
+  background-color: #fef2f2;
+  color: #7f1d1d;
+  border-color: #fecaca;
+}
+.alert-neutral {
+  background-color: #f8fafc;
+  color: #334155;
+  border-color: #e2e8f0;
+}
+
+// ══════════════════════════════════════════════════════════
+// 8. TIPOGRAFÍA DE PÁGINA
+// ══════════════════════════════════════════════════════════
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.25;
+}
+.page-subtitle {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-top: 0.125rem;
+}
+.text-muted {
+  color: #94a3b8;
+  font-size: 0.875rem;
+}
+.text-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+}
+
+// ══════════════════════════════════════════════════════════
+// 9. DIVISORES
+// ══════════════════════════════════════════════════════════
+
+.divider {
+  border-top: 1px solid #e2e8f0;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.divider-dark {
+  border-top: 1px solid #475569;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+// ══════════════════════════════════════════════════════════
+// 10. ANCHOS DE COLUMNAS DE TABLA
+// Uso: class="table-col-md" en <th> o <td> para anchos fijos.
+// Evitar style="width:Npx" o style="width:N%" en templates.
+// ══════════════════════════════════════════════════════════
+
+// Tamaños por rem (columnas de contenido)
+.table-col-icon {
+  width: 3rem;
+  min-width: 3rem;
+} // solo iconos/checkbox
+.table-col-xs {
+  width: 5rem;
+  min-width: 5rem;
+}
+.table-col-sm {
+  width: 8rem;
+  min-width: 8rem;
+}
+.table-col-md {
+  width: 10rem;
+  min-width: 10rem;
+}
+.table-col-lg {
+  width: 15rem;
+  min-width: 15rem;
+}
+.table-col-xl {
+  width: 20rem;
+  min-width: 20rem;
+}
+.table-col-actions {
+  width: 8rem;
+  min-width: 8rem;
+  white-space: nowrap;
+  text-align: center;
+}
+
+// Tamaños por rem explícitos
+.table-col-3rem {
+  width: 3rem;
+  min-width: 3rem;
+}
+.table-col-4rem {
+  width: 4rem;
+  min-width: 4rem;
+}
+.table-col-5rem {
+  width: 5rem;
+  min-width: 5rem;
+}
+.table-col-7rem {
+  width: 7rem;
+  min-width: 7rem;
+}
+.table-col-8rem {
+  width: 8rem;
+  min-width: 8rem;
+}
+.table-col-9rem {
+  width: 9rem;
+  min-width: 9rem;
+}
+.table-col-10rem {
+  width: 10rem;
+  min-width: 10rem;
+}
+.table-col-12rem {
+  width: 12rem;
+  min-width: 12rem;
+}
+.table-col-14rem {
+  width: 14rem;
+  min-width: 14rem;
+}
+
+// Tamaños en píxeles (heredados de tablas legacy)
+.table-col-50px {
+  width: 50px;
+  min-width: 50px;
+}
+.table-col-60px {
+  width: 60px;
+  min-width: 60px;
+}
+.table-col-70px {
+  width: 70px;
+  min-width: 70px;
+}
+.table-col-75px {
+  width: 75px;
+  min-width: 75px;
+}
+.table-col-80px {
+  width: 80px;
+  min-width: 80px;
+}
+.table-col-85px {
+  width: 85px;
+  min-width: 85px;
+}
+.table-col-90px {
+  width: 90px;
+  min-width: 90px;
+}
+.table-col-100px {
+  width: 100px;
+  min-width: 100px;
+}
+.table-col-105px {
+  width: 105px;
+  min-width: 105px;
+}
+.table-col-110px {
+  width: 110px;
+  min-width: 110px;
+}
+.table-col-120px {
+  width: 120px;
+  min-width: 120px;
+}
+.table-col-130px {
+  width: 130px;
+  min-width: 130px;
+}
+.table-col-140px {
+  width: 140px;
+  min-width: 140px;
+}
+.table-col-150px {
+  width: 150px;
+  min-width: 150px;
+}
+.table-col-160px {
+  width: 160px;
+  min-width: 160px;
+}
+.table-col-260px {
+  width: 260px;
+  min-width: 260px;
+}
+.table-col-320px {
+  width: 320px;
+  min-width: 320px;
+}
+
+// Tamaños porcentuales — escala completa (1–100%)
+@each $pct in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 19, 20, 25,
+  28, 30, 32, 33, 35, 40, 45, 50, 55, 60, 66, 70, 75, 80, 90, 100
+{
+  .table-col-#{$pct} {
+    width: #{$pct}%;
+    min-width: #{$pct}%;
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+// 11. COMPONENTES DE UI — contenedores de icono / avatar
+// ══════════════════════════════════════════════════════════
+
+// Icono cuadrado 2.5rem — para stat cards, listas con icono
+// Reemplaza: style="width: 2.5rem; height: 2.5rem; min-width: 2.5rem; flex-shrink: 0;"
+.stat-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  flex-shrink: 0;
+}
+
+// ─────────────────────────────────────────────────────────────
+// VISIBILIDAD RESPONSIVA (Manual Fallback para hidden / md:block)
+// ─────────────────────────────────────────────────────────────
+
+.hidden {
+  display: none !important;
+}
+
+@media (min-width: 768px) {
+  .md\:block {
+    display: block !important;
+  }
+  .md\:hidden {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .sm\:hidden {
+    display: none !important;
+  }
+}

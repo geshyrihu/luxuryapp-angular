@@ -1,0 +1,117 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      [title]="'Llaves'"
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+    />
+    <custom-button-download
+      label="Descargar PDF"
+      [showLabelOnDesktop]="true"
+      (clicked)="onDownloadPdf()"
+      class="mt-1"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="descripcion">
+        Descripción <p-sortIcon field="descripcion" />
+      </th>
+      <th pSortableColumn="marca">Marca <p-sortIcon field="marca" /></th>
+      <th pSortableColumn="numeroLlave">
+        Número <p-sortIcon field="numeroLlave" />
+      </th>
+      <th pSortableColumn="cantidad">
+        Cantidad <p-sortIcon field="cantidad" />
+      </th>
+      <th pSortableColumn="equipoClasificacion">
+        Clasificación <p-sortIcon field="equipoClasificacion" />
+      </th>
+      <th class="table-col-5"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td><small>{{ item.descripcion }}</small></td>
+      <td><small>{{ item.marca }}</small></td>
+      <td><small>{{ item.numeroLlave }}</small></td>
+      <td><small>{{ item.cantidad }}</small></td>
+      <td><small>{{ item.equipoClasificacion }}</small></td>
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+>
+  <div customFilters style="padding: 4px 16px 8px">
+    <ion-button-download
+      (clicked)="onDownloadPdf()"
+    />
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div
+        slot="start"
+        style="
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          background: #fef9c3;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-left: 16px;
+        "
+      >
+        <ion-icon
+          name="key-outline"
+          style="font-size: 20px; color: #ca8a04"
+        ></ion-icon>
+      </div>
+      <ion-label>
+        <h3>{{ item.descripcion }}</h3>
+        <p>
+          {{ item.marca }} | Nº {{ item.numeroLlave }} | Cant: {{ item.cantidad
+          }}
+        </p>
+        <p>{{ item.equipoClasificacion }}</p>
+      </ion-label>
+      <app-action-menu slot="end">
+        <ion-button-edit
+          (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+        />
+        <ion-button-delete (confirmed)="onDelete(item.id)" />
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+
+
+
+
+
+

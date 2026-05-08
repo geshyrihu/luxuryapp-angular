@@ -1,0 +1,74 @@
+<h4 class="mb-0 text-xl">Calendario General de Mantenimiento</h4>
+<p-divider></p-divider>
+
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block">
+  <div class="grid">
+    @for (item of data(); track item; let i = $index) {
+    <div class="col-12 md:col-3">
+      <div
+        class="flex justify-content-between align-items-center p-3 font-bold text-primary surface-100 border-round mb-2"
+      >
+        <span>{{ item.month }}</span>
+        @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
+        <custom-button-add
+          ngbTooltip="Agregar"
+          (clicked)="onModalForm(0, item.eMonth)"
+        />
+        }
+      </div>
+      <div class="flex flex-column gap-2">
+        @for (evento of item.items; track evento; let i = $index) {
+        <div class="p-3 border-1 surface-border border-round">
+          <div class="flex align-items-center">
+            @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
+            <div class="mr-3">
+              <p-menu #menu [model]="menuItems()" [popup]="true"></p-menu>
+              <custom-button-item
+                iconClass="pi pi-bars"
+                (clicked)="onSelectItem(evento, menu, $event)"
+              />
+            </div>
+            }
+            <div
+              (click)="onDatosServicio(evento)"
+              class="cursor-pointer flex-flex-grow-1-1"
+              pTooltip="Detalles del servicio"
+              tooltipPosition="right"
+            >
+              {{ evento.nombreEquipo }}
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</div>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<div class="block md:hidden">
+  <app-data-view-mobile
+    [data]="flatData()"
+    [globalFilterFields]="globalFilterFields()"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ion-item lines="full">
+        <ion-label>
+          <h2>{{ item.nombreEquipo }}</h2>
+          <p>{{ item.month }} | {{ item.task }}</p>
+          <p>Frecuencia: {{ item.frequency }}</p>
+        </ion-label>
+        <div slot="end">
+          @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
+          <app-action-menu>
+            <ion-button-edit (clicked)="onModalForm(item.id, item.eMonth)" />
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+          </app-action-menu>
+          }
+        </div>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
+</div>

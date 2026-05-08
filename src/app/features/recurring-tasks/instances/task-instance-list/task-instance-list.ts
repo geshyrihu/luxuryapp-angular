@@ -1,0 +1,110 @@
+import { CommonModule } from "@angular/common";
+import { Component, OnInit, inject, signal } from "@angular/core";
+import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { DatePickerModule } from "primeng/datepicker";
+import { TableModule } from "primeng/table";
+import { ToolbarModule } from "primeng/toolbar";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import {
+  IonButtonConfirm,
+  IonButtonItem,
+} from "src/app/core/components/buttons/mobile";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButtonConfirm } from "src/app/core/components/buttons/web/custom-button-confirm";
+import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { StatusBadge } from "src/app/core/components/status-badge/status-badge";
+import { TaskInstance } from "src/app/core/models/recurring-tasks/task-instance.model";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { CompleteTaskForm } from "../complete-task-form/complete-task-form";
+@Component({
+  selector: "app-task-instance-list",
+  templateUrl: "./task-instance-list.html",
+  imports: [
+    ActionMenu,
+    CommonModule,
+    CustomButton,
+    CustomButtonConfirm,
+    CustomButtonItem,
+    DataViewMobile,
+    DatePickerModule,
+    ReactiveFormsModule,
+    StatusBadge,
+    TableModule,
+    ToolbarModule,
+    PrimeNgCustomCaption,
+    PrimeNgCustomTableFooter,
+
+    IonButtonConfirm,
+    IonButtonItem,
+  ],
+})
+export class TaskInstanceList implements OnInit {
+  private apiResponseS = inject(ApiResponseService);
+  public dialogHandlerS = inject(DialogHandlerService);
+  private tableScrollHeightS = inject(TableScrollHeightService);
+  data = signal<TaskInstance[]>([]); // Converted to signal
+  loading = signal(true);
+  selectedDateControl = new FormControl<Date>(new Date());
+  scrollHeight = this.tableScrollHeightS.scrollHeight;
+
+  ngOnInit(): void {
+    this.onLoadData();
+  }
+
+  onLoadData(): void {
+    this.loading.set(true);
+    const formattedDate = (this.selectedDateControl.value || new Date())
+      .toISOString()
+      .split("T")[0]; // Access control value
+    this.apiResponseS
+      .onGetList<TaskInstance[]>(
+        `recurring-tasks/instances/my-daily-tasks?date=${formattedDate}`,
+      )
+      .then((response) => {
+        if (response) {
+          // onGetList returns T | null
+          this.data.set(response);
+        } else {
+          this.data.set([]); // Set to empty array on error
+        }
+      })
+      .finally(() => this.loading.set(false));
+  }
+
+  onCompleteTask(task: TaskInstance): void {
+    this.dialogHandlerS
+      .openDialog(
+        CompleteTaskForm,
+        { task },
+        "Completar Tarea",
+        this.dialogHandlerS.sizeMd,
+      )
+      .then((result: boolean) => {
+        if (result) this.onLoadData();
+      });
+  }
+
+  onReopenTask(id: string): void {
+    this.apiResponseS
+      .onPost<any>(`recurring-tasks/instances/${id}/reopen`, {})
+      .then((result) => {
+        // onPost returns T | false
+        if (result) {
+          this.onLoadData();
+          // Show success toast (handled by ApiResponseService)
+        }
+        // No else needed, error handling and toasts are done by ApiResponseService
+      });
+  }
+
+  // Handle date change for filtering tasks
+  onDateChange(newDate: Date): void {
+    this.selectedDateControl.setValue(newDate, { emitEvent: false }); // Update control
+    this.onLoadData();
+  }
+}

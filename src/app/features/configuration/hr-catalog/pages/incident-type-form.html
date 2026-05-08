@@ -1,0 +1,35 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column">
+  <custom-input-text-signal
+    [control]="form.controls.name"
+    label="Nombre"
+    placeholder="Ej: Falta injustificada"
+  />
+  <custom-input-text-signal
+    [control]="form.controls.description"
+    label="Descripción"
+    placeholder="Descripción opcional"
+  />
+  <custom-input-select-signal
+    [control]="form.controls.category"
+    label="Categoría"
+    [data]="cb_category()"
+  />
+  <custom-input-select-signal
+    [control]="form.controls.defaultSeverity"
+    label="Severidad por Defecto"
+    [data]="cb_severity()"
+  />
+  <custom-input-switch-signal
+    [control]="form.controls.isActive"
+    label="Activo"
+  />
+  <div class="flex justify-content-end mt-2">
+    <custom-button-save
+      [propertyId]="id"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+      label="Guardar"
+      type="submit"
+    />
+  </div>
+</form>

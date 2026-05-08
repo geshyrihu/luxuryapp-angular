@@ -1,0 +1,166 @@
+import { CommonModule } from "@angular/common";
+import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Router } from "@angular/router";
+import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { TableModule } from "primeng/table";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
+import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
+import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
+import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
+} from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { AspRoleService } from "src/app/core/services/asp-role.service";
+import { AuthService } from "src/app/core/services/auth.service";
+import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { EntregaRecepcionClienteForm } from "src/app/features/configuration/entrega-recepcion/entrega-recepcion-cliente-form";
+@Component({
+  selector: "app-entrega-recepcion-cliente-lista",
+  templateUrl: "./entrega-recepcion-cliente.html",
+  imports: [
+    IonButtonEdit,
+    IonButtonItem,
+    IonButtonDelete,
+    CommonModule,
+    TableModule,
+    CustomButton,
+    CustomButtonViewPdf,
+    ActionMenu,
+    PrimeNgCustomCaption,
+  ],
+})
+export class EntregaRecepcionClienteLista {
+  // --- INYECCIONES (sin cambios) ---
+  apiResponseS = inject(ApiResponseService);
+  dialogHandlerS = inject(DialogHandlerService);
+  authS = inject(AuthService);
+  customerIdS = inject(CustomerIdService);
+  route = inject(Router);
+  public aspRoleS = inject(AspRoleService);
+  public AspRole = EApplicationRole;
+  data = signal<any[]>([]);
+  loading = signal(true);
+  // Ã³MEJORA! El departamento ahora es un signal.
+  departamento = signal<string>("");
+
+  // --- PROPIEDADES ESTÃ³TICAS (sin cambios) ---
+  globalFilterFields = computed(() => globalFilterFields(this.data()));
+  tablePrimeNgRows: number = tablePrimeNgRows();
+  rowsPerPageOptions: number[] = rowsPerPageOptions();
+  cb_departamento = [
+    { value: "JURIDICO" },
+    { value: "ADMINISTRACIÓN Y FINANZAS" },
+    { value: "OPERACIONES Y MANTENIMIENTO" },
+  ];
+  ref: DynamicDialogRef;
+
+  constructor() {
+    // 1. Ejecutamos la configuraciÃ³n Ã³nica para establecer el estado inicial del signal.
+    this.onValidarCargo();
+
+    // 2. Creamos el effect que reacciona a TODOS los cambios de estado relevantes.
+    effect(() => {
+      // Leemos las dependencias
+      const customerId: string = this.customerIdS.customerId();
+      const depto = this.departamento();
+
+      // El effect se ejecutarÃ³ si cambia el cliente O el departamento.
+      if (customerId && depto) {
+        this.onLoadData();
+      }
+    });
+  }
+
+  // Ã³MEJORA! Este mÃ³todo ahora solo establece el estado inicial del signal.
+  private onValidarCargo(): void {
+    let initialDept = this.cb_departamento[0].value; // Valor por defecto
+    if (this.aspRoleS.hasRole(EApplicationRole.Contador))
+      initialDept = this.cb_departamento[1].value;
+    if (this.aspRoleS.hasRole(EApplicationRole.Legal))
+      initialDept = this.cb_departamento[0].value;
+    if (this.aspRoleS.hasRole(EApplicationRole.JefeMantenimiento))
+      initialDept = this.cb_departamento[2].value;
+    this.departamento.set(initialDept);
+  }
+
+  // Ã³MEJORA! Este mÃ³todo ahora es sÃ³per simple. Solo actualiza el signal.
+  // El effect se encargarÃ³ de llamar a onLoadData.
+  onChangeDepartamento(departamento: string): void {
+    this.departamento.set(departamento);
+  }
+
+  private onLoadData(): void {
+    // * Peticion para generar los items de entrega recepcion (sin cambios)
+    this.apiResponseS.onGetItem(Endpoints.EntregaRecepcionCliente.generateData);
+
+    // Ã³CORRECCIÃ³N! Leemos los valores de los signals con ()
+    const urlApi = Endpoints.EntregaRecepcionCliente.getByCustomerAndDepartment(
+      this.customerIdS.customerId(),
+      this.departamento(),
+    );
+
+    this.apiResponseS
+      .onGetList(urlApi)
+      .then((result: any) => {
+        this.data.set(result);
+      })
+      .finally(() => {});
+  }
+
+  // ... El resto de tus mÃ³todos (onModalForm, onValidarDocument, etc.) estÃ³n bien.
+  // Siguen llamando a onLoadData() para recargar la lista despuÃ³s de una acciÃ³n, lo cual es correcto.
+  onModalForm(data: any) {
+    this.dialogHandlerS
+      .openDialog(
+        EntregaRecepcionClienteForm,
+        data,
+        data.title,
+        this.dialogHandlerS.sizeLg,
+      )
+      .then((result: boolean) => {
+        if (result) this.onLoadData();
+      });
+  }
+
+  onValidarDocument(id: any) {
+    this.apiResponseS
+      .onPut(
+        Endpoints.EntregaRecepcionCliente.validateFile(
+          this.authS.applicationUserId,
+          id,
+        ),
+        null,
+      )
+      .then(() => {
+        this.onLoadData();
+      });
+  }
+  onInvalidarDocument(id: any) {
+    this.apiResponseS
+      .onPut(Endpoints.EntregaRecepcionCliente.invalidateFile(id), null)
+      .then(() => {
+        this.onLoadData();
+      });
+  }
+
+  onDeleteFile(id: any) {
+    this.apiResponseS
+      .onDelete(Endpoints.EntregaRecepcionCliente.deleteFile(id))
+      .then(() => {
+        this.onLoadData();
+      });
+  }
+
+  navigateToPdf(url: string) {
+    window.open(url, "_blank");
+  }
+}

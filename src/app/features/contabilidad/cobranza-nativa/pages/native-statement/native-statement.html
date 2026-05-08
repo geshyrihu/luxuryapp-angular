@@ -1,0 +1,287 @@
+<div class="px-2 py-4 md:px-6 md:py-8 min-h-screen surface-ground">
+  <div class="mx-auto flex flex-column gap-6" style="max-width: 80rem">
+    <!-- ENCABEZADO Y FILTRO (compartido desktop + movil) -->
+    <div
+      class="flex flex-column md:flex-row justify-content-between align-items-start md:align-items-end"
+      style="min-height: 50px"
+    >
+      <div>
+        <h1 class="text-2xl font-bold text-900 tracking-tight">
+          Estado de Cuenta
+        </h1>
+        <p class="text-sm text-500 mt-1">
+          Historial del comportamiento de cuotas y abonos del condoino
+        </p>
+      </div>
+      <div class="flex align-items-end w-full md:w-auto mb-2">
+        <custom-input-select-signal
+          [control]="propertyIdCtrl"
+          [data]="properties()"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Seleccionar Propiedad..."
+          [filter]="true"
+          class="flex-grow-1"
+          [style]="{ 'min-width': '300px' }"
+          [noMargin]="true"
+        />
+        <custom-button
+          label="Consultar"
+          iconClass="pi pi-search"
+          [disabled]="!propertyIdCtrl.value || loading()"
+          (clicked)="searchStatement()"
+          [loading]="loading()"
+        />
+      </div>
+    </div>
+
+    @if (statement()) {
+    <div class="fadein">
+      <!-- KPI CARDS (compartido, grid responsive) -->
+      <div class="grid mb-6">
+        <!-- Total a Pagar -->
+        <div
+          class="col-12 md:col-4 surface-900 text-white border-round-2xl shadow-1 border-1 border-700 p-5 flex align-items-center justify-content-between"
+        >
+          <div>
+            <p
+              class="text-400 text-xs mb-1 uppercase tracking-wider font-semibold"
+            >
+              Total A Pagar
+            </p>
+            <p class="text-3xl font-bold tracking-tight">
+              {{ statement()!.summary.totalToPay |
+              currency:'MXN':'symbol-narrow':'1.2-2' }}
+            </p>
+          </div>
+          <div
+            class="w-3rem h-3rem bg-white-alpha-10 border-round-circle flex align-items-center justify-content-center"
+          >
+            <i class="pi pi-wallet text-xl text-blue-300"></i>
+          </div>
+        </div>
+        <!-- Deuda Total -->
+        <div
+          class="col-12 md:col-4 surface-card border-round-2xl shadow-1 border-1 border-100 p-5 flex align-items-center justify-content-between"
+        >
+          <div>
+            <p
+              class="text-500 text-xs mb-1 uppercase tracking-wider font-semibold"
+            >
+              Deuda Total
+            </p>
+            <p class="text-2xl font-bold text-red-600">
+              {{ statement()!.summary.totalDebt |
+              currency:'MXN':'symbol-narrow':'1.2-2' }}
+            </p>
+          </div>
+          <div
+            class="w-3rem h-3rem bg-red-50 border-round-circle flex align-items-center justify-content-center"
+          >
+            <i class="pi pi-arrow-up-right text-xl text-red-500"></i>
+          </div>
+        </div>
+        <!-- Saldo a Favor -->
+        <div
+          class="col-12 md:col-4 surface-card border-round-2xl shadow-1 border-1 border-100 p-5 flex align-items-center justify-content-between"
+        >
+          <div>
+            <p
+              class="text-500 text-xs mb-1 uppercase tracking-wider font-semibold"
+            >
+              Saldo a Favor
+            </p>
+            <p class="text-2xl font-bold text-green-600">
+              {{ statement()!.summary.totalCreditBalance |
+              currency:'MXN':'symbol-narrow':'1.2-2' }}
+            </p>
+          </div>
+          <div
+            class="w-3rem h-3rem bg-green-50 border-round-circle flex align-items-center justify-content-center"
+          >
+            <i class="pi pi-arrow-down-left text-xl text-green-500"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- VISTA ESCRITORIO: p-table -->
+      <div
+        class="surface-card border-round-2xl shadow-1 border-1 border-100 p-6 hidden md:block"
+      >
+        <div class="flex justify-content-between align-items-center mb-4">
+          <h3 class="text-lg font-bold text-800">Movimientos (Kardex)</h3>
+          <custom-button
+            label="Descargar PDF"
+            iconClass="pi pi-print"
+            severity="secondary"
+            size="small"
+            (clicked)="exportPdf()"
+          />
+        </div>
+
+        <p-table
+          [value]="statement()!.ledger"
+          styleClass="p-datatable-sm p-datatable-striped"
+          [rowHover]="true"
+          responsiveLayout="scroll"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Fecha</th>
+              <th>Concepto</th>
+              <th class="text-center">Tipo</th>
+              <th class="text-right">Referencia</th>
+              <th class="text-right text-red-600">Cargo (+)</th>
+              <th class="text-right text-green-600">Abono (-)</th>
+              <th class="text-right font-bold surface-50">Saldo</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-entry>
+            <tr>
+              <td>{{ entry.date | date:'dd/MMM/yyyy' }}</td>
+              <td class="font-medium text-800">{{ entry.concept }}</td>
+              <td class="text-center">
+                <span
+                  class="px-2 py-1 border-round-md text-xs font-semibold"
+                  [ngClass]="entry.type === 'Cargo'
+                      ? 'bg-red-50 text-red-600 border-1 border-red-100'
+                      : 'bg-green-50 text-green-600 border-1 border-green-100'"
+                  >{{ entry.type | uppercase }}</span
+                >
+              </td>
+              <td class="text-right text-500">{{ entry.reference }}</td>
+              <td class="text-right text-red-600">
+                {{ entry.cargo > 0 ? (entry.cargo |
+                currency:'MXN':'symbol-narrow':'1.2-2') : '' }}
+              </td>
+              <td class="text-right text-green-600">
+                {{ entry.abono > 0 ? (entry.abono |
+                currency:'MXN':'symbol-narrow':'1.2-2') : '' }}
+              </td>
+              <td class="text-right font-bold surface-50">
+                {{ entry.balance | currency:'MXN':'symbol-narrow':'1.2-2' }}
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="7" class="text-center p-8 text-500">
+                No hay movimientos registrados para esta propiedad.
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+      <!-- VISTA MOVIL: Ionic cards -->
+      <div class="block md:hidden flex flex-column gap-1">
+        <!-- Encabezado de la propiedad -->
+        <ion-card class="m-0 border-round-2xl shadow-1 border-1 border-100">
+          <ion-card-content class="flex align-items-center py-3">
+            <div
+              class="w-2rem h-2rem border-round-circle surface-900 text-white flex align-items-center justify-content-center flex-shrink-0"
+            >
+              <i class="pi pi-home text-sm"></i>
+            </div>
+            <div class="flex-grow-1 min-w-0 ml-3">
+              <p class="font-bold text-900 text-sm truncate m-0">
+                {{ statement()!.propertyInfo.propertyName }}
+              </p>
+              <p class="text-xs text-500 m-0">
+                Indiviso: {{ statement()!.propertyInfo.indivisoPercentage |
+                number:'1.4-4' }}%
+              </p>
+            </div>
+            <custom-button
+              iconClass="pi pi-print"
+              label="PDF"
+              variant="outlined"
+              severity="secondary"
+              size="small"
+              (clicked)="exportPdf()"
+            />
+          </ion-card-content>
+        </ion-card>
+
+        <!-- Titulo lista de movimientos -->
+        <ion-list-header class="px-0 pb-1 pt-3">
+          <ion-label class="text-sm font-bold text-700 uppercase tracking-wide">
+            Movimientos ({{ statement()!.ledger.length }})
+          </ion-label>
+        </ion-list-header>
+
+        <!-- Un ion-card por movimiento -->
+        @for (entry of statement()!.ledger; track entry.id) {
+        <ion-card
+          class="m-0 border-round-xl shadow-none border-1 mb-2"
+          [class]="entry.type === 'Cargo' ? 'border-red-100' : 'border-green-100'"
+        >
+          <ion-card-content class="py-3 px-4">
+            <div class="flex align-items-start justify-content-between gap-3">
+              <!-- Icono tipo -->
+              <div
+                class="w-2rem h-2rem border-round-circle flex align-items-center justify-content-center flex-shrink-0 mt-1"
+                [class]="entry.type === 'Cargo' ? 'bg-red-50' : 'bg-green-50'"
+              >
+                <i
+                  class="text-sm"
+                  [class]="entry.type === 'Cargo' ? 'pi pi-arrow-up text-red-500' : 'pi pi-arrow-down text-green-500'"
+                ></i>
+              </div>
+
+              <!-- Concepto + fecha + referencia -->
+              <div class="flex-grow-1 min-w-0">
+                <p class="text-sm font-semibold text-800 line-height-2 m-0">
+                  {{ entry.concept }}
+                </p>
+                <p class="text-xs text-400 mt-1 m-0">
+                  {{ entry.date | date:'dd MMM yyyy' }} @if (entry.reference) {
+                  <span class="text-500"> {{ entry.reference }}</span>
+                  }
+                </p>
+              </div>
+
+              <!-- Monto + saldo -->
+              <div class="text-right flex-shrink-0">
+                @if (entry.cargo > 0) {
+                <p class="text-sm font-bold text-red-600 m-0">
+                  +{{ entry.cargo | currency:'MXN':'symbol-narrow':'1.2-2' }}
+                </p>
+                } @if (entry.abono > 0) {
+                <p class="text-sm font-bold text-green-600 m-0">
+                  -{{ entry.abono | currency:'MXN':'symbol-narrow':'1.2-2' }}
+                </p>
+                }
+                <p class="text-xs text-500 mt-1 m-0">
+                  Saldo: {{ entry.balance |
+                  currency:'MXN':'symbol-narrow':'1.2-2' }}
+                </p>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+        } @if (statement()!.ledger.length === 0) {
+        <div class="text-center py-8 text-400">
+          <i class="pi pi-inbox text-4xl mb-2 block"></i>
+          <p class="text-sm">Sin movimientos registrados</p>
+        </div>
+        }
+      </div>
+      <!-- fin vista movil -->
+    </div>
+    } @else {
+    <!-- Estado Vacio -->
+    @if (!loading()) {
+    <div
+      class="surface-card border-round-2xl border-1 border-dashed border-300 p-8 text-center mt-6"
+    >
+      <i class="pi pi-receipt text-6xl text-300 mb-4"></i>
+      <h3 class="text-lg font-medium text-900">Sin propiedad seleccionada</h3>
+      <p class="text-500 mt-1">
+        Busca y selecciona una propiedad para ver su historial de cuotas y
+        pagos.
+      </p>
+    </div>
+    } }
+  </div>
+</div>

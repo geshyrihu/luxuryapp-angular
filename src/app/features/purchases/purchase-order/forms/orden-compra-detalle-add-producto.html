@@ -1,0 +1,155 @@
+@if (mensajeError) {
+<p-message severity="error">Seleccione producto y unidad</p-message>
+} @if (dataSignal()) {
+<p-table
+  (onLazyLoad)="loadDataLazy($event)"
+  [globalFilterFields]="globalFilterFields()"
+  [lazy]="true"
+  [paginator]="true"
+  [rows]="rows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [totalRecords]="totalRecords"
+  [value]="formControls()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table"
+  style="max-height: 80vh; overflow-y: auto"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      [dt]="dt"
+      [showAdd]="false"
+      [(searchTerm)]="searchTerm"
+      (searchTermChange)="applyFilter()"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th>Imagen</th>
+      <th pSortableColumn="producto">
+        Descripción
+        <p-sortIcon field="producto" />
+      </th>
+      <th pSortableColumn="category">
+        Categoría
+        <p-sortIcon field="category" />
+      </th>
+      <th>Cantidad</th>
+      <th>Unidad</th>
+      <th pSortableColumn="precio">
+        Precio
+        <p-sortIcon field="precio" />
+      </th>
+      <th>Descuento</th>
+      <th>IVA (%)</th>
+      <th>Ret. IVA (%)</th>
+      <th>Ret. ISR (%)</th>
+      <th class="table-col-5">Agregar</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-row let-i="rowIndex">
+    <ng-container [formGroup]="row">
+      <tr>
+        <td
+          class="table-col-10 pointer"
+          (click)="onModalTarjetaProducto(row.value.productoId)"
+        >
+          <p-avatar
+            [image]="row.value.urlImagen
+                      ? row.value.urlImagen
+                      : 'assets/images/default-avatar.png'"
+            class="mr-2"
+            size="large"
+          />
+        </td>
+        <td
+          class="pointer"
+          (click)="onModalTarjetaProducto(row.value.productoId)"
+        >
+          {{ row.value.producto }}
+        </td>
+        <td>{{ dataSignal()?.items?.[i]?.category }}</td>
+        <td>
+          <custom-input-number-signal
+            [control]="row.controls.cantidad"
+            mode="decimal"
+            [minFractionDigits]="0"
+            [maxFractionDigits]="2"
+            [horizontal]="false"
+          />
+        </td>
+        <td>
+          <custom-input-select-signal
+            [control]="row.controls.unidadMedidaId"
+            [data]="cb_unidadMedida"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Selecciona una opción"
+            [horizontal]="false"
+            customClass="w-full"
+          />
+        </td>
+        <td>
+          <custom-input-number-signal
+            [control]="row.controls.precio"
+            mode="currency"
+            currency="MXN"
+            locale="es-MX"
+            [minFractionDigits]="0"
+            [maxFractionDigits]="4"
+            [horizontal]="false"
+          />
+        </td>
+        <td>
+          <custom-input-number-signal
+            [control]="row.controls.descuento"
+            mode="decimal"
+            [minFractionDigits]="0"
+            [maxFractionDigits]="4"
+            [horizontal]="false"
+          />
+        </td>
+        <td>
+          <custom-input-number-signal
+            [control]="row.controls.ivaAplicado"
+            mode="decimal"
+            [minFractionDigits]="0"
+            [maxFractionDigits]="4"
+            [horizontal]="false"
+          />
+        </td>
+        <td>
+          <custom-input-number-signal
+            [control]="row.controls.retencionIVAPorcentaje"
+            mode="decimal"
+            [minFractionDigits]="0"
+            [maxFractionDigits]="4"
+            [horizontal]="false"
+          />
+        </td>
+        <td>
+          <custom-input-number-signal
+            [control]="row.controls.retencionISRPorcentaje"
+            mode="decimal"
+            [minFractionDigits]="0"
+            [maxFractionDigits]="4"
+            [horizontal]="false"
+          />
+        </td>
+        <td>
+          <div class="flex justify-content-center">
+            <custom-button-item
+              iconClass="pi pi-plus"
+              (clicked)="onSubmit(row)"
+            />
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="formArray.getRawValue()" />
+  </ng-template>
+</p-table>
+}

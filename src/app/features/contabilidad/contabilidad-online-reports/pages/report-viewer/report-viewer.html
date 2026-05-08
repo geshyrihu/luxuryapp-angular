@@ -1,0 +1,290 @@
+<div class="card">
+  <!-- Barra de filtros -->
+  <div class="flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
+    <div class="flex align-items-end gap-2">
+      <custom-input-number-signal
+        [control]="filtroForm.controls.anio"
+        label="Ano"
+        [useGrouping]="false"
+        [min]="2020"
+        [max]="2099"
+        [noMargin]="true"
+      />
+      <div class="w-10rem">
+        <custom-input-select-signal
+          [control]="filtroForm.controls.mes"
+          label="Mes"
+          [data]="meses"
+          [showClear]="false"
+          [noMargin]="true"
+        />
+      </div>
+      <custom-button
+        label="Ejecutar"
+        iconClass="pi pi-play"
+        [showLabelOnDesktop]="true"
+        [loading]="loading()"
+        (clicked)="ejecutar()"
+      />
+    </div>
+    @if (resultado()) {
+      <div class="flex gap-2">
+        <custom-button
+          label="Excel"
+          iconClass="pi pi-file-excel"
+          severity="success"
+          [showLabelOnDesktop]="true"
+          (clicked)="exportarExcel()"
+        />
+        <custom-button
+          label="PDF"
+          iconClass="pi pi-file-pdf"
+          severity="danger"
+          [showLabelOnDesktop]="true"
+          (clicked)="exportarPdf()"
+        />
+        <custom-button
+          label="Compartir"
+          iconClass="pi pi-link"
+          severity="secondary"
+          [showLabelOnDesktop]="true"
+          (clicked)="compartir()"
+        />
+        <custom-button
+          label="Auditor IA"
+          iconClass="pi pi-sparkles"
+          severity="info"
+          [showLabelOnDesktop]="true"
+          (clicked)="aiAgent()?.togglePanel()"
+        />
+      </div>
+    }
+  </div>
+
+  <!-- Advertencias -->
+  @if (advertencias().length > 0) {
+    <div class="mb-3">
+      @for (w of advertencias(); track w) {
+        <div class="p-message p-message-warn p-3 mb-1 border-round text-sm">
+          {{ w }}
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Cargando -->
+  @if (loading()) {
+    <div class="flex justify-content-center py-6">
+      <p-progressspinner />
+    </div>
+  }
+
+  <!-- Resultado -->
+  @if (!loading() && resultado(); as r) {
+    <div>
+      <h3 class="text-primary-900 font-bold mb-1">{{ r.reportName }}</h3>
+      <p class="text-500 text-sm mb-4">
+        Columnas: {{ r.columns.length }} | Secciones: {{ r.sections.length }}
+      </p>
+
+      <!-- ── Presupuesto vs Real ──────────────────────────────────────── -->
+      @if (esBudgetVsActual()) {
+        @for (seccion of r.sections; track seccion.id) {
+          <div class="mb-4">
+            @if (seccion.title) {
+              <div class="bg-primary-900 text-white font-semibold px-3 py-2 border-round-top">{{ seccion.title }}</div>
+            }
+            <table class="w-full border-collapse">
+              <thead>
+                <tr class="surface-ground">
+                  <th class="text-left p-2 border-bottom-1 surface-border">Concepto</th>
+                  <th class="text-right p-2 border-bottom-1 surface-border">Real</th>
+                  <th class="text-right p-2 border-bottom-1 surface-border">Presupuesto</th>
+                  <th class="text-right p-2 border-bottom-1 surface-border">Variacion</th>
+                  <th class="text-right p-2 border-bottom-1 surface-border">%</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (row of seccion.rows; track row.id) {
+                  @if (row.type === 'spacer') {
+                    <tr><td colspan="5" class="py-1"></td></tr>
+                  } @else if (row.type === 'header') {
+                    <tr class="surface-50">
+                      <td class="p-2 font-semibold text-primary-800" colspan="5">{{ row.label }}</td>
+                    </tr>
+                  } @else {
+                    @let vari = variacion(row, r.columns);
+                    @let pct = porcentajeVariacion(row, r.columns);
+                    <tr class="hover:surface-hover">
+                      <td class="p-2 border-bottom-1 surface-border"
+                        [style.padding-left.rem]="row.indent + 0.5"
+                        [class.font-bold]="row.bold || row.type === 'subtotal' || row.type === 'grandTotal'">
+                        {{ row.label }}
+                      </td>
+                      <td class="p-2 text-right border-bottom-1 surface-border"
+                        [class.font-bold]="row.bold || row.type === 'subtotal' || row.type === 'grandTotal'">
+                        {{ valorFormateado(colReal(r.columns) ? row.values[colReal(r.columns)!.id] : null) }}
+                      </td>
+                      <td class="p-2 text-right border-bottom-1 surface-border">
+                        {{ valorFormateado(colPresupuesto(r.columns) ? row.values[colPresupuesto(r.columns)!.id] : null) }}
+                      </td>
+                      <td class="p-2 text-right border-bottom-1 surface-border font-semibold"
+                        [class.text-green-600]="vari !== null && vari >= 0"
+                        [class.text-red-600]="vari !== null && vari < 0">
+                        {{ valorFormateado(vari) }}
+                      </td>
+                      <td class="p-2 text-right border-bottom-1 surface-border"
+                        [class.text-green-600]="pct !== null && pct >= 0"
+                        [class.text-red-600]="pct !== null && pct < 0">
+                        {{ porcentajeFormateado(pct) }}
+                      </td>
+                    </tr>
+                  }
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+      }
+
+      <!-- ── Tarjetas KPI ───────────────────────────────────────────── -->
+      @if (esSummaryCards()) {
+        <div class="grid">
+          @for (kpi of kpiCards(); track kpi.id) {
+            <div class="col-12 sm:col-6 md:col-4 lg:col-3">
+              <div class="surface-card border-round shadow-2 p-4 text-center">
+                <p class="text-500 text-sm m-0 mb-2 white-space-nowrap overflow-hidden text-overflow-ellipsis">
+                  {{ kpi.label }}
+                </p>
+                @for (col of r.columns; track col.id) {
+                  <div class="mb-1">
+                    <span class="text-xs text-400">{{ col.label }}</span>
+                    <p class="text-2xl font-bold text-primary-900 m-0">
+                      {{ valorFormateado(kpi.values[col.id]) }}
+                    </p>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      }
+
+      <!-- ── Dos columnas (EPF) ─────────────────────────────────────── -->
+      @if (esTipoDobleColumna()) {
+        <div class="grid">
+          @for (mitad of [mitadSecciones()[0], mitadSecciones()[1]]; track $index) {
+            <div class="col-12 md:col-6">
+              <table class="w-full border-collapse">
+                <thead>
+                  <tr class="surface-ground">
+                    <th class="text-left p-2 border-bottom-1 surface-border">Concepto</th>
+                    @for (col of r.columns; track col.id) {
+                      <th class="text-right p-2 border-bottom-1 surface-border">{{ col.label }}</th>
+                    }
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (row of mitad; track row.id) {
+                    @if (row.type === 'spacer') {
+                      <tr><td [attr.colspan]="r.columns.length + 1" class="py-1"></td></tr>
+                    } @else if (row.type === 'header') {
+                      <tr class="surface-50">
+                        <td class="p-2 font-semibold text-primary-800" [attr.colspan]="r.columns.length + 1">{{ row.label }}</td>
+                      </tr>
+                    } @else {
+                      <tr class="hover:surface-hover">
+                        <td class="p-2 border-bottom-1 surface-border"
+                          [style.padding-left.rem]="row.indent + 0.5"
+                          [class.font-bold]="row.bold || row.type === 'subtotal' || row.type === 'grandTotal'">
+                          {{ row.label }}
+                        </td>
+                        @for (col of r.columns; track col.id) {
+                          <td class="p-2 text-right border-bottom-1 surface-border"
+                            [class.font-bold]="row.bold || row.type === 'subtotal' || row.type === 'grandTotal'">
+                            {{ valorFormateado(row.values[col.id]) }}
+                          </td>
+                        }
+                      </tr>
+                    }
+                  }
+                </tbody>
+              </table>
+            </div>
+          }
+        </div>
+      }
+
+      <!-- ── Simple / Comparativa (default) ───────────────────────── -->
+      @if (!esTipoDobleColumna() && !esBudgetVsActual() && !esSummaryCards()) {
+      @for (seccion of r.sections; track seccion.id) {
+        <div class="mb-4">
+          @if (seccion.title) {
+            <div class="bg-primary-900 text-white font-semibold px-3 py-2 border-round-top">
+              {{ seccion.title }}
+            </div>
+          }
+
+          <table class="w-full border-collapse">
+            <!-- Encabezado de columnas -->
+            <thead>
+              <tr class="surface-ground">
+                <th class="text-left p-2 border-bottom-1 surface-border">Concepto</th>
+                @for (col of r.columns; track col.id) {
+                  <th class="text-right p-2 border-bottom-1 surface-border">
+                    {{ col.label }}
+                  </th>
+                }
+              </tr>
+            </thead>
+            <tbody>
+              @for (row of seccion.rows; track row.id) {
+                @if (row.type === 'spacer') {
+                  <tr><td [attr.colspan]="r.columns.length + 1" class="py-1"></td></tr>
+                } @else if (row.type === 'header') {
+                  <tr class="surface-50">
+                    <td
+                      class="p-2 font-semibold text-primary-800"
+                      [attr.colspan]="r.columns.length + 1"
+                    >
+                      {{ row.label }}
+                    </td>
+                  </tr>
+                } @else {
+                  <tr class="hover:surface-hover">
+                    <td
+                      class="p-2 border-bottom-1 surface-border"
+                      [style.padding-left.rem]="row.indent + 0.5"
+                      [class.font-bold]="row.bold"
+                      [class.font-semibold]="row.type === 'subtotal' || row.type === 'grandTotal'"
+                    >
+                      {{ row.label }}
+                    </td>
+                    @for (col of r.columns; track col.id) {
+                      <td
+                        class="p-2 text-right border-bottom-1 surface-border"
+                        [class.font-bold]="row.bold"
+                        [class.font-semibold]="row.type === 'subtotal' || row.type === 'grandTotal'"
+                      >
+                        {{ valorFormateado(row.values[col.id]) }}
+                      </td>
+                    }
+                  </tr>
+                }
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+      } <!-- fin @if !esTipoDobleColumna -->
+    </div>
+  }
+
+  @if (!loading() && !resultado()) {
+    <div class="text-center text-500 py-6">
+      Selecciona el periodo y haz clic en "Ejecutar" para generar el reporte.
+    </div>
+  }
+</div>
+
+<app-contabilidad-ai-agent #aiAgent />

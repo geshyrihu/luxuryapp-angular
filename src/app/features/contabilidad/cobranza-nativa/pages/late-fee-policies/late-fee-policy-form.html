@@ -1,0 +1,42 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column">
+
+  <custom-input-number-signal
+    [control]="form.controls.graceDays"
+    label="Días de Gracia"
+    placeholder="0"
+    required
+  />
+
+  <custom-input-select-signal
+    [control]="form.controls.type"
+    [data]="typeOptions"
+    label="Tipo de Recargo"
+    [filter]="true"
+    required
+  />
+
+  <custom-input-decimal-signal
+    [control]="form.controls.rate"
+    label="Tasa o Monto"
+    placeholder="Ej: 5.00"
+    required
+  />
+
+  <custom-input-decimal-signal
+    [control]="form.controls.maxRate"
+    label="Monto Máximo Acumulable"
+    placeholder="Ej: 500.00"
+    required
+  />
+
+  <div class="mt-2">
+    <custom-input-check-signal
+      [control]="form.controls.compoundsMonthly"
+      label="Acumular mensualmente (Interés Compuesto)"
+    />
+  </div>
+
+  <div class="flex justify-content-end mt-4">
+    <custom-button-save [disabled]="form.invalid || submitting()" [submitting]="submitting()" />
+  </div>
+</form>

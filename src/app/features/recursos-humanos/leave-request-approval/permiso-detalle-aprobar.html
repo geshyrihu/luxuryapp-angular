@@ -1,0 +1,112 @@
+@if (requestData()) {
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">
+      Detalle de Solicitud de Permiso # {{ requestData().id }}
+    </h3>
+  </div>
+  <div class="card-body">
+    <div class="grid">
+      <div class="col-12 md:col-6">
+        <p>
+          <strong>Empleado:</strong>
+          {{ requestData().employeeFullName }}
+        </p>
+
+        <p>
+          <strong>Tipo de Permiso:</strong>
+          {{ requestData().requestTypeName }}
+        </p>
+        <p>
+          <strong>Periodo:</strong>
+          {{ requestData().period }}
+        </p>
+        <p>
+          <strong>Tipo de día:</strong>
+          <p-tag
+            [value]="requestData().isPartial ? 'Parcial' : 'Día completo'"
+            [severity]="requestData().isPartial ? 'warn' : 'info'"
+            class="ml-1"
+          />
+        </p>
+        @if (requestData().isPartial) {
+        <p>
+          <strong>Horario:</strong>
+          {{ requestData().timeRange }}
+        </p>
+        }
+      </div>
+      <div class="col-12 md:col-6">
+        <p>
+          <strong>Estado:</strong>
+          <p-tag
+            [value]="requestData().status"
+            [severity]="getStatusSeverity(requestData().status)"
+          ></p-tag>
+        </p>
+        <p>
+          <strong>Fecha de Solicitud:</strong>
+          {{ requestData().requestDate }}
+        </p>
+        <p>
+          <strong>Motivo:</strong>
+          {{ requestData().reason }}
+        </p>
+        @if (requestData().attachmentUrl) {
+        <p>
+          <strong>Comprobante Adjunto:</strong>
+          <a
+            [href]="requestData().attachmentUrl"
+            target="_blank"
+            class="p-button p-button-info p-button-sm"
+          >
+            <span
+              class="pi pi-download p-button-icon p-button-icon-left"
+            ></span>
+            <span class="p-button-label">Descargar Comprobante</span>
+          </a>
+        </p>
+        } @if (requestData().comments) {
+        <p>
+          <strong>Comentarios:</strong>
+          {{ requestData().comments }}
+        </p>
+        } @if (requestData().rejectionReason) {
+        <p>
+          <strong>Motivo de Rechazo:</strong>
+          {{ requestData().rejectionReason }}
+        </p>
+        }
+      </div>
+    </div>
+  </div>
+  @if (requestData().status === 'Pendiente') {
+  <div class="card-footer text-right">
+    <custom-button
+      severity="success"
+      iconClass="pi pi-check"
+      label="Aprobar"
+      (clicked)="onApprove()"
+      [disabled]="submitting()"
+      customClass="mr-2"
+    /><custom-button
+      severity="danger"
+      iconClass="pi pi-times"
+      label="Rechazar"
+      (clicked)="onReject()"
+      [disabled]="submitting()"
+    />
+  </div>
+  }
+</div>
+} @if (loading()) {
+<div class="card">
+  <div class="card-body">Cargando detalle de solicitud...</div>
+</div>
+} @if (!requestData() && !loading()) {
+<div class="card">
+  <div class="card-body">
+    No se encontró la solicitud de permiso o no se pudo cargar.
+  </div>
+</div>
+}

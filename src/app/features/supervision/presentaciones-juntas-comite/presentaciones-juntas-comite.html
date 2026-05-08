@@ -1,0 +1,235 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<p-table
+  [globalFilterFields]="globalFilterFields"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  styleClass="custom-table hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+    <br />
+    <div class="w-full sm:w-1/3 mt-3">
+      <custom-input-text-signal
+        type="month"
+        [control]="periodoControl"
+        (change)="onLoadData()"
+        [horizontal]="false"
+      />
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-2">#</th>
+      <th class="table-col-10" pSortableColumn="numeroCliente">
+        Cliente
+        <p-sortIcon field="numeroCliente" />
+      </th>
+      <th class="table-col-8" pSortableColumn="fechaCorrespondienteFiltro">
+        Periodo
+        <p-sortIcon field="fechaCorrespondienteFiltro" />
+      </th>
+      <th class="table-col-12" pSortableColumn="fechaCorrespondienteFiltro">
+        Fecha Junta
+        <p-sortIcon field="fechaCorrespondienteFiltro" />
+      </th>
+      <th class="table-col-19">Portada</th>
+      <th class="table-col-19">Contable</th>
+      <th class="table-col-19">Operaciones</th>
+      <th class="table-col-19">Supervisor</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-i="rowIndex" let-item>
+    <tr>
+      <td>{{ i + 1 }}</td>
+      <td>{{ item.customer }}</td>
+      <td>{{ item.fechaCorrespondiente }}</td>
+      <td>{{ item.fechaJunta }}</td>
+      <td>
+        <!-- Portada -->
+        @if (item.userPortada) {
+        <div class="flex flex-column gap-1">
+          <div>
+            <p class="m-0 text-sm font-semibold">{{ item.userPortada }}</p>
+          </div>
+          <div>
+            <p class="m-0 text-xs text-500">{{ item.fechaCargaPortada }}</p>
+          </div>
+          <div class="mt-1">
+            <custom-button-view-pdf
+              [showLabelOnDesktop]="true"
+              [url]="item.archivoPortada"
+              pdf="Portada"
+            />
+          </div>
+        </div>
+        }
+        <!-- Portada -->
+      </td>
+      <td>
+        <!-- CONTABLE -->
+        @if (item.userContable) {
+        <div class="flex flex-column gap-1">
+          <div>
+            <p class="m-0 text-sm font-semibold">{{ item.userContable }}</p>
+          </div>
+          <div>
+            <p class="m-0 text-xs text-500">{{ item.fechaCargaContable }}</p>
+          </div>
+          <div class="mt-1">
+            <custom-button-view-pdf
+              [showLabelOnDesktop]="true"
+              [url]="item.archivoContable"
+              pdf="Portada"
+            />
+          </div>
+        </div>
+        }
+        <!-- CONTABLE -->
+      </td>
+      <td>
+        <!-- OPERACIONES -->
+        @if (item.fullName) {
+        <div class="flex flex-column gap-1">
+          <div>
+            <p class="m-0 text-sm font-semibold">{{ item.fullName }}</p>
+          </div>
+          <div>
+            <p class="m-0 text-xs text-500">{{ item.fechaCarga }}</p>
+          </div>
+          <div class="mt-1">
+            <!-- <p-button
+              pTooltip="Visualizar Pdf"
+              tooltipPosition="top"
+              (onClick)="navigateToPdf(item.archivoJunta)"
+              label="Pdf"
+              icon="pi pi-download"
+              styleClass="p-button-danger p-button-sm p-button-outlined w-xs mr-1 no-print"
+            ></p-button> -->
+            <custom-button-view-pdf
+              [showLabelOnDesktop]="true"
+              [url]="item.archivoJunta"
+              pdf="Portada"
+            />
+          </div>
+        </div>
+        }
+        <!-- OPERACIONES -->
+      </td>
+      <td>
+        <!-- FINAL -->
+        @if (item.userSupervisor) {
+        <div class="flex flex-column gap-1">
+          <div>
+            <p class="m-0 text-sm font-semibold">{{ item.userSupervisor }}</p>
+          </div>
+          <div>
+            <p class="m-0 text-xs text-500">{{ item.fechaCargaSupervisor }}</p>
+          </div>
+          <div class="mt-1">
+            <custom-button-view-pdf
+              [showLabelOnDesktop]="true"
+              [url]="item.archivoFinal"
+              pdf="Portada"
+            />
+          </div>
+        </div>
+        }
+        <!-- FINAL -->
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding" detail="false">
+      <ion-label>
+        <!-- Cliente -->
+        <div class="mb-2">
+          <p class="font-bold mb-0">Cliente:</p>
+          <p class="text-color-secondary mb-0">{{ item.customer }}</p>
+        </div>
+
+        <!-- Periodo -->
+        <div class="mb-2">
+          <p class="font-bold mb-0">Periodo:</p>
+          <p class="text-color-secondary mb-0">
+            {{ item.fechaCorrespondiente }}
+          </p>
+        </div>
+
+        <!-- Fecha Junta -->
+        <div class="mb-2">
+          <p class="font-bold mb-0">Fecha Junta:</p>
+          <p class="text-color-secondary mb-0">{{ item.fechaJunta }}</p>
+        </div>
+
+        <!-- Portada -->
+        @if (item.userPortada) {
+        <div class="mb-2">
+          <p class="font-bold mb-0">Portada:</p>
+          <p class="text-color-secondary mb-0">{{ item.userPortada }}</p>
+          <p class="text-color-secondary mb-0">{{ item.fechaCargaPortada }}</p>
+          <ion-button-view-pdf
+            [showLabelOnDesktop]="true"
+            [url]="item.archivoPortada"
+            pdf="Portada"
+          />
+        </div>
+        }
+
+        <!-- Contable -->
+        @if (item.userContable) {
+        <div class="mb-2">
+          <p class="font-bold mb-0">Contable:</p>
+          <p class="text-color-secondary mb-0">{{ item.userContable }}</p>
+          <p class="text-color-secondary mb-0">{{ item.fechaCargaContable }}</p>
+          <ion-button-view-pdf
+            [showLabelOnDesktop]="true"
+            [url]="item.archivoContable"
+            pdf="Portada"
+          />
+        </div>
+        }
+
+        <!-- Operaciones -->
+        @if (item.fullName) {
+        <div class="mb-2">
+          <p class="font-bold mb-0">Operaciones:</p>
+          <p class="text-color-secondary mb-0">{{ item.fullName }}</p>
+          <p class="text-color-secondary mb-0">{{ item.fechaCarga }}</p>
+          <ion-button-view-pdf
+            [showLabelOnDesktop]="true"
+            [url]="item.archivoJunta"
+            pdf="Portada"
+          />
+        </div>
+        }
+
+        <!-- Supervisor -->
+        @if (item.userSupervisor) {
+        <div class="mb-2">
+          <p class="font-bold mb-0">Supervisor:</p>
+          <p class="text-color-secondary mb-0">{{ item.userSupervisor }}</p>
+          <p class="text-color-secondary mb-0">
+            {{ item.fechaCargaSupervisor }}
+          </p>
+          <ion-button-view-pdf
+            [showLabelOnDesktop]="true"
+            [url]="item.archivoFinal"
+            pdf="Portada"
+          />
+        </div>
+        }
+      </ion-label>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

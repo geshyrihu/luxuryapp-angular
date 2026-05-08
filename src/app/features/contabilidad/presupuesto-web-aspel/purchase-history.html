@@ -1,0 +1,130 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption [dt]="dt" [showAdd]="false" />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th></th>
+      <th pSortableColumn="creationAt">
+        Fecha
+        <p-sortIcon field="creationAt" />
+      </th>
+      <th pSortableColumn="description">
+        Descripción
+        <p-sortIcon field="description" />
+      </th>
+      <th pSortableColumn="provider">
+        Proveedor
+        <p-sortIcon field="provider" />
+      </th>
+      <th pSortableColumn="accountNumber">
+        Cuenta
+        <p-sortIcon field="accountNumber" />
+      </th>
+      <th pSortableColumn="tipoGasto">
+        Tipo Gasto
+        <p-sortIcon field="tipoGasto" />
+      </th>
+      <th pSortableColumn="amount" class="text-right">
+        Monto
+        <p-sortIcon field="amount" />
+      </th>
+      <th>Factura</th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr>
+      <td
+        class="text-center pointer"
+        (click)="onShowPurchaseDetails(item.ordenCompraId)"
+      >
+        ??
+      </td>
+      <td>{{ item.creationAt }}</td>
+      <td>{{ item.description }}</td>
+      <td>{{ item.provider }}</td>
+      <td>
+        <div class="flex flex-column">
+          <span class="font-bold">{{ item.accountNumber }}</span>
+          <small class="text-color-secondary">{{ item.accountName }}</small>
+        </div>
+      </td>
+      <td>{{ item.tipoGasto }}</td>
+      <td class="text-right font-bold">{{ item.amount | currency: 'MXN' }}</td>
+      <td class="text-center">
+        @if (item.invoiceUrl) {
+        <custom-button
+          iconClass="pi pi-download"
+          variant="ghost-text"
+          size="sm"
+          (clicked)="viewPdf(item.invoiceUrl, item.provider)"
+        />
+        }
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+  <ng-template emptymessage>
+    <tr>
+      <td colspan="7" class="text-center p-4">No se encontraron registros.</td>
+    </tr>
+  </ng-template>
+  <ng-template #footer>
+    <tr>
+      <td colspan="6" class="text-right font-bold p-3 pb-0">Total</td>
+      <td class="font-bold p-3 pb-0 text-right">
+        {{ sumaTotal() | number: '1.2-2' }}
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!-- NOTA: Se ha eliminado el (add) para que sea una vista de solo lectura. -->
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [showAdd]="false"
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding" detail="false">
+      <ion-label>
+        <h2 class="font-normal m-0">{{ item.description }}</h2>
+        <p class="text-medium text-500 m-0">{{ item.provider }}</p>
+        <p class="text-sm text-400 mt-1">
+          {{ item.accountNumber }} ó {{ item.creationAt }}
+        </p>
+      </ion-label>
+      <div slot="end" class="flex flex-column align-items-end">
+        <span class="text-lg font-semibold text-primary">
+          {{ item.amount | currency : "MXN" }}
+        </span>
+        @if (item.invoiceUrl) {
+        <custom-button
+          iconClass="pi pi-download"
+          variant="ghost-text"
+          size="sm"
+          (clicked)="viewPdf(item.invoiceUrl, item.provider)"
+        />
+        }
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

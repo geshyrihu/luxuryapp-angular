@@ -1,0 +1,105 @@
+<p-table
+  #dt
+  [value]="data()"
+  [loading]="loading()"
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  styleClass="card hidden md:block custom-table"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      [dt]="dt"
+      (add)="openAdd()"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="nombreEmpleado">Empleado <p-sortIcon field="nombreEmpleado" /></th>
+      <th class="text-right">Monto Total</th>
+      <th class="text-right">Amortizacion</th>
+      <th class="text-right">Saldo Pendiente</th>
+      <th>Progreso</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <a class="cursor-pointer text-primary" (click)="openDetalle(item)">
+          {{ item.nombreEmpleado }}
+        </a>
+      </td>
+      <td class="text-right">{{ item.montoTotal | currency: "MXN" : "symbol" : "1.2-2" }}</td>
+      <td class="text-right">{{ item.montoAmortizacion | currency: "MXN" : "symbol" : "1.2-2" }}</td>
+      <td class="text-right font-bold">{{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.2-2" }}</td>
+      <td style="min-width: 120px">
+        <div class="flex align-items-center gap-2">
+          <div class="border-round overflow-hidden flex-1" style="height: 6px; background: var(--surface-200)">
+            <div
+              class="border-round bg-primary"
+              [style.width.%]="getProgreso(item)"
+              style="height: 100%"
+            ></div>
+          </div>
+          <span class="text-xs">{{ item.pagosRealizados }}/{{ item.numeroPagos }}</span>
+        </div>
+      </td>
+      <td>
+        <p-tag [severity]="getEstadoSeverity(item.estado)" [value]="item.estado" />
+      </td>
+      <td>
+        <div class="flex gap-1">
+          <custom-button
+            iconClass="pi pi-eye"
+            severity="info"
+            variant="ghost-text"
+            pTooltip="Ver detalle"
+            (clicked)="openDetalle(item)"
+          />
+          @if (item.estadoValue === 0) {
+          <custom-button-delete (confirmed)="onDelete(item)" />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr><td colspan="7">Sin prestamos registrados para este cliente.</td></tr>
+  </ng-template>
+</p-table>
+
+<!-- Vista movil -->
+<app-data-view-mobile
+  [data]="data()"
+  [dt]="dt"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="openAdd()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding" detail="false">
+      <ion-label>
+        <h2 class="font-normal m-0">{{ item.nombreEmpleado }}</h2>
+        <p class="text-xs m-0">{{ item.motivo }}</p>
+        <div class="flex align-items-center gap-2 mt-1">
+          <span class="font-bold">{{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.0-0" }}</span>
+          <p-tag [severity]="getEstadoSeverity(item.estado)" [value]="item.estado" />
+        </div>
+        <div class="mt-1">
+          <div class="border-round overflow-hidden" style="height: 4px; background: var(--surface-200)">
+            <div class="border-round bg-primary" [style.width.%]="getProgreso(item)" style="height: 100%"></div>
+          </div>
+        </div>
+      </ion-label>
+      <div slot="end">
+        <custom-button iconClass="pi pi-eye" severity="info" variant="ghost-text" (clicked)="openDetalle(item)" />
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

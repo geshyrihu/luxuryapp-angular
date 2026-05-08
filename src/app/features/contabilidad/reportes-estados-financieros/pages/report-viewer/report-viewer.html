@@ -1,0 +1,274 @@
+<div class="report-container">
+  @if (results().length > 0) {
+  <div class="text-center mb-5 fadein">
+    <h2 class="m-0 text-3xl font-bold uppercase text-900">
+      {{ results()[0].dto.companyName }}
+    </h2>
+  </div>
+  }
+
+  <div class="flex flex-column gap-4">
+    <!-- Results Slides -->
+    @for (item of results(); track item.dto.reportId) {
+    <div
+      class="slide-card fadein border-1 surface-border surface-50 border-round-xl p-4 shadow-1"
+    >
+      <div class="flex justify-content-between align-items-center mb-3">
+
+        <!-- Espacio para controles si se habilitan -->
+      </div>
+      <div class="text-center mb-4">
+        <h1 class="m-0 text-xl font-bold text-900">
+          {{ item.dto.reportName }}
+        </h1>
+        <p
+          class="text-sm font-medium text-500 m-0 mt-1 uppercase"
+        >
+          {{ item.dto.monthName }} / {{ item.dto.year }}
+        </p>
+      </div>
+
+      @if (item.isBalanceSheet) {
+      <div class="grid">
+        <div class="col-12 p-2">
+          <!-- Left Table -->
+          <ng-container
+            *ngTemplateOutlet="tableTemplate; context: { $implicit: item.leftNodes, dto: item.dto }"
+          ></ng-container>
+        </div>
+        <div class="col-12 p-2">
+          <!-- Right Table -->
+          <ng-container
+            *ngTemplateOutlet="tableTemplate; context: { $implicit: item.rightNodes, dto: item.dto }"
+          ></ng-container>
+        </div>
+      </div>
+      } @else {
+      <div class="project-table-wrapper">
+        <ng-container
+          *ngTemplateOutlet="tableTemplate; context: { $implicit: item.nodes, dto: item.dto }"
+        ></ng-container>
+      </div>
+      }
+    </div>
+    } @if (results().length === 0 && !loading()) {
+    <div class="text-center p-6 text-500 flex flex-column align-items-center gap-3">
+      <i class="pi pi-chart-bar text-6xl text-400"></i>
+      <p class="text-xl">Selecciona un periodo y genera el reporte.</p>
+    </div>
+    }
+  </div>
+</div>
+
+<ng-template #tableTemplate let-nodes let-dto="dto">
+  <p-treeTable [value]="nodes" styleClass="p-treetable-sm custom-table">
+    <ng-template #header>
+      <tr class="surface-100 border-bottom-1 surface-border">
+        <th
+          class="py-3 px-4 text-left text-xs font-bold text-900 uppercase"
+        >
+          Concepto
+        </th>
+
+        @if (isBudgetView(dto)) {
+        <th
+          class="text-right py-3 px-2 text-xs font-bold text-900 uppercase table-col-120px"
+        >
+          PRESUPUESTO MENSUAL
+        </th>
+
+        @for (month of getBudgetMonths(dto); track month) {
+        <th
+          class="text-right py-3 px-2 text-xs font-bold text-900 uppercase table-col-80px"
+        >
+          {{ getMonthName(month) }}
+        </th>
+        }
+        <th
+          class="text-right py-3 px-2 text-xs font-bold text-900 uppercase table-col-100px"
+        >
+          ACUMULADO
+        </th>
+
+        <th
+          class="text-right py-3 px-2 text-xs font-bold text-900 uppercase table-col-100px"
+        >
+          PRESUPUESTO ANUAL
+        </th>
+        <th
+          class="text-right py-3 px-2 text-xs font-bold text-900 uppercase table-col-100px"
+        >
+          PRESUPUESTO RESTANTE
+        </th>
+
+        } @else if (isMatrixView(dto)) { @for (month of getMatrixColumns(dto);
+        track month) {
+        <th
+          class="text-right py-3 px-2 text-xs font-bold text-900 uppercase table-col-100px"
+        >
+          {{ getMonthName(month) }}
+        </th>
+        }
+        <th
+          class="text-right py-3 px-2 text-xs font-bold text-900 uppercase table-col-120px"
+        >
+          ACUMULADO
+        </th>
+        } @else {
+        <th
+          class="text-right py-3 px-2 text-xs font-bold text-900 uppercase table-col-150px"
+        >
+          IMPORTE
+        </th>
+        @if (hasBudgetColumns(dto.reportName)) {
+        <th
+          class="text-right py-3 px-2 text-xs font-bold text-900 uppercase table-col-150px"
+        >
+          PRESUPUESTO
+        </th>
+        <th
+          class="text-right py-3 px-2 text-xs font-bold text-900 uppercase table-col-150px"
+        >
+          VARIACIóN
+        </th>
+        } }
+      </tr>
+    </ng-template>
+    <ng-template #body let-rowNode let-rowData="rowData">
+      <tr
+        [class.row-header]="rowData.rowType === FinancialReportRowType.Header || rowData.rowType === FinancialReportRowType.AccountGroup"
+        [class.row-total]="rowData.rowType === FinancialReportRowType.Total"
+        [class.row-root-header]="rowData.level === 0 && (rowData.name.toUpperCase().includes('ACTIVO') || rowData.name.toUpperCase().includes('PASIVO') || rowData.name.toUpperCase().includes('CAPITAL'))"
+        [ngClass]="[getRowClass(rowData), isBudgetView(dto) ? getBudgetRowClass(rowData) : '']"
+      >
+        <td>
+          @if (rowData.rowType !== FinancialReportRowType.Total) {
+          <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+          }
+          <span
+            [class.font-bold]="rowData.bold || rowData.level === 0"
+            class="uppercase"
+            >{{ rowData.name }}</span
+          >
+        </td>
+
+        @if (isBudgetView(dto)) {
+        <!-- Presupuesto Mensual Aprobado (óltimo no cero) -->
+        <td class="text-right">
+          @if (isRowLeaf(rowNode) && rowData.rowType !==
+          FinancialReportRowType.Header && rowData.rowType !==
+          FinancialReportRowType.Blank) { {{
+          formatValue(getLastMonthlyBudget(rowData, dto.month)) }} }
+        </td>
+
+        <!-- Columnas Ene-Actual -->
+        @for (month of getBudgetMonths(dto); track month) {
+        <td class="text-right">
+          @if (isRowLeaf(rowNode) && rowData.rowType !==
+          FinancialReportRowType.Header && rowData.rowType !==
+          FinancialReportRowType.Blank) {
+          <span
+            [class.text-red-600]="getMonthlyValue(rowData, month) < -0.01"
+          >
+            {{ formatValue(getMonthlyValue(rowData, month)) }}
+          </span>
+          }
+        </td>
+        }
+
+        <!-- Acumulado (Real) - Hasta mes seleccionado -->
+        <td class="text-right font-bold">
+          @if (isRowLeaf(rowNode) && rowData.rowType !==
+          FinancialReportRowType.Header && rowData.rowType !==
+          FinancialReportRowType.Blank) { {{
+          formatValue(getAccumulatedValue(rowData, dto.month)) }} }
+        </td>
+
+        <!-- Presupuesto Anual -->
+        <td class="text-right font-bold">
+          @if (isRowLeaf(rowNode) && rowData.rowType !==
+          FinancialReportRowType.Header && rowData.rowType !==
+          FinancialReportRowType.Blank) { {{ formatValue(rowData.budget) }} }
+        </td>
+
+        <!-- Presupuesto Restante (Anual - Acumulado a la Fecha) -->
+        <td class="text-right font-bold">
+          @if (isRowLeaf(rowNode) && rowData.rowType !==
+          FinancialReportRowType.Header && rowData.rowType !==
+          FinancialReportRowType.Blank) {
+          <span
+            [class.text-red-600]="getBudgetRestante(rowData, dto.month) < -0.01"
+            class="font-medium"
+          >
+            {{ formatValue(getBudgetRestante(rowData, dto.month)) }}
+          </span>
+          }
+        </td>
+
+        } @else if (isMatrixView(dto)) { @for (month of getMatrixColumns(dto);
+        track month) {
+        <td class="text-right">
+          @if (rowData.rowType !== FinancialReportRowType.Header &&
+          rowData.rowType !== FinancialReportRowType.Blank) {
+          <span [class.text-red-600]="getMonthlyValue(rowData, month) < -0.01">
+            {{ formatValue(getMonthlyValue(rowData, month)) }}
+          </span>
+          }
+        </td>
+        }
+        <td class="text-right font-bold surface-100">
+          @if (rowData.rowType !== FinancialReportRowType.Header &&
+          rowData.rowType !== FinancialReportRowType.Blank) {
+          <span
+            [class.text-red-600]="getAccumulatedValue(rowData, dto.month) < -0.01"
+          >
+            {{ formatValue(getAccumulatedValue(rowData, dto.month)) }}
+          </span>
+          }
+        </td>
+
+        } @else {
+        <td class="text-right">
+          @if (rowData.rowType !== FinancialReportRowType.Header &&
+          rowData.rowType !== FinancialReportRowType.Blank) {
+          <span
+            [class.font-bold]="rowData.rowType === FinancialReportRowType.Total"
+            [class.text-red-600]="rowData.value < -0.01"
+            class="font-medium"
+          >
+            {{ formatValue(rowData.value) }}
+          </span>
+          }
+        </td>
+
+        @if (hasBudgetColumns(dto.reportName)) {
+        <td class="text-right">
+          @if (rowData.rowType !== FinancialReportRowType.Header) { {{
+          formatValue(rowData.budget) }} }
+        </td>
+        <td class="text-right">
+          @if (rowData.rowType !== FinancialReportRowType.Header) {
+          <span
+            [class.text-green-600]="rowData.variance > 0"
+            [class.text-red-600]="rowData.variance < 0"
+            class="font-medium"
+          >
+            {{ formatValue(rowData.variance) }}
+          </span>
+          }
+        </td>
+        } }
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <tr>
+        <td
+          [attr.colspan]="hasBudgetColumns(dto.reportName) ? 4 : 2"
+          class="text-center p-4 text-xs font-bold text-900 uppercase"
+        >
+          No hay datos disponibles para este periodo.
+        </td>
+      </tr>
+    </ng-template>
+  </p-treeTable>
+</ng-template>

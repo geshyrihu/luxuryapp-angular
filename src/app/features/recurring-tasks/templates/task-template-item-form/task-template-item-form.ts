@@ -1,0 +1,166 @@
+import { DatePipe } from "@angular/common";
+import { Component, OnInit, inject, signal } from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { CheckboxModule } from "primeng/checkbox";
+import { DatePickerModule } from "primeng/datepicker";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { firstValueFrom } from "rxjs";
+import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { RecurrenceInput } from "../../instances/recurrence-input/recurrence-input";
+
+interface ITaskTemplateItemForm {
+  title: FormControl<string>;
+  description: FormControl<string>;
+  priority: FormControl<number | null>;
+  recurrenceRule: FormControl<string>;
+  timeWindowStart: FormControl<Date | null>;
+  timeWindowEnd: FormControl<Date | null>;
+  isActive: FormControl<boolean>;
+}
+
+@Component({
+  selector: "app-task-template-item-form",
+  templateUrl: "./task-template-item-form.html",
+  imports: [
+    ReactiveFormsModule,
+    CustomButtonSave,
+    CustomInputSelectSignal,
+    CustomInputTextSignal,
+    CustomInputTextAreaSignal,
+    RecurrenceInput,
+    DatePickerModule,
+    CheckboxModule,
+    CustomInputCheckSignal,
+  ],
+  providers: [DatePipe],
+})
+export class TaskTemplateItemForm implements OnInit {
+  private formBuilder = inject(FormBuilder);
+  public ref = inject(DynamicDialogRef);
+  public config = inject(DynamicDialogConfig);
+  private apiResponseS = inject(ApiResponseService);
+  private enumSelectService = inject(EnumSelectService);
+  private datePipe = inject(DatePipe);
+
+  submitting = signal(false);
+  priorities = signal<ISelectItem[]>([]);
+  templateId = signal<string | null>(null);
+  item = signal<any | null>(null);
+
+  form: FormGroup<ITaskTemplateItemForm> = this.formBuilder.group({
+    title: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    description: new FormControl("", { nonNullable: true }),
+    priority: new FormControl<number | null>(null, {
+      validators: [Validators.required],
+    }),
+    recurrenceRule: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    timeWindowStart: new FormControl<Date | null>(null),
+    timeWindowEnd: new FormControl<Date | null>(null),
+    isActive: new FormControl(true, { nonNullable: true }),
+  });
+
+  ngOnInit(): void {
+    this.templateId.set(this.config.data?.templateId);
+    const itemData = this.config.data?.item;
+    this.item.set(itemData);
+    this.loadPriorities();
+
+    if (itemData) {
+      // Convert string times to Date objects if necessary for p-datepicker
+      // Assuming backend returns "HH:mm:ss" or ISO strings.
+      // p-datepicker expects Date objects for [timeOnly]="true" usually.
+      const patchData = { ...itemData };
+      if (typeof patchData.timeWindowStart === "string") {
+        patchData.timeWindowStart = this.parseTime(patchData.timeWindowStart);
+      }
+      if (typeof patchData.timeWindowEnd === "string") {
+        patchData.timeWindowEnd = this.parseTime(patchData.timeWindowEnd);
+      }
+      this.form.patchValue(patchData);
+    }
+  }
+
+  // Helper to parse "HH:mm" string to Date object for the picker
+  private parseTime(timeString: string): Date | null {
+    if (!timeString) return null;
+    const [hours, minutes] = timeString.split(":").map(Number);
+    const date = new Date();
+    date.setHours(hours, minutes, 0, 0);
+    return date;
+  }
+
+  loadPriorities() {
+    firstValueFrom(
+      this.enumSelectService.onLoadEnumList("EPriorityLevel"),
+    ).then((resp) => {
+      this.priorities.set(resp);
+    });
+  }
+
+  onSubmit() {
+    if (this.form.invalid) return;
+
+    this.submitting.set(true);
+
+    const formValue = this.form.getRawValue();
+    const dto: any = { ...formValue };
+
+    // Transform Date objects back to "HH:mm" strings
+    if (formValue.timeWindowStart instanceof Date) {
+      dto.timeWindowStart = this.datePipe.transform(
+        formValue.timeWindowStart,
+        "HH:mm",
+      );
+    }
+    if (formValue.timeWindowEnd instanceof Date) {
+      dto.timeWindowEnd = this.datePipe.transform(
+        formValue.timeWindowEnd,
+        "HH:mm",
+      );
+    }
+
+    const apiUrl = "recurring-tasks/templates";
+    let request: Promise<any>;
+
+    if (this.item()) {
+      // Update item
+      request = this.apiResponseS.onPut<any>(
+        `${apiUrl}/items/${this.item().id}`,
+        dto,
+      );
+    } else {
+      // Add item to template
+      request = this.apiResponseS.onPost<any>(
+        `${apiUrl}/${this.templateId()}/items`,
+        dto,
+      );
+    }
+
+    request
+      .then((result) => {
+        if (result) {
+          this.ref.close(true);
+        }
+      })
+      .finally(() => this.submitting.set(false));
+  }
+}

@@ -1,0 +1,33 @@
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <custom-input-autocomplete-signal
+    (propagar)="saveMaquinariaId($event)"
+    [control]="form.controls.machinery"
+    [data]="maquinarias()"
+    label="Equipo o Instalación"
+    placeholder="Escribir para buscar equipo o instalación"
+  />
+
+  <custom-input-textarea-signal
+    [control]="form.controls.descripcion"
+    label="Descripción"
+    placeholder="descripción"
+    [horizontal]="false"
+  />
+
+  <div class="mb-4">
+    <label class="font-light"> Activar Si nota alguna emergencia </label>
+    <custom-input-check-signal
+      [control]="form.controls.emergencia"
+      label="Emergencia"
+    />
+  </div>
+
+  <custom-button-save [disabled]="form.invalid" [submitting]="submitting()" />
+</form>
+
+
+
+
+
+
+

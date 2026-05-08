@@ -1,0 +1,132 @@
+<p-table
+  [globalFilterFields]="['fullName', 'applicationRoleName', 'userName', 'personalCellPhone', 'personalEmail']"
+  [value]="dataSignal()"
+  #dt
+  rowGroupMode="subheader"
+  sortMode="single"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <div class="grid">
+      <div class="col-12 sm:col-10">
+        <primeng-custom-caption
+          [title]="'DIRECTORIO DE PERSONAL EXTERNO'"
+          (add)="
+            onModalForm({
+              userId: '',
+              title: 'Nuevo Registro',
+            })
+          "
+          [dt]="dt"
+        />
+      </div>
+      <div class="col-12 sm:col-2">
+        <custom-button-active-desactive
+          [state]="activo"
+          (stateChange)="onSelectActive($event)"
+        />
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th class="table-col-5">N°</th>
+      <th colspan="2" class="table-col-30" pSortableColumn="fullName">
+        COLABORADOR
+        <p-sortIcon field="fullName" />
+      </th>
+      <th class="table-col-20" pSortableColumn="workPositionFolio">
+        PUESTO DE TRABAJO
+        <p-sortIcon field="workPositionFolio" />
+      </th>
+      <th class="table-col-10" pSortableColumn="userName" class="no-print">
+        USUARIO APP
+        <p-sortIcon field="userName" />
+      </th>
+
+      <th class="table-col-30 no-print">
+        TÉLEFONO
+        <p-sortIcon field="personalCellPhone" />
+      </th>
+      <th class="table-col-30" pSortableColumn="personalEmail">
+        Email
+        <p-sortIcon field="personalEmail" />
+      </th>
+
+      <th class="table-col-5"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-rowIndex="rowIndex">
+    <tr>
+      <td class="no-print">{{ rowIndex + 1 }}</td>
+      <td class="text-center">
+        <p-avatar
+          [image]="item.photoPath"
+          alt=""
+          class="mr-2"
+          size="large"
+          (click)="onCardEmployee(item.applicationUserId)"
+        />
+      </td>
+      <td>{{ item.fullName }}</td>
+      <td>{{ item.applicationRoleName }}</td>
+      <td>{{ item.userName }}</td>
+      <td>{{ item.personalCellPhone }}</td>
+      <td>{{ item.personalEmail }}</td>
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-edit
+            (clicked)="onModalForm({ userId: item.applicationUserId, title: 'Editar' })"
+          />
+          <custom-button-item
+            iconClass="pi pi-user"
+            label="Usuario App"
+            (clicked)="onModalUserApp(item.applicationUserId)"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="['fullName', 'applicationRoleName', 'userName', 'personalCellPhone', 'personalEmail']"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding" detail="false">
+      <ion-avatar slot="start">
+        <img [src]="item.photoPath" alt="img" />
+      </ion-avatar>
+      <ion-label>
+        <h2 class="font-normal m-0">{{ item.fullName }}</h2>
+        <p class="text-medium text-500 m-0">
+          {{ item.applicationRoleName }} | {{ item.personalCellPhone }}
+        </p>
+        <p class="text-medium text-500 m-0">{{ item.personalEmail }}</p>
+      </ion-label>
+
+      <app-action-menu slot="end">
+        <ng-container actions>
+          <ion-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <ion-button-item
+            iconName="person-outline"
+            label="Usuario App"
+            (clicked)="onModalUserApp(item.applicationUserId)"
+          />
+          <ion-button-delete (confirmed)="onDelete(item.id)" />
+        </ng-container>
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

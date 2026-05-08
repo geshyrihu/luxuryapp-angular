@@ -1,0 +1,131 @@
+@if (dataSignal()) {
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  groupRowsBy="date"
+  rowGroupMode="subheader"
+  sortField="date"
+  sortMode="single"
+  styleClass="custom-table"
+>
+  <ng-template #caption>
+    <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+    <div class="grid">
+      <div class="col-12 lg:col-2">
+        <custom-input-text-signal
+          type="week"
+          [customClass]="'mr-2'"
+          (change)="handleWeekChange($event)"
+          ngbTooltip="Filtrar"
+          [control]="weekInputValueControl"
+          [horizontal]="false"
+        />
+      </div>
+      <div class="col-12 lg:col-2">
+        <!-- TODO: VALIDAR CONFIRM BUTTON -->
+        <custom-button-confirm
+          [showLabelOnDesktop]="true"
+          iconClass="icon icon-pi-send"
+          Label="Enviar plan de trabajo"
+          ngbTooltip="Enviar plan de trabajo por correo."
+          swalText="Enviar plan de trabajo por correo."
+          swalConfirmButtonText="Sí, enviar"
+          (confirmed)="onSendWorkPlan()"
+        />
+      </div>
+    </div>
+    <!-- end col -->
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-6 font-size-12">FOLIO</th>
+      <th
+        class="table-col-30"
+        class="font-size-12"
+        pSortableColumn="responsibleArea"
+      >
+        SOLICITUD
+        <p-sortIcon field="responsibleArea" />
+      </th>
+      <th class="font-size-12">EVIDENCIA</th>
+      <th
+        class="table-col-8"
+        class="font-size-12"
+        pSortableColumn="responsableNombre"
+      >
+        ASIGNADO A
+        <p-sortIcon field="responsableNombre" />
+      </th>
+      <th
+        class="table-col-10"
+        class="font-size-12"
+        pSortableColumn="scheduledAtFilter"
+      >
+        PROGRAMADO
+        <p-sortIcon field="scheduledAtFilter" />
+      </th>
+      <th
+        class="table-col-10"
+        class="font-size-12"
+        pSortableColumn="daysDifference"
+      >
+        DIAS
+        <p-sortIcon field="daysDifference" />
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.folio }}</td>
+      <td>
+        <strong class="mb-0">{{ item.title }}</strong>
+        <p>{{ item.description }}</p>
+      </td>
+      <td class="text-center">
+        <div class="flex justify-content-center align-items-center">
+          @if (item.beforeWork) {
+          <p-image
+            [src]="
+                  item.beforeWork
+                    ? item.beforeWork
+                    : 'assets/images/default-avatar.png'
+                "
+            alt="."
+            width="40"
+            class="mr-2 border border-danger"
+            [preview]="true"
+          ></p-image>
+          }
+        </div>
+      </td>
+      <!-- <td class="text-center"></td> -->
+      <td class="text-center">
+        @if (item.assigneeId) {
+        <img
+          (click)="onCardEmployee(item.assigneeId)"
+          [src]="
+                item.assigneeImg
+                  ? item.assigneeImg
+                  : 'assets/images/default-avatar.png'
+              "
+          alt="."
+          width="32"
+          style="cursor: pointer"
+          class="b-r-8 img-70"
+        />
+        }
+      </td>
+      <td>{{ item.scheduledAt }}</td>
+      <td class="text-center">
+        <p>
+          <strong> {{ item.daysDifference }} </strong>
+        </p>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+}

@@ -1,0 +1,350 @@
+// ============================================================
+// _forms.scss
+// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
+// Sistema de formularios — grupos, labels, mensajes
+// Compatible con Angular Reactive Forms
+// ============================================================
+
+// ── FORM GROUP ────────────────────────────────────────────────
+// Wrapper estándar: label + control + mensaje
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  margin-bottom: 1.25rem;
+
+  // Dentro de un grupo, el input ocupa el ancho completo
+  > .input,
+  > .textarea,
+  > .input-group,
+  > [class*="input-"] {
+    width: 100%;
+  }
+
+  // Último form-group sin margen inferior
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  // ── Variante horizontal: label izquierda, control derecha
+  &--horizontal {
+    flex-direction: row;
+    align-items: flex-start;
+
+    > .form-label {
+      flex: 0 0 160px;
+      padding-top: 0.6rem; // alinea el label con el input
+    }
+
+    > .form-control-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+    }
+  }
+
+  // ── Variante inline: label y control en una línea
+  &--inline {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 0;
+  }
+}
+
+// ── LABEL ─────────────────────────────────────────────────────
+.form-label {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ds-text-primary);
+  cursor: pointer;
+
+  // Tamaño pequeño
+  &--sm {
+    font-size: 0.8125rem;
+  }
+
+  // Indicador obligatorio (*)
+  &--required::after {
+    content: " *";
+    color: var(--ds-danger);
+    font-weight: 600;
+  }
+
+  // Indicador opcional
+  &--optional::after {
+    content: " (opcional)";
+    color: var(--ds-text-muted);
+    font-size: 0.8125rem;
+    font-weight: 400;
+  }
+
+  // Alias corto
+  &.required::after {
+    content: " *";
+    color: var(--ds-danger);
+    font-weight: 600;
+  }
+}
+
+// ── MENSAJES DE ESTADO ────────────────────────────────────────
+
+// Error — se muestra cuando el campo es inválido
+.form-error {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--ds-danger);
+  margin-top: 0.125rem;
+
+  // Ícono opcional antes del mensaje
+  &::before {
+    content: "⚠";
+    font-size: 0.75rem;
+    line-height: 1;
+  }
+
+  &--no-icon::before {
+    display: none;
+  }
+}
+
+// Éxito — campo válido con feedback positivo
+.form-success-msg {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.8125rem;
+  color: var(--ds-success);
+  margin-top: 0.125rem;
+
+  &::before {
+    content: "✓";
+    font-size: 0.75rem;
+  }
+}
+
+// Hint — texto de ayuda neutro
+.form-hint {
+  font-size: 0.8125rem;
+  color: var(--ds-text-muted);
+  line-height: 1.4;
+  margin-top: 0.125rem;
+}
+
+// Contador de caracteres
+.form-char-counter {
+  font-size: 0.75rem;
+  color: var(--ds-text-muted);
+  text-align: right;
+  margin-top: 0.125rem;
+
+  &--warning {
+    color: var(--ds-warning);
+  }
+  &--danger {
+    color: var(--ds-danger);
+  }
+}
+
+// ── SECCIONES DE FORMULARIO ───────────────────────────────────
+
+.form-section {
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.form-section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ds-text-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.625rem;
+  border-bottom: 1px solid var(--ds-border);
+}
+
+.form-section-subtitle {
+  font-size: 0.875rem;
+  color: var(--ds-text-secondary);
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
+
+// ── FIELDSET ─────────────────────────────────────────────────
+.form-fieldset {
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin: 0 0 1.5rem;
+
+  > legend {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--ds-text-secondary);
+    padding: 0 0.5rem;
+    margin-left: -0.5rem;
+    float: none;
+    width: auto;
+  }
+}
+
+// ── ÁREA DE ACCIONES DEL FORMULARIO ───────────────────────────
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--ds-border);
+
+  &--right {
+    justify-content: flex-end;
+  }
+  &--center {
+    justify-content: center;
+  }
+  &--spread {
+    justify-content: space-between;
+  }
+  &--no-border {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+  }
+}
+
+// ── GRID DE FORMULARIO ────────────────────────────────────────
+// Para layout de múltiples columnas dentro de un form
+.form-grid {
+  display: grid;
+  gap: 0 1.5rem;
+
+  &--2col {
+    grid-template-columns: 1fr 1fr;
+  }
+  &--3col {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  &--4col {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  // Responsivo: colapsa a una columna en móvil
+  @media (max-width: 640px) {
+    &--2col,
+    &--3col,
+    &--4col {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // Elemento que ocupa todas las columnas
+  .form-group--full {
+    grid-column: 1 / -1;
+  }
+}
+
+// ── FORM WIZARD (Pasos) ───────────────────────────────────────
+.form-wizard {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    counter-reset: step;
+  }
+
+  &__step {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    counter-increment: step;
+
+    &-indicator {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      flex-shrink: 0;
+      border: 2px solid var(--ds-border);
+      background-color: var(--ds-bg-surface);
+      color: var(--ds-text-muted);
+      transition: all 200ms ease;
+
+      &::before {
+        content: counter(step);
+      }
+    }
+
+    &-label {
+      margin-left: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ds-text-muted);
+      transition: color 200ms ease;
+    }
+
+    &-connector {
+      flex: 1;
+      height: 2px;
+      background-color: var(--ds-border);
+      margin: 0 0.5rem;
+      transition: background-color 200ms ease;
+    }
+
+    // Paso activo
+    &--active .form-wizard__step-indicator {
+      background-color: var(--ds-primary);
+      border-color: var(--ds-primary);
+      color: #fff;
+    }
+
+    &--active .form-wizard__step-label {
+      color: var(--ds-primary);
+      font-weight: 600;
+    }
+
+    // Paso completado
+    &--completed .form-wizard__step-indicator {
+      background-color: var(--ds-success);
+      border-color: var(--ds-success);
+      color: #fff;
+
+      &::before {
+        content: "✓";
+      }
+    }
+
+    &--completed .form-wizard__step-connector {
+      background-color: var(--ds-success);
+    }
+
+    // Paso con error
+    &--error .form-wizard__step-indicator {
+      background-color: var(--ds-danger);
+      border-color: var(--ds-danger);
+      color: #fff;
+
+      &::before {
+        content: "✕";
+      }
+    }
+  }
+
+  &__body {
+    min-height: 200px;
+  }
+}

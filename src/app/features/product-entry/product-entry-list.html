@@ -1,0 +1,122 @@
+@if (dataSignal()) {
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block">
+  <div class="card">
+    <p-table
+      [globalFilterFields]="globalFilterFields()"
+      [paginator]="true"
+      [rows]="tablePrimeNgRows"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [showCurrentPageReport]="true"
+      [value]="dataSignal()"
+      #dt
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      styleClass="custom-table"
+    >
+      <ng-template #caption>
+        <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th pSortableColumn="fechaEntrada">
+            Fecha Entrada
+            <p-sortIcon field="fechaEntrada" />
+          </th>
+          <th pSortableColumn="nombreProducto">
+            Producto
+            <p-sortIcon field="nombreProducto" />
+          </th>
+          <th pSortableColumn="cantidad">
+            cantidad
+            <p-sortIcon field="cantidad" />
+          </th>
+          <th pSortableColumn="unidadMedida">
+            Unidad
+            <p-sortIcon field="unidadMedida" />
+          </th>
+          <th pSortableColumn="provider">
+            Proveedor
+            <p-sortIcon field="provider" />
+          </th>
+          <th pSortableColumn="numeroFactura">
+            Factura
+            <p-sortIcon field="numeroFactura" />
+          </th>
+          @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
+          <th class="table-col-5"></th>
+          }
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>| {{ item.fechaEntrada | date }}</td>
+          <td>{{ item.nombreProducto }}</td>
+          <td>{{ item.cantidad }}</td>
+          <td>{{ item.unidadMedida }}</td>
+          <td>{{ item.provider }}</td>
+          <td>{{ item.numeroFactura }}</td>
+          <!-- Opciones -->
+          @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
+          <td class="no-print">
+            <div class="flex">
+              <custom-button-edit
+                (clicked)="onAddEntrada({
+                        id: item.id,
+                        idProducto: item.productoId,
+                        nombreProducto: item.nombreProducto,
+                        almacenId: item.almacenId
+                      })"
+              />
+              <custom-button-delete (confirmed)="onDelete(item.id)" />
+            </div>
+          </td>
+          }
+        </tr>
+      </ng-template>
+      <ng-template #paginatorleft>
+        <primeng-custom-table-footer [data]="dataSignal()" />
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding">
+      <ion-label>
+        <div class="flex flex-column">
+          <h6 class="mb-0">{{ item.nombreProducto }}</h6>
+          <small class="text-color-secondary">
+            {{ item.cantidad }} {{ item.unidadMedida }} - {{ item.provider }}
+          </small>
+          <small class="text-color-secondary">
+            Factura: {{ item.numeroFactura }} | {{ item.fechaEntrada | date }}
+          </small>
+        </div>
+      </ion-label>
+
+      @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
+      <div slot="end">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-edit
+              (clicked)="onAddEntrada({
+                      id: item.id,
+                      idProducto: item.productoId,
+                      nombreProducto: item.nombreProducto,
+                      almacenId: item.almacenId
+                    })"
+            />
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+          </ng-container>
+        </app-action-menu>
+      </div>
+      }
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+}

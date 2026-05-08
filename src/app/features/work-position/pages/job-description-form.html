@@ -1,0 +1,150 @@
+<p-card styleClass="p-0 border-none shadow-none">
+  <ng-template #content>
+    <form
+      autocomplete="off"
+      (ngSubmit)="onSubmit()"
+      [formGroup]="form"
+      class="flex flex-column"
+    >
+      <div class="hidden">
+        <custom-input-text-signal
+          [control]="form.controls.id"
+          label="Id"
+          [readonly]="true"
+        />
+      </div>
+
+      <div class="flex justify-content-end mb-4">
+        <custom-button
+          label="Criticar con IA"
+          iconClass="pi pi-bolt"
+          variant="ghost-text"
+          severity="help"
+          (clicked)="analyzeDescription()"
+          [loading]="analyzingDescription()"
+          [disabled]="!applicationRoleName()"
+          ngbTooltip="Analiza la descripción actual en busca de mejoras"
+        />
+        <custom-button
+          label="Generar con IA"
+          iconClass="pi pi-sparkles"
+          variant="ghost-text"
+          severity="help"
+          (clicked)="openInstructionsDialog()"
+          [loading]="generatingProposal()"
+          [disabled]="!applicationRoleName()"
+        />
+      </div>
+
+      <!-- Diálogos de IA -->
+      <p-dialog
+        header="Instrucciones para la IA (Opcional)"
+        [(visible)]="showInstructionsDialog"
+        [modal]="true"
+        styleClass="max-w-30rem w-full"
+        [draggable]="false"
+        [resizable]="false"
+      >
+        <p class="mb-3 text-600 text-sm">
+          Agrega contexto adicional para que la IA genere una mejor propuesta.
+        </p>
+        <textarea
+          pTextarea
+          [rows]="5"
+          class="w-full"
+          [(ngModel)]="customInstructions"
+          [ngModelOptions]="{standalone: true}"
+          placeholder="Ej: Enfocarse en atención de lujo, requiere nivel bilingüe..."
+        ></textarea>
+
+        <ng-template #footer>
+          <custom-button
+            label="Cancelar"
+            iconClass="pi pi-times"
+            variant="ghost-text"
+            severity="secondary"
+            (clicked)="showInstructionsDialog.set(false)"
+          />
+          <custom-button
+            label="Generar"
+            iconClass="pi pi-check"
+            severity="help"
+            [loading]="generatingProposal()"
+            (clicked)="generateProposal()"
+          />
+        </ng-template>
+      </p-dialog>
+
+      <p-dialog
+        header="Análisis de la IA"
+        [(visible)]="showAnalysisDialog"
+        [modal]="true"
+        styleClass="max-w-40rem w-full"
+        [maximizable]="true"
+        [draggable]="false"
+        [resizable]="false"
+      >
+        <div [innerHTML]="analysisResult()" class="line-height-3"></div>
+        <ng-template #footer>
+          <custom-button
+            iconClass="pi pi-check"
+            label="Entendido"
+            variant="ghost-text"
+            (clicked)="showAnalysisDialog.set(false)"
+          />
+        </ng-template>
+      </p-dialog>
+
+      <!-- Campos del Formulario -->
+      <div class="flex flex-column">
+        <custom-input-textarea-signal
+          [control]="form.controls.summary"
+          label="Objetivo General"
+          placeholder="¿Cuál es el propósito principal de este puesto?"
+          [rows]="3"
+        />
+
+        <custom-input-textarea-signal
+          [control]="form.controls.responsibilities"
+          label="Responsabilidades"
+          placeholder="Liste las tareas y responsabilidades clave..."
+          [rows]="4"
+        />
+
+        <custom-input-textarea-signal
+          [control]="form.controls.skills"
+          label="Habilidades y Conocimientos"
+          placeholder="Habilidades técnicas, blandas, idiomas, etc."
+          [rows]="3"
+        />
+
+        <custom-input-textarea-signal
+          [control]="form.controls.additionalRequirements"
+          label="Requisitos Adicionales"
+          placeholder="Escolaridad, edad, certificaciones específicas..."
+          [rows]="2"
+        />
+
+        <custom-input-textarea-signal
+          [control]="form.controls.workEnvironment"
+          label="Entorno y Equipo"
+          placeholder="Descripción del lugar, uniforme, equipo proporcionado..."
+          [rows]="2"
+        />
+
+        <custom-input-check-signal
+          [control]="form.controls.requiresWeekendShift"
+          label="¿Requiere cobertura de Fin de Semana (Sab/Dom)?"
+        />
+      </div>
+
+      <div class="flex justify-content-end pt-4">
+        <custom-button-save
+          [propertyId]="id() || ''"
+          [disabled]="form.invalid"
+          [submitting]="submitting()"
+        />
+      </div>
+    </form>
+  </ng-template>
+</p-card>

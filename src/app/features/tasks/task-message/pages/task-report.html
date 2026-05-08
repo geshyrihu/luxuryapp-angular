@@ -1,0 +1,45 @@
+<div class="grid">
+  <!-- Reporte semanal -->
+  <div class="col-12 lg:col-3">
+    <a [routerLink]="['/tickets/weekly-report']" class="no-underline">
+      <!-- Enlace a otra página -->
+      <div class="card text-center shadow-1 border-none cursor-pointer">
+        <div class="card-body">
+          <i class="icon icon-pi-calendar icon-xl mb-3 text-primary"></i>
+          <p class="card-text h5">Reporte semanal</p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- Plan de trabajo -->
+  <div class="col-12 lg:col-3">
+    <a [routerLink]="['/tickets/work-plan']" class="no-underline">
+      <div class="surface-card text-center shadow-2 border-round p-3 cursor-pointer">
+        <div>
+          <i class="icon icon-pi-list-check icon-xl mb-3 text-green-600"></i>
+          <p class="card-text h5">Plan de trabajo</p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- Resumen -->
+  <div class="col-12 lg:col-3">
+    <a [routerLink]="['/tickets/resumen']" class="no-underline">
+      <div class="surface-card text-center shadow-2 border-round p-3 cursor-pointer">
+        <div>
+          <i class="icon icon-pi-chart-pie icon-xl mb-3 text-yellow-600"></i>
+          <p class="card-text h5">Resumen</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+
+
+
+
+
+

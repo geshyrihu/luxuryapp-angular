@@ -1,0 +1,95 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  responsiveLayout="scroll"
+  styleClass="custom-table hidden md:block"
+>
+  <ng-template #caption>
+    <div class="grid">
+      <div class="col-10">
+        <primeng-custom-caption
+          [title]="'Catalogo de cuentas'"
+          (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+          [dt]="dt"
+          [rolAuth]="aspRoleS.hasRole(AspRole.SuperUsuario)"
+        />
+      </div>
+      <div class="col-2">
+        <custom-button-active-desactive
+          [state]="state"
+          (stateChange)="onLoadData($event)"
+        />
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #header let-columns>
+    <tr>
+      <th>Id</th>
+      <th class="table-col-30" pSortableColumn="numeroCuenta">
+        CUENTA
+        <p-sortIcon field="numeroCuenta" />
+      </th>
+      <th style="width: 65%" pSortableColumn="descripcion">
+        DESCRIPCIóN DE LA CUENTA
+        <p-sortIcon field="descripcion" />
+      </th>
+      @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
+      <th class="table-col-5"></th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-columns="columns">
+    <tr>
+      <td>{{ item.id }}</td>
+      <td>{{ item.numeroCuenta }}</td>
+      <td>{{ item.descripcion }}</td>
+      @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <div class="flex align-items-center justify-content-between w-full">
+      <div>
+        <p class="mt-0 mb-0">{{ item.numeroCuenta }}</p>
+        <p class="text-color-secondary font-size-12 mt-0 mb-0">
+          {{ item.descripcion }}
+        </p>
+      </div>
+
+      <app-action-menu>
+        <ng-container actions>
+          <ion-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <ion-button-delete (confirmed)="onDelete(item.id)" />
+        </ng-container>
+      </app-action-menu>
+    </div>
+  </ng-template>
+</app-data-view-mobile>

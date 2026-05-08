@@ -1,0 +1,134 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <div class="grid align-items-center">
+      <div class="col-12 sm:col-10">
+        <primeng-custom-caption
+          [title]="'Clientes'"
+          (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+          [dt]="dt"
+        />
+      </div>
+      <div class="col-12 sm:col-2">
+        <custom-button-active-desactive
+          [state]="state"
+          (stateChange)="onSortChange($event)"
+        />
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th>ID</th>
+      <th>NO CLIENTE</th>
+      <th colspan="2" pSortableColumn="nameCustomer">
+        NOMBRE
+        <p-sortIcon field="nameCustomer" />
+      </th>
+      <th>TÉLEFONOS</th>
+      <th class="table-col-10"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-rowIndex="rowIndex">
+    <tr>
+      <td>{{ item.id }}</td>
+      <td class="text-center">{{ item.numeroCliente }}</td>
+      <td class="text-center">
+        <p-avatar
+          [image]="item.photoPath"
+          alt=""
+          shape="square"
+          size="large"
+          styleClass="b-r-8 img-40"
+        />
+      </td>
+      <td>{{ item.nameCustomer }}</td>
+      <td>
+        {{ item.phoneOne }}
+        <br />
+        {{ item.phoneTwo }}
+      </td>
+
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <custom-button-item
+            label="Imagenes"
+            iconClass="pi pi-image"
+            (clicked)="onUpdateImages(item.id)"
+          />
+          <custom-button-item
+            label="Dirección"
+            iconClass="pi pi-map-marker"
+            (clicked)="onUpdateAddress(item.id)"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <div customFilters>
+    <div class="mb-3 flex mt-1 mb-1">
+      <div class="m-0">
+        <ion-button-active-desactive
+          fluid
+          [state]="state"
+          (stateChange)="onSortChange($event)"
+        />
+      </div>
+    </div>
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding">
+      <ion-avatar slot="start">
+        <img [src]="item.photoPath" alt="Customer Photo" />
+      </ion-avatar>
+      <ion-label>
+        <h2 class="font-normal m-0">{{ item.nameCustomer }}</h2>
+        <p class="text-medium text-500 m-0">
+          {{ item.phoneOne }} - {{ item.phoneTwo }}
+        </p>
+      </ion-label>
+      <div slot="end">
+        <app-action-menu>
+          <ion-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <ion-button-item
+            iconName="image-outline"
+            label="Imógenes"
+            (clicked)="onUpdateImages(item.id)"
+          />
+          <ion-button-item
+            iconName="location-outline"
+            label="Dirección"
+            (clicked)="onUpdateAddress(item.id)"
+          />
+          <ion-button-delete (confirmed)="onDelete(item.id)" />
+        </app-action-menu>
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="p-4">
+    <custom-input-select-signal
+      [control]="form.controls['customerId']"
+      label="Cliente"
+      [data]="cb_customer()"
+      optionLabel="label"
+      optionValue="value"
+    />
+
+    <custom-input-select-signal
+      [control]="form.controls['empresa']"
+      label="Empresa"
+      [data]="[{label: 'Cobranza', value: 0}, {label: 'Gastos', value: 1}]"
+      optionLabel="label"
+      optionValue="value"
+    />
+
+    <custom-input-number-signal
+      [control]="form.controls['customerIdAspelId']"
+      label="ID Cliente Aspel"
+    />
+  </div>
+  <div class="flex justify-content-end border-top-1 surface-border p-4">
+    <custom-button-save [disabled]="submitting()" />
+  </div>
+</form>

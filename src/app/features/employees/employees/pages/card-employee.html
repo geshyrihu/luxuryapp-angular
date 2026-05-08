@@ -1,0 +1,44 @@
+@if (applicationUser) {
+<p-card>
+  <div class="grid">
+    <div class="col-12 md:col-4 flex justify-content-center">
+      <img
+        [src]="urlImage"
+        alt="no-img"
+        class="p-2 border-round w-9rem h-auto"
+      />
+    </div>
+    <div class="col-12 md:col-8">
+      <div class="p-2">
+        <div class="flex justify-content-between align-items-start">
+          <h3 class="h4 mt-0 mb-2">
+            {{ applicationUser.fullName }}
+          </h3>
+          <p-tag
+            [value]="applicationUser.active ? 'Activo' : 'Inactivo'"
+            [severity]="applicationUser.active ? 'success' : 'danger'"
+          ></p-tag>
+        </div>
+        <h5 class="card-title text-600 mt-0 mb-1">
+          {{ applicationUser.applicationRole }}
+        </h5>
+        <h5 class="card-title text-600 mt-0 mb-2">
+          {{ applicationUser.customer }}
+        </h5>
+        <p-divider></p-divider>
+        <div class="text-600">
+          <p class="mt-2 mb-1">{{ applicationUser.email }}</p>
+          <p class="my-1">{{ applicationUser.birth }}</p>
+          <p class="my-1">{{ applicationUser.phoneNumber }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-card>
+}
+
+
+
+
+
+

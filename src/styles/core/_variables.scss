@@ -1,0 +1,59 @@
+// ============================================================
+// _variables.scss
+// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
+// Variables maestras del sistema — punto de entrada único
+// ============================================================
+
+// ── IMPORTACIONES DE MÓDULOS CORE ───────────────────────────
+@use 'colors' as *;
+@use 'typography' as *;
+@use 'spacing' as *;
+@use 'borders' as *;
+@use 'shadows' as *;
+
+// ── BREAKPOINTS ──────────────────────────────────────────────
+// Puntos de quiebre para diseño responsivo (mobile-first)
+$breakpoints: (
+  'xs':   0px,
+  'sm':   576px,
+  'md':   768px,
+  'lg':   1024px,
+  'xl':   1280px,
+  '2xl':  1536px
+) !default;
+
+// ── TRANSICIONES ─────────────────────────────────────────────
+$transition-fast:    100ms ease !default;
+$transition-base:    200ms ease !default;
+$transition-slow:    350ms ease !default;
+$transition-bounce:  300ms cubic-bezier(0.34, 1.56, 0.64, 1) !default;
+
+// ── Z-INDEX ───────────────────────────────────────────────────
+// Escala de capas de la aplicación
+$z-base:      0    !default;
+$z-raised:    10   !default;
+$z-dropdown:  100  !default;
+$z-sticky:    200  !default;
+$z-fixed:     300  !default;
+$z-overlay:   400  !default;
+$z-modal:     500  !default;
+$z-popover:   600  !default;
+$z-toast:     700  !default;
+$z-tooltip:   800  !default;
+
+// ── TAMAÑOS DE COMPONENTES ────────────────────────────────────
+// Alturas estándar para inputs, botones y controles
+$component-height-xs:  28px  !default;
+$component-height-sm:  34px  !default;
+$component-height-md:  40px  !default;   // default
+$component-height-lg:  48px  !default;
+$component-height-xl:  56px  !default;
+
+// ── OPACIDADES SEMÁNTICAS ─────────────────────────────────────
+$opacity-disabled:  0.5  !default;
+$opacity-muted:     0.6  !default;
+$opacity-overlay:   0.4  !default;
+
+
+
+

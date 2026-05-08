@@ -1,0 +1,101 @@
+@if (dataSignal()) {
+<div class="grid">
+  <div class="col-12 md:col-4">
+    <p-table
+      [value]="dataSignal().posicionesMinutas"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight"
+      styleClass="custom-table hidden md:block"
+    >
+      <ng-template #caption>
+        <primeng-custom-caption
+          [title]="'Minutas'"
+          [showSearch]="false"
+          [showAdd]="false"
+        />
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th>Posición</th>
+          <th>Cliente</th>
+          <th>Avance</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-i="rowIndex" let-item>
+        <tr>
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.customer }}</td>
+          <td>{{ item.porcentajeEjecucion }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="col-12 md:col-4">
+    <p-table
+      [value]="dataSignal().posicionesPreventivos"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight"
+      styleClass="custom-table hidden md:block"
+    >
+      <ng-template #caption>
+        <primeng-custom-caption
+          [title]="'Preventivos'"
+          [showSearch]="false"
+          [showAdd]="false"
+        />
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th>Posición</th>
+          <th>Cliente</th>
+          <th>Avance</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-i="rowIndex" let-item>
+        <tr>
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.customer }}</td>
+          <td>{{ item.porcentajeEjecucion }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="col-12 md:col-4">
+    <p-table
+      [value]="dataSignal().posicionesCorrectivos"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight"
+      styleClass="custom-table hidden md:block"
+    >
+      <ng-template #caption>
+        <primeng-custom-caption
+          [title]="'Correctivos'"
+          [showSearch]="false"
+          [showAdd]="false"
+        />
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th>Posición</th>
+          <th>Cliente</th>
+          <th>Avance</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-i="rowIndex" let-item>
+        <tr>
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.customer }}</td>
+          <td>{{ item.porcentajeEjecucion }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+}
+
+
+
+
+
+
+

@@ -1,0 +1,288 @@
+<div class="aspel-cobranza-page">
+  <div class="page-header mb-4">
+    <h1>Integracion Aspel COI - Cobranza Haus</h1>
+    <p class="text-600">
+      Consulta directa de datos contables desde Aspel COI sin bases intermedias. Flujo: Edificio -> Cuentas -> Estado de Cuenta.
+    </p>
+  </div>
+
+  <p-tabView [activeIndex]="activeTab()" (onChange)="activeTab.set($event.index)">
+    <!-- Tab 1: Clientes -->
+    <p-tabPanel header="Clientes (Edificios)">
+      <div class="flex align-items-end gap-2 mb-3">
+        <div class="flex-1">
+          <label class="block text-sm font-medium mb-1">Accion</label>
+          <custom-button
+            label="Cargar Clientes"
+            iconClass="pi pi-refresh"
+            (clicked)="loadCustomers()"
+            [loading]="customersLoading()"
+            class="w-full"
+          />
+        </div>
+      </div>
+
+      @if (customersLoading()) {
+        <div class="flex justify-content-center p-4">
+          <p-progressSpinner />
+        </div>
+      } @else if (customers().length > 0) {
+        <p-table
+          [value]="customers()"
+          [paginator]="true"
+          [rows]="10"
+          [rowHover]="true"
+          responsiveLayout="scroll"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th>ID Cliente</th>
+              <th>Nombre</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-customer>
+            <tr>
+              <td><code class="text-xs">{{ customer.customerId }}</code></td>
+              <td>{{ customer.name }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      } @else {
+        <p-message severity="info" text="Haz clic en 'Cargar Clientes' para consultar el catálogo." />
+      }
+    </p-tabPanel>
+
+    <!-- Tab 2: Cuentas por Cliente -->
+    <p-tabPanel header="Cuentas por Cliente">
+      <div class="grid form-grid align-items-end">
+        <div class="col-12 md:col-6 lg:col-4">
+          <label class="block text-sm font-medium mb-1">Cliente</label>
+          <p-select
+            [options]="customerOptions()"
+            placeholder="Selecciona un cliente"
+            (onChange)="onCustomerSelectForAccounts($event.value)"
+            [style]="{ width: '100%' }"
+          />
+        </div>
+        <div class="col-12 md:col-4 lg:col-3">
+          <label class="block text-sm font-medium mb-1">Año</label>
+          <p-select
+            [options]="yearOptions()"
+            [value]="selectedYear()"
+            (onChange)="onYearSelect($event.value)"
+            [style]="{ width: '100%' }"
+          />
+        </div>
+        <div class="col-12 md:col-2">
+          <custom-button
+            label="Consultar"
+            iconClass="pi pi-search"
+            (clicked)="loadAccounts()"
+            [loading]="accountsLoading()"
+            class="w-full"
+          />
+        </div>
+      </div>
+
+      @if (accountsLoading()) {
+        <div class="flex justify-content-center p-4 mt-3">
+          <p-progressSpinner />
+        </div>
+      } @else if (accounts().length > 0) {
+        <div class="mt-3">
+          <p-table
+            [value]="accounts()"
+            [paginator]="true"
+            [rows]="15"
+            [rowHover]="true"
+            responsiveLayout="scroll"
+          >
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Num Cta</th>
+                <th>Nombre</th>
+                <th>Estatus</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-cuenta>
+              <tr>
+                <td><code class="text-xs">{{ cuenta.numCta }}</code></td>
+                <td>{{ cuenta.nombre }}</td>
+                <td>
+                  <p-tag
+                    [value]="cuenta.estatus"
+                    [severity]="cuenta.estatus === 'A' ? 'success' : 'warning'"
+                  />
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      } @else if (selectedCustomerId()) {
+        <p-message severity="warn" text="No se encontraron cuentas para este cliente y año." class="mt-3" />
+      }
+    </p-tabPanel>
+
+    <!-- Tab 3: Estado de Cuenta Rango -->
+    <p-tabPanel header="Estado de Cuenta Rango">
+      <div class="grid form-grid align-items-end">
+        <div class="col-12 md:col-6 lg:col-4">
+          <label class="block text-sm font-medium mb-1">Cliente</label>
+          <p-select
+            [options]="customerOptions()"
+            placeholder="Selecciona un cliente"
+            (onChange)="onCustomerSelectForEstadoCuenta($event.value)"
+            [style]="{ width: '100%' }"
+          />
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+          <label class="block text-sm font-medium mb-1">Num Cta</label>
+          <input
+            pInputText
+            type="text"
+            placeholder="Ej. 104-001-001"
+            [value]="estadoCuentaRequest().numCta"
+            (input)="onNumCtaChange($event.target.value)"
+            class="w-full"
+          />
+        </div>
+        <div class="col-12 md:col-4 lg:col-2">
+          <label class="block text-sm font-medium mb-1">Fecha Inicio</label>
+          <p-datePicker
+            [value]="estadoCuentaRequest().fechaInicio"
+            (onSelect)="onFechaInicioChange($event)"
+            dateFormat="yy-mm-dd"
+            placeholder="YYYY-MM-DD"
+            [showIcon]="true"
+            [style]="{ width: '100%' }"
+          />
+        </div>
+        <div class="col-12 md:col-4 lg:col-2">
+          <label class="block text-sm font-medium mb-1">Fecha Fin</label>
+          <p-datePicker
+            [value]="estadoCuentaRequest().fechaFin"
+            (onSelect)="onFechaFinChange($event)"
+            dateFormat="yy-mm-dd"
+            placeholder="YYYY-MM-DD"
+            [showIcon]="true"
+            [style]="{ width: '100%' }"
+          />
+        </div>
+        <div class="col-12 md:col-2">
+          <custom-button
+            label="Generar"
+            iconClass="pi pi-file"
+            (clicked)="loadEstadoCuentaRango()"
+            [loading]="estadoCuentaLoading()"
+            class="w-full"
+          />
+        </div>
+      </div>
+
+      @if (estadoCuentaLoading()) {
+        <div class="flex justify-content-center p-4 mt-3">
+          <p-progressSpinner />
+        </div>
+      } @else if (estadoCuentaResult()) {
+        <div class="mt-4">
+          <p-card header="Resumen del Estado de Cuenta">
+            <div class="grid">
+              <div class="col-12 md:col-6">
+                <p class="mb-1 text-sm text-600">Cuenta</p>
+                <p class="font-semibold">{{ estadocuentaResult()?.num_cta }}</p>
+              </div>
+              <div class="col-12 md:col-6">
+                <p class="mb-1 text-sm text-600">Departamento</p>
+                <p class="font-semibold">{{ estadocuentaResult()?.departamento }}</p>
+              </div>
+              <div class="col-12 md:col-3">
+                <p class="mb-1 text-sm text-600">Fecha Inicio</p>
+                <p>{{ estadocuentaResult()?.fecha_Inicio }}</p>
+              </div>
+              <div class="col-12 md:col-3">
+                <p class="mb-1 text-sm text-600">Fecha Fin</p>
+                <p>{{ estadocuentaResult()?.fecha_Fin }}</p>
+              </div>
+              <div class="col-12 md:col-3">
+                <p class="mb-1 text-sm text-600">Saldo Inicial</p>
+                <p class="font-semibold text-orange-600">
+                  {{ estadocuentaResult()?.saldo_Inicial | number: "1.2-2" }}
+                </p>
+              </div>
+              <div class="col-12 md:col-3">
+                <p class="mb-1 text-sm text-600">Saldo Final</p>
+                <p
+                  class="font-semibold"
+                  [class]="(estadocuentaResult()?.saldo_Final ?? 0) >= 0 ? 'text-green-600' : 'text-red-600'"
+                >
+                  {{ estadocuentaResult()?.saldo_Final | number: "1.2-2" }}
+                </p>
+              </div>
+            </div>
+
+            @if (getSaldosConcepto()) {
+              <div class="mt-3">
+                <h4 class="text-sm font-semibold mb-2">Saldos por Concepto</h4>
+                <div class="flex flex-wrap gap-2">
+                  @for (item of getSaldosConcepto(); track item.concepto) {
+                    <p-tag
+                      [value]="item.concepto + ': ' + (item.monto | number: '1.2-2')"
+                      [severity]="item.concepto === 'saldoFinal' ? 'info' : 'secondary'"
+                    />
+                  }
+                </div>
+              </div>
+            }
+          </p-card>
+
+          <div class="mt-3">
+            <h3 class="mb-2">Movimientos ({{ estadocuentaResult()?.total_Movimientos }})</h3>
+            <p-table
+              [value]="estadocuentaResult()?.movimientos ?? []"
+              [paginator]="true"
+              [rows]="15"
+              [rowHover]="true"
+              responsiveLayout="scroll"
+            >
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>ID</th>
+                  <th>Fecha</th>
+                  <th>Tipo</th>
+                  <th>Concepto</th>
+                  <th class="text-right">Monto</th>
+                  <th class="text-right">Saldo Ant</th>
+                  <th class="text-right">Saldo Post</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-mov>
+                <tr>
+                  <td><code class="text-xs">{{ mov.id }}</code></td>
+                  <td>{{ mov.fecha }}</td>
+                  <td>
+                    <p-tag
+                      [value]="mov.tipo"
+                      [severity]="mov.tipo === 'cargo' ? 'danger' : 'success'"
+                    />
+                  </td>
+                  <td>{{ mov.concepto }}</td>
+                  <td class="text-right font-mono">
+                    {{ mov.monto | number: "1.2-2" }}
+                  </td>
+                  <td class="text-right font-mono">
+                    {{ mov.saldo_Anterior | number: "1.2-2" }}
+                  </td>
+                  <td class="text-right font-mono">
+                    {{ mov.saldo_Posterior | number: "1.2-2" }}
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+      } @else if (estadoCuentaRequest().customerId) {
+        <p-message severity="warn" text="Completa los campos y haz clic en Generar para consultar el estado de cuenta." class="mt-3" />
+      }
+    </p-tabPanel>
+  </p-tabView>
+</div>

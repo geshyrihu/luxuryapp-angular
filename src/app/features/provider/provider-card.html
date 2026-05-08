@@ -1,0 +1,108 @@
+@if (model) {
+<p-card>
+  <div class="flex align-items-center p-3 mb-3 bg-blue-100 border-round">
+    <img
+      [src]="urlLogo"
+      alt="noImg"
+      class="mr-3"
+      style="width: 35px; height: 35px; object-fit: cover"
+    />
+    <small class="font-medium">{{ model.nameProvider }}</small>
+  </div>
+
+  <div class="grid col-12 md:col-4">
+    <div>
+      <p-fieldset legend="General" styleClass="mb-3 h-full">
+        <div class="grid col-12 mb-1">
+          <div class="col-5 text-500">Nombre Comercial</div>
+          <div class="col-7 font-medium">{{ model.nameComercial }}</div>
+        </div>
+        <div class="grid col-12 mb-1">
+          <div class="col-5 text-500">Dirección</div>
+          <div class="col-7 font-medium text-xs">{{ model.address }}</div>
+        </div>
+        <div class="grid col-12 mb-1">
+          <div class="col-5 text-500">Telófonos</div>
+          <div class="col-7 font-medium">
+            {{ model.phoneOne }} - {{ model.phoneTwo }}
+          </div>
+        </div>
+        <div class="grid col-12 mb-1">
+          <div class="col-5 text-500">RFC</div>
+          <div class="col-7 font-medium">{{ model.rfc }}</div>
+        </div>
+        <div class="grid col-12 mb-1">
+          <div class="col-5 text-500">Pógina web</div>
+          <div class="col-7 font-medium">{{ model.webPage }}</div>
+        </div>
+        <div class="grid col-12 mb-1">
+          <div class="col-5 text-500">Alcances</div>
+          <div class="col-7 font-medium">
+            @if (model.sales) {
+            <p-tag value="Ventas" severity="success" class="mr-1" />
+            } @if (model.repair) {
+            <p-tag value="Reparaciones" severity="success" />
+            }
+          </div>
+        </div>
+      </p-fieldset>
+    </div>
+    <div>
+      <p-fieldset legend="Contactos" styleClass="mb-3 h-full">
+        <div class="grid col-12 mb-1">
+          <div class="col-5 text-500">Contacto</div>
+          <div class="col-7 font-medium">{{ model.contactOne }}</div>
+        </div>
+        <div class="grid col-12 mb-1">
+          <div class="col-5 text-500">Puesto</div>
+          <div class="col-7 font-medium">{{ model.positionOne }}</div>
+        </div>
+        <div class="grid col-12 mb-1">
+          <div class="col-5 text-500">Telófono</div>
+          <div class="col-7 font-medium">{{ model.cellPhoneOne }}</div>
+        </div>
+        <div class="grid col-12 mb-1">
+          <div class="col-5 text-500">Email</div>
+          <div class="col-7 font-medium">{{ model.emailOne }}</div>
+        </div>
+        <div class="grid col-12 mb-1">
+          <div class="col-5 text-500">Contacto</div>
+          <div class="col-7 font-medium">{{ model.contactTwo }}</div>
+        </div>
+        <div class="grid col-12 mb-1">
+          <div class="col-5 text-500">Puesto</div>
+          <div class="col-7 font-medium">{{ model.positionTwo }}</div>
+        </div>
+        <div class="grid col-12 mb-1">
+          <div class="col-5 text-500">Telófono</div>
+          <div class="col-7 font-medium">{{ model.cellPhoneTwo }}</div>
+        </div>
+        <div class="grid col-12 mb-1">
+          <div class="col-5 text-500">Email</div>
+          <div class="col-7 font-medium">{{ model.emailTwo }}</div>
+        </div>
+      </p-fieldset>
+    </div>
+    <div>
+      <p-fieldset legend="Datos Bancarios" styleClass="mb-3 h-full">
+        <div class="grid col-12 mb-1">
+          <div class="col-5 text-500">Beneficiario</div>
+          <div class="col-7 font-medium">{{ model.nameCheck }}</div>
+        </div>
+        <div class="grid col-12 mb-1">
+          <div class="col-5 text-500">Banco</div>
+          <div class="col-7 font-medium">{{ model.bankName }}</div>
+        </div>
+        <div class="grid col-12 mb-1">
+          <div class="col-5 text-500">Cuenta/Convenio</div>
+          <div class="col-7 font-medium">{{ model.paymentAccount }}</div>
+        </div>
+        <div class="grid col-12 mb-1">
+          <div class="col-5 text-500">Clabe/Referencia</div>
+          <div class="col-7 font-medium">{{ model.interbankCode }}</div>
+        </div>
+      </p-fieldset>
+    </div>
+  </div>
+</p-card>
+}

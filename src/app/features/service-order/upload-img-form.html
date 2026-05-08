@@ -1,0 +1,22 @@
+<div class="card">
+  <p-fileUpload
+    name="files"
+    [url]="url"
+    (onUpload)="onUpload($event)"
+    [multiple]="true"
+    accept="image/*"
+    [maxFileSize]="maxFileSize"
+    [headers]="uploadedFiles"
+  >
+    <ng-template #empty>
+      <div>Arrastra y suelta los archivos aquí para subirlos..</div>
+    </ng-template>
+  </p-fileUpload>
+</div>
+
+
+
+
+
+
+

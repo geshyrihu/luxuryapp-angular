@@ -1,0 +1,54 @@
+<div class="w-full md:w-8 p-1">
+  <p-message severity="info">Calcular IVA a precio</p-message>
+
+  <div class="grid mt-2">
+    <div class="col-12">
+      <p-card>
+        <div class="mb-4">
+          <label class="block mb-2" for="precio">Ingresa el precio</label>
+          <p-inputNumber
+            styleClass="w-full"
+            inputId="precio"
+            [(ngModel)]="precio"
+            (onInput)="calcularPrecioSinIva()"
+            mode="decimal"
+            [minFractionDigits]="0"
+            [maxFractionDigits]="4"
+          ></p-inputNumber>
+        </div>
+      </p-card>
+    </div>
+    <div class="col-12">
+      <p-card>
+        <div class="mb-4">
+          <label class="block mb-2" for="precioSinIva">Precio sin iva</label>
+          <p-inputNumber
+            styleClass="w-full"
+            inputId="precioSinIva"
+            [(ngModel)]="precioSinIva"
+            mode="decimal"
+            [minFractionDigits]="0"
+            [maxFractionDigits]="4"
+            [disabled]="true"
+          ></p-inputNumber>
+        </div>
+      </p-card>
+    </div>
+    <div class="col-12">
+      <p-card>
+        <div class="mb-4">
+          <label class="block mb-2" for="iva">I.V.A.</label>
+          <p-inputNumber
+            styleClass="w-full"
+            inputId="iva"
+            [(ngModel)]="iva"
+            mode="decimal"
+            [minFractionDigits]="0"
+            [maxFractionDigits]="4"
+            [disabled]="true"
+          ></p-inputNumber>
+        </div>
+      </p-card>
+    </div>
+  </div>
+</div>

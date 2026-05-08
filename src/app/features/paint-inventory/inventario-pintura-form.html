@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        label="Id"
+        [readonly]="true"
+      />
+      <custom-input-autocomplete-signal
+        (propagar)="saveMachineryId($event)"
+        [control]="form.controls.machinery"
+        [data]="cb_machinery()"
+        label="Equipo/Instalación"
+        placeholder="Escribe para buscar equipo o instalación"
+      />
+
+      <custom-input-autocomplete-signal
+        (propagar)="saveProductoId($event)"
+        [control]="form.controls.producto"
+        [data]="cb_producto()"
+        label="Producto"
+        placeholder="Escribe para buscar producto"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.area"
+        label="Area"
+        placeholder="area"
+      />
+
+      <div class="text-left mt-3">
+        <custom-button-save
+          [propertyId]="id"
+          [disabled]="form.invalid"
+          [submitting]="submitting()"
+        />
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+

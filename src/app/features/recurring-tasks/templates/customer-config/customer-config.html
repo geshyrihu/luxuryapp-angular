@@ -1,0 +1,53 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title mb-0">Configuración por Cliente</h5>
+  </div>
+  <div class="card-body">
+    <div class="w-full md:w-1/2">
+      <label for="customer">Cliente</label>
+      <custom-input-select-signal
+        id="customer"
+        [data]="customers()"
+        [(ngModel)]="selectedCustomerId"
+        label="Selecciona un cliente"
+        [showClear]="true"
+      />
+    </div>
+
+    @if (selectedCustomerId() && templates().length > 0) {
+    <div>
+      <h6 class="mt-4">Items de Tareas</h6>
+      @for (template of templates(); track template.id) {
+      <p-fieldset [legend]="template.name" [toggleable]="true" class="mb-3">
+        <small class="text-color-secondary block mb-2"
+          >Rol: {{ template.roleName }}</small
+        >
+        @for (item of template.items; track item.id) {
+        <div class="field-checkbox">
+          <p-checkbox
+            [binary]="true"
+            [label]="item.title"
+            [value]="item.id"
+            [ngModel]="selectedItems().get(item.id)"
+            (onChange)="onItemCheckChange(item.id, $event.checked)"
+          >
+          </p-checkbox>
+        </div>
+        } @empty {
+        <div class="text-color-secondary">Esta plantilla no tiene items.</div>
+        }
+      </p-fieldset>
+      }
+      <div class="flex justify-content-end mt-4">
+        <custom-button-save
+          (clicked)="onSave()"
+          [submitting]="submitting()"
+          label="Guardar Configuración"
+        />
+      </div>
+    </div>
+    } @else if (selectedCustomerId() && templates().length === 0) {
+    <div class="mt-4 text-color-secondary">Cargando plantillas...</div>
+    }
+  </div>
+</div>

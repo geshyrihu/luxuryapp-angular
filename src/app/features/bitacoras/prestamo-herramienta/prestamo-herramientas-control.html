@@ -1,0 +1,152 @@
+@if (dataSignal()) {
+<p-table
+  (onLazyLoad)="loadDataLazy($event)"
+  [globalFilterFields]="globalFilterFields"
+  [lazy]="true"
+  [paginator]="true"
+  [rows]="rows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [totalRecords]="totalRecords"
+  [value]="dataSignal().items"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+      [(searchTerm)]="searchTerm"
+      (searchTermChange)="applyFilter()"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="fechaSalida">
+        Fecha de Salida
+        <p-sortIcon field="fechaSalida" />
+      </th>
+      <th pSortableColumn="tool">
+        Herramienta
+        <p-sortIcon field="tool" />
+      </th>
+      <th pSortableColumn="applicationUser">
+        Colaborador
+        <p-sortIcon field="applicationUser" />
+      </th>
+      <th pSortableColumn="fechaRegreso">
+        Fecha de Entrega
+        <p-sortIcon field="fechaRegreso" />
+      </th>
+      <th pSortableColumn="observaciones">
+        Observaciones
+        <p-sortIcon field="observaciones" />
+      </th>
+      @if ( aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.JefeMantenimiento,
+      AspRole.Almacenista]) ) {
+      <th class="table-col-5"></th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <small> {{ item.fechaSalida | date: "medium" }} </small>
+      </td>
+      <td>
+        <small> {{ item.tool }} </small>
+      </td>
+      <td>
+        <small> {{ item.applicationUser }} </small>
+      </td>
+      <td>
+        <small> {{ item.fechaRegreso | date: "medium" }} </small>
+      </td>
+      <td>
+        <small> {{ item.observaciones }} </small>
+      </td>
+      <!-- Opciones -->
+      @if ( aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.JefeMantenimiento,
+      AspRole.Almacenista]) ) {
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+      }
+      <!-- Opciones -->
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal().items" />
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal().items"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields"
+  [dt]="dt"
+  [rolAuth]="aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.JefeMantenimiento])"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding">
+      <ion-label>
+        <div class="flex justify-content-between align-items-center mb-1">
+          <h2 class="font-bold m-0 text-base flex align-items-center">
+            <i class="pi pi-wrench text-primary"></i>
+            {{ item.tool }}
+          </h2>
+        </div>
+        <p class="text-sm text-700 m-0 mb-1">
+          <i class="pi pi-user mr-1 text-500"></i> {{ item.applicationUser }}
+        </p>
+
+        <div class="grid col-2 m-0 p-0 text-xs mt-2">
+          <div class="p-0">
+            <span class="text-500 block">Salida</span>
+            <span class="font-bold"
+              >{{ item.fechaSalida | date: 'dd/MM/yy HH:mm' }}</span
+            >
+          </div>
+          @if (item.fechaRegreso) {
+          <div class="p-0">
+            <span class="text-500 block">Regreso</span>
+            <span class="font-bold text-green-500"
+              >{{ item.fechaRegreso | date: 'dd/MM/yy HH:mm' }}</span
+            >
+          </div>
+          }
+        </div>
+
+        @if(item.observaciones){
+        <p
+          class="text-xs text-500 mt-2 m-0 surface-ground p-1 border-round font-italic"
+        >
+          {{ item.observaciones }}
+        </p>
+        }
+      </ion-label>
+
+      @if ( aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.JefeMantenimiento]) )
+      {
+      <div slot="end">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            />
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+          </ng-container>
+        </app-action-menu>
+      </div>
+      }
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+}

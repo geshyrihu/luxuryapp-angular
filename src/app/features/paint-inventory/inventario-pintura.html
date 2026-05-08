@@ -1,0 +1,119 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th>Ubicación</th>
+      <th>Area</th>
+      <th class="table-col-5"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-i="rowIndex">
+    <tr>
+      <td colspan="4">
+        <div class="p-3 surface-100 border-round flex align-items-center">
+          <p-image
+            [src]="urlImg + item.luminaria.img"
+            alt="."
+            width="60px"
+            [preview]="true"
+          />
+          <span class="font-bold text-primary"
+            >{{ item.luminaria.producto }}</span
+          >
+        </div>
+      </td>
+    </tr>
+    @for (itm of item.items; track itm; let index = $index) {
+    <tr>
+      <td>{{ itm.nameMachinery }}</td>
+      <td>{{ itm.area }}</td>
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-edit
+            (clicked)="onModalForm({ id: itm.id, title: 'Editar' })"
+          />
+          <custom-button-delete (confirmed)="onDelete(itm.id)" />
+        </div>
+      </td>
+    </tr>
+    }
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item
+      lines="none"
+      class="ion-no-padding"
+      style="--background: #fdf4ff; --min-height: 44px"
+    >
+      <div
+        slot="start"
+        style="
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          background: #e9d5ff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-left: 16px;
+        "
+      >
+        <ion-icon
+          name="color-palette-outline"
+          style="font-size: 20px; color: #7c3aed"
+        ></ion-icon>
+      </div>
+      <ion-label>
+        <h3 style="font-weight: 700; color: #7c3aed">
+          {{ item.luminaria.producto }}
+        </h3>
+      </ion-label>
+    </ion-item>
+    @for (itm of item.items; track itm) {
+    <ion-item
+      lines="full"
+      detail="false"
+      class="ion-no-padding"
+      style="--padding-start: 52px"
+    >
+      <ion-label>
+        <h3>{{ itm.nameMachinery }}</h3>
+        <p>{{ itm.area }}</p>
+      </ion-label>
+      <app-action-menu slot="end">
+        <ion-button-edit
+          (clicked)="onModalForm({ id: itm.id, title: 'Editar' })"
+        />
+        <ion-button-delete (confirmed)="onDelete(itm.id)" />
+      </app-action-menu>
+    </ion-item>
+    }
+  </ng-template>
+</app-data-view-mobile>

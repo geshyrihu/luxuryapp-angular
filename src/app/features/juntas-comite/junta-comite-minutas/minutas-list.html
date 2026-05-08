@@ -1,0 +1,486 @@
+@if (dataSignal()) {
+<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block">
+  <div class="card">
+    <p-table
+      [value]="dataSignal()"
+      dataKey="id"
+      styleClass="custom-table"
+      [paginator]="true"
+      [rows]="tablePrimeNgRows"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      [globalFilterFields]="globalFilterFields"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight"
+      #dt
+    >
+      <!-- Cabecera de la tabla principal -->
+      <ng-template #caption>
+        <div class="flex align-items-center flex-wrap gap-2 no-print mb-2 mt-1">
+          <!-- Botones de acciÃ³n -->
+          <custom-button
+            iconClass="pi pi-print"
+            label="PENDIENTES"
+            severity="danger"
+            size="sm"
+            [routerLink]="['/committee-meetings/minuta-pendientes']"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button
+            iconClass="pi pi-send"
+            label="SEGUIMIENTO"
+            severity="secondary"
+            size="sm"
+            [routerLink]="['/committee-meetings/seguimiento-minutas/operaciones']"
+            [showLabelOnDesktop]="true"
+          />
+
+          <!-- Filtros de tipo de junta -->
+          <div class="flex gap-1 ml-2">
+            <custom-button
+              iconClass="pi pi-building-columns"
+              label="ASAMBLEA"
+              size="sm"
+              [variant]="tipoJunta === 'Asamblea' ? null : 'outlined'"
+              (clicked)="onLoadData('Asamblea')"
+              [showLabelOnDesktop]="true"
+            />
+            <custom-button
+              iconClass="pi pi-users"
+              label="COMITÉ"
+              size="sm"
+              [variant]="tipoJunta === 'Comite' ? null : 'outlined'"
+              (clicked)="onLoadData('Comite')"
+              [showLabelOnDesktop]="true"
+            />
+            <custom-button
+              iconClass="pi pi-cog"
+              label="OPERACIÓN"
+              size="sm"
+              [variant]="tipoJunta === 'Operacion' ? null : 'outlined'"
+              (clicked)="onLoadData('Operacion')"
+              [showLabelOnDesktop]="true"
+            />
+          </div>
+
+          <div class="ml-auto">
+            <primeng-custom-caption
+              [title]="'Minutas ' + tipoJunta"
+              (add)="
+                showModalAddOrEditMeeting({ id: '', title: 'Nuevo Registro' })
+              "
+              [showSearch]="false"
+              [dt]="dt"
+            />
+          </div>
+        </div>
+      </ng-template>
+
+      <!-- Columnas de la tabla principal -->
+      <ng-template #header>
+        <tr>
+          <th class="table-col-17" pSortableColumn="date">
+            Fecha
+            <p-sortIcon field="date" />
+          </th>
+          <th class="table-col-15" pSortableColumn="issues">
+            Total
+            <p-sortIcon field="issues" />
+          </th>
+          <th class="table-col-15" pSortableColumn="concluidos">
+            Concluido
+            <p-sortIcon field="concluidos" />
+          </th>
+          <th class="table-col-15" pSortableColumn="pending">
+            Pendiente
+            <p-sortIcon field="pending" />
+          </th>
+          <th class="table-col-15" pSortableColumn="noAutorizado">
+            No Autorizado
+            <p-sortIcon field="noAutorizado" />
+          </th>
+          <th style="width: 18%">Acciones</th>
+          <th class="table-col-5"></th>
+        </tr>
+      </ng-template>
+
+      <!-- Cuerpo de la tabla principal -->
+      <ng-template #body let-item>
+        <tr>
+          <td>
+            <div class="text-base font-bold text-900">
+              {{ item.dateFormat }}
+            </div>
+          </td>
+          <!-- Botones para ver detalles por estatus -->
+          <!-- TOTAL -->
+          <td class="text-center">
+            <div
+              class="cursor-pointer flex align-items-center justify-content-between p-2 border-round bg-cyan-700 text-white w-full mx-auto hover:bg-cyan-800 transition-all transition-duration-200"
+              pTooltip="Revisar todos los asuntos"
+              tooltipPosition="top"
+              (click)="showModalAddOrEditMeetingDetails(item.id, 'Asuntos', 4)"
+              [class.opacity-50]="item.issues == 0"
+              [class.pointer-events-none]="item.issues == 0"
+              style="max-width: 150px"
+            >
+              <span class="text-xs font-bold flex align-items-center gap-1">
+                <i class="pi pi-chart-bar text-xs"></i>
+                <span>TOTAL</span>
+              </span>
+              <span class="font-bold">{{ item.issues }}</span>
+            </div>
+          </td>
+
+          <!-- CONCLUIDOS -->
+          <td class="text-center">
+            <div
+              class="cursor-pointer flex align-items-center justify-content-between p-2 border-round bg-green-500 text-white w-full mx-auto hover:bg-green-600 transition-all transition-duration-200"
+              pTooltip="Revisar Concluidos"
+              tooltipPosition="top"
+              (click)="
+                showModalAddOrEditMeetingDetails(item.id, 'Concluidos', 1)
+              "
+              [class.opacity-50]="item.concluidos == 0"
+              [class.pointer-events-none]="item.concluidos == 0"
+              style="max-width: 150px"
+            >
+              <span class="text-xs font-bold flex align-items-center gap-1">
+                <i class="pi pi-check-circle text-xs"></i>
+                <span>CONCL.</span>
+              </span>
+              <span class="font-bold">{{ item.concluidos }}</span>
+            </div>
+          </td>
+
+          <!-- PENDIENTES -->
+          <td class="text-center">
+            <div
+              class="cursor-pointer flex align-items-center justify-content-between p-2 border-round bg-red-500 text-white w-full mx-auto hover:bg-red-600 transition-all transition-duration-200"
+              pTooltip="Revisar Pendientes"
+              tooltipPosition="top"
+              (click)="
+                showModalAddOrEditMeetingDetails(item.id, 'Pendientes', 0)
+              "
+              [class.opacity-50]="item.pending == 0"
+              [class.pointer-events-none]="item.pending == 0"
+              style="max-width: 150px"
+            >
+              <span class="text-xs font-bold flex align-items-center gap-1">
+                <i class="pi pi-clock text-xs"></i>
+                <span>PEND.</span>
+              </span>
+              <span class="font-bold">{{ item.pending }}</span>
+            </div>
+          </td>
+
+          <!-- NO AUTORIZADOS -->
+          <td class="text-center">
+            <div
+              class="cursor-pointer flex align-items-center justify-content-between p-2 border-round bg-gray-500 text-white w-full mx-auto hover:bg-gray-600 transition-all transition-duration-200"
+              pTooltip="Revisar No Autorizados"
+              tooltipPosition="top"
+              (click)="
+                showModalAddOrEditMeetingDetails(item.id, 'No Autorizado', 2)
+              "
+              [class.opacity-50]="item.noAutorizado == 0"
+              [class.pointer-events-none]="item.noAutorizado == 0"
+              style="max-width: 150px"
+            >
+              <span class="text-xs font-bold flex align-items-center gap-1">
+                <i class="pi pi-ban text-xs"></i>
+                <span>NO AUT.</span>
+              </span>
+              <span class="font-bold">{{ item.noAutorizado }}</span>
+            </div>
+          </td>
+
+          <!-- GESTIONAR -->
+          <td class="text-center">
+            <custom-button
+              iconClass="pi pi-file-edit"
+              label="GESTIONAR"
+              severity="secondary"
+              size="sm"
+              [routerLink]="['/committee-meetings/gestion-minuta', item.id]"
+              [showLabelOnDesktop]="true"
+            />
+          </td>
+
+          <!-- ACCIONES -->
+          <td class="no-print">
+            <app-action-menu>
+              <ng-container actions>
+                <ion-button-item
+                  iconClass="pi pi-chart-bar"
+                  label="Exportar Excel"
+                  (clicked)="exportToExcel(item.id)"
+                />
+                <ion-button-confirm
+                  iconClass="pi pi-envelope"
+                  label="Enviar a Comité"
+                  swalTitle="Confirmar envío"
+                  swalText="Esta seguro de que desea enviar la minuta?"
+                  swalConfirmButtonText="Sí­, enviar"
+                  (confirmed)="onSendEmailMeeting(item.id)"
+                />
+                <ion-button-item
+                  iconClass="pi pi-file-pdf"
+                  label="Minuta PDF"
+                  (clicked)="onNavigateMinutaPublico(item.id)"
+                />
+                <ion-button-item
+                  iconClass="pi pi-clipboard"
+                  label="Resumen minuta"
+                  (clicked)="resumenMinuta(item.id)"
+                />
+                <ion-button-edit
+                  (clicked)="
+                    showModalAddOrEditMeeting({ id: item.id, title: 'Editar' })
+                  "
+                />
+                @if (aspRoleS.hasAny([AspRole.SuperUsuario])) {
+                <ion-button-delete (confirmed)="onDelete(item.id)" />
+                }
+              </ng-container>
+            </app-action-menu>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template #paginatorleft>
+        <primeng-custom-table-footer [data]="dataSignal()" />
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- ðŸ“± INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+<div class="block md:hidden">
+  <div class="card border-none shadow-none">
+    <app-data-view-mobile
+      [data]="dataSignal()"
+      [globalFilterFields]="globalFilterFields"
+      (add)="showModalAddOrEditMeeting({ id: 0, title: 'Nuevo Registro' })"
+    >
+      <div customFilters>
+        <primeng-custom-caption
+          [title]="'Minutas ' + tipoJunta"
+          (add)="showModalAddOrEditMeeting({ id: 0, title: 'Nuevo Registro' })"
+          [showSearch]="false"
+        />
+        <div class="mt-2 flex flex-column gap-2">
+          <custom-button
+            iconClass="pi pi-print"
+            label="IMPRIMIR PENDIENTES"
+            severity="danger"
+            [fluid]="true"
+            [routerLink]="['/committee-meetings/minuta-pendientes']"
+          />
+          <custom-button
+            iconClass="pi pi-send"
+            label="SEGUIMIENTO PENDIENTES"
+            severity="secondary"
+            [fluid]="true"
+            [routerLink]="['/committee-meetings/seguimiento-minutas/operaciones']"
+          />
+          <div class="flex gap-1 mt-1">
+            <custom-button
+              iconClass="pi pi-building-columns"
+              label="ASAMBLEA"
+              size="sm"
+              [fluid]="true"
+              [variant]="tipoJunta === 'Asamblea' ? null : 'outlined'"
+              (clicked)="onLoadData('Asamblea')"
+            />
+            <custom-button
+              iconClass="pi pi-users"
+              label="COMITÉ"
+              size="sm"
+              [fluid]="true"
+              [variant]="tipoJunta === 'Comite' ? null : 'outlined'"
+              (clicked)="onLoadData('Comite')"
+            />
+            <custom-button
+              iconClass="pi pi-cog"
+              label="OPERACIÓN"
+              size="sm"
+              [fluid]="true"
+              [variant]="tipoJunta === 'Operacion' ? null : 'outlined'"
+              (clicked)="onLoadData('Operacion')"
+            />
+          </div>
+        </div>
+        <div
+          class="flex align-items-center justify-content-between mt-2 text-sm text-500 font-medium"
+        >
+          <span
+            >Total:
+            <strong>{{ dataSignal() ? dataSignal().length : 0 }}</strong></span
+          >
+          <span>{{ tipoJunta }}</span>
+        </div>
+      </div>
+      <ng-template #listItemTemplate let-item>
+        <ion-item lines="full" class="ion-no-padding" detail="false">
+          <div class="flex flex-column w-full p-3">
+            <div class="flex justify-content-between align-items-center mb-3">
+              <ion-label>
+                <h2 class="font-bold text-900 m-0">
+                  Fecha: {{ item.dateFormat }}
+                </h2>
+                <p class="text-sm text-500 m-0 mt-1">
+                  Total Asuntos: {{ item.issues }}
+                </p>
+              </ion-label>
+              <app-action-menu slot="end">
+                <ng-container actions>
+                  <ion-button-item
+                    iconName="trending-up-outline"
+                    label="Exportar Excel"
+                    (clicked)="exportToExcel(item.id)"
+                  />
+                  <ion-button-confirm
+                    label="Enviar a ComitÃ©"
+                    swalTitle="Confirmar envÃ­o"
+                    swalText="Ã³EstÃ³ seguro de que desea enviar la minuta?"
+                    swalConfirmButtonText="SÃ­, enviar"
+                    (confirmed)="onSendEmailMeeting(item.id)"
+                  />
+                  <ion-button-item
+                    iconName="document-outline"
+                    label="Minuta PDF"
+                    (clicked)="onGeneretePDF(item.id)"
+                  />
+                  <ion-button-item
+                    iconName="bar-chart-outline"
+                    label="Resumen minuta"
+                    (clicked)="resumenMinuta(item.id)"
+                  />
+                  <ion-button-edit
+                    (clicked)="
+                      showModalAddOrEditMeeting({
+                        id: item.id,
+                        title: 'Editar'
+                      })
+                    "
+                  />
+                  @if (aspRoleS.hasAny([AspRole.SuperUsuario])) {
+                  <ion-button-delete
+                    label="Eliminar"
+                    (confirmed)="onDelete(item.id)"
+                  />
+                  }
+                </ng-container>
+              </app-action-menu>
+            </div>
+            <div class="grid">
+              <div class="col-6">
+                <div
+                  class="cursor-pointer flex flex-column align-items-center justify-content-center p-2 border-round bg-green-600 text-white w-full mx-auto"
+                  pTooltip="Revisar Concluidos"
+                  tooltipPosition="top"
+                  (click)="
+                    showModalAddOrEditMeetingDetails(item.id, 'Concluidos', 1)
+                  "
+                  [class.opacity-50]="item.concluidos == 0"
+                  [class.pointer-events-none]="item.concluidos == 0"
+                >
+                  <span class="text-xs font-bold uppercase">Concluidos</span>
+                  <span class="font-bold">{{ item.concluidos }}</span>
+                </div>
+              </div>
+              <div class="col-6">
+                <div
+                  class="cursor-pointer flex flex-column align-items-center justify-content-center p-2 border-round bg-red-600 text-white w-full mx-auto"
+                  pTooltip="Revisar Pendientes"
+                  tooltipPosition="top"
+                  (click)="
+                    showModalAddOrEditMeetingDetails(item.id, 'Pendientes', 0)
+                  "
+                  [class.opacity-50]="item.pending == 0"
+                  [class.pointer-events-none]="item.pending == 0"
+                >
+                  <span class="text-xs font-bold uppercase">Pendientes</span>
+                  <span class="font-bold">{{ item.pending }}</span>
+                </div>
+              </div>
+              <div class="col-12">
+                <div
+                  class="cursor-pointer flex flex-column align-items-center justify-content-center p-2 border-round bg-purple-600 text-white w-full mx-auto"
+                  pTooltip="Revisar No Autorizados"
+                  tooltipPosition="top"
+                  (click)="
+                    showModalAddOrEditMeetingDetails(
+                      item.id,
+                      'No Autorizado',
+                      2
+                    )
+                  "
+                  [class.opacity-50]="item.noAutorizado == 0"
+                  [class.pointer-events-none]="item.noAutorizado == 0"
+                >
+                  <span class="text-xs font-bold uppercase">No Autorizado</span>
+                  <span class="font-bold">{{ item.noAutorizado }}</span>
+                </div>
+              </div>
+            </div>
+            <!-- Nested app-area-details-table components for mobile -->
+            <div class="mt-3">
+              <p-accordion>
+                <p-accordionTab header="Detalles Contables">
+                  <app-area-details-table
+                    title="Contable"
+                    [meetingId]="item.id"
+                    [details]="item.contable"
+                    [areaResponsable]="0"
+                    (addDetail)="onModalFormMinutaDetalle($event)"
+                    (editDetail)="onModalFormMinutaDetalle($event)"
+                    (deleteDetail)="onDeleteMeetingDetail($event)"
+                    (sendAreaEmail)="onSendEmail(item.id, 0)"
+                    (addSeguimiento)="onModalFormSeguimiento($event)"
+                    (editSeguimiento)="onModalFormSeguimiento($event)"
+                    (deleteSeguimiento)="onDeleteSeguimiento($event)"
+                  />
+                </p-accordionTab>
+                <p-accordionTab header="Detalles Operaciones">
+                  <app-area-details-table
+                    title="Operaciones"
+                    [meetingId]="item.id"
+                    [details]="item.operaciones"
+                    [areaResponsable]="1"
+                    (addDetail)="onModalFormMinutaDetalle($event)"
+                    (editDetail)="onModalFormMinutaDetalle($event)"
+                    (deleteDetail)="onDeleteMeetingDetail($event)"
+                    (sendAreaEmail)="onSendEmail(item.id, 1)"
+                    (addSeguimiento)="onModalFormSeguimiento($event)"
+                    (editSeguimiento)="onModalFormSeguimiento($event)"
+                    (deleteSeguimiento)="onDeleteSeguimiento($event)"
+                  />
+                </p-accordionTab>
+                <p-accordionTab header="Detalles Legales">
+                  <app-area-details-table
+                    title="Legal"
+                    [meetingId]="item.id"
+                    [details]="item.legal"
+                    [areaResponsable]="2"
+                    (addDetail)="onModalFormMinutaDetalle($event)"
+                    (editDetail)="onModalFormMinutaDetalle($event)"
+                    (deleteDetail)="onDeleteMeetingDetail($event)"
+                    (sendAreaEmail)="onSendEmail(item.id, 2)"
+                    (addSeguimiento)="onModalFormSeguimiento($event)"
+                    (editSeguimiento)="onModalFormSeguimiento($event)"
+                    (deleteSeguimiento)="onDeleteSeguimiento($event)"
+                  />
+                </p-accordionTab>
+              </p-accordion>
+            </div>
+          </div>
+        </ion-item>
+      </ng-template>
+    </app-data-view-mobile>
+  </div>
+</div>
+}

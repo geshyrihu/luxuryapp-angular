@@ -1,0 +1,137 @@
+@if (dataSignal()) {
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block">
+  <div class="card">
+    <p-table
+      [globalFilterFields]="globalFilterFields"
+      [paginator]="true"
+      [rows]="tablePrimeNgRows"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [showCurrentPageReport]="true"
+      [value]="dataSignal()"
+      #dt
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      styleClass="custom-table"
+    >
+      <!-- styleClass="p-datatable-sm" -->
+      <ng-template #caption>
+        <primeng-custom-caption
+          (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+          [dt]="dt"
+        />
+      </ng-template>
+
+      <ng-template #header>
+        <tr>
+          <th pSortableColumn="requestDateFilter">
+            FECHA
+            <p-sortIcon field="requestDateFilter" />
+          </th>
+          <th pSortableColumn="machinery">
+            EQUIPO
+            <p-sortIcon field="machinery" />
+          </th>
+          <th pSortableColumn="folio">
+            FOLIO
+            <p-sortIcon field="folio" />
+          </th>
+          <th pSortableColumn="report">
+            REPORTE
+            <p-sortIcon field="report" />
+          </th>
+          <th pSortableColumn="request">
+            RESPUESTA
+            <p-sortIcon field="request" />
+          </th>
+          <th pSortableColumn="personWhoReports">
+            REPORTO
+            <p-sortIcon field="personWhoReports" />
+          </th>
+          <th pSortableColumn="technicianWhoAttended">
+            ATENDIO
+            <p-sortIcon field="technicianWhoAttended" />
+          </th>
+
+          <th class="table-col-5 no-print"></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>{{ item.requestDate }}</td>
+          <td>{{ item.machinery }}</td>
+          <td>{{ item.folio }}</td>
+          <td>{{ item.report }}</td>
+          <td>{{ item.request }}</td>
+          <td>{{ item.personWhoReports }}</td>
+          <td>{{ item.technicianWhoAttended }}</td>
+          <!-- Opciones -->
+
+          <td>
+            <div class="flex">
+              <custom-button-edit
+                (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+              />
+              <custom-button-delete (confirmed)="onDelete(item.id)" />
+            </div>
+          </td>
+          <!-- Opciones -->
+        </tr>
+      </ng-template>
+      <ng-template #paginatorleft>
+        <primeng-custom-table-footer [data]="dataSignal()" />
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding">
+      <ion-label>
+        <div class="flex justify-content-between align-items-center mb-1">
+          <h2 class="font-bold m-0 text-base text-wrap">
+            {{ item.machinery }}
+          </h2>
+        </div>
+        <p class="text-sm text-500 m-0">
+          <i class="pi pi-hashtag mr-1 text-xs"></i> Folio: {{ item.folio }}
+        </p>
+        <p class="text-sm text-500 m-0">
+          <i class="pi pi-calendar mr-1 text-xs"></i> {{ item.requestDate }}
+        </p>
+        <p class="text-sm text-700 mt-2 mb-1">
+          <strong>Reporte:</strong> {{ item.report }}
+        </p>
+        <p class="text-sm text-700 m-0 mb-1">
+          <strong>Respuesta:</strong> {{ item.request }}
+        </p>
+        <div class="flex flex-column gap-1 mt-1">
+          <small class="text-xs text-500"
+            >Reportó: {{ item.personWhoReports }}</small
+          >
+          <small class="text-xs text-500"
+            >Atendió: {{ item.technicianWhoAttended }}</small
+          >
+        </div>
+      </ion-label>
+      <div slot="end">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            />
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+          </ng-container>
+        </app-action-menu>
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+}

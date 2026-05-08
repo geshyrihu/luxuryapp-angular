@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <!-- Img -->
+      <div class="grid mb-4">
+        <label class="col-12 sm:col-3 block mb-2">Imagen</label>
+        <div class="col-12 sm:col-9">
+          <custom-input-img-signal
+            (fileSelected)="uploadFile($event)"
+            [urlImgCurrent]="model()?.pathImage"
+            [contentHeight]="'50'"
+            [contentWidth]="'50'"
+          />
+        </div>
+      </div>
+      <!-- Img -->
+
+      <custom-input-text-signal
+        placeholder="nombre "
+        [control]="form.controls.name"
+        label="Nombre"
+      />
+      <custom-input-text-signal
+        placeholder="ubicación "
+        [control]="form.controls.ubication"
+        label="Ubicación"
+      />
+      <custom-input-select-signal
+        [control]="form.controls.typePiscina"
+        label="Tipo de alberca"
+        [data]="cb_typePiscina()"
+      />
+      <custom-input-number-signal
+        placeholder="volumen"
+        [control]="form.controls.volumen"
+        label="Volumen"
+      />
+      <custom-button-save
+        [propertyId]="id()"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </div>
+</div>

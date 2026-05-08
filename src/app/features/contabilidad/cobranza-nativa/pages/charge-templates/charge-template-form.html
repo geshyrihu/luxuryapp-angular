@@ -1,0 +1,117 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-3">
+  <custom-input-select-signal
+    [control]="form.controls.chargeType"
+    [data]="chargeTypes"
+    optionLabel="label"
+    optionValue="value"
+    label="Tipo de Cargo"
+    [filter]="true"
+    required
+  />
+  <custom-input-select-signal
+    [control]="form.controls.calculationMethod"
+    [data]="calculationMethods"
+    optionLabel="label"
+    optionValue="value"
+    label="Método de Cálculo"
+    [filter]="true"
+    required
+  />
+
+  <!-- Nombre de la Plantilla: identificador para el admin -->
+  <custom-input-text-signal
+    [control]="form.controls.name"
+    label="Nombre de la Plantilla"
+    hint="Ej: Cuota Ordinaria 2026, Fondo de Reserva Q1"
+    required
+  />
+  <!-- El concepto de cada Charge se genera automáticamente: TIPO - MES AÑO -->
+  <custom-input-currency-signal
+    [control]="form.controls.amount"
+    label="Cuota Mensual Total"
+    required
+  />
+
+  <div class="flex flex-wrap">
+    <custom-input-select-signal
+      [control]="form.controls.recurrence"
+      [data]="recurrenceOptions"
+      optionLabel="label"
+      optionValue="value"
+      label="Recurrencia"
+      [filter]="true"
+      required
+    />
+
+    <custom-input-number-signal
+      [control]="form.controls.dayOfMonth"
+      [min]="1"
+      [max]="31"
+      label="Día del Mes"
+      required
+    />
+  </div>
+
+  <custom-input-date-signal
+    [control]="form.controls.startDate"
+    label="Inicio de Vigencia"
+    required
+  />
+  <custom-input-date-signal
+    [control]="form.controls.endDate"
+    label="Fin de Vigencia (Opcional)"
+  />
+
+  <custom-input-currency-signal
+    [control]="form.controls.earlyPaymentDiscount"
+    label="Descuento (Opcional)"
+  />
+  <custom-input-select-signal
+    [control]="form.controls.earlyPaymentDiscountType"
+    [data]="discountTypes"
+    optionLabel="label"
+    optionValue="value"
+    label="Tipo Descuento"
+    [filter]="true"
+    [showClear]="true"
+  />
+  <custom-input-number-signal
+    [control]="form.controls.earlyPaymentGraceDays"
+    [min]="0"
+    label="Días de Gracia"
+  />
+
+  <custom-input-check-signal
+    [control]="form.controls.applyToAllProperties"
+    label="Aplicar a todas las propiedades"
+  />
+
+  <div
+    class="p-3 border-1 border-round bg-orange-50/50 mb-4 mt-2 border-orange-200"
+  >
+    <custom-input-check-signal
+      [control]="form.controls.isRetroactive"
+      label="Aplica cobro retroactivo (Opción C: Ajuste Diferencial)"
+    />
+
+    @if (form.controls.isRetroactive.value) {
+    <div class="mt-3">
+      <custom-input-date-signal
+        [control]="form.controls.retroactiveStartDate"
+        label="Fecha Inicial del Retroactivo"
+        hint="Se ajustará la diferencia de los meses cobrados previamente."
+        required
+      />
+    </div>
+    }
+  </div>
+
+  <custom-input-check-signal
+    [control]="form.controls.isActive"
+    label="Activo"
+  />
+
+  <div class="flex justify-content-end mt-4">
+    <custom-button-save [disabled]="form.invalid || submitting" />
+  </div>
+</form>

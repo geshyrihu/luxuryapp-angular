@@ -1,0 +1,127 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <div
+      class="flex flex-column md:flex-row align-items-start md:align-items-center justify-content-between mt-1"
+    >
+      <div class="w-full md:w-auto"></div>
+      <div
+        class="flex flex-wrap align-items-start md:align-items-center w-full md:w-auto justify-content-start md:justify-content-end gap-2"
+      >
+        <primeng-custom-caption
+          (add)="onModalCreate()"
+          [dt]="dt"
+          [showAdd]="false"
+        />
+        <custom-button
+          (clicked)="onFaqsFondeo()"
+          iconClass="pi pi-question-circle"
+          label="Ayuda"
+          variant="outlined"
+        />
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-17" pSortableColumn="period">
+        Periodo
+        <p-sortIcon field="period" />
+      </th>
+      <!-- <th class="table-col-20">Genero</th> -->
+      <th class="table-col-20">Realizo</th>
+      <th class="table-col-20">Autorizo</th>
+      <th class="table-col-20">Contabilidad</th>
+      <th class="table-col-3 no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr (click)="onDetails(item.id)">
+      <td>
+        <p class="text-lg m-0 text-600">{{ item.period | uppercase}}</p>
+      </td>
+      <td>
+        <p class="text-sm font-semibold m-0 flex align-items-center">
+          @if (item.verifiedByName) {
+          <span class="text-xl mr-2">✅</span>
+          <span>{{ item.verifiedByName }} {{ item.verifiedAt }}</span>
+          } @else {
+          <span class="text-xl mr-2">⏳</span>
+          <span class="text-500 font-normal">En espera</span>
+          }
+        </p>
+      </td>
+
+      <td>
+        <p class="text-sm font-semibold m-0 flex align-items-center">
+          @if (item.authorizedByName) {
+          <span class="text-xl mr-2">🛡️</span>
+          <span>{{ item.authorizedByName }} {{ item.authorizedAt }}</span>
+          } @else {
+          <span class="text-xl mr-2">⏳</span>
+          <span class="text-500 font-normal">En espera</span>
+          }
+        </p>
+      </td>
+
+      <td>
+        <p class="text-sm font-semibold m-0 flex align-items-center">
+          @if (item.confirmedByName) {
+          <span class="text-xl mr-2">💰</span>
+          <span>{{ item.confirmedByName }} {{ item.confirmedAt }}</span>
+          } @else {
+          <span class="text-xl mr-2">⏳</span>
+          <span class="text-500 font-normal">En espera</span>
+          }
+        </p>
+      </td>
+
+      <td class="no-print text-center">
+        <i class="pi pi-chevron-right text-400"></i>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item
+      lines="full"
+      detail="false"
+      class="ion-no-padding"
+      (click)="onDetails(item.id)"
+    >
+      <div
+        slot="start"
+        class="w-2rem h-2rem border-round bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+      >
+        <i class="pi pi-wallet text-green-600 text-xl"></i>
+      </div>
+      <ion-label class="ml-2">
+        <h3 class="font-bold text-900">{{ item.period | uppercase }}</h3>
+        <p class="text-sm text-500">
+          Autorizado: {{ item.authorizedByName || '? En espera' }}
+        </p>
+        <p class="text-sm text-500">
+          Contabilidad: {{ item.confirmedByName || '? En espera' }}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

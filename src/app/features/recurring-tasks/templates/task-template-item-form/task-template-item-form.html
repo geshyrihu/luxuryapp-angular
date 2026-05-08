@@ -1,0 +1,57 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <custom-input-text-signal
+    [control]="form.controls.title"
+    label="Título del Item"
+    placeholder="Título del Item"
+  />
+
+  <custom-input-textarea-signal
+    [control]="form.controls.description"
+    label="Descripción"
+    placeholder="Descripción"
+  />
+
+  <custom-input-select-signal
+    [control]="form.controls.priority"
+    label="Prioridad"
+    [data]="priorities()"
+  />
+
+  <app-recurrence-input
+    [label]="'Regla de Recurrencia'"
+    formControlName="recurrenceRule"
+  ></app-recurrence-input>
+
+  <!-- Add custom components for time inputs if they exist, otherwise leave calendars -->
+  <div class="grid mt-3">
+    <div class="col-12 md:col-6 flex flex-column gap-1">
+      <label for="timeWindowStart">Inicio Ventana Horaria</label>
+      <p-datepicker
+        inputId="timeWindowStart"
+        formControlName="timeWindowStart"
+        [timeOnly]="true"
+      ></p-datepicker>
+    </div>
+    <div class="col-12 md:col-6 flex flex-column gap-1">
+      <label for="timeWindowEnd">Fin Ventana Horaria</label>
+      <p-datepicker
+        inputId="timeWindowEnd"
+        formControlName="timeWindowEnd"
+        [timeOnly]="true"
+      ></p-datepicker>
+    </div>
+  </div>
+  <br />
+  <div class="p-field-checkbox mt-3">
+    <custom-input-check-signal
+      [control]="form.controls.isActive"
+      label="Item Activo"
+    />
+  </div>
+
+  <custom-button-save
+    [propertyId]="item()?.id"
+    [disabled]="form.invalid"
+    [submitting]="submitting()"
+  />
+</form>

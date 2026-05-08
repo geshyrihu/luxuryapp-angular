@@ -1,0 +1,152 @@
+import { Component, inject, OnInit, signal } from "@angular/core";
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomInputDecimal } from "src/app/core/components/inputs/web/custom-input-decimal-signal";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import {
+  CreatePropertyFineDTO,
+  RegulationArticleResponseDTO,
+  UpdatePropertyFineDTO,
+} from "../../models/property-fine.dto";
+
+interface IPropertyFineForm {
+  propertyId: FormControl<string>;
+  regulationArticleId: FormControl<string | null>;
+  description: FormControl<string>;
+  infractionDate: FormControl<string>;
+  amount: FormControl<number>;
+  adminNotes: FormControl<string | null>;
+}
+
+@Component({
+  selector: "app-property-fine-form",
+  imports: [
+    ReactiveFormsModule,
+    CustomInputTextAreaSignal,
+    CustomInputDecimal,
+    CustomInputDateSignal,
+    CustomInputSelectSignal,
+    CustomButtonSave,
+  ],
+  templateUrl: "./property-fine-form.html",
+})
+export class PropertyFineForm implements OnInit {
+  private apiResponseS = inject(ApiResponseService);
+  private ref = inject(DynamicDialogRef);
+  private config = inject(DynamicDialogConfig);
+
+  id: string = "";
+  customerId: string = "";
+  submitting = signal(false);
+
+  properties = signal<{ label: string; value: string }[]>([]);
+  articles = signal<{ label: string; value: string }[]>([]);
+
+  form = new FormGroup<IPropertyFineForm>({
+    propertyId: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    regulationArticleId: new FormControl<string | null>(null),
+    description: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required, Validators.maxLength(500)],
+    }),
+    infractionDate: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    amount: new FormControl(0, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.min(0.01)],
+    }),
+    adminNotes: new FormControl<string | null>(null),
+  });
+
+  ngOnInit() {
+    this.id = this.config.data.id;
+    this.customerId = this.config.data.customerId;
+    this.loadSelectData();
+    if (this.id) this.loadData();
+  }
+
+  private async loadSelectData() {
+    const props = await this.apiResponseS.onGetItem<{ label: string; value: string }[]>(
+      Endpoints.SelectItems.properties(this.customerId),
+    );
+    if (props) {
+      this.properties.set(props);
+    }
+
+    const arts = await this.apiResponseS.onGetItem<RegulationArticleResponseDTO[]>(
+      Endpoints.AccountingCoi.NativeCollection.RegulationArticles.byCustomer(this.customerId),
+    );
+    if (arts) {
+      this.articles.set(
+        arts
+          .filter((a) => a.isActive)
+          .map((a) => ({ label: `${a.articleNumber} — ${a.title}`, value: a.id })),
+      );
+    }
+  }
+
+  async loadData() {
+    const res = await this.apiResponseS.onGetItem<any>(
+      Endpoints.AccountingCoi.NativeCollection.PropertyFines.getById(this.id),
+    );
+    if (res) this.form.patchValue(res);
+  }
+
+  async onSubmit() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+    this.submitting.set(true);
+    try {
+      const vals = this.form.getRawValue();
+      if (this.id) {
+        const payload: UpdatePropertyFineDTO = {
+          id: this.id,
+          regulationArticleId: vals.regulationArticleId,
+          description: vals.description,
+          infractionDate: vals.infractionDate,
+          amount: vals.amount,
+          adminNotes: vals.adminNotes,
+        };
+        const res = await this.apiResponseS.onPut(
+          Endpoints.AccountingCoi.NativeCollection.PropertyFines.update(this.id),
+          payload,
+        );
+        if (res) this.ref.close(true);
+      } else {
+        const payload: CreatePropertyFineDTO = {
+          customerId: this.customerId,
+          propertyId: vals.propertyId,
+          regulationArticleId: vals.regulationArticleId,
+          description: vals.description,
+          infractionDate: vals.infractionDate,
+          amount: vals.amount,
+          adminNotes: vals.adminNotes,
+        };
+        const res = await this.apiResponseS.onPost(
+          Endpoints.AccountingCoi.NativeCollection.PropertyFines.create,
+          payload,
+        );
+        if (res) this.ref.close(true);
+      }
+    } finally {
+      this.submitting.set(false);
+    }
+  }
+}

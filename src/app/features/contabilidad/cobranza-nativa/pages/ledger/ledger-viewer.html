@@ -1,0 +1,153 @@
+<div class="card p-0 md:p-4">
+  <!-- Filtros -->
+  <div class="p-3 mb-3 surface-50 border-round border-1 surface-border">
+    <div class="grid formgrid align-items-end">
+      <div class="field col-12 md:col-4">
+        <custom-input-select-signal
+          label="Propiedad"
+          [data]="properties()"
+          [control]="propertyIdCtrl"
+          [noMargin]="true"
+          [filter]="true"
+        />
+      </div>
+      <div class="field col-6 md:col-2">
+        <custom-input-date-signal label="Desde" [control]="fromCtrl" [noMargin]="true" />
+      </div>
+      <div class="field col-6 md:col-2">
+        <custom-input-date-signal label="Hasta" [control]="toCtrl" [noMargin]="true" />
+      </div>
+      <div class="field col-12 md:col-3">
+        <custom-input-select-signal
+          label="Tipo de evento"
+          [data]="eventTypeOptions"
+          [control]="eventTypeCtrl"
+          [noMargin]="true"
+          [filter]="true"
+        />
+      </div>
+      <div class="field col-12 md:col-1 flex align-items-end gap-2">
+        <custom-button
+          label="Buscar"
+          iconClass="pi pi-search"
+          severity="primary"
+          [disabled]="!propertyIdCtrl.value || loading()"
+          (clicked)="onSearch()"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla desktop -->
+  <p-table
+    [value]="dataSignal()"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+    styleClass="custom-table hidden md:block"
+    #dt
+  >
+    <ng-template pTemplate="caption">
+      <primeng-custom-caption
+        title="Ledger Financiero"
+        [showAdd]="false"
+        [dt]="dt"
+        [noMargin]="true"
+        [noPadding]="true"
+      />
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="w-8rem text-center">Fecha</th>
+        <th class="w-10rem text-center">Tipo de Evento</th>
+        <th>Descripcion</th>
+        <th class="w-8rem text-right">Debito</th>
+        <th class="w-8rem text-right">Credito</th>
+        <th class="w-7rem text-500 text-xs">Creado por</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-entry>
+      <tr>
+        <td class="text-center text-sm">
+          {{ entry.effectiveDate | date:'dd/MM/yyyy' }}
+        </td>
+        <td class="text-center">
+          <span class="badge text-xs" [class]="eventTypeClass(entry.eventType)">
+            {{ eventTypeLabel(entry.eventType) }}
+          </span>
+        </td>
+        <td class="text-sm">{{ entry.description }}</td>
+        <td class="text-right text-sm">
+          @if (entry.debitAmount > 0) {
+          <span class="text-red-700"
+            >{{ entry.debitAmount | currency:'MXN':'symbol-narrow':'1.2-2'
+            }}</span
+          >
+          }
+        </td>
+        <td class="text-right text-sm">
+          @if (entry.creditAmount > 0) {
+          <span class="text-green-700"
+            >{{ entry.creditAmount | currency:'MXN':'symbol-narrow':'1.2-2'
+            }}</span
+          >
+          }
+        </td>
+        <td class="text-xs text-500">{{ entry.createdBy }}</td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="6" class="text-center p-4 text-500">
+          @if (!propertyIdCtrl.value) { Selecciona una propiedad para consultar
+          el ledger. } @else { No hay movimientos en el periodo seleccionado. }
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- Vista mobile -->
+  <app-data-view-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="['description', 'createdBy']"
+    [showAdd]="false"
+  >
+    <ng-template #listItemTemplate let-entry>
+      <ion-item lines="full" detail="false" class="ion-no-padding">
+        <div
+          slot="start"
+          class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+        >
+          <ion-icon
+            name="list-outline"
+            class="text-blue-600 text-xl"
+          ></ion-icon>
+        </div>
+        <ion-label>
+          <h3>{{ eventTypeLabel(entry.eventType) }}</h3>
+          <p>{{ entry.description }}</p>
+          <p>
+            {{ entry.effectiveDate | date:'dd/MM/yyyy' }} &middot; {{
+            entry.createdBy }}
+          </p>
+        </ion-label>
+        <div slot="end" class="pr-3 text-right">
+          @if (entry.debitAmount > 0) {
+          <div class="text-red-700 text-sm font-medium">
+            -{{ entry.debitAmount | currency:'MXN':'symbol-narrow':'1.2-2' }}
+          </div>
+          } @if (entry.creditAmount > 0) {
+          <div class="text-green-700 text-sm font-medium">
+            +{{ entry.creditAmount | currency:'MXN':'symbol-narrow':'1.2-2' }}
+          </div>
+          }
+        </div>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
+</div>

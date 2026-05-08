@@ -1,0 +1,39 @@
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <custom-input-date-signal
+    [control]="form.controls.fechaSolicitud"
+    label="Fecha de solicitud"
+    placeholder="fecha de solicitud"
+  />
+
+  <div class="mt-3 flex align-items-center">
+    <div class="mb-4 flex align-items-center">
+      <label>¿Es una devolución?</label>
+      <p-toggleSwitch formControlName="isDevolucion" />
+    </div>
+  </div>
+  <custom-input-textarea-signal
+    [control]="form.controls.equipoOInstalacion"
+    label="Area"
+    placeholder="area"
+  />
+
+  <custom-input-textarea-signal
+    [control]="form.controls.justificacionGasto"
+    label="Justificación"
+    placeholder="justificación"
+  />
+
+  <custom-input-textarea-signal
+    [control]="form.controls.notasEspeciales"
+    label="Notas Especiales"
+    placeholder="Notas especiales"
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.urlFile"
+    label="Liga de luxuryCloud"
+    placeholder="Liga de luxuryCloud"
+  />
+
+  <custom-button-save [disabled]="form.invalid" [submitting]="submitting()" />
+</form>

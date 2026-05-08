@@ -1,0 +1,96 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+    />
+    <custom-button-download
+      label="Descargar PDF"
+      [showLabelOnDesktop]="true"
+      (clicked)="onDownloadPdf()"
+      class="mt-1"
+    />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th>Nº</th>
+      <th pSortableColumn="fotografia">Fotografia <p-sortIcon field="fotografia" /></th>
+      <th pSortableColumn="marca">Marca <p-sortIcon field="marca" /></th>
+      <th pSortableColumn="modelo">Modelo <p-sortIcon field="modelo" /></th>
+      <th pSortableColumn="serie">Serie <p-sortIcon field="serie" /></th>
+      <th pSortableColumn="bateria">Bateria <p-sortIcon field="bateria" /></th>
+      <th pSortableColumn="fechaCompra">Compra <p-sortIcon field="fechaCompra" /></th>
+      <th pSortableColumn="responsibleAreaName">Area <p-sortIcon field="responsibleAreaName" /></th>
+      <th pSortableColumn="applicationUser">Responsable <p-sortIcon field="applicationUser" /></th>
+      <th class="table-col-5"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-i="rowIndex">
+    <tr>
+      <td>{{ i + 1 }}</td>
+      <td>
+        <p-image [src]="item.fotografia" alt="Image" width="120" height="70" [preview]="true" />
+      </td>
+      <td>{{ item.marca }}</td>
+      <td>{{ item.modelo }}</td>
+      <td>{{ item.serie }}</td>
+      <td>{{ item.bateria }}</td>
+      <td>{{ item.fechaCompra | date }}</td>
+      <td>{{ item.departament }}</td>
+      <td>{{ item.applicationUser }}</td>
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+>
+  <div customFilters style="padding: 4px 16px 8px;">
+    <ion-button-download (clicked)="onDownloadPdf()" />
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div slot="start" style="
+        width:36px; height:36px; border-radius:10px;
+        background:#dcfce7; display:flex; align-items:center;
+        justify-content:center; flex-shrink:0; margin-left:16px;
+      ">
+        <ion-icon name="radio-outline" style="font-size:20px; color:#16a34a;"></ion-icon>
+      </div>
+      <ion-label>
+        <h3>{{ item.marca }} — {{ item.modelo }}</h3>
+        <p>Serie: {{ item.serie }} | Batería: {{ item.bateria }}</p>
+        <p>{{ item.applicationUser }} · {{ item.departament }}</p>
+      </ion-label>
+      <app-action-menu slot="end">
+        <ion-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
+        <ion-button-delete (confirmed)="onDelete(item.id)" />
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+
+
+
+
+

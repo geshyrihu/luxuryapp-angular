@@ -1,0 +1,52 @@
+<div class="card">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <custom-input-select-signal
+      [control]="form.controls.customerId"
+      label="Cliente:"
+      [horizontal]="false"
+      [data]="cb_customer()"
+    />
+
+    <custom-input-autocomplete-signal
+      (propagar)="saveLegalMatter($event)"
+      [control]="form.controls.title"
+      [data]="cb_legal_matter()"
+      label="Asunto:"
+      placeholder="Escribe para buscar asunto"
+      [horizontal]="false"
+    />
+
+    <custom-input-autocomplete-signal
+      (propagar)="saveAssignee($event)"
+      [control]="form.controls.assignee"
+      [data]="cb_responsible()"
+      label="Responsable:"
+      placeholder="Escribe para buscar responsable"
+      [horizontal]="false"
+    />
+
+    <custom-input-textarea-signal
+      [control]="form.controls.description"
+      label="Descripción:"
+      placeholder="Descripción:"
+      [horizontal]="false"
+    />
+
+    @if (id) {
+    <div class="flex justify-content-end mb-3">
+      <custom-button
+        label="Seguimientos"
+        iconClass="pi pi-comments"
+        severity="info"
+        (clicked)="onOpenSeguimiento()"
+      />
+    </div>
+    }
+
+    <custom-button-save
+      [propertyId]="id"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+    />
+  </form>
+</div>

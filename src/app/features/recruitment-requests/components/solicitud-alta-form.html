@@ -1,0 +1,49 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-select-signal
+        placeholder="--Selecciona la vacante que cubre--"
+        [control]="form.controls.positionRequestId"
+        label="Vacante que cubre"
+        [data]="cb_vacantes()"
+      />
+      <custom-input-text-signal
+        [hidden]="true"
+        [control]="form.controls.candidateName"
+        label="Nombre"
+        placeholder="Nombre"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.employeeId"
+        label="Empleado Id"
+        placeholder="Empleado Id"
+      />
+
+      <custom-input-select-signal
+        [control]="form.controls.typeContractRegister"
+        label="Tipo de contrato"
+        [data]="cb_typeContractRegister()"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.boss"
+        label="Jefe Inmediado"
+        placeholder="Jefe Inmediado"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.customerAddress"
+        label="Dirección de trabajo"
+        placeholder="dirección de trabajo"
+      />
+      <custom-input-textarea-signal
+        [control]="form.controls.additionalInformation"
+        label="Comentarios adicionales"
+        placeholder="comentarios adicionales"
+      />
+      <custom-button-save
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+        label="Solicitar alta"
+      />
+    </form>
+  </div>
+</div>

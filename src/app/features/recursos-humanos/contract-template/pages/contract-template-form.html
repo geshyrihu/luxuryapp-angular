@@ -1,0 +1,43 @@
+<div class="p-3">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <custom-input-text-signal
+      [control]="form.controls.name"
+      label="Nombre del Machote"
+      placeholder="Ej: Contrato Indeterminado Estandar"
+    />
+    <custom-input-text-signal
+      [control]="form.controls.version"
+      label="Versión"
+      placeholder="1.0"
+    />
+    <custom-input-select-signal
+      [control]="form.controls.contractType"
+      label="Tipo de Contrato Aplicable"
+      [data]="cb_contractType"
+    />
+    <custom-input-switch-signal
+      [control]="form.controls.isActive"
+      label="Activo"
+    />
+    <custom-input-textarea-signal
+      [control]="form.controls.description"
+      label="Descripción"
+      [rows]="2"
+    />
+    <custom-input-textarea-signal
+      [control]="form.controls.templateContent"
+      label="Contenido del Machote"
+      [rows]="12"
+      [placeholder]="placeholderText"
+    />
+    <div class="flex justify-content-end mt-2">
+      <custom-button-save
+        [propertyId]="item()?.id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+        label="Guardar Machote"
+        type="submit"
+      />
+    </div>
+  </form>
+</div>

@@ -1,0 +1,71 @@
+<div class="p-4">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <custom-input-text-signal
+      [control]="form.controls.id"
+      [readonly]="true"
+      label="Id"
+      [hidden]="false"
+    />
+    <custom-input-select-signal
+      [control]="form.controls.ticketGroupId"
+      label="Grupo"
+      [data]="cb_ticket_group"
+    />
+    <custom-input-text-signal
+      [control]="form.controls.title"
+      label="Area"
+      placeholder="area"
+    />
+
+    <div class="flex justify-content-between align-items-center mb-2">
+      <label class="font-bold">Descripción</label>
+      <custom-button
+        label="Analizar Imagen (IA)"
+        iconClass="pi pi-camera"
+        severity="secondary"
+        variant="outlined"
+        size="sm"
+        (clicked)="openVision()"
+      />
+    </div>
+
+    <custom-input-textarea-signal
+      [control]="form.controls.description"
+      label=""
+      placeholder="Descripción del problema..."
+    />
+    <app-image-analysis-dialog
+      (resultAccepted)="onVisionResult($event)"
+    ></app-image-analysis-dialog>
+    <custom-input-select-signal
+      [control]="form.controls.priority"
+      label="Prioridad"
+      [data]="cb_priority"
+    />
+
+    <div class="grid">
+      <div class="col-12">
+        <custom-input-img-signal
+          [control]="form.controls.beforeWork"
+          [urlImgCurrent]="form.controls.beforeWorkPreview.value"
+          label="Foto de antes"
+          [required]="false"
+        />
+      </div>
+      <div class="col-12">
+        <custom-input-img-signal
+          [control]="form.controls.afterWork"
+          [urlImgCurrent]="form.controls.afterWorkPreview.value"
+          label="Foto de despuós"
+          [required]="false"
+        />
+      </div>
+    </div>
+
+    <custom-button-save
+      [propertyId]="id"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+    />
+  </form>
+</div>

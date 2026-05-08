@@ -1,0 +1,87 @@
+export interface AspelBudgetDTO {
+  ID_Empresa: string;
+  Nombre_Empresa: string;
+  ID_Periodo_presupuesto: string;
+  Periodo_Presupuesto: string;
+  cuentas: CuentaAspelTercerNivelDTO[];
+
+  totalEneroMonto: number;
+  totalEneroPresupuesto: number;
+  totalFebreroMonto: number;
+  totalFebreroPresupuesto: number;
+  totalMarzoMonto: number;
+  totalMarzoPresupuesto: number;
+  totalAbrilMonto: number;
+  totalAbrilPresupuesto: number;
+  totalMayoMonto: number;
+  totalMayoPresupuesto: number;
+  totalJunioMonto: number;
+  totalJunioPresupuesto: number;
+  totalJulioMonto: number;
+  totalJulioPresupuesto: number;
+  totalAgostoMonto: number;
+  totalAgostoPresupuesto: number;
+  totalSeptiembreMonto: number;
+  totalSeptiembrePresupuesto: number;
+  totalOctubreMonto: number;
+  totalOctubrePresupuesto: number;
+  totalNoviembreMonto: number;
+  totalNoviembrePresupuesto: number;
+  totalDiciembreMonto: number;
+  totalDiciembrePresupuesto: number;
+
+  sumaAnualAcumuladoMontoOriginal: number;
+  sumaAnualAcumuladoPresupuestoOriginal: number;
+  sumaAnualAcumuladoMontoCalculado: number;
+  sumaPresupuestoAnualCalculado: number;
+  sumaPresupuestoRestanteCalculado: number;
+}
+
+export interface CuentaAspelTercerNivelDTO {
+  codigo_Cuenta: string;
+  descripcion_Cuenta: string;
+  nivel_Cuenta: number;
+  cuenta_Padre: string;
+  esFilaAgrupadora: boolean;
+
+  monto_Enero: number;
+  presup_Enero: number;
+  monto_Febrero: number;
+  presup_Febrero: number;
+  monto_Marzo: number;
+  presup_Marzo: number;
+  monto_Abril: number;
+  presup_Abril: number;
+  monto_Mayo: number;
+  presup_Mayo: number;
+  monto_Junio: number;
+  presup_Junio: number;
+  monto_Julio: number;
+  presup_Julio: number;
+  monto_Agosto: number;
+  presup_Agosto: number;
+  monto_Septiembre: number;
+  presup_Septiembre: number;
+  monto_Octubre: number;
+  presup_Octubre: number;
+  monto_Noviembre: number;
+  presup_Noviembre: number;
+  monto_Diciembre: number;
+  presup_Diciembre: number;
+
+  acumulado_Anual: number;
+  anualAcumuladoPresupuesto: number;
+  anualAcumuladoMontoPresupuesto: number;
+
+  presupuestoAnual: number;
+  presupuestoRestante: number;
+}
+
+
+
+
+
+
+
+
+

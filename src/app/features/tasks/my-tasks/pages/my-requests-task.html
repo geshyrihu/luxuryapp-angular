@@ -1,0 +1,238 @@
+@if (dataSignal()) {
+<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block">
+  <div class="p-3">
+    <p-table
+      [globalFilterFields]="globalFilterFields()"
+      [paginator]="true"
+      [rows]="tablePrimeNgRows"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [showCurrentPageReport]="true"
+      [value]="dataSignal()"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight"
+      #dt
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      styleClass="custom-table"
+    >
+      <ng-template #caption>
+        <primeng-custom-caption
+          (add)="
+              onModalAdd({
+                id: '',
+                title: 'Agregar',
+              })
+            "
+          [dt]="dt"
+        />
+        <div class="mt-2">
+          <app-task-status (statusChange)="onLoadData($event)" />
+        </div>
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th class="table-col-6">FOLIO</th>
+          <th class="table-col-8" pSortableColumn="createdAtFilter">
+            FECHA SOL.
+            <p-sortIcon field="createdAtFilter" />
+          </th>
+          <th class="table-col-30" pSortableColumn="responsibleArea">
+            SOLICITUD
+            <p-sortIcon field="responsibleArea" />
+          </th>
+          <th>EVIDENCIA</th>
+          <th class="table-col-8" pSortableColumn="priority">
+            PRIORIDAD
+            <p-sortIcon field="priority" />
+          </th>
+          <th class="table-col-10" pSortableColumn="scheduledAtFilter">
+            PROGRAMACIÃ³N
+            <p-sortIcon field="scheduledAtFilter" />
+          </th>
+          <th class="table-col-10" pSortableColumn="dateFinishedFiltro">
+            FECHA CIERRE
+            <p-sortIcon field="dateFinishedFiltro" />
+          </th>
+          <th>EVIDENCIA</th>
+          <th class="table-col-10" pSortableColumn="daysDifference">
+            DIAS
+            <p-sortIcon field="daysDifference" />
+          </th>
+          <th class="table-col-10"></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>{{ item.folio }}</td>
+          <td>
+            {{ item.createdAtDate }}
+            <br />
+            {{ item.createdAtHour }}
+          </td>
+          <td>
+            <h4 class="card-title text-xl">{{ item.title }}</h4>
+            <p class="card-text text-base">{{ item.description }}</p>
+          </td>
+          <td class="text-center">
+            <div class="flex justify-content-center align-items-center">
+              @if (item.beforeWork) {
+              <p-image
+                [src]="
+                      item.beforeWork
+                        ? item.beforeWork
+                        : 'assets/images/default-avatar.png'
+                    "
+                alt="."
+                width="40"
+                class="mr-2 border border-danger"
+                [preview]="true"
+              ></p-image>
+              }
+            </div>
+          </td>
+          <td class="text-center">
+            @if (item.priority === "High") {
+            <i
+              (click)="onUpdatePriority(item.id)"
+              class="icon icon-pi-star icon-xl pointer text-primary"
+            ></i>
+            } @if (item.priority === "Low") {
+            <i
+              (click)="onUpdatePriority(item.id)"
+              class="icon icon-pi-star icon-xl pointer text-primary"
+            ></i>
+            }
+          </td>
+          <td>{{ item.scheduledAt }}</td>
+          <td>{{ item.closedAtDate }}</td>
+          <td class="text-center">
+            <div class="flex justify-content-center align-items-center">
+              @if (item.afterWork) {
+              <p-image
+                [src]="
+                      item.afterWork
+                        ? item.afterWork
+                        : 'assets/images/default-avatar.png'
+                    "
+                alt="."
+                width="40"
+                class="mr-2 border border-success"
+                [preview]="true"
+              ></p-image>
+              }
+            </div>
+          </td>
+          <td class="text-center">
+            <p>
+              <strong> {{ item.daysDifference }} </strong>
+            </p>
+          </td>
+          <!-- Opciones -->
+          <td class="text-center">
+            <app-action-menu>
+              <ng-container actions>
+                <ion-button-edit
+                  (clicked)="onModalForm({
+                      id: item.id,
+                      title: 'Editar',
+                      ticketGroupId: item.ticketGroupId,
+                    })"
+                  [showLabelOnDesktop]="true"
+                />
+
+                <ion-button-item
+                  iconClass="pi pi-comment"
+                  label="Seguimiento"
+                  (clicked)="onFollowUp(item.id)"
+                  [showLabelOnDesktop]="true"
+                />
+              </ng-container>
+            </app-action-menu>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- ðŸ“± INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalAdd({ id: '', title: 'Agregar' })"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <div customFilters>
+    <app-task-status (statusChange)="onLoadData($event)" />
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <ion-item button detail="false" lines="full" class="ion-no-padding">
+      <ion-label>
+        <div class="flex flex-column w-full">
+          <div class="flex justify-content-between align-items-start mb-2">
+            <div class="flex flex-column">
+              <h6 class="mb-0 text-wrap">{{ item.title }}</h6>
+              <small class="text-color-secondary"
+                >Folio: {{ item.folio }} | {{ item.createdAtDate }}</small
+              >
+            </div>
+          </div>
+          <p class="text-color-secondary m-0 text-wrap">
+            {{ item.description }}
+          </p>
+          <div class="flex justify-content-between align-items-center mt-2">
+            <div class="flex align-items-center">
+              @if (item.beforeWork) {
+              <p-image
+                [src]="item.beforeWork"
+                alt="Evidencia inicial"
+                width="30"
+                [preview]="true"
+                styleClass="mr-2 border border-danger"
+              />
+              } @if (item.afterWork) {
+              <p-image
+                [src]="item.afterWork"
+                alt="Evidencia final"
+                width="30"
+                [preview]="true"
+                styleClass="border border-success"
+              />
+              }
+            </div>
+            <div class="text-right">
+              <p class="m-0 text-xs">
+                Cierre: {{ item.closedAtDate ?? "Pendiente" }}
+              </p>
+              <p class="m-0 font-bold text-xs">
+                DÃ­as: {{ item.daysDifference }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </ion-label>
+      <div slot="end">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-edit
+              (clicked)="onModalForm({
+                      id: item.id,
+                      title: 'Editar',
+                      ticketGroupId: item.ticketGroupId,
+                    })"
+            />
+
+            <ion-button-item
+              iconName="ellipsis-horizontal-outline"
+              label="Seguimiento"
+              (clicked)="onFollowUp(item.id)"
+              [showLabelOnDesktop]="true"
+            />
+          </ng-container>
+        </app-action-menu>
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+}

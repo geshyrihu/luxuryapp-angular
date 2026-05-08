@@ -1,0 +1,191 @@
+<!-- Vista de Escritorio -->
+<div class="hidden md:block">
+  <div class="grid">
+    <div class="col-9"></div>
+    <div class="col-3">
+      <custom-button-add
+        label="Agregar Medidor"
+        (clicked)="modalAddEdit({ id: 0, title: 'Agregar Registro' })"
+      />
+    </div>
+    <div class="col-12 text-right mb-2"></div>
+    @for (item of dataSignal(); track item) {
+    <div class="p-2 col-12 md:col-2">
+      <!-- DIV Contenedor para aplicar el borde de forma segura -->
+      <div
+        class="h-full border-round-lg border-left-3"
+        [class.border-yellow-500]="item.medidorCategoriaId == '019c6c01-bbcf-76a2-a863-43569af55a55'"
+        [class.border-green-500]="item.medidorCategoriaId == '019c6c01-bbdd-7698-9f76-db06f3c6ef0c'"
+        [class.border-blue-500]="item.medidorCategoriaId == '019c6c01-bbde-703d-85dd-a4e88651e0d3'"
+      >
+        <p-card styleClass="h-full surface-100">
+          <!-- Aóadido surface-100 para fondo -->
+          <ng-template #content>
+            <div
+              class="text-center pointer"
+              (click)="modalMedidorLecturaAddEdit(item)"
+            >
+              <h5 class="mb-2">
+                {{ item.medidorCategoria.nombreMedidorCategoria }}
+              </h5>
+              <!-- Iconos Corregidos: Usando "icon" y "pi pi-NAME" -->
+              @if (item.medidorCategoriaId ===
+              '019c6c01-bbcf-76a2-a863-43569af55a55') {
+              <!-- Gas -> Sol (Calor) -->
+              <i class="icon icon-pi-sun text-yellow-500 text-6xl"></i>
+              } @if (item.medidorCategoriaId ===
+              '019c6c01-bbde-703d-85dd-a4e88651e0d3') {
+              <!-- Agua -> Filtro (Liquido) -->
+              <i class="icon icon-pi-filter-fill text-blue-500 text-6xl"></i>
+              } @if (item.medidorCategoriaId ===
+              '019c6c01-bbdd-7698-9f76-db06f3c6ef0c') {
+              <!-- Luz -> Rayo -->
+              <i class="icon icon-pi-bolt text-green-500 text-6xl"></i>
+              }
+              <hr class="my-3" />
+              <h6 class="mb-2 text-color-secondary">
+                {{ item.numeroMedidor }}
+              </h6>
+              <p>{{ item.descripcion }}</p>
+              <p>Consumo Móx: {{ item.consumoDiarioMaximo }}</p>
+            </div>
+          </ng-template>
+          <ng-template #footer>
+            <div class="flex justify-content-center">
+              <custom-button-edit
+                class="text-xl"
+                (clicked)="modalAddEdit({ id: item.id, title: 'Editar' })"
+              />
+              <custom-button-delete
+                class="text-xl"
+                (confirmed)="onDelete(item.id)"
+              />
+              <custom-button-item
+                iconClass="pi pi-save"
+                label="Lecturas"
+                class="text-xl"
+                (clicked)="onGoToLecturas(item.id)"
+              />
+              <custom-button-item
+                iconClass="pi pi-chart-line "
+                label="Grófica"
+                class="text-xl"
+                (clicked)="onGoToGrafico(item.id)"
+              />
+              <custom-button-item
+                iconClass="pi pi-chart-bar"
+                label="Exportar a Excel"
+                class="text-xl"
+                (clicked)="exportExcel(item.id)"
+                severity="success"
+              />
+            </div>
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+
+<!-- Vista Móvil Corregida -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="modalAddEdit({ id: 0, title: 'Agregar Registro' })"
+  [globalFilterFields]="['medidorCategoria.nombreMedidorCategoria', 'numeroMedidor', 'descripcion']"
+  [showAdd]="true"
+>
+  <ng-template #listItemTemplate let-item>
+    <div
+      class="surface-card shadow-1 border-round-lg mb-3 border-left-3 overflow-hidden"
+      [class.border-yellow-500]="item.medidorCategoriaId == 1"
+      [class.border-green-500]="item.medidorCategoriaId == 2"
+      [class.border-blue-500]="item.medidorCategoriaId == 3"
+    >
+      <div class="p-3">
+        <!-- Header: Categoroa y Meno de Acciones -->
+        <div class="flex justify-content-between align-items-start mb-1">
+          <div>
+            <h2 class="font-bold m-0 text-lg text-900">
+              {{ item.medidorCategoria.nombreMedidorCategoria }}
+            </h2>
+            <span class="text-sm font-medium text-500"
+              >{{ item.numeroMedidor }}</span
+            >
+          </div>
+          <app-action-menu>
+            <ng-container actions>
+              <ion-button-edit
+                (clicked)="modalAddEdit({ id: item.id, title: 'Editar' })"
+              />
+              <ion-button-delete (confirmed)="onDelete(item.id)" />
+              <ion-button-item
+                iconName="save-outline"
+                label="Lecturas"
+                (clicked)="onGoToLecturas(item.id)"
+              />
+              <ion-button-item
+                iconName="trending-up-outline"
+                label="Grófica"
+                (clicked)="onGoToGrafico(item.id)"
+              />
+              <ion-button-item
+                iconName="bar-chart-outline"
+                label="Exportar Excel"
+                (clicked)="exportExcel(item.id)"
+              />
+            </ng-container>
+          </app-action-menu>
+        </div>
+
+        <!-- Descripción -->
+        <p class="text-sm m-0 text-600 line-height-3 mb-3">
+          {{ item.descripcion }}
+        </p>
+
+        <!-- Footer: Icono, Consumo y Botón Registrar -->
+        <div
+          class="flex align-items-center justify-content-between pt-3 border-top-1 surface-border"
+        >
+          <div class="flex align-items-center">
+            @if (item.medidorCategoriaId === 1) {
+            <ion-icon
+              name="sunny"
+              color="warning"
+              class="text-2xl mr-2"
+            ></ion-icon>
+            } @if (item.medidorCategoriaId === 3) {
+            <ion-icon
+              name="filter"
+              color="primary"
+              class="text-2xl mr-2"
+            ></ion-icon>
+            } @if (item.medidorCategoriaId === 2) {
+            <ion-icon
+              name="flash"
+              color="success"
+              class="text-2xl mr-2"
+            ></ion-icon>
+            }
+            <div class="flex flex-column">
+              <span class="text-xs text-500 uppercase font-bold">Móximo</span>
+              <span class="text-sm font-bold text-700"
+                >{{ item.consumoDiarioMaximo }}</span
+              >
+            </div>
+          </div>
+
+          <ion-button
+            fill="solid"
+            size="small"
+            class="m-0"
+            (click)="modalMedidorLecturaAddEdit(item)"
+          >
+            <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+            Registrar
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</app-data-view-mobile>

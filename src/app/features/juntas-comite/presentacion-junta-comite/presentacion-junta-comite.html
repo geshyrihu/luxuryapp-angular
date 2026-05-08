@@ -1,0 +1,544 @@
+@if (dataSignal()) {
+<!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block">
+  <div class="card border-none shadow-1">
+    <p-table
+      [globalFilterFields]="globalFilterFields"
+      [value]="dataSignal()"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight"
+      #dt
+      styleClass="custom-table"
+    >
+      <ng-template #caption>
+        <div
+          class="flex align-items-center justify-content-between gap-2 no-print mb-2 mt-1"
+        >
+          <primeng-custom-caption
+            (add)="showModalAdd({ id: 0, titulo: 'Nuevo Registro' })"
+            [dt]="dt"
+          />
+          <div class="flex gap-2">
+            <custom-button
+              variant="outlined"
+              iconClass="pi pi-calendar"
+              label="PERIODO"
+              size="sm"
+              [showLabelOnDesktop]="true"
+              ngbTooltip="Seleccionar periodo de la junta"
+            />
+            <custom-button
+              variant="outlined"
+              iconClass="pi pi-users"
+              label="FECHA DE JUNTA"
+              size="sm"
+              [showLabelOnDesktop]="true"
+              ngbTooltip="Establecer fecha de la reunión"
+            />
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th class="table-col-20 uppercase font-bold text-900">PORTADA</th>
+          <th class="table-col-20 uppercase font-bold text-900">CONTABLE</th>
+          <th class="table-col-20 uppercase font-bold text-900">OPERACIONES</th>
+          <th class="table-col-20 uppercase font-bold text-900">FINAL</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td colspan="5" class="bg-surface-50 p-2">
+            <div class="grid">
+              <div
+                class="col-12 md:col-6 flex align-items-center justify-content-between w-full"
+              >
+                <!-- Editar Periodo -->
+                @if ( aspRoleS.anyOf([AspRole.Administrador,
+                AspRole.SuperUsuario])() && !item.archivoFinal ) {
+                <div class="flex align-items-center gap-1">
+                  <custom-button-edit
+                    (clicked)="showModalAdd({ id: item.id, title: 'Editar' })"
+                  />
+                  <custom-button-delete (confirmed)="onDeleteItem(item.id)" />
+                </div>
+                }
+                <div class="text-sm font-bold text-700">
+                  PERIODO: {{ item.fechaCorrespondiente | uppercase }}, FECHA DE
+                  JUNTA: {{ item.fechaJunta | uppercase }}
+                </div>
+              </div>
+              <div class="col-12 md:col-6">
+                <p class="m-0 text-right text-sm font-medium text-600">
+                  Presentación enviada a Comité: {{ !item.enviadoComite ? "No" :
+                  "Sí" }}
+                  <i
+                    class="pi"
+                    [class]="item.enviadoComite ? 'pi-check-circle text-green-500' : 'pi-times-circle text-red-500'"
+                  ></i>
+                </p>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <!-- PORTADA -->
+            @if ( !item.archivoPortada && aspRoleS.anyOf([AspRole.Administrador,
+            AspRole.SuperUsuario])() ) {
+            <div class="text-center">
+              <custom-button
+                ngbTooltip="Cargar archivo de portada"
+                severity="info"
+                iconClass="pi pi-upload"
+                label="Cargar archivo"
+                size="sm"
+                (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })"
+              />
+            </div>
+            } @if (item.archivoPortada) {
+            <div class="mt-1 flex align-items-start justify-content-between">
+              <div>
+                <custom-button-view-pdf
+                  [showLabelOnDesktop]="true"
+                  [url]="item.archivoPortada"
+                  fileName="Portada"
+                  iconClass="pi pi-file-pdf"
+                  label="Ver Archivo"
+                />
+              </div>
+
+              <div>
+                @if ( aspRoleS.anyOf([ AspRole.Administrador,
+                AspRole.SuperUsuario, ])() && !item.archivoFinal ) {
+                <div class="flex gap-1">
+                  <custom-button-edit
+                    ngbTooltip="Editar archivo de portada"
+                    (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })"
+                  />
+                  <custom-button-delete
+                    ngbTooltip="Eliminar archivo de portada"
+                    (confirmed)="onDeleteFile(item.id, 'Portada')"
+                  />
+                </div>
+                }
+              </div>
+            </div>
+
+            <p class="m-0 text-xs text-500 flex align-items-center gap-1">
+              <i class="pi pi-user text-primary"></i>
+              <span>{{ item.applicationUserPortada }}</span>
+            </p>
+            <p class="m-0 text-xs text-500 flex align-items-center gap-1">
+              <i class="pi pi-calendar text-primary"></i>
+              <span>{{ item.fechaCargaPortada }}</span>
+            </p>
+            }
+            <!-- PORTADA -->
+          </td>
+          <td>
+            <!-- CONTABLE -->
+            @if ( !item.archivoContable && aspRoleS.anyOf([AspRole.Contador,
+            AspRole.SuperUsuario])() ) {
+            <div class="text-center">
+              <custom-button
+                ngbTooltip="Cargar archivo contable"
+                severity="info"
+                iconClass="pi pi-upload"
+                label="Cargar archivo"
+                size="sm"
+                (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
+              />
+            </div>
+            } @if (item.archivoContable) {
+            <div class="mt-1 flex align-items-start justify-content-between">
+              <div>
+                <custom-button-view-pdf
+                  [showLabelOnDesktop]="true"
+                  [url]="item.archivoContable"
+                  fileName="Contabilidad"
+                  iconClass="pi pi-chart-bar"
+                  label="Ver Archivo"
+                />
+              </div>
+              <div>
+                @if ( aspRoleS.anyOf([AspRole.Contador, AspRole.SuperUsuario])()
+                && !item.archivoFinal && !item.applicationUserSupervisorContable
+                ) {
+                <div class="flex gap-1">
+                  <custom-button-edit
+                    ngbTooltip="Editar archivo contable"
+                    (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
+                  />
+                  <custom-button-delete
+                    ngbTooltip="Eliminar archivo contable"
+                    (confirmed)="onDeleteFile(item.id, 'Contabilidad')"
+                  />
+                </div>
+                }
+              </div>
+            </div>
+
+            <p class="m-0 text-xs text-500 flex align-items-center gap-1">
+              <i class="pi pi-user text-cyan-700"></i>
+              <span>{{ item.applicationUserContable }}</span>
+            </p>
+            <p class="m-0 text-xs text-500 flex align-items-center gap-1">
+              <i class="pi pi-calendar text-cyan-700"></i>
+              <span>{{ item.fechaCargaContable }}</span>
+            </p>
+            }
+            <!-- CONTABLE -->
+          </td>
+
+          <td>
+            <!-- OPERACIONES -->
+            @if ( !item.archivoJunta && aspRoleS.anyOf([AspRole.Administrador,
+            AspRole.SuperUsuario])() ) {
+            <div class="text-center">
+              <custom-button
+                ngbTooltip="Cargar archivo de operaciones"
+                severity="info"
+                iconClass="pi pi-upload"
+                label="Cargar archivo"
+                size="sm"
+                (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
+              />
+            </div>
+            } @if (item.archivoJunta) {
+            <div class="mt-1 flex align-items-start justify-content-between">
+              <div>
+                <custom-button-view-pdf
+                  [showLabelOnDesktop]="true"
+                  [url]="item.archivoJunta"
+                  fileName="Operaciones"
+                  iconClass="pi pi-cog"
+                  label="Ver Archivo"
+                />
+              </div>
+              <div>
+                @if ( aspRoleS.anyOf([ AspRole.Administrador,
+                AspRole.SuperUsuario, ])() && !item.archivoFinal ) {
+                <div class="flex gap-1">
+                  <custom-button-edit
+                    ngbTooltip="Editar archivo de operaciones"
+                    (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
+                  />
+                  <custom-button-delete
+                    ngbTooltip="Eliminar archivo de operaciones"
+                    (confirmed)="onDeleteFile(item.id, 'Operaciones')"
+                  />
+                </div>
+                }
+              </div>
+            </div>
+            <p class="m-0 text-xs text-500 flex align-items-center gap-1">
+              <i class="pi pi-user text-orange-600"></i>
+              <span>{{ item.applicationUser }}</span>
+            </p>
+            <p class="m-0 text-xs text-500 flex align-items-center gap-1">
+              <i class="pi pi-calendar text-orange-600"></i>
+              <span>{{ item.fechaCarga }}</span>
+            </p>
+            }
+            <!-- OPERACIONES -->
+          </td>
+          <td>
+            <!-- FINAL -->
+
+            @if ( !item.archivoFinal && aspRoleS.anyOf([
+            AspRole.SupervisionOperativa, AspRole.SuperUsuario, ])() &&
+            item.archivoPortada && item.archivoContable && item.archivoJunta ) {
+
+            <!-- Con Título personalizado y tipo de ócono -->
+            <div class="text-center flex flex-column gap-2">
+              <custom-button-confirm
+                iconClass="pi pi-send"
+                label="Validar y enviar"
+                swalTitle="óEnviar presentación?"
+                swalText="La presentación seró enviada al Comité."
+                swalConfirmButtonText="Sí, enviar"
+                swalIcon="warning"
+                (confirmed)="onValidarPresentacion(item.id)"
+                ngbTooltip="Finalizar y enviar a todos"
+                [showLabelOnDesktop]="true"
+              />
+              <custom-button-confirm
+                iconClass="pi pi-check-circle"
+                label="Validar presentación"
+                swalTitle="óValidar presentación?"
+                swalText="Confirmo que la presentación es correcta y se crearó versión final."
+                swalConfirmButtonText="Sí, estó correcta, validar"
+                swalIcon="info"
+                (confirmed)="onOnlyValidate(item.id)"
+                severity="secondary"
+                ngbTooltip="Solo validar sin enviar email"
+                [showLabelOnDesktop]="true"
+              />
+            </div>
+            } @if (item.archivoFinal) {
+            <div
+              class="mt-1 flex align-items-start justify-content-start gap-2"
+            >
+              <custom-button-view-pdf
+                [showLabelOnDesktop]="true"
+                [url]="item.archivoFinal"
+                fileName="Final"
+                iconClass="pi pi-flag"
+                label="Ver Archivo"
+              />
+
+              @if (aspRoleS.anyOf([AspRole.SuperUsuario])()) {
+              <custom-button-delete
+                ngbTooltip="Eliminar archivo final"
+                (confirmed)="onDeleteFile(item.id, 'Final')"
+              />
+              }
+            </div>
+            <p class="m-0 text-xs text-500 flex align-items-center gap-1">
+              <i class="pi pi-user text-green-700"></i>
+              <span>{{ item.applicationUserSupervisor }}</span>
+            </p>
+            <p class="m-0 text-xs text-500 flex align-items-center gap-1">
+              <i class="pi pi-calendar text-green-700"></i>
+              <span>{{ item.fechaCargaSupervisor }}</span>
+            </p>
+            }
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- INICIO: Componente adaptado para version movil -->
+<div class="block md:hidden">
+  <app-data-view-mobile
+    [data]="dataSignal()"
+    (add)="showModalAdd({ id: 0, titulo: 'Nuevo Registro' })"
+    [globalFilterFields]="globalFilterFields"
+  >
+    <ng-template #listItemTemplate let-item>
+      <div
+        class="card p-3 mb-2 border-1 surface-border shadow-1 border-round-xl"
+      >
+        <!-- Header -->
+        <div class="border-bottom-1 surface-border pb-2 mb-2">
+          <div class="flex justify-content-between align-items-center mb-2">
+            <div>
+              <h6 class="m-0 font-bold text-900 uppercase">
+                PERIODO: {{ item.fechaCorrespondiente | uppercase }}
+              </h6>
+              <small class="text-500 block mt-1"
+                >FECHA DE JUNTA: {{ item.fechaJunta | uppercase }}</small
+              >
+            </div>
+            @if ( aspRoleS.anyOf([AspRole.Administrador,
+            AspRole.SuperUsuario])() && !item.archivoFinal ) {
+            <div class="flex gap-1">
+              <ion-button-edit
+                (clicked)="showModalAdd({ id: item.id, title: 'Editar' })"
+              />
+              <ion-button-delete (confirmed)="onDeleteItem(item.id)" />
+            </div>
+            }
+          </div>
+          <p-tag
+            [value]="item.enviadoComite ? 'Enviado a Comité' : 'No enviado a Comité'"
+            [severity]="item.enviadoComite ? 'success' : 'warning'"
+            styleClass="text-xs"
+          ></p-tag>
+        </div>
+
+        <!-- Body -->
+        <div class="grid">
+          <!-- Portada -->
+          <div class="col-12 sm:col-6">
+            <p-fieldset
+              legend="Portada"
+              [toggleable]="true"
+              [collapsed]="true"
+              styleClass="mb-2"
+            >
+              @if ( !item.archivoPortada &&
+              aspRoleS.anyOf([AspRole.Administrador, AspRole.SuperUsuario])() )
+              {
+              <custom-button
+                label="Cargar archivo"
+                iconClass="pi pi-upload"
+                size="sm"
+                [fluid]="true"
+                (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })"
+              />
+              } @else if (item.archivoPortada) {
+              <div class="flex justify-content-between align-items-center">
+                <ion-button-view-pdf
+                  [url]="item.archivoPortada"
+                  pdf="Portada"
+                />
+                @if ( aspRoleS.anyOf([ AspRole.Administrador,
+                AspRole.SuperUsuario ])() && !item.archivoFinal ) {
+                <div class="flex gap-1">
+                  <ion-button-edit
+                    (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })"
+                  />
+                  <ion-button-delete
+                    (confirmed)="onDeleteFile(item.id, 'Portada')"
+                  />
+                </div>
+                }
+              </div>
+              <p class="m-0 text-xs text-500 mt-2">
+                {{ item.applicationUserPortada }} - {{ item.fechaCargaPortada }}
+              </p>
+              } @else {
+              <p class="text-500 text-sm italic m-0">Sin archivo</p>
+              }
+            </p-fieldset>
+          </div>
+
+          <!-- Contable -->
+          <div class="col-12 sm:col-6">
+            <p-fieldset
+              legend="Contable"
+              [toggleable]="true"
+              [collapsed]="true"
+              styleClass="mb-2"
+            >
+              @if ( !item.archivoContable && aspRoleS.anyOf([AspRole.Contador,
+              AspRole.SuperUsuario])() ) {
+              <custom-button
+                label="Cargar archivo"
+                iconClass="pi pi-upload"
+                size="sm"
+                [fluid]="true"
+                (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
+              />
+              } @else if (item.archivoContable) {
+              <div class="flex justify-content-between align-items-center">
+                <ion-button-view-pdf
+                  [url]="item.archivoContable"
+                  pdf="Contabilidad"
+                />
+                @if ( aspRoleS.anyOf([AspRole.Contador, AspRole.SuperUsuario])()
+                && !item.archivoFinal && !item.applicationUserSupervisorContable
+                ) {
+                <div class="flex gap-1">
+                  <ion-button-edit
+                    (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
+                  />
+                  <ion-button-delete
+                    (confirmed)="onDeleteFile(item.id, 'Contabilidad')"
+                  />
+                </div>
+                }
+              </div>
+              <p class="m-0 text-xs text-500 mt-2">
+                {{ item.applicationUserContable }} - {{ item.fechaCargaContable
+                }}
+              </p>
+              } @else {
+              <p class="text-500 text-sm italic m-0">Sin archivo</p>
+              }
+            </p-fieldset>
+          </div>
+
+          <!-- Operaciones -->
+          <div class="col-12 sm:col-6">
+            <p-fieldset
+              legend="Operaciones"
+              [toggleable]="true"
+              [collapsed]="true"
+              styleClass="mb-2"
+            >
+              @if ( !item.archivoJunta && aspRoleS.anyOf([AspRole.Administrador,
+              AspRole.SuperUsuario])() ) {
+              <custom-button
+                label="Cargar archivo"
+                iconClass="pi pi-upload"
+                size="sm"
+                [fluid]="true"
+                (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
+              />
+              } @else if (item.archivoJunta) {
+              <div class="flex justify-content-between align-items-center">
+                <ion-button-view-pdf
+                  [url]="item.archivoJunta"
+                  pdf="Operaciones"
+                />
+                @if ( aspRoleS.anyOf([ AspRole.Administrador,
+                AspRole.SuperUsuario ])() && !item.archivoFinal ) {
+                <div class="flex gap-1">
+                  <ion-button-edit
+                    (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
+                  />
+                  <ion-button-delete
+                    (confirmed)="onDeleteFile(item.id, 'Operaciones')"
+                  />
+                </div>
+                }
+              </div>
+              <p class="m-0 text-xs text-500 mt-2">
+                {{ item.applicationUser }} - {{ item.fechaCarga }}
+              </p>
+              } @else {
+              <p class="text-500 text-sm italic m-0">Sin archivo</p>
+              }
+            </p-fieldset>
+          </div>
+
+          <!-- Final -->
+          <div class="col-12 sm:col-6">
+            <p-fieldset legend="Final" [toggleable]="true" [collapsed]="true">
+              @if ( !item.archivoFinal && aspRoleS.anyOf([
+              AspRole.SupervisionOperativa, AspRole.SuperUsuario ])() &&
+              item.archivoPortada && item.archivoContable && item.archivoJunta )
+              {
+              <div class="flex flex-column gap-2">
+                <ion-button-confirm
+                  icon="pi pi-send"
+                  label="Validar y enviar a comite"
+                  swalTitle="óEnviar presentación?"
+                  swalText="La presentación seró enviada al Comité."
+                  swalConfirmButtonText="Sí, enviar"
+                  swalIcon="warning"
+                  (confirmed)="onValidarPresentacion(item.id)"
+                  customClass="w-full"
+                />
+                <ion-button-confirm
+                  icon="pi pi-check-circle"
+                  label="Solo validar"
+                  swalTitle="óValidar presentación?"
+                  swalText="Confirmo que la presentación es correcta y se crearó versión final."
+                  swalConfirmButtonText="Sí, estó correcta, validar"
+                  swalIcon="info"
+                  (confirmed)="onOnlyValidate(item.id)"
+                  customClass="w-full p-button-secondary"
+                />
+              </div>
+              } @else if (item.archivoFinal) {
+              <div class="flex justify-content-between align-items-center">
+                <ion-button-view-pdf [url]="item.archivoFinal" pdf="Final" />
+                @if (aspRoleS.anyOf([AspRole.SuperUsuario])()) {
+                <ion-button-delete
+                  (confirmed)="onDeleteFile(item.id, 'Final')"
+                />
+                }
+              </div>
+              <p class="m-0 text-xs text-500 mt-2">
+                {{ item.applicationUserSupervisor }} - {{
+                item.fechaCargaSupervisor }}
+              </p>
+              } @else {
+              <p class="text-500 text-sm italic m-0">
+                Sin archivo o faltan documentos
+              </p>
+              }
+            </p-fieldset>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </app-data-view-mobile>
+</div>
+}

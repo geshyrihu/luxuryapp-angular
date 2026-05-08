@@ -1,0 +1,225 @@
+<div class="flex justify-content-start gap-1 flex-wrap">
+  <custom-button
+    label="Pendientes"
+    [severity]="statusFiltro == 0 ? 'primary' : 'secondary'"
+    [variant]="statusFiltro == 0 ? null : 'ghost-text'"
+    size="sm"
+    (clicked)="onFiltrarData(0)"
+  />
+  <custom-button
+    label="Concluidos"
+    [severity]="statusFiltro == 1 ? 'primary' : 'secondary'"
+    [variant]="statusFiltro == 1 ? null : 'ghost-text'"
+    size="sm"
+    (clicked)="onFiltrarData(1)"
+  />
+  <custom-button
+    label="No Autorizados"
+    [severity]="statusFiltro == 2 ? 'primary' : 'secondary'"
+    [variant]="statusFiltro == 2 ? null : 'ghost-text'"
+    size="sm"
+    (clicked)="onFiltrarData(2)"
+  />
+  <custom-button
+    label="Todos"
+    [severity]="statusFiltro == 4 ? 'primary' : 'secondary'"
+    [variant]="statusFiltro == 4 ? null : 'ghost-text'"
+    size="sm"
+    (clicked)="onFiltrarData(4)"
+  />
+</div>
+<!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption [title]="'Legal'" [showAdd]="false" [dt]="dt" />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-8" pSortableColumn="code">
+        FOLIO
+        <p-sortIcon field="code" />
+      </th>
+      <th style="width: 11%" pSortableColumn="cliente">
+        CLIENTE
+        <p-sortIcon field="cliente" />
+      </th>
+      <th class="table-col-30" pSortableColumn="fechaSolicitudFiltro">
+        SOLICITUD
+        <p-sortIcon field="fechaSolicitudFiltro" />
+      </th>
+      <th class="table-col-35" pSortableColumn="pendiente">
+        SEGUIMIENTO
+        <p-sortIcon field="pendiente" />
+      </th>
+      <th class="table-col-8" pSortableColumn="status">
+        ESTATUS
+        <p-sortIcon field="status" />
+      </th>
+      <th class="table-col-8 table-col-5">OP</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.folio }}</td>
+      <td>{{ item.cliente }}</td>
+      <td>
+        <div class="h6">
+          {{ item.fechaSolicitud }} {{ item.titulo | titlecase }}
+        </div>
+        <div
+          class="text-justify"
+          [innerHTML]="item.pendiente | sanitizeHtml"
+        ></div>
+      </td>
+      <td>
+        @if (item.seguimientos.length > 0) {
+        <li>
+          {{ item.seguimientos[0].fecha }}, {{ item.seguimientos[0].seguimiento
+          }}
+        </li>
+        }
+      </td>
+      <td class="text-center">
+        <p-tag
+          [value]="
+            item.status === 0
+              ? 'Pendiente'
+              : item.status === 1
+                ? 'Completado'
+                : 'Cancelado'
+          "
+          [severity]="
+            item.status === 0
+              ? 'danger'
+              : item.status === 1
+                ? 'success'
+                : 'secondary'
+          "
+        ></p-tag>
+      </td>
+
+      <td class="no-print">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-item
+              iconClass="pi pi-file-pdf"
+              (clicked)="onModalTodosSeguimientos(item.id)"
+              label="Ver todos los seguimientos"
+              iconClass="pi pi-list"
+            />
+            <ion-button-add
+              (clicked)="onModalFormSeguimiento(item.id, 0)"
+              label="Agregar Seguimiento"
+            />
+            <ion-button-edit
+              (clicked)="
+                onModalFormMinutaDetalle({
+                  id: item.id,
+                  header: 'Editar Asunto',
+                })
+              "
+              label="Editar"
+              iconClass="pi pi-pencil"
+            />
+          </ng-container>
+        </app-action-menu>
+      </td>
+      <!-- Opciones -->
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<!-- ðŸ“± INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding" detail="false">
+      <ion-label>
+        <p class="mt-0 mb-0">
+          <strong>Folio:</strong>
+          {{ item.folio }}
+        </p>
+        <p class="mt-0 mb-0">
+          <strong>Cliente:</strong>
+          {{ item.cliente }}
+        </p>
+        <p class="mt-0 mb-0 text-wrap">
+          <strong>Solicitud:</strong>
+          {{ item.fechaSolicitud }} {{ item.titulo | titlecase }}
+        </p>
+        <div
+          class="mt-0 mb-0 text-justify text-wrap"
+          [innerHTML]="item.pendiente | sanitizeHtml"
+        ></div>
+        <p class="mt-0 mb-0 text-wrap">
+          <strong>Seguimiento:</strong>
+          @if (item.seguimientos.length > 0) {
+          <span>
+            {{ item.seguimientos[0].fecha }}, {{
+            item.seguimientos[0].seguimiento }}
+          </span>
+          }
+        </p>
+        <p class="mt-1 mb-0 text-center">
+          <span
+            class="badge border-0 p-2"
+            [class.bg-danger]="item.status == 0"
+            [class.bg-success]="item.status == 1"
+            [class.bg-secondary]="item.status == 2"
+          >
+            @if (item.status === 0) {
+            <i class="icon icon-pi-times"></i>
+            } @if (item.status === 1) {
+            <i class="icon icon-pi-check"></i>
+            } @if (item.status === 2) {
+            <i class="icon icon-pi-ban"></i>
+            }
+          </span>
+        </p>
+      </ion-label>
+
+      <app-action-menu slot="end">
+        <ng-container actions>
+          <ion-button-item
+            iconName="document-text-outline"
+            (clicked)="onModalTodosSeguimientos(item.id)"
+            label="Ver todos los seguimientos"
+            iconName="list-outline"
+          />
+          <ion-button-add
+            label="Agregar Seguimiento"
+            (clicked)="onModalFormSeguimiento(item.id, 0)"
+          />
+          <ion-button-edit
+            label="Editar"
+            iconClass="pi pi-pencil"
+            (clicked)="
+              onModalFormMinutaDetalle({
+                id: item.id,
+                header: 'Editar Asunto',
+              })
+            "
+          />
+        </ng-container>
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

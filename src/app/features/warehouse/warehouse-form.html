@@ -1,0 +1,101 @@
+<p-card>
+  <ng-template #content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <!-- Campo: Nombre del almacén -->
+      <custom-input-text-signal
+        [control]="form.controls.nombre"
+        label="Nombre"
+        placeholder="Nombre del almacén"
+      />
+
+      <!-- Campo: Ubicación del almacén -->
+      <custom-input-text-signal
+        [control]="form.controls.ubicacion"
+        label="Ubicación"
+        placeholder="Ubicación del almacén"
+      />
+
+      <!-- Sección: Asignación de responsables (solo para administradores) -->
+      @if ( aspRoleS.anyOf([ AspRole.Administrador, AspRole.SuperUsuario, ])())
+      {
+      <div class="mt-4">
+        <h5>Asignar Responsables</h5>
+
+        <!-- Buscador de usuarios disponibles -->
+        <custom-input-text-signal
+          [control]="searchAvailable"
+          placeholder="Buscar usuarios disponibles..."
+          [horizontal]="false"
+          customClass="w-full mb-3"
+        />
+
+        <div class="grid">
+          <div class="col-12 md:col-6">
+            <div class="mb-2 h5">Usuarios Disponibles</div>
+            <div
+              cdkDropList
+              id="availableUsers"
+              [cdkDropListData]="filteredAvailableUsers()"
+              [cdkDropListConnectedTo]="['assignedList']"
+              (cdkDropListDropped)="onDropToAvailable($event)"
+              class="warehouse-drop-zone"
+            >
+              @for (user of filteredAvailableUsers(); track user.value) {
+              <div
+                (dblclick)="onAddUser(user)"
+                class="warehouse-user-item pointer"
+                cdkDrag
+              >
+                {{ user.label }}
+              </div>
+              }
+            </div>
+          </div>
+
+          <div class="col-12 md:col-6">
+            <div class="mb-2 h5">Responsables Asignados</div>
+            <div
+              cdkDropList
+              id="assignedList"
+              [cdkDropListData]="assignedUsers"
+              [cdkDropListConnectedTo]="['availableUsers']"
+              (cdkDropListDropped)="onDropToAssigned($event)"
+              class="warehouse-drop-zone"
+            >
+              @for (user of assignedUsers; track user.value) {
+              <div
+                class="warehouse-user-item flex justify-content-between align-items-center"
+                cdkDrag
+                @dropAnimation
+              >
+                <span>{{ user.label }}</span>
+                <custom-button
+                  iconClass="pi pi-trash"
+                  severity="danger"
+                  variant="ghost-text"
+                  (clicked)="onRemoveUser(user)"
+                />
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+
+      <!-- Botón de envío del formulario -->
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </ng-template>
+</p-card>
+
+
+
+
+
+
+

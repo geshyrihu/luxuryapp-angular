@@ -1,0 +1,78 @@
+<div class="p-4">
+  <h3 class="mb-4 text-2xl font-semibold">Test de SignalR y OneSignal</h3>
+
+  <!-- Selección de usuario individual -->
+  <p-card styleClass="mb-4">
+    <ng-template pTemplate="title">Enviar a un usuario</ng-template>
+    <div class="flex flex-wrap align-items-center mb-3">
+      <div class="col-12 md:col-6">
+        <custom-input-autocomplete-signal
+          (propagar)="onSelectUser($event)"
+          [control]="userControl"
+          [data]="users()"
+          label="Selecciona un usuario"
+          placeholder="Escribe para buscar usuario"
+        />
+      </div>
+      <div class="col-12 md:col-6 flex flex-column md:flex-row">
+        <custom-button
+          (clicked)="sendSignalRToUser()"
+          [disabled]="!selectedUserId()"
+          iconClass="pi pi-send"
+          label="Enviar SignalR"
+        />
+        <custom-button
+          severity="success"
+          (clicked)="sendOneSignalToUser()"
+          [disabled]="!selectedUserId()"
+          iconClass="pi pi-bell"
+          label="Enviar Push (OneSignal)"
+        />
+        <custom-button
+          severity="success"
+          (clicked)="sendOneSignalWebToUser()"
+          [disabled]="!selectedUserId()"
+          iconClass="pi pi-bell"
+          label="Enviar Push (OneSignal) Web"
+        />
+      </div>
+    </div>
+
+    <custom-input-text-signal
+      [control]="titleControl"
+      label="Título de prueba"
+    />
+
+    <custom-input-text-signal
+      [control]="messageControl"
+      label="Mensaje de prueba"
+    />
+
+    <custom-input-text-signal [control]="routeControl" label="Ruta de prueba" />
+  </p-card>
+
+  <!-- Selección de usuarios móltiples -->
+  <p-card styleClass="mb-4">
+    <ng-template pTemplate="title">Enviar a varios usuarios</ng-template>
+    <div class="flex flex-wrap align-items-c gap-4">
+      <div class="col-12 md:col-8">
+        <custom-input-autocomplete-multiple-signal
+          (propagar)="onSelectUsers($event)"
+          [control]="multiUserControl"
+          [data]="users()"
+          label="Selecciona usuarios"
+          placeholder="Escribe para buscar usuarios"
+        />
+      </div>
+      <div class="col-12 md:col-4 flex align-items-end">
+        <custom-button
+          [fluid]="true"
+          (clicked)="sendSignalRToUsers()"
+          [disabled]="!selectedUserIds().length"
+          iconClass="pi pi-send"
+          label="Enviar SignalR a seleccionados"
+        />
+      </div>
+    </div>
+  </p-card>
+</div>

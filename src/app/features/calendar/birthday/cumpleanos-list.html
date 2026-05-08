@@ -1,0 +1,107 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="card hidden md:block">
+  <div class="card-body">
+    <h3 class="h3 text-center mb-4">CumpleAños del Mes</h3>
+
+    <!-- Botones de meses agrupados -->
+    <div class="flex justify-content-center mb-5 gap-1 flex-wrap">
+      @for (month of months; track month; let i = $index) {
+      <custom-button
+        [label]="month"
+        [variant]="selectedMonth() !== i ? 'outlined' : null"
+        [showLabelOnDesktop]="true"
+        size="small"
+        (clicked)="onMonthSelect(i)"
+      />
+      }
+    </div>
+
+    <!-- Rejilla de tarjetas con Tailwind Grid -->
+    <div
+      class="grid md:grid lg:grid xl:grid"
+    >
+      @for (item of dataSignal(); track item) {
+      <div>
+        <p-card styleClass="text-center">
+          <ng-template #header>
+            <p-avatar
+              [image]="
+                item.photo ? item.photo : 'assets/images/default-avatar.png'
+              "
+              styleClass="mx-auto mt-3"
+              size="xlarge"
+              shape="circle"
+            ></p-avatar>
+          </ng-template>
+
+          <h4 class="m-0">{{ item.title }}</h4>
+          <p class="m-0 text-color-secondary">{{ item.applicationRole }}</p>
+
+          <ng-template #footer>
+            <p-tag [value]="item.date" severity="info" />
+          </ng-template>
+        </p-card>
+      </div>
+      } @empty {
+      <!-- Mensaje cuando no hay datos -->
+      <div
+        class="col-12 flex flex-column align-items-center justify-content-center p-4 text-center"
+      >
+        <i class="pi pi-calendar-times text-6xl text-gray-400 mb-3"></i>
+        <h4 class="m-0">No hay cumpleAños este mes.</h4>
+        <p class="text-color-secondary">
+          Selecciona otro mes para ver si hay cumpleAños.
+        </p>
+      </div>
+      }
+    </div>
+  </div>
+</div>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<div class="block md:hidden">
+  <!-- Selector de Meses Scrollable -->
+  <ion-segment
+    scrollable="true"
+    [value]="selectedMonth()"
+    (ionChange)="onMonthSelectMobile($event)"
+    class="mb-3"
+  >
+    @for (month of months; track month; let i = $index) {
+    <ion-segment-button [value]="i">
+      <ion-label>{{ month }}</ion-label>
+    </ion-segment-button>
+    }
+  </ion-segment>
+
+  <!-- Lista de CumpleAños -->
+  @if (dataSignal().length > 0) {
+  <ion-list>
+    @for (item of dataSignal(); track item) {
+    <ion-item lines="full">
+      <ion-avatar slot="start">
+        <img [src]="item.photo || 'assets/images/default-avatar.png'" />
+      </ion-avatar>
+      <ion-label>
+        <h2 class="text-base font-bold">{{ item.title }}</h2>
+        <p class="text-small text-color-secondary mb-0">
+          {{ item.applicationRole }}
+        </p>
+      </ion-label>
+      <ion-note slot="end" color="primary" class="text-sm font-bold">
+        {{ item.date }}
+      </ion-note>
+    </ion-item>
+    }
+  </ion-list>
+  } @else {
+  <!-- Empty State Móvil -->
+  <div
+    class="flex flex-column align-items-center justify-content-center p-5 text-center opacity-60"
+  >
+    <i class="pi pi-gift text-6xl mb-3 text-color-secondary"></i>
+    <h3 class="text-lg m-0 text-color-secondary">Sin cumpleAños</h3>
+    <p class="text-sm m-0">No hay celebraciones este mes.</p>
+  </div>
+  }
+</div>

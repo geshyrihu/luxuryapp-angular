@@ -1,0 +1,121 @@
+<div class="card">
+  <p-table
+    [globalFilterFields]="globalFilterFields()"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [value]="dataSignal()"
+    #dt
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    styleClass="custom-table card hidden md:block"
+  >
+    <ng-template #caption>
+      <primeng-custom-caption
+        (add)="onModalForm({ id: '', title: 'Registrar Incidencia' })"
+        [showAdd]="employeeId"
+        [dt]="dt"
+      />
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        @if (!employeeId) {
+        <th class="table-col-lg">Empleado</th>
+        }
+        <th class="table-col-lg">Tipo</th>
+        <th class="table-col-md">Categoría</th>
+        <th class="table-col-md text-center">Severidad</th>
+        <th class="table-col-md text-center">Estatus</th>
+        <th class="table-col-sm">Fecha</th>
+        <th class="table-col-sm text-center">Sanción</th>
+        <th class="table-col-sm text-center">Acta</th>
+        <th class="table-col-actions">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        @if (!employeeId) {
+        <td>{{ item.employeeName }}</td>
+        }
+        <td>{{ item.incidentTypeName }}</td>
+        <td>{{ item.category }}</td>
+        <td class="text-center">
+          <span [class]="'badge ' + getSeverityBadge(item.severityLevel)">
+            {{ item.severityLevel }}
+          </span>
+        </td>
+        <td class="text-center">
+          <span [class]="'badge ' + getStatusBadge(item.investigationStatus)">
+            {{ item.investigationStatus }}
+          </span>
+        </td>
+        <td>{{ item.incidentDateTime | date:'dd/MM/yyyy' }}</td>
+        <td class="text-center">
+          @if (item.sanctionApplied) {
+          <span class="badge badge-danger">Sí</span>
+          } @else {
+          <span class="badge badge-neutral">No</span>
+          }
+        </td>
+        <td class="text-center">
+          @if (item.isActGenerated) {
+          <span class="badge badge-success">✓ Firmada</span>
+          } @else {
+          <span class="badge badge-neutral">Pendiente</span>
+          }
+        </td>
+        <td class="text-center">
+          <div class="flex align-items-center gap-2">
+            @if (item.investigationStatus === 'Reportado' ||
+            item.investigationStatus === 'EnInvestigacion') {
+            <custom-button-item
+              iconClass="pi pi-check-circle"
+              label="Resolver"
+              (click)="onResolve(item)"
+            />
+            <custom-button-edit (click)="onEdit(item)" />
+            <custom-button-item
+              iconClass="pi pi-times-circle"
+              label="Cancelar"
+              (click)="onCancel(item)"
+            />
+            }
+
+            <!-- Generar y descargar acta para firma física -->
+            <custom-button-download
+              iconClass="pi pi-file-edit"
+              size="small"
+              (clicked)="onGenerateAct(item)"
+            />
+
+            <!-- Subir acta firmada escaneada -->
+            <custom-button-item
+              iconClass="pi pi-upload"
+              [label]="item.isActGenerated ? 'Reemplazar Acta' : 'Subir Acta'"
+              (click)="onUploadSignedAct(item)"
+            />
+
+            <!-- Ver acta firmada en visor — solo si ya fue subida -->
+            @if (item.isActGenerated && item.administrativeActPdfUrl) {
+            <custom-button-view-pdf
+              iconClass="pi pi-file-pdf"
+              [url]="item.administrativeActPdfUrl"
+              fileName="Acta Administrativa"
+              size="small"
+              [rounded]="true"
+            />
+            }
+
+            <custom-button-delete (confirmed)="onDelete(item.id)" />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #paginatorleft>
+      <primeng-custom-table-footer [data]="dataSignal()" />
+    </ng-template>
+  </p-table>
+</div>

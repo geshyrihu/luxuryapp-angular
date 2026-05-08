@@ -1,0 +1,403 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <div class="flex align-items-end flex-wrap gap-2 no-print mb-4 mt-1">
+      <custom-input-text-signal
+        [control]="fechaControl"
+        type="month"
+        customClass="w-15rem"
+        (change)="onReloadOrdenes(filtroId, filtroEquiposValue)"
+        pTooltip="Seleccionar Mes y Año"
+        tooltipPosition="top"
+        [horizontal]="false"
+        [noMargin]="true"
+      />
+      <div class="flex flex-wrap gap-1">
+        @for (item of filtroEquipos; track item) {
+        <custom-button
+          [ngbTooltip]="'Ver ' + item.nombre"
+          [iconClass]="getInventoryIconClass(item.icon)"
+          variant="outlined"
+          [ngClass]="{'bg-primary text-white': filtroEquiposValue == item.nombre}"
+          (clicked)="onReloadOrdenes(item.id, item.nombre)"
+        />
+        }
+      </div>
+      <custom-button
+        iconClass="pi pi-file"
+        label="Reporte de órdenes"
+        (click)="onNavigateToReport()"
+        variant="outlined"
+      />
+      <div class="ml-auto">
+        <primeng-custom-caption
+          [title]="filtroEquiposValue | titlecase"
+          (add)="
+        onEdit({
+          id: 0,
+          title: 'Nuevo Registro',
+          machineryId: 0,
+          providerId: 0
+        })
+      "
+          [dt]="dt"
+          [noMargin]="true"
+          [noPadding]="true"
+        />
+      </div>
+    </div>
+    <div
+      class="flex align-items-center justify-content-between text-sm text-color-secondary pt-2 border-top-1 border-200"
+    >
+      Servicios Totales: {{ dataSignal() ? dataSignal().length : 0 }} .
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-10" pSortableColumn="maintenanceCalendarId">
+        CL-ID
+        <p-sortIcon field="maintenanceCalendarId" class="no-print" />
+      </th>
+      <th class="table-col-20" pSortableColumn="machinery">
+        Equipo
+        <p-sortIcon field="machinery" class="no-print" />
+      </th>
+      <th class="table-col-10" pSortableColumn="typeMaintance">
+        Servicio
+        <p-sortIcon field="typeMaintance" class="no-print" />
+      </th>
+      <th class="table-col-15" pSortableColumn="provider">
+        Proveedor
+        <p-sortIcon field="provider" class="no-print" />
+      </th>
+      <th class="table-col-10" pSortableColumn="status">
+        Estatus
+        <p-sortIcon field="status" class="no-print" />
+      </th>
+      <th class="table-col-10" pSortableColumn="serviceOrderImg.length">
+        Fotos
+        <p-sortIcon field="serviceOrderImg.length" class="no-print" />
+      </th>
+      <th class="table-col-10" pSortableColumn="serviceOrderDocument.length">
+        Reporte
+        <p-sortIcon field="serviceOrderDocument.length" class="no-print" />
+      </th>
+      <th class="table-col-15 no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <!-- Esto mostrará los últimos 5 dígitos -->
+        {{ item.maintenanceCalendarId | slice:-5 }}
+      </td>
+      <!-- {{ item.machineryId }} | -->
+      <td>{{ item.machineryId | slice:-5}} | {{ item.machinery }}</td>
+      <td>
+        <div class="cursor-pointer font-center">
+          <p-tag
+            [value]="item.typeMaintanceFilter"
+            class="ml-auto"
+            (click)="onNavigateMessage(item.id, 0, item.nameGroup)"
+            [severity]="
+              item.typeMaintanceFilter == 'Preventivo' ? 'success' :
+              item.typeMaintanceFilter == 'Correctivo' ? 'danger' :
+              item.typeMaintanceFilter == 'Predictivo' ? 'warning' : 'info'
+            "
+          />
+        </div>
+      </td>
+      <td>{{ item.provider }}</td>
+      <td>
+        <p-tag
+          [value]="getStatusLabel(item.status)"
+          [severity]="getBadgeSeverity(item.status)"
+        />
+      </td>
+      <td class="text-center">
+        <p-tag
+          (click)="onModalFotos(item.id)"
+          [severity]="item.serviceOrderImg.length == 0 ? 'danger' : 'success'"
+          [value]="item.serviceOrderImg.length"
+        />
+      </td>
+      <td class="text-center">
+        <p-tag
+          (click)="onModalRpeorteProveedor(item.id)"
+          [severity]="item.serviceOrderDocument.length == 0 ? 'danger' : 'success'"
+          [value]="item.serviceOrderDocument.length"
+        />
+      </td>
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-item
+            iconClass="pi pi-print"
+            label="Imprimir soporte"
+            [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
+            variant="outlined"
+          />
+
+          <custom-button-item
+            iconClass="pi pi-image"
+            label="Cargar imagen"
+            (clicked)="onModalFormUploadImg(item.id)"
+            variant="outlined"
+          />
+
+          <custom-button-item
+            iconClass="pi pi-paperclip"
+            label="Cargar documentos"
+            (clicked)="onModalFormUploadDoc(item.id)"
+            variant="outlined"
+          />
+          <custom-button-edit
+            (clicked)="onEdit({
+                  id: item.id,
+                  title: 'Editar',
+                  machineryId: item.machineryId,
+                  providerId: item.providerId
+                })"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!-- ?? INICIO: Contenido visible solo en pantallas pequeóas (hasta md) -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="
+    onEdit({
+      id: 0,
+      title: 'Nuevo Registro',
+      machineryId: 0,
+      providerId: 0
+    })
+  "
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-container customFilters>
+    <!-- tu bloque aquó -->
+    <div class="card-body p-0">
+      <!-- Sección Título y Fecha -->
+      <div class="flex flex-column mb-3">
+        <ion-item lines="none" class="ion-no-padding transparent-item">
+          <ion-label
+            position="stacked"
+            color="primary"
+            class="font-bold text-lg mb-1"
+          >
+            {{ filtroEquiposValue | titlecase }}
+          </ion-label>
+          <custom-input-text-signal
+            [control]="fechaControl"
+            name="fecha"
+            type="month"
+            customClass="w-full"
+            (change)="onReloadOrdenes(filtroId, filtroEquiposValue)"
+            pTooltip="Seleccionar Mes y Año"
+            tooltipPosition="top"
+            [horizontal]="false"
+          />
+        </ion-item>
+      </div>
+
+      <!-- Segmento de Filtros (Scrollable) -->
+      <ion-segment
+        scrollable="true"
+        [value]="filtroEquiposValue"
+        (ionChange)="onSegmentFilterChange($event)"
+        class="mb-3"
+      >
+        @for (item of filtroEquipos; track item) {
+        <ion-segment-button [value]="item.nombre">
+          <i [class]="getInventoryIconClass(item.icon) + ' text-xl mb-1'"></i>
+          <ion-label class="text-xs">{{ item.nombre | titlecase }}</ion-label>
+        </ion-segment-button>
+        }
+      </ion-segment>
+
+      <!-- Botón Reporte -->
+      <div class="mb-2">
+        <ion-button-item
+          iconName="document-text-outline"
+          label="Reporte de órdenes"
+          (click)="onNavigateToReport()"
+          variant="outlined"
+          fullWidth="true"
+        />
+      </div>
+
+      <!-- Contador Totales -->
+      <div class="flex align-items-center justify-content-end px-2 pb-2">
+        <small class="text-color-secondary"
+          >Servicios Totales:
+          <strong>{{ dataSignal() ? dataSignal().length : 0 }}</strong></small
+        >
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- Lista de órdenes de servicio en formato de tarjeta -->
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding">
+      <ion-label>
+        <div class="flex justify-content-between align-items-center mb-1">
+          <h2 class="font-bold m-0 text-base text-wrap">
+            {{ item.machineryId }}- {{ item.machinery }}
+          </h2>
+        </div>
+        <p class="mb-1 text-color-secondary text-sm">
+          CL-ID: {{ item.maintenanceCalendarId }}
+        </p>
+        <p class="mb-1 text-sm">
+          <p-tag
+            [value]="item.typeMaintanceFilter"
+            [severity]="
+              item.typeMaintanceFilter == 'Preventivo' ? 'success' :
+              item.typeMaintanceFilter == 'Correctivo' ? 'danger' :
+              item.typeMaintanceFilter == 'Predictivo' ? 'warning' : 'info'
+            "
+          />
+          <span class="ml-2 text-500">({{ item.provider }})</span>
+        </p>
+
+        <div class="flex flex-wrap mt-2">
+          <p-tag
+            [value]="getStatusLabel(item.status)"
+            [severity]="getBadgeSeverity(item.status)"
+          />
+          <p-tag
+            (click)="onModalFotos(item.id)"
+            [severity]="item.serviceOrderImg.length == 0 ? 'danger' : 'success'"
+            [value]="item.serviceOrderImg.length + ' Fotos'"
+          />
+          <p-tag
+            (click)="onModalRpeorteProveedor(item.id)"
+            [severity]="item.serviceOrderDocument.length == 0 ? 'danger' : 'success'"
+            [value]="item.serviceOrderDocument.length + ' Reportes'"
+          />
+        </div>
+      </ion-label>
+
+      <div slot="end">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-item
+              iconName="print-outline"
+              label="Imprimir soporte"
+              [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
+            />
+
+            <ion-button-item
+              iconName="image-outline"
+              label="Cargar imagen"
+              (clicked)="onModalFormUploadImg(item.id)"
+            />
+
+            <ion-button-item
+              iconName="ellipsis-horizontal-outline"
+              label="Cargar documentos"
+              (clicked)="onModalFormUploadDoc(item.id)"
+              variant="outlined"
+            />
+            <ion-button-edit
+              (clicked)="onEdit({
+                    id: item.id,
+                    title: 'Editar',
+                    machineryId: item.machineryId,
+                    providerId: item.providerId
+                    })"
+            />
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+          </ng-container>
+        </app-action-menu>
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+<style>
+  @media print {
+    /* 1. Reset Global Layout */
+    body {
+      visibility: visible !important;
+      background-color: white !important;
+      color: black !important;
+    }
+
+    /* Ocultar todo lo que no queremos imprimir */
+    app-topbar,
+    app-footer,
+    app-sidebar,
+    .layout-topbar,
+    .layout-sidebar,
+    .layout-footer {
+      display: none !important;
+    }
+
+    /* 2. Forzar visualización de la Tabla */
+    .custom-table {
+      display: block !important;
+      visibility: visible !important;
+      width: 100% !important;
+    }
+
+    /* Resetear las clases de ocultamiento para impresión */
+    .hidden.md\:block {
+      display: block !important;
+    }
+
+    /* 3. Ocultar Vista Móvil */
+    app-data-view-mobile {
+      display: none !important;
+    }
+
+    /* 4. Limpieza de UI de la Tabla */
+    .p-datatable-header,
+    /* El Caption con filtros */
+    .p-paginator-bottom,
+    /* Paginación */
+    .no-print {
+      /* Clase utilitaria para columnas especóficas */
+      display: none !important;
+    }
+
+    /* Ajustes de Tabla */
+    .p-datatable table {
+      width: 100% !important;
+      border-collapse: collapse !important;
+    }
+
+    .p-datatable th,
+    .p-datatable td {
+      border: 1px solid #ddd !important;
+      padding: 4px !important;
+      font-size: 10px !important;
+      /* Reducir fuente para que quepa */
+    }
+
+    /* Ajustes de Badges/Tags para que se vea el color */
+    .p-tag {
+      border: 1px solid #000;
+      color: black !important;
+      font-weight: bold;
+    }
+
+    /* Configuración de Pógina */
+    @page {
+      size: landscape;
+      /* Sugerir horizontal para tablas anchas */
+      margin: 1cm;
+    }
+  }
+</style>

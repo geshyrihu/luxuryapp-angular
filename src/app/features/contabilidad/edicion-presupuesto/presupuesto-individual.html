@@ -1,0 +1,135 @@
+@if (data && data.budgetDetailDTO) {
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<p-table
+  [globalFilterFields]="globalFilterFields"
+  [value]="budgetDetail"
+  #dt
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <div class="flex align-items-center justify-content-between w-full">
+      <primeng-custom-caption
+        [title]="'PRESUPUESTO ' + data.from + ' - ' + data.to"
+        [showAdd]="true"
+        (add)="onModalAdd()"
+        [dt]="dt"
+      />
+      <custom-button
+        ngbTooltip="Descargar excel"
+        iconClass="pi pi-file-excel"
+        label="Descargar excel"
+        severity="success"
+        variant="outlined"
+        (clicked)="DownloadExcel()"
+      />
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th style="width: 30%" rowspan="3" colspan="2">PARTIDA PRESUPUESTAL</th>
+      <th style="width: 15%">MONTO ANTERIOR</th>
+      <th style="width: 15%">MENSUAL</th>
+      <th style="width: 15%">INCREMENTO</th>
+      <th style="width: 20%">TOTAL ANUAL</th>
+      <th style="width: 5%" rowspan="2"></th>
+    </tr>
+    <tr>
+      <th class="text-right font-bold text-900">{{ data.totalMonthlyBudgetFormet }}</th>
+      <th class="text-right font-bold text-900">{{ data.totalMonthlyBudget }}</th>
+      <th class="text-center font-bold text-900">{{ data.totalPercentageIncrease }}%</th>
+      <th class="text-right font-bold text-900">{{ data.totalGeneralBudget }}</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-editing="editing">
+    <tr>
+      <td class="text-center">
+        <i
+          class="pi pi-question-circle text-primary cursor-pointer"
+          pTooltip="Información"
+          tooltipPosition="top"
+          (click)="onModalInfoCuenta(item.accountId)"
+        ></i>
+      </td>
+      <td>
+        <span class="text-sm font-medium text-900">{{ item.accountNumber }} - {{ item.accountName }}</span>
+      </td>
+      <td>
+        <div class="p-1 m-0 text-900 surface-100 border-round text-right">
+          @if (item.id !== 0) {
+          <i
+            pTooltip="Historial de compras"
+            tooltipPosition="top"
+            (click)="
+                  onModalOrdenesCompraCedula(
+                    item.presupuestoAnteriorDetalleId,
+                    item.presupuestoAnteriorId
+                  )
+                "
+            class="pi pi-folder-open mr-2 cursor-pointer"
+          ></i>
+          } {{ item.monthlyBudgetFormet }}
+        </div>
+      </td>
+      <td
+        [pEditableColumn]="item.monthlyBudget"
+        pEditableColumnField="monthlyBudget"
+      >
+        <div class="p-1 m-0 text-900 surface-100 border-round text-right">
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <div class="flex align-items-center">
+                <custom-input-text-signal
+                  [(ngModel)]="item.monthlyBudget"
+                  [ngModelOptions]="{ standalone: true }"
+                  [required]="true"
+                  (keydown.enter)="onEnterPressed(item)"
+                  [horizontal]="false"
+                />
+              </div>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ item.monthlyBudget }}
+            </ng-template>
+          </p-cellEditor>
+        </div>
+      </td>
+      <td
+        [pEditableColumn]="item.percentageIncrease"
+        pEditableColumnField="percentageIncrease"
+      >
+        <div class="p-1 m-0 text-900 surface-100 border-round text-center">
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <div class="flex align-items-center">
+                <custom-input-number-signal
+                  [(ngModel)]="item.percentageIncrease"
+                  [ngModelOptions]="{ standalone: true }"
+                  [min]="0"
+                  [max]="100"
+                  [required]="true"
+                  (keydown.enter)="onEnterPressedPorcentaje(item)"
+                  [horizontal]="false"
+                />
+              </div>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ item.percentageIncrease }}%
+            </ng-template>
+          </p-cellEditor>
+        </div>
+      </td>
+      <td>
+        <div class="flex justify-content-center">
+          <p-menu #menu [model]="getMenuItems(item)" [popup]="true"></p-menu>
+          <custom-button
+            iconClass="pi pi-ellipsis-v"
+            variant="ghost-text"
+            size="sm"
+            (clicked)="menu.toggle($event)"
+          />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+}

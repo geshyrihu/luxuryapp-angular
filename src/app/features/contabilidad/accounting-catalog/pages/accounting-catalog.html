@@ -1,0 +1,104 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block">
+  <div class="card">
+    <p-table
+      #dt
+      [value]="flattenedDataSignal()"
+      [globalFilterFields]="globalFilterFields()"
+      [paginator]="true"
+      [rows]="tablePrimeNgRows"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      rowGroupMode="subheader"
+      groupRowsBy="cuentaPadre"
+      sortField="cuentaPadre"
+      sortMode="single"
+      styleClass="custom-table"
+    >
+      <ng-template #caption>
+        <div class="flex justify-content-between">
+          <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+          <custom-button
+            iconClass="pi pi-download"
+            label="Exportar"
+            (clicked)="exportData()"
+            severity="success"
+          ></custom-button>
+        </div>
+      </ng-template>
+
+      <ng-template #header>
+        <tr>
+          <th pSortableColumn="codigoCuenta" class="table-col-150px">
+            Código
+            <p-sortIcon field="codigoCuenta" />
+          </th>
+          <th pSortableColumn="descripcionCuenta">
+            Descripción
+            <p-sortIcon field="descripcionCuenta" />
+          </th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="groupheader" let-group>
+        <tr class="p-rowgroup-header">
+          <td colspan="2">
+            <div class="flex align-items-center">
+              <span class="font-bold text-lg">
+                📂 {{ group.cuentaPadre }}
+              </span>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-item>
+        <tr>
+          <td class="font-mono">{{ item.codigoCuenta }}</td>
+          <td>{{ item.descripcionCuenta }}</td>
+        </tr>
+      </ng-template>
+
+      <ng-template emptymessage>
+        <tr>
+          <td colspan="2" class="text-center py-4">
+            <i class="pi pi-info-circle mr-2"></i>
+            No hay cuentas para mostrar.
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template #paginatorleft>
+        <primeng-custom-table-footer [data]="flattenedDataSignal()" />
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<div class="block md:hidden">
+  <div class="card">
+    <app-data-view-mobile
+      [data]="flattenedDataSignal()"
+      [showAdd]="false"
+      [globalFilterFields]="globalFilterFields()"
+    >
+      <ng-template #listItemTemplate let-item>
+        <ion-item lines="full" class="ion-no-padding">
+          <ion-label>
+            <div class="flex flex-column">
+              <small class="text-color-secondary">
+                📂 {{ item.cuentaPadre }}</small
+              >
+              <span class="font-bold">{{ item.descripcionCuenta }}</span>
+              <small class="text-color-secondary font-mono"
+                >{{ item.codigoCuenta }}</small
+              >
+            </div>
+          </ion-label>
+        </ion-item>
+      </ng-template>
+    </app-data-view-mobile>
+  </div>
+</div>

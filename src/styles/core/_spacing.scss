@@ -1,0 +1,63 @@
+// ============================================================
+// _spacing.scss
+// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
+// Escala de espaciado — base 4px
+// ============================================================
+
+// ── ESCALA BASE ───────────────────────────────────────────────
+// Unidad mínima: 4px. Escala lineal hasta el 20, luego saltos.
+$space-0:    0       !default;
+$space-px:   1px     !default;
+$space-0-5:  0.125rem !default;  // 2px
+$space-1:    0.25rem  !default;  // 4px
+$space-1-5:  0.375rem !default;  // 6px
+$space-2:    0.5rem   !default;  // 8px
+$space-2-5:  0.625rem !default;  // 10px
+$space-3:    0.75rem  !default;  // 12px
+$space-3-5:  0.875rem !default;  // 14px
+$space-4:    1rem     !default;  // 16px ← unidad base
+$space-5:    1.25rem  !default;  // 20px
+$space-6:    1.5rem   !default;  // 24px
+$space-7:    1.75rem  !default;  // 28px
+$space-8:    2rem     !default;  // 32px
+$space-9:    2.25rem  !default;  // 36px
+$space-10:   2.5rem   !default;  // 40px
+$space-11:   2.75rem  !default;  // 44px
+$space-12:   3rem     !default;  // 48px
+$space-14:   3.5rem   !default;  // 56px
+$space-16:   4rem     !default;  // 64px
+$space-20:   5rem     !default;  // 80px
+$space-24:   6rem     !default;  // 96px
+$space-32:   8rem     !default;  // 128px
+$space-40:   10rem    !default;  // 160px
+$space-48:   12rem    !default;  // 192px
+
+// ── ESPACIADO SEMÁNTICO ───────────────────────────────────────
+// Alias con significado para componentes específicos
+$padding-component-xs: $space-1 $space-2      !default; // botón xs
+$padding-component-sm: $space-1-5 $space-3    !default; // botón sm
+$padding-component-md: $space-2 $space-4      !default; // botón md (default)
+$padding-component-lg: $space-2-5 $space-5    !default; // botón lg
+$padding-component-xl: $space-3 $space-6      !default; // botón xl
+
+$padding-input-xs: $space-1 $space-2          !default;
+$padding-input-sm: $space-1-5 $space-2-5      !default;
+$padding-input-md: $space-2 $space-3          !default;
+$padding-input-lg: $space-2-5 $space-3-5      !default;
+$padding-input-xl: $space-3 $space-4          !default;
+
+$padding-card:        $space-6                !default;
+$padding-card-sm:     $space-4                !default;
+$padding-card-lg:     $space-8                !default;
+
+$padding-modal-header: $space-5 $space-6      !default;
+$padding-modal-body:   $space-6               !default;
+$padding-modal-footer: $space-4 $space-6      !default;
+
+$gap-form-group: $space-1-5                   !default;
+$gap-inline:     $space-2                     !default;
+$gap-section:    $space-6                     !default;
+
+
+
+

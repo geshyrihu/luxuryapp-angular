@@ -1,0 +1,94 @@
+<p-table
+  [value]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  styleClass="p-datatable-sm p-datatable-gridlines hidden md:block"
+  [paginator]="true"
+  [rows]="10"
+  sortMode="multiple"
+  #dt
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="onModalForm({ id: '', title: 'Nueva Regla' })"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th class="table-col-15">Tipo</th>
+      <th class="table-col-20">Cuenta</th>
+      <th>Nombre / Descripción</th>
+      <th class="table-col-25">Alcance</th>
+      <th class="table-col-100px text-center">Acciones</th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-Item>
+    <tr>
+      <td>
+        <span
+          [class]="Item.ruleType === 0 ? 'text-green-700 font-bold' : 'text-red-700 font-bold'"
+        >
+          {{ getRuleTypeLabel(Item.ruleType) }}
+        </span>
+      </td>
+      <td class="font-bold">{{ Item.accountNumber }}</td>
+      <td>{{ Item.accountName || '-' }}</td>
+      <td>
+        <span [class]="!Item.customerId ? 'text-blue-700 font-bold' : ''">
+          {{ getScopeLabel(Item.customerId) }}
+        </span>
+      </td>
+      <td class="text-center">
+        <div class="flex justify-content-center">
+          <custom-button-edit
+            (clicked)="onModalForm({ id: Item.id, title: 'Editar Regla' })"
+          />
+          <custom-button-delete (confirmed)="onDelete(Item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="5" class="text-center p-4">
+        No se encontraron reglas configuradas para este cliente.
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nueva Regla' })"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div
+        slot="start"
+        class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+      >
+        <ion-icon
+          name="analytics-outline"
+          class="text-blue-600 text-xl"
+        ></ion-icon>
+      </div>
+      <ion-label>
+        <h3>{{ item.accountNumber }} ó {{ item.accountName || '-' }}</h3>
+        <p>
+          {{ getRuleTypeLabel(item.ruleType) }} ó {{
+          getScopeLabel(item.customerId) }}
+        </p>
+      </ion-label>
+      <app-action-menu slot="end">
+        <ion-button-edit
+          (clicked)="onModalForm({ id: item.id, title: 'Editar Regla' })"
+        />
+        <ion-button-delete (confirmed)="onDelete(item.id)" />
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

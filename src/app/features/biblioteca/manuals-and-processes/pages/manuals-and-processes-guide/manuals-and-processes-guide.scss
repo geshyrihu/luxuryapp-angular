@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+.manuals-guide {
+  background: var(--ds-bg-page, #f8fafc);
+}
+
+.manuals-guide__title {
+  color: var(--ds-primary, #0b3164);
+}
+
+.manuals-guide__swatch--primary {
+  background: var(--ds-primary, #0b3164);
+}
+
+.manuals-guide__swatch--gold {
+  background: var(--ds-luxury-gold, #c9a84c);
+}
+
+.manuals-guide__swatch--neutral {
+  background: var(--ds-document-neutral, #6b7280);
+}
+
+.manuals-guide__swatch--ink {
+  background: var(--ds-document-ink, #1a1a1a);
+}

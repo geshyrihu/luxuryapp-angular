@@ -1,0 +1,221 @@
+<!-- Encabezado -->
+<div class="hidden md:flex justify-content-between align-items-center mb-6">
+  <div>
+    <h1 class="text-2xl font-bold text-900 mb-1 flex align-items-center gap-2">
+      <i class="pi pi-clipboard text-primary"></i>
+      <span>Grupos de Trabajo</span>
+    </h1>
+    <p class="text-sm text-600 m-0">
+      Gestiona los grupos de trabajo y sus tareas
+    </p>
+  </div>
+  <div class="flex align-items-center gap-2">
+    <custom-button-active-desactive
+      [state]="value()"
+      (stateChange)="onChange($event)"
+    />
+    @if (hasSuperUsuario()) {
+    <custom-button-add
+      (clicked)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+    />
+    }
+  </div>
+</div>
+
+<!-- Grid de modulos (version escritorio) -->
+<div class="hidden md:block">
+  <div class="grid">
+    @for (item of dataSignal(); track item.id) {
+    <div class="col-12 md:col-6 lg:col-4">
+      <div class="card border-1 surface-border p-4 shadow-1 hover:shadow-3 transition-all transition-duration-300">
+
+        <!-- Encabezado: icono + nombre + tag -->
+        <div class="flex align-items-center justify-content-between mb-3">
+          <div class="flex align-items-center gap-3">
+            <div
+              class="flex align-items-center justify-content-center border-round-lg flex-shrink-0 w-3rem h-3rem"
+              [style.backgroundColor]="item.color"
+            >
+              <i [class]="getGroupIconClass(item.emoji)" class="text-white text-xl"></i>
+            </div>
+            <div>
+              <div class="flex align-items-center gap-2">
+                <h3 class="m-0 font-semibold text-900 text-base line-height-1">{{ item.nameGroup }}</h3>
+                @if (item.isLegalGroup) {
+                  <p-tag value="Legal" severity="warn" size="small" />
+                }
+              </div>
+              <p class="text-xs text-500 m-0 mt-1">{{ item.visibility }}</p>
+            </div>
+          </div>
+          <p-tag [severity]="getVisibilityClass(item.visibility)" [value]="item.visibility" size="small" />
+        </div>
+
+        <!-- Pendientes -->
+        <div
+          class="flex align-items-center justify-content-between border-round-lg surface-50 px-3 py-2 mb-3 cursor-pointer hover:surface-100 transition-colors transition-duration-200"
+          (click)="onNavigateMessage(item.id, 0)"
+        >
+          <span class="text-sm text-600 font-medium">Pendientes</span>
+          <span
+            class="text-2xl font-bold"
+            [class.text-orange-500]="(item.open + item.inProgress + item.reopened) > 0"
+            [class.text-green-500]="(item.open + item.inProgress + item.reopened) === 0"
+          >{{ item.open + item.inProgress + item.reopened }}</span>
+        </div>
+
+        <!-- Acciones -->
+        <div class="flex justify-content-between align-items-center">
+          <div class="flex gap-1">
+            @if (item.customerId === customerIdS.customerId()) {
+            <custom-button
+              (clicked)="onModalParticipants(item)"
+              [border-round]="true"
+              customClass="text-xl"
+              iconClass="pi pi-users"
+              ngbTooltip="Integrantes"
+              variant="text"
+            />
+            }
+            @if (hasSuperUsuario()) {
+            <custom-button
+              (clicked)="SendReportPendingTicketGroupAsync(item)"
+              [border-round]="true"
+              customClass="text-xl"
+              iconClass="pi pi-envelope"
+              ngbTooltip="Enviar por correo"
+              variant="text"
+            />
+            }
+          </div>
+          <div class="flex gap-1">
+            <custom-button
+              iconClass="pi pi-pencil"
+              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+              ngbTooltip="Editar"
+              [border-round]="true"
+              variant="text"
+              severity="secondary"
+              customClass="text-xl"
+            />
+            <custom-button
+              [iconClass]="item.active ? 'pi pi-lock' : 'pi pi-lock-open'"
+              (click)="onToggleStatus(item.id)"
+              [ngbTooltip]="item.active ? 'Bloquear' : 'Desbloquear'"
+              [border-round]="true"
+              variant="text"
+              [severity]="item.active ? 'warn' : 'success'"
+              customClass="text-xl"
+            />
+            <custom-button
+              iconClass="pi pi-trash"
+              (clicked)="onDelete(item.id)"
+              ngbTooltip="Eliminar"
+              [border-round]="true"
+              variant="text"
+              severity="danger"
+              customClass="text-xl"
+            />
+          </div>
+        </div>
+
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="mt-4">
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </div>
+</div>
+
+<!-- Contenido para pantallas pequenas -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+  [loading]="loading()"
+>
+  <ng-container customFilters>
+    <div class="px-3 pb-3">
+      <ion-button-active-desactive
+        [state]="value()"
+        (stateChange)="onChange($event)"
+      />
+    </div>
+  </ng-container>
+  <ng-template #listItemTemplate let-item>
+    <div class="surface-card border-bottom-1 surface-border px-3 py-3">
+      <div class="flex align-items-center justify-content-between gap-3">
+        <div class="flex align-items-center gap-3 flex-1 min-w-0">
+          <div
+            class="w-2rem h-2rem flex align-items-center justify-content-center flex-shrink-0 text-2xl"
+            [style.color]="item.color || '#64748b'"
+          >
+            <i [class]="getGroupIconClass(item.emoji)"></i>
+          </div>
+
+          <div class="flex-1 min-w-0">
+            <h3 class="m-0 text-900 font-medium text-xl text-wrap">
+              {{ item.nameGroup }}
+            </h3>
+            <p class="m-0 mt-1 text-600 text-sm">
+              {{ item.visibility }}
+            </p>
+          </div>
+        </div>
+
+        <div class="flex align-items-center gap-2 flex-shrink-0">
+          <div
+            class="flex align-items-center gap-1 text-700 cursor-pointer"
+            (click)="onNavigateMessage(item.id, 0)"
+          >
+            <span class="font-semibold text-sm">
+              {{ item.open + item.inProgress + item.reopened }}
+            </span>
+            <ion-icon
+              name="chatbubbles-outline"
+              class="text-base"
+            ></ion-icon>
+          </div>
+
+          <app-action-menu>
+            <ng-container actions>
+              @if (item.customerId === customerIdS.customerId()) {
+              <ion-button-item
+                (clicked)="onModalParticipants(item)"
+                [label]="'Integrantes (' + item.TaskGroupParticipant + ')'"
+                iconName="people-outline"
+              />
+              }
+              @if (hasSuperUsuario()) {
+              <ion-button-item
+                iconName="mail-outline"
+                label="Enviar por correo"
+                (clicked)="SendReportPendingTicketGroupAsync(item)"
+              />
+              }
+              <ion-button-edit
+                (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+              />
+              <ion-button-delete (confirmed)="onDelete(item.id)" />
+              @if (item.active) {
+              <ion-button-item
+                iconName="lock-closed-outline"
+                label="Bloquear"
+                (clicked)="onToggleStatus(item.id)"
+              />
+              } @if (!item.active) {
+              <ion-button-item
+                iconName="lock-open-outline"
+                label="Desbloquear"
+                (clicked)="onToggleStatus(item.id)"
+              />
+              }
+            </ng-container>
+          </app-action-menu>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</app-data-view-mobile>

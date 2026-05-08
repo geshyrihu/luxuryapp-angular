@@ -1,0 +1,49 @@
+.th-width-60 {
+  width: 60px;
+}
+
+.th-width-200 {
+  width: 200px;
+}
+
+.th-width-100 {
+  width: 100px;
+}
+
+.th-width-80 {
+  width: 80px;
+}
+
+.th-width-220 {
+  width: 220px;
+}
+
+.th-width-120 {
+  width: 120px;
+}
+
+.th-width-160 {
+  width: 160px;
+}
+
+.td-background-f3f6fa {
+  background: #f3f6fa;
+}
+
+.animate__fadeIn {
+  animation: fadeIn 0.6s ease-in-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+

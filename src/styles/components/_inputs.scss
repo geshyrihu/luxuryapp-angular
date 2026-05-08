@@ -1,0 +1,382 @@
+// ============================================================
+// _inputs.scss
+// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
+// Sistema completo de inputs y controles de formulario
+// ============================================================
+
+@use '../core/mixins' as m;
+@use '../core/colors' as c;
+
+// ── INPUT BASE ────────────────────────────────────────────────
+.input {
+  // Reset
+  appearance: none;
+  -webkit-appearance: none;
+
+  // Layout
+  display: block;
+  width: 100%;
+  height: 40px; // md default
+
+  // Espaciado
+  padding: 0 0.75rem;
+
+  // Tipografía
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ds-text-primary);
+
+  // Visual
+  background-color: var(--ds-bg-surface);
+  border: var(--ds-control-border-width, 1px) solid var(--ds-border);
+  border-radius: var(--ds-radius-input, 6px);
+  box-shadow: var(--ds-shadow-xs);
+
+  // Transición
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease;
+
+  // Placeholder
+  &::placeholder {
+    color: var(--ds-text-muted);
+    opacity: 1;
+  }
+
+  // Focus
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    border-color: var(--ds-border-focus);
+    box-shadow: var(--ds-shadow-focus);
+  }
+
+  // Hover
+  &:hover:not(:focus):not(:disabled):not([readonly]) {
+    border-color: var(--ds-border-strong);
+  }
+
+  // Disabled
+  &:disabled,
+  &[disabled] {
+    opacity: 0.55;
+    cursor: not-allowed;
+    background-color: var(--ds-bg-sunken);
+    color: var(--ds-text-disabled);
+  }
+
+  // Readonly
+  &[readonly] {
+    background-color: var(--ds-bg-sunken);
+    cursor: default;
+    color: var(--ds-text-secondary);
+  }
+}
+
+// ── ESTADOS DE VALIDACIÓN ─────────────────────────────────────
+
+// Error
+.input-error {
+  @extend .input;
+  border-color: var(--ds-border-error);
+  box-shadow: none;
+
+  &:focus,
+  &:focus-visible {
+    border-color: var(--ds-border-error);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+  }
+
+  &:hover:not(:focus) {
+    border-color: #b91c1c; // danger-700
+  }
+}
+
+// Success
+.input-success {
+  @extend .input;
+  border-color: var(--ds-border-success);
+  box-shadow: none;
+
+  &:focus,
+  &:focus-visible {
+    border-color: var(--ds-border-success);
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+  }
+}
+
+// Warning
+.input-warning {
+  @extend .input;
+  border-color: var(--ds-warning);
+  box-shadow: none;
+
+  &:focus,
+  &:focus-visible {
+    border-color: var(--ds-warning);
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+  }
+}
+
+// ── TAMAÑOS ───────────────────────────────────────────────────
+
+.input-xs {
+  @extend .input;
+  height: 28px;
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
+}
+
+.input-sm {
+  @extend .input;
+  height: 34px;
+  padding: 0 0.625rem;
+  font-size: 0.8125rem;
+}
+
+.input-lg {
+  @extend .input;
+  height: 48px;
+  padding: 0 1rem;
+  font-size: 1rem;
+}
+
+.input-xl {
+  @extend .input;
+  height: 56px;
+  padding: 0 1.25rem;
+  font-size: 1.0625rem;
+}
+
+// ── TEXTAREA ──────────────────────────────────────────────────
+.textarea {
+  @extend .input;
+  height: auto;
+  min-height: 100px;
+  padding: 0.625rem 0.75rem;
+  resize: vertical;
+  line-height: 1.6;
+
+  &--no-resize { resize: none; }
+  &--autosize  { resize: none; overflow: hidden; }
+}
+
+// ── INPUT CON PREFIJO / SUFIJO ────────────────────────────────
+// Wrapper que contiene el input y un elemento adicional
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+
+  // Input dentro del grupo
+  > .input,
+  > [class*='input-'] {
+    flex: 1;
+    min-width: 0;
+  }
+
+  // Cuando tiene prefijo de texto/ícono
+  &--prefix > .input { padding-left: 2.5rem; }
+  &--suffix > .input { padding-right: 2.5rem; }
+  &--both   > .input { padding-left: 2.5rem; padding-right: 2.5rem; }
+
+  // Elemento prefijo/sufijo
+  .input-prefix,
+  .input-suffix {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    color: var(--ds-text-muted);
+    pointer-events: none;
+    font-size: 0.875rem;
+    z-index: 1;
+  }
+
+  .input-prefix { left: 0.75rem; }
+  .input-suffix { right: 0.75rem; }
+
+  // Cuando el sufijo es interactivo (botón mostrar/ocultar contraseña)
+  .input-suffix--interactive {
+    pointer-events: auto;
+    cursor: pointer;
+    color: var(--ds-text-muted);
+    background: none;
+    border: none;
+    padding: 0;
+    transition: color 150ms ease;
+
+    &:hover { color: var(--ds-text-primary); }
+  }
+}
+
+// ── CHECKBOX ──────────────────────────────────────────────────
+.checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1rem;
+  height: 1rem;
+  min-width: 1rem;
+  border: var(--ds-control-border-width, 1px) solid var(--ds-border-strong);
+  border-radius: 3px;
+  background-color: var(--ds-bg-surface);
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+  position: relative;
+
+  &:checked {
+    background-color: var(--ds-primary);
+    border-color: var(--ds-primary);
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 1px;
+      left: 4px;
+      width: 5px;
+      height: 8px;
+      border: 2px solid #fff;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
+    }
+  }
+
+  &:indeterminate {
+    background-color: var(--ds-primary);
+    border-color: var(--ds-primary);
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 8px;
+      height: 2px;
+      background-color: #fff;
+      border-radius: 1px;
+    }
+  }
+
+  @include m.focus-ring(var(--ds-border-focus));
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// ── RADIO BUTTON ─────────────────────────────────────────────
+.radio {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1rem;
+  height: 1rem;
+  min-width: 1rem;
+  border: var(--ds-control-border-width, 1px) solid var(--ds-border-strong);
+  border-radius: 50%;
+  background-color: var(--ds-bg-surface);
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+  position: relative;
+
+  &:checked {
+    border-color: var(--ds-primary);
+    background-color: var(--ds-bg-surface);
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--ds-primary);
+    }
+  }
+
+  @include m.focus-ring(var(--ds-border-focus));
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// ── TOGGLE / SWITCH ───────────────────────────────────────────
+.toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+
+  &__track {
+    position: relative;
+    width: 2.5rem;
+    height: 1.375rem;
+    background-color: var(--ds-border-strong);
+    border-radius: var(--ds-radius-full);
+    transition: background-color 200ms ease;
+    flex-shrink: 0;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: calc(1.375rem - 4px);
+      height: calc(1.375rem - 4px);
+      background-color: #fff;
+      border-radius: 50%;
+      transition: transform 200ms ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked + .toggle__track {
+      background-color: var(--ds-primary);
+
+      &::after {
+        transform: translateX(calc(2.5rem - 1.375rem));
+      }
+    }
+
+    &:disabled + .toggle__track {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    @include m.focus-ring(var(--ds-border-focus));
+  }
+
+  &--sm .toggle__track {
+    width: 2rem;
+    height: 1.125rem;
+  }
+
+  &--lg .toggle__track {
+    width: 3rem;
+    height: 1.625rem;
+  }
+}
+
+

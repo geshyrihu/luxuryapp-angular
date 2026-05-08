@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">Foto de perfil</div>
+  </div>
+  <div class="card-body">
+    <custom-input-img-signal
+      (fileSelected)="changeImg($event)"
+      [urlImgCurrent]="imgUpload ? imgTemp : infoEmployeeDTO.photoPath"
+      label="Foto de perfil"
+      [horizontal]="false"
+    />
+  </div>
+</div>

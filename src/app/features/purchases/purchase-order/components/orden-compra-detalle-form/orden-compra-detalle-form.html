@@ -1,0 +1,77 @@
+<div class="p-4">
+  <div class="mb-4">
+    <h3>Detalles del Producto</h3>
+    <p class="text-lg font-semibold">{{ productData.productName }}</p>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="grid col-12 md:col-6">
+      <div class="mb-4">
+        <custom-input-number-signal
+          label="Cantidad"
+          [control]="form.controls.quantity"
+        />
+      </div>
+
+      <div class="mb-4">
+        <custom-input-currency-signal
+          label="Precio Unitario"
+          [control]="form.controls.unitPrice"
+          [minFractionDigits]="0"
+          [maxFractionDigits]="4"
+        />
+      </div>
+
+      <div class="mb-4">
+        <custom-input-currency-signal
+          label="Descuento"
+          [control]="form.controls.descuento"
+        />
+      </div>
+
+      <div class="mb-4">
+        <custom-input-decimal-signal
+          label="IVA (%)"
+          [control]="form.controls.ivaAplicado"
+          suffix="%"
+        />
+      </div>
+
+      <div class="mb-4">
+        <custom-input-decimal-signal
+          label="Retención IVA (%)"
+          [control]="form.controls.retencionIVAPorcentaje"
+          suffix="%"
+        />
+      </div>
+
+      <div class="mb-4">
+        <custom-input-decimal-signal
+          label="Retención ISR (%)"
+          [control]="form.controls.retencionISRPorcentaje"
+          suffix="%"
+        />
+      </div>
+
+      <div class="col-12 mb-4">
+        <custom-input-select-signal
+          label="Unidad de Medida"
+          [data]="cb_measurement_units"
+          placeholder="Seleccione una unidad"
+          [control]="form.controls.unidadMedidaId"
+          [filter]="true"
+        />
+      </div>
+    </div>
+
+    <div class="flex justify-content-end mt-4">
+      <custom-button
+        type="button"
+        label="Cancelar"
+        variant="text"
+        (clicked)="closeDialog()"
+      />
+      <custom-button type="submit" label="Guardar" [disabled]="form.invalid" />
+    </div>
+  </form>
+</div>

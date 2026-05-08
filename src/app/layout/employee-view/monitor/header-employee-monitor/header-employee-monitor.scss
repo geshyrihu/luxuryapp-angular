@@ -1,0 +1,16 @@
+.monitor-header-toolbar {
+  border-radius: 0 !important;
+  height: 70px;
+  border: none !important;
+  border-bottom: 3px solid var(--ds-luxury-gold, #c9a84c) !important;
+}
+
+.breadcrumb-container {
+  min-width: 300px;
+}
+
+.user-actions-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

@@ -1,0 +1,156 @@
+<div class="card p-2">
+  <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- Cabecera de la Plantilla -->
+    <div class="grid">
+      <div class="col-12 md:col-4">
+        <custom-input-text-signal
+          [control]="form.controls.name"
+          label="Nombre de la Plantilla"
+          placeholder="Ej. Evaluación Mensual de Desempeóo"
+          [horizontal]="false"
+        />
+      </div>
+      <div class="col-12 md:col-2">
+        <custom-input-check-signal
+          [control]="form.controls.isActive"
+          label="Plantilla Activa"
+          [horizontal]="false"
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-textarea-signal
+          [control]="form.controls.description"
+          label="Descripción (Opcional)"
+          placeholder="Breve descripción del propósito de la plantilla"
+          rows="3"
+          [horizontal]="false"
+        />
+      </div>
+    </div>
+    <div class="flex flex-wrap justify-content-between align-items-start">
+      <div class="flex-flex-grow-1-1">
+        <p-message severity="info" size="small">
+          📋 | Categoróas y Preguntas
+        </p-message>
+      </div>
+      <div class="flex">
+        <custom-button
+          iconClass="pi pi-plus "
+          size="small"
+          (clicked)="addCategory()"
+          label="Agregar categoróa"
+          customClass="mt-0"
+        />
+        <custom-button-save
+          customClass="mt-0"
+          [propertyId]="id"
+          [disabled]="form.invalid"
+          [submitting]="submitting()"
+        />
+      </div>
+    </div>
+
+    <!-- Lista de Categoróas -->
+    <div
+      cdkDropList
+      [cdkDropListData]="categories.controls"
+      (cdkDropListDropped)="onDropCategory($event)"
+    >
+      @for (categoryGroup of categories.controls; track categoryGroup; let i =
+      $index) {
+      <div
+        [formGroup]="categoryGroup"
+        class="surface-card p-4 border-round mb-3"
+        cdkDrag
+      >
+        <div class="flex align-items-end">
+          <div
+            cdkDragHandle
+            class="cursor-move p-2 surface-200 border-round flex align-items-center justify-content-center w-3rem h-3rem"
+            title="Mover categoróa"
+            pTooltip="Ordenar categoria"
+            tooltipPosition="top"
+          >
+            ☰ {{ i + 1 }}
+          </div>
+
+          <div
+            (click)="addQuestion(i)"
+            class="cursor-pointer p-2 surface-200 border-round flex align-items-center justify-content-center hover:surface-300 transition-colors w-3rem h-3rem"
+            pTooltip="Agregar pregunta"
+            tooltipPosition="top"
+          >
+            ➕ ❓
+          </div>
+
+          <div class="flex-flex-grow-1-1">
+            <custom-input-text-signal
+              [control]="categoryGroup.controls.name"
+              [horizontal]="false"
+              placeholder="Nombre de la categoróa"
+            />
+          </div>
+
+          <div class="flex align-items-center h-3rem">
+            <custom-button-delete (confirmed)="removeCategory(i)" />
+          </div>
+        </div>
+
+        <!-- Lista de Preguntas -->
+        <div class="mt-4">
+          <div
+            cdkDropList
+            [cdkDropListData]="questions(i).controls"
+            (cdkDropListDropped)="onDropQuestion($event, i)"
+          >
+            @for (questionGroup of questions(i).controls; track questionGroup;
+            let j = $index) {
+            <div [formGroup]="questionGroup" class="mb-2 ml-5" cdkDrag>
+              <div class="flex align-items-end">
+                <!-- Drag handle -->
+                <div
+                  cdkDragHandle
+                  class="cursor-move p-2 surface-100 border-round flex align-items-center justify-content-center w-3rem h-3rem"
+                  title="Arrastrar para mover"
+                  pTooltip="Ordenar preguntas"
+                  tooltipPosition="top"
+                >
+                  <i class="pi pi-arrows-alt"></i>
+                </div>
+
+                <div
+                  class="p-2 surface-100 border-round flex align-items-center justify-content-center w-3rem h-3rem"
+                >
+                  ❓
+                </div>
+
+                <!-- Input de pregunta -->
+                <div class="flex-flex-grow-1-1">
+                  <custom-input-text-signal
+                    [control]="questionGroup.controls.questionText"
+                    [placeholder]="'Pregunta ' + (j + 1)"
+                    [horizontal]="false"
+                  />
+                </div>
+
+                <!-- Botón eliminar -->
+                <div class="flex align-items-center h-3rem">
+                  <custom-button-delete (confirmed)="removeQuestion(i, j)" />
+                </div>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+
+    <!-- Footer con Acciones -->
+    <custom-button-save
+      [propertyId]="id"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+    />
+  </form>
+</div>

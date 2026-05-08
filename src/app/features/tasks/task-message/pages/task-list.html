@@ -1,0 +1,526 @@
+@if (dataSignal().items && dataSignal().items !== undefined) {
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [showCurrentPageReport]="true"
+  (onLazyLoad)="loadDataLazy($event)"
+  [lazy]="true"
+  [reorderableRows]="true"
+  (onRowReorder)="onRowReorder($event)"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [totalRecords]="totalRecords"
+  [value]="dataSignal().items"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table hidden md:block"
+>
+  <ng-template #caption>
+    <div class="flex align-items-center justify-content-between flex-wrap  gap-2">
+      <h4 class="m-0 font-semibold text-900">
+        GRUPO DE TRABAJO | {{ dataSignal().nameGroup }}
+      </h4>
+      <div class="flex align-items-center gap-2">
+        <primeng-custom-caption
+          (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+          [dt]="dt"
+          [(searchTerm)]="searchTerm"
+          (searchTermChange)="applyFilter()"
+        />
+        <app-task-status (statusChange)="onStatusChange($event)" />
+      </div>
+    </div>
+
+    <hr class="my-2 surface-border" />
+
+    <div class="flex align-items-end flex-wrap gap-3 mb-1">
+      <div class="flex-shrink-0 w-12rem">
+        <custom-input-select-signal
+          [data]="cb_assignee"
+          optionLabel="label"
+          optionValue="label"
+          placeholder="Todos"
+          label="Responsable"
+          [control]="assigneeControl"
+          (selectionChange)="onResponsibleChange($event.value)"
+          size="small"
+          [horizontal]="false"
+        />
+      </div>
+
+      <div class="flex-shrink-0 w-11rem">
+        <custom-input-text-signal
+          type="week"
+          [control]="weekInputValueControl"
+          (change)="handleWeekChange($event)"
+          size="small"
+          [horizontal]="false"
+          label="Semana"
+        />
+      </div>
+
+      <div class="flex align-items-center gap-2">
+        <custom-button
+          iconClass="pi pi-clipboard"
+          label="Plan de trabajo"
+          variant="outlined"
+          severity="secondary"
+          size="small"
+          [showLabelOnDesktop]="true"
+          (clicked)="onPreviewClickedWorkPlan()"
+        />
+        <custom-button
+          iconClass="pi pi-eye"
+          label="Vista previa"
+          variant="outlined"
+          severity="secondary"
+          size="small"
+          [showLabelOnDesktop]="true"
+          (clicked)="onPreviewWeeklyReport()"
+        />
+        <custom-button
+          iconClass="pi pi-send"
+          label="Enviar reporte"
+          variant="outlined"
+          size="small"
+          [showLabelOnDesktop]="true"
+          [disabled]="wekklyIsNullOrEmpty()"
+          (clicked)="onSendWeeklyReport()"
+        />
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th class="table-col-3"></th>
+      <th class="table-col-30" pSortableColumn="createdAtFilter">
+        SOLICITUD <p-sortIcon field="createdAtFilter" />
+      </th>
+      <th class="table-col-10" pSortableColumn="responsableNombre">
+        RESPONSABLE <p-sortIcon field="responsableNombre" />
+      </th>
+      <th class="table-col-7" pSortableColumn="priority">
+        PRIORIDAD <p-sortIcon field="priority" />
+      </th>
+      <th class="table-col-8" pSortableColumn="status">
+        ESTADO <p-sortIcon field="status" />
+      </th>
+      <th class="table-col-12" pSortableColumn="scheduledAtFilter">
+        FECHAS <p-sortIcon field="scheduledAtFilter" />
+      </th>
+      <th class="table-col-10">EVIDENCIAS</th>
+      <th class="table-col-7" pSortableColumn="daysDifference">
+        DIAS <p-sortIcon field="daysDifference" />
+      </th>
+      <th class="table-col-5" pSortableColumn="isRelevant">
+        REPORTE <p-sortIcon field="isRelevant" />
+      </th>
+      <th class="table-col-5 no-print"></th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item let-rowIndex="rowIndex">
+    <tr
+      [pReorderableRow]="rowIndex"
+      [style.background-color]="item.priority === 'High' ? 'var(--brand-danger-bg)' : (item.daysDifference > 15 && !item.scheduledAt) ? 'var(--brand-warning-bg)' : null"
+    >
+      <td pReorderableRowHandle class="text-center">
+        <i class="pi pi-bars cursor-move text-400"></i>
+      </td>
+      <td>
+        <div class="flex align-items-start">
+          <p-avatar
+            (click)="onCardEmployee(item.creatorId)"
+            [image]="item.creatorImg || 'assets/images/default-avatar.jpg'"
+            alt="Creador"
+            shape="circle"
+            size="normal"
+            styleClass="cursor-pointer flex-shrink-0"
+          />
+          <div class="min-w-0">
+            <p class="m-0 text-xs text-color-secondary">
+              {{ item.folio }} | {{ item.createdAtDate }}
+            </p>
+            <p class="m-0 font-semibold text-sm">
+              @if (item.daysDifference > 15 && !item.scheduledAt) {
+              <i
+                class="pi pi-clock text-orange-600 mr-1"
+                pTooltip="Urgente: Más de 15 días sin programar"
+              ></i>
+              } {{ item.title }}
+            </p>
+            <p class="m-0 text-xs text-color-secondary truncate">
+              {{ item.description }}
+            </p>
+          </div>
+        </div>
+      </td>
+
+      <td class="text-center">
+        @if (item.assigneeId) {
+        <p-avatar
+          (click)="onCardEmployee(item.assigneeId)"
+          [image]="item.assigneeImg || 'assets/images/default-avatar.jpg'"
+          alt="Responsable"
+          shape="circle"
+          size="normal"
+          styleClass="cursor-pointer"
+        />
+        <p class="m-0 text-xs text-color-secondary mt-1 truncate">
+          {{ item.assignee }}
+        </p>
+        }
+      </td>
+
+      <td class="text-center">
+        @if (item.priority === 'Low') {
+        <i
+          (click)="onUpdatePriority(item.id)"
+          class="pi pi-exclamation-triangle text-xl cursor-pointer text-red-500"
+          pTooltip="Baja - click para cambiar"
+        ></i>
+        } @if (item.priority === 'High') {
+        <i
+          (click)="onUpdatePriority(item.id)"
+          class="pi pi-star text-xl cursor-pointer text-primary"
+          pTooltip="Alta - click para cambiar"
+        ></i>
+        }
+      </td>
+
+      <td class="text-center">
+        @if (item.status === 'Completed') {
+        <span class="badge bg-success px-2 py-1 text-xs">Terminado</span>
+        } @if (item.status === 'InProgress') {
+        <span class="badge bg-warning px-2 py-1 text-xs">En Proceso</span>
+        } @if (item.status === 'NotStarted') {
+        <span class="badge bg-danger px-2 py-1 text-xs">No Iniciado</span>
+        } @if (item.status === 'Reopened') {
+        <span class="badge bg-danger px-2 py-1 text-xs">Reabierto</span>
+        }
+      </td>
+
+      <td>
+        <p class="m-0 text-xs text-color-secondary">
+          <i class="pi pi-calendar mr-1"></i>{{ item.scheduledAt }}
+        </p>
+        @if (item.closedAtDate) {
+        <p class="m-0 text-xs text-color-secondary mt-1">
+          <i class="pi pi-lock mr-1"></i>{{ item.closedAtDate }}
+        </p>
+        }
+      </td>
+
+      <td>
+        <div class="flex align-items-center justify-content-center">
+          @if (item.beforeWork) {
+          <p-image
+            [src]="item.beforeWork"
+            alt="Antes"
+            width="40"
+            class="border-round"
+            [preview]="true"
+          />
+          } @if (item.afterWork) {
+          <p-image
+            [src]="item.afterWork"
+            alt="Despues"
+            width="40"
+            class="border-round"
+            [preview]="true"
+          />
+          }
+        </div>
+      </td>
+
+      <td class="text-center">
+        <strong class="text-sm" [class.text-red-500]="item.daysDifference > 7"
+          >{{ item.daysDifference }}</strong
+        >
+      </td>
+
+      <td class="text-center no-print">
+        <p-toggleswitch
+          [(ngModel)]="item.isRelevant"
+          (onChange)="onUpdateStateTicket(item)"
+        />
+      </td>
+
+      <td class="text-center no-print">
+        <div class="flex align-items-center justify-content-center gap-1">
+          <a (click)="onFollowUp(item.id)" class="cursor-pointer">
+            <span class="badge bg-info px-2 py-1 text-xs font-semibold">
+              {{ item.ticketMessageFollowUp }}
+            </span>
+          </a>
+          <app-action-menu>
+            <ng-container actions>
+              <ion-button-item
+                iconClass="pi pi-calendar"
+                label="Programar"
+                [showLabelOnDesktop]="true"
+                (clicked)="onProgram(item.id)"
+              />
+              @if (item.status !== 'Completed') {
+              <ion-button-item
+                iconClass="pi pi-lock"
+                label="Cerrar"
+                [showLabelOnDesktop]="true"
+                (clicked)="onClosed(item.id)"
+              />
+              } @if (item.status !== 'InProgress') {
+              <ion-button-item
+                iconClass="pi pi-sync"
+                label="En proceso"
+                [showLabelOnDesktop]="true"
+                (clicked)="onProgress(item.id)"
+              />
+              } @if (item.status === 'Completed') {
+              <ion-button-item
+                iconClass="pi pi-lock-open"
+                label="Reabrir"
+                [showLabelOnDesktop]="true"
+                (clicked)="onReopen(item.id)"
+              />
+              }
+              <ion-button-edit
+                label="Editar"
+                [showLabelOnDesktop]="true"
+                (clicked)="onModalForm(item)"
+              />
+              @if (isSuperUser()) {
+              <ion-button-delete
+                label="Eliminar"
+                [showLabelOnDesktop]="true"
+                (confirmed)="onDelete(item.id)"
+              />
+              }
+            </ng-container>
+          </app-action-menu>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #paginatorleft>
+    <div class="flex align-items-center no-print">
+      En total hay {{ dataSignal().items?.length || 0 }} registros.
+    </div>
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  class="block md:hidden"
+  [data]="dataSignal().items"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="['title', 'description', 'folio']"
+  [dt]="dt"
+  [enablePagination]="true"
+  (nextPage)="loadNextPage($event)"
+>
+  <ng-container customFilters>
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col size="12">
+          <div class="text-xs text-center font-bold text-secondary mb-2">
+            GRUPO: {{ dataSignal().nameGroup }}
+          </div>
+          <app-task-status (statusChange)="onStatusChange($event)" />
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-margin-top">
+        <ion-col size="6">
+          <ion-input-select
+            [data]="cb_assignee"
+            optionLabel="label"
+            optionValue="label"
+            placeholder="Todos"
+            label="Responsable"
+            [control]="assigneeControl"
+            (selectionChange)="onResponsibleChange($event)"
+          />
+        </ion-col>
+        <ion-col size="6">
+          <ion-input-text
+            type="week"
+            [control]="weekInputValueControl"
+            (change)="handleWeekChange($event)"
+            label="Semana"
+          />
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-margin-top-small">
+        <ion-col size="4">
+          <ion-button
+            expand="block"
+            fill="outline"
+            size="small"
+            style="font-size: 11px; height: 32px; --padding-start: 4px; --padding-end: 4px;"
+            (click)="onPreviewClickedWorkPlan()"
+          >
+            <ion-icon slot="start" name="clipboard-outline" style="font-size: 14px;"></ion-icon>
+            Plan
+          </ion-button>
+        </ion-col>
+        <ion-col size="4">
+          <ion-button
+            expand="block"
+            fill="outline"
+            size="small"
+            style="font-size: 11px; height: 32px; --padding-start: 4px; --padding-end: 4px;"
+            (click)="onPreviewWeeklyReport()"
+          >
+            <ion-icon slot="start" name="eye-outline" style="font-size: 14px;"></ion-icon>
+            Previa
+          </ion-button>
+        </ion-col>
+        <ion-col size="4">
+          <ion-button
+            expand="block"
+            fill="outline"
+            size="small"
+            style="font-size: 11px; height: 32px; --padding-start: 4px; --padding-end: 4px;"
+            [disabled]="wekklyIsNullOrEmpty()"
+            (click)="onSendWeeklyReport()"
+          >
+            <ion-icon slot="start" name="send-outline" style="font-size: 14px;"></ion-icon>
+            Reporte
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+
+  <ng-template #listItemTemplate let-item>
+    <ion-item
+      button
+      detail="false"
+      lines="full"
+      class="ion-no-padding"
+      [style.--background]="item.priority === 'High' ? 'var(--brand-danger-bg)' : (item.daysDifference > 15 && !item.scheduledAt) ? 'var(--brand-warning-bg)' : 'transparent'"
+    >
+      <div
+        slot="start"
+        class="flex flex-column align-items-center gap-1 m-2"
+        (click)="onModalForm(item)"
+      >
+        <ion-avatar>
+          <img
+            [src]="item.assigneeImg || 'assets/images/default-avatar.jpg'"
+            alt="avatar"
+          />
+        </ion-avatar>
+      </div>
+
+      <ion-label>
+        <div class="flex justify-content-between align-items-center mb-1">
+          <p class="font-normal m-0 text-xs">
+            @if (item.priority === 'High') {
+            <i class="pi pi-star text-warning mr-1"></i>
+            } {{ item.folio }}
+          </p>
+          <ion-badge
+            [color]="(item.status === 'NotStarted' || item.status === 'Reopened') ? 'danger' : item.status === 'InProgress' ? 'warning' : 'success'"
+          >
+            {{ item.status === 'Completed' ? 'Terminado' : item.status ===
+            'InProgress' ? 'En Proceso' : item.status === 'Reopened' ?
+            'Reabierto' : 'No Iniciado' }}
+          </ion-badge>
+        </div>
+
+        <h2 class="text-sm font-normal m-0 text-wrap mb-1">
+          @if (item.daysDifference > 15 && !item.scheduledAt) {
+          <i class="pi pi-clock text-orange-600 mr-1"></i>
+          } {{ item.title }}
+        </h2>
+        <p class="text-xs text-500 m-0 text-wrap truncate">
+          {{ item.description }}
+        </p>
+
+        <!-- Evidencias (Antes y Después) -->
+        <div class="flex gap-2 mt-2">
+          @if (item.beforeWork) {
+          <p-image
+            [src]="item.beforeWork"
+            alt="Antes"
+            width="45"
+            [imageStyle]="{ 'border-radius': '6px', 'object-fit': 'cover', 'aspect-ratio': '1/1' }"
+            [preview]="true"
+            appendTo="body"
+          />
+          } @if (item.afterWork) {
+          <p-image
+            [src]="item.afterWork"
+            alt="Después"
+            width="45"
+            [imageStyle]="{ 'border-radius': '6px', 'object-fit': 'cover', 'aspect-ratio': '1/1' }"
+            [preview]="true"
+            appendTo="body"
+          />
+          }
+        </div>
+
+        <div class="flex align-items-center mt-2">
+          <ion-badge
+            color="medium"
+            class="flex align-items-center gap-1"
+            (click)="onFollowUp(item.id)"
+          >
+            <ion-icon name="chatbubbles-outline"></ion-icon>
+            {{ item.ticketMessageFollowUp }}
+          </ion-badge>
+          <span class="text-xs" [class.text-red-500]="item.daysDifference > 7">
+            {{ item.daysDifference }} dias
+          </span>
+        </div>
+      </ion-label>
+
+      <div slot="end" class="flex align-items-center">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-item
+              iconName="chatbubbles-outline"
+              [label]="'Seguimiento (' + item.ticketMessageFollowUp + ')'"
+              (clicked)="onFollowUp(item.id)"
+            />
+            <ion-button-item
+              iconName="calendar-outline"
+              label="Programar"
+              (clicked)="onProgram(item.id)"
+            />
+            @if (item.status !== 'Completed') {
+            <ion-button-item
+              iconName="lock-closed-outline"
+              label="Cerrar"
+              (clicked)="onClosed(item.id)"
+            />
+            } @if (item.status !== 'InProgress') {
+            <ion-button-item
+              iconName="sync-outline"
+              label="En proceso"
+              (clicked)="onProgress(item.id)"
+            />
+            } @if (item.status === 'Completed') {
+            <ion-button-item
+              iconName="lock-open-outline"
+              label="Reabrir"
+              (clicked)="onReopen(item.id)"
+            />
+            }
+            <ion-button-edit (clicked)="onModalForm(item)" />
+            @if (isSuperUser()) {
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+            }
+          </ng-container>
+        </app-action-menu>
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+}

@@ -1,0 +1,229 @@
+<div class="card">
+  <div class="card-body">
+    <!-- Desktop View -->
+    <div class="hidden md:block">
+      <p-table
+        #dt
+        [value]="data()"
+        [loading]="loading()"
+        [rows]="tablePrimeNgRows"
+        [paginator]="true"
+        [globalFilterFields]="globalFilterFields()"
+        [rowsPerPageOptions]="rowsPerPageOptions"
+        styleClass="custom-table"
+        responsiveLayout="scroll"
+        [scrollable]="true"
+        [scrollHeight]="scrollHeight"
+      >
+        <ng-template #caption>
+          <primeng-custom-caption
+            [dt]="dt"
+            [showAdd]="false"
+            [showSearch]="false"
+            [noMargin]="true"
+          />
+          <form [formGroup]="filterForm" (ngSubmit)="onSearch()">
+            <div class="grid align-items-end">
+              <div class="col-12 sm:col-3 p-1">
+                <custom-input-select-signal
+                  label="Empleado"
+                  [data]="employees()"
+                  [control]="filterForm.controls.employeeId"
+                  placeholder="Seleccione un empleado"
+                  [horizontal]="false"
+                  [filter]="true"
+                  [noMargin]="true"
+                />
+              </div>
+              <div class="col-12 sm:col-2 p-1">
+                <custom-input-select-signal
+                  label="Tipo de Solicitud"
+                  [data]="requestTypes()"
+                  [control]="filterForm.controls.requestType"
+                  placeholder="Todos"
+                  [horizontal]="false"
+                  [noMargin]="true"
+                />
+              </div>
+              <div class="col-12 sm:col-2 p-1">
+                <custom-input-select-signal
+                  label="Estatus"
+                  [data]="statuses()"
+                  [control]="filterForm.controls.status"
+                  placeholder="Todos"
+                  [horizontal]="false"
+                  [noMargin]="true"
+                />
+              </div>
+              <div class="col-12 sm:col-2 p-1">
+                <custom-input-date-signal
+                  label="Desde"
+                  [control]="filterForm.controls.startDate"
+                  [horizontal]="false"
+                  placeholder="Fecha inicial"
+                  [noMargin]="true"
+                />
+              </div>
+              <div class="col-12 sm:col-2 p-1">
+                <custom-input-date-signal
+                  label="Hasta"
+                  [control]="filterForm.controls.endDate"
+                  [horizontal]="false"
+                  placeholder="Fecha final"
+                  [noMargin]="true"
+                />
+              </div>
+              <div class="col-12 sm:col-1 p-1">
+                <div class="flex gap-1">
+                  <custom-button
+                    iconClass="pi pi-search"
+                    type="submit"
+                    variant="outlined"
+                  />
+                  <custom-button
+                    iconClass="pi pi-filter-slash"
+                    variant="outlined"
+                    (clicked)="onReset()"
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+        </ng-template>
+        <ng-template #header>
+          <tr>
+            <th pSortableColumn="customerName">
+              Cliente
+              <p-sortIcon field="customerName"></p-sortIcon>
+            </th>
+            <th pSortableColumn="solicitud">
+              Solicitud
+              <p-sortIcon field="solicitud"></p-sortIcon>
+            </th>
+            <th pSortableColumn="employeeFullName">
+              Empleado
+              <p-sortIcon field="employeeFullName"></p-sortIcon>
+            </th>
+            <th pSortableColumn="roleName">
+              Puesto
+              <p-sortIcon field="roleName"></p-sortIcon>
+            </th>
+            <th pSortableColumn="daysRequested">
+              Días
+              <p-sortIcon field="daysRequested"></p-sortIcon>
+            </th>
+            <th pSortableColumn="startDate">
+              Inicio
+              <p-sortIcon field="startDate"></p-sortIcon>
+            </th>
+            <th pSortableColumn="endDate">
+              Fin
+              <p-sortIcon field="endDate"></p-sortIcon>
+            </th>
+            <th pSortableColumn="status">
+              Estatus
+              <p-sortIcon field="status"></p-sortIcon>
+            </th>
+            <th pSortableColumn="requestDate">
+              Fecha Sol.
+              <p-sortIcon field="requestDate"></p-sortIcon>
+            </th>
+            <th pSortableColumn="approverName">
+              Aprobado por
+              <p-sortIcon field="approverName"></p-sortIcon>
+            </th>
+            <th pSortableColumn="approvalDate">
+              Fecha Aprobación
+              <p-sortIcon field="approvalDate"></p-sortIcon>
+            </th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-item>
+          <tr>
+            <td>{{ item.customerName }}</td>
+            <td>{{ item.solicitud }}</td>
+            <td>{{ item.employeeFullName }}</td>
+            <td>{{ item.roleName }}</td>
+            <td>{{ item.daysRequested }}</td>
+            <td>{{ item.startDate | date: "dd/MM/yyyy" }}</td>
+            <td>{{ item.endDate | date: "dd/MM/yyyy" }}</td>
+            <td>
+              <p-tag
+                [value]="item.status"
+                [severity]="
+                  item.status === 'Aprobada'
+                    ? 'success'
+                    : item.status === 'Rechazada'
+                      ? 'danger'
+                      : item.status === 'Cancelada'
+                        ? 'info'
+                        : 'warn' // default: Pendiente
+                "
+              ></p-tag>
+            </td>
+            <td>{{ item.requestDate | date: "dd/MM/yyyy HH:mm" }}</td>
+            <td>{{ item.approverName || '—' }}</td>
+            <td>
+              {{ item.approvalDate ? (item.approvalDate | date: "dd/MM/yyyy
+              HH:mm") : '—' }}
+            </td>
+            <td class="text-center">
+              <div class="flex justify-content-center">
+                <!-- Added  for spacing -->
+                <custom-button-item
+                  (clicked)="onShowDetail(item)"
+                  iconClass="pi pi-info"
+                  label="Ver Detalle"
+                />
+                @if(item.status === 'Aprobada' && canCancel()){
+                <custom-button-item
+                  (clicked)="onCancel(item)"
+                  iconClass="pi pi-ban"
+                  label="Cancelar"
+                />
+                }
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template emptymessage>
+          <tr>
+            <td colspan="8">No se encontraron solicitudes.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <!-- Mobile View -->
+    <div class="block md:hidden">
+      <app-data-view-mobile
+        [data]="data()"
+        [dt]="dt"
+        [globalFilterFields]="['employeeFullName', 'solicitud', 'status']"
+      >
+        <ng-template #listItemTemplate let-item>
+          <ion-item lines="full" class="ion-no-padding">
+            <ion-label>
+              <h2 class="font-normal m-0">{{ item.employeeFullName }}</h2>
+              <p class="text-color-secondary text-sm m-0">
+                {{ item.solicitud }} | {{ item.startDate | date: "dd/MM/yy" }} -
+                {{ item.endDate | date: "dd/MM/yy" }}
+              </p>
+              <p class="text-color-secondary text-sm m-0">
+                {{ item.daysRequested }}
+              </p>
+            </ion-label>
+            <div slot="end" class="flex align-items-center">
+              <p-tag
+                [value]="item.status"
+                [severity]="item.status === 'Aprobada' ? 'success' : item.status === 'Rechazada' ? 'danger' : 'warn'"
+                styleClass="ml-2"
+              />
+            </div>
+          </ion-item>
+        </ng-template>
+      </app-data-view-mobile>
+    </div>
+  </div>
+</div>

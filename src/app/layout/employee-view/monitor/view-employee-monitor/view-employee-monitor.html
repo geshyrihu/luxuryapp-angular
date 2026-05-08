@@ -1,0 +1,35 @@
+<div
+  id="pageWrapper"
+  [class]="layoutClass"
+  class="w-screen h-screen overflow-hidden"
+>
+  <!-- 1. HEADER (Arriba Derecha) -->
+  <div class="layout-header z-50 flex align-items-center p-0">
+    <app-header-employee-monitor class="w-full" />
+  </div>
+
+  <!-- 2. SIDEBAR (Izquierda Completa) -->
+  <div
+    class="layout-sidebar z-60 overflow-y-auto custom-scrollbar"
+    [style.width.px]="navService.collapseSidebar ? 0 : 252"
+    [class.opacity-0]="navService.collapseSidebar"
+  >
+    <app-sidebar />
+  </div>
+
+  <!-- 3. MAIN CONTENT (Abajo Derecha) -->
+  <div class="main-content-wrapper relative h-full overflow-hidden">
+    <div
+      id="main-content-scroll"
+      class="main-content-scroll w-full h-full overflow-y-auto overflow-x-hidden surface-ground"
+    >
+      <!-- Wrapper interno para altura mínima -->
+      <div class="w-full min-h-full pb-8">
+        <router-outlet />
+      </div>
+    </div>
+
+    <!-- App Loader (Overlay localizado) -->
+    <app-loader />
+  </div>
+</div>

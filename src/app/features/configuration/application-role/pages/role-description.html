@@ -1,0 +1,31 @@
+<div class="card">
+  <div class="card-body">
+    @if (data) {
+    <div>
+      <p><strong>Resumen:</strong> {{ data.summary }}</p>
+      <p><strong>Responsabilidades:</strong> {{ data.responsibilities }}</p>
+      <p><strong>Habilidades Requeridas:</strong> {{ data.skills }}</p>
+      <p>
+        <strong>Requisitos Adicionales:</strong>
+        {{ data.additionalRequirements }}
+      </p>
+      <p><strong>Entorno de Trabajo:</strong> {{ data.workEnvironment }}</p>
+      <p>
+        <strong>¿Requiere Cobertura de Fin de Semana?:</strong>
+        {{ data.requiresWeekendShift ? "Sí" : "No" }}
+      </p>
+    </div>
+    } @if (!data) {
+    <div>
+      <p>No hay información disponible para este puesto.</p>
+    </div>
+    }
+  </div>
+</div>
+
+
+
+
+
+
+

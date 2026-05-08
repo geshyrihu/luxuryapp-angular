@@ -1,0 +1,99 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block"></div>
+<p-table
+  #dt
+  [value]="resumenGastos()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  [loading]="loading()"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #header>
+    <tr>
+      <th>#</th>
+      <th>Cuenta</th>
+      <th>Mensual</th>
+      <th>Anual</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-rowIndex="rowIndex">
+    <tr>
+      <td>{{ rowIndex + 1 }}</td>
+      <td>{{ item.cuenta.cuenta }}</td>
+      <td>{{ item.costoMensual }}</td>
+      <td>{{ item.total }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<table class="table custom-table table-striped">
+  <thead>
+    <tr>
+      <th class="w-full"></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of data(); track item) {
+    <tr>
+      <td scope="row">
+        <div class="p-2 mb-2 surface-blue-50 text-900 border-round font-bold">
+          {{ item.cuenta }}
+        </div>
+        <table class="table table-bordered table-striped">
+          @for (subCuenta of item.subCuentas; track subCuenta) {
+          <tbody>
+            <tr>
+              <td colspan="5">
+                <div
+                  class="p-2 mb-2 surface-green-50 text-900 border-round font-bold"
+                >
+                  {{ subCuenta.subCuenta }}
+                </div>
+              </td>
+            </tr>
+            @for (items of subCuenta.items; track items) {
+            <tr>
+              <td class="table-col-10 pointer">
+                <i
+                  class="icon icon-pi-hand-pointer"
+                  (click)="onModalItem(items)"
+                ></i>
+              </td>
+              <td class="table-col-30">{{ items.equipo }}</td>
+              <td class="table-col-20">{{ items.recurrencia }}</td>
+              <td style="width: 20">{{ items.mes }}</td>
+              <td style="width: 20">
+                @if (items.costo !== "$0.00") {
+                <div>{{ items.costo }}</div>
+                } @if (items.costo === "$0.00") {
+                <div class="text-warning font-bold">{{ items.costo }}</div>
+                }
+              </td>
+            </tr>
+            }
+            <tr>
+              <td colspan="3"></td>
+              <td>Total por Cuenta:</td>
+              <td class="mr-auto">{{ subCuenta.costoTotal }}</td>
+            </tr>
+          </tbody>
+          }
+        </table>
+      </td>
+    </tr>
+    }
+  </tbody>
+  <tbody>
+    <tr>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="table-col-60"></td>
+            <td class="table-col-20">Total General:</td>
+            <td class="table-col-20 font-bold">{{ totalGasto() }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </tr>
+  </tbody>
+</table>

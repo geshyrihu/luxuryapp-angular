@@ -1,0 +1,232 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+    />
+    <div class="grid">
+      <div class="col-12 md:col-3">
+        <label>Estado</label>
+        <p-select
+          [formControl]="statusControl"
+          (onChange)="onFilterChange()"
+          placeholder="Todos"
+          fluid
+        >
+          <p-option value="">Todos</p-option>
+          <p-option value="Draft">Borrador</p-option>
+          <p-option value="Published">Publicado</p-option>
+          <p-option value="Archived">Archivado</p-option>
+        </p-select>
+      </div>
+      <div class="col-12 md:col-3">
+        <label>Tipo</label>
+        <p-select
+          [formControl]="typeControl"
+          (onChange)="onFilterChange()"
+          placeholder="Todos"
+          fluid
+        >
+          <p-option value="">Todos</p-option>
+          <p-option value="General">General</p-option>
+          <p-option value="Urgente">Urgente</p-option>
+          <p-option value="Informativo">Informativo</p-option>
+        </p-select>
+      </div>
+      <div class="col-12 md:col-2 flex align-items-end">
+        <custom-button
+          label="Filtrar"
+          iconClass="pi pi-search"
+          variant="outlined"
+          [fluid]="true"
+          [showLabelOnDesktop]="true"
+        />
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="folio">
+        Folio
+        <p-sortIcon field="folio" />
+      </th>
+      <th pSortableColumn="title">
+        Titulo
+        <p-sortIcon field="title" />
+      </th>
+      <th pSortableColumn="announcementType">
+        Tipo
+        <p-sortIcon field="announcementType" />
+      </th>
+      <th pSortableColumn="status">
+        Estado
+        <p-sortIcon field="status" />
+      </th>
+      <th pSortableColumn="customerName">
+        Cliente
+        <p-sortIcon field="customerName" />
+      </th>
+      <th pSortableColumn="publishedAt">
+        Publicación
+        <p-sortIcon field="publishedAt" />
+      </th>
+      <th pSortableColumn="expirationDate">
+        Expiración
+        <p-sortIcon field="expirationDate" />
+      </th>
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.folio }}</td>
+      <td>{{ item.title }}</td>
+      <td>
+        <p-tag
+          [value]="item.announcementType"
+          [severity]="
+            item.announcementType === 'Urgente'
+              ? 'danger'
+              : item.announcementType === 'Informativo'
+                ? 'info'
+                : item.announcementType === 'General'
+                  ? 'primary'
+                  : 'secondary'
+          "
+        ></p-tag>
+      </td>
+      <td>
+        <p-tag
+          [value]="item.status"
+          [severity]="
+            item.status === 'Publicado'
+              ? 'success'
+              : item.status === 'Borrador'
+                ? 'secondary'
+                : item.status === 'Archivado'
+                  ? 'warning'
+                  : 'secondary'
+          "
+        ></p-tag>
+      </td>
+      <td>{{ item.customerName }}</td>
+      <td>{{ item.publishedAt | date: "dd/MM/yyyy" }}</td>
+      <td>{{ item.expirationDate | date: "dd/MM/yyyy" }}</td>
+      <td>
+        <div class="flex">
+          <custom-button-edit (clicked)="onModalForm(item)" />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <custom-button-download
+            iconClass="pi pi-file-pdf"
+            ngbTooltip="Descargar PDF"
+            severity="danger"
+            (clicked)="onDownloadPdf(item.id)"
+          />
+          <custom-button-item
+            (clicked)="onViewPreview(item.id)"
+            iconClass="pi pi-book"
+            label="Vista previa"
+          />
+          <custom-button-item
+            [routerLink]="['/announcements/analytics', item.id]"
+            iconClass="pi pi-chart-bar"
+            label="Analóticas"
+          />
+        </div>
+      </td>
+      <!-- Opciones -->
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding">
+      <ion-label>
+        <div class="flex justify-content-between align-items-center mb-2">
+          <h2 class="font-bold m-0 text-base">{{ item.title }}</h2>
+          <p-tag
+            [value]="item.status"
+            [severity]="
+              item.status === 'Publicado'
+                ? 'success'
+                : item.status === 'Borrador'
+                  ? 'secondary'
+                  : item.status === 'Archivado'
+                    ? 'warning'
+                    : 'secondary'
+            "
+          ></p-tag>
+        </div>
+        <p class="text-medium text-500 m-0 text-sm mb-1">
+          <i class="pi pi-calendar mr-1"></i> Publicado: {{ item.publishedAt |
+          date: "dd/MM/yyyy" }}
+        </p>
+        <p class="text-medium text-500 m-0 text-sm">
+          <i class="pi pi-building mr-1"></i> Cliente: {{ item.customerName }}
+        </p>
+        <p-tag
+          [value]="item.announcementType"
+          class="mt-2 block"
+          [severity]="
+            item.announcementType === 'Urgente'
+              ? 'danger'
+              : item.announcementType === 'Informativo'
+                ? 'info'
+                : item.announcementType === 'General'
+                  ? 'primary'
+                  : 'secondary'
+          "
+        ></p-tag>
+      </ion-label>
+
+      <div slot="end">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-edit (clicked)="onModalForm(item)" />
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+
+            <ion-button-item
+              (clicked)="onDownloadPdf(item.id)"
+              iconName="document-text-outline"
+              label="Descargar PDF"
+            />
+
+            <ion-button-item
+              (clicked)="onViewPreview(item.id)"
+              iconName="book-outline"
+              label="Vista previa"
+            />
+
+            <ion-button-item
+              [routerLink]="['/announcements/analytics', item.id]"
+              iconName="bar-chart-outline"
+              label="Analóticas"
+            />
+          </ng-container>
+        </app-action-menu>
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

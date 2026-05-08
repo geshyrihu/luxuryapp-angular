@@ -1,0 +1,247 @@
+@if (solicitudCompra) {
+<div class="grid mb-3">
+  <!-- Título y descripción -->
+  <div class="col-12 md:col-8 mt-5">
+    <h5 class="font-semibold text-lg">Folio de cotización {{ folio }}</h5>
+    <p class="mb-1 text-600">{{ solicitudCompra.equipoOInstalacion }}</p>
+    <p class="mb-1 text-600">{{ solicitudCompra.justificacionGasto }}</p>
+  </div>
+  <!-- Botones de acción -->
+  <div class="col-12 md:col-4 mt-5">
+    <div class="flex justify-content-end">
+      @if (cotizacionProveedorSignal().length > 1) {
+      <custom-button
+        iconClass="pi pi-microchip"
+        label="AI Auditoróa"
+        (clicked)="onAnalyzeAI()"
+        [disabled]="isAnalyzing"
+        severity="help"
+        tooltip="Analizar con Inteligencia Artificial"
+        size="small"
+        tooltipPosition="left"
+        class="mr-2"
+      />
+      <custom-button
+        iconClass="pi pi-chart-bar"
+        label="Evaluar"
+        (clicked)="evaluarPrecioIndependiente = !evaluarPrecioIndependiente"
+        [variant]="!evaluarPrecioIndependiente ? 'outlined' : undefined"
+        severity="warning"
+        tooltip="Evaluar"
+        size="small"
+        tooltipPosition="left"
+      />
+      } @if (cotizacionProveedorSignal().length < 3) {
+      <custom-button
+        iconClass="pi pi-plus "
+        size="small"
+        label="Agregar cotización"
+        variant="outlined"
+        (clicked)="onModalAddProveedor()"
+        tooltip="Agregar Cotización"
+        tooltipPosition="left"
+      />
+      }
+    </div>
+  </div>
+</div>
+}
+
+<p-divider styleClass="border-t-2 border-gray-900"></p-divider>
+
+<div class="block md:hidden p-4 text-center text-gray-500">
+  <p>El cuadro comparativo estó optimizado para pantallas de escritorio.</p>
+</div>
+
+<!-- Tabla de Productos y Precios (Dinómica) -->
+<p-table
+  [value]="solicitudCompraDetalleSignal()"
+  styleClass="custom-table hidden md:block text-lg"
+>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-30">DESCRIPCIóN</th>
+      <th class="table-col-10">CANTIDAD</th>
+      <th class="table-col-10">UNIDAD</th>
+      <!-- Columnas de proveedores generadas dinómicamente -->
+      @for (proveedor of cotizacionProveedorSignal(); track proveedor.id; let i
+      = $index) {
+      <th
+        class="text-center cursor-pointer"
+        (click)="onEditCotizacion(proveedor.posicionCotizacion, proveedor.id)"
+        [style.width.%]="50 / cotizacionProveedorSignal().length"
+      >
+        {{ proveedor.nameProvider | uppercase }}
+      </th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.producto | uppercase }}</td>
+      <td>{{ item.cantidad }}</td>
+      <td>{{ item.unidadMedida }}</td>
+      <!-- Celdas de precios generadas dinómicamente -->
+      @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
+      <td
+        [class.bg-yellow-200]="isLowestPrice(item, proveedor.posicionCotizacion) && evaluarPrecioIndependiente"
+      >
+        {{ item['total' + (proveedor.posicionCotizacion === 1 ? '' :
+        proveedor.posicionCotizacion)] | number : "1.0-0" }}
+      </td>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #footer>
+    <!-- Fila de Totales -->
+    <tr>
+      <td colspan="3" class="text-right font-bold">TOTAL</td>
+      @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
+      <td
+        [class.bg-yellow-200]="this['amarilloTotal' + proveedor.posicionCotizacion]"
+      >
+        {{ this['total' + proveedor.posicionCotizacion] | number : "1.0-0" }}
+      </td>
+      }
+    </tr>
+    <!-- Filas de evaluación de precios -->
+    @if (evaluarPrecioIndependiente) {
+    <tr>
+      <td colspan="3" class="text-right font-bold">
+        MEJOR PRECIO POR PROVEEDOR
+      </td>
+      @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
+      <td>
+        {{ this['mejorPrecioTotal' + proveedor.posicionCotizacion] | number :
+        "1.0-0" }}
+      </td>
+      }
+    </tr>
+    <tr>
+      <td colspan="3"></td>
+      <td
+        class="text-center font-bold"
+        [attr.colspan]="cotizacionProveedorSignal().length"
+      >
+        <p>TOTAL A GASTAR (MEJOR PRECIO INDIVIDUAL):</p>
+        {{ totalMejorPrecioTotal | number : "1.0-0" }}
+      </td>
+    </tr>
+    }
+  </ng-template>
+</p-table>
+
+<!--
+  SOLUCIóN MODO OSCURO:
+  Tabla de Condiciones convertida a <p-table>.
+  Ahora es compatible con los temas de PrimeNG y se veró bien en modo oscuro.
+-->
+@if (cotizacionProveedorSignal()?.length) {
+<p-table
+  [value]="[{}]"
+  styleClass="custom-table w-full mt-4"
+  [tableStyle]="{ border: 'none' }"
+>
+  <ng-template #body>
+    <!-- Tiempo de Entrega -->
+    <tr>
+      <td
+        style="width: 50%; border: none !important"
+        class="text-right font-bold"
+      >
+        TIEMPO DE ENTREGA
+      </td>
+      @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
+      <td
+        class="text-center"
+        [style.width.%]="50 / cotizacionProveedorSignal().length"
+      >
+        {{ proveedor.entrega }}
+      </td>
+      }
+    </tr>
+    <!-- Garantia -->
+    <tr>
+      <td
+        style="width: 50%; border: none !important"
+        class="text-right font-bold"
+      >
+        GARANTIA
+      </td>
+      @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
+      <td
+        class="text-center"
+        [style.width.%]="50 / cotizacionProveedorSignal().length"
+      >
+        {{ proveedor.garantia }}
+      </td>
+      }
+    </tr>
+    <!-- Politicas de Pago -->
+    <tr>
+      <td
+        style="width: 50%; border: none !important"
+        class="text-right font-bold"
+      >
+        POLITICAS DE PAGO
+      </td>
+      @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
+      <td
+        class="text-center"
+        [style.width.%]="50 / cotizacionProveedorSignal().length"
+      >
+        {{ proveedor.politicaPago }}
+      </td>
+      }
+    </tr>
+    <!-- Ver Cotización -->
+    <tr>
+      <td
+        style="width: 50%; border: none !important"
+        class="text-right font-bold"
+      >
+        VER COTIZACIóN
+      </td>
+      @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
+      <td
+        class="text-center"
+        [style.width.%]="50 / cotizacionProveedorSignal().length"
+      >
+        @if (proveedor.filePath) {
+        <custom-button-view-pdf [url]="proveedor.filePath" pdf="Cotización" />
+        }
+      </td>
+      }
+    </tr>
+  </ng-template>
+</p-table>
+}
+
+<p-dialog
+  header="?? Auditoróa de Compras - Anólisis IA"
+  [(visible)]="showAiModal"
+  [modal]="true"
+  [style]="{width: '75vw', maxWidth: '1000px'}"
+  [maximizable]="true"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="surface-card p-4 border-round shadow-2">
+    <div
+      [innerHTML]="aiAnalysisResult"
+      class="text-lg line-height-3 text-800"
+    ></div>
+  </div>
+
+  <ng-template #footer>
+    <div class="flex justify-content-end pt-3">
+      <custom-button
+        label="Cerrar Reporte"
+        icon="pi pi-check"
+        (clicked)="showAiModal=false"
+        size="small"
+        severity="secondary"
+      />
+    </div>
+  </ng-template>
+</p-dialog>

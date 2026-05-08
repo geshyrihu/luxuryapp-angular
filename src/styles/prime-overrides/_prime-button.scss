@@ -1,0 +1,115 @@
+// ============================================================
+// _prime-button.scss
+// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
+//
+// ESTRATEGIA DE OVERRIDE:
+// 1. Primero tokens CSS (el método limpio).
+// 2. Si no alcanza, especificidad controlada (body .p-button).
+// 3. NUNCA !important ni ::ng-deep en estilos globales.
+// ============================================================
+
+// Override de tokens propios del p-button
+:root {
+  --p-button-border-radius:              var(--ds-radius-btn, 4px);
+  --p-button-font-weight:                500;
+  --p-button-font-size:                  0.875rem;
+  --p-button-padding-y:                  0.5rem;
+  --p-button-padding-x:                  1rem;
+  --p-button-transition-duration:        150ms;
+  --p-button-border-width:               var(--ds-control-border-width, 1px);
+
+  // Primary variant
+  --p-button-primary-background:         var(--ds-primary);
+  --p-button-primary-border-color:       var(--ds-primary);
+  --p-button-primary-color:              #fff;
+  --p-button-primary-hover-background:   var(--ds-primary-hover);
+  --p-button-primary-hover-border-color: var(--ds-primary-hover);
+  --p-button-primary-active-background:  #1d4ed8;
+  --p-button-primary-focus-ring-color:   var(--ds-border-focus);
+}
+
+// Especificidad controlada para casos que tokens no cubren
+body {
+  .p-button,
+  .p-togglebutton {
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-width: var(--p-button-border-width);
+    border-style: solid;
+    border-radius: var(--ds-radius-btn, 4px);
+    transition:
+      background-color 150ms ease,
+      border-color 150ms ease,
+      box-shadow 150ms ease,
+      opacity 150ms ease,
+      transform 100ms ease;
+
+    &:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+
+    .p-ink {
+      display: none;
+    }
+  }
+
+  .p-button-secondary {
+    background-color: #f1f5f9;
+    border-color: #e2e8f0;
+    color: #334155;
+
+    &:hover:not(:disabled) {
+      background-color: #e2e8f0;
+      border-color: #cbd5e1;
+    }
+  }
+
+  .p-button-danger {
+    background-color: var(--ds-danger);
+    border-color: var(--ds-danger);
+    &:hover:not(:disabled) { background-color: var(--ds-danger-hover); }
+  }
+
+  .p-button-success {
+    background-color: var(--ds-success);
+    border-color: var(--ds-success);
+    &:hover:not(:disabled) { background-color: var(--ds-success-hover); }
+  }
+
+  .p-button-outlined {
+    background-color: transparent;
+    color: var(--ds-primary);
+    border-color: var(--ds-primary);
+    &:hover:not(:disabled) { background-color: var(--ds-primary-light); }
+  }
+
+  .p-button-text {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--ds-text-secondary);
+    &:hover:not(:disabled) { background-color: var(--ds-bg-sunken); }
+  }
+
+  .p-button-sm {
+    font-size: 0.8125rem;
+    padding: 0.375rem 0.75rem;
+  }
+
+  .p-button-lg {
+    font-size: 1rem;
+    padding: 0.625rem 1.5rem;
+  }
+
+  .p-selectbutton .p-togglebutton {
+    border-width:
+      var(--p-button-border-width)
+      var(--p-button-border-width)
+      var(--p-button-border-width)
+      0;
+  }
+
+  .p-selectbutton .p-togglebutton:first-child {
+    border-inline-start-width: var(--p-button-border-width);
+  }
+}

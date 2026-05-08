@@ -1,0 +1,358 @@
+<primeng-custom-toast />
+
+@if (loading()) {
+<div
+  class="fixed top-0 left-0 w-full h-full flex flex-column align-items-center justify-content-center surface-card opacity-80 z-50"
+>
+  <p-progressSpinner
+    ariaLabel="loading"
+    fill="transparent"
+    strokeWidth="4"
+    styleClass="w-4rem h-4rem"
+  />
+  <span class="mt-2 text-primary font-bold">Cargando Orden de Compra...</span>
+</div>
+}
+
+<!-- ================================================================== -->
+<!-- SECCIóN DE ALERTA DE ESTADO DE LA ORDEN DE COMPRA                  -->
+<!-- ================================================================== -->
+<div class="grid">
+  <div class="col-12 md:col-6">
+    @if (ordenCompra(); as oc) {
+    <p-message
+      [severity]="isLocked() ? 'warn' : 'info'"
+      styleClass="mt-1 p-0 w-full"
+    >
+      {{ oc.lockReason }}
+    </p-message>
+
+    @if (oc.folioSolicitudCompra && !oc.solicitudCompraId) {
+    <p-message
+      severity="warn"
+      icon="pi pi-exclamation-triangle"
+      styleClass="mt-2 p-0 w-full"
+    >
+      <div class="flex align-items-center">
+        <span
+          >Esta orden tiene un folio de solicitud escrito
+          ({{oc.folioSolicitudCompra}}) pero no estó vinculada
+          formalmente.</span
+        >
+        <custom-button
+          label="Vincular Ahora"
+          size="sm"
+          variant="ghost-text"
+          (clicked)="onManageLinks()"
+        />
+      </div>
+    </p-message>
+    } }
+  </div>
+  <div class="col-12 md:col-6">
+    @if (ordenCompra(); as oc) {
+    <app-orden-compra-datos-auth-parcial
+      [ordenCompra]="oc"
+      [bloqueada]="isLocked()"
+      (autorizarCompra)="autorizarCompra()"
+      (deautorizarCompra)="deautorizarCompra()"
+    />
+    }
+  </div>
+</div>
+
+<!-- ================================================================== -->
+<!-- SECCIóN DE PANELES DE DATOS PRINCIPALES                            -->
+<!-- ================================================================== -->
+@if (ordenCompra(); as oc) {
+<div class="grid mt-0">
+  <!-- 1. Panel: Datos de la Cotización -->
+  <div class="col-12 md:col-4">
+    <app-orden-compra-datos-cotizacion
+      [ordenCompra]="oc"
+      [solicitudCompraId]="solicitudCompraId()"
+      [bloqueada]="isPanelEditingDisabled()"
+      (modalOrdenCompra)="onModalOrdenCompra()"
+    />
+  </div>
+
+  <!-- 2. Panel: Datos de Pago -->
+  <div class="col-12 md:col-4">
+    <app-orden-compra-datos-pago-parcial
+      [ordenCompra]="oc.ordenCompraDatosPago"
+      [bloqueada]="isPanelEditingDisabled()"
+      (modalOrdenCompra)="onModalOrdenCompraDatosPago()"
+    />
+  </div>
+
+  <!-- 3. Panel: Status de la Compra -->
+  <div class="col-12 md:col-4">
+    <app-orden-compra-status-parcial
+      (modalOrdenCompra)="onModalOrdenCompraStatus()"
+      [ordenCompra]="oc"
+      [mostrarTabla]="true"
+      [ordenCompraPresupuestoUtilizado]="purchaseOrderBudget().length === 0"
+      [bloqueada]="false"
+    />
+  </div>
+</div>
+}
+
+<!-- ================================================================== -->
+<!-- SECCIóN DE FACTURAS (RELACIóN DE GASTOS)                           -->
+<!-- ================================================================== -->
+
+<!-- Colocar en esta zoan el boton para agregar facturas -->
+@if (ordenCompra(); as oc) {
+<div class="flex justify-content-end mb-2">
+  <custom-button
+    label="Administrar Facturas"
+    iconClass="pi pi-cog"
+    severity="secondary"
+    size="small"
+    (clicked)="onManageInvoices()"
+  />
+</div>
+<div class="mb-2">
+  <div>
+    <app-orden-compra-facturas-parcial
+      [facturas]="oc.facturas"
+      [ordenCompraId]="oc.id"
+    />
+  </div>
+</div>
+}
+
+<!-- ================================================================== -->
+<!-- SECCIóN DE PRESUPUESTO Y GASTOS RELACIONADOS                       -->
+<!-- ================================================================== -->
+@if(ordenCompra(); as oc) { @if (!oc.isDevolucion) {
+<div class="grid mb-2">
+  <!-- 5. Tabla: Presupuesto Utilizado -->
+  @if (purchaseOrderBudget()) {
+  <div class="col-12 sm:col-7">
+    <p-table
+      [value]="purchaseOrderBudget()"
+      styleClass="custom-table card hidden md:block"
+    >
+      <ng-template #caption>
+        <div
+          (click)="onModalOrdenCompraPresupuesto()"
+          class="text-center pointer"
+        >
+          <span class="text-primary"
+            >SELECCIONAR PARTIDAS PRESUPUESTALES PARA CUBRIR:</span
+          >
+          <span
+            [class.text-danger]="ordenCompraService.totalPorCubrir() !== 0"
+            [class.text-dark]="ordenCompraService.totalPorCubrir() === 0"
+          >
+            {{ ordenCompraService.totalPorCubrir() | number: '1.2-2' }}
+          </span>
+        </div>
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th class="table-col-50">CUENTA</th>
+          <th class="table-col-15">PAGOS X REALIZAR</th>
+          <th class="table-col-15">DISPONIBLE</th>
+          <th class="table-col-10">GASTO</th>
+          @if (canEditBudget()) {
+          <th class="table-col-10"></th>
+          }
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>{{ item.accountNumber }} | {{ item.accountName }}</td>
+          <td class="text-center">
+            <p-tag
+              fluid
+              severity="danger"
+              [value]="item.totalGastosPendientes | number: '1.2-2'"
+            ></p-tag>
+          </td>
+          <td class="text-center">
+            <p-tag
+              fluid
+              [severity]="item.presupuestoRestante < item.amount ? 'danger' : 'success'"
+              [value]="item.presupuestoRestante | number: '1.2-2'"
+            ></p-tag>
+          </td>
+          <td>{{ item.amount | number: '1.2-2' }}</td>
+          <td>
+            <div class="flex">
+              <custom-button-edit
+                (clicked)="onModalEditarPresupuestoUtilizado(item.id)"
+              />
+              <custom-button-delete
+                (confirmed)="onDeleteOrdenCompraPresupuesto(item.id)"
+              />
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  }
+
+  <!-- 6. Panel: Enlaces a Documentos -->
+  <div class="hidden sm:block sm:col-3"></div>
+  <div class="col-12 sm:col-2 text-right">
+    <p-card styleClass="p-0">
+      <div class="flex flex-column">
+        @if (solicitudCompraId() > 0) {
+        <custom-button-item
+          iconClass="pi pi-dollar"
+          label="Cuadro Comparativo"
+          [routerLink]="['//purchases/cuadro-comparativo/', solicitudCompraId()]"
+          variant="text"
+          customClass="w-full justify-content-start"
+          [showLabelOnDesktop]="true"
+        />
+        } @if (isAuthorized()) {
+        <custom-button-item
+          iconClass="pi pi-shopping-cart"
+          label="Orden de Compra"
+          (click)="onDownloadOrdenCompraPdf()"
+          variant="text"
+          customClass="w-full justify-content-start"
+          [showLabelOnDesktop]="true"
+        />
+
+        <custom-button-item
+          iconClass="pi pi-wallet"
+          label="Solicitud de Pago"
+          (click)="onDownloadSolicitudPagoPdf()"
+          variant="text"
+          customClass="w-full justify-content-start"
+          [showLabelOnDesktop]="true"
+        />
+        }
+      </div>
+    </p-card>
+  </div>
+</div>
+} @else {
+<div class="mb-2">
+  <div>
+    <p-message severity="info" styleClass="w-full mt-2"
+      >Esta es una orden de compra por devolución y no afecta ni consume
+      presupuesto.</p-message
+    >
+  </div>
+</div>
+} }
+
+<!-- ================================================================== -->
+<!-- SECCIóN DE DETALLE DE PRODUCTOS                                    -->
+<!-- ================================================================== -->
+<p-table
+  [value]="ordenCompraDetalle()"
+  styleClass="custom-table card hidden md:block"
+  dataKey="id"
+>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-2">Nó</th>
+      <th class="table-col-28">
+        <div class="text-center">
+          <span>PRODUCTO |</span>
+          <!-- REFACTOR: Condición simplificada con `computed signal`. -->
+          @if (canAddProducts()) {
+          <span (click)="onModalAgregarproducto()" class="pointer ml-1">
+            AGREGAR
+            <i class="icon icon-pi-plus ml-1"></i>
+          </span>
+          }
+        </div>
+      </th>
+      <th class="table-col-10">CANTIDAD</th>
+      <th class="table-col-10">UNIDAD</th>
+      <th class="table-col-10">PRECIO</th>
+      <th class="table-col-10">DESCUENTO</th>
+      <th class="table-col-10">IVA</th>
+      <th class="table-col-10">RETENCION IVA</th>
+      <th class="table-col-10">RETENCION ISR</th>
+      <th class="table-col-10">TOTAL</th>
+      @if (canEditBudget()) {
+      <th class="table-col-2"></th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #body let-rowIndex="rowIndex" let-item>
+    <tr>
+      <td>{{ rowIndex + 1 }}</td>
+      <td>{{ item.productName }}</td>
+      <td class="text-right">{{ item.cantidad }}</td>
+      <td class="text-right">{{ item.unidadMedida }}</td>
+      <td class="text-right">{{ item.precio | number: '1.2-2' }}</td>
+      <td class="text-right">{{ item.descuento | number: '1.2-2' }}%</td>
+      <td class="text-right">
+        <small class="text-color-secondary">({{ item.ivaAplicado }} %)</small>
+        {{ item.iva | number: '1.2-2' }}
+      </td>
+      <td class="text-right">
+        <small class="text-color-secondary"
+          >({{ item.retencionIVAPorcentaje }} %)</small
+        >
+        {{ item.retencionIVACalculada | number: '1.2-2' }}
+      </td>
+      <td class="text-right">
+        <small class="text-color-secondary"
+          >({{ item.retencionISRPorcentaje }} %)</small
+        >
+        {{ item.retencionISRCalculada | number: '1.2-2' }}
+      </td>
+      <td class="text-right">{{ item.total | number: '1.2-2' }}</td>
+      <td>
+        @if (canEditBudget()) {
+        <div class="flex">
+          <custom-button-edit (clicked)="onModalEditarDetalle(item)" />
+          <custom-button-delete (confirmed)="onDeleteProduct(item.id)" />
+        </div>
+        }
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #footer>
+    <tr>
+      <td [colSpan]="footerInitialColspan()" class="no-border"></td>
+      <td colspan="3" class="text-sm text-right">SUBTOTAL</td>
+      <td class="text-right">{{ totals().subtotal | number: '1.2-2' }}</td>
+      <td class="no-border"></td>
+      <!-- ? Mantiene el spacer vertical para "Botones" -->
+    </tr>
+    <tr>
+      <td [colSpan]="footerInitialColspan()" class="no-border"></td>
+      <td colspan="3" class="text-sm text-right">IVA</td>
+      <td class="text-right">{{ totals().iva | number: '1.2-2' }}</td>
+      <td class="no-border"></td>
+    </tr>
+    @if (totals().retencionIva > 0) {
+    <tr>
+      <td [colSpan]="footerInitialColspan()" class="no-border"></td>
+      <td colspan="3" class="text-sm text-right">RETENCIóN IVA</td>
+      <td class="text-right">
+        - {{ totals().retencionIva | number: '1.2-2' }}
+      </td>
+      <td class="no-border"></td>
+    </tr>
+    } @if (totals().retencionIsr > 0) {
+    <tr>
+      <td [colSpan]="footerInitialColspan()" class="no-border"></td>
+      <td colspan="3" class="text-sm text-right">RETENCIóN ISR</td>
+      <td class="text-right">
+        - {{ totals().retencionIsr | number: '1.2-2' }}
+      </td>
+      <td class="no-border"></td>
+    </tr>
+    }
+    <tr>
+      <td [colSpan]="footerInitialColspan()" class="no-border"></td>
+      <td colspan="3" class="text-sm text-right">TOTAL</td>
+      <td class="text-right">{{ totals().total | number: '1.2-2' }}</td>
+      <td class="no-border"></td>
+    </tr>
+  </ng-template>
+</p-table>

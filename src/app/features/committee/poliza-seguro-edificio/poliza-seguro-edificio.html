@@ -1,0 +1,99 @@
+<!-- 🖥️ DESKTOP: visible solo md+ -->
+<div class="hidden md:block">
+  <h3 class="text-center p-2 text-2xl font-bold text-900">Póliza de Seguro del Edificio</h3>
+  <div class="card-body">
+    @if (data(); as policy) {
+    <div class="grid">
+      <div class="col-12 md:col-6">
+        <p class="m-0 mb-2"><strong class="text-900">Proveedor:</strong> <span class="text-700">{{ policy.providerName }}</span></p>
+        <p class="m-0 mb-2"><strong class="text-900">Descripción:</strong> <span class="text-700">{{ policy.description }}</span></p>
+      </div>
+      <div class="col-12 md:col-6">
+        <p class="m-0 mb-2"><strong class="text-900">Fecha de Inicio:</strong> <span class="text-700">{{ policy.startDate | date: 'dd/MM/yyyy' }}</span></p>
+        <p class="m-0 mb-2"><strong class="text-900">Fecha de Fin:</strong> <span class="text-700">{{ policy.endDate | date: 'dd/MM/yyyy' }}</span></p>
+      </div>
+    </div>
+    @if (policy.pathDocument) {
+    <div class="grid mt-3">
+      <div class="col-12">
+        <custom-button-view-pdf
+          [showLabelOnDesktop]="true"
+          [url]="policy.pathDocument"
+          fileName="Póliza | Contrato"
+        />
+      </div>
+    </div>
+    }
+    } @else {
+    <div class="empty-state-card">
+      <div class="empty-state-icon">
+        <i class="icon icon-pi-folder-open"></i>
+      </div>
+      <h5 class="empty-state-title">No hay documentos disponibles</h5>
+    </div>
+    }
+  </div>
+</div>
+
+<!-- 📱 MOBILE: visible solo sm -->
+<div class="block md:hidden">
+  @if (data(); as policy) {
+  <ion-list-header>
+    <ion-label class="font-bold text-900">Póliza de Seguro del Edificio</ion-label>
+  </ion-list-header>
+
+  <ion-list [inset]="true" class="m-0">
+    <ion-item lines="full" class="ion-no-padding">
+      <div slot="start" class="w-2rem h-2rem border-round bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
+        <i class="pi pi-building text-xl text-blue-700"></i>
+      </div>
+      <ion-label class="ml-2">
+        <h3 class="font-bold text-900">Proveedor</h3>
+        <p class="text-wrap text-sm text-500">{{ policy.providerName }}</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="full" class="ion-no-padding">
+      <div slot="start" class="w-2rem h-2rem border-round bg-purple-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
+        <i class="pi pi-file-text text-xl text-purple-700"></i>
+      </div>
+      <ion-label class="ml-2">
+        <h3 class="font-bold text-900">Descripción</h3>
+        <p class="text-wrap text-sm text-500">{{ policy.description }}</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="full" class="ion-no-padding">
+      <div slot="start" class="w-2rem h-2rem border-round bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
+        <i class="pi pi-calendar text-xl text-green-600"></i>
+      </div>
+      <ion-label class="ml-2">
+        <h3 class="font-bold text-900">Fecha de Inicio</h3>
+        <p class="text-sm text-500">{{ policy.startDate | date: 'dd/MM/yyyy' }}</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="full" class="ion-no-padding">
+      <div slot="start" class="w-2rem h-2rem border-round bg-red-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
+        <i class="pi pi-calendar-minus text-xl text-red-600"></i>
+      </div>
+      <ion-label class="ml-2">
+        <h3 class="font-bold text-900">Fecha de Fin</h3>
+        <p class="text-sm text-500">{{ policy.endDate | date: 'dd/MM/yyyy' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  @if (policy.pathDocument) {
+  <div class="p-3">
+    <ion-button-view-pdf [url]="policy.pathDocument" fileName="Póliza | Contrato" />
+  </div>
+  }
+
+  } @else {
+  <div class="text-center p-6">
+    <i class="pi pi-folder-open text-6xl text-400"></i>
+    <p class="text-500 mt-3 text-base">No hay documentos disponibles</p>
+  </div>
+  }
+</div>

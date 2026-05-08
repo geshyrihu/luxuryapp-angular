@@ -1,0 +1,65 @@
+<app-report-header></app-report-header>
+
+<p-table
+  [value]="dataSignal()"
+  sortField="clasificacion"
+  rowGroupMode="subheader"
+  groupRowsBy="clasificacion"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <div class="flex align-items-center justify-content-between">
+      <h5 class="m-0 h5">Inventario Insumos</h5>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-12 text-sm">Nó</th>
+      <th class="table-col-10 text-sm">Marca</th>
+      <th class="table-col-20 text-sm" pSortableColumn="nombre">
+        Nombre
+        <p-sortIcon field="nombre" />
+      </th>
+      <th class="table-col-10 text-sm">Cant.</th>
+      <th class="table-col-10 text-sm">Ud.</th>
+      <th class="table-col-10 text-sm">Check</th>
+      <th style="width: 34%" class="text-sm">Observaciones</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="groupheader" let-customer>
+    <tr pRowGroupHeader>
+      <td colspan="7">
+        <span class="font-bold ml-2">{{ customer.clasificacion }}</span>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="groupfooter" let-customer>
+    <tr class="p-rowgroup-footer">
+      <td class="text-sm" colspan="7">
+        <div style="text-align: right">
+          Total: {{ calcularEquiposTotal(customer.clasificacion) }}
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-rowIndex="rowIndex">
+    <tr class="page-break">
+      <td class="text-sm">{{ rowIndex + 1 }}</td>
+      <td class="text-sm">{{ item.marca }}</td>
+      <td class="text-sm">{{ item.nombre }}</td>
+      <td class="text-sm">{{ item.cantidad }}</td>
+      <td class="text-sm">{{ item.unidad }}</td>
+      <td class="text-sm text-center">
+        <p-checkbox [binary]="true" [ngModel]="false" [disabled]="true" />
+      </td>
+      <td class="text-sm"></td>
+    </tr>
+  </ng-template>
+</p-table>
+
+
+
+
+
+
+

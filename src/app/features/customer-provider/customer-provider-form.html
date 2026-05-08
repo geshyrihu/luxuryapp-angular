@@ -1,0 +1,53 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="submit()" [formGroup]="form">
+      <div class="mb-4">
+        @if(cb_providers().length == 0){
+        <div class="text-center">
+          <p>Cargando listado de proveedores</p>
+          <i class="pi pi-spin pi-spinner text-primary m-1" aria-label="Cargando..."></i>
+        </div>
+        }@else {
+        <custom-input-autocomplete-signal
+          (propagar)="saveProviderId($event)"
+          [control]="form.controls.providerName"
+          [data]="cb_providers()"
+          label="Proveedor"
+          [horizontal]="false"
+          placeholder="Escribe para buscar proveedor"
+        />
+        }
+      </div>
+      <div class="mb-4">
+        @if(cb_categories().length == 0){
+        <div class="text-center">
+          <p>Cargando listado de categorias</p>
+          <i class="pi pi-spin pi-spinner text-primary m-1" aria-label="Cargando..."></i>
+        </div>
+        } @else {
+        <custom-input-autocomplete-signal
+          (propagar)="saveCategoryId($event)"
+          [control]="form.controls.categoryName"
+          [data]="cb_categories()"
+          label="Servicio"
+          [horizontal]="false"
+          placeholder="Escribe para buscar tipo de servicio"
+        />
+        }
+      </div>
+
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+

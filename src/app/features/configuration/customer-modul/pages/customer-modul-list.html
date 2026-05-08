@@ -1,0 +1,133 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block">
+  <div class="p-3">
+    <p-table
+      [value]="dataSignal()"
+      styleClass="custom-table"
+      [paginator]="true"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      [globalFilterFields]="globalFilterFields()"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight"
+      #dt
+    >
+      <ng-template #caption>
+        <div class="grid">
+          <div class="col-12 sm:col-6">
+            <h5 class="m-0">Clientes Agrupados por Estado</h5>
+          </div>
+          <div class="col-12 sm:col-6">
+            <div class="flex justify-content-end">
+              <custom-input-select-signal
+                [data]="selectCustomer"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Filtrar por cliente"
+                (selectionChange)="onSelectForCustomer($event)"
+                [showClear]="true"
+                customClass="w-full max-w-15rem"
+                [horizontal]="false"
+              />
+              <primeng-custom-global-filter [dt]="dt" />
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th class="table-col-40">Cliente</th>
+          <th class="table-col-20">Nómero Cliente</th>
+          <th class="table-col-20">Registrado</th>
+          <th class="table-col-15">Estado</th>
+          <th class="table-col-5"></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <!-- [routerLink]="[
+            '/settings/customer-modul-edit',
+            item.customerId,
+            item.nameCustomer
+          ]" -->
+        <tr
+          class="cursor-pointer"
+          (click)="onModalForm({ customerId: item.customerId, nameCustomer:  item.nameCustomer })"
+        >
+          <td>
+            <div class="flex align-items-center">
+              <p-avatar
+                [image]="item.photoPath"
+                [alt]="item.nameCustomer"
+                size="large"
+                shape="circle"
+                styleClass="mr-3"
+              />
+              <h6 class="m-0">{{ item.nameCustomer }}</h6>
+            </div>
+          </td>
+          <td>{{ item.numeroCliente }}</td>
+          <td>{{ item.register }}</td>
+          <td>
+            @if (item.isAssigned) {
+            <p-tag severity="success" value="Activo"></p-tag>
+            } @else {
+            <p-tag severity="danger" value="Inactivo"></p-tag>
+            }
+          </td>
+          <td class="text-right">
+            <i class="pi pi-chevron-right"></i>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [trackByProperty]="'customerId'"
+>
+  <div customFilters>
+    <div class="p-4">
+      <h5 class="m-0">Clientes Agrupados por Estado</h5>
+      <div class="mt-3">
+        <custom-input-select-signal
+          [data]="selectCustomer"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Filtrar por cliente"
+          (selectionChange)="onSelectForCustomer($event)"
+          [showClear]="true"
+          [horizontal]="false"
+        />
+      </div>
+    </div>
+  </div>
+  <ng-template #listItemTemplate let-customer>
+    <ion-item
+      button
+      (click)="onModalForm({ customerId: item.customerId, nameCustomer:  item.nameCustomer })"
+      lines="full"
+      class="ion-no-padding"
+      detail="true"
+    >
+      <ion-avatar slot="start">
+        <img [src]="customer.photoPath" [alt]="customer.nameCustomer" />
+      </ion-avatar>
+      <ion-label>
+        <h2 class="font-normal m-0">{{ customer.nameCustomer }}</h2>
+        <p class="text-medium text-500 m-0">#{{ customer.numeroCliente }}</p>
+      </ion-label>
+      <div slot="end" class="flex align-items-center mr-2">
+        @if (customer.isAssigned) {
+        <p-tag severity="success" value="Asignado"></p-tag>
+        } @else {
+        <p-tag severity="danger" value="No Asignado"></p-tag>
+        }
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

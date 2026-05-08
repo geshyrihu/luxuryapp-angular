@@ -1,0 +1,86 @@
+<!-- REFACTOR: Template actualizado con p-message y computed signals -->
+
+@if(!bloqueada) {
+<!-- Estado: Pendiente de autorización -->
+@if (ordenCompra.ordenCompraAuth.statusOrdenCompra === 'Pendiente') {
+<p-message severity="warn" styleClass="w-full mt-1">
+  <div class="flex flex-column">
+    <div class="flex align-items-center">
+      <span class="text-sm font-semibold">⏳ Pendiente de autorización</span>
+      @if (!isAuthorizationDisabled()) {
+
+      <span
+        class="text-sm font-semibold cursor-pointer hover:underline"
+        (click)="onAutorizarCompra()"
+      >
+        ✅ Autorizar
+      </span>
+      }
+    </div>
+    @if (isAuthorizationDisabled()) {
+    <div class="flex align-items-center">
+      @switch (authorizationStatus().reason) { @case ('invalid_total') {
+      <span>💰</span>
+      } @case ('insufficient_budget') {
+      <span>📊</span>
+      } }
+      <span class="text-sm font-semibold text-red-600"
+        >No se puede autorizar | {{ authorizationStatus().message }}</span
+      >
+    </div>
+    }
+  </div>
+</p-message>
+}
+
+<!-- Estado: Autorizado -->
+@if (ordenCompra.ordenCompraAuth.statusOrdenCompra === 'Autorizado') {
+<p-message severity="success" styleClass="w-full mt-1">
+  <div class="flex flex-column">
+    <div class="flex align-items-center">
+      <span class="font-semibold">✅ Autorizado</span>
+    </div>
+    <span class="font-semibold">
+      {{ ordenCompra.ordenCompraAuth.revisadoPorResidente }} @if (canRevoke()) {
+      <span
+        class="font-semibold cursor-pointer hover:underline text-red-600 ml-5"
+        (click)="onDeautorizarCompra()"
+      >
+        🔙 Revocar
+      </span>
+      }
+    </span>
+  </div>
+</p-message>
+}
+
+<!-- Estados adicionales (Rechazado, En revisión, etc.) -->
+@if ( ordenCompra.ordenCompraAuth.statusOrdenCompra !== 'Pendiente' &&
+ordenCompra.ordenCompraAuth.statusOrdenCompra !== 'Autorizado' ) {
+<p-message severity="info" styleClass="w-full">
+  <div class="flex flex-column">
+    <span class="font-semibold">
+      {{ ordenCompra.ordenCompraAuth.statusOrdenCompra }}
+    </span>
+    <span class="text-sm">
+      {{ ordenCompra.ordenCompraAuth.revisadoPorResidente }}
+    </span>
+  </div>
+</p-message>
+} }
+
+<!-- Cuando está bloqueada, solo mostrar información -->
+@if(bloqueada) {
+<p-message severity="secondary" styleClass="w-full">
+  <div class="flex flex-column gap-1">
+    <span class="font-semibold">
+      🔒 {{ ordenCompra.ordenCompraAuth.statusOrdenCompra }}
+    </span>
+    @if (ordenCompra.ordenCompraAuth.statusOrdenCompra !== 'Pendiente') {
+    <span class="text-sm">
+      {{ ordenCompra.ordenCompraAuth.revisadoPorResidente }}
+    </span>
+    }
+  </div>
+</p-message>
+}

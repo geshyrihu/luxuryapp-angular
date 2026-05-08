@@ -1,0 +1,88 @@
+.logo-container {
+  min-width: 220px;
+}
+
+.logo-img {
+  object-fit: cover;
+  width: 36px;
+}
+
+.title-h5 {
+  letter-spacing: 1px;
+}
+
+.folio-factura-container {
+  min-width: 180px;
+}
+
+.invoice-title {
+  background: rgba(245, 247, 250, 0.85);
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 2px 8px 0 rgba(44, 62, 80, 0.05);
+}
+
+.invoice-title img {
+  border: 2px solid #e0e0e0;
+  background: #fff;
+}
+
+@media (max-width: 768px) {
+  .invoice-title .flex {
+    flex-direction: column;
+    align-items: stretch !important;
+    text-align: center;
+  }
+  .invoice-title .text-right {
+    text-align: center !important;
+    margin-top: 0.5rem;
+  }
+}
+
+/* Estilos específicos para impresión */
+@media print {
+  .invoice-title {
+    background: none; /* Eliminar fondo para ahorrar tinta */
+    border-radius: 0; /* Eliminar bordes redondeados */
+    box-shadow: none; /* Eliminar sombra */
+    margin-bottom: 1rem; /* Ajustar margen inferior para separación */
+    padding: 0; /* Asegurar que no haya padding extra */
+  }
+
+  .invoice-title img {
+    border: none; /* Eliminar borde de la imagen */
+    background: none; /* Eliminar fondo de la imagen */
+  }
+
+  .logo-container,
+  .folio-factura-container {
+    min-width: unset; /* Eliminar min-width que podría causar problemas en impresión */
+  }
+
+  .invoice-title .flex {
+    display: flex; /* Asegurar que flexbox se mantenga */
+    flex-wrap: nowrap; /* Evitar que los elementos se envuelvan si no es deseado en impresión */
+    justify-content: space-between; /* Mantener la distribución */
+    align-items: center; /* Mantener la alineación */
+  }
+
+  .invoice-title .text-center {
+    text-align: center !important; /* Asegurar alineación central del título */
+  }
+
+  .invoice-title .text-right {
+    text-align: right !important; /* Asegurar alineación a la derecha del folio/factura */
+    margin-top: 0; /* Eliminar margen superior si se añadió en media query de pantalla */
+  }
+
+  /* Estilo para la línea horizontal */
+  hr {
+    border-top: 1px solid #ccc; /* Asegurar que la línea sea visible */
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+
+
+

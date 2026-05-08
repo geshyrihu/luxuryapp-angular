@@ -1,0 +1,63 @@
+<div class="p-1">
+  <ion-accordion-group
+    expand="inset"
+    class="bg-white dark:surface-900 border-round-2xl shadow-1"
+  >
+    @for (item of menuItems(); track $index) {
+
+    <!-- Case 1: Item with Submenu -->
+    @if (item.items && item.items.length > 0) {
+    <ion-accordion [value]="item.label">
+      <ion-item slot="header" lines="full">
+        <i [class]="item.icon" slot="start" class="text-xl text-primary"></i>
+        <ion-label class="font-medium">{{ item.label }}</ion-label>
+      </ion-item>
+
+      <div class="ion-padding-start" slot="content">
+        <ion-list lines="full">
+          @for (subItem of item.items; track $index) {
+          <ion-item
+            (click)="onItemClick()"
+            [routerLink]="subItem.routerLink"
+            detail="true"
+            button
+            class="text-sm"
+          >
+            <i
+              [class]="subItem.icon || 'pi pi-circle-fill text-xs'"
+              slot="start"
+              class="text-500"
+            ></i>
+            <ion-label>{{ subItem.label }}</ion-label>
+          </ion-item>
+          }
+        </ion-list>
+      </div>
+    </ion-accordion>
+    }
+
+    <!-- Case 2: Single Link Item -->
+    @else {
+    <div class="p-1">
+      <ion-item
+        (click)="onItemClick()"
+        [routerLink]="item.routerLink"
+        lines="full"
+        detail="true"
+        button
+        class="border-round-xl"
+      >
+        <i [class]="item.icon" slot="start" class="text-xl text-primary"></i>
+        <ion-label class="font-medium">{{ item.label }}</ion-label>
+      </ion-item>
+    </div>
+    } }
+  </ion-accordion-group>
+</div>
+
+
+
+
+
+
+

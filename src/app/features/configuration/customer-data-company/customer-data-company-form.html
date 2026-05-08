@@ -1,0 +1,64 @@
+<p-card>
+  <ng-template #content>
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        label="Id"
+        placeholder="id"
+      />
+
+      <custom-input-autocomplete-signal
+        (propagar)="saveCustomer($event)"
+        [control]="form.controls.customer"
+        [data]="cb_customer()"
+        label="Cliente"
+        placeholder="Escribe para buscar cliente"
+      />
+
+      <custom-input-autocomplete-signal
+        (propagar)="savAppRoles($event)"
+        [control]="form.controls.applicationRole"
+        [data]="cb_applicationRole()"
+        label="Rol"
+        placeholder="Escribe para buscar rol"
+      />
+
+      <custom-input-autocomplete-signal
+        (propagar)="saveApplicationUser($event)"
+        [control]="form.controls.applicationUser"
+        [data]="cb_applicationUser()"
+        label="Usuario"
+        placeholder="Escribe para buscar usuario"
+      />
+
+      <custom-input-text-signal
+        [control]="form.controls.email"
+        label="Correo Electrónico"
+        placeholder="email"
+      />
+
+      <div class="flex">
+        <custom-input-text-signal
+          [control]="form.controls.phoneNumberPrefix"
+          label="Prefijo"
+          placeholder="+52"
+          class="w-4"
+        />
+        <custom-input-mask-signal
+          [control]="form.controls.phoneNumber"
+          label="Teléfono"
+          mask="(999) 999-9999"
+          placeholder="(555) 000-0000"
+          class="flex-1"
+        />
+      </div>
+
+      <div class="flex justify-content-end mt-4">
+        <custom-button-save
+          [disabled]="form.invalid"
+          [submitting]="submitting()"
+        />
+      </div>
+    </form>
+  </ng-template>
+</p-card>

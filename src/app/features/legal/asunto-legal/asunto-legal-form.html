@@ -1,0 +1,29 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <!-- Título del Asunto -->
+  <custom-input-autocomplete-signal
+    (propagar)="saveCategorie($event)"
+    [control]="form.controls.legalMatterCategory"
+    [data]="cb_categories()"
+    label="Categoria"
+    placeholder="Escribe para buscar categoria"
+    [horizontal]="false"
+  />
+  <custom-input-text-signal
+    [control]="form.controls.title"
+    [horizontal]="false"
+    label="Asunto"
+    placeholder="Asunto"
+  />
+  <custom-input-select-signal
+    [control]="form.controls.isInternal"
+    [data]="cb_resposanbles"
+    [horizontal]="false"
+    label="Responsable:"
+  />
+
+  <custom-button-save
+    [propertyId]="id"
+    [disabled]="form.invalid"
+    [submitting]="submitting()"
+  />
+</form>

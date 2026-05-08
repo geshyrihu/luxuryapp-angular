@@ -1,0 +1,153 @@
+@if (dataSignal()) {
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <div class="grid align-items-center">
+      <div class="col-12 lg:col-6">
+        <primeng-custom-caption
+          title="Reporte Semanal"
+          (add)="
+              onModalForm({
+                id: '',
+                title: 'Nuevo Registro',
+              })
+            "
+          [dt]="dt"
+        />
+      </div>
+      <div class="col-12 lg:col-4">
+        <app-task-status (statusChange)="onChangeStatus($event)" />
+      </div>
+      <div class="col-12 lg:col-2">
+        <app-task-report-actions
+          (previewClicked)="onPreviewClicked()"
+          (sendReportClicked)="onSendReportClicked()"
+        />
+      </div>
+      <div class="col-12 mt-2">
+        <app-task-date-range-selector
+          (selectedDates)="onDateRangeSelected($event)"
+        />
+      </div>
+    </div>
+    <!-- end col -->
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-6 font-size-12">FOLIO</th>
+      <th class="table-col-8 font-size-12">FECHA SOLICITUD</th>
+      <th
+        class="table-col-30"
+        class="font-size-12"
+        pSortableColumn="responsibleArea"
+      >
+        SOLICITUD
+        <p-sortIcon field="responsibleArea" />
+      </th>
+      <th class="font-size-12">EVIDENCIA</th>
+      <th
+        class="table-col-10"
+        class="font-size-12"
+        pSortableColumn="dateFinishedFiltro"
+      >
+        CIERRE
+        <p-sortIcon field="dateFinishedFiltro" />
+      </th>
+      <th class="font-size-12">Evidencia</th>
+      <th
+        class="font-size-12 no-print"
+        class="table-col-5"
+        pSortableColumn="isRelevant"
+      >
+        Reporte Semanal
+        <p-sortIcon field="isRelevant" />
+      </th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.folio }}</td>
+      <td>
+        <div class="flex align-items-center">
+          <!-- Contenedor para la fecha y hora -->
+          <div class="ml-2 text-right">
+            {{ item.createdAtDate }}
+            <br />
+            {{ item.createdAtHour }}
+          </div>
+        </div>
+      </td>
+      <td>
+        <strong class="mb-0 text-900">{{ item.title }}</strong>
+        <p class="m-0 text-600">{{ item.description }}</p>
+      </td>
+      <td class="text-center">
+        <div class="flex justify-content-center align-items-center">
+          @if (item.beforeWork) {
+          <p-image
+            [src]="
+                  item.beforeWork
+                    ? item.beforeWork
+                    : 'assets/images/default-avatar.png'
+                "
+            alt="."
+            width="40"
+            class="mr-2 border-1 surface-border"
+            [preview]="true"
+          ></p-image>
+          }
+        </div>
+      </td>
+      <td>{{ item.closedAtDate }}</td>
+      <!-- <td class="text-center"></td> -->
+      <td>
+        <div class="flex justify-content-center align-items-center">
+          @if (item.afterWork) {
+          <p-image
+            [src]="
+                  item.afterWork
+                    ? item.afterWork
+                    : 'assets/images/default-avatar.png'
+                "
+            alt="."
+            width="40"
+            class="mr-2 border-1 surface-border"
+            [preview]="true"
+          ></p-image>
+          }
+        </div>
+      </td>
+      <!-- Opciones -->
+      <td class="text-center no-print">
+        <custom-input-switch-signal
+          [control]="item.isRelevantControl"
+          (switchChange)="onUpdateStateTicket(item)"
+          [horizontal]="false"
+        />
+      </td>
+      <td class="text-center">
+        <div class="flex justify-content-center">
+          <custom-button-tracking
+            iconClass="pi pi-list"
+            ngbTooltip="Seguimiento"
+            [badgeCount]="item.ticketMessageFollowUp"
+            (clickTracking)="onFollowUp(item.id)"
+          />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+}

@@ -1,0 +1,41 @@
+@if (!fileUrl && canEdit) {
+<div class="text-center">
+  <custom-button
+    ngbTooltip="Cargar archivo"
+    customClass="btn-sm btn-info"
+    iconClass="icon icon-pi-upload mr-2"
+    (clicked)="onUpload.emit()"
+    [label]="'Cargar ' + title"
+  />
+</div>
+} @if (fileUrl) {
+<div class="mt-1 flex justify-content-between">
+  <div class="flexlign-align-items-start">
+    <custom-button-view-pdf
+      [showLabelOnDesktop]="true"
+      [url]="fileUrl"
+      fileName="Documento"
+    />
+  </div>
+  @if (canEdit && !isFinal) {
+  <div class="flexlign-align-items-start">
+    <custom-button icon="edit" (clicked)="onEdit.emit()" />
+    <custom-button-confirm
+      icon="trash"
+      ngbTooltip="Eliminar"
+      (clicked)="onDelete.emit()"
+    />
+  </div>
+  }
+</div>
+}
+
+<p class="m-0">{{ user }}</p>
+<p class="m-0">{{ uploadDate }}</p>
+
+
+
+
+
+
+

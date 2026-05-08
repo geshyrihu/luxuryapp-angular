@@ -1,0 +1,68 @@
+<!-- <div class="p-3"> -->
+<div class="p-3">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    @if (isMobile()) {
+      <!-- 📱 MÓVIL (IONIC) -->
+      <ion-input-text
+        [control]="form.controls.id"
+        label="Id"
+        [readonly]="true"
+      />
+      <ion-input-text
+        [control]="form.controls.code"
+        label="Código"
+        placeholder="código"
+      />
+      <ion-input-text
+        [control]="form.controls.shortName"
+        label="Nombre"
+        placeholder="Nombre"
+      />
+      <ion-input-text
+        [control]="form.controls.largeName"
+        label="Razón social"
+        placeholder="razón social"
+      />
+      <ion-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    } @else {
+      <!-- 🖥️ ESCRITORIO (PRIMENG) -->
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        label="Id"
+        [readonly]="true"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.code"
+        label="Código"
+        placeholder="código"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.shortName"
+        label="Nombre"
+        placeholder="Nombre"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.largeName"
+        label="Razón social"
+        placeholder="razón social"
+      />
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+        class="pb-2"
+      />
+    }
+  </form>
+</div>
+
+
+
+
+
+
+

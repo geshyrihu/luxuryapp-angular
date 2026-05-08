@@ -1,0 +1,173 @@
+<div class="card p-3 md:p-4">
+  <!-- Tabla escritorio agrupada por propiedad -->
+  <p-table
+    [value]="dataSignal()"
+    rowGroupMode="subheader"
+    groupRowsBy="propertyId"
+    sortField="propertyId"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+    [globalFilterFields]="['userName', 'email', 'propertyName', 'accountNumber']"
+    styleClass="custom-table hidden md:block"
+    #dt
+  >
+    <ng-template pTemplate="caption">
+      <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th class="w-10rem text-center">Rol</th>
+        <th class="w-8rem text-center">Responsable Fin.</th>
+        <th class="w-8rem text-center">Notificaciones</th>
+        <th class="w-8rem text-center">Desde</th>
+        <th class="w-6rem text-center">Activo</th>
+        <th class="w-8rem text-center">Opciones</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="groupheader" let-item>
+      <tr pRowGroupHeader>
+        <td colspan="8" class="surface-100 py-2 px-3">
+          <div class="flex align-items-center justify-content-between">
+            <div class="flex align-items-center gap-2">
+              <i class="pi pi-building text-primary"></i>
+              <span class="font-bold text-primary"
+                >{{ item.propertyName }}</span
+              >
+              <span class="text-500 text-sm"
+                >&middot; Cta: {{ item.accountNumber }}</span
+              >
+            </div>
+            <custom-button
+              label="Nuevo Miembro"
+              iconClass="pi pi-user-plus"
+              severity="success"
+              size="small"
+              (clicked)="onModalForm('', item.propertyId)"
+            />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-item>
+      <tr [class.opacity-50]="!item.isActive">
+        <td class="font-bold">{{ item.userName }}</td>
+        <td class="text-sm text-500">{{ item.email }}</td>
+        <td class="text-center">
+          <span
+            class="badge bg-blue-100 text-blue-800 text-xs px-2 py-1 border-round"
+          >
+            {{ rolLabel(item.memberRole) }}
+          </span>
+        </td>
+        <td class="text-center">
+          @if (item.isFinancialResponsible) {
+          <i
+            class="pi pi-check-circle text-green-600 text-xl"
+            title="Responsable financiero"
+          ></i>
+          }
+        </td>
+        <td class="text-center">
+          @if (item.receiveNotifications) {
+          <i class="pi pi-bell text-blue-500"></i>
+          } @else {
+          <i class="pi pi-bell-slash text-400"></i>
+          }
+        </td>
+        <td class="text-center text-sm">
+          {{ item.startDate | date:'dd/MM/yyyy' }}
+        </td>
+        <td class="text-center">
+          @if (item.isActive) {
+          <span
+            class="badge bg-green-100 text-green-800 text-xs px-2 py-1 border-round"
+            >Activo</span
+          >
+          } @else {
+          <span
+            class="badge bg-gray-100 text-gray-600 text-xs px-2 py-1 border-round"
+            >Baja</span
+          >
+          }
+        </td>
+        <td class="text-center">
+          <div class="flex justify-content-center gap-1">
+            <custom-button-edit
+              (clicked)="onModalForm(item.id, item.propertyId)"
+            />
+            @if (item.isActive) {
+            <custom-button-delete
+              title="Dar de baja"
+              confirmHeader="Dar de baja"
+              confirmMessage="¿Confirma dar de baja a este miembro?"
+              confirmAcceptLabel="Sí, dar de baja"
+              (confirmed)="onEndMembership(item)"
+            />
+            }
+            <custom-button-delete
+              iconClass="pi pi-user-minus"
+              title="Eliminar usuario del sistema"
+              confirmHeader="Eliminar usuario"
+              confirmMessage="¿Eliminar permanentemente a {{ item.userName }} del sistema? Esta acción no se puede deshacer."
+              confirmAcceptLabel="Sí, eliminar usuario"
+              (confirmed)="onDeleteUser(item)"
+            />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8" class="text-center p-4 text-500">
+          No hay miembros registrados.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<!-- Vista móvil agrupada por propiedad -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="['userName', 'email', 'propertyName']"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div
+        slot="start"
+        class="w-2rem h-2rem border-round-lg bg-indigo-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+      >
+        <ion-icon
+          name="people-outline"
+          class="text-indigo-600 text-xl"
+        ></ion-icon>
+      </div>
+      <ion-label>
+        <h3>{{ item.userName }}</h3>
+        <p>{{ item.propertyName }} &middot; {{ item.accountNumber }}</p>
+        <p>{{ rolLabel(item.memberRole) }} &middot; {{ item.email }}</p>
+        <p>Desde: {{ item.startDate | date:'dd/MM/yyyy' }}</p>
+      </ion-label>
+      @if (item.isFinancialResponsible) {
+      <ion-badge slot="end" color="success">Responsable</ion-badge>
+      }
+      <app-action-menu slot="end">
+        <ion-button-edit (clicked)="onModalForm(item.id, item.propertyId)" />
+        @if (item.isActive) {
+        <ion-button-delete (confirmed)="onEndMembership(item)" />
+        }
+        <ion-button-delete (confirmed)="onDeleteUser(item)" />
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

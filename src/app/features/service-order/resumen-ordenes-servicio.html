@@ -1,0 +1,45 @@
+<div class="container">
+  <div>
+    <app-resumen-ordenes-servicio-grafico />
+  </div>
+</div>
+@if (dataSignal()) {
+<div class="container">
+  <div>
+    <div>
+      <p-table
+        [value]="dataSignal()"
+        [globalFilterFields]="globalFilterFields()"
+        styleClass="custom-table card hidden md:block"
+      >
+        <ng-template #header>
+          <tr>
+            <th>Equipo</th>
+            <th>Fecha de ejecución</th>
+            <th>Estatus</th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-item>
+          <tr>
+            <td>{{ item.nameMachinery }}</td>
+            <td>{{ item.executionDate | date }}</td>
+            <td>
+              <p-tag
+                [value]="item.status"
+                [severity]="getBadgeSeverity(item.status)"
+              />
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+}
+
+
+
+
+
+
+

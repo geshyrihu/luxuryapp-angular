@@ -1,0 +1,44 @@
+// ============================================================
+// _prime-input.scss
+// PrimeNG 21 input overrides
+// ============================================================
+
+:root {
+  --p-inputtext-border-width: var(--ds-control-border-width, 1px);
+  --p-textarea-border-width: var(--ds-control-border-width, 1px);
+  --p-inputtext-border-radius: var(--ds-radius-input, 4px);
+  --p-textarea-border-radius: var(--ds-radius-input, 4px);
+}
+
+body {
+  .p-inputtext,
+  .p-textarea,
+  .p-inputnumber-input,
+  .p-password-input,
+  .p-datepicker-input {
+    border-radius: var(--ds-radius-input, 4px);
+    border-width: var(--ds-control-border-width, 1px);
+    border-style: solid;
+    border-color: var(--ds-border);
+    box-sizing: border-box;
+  }
+
+  // pInputText keeps a 40px visual height, including the default border.
+  .p-inputtext,
+  .p-inputnumber-input,
+  .p-password-input,
+  .p-datepicker-input {
+    height: 40px;
+  }
+
+  .p-textarea {
+    min-height: 40px;
+  }
+
+  .p-checkbox-box,
+  .p-radiobutton-box,
+  .p-toggleswitch-slider {
+    border-width: var(--ds-control-border-width, 1px);
+    border-style: solid;
+  }
+}

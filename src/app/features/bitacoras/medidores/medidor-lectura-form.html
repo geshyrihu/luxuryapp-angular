@@ -1,0 +1,51 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <!-- Id -->
+      <div class="grid mb-4" hidden>
+        <label class="col-12 sm:col-3">Id</label>
+        <div class="col-12 sm:col-9">
+          <custom-input-text-signal
+            formControlName="id"
+            [hidden]="true"
+            [horizontal]="false"
+          />
+        </div>
+      </div>
+      <!-- Id -->
+      <div class="grid mb-4">
+        <label class="col-12 sm:col-3">Lectura anterior </label>
+        <div class="col-12 sm:col-9">
+          <custom-input-number-signal
+            [control]="form.controls.ultimaLectura"
+            [horizontal]="false"
+          />
+        </div>
+      </div>
+      <!-- Lectura -->
+      <div class="grid mb-4">
+        <label class="col-12 sm:col-3">Lectura</label>
+        <div class="col-12 sm:col-9">
+          @if (!seRegistroEsteDia) {
+          <custom-input-number-signal
+            [control]="form.controls.lectura"
+            placeholder="Ingrese la Lectura"
+            [horizontal]="false"
+          />
+          @if (form.controls.lectura.hasError('lecturaMenor') &&
+          (form.controls.lectura.dirty || form.controls.lectura.touched)) {
+          <small class="p-error block mt-1"
+            >La lectura no puede ser menor a la anterior.</small
+          >
+          } } @if (seRegistroEsteDia) {
+          <span class="text-danger">{{ seRegistroEsteDiaMensaje }}</span>
+          }
+        </div>
+      </div>
+      <!-- Lectura -->
+      <custom-button-save
+        [disabled]="form.invalid || laLecturaEsMenor || submitting()"
+      />
+    </form>
+  </div>
+</div>

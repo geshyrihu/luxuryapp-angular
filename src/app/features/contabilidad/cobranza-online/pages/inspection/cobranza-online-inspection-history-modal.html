@@ -1,0 +1,137 @@
+<section class="p-2">
+  <div class="flex flex-column md:flex-row md:justify-content-between gap-3 mb-3">
+    <div>
+      <div class="text-lg font-semibold">
+        {{ row?.accountNumber }} · {{ row?.ownerName || row?.displayName }}
+      </div>
+      <div class="text-color-secondary">
+        {{ row?.towerName || row?.towerAccountNumber || "Sin torre" }} · corte
+        consultado {{ month?.toString()?.padStart(2, "0") }}/{{ year }}
+      </div>
+    </div>
+    <div class="flex align-items-start justify-content-end">
+      <p-button
+        label="Cerrar"
+        severity="secondary"
+        [outlined]="true"
+        (click)="close()"
+      />
+    </div>
+  </div>
+
+  <div
+    class="mb-3 border-1 surface-border border-round p-3"
+    *ngIf="loading()"
+  >
+    <div class="font-medium mb-1">Cargando histórico...</div>
+    <div class="text-color-secondary">
+      Consultando los movimientos del ejercicio para la cuenta seleccionada.
+    </div>
+  </div>
+
+  <ng-container *ngIf="!loading() && history() as detail">
+    <div class="grid mb-3">
+      <div class="col-6 md:col-2">
+        <div class="text-color-secondary text-sm">Saldo inicial</div>
+        <div class="font-medium">{{ formatCurrency(detail.initialBalance) }}</div>
+      </div>
+      <div class="col-6 md:col-2">
+        <div class="text-color-secondary text-sm">Cargos año</div>
+        <div class="font-medium">{{ formatCurrency(detail.totalCharges) }}</div>
+      </div>
+      <div class="col-6 md:col-2">
+        <div class="text-color-secondary text-sm">Abonos año</div>
+        <div class="font-medium">{{ formatCurrency(detail.totalPayments) }}</div>
+      </div>
+      <div class="col-6 md:col-2">
+        <div class="text-color-secondary text-sm">Neto año</div>
+        <div class="font-medium">{{ formatCurrency(detail.netTotal) }}</div>
+      </div>
+      <div class="col-6 md:col-2">
+        <div class="text-color-secondary text-sm">Saldo final visible</div>
+        <div class="font-medium">{{ formatCurrency(detail.visibleBalance) }}</div>
+      </div>
+      <div class="col-6 md:col-2">
+        <div class="text-color-secondary text-sm">Movimientos año</div>
+        <div class="font-medium">{{ detail.movementCount }}</div>
+      </div>
+    </div>
+
+    <div
+      class="mb-3 border-1 surface-border border-round p-3"
+      *ngIf="selected401Summary().length"
+    >
+      <div class="font-medium mb-2">Resumen relacionado por cuenta 401</div>
+      <div class="text-color-secondary text-sm mb-3">
+        Agrupado de cuentas 401 encontradas en las mismas pólizas del histórico
+        seleccionado.
+      </div>
+      <div class="grid">
+        <div class="col-12 md:col-6 xl:col-4" *ngFor="let item of selected401Summary()">
+          <div class="border-1 surface-border border-round p-3 h-full">
+            <div class="font-medium mb-2">{{ item.related401Accounts }}</div>
+            <div class="text-sm text-color-secondary">
+              Cargos 401: {{ formatCurrency(item.debitTotal) }}
+            </div>
+            <div class="text-sm text-color-secondary">
+              Abonos 401: {{ formatCurrency(item.creditTotal) }}
+            </div>
+            <div class="text-sm text-color-secondary">
+              Neto 401: {{ formatCurrency(item.netTotal) }}
+            </div>
+            <div class="text-sm text-color-secondary">
+              Movimientos enlazados: {{ item.movementCount }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p-table
+      [value]="detail.movements"
+      [globalFilterFields]="movementFilterFields()"
+      [paginator]="true"
+      [rows]="15"
+      [rowsPerPageOptions]="[15, 30, 50]"
+      [scrollable]="true"
+      scrollHeight="24rem"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} movimientos"
+      [tableStyle]="{ 'min-width': '70rem' }"
+      styleClass="custom-table"
+      #movementTable
+    >
+      <ng-template #caption>
+        <primeng-custom-caption
+          [dt]="movementTable"
+          [showAdd]="false"
+          label="Histórico anual"
+        />
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th>Fecha</th>
+          <th>Tipo</th>
+          <th>Póliza</th>
+          <th>Concepto movimiento</th>
+          <th>Concepto póliza</th>
+          <th>401 relacionado</th>
+          <th>Monto</th>
+          <th>Impacto</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-movement>
+        <tr>
+          <td>{{ formatDate(movement.policyDate) }}</td>
+          <td>{{ movement.movementType }}</td>
+          <td>{{ movement.policyType }} {{ movement.policyNumber }}</td>
+          <td>{{ movement.concept || "-" }}</td>
+          <td>{{ movement.policyConcept || "-" }}</td>
+          <td>{{ movement.related401Accounts || "-" }}</td>
+          <td>{{ formatCurrency(movement.amount) }}</td>
+          <td>{{ formatCurrency(movement.signedAmount) }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </ng-container>
+</section>

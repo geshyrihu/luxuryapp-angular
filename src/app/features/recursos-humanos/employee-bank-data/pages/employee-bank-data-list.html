@@ -1,0 +1,94 @@
+<div class="card">
+  <p-table
+    #dt
+    [value]="dataSignal()"
+    [rows]="tablePrimeNgRows"
+    [paginator]="true"
+    [globalFilterFields]="globalFilterFields()"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    styleClass="custom-table hidden md:block"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight"
+    [loading]="loading()"
+    rowGroupMode="subheader"
+    groupRowsBy="employeeName"
+  >
+    <ng-template #caption>
+      <primeng-custom-caption
+        (add)="onModalForm({ id: '', title: 'Agregar Datos Bancarios' })"
+        [dt]="dt"
+      />
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th>Banco</th>
+        <th>No. Cuenta</th>
+        <th>CLABE</th>
+        <th>Titular</th>
+        <th>Teléfono</th>
+        <th>Parentesco</th>
+        <th style="width: 8rem"></th>
+      </tr>
+    </ng-template>
+
+    <ng-template #groupheader let-item>
+      <tr pRowGroupHeader>
+        <td colspan="7">
+          <span class="font-bold ml-2">
+            👤 {{ item.employeeName }} ({{ item.numberEmployee }})
+          </span>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-item>
+      <tr>
+        <td>{{ item.bankName }}</td>
+        <td>{{ item.bankAccount }}</td>
+        <td>{{ item.bankKey }}</td>
+        <td>{{ item.nameContact }}</td>
+        <td>{{ item.phoneNumber }}</td>
+        <td>{{ item.relacionName }}</td>
+        <td class="text-center">
+          <div class="flex gap-2">
+            <custom-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Datos Bancarios' })"
+            />
+            <custom-button-delete (confirmed)="onDelete(item.id)" />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #paginatorleft>
+      <primeng-custom-table-footer [data]="dataSignal()" />
+    </ng-template>
+  </p-table>
+
+  <!-- Mobile View -->
+  <app-data-view-mobile
+    [dt]="dt"
+    [data]="dataSignal()"
+    (add)="onModalForm({ id: '', title: 'Agregar Datos Bancarios' })"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ion-item lines="full">
+        <ion-label>
+          <h2 class="font-bold">{{ item.employeeName }}</h2>
+          <p class="text-sm text-500">🏦 {{ item.bankName }} | {{ item.bankAccount }}</p>
+          <p class="text-sm text-500">🔗 {{ item.relacionName }}: {{ item.nameContact }}</p>
+        </ion-label>
+        <app-action-menu slot="end">
+          <ng-container actions>
+            <ion-button-item
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Datos Bancarios' })"
+              label="Editar"
+              iconName="create-outline"
+            />
+          </ng-container>
+        </app-action-menu>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
+</div>

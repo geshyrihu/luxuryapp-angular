@@ -1,0 +1,153 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <!-- Campo oculto -->
+      <div class="hidden">
+        <custom-input-text-signal
+          [hidden]="true"
+          [horizontal]="false"
+          [control]="form.controls.id"
+        />
+      </div>
+
+      <div class="grid">
+        <!-- Primera fila -->
+        <div class="col-12 md:col-6">
+          <custom-input-autocomplete-signal
+            (propagar)="saveMachineryId($event)"
+            [control]="form.controls.machinery"
+            [data]="cb_machinery()"
+            label="Equipo o Instalación"
+            placeholder="Escribe para buscar equipo o instalación"
+          />
+        </div>
+        <div class="col-12 md:col-6">
+          <custom-input-autocomplete-signal
+            (propagar)="saveProviderId($event)"
+            [control]="form.controls.provider"
+            [data]="cb_providers()"
+            label="Proveedor"
+            placeholder="Escribe para buscar proveedor"
+          />
+        </div>
+
+        <!-- Fechas -->
+        <div class="col-12 md:col-6">
+          <custom-input-date-signal
+            [control]="form.controls.requestDate"
+            label="Fecha de solicitud"
+            placeholder="Fecha de solicitud"
+          />
+        </div>
+        <div class="col-12 md:col-6">
+          <custom-input-date-signal
+            [control]="form.controls.executionDate"
+            label="Fecha de ejecución"
+            placeholder="Fecha de ejecución"
+          />
+        </div>
+
+        <!-- Estatus / Precio -->
+        <div class="col-12 md:col-6">
+          <custom-input-select-signal
+            [control]="form.controls.status"
+            label="Estatus"
+            [data]="cb_Status()"
+          />
+        </div>
+        <div class="col-12 md:col-6">
+          <custom-input-currency-signal
+            [control]="form.controls.price"
+            label="Precio"
+            placeholder="Precio"
+          />
+        </div>
+
+        <!-- Tipo mantenimiento / Supervisor -->
+        <div class="col-12 md:col-6">
+          <custom-input-select-signal
+            [control]="form.controls.typeMaintance"
+            label="Tipo de mantenimiento"
+            [data]="cb_TypeMaintance()"
+          />
+        </div>
+        <div class="col-12 md:col-6">
+          <custom-input-autocomplete-signal
+            (propagar)="saveResponsibleUserId($event)"
+            [control]="form.controls.employeeResponsable"
+            [data]="cb_applicationUser()"
+            label="Supervisado por"
+            placeholder="Escribe para buscar colaborador"
+          />
+        </div>
+
+        <!-- Checkboxes Row 1 -->
+        <div class="col-12 md:col-6">
+          <div class="grid">
+            <div class="col-12 md:col-6">
+              <custom-input-switch-signal
+                label="Se cumplió con las actividades de la orden"
+                [horizontal]="false"
+                [control]="form.controls.cumplimientoActividades"
+              />
+            </div>
+            <div class="col-12 md:col-6">
+              <custom-input-switch-signal
+                label="Equipos/óreas operando sin inconvenientes"
+                [horizontal]="false"
+                [control]="form.controls.equiposOperando"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Checkboxes Row 2 -->
+        <div class="col-12 md:col-6">
+          <div class="grid">
+            <div class="col-12 md:col-6">
+              <custom-input-switch-signal
+                label="Afectación en el órea donde se realizó el trabajo"
+                [horizontal]="false"
+                [control]="form.controls.ocacionoDanos"
+              />
+            </div>
+            <div class="col-12 md:col-6">
+              <custom-input-switch-signal
+                label="Se cumplió con la calidad de los trabajos realizados"
+                [horizontal]="false"
+                [control]="form.controls.calidadTrabajos"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Text areas -->
+        <div class="col-12 md:col-6">
+          <custom-input-textarea-signal
+            [control]="form.controls.activity"
+            label="Actividad"
+            placeholder="Actividad"
+            [horizontal]="false"
+          />
+        </div>
+        <div class="col-12 md:col-6">
+          <custom-input-textarea-signal
+            [control]="form.controls.observations"
+            label="Observaciones"
+            placeholder="Observaciones"
+            [horizontal]="false"
+          />
+        </div>
+      </div>
+
+      <!-- Botón guardar -->
+      <div class="flex justify-content-end mt-4">
+        <custom-button-save
+          [propertyId]="id()"
+          [disabled]="form.invalid"
+          [submitting]="submitting()"
+        />
+      </div>
+    </form>
+  </div>
+</div>

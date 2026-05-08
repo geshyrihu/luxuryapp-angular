@@ -1,0 +1,85 @@
+<p-table
+  [value]="dataSignal()"
+  sortField="area"
+  rowGroupMode="subheader"
+  groupRowsBy="area"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  styleClass="p-datatable-striped p-tag-success "
+>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-2 text-sm">#</th>
+      <th class="table-col-15 text-sm" pSortableColumn="title">
+        Titulo
+        <p-sortIcon field="title" />
+      </th>
+      <th class="table-col-25 text-sm" pSortableColumn="requestService">
+        Asunto
+        <p-sortIcon field="requestService" />
+      </th>
+      <th class="table-col-7 text-sm" pSortableColumn="status">
+        Estatus
+        <p-sortIcon field="status" />
+      </th>
+      <th class="table-col-7 text-sm" pSortableColumn="deliveryDateFiltro">
+        Entrega
+        <p-sortIcon field="deliveryDateFiltro" />
+      </th>
+      <th class="table-col-25 text-sm">Seguimiento</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="groupheader" let-customer>
+    <tr pRowGroupHeader>
+      <td colspan="6">
+        <span class="font-bold ml-2"
+          >{{ customer.area | eAreaMinutasDetalles | uppercase }}</span
+        >
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="groupfooter" let-customer>
+    <tr class="p-rowgroup-footer">
+      <td colspan="6" style="text-align: right">
+        Solicitudes Totales: {{ calculateDetailTotal(customer.area) }}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #body let-detalle let-rowIndex="rowIndex">
+    <tr>
+      <td class="text-sm">{{ rowIndex + 1 }}</td>
+      <td class="text-sm">{{ detalle.title }}</td>
+      <td class="text-sm">
+        <p
+          class="mr-2 text-justify"
+          [innerHTML]="detalle.requestService | sanitizeHtml"
+        ></p>
+      </td>
+      <td class="text-sm text-center">
+        <span
+          class="badge p-2"
+          [class.badge-danger]="detalle.status == 0"
+          [class.badge-success]="detalle.status == 1"
+          [class.badge-secondary]="detalle.status == 2"
+        >
+          {{ detalle.status }}</span
+        >
+      </td>
+      <td class="text-sm">{{ detalle.deliveryDate }}</td>
+      <td class="text-sm">
+        <ol>
+          @for (item of detalle.seguimiento; track item) {
+          <li>{{ item.fecha }}, {{ item.seguimiento }}</li>
+          }
+        </ol>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+
+
+
+
+
+

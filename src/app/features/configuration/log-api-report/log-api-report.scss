@@ -1,0 +1,32 @@
+.max-w-400 {
+  max-width: 400px;
+}
+
+.text-wrap {
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+// Estilos para filas expandidas
+tr[ng-style] {
+  td {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+pre {
+  margin: 0;
+  font-family: 'Courier New', Courier, monospace;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+// Animación para expandir/colapsar
+.p-button {
+  transition: transform 0.2s;
+  
+  &:active {
+    transform: rotate(90deg);
+  }
+}

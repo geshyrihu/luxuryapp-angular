@@ -1,0 +1,80 @@
+
+@if (data()) {
+  <ion-card class="m-2">
+    <div class="flex align-items-center p-3">
+      <ion-avatar slot="start" class="mr-3 w-4rem h-4rem">
+        <img [src]="data().cliente.photoPath" alt="Logo" />
+      </ion-avatar>
+      <div class="flex flex-column">
+        <h2 class="text-xl font-bold m-0 text-900">{{ data().cliente.nameCustomer }}</h2>
+        <p class="text-sm text-500 m-0 flex align-items-center mt-1">
+          <ion-icon name="location-outline" class="mr-1"></ion-icon>
+          <a [href]="data().cliente.googleMpasUbication" target="_blank" class="no-underline text-600">
+            {{ data().cliente.adreess }}
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <ion-card-content>
+      <div class="grid text-center">
+        <div class="col-6">
+          <p class="text-xs font-bold uppercase text-500 mb-0">Torres</p>
+          <p class="text-lg font-bold m-0">{{ data().torres }}</p>
+        </div>
+        <div class="col-6">
+          <p class="text-xs font-bold uppercase text-500 mb-0">Departamentos</p>
+          <p class="text-lg font-bold m-0">{{ data().departamentos }}</p>
+        </div>
+        @if (data().cliente.rfc) {
+          <div class="col-12 text-left">
+            <p class="text-sm m-0"><span class="font-bold">RFC:</span> {{ data().cliente.rfc }}</p>
+          </div>
+        }
+        @if (data().cliente.phoneOne) {
+          <div class="col-12 text-left">
+            <p class="text-sm m-0">
+              <span class="font-bold">Telófono:</span>
+              <a [href]="'tel:' + data().cliente.phoneOne" class="no-underline text-primary">{{ data().cliente.phoneOne }}</a>
+            </p>
+          </div>
+        }
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <h3 class="pl-3 mt-4 mb-2 text-lg font-bold text-700">Personal Operativo</h3>
+
+  <ion-list class="bg-transparent">
+    @for (item of data().empleadosAdministracion; track $index) {
+      <ion-item lines="full" detail="false">
+        <ion-avatar slot="start">
+          <img [src]="baseUrlImg + item.photoEmployee" alt="" onError="this.src='assets/images/user/user.png'" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ item.nameEmployee }}</h2>
+          <p>{{ item.applicationRole }}</p>
+          @if (item.phoneNumber) {
+            <p class="text-sm text-500">
+              <ion-icon name="call-outline" class="vertical-align-middle mr-1"></ion-icon>
+              <a [href]="'tel:' + item.phoneNumber" class="text-color-secondary no-underline">{{ item.phoneNumber }}</a>
+            </p>
+          }
+          @if (item.email) {
+            <p class="text-sm text-500">
+              <ion-icon name="mail-outline" class="vertical-align-middle mr-1"></ion-icon>
+              <a [href]="'mailto:' + item.email" class="text-color-secondary no-underline">{{ item.email }}</a>
+            </p>
+          }
+        </ion-label>
+      </ion-item>
+    }
+  </ion-list>
+}
+
+
+
+
+
+
+

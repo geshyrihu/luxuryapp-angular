@@ -1,0 +1,102 @@
+@if (requestData()) {
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">
+      Detalle de Solicitud de Vacaciones #{{ requestData().id }}
+    </h3>
+  </div>
+  <div class="card-body">
+    <div class="grid">
+      <div class="col-12 md:col-6">
+        <p>
+          <strong>Empleado:</strong>
+          {{ requestData().employeeFullName }}
+          <!-- Acceso directo si no está anidado -->
+        </p>
+        <p>
+          <strong>Fecha de Inicio:</strong>
+          {{ requestData().startDate }}
+        </p>
+        <p>
+          <strong>Fecha de Fin:</strong>
+          {{ requestData().endDate }}
+        </p>
+        <p>
+          <strong>Días Solicitados:</strong>
+          {{ requestData().requestedDays }}
+        </p>
+      </div>
+      <div class="col-12 md:col-6">
+        <p>
+          <strong>Estado:</strong>
+          <p-tag
+            [value]="requestData().status"
+            [severity]="getStatusSeverity(requestData().status)"
+          ></p-tag>
+        </p>
+        <p>
+          <strong>Fecha de Solicitud:</strong>
+          {{ requestData().requestDate }}
+        </p>
+        @if (requestData().approvalDate) {
+        <!-- Muestra solo si la solicitud fue aprobada -->
+        <p>
+          <strong>Fecha de Aprobación:</strong>
+          {{ requestData().approvalDate }}
+        </p>
+        } @if (requestData().approverFullName) {
+        <p>
+          <strong>Aprobado por:</strong>
+          {{ requestData().approverFullName }}
+        </p>
+        }
+        <p>
+          <strong>Motivo:</strong>
+          {{ requestData().reason || 'N/A' }}
+          <!-- Muestra 'N/A' si está vacío -->
+        </p>
+        @if (requestData().comments) {
+        <p>
+          <strong>Comentarios:</strong>
+          {{ requestData().comments }}
+        </p>
+        } @if (requestData().rejectionReason) {
+        <!-- Mejor verificación -->
+        <p>
+          <strong>Motivo de Rechazo:</strong>
+          {{ requestData().rejectionReason }}
+        </p>
+        }
+      </div>
+    </div>
+  </div>
+  @if (requestData().status === 'Pending') {
+  <div class="card-footer text-right">
+    <custom-button
+      severity="success"
+      iconClass="pi pi-check"
+      label="Aprobar"
+      (clicked)="onApprove()"
+      [disabled]="submitting()"
+      customClass="mr-2"
+    /><custom-button
+      severity="danger"
+      iconClass="pi pi-times"
+      label="Rechazar"
+      (clicked)="onReject()"
+      [disabled]="submitting()"
+    />
+  </div>
+  }
+</div>
+} @if (loading()) {
+<div class="card">
+  <div class="card-body">Cargando detalle de solicitud...</div>
+</div>
+} @if (!requestData() && !loading()) {
+<div class="card">
+  <div class="card-body">
+    No se encontró la solicitud de vacaciones o no se pudo cargar.
+  </div>
+</div>
+}

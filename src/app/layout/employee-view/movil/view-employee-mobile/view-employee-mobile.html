@@ -1,0 +1,58 @@
+<ion-app>
+  <!-- Side Menu -->
+  <ion-menu side="start" menuId="employee-mobile-menu" contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menó</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <app-home-menu-mobile (onCloseMenu)="closeMenu()"></app-home-menu-mobile>
+    </ion-content>
+  </ion-menu>
+
+  <!-- Main Content -->
+  <div id="main-content" class="ion-page h-full flex flex-column">
+    <!-- Header fijo -->
+    <ion-header class="ion-no-border">
+      <ion-toolbar class="ion-no-padding">
+        <app-header-mobile />
+      </ion-toolbar>
+    </ion-header>
+
+    <!-- órea de contenido con scroll nativo Ionic -->
+    <ion-content
+      [scrollY]="true"
+      [fullscreen]="true"
+      class="flex-flex-grow-1-1 relative"
+    >
+      <div
+        class="page-body-wrapper"
+        [class.scorlled]="hideScroolNavService.headerFixed == true"
+      >
+        <div class="pb-8">
+          <!-- pb-8 para dar espacio al footer -->
+          <router-outlet />
+        </div>
+      </div>
+      <app-loader />
+    </ion-content>
+
+    <!-- Footer fijo (fuera del scroll) -->
+    <footer
+      class="footer"
+      [class.footer-dark]="footerDark"
+      [class.footer-light]="footerLight"
+      [class.footer-fix]="footerFix"
+    >
+      <app-footer-employee-mobile />
+    </footer>
+  </div>
+</ion-app>
+
+
+
+
+
+
+

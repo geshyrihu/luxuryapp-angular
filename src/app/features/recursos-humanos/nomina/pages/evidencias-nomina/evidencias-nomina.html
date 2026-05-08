@@ -1,0 +1,117 @@
+<!-- Selector de nomina -->
+<div class="flex flex-wrap gap-2 mb-3">
+  @for (n of nominas(); track n.value) {
+  <button
+    type="button"
+    class="p-button p-button-sm"
+    [class.p-button-outlined]="nominaSeleccionada() !== n.value"
+    (click)="cambiarNomina(n.value)"
+  >
+    {{ n.label }}
+  </button>
+  }
+</div>
+
+<!-- Formulario de carga -->
+<div class="card mb-4 p-3">
+  <p class="font-semibold text-sm mb-2">Subir Nueva Evidencia</p>
+  <form [formGroup]="form" class="grid align-items-end">
+    <div class="col-12 md:col-4">
+      <custom-input-select-signal
+        [control]="form.controls['tipoEvidencia']"
+        label="Tipo de Evidencia"
+        [data]="tipoEvidenciaOptions"
+        [noMargin]="true"
+      />
+    </div>
+    <div class="col-12 md:col-4">
+      <custom-input-textarea-signal
+        [control]="form.controls['descripcion']"
+        label="Descripcion"
+        [noMargin]="true"
+      />
+    </div>
+    <div class="col-12 md:col-3">
+      <label class="block text-sm mb-1">Archivo</label>
+      <input
+        type="file"
+        class="p-inputtext w-full"
+        (change)="onFileChange($event)"
+      />
+    </div>
+    <div class="col-12 md:col-1 flex align-items-end">
+      <custom-button-save
+        label="Subir"
+        iconClass="pi pi-upload"
+        (clicked)="onSubir()"
+        [submitting]="uploading()"
+        [disabled]="!archivoSeleccionado()"
+      />
+    </div>
+  </form>
+</div>
+
+<!-- Galeria por tipo -->
+@if (loading()) {
+<div class="flex justify-content-center my-4">
+  <i class="pi pi-spin pi-spinner text-3xl text-primary"></i>
+</div>
+} @else if (evidencias().length === 0) {
+<div class="flex justify-content-center align-items-center py-6 text-500">
+  <div class="text-center">
+    <i class="pi pi-file text-4xl mb-2"></i>
+    <p>Sin evidencias cargadas para esta nomina.</p>
+  </div>
+</div>
+} @else { @for (tipoEntry of tipoEvidenciaOptions; track tipoEntry.value) { @if
+(evidenciasPorTipo()[tipoEntry.value]?.length) {
+<div class="mb-4">
+  <p class="font-semibold mb-2">{{ tipoEntry.label }}</p>
+  <div class="flex flex-wrap gap-3">
+    @for (ev of evidenciasPorTipo()[tipoEntry.value]; track ev.id) {
+    <div
+      class="border-round p-3 cursor-pointer"
+      style="width: 180px; border: 1px solid var(--surface-border)"
+      [style.background]="getCardColor(ev.tipoEvidencia)"
+    >
+      <div class="flex flex-column align-items-center gap-2">
+        <i
+          class="pi text-3xl"
+          [class.pi-file-pdf]="ev.contentType === 'application/pdf'"
+          [class.pi-image]="ev.contentType?.startsWith('image')"
+          [class.pi-file]="!ev.contentType?.startsWith('image') && ev.contentType !== 'application/pdf'"
+        ></i>
+        <p
+          class="text-xs text-center m-0 font-semibold"
+          style="word-break: break-word"
+        >
+          {{ ev.fileName }}
+        </p>
+        @if (ev.descripcion) {
+        <p class="text-xs text-500 text-center m-0">{{ ev.descripcion }}</p>
+        }
+        <p class="text-xs text-400 m-0">
+          {{ ev.createdAt | date: "dd/MM/yyyy" }}
+        </p>
+        <div class="flex gap-2">
+          <custom-button
+            iconClass="pi pi-external-link"
+            severity="info"
+            variant="ghost-text"
+            pTooltip="Abrir"
+            (clicked)="abrirEvidencia(ev.filePath)"
+          />
+          <custom-button
+            iconClass="pi pi-trash"
+            severity="danger"
+            variant="ghost-text"
+            pTooltip="Eliminar"
+            (clicked)="onEliminar(ev.id)"
+          />
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+} } }

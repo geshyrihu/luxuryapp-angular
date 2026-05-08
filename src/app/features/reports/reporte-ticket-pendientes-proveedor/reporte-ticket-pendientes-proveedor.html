@@ -1,0 +1,21 @@
+<div class="container">
+  <h4 class="h4 mt-3">Reporte de Pendientes</h4>
+  <div class="grid">
+    @for (detalles of data; track detalles) {
+    <div>
+      <div class="card m-1">
+        <div class="card-body">
+          <div class="font-size-18 text-justify">{{ detalles.activity }}</div>
+          <div class="mt-1 font-size-16 text-color-secondary">
+            Solicitado el: {{ detalles.dateRequest | date : "fullDate" }}
+          </div>
+        </div>
+        <img
+          class="card-img-bottom w-full h-auto"
+          [src]="urlImg + detalles.photoPathBefore"
+        />
+      </div>
+    </div>
+    }
+  </div>
+</div>

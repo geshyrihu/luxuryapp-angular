@@ -1,0 +1,168 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <div class="flex align-items-start flex-wrap justify-content-start">
+      <custom-input-select-signal
+        [data]="[
+      { label: 'Pendientes', value: 0 },
+      { label: 'Concluidos', value: 1 },
+      { label: 'No Autorizados', value: 2 },
+      { label: 'Todos', value: 4 }
+    ]"
+        [control]="statusFiltroControl"
+        optionLabel="label"
+        optionValue="value"
+        (selectionChange)="onFiltrarData()"
+        customClass="mb-1"
+        [horizontal]="false"
+      />
+      <div>
+        <primeng-custom-caption
+          [title]="'Contabilidad'"
+          [showAdd]="false"
+          [dt]="dt"
+        />
+      </div>
+      <div class="flex align-items-center">
+        <custom-button
+          label="📄 Descargar PDF"
+          iconClass="pi pi-download"
+          variant="outlined"
+          size="sm"
+          (clicked)="onDownloadPdf()"
+        ></custom-button>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-8" pSortableColumn="code">
+        FOLIO
+        <p-sortIcon field="code" />
+      </th>
+      <th class="table-col-8" pSortableColumn="cliente">
+        CLIENTE
+        <p-sortIcon field="cliente" />
+      </th>
+      <th class="table-col-28" pSortableColumn="fechaSolicitudFiltro">
+        SOLICITUD
+        <p-sortIcon field="fechaSolicitudFiltro" />
+      </th>
+      <th class="table-col-40" pSortableColumn="pendiente">
+        SEGUIMIENTO
+        <p-sortIcon field="pendiente" />
+      </th>
+      <th colspan="2" class="table-col-16" pSortableColumn="status">
+        ESTATUS
+        <p-sortIcon field="status" />
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.folio }}</td>
+      <td>{{ item.cliente }}</td>
+      <td>
+        <div class="h6">
+          {{ item.fechaSolicitud }} {{ item.titulo | titlecase }}
+        </div>
+        <div
+          class="text-justify"
+          [innerHTML]="item.pendiente | sanitizeHtml"
+        ></div>
+      </td>
+      <td>
+        <ul>
+          @if (item.seguimientos.length > 0) {
+          <li>
+            {{ item.seguimientos[0].fecha }}, {{
+            item.seguimientos[0].seguimiento }}
+          </li>
+          }
+        </ul>
+      </td>
+      <td class="text-center">
+        <p-tag
+          [value]="
+            item.status === 0
+              ? 'Pendiente'
+              : item.status === 1
+                ? 'Completado'
+                : 'Cancelado'
+          "
+          [severity]="
+            item.status === 0
+              ? 'danger'
+              : item.status === 1
+                ? 'success'
+                : 'secondary'
+          "
+        ></p-tag>
+      </td>
+
+      <!-- Opciones -->
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-item
+            iconClass="pi pi-comment"
+            label="Seguimientos"
+            (clicked)="onModalTodosSeguimientos(item.id)"
+          />
+          <custom-button-item
+            iconClass="pi pi-plus "
+            label="Agregar seguimiento"
+            (clicked)="onModalFormSeguimiento(item.id, 0)"
+          />
+          <custom-button-edit
+            (clicked)="onModalFormMinutaDetalle({ id: item.id, title: 'Editar asunto', })"
+          />
+        </div>
+      </td>
+
+      <!-- Opciones -->
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="paginatorleft">
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div
+        slot="start"
+        class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+      >
+        <ion-icon
+          name="alert-circle-outline"
+          class="text-orange-600 text-xl"
+        ></ion-icon>
+      </div>
+
+      <ion-label>
+        <h3>{{ item.titulo | titlecase }}</h3>
+        <p>{{ item.cliente }} ó Folio: {{ item.folio }}</p>
+        <p>{{ item.fechaSolicitud }}</p>
+      </ion-label>
+      <app-action-menu slot="end">
+        <ion-button-edit
+          (clicked)="onModalFormMinutaDetalle({ id: item.id, title: 'Editar asunto' })"
+        />
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

@@ -1,0 +1,663 @@
+// ============================================================
+// _buttons.scss
+// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
+// Sistema completo de botones
+// ============================================================
+
+@use "../core/mixins" as m;
+@use "../core/spacing" as s;
+@use "../core/borders" as b;
+@use "../core/colors" as c;
+
+// ── BASE DEL BOTÓN ────────────────────────────────────────────
+// Todos los botones heredan de .btn
+.btn {
+  // Reset
+  appearance: none;
+  -webkit-appearance: none;
+  border: var(--ds-control-border-width, 1px) solid transparent;
+  background: none;
+  text-decoration: none;
+
+  // Layout
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  vertical-align: middle;
+
+  // Tamaño default (md)
+  height: 40px;
+  padding: 0 1rem;
+  line-height: 1;
+
+  // Tipografía
+  font-family: inherit;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+
+  // Visual
+  border-radius: var(--ds-radius-btn, 6px);
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+
+  // Transición suave
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease,
+    opacity 150ms ease,
+    transform 100ms ease;
+
+  // Accesibilidad: focus ring
+  @include m.focus-ring;
+
+  // Click feedback
+  &:active:not(:disabled):not(.is-disabled):not(.is-loading) {
+    transform: scale(0.98);
+  }
+
+  // Estado disabled
+  @include m.disabled-state;
+
+  // Estado loading
+  @include m.loading-spinner(1.1em, currentColor, 2px);
+
+  // Icono dentro del botón
+  .btn-icon-left {
+    margin-right: 0.125rem;
+  }
+  .btn-icon-right {
+    margin-left: 0.125rem;
+  }
+}
+
+// ── VARIANTES DE COLOR ────────────────────────────────────────
+
+// Primario — Acción principal
+.btn-primary {
+  @extend .btn;
+  background-color: var(--ds-primary);
+  color: var(--ds-primary-text);
+  border-color: var(--ds-primary);
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-primary-hover);
+    border-color: var(--ds-primary-hover);
+  }
+
+  &:active:not(:disabled):not(.is-disabled) {
+    background-color: var(--ds-primary-active);
+    border-color: var(--ds-primary-active);
+  }
+
+  &.is-loading::after {
+    border-color: rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+  }
+}
+
+// Secundario — Acción secundaria
+.btn-secondary {
+  @extend .btn;
+  background-color: var(--ds-bg-sunken);
+  color: var(--ds-text-primary);
+  border-color: var(--ds-border);
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-bg-page);
+    border-color: var(--ds-border-strong);
+  }
+
+  &:active:not(:disabled):not(.is-disabled) {
+    background-color: var(--ds-bg-elevated);
+  }
+}
+
+// Danger — Acciones destructivas (eliminar, cancelar)
+.btn-danger {
+  @extend .btn;
+  background-color: var(--ds-danger);
+  color: #ffffff;
+  border-color: var(--ds-danger);
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-danger-hover);
+    border-color: var(--ds-danger-hover);
+  }
+
+  &.is-loading::after {
+    border-color: rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+  }
+}
+
+// Success — Confirmación positiva
+.btn-success {
+  @extend .btn;
+  background-color: var(--ds-success);
+  color: #ffffff;
+  border-color: var(--ds-success);
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-success-hover);
+    border-color: var(--ds-success-hover);
+  }
+}
+
+// Warning — Precaución
+.btn-warning {
+  @extend .btn;
+  background-color: var(--ds-warning);
+  color: #ffffff;
+  border-color: var(--ds-warning);
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-warning-hover);
+    border-color: var(--ds-warning-hover);
+  }
+}
+
+// Info
+.btn-info {
+  @extend .btn;
+  background-color: var(--ds-info);
+  color: #ffffff;
+  border-color: var(--ds-info);
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-info-hover);
+    border-color: var(--ds-info-hover);
+  }
+}
+
+// Help (Púrpura)
+.btn-help {
+  @extend .btn;
+  background-color: var(--ds-help);
+  color: #ffffff;
+  border-color: var(--ds-help);
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-help-hover);
+    border-color: var(--ds-help-hover);
+  }
+}
+
+// Contrast (Negro/Blanco)
+.btn-contrast {
+  @extend .btn;
+  background-color: var(--ds-contrast);
+  color: var(--ds-contrast-text);
+  border-color: var(--ds-contrast);
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-contrast-hover);
+    border-color: var(--ds-contrast-hover);
+  }
+}
+
+// ── VARIANTES OUTLINE ─────────────────────────────────────────
+// Fondo transparente con borde de color
+
+.btn-outline {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-primary);
+  border-color: var(--ds-primary);
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-primary-light);
+  }
+}
+
+.btn-outline-help {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-help);
+  border-color: var(--ds-help);
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-help-light);
+  }
+}
+
+.btn-outline-contrast {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-contrast);
+  border-color: var(--ds-contrast);
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-contrast-light);
+  }
+}
+
+.btn-outline-danger {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-danger);
+  border-color: var(--ds-danger);
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-danger-light);
+  }
+}
+
+.btn-outline-success {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-success);
+  border-color: var(--ds-success);
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-success-light);
+  }
+}
+
+.btn-outline-secondary {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-text-secondary);
+  border-color: var(--ds-border);
+
+  &:hover:not(:disabled):not(:disabled):not(.is-loading) {
+    background-color: var(--ds-bg-sunken);
+    border-color: var(--ds-border-strong);
+  }
+}
+
+// ── VARIANTE GHOST ────────────────────────────────────────────
+// Sin borde, solo texto con hover sutil
+.btn-ghost {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-text-secondary);
+  border-color: transparent;
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-bg-sunken);
+    color: var(--ds-text-primary);
+  }
+}
+
+.btn-ghost-primary {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-primary);
+  border-color: transparent;
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-primary-light);
+  }
+}
+
+.btn-ghost-help {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-help);
+  border-color: transparent;
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-help-light);
+  }
+}
+
+.btn-ghost-contrast {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-contrast);
+  border-color: transparent;
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-contrast-light);
+  }
+}
+
+// ── VARIANTE LINK ─────────────────────────────────────────────
+.btn-link {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-text-link);
+  border-color: transparent;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  height: auto;
+  padding: 0;
+
+  &:hover:not(:disabled):not(.is-disabled) {
+    color: var(--ds-primary-hover);
+  }
+}
+
+// ── MODIFICADORES DE TAMAÑO ───────────────────────────────────
+
+// Extra pequeño
+.btn-xs {
+  height: 28px;
+  padding: 0 0.625rem;
+  font-size: 0.75rem; // 12px
+  gap: 0.25rem;
+}
+
+// Pequeño
+.btn-sm {
+  height: 34px;
+  padding: 0 0.75rem;
+  font-size: 0.8125rem; // 13px
+}
+
+// Grande
+.btn-lg {
+  height: 48px;
+  padding: 0 1.5rem;
+  font-size: 1rem; // 16px
+}
+
+// Extra grande
+.btn-xl {
+  height: 56px;
+  padding: 0 2rem;
+  font-size: 1.0625rem; // 17px
+}
+
+// Ancho completo
+.btn-block {
+  width: 100%;
+}
+
+// ── BOTÓN DE ÍCONO ────────────────────────────────────────────
+// Solo ícono, cuadrado
+.btn-icon {
+  @extend .btn;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background-color: transparent;
+  color: var(--ds-text-secondary);
+  border-color: transparent;
+
+  &:hover:not(:disabled):not(.is-disabled) {
+    background-color: var(--ds-bg-sunken);
+    color: var(--ds-text-primary);
+  }
+
+  &--sm {
+    width: 32px;
+    height: 32px;
+  }
+  &--lg {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+// ── GHOST VARIANTS ADICIONALES ────────────────────────────────
+// (Los templates usan ghost-secondary, ghost-info, ghost-danger, etc.)
+
+.btn-ghost-secondary {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-text-secondary);
+  border-color: transparent;
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-bg-sunken);
+    color: var(--ds-text-primary);
+  }
+}
+
+.btn-ghost-info {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-info);
+  border-color: transparent;
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-info-light);
+  }
+}
+
+.btn-ghost-danger {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-danger);
+  border-color: transparent;
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-danger-light);
+  }
+}
+
+.btn-ghost-success {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-success);
+  border-color: transparent;
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-success-light);
+  }
+}
+
+.btn-ghost-warning {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-warning);
+  border-color: transparent;
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-warning-light);
+  }
+}
+
+// ── OUTLINE VARIANTS ADICIONALES ──────────────────────────────
+
+.btn-outline-info {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-info);
+  border-color: var(--ds-info);
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-info-light);
+  }
+}
+
+.btn-outline-warning {
+  @extend .btn;
+  background-color: transparent;
+  color: var(--ds-warning);
+  border-color: var(--ds-warning);
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-warning-light);
+  }
+}
+
+// ── ALIASES DE SEVERITY (compatibilidad con PrimeNG severity names) ──────────
+// PrimeNG usa "warn" y "help"; el DS usa "warning". Los aliases permiten pasar
+// severity="warn" a BaseButton sin romperse.
+
+.btn-warn {
+  @extend .btn-warning;
+}
+
+.btn-help {
+  @extend .btn;
+  background-color: #7c3aed; // purple-600
+  color: #ffffff;
+  border-color: #7c3aed;
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: #6d28d9; // purple-700
+    border-color: #6d28d9;
+  }
+}
+
+.btn-contrast {
+  @extend .btn;
+  background-color: var(--ds-text-primary);
+  color: var(--ds-bg-surface);
+  border-color: var(--ds-text-primary);
+
+  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
+    background-color: var(--ds-text-secondary);
+    border-color: var(--ds-text-secondary);
+  }
+}
+
+// ── MODIFICADOR: BOTÓN CIRCULAR (ícono sin texto) ────────────────────────────
+// Uso: <button class="btn btn-ghost-info btn--circle">
+// Se apila DESPUÉS de .btn para que su padding/radius ganen en cascada.
+
+.btn--circle {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border-radius: 50%;
+  flex-shrink: 0;
+
+  &.btn-sm {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+// ── MODIFICADOR: BOTÓN PÍLDORA (redondeado con texto) ────────────────────────
+.btn--pill {
+  border-radius: 999px;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+
+  &.btn-sm {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+// ── GRUPO DE BOTONES ──────────────────────────────────────────
+.btn-group {
+  display: inline-flex;
+  align-items: center;
+
+  > .btn,
+  > [class*="btn-"] {
+    border-radius: 0;
+    margin-left: calc(var(--ds-control-border-width, 1px) * -1);
+
+    &:first-child {
+      border-radius: var(--ds-radius-btn) 0 0 var(--ds-radius-btn);
+      margin-left: 0;
+    }
+
+    &:last-child {
+      border-radius: 0 var(--ds-radius-btn) var(--ds-radius-btn) 0;
+    }
+
+    &:only-child {
+      border-radius: var(--ds-radius-btn);
+      margin-left: 0;
+    }
+
+    &:focus-visible {
+      z-index: 1; // El botón activo queda por encima del grupo
+    }
+  }
+}
+
+.btn-icon-shell {
+  --btn-icon-shell-bg: var(--ds-bg-sunken);
+  --btn-icon-shell-color: var(--ds-text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background-color: var(--btn-icon-shell-bg);
+  color: var(--btn-icon-shell-color);
+  box-shadow:
+    inset 0 0 0 1px rgba(15, 23, 42, 0.05),
+    0 0.35rem 0.85rem rgba(15, 23, 42, 0.08);
+  transition:
+    background-color 150ms ease,
+    color 150ms ease,
+    transform 150ms ease,
+    box-shadow 150ms ease;
+
+  > .pi {
+    font-size: 0.95rem;
+    line-height: 1;
+  }
+}
+
+.btn:hover:not(:disabled):not(.is-disabled):not(.is-loading) .btn-icon-shell {
+  transform: translateY(-1px);
+}
+
+.btn-icon-shell--compact {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.btn-icon-shell--with-label {
+  width: 1.9rem;
+  height: 1.9rem;
+}
+
+.btn-icon-shell--soft {
+  background-color: var(--btn-icon-shell-bg);
+  color: var(--btn-icon-shell-color);
+}
+
+.btn-icon-shell--inverse {
+  background-color: rgba(255, 255, 255, 0.16);
+  color: inherit;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 0.35rem 0.85rem rgba(15, 23, 42, 0.12);
+}
+
+.btn-icon-shell--primary {
+  --btn-icon-shell-bg: var(--ds-primary-light);
+  --btn-icon-shell-color: var(--ds-primary);
+}
+
+.btn-icon-shell--secondary {
+  --btn-icon-shell-bg: var(--ds-bg-sunken);
+  --btn-icon-shell-color: var(--ds-text-primary);
+}
+
+.btn-icon-shell--success {
+  --btn-icon-shell-bg: var(--ds-success-light);
+  --btn-icon-shell-color: var(--ds-success);
+}
+
+.btn-icon-shell--info {
+  --btn-icon-shell-bg: var(--ds-info-light);
+  --btn-icon-shell-color: var(--ds-info);
+}
+
+.btn-icon-shell--warning {
+  --btn-icon-shell-bg: var(--ds-warning-light);
+  --btn-icon-shell-color: #92400e;
+}
+
+.btn-icon-shell--danger {
+  --btn-icon-shell-bg: var(--ds-danger-light);
+  --btn-icon-shell-color: var(--ds-danger);
+}
+
+.btn-icon-shell--help {
+  --btn-icon-shell-bg: rgba(124, 58, 237, 0.14);
+  --btn-icon-shell-color: #7c3aed;
+}
+
+.btn-icon-shell--contrast {
+  --btn-icon-shell-bg: rgba(15, 23, 42, 0.1);
+  --btn-icon-shell-color: var(--ds-text-primary);
+}

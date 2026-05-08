@@ -1,0 +1,114 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <!-- CAMBIO: El título y el ID inicial se ajustan para Almacén -->
+    <primeng-custom-caption
+      [showAdd]="isAdmin"
+      (add)="onModalForm({ id: '', title: 'Nuevo Almacén' })"
+      [dt]="dt"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <!-- CAMBIO: Columnas y campos de ordenamiento para Almacén -->
+      <th pSortableColumn="nombre">
+        Nombre
+        <p-sortIcon field="nombre" />
+      </th>
+      <th pSortableColumn="ubicacion">
+        Ubicación
+        <p-sortIcon field="ubicacion" />
+      </th>
+      <th pSortableColumn="activo">
+        Estado
+        <p-sortIcon field="activo" />
+      </th>
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <!-- CAMBIO: Propiedades del objeto 'item' para Almacén -->
+      <td>{{ item.nombre }}</td>
+      <td>{{ item.ubicacion }}</td>
+      <td>{{ item.activo ? "Activo" : "Inactivo" }}</td>
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-item
+            (clicked)="onViewProducts(item.id)"
+            label="Ver Productos"
+            iconClass="pi pi-box"
+          />
+          <custom-button-item
+            (clicked)="onDownloadInventory(item.id, item.nombre)"
+            label="Descargar Inventario"
+            iconClass="pi pi-file-pdf"
+          />
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [showAdd]="isAdmin"
+  (add)="onModalForm({ id: '', title: 'Nuevo Almacén' })"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding">
+      <ion-label>
+        <p class="mt-0 mb-0 font-bold">{{ item.nombre }}</p>
+        <p class="text-color-secondary text-sm mt-0 mb-0">{{ item.ubicacion }}</p>
+      </ion-label>
+
+      <div slot="end">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-item
+              (clicked)="onViewProducts(item.id)"
+              label="Ver Productos"
+              iconName="cube-outline"
+            />
+            <ion-button-item
+              (clicked)="onDownloadInventory(item.id, item.nombre)"
+              label="Descargar Inventario"
+              iconName="document-text-outline"
+            />
+            <ion-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            />
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+          </ng-container>
+        </app-action-menu>
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+
+
+
+
+
+

@@ -1,0 +1,29 @@
+<p-card>
+  <ng-template #content>
+    <div class="flex flex-wrap align-items-end gap-3">
+      <div class="flex-1">
+        <label class="block mb-2 font-medium">Estatus</label>
+        <p-select
+          [formControl]="statusControl"
+          [options]="[
+            { label: 'Pendiente',   value: 0 },
+            { label: 'En Proceso',  value: 1 },
+            { label: 'Concluido',   value: 2 },
+            { label: 'Cancelado',   value: 4 }
+          ]"
+          optionLabel="label"
+          optionValue="value"
+          fluid
+        />
+      </div>
+      <div>
+        <custom-button
+          label="Guardar"
+          variant="outlined"
+          [loading]="loading()"
+          (clicked)="onSubmit()"
+        />
+      </div>
+    </div>
+  </ng-template>
+</p-card>

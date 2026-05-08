@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-3">
+  <div class="grid">
+    <div class="col-12">
+      <custom-input-select-signal
+        [control]="form.controls['periodoNominaId']"
+        label="Periodo de Nomina"
+        [data]="periodosOptions()"
+        [filter]="true"
+        hint="Selecciona el periodo para el cual se generara la nomina"
+      />
+    </div>
+    <div class="col-12 md:col-4">
+      <custom-input-switch-signal
+        [control]="form.controls['soloEmpleadosActivos']"
+        label="Solo Empleados Activos"
+      />
+    </div>
+    <div class="col-12 md:col-4">
+      <custom-input-switch-signal
+        [control]="form.controls['incluirTiempoExtra']"
+        label="Incluir Tiempo Extra"
+      />
+    </div>
+    <div class="col-12 md:col-4">
+      <custom-input-switch-signal
+        [control]="form.controls['sincronizarIncidencias']"
+        label="Sincronizar Incidencias"
+      />
+    </div>
+    <div class="col-12 flex justify-content-end">
+      <custom-button-save
+        label="Generar Nomina"
+        (clicked)="onSubmit()"
+        [submitting]="submitting()"
+      />
+    </div>
+  </div>
+</form>

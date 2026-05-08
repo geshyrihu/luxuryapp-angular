@@ -1,0 +1,60 @@
+<form autocomplete="off" (ngSubmit)="submit()" [formGroup]="form">
+  <custom-input-text-signal
+    [control]="form.controls.id"
+    label="Id"
+    [hidden]="false"
+  />
+
+  <custom-input-autocomplete-signal
+    (propagar)="saveProviderId($event)"
+    [control]="form.controls.providerName"
+    [data]="cb_providers()"
+    label="Proveedor"
+    placeholder="Escribe para buscar  proveedor"
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.description"
+    label="Descripción"
+    [placeholder]="'descripción'"
+  />
+
+  <custom-input-select-signal
+    [control]="form.controls.typeOfContract"
+    label="Tipo de contrato"
+    [data]="cb_type_of_contract()"
+  />
+
+  <custom-input-select-signal
+    [control]="form.controls.isCurrent"
+    label="Activo"
+    [data]="cb_isCurrent()"
+  />
+
+  <custom-input-check-signal
+    [control]="form.controls.endDateIndefinite"
+    (checkChange)="onEndDateIndefiniteChange()"
+    label="Fin Indefinida"
+  />
+
+  <custom-input-date-signal
+    [control]="form.controls.startDate"
+    label="Inicio"
+    placeholder="fecha de entrada"
+  />
+
+  <custom-input-date-signal [control]="form.controls.endDate" label="Fin" />
+
+  <custom-input-file-signal
+    [control]="form.controls.document"
+    (fileSelected)="uploadFile($event)"
+    label="Documento"
+    accept="application/pdf"
+  ></custom-input-file-signal>
+
+  <custom-button-save
+    [propertyId]="id()"
+    [disabled]="form.invalid"
+    [submitting]="submitting()"
+  />
+</form>

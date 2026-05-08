@@ -1,0 +1,28 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <div class="mb-3">
+      <label>Empleado</label>
+      <p>
+        <strong>{{ employeeData.fullName }}</strong>
+      </p>
+    </div>
+
+    <custom-input-number-signal
+      label="Nuevo Saldo de Días Disponibles"
+      [control]="form.controls.newAvailableBalance"
+      [min]="0"
+      [showButtons]="true"
+    ></custom-input-number-signal>
+
+    <custom-input-textarea-signal
+      label="Justificación del Cambio"
+      [control]="form.controls.justification"
+      [rows]="4"
+      [maxLength]="500"
+    />
+  </div>
+
+  <div class="p-dialog-footer mt-4">
+    <custom-button-save [disabled]="form.invalid" [submitting]="submitting" />
+  </div>
+</form>

@@ -1,0 +1,214 @@
+<p-card>
+  <ng-template pTemplate="title">
+    <h5 class="m-0">Saldo de Vacaciones {{ currentYear }}</h5>
+  </ng-template>
+
+  <ng-template #content>
+    @if (balance) {
+    <div class="grid">
+      <!-- Columna: Resumen de Días -->
+      <div class="col-12 md:col-6">
+        <p-panel header="Resumen de Días">
+          <ul class="list-none p-0 m-0">
+            <li class="flex justify-content-between mb-2">
+              <span>Días Totales (Base Legal):</span>
+              <strong>{{ balance.totalDays }}</strong>
+            </li>
+            <li class="flex justify-content-between mb-2">
+              <span>Días Usados (Total):</span>
+              <strong class="text-red-500">{{ balance.usedDays }}</strong>
+            </li>
+            @if (balance.usedAdvanceDays > 0 || balance.usedNormalDays > 0) {
+            <li class="flex justify-content-between mb-2 pl-3 text-sm text-500">
+              <span>- Por Adelanto:</span>
+              <strong>{{ balance.usedAdvanceDays }}</strong>
+            </li>
+            <li class="flex justify-content-between mb-2 pl-3 text-sm text-500">
+              <span>- En Periodo Legal:</span>
+              <strong>{{ balance.usedNormalDays }}</strong>
+            </li>
+            }
+
+            <li class="flex justify-content-between mb-2 mt-3">
+              <span>En Proceso de Aprobación:</span>
+              <strong class="text-yellow-500">{{ balance.pendingDays }}</strong>
+            </li>
+            <li
+              class="flex justify-content-between mb-2 mt-3 p-2 bg-green-50 border-round"
+            >
+              <span class="font-bold text-green-700"
+                >Días Disponibles Hoy:</span
+              >
+              <strong class="text-green-700 text-lg"
+                >{{ balance.availableDays }}</strong
+              >
+            </li>
+            <li
+              class="flex justify-content-between mt-3 pt-3 border-top-1 surface-border"
+            >
+              <span>Días a solicitar (en este formulario):</span>
+              <strong class="text-primary text-xl"
+                >{{ requestedDaysCount() }}</strong
+              >
+            </li>
+            <li
+              class="flex justify-content-between mt-3 pt-3 border-top-1 surface-border"
+            >
+              <span>Días que te restarian):</span>
+              <strong class="text-primary text-xl"
+                >{{ balance.availableDays - requestedDaysCount() }}</strong
+              >
+            </li>
+          </ul>
+          <p-message
+            severity="info"
+            text="Nota: Domingos y días festivos no se descuentan de tu balance."
+            styleClass="mt-3 w-full"
+          ></p-message>
+        </p-panel>
+      </div>
+
+      <!-- Columna: Información Laboral -->
+      <div class="col-12 md:col-6">
+        <p-panel header="Información Laboral">
+          <ul class="list-none p-0 m-0">
+            <li class="flex justify-content-between mb-2">
+              <span>Fecha de Ingreso:</span>
+              <strong
+                >{{ balance.employeeAdmissionDate | date: "dd/MM/yyyy"
+                }}</strong
+              >
+            </li>
+            <li class="flex justify-content-between mb-2">
+              <span>Antigóedad Calculada:</span>
+              <strong>{{ balance.actualSeniorityYears }} Año(s)</strong>
+            </li>
+            <li class="flex justify-content-between mb-2">
+              <span>Periodo de Aniversario Validado:</span>
+              <strong>{{ balance.year }}</strong>
+            </li>
+            <li class="flex justify-content-between">
+              <span>Porcentaje de Bono Vacacional:</span>
+              <strong>{{ balance.vacationBonusPercentage }}%</strong>
+            </li>
+          </ul>
+        </p-panel>
+      </div>
+    </div>
+    @if (balance.isEligibleForAdvance) {
+    <div class="mt-3">
+      <p-message severity="info">
+        <div class="text-lg font-semibold">
+          Información de Adelanto de Vacaciones
+        </div>
+        <p class="mb-0">
+          Puedes solicitar un adelanto de hasta
+          <strong>{{ balance.allowedAdvanceDays }} días</strong>
+          de tus vacaciones del primer Año.
+        </p>
+        <p class="mb-0">
+          Actualmente tienes
+          <strong>{{ balance.availableAdvanceDays }} días</strong>
+          disponibles para adelantar.
+        </p>
+      </p-message>
+    </div>
+    } } @else {
+    <p-message
+      severity="error"
+      text="No se pudo cargar el saldo de vacaciones."
+    />
+    }
+    <form
+      autocomplete="off"
+      (ngSubmit)="onSubmit()"
+      [formGroup]="form"
+      class="mt-3"
+    >
+      <!-- Fecha de Inicio -->
+      <custom-input-date-signal
+        [control]="form.controls.startDate"
+        label="Fecha de Inicio"
+        placeholder="Seleccione fecha de inicio"
+        [required]="true"
+        [disable]="disabledDates()"
+      />
+
+      <!-- Fecha de Fin -->
+      <custom-input-date-signal
+        [control]="form.controls.endDate"
+        label="Fecha de Fin"
+        placeholder="Seleccione fecha de fin"
+        [required]="true"
+        [disable]="disabledDates()"
+      />
+
+      <!-- Motivo -->
+      <!-- <custom-input-textarea-signal
+        [control]="form.controls.reason"
+        label="Motivo (Opcional)"
+        placeholder="Describa el motivo de la solicitud"
+        [maxLength]="500"
+        [rows]="3"
+      /> -->
+
+      <!-- Validation Errors -->
+      <!-- Validation Errors -->
+      @if (form.hasError('dateRangeInvalid')) {
+      <p-message
+        severity="error"
+        text="La fecha de fin no puede ser anterior a la fecha de inicio."
+        styleClass="mt-2 w-full"
+      />
+      } @if (form.hasError('beforeAdmission')) {
+      <p-message
+        severity="error"
+        text="No puedes solicitar vacaciones en fechas previas a tu ingreso a la empresa."
+        styleClass="mt-2 w-full"
+      />
+      } @if (form.hasError('overlapDates')) {
+      <p-message
+        severity="error"
+        text="El rango de fechas se empalma con otra solicitud en proceso o vacaciones ya tomadas."
+        styleClass="mt-2 w-full"
+      />
+      } @if (form.hasError('advanceLimitExceeded')) {
+      <p-message
+        severity="error"
+        [text]="'Excedes tu lómite de adelanto. Solicitas ' +
+            form.getError('advanceLimitExceeded').requestedDays +
+            ' días y solo te quedan ' +
+            form.getError('advanceLimitExceeded').availableAdvance +
+            ' de adelanto disponibles.'"
+        styleClass="mt-2 w-full"
+      />
+      } @if (form.hasError('notEnoughDays')) {
+      <p-message
+        severity="error"
+        [text]="'No tienes suficientes días disponibles. Solicitas ' +
+            form.getError('notEnoughDays').requestedDays +
+            ' y tienes ' +
+            form.getError('notEnoughDays').availableDays +
+            ' disponibles.'"
+        styleClass="mt-2 w-full"
+      />
+      }
+
+      <!-- Server Error -->
+      @if (serverError()) {
+      <p-message
+        severity="error"
+        [text]="serverError()"
+        styleClass="mt-2 w-full"
+      />
+      }
+
+      <!-- Botones -->
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </ng-template>
+</p-card>

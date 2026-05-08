@@ -1,0 +1,74 @@
+/* ==========================================================================
+   MASTER STYLESHEET
+   ========================================================================== */
+
+/* 1. VARIABLES & TOKENS */
+@import "theme/variables";
+
+/* 2. BASE */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 3. CUSTOM */
+@import "custom/custom-prime-icons";
+@import "custom/utilities";
+/* PrimeFlex se carga desde angular.json para utilidades de layout. */
+
+/* 4. TEMA CORE */
+@import "theme/global";
+@import "theme/toast";
+@import "theme/header-mobile";
+@import "theme/ionic-rn-theme";
+@import "theme/cdk-overrides";
+@import "theme/dark-mode"; /* último: unlayered, máxima prioridad en cascade */
+
+/* 5. COMPONENTES CUSTOM */
+@import "custom/avatars";
+@import "custom/list";
+@import "custom/custom-table";
+
+/* 6. SIDEBAR */
+@import "theme/sidebar";
+
+/* 7. FONTS */
+// IBM Plex Sans y Montserrat se cargan desde index.html para evitar FOUT y optimizar CSP.
+// Poppins se mantiene via import solo si es necesario para compatibilidad, pero se prefiere IBM Plex Sans.
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+body {
+  font-family: var(--ds-font-family-base), sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Editor de Manuales y Procesos - Estándar Documental Corporativo */
+.ql-editor {
+  font-family: var(--ds-font-family-document) !important;
+  font-weight: 400 !important;
+  font-size: 11pt !important;
+  color: #1a1a1a !important;
+}
+.ql-editor h1,
+.ql-editor h2,
+.ql-editor h3 {
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 700 !important;
+  color: #1b3a6b !important;
+}
+
+// button {
+//   font-family: "Poppins", sans-serif !important;
+//   border-radius: 4px !important;
+// }
+
+/* 🖼️ FIX: PrimeNG Image Preview en Móvil (Ionic)
+   --------------------------------------------------------------------------
+   Asegura que el overlay del preview de imagen esté siempre por encima
+   de los contenedores de Ionic y overlays globales.
+*/
+.p-image-mask {
+  z-index: 110000 !important;
+}

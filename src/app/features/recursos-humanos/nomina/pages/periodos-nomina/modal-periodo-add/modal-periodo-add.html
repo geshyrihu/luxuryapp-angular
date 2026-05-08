@@ -1,0 +1,49 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-3">
+  <div class="grid">
+    @if (!item()) {
+    <div class="col-12 md:col-4">
+      <custom-input-select-signal
+        [control]="form.controls['quincena']"
+        label="Quincena"
+        [data]="quincenaOptions"
+      />
+    </div>
+    <div class="col-12 md:col-4">
+      <custom-input-select-signal
+        [control]="form.controls['mes']"
+        label="Mes"
+        [data]="mesOptions"
+      />
+    </div>
+    <div class="col-12 md:col-4">
+      <custom-input-number-signal
+        [control]="form.controls['anio']"
+        label="Año"
+      />
+    </div>
+    }
+
+    <div class="col-12 md:col-4">
+      <custom-input-date-signal
+        [control]="form.controls['fechaInicio']"
+        label="Fecha Inicio"
+      />
+    </div>
+    <div class="col-12 md:col-4">
+      <custom-input-date-signal
+        [control]="form.controls['fechaFin']"
+        label="Fecha Fin"
+      />
+    </div>
+    <div class="col-12 md:col-4">
+      <custom-input-date-signal
+        [control]="form.controls['fechaPago']"
+        label="Fecha de Pago"
+      />
+    </div>
+
+    <div class="col-12 flex justify-content-end">
+      <custom-button-save (clicked)="onSubmit()" [submitting]="submitting()" />
+    </div>
+  </div>
+</form>

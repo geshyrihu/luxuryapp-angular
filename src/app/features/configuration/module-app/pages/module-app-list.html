@@ -1,0 +1,124 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block"></div>
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [value]="dataSignal()"
+  #dt
+  styleClass="custom-table card hidden md:block"
+  rowGroupMode="subheader"
+  groupRowsBy="pathParent"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  <ng-template pTemplate="groupheader" let-item>
+    <tr pRowGroupHeader>
+      <td colspan="7" class="p-3">
+        <span class="font-bold"
+          >{{ item.pathParent ? item.pathParent : "Módulos Principales" }}</span
+        >
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <!-- <th >Index</th> -->
+      <th pSortableColumn="nameModule">
+        Nombre
+        <p-sortIcon field="nameModule" />
+      </th>
+      <th pSortableColumn="label">
+        Label
+        <p-sortIcon field="label" />
+      </th>
+      <th pSortableColumn="icon">
+        Icon
+        <p-sortIcon field="icon" />
+      </th>
+      <th pSortableColumn="routerLink">
+        RouterLink
+        <p-sortIcon field="routerLink" />
+      </th>
+      <th pSortableColumn="viewMobil">
+        Modulo celular
+        <p-sortIcon field="viewMobil" />
+      </th>
+      <th pSortableColumn="rolLevel">
+        Nivel
+        <p-sortIcon field="rolLevel" />
+      </th>
+
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-index="rowIndex">
+    <tr>
+      <td>{{ item.nameModule }}</td>
+      <td>{{ item.label }}</td>
+      <td>{{ item.icon }}</td>
+      <td>{{ item.routerLink }}</td>
+      <td class="text-center">
+        <p-tag
+          [value]="item.viewMobil ? 'Sí' : 'No'"
+          [severity]="item.viewMobil ? 'success' : 'danger'"
+          class="p-2"
+        />
+      </td>
+      <td>
+        {{ item.rolLevel == "Administrador" ? "Super Usuario" : "Cliente" }}
+      </td>
+
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <ion-icon
+        slot="start"
+        name="phone-portrait-outline"
+        [color]="item.viewMobil ? 'success' : 'medium'"
+        class="text-2xl"
+      ></ion-icon>
+      <ion-label>
+        <h2 class="font-normal m-0">{{ item.nameModule }}</h2>
+        <p class="text-medium text-500 m-0">{{ item.label }}</p>
+      </ion-label>
+
+      <app-action-menu slot="end">
+        <ng-container actions>
+          <ion-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <ion-button-delete (confirmed)="onDelete(item.id)" />
+        </ng-container>
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+
+
+
+
+
+

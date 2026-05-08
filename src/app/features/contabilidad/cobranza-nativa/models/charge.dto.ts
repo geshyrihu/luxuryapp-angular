@@ -1,0 +1,90 @@
+import { EChargeStatus, EChargeType } from './enums';
+
+export interface ChargeResponseDTO {
+    id: string;
+    customerId: string;
+    propertyId: string;
+    propertyFullName: string;
+    coiCobranzaAccountId?: string | null;
+    type: EChargeType;
+    concept: string;
+    amount: number;
+    dueDate: Date;
+    periodStart?: Date | null;
+    periodEnd?: Date | null;
+    status: EChargeStatus;
+    generatedAutomatically: boolean;
+    sourcePolicyId?: string | null;
+    chargeTemplateId?: string | null;
+    discountAvailable?: number | null;
+    discountDeadline?: Date | string | null;
+}
+
+export interface CreateChargeDTO {
+    customerId: string;
+    propertyId: string;
+    type: EChargeType;
+    concept: string;
+    amount: number;
+    dueDate: Date;
+    periodStart?: Date | null;
+    periodEnd?: Date | null;
+    status: EChargeStatus;
+    generatedAutomatically: boolean;
+    sourcePolicyId?: string | null;
+    chargeTemplateId?: string | null;
+    discountAvailable?: number | null;
+    discountDeadline?: Date | string | null;
+}
+
+export interface PropertyInitialBalanceDTO {
+    propertyId: string;
+    propertyFullName: string;
+    accountNumber: string;
+    hasSaldoInicial: boolean;
+    existingChargeId?: string | null;
+    existingAmount?: number | null;
+}
+
+export interface SetInitialBalanceItemDTO {
+    propertyId: string;
+    amount: number;
+    dueDate?: Date | null;
+}
+
+export interface BulkSetInitialBalanceDTO {
+    customerId: string;
+    items: SetInitialBalanceItemDTO[];
+}
+
+export interface BulkSetInitialBalanceResultDTO {
+    created: number;
+    updated: number;
+    skipped: number;
+}
+
+export interface UpdateChargeDTO {
+    id: string;
+    propertyId: string;
+    type: EChargeType;
+    concept: string;
+    amount: number;
+    dueDate: Date;
+    periodStart?: Date | null;
+    periodEnd?: Date | null;
+    status: EChargeStatus;
+    generatedAutomatically: boolean;
+    sourcePolicyId?: string | null;
+    chargeTemplateId?: string | null;
+    discountAvailable?: number | null;
+    discountDeadline?: Date | string | null;
+}
+
+
+
+
+
+
+
+
+

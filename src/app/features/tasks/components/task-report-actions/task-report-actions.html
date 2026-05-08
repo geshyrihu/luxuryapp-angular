@@ -1,0 +1,17 @@
+<div class="flex w-full" role="group" aria-label="Acciones de Reporte">
+  <custom-button
+    iconClass="pi pi-eye"
+    label="Vista Previa"
+    variant="outlined"
+    customClass="w-full"
+    (clicked)="onPreview()"
+  />
+
+  <custom-button
+    iconClass="pi pi-upload"
+    label="Enviar Reporte"
+    variant="outlined"
+    customClass="w-full"
+    (clicked)="onSendReport()"
+  />
+</div>

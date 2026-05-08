@@ -1,0 +1,109 @@
+@if (templateInfo(); as template) {
+
+<!-- Desktop View -->
+<p-table
+  #dt
+  [value]="items()"
+  [rows]="10"
+  [paginator]="true"
+  [responsive]="true"
+  [reorderableColumns]="true"
+  (onRowReorder)="onRowReorder($event)"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  styleClass="hidden md:block custom-table"
+>
+  <ng-template #caption>
+    <div
+      class="flex flex-wrap justify-content-between align-items-center gap-2"
+    >
+      <!-- Textos a la izquierda -->
+      <div class="flex flex-column gap-1">
+        <h5 class="m-0 text-900">Items de Plantilla: {{ template.name }}</h5>
+        <small class="text-color-secondary">
+          Rol Asignado: {{ template.roleName }}
+        </small>
+      </div>
+
+      <!-- Caption a la derecha -->
+      <div class="flex align-items-center">
+        <primeng-custom-caption (add)="showItemForm()" [dt]="dt" />
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-3rem"></th>
+      <!-- Reorder Handle Column -->
+      <th>Título</th>
+      <th>Prioridad</th>
+      <th>Regla de Recurrencia</th>
+      <th class="table-col-15">Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-rowIndex="rowIndex">
+    <tr [pReorderableRow]="rowIndex">
+      <td>
+        <i class="icon icon-pi-bars" pReorderableRowHandle></i>
+      </td>
+      <td>{{ item.title }}</td>
+      <td>
+        <app-status-badge
+          [value]="item.priority"
+          [status]="getPriorityDisplay(item.priority).text"
+          [severity]="getPriorityDisplay(item.priority).severity"
+        />
+      </td>
+      <td>{{ formatRecurrenceRule(item.recurrenceRule) }}</td>
+      <td>
+        <custom-button-edit (clicked)="showItemForm(item)" />
+        <custom-button-delete (confirmed)="onDeleteItem(item.id)" />
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template emptymessage>
+    <tr>
+      <td colspan="4">No se encontraron items para esta plantilla.</td>
+    </tr>
+  </ng-template>
+  <ng-template #summary>
+    <primeng-custom-table-footer
+      [totalRecords]="items().length"
+      [emptyMessage]="'No se encontraron items para esta plantilla.'"
+    />
+  </ng-template>
+</p-table>
+
+<!-- Mobile View -->
+@if (items().length === 0 && !items()) {
+<div class="block md:hidden p-4 text-center">
+  No se encontraron items para esta plantilla.
+</div>
+} @else {
+<app-data-view-mobile
+  [data]="items()"
+  [dt]="dt"
+  (add)="showItemForm()"
+  class="block md:hidden"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding" detail="false">
+      <ion-label>
+        <h5 class="mb-2">{{ item.title }}</h5>
+        <app-status-badge
+          [value]="item.priority"
+          [status]="getPriorityDisplay(item.priority).text"
+          [severity]="getPriorityDisplay(item.priority).severity"
+        />
+        <p class="text-sm text-600 mt-2">
+          {{ formatRecurrenceRule(item.recurrenceRule) }}
+        </p>
+      </ion-label>
+      <app-action-menu slot="end">
+        <ion-button-edit label="Editar" (clicked)="showItemForm(item)" />
+        <ion-button-delete (confirmed)="onDeleteItem(item.id)" />
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+} }

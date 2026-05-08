@@ -1,0 +1,111 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card"
+>
+  <ng-template #caption>
+    <div class="flex align-items-center">
+      <div class="flex-flex-grow-1-1">
+        <primeng-custom-caption
+          (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+          [dt]="dt"
+        />
+      </div>
+      <div class="flex-none">
+        <custom-button
+          label="Saldo"
+          iconClass="icon icon-pi-calendar"
+          size="small"
+          [fluid]="true"
+          [showLabelOnDesktop]="true"
+          (clicked)="onNavSaldo()"
+        />
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="requestDate">
+        Fecha Solicitud
+        <p-sortIcon field="requestDate" />
+      </th>
+      <th pSortableColumn="startDate">
+        Periodo
+        <p-sortIcon field="startDate" />
+      </th>
+      <th pSortableColumn="requestedDays">
+        Días Solicitados
+        <p-sortIcon field="requestedDays" />
+      </th>
+      <th pSortableColumn="status">
+        Estado
+        <p-sortIcon field="status" />
+      </th>
+      <th>Aprobación</th>
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.requestDate }}</td>
+      <td>
+        <div>
+          <span>
+            <strong>Inicio:</strong>
+            {{ item.startDate }}
+          </span>
+          <br />
+          <span>
+            <strong>Fin:</strong>
+            {{ item.endDate }}
+          </span>
+        </div>
+      </td>
+      <td class="text-center">
+        <p-tag
+          severity="info"
+          [value]="item.requestedDays"
+          styleClass="text-base p-2"
+        />
+      </td>
+      <td>
+        <p-tag
+          [value]="item.status"
+          [severity]="getStatusSeverity(item.status)"
+        ></p-tag>
+      </td>
+      <td>
+        {{ item.approverFullName || "-" }}
+        <br />
+        @if (item.approvalDate) {
+        <span> {{ item.approvalDate }} </span>
+        }
+      </td>
+
+      <td class="no-print">
+        <div class="flex justify-content-end">
+          <!-- Botón Ver Detalle -->
+          <custom-button-item (clicked)="onDetail(item.id)" label="??" />
+
+          @if (item.status === "Pendiente") {
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>

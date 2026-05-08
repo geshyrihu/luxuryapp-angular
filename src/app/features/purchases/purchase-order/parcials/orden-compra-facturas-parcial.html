@@ -1,0 +1,127 @@
+<div class="grid mb-2">
+  <div class="col-12">
+    <p-table [value]="facturas" styleClass="custom-table">
+      <ng-template #caption>
+        <div class="flex justify-content-between align-items-center">
+          <span class="text-xl font-bold">FACTURAS ASOCIADAS</span>
+          <div class="flex">
+            @if (facturas.length > 0) {
+            <custom-button
+              label="Validar Todas"
+              iconClass="pi pi-check"
+              severity="warning"
+              size="small"
+              [showLabelOnDesktop]="true"
+              (clicked)="onValidateInvoice()"
+              [submitting]="isValidating()"
+            />
+            }
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th>Factura</th>
+          <th>Tipo</th>
+          <th>Fecha</th>
+          <th>Folio Fiscal</th>
+          <th>Emisor</th>
+          <th class="text-center">Pago</th>
+          <th>Monto</th>
+          <th>Archivos</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-factura>
+        <tr>
+          <td>{{ factura.factura }}</td>
+          <td>
+            @if (factura.tipoComprobante === 'E') {
+            <p-tag severity="danger" value="Egreso"></p-tag>
+            } @else {
+            <p-tag severity="success" value="Ingreso"></p-tag>
+            }
+          </td>
+          <td>{{ factura.fechaFactura }}</td>
+          <td>{{ factura.folioFiscal || 'N/A' }}</td>
+          <td>
+            <div class="font-bold text-sm">
+              {{ factura.nombreEmisor || 'N/A' }}
+            </div>
+            <div class="text-xs text-500">{{ factura.rfcEmisor || 'N/A' }}</div>
+          </td>
+          <td class="text-center">
+            <div class="text-xs">
+              <span class="font-bold text-700" pTooltip="Mótodo de Pago"
+                >{{ factura.metodoPago || 'N/A' }}</span
+              >
+              <hr class="my-1 border-top-1 border-bottom-0 border-300" />
+              <span class="text-600" pTooltip="Forma de Pago"
+                >{{ factura.formaPago || 'N/A' }}</span
+              >
+            </div>
+          </td>
+          <td>{{ factura.monto | number: '1.2-2' }}</td>
+          <td>
+            <div class="flex">
+              @if (factura.pdfFile) {
+              <p-tag
+                class="cursor-pointer"
+                severity="danger"
+                icon="pi pi-file-pdf"
+                value="PDF"
+                (click)="viewPdf(factura.pdfFile, factura.factura)"
+              ></p-tag>
+              } @if (factura.xmlFile) {
+              <p-tag
+                class="cursor-pointer"
+                severity="info"
+                icon="pi pi-file"
+                value="XML"
+                (click)="descargarArchivo(factura.xmlFile)"
+              ></p-tag>
+              }
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="8" class="text-center p-4">
+            <div class="flex flex-column align-items-center">
+              <i class="pi pi-file-excel text-4xl text-500"></i>
+              <span
+                >No hay facturas asociadas. Haz clic en "Administrar" para
+                agregar una.</span
+              >
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+    <!-- Resultado Validación -->
+    @if (validationResult(); as result) {
+    <div class="mt-2 animate__animated animate__fadeIn">
+      <p-message [severity]="result.isValid ? 'success' : 'error'">
+        {{ result.message }}
+      </p-message>
+      @if (!result.isValid) {
+      <p class="text-sm mt-1 ml-3">
+        Total Facturas:
+        <span class="font-bold"
+          >{{ result.invoiceTotal | number: '1.2-2' }}</span
+        >
+        | Total O.C.:
+        <span class="font-bold"
+          >{{ result.purchaseOrderTotal | number: '1.2-2' }}</span
+        >
+      </p>
+      }
+    </div>
+    } @else { @if (isValidating()) {
+    <div class="mt-2">
+      <p-skeleton height="40px"></p-skeleton>
+    </div>
+    } }
+  </div>
+</div>

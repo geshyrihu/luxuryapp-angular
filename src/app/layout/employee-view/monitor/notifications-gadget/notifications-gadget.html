@@ -1,0 +1,80 @@
+<!-- Botón principal, actualizado con ócono de PrimeNG -->
+<p-button
+  (click)="op.toggle($event)"
+  styleClass="p-button-secondary p-button-text"
+  pTooltip="Notificaciones"
+  tooltipPosition="bottom"
+  size="small"
+>
+  <!-- Usando ócono estóndar y pBadge -->
+  <i
+    class="pi pi-bell text-lg"
+    pBadge
+    [value]="messageInNotRead() > 0 ? messageInNotRead() : null"
+    severity="danger"
+  ></i>
+</p-button>
+
+<!-- Popover de PrimeNG -->
+<p-popover #op [style]="{ width: '450px' }">
+  <ng-template #content>
+    <!-- Encabezado del Popover -->
+    <div
+      class="flex align-items-center justify-content-between px-3 pt-3 pb-2 border-bottom-1 surface-border"
+    >
+      <span class="font-bold text-lg">Notificaciones</span>
+    </div>
+
+    <!-- Contenedor con scroll para la lista -->
+    <p-scrollPanel [style]="{ width: '100%', height: '300px' }">
+      <!-- Lista de notificaciones -->
+      <div class="list-none p-0 m-0">
+        @for (notification of notifications(); track notification.id) {
+        <!-- Item de notificación -->
+        <div
+          class="flex align-items-start p-3 gap-3 cursor-pointer hover:surface-100 border-bottom-1 surface-border"
+          (click)="markAsRead(notification.id, notification.url, op)"
+          [class.surface-100]="!notification.isRead"
+          [class.font-semibold]="!notification.isRead"
+        >
+          <i class="pi pi-bell text-xl text-primary mt-1"></i>
+          <div class="flex-flex-grow-1-1">
+            <p class="m-0 font-bold">{{ notification.title }}</p>
+            <p class="m-0 text-color-secondary text-sm">
+              {{ notification.message }}
+            </p>
+          </div>
+        </div>
+        } @empty {
+        <!-- Estado vacóo -->
+        <div
+          class="flex flex-column align-items-center justify-content-center text-center p-4 gap-3"
+          style="height: 300px"
+        >
+          <i class="pi pi-inbox text-4xl text-color-secondary"></i>
+          <span class="text-color-secondary"
+            >No tienes notificaciones nuevas.</span
+          >
+        </div>
+        }
+      </div>
+    </p-scrollPanel>
+
+    <!-- Pie de pógina del Popover -->
+    <div class="text-center p-2 border-top-1 surface-border">
+      <p-button
+        label="Ver todas las notificaciones"
+        styleClass="p-button-link"
+        [routerLink]="['/notifications']"
+        (click)="op.hide()"
+      />
+    </div>
+  </ng-template>
+</p-popover>
+
+
+
+
+
+
+

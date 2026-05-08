@@ -1,0 +1,73 @@
+<p-card>
+  <ng-template #content>
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <div class="flex flex-column">
+        <div class="w-full">
+          <custom-input-autocomplete-signal
+            (propagar)="onSelectUser($event)"
+            [control]="form.controls.applicationUser"
+            [data]="cb_application_user()"
+            label="Colaborador"
+            placeholder="Escribe para buscar colaborador"
+            [horizontal]="false"
+          />
+        </div>
+        <div class="w-full">
+          <custom-input-select-signal
+            [control]="form.controls.isAdmin"
+            label="Rol"
+            [data]="cb_eLuxury_group_rol"
+            [horizontal]="false"
+          />
+        </div>
+        <div class="w-full flex justify-content-end">
+          <custom-button-save
+            [propertyId]="id"
+            [disabled]="form.invalid"
+            [submitting]="submitting()"
+          />
+        </div>
+      </div>
+    </form>
+  </ng-template>
+</p-card>
+@if (loading_existing_participant()) {
+<div class="flex justify-content-center mt-3">
+  <p-progressSpinner />
+</div>
+} @else if (cb_existing_Participant().length === 0) {
+<p-message severity="info" text="No hay integrantes."></p-message>
+} @else {
+<div class="flex flex-column mt-3">
+  @for (item of cb_existing_Participant(); track item.id) {
+  <div
+    class="flex align-items-center justify-content-between w-full p-3 border-1 border-round-md"
+    [class.border-green-500]="item.isAdmin === 'Administrador'"
+    [class.border-red-500]="item.isAdmin !== 'Administrador'"
+  >
+    <!-- Lado izquierdo: ócono + texto -->
+    <div class="flex align-items-center flex-grow-1">
+      <i
+        [class]="
+              item.isAdmin === 'Administrador'
+                ? 'pi pi-user-minus text-green-500'
+                : 'pi pi-user text-red-500'
+            "
+        style="font-size: 1.1rem"
+      ></i>
+      <span class="font-semibold">
+        {{ item.isAdmin === 'Administrador' ? 'Administrador' : 'Participante'
+        }}:
+        <span class="font-normal">{{ item.applicationUser }}</span>
+      </span>
+    </div>
+
+    <!-- Lado derecho: acciones -->
+    <div class="flex flex-shrink-0">
+      <custom-button-edit (clicked)="onEditParticipant(item)" />
+      <custom-button-delete (confirmed)="onDelete(item.id)" />
+    </div>
+  </div>
+  }
+</div>
+}

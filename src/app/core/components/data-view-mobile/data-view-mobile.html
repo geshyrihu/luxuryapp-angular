@@ -1,0 +1,142 @@
+<!-- data-view-mobile.html -->
+<div class="flex md:hidden flex-column no-print h-full min-h-0">
+  <!-- Sticky Header: Breadcrumb + Search + Add -->
+  <div
+    style="
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--ion-background-color, #fff);
+    "
+    class="pb-1"
+  >
+    <!-- 🧭 Breadcrumb Premium (Pill Style) -->
+    @if (viewchildBreadcrumb() && breadcrumbItems().length > 0) {
+    <div class="flex justify-content-center px-3 py-2 border-bottom-1 border-50 surface-ground shadow-inner overflow-hidden">
+      <div class="flex align-items-center gap-1 bg-white dark:bg-surface-900 px-3 py-1-5 border-round-pill shadow-1 border-1 border-200 overflow-x-auto no-scrollbar max-w-full">
+        @for (item of breadcrumbItems(); track $index; let last = $last) {
+        <div class="flex align-items-center">
+          @if (item.icon) {
+            <ion-icon 
+              [name]="item.icon" 
+              [routerLink]="item.routerLink" 
+              class="cursor-pointer text-lg text-primary hover:scale-110 transition-transform"
+            ></ion-icon>
+          } @else {
+            <span class="text-xs font-bold px-1 whitespace-nowrap" [class.text-primary]="last" [class.text-500]="!last">
+              {{ item.label }}
+            </span>
+          }
+          @if (!last) {
+            <i class="pi pi-chevron-right text-300 text-xs mx-1"></i>
+          }
+        </div>
+        }
+      </div>
+    </div>
+    }
+
+    <!-- Controls: Search & Add -->
+    <div class="flex align-items-center gap-2 px-2 pb-1">
+      @if (globalFilterFields()?.length > 0) {
+      <ion-searchbar
+        [value]="filterValue()"
+        (ionInput)="applyFilter($event.target.value)"
+        placeholder="Buscar..."
+        class="flex-grow-1 p-0 custom-searchbar"
+        animated="true"
+      ></ion-searchbar>
+      }
+
+      <!-- Inline Add Button -->
+      @if (showAdd()) {
+      <ion-button fill="clear" (click)="onAdd($event)">
+        <ion-icon
+          slot="icon-only"
+          name="add-circle"
+          class="text-4xl"
+        ></ion-icon>
+      </ion-button>
+      }
+    </div>
+  </div>
+
+  <!-- Content List -->
+  @if (isGrouped()) {
+  <ion-list class="bg-transparent">
+    @for (group of objectKeys(groupedData()); track group) { @if
+    (groupedData()[group]?.length > 0) {
+    <ion-item-divider sticky="true" class="p-2">
+      <ion-label>{{ group }}</ion-label>
+    </ion-item-divider>
+
+    @for (item of groupedData()[group]; track trackByFn($index, item)) { @if
+    (item.visible !== false) {
+    <ng-container
+      *ngTemplateOutlet="listItemTemplate() || defaultListItemTemplate; context: { $implicit: item, item: item }"
+    ></ng-container>
+    } } } }
+  </ion-list>
+  } @else {
+  <div class="flex-grow-1 relative overflow-y-auto min-h-0">
+    <!-- Loading Indicator -->
+    @if (loading()) {
+    <div class="p-3">
+      <ion-progress-bar type="indeterminate"></ion-progress-bar>
+    </div>
+    }
+
+    <!-- Custom Filters Slot -->
+    @if (filterValue() === '') {
+      <ng-content select="[customFilters]"></ng-content>
+    } 
+
+    <!-- Data List -->
+    @if (filteredData().length > 0) {
+    <ion-list class="bg-transparent" lines="full">
+      @for (item of filteredData(); track trackByFn($index, item)) {
+      <ng-container
+        *ngTemplateOutlet="listItemTemplate() || defaultListItemTemplate; context: { $implicit: item, item: item }"
+      ></ng-container>
+      }
+    </ion-list>
+    } @else if (filterValue() && !loading()) {
+    <div
+      class="flex flex-column align-items-center justify-content-center p-5 text-center text-500"
+    >
+      <i class="pi pi-search text-4xl mb-3"></i>
+      <p>No se encontraron resultados para "{{ filterValue() }}"</p>
+    </div>
+    } @else if (!loading() && filteredData().length === 0) {
+      <div class="flex flex-column align-items-center justify-content-center p-5 text-center text-500">
+        <i class="pi pi-info-circle text-4xl mb-3"></i>
+        <p>No hay registros disponibles</p>
+      </div>
+    }
+
+    <!-- Infinite Scroll -->
+    @if (enablePagination()) {
+    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Cargando mós registros..."
+      >
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    }
+  </div>
+  }
+
+  <!-- Default Template (Fallback) -->
+  <ng-template #defaultListItemTemplate let-item="item">
+    <ion-item>
+      <ion-label>
+        @for (key of objectKeys(item); track key) {
+          @if (key !== 'id') {
+            <p><strong>{{ key }}:</strong> {{ item[key] }}</p>
+          }
+        }
+      </ion-label>
+    </ion-item>
+  </ng-template>
+</div>

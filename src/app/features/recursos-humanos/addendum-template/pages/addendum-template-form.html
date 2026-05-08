@@ -1,0 +1,48 @@
+<div class="p-3">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <custom-input-text-signal
+      label="Nombre del Machote"
+      [control]="form.controls.name"
+      placeholder="Ej: Adenda de Modificación Salarial"
+    />
+    <custom-input-text-signal
+      label="Versión"
+      [control]="form.controls.version"
+      placeholder="1.0"
+    />
+    <custom-input-select-signal
+      label="Tipo de Adenda"
+      [control]="form.controls.addendumType"
+      [data]="cb_addendumType"
+    />
+    <custom-input-switch-signal
+      label="Activo"
+      [control]="form.controls.isActive"
+    />
+    <custom-input-textarea-signal
+      label="Descripción"
+      [control]="form.controls.description"
+      [rows]="2"
+    />
+    <custom-input-textarea-signal
+      label="Contenido del Machote"
+      [control]="form.controls.templateContent"
+      [rows]="10"
+      [placeholder]="placeholderText"
+    />
+    <div class="flex justify-content-end mt-2">
+      <custom-button
+        label="Cancelar"
+        (clicked)="onCancel()"
+        customClass="outline"
+      />
+      <custom-button-save
+        [propertyId]="item()?.id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+        label="Guardar Machote"
+        type="submit"
+      />
+    </div>
+  </form>
+</div>

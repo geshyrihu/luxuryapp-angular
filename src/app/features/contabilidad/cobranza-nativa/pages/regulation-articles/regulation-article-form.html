@@ -1,0 +1,42 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column gap-2">
+
+  <custom-input-text-signal
+    [control]="form.controls.articleNumber"
+    label="Número de Artículo"
+    placeholder="Ej: Art. 24, Cap. 3 Inc. b"
+    required
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.title"
+    label="Título"
+    placeholder="Descripción breve de la infracción"
+    required
+  />
+
+  <custom-input-textarea-signal
+    [control]="form.controls.content"
+    label="Texto del Artículo"
+    placeholder="Texto completo de la cláusula reglamentaria..."
+    [rows]="5"
+    required
+  />
+
+  <custom-input-decimal-signal
+    [control]="form.controls.defaultFineAmount"
+    label="Monto de Multa Default (opcional)"
+    placeholder="Ej: 500.00"
+  />
+
+  <div class="mt-1">
+    <custom-input-check-signal
+      [control]="form.controls.isActive"
+      label="Artículo activo (disponible para emitir multas)"
+    />
+  </div>
+
+  <div class="flex justify-content-end mt-3">
+    <custom-button-save [disabled]="form.invalid || submitting()" [submitting]="submitting()" />
+  </div>
+
+</form>

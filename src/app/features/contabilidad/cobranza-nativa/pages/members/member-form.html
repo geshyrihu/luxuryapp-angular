@@ -1,0 +1,101 @@
+<!-- Indicador de pasos (solo al crear) -->
+@if (!id) {
+<div class="flex align-items-center gap-2 px-3 pt-3 pb-1">
+  <div
+    class="flex align-items-center justify-content-center w-2rem h-2rem border-round-full text-sm font-bold"
+    [class.bg-primary]="step() >= 1"
+    [class.text-white]="step() >= 1"
+    [class.surface-300]="step() < 1"
+  >
+    1
+  </div>
+  <span
+    class="text-sm"
+    [class.font-bold]="step() === 1"
+    [class.text-500]="step() !== 1"
+    >Datos del usuario</span
+  >
+  <i class="pi pi-chevron-right text-300 text-xs"></i>
+  <div
+    class="flex align-items-center justify-content-center w-2rem h-2rem border-round-full text-sm font-bold"
+    [class.bg-primary]="step() >= 2"
+    [class.text-white]="step() >= 2"
+    [class.surface-300]="step() < 2"
+  >
+    2
+  </div>
+  <span
+    class="text-sm"
+    [class.font-bold]="step() === 2"
+    [class.text-500]="step() !== 2"
+    >Membresía</span
+  >
+</div>
+<hr class="mx-3 mt-2 mb-0 border-none border-top-1 surface-border" />
+}
+
+<!-- PASO 1: Crear usuario -->
+@if (step() === 1) {
+<form [formGroup]="userForm" (ngSubmit)="onNextStep()" class="p-3">
+  <custom-input-text-signal
+    label="Nombre(s)"
+    [control]="userForm.controls.firstName"
+  />
+  <custom-input-text-signal
+    label="Apellidos"
+    [control]="userForm.controls.lastName"
+  />
+  <custom-input-text-signal
+    label="Correo electrónico"
+    [control]="userForm.controls.email"
+  />
+  <custom-input-mask-signal
+    label="Teléfono"
+    customMask="(999) 999-9999"
+    [control]="userForm.controls.phoneNumber"
+  />
+  <div class="flex justify-content-end mt-3">
+    <custom-button
+      label="Siguiente"
+      iconClass="pi pi-arrow-right"
+      [disabled]="submitting()"
+      (clicked)="onNextStep()"
+    />
+  </div>
+</form>
+}
+
+<!-- PASO 2: Datos de membresía -->
+@if (step() === 2) {
+<form [formGroup]="memberForm" (ngSubmit)="onSubmit()" class="p-3">
+  <custom-input-select-signal
+    label="Rol"
+    [data]="roleOptions()"
+    [control]="memberForm.controls.memberRole"
+    [filter]="true"
+  />
+  <custom-input-date-signal
+    label="Fecha de inicio"
+    [control]="memberForm.controls.startDate"
+  />
+  <custom-input-date-signal
+    label="Fecha de término (opcional)"
+    [control]="memberForm.controls.endDate"
+  />
+  <custom-input-check-signal
+    label="Responsable financiero"
+    [control]="memberForm.controls.isFinancialResponsible"
+  />
+  <custom-input-check-signal
+    label="Recibe notificaciones"
+    [control]="memberForm.controls.receiveNotifications"
+  />
+  <custom-input-text-signal
+    label="Notas (opcional)"
+    [control]="memberForm.controls.notes"
+  />
+  <div class="flex justify-content-end mt-3">
+    <custom-button-save [submitting]="submitting()" />
+  </div>
+</form>
+}

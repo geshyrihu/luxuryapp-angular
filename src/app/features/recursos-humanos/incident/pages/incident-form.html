@@ -1,0 +1,118 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <p-tabs [value]="activeTab()" (valueChange)="activeTab.set($event)">
+    <p-tablist>
+      <p-tab value="datos">📋 Datos</p-tab>
+      <p-tab value="adjuntos" [disabled]="!id()">📎 Adjuntos</p-tab>
+      <p-tab value="testigos" [disabled]="!id()">👤 Testigos</p-tab>
+      <p-tab value="suspension" [disabled]="!id()">📅 Días de Suspensión</p-tab>
+    </p-tablist>
+
+    <p-tabpanels>
+      <!-- ─── DATOS BÁSICOS ──────────────────────────────────── -->
+      <p-tabpanel value="datos">
+        <div class="grid pt-2">
+          <div class="col-12 md:col-6">
+            <custom-input-select-signal
+              label="Tipo de Incidencia"
+              [required]="true"
+              [control]="form.controls.incidentTypeId"
+              [data]="incidentTypes()"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-select-signal
+              label="Nivel de Severidad"
+              [required]="true"
+              [control]="form.controls.severityLevel"
+              [data]="cb_severity()"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-date-time-signal
+              label="Fecha y Hora del Incidente"
+              [required]="true"
+              [control]="form.controls.incidentDateTime"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-select-signal
+              label="Tipo de Sanción (opcional)"
+              [control]="form.controls.sanctionTypeId"
+              [data]="sanctionTypes()"
+              placeholder="Sin sanción inmediata"
+            />
+          </div>
+          <div class="col-12">
+            <custom-input-textarea-signal
+              label="Descripción"
+              [required]="true"
+              [control]="form.controls.description"
+              [rows]="4"
+              placeholder="Describa el incidente con detalle (mínimo 10 caracteres)"
+            />
+          </div>
+        </div>
+      </p-tabpanel>
+
+      <!-- ─── ADJUNTOS ───────────────────────────────────────── -->
+      <p-tabpanel value="adjuntos">
+        @if (id()) {
+        <app-incident-attachments [incidentId]="id()" />
+        }
+      </p-tabpanel>
+
+      <!-- ─── TESTIGOS ───────────────────────────────────────── -->
+      <p-tabpanel value="testigos">
+        @if (id()) {
+        <app-incident-witnesses [incidentId]="id()" />
+        }
+      </p-tabpanel>
+
+      <!-- ─── DÍAS DE SUSPENSIÓN ────────────────────────────── -->
+      <p-tabpanel value="suspension">
+        @if (id()) {
+        <app-suspension-days-manager [incidentId]="id()" />
+        }
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
+
+  <!-- ─── FOOTER FIJO ───────────────────────────────────────── -->
+  <div
+    class="flex align-items-center justify-content-between mt-4 pt-3 border-top-1 surface-border"
+  >
+    <!-- Indicador de estado -->
+    <div class="text-sm" style="color: var(--p-text-muted-color)">
+      @if (!id()) {
+      <span
+        >⚠️ Guarda los datos básicos para habilitar adjuntos, testigos y días de
+        suspensión.</span
+      >
+      } @else {
+      <span style="color: var(--p-green-600)"
+        >✅ Incidencia guardada — agrega adjuntos, testigos y días de suspensión
+        desde las pestañas.</span
+      >
+      }
+    </div>
+
+    <!-- Acciones -->
+    <div class="flex">
+      @if (activeTab() === 'datos') {
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+        [label]="id() ? 'Guardar cambios' : 'Guardar y continuar →'"
+        type="submit"
+      />
+      } @if (id()) {
+      <custom-button-save
+        label="Finalizar"
+        type="button"
+        (clicked)="onFinish()"
+      />
+      }
+    </div>
+  </div>
+</form>

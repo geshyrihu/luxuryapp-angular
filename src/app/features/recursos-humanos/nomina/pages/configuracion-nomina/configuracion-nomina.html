@@ -1,0 +1,126 @@
+@if (loading()) {
+<div class="flex justify-content-center align-items-center" style="min-height: 200px">
+  <i class="pi pi-spin pi-spinner text-4xl text-primary"></i>
+</div>
+} @else {
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="grid">
+
+    <!-- Frecuencia y Dias de Pago -->
+    <div class="col-12">
+      <p-fieldset legend="Frecuencia de Pago">
+        <div class="grid">
+          <div class="col-12 md:col-4">
+            <custom-input-select-signal
+              [control]="form.controls['frecuenciaPago']"
+              label="Frecuencia de Pago"
+              [data]="frecuenciaPagoOptions"
+            />
+          </div>
+          <div class="col-12 md:col-4">
+            <custom-input-number-signal
+              [control]="form.controls['diaPago1']"
+              label="Dia de Pago 1"
+              hint="Generalmente dia 15 para nomina quincenal"
+            />
+          </div>
+          <div class="col-12 md:col-4">
+            <custom-input-number-signal
+              [control]="form.controls['diaPago2']"
+              label="Dia de Pago 2"
+              hint="Generalmente dia 30 para nomina quincenal"
+            />
+          </div>
+        </div>
+      </p-fieldset>
+    </div>
+
+    <!-- Prestaciones de Ley -->
+    <div class="col-12">
+      <p-fieldset legend="Prestaciones de Ley (LFT)">
+        <div class="grid">
+          <div class="col-12 md:col-6">
+            <custom-input-number-signal
+              [control]="form.controls['diasAguinaldo']"
+              label="Dias de Aguinaldo"
+              hint="Minimo 15 dias segun LFT"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-decimal-signal
+              [control]="form.controls['factorPrimaVacacional']"
+              label="Factor Prima Vacacional"
+              hint="Minimo 0.25 (25%) segun LFT. Ej: 0.25 = 25%"
+              [minFractionDigits]="2"
+              [maxFractionDigits]="4"
+            />
+          </div>
+        </div>
+      </p-fieldset>
+    </div>
+
+    <!-- Control de Asistencia -->
+    <div class="col-12">
+      <p-fieldset legend="Control de Asistencia">
+        <div class="grid">
+          <div class="col-12 md:col-6">
+            <custom-input-number-signal
+              [control]="form.controls['minutosToleranciaRetardo']"
+              label="Minutos de Tolerancia"
+              hint="Minutos de gracia antes de registrar retardo"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-number-signal
+              [control]="form.controls['retardosPorFalta']"
+              label="Retardos por Falta"
+              hint="Numero de retardos que equivalen a 1 falta injustificada"
+            />
+          </div>
+        </div>
+      </p-fieldset>
+    </div>
+
+    <!-- Cuotas IMSS (Parte Obrera) -->
+    <div class="col-12">
+      <p-fieldset legend="Cuotas IMSS - Parte Obrera">
+        <div class="grid">
+          <div class="col-12 md:col-4">
+            <custom-input-decimal-signal
+              [control]="form.controls['porcentajeEnfermedadMaternidad']"
+              label="Enfermedad y Maternidad"
+              hint="Porcentaje en decimal. Ej: 0.00625 = 0.625%"
+              [minFractionDigits]="3"
+              [maxFractionDigits]="5"
+            />
+          </div>
+          <div class="col-12 md:col-4">
+            <custom-input-decimal-signal
+              [control]="form.controls['porcentajeIvcm']"
+              label="IVCM (Invalidez, Vejez, C y M)"
+              hint="Porcentaje en decimal. Ej: 0.00625 = 0.625%"
+              [minFractionDigits]="3"
+              [maxFractionDigits]="5"
+            />
+          </div>
+          <div class="col-12 md:col-4">
+            <custom-input-decimal-signal
+              [control]="form.controls['porcentajeCesantiaVejez']"
+              label="Cesantia y Vejez"
+              hint="Porcentaje en decimal. Ej: 0.01125 = 1.125%"
+              [minFractionDigits]="3"
+              [maxFractionDigits]="5"
+            />
+          </div>
+        </div>
+      </p-fieldset>
+    </div>
+
+    <!-- Guardar -->
+    <div class="col-12 flex justify-content-end">
+      <custom-button-save (clicked)="onSubmit()" [submitting]="submitting()" />
+    </div>
+
+  </div>
+</form>
+}

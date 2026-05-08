@@ -1,0 +1,195 @@
+// ============================================================
+// _colors.scss
+// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
+// Paleta de colores completa y semántica
+// ============================================================
+
+// ── PALETA BASE ───────────────────────────────────────────────
+// Escala completa 50-950 para cada color
+
+// Primario (Azul corporativo — Luxury Building Group)
+// Paleta derivada de la identidad visual oficial
+// #0b3164 (navy principal) · #092953 · #072042 · #020811
+$primary-50:   #f0f4fa !default;
+$primary-100:  #dce7f3 !default;
+$primary-200:  #bfcfe4 !default;
+$primary-300:  #97afcf !default;
+$primary-400:  #6687b3 !default;
+$primary-500:  #0b3164 !default;  // Azul principal corporativo
+$primary-600:  #092953 !default;  // Azul medio corporativo
+$primary-700:  #072042 !default;
+$primary-800:  #051831 !default;  // Navy principal (logo bg)
+$primary-900:  #030f20 !default;
+$primary-950:  #020811 !default;  // Navy más oscuro
+
+// Secundario (Gris neutro cálido)
+$secondary-50:   #f8fafc !default;
+$secondary-100:  #f1f5f9 !default;
+$secondary-200:  #e2e8f0 !default;
+$secondary-300:  #cbd5e1 !default;
+$secondary-400:  #94a3b8 !default;
+$secondary-500:  #64748b !default;
+$secondary-600:  #475569 !default;
+$secondary-700:  #334155 !default;
+$secondary-800:  #1e293b !default;
+$secondary-900:  #0f172a !default;
+$secondary-950:  #020617 !default;
+
+// Success (Verde)
+$success-50:   #f0fdf4 !default;
+$success-100:  #dcfce7 !default;
+$success-200:  #bbf7d0 !default;
+$success-300:  #86efac !default;
+$success-400:  #4ade80 !default;
+$success-500:  #22c55e !default;
+$success-600:  #16a34a !default;
+$success-700:  #15803d !default;
+$success-800:  #166534 !default;
+$success-900:  #14532d !default;
+$success-950:  #052e16 !default;
+
+// Warning (Ámbar)
+$warning-50:   #fffbeb !default;
+$warning-100:  #fef3c7 !default;
+$warning-200:  #fde68a !default;
+$warning-300:  #fcd34d !default;
+$warning-400:  #fbbf24 !default;
+$warning-500:  #f59e0b !default;
+$warning-600:  #d97706 !default;
+$warning-700:  #b45309 !default;
+$warning-800:  #92400e !default;
+$warning-900:  #78350f !default;
+$warning-950:  #451a03 !default;
+
+// Danger (Rojo)
+$danger-50:   #fef2f2 !default;
+$danger-100:  #fee2e2 !default;
+$danger-200:  #fecaca !default;
+$danger-300:  #fca5a5 !default;
+$danger-400:  #f87171 !default;
+$danger-500:  #ef4444 !default;
+$danger-600:  #dc2626 !default;
+$danger-700:  #b91c1c !default;
+$danger-800:  #991b1b !default;
+$danger-900:  #7f1d1d !default;
+$danger-950:  #450a0a !default;
+
+// Info (Cian)
+$info-50:   #ecfeff !default;
+$info-100:  #cffafe !default;
+$info-200:  #a5f3fc !default;
+$info-300:  #67e8f9 !default;
+$info-400:  #22d3ee !default;
+$info-500:  #06b6d4 !default;
+$info-600:  #0891b2 !default;
+$info-700:  #0e7490 !default;
+$info-800:  #155e75 !default;
+$info-900:  #164e63 !default;
+$info-950:  #083344 !default;
+
+// Help (Púrpura — Estándar PrimeNG)
+$help-50:   #f5f3ff !default;
+$help-100:  #ede9fe !default;
+$help-200:  #ddd6fe !default;
+$help-300:  #c4b5fd !default;
+$help-400:  #a78bfa !default;
+$help-500:  #8b5cf6 !default;
+$help-600:  #7c3aed !default;
+$help-700:  #6d28d9 !default;
+$help-800:  #5b21b6 !default;
+$help-900:  #4c1d95 !default;
+$help-950:  #2e1065 !default;
+
+// Contrast (Negro/Blanco)
+$contrast-0:   #ffffff !default;
+$contrast-500: #18181b !default;
+$contrast-900: #000000 !default;
+
+// Neutral (Escala de grises puros)
+$neutral-0:    #ffffff !default;
+$neutral-50:   #fafafa !default;
+$neutral-100:  #f4f4f5 !default;
+$neutral-200:  #e4e4e7 !default;
+$neutral-300:  #d4d4d8 !default;
+$neutral-400:  #a1a1aa !default;
+$neutral-500:  #71717a !default;
+$neutral-600:  #52525b !default;
+$neutral-700:  #3f3f46 !default;
+$neutral-800:  #27272a !default;
+$neutral-900:  #18181b !default;
+$neutral-950:  #09090b !default;
+$neutral-1000: #000000 !default;
+
+// ── COLORES SEMÁNTICOS ────────────────────────────────────────
+// Aliases que cambian según el tema (light/dark)
+// Se definen en _light.scss y _dark.scss como variables CSS
+
+// Texto
+$color-text-primary:    $secondary-900  !default;
+$color-text-secondary:  $secondary-600  !default;
+$color-text-muted:      $secondary-400  !default;
+$color-text-inverse:    $neutral-0      !default;
+$color-text-disabled:   $secondary-300  !default;
+$color-text-link:       $primary-600    !default;
+$color-text-link-hover: $primary-700    !default;
+
+// Fondos
+$color-bg-page:       $neutral-50      !default;
+$color-bg-surface:    $neutral-0       !default;
+$color-bg-elevated:   $neutral-0       !default;
+$color-bg-sunken:     $secondary-50    !default;
+$color-bg-overlay:    rgba(#000, 0.5)  !default;
+
+// Bordes
+$color-border-default: $secondary-200  !default;
+$color-border-strong:  $secondary-300  !default;
+$color-border-focus:   $primary-500    !default;
+$color-border-error:   $danger-500     !default;
+$color-border-success: $success-500    !default;
+
+// Estados interactivos — Primario
+$color-primary:            $primary-600   !default;
+$color-primary-hover:      $primary-700   !default;
+$color-primary-active:     $primary-800   !default;
+$color-primary-light:      $primary-50    !default;
+$color-primary-text:       $neutral-0     !default;
+
+// Estados interactivos — Danger
+$color-danger:             $danger-600    !default;
+$color-danger-hover:       $danger-700    !default;
+$color-danger-active:      $danger-800    !default;
+$color-danger-light:       $danger-50     !default;
+
+// Estados interactivos — Success
+$color-success:            $success-600   !default;
+$color-success-hover:      $success-700   !default;
+$color-success-light:      $success-50    !default;
+
+// Estados interactivos — Warning
+$color-warning:            $warning-500   !default;
+$color-warning-hover:      $warning-600   !default;
+$color-warning-light:      $warning-50    !default;
+
+// Estados interactivos — Info
+$color-info:               $info-600      !default;
+$color-info-hover:         $info-700      !default;
+$color-info-light:         $info-50       !default;
+
+// Estados interactivos — Help
+$color-help:               $help-600      !default;
+$color-help-hover:         $help-700      !default;
+$color-help-light:         $help-50       !default;
+
+// Estados interactivos — Contrast
+$color-contrast:           $neutral-950   !default;
+$color-contrast-hover:     $neutral-900   !default;
+$color-contrast-light:     $neutral-100   !default;
+$color-contrast-text:      $neutral-0     !default;
+
+// NOTA: Los CSS Custom Properties (--ds-*, --p-*) se generan en:
+//   theme/_variables.scss -> --primary-50..950, --ds-*, --ion-*, --z-*
+//   prime-overrides/_prime-tokens.scss -> --p-* bridge de PrimeNG
+// Este archivo solo define SCSS variables para uso en componentes via @use.
+
+
+

@@ -1,0 +1,46 @@
+{
+  /* To learn more about this file see: https://angular.io/config/tsconfig. */
+  // Evita recompilar automáticamente cuando se guardan archivos. Útil en desarrollo.
+  "compileOnSave": true,
+
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "noImplicitReturns": false,
+    "strictPropertyInitialization": false,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "declaration": false,
+    "experimentalDecorators": true,
+    "moduleResolution": "bundler",
+    "baseUrl": "src",
+    "paths": {
+      "src/*": ["*"]
+    },
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
+    "lib": ["es2023", "dom", "dom.iterable"]
+  },
+
+  "angularCompilerOptions": {
+    // Desactiva el formato de identificadores de mensajes heredado en i18n.
+    "enableI18nLegacyMessageIdFormat": false,
+
+    // Muestra errores si los parámetros del constructor no son válidos para inyección de dependencias.
+    "strictInjectionParameters": true,
+
+    // Requiere que los inputs tengan modificadores de acceso válidos (ej. public/private).
+    "strictInputAccessModifiers": true,
+
+    // Desactiva comprobaciones estrictas en plantillas (bindings, tipos, etc).
+    "strictTemplates": false
+    // "strictTemplates": true
+  }
+}

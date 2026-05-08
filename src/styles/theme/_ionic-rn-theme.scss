@@ -1,0 +1,396 @@
+// ═══════════════════════════════════════════════════════════════
+// _ionic-rn-theme.scss
+// Hace que Ionic (mode="ios") se parezca visualmente a React Native
+// Inspirado en iOS UIKit grouped tables + RN StyleSheet patterns
+// Requiere: provideIonicAngular({ mode: "ios" }) en app.config.ts ✅
+// ═══════════════════════════════════════════════════════════════
+
+// ── 1. CSS Custom Properties globales ───────────────────────────
+// Paleta inspirada en iOS system colors (= lo que RN usa por defecto en iOS)
+:root {
+  // Fondo de app: gris sistema iOS (grouped background)
+  --ion-background-color: #f2f2f7;
+  --ion-background-color-rgb: 242, 242, 247;
+
+  // Texto
+  --ion-text-color: #1c1c1e;
+  --ion-text-color-rgb: 28, 28, 30;
+
+  // Items y cards → blanco puro (como RN View)
+  --ion-item-background: #ffffff;
+  --ion-card-background: #ffffff;
+  --ion-list-background: transparent;
+
+  // Separadores: iOS hairline (0.5px)
+  --ion-item-border-color: #c6c6c8;
+  --ion-border-color: #c6c6c8;
+
+  // Toolbar: mismo fondo que la app (sin borde visible)
+  --ion-toolbar-background: rgba(242, 242, 247, 0.94);
+  --ion-toolbar-border-color: transparent;
+  --ion-toolbar-color: #1c1c1e;
+
+  // Ripple: muy sutil (RN usa opacity, no ripple)
+  --ion-ripple-color: rgba(0, 0, 0, 0.06);
+
+  // ── Colores del sistema Ionic alineados a la marca ───────────
+  --ion-color-primary: #155ec0;
+  --ion-color-primary-rgb: 21, 94, 192;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #104892;
+  --ion-color-primary-tint: #2c6fca;
+
+  --ion-color-secondary: var(--primary-500, #0b3164);
+  --ion-color-secondary-rgb: 11, 49, 100;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-shade: #0a2b58;
+  --ion-color-secondary-tint: #234674;
+
+  --ion-color-success: #34c759;
+  --ion-color-success-rgb: 52, 199, 89;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-shade: #2db350;
+  --ion-color-success-tint: #48cd6a;
+
+  --ion-color-warning: #ff9f0a;
+  --ion-color-warning-rgb: 255, 159, 10;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-shade: #e08e09;
+  --ion-color-warning-tint: #ffa923;
+
+  --ion-color-danger: #ff3b30;
+  --ion-color-danger-rgb: 255, 59, 48;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-shade: #e0342a;
+  --ion-color-danger-tint: #ff4f45;
+
+  --ion-color-medium: #8e8e93;
+  --ion-color-medium-rgb: 142, 142, 147;
+  --ion-color-medium-contrast: #000000;
+  --ion-color-medium-shade: #7d7d82;
+  --ion-color-medium-tint: #9a9a9f;
+
+  --ion-color-light: #f2f2f7;
+  --ion-color-light-rgb: 242, 242, 247;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-shade: #d5d5da;
+  --ion-color-light-tint: #f3f3f8;
+
+  // Fuente: system font stack idéntico a RN por defecto
+  --ion-font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Roboto,
+    "Segoe UI", sans-serif;
+}
+
+// ── 2. ion-content ─────────────────────────────────────────────
+ion-content {
+  --background: #f2f2f7;
+}
+
+// ── 3. ion-header / ion-toolbar ────────────────────────────────
+// Translucido y sin borde visible — idéntico a RN NavigationContainer
+ion-header {
+  &::after {
+    display: none;
+  } // remueve la sombra de 1px por defecto
+
+  ion-toolbar {
+    --background: rgba(242, 242, 247, 0.94);
+    --border-color: transparent;
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+
+    ion-title {
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      color: var(--ion-text-color);
+    }
+
+    ion-back-button {
+      --color: #155ec0;
+    }
+
+    ion-button {
+      --color: #155ec0;
+      font-weight: 500;
+    }
+  }
+}
+
+// ── 4. ion-list (grouped style = UITableView grouped) ──────────
+// Reemplaza la lista plana por grupos con esquinas redondeadas
+ion-list {
+  background: transparent !important;
+  padding: 0 0 8px !important;
+
+  // Redondear primera y última fila del grupo
+  > ion-item:first-of-type {
+    --border-radius: 12px 12px 0 0;
+    overflow: hidden;
+  }
+  > ion-item:last-of-type {
+    --border-radius: 0 0 12px 12px;
+    --inner-border-width: 0 !important;
+    overflow: hidden;
+  }
+  > ion-item:only-child {
+    --border-radius: 12px;
+    --inner-border-width: 0 !important;
+    overflow: hidden;
+  }
+}
+
+ion-list-header {
+  --background: transparent;
+  --color: #8e8e93;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  padding-inline-start: 4px;
+  padding-top: 20px;
+  padding-bottom: 6px;
+}
+
+// ── 5. ion-item (RN View / FlatList row) ──────────────────────
+// Sin border visible, fondo blanco, mínima altura generosa
+ion-item {
+  --background: #ffffff;
+  --background-activated: rgba(0, 0, 0, 0.04);
+  --background-focused: rgba(0, 0, 0, 0.04);
+  --border-color: #c6c6c8;
+  --inner-border-width: 0 0 0.5px 0;
+  --padding-start: 16px;
+  --inner-padding-end: 16px;
+  --min-height: 50px;
+  --color: #1c1c1e;
+  --detail-icon-color: #c7c7cc; // flecha derecha iOS
+  --detail-icon-opacity: 1;
+  --detail-icon-font-size: 18px;
+  --ripple-color: rgba(0, 0, 0, 0.05);
+  font-size: 15px;
+  font-family: var(--ion-font-family);
+}
+
+ion-label {
+  h2,
+  h3 {
+    font-weight: 500;
+    color: #1c1c1e;
+  }
+  p {
+    color: #8e8e93;
+    font-size: 13px;
+  }
+}
+
+ion-note {
+  font-size: 13px;
+  color: #8e8e93;
+}
+
+// ── 6. ion-card (RN elevated card) ────────────────────────────
+ion-card {
+  --background: #ffffff;
+  border-radius: 14px !important;
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.04),
+    0 2px 6px rgba(0, 0, 0, 0.06) !important;
+  margin: 8px 16px !important;
+}
+
+ion-card-header {
+  padding: 14px 16px 4px;
+}
+ion-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1c1c1e;
+}
+ion-card-subtitle {
+  font-size: 13px;
+  color: #8e8e93;
+  font-weight: 400;
+}
+ion-card-content {
+  font-size: 15px;
+  color: #3c3c43;
+  padding: 4px 16px 14px;
+}
+
+// ── 7. ion-button ─────────────────────────────────────────────
+// Rounded, sin sombra excesiva — igual al TouchableOpacity de RN
+ion-button {
+  --border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.1px;
+  text-transform: none;
+
+  &[expand="block"] {
+    --border-radius: 12px;
+    height: 50px;
+  }
+  &[shape="round"] {
+    --border-radius: 25px;
+  }
+}
+
+// ── 8. ion-fab-button ─────────────────────────────────────────
+ion-fab-button {
+  --border-radius: 16px;
+  --box-shadow: 0 4px 16px rgba(21, 94, 192, 0.35);
+}
+
+// ── 9. ion-input / ion-textarea / ion-select ──────────────────
+ion-input,
+ion-textarea,
+ion-select {
+  --background: #f2f2f7;
+  --border-radius: 10px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  --padding-start: 14px;
+  --padding-end: 14px;
+  --placeholder-color: #8e8e93;
+  --highlight-color-valid: #155ec0;
+  --highlight-color-invalid: #ff3b30;
+  --color: #1c1c1e;
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+// ── 10. ion-searchbar ─────────────────────────────────────────
+ion-searchbar {
+  --background: #e5e5ea;
+  --border-radius: 10px;
+  --box-shadow: none;
+  --placeholder-color: #8e8e93;
+  --icon-color: #8e8e93;
+  --clear-button-color: #8e8e93;
+  --color: #1c1c1e;
+  --cancel-button-color: #155ec0;
+  padding-inline: 12px !important;
+}
+
+// ── 11. ion-segment (RN SegmentedControl) ─────────────────────
+ion-segment {
+  --background: #e5e5ea;
+  border-radius: 10px;
+  padding: 2px;
+  margin: 8px 16px;
+}
+
+ion-segment-button {
+  --border-radius: 8px;
+  --color: #8e8e93;
+  --color-checked: #1c1c1e;
+  --indicator-color: #ffffff;
+  --indicator-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.14);
+  --indicator-height: 100%;
+  font-size: 13px;
+  font-weight: 600;
+  min-height: 34px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+// ── 12. ion-chip ──────────────────────────────────────────────
+ion-chip {
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  --background: #e5e5ea;
+  --color: #1c1c1e;
+}
+
+// ── 13. ion-badge ─────────────────────────────────────────────
+ion-badge {
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 6px;
+}
+
+// ── 14. ion-refresher ─────────────────────────────────────────
+ion-refresher {
+  --color: #155ec0;
+}
+
+// ── 15. ion-spinner ───────────────────────────────────────────
+ion-spinner {
+  color: #155ec0;
+}
+
+// ── 16. DARK MODE ─────────────────────────────────────────────
+// Sigue el sistema de colores RN / iOS dark (no el oscuro de Material)
+body.theme-dark {
+  --ion-background-color: #000000;
+  --ion-background-color-rgb: 0, 0, 0;
+  --ion-text-color: #ffffff;
+  --ion-text-color-rgb: 255, 255, 255;
+  --ion-item-background: #1c1c1e;
+  --ion-card-background: #1c1c1e;
+  --ion-list-background: transparent;
+  --ion-item-border-color: #38383a;
+  --ion-border-color: #38383a;
+  --ion-toolbar-background: rgba(28, 28, 30, 0.94);
+
+  ion-content {
+    --background: #000000;
+  }
+  ion-header ion-toolbar {
+    --background: rgba(28, 28, 30, 0.94);
+  }
+  ion-item {
+    --background: #1c1c1e;
+    --color: #ffffff;
+    --border-color: #38383a;
+  }
+  ion-card {
+    --background: #1c1c1e;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+  }
+  ion-list-header {
+    --color: #636366;
+  }
+  ion-label {
+    h2,
+    h3 {
+      color: #ffffff;
+    }
+    p {
+      color: #636366;
+    }
+  }
+  ion-searchbar {
+    --background: #1c1c1e;
+    --color: #ffffff;
+    --placeholder-color: #636366;
+  }
+  ion-segment {
+    --background: #2c2c2e;
+  }
+  ion-segment-button {
+    --color: #636366;
+    --color-checked: #ffffff;
+    --indicator-color: #3a3a3c;
+    --indicator-box-shadow: none;
+  }
+  ion-input,
+  ion-textarea,
+  ion-select {
+    --background: #2c2c2e;
+    --color: #ffffff;
+  }
+  ion-chip {
+    --background: #2c2c2e;
+    --color: #ffffff;
+  }
+}
+
+
+
+

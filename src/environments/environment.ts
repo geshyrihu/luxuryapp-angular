@@ -1,0 +1,28 @@
+// const urlApi = `https://673nm10h-7069.usw3.devtunnels.ms/`;
+// const urlApi = `https://luxurybuildingapp.com/`;
+// const urlApi = `https://luxurybuildingapp.com/test/`;
+// const urlApi = `http://luxurybuildingapp.com:8060/`;
+const urlApi = `https://localhost:7069/`;
+
+export const environment = {
+  production: false,
+
+  API_BASE_URL: urlApi + "api/",
+  API_DOMONIO: urlApi,
+  HANGFIRE_DASHBOARD_URL: urlApi + "api/hangfire/",
+  API_BASE_SIGNALR: urlApi + "ws/notificationHub",
+  API_FIREBIRD_URL: "http://localhost:5212/api/",
+  ONESIGNAL_APPID: "cb497deb-0fe9-424a-900d-2a006ddadf4f", //Este es para el entorno de desarrollo Flutter
+
+  // Firebase
+
+  firebase: {
+    projectId: "onesignalwebproduction",
+    appId: "1:333252186012:web:d950fb0be847a39b580259",
+    storageBucket: "onesignalwebproduction.firebasestorage.app",
+    apiKey: "AIzaSyADtEWz84WzJ5jISUNI2y5_pKDxOeIlyLo",
+    authDomain: "onesignalwebproduction.firebaseapp.com",
+    messagingSenderId: "333252186012",
+    measurementId: "G-3X95EL36J5",
+  },
+};

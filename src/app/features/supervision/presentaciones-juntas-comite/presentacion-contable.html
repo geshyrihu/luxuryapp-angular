@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Presentación Financiera Armoni House</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .slide {
+        display: none;
+        background: white;
+        border-radius: 20px;
+        padding: 60px;
+        margin: 20px 0;
+        box-shadow-2: 0 20px 60px rgba(0, 0, 0, 0.3);
+        min-height: 80vh;
+        animation: slideIn 0.5s ease-out;
+      }
+
+      .slide.active {
+        display: block;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      h1 {
+        color: #1e3c72;
+        font-size: 3em;
+        margin-bottom: 30px;
+        border-bottom: 4px solid #2a5298;
+        padding-bottom: 20px;
+      }
+
+      h2 {
+        color: #2a5298;
+        font-size: 2em;
+        margin: 30px 0 20px 0;
+      }
+
+      h3 {
+        color: #1e3c72;
+        font-size: 1.5em;
+        margin: 20px 0 15px 0;
+      }
+
+      .script-box {
+        background: #f8f9fa;
+        border-left: 5px solid #2a5298;
+        padding: 25px;
+        margin: 30px 0;
+        border-radius: 10px;
+        font-size: 1.1em;
+        line-height: 1.8;
+      }
+
+      .script-label {
+        font-weight: bold;
+        color: #1e3c72;
+        text-transform: uppercase;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+        display: block;
+      }
+
+      .data-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+      }
+
+      .data-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow-2: 0 10px 25px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .data-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .data-card h3 {
+        color: white;
+        font-size: 1.2em;
+        margin-bottom: 15px;
+      }
+
+      .data-card .value {
+        font-size: 2.5em;
+        font-weight: bold;
+        margin: 10px 0;
+      }
+
+      .data-card .label {
+        font-size: 0.9em;
+        opacity: 0.9;
+      }
+
+      .balance-sheet {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin: 30px 0;
+      }
+
+      .balance-column {
+        background: #f8f9fa;
+        padding: 30px;
+        border-radius: 15px;
+      }
+
+      .balance-column h3 {
+        color: #1e3c72;
+        margin-bottom: 25px;
+        border-bottom: 3px solid #2a5298;
+        padding-bottom: 10px;
+      }
+
+      .balance-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 0;
+        border-bottom: 1px solid #ddd;
+        font-size: 1.1em;
+      }
+
+      .balance-item.total {
+        font-weight: bold;
+        font-size: 1.3em;
+        color: #1e3c72;
+        border-top: 3px solid #2a5298;
+        border-bottom: 3px double #2a5298;
+        margin-top: 15px;
+      }
+
+      .chart-container {
+        background: #f8f9fa;
+        padding: 30px;
+        border-radius: 15px;
+        margin: 30px 0;
+      }
+
+      .bar-chart {
+        display: flex;
+        gap: 20px;
+        align-items: flex-end;
+        height: 400px;
+        padding: 20px;
+      }
+
+      .bar {
+        flex: 1;
+        background: linear-gradient(to top, #667eea, #764ba2);
+        border-radius: 10px 10px 0 0;
+        position: relative;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 15px 10px;
+        color: white;
+        font-weight: bold;
+      }
+
+      .bar:hover {
+        transform: scale(1.05);
+        box-shadow-2: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .bar-label {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 0.9em;
+        color: #333;
+        font-weight: bold;
+      }
+
+      .highlight {
+        background: #fff3cd;
+        padding: 3px 8px;
+        border-radius: 5px;
+        font-weight: bold;
+        color: #856404;
+      }
+
+      .positive {
+        color: #28a745;
+        font-weight: bold;
+      }
+
+      .negative {
+        color: #dc3545;
+        font-weight: bold;
+      }
+
+      .navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        gap: 20px;
+      }
+
+      .nav-button {
+        background: #2a5298;
+        color: white;
+        border: none;
+        padding: 18px 40px;
+        border-radius: 10px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: bold;
+      }
+
+      .nav-button:hover {
+        background: #1e3c72;
+        transform: translateY(-2px);
+        box-shadow-2: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .nav-button:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .slide-indicator {
+        text-align: center;
+        color: white;
+        font-size: 1.2em;
+        margin: 20px 0;
+        font-weight: bold;
+      }
+
+      .title-slide {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .title-slide h1 {
+        font-size: 4em;
+        border: none;
+      }
+
+      .title-slide .subtitle {
+        font-size: 1.8em;
+        color: #666;
+        margin: 20px 0;
+      }
+
+      .title-slide .date {
+        font-size: 1.3em;
+        color: #999;
+      }
+
+      .key-points {
+        background: #e8f4f8;
+        border-left: 5px solid #17a2b8;
+        padding: 25px;
+        margin: 25px 0;
+        border-radius: 10px;
+      }
+
+      .key-points ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .key-points li {
+        padding: 12px 0;
+        font-size: 1.15em;
+        line-height: 1.6;
+      }
+
+      .key-points li:before {
+        content: "✓ ";
+        color: #17a2b8;
+        font-weight: bold;
+        font-size: 1.3em;
+        margin-right: 10px;
+      }
+
+      .alert-box {
+        background: #fff3cd;
+        border-left: 5px solid #ffc107;
+        padding: 20px;
+        margin: 25px 0;
+        border-radius: 10px;
+      }
+
+      .alert-box.danger {
+        background: #f8d7da;
+        border-left: 5px solid #dc3545;
+      }
+
+      .alert-box.success {
+        background: #d4edda;
+        border-left: 5px solid #28a745;
+      }
+
+      .project-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 30px 0;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow-2: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .project-table th {
+        background: #2a5298;
+        color: white;
+        padding: 18px;
+        text-align: left;
+        font-size: 1.1em;
+      }
+
+      .project-table td {
+        padding: 15px 18px;
+        border-bottom: 1px solid #eee;
+        font-size: 1.05em;
+      }
+
+      .project-table tr:hover {
+        background: #f8f9fa;
+      }
+
+      .project-table .total-row {
+        background: #e8f4f8;
+        font-weight: bold;
+        font-size: 1.15em;
+      }
+
+      .project-table .result-positive {
+        background: #d4edda;
+        color: #155724;
+        font-weight: bold;
+      }
+
+      .project-table .result-negative {
+        background: #f8d7da;
+        color: #721c24;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="slide-indicator" id="slideIndicator">Diapositiva 1 de 9</div>
+
+      <!-- Slide 1: Portada -->
+      <div class="slide active">
+        <div class="title-slide">
+          <h1>Residencial Armoni House</h1>
+          <p class="subtitle">Informe Financiero y Operativo</p>
+          <p class="date">Diciembre 2025</p>
+          <p class="date">Junta con Comité de Vigilancia - 14 de Enero 2026</p>
+        </div>
+
+        <div class="script-box">
+          <span class="script-label">🎤 Guion de Narración:</span>
+          Buenas tardes a todos. Bienvenidos a la presentación del informe
+          financiero y operativo del Residencial Armoni House, correspondiente
+          al mes de diciembre de 2025. Mi nombre es [Tu Nombre] y el día de hoy
+          les presentaré un análisis completo de nuestra situación financiera
+          actual. Esta presentación ha sido preparada por la Licenciada Gabriela
+          Reyes, el Contador Público Miguel Pozos, y el Despacho Lobato.
+          Analizaremos los estados financieros, la situación de morosidad, los
+          proyectos de remodelación, y las cotizaciones pendientes de
+          aprobación. Toda la información está presentada de manera clara para
+          que todos, sin importar su conocimiento en finanzas, puedan comprender
+          exactamente cómo se están administrando los recursos de nuestro
+          condominio. Comencemos.
+        </div>
+      </div>
+
+      <!-- Slide 2: Resumen Ejecutivo -->
+      <div class="slide">
+        <h1>Resumen Ejecutivo - Diciembre 2025</h1>
+
+        <div class="data-grid">
+          <div class="data-card">
+            <h3>Situación Financiera</h3>
+            <div class="value">$9.1M</div>
+            <div class="label">Activos Totales</div>
+          </div>
+          <div
+            class="data-card"
+            style="
+              background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            "
+          >
+            <h3>Resultado del Año</h3>
+            <div class="value">$5.0M</div>
+            <div class="label">Utilidad Acumulada 2025</div>
+          </div>
+          <div
+            class="data-card"
+            style="
+              background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            "
+          >
+            <h3>Inversiones</h3>
+            <div class="value">$7.9M</div>
+            <div class="label">Fondo de Reserva</div>
+          </div>
+          <div
+            class="data-card"
+            style="
+              background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            "
+          >
+            <h3>Liquidez Total</h3>
+            <div class="value">$8.6M</div>
+            <div class="label">Disponible (Bancos + Inversiones)</div>
+          </div>
+        </div>
+
+        <div class="key-points">
+          <h3>Puntos Clave del Periodo:</h3>
+          <ul>
+            <li>
+              El condominio cerró el año 2025 con una
+              <span class="highlight">posición financiera sólida</span> de 9.1
+              millones de pesos en activos
+            </li>
+            <li>
+              Generamos una utilidad acumulada de
+              <span class="highlight">5 millones de pesos durante 2025</span>,
+              demostrando excelente gestión
+            </li>
+            <li>
+              Nuestro fondo de reserva alcanzó
+              <span class="highlight">7.9 millones de pesos</span>, garantizando
+              estabilidad
+            </li>
+            <li>
+              Mantenemos <span class="highlight">liquidez excepcional</span> de
+              8.6 millones disponibles
+            </li>
+            <li>
+              El Proyecto Fase II tiene un
+              <span class="highlight">superávit de 6.9 millones de pesos</span>
+            </li>
+            <li>
+              Morosidad mínima:
+              <span class="highlight">solo 1 condómino</span> con adeudo de
+              $86,794
+            </li>
+          </ul>
+        </div>
+
+        <div class="script-box">
+          <span class="script-label">🎤 Guion de Narración:</span>
+          Iniciemos con el resumen ejecutivo de diciembre y el cierre del año
+          2025. Me complace informarles que el Residencial Armoni House mantiene
+          una posición financiera extremadamente sólida. Nuestros activos
+          totales alcanzan los 9 punto 1 millones de pesos. Durante el año 2025
+          completo, generamos una utilidad acumulada de 5 millones de pesos, lo
+          que demuestra que la administración está operando con gran eficiencia.
+          Es importante destacar que nuestro fondo de reserva, que es el colchón
+          financiero del condominio, alcanzó 7 punto 9 millones de pesos.
+          Además, contamos con una liquidez total excepcional de 8 punto 6
+          millones entre bancos e inversiones. El Proyecto de Remodelación Fase
+          2 presenta un superávit de 6 punto 9 millones de pesos, lo que es
+          excelente. Y en cuanto a morosidad, tenemos una situación muy
+          favorable: solo un condómino con adeudo de 86 mil 794 pesos. En
+          resumen, Armoni House cierra el 2025 en una posición financiera
+          excelente.
+        </div>
+      </div>
+
+      <!-- Slide 3: Estado de Posición Financiera -->
+      <div class="slide">
+        <h1>Estado de Posición Financiera</h1>
+        <h2>Balance General al 31 de Diciembre 2025</h2>
+
+        <div class="balance-sheet">
+          <div class="balance-column">
+            <h3>ACTIVOS (Lo que tenemos)</h3>
+            <div class="balance-item">
+              <span>Caja Chica</span>
+              <span>$15,000</span>
+            </div>
+            <div class="balance-item">
+              <span>Efectivo en Bancos</span>
+              <span>$680,830</span>
+            </div>
+            <div class="balance-item">
+              <span>Inversiones (Fondo de Reserva)</span>
+              <span>$7,936,830</span>
+            </div>
+            <div class="balance-item">
+              <span>Por Cobrar a Condóminos</span>
+              <span>$146,024</span>
+            </div>
+            <div class="balance-item">
+              <span>Deudores Diversos</span>
+              <span>$3,388</span>
+            </div>
+            <div class="balance-item">
+              <span>Subsidio al Empleo</span>
+              <span>$572</span>
+            </div>
+            <div class="balance-item">
+              <span>ISR Retenido por Bancos</span>
+              <span>$65,594</span>
+            </div>
+            <div class="balance-item">
+              <span>Seguro por Devengar</span>
+              <span>$219,957</span>
+            </div>
+            <div class="balance-item total">
+              <span>TOTAL ACTIVOS</span>
+              <span>$9,068,194</span>
+            </div>
+          </div>
+
+          <div class="balance-column">
+            <h3>PASIVOS Y CAPITAL</h3>
+            <div class="balance-item">
+              <span>Proveedores</span>
+              <span>$1,693,583</span>
+            </div>
+            <div class="balance-item">
+              <span>Acreedores</span>
+              <span>$22,388</span>
+            </div>
+            <div class="balance-item">
+              <span>Anticipo de Clientes</span>
+              <span>$299,851</span>
+            </div>
+            <div class="balance-item">
+              <span>Sueldos por Pagar</span>
+              <span>$0</span>
+            </div>
+            <div class="balance-item">
+              <span>Contribuciones Sociales</span>
+              <span>$114,960</span>
+            </div>
+            <div class="balance-item">
+              <span>Impuestos por Pagar</span>
+              <span>$13,653</span>
+            </div>
+            <div class="balance-item">
+              <span>Impuestos Retenidos</span>
+              <span>$62,058</span>
+            </div>
+            <div class="balance-item total">
+              <span>TOTAL PASIVOS</span>
+              <span>$2,206,493</span>
+            </div>
+            <div
+              class="balance-item total"
+              style="background: #d4edda; color: #155724; margin-top: 30px"
+            >
+              <span>CAPITAL ACUMULADO</span>
+              <span>$6,861,702</span>
+            </div>
+            <div
+              class="balance-item"
+              style="font-size: 0.95em; padding: 10px 0"
+            >
+              <span>• Resultado del Ejercicio 2025</span>
+              <span class="positive">$4,979,021</span>
+            </div>
+            <div
+              class="balance-item"
+              style="font-size: 0.95em; padding: 10px 0"
+            >
+              <span>• Remanente Años Anteriores</span>
+              <span>$1,882,681</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert-box success">
+          <strong>Indicador Clave:</strong> Ratio de solvencia de
+          <strong>4.1 a 1</strong> - Por cada peso que debemos, tenemos más de 4
+          pesos en activos. Posición financiera muy saludable.
+        </div>
+
+        <div class="script-box">
+          <span class="script-label">🎤 Guion de Narración:</span>
+          Ahora veamos nuestro estado de posición financiera, que es como una
+          fotografía exacta de la salud financiera del condominio al 31 de
+          diciembre. Del lado de los ACTIVOS, es decir, todo lo que poseemos,
+          tenemos: 15 mil pesos en caja chica para gastos menores, 680 mil pesos
+          en efectivo en bancos para operaciones diarias, y lo más importante, 7
+          millones 936 mil pesos en inversiones que conforman nuestro fondo de
+          reserva. También tenemos 146 mil pesos por cobrar a condóminos,
+          principalmente cuotas pendientes, y otros activos menores que suman
+          289 mil pesos. El total de activos es de 9 millones 68 mil pesos. Del
+          lado de los PASIVOS, es decir, lo que debemos, tenemos: un millón 693
+          mil a proveedores por servicios y suministros, 22 mil a otros
+          acreedores, 299 mil en anticipos de clientes, y 190 mil en
+          obligaciones fiscales y laborales. Nuestros pasivos totales son 2
+          millones 206 mil pesos. Lo más importante es el CAPITAL ACUMULADO de 6
+          millones 861 mil pesos, que incluye la utilidad de este año de 4
+          millones 979 mil, más remanentes de años anteriores de un millón 882
+          mil. Esto significa que por cada peso que debemos, tenemos más de 4
+          pesos en activos. Una posición financiera muy sólida y saludable.
+        </div>
+      </div>
+
+      <!-- Slide 4: Estado de Resultados -->
+      <div class="slide">
+        <h1>Estado de Resultados</h1>
+        <h2>Ingresos y Gastos - Año 2025</h2>
+
+        <div class="chart-container">
+          <h3>Desempeño Anual (en millones de pesos)</h3>
+          <div class="bar-chart">
+            <div
+              style="
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-end;
+              "
+            >
+              <div class="bar" style="height: 90%">
+                <div style="font-size: 1.2em">$21.4M</div>
+              </div>
+              <div class="bar-label">Ingresos<br />Totales</div>
+            </div>
+            <div
+              style="
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-end;
+              "
+            >
+              <div
+                class="bar"
+                style="
+                  height: 83%;
+                  background: linear-gradient(to top, #f093fb, #f5576c);
+                "
+              >
+                <div style="font-size: 1.2em">$20.0M</div>
+              </div>
+              <div class="bar-label">Gastos<br />Totales</div>
+            </div>
+            <div
+              style="
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-end;
+              "
+            >
+              <div
+                class="bar"
+                style="
+                  height: 65%;
+                  background: linear-gradient(to top, #11998e, #38ef7d);
+                "
+              >
+                <div style="font-size: 1.2em">$6.0M</div>
+              </div>
+              <div class="bar-label">Cuotas<br />Extraordinarias</div>
+            </div>
+            <div
+              style="
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-end;
+              "
+            >
+              <div
+                class="bar"
+                style="
+                  height: 52%;
+                  background: linear-gradient(to top, #4facfe, #00f2fe);
+                "
+              >
+                <div style="font-size: 1.2em">$5.0M</div>
+              </div>
+              <div class="bar-label">Utilidad<br />Final</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="data-grid">
+          <div
+            class="data-card"
+            style="
+              background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            "
+          >
+            <h3>Ingresos Principales</h3>
+            <div class="label">Cuotas de Mantenimiento</div>
+            <div class="value">$20.5M</div>
+            <div class="label">Productos Financieros: $509K</div>
+            <div class="label">Otros Ingresos: $405K</div>
+          </div>
+          <div
+            class="data-card"
+            style="
+              background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+            "
+          >
+            <h3>Gastos Operativos</h3>
+            <div class="label">Total Año</div>
+            <div class="value">$20.0M</div>
+            <div class="label">Personal: $4.4M</div>
+            <div class="label">Operación: $9.9M</div>
+            <div class="label">Mantenimiento: $2.9M</div>
+          </div>
+          <div
+            class="data-card"
+            style="
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            "
+          >
+            <h3>Diciembre</h3>
+            <div class="label">Resultado del Mes</div>
+            <div class="value negative">-$243K</div>
+            <div class="label">Ingresos: $1.8M</div>
+            <div class="label">Gastos: $2.1M</div>
+          </div>
+        </div>
+
+        <div class="alert-box">
+          <strong>Nota Importante:</strong> Diciembre presentó un resultado
+          negativo de $243K debido a gastos extraordinarios de $124K y una
+          disminución temporal en ingresos. Sin embargo, el resultado acumulado
+          del año es altamente positivo con $5.0M de utilidad.
+        </div>
+
+        <div class="script-box">
+          <span class="script-label">🎤 Guion de Narración:</span>
+          Analicemos el estado de resultados del año 2025. Durante el año
+          completo, nuestros ingresos totales fueron de 21 millones 415 mil
+          pesos. La mayor parte proviene de las cuotas de mantenimiento que los
+          condóminos pagaron, que sumaron 20 millones 526 mil pesos. También
+          generamos 509 mil pesos en productos financieros, que son los
+          rendimientos de nuestras inversiones, y 405 mil pesos adicionales por
+          otros conceptos como uso de salón, asadores y multas. Adicionalmente,
+          recibimos 6 millones de pesos en cuotas extraordinarias para el
+          proyecto de remodelación. Nuestros gastos operativos totales fueron de
+          19 millones 975 mil pesos. Los gastos más importantes fueron: 9
+          millones 895 mil en gastos de operación que incluye todos los
+          servicios como luz, agua, limpieza y seguridad; 4 millones 446 mil en
+          gastos de personal que son los salarios de nuestro equipo; 2 millones
+          940 mil en mantenimiento de las instalaciones; y 2 millones 663 mil en
+          gastos administrativos. Antes de las cuotas extraordinarias, teníamos
+          un resultado de un millón 439 mil pesos. Al sumar los 6 millones de
+          cuotas extraordinarias y restar 2 millones 460 mil de egresos
+          extraordinarios, obtuvimos una utilidad final de 4 millones 979 mil
+          pesos. Es importante mencionar que diciembre tuvo un resultado
+          negativo de 243 mil pesos debido a gastos extraordinarios, pero esto
+          no afecta el excelente resultado anual.
+        </div>
+      </div>
+
+      <!-- Slide 5: Morosidad -->
+      <div class="slide">
+        <h1>Situación de Morosidad</h1>
+        <h2>Estado al 14 de Enero 2026</h2>
+
+        <div class="alert-box success">
+          <h3 style="margin-bottom: 15px">
+            ✓ Situación Excepcional de Cobranza
+          </h3>
+          <p style="font-size: 1.2em; line-height: 1.6">
+            El condominio presenta una de las mejores situaciones de morosidad
+            posibles:
+            <strong>solo 1 condómino</strong> con adeudos pendientes de un total
+            de aproximadamente 60 unidades, lo que representa menos del
+            <strong>2% de morosidad</strong>.
+          </p>
+        </div>
+
+        <div class="data-grid">
+          <div
+            class="data-card"
+            style="
+              background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            "
+          >
+            <h3>Total Adeudado</h3>
+            <div class="value">$86,794</div>
+            <div class="label">Un solo condómino</div>
+          </div>
+          <div
+            class="data-card"
+            style="
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            "
+          >
+            <h3>Índice de Cobranza</h3>
+            <div class="value">98%+</div>
+            <div class="label">Excelente recuperación</div>
+          </div>
+          <div
+            class="data-card"
+            style="
+              background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            "
+          >
+            <h3>Condóminos al Corriente</h3>
+            <div class="value">~59</div>
+            <div class="label">De ~60 unidades totales</div>
+          </div>
+        </div>
+
+        <div class="key-points">
+          <h3>Detalle del Adeudo:</h3>
+          <ul>
+            <li><strong>Condómino:</strong> Mary Lastra</li>
+            <li><strong>Departamento:</strong> 1308, Torre 4</li>
+            <li>
+              <strong>Concepto principal:</strong> Mantenimiento y Agua por
+              $86,794.30
+            </li>
+            <li>
+              <strong>Sin cargos adicionales:</strong> $0 en multas, penas
+              moratorias o intereses
+            </li>
+            <li><strong>Sin cuotas extras pendientes:</strong> $0</li>
+          </ul>
+        </div>
+
+        <div class="alert-box">
+          <strong>Recomendación:</strong> Continuar con el proceso de cobranza
+          establecido para recuperar este adeudo. La administración debe
+          mantener comunicación directa con el condómino para establecer un plan
+          de pagos o proceder conforme al reglamento.
+        </div>
+
+        <div class="script-box">
+          <span class="script-label">🎤 Guion de Narración:</span>
+          Ahora hablemos de la situación de morosidad, y aquí tenemos excelentes
+          noticias. Al 14 de enero de 2026, el Residencial Armoni House presenta
+          una situación excepcional de cobranza. Tenemos únicamente un condómino
+          con adeudos pendientes. Se trata de Mary Lastra, del departamento 1308
+          en Torre 4, quien debe 86 mil 794 pesos por concepto de mantenimiento
+          y agua. No tiene cargos adicionales por multas, penas moratorias o
+          intereses. Tampoco tiene cuotas extraordinarias pendientes. Esto
+          significa que de aproximadamente 60 unidades en el condominio, solo
+          una tiene adeudos, lo que representa un índice de morosidad de menos
+          del 2%. Nuestro índice de cobranza es superior al 98%, lo cual es
+          excepcional en la industria de condominios. La recomendación es
+          continuar con el proceso de cobranza establecido, manteniendo
+          comunicación con el condómino para establecer un plan de pagos o
+          proceder conforme al reglamento. En resumen, la situación de cobranza
+          es excelente y demuestra una comunidad comprometida con el pago
+          oportuno de sus obligaciones.
+        </div>
+      </div>
+
+      <!-- Slide 6: Proyecto Fase 1 y 2 -->
+      <div class="slide">
+        <h1>Proyecto de Remodelación</h1>
+        <h2>Estado de Resultados - Fase I y Fase II</h2>
+
+        <table class="project-table">
+          <thead>
+            <tr>
+              <th colspan="2">PROYECTO FASE I</th>
+              <th>Monto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="2">
+                <strong>INGRESOS CUOTA EXTRAORDINARIA</strong>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Ingresos 2022 Fase I</td>
+              <td>$6,000,000</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Ingresos 2023 Fase I</td>
+              <td>$5,400,000</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Ingresos 2024 Ene-Mar Fase I</td>
+              <td>$1,080,000</td>
+            </tr>
+            <tr class="total-row">
+              <td></td>
+              <td><strong>SUMA INGRESOS FASE I</strong></td>
+              <td><strong>$12,480,000</strong></td>
+            </tr>
+            <tr>
+              <td colspan="2"><strong>GASTOS POR REMODELACIÓN</strong></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Gastos 2022 Fase I</td>
+              <td>$123,387</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Gastos 2023 Fase I</td>
+              <td>$8,644,294</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Gastos 2024 Fase I</td>
+              <td>$7,034,534</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Gastos y Provisión 2025 Fase I</td>
+              <td>$594,403</td>
+            </tr>
+            <tr class="total-row">
+              <td></td>
+              <td><strong>SUMA GASTOS FASE I</strong></td>
+              <td><strong>$16,396,618</strong></td>
+            </tr>
+            <tr class="result-negative">
+              <td colspan="2">
+                <strong>RESULTADO DEL PROYECTO FASE I</strong>
+              </td>
+              <td><strong>-$3,916,618</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="project-table" style="margin-top: 40px">
+          <thead>
+            <tr>
+              <th colspan="2">PROYECTO FASE II</th>
+              <th>Monto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="2">
+                <strong>INGRESOS CUOTA EXTRAORDINARIA</strong>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Ingresos 2024 Oct-Dic Fase II</td>
+              <td>$1,800,000</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Ingresos 2025 Ene-Oct Fase II</td>
+              <td>$6,000,000</td>
+            </tr>
+            <tr class="total-row">
+              <td></td>
+              <td><strong>SUMA INGRESOS FASE II</strong></td>
+              <td><strong>$7,800,000</strong></td>
+            </tr>
+            <tr>
+              <td colspan="2"><strong>GASTOS POR REMODELACIÓN</strong></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Gastos 2025 Fase II</td>
+              <td>$851,440</td>
+            </tr>
+            <tr class="total-row">
+              <td></td>
+              <td><strong>SUMA GASTOS FASE II</strong></td>
+              <td><strong>$851,440</strong></td>
+            </tr>
+            <tr class="result-positive">
+              <td colspan="2">
+                <strong>RESULTADO DEL PROYECTO FASE II</strong>
+              </td>
+              <td><strong>$6,948,560</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="script-box">
+          <span class="script-label">🎤 Guion de Narración:</span>
+          Ahora revisemos el estado de nuestros proyectos de remodelación, que
+          se han dividido en dos fases. La Fase 1 inició en 2022 y concluyó en
+          2024. Recaudamos 12 millones 480 mil pesos en cuotas extraordinarias:
+          6 millones en 2022, 5 millones 400 mil en 2023, y un millón 80 mil en
+          los primeros meses de 2024. Los gastos totales de esta fase fueron 16
+          millones 396 mil pesos, distribuidos principalmente en 2023 con 8
+          millones 644 mil, y en 2024 con 7 millones 34 mil. Esto resultó en un
+          déficit de 3 millones 916 mil pesos en la Fase 1, lo cual era esperado
+          ya que las cuotas no alcanzaban a cubrir el costo total de las
+          mejoras. La Fase 2 inició en octubre de 2024 y continúa actualmente.
+          Hemos recaudado 7 millones 800 mil pesos: un millón 800 mil en el
+          último trimestre de 2024 y 6 millones durante 2025. Los gastos hasta
+          ahora son de solo 851 mil pesos, lo que resulta en un superávit de 6
+          millones 948 mil pesos en la Fase 2. Este superávit compensa
+          parcialmente el déficit de la Fase 1 y demuestra una mejor planeación
+          financiera. La Fase 2 aún está en desarrollo, por lo que este
+          superávit se utilizará para las obras pendientes.
+        </div>
+      </div>
+
+      <!-- Slide 7: Flujo de Efectivo -->
+      <div class="slide">
+        <h1>Análisis de Flujo de Efectivo</h1>
+        <h2>Disponibilidad Real al 31 de Diciembre 2025</h2>
+
+        <div class="balance-sheet">
+          <div class="balance-column">
+            <h3>BANCOS E INVERSIONES</h3>
+            <div class="balance-item">
+              <span>BBVA Cuenta 0112748401</span>
+              <span>$616,238</span>
+            </div>
+            <div class="balance-item">
+              <span>BBVA Cuenta 0112726947</span>
+              <span>$64,592</span>
+            </div>
+            <div class="balance-item">
+              <span>Inversión BBVA (Fondo Reserva)</span>
+              <span>$7,936,830</span>
+            </div>
+            <div class="balance-item total">
+              <span>DISPONIBLE TOTAL</span>
+              <span>$8,617,660</span>
+            </div>
+          </div>
+
+          <div class="balance-column">
+            <h3>GASTOS PROVISIONADOS</h3>
+            <div class="balance-item">
+              <span>Provisión Obra Fase I Pendiente</span>
+              <span class="negative">$315,071</span>
+            </div>
+            <div class="balance-item">
+              <span>Elevadores Otis (Feb-Mar)</span>
+              <span class="negative">$287,142</span>
+            </div>
+            <div class="balance-item">
+              <span>Elevadores Otis (Oct-Dic 24)</span>
+              <span class="negative">$777,343</span>
+            </div>
+            <div class="balance-item">
+              <span>Gastos Pendientes Nov-25</span>
+              <span class="negative">$314,026</span>
+            </div>
+            <div class="balance-item">
+              <span>Contribución Social</span>
+              <span class="negative">$114,754</span>
+            </div>
+            <div class="balance-item">
+              <span>Impuestos Retenidos</span>
+              <span class="negative">$62,058</span>
+            </div>
+            <div class="balance-item">
+              <span>Impuestos por Pagar</span>
+              <span class="negative">$13,653</span>
+            </div>
+            <div class="balance-item total">
+              <span>TOTAL PROVISIONADO</span>
+              <span class="negative">$1,884,048</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="data-card"
+          style="
+            margin: 30px 0;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+          "
+        >
+          <h3 style="color: white">Disponibilidad Real Neta</h3>
+          <div class="value">$6,733,612</div>
+          <div class="label">
+            Efectivo disponible después de provisiones comprometidas
+          </div>
+        </div>
+
+        <div class="key-points">
+          <h3>Análisis de Liquidez:</h3>
+          <ul>
+            <li>
+              Liquidez total de
+              <span class="highlight">$8.6 millones</span> entre bancos e
+              inversiones
+            </li>
+            <li>
+              Gastos comprometidos y provisionados:
+              <span class="highlight">$1.9 millones</span>
+            </li>
+            <li>
+              Disponibilidad neta real:
+              <span class="highlight">$6.7 millones</span>
+            </li>
+            <li>
+              Esta liquidez cubre aproximadamente
+              <span class="highlight">4 meses de operación completa</span>
+            </li>
+            <li>Posición extremadamente sólida para cualquier contingencia</li>
+          </ul>
+        </div>
+
+        <div class="script-box">
+          <span class="script-label">🎤 Guion de Narración:</span>
+          Analicemos el flujo de efectivo y la disponibilidad real del
+          condominio al 31 de diciembre. En cuanto a bancos e inversiones,
+          tenemos dos cuentas en BBVA con saldos de 616 mil y 64 mil pesos
+          respectivamente, más nuestra inversión principal de 7 millones 936 mil
+          pesos. Esto suma un total disponible de 8 millones 617 mil pesos. Sin
+          embargo, es importante considerar los gastos que ya están
+          comprometidos o provisionados. Tenemos 315 mil pesos pendientes de la
+          obra Fase 1, 287 mil de servicios de elevadores de febrero y marzo,
+          777 mil de elevadores de octubre a diciembre del año pasado, 314 mil
+          de gastos pendientes de noviembre, y 190 mil en obligaciones fiscales
+          y laborales. El total de gastos provisionados es de un millón 884 mil
+          pesos. Al restar estos compromisos de nuestra liquidez total,
+          obtenemos una disponibilidad neta real de 6 millones 733 mil pesos.
+          Esta cantidad es más que suficiente y representa aproximadamente 4
+          meses de operación completa del condominio. Estamos en una posición de
+          liquidez extremadamente sólida que nos permite enfrentar cualquier
+          contingencia sin problemas.
+        </div>
+      </div>
+
+      <!-- Slide 8: Cotizaciones Pendientes -->
+      <div class="slide">
+        <h1>Cotizaciones para Aprobación</h1>
+        <h2>Mejoras y Servicios Propuestos</h2>
+
+        <div class="key-points">
+          <h3>Solicitudes de Inversión:</h3>
+          <ul>
+            <li>
+              <strong>Centro de Lavado:</strong> Instalación o mejora del área
+              de lavandería común
+            </li>
+            <li>
+              <strong>Reductor de Velocidad:</strong> Topes o sistemas para
+              control de velocidad vehicular
+            </li>
+            <li>
+              <strong>Radares de Velocidad:</strong> Sistema de monitoreo
+              electrónico de velocidad
+            </li>
+            <li>
+              <strong>Toldo para Snack:</strong> Cubierta para área de
+              alimentos/bebidas
+            </li>
+          </ul>
+        </div>
+
+        <div class="alert-box">
+          <strong>Nota:</strong> Las cotizaciones detalladas con montos,
+          especificaciones técnicas y proveedores están disponibles en el
+          expediente físico de la junta. Se requiere la aprobación del Comité de
+          Vigilancia para proceder con estas inversiones.
+        </div>
+
+        <div class="data-grid">
+          <div
+            class="data-card"
+            style="
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            "
+          >
+            <h3>Prioridad</h3>
+            <div class="value">Media-Alta</div>
+            <div class="label">Mejoras de confort y seguridad</div>
+          </div>
+          <div
+            class="data-card"
+            style="
+              background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            "
+          >
+            <h3>Disponibilidad</h3>
+            <div class="value">$6.7M</div>
+            <div class="label">Liquidez para inversiones</div>
+          </div>
+          <div
+            class="data-card"
+            style="
+              background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            "
+          >
+            <h3>Impacto</h3>
+            <div class="value">Positivo</div>
+            <div class="label">Valor agregado al condominio</div>
+          </div>
+        </div>
+
+        <div class="key-points">
+          <h3>Beneficios Esperados:</h3>
+          <ul>
+            <li>
+              <strong>Centro de Lavado:</strong> Mayor comodidad para
+              residentes, posible generación de ingresos adicionales
+            </li>
+            <li>
+              <strong>Reductor y Radares de Velocidad:</strong> Mayor seguridad
+              vial, especialmente para niños y peatones
+            </li>
+            <li>
+              <strong>Toldo Snack:</strong> Mejor experiencia en áreas
+              recreativas, protección contra elementos
+            </li>
+          </ul>
+        </div>
+
+        <div class="script-box">
+          <span class="script-label">🎤 Guion de Narración:</span>
+          Ahora revisemos las cotizaciones pendientes de aprobación. La
+          administración ha identificado cuatro áreas de mejora que requieren
+          inversión. Primero, un centro de lavado, que permitirá a los
+          residentes contar con un área común de lavandería moderna y eficiente,
+          agregando comodidad y potencialmente generando ingresos adicionales
+          para el condominio. Segundo, reductores de velocidad, que son topes o
+          sistemas para controlar la velocidad de los vehículos dentro del
+          condominio, mejorando significativamente la seguridad, especialmente
+          para niños y peatones. Tercero, radares de velocidad, un sistema de
+          monitoreo electrónico que complementa los reductores físicos y ayuda a
+          concientizar a los conductores sobre su velocidad. Y cuarto, un toldo
+          para el área de snack, que proporcionará sombra y protección contra
+          lluvia en las áreas recreativas, mejorando la experiencia de los
+          residentes. Las cotizaciones detalladas con montos específicos,
+          especificaciones técnicas y proveedores están disponibles en el
+          expediente físico para su revisión. Considerando que contamos con 6
+          punto 7 millones de pesos en liquidez disponible, estas inversiones
+          son financieramente viables y agregarán valor significativo al
+          condominio. Se solicita la aprobación del Comité de Vigilancia para
+          proceder.
+        </div>
+      </div>
+
+      <!-- Slide 9: Conclusiones -->
+      <div class="slide">
+        <h1>Conclusiones y Cierre</h1>
+
+        <div class="key-points">
+          <h3>Resumen General 2025:</h3>
+          <ul>
+            <li>
+              Armoni House cierra el año con
+              <span class="highlight">salud financiera excepcional</span>
+            </li>
+            <li>Utilidad acumulada de $5.0M demuestra eficiencia operativa</li>
+            <li>
+              Morosidad mínima del 2% - mejor que el promedio de la industria
+            </li>
+            <li>
+              Proyecto Fase II con superávit de $6.9M para obras pendientes
+            </li>
+            <li>
+              Liquidez de $6.7M después de provisiones garantiza estabilidad
+            </li>
+            <li>
+              Inversiones generando rendimientos consistentes de $509K anuales
+            </li>
+          </ul>
+        </div>
+
+        <div class="data-grid">
+          <div
+            class="data-card"
+            style="
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            "
+          >
+            <h3>Activos Totales</h3>
+            <div class="value">$9.1M</div>
+            <div class="label">Posición Sólida</div>
+          </div>
+          <div
+            class="data-card"
+            style="
+              background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            "
+          >
+            <h3>Capital</h3>
+            <div class="value">$6.9M</div>
+            <div class="label">Patrimonio Consolidado</div>
+          </div>
+          <div
+            class="data-card"
+            style="
+              background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            "
+          >
+            <h3>Rentabilidad</h3>
+            <div class="value">73%</div>
+            <div class="label">ROE Anual 2025</div>
+          </div>
+        </div>
+
+        <div class="alert-box success">
+          <h3>Perspectiva 2026:</h3>
+          <p style="font-size: 1.1em; line-height: 1.6; margin-top: 10px">
+            Con base en los resultados de 2025 y la sólida posición financiera
+            actual, el condominio está perfectamente posicionado para continuar
+            su crecimiento sostenido, completar las obras de remodelación
+            pendientes, y mantener los más altos estándares de servicio y
+            mantenimiento para nuestros residentes.
+          </p>
+        </div>
+
+        <div class="script-box">
+          <span class="script-label">🎤 Guion de Narración:</span>
+          Para concluir esta presentación, quiero resumir los puntos más
+          importantes del cierre del año 2025. El Residencial Armoni House se
+          encuentra en una posición financiera excepcional. Cerramos el año con
+          9 punto 1 millones de pesos en activos totales y 6 punto 9 millones en
+          capital acumulado. Generamos una utilidad de 5 millones de pesos
+          durante 2025, lo que demuestra una eficiencia operativa sobresaliente.
+          Nuestra situación de morosidad es ejemplar, con menos del 2% de
+          adeudos, muy por debajo del promedio de la industria. El Proyecto de
+          Remodelación Fase 2 cuenta con un superávit de 6 punto 9 millones de
+          pesos que se utilizará para completar las obras pendientes. Mantenemos
+          una liquidez disponible de 6 punto 7 millones después de provisiones,
+          lo que nos da total tranquilidad financiera. Y nuestras inversiones
+          están generando rendimientos anuales de 509 mil pesos. Si calculamos
+          el retorno sobre el capital, estamos generando un impresionante 73% de
+          rentabilidad anualizada. De cara al 2026, el condominio está
+          perfectamente posicionado para continuar su crecimiento sostenido,
+          completar las remodelaciones pendientes, y seguir brindando el mejor
+          servicio a nuestros residentes. Agradecemos la confianza depositada en
+          la administración y quedamos a sus órdenes para cualquier pregunta o
+          aclaración. Muchas gracias por su atención y participación.
+        </div>
+      </div>
+
+      <div class="navigation">
+        <button class="nav-button" id="prevBtn" onclick="changeSlide(-1)">
+          ← Anterior
+        </button>
+        <button class="nav-button" id="nextBtn" onclick="changeSlide(1)">
+          Siguiente →
+        </button>
+      </div>
+    </div>
+
+    <script>
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".slide");
+      const totalSlides = slides.length;
+
+      function showSlide(n) {
+        if (n >= totalSlides) currentSlide = totalSlides - 1;
+        if (n < 0) currentSlide = 0;
+
+        slides.forEach((slide) => slide.classList.remove("active"));
+        slides[currentSlide].classList.add("active");
+
+        document.getElementById("slideIndicator").textContent = `Diapositiva ${
+          currentSlide + 1
+        } de ${totalSlides}`;
+
+        document.getElementById("prevBtn").disabled = currentSlide === 0;
+        document.getElementById("nextBtn").disabled =
+          currentSlide === totalSlides - 1;
+
+        window.scrollTo(0, 0);
+      }
+
+      function changeSlide(n) {
+        currentSlide += n;
+        showSlide(currentSlide);
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") changeSlide(-1);
+        if (e.key === "ArrowRight") changeSlide(1);
+      });
+
+      showSlide(0);
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+

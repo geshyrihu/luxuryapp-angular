@@ -1,0 +1,128 @@
+@if (dataSignal()) {
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block">
+  <div class="card">
+    <p-table
+      [globalFilterFields]="globalFilterFields"
+      [value]="dataSignal()"
+      #dt
+      styleClass="custom-table"
+    >
+      <ng-template #caption>
+        <primeng-custom-caption
+          (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+          [dt]="dt"
+        />
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th>Imagen</th>
+          <th pSortableColumn="name">
+            Nombre
+            <p-sortIcon field="name" />
+          </th>
+          <th>Ubicación</th>
+          <th>Volumen</th>
+          <th colspan="2">Tipo</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td class="text-center">
+            <div class="flex">
+              <p-image
+                [src]="
+                  item.pathImage
+                    ? item.pathImage
+                    : 'assets/images/default-avatar.png'
+                "
+                alt="."
+                width="50"
+                class="mr-2"
+                [preview]="true"
+              ></p-image>
+              @if (!item.pathImage) {
+              <img src="assets/images/default-avatar.png" alt="" width="50" />
+              }
+            </div>
+          </td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.ubication }}</td>
+          <td>{{ item.volumen }}</td>
+          <td>
+            <!-- {{ item.typePiscina | ETypePiscina }} -->
+            {{ item.typePiscina }}
+          </td>
+          <!-- Opciones -->
+          <td class="no-print">
+            <div class="flex">
+              <custom-button-edit
+                (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+              />
+              <custom-button-delete (confirmed)="onDelete(item.id)" />
+              <custom-button-item
+                iconClass="pi pi-book"
+                label="Bitácora"
+                [routerLink]="['/logbook/piscina-bitacora/', item.id]"
+              />
+            </div>
+          </td>
+
+          <!-- Opciones -->
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<div class="block md:hidden">
+  <div class="card">
+    <app-data-view-mobile
+      [data]="dataSignal()"
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+      [globalFilterFields]="globalFilterFields"
+    >
+      <ng-template #listItemTemplate let-item>
+        <ion-item lines="full" class="ion-no-padding">
+          <ion-avatar slot="start">
+            <img
+              [src]="item.pathImage || 'assets/images/default-avatar.png'"
+              alt="Piscina"
+            />
+          </ion-avatar>
+          <ion-label>
+            <h2 class="font-bold m-0 text-base">{{ item.name }}</h2>
+            <p class="text-sm text-500 m-0">📍 {{ item.ubication }}</p>
+            <div class="flex mt-1">
+              <small class="text-xs"
+                ><strong class="text-primary">Vol:</strong> {{ item.volumen
+                }}</small
+              >
+              <small class="text-xs"
+                ><strong class="text-primary">Tipo:</strong> {{ item.typePiscina
+                }}</small
+              >
+            </div>
+          </ion-label>
+          <div slot="end">
+            <app-action-menu>
+              <ng-container actions>
+                <ion-button-edit
+                  (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+                />
+                <ion-button-delete (confirmed)="onDelete(item.id)" />
+                <ion-button-item
+                  iconName="book-outline"
+                  label="Bitácora"
+                  [routerLink]="['/logbook/piscina-bitacora/', item.id]"
+                />
+              </ng-container>
+            </app-action-menu>
+          </div>
+        </ion-item>
+      </ng-template>
+    </app-data-view-mobile>
+  </div>
+</div>
+}

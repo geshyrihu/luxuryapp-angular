@@ -1,0 +1,39 @@
+<div class="alert alert-light-secondary" style="font-size: 16px">
+  DIRECTORIO {{ nameCustomer }}- LUXURY BUILDING GROUP
+</div>
+<p-table
+  [value]="dataSignal()"
+  rowGroupMode="rowspan"
+  groupRowsBy="index"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-15">AREA</th>
+      <th class="table-col-20">PUESTO</th>
+      <th class="table-col-25">COLABORADOR</th>
+      <th class="table-col-25">CORREO</th>
+      <th class="table-col-15">TELÉFONO</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item let-rowgroup="rowgroup" let-rowspan="rowspan">
+    <tr>
+      @if (rowgroup) {
+      <td [attr.rowspan]="rowspan">
+        <span class="font-bold ml-2">{{ item.eAreaOrganigrama }}</span>
+      </td>
+      }
+      <td class="table-col-20">{{ item.applicationRole }}</td>
+      <td class="table-col-25">{{ item.nameEmployee }}</td>
+      <td class="table-col-25">{{ item.email }}</td>
+      <td class="table-col-15">{{ item.phoneNumber }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+
+
+
+
+
+

@@ -1,0 +1,125 @@
+import { CommonModule } from "@angular/common";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { ButtonModule } from "primeng/button";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { TableModule } from "primeng/table";
+import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import type {
+  CobranzaOnlineInspectionHistoryResponse,
+  CobranzaOnlineInspectionRelated401Summary,
+} from "../../models/cobranza-online-inspection.model";
+import { CobranzaOnlineService } from "../../services/cobranza-online.service";
+
+@Component({
+  selector: "app-cobranza-online-inspection-history-modal",
+  templateUrl: "./cobranza-online-inspection-history-modal.html",
+  imports: [CommonModule, TableModule, ButtonModule, PrimeNgCustomCaption],
+})
+export class CobranzaOnlineInspectionHistoryModal implements OnInit {
+  private cobranzaOnlineS = inject(CobranzaOnlineService);
+  private config = inject(DynamicDialogConfig);
+  private ref = inject(DynamicDialogRef);
+
+  readonly loading = signal(true);
+  readonly history = signal<CobranzaOnlineInspectionHistoryResponse | null>(null);
+
+  readonly movementFilterFields = computed(() => [
+    "policyType",
+    "policyNumber",
+    "policyConcept",
+    "concept",
+    "movementType",
+    "related401Accounts",
+  ]);
+
+  readonly selected401Summary = computed<
+    CobranzaOnlineInspectionRelated401Summary[]
+  >(() => {
+    const summaryMap = new Map<string, CobranzaOnlineInspectionRelated401Summary>();
+
+    for (const movement of this.history()?.movements ?? []) {
+      const related401Accounts = movement.related401Accounts?.trim();
+      if (!related401Accounts) continue;
+
+      const currentSummary = summaryMap.get(related401Accounts) ?? {
+        related401Accounts,
+        debitTotal: 0,
+        creditTotal: 0,
+        netTotal: 0,
+        movementCount: 0,
+      };
+
+      currentSummary.debitTotal += movement.related401DebitTotal ?? 0;
+      currentSummary.creditTotal += movement.related401CreditTotal ?? 0;
+      currentSummary.movementCount += 1;
+      currentSummary.netTotal =
+        currentSummary.debitTotal - currentSummary.creditTotal;
+
+      summaryMap.set(related401Accounts, currentSummary);
+    }
+
+    return Array.from(summaryMap.values()).sort(
+      (left, right) =>
+        Math.abs(right.netTotal) - Math.abs(left.netTotal) ||
+        right.creditTotal - left.creditTotal ||
+        left.related401Accounts.localeCompare(right.related401Accounts),
+    );
+  });
+
+  readonly row = this.config.data?.row;
+  readonly year = this.config.data?.year;
+  readonly month = this.config.data?.month;
+  readonly customerId = this.config.data?.customerId;
+
+  ngOnInit(): void {
+    void this.loadHistory();
+  }
+
+  formatCurrency(value: number | null | undefined) {
+    if (value === null || value === undefined) {
+      return "Sin saldo";
+    }
+
+    return new Intl.NumberFormat("es-MX", {
+      style: "currency",
+      currency: "MXN",
+      minimumFractionDigits: 2,
+    }).format(value);
+  }
+
+  formatDate(value: string | null | undefined) {
+    if (!value) {
+      return "Sin fecha";
+    }
+
+    const parsedDate = new Date(value);
+    if (Number.isNaN(parsedDate.getTime())) {
+      return value;
+    }
+
+    return new Intl.DateTimeFormat("es-MX", {
+      dateStyle: "medium",
+    }).format(parsedDate);
+  }
+
+  close() {
+    this.ref.close();
+  }
+
+  private async loadHistory() {
+    if (!this.customerId || !this.year || !this.row?.accountNumber) {
+      this.loading.set(false);
+      return;
+    }
+
+    this.loading.set(true);
+    const response = await this.cobranzaOnlineS.getInspectionHistory(
+      this.customerId,
+      this.year,
+      this.row.accountNumber,
+    );
+
+    this.history.set(response as CobranzaOnlineInspectionHistoryResponse | null);
+    this.loading.set(false);
+  }
+}

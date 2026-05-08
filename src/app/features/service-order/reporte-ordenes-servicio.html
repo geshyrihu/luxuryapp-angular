@@ -1,0 +1,288 @@
+@if (data) { @for (item of data; track item) {
+<!-- Contenedor Principal del Reporte -->
+<div class="report-container page-break">
+  <!-- Encabezado del Documento -->
+  <div
+    class="report-header grid align-items-center mb-4 pb-3 border-bottom-1 surface-border"
+  >
+    <div class="col-3 text-center">
+      <img
+        [src]="logoCustomer ? logoCustomer : 'assets/images/logo-placeholder.png'"
+        alt="Logo Cliente"
+        class="report-logo"
+        onerror="this.src = 'assets/images/default-avatar.png'"
+      />
+    </div>
+    <div class="col-5">
+      <h2 class="m-0 text-xl font-bold text-900">
+        {{ dataCustomer?.nameCustomer || 'Cliente' }}
+      </h2>
+      <p class="m-0 text-sm text-600 mt-1">
+        {{ dataCustomer?.adreess || 'Dirección no disponible' }}
+      </p>
+      <div class="flex mt-2 text-sm text-700">
+        @if (dataCustomer?.phoneOne) {
+        <span class="flex align-items-center">
+          <i class="pi pi-phone mr-1 text-primary"></i> {{ dataCustomer.phoneOne
+          }}
+        </span>
+        } @if (dataCustomer?.phoneTwo) {
+        <span class="flex align-items-center">
+          <i class="pi pi-phone mr-1 text-primary"></i> {{ dataCustomer.phoneTwo
+          }}
+        </span>
+        }
+      </div>
+    </div>
+    <div class="col-4 text-right">
+      <h3 class="text-lg font-bold text-primary m-0 mb-2">ORDEN DE SERVICIO</h3>
+      <div class="text-sm">
+        <div class="mb-1">
+          <span class="font-semibold">Folio:</span> #{{ item.id || 'S/N' }}
+        </div>
+        <div class="mb-1">
+          <span class="font-semibold">Solicitud:</span> {{ item.requestDate }}
+        </div>
+        <div class="mb-1">
+          <span class="font-semibold">Ejecución:</span> {{ item.executionDate }}
+        </div>
+        <div
+          class="mt-2 inline-block px-2 py-1 border-round surface-100 text-700 font-medium text-xs uppercase"
+        >
+          {{ item.typeMaintance }} @if (item.maintenanceCalendar) {
+          <span> | {{ item.recurrence }}</span>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Información del Equipo y Proveedor -->
+  <div class="grid mb-4">
+    <div class="col-6">
+      <div class="p-3 surface-50 border-round h-full border-1 surface-border">
+        <span class="block text-xs font-bold text-500 uppercase mb-1"
+          >Equipo / Maquinaria</span
+        >
+        <div class="text-lg font-medium text-900">
+          <span class="text-primary font-bold mr-2"
+            >{{ item.machineryId }}</span
+          >
+          {{ item.nameMachinery }}
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="p-3 surface-50 border-round h-full border-1 surface-border">
+        <span class="block text-xs font-bold text-500 uppercase mb-1"
+          >Proveedor de Servicio</span
+        >
+        <div class="text-base font-medium text-900">
+          {{ item.nameComercial }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detalles del Trabajo: Actividad y Observaciones -->
+  <div class="grid mb-4">
+    <div class="col-12 md:col-6">
+      <div class="h-full">
+        <h4
+          class="text-base font-bold text-900 border-bottom-1 surface-border pb-2 mb-2"
+        >
+          Actividad Realizada
+        </h4>
+        <div
+          class="text-sm line-height-3 text-700"
+          [innerHTML]="item.activity | sanitizeHtml"
+        ></div>
+      </div>
+    </div>
+    <div class="col-12 md:col-6">
+      <div class="h-full">
+        <h4
+          class="text-base font-bold text-900 border-bottom-1 surface-border pb-2 mb-2"
+        >
+          Observaciones Tócnicas
+        </h4>
+        <div
+          class="text-sm line-height-3 text-700"
+          [innerHTML]="item.observations | sanitizeHtml"
+        ></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Evidencia Fotogrófica -->
+  @if (item.serviceOrderImg && item.serviceOrderImg.length > 0) {
+  <div class="mb-4 break-inside-avoid">
+    <h4
+      class="text-base font-bold text-900 border-bottom-1 surface-border pb-2 mb-3"
+    >
+      Evidencia Fotogrófica
+    </h4>
+    <div class="grid">
+      @for (image of item.serviceOrderImg | slice:0:4; track $index) {
+      <div class="col-3 text-center">
+        <div
+          class="surface-card border-1 surface-border border-round p-1 shadow-none-print"
+        >
+          <img
+            [src]="image"
+            class="w-full h-auto border-round object-cover"
+            style="aspect-ratio: 4/3; object-fit: cover"
+            alt="Evidencia"
+            onerror="this.src = 'assets/images/default-img.png'"
+          />
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+  }
+
+  <!-- Checklist de Calidad -->
+  <div class="mb-5 break-inside-avoid">
+    <h4
+      class="text-base font-bold text-900 border-bottom-1 surface-border pb-2 mb-3"
+    >
+      Verificación de Calidad y Entrega
+    </h4>
+    <div class="grid text-sm">
+      <div class="col-6">
+        <div class="flex align-items-center mb-2">
+          <i
+            class="pi mr-2 text-lg"
+            [class]="item.cumplimientoActividades ? 'pi-check-circle text-green-600' : 'pi-times-circle text-red-600'"
+          ></i>
+          <span class="text-700">Cumplimiento de actividades programadas</span>
+        </div>
+        <div class="flex align-items-center mb-2">
+          <i
+            class="pi mr-2 text-lg"
+            [class]="item.equiposOperando ? 'pi-check-circle text-green-600' : 'pi-times-circle text-red-600'"
+          ></i>
+          <span class="text-700">Equipos/óreas operando correctamente</span>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="flex align-items-center mb-2">
+          <i
+            class="pi mr-2 text-lg"
+            [class]="!item.ocacionoDanos ? 'pi-check-circle text-green-600' : 'pi-exclamation-circle text-orange-600'"
+          ></i>
+          <span class="text-700">Sin dAños al órea de trabajo</span>
+        </div>
+        <div class="flex align-items-center mb-2">
+          <i
+            class="pi mr-2 text-lg"
+            [class]="item.calidadTrabajos ? 'pi-check-circle text-green-600' : 'pi-times-circle text-red-600'"
+          ></i>
+          <span class="text-700">Calidad de trabajos satisfactoria</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de Firmas -->
+  <div class="signature-section mt-6 break-inside-avoid">
+    <div class="grid">
+      <div class="col-6 text-center px-5">
+        <div class="signature-line mb-2"></div>
+        <div class="text-sm font-bold text-900">
+          {{ item.fullName || 'Pendiente de Firma' }}
+        </div>
+        <div class="text-xs text-500 uppercase mt-1">Revisado / Aceptado</div>
+      </div>
+      <div class="col-6 text-center px-5">
+        <div class="signature-line mb-2"></div>
+        <div class="text-sm font-bold text-900">
+          {{ item.nameComercial || 'Proveedor' }}
+        </div>
+        <div class="text-xs text-500 uppercase mt-1">Realizado por</div>
+      </div>
+    </div>
+  </div>
+</div>
+} }
+
+<style>
+  /* Estilos Base para Pantalla */
+  .report-container {
+    background: white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    max-width: 210mm; /* Ancho A4 */
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+  }
+
+  .report-logo {
+    max-height: 80px;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  .signature-line {
+    border-bottom: 1px solid #333;
+    height: 1px;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  /* Estilos especóficos para Impresión */
+  @media print {
+    @page {
+      margin: 1cm;
+      size: auto;
+    }
+
+    body {
+      background-color: white !important;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    .report-container {
+      box-shadow-2: none !important;
+      border: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    .page-break {
+      page-break-after: always;
+      break-after: page;
+      min-height: 95vh; /* Forzar altura mónima para distribución */
+      position: relative;
+    }
+
+    .break-inside-avoid {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    /* Forzar colores de fondo para impresión (ótil para headers o badges) */
+    .surface-50 {
+      background-color: #f9fafb !important;
+    }
+    .surface-100 {
+      background-color: #f3f4f6 !important;
+    }
+    .bg-primary {
+      background-color: #3b82f6 !important;
+      color: white !important;
+    }
+
+    /* Asegurar que las imógenes no tengan sombra en impresión */
+    .shadow-none-print {
+      box-shadow-2: none !important;
+    }
+  }
+</style>

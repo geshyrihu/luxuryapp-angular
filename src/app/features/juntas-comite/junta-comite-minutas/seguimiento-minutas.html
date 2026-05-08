@@ -1,0 +1,131 @@
+<div class="flex justify-content-start gap-1 flex-wrap mb-3">
+  <custom-button
+    label="Pendientes"
+    [severity]="statusFiltro == 0 ? 'primary' : 'info'"
+    [variant]="statusFiltro != 0 ? 'ghost-text' : null"
+    size="sm"
+    (clicked)="onFiltrarData(0)"
+  />
+  <custom-button
+    label="Concluidos"
+    [severity]="statusFiltro == 1 ? 'primary' : 'info'"
+    [variant]="statusFiltro != 1 ? 'ghost-text' : null"
+    size="sm"
+    (clicked)="onFiltrarData(1)"
+  />
+  <custom-button
+    label="No Autorizados"
+    [severity]="statusFiltro == 2 ? 'primary' : 'info'"
+    [variant]="statusFiltro != 2 ? 'ghost-text' : null"
+    size="sm"
+    (clicked)="onFiltrarData(2)"
+  />
+  <custom-button
+    label="Todos"
+    [severity]="statusFiltro == 4 ? 'primary' : 'info'"
+    [variant]="statusFiltro != 4 ? 'ghost-text' : null"
+    size="sm"
+    (clicked)="onFiltrarData(4)"
+  />
+</div>
+<p-table
+  [globalFilterFields]="globalFilterFields"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block border-none shadow-1"
+>
+  <ng-template #caption>
+    <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-8" pSortableColumn="areaResponsable">
+        AREA
+        <p-sortIcon field="areaResponsable" />
+      </th>
+      <th class="table-col-28" pSortableColumn="fechaSolicitudFiltro">
+        SOLICITUD
+        <p-sortIcon field="fechaSolicitudFiltro" />
+      </th>
+      <th class="table-col-40" pSortableColumn="pendiente">
+        SEGUIMIENTO
+        <p-sortIcon field="pendiente" />
+      </th>
+      <th class="table-col-8 text-center" pSortableColumn="status">
+        ESTATUS
+        <p-sortIcon field="status" />
+      </th>
+      <th class="table-col-5"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td class="font-medium text-900">{{ item.areaResponsable }}</td>
+      <td>
+        <div class="text-base font-bold text-900 mb-1">
+          {{ item.fechaSolicitud }} {{ item.titulo | titlecase }}
+        </div>
+        <div
+          class="text-justify text-600 text-sm line-height-3"
+          [innerHTML]="item.pendiente | sanitizeHtml"
+        ></div>
+      </td>
+      <td>
+        @if (item.seguimientos.length > 0) {
+        <div class="text-sm text-700">
+          <span class="font-bold text-primary">{{ item.seguimientos[0].fecha }}</span>: {{ item.seguimientos[0].seguimiento }}
+        </div>
+        }
+      </td>
+      <td class="text-center">
+        <p-tag
+          [severity]="item.status == 0 ? 'danger' : item.status == 1 ? 'success' : 'secondary'"
+          [border-round]="true"
+        >
+          <ng-template pTemplate="content">
+            <i [class]="item.status == 0 ? 'pi pi-times' : item.status == 1 ? 'pi pi-check' : 'pi pi-ban'"></i>
+          </ng-template>
+        </p-tag>
+      </td>
+      <!-- Opciones -->
+      <td class="no-print">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-item
+              label="Ver todos los seguimientos"
+              iconClass="pi pi-list"
+              (clicked)="onModalTodosSeguimientos(item.id)"
+            />
+            <ion-button-item
+              label="Agregar Seguimiento"
+              iconClass="pi pi-plus-circle"
+              (clicked)="onModalFormSeguimiento(item.id, 0)"
+            />
+            <ion-button-item
+              label="Editar"
+              iconClass="pi pi-pencil"
+              (clicked)="
+                onModalFormMinutaDetalle({
+                  id: item.id,
+                  header: 'Editar Asunto',
+                })
+              "
+            />
+          </ng-container>
+        </app-action-menu>
+      </td>
+
+      <!-- Opciones -->
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>

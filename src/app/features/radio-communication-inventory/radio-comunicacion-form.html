@@ -1,0 +1,74 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        label="Id"
+        [readonly]="true"
+      />
+
+      <div class="mb-4 flex justify-content-center">
+        <div class="w-full sm:w-9/12 max-w-sm">
+          <div class="card text-center p-3">
+            <custom-input-img-signal
+              (fileSelected)="uploadFile($event)"
+              [urlImgCurrent]="urlBaseImg"
+              [contentHeight]="75"
+              [contentWidth]="75"
+            />
+          </div>
+        </div>
+      </div>
+
+      <custom-input-text-signal
+        [control]="form.controls.marca"
+        label="Marca"
+        placeholder="marca"
+      />
+
+      <custom-input-text-signal
+        [control]="form.controls.modelo"
+        label="Modelo"
+        placeholder="modelo"
+      />
+
+      <custom-input-text-signal
+        [control]="form.controls.serie"
+        label="Serie"
+        placeholder="serie"
+      />
+
+      <custom-input-text-signal
+        [control]="form.controls.bateria"
+        label="Bateria"
+        placeholder="bateria"
+      />
+
+      <custom-input-date-signal
+        [control]="form.controls.fechaCompra"
+        label="Compra"
+        placeholder="Compra"
+      />
+
+      <custom-input-select-signal
+        [control]="form.controls.departament"
+        label="Departamento"
+        [data]="cb_departament()"
+      />
+
+      <custom-input-autocomplete-signal
+        (propagar)="saveApplicationUserId($event)"
+        [control]="form.controls.applicationUser"
+        [data]="cb_application_user()"
+        label="Colaborador"
+        placeholder="Escribe para buscar colaborador"
+      />
+
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </div>
+</div>

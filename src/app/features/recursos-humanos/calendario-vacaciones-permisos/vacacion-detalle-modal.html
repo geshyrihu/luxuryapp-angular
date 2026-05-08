@@ -1,0 +1,37 @@
+@if (!loading()) {
+  @if (requestData(); as data) {
+    <p>
+      <strong>Empleado:</strong>
+      {{ data.employeeFullName }}
+    </p>
+    <p>
+      <strong>Periodo:</strong>
+      {{ data.period }}
+    </p>
+    <p>
+      <strong>Estado:</strong>
+      <p-tag [value]="data.status" [severity]="getStatusSeverity(data.status)" />
+    </p>
+    @if (data.approverFullName) {
+      <p>
+        <strong>Aprobado por:</strong>
+        {{ data.approverFullName }}
+      </p>
+    }
+    @if (data.approvalDate) {
+      <p>
+        <strong>Fecha de aprobación:</strong>
+        {{ data.approvalDate }}
+      </p>
+    }
+  }
+} @else {
+  <p>Cargando...</p>
+}
+
+
+
+
+
+
+

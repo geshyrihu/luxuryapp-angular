@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Devolver Producto</h5>
+    <p>
+      Estás devolviendo:
+      <strong>{{ salidaOriginal().producto }}</strong>
+    </p>
+    <p class="text-color-secondary">
+      Salida original: {{ salidaOriginal().cantidad }} {{
+      salidaOriginal().unidadMedida }}.
+      <br />
+      Puedes devolver un máximo de
+      <strong>{{ cantidadMaximaADevolver() }}</strong>
+      .
+    </p>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <custom-input-number-signal
+        label="Cantidad a Devolver"
+        [control]="form.controls.cantidadADevolver"
+      />
+      <custom-input-text-signal
+        label="Motivo (Opcional)"
+        [control]="form.controls.motivo"
+      />
+      <custom-button-save
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+        label="Confirmar Devolución"
+      />
+    </form>
+  </div>
+</div>

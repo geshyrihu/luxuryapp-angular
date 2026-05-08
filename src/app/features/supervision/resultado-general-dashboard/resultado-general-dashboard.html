@@ -1,0 +1,167 @@
+@if (dataSignal()) {
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <div class="grid mb-3">
+      <div class="col-12 sm:col-6">
+        <h4 class="mb-0 font-size-18">
+          {{ (reporteFiltro | uppercase) + ", PERIODO " + periodo | uppercase }}
+        </h4>
+      </div>
+      <div class="col-12 sm:col-3 no-print">
+        <app-mesanio (periodoEmit)="onFiltrarPeriodo($event)"></app-mesanio>
+      </div>
+      <div class="col-12 sm:col-3 no-print">
+        <custom-input-text-signal
+          (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+          placeholder="Ingresa texto para buscar..."
+          [customClass]="'no-print'"
+          [horizontal]="false"
+        />
+      </div>
+    </div>
+    <div class="flex flex-wrap no-print mb-3">
+      <div>
+        <custom-button
+          (clicked)="nivelReporte = 0"
+          label="GENERAL"
+          [variant]="nivelReporte == 0 ? null : 'outlined'"
+        />
+        <custom-button
+          (clicked)="nivelReporte = 1"
+          label="OPER1"
+          [variant]="nivelReporte == 1 ? null : 'outlined'"
+        />
+        <custom-button
+          (clicked)="nivelReporte = 2"
+          label="OPER2"
+          [variant]="nivelReporte == 2 ? null : 'outlined'"
+        />
+        <custom-button
+          (clicked)="mostrar = !mostrar"
+          label="MODOREPORTE"
+          [variant]="mostrar ? 'outlined' : null"
+        />
+      </div>
+    </div>
+    <div class="flex flex-wrap no-print mb-3">
+      <div>
+        <custom-button variant="outlined" label="MINUTAS GENERAL" (clicked)="onLoadDataMinutas()" />
+        <custom-button variant="outlined" label="MINUTAS CONTABLE" (clicked)="onLoadDataMinutaFiltro(0)" />
+        <custom-button variant="outlined" label="MINUTAS OPERACIONES" (clicked)="onLoadDataMinutaFiltro(1)" />
+        <custom-button variant="outlined" label="MINUTAS LEGAL" (clicked)="onLoadDataMinutaFiltro(2)" />
+        <custom-button variant="outlined" label="MANTENIMIENTOS PREVENTIVOS" (clicked)="onLoadDataPreventivos()" />
+        <custom-button variant="outlined" label="TICKETS" (clicked)="onLoadDataTickets()" />
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr [hidden]="false">
+      <th pSortableColumn="numeroCliente" class="table-col-20">
+        Cliente
+        <p-sortIcon field="numeroCliente" />
+        <p-columnFilter
+          field="customer"
+          matchMode="in"
+          display="menu"
+          locale="es"
+          [showMatchModes]="false"
+          [showOperator]="false"
+          [showAddButton]="false"
+        >
+          <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+            <p-multiSelect
+              [ngModel]="value"
+              [options]="cb_customers"
+              placeholder="Ninguno"
+              (onChange)="filter($event.value)"
+              optionLabel="label"
+            >
+              <ng-template let-option pTemplate="item">
+                <div class="p-multiselect-representative-option">
+                  <span class="ml-1">{{ option.label }}</span>
+                </div>
+              </ng-template>
+            </p-multiSelect>
+          </ng-template>
+        </p-columnFilter>
+      </th>
+      @if (mostrar) {
+      <th pSortableColumn="solicitudesTotal" class="table-col-20">
+        Solicitudes
+        <p-sortIcon field="solicitudesTotal" />
+      </th>
+      } @if (mostrar) {
+      <th pSortableColumn="solicitudesAtendidas" class="table-col-20">
+        Atendidas
+        <p-sortIcon field="solicitudesAtendidas" />
+      </th>
+      } @if (mostrar) {
+      <th pSortableColumn="solicitudesPendientes" class="table-col-20">
+        Pendientes
+        <p-sortIcon field="solicitudesPendientes" />
+      </th>
+      }
+      <th pSortableColumn="porcentajeEjecucionValue" class="table-col-20">
+        Cumplimiento
+        <p-sortIcon field="porcentajeEjecucionValue" />
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr [hidden]="false">
+      <td>{{ item.customer.label }}</td>
+      @if (mostrar) {
+      <td class="text-center">
+        <p-tag
+          styleClass="w-full text-lg p-1 cursor-pointer"
+          severity="info"
+          [value]="item.solicitudesTotal"
+        />
+      </td>
+      } @if (mostrar) {
+      <td class="text-center">
+        <p-tag
+          styleClass="w-full text-lg p-1 cursor-pointer"
+          severity="success"
+          [value]="item.solicitudesAtendidas"
+        />
+      </td>
+      } @if (mostrar) {
+      <td class="text-center">
+        <p-tag
+          styleClass="w-full text-lg p-1 cursor-pointer"
+          severity="danger"
+          [value]="item.solicitudesPendientes"
+        />
+      </td>
+      }
+      <td class="text-center">
+        @if (item.porcentajeEjecucionValue == 0) {
+        <div>
+          <small class="text-danger">0% de avance</small>
+        </div>
+        } @if (item.porcentajeEjecucionValue > 0) {
+        <div>
+          <div>
+            <p-progressBar
+              [value]="item.porcentajeEjecucionValue"
+              [style]="{'height': '24px'}"
+              [showValue]="true"
+              [color]="onValueProgress(item.porcentajeEjecucionValue)"
+            >
+            </p-progressBar>
+          </div>
+        </div>
+        }
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+}

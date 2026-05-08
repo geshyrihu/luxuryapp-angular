@@ -1,0 +1,555 @@
+<!-- ═══════════════════════════════════════════════════════════════════
+     TABLA DE PUESTOS DE TRABAJO
+     ═══════════════════════════════════════════════════════════════════ -->
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [value]="positions()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+  rowGroupMode="subheader"
+  groupRowsBy="departament"
+  #dt
+>
+  <ng-template #caption>
+    <div
+      class="flex flex-wrap align-items-end justify-content-between w-full gap-3"
+    >
+      <div class="flex-grow-1">
+        <primeng-custom-caption [dt]="dt" [showAdd]="false" [noMargin]="true" />
+      </div>
+      <div class="flex flex-wrap gap-2 align-items-end pb-2">
+        @if (aspRoleS.hasAny([ AspRole.Administrador, AspRole.SuperUsuario,
+        AspRole.Reclutamiento ])) {
+        <custom-button
+          (clicked)="onModalForm({ id: '', title: 'Nuevo Puesto de Trabajo' })"
+          iconClass="pi pi-briefcase"
+          label="Agregar Puesto"
+          severity="info"
+          variant="outlined"
+          [showLabelOnDesktop]="true"
+        />
+        <custom-button
+          (clicked)="showModalAddEmployee()"
+          iconClass="pi pi-user"
+          label="Agregar Empleado"
+          severity="info"
+          variant="outlined"
+          [showLabelOnDesktop]="true"
+        />
+        }
+        <custom-button
+          (clicked)="onOpenInactivos()"
+          iconClass="pi pi-box"
+          label="Inactivos"
+          severity="info"
+          variant="outlined"
+          [showLabelOnDesktop]="true"
+        />
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #header>
+    <!-- 🟢 Fila de Agrupación Visual -->
+    <tr>
+      <th
+        [attr.colspan]="aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento, AspRole.Administrador, AspRole.SuperUsuario]) ? 4 : 2"
+        class="text-center bg-primary-reverse text-primary font-bold border-bottom-2 border-primary"
+        style="padding: 0.5rem"
+      >
+        <i class="pi pi-briefcase mr-2"></i>GESTIÓN DEL PUESTO DE TRABAJO
+      </th>
+      <th
+        colspan="1"
+        class="text-center bg-bluegray-50 text-bluegray-700 font-bold border-bottom-2 border-bluegray-200 border-left-2"
+        style="padding: 0.5rem"
+      >
+        <i class="pi pi-user mr-2"></i>COLABORADOR ASIGNADO
+      </th>
+    </tr>
+
+    <!-- ⚪ Fila de Títulos de Columna -->
+    <tr>
+      <th style="width: 18%" pSortableColumn="applicationRoleName">
+        PUESTO <p-sortIcon field="applicationRoleName" />
+      </th>
+      <th class="w-32" pSortableColumn="turno">
+        TURNO <p-sortIcon field="turno" />
+      </th>
+      @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento,
+      AspRole.Administrador, AspRole.SuperUsuario])) {
+      <th class="w-40 no-print">SUELDOS (PRE / ACT)</th>
+      }
+      <th class="w-52 text-center">ACCIONES PUESTO</th>
+      <th style="width: 30%" class="border-left-2">NOMBRE / PERFIL</th>
+    </tr>
+  </ng-template>
+
+  <ng-template #groupheader let-item>
+    <tr pRowGroupHeader>
+      <td
+        [attr.colspan]="aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento, AspRole.Administrador, AspRole.SuperUsuario]) ? 5 : 4"
+      >
+        <span class="group-header-label">
+          {{ getDepartamentLabel(item.departament) }}
+        </span>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr [class.row-vacant]="isVacant(item)">
+      <!-- PUESTO -->
+      <td>
+        @if (necesitaActualizacion(item)) {
+        <div class="flex align-items-center">
+          <p-tag
+            severity="warn"
+            value="Actualizar puesto"
+            icon="pi pi-exclamation-triangle"
+          />
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
+            pTooltip="Asignar rol al puesto"
+          />
+        </div>
+        } @else {
+        <div>
+          <small> {{ item.folio }} </small>
+          <p class="mt-1 font-semibold">{{ item.applicationRoleName }}</p>
+        </div>
+        }
+      </td>
+
+      <!-- TURNO -->
+      <td>{{ item.turno }}</td>
+
+      <!-- SUELDOS (rol-guard) -->
+      @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento,
+      AspRole.Administrador, AspRole.SuperUsuario])) {
+      <td class="no-print">
+        <div class="flex flex-column gap-1" style="max-width: 140px">
+          <div
+            class="flex justify-content-between border-bottom-1 border-200 pb-1"
+          >
+            <small class="text-500 font-bold">PRE:</small>
+            <span class="text-xs">{{ item.sueldoBase }}</span>
+          </div>
+          <div class="flex justify-content-between">
+            <small class="text-500 font-bold">ACT:</small>
+            <span class="text-xs font-bold text-primary"
+              >{{ item.sueldo }}</span
+            >
+          </div>
+        </div>
+      </td>
+      }
+
+      <!-- ACCIONES PUESTO ──────────────────────────────────────────────── -->
+      <td>
+        <div class="flex align-items-center">
+          <app-action-menu>
+            @if (shouldShowVacancyRequest(item)) {
+
+            <custom-button-item
+              [showLabelOnDesktop]="true"
+              iconClass="pi pi-receipt"
+              label="Solicitar Vacante"
+              (clicked)="onModalSolicitudVacante(item.id)"
+            />
+            }
+            <custom-button-item
+              [showLabelOnDesktop]="true"
+              iconClass="pi pi-clipboard"
+              label="Descripción"
+              (clicked)="onModalJobDescription(item.id, item.jobDescriptionId!, item.applicationRoleName)"
+            />
+            <custom-button-item
+              [showLabelOnDesktop]="true"
+              iconClass="pi pi-clock"
+              label="Horarios"
+              (clicked)="onModalHoursWorkPosition(item.id)"
+            />
+            <custom-button-item
+              [showLabelOnDesktop]="true"
+              label="Editar"
+              iconClass="pi pi-pencil"
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
+            />
+
+            @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
+            <custom-button-delete
+              label="Eliminar"
+              [showLabelOnDesktop]="true"
+              (confirmed)="onDelete(item.id)"
+            />
+            }
+          </app-action-menu>
+        </div>
+      </td>
+
+      <!-- COLABORADOR ──────────────────────────────────────────────────── -->
+      <td class="border-left-2">
+        <div class="flex flex-column gap-2">
+          @if (!isVacant(item)) {
+          <!-- ── Puesto ocupado ── -->
+          <div class="flex align-items-center">
+            @if (item.applicationUserPhoto) {
+            <p-avatar
+              [image]="item.applicationUserPhoto"
+              shape="circle"
+              size="large"
+              class="cursor-pointer mr-2"
+              (click)="onCardEmployee(item.applicationUserId!)"
+              pTooltip="Ver tarjeta"
+            />
+            } @else {
+            <p-avatar
+              icon="pi pi-user"
+              shape="circle"
+              size="large"
+              class="mr-2"
+            />
+            }
+            <div class="flex flex-column min-w-0 flex-grow-1">
+              <span class="font-semibold truncate"
+                >{{ item.applicationUser }}</span
+              >
+            </div>
+            <app-action-menu>
+              <custom-button-item
+                [showLabelOnDesktop]="true"
+                iconClass="pi pi-user-edit"
+                label="Perfil"
+                pTooltip="Ir al perfil"
+                (clicked)="onShowEditEmpleado(item)"
+              />
+              @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
+              <custom-button-item
+                [showLabelOnDesktop]="true"
+                iconClass="pi pi-sign-out"
+                label="Desvincular del puesto"
+                pTooltip="Desvincular del puesto"
+                (clicked)="onUnassignEmployee(item.id)"
+              />
+              }
+            </app-action-menu>
+          </div>
+          } @else {
+          <!-- ── Puesto vacante — CDK drop zone ── -->
+          <div
+            [id]="'drop-pos-' + item.id"
+            cdkDropList
+            [cdkDropListData]="[]"
+            [cdkDropListConnectedTo]="['employee-pool']"
+            (cdkDropListDropped)="onDropToPosition($event, item)"
+            class="drop-zone flex align-items-center justify-content-between p-2"
+          >
+            <div class="flex align-items-center gap-2">
+              <i class="pi pi-users text-400"></i>
+              <span class="text-sm font-bold" style="color: var(--p-orange-600)"
+                >VACANTE</span
+              >
+            </div>
+            <div class="flex gap-1">
+              <custom-button-item
+                iconClass="pi pi-link"
+                pTooltip="Vincular del pool"
+                (clicked)="onOpenDrawer(item)"
+              />
+              <custom-button-item
+                iconClass="pi pi-user-plus"
+                pTooltip="Registrar nuevo empleado"
+                (clicked)="showModalAddEmployeeFromPosition(item)"
+              />
+            </div>
+          </div>
+          }
+
+          <!-- Indicador de solicitud activa (Badge inferior) -->
+          @if (item.positionRequest) { @if (item.positionRequest.status === 0) {
+          <span
+            class="badge badge-warning text-xs text-center block py-2"
+            pTooltip="Vacante abierta — esperando alta de colaborador"
+          >
+            🟡 VA-{{ item.positionRequest.folio }} · Vacante abierta
+          </span>
+          } @else {
+          <span
+            class="badge badge-info text-xs text-center block py-2"
+            pTooltip="Solicitud de alta enviada — en proceso de reclutamiento"
+          >
+            🔵 VA-{{ item.positionRequest.folio }} · Alta en proceso
+          </span>
+          } }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="positions()" />
+  </ng-template>
+</p-table>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     POOL DE COLABORADORES SIN PUESTO ASIGNADO
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="card mt-3">
+  <!-- Header expandible -->
+  <div class="pool-header" (click)="poolExpanded.set(!poolExpanded())">
+    <div class="flex align-items-center">
+      <i class="pi pi-users text-lg"></i>
+      <span class="font-semibold">Sin puesto asignado</span>
+      <!-- DS: badge + badge-primary -->
+      <span class="badge badge-primary"
+        >{{ unassignedEmployees().length }}</span
+      >
+      @if (assignLoading()) {
+      <i class="pi pi-spin pi-spinner text-sm"></i>
+      }
+    </div>
+    <i [class]="poolExpanded() ? 'pi pi-chevron-up' : 'pi pi-chevron-down'"></i>
+  </div>
+
+  <!-- Guía rápida -->
+  @if (poolExpanded()) {
+  <p class="text-sm text-color-secondary m-0 px-3 pt-2 pb-1">
+    Arrastra un colaborador hacia un puesto vacante para asignarlo, o haz clic
+    en
+    <i class="pi pi-user-edit text-xs"></i> para editar sus datos.
+  </p>
+  }
+
+  <!-- Chips arrastrables -->
+  @if (poolExpanded()) {
+  <div
+    id="employee-pool"
+    cdkDropList
+    [cdkDropListData]="unassignedEmployees()"
+    [cdkDropListConnectedTo]="vacantDropIds()"
+    (cdkDropListDropped)="onDropBackToPool($event)"
+    class="pool-container"
+  >
+    @if (unassignedEmployees().length === 0) {
+    <p class="text-500 text-center w-full py-4 m-0">
+      Todos los colaboradores tienen puesto asignado.
+    </p>
+    } @for (emp of unassignedEmployees(); track emp.applicationUserId) {
+    <div cdkDrag [cdkDragData]="emp" class="employee-chip">
+      <p-avatar [image]="emp.photoPath" shape="circle" size="large" />
+      <div class="chip-info">
+        <span class="chip-name">{{ emp.fullName }}</span>
+        <span class="chip-sub">{{ emp.userName }}</span>
+      </div>
+      <custom-button-item
+        iconClass="pi pi-user-edit"
+        label="Ver perfil"
+        (clicked)="onGoToProfile(emp)"
+      />
+      <span cdkDragHandle class="drag-handle">⠿</span>
+
+      <ng-template cdkDragPreview>
+        <div class="chip-preview">
+          <p-avatar [image]="emp.photoPath" shape="circle" />
+          <span>{{ emp.fullName }}</span>
+        </div>
+      </ng-template>
+    </div>
+    }
+  </div>
+  }
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     DRAWER — ASIGNACIÓN RÁPIDA (alternativa al DnD)
+     ═══════════════════════════════════════════════════════════════════ -->
+<p-drawer
+  [visible]="drawerVisible()"
+  (visibleChange)="drawerVisible.set($event)"
+  position="right"
+  [style]="{ width: '360px' }"
+  header="Asignar Colaborador"
+>
+  @if (selectedPosition(); as pos) {
+  <div class="flex flex-column">
+    <!-- DS: drawer-position-card (border-left primario, no cubierto por .card--primary) -->
+    <div class="drawer-position-card">
+      <div class="flex align-items-center mb-1">
+        <i class="pi pi-briefcase"></i>
+        <span class="font-bold" style="color: var(--ds-primary)"
+          >{{ pos.folio }}</span
+        >
+      </div>
+      <p class="m-0 font-semibold">{{ pos.applicationRoleName }}</p>
+      <p class="m-0 text-sm text-500">{{ pos.turno }}</p>
+    </div>
+
+    <p class="m-0 text-sm text-500">
+      Selecciona el colaborador para asignar a este puesto:
+    </p>
+
+    @if (assignLoading()) {
+    <div class="flex justify-content-center py-4">
+      <i class="pi pi-spin pi-spinner text-2xl"></i>
+    </div>
+    } @else if (unassignedEmployees().length === 0) {
+    <p class="text-center text-500 py-4 m-0">
+      No hay colaboradores disponibles sin puesto asignado.
+    </p>
+    } @else { @for (emp of unassignedEmployees(); track emp.applicationUserId) {
+    <!-- DS: menu-item (dropdown/_dropdowns.scss) — flex, hover bg, cursor pointer -->
+    <div
+      class="menu-item"
+      style="
+        border-radius: var(--ds-radius-lg);
+        border: 1px solid var(--ds-border);
+      "
+      (click)="onAssignFromDrawer(emp)"
+    >
+      <p-avatar [image]="emp.photoPath" shape="circle" size="large" />
+      <div class="flex flex-column min-w-0 flex-grow-1">
+        <span class="font-semibold truncate">{{ emp.fullName }}</span>
+        <span class="text-sm text-500 truncate">{{ emp.userName }}</span>
+      </div>
+      <i class="pi pi-angle-right" style="color: var(--ds-primary)"></i>
+    </div>
+    } }
+  </div>
+  }
+</p-drawer>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     MODAL — INACTIVOS (Puestos y Colaboradores)
+     ═══════════════════════════════════════════════════════════════════ -->
+<p-dialog
+  [visible]="inactivosVisible()"
+  (visibleChange)="inactivosVisible.set($event)"
+  header="Inactivos"
+  [modal]="true"
+  [style]="{ width: '680px' }"
+  [draggable]="false"
+>
+  <!-- Tabs de selección -->
+  <div class="flex mb-4">
+    <button
+      type="button"
+      class="btn btn-sm"
+      [class.btn-primary]="inactivosTab() === 'positions'"
+      [class.btn-ghost-secondary]="inactivosTab() !== 'positions'"
+      (click)="inactivosTab.set('positions')"
+    >
+      <i class="pi pi-building mr-1"></i>
+      Puestos
+      <span class="badge badge-neutral ml-1"
+        >{{ inactivePositions().length }}</span
+      >
+    </button>
+    <button
+      type="button"
+      class="btn btn-sm"
+      [class.btn-primary]="inactivosTab() === 'employees'"
+      [class.btn-ghost-secondary]="inactivosTab() !== 'employees'"
+      (click)="inactivosTab.set('employees')"
+    >
+      <i class="pi pi-user mr-1"></i>
+      Colaboradores
+      <span class="badge badge-neutral ml-1"
+        >{{ inactiveEmployees().length }}</span
+      >
+    </button>
+  </div>
+
+  @if (inactivosLoading()) {
+  <div class="flex justify-content-center py-8">
+    <i class="pi pi-spin pi-spinner text-3xl"></i>
+  </div>
+
+  } @else if (inactivosTab() === 'positions') {
+  <!-- ── Tab: Puestos inactivos ── -->
+  @if (inactivePositions().length === 0) {
+  <div class="alert alert-neutral">
+    <i class="alert__icon pi pi-inbox"></i>
+    <div class="alert__body">No hay puestos inactivos.</div>
+  </div>
+  } @else {
+  <div class="flex flex-column">
+    @for (pos of inactivePositions(); track pos.id) {
+    <div
+      class="card card--bordered"
+      style="
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 14px;
+        gap: 12px;
+      "
+    >
+      <div class="flex flex-column gap-1 min-w-0">
+        <span class="text-label">{{ pos.folio }}</span>
+        <span class="font-semibold">{{ pos.applicationRoleName }}</span>
+        <span class="text-sm text-500"
+          >{{ getDepartamentLabel(pos.departament) }} · {{ pos.turno }}</span
+        >
+      </div>
+      <custom-button-item
+        iconClass="pi pi-check"
+        label="Activar"
+        pTooltip="Activar puesto"
+        (clicked)="onActivatePosition(pos.id)"
+      />
+    </div>
+    }
+  </div>
+  } } @else {
+  <!-- ── Tab: Colaboradores inactivos ── -->
+  @if (inactiveEmployees().length === 0) {
+  <div class="alert alert-neutral">
+    <i class="alert__icon pi pi-inbox"></i>
+    <div class="alert__body">No hay colaboradores inactivos.</div>
+  </div>
+  } @else {
+  <div class="flex flex-column">
+    @for (emp of inactiveEmployees(); track emp.applicationUserId) {
+    <div
+      class="card card--bordered"
+      style="
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 14px;
+      "
+    >
+      <p-avatar [image]="emp.photoPath" shape="circle" size="large" />
+      <div class="flex flex-column min-w-0 flex-grow-1">
+        <span class="font-semibold truncate">{{ emp.fullName }}</span>
+        <span class="text-sm text-500 truncate">{{ emp.userName }}</span>
+        @if (emp.departament !== null) {
+        <span class="text-sm text-500"
+          >{{ getDepartamentLabel(emp.departament) }}</span
+        >
+        }
+      </div>
+      <div class="flex gap-1">
+        <custom-button-item
+          iconClass="pi pi-check"
+          label="Activar"
+          pTooltip="Activar colaborador"
+          (clicked)="onActivateEmployee(emp.applicationUserId)"
+        />
+        <custom-button-item
+          iconClass="pi pi-plus"
+          label="Activar y asignar"
+          pTooltip="Activar y mover al pool para asignar puesto"
+          (clicked)="onActivateAndAssign(emp)"
+        />
+      </div>
+    </div>
+    }
+  </div>
+  } }
+</p-dialog>

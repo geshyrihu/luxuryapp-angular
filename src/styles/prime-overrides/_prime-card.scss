@@ -1,0 +1,19 @@
+// ============================================================
+// _prime-card.scss
+// PrimeNG 21 card overrides
+// ============================================================
+
+:root {
+  --p-card-border-radius: var(--ds-radius-card, 4px);
+}
+
+body {
+  .p-card {
+    background: var(--ds-bg-surface);
+    border: 1px solid var(--ds-border);
+    border-radius: var(--ds-radius-card, 4px);
+    box-shadow: var(--ds-shadow-sm);
+    color: var(--ds-text-primary);
+    overflow: hidden;
+  }
+}

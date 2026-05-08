@@ -1,0 +1,58 @@
+<!-- 2. óCAMBIO CLAVE! El contenedor principal ahora depende de `reportData()` y `!loading()`.
+Esto asegura que solo se muestre cuando hay datos y la carga ha finalizado. -->
+@if (reportData() && !loading()) {
+<!-- Tabla de solicitudes pendientes -->
+<!-- óCAMBIO! El [value] de la tabla ahora apunta a reportData().estadosFinancieros -->
+<p-table
+  [value]="reportData().estadosFinancieros"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  styleClass="custom-table-report"
+>
+  <ng-template #header>
+    <tr>
+      <th colspan="6" class="text-center">
+        <div class="flex flex-column align-items-center">
+          <!-- Información del Cliente -->
+          <!-- óCAMBIO! Leemos las propiedades del cliente desde reportData().customer -->
+          <div class="text-center w-full">
+            @if (reportData().customer.customerImage) {
+            <img
+              [src]="reportData().customer.customerImage"
+              alt="Logo del cliente"
+              class="img-fluid border mb-2 mx-auto"
+              style="max-width: 80px"
+            />
+            }
+            <h5>{{ reportData().customer.nombreCorto }}</h5>
+          </div>
+          <!-- Título del Reporte -->
+          <div class="text-center">Informe envio de estados financieros</div>
+        </div>
+      </th>
+    </tr>
+    <tr>
+      <th class="text-center table-col-10">Nó</th>
+      <th class="text-center table-col-10">PERIODO</th>
+      <th class="text-center table-col-40">CONTADOR</th>
+      <th class="text-center table-col-40">FECHA DE ENVIO</th>
+    </tr>
+  </ng-template>
+  <!-- El cuerpo de la tabla no necesita cambios -->
+  <ng-template #body let-ticket let-rowIndex="rowIndex">
+    <tr>
+      <td class="text-center">{{ rowIndex + 1 }}</td>
+      <td class="text-center">{{ ticket.period }}</td>
+      <td class="text-center">{{ ticket.fullName }}</td>
+      <td class="text-center">{{ ticket.sendDate }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+}
+
+<!-- 3. (MEJORA) Mensaje para el usuario si no se encuentran datos -->
+@if (!reportData() && !loading()) {
+<div class="alert alert-info text-center">
+  No se encontraron estados financieros para este cliente.
+</div>
+}

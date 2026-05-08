@@ -1,0 +1,144 @@
+<div class="card p-0 md:p-4">
+  <!-- Info CFDI -->
+  <div
+    class="p-3 mb-3 bg-blue-50 border-round border-1 border-blue-200 flex gap-2 align-items-start"
+  >
+    <i class="pi pi-info-circle text-blue-600 mt-1"></i>
+    <div class="text-sm text-blue-800">
+      <strong>Facturacion CFDI 4.0.</strong> Este modulo gestiona la emision y
+      cancelacion de comprobantes fiscales vinculados a los cargos del
+      condominio. Integracion con SW Sapien en configuracion.
+    </div>
+  </div>
+
+  <!-- Tabla desktop -->
+  <p-table
+    [value]="dataSignal()"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+    styleClass="custom-table hidden md:block"
+    #dt
+  >
+    <ng-template pTemplate="caption">
+      <!-- Selector de cargo -->
+      <div class="p-1 grid formgrid align-items-end">
+        <div class="field col-12 md:col-6">
+          <custom-input-select-signal
+            label="Selecciona un cargo para ver sus facturas"
+            [data]="charges()"
+            [control]="chargeIdCtrl"
+            [filter]="true"
+            [noMargin]="true"
+            [horizontal]="false"
+          />
+        </div>
+        <div class="field col-12 md:col-3">
+          <custom-button
+            label="Buscar Facturas"
+            iconClass="pi pi-search"
+            severity="primary"
+            [disabled]="!chargeIdCtrl.value"
+            (clicked)="onSearch()"
+          />
+        </div>
+        <div class="field col-12 md:col-3">
+          <primeng-custom-caption
+            title="Facturas CFDI"
+            [showAddButton]="false"
+            [dt]="dt"
+            [noMargin]="true"
+            [noPadding]="true"
+          />
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th>UUID CFDI</th>
+        <th class="w-7rem">Serie</th>
+        <th class="w-7rem">Folio</th>
+        <th class="w-8rem text-center">Estado</th>
+        <th class="w-9rem text-center">Fecha Timbre</th>
+        <th class="w-8rem text-center">XML / PDF</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-inv>
+      <tr>
+        <td class="text-xs font-mono">{{ inv.uuid }}</td>
+        <td class="text-sm">{{ inv.serie || '—' }}</td>
+        <td class="text-sm">{{ inv.folio || '—' }}</td>
+        <td class="text-center">
+          <span class="badge text-xs" [class]="statusClass(inv.status)"
+            >{{ inv.status }}</span
+          >
+        </td>
+        <td class="text-center text-sm">
+          {{ inv.timbreAt | date:'dd/MM/yyyy HH:mm' }}
+        </td>
+        <td class="text-center">
+          <div class="flex gap-1 justify-content-center">
+            @if (inv.xmlFilePath) {
+            <custom-button
+              label="XML"
+              size="small"
+              severity="secondary"
+              iconClass="pi pi-code"
+            />
+            } @if (inv.pdfFilePath) {
+            <custom-button
+              label="PDF"
+              size="small"
+              severity="info"
+              iconClass="pi pi-file-pdf"
+            />
+            }
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="6" class="text-center p-4 text-500">
+          @if (!chargeIdCtrl.value) { Selecciona un cargo para consultar sus
+          facturas. } @else { Este cargo no tiene facturas CFDI generadas. }
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- Vista mobile -->
+  <app-data-view-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="['uuid', 'folio', 'status']"
+    [showAdd]="false"
+  >
+    <ng-template #listItemTemplate let-inv>
+      <ion-item lines="full" detail="false" class="ion-no-padding">
+        <div
+          slot="start"
+          class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+        >
+          <ion-icon
+            name="receipt-outline"
+            class="text-blue-600 text-xl"
+          ></ion-icon>
+        </div>
+        <ion-label>
+          <h3>{{ inv.uuid | slice:0:18 }}...</h3>
+          <p>
+            {{ inv.status }} &middot; {{ inv.timbreAt | date:'dd/MM/yyyy' }}
+          </p>
+          <p>
+            Serie: {{ inv.serie || '—' }} &middot; Folio: {{ inv.folio || '—' }}
+          </p>
+        </ion-label>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
+</div>

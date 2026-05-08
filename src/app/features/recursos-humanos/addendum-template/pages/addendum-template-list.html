@@ -1,0 +1,56 @@
+<div class="card">
+  <p-table
+    [value]="items()"
+    styleClass="custom-table card hidden md:block"
+    [scrollable]="true"
+    [scrollHeight]="tableScrollH.scrollHeight()"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [globalFilterFields]="globalFilterFields"
+    #dt
+  >
+    <ng-template #caption>
+      <primeng-custom-caption
+        (add)="onModalForm({ id: '', title: 'Nuevo Machote de Adenda' })"
+        [dt]="dt"
+      />
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="table-col-xl">Nombre</th>
+        <th class="table-col-md">Tipo</th>
+        <th class="table-col-sm">Version</th>
+        <th class="table-col-sm">Creado</th>
+        <th class="table-col-sm text-center">Activo</th>
+        <th class="table-col-actions">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.addendumType }}</td>
+        <td>v{{ item.version }}</td>
+        <td>{{ item.createdAt | date:'dd/MM/yyyy' }}</td>
+        <td class="text-center">
+          @if (item.isActive) {
+            <span class="badge badge-success">Activo</span>
+          } @else {
+            <span class="badge badge-danger">Inactivo</span>
+          }
+        </td>
+        <td class="text-center">
+          <custom-button-item
+            [icon]="item.isActive ? 'pi pi-toggle-on' : 'pi pi-toggle-off'"
+            (click)="onToggleActive(item)"
+          />
+          <custom-button-edit (click)="onEdit(item)" />
+          <custom-button-delete (click)="onDelete(item.id)" />
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #footer>
+      <primeng-custom-table-footer [data]="items()" />
+    </ng-template>
+  </p-table>
+</div>

@@ -1,0 +1,38 @@
+@if (data) {
+<div class="invoice-title">
+  <div
+    class="flex align-items-center justify-content-between w-full flex-wrap gap-3 py-2"
+  >
+    <!-- Columna 1: Logo y nombre -->
+    <div class="flex align-items-center flex-shrink-0 logo-container">
+      <img
+        [src]="
+          data.photoPath
+            ? data.photoPath
+            : 'assets/images/default-avatar.png'
+        "
+        alt=""
+        height="36"
+        class="border mr-2 logo-img"
+      />
+      <span class="text-xl font-semibold ml-2">{{ data.customer }}</span>
+    </div>
+    <!-- Columna 2: Título -->
+    <div class="flex-flex-grow-1-1 text-center">
+      <h3 class="mb-0 font-bold">{{ titulo() }}</h3>
+    </div>
+    <!-- Columna 3: Folio y Factura -->
+    <div class="text-right flex-shrink-0 folio-factura-container">
+      <p class="mb-1 text-sm">
+        Folio
+        <span class="font-bold">{{ folio() }}</span>
+      </p>
+      <p class="mb-0 text-sm">
+        Factura
+        <span class="font-bold">{{ factura() }}</span>
+      </p>
+    </div>
+  </div>
+</div>
+}
+<hr />

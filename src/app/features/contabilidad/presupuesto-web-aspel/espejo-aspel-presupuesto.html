@@ -1,0 +1,511 @@
+<style>
+  /*
+    Define un viewport para el presupuesto, asegurando que el contenedor
+    principal ocupe la altura disponible y permita que la tabla interna se expanda
+    y muestre barras de scroll.
+  */
+  .budget-view-port-container {
+    /*
+      Calcula la altura para ocupar el espacio restante en la pantalla,
+      descontando una altura estimada para la barra de navegación o cabecera principal.
+      Ajustar '90px' si la altura de la cabecera es diferente.
+    */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .budget-desktop-table {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .budget-header-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+</style>
+
+<!--
+Contenedor principal de la vista de presupuesto.
+CORREGIDO: Se eliminó el div duplicado que estaba aquó.
+-->
+<div class="budget-view-port-container">
+  <!-- =========================
+       VISTA ESCRITORIO
+       ========================= -->
+  <div class="hidden md:flex md:flex-column budget-desktop-table">
+    <p-table
+      [globalFilterFields]="globalFilterFields()"
+      [scrollable]="true"
+      [showCurrentPageReport]="true"
+      [value]="cuentas()"
+      #dt
+      dataKey="codigo_Cuenta"
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} cuentas"
+      scrollHeight="flex"
+      styleClass="custom-table financial-data-table budget-sticky-footer-table p-datatable-sm text-sm"
+    >
+      <!-- =========================
+        CAPTION: Encabezado superior de la tabla
+        ========================= -->
+      <ng-template #caption>
+        <div class="flex align-items-center justify-content-between gap-2 mb-1">
+          <!-- Título principal y periodo -->
+          <div class="flex-shrink-0">
+            <div class="budget-header-meta">
+              @if (budgetData()?.Periodo_Presupuesto) {
+              <h4 class="text-xl m-0">
+                <small class="text-color-secondary">
+                  {{ budgetData()?.Periodo_Presupuesto }}
+                </small>
+              </h4>
+              }
+
+              <custom-input-select-signal
+                id="yearSelector"
+                label="Año Fiscal"
+                [data]="availableYears"
+                [ngModel]="intYear()"
+                (ngModelChange)="intYear.set($event); onSelectionChange()"
+                optionLabel="label"
+                optionValue="value"
+                [horizontal]="true"
+                [noMargin]="true"
+                customClass="w-8rem"
+              />
+            </div>
+          </div>
+
+          <!-- Controles alineados -->
+          <div class="flex align-items-center">
+            <div class="flex align-items-center mr-1">
+              <custom-search-input-signal
+                (searchChange)="dt.filterGlobal($event, 'contains')"
+              />
+            </div>
+
+            <!-- Botones de filtros y acciones rópidas -->
+            @if (!errorMensaje()) {
+            <div class="flex align-items-center" role="toolbar">
+              <custom-button
+                iconClass="pi pi-cog"
+                [outlined]="true"
+                severity="secondary"
+                ngbTooltip="Gestionar Reglas de Cuentas"
+                (clicked)="onManageRules()"
+                class="mr-1"
+              />
+
+              @if (allMonths()) {
+              <custom-button
+                iconClass="pi pi-times"
+                label="Ninguno"
+                ngbTooltip="Ningun mes"
+                (clicked)="ocultarTodosLosMeses()"
+                variant="outlined"
+                severity="info"
+                class="mr-1"
+              />
+              } @else {
+              <custom-button
+                iconClass="pi pi-check"
+                label="Todos"
+                ngbTooltip="Todos los meses"
+                (clicked)="mostrarTodosLosMeses()"
+                variant="outlined"
+                severity="info"
+              />
+              }
+
+              <custom-button
+                iconClass="pi pi-search"
+                label="Full"
+                ngbTooltip="Ver todo!!"
+                (clicked)="onApelFull()"
+                variant="outlined"
+                severity="info"
+                class="mr-1"
+              />
+
+              <custom-button
+                iconClass="pi pi-sparkles"
+                label="Analizar con IA"
+                ngbTooltip="Analizar con IA"
+                variant="outlined"
+                severity="help"
+                class="mr-1"
+                (clicked)="analyzeFinancialData()"
+              />
+            </div>
+            }
+          </div>
+        </div>
+
+        <!-- Mensaje de error si existe -->
+        @if (errorMensaje()) {
+        <div class="mt-1">
+          <p-message
+            severity="error"
+            [text]="errorMensaje()"
+            styleClass="mt-2"
+          ></p-message>
+        </div>
+        }
+      </ng-template>
+      <!-- =========================
+            HEADER: Encabezados de columnas
+            ========================= -->
+      @if (!errorMensaje()) {
+      <ng-template #header>
+        <tr>
+          <!-- CORREGIDO: Se combinaron los atributos de clase en uno solo -->
+          <th pFrozenColumn class="text-center th-width-250">CUENTA</th>
+          <th pFrozenColumn class="text-center th-width-150">PRE-MEN</th>
+          <!-- Encabezados de mes clickeables -->
+          @for (mes of months; track mes) {
+          <th
+            class="text-center month-header"
+            (click)="toggleMes(mes)"
+            [class.th-selected]="isMesVisible(mes)"
+            [class.th-deselected]="!isMesVisible(mes)"
+          >
+            {{ mes.substring(0, 3) | uppercase }}
+          </th>
+          }
+          <th class="text-center th-width-150">ACUMULADO</th>
+          <th class="text-center th-width-150">%</th>
+          <th class="text-center th-width-150">PRE-TOTAL</th>
+          <th class="text-center th-width-150">RESTANTE</th>
+        </tr>
+      </ng-template>
+      }
+
+      <!-- BODY y FOOTER no necesitan cambios en su estructura interna -->
+      <!-- =========================
+            BODY: Filas de datos
+            ========================= -->
+      @if (!errorMensaje(); as cuenta) {
+      <ng-template #body let-cuenta>
+        <tr
+          [@rowAnimation]
+          [class.fila-nivel-1]="cuenta.nivel_Cuenta === 1 && cuenta.esFilaAgrupadora"
+          [class.fila-nivel-2-agrupadora]="cuenta.nivel_Cuenta === 2 && cuenta.esFilaAgrupadora"
+          [class.fila-nivel-2-hoja]="cuenta.nivel_Cuenta === 2 && !cuenta.esFilaAgrupadora"
+          [class.fila-nivel-3-hoja]="cuenta.nivel_Cuenta === 3 && !cuenta.esFilaAgrupadora"
+        >
+          @if (cuenta.esFilaAgrupadora) {
+          <!-- Fusión de las dos primeras columnas congeladas (CUENTA + PRE-MEN) -->
+          <td pFrozenColumn [attr.colspan]="2">
+            <div class="flex align-items-center gap-2">
+              <span class="font-semibold text-color">
+                {{ cuenta.codigo_Cuenta }}
+              </span>
+              <span class="text-color-secondary">|</span>
+              <span class="text-color font-bold">
+                {{ cuenta.descripcion_Cuenta }}
+              </span>
+            </div>
+          </td>
+          <!-- El resto de las columnas se mantienen individuales pero vacías para mantener la rejilla -->
+          @for (mes of months; track mes) {
+          <td class="surface-ground"></td>
+          }
+          <td class="surface-ground"></td>
+          <td class="surface-ground"></td>
+          <td class="surface-ground"></td>
+          <td class="surface-ground"></td>
+          } @else {
+          <!-- COLUMNAS NORMALES PARA CUENTAS HOJA -->
+          <td pFrozenColumn>
+            <div class="flex flex-column">
+              <span
+                class="font-small-gray text-xs text-500 cursor-pointer hover:text-primary transition-colors transition-duration-200"
+                (click)="showPurchaseHistory(cuenta)"
+                pTooltip="Ver Historial"
+              >
+                {{ cuenta.codigo_Cuenta }} 🛒
+              </span>
+              <span class="text-color mt-1 font-semibold">
+                {{ cuenta.descripcion_Cuenta }}
+              </span>
+            </div>
+          </td>
+          <td pFrozenColumn class="text-right text-green-700 font-bold">
+            {{ getPresupuestoBaseMensual(cuenta) | number: "1.0-0" }}
+          </td>
+          @for (mes of months; track mes) {
+          <td
+            class="text-right"
+            [class.text-color-secondary]="!isMesVisible(mes)"
+          >
+            @if (preFormMonth) { @let presupMes = getPresupuestoDelMes(cuenta,
+            mes);
+            <span class="font-xsmall-gray">
+              {{ presupMes !== 0 ? (presupMes | number: "1.0-0") : "-" }}
+            </span>
+            <br />
+            } @let monto = getMontoMes(cuenta, mes);
+            <span
+              [class.text-red-700]="monto < 0 || monto > getPresupuestoDelMes(cuenta, mes)"
+              [class.font-bold]="monto < 0 || monto > getPresupuestoDelMes(cuenta, mes)"
+              [class.bg-red-50]="monto > getPresupuestoDelMes(cuenta, mes)"
+            >
+              {{ monto !== 0 ? (monto | number: "1.0-0") : "-" }}
+            </span>
+          </td>
+          }
+          <td class="text-right font-bold">
+            @let acumulado = getSumaGastoMesesVisiblesCuenta(cuenta);
+            <span [class.text-red-700]="acumulado < 0">
+              {{ acumulado !== 0 ? (acumulado | number: "1.0-0") : "-" }}
+            </span>
+          </td>
+          <td class="text-right font-bold">
+            <span
+              [class]="
+                      getPorcentajeGastadoMesesVisiblesCuenta(cuenta) > 100
+                        ? 'text-red-700'
+                        : 'text-green-700'
+                    "
+            >
+              {{ getPorcentajeGastadoMesesVisiblesCuenta(cuenta) > 0 ?
+              (getPorcentajeGastadoMesesVisiblesCuenta(cuenta) | number:
+              "1.0-0") + "%" : "-" }}
+            </span>
+          </td>
+          <td class="text-right font-bold">
+            @let presupuesto = getSumaPresupuestoMesesVisiblesCuenta(cuenta); {{
+            presupuesto !== 0 ? (presupuesto | number: "1.0-0") : "-" }}
+          </td>
+          <td class="text-right font-bold">
+            @let restante = getSumaPresupuestoMesesVisiblesCuenta(cuenta) -
+            getSumaGastoMesesVisiblesCuenta(cuenta);
+            <span
+              [class.text-red-700]="restante < 0"
+              [class.bg-red-50]="restante < 0"
+              [class.text-green-700]="restante >= 0"
+              class="px-2 py-1 border-round font-bold"
+            >
+              {{ restante | number: "1.0-0" }}
+            </span>
+          </td>
+          }
+        </tr>
+      </ng-template>
+      }
+
+      <!-- =========================
+            FOOTER: Totales
+            ========================= -->
+      @if (!errorMensaje()) {
+      <ng-template #footer>
+        @if (cuentas() && cuentas().length > 0) {
+        <tr>
+          <td pFrozenColumn class="text-right font-bold">
+            <span class="font-small-gray">PRESUP. MES:</span>
+          </td>
+          <td pFrozenColumn class="text-right font-bold">
+            <span class="font-small-gray">
+              {{ getTotalPresupuestoBaseMensual() | number: "1.0-0" }}
+            </span>
+          </td>
+          @for (mes of months; track mes) {
+          <td
+            class="text-right font-bold"
+            [class.text-color-secondary]="!isMesVisible(mes)"
+          >
+            <span style="font-size: 0.8em; color: #6c757d">
+              {{ getTotalPresupuestoDelMes(mes) !== 0 ?
+              (getTotalPresupuestoDelMes(mes) | number: "1.0-0") : "-" }}
+            </span>
+          </td>
+          }
+          <!-- ? Estos <td> vacóos extra SOLO deben estar una vez, no por cada mes -->
+          <td class="text-right font-bold"></td>
+          <td class="text-right font-bold"></td>
+          <td class="text-right font-bold"></td>
+          <td class="text-right font-bold"></td>
+        </tr>
+        <!-- ? </tr> fuera del @for -->
+        } @if (budgetData()) {
+        <tr>
+          <td pFrozenColumn class="text-right font-bold">TOTALES:</td>
+          <td pFrozenColumn class="text-right font-bold">
+            {{ getTotalPresupuestoBaseMensual() | number: "1.0-0" }}
+          </td>
+          @for (mes of months; track mes) {
+          <td
+            class="text-right font-bold"
+            [class.text-color-secondary]="!isMesVisible(mes)"
+          >
+            <span
+              [class.text-red-700]="gastoExcedido(mes)"
+              [class.bg-red-50]="gastoExcedido(mes)"
+              class="px-2 py-1 border-round block"
+            >
+              {{ getTotalMontoPorMes(mes) !== 0 ? (getTotalMontoPorMes(mes) |
+              number: "1.0-0") : "-" }}
+            </span>
+          </td>
+          }
+          <!-- Columnas finales (ACUMULADO, %, PRE-TOTAL, RESTANTE) -->
+          <td class="text-right font-bold">
+            @let totalAcumulado = getSumaGastoMesesVisibles();
+            <span [class.text-red-700]="totalAcumulado < 0">
+              {{ totalAcumulado > 0 ? (totalAcumulado | number: "1.0-0") : "-"
+              }}
+            </span>
+          </td>
+          <td class="text-right font-bold">
+            <span
+              [class]="
+                              getPorcentajeGastadoMesesVisibles() > 100
+                                ? 'text-red-700'
+                                : 'text-green-700'
+                            "
+            >
+              {{ getPorcentajeGastadoMesesVisibles() > 0 ?
+              (getPorcentajeGastadoMesesVisibles() | number: "1.0-0") + "%" :
+              "-" }}
+            </span>
+          </td>
+          <td class="text-right font-bold">
+            @let totalPresupuesto = getSumaPresupuestoMesesVisibles(); {{
+            totalPresupuesto !== 0 ? (totalPresupuesto | number: "1.0-0") : "-"
+            }}
+          </td>
+          <td class="text-right font-bold">
+            @let totalRestante = getPresupuestoRestanteMesesVisibles();
+            <p-tag
+              severity="warn"
+              [class]="totalRestante < 0 ? 'text-red-700' : 'text-green-700'"
+              [value]="
+                              totalRestante !== 0 ? (totalRestante | number: '1.0-0') : '-'
+                            "
+              styleClass="w-full text-right"
+            ></p-tag>
+          </td>
+        </tr>
+        }
+      </ng-template>
+      }
+      <!-- =========================
+            EMPTY MESSAGE: Sin datos
+            ========================= -->
+      @if (!errorMensaje()) {
+      <ng-template emptymessage>
+        <tr>
+          <td [attr.colspan]="8 + months.length">
+            No se encontraron cuentas para mostrar para el periodo seleccionado.
+          </td>
+        </tr>
+      </ng-template>
+      }
+    </p-table>
+  </div>
+
+  <!-- =========================
+       VISTA MóVIL
+       ========================= -->
+  <div class="block md:hidden">
+    <!-- Filtros móviles simplificados -->
+    <div class="mb-3 flex flex-column gap-2">
+      <custom-input-select-signal
+        id="yearSelectorMobile"
+        [data]="availableYears"
+        [ngModel]="intYear()"
+        (ngModelChange)="intYear.set($event); onSelectionChange()"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Seleccionar Año"
+        size="small"
+        [horizontal]="false"
+      />
+
+      <div class="flex justify-content-between">
+        <custom-button
+          iconClass="pi pi-cog"
+          severity="secondary"
+          (clicked)="onManageRules()"
+          size="small"
+          label="Reglas"
+        />
+        <custom-button
+          iconClass="pi pi-search"
+          label="Full"
+          (clicked)="onApelFull()"
+          variant="outlined"
+          severity="info"
+          size="small"
+        />
+      </div>
+    </div>
+
+    <app-data-view-mobile
+      [data]="cuentas()"
+      [globalFilterFields]="globalFilterFields()"
+      [showAdd]="false"
+      [loading]="loading"
+    >
+      <ng-template #listItemTemplate let-cuenta>
+        <div
+          class="w-full flex flex-column"
+          (click)="showPurchaseHistory(cuenta)"
+        >
+          <div class="flex justify-content-between align-items-center mb-1">
+            <span class="text-sm font-bold text-color"
+              >{{ cuenta.codigo_Cuenta }}</span
+            >
+            @if (cuenta.esFilaAgrupadora) {
+            <p-tag
+              value="Agrupadora"
+              severity="info"
+              styleClass="text-xs px-2"
+            ></p-tag>
+            }
+          </div>
+
+          <div class="text-sm text-color-secondary mb-2">
+            {{ cuenta.descripcion_Cuenta }}
+          </div>
+
+          <div class="grid text-xs surface-ground p-2 border-round">
+            <div class="col-6 flex flex-column mb-1">
+              <span class="font-bold text-green-700">Presupuesto</span>
+              <span
+                >{{ getSumaPresupuestoMesesVisiblesCuenta(cuenta) |
+                number:'1.0-0' }}</span
+              >
+            </div>
+            <div class="col-6 flex flex-column mb-1">
+              <span class="font-bold text-blue-700">Gasto</span>
+              <span
+                >{{ getSumaGastoMesesVisiblesCuenta(cuenta) | number:'1.0-0'
+                }}</span
+              >
+            </div>
+            <div
+              class="col-12 border-top-1 surface-border pt-1 mt-1 flex justify-content-between align-items-center"
+            >
+              <span class="font-bold">Restante:</span>
+              @let restante = getSumaPresupuestoMesesVisiblesCuenta(cuenta) -
+              getSumaGastoMesesVisiblesCuenta(cuenta);
+              <span
+                [class.text-red-700]="restante < 0"
+                [class.text-green-700]="restante >= 0"
+                class="font-bold"
+              >
+                {{ restante | number:'1.0-0' }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </app-data-view-mobile>
+  </div>
+</div>

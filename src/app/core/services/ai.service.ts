@@ -1,0 +1,193 @@
+import { Injectable, inject } from "@angular/core";
+import { ApiResponseService } from "./api-response.service";
+@Injectable({
+  providedIn: "root",
+})
+export class AiService {
+  private apiResponseService = inject(ApiResponseService);
+
+  async generateAnnouncementDraft(
+    prompt: string,
+    tone: string = "Formal",
+  ): Promise<string> {
+    try {
+      const response = await this.apiResponseService.onPostNotLoading<string>(
+        "Announcements/generate-draft",
+        {
+          prompt,
+          tone,
+        },
+      );
+
+      if (response === false) {
+        throw new Error("Error al generar el borrador.");
+      }
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async generateImage(prompt: string): Promise<Blob> {
+    try {
+      const response = await this.apiResponseService.onPostBlob(
+        "AiAssistant/GenerateImage",
+        { prompt },
+      );
+
+      if (!response) {
+        throw new Error("Error al generar imagen");
+      }
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async analyzeFinancialData(
+    context: string,
+    tone: string = "Profesional",
+  ): Promise<string> {
+    const response = await this.apiResponseService.onPostNotLoading<string>(
+      "Presupuesto/analyze",
+      {
+        context,
+        tone,
+      },
+    );
+
+    if (response === false) {
+      throw new Error("Error al analizar los datos financieros.");
+    }
+
+    return response;
+  }
+
+  async analyzeDashboard(
+    context: string,
+    customerId: string,
+    tone: string = "Ejecutivo",
+  ): Promise<string> {
+    const response = await this.apiResponseService.onPostNotLoading<string>(
+      "Dashboard/Analyze",
+      {
+        context,
+        tone,
+        customerId,
+      },
+    );
+
+    if (response === false) {
+      throw new Error("Error al generar el informe del dashboard.");
+    }
+
+    return response;
+  }
+
+  async auditBudget(
+    context: string,
+    tone: string = "Auditor Estricto",
+  ): Promise<string> {
+    const response = await this.apiResponseService.onPostNotLoading<string>(
+      "BudgetProposal/Audit",
+      {
+        context,
+        tone,
+      },
+    );
+
+    if (response === false) {
+      throw new Error("Error al auditar la propuesta.");
+    }
+
+    return response;
+  }
+
+  async getBudgetForecast(
+    context: string,
+    inflationRate: number = 5,
+  ): Promise<string> {
+    const response = await this.apiResponseService.onPostNotLoading<string>(
+      "BudgetProposal/Forecast",
+      {
+        context,
+        inflationRate,
+      },
+    );
+
+    if (response === false) {
+      throw new Error("Error al generar proyección.");
+    }
+
+    return response;
+  }
+
+  async generateJobDescription(
+    jobTitle: string,
+    customInstructions: string = "",
+  ): Promise<any> {
+    const response = await this.apiResponseService.onPostNotLoading<any>(
+      "job-descriptions/GenerateProposal",
+      {
+        jobTitle,
+        tone: "Profesional",
+        customInstructions,
+      },
+    );
+
+    if (response === false) {
+      throw new Error("Error al generar descripción del puesto.");
+    }
+
+    return response;
+  }
+
+  async analyzeJobDescription(
+    description: string,
+    jobTitle: string,
+  ): Promise<string> {
+    const response = await this.apiResponseService.onPostNotLoading<string>(
+      "job-descriptions/Analyze",
+      {
+        description,
+        jobTitle,
+      },
+    );
+
+    if (response === false) {
+      throw new Error("Error al analizar la descripción.");
+    }
+
+    return response;
+  }
+
+  async consultDocument(documentId: string, query: string): Promise<string> {
+    const response = await this.apiResponseService.onPostNotLoading<string>(
+      "CustomDocument/ConsultWithAi",
+      {
+        documentId,
+        query,
+      },
+    );
+
+    if (response === false) {
+      throw new Error("Error al consultar el documento.");
+    }
+
+    return response;
+  }
+
+  async analyzeComparativeChart(solicitudCompraId: any): Promise<string> {
+    const response = await this.apiResponseService.onPostNotLoading<string>(
+      `SolicitudCompra/analyze-comparative-chart/${solicitudCompraId}`,
+      {},
+    );
+
+    if (response === false) {
+      throw new Error("Error al analizar el cuadro comparativo.");
+    }
+
+    return response;
+  }
+}

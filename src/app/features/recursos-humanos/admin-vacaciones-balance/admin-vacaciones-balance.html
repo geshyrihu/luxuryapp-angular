@@ -1,0 +1,131 @@
+<p-confirmDialog [style]="{ width: '50vw' }"></p-confirmDialog>
+
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<p-table
+  #dt
+  [value]="dataSignal()"
+  [loading]="loading()"
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  styleClass="card hidden md:block custom-table"
+>
+  <ng-template #caption>
+    <div class="flex justify-content-between">
+      <primeng-custom-caption [dt]="dt" [showAddButton]="false" />
+      <custom-button
+        label="Recalcular Balances"
+        iconClass="pi pi-sync"
+        severity="secondary"
+        [showLabelOnDesktop]="true"
+        (clicked)="onRecalculateAll()"
+      />
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="fullName">
+        Empleado <p-sortIcon field="fullName" />
+      </th>
+      <th pSortableColumn="hireDate">
+        Contratación <p-sortIcon field="hireDate" />
+      </th>
+      <th pSortableColumn="seniorityYears">
+        Antigóedad <p-sortIcon field="seniorityYears" />
+      </th>
+      <th>Días por Antigóedad</th>
+      <th>Días Tomados</th>
+      <th>Días Pendientes</th>
+      <th>Adelanto Permitido</th>
+      <th>Adelanto Disponible</th>
+      <th pSortableColumn="currentSystemBalance">
+        Balance Sistema <p-sortIcon field="currentSystemBalance" />
+      </th>
+      <th>Discrepancia</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr [class.p-datatable-discrepant]="item.isDiscrepant">
+      <td>{{ item.fullName }}</td>
+      <td>{{ item.hireDate | date: "dd/MM/yyyy" }}</td>
+      <td>{{ item.seniorityYears }} años</td>
+      <td>{{ item.entitledDaysByLaw }}</td>
+      <td>{{ item.takenDays }}</td>
+      <td>{{ item.pendingDays }}</td>
+      <td>{{ item.isEligibleForAdvance ? item.allowedAdvanceDays : "N/A" }}</td>
+      <td>
+        {{ item.isEligibleForAdvance ? item.availableAdvanceDays : "N/A" }}
+      </td>
+      <td>
+        <strong>{{ item.currentSystemBalance }}</strong>
+      </td>
+      <td>
+        <p-tag
+          [severity]="getSeverity(item.isDiscrepant)"
+          [value]="item.isDiscrepant ? 'Só' : 'No'"
+        ></p-tag>
+      </td>
+      <td>
+        <custom-button-edit (clicked)="openEditModal(item)" />
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="11">
+        No se encontraron empleados para el cliente seleccionado.
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [dt]="dt"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding" detail="false">
+      <ion-label [class.p-datatable-discrepant]="item.isDiscrepant">
+        <h2 class="font-normal m-0">{{ item.fullName }}</h2>
+        <p class="text-xs m-0">
+          Contratado: {{ item.hireDate | date: "dd/MM/yyyy" }}
+        </p>
+        @if (item.isEligibleForAdvance) {
+        <div class="mt-1">
+          <p class="text-xs text-blue-600 m-0">
+            Adelanto Disponible: {{ item.availableAdvanceDays }} de {{
+            item.allowedAdvanceDays }}
+          </p>
+        </div>
+        }
+
+        <div class="flex flex-column mt-2">
+          <p class="text-xs m-0">Balance Sistema</p>
+          <p class="text-lg font-bold m-0">{{ item.currentSystemBalance }}</p>
+        </div>
+
+        @if (item.isDiscrepant) {
+        <div class="mt-1">
+          <p-tag
+            severity="danger"
+            value="DISCREPANCIA (BALANCE NEGATIVO)"
+          ></p-tag>
+        </div>
+        }
+      </ion-label>
+
+      <div slot="end" class="flex align-items-center">
+        <ion-button-edit (clicked)="openEditModal(item)" />
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

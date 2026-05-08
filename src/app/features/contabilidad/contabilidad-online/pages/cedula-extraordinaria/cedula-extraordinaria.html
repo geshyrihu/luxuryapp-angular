@@ -1,0 +1,169 @@
+<div class="fadein">
+  <!-- Toolbar de Acciones -->
+  <div
+    class="flex flex-wrap align-items-center justify-content-between mb-4 gap-3"
+  >
+    <div class="flex align-items-center gap-3">
+      <custom-button
+        label="Cargar"
+        iconClass="pi pi-refresh"
+        [loading]="loading()"
+        (clicked)="onLoad()"
+      />
+      @if (nombreEmpresa()) {
+      <span class="text-xl font-bold text-primary">{{ nombreEmpresa() }}</span>
+      }
+    </div>
+  </div>
+
+  @if (loading()) {
+  <div class="card p-4">
+    <p-skeleton height="2rem" styleClass="mb-2" />
+    <p-skeleton height="10rem" />
+  </div>
+  } @else if (!rows().length) {
+  <div class="surface-card p-6 border-round shadow-1 text-center">
+    <i class="pi pi-search text-4xl text-500 mb-3"></i>
+    <p class="text-color-secondary m-0">
+      No se encontraron registros para el periodo seleccionado.
+    </p>
+    <p class="text-sm text-500 mt-2">
+      Verifique el cliente y el año, luego pulse <strong>Cargar</strong>.
+    </p>
+  </div>
+  } @else {
+  <!-- Tabla de Escritorio -->
+  <p-table
+    [value]="rows()"
+    styleClass="custom-table card hidden md:block p-datatable-sm"
+    [tableStyle]="{ 'min-width': '800px' }"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 140px">Cuenta</th>
+        <th>Descripción</th>
+        <th class="text-right w-8rem">{{ monthHeaders()[0] }}</th>
+        <th class="text-right w-8rem">{{ monthHeaders()[1] }}</th>
+        <th class="text-right w-8rem">{{ monthHeaders()[2] }}</th>
+        <th class="text-right w-10rem">Acumulado</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-row>
+      <!-- Fila de Encabezado de Sección -->
+      @if (row.tipo === 'header') {
+      <tr class="bg-primary-900 text-white font-bold">
+        <td colspan="6" class="py-2 px-3 uppercase text-xs tracking-wider">
+          {{ row.descripcion }}
+        </td>
+      </tr>
+      }
+
+      <!-- Fila de Item (Cuenta) -->
+      @if (row.tipo === 'item') {
+      <tr class="hover:surface-100">
+        <td class="font-mono text-xs text-500">{{ row.numeroCuenta }}</td>
+        <td class="text-sm font-medium">{{ row.descripcion }}</td>
+        <td class="text-right text-sm" [class.text-red-500]="row.mes1 < 0">
+          {{ row.mes1 === 0 ? "-" : (row.mes1 | number : "1.0-0") }}
+        </td>
+        <td class="text-right text-sm" [class.text-red-500]="row.mes2 < 0">
+          {{ row.mes2 === 0 ? "-" : (row.mes2 | number : "1.0-0") }}
+        </td>
+        <td class="text-right text-sm" [class.text-red-500]="row.mes3 < 0">
+          {{ row.mes3 === 0 ? "-" : (row.mes3 | number : "1.0-0") }}
+        </td>
+        <td
+          class="text-right text-sm font-semibold"
+          [class.text-red-500]="row.acum < 0"
+        >
+          {{ row.acum === 0 ? "-" : (row.acum | number : "1.0-0") }}
+        </td>
+      </tr>
+      }
+
+      <!-- Filas de Totales -->
+      @if (row.tipo === 'total-ingresos' || row.tipo === 'total-gastos') {
+      <tr class="font-bold surface-100 border-top-2 border-primary">
+        <td></td>
+        <td class="text-sm">{{ row.descripcion }}</td>
+        <td class="text-right text-sm">{{ row.mes1 | number : "1.0-0" }}</td>
+        <td class="text-right text-sm">{{ row.mes2 | number : "1.0-0" }}</td>
+        <td class="text-right text-sm">{{ row.mes3 | number : "1.0-0" }}</td>
+        <td class="text-right text-sm text-primary">
+          {{ row.acum | number : "1.0-0" }}
+        </td>
+      </tr>
+      }
+    </ng-template>
+  </p-table>
+
+  <!-- Vista Móvil Sincronizada -->
+  <app-data-view-mobile
+    class="md:hidden"
+    [data]="rows()"
+    [loading]="loading()"
+    [showAdd]="false"
+  >
+    <ng-template #listItemTemplate let-item>
+      @if (item.tipo === 'header') {
+      <div
+        class="bg-primary-900 text-white p-2 font-bold text-xs uppercase mb-2 border-round-sm"
+      >
+        {{ item.descripcion }}
+      </div>
+      } @else if (item.tipo === 'item') {
+      <div class="surface-card p-3 mb-2 border-round shadow-1">
+        <div class="flex justify-content-between align-items-start mb-2 gap-2">
+          <span class="text-sm font-bold w-9">{{ item.descripcion }}</span>
+          <span class="text-xs font-mono text-500 shrink-0">{{
+            item.numeroCuenta
+          }}</span>
+        </div>
+        <div class="grid m-0 text-xs text-500">
+          <div class="col-4 p-0">
+            {{ monthHeaders()[0] }}:
+            <span class="text-color font-medium block">{{
+              item.mes1 | number : "1.0-0"
+            }}</span>
+          </div>
+          <div class="col-4 p-0">
+            {{ monthHeaders()[1] }}:
+            <span class="text-color font-medium block">{{
+              item.mes2 | number : "1.0-0"
+            }}</span>
+          </div>
+          <div class="col-4 p-0">
+            {{ monthHeaders()[2] }}:
+            <span class="text-color font-medium block">{{
+              item.mes3 | number : "1.0-0"
+            }}</span>
+          </div>
+        </div>
+        <div
+          class="mt-2 pt-2 border-top-1 border-100 flex justify-content-between align-items-center"
+        >
+          <span class="text-xs font-bold uppercase text-500">Acumulado</span>
+          <span class="text-sm font-bold text-primary">{{
+            item.acum | number : "1.0-0"
+          }}</span>
+        </div>
+      </div>
+      } @else {
+      <div class="p-3 mb-3 border-round shadow-2 surface-100">
+        <div class="flex justify-content-between align-items-center mb-2">
+          <span class="font-bold">{{ item.descripcion }}</span>
+          <span class="text-lg text-primary">{{
+            item.acum | number : "1.0-0"
+          }}</span>
+        </div>
+        <div class="flex justify-content-between text-xs opacity-70">
+          <span>{{ monthHeaders()[2] }}</span>
+          <span>{{ item.mes3 | number : "1.0-0" }}</span>
+        </div>
+      </div>
+      }
+    </ng-template>
+  </app-data-view-mobile>
+  }
+</div>

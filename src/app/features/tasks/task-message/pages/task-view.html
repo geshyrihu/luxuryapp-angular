@@ -1,0 +1,536 @@
+@if (notTicket()) {
+<!-- Error View (Responsive) -->
+<div class="flex justify-content-center align-items-center h-full p-4">
+  <div class="text-center">
+    <ion-icon
+      name="alert-circle-outline"
+      class="text-yellow-500 text-6xl mb-3"
+    ></ion-icon>
+    <h2 class="text-lg font-bold text-700">Ticket no encontrado</h2>
+    <p class="text-500 mt-2">
+      El ticket que estas buscando no existe o ha sido eliminado.
+    </p>
+  </div>
+</div>
+} @else if (ticket(); as t) {
+
+<!-- DESKTOP VIEW -->
+<div class="hidden md:block animate__animated animate__fadeIn">
+  <div class="flex justify-content-between align-items-center mb-3">
+    <custom-button
+      (clicked)="goBack()"
+      label="Volver al Listado"
+      iconClass="pi pi-arrow-left"
+      variant="text"
+    />
+  </div>
+  <p-card styleClass="shadow-2 border-round-xl mb-4 overflow-hidden">
+    <ng-template #header>
+      <div class="surface-100 p-4 border-bottom-1 surface-border">
+        <div class="flex justify-content-between align-items-start">
+          <div>
+            <div class="flex align-items-center mb-2">
+              <span
+                class="bg-primary text-white border-round px-2 py-1 text-sm font-bold"
+                >{{ t.folio }}</span
+              >
+              <span class="text-500 mx-2">|</span>
+              <span class="text-700 font-semibold">{{ t.ticketGroup }}</span>
+            </div>
+            <h2 class="text-2xl font-bold text-900 m-0">{{ t.title }}</h2>
+            <div class="text-500 mt-1 flex align-items-center">
+              <i class="pi pi-user mr-2"></i> {{ t.customer }}
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="mb-2">
+              <span
+                class="p-tag"
+                [class.p-tag-danger]="t.priority === 'Alta'"
+                [class.p-tag-warning]="t.priority === 'Media'"
+                [class.p-tag-info]="t.priority === 'Baja'"
+                >{{ t.priority }}</span
+              >
+            </div>
+            <span class="font-bold text-700 uppercase tracking-wider text-sm"
+              >{{ t.status }}</span
+            >
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #content>
+      <div class="p-4 pt-0">
+        <!-- Description -->
+        <div class="surface-ground p-3 border-round-lg mb-4">
+          <h6 class="text-600 font-bold mb-2 uppercase text-xs tracking-wider">
+            Descripcion
+          </h6>
+          <p class="text-800 line-height-3 m-0">{{ t.description }}</p>
+        </div>
+
+        <!-- Images -->
+        <div class="grid mb-5">
+          <div class="col-12 md:col-6">
+            <div
+              class="relative border-round-xl overflow-hidden shadow-2 surface-card h-full"
+            >
+              <div
+                class="absolute top-0 left-0 bg-black-alpha-60 text-white px-3 py-1 border-bottom-right-radius-lg font-bold z-1 text-sm"
+              >
+                ANTES
+              </div>
+              <img
+                [src]="t.beforeWorkPreview || 'assets/images/default-avatar.png'"
+                class="w-full h-15rem object-cover block cursor-pointer hover:scale-105 transition-transform transition-duration-300"
+                alt="Antes"
+              />
+            </div>
+          </div>
+          <div class="col-12 md:col-6">
+            <div
+              class="relative border-round-xl overflow-hidden shadow-2 surface-card h-full"
+            >
+              <div
+                class="absolute top-0 left-0 bg-green-600 text-white px-3 py-1 border-bottom-right-radius-lg font-bold z-1 text-sm"
+              >
+                DESPUES
+              </div>
+              <img
+                [src]="t.afterWorkPreview || 'assets/images/default-avatar.png'"
+                class="w-full h-15rem object-cover block cursor-pointer hover:scale-105 transition-transform transition-duration-300"
+                alt="Despues"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Info Grid -->
+        <div class="grid text-sm mb-4 border-top-1 surface-border pt-4">
+          <div class="col-12 sm:col-6 md:col-3">
+            <div class="text-500 mb-1">Solicita</div>
+            <div class="font-semibold text-900">{{ t.creator }}</div>
+            <div class="text-xs text-500">{{ t.createDate }}</div>
+          </div>
+          <div class="col-12 sm:col-6 md:col-3">
+            <div class="text-500 mb-1">Responsable</div>
+            <div class="font-semibold text-900">{{ t.assignee }}</div>
+          </div>
+          @if (t.scheduledDate) {
+          <div class="col-12 sm:col-6 md:col-3">
+            <div class="text-500 mb-1">Programado</div>
+            <div class="font-semibold text-900">{{ t.scheduledDate }}</div>
+          </div>
+          } @if (t.closedBy) {
+          <div class="col-12 sm:col-6 md:col-3">
+            <div class="text-500 mb-1">Cerrado por</div>
+            <div class="font-semibold text-900">{{ t.closedBy }}</div>
+            <div class="text-xs text-500">{{ t.closedDate }}</div>
+          </div>
+          }
+        </div>
+
+        <!-- Actions -->
+        @if (t.seeEditingOptions) {
+        <div class="flex flex-wrap gap-2 mb-5">
+          <custom-button
+            (clicked)="onModalForm(t)"
+            label="Editar Ticket"
+            iconClass="pi pi-pencil"
+            variant="outlined"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button
+            (clicked)="onFollowUp(t.id)"
+            label="Anadir Seguimiento"
+            iconClass="pi pi-comments"
+            severity="help"
+            variant="outlined"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button
+            (clicked)="onProgram(t.id)"
+            label="Programar"
+            iconClass="pi pi-calendar"
+            severity="info"
+            variant="outlined"
+            [showLabelOnDesktop]="true"
+          />
+          @if (t.status !== 'Cerrado' && t.status !== 'Completed') {
+          <custom-button
+            (clicked)="onProgress(t.id)"
+            label="En Proceso"
+            iconClass="pi pi-sync"
+            severity="warn"
+            variant="outlined"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button
+            (clicked)="onClosed(t.id)"
+            label="Cerrar Ticket"
+            iconClass="pi pi-lock"
+            severity="success"
+            variant="outlined"
+            [showLabelOnDesktop]="true"
+          />
+          } @if (t.status === 'Cerrado' || t.status === 'Completed') {
+          <custom-button
+            (clicked)="onReopen(t.id)"
+            label="Reabrir Ticket"
+            iconClass="pi pi-lock-open"
+            variant="outlined"
+            severity="danger"
+            [showLabelOnDesktop]="true"
+          />
+          }
+        </div>
+        }
+
+        <!-- Timeline -->
+        <h3 class="text-xl font-bold mb-3 border-left-3 border-primary pl-3">
+          Bitacora de Seguimiento
+        </h3>
+        @if (t.ticketMessageFollowUpViewDTO?.length > 0) {
+        <ul class="list-none p-0 m-0">
+          @for(follow of t.ticketMessageFollowUpViewDTO; track $index){
+          <li class="mb-4 flex">
+            <div class="flex flex-column align-items-center">
+              <p-avatar
+                [image]="follow.applicationUserImg || 'assets/images/default-avatar.png'"
+                shape="circle"
+                size="large"
+                styleClass="shadow-1"
+              ></p-avatar>
+              @if ($index !== t.ticketMessageFollowUpViewDTO.length - 1) {
+              <div class="h-full border-left-2 surface-border w-1 my-2"></div>
+              }
+            </div>
+            <div
+              class="flex-1 surface-card border-1 surface-border border-round-xl p-3 shadow-1 relative arrow-left"
+            >
+              <div class="flex justify-content-between mb-2">
+                <span class="font-bold text-900"
+                  >{{ follow.applicationUser }}</span
+                >
+                <span class="text-xs text-500">{{ follow.createdAt }}</span>
+              </div>
+              <p class="m-0 text-700 line-height-3">{{ follow.description }}</p>
+            </div>
+          </li>
+          }
+        </ul>
+        } @else {
+        <div
+          class="p-4 surface-ground border-round text-center text-500 italic"
+        >
+          No hay registros de seguimiento.
+        </div>
+        }
+      </div>
+    </ng-template>
+  </p-card>
+</div>
+
+<!-- MOBILE VIEW (Ionic) -->
+<div class="block md:hidden pb-6">
+  <div class="flex align-items-center p-2 bg-white border-bottom">
+    <ion-button fill="clear" (click)="goBack()">
+      <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <h1 class="text-lg font-bold m-0 ml-2">Detalle del Ticket</h1>
+  </div>
+
+  <ion-card class="m-0 mb-2 border-radius-0 shadow-none border-bottom">
+    <ion-card-header class="pb-2">
+      <div class="flex justify-content-between mb-1">
+        <ion-badge color="dark">{{ t.folio }}</ion-badge>
+        <ion-badge
+          [color]="t.priority === 'Alta' ? 'danger' : (t.priority === 'Media' ? 'warning' : 'medium')"
+          >{{ t.priority }}</ion-badge
+        >
+      </div>
+      <h2 class="text-xl font-bold my-1 text-dark">{{ t.title }}</h2>
+      <p class="text-sm text-color-secondary m-0 flex align-items-center gap-1">
+        <ion-icon name="time-outline"></ion-icon> {{ t.createDate }}
+      </p>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="flex align-items-center mb-2 p-2 surface-100 border-round">
+        <ion-avatar class="w-2 h-2">
+          <img src="assets/images/default-avatar.png" />
+        </ion-avatar>
+        <div class="flex-flex-grow-1-1">
+          <div class="text-xs font-bold text-dark">{{ t.creator }}</div>
+          <div class="text-xs text-color-secondary">Solicitante</div>
+        </div>
+      </div>
+      <p class="text-dark line-height-3 m-0 text-md">{{ t.description }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="px-2 mb-3">
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col size="6" class="pr-1">
+          <div class="relative border-round overflow-hidden h-8rem bg-light">
+            <div
+              class="absolute top-0 left-0 bg-dark text-white px-2 py-0.5 text-xs font-bold z-10 op-8"
+            >
+              Antes
+            </div>
+            <img
+              [src]="t.beforeWorkPreview || 'assets/images/default-avatar.png'"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </ion-col>
+        <ion-col size="6" class="pl-1">
+          <div class="relative border-round overflow-hidden h-8rem bg-light">
+            <div
+              class="absolute top-0 left-0 bg-success text-white px-2 py-0.5 text-xs font-bold z-10 op-8"
+            >
+              Despues
+            </div>
+            <img
+              [src]="t.afterWorkPreview || 'assets/images/default-avatar.png'"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-list lines="full" class="mb-3">
+    <ion-item>
+      <ion-label>
+        <h3 class="text-xs uppercase text-medium">Responsable</h3>
+        <p class="text-dark font-semibold">{{ t.assignee }}</p>
+      </ion-label>
+    </ion-item>
+    @if (t.scheduledDate) {
+    <ion-item>
+      <ion-label>
+        <h3 class="text-xs uppercase text-medium">Programado</h3>
+        <p class="text-dark font-semibold">{{ t.scheduledDate }}</p>
+      </ion-label>
+    </ion-item>
+    }
+    <ion-item>
+      <ion-label>
+        <h3 class="text-xs uppercase text-medium">Estado</h3>
+        <p class="text-dark font-semibold">{{ t.status }}</p>
+      </ion-label>
+      @if (t.status === 'Cerrado' || t.status === 'Completed') {
+      <ion-icon
+        name="checkmark-circle-outline"
+        slot="end"
+        color="success"
+      ></ion-icon>
+      }
+    </ion-item>
+  </ion-list>
+
+  <div class="px-3">
+    <div class="flex justify-content-between align-items-center mb-3">
+      <h3 class="text-lg font-bold m-0 flex align-items-center">
+        <ion-icon name="chatbubbles-outline"></ion-icon> Seguimiento
+      </h3>
+      @if (t.seeEditingOptions) {
+      <ion-button
+        fill="clear"
+        size="small"
+        color="primary"
+        (click)="onFollowUp(t.id)"
+      >
+        <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+      </ion-button>
+      }
+    </div>
+
+    @if (t.ticketMessageFollowUpViewDTO?.length > 0) {
+    <div class="flex flex-column">
+      @for(follow of t.ticketMessageFollowUpViewDTO; track $index){
+      <div class="flex">
+        <div class="flex flex-column align-items-center">
+          <ion-avatar class="w-3 h-3 border-1 surface-border">
+            <img
+              [src]="follow.applicationUserImg || 'assets/images/default-avatar.png'"
+            />
+          </ion-avatar>
+        </div>
+        <div
+          class="flex-1 bg-white p-3 border-round shadow-1 relative arrow-left-mobile"
+        >
+          <div class="flex justify-content-between mb-1">
+            <span class="font-bold text-sm">{{ follow.applicationUser }}</span>
+            <span class="text-xs text-medium">{{ follow.createdAt }}</span>
+          </div>
+          <p class="m-0 text-dark text-sm">{{ follow.description }}</p>
+        </div>
+      </div>
+      }
+    </div>
+    } @else {
+    <div class="text-center p-4 text-medium bg-light border-round">
+      No hay mensajes de seguimiento.
+    </div>
+    }
+  </div>
+
+  @if (t.seeEditingOptions) {
+  <div
+    class="fixed bottom-0 left-0 w-full bg-white p-2 border-top-1 surface-border shadow-6"
+    style="z-index: 1000"
+  >
+    <div class="flex flex-column gap-1">
+      <div class="flex gap-1">
+        <ion-button
+          fill="outline"
+          size="small"
+          class="flex-1 m-0"
+          style="
+            height: 32px;
+            font-size: 0.75rem;
+            --padding-start: 2px;
+            --padding-end: 2px;
+          "
+          (click)="onModalForm(t)"
+        >
+          <ion-icon
+            slot="start"
+            name="create-outline"
+            style="font-size: 0.9rem"
+          ></ion-icon>
+          Editar
+        </ion-button>
+        <ion-button
+          fill="outline"
+          size="small"
+          class="flex-1 m-0"
+          style="
+            height: 32px;
+            font-size: 0.75rem;
+            --padding-start: 2px;
+            --padding-end: 2px;
+          "
+          (click)="onProgram(t.id)"
+        >
+          <ion-icon
+            slot="start"
+            name="calendar-outline"
+            style="font-size: 0.9rem"
+          ></ion-icon>
+          Programar
+        </ion-button>
+      </div>
+
+      <div class="flex gap-1">
+        @if (t.status !== 'Cerrado' && t.status !== 'Completed') {
+        <ion-button
+          color="warning"
+          size="small"
+          class="flex-1 m-0"
+          style="
+            height: 32px;
+            font-size: 0.75rem;
+            --padding-start: 2px;
+            --padding-end: 2px;
+          "
+          (click)="onProgress(t.id)"
+        >
+          <ion-icon
+            slot="start"
+            name="sync-outline"
+            style="font-size: 0.9rem"
+          ></ion-icon>
+          Proceso
+        </ion-button>
+        <ion-button
+          color="success"
+          size="small"
+          class="flex-1 m-0"
+          style="
+            height: 32px;
+            font-size: 0.75rem;
+            --padding-start: 2px;
+            --padding-end: 2px;
+          "
+          (click)="onClosed(t.id)"
+        >
+          <ion-icon
+            slot="start"
+            name="lock-closed-outline"
+            style="font-size: 0.9rem"
+          ></ion-icon>
+          Cerrar
+        </ion-button>
+        } @if (t.status === 'Cerrado' || t.status === 'Completed') {
+        <ion-button
+          color="danger"
+          size="small"
+          class="w-full m-0"
+          style="height: 32px; font-size: 0.75rem"
+          (click)="onReopen(t.id)"
+        >
+          <ion-icon
+            slot="start"
+            name="lock-open-outline"
+            style="font-size: 0.9rem"
+          ></ion-icon>
+          Reabrir Ticket
+        </ion-button>
+        }
+      </div>
+
+      <ion-button
+        color="primary"
+        size="small"
+        class="w-full m-0"
+        style="height: 32px; font-size: 0.75rem"
+        (click)="onFollowUp(t.id)"
+      >
+        <ion-icon
+          slot="start"
+          name="chatbubbles-outline"
+          style="font-size: 0.9rem"
+        ></ion-icon>
+        Seguimiento
+      </ion-button>
+    </div>
+  </div>
+  <div class="h-10rem"></div>
+  }
+</div>
+}
+
+<style>
+  .arrow-left::before {
+    content: "";
+    position: absolute;
+    right: 100%;
+    top: 20px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-right: 8px solid var(--surface-card);
+    border-bottom: 8px solid transparent;
+  }
+
+  .arrow-left-mobile::before {
+    content: "";
+    position: absolute;
+    right: 100%;
+    top: 15px;
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-right: 6px solid #fff;
+    border-bottom: 6px solid transparent;
+  }
+
+  .op-8 {
+    opacity: 0.8;
+  }
+</style>

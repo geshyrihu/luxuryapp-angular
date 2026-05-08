@@ -1,0 +1,78 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="grid">
+    <!-- Empleado -->
+    <div class="col-12">
+      <custom-input-select-signal
+        label="Empleado"
+        [control]="f.employeeId"
+        [data]="cbEmployees()"
+        placeholder="Seleccione un empleado"
+      />
+    </div>
+
+    <!-- Banco -->
+    <div class="col-12 md:col-6">
+      <custom-input-select-signal
+        label="Banco"
+        [control]="f.bankId"
+        [data]="cbBanks()"
+        placeholder="Seleccione un banco"
+      />
+    </div>
+
+    <!-- Parentesco / Relación -->
+    <div class="col-12 md:col-6">
+      <custom-input-select-signal
+        label="Parentesco (si es cuenta de tercero)"
+        [control]="f.relacion"
+        [data]="cbRelations()"
+        placeholder="Seleccione relación"
+      />
+    </div>
+
+    <!-- No. Cuenta -->
+    <div class="col-12 md:col-6">
+      <custom-input-text-signal
+        label="Número de Cuenta"
+        [control]="f.bankAccount"
+        placeholder="Ej. 1234567890"
+      />
+    </div>
+
+    <!-- CLABE -->
+    <div class="col-12 md:col-6">
+      <custom-input-mask-signal
+        label="CLABE Interbancaria (18 dígitos)"
+        [control]="f.bankKey"
+        customMask="000000000000000000"
+        placeholder="Ej. 012345678901234567"
+      />
+    </div>
+
+    <!-- Titular -->
+    <div class="col-12 md:col-6">
+      <custom-input-text-signal
+        label="Nombre del Titular"
+        [control]="f.nameContact"
+        placeholder="Nombre completo"
+      />
+    </div>
+
+    <!-- Teléfono -->
+    <div class="col-12 md:col-6">
+      <custom-input-mask-signal
+        label="Teléfono del Titular"
+        [control]="f.phoneNumber"
+        customMask="000 000 0000"
+        placeholder="10 dígitos"
+      />
+    </div>
+
+    <div class="col-12 flex justify-content-end mt-4">
+      <custom-button-save
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </div>
+  </div>
+</form>

@@ -1,0 +1,63 @@
+<p-card>
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-autocomplete-signal
+        (propagar)="saveCondominiumAsset($event)"
+        [control]="form.controls.condominiumAssetName"
+        [data]="cb_activos()"
+        label="Equipo o órea"
+        placeholder="Escribe para buscar equipo o órea"
+        [horizontal]="false"
+      />
+
+      <div class="mb-3">
+        <label for="position">Posición</label>
+        <p-inputNumber
+          inputId="position"
+          [formControl]="form.controls.position"
+          placeholder="Posición del órea"
+          mode="decimal"
+          [minFractionDigits]="0"
+          [maxFractionDigits]="0"
+          styleClass="w-full"
+        ></p-inputNumber>
+      </div>
+
+      <div class="mb-3">
+        <label>Revisiones</label>
+        <div class="mb-2">
+          @for (review of reviewsControl.controls; track review; let i = $index)
+          {
+          <div
+            class="flex justify-content-between align-items-center border-1 surface-border border-round p-2 mb-2"
+          >
+            <span>{{ review.value.label }}</span>
+            <i
+              (click)="onRemoveReview(i)"
+              class="pi pi-trash text-red-500 cursor-pointer"
+            ></i>
+          </div>
+          } @if (reviewsControl.controls.length === 0) {
+          <div class="text-color-secondary text-sm">
+            No hay revisiones agregadas
+          </div>
+          }
+        </div>
+        <custom-input-select-signal
+          [data]="cb_inspection_reviews_catalog()"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Seleccione una revisión"
+          [control]="selectedReviewControl"
+          (selectionChange)="onAddReview($any($event.value))"
+          [horizontal]="false"
+          customClass="w-full"
+        />
+      </div>
+      <custom-button-save
+        [disabled]="form.invalid || reviewsControl.length === 0"
+        [submitting]="submitting()"
+      />
+    </form>
+  </div>
+</p-card>

@@ -1,0 +1,109 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form" class="flex flex-column gap-4 p-2">
+
+  <!-- Folio y Version -->
+  <div class="grid align-items-end">
+    <div class="col-12 md:col-8">
+      <custom-input-text-signal
+        [control]="form.controls.folio"
+        label="Folio / Titulo del Manual"
+        placeholder="Ej: PROC-MANT-012"
+        [horizontal]="false"
+      />
+    </div>
+    <div class="col-12 md:col-4">
+      <custom-input-text-signal
+        [control]="form.controls.currentVersion"
+        label="Version Actual"
+        placeholder="Ej: 1.0"
+        [horizontal]="false"
+      />
+    </div>
+  </div>
+
+  <!-- Departamento -->
+  <custom-input-select-signal
+    [control]="form.controls.departament"
+    [data]="departments()"
+    label="Departamento Responsable"
+    placeholder="Seleccione area..."
+    [horizontal]="false"
+  />
+
+  <!-- Descripcion -->
+  <custom-input-text-signal
+    [control]="form.controls.description"
+    label="Descripcion"
+    placeholder="Resumen del proposito de este documento"
+    [horizontal]="false"
+  />
+
+  <!-- Objetivo -->
+  <custom-input-textarea-signal
+    [control]="form.controls.objetivo"
+    label="Objetivo"
+    placeholder="Describir el objetivo general del manual..."
+    [rows]="4"
+    [horizontal]="false"
+  />
+
+  <!-- Marco Legal -->
+  <custom-input-textarea-signal
+    [control]="form.controls.marcoLegal"
+    label="Marco Legal, Referencias y Anexos"
+    placeholder="Leyes, normas, reglamentos o referencias que aplican a este manual..."
+    [rows]="4"
+    [horizontal]="false"
+  />
+
+  <!-- Visibilidad -->
+  <div class="grid">
+    <div class="col-12 md:col-6">
+      <label class="font-bold mb-2 block text-sm text-700">Visibilidad: Customers</label>
+      <p-listbox
+        [options]="customers()"
+        formControlName="customerIds"
+        [multiple]="true"
+        [checkbox]="true"
+        [filter]="true"
+        optionLabel="label"
+        optionValue="value"
+        [style]="{ width: '100%' }"
+        [listStyle]="{ 'max-height': '280px' }"
+        emptyFilterMessage="No se encontraron clientes"
+        styleClass="w-full border-round-xl overflow-hidden shadow-1"
+      />
+    </div>
+    <div class="col-12 md:col-6">
+      <label class="font-bold mb-2 block text-sm text-700">Visibilidad: Roles</label>
+      <p-listbox
+        [options]="roles()"
+        formControlName="roleIds"
+        [multiple]="true"
+        [checkbox]="true"
+        [filter]="true"
+        optionLabel="label"
+        optionValue="value"
+        [style]="{ width: '100%' }"
+        [listStyle]="{ 'max-height': '280px' }"
+        emptyFilterMessage="No se encontraron roles"
+        styleClass="w-full border-round-xl overflow-hidden shadow-1"
+      />
+    </div>
+  </div>
+
+  <!-- Switches -->
+  <div class="flex gap-4 p-3 bg-gray-50 border-round-xl border-1 border-200">
+    <div class="flex align-items-center gap-2">
+      <input type="checkbox" formControlName="isGlobal" id="isGlobal" class="w-1.5rem h-1.5rem cursor-pointer" />
+      <label for="isGlobal" class="font-medium cursor-pointer">Manual Global (Todos los Clientes)</label>
+    </div>
+    <div class="flex align-items-center gap-2">
+      <input type="checkbox" formControlName="isActive" id="isActive" class="w-1.5rem h-1.5rem cursor-pointer" />
+      <label for="isActive" class="font-medium cursor-pointer">Activo / Publicado</label>
+    </div>
+  </div>
+
+  <div class="flex justify-content-end mt-4 pt-3 border-top-1 border-100">
+    <custom-button-save [loading]="submitting()" />
+  </div>
+</form>

@@ -1,0 +1,27 @@
+<div class="mt-2"></div>
+<div class="mb-3">
+  <label for="revisionSelect">Seleccionar revisión</label>
+  <p-select
+    inputId="revisionSelect"
+    [options]="[
+      { label: 'Iluminacion', value: 'Iluminacion' },
+      { label: 'Píntura', value: 'Píntura' },
+      { label: 'Funcionamiento de chapas', value: 'Funcionamiento de chapas' },
+      { label: 'Estado de carpinteria', value: 'Estado de carpinteria' },
+      { label: 'Funcionamiento w.c.', value: 'Funcionamiento w.c.' }
+    ]"
+    optionLabel="label"
+    optionValue="value"
+    placeholder="Seleccione una revisión..."
+    fluid
+  />
+</div>
+
+<custom-button-save />
+
+
+
+
+
+
+

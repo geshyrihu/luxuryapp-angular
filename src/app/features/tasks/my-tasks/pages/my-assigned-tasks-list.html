@@ -1,0 +1,313 @@
+<div>
+  <div class="hidden md:block">
+    @if (dataSignal() && dataSignal() !== undefined) {
+    <p-table
+      [globalFilterFields]="globalFilterFields()"
+      [paginator]="true"
+      [rows]="tablePrimeNgRows"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [showCurrentPageReport]="true"
+      [value]="dataSignal()"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight"
+      #dt
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      styleClass="custom-table hidden md:block"
+    >
+      <ng-template #caption>
+        <primeng-custom-caption
+          title="Mis tickets asignados"
+          (add)="
+              onModalAdd({
+                id: '',
+                title: 'Agregar',
+              })
+            "
+          [dt]="dt"
+        />
+        <div class="mt-2">
+          <app-task-status (statusChange)="onLoadData($event)" />
+        </div>
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th class="font-size-12">FOLIO</th>
+          <th class="font-size-12 hidden md:table-cell">SOLICITA</th>
+          <th class="font-size-12">FECHA SOL.</th>
+          <th class="font-size-12">SOLICITUD</th>
+          <th class="font-size-12 hidden md:table-cell">EVIDENCIA</th>
+          <th class="font-size-12">PRIORIDAD</th>
+          <th class="font-size-12">PROGRAMADO</th>
+          <th class="font-size-12 hidden md:table-cell">CIERRE</th>
+          <th class="font-size-12">DIAS</th>
+          <th class="font-size-12"></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>{{ item.folio }}</td>
+          <td class="text-center hidden md:table-cell">
+            <p-avatar
+              (click)="onCardEmployee(item.creatorId)"
+              [image]="
+                  item.creatorImg
+                    ? item.creatorImg
+                    : 'assets/images/default-avatar.jpg'
+                "
+              alt="Creador"
+              shape="square"
+              size="large"
+              styleClass="mr-2 cursor-pointer"
+            />
+          </td>
+          <td>{{ item.createdAtDate }}</td>
+          <td>
+            <strong class="card-text">
+              <em>{{ item.title }}</em>
+            </strong>
+            <p class="card-text">{{ item.description }}</p>
+          </td>
+          <td class="text-center hidden md:table-cell">
+            @if (item.beforeWork) {
+            <p-image
+              [src]="
+                    item.beforeWork
+                      ? item.beforeWork
+                      : 'assets/images/default-avatar.png'
+                  "
+              alt="."
+              width="40"
+              class="mr-2 border border-danger"
+              [preview]="true"
+            ></p-image>
+            }
+          </td>
+          <td class="text-center">
+            @if (item.priority === "Alta") {
+            <i class="icon icon-pi-star icon-xl"></i>
+            } @if (item.priority === "Baja") {
+            <i class="icon icon-pi-star icon-xl"></i>
+            }
+          </td>
+          <td>{{ item.scheduledAt }}</td>
+          <td class="text-center hidden md:table-cell">
+            {{ item.closedAtDate }}
+          </td>
+          <td class="text-center">
+            <p>
+              <strong>{{ item.daysDifference }}</strong>
+            </p>
+          </td>
+          <td class="text-center no-print">
+            <div class="flex justify-content-center">
+              <custom-button-tracking
+                iconClass="pi pi-star"
+                ngbTooltip="Dar seguimiento"
+                [badgeCount]="item.ticketMessageFollowUp"
+                (clickTracking)="onFollowUp(item.id)"
+              />
+              <app-action-menu>
+                <ng-container actions>
+                  @if (item.status !== "Completed") {
+                  <ion-button-item
+                    iconClass="pi pi-calendar"
+                    label="Programar"
+                    [showLabelOnDesktop]="true"
+                    (clicked)="onProgram(item.id)"
+                  />
+
+                  } @if (item.status !== "Completed") {
+                  <ion-button-item
+                    iconClass="pi pi-lock"
+                    label="Cerrar"
+                    [showLabelOnDesktop]="true"
+                    (clicked)="onClosed(item.id)"
+                  />
+                  } @if (item.status === "Completed") {
+                  <ion-button-item
+                    iconClass="pi pi-lock-open"
+                    label="Re abrir"
+                    [showLabelOnDesktop]="true"
+                    (clicked)="onReopen(item.id)"
+                  />
+                  } @if (item.status !== "Completed") {
+                  <ion-button-edit
+                    (clicked)="
+                          onModalForm({
+                            id: item.id,
+                            title: 'Editar',
+                            ticketGroupId: item.ticketGroupId,
+                          })
+                        "
+                    [showLabelOnDesktop]="true"
+                  />
+                  }
+                </ng-container>
+              </app-action-menu>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    }
+  </div>
+
+  <div class="block md:hidden mt-3">
+    <div class="container-fluid py-1">
+      <div class="flex justify-content-between align-items-center mb-1">
+        <h4 class="mb-0">Mis Tickets Asignados</h4>
+      </div>
+
+      <div class="flex justify-content-between align-items-center mb-1">
+        <custom-input-text-signal
+          placeholder="Ingresa texto para buscar..."
+          [customClass]="'mr-1'"
+          [ngModel]="searchTextSignal()"
+          (ngModelChange)="searchTextSignal.set($event)"
+          [horizontal]="false"
+        />
+        <custom-button-add
+          label="Agregar"
+          iconClass="pi pi-plus"
+          [pTooltip]="'Agregar'"
+          tooltipPosition="top"
+          customClass="p-button-outlined"
+          (clicked)="
+        onModalAdd({
+          id: '',
+          title: 'Agregar',
+        })
+      "
+        />
+      </div>
+
+      <div class="flex mb-1">
+        <custom-button
+          iconClass="pi pi-clock"
+          label="Pend.."
+          variant="outlined"
+          size="small"
+          [showLabelOnDesktop]="true"
+          (clicked)="onLoadData(0)"
+        />
+
+        <custom-button
+          iconClass="pi pi-sync"
+          label="Reab.."
+          variant="outlined"
+          size="small"
+          [showLabelOnDesktop]="true"
+          (clicked)="onLoadData(3)"
+        />
+
+        <custom-button
+          iconClass="pi pi-cog"
+          label="Proc.."
+          variant="outlined"
+          size="small"
+          [showLabelOnDesktop]="true"
+          (clicked)="onLoadData(1)"
+        />
+
+        <custom-button
+          iconClass="pi pi-check-circle"
+          label="Term.."
+          variant="outlined"
+          size="small"
+          [showLabelOnDesktop]="true"
+          (clicked)="onLoadData(2)"
+        />
+      </div>
+
+      @if (filteredDataSignal()) {
+      <div class="ticket-list">
+        @for (item of filteredDataSignal(); track item) {
+        <div
+          class="py-1 border-left-2 mb-1 pl-2"
+          [class.border-red-500]="item.status === 'Completed'"
+          [class.border-gray-500]="item.status === 'Reopened'"
+          [class.border-green-500]="item.status === 'Closed'"
+          [class.border-yellow-500]="item.status === 'InProgress'"
+        >
+          <div class="flex justify-content-between align-items-center mb-1">
+            <small class="text-color-secondary"
+              >{{ item.folio }} | {{ item.createdAtDate }}</small
+            >
+            <span
+              class="bg-primary-100 text-primary-700 border-round px-2 py-1 text-sm"
+            >
+              {{ item.daysDifference }}
+            </span>
+          </div>
+          <div class="flex align-items-center">
+            <div class="mr-3">
+              @if (item.beforeWork) {
+              <p-image
+                [src]="
+              item.beforeWork
+                ? item.beforeWork
+                : 'assets/images/default-avatar.png'
+            "
+                alt="."
+                width="50"
+                class="border-round border-1 border-200"
+                [preview]="true"
+              ></p-image>
+              }
+            </div>
+            <div class="flex-grow-1">
+              <div
+                class="ticket-title text-overflow-ellipsis overflow-hidden white-space-nowrap"
+              >
+                {{ item.title }}
+              </div>
+              <small class="ticket-description two-lines text-color-secondary">
+                {{ item.description }}
+              </small>
+            </div>
+            <div>
+              <app-action-menu>
+                <ng-container actions>
+                  <ion-button-item
+                    iconClass="pi pi-clipboard"
+                    label="Seguimiento"
+                    (clicked)="onFollowUp(item.id)"
+                  />
+                  @if (item.status !== "Completed") {
+                  <ion-button-edit
+                    (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+                  />
+                  <ion-button-item
+                    iconClass="pi pi-calendar"
+                    label="Programar"
+                    (clicked)="onProgram(item.id)"
+                  />
+                  <ion-button-item
+                    iconClass="pi pi-sync"
+                    label="En proceso"
+                    (clicked)="onProgress(item.id)"
+                  />
+                  } @if (item.status !== "Completed") {
+                  <ion-button-item
+                    iconClass="pi pi-lock"
+                    label="Cerrar"
+                    (clicked)="onClosed(item.id)"
+                  />
+                  } @if (item.status === "Completed") {
+                  <ion-button-item
+                    iconClass="pi pi-lock-open"
+                    label="Re abrir"
+                    (clicked)="onReopen(item.id)"
+                  />
+                  }
+                </ng-container>
+              </app-action-menu>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+</div>

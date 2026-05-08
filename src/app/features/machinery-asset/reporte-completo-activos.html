@@ -1,0 +1,68 @@
+<!-- (MEJORA) Indicador de carga para una mejor experiencia de usuario -->
+@if (loading()) {
+  <div class="text-center my-5">
+    <p-progressSpinner styleClass="w-3rem h-3rem" strokeWidth="4" />
+    <p class="mt-2">Cargando reporte de activos...</p>
+  </div>
+}
+
+<!-- El contenido principal solo se muestra cuando la carga ha terminado -->
+@if (!loading()) {
+  <div class="h3">{{ titulo }}</div>
+  <!-- ¡CAMBIO! El @for principal ahora itera sobre el signal `data()` -->
+  @if (data().length > 0) {
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="table-col-20">Imagen</th>
+          <th class="table-col-20">Descripción</th>
+          <th class="table-col-30">Especificaciones</th>
+          <th class="table-col-30">Observaciones</th>
+        </tr>
+      </thead>
+      <!-- ¡CAMBIO! El @for ahora lee del signal data() -->
+      @for (item of data(); track item.ubication) {
+        <tbody>
+          <tr>
+            <td colspan="4">
+              <h6 class="card-title">{{ item.ubication }}</h6>
+            </td>
+          </tr>
+          <!-- El @for anidado no necesita cambios, ya que `item` es una variable local del bucle -->
+          @for (items of item.items; track items.photoPath) {
+            <tr>
+              <td>
+                <img [src]="items.photoPath" width="80px" height="60px" />
+              </td>
+              <td>
+                <p class="mb-0">{{ items.ubication }}</p>
+                <p class="mb-0">{{ items.nameMachinery }}</p>
+                <p class="mb-0">{{ items.brand }}</p>
+                <p class="mb-0">{{ items.model }}</p>
+              </td>
+              <td>
+                <p
+                  class="font-normal mb-0"
+                  [innerHTML]="items.technicalSpecifications | sanitizeHtml"
+                ></p>
+              </td>
+              <td>{{ items.Observaciones }}</td>
+            </tr>
+          }
+        </tbody>
+      }
+    </table>
+  } @else {
+    <!-- (MEJORA) Mensaje claro si no hay datos que mostrar -->
+    <div class="p-4 surface-card border-round shadow-1 text-center text-color-secondary">
+      No se encontraron activos para este cliente.
+    </div>
+  }
+}
+
+
+
+
+
+
+

@@ -1,0 +1,159 @@
+<p-table
+  #dt
+  [value]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  styleClass="custom-table hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption [showAdd]="false" [showSearch]="false" [dt]="dt" />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th rowspan="2">
+        <p class="font-light">#</p>
+      </th>
+      <th rowspan="2" pSortableColumn="fechaFiltro">
+        <p class="font-light">Fecha</p>
+        <p-sortIcon field="fechaFiltro" />
+      </th>
+      <th colspan="3">
+        <div
+          class="text-center font-bold text-white border-round p-2 w-full bg-contable"
+        >
+          Contable
+        </div>
+      </th>
+      <th colspan="3">
+        <div
+          class="text-center font-bold text-white border-round p-2 w-full bg-operaciones"
+        >
+          Operaciones
+        </div>
+      </th>
+      <th colspan="3">
+        <div
+          class="text-center font-bold text-white border-round p-2 w-full bg-legal"
+        >
+          Legal
+        </div>
+      </th>
+    </tr>
+
+    <tr>
+      <th class="table-col-9">
+        <p class="font-light">Total</p>
+      </th>
+      <th class="table-col-9">
+        <p class="font-light">Atendidas</p>
+      </th>
+      <th class="table-col-9">
+        <p class="font-light">Pendientes</p>
+      </th>
+      <th class="table-col-9">
+        <p class="font-light">Total</p>
+      </th>
+      <th class="table-col-9">
+        <p class="font-light">Atendidas</p>
+      </th>
+      <th class="table-col-9">
+        <p class="font-light">Pendientes</p>
+      </th>
+      <th class="table-col-9">
+        <p class="font-light">Total</p>
+      </th>
+      <th class="table-col-9">
+        <p class="font-light">Atendidas</p>
+      </th>
+      <th class="table-col-9">
+        <p class="font-light">Pendientes</p>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-rowIndex="rowIndex" let-item>
+    <tr>
+      <td>{{ rowIndex + 1 }}</td>
+      <td>
+        <p>{{ item.fecha }}</p>
+      </td>
+      <td
+        class="pointer"
+        (click)="onModalFiltroMinutasArea(item.fechaFiltro, 0, null)"
+      >
+        <p>{{ item.totalContable }}</p>
+      </td>
+      <td
+        class="pointer"
+        (click)="onModalFiltroMinutasArea(item.fechaFiltro, 0, 1)"
+      >
+        <p>{{ item.atendidasContable }}</p>
+      </td>
+      <td
+        class="pointer"
+        (click)="onModalFiltroMinutasArea(item.fechaFiltro, 0, 0)"
+      >
+        <p
+          [class.text-danger]="item.pendienteContable > 0"
+          [class.text-bold]="item.pendienteContable > 0"
+        >
+          {{ item.pendienteContable }}
+        </p>
+      </td>
+      <td
+        class="pointer"
+        (click)="onModalFiltroMinutasArea(item.fechaFiltro, 1, null)"
+      >
+        <p>{{ item.totalOperaciones }}</p>
+      </td>
+      <td
+        class="pointer"
+        (click)="onModalFiltroMinutasArea(item.fechaFiltro, 1, 1)"
+      >
+        <p>{{ item.atendidasOperaciones }}</p>
+      </td>
+      <td
+        class="pointer"
+        (click)="onModalFiltroMinutasArea(item.fechaFiltro, 1, 0)"
+      >
+        <p
+          [class.text-danger]="item.pendienteOperaciones > 0"
+          [class.text-bold]="item.pendienteOperaciones > 0"
+        >
+          {{ item.pendienteOperaciones }}
+        </p>
+      </td>
+      <td
+        class="pointer"
+        (click)="onModalFiltroMinutasArea(item.fechaFiltro, 2, null)"
+      >
+        <p>{{ item.totalLegal }}</p>
+      </td>
+      <td
+        class="pointer"
+        (click)="onModalFiltroMinutasArea(item.fechaFiltro, 2, 1)"
+      >
+        <p>{{ item.atendidasLegal }}</p>
+      </td>
+      <td
+        class="pointer"
+        (click)="onModalFiltroMinutasArea(item.fechaFiltro, 2, 0)"
+      >
+        <p
+          [class.text-danger]="item.pendienteLegal > 0"
+          [class.text-bold]="item.pendienteLegal > 0"
+        >
+          {{ item.pendienteLegal }}
+        </p>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+
+
+
+
+
+

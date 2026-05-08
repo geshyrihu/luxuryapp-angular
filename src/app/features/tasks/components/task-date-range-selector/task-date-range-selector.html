@@ -1,0 +1,15 @@
+<div class="mb-4">
+  <label class="form-label block mb-2"
+    >Seleccione el rango de fechas a revisar:</label
+  >
+  <div class="input-group">
+    <custom-input-date-signal
+      mode="range"
+      class="mr-1"
+      [control]="dateRangeControl"
+      (ngModelChange)="onDateChange($event)"
+      [horizontal]="false"
+    />
+    <custom-button-item iconClass="pi pi-search" (clicked)="emitSelectedDates()" />
+  </div>
+</div>

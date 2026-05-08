@@ -1,0 +1,157 @@
+@if (mensajeError == true) {
+<p class="text-sm text-danger text-left font-italic">
+  Seleccione producto y unidad
+</p>
+}
+
+<p-table [value]="productosAgregados()" #dc styleClass="card hidden md:block">
+  <ng-template #caption>
+    <primeng-custom-caption [dt]="dc" [showAdd]="false" [showSearch]="false" />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th class="table-col-10"></th>
+      <th class="table-col-40">Descripción</th>
+      <th class="table-col-15">Cantidad</th>
+      <th class="table-col-15">Unidad</th>
+      <th class="table-col-15">Precio</th>
+      <th class="table-col-5"></th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr>
+      <td class="table-col-10">
+        <p-avatar
+          [image]="item.productoImg
+                    ? item.productoImg
+                    : 'assets/images/default-avatar.png'"
+          class="mr-2"
+          size="large"
+          (click)="onCardEmployee(item.id)"
+        />
+      </td>
+      <td>{{ item.productName }}</td>
+      <td>
+        <custom-input-number-signal
+          [(ngModel)]="item.cantidad"
+          [ngModelOptions]="{ standalone: true }"
+          [horizontal]="false"
+        />
+      </td>
+      <td>
+        <custom-input-select-signal
+          [data]="cb_unidadMedida"
+          [(ngModel)]="item.unidadMedidaId"
+          customClass="w-full"
+          appendTo="body"
+          [horizontal]="false"
+        >
+        </custom-input-select-signal>
+      </td>
+      <td>
+        <custom-input-decimal-signal
+          [(ngModel)]="item.precio"
+          [ngModelOptions]="{ standalone: true }"
+          [horizontal]="false"
+        />
+      </td>
+      <!-- Opciones -->
+      <td>
+        <div class="flex justify-content-center">
+          <custom-button-item
+            iconClass="pi pi-save"
+            (clicked)="onUpdateProductoAgregado(item)"
+          />
+          <custom-button-delete (confirmed)="deleteProductoAgregado(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-table
+  [(selection)]="selectedProducts"
+  #dt
+  styleClass="custom-table card hidden md:block"
+  [value]="productos()"
+  [rows]="tablePrimeNgRows"
+  [paginator]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #caption>
+    <primeng-custom-caption [dt]="dt" [showAdd]="false" />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th class="table-col-10"></th>
+      <th class="table-col-40">Descripción</th>
+      <th class="table-col-15">Cantidad</th>
+      <th class="table-col-15">Unidad</th>
+      <th class="table-col-15">Precio</th>
+      <th class="table-col-5"></th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr>
+      <td class="table-col-10">
+        <p-avatar
+          [image]="item.urlImagen
+                    ? item.urlImagen
+                    : 'assets/images/default-avatar.png'"
+          class="mr-2"
+          size="large"
+          (click)="onCardEmployee(item.id)"
+        />
+      </td>
+      <td>{{ item.nombreProducto }}</td>
+      <td>
+        <custom-input-decimal-signal
+          [(ngModel)]="item.cantidad"
+          [ngModelOptions]="{ standalone: true }"
+          [horizontal]="false"
+        />
+      </td>
+      <td>
+        <custom-input-select-signal
+          [data]="cb_unidadMedida"
+          [(ngModel)]="item.unidadMedidaId"
+          customClass="w-full"
+          [horizontal]="false"
+        >
+        </custom-input-select-signal>
+      </td>
+      <td>
+        <!-- <custom-input-number-signal
+          [(ngModel)]="item.precio"
+          [ngModelOptions]="{ standalone: true }"
+          [horizontal]="false"
+        /> -->
+        <custom-input-decimal-signal
+          [(ngModel)]="item.precio"
+          [ngModelOptions]="{ standalone: true }"
+          [horizontal]="false"
+        />
+      </td>
+
+      <td>
+        <div class="flex justify-content-center">
+          <custom-button-item
+            iconClass="pi pi-save"
+            (clicked)="onSubmit(item)"
+          />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="productos()" />
+  </ng-template>
+</p-table>

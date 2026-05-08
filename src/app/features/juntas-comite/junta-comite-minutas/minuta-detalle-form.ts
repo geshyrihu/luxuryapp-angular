@@ -1,0 +1,166 @@
+import { Component, inject, OnInit, signal } from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { CardModule } from "primeng/card";
+import {
+  DialogService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "primeng/dynamicdialog";
+import { firstValueFrom } from "rxjs";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { AuthService } from "src/app/core/services/auth.service";
+import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { MeetingSeguimientoEdit } from "./meeting-seguimiento-edit";
+
+interface IMinutaDetalleForm {
+  id: FormControl<string | null>;
+  deliveryDate: FormControl<Date | null>;
+  status: FormControl<number | null>;
+  eAreaMinutasDetalles: FormControl<number | null>;
+  title: FormControl<string>;
+  requestService: FormControl<string>;
+  meetingId: FormControl<number | null>;
+  applicationUserId: FormControl<string>;
+}
+
+@Component({
+  selector: "app-minuta-detalle-form",
+  templateUrl: "./minuta-detalle-form.html",
+  imports: [
+    ReactiveFormsModule,
+    CustomInputTextSignal,
+    CustomInputDateSignal,
+    CustomInputSelectSignal,
+    CustomInputTextAreaSignal,
+    CustomButtonSave,
+    CustomButton,
+    CardModule,
+  ],
+})
+export class MinutaDetalleForm implements OnInit {
+  private apiResponseS = inject(ApiResponseService);
+  private ref = inject(DynamicDialogRef);
+  private enumSelectS = inject(EnumSelectService);
+  private config = inject(DynamicDialogConfig);
+  private authS = inject(AuthService);
+  private formB = inject(FormBuilder);
+  private dialogService = inject(DialogService);
+
+  // State Signals
+  submitting = signal(false);
+  id = signal<string>("");
+
+  // Data Signals
+  cb_estatus = signal<any[]>([
+    { value: 0, label: "Pendiente" },
+    { value: 1, label: "Concluido" },
+    { value: 2, label: "No Autorizado" },
+  ]);
+  cb_area = signal<ISelectItem[]>([]);
+
+  form: FormGroup<IMinutaDetalleForm>;
+
+  async ngOnInit() {
+    this.form = this.formB.group({
+      id: new FormControl({ value: this.config.data.id, disabled: true }),
+      deliveryDate: new FormControl<Date | null>(null, [Validators.required]),
+      status: new FormControl(0, [Validators.required]),
+      eAreaMinutasDetalles: new FormControl(this.config.data.areaResponsable, [
+        Validators.required,
+      ]),
+      title: new FormControl("", {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      requestService: new FormControl("", {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      meetingId: new FormControl(this.config.data.meetingId),
+      applicationUserId: new FormControl(this.authS.applicationUserId, {
+        nonNullable: true,
+      }),
+    });
+
+    // Load Catalogs
+    const areas = await firstValueFrom(this.enumSelectS.areaMinutasDetalles());
+    this.cb_area.set(areas);
+
+    // Init Data
+    this.id.set(this.config.data.id);
+
+    if (this.id()) {
+      this.onLoadData();
+    }
+  }
+
+  onLoadData() {
+    const urlApi = `MeetingsDetails/${this.id()}`;
+    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
+      // Clean HTML from requestService if present
+      let content = result.requestService || "";
+      if (content) {
+        content = content.replace(/<[^>]*>|&nbsp;/g, "");
+      }
+      result.requestService = content;
+
+      this.form.patchValue(result);
+      // Ensure date is Date object
+      if (result.deliveryDate) {
+        this.form.controls.deliveryDate.setValue(new Date(result.deliveryDate));
+      }
+    });
+  }
+
+  openFollowUp() {
+    this.dialogService.open(MeetingSeguimientoEdit, {
+      header: "Seguimiento de Minuta",
+      width: "50%",
+      data: {
+        idMeetingSeguimiento: 0,
+        meetingDetailsId: this.id(),
+      },
+      contentStyle: { overflow: "auto" },
+      baseZIndex: 10000,
+    });
+  }
+
+  onSubmit() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    this.submitting.set(true);
+
+    const payload = this.form.getRawValue();
+    const isNew = !this.id();
+
+    // When creating a new record, the id can be 0, which is not a valid Guid.
+    // We'll replace it with an empty Guid string. The backend will generate the real Guid.
+    if (isNew) {
+      payload.id = "00000000-0000-0000-0000-000000000000";
+    }
+
+    const request = isNew
+      ? this.apiResponseS.onPost(`MeetingsDetails`, payload)
+      : this.apiResponseS.onPut(`MeetingsDetails/${this.id()}`, payload);
+
+    request.then((result: boolean) => {
+      result ? this.ref.close(true) : this.submitting.set(false);
+    });
+  }
+}

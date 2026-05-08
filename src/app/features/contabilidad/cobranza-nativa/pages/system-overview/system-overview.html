@@ -1,0 +1,379 @@
+<div class="p-3 md:p-4 max-w-5xl mx-auto">
+
+  <!-- Page title -->
+  <div class="mb-5 text-center">
+    <div class="inline-flex align-items-center justify-content-center w-4rem h-4rem border-round-xl bg-indigo-100 mb-3">
+      <i class="pi pi-sitemap text-indigo-600 text-2xl"></i>
+    </div>
+    <h1 class="text-2xl font-bold text-900 mb-2">Como Funciona el Sistema de Cobranza</h1>
+    <p class="text-500 text-sm line-height-3 max-w-30rem mx-auto">
+      Un recorrido visual por el ciclo de vida completo: desde configurar el condominio
+      hasta consultar la auditoria financiera.
+    </p>
+  </div>
+
+  <!-- ───────────────────────────── LIFECYCLE STEPS ───────────────────────────── -->
+
+  <div class="mb-6">
+    <div class="text-xs font-semibold text-500 uppercase mb-4 text-center">Flujo de operacion</div>
+
+    <!-- Step 1 -->
+    <div class="flex gap-3 mb-4">
+      <div class="flex flex-column align-items-center flex-shrink-0" style="width:2.5rem">
+        <div class="w-2rem h-2rem border-round-full bg-indigo-600 flex align-items-center justify-content-center text-white text-xs font-bold flex-shrink-0">1</div>
+        <div class="flex-1 border-left-1 border-indigo-200" style="width:1px; margin-top:4px"></div>
+      </div>
+      <div class="surface-card border-round-xl border-1 surface-border p-4 flex-1 mb-2">
+        <div class="flex align-items-center gap-2 mb-2">
+          <i class="pi pi-users text-indigo-600"></i>
+          <span class="font-semibold text-900">Configurar propiedades y responsables</span>
+        </div>
+        <p class="text-sm text-500 line-height-3 m-0">
+          Cada unidad del condominio (depto, casa, local) tiene uno o mas miembros vinculados.
+          El sistema identifica a <strong>un unico responsable financiero activo</strong> por propiedad:
+          la persona a quien se emiten los cargos. Si el responsable cambia (ej. nuevo inquilino),
+          el anterior se da de baja automaticamente.
+        </p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <span class="text-xs px-2 py-1 border-round bg-indigo-50 text-indigo-700 font-medium">Modulo: Miembros de Propiedad</span>
+          <span class="text-xs px-2 py-1 border-round bg-blue-50 text-blue-700">Rol: Administrador</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="flex gap-3 mb-4">
+      <div class="flex flex-column align-items-center flex-shrink-0" style="width:2.5rem">
+        <div class="w-2rem h-2rem border-round-full bg-green-600 flex align-items-center justify-content-center text-white text-xs font-bold flex-shrink-0">2</div>
+        <div class="flex-1 border-left-1 border-green-200" style="width:1px; margin-top:4px"></div>
+      </div>
+      <div class="surface-card border-round-xl border-1 surface-border p-4 flex-1 mb-2">
+        <div class="flex align-items-center gap-2 mb-2">
+          <i class="pi pi-file-edit text-green-600"></i>
+          <span class="font-semibold text-900">Crear plantillas de cargos</span>
+        </div>
+        <p class="text-sm text-500 line-height-3 m-0">
+          Antes de que el sistema genere cargos mensuales, hay que definir las <strong>plantillas</strong>:
+          tipo de cargo (mantenimiento ordinario, cuota extraordinaria, etc.), monto fijo o calculo
+          por <em>indiviso</em> (proporcional al porcentaje de cada propiedad), y si esta activa.
+        </p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <span class="text-xs px-2 py-1 border-round bg-green-50 text-green-700 font-medium">Modulo: Plantillas de Cargos</span>
+          <span class="text-xs px-2 py-1 border-round bg-blue-50 text-blue-700">Rol: Administrador</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="flex gap-3 mb-4">
+      <div class="flex flex-column align-items-center flex-shrink-0" style="width:2.5rem">
+        <div class="w-2rem h-2rem border-round-full bg-teal-600 flex align-items-center justify-content-center text-white text-xs font-bold flex-shrink-0">3</div>
+        <div class="flex-1 border-left-1 border-teal-200" style="width:1px; margin-top:4px"></div>
+      </div>
+      <div class="surface-card border-round-xl border-1 surface-border p-4 flex-1 mb-2">
+        <div class="flex align-items-center gap-2 mb-2">
+          <i class="pi pi-play-circle text-teal-600"></i>
+          <span class="font-semibold text-900">Generacion automatica de cargos (Job mensual)</span>
+        </div>
+        <p class="text-sm text-500 line-height-3 m-0">
+          El <strong>primer dia de cada mes a las 06:00 AM</strong>, el sistema genera automaticamente
+          los cargos para todas las propiedades activas basandose en las plantillas. Cada cargo
+          queda en estado <em>Pendiente</em> con su fecha de vencimiento. Tambien se pueden
+          generar manualmente desde <strong>Servicios Automatizados</strong> seleccionando mes y año.
+        </p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <span class="text-xs px-2 py-1 border-round bg-teal-50 text-teal-700 font-medium">Modulo: Cargos / Servicios Automatizados</span>
+          <span class="text-xs px-2 py-1 border-round bg-gray-100 text-gray-600">Sistema (CRON)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="flex gap-3 mb-4">
+      <div class="flex flex-column align-items-center flex-shrink-0" style="width:2.5rem">
+        <div class="w-2rem h-2rem border-round-full bg-blue-600 flex align-items-center justify-content-center text-white text-xs font-bold flex-shrink-0">4</div>
+        <div class="flex-1 border-left-1 border-blue-200" style="width:1px; margin-top:4px"></div>
+      </div>
+      <div class="surface-card border-round-xl border-1 surface-border p-4 flex-1 mb-2">
+        <div class="flex align-items-center gap-2 mb-2">
+          <i class="pi pi-credit-card text-blue-600"></i>
+          <span class="font-semibold text-900">Registrar pagos y aplicarlos</span>
+        </div>
+        <p class="text-sm text-500 line-height-3 m-0">
+          Cuando un residente paga, se registra el pago en el sistema. La logica <strong>FIFO</strong>
+          (primero en entrar, primero en salir) asigna el pago al cargo mas antiguo pendiente de
+          esa propiedad. Si hay saldo sobrante queda en la <em>bolsa de pagos no aplicados</em>
+          para conciliacion posterior. Los pagos generan entradas inmutables en el <strong>Ledger</strong>.
+        </p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <span class="text-xs px-2 py-1 border-round bg-blue-50 text-blue-700 font-medium">Modulo: Registrar Pagos</span>
+          <span class="text-xs px-2 py-1 border-round bg-green-50 text-green-700">Finanzas / Administrador</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="flex gap-3 mb-4">
+      <div class="flex flex-column align-items-center flex-shrink-0" style="width:2.5rem">
+        <div class="w-2rem h-2rem border-round-full bg-orange-500 flex align-items-center justify-content-center text-white text-xs font-bold flex-shrink-0">5</div>
+        <div class="flex-1 border-left-1 border-orange-200" style="width:1px; margin-top:4px"></div>
+      </div>
+      <div class="surface-card border-round-xl border-1 surface-border p-4 flex-1 mb-2">
+        <div class="flex align-items-center gap-2 mb-2">
+          <i class="pi pi-percentage text-orange-500"></i>
+          <span class="font-semibold text-900">Calculo de recargos por mora (Job diario)</span>
+        </div>
+        <p class="text-sm text-500 line-height-3 m-0">
+          Cada dia a las 03:00 AM, el sistema detecta cargos que superaron su fecha de vencimiento
+          mas los <em>dias de gracia</em> configurados en la politica de mora. Aplica el recargo
+          configurado (tasa fija o porcentual) y genera un nuevo cargo de tipo <em>Recargo Mora</em>.
+          El historial completo queda en el Ledger.
+        </p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <span class="text-xs px-2 py-1 border-round bg-orange-50 text-orange-700 font-medium">Modulo: Politicas de Mora / Servicios Automatizados</span>
+          <span class="text-xs px-2 py-1 border-round bg-gray-100 text-gray-600">Sistema (CRON)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="flex gap-3 mb-4">
+      <div class="flex flex-column align-items-center flex-shrink-0" style="width:2.5rem">
+        <div class="w-2rem h-2rem border-round-full bg-red-600 flex align-items-center justify-content-center text-white text-xs font-bold flex-shrink-0">6</div>
+        <div class="flex-1 border-left-1 border-red-200" style="width:1px; margin-top:4px"></div>
+      </div>
+      <div class="surface-card border-round-xl border-1 surface-border p-4 flex-1 mb-2">
+        <div class="flex align-items-center gap-2 mb-2">
+          <i class="pi pi-briefcase text-red-600"></i>
+          <span class="font-semibold text-900">Escalada a cobranza legal (Job semanal)</span>
+        </div>
+        <p class="text-sm text-500 line-height-3 m-0">
+          Cada lunes a las 07:00 AM, el sistema analiza la antiguedad de deuda por propiedad.
+          Las que superan <strong>90 dias</strong> se escalan automaticamente a un
+          <em>Caso de Cobranza</em> donde un gestor hace el seguimiento: contacto, promesas de pago,
+          historial de actividades. Los casos se resuelven cuando la deuda se liquida.
+        </p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <span class="text-xs px-2 py-1 border-round bg-red-50 text-red-700 font-medium">Modulo: Casos de Cobranza</span>
+          <span class="text-xs px-2 py-1 border-round bg-gray-100 text-gray-600">Sistema (CRON)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 7 -->
+    <div class="flex gap-3 mb-4">
+      <div class="flex flex-column align-items-center flex-shrink-0" style="width:2.5rem">
+        <div class="w-2rem h-2rem border-round-full bg-violet-600 flex align-items-center justify-content-center text-white text-xs font-bold flex-shrink-0">7</div>
+        <div class="flex-1 border-left-1 border-violet-200" style="width:1px; margin-top:4px"></div>
+      </div>
+      <div class="surface-card border-round-xl border-1 surface-border p-4 flex-1 mb-2">
+        <div class="flex align-items-center gap-2 mb-2">
+          <i class="pi pi-lock text-violet-600"></i>
+          <span class="font-semibold text-900">Cierre de periodo contable</span>
+        </div>
+        <p class="text-sm text-500 line-height-3 m-0">
+          Al final de cada mes, el administrador cierra el periodo contable. Esto <strong>bloquea</strong>
+          la creacion de nuevos movimientos en ese mes, garantizando la integridad del historial.
+          Si se necesita corregir algo en un periodo cerrado, se requiere una
+          <em>aprobacion</em> de otro usuario (patron maker-checker). El cierre queda registrado
+          en la bitacora de auditoria con quien lo realizo y cuando.
+        </p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <span class="text-xs px-2 py-1 border-round bg-violet-50 text-violet-700 font-medium">Modulo: Cierres de Periodo / Aprobaciones</span>
+          <span class="text-xs px-2 py-1 border-round bg-blue-50 text-blue-700">Administrador / Finanzas</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 8 -->
+    <div class="flex gap-3">
+      <div class="flex flex-column align-items-center flex-shrink-0" style="width:2.5rem">
+        <div class="w-2rem h-2rem border-round-full bg-gray-700 flex align-items-center justify-content-center text-white text-xs font-bold flex-shrink-0">8</div>
+      </div>
+      <div class="surface-card border-round-xl border-1 surface-border p-4 flex-1">
+        <div class="flex align-items-center gap-2 mb-2">
+          <i class="pi pi-shield text-gray-700"></i>
+          <span class="font-semibold text-900">Auditoria y verificacion de integridad</span>
+        </div>
+        <p class="text-sm text-500 line-height-3 m-0">
+          En cualquier momento, el superusuario puede consultar la <strong>bitacora de auditoria</strong>
+          (quien hizo que y cuando) y el <strong>Ledger financiero</strong> (registro inmutable
+          append-only de todos los eventos monetarios). El Ledger permite verificar que los saldos
+          operacionales coincidan con la suma de eventos — si hay discrepancia, el sistema lo detecta.
+        </p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <span class="text-xs px-2 py-1 border-round bg-gray-100 text-gray-700 font-medium">Modulo: Ledger / Auditoria Financiera</span>
+          <span class="text-xs px-2 py-1 border-round bg-purple-50 text-purple-700">Superusuario / Finanzas</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ───────────────────────────── ARCHITECTURE OVERVIEW ───────────────────────────── -->
+
+  <div class="mb-6">
+    <div class="text-xs font-semibold text-500 uppercase mb-4 text-center">Arquitectura del sistema</div>
+
+    <div class="grid">
+
+      <!-- Principio 1: Ledger append-only -->
+      <div class="col-12 md:col-6">
+        <div class="surface-card border-round-xl border-1 surface-border p-4 h-full">
+          <div class="flex align-items-center gap-2 mb-3">
+            <div class="w-2rem h-2rem border-round-lg bg-indigo-100 flex align-items-center justify-content-center">
+              <i class="pi pi-list text-indigo-600 text-sm"></i>
+            </div>
+            <span class="font-semibold text-900 text-sm">Ledger financiero inmutable</span>
+          </div>
+          <p class="text-xs text-500 line-height-3 m-0">
+            Cada operacion que cambia dinero (cargo, pago, recargo, nota de credito, cierre) genera
+            una <em>entrada de ledger</em> que <strong>nunca se modifica ni elimina</strong>.
+            Los errores se corrigen con entradas de reverso. Esto garantiza un historial financiero
+            auditables y a prueba de manipulacion.
+          </p>
+        </div>
+      </div>
+
+      <!-- Principio 2: Maker-checker -->
+      <div class="col-12 md:col-6">
+        <div class="surface-card border-round-xl border-1 surface-border p-4 h-full">
+          <div class="flex align-items-center gap-2 mb-3">
+            <div class="w-2rem h-2rem border-round-lg bg-purple-100 flex align-items-center justify-content-center">
+              <i class="pi pi-check-square text-purple-600 text-sm"></i>
+            </div>
+            <span class="font-semibold text-900 text-sm">Patron Maker-Checker</span>
+          </div>
+          <p class="text-xs text-500 line-height-3 m-0">
+            Las operaciones financieramente sensibles (condonaciones, devoluciones, reaperturas de
+            periodo) requieren que <strong>una segunda persona las apruebe</strong>. El que solicita
+            no puede aprobar. Esto previene fraudes y errores no detectados en operaciones criticas.
+          </p>
+        </div>
+      </div>
+
+      <!-- Principio 3: Multi-tenant -->
+      <div class="col-12 md:col-6">
+        <div class="surface-card border-round-xl border-1 surface-border p-4 h-full">
+          <div class="flex align-items-center gap-2 mb-3">
+            <div class="w-2rem h-2rem border-round-lg bg-green-100 flex align-items-center justify-content-center">
+              <i class="pi pi-building text-green-600 text-sm"></i>
+            </div>
+            <span class="font-semibold text-900 text-sm">Multi-condominio (multi-tenant)</span>
+          </div>
+          <p class="text-xs text-500 line-height-3 m-0">
+            Todo dato esta aislado por <strong>customerId</strong> (identificador del condominio).
+            La misma aplicacion puede manejar multiples condominios sin que los datos se mezclen.
+            Cada usuario solo ve los datos del condominio al que tiene acceso.
+          </p>
+        </div>
+      </div>
+
+      <!-- Principio 4: Jobs automaticos -->
+      <div class="col-12 md:col-6">
+        <div class="surface-card border-round-xl border-1 surface-border p-4 h-full">
+          <div class="flex align-items-center gap-2 mb-3">
+            <div class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center">
+              <i class="pi pi-server text-orange-600 text-sm"></i>
+            </div>
+            <span class="font-semibold text-900 text-sm">Automatizacion via Hangfire/CRON</span>
+          </div>
+          <p class="text-xs text-500 line-height-3 m-0">
+            Los procesos repetitivos (generacion de cargos, calculo de mora, escalada, conciliacion)
+            corren en <strong>jobs programados</strong> sin intervencion humana. Cada job tambien
+            puede ejecutarse manualmente desde la seccion de Servicios Automatizados para pruebas
+            o recuperacion tras un error.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ───────────────────────────── SECURITY MEASURES ───────────────────────────── -->
+
+  <div class="mb-6">
+    <div class="text-xs font-semibold text-500 uppercase mb-4 text-center">Seguridad y controles</div>
+    <div class="surface-card border-round-xl border-1 surface-border p-4">
+      <div class="grid">
+        <div class="col-12 md:col-4 flex gap-2 mb-3 md:mb-0">
+          <i class="pi pi-lock text-green-600 mt-1 flex-shrink-0"></i>
+          <div>
+            <div class="text-sm font-semibold text-900 mb-1">Periodos cerrados = inmutables</div>
+            <div class="text-xs text-500 line-height-3">
+              Una vez que un mes se cierra contablemente, ningun movimiento puede crearse en ese
+              periodo sin aprobacion expresa.
+            </div>
+          </div>
+        </div>
+        <div class="col-12 md:col-4 flex gap-2 mb-3 md:mb-0">
+          <i class="pi pi-eye text-blue-600 mt-1 flex-shrink-0"></i>
+          <div>
+            <div class="text-sm font-semibold text-900 mb-1">Bitacora de auditoria</div>
+            <div class="text-xs text-500 line-height-3">
+              Todas las acciones de negocio quedan registradas con usuario, fecha y resultado.
+              Accesible solo para Superusuario y Finanzas.
+            </div>
+          </div>
+        </div>
+        <div class="col-12 md:col-4 flex gap-2">
+          <i class="pi pi-user-edit text-purple-600 mt-1 flex-shrink-0"></i>
+          <div>
+            <div class="text-sm font-semibold text-900 mb-1">Responsable financiero unico</div>
+            <div class="text-xs text-500 line-height-3">
+              El sistema garantiza que solo existe un responsable financiero activo por propiedad
+              a nivel de base de datos, previniendo ambiguedades en la cobranza.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───────────────────────────── FUTURE FEATURES ───────────────────────────── -->
+
+  <div>
+    <div class="text-xs font-semibold text-500 uppercase mb-4 text-center">Proximas funcionalidades</div>
+    <div class="flex flex-column gap-3">
+
+      <div class="flex gap-3 p-3 border-round-xl border-1 border-yellow-200 bg-yellow-50">
+        <i class="pi pi-bolt text-yellow-600 mt-1 flex-shrink-0"></i>
+        <div>
+          <div class="font-semibold text-yellow-900 text-sm mb-1">Webhooks de pasarelas de pago</div>
+          <div class="text-xs text-yellow-800 line-height-3">
+            El endpoint ya esta implementado en el API
+            (<span class="font-mono">POST /webhooks/pasarela</span>). Cuando se contrate una pasarela
+            (Conekta, Stripe o STP), los pagos confirmados se procesaran automaticamente
+            sin intervencion manual.
+          </div>
+        </div>
+      </div>
+
+      <div class="flex gap-3 p-3 border-round-xl border-1 border-yellow-200 bg-yellow-50">
+        <i class="pi pi-receipt text-yellow-600 mt-1 flex-shrink-0"></i>
+        <div>
+          <div class="font-semibold text-yellow-900 text-sm mb-1">Facturacion CFDI real (SAT)</div>
+          <div class="text-xs text-yellow-800 line-height-3">
+            Las facturas actualmente funcionan en modo simulacion. La integracion real con el SAT
+            via <strong>SW Sapien</strong> se activara en la siguiente fase, emitiendo comprobantes
+            fiscales validos directamente desde el sistema.
+          </div>
+        </div>
+      </div>
+
+      <div class="flex gap-3 p-3 border-round-xl border-1 border-yellow-200 bg-yellow-50">
+        <i class="pi pi-envelope text-yellow-600 mt-1 flex-shrink-0"></i>
+        <div>
+          <div class="font-semibold text-yellow-900 text-sm mb-1">Notificaciones automaticas</div>
+          <div class="text-xs text-yellow-800 line-height-3">
+            El motor de notificaciones (<span class="font-mono">NotificationEngineService</span>) esta
+            implementado en el backend. Enviara recordatorios de pago, avisos de mora y estados de
+            cuenta por email/SMS cuando se configure el proveedor de mensajeria.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,293 @@
+<div class="manuals-guide p-4 min-h-screen">
+  <div class="w-full xl:w-10 mx-auto">
+    <!-- Header -->
+    <div class="flex align-items-center mb-5">
+      <p-button
+        icon="pi pi-arrow-left"
+        [text]="true"
+        severity="secondary"
+        (onClick)="onBack()"
+        pTooltip="Volver al listado"
+        styleClass="mr-3 p-button-rounded p-button-text p-button-lg"
+      />
+      <div>
+        <h1 class="manuals-guide__title text-4xl font-bold text-900 m-0">
+          Guía del Módulo de Manuales y Procesos
+        </h1>
+        <p class="text-600 mt-1 text-lg">
+          Aprende a estructurar, documentar y publicar de forma oficial los
+          procesos operativos de la empresa.
+        </p>
+      </div>
+    </div>
+
+    <!-- Section 1: Conceptos -->
+    <p-panel header="1. Conceptos Fundamentales" styleClass="mb-4 shadow-1">
+      <div class="grid pt-2">
+        <div class="col-12 md:col-6">
+          <p-fieldset
+            legend="La Plantilla (Borrador Dinámico)"
+            styleClass="h-full bg-blue-50 border-blue-200"
+          >
+            <ng-template pTemplate="header">
+              <div class="flex align-items-center gap-2 px-2 text-blue-900">
+                <i class="pi pi-pencil"></i>
+                <span class="font-bold">La "Plantilla"</span>
+              </div>
+            </ng-template>
+            <p class="text-700 m-0 line-height-3">
+              Es tu <strong>mesa de trabajo</strong>. Aquí es donde agregas
+              textos, construyes el <b>Diagrama de Flujo</b>, defines la
+              <b>Matriz RACI</b> y subes <b>Anexos</b>. Es un documento vivo que
+              puedes editar libremente hasta que esté listo.
+            </p>
+          </p-fieldset>
+        </div>
+        <div class="col-12 md:col-6">
+          <p-fieldset
+            legend="La Instancia (PDF Oficial)"
+            styleClass="h-full bg-green-50 border-green-200"
+          >
+            <ng-template pTemplate="header">
+              <div class="flex align-items-center gap-2 px-2 text-green-900">
+                <i class="pi pi-file-pdf"></i>
+                <span class="font-bold">La "Instancia"</span>
+              </div>
+            </ng-template>
+            <p class="text-700 m-0 line-height-3">
+              Por temas de <b>Auditoría y Normativa ISO</b>, los manuales deben
+              estar firmados y "congelados" en el tiempo. Cuando terminas de
+              armar tu plantilla, generas y subes una <b>Versión en PDF</b>.
+              Esta versión final es la que verán y consumirán todos los
+              empleados.
+            </p>
+          </p-fieldset>
+        </div>
+      </div>
+    </p-panel>
+
+    <div class="grid">
+      <!-- Section 2: Editor Dinámico -->
+      <div class="col-12 lg:col-8">
+        <p-panel header="2. El Editor de Bloques" styleClass="h-full shadow-1">
+          <p class="text-600 mb-4 line-height-3 mt-0">
+            En lugar de usar Word, nuestro sistema te permite armar tu manual
+            usando "bloques" inteligentes. Puedes agregar tantos bloques como
+            necesites y cambiar su orden arrastrándolos.
+          </p>
+
+          <p-card styleClass="mb-3 bg-gray-50 shadow-none border-1 border-300">
+            <div class="flex align-items-start">
+              <i class="pi pi-sitemap text-3xl text-primary mr-3 mt-1"></i>
+              <div>
+                <h4 class="m-0 mb-2 text-lg text-900">
+                  Diagramas de Flujo (Draw.io)
+                </h4>
+                <p class="m-0 text-700 line-height-3">
+                  Crea diagramas de flujo profesionales directamente en la
+                  plataforma. Usamos la tecnología de Draw.io, pero tu diagrama
+                  se guarda automáticamente en nuestros servidores de forma
+                  segura.
+                </p>
+              </div>
+            </div>
+          </p-card>
+
+          <p-card styleClass="mb-3 bg-gray-50 shadow-none border-1 border-300">
+            <div class="flex align-items-start">
+              <i class="pi pi-table text-3xl text-orange-500 mr-3 mt-1"></i>
+              <div>
+                <h4 class="m-0 mb-2 text-lg text-900">Matriz RACI</h4>
+                <p class="m-0 text-700 line-height-3">
+                  Define claramente quién es el <b>R</b>esponsable, quién
+                  <b>A</b>prueba, a quién se <b>C</b>onsulta y a quién se
+                  <b>I</b>nforma para cada actividad del proceso.
+                </p>
+              </div>
+            </div>
+          </p-card>
+
+          <p-card styleClass="mb-0 bg-gray-50 shadow-none border-1 border-300">
+            <div class="flex align-items-start">
+              <i class="pi pi-paperclip text-3xl text-teal-500 mr-3 mt-1"></i>
+              <div>
+                <h4 class="m-0 mb-2 text-lg text-900">
+                  Anexos y Archivos Auxiliares
+                </h4>
+                <p class="m-0 text-700 line-height-3">
+                  ¿Tienes un formato de Excel o un manual técnico del fabricante
+                  que es parte del proceso? Agrega el bloque de "Anexos", sube
+                  tus archivos (Excel, Word, Imágenes, PDFs) y quedarán
+                  vinculados al proceso para que el empleado los descargue.
+                </p>
+              </div>
+            </div>
+          </p-card>
+        </p-panel>
+      </div>
+
+      <!-- Section 3: Flujo de Trabajo -->
+      <div class="col-12 lg:col-4">
+        <p-panel header="3. Flujo de Trabajo" styleClass="h-full shadow-1">
+          <div class="flex flex-column gap-4 pt-3">
+            <div class="flex">
+              <div class="flex flex-column align-items-center mr-3">
+                <p-tag
+                  severity="info"
+                  [rounded]="true"
+                  styleClass="w-2rem h-2rem text-lg"
+                  ><span class="font-bold">1</span></p-tag
+                >
+                <div
+                  class="h-full border-left-2 border-300 border-dashed my-2"
+                ></div>
+              </div>
+              <div class="pb-3">
+                <h4 class="m-0 mb-2 text-lg text-900">Crear Plantilla</h4>
+                <p class="m-0 text-600 line-height-3">
+                  Define el título y quién tiene acceso a este manual.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex">
+              <div class="flex flex-column align-items-center mr-3">
+                <p-tag
+                  severity="info"
+                  [rounded]="true"
+                  styleClass="w-2rem h-2rem text-lg"
+                  ><span class="font-bold">2</span></p-tag
+                >
+                <div
+                  class="h-full border-left-2 border-300 border-dashed my-2"
+                ></div>
+              </div>
+              <div class="pb-3">
+                <h4 class="m-0 mb-2 text-lg text-900">
+                  Construir Dinámicamente
+                </h4>
+                <p class="m-0 text-600 line-height-3">
+                  Usa el editor de bloques para documentar el texto, el diagrama
+                  y los anexos.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex">
+              <div class="flex flex-column align-items-center mr-3">
+                <p-tag
+                  severity="warn"
+                  [rounded]="true"
+                  styleClass="w-2rem h-2rem text-lg"
+                  ><span class="font-bold">3</span></p-tag
+                >
+                <div
+                  class="h-full border-left-2 border-300 border-dashed my-2"
+                ></div>
+              </div>
+              <div class="pb-3">
+                <h4 class="m-0 mb-2 text-lg text-900">Revisión y Firma</h4>
+                <p class="m-0 text-600 line-height-3">
+                  El proceso se exporta y pasa por la firma de autorización
+                  (Físico/Digital).
+                </p>
+              </div>
+            </div>
+
+            <div class="flex">
+              <div class="flex flex-column align-items-center mr-3">
+                <p-tag
+                  severity="success"
+                  [rounded]="true"
+                  styleClass="w-2rem h-2rem text-lg"
+                  ><i class="pi pi-check font-bold"></i
+                ></p-tag>
+              </div>
+              <div>
+                <h4 class="m-0 mb-2 text-lg text-green-700">Subir PDF Final</h4>
+                <p class="m-0 text-600 line-height-3">
+                  Sube el PDF sellado/firmado como la "Versión Oficial" para que
+                  los empleados lo consulten.
+                </p>
+              </div>
+            </div>
+          </div>
+        </p-panel>
+      </div>
+    </div>
+
+    <!-- Nueva Sección: Estándar Documental LuxuryApp -->
+    <p-panel
+      header="4. Estándar Documental LuxuryApp"
+      styleClass="mt-4 shadow-1 border-top-3 border-yellow-500"
+    >
+      <div class="grid pt-3">
+        <div class="col-12 lg:col-6">
+          <h4 class="mt-0 mb-3 text-900">Nomenclatura de Archivos</h4>
+          <p class="text-700 line-height-3">
+            Todo documento oficial publicado debe seguir estrictamente el
+            formato:
+          </p>
+          <div
+            class="p-3 bg-gray-900 text-white border-round font-mono text-xs mb-3"
+          >
+            [TIPO]-[DEPTO]-[CODIGO]_v[X.Y]_[AAAA-MM]_[ESTADO].pdf
+          </div>
+          <p class="text-xs text-500 font-italic">
+            Ejemplo: PROC-ADMI-001_v1.0_2026-04_VIGENTE.pdf
+          </p>
+        </div>
+        <div class="col-12 lg:col-6">
+          <h4 class="mt-0 mb-3 text-900">Paleta Documental Premium</h4>
+          <div class="flex gap-2 flex-wrap">
+            <div
+              class="flex align-items-center gap-2 p-2 border-round bg-gray-100 border-1 border-200"
+            >
+              <div
+                class="manuals-guide__swatch manuals-guide__swatch--primary w-1rem h-1rem border-round"
+              ></div>
+              <span class="text-xs font-bold">Azul Luxury</span>
+            </div>
+            <div
+              class="flex align-items-center gap-2 p-2 border-round bg-gray-100 border-1 border-200"
+            >
+              <div
+                class="manuals-guide__swatch manuals-guide__swatch--gold w-1rem h-1rem border-round"
+              ></div>
+              <span class="text-xs font-bold">Dorado Premium</span>
+            </div>
+            <div
+              class="flex align-items-center gap-2 p-2 border-round bg-gray-100 border-1 border-200"
+            >
+              <div
+                class="manuals-guide__swatch manuals-guide__swatch--neutral w-1rem h-1rem border-round"
+              ></div>
+              <span class="text-xs font-bold">Gris Neutral</span>
+            </div>
+            <div
+              class="flex align-items-center gap-2 p-2 border-round bg-gray-100 border-1 border-200"
+            >
+              <div
+                class="manuals-guide__swatch manuals-guide__swatch--ink w-1rem h-1rem border-round"
+              ></div>
+              <span class="text-xs font-bold">Tinta (Ink)</span>
+            </div>
+          </div>
+          <p class="text-700 line-height-3 mt-3">
+            Usa el <strong>Azul Luxury</strong> para encabezados principales y
+            el <strong>Dorado</strong> para acentos institucionales y divisores.
+          </p>
+        </div>
+      </div>
+      <div class="mt-4 flex justify-content-end">
+        <p-button
+          label="Ver Estándar Documental Completo"
+          icon="pi pi-external-link"
+          severity="help"
+          [text]="true"
+          routerLink="/configuration/estandar-documental"
+        />
+      </div>
+    </p-panel>
+  </div>
+</div>

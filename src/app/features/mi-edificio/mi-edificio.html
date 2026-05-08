@@ -1,0 +1,96 @@
+@if (data()) {
+<!-- Desktop View -->
+<div class="hidden md:block">
+  <div class="card">
+    <div class="card-body">
+      <div class="flex align-items-start mt-3 sm:mt-0">
+        <div class="flex-shrink-0">
+          <div class="border-round mr-3">
+            <img
+              [src]="data().cliente.photoPath"
+              alt="..."
+              class="border-round w-5rem h-auto"
+            />
+          </div>
+        </div>
+        <div class="flex-flex-grow-1-1">
+          <div>
+            <h3 class="mb-1">{{ data().cliente.nameCustomer }}</h3>
+            <h4 class="h4">
+              <a
+                href="{{ data().cliente.googleMpasUbication }}"
+                target="_blank"
+              >
+                <i class="icon icon-pi-map-marker cursor-pointer"></i>
+              </a>
+              {{ data().cliente.adreess }}
+            </h4>
+            <div class="flex flex-wrap align-items-start">
+              <div class="font-size-18">
+                <i
+                  class="mdi mdi-circle-medium mr-1 text-green-600 align-middle"
+                ></i
+                >{{ data().cliente.rfc }}
+              </div>
+              <div class="font-size-18">
+                <i
+                  class="mdi mdi-circle-medium mr-1 text-success align-middle"
+                ></i
+                >{{ data().cliente.phoneOne }}
+              </div>
+              <div class="font-size-18">
+                <i
+                  class="mdi mdi-circle-medium mr-1 text-success align-middle"
+                ></i>
+                {{ data().cliente.phoneTwo }}
+              </div>
+              <div class="font-size-18">
+                <i
+                  class="mdi mdi-circle-medium mr-1 text-success align-middle"
+                ></i>
+                {{ data().torres }} Torres
+              </div>
+              <div class="font-size-18">
+                <i
+                  class="mdi mdi-circle-medium mr-1 text-success align-middle"
+                ></i>
+                {{ data().departamentos }} Departamentos
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p-table
+    [value]="data().empleadosAdministracion"
+    styleClass="custom-table card hidden md:block"
+  >
+    <ng-template #header>
+      <tr>
+        <th colspan="5">Personal Operativo Administrativo</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td>
+          <img
+            [src]="baseUrlImg + item.photoEmployee"
+            alt=""
+            class="border-round w-5rem h-auto"
+          />
+        </td>
+        <td>{{ item.nameEmployee }}</td>
+        <td>{{ item.applicationRole }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.phoneNumber }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<!-- Mobile View -->
+<div class="block md:hidden">
+  <app-mi-edificio-mobile [data]="data()" />
+</div>
+}

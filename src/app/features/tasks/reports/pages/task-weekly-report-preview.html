@@ -1,0 +1,64 @@
+@if (data()) {
+<!-- Grid básico -->
+<div class="surface-ground p-5">
+  <div class="text-center">
+    <!-- Encabezado con el logo del cliente y nombre -->
+    <img
+      [src]="
+        data()!.customerLogo
+          ? data()!.customerLogo
+          : 'assets/images/default-avatar.png'
+      "
+      alt="Logo del cliente"
+      class="w-full h-auto mb-3"
+      style="max-width: 150px; height: auto"
+    />
+    <h1 class="text-2xl font-bold text-primary">{{ data()!.customer }}</h1>
+    <p class="text-lg text-color-secondary">{{ data()!.periodReport }}</p>
+    <hr class="my-4" />
+  </div>
+  @for (ticket of data()!.tickets; track ticket) {
+  <div class="mb-4">
+    <div class="card shadow-1 mb-4 p-5">
+      <div class="card-body">
+        <strong> {{ ticket.title }} </strong>
+        <p class="h6 text-justify mb-4">{{ ticket.description }}</p>
+        <div class="grid">
+          <div class="col-6">
+            <img
+              [src]="
+                ticket.beforeWork
+                  ? ticket.beforeWork
+                  : 'assets/images/default-avatar.png'
+              "
+              alt="Imagen antes"
+              class="w-full border-round shadow-2"
+              style="height: auto; max-height: 300px; object-fit: cover"
+            />
+          </div>
+          <div class="col-6">
+            <img
+              [src]="
+                ticket.afterWork
+                  ? ticket.afterWork
+                  : 'assets/images/default-avatar.png'
+              "
+              alt="Imagen después"
+              class="w-full border-round shadow-2"
+              style="height: auto; max-height: 300px; object-fit: cover"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>
+}
+
+
+
+
+
+
+

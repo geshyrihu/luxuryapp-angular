@@ -1,0 +1,85 @@
+<div class="flex align-items-center">
+  <ion-avatar id="profile-trigger" class="h-2rem w-2rem">
+    <img
+      [src]="profileImageUrl || 'assets/images/default-avatar.png'"
+      alt="Profile"
+    />
+  </ion-avatar>
+
+  <ion-popover
+    trigger="profile-trigger"
+    dismissOnSelect="false"
+    side="bottom"
+    alignment="end"
+    [style.--width]="'90vw'"
+    #popover
+  >
+    <ng-template>
+      <ion-content>
+        <ion-list lines="full">
+          <!-- Customer Selection: Solo se muestra si tiene más de 1 para cambiar -->
+          @if (cb_customer.length > 1) {
+          <ion-item>
+            <ion-select
+              [value]="customerId()"
+              (ionChange)="selectCustomer($event.detail.value)"
+              placeholder="Seleccionar cliente"
+              interface="popover"
+              class="w-full"
+            >
+              @for (customer of cb_customer; track $index) {
+              <ion-select-option [value]="customer.value">
+                {{ customer.label }}
+              </ion-select-option>
+              }
+            </ion-select>
+          </ion-item>
+          }
+
+          <!-- Change Password -->
+          <ion-item
+            button
+            [routerLink]="['/profile/update-user-profile']"
+            (click)="popover.dismiss()"
+          >
+            <ion-icon
+              name="person-outline"
+              slot="start"
+              color="primary"
+            ></ion-icon>
+            <ion-label>Cambiar contraseña</ion-label>
+          </ion-item>
+
+          <!-- Update App -->
+
+          <!-- Force Reload -->
+          <ion-item button (click)="onForceReload(); popover.dismiss()">
+            <ion-icon
+              name="sync-outline"
+              slot="start"
+              color="warning"
+            ></ion-icon>
+            <ion-label>Recargar app</ion-label>
+          </ion-item>
+
+          <!-- Logout -->
+          <ion-item button (click)="logOut(); popover.dismiss()">
+            <ion-icon
+              name="log-out-outline"
+              slot="start"
+              color="danger"
+            ></ion-icon>
+            <ion-label>Cerrar sesión</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+</div>
+
+
+
+
+
+
+

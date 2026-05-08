@@ -1,0 +1,70 @@
+<div class="flex flex-column gap-3">
+  <!-- Encabezado Informativo -->
+  <div class="surface-card p-3 border-round border-1 surface-border flex align-items-center gap-3">
+    <div class="w-3rem h-3rem border-round bg-primary-50 flex align-items-center justify-content-center text-primary">
+      <i class="pi pi-shield text-xl"></i>
+    </div>
+    <div class="flex flex-column">
+      <span class="text-900 font-bold uppercase tracking-wider text-sm">Gestión de Permisos</span>
+      <span class="text-xs text-500">Asigna o remueve roles de acceso para este usuario</span>
+    </div>
+  </div>
+
+  <div class="flex flex-column gap-4">
+    @for (group of groupedRolesSignal(); track group.groupName) {
+    <div class="flex flex-column gap-2">
+      <!-- Título del Grupo -->
+      <div class="flex align-items-center justify-content-between px-1">
+        <h5 class="m-0 font-bold text-primary uppercase text-xs tracking-widest">
+          {{ group.groupName }}
+        </h5>
+        <span class="text-xs font-medium text-500 bg-100 px-2 py-1 border-round">
+          {{ group.roles.length }} Roles
+        </span>
+      </div>
+
+      <!-- Grid de Roles -->
+      <div class="grid p-1">
+        @for (item of group.roles; track item.roleId) {
+        <div class="col-12 sm:col-6 lg:col-4">
+          <div
+            class="flex align-items-center justify-content-between p-3 border-round-lg border-1 surface-border cursor-pointer hover:surface-100 transition-colors transition-duration-200 min-h-4rem h-full shadow-hover"
+            [class.surface-50]="item.isSelected"
+            [class.border-primary]="item.isSelected"
+            [class.shadow-1]="item.isSelected"
+            (click)="selectRole(item)"
+          >
+            <div class="flex align-items-center min-w-0 gap-3 w-full">
+              <span
+                class="flex-shrink-0 inline-flex align-items-center justify-content-center w-2rem h-2rem border-round-circle border-1"
+                [class.bg-green-100]="item.isSelected"
+                [class.text-green-700]="item.isSelected"
+                [class.border-green-200]="item.isSelected"
+                [class.bg-red-50]="!item.isSelected"
+                [class.text-red-400]="!item.isSelected"
+                [class.border-red-100]="!item.isSelected"
+              >
+                <i
+                  [class]="item.isSelected ? 'pi pi-check text-xs' : 'pi pi-times text-xs'"
+                ></i>
+              </span>
+              <div class="flex flex-column min-w-0 flex-1">
+                <span class="font-bold text-sm text-900 truncate" [title]="item.displayName">
+                  {{ item.displayName | uppercase }}
+                </span>
+                <div class="flex align-items-center justify-content-between">
+                  <span class="text-xs text-500">Orden: {{ item.sortOrder }}</span>
+                  @if (item.isSelected) {
+                    <span class="text-xs font-bold text-green-600">Activo</span>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="card">
+  <p-table
+    [value]="items()"
+    styleClass="custom-table card hidden md:block"
+    [scrollable]="true"
+    [scrollHeight]="tableScrollH.scrollHeight()"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [globalFilterFields]="globalFilterFields"
+  >
+    <ng-template pTemplate="caption">
+      <primeng-custom-caption
+        title="Contratos Laborales"
+        (add)="onModalForm({ id: '', title: 'Nuevo Contrato Laboral' })"
+        [dt]="dt"
+      />
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="table-col-md">Número</th>
+        <th class="table-col-md">Tipo</th>
+        <th class="table-col-sm">Inicio</th>
+        <th class="table-col-sm">Fin</th>
+        <th class="table-col-md text-right">Salario</th>
+        <th class="table-col-md text-center">Estatus</th>
+        <th class="table-col-actions">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td>{{ item.contractNumber }}</td>
+        <td>{{ item.contractType }}</td>
+        <td>{{ item.startDate | date:'dd/MM/yyyy' }}</td>
+        <td>{{ item.endDate ? (item.endDate | date:'dd/MM/yyyy') : '—' }}</td>
+        <td class="text-right">
+          {{ item.contractSalary | currency:'MXN':'symbol':'1.2-2' }}
+        </td>
+        <td class="text-center">
+          <span [class]="'badge ' + getStatusBadge(item.contractStatus)"
+            >{{ item.contractStatus }}</span
+          >
+        </td>
+        <td class="text-center">
+          <custom-button-item icon="pi pi-eye" (click)="onViewDetail(item)" />
+          <custom-button-edit (click)="onEdit(item)" />
+          <custom-button-delete (click)="onDelete(item.id)" />
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <primeng-custom-table-footer [totalRecords]="items().length" />
+    </ng-template>
+  </p-table>
+</div>

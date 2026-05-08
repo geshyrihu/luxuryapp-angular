@@ -1,0 +1,133 @@
+@if (!data) { Cargando.... } @if (data) { @if (data) {
+<div class="p-4 mb-3">
+  <div class="mb-4">
+    <h3 class="text-2xl font-medium m-0">Detalles de la Solicitud de Compra</h3>
+  </div>
+  <div class="grid mb-3 align-items-center">
+    <div class="col-12 md:col-2 flex align-items-center">
+      <div class="mr-2">
+        <i
+          [class]="getTagSeverity(data.status)"
+          class="icon icon-pi-circle"
+        ></i>
+      </div>
+      <div>
+        <strong class="block text-color-secondary">Folio:</strong>
+        <p class="m-0">{{ data.folio }}</p>
+      </div>
+    </div>
+    <div class="col-12 md:col-2">
+      <strong class="block text-color-secondary font-medium"
+        >Fechas de solicitud:</strong
+      >
+      <p class="m-0">{{ data.requestDate | date: "dd-MMM-yy HH:mm" }}</p>
+    </div>
+    <div class="col-12 md:col-2">
+      <strong class="block text-color-secondary font-medium"
+        >Solicitado Por:</strong
+      >
+      <p class="m-0">{{ data.requestedBy }}</p>
+    </div>
+    <div class="col-12 md:col-2">
+      <strong class="block text-color-secondary">Ã¡rea:</strong>
+      <p class="m-0">{{ data.area }}</p>
+    </div>
+    <div class="col-12 md:col-4">
+      <strong class="block text-color-secondary"
+        >JustificaciÃ³n del Gasto:</strong
+      >
+      <p class="m-0">{{ data.expenseJustification }}</p>
+    </div>
+    <div class="col-12">
+      <app-action-menu>
+        <ng-container actions>
+          <ion-button-item
+            (clicked)="onModalForm({ id: data.id, title: 'Editar' })"
+            label="Editar"
+            iconClass="icon icon-pi-pencil icon-italic txt-primary"
+          />
+          <ion-button-item
+            (clicked)="onModalForm({ id: data.id, title: 'Cotizar' })"
+            label="Cotizar"
+          />
+          <ion-button-item
+            (clicked)="
+                    onNavigatePage('purchase-request/comparison/' + data.id)
+                  "
+            label="Cuadro Comparativo"
+          />
+          <ion-button-item
+            (clicked)="onModalForm({ id: data.id, title: 'Crear Orden' })"
+            label="Crear Orden"
+          />
+          <ion-button-item
+            (clicked)="
+                    onModalAddProduct({
+                      purchaseRequestId: data.id,
+                      title: 'Agregar productos o servicios',
+                    })
+                  "
+            label="Agregar productos"
+          />
+          <div>
+            @for (item of purchaseOrders; track item) {
+            <p-tag
+              (click)="onModalForm({ id: item.id, title: 'Editar Orden de Compra' })"
+              severity="warn"
+              [value]="item.folio"
+              styleClass="m-1 cursor-pointer"
+            ></p-tag>
+            }
+          </div>
+        </ng-container>
+      </app-action-menu>
+    </div>
+  </div>
+  <hr />
+  <app-purchase-request-add-product
+    (updateData)="onLoadData(); clearProductToEdit()"
+    [purchaseRequestId]="data.id"
+    [productDataToEdit]="productToEdit"
+  />
+  <br />
+  <!-- SecciÃ³n para Detalles (Products/Services) -->
+  @if (data.products && data.products.length > 0) {
+  <div>
+    <!-- purchase-request.html -->
+    <app-purchase-request-products
+      [products]="data.products"
+      [purchaseRequestId]="data.id"
+      (updateData)="onLoadData()"
+      (editProductRequest)="handleEditProductRequest($event)"
+    />
+  </div>
+  } @if (!data.products || data.products.length === 0) {
+  <div class="p-3 surface-100 border-round text-color-secondary mt-3">
+    No hay productos o servicios detallados en esta solicitud.
+  </div>
+  }
+  <!-- SecciÃ³n para Cotizaciones -->
+  @if (data.quotes && data.quotes.length > 0) {
+  <hr class="my-4" />
+  } @if (data.quotes && data.quotes.length > 0) {
+  <div>
+    <h4 class="mb-3">Cotizaciones Recibidas:</h4>
+    <ul class="list-group">
+      @for (quote of data.quotes; track quote) {
+      <li class="list-group-item">
+        <!-- AquÃ³ mostrarÃ³as la informaciÃ³n de cada 'quote' -->
+        <!-- Ejemplo: {{ quote.quoteNumber }} - Proveedor: {{ quote.provider }} -->
+        <p>
+          <em>{{ quote | json }}</em>
+        </p>
+      </li>
+      }
+    </ul>
+  </div>
+  } @if (!data.quotes || data.quotes.length === 0) {
+  <div class="alert alert-info mt-3" role="alert">
+    No hay cotizaciones asociadas a esta solicitud.
+  </div>
+  }
+</div>
+} }

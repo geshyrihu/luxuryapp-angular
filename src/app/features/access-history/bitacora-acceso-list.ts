@@ -1,0 +1,109 @@
+import { CommonModule } from "@angular/common";
+import { Component, effect, inject, signal } from "@angular/core";
+import { toSignal } from "@angular/core/rxjs-interop";
+import {
+  IonAccordion,
+  IonAccordionGroup,
+  IonAvatar,
+  IonBadge,
+  IonIcon,
+  IonItem,
+  IonLabel,
+} from "@ionic/angular/standalone";
+import { AvatarModule } from "primeng/avatar";
+import { TableModule } from "primeng/table";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { CalendarRange } from "src/app/core/components/rango-calendario-mes-anio/calendar-range";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ButtonType } from "src/app/core/enums/button-type";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
+} from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DateService } from "src/app/core/services/date.service";
+import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
+@Component({
+  selector: "app-bitacora-acceso",
+  templateUrl: "./bitacora-acceso-list.html",
+  imports: [
+    CommonModule,
+    TableModule,
+    AvatarModule,
+    CalendarRange,
+    CustomButton,
+    PrimeNgCustomCaption,
+    IonItem,
+    IonLabel,
+    IonAvatar,
+    IonBadge,
+    IonIcon,
+    IonAccordion,
+    IonAccordionGroup,
+  ],
+})
+// óCAMBIO! Ya no implementamos OnInit
+export class BitacoraAcceso {
+  public ButtonType = ButtonType;
+  // --- INYECCIONES (sin cambios) ---
+  private dateS = inject(DateService);
+  private customerIdS = inject(CustomerIdService);
+  private filtroCalendarService = inject(FiltroCalendarService);
+  apiResponseS = inject(ApiResponseService);
+  data = signal<any[]>([]); // óMEJORA! Convertimos los datos a un signal.
+  loading = signal(true);
+
+  // óMAGIA! Convertimos el Observable de fechas en un signal.
+  // Se actualizaró automóticamente cada vez que el observable emita un nuevo valor.
+  private dates = toSignal(this.filtroCalendarService.getDates$());
+
+  // --- PROPIEDADES DE TABLA (sin cambios) ---
+  globalFilterFields: string[] = [];
+  tablePrimeNgRows: number = tablePrimeNgRows();
+  rowsPerPageOptions: number[] = rowsPerPageOptions();
+
+  constructor() {
+    // óEL óNICO CHEF! Este effect ahora gobierna toda la carga de datos.
+    effect(() => {
+      // 1. Leemos TODAS las dependencias para que el effect se suscriba a ellas.
+      const customerId: string = this.customerIdS.customerId();
+      const currentDates = this.dates(); // Puede ser undefined al inicio
+
+      // 2. Nos aseguramos de que tenemos todos los ingredientes antes de cocinar.
+      if (customerId && currentDates && currentDates.length === 2) {
+        // Ponemos el estado de carga
+        const fechaInicial = this.dateS.getDateFormat(currentDates[0]);
+        const fechaFinal = this.dateS.getDateFormat(currentDates[1]);
+        this.onLoadData(fechaInicial, fechaFinal);
+      }
+    });
+  }
+
+  // óOBSOLETO! ngOnInit ya no es necesario. El effect se encarga de todo.
+  // ngOnInit(): void { ... }
+
+  private onLoadData(fechaInicial: string, fechaFinal: string): void {
+    // óCORRECCIóN! Leemos el valor del customerId con paróntesis.
+    const urlApi = Endpoints.AccessHistory.byCustomerAndRange(
+      this.customerIdS.customerId(),
+      fechaInicial,
+      fechaFinal,
+    );
+
+    this.apiResponseS.onGetList(urlApi).then((result: any) => {
+      this.data.set(result); // Actualizamos el signal de datos
+      this.globalFilterFields = globalFilterFields(result);
+    });
+  }
+}
+
+
+
+
+
+
+
+

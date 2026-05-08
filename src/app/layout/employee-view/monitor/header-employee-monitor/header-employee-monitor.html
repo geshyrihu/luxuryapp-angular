@@ -1,0 +1,114 @@
+<!-- Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block no-print">
+  <p-toolbar
+    styleClass="mobile-header-toolbar monitor-header-toolbar w-full p-0 m-0"
+  >
+    <ng-template #start>
+      <!-- Botón para abrir/cerrar el sidebar -->
+      <div class="flex align-items-center gap-2 px-3" style="min-width: 250px">
+        <p-button
+          type="button"
+          (click)="sidebarToggle()"
+          icon="icon icon-pi-bars"
+          size="small"
+          fluid
+        />
+        <div class="flex-none breadcrumb-container">
+          <p-breadcrumb [model]="breadcrumbItems"></p-breadcrumb>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #center>
+      <div class="flex align-items-center gap-2 px-3" style="min-width: 350px">
+        <!-- Selector de Condominio (Select de PrimeNG) -->
+        @if (cb_customer.length > 1) {
+        <div class="p-2 w-full">
+          <p-select
+            [options]="cb_customer"
+            [ngModel]="customerId()"
+            (onChange)="selectCustomer($event.value)"
+            optionValue="value"
+            optionLabel="label"
+            styleClass="w-full"
+            [filter]="cb_customer.length > 10"
+            fluid
+            size="small"
+          >
+            <ng-template #selectedItem let-selectedOption>
+              @if (selectedOption) {
+              <div class="flex align-items-center gap-2">
+                <img
+                  [src]="selectedOption.image"
+                  style="width: 20px; height: 20px; object-fit: contain"
+                />
+                <div class="font-medium">{{ selectedOption.label }}</div>
+              </div>
+              }
+            </ng-template>
+            <ng-template let-customer #item>
+              <div class="flex align-items-center gap-2">
+                <img
+                  [src]="customer.image"
+                  style="width: 24px; height: 24px; object-fit: contain"
+                />
+                <div>{{ customer.label }}</div>
+              </div>
+            </ng-template>
+          </p-select>
+        </div>
+        } @else {
+        <div
+          class="p-2 w-full flex align-items-center justify-content-center gap-3"
+        >
+          <img
+            [src]="customerPhotoPath()"
+            style="width: 38px; height: 38px; object-fit: contain"
+          />
+          <span class="font-bold text-xl">{{ customerName() }}</span>
+        </div>
+        }
+      </div>
+    </ng-template>
+
+
+    <ng-template #end>
+      @if (!aspRoleS.roleSignal(AspRole.Comite)()) {
+      <app-search />
+      }
+      <div class="user-actions-container px-3">
+        <!-- Iconos de Navegación -->
+        @for (icon of displayNavIcons; track icon.id) { @if (!icon.requiresRole
+        || aspRoleS.hasAny(icon.requiresRole)) {
+        <p-button
+          type="button"
+          (click)="icon.action()"
+          [icon]="icon.iconClass"
+          styleClass="p-button-text p-button-secondary monitor-toolbar-button"
+          [pTooltip]="icon.ngbTooltip"
+          tooltipPosition="bottom"
+          size="small"
+        />
+        } }
+
+        <!-- Theme Toggle Button -->
+        <p-button
+          type="button"
+          (click)="toggleTheme()"
+          [icon]="getThemeIcon()"
+          styleClass="p-button-text p-button-secondary monitor-toolbar-button"
+          pTooltip="Cambiar Tema"
+          tooltipPosition="bottom"
+          size="small"
+        />
+
+        <!-- Componentes de la derecha -->
+        @if (!aspRoleS.roleSignal(AspRole.Comite)()) {
+        <app-notifications-gadget />
+        }
+
+        <app-profile-monitor />
+      </div>
+    </ng-template>
+  </p-toolbar>
+</div>

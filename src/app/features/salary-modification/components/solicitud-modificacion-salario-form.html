@@ -1,0 +1,109 @@
+<div class="card mt-2">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <div class="grid">
+        <!-- Salarios -->
+        <div class="col-12 md:col-6">
+          <custom-input-number-signal
+            class="w-full"
+            [control]="form.controls['currentSalary']"
+            label="Salario mensual libre"
+            [readonly]="true"
+            placeholder="salario mensual actual neto"
+          />
+        </div>
+
+        <div class="col-12 md:col-6">
+          <custom-input-number-signal
+            class="w-full"
+            [control]="form.controls['finalSalary']"
+            label="Salario mensual final neto"
+            placeholder="salario mensual final neto"
+          />
+        </div>
+
+        <!-- Puestos -->
+        <div class="col-12 md:col-6">
+          <custom-input-text-signal
+            class="w-full"
+            [control]="form.controls['applicationRoleCurrent']"
+            label="Puesto actual"
+            [readonly]="true"
+            placeholder="Puesto actual"
+          />
+        </div>
+
+        <div class="col-12 md:col-6">
+          <custom-input-autocomplete-signal
+            class="w-full"
+            (propagar)="onSaveApplicationRoleIDTOAccount($event)"
+            [control]="form.controls['applicationRoleNew']"
+            [data]="cb_applicationRole()"
+            label="Puesto nuevo"
+            placeholder="Escribe para buscar puesto nuevo"
+          />
+        </div>
+
+        <!-- Fecha y Retroactivo -->
+        <div class="col-12 md:col-6">
+          <custom-input-date-signal
+            class="w-full"
+            [control]="form.controls['executionDate']"
+            label="Fecha de aplicación"
+            placeholder="fecha de aplicación"
+          />
+        </div>
+
+        <div class="col-12 md:col-6">
+          <custom-input-select-signal
+            class="w-full"
+            [control]="form.controls['retroactive']"
+            label="Aplicar retroactivo"
+            [data]="cb_si_no()"
+          />
+        </div>
+
+        <!-- Comentarios -->
+        <div class="col-12">
+          <custom-input-textarea-signal
+            class="w-full"
+            [control]="form.controls['additionalInformation']"
+            label="Comentarios adicionales"
+            placeholder="comentarios adicionales"
+          />
+        </div>
+
+        <!-- Archivos -->
+        <div class="col-12">
+          <div class="grid align-items-center">
+            <label class="col-12 md:col-3 mb-2 md:mb-0">
+              Adjuntar soporte (móximo 10MB)
+            </label>
+            <div class="col-12 md:col-9">
+              <file-upload
+                class="w-full"
+                formControlName="files"
+                [animation]="true"
+                (change)="onFileChange()"
+              ></file-upload>
+              @if (maxSizeExceeded()) {
+              <div class="text-danger mt-1">
+                Los archivos adjuntos no deben superar los 10 MB.
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón -->
+      <div class="flex justify-content-end mt-4">
+        <custom-button-save
+          [disabled]="form.invalid || maxSizeExceeded()"
+          [submitting]="submitting()"
+          label="Solicitar modificación"
+        />
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+@if (meetingData()) {
+<div class="p-4">
+  <p-card [header]="'Gestión de Minuta: ' + meetingData()?.dateFormat">
+    <div class="mb-3 flex align-items-center justify-content-between">
+      <a routerLink="/junta-comite/list-minutas" class="no-underline">
+        <custom-button
+          label="VOLVER AL LISTADO"
+          iconClass="pi pi-arrow-left"
+          severity="secondary"
+          size="small"
+        />
+      </a>
+      <div class="flex gap-2">
+        <p-tag
+          severity="info"
+          [value]="'Total: ' + meetingData()?.issues"
+          styleClass="p-2"
+        />
+        <p-tag
+          severity="success"
+          [value]="'Concluidos: ' + meetingData()?.concluidos"
+          styleClass="p-2"
+        />
+        <p-tag
+          severity="danger"
+          [value]="'Pendientes: ' + meetingData()?.pending"
+          styleClass="p-2"
+        />
+      </div>
+    </div>
+
+    <!-- Tabla para Contable -->
+    <app-area-details-table
+      title="Contable"
+      [meetingId]="meetingData()!.id"
+      [details]="meetingData()!.contable"
+      [areaResponsable]="0"
+      (addDetail)="onModalFormMinutaDetalle($event)"
+      (editDetail)="onModalFormMinutaDetalle($event)"
+      (deleteDetail)="onDeleteMeetingDetail($event)"
+      (sendAreaEmail)="onSendEmail(0)"
+      (addSeguimiento)="onModalFormSeguimiento($event)"
+      (editSeguimiento)="onModalFormSeguimiento($event)"
+      (deleteSeguimiento)="onDeleteSeguimiento($event)"
+    />
+
+    <!-- Tabla para Operaciones -->
+    <app-area-details-table
+      title="Operaciones"
+      class="mt-4 block"
+      [meetingId]="meetingData()!.id"
+      [details]="meetingData()!.operaciones"
+      [areaResponsable]="1"
+      (addDetail)="onModalFormMinutaDetalle($event)"
+      (editDetail)="onModalFormMinutaDetalle($event)"
+      (deleteDetail)="onDeleteMeetingDetail($event)"
+      (sendAreaEmail)="onSendEmail(1)"
+      (addSeguimiento)="onModalFormSeguimiento($event)"
+      (editSeguimiento)="onModalFormSeguimiento($event)"
+      (deleteSeguimiento)="onDeleteSeguimiento($event)"
+    />
+
+    <!-- Tabla para Legal -->
+    <app-area-details-table
+      title="Legal"
+      class="mt-4 block"
+      [meetingId]="meetingData()!.id"
+      [details]="meetingData()!.legal"
+      [areaResponsable]="2"
+      (addDetail)="onModalFormMinutaDetalle($event)"
+      (editDetail)="onModalFormMinutaDetalle($event)"
+      (deleteDetail)="onDeleteMeetingDetail($event)"
+      (sendAreaEmail)="onSendEmail(2)"
+      (addSeguimiento)="onModalFormSeguimiento($event)"
+      (editSeguimiento)="onModalFormSeguimiento($event)"
+      (deleteSeguimiento)="onDeleteSeguimiento($event)"
+    />
+  </p-card>
+</div>
+} @else {
+<div class="flex align-items-center justify-content-center h-screen">
+  <i class="pi pi-spin pi-spinner text-4xl text-primary"></i>
+  <span class="ml-3 text-lg font-medium text-700"
+    >Cargando detalles de la minuta...</span
+  >
+</div>
+}

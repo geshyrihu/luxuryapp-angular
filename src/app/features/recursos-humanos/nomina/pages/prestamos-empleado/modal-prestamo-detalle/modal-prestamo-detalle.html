@@ -1,0 +1,97 @@
+@if (prestamo(); as p) {
+<div class="p-3">
+
+  <!-- Info del prestamo -->
+  <div class="grid mb-3">
+    <div class="col-6 md:col-3">
+      <div class="text-center">
+        <p class="text-xs text-500 m-0">Monto Total</p>
+        <p class="font-bold m-0">{{ p.montoTotal | currency: "MXN" : "symbol" : "1.2-2" }}</p>
+      </div>
+    </div>
+    <div class="col-6 md:col-3">
+      <div class="text-center">
+        <p class="text-xs text-500 m-0">Amortizacion</p>
+        <p class="font-bold m-0">{{ p.montoAmortizacion | currency: "MXN" : "symbol" : "1.2-2" }}</p>
+      </div>
+    </div>
+    <div class="col-6 md:col-3">
+      <div class="text-center">
+        <p class="text-xs text-500 m-0">Saldo Pendiente</p>
+        <p class="font-bold text-primary m-0">{{ p.saldoPendiente | currency: "MXN" : "symbol" : "1.2-2" }}</p>
+      </div>
+    </div>
+    <div class="col-6 md:col-3">
+      <div class="text-center">
+        <p class="text-xs text-500 m-0">Estado</p>
+        <p-tag [severity]="getEstadoSeverity(p.estado)" [value]="p.estado" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra de progreso -->
+  <div class="mb-3">
+    <div class="flex justify-content-between mb-1">
+      <span class="text-sm">Pagos realizados: {{ p.pagosRealizados }} / {{ p.numeroPagos }}</span>
+      <span class="text-sm font-bold">{{ progreso }}%</span>
+    </div>
+    <div class="border-round overflow-hidden" style="height: 8px; background: var(--surface-200)">
+      <div
+        class="border-round bg-primary"
+        [style.width.%]="progreso"
+        style="height: 100%; transition: width 0.3s"
+      ></div>
+    </div>
+  </div>
+
+  <!-- Historial de pagos -->
+  <p-table
+    [value]="pagos()"
+    [loading]="loading()"
+    styleClass="p-datatable-sm mb-3"
+  >
+    <ng-template #header>
+      <tr>
+        <th>No.</th>
+        <th>Fecha Pago</th>
+        <th class="text-right">Monto Pagado</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-pago>
+      <tr>
+        <td>{{ pago.numeroPago }}</td>
+        <td>{{ pago.fechaPago | date: "dd/MM/yyyy" }}</td>
+        <td class="text-right">{{ pago.montoPagado | currency: "MXN" : "symbol" : "1.2-2" }}</td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <tr><td colspan="3">Sin pagos registrados aun.</td></tr>
+    </ng-template>
+  </p-table>
+
+  <!-- Acciones de decision (solo si esta Pendiente) -->
+  @if (p.estadoValue === 0) {
+  <form [formGroup]="formDecision" class="border-top-1 surface-border pt-3">
+    <custom-input-textarea-signal
+      [control]="formDecision.controls['observaciones']"
+      label="Observaciones de la Decision"
+    />
+    <div class="flex justify-content-end gap-2 mt-2">
+      <custom-button
+        label="Cancelar Prestamo"
+        iconClass="pi pi-times"
+        severity="danger"
+        [disabled]="procesando()"
+        (clicked)="cancelar()"
+      />
+      <custom-button-save
+        label="Autorizar"
+        (clicked)="autorizar()"
+        [submitting]="procesando()"
+      />
+    </div>
+  </form>
+  }
+
+</div>
+}

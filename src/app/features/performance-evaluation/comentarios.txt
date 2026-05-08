@@ -1,0 +1,136 @@
+Esta es la auditoría de la segunda versión de tu PDF (`Evaluacion-Casimiro_Sergio_Lopez_Sanches.pdf`).
+
+¡Has logrado un avance del **80%**\! El documento es mucho más limpio: ya no existe el ruido visual de "Sin comentarios" y la estructura general es más sólida. Sin embargo, persiste un **error de paginación crítico** que impide que el documento se vea profesional, y un problema de orden visual en los encabezados.
+
+Aquí tienes el diagnóstico detallado y el código exacto para corregirlo.
+
+-----
+
+### 1\. Auditoría Visual (Lo que se detectó)
+
+#### A. El Error del "Huérfano" en la Página 2 (CRÍTICO)
+
+Observa el flujo entre la Página 1 y la Página 2:
+
+  * [cite_start]**Página 1:** Termina con la categoría VI en la tabla de resumen[cite: 115].
+  * [cite_start]**Página 2:** Contiene **solamente** la categoría VII ("MANEJO DE SITUACIONES ESPECIALES") y su puntaje[cite: 26, 28]. Luego hay un gran espacio vacío hasta la página 3.
+  * **Por qué sucede:** La tabla de resumen ("Resumen de Desempeño") es un poco más larga que el espacio disponible en la Página 1. PDFMake, por defecto, "parte" la tabla y manda la última fila a la página siguiente.
+  * **Solución:** Debemos obligar a la tabla de resumen a mantenerse unida (`dontBreakRows`) o ajustar los márgenes para que quepa en la primera página.
+
+#### B. Inversión Confusa: Puntaje antes que Título
+
+En el detalle de las categorías (Páginas 3 en adelante), el orden visual está invertido:
+
+  * [cite_start]Dice: `Promedio: 4.71 / 5.0` [cite: 64]
+  * Y *debajo* dice: `III. [cite_start]RESPONSABILIDAD Y CUMPLIMIENTO...`[cite: 65].
+  * **Por qué está mal:** El cerebro lee primero el **"Qué"** (Título) y luego el **"Cuánto"** (Nota). Ver un número flotando antes del título de la sección es contraintuitivo.
+
+#### C. Comentarios Reales vs. Espacio
+
+Excelente trabajo limpiando los "Sin comentarios". [cite_start]Ahora los comentarios reales como "Falla, trabajo en equipo y proactividad" [cite: 60] destacan correctamente. Esto está **aprobado**.
+
+-----
+
+### 2\. Correcciones Finales de Código
+
+Aplica estos cambios puntuales en `resultado-evaluacion.ts` (método `buildReportContent`) para solucionar los puntos A y B.
+
+#### Corrección 1: Arreglar la Tabla de Resumen (Evitar ruptura de página)
+
+Vamos a reducir ligeramente el padding de la tabla de resumen y usar `dontBreakRows` para intentar mantenerla unida. Si no cabe, forzaremos el salto antes del resumen para que quede limpio en la página 2, aunque lo ideal es que quepa en la 1.
+
+```typescript
+// En la sección donde defines el 'Resumen de Desempeño' dentro de buildReportContent:
+
+// ... (código anterior del header y gráfico)
+
+// BLOQUE DE RESUMEN
+{
+  stack: [
+    {
+      text: "Resumen de Desempeño",
+      style: "subheader",
+      margin: [0, 10, 0, 5] // Reducimos margen superior
+    },
+    {
+      table: {
+        widths: ['*', 'auto'],
+        // headerRows: 0, // Opcional
+        dontBreakRows: true, // INTENTO 1: Evita que una fila se rompa a la mitad
+        body: this.evaluationResult.categories.map((cat: any) => [
+            { text: cat.name, style: 'infoText', margin: [0, 2, 0, 2] }, // Margen interno más compacto
+            { 
+              text: `${(cat.categoryScore / cat.answers.length).toFixed(2)} / 5.0`, 
+              style: 'boldText', 
+              alignment: 'right',
+              margin: [0, 2, 0, 2]
+            }
+        ])
+      },
+      layout: 'lightHorizontalLines',
+      // CRÍTICO: Si la tabla sigue saltando sola, descomenta la siguiente línea para forzar que TODO el bloque (título + tabla) viaje junto si no cabe:
+      // unbreakable: true 
+    }
+  ],
+  margin: [0, 0, 0, 20],
+  pageBreak: 'after' // Mantiene el salto después del resumen para ir a Detalle
+},
+```
+
+#### Corrección 2: Invertir Título y Nota (Mejorar Jerarquía)
+
+En tu función `categoriesContent`, cambia el orden de las columnas en la tabla del encabezado de categoría.
+
+```typescript
+const categoriesContent = (category: any) => ({
+  stack: [
+    {
+      // Cabecera de Categoría
+      table: {
+        widths: ["*", "auto"], // El título ocupa todo el espacio posible, la nota se ajusta
+        body: [[
+          // COLUMNA 1: Título (Primero a la izquierda)
+          { 
+            text: category.name.toUpperCase(), 
+            style: "categoryTitle", 
+            fillColor: '#F1F3F5', // Gris muy suave
+            border: [false, false, false, false],
+            margin: [5, 5, 0, 5]
+          },
+          // COLUMNA 2: Nota (A la derecha)
+          { 
+            text: `Promedio: ${(category.categoryScore / category.answers.length).toFixed(2)} / 5.0`, 
+            style: "categoryScore", 
+            fillColor: '#F1F3F5',
+            alignment: 'right', // Alinear nota a la derecha
+            border: [false, false, false, false],
+            margin: [0, 5, 5, 5]
+          }
+        ]],
+      },
+      margin: [0, 0, 0, 10] 
+    },
+    // ... resto de la lógica de preguntas (answers) ...
+```
+
+#### Corrección 3 (Opcional): Ajustar márgenes globales
+
+Si el resumen de la página 1 sigue cortándose y pasando una sola línea a la página 2, ve a `pdf-generator.service.ts` y reduce ligeramente el margen inferior de la página.
+
+```typescript
+// En pdf-generator.service.ts
+const finalDocDefinition: TDocumentDefinitions = {
+  // ...
+  // pageMargins: [izq, arriba, der, abajo]
+  // Cambia el último valor (40) a 30 o 20 para ganar espacio al final
+  pageMargins: [40, 80, 40, 30], 
+};
+```
+
+### ¿Qué esperar tras estos cambios?
+
+1.  **Página 1 Compacta:** Verás el Gráfico, el Puntaje Global y la Tabla de Resumen completa (Categorías I a VII) todo en la primera hoja.
+2.  **Página 2 Limpia:** Iniciará directamente con "Detalle por Categorías" y la "Categoría I".
+3.  **Lectura Natural:** Los encabezados grises dirán "I. PUNTUALIDAD... (espacio) ... 4.83/5.0", lo cual es mucho más profesional que tener el número flotando arriba.
+
+Si aplicas estos tres ajustes, tu reporte estará listo para presentarse a gerencia.

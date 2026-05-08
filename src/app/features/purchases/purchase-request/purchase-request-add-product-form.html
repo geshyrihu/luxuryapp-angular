@@ -1,0 +1,114 @@
+<p-table
+  (onLazyLoad)="loadDataLazy($event)"
+  [first]="first"
+  [globalFilterFields]="globalFilterFields()"
+  [lazy]="true"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [totalRecords]="totalRecords()"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table hidden md:block"
+>
+  <ng-template #caption>
+    <div class="hidden md:block">
+      <div class="grid">
+        <div class="col-12 sm:col-10">
+          <div class="flex align-items-center justify-content-between">
+            <h4 class="mb-0">AGREGAR PRODUCTO</h4>
+          </div>
+        </div>
+        <div class="col-12 sm:col-2 no-print">
+          <custom-input-text-signal
+            [control]="searchControl"
+            (input)="applyFilter()"
+            placeholder="Buscar..."
+            [horizontal]="false"
+          />
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th>Imagen</th>
+      <th pSortableColumn="producto">
+        Descripción
+        <p-sortIcon field="producto" />
+      </th>
+      <th>
+        Cantidad
+        <p-sortIcon />
+      </th>
+      <th>Unidad</th>
+      <th class="table-col-5">Agregar</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-rowItem let-i="rowIndex">
+    <ng-container [formGroup]="formArray.at(i)">
+      <tr>
+        <td
+          class="table-col-10"
+          class="cursor-pointer"
+          (click)="onModalTarjetaProducto(rowItem.productId)"
+        >
+          <p-avatar
+            [image]="rowItem.imageUrl"
+            alt=""
+            class="mr-2"
+            size="large"
+          />
+        </td>
+        <td
+          class="cursor-pointer"
+          (click)="onModalTarjetaProducto(rowItem.productId)"
+        >
+          {{ rowItem.brand }} {{ rowItem.productName }}
+        </td>
+        <td>
+          <custom-input-number-signal
+            [control]="formArray.at(i).controls.quantity"
+            mode="decimal"
+            [min]="0"
+            [minFractionDigits]="0"
+            [maxFractionDigits]="0"
+            [horizontal]="false"
+          />
+        </td>
+        <td>
+          <custom-input-select-signal
+            [control]="formArray.at(i).controls.unitId"
+            [data]="cb_unidadMedida"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Selecciona una opción"
+            [horizontal]="false"
+            customClass="w-full"
+          />
+        </td>
+        <td>
+          <div class="flex justify-content-center">
+            <custom-button
+              iconClass="pi pi-save"
+              styleClass="p-button-outlined p-button-primary"
+              (clicked)="onSubmit(rowItem, i)"
+              [disabled]="
+              !formArray.at(i).value.unitId ||
+              rowItem.productId === 0 ||
+              formArray.at(i).value.quantity === 0
+            "
+            />
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>

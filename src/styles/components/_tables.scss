@@ -1,0 +1,190 @@
+// ============================================================
+// _tables.scss
+// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
+// Sistema de tablas — nativo y wrappers PrimeNG
+// ============================================================
+
+// ── WRAPPER RESPONSIVO ────────────────────────────────────────
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--ds-radius-xl);
+  border: 1px solid var(--ds-border);
+  box-shadow: var(--ds-shadow-sm);
+}
+
+// ── TABLA BASE ────────────────────────────────────────────────
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  color: var(--ds-text-primary);
+
+  // Cabecera
+  thead {
+    background-color: var(--ds-bg-sunken);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
+    th {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.8125rem;
+      color: var(--ds-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      border-bottom: 1px solid var(--ds-border);
+    }
+  }
+
+  // Cuerpo
+  tbody {
+    tr {
+      border-bottom: 1px solid var(--ds-border);
+      transition: background-color 100ms ease;
+
+      &:last-child { border-bottom: none; }
+    }
+
+    td {
+      padding: 0.875rem 1rem;
+      vertical-align: middle;
+    }
+  }
+
+  // Pie
+  tfoot {
+    background-color: var(--ds-bg-sunken);
+    font-weight: 600;
+    border-top: 2px solid var(--ds-border);
+
+    td {
+      padding: 0.75rem 1rem;
+    }
+  }
+
+  // ── Variantes
+  &--striped tbody tr:nth-child(even) {
+    background-color: var(--ds-bg-sunken);
+  }
+
+  &--hover tbody tr:hover {
+    background-color: var(--ds-primary-light);
+    cursor: pointer;
+  }
+
+  &--bordered {
+    th, td { border: 1px solid var(--ds-border); }
+  }
+
+  &--borderless {
+    tbody tr { border-bottom: none; }
+    thead th  { border-bottom: 1px solid var(--ds-border); }
+  }
+
+  &--compact {
+    thead th { padding: 0.5rem 0.75rem; }
+    tbody td { padding: 0.5rem 0.75rem; }
+  }
+
+  &--spacious {
+    thead th { padding: 1.125rem 1.5rem; }
+    tbody td { padding: 1.125rem 1.5rem; }
+  }
+
+  // ── Filas con estado semántico
+  .tr--selected { background-color: var(--ds-bg-sunken) !important; }
+  .tr--success  { background-color: rgba(34, 197, 94, 0.1) !important; }
+  .tr--warning  { background-color: rgba(234, 179, 8, 0.1) !important; }
+  .tr--danger   { background-color: rgba(239, 68, 68, 0.1) !important; }
+  .tr--disabled { opacity: 0.5; pointer-events: none; }
+
+  // ── Celda numérica
+  .td--numeric  { text-align: right; font-variant-numeric: tabular-nums; }
+  .td--actions  { text-align: right; white-space: nowrap; }
+  .td--center   { text-align: center; }
+
+  // ── Ordenación
+  .th--sortable {
+    cursor: pointer;
+    user-select: none;
+
+    &:hover { color: var(--ds-text-primary); }
+    &.is-asc::after  { content: ' ↑'; }
+    &.is-desc::after { content: ' ↓'; }
+  }
+}
+
+// ── TOOLBAR DE TABLA ──────────────────────────────────────────
+.table-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--ds-border);
+  background-color: var(--ds-bg-surface);
+  gap: 1rem;
+  flex-wrap: wrap;
+  border-radius: var(--ds-radius-xl) var(--ds-radius-xl) 0 0;
+
+  &__left,
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+}
+
+// ── PAGINADOR ─────────────────────────────────────────────────
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.875rem 1.25rem;
+  border-top: 1px solid var(--ds-border);
+
+  &__info {
+    font-size: 0.8125rem;
+    color: var(--ds-text-muted);
+    margin-right: auto;
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--ds-radius-md);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    border: 1px solid var(--ds-border);
+    background-color: var(--ds-bg-surface);
+    color: var(--ds-text-secondary);
+    cursor: pointer;
+    transition: all 150ms ease;
+
+    &:hover:not(:disabled) {
+      background-color: var(--ds-bg-sunken);
+      border-color: var(--ds-border-strong);
+      color: var(--ds-text-primary);
+    }
+
+    &.is-active {
+      background-color: var(--ds-primary);
+      border-color: var(--ds-primary);
+      color: #fff;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+}
+
+
+

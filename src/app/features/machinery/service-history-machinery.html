@@ -1,0 +1,66 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [value]="dataSignal()"
+  #dt
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="executionDate">
+        Fecha
+        <p-sortIcon field="executionDate" />
+      </th>
+      <th pSortableColumn="typeMaintance">
+        Tipo de mantenimiento
+        <p-sortIcon field="typeMaintance" />
+      </th>
+      <th pSortableColumn="recurrence">
+        Frecuencia
+        <p-sortIcon field="recurrence" />
+      </th>
+      <th pSortableColumn="provider">
+        Proveedor
+        <p-sortIcon field="provider" />
+      </th>
+      <th pSortableColumn="price">
+        Costo
+        <p-sortIcon field="price" />
+      </th>
+      <th pSortableColumn="employeeResponsable">
+        Superviso
+        <p-sortIcon field="employeeResponsable" />
+      </th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.executionDate }}</td>
+      <td>{{ item.typeMaintance }}</td>
+      <td>{{ item.recurrence }}</td>
+      <td>{{ item.provider }}</td>
+      <td>{{ item.price }}</td>
+      <td>{{ item.employeeResponsable }}</td>
+      <td>
+        <div class="flex justify-content-center">
+          <custom-button
+            icon="edit"
+            ngbTooltip="Editar"
+            (clicked)="
+              onEdit({
+                id: item.id,
+                title: 'Editar',
+                machineryId: item.machineryId,
+                providerId: item.providerId,
+              })
+            "
+          />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

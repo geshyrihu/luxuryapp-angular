@@ -1,0 +1,86 @@
+import { Component, inject, OnInit, signal } from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { CardModule } from "primeng/card";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+
+interface IMachineryClassificationForm {
+  id: FormControl<string | null>;
+  descripcion: FormControl<string>;
+}
+
+@Component({
+  selector: "app-machinery-classification-form",
+  templateUrl: "./machinery-classification-form.html",
+  imports: [
+    ReactiveFormsModule,
+    CustomInputTextSignal,
+    CustomButtonSave,
+    CardModule,
+  ],
+})
+export class MachineryClassificationForm implements OnInit {
+  apiResponseS = inject(ApiResponseService);
+  formB = inject(FormBuilder);
+  config = inject(DynamicDialogConfig);
+  ref = inject(DynamicDialogRef);
+  submitting = signal(false);
+
+  id: string = "";
+
+  form: FormGroup<IMachineryClassificationForm> = this.formB.group({
+    id: new FormControl({ value: this.id, disabled: true }),
+    descripcion: new FormControl("", {
+      validators: [Validators.required],
+      nonNullable: true,
+    }),
+  });
+
+  ngOnInit(): void {
+    this.id = this.config.data.id;
+    if (this.id) this.onLoadData();
+  }
+  onLoadData() {
+    this.apiResponseS
+      .onGetItem(`EquipoClasificacion/${this.id}`)
+      .then((result: any) => {
+        this.form.patchValue(result);
+      });
+  }
+  onSubmit() {
+    if (!this.apiResponseS.validateForm(this.form)) return;
+
+    this.submitting.set(true);
+
+    if (!this.id) {
+      this.apiResponseS
+        .onPost(`EquipoClasificacion`, this.form.value)
+        .then((result: boolean) => {
+          result ? this.ref.close(true) : this.submitting.set(false);
+        });
+    } else {
+      this.apiResponseS
+        .onPut(`EquipoClasificacion/${this.id}`, this.form.value)
+        .then((result: boolean) => {
+          result ? this.ref.close(true) : this.submitting.set(false);
+        });
+    }
+  }
+}
+
+
+
+
+
+
+
+
+

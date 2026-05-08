@@ -1,0 +1,194 @@
+<div [formGroup]="recurrenceForm">
+  <!-- Frequency Selection -->
+  <div class="mb-4">
+    <custom-input-select-signal
+      [control]="recurrenceForm.controls.frequency"
+      (selectionChange)="onFrequencyChange($event)"
+      label="Frecuencia"
+      [data]="frequencies"
+    />
+  </div>
+
+  <!-- Interval -->
+  @if (selectedFrequency) {
+  <div class="grid mt-4 align-items-end">
+    <div class="col-12 md:col-3 flex">
+      <label class="font-medium">Repetir cada</label>
+    </div>
+    <div class="col-12 md:col-9">
+      <div class="flex align-items-end">
+        <p-inputNumber
+          [formControl]="recurrenceForm.controls.interval"
+          [min]="1"
+          [showButtons]="true"
+          mode="decimal"
+          styleClass="w-full md:w-10rem"
+        ></p-inputNumber>
+        <span class="p-text-secondary pb-1 ml-2"> {{ currentFrequencyLabel }} </span>
+      </div>
+    </div>
+  </div>
+  }
+
+  <!-- WEEKLY: Days Selection -->
+  @if (isWeekly) {
+  <div class="grid mt-4 align-items-end">
+    <div class="col-12 md:col-3 flex">
+      <label class="font-medium">Días de la semana</label>
+    </div>
+    <div class="col-12 md:col-9">
+      <div class="flex flex-wrap gap-3">
+        @for (day of weekDays; track day.value) {
+        <div class="flex align-items-center">
+          <p-checkbox
+            [formControl]="recurrenceForm.controls.byDay"
+            [value]="day.value"
+            [inputId]="day.value"
+            name="weekDaysGroup"
+          ></p-checkbox>
+          <label [for]="day.value" class="ml-2 cursor-pointer"
+            >{{ day.label }}</label
+          >
+        </div>
+        }
+      </div>
+      <small class="p-text-secondary mt-2 block">
+        Selecciona los días en los que se repetiró
+      </small>
+    </div>
+  </div>
+  }
+
+  <!-- MONTHLY: Type Selection -->
+  @if (isMonthly) {
+  <div class="mt-4">
+    <label class="mb-3 block font-medium">Tipo de recurrencia mensual</label>
+
+    <!-- Option 1: Day of Month -->
+    <div
+      class="p-3 border-1 surface-border border-round mb-3 transition-colors transition-duration-200"
+      [class.surface-50]="monthlyType === 'dayOfMonth'"
+      [class.border-primary]="monthlyType === 'dayOfMonth'"
+    >
+      <div class="flex align-items-center mb-2">
+        <p-radioButton
+          value="dayOfMonth"
+          [formControl]="recurrenceForm.controls.monthlyType"
+          inputId="dayOfMonth"
+        ></p-radioButton>
+        <label for="dayOfMonth" class="font-medium cursor-pointer flex-1 ml-2">
+          Dóa especófico del mes
+        </label>
+      </div>
+      <div class="flex align-items-end ml-4 flex-wrap gap-2">
+        <span class="pb-1">El día</span>
+        <p-select
+          [formControl]="recurrenceForm.controls.monthDay"
+          [options]="monthNumbers"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Dóa"
+          [disabled]="monthlyType !== 'dayOfMonth'"
+          styleClass="w-full md:w-5rem"
+          appendTo="body"
+        ></p-select>
+        <span class="pb-1">de cada mes</span>
+      </div>
+      <small class="p-text-secondary ml-4 mt-1 block">
+        Ejemplo: El día 15 de cada mes
+      </small>
+    </div>
+
+    <!-- Option 2: Position + Day of Week -->
+    <div
+      class="p-3 border-1 surface-border border-round transition-colors transition-duration-200"
+      [class.surface-50]="monthlyType === 'dayOfWeek'"
+      [class.border-primary]="monthlyType === 'dayOfWeek'"
+    >
+      <div class="flex align-items-center mb-2">
+        <p-radioButton
+          value="dayOfWeek"
+          [formControl]="recurrenceForm.controls.monthlyType"
+          inputId="dayOfWeek"
+        ></p-radioButton>
+        <label for="dayOfWeek" class="font-medium cursor-pointer flex-1 ml-2">
+          Posición en el mes
+        </label>
+      </div>
+      <div class="flex align-items-end flex-wrap ml-4 gap-2">
+        <span class="pb-1">El</span>
+        <p-select
+          [formControl]="recurrenceForm.controls.monthPosition"
+          [options]="positions"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Posición"
+          [disabled]="monthlyType !== 'dayOfWeek'"
+          styleClass="w-full md:w-8rem"
+          appendTo="body"
+        ></p-select>
+        <p-select
+          [formControl]="recurrenceForm.controls.monthWeekDay"
+          [options]="weekDays"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Dóa"
+          [disabled]="monthlyType !== 'dayOfWeek'"
+          styleClass="w-full md:w-8rem"
+          appendTo="body"
+        ></p-select>
+        <span class="pb-1">de cada mes</span>
+      </div>
+      <small class="p-text-secondary ml-4 mt-1 block">
+        Ejemplo: El tercer viernes de cada mes
+      </small>
+    </div>
+  </div>
+  }
+
+  <!-- YEARLY: Month and Day Selection -->
+  @if (isYearly) {
+  <div class="mt-4">
+    <label class="mb-3 block font-medium">Fecha anual</label>
+    <div class="p-3 border-1 surface-border border-round surface-50">
+      <div class="flex align-items-end flex-wrap">
+        <span class="pb-1">Cada</span>
+        <p-select
+          [formControl]="recurrenceForm.controls.yearDay"
+          [options]="monthNumbers"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Dóa"
+          styleClass="w-full md:w-5rem"
+          appendTo="body"
+        ></p-select>
+        <span class="pb-1">de</span>
+        <p-select
+          [formControl]="recurrenceForm.controls.yearMonth"
+          [options]="months"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Mes"
+          styleClass="w-full md:w-10rem"
+          appendTo="body"
+        ></p-select>
+      </div>
+      <small class="p-text-secondary mt-2 block">
+        Ejemplo: Cada 25 de Diciembre
+      </small>
+    </div>
+  </div>
+  }
+
+  <!-- Preview Section -->
+  @if (selectedFrequency) {
+  <div class="mt-4 surface-50 p-3 border-round">
+    <label class="text-sm font-bold text-700">Regla generada (RRULE)</label>
+    <div
+      class="font-mono text-sm mt-2 p-2 surface-0 border-round border-1 surface-border overflow-auto text-overflow-ellipsis"
+    >
+      {{ rrulePreview() }}
+    </div>
+  </div>
+  }
+</div>

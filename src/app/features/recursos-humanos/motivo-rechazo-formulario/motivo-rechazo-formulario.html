@@ -1,0 +1,31 @@
+<div>
+  <custom-input-textarea-signal
+    customClass="w-full"
+    [control]="reasonControl"
+    [rows]="4"
+    placeholder="Escriba el motivo del rechazo..."
+  />
+</div>
+<div class="flex justify-content-end mt-3">
+  <custom-button
+    label="Cancelar"
+    variant="text"
+    [showLabelOnDesktop]="true"
+    (clicked)="close(null)"
+  />
+  <custom-button
+    label="Confirmar Rechazo"
+    severity="danger"
+    [showLabelOnDesktop]="true"
+    [disabled]="!reasonControl.value"
+    customClass="ml-2"
+    (clicked)="confirm()"
+  />
+</div>
+
+
+
+
+
+
+

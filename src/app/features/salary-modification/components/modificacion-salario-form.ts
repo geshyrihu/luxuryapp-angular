@@ -1,0 +1,86 @@
+import { Component, inject, OnInit, signal } from "@angular/core";
+import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
+import { CardModule } from "primeng/card";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { firstValueFrom } from "rxjs";
+import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { EnumSelectService } from "src/app/core/services/enum-select.service";
+@Component({
+  selector: "app-modificacion-salario-form",
+  templateUrl: "./modificacion-salario-form.html",
+  imports: [
+    ReactiveFormsModule,
+    CardModule,
+    CustomInputTextSignal,
+    CustomInputDateSignal,
+    CustomInputSelectSignal,
+    CustomButtonSave,
+  ],
+})
+export class ModificacionSalarioForm implements OnInit {
+  private apiResponseS = inject(ApiResponseService);
+  private formB = inject(FormBuilder);
+  private config = inject(DynamicDialogConfig);
+  private ref = inject(DynamicDialogRef);
+  private enumSelectS = inject(EnumSelectService);
+  submitting = signal(false);
+
+  cb_status = signal<ISelectItem[]>([]);
+  cb_si_no = signal<ISelectItem[]>([]);
+  id: string = "";
+
+  form = this.formB.nonNullable.group({
+    id: [{ value: this.id, disabled: true }],
+    applicationUserId: ["", Validators.required],
+    confirmationFinish: [false, Validators.required],
+    currentSalary: [0, Validators.required], // Assumed number
+    employeeId: [0, Validators.required],
+    executionDate: [null as Date | null, Validators.required],
+    finalSalary: [0, Validators.required],
+    folio: ["", Validators.required],
+    applicationRoleCurrentId: [0, Validators.required],
+    applicationRoleNewId: [0, Validators.required],
+    requestDate: [null as Date | null, Validators.required],
+    retroactive: [false, Validators.required],
+    soport: [""],
+    status: [null as number | null, Validators.required],
+    workPositionId: [0, Validators.required],
+  });
+
+  async ngOnInit() {
+    this.cb_si_no.set(await firstValueFrom(this.enumSelectS.boolYesNo()));
+    this.cb_status.set(await firstValueFrom(this.enumSelectS.status()));
+    this.id = this.config.data.id;
+    if (this.id) {
+      this.onLoadData();
+      this.form.controls.id.setValue(this.id);
+    }
+  }
+
+  onLoadData() {
+    const urlApi = `requestsalarymodification/getbyid/${this.id}`;
+    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
+      this.form.patchValue(result);
+    });
+  }
+
+  onSubmit() {
+    if (this.submitting()) return;
+    if (!this.apiResponseS.validateForm(this.form)) return;
+
+    this.id = this.config.data.id;
+
+    this.submitting.set(true);
+
+    this.apiResponseS
+      .onPut(`requestsalarymodification/${this.id}`, this.form.getRawValue())
+      .then((result: boolean) => {
+        result ? this.ref.close(true) : this.submitting.set(false);
+      });
+  }
+}

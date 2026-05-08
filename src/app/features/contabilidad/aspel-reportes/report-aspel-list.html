@@ -1,0 +1,535 @@
+<div class="block md:hidden p-4 text-center text-gray-500">
+  <p>
+    Los reportes financieros están optimizados para pantallas de escritorio.
+  </p>
+</div>
+
+<div class="hidden md:block">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Reportes Financieros Aspel ({{ currentYear }})</h2>
+      <p>Mostrando reportes para el cliente ID: {{ currentCustomerId() }}</p>
+    </div>
+
+    @if (!loading()) {
+    <div class="card-body">
+      <!-- SECCIÓN: ESTADO DE RESULTADOS MANTENIMIENTO -->
+      <div class="mb-5">
+        <h4>Estado de Resultados - Mantenimiento</h4>
+        @if (incomeStatementMantenimiento(); as report) {
+        <div>
+          <!-- Tabla de Ingresos -->
+          <p-table
+            [value]="report.incomes"
+            styleClass="financial-data-table custom-table-sm"
+          >
+            <ng-template #header>
+              <tr>
+                <th>INGRESOS</th>
+                @for (month of visibleMonths; track month) {
+                <th class="text-right">{{ month | uppercase }}</th>
+                }
+                <th class="text-right font-bold">ACUMULADO</th>
+              </tr>
+            </ng-template>
+            <ng-template #body let-item>
+              <tr>
+                <td>{{ item.accountName }}</td>
+                @for (month of visibleMonths; track month) {
+                <td class="text-right" [class.text-danger]="item[month] < 0">
+                  @if (item[month] >= 0) {
+                  <span>{{ item[month] | number: "1.2-2" }}</span>
+                  } @if (item[month] < 0) {
+                  <span>({{ item[month] * -1 | number: "1.2-2" }})</span>
+                  }
+                </td>
+                }
+                <td
+                  class="text-right font-bold"
+                  [class.text-danger]="item.accumulated < 0"
+                >
+                  @if (item.accumulated >= 0) {
+                  <span>{{ item.accumulated | number: "1.2-2" }}</span>
+                  } @if (item.accumulated < 0) {
+                  <span> ({{ item.accumulated * -1 | number: "1.2-2" }}) </span>
+                  }
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template #footer>
+              <tr class="font-bold">
+                <td>{{ report.incomeTotals.accountName }}</td>
+                @for (month of visibleMonths; track month) {
+                <td
+                  class="text-right"
+                  [class.text-danger]="report.incomeTotals[month] < 0"
+                >
+                  @if (report.incomeTotals[month] >= 0) {
+                  <span>
+                    {{ report.incomeTotals[month] | number: "1.2-2" }}
+                  </span>
+                  } @if (report.incomeTotals[month] < 0) {
+                  <span>
+                    ({{ report.incomeTotals[month] * -1 | number: "1.2-2" }})
+                  </span>
+                  }
+                </td>
+                }
+                <td
+                  class="text-right"
+                  [class.text-danger]="report.incomeTotals.accumulated < 0"
+                >
+                  @if (report.incomeTotals.accumulated >= 0) {
+                  <span>
+                    {{ report.incomeTotals.accumulated | number: "1.2-2" }}
+                  </span>
+                  } @if (report.incomeTotals.accumulated < 0) {
+                  <span>
+                    ({{ report.incomeTotals.accumulated * -1 | number: "1.2-2"
+                    }})
+                  </span>
+                  }
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+          <!-- Tabla de Egresos -->
+          <p-table
+            [value]="report.expenses"
+            styleClass="financial-data-table custom-table-sm mt-3"
+          >
+            <ng-template #header>
+              <tr>
+                <th>EGRESOS</th>
+                @for (month of visibleMonths; track month) {
+                <th class="text-right">{{ month | uppercase }}</th>
+                }
+                <th class="text-right font-bold">ACUMULADO</th>
+              </tr>
+            </ng-template>
+            <ng-template #body let-item>
+              <tr>
+                <td>{{ item.accountName }}</td>
+                @for (month of visibleMonths; track month) {
+                <td class="text-right" [class.text-danger]="item[month] < 0">
+                  @if (item[month] >= 0) {
+                  <span>{{ item[month] | number: "1.2-2" }}</span>
+                  } @if (item[month] < 0) {
+                  <span>({{ item[month] * -1 | number: "1.2-2" }})</span>
+                  }
+                </td>
+                }
+                <td
+                  class="text-right font-bold"
+                  [class.text-danger]="item.accumulated < 0"
+                >
+                  @if (item.accumulated >= 0) {
+                  <span>{{ item.accumulated | number: "1.2-2" }}</span>
+                  } @if (item.accumulated < 0) {
+                  <span> ({{ item.accumulated * -1 | number: "1.2-2" }}) </span>
+                  }
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template #footer>
+              <tr class="font-bold">
+                <td>{{ report.expenseTotals.accountName }}</td>
+                @for (month of visibleMonths; track month) {
+                <td
+                  class="text-right"
+                  [class.text-danger]="report.expenseTotals[month] < 0"
+                >
+                  @if (report.expenseTotals[month] >= 0) {
+                  <span>
+                    {{ report.expenseTotals[month] | number: "1.2-2" }}
+                  </span>
+                  } @if (report.expenseTotals[month] < 0) {
+                  <span>
+                    ({{ report.expenseTotals[month] * -1 | number: "1.2-2" }})
+                  </span>
+                  }
+                </td>
+                }
+                <td
+                  class="text-right"
+                  [class.text-danger]="report.expenseTotals.accumulated < 0"
+                >
+                  @if (report.expenseTotals.accumulated >= 0) {
+                  <span>
+                    {{ report.expenseTotals.accumulated | number: "1.2-2" }}
+                  </span>
+                  } @if (report.expenseTotals.accumulated < 0) {
+                  <span>
+                    ({{ report.expenseTotals.accumulated * -1 | number: "1.2-2"
+                    }})
+                  </span>
+                  }
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+          <!-- Tabla de Resultado del Periodo -->
+          <p-table
+            [value]="[report.netResultByMonth]"
+            styleClass="financial-data-table custom-table-sm mt-3"
+          >
+            <ng-template #body let-item>
+              <tr class="font-bold table-primary">
+                <td>{{ item.accountName }}</td>
+                @for (month of visibleMonths; track month) {
+                <td class="text-right" [class.text-danger]="item[month] < 0">
+                  @if (item[month] >= 0) {
+                  <span>{{ item[month] | number: "1.2-2" }}</span>
+                  } @if (item[month] < 0) {
+                  <span>({{ item[month] * -1 | number: "1.2-2" }})</span>
+                  }
+                </td>
+                }
+                <td
+                  class="text-right"
+                  [class.text-danger]="item.accumulated < 0"
+                >
+                  @if (item.accumulated >= 0) {
+                  <span>{{ item.accumulated | number: "1.2-2" }}</span>
+                  } @if (item.accumulated < 0) {
+                  <span> ({{ item.accumulated * -1 | number: "1.2-2" }}) </span>
+                  }
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+        }
+      </div>
+      <hr />
+      <!-- SECCIÓN: ESTADO DE RESULTADOS PROYECTOS -->
+      <div class="mb-5">
+        <h4>Estado de Resultados - Mejoras y Proyectos</h4>
+        @if (incomeStatementProyectos(); as report) {
+        <div>
+          <!-- Repetir la misma estructura de tablas para Proyectos -->
+          <p-table
+            [value]="report.incomes"
+            styleClass="financial-data-table custom-table-sm"
+          >
+            <ng-template #header>
+              <tr>
+                <th>INGRESOS</th>
+                @for (month of visibleMonths; track month) {
+                <th class="text-right">{{ month | uppercase }}</th>
+                }
+                <th class="text-right font-bold">ACUMULADO</th>
+              </tr>
+            </ng-template>
+            <ng-template #body let-item>
+              <tr>
+                <td>{{ item.accountName }}</td>
+                @for (month of visibleMonths; track month) {
+                <td class="text-right" [class.text-danger]="item[month] < 0">
+                  @if (item[month] >= 0) {
+                  <span>{{ item[month] | number: "1.2-2" }}</span>
+                  } @if (item[month] < 0) {
+                  <span>({{ item[month] * -1 | number: "1.2-2" }})</span>
+                  }
+                </td>
+                }
+                <td
+                  class="text-right font-bold"
+                  [class.text-danger]="item.accumulated < 0"
+                >
+                  @if (item.accumulated >= 0) {
+                  <span>{{ item.accumulated | number: "1.2-2" }}</span>
+                  } @if (item.accumulated < 0) {
+                  <span> ({{ item.accumulated * -1 | number: "1.2-2" }}) </span>
+                  }
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template #footer>
+              <tr class="font-bold">
+                <td>{{ report.incomeTotals.accountName }}</td>
+                @for (month of visibleMonths; track month) {
+                <td
+                  class="text-right"
+                  [class.text-danger]="report.incomeTotals[month] < 0"
+                >
+                  @if (report.incomeTotals[month] >= 0) {
+                  <span>
+                    {{ report.incomeTotals[month] | number: "1.2-2" }}
+                  </span>
+                  } @if (report.incomeTotals[month] < 0) {
+                  <span>
+                    ({{ report.incomeTotals[month] * -1 | number: "1.2-2" }})
+                  </span>
+                  }
+                </td>
+                }
+                <td
+                  class="text-right"
+                  [class.text-danger]="report.incomeTotals.accumulated < 0"
+                >
+                  @if (report.incomeTotals.accumulated >= 0) {
+                  <span>
+                    {{ report.incomeTotals.accumulated | number: "1.2-2" }}
+                  </span>
+                  } @if (report.incomeTotals.accumulated < 0) {
+                  <span>
+                    ({{ report.incomeTotals.accumulated * -1 | number: "1.2-2"
+                    }})
+                  </span>
+                  }
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+          <p-table
+            [value]="report.expenses"
+            styleClass="financial-data-table custom-table-sm mt-3"
+          >
+            <ng-template #header>
+              <tr>
+                <th>EGRESOS</th>
+                @for (month of visibleMonths; track month) {
+                <th class="text-right">{{ month | uppercase }}</th>
+                }
+                <th class="text-right font-bold">ACUMULADO</th>
+              </tr>
+            </ng-template>
+            <ng-template #body let-item>
+              <tr>
+                <td>{{ item.accountName }}</td>
+                @for (month of visibleMonths; track month) {
+                <td class="text-right" [class.text-danger]="item[month] < 0">
+                  @if (item[month] >= 0) {
+                  <span>{{ item[month] | number: "1.2-2" }}</span>
+                  } @if (item[month] < 0) {
+                  <span>({{ item[month] * -1 | number: "1.2-2" }})</span>
+                  }
+                </td>
+                }
+                <td
+                  class="text-right font-bold"
+                  [class.text-danger]="item.accumulated < 0"
+                >
+                  @if (item.accumulated >= 0) {
+                  <span>{{ item.accumulated | number: "1.2-2" }}</span>
+                  } @if (item.accumulated < 0) {
+                  <span> ({{ item.accumulated * -1 | number: "1.2-2" }}) </span>
+                  }
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template #footer>
+              <tr class="font-bold">
+                <td>{{ report.expenseTotals.accountName }}</td>
+                @for (month of visibleMonths; track month) {
+                <td
+                  class="text-right"
+                  [class.text-danger]="report.expenseTotals[month] < 0"
+                >
+                  @if (report.expenseTotals[month] >= 0) {
+                  <span>
+                    {{ report.expenseTotals[month] | number: "1.2-2" }}
+                  </span>
+                  } @if (report.expenseTotals[month] < 0) {
+                  <span>
+                    ({{ report.expenseTotals[month] * -1 | number: "1.2-2" }})
+                  </span>
+                  }
+                </td>
+                }
+                <td
+                  class="text-right"
+                  [class.text-danger]="report.expenseTotals.accumulated < 0"
+                >
+                  @if (report.expenseTotals.accumulated >= 0) {
+                  <span>
+                    {{ report.expenseTotals.accumulated | number: "1.2-2" }}
+                  </span>
+                  } @if (report.expenseTotals.accumulated < 0) {
+                  <span>
+                    ({{ report.expenseTotals.accumulated * -1 | number: "1.2-2"
+                    }})
+                  </span>
+                  }
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+          <p-table
+            [value]="[report.netResultByMonth]"
+            styleClass="financial-data-table custom-table-sm mt-3"
+          >
+            <ng-template #body let-item>
+              <tr class="font-bold table-primary">
+                <td>{{ item.accountName }}</td>
+                @for (month of visibleMonths; track month) {
+                <td class="text-right" [class.text-danger]="item[month] < 0">
+                  @if (item[month] >= 0) {
+                  <span>{{ item[month] | number: "1.2-2" }}</span>
+                  } @if (item[month] < 0) {
+                  <span>({{ item[month] * -1 | number: "1.2-2" }})</span>
+                  }
+                </td>
+                }
+                <td
+                  class="text-right"
+                  [class.text-danger]="item.accumulated < 0"
+                >
+                  @if (item.accumulated >= 0) {
+                  <span>{{ item.accumulated | number: "1.2-2" }}</span>
+                  } @if (item.accumulated < 0) {
+                  <span> ({{ item.accumulated * -1 | number: "1.2-2" }}) </span>
+                  }
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+        }
+      </div>
+      <hr />
+      <!-- SECCIÓN: EJECUCIÓN PRESUPUESTAL MANTENIMIENTO -->
+      <div class="my-5">
+        <h4>Ejecución Presupuestal - Mantenimiento</h4>
+        <p-treeTable
+          [value]="budgetExecutionMantenimiento()"
+          styleClass="financial-data-table custom-table"
+        >
+          <ng-template #header>
+            <tr>
+              <th>Cuenta</th>
+              @for (month of visibleMonths; track month) {
+              <th class="text-right">{{ month | uppercase }}</th>
+              }
+              <th class="text-right">Acumulado</th>
+            </tr>
+          </ng-template>
+          <ng-template #body let-rowNode let-rowData="rowData">
+            <tr>
+              <td>
+                <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                {{ rowData.accountName }}
+              </td>
+              @for (month of visibleMonths; track month) {
+              <td class="text-right" [class.text-danger]="rowData[month] < 0">
+                @if (rowData[month] >= 0) {
+                <span>{{ rowData[month] | number: "1.2-2" }}</span>
+                } @if (rowData[month] < 0) {
+                <span>({{ rowData[month] * -1 | number: "1.2-2" }})</span>
+                }
+              </td>
+              }
+              <td
+                class="text-right"
+                [class.text-danger]="rowData.accumulatedSpending < 0"
+              >
+                @if (rowData.accumulatedSpending >= 0) {
+                <span>
+                  {{ rowData.accumulatedSpending | number: "1.2-2" }}
+                </span>
+                } @if (rowData.accumulatedSpending < 0) {
+                <span>
+                  ({{ rowData.accumulatedSpending * -1 | number: "1.2-2" }})
+                </span>
+                }
+              </td>
+            </tr>
+          </ng-template>
+        </p-treeTable>
+      </div>
+      <hr />
+      <!-- SECCIÓN: EJECUCIÓN PRESUPUESTAL PROYECTOS -->
+      <div class="my-5">
+        <h4>Ejecución Presupuestal - Mejoras y Proyectos</h4>
+        <p-treeTable
+          [value]="budgetExecutionProyectos()"
+          styleClass="financial-data-table custom-table"
+        >
+          <ng-template #header>
+            <tr>
+              <th>Cuenta</th>
+              @for (month of visibleMonths; track month) {
+              <th class="text-right">{{ month | uppercase }}</th>
+              }
+              <th class="text-right">Acumulado</th>
+            </tr>
+          </ng-template>
+          <ng-template #body let-rowNode let-rowData="rowData">
+            <tr>
+              <td>
+                <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                {{ rowData.accountName }}
+              </td>
+              @for (month of visibleMonths; track month) {
+              <td class="text-right" [class.text-danger]="rowData[month] < 0">
+                @if (rowData[month] >= 0) {
+                <span>{{ rowData[month] | number: "1.2-2" }}</span>
+                } @if (rowData[month] < 0) {
+                <span>({{ rowData[month] * -1 | number: "1.2-2" }})</span>
+                }
+              </td>
+              }
+              <td
+                class="text-right"
+                [class.text-danger]="rowData.accumulatedSpending < 0"
+              >
+                @if (rowData.accumulatedSpending >= 0) {
+                <span>
+                  {{ rowData.accumulatedSpending | number: "1.2-2" }}
+                </span>
+                } @if (rowData.accumulatedSpending < 0) {
+                <span>
+                  ({{ rowData.accumulatedSpending * -1 | number: "1.2-2" }})
+                </span>
+                }
+              </td>
+            </tr>
+          </ng-template>
+        </p-treeTable>
+      </div>
+      <hr />
+      <!-- SECCIÓN: CUENTAS POR PAGAR -->
+      <div class="mt-5">
+        <h4>Cuentas por Pagar</h4>
+        @if (apBalances(); as report) {
+        <div>
+          <p-table
+            [value]="report.items"
+            styleClass="financial-data-table custom-table"
+          >
+            <ng-template #header>
+              <tr>
+                <th>Cuenta</th>
+                <th class="text-right">Saldo</th>
+              </tr>
+            </ng-template>
+            <ng-template #body let-item>
+              <tr>
+                <td>{{ item.accountName }}</td>
+                <td class="text-right" [class.text-danger]="item.amount < 0">
+                  @if (item.amount >= 0) {
+                  <span>{{ item.amount | number: "1.2-2" }}</span>
+                  } @if (item.amount < 0) {
+                  <span>({{ item.amount * -1 | number: "1.2-2" }})</span>
+                  }
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+          <div class="text-right mt-3">
+            <h5 [class.text-danger]="report.totalOwed < 0">
+              Total por Pagar: @if (report.totalOwed >= 0) {
+              <span>{{ report.totalOwed | number: "1.2-2" }}</span>
+              } @if (report.totalOwed < 0) {
+              <span> ({{ report.totalOwed * -1 | number: "1.2-2" }}) </span>
+              }
+            </h5>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</div>

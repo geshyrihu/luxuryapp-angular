@@ -1,0 +1,49 @@
+<ion-content [fullscreen]="true">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Notificaciones</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Pull to refresh -->
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  @if (notifications().length > 0) {
+  <ion-list [inset]="true">
+    @for (notification of notifications(); track notification.id) {
+    <ion-item
+      button
+      (click)="markAsRead(notification.id, notification.url)"
+      [detail]="true"
+      [class.unread]="!notification.isRead"
+    >
+      <ion-icon
+        aria-hidden="true"
+        [name]="notification.isRead ? 'notifications-outline' : 'notifications'"
+        slot="start"
+        [color]="!notification.isRead ? 'primary' : 'medium'"
+      ></ion-icon>
+      <ion-label>
+        <h2>{{ notification.title }}</h2>
+        <p>{{ notification.message }}</p>
+        <p class="timestamp">{{ notification.createdAt }}</p>
+      </ion-label>
+    </ion-item>
+    }
+  </ion-list>
+  } @else {
+  <div class="empty-state">
+    <ion-icon name="notifications-off-outline" class="empty-icon"></ion-icon>
+    <h5 class="empty-text">No tienes notificaciones</h5>
+  </div>
+  }
+</ion-content>
+
+
+
+
+
+
+

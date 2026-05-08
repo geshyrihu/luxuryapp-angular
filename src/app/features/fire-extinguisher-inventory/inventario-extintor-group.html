@@ -1,0 +1,46 @@
+<table class="custom-table w-full">
+  <thead>
+    <tr>
+      <th>Tipo</th>
+      <th>Ubicación</th>
+      <th>Extintores</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (tipo of data; track tipo) {
+    <tr>
+      <td>{{ tipo.type }}</td>
+      <td colspan="3">
+        <table>
+          <tbody>
+            @for (ubicacion of tipo.ubicaciones; track ubicacion) {
+            <tr>
+              <td>{{ ubicacion.ubicacion }}</td>
+              <td>{{ ubicacion.cantidad }}</td>
+              <td>
+                <table>
+                  <tbody>
+                    @for ( extintor of ubicacion.extintores; track extintor ) {
+                    <tr>
+                      <td>{{ extintor.ubicacion }}</td>
+                    </tr>
+                    }
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+
+
+
+
+
+
+

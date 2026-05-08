@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-date-signal
+        [control]="form.controls.scheduledDate"
+        label="Fecha"
+        placeholder="fecha"
+      />
+
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+

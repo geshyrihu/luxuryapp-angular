@@ -1,0 +1,34 @@
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <custom-input-text-signal
+    [control]="form.controls.id"
+    label="Id"
+    [readonly]="true"
+  />
+  <div class="mb-2">
+    <custom-input-date-signal
+      [control]="form.controls.fechaCorrespondiente"
+      label="Periodo"
+      placeholder="Periodo"
+    />
+  </div>
+  <div class="mb-2">
+    <custom-input-date-signal
+      [control]="form.controls.fechaJunta"
+      label="Fecha de Junta"
+      placeholder="Fecha de Junta"
+    />
+  </div>
+
+  <custom-button-save
+    [propertyId]="id"
+    [disabled]="form.invalid"
+    [submitting]="submitting()"
+  />
+  <hr />
+</form>
+
+
+
+
+
+

@@ -1,0 +1,458 @@
+<div
+  class="card p-3 mb-3 shadow-none border-1 surface-border border-round-xl bg-surface-0"
+>
+  <div
+    class="flex flex-column md:flex-row justify-content-between align-items-center gap-3"
+  >
+    <!-- Title & Period -->
+    <div class="flex align-items-center gap-3 w-full md:w-auto">
+      <div class="flex flex-column">
+        <h1 class="text-xl font-bold text-900 m-0 line-height-2">
+          {{ customerName() }}
+        </h1>
+        <span class="text-sm text-500 font-medium flex align-items-center gap-1"
+          ><i class="pi pi-calendar"></i> {{ periodo() }}</span
+        >
+      </div>
+    </div>
+
+    <!-- Actions Toolbar -->
+    <div
+      class="flex flex-wrap gap-2 justify-content-center md:justify-content-end align-items-center w-full md:w-auto"
+    >
+      <!-- Workflow Actions -->
+
+      @if(!isConfirmed()){
+      <div class="flex gap-1 border-right-1 surface-border pr-2 mr-1">
+        @if (!isVerified()) {
+        <custom-button
+          label="Validar"
+          iconClass="pi pi-check-circle"
+          severity="help"
+          size="sm"
+          (clicked)="onValidate()"
+        />
+        } @if (isVerified() && !isAuthorized()) {
+        <custom-button
+          label="Revertir"
+          iconClass="pi pi-undo"
+          severity="secondary"
+          size="sm"
+          variant="ghost-text"
+          (clicked)="onUnvalidate()"
+        />
+        } @if (isVerified() && !isAuthorized() && (isRolAdministrador() ||
+        isRolSuperUsuario())) {
+        <custom-button
+          label="Autorizar"
+          iconClass="pi pi-verified"
+          severity="success"
+          size="sm"
+          (clicked)="onAuthorize()"
+        />
+        } @if (isAuthorized() && !isConfirmed() && (isRolAdministrador() ||
+        isRolSuperUsuario())) {
+        <custom-button
+          label="Desautorizar"
+          iconClass="pi pi-lock-open"
+          severity="danger"
+          size="sm"
+          variant="outlined"
+          (clicked)="onUnauthorize()"
+        />
+        } @if (isAuthorized() && !isConfirmed() && isRolContador() &&
+        isRolSuperUsuario()) {
+        <custom-button
+          label="Confirmar"
+          iconClass="pi pi-check-square"
+          severity="help"
+          size="sm"
+          (clicked)="onConfirm()"
+        />
+        }
+      </div>
+      }
+
+      <!-- Creation & Tools -->
+      <div class="flex gap-1 align-items-center">
+        <p-splitButton
+          label="Crear OC"
+          (onClick)="openCreateOrdenCompraWizard()"
+          [model]="createOrderItems"
+          size="small"
+          severity="primary"
+          styleClass="p-button-sm"
+          [disabled]="!canEdit()"
+        ></p-splitButton>
+
+        <!-- Tools Group -->
+        <div class="hidden md:flex gap-1 bg-surface-100 border-round p-1">
+          <div
+            class="flex align-items-center gap-1 border-1 surface-border border-round-3xl px-2 py-1 bg-surface-0"
+          >
+            <custom-button
+              iconClass="pi pi-file-excel"
+              ngbTooltip="Excel"
+              severity="success"
+              size="sm"
+              variant="ghost-text"
+              (clicked)="onDownloadFileExcel()"
+            />
+            <a
+              routerLink="/purchases/fixed-expenses-catalog"
+              class="btn btn-secondary btn-sm"
+              ngbTooltip="Catálogo"
+              ><i class="pi pi-file-pdf"></i
+            ></a>
+
+            @if(isRolSuperUsuario) {
+            <!-- <p-button
+              icon="pi pi-search"
+              pTooltip="Conciliar SAT"
+              tooltipPosition="bottom"
+              [text]="true"
+              severity="info"
+              size="small"
+              (onClick)="onConciliate()"
+            ></p-button> -->
+            <custom-button
+              iconClass="pi pi-code"
+              ngbTooltip="XMLs"
+              severity="help"
+              size="sm"
+              variant="ghost-text"
+              (clicked)="onDownloadXml()"
+            />
+            } @if (dataSignal().length > 0) {
+            <custom-button
+              iconClass="pi pi-print"
+              ngbTooltip="Solicitudes"
+              severity="warn"
+              size="sm"
+              variant="ghost-text"
+              (clicked)="onDownloadAllSolicitudesPago()"
+            />
+            }
+            <custom-button
+              iconClass="pi pi-upload"
+              ngbTooltip="Cargar XMLs"
+              severity="danger"
+              size="sm"
+              variant="ghost-text"
+              (clicked)="onOpenUploadModal()"
+              [disabled]="!canEdit()"
+            />
+          </div>
+        </div>
+
+        <!-- Mobile Tools Menu (Could be a SpeedDial or just stacked, leaving hidden for now implies desktop focus) -->
+      </div>
+    </div>
+  </div>
+
+  @if (viewInstructions()) {
+  <p-message
+    severity="info"
+    styleClass="mb-3 w-full"
+    [style]="{'font-size': '0.9rem'}"
+  >
+    <ng-template pTemplate>
+      <div class="flex flex-column gap-1">
+        <span class="font-bold">🔄 Flujo de Autorización:</span>
+        <span
+          >1. Validar (Op) &rarr; 2. Autorizar (Admin) &rarr; 3. Recepción
+          (Contabilidad).</span
+        >
+      </div>
+    </ng-template>
+  </p-message>
+  } @if (isConfirmed()) {
+  <div
+    class="w-full bg-green-50 border-green-200 border-1 border-round p-3 mb-3 flex align-items-center gap-2 text-green-700"
+  >
+    <i class="pi pi-verified text-xl"></i>
+    <span class="font-bold"
+      >Este fondeo ha sido procesado por contabilidad.</span
+    >
+  </div>
+  } @if (dataSignal().length < 1) {
+  <div
+    class="flex flex-column align-items-center justify-content-center p-6 border-1 surface-border border-round-xl bg-surface-0 text-center shadow-1"
+  >
+    <div class="bg-surface-100 border-circle p-3 mb-3">
+      <i class="pi pi-folder-open text-4xl text-500"></i>
+    </div>
+    <span class="text-xl font-medium text-900">Sin órdenes de Compra</span>
+    <span class="text-500 mt-1"
+      >Utiliza el botón "Crear OC" para comenzar.</span
+    >
+  </div>
+  } @for (grupo of dataSignal(); track grupo.tipoGasto) {
+  <div
+    class="card mb-3 border-1 surface-border border-round-xl overflow-hidden shadow-1"
+  >
+    <!-- Group Header -->
+    <div
+      class="flex justify-content-between align-items-center bg-surface-50 px-3 py-2 border-bottom-1 surface-border"
+    >
+      <div class="flex align-items-center gap-3">
+        <span class="font-bold text-800 text-lg"
+          >{{grupo.tipoGasto | uppercase}}</span
+        >
+        <p-badge
+          [value]="grupo.ordenes.length"
+          severity="secondary"
+          styleClass="font-bold"
+        ></p-badge>
+      </div>
+      <div class="flex align-items-center gap-3">
+        <span class="font-bold text-900 text-lg"
+          >{{ grupo.totalGrupo | number: "1.2-2" }}</span
+        >
+        <custom-button
+          iconClass="pi pi-folder"
+          variant="ghost-text"
+          severity="secondary"
+          size="sm"
+          ngbTooltip="Archivos del Grupo"
+          (clicked)="onShowGroupFiles(grupo)"
+        />
+      </div>
+    </div>
+
+    <p-table
+      [value]="grupo.ordenes"
+      styleClass="p-datatable-sm p-datatable-gridlines font-sm border-none"
+      [rowHover]="true"
+      (onRowReorder)="onRowReorder($event)"
+      [reorderableColumns]="true"
+    >
+      <ng-template #header>
+        <tr>
+          <th
+            class="text-center p-2 bg-surface-0 text-600 font-medium"
+            class="table-col-3rem"
+          >
+            #
+          </th>
+          <th class="p-2 bg-surface-0 text-600 font-medium">
+            Concepto / Cuenta
+          </th>
+          <th class="p-2 bg-surface-0 text-600 font-medium">
+            Proveedor / Comprobantes
+          </th>
+          <th
+            class="p-2 text-center bg-surface-0 text-600 font-medium"
+            class="table-col-7rem"
+          >
+            Fecha
+          </th>
+          <th
+            class="p-2 text-right bg-surface-0 text-600 font-medium"
+            class="table-col-9rem"
+          >
+            Monto
+          </th>
+          <th
+            class="p-2 text-right bg-surface-0 text-600 font-medium"
+            class="table-col-10rem"
+          >
+            Datos Pago
+          </th>
+          <th
+            class="p-2 text-center bg-surface-0 text-600 font-medium"
+            class="table-col-7rem"
+          >
+            Estado
+          </th>
+          <th
+            class="text-center p-2 bg-surface-0 text-600 font-medium"
+            style="width: 6rem"
+          >
+            Acciones
+          </th>
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-orden let-rowIndex="rowIndex">
+        <tr [pReorderableRow]="rowIndex" class="text-sm">
+          <!-- Index -->
+          <td class="text-center p-1 text-500 relative bg-surface-0">
+            <i
+              class="pi pi-ellipsis-v text-300 absolute left-0 top-50 mt--2 ml-1 cursor-move hidden md:block"
+              pReorderableRowHandle
+            ></i>
+            <span class="font-medium text-600">{{ orden.indice }}</span>
+          </td>
+
+          <!-- Concept / Account -->
+          <td class="p-2">
+            <div class="flex flex-column">
+              <span class="font-bold text-900 text-sm mb-1 line-height-2"
+                >{{ orden.justificacionGasto | uppercase }}</span
+              >
+              <span class="text-xs text-500 flex align-items-center gap-1">
+                <span
+                  class="bg-blue-50 text-blue-700 px-1 border-round font-medium"
+                  >{{ orden.codigoCuenta }}</span
+                >
+                {{ orden.accountName }}
+              </span>
+            </div>
+          </td>
+
+          <!-- Provider / Invoices -->
+          <td class="p-2">
+            <div class="flex flex-column gap-1">
+              <span class="font-medium text-800 text-sm"
+                >{{ orden.nameProvider | uppercase }}</span
+              >
+
+              <!-- Invoice Tags -->
+              <div class="flex flex-wrap gap-1 align-items-center">
+                @if (orden.listadoFacturas?.length > 1) {
+                <p-tag
+                  severity="warning"
+                  [value]="orden.listadoFacturas.length + ' Docs'"
+                  class="cursor-pointer hover:surface-hover transition-duration-200"
+                  (click)="showInvoices(orden)"
+                  styleClass="text-xs px-2 py-0 border-round-md"
+                ></p-tag>
+                } @else if (orden.pdfFile || orden.factura) {
+                <p-tag
+                  severity="secondary"
+                  value="PDF"
+                  icon="pi pi-file-pdf"
+                  class="cursor-pointer hover:surface-hover transition-duration-200"
+                  (click)="viewPdf(orden.pdfFile,'Factura')"
+                  styleClass="text-xs px-2 py-0 bg-surface-200 text-700 border-round-md"
+                ></p-tag>
+                } @if (orden.comprobantesPago?.length > 0) {
+                <p-tag
+                  severity="success"
+                  value="Pago"
+                  icon="pi pi-check"
+                  class="cursor-pointer hover:surface-hover transition-duration-200"
+                  (click)="viewPdf(orden.comprobantesPago[0].filePath, 'Comprobante')"
+                  styleClass="text-xs px-2 py-0 border-round-md"
+                ></p-tag>
+                }
+              </div>
+            </div>
+          </td>
+
+          <!-- Date -->
+          <td class="p-2 text-center text-700">{{ orden.fechaFactura }}</td>
+
+          <!-- Amount -->
+          <td class="p-2 text-right">
+            <span class="font-bold text-900 text-base font-numeric"
+              >{{ orden.total | number: "1.2-2" }}</span
+            >
+          </td>
+
+          <!-- Pay Info -->
+          <td class="p-2 text-right">
+            <div class="flex flex-column align-items-end gap-1">
+              <span
+                class="text-xs font-bold text-700 bg-surface-100 px-1 border-round"
+                >{{ orden.shortName | uppercase }}</span
+              >
+              <span class="text-xs text-500 font-mono"
+                >{{ orden.reference || '-' }}</span
+              >
+              <span class="text-xs text-500 font-mono"
+                >{{ orden.cuentaClave || '-' }}</span
+              >
+            </div>
+          </td>
+
+          <!-- Status -->
+          <td class="p-2 text-center">
+            <div class="flex justify-content-center align-items-center gap-3">
+              <!-- XML Validation -->
+              @if (orden.validationStatus === true) {
+              <i
+                class="pi pi-check-circle text-green-500 text-lg"
+                pTooltip="{{ orden.validationMessage }}"
+              ></i>
+              } @else if (orden.validationStatus === false) {
+              <i
+                class="pi pi-times-circle text-red-500 text-lg"
+                pTooltip="{{ orden.validationMessage }}"
+              ></i>
+              } @else {
+              <i
+                class="pi pi-circle text-300 text-lg"
+                pTooltip="Sin validar"
+              ></i>
+              }
+
+              <!-- Paid Checkbox -->
+              <p-checkbox
+                [binary]="true"
+                [formControl]="orden.ordenCompraPagadaControl"
+                (onChange)="onPaymentStatusChange(orden)"
+                pTooltip="Marcado como Pagado"
+              ></p-checkbox>
+            </div>
+          </td>
+
+          <!-- Actions -->
+          <td class="p-2 text-center">
+            <div class="flex justify-content-center align-items-center gap-1">
+              <!-- Start Solo lo ve el contador -->
+              <custom-button
+                iconClass="pi pi-wallet"
+                variant="ghost-text"
+                severity="success"
+                size="sm"
+                ngbTooltip="Gestionar Pagos"
+                (clicked)="onManagePaymentVouchers(orden)"
+              />
+              <!-- Start Solo lo ve el contador -->
+              <custom-button
+                iconClass="pi pi-pencil"
+                variant="ghost-text"
+                severity="info"
+                size="sm"
+                ngbTooltip="Editar Orden"
+                [disabled]="!canEdit()"
+                (clicked)="onOrdenCompraModal(orden.ordenCompraId)"
+              />
+              <custom-button-delete
+                (confirmed)="onDeleteOrder(orden.ordenCompraId)"
+                [iconOnly]="true"
+                customClass="w-2rem h-2rem"
+                *ngIf="canEdit()"
+              ></custom-button-delete>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  }
+
+  <p-dialog
+    header="Generando Solicitudes"
+    [(visible)]="isDownloading"
+    [modal]="true"
+    [style]="{ width: '400px' }"
+    [closable]="false"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    <div class="flex flex-column align-items-center justify-content-center p-4">
+      <p-progressBar
+        [value]="downloadProgress()"
+        [style]="{'width': '100%', 'height': '20px'}"
+        styleClass="mb-3"
+      ></p-progressBar>
+      <span class="text-700 font-medium">{{ downloadStatusText() }}</span>
+      <span class="text-500 text-sm mt-2"
+        >Por favor no cierre esta ventana.</span
+      >
+    </div>
+  </p-dialog>
+</div>

@@ -1,0 +1,86 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="flatData()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="card hidden md:block custom-table"
+  size="small"
+  [scrollable]="true"
+  scrollHeight="750px"
+  [virtualScrollItemSize]="tablePrimeNgRows"
+>
+  <ng-template #caption>
+    <primeng-custom-caption [dt]="dt" [showAdd]="false" />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="customerName">
+        Condominio
+        <p-sortIcon field="customerName" />
+      </th>
+      <th pSortableColumn="ePosicionComite">
+        Cargo
+        <p-sortIcon field="ePosicionComite" />
+      </th>
+      <th pSortableColumn="fullName">
+        Nombre
+        <p-sortIcon field="fullName" />
+      </th>
+      <th pSortableColumn="email">
+        Email
+        <p-sortIcon field="email" />
+      </th>
+      <th pSortableColumn="phoneNumber">
+        Teléfono
+        <p-sortIcon field="phoneNumber" />
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.customerName }}</td>
+      <td>{{ item.ePosicionComite }}</td>
+      <td>{{ item.fullName }}</td>
+      <td>{{ item.email }}</td>
+      <td>{{ item.phoneNumber }}</td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="flatData()" />
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="flatData()"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+  [showAdd]="false"
+  trackByProperty="id"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding" detail="false">
+      <ion-label>
+        <h2 class="font-normal m-0">{{ item.fullName }}</h2>
+        <p class="text-medium text-500 m-0">
+          {{ item.ePosicionComite }} | {{ item.customerName }}
+        </p>
+        <p class="text-medium text-500 m-0">{{ item.email }}</p>
+        <p class="text-medium text-500 m-0">{{ item.phoneNumber }}</p>
+      </ion-label>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+
+
+
+
+
+

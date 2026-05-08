@@ -1,0 +1,124 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block"></div>
+<p-table
+  (onLazyLoad)="loadDataLazy($event)"
+  [first]="first"
+  [globalFilterFields]="globalFilterFields()"
+  [lazy]="true"
+  [loading]="loading()"
+  [paginator]="true"
+  rows="6"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [totalRecords]="totalRecords"
+  [value]="formArray.controls"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <div class="w-full md:w-5/12 mb-4">
+      <custom-search-input-signal
+        (searchChange)="applyGlobalFilter($event)"
+        placeholder="Buscar producto..."
+      />
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="value.nombreProducto" class="table-col-35">
+        Producto
+        <p-sortIcon field="value.nombreProducto" />
+      </th>
+      <th pSortableColumn="value.existencia">
+        Existencia
+        <p-sortIcon field="value.existencia" />
+      </th>
+      <th pSortableColumn="value.unidadDeMedidaId">
+        Unidad
+        <p-sortIcon field="value.unidadDeMedidaId" />
+      </th>
+      <th pSortableColumn="value.stockMax">
+        Stok Max
+        <p-sortIcon field="value.stockMax" />
+      </th>
+      <th pSortableColumn="value.stockMin">
+        Stok Min
+        <p-sortIcon field="value.stockMin" />
+      </th>
+      <th class="table-col-5">Agregar</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-row let-i="rowIndex">
+    <ng-container [formGroup]="row">
+      <tr>
+        <td>
+          <p
+            (click)="onModalTarjetaProducto(row.value.productoId)"
+            class="pointer"
+          >
+            {{row.value.nombreProducto}}
+          </p>
+        </td>
+        <td>
+          <custom-input-number-signal
+            [control]="row.controls.existencia"
+            mode="decimal"
+            [showButtons]="true"
+            min="0"
+            [horizontal]="false"
+          />
+        </td>
+        <td>
+          <custom-input-select-signal
+            [data]="cb_UnidadMedida()"
+            [control]="row.controls.unidadDeMedidaId"
+            placeholder="Seleccione..."
+            [horizontal]="false"
+          />
+        </td>
+        <td>
+          <custom-input-number-signal
+            [control]="row.controls.stockMax"
+            mode="decimal"
+            [showButtons]="true"
+            min="0"
+            [horizontal]="false"
+          />
+        </td>
+        <td>
+          <custom-input-number-signal
+            [control]="row.controls.stockMin"
+            mode="decimal"
+            [showButtons]="true"
+            min="0"
+            [max]="row.value.stockMax"
+            [horizontal]="false"
+          />
+        </td>
+        <!-- Opciones -->
+        <td>
+          <div class="flex">
+            <custom-button-item
+              iconClass="pi pi-save"
+              label="Guardar"
+              (clicked)="onSubmit(row)"
+            />
+          </div>
+        </td>
+      </tr>
+      @if (row.value.errorMessage) {
+      <tr class="row-error">
+        <td [attr.colspan]="6">
+          <div class="text-red-400 text-sm pl-4">
+            {{ row.value.errorMessage }}
+          </div>
+        </td>
+      </tr>
+      }
+    </ng-container>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="formArray.getRawValue()" />
+  </ng-template>
+</p-table>

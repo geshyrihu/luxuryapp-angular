@@ -1,0 +1,297 @@
+<div class="flex flex-column mb-4">
+  <p-table
+    #dt
+    [value]="data()"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [paginator]="true"
+    [loading]="loading()"
+    [globalFilterFields]="[
+      'title',
+      'description',
+      'module',
+      'responsible',
+      'status',
+      'formattedDate',
+    ]"
+    styleClass="p-datatable-sm p-datatable-gridlines font-sm"
+    [rowHover]="true"
+    responsiveLayout="scroll"
+    size="small"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="{first}-{last} de {totalRecords}"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight()"
+  >
+    <ng-template #caption>
+      <div
+        class="flex flex-column lg:flex-row justify-content-between align-items-start lg:align-items-center"
+      >
+        <!-- Legend & Filters Wrapper -->
+        <div class="flex flex-column w-full">
+          <!-- Filters & Actions Bar -->
+          <div class="flex flex-wrap align-items-center w-full">
+            <!-- Module Filters -->
+            @if (uniqueModules().length > 0) {
+            <div class="flex overflow-x-auto align-items-center pb-1">
+              <div
+                class="surface-card border-1 border-round-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 flex align-items-center white-space-nowrap"
+                [class.border-primary]="selectedModule() === null"
+                [class.bg-primary-50]="selectedModule() === null"
+                (click)="onModuleFilterChange(null)"
+              >
+                <i class="pi pi-th-large text-primary"></i>
+                <span class="font-bold text-sm">Todos</span>
+                <p-tag
+                  [value]="allData.length"
+                  severity="secondary"
+                  styleClass="text-xs py-0"
+                ></p-tag>
+              </div>
+
+              @for (mod of uniqueModules(); track mod.name) {
+              <div
+                class="surface-card border-1 border-round-2xl px-3 py-1 cursor-pointer hover:surface-hover transition-duration-200 flex align-items-center white-space-nowrap"
+                [class.border-primary]="selectedModule() === mod.name"
+                [class.bg-primary-50]="selectedModule() === mod.name"
+                (click)="onModuleFilterChange(mod.name)"
+              >
+                <span>{{ mod.emoji }}</span>
+                <span class="font-medium text-sm">{{ mod.name }}</span>
+                <span
+                  class="text-xs text-500 font-bold bg-surface-200 px-1 border-round"
+                  >{{ mod.count }}</span
+                >
+              </div>
+              }
+            </div>
+            }
+
+            <div class="flex-flex-grow-1-1"></div>
+
+            <!-- Action Icons Group -->
+            <app-action-icons-group>
+              <custom-button
+                iconClass="pi pi-camera"
+                severity="secondary"
+                variant="ghost-text"
+                size="sm"
+                ngbTooltip="Diagnóstico Visual"
+                (clicked)="openVision()"
+              />
+              <custom-button
+                iconClass="pi pi-sparkles"
+                severity="help"
+                variant="ghost-text"
+                size="sm"
+                ngbTooltip="Resumen IA"
+                (clicked)="generateDailyReport()"
+              />
+              @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
+              <div class="border-left-1 surface-border h-1rem mx-1"></div>
+              <custom-button
+                iconClass="pi pi-envelope"
+                severity="danger"
+                variant="ghost-text"
+                size="sm"
+                ngbTooltip="Enviar Reporte Ejecutivo"
+                (clicked)="sendExecutiveReport()"
+              />
+              }
+            </app-action-icons-group>
+
+            <!-- Search -->
+            <primeng-custom-caption [showAdd]="false" [dt]="dt" />
+          </div>
+
+          <!-- Contextual Legend (Small) -->
+          <div class="flex align-items-center text-xs text-600 px-1">
+            <i class="pi pi-info-circle text-primary"></i>
+            <div class="flex align-items-center gap-1">
+              <span
+                class="w-1rem h-0_5rem bg-red-100 border-1 border-red-300 border-round"
+              ></span>
+              Critico (>8d)
+            </div>
+            <div class="flex align-items-center gap-1">
+              <span
+                class="w-1rem h-0_5rem bg-yellow-100 border-1 border-yellow-300 border-round"
+              ></span>
+              Alerta (7-8d)
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #header>
+      <tr class="text-sm uppercase text-600 bg-surface-50">
+        <th
+          pSortableColumn="module"
+          class="white-space-nowrap pl-3 table-col-8"
+        >
+          Módulo <p-sortIcon field="module"></p-sortIcon>
+        </th>
+        <th
+          pSortableColumn="date"
+          class="white-space-nowrap text-center table-col-10"
+        >
+          Fecha <p-sortIcon field="date"></p-sortIcon>
+        </th>
+        <th pSortableColumn="title" class="table-col-32">
+          Actividad / Asunto <p-sortIcon field="title"></p-sortIcon>
+        </th>
+        <th pSortableColumn="responsible" class="table-col-15">
+          Responsable <p-sortIcon field="responsible"></p-sortIcon>
+        </th>
+        <th class="table-col-20">óltimo Seguimiento</th>
+        <th pSortableColumn="status" class="text-center table-col-10">
+          Estatus <p-sortIcon field="status"></p-sortIcon>
+        </th>
+        <th
+          pSortableColumn="daysOpen"
+          class="text-center pr-3 table-col-5"
+        >
+          Días <p-sortIcon field="daysOpen"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-item>
+      <tr
+        [class.bg-red-50]="isSevere(item)"
+        [class.bg-yellow-50]="isWarning(item)"
+        class="cursor-pointer transition-duration-100 text-sm border-bottom-1 surface-border"
+        (click)="onNavigate(item)"
+      >
+        <!-- Module -->
+        <td class="pl-3 vertical-align-middle">
+          <p-tag
+            [value]="item.module"
+            [severity]="getModuleSeverity(item.module)"
+            styleClass="text-xs uppercase font-bold px-2 py-1"
+          ></p-tag>
+        </td>
+
+        <!-- Date -->
+        <td class="text-center vertical-align-middle">
+          <div class="flex flex-column align-items-center">
+            <span class="font-bold text-800 text-base mb-1"
+              >{{ item.date | date: 'dd MMM' }}</span
+            >
+            <span class="text-500 text-xs flex align-items-center gap-1"
+              ><i class="pi pi-clock text-xs"></i> {{ item.date | date: 'HH:mm'
+              }}</span
+            >
+          </div>
+        </td>
+
+        <!-- Activity -->
+        <td class="vertical-align-middle py-3">
+          <div class="flex flex-column gap-1">
+            <span class="font-bold text-900 text-base line-height-2"
+              >{{ item.title }}</span
+            >
+            <span
+              class="text-600 text-sm line-height-2 overflow-hidden text-overflow-ellipsis line-clamp-2"
+            >
+              {{ item.description }}
+            </span>
+          </div>
+        </td>
+
+        <!-- Responsible -->
+        <td class="vertical-align-middle">
+          <div class="flex align-items-center">
+            <p-avatar
+              label="{{item.responsible.charAt(0)}}"
+              styleClass="mr-1 {{ isSevere(item) ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700' }}"
+              size="normal"
+              shape="circle"
+            ></p-avatar>
+            <div class="flex flex-column">
+              <span class="text-800 font-medium text-sm"
+                >{{ item.responsible }}</span
+              >
+              <span class="text-500 text-xs">Asignado</span>
+            </div>
+          </div>
+        </td>
+
+        <!-- Followup -->
+        <td class="vertical-align-middle">
+          @if (item.lastFollowup && item.lastFollowup !== 'Sin seguimiento') {
+          <div class="flex align-items-start p-2 surface-50 border-round">
+            <i class="pi pi-comment text-primary mt-1"></i>
+            <span
+              class="text-600 text-xs line-height-2 line-clamp-2"
+              [pTooltip]="item.lastFollowup"
+              tooltipPosition="top"
+              >{{ item.lastFollowup }}</span
+            >
+          </div>
+          } @else {
+          <span class="text-400 text-xs italic pl-2">-- Sin info --</span>
+          }
+        </td>
+
+        <!-- Status -->
+        <td class="text-center vertical-align-middle">
+          <p-tag
+            [value]="item.status"
+            [severity]="getSeverity(item.status)"
+            [border-round]="true"
+            styleClass="text-xs font-bold px-2"
+          ></p-tag>
+        </td>
+
+        <!-- Days -->
+        <td class="text-center vertical-align-middle pr-3">
+          @if (item.daysOpen >= 0) {
+          <div class="flex flex-column align-items-center">
+            <span
+              class="font-bold text-lg"
+              [class.text-red-600]="isSevere(item)"
+              [class.text-orange-500]="isWarning(item)"
+              [class.text-700]="!isSevere(item) && !isWarning(item)"
+              >{{ item.daysOpen }}</span
+            >
+            <span class="text-xs text-500">días</span>
+          </div>
+          } @else {
+          <span class="text-400">-</span>
+          }
+        </td>
+      </tr>
+    </ng-template>
+
+    <!-- Empty and Paginator templates remain similar but cleaner if needed -->
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="7" class="text-center p-6 surface-50">
+          <div class="flex flex-column align-items-center opacity-60">
+            <div
+              class="border-circle bg-surface-200 p-4 flex align-items-center justify-content-center"
+            >
+              <i class="pi pi-check text-4xl text-500"></i>
+            </div>
+            <span class="font-medium text-xl text-700"
+              >Bien Bandeja Limpia!</span
+            >
+            <span class="text-600"
+              >No tienes actividades pendientes por atender.</span
+            >
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #paginatorleft>
+      <primeng-custom-table-footer [data]="data()" />
+    </ng-template>
+  </p-table>
+
+  <app-image-analysis-dialog
+    (resultAccepted)="onVisionResult($event)"
+  ></app-image-analysis-dialog>
+</div>

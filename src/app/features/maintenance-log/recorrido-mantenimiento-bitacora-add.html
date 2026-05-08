@@ -1,0 +1,36 @@
+@if (machinery()) {
+<div>
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <custom-input-text-signal
+      [control]="form.controls.machinery"
+      label="Equipo o Instalación"
+      [readonly]="true"
+    />
+    <div class="mb-4 mb-3">
+      <label>Descripción</label>
+      <custom-input-textarea-signal
+        [control]="form.controls.descripcion"
+      />
+    </div>
+    <div class="mb-4">
+      <label>Activar Si esta nota es alguna emergencia</label>
+      <custom-input-check-signal
+        [control]="form.controls.emergencia"
+        label="Emergencia"
+      />
+    </div>
+    <custom-button-save
+      [propertyId]="0"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+    />
+  </form>
+</div>
+}
+
+
+
+
+
+
+

@@ -1,0 +1,83 @@
+<div class="grid">
+  @for (permission of data; track permission) {
+  <div class="col-12 lg:col-3">
+    <div class="card mb-3">
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item active text-center">
+            {{ permission.moduleName }}
+          </li>
+          <li
+            class="list-group-item pointer"
+            (click)="
+              onCheckboxChange(permission, 'canRead', !permission.canRead)
+            "
+          >
+            <div class="flex align-items-center justify-content-center">
+              <p-checkbox
+                [binary]="true"
+                [ngModel]="permission.canRead"
+                (onChange)="
+                  onCheckboxChange(permission, 'canRead', $event.checked)
+                "
+                label="Leer"
+              />
+            </div>
+          </li>
+          <li
+            class="list-group-item pointer"
+            (click)="
+              onCheckboxChange(permission, 'canCreate', !permission.canCreate)
+            "
+          >
+            <div class="flex align-items-center justify-content-center">
+              <p-checkbox
+                [binary]="true"
+                [ngModel]="permission.canCreate"
+                (onChange)="
+                  onCheckboxChange(permission, 'canCreate', $event.checked)
+                "
+                label="Crear"
+              />
+            </div>
+          </li>
+          <li
+            class="list-group-item pointer"
+            (click)="
+              onCheckboxChange(permission, 'canUpdate', !permission.canUpdate)
+            "
+          >
+            <div class="flex align-items-center justify-content-center">
+              <p-checkbox
+                [binary]="true"
+                [ngModel]="permission.canUpdate"
+                (onChange)="
+                  onCheckboxChange(permission, 'canUpdate', $event.checked)
+                "
+                label="Actualizar"
+              />
+            </div>
+          </li>
+          <li
+            class="list-group-item pointer"
+            (click)="
+              onCheckboxChange(permission, 'canDelete', !permission.canDelete)
+            "
+          >
+            <div class="flex align-items-center justify-content-center">
+              <p-checkbox
+                [binary]="true"
+                [ngModel]="permission.canDelete"
+                (onChange)="
+                  onCheckboxChange(permission, 'canDelete', $event.checked)
+                "
+                label="Eliminar"
+              />
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  }
+</div>

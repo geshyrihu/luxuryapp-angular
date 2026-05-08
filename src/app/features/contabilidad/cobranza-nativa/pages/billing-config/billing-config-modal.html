@@ -1,0 +1,56 @@
+<div class="px-3 pt-3">
+  @if (isLoading) {
+  <div class="flex justify-content-center my-4">
+    <i class="pi pi-spin pi-spinner text-3xl text-primary"></i>
+  </div>
+  } @else {
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column">
+    <div class="p-3 border-round surface-100 mb-2">
+      <custom-input-select-signal
+        [control]="form.controls['billingMode']"
+        label="Modo de Operación AR"
+        [data]="billingModeOptions()"
+        hint="Define si LuxuryApp genera cargos, o si los extrae de Aspel COI."
+        [filter]="true"
+      />
+    </div>
+
+    <div class="grid">
+      <div class="col-12 md:col-6">
+        <custom-input-number-signal
+          [control]="form.controls['defaultDueDays']"
+          label="Días para vencer (Predeterminado)"
+          hint="Días tras la creación del cargo para fijar la fecha límite."
+        />
+      </div>
+      <div class="col-12 md:col-6">
+        <custom-input-number-signal
+          [control]="form.controls['graceDays']"
+          label="Días de Gracia"
+          hint="Días que se perdonan tras el vencimiento antes del recargo."
+        />
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <custom-input-number-signal
+        [control]="form.controls['globalLateFeePercentage']"
+        label="Tasa de Mora Global (%)"
+        hint="Opcional: Porcentaje mensual. Si está en blanco, dependerá de la política individual de cada cargo."
+      />
+    </div>
+
+    <div class="flex justify-content-end mt-4">
+      <custom-button
+        label="Cancelar"
+        iconClass="pi pi-times"
+        variant="ghost-text"
+        severity="secondary"
+        (clicked)="onClose()"
+        [disabled]="isLoading"
+      />
+      <custom-button-save (clicked)="onSubmit()" [submitting]="isLoading" />
+    </div>
+  </form>
+  }
+</div>

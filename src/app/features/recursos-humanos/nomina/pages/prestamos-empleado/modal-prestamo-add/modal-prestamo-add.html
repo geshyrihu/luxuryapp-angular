@@ -1,0 +1,44 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-3">
+  <div class="grid">
+    <div class="col-12">
+      <custom-input-autocomplete-signal
+        (propagar)="saveEmployee($event)"
+        [control]="form.controls['employeeName']"
+        [data]="employees()"
+        label="Empleado"
+        placeholder="Escribe para buscar empleado..."
+        hint="Selecciona al empleado al que se otorgara el prestamo"
+      />
+    </div>
+    <div class="col-12 md:col-6">
+      <custom-input-decimal-signal
+        [control]="form.controls['montoTotal']"
+        label="Monto Total del Prestamo ($)"
+        [minFractionDigits]="2"
+      />
+    </div>
+    <div class="col-12 md:col-6">
+      <custom-input-select-signal
+        [control]="form.controls['numeroPagos']"
+        label="Numero de Pagos (Quincenas)"
+        [data]="numeroPagosOptions"
+      />
+    </div>
+    <div class="col-12">
+      <custom-input-text-signal
+        [control]="form.controls['motivo']"
+        label="Motivo del Prestamo"
+        placeholder="Describe el motivo"
+      />
+    </div>
+    <div class="col-12">
+      <custom-input-textarea-signal
+        [control]="form.controls['observaciones']"
+        label="Observaciones"
+      />
+    </div>
+    <div class="col-12 flex justify-content-end">
+      <custom-button-save (clicked)="onSubmit()" [submitting]="submitting()" />
+    </div>
+  </div>
+</form>

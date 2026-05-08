@@ -1,0 +1,72 @@
+<div class="flex flex-column" [formGroup]="form">
+  <!-- Selector de fechas + notas -->
+  <div class="grid mt-2">
+    <div class="col-12 md:col-6">
+      <custom-input-date-signal
+        label="Fechas de suspensión"
+        [control]="form.controls.dates"
+        [mode]="'multiple'"
+        [disable]="disabledDates()"
+        [horizontal]="false"
+        placeholder="Selecciona una o varias fechas"
+      />
+      <small class="text-color-secondary text-xs mt-1 block">
+        Las fechas ya registradas están deshabilitadas. Puedes seleccionar
+        varias.
+      </small>
+    </div>
+
+    <div class="col-12 md:col-6">
+      <custom-input-textarea-signal
+        label="Notas (opcional)"
+        [control]="form.controls.notes"
+        [rows]="3"
+        [horizontal]="false"
+        placeholder="Motivo u observaciones"
+      />
+    </div>
+  </div>
+
+  <div class="flex justify-content-end mb-3">
+    <custom-button-add
+      label="Agregar días"
+      [disabled]="!form.controls.dates.value || !form.controls.dates.value.length || saving()"
+      [loading]="saving()"
+      (clicked)="addDays()"
+    />
+  </div>
+
+  <!-- Resumen y tabla -->
+  @if (loading()) {
+  <p class="text-color-secondary text-sm">Cargando...</p>
+  } @else if (days().length === 0) {
+  <p class="text-color-secondary text-sm italic">
+    Sin días de suspensión registrados.
+  </p>
+  } @else {
+  <div
+    class="p-3 bg-yellow-50 border-1 border-yellow-200 border-round text-sm mb-3"
+  >
+    <span class="font-medium">Días de suspensión: </span>{{ daysFormatted() }}
+  </div>
+
+  <p-table [value]="days()" styleClass="p-datatable-sm">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Fecha</th>
+        <th>Notas</th>
+        <th class="text-center w-8rem">Acción</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-day>
+      <tr>
+        <td>{{ day.suspensionDate | date: "dd/MM/yyyy" }}</td>
+        <td>{{ day.notes || "—" }}</td>
+        <td class="text-center">
+          <custom-button-delete (confirmed)="deleteDay(day.id)" />
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  }
+</div>

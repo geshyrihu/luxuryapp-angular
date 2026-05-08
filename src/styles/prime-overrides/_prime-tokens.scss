@@ -1,0 +1,84 @@
+// ============================================================
+// _prime-tokens.scss
+// Design System | Angular 21 + PrimeNG 21 | SCSS
+// PrimeNG token bridge. Component-specific rules live in the
+// sibling files: _prime-input, _prime-button, _prime-dialog,
+// _prime-table and _prime-dropdown.
+// ============================================================
+
+:root {
+  // Primary colors
+  --p-primary-color:              var(--ds-primary);
+  --p-primary-contrast-color:     var(--ds-primary-text);
+  --p-primary-hover-color:        var(--ds-primary-hover);
+  --p-primary-active-color:       #1d4ed8;
+
+  // Surface and backgrounds
+  --p-surface-ground:             var(--ds-bg-page);
+  --p-surface-section:            var(--ds-bg-page);
+  --p-surface-card:               var(--ds-bg-surface);
+  --p-surface-overlay:            var(--ds-bg-surface);
+  --p-surface-border:             var(--ds-border);
+  --p-surface-hover:              var(--ds-bg-sunken);
+
+  // Text
+  --p-text-color:                 var(--ds-text-primary);
+  --p-text-secondary-color:       var(--ds-text-secondary);
+  --p-text-muted-color:           var(--ds-text-muted);
+  --p-text-placeholder-color:     var(--ds-text-muted);
+  --p-text-disabled-color:        var(--ds-text-disabled);
+
+  // Borders
+  --p-content-border-color:       var(--ds-border);
+  --p-border-color:               var(--ds-border);
+  --p-border-radius:              4px;
+
+  // Focus
+  --p-focus-ring-color:           var(--ds-border-focus);
+  --p-focus-ring-width:           2px;
+  --p-focus-ring-offset:          2px;
+  --p-focus-ring-style:           solid;
+
+  // Overlay/modal
+  --p-overlay-backdrop:           rgba(0, 0, 0, 0.45);
+  --p-mask-background:            rgba(0, 0, 0, 0.45);
+
+  // Transitions
+  --p-transition-duration:        150ms;
+
+  // Spacing
+  --p-content-padding:            0.75rem 1rem;
+  --p-header-padding:             0.75rem 1rem;
+  --p-form-field-padding-x:       0.75rem;
+  --p-form-field-padding-y:       0.5rem;
+
+  // Elevation
+  --p-overlay-content-box-shadow: var(--ds-shadow-xl);
+  --p-card-box-shadow:            var(--ds-shadow-sm);
+
+  // Font
+  --p-font-size:                  0.875rem;
+  --p-font-family:                inherit;
+}
+
+// PrimeNG v16 compatibility classes still used in templates.
+// PrimeNG v21 no longer generates these classes, so they map to DS tokens.
+.surface-card {
+  background-color: var(--ds-bg-surface);
+  color: var(--ds-text-primary);
+}
+
+.surface-ground {
+  background-color: var(--ds-bg-page);
+  color: var(--ds-text-primary);
+}
+
+.surface-section {
+  background-color: var(--ds-bg-page);
+  color: var(--ds-text-primary);
+}
+
+.surface-border { border-color: var(--ds-border); }
+.text-color { color: var(--ds-text-primary); }
+.text-color-secondary { color: var(--ds-text-secondary); }
+.text-color-muted { color: var(--ds-text-muted); }

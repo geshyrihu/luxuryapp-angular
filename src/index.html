@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>LuxuryApp — Gestión Integral</title>
+    <meta
+      name="description"
+      content="Plataforma de gestión inmobiliaria para administración de edificios, mantenimiento, tickets y reportes financieros."
+    />
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- 🔒 Content Security Policy -->
+
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+    default-src 'self';
+    script-src 'self' https://cdn.onesignal.com https://api.onesignal.com https://*.firebaseio.com https://*.googleapis.com https://cdn.jsdelivr.net https://viewer.diagrams.net 'unsafe-inline';
+    style-src 'self' https://fonts.googleapis.com https://onesignal.com 'unsafe-inline';
+    font-src 'self' https://fonts.gstatic.com data:;
+    img-src 'self' https: data: blob:;
+    connect-src 'self' https://localhost:* http://localhost:* https://luxurybuildingapp.com https://*.firebaseio.com https://*.googleapis.com https://*.onesignal.com https://*.devtunnels.ms wss://localhost:* wss://luxurybuildingapp.com wss://*.devtunnels.ms blob: https://viewer.diagrams.net;
+    frame-src 'self' https://localhost:* http://localhost:* https://luxurybuildingapp.com https://*.firebaseapp.com https://calendar.google.com https://embed.diagrams.net https://viewer.diagrams.net https://*.brevo.com;
+    worker-src 'self' blob: https://cdn.jsdelivr.net;
+    manifest-src 'self';
+  "
+    />
+    <!-- Prevenir gestos de navegación en iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+    <link
+      rel="shortcut icon"
+      href="assets/images/favicon.png"
+      type="image/png"
+    />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <!-- Fuentes Estandar Documental Corporativo: IBM Plex Sans + Montserrat Bold (titulos) + Open Sans Regular (cuerpo) -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:wght@700&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+    <!-- animate.css se carga desde npm via angular.json (v4.x) -->
+    <!-- Bootstrap Icons eliminado: no se usa en la app, se usa PrimeIcons -->
+    <script
+      src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
+      defer=""
+    ></script>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#0b3164" />
+  </head>
+
+  <body>
+    <!-- 🔗 Skip-to-content: WCAG 2.4.1 — Permite saltar la navegación con Tab -->
+    <a href="#app-root-outlet" class="skip-link"
+      >Saltar al contenido principal</a
+    >
+    <app-root aria-label="Aplicación LuxuryApp"></app-root>
+    <noscript
+      >Please enable JavaScript to continue using this application.</noscript
+    >
+  </body>
+</html>

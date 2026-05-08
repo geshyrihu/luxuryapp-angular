@@ -1,0 +1,18 @@
+<div class="hangfire-shell">
+  <div class="hangfire-toolbar">
+    <button
+      pButton
+      type="button"
+      icon="pi pi-external-link"
+      label="Abrir panel"
+      class="p-button-sm p-button-outlined"
+      (click)="openDashboard()"
+    ></button>
+  </div>
+
+  <iframe
+    class="hangfire-frame"
+    title="Panel Hangfire"
+    [src]="safeHangfireDashboardUrl"
+  ></iframe>
+</div>

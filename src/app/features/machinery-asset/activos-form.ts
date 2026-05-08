@@ -1,0 +1,231 @@
+import { Component, inject, OnInit } from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { CardModule } from "primeng/card";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { firstValueFrom } from "rxjs";
+import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { AuthService } from "src/app/core/services/auth.service";
+import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DateService } from "src/app/core/services/date.service";
+import { EnumSelectService } from "src/app/core/services/enum-select.service";
+
+interface IActivosFormGroup {
+  id: FormControl<string>;
+  brand: FormControl<string>;
+  customerId: FormControl<string | null>;
+  dateOfPurchase: FormControl<string>;
+  equipoClasificacionId: FormControl<string | null>;
+  inventoryCategory: FormControl<number | null>;
+  model: FormControl<string>;
+  nameMachinery: FormControl<string>;
+  observations: FormControl<string>;
+  photoPath: FormControl<string | File>;
+  serie: FormControl<string>;
+  state: FormControl<number | null>;
+  technicalSpecifications: FormControl<string>;
+  ubication: FormControl<string>;
+  applicationUserId: FormControl<string | null>;
+}
+@Component({
+  selector: "app-activos-form",
+  templateUrl: "./activos-form.html",
+  imports: [
+    ReactiveFormsModule,
+    CardModule,
+    CustomInputTextSignal,
+    CustomInputDateSignal,
+    CustomInputSelectSignal,
+    CustomInputImg,
+    CustomInputTextAreaSignal,
+    CustomButtonSave,
+  ],
+})
+export class ActivosForm implements OnInit {
+  apiResponseS = inject(ApiResponseService);
+  dateS = inject(DateService);
+  authS = inject(AuthService);
+  formB = inject(FormBuilder);
+  getdateService = inject(DateService);
+  config = inject(DynamicDialogConfig);
+  ref = inject(DynamicDialogRef);
+  customerIdS = inject(CustomerIdService);
+  enumSelectS = inject(EnumSelectService);
+  submitting: boolean = false;
+  id: string = "";
+  applicationUserId = this.authS.userToken.infoUserAuthDTO.applicationUserId;
+  machineryDTO: any;
+  photoFileUpdate: boolean = false;
+  category: any;
+  cb_equipoClasificacion: ISelectItem[] = [];
+
+  form: FormGroup<IActivosFormGroup>;
+
+  cb_inventoryCategory: ISelectItem[] = [];
+  optionActive: ISelectItem[] = [];
+  ngOnInit() {
+    this.onLoadEquipoClasificacion();
+    this.onLoadEnum();
+
+    // Inicialización sóncrona para evitar NG0100
+    this.category = this.config.data.paramId;
+    this.id = this.config.data.id !== 0 ? this.config.data.id : "";
+
+    this.form = this.formB.group({
+      id: new FormControl(this.id, { nonNullable: true }),
+      brand: new FormControl("", { nonNullable: true }),
+      customerId: new FormControl<string | null>(this.customerIdS.customerId()),
+      dateOfPurchase: new FormControl("", {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+      equipoClasificacionId: new FormControl<string | null>(null, {
+        validators: [Validators.required],
+      }),
+      inventoryCategory: new FormControl<number | null>(this.category, {
+        validators: [Validators.required],
+      }),
+      model: new FormControl("", { nonNullable: true }),
+      nameMachinery: new FormControl("", {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(5)],
+      }),
+      observations: new FormControl("", { nonNullable: true }),
+      photoPath: new FormControl<string | File>("", { nonNullable: true }),
+      serie: new FormControl("", { nonNullable: true }),
+      state: new FormControl<number | null>(null, {
+        validators: [Validators.required],
+      }),
+      technicalSpecifications: new FormControl("", { nonNullable: true }),
+      ubication: new FormControl("", {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+      applicationUserId: new FormControl<string | null>(
+        this.authS.applicationUserId,
+      ),
+    });
+
+    if (this.id) {
+      setTimeout(() => {
+        this.onLoadData(this.id);
+      }, 0);
+    }
+  }
+  // ...Recibiendo archivo emitido
+  uploadFile(file: File) {
+    this.photoFileUpdate = true;
+    this.form.patchValue({ photoPath: file });
+  }
+  onLoadData(id: string) {
+    const urlApi = `Machineries/${id}`;
+    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
+      this.id = result.id;
+      result.dateOfPurchase = this.getdateService.getDateFormat(
+        result.dateOfPurchase,
+      );
+      this.form.patchValue(result);
+
+      const contenidoHTML = this.form.get("technicalSpecifications").value;
+      if (contenidoHTML) {
+        const contenidoSinHTML = contenidoHTML.replace(/<[^>]*>|&nbsp;/g, "");
+        this.form.get("technicalSpecifications").patchValue(contenidoSinHTML);
+      }
+
+      const contenidoHTML2 = this.form.get("observations").value;
+      if (contenidoHTML2) {
+        const contenidoSinHTML2 = contenidoHTML2.replace(/<[^>]*>|&nbsp;/g, "");
+        this.form.get("observations").patchValue(contenidoSinHTML2);
+      }
+    });
+  }
+
+  async onLoadEnum() {
+    const categories = await firstValueFrom(
+      this.enumSelectS.inventoryCategory(),
+    );
+    const states = await firstValueFrom(this.enumSelectS.state());
+
+    setTimeout(() => {
+      this.cb_inventoryCategory = categories;
+      this.optionActive = states;
+    }, 0);
+  }
+
+  onSubmit() {
+    if (!this.apiResponseS.validateForm(this.form)) return;
+
+    const model = this.createFormData(this.form.getRawValue());
+
+    this.submitting = true;
+
+    if (!this.id) {
+      this.apiResponseS.onPost(`machineries`, model).then((result: boolean) => {
+        result ? this.ref.close(true) : (this.submitting = false);
+      });
+    } else {
+      this.apiResponseS
+        .onPut(`machineries/${this.id}`, model)
+        .then((result: boolean) => {
+          result ? this.ref.close(true) : (this.submitting = false);
+        });
+    }
+  }
+
+  private createFormData(machineryDTO: any): FormData {
+    let formData = new FormData();
+    formData.append("applicationUserId", machineryDTO.applicationUserId);
+    formData.append("nameMachinery", machineryDTO.nameMachinery);
+    formData.append("ubication", machineryDTO.ubication);
+    formData.append("brand", machineryDTO.brand);
+    formData.append("serie", machineryDTO.serie);
+    formData.append("model", machineryDTO.model);
+    formData.append("state", String(machineryDTO.state));
+    formData.append(
+      "dateOfPurchase",
+      this.dateS.getDateFormat(machineryDTO.dateOfPurchase),
+    );
+    formData.append("customerId", String(this.customerIdS.customerId()));
+    formData.append(
+      "equipoClasificacionId",
+      String(machineryDTO.equipoClasificacionId),
+    );
+    formData.append(
+      "inventoryCategory",
+      String(machineryDTO.inventoryCategory),
+    );
+    formData.append(
+      "technicalSpecifications",
+      machineryDTO.technicalSpecifications,
+    );
+    formData.append("observations", machineryDTO.observations);
+    // ... Si hay un archivo cargado agrega la prop photoPath con su valor
+    if (machineryDTO.photoPath) {
+      formData.append("photoPath", machineryDTO.photoPath);
+    }
+    return formData;
+  }
+
+  onLoadEquipoClasificacion() {
+    const urlApi = `equipoclasificacion`;
+    this.apiResponseS
+      .onGetSelectItem<ISelectItem[]>(urlApi)
+      .then((result: any) => {
+        setTimeout(() => {
+          this.cb_equipoClasificacion = result;
+        }, 0);
+      });
+  }
+}

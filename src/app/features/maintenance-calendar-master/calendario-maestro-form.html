@@ -1,0 +1,56 @@
+<p-card>
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <!-- Id -->
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        label="Id"
+        [readonly]="true"
+      />
+      <!-- Mes -->
+      <custom-input-select-signal
+        [control]="form.controls.mes"
+        label="Mes"
+        [data]="cb_meses()"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Seleccione un mes"
+      ></custom-input-select-signal>
+
+      <custom-input-select-signal
+        [control]="form.controls.calendarioMaestroEquipoId"
+        label="Nombre Equipo"
+        [data]="cb_equipoCalendarioMaestro()"
+      />
+      <custom-input-textarea-signal
+        [control]="form.controls.descripcionServicio"
+        label="Servicio"
+        placeholder="servicio"
+      />
+      <custom-input-textarea-signal
+        [control]="form.controls.observaciones"
+        label="Observaciones"
+        placeholder="observaciones"
+      />
+      <div class="grid align-items-center mb-4">
+        <label class="col-12 md:col-3 mb-2 md:mb-0">Proveedores</label>
+        <div class="col-12 md:col-9">
+          <p-multiSelect
+            [formControl]="form.controls.proveedores"
+            [options]="cb_providers()"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Seleccione proveedores"
+            fluid
+            appendTo="body"
+          ></p-multiSelect>
+        </div>
+      </div>
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </div>
+</p-card>

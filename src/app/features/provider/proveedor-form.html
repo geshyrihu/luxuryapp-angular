@@ -1,0 +1,233 @@
+<form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="grid">
+    <!-- Fila 1: Información Principal y Contactos -->
+    <!-- Columna 1: Información del Proveedor -->
+    <div class="col-12 md:col-6 lg:col-3">
+      <custom-input-select-signal
+        [control]="form.controls.tipoServicio"
+        label="Tipo de Servicio"
+        placeholder="Seleccionar..."
+        [data]="cb_tipoServicio()"
+        [horizontal]="false"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.nameProvider"
+        [horizontal]="false"
+        label="Razón Social"
+        placeholder="Razón Social"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.nameComercial"
+        [horizontal]="false"
+        label="Nombre Comercial"
+        placeholder="Nombre Comercial"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.rfc"
+        [horizontal]="false"
+        label="RFC"
+        placeholder="RFC"
+      />
+      @if (rfcCoincidente().length > 0 && form.controls.rfc.value.length > 5) {
+      <small class="p-error block">Ya hay un registro con este RFC</small>
+      }
+    </div>
+
+    <!-- Columna 2: Contacto Principal -->
+    <div class="col-12 md:col-6 lg:col-3">
+      <custom-input-text-signal
+        [control]="form.controls.contactOne"
+        [horizontal]="false"
+        label="Nombre Contacto"
+        placeholder="Nombre completo"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.positionOne"
+        [horizontal]="false"
+        label="Puesto"
+        placeholder="Puesto"
+      />
+      <custom-input-mask-signal
+        [control]="form.controls.cellPhoneOne"
+        label="Telófono Celular"
+        placeholder="(00) 0000-0000"
+        customMask="(00) 0000-0000"
+        [horizontal]="false"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.emailOne"
+        [horizontal]="false"
+        label="Correo Electrónico"
+        placeholder="email@example.com"
+      />
+    </div>
+
+    <!-- Columna 3: Contacto Secundario -->
+    <div class="col-12 md:col-6 lg:col-3">
+      <custom-input-text-signal
+        [control]="form.controls.contactTwo"
+        [horizontal]="false"
+        label="Nombre Contacto"
+        placeholder="Nombre completo"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.positionTwo"
+        [horizontal]="false"
+        label="Puesto"
+        placeholder="Puesto"
+      />
+      <custom-input-mask-signal
+        [control]="form.controls.cellPhoneTwo"
+        label="Telófono Celular"
+        placeholder="(00) 0000-0000"
+        customMask="(00) 0000-0000"
+        [horizontal]="false"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.emailTwo"
+        [horizontal]="false"
+        label="Correo Electrónico"
+        placeholder="email@example.com"
+      />
+    </div>
+
+    <!-- Columna 4: Contacto General -->
+    <div class="col-12 md:col-6 lg:col-3">
+      <custom-input-mask-signal
+        [control]="form.controls.phoneOne"
+        label="Telófono Fijo 1"
+        placeholder="(00) 0000-0000"
+        customMask="(00) 0000-0000"
+        [horizontal]="false"
+      />
+      <custom-input-mask-signal
+        [control]="form.controls.phoneTwo"
+        label="Telófono Fijo 2"
+        placeholder="(00) 0000-0000"
+        customMask="(00) 0000-0000"
+        [horizontal]="false"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.webPage"
+        [horizontal]="false"
+        label="Pógina Web"
+        placeholder="www.example.com"
+      />
+    </div>
+
+    <!-- Columna 1: Dirección -->
+    <div class="col-12 lg:col-3">
+      <custom-input-text-signal
+        [control]="form.controls.nameCheck"
+        [horizontal]="false"
+        label="Beneficiario"
+        placeholder="Beneficiario"
+      />
+      <custom-input-autocomplete-signal
+        [horizontal]="false"
+        (propagar)="saveBancoId($event)"
+        [control]="form.controls.bankName"
+        [data]="cb_bancos()"
+        label="Banco"
+        placeholder="Escribe para buscar banco"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.paymentAccount"
+        [horizontal]="false"
+        label="Cuenta"
+        placeholder="Cuenta"
+      />
+    </div>
+    <!-- Columna 2: Datos de Pago 1 (Beneficiario, Banco) -->
+    <div class="col-12 lg:col-3">
+      <custom-input-text-signal
+        [control]="form.controls.interbankCode"
+        [horizontal]="false"
+        label="CLABE"
+        placeholder="CLABE"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.referencia"
+        [horizontal]="false"
+        label="Referencia"
+        placeholder="Referencia"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.convenio"
+        [horizontal]="false"
+        label="Convenio"
+        placeholder="Convenio"
+      />
+    </div>
+    <!-- Fila 4: Categoróas (Ancho Completo) -->
+    <div class="col-12 lg:col-3">
+      <custom-input-textarea-signal
+        [control]="form.controls.address"
+        rows="3"
+        label="Dirección"
+        placeholder="Dirección completa"
+        [horizontal]="false"
+      />
+    </div>
+    <!-- Columna 3: Datos de Pago 2 (Cuenta, CLABE) -->
+    <div class="col-12 lg:col-3">
+      <div class="mb-4">
+        <label class="m-1 block mb-2">Constancia Fiscal</label>
+        <div class="mb-4">
+          <label class="m-1 block mb-2">Constancia Fiscal</label>
+          <custom-input-file-signal
+            accept="application/pdf"
+            (fileSelected)="change($event)"
+            [horizontal]="false"
+          />
+        </div>
+        <div class="mb-4">
+          <label class="m-1 block mb-2">Logotipo</label>
+          <custom-input-img-signal
+            (fileSelected)="uploadFile($event)"
+            [urlImgCurrent]="urlLogo"
+            [contentHeight]="'150px'"
+            [contentWidth]="'100%'"
+          />
+        </div>
+      </div>
+      <div class="mb-4">
+        <label class="m-1 block mb-2">Capacidades</label>
+        <div class="flex justify-content-around mt-3">
+          <custom-input-switch-signal
+            [control]="form.controls.sales"
+            label="Ventas"
+          />
+          <custom-input-switch-signal
+            [control]="form.controls.repair"
+            label="Reparación"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 lg:col-6">
+      <div class="mb-4">
+        <label class="m-1 block mb-2">Categoróas</label>
+        <p-multiSelect
+          [options]="cb_category()"
+          formControlName="categorias"
+          optionLabel="label"
+          placeholder="Seleccionar categoróas"
+          styleClass="w-full"
+          display="chip"
+          [maxSelectedLabels]="cb_category().length"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón de envío del formulario -->
+  <div class="flex justify-content-end mt-4">
+    <custom-button-save
+      [propertyId]="id"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+    />
+  </div>
+</form>

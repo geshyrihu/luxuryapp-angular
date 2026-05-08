@@ -1,0 +1,87 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        label="Id"
+        [readonly]="true"
+      />
+
+      <div class="mb-4 flex flex-wrap">
+        <label class="w-full sm:w-3 flex align-items-center">Imagen</label>
+        <div class="w-full sm:w-9">
+          <custom-input-img-signal
+            (fileSelected)="uploadFile($event)"
+            [urlImgCurrent]="model?.photoPath"
+            [contentHeight]="'50'"
+            [contentWidth]="'50'"
+          />
+        </div>
+      </div>
+
+      <custom-input-text-signal
+        [control]="form.controls.nameCustomer"
+        label="Nombre"
+        placeholder="nombre"
+      />
+
+      <custom-input-text-signal
+        [control]="form.controls.nombreCorto"
+        label="Nombre Corto"
+        placeholder="nombre Corto"
+      />
+
+      <custom-input-text-signal
+        [control]="form.controls.rfc"
+        label="RFC"
+        placeholder="rfc"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.folioPrefix"
+        label="Folio Prefijo"
+        placeholder="folio prefijo"
+      />
+      <div class="mb-4 flex flex-wrap">
+        <div class="w-full">
+          <custom-input-mask-signal
+            [control]="form.controls.phoneOne"
+            label="Tél. 1"
+            placeholder="teléfono"
+            customMask="(00) 0000-0000"
+          />
+        </div>
+        <div class="w-full">
+          <custom-input-mask-signal
+            [control]="form.controls.phoneTwo"
+            label="Tél. 2"
+            placeholder="teléfono"
+            customMask="(00) 0000-0000"
+          />
+        </div>
+      </div>
+
+      <custom-input-date-signal
+        [control]="form.controls.register"
+        label="Fecha de registro"
+        placeholder="fecha de registro"
+      />
+
+      <custom-input-number-signal
+        [control]="form.controls.numeroCliente"
+        label="Numero de Cliente"
+        placeholder="numero de Cliente"
+      />
+      <custom-input-select-signal
+        [control]="form.controls.active"
+        label="Activo"
+        [data]="optionActive"
+      />
+
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </div>
+</div>

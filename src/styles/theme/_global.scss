@@ -1,0 +1,205 @@
+/* =======================================
+   GLOBAL STYLES & RESETS
+   ======================================== */
+
+/* 1. CONTROL DE GESTOS Y SCROLL (Móvil y UX) */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overscroll-behavior-x: none; /* Evita navegación swipe-back en navegadores */
+  -webkit-overflow-scrolling: touch; /* Scroll fluido en iOS */
+}
+
+/* ♿ ACCESIBILIDAD - Skip-to-content link (WCAG 2.4.1) */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 999999;
+  padding: 0.75rem 1.5rem;
+  background: var(--primary-500, #2563eb);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  text-decoration: none;
+  transition: top 0.2s ease;
+
+  &:focus {
+    top: 0;
+    outline: 3px solid var(--primary-300, #93c5fd);
+    outline-offset: 2px;
+  }
+}
+
+/* ♿ Focus visible mejorado para todos los elementos interactivos (WCAG 2.4.7) */
+*:focus-visible {
+  outline: 2px solid var(--primary-400, #60a5fa);
+  outline-offset: 2px;
+}
+
+body {
+  overflow-x: hidden; /* Evita scroll horizontal no deseado */
+  overflow-y: auto;
+}
+
+/* Reglas específicas para iOS (Safari) */
+@supports (-webkit-touch-callout: none) {
+  html,
+  body {
+    overscroll-behavior: none; /* Desactiva rebote elástico */
+  }
+}
+
+/* =======================================
+   IONIC MOBILE LAYOUT FIX
+   Estilos explícitos para el layout mobile.
+   Necesarios porque las utilidades de PrimeFlex tienen menor
+   especificidad que las clases unlayered, causando que las
+   utilidades (flex, h-full, grow) no se apliquen correctamente
+   cuando hay conflictos con la capa de compatibilidad PrimeFlex.
+   ======================================= */
+ion-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+/* El contenedor principal del layout mobile */
+#main-content.ion-page {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  position: relative;
+}
+
+/* ion-content debe expandirse para llenar el espacio entre header y footer */
+#main-content ion-content {
+  flex: 1 1 auto !important;
+  min-height: 0;
+}
+
+/* Footer fijo al bottom del flex container */
+#main-content > footer {
+  flex-shrink: 0;
+}
+
+/* ion-header no debe crecer */
+#main-content > ion-header {
+  flex-shrink: 0;
+}
+
+/* 2. ELEMENTOS BASE */
+i,
+.icon {
+  font-style: normal; /* Prevenir cursiva en iconos */
+}
+
+/* 3. UTILIDADES DE POSICIONAMIENTO Y TEXTO */
+.emoji-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* 4. SOBRESCRITURAS DE Z-INDEX (Capas) */
+/* SweetAlert sobre PrimeNG */
+.my-swal-container {
+  z-index: 111000 !important;
+}
+
+/* PrimeNG Overlays sobre Ionic/Otros */
+.p-select-overlay,
+.p-dropdown-panel,
+.p-overlay,
+.p-confirm-dialog,
+.p-dynamic-dialog,
+.p-toast {
+  z-index: 40000 !important;
+}
+
+.p-datepicker {
+  z-index: 111000 !important;
+}
+
+.p-tooltip {
+  z-index: 40000 !important;
+  font-size: 0.75rem !important;
+}
+
+/* 5. IMPRESIÓN */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* 6. CLASES DE ESTADO (Badges/Etiquetas) */
+/* Total - Azul corporativo opaco */
+.bg-status-total {
+  background-color: #4b6584 !important;
+  color: #ffffff !important;
+  &:hover {
+    background-color: #3c5368 !important;
+  }
+}
+
+/* Concluidos - Verde apagado */
+.bg-status-success {
+  background-color: #27ae60 !important;
+  color: #ffffff !important;
+  &:hover {
+    background-color: #1e8449 !important;
+  }
+}
+
+/* Pendientes - Naranja/Ámbar opaco */
+.bg-status-pending {
+  background-color: #e67e22 !important;
+  color: #ffffff !important;
+  &:hover {
+    background-color: #ca6f1e !important;
+  }
+}
+
+/* No Autorizados - Púrpura/Morado opaco */
+.bg-status-rejected {
+  background-color: #8e44ad !important;
+  color: #ffffff !important;
+  &:hover {
+    background-color: #7d3c98 !important;
+  }
+}
+
+/* Estilo para celdas con ejecución presupuestaria (movido desde styles.scss) */
+.executed-budget {
+  background-color: var(--ds-bg-budget, #fff3e0) !important;
+  color: var(--ds-text-budget, inherit) !important;
+}
+
+/* =======================================
+   7. VALIDACIÓN DE FORMULARIOS
+   ======================================= */
+/*
+   Forzamos el borde rojo para inputs inválidos que han sido modificados (dirty) o tocados (touched).
+   Usamos !important para sobrescribir la regla genérica de "border: 2px solid" definida arriba.
+*/
+.p-inputtext.ng-invalid.ng-dirty,
+.p-inputtext.ng-invalid.ng-touched,
+.p-inputtext.p-invalid,
+.p-inputtextarea.ng-invalid.ng-dirty,
+.p-inputtextarea.ng-invalid.ng-touched,
+.p-select.ng-invalid.ng-dirty,
+.p-select.ng-invalid.ng-touched,
+.p-select.p-invalid,
+.p-dropdown.p-invalid,
+.p-dropdown.ng-invalid.ng-dirty {
+  border-color: var(--danger-color, #991b1b) !important;
+}
+
+/* Feedback visual adicional para el placeholder (opcional) */
+.p-inputtext.ng-invalid.ng-dirty::placeholder {
+  color: rgba(153, 27, 27, 0.6);
+}

@@ -1,0 +1,42 @@
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <custom-input-text-signal
+    [control]="form.controls.firstName"
+    label="Nombre"
+    placeholder="Nombre"
+  />
+  <custom-input-text-signal
+    [control]="form.controls.lastName"
+    label="Apellidos"
+    placeholder="Apellidos"
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.email"
+    label="Correo Electrónico"
+    placeholder="Correo electrónico"
+  />
+
+  <custom-input-mask-signal
+    [control]="form.controls.phoneNumber"
+    label="Tél. Celular"
+    placeholder="(00) 0000-0000"
+    customMask="(00) 0000-0000"
+  />
+
+  <custom-input-select-signal
+    [control]="form.controls.typePerson"
+    label="Tipo de persona"
+    [data]="cb_typePerson()"
+  />
+
+  <custom-input-select-signal
+    [control]="form.controls.customerId"
+    label="Cliente"
+    [data]="cb_customer()"
+  />
+  <custom-button-save
+    [propertyId]="applicationUserId"
+    [disabled]="form.invalid"
+    [submitting]="submitting()"
+  />
+</form>

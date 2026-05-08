@@ -1,0 +1,58 @@
+<div class="container">
+  <app-report-header></app-report-header>
+  <div class="flex justify-content-end my-3">
+    <custom-button-download
+      label="Exportar a Excel"
+      severity="success"
+      [showLabelOnDesktop]="true"
+      (clicked)="exportToExcel()"
+      [disabled]="loading()"
+    />
+  </div>
+  @for (item of data; track item) {
+  <div class="mb-6">
+    <div class="surface-100 p-2 border-round mb-3">
+      <h5 class="m-0 font-bold text-xl uppercase">
+        {{ item.responsibleArea | titlecase }}
+      </h5>
+    </div>
+    <div class="flex flex-column">
+      @for (asunto of item.items; track asunto; let i = $index) {
+      <div class="page-break">
+        <div class="flex align-items-center justify-content-between mb-2">
+          <div class="text-lg font-bold text-900">
+            {{ i + 1 }}.- {{ asunto.title | titlecase }}
+          </div>
+          <div>
+            @if (asunto.status === 0) {
+            <p-tag severity="danger" [value]="asunto.status" />
+            }
+          </div>
+        </div>
+        <div class="grid">
+          <div class="col-12 md:col-6">
+            <div
+              class="text-justify text-sm line-height-3"
+              [innerHTML]="asunto.requestService | sanitizeHtml"
+            ></div>
+          </div>
+          <div class="col-12 md:col-6">
+            @if (todoElSeguimiento && asunto.seguimientos.length > 0) {
+            <div class="surface-50 p-3 border-round border-1 surface-border">
+              <p class="m-0 text-sm font-italic">
+                <span class="font-bold block mb-1">{{
+                  asunto.seguimientos[asunto.seguimientos.length - 1].fecha
+                }}</span>
+                {{ asunto.seguimientos[asunto.seguimientos.length - 1].seguimiento }}
+              </p>
+            </div>
+            }
+          </div>
+        </div>
+        <hr class="mt-4 border-top-1 surface-border" />
+      </div>
+      }
+    </div>
+  </div>
+  }
+</div>

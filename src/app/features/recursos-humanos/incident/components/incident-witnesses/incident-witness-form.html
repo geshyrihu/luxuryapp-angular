@@ -1,0 +1,31 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <custom-input-text-signal
+    label="Nombre Completo"
+    [required]="true"
+    [control]="form.controls.fullName"
+  />
+  <custom-input-text-signal label="Puesto" [control]="form.controls.position" />
+  <custom-input-mask-signal
+    label="Teléfono"
+    [control]="form.controls.phone"
+    placeholder="(00) 0000-0000"
+    customMask="(00) 0000-0000"
+  />
+
+  <custom-input-textarea-signal
+    label="Declaración"
+    [control]="form.controls.statement"
+    [rows]="3"
+    placeholder="Declaración del testigo sobre los hechos"
+  />
+
+  <div class="flex justify-content-end mt-3">
+    <custom-button-save
+      [propertyId]="witnessId()"
+      [disabled]="form.invalid"
+      [submitting]="saving()"
+      label="Guardar Testigo"
+      type="submit"
+    />
+  </div>
+</form>

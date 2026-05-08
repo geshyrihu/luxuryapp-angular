@@ -1,0 +1,137 @@
+@if (announcement) {
+<div class="container mt-4 hidden md:block">
+  <div class="flex flex-column align-items-center">
+    <div class="w-full max-w-4xl mx-auto">
+      <div class="mb-3">
+        <a routerLink="../" class="btn btn-secondary btn-sm">
+          <i class="pi pi-arrow-left"></i> Volver al listado
+        </a>
+      </div>
+
+      <div class="card">
+        <!-- Imagen de cabecera -->
+        @if (announcement.imagePath) {
+        <img
+          [src]="announcement.imagePath"
+          class="w-full"
+          alt="Banner del Anuncio"
+          style="max-height: 400px; object-fit: cover"
+        />
+        }
+        <div class="p-4">
+          <!-- Título y Metadatos Simplificados -->
+          <h1 class="text-3xl font-bold mb-2">{{ announcement.title }}</h1>
+          <div class="text-sm text-color-secondary mb-4">
+            <span
+              ><i class="pi pi-calendar mr-2"></i>Publicado: {{
+              announcement.publishedAt | date: 'fullDate' }}</span
+            >
+          </div>
+
+          <!-- Contenido del Anuncio -->
+          <div
+            class="announcement-content mb-4"
+            [innerHTML]="announcement.content"
+          ></div>
+
+          <!-- Enlace Externo -->
+          @if (announcement.externalLink) {
+          <div class="mt-4">
+            <a
+              [href]="announcement.externalLink"
+              target="_blank"
+              class="btn btn-secondary btn-sm"
+              ><i class="pi pi-external-link"></i> Visitar Enlace</a
+            >
+          </div>
+          }
+
+          <!-- Archivos Adjuntos -->
+          @if (announcement.attachments && announcement.attachments.length > 0)
+          {
+          <hr class="my-4" />
+          <div>
+            <h5 class="font-semibold mb-3">Archivos Adjuntos</h5>
+            <div class="flex flex-column">
+              @for (item of announcement.attachments; track item.id) {
+              <a
+                [href]="item.filePath"
+                target="_blank"
+                class="p-2 surface-100 border-round text-color hover:surface-200 transition-colors transition-duration-200 flex align-items-center"
+              >
+                <i class="pi pi-download mr-2"></i>
+                <span>{{ item.fileName }}</span>
+              </a>
+              }
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<div class="block md:hidden pb-5">
+  <div class="p-2">
+    <ion-button routerLink="../" fill="clear" color="medium" class="mb-2">
+      <ion-icon slot="start" name="arrow-back"></ion-icon>
+      Volver
+    </ion-button>
+
+    <ion-card class="m-0">
+      @if (announcement.imagePath) {
+      <ion-img
+        [src]="announcement.imagePath"
+        [alt]="announcement.title"
+      ></ion-img>
+      }
+
+      <ion-card-header>
+        <ion-card-title>{{ announcement.title }}</ion-card-title>
+        <ion-card-subtitle>
+          {{ announcement.publishedAt | date: 'mediumDate' }}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div
+          class="announcement-content"
+          [innerHTML]="announcement.content"
+        ></div>
+
+        @if (announcement.externalLink) {
+        <div class="ion-margin-top">
+          <ion-button
+            [href]="announcement.externalLink"
+            expand="block"
+            fill="outline"
+          >
+            Visitar Enlace <ion-icon slot="end" name="open-outline"></ion-icon>
+          </ion-button>
+        </div>
+        } @if (announcement.attachments && announcement.attachments.length > 0)
+        {
+        <ion-list class="ion-margin-top">
+          <ion-list-header>
+            <ion-label>Adjuntos</ion-label>
+          </ion-list-header>
+          @for (item of announcement.attachments; track item.id) {
+          <ion-item [href]="item.filePath" target="_blank" detail="false">
+            <ion-icon name="document-text-outline" slot="start"></ion-icon>
+            <ion-label>{{ item.fileName }}</ion-label>
+            <ion-icon
+              name="download-outline"
+              slot="end"
+              color="primary"
+            ></ion-icon>
+          </ion-item>
+          }
+        </ion-list>
+        }
+      </ion-card-content>
+    </ion-card>
+  </div>
+</div>
+}

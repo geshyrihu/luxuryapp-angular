@@ -1,0 +1,31 @@
+<div class="p-3">
+  <div>
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-text-signal
+        [horizontal]="false"
+        [control]="form.controls.id"
+        label="Id"
+      />
+
+      <custom-input-text-signal
+        [horizontal]="false"
+        [control]="form.controls.nombreEquipo"
+        label="Nombre"
+        placeholder="nombre"
+      />
+
+      <custom-input-select-signal
+        [horizontal]="false"
+        [control]="form.controls.equipoClasificacionId"
+        label="Clasificación"
+        [data]="cb_equipoClasificacion()"
+      />
+
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </div>
+</div>

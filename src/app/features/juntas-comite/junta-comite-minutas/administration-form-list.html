@@ -1,0 +1,28 @@
+<div class="flex flex-column">
+  <div class="p-2 surface-200 font-semibold">Administración</div>
+  <div class="grid col-12 align-items-center">
+    <div class="col-10">
+      <div class="mb-2">
+        <p-select
+          [formControl]="administrationparticipante"
+          [options]="cb_Administration()"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Selecciona una opción"
+          fluid
+        />
+      </div>
+    </div>
+    <div class="col-2 mb-2">
+      @if (administrationparticipante.value) {
+      <custom-button-item iconClass="pi pi-plus " (clicked)="onSubmit()" />
+      }
+    </div>
+  </div>
+  @for (item of listaParticipantesAdministration(); track item.id) {
+  <div class="flex align-items-center justify-content-between p-2">
+    {{ item.cargo }} - {{ item.nombre }}
+    <custom-button-delete (confirmed)="onDelete(item.id)" />
+  </div>
+  }
+</div>

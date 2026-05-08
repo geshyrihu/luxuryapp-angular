@@ -1,0 +1,48 @@
+<p-card styleClass="p-0 border-none shadow-none">
+  <ng-template #content>
+    @if (data()) {
+    <div class="flex flex-column">
+      <div class="flex align-items-center p-3 surface-100 border-round-lg">
+        <i class="pi pi-clock text-2xl text-600"></i>
+        <div>
+          <h3 class="text-lg font-bold text-800 m-0">Horarios de Trabajo</h3>
+          <p class="text-sm text-500 m-0">Turno: {{ data()?.turnoTrabajo }}</p>
+        </div>
+      </div>
+
+      <div class="flex flex-column gap-1">
+        @for (dia of [ { n: 'Lunes', e: data()?.lunesEntrada, s:
+        data()?.lunesSalida }, { n: 'Martes', e: data()?.martesEntrada, s:
+        data()?.martesSalida }, { n: 'Miércoles', e: data()?.miercolesEntrada,
+        s: data()?.miercolesSalida }, { n: 'Jueves', e: data()?.juevesEntrada,
+        s: data()?.juevesSalida }, { n: 'Viernes', e: data()?.viernesEntrada, s:
+        data()?.viernesSalida }, { n: 'Sábado', e: data()?.sabadoEntrada, s:
+        data()?.sabadoSalida }, { n: 'Domingo', e: data()?.domingoEntrada, s:
+        data()?.domingoSalida } ]; track dia.n) {
+        <div
+          class="flex justify-content-between align-items-center p-3 border-bottom-1 surface-border hover:surface-50 transition-colors transition-duration-200 border-round"
+        >
+          <span class="font-semibold text-700 w-6rem">{{ dia.n }}</span>
+          <div class="flex align-items-center">
+            @if (dia.e && dia.s) {
+            <span class="text-primary font-monospace">{{ dia.e }}</span>
+            <i class="pi pi-arrow-right text-300 text-xs"></i>
+            <span class="text-primary font-monospace">{{ dia.s }}</span>
+            } @else {
+            <span class="text-400 font-italic">Descanso / Sin asignar</span>
+            }
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    } @else {
+    <div
+      class="flex flex-column align-items-center justify-content-center p-8 text-400"
+    >
+      <i class="pi pi-spin pi-spinner text-3xl mb-2"></i>
+      <span>Cargando horarios...</span>
+    </div>
+    }
+  </ng-template>
+</p-card>

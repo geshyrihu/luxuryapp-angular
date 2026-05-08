@@ -1,0 +1,67 @@
+<div class="card">
+  <p-table
+    [value]="items()"
+    styleClass="custom-table card hidden md:block"
+    [scrollable]="true"
+    [scrollHeight]="tableScrollH.scrollHeight()"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [globalFilterFields]="globalFilterFields"
+  >
+    <ng-template pTemplate="caption">
+      <primeng-custom-caption
+        title="Sanciones Disciplinarias"
+        [(globalFilter)]="globalFilter"
+      />
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="table-col-lg">Tipo de Sanción</th>
+        <th class="table-col-md">Severidad</th>
+        <th class="table-col-sm">Fecha Aplicación</th>
+        <th class="table-col-sm">Fin Efecto</th>
+        <th class="table-col-md text-center">Estatus</th>
+        <th class="table-col-sm text-center">Apelación</th>
+        <th class="table-col-actions">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td>{{ item.sanctionTypeName }}</td>
+        <td>{{ item.severityLevel }}</td>
+        <td>{{ item.appliedDate | date:'dd/MM/yyyy' }}</td>
+        <td>
+          {{ item.effectiveEndDate ? (item.effectiveEndDate | date:'dd/MM/yyyy')
+          : '—' }}
+        </td>
+        <td class="text-center">
+          <span
+            class="inline-flex align-items-center border-round-3xl border-1 surface-border px-3 py-1 text-xs font-semibold"
+            [ngClass]="getStatusBadge(item.sanctionStatus)"
+            >{{ item.sanctionStatus }}</span
+          >
+        </td>
+        <td class="text-center">
+          @if (item.allowAppeal && item.appealDeadline) {
+          <span class="text-color-secondary"
+            >{{ item.appealDeadline | date:'dd/MM/yyyy' }}</span
+          >
+          } @else {
+          <span class="text-color-secondary">—</span>
+          }
+        </td>
+        <td class="text-center">
+          <custom-button-item
+            icon="pi pi-sync"
+            title="Cambiar estatus"
+            (click)="onChangeStatus(item)"
+          />
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <primeng-custom-table-footer [totalRecords]="items().length" />
+    </ng-template>
+  </p-table>
+</div>

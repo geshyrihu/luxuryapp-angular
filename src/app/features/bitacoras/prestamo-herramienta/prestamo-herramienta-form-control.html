@@ -1,0 +1,48 @@
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <custom-input-text-signal [control]="form.controls.id" label="Id" />
+
+  <custom-input-date-time-signal
+    [control]="form.controls.fechaSalida"
+    label="Hora/Fecha Salida"
+  />
+
+  <custom-input-autocomplete-signal
+    (propagar)="saveToolId($event)"
+    [control]="form.controls.tool"
+    [data]="cb_tool()"
+    label="Herramienta"
+    placeholder="Escribe para buscar herramienta"
+  />
+
+  <custom-input-autocomplete-signal
+    (propagar)="saveEmployeeId($event)"
+    [control]="form.controls.applicationUser"
+    [data]="cb_applicationUser()"
+    label="Colaborador"
+    placeholder="Escribe para buscar  colabororador"
+  />
+
+  <custom-input-date-time-signal
+    [control]="form.controls.fechaRegreso"
+    label="Hora/Fecha Regreso"
+  />
+
+  <custom-input-textarea-signal
+    [control]="form.controls.observaciones"
+    label="Observaciones"
+    placeholder="observaciones"
+  />
+
+  <custom-button-save
+    [propertyId]="id"
+    [disabled]="form.invalid"
+    [submitting]="submitting()"
+  />
+</form>
+
+
+
+
+
+
+

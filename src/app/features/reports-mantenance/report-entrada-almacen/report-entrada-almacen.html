@@ -1,0 +1,35 @@
+<page-title-report-maintenance title="ENTRADA INSUMOS" />
+<p-table
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #body let-item>
+    <tr>
+      <td colspan="3">
+        <p class="card-title">{{ item.producto }}</p>
+      </td>
+    </tr>
+    @for (registro of item.registros; track registro) {
+    <tr class="breakPage">
+      <td>
+        <p>{{ registro.fechaEntrada }}</p>
+      </td>
+      <td>
+        <p>{{ registro.cantidad }}</p>
+      </td>
+      <td>
+        <p>{{ registro.nameComercial }}</p>
+      </td>
+    </tr>
+    }
+  </ng-template>
+</p-table>
+
+
+
+
+
+
+

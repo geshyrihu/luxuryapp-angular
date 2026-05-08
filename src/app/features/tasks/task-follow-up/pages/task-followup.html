@@ -1,0 +1,87 @@
+<div class="flex flex-column p-3 gap-3">
+  <!-- Loading Spinner -->
+  @if (loading()) {
+  <div class="flex justify-content-center">
+    <p-progressSpinner
+      styleClass="w-3rem h-3rem"
+      strokeWidth="4"
+    ></p-progressSpinner>
+  </div>
+  }
+
+  <!-- Form Section -->
+  <form
+    autocomplete="off"
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    class="flex flex-column"
+  >
+    <div class="mb-4">
+      <custom-input-textarea-signal
+        label="Nuevo Seguimiento"
+        [control]="form.controls.description"
+        placeholder="Escribe los detalles del seguimiento..."
+        [rows]="4"
+        [maxLength]="200"
+        [horizontal]="false"
+      />
+
+      <div class="flex justify-content-between mt-1">
+        <small class="text-500">Mónimo 10 caracteres.</small>
+        <small
+          [class.text-red-500]="remainingChars() < 10"
+          class="text-primary font-medium"
+        >
+          Restantes: {{ remainingChars() }}
+        </small>
+      </div>
+    </div>
+
+    <div class="flex justify-content-end">
+      <custom-button-save
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </div>
+  </form>
+
+  <!-- Timeline Section -->
+  <div class="surface-border border-top-1 pt-4">
+    <h3 class="text-xl font-semibold text-900 mb-3">
+      Historial de Seguimientos
+    </h3>
+
+    @if (description() && description().length > 0) {
+    <div class="flex flex-column gap-3">
+      @for(follow of description(); track $index) {
+      <div
+        class="surface-card p-3 border-round shadow-1 border-left-3 border-primary"
+      >
+        <div class="flex align-items-center justify-content-between mb-2">
+          <span class="font-bold text-900 text-sm">
+            <i class="pi pi-user mr-2 text-primary"></i>
+            {{ follow.applicationUser }}
+          </span>
+          <span class="text-xs text-500 surface-100 px-2 py-1 border-round">
+            {{ follow.createdAt }}
+          </span>
+        </div>
+        <p class="m-0 text-700 line-height-3 text-sm">
+          {{ follow.description }}
+        </p>
+      </div>
+      }
+    </div>
+    } @else {
+    <div
+      class="flex flex-column align-items-center justify-content-center p-5 surface-50 border-round"
+    >
+      <div class="border-circle surface-200 p-3 mb-3">
+        <i class="pi pi-comments text-3xl text-500"></i>
+      </div>
+      <span class="text-700 font-medium">No hay seguimientos registrados</span>
+      <span class="text-500 text-sm mt-1">Só el primero en agregar uno.</span>
+    </div>
+    }
+  </div>
+</div>

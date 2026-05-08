@@ -1,0 +1,124 @@
+<div class="print:hidden h-full">
+  <nav class="sidebar-layout">
+    <!-- Fixed Header Section -->
+    <div
+      class="sidebar-header p-4 flex flex-column align-items-center text-center"
+    >
+      <!-- Avatar Section -->
+      <div class="relative mb-3">
+        <p-avatar
+          [image]="profileImageUrl || 'assets/images/default-avatar.png'"
+          size="xlarge"
+          shape="circle"
+          styleClass="border-2 border-white shadow-4"
+        ></p-avatar>
+        <!-- Online Indicator -->
+        <span class="online-indicator"></span>
+      </div>
+
+      <!-- User Info -->
+      <div class="w-full">
+        <h2
+          class="user-name white-space-nowrap overflow-hidden text-overflow-ellipsis"
+          title="{{ infoAccountAuthDTO.fullName }}"
+        >
+          {{ infoAccountAuthDTO.fullName }}
+        </h2>
+        <p
+          class="user-position white-space-nowrap overflow-hidden text-overflow-ellipsis"
+        >
+          {{ infoAccountAuthDTO.position || 'En línea' }}
+        </p>
+      </div>
+
+      <!-- Customer Name Header -->
+      <div class="customer-divider">
+        <h3
+          class="customer-name white-space-nowrap overflow-hidden text-overflow-ellipsis"
+          title="{{ customerName() }}"
+        >
+          {{ customerName() }}
+        </h3>
+      </div>
+    </div>
+    <!-- Scrollable Menu Area -->
+    <div id="sidebar-menu" class="sidebar-content pt-2">
+      @if(!loading()){
+
+      <!-- Main List: STRICT Custom Classes -->
+      <ul class="guide-menu-list">
+        <ng-container
+          *ngTemplateOutlet="recursiveMenu; context:{ $implicit: primengMenuItems }"
+        ></ng-container>
+      </ul>
+
+      } @else {
+      <div class="flex justify-content-center align-items-center h-full">
+        <p-progress-spinner
+          strokeWidth="8"
+          fill="transparent"
+          animationDuration=".5s"
+          [style]="{ width: '80px', height: '80px' }"
+        />
+      </div>
+      }
+    </div>
+  </nav>
+</div>
+
+<!-- Recursive Menu Template -->
+<ng-template #recursiveMenu let-items>
+  @for (item of items; track item.label + $index) {
+  <!-- LI Item: Strict Class -->
+  <li class="guide-menu-item">
+    <!-- CASE 1: GROUP HEADER (Has children) -->
+    @if(item.items && item.items.length > 0) {
+    <div
+      (click)="toggle(item)"
+      class="menu-group-header"
+      [class.expanded]="item.expanded"
+    >
+      <div class="flex align-items-center overflow-hidden min-w-0">
+        @if(item.icon) {
+        <i [class]="item.icon" class="mr-3 text-lg opacity-70"></i>
+        }
+        <span class="white-space-nowrap overflow-hidden text-overflow-ellipsis">
+          {{ item.label }}
+        </span>
+      </div>
+
+      <i
+        [class]="item.expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+        class="text-xs opacity-50 ml-2"
+      ></i>
+    </div>
+
+    <!-- Submenu Container -->
+    @if(item.expanded) {
+    <ul class="guide-menu-list pl-6 animate-fade-in-down">
+      <ng-container
+        *ngTemplateOutlet="recursiveMenu; context:{ $implicit: item.items }"
+      ></ng-container>
+    </ul>
+    } }
+
+    <!-- CASE 2: LINK ITEM (Leaf Node) -->
+    @else {
+    <a
+      [routerLink]="item.routerLink"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLinkActive="active-link"
+    >
+      @if(item.icon) {
+      <i [class]="item.icon" class="mr-3 text-lg opacity-70"></i>
+      }
+      <span
+        class="white-space-nowrap overflow-hidden text-overflow-ellipsis block"
+      >
+        {{ item.label }}
+      </span>
+    </a>
+    }
+  </li>
+  }
+</ng-template>

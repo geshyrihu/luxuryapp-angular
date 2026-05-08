@@ -1,0 +1,121 @@
+import { DatePipe } from "@angular/common";
+import { Component, inject, OnInit, signal } from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { AuthService } from "src/app/core/services/auth.service";
+import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { CustomInputMaskSignal } from "../../core/components/inputs/web/custom-input-mask-signal";
+
+interface IPropiedadesForm {
+  id: FormControl<string | null>;
+  department: FormControl<string>;
+  customerId: FormControl<string | null>;
+  tower: FormControl<string>;
+  floor: FormControl<string | null>;
+  unitNumber: FormControl<string | null>;
+  areaM2: FormControl<number | null>;
+  indivisoPercentage: FormControl<number | null>;
+  parkingSlots: FormControl<number | null>;
+  storageUnit: FormControl<string | null>;
+  accountNumber: FormControl<string | null>;
+  applicationUserId: FormControl<string | null>;
+}
+
+@Component({
+  selector: "app-propiedades-form",
+  templateUrl: "./propiedades-form.html",
+  imports: [
+    DatePipe,
+    ReactiveFormsModule,
+    CustomInputTextSignal,
+    CustomInputNumberSignal,
+    CustomButtonSave,
+    CustomInputMaskSignal,
+  ],
+})
+export class PropiedadesForm implements OnInit {
+  apiResponseS = inject(ApiResponseService);
+  formB = inject(FormBuilder);
+  authS = inject(AuthService);
+  config = inject(DynamicDialogConfig);
+  ref = inject(DynamicDialogRef);
+  customerIdS = inject(CustomerIdService);
+  submitting = signal(false);
+
+  id: string = "";
+  isDelinquent = false;
+  delinquentSince: string | null = null;
+
+  form: FormGroup<IPropiedadesForm>;
+
+  ngOnInit(): void {
+    this.id = this.config.data.id;
+    this.form = this.formB.group({
+      id: new FormControl({ value: this.id, disabled: true }),
+      department: new FormControl("", {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      customerId: new FormControl<string | null>(
+        this.customerIdS.customerId(),
+        { validators: [Validators.required] },
+      ),
+      tower: new FormControl("", {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      floor: new FormControl(""),
+      unitNumber: new FormControl(""),
+      areaM2: new FormControl<number | null>(null),
+      indivisoPercentage: new FormControl<number | null>(null),
+      parkingSlots: new FormControl<number | null>(null),
+      storageUnit: new FormControl(""),
+      accountNumber: new FormControl<string | null>(null, {
+        validators: [Validators.maxLength(9)],
+      }),
+      applicationUserId: new FormControl<string | null>(
+        this.authS.applicationUserId,
+      ),
+    });
+
+    if (this.id) {
+      this.onLoadData();
+    }
+  }
+  submit() {
+    if (!this.apiResponseS.validateForm(this.form)) return;
+    this.submitting.set(true);
+
+    if (!this.id) {
+      this.apiResponseS
+        .onPost(`Property`, this.form.value)
+        .then((result: boolean) => {
+          result ? this.ref.close(true) : this.submitting.set(false);
+        });
+    } else {
+      this.apiResponseS
+        .onPut(`Property/${this.id}`, this.form.value)
+        .then((result: boolean) => {
+          result ? this.ref.close(true) : this.submitting.set(false);
+        });
+    }
+  }
+  onLoadData() {
+    this.apiResponseS.onGetItem(`Property/${this.id}`).then((result: any) => {
+      if (!result) return;
+      this.isDelinquent = result.isDelinquent ?? false;
+      this.delinquentSince = result.delinquentSince ?? null;
+      this.form.patchValue(result);
+    });
+  }
+}

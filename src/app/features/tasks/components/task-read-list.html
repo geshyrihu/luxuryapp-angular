@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-body">
+    <div class="mt-2">
+      <div>
+        @if (loading()) {
+        <div class="text-center">
+          <i class="pi pi-spin pi-spinner text-primary m-1" aria-label="Cargando..."></i>
+        </div>
+        }
+      </div>
+
+      <div class="mt-2">
+        @if (data.length > 0) {
+        <!-- 1 -->
+        <ul class="list-unstyled activity-wid mb-0">
+          @for (item of data; track item) {
+          <li class="activity-list activity-border">
+            <div class="activity-icon b-r-8 img-50">
+              <span
+                class="avatar-title border-circle text-primary"
+              >
+                <i class="icon icon-pi-thumbtack"></i>
+              </span>
+            </div>
+            <div class="timeline-list-item">
+              <div class="flex">
+                <div class="flex-grow-1 overflow-hidden mr-4">
+                  <p class="font-size-12 mb-1">
+                    {{ item.reader }} {{ item.readingDate }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </li>
+          }
+        </ul>
+        } @if (data.length == 0) {
+        <em>SIN VISTAS</em>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+

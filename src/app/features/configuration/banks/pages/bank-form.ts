@@ -1,0 +1,106 @@
+import { Component, HostListener, inject, OnInit, signal } from "@angular/core";
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    ReactiveFormsModule,
+    Validators,
+} from "@angular/forms";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { IonButtonSave } from "src/app/core/components/buttons/mobile/ion-button-save";
+import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
+import { IonInputText } from "src/app/core/components/inputs/mobile/ion-input-text";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { IBankAddOrEditDTO, IBankDTO } from "../models/bank.dto";
+
+interface IBankForm {
+  id: FormControl<string | null>;
+  code: FormControl<string>;
+  shortName: FormControl<string>;
+  largeName: FormControl<string>;
+}
+
+@Component({
+  selector: "app-bank-form",
+  templateUrl: "./bank-form.html",
+  imports: [
+    ReactiveFormsModule, 
+    CustomInputTextSignal, 
+    CustomButtonSave,
+    IonInputText,
+    IonButtonSave
+  ],
+})
+export class BankForm implements OnInit {
+  apiResponseS = inject(ApiResponseService);
+  formB = inject(FormBuilder);
+  config = inject(DynamicDialogConfig);
+  ref = inject(DynamicDialogRef);
+  id: string = "";
+  submitting = signal(false);
+  isMobile = signal<boolean>(window.innerWidth <= 768);
+
+  @HostListener("window:resize")
+  onResize() {
+    this.isMobile.set(window.innerWidth <= 768);
+  }
+
+  form: FormGroup<IBankForm> = this.formB.group({
+    id: new FormControl({ value: "", disabled: true }),
+    code: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required, Validators.maxLength(3)],
+    }),
+    shortName: new FormControl("", {
+      nonNullable: true,
+      validators: [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(15),
+      ],
+    }),
+    largeName: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required, Validators.maxLength(100)],
+    }),
+  });
+
+  ngOnInit(): void {
+    this.id = this.config.data.id;
+    if (this.id) this.onLoadData();
+  }
+  onLoadData() {
+    this.apiResponseS.onGetItem<IBankAddOrEditDTO>(Endpoints.Banks.getById(this.id)).then((result) => {
+      if (result) this.form.patchValue(result);
+    });
+  }
+  onSubmit() {
+    if (!this.apiResponseS.validateForm(this.form)) return;
+    this.submitting.set(true);
+
+    if (!this.id) {
+      this.apiResponseS
+        .onPost<IBankDTO>(Endpoints.Banks.create, this.form.value)
+        .then((result) => {
+          result ? this.ref.close(true) : this.submitting.set(false);
+        });
+    } else {
+      this.apiResponseS
+        .onPut<IBankDTO>(Endpoints.Banks.update(this.id), this.form.value)
+        .then((result) => {
+          result ? this.ref.close(true) : this.submitting.set(false);
+        });
+    }
+  }
+}
+
+
+
+
+
+
+
+
+

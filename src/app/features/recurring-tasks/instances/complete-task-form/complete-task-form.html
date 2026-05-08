@@ -1,0 +1,41 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <custom-input-textarea-signal
+    [control]="form.controls.comments"
+    label="Comentarios (Opcional)"
+    placeholder="Añade tus comentarios..."
+  />
+
+  <div class="mt-3">
+    <label for="attachments">Adjuntar Evidencia (Opcional)</label>
+    <p-fileUpload
+      name="attachments"
+      formControlName="attachments"
+      multiple="multiple"
+      accept="image/*"
+      maxFileSize="1000000"
+    >
+      <ng-template #content>
+        @if (form.get('attachments')?.value.length) {
+        <ul>
+          @for (file of form.get('attachments')?.value; track file) {
+          <li>{{file.name}} - {{file.size}} bytes</li>
+          }
+        </ul>
+        }
+      </ng-template>
+    </p-fileUpload>
+  </div>
+
+  <custom-button-save
+    label="Marcar como Completada"
+    [disabled]="form.invalid"
+    [submitting]="submitting()"
+  />
+</form>
+
+
+
+
+
+
+

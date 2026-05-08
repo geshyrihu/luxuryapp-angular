@@ -1,0 +1,90 @@
+<div class="card p-2">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <!-- Tipo de Solicitud -->
+    <custom-input-select-signal
+      [control]="form.controls.leaveType"
+      label="Tipo de Solicitud"
+      [data]="requestTypes()"
+      [required]="true"
+    />
+
+    <!-- Selector de modo: Día completo / Parcial -->
+    <div class="field mb-3">
+      <label class="block mb-2 font-medium text-sm">Tipo de día</label>
+      <div class="flex gap-2">
+        <button
+          pButton
+          type="button"
+          [outlined]="isPartial()"
+          (click)="onLeaveModeChange('full')"
+          class="flex-1"
+        >Día completo</button>
+        <button
+          pButton
+          type="button"
+          [outlined]="!isPartial()"
+          (click)="onLeaveModeChange('partial')"
+          class="flex-1"
+        >Parcial</button>
+      </div>
+    </div>
+
+    <!-- Fecha de Inicio -->
+    <custom-input-date-signal
+      [control]="form.controls.startDate"
+      label="Fecha de Inicio"
+      placeholder="Seleccione fecha de inicio"
+      [required]="true"
+      [disable]="disabledDates()"
+    />
+
+    <!-- Fecha de Fin (solo en modo Día completo) -->
+    @if (!isPartial()) {
+      <custom-input-date-signal
+        [control]="form.controls.endDate"
+        label="Fecha de Fin"
+        placeholder="Seleccione fecha de fin"
+        [required]="true"
+        [disable]="disabledDates()"
+      />
+    }
+
+    <!-- Hora de Inicio y Hora de Fin (solo en modo Parcial) -->
+    @if (isPartial()) {
+      <custom-input-time-signal
+        [control]="form.controls.startTime"
+        label="Hora de Entrada"
+        placeholder="Hora de entrada"
+      />
+      <custom-input-time-signal
+        [control]="form.controls.endTime"
+        label="Hora de Salida"
+        placeholder="Hora de salida"
+      />
+    }
+
+    <!-- Motivo -->
+    <custom-input-textarea-signal
+      [control]="form.controls.reason"
+      label="Motivo"
+      placeholder="Describa el motivo de la solicitud"
+      [maxLength]="500"
+      [rows]="3"
+    />
+
+    <!-- Archivo Adjunto -->
+    <custom-input-file-signal
+      label="Archivo Adjunto"
+      placeholder="Seleccione un archivo"
+      accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+      (fileSelected)="onFileChange($event)"
+    />
+
+    <!-- Botones -->
+    <custom-button-save
+      [propertyId]="id"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+    />
+  </form>
+</div>

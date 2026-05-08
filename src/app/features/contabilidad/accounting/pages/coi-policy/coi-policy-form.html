@@ -1,0 +1,137 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <!-- Master: Datos de la Póliza -->
+  <div class="grid mb-6">
+    <div class="col-12 sm:col-4">
+      <custom-input-date-signal
+        [control]="form.controls.date"
+        label="Fecha de la Póliza"
+        required
+      />
+    </div>
+    <div class="col-12 sm:col-4">
+      <custom-input-select-signal
+        [control]="form.controls.policyType"
+        [options]="policyTypeOptions"
+        label="Tipo de Póliza"
+        required
+      />
+    </div>
+    <div class="col-12 sm:col-4">
+      <custom-input-number-signal
+        [control]="form.controls.policyNumber"
+        label="Folio/Número (Manual)"
+        required
+      />
+    </div>
+    <div class="col-12">
+      <custom-input-text-signal
+        [control]="form.controls.concept"
+        label="Concepto General"
+        required
+      />
+    </div>
+  </div>
+
+  <!-- Detalle: Partidas Contables -->
+  <div class="flex justify-content-between align-items-center mb-4">
+    <h3 class="text-lg font-semibold text-700">Partidas (Cargos y Abonos)</h3>
+    <custom-button-add (customClick)="addDetail()" label="Nueva Partida" />
+  </div>
+
+  <div
+    class="overflow-x-auto border-1 surface-border border-round-xl surface-ground p-4 relative"
+    style="min-height: 150px"
+  >
+    @for (detailForm of form.controls.details.controls; track $index) {
+    <div
+      class="grid col-12 mb-4 align-items-center surface-card p-3 border-round shadow-1 border-1 surface-border"
+      [formGroup]="detailForm"
+    >
+      <!-- ID Cuenta TODO: Debería ser un CustomInputAutoComplete con las cuentas -->
+      <div class="col-12 md:col-3">
+        <custom-input-text-signal
+          [control]="detailForm.controls.accountId"
+          label="ID Cuenta (Temporal)"
+          required
+        />
+      </div>
+
+      <div class="col-12 md:col-3">
+        <custom-input-text-signal
+          [control]="detailForm.controls.concept"
+          label="Concepto"
+          required
+        />
+      </div>
+
+      <div class="col-12 md:col-2">
+        <custom-input-select-signal
+          [control]="detailForm.controls.nature"
+          [options]="natureOptions"
+          label="Cargo / Abono"
+          required
+        />
+      </div>
+
+      <div class="col-12 md:col-3">
+        <custom-input-number-signal
+          [control]="detailForm.controls.amount"
+          label="Monto"
+          required
+        />
+      </div>
+
+      <div class="col-12 text-center mt-6 md:mt-0">
+        <custom-button-delete
+          (customClick)="removeDetail($index)"
+          [showLabel]="false"
+        />
+      </div>
+    </div>
+    } @if (form.controls.details.length === 0) {
+    <div class="text-center text-500 py-6">
+      Presiona "Nueva Partida" para comenzar a balancear tu póliza.
+    </div>
+    }
+  </div>
+
+  <!-- Sumas Iguales -->
+  <div class="flex justify-content-end mt-4">
+    <div class="surface-800 text-white border-round p-4 w-16rem shadow-1">
+      <div class="flex justify-content-between mb-1 text-sm">
+        <span>Cargos:</span>
+        <span>$ {{ sumCargos() | number: "1.2-2" }}</span>
+      </div>
+      <div class="flex justify-content-between mb-2 text-sm">
+        <span>Abonos:</span>
+        <span>$ {{ sumAbonos() | number: "1.2-2" }}</span>
+      </div>
+      <div
+        class="flex justify-content-between font-bold border-top-1 surface-border pt-2 text-red-300"
+      >
+        <span>Diferencia:</span>
+        <span
+          >$ {{ math.abs(sumCargos() - sumAbonos()) | number: "1.2-2" }}</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Guardar -->
+  <div class="col-12 mt-6 text-right border-top-1 surface-border pt-4">
+    @if (sumCargos() !== sumAbonos() && form.controls.details.length > 0) {
+    <span class="text-red-500 font-medium mr-4"
+      >⚠️ La póliza está descuadrada</span
+    >
+    }
+    <!-- El botón de UI submit de LuxuryApp revisa form.invalid -->
+    <custom-button-save
+      [submitting]="submitting()"
+      [disabled]="
+        sumCargos() !== sumAbonos() ||
+        form.invalid ||
+        form.controls.details.length < 2
+      "
+    />
+  </div>
+</form>

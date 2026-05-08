@@ -1,0 +1,55 @@
+@if (dataSignal()) {
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="30"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [value]="formArray.controls"
+  #dt
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption [title]="'Cuentas'" [showAdd]="false" [dt]="dt" />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-20" pSortableColumn="value.numeroCuenta">
+        CUENTA
+        <p-sortIcon field="value.numeroCuenta" />
+      </th>
+      <th class="table-col-55" pSortableColumn="value.descripcion">
+        DESCRIPCIóN DE LA CUENTA
+        <p-sortIcon field="value.descripcion" />
+      </th>
+      <th class="table-col-20">PRESUPUESTO</th>
+      <th class="table-col-5">GUARDAR</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-row let-i="rowIndex">
+    <ng-container [formGroup]="row">
+      <tr>
+        <td>{{ row.value.numeroCuenta }}</td>
+        <td>{{ row.value.descripcion }}</td>
+        <td>
+          <custom-input-number-signal
+            [control]="row.controls.presupuestoMensual"
+            [horizontal]="false"
+          />
+        </td>
+        <!-- Opciones -->
+        <td>
+          <div class="flex justify-content-center">
+            <custom-button
+              ngbTooltip="Guardar"
+              [customClass]="'btn-outline-info'"
+              iconClass="icon icon-pi-save text-info"
+              (clicked)="onSubmit(row)"
+              [disabled]="submitting()"
+            />
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+  </ng-template>
+</p-table>
+}

@@ -1,0 +1,35 @@
+<div class="grid gap-4">
+  <div class="col-12 md:col-6">
+    <p-inputgroup class="w-full">
+      <p-inputgroup-addon>De</p-inputgroup-addon>
+      <input
+        pInputText
+        type="month"
+        [(ngModel)]="fechaInicial"
+        pTooltip="Selecciona mes incial"
+        tooltipPosition="top"
+        (change)="onSendDateRange(fechaInicial, fechaFinal)"
+      />
+    </p-inputgroup>
+  </div>
+  <div class="col-12 md:col-6">
+    <p-inputgroup class="w-full">
+      <p-inputgroup-addon>a</p-inputgroup-addon>
+      <input
+        pInputText
+        type="month"
+        [(ngModel)]="fechaFinal"
+        pTooltip="Selecciona mes final"
+        tooltipPosition="top"
+        (change)="onSendDateRange(fechaInicial, fechaFinal)"
+      />
+    </p-inputgroup>
+  </div>
+</div>
+
+
+
+
+
+
+

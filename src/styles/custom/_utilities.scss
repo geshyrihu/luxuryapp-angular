@@ -1,0 +1,17 @@
+/* ============================================================
+   UTILIDADES ADICIONALES (Complemento a PrimeFlex)
+   ============================================================ */
+
+.tracking-tighter { letter-spacing: -0.05em; }
+.tracking-tight   { letter-spacing: -0.025em; }
+.tracking-normal  { letter-spacing: 0em; }
+.tracking-wide    { letter-spacing: 0.025em; }
+.tracking-wider   { letter-spacing: 0.05em; }
+.tracking-widest  { letter-spacing: 0.1em; }
+
+/* Alturas y anchos específicos si PrimeFlex no los cubre */
+.h-15rem { height: 15rem; }
+.h-20rem { height: 20rem; }
+.max-w-30rem { max-width: 30rem; }
+.max-w-40rem { max-width: 40rem; }
+.max-w-50rem { max-width: 50rem; }

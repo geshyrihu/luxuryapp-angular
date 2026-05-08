@@ -1,0 +1,51 @@
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div>
+    <div class="mb-2">
+      <p class="text-base font-semibold">AGREGAR PRODUCTO O SERVICIO</p>
+    </div>
+
+    <div class="grid align-items-start">
+      <div class="col-12 md:col-7">
+        <label for="example-text-input" class="block mb-2">BUSCAR </label>
+
+        <custom-input-text-signal
+          [control]="form.controls.productName"
+          list="productOptions"
+          id="exaemployeempleDataList"
+          placeholder="Escribe para buscar producto o servicio..."
+          (input)="onInputProduct($event)"
+          (change)="onSelectProduct($event)"
+          [horizontal]="false"
+        />
+      </div>
+
+      <div class="col-12 md:col-2">
+        <custom-input-text-signal
+          [control]="form.controls.cantidad"
+          label="CANTIDAD"
+          type="number"
+          min="1"
+          [horizontal]="false"
+        />
+      </div>
+
+      <div class="col-12 md:col-2">
+        <custom-input-select-signal
+          [control]="form.controls.unidadMedidaId"
+          [data]="cb_measurement_units()"
+          label="UNIDAD"
+          [horizontal]="false"
+        />
+      </div>
+
+      <div class="col-12 md:col-1 flex align-items-end">
+        <label for="" hidden>.</label>
+        <custom-button-save
+          size=""
+          [disabled]="form.invalid"
+          customClass="w-full"
+        />
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,67 @@
+import { Component, computed, inject, signal } from "@angular/core";
+import { RouterModule } from "@angular/router";
+import { IonNote } from "@ionic/angular/standalone";
+import { addIcons } from "ionicons";
+import { chevronForwardOutline } from "ionicons/icons";
+import { CardModule } from "primeng/card";
+import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { TableModule } from "primeng/table";
+import { TagModule } from "primeng/tag";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { IModuleAppRolDTO } from "../models/module-app-rol.dto";
+import { ModuleAppRolUpdate } from "./module-app-rol-update";
+@Component({
+  selector: "app-module-app-rol",
+  imports: [
+    RouterModule,
+    TableModule,
+    TagModule,
+    ProgressSpinnerModule,
+    PrimeNgCustomCaption,
+    CardModule,
+    DataViewMobile,
+
+    IonNote,
+  ],
+  templateUrl: "./module-app-rol.html",
+})
+export class ModuleAppRol {
+  apiResponseS = inject(ApiResponseService);
+  dialogHandlerS = inject(DialogHandlerService);
+  dataSignal = signal<IModuleAppRolDTO[]>([]);
+  globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
+  constructor() {
+    addIcons({ chevronForwardOutline });
+  }
+
+  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
+
+  ngOnInit(): void {
+    this.onLoadData();
+  }
+
+  onLoadData() {
+    this.apiResponseS
+      .onGetList<IModuleAppRolDTO[]>(Endpoints.ModuleAppRoles.listRole)
+      .then((result) => {
+        // Actualizamos el valor del signal con los datos recibidos
+        this.dataSignal.set(result || []);
+      });
+  }
+
+  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
+  onModalForm(data: any) {
+    this.dialogHandlerS.openDialog(
+      ModuleAppRolUpdate,
+      data,
+      data.title,
+      this.dialogHandlerS.sizeFull,
+    );
+  }
+}

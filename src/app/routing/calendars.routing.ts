@@ -1,0 +1,88 @@
+import { Routes } from "@angular/router";
+import { authGuard } from "src/app/core/guard/auth.guard";
+export const calendarsRoutes: Routes = [
+  {
+    path: "jewish-holidays", // Ruta anterior: 'fiestas-judias'
+    loadComponent: () =>
+      import("src/app/features/calendar/fiestas-judias/fiestas-judias").then(
+        (m) => m.FiestasJudias,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Fiestas Judías",
+      breadcrumb: "Fiestas Judías",
+    },
+  },
+  {
+    path: "christian-holidays", // Ruta anterior: 'fiestas-cristianas'
+    loadComponent: () =>
+      import("src/app/features/calendar/fiestas-cristianas/fiestas-cristianas").then(
+        (m) => m.FiestasCristianas,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Fiestas Cristianas",
+      breadcrumb: "Fiestas Cristianas",
+    },
+  },
+  {
+    path: "birthdays", // Ruta anterior: 'cumpleanos'
+    loadComponent: () =>
+      import("src/app/features/calendar/birthday/cumpleanos-list").then(
+        (m) => m.Cumpleanos,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Fiestas Cumpleaños",
+      breadcrumb: "Fiestas Cumpleaños",
+    },
+  },
+  {
+    path: "maintenance-master", // Ruta anterior: 'mantenimiento-master'
+    loadComponent: () =>
+      import("src/app/features/maintenance-calendar-master/calendario-maestro-lista").then(
+        (m) => m.CalendarioMaestroLista,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Mantenimiento Maestro",
+      breadcrumb: "Mantenimiento Maestro",
+    },
+  },
+  {
+    path: "fundings", // Ruta anterior: 'fondeos'
+    loadComponent: () =>
+      import("src/app/features/calendar/fondeos/fondeos").then(
+        (m) => m.Fondeos,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Fondeos",
+      breadcrumb: "Fondeos",
+    },
+  },
+  {
+    path: "team-master-calendar", // Ruta anterior: 'calendario-maestro-equipo'
+    loadComponent: () =>
+      import("src/app/features/configuration/calendario-maestro-equipo/calendario-maestro-equipo").then(
+        (m) => m.CalendarioMaestroEquipo,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Calendario Maestro Equipo",
+      breadcrumb: "Calendario Maestro Equipo",
+    },
+  },
+  {
+    path: "committee-meetings", // Ruta anterior: 'reuniones-comite'
+    loadComponent: () =>
+      import("src/app/features/calendar/reuniones-comite/reuniones-comite").then(
+        (m) => m.ReunionesComite,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Reuniones con Comité",
+      breadcrumb: "Reuniones con Comité",
+    },
+  },
+];

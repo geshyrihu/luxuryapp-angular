@@ -1,0 +1,146 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <div class="flex align-items-center justify-content-between w-full">
+      <primeng-custom-caption
+        (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+        [dt]="dt"
+        [rolAuth]="
+          aspRoleS.hasAny([
+            AspRole.Asistente,
+            AspRole.Administrador,
+            AspRole.SuperUsuario,
+          ])
+        "
+      />
+      <div class="flex">
+        <custom-button
+          severity="success"
+          iconClass="pi pi-file-excel"
+          (clicked)="onExportExcel()"
+          label="Exportar"
+        />
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-12 sm:col-4"></div>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-10" pSortableColumn="property">
+        Propiedad
+        <p-sortIcon field="property" />
+      </th>
+      <th class="table-col-10" pSortableColumn="habitant">
+        Habitante
+        <p-sortIcon field="habitant" />
+      </th>
+      <th class="table-col-10" pSortableColumn="fullName">
+        Nombre
+        <p-sortIcon field="fullName" />
+      </th>
+
+      <th class="table-col-10" pSortableColumn="fixedPhone">
+        TÃ³lefono fijo
+        <p-sortIcon field="fixedPhone" />
+      </th>
+      <th class="table-col-10" pSortableColumn="extencion">
+        ExtensiÃ³n
+        <p-sortIcon field="extencion" />
+      </th>
+      <th class="table-col-10">TÃ³lefono</th>
+      <th class="table-col-10" pSortableColumn="email">
+        Email
+        <p-sortIcon field="email" />
+      </th>
+      <th class="table-col-10" pSortableColumn="enviarMails" class="no-print">
+        Enviar Info
+        <p-sortIcon field="enviarMails" />
+      </th>
+      @if ( aspRoleS.hasAny([ AspRole.Asistente, AspRole.Administrador,
+      AspRole.SuperUsuario, ]) ) {
+      <th class="no-print"></th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.property }}</td>
+      <td>{{ item.habitant }}</td>
+      <td>{{ item.fullName }}</td>
+      <td>{{ item.fixedPhone }}</td>
+      <td>{{ item.extencion }}</td>
+      <td>{{ item.phoneNumber }}</td>
+      <td>{{ item.email }}</td>
+      <td class="no-print">
+        @if (item.enviarMails) {
+        <i class="text-success icon icon-pi-check"></i>
+        } @if (!item.enviarMails) {
+        <i class="text-danger icon icon-pi-times"></i>
+        }
+      </td>
+      @if ( aspRoleS.hasAny([ AspRole.Asistente, AspRole.Administrador,
+      AspRole.SuperUsuario, ]) ) {
+      <td class="no-print">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            />
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+          </ng-container>
+        </app-action-menu>
+      </td>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div
+        slot="start"
+        style="
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          background: #ede9fe;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-left: 16px;
+        "
+      >
+        <ion-icon
+          name="home-outline"
+          style="font-size: 20px; color: #7c3aed"
+        ></ion-icon>
+      </div>
+      <ion-label>
+        <h3>{{ item.habitant }}</h3>
+        <p>{{ item.property }} Ã³ {{ item.phoneNumber }}</p>
+        <p>{{ item.email }}</p>
+      </ion-label>
+      <app-action-menu slot="end">
+        <ion-button-edit
+          (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+        />
+        <ion-button-delete (confirmed)="onDelete(item.id)" />
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

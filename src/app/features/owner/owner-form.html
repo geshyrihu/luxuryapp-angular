@@ -1,0 +1,61 @@
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <custom-input-text-signal [control]="form.controls.id" label="Id" />
+
+  <custom-input-select-signal
+    [control]="form.controls.habitant"
+    label="Habitante"
+    [data]="cb_Habitant()"
+  />
+
+  <custom-input-text-signal
+    [control]="form.controls.firstName"
+    label="Nombre"
+    placeholder="nombre"
+  />
+  <custom-input-text-signal
+    [control]="form.controls.lastName"
+    label="Apellidos"
+    placeholder="apellidos"
+  />
+  <custom-input-number-signal
+    [control]="form.controls.extencion"
+    label="Extesión"
+    placeholder="extención"
+  />
+  <custom-input-mask-signal
+    [control]="form.controls.fixedPhone"
+    label="Télefono fijo"
+    placeholder="(00) 0000-0000"
+    customMask="(00) 0000-0000"
+  />
+
+  <custom-input-mask-signal
+    [control]="form.controls.phoneNumber"
+    label="Tél. Celular"
+    placeholder="(00) 0000-0000"
+    customMask="(00) 0000-0000"
+  />
+  <custom-input-text-signal
+    [control]="form.controls.email"
+    label="Email personal"
+    placeholder="email personal"
+  />
+  <custom-input-select-signal
+    [control]="form.controls.enviarMails"
+    label="Enviar correos"
+    [data]="cb_enviarMails"
+  />
+  <custom-input-autocomplete-signal
+    (propagar)="savePropiedadId($event)"
+    [control]="form.controls.property"
+    [data]="cb_properties()"
+    label="Propiedad"
+    placeholder="Escribe para buscar propiedad"
+  />
+
+  <custom-button-save
+    [propertyId]="id"
+    [disabled]="form.invalid"
+    [submitting]="submitting()"
+  />
+</form>
