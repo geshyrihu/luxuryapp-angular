@@ -5,14 +5,14 @@
   </div>
 
   @if (this.aspRoleS.hasRole(AspRole.SuperUsuario)) {
-  <div class="col-12 lg:col-9">
+  <div class="col-12 lg:col-6">
     <app-update-role
       [applicationUserId]="applicationUserId"
       [roleType]="null"
     />
   </div>
 
-  <div class="col-12 lg:col-3">
+  <div class="col-12 lg:col-6">
     <app-access-customer [applicationUserId]="applicationUserId" />
   </div>
   }

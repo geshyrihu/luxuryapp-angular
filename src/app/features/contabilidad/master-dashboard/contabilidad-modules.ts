@@ -83,7 +83,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         bgColor: "#dbeafe",
       },
       {
-        title: "Cobranza",
+        title: "Cobranza Online",
         description: "Gestión y seguimiento de cuentas por cobrar.",
         route: "/contabilidad/collections",
         icon: "pi pi-wallet",
@@ -91,8 +91,17 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         bgColor: "#d1fae5",
       },
       {
+        title: "Cobranza Nativa",
+        description: "Gestión y seguimiento de cuentas por cobrar.",
+        route: "/cobranza-nativa",
+        icon: "pi pi-bolt",
+        color: "#0f766e",
+        bgColor: "#ccfbf1",
+      },
+      {
         title: "Espejo Aspel Full",
-        description: "Catalogo completo de cuentas Aspel con cargos, abonos y presupuesto mensual por grupo.",
+        description:
+          "Catalogo completo de cuentas Aspel con cargos, abonos y presupuesto mensual por grupo.",
         route: "/contabilidad/espejo-aspel-full",
         icon: "pi pi-table",
         color: "#0f172a",

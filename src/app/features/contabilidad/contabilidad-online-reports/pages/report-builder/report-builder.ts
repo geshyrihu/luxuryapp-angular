@@ -8,6 +8,7 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 import {
+  CdkDragDrop,
   DragDropModule,
 } from "@angular/cdk/drag-drop";
 import { AccordionModule } from "primeng/accordion";
@@ -263,40 +264,21 @@ export class ReportBuilder implements OnInit {
     this.livePreviewS.removeRow(seccionId, rowId);
   }
 
-  onAccountDrop(sectionId: string, rowId: string, accountCode: string) {
-    if (!accountCode?.trim()) return;
-    this.livePreviewS.dropAccountOnRow(sectionId, rowId, accountCode);
-  }
-
-  onAccountDragOver(event: DragEvent) {
-    event.preventDefault();
-    if (event.dataTransfer) {
-      event.dataTransfer.dropEffect = "copy";
+  onAccountCdkDropToRow(sectionId: string, rowId: string, event: CdkDragDrop<any>) {
+    const accountCode = event.item.data;
+    if (typeof accountCode === 'string' && accountCode.trim()) {
+      this.livePreviewS.dropAccountOnRow(sectionId, rowId, accountCode.trim());
     }
   }
 
-  onAccountNativeDrop(sectionId: string, rowId: string, event: DragEvent) {
-    event.preventDefault();
-
-    const accountCode =
-      event.dataTransfer?.getData("application/x-luxuryapp-account-code") ||
-      event.dataTransfer?.getData("text/plain") ||
-      "";
-
-    this.onAccountDrop(sectionId, rowId, accountCode);
+  onAccountCdkDropToSection(sectionId: string, event: CdkDragDrop<any>) {
+    const accountCode = event.item.data;
+    if (typeof accountCode === 'string' && accountCode.trim()) {
+      this.livePreviewS.dropAccountOnSection(sectionId, accountCode.trim());
+    }
   }
 
-  onAccountSectionDrop(sectionId: string, event: DragEvent) {
-    event.preventDefault();
 
-    const accountCode =
-      event.dataTransfer?.getData("application/x-luxuryapp-account-code") ||
-      event.dataTransfer?.getData("text/plain") ||
-      "";
-
-    if (!accountCode?.trim()) return;
-    this.livePreviewS.dropAccountOnSection(sectionId, accountCode);
-  }
 
   addSelectedAccountsToRow(sectionId: string, rowId: string) {
     const selectedCodes = this.selectedCatalogCodes();

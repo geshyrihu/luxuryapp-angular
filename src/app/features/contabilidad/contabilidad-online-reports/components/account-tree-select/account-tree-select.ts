@@ -5,11 +5,12 @@ import { BadgeModule } from 'primeng/badge';
 import { InputTextModule } from 'primeng/inputtext';
 import { AccountCatalogService } from '../../services/account-catalog.service';
 import { IAccountTreeNode } from '../../models/report-definition.interface';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-account-tree-select',
   standalone: true,
-  imports: [TreeModule, BadgeModule, InputTextModule],
+  imports: [TreeModule, BadgeModule, InputTextModule, DragDropModule],
   template: `
     <div class="flex flex-column gap-2 p-1 h-full">
       <div class="p-inputgroup w-full sticky top-0 z-1 bg-white">
@@ -28,7 +29,7 @@ import { IAccountTreeNode } from '../../models/report-definition.interface';
           <span class="text-xs text-500 uppercase font-bold tracking-wider">Cargando...</span>
         </div>
       } @else {
-        <div class="overflow-auto border-round surface-border">
+        <div class="overflow-auto border-round surface-border" cdkDropList cdkDropListSortingDisabled="true">
           <p-tree
             [value]="filteredNodes()"
             selectionMode="checkbox"
@@ -37,13 +38,18 @@ import { IAccountTreeNode } from '../../models/report-definition.interface';
             [metaKeySelection]="false"
             class="w-full border-none">
             <ng-template pTemplate="default" let-node>
-              <!-- NODO ARRASTRABLE -->
               <div 
                 class="flex align-items-center gap-2 py-1 w-full account-node"
-                [draggable]="isDraggable()"
-                (dragstart)="onDragStart($event, node)"
-                (dragend)="onDragEnd($event)"
+                cdkDrag
+                [cdkDragData]="node.data?.code"
+                [cdkDragDisabled]="!isDraggable()"
                 [class.cursor-move]="isDraggable()">
+                
+                <div *cdkDragPreview class="bg-primary-50 border-1 border-primary-200 border-round p-2 shadow-2 flex align-items-center gap-2 opacity-90 z-5">
+                  <i class="pi pi-bars text-primary-500"></i>
+                  <span class="font-mono text-xs font-bold text-primary-900">{{ node.data.code }}</span>
+                  <span class="text-sm font-semibold">{{ node.data.name }}</span>
+                </div>
                 
                 <p-badge 
                   [value]="'N' + node.data.level" 
