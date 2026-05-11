@@ -1,11 +1,8 @@
 <div class="aspel-cobranza-page">
   <div class="page-header">
     <div>
-      <h1>Pendientes por Concepto Aspel</h1>
-      <p>
-        Consulta saldos pendientes por concepto desde las subcuentas nivel 4
-        configuradas para la propiedad.
-      </p>
+      <h1>{{ getModeTitle() }}</h1>
+      <p>{{ getModeDescription() }}</p>
     </div>
     <p-tag
       [value]="customerId()"
@@ -23,47 +20,76 @@
     <p-card styleClass="filter-card">
       <div class="filter-grid">
         <div class="field-block">
-          <label for="numCta">Numero de cuenta</label>
+          <label for="mode">Endpoint</label>
           <p-select
-            id="numCta"
-            [(ngModel)]="request.numCta"
-            [options]="accountOptions()"
+            id="mode"
+            [ngModel]="mode()"
+            [options]="endpointOptions"
             optionLabel="label"
             optionValue="value"
-            [filter]="true"
-            [loading]="accountsLoading()"
-            placeholder="Selecciona una cuenta"
             appendTo="body"
             class="w-full"
+            (ngModelChange)="mode.set($event); onModeChange()"
           />
-          <small>Cuenta base nivel 3 de la propiedad cargada desde Aspel.</small>
+          <small>Selecciona la consulta Aspel que quieres ejecutar.</small>
         </div>
 
-        <div class="field-block">
-          <label for="fechaInicio">Fecha inicio</label>
-          <p-datePicker
-            inputId="fechaInicio"
-            [(ngModel)]="request.fechaInicio"
-            (ngModelChange)="onDateContextChange()"
-            dateFormat="yy-mm-dd"
-            [showIcon]="true"
-            appendTo="body"
-            styleClass="w-full"
-          />
-        </div>
+        @if (mode() !== "accounts" && mode() !== "deudas-actuales") {
+          <div class="field-block">
+            <label for="numCta">Numero de cuenta</label>
+            <p-select
+              id="numCta"
+              [(ngModel)]="request.numCta"
+              [options]="accountOptions()"
+              optionLabel="label"
+              optionValue="value"
+              [filter]="true"
+              [loading]="accountsLoading()"
+              placeholder="Selecciona una cuenta"
+              appendTo="body"
+              class="w-full"
+            />
+            <small>Cuenta cargada desde el catalogo Aspel del ejercicio seleccionado.</small>
+          </div>
+        }
 
-        <div class="field-block">
-          <label for="fechaFin">Fecha fin</label>
-          <p-datePicker
-            inputId="fechaFin"
-            [(ngModel)]="request.fechaFin"
-            (ngModelChange)="onDateContextChange()"
-            dateFormat="yy-mm-dd"
-            [showIcon]="true"
-            appendTo="body"
-            styleClass="w-full"
-          />
-        </div>
+        @if (mode() !== "deudas-actuales") {
+          <div class="field-block">
+            <label for="fechaInicio">
+              {{ mode() === "accounts" ? "Fecha para ejercicio" : "Fecha inicio" }}
+            </label>
+            <p-datePicker
+              inputId="fechaInicio"
+              [(ngModel)]="request.fechaInicio"
+              (ngModelChange)="onDateContextChange()"
+              dateFormat="yy-mm-dd"
+              [showIcon]="true"
+              appendTo="body"
+              styleClass="w-full"
+            />
+          </div>
+        } @else {
+          <div class="field-block">
+            <label>Fecha corte</label>
+            <div class="static-field">Hoy</div>
+            <small>El endpoint usa la fecha actual del servidor como corte.</small>
+          </div>
+        }
+
+        @if (mode() !== "accounts" && mode() !== "deudas-actuales") {
+          <div class="field-block">
+            <label for="fechaFin">Fecha fin</label>
+            <p-datePicker
+              inputId="fechaFin"
+              [(ngModel)]="request.fechaFin"
+              (ngModelChange)="onDateContextChange()"
+              dateFormat="yy-mm-dd"
+              [showIcon]="true"
+              appendTo="body"
+              styleClass="w-full"
+            />
+          </div>
+        }
 
         <div class="actions-block">
           <custom-button
@@ -84,42 +110,421 @@
       </div>
     </p-card>
 
+    @if (canDownloadAccountDocuments()) {
+      <div class="document-actions">
+        <custom-button-download
+          label="Aviso de cobro"
+          iconClass="pi pi-file-pdf"
+          severity="danger"
+          [showLabelOnDesktop]="true"
+          (clicked)="downloadAvisoCobroPdf()"
+        />
+        <custom-button-download
+          label="Estado de cuenta"
+          iconClass="pi pi-file-pdf"
+          severity="info"
+          [showLabelOnDesktop]="true"
+          (clicked)="downloadEstadoCuentaPdf()"
+        />
+      </div>
+    }
+
     @if (loading()) {
       <p-card styleClass="state-card">
         <div class="state-message">
           <i class="pi pi-spin pi-spinner"></i>
-          <span>Consultando pendientes por concepto en Aspel...</span>
+          <span>Consultando informacion en Aspel...</span>
         </div>
       </p-card>
-    } @else if (summary()) {
+    } @else if (mode() === "accounts" && accountRows().length) {
+      <div class="summary-grid">
+        <p-card styleClass="summary-card">
+          <span class="summary-label">Customer</span>
+          <strong>{{ customerId() }}</strong>
+          <small>Contexto actual</small>
+        </p-card>
+
+        <p-card styleClass="summary-card accent-soft">
+          <span class="summary-label">Ejercicio</span>
+          <strong>{{ yearLabel() }}</strong>
+          <small>Usado para cargar el catalogo</small>
+        </p-card>
+
+        <p-card styleClass="summary-card accent">
+          <span class="summary-label">Total cuentas</span>
+          <strong>{{ accountRows().length }}</strong>
+          <small>Cuentas devueltas por Aspel</small>
+        </p-card>
+      </div>
+
+      <p-table
+        [globalFilterFields]="globalFilterFields()"
+        [paginator]="true"
+        [rows]="tablePrimeNgRows"
+        [rowsPerPageOptions]="rowsPerPageOptions"
+        [scrollable]="true"
+        [scrollHeight]="scrollHeight()"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '68rem' }"
+        [value]="accountRows()"
+        #dtAccounts
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} cuentas"
+        styleClass="custom-table card hidden md:block"
+      >
+        <ng-template #caption>
+          <primeng-custom-caption
+            [dt]="dtAccounts"
+            [showAdd]="false"
+            label="Buscar cuenta"
+          />
+        </ng-template>
+
+        <ng-template #header>
+          <tr>
+            <th pSortableColumn="numCta">
+              Cuenta
+              <p-sortIcon field="numCta" />
+            </th>
+            <th pSortableColumn="nombre">
+              Nombre
+              <p-sortIcon field="nombre" />
+            </th>
+            <th pSortableColumn="estatus">
+              Estatus
+              <p-sortIcon field="estatus" />
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template #body let-item>
+          <tr>
+            <td><code>{{ item.numCta }}</code></td>
+            <td>{{ item.nombre }}</td>
+            <td><p-tag [value]="item.estatus" severity="secondary" /></td>
+          </tr>
+        </ng-template>
+
+        <ng-template #paginatorleft>
+          <primeng-custom-table-footer [data]="accountRows()" />
+        </ng-template>
+      </p-table>
+    } @else if (mode() === "estado-cuenta-rango" && estadoCuenta()) {
+      <div class="summary-grid">
+        <p-card styleClass="summary-card">
+          <span class="summary-label">Cuenta</span>
+          <strong>{{ estadoCuenta()?.numCta }}</strong>
+          <small>{{ estadoCuenta()?.departamento }}</small>
+        </p-card>
+
+        <p-card styleClass="summary-card">
+          <span class="summary-label">Rango</span>
+          <strong>{{ estadoCuenta()?.fechaInicio }} - {{ estadoCuenta()?.fechaFin }}</strong>
+          <small>{{ estadoCuenta()?.totalMovimientos }} movimientos</small>
+        </p-card>
+
+        <p-card styleClass="summary-card accent-soft">
+          <span class="summary-label">Saldo inicial</span>
+          <strong>{{ estadoCuenta()?.saldoInicial | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
+          <small>Al corte de apertura</small>
+        </p-card>
+
+        <p-card styleClass="summary-card accent">
+          <span class="summary-label">Saldo final</span>
+          <strong>{{ estadoCuenta()?.saldoFinal | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
+          <small>Al cierre del rango</small>
+        </p-card>
+      </div>
+
+      <p-table
+        [globalFilterFields]="globalFilterFields()"
+        [paginator]="true"
+        [rows]="tablePrimeNgRows"
+        [rowsPerPageOptions]="rowsPerPageOptions"
+        [scrollable]="true"
+        [scrollHeight]="scrollHeight()"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '78rem' }"
+        [value]="estadoMovimientos()"
+        #dtEstado
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} movimientos"
+        styleClass="custom-table card hidden md:block"
+      >
+        <ng-template #caption>
+          <primeng-custom-caption
+            [dt]="dtEstado"
+            [showAdd]="false"
+            label="Buscar movimiento"
+          />
+        </ng-template>
+
+        <ng-template #header>
+          <tr>
+            <th pSortableColumn="fecha">
+              Fecha
+              <p-sortIcon field="fecha" />
+            </th>
+            <th pSortableColumn="tipo">
+              Tipo
+              <p-sortIcon field="tipo" />
+            </th>
+            <th pSortableColumn="concepto">
+              Concepto
+              <p-sortIcon field="concepto" />
+            </th>
+            <th pSortableColumn="monto" class="text-right">
+              Monto
+              <p-sortIcon field="monto" />
+            </th>
+            <th pSortableColumn="saldoAnterior" class="text-right">
+              Saldo anterior
+              <p-sortIcon field="saldoAnterior" />
+            </th>
+            <th pSortableColumn="saldoPosterior" class="text-right">
+              Saldo posterior
+              <p-sortIcon field="saldoPosterior" />
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template #body let-item>
+          <tr>
+            <td>{{ item.fecha }}</td>
+            <td>
+              <p-tag
+                [value]="item.tipo"
+                [severity]="item.tipo === 'cargo' ? 'warn' : 'success'"
+              />
+            </td>
+            <td>{{ item.concepto }}</td>
+            <td class="text-right font-mono">{{ item.monto | currency: "MXN" : "symbol" : "1.2-2" }}</td>
+            <td class="text-right font-mono">{{ item.saldoAnterior | currency: "MXN" : "symbol" : "1.2-2" }}</td>
+            <td class="text-right font-mono">{{ item.saldoPosterior | currency: "MXN" : "symbol" : "1.2-2" }}</td>
+          </tr>
+        </ng-template>
+
+        <ng-template #paginatorleft>
+          <primeng-custom-table-footer [data]="estadoMovimientos()" />
+        </ng-template>
+      </p-table>
+    } @else if (mode() === "contrapartidas-rango" && contrapartidas()) {
       <div class="summary-grid">
         <p-card styleClass="summary-card">
           <span class="summary-label">Cuenta base</span>
-          <strong>{{ summary()?.numCtaBase }}</strong>
-          <small>{{ summary()?.departamento || "Sin nombre de departamento" }}</small>
+          <strong>{{ contrapartidas()?.numCtaBase }}</strong>
+          <small>{{ contrapartidas()?.departamento }}</small>
+        </p-card>
+
+        <p-card styleClass="summary-card">
+          <span class="summary-label">Rango</span>
+          <strong>{{ contrapartidas()?.fechaInicio }} - {{ contrapartidas()?.fechaFin }}</strong>
+          <small>{{ contrapartidas()?.totalMovimientos }} movimientos</small>
+        </p-card>
+
+        <p-card styleClass="summary-card accent-soft">
+          <span class="summary-label">Saldo inicial</span>
+          <strong>{{ contrapartidas()?.saldoInicial | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
+          <small>Cuenta base</small>
+        </p-card>
+
+        <p-card styleClass="summary-card accent">
+          <span class="summary-label">Saldo final</span>
+          <strong>{{ contrapartidas()?.saldoFinal | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
+          <small>Cuenta base</small>
+        </p-card>
+      </div>
+
+      <p-table
+        [globalFilterFields]="globalFilterFields()"
+        [paginator]="true"
+        [rows]="tablePrimeNgRows"
+        [rowsPerPageOptions]="rowsPerPageOptions"
+        [scrollable]="true"
+        [scrollHeight]="scrollHeight()"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '78rem' }"
+        [value]="contrapartidaRows()"
+        #dtContra
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} grupos"
+        styleClass="custom-table card hidden md:block"
+      >
+        <ng-template #caption>
+          <primeng-custom-caption
+            [dt]="dtContra"
+            [showAdd]="false"
+            label="Buscar contrapartida"
+          />
+        </ng-template>
+
+        <ng-template #header>
+          <tr>
+            <th pSortableColumn="numCtaContra">
+              Cuenta contra
+              <p-sortIcon field="numCtaContra" />
+            </th>
+            <th pSortableColumn="nombreCuenta">
+              Nombre
+              <p-sortIcon field="nombreCuenta" />
+            </th>
+            <th pSortableColumn="totalMonto" class="text-right">
+              Monto total
+              <p-sortIcon field="totalMonto" />
+            </th>
+            <th pSortableColumn="totalMovimientos" class="text-right">
+              Movimientos
+              <p-sortIcon field="totalMovimientos" />
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template #body let-item>
+          <tr>
+            <td><code>{{ item.numCtaContra }}</code></td>
+            <td>{{ item.nombreCuenta }}</td>
+            <td class="text-right font-mono">{{ item.totalMonto | currency: "MXN" : "symbol" : "1.2-2" }}</td>
+            <td class="text-right font-mono">{{ item.totalMovimientos }}</td>
+          </tr>
+        </ng-template>
+
+        <ng-template #paginatorleft>
+          <primeng-custom-table-footer [data]="contrapartidaRows()" />
+        </ng-template>
+      </p-table>
+    } @else if (mode() === "deudas-actuales" && deudasActuales()) {
+      <div class="summary-grid">
+        <p-card styleClass="summary-card">
+          <span class="summary-label">Customer</span>
+          <strong>{{ customerId() }}</strong>
+          <small>Contexto actual</small>
+        </p-card>
+
+        <p-card styleClass="summary-card">
+          <span class="summary-label">Fecha corte</span>
+          <strong>{{ deudasActuales()?.fechaCorte }}</strong>
+          <small>Saldo al dia de hoy</small>
+        </p-card>
+
+        <p-card styleClass="summary-card accent">
+          <span class="summary-label">Propiedades con deuda</span>
+          <strong>{{ deudasActuales()?.totalPropiedadesConDeuda }}</strong>
+          <small>Solo saldos positivos</small>
+        </p-card>
+
+        <p-card styleClass="summary-card accent-soft">
+          <span class="summary-label">Deuda total</span>
+          <strong>{{ totalDeudaActual() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
+          <small>Saldo vigente acumulado</small>
+        </p-card>
+      </div>
+
+      <p-table
+        [globalFilterFields]="globalFilterFields()"
+        [paginator]="true"
+        [rows]="tablePrimeNgRows"
+        [rowsPerPageOptions]="rowsPerPageOptions"
+        [scrollable]="true"
+        [scrollHeight]="scrollHeight()"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '76rem' }"
+        [value]="deudaActualRows()"
+        #dtDeudas
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} propiedades con deuda"
+        styleClass="custom-table card hidden md:block"
+      >
+        <ng-template #caption>
+          <primeng-custom-caption
+            [dt]="dtDeudas"
+            [showAdd]="false"
+            label="Buscar propiedad con deuda"
+          />
+        </ng-template>
+
+        <ng-template #header>
+          <tr>
+            <th pSortableColumn="numCtaBase">
+              Cuenta base
+              <p-sortIcon field="numCtaBase" />
+            </th>
+            <th pSortableColumn="departamento">
+              Departamento
+              <p-sortIcon field="departamento" />
+            </th>
+            <th pSortableColumn="tieneDesgloseConceptos">
+              Modalidad
+              <p-sortIcon field="tieneDesgloseConceptos" />
+            </th>
+            <th pSortableColumn="totalConceptos" class="text-right">
+              Conceptos
+              <p-sortIcon field="totalConceptos" />
+            </th>
+            <th pSortableColumn="saldoActual" class="text-right">
+              Deuda actual
+              <p-sortIcon field="saldoActual" />
+            </th>
+            <th class="text-center">Detalle</th>
+          </tr>
+        </ng-template>
+
+        <ng-template #body let-item>
+          <tr class="clickable-row" (click)="openDebtDetail(item)">
+            <td><code>{{ item.numCtaBase }}</code></td>
+            <td>{{ item.departamento }}</td>
+            <td>
+              <p-tag
+                [value]="item.tieneDesgloseConceptos ? 'Desglosado' : 'Global'"
+                [severity]="item.tieneDesgloseConceptos ? 'info' : 'secondary'"
+              />
+            </td>
+            <td class="text-right font-mono">{{ item.totalConceptos }}</td>
+            <td class="text-right font-mono font-semibold text-red-600">
+              {{ item.saldoActual | currency: "MXN" : "symbol" : "1.2-2" }}
+            </td>
+            <td class="text-center detail-link-cell">Ver detalle</td>
+          </tr>
+        </ng-template>
+
+        <ng-template #footer>
+          <tr class="table-totals-row">
+            <td colspan="4" class="font-semibold">Totales</td>
+            <td class="text-right font-mono font-semibold text-red-600">
+              {{ totalDeudaActual() | currency: "MXN" : "symbol" : "1.2-2" }}
+            </td>
+            <td></td>
+          </tr>
+        </ng-template>
+
+        <ng-template #paginatorleft>
+          <primeng-custom-table-footer [data]="deudaActualRows()" />
+        </ng-template>
+      </p-table>
+    } @else if (mode() === "pendientes-concepto-rango" && pendientes()) {
+      <div class="summary-grid">
+        <p-card styleClass="summary-card">
+          <span class="summary-label">Cuenta base</span>
+          <strong>{{ pendientes()?.numCtaBase }}</strong>
+          <small>{{ pendientes()?.departamento || "Sin nombre de departamento" }}</small>
         </p-card>
 
         <p-card styleClass="summary-card">
           <span class="summary-label">Rango consultado</span>
-          <strong>{{ summary()?.fechaInicio }} - {{ summary()?.fechaFin }}</strong>
+          <strong>{{ pendientes()?.fechaInicio }} - {{ pendientes()?.fechaFin }}</strong>
           <small>Customer actual en contexto</small>
         </p-card>
 
         <p-card styleClass="summary-card accent">
           <span class="summary-label">Conceptos encontrados</span>
-          <strong>{{ summary()?.totalConceptos }}</strong>
-          <small>Subcuentas nivel 4 detectadas</small>
+          <strong>{{ pendientes()?.totalConceptos }}</strong>
+          <small>Conceptos disponibles en la cuenta</small>
         </p-card>
 
         <p-card styleClass="summary-card">
           <span class="summary-label">Saldo inicial total</span>
-          <strong>{{ totalSaldoInicial() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
+          <strong>{{ totalSaldoInicialPendientes() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
           <small>Suma inicial del rango consultado</small>
         </p-card>
 
         <p-card styleClass="summary-card accent-soft">
           <span class="summary-label">Saldo pendiente total</span>
-          <strong>{{ totalSaldoPendiente() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
+          <strong>{{ totalSaldoPendientePendientes() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
           <small>Saldo vigente acumulado por concepto</small>
         </p-card>
       </div>
@@ -133,14 +538,14 @@
         [scrollHeight]="scrollHeight()"
         [showCurrentPageReport]="true"
         [tableStyle]="{ 'min-width': '72rem' }"
-        [value]="dataSignal()"
-        #dt
+        [value]="pendienteRows()"
+        #dtPend
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} conceptos"
         styleClass="custom-table card hidden md:block"
       >
         <ng-template #caption>
           <primeng-custom-caption
-            [dt]="dt"
+            [dt]="dtPend"
             [showAdd]="false"
             label="Buscar concepto o cuenta"
           />
@@ -187,19 +592,11 @@
                 [severity]="getConceptSeverity(item.concepto)"
               />
             </td>
-            <td>
-              <code>{{ item.numCta }}</code>
-            </td>
+            <td><code>{{ item.numCta }}</code></td>
             <td>{{ item.nombreCuenta }}</td>
-            <td class="text-right font-mono">
-              {{ item.saldoInicial | currency: "MXN" : "symbol" : "1.2-2" }}
-            </td>
-            <td class="text-right font-mono text-orange-600">
-              {{ item.cargos | currency: "MXN" : "symbol" : "1.2-2" }}
-            </td>
-            <td class="text-right font-mono text-green-600">
-              {{ item.abonos | currency: "MXN" : "symbol" : "1.2-2" }}
-            </td>
+            <td class="text-right font-mono">{{ item.saldoInicial | currency: "MXN" : "symbol" : "1.2-2" }}</td>
+            <td class="text-right font-mono text-orange-600">{{ item.cargos | currency: "MXN" : "symbol" : "1.2-2" }}</td>
+            <td class="text-right font-mono text-green-600">{{ item.abonos | currency: "MXN" : "symbol" : "1.2-2" }}</td>
             <td
               class="text-right font-mono font-semibold"
               [ngClass]="getBalanceClass(item.saldoPendiente)"
@@ -209,47 +606,40 @@
           </tr>
         </ng-template>
 
+        <ng-template #footer>
+          <tr class="table-totals-row">
+            <td colspan="3" class="font-semibold">Totales</td>
+            <td class="text-right font-mono font-semibold">
+              {{ totalSaldoInicialPendientes() | currency: "MXN" : "symbol" : "1.2-2" }}
+            </td>
+            <td class="text-right font-mono font-semibold text-orange-600">
+              {{ totalCargosPendientes() | currency: "MXN" : "symbol" : "1.2-2" }}
+            </td>
+            <td class="text-right font-mono font-semibold text-green-600">
+              {{ totalAbonosPendientes() | currency: "MXN" : "symbol" : "1.2-2" }}
+            </td>
+            <td
+              class="text-right font-mono font-semibold"
+              [ngClass]="getBalanceClass(totalSaldoPendientePendientes())"
+            >
+              {{ totalSaldoPendientePendientes() | currency: "MXN" : "symbol" : "1.2-2" }}
+            </td>
+          </tr>
+        </ng-template>
+
         <ng-template #paginatorleft>
-          <primeng-custom-table-footer [data]="dataSignal()" />
+          <primeng-custom-table-footer [data]="pendienteRows()" />
         </ng-template>
       </p-table>
-
-      <app-data-view-mobile
-        [data]="dataSignal()"
-        [globalFilterFields]="globalFilterFields()"
-        [dt]="dt"
-        [showAdd]="false"
-      >
-        <ng-template #listItemTemplate let-item>
-          <ion-item lines="full" detail="false" class="ion-no-padding">
-            <ion-label class="ion-text-wrap">
-              <div class="mobile-header">
-                <p-tag
-                  [value]="item.concepto"
-                  [severity]="getConceptSeverity(item.concepto)"
-                />
-                <code>{{ item.numCta }}</code>
-              </div>
-              <h3>{{ item.nombreCuenta }}</h3>
-              <p>Saldo inicial: {{ item.saldoInicial | currency: "MXN" : "symbol" : "1.2-2" }}</p>
-              <p>Cargos: {{ item.cargos | currency: "MXN" : "symbol" : "1.2-2" }}</p>
-              <p>Abonos: {{ item.abonos | currency: "MXN" : "symbol" : "1.2-2" }}</p>
-              <p class="mobile-balance" [ngClass]="getBalanceClass(item.saldoPendiente)">
-                Pendiente: {{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.2-2" }}
-              </p>
-            </ion-label>
-          </ion-item>
-        </ng-template>
-      </app-data-view-mobile>
     } @else if (searched()) {
       <p-message
         severity="info"
-        text="No se encontraron pendientes por concepto para la cuenta y rango capturados."
+        text="La consulta no devolvio registros con los filtros actuales."
       />
     } @else {
       <p-message
         severity="info"
-        text="Captura numero de cuenta, fecha inicio y fecha fin para consultar pendientes por concepto."
+        text="Selecciona un endpoint, ajusta los filtros y ejecuta la consulta."
       />
     }
   }

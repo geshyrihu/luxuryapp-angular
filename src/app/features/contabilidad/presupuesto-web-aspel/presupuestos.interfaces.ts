@@ -8,6 +8,7 @@ export {
 } from "../models/presupuesto-shared.models";
 
 export interface PurchaseHistoryDTO {
+  ordenCompraId?: string;
   description: string;
   creationAt: string;
   createdBy: string;

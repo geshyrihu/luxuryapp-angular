@@ -80,70 +80,46 @@ import { PurchaseHistory } from "./purchase-history";
   encapsulation: ViewEncapsulation.None,
 })
 export class PresupuestoAspelEjercicioFiscal {
-  // ===========================
-  // Servicios inyectados
-  // ===========================
   apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
   private aiService = inject(AiService);
   private swalService = inject(SwalService);
 
-  // ===========================
-  // Mótodos Nuevos
-  // ===========================
   onManageRules() {
     const customerId: string = this.customerIdS.customerId();
     if (!customerId) {
-      this.handleError("Seleccione un cliente vólido.");
+      this.handleError("Seleccione un cliente valido.");
+      this.loading.set(false);
       return;
     }
 
     this.dialogHandlerS
       .openDialog(
         BudgetRuleList,
-        { customerId: customerId },
-        "Gestión de Reglas de Presupuesto",
+        { customerId },
+        "Gestion de Reglas de Presupuesto",
         this.dialogHandlerS.sizeLg,
       )
-      .then((result) => {
-        if (result) {
-          this.cargarPresupuesto(customerId);
-        } else {
-          this.cargarPresupuesto(customerId);
-        }
+      .then(() => {
+        this.cargarPresupuesto(customerId);
       });
   }
 
-  // ===========================
-  // Propiedades de estado general
-  // ===========================
   loading = signal(true);
   errorMensaje = signal<string | null>(null);
 
-  // ===========================
-  // Propiedades de cliente y Año
-  // ===========================
   intYear = signal<number>(new Date().getFullYear());
   availableYears: ISelectItem[] = ASPEL_AVAILABLE_YEARS;
 
-  // ===========================
-  // Propiedades de control de meses
-  // ===========================
-  preFormMonth: boolean = true;
+  preFormMonth = true;
   allMonths = signal(true);
   readonly months: string[] = ASPEL_MONTHS;
   mesesSeleccionados: string[] = [...this.months];
 
-  // ===========================
-  // Propiedades de datos principales (Signals)
-  // ===========================
   budgetData = signal<AspelBudgetDTO | null>(null);
-  allCuentas = signal<CuentaAspelTercerNivelDTO[]>([]); // Lista maestra
+  allCuentas = signal<CuentaAspelTercerNivelDTO[]>([]);
 
-  // ===========================
-  // Computed: Cuentas Filtradas
-  // ===========================
   cuentas = computed(() => {
     const grouped = splitAspelAccounts(
       this.allCuentas(),
@@ -152,16 +128,10 @@ export class PresupuestoAspelEjercicioFiscal {
     return grouped.mantenimiento;
   });
 
-  // ===========================
-  // Propiedades de configuración de tabla
-  // ===========================
   globalFilterFields = signal<string[]>([]);
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
-  // ===========================
-  // Ciclo de vida
-  // ===========================
   constructor() {
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
@@ -170,9 +140,11 @@ export class PresupuestoAspelEjercicioFiscal {
       }
     });
   }
+
   cargarPresupuesto(customerId: string): void {
     if (!customerId || !this.intYear()) {
-      this.handleError("Seleccione un cliente y un Año vólidos");
+      this.loading.set(false);
+      this.handleError("Seleccione un cliente y un anio validos");
       return;
     }
 
@@ -196,9 +168,13 @@ export class PresupuestoAspelEjercicioFiscal {
             this.budgetData.set(response);
           }
         }
-        this.loading.set(false);
       })
-      .catch(() => this.loading.set(false));
+      .catch(() => {
+        this.handleError("Ocurrio un error al cargar el presupuesto.");
+      })
+      .finally(() => {
+        this.loading.set(false);
+      });
   }
 
   private handleError(message: string): void {
@@ -210,7 +186,8 @@ export class PresupuestoAspelEjercicioFiscal {
   onApelFull() {
     const customerId: string = this.customerIdS.customerId();
     if (!customerId || !this.intYear()) {
-      this.handleError("Seleccione un cliente y un Año vólidos");
+      this.handleError("Seleccione un cliente y un anio validos");
+      this.loading.set(false);
       return;
     }
 
@@ -220,25 +197,30 @@ export class PresupuestoAspelEjercicioFiscal {
 
     const url = `presupuesto/aspel-full?customerId=${customerId}&intYear=${this.intYear()}`;
 
-    this.apiResponseS.onGetList<AspelBudgetDTO>(url).then((response) => {
-      if (response?.cuentas?.length > 0) {
-        this.budgetData.set(response);
-        this.allCuentas.set(normalizeAspelAccounts(response.cuentas));
-        this.globalFilterFields.set(globalFilterFields(this.allCuentas()));
-      } else {
-        this.handleError(
-          (response as any)?.strMensaje || "No se encontraron datos.",
-        );
-        if (response?.Nombre_Empresa) {
+    this.loading.set(true);
+    this.apiResponseS
+      .onGetList<AspelBudgetDTO>(url)
+      .then((response) => {
+        if (response?.cuentas?.length > 0) {
           this.budgetData.set(response);
+          this.allCuentas.set(normalizeAspelAccounts(response.cuentas));
+          this.globalFilterFields.set(globalFilterFields(this.allCuentas()));
+        } else {
+          this.handleError(
+            (response as any)?.strMensaje || "No se encontraron datos.",
+          );
+          if (response?.Nombre_Empresa) {
+            this.budgetData.set(response);
+          }
         }
-      }
-    });
+      })
+      .catch(() => {
+        this.handleError("Ocurrio un error al cargar la vista completa.");
+      })
+      .finally(() => {
+        this.loading.set(false);
+      });
   }
-
-  // ===========================
-  // Mótodos de obtención de montos (Actualizados a snake_case)
-  // ===========================
 
   getMontoMes(cuenta: CuentaAspelTercerNivelDTO, mes: string): number {
     return getCuentaMonthValue(cuenta, mes, "monto");
@@ -252,9 +234,6 @@ export class PresupuestoAspelEjercicioFiscal {
     return getPresupuestoBaseMensual(cuenta);
   }
 
-  // ===========================
-  // Mótodos de Interacción UI (sin cambios)
-  // ===========================
   onSelectionChange(): void {
     this.cargarPresupuesto(this.customerIdS.customerId());
   }
@@ -285,38 +264,52 @@ export class PresupuestoAspelEjercicioFiscal {
     this.mesesSeleccionados = [];
   }
 
+  /**
+   * Legacy helper conservado por compatibilidad manual.
+   * Actualmente no hay disparador visible en la plantilla activa.
+   */
   sinFiltro(): void {
     const customerId: string = this.customerIdS.customerId();
+    if (!customerId || !this.intYear()) {
+      this.loading.set(false);
+      this.handleError("Seleccione un cliente y un anio validos");
+      return;
+    }
+
     this.errorMensaje.set(null);
     this.allCuentas.set([]);
     this.budgetData.set(null);
 
     const url = `presupuesto/presupuesto-limpio-ejercicio-fiscal?customerId=${customerId}&intYear=${this.intYear()}`;
 
-    this.apiResponseS.onGetList<AspelBudgetDTO>(url).then((response) => {
-      if (response && response.cuentas && response.cuentas.length > 0) {
-        this.budgetData.set(response);
-        this.allCuentas.set(normalizeAspelAccounts(this.budgetData()!.cuentas));
-        this.globalFilterFields.set(globalFilterFields(this.allCuentas()));
-      } else {
-        this.handleError(
-          (response as any)?.strMensaje ||
-            "No se encontraron datos de cuentas detalladas o la respuesta no es válida.",
-        );
-        if (response && response.Nombre_Empresa) {
+    this.loading.set(true);
+    this.apiResponseS
+      .onGetList<AspelBudgetDTO>(url)
+      .then((response) => {
+        if (response?.cuentas?.length > 0) {
           this.budgetData.set(response);
+          this.allCuentas.set(normalizeAspelAccounts(response.cuentas));
+          this.globalFilterFields.set(globalFilterFields(this.allCuentas()));
+        } else {
+          this.handleError(
+            (response as any)?.strMensaje ||
+              "No se encontraron datos de cuentas detalladas o la respuesta no es valida.",
+          );
+          if (response?.Nombre_Empresa) {
+            this.budgetData.set(response);
+          }
         }
-      }
-    });
+      })
+      .catch(() => {
+        this.handleError("Ocurrio un error al cargar la vista sin filtro.");
+      })
+      .finally(() => {
+        this.loading.set(false);
+      });
   }
 
-  // ===========================
-  // MóTODOS DE CóLCULO (CORREGIDOS)
-  // Todas las funciones ahora iteran sobre `this.cuentas()` (la lista filtrada)
-  // ===========================
-
   getTotalMontoPorMes(mes: string): number {
-    const cuentas = this.cuentas(); // Access signal
+    const cuentas = this.cuentas();
     if (!cuentas) return 0;
     return cuentas
       .filter((c) => !c.esFilaAgrupadora)
@@ -403,16 +396,12 @@ export class PresupuestoAspelEjercicioFiscal {
     );
   }
 
-  // ===========================
-  // 🤖 IA Financial Analyst
-  // ===========================
-
   async analyzeFinancialData() {
-    const cuentas = this.cuentas(); // Access signal
+    const cuentas = this.cuentas();
     if (!cuentas || cuentas.length === 0) {
       this.swalService.fire({
         icon: "warning",
-        title: "Atención",
+        title: "Atencion",
         text: "No hay datos visibles para analizar.",
       });
       return;
@@ -420,14 +409,12 @@ export class PresupuestoAspelEjercicioFiscal {
 
     const context = this.getFinancialContext();
 
-    // Mostrar loader manual porque usamos onPostNotLoading
     this.swalService.fire({
-      title: "🤖 Analizando Finanzas...",
-      text: "El asistente estó revisando los nómeros. Esto puede tardar unos segundos.",
+      title: "Analizando finanzas...",
+      text: "El asistente esta revisando los numeros. Esto puede tardar unos segundos.",
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
-        // Fix z-index si es necesario, aunque aquó no hay modal previo
       },
     });
 
@@ -438,7 +425,7 @@ export class PresupuestoAspelEjercicioFiscal {
       );
 
       this.swalService.fire({
-        title: "🤖 Resumen Ejecutivo IA",
+        title: "Resumen ejecutivo IA",
         html: `<div class="text-left">${result}</div>`,
         width: "600px",
         icon: "info",
@@ -446,7 +433,7 @@ export class PresupuestoAspelEjercicioFiscal {
       });
     } catch (error) {
       console.error(error);
-      this.swalService.error("Ocurrió un error al generar el anólisis.");
+      this.swalService.error("Ocurrio un error al generar el analisis.");
     }
   }
 
@@ -455,8 +442,7 @@ export class PresupuestoAspelEjercicioFiscal {
     const totalGasto = this.getSumaGastoMesesVisibles();
     const porcentajeGlobal = this.getPorcentajeGastadoMesesVisibles();
 
-    // Filtrar cuentas hoja (no agrupadoras) con mayor desviación (gasto > presupuesto)
-    const cuentasCriticas = this.cuentas() // Access signal
+    const cuentasCriticas = this.cuentas()
       .filter((c) => !c.esFilaAgrupadora)
       .map((c) => {
         const p = this.getSumaPresupuestoMesesVisiblesCuenta(c);
@@ -468,9 +454,9 @@ export class PresupuestoAspelEjercicioFiscal {
           diferencia: g - p,
         };
       })
-      .filter((x) => x.diferencia > 0) // Solo las que se excedieron
-      .sort((a, b) => b.diferencia - a.diferencia) // Ordenar por mayor desviación
-      .slice(0, 5); // Top 5
+      .filter((x) => x.diferencia > 0)
+      .sort((a, b) => b.diferencia - a.diferencia)
+      .slice(0, 5);
 
     let context = `
     Resumen Global del Periodo Seleccionado:
@@ -478,7 +464,7 @@ export class PresupuestoAspelEjercicioFiscal {
     - Gasto Total: $${totalGasto.toFixed(2)}
     - % Ejercido: ${porcentajeGlobal.toFixed(2)}%
 
-    Top 5 Cuentas con Mayor Desviación (Sobregasto):
+    Top 5 Cuentas con Mayor Desviacion (Sobregasto):
     `;
 
     cuentasCriticas.forEach((c) => {

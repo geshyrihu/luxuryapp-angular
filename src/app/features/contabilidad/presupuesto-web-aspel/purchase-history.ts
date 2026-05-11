@@ -1,9 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PdfViewerModal } from "src/app/core/components/pdf-viewer-modal/pdf-viewer-modal";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
@@ -19,6 +19,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 import { OrdenCompra } from "src/app/features/purchases/purchase-order/orden-compra";
 import { PurchaseHistoryDTO } from "./presupuestos.interfaces";
+
 @Component({
   selector: "app-purchase-history",
   templateUrl: "./purchase-history.html",
@@ -28,10 +29,7 @@ import { PurchaseHistoryDTO } from "./presupuestos.interfaces";
     CustomButton,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
-    PrimeNgCustomTableFooter,
     DataViewMobile,
-
-
   ],
 })
 export class PurchaseHistory implements OnInit {
@@ -60,17 +58,29 @@ export class PurchaseHistory implements OnInit {
   ngOnInit(): void {
     this.onLoadData();
   }
-  onLoadData() {
+
+  onLoadData(): void {
     const customerId: string = this.customerIdS.customerId();
     const fiscalYear = this.config.data.fiscalYear;
     const accountNumber = this.config.data.accountNumber;
 
     const urlApi = `funding/purchase-history/${customerId}/${fiscalYear}/${accountNumber}`;
-    this.apiResponseS.onGetItem(urlApi).then((result: PurchaseHistoryDTO[]) => {
-      this.dataSignal.set(result);
-    });
+    this.loading.set(true);
+
+    this.apiResponseS
+      .onGetItem<PurchaseHistoryDTO[]>(urlApi)
+      .then((result) => {
+        this.dataSignal.set(result || []);
+      })
+      .catch(() => {
+        this.dataSignal.set([]);
+      })
+      .finally(() => {
+        this.loading.set(false);
+      });
   }
-  onShowPurchaseDetails(id: string) {
+
+  onShowPurchaseDetails(id: string): void {
     this.ordenCompraService.setOrdenCompraId(id);
 
     this.dialogHandlerS.openDialog(
@@ -80,22 +90,14 @@ export class PurchaseHistory implements OnInit {
       this.dialogHandlerS.sizeFull,
     );
   }
+
   viewPdf(url: string, fileName: string): void {
     this.dialogHandlerS.openDialog(
       PdfViewerModal,
-      { pdfSrc: url, fileName: fileName },
+      { pdfSrc: url, fileName },
       fileName,
       this.dialogHandlerS.sizeFull,
-      true, // ← autoMaximize = true
+      true,
     );
   }
 }
-
-
-
-
-
-
-
-
-

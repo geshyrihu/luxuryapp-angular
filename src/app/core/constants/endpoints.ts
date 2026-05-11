@@ -914,6 +914,22 @@ export const Endpoints = {
       fechaFin: string,
     ) =>
       `aspel-cobranza/pendientes-concepto-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
+    avisoCobroPdf: (
+      customerId: string,
+      numCta: string,
+      fechaInicio: string,
+      fechaFin: string,
+    ) =>
+      `aspel-cobranza/aviso-cobro-pdf?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
+    estadoCuentaPdf: (
+      customerId: string,
+      numCta: string,
+      fechaInicio: string,
+      fechaFin: string,
+    ) =>
+      `aspel-cobranza/estado-cuenta-pdf?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
+    deudasActuales: (customerId: string) =>
+      `aspel-cobranza/deudas-actuales?customerId=${customerId}`,
   },
   ContabilidadOnline: {
     askAi: "contabilidad-online/ask-ai",

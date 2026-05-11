@@ -1,3 +1,17 @@
+export type AspelQueryMode =
+  | "accounts"
+  | "estado-cuenta-rango"
+  | "contrapartidas-rango"
+  | "pendientes-concepto-rango"
+  | "deudas-actuales";
+
+export interface SelectItem<T = string> {
+  label: string;
+  value: T;
+  isSelected?: boolean | null;
+  image?: string | null;
+}
+
 export interface AspelCustomer {
   customerId: string;
   name: string;
@@ -7,13 +21,6 @@ export interface AspelAccount {
   numCta: string;
   nombre: string;
   estatus: string;
-}
-
-export interface SelectItem<T = string> {
-  label: string;
-  value: T;
-  isSelected?: boolean | null;
-  image?: string | null;
 }
 
 export interface AspelAccountsByCustomerResponse {
@@ -28,26 +35,29 @@ export interface AspelMovimiento {
   tipo: string;
   concepto: string;
   monto: number;
-  saldo_Anterior: number;
-  saldo_Posterior: number;
+  saldoAnterior: number;
+  saldoPosterior: number;
+  saldo_Anterior?: number;
+  saldo_Posterior?: number;
 }
 
 export interface AspelEstadoCuentaResponse {
-  num_cta: string;
-  departamento: string;
-  fecha_Inicio: string;
-  fecha_Fin: string;
-  saldo_Inicial: number;
-  saldo_Final: number;
-  total_Movimientos: number;
-  movimientos: AspelMovimiento[];
-  saldos_finales_por_concepto: Record<string, number>[];
-}
-export interface EstadoCuentaRequest {
-  customerId: string;
   numCta: string;
-  fechaInicio: Date | null;
-  fechaFin: Date | null;
+  departamento: string;
+  fechaInicio: string;
+  fechaFin: string;
+  saldoInicial: number;
+  saldoFinal: number;
+  totalMovimientos: number;
+  movimientos: AspelMovimiento[];
+  saldosFinalesPorConcepto: Record<string, number>[];
+  num_cta?: string;
+  fecha_Inicio?: string;
+  fecha_Fin?: string;
+  saldo_Inicial?: number;
+  saldo_Final?: number;
+  total_Movimientos?: number;
+  saldos_finales_por_concepto?: Record<string, number>[];
 }
 
 export interface AspelContrapartidaMovimiento {
@@ -59,30 +69,34 @@ export interface AspelContrapartidaMovimiento {
 }
 
 export interface AspelContrapartidaGrupo {
-  num_cta_contra: string;
-  nombre_cuenta: string;
-  total_monto: number;
-  total_movimientos: number;
+  numCtaContra: string;
+  nombreCuenta: string;
+  totalMonto: number;
+  totalMovimientos: number;
   movimientos: AspelContrapartidaMovimiento[];
+  num_cta_contra?: string;
+  nombre_cuenta?: string;
+  total_monto?: number;
+  total_movimientos?: number;
 }
 
 export interface AspelContrapartidaResponse {
-  num_cta_base: string;
+  numCtaBase: string;
   departamento: string;
-  fecha_inicio: string;
-  fecha_fin: string;
-  saldo_Inicial: number;
-  saldo_Final: number;
-  total_movimientos: number;
+  fechaInicio: string;
+  fechaFin: string;
+  saldoInicial: number;
+  saldoFinal: number;
+  totalMovimientos: number;
   grupos: AspelContrapartidaGrupo[];
-  saldos_finales_por_concepto: Record<string, number>[];
-}
-
-export interface ContrapartidaRequest {
-  customerId: string;
-  numCta: string;
-  fechaInicio: Date | null;
-  fechaFin: Date | null;
+  saldosFinalesPorConcepto: Record<string, number>[];
+  num_cta_base?: string;
+  fecha_inicio?: string;
+  fecha_fin?: string;
+  saldo_Inicial?: number;
+  saldo_Final?: number;
+  total_movimientos?: number;
+  saldos_finales_por_concepto?: Record<string, number>[];
 }
 
 export interface AspelPendienteConceptoItem {
@@ -112,7 +126,31 @@ export interface AspelPendientesConceptoResponse {
   total_conceptos?: number;
 }
 
-export interface PendientesConceptoRequest {
+export interface AspelDeudaActualItem {
+  numCtaBase: string;
+  departamento: string;
+  saldoActual: number;
+  tieneDesgloseConceptos: boolean;
+  totalConceptos: number;
+  num_cta_base?: string;
+  saldo_actual?: number;
+  tiene_desglose_conceptos?: boolean;
+  total_conceptos?: number;
+}
+
+export interface AspelDeudasActualesResponse {
+  customerId: string;
+  fechaCorte: string;
+  totalPropiedadesConDeuda: number;
+  totalDeudaActual: number;
+  propiedades: AspelDeudaActualItem[];
+  customer_id?: string;
+  fecha_corte?: string;
+  total_propiedades_con_deuda?: number;
+  total_deuda_actual?: number;
+}
+
+export interface AspelQueryRequest {
   numCta: string;
   fechaInicio: Date | null;
   fechaFin: Date | null;

@@ -268,16 +268,16 @@ export const CONTABILIDAD_ROUTES: Routes = [
     },
   },
 
-  // {
-  //   path: "espejo-aspel-full",
-  //   loadComponent: () =>
-  //     import("./espejo-aspel-full/espejo-aspel-full").then(
-  //       (m) => m.EspejoAspelFull,
-  //     ),
-  //   canActivate: [authGuard],
-  //   data: {
-  //     title: "Espejo Aspel Full",
-  //     breadcrumb: "Espejo Aspel Full",
-  //   },
-  // },
+  {
+    path: "espejo-aspel-full",
+    loadComponent: () =>
+      import("./espejo-aspel-full/espejo-aspel-full").then(
+        (m) => m.EspejoAspelFull,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Espejo Aspel Full",
+      breadcrumb: "Espejo Aspel Full",
+    },
+  },
 ];

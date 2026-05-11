@@ -40,7 +40,12 @@
 
   .filter-grid {
     display: grid;
-    grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr)) minmax(12rem, 0.8fr);
+    grid-template-columns:
+      minmax(14rem, 1.5fr)
+      minmax(16rem, 1.8fr)
+      minmax(10rem, 0.9fr)
+      minmax(10rem, 0.9fr)
+      minmax(14rem, 1fr);
     gap: 1rem;
     align-items: end;
   }
@@ -60,9 +65,35 @@
     }
   }
 
+  .static-field {
+    display: flex;
+    align-items: center;
+    min-height: 2.9rem;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid rgba(203, 213, 225, 0.8);
+    border-radius: 0.5rem;
+    background: rgba(248, 250, 252, 0.9);
+    color: #0f172a;
+    font-weight: 500;
+  }
+
   .actions-block {
     display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.75rem;
+    align-self: end;
+  }
+
+  .actions-block custom-button {
+    width: 100%;
+  }
+
+  .document-actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: -0.25rem;
   }
 
   .state-card {
@@ -118,6 +149,27 @@
     font-weight: 700;
   }
 
+  .table-totals-row {
+    background: rgba(15, 23, 42, 0.04);
+
+    td {
+      border-top: 2px solid rgba(148, 163, 184, 0.28);
+    }
+  }
+
+  .clickable-row {
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(14, 116, 144, 0.05);
+    }
+  }
+
+  .detail-link-cell {
+    color: #0f766e;
+    font-weight: 600;
+  }
+
   code {
     font-size: 0.85rem;
     padding: 0.2rem 0.45rem;
@@ -134,6 +186,14 @@
 
     .filter-grid {
       grid-template-columns: 1fr;
+    }
+
+    .actions-block {
+      grid-template-columns: 1fr;
+    }
+
+    .document-actions {
+      justify-content: flex-start;
     }
 
     .summary-grid {
