@@ -1,4 +1,4 @@
-import { ContabilidadModuleGroup } from "./models/contabilidad-module.model";
+import { ContabilidadModuleGroup } from "./contabilidad-module.model";
 
 export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
   // ─────────────────────────────────────────────────────────────
@@ -17,7 +17,16 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         bgColor: "#dbeafe",
       },
       {
-        title: "Envío a Financieros",
+        title: "Pendientes Aspel",
+        description:
+          "Consulta pendientes por concepto de cobranza Haus desde Aspel COI.",
+        route: "/contabilidad/aspel-cobranza",
+        icon: "pi pi-wallet",
+        color: "#0f766e",
+        bgColor: "#ccfbf1",
+      },
+      {
+        title: "Reporte General de envío Edos. Financieros",
         description: "Configuración de envío de reportes a financieros.",
         route: "/contabilidad/financial-report-sending",
         icon: "pi pi-envelope",

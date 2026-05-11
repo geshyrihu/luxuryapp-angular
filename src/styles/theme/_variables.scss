@@ -463,24 +463,24 @@ body.theme-dark {
   --ds-text-link: var(--primary-400);
   --ds-border: #3f3f46;
   --ds-border-strong: #52525b;
-  --ds-border-focus: var(--primary-400);
+  --ds-border-focus: #60a5fa;
   --ds-border-error: #f87171;
   --ds-border-success: #4ade80;
-  --ds-primary: var(--primary-400);
-  --ds-primary-hover: var(--primary-300);
-  --ds-primary-light: rgba(11, 49, 100, 0.18);
-  --ds-success: #22c55e;
-  --ds-success-hover: #4ade80;
-  --ds-success-light: rgba(34, 197, 94, 0.12);
-  --ds-warning: #f59e0b;
-  --ds-warning-hover: #fbbf24;
-  --ds-warning-light: rgba(245, 158, 11, 0.12);
-  --ds-danger: #ef4444;
-  --ds-danger-hover: #f87171;
-  --ds-danger-light: rgba(239, 68, 68, 0.12);
-  --ds-info: #06b6d4;
-  --ds-info-hover: #22d3ee;
-  --ds-info-light: rgba(6, 182, 212, 0.12);
+  --ds-primary: #4d9fff;
+  --ds-primary-hover: #60a5fa;
+  --ds-primary-light: rgba(77, 159, 255, 0.15);
+  --ds-success: #4ade80;
+  --ds-success-hover: #86efac;
+  --ds-success-light: rgba(74, 222, 128, 0.12);
+  --ds-warning: #fbbf24;
+  --ds-warning-hover: #fcd34d;
+  --ds-warning-light: rgba(251, 191, 36, 0.12);
+  --ds-danger: #f87171;
+  --ds-danger-hover: #fca5a5;
+  --ds-danger-light: rgba(248, 113, 113, 0.12);
+  --ds-info: #22d3ee;
+  --ds-info-hover: #67e8f9;
+  --ds-info-light: rgba(34, 211, 238, 0.12);
   --ds-luxury-gold: #d8bd69;
   --ds-luxury-gold-hover: #e5cd7f;
   --ds-luxury-gold-light: rgba(201, 168, 76, 0.16);
@@ -498,7 +498,15 @@ body.theme-dark {
   --ds-shadow-xl:
     0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
   --ds-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-  --ds-shadow-focus: 0 0 0 3px rgba(102, 135, 179, 0.35);
+  --ds-shadow-focus: 0 0 0 3px rgba(77, 159, 255, 0.3);
+
+  // Neon glow tokens — efectos de borde luminoso para dark mode
+  --ds-glow-primary: var(--brand-glow-primary, 0 0 0 1px rgba(77, 159, 255, 0.45), 0 0 14px rgba(77, 159, 255, 0.2));
+  --ds-glow-success:  var(--brand-glow-success, 0 0 0 1px rgba(74, 222, 128, 0.45), 0 0 14px rgba(74, 222, 128, 0.2));
+  --ds-glow-danger:   var(--brand-glow-danger, 0 0 0 1px rgba(248, 113, 113, 0.45), 0 0 14px rgba(248, 113, 113, 0.2));
+  --ds-glow-warning:  var(--brand-glow-warning, 0 0 0 1px rgba(251, 191, 36, 0.45), 0 0 14px rgba(251, 191, 36, 0.2));
+  --ds-glow-info:     var(--brand-glow-info, 0 0 0 1px rgba(34, 211, 238, 0.45), 0 0 14px rgba(34, 211, 238, 0.2));
+  --ds-glow-help:     var(--brand-glow-help, 0 0 0 1px rgba(196, 181, 253, 0.45), 0 0 14px rgba(196, 181, 253, 0.2));
 
   // 💎 PrimeNG 21 Dark Mapping
   --p-primary-color: var(--ds-primary);

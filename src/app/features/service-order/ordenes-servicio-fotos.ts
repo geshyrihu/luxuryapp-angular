@@ -9,7 +9,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 @Component({
   selector: "app-ordenes-servicio-fotos",
   templateUrl: "./ordenes-servicio-fotos.html",
-  standalone: true,
+
   imports: [CustomButtonDelete, ImageModule],
   providers: [ConfirmationService, MessageService],
 })

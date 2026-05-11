@@ -24,7 +24,7 @@ import { EmployeeBankDataFormComponent } from "./employee-bank-data-form";
 @Component({
   selector: "app-employee-bank-data-list",
   templateUrl: "./employee-bank-data-list.html",
-  standalone: true,
+
   imports: [
     CommonModule,
     TableModule,

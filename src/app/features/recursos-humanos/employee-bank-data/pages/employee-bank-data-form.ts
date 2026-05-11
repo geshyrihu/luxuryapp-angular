@@ -21,7 +21,7 @@ import { EmployeeBankDataDTO } from "../models/employee-bank-data.interfaces";
 @Component({
   selector: "app-employee-bank-data-form",
   templateUrl: "./employee-bank-data-form.html",
-  standalone: true,
+
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -80,21 +80,25 @@ export class EmployeeBankDataFormComponent implements OnInit {
   onLoadCombos(): void {
     // Cargar Empleados
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>(
-        Endpoints.SelectItems.employeesByCustomer(this.customerIdS.customerId()),
-      )
+      .onGetSelectItem<
+        ISelectItem[]
+      >(Endpoints.SelectItems.employeesByCustomer(this.customerIdS.customerId()))
       .then((res) => {
         if (res) this.cbEmployees.set(res);
       });
 
     // Cargar Bancos
-    this.apiResponseS.onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.bank).then((res) => {
-      if (res) this.cbBanks.set(res);
-    });
+    this.apiResponseS
+      .onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.bank)
+      .then((res) => {
+        if (res) this.cbBanks.set(res);
+      });
 
     // Cargar Relaciones (Enum)
     this.apiResponseS
-      .onGetEnumSelectItem<ISelectItem[]>(Endpoints.EnumSelectItems.relationEmployee)
+      .onGetEnumSelectItem<
+        ISelectItem[]
+      >(Endpoints.EnumSelectItems.relationEmployee)
       .then((res) => {
         if (res) this.cbRelations.set(res);
       });

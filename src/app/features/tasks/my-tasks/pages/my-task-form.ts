@@ -51,11 +51,11 @@ export class MyTaskForm implements OnInit {
   id: string = "";
   submitting = signal(false);
 
-  cb_priority: ISelectItem[] = [];
-  cb_ticket_group: ISelectItem[] = [];
+  cb_priority = signal<ISelectItem[]>([]);
+  cb_ticket_group = signal<ISelectItem[]>([]);
 
   form = this.formB.nonNullable.group({
-    id: [{ value: "", disabled: true }, Validators.required],
+    id: [{ value: "", disabled: true }],
     ticketGroupId: [this.config.data.ticketGroupId, Validators.required], // ticketGroupId
     title: ["", [Validators.required, Validators.maxLength(100)]], // Título
     description: ["", [Validators.required, Validators.maxLength(150)]], // Descripción
@@ -74,21 +74,22 @@ export class MyTaskForm implements OnInit {
   });
 
   async ngOnInit() {
-    this.cb_priority = await firstValueFrom(this.enumSelectS.priorityLevel());
-    this.onLoadTicketGroup();
+    await this.onLoadSelectItems();
     this.id = this.config.data.id;
     this.form.controls.id.setValue(this.id);
     if (this.id !== "") this.onLoadData();
   }
 
-  onLoadTicketGroup() {
-    this.apiResponseS
-      .onGetSelectItem<
-        ISelectItem[]
-      >(Endpoints.Tasks.groupListByCustomer(this.customerIdS.customerId()))
-      .then((result: any) => {
-        this.cb_ticket_group = result;
-      });
+  async onLoadSelectItems(): Promise<void> {
+    const [priority, ticketGroups] = await Promise.all([
+      firstValueFrom(this.enumSelectS.priorityLevel()),
+      this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+        Endpoints.Tasks.groupListByCustomer(this.customerIdS.customerId()),
+      ),
+    ]);
+
+    this.cb_priority.set(priority);
+    this.cb_ticket_group.set(ticketGroups ?? []);
   }
 
   // Para manejar las imógenes 'BeforeWork' y 'AfterWork'

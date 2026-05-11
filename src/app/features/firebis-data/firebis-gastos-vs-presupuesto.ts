@@ -41,7 +41,7 @@ import { PresupuestoGastosDto } from "./firebis-dtos";
             Gastos vs Presupuesto
           </h2>
           <p class="text-gray-500 mt-1 text-sm">
-            AnÃ¡lisis comparativo de ejecuciÃ³n presupuestaria mensual.
+            Análisis comparativo de ejecución presupuestaria mensual.
           </p>
         </div>
         <div
@@ -197,7 +197,7 @@ import { PresupuestoGastosDto } from "./firebis-dtos";
           >
             <i class="pi pi-chart-line text-4xl text-gray-200"></i>
           </div>
-          <h4 class="text-gray-800 font-bold mb-1">AnÃ¡lisis Comparativo</h4>
+          <h4 class="text-gray-800 font-bold mb-1">Análisis Comparativo</h4>
           <p class="text-gray-400 text-sm max-w-[300px] mx-auto">
             Selecciona el tipo de reporte y haz clic en generar para visualizar
             la comparativa de gastos.
@@ -262,7 +262,7 @@ export class FirebisGastosVsPresupuesto implements OnInit {
   ];
 
   reportOptions = [
-    { label: "Gastos OperaciÃ³n", value: "operacion" },
+    { label: "Gastos Operación", value: "operacion" },
     { label: "Otros Gastos", value: "otros" },
   ];
   selectedReport = "operacion";

@@ -10,7 +10,6 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { IFinancialStatementDto } from "../../models/aspel-budget.interface";
-import { ReportFilterService } from "../../services/financial-report-filter.service";
 
 @Component({
   selector: "app-catalog-replica",
@@ -27,8 +26,6 @@ import { ReportFilterService } from "../../services/financial-report-filter.serv
 export class CatalogReplica {
   private apiS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
-  public filterS = inject(ReportFilterService);
-
   // State
   loading = signal<boolean>(false);
   data = signal<IFinancialStatementDto | null>(null);

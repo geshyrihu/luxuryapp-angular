@@ -12,7 +12,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { IAnalisisCobranzaDto } from "../../models/aspel-budget.interface";
-import { ReportFilterService } from "../../services/financial-report-filter.service";
+import { reportFilterState } from "../../state/financial-report-filter.state";
 
 @Component({
   selector: "app-analisis-cobranza",
@@ -32,7 +32,7 @@ import { ReportFilterService } from "../../services/financial-report-filter.serv
 export class AnalisisCobranza {
   private apiS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
-  public filterS = inject(ReportFilterService);
+  public filterS = reportFilterState;
 
   // State
   loading = signal<boolean>(false);

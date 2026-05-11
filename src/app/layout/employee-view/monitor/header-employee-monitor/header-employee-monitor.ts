@@ -1,5 +1,5 @@
 import { CommonModule, Location } from "@angular/common";
-import { Component, computed, effect, inject, Input, OnInit } from "@angular/core";
+import { Component, effect, inject, Input, OnInit } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import {
@@ -10,14 +10,14 @@ import {
   RouterModule,
 } from "@angular/router";
 import { MenuItem } from "primeng/api";
+import { BreadcrumbModule } from "primeng/breadcrumb";
 import { ButtonModule } from "primeng/button";
+import { SelectModule } from "primeng/select";
 import { ToolbarModule } from "primeng/toolbar";
 import { TooltipModule } from "primeng/tooltip";
 import { filter, map, startWith } from "rxjs";
-import { SelectModule } from "primeng/select";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { CustomPrimeNgModule } from "src/app/core/moduls/framework-modules/primeng.module";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -37,12 +37,12 @@ import { Search } from "../search/search";
     // ActionIconsGroupComponent,
     ButtonModule,
     CommonModule,
-    CustomPrimeNgModule,
     FormsModule,
     NotificationsGadget,
     ProfileMonitor,
     RouterModule,
     Search,
+    BreadcrumbModule,
     SelectModule,
     ToolbarModule,
     TooltipModule,
@@ -268,4 +268,3 @@ export class HeaderEmployeeMonitor implements OnInit {
     this.customerIdS.setCustomerId(newCustomerId).subscribe();
   }
 }
-

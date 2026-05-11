@@ -1,67 +1,84 @@
 <!-- Main Container with Auth Check -->
 <ng-container *ngIf="authS.userToken$ | async">
-
-    <!-- Floating Bubble -->
-    <div class="chat-bubble" (click)="toggleChat()">
+  <!-- Floating Bubble -->
+  <div class="chat-bubble" (click)="toggleChat()">
     <i class="pi pi-sparkles text-2xl text-white" *ngIf="!isOpen()"></i>
     <i class="pi pi-times text-xl text-white" *ngIf="isOpen()"></i>
-    </div>
+  </div>
 
-    <!-- Chat Window -->
-    <div class="chat-window" *ngIf="isOpen()">
-    
+  <!-- Chat Window -->
+  <div class="chat-window" *ngIf="isOpen()">
     <!-- Header -->
-    <div class="flex align-items-center justify-content-between p-3 border-bottom-1 surface-border surface-card sticky top-0 z-5">
-        <div class="flex align-items-center gap-2">
-        <div class="border-round-circle surface-100 p-2 flex align-items-center justify-content-center w-2rem h-2rem">
-            <i class="pi pi-sparkles text-primary-500"></i>
+    <div
+      class="flex align-items-center justify-content-between p-3 border-bottom-1 surface-border surface-card sticky top-0 z-5"
+    >
+      <div class="flex align-items-center gap-2">
+        <div
+          class="border-round-circle surface-100 p-2 flex align-items-center justify-content-center w-2rem h-2rem"
+        >
+          <i class="pi pi-sparkles text-primary-500"></i>
         </div>
         <div>
-            <h3 class="m-0 text-color font-semibold text-sm">Luxury Assistant</h3>
-            <span class="text-xs text-color-secondary">
-                Próximamente
-            </span>
+          <h3 class="m-0 text-color font-semibold text-sm">Luxury Assistant</h3>
+          <span class="text-xs text-color-secondary"> Próximamente </span>
         </div>
-        </div>
+      </div>
     </div>
 
     <!-- Coming Soon State -->
-    <div class="flex flex-column align-items-center justify-content-center h-full text-center p-4">
-        <div class="w-6rem h-6rem border-round-circle surface-100 flex align-items-center justify-content-center mb-4 relative overflow-hidden">
-            <i class="pi pi-sparkles text-6xl text-primary-500 relative z-1"></i>
-            <div class="absolute w-full h-full surface-200 opacity-50 border-round-circle" style="animation: pulse 2s infinite;"></div>
-        </div>
-        
-        <h2 class="text-color font-bold mb-2">Ã³Estamos entrenando a tu asistente!</h2>
-        <p class="text-color-secondary line-height-3 m-0">
-            Estamos alimentando nuestra base de conocimiento para brindarte la mejor experiencia.
-        </p>
-        <p class="text-color-muted text-sm mt-3">
-            EstarÃ³ disponible muy pronto. ?
-        </p>
+    <div
+      class="flex flex-column align-items-center justify-content-center h-full text-center p-4"
+    >
+      <div
+        class="w-6rem h-6rem border-round-circle surface-100 flex align-items-center justify-content-center mb-4 relative overflow-hidden"
+      >
+        <i class="pi pi-sparkles text-6xl text-primary-500 relative z-1"></i>
+        <div
+          class="absolute w-full h-full surface-200 opacity-50 border-round-circle"
+          style="animation: pulse 2s infinite"
+        ></div>
+      </div>
 
-        <div class="mt-6 flex gap-2">
-            <span class="p-tag severity-info">Conocimiento</span>
-            <span class="p-tag severity-warning">Seguridad</span>
-            <span class="p-tag severity-success">IA</span>
-        </div>
+      <h2 class="text-color font-bold mb-2">
+        !Estamos entrenando a tu asistente!
+      </h2>
+      <p class="text-color-secondary line-height-3 m-0">
+        Estamos alimentando nuestra base de conocimiento para brindarte la mejor
+        experiencia.
+      </p>
+      <p class="text-color-muted text-sm mt-3">
+        Estará disponible muy pronto. ?
+      </p>
+
+      <div class="mt-6 flex gap-2">
+        <span class="p-tag severity-info">Conocimiento</span>
+        <span class="p-tag severity-warning">Seguridad</span>
+        <span class="p-tag severity-success">IA</span>
+      </div>
     </div>
 
     <!-- Input Area (Hidden for now) -->
-    <!-- 
+    <!--
     <div class="p-3 surface-ground border-top-1 surface-border">
        ...
     </div>
     -->
-
-    </div>
-
+  </div>
 </ng-container>
 
 <style>
-@keyframes pulse {
-    0% { transform: scale(0.8); opacity: 0.5; }
-    50% { transform: scale(1.2); opacity: 0.2; }
-    100% { transform: scale(0.8); opacity: 0.5; }
-}
+  @keyframes pulse {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.2;
+    }
+    100% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+  }
 </style>

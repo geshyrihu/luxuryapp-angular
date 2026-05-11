@@ -1,15 +1,16 @@
 <div class="p-4">
   <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    @if (id) {
     <custom-input-text-signal
       [control]="form.controls.id"
       [readonly]="true"
       label="Id"
-      [hidden]="false"
     />
+    }
     <custom-input-select-signal
       [control]="form.controls.ticketGroupId"
       label="Grupo"
-      [data]="cb_ticket_group"
+      [data]="cb_ticket_group()"
     />
     <custom-input-text-signal
       [control]="form.controls.title"
@@ -18,7 +19,6 @@
     />
 
     <div class="flex justify-content-between align-items-center mb-2">
-      <label class="font-bold">Descripción</label>
       <custom-button
         label="Analizar Imagen (IA)"
         iconClass="pi pi-camera"
@@ -29,10 +29,15 @@
       />
     </div>
 
-    <custom-input-textarea-signal
+    <!-- <custom-input-textarea-signal
       [control]="form.controls.description"
       label=""
       placeholder="Descripción del problema..."
+    /> -->
+    <custom-input-textarea-signal
+      [control]="form.controls.description"
+      label="Descripción"
+      placeholder="descripción"
     />
     <app-image-analysis-dialog
       (resultAccepted)="onVisionResult($event)"
@@ -40,7 +45,7 @@
     <custom-input-select-signal
       [control]="form.controls.priority"
       label="Prioridad"
-      [data]="cb_priority"
+      [data]="cb_priority()"
     />
 
     <div class="grid">
@@ -56,7 +61,7 @@
         <custom-input-img-signal
           [control]="form.controls.afterWork"
           [urlImgCurrent]="form.controls.afterWorkPreview.value"
-          label="Foto de despuós"
+          label="Foto de después"
           [required]="false"
         />
       </div>

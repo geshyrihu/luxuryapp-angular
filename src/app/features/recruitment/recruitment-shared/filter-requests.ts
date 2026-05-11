@@ -112,7 +112,7 @@ export class FilterRequests {
   // ? Mótodo helper para convertir Date a string "yyyy-MM"
   private formatDateToYearMonth(date: Date): string {
     if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
-      // Si la fecha no es vólida, usa la fecha actual
+      // Si la fecha no es válida, usa la fecha actual
       date = new Date();
     }
 

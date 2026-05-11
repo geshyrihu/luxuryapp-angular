@@ -119,7 +119,7 @@ export class WarehouseForm implements OnInit {
         EApplicationRole.SuperUsuario,
       ])()
     ) {
-      this.availableUsers = [...this.allUsers]; // Todos los usuarios estón disponibles para nuevo almacón
+      this.availableUsers = [...this.allUsers]; // Todos los usuarios están disponibles para nuevo almacón
     }
   }
 
@@ -204,7 +204,7 @@ export class WarehouseForm implements OnInit {
         );
       }
 
-      this.ref.close(true); // Cierra el diólogo con óxito
+      this.ref.close(true); // Cierra el diálogo con óxito
     } catch (error) {
       console.error("Error al guardar el almacón:", error);
     } finally {

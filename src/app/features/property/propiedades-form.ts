@@ -10,11 +10,12 @@ import {
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { CustomInputMaskSignal } from "../../core/components/inputs/web/custom-input-mask-signal";
 
 interface IPropiedadesForm {
   id: FormControl<string | null>;
@@ -39,8 +40,8 @@ interface IPropiedadesForm {
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputNumberSignal,
+    CustomInputSelectSignal,
     CustomButtonSave,
-    CustomInputMaskSignal,
   ],
 })
 export class PropiedadesForm implements OnInit {
@@ -51,6 +52,7 @@ export class PropiedadesForm implements OnInit {
   ref = inject(DynamicDialogRef);
   customerIdS = inject(CustomerIdService);
   submitting = signal(false);
+  cuentasCoi = signal<ISelectItem[]>([]);
 
   id: string = "";
   isDelinquent = false;
@@ -60,6 +62,7 @@ export class PropiedadesForm implements OnInit {
 
   ngOnInit(): void {
     this.id = this.config.data.id;
+    this.onLoadCuentasCoi();
     this.form = this.formB.group({
       id: new FormControl({ value: this.id, disabled: true }),
       department: new FormControl("", {
@@ -117,5 +120,17 @@ export class PropiedadesForm implements OnInit {
       this.delinquentSince = result.delinquentSince ?? null;
       this.form.patchValue(result);
     });
+  }
+
+  private onLoadCuentasCoi() {
+    const customerId = this.customerIdS.customerId();
+    const year = new Date().getFullYear();
+    this.apiResponseS
+      .onGetList<ISelectItem[]>(
+        `aspel-cobranza/accounts-select?customerId=${customerId}&year=${year}`,
+      )
+      .then((result) => {
+        this.cuentasCoi.set(result ?? []);
+      });
   }
 }

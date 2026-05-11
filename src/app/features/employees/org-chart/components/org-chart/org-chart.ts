@@ -1,5 +1,5 @@
 import { ScrollingModule } from "@angular/cdk/scrolling";
-import { OrgNode } from "../org-node/org-node";
+import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,21 +8,22 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { DndDropEvent, DndModule } from "ngx-drag-drop"; // Importar ngx-drag-drop
 import { ConfirmationService, MessageService } from "primeng/api";
 import { AvatarModule } from "primeng/avatar";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { Drawer } from "primeng/drawer";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TabsModule } from "primeng/tabs";
 import { TagModule } from "primeng/tag";
 import { ToastModule } from "primeng/toast";
 import { TooltipModule } from "primeng/tooltip";
-import { DndModule, DndDropEvent } from "ngx-drag-drop"; // Importar ngx-drag-drop
-import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { AspRoleService } from "src/app/core/services/asp-role.service";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { AspRoleService } from "src/app/core/services/asp-role.service";
+import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { validateReassignment } from "../../helpers/org-chart-validation";
 import {
   DEPTO_BORDER_COLORS,
   IOrgChartTreeNode,
@@ -30,14 +31,13 @@ import {
   IWorkPositionReassignRequest,
   IWorkPositionReassignResponse,
 } from "../../models/org-chart.interfaces";
-import { validateReassignment } from "../../helpers/org-chart-validation";
-import { CommonModule } from "@angular/common";
+import { OrgNode } from "../org-node/org-node";
 
 @Component({
   selector: "app-org-chart",
   templateUrl: "./org-chart.html",
   styleUrl: "./org-chart.scss",
-  standalone: true,
+
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ConfirmationService, MessageService],
   imports: [
@@ -108,7 +108,10 @@ export class OrgChart {
       const nodes = data ?? [];
       const treeNodes = this.buildTreeNodes(nodes);
 
-      if (treeNodes.length > 1 || (treeNodes.length === 1 && treeNodes[0].data.workPositionId !== '0')) {
+      if (
+        treeNodes.length > 1 ||
+        (treeNodes.length === 1 && treeNodes[0].data.workPositionId !== "0")
+      ) {
         this.tree.set([
           {
             label: "Luxury App",
@@ -140,13 +143,16 @@ export class OrgChart {
   /**
    * Maneja el evento de soltar (Drop) de ngx-drag-drop.
    */
-  onDrop(event: DndDropEvent, target: IWorkPositionOrgChartNode | 'list-container'): void {
+  onDrop(
+    event: DndDropEvent,
+    target: IWorkPositionOrgChartNode | "list-container",
+  ): void {
     if (!this.editMode()) return;
 
     const origin = event.data as IWorkPositionOrgChartNode;
-    
+
     // CASO 1: REORDENAMIENTO HORIZONTAL (Soltado en el contenedor de hijos)
-    if (target === 'list-container') {
+    if (target === "list-container") {
       const newSortOrder = event.index ?? 0;
 
       this.confirmationS.confirm({
@@ -262,9 +268,11 @@ export class OrgChart {
       const payload: IWorkPositionReassignRequest = {
         workPositionId: origin.workPositionId,
         newReportsToWorkPositionId:
-          dest.workPositionId === "0" ? null : 
-          dest.workPositionId === origin.reportsToWorkPositionId ? origin.reportsToWorkPositionId :
-          dest.workPositionId,
+          dest.workPositionId === "0"
+            ? null
+            : dest.workPositionId === origin.reportsToWorkPositionId
+              ? origin.reportsToWorkPositionId
+              : dest.workPositionId,
         sortOrder: dest.sortOrder ?? origin.sortOrder,
       };
 
@@ -322,7 +330,9 @@ export class OrgChart {
     });
   }
 
-  private flattenNodes(nodes: IOrgChartTreeNode[]): IWorkPositionOrgChartNode[] {
+  private flattenNodes(
+    nodes: IOrgChartTreeNode[],
+  ): IWorkPositionOrgChartNode[] {
     return nodes.flatMap((n) => [
       n.data,
       ...this.flattenNodes(n.children || []),

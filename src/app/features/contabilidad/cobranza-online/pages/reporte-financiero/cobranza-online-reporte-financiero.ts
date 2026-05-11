@@ -4,11 +4,12 @@ import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { SelectModule } from "primeng/select";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
 import type {
   ReporteFinancieroFila,
   ReporteFinancieroResponse,
 } from "../../models/cobranza-online-reporte-financiero.model";
-import { CobranzaOnlineService } from "../../services/cobranza-online.service";
 
 interface OpcionMes {
   label: string;
@@ -185,7 +186,7 @@ const MESES_OPCIONES: OpcionMes[] = [
 })
 export class CobranzaOnlineReporteFinanciero {
   private customerIdS = inject(CustomerIdService);
-  private cobranzaOnlineS = inject(CobranzaOnlineService);
+  private apiResponseS = inject(ApiResponseService);
 
   readonly currentYear = signal(new Date().getFullYear());
   readonly mesInicio = signal(1);
@@ -224,11 +225,14 @@ export class CobranzaOnlineReporteFinanciero {
 
   private async loadData(customerId: string) {
     this.loading.set(true);
-    const result = await this.cobranzaOnlineS.getReporteFinanciero(
-      customerId,
-      this.currentYear(),
-      this.mesInicio(),
-      this.mesFin(),
+    const result = await this.apiResponseS.onGetItem<ReporteFinancieroResponse>(
+      Endpoints.AccountingCoi.CobranzaOnline.ReporteFinanciero.get(
+        customerId,
+        this.currentYear(),
+        this.mesInicio(),
+        this.mesFin(),
+      ),
+      false,
     );
     this.data.set((result as ReporteFinancieroResponse | null) ?? null);
     this.loading.set(false);

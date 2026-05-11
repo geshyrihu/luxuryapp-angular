@@ -6,6 +6,8 @@ import { ChartModule } from "primeng/chart";
 import { MessageModule } from "primeng/message";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ChargeTemplateForm } from "src/app/features/contabilidad/cobranza-nativa/pages/charge-templates/charge-template-form";
 import type {
   CobranzaOnlineDashboardResponse,
@@ -18,7 +20,6 @@ import type {
   CobranzaOnlineSyncMetadata,
   CobranzaOnlineSyncResponse,
 } from "../../models/cobranza-online-sync.model";
-import { CobranzaOnlineService } from "../../services/cobranza-online.service";
 
 @Component({
   selector: "app-cobranza-online-dashboard",
@@ -310,7 +311,7 @@ import { CobranzaOnlineService } from "../../services/cobranza-online.service";
 })
 export class CobranzaOnlineDashboard {
   private customerIdS = inject(CustomerIdService);
-  private cobranzaOnlineS = inject(CobranzaOnlineService);
+  private apiResponseS = inject(ApiResponseService);
   private dialogHandlerS = inject(DialogHandlerService);
 
   readonly currentYear = signal(new Date().getFullYear());
@@ -555,10 +556,13 @@ export class CobranzaOnlineDashboard {
   private async loadSummary(customerId: string) {
     this.loading.set(true);
 
-    const dashboard = await this.cobranzaOnlineS.getDashboard(
-      customerId,
-      this.currentYear(),
-      this.currentMonth(),
+    const dashboard = await this.apiResponseS.onGetItem<CobranzaOnlineDashboardResponse>(
+      Endpoints.AccountingCoi.CobranzaOnline.Dashboard.get(
+        customerId,
+        this.currentYear(),
+        this.currentMonth(),
+      ),
+      false,
     );
 
     const typedDashboard = dashboard as CobranzaOnlineDashboardResponse | null;
@@ -626,10 +630,13 @@ export class CobranzaOnlineDashboard {
 
     this.syncRunning.set(true);
     try {
-      const response = await this.cobranzaOnlineS.syncCobranza(
-        customerId,
-        this.currentYear(),
-      ) as CobranzaOnlineSyncResponse | false;
+      const response = await this.apiResponseS.onPost<CobranzaOnlineSyncResponse>(
+        Endpoints.AccountingCoi.CobranzaOnline.Sync.cobranza(
+          customerId,
+          this.currentYear(),
+        ),
+        {},
+      );
 
       if (response !== false) {
         this.lastSyncDiagnostics.set(response?.diagnostics ?? null);
@@ -701,10 +708,12 @@ export class CobranzaOnlineDashboard {
     this.selectedAccountId.set(accountId);
     this.selectedMovement.set(null);
 
-    const statement = await this.cobranzaOnlineS.getStatement(
-      customerId,
-      accountId,
-      this.currentYear(),
+    const statement = await this.apiResponseS.onGetItem<CobranzaOnlineStatementResponse>(
+      Endpoints.AccountingCoi.CobranzaOnline.Statements.get(
+        customerId,
+        accountId,
+        this.currentYear(),
+      ),
     );
 
     const typedStatement = statement as CobranzaOnlineStatementResponse | null;

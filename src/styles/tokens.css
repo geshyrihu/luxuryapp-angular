@@ -166,20 +166,52 @@ html.theme-dark {
   /* Bordes oscuros */
   --brand-border: #3f3f46;
   --brand-border-strong: #52525b;
-  --brand-border-focus: #97afcf;
+  --brand-border-focus: #60a5fa;
 
-  --brand-help: #a78bfa;
-  --brand-help-hover: #c4b5fd;
-  --brand-help-light: rgba(139, 92, 246, 0.1);
+  /* Primary eléctrico para dark mode (reemplaza el azul navy opaco) */
+  --brand-primary: #4d9fff;
+  --brand-primary-hover: #60a5fa;
+  --brand-primary-active: #93c5fd;
+  --brand-primary-light: rgba(77, 159, 255, 0.15);
+  --brand-primary-contrast: #09090b;
+
+  /* Semánticos vibrantes (neon-friendly) */
+  --brand-success: #4ade80;
+  --brand-success-bg: rgba(74, 222, 128, 0.12);
+  --brand-success-text: #86efac;
+
+  --brand-danger: #f87171;
+  --brand-danger-bg: rgba(248, 113, 113, 0.12);
+  --brand-danger-text: #fca5a5;
+
+  --brand-warning: #fbbf24;
+  --brand-warning-bg: rgba(251, 191, 36, 0.12);
+  --brand-warning-text: #fcd34d;
+
+  --brand-info: #22d3ee;
+  --brand-info-bg: rgba(34, 211, 238, 0.12);
+  --brand-info-text: #67e8f9;
+
+  --brand-help: #c4b5fd;
+  --brand-help-hover: #ddd6fe;
+  --brand-help-light: rgba(196, 181, 253, 0.12);
 
   --brand-contrast: #ffffff;
   --brand-contrast-hover: #f4f4f5;
   --brand-contrast-text: #09090b;
   --brand-contrast-light: rgba(255, 255, 255, 0.1);
 
-  /* Sombras oscuras (más sutiles) */
-  --brand-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
-  --brand-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.25);
-  --brand-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
-  --brand-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.35);
+  /* Sombras oscuras */
+  --brand-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --brand-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.5);
+  --brand-shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.6);
+  --brand-shadow-xl: 0 20px 30px rgba(0, 0, 0, 0.7);
+
+  /* Neon glow tokens — usados en cards, focus y bordes semánticos */
+  --brand-glow-primary: 0 0 0 1px rgba(77, 159, 255, 0.45), 0 0 14px rgba(77, 159, 255, 0.2);
+  --brand-glow-success:  0 0 0 1px rgba(74, 222, 128, 0.45), 0 0 14px rgba(74, 222, 128, 0.2);
+  --brand-glow-danger:   0 0 0 1px rgba(248, 113, 113, 0.45), 0 0 14px rgba(248, 113, 113, 0.2);
+  --brand-glow-warning:  0 0 0 1px rgba(251, 191, 36, 0.45), 0 0 14px rgba(251, 191, 36, 0.2);
+  --brand-glow-info:     0 0 0 1px rgba(34, 211, 238, 0.45), 0 0 14px rgba(34, 211, 238, 0.2);
+  --brand-glow-help:     0 0 0 1px rgba(196, 181, 253, 0.45), 0 0 14px rgba(196, 181, 253, 0.2);
 }

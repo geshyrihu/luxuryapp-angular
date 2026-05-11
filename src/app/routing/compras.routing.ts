@@ -14,18 +14,18 @@ export const comprasRoutes: Routes = [
       breadcrumb: "Presupuesto",
     },
   },
-  {
-    path: "presupuesto/:id",
-    loadComponent: () =>
-      import("src/app/features/contabilidad/edicion-presupuesto/presupuesto-individual").then(
-        (m) => m.PresupuestoIndividual,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Presupuesto Individual",
-      breadcrumb: "Presupuesto Individual",
-    },
-  },
+  // {
+  //   path: "presupuesto/:id",
+  //   loadComponent: () =>
+  //     import("src/app/features/contabilidad/edicion-presupuesto/presupuesto-individual").then(
+  //       (m) => m.PresupuestoIndividual,
+  //     ),
+  //   canActivate: [authGuard],
+  //   data: {
+  //     title: "Presupuesto Individual",
+  //     breadcrumb: "Presupuesto Individual",
+  //   },
+  // },
   {
     path: "products-services",
     loadComponent: () =>

@@ -373,14 +373,17 @@ export const Endpoints = {
     getAll: "task-group-categories",
     getById: (id: string) => `task-group-categories/${id}`,
     delete: (id: string | number) => `task-group-categories/${id}`,
-    selectByCustomer: (customerId: string) => `task-group-category/${customerId}`,
+    selectByCustomer: (customerId: string) =>
+      `task-group-category/${customerId}`,
   },
   Tasks: {
-    groupListByCustomer: (customerId: string) => `task-group-list/${customerId}`,
+    groupListByCustomer: (customerId: string) =>
+      `task-group-list/${customerId}`,
     getById: (id: string) => `tasks/${id}`,
     create: "tasks/Create",
     update: (id: string) => `tasks/Update/${id}`,
-    participants: (ticketGroupId: string) => `tasks/participant/${ticketGroupId}`,
+    participants: (ticketGroupId: string) =>
+      `tasks/participant/${ticketGroupId}`,
     list: (ticketGroupId: string, status: string) =>
       `tasks/List/${ticketGroupId}/${status}`,
     view: (id: string) => `tasks/view/${id}`,
@@ -412,11 +415,16 @@ export const Endpoints = {
     programation: (id: string) => `tasks/Programation/${id}`,
     myTicketProgramation: (id: string) => `tasks/MyTicket/Programation/${id}`,
     updateOrder: "tasks/UpdateOrder",
-    legalAll: (customerId?: string) => customerId ? `tasks/legal/all?customerId=${customerId}` : `tasks/legal/all`,
+    legalAll: (customerId?: string) =>
+      customerId
+        ? `tasks/legal/all?customerId=${customerId}`
+        : `tasks/legal/all`,
     legalByCustomer: "tasks/legal/customer",
     legalPending: (isInternal?: boolean, unassigned: boolean = false) => {
       if (unassigned) return "tasks/legal/pending?unassigned=true";
-      return isInternal !== undefined ? `tasks/legal/pending?isInternal=${isInternal}` : "tasks/legal/pending";
+      return isInternal !== undefined
+        ? `tasks/legal/pending?isInternal=${isInternal}`
+        : "tasks/legal/pending";
     },
     getStatus: (id: string) => `tasks/${id}/status`,
     updateStatus: (id: string) => `tasks/${id}/status`,
@@ -435,7 +443,8 @@ export const Endpoints = {
     base: "task-group-participant",
     availableByCustomerAndGroup: (customerId: string, taskGroupId: string) =>
       `task-group-participant/Participants/${customerId}/${taskGroupId}`,
-    listByGroup: (taskGroupId: string) => `task-group-participant/${taskGroupId}`,
+    listByGroup: (taskGroupId: string) =>
+      `task-group-participant/${taskGroupId}`,
     update: (id: string) => `task-group-participant/${id}`,
     delete: (id: string | number) => `task-group-participant/${id}`,
   },
@@ -445,7 +454,8 @@ export const Endpoints = {
       startDate: string | null,
       endDate: string | null,
       status: string | number,
-    ) => `task-report/WeeklyReport/${customerId}/${startDate}/${endDate}/${status}`,
+    ) =>
+      `task-report/WeeklyReport/${customerId}/${startDate}/${endDate}/${status}`,
     ticketReport: (customerId: string, startDate: string, endDate: string) =>
       `task-report/GetTicketReport/${customerId}/${startDate}/${endDate}`,
     weeklyPreview: (customerId: string, year: number, weekNumber: number) =>
@@ -457,13 +467,15 @@ export const Endpoints = {
       customerId: string,
       year: number,
       weekNumber: number,
-    ) => `task-work-plan/Create/${applicationUserId}/${customerId}/${year}/${weekNumber}`,
+    ) =>
+      `task-work-plan/Create/${applicationUserId}/${customerId}/${year}/${weekNumber}`,
     preview: (customerId: string, year: number, weekNumber: number) =>
       `task-work-plan/preview/${customerId}/${year}/${weekNumber}`,
     pending: (customerId: string) => `task-work-plan/pending/${customerId}`,
   },
   ResidentesEdificio: {
-    selectByCustomer: (customerId: string) => `residentesedificio/${customerId}`,
+    selectByCustomer: (customerId: string) =>
+      `residentesedificio/${customerId}`,
   },
   AccountingCoi: {
     Accounting: {
@@ -519,7 +531,11 @@ export const Endpoints = {
           `accounting-coi/cobranza-online/analysis/customer/${customerId}/year/${year}/month/${month}/day/${day}`,
         inspection: (customerId: string, year: number, month: number) =>
           `accounting-coi/cobranza-online/inspection/customer/${customerId}/year/${year}/month/${month}`,
-        inspectionHistory: (customerId: string, year: number, accountNumber: string) =>
+        inspectionHistory: (
+          customerId: string,
+          year: number,
+          accountNumber: string,
+        ) =>
           `accounting-coi/cobranza-online/inspection-history/customer/${customerId}/year/${year}/account/${encodeURIComponent(accountNumber)}`,
         syncStatus: (customerId: string, year: number) =>
           `accounting-coi/cobranza-online/sync-status/customer/${customerId}/year/${year}`,
@@ -834,19 +850,8 @@ export const Endpoints = {
         autoReconcile:
           "accounting-coi/native-collection/reconciliation/auto-apply-all",
       },
-      Demo: {
-        showcaseData: "accounting-coi/native-collection/demo/showcase-data",
-        triggerAction: "accounting-coi/native-collection/demo/trigger-action",
-        seedSandbox: (customerId: string) =>
-          `accounting-coi/native-collection/demo/seed-sandbox/${customerId}`,
-      },
     },
-    Migration: {
-      syncCoi: (customerId: string, year: number) =>
-        `accounting-coi/migration/coi/sync-aspel/${customerId}/ejercicio/${year}`,
-      syncCobranza: (customerId: string, year: number) =>
-        `accounting-coi/migration/legacy-collection/sync-aspel/${customerId}/ejercicio/${year}`,
-    },
+
     Configuration: {
       AspelSync: {
         completo: (customerId: string, year: number) =>
@@ -858,11 +863,60 @@ export const Endpoints = {
       },
     },
   },
+  DynamicReports: {
+    base: "dynamic-reports",
+    getById: (id: string) => `dynamic-reports/${id}`,
+    getByCustomer: (customerId: string) =>
+      `dynamic-reports/customer/${customerId}`,
+    getTemplates: "dynamic-reports/templates",
+    create: "dynamic-reports",
+    update: (id: string) => `dynamic-reports/${id}`,
+    delete: (id: string) => `dynamic-reports/${id}`,
+    execute: "dynamic-reports/execute",
+    executeExcel: "dynamic-reports/execute/excel",
+    executePdf: "dynamic-reports/execute/pdf",
+    livePreview: "dynamic-reports/live-preview",
+    Accounts: {
+      tree: (customerId: string, year: number, empresa: string) =>
+        `dynamic-reports/accounts/${customerId}/${year}/tree?empresa=${empresa}`,
+      flat: (customerId: string, year: number, empresa: string) =>
+        `dynamic-reports/accounts/${customerId}/${year}?empresa=${empresa}`,
+    },
+  },
   EspejoAspelFull: {
     get: (customerId: string, year: number, empresa: string) =>
       `espejo-aspel-full?customerId=${customerId}&intYear=${year}&empresa=${empresa}`,
   },
+  AspelCobranza: {
+    customers: "aspel-cobranza/customers",
+    accounts: (customerId: string, year: number) =>
+      `aspel-cobranza/accounts?customerId=${customerId}&year=${year}`,
+    accountsSelect: (customerId: string, year: number) =>
+      `aspel-cobranza/accounts-select?customerId=${customerId}&year=${year}`,
+    estadoCuentaRango: (
+      customerId: string,
+      numCta: string,
+      fechaInicio: string,
+      fechaFin: string,
+    ) =>
+      `aspel-cobranza/estado-cuenta-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
+    contrapartidasRango: (
+      customerId: string,
+      numCta: string,
+      fechaInicio: string,
+      fechaFin: string,
+    ) =>
+      `aspel-cobranza/contrapartidas-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
+    pendientesConceptoRango: (
+      customerId: string,
+      numCta: string,
+      fechaInicio: string,
+      fechaFin: string,
+    ) =>
+      `aspel-cobranza/pendientes-concepto-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
+  },
   ContabilidadOnline: {
+    askAi: "contabilidad-online/ask-ai",
     FinancialStatements: {
       /** EPF compacto: saldo acumulado al cierre del mes. Endpoint principal del componente balance-sheet. */
       epf: (customerId: string, year: number, mes: number) =>
@@ -1173,8 +1227,7 @@ export const Endpoints = {
       `manuals/${manualId}/pasos/${pasoId}`,
     deletePaso: (manualId: string, pasoId: string) =>
       `manuals/${manualId}/pasos/${pasoId}`,
-    reordenarPasos: (manualId: string) =>
-      `manuals/${manualId}/pasos/reordenar`,
+    reordenarPasos: (manualId: string) => `manuals/${manualId}/pasos/reordenar`,
     subirImagen: (manualId: string, pasoId: string) =>
       `manuals/${manualId}/pasos/${pasoId}/imagenes`,
     eliminarImagen: (manualId: string, pasoId: string, imagenId: string) =>

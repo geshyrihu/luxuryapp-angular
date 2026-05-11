@@ -13,10 +13,11 @@ import { DrawerModule } from "primeng/drawer";
 import { InputTextModule } from "primeng/inputtext";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { ElevenLabsService } from "src/app/core/services/eleven-labs.service";
-import { ContabilidadAiService } from "../../services/contabilidad-ai.service";
-import { ReportFilterService } from "../../services/financial-report-filter.service";
+import { reportFilterState } from "../../state/financial-report-filter.state";
 
 interface AiMessage {
   role: "user" | "assistant";
@@ -27,7 +28,7 @@ interface AiMessage {
 
 @Component({
   selector: "app-contabilidad-ai-agent",
-  standalone: true,
+
   imports: [
     CommonModule,
     FormsModule,
@@ -40,8 +41,8 @@ interface AiMessage {
   encapsulation: ViewEncapsulation.None,
 })
 export class AiAgentComponent {
-  public filterS = inject(ReportFilterService);
-  private aiService = inject(ContabilidadAiService);
+  public filterS = reportFilterState;
+  private apiResponseS = inject(ApiResponseService);
   private toastS = inject(CustomToastService);
   private sanitizer = inject(DomSanitizer);
   private elevenLabsS = inject(ElevenLabsService);
@@ -100,10 +101,17 @@ export class AiAgentComponent {
     this.loading.set(true);
 
     try {
-      const responseHtml = await this.aiService.askAi(
-        this.filterS.currentReportContext(),
-        query,
+      const responseHtml = await this.apiResponseS.onPost<string>(
+        Endpoints.ContabilidadOnline.askAi,
+        {
+          reportData: this.filterS.currentReportContext(),
+          userQuery: query,
+        },
       );
+
+      if (!responseHtml || typeof responseHtml !== "string") {
+        throw new Error("No AI response");
+      }
 
       const safeHtml = this.sanitizer.bypassSecurityTrustHtml(responseHtml);
       this.messages.update((m) => [

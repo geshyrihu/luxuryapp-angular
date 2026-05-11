@@ -1,14 +1,13 @@
+import { CommonModule } from "@angular/common";
 import {
   Component,
   EventEmitter,
   Input,
   OnInit,
   Output,
-  effect,
   inject,
   signal,
 } from "@angular/core";
-import { toSignal } from "@angular/core/rxjs-interop";
 import {
   FormControl,
   FormGroup,
@@ -16,20 +15,53 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { AutoCompleteModule } from "primeng/autocomplete";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
-import { SolicitudCompraService } from "src/app/core/services/solicitud-compra.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { ProductModalAdd } from "./product-modal-add";
+
+interface IProductSuggestion {
+  productoId: string;
+  producto: string;
+  marca: string;
+  urlImagen: string;
+  cantidad: number;
+  unidadMedidaId: string;
+  displayName: string;
+}
 
 @Component({
   selector: "app-product-add",
   templateUrl: "./product-add.html",
+  styles: [
+    `
+      :host ::ng-deep .product-search-panel {
+        width: 28rem;
+        max-width: 28rem;
+      }
+
+      :host ::ng-deep .product-search-panel .p-autocomplete-list {
+        padding-block: 0.25rem;
+      }
+
+      :host ::ng-deep .product-search-option {
+        min-height: 8.5rem;
+        padding: 0.75rem 0.5rem;
+      }
+    `,
+  ],
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    AutoCompleteModule,
+    CustomButton,
     CustomButtonSave,
     CustomInputSelectSignal,
     CustomInputTextSignal,
@@ -38,21 +70,24 @@ import { SolicitudCompraService } from "src/app/core/services/solicitud-compra.s
 export class ProductAdd implements OnInit {
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
-  solicitudCompraService = inject(SolicitudCompraService);
+  private dialogHandlerS = inject(DialogHandlerService);
 
   @Input() solicitudCompraId: string = "";
   @Output() updateData = new EventEmitter<void>();
 
   cb_measurement_units = signal<ISelectItem[]>([]);
-  products = signal<any[]>([]); // Convertido a Signal para mejor reactividad
+  products = signal<IProductSuggestion[]>([]);
 
-  // Control independiente solo para la UI del autocomplete (si se usa)
-  productSearchControl = new FormControl<ISelectItem | null>(null);
+  productSearchControl = new FormControl<IProductSuggestion | string | null>(
+    null,
+  );
 
   // Definición estricta del formulario
   form = new FormGroup({
     id: new FormControl<string>({ value: "", disabled: true }),
-    productoId: new FormControl<number | null>(null),
+    productoId: new FormControl<string | null>(null, {
+      validators: [Validators.required],
+    }),
     productName: new FormControl<string>("", {
       nonNullable: true,
       validators: [Validators.required],
@@ -65,22 +100,11 @@ export class ProductAdd implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    solicitudCompraId: new FormControl<number | null>(null),
+    solicitudCompraId: new FormControl<string | null>(null),
     applicationUserId: new FormControl<string>(this.authS.applicationUserId),
   });
 
-  valueChangesSignal = toSignal(this.productSearchControl.valueChanges);
-
-  constructor() {
-    effect(() => {
-      const value: any = this.valueChangesSignal();
-      if (value) {
-        const productoId =
-          value && typeof value === "object" ? value.value : null;
-        this.form.patchValue({ productoId });
-      }
-    });
-  }
+  constructor() {}
 
   async ngOnInit(): Promise<void> {
     this.onLoadMeasurementUnits();
@@ -102,15 +126,60 @@ export class ProductAdd implements OnInit {
         },
       )
       .then((result: any) => {
-        this.products.set(result);
+        const mapped = Array.isArray(result)
+          ? result.map((item) => ({
+              ...item,
+              displayName:
+                `${item?.marca ?? ""} ${item?.producto ?? ""}`.trim(),
+            }))
+          : [];
+        this.products.set(mapped);
       });
   }
 
-  onSelect(event: ISelectItem): void {
+  searchProducts(event: { query: string }): void {
+    const query = event.query?.trim() ?? "";
     this.form.patchValue({
-      productoId: event.value,
+      productName: query,
+      productoId: null,
     });
-    this.productSearchControl.setValue(event, { emitEvent: false });
+
+    if (query.length >= 2) {
+      this.onLoadProduct(query);
+      return;
+    }
+
+    this.products.set([]);
+  }
+
+  onProductSelected(event: { value: IProductSuggestion }): void {
+    const selected = event.value;
+    this.form.patchValue({
+      productName: selected.displayName,
+      productoId: selected.productoId,
+    });
+  }
+
+  ProductModaladd(): void {
+    this.dialogHandlerS
+      .openDialog(
+        ProductModalAdd,
+        { solicitudCompraId: this.solicitudCompraId, id: "" },
+        "Agregar",
+        this.dialogHandlerS.sizeFull,
+      )
+      .then((result) => {
+        if (result) {
+          this.updateData.emit();
+        }
+      });
+  }
+  onProductCleared(): void {
+    this.form.patchValue({
+      productName: "",
+      productoId: null,
+    });
+    this.products.set([]);
   }
 
   onSubmit() {
@@ -138,6 +207,7 @@ export class ProductAdd implements OnInit {
   resetForm(): void {
     this.form.reset({
       productoId: null,
+      productName: "",
       cantidad: 1,
       unidadMedidaId: "",
       solicitudCompraId: null,
@@ -147,19 +217,8 @@ export class ProductAdd implements OnInit {
     this.products.set([]);
   }
 
-  public onInputProduct(event: any): void {
-    const value = event.target.value;
-    if (value && value.length >= 2) {
-      this.onLoadProduct(value);
-    } else {
-      this.products.set([]);
-    }
-  }
-
-  public onSelectProduct(e: any): void {
-    let find = this.products().find((x) => x?.producto === e.target.value);
-    this.form.patchValue({
-      productoId: find?.productoId,
-    });
+  productLabel(item: IProductSuggestion | string | null): string {
+    if (!item) return "";
+    return typeof item === "string" ? item : item.displayName;
   }
 }

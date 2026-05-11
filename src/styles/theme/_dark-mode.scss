@@ -171,10 +171,285 @@
     border-color: var(--ds-border);
   }
 
-  // ── 7. ALERTS / BADGES (colores semánticos se mantienen, solo fondo) ──
+  // ── 8. NEON GLOW EN CARDS INTERACTIVAS ───────────────────────
+  // Hover glow sobre .card y .p-card usando el token --ds-glow-*
 
-  .alert-warning,
-  .bg-status-pending {
-    // Los colores semánticos tienen suficiente contraste en dark — sin cambios
+  .card.card-interactive,
+  .card[tabindex],
+  .card[role="button"] {
+    transition: box-shadow var(--brand-transition-base, 200ms ease),
+                border-color var(--brand-transition-base, 200ms ease);
+
+    &:hover {
+      box-shadow: var(--ds-glow-primary);
+      border-color: var(--ds-primary);
+    }
+  }
+
+  // Semantic card glow según clase de borde asignada en template
+  .card.border-success { box-shadow: var(--ds-glow-success); border-color: var(--ds-success); }
+  .card.border-danger  { box-shadow: var(--ds-glow-danger);  border-color: var(--ds-danger);  }
+  .card.border-warning { box-shadow: var(--ds-glow-warning); border-color: var(--ds-warning); }
+  .card.border-info    { box-shadow: var(--ds-glow-info);    border-color: var(--ds-info);    }
+  .card.border-help    { box-shadow: var(--ds-glow-help);    border-color: var(--ds-help, var(--brand-help)); }
+
+  // ── 9. PrimeNG PANEL & FIELDSET ──────────────────────────────
+
+  .p-panel {
+    background-color: var(--ds-bg-surface);
+    border-color: var(--ds-border);
+    color: var(--ds-text-primary);
+
+    .p-panel-header {
+      background-color: var(--ds-bg-sunken);
+      color: var(--ds-text-primary);
+      border-bottom-color: var(--ds-border);
+    }
+
+    .p-panel-content {
+      background-color: var(--ds-bg-surface);
+      color: var(--ds-text-primary);
+    }
+  }
+
+  .p-fieldset {
+    background-color: var(--ds-bg-surface);
+    border-color: var(--ds-border);
+    color: var(--ds-text-primary);
+
+    .p-fieldset-legend {
+      background-color: var(--ds-bg-surface);
+      color: var(--ds-text-primary);
+      border-color: var(--ds-border);
+    }
+  }
+
+  // ── 10. TABVIEW ──────────────────────────────────────────────
+
+  .p-tabview {
+    .p-tabview-nav {
+      background-color: var(--ds-bg-surface);
+      border-color: var(--ds-border);
+
+      li .p-tabview-nav-link {
+        color: var(--ds-text-secondary);
+        background-color: transparent;
+        border-color: transparent;
+      }
+
+      li.p-highlight .p-tabview-nav-link {
+        color: var(--ds-primary);
+        border-bottom-color: var(--ds-primary);
+        background-color: transparent;
+      }
+    }
+
+    .p-tabview-panels {
+      background-color: var(--ds-bg-surface);
+      color: var(--ds-text-primary);
+    }
+  }
+
+  // ── 11. ACCORDION ────────────────────────────────────────────
+
+  .p-accordion {
+    .p-accordion-header .p-accordion-header-link {
+      background-color: var(--ds-bg-sunken);
+      color: var(--ds-text-primary);
+      border-color: var(--ds-border);
+
+      &:hover {
+        background-color: var(--ds-bg-elevated);
+      }
+    }
+
+    .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+      background-color: var(--ds-bg-surface);
+      color: var(--ds-primary);
+      border-color: var(--ds-primary);
+    }
+
+    .p-accordion-content {
+      background-color: var(--ds-bg-surface);
+      color: var(--ds-text-primary);
+      border-color: var(--ds-border);
+    }
+  }
+
+  // ── 12. DATATABLE COMPLEMENTOS ───────────────────────────────
+
+  .p-datatable {
+    .p-datatable-header,
+    .p-datatable-footer {
+      background-color: var(--ds-bg-surface);
+      color: var(--ds-text-primary);
+      border-color: var(--ds-border);
+    }
+
+    .p-datatable-thead > tr > th {
+      background-color: var(--ds-bg-sunken);
+      color: var(--ds-text-secondary);
+      border-color: var(--ds-border);
+    }
+
+    .p-datatable-tbody > tr {
+      background-color: var(--ds-bg-surface);
+      color: var(--ds-text-primary);
+
+      > td {
+        border-color: var(--ds-border);
+      }
+
+      &:nth-child(even) {
+        background-color: var(--ds-bg-sunken);
+      }
+
+      &:hover {
+        background-color: var(--ds-bg-elevated);
+      }
+
+      &.p-highlight {
+        background-color: var(--ds-primary-light);
+        color: var(--ds-primary);
+      }
+    }
+
+    .p-datatable-tfoot > tr > td {
+      background-color: var(--ds-bg-sunken);
+      color: var(--ds-text-primary);
+      border-color: var(--ds-border);
+    }
+  }
+
+  // ── 13. OVERLAYS: DROPDOWN, AUTOCOMPLETE, CALENDAR ───────────
+  // Teleportados a <body> pero siguen dentro de html.theme-dark
+
+  .p-dropdown-panel,
+  .p-multiselect-panel,
+  .p-autocomplete-panel,
+  .p-listbox {
+    background-color: var(--ds-bg-surface);
+    border-color: var(--ds-border);
+    color: var(--ds-text-primary);
+
+    .p-dropdown-header,
+    .p-multiselect-header {
+      background-color: var(--ds-bg-sunken);
+      border-bottom-color: var(--ds-border);
+      color: var(--ds-text-primary);
+    }
+
+    .p-dropdown-item,
+    .p-multiselect-item,
+    .p-listbox-item {
+      color: var(--ds-text-primary);
+
+      &:not(.p-highlight):hover {
+        background-color: var(--ds-bg-sunken);
+      }
+
+      &.p-highlight {
+        background-color: var(--ds-primary-light);
+        color: var(--ds-primary);
+      }
+    }
+  }
+
+  .p-datepicker {
+    background-color: var(--ds-bg-surface);
+    border-color: var(--ds-border);
+    color: var(--ds-text-primary);
+
+    .p-datepicker-header {
+      background-color: var(--ds-bg-sunken);
+      border-bottom-color: var(--ds-border);
+      color: var(--ds-text-primary);
+    }
+
+    table td > span {
+      color: var(--ds-text-primary);
+
+      &:hover {
+        background-color: var(--ds-bg-sunken);
+      }
+
+      &.p-highlight {
+        background-color: var(--ds-primary);
+        color: #09090b;
+      }
+    }
+
+    table td.p-datepicker-today > span {
+      background-color: var(--ds-bg-elevated);
+      color: var(--ds-primary);
+      border-color: var(--ds-primary);
+    }
+  }
+
+  // ── 14. CHIPS, TAGS, BADGE ────────────────────────────────────
+
+  .p-chip {
+    background-color: var(--ds-bg-elevated);
+    color: var(--ds-text-primary);
+  }
+
+  .p-progressbar {
+    background-color: var(--ds-bg-elevated);
+
+    .p-progressbar-value {
+      background-color: var(--ds-primary);
+    }
+  }
+
+  .p-skeleton {
+    background-color: var(--ds-bg-elevated);
+
+    &::after {
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.04),
+        transparent
+      );
+    }
+  }
+
+  .p-tooltip .p-tooltip-text {
+    background-color: var(--ds-bg-elevated);
+    color: var(--ds-text-primary);
+    border: 1px solid var(--ds-border);
+  }
+
+  // ── 15. COBERTURA DE UTILIDADES ADICIONALES ───────────────────
+  // Clases numéricas PrimeFlex / TailwindCSS usadas en templates
+
+  .text-900, .text-800 { color: var(--ds-text-primary); }
+  .text-700, .text-600 { color: var(--ds-text-secondary); }
+  .text-500, .text-400 { color: var(--ds-text-muted); }
+
+  // Fondos semánticos light → versión translúcida neon para dark
+  .bg-blue-50,
+  .bg-primary-50   { background-color: var(--ds-primary-light); color: var(--ds-primary); }
+  .bg-green-50     { background-color: var(--ds-success-light); color: var(--ds-success); }
+  .bg-red-50       { background-color: var(--ds-danger-light);  color: var(--ds-danger);  }
+  .bg-yellow-50,
+  .bg-orange-50    { background-color: var(--ds-warning-light); color: var(--ds-warning); }
+  .bg-cyan-50      { background-color: var(--ds-info-light);    color: var(--ds-info);    }
+
+  // ── 16. FOCUS NEON ────────────────────────────────────────────
+
+  .p-inputtext:focus,
+  .p-password input:focus,
+  .p-textarea:focus {
+    border-color: var(--ds-primary);
+    box-shadow: 0 0 0 3px rgba(77, 159, 255, 0.25);
+  }
+
+  .p-multiselect.p-focus,
+  .p-dropdown.p-focus,
+  .p-select.p-focus,
+  .p-autocomplete.p-focus {
+    border-color: var(--ds-primary);
+    box-shadow: 0 0 0 3px rgba(77, 159, 255, 0.25);
   }
 }

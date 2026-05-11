@@ -128,7 +128,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
     });
   }
 
-  // --- Mótodos para manejar el FormArray de Categoróas ---
+  // --- Mótodos para manejar el FormArray de Categorías ---
   get categories(): FormArray<FormGroup<ICategoryForm>> {
     return this.form.controls.categories;
   }

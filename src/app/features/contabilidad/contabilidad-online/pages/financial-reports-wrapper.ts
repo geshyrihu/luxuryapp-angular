@@ -7,7 +7,7 @@ import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom
 
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { AiAgentComponent } from "../components/ai-agent/ai-agent";
-import { ReportFilterService } from "../services/financial-report-filter.service";
+import { reportFilterState } from "../state/financial-report-filter.state";
 import { AnalisisCobranza } from "./analisis-cobranza/analisis-cobranza";
 import { CedulaExtraordinaria } from "./cedula-extraordinaria/cedula-extraordinaria";
 import { CedulaPresupuestal } from "./cedula-presupuestal/cedula-presupuestal";
@@ -37,7 +37,7 @@ import { ListadosAspel } from "./listados-aspel/listados-aspel";
   templateUrl: "./financial-reports-wrapper.html",
 })
 export default class FinancialReportsWrapper {
-  public filterS = inject(ReportFilterService);
+  public filterS = reportFilterState;
 
   reportIndex = signal<number>(0);
   REPORTS = [

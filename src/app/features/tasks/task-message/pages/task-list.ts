@@ -394,12 +394,12 @@ export class TaskList implements OnInit {
   onProgress(id: string) {
     Swal.fire({
       title: "Confirmar",
-      text: "Se colocarÃ¡ el ticket en proceso",
+      text: "Se colocará el ticket en proceso",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#0d3b66",
       cancelButtonColor: "#9B1B30",
-      confirmButtonText: "SÃ­, en proceso!",
+      confirmButtonText: "Sí, en proceso!",
       cancelButtonText: "Cancelar",
     }).then((responseData) => {
       if (responseData.value) {

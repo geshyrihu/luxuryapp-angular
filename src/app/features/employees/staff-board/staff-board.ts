@@ -61,7 +61,7 @@ import { EmployeeProviderForm } from "../../provider/pages/employee-provider-for
     CustomButtonEdit,
     CustomButtonDelete,
     ActionMenu,
-    ],
+  ],
 })
 export class StaffBoard {
   readonly apiS = inject(ApiResponseService);
@@ -81,16 +81,16 @@ export class StaffBoard {
     [EDepartament.Mantenimiento]: "Mantenimiento",
     [EDepartament.Limpieza]: "Limpieza",
     [EDepartament.Operaciones]: "Operaciones",
-    [EDepartament.Jardineria]: "JardinerÃ­a",
+    [EDepartament.Jardineria]: "Jardinería",
     [EDepartament.Sistemas]: "Sistemas",
     [EDepartament.Seguridad]: "Seguridad",
     [EDepartament.Constructora]: "Constructora",
-    [EDepartament.Supervision]: "SupervisiÃ³n",
-    [EDepartament.Direcciones]: "DirecciÃ³n",
+    [EDepartament.Supervision]: "Supervisión",
+    [EDepartament.Direcciones]: "Dirección",
     [EDepartament.RecusrosHumanos]: "Recursos Humanos",
     [EDepartament.Reclutamiento]: "Reclutamiento",
-    [EDepartament.Recepcion]: "RecepciÃ³n",
-    [EDepartament.Mensajeria]: "MensajerÃ­a",
+    [EDepartament.Recepcion]: "Recepción",
+    [EDepartament.Mensajeria]: "Mensajería",
     [EDepartament.Ludoteca]: "Ludoteca",
     [EDepartament.NA]: "Sin Departamento",
   };
@@ -154,7 +154,7 @@ export class StaffBoard {
           positionRequestId: position.positionRequest?.id ?? null,
           applicationRoleId: position.applicationRoleId ?? null,
         },
-        `Registrar Empleado â€” ${position.folio}`,
+        `Registrar Empleado — ${position.folio}`,
         this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {
@@ -329,7 +329,7 @@ export class StaffBoard {
         id: jobDescriptionId,
         applicationRoleName: applicationRoleName,
       },
-      "DescripciÃ³n de puesto: " + applicationRoleName,
+      "DESCRIPCIÓN de puesto: " + applicationRoleName,
       DialogSize.lg,
     );
   }
@@ -363,7 +363,7 @@ export class StaffBoard {
     return !item.applicationRoleName || item.applicationRoleName === "Asignar";
   }
 
-  /** Muestra el botÃ³n si no hay solicitud activa (Pendiente/Proceso), independiente de si hay empleado. */
+  /** Muestra el botón si no hay solicitud activa (Pendiente/Proceso), independiente de si hay empleado. */
   shouldShowVacancyRequest(item: IWorkPosition): boolean {
     return !item.positionRequest;
   }

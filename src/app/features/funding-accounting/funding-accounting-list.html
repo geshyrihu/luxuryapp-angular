@@ -38,44 +38,44 @@
       <td>
         @if (item.createdByName) {
         <div>
-          <p class="card-text">âœ… {{ item.createdByName }}</p>
+          <p class="card-text">✅ {{ item.createdByName }}</p>
           {{ item.createdAt }}
         </div>
         } @else {
-        <p class="text-color-secondary">â³ En espera</p>
+        <p class="text-color-secondary">⏳ En espera</p>
         }
       </td>
 
       <td>
         @if (item.verifiedByName) {
         <div>
-          <p class="card-text">âœ… {{ item.verifiedByName }}</p>
+          <p class="card-text">✅ {{ item.verifiedByName }}</p>
           {{ item.verifiedAt }}
         </div>
         } @else {
-        <p class="text-color-secondary">â³ En espera</p>
+        <p class="text-color-secondary">⏳ En espera</p>
         }
       </td>
 
       <td>
         @if (item.authorizedByName) {
         <div>
-          <p class="card-text">âœ… {{ item.authorizedByName }}</p>
+          <p class="card-text">✅ {{ item.authorizedByName }}</p>
           {{ item.authorizedAt }}
         </div>
         } @else {
-        <p class="text-color-secondary">â³ En espera</p>
+        <p class="text-color-secondary">⏳ En espera</p>
         }
       </td>
 
       <td>
         @if (item.confirmedByName) {
         <div>
-          <p class="card-text">âœ… {{ item.confirmedByName }}</p>
+          <p class="card-text">✅ {{ item.confirmedByName }}</p>
           {{ item.confirmedAt }}
         </div>
         } @else {
-        <p class="text-color-secondary">â³ En espera</p>
+        <p class="text-color-secondary">⏳ En espera</p>
         }
       </td>
 
@@ -88,7 +88,7 @@
           <ng-container actions>
             <ion-button-item
               (clicked)="onDetails(item.id)"
-              label="ðŸ” Detalles"
+              label="🔍 Detalles"
               />
             </ng-container>
           </app-action-menu> -->
@@ -116,8 +116,8 @@
       </div>
       <ion-label>
         <h3>{{ item.period }}</h3>
-        <p>VerificÃ³: {{ item.verifiedByName || 'â³ En espera' }}</p>
-        <p>AutorizÃ³: {{ item.authorizedByName || 'â³ En espera' }}</p>
+        <p>Verificó: {{ item.verifiedByName || '⏳ En espera' }}</p>
+        <p>Autorizó: {{ item.authorizedByName || '⏳ En espera' }}</p>
       </ion-label>
     </ion-item>
   </ng-template>

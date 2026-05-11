@@ -142,7 +142,7 @@ export class ListaEvaluacionRealizada {
         datasets: [
           {
             data: data,
-            label: "Promedio por Categoróa",
+            label: "Promedio por Categoría",
             backgroundColor: "rgba(54, 162, 235, 0.2)",
             borderColor: "rgb(54, 162, 235)",
             pointBackgroundColor: "rgb(54, 162, 235)",
@@ -367,7 +367,7 @@ export class ListaEvaluacionRealizada {
         margin: [0, 10, 0, 20],
       },
       {
-        text: "Resumen de Desempeóo por Categoróa",
+        text: "Resumen de Desempeóo por Categoría",
         style: "subheader",
         margin: [0, 10, 0, 5],
       },
@@ -395,7 +395,7 @@ export class ListaEvaluacionRealizada {
           stack: page1Stack,
           pageBreak: "after",
         },
-        { text: "Detalle por Categoróas", style: "sectionHeader" },
+        { text: "Detalle por Categorías", style: "sectionHeader" },
         ...evaluationResult.categories.map((category: any) => ({
           ...categoriesContent(category),
           unbreakable: true,

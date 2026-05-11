@@ -48,8 +48,8 @@ import { IonButtonDelete, IonButtonEdit } from "src/app/core/components/buttons/
 export class AsuntoLegalLista {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
-  ref: DynamicDialogRef; // Referencia a un cuadro de diÃƒÂ³logo modal
-  // DeclaraciÃƒÂ³n e inicializaciÃƒÂ³n de variables
+  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
+  // Declaración e inicialización de variables
   dataSignal = signal<any[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   constructor() {
@@ -85,7 +85,7 @@ export class AsuntoLegalLista {
       });
   }
 
-  // FunciÃƒÂ³n para abrir un cuadro de diÃƒÂ³logo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(AsuntoLegalForm, data, data.title, this.dialogHandlerS.sizeLg)

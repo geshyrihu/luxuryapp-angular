@@ -72,7 +72,7 @@ export class TemplatesList implements OnInit {
 
   // Usar el servicio global para scrollHeight
   scrollHeight = this.tableScrollHeightS.scrollHeight;
-  // SeÃ³ales
+  // Seóales
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => {

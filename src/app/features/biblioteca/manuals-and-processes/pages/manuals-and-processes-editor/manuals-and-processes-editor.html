@@ -55,7 +55,7 @@
   <div class="flex flex-grow-1 overflow-hidden">
 
     <!-- Panel izquierdo: lista de pasos -->
-    <div class="border-right-1 border-200 overflow-y-auto flex-shrink-0" style="width: 320px;">
+    <div class="border-right-1 border-200 overflow-y-auto flex-shrink-0 w-20rem">
       @if (!pasos().length) {
       <div class="p-4 text-center text-500">
         <i class="pi pi-list text-3xl mb-2 block"></i>
@@ -73,12 +73,11 @@
           <i cdkDragHandle class="pi pi-bars text-400 cursor-grab flex-shrink-0 text-xs"></i>
 
           <div
-            class="flex-shrink-0 border-circle flex align-items-center justify-content-center text-white font-bold"
+            class="flex-shrink-0 w-2rem h-2rem border-circle flex align-items-center justify-content-center text-white font-bold text-xs"
             [class.bg-primary]="paso.tipoNota === 0"
             [class.bg-blue-400]="paso.tipoNota === 1"
             [class.bg-yellow-500]="paso.tipoNota === 2"
             [class.bg-green-500]="paso.tipoNota === 3"
-            style="min-width: 1.4rem; min-height: 1.4rem; font-size: 0.65rem;"
           >
             {{ i + 1 }}
           </div>
@@ -227,11 +226,12 @@
           @if (selectedPaso()!.imagenes?.length) {
           <div class="flex flex-wrap gap-3">
             @for (img of selectedPaso()!.imagenes; track img.id) {
-            <div class="relative border-round overflow-hidden border-1 border-200">
+            <div
+              class="relative surface-card border-1 surface-border border-round-xl overflow-hidden p-2"
+            >
               <img
                 [src]="img.url"
-                class="block"
-                style="height: 120px; width: 160px; object-fit: cover;"
+                class="block max-w-full h-auto border-round-lg"
                 alt="imagen"
               />
               <div class="absolute top-0 right-0 m-1">

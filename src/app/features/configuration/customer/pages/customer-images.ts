@@ -12,7 +12,7 @@ import { ICustomerImageDTO } from "../models/customer.dto";
 @Component({
   selector: "app-customer-images",
   templateUrl: "./customer-images.html",
-  standalone: true,
+
   imports: [
     CommonModule,
     FileUploadModule,
@@ -43,9 +43,9 @@ export class CustomerImages implements OnInit {
   onLoadData() {
     this.loading.set(true);
     this.apiResponseS
-      .onGetItem<ICustomerImageDTO[]>(
-        Endpoints.CustomerImages.getByCustomerId(this.customerId()),
-      )
+      .onGetItem<
+        ICustomerImageDTO[]
+      >(Endpoints.CustomerImages.getByCustomerId(this.customerId()))
       .then((result) => {
         this.images.set(result ?? []);
         this.loading.set(false);

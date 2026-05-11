@@ -1,22 +1,50 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
   <div>
-    <div class="mb-2">
-      <p class="text-base font-semibold">AGREGAR PRODUCTO O SERVICIO</p>
-    </div>
-
     <div class="grid align-items-start">
-      <div class="col-12 md:col-7">
-        <label for="example-text-input" class="block mb-2">BUSCAR </label>
+      <div class="col-12 md:col-6">
+        <label for="example-text-input" class="block">BUSCAR </label>
 
-        <custom-input-text-signal
-          [control]="form.controls.productName"
-          list="productOptions"
-          id="exaemployeempleDataList"
-          placeholder="Escribe para buscar producto o servicio..."
-          (input)="onInputProduct($event)"
-          (change)="onSelectProduct($event)"
-          [horizontal]="false"
-        />
+        <p-autoComplete
+          [formControl]="productSearchControl"
+          [suggestions]="products()"
+          [optionLabel]="'displayName'"
+          [forceSelection]="true"
+          [showClear]="true"
+          [dropdown]="false"
+          [inputStyleClass]="'w-full'"
+          [placeholder]="'Escribe para buscar producto o servicio...'"
+          [emptyMessage]="'No se encontraron resultados'"
+          [panelStyleClass]="'product-search-panel'"
+          [panelStyle]="{ width: '32rem', maxWidth: '32rem' }"
+          [scrollHeight]="'34rem'"
+          appendTo="body"
+          fluid
+          (completeMethod)="searchProducts($event)"
+          (onSelect)="onProductSelected($event)"
+          (onClear)="onProductCleared()"
+        >
+          <ng-template let-item pTemplate="item">
+            <div class="product-search-option flex align-items-center gap-3">
+              <img
+                [src]="item.urlImagen"
+                [alt]="item.producto"
+                width="120"
+                height="120"
+                class="border-round object-cover flex-shrink-0"
+                style="width: 120px; height: 120px"
+              />
+              <div class="min-w-0">
+                <div class="font-medium line-height-3">{{ item.producto }}</div>
+                <div class="text-sm text-color-secondary mt-2">
+                  {{ item.marca }}
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template let-item pTemplate="selectedItem">
+            {{ productLabel(item) }}
+          </ng-template>
+        </p-autoComplete>
       </div>
 
       <div class="col-12 md:col-2">
@@ -38,11 +66,32 @@
         />
       </div>
 
-      <div class="col-12 md:col-1 flex align-items-end">
-        <label for="" hidden>.</label>
+      <div class="col-12 md:col-1 flex flex-column justify-content-end">
+        <div
+          aria-hidden="true"
+          class="block mb-2"
+          style="visibility: hidden; height: 1.5rem"
+        ></div>
         <custom-button-save
           size=""
           [disabled]="form.invalid"
+          customClass="w-full"
+        />
+      </div>
+
+      <div class="col-12 md:col-1 flex flex-column justify-content-end">
+        <div
+          aria-hidden="true"
+          class="block mb-2"
+          style="visibility: hidden; height: 1.5rem"
+        ></div>
+        <custom-button
+          [showLabelOnDesktop]="true"
+          iconClass="pi pi-search"
+          label="Avanzada"
+          (clicked)="ProductModaladd()"
+          severity="info"
+          variant="outlined"
           customClass="w-full"
         />
       </div>

@@ -31,8 +31,7 @@ import { ManualsAndProcessesForm } from "./manuals-and-processes-form";
 @Component({
   selector: "app-manuals-and-processes-list",
   templateUrl: "./manuals-and-processes-list.html",
-  styleUrl: "./manuals-and-processes-list.scss",
-  standalone: true,
+
   imports: [
     ActionMenu,
     CustomButton,

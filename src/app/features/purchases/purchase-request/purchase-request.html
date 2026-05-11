@@ -29,12 +29,12 @@
       <p class="m-0">{{ data.requestedBy }}</p>
     </div>
     <div class="col-12 md:col-2">
-      <strong class="block text-color-secondary">Ã¡rea:</strong>
+      <strong class="block text-color-secondary">área:</strong>
       <p class="m-0">{{ data.area }}</p>
     </div>
     <div class="col-12 md:col-4">
       <strong class="block text-color-secondary"
-        >JustificaciÃ³n del Gasto:</strong
+        >Justificación del Gasto:</strong
       >
       <p class="m-0">{{ data.expenseJustification }}</p>
     </div>
@@ -90,7 +90,7 @@
     [productDataToEdit]="productToEdit"
   />
   <br />
-  <!-- SecciÃ³n para Detalles (Products/Services) -->
+  <!-- Sección para Detalles (Products/Services) -->
   @if (data.products && data.products.length > 0) {
   <div>
     <!-- purchase-request.html -->
@@ -106,7 +106,7 @@
     No hay productos o servicios detallados en esta solicitud.
   </div>
   }
-  <!-- SecciÃ³n para Cotizaciones -->
+  <!-- Sección para Cotizaciones -->
   @if (data.quotes && data.quotes.length > 0) {
   <hr class="my-4" />
   } @if (data.quotes && data.quotes.length > 0) {
@@ -115,7 +115,7 @@
     <ul class="list-group">
       @for (quote of data.quotes; track quote) {
       <li class="list-group-item">
-        <!-- AquÃ³ mostrarÃ³as la informaciÃ³n de cada 'quote' -->
+        <!-- Aquó mostraróas la información de cada 'quote' -->
         <!-- Ejemplo: {{ quote.quoteNumber }} - Proveedor: {{ quote.provider }} -->
         <p>
           <em>{{ quote | json }}</em>

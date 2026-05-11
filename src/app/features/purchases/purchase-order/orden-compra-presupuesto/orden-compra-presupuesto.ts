@@ -224,7 +224,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   //----------------------------------------------------------------
   // 6. LIMPIEZA
   //----------------------------------------------------------------
-  // Al destruir el componente cerramos el diólogo ??
+  // Al destruir el componente cerramos el diálogo ??
   ngOnDestroy(): void {
     this.ref.close(true);
   }

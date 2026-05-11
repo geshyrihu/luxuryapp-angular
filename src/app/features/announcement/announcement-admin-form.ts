@@ -164,7 +164,7 @@ export class AnnouncementAdminForm implements OnInit {
           : null,
       });
 
-      // Mapear Status y Type de string a numórico (si vienen como texto)
+      // Mapear Status y Type de string a numérico (si vienen como texto)
       const statusMap: Record<string, number> = {
         Borrador: 0,
         Publicado: 1,

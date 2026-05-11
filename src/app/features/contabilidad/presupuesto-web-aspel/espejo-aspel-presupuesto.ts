@@ -34,7 +34,6 @@ import {
   CuentaAspelTercerNivelDTO,
 } from "../models/presupuesto-shared.models";
 import { BudgetRuleList } from "../presupuesto-propuesta/budget-rule-list/budget-rule-list";
-import { PresupuestoSharedService } from "../services/presupuesto-shared.service";
 import {
   ASPEL_AVAILABLE_YEARS,
   ASPEL_MONTHS,
@@ -85,7 +84,6 @@ export class PresupuestoAspelEjercicioFiscal {
   // Servicios inyectados
   // ===========================
   apiResponseS = inject(ApiResponseService);
-  private sharedService = inject(PresupuestoSharedService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
   private aiService = inject(AiService);
@@ -116,9 +114,7 @@ export class PresupuestoAspelEjercicioFiscal {
         }
       });
   }
-  // ===========================
-  // Propiedades de estado general
-  // ===========================
+
   // ===========================
   // Propiedades de estado general
   // ===========================
@@ -183,9 +179,11 @@ export class PresupuestoAspelEjercicioFiscal {
     this.errorMensaje.set(null);
     this.loading.set(true);
 
-    this.sharedService
-      .getAspelQuotation(customerId, this.intYear())
-      .then((response: AspelBudgetDTO) => {
+    const url = `presupuesto/aspel?customerId=${customerId}&intYear=${this.intYear()}`;
+
+    this.apiResponseS
+      .onGetList<AspelBudgetDTO>(url)
+      .then((response) => {
         if (response?.cuentas?.length > 0) {
           this.budgetData.set(response);
           this.allCuentas.set(normalizeAspelAccounts(response.cuentas));
@@ -220,22 +218,22 @@ export class PresupuestoAspelEjercicioFiscal {
     this.allCuentas.set([]);
     this.budgetData.set(null);
 
-    this.sharedService
-      .getAspelFullQuotation(customerId, this.intYear())
-      .then((response: AspelBudgetDTO) => {
-        if (response?.cuentas?.length > 0) {
+    const url = `presupuesto/aspel-full?customerId=${customerId}&intYear=${this.intYear()}`;
+
+    this.apiResponseS.onGetList<AspelBudgetDTO>(url).then((response) => {
+      if (response?.cuentas?.length > 0) {
+        this.budgetData.set(response);
+        this.allCuentas.set(normalizeAspelAccounts(response.cuentas));
+        this.globalFilterFields.set(globalFilterFields(this.allCuentas()));
+      } else {
+        this.handleError(
+          (response as any)?.strMensaje || "No se encontraron datos.",
+        );
+        if (response?.Nombre_Empresa) {
           this.budgetData.set(response);
-          this.allCuentas.set(normalizeAspelAccounts(response.cuentas));
-          this.globalFilterFields.set(globalFilterFields(this.allCuentas()));
-        } else {
-          this.handleError(
-            (response as any)?.strMensaje || "No se encontraron datos.",
-          );
-          if (response?.Nombre_Empresa) {
-            this.budgetData.set(response);
-          }
         }
-      });
+      }
+    });
   }
 
   // ===========================
@@ -293,23 +291,23 @@ export class PresupuestoAspelEjercicioFiscal {
     this.allCuentas.set([]);
     this.budgetData.set(null);
 
-    this.sharedService
-      .getPresupuestoLimpioEjercicioFiscal(customerId, this.intYear())
-      .then((response: AspelBudgetDTO) => {
-        if (response && response.cuentas && response.cuentas.length > 0) {
+    const url = `presupuesto/presupuesto-limpio-ejercicio-fiscal?customerId=${customerId}&intYear=${this.intYear()}`;
+
+    this.apiResponseS.onGetList<AspelBudgetDTO>(url).then((response) => {
+      if (response && response.cuentas && response.cuentas.length > 0) {
+        this.budgetData.set(response);
+        this.allCuentas.set(normalizeAspelAccounts(this.budgetData()!.cuentas));
+        this.globalFilterFields.set(globalFilterFields(this.allCuentas()));
+      } else {
+        this.handleError(
+          (response as any)?.strMensaje ||
+            "No se encontraron datos de cuentas detalladas o la respuesta no es válida.",
+        );
+        if (response && response.Nombre_Empresa) {
           this.budgetData.set(response);
-          this.allCuentas.set(normalizeAspelAccounts(this.budgetData()!.cuentas));
-          this.globalFilterFields.set(globalFilterFields(this.allCuentas()));
-        } else {
-          this.handleError(
-            (response as any)?.strMensaje ||
-              "No se encontraron datos de cuentas detalladas o la respuesta no es vólida.",
-          );
-          if (response && response.Nombre_Empresa) {
-            this.budgetData.set(response);
-          }
         }
-      });
+      }
+    });
   }
 
   // ===========================

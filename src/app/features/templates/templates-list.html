@@ -22,7 +22,7 @@
         <p-sortIcon field="folio" />
       </th>
       <th class="table-col-30" pSortableColumn="descripcion">
-        DescripciÃ³n
+        DESCRIPCIÓN
         <p-sortIcon field="descripcion" />
       </th>
       <th class="table-col-30" pSortableColumn="pathFormato">
@@ -73,28 +73,35 @@
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
-      <div slot="start" style="
-        width:36px; height:36px; border-radius:10px;
-        background:#dbeafe; display:flex; align-items:center;
-        justify-content:center; flex-shrink:0; margin-left:16px;
-      ">
-        <ion-icon name="document-outline" style="font-size:20px; color:#2563eb;"></ion-icon>
+      <div
+        slot="start"
+        style="
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          background: #dbeafe;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-left: 16px;
+        "
+      >
+        <ion-icon
+          name="document-outline"
+          style="font-size: 20px; color: #2563eb"
+        ></ion-icon>
       </div>
       <ion-label>
         <h3>{{ item.name | uppercase }}</h3>
         <p>Folio: {{ item.folio }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
+        <ion-button-edit
+          (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+        />
         <ion-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>
-
-
-
-
-
-
-

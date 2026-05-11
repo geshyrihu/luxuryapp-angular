@@ -8,7 +8,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { IEpfDTO } from "../../models/aspel-budget.interface";
-import { ReportFilterService } from "../../services/financial-report-filter.service";
+import { reportFilterState } from "../../state/financial-report-filter.state";
 
 /**
  * Componente EPF (Estado de Posición Financiera).
@@ -26,7 +26,7 @@ import { ReportFilterService } from "../../services/financial-report-filter.serv
 export class EstadoPosicionFinanciera {
   private readonly apiS = inject(ApiResponseService);
   private readonly customerIdS = inject(CustomerIdService);
-  public readonly filterS = inject(ReportFilterService);
+  public readonly filterS = reportFilterState;
 
   private readonly MONTHS = [
     "Enero",

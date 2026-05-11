@@ -13,12 +13,13 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import type {
   CobranzaOnlineInspectionResponse,
   CobranzaOnlineInspectionRow,
 } from "../../models/cobranza-online-inspection.model";
-import { CobranzaOnlineService } from "../../services/cobranza-online.service";
 import { CobranzaOnlineInspectionHistoryModal } from "./cobranza-online-inspection-history-modal";
 
 @Component({
@@ -38,7 +39,7 @@ import { CobranzaOnlineInspectionHistoryModal } from "./cobranza-online-inspecti
 })
 export class CobranzaOnlineInspection {
   private customerIdS = inject(CustomerIdService);
-  private cobranzaOnlineS = inject(CobranzaOnlineService);
+  private apiResponseS = inject(ApiResponseService);
   private dialogHandlerS = inject(DialogHandlerService);
   private tableScrollHeightS = inject(TableScrollHeightService);
 
@@ -93,10 +94,13 @@ export class CobranzaOnlineInspection {
     if (!customerId) return;
 
     this.loading.set(true);
-    const response = await this.cobranzaOnlineS.getInspection(
-      customerId,
-      this.currentYear(),
-      this.currentMonth(),
+    const response = await this.apiResponseS.onGetItem<CobranzaOnlineInspectionResponse>(
+      Endpoints.AccountingCoi.CobranzaOnline.Dashboard.inspection(
+        customerId,
+        this.currentYear(),
+        this.currentMonth(),
+      ),
+      false,
     );
 
     const typedResponse = response as CobranzaOnlineInspectionResponse | null;

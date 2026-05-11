@@ -80,7 +80,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   private apiResponseS = inject(ApiResponseService);
   /** Servicio para obtener y reaccionar a cambios en el ID del cliente. */
   private customerIdS = inject(CustomerIdService);
-  /** Servicio para manejar la apertura y cierre de diólogos modales. */
+  /** Servicio para manejar la apertura y cierre de diálogos modales. */
   private dialogHandlerS = inject(DialogHandlerService);
   /** Servicio para la comunicación en tiempo real con SignalR. */
   private signalRService = inject(SignalRService);
@@ -130,7 +130,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   currentProposal = signal<BudgetProposalDTO | null>(null);
   /** Signal que contiene la lista maestra y completa de todas las partidas de la propuesta, tal como se reciben del API. Sirve como la fuente de verdad. */
   allProposalItems = signal<BudgetProposalItemDTO[]>([]);
-  /** Signal que contiene la lista de partidas que se muestra en la tabla, despuós de aplicar los filtros. Es un estado derivado de `allProposalItems`. */
+  /** Signal que contiene la lista de partidas que se muestra en la tabla, después de aplicar los filtros. Es un estado derivado de `allProposalItems`. */
   proposalItems = signal<BudgetProposalItemDTO[]>([]);
   /** Signal que almacena un Map de claves de items ejecutados a sus IDs de BudgetExecution para una bósqueda rópida. */
   projectedExpenseItems = signal<Map<string, string>>(new Map());
@@ -523,7 +523,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
   /**
    * Fuerza una recalculación del layout de la tabla.
-   * Se usa un setTimeout para asegurar que se ejecute despuós de que Angular actualice el DOM.
+   * Se usa un setTimeout para asegurar que se ejecute después de que Angular actualice el DOM.
    * Se utiliza updateSize() ya que recalculateLayout() no existe en la API póblica de p-table.
    */
   private recalculateTableLayout(): void {
@@ -536,7 +536,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
   /**
    * Calcula dinómicamente el `colspan` para el encabezado 'PRESUPUESTO ACTUAL'.
-   * El valor cambia segón las columnas de presupuesto base que estón visibles.
+   * El valor cambia segón las columnas de presupuesto base que están visibles.
    * @returns El nómero de columnas que debe abarcar el encabezado.
    */
   /**
@@ -829,7 +829,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   // --------------------------------------------------------------------------------
 
   /**
-   * Muestra un diólogo con el historial de compras de una cuenta.
+   * Muestra un diálogo con el historial de compras de una cuenta.
    * @param item La partida seleccionada.
    */
   showPurchaseHistory(item: BudgetProposalItemDTO) {
@@ -1137,7 +1137,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Muestra un diólogo con el historial de cambios de una partida.
+   * Muestra un diálogo con el historial de cambios de una partida.
    * @param item La partida seleccionada.
    */
   showItemHistory(item: BudgetProposalItemDTO): void {
@@ -1153,7 +1153,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Muestra un diólogo para ver o adjuntar archivos de soporte a una partida.
+   * Muestra un diálogo para ver o adjuntar archivos de soporte a una partida.
    * @param item La partida seleccionada.
    */
   showSupportDialog(item: BudgetProposalItemDTO): void {
@@ -1169,7 +1169,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Muestra el diólogo modal para Añadir nuevas cuentas a la propuesta.
+   * Muestra el diálogo modal para Añadir nuevas cuentas a la propuesta.
    */
   showAddAccountModal(): void {
     const currentProposal = this.currentProposal();
@@ -1194,7 +1194,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Muestra un modal con los detalles de una ejecución presupuestaria especófica.
+   * Muestra un modal con los detalles de una ejecución presupuestaria específica.
    * @param budgetExecutionId El ID de la ejecución presupuestaria a mostrar.
    */
   showBudgetExecutionDetails(month: string, accountNumber: string): void {
@@ -1208,7 +1208,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
   /**
    * Se ejecuta cuando el usuario selecciona cuentas en el modal `AddAccountModal`.
-   * Envóa las nuevas cuentas al backend para ser aóadidas a la propuesta.
+   * Envía las nuevas cuentas al backend para ser aóadidas a la propuesta.
    * @param accountNumbers Array de nómeros de cuenta a Añadir.
    */
   onAccountsSelected(accountNumbers: string[]): void {
@@ -1255,7 +1255,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   deleteItem(item: BudgetProposalItemDTO): void {
     Swal.fire({
       title: "Confirmar",
-      text: "óEstó seguro de eliminar esta cuenta?",
+      text: "óEstá seguro de eliminar esta cuenta?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Sí, eliminar",
@@ -1295,7 +1295,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Muestra el diólogo para comparar las cuotas de mantenimiento resultantes de la propuesta.
+   * Muestra el diálogo para comparar las cuotas de mantenimiento resultantes de la propuesta.
    */
   showFeeComparisonModal(): void {
     const proposal = this.currentProposal();
@@ -1312,7 +1312,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   /**
-   * Muestra el diólogo modal para comparar las cuotas de mantenimiento resultantes de la propuesta, calculadas por indiviso.
+   * Muestra el diálogo modal para comparar las cuotas de mantenimiento resultantes de la propuesta, calculadas por indiviso.
    */
   showFeeComparisonByIndivisoModal(): void {
     const proposal = this.currentProposal();

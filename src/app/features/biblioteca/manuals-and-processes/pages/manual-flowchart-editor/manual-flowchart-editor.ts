@@ -58,7 +58,6 @@ const CORPORATE_DEFAULT_XML = `<mxGraphModel>
   imports: [CommonModule, ToastModule],
   providers: [MessageService],
   templateUrl: "./manual-flowchart-editor.html",
-  styleUrl: "./manual-flowchart-editor.scss",
 })
 export class ManualFlowchartEditor implements OnInit, OnDestroy {
   private apiS = inject(ApiResponseService);

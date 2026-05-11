@@ -1,4 +1,4 @@
-<!-- La tabla ahora es genÃ©rica y se alimenta de los inputs -->
+<!-- La tabla ahora es genérica y se alimenta de los inputs -->
 <p-table [value]="details" dataKey="id" styleClass="p-datatable-sm">
   <ng-template #header>
     <!-- Cabecera con acciones para agregar y enviar email -->
@@ -9,7 +9,7 @@
           @if (details && details.length > 0) {
           <custom-button-confirm swalTitle="Confirmar" [swalText]="'Enviar Email a ' + title"
             [label]="'Enviar Email a ' + title" [ngbTooltip]="'Enviar Email a ' + title"
-            classButton="btn btn-sm btn-light" swalConfirmButtonText="SÃ­, enviar" (confirmed)="onSendAreaEmail()" />
+            classButton="btn btn-sm btn-light" swalConfirmButtonText="Sí, enviar" (confirmed)="onSendAreaEmail()" />
           }
         </div>
       </th>

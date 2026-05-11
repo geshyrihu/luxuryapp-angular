@@ -9,8 +9,9 @@ import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
 import type { CobranzaOnlineAnalysisResponse } from "../../models/cobranza-online-analysis.model";
-import { CobranzaOnlineService } from "../../services/cobranza-online.service";
 
 function buildTodayInputValue() {
   const now = new Date();
@@ -37,7 +38,7 @@ function buildTodayInputValue() {
 })
 export class CobranzaOnlineAnalysis {
   private customerIdS = inject(CustomerIdService);
-  private cobranzaOnlineS = inject(CobranzaOnlineService);
+  private apiResponseS = inject(ApiResponseService);
 
   readonly loading = signal(false);
   readonly cutoffDateInput = signal(buildTodayInputValue());
@@ -192,13 +193,16 @@ export class CobranzaOnlineAnalysis {
     const day = cutoffDate.getDate();
 
     this.loading.set(true);
-    const result = await this.cobranzaOnlineS.getCollectionAnalysis(
-      customerId,
-      year,
-      month,
-      day,
+    const result = await this.apiResponseS.onGetItem<CobranzaOnlineAnalysisResponse>(
+      Endpoints.AccountingCoi.CobranzaOnline.Dashboard.analysis(
+        customerId,
+        year,
+        month,
+        day,
+      ),
+      false,
     );
-    this.data.set((result as CobranzaOnlineAnalysisResponse | null) ?? null);
+    this.data.set(result ?? null);
     this.loading.set(false);
   }
 }

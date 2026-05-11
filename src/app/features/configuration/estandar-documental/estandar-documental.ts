@@ -55,7 +55,6 @@ interface NomenclaturaCampo {
 interface BloqueVisual {
   titulo: string;
   icono: string;
-  clase: string;
   descripcion: string;
 }
 
@@ -71,7 +70,6 @@ interface BloqueVisual {
     TagModule,
   ],
   templateUrl: "./estandar-documental.html",
-  styleUrl: "./estandar-documental.scss",
 })
 export class EstandarDocumental {
   pestanaActiva = signal<string>("paleta");
@@ -358,21 +356,18 @@ export class EstandarDocumental {
     {
       titulo: "Advertencia",
       icono: "pi pi-exclamation-triangle",
-      clase: "doc-callout doc-callout--warning",
       descripcion:
         "Usar cuando el incumplimiento genera riesgo fisico, legal, economico u operativo.",
     },
     {
       titulo: "Nota",
       icono: "pi pi-info-circle",
-      clase: "doc-callout doc-callout--info",
       descripcion:
         "Informacion complementaria que aclara el procedimiento sin ser un paso obligatorio.",
     },
     {
       titulo: "Buena practica",
       icono: "pi pi-check-circle",
-      clase: "doc-callout doc-callout--success",
       descripcion:
         "Recomendacion validada por el equipo para elevar calidad y consistencia.",
     },

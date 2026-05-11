@@ -1,13 +1,13 @@
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
 import { CommonModule } from "@angular/common";
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
+import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
+import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
+import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
 import { CustomButtonConfirm } from "src/app/core/components/buttons/web/custom-button-confirm";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
 // Definimos interfaces para los eventos de salida para mayor claridad y tipado
@@ -25,7 +25,10 @@ export interface SeguimientoEvent {
 
 @Component({
   selector: "app-area-details-table",
-  imports: [IonButtonItem, IonButtonEdit, IonButtonDelete, 
+  imports: [
+    IonButtonItem,
+    IonButtonEdit,
+    IonButtonDelete,
     CommonModule,
     TableModule,
     CustomButtonAdd,
@@ -38,14 +41,14 @@ export interface SeguimientoEvent {
   templateUrl: "./meeting-area-table.html",
 })
 export class AreaDetailsTable {
-  /** TÃ³tulo del Ã³rea (e.g., 'Contable', 'Operaciones'). */
+  /** Título del área (e.g., 'Contable', 'Operaciones'). */
   @Input() title: string = "";
   /** ID de la minuta padre. */
   @Input() meetingId: any = 0;
   /** Array de detalles para mostrar en la tabla. */
   @Input() details: any[] = [];
   // @Input() details: IMeetingDetail[] = [];
-  /** Identificador numÃ³rico del Ã³rea (0: Contable, 1: Operaciones, 2: Legal). */
+  /** Identificador numérico del área (0: Contable, 1: Operaciones, 2: Legal). */
   @Input() areaResponsable: number = 0;
   /** Evento emitido para agregar un nuevo detalle. */
   @Output() addDetail = new EventEmitter<DetailEvent>();
@@ -53,7 +56,7 @@ export class AreaDetailsTable {
   @Output() editDetail = new EventEmitter<DetailEvent>();
   /** Evento emitido para eliminar un detalle. */
   @Output() deleteDetail = new EventEmitter<number>();
-  /** Evento emitido para enviar un email al Ã³rea. */
+  /** Evento emitido para enviar un email al área. */
   @Output() sendAreaEmail = new EventEmitter<void>();
   /** Evento emitido para agregar un nuevo seguimiento. */
   @Output() addSeguimiento = new EventEmitter<SeguimientoEvent>();
@@ -62,7 +65,7 @@ export class AreaDetailsTable {
   /** Evento emitido para eliminar un seguimiento. */
   @Output() deleteSeguimiento = new EventEmitter<number>();
 
-  // --- MÃ³todos para emitir eventos al componente padre ---
+  // --- métodos para emitir eventos al componente padre ---
 
   onAddDetail(): void {
     this.addDetail.emit({
@@ -107,7 +110,7 @@ export class AreaDetailsTable {
     this.deleteSeguimiento.emit(seguimientoId);
   }
 
-  // --- MÃ³todos de ayuda para la vista (Helpers) ---
+  // --- métodos de ayuda para la vista (Helpers) ---
 
   /** Devuelve la clase CSS para el badge de estatus. */
   /** Devuelve el severity de PrimeNG para el estatus. */
@@ -140,5 +143,5 @@ export class AreaDetailsTable {
     }
   }
 
-  // Elimina el mÃ³todo getStatusIcon ya que usamos emojis
+  // Elimina el método getStatusIcon ya que usamos emojis
 }

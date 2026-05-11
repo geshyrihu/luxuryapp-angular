@@ -15,6 +15,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import {
@@ -22,12 +23,12 @@ import {
   CuentaAspelTercerNivelDTO,
 } from "../models/presupuesto-shared.models";
 import { BudgetAccountRuleDataDTO } from "./presupuestos.interfaces";
-import { PresupuestoSharedService } from "../services/presupuesto-shared.service";
 import {
   ASPEL_AVAILABLE_YEARS,
   ASPEL_MONTHS,
   getCuentaMonthValue,
   getPresupuestoBaseMensual,
+  hasAnyExpense,
   isParentAccount,
   normalizeAspelAccounts,
   splitAspelAccounts,
@@ -51,7 +52,7 @@ import { PurchaseHistory } from "./purchase-history";
   ],
 })
 export class EspejoAspelExtraordinarios {
-  private sharedService = inject(PresupuestoSharedService);
+  private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
 
@@ -75,11 +76,17 @@ export class EspejoAspelExtraordinarios {
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   extraordinarias = computed(() =>
-    this.filterAccounts(this.allExtraordinarias(), this.searchTerm()),
+    this.filterAccounts(
+      this.filterAccountsWithExpense(this.allExtraordinarias()),
+      this.searchTerm(),
+    ),
   );
 
   proyectos = computed(() =>
-    this.filterAccounts(this.allProyectos(), this.searchTerm()),
+    this.filterAccounts(
+      this.filterAccountsWithExpense(this.allProyectos()),
+      this.searchTerm(),
+    ),
   );
 
   constructor() {
@@ -100,12 +107,17 @@ export class EspejoAspelExtraordinarios {
     this.loading.set(true);
     this.errorMensaje.set(null);
 
-    this.sharedService
-      .getPresupuestoLimpioEjercicioFiscal(customerId, this.intYear())
-      .then(async (response: AspelBudgetDTO) => {
+    const urlBudget = `presupuesto/presupuesto-limpio-ejercicio-fiscal?customerId=${customerId}&intYear=${this.intYear()}`;
+    const urlRules = `BudgetAccountRules/${customerId}`;
+
+    this.apiResponseS
+      .onGetList<AspelBudgetDTO>(urlBudget)
+      .then(async (response) => {
         if (response?.cuentas?.length > 0) {
           const rules =
-            (await this.sharedService.getBudgetAccountRules(customerId)) || [];
+            (await this.apiResponseS.onGetList<BudgetAccountRuleDataDTO[]>(
+              urlRules,
+            )) || [];
           const cuentas = normalizeAspelAccounts(response.cuentas);
           const grouped = splitAspelAccounts(
             cuentas,
@@ -142,6 +154,52 @@ export class EspejoAspelExtraordinarios {
         cuenta.codigo_Cuenta.toLowerCase().includes(term) ||
         cuenta.descripcion_Cuenta.toLowerCase().includes(term),
     );
+  }
+
+  private filterAccountsWithExpense(
+    cuentas: CuentaAspelTercerNivelDTO[],
+  ): CuentaAspelTercerNivelDTO[] {
+    const visibleLeafAccounts = cuentas.filter(
+      (cuenta) => !cuenta.esFilaAgrupadora && hasAnyExpense(cuenta),
+    );
+    const visibleParentCodes = new Set(
+      visibleLeafAccounts.map((cuenta) => cuenta.cuenta_Padre).filter(Boolean),
+    );
+
+    const result = new Set(
+      visibleLeafAccounts.map((cuenta) => cuenta.codigo_Cuenta),
+    );
+
+    for (const cuenta of cuentas) {
+      if (!cuenta.esFilaAgrupadora) {
+        continue;
+      }
+
+      if (visibleParentCodes.has(cuenta.codigo_Cuenta)) {
+        result.add(cuenta.codigo_Cuenta);
+      }
+    }
+
+    let changed = true;
+    while (changed) {
+      changed = false;
+
+      for (const cuenta of cuentas) {
+        if (!cuenta.esFilaAgrupadora || !cuenta.cuenta_Padre) {
+          continue;
+        }
+
+        if (
+          result.has(cuenta.codigo_Cuenta) &&
+          !result.has(cuenta.cuenta_Padre)
+        ) {
+          result.add(cuenta.cuenta_Padre);
+          changed = true;
+        }
+      }
+    }
+
+    return cuentas.filter((cuenta) => result.has(cuenta.codigo_Cuenta));
   }
 
   private handleError(message: string): void {

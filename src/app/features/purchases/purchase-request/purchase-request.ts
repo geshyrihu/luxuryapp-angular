@@ -1,9 +1,9 @@
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TagModule } from "primeng/tag";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -14,7 +14,8 @@ import { PurchaseRequestProducts } from "./purchase-request-products";
 @Component({
   selector: "app-purchase-request",
   templateUrl: "./purchase-request.html",
-  imports: [IonButtonItem, 
+  imports: [
+    IonButtonItem,
     CommonModule,
     TagModule,
     ActionMenu,
@@ -65,12 +66,12 @@ export class PurchaseRequest implements OnInit {
     this.productToEdit = productData;
   }
 
-  // MÃ³todo para limpiar el producto a editar una vez que el formulario se haya reseteado o enviado
+  // método para limpiar el producto a editar una vez que el formulario se haya reseteado o enviado
   clearProductToEdit() {
     this.productToEdit = null;
   }
 
-  // FunciÃ³n para abrir un cuadro de diÃ³logo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
   onModalAddProduct(data: any) {
     this.dialogHandlerS
       .openDialog(
@@ -100,12 +101,3 @@ export class PurchaseRequest implements OnInit {
     this.router.navigateByUrl(route);
   }
 }
-
-
-
-
-
-
-
-
-

@@ -28,11 +28,11 @@ import { AspelProveedorDto } from "./firebis-dtos";
             Directorio de Proveedores
           </h2>
           <p class="text-gray-500 mt-1 text-sm">
-            CatÃ¡logo maestro de prestadores de servicios y suministros.
+            Catálogo maestro de prestadores de servicios y suministros.
           </p>
         </div>
 
-        <!-- BÃºsqueda -->
+        <!-- Búsqueda -->
         <div class="relative w-full md:w-80">
           <i
             class="pi pi-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 z-10"
@@ -60,7 +60,7 @@ import { AspelProveedorDto } from "./firebis-dtos";
                 <th
                   class="py-4 px-6 font-bold uppercase tracking-wider text-[11px] text-gray-500 border-b border-gray-100"
                 >
-                  Nombre / RazÃ³n Social
+                  Nombre / Razón Social
                 </th>
                 <th
                   class="py-4 px-6 font-bold uppercase tracking-wider text-[11px] text-gray-500 border-b border-gray-100"
@@ -71,12 +71,12 @@ import { AspelProveedorDto } from "./firebis-dtos";
                   class="py-4 px-6 font-bold text-right uppercase tracking-wider text-[11px] text-gray-500 border-b border-gray-100"
                   style="font-family: 'Segoe UI', sans-serif;"
                 >
-                  LÃ­mite CrÃ©dito
+                  Límite Crédito
                 </th>
                 <th
                   class="py-4 px-6 font-bold text-center uppercase tracking-wider text-[11px] text-gray-500 border-b border-gray-100"
                 >
-                  DÃ­as CrÃ©dito
+                  Días Crédito
                 </th>
                 <th
                   class="py-4 px-6 font-bold text-center uppercase tracking-wider text-[11px] text-gray-500 border-b border-gray-100"
@@ -133,7 +133,7 @@ import { AspelProveedorDto } from "./firebis-dtos";
                       <i class="pi pi-inbox text-4xl text-gray-200"></i>
                       <span class="text-gray-400 font-medium"
                         >No se encontraron proveedores que coincidan con la
-                        bÃºsqueda.</span
+                        búsqueda.</span
                       >
                     </div>
                   </td>

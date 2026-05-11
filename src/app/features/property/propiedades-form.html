@@ -3,8 +3,8 @@
 
   <custom-input-text-signal
     [control]="form.controls.tower"
-    label="Torre"
-    placeholder="Torre"
+    label="Torre / Edificio *"
+    placeholder="Torre / Edificio *"
     required
   />
 
@@ -15,11 +15,13 @@
     required
   />
 
-  <custom-input-mask-signal
+  <custom-input-select-signal
     [control]="form.controls.accountNumber"
-    label="Número de Cuenta"
-    placeholder="000-000-000"
-    customMask="000-000-000"
+    label="Número de Cuenta COI"
+    placeholder="Seleccionar cuenta..."
+    [data]="cuentasCoi()"
+    [filter]="true"
+    [filterBy]="'label'"
   />
 
   <custom-input-text-signal
@@ -42,7 +44,7 @@
 
   <custom-input-number-signal
     [control]="form.controls.indivisoPercentage"
-    label="Porcentaje de Indiviso"
+    label="Porcentaje de Indiviso (%)"
     placeholder="Ej: 0.01250"
   />
 

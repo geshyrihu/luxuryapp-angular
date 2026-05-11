@@ -14,12 +14,8 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { AccountingCatalogDTO } from "../models/accounting-catalog.model";
+import { AccountingCatalogWithParent } from "../models/AccountingCatalogWithParent";
 import { GroupedAccountingCatalogDTO } from "../models/grouped-accounting-catalog.model";
-
-// import { AccountingCatalogExcelService } from "./services/accounting-catalog-excel.service";
-interface AccountingCatalogWithParent extends AccountingCatalogDTO {
-  cuentaPadre: string;
-}
 
 @Component({
   selector: "app-accounting-catalog",

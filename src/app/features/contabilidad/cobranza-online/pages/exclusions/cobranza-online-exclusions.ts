@@ -14,13 +14,14 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import type {
   CobranzaOnlineExcludedAccountListResponse,
   CobranzaOnlineExcludedAccountRow,
   CobranzaOnlineExcludedAccountUpsert,
 } from "../../models/cobranza-online-exclusions.model";
-import { CobranzaOnlineService } from "../../services/cobranza-online.service";
 
 @Component({
   selector: "app-cobranza-online-exclusions",
@@ -41,7 +42,7 @@ import { CobranzaOnlineService } from "../../services/cobranza-online.service";
 })
 export class CobranzaOnlineExclusions {
   private customerIdS = inject(CustomerIdService);
-  private cobranzaOnlineS = inject(CobranzaOnlineService);
+  private apiResponseS = inject(ApiResponseService);
   private tableScrollHeightS = inject(TableScrollHeightService);
 
   readonly currentYear = signal(new Date().getFullYear());
@@ -111,9 +112,12 @@ export class CobranzaOnlineExclusions {
     if (!customerId) return;
 
     this.loading.set(true);
-    const response = await this.cobranzaOnlineS.getExcludedAccounts(
-      customerId,
-      this.currentYear(),
+    const response = await this.apiResponseS.onGetItem<CobranzaOnlineExcludedAccountListResponse>(
+      Endpoints.AccountingCoi.CobranzaOnline.Dashboard.excludedAccounts(
+        customerId,
+        this.currentYear(),
+      ),
+      false,
     );
 
     this.data.set((response as CobranzaOnlineExcludedAccountListResponse | null) ?? null);
@@ -140,9 +144,13 @@ export class CobranzaOnlineExclusions {
       notes: row.notes || "",
     };
 
-    const result = await this.cobranzaOnlineS.updateExcludedAccount(
-      customerId,
+    const result = await this.apiResponseS.onPut<boolean>(
+      Endpoints.AccountingCoi.CobranzaOnline.Dashboard.updateExcludedAccount(
+        customerId,
+      ),
       payload,
+      true,
+      false,
     );
 
     if (result === false) {

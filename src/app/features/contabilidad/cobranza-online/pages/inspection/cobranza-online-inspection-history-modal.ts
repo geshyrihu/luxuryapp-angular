@@ -3,12 +3,13 @@ import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ButtonModule } from "primeng/button";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import type {
   CobranzaOnlineInspectionHistoryResponse,
   CobranzaOnlineInspectionRelated401Summary,
 } from "../../models/cobranza-online-inspection.model";
-import { CobranzaOnlineService } from "../../services/cobranza-online.service";
 
 @Component({
   selector: "app-cobranza-online-inspection-history-modal",
@@ -16,7 +17,7 @@ import { CobranzaOnlineService } from "../../services/cobranza-online.service";
   imports: [CommonModule, TableModule, ButtonModule, PrimeNgCustomCaption],
 })
 export class CobranzaOnlineInspectionHistoryModal implements OnInit {
-  private cobranzaOnlineS = inject(CobranzaOnlineService);
+  private apiResponseS = inject(ApiResponseService);
   private config = inject(DynamicDialogConfig);
   private ref = inject(DynamicDialogRef);
 
@@ -113,10 +114,13 @@ export class CobranzaOnlineInspectionHistoryModal implements OnInit {
     }
 
     this.loading.set(true);
-    const response = await this.cobranzaOnlineS.getInspectionHistory(
-      this.customerId,
-      this.year,
-      this.row.accountNumber,
+    const response = await this.apiResponseS.onGetItem<CobranzaOnlineInspectionHistoryResponse>(
+      Endpoints.AccountingCoi.CobranzaOnline.Dashboard.inspectionHistory(
+        this.customerId,
+        this.year,
+        this.row.accountNumber,
+      ),
+      false,
     );
 
     this.history.set(response as CobranzaOnlineInspectionHistoryResponse | null);

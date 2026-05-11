@@ -19,7 +19,7 @@
       <!-- Cabecera de la tabla principal -->
       <ng-template #caption>
         <div class="flex align-items-center flex-wrap gap-2 no-print mb-2 mt-1">
-          <!-- Botones de acciÃ³n -->
+          <!-- Botones de acción -->
           <custom-button
             iconClass="pi pi-print"
             label="PENDIENTES"
@@ -257,7 +257,7 @@
   </div>
 </div>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+<!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
 <div class="block md:hidden">
   <div class="card border-none shadow-none">
     <app-data-view-mobile
@@ -343,10 +343,10 @@
                     (clicked)="exportToExcel(item.id)"
                   />
                   <ion-button-confirm
-                    label="Enviar a ComitÃ©"
-                    swalTitle="Confirmar envÃ­o"
-                    swalText="Ã³EstÃ³ seguro de que desea enviar la minuta?"
-                    swalConfirmButtonText="SÃ­, enviar"
+                    label="Enviar a Comité"
+                    swalTitle="Confirmar envío"
+                    swalText="¿Está seguro de que desea enviar la minuta?"
+                    swalConfirmButtonText="Sí, enviar"
                     (confirmed)="onSendEmailMeeting(item.id)"
                   />
                   <ion-button-item

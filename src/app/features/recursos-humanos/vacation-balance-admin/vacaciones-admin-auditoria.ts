@@ -34,7 +34,7 @@ export interface VacationHistoryItemDTO {
  * Permite a SuperUsuario/RecursosHumanos seleccionar cualquier empleado del
  * cliente en sesión y revisar su balance y historial de solicitudes por periodo
  * de aniversario, para validar que las reglas de negocio (RN-001 a RN-013)
- * se estón aplicando correctamente.
+ * se están aplicando correctamente.
  *
  * **Flujo:**
  * 1. Carga empleados del `customerId` en sesión usando `select-item/employee/{customerId}`.

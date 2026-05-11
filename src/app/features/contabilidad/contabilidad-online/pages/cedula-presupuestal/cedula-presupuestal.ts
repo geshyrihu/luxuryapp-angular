@@ -11,7 +11,7 @@ import {
   IBaseAccountDto,
   IFinancialStatementDto,
 } from "../../models/aspel-budget.interface";
-import { ReportFilterService } from "../../services/financial-report-filter.service";
+import { reportFilterState } from "../../state/financial-report-filter.state";
 
 /** Nombres de meses para los encabezados de columnas */
 const MONTH_NAMES = [
@@ -48,7 +48,7 @@ const GASTOS_EXTRA = ["605-", "606-", "607-"];
 export class CedulaPresupuestal {
   private apiS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
-  public filterS = inject(ReportFilterService);
+  public filterS = reportFilterState;
 
   // Estado
   loading = signal<boolean>(false);

@@ -98,7 +98,7 @@ export class RealizarEvaluacion implements OnInit {
       // 2. Rellenar los campos principales del formulario
       this.form.patchValue({
         evaluatorId: data.evaluatorId,
-        evaluatedId: data.employeeId, // Usamos el ID numórico del empleado
+        evaluatedId: data.employeeId, // Usamos el ID numérico del empleado
         evaluationTemplateId: data.evaluationTemplateId,
         evaluationDate: new Date(data.evaluationDate),
       });

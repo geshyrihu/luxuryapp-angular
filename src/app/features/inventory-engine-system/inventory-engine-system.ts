@@ -41,7 +41,7 @@ export class InventoryEngineSystem {
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   filteredDataSignal = signal<any[]>([]); // Usar signal para datos filtrados
 
-  ref: DynamicDialogRef; // Referencia a un cuadro de diólogo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
 
   constructor() {
     effect(() => {
@@ -63,7 +63,7 @@ export class InventoryEngineSystem {
       .openDialog(
         FichaTecnicaActivo,
         data,
-        "Ficha Tócnica",
+        "Ficha Técnica",
         this.dialogHandlerS.sizeFull,
       )
       .then((result: boolean) => {

@@ -119,11 +119,11 @@ export class OwnerList {
 
       let comparisonResult;
 
-      // Si ambos son numÃ³ricos, los comparamos como enteros
+      // Si ambos son numéricos, los comparamos como enteros
       if (!isNaN(parseInt(xPart, 10)) && !isNaN(parseInt(yPart, 10))) {
         comparisonResult = parseInt(xPart, 10) - parseInt(yPart, 10);
       } else {
-        // Si no son numÃ³ricos, comparamos como cadenas
+        // Si no son numéricos, comparamos como cadenas
         comparisonResult = xPart.localeCompare(yPart);
       }
 
@@ -132,7 +132,7 @@ export class OwnerList {
       }
     }
 
-    // Si todos los elementos hasta ahora son iguales, el mÃ³s corto es menor
+    // Si todos los elementos hasta ahora son iguales, el mós corto es menor
     return xMatches.length - yMatches.length;
   }
 }

@@ -72,7 +72,7 @@ export class AgendaSupervision implements OnInit {
     this.rangoCalendarioService.fechaFinalDateFull,
   );
   applicationUserId = this.authS.applicationUserId;
-  depto: string = "SUPERVISIÃ³N DE OPERACIONES";
+  depto: string = "SUPERVISIóN DE OPERACIONES";
   nombre: string =
     this.authS.infoUserAuth.firstName + " " + this.authS.infoUserAuth.lastName;
   semana: string = this.fechaInicial + " a " + this.fechaFinal;

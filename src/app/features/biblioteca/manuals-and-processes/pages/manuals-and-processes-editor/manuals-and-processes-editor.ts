@@ -55,8 +55,7 @@ interface IVersionForm {
 @Component({
   selector: "app-manuals-and-processes-editor",
   templateUrl: "./manuals-and-processes-editor.html",
-  styleUrl: "./manuals-and-processes-editor.scss",
-  standalone: true,
+
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -123,10 +122,9 @@ export class ManualsAndProcessesEditor implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    fechaCambio: new FormControl(
-      new Date().toISOString().substring(0, 10),
-      { nonNullable: true },
-    ),
+    fechaCambio: new FormControl(new Date().toISOString().substring(0, 10), {
+      nonNullable: true,
+    }),
     autor: new FormControl("", { nonNullable: true }),
     descripcionCambio: new FormControl("", { nonNullable: true }),
   });
@@ -145,7 +143,9 @@ export class ManualsAndProcessesEditor implements OnInit {
       .then((result) => {
         if (!result) return;
         this.manual.set(result);
-        this.pasos.set([...(result.pasos ?? [])].sort((a, b) => a.orden - b.orden));
+        this.pasos.set(
+          [...(result.pasos ?? [])].sort((a, b) => a.orden - b.orden),
+        );
         this.versiones.set([...(result.versiones ?? [])]);
         this.adjuntos.set([...(result.adjuntos ?? [])]);
       });
@@ -186,7 +186,12 @@ export class ManualsAndProcessesEditor implements OnInit {
   onNewPaso(): void {
     this.isNewPaso.set(true);
     this.selectedPaso.set(null);
-    this.pasoForm.reset({ titulo: "", descripcion: "", responsableRoleId: null, tipoNota: 0 });
+    this.pasoForm.reset({
+      titulo: "",
+      descripcion: "",
+      responsableRoleId: null,
+      tipoNota: 0,
+    });
     this.activeTab.set("pasos");
   }
 
@@ -230,7 +235,9 @@ export class ManualsAndProcessesEditor implements OnInit {
       );
       if (res) {
         this.pasos.update((list) =>
-          list.map((p) => (p.id === paso.id ? { ...res, imagenes: paso.imagenes } : p)),
+          list.map((p) =>
+            p.id === paso.id ? { ...res, imagenes: paso.imagenes } : p,
+          ),
         );
         this.selectedPaso.set({ ...res, imagenes: paso.imagenes });
       }
@@ -272,7 +279,10 @@ export class ManualsAndProcessesEditor implements OnInit {
       )
       .then((res) => {
         if (res) {
-          const updated = { ...paso, imagenes: [...(paso.imagenes ?? []), res] };
+          const updated = {
+            ...paso,
+            imagenes: [...(paso.imagenes ?? []), res],
+          };
           this.pasos.update((list) =>
             list.map((p) => (p.id === paso.id ? updated : p)),
           );
@@ -326,7 +336,9 @@ export class ManualsAndProcessesEditor implements OnInit {
       }
       diagramaId = res.id;
       const updated = { ...paso, diagramaId };
-      this.pasos.update((list) => list.map((p) => (p.id === paso.id ? updated : p)));
+      this.pasos.update((list) =>
+        list.map((p) => (p.id === paso.id ? updated : p)),
+      );
       this.selectedPaso.set(updated);
     }
 
@@ -343,7 +355,9 @@ export class ManualsAndProcessesEditor implements OnInit {
 
   async onAgregarVersion(): Promise<void> {
     if (this.versionForm.invalid) {
-      Object.values(this.versionForm.controls).forEach((c) => c.markAsTouched());
+      Object.values(this.versionForm.controls).forEach((c) =>
+        c.markAsTouched(),
+      );
       return;
     }
     this.savingVersion.set(true);
@@ -375,7 +389,10 @@ export class ManualsAndProcessesEditor implements OnInit {
     this.apiS
       .onDelete(Endpoints.ManualsPasos.deleteVersion(this.id(), versionId))
       .then((ok) => {
-        if (ok) this.versiones.update((list) => list.filter((v) => v.id !== versionId));
+        if (ok)
+          this.versiones.update((list) =>
+            list.filter((v) => v.id !== versionId),
+          );
       });
   }
 
@@ -383,7 +400,11 @@ export class ManualsAndProcessesEditor implements OnInit {
   // ADJUNTOS
   // ----------------------------------------------------------------
 
-  onSubirAdjunto(event: any, uploader: any, nombreInput: HTMLInputElement): void {
+  onSubirAdjunto(
+    event: any,
+    uploader: any,
+    nombreInput: HTMLInputElement,
+  ): void {
     const file = event.files?.[0];
     const nombre = nombreInput.value?.trim();
     if (!file || !nombre) {
@@ -419,7 +440,10 @@ export class ManualsAndProcessesEditor implements OnInit {
     this.apiS
       .onDelete(Endpoints.ManualsPasos.deleteAdjunto(this.id(), adjuntoId))
       .then((ok) => {
-        if (ok) this.adjuntos.update((list) => list.filter((a) => a.id !== adjuntoId));
+        if (ok)
+          this.adjuntos.update((list) =>
+            list.filter((a) => a.id !== adjuntoId),
+          );
       });
   }
 
@@ -428,15 +452,21 @@ export class ManualsAndProcessesEditor implements OnInit {
   // ----------------------------------------------------------------
 
   tipoNotaLabel(tipoNota: number): string {
-    return this.tipoNotaOpciones.find((o) => o.value === tipoNota)?.label ?? "Normal";
+    return (
+      this.tipoNotaOpciones.find((o) => o.value === tipoNota)?.label ?? "Normal"
+    );
   }
 
   tipoNotaSeverity(tipoNota: number): string {
     switch (tipoNota) {
-      case 1: return "info";
-      case 2: return "warn";
-      case 3: return "success";
-      default: return "secondary";
+      case 1:
+        return "info";
+      case 2:
+        return "warn";
+      case 3:
+        return "success";
+      default:
+        return "secondary";
     }
   }
 

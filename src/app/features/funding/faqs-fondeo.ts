@@ -61,7 +61,7 @@ export class FaqsFondeo {
     {
       pregunta: "óCómo se gestionan los gastos de caja chica?",
       respuesta: `
-        Se crea un proveedor privado asociado al administrador. Este proveedor solo es visible para el cliente que lo registró, y se usa especóficamente para órdenes de compra de caja chica.
+        Se crea un proveedor privado asociado al administrador. Este proveedor solo es visible para el cliente que lo registró, y se usa específicamente para órdenes de compra de caja chica.
       `,
     },
     {
@@ -79,7 +79,7 @@ export class FaqsFondeo {
         2. Autorización<br />
         3. Confirmación (Recepción contable)<br />
         4. Finalización<br /><br />
-        Desde que se hace clic en <strong>Verificación</strong>, todas las órdenes vólidas quedan registradas como parte del fondeo.
+        Desde que se hace clic en <strong>Verificación</strong>, todas las órdenes válidas quedan registradas como parte del fondeo.
 
         Mientras no se envie a comite, se pueden revertir las validaciones.
       `,

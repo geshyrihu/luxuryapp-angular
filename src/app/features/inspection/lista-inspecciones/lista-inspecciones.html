@@ -5,7 +5,7 @@
     <custom-button
       iconClass="pi pi-plus"
       pTooltip="Nuevo Registro"
-      (clicked)="onModalForm({ title: 'Agregar InspecciÃ³n', id: '' })"
+      (clicked)="onModalForm({ title: 'Agregar Inspección', id: '' })"
     />
   </div>
 
@@ -15,7 +15,7 @@
       [ngModel]="selectedAreaSignal()"
       (ngModelChange)="selectedAreaSignal.set($event)"
       [data]="areasResponsablesSignal()"
-      placeholder="Todas las Ã³reas"
+      placeholder="Todas las áreas"
       [horizontal]="false"
     />
 
@@ -35,7 +35,7 @@
     <custom-button-item
       iconClass="pi pi-book"
       label="Reportes"
-      tooltip="Ver reportes de inspecciÃ³n"
+      tooltip="Ver reportes de inspección"
       [routerLink]="['/inspections/inspection-report-list']"
     />
   </div>
@@ -84,12 +84,12 @@
   }
 </div>
 
-<!-- ðŸ“± INICIO: Componente adaptado para versiÃ³n mÃ³vil -->
+<!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
   class="md:hidden"
   [isGrouped]="true"
   [groupedData]="groupedData()"
-  (add)="onModalForm({ title: 'Agregar InspecciÃ³n', id: '' })"
+  (add)="onModalForm({ title: 'Agregar Inspección', id: '' })"
 >
   <div customFilters class="px-2 pb-2">
     <div class="flex mb-2">
@@ -98,7 +98,7 @@
         [ngModel]="selectedAreaSignal()"
         (ngModelChange)="selectedAreaSignal.set($event)"
         [data]="areasResponsablesSignal()"
-        placeholder="Todas las Ã³reas"
+        placeholder="Todas las áreas"
       />
       <custom-input-select-signal
         class="flex-1"

@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ListboxModule } from "primeng/listbox";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
@@ -14,10 +15,7 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import {
-  IManualTemplateDetalleDTO,
-} from "../models/manuals-and-processes.dto";
+import { IManualTemplateDetalleDTO } from "../models/manuals-and-processes.dto";
 
 interface IManualTemplateForm {
   folio: FormControl<string>;
@@ -35,7 +33,7 @@ interface IManualTemplateForm {
 @Component({
   selector: "app-manuals-and-processes-form",
   templateUrl: "./manuals-and-processes-form.html",
-  standalone: true,
+
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,

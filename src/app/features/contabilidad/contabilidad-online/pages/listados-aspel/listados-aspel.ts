@@ -11,18 +11,18 @@ import {
   IAspelDatosCombinadosDTO,
   IAspelPolizaConDetalleDTO,
 } from "../../models/aspel-budget.interface";
-import { ReportFilterService } from "../../services/financial-report-filter.service";
+import { reportFilterState } from "../../state/financial-report-filter.state";
 
 @Component({
   selector: "app-listados-aspel",
-  standalone: true,
+
   imports: [CommonModule, FormsModule, TableModule, TabsModule, CustomButton],
   templateUrl: "./listados-aspel.html",
 })
 export class ListadosAspel {
   private readonly apiS = inject(ApiResponseService);
   public readonly customerIdS = inject(CustomerIdService);
-  public readonly filterS = inject(ReportFilterService);
+  public readonly filterS = reportFilterState;
 
   // ── Estado ──────────────────────────────────────────────────────────────────
   loading = signal<boolean>(false);

@@ -36,7 +36,7 @@ export class CuadroComparativoList implements OnInit {
   customToastService = inject(CustomToastService);
   routeActive = inject(ActivatedRoute);
   aiService = inject(AiService);
-  // Referencia para diólogos dinómicos
+  // Referencia para diálogos dinómicos
   ref: DynamicDialogRef;
 
   // AI Analysis

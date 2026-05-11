@@ -92,7 +92,7 @@ export class ListaInspecciones {
       this.inspeccionesOriginalesSignal.set(result);
 
       const data: any[] = result;
-      // Extraer Ã³reas responsables del arreglo y eliminar duplicados
+      // Extraer áreas responsables del arreglo y eliminar duplicados
       const areas = [...new Set(data.map((item) => item.areaResponsable))];
       this.areasResponsablesSignal.set(
         areas.map((area: string) => ({
@@ -109,7 +109,7 @@ export class ListaInspecciones {
     });
   }
 
-  // FunciÃ³n para abrir un cuadro de diÃ³logo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(

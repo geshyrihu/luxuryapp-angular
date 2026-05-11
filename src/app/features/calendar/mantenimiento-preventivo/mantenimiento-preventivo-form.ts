@@ -25,15 +25,15 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
 interface IMantenimientoPreventivoForm {
   id: FormControl<string | null>;
   activity: FormControl<string>;
-  machineryId: FormControl<number | string>;
+  machineryId: FormControl<number | string | null>;
   month: FormControl<number | null>;
   observation: FormControl<string>;
   price: FormControl<number | null>;
-  providerId: FormControl<number | string>;
+  providerId: FormControl<number | string | null>;
   recurrence: FormControl<number | null>;
   typeMaintance: FormControl<number | null>;
   customerId: FormControl<string>;
-  accountingCatalogId: FormControl<number | string>;
+  accountingCatalogId: FormControl<number | string | null>;
   machineryName: FormControl<any>;
   providerName: FormControl<any>;
   accountingCatalogName: FormControl<any>;
@@ -81,8 +81,7 @@ export class MantenimientoPreventivoForm implements OnInit {
         nonNullable: true,
         validators: [Validators.required],
       }),
-      machineryId: new FormControl<number | string>("", {
-        nonNullable: true,
+      machineryId: new FormControl<number | string | null>(null, {
         validators: [Validators.required],
       }),
       month: new FormControl<number | null>(null, {
@@ -92,8 +91,7 @@ export class MantenimientoPreventivoForm implements OnInit {
       price: new FormControl<number | null>(null, {
         validators: [Validators.required],
       }),
-      providerId: new FormControl<number | string>("", {
-        nonNullable: true,
+      providerId: new FormControl<number | string | null>(null, {
         validators: [Validators.required],
       }),
       recurrence: new FormControl<number | null>(null, {
@@ -105,12 +103,18 @@ export class MantenimientoPreventivoForm implements OnInit {
       customerId: new FormControl(this.customerIdS.customerId(), {
         nonNullable: true,
       }),
-      accountingCatalogId: new FormControl<number | string>("", {
-        nonNullable: true,
+      accountingCatalogId: new FormControl<number | string | null>(null, {
+        validators: [Validators.required],
       }),
-      machineryName: new FormControl<any>(null),
-      providerName: new FormControl<any>(null),
-      accountingCatalogName: new FormControl<any>(null),
+      machineryName: new FormControl<any>(null, {
+        validators: [Validators.required],
+      }),
+      providerName: new FormControl<any>(null, {
+        validators: [Validators.required],
+      }),
+      accountingCatalogName: new FormControl<any>(null, {
+        validators: [Validators.required],
+      }),
       applicationUserId: new FormControl(this.authS.applicationUserId, {
         nonNullable: true,
       }),
@@ -179,17 +183,17 @@ export class MantenimientoPreventivoForm implements OnInit {
 
   public saveMachineryId = (item: ISelectItem) =>
     this.form.patchValue({
-      machineryId: item?.value,
+      machineryId: item ? item.value : null,
       machineryName: item,
     });
   public saveProviderId = (item: ISelectItem) =>
     this.form.patchValue({
-      providerId: item?.value,
+      providerId: item ? item.value : null,
       providerName: item,
     });
   public saveAccountingCatalog = (item: ISelectItem) =>
     this.form.patchValue({
-      accountingCatalogId: item?.value,
+      accountingCatalogId: item ? item.value : null,
       accountingCatalogName: item,
     });
 

@@ -23,9 +23,11 @@ import {
 } from "ionicons/icons";
 import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { CardModule } from "primeng/card";
+import { Dialog } from "primeng/dialog";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
+import { Tag } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/custom-button-active-desactive";
@@ -49,12 +51,12 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service";
-import { BitacoraIndividual } from "src/app/features/maintenance-log/bitacora-individual";
 import { MantenimientoPreventivoForm } from "src/app/features/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
-import { ActivosDocumentos } from "src/app/features/machinery-document/activos-documentos";
 import { ActivosForm } from "src/app/features/machinery-asset/activos-form";
+import { ActivosDocumentos } from "src/app/features/machinery-document/activos-documentos";
 import { FichaTecnicaActivo } from "src/app/features/machinery/ficha-tecnica-activo";
 import { ServiceHistoryMachinery } from "src/app/features/machinery/service-history-machinery";
+import { BitacoraIndividual } from "src/app/features/maintenance-log/bitacora-individual";
 // ... el resto de las importaciones de componentes y módulos ...
 // ...
 
@@ -112,6 +114,8 @@ interface Equipo {
     IonButton,
     IonIcon,
     IonChip,
+    Dialog,
+    Tag,
   ],
 })
 export class EquiposList {
@@ -124,9 +128,9 @@ export class EquiposList {
   // --- ESTADO DEL COMPONENTE CON SIGNALS ---
   data = signal<any[]>([]);
   loading = signal(true);
-  expandedRowKeys: Record<string, boolean> = {};
-  // óCAMBIO! El estado del filtro ahora es un signal.
   stateFilter = signal<number>(0);
+  selectedEquipo = signal<Equipo | null>(null);
+  mantenimientosVisible = signal(false);
   public AspRole = EApplicationRole;
 
   // óCAMBIO CLAVE! La categoróa ahora es un signal interno.
@@ -216,7 +220,6 @@ export class EquiposList {
   // --- CARGA DE DATOS (Refactorizado) ---
   async onLoadData(customerId: string, categoryId: any, state: number) {
     this.loading.set(true);
-    this.expandedRowKeys = {};
     const urlApi = `Machineries/list/${customerId}/${categoryId}/${state}`;
     try {
       const result = await this.apiResponseS.onGetList<Equipo[]>(urlApi);
@@ -469,7 +472,7 @@ export class EquiposList {
       .openDialog(
         FichaTecnicaActivo,
         data,
-        "Ficha Tócnica",
+        "Ficha Técnica",
         this.dialogHandlerS.sizeFull,
       )
       .then((result) => this.reloadDataAfterDialog(result));
@@ -500,7 +503,7 @@ export class EquiposList {
           idMachinery: data.machineryId,
         },
         data.header,
-        this.dialogHandlerS.sizeFull,
+        this.dialogHandlerS.sizeLg,
       )
       .then((result) => this.reloadDataAfterDialog(result));
   }
@@ -561,5 +564,45 @@ export class EquiposList {
       "",
       this.dialogHandlerS.sizeFull,
     );
+  }
+
+  openMantenimientosDialog(equipo: Equipo) {
+    this.selectedEquipo.set(equipo);
+    this.mantenimientosVisible.set(true);
+  }
+
+  private async refreshSelectedEquipo(machineryId: any) {
+    await this.onLoadData(
+      this.customerIdS.customerId(),
+      this.inventoryCategoryId(),
+      this.stateFilter(),
+    );
+    const updated = this.data().find((e) => e.id === machineryId);
+    if (updated) this.selectedEquipo.set(updated);
+  }
+
+  async onAddMantenimientoDialog(machineryId: any) {
+    const result = await this.dialogHandlerS.openDialog(
+      MantenimientoPreventivoForm,
+      { id: 0, task: "create", idMachinery: machineryId },
+      "Nuevo Servicio",
+      this.dialogHandlerS.sizeFull,
+    );
+    if (result) await this.refreshSelectedEquipo(machineryId);
+  }
+
+  async onEditMantenimientoDialog(order: any) {
+    const result = await this.dialogHandlerS.openDialog(
+      MantenimientoPreventivoForm,
+      { id: order.id, task: "edit", idMachinery: order.machineryId },
+      "Editar Servicio",
+      this.dialogHandlerS.sizeFull,
+    );
+    if (result) await this.refreshSelectedEquipo(order.machineryId);
+  }
+
+  async onDeleteOrderFromDialog(orderId: any, machineryId: any) {
+    await this.apiResponseS.onDelete(`maintenancecalendars/${orderId}`);
+    await this.refreshSelectedEquipo(machineryId);
   }
 }

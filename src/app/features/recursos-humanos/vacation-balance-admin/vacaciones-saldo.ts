@@ -102,7 +102,7 @@ export class VacacionesSaldo implements OnInit {
    * que `currentYear` sea un Año con datos. Si el Año en curso no estó disponible
    * (ej. empleado ingresó el Año pasado), carga el óltimo Año disponible.
    *
-   * **Importante:** `loadBalance()` se llama DESPUóS de validar `currentYear`
+   * **Importante:** `loadBalance()` se llama Después de validar `currentYear`
    * para evitar enviar un Año invólido al endpoint de balance.
    */
   async loadAvailableYearsAndBalance(): Promise<void> {
@@ -140,7 +140,7 @@ export class VacacionesSaldo implements OnInit {
       console.error("Error loading available years:", error);
     }
 
-    // Carga el balance DESPUóS de validar currentYear.
+    // Carga el balance Después de validar currentYear.
     this.loadBalance();
   }
 

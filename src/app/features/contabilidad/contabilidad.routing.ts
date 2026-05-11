@@ -151,20 +151,6 @@ export const CONTABILIDAD_ROUTES: Routes = [
     },
   },
 
-  // Ruta anterior: /accounting/reporte-aspel
-  {
-    path: "reporte-aspel",
-    loadComponent: () =>
-      import("./aspel-reportes/report-aspel-list").then(
-        (m) => m.ReportAspelList,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Reportes Financieros Aspel",
-      breadcrumb: "Reportes Aspel",
-    },
-  },
-
   // Ruta anterior: /accounting/budget-proposal
   {
     path: "budget-proposal",
@@ -219,24 +205,11 @@ export const CONTABILIDAD_ROUTES: Routes = [
   },
 
   {
-    path: "collections/exclusions",
-    loadComponent: () =>
-      import("./cobranza-online/pages/exclusions/cobranza-online-exclusions").then(
-        (m) => m.CobranzaOnlineExclusions,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Cuentas Omitidas de Cobranza",
-      breadcrumb: "Cuentas Omitidas",
-    },
-  },
-
-  {
     path: "collections/reporte-financiero",
     loadComponent: () =>
-      import(
-        "./cobranza-online/pages/reporte-financiero/cobranza-online-reporte-financiero"
-      ).then((m) => m.CobranzaOnlineReporteFinanciero),
+      import("./cobranza-online/pages/reporte-financiero/cobranza-online-reporte-financiero").then(
+        (m) => m.CobranzaOnlineReporteFinanciero,
+      ),
     canActivate: [authGuard],
     data: {
       title: "Reporte Financiero",
@@ -244,7 +217,6 @@ export const CONTABILIDAD_ROUTES: Routes = [
     },
   },
 
- 
   // ============================================================================
   // RUTAS CENTRALIZADAS DE accounting-coi.routes.ts
   // ============================================================================
@@ -259,32 +231,6 @@ export const CONTABILIDAD_ROUTES: Routes = [
     data: {
       title: "Cuentas Contables COI",
       breadcrumb: "Catálogo de Cuentas",
-    },
-  },
-
-  // Ruta anterior: /accounting-coi/policies
-  {
-    path: "policies",
-    loadComponent: () =>
-      import("./accounting/pages/coi-policy/coi-policy-list").then(
-        (m) => m.default,
-      ),
-    data: {
-      title: "Pólizas COI",
-      breadcrumb: "Pólizas Contables",
-    },
-  },
-
-  // Ruta anterior: /accounting-coi/budgets
-  {
-    path: "budgets",
-    loadComponent: () =>
-      import("./accounting/pages/coi-budget/coi-budget-list").then(
-        (m) => m.default,
-      ),
-    data: {
-      title: "Presupuestos y Periodos",
-      breadcrumb: "Presupuestos",
     },
   },
 
@@ -305,21 +251,6 @@ export const CONTABILIDAD_ROUTES: Routes = [
     },
   },
 
-  // Ruta anterior: /accounting-coi (dashboard COI)
-  {
-    path: "accounting-coi-dashboard",
-    loadComponent: () =>
-      import("./accounting/pages/accounting-coi-dashboard").then(
-        (m) => m.default,
-      ),
-    data: {
-      title: "Contabilidad COI",
-      breadcrumb: "Inicio",
-    },
-  },
-
-
-
   // ============================================================================
   // RUTAS ASPEL COBRANZA HAUS
   // ============================================================================
@@ -328,8 +259,8 @@ export const CONTABILIDAD_ROUTES: Routes = [
   {
     path: "aspel-cobranza",
     loadComponent: () =>
-      import("./aspel-cobranza/aspel-cobranza.component").then(
-        (m) => m.AspelCobranzaComponent,
+      import("./aspel-cobranza-haus/aspel-cobranza-haus").then(
+        (m) => m.AspelCobranzaHaus,
       ),
     data: {
       title: "Integración Aspel COI - Cobranza",
@@ -337,16 +268,16 @@ export const CONTABILIDAD_ROUTES: Routes = [
     },
   },
 
-  {
-    path: "espejo-aspel-full",
-    loadComponent: () =>
-      import("./espejo-aspel-full/espejo-aspel-full").then(
-        (m) => m.EspejoAspelFull,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Espejo Aspel Full",
-      breadcrumb: "Espejo Aspel Full",
-    },
-  },
+  // {
+  //   path: "espejo-aspel-full",
+  //   loadComponent: () =>
+  //     import("./espejo-aspel-full/espejo-aspel-full").then(
+  //       (m) => m.EspejoAspelFull,
+  //     ),
+  //   canActivate: [authGuard],
+  //   data: {
+  //     title: "Espejo Aspel Full",
+  //     breadcrumb: "Espejo Aspel Full",
+  //   },
+  // },
 ];

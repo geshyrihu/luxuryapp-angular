@@ -68,8 +68,8 @@ export class ProductModalAdd implements OnInit, OnDestroy {
   // --- Inyección de Dependencias ---
   apiResponseS = inject(ApiResponseService);
   private dialogHandlerS = inject(DialogHandlerService);
-  private config = inject(DynamicDialogConfig); // Configuración pasada al abrir el diólogo
-  public ref = inject(DynamicDialogRef); // Referencia al diólogo dinómico para cerrarlo
+  private config = inject(DynamicDialogConfig); // Configuración pasada al abrir el diálogo
+  public ref = inject(DynamicDialogRef); // Referencia al diálogo dinómico para cerrarlo
   private authS = inject(AuthService);
   formB = inject(FormBuilder);
   public paginationService =
@@ -236,7 +236,7 @@ export class ProductModalAdd implements OnInit, OnDestroy {
       TarjetaProducto,
       { productoId: productoId }, // Datos a pasar al modal TarjetaProductoComponent
       "Tarjeta de Producto",
-      this.dialogHandlerS.sizeLg, // TamAño del diólogo
+      this.dialogHandlerS.sizeLg, // TamAño del diálogo
     );
   }
 

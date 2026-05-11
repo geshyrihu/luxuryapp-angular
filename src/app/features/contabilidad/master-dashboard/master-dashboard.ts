@@ -1,8 +1,8 @@
 import { Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
-import { CONTABILIDAD_MODULES } from "./contabilidad-modules";
-import { ContabilidadModuleGroup } from "./models/contabilidad-module.model";
 import { CardModule } from "primeng/card";
+import { ContabilidadModuleGroup } from "./contabilidad-module.model";
+import { CONTABILIDAD_MODULES } from "./contabilidad-modules";
 
 @Component({
   selector: "app-master-dashboard",

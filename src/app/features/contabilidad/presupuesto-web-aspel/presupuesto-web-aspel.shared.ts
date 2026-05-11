@@ -27,7 +27,9 @@ export function isCuentaExtraordinaria(
   codigoCuenta: string,
   _customerId: string,
 ): boolean {
-  return codigoCuenta.startsWith("607-");
+  return (
+    codigoCuenta.startsWith("605-") || codigoCuenta.startsWith("607-")
+  );
 }
 
 export function isCuentaProyecto(
@@ -236,4 +238,10 @@ export function getPresupuestoBaseMensual(
   }
 
   return vigente;
+}
+
+export function hasAnyExpense(
+  cuenta: CuentaAspelTercerNivelDTO,
+): boolean {
+  return ASPEL_MONTHS.some((mes) => getCuentaMonthValue(cuenta, mes, "monto") !== 0);
 }

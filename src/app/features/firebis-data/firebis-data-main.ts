@@ -32,7 +32,7 @@ import { AspelResumenDto } from "./firebis-dtos";
   template: `
     <div class="card p-4">
       <h2 class="text-2xl font-semibold mb-4 text-[var(--text-color)]">
-        EstadÃ³sticas Aspel Firebird
+        Estadósticas Aspel Firebird
       </h2>
       <p-toolbar styleClass="mb-4  border-none">
         <ng-template pTemplate="left">
@@ -55,7 +55,7 @@ import { AspelResumenDto } from "./firebis-dtos";
         <ng-template pTemplate="right">
           <div class="flex ">
             <custom-button
-              label="Cargar EstadÃ³sticas"
+              label="Cargar Estadósticas"
               icon="pi pi-chart-pie"
               [loading]="loadingData"
               (clicked)="loadData()"

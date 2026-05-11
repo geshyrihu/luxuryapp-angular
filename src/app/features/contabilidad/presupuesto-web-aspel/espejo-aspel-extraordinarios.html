@@ -104,8 +104,8 @@
 
         <ng-template #body let-cuenta>
           <tr>
-            <td pFrozenColumn>
-              @if (isParentAccount(cuenta)) {
+            @if (isParentAccount(cuenta)) {
+            <td pFrozenColumn [attr.colspan]="2">
               <div class="flex align-items-center gap-2">
                 <span class="font-semibold text-color">
                   {{ cuenta.codigo_Cuenta }}
@@ -115,7 +115,16 @@
                   {{ cuenta.descripcion_Cuenta }}
                 </span>
               </div>
-              } @else {
+            </td>
+            @for (mes of months; track mes) {
+            <td class="surface-ground"></td>
+            }
+            <td class="surface-ground"></td>
+            <td class="surface-ground"></td>
+            <td class="surface-ground"></td>
+            <td class="surface-ground"></td>
+            } @else {
+            <td pFrozenColumn>
               <div class="flex flex-column">
                 <span
                   class="font-small-gray text-xs text-500 cursor-pointer hover:text-primary transition-colors transition-duration-200"
@@ -128,10 +137,9 @@
                   {{ cuenta.descripcion_Cuenta }}
                 </span>
               </div>
-              }
             </td>
             <td pFrozenColumn class="text-right text-green-700 font-bold">
-              {{ getPresupuestoBaseMensual(cuenta) | number: "1.0-0" }}
+              -
             </td>
             @for (mes of months; track mes) {
             <td class="text-right" [class.text-color-secondary]="!isMesVisible(mes)">
@@ -163,6 +171,7 @@
             <td class="text-right font-bold">
               {{ (getSumaPresupuestoMesesVisiblesCuenta(cuenta) - getSumaGastoMesesVisiblesCuenta(cuenta)) | number: "1.0-0" }}
             </td>
+            }
           </tr>
         </ng-template>
 
@@ -170,7 +179,7 @@
           <tr>
             <td pFrozenColumn class="text-right font-bold">TOTALES:</td>
             <td pFrozenColumn class="text-right font-bold">
-              {{ getTotalPresupuestoBaseMensual(extraordinarias()) | number: "1.0-0" }}
+              -
             </td>
             @for (mes of months; track mes) {
             <td class="text-right font-bold" [class.text-color-secondary]="!isMesVisible(mes)">
@@ -234,8 +243,8 @@
 
         <ng-template #body let-cuenta>
           <tr>
-            <td pFrozenColumn>
-              @if (isParentAccount(cuenta)) {
+            @if (isParentAccount(cuenta)) {
+            <td pFrozenColumn [attr.colspan]="2">
               <div class="flex align-items-center gap-2">
                 <span class="font-semibold text-color">
                   {{ cuenta.codigo_Cuenta }}
@@ -245,7 +254,16 @@
                   {{ cuenta.descripcion_Cuenta }}
                 </span>
               </div>
-              } @else {
+            </td>
+            @for (mes of months; track mes) {
+            <td class="surface-ground"></td>
+            }
+            <td class="surface-ground"></td>
+            <td class="surface-ground"></td>
+            <td class="surface-ground"></td>
+            <td class="surface-ground"></td>
+            } @else {
+            <td pFrozenColumn>
               <div class="flex flex-column">
                 <span
                   class="font-small-gray text-xs text-500 cursor-pointer hover:text-primary transition-colors transition-duration-200"
@@ -258,7 +276,6 @@
                   {{ cuenta.descripcion_Cuenta }}
                 </span>
               </div>
-              }
             </td>
             <td pFrozenColumn class="text-right text-green-700 font-bold">
               {{ getPresupuestoBaseMensual(cuenta) | number: "1.0-0" }}
@@ -293,6 +310,7 @@
             <td class="text-right font-bold">
               {{ (getSumaPresupuestoMesesVisiblesCuenta(cuenta) - getSumaGastoMesesVisiblesCuenta(cuenta)) | number: "1.0-0" }}
             </td>
+            }
           </tr>
         </ng-template>
 

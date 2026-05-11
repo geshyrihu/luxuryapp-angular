@@ -100,7 +100,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "properties",
     loadComponent: () =>
-      import("./pages/properties/property-list").then((m) => m.default),
+      import("../../property/propiedades-list").then((m) => m.PropiedadesList),
     canActivate: [authGuard],
     data: {
       title: "Propiedades",
@@ -184,7 +184,9 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "collection-cases",
     loadComponent: () =>
-      import("./pages/collection-cases/collection-case-list").then((m) => m.default),
+      import("./pages/collection-cases/collection-case-list").then(
+        (m) => m.default,
+      ),
     canActivate: [authGuard],
     data: { title: "Casos de Cobranza Legal", breadcrumb: "Cobranza Legal" },
   },
@@ -202,7 +204,9 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "reconciliation",
     loadComponent: () =>
-      import("./pages/reconciliation/reconciliation-dashboard").then((m) => m.default),
+      import("./pages/reconciliation/reconciliation-dashboard").then(
+        (m) => m.default,
+      ),
     canActivate: [authGuard],
     data: { title: "Conciliacion de Pagos", breadcrumb: "Conciliacion" },
   },
@@ -220,9 +224,14 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "automated-services",
     loadComponent: () =>
-      import("./pages/automated-services/automated-services").then((m) => m.default),
+      import("./pages/automated-services/automated-services").then(
+        (m) => m.default,
+      ),
     canActivate: [authGuard],
-    data: { title: "Servicios Automatizados", breadcrumb: "Servicios Automaticos" },
+    data: {
+      title: "Servicios Automatizados",
+      breadcrumb: "Servicios Automaticos",
+    },
   },
 
   // Cuotas vigentes por propiedad (matriz de cobertura)

@@ -27,8 +27,8 @@
 
   <ng-template #groupheader let-item>
     <tr pRowGroupHeader>
-      <td colspan="5" class="manuals-group-row">
-        <i class="pi pi-folder-open mr-2"></i>
+      <td colspan="5" class="bg-primary text-white uppercase text-xs font-bold">
+        <i class="pi pi-folder-open mr-2 text-yellow-500"></i>
         <span class="font-bold">{{ item.departament || 'Sin Departamento' }}</span>
       </td>
     </tr>
@@ -36,17 +36,17 @@
 
   <ng-template #header>
     <tr>
-      <th pSortableColumn="folio" style="min-width: 10rem">
+      <th pSortableColumn="folio" class="table-col-10rem">
         Folio <p-sortIcon field="folio" />
       </th>
-      <th pSortableColumn="description" style="min-width: 18rem">
+      <th pSortableColumn="description" class="table-col-18rem">
         Descripcion <p-sortIcon field="description" />
       </th>
-      <th pSortableColumn="currentVersion" style="min-width: 7rem">
+      <th pSortableColumn="currentVersion" class="table-col-7rem">
         Version <p-sortIcon field="currentVersion" />
       </th>
-      <th style="min-width: 6rem">Global</th>
-      <th class="no-print" style="min-width: 10rem"></th>
+      <th class="table-col-6rem">Global</th>
+      <th class="no-print table-col-10rem"></th>
     </tr>
   </ng-template>
 

@@ -7,12 +7,12 @@ import {
   Validators,
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CheckboxModule } from "primeng/checkbox";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";

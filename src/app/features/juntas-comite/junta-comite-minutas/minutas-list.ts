@@ -69,7 +69,7 @@ import { MinutaPdfService } from "./minuta-pdf.service";
   ],
 })
 export class MinutasList {
-  // --- InyecciÃ³n de Dependencias ---
+  // --- Inyección de Dependencias ---
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   authS = inject(AuthService);
@@ -84,10 +84,10 @@ export class MinutasList {
   ref: DynamicDialogRef;
   public AspRole = EApplicationRole;
 
-  /** Tipo de junta actual que se estÃ³ mostrando ('ComitÃ©', 'Asamblea', etc.). */
+  /** Tipo de junta actual que se está mostrando ('Comité', 'Asamblea', etc.). */
   tipoJunta: number = 1;
 
-  /** Opciones de configuraciÃ³n para la tabla PrimeNG. */
+  /** Opciones de configuración para la tabla PrimeNG. */
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   scrollHeight: string = "calc(100vh - 300px)";
@@ -112,8 +112,8 @@ export class MinutasList {
   }
 
   /**
-   * Carga la lista de minutas desde la API segÃ³n el tipo de junta.
-   * @param tipoJunta El tipo de junta a cargar ('ComitÃ©', 'Asamblea', 'OperaciÃ³n').
+   * Carga la lista de minutas desde la API segón el tipo de junta.
+   * @param tipoJunta El tipo de junta a cargar ('Comité', 'Asamblea', 'Operación').
    */
   onLoadData(tipoJuntaEnum: number): void {
     // console.log("ðŸš€ ~ MinutasList ~ onLoadData ~ tipoJunta:", tipoJunta);
@@ -124,7 +124,7 @@ export class MinutasList {
     //   this.tipoJunta,
     // );
 
-    // // Mapeo manual de string a valor numÃ©rico del enum ETypeMeeting (0: Comite, 1: Asamblea, 2: Operacion)
+    // // Mapeo manual de string a valor numérico del enum ETypeMeeting (0: Comite, 1: Asamblea, 2: Operacion)
     // let tipoJuntaEnum = 0;
     // if (tipoJunta.includes("Asamblea")) tipoJuntaEnum = 1;
     // if (tipoJunta.includes("Operacion")) tipoJuntaEnum = 2;
@@ -151,7 +151,7 @@ export class MinutasList {
   onDelete(id: string): void {
     this.apiResponseS.onDelete(`Meetings/${id}`).then((result: boolean) => {
       if (result) {
-        // OptimizaciÃ³n: Eliminar el item del array local en lugar de recargar todo.
+        // Optimización: Eliminar el item del array local en lugar de recargar todo.
         this.dataSignal.update((data) =>
           data.filter((meeting) => meeting.id !== id),
         );
@@ -160,7 +160,7 @@ export class MinutasList {
   }
 
   /**
-   * EnvÃ³a la minuta por correo electrÃ³nico al ComitÃ©.
+   * Envía la minuta por correo electrónico al Comité.
    * @param meetingId El ID de la minuta.
    */
   onSendEmailMeeting(meetingId: any): void {
@@ -170,7 +170,7 @@ export class MinutasList {
 
   /**
    * Abre el modal para agregar o editar una minuta.
-   * @param data Objeto con el ID de la minuta (0 para nuevo) y el tÃ³tulo del modal.
+   * @param data Objeto con el ID de la minuta (0 para nuevo) y el título del modal.
    */
   showModalAddOrEditMeeting(data: { id: string; title: string }): void {
     this.dialogHandlerS
@@ -191,7 +191,7 @@ export class MinutasList {
   /**
    * Abre un modal que muestra una lista filtrada de asuntos de una minuta.
    * @param id El ID de la minuta.
-   * @param header El tÃ³tulo para el modal.
+   * @param header El título para el modal.
    * @param status El estatus por el cual filtrar los asuntos.
    */
   showModalAddOrEditMeetingDetails(
@@ -209,7 +209,7 @@ export class MinutasList {
 
   /**
    * Abre el modal para agregar o editar un detalle (asunto) de una minuta.
-   * Este mÃ³todo es llamado por el evento del componente hijo.
+   * Este método es llamado por el evento del componente hijo.
    * @param data El objeto de evento con los datos necesarios.
    */
   onModalFormMinutaDetalle(data: DetailEvent): void {
@@ -234,7 +234,7 @@ export class MinutasList {
     this.onGenerarMinutaPdf(id);
   }
 
-  /** Alias usado en la vista mÃ³vil. */
+  /** Alias usado en la vista móvil. */
   onGeneretePDF(id: any): void {
     this.onGenerarMinutaPdf(id);
   }
@@ -381,7 +381,7 @@ export class MinutasList {
       ];
       asistentesColumns.push({
         stack: [
-          { text: "ComitÃ© de Vigilancia", style: "minutaSectionTitle" },
+          { text: "Comité de Vigilancia", style: "minutaSectionTitle" },
           {
             table: { widths: ["auto", "*"], body },
             layout: "lightHorizontalLines",
@@ -521,7 +521,7 @@ export class MinutasList {
   }
 
   /**
-   * Navega a la pÃ³gina de resumen de una minuta.
+   * Navega a la pógina de resumen de una minuta.
    * @param id El ID de la minuta.
    */
   resumenMinuta(id: any): void {
@@ -529,9 +529,9 @@ export class MinutasList {
   }
 
   /**
-   * EnvÃ³a un correo electrÃ³nico a los responsables de un Ã³rea especÃ³fica de una minuta.
+   * Envía un correo electrónico a los responsables de un área específica de una minuta.
    * @param id El ID de la minuta.
-   * @param eAreaMinutasDetalles El identificador numÃ³rico del Ã³rea.
+   * @param eAreaMinutasDetalles El identificador numérico del área.
    */
   onSendEmail(id: any, eAreaMinutasDetalles: number): void {
     const urlApi = `Meetings/SendEmailResponsible/${id}/${this.customerIdS.customerId()}/${eAreaMinutasDetalles}/${
@@ -566,7 +566,7 @@ export class MinutasList {
    */
   onDeleteSeguimiento(id: any): void {
     this.apiResponseS.onDelete(`MeetingDertailsSeguimiento/${id}`).then(() => {
-      // OptimizaciÃ³n: Eliminar el seguimiento del array local.
+      // Optimización: Eliminar el seguimiento del array local.
       this.dataSignal.update((data) => {
         data.forEach((meeting) => {
           ["contable", "operaciones", "legal"].forEach((area) => {
@@ -590,7 +590,7 @@ export class MinutasList {
    */
   onDeleteMeetingDetail(id: any): void {
     this.apiResponseS.onDelete(`MeetingsDetails/${id}`).then(() => {
-      // OptimizaciÃ³n: Eliminar el detalle del array local.
+      // Optimización: Eliminar el detalle del array local.
       this.dataSignal.update((data) => {
         data.forEach((meeting: any) => {
           meeting.contable =
@@ -602,8 +602,8 @@ export class MinutasList {
         });
         return data;
       });
-      // PodrÃ³amos recalcular los totales (issues, pending, etc.) localmente o hacer una recarga si es mÃ³s simple.
-      // Por simplicidad, una recarga puede ser aceptable aquÃ³ si los totales deben ser 100% precisos.
+      // Podróamos recalcular los totales (issues, pending, etc.) localmente o hacer una recarga si es mós simple.
+      // Por simplicidad, una recarga puede ser aceptable aquó si los totales deben ser 100% precisos.
       this.onLoadData(this.tipoJunta);
     });
   }

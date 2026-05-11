@@ -338,7 +338,7 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
         break;
     }
 
-    // Lógica estóndar de cólculo
+    // Lógica estándar de cólculo
     const subTotal = price * qty;
     const discountAmount = subTotal * (discount / 100);
     const subTotalAfterDiscount = subTotal - discountAmount;

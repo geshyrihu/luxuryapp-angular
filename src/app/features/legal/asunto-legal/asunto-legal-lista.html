@@ -72,7 +72,7 @@
         @for ( legalMatter of category.legalMatters; track legalMatter; let i =
         $index ) {
         <tr>
-          <!-- Ã³ndice -->
+          <!-- índice -->
           <td>{{ rowIndex + 1 }}.{{ i + 1 }}</td>
           <td>{{ legalMatter.title }}</td>
           <td>{{ legalMatter.isInternal ? "Interno" : "Externo" }}</td>
@@ -97,7 +97,7 @@
   </div>
 </div>
 
-<!-- ?? INICIO: Vista para mÃ³viles -->
+<!-- ?? INICIO: Vista para móviles -->
 <app-data-view-mobile
   [data]="dataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -105,7 +105,7 @@
   <ng-container customFilters>
     <custom-button
       (clicked)="onModalEditCategorie({ id: '', title: 'Agregar categoria' })"
-      label="Agregar CategorÃ³a"
+      label="Agregar Categoría"
       icon="add-outline"
       customClass="w-full mb-2"
     />
