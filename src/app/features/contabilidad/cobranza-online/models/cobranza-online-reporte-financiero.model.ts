@@ -25,6 +25,7 @@ export interface ReporteFinancieroResponse {
 }
 
 export interface ReporteFinancieroFila {
+  numeroCuenta: string;
   concepto: string;
   /** Valores por columna; el ultimo elemento es SUMA */
   valores: number[];

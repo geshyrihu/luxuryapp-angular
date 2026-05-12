@@ -1,33 +1,19 @@
 <div class="fadein">
-  <!-- Acciones -->
-  <div class="flex mb-4 align-items-center flex-wrap">
-    <div class="mb-0">
-      <custom-button
-        label="Cargar"
-        iconClass="pi pi-refresh"
-        size="sm"
-        [loading]="loading()"
-        (clicked)="onLoad()"
-      />
-    </div>
-    @if (nombreEmpresa()) {
-    <span class="text-base text-700"
-      ><strong>{{ nombreEmpresa() }}</strong></span
-    >
-    }
-  </div>
-
   @if (loading()) {
-  <div class="flex align-items-center text-color-secondary mb-4">
+  <div class="flex align-items-center text-color-secondary mb-4 gap-2">
     <i class="pi pi-spin pi-spinner"></i>
     <span>Consultando datos en Aspel...</span>
   </div>
-  } @if (!loading() && !rows().length) {
+  }
+
+  @if (!loading() && !rows().length) {
   <p class="text-color-secondary">
     No hay datos de gastos para este cliente. Verifique que tenga configurado
     <strong>EjercicioFiscal</strong> en Aspel.
   </p>
-  } @if (rows().length) {
+  }
+
+  @if (rows().length) {
   <div style="overflow-x: auto">
     <p-table
       [value]="rows()"
@@ -35,79 +21,46 @@
       [tableStyle]="{ 'min-width': '1100px' }"
     >
       <ng-template pTemplate="header">
-        <tr class="bg-bluegray-800 font-bold text-sm text-center">
-          <th
-            class="bg-bluegray-800 text-center"
-            style="width: 130px; min-width: 110px; color: #fff !important"
-          >
+        <tr class="font-bold text-sm text-center">
+          <th class="th-col-dark" style="width: 130px; min-width: 110px">
             CUENTA
           </th>
-          <th
-            class="bg-bluegray-800"
-            style="min-width: 240px; color: #fff !important"
-          >
+          <th class="th-col-dark" style="min-width: 240px">
             DESCRIPCIÓN
           </th>
-          <th
-            class="bg-green-700 text-center"
-            style="min-width: 110px; color: #fff !important"
-          >
+          <th class="th-col-green" style="min-width: 180px">
             PRESUP. MENSUAL APROBADO
           </th>
-          <th
-            class="bg-bluegray-800 text-center"
-            style="min-width: 100px; color: #fff !important"
-          >
+          <th class="th-col-dark" style="min-width: 100px">
             {{ monthHeaders()[0] }}
           </th>
-          <th
-            class="bg-bluegray-800 text-center"
-            style="min-width: 100px; color: #fff !important"
-          >
+          <th class="th-col-dark" style="min-width: 100px">
             {{ monthHeaders()[1] }}
           </th>
-          <th
-            class="bg-bluegray-800 text-center"
-            style="min-width: 100px; color: #fff !important"
-          >
+          <th class="th-col-dark" style="min-width: 100px">
             {{ monthHeaders()[2] }}
           </th>
-          <th
-            class="bg-orange-600 text-center"
-            style="min-width: 120px; color: #fff !important"
-          >
+          <th class="th-col-orange" style="min-width: 160px">
             ACUMULADO ENE-{{ monthHeaders()[2] }}
           </th>
-          <th
-            class="bg-green-700 text-center"
-            style="min-width: 110px; color: #fff !important"
-          >
+          <th class="th-col-green" style="min-width: 180px">
             PRESUPUESTO ANUAL APROBADO
           </th>
-          <th
-            class="bg-red-700 text-center"
-            style="min-width: 110px; color: #fff !important"
-          >
+          <th class="th-col-red" style="min-width: 170px">
             PRESUPUESTO RESTANTE
           </th>
         </tr>
       </ng-template>
 
       <ng-template pTemplate="body" let-row>
-        <!-- Encabezado de sección -->
         @if (row.tipo === 'header') {
-        <tr class="bg-bluegray-700">
-          <td
-            colspan="9"
-            class="font-bold text-base py-2 px-3"
-            style="color: #fff !important"
-          >
+        <tr class="tr-section">
+          <td colspan="9" class="font-bold text-base py-2 px-3">
             {{ row.descripcion }}
           </td>
         </tr>
         }
 
-        <!-- Fila de cuenta mayor -->
         @if (row.tipo === 'item') {
         <tr>
           <td class="font-mono text-sm text-700">
@@ -115,96 +68,75 @@
           </td>
           <td class="text-base text-800">{{ row.descripcion }}</td>
           <td class="text-right text-base text-green-700 font-medium">
-            {{ row.presupMes === 0 ? '-' : (row.presupMes | number: '1.0-0') }}
+            {{ row.presupMes === 0 ? "-" : (row.presupMes | number : "1.0-0") }}
           </td>
           <td class="text-right text-base text-700">
-            {{ row.oct === 0 ? '-' : (row.oct | number: '1.0-0') }}
+            {{ row.oct === 0 ? "-" : (row.oct | number : "1.0-0") }}
           </td>
           <td class="text-right text-base text-700">
-            {{ row.nov === 0 ? '-' : (row.nov | number: '1.0-0') }}
+            {{ row.nov === 0 ? "-" : (row.nov | number : "1.0-0") }}
           </td>
           <td class="text-right text-base text-700">
-            {{ row.mes === 0 ? '-' : (row.mes | number: '1.0-0') }}
+            {{ row.mes === 0 ? "-" : (row.mes | number : "1.0-0") }}
           </td>
           <td class="text-right text-base text-orange-700 font-medium">
-            {{ row.acum === 0 ? '-' : (row.acum | number: '1.0-0') }}
+            {{ row.acum === 0 ? "-" : (row.acum | number : "1.0-0") }}
           </td>
           <td class="text-right text-base text-green-700 font-medium">
-            {{ row.presupAnual === 0 ? '-' : (row.presupAnual | number: '1.0-0')
-            }}
+            {{ row.presupAnual === 0 ? "-" : (row.presupAnual | number : "1.0-0") }}
           </td>
           <td
             class="text-right text-base text-800 font-medium"
             [class.text-red-600]="row.restante < 0"
           >
-            {{ row.restante === 0 ? '-' : (row.restante | number: '1.0-0') }}
+            {{ row.restante === 0 ? "-" : (row.restante | number : "1.0-0") }}
           </td>
         </tr>
         }
 
-        <!-- Gran Total Gastos Generales -->
         @if (row.tipo === 'gran-total') {
-        <tr class="font-bold bg-bluegray-700 border-t-2 border-white">
+        <tr class="font-bold tr-section">
           <td></td>
-          <td class="text-base" style="color: #fff !important">
-            {{ row.descripcion }}
-          </td>
-          <td class="text-right text-base" style="color: #fff !important">
-            {{ row.presupMes | number: '1.0-0' }}
-          </td>
-          <td class="text-right text-base" style="color: #fff !important">
-            {{ row.oct | number: '1.0-0' }}
-          </td>
-          <td class="text-right text-base" style="color: #fff !important">
-            {{ row.nov | number: '1.0-0' }}
-          </td>
-          <td class="text-right text-base" style="color: #fff !important">
-            {{ row.mes | number: '1.0-0' }}
-          </td>
-          <td class="text-right text-base" style="color: #fff !important">
-            {{ row.acum | number: '1.0-0' }}
-          </td>
-          <td class="text-right text-base" style="color: #fff !important">
-            {{ row.presupAnual | number: '1.0-0' }}
-          </td>
-          <td
-            class="text-right text-base"
-            style="color: #fff !important"
-            [class.text-red-300]="row.restante < 0"
-          >
-            {{ row.restante | number: '1.0-0' }}
+          <td class="text-base">{{ row.descripcion }}</td>
+          <td class="text-right text-base">{{ row.presupMes | number : "1.0-0" }}</td>
+          <td class="text-right text-base">{{ row.oct | number : "1.0-0" }}</td>
+          <td class="text-right text-base">{{ row.nov | number : "1.0-0" }}</td>
+          <td class="text-right text-base">{{ row.mes | number : "1.0-0" }}</td>
+          <td class="text-right text-base">{{ row.acum | number : "1.0-0" }}</td>
+          <td class="text-right text-base">{{ row.presupAnual | number : "1.0-0" }}</td>
+          <td class="text-right text-base" [class.text-red-300]="row.restante < 0">
+            {{ row.restante | number : "1.0-0" }}
           </td>
         </tr>
         }
 
-        <!-- Total de bloque extraordinario -->
         @if (row.tipo === 'total-extra') {
-        <tr class="font-bold bg-green-50 border-t-2 border-green-600">
+        <tr class="font-bold tr-total-green">
           <td></td>
           <td class="text-base text-800">{{ row.descripcion }}</td>
           <td class="text-right text-base text-green-700">
-            {{ row.presupMes | number: '1.0-0' }}
+            {{ row.presupMes | number : "1.0-0" }}
           </td>
           <td class="text-right text-base text-800">
-            {{ row.oct | number: '1.0-0' }}
+            {{ row.oct | number : "1.0-0" }}
           </td>
           <td class="text-right text-base text-800">
-            {{ row.nov | number: '1.0-0' }}
+            {{ row.nov | number : "1.0-0" }}
           </td>
           <td class="text-right text-base text-800">
-            {{ row.mes | number: '1.0-0' }}
+            {{ row.mes | number : "1.0-0" }}
           </td>
           <td class="text-right text-base text-orange-700">
-            {{ row.acum | number: '1.0-0' }}
+            {{ row.acum | number : "1.0-0" }}
           </td>
           <td class="text-right text-base text-green-700">
-            {{ row.presupAnual | number: '1.0-0' }}
+            {{ row.presupAnual | number : "1.0-0" }}
           </td>
           <td
             class="text-right text-base text-800"
             [class.text-red-600]="row.restante < 0"
           >
-            {{ row.restante | number: '1.0-0' }}
+            {{ row.restante | number : "1.0-0" }}
           </td>
         </tr>
         }

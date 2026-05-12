@@ -1,44 +1,12 @@
-<style>
-  /*
-    Define un viewport para el presupuesto, asegurando que el contenedor
-    principal ocupe la altura disponible y permita que la tabla interna se expanda
-    y muestre barras de scroll.
-  */
-  .budget-view-port-container {
-    /*
-      Calcula la altura para ocupar el espacio restante en la pantalla,
-      descontando una altura estimada para la barra de navegación o cabecera principal.
-      Ajustar '90px' si la altura de la cabecera es diferente.
-    */
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-  }
-
-  .budget-desktop-table {
-    flex: 1;
-    min-height: 0;
-    overflow: hidden;
-  }
-
-  .budget-header-meta {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-</style>
-
 <!--
 Contenedor principal de la vista de presupuesto.
-CORREGIDO: Se eliminó el div duplicado que estaba aquó.
 -->
-<div class="budget-view-port-container">
+<div class="rf-shell budget-view-port-container">
   <!-- =========================
        VISTA ESCRITORIO
        ========================= -->
   <div class="hidden md:flex md:flex-column budget-desktop-table">
+    <div class="rf-card p-3 flex-1 min-h-0">
     <p-table
       [globalFilterFields]="globalFilterFields()"
       [scrollable]="true"
@@ -48,119 +16,18 @@ CORREGIDO: Se eliminó el div duplicado que estaba aquó.
       dataKey="codigo_Cuenta"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} cuentas"
       scrollHeight="flex"
-      styleClass="custom-table financial-data-table budget-sticky-footer-table p-datatable-sm text-sm"
+      styleClass="custom-table financial-data-table rf-prime-table budget-sticky-footer-table p-datatable-sm text-sm"
     >
       <!-- =========================
         CAPTION: Encabezado superior de la tabla
         ========================= -->
       <ng-template #caption>
-        <div class="flex align-items-center justify-content-between gap-2 mb-1">
-          <!-- Título principal y periodo -->
-          <div class="flex-shrink-0">
-            <div class="budget-header-meta">
-              @if (budgetData()?.Periodo_Presupuesto) {
-              <h4 class="text-xl m-0">
-                <small class="text-color-secondary">
-                  {{ budgetData()?.Periodo_Presupuesto }}
-                </small>
-              </h4>
-              }
-
-              <custom-input-select-signal
-                id="yearSelector"
-                label="Año Fiscal"
-                [data]="availableYears"
-                [ngModel]="intYear()"
-                (ngModelChange)="intYear.set($event); onSelectionChange()"
-                optionLabel="label"
-                optionValue="value"
-                [horizontal]="true"
-                [noMargin]="true"
-                customClass="w-8rem"
-              />
-            </div>
-          </div>
-
-          <!-- Controles alineados -->
-          <div class="flex align-items-center">
-            <div class="flex align-items-center mr-1">
-              <custom-search-input-signal
-                (searchChange)="dt.filterGlobal($event, 'contains')"
-              />
-            </div>
-
-            <!-- Botones de filtros y acciones rópidas -->
-            @if (!errorMensaje()) {
-            <div class="flex align-items-center" role="toolbar">
-              <custom-button
-                iconClass="pi pi-cog"
-                [outlined]="true"
-                severity="secondary"
-                ngbTooltip="Gestionar Reglas de Cuentas"
-                (clicked)="onManageRules()"
-                class="mr-1"
-              />
-
-              @if (allMonths()) {
-              <custom-button
-                iconClass="pi pi-times"
-                label="Ninguno"
-                ngbTooltip="Ningun mes"
-                (clicked)="ocultarTodosLosMeses()"
-                variant="outlined"
-                severity="info"
-                class="mr-1"
-              />
-              } @else {
-              <custom-button
-                iconClass="pi pi-check"
-                label="Todos"
-                ngbTooltip="Todos los meses"
-                (clicked)="mostrarTodosLosMeses()"
-                variant="outlined"
-                severity="info"
-              />
-              }
-
-              <custom-button
-                iconClass="pi pi-search"
-                label="Full"
-                ngbTooltip="Ver todo!!"
-                (clicked)="onApelFull()"
-                variant="outlined"
-                severity="info"
-                class="mr-1"
-              />
-
-              <custom-button
-                iconClass="pi pi-sparkles"
-                label="Analizar con IA"
-                ngbTooltip="Analizar con IA"
-                variant="outlined"
-                severity="help"
-                class="mr-1"
-                (clicked)="analyzeFinancialData()"
-              />
-            </div>
-            }
-          </div>
-        </div>
-
-        <!-- Mensaje de error si existe -->
-        @if (errorMensaje()) {
-        <div class="mt-1">
-          <p-message
-            severity="error"
-            [text]="errorMensaje()"
-            styleClass="mt-2"
-          ></p-message>
-        </div>
-        }
+        <!-- El encabezado ahora está centralizado en el wrapper -->
       </ng-template>
       <!-- =========================
             HEADER: Encabezados de columnas
             ========================= -->
-      @if (!errorMensaje()) {
+      @if (!sharedS.errorMensaje()) {
       <ng-template #header>
         <tr>
           <!-- CORREGIDO: Se combinaron los atributos de clase en uno solo -->
@@ -189,10 +56,9 @@ CORREGIDO: Se eliminó el div duplicado que estaba aquó.
       <!-- =========================
             BODY: Filas de datos
             ========================= -->
-      @if (!errorMensaje(); as cuenta) {
+      @if (!sharedS.errorMensaje(); as cuenta) {
       <ng-template #body let-cuenta>
         <tr
-          [@rowAnimation]
           [class.fila-nivel-1]="cuenta.nivel_Cuenta === 1 && cuenta.esFilaAgrupadora"
           [class.fila-nivel-2-agrupadora]="cuenta.nivel_Cuenta === 2 && cuenta.esFilaAgrupadora"
           [class.fila-nivel-2-hoja]="cuenta.nivel_Cuenta === 2 && !cuenta.esFilaAgrupadora"
@@ -302,7 +168,7 @@ CORREGIDO: Se eliminó el div duplicado que estaba aquó.
       <!-- =========================
             FOOTER: Totales
             ========================= -->
-      @if (!errorMensaje()) {
+      @if (!sharedS.errorMensaje()) {
       <ng-template #footer>
         @if (cuentas() && cuentas().length > 0) {
         <tr>
@@ -332,7 +198,7 @@ CORREGIDO: Se eliminó el div duplicado que estaba aquó.
           <td class="text-right font-bold"></td>
         </tr>
         <!-- ? </tr> fuera del @for -->
-        } @if (budgetData()) {
+        } @if (sharedS.budgetData()) {
         <tr>
           <td pFrozenColumn class="text-right font-bold">TOTALES:</td>
           <td pFrozenColumn class="text-right font-bold">
@@ -397,7 +263,7 @@ CORREGIDO: Se eliminó el div duplicado que estaba aquó.
       <!-- =========================
             EMPTY MESSAGE: Sin datos
             ========================= -->
-      @if (!errorMensaje()) {
+      @if (!sharedS.errorMensaje()) {
       <ng-template emptymessage>
         <tr>
           <td [attr.colspan]="8 + months.length">
@@ -407,45 +273,14 @@ CORREGIDO: Se eliminó el div duplicado que estaba aquó.
       </ng-template>
       }
     </p-table>
+    </div>
   </div>
 
   <!-- =========================
        VISTA MóVIL
        ========================= -->
   <div class="block md:hidden">
-    <!-- Filtros móviles simplificados -->
-    <div class="mb-3 flex flex-column gap-2">
-      <custom-input-select-signal
-        id="yearSelectorMobile"
-        [data]="availableYears"
-        [ngModel]="intYear()"
-        (ngModelChange)="intYear.set($event); onSelectionChange()"
-        optionLabel="label"
-        optionValue="value"
-        placeholder="Seleccionar Año"
-        size="small"
-        [horizontal]="false"
-      />
-
-      <div class="flex justify-content-between">
-        <custom-button
-          iconClass="pi pi-cog"
-          severity="secondary"
-          (clicked)="onManageRules()"
-          size="small"
-          label="Reglas"
-        />
-        <custom-button
-          iconClass="pi pi-search"
-          label="Full"
-          (clicked)="onApelFull()"
-          variant="outlined"
-          severity="info"
-          size="small"
-        />
-      </div>
-    </div>
-
+    <div class="rf-card p-3">
     <app-data-view-mobile
       [data]="cuentas()"
       [globalFilterFields]="globalFilterFields()"
@@ -507,5 +342,6 @@ CORREGIDO: Se eliminó el div duplicado que estaba aquó.
         </div>
       </ng-template>
     </app-data-view-mobile>
+    </div>
   </div>
 </div>

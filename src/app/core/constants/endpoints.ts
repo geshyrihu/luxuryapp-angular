@@ -933,6 +933,9 @@ export const Endpoints = {
   },
   ContabilidadOnline: {
     askAi: "contabilidad-online/ask-ai",
+    askAiContabilidadOnline: "contabilidad-online/ask-ai-contabilidad-online",
+    explainAiContabilidadOnline:
+      "contabilidad-online/explain-ai-contabilidad-online",
     FinancialStatements: {
       /** EPF compacto: saldo acumulado al cierre del mes. Endpoint principal del componente balance-sheet. */
       epf: (customerId: string, year: number, mes: number) =>
@@ -943,6 +946,8 @@ export const Endpoints = {
         `contabilidad-online/validacion-catalogo/${customerId}/${year}`,
       incomeStatement: (customerId: string, year: number, mes: number) =>
         `contabilidad-online/estado-resultados/${customerId}/${year}/${mes}`,
+      incomeStatementV2: (customerId: string, year: number, mes: number) =>
+        `contabilidad-online/estado-resultados-v2/${customerId}/${year}/${mes}`,
       extraordinaryFeeSchedule: (
         customerId: string,
         year: number,
@@ -951,12 +956,19 @@ export const Endpoints = {
         `contabilidad-online/cedula-extraordinaria/${customerId}/${year}/${mes}`,
       budgetVsActual: (customerId: string, year: number, mes: number) =>
         `contabilidad-online/cedula-presupuestal/${customerId}/${year}/${mes}`,
+      financialReport: (customerId: string, year: number, mes: number) =>
+        `contabilidad-online/reporte-financiero/${customerId}/${year}/${mes}`,
       cashFlow: (customerId: string, year: number) =>
         `contabilidad-online/flujo-caja/${customerId}/${year}`,
       collectionAnalysis: (customerId: string, year: number, month: number) =>
         `contabilidad-online/analisis-cobranza/${customerId}/${year}/${month}`,
-      debugRawAspelData: (customerId: string, year: number) =>
-        `contabilidad-online/debug-raw-aspel-data/${customerId}/${year}`,
+      collectionAnalysisOnline: (
+        customerId: string,
+        year: number,
+        month: number,
+        day: number,
+      ) =>
+        `contabilidad-online/analisis-cobranza-online/${customerId}/${year}/${month}/${day}`,
     },
   },
   ApprovalRules: {

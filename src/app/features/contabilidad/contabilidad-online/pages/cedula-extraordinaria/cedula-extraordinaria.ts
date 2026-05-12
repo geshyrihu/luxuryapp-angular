@@ -1,17 +1,16 @@
 import { CommonModule, DecimalPipe } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { TableModule } from "primeng/table";
 import { SkeletonModule } from "primeng/skeleton";
+import { TableModule } from "primeng/table";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import {
   IBaseAccountDto,
-  IFinancialStatementDto,
+  ICedulaExtraordinariaDto,
+  ICuentaMayorDto,
 } from "../../models/aspel-budget.interface";
 import { reportFilterState } from "../../state/financial-report-filter.state";
 
@@ -29,6 +28,7 @@ const MONTH_NAMES = [
   "Noviembre",
   "Diciembre",
 ];
+
 const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
   "montoEnero",
   "montoFebrero",
@@ -44,6 +44,16 @@ const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
   "montoDiciembre",
 ];
 
+type ReportRow = {
+  tipo: "header" | "item" | "total";
+  descripcion: string;
+  numeroCuenta?: string;
+  mes1?: number;
+  mes2?: number;
+  mes3?: number;
+  acum?: number;
+};
+
 @Component({
   selector: "app-cedula-extraordinaria",
   imports: [
@@ -52,7 +62,6 @@ const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
     TableModule,
     SkeletonModule,
     DataViewMobile,
-    CustomButton,
     DecimalPipe,
   ],
   templateUrl: "./cedula-extraordinaria.html",
@@ -62,15 +71,11 @@ export class CedulaExtraordinaria {
   private customerIdS = inject(CustomerIdService);
   public filterS = reportFilterState;
 
-  // State
   loading = signal<boolean>(false);
-  data = signal<IFinancialStatementDto | null>(null);
-
-  // Computed requeridos por el HTML
-  nombreEmpresa = computed(() => this.data()?.nombreEmpresa || "");
+  data = signal<ICedulaExtraordinariaDto | null>(null);
 
   monthHeaders = computed(() => {
-    const idx = this.filterS.mesIdx(); // 0-11
+    const idx = this.filterS.mesIdx();
     const wr = (i: number) => ((i % 12) + 12) % 12;
     return [
       MONTH_NAMES[wr(idx - 2)],
@@ -79,118 +84,126 @@ export class CedulaExtraordinaria {
     ];
   });
 
-  rows = computed(() => {
+  mainRows = computed<ReportRow[]>(() => {
     const d = this.data();
     const mes = this.filterS.mesIdx();
     if (!d) return [];
 
-    const wr = (i: number) => ((i % 12) + 12) % 12;
-    const result: any[] = [];
+    const rows: ReportRow[] = [];
+    const ingresos = (d.recaudadoMejoras ?? []).filter((row) =>
+      this.hasVisibleValues(row),
+    );
+    const gastos = (d.gastosMejoras ?? []).filter((row) =>
+      this.hasVisibleValues(row),
+    );
 
-    let totIng = [0, 0, 0, 0];
-    let totGas = [0, 0, 0, 0];
-
-    const ingRows: any[] = [];
-    const gasRows: any[] = [];
-
-    for (const clas of d.clasificaciones) {
-      const esIngreso = clas.naturaleza?.toUpperCase() === "ACREEDORA";
-      const destino = esIngreso ? ingRows : gasRows;
-
-      for (const mayor of clas.cuentasMayor ?? []) {
-        const m1 = this.monto(mayor, wr(mes - 2));
-        const m2 = this.monto(mayor, wr(mes - 1));
-        const m3 = this.monto(mayor, mes);
-        const acum = mayor.acumuladoAnual;
-
-        destino.push({
-          tipo: "item",
-          numeroCuenta: mayor.numeroCuenta,
-          descripcion: mayor.descripcion,
-          mes1: m1,
-          mes2: m2,
-          mes3: m3,
-          acum,
-        });
-
-        if (esIngreso) {
-          totIng[0] += m1;
-          totIng[1] += m2;
-          totIng[2] += m3;
-          totIng[3] += acum;
-        } else {
-          totGas[0] += m1;
-          totGas[1] += m2;
-          totGas[2] += m3;
-          totGas[3] += acum;
-        }
-      }
+    if (ingresos.length > 0) {
+      rows.push({ tipo: "header", descripcion: "RECAUDADO MEJORAS" });
+      rows.push(...ingresos.map((row) => this.toRow(row, mes)));
+      rows.push(this.toTotalRow(d.totalRecaudadoMejoras, mes));
     }
 
-    // Sección INGRESOS
-    result.push({ tipo: "header", descripcion: "INGRESOS" });
-    result.push(...ingRows);
-    result.push({
-      tipo: "total-ingresos",
-      descripcion: "TOTAL CUOTA EXTRAORDINARIA",
-      mes1: totIng[0],
-      mes2: totIng[1],
-      mes3: totIng[2],
-      acum: totIng[3],
-    });
+    if (gastos.length > 0) {
+      rows.push({ tipo: "header", descripcion: "GASTOS MEJORAS Y EVENTOS" });
+      rows.push(...gastos.map((row) => this.toRow(row, mes)));
+      rows.push(this.toTotalRow(d.totalGastosMejoras, mes));
+    }
 
-    // Sección GASTOS EXTRA Y MEJORAS
-    result.push({ tipo: "header", descripcion: "GASTOS EXTRA Y MEJORAS" });
-    result.push(...gasRows);
-    result.push({
-      tipo: "total-gastos",
-      descripcion: "TOTAL GASTOS EXTR Y MEJORAS",
-      mes1: totGas[0],
-      mes2: totGas[1],
-      mes3: totGas[2],
-      acum: totGas[3],
-    });
+    return rows;
+  });
 
-    return result;
+  extraRows = computed<ReportRow[]>(() => {
+    const d = this.data();
+    const mes = this.filterS.mesIdx();
+    if (!d) return [];
+
+    const gastos = (d.gastosExtraordinarios ?? []).filter((row) =>
+      this.hasVisibleValues(row),
+    );
+    if (gastos.length === 0) return [];
+
+    return [
+      { tipo: "header", descripcion: "GASTOS EXTRAORDINARIOS" },
+      ...gastos.map((row) => this.toRow(row, mes)),
+      this.toTotalRow(d.totalGastosExtraordinarios, mes),
+    ];
   });
 
   constructor() {
     effect(() => {
       const custId = this.customerIdS.customerId();
       const yr = this.filterS.year();
+      this.filterS.refreshTick();
       if (custId && yr) {
         this.loadData(custId, yr);
       }
     });
   }
 
-  onLoad() {
-    const custId = this.customerIdS.customerId();
-    const yr = this.filterS.year();
-    if (custId && yr) {
-      this.loadData(custId, yr);
-    }
-  }
-
   async loadData(customerId: string, year: number) {
     this.loading.set(true);
-    const mes = this.filterS.mesIdx() + 1; // Backend espera 1-12
-    const result = await this.apiS.onGetItem<IFinancialStatementDto>(
+    const mes = this.filterS.mesIdx() + 1;
+    const result = await this.apiS.onGetItem<ICedulaExtraordinariaDto>(
       Endpoints.ContabilidadOnline.FinancialStatements.extraordinaryFeeSchedule(
         customerId,
         year,
         mes,
       ),
     );
+
     if (result) {
       this.data.set(result);
-      this.filterS.currentReportName.set('Cédula de Cuotas Extraordinarias');
+      this.filterS.currentReportName.set("Cédula de Cuotas Extraordinarias");
       this.filterS.currentReportContext.set(JSON.stringify(result));
     }
+
     this.loading.set(false);
   }
 
-  private monto(a: IBaseAccountDto, idx: number): number {
-    return (a[MONTH_KEYS[idx % 12]] as number) ?? 0;
+  private toRow(account: ICuentaMayorDto, mes: number): ReportRow {
+    const wr = (i: number) => ((i % 12) + 12) % 12;
+    return {
+      tipo: "item",
+      numeroCuenta: account.numeroCuenta,
+      descripcion: account.descripcion,
+      mes1: this.monto(account, wr(mes - 2)),
+      mes2: this.monto(account, wr(mes - 1)),
+      mes3: this.monto(account, mes),
+      acum: account.acumuladoAnual,
+    };
+  }
+
+  private toTotalRow(account: ICuentaMayorDto, mes: number): ReportRow {
+    const wr = (i: number) => ((i % 12) + 12) % 12;
+    return {
+      tipo: "total",
+      descripcion: account.descripcion,
+      mes1: this.monto(account, wr(mes - 2)),
+      mes2: this.monto(account, wr(mes - 1)),
+      mes3: this.monto(account, mes),
+      acum: account.acumuladoAnual,
+    };
+  }
+
+  private monto(account: IBaseAccountDto, idx: number): number {
+    return (account[MONTH_KEYS[idx % 12]] as number) ?? 0;
+  }
+
+  private hasVisibleValues(account: IBaseAccountDto): boolean {
+    return (
+      account.montoEnero !== 0 ||
+      account.montoFebrero !== 0 ||
+      account.montoMarzo !== 0 ||
+      account.montoAbril !== 0 ||
+      account.montoMayo !== 0 ||
+      account.montoJunio !== 0 ||
+      account.montoJulio !== 0 ||
+      account.montoAgosto !== 0 ||
+      account.montoSeptiembre !== 0 ||
+      account.montoOctubre !== 0 ||
+      account.montoNoviembre !== 0 ||
+      account.montoDiciembre !== 0 ||
+      account.acumuladoAnual !== 0
+    );
   }
 }

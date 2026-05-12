@@ -2,7 +2,6 @@ import { CommonModule, DecimalPipe } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -42,7 +41,7 @@ const GASTOS_EXTRA = ["605-", "606-", "607-"];
 
 @Component({
   selector: "app-cedula-presupuestal",
-  imports: [CommonModule, FormsModule, TableModule, CustomButton, DecimalPipe],
+  imports: [CommonModule, FormsModule, TableModule, DecimalPipe],
   templateUrl: "./cedula-presupuestal.html",
 })
 export class CedulaPresupuestal {
@@ -53,9 +52,6 @@ export class CedulaPresupuestal {
   // Estado
   loading = signal<boolean>(false);
   data = signal<IFinancialStatementDto | null>(null);
-
-  // Nombre de la empresa para mostrar en el encabezado
-  nombreEmpresa = computed(() => this.data()?.nombreEmpresa || "");
 
   /**
    * Encabezados dinámicos de las columnas de meses.
@@ -104,7 +100,8 @@ export class CedulaPresupuestal {
     // Separar cuentas por su clasificación (General vs Extraordinario)
     const todasLasCuentas = d.clasificaciones.flatMap((c) => c.cuentasMayor ?? []);
     const cuentasGenerales = todasLasCuentas.filter((c) =>
-      GASTOS_GENERALES.some((prefix) => c.numeroCuenta.startsWith(prefix))
+      GASTOS_GENERALES.some((prefix) => c.numeroCuenta.startsWith(prefix)) &&
+      c.numeroCuenta !== "600-000-000"
     );
     const cuentasExtra = todasLasCuentas.filter((c) =>
       GASTOS_EXTRA.some((prefix) => c.numeroCuenta.startsWith(prefix))
@@ -230,19 +227,11 @@ export class CedulaPresupuestal {
       const custId = this.customerIdS.customerId();
       const yr = this.filterS.year();
       const mes = this.filterS.mesIdx() + 1; // Backend espera 1-12
+      this.filterS.refreshTick();
       if (custId && yr) {
         this.loadData(custId, yr, mes);
       }
     });
-  }
-
-  onLoad() {
-    const custId = this.customerIdS.customerId();
-    const yr = this.filterS.year();
-    const mes = this.filterS.mesIdx() + 1;
-    if (custId && yr) {
-      this.loadData(custId, yr, mes);
-    }
   }
 
   /** Carga los datos del reporte desde el API */

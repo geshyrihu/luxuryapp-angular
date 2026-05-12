@@ -30,8 +30,12 @@ export class ElevenLabsService {
     return this.settingsS.getSettings();
   }
 
-  saveSettings(settings: ElevenLabsFrontendSettings): void {
-    this.settingsS.saveSettings(settings);
+  async loadSettingsFromServer(): Promise<ElevenLabsFrontendSettings> {
+    return this.settingsS.loadFromServer();
+  }
+
+  async saveSettings(settings: ElevenLabsFrontendSettings): Promise<void> {
+    await this.settingsS.saveSettings(settings);
   }
 
   async getVoices(): Promise<ElevenLabsVoiceOption[]> {

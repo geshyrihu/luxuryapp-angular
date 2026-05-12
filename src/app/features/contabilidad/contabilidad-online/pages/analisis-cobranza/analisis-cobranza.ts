@@ -1,9 +1,7 @@
-import { CommonModule, DecimalPipe } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { ChartModule } from "primeng/chart";
-import { InputTextModule } from "primeng/inputtext";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
@@ -11,7 +9,10 @@ import { TagModule } from "primeng/tag";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { IAnalisisCobranzaDto } from "../../models/aspel-budget.interface";
+import {
+  IAnalisisCobranzaOnlineDto,
+  ICobranzaOnlineAnalysisCondominoDto,
+} from "../../models/aspel-budget.interface";
 import { reportFilterState } from "../../state/financial-report-filter.state";
 
 @Component({
@@ -19,30 +20,26 @@ import { reportFilterState } from "../../state/financial-report-filter.state";
   imports: [
     CommonModule,
     FormsModule,
-    TableModule,
-    CustomButton,
-    DecimalPipe,
-    SelectModule,
-    InputTextModule,
     ChartModule,
+    SelectModule,
+    TableModule,
     TagModule,
   ],
   templateUrl: "./analisis-cobranza.html",
 })
 export class AnalisisCobranza {
-  private apiS = inject(ApiResponseService);
-  private customerIdS = inject(CustomerIdService);
-  public filterS = reportFilterState;
+  private readonly apiS = inject(ApiResponseService);
+  private readonly customerIdS = inject(CustomerIdService);
+  readonly filterS = reportFilterState;
 
-  // State
-  loading = signal<boolean>(false);
-  data = signal<IAnalisisCobranzaDto | null>(null);
-  year = signal<number>(new Date().getFullYear());
-  selectedMonthIdx = signal<number>(new Date().getMonth() + 1);
-  cuotaMensual = signal<number>(0);
-  filtroClasif = signal<string>("TODAS");
+  readonly loading = signal(false);
+  readonly selectedClassification = signal("TODAS");
+  readonly data = signal<IAnalisisCobranzaOnlineDto | null>(null);
+  readonly cutoffDateInput = signal("");
 
-  readonly clasificaciones = [
+  readonly hasCustomer = computed(() => !!this.customerIdS.customerId());
+
+  readonly classificationOptions = [
     "TODAS",
     "COBRANZA JUDICIAL",
     "MOROSOS",
@@ -51,45 +48,25 @@ export class AnalisisCobranza {
     "ANTICIPOS",
   ];
 
-  monthOptions = [
-    { label: "Enero", value: 1 },
-    { label: "Febrero", value: 2 },
-    { label: "Marzo", value: 3 },
-    { label: "Abril", value: 4 },
-    { label: "Mayo", value: 5 },
-    { label: "Junio", value: 6 },
-    { label: "Julio", value: 7 },
-    { label: "Agosto", value: 8 },
-    { label: "Septiembre", value: 9 },
-    { label: "Octubre", value: 10 },
-    { label: "Noviembre", value: 11 },
-    { label: "Diciembre", value: 12 },
-  ];
+  readonly chartData = computed(() => {
+    const analysis = this.data();
+    if (!analysis) {
+      return null;
+    }
 
-  chartOptions = {
-    plugins: { legend: { position: "bottom" } },
-    responsive: true,
-    maintainAspectRatio: false,
-  };
-
-  // Computed requeridos por el HTML
-  chartData = computed(() => {
-    const d = this.data();
-    if (!d) return null;
-    const cuota = this.cuotaMensual();
-
-    if (cuota > 0) {
-      const totalPerfecto = d.totalCondominios * cuota;
-      const cobrado = Math.max(
-        0,
-        totalPerfecto - d.totalMorosos - d.totalDeudaCorriente,
-      );
+    if (analysis.cobranzaPerfecta > 0) {
       return {
-        labels: ["Cobrado", "Morosos", "Deuda Corriente"],
+        labels: ["Morosos", "Deuda Corriente", "Cobrado"],
         datasets: [
           {
-            data: [cobrado, d.totalMorosos, d.totalDeudaCorriente],
-            backgroundColor: ["#22c55e", "#f59e0b", "#3b82f6"],
+            data: [
+              analysis.totalMorosos,
+              analysis.totalDeudaCorriente,
+              analysis.totalCobrado,
+            ],
+            backgroundColor: ["#b91c1c", "#2563eb", "#166534"],
+            hoverBackgroundColor: ["#b91c1c", "#2563eb", "#166534"],
+            borderWidth: 0,
           },
         ],
       };
@@ -99,55 +76,84 @@ export class AnalisisCobranza {
       labels: ["Cobranza Judicial", "Morosos", "Deuda Corriente"],
       datasets: [
         {
-          data: [d.totalJudicial, d.totalMorosos, d.totalDeudaCorriente],
-          backgroundColor: ["#ef4444", "#f59e0b", "#3b82f6"],
+          data: [
+            analysis.totalJudicial,
+            analysis.totalMorosos,
+            analysis.totalDeudaCorriente,
+          ],
+          backgroundColor: ["#b91c1c", "#d97706", "#2563eb"],
+          hoverBackgroundColor: ["#b91c1c", "#d97706", "#2563eb"],
+          borderWidth: 0,
         },
       ],
     };
   });
 
-  condominosFiltrados = computed(() => {
-    const d = this.data();
-    if (!d) return [];
-    switch (this.filtroClasif()) {
+  readonly chartOptions = {
+    plugins: { legend: { position: "bottom" } },
+    responsive: true,
+    maintainAspectRatio: false,
+  };
+
+  readonly filteredRows = computed<
+    ICobranzaOnlineAnalysisCondominoDto[]
+  >(() => {
+    const analysis = this.data();
+    if (!analysis) {
+      return [];
+    }
+
+    switch (this.selectedClassification()) {
       case "COBRANZA JUDICIAL":
-        return d.cobranzaJudicial;
+        return analysis.cobranzaJudicial;
       case "MOROSOS":
-        return d.morosos;
+        return analysis.morosos;
       case "DEUDA CORRIENTE":
-        return d.deudaCorriente;
+        return analysis.deudaCorriente;
       case "SIN ADEUDO":
-        return d.sinAdeudo;
+        return analysis.sinAdeudo;
       case "ANTICIPOS":
-        return d.anticipos;
+        return analysis.anticipos;
       default:
         return [
-          ...d.cobranzaJudicial,
-          ...d.morosos,
-          ...d.deudaCorriente,
-          ...d.sinAdeudo,
-          ...d.anticipos,
+          ...analysis.cobranzaJudicial,
+          ...analysis.morosos,
+          ...analysis.deudaCorriente,
+          ...analysis.sinAdeudo,
+          ...analysis.anticipos,
         ];
     }
   });
 
   constructor() {
     effect(() => {
-      const custId = this.customerIdS.customerId();
-      const yr = this.year();
-      const month = this.selectedMonthIdx();
-      if (custId && yr && month) {
-        this.loadData(custId, yr, month);
+      const customerId = this.customerIdS.customerId();
+      const year = this.filterS.year();
+      const month = this.filterS.mesIdx() + 1;
+      this.filterS.refreshTick();
+
+      if (!customerId) {
+        this.data.set(null);
+        return;
       }
+
+      const day = this.getLastDayOfMonth(year, month);
+      this.cutoffDateInput.set(
+        `${year}-${`${month}`.padStart(2, "0")}-${`${day}`.padStart(2, "0")}`,
+      );
+      void this.loadData(customerId, this.cutoffDateInput());
     });
   }
 
-  pct(value: number, total: number): string {
-    if (!total) return "0%";
-    return ((value / total) * 100).toFixed(1) + "%";
+  pct(value: number, total: number) {
+    if (!total) {
+      return "0%";
+    }
+
+    return `${((value / total) * 100).toFixed(1)}%`;
   }
 
-  getSeverity(clasificacion: string): string {
+  getSeverity(clasificacion: string) {
     switch (clasificacion) {
       case "COBRANZA JUDICIAL":
         return "danger";
@@ -164,35 +170,41 @@ export class AnalisisCobranza {
     }
   }
 
-  onMonthChange(month: number) {
-    this.selectedMonthIdx.set(month);
+  private getLastDayOfMonth(year: number, month: number) {
+    return new Date(year, month, 0).getDate();
   }
 
-  onLoad() {
-    const custId = this.customerIdS.customerId();
-    if (custId) {
-      this.loadData(custId, this.year(), this.selectedMonthIdx());
-    }
-  }
+  private async loadData(customerId: string, cutoffDateInput: string) {
+    const cutoffDate = new Date(`${cutoffDateInput}T12:00:00`);
 
-  async loadData(customerId: string, year: number, month: number) {
-    if (!Number.isInteger(month) || month < 1 || month > 12) {
+    if (Number.isNaN(cutoffDate.getTime())) {
+      this.data.set(null);
       return;
     }
 
+    const year = cutoffDate.getFullYear();
+    const month = cutoffDate.getMonth() + 1;
+    const day = cutoffDate.getDate();
+
     this.loading.set(true);
-    const result = await this.apiS.onGetItem<IAnalisisCobranzaDto>(
-      Endpoints.ContabilidadOnline.FinancialStatements.collectionAnalysis(
+    const result = await this.apiS.onGetItem<IAnalisisCobranzaOnlineDto>(
+      Endpoints.ContabilidadOnline.FinancialStatements.collectionAnalysisOnline(
         customerId,
         year,
         month,
+        day,
       ),
+      false,
     );
+
     if (result) {
       this.data.set(result);
-      this.filterS.currentReportName.set('Análisis de Cobranza');
+      this.filterS.currentReportName.set("Análisis de Cobranza");
       this.filterS.currentReportContext.set(JSON.stringify(result));
+    } else {
+      this.data.set(null);
     }
+
     this.loading.set(false);
   }
 }

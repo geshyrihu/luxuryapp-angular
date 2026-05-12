@@ -119,10 +119,25 @@ export class ElevenLabsSettingsComponent implements OnInit {
   ngOnInit(): void {
     this.loadStoredSettings();
     void this.loadVoices();
+    void this.loadSettingsFromServer();
 
     this.form.controls.voiceId.valueChanges.subscribe((voiceId) => {
       this.updateSelectedVoicePreview(voiceId);
     });
+  }
+
+  async loadSettingsFromServer(): Promise<void> {
+    const settings = await this.elevenLabsS.loadSettingsFromServer();
+    this.form.patchValue({
+      voiceId: settings.voiceId,
+      modelId: settings.modelId,
+      stability: settings.stability,
+      similarity: settings.similarity,
+      style: settings.style,
+      speakerBoost: settings.speakerBoost,
+      autoPlayResponses: settings.autoPlayResponses,
+    });
+    this.updateSelectedVoicePreview(settings.voiceId);
   }
 
   async loadVoices(): Promise<void> {
@@ -166,7 +181,7 @@ export class ElevenLabsSettingsComponent implements OnInit {
     }
   }
 
-  saveSettings(): void {
+  async saveSettings(): Promise<void> {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       this.toastS.showError(
@@ -180,7 +195,7 @@ export class ElevenLabsSettingsComponent implements OnInit {
       (voice) => voice.voiceId === this.form.controls.voiceId.value,
     );
 
-    this.elevenLabsS.saveSettings({
+    await this.elevenLabsS.saveSettings({
       voiceId: this.form.controls.voiceId.value,
       voiceName: selectedVoice?.name ?? "",
       modelId: this.form.controls.modelId.value,
@@ -206,7 +221,7 @@ export class ElevenLabsSettingsComponent implements OnInit {
     this.testingAudio.set(true);
 
     try {
-      this.saveSettings();
+      await this.saveSettings();
       const success = await this.elevenLabsS.playText(
         this.form.controls.sampleText.value,
       );

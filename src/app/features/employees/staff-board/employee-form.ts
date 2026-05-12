@@ -13,6 +13,8 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { UpdatePasswordAccount } from "src/app/features/configuration/application-user/pages/update-password-account";
 import { UpdateRole } from "src/app/features/configuration/application-user/pages/update-role";
 import { EmployeeReclutamiento } from "../../recruitment/pages/employee-reclutamiento";
+import { EmployeeBankDataList } from "../employee-bank-data/pages/employee-bank-data-list";
+import { EmployeeClinicalDataList } from "../employee-clinical-data/pages/employee-clinical-data-list";
 import { EmployeeEmergencyContactList } from "../employee-emergency-contact/pages/employee-emergency-contact-list";
 import { EmployeeAddressForm } from "../employee-internal/pages/employee-address-form";
 import { EmployeeAvatarForm } from "../employee-internal/pages/employee-avatar-form";
@@ -28,6 +30,8 @@ import { IncidentList } from "src/app/features/recursos-humanos/incident/pages/i
     CommonModule,
     EmployeeAddressForm,
     EmployeeAvatarForm,
+    EmployeeBankDataList,
+    EmployeeClinicalDataList,
     EmployeeEmergencyContactList,
     EmployeeLaboralDataForm,
     EmployeePersonalDataForm,
@@ -147,6 +151,28 @@ export class EmployeeForm implements OnInit {
         label: "Contactos",
         icon: "pi pi-phone",
         section: "contacts",
+        roles: [
+          EApplicationRole.SuperUsuario,
+          EApplicationRole.Administrador,
+          EApplicationRole.Asistente,
+          EApplicationRole.RecursosHumanos,
+        ],
+      },
+      {
+        label: "Datos bancarios y beneficiario",
+        icon: "pi pi-credit-card",
+        section: "bank-data",
+        roles: [
+          EApplicationRole.SuperUsuario,
+          EApplicationRole.Administrador,
+          EApplicationRole.Asistente,
+          EApplicationRole.RecursosHumanos,
+        ],
+      },
+      {
+        label: "Datos clinicos",
+        icon: "pi pi-heart",
+        section: "clinical-data",
         roles: [
           EApplicationRole.SuperUsuario,
           EApplicationRole.Administrador,

@@ -17,7 +17,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         bgColor: "#dbeafe",
       },
       {
-        title: "Pendientes Aspel",
+        title: "END PIONTS Aspel",
         description:
           "Consulta pendientes por concepto de cobranza Haus desde Aspel COI.",
         route: "/contabilidad/aspel-cobranza",
@@ -34,6 +34,14 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         bgColor: "#e0f2fe",
       },
       {
+        title: "Envío Edos. Financieros",
+        description: "Configuración de envío de reportes a financieros.",
+        route: "/contabilidad/financial-statements",
+        icon: "pi pi-envelope",
+        color: "#0284c7",
+        bgColor: "#e0f2fe",
+      },
+      {
         title: "Pendientes de Minutas",
         description: "Seguimiento a pendientes de juntas y minutas.",
         route: "/contabilidad/minutes-pendings",
@@ -42,13 +50,21 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         bgColor: "#fef3c7",
       },
       {
-        title: "Estados Financieros",
+        title: "Estados Financieros Online",
         description: "Reportes y estados financieros dinámicos.",
         route: "/contabilidad/financial-statements-reports",
         icon: "pi pi-chart-line",
         color: "#0891b2",
         bgColor: "#cffafe",
       },
+      // {
+      //   title: "Estados Financieros Online V2",
+      //   description: "Sandbox del nuevo Estado de Resultados sin afectar la versiÃ³n actual.",
+      //   route: "/contabilidad/financial-statements-reports-v2",
+      //   icon: "pi pi-chart-line",
+      //   color: "#1d4ed8",
+      //   bgColor: "#dbeafe",
+      // },
       {
         title: "Reportes Dinámicos",
         description:

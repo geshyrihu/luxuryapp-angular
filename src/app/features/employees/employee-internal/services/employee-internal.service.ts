@@ -95,6 +95,64 @@ export class EmployeeInternalService {
     return this._apiResponseS.onPut<any>(urlApi, data);
   }
 
+  updateBankData(id: string, data: any) {
+    const urlApi = `EmployeeBankData/${id}`;
+    return this._apiResponseS.onPut<any>(urlApi, data);
+  }
+
+  updateClinicalData(id: string, data: any) {
+    const urlApi = `EmployeeClinicalData/${id}`;
+    return this._apiResponseS.onPut<any>(urlApi, data);
+  }
+
+  // ==========================================================================
+  // EMPLOYEE BANK DATA
+  // ==========================================================================
+
+  getBankData(employeeId: string) {
+    const urlApi = `EmployeeBankData/employee/${employeeId}`;
+    return this._apiResponseS.onGetList<any[]>(urlApi);
+  }
+
+  getBankDataById(id: string) {
+    const urlApi = `EmployeeBankData/${id}`;
+    return this._apiResponseS.onGetItem<any>(urlApi);
+  }
+
+  createBankData(data: any) {
+    const urlApi = `EmployeeBankData`;
+    return this._apiResponseS.onPost<any>(urlApi, data);
+  }
+
+  deleteBankData(id: string) {
+    const urlApi = `EmployeeBankData/${id}`;
+    return this._apiResponseS.onDelete(urlApi);
+  }
+
+  // ==========================================================================
+  // EMPLOYEE CLINICAL DATA
+  // ==========================================================================
+
+  getClinicalData(employeeId: string) {
+    const urlApi = `EmployeeClinicalData/employee/${employeeId}`;
+    return this._apiResponseS.onGetList<any[]>(urlApi);
+  }
+
+  getClinicalDataById(id: string) {
+    const urlApi = `EmployeeClinicalData/${id}`;
+    return this._apiResponseS.onGetItem<any>(urlApi);
+  }
+
+  createClinicalData(data: any) {
+    const urlApi = `EmployeeClinicalData`;
+    return this._apiResponseS.onPost<any>(urlApi, data);
+  }
+
+  deleteClinicalData(id: string) {
+    const urlApi = `EmployeeClinicalData/${id}`;
+    return this._apiResponseS.onDelete(urlApi);
+  }
+
   // ==========================================================================
   // CATALOGS / SELECTS
   // ==========================================================================

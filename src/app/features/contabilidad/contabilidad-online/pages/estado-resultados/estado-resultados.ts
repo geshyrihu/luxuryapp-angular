@@ -4,7 +4,6 @@ import { FormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
 import { SkeletonModule } from "primeng/skeleton";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -52,7 +51,6 @@ const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
     TableModule,
     SkeletonModule,
     DataViewMobile,
-    CustomButton,
     DecimalPipe,
   ],
   templateUrl: "./estado-resultados.html",
@@ -65,9 +63,6 @@ export class EstadoResultados {
   // State
   loading = signal<boolean>(false);
   data = signal<IFinancialStatementDto | null>(null);
-
-  // Computed requeridos por el HTML
-  nombreEmpresa = computed(() => this.data()?.nombreEmpresa || "");
 
   monthHeaders = computed(() => {
     const idx = this.filterS.mesIdx(); // 0 a 11
@@ -103,6 +98,11 @@ export class EstadoResultados {
         const m2 = this.monto(mayor, wr(mes - 1));
         const m3 = this.monto(mayor, mes);
         const acum = mayor.acumuladoAnual;
+
+        if (!this.hasVisibleValues(m1, m2, m3, acum)) {
+          continue;
+        }
+
         destino.push({
           tipo: "item",
           numeroCuenta: mayor.numeroCuenta,
@@ -167,18 +167,11 @@ export class EstadoResultados {
     effect(() => {
       const custId = this.customerIdS.customerId();
       const yr = this.filterS.year();
+      this.filterS.refreshTick();
       if (custId && yr) {
         this.loadData(custId, yr);
       }
     });
-  }
-
-  onLoad() {
-    const custId = this.customerIdS.customerId();
-    const yr = this.filterS.year();
-    if (custId && yr) {
-      this.loadData(custId, yr);
-    }
   }
 
   async loadData(customerId: string, year: number) {
@@ -201,5 +194,9 @@ export class EstadoResultados {
 
   private monto(a: IBaseAccountDto, idx: number): number {
     return (a[MONTH_KEYS[idx % 12]] as number) ?? 0;
+  }
+
+  private hasVisibleValues(m1: number, m2: number, m3: number, acum: number): boolean {
+    return m1 !== 0 || m2 !== 0 || m3 !== 0 || acum !== 0;
   }
 }

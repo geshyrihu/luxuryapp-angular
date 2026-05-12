@@ -1,20 +1,4 @@
 <div class="fadein">
-  <!-- Acciones -->
-  <div class="flex mb-4 align-items-center flex-wrap">
-    <div class="mb-0">
-      <custom-button
-        label="Cargar"
-        iconClass="pi pi-refresh"
-        size="sm"
-        [loading]="loading()"
-        (clicked)="onLoad()"
-      />
-    </div>
-    @if (nombreEmpresa()) {
-    <span class="text-sm text-500"><strong>{{ nombreEmpresa() }}</strong></span>
-    }
-  </div>
-
   @if (loading()) {
   <div class="flex align-items-center text-color-secondary mb-4">
     <i class="pi pi-spin pi-spinner"></i>
@@ -22,8 +6,7 @@
   </div>
   } @if (!loading() && !meses().length) {
   <p class="text-color-secondary">
-    No hay datos. Verifique el cliente y el año, luego pulse
-    <strong>Cargar</strong>.
+    No hay datos. Verifique el cliente y el año seleccionados.
   </p>
   } @if (meses().length) {
   <p-table [value]="meses()" styleClass="p-datatable-sm p-datatable-gridlines">

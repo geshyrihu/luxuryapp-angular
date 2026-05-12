@@ -1,102 +1,162 @@
-<div class="fadein p-2 md:p-4">
-  <!-- Cabecera con Filtros Globales -->
-  <div class="surface-card p-4 border-round shadow-1 mb-4">
-    <div
-      class="flex flex-column md:flex-row md:align-items-center justify-content-between gap-4"
+<section class="surface-ground min-h-screen flex flex-column gap-4">
+  <div class="w-full xl:w-11 mx-auto flex flex-column gap-4">
+    <header
+      class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden"
     >
-      <div class="flex align-items-center gap-3">
-        <div class="bg-primary-50 p-3 border-round">
-          <i class="pi pi-chart-line text-primary text-3xl"></i>
-        </div>
-        <div>
-          <h2 class="m-0 font-bold text-2xl tracking-tight">
-            Estados Financieros
-          </h2>
-          <span class="text-500 text-sm"
-            >Consolidado Contabilidad + Cobranza</span
-          >
-        </div>
-      </div>
+      <div class="bg-primary" style="height: 0.45rem"></div>
 
-      <!-- Filtros Centralizados (Estilo Barra de Herramientas) -->
       <div
-        class="flex flex-wrap align-items-end bg-gray-50 p-2 border-round-lg border-1 border-200 gap-2"
+        class="surface-100 p-2 flex flex-column xl:flex-row xl:align-items-center xl:justify-content-between gap-3"
       >
-        <!-- Filtro Año -->
-        <div class="flex align-items-center px-3 py-1">
-          <custom-input-text-signal
-            [(ngModel)]="filterS.year"
-            type="number"
-            size="small"
-            customClass="w-24"
-            label="Año"
-            [horizontal]="false"
-          />
+        <div class="flex align-items-center gap-3 flex-1 min-w-0">
+          <div
+            class="surface-card border-round-xl border-1 surface-border flex align-items-center justify-content-center overflow-hidden"
+            style="width: 72px; height: 72px; flex-shrink: 0"
+          >
+            <img
+              [src]="customerLogo()"
+              [alt]="customerName()"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+
+          <div class="flex flex-column gap-1 min-w-0">
+            <small
+              class="text-primary font-bold uppercase"
+              style="letter-spacing: 0.14em"
+            >
+              LuxuryApp · Contabilidad Online
+            </small>
+            <h1 class="text-primary text-3xl md:text-4xl line-height-2 m-0">
+              Estados Financieros
+            </h1>
+            <div class="flex flex-column gap-1">
+              <p class="text-900 font-semibold m-0 line-height-3">
+                {{ activeReportTitle() }}
+              </p>
+              <p class="text-color-secondary line-height-3 m-0 max-w-26rem">
+                {{ activeReportDescription() }}
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div class="hidden md:block h-2rem w-1px bg-gray-300 mb-2"></div>
+        <aside class="xl:w-auto xl:min-w-0">
+          <div
+            class="grid bg-white p-2 md:p-3 border-round-lg border-1 border-200 gap-2 md:gap-3"
+            style="
+              grid-template-columns:
+                minmax(150px, 170px) minmax(170px, 190px)
+                auto;
+            "
+          >
+            <div class="flex align-items-end">
+              <custom-input-text-signal
+                [(ngModel)]="filterS.year"
+                type="number"
+                size="small"
+                [horizontal]="false"
+                [noMargin]="true"
+              />
+            </div>
 
-        <!-- Filtro Mes -->
-        <div class="flex align-items-center px-3 py-1">
-          <custom-input-select-signal
-            label="Mes Base"
-            [data]="[
-              { label: 'Enero', value: 0 },
-              { label: 'Febrero', value: 1 },
-              { label: 'Marzo', value: 2 },
-              { label: 'Abril', value: 3 },
-              { label: 'Mayo', value: 4 },
-              { label: 'Junio', value: 5 },
-              { label: 'Julio', value: 6 },
-              { label: 'Agosto', value: 7 },
-              { label: 'Septiembre', value: 8 },
-              { label: 'Octubre', value: 9 },
-              { label: 'Noviembre', value: 10 },
-              { label: 'Diciembre', value: 11 }
-            ]"
-            [(ngModel)]="filterS.mesIdx"
-            optionLabel="label"
-            optionValue="value"
-            customClass="w-10rem"
-            [showClear]="false"
-            [horizontal]="false"
-          />
-        </div>
+            <div class="flex align-items-end">
+              <custom-input-select-signal
+                [data]="[
+                  { label: 'Enero', value: 0 },
+                  { label: 'Febrero', value: 1 },
+                  { label: 'Marzo', value: 2 },
+                  { label: 'Abril', value: 3 },
+                  { label: 'Mayo', value: 4 },
+                  { label: 'Junio', value: 5 },
+                  { label: 'Julio', value: 6 },
+                  { label: 'Agosto', value: 7 },
+                  { label: 'Septiembre', value: 8 },
+                  { label: 'Octubre', value: 9 },
+                  { label: 'Noviembre', value: 10 },
+                  { label: 'Diciembre', value: 11 }
+                ]"
+                [(ngModel)]="filterS.mesIdx"
+                optionLabel="label"
+                optionValue="value"
+                [showClear]="false"
+                [horizontal]="false"
+                [noMargin]="true"
+              />
+            </div>
 
-        <!-- IA Auditor Button -->
-        <div
-          class="flex align-items-center px-3 py-1 border-left-1 border-300 ml-2 mb-2"
-        >
-          <custom-button
-            iconClass="pi pi-sparkles"
-            label="Auditor IA"
-            variant="outlined"
-            severity="help"
-            [showLabelOnDesktop]="true"
-            (clicked)="aiAgent.togglePanel()"
-          />
-        </div>
+            <div class="flex align-items-end h-full">
+              <div
+                class="flex flex-wrap md:flex-nowrap gap-2 w-full xl:justify-content-end align-items-end"
+              >
+                <custom-button
+                  iconClass="pi pi-refresh"
+                  label="Actualizar"
+                  variant="outlined"
+                  severity="secondary"
+                  size="small"
+                  [showLabelOnDesktop]="true"
+                  (clicked)="refreshReports()"
+                />
+                <custom-button
+                  iconClass="pi pi-comments"
+                  label="Explicar IA"
+                  variant="outlined"
+                  size="small"
+                  severity="info"
+                  [showLabelOnDesktop]="true"
+                  (clicked)="aiAgentExplicador.togglePanel()"
+                />
+                <custom-button
+                  iconClass="pi pi-sparkles"
+                  label="Auditor CO"
+                  variant="outlined"
+                  size="small"
+                  severity="contrast"
+                  [showLabelOnDesktop]="true"
+                  (clicked)="aiAgentContabilidadOnline.togglePanel()"
+                />
+                <custom-button
+                  iconClass="pi pi-sparkles"
+                  label="Auditor IA"
+                  variant="outlined"
+                  size="small"
+                  severity="help"
+                  [showLabelOnDesktop]="true"
+                  (clicked)="aiAgent.togglePanel()"
+                />
+              </div>
+            </div>
+          </div>
+        </aside>
       </div>
-    </div>
 
-    <!-- Navegación por Reportes (PrimeNG 21 Tabs) -->
-    <div class="surface-card border-round shadow-1">
-      <p-tabs [value]="0">
+      <div class="bg-yellow-500" style="height: 0.2rem"></div>
+    </header>
+
+    <div class="surface-card border-round-xl border-1 surface-border shadow-1">
+      <p-tabs [value]="reportIndex()" (valueChange)="onTabChange($event)">
         <p-tablist>
           <p-tab [value]="0"><i class="pi pi-balance-scale mr-2"></i>EPF</p-tab>
           <p-tab [value]="1"
             ><i class="pi pi-list mr-2"></i>E. Resultados</p-tab
           >
           <p-tab [value]="2"
+            ><i class="pi pi-list mr-2"></i>E. Resultados V2</p-tab
+          >
+          <p-tab [value]="3"
             ><i class="pi pi-plus-circle mr-2"></i>C. Extraordinaria</p-tab
           >
-          <p-tab [value]="3"><i class="pi pi-percentage mr-2"></i>P vs R</p-tab>
-          <p-tab [value]="4"
+          <p-tab [value]="4"><i class="pi pi-percentage mr-2"></i>P vs R</p-tab>
+          <p-tab [value]="5"
+            ><i class="pi pi-table mr-2"></i>R. Financiero</p-tab
+          >
+          <p-tab [value]="6"
             ><i class="pi pi-money-bill mr-2"></i>Flujo Efectivo</p-tab
           >
-          <p-tab [value]="5"><i class="pi pi-users mr-2"></i>Cobranza</p-tab>
-          <p-tab [value]="6"><i class="pi pi-cog mr-2"></i>Depuración</p-tab>
+          <p-tab [value]="7"><i class="pi pi-users mr-2"></i>Cobranza</p-tab>
         </p-tablist>
+
         <p-tabpanels>
           <p-tabpanel [value]="0" class="p-4 pt-5">
             <app-estado-posicion-financiera />
@@ -105,24 +165,35 @@
             <app-estado-resultados />
           </p-tabpanel>
           <p-tabpanel [value]="2" class="p-4 pt-5">
-            <app-cedula-extraordinaria />
+            <app-estado-resultados-v2 />
           </p-tabpanel>
           <p-tabpanel [value]="3" class="p-4 pt-5">
-            <app-cedula-presupuestal />
+            <app-cedula-extraordinaria />
           </p-tabpanel>
           <p-tabpanel [value]="4" class="p-4 pt-5">
-            <app-flujo-efectivo />
+            <app-cedula-presupuestal />
           </p-tabpanel>
           <p-tabpanel [value]="5" class="p-4 pt-5">
-            <app-analisis-cobranza />
+            <app-reporte-financiero />
           </p-tabpanel>
           <p-tabpanel [value]="6" class="p-4 pt-5">
-            <app-listados-aspel />
+            <app-flujo-efectivo />
+          </p-tabpanel>
+          <p-tabpanel [value]="7" class="p-4 pt-5">
+            <app-analisis-cobranza />
           </p-tabpanel>
         </p-tabpanels>
       </p-tabs>
     </div>
 
     <app-contabilidad-ai-agent #aiAgent [autoReadResponses]="true" />
+    <app-contabilidad-online-ai-agent
+      #aiAgentContabilidadOnline
+      [autoReadResponses]="true"
+    />
+    <app-explicador-contabilidad-online-ai-agent
+      #aiAgentExplicador
+      [autoReadResponses]="true"
+    />
   </div>
-</div>
+</section>

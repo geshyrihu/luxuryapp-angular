@@ -1,337 +1,266 @@
-<div class="fadein">
-  <!-- Filtros -->
-  <div class="flex mb-4 align-items-center flex-wrap gap-2">
-    <div class="mb-0">
-      <input
-        pInputText
-        [ngModel]="year()"
-        (ngModelChange)="year.set($event)"
-        type="number"
-        pSize="small"
-        class="w-8rem"
-      />
-    </div>
-    <div class="mb-0">
-      <p-select
-        [options]="monthOptions"
-        [ngModel]="selectedMonthIdx()"
-        (ngModelChange)="onMonthChange($event)"
-        optionLabel="label"
-        optionValue="value"
-        pSize="small"
-        class="w-12rem"
-      />
-    </div>
-    <custom-button
-      label="Cargar"
-      iconClass="pi pi-refresh"
-      size="sm"
-      [loading]="loading()"
-      (clicked)="onLoad()"
+<section class="px-3 md:px-4 pb-3 md:pb-4 pt-0">
+  <div class="mb-3 flex justify-content-end">
+    <input
+      type="date"
+      class="p-inputtext p-component"
+      [ngModel]="cutoffDateInput()"
+      (ngModelChange)="cutoffDateInput.set($event)"
     />
+  </div>
 
-    <!-- Cuota mensual: determina el COBRADO en el gráfico -->
-    <div class="flex align-items-center ml-2 border-left-1 surface-border pl-3">
-      <label class="text-xs text-500 white-space-nowrap">Cuota mensual:</label>
-      <input
-        pInputText
-        [ngModel]="cuotaMensual()"
-        (ngModelChange)="cuotaMensual.set(+$event)"
-        type="number"
-        pSize="small"
-        class="w-9rem"
-        placeholder="ej. 11350"
-      />
+  <div
+    class="mb-4 border-1 surface-border border-round p-4"
+    *ngIf="!hasCustomer()"
+  >
+    <div class="font-medium mb-2">Sin cliente activo</div>
+    <div class="text-color-secondary">
+      Selecciona un cliente para consultar el análisis de cobranza.
     </div>
-
-    @if (data(); as d) {
-    <span class="text-sm text-500 ml-auto"
-      ><strong>{{ d.nombreEmpresa }}</strong> &mdash; {{ d.periodo }}</span
-    >
-    }
   </div>
 
-  @if (loading()) {
-  <div class="flex align-items-center text-color-secondary mb-4 gap-2">
-    <i class="pi pi-spin pi-spinner"></i>
-    <span>Consultando cobranza en Aspel...</span>
+  <div *ngIf="loading()" class="text-color-secondary mb-4">
+    Consultando análisis de cobranza en Aspel...
   </div>
-  } @if (!loading() && !data()) {
-  <p class="text-color-secondary">
-    Sin datos. Seleccione un cliente y periodo.
-  </p>
-  } @if (data(); as d) {
 
-  <div class="grid mb-5">
-    <!-- Análisis de Cobranza mensual (Tabla) -->
-    <div class="col-12 lg:col-6">
-      <div class="surface-card border-round p-4 shadow-1 h-full">
-        <h4 class="mt-0 mb-3 text-primary font-semibold">
-          Análisis de Cobranza Mensual
-        </h4>
-        <table class="w-full text-sm">
-          <thead>
-            <tr class="border-bottom-1 surface-border">
-              <th class="text-left pb-2">Clasificación</th>
-              <th class="text-right pb-2">Importe</th>
-              <th class="text-right pb-2">%</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="py-1 font-semibold">
-                <p-tag
-                  value="MOROSOS"
-                  severity="warn"
-                  styleClass="text-xs mr-2"
-                />
-                Morosos
-              </td>
-              <td class="text-right font-mono">
-                {{ d.totalMorosos | number:'1.0-0' }}
-              </td>
-              <td class="text-right text-500 text-xs">
-                {{ pct(d.totalMorosos, d.totalDeuda) }}
-              </td>
-            </tr>
-            <tr>
-              <td class="py-1 font-semibold">
-                <p-tag
-                  value="CORRIENTE"
-                  severity="info"
-                  styleClass="text-xs mr-2"
-                />
-                Deuda Corriente
-              </td>
-              <td class="text-right font-mono">
-                {{ d.totalDeudaCorriente | number:'1.0-0' }}
-              </td>
-              <td class="text-right text-500 text-xs">
-                {{ pct(d.totalDeudaCorriente, d.totalDeuda) }}
-              </td>
-            </tr>
-            @if (cuotaMensual() > 0) {
-            <tr class="surface-ground">
-              <td class="py-1 font-bold text-green-700">Cobrado</td>
-              <td class="text-right font-mono font-bold text-green-700">
-                {{ (d.totalCondominios * cuotaMensual() - d.totalMorosos -
-                d.totalDeudaCorriente) | number:'1.0-0' }}
-              </td>
-              <td class="text-right text-xs text-green-600">
-                {{ pct(d.totalCondominios * cuotaMensual() - d.totalMorosos -
-                d.totalDeudaCorriente, d.totalCondominios * cuotaMensual()) }}
-              </td>
-            </tr>
-            <tr class="font-bold border-top-1 surface-border">
-              <td class="pt-2 text-500 text-xs">Cobranza perfecta</td>
-              <td class="text-right font-mono pt-2 text-500 text-xs">
-                {{ d.totalCondominios * cuotaMensual() | number:'1.0-0' }}
-              </td>
-              <td></td>
-            </tr>
-            }
-          </tbody>
-        </table>
+  <div *ngIf="!loading() && data() as d">
+    <div class="grid mb-3">
+      <div class="col-12 md:col-6 xl:col-3">
+        <div class="border-1 surface-border border-round p-3 h-full">
+          <div class="text-color-secondary mb-2">Departamentos</div>
+          <div class="text-xl font-semibold">
+            {{ d.totalCondominios | number:'1.0-0' }}
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 xl:col-3">
+        <div class="border-1 surface-border border-round p-3 h-full">
+          <div class="text-color-secondary mb-2">Total mtto mensual</div>
+          <div class="text-xl font-semibold">
+            {{ d.cuotaMttoVigente | number:'1.2-2' }}
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 xl:col-3">
+        <div class="border-1 surface-border border-round p-3 h-full">
+          <div class="text-color-secondary mb-2">
+            Total extraordinaria mensual
+          </div>
+          <div class="text-xl font-semibold">
+            {{ d.cuotaExtraordinariaVigente | number:'1.2-2' }}
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 xl:col-3">
+        <div class="border-1 surface-border border-round p-3 h-full">
+          <div class="text-color-secondary mb-2">Total a recaudar mensual</div>
+          <div class="text-xl font-semibold">
+            {{ d.cuotaMensualTotal | number:'1.2-2' }}
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Gráfico de pastel -->
-    <div class="col-12 lg:col-6">
+    <div class="grid mb-3">
+      <div class="col-12 lg:col-6">
+        <div class="border-1 surface-border border-round p-4 h-full">
+          <div class="text-color-secondary mb-3">{{ d.periodo }}</div>
+
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-bottom-1 surface-border">
+                <th class="text-left pb-2">Clasificación</th>
+                <th class="text-right pb-2">Saldo</th>
+                <th class="text-right pb-2">%</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="font-bold">
+                <td class="py-1">Cobranza perfecta</td>
+                <td class="text-right font-mono">
+                  {{ d.cobranzaPerfecta | number:'1.0-0' }}
+                </td>
+                <td class="text-right">100%</td>
+              </tr>
+              <tr>
+                <td class="py-1">Morosos</td>
+                <td class="text-right font-mono">
+                  {{ d.totalMorosos | number:'1.0-0' }}
+                </td>
+                <td class="text-right text-500 text-xs">
+                  {{ pct(d.totalMorosos, d.cobranzaPerfecta) }}
+                </td>
+              </tr>
+              <tr>
+                <td class="py-1">Deuda corriente</td>
+                <td class="text-right font-mono">
+                  {{ d.totalDeudaCorriente | number:'1.0-0' }}
+                </td>
+                <td class="text-right text-500 text-xs">
+                  {{ pct(d.totalDeudaCorriente, d.cobranzaPerfecta) }}
+                </td>
+              </tr>
+              <tr class="surface-ground font-bold">
+                <td class="py-1 text-green-700">Cobrado</td>
+                <td class="text-right font-mono text-green-700">
+                  {{ d.totalCobrado | number:'1.0-0' }}
+                </td>
+                <td class="text-right text-green-700 text-xs">
+                  {{ pct(d.totalCobrado, d.cobranzaPerfecta) }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="mt-4">
+            <div style="position: relative; width: 100%; height: 280px">
+              <p-chart
+                type="pie"
+                [data]="chartData()!"
+                [options]="chartOptions"
+                style="width: 100%; height: 100%"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 lg:col-6">
+        <div class="border-1 surface-border border-round p-4 h-full">
+          <div class="text-lg font-semibold mb-1 text-red-600">
+            Deuda Condóminos (EF)
+          </div>
+          <div class="text-color-secondary mb-3">
+            Clasificación del saldo final por cuenta 104 al corte consultado.
+          </div>
+
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-bottom-1 surface-border">
+                <th class="text-left pb-2">Clasificación</th>
+                <th class="text-right pb-2">Saldo</th>
+                <th class="text-right pb-2">%</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="py-1">Cobranza judicial</td>
+                <td class="text-right font-mono">
+                  {{ d.totalJudicial | number:'1.0-0' }}
+                </td>
+                <td class="text-right text-500 text-xs">
+                  {{ pct(d.totalJudicial, d.totalDeuda) }}
+                </td>
+              </tr>
+              <tr>
+                <td class="py-1">Morosos</td>
+                <td class="text-right font-mono">
+                  {{ d.totalMorosos | number:'1.0-0' }}
+                </td>
+                <td class="text-right text-500 text-xs">
+                  {{ pct(d.totalMorosos, d.totalDeuda) }}
+                </td>
+              </tr>
+              <tr>
+                <td class="py-1">Deuda corriente</td>
+                <td class="text-right font-mono">
+                  {{ d.totalDeudaCorriente | number:'1.0-0' }}
+                </td>
+                <td class="text-right text-500 text-xs">
+                  {{ pct(d.totalDeudaCorriente, d.totalDeuda) }}
+                </td>
+              </tr>
+              <tr class="font-bold border-top-1 surface-border">
+                <td class="pt-2">Total deuda</td>
+                <td class="text-right font-mono pt-2">
+                  {{ d.totalDeuda | number:'1.0-0' }}
+                </td>
+                <td class="text-right pt-2">100%</td>
+              </tr>
+              <tr class="text-500 text-xs">
+                <td class="py-1">Cuotas anticipadas</td>
+                <td class="text-right font-mono">
+                  {{ d.totalAnticipos | number:'1.0-0' }}
+                </td>
+                <td></td>
+              </tr>
+              <tr class="font-bold surface-ground">
+                <td class="py-1 text-blue-700">Saldo según balanza</td>
+                <td class="text-right font-mono text-blue-700">
+                  {{ d.saldoBalanza | number:'1.0-0' }}
+                </td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="mt-4 text-sm text-color-secondary">
+            Fórmula Excel replicada:
+            <strong
+              >Cobrado = Cobranza Perfecta - Morosos - Deuda Corriente</strong
+            >
+          </div>
+          <div class="mt-2 text-sm text-color-secondary">
+            Corte exacto consultado: <strong>{{ d.periodo }}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-1 surface-border border-round p-4">
       <div
-        class="surface-card border-round p-4 shadow-1 flex flex-column align-items-center h-full"
+        class="flex align-items-center justify-content-between mb-3 flex-wrap gap-2"
       >
-        <h4 class="mt-0 mb-2 font-semibold text-sm text-center">
-          @if (cuotaMensual() > 0) { Cobranza del Mes
-          <div class="text-xs text-500 font-normal mt-1">
-            {{ d.totalCondominios }} condóminos × {{ cuotaMensual() |
-            number:'1.0-0' }}
-          </div>
-          } @else { Composición de Deuda
-          <div class="text-xs text-500 font-normal mt-1">
-            Ingrese cuota mensual para ver eficiencia
-          </div>
-          }
-        </h4>
-        <div style="position: relative; width: 100%; height: 240px">
-          <p-chart
-            type="pie"
-            [data]="chartData()!"
-            [options]="chartOptions"
-            style="width: 100%; height: 100%"
-          />
-        </div>
-      </div>
-    </div>
-
-    <!-- Deuda Condóminos (EF) -->
-    <div class="col-12 lg:col-6">
-      <div class="surface-card border-round p-4 shadow-1 h-full">
-        <h4 class="mt-0 mb-3 text-red-600 font-semibold">
-          Deuda Condóminos (EF)
-        </h4>
-        <table class="w-full text-sm">
-          <thead>
-            <tr class="border-bottom-1 surface-border">
-              <th class="text-left pb-2">Clasificación</th>
-              <th class="text-right pb-2">Importe</th>
-              <th class="text-right pb-2">%</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="py-1">
-                <p-tag
-                  value="JUDICIAL"
-                  severity="danger"
-                  styleClass="text-xs mr-2"
-                />
-                Cobranza Judicial
-              </td>
-              <td class="text-right font-mono">
-                {{ d.totalJudicial | number:'1.0-0' }}
-              </td>
-              <td class="text-right text-500 text-xs">
-                {{ pct(d.totalJudicial, d.totalDeuda) }}
-              </td>
-            </tr>
-            <tr>
-              <td class="py-1">
-                <p-tag
-                  value="MOROSOS"
-                  severity="warn"
-                  styleClass="text-xs mr-2"
-                />
-                Morosos
-              </td>
-              <td class="text-right font-mono">
-                {{ d.totalMorosos | number:'1.0-0' }}
-              </td>
-              <td class="text-right text-500 text-xs">
-                {{ pct(d.totalMorosos, d.totalDeuda) }}
-              </td>
-            </tr>
-            <tr>
-              <td class="py-1">
-                <p-tag
-                  value="CORRIENTE"
-                  severity="info"
-                  styleClass="text-xs mr-2"
-                />
-                Deuda Corriente
-              </td>
-              <td class="text-right font-mono">
-                {{ d.totalDeudaCorriente | number:'1.0-0' }}
-              </td>
-              <td class="text-right text-500 text-xs">
-                {{ pct(d.totalDeudaCorriente, d.totalDeuda) }}
-              </td>
-            </tr>
-            <tr class="font-bold border-top-1 surface-border">
-              <td class="pt-2">Total Deuda</td>
-              <td class="text-right font-mono pt-2">
-                {{ d.totalDeuda | number:'1.0-0' }}
-              </td>
-              <td></td>
-            </tr>
-            <tr class="text-500 text-xs">
-              <td class="py-1">Cuotas Anticipadas</td>
-              <td class="text-right font-mono">
-                {{ d.totalAnticipos | number:'1.0-0' }}
-              </td>
-              <td></td>
-            </tr>
-            <tr class="font-bold surface-ground">
-              <td class="py-1 text-blue-700">Saldo según Balanza</td>
-              <td class="text-right font-mono text-blue-700">
-                {{ d.saldoBalanza | number:'1.0-0' }}
-              </td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="text-xs text-500 mt-2">
-          Total condóminos: <strong>{{ d.totalCondominios }}</strong>
-        </div>
-      </div>
-    </div>
-
-    <!-- ══ TABLA DETALLE (PT2 FILTRAR) ══════════════════════════════════ -->
-    <div class="col-12">
-      <div class="surface-card border-round p-4 shadow-1">
-        <div
-          class="flex align-items-center justify-content-between mb-3 flex-wrap gap-2"
-        >
-          <h4 class="m-0 font-semibold">Detalle por Condómino</h4>
-          <!-- Filtros de clasificación -->
-          <div class="flex flex-wrap gap-1">
-            @for (cls of clasificaciones; track cls) {
-            <custom-button
-              [label]="cls === 'TODAS' ? 'Todas (' + d.totalCondominios + ')' : cls"
-              [variant]="filtroClasif() !== cls ? 'outlined' : undefined"
-              [severity]="cls === 'COBRANZA JUDICIAL' ? 'danger'
-                     : cls === 'MOROSOS'          ? 'warn'
-                     : cls === 'DEUDA CORRIENTE'  ? 'info'
-                     : cls === 'SIN ADEUDO'       ? 'success'
-                     : cls === 'ANTICIPOS'        ? 'secondary'
-                     : 'primary'"
-              size="sm"
-              (clicked)="filtroClasif.set(cls)"
-            />
-            }
+        <div>
+          <div class="text-lg font-semibold">Detalle por condómino</div>
+          <div class="text-color-secondary text-sm">
+            Tabla base para auditar cómo se clasifica cada cuenta 104 al corte.
           </div>
         </div>
-
-        <div class="overflow-x-auto">
-          <p-table
-            [value]="condominosFiltrados()"
-            styleClass="p-datatable-sm p-datatable-gridlines"
-            [tableStyle]="{ 'min-width': '600px' }"
-            [paginator]="true"
-            [rows]="50"
-            [rowsPerPageOptions]="[25, 50, 100, 999]"
-          >
-            <ng-template pTemplate="header">
-              <tr>
-                <th class="table-col-140px">Cuenta</th>
-                <th>Condómino</th>
-                <th class="text-right table-col-130px">Saldo</th>
-                <th class="table-col-160px">Clasificación</th>
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-c>
-              <tr>
-                <td class="font-mono text-xs">{{ c.numeroCuenta }}</td>
-                <td class="text-sm">{{ c.condomino }}</td>
-                <td
-                  class="text-right font-mono text-sm"
-                  [class.text-green-600]="c.saldo < 0"
-                  [class.text-red-500]="c.saldo > 0"
-                >
-                  {{ c.saldo === 0 ? '—' : (c.saldo | number:'1.0-0') }}
-                </td>
-                <td>
-                  <p-tag
-                    [value]="c.clasificacion"
-                    [severity]="getSeverity(c.clasificacion)"
-                    styleClass="text-xs"
-                  />
-                </td>
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="emptymessage">
-              <tr>
-                <td
-                  colspan="4"
-                  class="text-center py-4 text-color-secondary"
-                >
-                  Sin condóminos en esta clasificación.
-                </td>
-              </tr>
-            </ng-template>
-          </p-table>
-        </div>
+        <p-select
+          [options]="classificationOptions"
+          [ngModel]="selectedClassification()"
+          (ngModelChange)="selectedClassification.set($event)"
+          class="w-14rem"
+        />
       </div>
+
+      <p-table
+        [value]="filteredRows()"
+        styleClass="p-datatable-sm p-datatable-gridlines"
+        [tableStyle]="{ 'min-width': '700px' }"
+        [paginator]="true"
+        [rows]="50"
+        [rowsPerPageOptions]="[25, 50, 100, 250]"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th class="table-col-160px">Cuenta</th>
+            <th>Condómino</th>
+            <th class="text-right table-col-130px">Saldo</th>
+            <th class="table-col-180px">Clasificación</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-row>
+          <tr>
+            <td class="font-mono text-xs">{{ row.numeroCuenta }}</td>
+            <td class="text-sm">{{ row.condomino }}</td>
+            <td
+              class="text-right font-mono text-sm"
+              [class.text-green-600]="row.saldo < 0"
+              [class.text-red-500]="row.saldo > 0"
+            >
+              {{ row.saldo === 0 ? '—' : (row.saldo | number:'1.0-0') }}
+            </td>
+            <td>
+              <p-tag
+                [value]="row.clasificacion"
+                [severity]="getSeverity(row.clasificacion)"
+                styleClass="text-xs"
+              />
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
     </div>
   </div>
-  }
-</div>
+</section>

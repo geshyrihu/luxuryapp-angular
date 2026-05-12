@@ -393,12 +393,3 @@ export class FinancialSummary {
     );
   }
 }
-
-
-
-
-
-
-
-
-

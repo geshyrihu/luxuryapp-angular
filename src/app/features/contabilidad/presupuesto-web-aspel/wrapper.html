@@ -48,25 +48,130 @@
 </style>
 
 <div class="budget-wrapper">
+  <!-- ENCABEZADO CENTRALIZADO -->
+  <div class="rf-card p-3 mb-2">
+    <div class="flex flex-column md:flex-row align-items-center justify-content-between gap-3">
+      <!-- Título principal y periodo -->
+      <div class="flex align-items-center gap-3 w-full md:w-auto">
+        <div class="budget-header-meta flex align-items-center gap-2">
+          @if (sharedS.budgetData()?.Periodo_Presupuesto) {
+          <h4 class="text-xl m-0 hidden lg:block">
+            <small class="text-color-secondary">
+              {{ sharedS.budgetData()?.Periodo_Presupuesto }}
+            </small>
+          </h4>
+          }
+
+          <custom-input-select-signal
+            id="yearSelector"
+            label="Año Fiscal"
+            [data]="sharedS.availableYears"
+            [ngModel]="sharedS.intYear()"
+            (ngModelChange)="sharedS.intYear.set($event)"
+            optionLabel="label"
+            optionValue="value"
+            [horizontal]="true"
+            [noMargin]="true"
+            customClass="w-8rem"
+          />
+        </div>
+      </div>
+
+      <!-- Controles alineados -->
+      <div class="flex flex-wrap align-items-center gap-2 w-full md:w-auto justify-content-end">
+        <custom-search-input-signal
+          (searchChange)="sharedS.searchTerm.set($event)"
+          class="w-full md:w-15rem"
+        />
+
+        <!-- Botones de filtros y acciones rápidas -->
+        @if (!sharedS.errorMensaje()) {
+        <div class="flex align-items-center gap-1" role="toolbar">
+          @if (activeTabValue() === 'presupuesto') {
+          <custom-button
+            iconClass="pi pi-cog"
+            [outlined]="true"
+            severity="secondary"
+            ngbTooltip="Gestionar Reglas de Cuentas"
+            (clicked)="onManageRules()"
+          />
+          }
+
+          @if (sharedS.allMonths()) {
+          <custom-button
+            iconClass="pi pi-times"
+            label="Ninguno"
+            ngbTooltip="Ningún mes"
+            (clicked)="sharedS.ocultarTodosLosMeses()"
+            variant="outlined"
+            severity="info"
+          />
+          } @else {
+          <custom-button
+            iconClass="pi pi-check"
+            label="Todos"
+            ngbTooltip="Todos los meses"
+            (clicked)="sharedS.mostrarTodosLosMeses()"
+            variant="outlined"
+            severity="info"
+          />
+          }
+
+          @if (activeTabValue() === 'presupuesto') {
+          <custom-button
+            iconClass="pi pi-search"
+            label="Full"
+            ngbTooltip="Ver todo!!"
+            (clicked)="onApelFull()"
+            variant="outlined"
+            severity="info"
+          />
+
+          <custom-button
+            iconClass="pi pi-sparkles"
+            label="IA"
+            ngbTooltip="Analizar con IA"
+            variant="outlined"
+            severity="help"
+            (clicked)="analyzeFinancialData()"
+          />
+          }
+        </div>
+        }
+      </div>
+    </div>
+
+    <!-- Mensaje de error si existe -->
+    @if (sharedS.errorMensaje()) {
+    <div class="mt-2">
+      <p-message
+        severity="error"
+        [text]="sharedS.errorMensaje()!"
+        styleClass="w-full"
+      ></p-message>
+    </div>
+    }
+  </div>
+
   <div class="hidden md:flex flex-column flex-1 min-h-0">
-  <p-tabs
-    [value]="activeTabValue()"
-    (valueChange)="activeTabValue.set($event)"
-    class="nav-tabs justify-content-center sm:justify-content-start budget-tabs h-full"
-  >
-    <p-tablist>
-      <p-tab value="presupuesto">Presupuesto</p-tab>
-      <p-tab value="especiales">Extraordinarios y Proyectos</p-tab>
-    </p-tablist>
-    <p-tabpanels class="flex-1 min-h-0">
-      <p-tabpanel value="presupuesto">
-        <app-presupuesto-aspel-ejercicio-fiscal />
-      </p-tabpanel>
-      <p-tabpanel value="especiales">
-        <app-espejo-aspel-extraordinarios />
-      </p-tabpanel>
-    </p-tabpanels>
-  </p-tabs>
+    <p-tabs
+      [value]="activeTabValue()"
+      (valueChange)="activeTabValue.set($event)"
+      class="nav-tabs justify-content-center sm:justify-content-start budget-tabs h-full"
+    >
+      <p-tablist>
+        <p-tab value="presupuesto">Presupuesto</p-tab>
+        <p-tab value="especiales">Extraordinarios y Proyectos</p-tab>
+      </p-tablist>
+      <p-tabpanels class="flex-1 min-h-0">
+        <p-tabpanel value="presupuesto">
+          <app-presupuesto-aspel-ejercicio-fiscal />
+        </p-tabpanel>
+        <p-tabpanel value="especiales">
+          <app-espejo-aspel-extraordinarios />
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
   </div>
 
   <div class="block md:hidden">

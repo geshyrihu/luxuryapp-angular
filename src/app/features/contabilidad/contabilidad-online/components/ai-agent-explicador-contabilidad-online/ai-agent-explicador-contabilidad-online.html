@@ -1,0 +1,155 @@
+<p-drawer
+  [visible]="visible()"
+  (visibleChange)="visible.set($event)"
+  position="right"
+  styleClass="w-full lg:w-8 xl:w-7 p-0"
+  [blockScroll]="false"
+>
+  <ng-template pTemplate="header">
+    <div class="flex align-items-center gap-2">
+      <i class="pi pi-comments text-primary text-2xl font-bold"></i>
+      <div class="flex flex-column">
+        <span class="font-bold text-xl">Explicador IA Contabilidad Online</span>
+        <span class="text-xs text-500"
+          >Explicando: {{ filterS.currentReportName() || 'Ningún reporte' }}</span
+        >
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="content">
+    <div class="flex flex-column h-full">
+      <div class="flex-1 min-h-0 flex flex-column xl:flex-row gap-3 p-3">
+        <div class="flex-1 min-h-0 flex flex-column">
+          <div class="flex-1 overflow-y-auto flex flex-column gap-3 pr-1">
+            <div
+              *ngFor="let msg of messages()"
+              class="flex w-full"
+              [ngClass]="{'justify-content-end': msg.role === 'user', 'justify-content-start': msg.role === 'assistant'}"
+            >
+              <div
+                class="p-3 border-round-xl max-w-full md:max-w-90"
+                [ngClass]="msg.role === 'user' ? 'bg-primary text-white border-noround-right' : 'surface-200 text-800 border-noround-left'"
+              >
+                <div class="flex align-items-center justify-content-between gap-2 mb-2">
+                  <i
+                    class="pi"
+                    [ngClass]="msg.role === 'user' ? 'pi-user' : 'pi-comments'"
+                  ></i>
+                  <p-button
+                    *ngIf="msg.role === 'assistant'"
+                    icon="pi pi-volume-up"
+                    size="small"
+                    styleClass="p-button-text p-button-sm"
+                    (onClick)="replayMessage(msg)"
+                  />
+                </div>
+
+                <div
+                  *ngIf="!msg.isHtml"
+                  class="white-space-pre-wrap line-height-3 text-sm"
+                >
+                  {{ msg.content }}
+                </div>
+                <div
+                  *ngIf="msg.isHtml"
+                  [innerHTML]="msg.content"
+                  class="html-ai-response text-sm line-height-3 shadow-none"
+                ></div>
+              </div>
+            </div>
+
+            <div *ngIf="loading()" class="flex justify-content-start">
+              <div
+                class="p-3 surface-200 border-round-xl border-noround-left flex align-items-center gap-2"
+              >
+                <p-progressSpinner
+                  styleClass="w-1rem h-1rem"
+                  strokeWidth="6"
+                  animationDuration=".5s"
+                ></p-progressSpinner>
+                <span class="text-sm">Interpretando el informe actual...</span>
+              </div>
+            </div>
+
+            <div *ngIf="speaking()" class="flex justify-content-start">
+              <div
+                class="p-3 surface-100 border-round-xl border-1 border-primary flex align-items-center gap-2"
+              >
+                <i class="pi pi-volume-up text-primary"></i>
+                <span class="text-sm">Reproduciendo explicación con ElevenLabs...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside
+          class="xl:w-18rem surface-50 border-1 surface-border border-round-xl p-3 flex flex-column gap-3 overflow-y-auto"
+        >
+          <div>
+            <div class="text-xs text-500 font-bold uppercase mb-2">
+              Preguntas Sugeridas
+            </div>
+            <div class="flex flex-column gap-2">
+              <p-button
+                *ngFor="let q of suggestedQuestions"
+                (onClick)="setQuery(q)"
+                [label]="q"
+                size="small"
+                styleClass="p-button-outlined p-button-secondary text-xs justify-content-start w-full"
+                icon="pi pi-question-circle"
+              >
+              </p-button>
+            </div>
+          </div>
+
+          <div class="pt-2 border-top-1 surface-border">
+            <div class="text-xs text-500 font-bold uppercase mb-2">
+              Controles
+            </div>
+            <div class="flex flex-column gap-2">
+              <p-button
+                icon="pi pi-volume-up"
+                label="Releer última respuesta"
+                size="small"
+                styleClass="p-button-text p-button-sm justify-content-start"
+                [disabled]="loading() || messages().length === 0"
+                (onClick)="replayMessage(messages()[messages().length - 1])"
+              />
+              <p-button
+                icon="pi pi-stop"
+                label="Detener audio"
+                size="small"
+                styleClass="p-button-text p-button-sm justify-content-start"
+                [disabled]="!speaking()"
+                (onClick)="stopAudio()"
+              />
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="p-2 border-top-1 surface-border bg-white mt-1">
+        <div class="p-inputgroup">
+          <input
+            pInputText
+            type="text"
+            [ngModel]="currentQuery()"
+            (ngModelChange)="currentQuery.set($event)"
+            (keyup.enter)="sendQuery()"
+            placeholder="Pide una explicación clara sobre este reporte..."
+            [disabled]="loading()"
+            class="border-round-left-3xl pl-4"
+          />
+          <p-button
+            icon="pi pi-send"
+            (onClick)="sendQuery()"
+            [disabled]="loading() || !currentQuery()"
+            styleClass="p-button-primary border-round-right-3xl px-4"
+          >
+          </p-button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-drawer>

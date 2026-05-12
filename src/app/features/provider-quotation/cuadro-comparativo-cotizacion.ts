@@ -10,6 +10,7 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { debounceTime } from "rxjs";
 import { Router } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -139,19 +140,19 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
 
       // Subscribe to changes
       item.controls.precio.valueChanges
-        .pipe(takeUntilDestroyed(this.destroyRef))
+        .pipe(debounceTime(400), takeUntilDestroyed(this.destroyRef))
         .subscribe((val: number) => {
           item["precio" + suffix] = val;
           this.calculateRowTotals(item);
         });
       item.controls.descuento.valueChanges
-        .pipe(takeUntilDestroyed(this.destroyRef))
+        .pipe(debounceTime(400), takeUntilDestroyed(this.destroyRef))
         .subscribe((val: number) => {
           item["descuento" + suffix] = val;
           this.calculateRowTotals(item);
         });
       item.controls.ivaAplicado.valueChanges
-        .pipe(takeUntilDestroyed(this.destroyRef))
+        .pipe(debounceTime(400), takeUntilDestroyed(this.destroyRef))
         .subscribe((val: number) => {
           item["ivaAplicado" + suffix] = val;
           this.calculateRowTotals(item);

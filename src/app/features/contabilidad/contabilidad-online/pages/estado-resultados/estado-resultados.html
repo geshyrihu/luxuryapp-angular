@@ -1,21 +1,4 @@
 <div class="fadein">
-  <!-- Toolbar de Acciones -->
-  <div
-    class="flex flex-wrap align-items-center justify-content-between mb-4 gap-3"
-  >
-    <div class="flex align-items-center gap-3">
-      <custom-button
-        label="Cargar"
-        iconClass="pi pi-refresh"
-        [loading]="loading()"
-        (clicked)="onLoad()"
-      />
-      @if (nombreEmpresa()) {
-      <span class="text-xl font-bold text-primary">{{ nombreEmpresa() }}</span>
-      }
-    </div>
-  </div>
-
   @if (loading()) {
   <div class="card p-4">
     <p-skeleton height="2rem" styleClass="mb-2" />
@@ -28,14 +11,14 @@
       No se encontraron registros para el periodo seleccionado.
     </p>
     <p class="text-sm text-500 mt-2">
-      Verifique el cliente y el año, luego pulse <strong>Cargar</strong>.
+      Verifique el cliente y el año seleccionados.
     </p>
   </div>
   } @else {
   <!-- Tabla de Escritorio -->
   <p-table
     [value]="rows()"
-    styleClass="custom-table card hidden md:block p-datatable-sm"
+    styleClass="rf-prime-table card hidden md:block p-datatable-sm"
     [tableStyle]="{ 'min-width': '800px' }"
   >
     <ng-template pTemplate="header">
@@ -52,8 +35,11 @@
     <ng-template pTemplate="body" let-row>
       <!-- Fila de Encabezado de Sección -->
       @if (row.tipo === 'header') {
-      <tr class="bg-primary-900 text-white font-bold">
-        <td colspan="6" class="py-2 px-3 uppercase text-xs tracking-wider">
+      <tr class="rf-row-section">
+        <td
+          colspan="6"
+          class="py-2 px-3 uppercase text-xs tracking-wider"
+        >
           {{ row.descripcion }}
         </td>
       </tr>
@@ -61,21 +47,21 @@
 
       <!-- Fila de Item (Cuenta) -->
       @if (row.tipo === 'item') {
-      <tr class="hover:surface-100">
-        <td class="font-mono text-xs text-500">{{ row.numeroCuenta }}</td>
-        <td class="text-sm font-medium">{{ row.descripcion }}</td>
-        <td class="text-right text-sm" [class.text-red-500]="row.mes1 < 0">
+      <tr class="rf-row-concepto">
+        <td class="rf-td-cuenta">{{ row.numeroCuenta }}</td>
+        <td class="rf-td-descripcion--item">{{ row.descripcion }}</td>
+        <td class="rf-td-number" [class.rf-neg]="row.mes1 < 0">
           {{ row.mes1 === 0 ? "-" : (row.mes1 | number : "1.0-0") }}
         </td>
-        <td class="text-right text-sm" [class.text-red-500]="row.mes2 < 0">
+        <td class="rf-td-number" [class.rf-neg]="row.mes2 < 0">
           {{ row.mes2 === 0 ? "-" : (row.mes2 | number : "1.0-0") }}
         </td>
-        <td class="text-right text-sm" [class.text-red-500]="row.mes3 < 0">
+        <td class="rf-td-number" [class.rf-neg]="row.mes3 < 0">
           {{ row.mes3 === 0 ? "-" : (row.mes3 | number : "1.0-0") }}
         </td>
         <td
-          class="text-right text-sm font-semibold"
-          [class.text-red-500]="row.acum < 0"
+          class="rf-td-number--total"
+          [class.rf-neg]="row.acum < 0"
         >
           {{ row.acum === 0 ? "-" : (row.acum | number : "1.0-0") }}
         </td>
@@ -84,13 +70,13 @@
 
       <!-- Filas de Totales -->
       @if (row.tipo === 'total-ingresos' || row.tipo === 'total-gastos') {
-      <tr class="font-bold surface-100 border-top-2 border-primary">
+      <tr class="rf-row-total">
         <td></td>
-        <td class="text-sm">{{ row.descripcion }}</td>
-        <td class="text-right text-sm">{{ row.mes1 | number : "1.0-0" }}</td>
-        <td class="text-right text-sm">{{ row.mes2 | number : "1.0-0" }}</td>
-        <td class="text-right text-sm">{{ row.mes3 | number : "1.0-0" }}</td>
-        <td class="text-right text-sm text-primary">
+        <td class="rf-td-descripcion">{{ row.descripcion }}</td>
+        <td class="rf-td-number--total">{{ row.mes1 | number : "1.0-0" }}</td>
+        <td class="rf-td-number--total">{{ row.mes2 | number : "1.0-0" }}</td>
+        <td class="rf-td-number--total">{{ row.mes3 | number : "1.0-0" }}</td>
+        <td class="rf-td-number--total">
           {{ row.acum | number : "1.0-0" }}
         </td>
       </tr>
@@ -98,34 +84,30 @@
 
       <!-- Fila de Resultado Final -->
       @if (row.tipo === 'diferencia') {
-      <tr class="font-bold border-top-3 border-double border-900 surface-200">
+      <tr class="rf-row-result">
         <td></td>
-        <td class="text-lg text-primary-700">{{ row.descripcion }}</td>
+        <td class="rf-td-descripcion">{{ row.descripcion }}</td>
         <td
-          class="text-right text-sm"
-          [class.text-red-500]="row.mes1 < 0"
-          [class.text-green-600]="row.mes1 > 0"
+          class="rf-td-number--total"
+          [class.rf-neg]="row.mes1 < 0"
         >
           {{ row.mes1 | number : "1.0-0" }}
         </td>
         <td
-          class="text-right text-sm"
-          [class.text-red-500]="row.mes2 < 0"
-          [class.text-green-600]="row.mes2 > 0"
+          class="rf-td-number--total"
+          [class.rf-neg]="row.mes2 < 0"
         >
           {{ row.mes2 | number : "1.0-0" }}
         </td>
         <td
-          class="text-right text-sm"
-          [class.text-red-500]="row.mes3 < 0"
-          [class.text-green-600]="row.mes3 > 0"
+          class="rf-td-number--total"
+          [class.rf-neg]="row.mes3 < 0"
         >
           {{ row.mes3 | number : "1.0-0" }}
         </td>
         <td
-          class="text-right text-lg"
-          [class.text-red-500]="row.acum < 0"
-          [class.text-green-600]="row.acum > 0"
+          class="rf-td-number--total"
+          [class.rf-neg]="row.acum < 0"
         >
           {{ row.acum | number : "1.0-0" }}
         </td>
@@ -144,7 +126,8 @@
     <ng-template #listItemTemplate let-item>
       @if (item.tipo === 'header') {
       <div
-        class="bg-primary-900 text-white p-2 font-bold text-xs uppercase mb-2 border-round-sm"
+        class="p-2 font-bold text-xs uppercase mb-2 border-round-sm"
+        style="background-color: #0f172a; color: #ffffff !important"
       >
         {{ item.descripcion }}
       </div>

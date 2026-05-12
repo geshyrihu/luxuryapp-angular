@@ -36,6 +36,17 @@ export interface IFinancialStatementDto {
   remanenteDelEjercicio: number[];
 }
 
+export interface ICedulaExtraordinariaDto {
+  nombreEmpresa: string;
+  periodoPresupuesto: string;
+  recaudadoMejoras: ICuentaMayorDto[];
+  totalRecaudadoMejoras: ICuentaMayorDto;
+  gastosMejoras: ICuentaMayorDto[];
+  totalGastosMejoras: ICuentaMayorDto;
+  gastosExtraordinarios: ICuentaMayorDto[];
+  totalGastosExtraordinarios: ICuentaMayorDto;
+}
+
 export interface ICuentaFaltanteDto {
   numeroCuenta: string;
   descripcion: string;
@@ -135,6 +146,52 @@ export interface ICobranzaCondominoDto {
   clasificacion: string;
 }
 
+export interface ICobranzaOnlineSyncMetadataDto {
+  lastSyncAt: string | null;
+  syncStatus: string;
+  dataSource: string;
+  isFallback: boolean;
+  syncMessage: string;
+  lastError: string | null;
+  lastErrorAt: string | null;
+}
+
+export interface ICobranzaOnlineAnalysisCondominoDto {
+  numeroCuenta: string;
+  condomino: string;
+  saldo: number;
+  clasificacion: string;
+}
+
+export interface IAnalisisCobranzaOnlineDto {
+  customerId: string;
+  year: number;
+  month: number;
+  day: number;
+  periodo: string;
+  cutoffDate: string;
+  dataSource: string;
+  totalCondominios: number;
+  cuotaMttoVigente: number;
+  cuotaExtraordinariaVigente: number;
+  cuotaMensualTotal: number;
+  cobranzaPerfecta: number;
+  totalJudicial: number;
+  totalMorosos: number;
+  totalDeudaCorriente: number;
+  totalSinAdeudo: number;
+  totalAnticipos: number;
+  totalDeuda: number;
+  totalCobrado: number;
+  saldoBalanza: number;
+  syncMetadata: ICobranzaOnlineSyncMetadataDto;
+  cobranzaJudicial: ICobranzaOnlineAnalysisCondominoDto[];
+  morosos: ICobranzaOnlineAnalysisCondominoDto[];
+  deudaCorriente: ICobranzaOnlineAnalysisCondominoDto[];
+  sinAdeudo: ICobranzaOnlineAnalysisCondominoDto[];
+  anticipos: ICobranzaOnlineAnalysisCondominoDto[];
+}
+
 export interface IFlujoCajaDto {
   nombreEmpresa: string;
   periodoPresupuesto: string;
@@ -147,6 +204,35 @@ export interface IFlujoCajaMesDto {
   gastos: number;
   flujoNeto: number;
   saldoAcumulado: number;
+}
+
+export interface IReporteFinancieroDto {
+  nombreEmpresa: string;
+  periodoPresupuesto: string;
+  meses: string[];
+  ingresos: IReporteFinancieroFilaDto[];
+  totalIngresos: number[];
+  gastosGenerales: IReporteFinancieroFilaDto[];
+  totalGastos: number[];
+  subtotal: number[];
+  otrosIngresos: IReporteFinancieroFilaDto[];
+  otrosGastos: IReporteFinancieroFilaDto[];
+  sumaOtros: number[];
+  resultadoPeriodo: number[];
+  fondoMejoras: IReporteFinancieroFondoDto;
+}
+
+export interface IReporteFinancieroFilaDto {
+  numeroCuenta: string;
+  concepto: string;
+  valores: number[];
+}
+
+export interface IReporteFinancieroFondoDto {
+  ingresoAmenidades: IReporteFinancieroFilaDto;
+  gastosAmenidades: IReporteFinancieroFilaDto[];
+  gastosMejoras: IReporteFinancieroFilaDto[];
+  remanenteMejoras: number[];
 }
 
 

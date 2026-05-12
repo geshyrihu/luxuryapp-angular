@@ -12,7 +12,6 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { MenuItem, SortEvent } from "primeng/api";
 import { BadgeModule } from "primeng/badge";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CheckboxModule } from "primeng/checkbox";
 import { DialogModule } from "primeng/dialog";
 import { MessageModule } from "primeng/message";
@@ -21,6 +20,7 @@ import { SplitButtonModule } from "primeng/splitbutton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { PdfViewerModal } from "src/app/core/components/pdf-viewer-modal/pdf-viewer-modal";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -40,7 +40,7 @@ import { OrdenCompraDatosPago } from "src/app/features/purchases/purchase-order/
 import { OrdenCompra } from "src/app/features/purchases/purchase-order/orden-compra";
 import { ETipoGasto } from "../../core/enums/tipo-gasto.enum";
 import { FundingExcelExportService } from "../contabilidad/services/funding-excel-export.service";
-import { SatReconciliationDialog } from "../sat-funding/components/sat-reconciliation-dialog/sat-reconciliation-dialog";
+// import { SatReconciliationDialog } from "../sat-funding/components/sat-reconciliation-dialog/sat-reconciliation-dialog";
 import { FundingGroupFiles } from "./components/funding-group-files/funding-group-files.";
 import { FundingOrderInvoices } from "./components/funding-order-invoices/funding-order-invoices"; // Added
 import { FundingUploadInvoicesModal } from "./components/modal-funding-upload-invoices";
@@ -524,33 +524,33 @@ export class FundingDetail {
     });
   }
 
-  onConciliate() {
-    if (!this.fullData()) return;
+  // onConciliate() {
+  //   if (!this.fullData()) return;
 
-    this.dialogHandlerS.openDialog(
-      SatReconciliationDialog,
-      {
-        legacyFundingId: this.id,
-        mode: "reconciliation",
-      },
-      "Conciliación SAT",
-      this.dialogHandlerS.sizeLg,
-    );
-  }
+  //   this.dialogHandlerS.openDialog(
+  //     SatReconciliationDialog,
+  //     {
+  //       legacyFundingId: this.id,
+  //       mode: "reconciliation",
+  //     },
+  //     "Conciliación SAT",
+  //     this.dialogHandlerS.sizeLg,
+  //   );
+  // }
 
-  onDownloadXml() {
-    if (!this.fullData()) return;
+  // onDownloadXml() {
+  //   if (!this.fullData()) return;
 
-    this.dialogHandlerS.openDialog(
-      SatReconciliationDialog,
-      {
-        legacyFundingId: this.id,
-        mode: "xml",
-      },
-      "Descarga Masiva XML",
-      this.dialogHandlerS.sizeLg,
-    );
-  }
+  //   this.dialogHandlerS.openDialog(
+  //     SatReconciliationDialog,
+  //     {
+  //       legacyFundingId: this.id,
+  //       mode: "xml",
+  //     },
+  //     "Descarga Masiva XML",
+  //     this.dialogHandlerS.sizeLg,
+  //   );
+  // }
 
   viewPdf(url: string, fileName: string): void {
     if (!url) {

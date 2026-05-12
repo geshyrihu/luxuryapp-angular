@@ -2,7 +2,6 @@ import { CommonModule, DecimalPipe } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -12,7 +11,7 @@ import { reportFilterState } from "../../state/financial-report-filter.state";
 
 @Component({
   selector: "app-flujo-efectivo",
-  imports: [CommonModule, FormsModule, TableModule, CustomButton, DecimalPipe],
+  imports: [CommonModule, FormsModule, TableModule, DecimalPipe],
   templateUrl: "./flujo-efectivo.html",
 })
 export class FlujoEfectivo {
@@ -20,12 +19,8 @@ export class FlujoEfectivo {
   private customerIdS = inject(CustomerIdService);
   public filterS = reportFilterState;
 
-  // State
   loading = signal<boolean>(false);
   data = signal<IFlujoCajaDto | null>(null);
-
-  // Computed requeridos por el HTML
-  nombreEmpresa = computed(() => this.data()?.nombreEmpresa || "");
 
   meses = computed(() => this.data()?.meses ?? []);
 
@@ -41,18 +36,11 @@ export class FlujoEfectivo {
     effect(() => {
       const custId = this.customerIdS.customerId();
       const yr = this.filterS.year();
+      this.filterS.refreshTick();
       if (custId && yr) {
         this.loadData(custId, yr);
       }
     });
-  }
-
-  onLoad() {
-    const custId = this.customerIdS.customerId();
-    const yr = this.filterS.year();
-    if (custId && yr) {
-      this.loadData(custId, yr);
-    }
   }
 
   async loadData(customerId: string, year: number) {
@@ -65,7 +53,7 @@ export class FlujoEfectivo {
     );
     if (result) {
       this.data.set(result);
-      this.filterS.currentReportName.set('Flujo de Efectivo');
+      this.filterS.currentReportName.set("Flujo de Efectivo");
       this.filterS.currentReportContext.set(JSON.stringify(result));
     }
     this.loading.set(false);

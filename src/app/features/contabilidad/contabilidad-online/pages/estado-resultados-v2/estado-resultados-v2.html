@@ -1,0 +1,187 @@
+<div class="fadein">
+  @if (loading()) {
+  <div class="card p-4">
+    <p-skeleton height="2rem" styleClass="mb-2" />
+    <p-skeleton height="10rem" />
+  </div>
+  } @else if (!rows().length) {
+  <div class="surface-card p-6 border-round shadow-1 text-center">
+    <i class="pi pi-search text-4xl text-500 mb-3"></i>
+    <p class="text-color-secondary m-0">
+      No se encontraron registros para el periodo seleccionado.
+    </p>
+    <p class="text-sm text-500 mt-2">
+      Verifique el cliente y el año seleccionados.
+    </p>
+  </div>
+  } @else {
+  <p-table
+    [value]="rows()"
+    styleClass="rf-prime-table card hidden md:block p-datatable-sm"
+    [tableStyle]="{ 'min-width': '800px' }"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 120px">Cuenta</th>
+        <th>Descripción</th>
+        <th class="text-right w-8rem">{{ monthHeaders()[0] }}</th>
+        <th class="text-right w-8rem">{{ monthHeaders()[1] }}</th>
+        <th class="text-right w-8rem">{{ monthHeaders()[2] }}</th>
+        <th class="text-right w-10rem">Acumulado</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-row>
+      @if (row.tipo === 'header') {
+      <tr class="rf-row-section">
+        <td
+          colspan="6"
+          class="py-2 px-3 uppercase text-xs tracking-wider"
+        >
+          {{ row.descripcion }}
+        </td>
+      </tr>
+      }
+
+      @if (row.tipo === 'group') {
+      <tr class="rf-row-group">
+        <td class="rf-td-cuenta">{{ row.numeroCuenta }}</td>
+        <td class="rf-td-descripcion uppercase tracking-wide">{{ row.descripcion }}</td>
+        <td class="rf-td-number">{{ row.mes1 === 0 ? "-" : (row.mes1 | number : "1.0-0") }}</td>
+        <td class="rf-td-number">{{ row.mes2 === 0 ? "-" : (row.mes2 | number : "1.0-0") }}</td>
+        <td class="rf-td-number">{{ row.mes3 === 0 ? "-" : (row.mes3 | number : "1.0-0") }}</td>
+        <td class="rf-td-number--total">{{ row.acum === 0 ? "-" : (row.acum | number : "1.0-0") }}</td>
+      </tr>
+      }
+
+      @if (row.tipo === 'item') {
+      <tr class="rf-row-concepto">
+        <td class="rf-td-cuenta">{{ row.numeroCuenta }}</td>
+        <td class="rf-td-descripcion--item pl-4">{{ row.descripcion }}</td>
+        <td class="rf-td-number" [class.rf-neg]="row.mes1 < 0">
+          {{ row.mes1 === 0 ? "-" : (row.mes1 | number : "1.0-0") }}
+        </td>
+        <td class="rf-td-number" [class.rf-neg]="row.mes2 < 0">
+          {{ row.mes2 === 0 ? "-" : (row.mes2 | number : "1.0-0") }}
+        </td>
+        <td class="rf-td-number" [class.rf-neg]="row.mes3 < 0">
+          {{ row.mes3 === 0 ? "-" : (row.mes3 | number : "1.0-0") }}
+        </td>
+        <td
+          class="rf-td-number--total"
+          [class.rf-neg]="row.acum < 0"
+        >
+          {{ row.acum === 0 ? "-" : (row.acum | number : "1.0-0") }}
+        </td>
+      </tr>
+      }
+
+      @if (row.tipo === 'total-ingresos' || row.tipo === 'total-gastos') {
+      <tr class="rf-row-total">
+        <td></td>
+        <td class="rf-td-descripcion">{{ row.descripcion }}</td>
+        <td class="rf-td-number--total">{{ row.mes1 | number : "1.0-0" }}</td>
+        <td class="rf-td-number--total">{{ row.mes2 | number : "1.0-0" }}</td>
+        <td class="rf-td-number--total">{{ row.mes3 | number : "1.0-0" }}</td>
+        <td class="rf-td-number--total">
+          {{ row.acum | number : "1.0-0" }}
+        </td>
+      </tr>
+      }
+
+      @if (row.tipo === 'diferencia') {
+      <tr class="rf-row-result">
+        <td></td>
+        <td class="rf-td-descripcion">{{ row.descripcion }}</td>
+        <td
+          class="rf-td-number--total"
+          [class.rf-neg]="row.mes1 < 0"
+        >
+          {{ row.mes1 | number : "1.0-0" }}
+        </td>
+        <td
+          class="rf-td-number--total"
+          [class.rf-neg]="row.mes2 < 0"
+        >
+          {{ row.mes2 | number : "1.0-0" }}
+        </td>
+        <td
+          class="rf-td-number--total"
+          [class.rf-neg]="row.mes3 < 0"
+        >
+          {{ row.mes3 | number : "1.0-0" }}
+        </td>
+        <td
+          class="rf-td-number--total"
+          [class.rf-neg]="row.acum < 0"
+        >
+          {{ row.acum | number : "1.0-0" }}
+        </td>
+      </tr>
+      }
+    </ng-template>
+  </p-table>
+
+  <app-data-view-mobile
+    class="md:hidden"
+    [data]="rows()"
+    [loading]="loading()"
+    [showAdd]="false"
+  >
+    <ng-template #listItemTemplate let-item>
+      @if (item.tipo === 'header') {
+      <div
+        class="bg-primary-900 text-white p-2 font-bold text-xs uppercase mb-2 border-round-sm"
+      >
+        {{ item.descripcion }}
+      </div>
+      } @else {
+      <div
+        class="surface-card p-3 mb-2 border-round shadow-1"
+        [class.border-left-3]="item.tipo === 'group'"
+        [class.border-primary]="item.tipo === 'group'"
+        [class.surface-900]="item.tipo === 'diferencia'"
+        [class.text-white]="item.tipo === 'diferencia'"
+      >
+        <div class="flex justify-content-between align-items-start mb-2 gap-2">
+          <span class="w-9 font-bold">{{ item.descripcion }}</span>
+          @if (item.numeroCuenta) {
+          <span class="text-xs font-mono text-500 shrink-0">{{
+            item.numeroCuenta
+          }}</span>
+          }
+        </div>
+        <div class="grid m-0 text-xs text-500">
+          <div class="col-4 p-0">
+            {{ monthHeaders()[0] }}:
+            <span class="text-color font-medium block">{{
+              item.mes1 | number : "1.0-0"
+            }}</span>
+          </div>
+          <div class="col-4 p-0">
+            {{ monthHeaders()[1] }}:
+            <span class="text-color font-medium block">{{
+              item.mes2 | number : "1.0-0"
+            }}</span>
+          </div>
+          <div class="col-4 p-0">
+            {{ monthHeaders()[2] }}:
+            <span class="text-color font-medium block">{{
+              item.mes3 | number : "1.0-0"
+            }}</span>
+          </div>
+        </div>
+        <div
+          class="mt-2 pt-2 border-top-1 border-100 flex justify-content-between align-items-center"
+        >
+          <span class="text-xs font-bold uppercase text-500">Acumulado</span>
+          <span class="text-sm font-bold text-primary">{{
+            item.acum | number : "1.0-0"
+          }}</span>
+        </div>
+      </div>
+      }
+    </ng-template>
+  </app-data-view-mobile>
+  }
+</div>

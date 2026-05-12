@@ -1,20 +1,66 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, signal } from "@angular/core";
+import { Component, computed, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TabsModule } from "primeng/tabs";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { AiAgentContabilidadOnlineComponent } from "../components/ai-agent-contabilidad-online/ai-agent-contabilidad-online";
+import { AiAgentExplicadorContabilidadOnlineComponent } from "../components/ai-agent-explicador-contabilidad-online/ai-agent-explicador-contabilidad-online";
 import { AiAgentComponent } from "../components/ai-agent/ai-agent";
 import { reportFilterState } from "../state/financial-report-filter.state";
 import { AnalisisCobranza } from "./analisis-cobranza/analisis-cobranza";
 import { CedulaExtraordinaria } from "./cedula-extraordinaria/cedula-extraordinaria";
 import { CedulaPresupuestal } from "./cedula-presupuestal/cedula-presupuestal";
 import { EstadoPosicionFinanciera } from "./estado-posicion-financiera/estado-posicion-financiera";
+import { EstadoResultadosV2 } from "./estado-resultados-v2/estado-resultados-v2";
 import { EstadoResultados } from "./estado-resultados/estado-resultados";
-import { FlujoEfectivo } from "./flujo-caja/flujo-efectivo";
-import { ListadosAspel } from "./listados-aspel/listados-aspel";
+import { FlujoEfectivo } from "./flujo-efectivo/flujo-efectivo";
+import { ReporteFinanciero } from "./reporte-financiero/reporte-financiero";
+
+const REPORT_META = [
+  {
+    title: "Estado de Posición Financiera",
+    description:
+      "Lectura de activo, pasivo y capital al corte del periodo seleccionado.",
+  },
+  {
+    title: "Estado de Resultados",
+    description:
+      "Resumen de ingresos, gastos y resultado del periodo con enfoque operativo.",
+  },
+  {
+    title: "Estado de Resultados V2",
+    description:
+      "Variante ajustada para clasificaciones irregulares y lectura reforzada de ingresos y gastos.",
+  },
+  {
+    title: "Cédula Extraordinaria",
+    description:
+      "Seguimiento de recaudado, mejoras, eventos y gastos extraordinarios del periodo.",
+  },
+  {
+    title: "Presupuesto vs Resultado",
+    description:
+      "Comparativo entre presupuesto aprobado, ejercido acumulado y saldo restante.",
+  },
+  {
+    title: "Reporte Financiero",
+    description:
+      "Vista resumida mensual de ingresos, gastos generales, otros resultados y fondo para mejoras.",
+  },
+  {
+    title: "Flujo de Efectivo",
+    description:
+      "Comportamiento mensual de ingresos, gastos, flujo neto y saldo acumulado.",
+  },
+  {
+    title: "Análisis de Cobranza",
+    description:
+      "Corte de cobranza, clasificación de saldos y lectura operativa por condómino.",
+  },
+] as const;
 
 @Component({
   selector: "app-financial-reports-wrapper",
@@ -26,39 +72,47 @@ import { ListadosAspel } from "./listados-aspel/listados-aspel";
     CustomInputTextSignal,
     EstadoPosicionFinanciera,
     EstadoResultados,
+    EstadoResultadosV2,
     CedulaExtraordinaria,
     CedulaPresupuestal,
+    ReporteFinanciero,
     FlujoEfectivo,
-    AnalisisCobranza,
-    ListadosAspel,
     CustomButton,
+    AnalisisCobranza,
     AiAgentComponent,
+    AiAgentContabilidadOnlineComponent,
+    AiAgentExplicadorContabilidadOnlineComponent,
   ],
   templateUrl: "./financial-reports-wrapper.html",
 })
 export default class FinancialReportsWrapper {
   public filterS = reportFilterState;
+  private readonly customerIdS = inject(CustomerIdService);
 
   reportIndex = signal<number>(0);
-  REPORTS = [
-    "Estado de Posición Financiera",
-    "Estado de Resultados",
-    "Cédula de Cuotas Extraordinarias",
-    "Cédula Presupuestal vs Gastos",
-    "Flujo de Efectivo",
-    "Análisis de Cobranza",
-    "Depuración Aspel (Raw)",
-  ];
 
-  nextReport() {
-    if (this.reportIndex() < this.REPORTS.length - 1) {
-      this.reportIndex.update((v) => v + 1);
-    }
+  readonly customerName = computed(
+    () => this.customerIdS.customerName() || "Cliente activo",
+  );
+  readonly customerLogo = computed(
+    () =>
+      this.customerIdS.customerPhotoPath() ||
+      "assets/images/default-avatar.png",
+  );
+  readonly activeReportTitle = computed(
+    () => REPORT_META[this.reportIndex()]?.title ?? "Estados Financieros",
+  );
+  readonly activeReportDescription = computed(
+    () =>
+      REPORT_META[this.reportIndex()]?.description ??
+      "Consulta operativa del módulo de contabilidad online.",
+  );
+
+  refreshReports() {
+    this.filterS.refreshTick.update((value) => value + 1);
   }
 
-  prevReport() {
-    if (this.reportIndex() > 0) {
-      this.reportIndex.update((v) => v - 1);
-    }
+  onTabChange(value: number) {
+    this.reportIndex.set(value);
   }
 }
