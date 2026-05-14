@@ -57,7 +57,7 @@ export class CreateOrdenCompra implements OnInit {
       Validators.required,
     ]),
     folio: new FormControl(""),
-    idFondeo: new FormControl(0),
+    indice: new FormControl(0),
     fechaSolicitud: new FormControl("", [Validators.required]),
     solicitudCompraId: new FormControl("", { nonNullable: true }),
     folioSolicitudCompra: new FormControl(""),

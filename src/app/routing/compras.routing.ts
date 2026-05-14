@@ -92,7 +92,7 @@ export const comprasRoutes: Routes = [
   {
     path: "fixed-expenses-catalog", // Ruta anterior: 'catalogo-gastos-fijos'
     loadComponent: () =>
-      import("src/app/features/expense-catalog/catalogo-gastos-fijos-list").then(
+      import("src/app/features/catalogo-gastos-fijos/catalogo-gastos-fijos-list").then(
         (m) => m.CatalogoGastosFijosList,
       ),
     canActivate: [authGuard],
@@ -105,7 +105,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'fixed-expenses-catalog-form/:id'
     path: "catalogo-gastos-fijos-form/:id",
     loadComponent: () =>
-      import("src/app/features/expense-catalog/catalogo-gasto-fijo-form").then(
+      import("src/app/features/catalogo-gastos-fijos/catalogo-gasto-fijo-form").then(
         (m) => m.CatalogoGastoFijoForm,
       ),
     canActivate: [authGuard],

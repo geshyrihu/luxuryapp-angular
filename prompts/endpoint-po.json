@@ -17246,9 +17246,9 @@
         }
       }
     },
-    "/api/fondeos-v2/analyze-invoices/{customerId}": {
+    "/api/Funding/analyze-invoices/{customerId}": {
       "post": {
-        "tags": ["FondeosV2"],
+        "tags": ["Funding"],
         "parameters": [
           {
             "name": "customerId",
@@ -17315,9 +17315,9 @@
         }
       }
     },
-    "/api/fondeos-v2/create-orders-from-invoices": {
+    "/api/Funding/create-orders-from-invoices": {
       "post": {
-        "tags": ["FondeosV2"],
+        "tags": ["Funding"],
         "requestBody": {
           "content": {
             "application/json-patch+json": {

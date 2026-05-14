@@ -124,7 +124,7 @@ export class FundingUploadInvoicesModal {
     const customerId = this.customerIdService.customerId();
     this.apiResponseService
       .onPost<any[]>(
-        `fondeos-v2/analyze-invoices/${customerId}?fundingId=${this.fundingId}`,
+        `Funding/analyze-invoices/${customerId}?fundingId=${this.fundingId}`,
         formData,
       )
       .then((result) => {
@@ -188,7 +188,7 @@ export class FundingUploadInvoicesModal {
     };
 
     this.apiResponseService
-      .onPost("fondeos-v2/create-orders-from-invoices", requestDto)
+      .onPost("Funding/create-orders-from-invoices", requestDto)
       .then(() => {
         this.ref.close(true);
       })

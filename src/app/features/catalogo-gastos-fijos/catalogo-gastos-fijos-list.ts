@@ -57,8 +57,43 @@ export class CatalogoGastosFijosList {
   cb_fundingPeriod: ISelectItem[] = [];
   fundingPeriodsByMonth = signal<any[]>([]);
 
+  allFundingsForYear = signal<any[]>([]);
+
+  private readonly SPANISH_MONTHS = [
+    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",
+  ];
+
+  selectedFundingStatus = computed(() => {
+    const monthName = this.selectedMonthName();
+    const year = this.fundingYear();
+    const fondeos = this.allFundingsForYear();
+
+    if (!monthName || !year || fondeos.length === 0) return null;
+
+    const monthIndex = this.SPANISH_MONTHS.indexOf(monthName);
+    if (monthIndex === -1) return null;
+
+    const matching = fondeos.filter((f: any) => {
+      const date = new Date(f.periodDate);
+      return date.getFullYear() === year && date.getMonth() === monthIndex;
+    });
+
+    if (matching.length === 0) return null;
+
+    return {
+      isVerified: matching.some((f: any) => !!f.verifiedByName),
+      isAuthorized: matching.some((f: any) => !!f.authorizedByName),
+      isConfirmed: matching.some((f: any) => !!f.confirmedByName),
+    };
+  });
+
   isGenerationParamsSelected = computed(
     () => this.fundingYear() !== null && this.selectedMonthName() !== null,
+  );
+
+  isGenerationBlocked = computed(
+    () => this.selectedFundingStatus()?.isVerified === true,
   );
 
   // Computed signal to determine if all items are selected
@@ -87,6 +122,7 @@ export class CatalogoGastosFijosList {
       if (customerId) {
         this.onLoadData();
         this.loadFundingOptions();
+        this.loadAllFundings();
       }
     });
   }
@@ -105,6 +141,15 @@ export class CatalogoGastosFijosList {
       this.enumSelectS.onLoadEnumList("EFundingPeriod", false),
     )) as ISelectItem[];
     this.processFundingPeriods(this.cb_fundingPeriod);
+  }
+
+  async loadAllFundings(): Promise<void> {
+    const result: any = await this.apiResponseS.onGetList(
+      `Funding/list/${this.customerIdS.customerId()}`,
+    );
+    if (result) {
+      this.allFundingsForYear.set(result);
+    }
   }
 
   processFundingPeriods(periods: ISelectItem[]) {

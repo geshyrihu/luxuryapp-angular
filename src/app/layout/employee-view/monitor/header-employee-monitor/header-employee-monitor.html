@@ -71,11 +71,10 @@
       </div>
     </ng-template>
 
-
     <ng-template #end>
-      @if (!aspRoleS.roleSignal(AspRole.Comite)()) {
+      <!-- @if (!aspRoleS.roleSignal(AspRole.Comite)()) {
       <app-search />
-      }
+      } -->
       <div class="user-actions-container px-3">
         <!-- Iconos de Navegación -->
         @for (icon of displayNavIcons; track icon.id) { @if (!icon.requiresRole

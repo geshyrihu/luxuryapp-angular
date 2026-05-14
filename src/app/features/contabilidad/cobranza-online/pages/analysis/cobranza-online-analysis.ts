@@ -8,9 +8,9 @@ import { MessageModule } from "primeng/message";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import type { CobranzaOnlineAnalysisResponse } from "../../models/cobranza-online-analysis.model";
 
 function buildTodayInputValue() {
@@ -193,15 +193,16 @@ export class CobranzaOnlineAnalysis {
     const day = cutoffDate.getDate();
 
     this.loading.set(true);
-    const result = await this.apiResponseS.onGetItem<CobranzaOnlineAnalysisResponse>(
-      Endpoints.AccountingCoi.CobranzaOnline.Dashboard.analysis(
-        customerId,
-        year,
-        month,
-        day,
-      ),
-      false,
-    );
+    const result =
+      await this.apiResponseS.onGetItem<CobranzaOnlineAnalysisResponse>(
+        Endpoints.AccountingCoi.CobranzaOnline.Dashboard.analysis(
+          customerId,
+          year,
+          month,
+          day,
+        ),
+        false,
+      );
     this.data.set(result ?? null);
     this.loading.set(false);
   }

@@ -24,7 +24,7 @@ interface IModalOrdenCompra {
   notasEspeciales: FormControl<string>;
   urlFile: FormControl<string | null>;
   folio: FormControl<string | null>;
-  idFondeo: FormControl<string | null>;
+  indice: FormControl<string | null>;
   folioSolicitudCompra: FormControl<string | null>;
   isDevolucion: FormControl<boolean>;
   customerId: FormControl<string>;
@@ -72,7 +72,7 @@ export class ModalOrdenCompra implements OnInit {
     }),
     urlFile: new FormControl(""),
     folio: new FormControl(""),
-    idFondeo: new FormControl("0"),
+    indice: new FormControl("0"),
     folioSolicitudCompra: new FormControl(""),
     isDevolucion: new FormControl(false, { nonNullable: true }),
     customerId: new FormControl("", { nonNullable: true }),

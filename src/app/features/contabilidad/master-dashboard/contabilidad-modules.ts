@@ -92,7 +92,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
     icon: "pi pi-chart-bar",
     cards: [
       {
-        title: "Presupuesto Propuesta",
+        title: "Propuesta Presupuesto Nuevo",
         description: "Elaboración y gestión de propuestas presupuestales.",
         route: "/contabilidad/budget-proposal",
         icon: "pi pi-file-edit",
@@ -100,7 +100,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         bgColor: "#e0e7ff",
       },
       {
-        title: "Presupuesto Aspel",
+        title: "Presupuesto Espejo Aspel",
         description: "Ejercicio fiscal y presupuesto en Aspel.",
         route: "/contabilidad/budget",
         icon: "pi pi-briefcase",

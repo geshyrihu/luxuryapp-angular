@@ -37,7 +37,6 @@
           [iconClass]="isFirstQuincenaSelected() ?  'pi pi-check' : 'pi pi-times'"
         />
 
-        <!-- [disabled]="!isGenerationParamsSelected() || !isFirstQuincenaSelected()" -->
         <custom-button
           (clicked)="generateOrdenesPorQuincena(0)"
           label="Generar 1ra Quincena"
@@ -45,6 +44,7 @@
           size="small"
           severity="success"
           [showLabelOnDesktop]="true"
+          [disabled]="!isGenerationParamsSelected() || !isFirstQuincenaSelected() || isGenerationBlocked()"
         />
 
         <!-- Grupo 2da Quincena -->
@@ -60,7 +60,6 @@
           [showLabelOnDesktop]="true"
         />
 
-        <!-- [disabled]="!isGenerationParamsSelected() || !isSecondQuincenaSelected()" -->
         <custom-button
           [label]="'Generar 2da Quincena'"
           (clicked)="generateOrdenesPorQuincena(1)"
@@ -68,6 +67,7 @@
           size="small"
           severity="info"
           [showLabelOnDesktop]="true"
+          [disabled]="!isGenerationParamsSelected() || !isSecondQuincenaSelected() || isGenerationBlocked()"
         />
       </div>
 
@@ -100,6 +100,23 @@
         }
       </div>
     </div>
+
+    <!-- Indicador de estado del fondeo para el mes seleccionado -->
+    @if (selectedMonthName() && selectedFundingStatus()) {
+      @if (selectedFundingStatus()!.isVerified) {
+        <p-message severity="warn" styleClass="mb-1">
+          Fondeo de {{ selectedMonthName() }} ya fue verificado — no se pueden generar órdenes de compra.
+        </p-message>
+      } @else if (selectedFundingStatus()!.isConfirmed) {
+        <p-message severity="success" styleClass="mb-1">
+          Fondeo de {{ selectedMonthName() }} está confirmado.
+        </p-message>
+      } @else if (selectedFundingStatus()!.isAuthorized) {
+        <p-message severity="info" styleClass="mb-1">
+          Fondeo de {{ selectedMonthName() }} está autorizado.
+        </p-message>
+      }
+    }
 
     <!-- Guóa de generación -->
     <div
@@ -280,7 +297,7 @@
                 expand="block"
                 color="success"
                 (click)="generateOrdenesPorQuincena(0)"
-                [disabled]="!isGenerationParamsSelected()"
+                [disabled]="!isGenerationParamsSelected() || isGenerationBlocked()"
               >
                 <ion-icon name="calendar-outline" slot="start"></ion-icon>
                 Gen. 1ra Q
@@ -291,7 +308,7 @@
                 expand="block"
                 color="tertiary"
                 (click)="generateOrdenesPorQuincena(1)"
-                [disabled]="!isGenerationParamsSelected()"
+                [disabled]="!isGenerationParamsSelected() || isGenerationBlocked()"
               >
                 <ion-icon name="calendar-outline" slot="start"></ion-icon>
                 Gen. 2da Q

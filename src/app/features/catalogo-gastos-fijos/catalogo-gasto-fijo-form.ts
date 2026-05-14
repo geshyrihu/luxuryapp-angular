@@ -17,6 +17,7 @@ import {
 } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { CardModule } from "primeng/card";
+import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
@@ -62,6 +63,7 @@ interface ICatalogoGastoFijoForm {
     CustomButton,
     CustomButtonSave,
     CardModule,
+    MessageModule,
   ],
 })
 export class CatalogoGastoFijoForm implements OnInit {

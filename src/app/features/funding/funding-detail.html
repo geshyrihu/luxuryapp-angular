@@ -22,6 +22,20 @@
     >
       <!-- Workflow Actions -->
 
+      @if (isConfirmed() && isRolSuperUsuario()) {
+      <div class="flex gap-1 border-right-1 surface-border pr-2 mr-1">
+        <custom-button
+          label="Revertir confirmacion"
+          iconClass="pi pi-replay"
+          severity="danger"
+          size="sm"
+          variant="outlined"
+          [showLabelOnDesktop]="true"
+          (clicked)="onRevokeConfirmation()"
+        />
+      </div>
+      }
+
       @if(!isConfirmed()){
       <div class="flex gap-1 border-right-1 surface-border pr-2 mr-1">
         @if (!isVerified()) {
@@ -30,15 +44,17 @@
           iconClass="pi pi-check-circle"
           severity="help"
           size="sm"
+          [showLabelOnDesktop]="true"
           (clicked)="onValidate()"
         />
         } @if (isVerified() && !isAuthorized()) {
         <custom-button
-          label="Revertir"
+          label="Revertir verificacion"
           iconClass="pi pi-undo"
           severity="secondary"
           size="sm"
           variant="ghost-text"
+          [showLabelOnDesktop]="true"
           (clicked)="onUnvalidate()"
         />
         } @if (isVerified() && !isAuthorized() && (isRolAdministrador() ||
@@ -48,6 +64,7 @@
           iconClass="pi pi-verified"
           severity="success"
           size="sm"
+          [showLabelOnDesktop]="true"
           (clicked)="onAuthorize()"
         />
         } @if (isAuthorized() && !isConfirmed() && (isRolAdministrador() ||
@@ -58,15 +75,17 @@
           severity="danger"
           size="sm"
           variant="outlined"
+          [showLabelOnDesktop]="true"
           (clicked)="onUnauthorize()"
         />
-        } @if (isAuthorized() && !isConfirmed() && isRolContador() &&
-        isRolSuperUsuario()) {
+        } @if (isAuthorized() && !isConfirmed() && (isRolContador() ||
+        isRolSuperUsuario())) {
         <custom-button
-          label="Confirmar"
+          label="Confirmar recepcion"
           iconClass="pi pi-check-square"
           severity="help"
           size="sm"
+          [showLabelOnDesktop]="true"
           (clicked)="onConfirm()"
         />
         }
@@ -98,12 +117,15 @@
               variant="ghost-text"
               (clicked)="onDownloadFileExcel()"
             />
+            @if (canEdit()) {
             <a
               routerLink="/purchases/fixed-expenses-catalog"
               class="btn btn-secondary btn-sm"
-              ngbTooltip="Catálogo"
-              ><i class="pi pi-file-pdf"></i
+              pTooltip="Catálogo de Gastos Fijos — generar OC automáticas"
+              tooltipPosition="bottom"
+              ><i class="pi pi-list"></i
             ></a>
+            }
 
             @if(isRolSuperUsuario) {
             <!-- <p-button
@@ -150,30 +172,63 @@
     </div>
   </div>
 
-  @if (viewInstructions()) {
-  <p-message
-    severity="info"
-    styleClass="mb-3 w-full"
-    [style]="{'font-size': '0.9rem'}"
+  <!-- Workflow Status -->
+  <div class="flex align-items-center gap-3 flex-wrap mt-2 pt-3 border-top-1 surface-border">
+    <div class="flex align-items-center gap-1 text-sm">
+      @if (isVerified()) {
+        <i class="pi pi-check-circle text-green-500"></i>
+        <span class="text-green-700 font-medium">Verificado</span>
+      } @else {
+        <i class="pi pi-circle text-orange-400"></i>
+        <span class="text-orange-600 font-medium">Pendiente — debe verificarse</span>
+      }
+    </div>
+    <i class="pi pi-chevron-right text-300 text-xs"></i>
+    <div class="flex align-items-center gap-1 text-sm">
+      @if (isAuthorized()) {
+        <i class="pi pi-check-circle text-green-500"></i>
+        <span class="text-green-700 font-medium">Autorizado</span>
+      } @else if (isVerified()) {
+        <i class="pi pi-circle text-orange-400"></i>
+        <span class="text-orange-600 font-medium">Pendiente — debe autorizarse</span>
+      } @else {
+        <i class="pi pi-lock text-400"></i>
+        <span class="text-400">Autorizar (requiere verificacion)</span>
+      }
+    </div>
+    <i class="pi pi-chevron-right text-300 text-xs"></i>
+    <div class="flex align-items-center gap-1 text-sm">
+      @if (isConfirmed()) {
+        <i class="pi pi-check-circle text-green-500"></i>
+        <span class="text-green-700 font-medium">Confirmado por Contabilidad</span>
+      } @else if (isAuthorized()) {
+        <i class="pi pi-circle text-orange-400"></i>
+        <span class="text-orange-600 font-medium">Pendiente — debe confirmar Contabilidad</span>
+      } @else {
+        <i class="pi pi-lock text-400"></i>
+        <span class="text-400">Confirmar (requiere autorizacion)</span>
+      }
+    </div>
+  </div>
+
+  @if (isVerified() && !isAuthorized() && !isConfirmed()) {
+  <p-message severity="warn" styleClass="mt-2 w-full"
+    >Fondeo verificado — las OC vinculadas no se pueden modificar. Para
+    habilitar cambios, revierte la verificacion.</p-message
   >
-    <ng-template pTemplate>
-      <div class="flex flex-column gap-1">
-        <span class="font-bold">🔄 Flujo de Autorización:</span>
-        <span
-          >1. Validar (Op) &rarr; 2. Autorizar (Admin) &rarr; 3. Recepción
-          (Contabilidad).</span
-        >
-      </div>
-    </ng-template>
-  </p-message>
-  } @if (isConfirmed()) {
+  } @if (isAuthorized() && !isConfirmed()) {
+  <p-message severity="warn" styleClass="mt-2 w-full"
+    >Fondeo autorizado — las OC vinculadas no se pueden modificar. Para
+    habilitar cambios, revierte la autorizacion primero.</p-message
+  >
+  }
+
+  @if (isConfirmed()) {
   <div
-    class="w-full bg-green-50 border-green-200 border-1 border-round p-3 mb-3 flex align-items-center gap-2 text-green-700"
+    class="w-full bg-green-50 border-green-200 border-1 border-round p-3 mt-2 flex align-items-center gap-2 text-green-700"
   >
     <i class="pi pi-verified text-xl"></i>
-    <span class="font-bold"
-      >Este fondeo ha sido procesado por contabilidad.</span
-    >
+    <span class="font-bold">Este fondeo ha sido procesado por contabilidad. No se pueden realizar cambios.</span>
   </div>
   } @if (dataSignal().length < 1) {
   <div

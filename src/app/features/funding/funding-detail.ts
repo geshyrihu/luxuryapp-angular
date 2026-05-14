@@ -305,6 +305,16 @@ export class FundingDetail {
     });
   }
 
+  onRevokeConfirmation() {
+    const urlApi = `funding/revoke-confirmation/${this.id}`;
+    this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
+      if (result) {
+        this.onLoadData(this.customerIdS.customerId());
+        this.isConfirmed.set(false);
+      }
+    });
+  }
+
   /**
    * Se dispara cuando el usuario cambia el estado de pago de una orden.
    * Llama a la API usando el nuevo mótodo onPatch para persistir el cambio.

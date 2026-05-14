@@ -88,9 +88,9 @@
         Folio
         <p-sortIcon field="folio" />
       </th>
-      <th class="table-col-7" pSortableColumn="idFondeo">
+      <th class="table-col-7" pSortableColumn="indice">
         Id Fondeo
-        <p-sortIcon field="idFondeo" />
+        <p-sortIcon field="indice" />
       </th>
       <th class="table-col-10">Fondeo</th>
       <th class="table-col-7" pSortableColumn="fechaSolicitud">
@@ -130,7 +130,7 @@
   <ng-template #body let-item>
     <tr>
       <td class="text-sm">{{ item.folio }}</td>
-      <td class="text-sm">{{ item.idFondeo }}</td>
+      <td class="text-sm">{{ item.indice }}</td>
       <td class="text-sm">
         @if (item.isFunded) {
         <p-tag severity="success" [value]="item.fundingPeriodName"></p-tag>
