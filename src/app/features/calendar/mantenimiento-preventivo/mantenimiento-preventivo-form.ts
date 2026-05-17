@@ -7,6 +7,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { SelectItem } from "primeng/api";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
@@ -281,22 +282,18 @@ export class MantenimientoPreventivoForm implements OnInit {
   }
 
   onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-
-    const payload = {
-      ...this.form.getRawValue(),
-      accountingCatalogId: this.form.get("accountingCatalogId").value,
-    };
-
-    const request =
-      this.id === ""
-        ? this.apiResponseS.onPost(`MaintenanceCalendars`, payload)
-        : this.apiResponseS.onPut(`MaintenanceCalendars/${this.id}`, payload);
-
-    request.then((result: boolean) => {
-      result ? this.ref.close(true) : this.submitting.set(false);
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "MaintenanceCalendars",
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => {
+        const { machineryName, providerName, accountingCatalogName, ...rest } =
+          this.form.getRawValue();
+        return rest;
+      },
     });
   }
 }

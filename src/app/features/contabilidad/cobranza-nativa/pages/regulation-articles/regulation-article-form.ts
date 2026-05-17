@@ -7,6 +7,7 @@ import {
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
@@ -77,37 +78,20 @@ export class RegulationArticleForm implements OnInit {
     if (res) this.form.patchValue(res);
   }
 
-  async onSubmit() {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
-    this.submitting.set(true);
-    try {
-      if (this.id) {
-        const payload: UpdateRegulationArticleDTO = {
-          id: this.id,
-          customerId: this.customerId,
-          ...this.form.getRawValue(),
-        };
-        const res = await this.apiResponseS.onPut(
-          Endpoints.AccountingCoi.NativeCollection.RegulationArticles.update(this.id),
-          payload,
-        );
-        if (res) this.ref.close(true);
-      } else {
-        const payload: CreateRegulationArticleDTO = {
-          customerId: this.customerId,
-          ...this.form.getRawValue(),
-        };
-        const res = await this.apiResponseS.onPost(
-          Endpoints.AccountingCoi.NativeCollection.RegulationArticles.create,
-          payload,
-        );
-        if (res) this.ref.close(true);
-      }
-    } finally {
-      this.submitting.set(false);
-    }
+  onSubmit() {
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.AccountingCoi.NativeCollection.RegulationArticles.create,
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => {
+        const raw = this.form.getRawValue();
+        return this.id
+          ? ({ id: this.id, customerId: this.customerId, ...raw } as UpdateRegulationArticleDTO)
+          : ({ customerId: this.customerId, ...raw } as CreateRegulationArticleDTO);
+      },
+    });
   }
 }

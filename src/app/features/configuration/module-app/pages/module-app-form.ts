@@ -16,6 +16,7 @@ import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/cust
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { IModuleAppGetDTO } from "../models/module-app.dto";
@@ -86,22 +87,14 @@ export class ModuleAppForm {
       });
   }
   onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-    this.submitting.set(true);
-
-    if (this.id === "") {
-      this.apiResponseS
-        .onPost(Endpoints.ModuleApps.create, this.form.value)
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    } else {
-      this.apiResponseS
-        .onPut(Endpoints.ModuleApps.update(this.id), this.form.value)
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    }
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.ModuleApps.create,
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+    });
   }
 
   onLoadModuleApp() {

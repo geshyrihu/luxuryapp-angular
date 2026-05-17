@@ -36,8 +36,8 @@ import { IWorkPosition } from "src/app/features/work-position/models/work-positi
 import { JobDescriptionForm } from "src/app/features/work-position/pages/job-description-form";
 import { WorkPositionForm } from "src/app/features/work-position/pages/work-position-form";
 import { WorkPositionHours } from "src/app/features/work-position/pages/work-position-hours";
-import { ActionMenu } from "../../../core/components/action-menu/action-menu";
-import { CustomButton } from "../../../core/components/buttons/web/custom-button";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { EmployeeProviderForm } from "../../provider/pages/employee-provider-form";
 
 @Component({

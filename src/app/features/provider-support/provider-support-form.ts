@@ -115,7 +115,6 @@ export class ProviderSupportForm implements OnInit {
 
   saveProviderId = (item: ISelectItem) => this.form.patchValue({ providerId: item?.value, nameProvider: item?.label });
   saveApplicationRoleId = (item: ISelectItem) => this.form.patchValue({ applicationRoleId: item?.value, applicationRoleName: item?.label });
-  saveApplicationRoleId = (item: ISelectItem) => this.form.patchValue({ applicationRoleId: item?.value, applicationRoleName: item?.label });
   saveApplicationUserId = (item: ISelectItem) => this.form.patchValue({ applicationUserId: item?.value, applicationUser: item?.label });
   saveCustomerId = (item: ISelectItem) => this.form.patchValue({ customerId: item?.value, nameCustomer: item?.label });
 

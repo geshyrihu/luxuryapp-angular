@@ -15,6 +15,7 @@ import { PageTitleReport } from "src/app/core/components/title-page-report/page-
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
+import { StorageService } from "src/app/core/services/storage.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { MenuReportMaintenance } from "./menu-report-maintenance";
@@ -39,6 +40,7 @@ import { MenuReportMaintenance } from "./menu-report-maintenance";
 export class MaintenanceReports {
   apiResponseS = inject(ApiResponseService);
   dateS = inject(DateService);
+  private storageS = inject(StorageService);
   PeriodMonthService = inject(PeriodMonthService);
   customerIdS = inject(CustomerIdService);
   tableScrollHeightS = inject(TableScrollHeightService);
@@ -54,7 +56,7 @@ export class MaintenanceReports {
   constructor() {
     addIcons({ documentTextOutline });
     // Inicializar periodo desde localStorage
-    const savedPeriodo = localStorage.getItem(this.storageKey);
+    const savedPeriodo = this.storageS.retrieve(this.storageKey);
     if (savedPeriodo) {
       this.periodo.set(savedPeriodo);
       this.PeriodMonthService.setPeriodo(savedPeriodo);
@@ -71,7 +73,7 @@ export class MaintenanceReports {
 
   onFilterPeriod(periodo: string) {
     this.PeriodMonthService.setPeriodo(periodo);
-    localStorage.setItem(this.storageKey, periodo);
+    this.storageS.store(this.storageKey, periodo);
     this.periodo.set(periodo);
   }
 

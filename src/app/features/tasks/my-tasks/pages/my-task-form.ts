@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal, ViewChild } from "@angular/core";
+import { Component, inject, OnInit, signal, viewChild } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { AvatarModule } from "primeng/avatar";
 import { CardModule } from "primeng/card";
@@ -36,8 +36,7 @@ import { TaskGroupService } from "../../task.service";
   ],
 })
 export class MyTaskForm implements OnInit {
-  @ViewChild(ImageAnalysisDialogComponent)
-  visionDialog!: ImageAnalysisDialogComponent;
+  visionDialog = viewChild.required(ImageAnalysisDialogComponent);
 
   private customerIdS = inject(CustomerIdService);
   private authS = inject(AuthService);
@@ -135,7 +134,7 @@ export class MyTaskForm implements OnInit {
   }
 
   openVision() {
-    this.visionDialog.show();
+    this.visionDialog().show();
   }
 
   onVisionResult(analysis: string) {

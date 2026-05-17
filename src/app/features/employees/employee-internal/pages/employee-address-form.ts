@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -30,7 +30,7 @@ export class EmployeeAddressForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
   formB = inject(FormBuilder);
-  @Input() employeeId: string = "";
+  employeeId = input<string>("");
 
   addressId: string = "";
   submitting = signal(false);
@@ -71,7 +71,7 @@ export class EmployeeAddressForm implements OnInit {
     this.onLoadData();
   }
   onLoadData() {
-    const urlApi = `EmployeeInternal/AddressData/${this.employeeId}`;
+    const urlApi = `EmployeeInternal/AddressData/${this.employeeId()}`;
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue(result);
       this.addressId = result.id;

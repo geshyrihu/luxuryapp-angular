@@ -13,7 +13,7 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomInputMaskSignal } from "../../../../../core/components/inputs/web/custom-input-mask-signal";
+import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
 import {
   IncidentWitnessAddOrEditDTO,
   IncidentWitnessDetailDTO,

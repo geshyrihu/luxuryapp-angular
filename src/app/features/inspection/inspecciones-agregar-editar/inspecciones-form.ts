@@ -17,6 +17,7 @@ import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/cust
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
@@ -179,26 +180,15 @@ export class InspeccionesForm implements OnInit {
   onSubmit() {
     this.form.markAllAsTouched();
     this.form.updateValueAndValidity();
-
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-
-    const formValue = this.form.getRawValue();
-
-    if (this.id === "") {
-      this.apiResponseS
-        .onPost(Endpoints.Inspections.create, formValue)
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    } else {
-      this.apiResponseS
-        .onPut(Endpoints.Inspections.update(this.id), formValue)
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    }
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.Inspections.create,
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => this.form.getRawValue(),
+    });
   }
 
   weeklyDaysValidator(control: AbstractControl): ValidationErrors | null {

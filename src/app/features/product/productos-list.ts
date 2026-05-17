@@ -4,11 +4,10 @@ import {
   inject,
   OnInit,
   signal,
-  ViewChild,
 } from "@angular/core";
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { Table, TableModule } from "primeng/table";
+import { TableModule } from "primeng/table";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -65,7 +64,6 @@ export class ProductosList implements OnInit {
 
   ref: DynamicDialogRef;
   scrollHeight = this.tableScrollHeightS.scrollHeight;
-  @ViewChild("dt") dt: Table; // Get a reference to the PrimeNG table
 
   account_id: string = this.authS.userToken.infoUserAuthDTO.applicationUserId;
 

@@ -23,7 +23,7 @@ import {
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { CustomBtnActiveDesactive } from "../../../core/components/buttons/web/custom-button-active-desactive";
+import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/custom-button-active-desactive";
 import { PolicyContractForm } from "./policy-contract-form";
 @Component({
   selector: "app-policy-contract-list",

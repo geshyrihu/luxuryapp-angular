@@ -61,6 +61,7 @@ export class CustomInputSelectSignal
   valueDefault = input<any>(null);
   showClear = input<boolean>(true);
   filter = input<boolean>(false);
+  loading = input<boolean>(false);
   filterBy = input<string>("label");
   optionLabel = input<string>("label");
   optionValue = input<string>("value");

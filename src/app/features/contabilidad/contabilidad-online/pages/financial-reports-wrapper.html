@@ -10,13 +10,25 @@
       >
         <div class="flex align-items-center gap-3 flex-1 min-w-0">
           <div
-            class="surface-card border-round-xl border-1 surface-border flex align-items-center justify-content-center overflow-hidden"
-            style="width: 72px; height: 72px; flex-shrink: 0"
+            class="surface-card border-round-xl border-1 surface-border inline-flex align-items-center justify-content-center p-2"
+            style="
+              width: auto;
+              height: auto;
+              max-height: 72px;
+              flex-shrink: 0;
+            "
           >
             <img
               [src]="customerLogo()"
               [alt]="customerName()"
-              style="width: 100%; height: 100%; object-fit: cover"
+              style="
+                display: block;
+                width: auto;
+                height: auto;
+                max-width: 160px;
+                max-height: 56px;
+                object-fit: contain;
+              "
             />
           </div>
 
@@ -155,6 +167,7 @@
             ><i class="pi pi-money-bill mr-2"></i>Flujo Efectivo</p-tab
           >
           <p-tab [value]="7"><i class="pi pi-users mr-2"></i>Cobranza</p-tab>
+          <p-tab [value]="8"><i class="pi pi-wallet mr-2"></i>Presupuesto</p-tab>
         </p-tablist>
 
         <p-tabpanels>
@@ -181,6 +194,9 @@
           </p-tabpanel>
           <p-tabpanel [value]="7" class="p-4 pt-5">
             <app-analisis-cobranza />
+          </p-tabpanel>
+          <p-tabpanel [value]="8" class="p-4 pt-5">
+            <app-presupuesto-contabilidad />
           </p-tabpanel>
         </p-tabpanels>
       </p-tabs>

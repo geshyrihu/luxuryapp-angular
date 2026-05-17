@@ -5,7 +5,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { AiService } from "src/app/core/services/ai.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomButton } from "../../../core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/buttons/web";
 import { BudgetProposalItemDTO } from "./models/budget-proposal.model";
 @Component({
   selector: "app-budget-forecast-dialog",

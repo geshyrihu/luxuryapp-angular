@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject } from "@angular/core";
+import { Component, inject, input, output } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
@@ -16,13 +16,10 @@ export class SolicitudCompraDetalle {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   solicitudCompraService = inject(SolicitudCompraService);
-  @Input()
-  SolicitudCompraDetalle: any[] = [];
-  @Input()
-  solicitudCompraId: string = "";
+  SolicitudCompraDetalle = input<any[]>([]);
+  solicitudCompraId = input<string>("");
 
-  @Output()
-  updateData = new EventEmitter<void>();
+  updateData = output<void>();
   ref: DynamicDialogRef;
 
   editProduct(data: any) {
@@ -30,7 +27,7 @@ export class SolicitudCompraDetalle {
       .openDialog(
         ProductoEdit,
         {
-          solicitudCompraId: this.solicitudCompraId,
+          solicitudCompraId: this.solicitudCompraId(),
           id: data.id,
         },
         "Editar Producto",

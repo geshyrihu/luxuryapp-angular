@@ -2,24 +2,18 @@
   <!-- Filtros -->
   <div class="card p-4">
     <div class="flex flex-wrap align-items-end gap-3">
-      <div class="flex flex-column gap-1">
-        <label class="text-sm font-medium text-500">Fecha Inicio</label>
-        <p-datepicker
-          [(ngModel)]="startDate"
-          dateFormat="dd/mm/yy"
-          [showIcon]="true"
-          styleClass="w-12rem"
-        />
-      </div>
-      <div class="flex flex-column gap-1">
-        <label class="text-sm font-medium text-500">Fecha Fin</label>
-        <p-datepicker
-          [(ngModel)]="endDate"
-          dateFormat="dd/mm/yy"
-          [showIcon]="true"
-          styleClass="w-12rem"
-        />
-      </div>
+      <custom-input-date-signal
+        [control]="startDateCtrl"
+        label="Fecha Inicio"
+        id="start-date"
+        [noMargin]="true"
+      />
+      <custom-input-date-signal
+        [control]="endDateCtrl"
+        label="Fecha Fin"
+        id="end-date"
+        [noMargin]="true"
+      />
       <div class="flex gap-2">
         <custom-button
           label="Filtrar"

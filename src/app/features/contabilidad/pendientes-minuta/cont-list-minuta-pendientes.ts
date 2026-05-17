@@ -6,7 +6,6 @@ import { addIcons } from "ionicons";
 import { alertCircleOutline } from "ionicons/icons";
 import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { MessageService } from "primeng/api";
-import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
@@ -27,7 +26,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service";
-import { CustomButton } from "../../../core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/buttons/web";
 import { MeetingSeguimientoEdit } from "../../juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "../../juntas-comite/junta-comite-minutas/minuta-detalle-form";
 import { ContMinutaSeguimientos } from "./cont-minuta-seguimientos";
@@ -58,7 +57,6 @@ export class ContListMinutaPendientes implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   authS = inject(AuthService);
-  dialogS = inject(DialogService);
   messageS = inject(MessageService);
   pdfS = inject(PdfGeneratorService);
   dataSignal = signal<any[]>([]);
@@ -71,7 +69,6 @@ export class ContListMinutaPendientes implements OnInit {
   loading = signal(true);
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  ref: DynamicDialogRef;
   statusFiltroControl = new FormControl<number>(0);
 
   constructor() {

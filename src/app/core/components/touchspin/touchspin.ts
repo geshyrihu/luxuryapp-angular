@@ -1,4 +1,4 @@
-import { Component, EventEmitter, input, Output } from "@angular/core";
+import { Component, input, output } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { InputGroupModule } from "primeng/inputgroup";
@@ -88,7 +88,7 @@ export class Touchspin {
   outlined = input<boolean>(true);
 
   // <--- Outputs --->
-  @Output() valueChanged = new EventEmitter<number>();
+  valueChanged = output<number>();
 
   increment(): void {
     if (this.disabled() || this.isMax()) return;

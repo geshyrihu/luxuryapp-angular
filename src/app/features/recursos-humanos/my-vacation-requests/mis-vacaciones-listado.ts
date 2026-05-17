@@ -20,6 +20,9 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { getStatusSeverity } from "src/app/features/recursos-humanos/helpers/status-severity.helper";
 import { VacationRequestMyDTO } from "src/app/features/recursos-humanos/interfaces/vacation-request.interface";
 import { VacacionesForm } from "./vacaciones-form";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 @Component({
   selector: "app-mis-vacaciones-listado",
   templateUrl: "./mis-vacaciones-listado.html",
@@ -32,6 +35,9 @@ import { VacacionesForm } from "./vacaciones-form";
     CustomButtonDelete,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
+    ActionMenu,
+    DataViewMobile,
+    IonButtonItem,
   ],
 })
 export class MisVacacionesListado implements OnInit {

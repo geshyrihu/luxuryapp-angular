@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { SelectModule } from "primeng/select";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
@@ -21,10 +21,8 @@ export class AdministrationFormList implements OnInit {
   // Usar FormBuilder o simplemente FormControl
   administrationparticipante = new FormControl<string | null>(null);
 
-  @Input()
-  customerId: string;
-  @Input()
-  meetingId: any;
+  customerId = input<string>();
+  meetingId = input<any>();
 
   cb_Administration = signal<any[]>([]);
   listaParticipantesAdministration = signal<any[]>([]);
@@ -36,7 +34,7 @@ export class AdministrationFormList implements OnInit {
 
   onLoadCB() {
     const urlApi = `GetListAdministracionMinuta/${this.customerIdS.customerId()}/${
-      this.meetingId
+      this.meetingId()
     }`;
     this.apiResponseS.onGetSelectItem(urlApi).then((result: any) => {
       this.cb_Administration.set(result);
@@ -47,7 +45,7 @@ export class AdministrationFormList implements OnInit {
     if (!this.administrationparticipante.value) return;
 
     const urlApi = `MeetingAdministracion/AgregarParticipantesAdministracion/${
-      this.meetingId
+      this.meetingId()
     }/${this.administrationparticipante.value}/${1}`;
 
     this.apiResponseS.onPost(urlApi).then(() => {
@@ -67,7 +65,7 @@ export class AdministrationFormList implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `MeetingAdministracion/ParticipantesAdministracion/${this.meetingId}`;
+    const urlApi = `MeetingAdministracion/ParticipantesAdministracion/${this.meetingId()}`;
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.listaParticipantesAdministration.set(result);
     });

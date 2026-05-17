@@ -9,7 +9,6 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import {
-  DialogService,
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "primeng/dynamicdialog";
@@ -181,10 +180,10 @@ export class TaskForm implements OnInit {
 
     this.cb_priority.set(priority);
     this.cb_ticket_group.set(
-      (workGroups as any[]).map((g) => ({ label: g.nameGroup, value: g.id })),
+      (workGroups ?? []).map((g) => ({ label: g.nameGroup, value: g.id })),
     );
     this.workGroupLegalMap = new Map(
-      (workGroups as any[]).map((g) => [g.id, g.isLegalGroup ?? false]),
+      (workGroups ?? []).map((g) => [g.id, g.isLegalGroup ?? false]),
     );
   }
 
@@ -273,7 +272,7 @@ export class TaskForm implements OnInit {
 
   private async loadLegalMatters(): Promise<void> {
     if (this.cb_legal_matter().length > 0) return;
-    const result = await this.apiResponseS.onGetList<ISelectItem[]>(
+    const result = await this.apiResponseS.onGetSelectItem<ISelectItem[]>(
       Endpoints.TaskLegal.selectForAddTicket,
     );
     this.cb_legal_matter.set(result as ISelectItem[]);
@@ -285,8 +284,6 @@ export class TaskForm implements OnInit {
       assignee: item?.label,
     });
   };
-
-  private dialogService = inject(DialogService);
 
   openFollowUp() {
     this.dialogHandlerS.openDialog(

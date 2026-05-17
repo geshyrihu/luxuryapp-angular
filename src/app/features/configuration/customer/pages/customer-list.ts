@@ -4,7 +4,6 @@ import {
   inject,
   OnInit,
   signal,
-  ViewChild,
 } from "@angular/core";
 import { IonAvatar } from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
@@ -17,7 +16,7 @@ import {
 } from "ionicons/icons";
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { Table, TableModule } from "primeng/table";
+import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
   IonButtonActiveDesactive,
@@ -82,8 +81,6 @@ export class CustomerList implements OnInit {
   });
 
   ref: DynamicDialogRef;
-  @ViewChild("dt") dt: Table; // Get a reference to the PrimeNG table
-
   title = "Activos";
   state = true;
   mostrar = true;

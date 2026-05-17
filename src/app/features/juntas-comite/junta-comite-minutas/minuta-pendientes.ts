@@ -12,6 +12,7 @@ import {
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DateService } from "src/app/core/services/date.service";
 
 @Component({
   selector: "app-minuta-pendientes",
@@ -21,6 +22,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 export class MinutaPendientes {
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
+  private dateS = inject(DateService);
   data: any[] = [];
   globalFilterFields: string[] = [];
   loading = signal(true);
@@ -121,7 +123,7 @@ export class MinutaPendientes {
     const buffer = await workbook.xlsx.writeBuffer();
     saveAs(
       new Blob([buffer]),
-      `Pendientes_Minutas_${new Date().toISOString().slice(0, 10)}.xlsx`,
+      `Pendientes_Minutas_${this.dateS.getDateNow()}.xlsx`,
     );
   }
 }

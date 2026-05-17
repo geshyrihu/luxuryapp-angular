@@ -10,6 +10,7 @@ import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/cust
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 
@@ -77,30 +78,21 @@ export class ElevatorSparePartsChangeForm implements OnInit {
   }
 
   onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-    // Convertir la fecha a formato ISO 8601 utilizando DatePipe
-    const formattedDate = this.datePipe.transform(
-      this.form.value.changeDate,
-      "yyyy-MM-dd",
-    );
-
-    const formValue = { ...this.form.getRawValue() };
-    formValue.changeDate = formattedDate;
-
-    if (this.id === "") {
-      this.apiResponseS
-        .onPost(`elevatorsparepartschange`, formValue)
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    } else {
-      this.apiResponseS
-        .onPut(`elevatorsparepartschange/${this.id}`, formValue)
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    }
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "elevatorsparepartschange",
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => {
+        const formValue = { ...this.form.getRawValue() };
+        formValue.changeDate = this.datePipe.transform(
+          this.form.value.changeDate,
+          "yyyy-MM-dd",
+        );
+        return formValue;
+      },
+    });
   }
 }

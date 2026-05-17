@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Input, inject } from "@angular/core";
+import { Component, DestroyRef, inject, input } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
@@ -47,7 +47,7 @@ export class FilterRequests {
 
   statusRequestControl = new FormControl<string>("Pendiente");
 
-  @Input() noCandidates: number = 0;
+  noCandidates = input<number>(0);
   cb_status_request: ISelectItem[] = [
     { value: "", label: "Mostrar Todos" },
     { value: "Pendiente", label: "Pendiente" },
@@ -56,8 +56,8 @@ export class FilterRequests {
     { value: "Cancelado", label: "Cancelada" },
   ];
 
-  @Input() apiUrl: string;
-  @Input() nameFile: string;
+  apiUrl = input.required<string>();
+  nameFile = input.required<string>();
 
   private destroyRef = inject(DestroyRef);
 
@@ -69,7 +69,7 @@ export class FilterRequests {
 
   exportToExcel(): void {
     this.dataConnectorS
-      .getFile(this.apiUrl, this.filterRequestsService.getParams())
+      .getFile(this.apiUrl(), this.filterRequestsService.getParams())
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (resp: Blob) => {
@@ -77,7 +77,7 @@ export class FilterRequests {
           const blob = new Blob([resp], {
             type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
           });
-          saveAs(blob, this.nameFile);
+          saveAs(blob, this.nameFile());
           console.log("File saved successfully.");
         },
         error: (error) => {

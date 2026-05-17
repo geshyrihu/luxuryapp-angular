@@ -6,7 +6,7 @@ import { CustomButton } from "src/app/core/components/buttons/web";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
-import { CustomInputTextAreaSignal } from "../../../../../core/components/inputs/web/custom-input-textarea-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { EFinancialApprovalOperationType } from "../../models/enums";
 import { FinancialApprovalResponseDTO } from "../../models/financial-approval.dto";
 

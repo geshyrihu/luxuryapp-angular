@@ -8,7 +8,7 @@ import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
 import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
@@ -42,7 +42,6 @@ import { ProviderSupportForm } from "./provider-support-form";
 })
 export class ProviderSupport implements OnInit {
   authS = inject(AuthService);
-  dialogS = inject(DialogService);
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);

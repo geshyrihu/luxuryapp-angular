@@ -5,6 +5,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-categoria-asunto-legal-form",
@@ -46,26 +47,15 @@ export class CategoriaAsuntoLegalForm {
   }
 
   onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-    this.submitting.set(true);
-
-    const formValue = this.form.getRawValue();
-
-    // name is strict string. id is string.
-
-    if (this.id === "") {
-      this.apiResponseS
-        .onPost(Endpoints.LegalMatters.createCategory, formValue)
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    } else {
-      this.apiResponseS
-        .onPut(Endpoints.LegalMatters.updateCategory(this.id), formValue)
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    }
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.LegalMatters.createCategory,
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => this.form.getRawValue(),
+    });
   }
 }
 

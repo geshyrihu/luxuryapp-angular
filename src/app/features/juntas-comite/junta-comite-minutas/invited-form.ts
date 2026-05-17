@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
@@ -20,10 +20,8 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 export class InvitedForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
   private config = inject(DynamicDialogConfig);
-  @Input()
-  customerId: string;
-  @Input()
-  meetingId: any;
+  customerId = input<string>();
+  meetingId = input<any>();
 
   listaInvitados = signal<any[]>([]);
   invitado = new FormControl<string | null>(null);
@@ -35,7 +33,7 @@ export class InvitedForm implements OnInit {
   onSubmit() {
     if (!this.invitado.value) return;
 
-    const urlApi = `MeetingInvitado/AgregarParticipantesInvitado/${this.meetingId}/${this.invitado.value}`;
+    const urlApi = `MeetingInvitado/AgregarParticipantesInvitado/${this.meetingId()}/${this.invitado.value}`;
     this.apiResponseS.onPost(urlApi).then(() => {
       this.onLoadData();
       this.invitado.reset();
@@ -49,7 +47,7 @@ export class InvitedForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `MeetingInvitado/ParticipantesInvitado/${this.meetingId}`;
+    const urlApi = `MeetingInvitado/ParticipantesInvitado/${this.meetingId()}`;
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.listaInvitados.set(result);
     });

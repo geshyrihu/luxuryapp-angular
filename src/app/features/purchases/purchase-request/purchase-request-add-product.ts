@@ -1,14 +1,12 @@
 import { CommonModule } from "@angular/common";
 import {
   Component,
-  EventEmitter,
-  inject,
-  Input,
-  OnChanges,
   OnInit,
-  Output,
+  effect,
+  inject,
+  input,
+  output,
   signal,
-  SimpleChanges,
 } from "@angular/core";
 import {
   FormControl,
@@ -47,7 +45,7 @@ interface IPurchaseRequestAddProductForm {
     CustomButtonSave,
   ],
 })
-export class PurchaseRequestAddProduct implements OnInit, OnChanges {
+export class PurchaseRequestAddProduct implements OnInit {
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
 
@@ -55,10 +53,21 @@ export class PurchaseRequestAddProduct implements OnInit, OnChanges {
   products = signal<ISelectItem[]>([]);
   cb_measurement_units = signal<ISelectItem[]>([]);
 
-  @Input() purchaseRequestId: string = "";
-  @Input() productDataToEdit: any | null = null;
+  purchaseRequestId = input<string>("");
+  productDataToEdit = input<any | null>(null);
 
-  @Output() updateData = new EventEmitter<void>();
+  updateData = output<void>();
+
+  constructor() {
+    effect(() => {
+      const product = this.productDataToEdit();
+      if (product) {
+        this.loadProductForEdit(product);
+      } else {
+        this.resetForm();
+      }
+    }, { allowSignalWrites: true });
+  }
 
   // Definición estricta del formulario con new FormGroup
   form: FormGroup<IPurchaseRequestAddProductForm> =
@@ -83,20 +92,6 @@ export class PurchaseRequestAddProduct implements OnInit, OnChanges {
 
   async ngOnInit(): Promise<void> {
     await this.onLoadMeasurementUnits();
-
-    if (this.productDataToEdit) {
-      this.loadProductForEdit(this.productDataToEdit);
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.productDataToEdit) {
-      if (changes.productDataToEdit.currentValue) {
-        this.loadProductForEdit(changes.productDataToEdit.currentValue);
-      } else {
-        this.resetForm();
-      }
-    }
   }
 
   async onLoadMeasurementUnits(): Promise<void> {
@@ -108,7 +103,7 @@ export class PurchaseRequestAddProduct implements OnInit, OnChanges {
 
   async onLoadProduct(param: string): Promise<void> {
     const result: any = await this.apiResponseS.onGetListNotLoading(
-      `PurchaseRequest/SearchToAddRequest/${this.purchaseRequestId}`,
+      `PurchaseRequest/SearchToAddRequest/${this.purchaseRequestId()}`,
       { param },
     );
 
@@ -165,7 +160,7 @@ export class PurchaseRequestAddProduct implements OnInit, OnChanges {
       productName: null,
       quantity: 1,
       unitId: "",
-      purchaseRequestId: this.purchaseRequestId,
+      purchaseRequestId: this.purchaseRequestId(),
     });
     this.products.set([]);
   }
@@ -197,7 +192,7 @@ export class PurchaseRequestAddProduct implements OnInit, OnChanges {
       productId: this.form.value.productId,
       quantity: this.form.value.quantity,
       unitId: this.form.value.unitId,
-      purchaseRequestId: this.purchaseRequestId,
+      purchaseRequestId: this.purchaseRequestId(),
     };
 
     const endpoint = payload.id

@@ -1,9 +1,8 @@
 import {
   Component,
   computed,
-  EventEmitter,
-  Output,
   inject,
+  output,
 } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import {
@@ -22,7 +21,7 @@ import { MenuService } from "src/app/core/services/menu.service";
   imports: [RouterModule, IonAccordion, IonAccordionGroup, IonList],
 })
 export class HomeMenu {
-  @Output() onCloseMenu = new EventEmitter<void>();
+  onCloseMenu = output<void>();
 
   menuService = inject(MenuService);
   customerIdS = inject(CustomerIdService);

@@ -14,6 +14,9 @@ import { tablePrimeNgRows, rowsPerPageOptions, globalFilterFields } from "src/ap
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ContractTemplateListDTO } from "../models/contract-template.dto";
 import { ContractTemplateFormComponent } from "./contract-template-form";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 
 @Component({
   selector: "app-contract-template-list",
@@ -26,6 +29,9 @@ import { ContractTemplateFormComponent } from "./contract-template-form";
     CustomButtonEdit,
     CustomButtonDelete,
     CustomButtonItem,
+    DataViewMobile,
+    ActionMenu,
+    IonButtonItem,
   ],
 })
 export class ContractTemplateList implements OnInit {

@@ -7,6 +7,7 @@ import {
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import {
   CreateCobranzaPaymentDTO,
@@ -126,28 +127,20 @@ export class PaymentForm implements OnInit {
     }
   }
 
-  async onSubmit() {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
-    this.submitting.set(true);
-    try {
-      if (this.id) {
-        const payload: UpdateCobranzaPaymentDTO = { id: this.id, ...this.form.getRawValue() };
-        const res = await this.apiResponseS.onPut(
-          Endpoints.AccountingCoi.NativeCollection.Payments.update(this.id), payload,
-        );
-        if (res) this.ref.close(true);
-      } else {
-        const payload: CreateCobranzaPaymentDTO = { customerId: this.customerId, ...this.form.getRawValue() };
-        const res = await this.apiResponseS.onPost(
-          Endpoints.AccountingCoi.NativeCollection.Payments.create, payload,
-        );
-        if (res) this.ref.close(true);
-      }
-    } finally {
-      this.submitting.set(false);
-    }
+  onSubmit() {
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.AccountingCoi.NativeCollection.Payments.create,
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => {
+        const raw = this.form.getRawValue();
+        return this.id
+          ? ({ id: this.id, ...raw } as UpdateCobranzaPaymentDTO)
+          : ({ customerId: this.customerId, ...raw } as CreateCobranzaPaymentDTO);
+      },
+    });
   }
 }

@@ -13,10 +13,7 @@ import { MessageModule } from "primeng/message";
 import { Table, TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -33,6 +30,7 @@ import {
   CuentaAspelTercerNivelDTO,
 } from "../models/presupuesto-shared.models";
 import { BudgetRuleList } from "../presupuesto-propuesta/budget-rule-list/budget-rule-list";
+import { PresupuestoWebAspelService } from "./presupuesto-web-aspel.service";
 import {
   ASPEL_MONTHS,
   getCuentaMonthValue,
@@ -42,7 +40,6 @@ import {
   splitAspelAccounts,
 } from "./presupuesto-web-aspel.shared";
 import { PurchaseHistory } from "./purchase-history";
-import { PresupuestoWebAspelService } from "./presupuesto-web-aspel.service";
 
 @Component({
   selector: "app-presupuesto-aspel-ejercicio-fiscal",
@@ -50,11 +47,8 @@ import { PresupuestoWebAspelService } from "./presupuesto-web-aspel.service";
     CommonModule,
     FormsModule,
     TableModule,
-    CustomInputSelectSignal,
     MessageModule,
     TagModule,
-    CustomButton,
-    CustomSearchInput,
     DataViewMobile,
     TooltipModule,
   ],
@@ -119,7 +113,11 @@ export class PresupuestoAspelEjercicioFiscal {
       if (leaf.cuenta_Padre) neededParentCodes.add(leaf.cuenta_Padre);
     }
     for (const c of all) {
-      if (c.esFilaAgrupadora && neededParentCodes.has(c.codigo_Cuenta) && c.cuenta_Padre) {
+      if (
+        c.esFilaAgrupadora &&
+        neededParentCodes.has(c.codigo_Cuenta) &&
+        c.cuenta_Padre
+      ) {
         neededParentCodes.add(c.cuenta_Padre);
       }
     }
@@ -144,7 +142,6 @@ export class PresupuestoAspelEjercicioFiscal {
         this.cargarPresupuesto(customerId);
       }
     });
-
   }
 
   cargarPresupuesto(customerId: string): void {
@@ -333,17 +330,15 @@ export class PresupuestoAspelEjercicioFiscal {
   getSumaPresupuestoMesesVisiblesCuenta(
     cuenta: CuentaAspelTercerNivelDTO,
   ): number {
-    return this.sharedS.mesesSeleccionados().reduce(
-      (sum, mes) => sum + this.getPresupuestoDelMes(cuenta, mes),
-      0,
-    );
+    return this.sharedS
+      .mesesSeleccionados()
+      .reduce((sum, mes) => sum + this.getPresupuestoDelMes(cuenta, mes), 0);
   }
 
   getSumaGastoMesesVisiblesCuenta(cuenta: CuentaAspelTercerNivelDTO): number {
-    return this.sharedS.mesesSeleccionados().reduce(
-      (sum, mes) => sum + this.getMontoMes(cuenta, mes),
-      0,
-    );
+    return this.sharedS
+      .mesesSeleccionados()
+      .reduce((sum, mes) => sum + this.getMontoMes(cuenta, mes), 0);
   }
 
   getPorcentajeGastadoMesesVisiblesCuenta(
@@ -355,17 +350,15 @@ export class PresupuestoAspelEjercicioFiscal {
   }
 
   getSumaPresupuestoMesesVisibles(): number {
-    return this.sharedS.mesesSeleccionados().reduce(
-      (sum, mes) => sum + this.getTotalPresupuestoDelMes(mes),
-      0,
-    );
+    return this.sharedS
+      .mesesSeleccionados()
+      .reduce((sum, mes) => sum + this.getTotalPresupuestoDelMes(mes), 0);
   }
 
   getSumaGastoMesesVisibles(): number {
-    return this.sharedS.mesesSeleccionados().reduce(
-      (sum, mes) => sum + this.getTotalMontoPorMes(mes),
-      0,
-    );
+    return this.sharedS
+      .mesesSeleccionados()
+      .reduce((sum, mes) => sum + this.getTotalMontoPorMes(mes), 0);
   }
 
   getPorcentajeGastadoMesesVisibles(): number {

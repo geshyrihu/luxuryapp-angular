@@ -10,10 +10,11 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ICfdiUseAddOrEditDTO, ICfdiUseDTO } from "../models/cfdi-use.dto";
+import { ICfdiUseAddOrEditDTO } from "../models/cfdi-use.dto";
 
 interface ICfdiUseForm {
   id: FormControl<string | null>;
@@ -69,22 +70,14 @@ export class CfdiUseForm implements OnInit {
   }
 
   onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-    if (!this.id) {
-      this.apiResponseS
-        .onPost<ICfdiUseDTO>(Endpoints.CfdiUses.create, this.form.value)
-        .then((result) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    } else {
-      this.apiResponseS
-        .onPut<ICfdiUseDTO>(Endpoints.CfdiUses.update(this.id), this.form.value)
-        .then((result) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    }
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.CfdiUses.create,
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+    });
   }
 }
 

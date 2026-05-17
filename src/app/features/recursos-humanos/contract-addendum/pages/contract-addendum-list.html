@@ -55,4 +55,28 @@
       <primeng-custom-table-footer [data]="items()" />
     </ng-template>
   </p-table>
+
+  <app-data-view-mobile
+    [dt]="dt"
+    [data]="items()"
+    (add)="onModalForm({ id: '', title: 'Nueva Adenda' })"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ion-item lines="full">
+        <ion-label>
+          <h2 class="font-bold">{{ item.addendumNumber }} — {{ item.title }}</h2>
+          <p class="text-sm text-500">{{ item.addendumType }}</p>
+          <p class="text-sm text-500">Efectiva: {{ item.effectiveDate | date:'dd/MM/yyyy' }}</p>
+          <p class="text-sm">
+            <span [class]="'badge ' + getStatusBadge(item.addendumStatus)">{{ item.addendumStatus }}</span>
+          </p>
+        </ion-label>
+        <app-action-menu slot="end">
+          <ng-container actions>
+            <ion-button-item label="Editar" iconName="create-outline" (clicked)="onEdit(item)" />
+          </ng-container>
+        </app-action-menu>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
 </div>

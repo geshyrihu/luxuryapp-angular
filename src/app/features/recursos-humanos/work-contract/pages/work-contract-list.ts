@@ -1,5 +1,5 @@
 import { DatePipe } from "@angular/common";
-import { Component, inject, Input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
@@ -12,6 +12,9 @@ import { tablePrimeNgRows, rowsPerPageOptions, globalFilterFields } from "src/ap
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 import { WorkContractListDTO } from "../models/work-contract.dto";
 import { WorkContractDetailComponent } from "./work-contract-detail";
 import { WorkContractFormComponent } from "./work-contract-form";
@@ -27,10 +30,13 @@ import { WorkContractFormComponent } from "./work-contract-form";
     CustomButtonEdit,
     CustomButtonDelete,
     CustomButtonItem,
+    DataViewMobile,
+    ActionMenu,
+    IonButtonItem,
   ],
 })
 export class WorkContractList implements OnInit {
-  @Input() employeeId?: string;
+  employeeId = input<string>();
 
   apiS = inject(ApiResponseService);
   dialogS = inject(DialogHandlerService);
@@ -52,8 +58,8 @@ export class WorkContractList implements OnInit {
   }
 
   onLoadData(): void {
-    const endpoint = this.employeeId
-      ? Endpoints.HR.WorkContract.byEmployee(this.employeeId)
+    const endpoint = this.employeeId()
+      ? Endpoints.HR.WorkContract.byEmployee(this.employeeId())
       : Endpoints.HR.WorkContract.getAll;
     this.apiS.onGetList<WorkContractListDTO[]>(endpoint).then((resp) => {
       if (resp) this.items.set(resp);
@@ -61,9 +67,9 @@ export class WorkContractList implements OnInit {
   }
 
   onModalForm(data: { id: string; title: string }): void {
-    const prefilledItem = this.employeeId ? { employeeId: this.employeeId } : null;
+    const prefilledItem = this.employeeId() ? { employeeId: this.employeeId() } : null;
     this.dialogS
-      .openDialog(WorkContractFormComponent, { data: { item: prefilledItem, employeeId: this.employeeId } }, data.title, DialogSize.lg)
+      .openDialog(WorkContractFormComponent, { data: { item: prefilledItem, employeeId: this.employeeId() } }, data.title, DialogSize.lg)
       .then(() => this.onLoadData());
   }
 

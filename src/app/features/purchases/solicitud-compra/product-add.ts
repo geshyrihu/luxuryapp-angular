@@ -1,11 +1,10 @@
 import { CommonModule } from "@angular/common";
 import {
   Component,
-  EventEmitter,
-  Input,
   OnInit,
-  Output,
   inject,
+  input,
+  output,
   signal,
 } from "@angular/core";
 import {
@@ -72,8 +71,8 @@ export class ProductAdd implements OnInit {
   authS = inject(AuthService);
   private dialogHandlerS = inject(DialogHandlerService);
 
-  @Input() solicitudCompraId: string = "";
-  @Output() updateData = new EventEmitter<void>();
+  solicitudCompraId = input<string>("");
+  updateData = output<void>();
 
   cb_measurement_units = signal<ISelectItem[]>([]);
   products = signal<IProductSuggestion[]>([]);
@@ -120,7 +119,7 @@ export class ProductAdd implements OnInit {
   onLoadProduct(param: string) {
     this.apiResponseS
       .onGetListNotLoading(
-        `SolicitudCompraDetalle/SearchToAddRequest/${this.solicitudCompraId}`,
+        `SolicitudCompraDetalle/SearchToAddRequest/${this.solicitudCompraId()}`,
         {
           param: param,
         },
@@ -164,7 +163,7 @@ export class ProductAdd implements OnInit {
     this.dialogHandlerS
       .openDialog(
         ProductModalAdd,
-        { solicitudCompraId: this.solicitudCompraId, id: "" },
+        { solicitudCompraId: this.solicitudCompraId(), id: "" },
         "Agregar",
         this.dialogHandlerS.sizeFull,
       )
@@ -190,7 +189,7 @@ export class ProductAdd implements OnInit {
       productoId: formVal.productoId,
       cantidad: formVal.cantidad,
       unidadMedidaId: formVal.unidadMedidaId,
-      solicitudCompraId: this.solicitudCompraId,
+      solicitudCompraId: this.solicitudCompraId(),
       applicationUserId: this.authS.applicationUserId,
     };
 

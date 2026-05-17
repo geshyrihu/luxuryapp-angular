@@ -14,6 +14,9 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ContractAddendumListDTO } from "../models/contract-addendum.dto";
 import { ContractAddendumFormComponent } from "./contract-addendum-form";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 
 @Component({
   selector: "app-contract-addendum-list",
@@ -26,6 +29,9 @@ import { ContractAddendumFormComponent } from "./contract-addendum-form";
     CustomButtonEdit,
     CustomButtonDelete,
     CustomButtonItem,
+    DataViewMobile,
+    ActionMenu,
+    IonButtonItem,
   ],
 })
 export class ContractAddendumList implements OnInit {

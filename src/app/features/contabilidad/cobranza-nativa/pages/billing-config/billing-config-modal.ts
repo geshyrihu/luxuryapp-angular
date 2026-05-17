@@ -18,7 +18,7 @@ import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/cust
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { CustomButton } from "../../../../../core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/buttons/web";
 import { EBillingMode } from "../../models/enums";
 import { UpsertBillingConfigDTO } from "../../models/billing-config.dto";
 

@@ -11,7 +11,6 @@ import { NgSelectModule } from "@ng-select/ng-select";
 import { DividerModule } from "primeng/divider";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import {
-  DialogService,
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "primeng/dynamicdialog";
@@ -69,7 +68,6 @@ export class AnnouncementAdminForm implements OnInit {
   public config = inject(DynamicDialogConfig);
   private aiService = inject(AiService);
   private swalService = inject(SwalService);
-  private dialogService = inject(DialogService);
   private dialogHandlerS = inject(DialogHandlerService);
 
   // Signals

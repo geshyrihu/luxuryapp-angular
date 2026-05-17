@@ -3,7 +3,7 @@ import {
   Component,
   computed,
   inject,
-  Input,
+  input,
   OnInit,
   signal,
 } from "@angular/core";
@@ -27,6 +27,9 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SwalService } from "src/app/core/services/swal.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 import {
   IncidentDetailDTO,
   IncidentListDTO,
@@ -47,10 +50,13 @@ import { IncidentResolveComponent } from "./incident-resolve";
     CustomButtonDownload,
     CustomButtonItem,
     CustomButtonViewPdf,
+    DataViewMobile,
+    ActionMenu,
+    IonButtonItem,
   ],
 })
 export class IncidentList implements OnInit {
-  @Input() employeeId?: string;
+  employeeId = input<string>();
 
   apiResponseS = inject(ApiResponseService);
   toastS = inject(CustomToastService);
@@ -76,9 +82,9 @@ export class IncidentList implements OnInit {
   }
 
   onLoadData(): void {
-    const endpoint = this.employeeId
+    const endpoint = this.employeeId()
       ? Endpoints.HR.Incident.byEmployee(
-          this.employeeId,
+          this.employeeId(),
           this.customerIdService.customerId(),
         )
       : Endpoints.HR.Incident.getAll(this.customerIdService.customerId());
@@ -100,8 +106,8 @@ export class IncidentList implements OnInit {
   }
 
   onModalForm(data: { id: string; title: string }) {
-    const dialogData = this.employeeId
-      ? { id: "", employeeId: this.employeeId }
+    const dialogData = this.employeeId()
+      ? { id: "", employeeId: this.employeeId() }
       : { id: "" };
     this.dialogHandlerS
       .openDialog(

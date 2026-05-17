@@ -54,4 +54,37 @@
       <primeng-custom-table-footer [data]="items()" />
     </ng-template>
   </p-table>
+
+  <app-data-view-mobile
+    [dt]="dt"
+    [data]="items()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Machote de Contrato' })"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ion-item lines="full">
+        <ion-label>
+          <h2 class="font-bold">{{ item.name }}</h2>
+          <p class="text-sm text-500">{{ item.contractType }} · v{{ item.version }}</p>
+          <p class="text-sm text-500">{{ item.createdAt | date:'dd/MM/yyyy' }}</p>
+          <p class="text-sm">
+            @if (item.isActive) {
+              <span class="badge badge-success">Activo</span>
+            } @else {
+              <span class="badge badge-danger">Inactivo</span>
+            }
+          </p>
+        </ion-label>
+        <app-action-menu slot="end">
+          <ng-container actions>
+            <ion-button-item label="Editar" iconName="create-outline" (clicked)="onEdit(item)" />
+            <ion-button-item
+              [label]="item.isActive ? 'Desactivar' : 'Activar'"
+              iconName="toggle-outline"
+              (clicked)="onToggleActive(item)"
+            />
+          </ng-container>
+        </app-action-menu>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
 </div>

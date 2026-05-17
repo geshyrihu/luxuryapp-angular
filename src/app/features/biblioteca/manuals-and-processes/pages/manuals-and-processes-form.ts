@@ -14,6 +14,7 @@ import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { IManualTemplateDetalleDTO } from "../models/manuals-and-processes.dto";
 
@@ -112,22 +113,14 @@ export class ManualsAndProcessesForm implements OnInit {
     });
   }
 
-  async onSubmit() {
-    if (this.form.invalid) {
-      Object.values(this.form.controls).forEach((c) => c.markAsTouched());
-      return;
-    }
-
-    this.submitting.set(true);
-    const id = this.id();
-    try {
-      const body = this.form.getRawValue();
-      const res = id
-        ? await this.apiS.onPut(Endpoints.ManualsPasos.update(id), body)
-        : await this.apiS.onPost(Endpoints.ManualsPasos.create, body);
-      if (res) this.ref.close(true);
-    } finally {
-      this.submitting.set(false);
-    }
+  onSubmit() {
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiS,
+      endpoint: Endpoints.ManualsPasos.create,
+      id: this.id(),
+      ref: this.ref,
+      submitting: this.submitting,
+    });
   }
 }

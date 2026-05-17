@@ -11,7 +11,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 // PrimeNG Modules
 import { CardModule } from "primeng/card";
-import { DatePickerModule } from "primeng/datepicker";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { DialogModule } from "primeng/dialog";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
@@ -40,7 +40,7 @@ import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-f
     CustomInputTextSignal,
     DialogModule,
     SelectModule,
-    DatePickerModule,
+    CustomInputDateSignal,
     TooltipModule,
     CardModule,
     CustomButtonSave,
@@ -76,8 +76,8 @@ export class SatFundingDetailComponent implements OnInit {
   ];
 
   form = this.formBuilder.nonNullable.group({
-    startDate: [null as Date | null, [Validators.required]],
-    endDate: [null as Date | null, [Validators.required]],
+    startDate: [null as string | null, [Validators.required]],
+    endDate: [null as string | null, [Validators.required]],
   });
 
   ngOnInit(): void {

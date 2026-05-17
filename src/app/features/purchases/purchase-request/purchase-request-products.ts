@@ -1,7 +1,7 @@
 import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
 import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { CommonModule } from "@angular/common";
-import { Component, EventEmitter, inject, Input, Output } from "@angular/core";
+import { Component, inject, input, output } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
@@ -21,16 +21,11 @@ export class PurchaseRequestProducts {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
-  @Input()
-  products: any[] = [];
-  @Input()
-  purchaseRequestId: string = "";
+  products = input<any[]>([]);
+  purchaseRequestId = input<string>("");
 
-  @Output()
-  updateData = new EventEmitter<void>();
-
-  @Output()
-  editProductRequest = new EventEmitter<any>(); // Nuevo Output
+  updateData = output<void>();
+  editProductRequest = output<any>();
 
   ref: DynamicDialogRef;
   scrollHeight = this.tableScrollHeightS.scrollHeight;

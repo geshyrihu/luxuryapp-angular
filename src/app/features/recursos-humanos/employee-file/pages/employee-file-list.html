@@ -81,4 +81,31 @@
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>
   </p-table>
+
+  <app-data-view-mobile
+    [dt]="dt"
+    [data]="dataSignal()"
+    [showAdd]="false"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ion-item lines="full">
+        <ion-label>
+          <h2 class="font-bold">{{ item.fullName }}</h2>
+          <p class="text-sm text-500">No. {{ item.numberEmployee ?? '—' }}</p>
+          <p class="text-sm text-500">{{ item.puesto || '—' }}</p>
+          <p class="text-sm text-500">{{ item.departamento || '—' }}</p>
+          <p class="text-sm">
+            <span [class]="'badge border-1 surface-border ' + getStatusBadge(item.isActive)">
+              {{ item.isActive ? 'Activo' : 'Inactivo' }}
+            </span>
+          </p>
+        </ion-label>
+        <app-action-menu slot="end">
+          <ng-container actions>
+            <ion-button-item label="Ver Expediente" iconName="folder-open-outline" (clicked)="onViewFile(item)" />
+          </ng-container>
+        </app-action-menu>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
 </div>

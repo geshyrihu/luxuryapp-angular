@@ -6,7 +6,7 @@ import {
   inject,
   OnInit,
   signal,
-  ViewChild,
+  viewChild,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ButtonModule } from "primeng/button";
@@ -71,7 +71,7 @@ export class DiagramView implements OnInit, AfterViewInit {
   diagram = signal<IDiagramDraw | null>(null);
   config = signal<string | null>(null);
 
-  @ViewChild("container") container!: ElementRef;
+  container = viewChild<ElementRef>("container");
 
   ngOnInit(): void {
     const id = this.route.snapshot.params["id"];
@@ -120,7 +120,7 @@ export class DiagramView implements OnInit, AfterViewInit {
   }
 
   renderDiagram() {
-    if (!this.config() || !this.container?.nativeElement) {
+    if (!this.config() || !this.container()?.nativeElement) {
       return;
     }
 

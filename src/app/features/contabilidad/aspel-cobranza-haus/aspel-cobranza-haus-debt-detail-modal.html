@@ -1,15 +1,14 @@
-<section class="detail-modal">
-  <div class="detail-header">
+<section class="flex flex-column gap-3">
+  <div class="flex flex-column md:flex-row justify-content-between align-items-start gap-3">
     <div>
-      <div class="detail-title">
+      <div class="text-xl font-bold text-900">
         {{ row?.numCtaBase }} · {{ row?.departamento || "Sin nombre" }}
       </div>
-      <div class="detail-subtitle">
-        Corte {{ fechaFin || "Sin fecha" }} ·
-        {{ row?.tieneDesgloseConceptos ? "Desglose por concepto" : "Saldo global" }}
+      <div class="mt-1 text-600">
+        Corte {{ fechaFin || "Sin fecha" }} · {{ row?.tieneDesgloseConceptos ? "Desglose por concepto" : "Saldo global" }}
       </div>
     </div>
-    <div class="detail-actions">
+    <div class="flex align-items-center justify-content-end flex-wrap gap-2">
       <custom-button-download
         label="Aviso de cobro"
         iconClass="pi pi-file-pdf"
@@ -24,104 +23,123 @@
         [showLabelOnDesktop]="true"
         (clicked)="downloadEstadoCuenta()"
       />
-      <p-button
+      <custom-button
         label="Cerrar"
         severity="secondary"
-        [outlined]="true"
-        (click)="close()"
+        variant="outlined"
+        (clicked)="close()"
       />
     </div>
   </div>
 
   @if (loading()) {
-    <div class="detail-state">
-      <div class="font-medium mb-1">Cargando detalle...</div>
-      <div class="text-color-secondary">
-        Consultando los cargos pendientes de la propiedad seleccionada.
+  <div class="border-dashed border-1 surface-border border-round-xl p-4">
+    <div class="font-medium mb-1 text-900">Cargando detalle...</div>
+    <div class="text-600">
+      Consultando los cargos pendientes de la propiedad seleccionada.
+    </div>
+  </div>
+  } @else if (detail()) {
+  <div class="grid">
+    <div class="col-12 md:col-6 lg:col">
+      <div class="border-1 surface-border border-round-xl p-3 bg-white h-full flex flex-column justify-content-center">
+        <span class="block mb-1 text-xs uppercase font-semibold text-500">Conceptos</span>
+        <strong class="text-xl">{{ detail()?.totalConceptos }}</strong>
       </div>
     </div>
-  } @else if (detail()) {
-    <div class="detail-summary">
-      <div class="detail-summary-card">
-        <span>Conceptos</span>
-        <strong>{{ detail()?.totalConceptos }}</strong>
+    <div class="col-12 md:col-6 lg:col">
+      <div class="border-1 surface-border border-round-xl p-3 bg-white h-full flex flex-column justify-content-center">
+        <span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo inicial</span>
+        <strong class="text-xl">{{ totalSaldoInicial() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
       </div>
-      <div class="detail-summary-card">
-        <span>Saldo inicial</span>
-        <strong>{{ totalSaldoInicial() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
+    </div>
+    <div class="col-12 md:col-6 lg:col">
+      <div class="border-1 surface-border border-round-xl p-3 bg-white h-full flex flex-column justify-content-center">
+        <span class="block mb-1 text-xs uppercase font-semibold text-500">Cargos</span>
+        <strong class="text-xl text-orange-600">{{ totalCargos() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
       </div>
-      <div class="detail-summary-card">
-        <span>Cargos</span>
-        <strong class="text-orange-600">{{ totalCargos() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
+    </div>
+    <div class="col-12 md:col-6 lg:col">
+      <div class="border-1 surface-border border-round-xl p-3 bg-white h-full flex flex-column justify-content-center">
+        <span class="block mb-1 text-xs uppercase font-semibold text-500">Abonos</span>
+        <strong class="text-xl text-green-600">{{ totalAbonos() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
       </div>
-      <div class="detail-summary-card">
-        <span>Abonos</span>
-        <strong class="text-green-600">{{ totalAbonos() | currency: "MXN" : "symbol" : "1.2-2" }}</strong>
-      </div>
-      <div class="detail-summary-card accent">
-        <span>Saldo pendiente</span>
-        <strong [ngClass]="getBalanceClass(totalPendiente())">
+    </div>
+    <div class="col-12 md:col-6 lg:col">
+      <div class="border-1 surface-border border-round-xl p-3 bg-blue-50 h-full flex flex-column justify-content-center">
+        <span class="block mb-1 text-xs uppercase font-semibold text-500">Saldo pendiente</span>
+        <strong class="text-xl" [ngClass]="getBalanceClass(totalPendiente())">
           {{ totalPendiente() | currency: "MXN" : "symbol" : "1.2-2" }}
         </strong>
       </div>
     </div>
+  </div>
 
-    <p-table
-      [value]="detail()?.conceptos ?? []"
-      [paginator]="true"
-      [rows]="15"
-      [rowsPerPageOptions]="[15, 30, 50]"
-      [scrollable]="true"
-      scrollHeight="24rem"
-      [showCurrentPageReport]="true"
-      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} conceptos"
-      [tableStyle]="{ 'min-width': '64rem' }"
-      styleClass="custom-table"
-      #detailTable
-    >
-      <ng-template #caption>
-        <primeng-custom-caption
-          [dt]="detailTable"
-          [showAdd]="false"
-          label="Detalle pendiente"
-        />
-      </ng-template>
+  <p-table
+    [value]="detail()?.conceptos ?? []"
+    [paginator]="true"
+    [rows]="15"
+    [rowsPerPageOptions]="[15, 30, 50]"
+    [scrollable]="true"
+    scrollHeight="24rem"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} conceptos"
+    [tableStyle]="{ 'min-width': '64rem' }"
+    styleClass="custom-table hidden md:block border-1 surface-border border-round shadow-1 bg-white mt-3"
+    #detailTable
+  >
+    <ng-template #caption>
+      <primeng-custom-caption
+        [dt]="detailTable"
+        [showAdd]="false"
+        label="Detalle pendiente"
+      />
+    </ng-template>
 
-      <ng-template #header>
-        <tr>
-          <th>Concepto</th>
-          <th>Cuenta</th>
-          <th>Nombre cuenta</th>
-          <th class="text-right">Saldo inicial</th>
-          <th class="text-right">Cargos</th>
-          <th class="text-right">Abonos</th>
-          <th class="text-right">Saldo pendiente</th>
-        </tr>
-      </ng-template>
+    <ng-template #header>
+      <tr>
+        <th>Concepto</th>
+        <th>Cuenta</th>
+        <th>Nombre cuenta</th>
+        <th class="text-right">Saldo inicial</th>
+        <th class="text-right">Cargos</th>
+        <th class="text-right">Abonos</th>
+        <th class="text-right">Saldo pendiente</th>
+      </tr>
+    </ng-template>
 
-      <ng-template #body let-item>
-        <tr>
-          <td>
-            <p-tag
-              [value]="item.concepto"
-              [severity]="getConceptSeverity(item.concepto)"
-            />
-          </td>
-          <td><code>{{ item.numCta }}</code></td>
-          <td>{{ item.nombreCuenta }}</td>
-          <td class="text-right font-mono">{{ item.saldoInicial | currency: "MXN" : "symbol" : "1.2-2" }}</td>
-          <td class="text-right font-mono text-orange-600">{{ item.cargos | currency: "MXN" : "symbol" : "1.2-2" }}</td>
-          <td class="text-right font-mono text-green-600">{{ item.abonos | currency: "MXN" : "symbol" : "1.2-2" }}</td>
-          <td class="text-right font-mono font-semibold" [ngClass]="getBalanceClass(item.saldoPendiente)">
-            {{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.2-2" }}
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
+    <ng-template #body let-item>
+      <tr>
+        <td>
+          <p-tag
+            [value]="item.concepto"
+            [severity]="getConceptSeverity(item.concepto)"
+          />
+        </td>
+        <td><code class="text-sm px-2 py-1 border-round surface-100 font-mono">{{ item.numCta }}</code></td>
+        <td>{{ item.nombreCuenta }}</td>
+        <td class="text-right font-mono">
+          {{ item.saldoInicial | currency: "MXN" : "symbol" : "1.2-2" }}
+        </td>
+        <td class="text-right font-mono text-orange-600">
+          {{ item.cargos | currency: "MXN" : "symbol" : "1.2-2" }}
+        </td>
+        <td class="text-right font-mono text-green-600">
+          {{ item.abonos | currency: "MXN" : "symbol" : "1.2-2" }}
+        </td>
+        <td
+          class="text-right font-mono font-semibold"
+          [ngClass]="getBalanceClass(item.saldoPendiente)"
+        >
+          {{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.2-2" }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
   } @else {
-    <p-message
-      severity="info"
-      text="No fue posible obtener el detalle de la deuda para esta propiedad."
-    />
+  <p-message
+    severity="info"
+    text="No fue posible obtener el detalle de la deuda para esta propiedad."
+  />
   }
 </section>

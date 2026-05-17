@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 
-import { Component, inject, Input, signal } from "@angular/core";
+import { Component, inject, input, signal } from "@angular/core";
 import { MessageModule } from "primeng/message";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
@@ -23,8 +23,8 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
   ],
 })
 export class OrdenCompraFacturasParcial {
-  @Input({ required: true }) facturas: any[] = [];
-  @Input({ required: true }) ordenCompraId!: number;
+  facturas = input.required<any[]>();
+  ordenCompraId = input.required<number>();
   apiResponseS = inject(ApiResponseService);
   customToastService = inject(CustomToastService);
   dialogHandlerS = inject(DialogHandlerService);
@@ -54,7 +54,7 @@ export class OrdenCompraFacturasParcial {
     this.isValidating.set(true);
     this.validationResult.set(null);
 
-    const urlApi = `funding/validate-invoice/${this.ordenCompraId}`;
+    const urlApi = `funding/validate-invoice/${this.ordenCompraId()}`;
 
     this.apiResponseS
       .onPost<any>(urlApi, {})

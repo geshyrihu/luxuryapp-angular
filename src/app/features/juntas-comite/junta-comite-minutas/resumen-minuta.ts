@@ -5,10 +5,9 @@ import {
   inject,
   OnInit,
   signal,
-  ViewChild,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Table, TableModule } from "primeng/table";
+import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
@@ -38,8 +37,6 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
   ],
 })
 export class ResumenMinuta implements OnInit {
-  @ViewChild("dt") dt!: Table;
-
   reportService = inject(ReportService);
   apiResponseS = inject(ApiResponseService);
   activatedRoute = inject(ActivatedRoute);

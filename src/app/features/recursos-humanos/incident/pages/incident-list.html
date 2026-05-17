@@ -16,7 +16,7 @@
     <ng-template #caption>
       <primeng-custom-caption
         (add)="onModalForm({ id: '', title: 'Registrar Incidencia' })"
-        [showAdd]="employeeId"
+        [showAdd]="!!employeeId()"
         [dt]="dt"
       />
     </ng-template>
@@ -118,4 +118,32 @@
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>
   </p-table>
+
+  <app-data-view-mobile
+    [dt]="dt"
+    [data]="dataSignal()"
+    [showAdd]="!!employeeId()"
+    (add)="onModalForm({ id: '', title: 'Registrar Incidencia' })"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ion-item lines="full">
+        <ion-label>
+          <h2 class="font-bold">{{ item.incidentTypeName }}</h2>
+          <p class="text-sm text-500">{{ item.employeeName }}</p>
+          <p class="text-sm text-500">{{ item.category }} · {{ item.incidentDateTime | date:'dd/MM/yyyy' }}</p>
+          <p class="text-sm">
+            <span [class]="'badge ' + getStatusBadge(item.investigationStatus)">{{ item.investigationStatus }}</span>
+            &nbsp;
+            <span [class]="'badge ' + getSeverityBadge(item.severityLevel)">{{ item.severityLevel }}</span>
+          </p>
+        </ion-label>
+        <app-action-menu slot="end">
+          <ng-container actions>
+            <ion-button-item label="Editar" iconName="create-outline" (clicked)="onEdit(item)" />
+            <ion-button-item label="Resolver" iconName="checkmark-circle-outline" (clicked)="onResolve(item)" />
+          </ng-container>
+        </app-action-menu>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
 </div>

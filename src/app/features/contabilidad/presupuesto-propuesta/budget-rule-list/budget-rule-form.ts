@@ -10,6 +10,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import {
   BudgetAccountRuleCreateDTO,
@@ -72,36 +73,19 @@ export class BudgetRuleForm implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.invalid) return;
-
-    this.submitting.set(true);
-    const id = this.form.get("id")?.value;
-
-    if (id) {
-      // UPDATE
-      const dto: BudgetAccountRuleUpdateDTO = {
-        ruleType: this.form.get("ruleType")?.value,
-        accountNumber: this.form.get("accountNumber")?.value,
-        accountName: this.form.get("accountName")?.value,
-      };
-
-      const url = `BudgetAccountRules/${id}`;
-      this.apiResponseS.onPut(url, dto).then((res) => {
-        res ? this.ref.close(true) : this.submitting.set(false);
-      });
-    } else {
-      // CREATE
-      const dto: BudgetAccountRuleCreateDTO = {
-        customerId: this.form.get("customerId")?.value,
-        ruleType: this.form.get("ruleType")?.value,
-        accountNumber: this.form.get("accountNumber")?.value,
-        accountName: this.form.get("accountName")?.value,
-      };
-
-      const url = `BudgetAccountRules`;
-      this.apiResponseS.onPost(url, dto).then((res) => {
-        res ? this.ref.close(true) : this.submitting.set(false);
-      });
-    }
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "BudgetAccountRules",
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => {
+        const { id: _, customerId, ruleType, accountNumber, accountName } = this.form.value;
+        return this.id
+          ? ({ ruleType, accountNumber, accountName } as BudgetAccountRuleUpdateDTO)
+          : ({ customerId, ruleType, accountNumber, accountName } as BudgetAccountRuleCreateDTO);
+      },
+    });
   }
 }

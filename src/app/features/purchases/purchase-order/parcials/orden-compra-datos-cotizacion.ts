@@ -1,17 +1,17 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, input, output } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { CardModule } from "primeng/card";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { ButtonModule } from "primeng/button";
+import { TooltipModule } from "primeng/tooltip";
 @Component({
   selector: "app-orden-compra-datos-cotizacion",
   templateUrl: "./orden-compra-datos-cotizacion.html",
-  imports: [RouterModule, CustomButton, CardModule],
+  imports: [RouterModule, ButtonModule, TooltipModule],
 })
 export class OrdenCompraDatosCotizacion {
-  @Input() ordenCompra: any;
-  @Input() bloqueada: boolean;
-  @Input() solicitudCompraId: string = "";
-  @Output() modalOrdenCompra: EventEmitter<string> = new EventEmitter();
+  ordenCompra = input<any>();
+  bloqueada = input<boolean>();
+  solicitudCompraId = input<string>("");
+  modalOrdenCompra = output<void>();
   onModalOrdenCompra() {
     this.modalOrdenCompra.emit();
   }

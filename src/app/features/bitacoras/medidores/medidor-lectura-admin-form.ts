@@ -12,6 +12,7 @@ import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-but
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 
@@ -94,26 +95,15 @@ export class MedidorLecturaAdminForm implements OnInit {
 
   onSubmit() {
     if (this.form.controls.lectura.value == 0) return;
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-
-    if (!this.id()) {
-      this.apiResponseS
-        .onPost(Endpoints.MeterReadings.create, this.form.getRawValue())
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    } else {
-      this.apiResponseS
-        .onPut(
-          Endpoints.MeterReadings.update(this.id()!),
-          this.form.getRawValue(),
-        )
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    }
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.MeterReadings.create,
+      id: this.id(),
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => this.form.getRawValue(),
+    });
   }
 }
 import { Endpoints } from "src/app/core/constants/endpoints";

@@ -1,127 +1,135 @@
-@if(data(); as epf) {
-<div class="fadein surface-card p-4 border-round shadow-1">
-  <div class="grid">
-    <div class="col-12 lg:col-6 flex flex-column px-4">
-      <div
-        class="bg-primary-900 text-white text-center font-bold p-2 mb-3 border-round-sm uppercase text-sm tracking-wider"
-      >
-        ACTIVO
+<div class="rf-shell">
+  @if(data(); as epf) {
+  <div class="rf-card p-4">
+    <div class="grid">
+      <div class="col-12 lg:col-6 px-4">
+        <div class="rf-panel">
+          <div class="rf-panel-title">
+            ACTIVO
+          </div>
+          <div class="rf-panel-list">
+            @for(item of epfActivo(); track item.numeroCuenta + '-' + $index) {
+            <div class="rf-panel-row">
+              <div class="rf-panel-label">
+                <div class="rf-td-cuenta">
+                  {{ item.numeroCuenta }}
+                </div>
+                <div class="rf-td-descripcion--item">{{ item.descripcion }}</div>
+              </div>
+              <div class="rf-td-number" [class.rf-neg]="item.saldoCorte < 0">
+                {{ item.saldoCorte | accountingNumber : "1.0-0" }}
+              </div>
+            </div>
+            }
+          </div>
+          <div class="rf-panel-total">
+            <div>TOTAL ACTIVO</div>
+            <div
+              class="rf-td-number--total text-xl"
+              [class.rf-neg]="totalActivo() < 0"
+            >
+              {{ totalActivo() | accountingNumber : "1.0-0" }}
+            </div>
+          </div>
+        </div>
       </div>
+
+      <div class="col-12 lg:col-6 px-4 mt-6 lg:mt-0">
+        <div class="rf-panel">
+          <div class="rf-panel-title">
+            PASIVO
+          </div>
+          <div class="rf-panel-list">
+            @for(item of epfPasivo(); track item.numeroCuenta + '-' + $index) {
+            <div class="rf-panel-row">
+              <div class="rf-panel-label">
+                <div class="rf-td-cuenta">
+                  {{ item.numeroCuenta }}
+                </div>
+                <div class="rf-td-descripcion--item">{{ item.descripcion }}</div>
+              </div>
+              <div class="rf-td-number" [class.rf-neg]="item.saldoCorte < 0">
+                {{ item.saldoCorte | accountingNumber : "1.0-0" }}
+              </div>
+            </div>
+            }
+          </div>
+          <div class="rf-panel-total mb-5">
+            <div>TOTAL PASIVO</div>
+            <div class="rf-td-number--total" [class.rf-neg]="totalPasivo() < 0">
+              {{ totalPasivo() | accountingNumber : "1.0-0" }}
+            </div>
+          </div>
+
+          <div class="rf-panel-title">
+            CAPITAL
+          </div>
+          <div class="rf-panel-list">
+            @for(item of epfCapital(); track item.numeroCuenta + '-' + $index) {
+            <div class="rf-panel-row">
+              <div class="rf-panel-label">
+                <div class="rf-td-cuenta">
+                  {{ item.numeroCuenta }}
+                </div>
+                <div class="rf-td-descripcion--item">{{ item.descripcion }}</div>
+              </div>
+              <div class="rf-td-number" [class.rf-neg]="item.saldoCorte < 0">
+                {{ item.saldoCorte | accountingNumber : "1.0-0" }}
+              </div>
+            </div>
+            }
+          </div>
+          <div class="rf-panel-total mt-3">
+            <div>TOTAL CAPITAL</div>
+            <div class="rf-td-number--total" [class.rf-neg]="totalCapital() < 0">
+              {{ totalCapital() | accountingNumber : "1.0-0" }}
+            </div>
+          </div>
+
+          <div class="rf-panel-total rf-panel-total--strong mt-auto">
+            <div>TOTAL PASIVO Y CAPITAL</div>
+            <div
+              class="rf-td-number--total text-xl"
+              [class.rf-neg]="totalPasivoCapital() < 0"
+            >
+              {{ totalPasivoCapital() | accountingNumber : "1.0-0" }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  } @else { @if (loading()) {
+  <div class="rf-card p-6">
+    <div class="flex align-items-center mb-4">
+      <p-skeleton shape="circle" size="3rem" styleClass="mr-3" />
       <div class="flex-grow-1">
-        @for(item of epfActivo(); track item.numeroCuenta + '-' + $index) {
-        <div
-          class="flex justify-content-between align-items-center py-2 border-bottom-1 border-100 text-sm hover:surface-50 px-2"
-        >
-          <div class="flex flex-column gap-1">
-            <div class="text-500 text-xs font-mono">{{ item.numeroCuenta }}</div>
-            <div class="text-700 font-medium">{{ item.descripcion }}</div>
-          </div>
-          <div class="font-mono">{{ item.saldoCorte | number : "1.0-0" }}</div>
-        </div>
-        }
-      </div>
-      <div
-        class="flex justify-content-between align-items-center mt-4 pt-3 border-top-2 border-primary-500 font-bold text-base px-2"
-      >
-        <div class="text-primary-700">TOTAL ACTIVO</div>
-        <div class="text-xl underline decoration-double">
-          {{ totalActivo() | number : "1.0-0" }}
-        </div>
+        <p-skeleton width="60%" styleClass="mb-2" />
+        <p-skeleton width="40%" />
       </div>
     </div>
-
-    <div class="col-12 lg:col-6 flex flex-column px-4 mt-6 lg:mt-0">
-      <div
-        class="bg-primary-900 text-white text-center font-bold p-2 mb-3 border-round-sm uppercase text-sm tracking-wider"
-      >
-        PASIVO
+    <div class="grid">
+      <div class="col-6">
+        <p-skeleton height="2rem" styleClass="mb-2" />
+        <p-skeleton height="1rem" styleClass="mb-2" />
+        <p-skeleton height="1rem" styleClass="mb-2" />
+        <p-skeleton height="1rem" />
       </div>
-      <div>
-        @for(item of epfPasivo(); track item.numeroCuenta + '-' + $index) {
-        <div
-          class="flex justify-content-between align-items-center py-2 border-bottom-1 border-100 text-sm hover:surface-50 px-2"
-        >
-          <div class="flex flex-column gap-1">
-            <div class="text-500 text-xs font-mono">{{ item.numeroCuenta }}</div>
-            <div class="text-700 font-medium">{{ item.descripcion }}</div>
-          </div>
-          <div class="font-mono">{{ item.saldoCorte | number : "1.0-0" }}</div>
-        </div>
-        }
-      </div>
-      <div
-        class="flex justify-content-between align-items-center mt-3 mb-5 pt-2 border-top-1 border-200 font-bold text-sm px-2 text-600"
-      >
-        <div>TOTAL PASIVO</div>
-        <div>{{ totalPasivo() | number : "1.0-0" }}</div>
-      </div>
-
-      <div
-        class="bg-primary-900 text-white text-center font-bold p-2 mb-3 border-round-sm uppercase text-sm tracking-wider"
-      >
-        CAPITAL
-      </div>
-      <div class="flex-grow-1">
-        @for(item of epfCapital(); track item.numeroCuenta + '-' + $index) {
-        <div
-          class="flex justify-content-between align-items-center py-2 border-bottom-1 border-100 text-sm hover:surface-50 px-2"
-        >
-          <div class="flex flex-column gap-1">
-            <div class="text-500 text-xs font-mono">{{ item.numeroCuenta }}</div>
-            <div class="text-700 font-medium">{{ item.descripcion }}</div>
-          </div>
-          <div class="font-mono">{{ item.saldoCorte | number : "1.0-0" }}</div>
-        </div>
-        }
-        <div
-          class="flex justify-content-between align-items-center mt-2 pt-2 border-top-1 border-200 font-bold text-sm px-2 text-600"
-        >
-          <div>TOTAL CAPITAL</div>
-          <div>{{ totalCapital() | number : "1.0-0" }}</div>
-        </div>
-      </div>
-
-      <div
-        class="flex justify-content-between align-items-center mt-auto pt-3 border-top-2 border-primary-500 font-bold text-base px-2"
-      >
-        <div class="text-primary-700 uppercase">TOTAL PASIVO Y CAPITAL</div>
-        <div class="text-xl underline decoration-double">
-          {{ totalPasivoCapital() | number : "1.0-0" }}
-        </div>
+      <div class="col-6">
+        <p-skeleton height="2rem" styleClass="mb-2" />
+        <p-skeleton height="1rem" styleClass="mb-2" />
+        <p-skeleton height="1rem" styleClass="mb-2" />
+        <p-skeleton height="1rem" />
       </div>
     </div>
   </div>
-</div>
-} @else { @if (loading()) {
-<div class="surface-card p-6 border-round shadow-1">
-  <div class="flex align-items-center mb-4">
-    <p-skeleton shape="circle" size="3rem" styleClass="mr-3" />
-    <div class="flex-grow-1">
-      <p-skeleton width="60%" styleClass="mb-2" />
-      <p-skeleton width="40%" />
-    </div>
+  } @else {
+  <div
+    class="rf-card flex flex-column align-items-center py-8 text-color-secondary"
+  >
+    <i class="pi pi-file-excel text-5xl mb-4 opacity-50"></i>
+    <p class="m-0 text-xl font-medium">No hay datos para mostrar</p>
+    <p class="mt-2 text-500">Verifique el cliente y año seleccionado</p>
   </div>
-  <div class="grid">
-    <div class="col-6">
-      <p-skeleton height="2rem" styleClass="mb-2" />
-      <p-skeleton height="1rem" styleClass="mb-2" />
-      <p-skeleton height="1rem" styleClass="mb-2" />
-      <p-skeleton height="1rem" />
-    </div>
-    <div class="col-6">
-      <p-skeleton height="2rem" styleClass="mb-2" />
-      <p-skeleton height="1rem" styleClass="mb-2" />
-      <p-skeleton height="1rem" styleClass="mb-2" />
-      <p-skeleton height="1rem" />
-    </div>
-  </div>
+  } }
 </div>
-} @else {
-<div
-  class="flex flex-column align-items-center py-8 surface-card border-round shadow-1 text-color-secondary"
->
-  <i class="pi pi-file-excel text-5xl mb-4 opacity-50"></i>
-  <p class="m-0 text-xl font-medium">No hay datos para mostrar</p>
-  <p class="mt-2 text-500">Verifique el cliente y año seleccionado</p>
-</div>
-} }

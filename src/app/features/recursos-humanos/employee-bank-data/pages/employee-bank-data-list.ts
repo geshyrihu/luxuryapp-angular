@@ -16,8 +16,8 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { ActionMenu } from "../../../../core/components/action-menu/action-menu";
-import { DataViewMobile } from "../../../../core/components/data-view-mobile/data-view-mobile";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { EmployeeBankDataDTO } from "../models/employee-bank-data.interfaces";
 import { EmployeeBankDataFormComponent } from "./employee-bank-data-form";
 

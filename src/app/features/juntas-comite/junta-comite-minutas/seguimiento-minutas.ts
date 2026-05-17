@@ -1,9 +1,11 @@
 import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { TagModule } from "primeng/tag";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -32,6 +34,8 @@ import { MinutaDetalleForm } from "./minuta-detalle-form";
     PrimeNgCustomTableFooter,
     ActionMenu,
     SanitizeHtmlPipe,
+    DataViewMobile,
+    TagModule,
   ],
 })
 export class SeguimientoMinuta {

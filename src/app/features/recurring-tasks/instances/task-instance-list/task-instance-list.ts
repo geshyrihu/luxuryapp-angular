@@ -1,7 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { DatePickerModule } from "primeng/datepicker";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { DateService } from "src/app/core/services/date.service";
 import { TableModule } from "primeng/table";
 import { ToolbarModule } from "primeng/toolbar";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
@@ -31,7 +32,7 @@ import { CompleteTaskForm } from "../complete-task-form/complete-task-form";
     CustomButtonConfirm,
     CustomButtonItem,
     DataViewMobile,
-    DatePickerModule,
+    CustomInputDateSignal,
     ReactiveFormsModule,
     StatusBadge,
     TableModule,
@@ -47,23 +48,23 @@ export class TaskInstanceList implements OnInit {
   private apiResponseS = inject(ApiResponseService);
   public dialogHandlerS = inject(DialogHandlerService);
   private tableScrollHeightS = inject(TableScrollHeightService);
-  data = signal<TaskInstance[]>([]); // Converted to signal
+  private dateS = inject(DateService);
+  data = signal<TaskInstance[]>([]);
   loading = signal(true);
-  selectedDateControl = new FormControl<Date>(new Date());
+  selectedDateControl = new FormControl<string>(this.dateS.getDateNow());
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   ngOnInit(): void {
+    this.selectedDateControl.valueChanges.subscribe(() => this.onLoadData());
     this.onLoadData();
   }
 
   onLoadData(): void {
     this.loading.set(true);
-    const formattedDate = (this.selectedDateControl.value || new Date())
-      .toISOString()
-      .split("T")[0]; // Access control value
+    const date = this.selectedDateControl.value || this.dateS.getDateNow();
     this.apiResponseS
       .onGetList<TaskInstance[]>(
-        `recurring-tasks/instances/my-daily-tasks?date=${formattedDate}`,
+        `recurring-tasks/instances/my-daily-tasks?date=${date}`,
       )
       .then((response) => {
         if (response) {
@@ -102,9 +103,4 @@ export class TaskInstanceList implements OnInit {
       });
   }
 
-  // Handle date change for filtering tasks
-  onDateChange(newDate: Date): void {
-    this.selectedDateControl.setValue(newDate, { emitEvent: false }); // Update control
-    this.onLoadData();
-  }
 }

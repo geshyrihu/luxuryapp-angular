@@ -18,7 +18,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { CustomButton } from "../../../core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/buttons/web";
 @Component({
   selector: "app-resultado-general-dashboard",
   templateUrl: "./resultado-general-dashboard.html",

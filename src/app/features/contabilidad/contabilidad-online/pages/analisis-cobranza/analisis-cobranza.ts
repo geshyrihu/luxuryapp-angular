@@ -13,6 +13,7 @@ import {
   IAnalisisCobranzaOnlineDto,
   ICobranzaOnlineAnalysisCondominoDto,
 } from "../../models/aspel-budget.interface";
+import { AccountingNumberPipe } from "../../pipes/accounting-number.pipe";
 import { reportFilterState } from "../../state/financial-report-filter.state";
 
 @Component({
@@ -24,6 +25,7 @@ import { reportFilterState } from "../../state/financial-report-filter.state";
     SelectModule,
     TableModule,
     TagModule,
+    AccountingNumberPipe,
   ],
   templateUrl: "./analisis-cobranza.html",
 })

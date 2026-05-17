@@ -8,7 +8,6 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import {
-  DialogService,
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "primeng/dynamicdialog";
@@ -22,6 +21,7 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { MeetingSeguimientoEdit } from "./meeting-seguimiento-edit";
 
@@ -57,7 +57,7 @@ export class MinutaDetalleForm implements OnInit {
   private config = inject(DynamicDialogConfig);
   private authS = inject(AuthService);
   private formB = inject(FormBuilder);
-  private dialogService = inject(DialogService);
+  private dialogHandlerS = inject(DialogHandlerService);
 
   // State Signals
   submitting = signal(false);
@@ -126,16 +126,12 @@ export class MinutaDetalleForm implements OnInit {
   }
 
   openFollowUp() {
-    this.dialogService.open(MeetingSeguimientoEdit, {
-      header: "Seguimiento de Minuta",
-      width: "50%",
-      data: {
-        idMeetingSeguimiento: 0,
-        meetingDetailsId: this.id(),
-      },
-      contentStyle: { overflow: "auto" },
-      baseZIndex: 10000,
-    });
+    this.dialogHandlerS.openDialog(
+      MeetingSeguimientoEdit,
+      { idMeetingSeguimiento: 0, meetingDetailsId: this.id() },
+      "Seguimiento de Minuta",
+      this.dialogHandlerS.sizeLg,
+    );
   }
 
   onSubmit() {

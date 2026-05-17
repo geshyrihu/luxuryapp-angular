@@ -7,6 +7,7 @@ import {
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
@@ -107,46 +108,20 @@ export class PropertyFineForm implements OnInit {
     if (res) this.form.patchValue(res);
   }
 
-  async onSubmit() {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
-    this.submitting.set(true);
-    try {
-      const vals = this.form.getRawValue();
-      if (this.id) {
-        const payload: UpdatePropertyFineDTO = {
-          id: this.id,
-          regulationArticleId: vals.regulationArticleId,
-          description: vals.description,
-          infractionDate: vals.infractionDate,
-          amount: vals.amount,
-          adminNotes: vals.adminNotes,
-        };
-        const res = await this.apiResponseS.onPut(
-          Endpoints.AccountingCoi.NativeCollection.PropertyFines.update(this.id),
-          payload,
-        );
-        if (res) this.ref.close(true);
-      } else {
-        const payload: CreatePropertyFineDTO = {
-          customerId: this.customerId,
-          propertyId: vals.propertyId,
-          regulationArticleId: vals.regulationArticleId,
-          description: vals.description,
-          infractionDate: vals.infractionDate,
-          amount: vals.amount,
-          adminNotes: vals.adminNotes,
-        };
-        const res = await this.apiResponseS.onPost(
-          Endpoints.AccountingCoi.NativeCollection.PropertyFines.create,
-          payload,
-        );
-        if (res) this.ref.close(true);
-      }
-    } finally {
-      this.submitting.set(false);
-    }
+  onSubmit() {
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.AccountingCoi.NativeCollection.PropertyFines.create,
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => {
+        const { propertyId, ...common } = this.form.getRawValue();
+        return this.id
+          ? ({ id: this.id, ...common } as UpdatePropertyFineDTO)
+          : ({ customerId: this.customerId, propertyId, ...common } as CreatePropertyFineDTO);
+      },
+    });
   }
 }

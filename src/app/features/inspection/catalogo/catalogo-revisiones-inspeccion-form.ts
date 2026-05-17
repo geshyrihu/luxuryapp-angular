@@ -10,6 +10,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 interface ICatalogoRevisionesInspeccionForm {
@@ -58,24 +59,15 @@ export class CatalogoRevisionesInspeccionForm implements OnInit {
     });
   }
   onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-    this.submitting.set(true);
-
-    const formValue = this.form.getRawValue();
-
-    if (this.id === "") {
-      this.apiResponseS
-        .onPost(Endpoints.InspectionReviewCatalog.create, formValue)
-        .then((result: any) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    } else {
-      this.apiResponseS
-        .onPut(Endpoints.InspectionReviewCatalog.update(this.id), formValue)
-        .then((result: any) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    }
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.InspectionReviewCatalog.create,
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => this.form.getRawValue(),
+    });
   }
 }
 

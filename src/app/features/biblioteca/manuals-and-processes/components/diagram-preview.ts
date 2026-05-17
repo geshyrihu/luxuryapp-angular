@@ -1,10 +1,8 @@
 import {
   AfterViewInit,
   Component,
-  ElementRef,
-  Input,
-  OnChanges,
-  ViewChild,
+  effect,
+  input,
 } from "@angular/core";
 
 @Component({
@@ -21,23 +19,25 @@ import {
     }
   `,
 })
-export class DiagramPreviewComponent implements AfterViewInit, OnChanges {
-  @Input({ required: true }) xml!: string;
-  @ViewChild("container") container!: ElementRef;
+export class DiagramPreviewComponent implements AfterViewInit {
+  xml = input.required<string>();
 
   config: string | null = null;
 
-  ngOnChanges(): void {
-    if (this.xml) {
-      this.config = JSON.stringify({
-        highlight: "#0000ff",
-        nav: false,
-        resize: true,
-        toolbar: "zoom",
-        xml: this.xml,
-      });
-      this.render();
-    }
+  constructor() {
+    effect(() => {
+      const xml = this.xml();
+      if (xml) {
+        this.config = JSON.stringify({
+          highlight: "#0000ff",
+          nav: false,
+          resize: true,
+          toolbar: "zoom",
+          xml,
+        });
+        this.render();
+      }
+    });
   }
 
   ngAfterViewInit(): void {

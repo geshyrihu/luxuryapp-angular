@@ -12,6 +12,7 @@ import {
   ICedulaExtraordinariaDto,
   ICuentaMayorDto,
 } from "../../models/aspel-budget.interface";
+import { AccountingNumberPipe } from "../../pipes/accounting-number.pipe";
 import { reportFilterState } from "../../state/financial-report-filter.state";
 
 const MONTH_NAMES = [
@@ -63,6 +64,7 @@ type ReportRow = {
     SkeletonModule,
     DataViewMobile,
     DecimalPipe,
+    AccountingNumberPipe,
   ],
   templateUrl: "./cedula-extraordinaria.html",
 })

@@ -6,8 +6,8 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { ReportHeader } from "../../core/components/report-header/report-header";
-import { SanitizeHtmlPipe } from "../../core/pipes/sanitize-html.pipe";
+import { ReportHeader } from "src/app/core/components/report-header/report-header";
+import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
 @Component({
   selector: "app-entrega-recepcion-mantenimientos",
   templateUrl: "./entrega-recepcion-mantenimientos.html",

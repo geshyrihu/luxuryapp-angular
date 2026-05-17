@@ -14,7 +14,7 @@ import { PdfViewerModal } from "src/app/core/components/pdf-viewer-modal/pdf-vie
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { BudgetProposalItemDTO } from "src/app/features/contabilidad/presupuesto-propuesta/models/budget-proposal.model";
-import { CustomButton } from "../../../core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/buttons/web";
 @Component({
   selector: "app-budget-support-dialog",
   imports: [

@@ -132,7 +132,9 @@
       <td class="text-sm">{{ item.folio }}</td>
       <td class="text-sm">{{ item.indice }}</td>
       <td class="text-sm">
-        @if (item.isFunded) {
+        @if (item.isFueraFondeo) {
+        <p-tag severity="warn" value="Fuera de proceso"></p-tag>
+        } @else if (item.isFunded) {
         <p-tag severity="success" [value]="item.fundingPeriodName"></p-tag>
         } @else { Sin Asignar }
       </td>

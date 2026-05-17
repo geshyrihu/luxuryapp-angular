@@ -12,6 +12,7 @@ import {
   IBaseAccountDto,
   IFinancialStatementDto,
 } from "../../models/aspel-budget.interface";
+import { AccountingNumberPipe } from "../../pipes/accounting-number.pipe";
 import { reportFilterState } from "../../state/financial-report-filter.state";
 
 const MONTH_NAMES = [
@@ -52,6 +53,7 @@ const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
     SkeletonModule,
     DataViewMobile,
     DecimalPipe,
+    AccountingNumberPipe,
   ],
   templateUrl: "./estado-resultados.html",
 })

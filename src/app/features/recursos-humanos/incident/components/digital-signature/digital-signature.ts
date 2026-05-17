@@ -4,7 +4,7 @@ import {
   HostListener,
   output,
   signal,
-  ViewChild,
+  viewChild,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
@@ -15,8 +15,7 @@ import { CustomButton } from "src/app/core/components/buttons/web/custom-button"
   templateUrl: "./digital-signature.html",
 })
 export class DigitalSignatureComponent {
-  @ViewChild("signatureCanvas", { static: true })
-  canvasRef!: ElementRef<HTMLCanvasElement>;
+  canvasRef = viewChild.required<ElementRef<HTMLCanvasElement>>("signatureCanvas");
 
   signatureSaved = output<string>();
   canvasWidth = 400;
@@ -30,13 +29,13 @@ export class DigitalSignatureComponent {
   private lastY = 0;
 
   ngAfterViewInit(): void {
-    const canvas = this.canvasRef.nativeElement;
+    const canvas = this.canvasRef().nativeElement;
     this.ctx = canvas.getContext("2d")!;
     this.setupCanvas();
   }
 
   private setupCanvas(): void {
-    const canvas = this.canvasRef.nativeElement;
+    const canvas = this.canvasRef().nativeElement;
     this.ctx.strokeStyle = "#000";
     this.ctx.lineWidth = 2;
     this.ctx.lineCap = "round";
@@ -84,7 +83,7 @@ export class DigitalSignatureComponent {
     x: number;
     y: number;
   } {
-    const canvas = this.canvasRef.nativeElement;
+    const canvas = this.canvasRef().nativeElement;
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
@@ -104,7 +103,7 @@ export class DigitalSignatureComponent {
   }
 
   clearSignature(): void {
-    const canvas = this.canvasRef.nativeElement;
+    const canvas = this.canvasRef().nativeElement;
     this.ctx.fillStyle = "#fff";
     this.ctx.fillRect(0, 0, canvas.width, canvas.height);
     this.hasSignature.set(false);
@@ -113,7 +112,7 @@ export class DigitalSignatureComponent {
   saveSignature(): void {
     if (!this.hasSignature()) return;
 
-    const canvas = this.canvasRef.nativeElement;
+    const canvas = this.canvasRef().nativeElement;
     const dataUrl = canvas.toDataURL("image/png");
     this.signatureSaved.emit(dataUrl);
   }

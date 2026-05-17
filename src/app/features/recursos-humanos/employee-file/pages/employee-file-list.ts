@@ -15,6 +15,9 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { EmployeeFileSummaryDTO } from "../models/employee-file.interfaces";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 
 @Component({
   selector: "app-employee-file-list",
@@ -25,6 +28,9 @@ import { EmployeeFileSummaryDTO } from "../models/employee-file.interfaces";
     PrimeNgCustomTableFooter,
     CustomButtonItem,
     CustomInputSelectSignal,
+    ActionMenu,
+    DataViewMobile,
+    IonButtonItem,
   ],
 })
 export class EmployeeFileList {

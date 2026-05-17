@@ -1,79 +1,81 @@
-<custom-button
-  iconClass="pi pi-credit-card"
-  label="DATOS DE PAGO"
-  (clicked)="onModalOrdenCompraDatosPago()"
-  customClass="w-full"
-  size="small"
-  [showLabelOnDesktop]="true"
-/>
-<!-- [disabled]="bloqueada" -->
-
-<div class="card p-2 border border-surface-200">
-  <div class="mb-1 flex">
-    <div class="text-color-secondary text-sm font-medium table-col-40">
-      Proveedor:
+<div class="card p-0 overflow-hidden">
+  <div
+    class="flex align-items-center justify-content-between px-3 py-2 bg-gray-800"
+  >
+    <div class="flex align-items-center gap-2">
+      <i class="pi pi-credit-card text-white text-sm"></i>
+      <span class="font-semibold text-sm text-white">DATOS DE PAGO</span>
     </div>
-    <div
-      class="text-color-secondary text-sm flex-grow-1 truncate text-truncate-max-width"
-    >
-      {{ ordenCompra.providerName }}
-    </div>
+    <p-button
+      icon="pi pi-pencil"
+      size="small"
+      variant="text"
+      rounded
+      (onClick)="onModalOrdenCompraDatosPago()"
+      pTooltip="Editar datos de pago"
+      styleClass="text-white"
+    />
   </div>
 
-  <div class="mb-1 flex">
-    <div class="text-color-secondary text-sm font-medium table-col-40">
-      Gasto:
+  <div class="p-3">
+    <div class="mb-2 flex">
+      <div class="text-color-secondary text-xs font-semibold table-col-40">
+        PROVEEDOR
+      </div>
+      <div
+        class="text-sm flex-grow-1 font-medium truncate text-truncate-max-width"
+      >
+        {{ ordenCompra().provider }}
+      </div>
     </div>
-    <div class="text-color-secondary text-sm flex-grow-1">{{ ordenCompra.tipoGasto }}</div>
-  </div>
 
-  <div class="mb-1 flex">
-    <div class="text-color-secondary text-sm font-medium table-col-40">
-      Uso CFDI:
+    <div class="mb-2 flex">
+      <div class="text-color-secondary text-xs font-semibold table-col-40">
+        TIPO GASTO
+      </div>
+      <div class="text-sm flex-grow-1">{{ ordenCompra().tipoGasto }}</div>
     </div>
-    <div class="text-color-secondary text-sm flex-grow-1">{{ ordenCompra.usoCFDI }}</div>
-  </div>
 
-  <div class="mb-1 flex">
-    <div class="text-color-secondary text-sm font-medium table-col-40">
-      Mótodo Pago:
+    <div class="mb-2 flex">
+      <div class="text-color-secondary text-xs font-semibold table-col-40">
+        USO CFDI
+      </div>
+      <div class="text-sm flex-grow-1">{{ ordenCompra().usoCFDI }}</div>
     </div>
-    <div class="text-color-secondary text-sm flex-grow-1">
-      {{ ordenCompra.metodoDePago }}
-    </div>
-  </div>
 
-  <div class="mb-1 flex">
-    <div class="text-color-secondary text-sm font-medium table-col-40">
-      Forma Pago:
+    <div class="mb-2 flex">
+      <div class="text-color-secondary text-xs font-semibold table-col-40">
+        METODO PAGO
+      </div>
+      <div class="text-sm flex-grow-1">{{ ordenCompra().metodoDePago }}</div>
     </div>
-    <div class="text-color-secondary text-sm flex-grow-1">{{ ordenCompra.formaDePago }}</div>
-  </div>
 
-  <div class="mb-1 flex">
-    <div class="text-color-secondary text-sm font-medium table-col-40">
-      Se Fondea:
+    <div class="mb-2 flex">
+      <div class="text-color-secondary text-xs font-semibold table-col-40">
+        FORMA PAGO
+      </div>
+      <div class="text-sm flex-grow-1">{{ ordenCompra().formaDePago }}</div>
     </div>
-    <div class="text-color-secondary text-sm flex-grow-1">
-      {{ ordenCompra.sendToFunding ? 'Só' : 'No' }}
-    </div>
-  </div>
-  @if(ordenCompra.sendToFunding){
 
-  <div class="mb-1 flex">
-    <div class="text-color-secondary text-sm font-medium table-col-40">
-      Periodo Fondeo:
+    <div class="mb-2 flex align-items-center">
+      <div class="text-color-secondary text-xs font-semibold table-col-40">
+        SE FONDEA
+      </div>
+      <div class="flex-grow-1">
+        <p-tag
+          [severity]="ordenCompra().sendToFunding ? 'success' : 'secondary'"
+          [value]="ordenCompra().sendToFunding ? 'Sí' : 'No'"
+        />
+      </div>
     </div>
-    <div class="text-color-secondary text-sm flex-grow-1">
-      {{ ordenCompra.fundingPeriod }}
+
+    @if (ordenCompra().sendToFunding) {
+    <div class="mb-2 flex">
+      <div class="text-color-secondary text-xs font-semibold table-col-40">
+        PERIODO
+      </div>
+      <div class="text-sm flex-grow-1">{{ ordenCompra().fundingPeriod }}</div>
     </div>
+    }
   </div>
-  }
 </div>
-
-
-
-
-
-
-

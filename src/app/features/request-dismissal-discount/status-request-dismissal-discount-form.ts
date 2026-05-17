@@ -5,6 +5,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-status-request-dismissal-discount-form",
@@ -44,24 +45,14 @@ export class StatusRequestDismissalDiscountForm implements OnInit {
     });
   }
   onSubmit() {
-    if (this.submitting()) return;
-    if (!this.apiResponseS.validateForm(this.form)) return;
-    this.id = this.config.data.id;
-
-    this.submitting.set(true);
-
-    if (!this.id) {
-      this.apiResponseS
-        .onPost(`RequestDismissalDiscount`, this.form.getRawValue())
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    } else {
-      this.apiResponseS
-        .onPut(`RequestDismissalDiscount/${this.id}`, this.form.getRawValue())
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    }
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "RequestDismissalDiscount",
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => this.form.getRawValue(),
+    });
   }
 }

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, ViewChild } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TagModule } from "primeng/tag";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
@@ -30,10 +30,6 @@ export class PurchaseRequest implements OnInit {
   router = inject(Router);
   dialogHandlerS = inject(DialogHandlerService);
   purchaseRequestId: any = this.activatedRoute.snapshot.params.id;
-
-  // Obtener una referencia al componente hijo del formulario
-  @ViewChild(PurchaseRequestAddProduct)
-  addProductFormComponent!: PurchaseRequestAddProduct;
 
   // Variable para pasar el producto a editar al formulario
   productToEdit: any | null = null;

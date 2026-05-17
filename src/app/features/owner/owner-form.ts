@@ -15,6 +15,7 @@ import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/cust
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -153,31 +154,28 @@ export class OwnerForm implements OnInit {
   };
 
   onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-
-    // Construir payload limpio
-    const payload = {
-      customerId: this.form.get("customerId")?.value,
-      phoneNumber: this.form.get("phoneNumber")?.value,
-      propertyId: this.form.get("propertyId")?.value,
-      extencion: this.form.get("extencion")?.value,
-      fixedPhone: this.form.get("fixedPhone")?.value,
-      habitant: this.form.get("habitant")?.value,
-      email: this.form.get("email")?.value,
-      firstName: this.form.get("firstName")?.value,
-      lastName: this.form.get("lastName")?.value,
-      enviarMails: this.form.get("enviarMails")?.value,
-    };
-
-    const request =
-      this.id === ""
-        ? this.apiResponseS.onPost(`owner`, payload)
-        : this.apiResponseS.onPut(`owner/${this.id}`, payload);
-
-    request.then((result: boolean) => {
-      result ? this.ref.close(true) : this.submitting.set(false);
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "owner",
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => {
+        const f = this.form.value;
+        return {
+          customerId: f.customerId,
+          phoneNumber: f.phoneNumber,
+          propertyId: f.propertyId,
+          extencion: f.extencion,
+          fixedPhone: f.fixedPhone,
+          habitant: f.habitant,
+          email: f.email,
+          firstName: f.firstName,
+          lastName: f.lastName,
+          enviarMails: f.enviarMails,
+        };
+      },
     });
   }
 }

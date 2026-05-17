@@ -7,11 +7,12 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { IFlujoCajaDto } from "../../models/aspel-budget.interface";
+import { AccountingNumberPipe } from "../../pipes/accounting-number.pipe";
 import { reportFilterState } from "../../state/financial-report-filter.state";
 
 @Component({
   selector: "app-flujo-efectivo",
-  imports: [CommonModule, FormsModule, TableModule, DecimalPipe],
+  imports: [CommonModule, FormsModule, TableModule, DecimalPipe, AccountingNumberPipe],
   templateUrl: "./flujo-efectivo.html",
 })
 export class FlujoEfectivo {

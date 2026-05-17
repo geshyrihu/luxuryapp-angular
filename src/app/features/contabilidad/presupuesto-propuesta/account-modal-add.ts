@@ -7,7 +7,7 @@ import { MessageModule } from "primeng/message";
 import { RippleModule } from "primeng/ripple";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomButton } from "../../../core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/buttons/web";
 import { IAvailableAccountDTO } from "./models/IAvailableAccountDto";
 
 interface ISearchForm {

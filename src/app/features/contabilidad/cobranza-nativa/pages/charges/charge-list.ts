@@ -24,7 +24,7 @@ import { ChargeForm } from "./charge-form";
 
 // Pipes
 import { DatePipe, DecimalPipe } from "@angular/common";
-import { CustomButton } from "../../../../../core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/buttons/web";
 import { EChargeStatus, EChargeType } from "../../models/enums";
 
 @Component({

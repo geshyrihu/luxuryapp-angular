@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, output } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MessageService } from "primeng/api";
 import { ButtonModule } from "primeng/button";
@@ -123,7 +123,7 @@ import { TicketAnalysisService } from "src/app/core/services/ticket-analysis.ser
   ],
 })
 export class ImageAnalysisDialogComponent {
-  @Output() resultAccepted = new EventEmitter<string>();
+  resultAccepted = output<string>();
 
   visible: boolean = false;
   loading: boolean = false;

@@ -11,6 +11,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
@@ -125,24 +126,17 @@ export class CustomerProviderForm implements OnInit {
     });
 
   submit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-
-    // Construir payload limpio
-    const payload = {
-      customerId: this.form.get("customerId")?.value,
-      providerId: this.form.get("providerId")?.value,
-      categoryId: this.form.get("categoryId")?.value,
-    };
-
-    const request =
-      this.id === ""
-        ? this.apiResponseS.onPost(`customerprovider`, payload)
-        : this.apiResponseS.onPut(`customerprovider/${this.id}`, payload);
-
-    request.then((result: boolean) => {
-      result ? this.ref.close(true) : this.submitting.set(false);
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "customerprovider",
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => {
+        const { providerName, categoryName, ...rest } = this.form.value;
+        return rest;
+      },
     });
   }
 }

@@ -36,8 +36,8 @@ export interface SatCfdiDTO {
 // Corresponds to SatDownloadRequestDTO
 export interface SatDownloadRequestDTO {
   satFundingId: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
 }
 
 // Corresponds to UpdateSatFundingDetailDTO

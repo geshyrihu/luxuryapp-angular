@@ -15,7 +15,7 @@ import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/cust
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomButton } from "../../../../../core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/buttons/web";
 export interface IOrdenCompraDetalleCompForm {
   productoId: FormControl<string | null>;
   productName: FormControl<string | null>;

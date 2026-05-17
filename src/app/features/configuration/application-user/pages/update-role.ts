@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, Input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { FieldsetModule } from "primeng/fieldset";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -40,8 +40,8 @@ export class UpdateRole implements OnInit {
   phoneNumber: string = "";
   userName: string = "";
   applicationUserState: boolean = false;
-  @Input() applicationUserId: string = "";
-  @Input() roleType: ERoleType | null = null;
+  applicationUserId = input<string>("");
+  roleType = input<ERoleType | null>(null);
 
   groupedRolesSignal = signal<GroupedRole[]>([]);
 
@@ -50,10 +50,10 @@ export class UpdateRole implements OnInit {
   }
 
   onLoadData() {
-    this.getRoles(this.roleType);
+    this.getRoles(this.roleType());
     this.apiResponseS
       .onGetItem(
-        `EmployeeInternal/DataForRecoveryPassword/${this.applicationUserId}`,
+        `EmployeeInternal/DataForRecoveryPassword/${this.applicationUserId()}`,
       )
       .then((result: any) => {
         if (result) {
@@ -65,7 +65,7 @@ export class UpdateRole implements OnInit {
       });
 
     this.apiResponseS
-      .onGetItem(`EmployeeInternal/OnValidateState/${this.applicationUserId}`)
+      .onGetItem(`EmployeeInternal/OnValidateState/${this.applicationUserId()}`)
       .then((result: any) => {
         this.applicationUserState = result;
       });
@@ -73,7 +73,7 @@ export class UpdateRole implements OnInit {
 
   getRoles(roleType: ERoleType | null = null) {
     const urlApi = Endpoints.ApplicationUsers.getRoleUrl(
-      this.applicationUserId,
+      this.applicationUserId(),
       roleType,
     );
 
@@ -131,7 +131,7 @@ export class UpdateRole implements OnInit {
 
     this.apiResponseS
       .onPost(
-        Endpoints.ApplicationUsers.addRoleToUser(this.applicationUserId),
+        Endpoints.ApplicationUsers.addRoleToUser(this.applicationUserId()),
         updatedRole,
       )
       .catch((error) => {

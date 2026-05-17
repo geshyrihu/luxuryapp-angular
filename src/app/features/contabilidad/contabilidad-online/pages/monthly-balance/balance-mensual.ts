@@ -9,6 +9,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { IFinancialStatementDto } from "../../models/aspel-budget.interface";
+import { AccountingNumberPipe } from "../../pipes/accounting-number.pipe";
 
 @Component({
   selector: "app-balance-mensual",
@@ -19,6 +20,7 @@ import { IFinancialStatementDto } from "../../models/aspel-budget.interface";
     CustomButton,
     DecimalPipe,
     InputTextModule,
+    AccountingNumberPipe,
   ],
   templateUrl: "./balance-mensual.html",
 })

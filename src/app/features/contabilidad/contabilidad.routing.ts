@@ -217,6 +217,19 @@ export const CONTABILIDAD_ROUTES: Routes = [
     },
   },
 
+  {
+    path: "collections/presupuesto-contabilidad",
+    loadComponent: () =>
+      import("./cobranza-online/pages/presupuesto-contabilidad/presupuesto-contabilidad").then(
+        (m) => m.PresupuestoContabilidad,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Presupuesto Contabilidad",
+      breadcrumb: "Presupuesto Contabilidad",
+    },
+  },
+
   // ============================================================================
   // RUTAS CENTRALIZADAS DE accounting-coi.routes.ts
   // ============================================================================

@@ -2,10 +2,10 @@ import { CommonModule } from "@angular/common";
 import {
   Component,
   DestroyRef,
-  Input,
   OnInit,
   forwardRef,
   inject,
+  input,
   signal,
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
@@ -65,7 +65,7 @@ interface IRecurrenceForm {
   ],
 })
 export class RecurrenceInput implements OnInit, ControlValueAccessor {
-  @Input() label: string = "Regla de Recurrencia";
+  label = input<string>("Regla de Recurrencia");
 
   // Uso de FormGroup Tipado
   public recurrenceForm: FormGroup<IRecurrenceForm>;

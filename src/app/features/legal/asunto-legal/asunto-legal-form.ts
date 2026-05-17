@@ -7,6 +7,7 @@ import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/cust
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-asunto-legal-form",
@@ -115,44 +116,23 @@ export class AsuntoLegalForm implements OnInit {
   };
 
   onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-
-    const formValue = this.form.getRawValue();
-
-    // Construir payload
-    // If legalMatterCategory is object, it has label. If string, it is label.
-    // original: (legalMatterCategoryValue?.label || legalMatterCategoryValue)
-
-    const categoryValue = formValue.legalMatterCategory;
-
-    // Check if categoryValue is ISelectItem (has label) or string.
-    // At runtime, if selected via autocomplete it might be object or string based on propagate.
-    // Actually saveCategorie updates `legalMatterCategory` to `item.label`.
-    // So `legalMatterCategory` in form is likely a string.
-    // But `autocomplete` usually binds object if not configured otherwise.
-    // Original LoadData sets `selectedCategory || null`. `selectedCategory` is ISelectItem.
-
-    // If user types, it propagates string or null?
-    // CustomInputAutocomplete logic matters.
-    // Assuming original logic was correct with safe access `?.label || value`.
-
-    const payload = {
-      legalMatterCategoryId: formValue.legalMatterCategoryId,
-      // Si legalMatterCategoryId es null, enviar el texto como nueva categoróa
-      legalMatterCategory: (categoryValue as any)?.label || categoryValue,
-      title: formValue.title,
-      isInternal: formValue.isInternal,
-    };
-
-    const request =
-      this.id === ""
-        ? this.apiResponseS.onPost(Endpoints.LegalMatters.create, payload)
-        : this.apiResponseS.onPut(Endpoints.LegalMatters.update(this.id), payload);
-
-    request.then((result: boolean) => {
-      result ? this.ref.close(true) : this.submitting.set(false);
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.LegalMatters.create,
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => {
+        const v = this.form.getRawValue();
+        const categoryValue = v.legalMatterCategory;
+        return {
+          legalMatterCategoryId: v.legalMatterCategoryId,
+          legalMatterCategory: (categoryValue as any)?.label || categoryValue,
+          title: v.title,
+          isInternal: v.isInternal,
+        };
+      },
     });
   }
 }

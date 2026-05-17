@@ -1,4 +1,4 @@
-import { Component, EventEmitter, input, Output } from "@angular/core";
+import { Component, input, output } from "@angular/core";
 import { TooltipModule } from "primeng/tooltip";
 
 export enum EStatus {
@@ -42,7 +42,7 @@ export class StatusBadge {
   tooltip = input<string>("Actualizar estatus");
 
   // <--- Outputs --->
-  @Output() statusClick = new EventEmitter<StatusClickEvent>();
+  statusClick = output<StatusClickEvent>();
 
   private statusConfig = {
     [EStatus.Pendiente]: { text: "PENDIENTE", class: "badge badge-danger" },

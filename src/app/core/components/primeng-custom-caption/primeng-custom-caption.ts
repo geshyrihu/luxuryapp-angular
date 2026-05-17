@@ -1,4 +1,4 @@
-import { Component, EventEmitter, input, Output } from "@angular/core";
+import { Component, input, output } from "@angular/core";
 import { RouterModule } from "@angular/router";
 // import { CustomButtonAdd } from "../buttons/custom-button-add";
 import { CustomButtonAdd } from "../buttons/web/custom-button-add";
@@ -35,8 +35,8 @@ export class PrimeNgCustomCaption {
   noPadding = input<boolean>(false);
 
   // <--- Outputs --->
-  @Output() add = new EventEmitter<any>();
-  @Output() search = new EventEmitter<string>();
+  add = output<any>();
+  search = output<string>();
 
   onAdd(data: any) {
     this.add.emit(data);

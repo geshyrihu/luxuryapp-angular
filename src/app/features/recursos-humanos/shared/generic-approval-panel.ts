@@ -2,10 +2,9 @@ import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
-  EventEmitter,
   inject,
   input,
-  Output,
+  output,
 } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
@@ -133,9 +132,9 @@ export class GenericApprovalPanel {
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   // --- OUTPUTS ---
-  @Output() approve = new EventEmitter<ApprovalPanelRequest>();
-  @Output() reject = new EventEmitter<ApprovalPanelRequest>();
-  @Output() viewDetail = new EventEmitter<ApprovalPanelRequest>();
+  approve = output<ApprovalPanelRequest>();
+  reject = output<ApprovalPanelRequest>();
+  viewDetail = output<ApprovalPanelRequest>();
 
   // --- LÓGICA ---
   // Se recalcula automáticamente cuando 'requests' cambia.

@@ -14,6 +14,7 @@ import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTime } from "src/app/core/components/inputs/web/custom-input-time-signal";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 
@@ -109,26 +110,17 @@ export class PiscinaBitacoraForm implements OnInit {
   }
 
   onSubmit() {
-    this.form.patchValue({
-      piscinaId: this.config.data.piscinaId,
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "piscinabitacora",
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => ({
+        ...this.form.getRawValue(),
+        piscinaId: this.config.data.piscinaId,
+      }),
     });
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-    const DTO = this.form.getRawValue();
-
-    if (!this.id) {
-      this.apiResponseS
-        .onPost(`piscinabitacora`, DTO)
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    } else {
-      this.apiResponseS
-        .onPut(`piscinabitacora/${this.id}`, DTO)
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    }
   }
 }

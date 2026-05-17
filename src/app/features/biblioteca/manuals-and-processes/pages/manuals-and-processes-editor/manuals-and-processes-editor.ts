@@ -24,6 +24,7 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DateService } from "src/app/core/services/date.service";
 import { DiagramPreviewComponent } from "../../components/diagram-preview";
 import {
   IManualAdjuntoSimpleDTO,
@@ -73,6 +74,7 @@ interface IVersionForm {
 })
 export class ManualsAndProcessesEditor implements OnInit {
   private apiS = inject(ApiResponseService);
+  private dateS = inject(DateService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private fb = inject(FormBuilder);
@@ -122,7 +124,7 @@ export class ManualsAndProcessesEditor implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    fechaCambio: new FormControl(new Date().toISOString().substring(0, 10), {
+    fechaCambio: new FormControl(this.dateS.getDateNow(), {
       nonNullable: true,
     }),
     autor: new FormControl("", { nonNullable: true }),
@@ -376,7 +378,7 @@ export class ManualsAndProcessesEditor implements OnInit {
       this.versiones.update((list) => [res, ...list]);
       this.versionForm.reset({
         version: "",
-        fechaCambio: new Date().toISOString().substring(0, 10),
+        fechaCambio: this.dateS.getDateNow(),
         autor: "",
         descripcionCambio: "",
       });

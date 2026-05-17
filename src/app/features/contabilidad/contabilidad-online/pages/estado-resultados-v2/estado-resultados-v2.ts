@@ -12,6 +12,7 @@ import {
   ICuentaMayorDto,
   IFinancialStatementDto,
 } from "../../models/aspel-budget.interface";
+import { AccountingNumberPipe } from "../../pipes/accounting-number.pipe";
 import { reportFilterState } from "../../state/financial-report-filter.state";
 
 const MONTH_NAMES = [
@@ -64,6 +65,7 @@ type EstadoResultadosRow =
     SkeletonModule,
     DataViewMobile,
     DecimalPipe,
+    AccountingNumberPipe,
   ],
   templateUrl: "./estado-resultados-v2.html",
 })

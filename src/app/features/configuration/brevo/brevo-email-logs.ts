@@ -1,13 +1,13 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
+import { Component, inject, OnInit, signal } from "@angular/core";
+import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CardModule } from "primeng/card";
+import { InputTextModule } from "primeng/inputtext";
+import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { InputTextModule } from "primeng/inputtext";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { DatePickerModule } from "primeng/datepicker";
-import { CardModule } from "primeng/card";
-import { SkeletonModule } from "primeng/skeleton";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 // ─── Modelos ─────────────────────────────────────────────────────────────────
@@ -39,11 +39,12 @@ interface BrevoPagedResultDTO {
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     TableModule,
     TagModule,
     InputTextModule,
     CustomButton,
-    DatePickerModule,
+    CustomInputDateSignal,
     CardModule,
     SkeletonModule,
   ],
@@ -53,14 +54,14 @@ export class BrevoEmailLogs implements OnInit {
   private readonly apiS = inject(ApiResponseService);
 
   // ─── Estado del componente ────────────────────────────────────────────────
-  registros    = signal<BrevoEmailLogDTO[]>([]);
+  registros = signal<BrevoEmailLogDTO[]>([]);
   totalRecords = signal<number>(0);
-  cargando     = signal<boolean>(false);
+  cargando = signal<boolean>(false);
 
   // ─── Filtros de búsqueda ──────────────────────────────────────────────────
-  filtroEmail      = "";
-  filtroFechaInicio: Date | null = null;
-  filtroFechaFin:   Date | null = null;
+  filtroEmail = "";
+  filtroFechaInicioCtrl = new FormControl<string | null>(null);
+  filtroFechaFinCtrl = new FormControl<string | null>(null);
 
   // ─── Paginación ───────────────────────────────────────────────────────────
   readonly tamanioPagina = 50;
@@ -77,21 +78,20 @@ export class BrevoEmailLogs implements OnInit {
     this.cargando.set(true);
 
     const params: Record<string, string> = {
-      limit:  String(this.tamanioPagina),
+      limit: String(this.tamanioPagina),
       offset: String(this.offset),
     };
 
-    if (this.filtroEmail?.trim())
-      params["email"] = this.filtroEmail.trim();
+    if (this.filtroEmail?.trim()) params["email"] = this.filtroEmail.trim();
 
-    if (this.filtroFechaInicio)
-      params["startDate"] = this.formatearFecha(this.filtroFechaInicio);
+    if (this.filtroFechaInicioCtrl.value)
+      params["startDate"] = this.filtroFechaInicioCtrl.value;
 
-    if (this.filtroFechaFin)
-      params["endDate"] = this.formatearFecha(this.filtroFechaFin);
+    if (this.filtroFechaFinCtrl.value)
+      params["endDate"] = this.filtroFechaFinCtrl.value;
 
     const resultado = await this.apiS.onGetItem<BrevoPagedResultDTO>(
-      `brevo-email-log?${new URLSearchParams(params).toString()}`
+      `brevo-email-log?${new URLSearchParams(params).toString()}`,
     );
 
     if (resultado) {
@@ -114,10 +114,10 @@ export class BrevoEmailLogs implements OnInit {
    * Limpia todos los filtros y vuelve a cargar.
    */
   limpiarFiltros(): void {
-    this.filtroEmail       = "";
-    this.filtroFechaInicio = null;
-    this.filtroFechaFin    = null;
-    this.offset            = 0;
+    this.filtroEmail = "";
+    this.filtroFechaInicioCtrl.reset();
+    this.filtroFechaFinCtrl.reset();
+    this.offset = 0;
     this.cargarLogs();
   }
 
@@ -132,22 +132,27 @@ export class BrevoEmailLogs implements OnInit {
   /**
    * Devuelve la severidad del Tag de PrimeNG según el evento de Brevo.
    */
-  severidadEvento(evento: string): "success" | "info" | "warn" | "danger" | "secondary" {
-    const mapa: Record<string, "success" | "info" | "warn" | "danger" | "secondary"> = {
-      delivered:     "success",
-      opened:        "info",
-      clicked:       "info",
-      sent:          "secondary",
-      queued:        "secondary",
-      softBounce:    "warn",
-      hardBounce:    "danger",
-      blocked:       "danger",
+  severidadEvento(
+    evento: string,
+  ): "success" | "info" | "warn" | "danger" | "secondary" {
+    const mapa: Record<
+      string,
+      "success" | "info" | "warn" | "danger" | "secondary"
+    > = {
+      delivered: "success",
+      opened: "info",
+      clicked: "info",
+      sent: "secondary",
+      queued: "secondary",
+      softBounce: "warn",
+      hardBounce: "danger",
+      blocked: "danger",
       invalid_email: "danger",
-      deferred:      "warn",
-      complaint:     "warn",
-      unsubscribed:  "secondary",
-      spam:          "danger",
-      proxy_open:    "secondary",
+      deferred: "warn",
+      complaint: "warn",
+      unsubscribed: "secondary",
+      spam: "danger",
+      proxy_open: "secondary",
     };
     return mapa[evento] ?? "secondary";
   }
@@ -157,20 +162,20 @@ export class BrevoEmailLogs implements OnInit {
    */
   etiquetaEvento(evento: string): string {
     const mapa: Record<string, string> = {
-      delivered:     "Entregado",
-      opened:        "Abierto",
-      clicked:       "Clic",
-      sent:          "Enviado",
-      queued:        "En cola",
-      softBounce:    "Rebote suave",
-      hardBounce:    "Rebote duro",
-      blocked:       "Bloqueado",
+      delivered: "Entregado",
+      opened: "Abierto",
+      clicked: "Clic",
+      sent: "Enviado",
+      queued: "En cola",
+      softBounce: "Rebote suave",
+      hardBounce: "Rebote duro",
+      blocked: "Bloqueado",
       invalid_email: "Email inválido",
-      deferred:      "Diferido",
-      complaint:     "Queja",
-      unsubscribed:  "Desuscrito",
-      spam:          "Spam",
-      proxy_open:    "Apertura proxy",
+      deferred: "Diferido",
+      complaint: "Queja",
+      unsubscribed: "Desuscrito",
+      spam: "Spam",
+      proxy_open: "Apertura proxy",
     };
     return mapa[evento] ?? evento;
   }
@@ -178,7 +183,4 @@ export class BrevoEmailLogs implements OnInit {
   // ─── Utilitarios privados ─────────────────────────────────────────────────
 
   /** Formatea una fecha al formato YYYY-MM-DD que acepta la API de Brevo. */
-  private formatearFecha(fecha: Date): string {
-    return fecha.toISOString().split("T")[0];
-  }
 }

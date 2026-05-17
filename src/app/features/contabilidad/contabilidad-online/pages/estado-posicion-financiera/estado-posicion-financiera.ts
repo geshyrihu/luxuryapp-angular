@@ -7,11 +7,12 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { IEpfDTO } from "../../models/aspel-budget.interface";
+import { AccountingNumberPipe } from "../../pipes/accounting-number.pipe";
 import { reportFilterState } from "../../state/financial-report-filter.state";
 
 @Component({
   selector: "app-estado-posicion-financiera",
-  imports: [CommonModule, FormsModule, SkeletonModule],
+  imports: [CommonModule, FormsModule, SkeletonModule, AccountingNumberPipe],
   templateUrl: "./estado-posicion-financiera.html",
 })
 export class EstadoPosicionFinanciera {

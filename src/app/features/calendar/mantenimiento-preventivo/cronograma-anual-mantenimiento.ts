@@ -3,9 +3,8 @@ import {
   Component,
   computed,
   effect,
-  EventEmitter,
   inject,
-  Output,
+  output,
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
@@ -121,7 +120,7 @@ export class CronogramaAnualMantenimiento {
     "DIC",
   ];
 
-  @Output() messageEvent = new EventEmitter<string>();
+  messageEvent = output<string>();
 
   constructor() {
     addIcons({ checkboxOutline, createOutline });

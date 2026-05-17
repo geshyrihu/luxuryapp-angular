@@ -1,41 +1,76 @@
-@if (mostrarTabla) {
+@if (mostrarTabla()) {
 
-<!-- [disabled]="ordenCompraPresupuestoUtilizado" -->
-<custom-button
-  iconClass="pi pi-chart-bar"
-  label="ESTATUS DE COMPRA"
-  (clicked)="onModalOrdenCompraStatus()"
-  customClass="w-full "
-  size="small"
-  [showLabelOnDesktop]="true"
-/>
-
-<div class="card p-2 border border-round border-surface-200">
-  <div class="mb-1 flex">
-    <div class="text-color-secondary text-sm font-medium table-col-40">
-      Pagado:
+<div class="card p-0 overflow-hidden">
+  <div
+    class="flex align-items-center justify-content-between px-3 py-2 bg-gray-800"
+  >
+    <div class="flex align-items-center gap-2">
+      <i class="pi pi-chart-bar text-white text-sm"></i>
+      <span class="font-semibold text-sm text-white">ESTATUS DE COMPRA</span>
     </div>
-    <div class="text-color-secondary text-sm flex-grow-1">
-      {{ ordenCompra.ordenCompraStatus.sePago | eBoolText }}
-    </div>
+    <p-button
+      icon="pi pi-pencil"
+      size="small"
+      variant="text"
+      rounded
+      (onClick)="onModalOrdenCompraStatus()"
+      pTooltip="Editar estatus"
+      styleClass="text-white"
+    />
   </div>
 
-  <div class="mb-1 flex">
-    <div class="text-color-secondary text-sm font-medium table-col-40">
-      Entregado:
+  <div class="p-3">
+    <div class="mb-2 flex align-items-center">
+      <div class="text-color-secondary text-xs font-semibold table-col-40">
+        PAGADO
+      </div>
+      <div class="flex-grow-1">
+        <p-tag
+          [severity]="
+            ordenCompra().ordenCompraStatus.sePago ? 'success' : 'secondary'
+          "
+          [icon]="
+            ordenCompra().ordenCompraStatus.sePago
+              ? 'pi pi-check'
+              : 'pi pi-minus'
+          "
+          [value]="ordenCompra().ordenCompraStatus.sePago ? 'Pagado' : 'Pendiente'"
+        />
+      </div>
     </div>
-    <div class="text-color-secondary text-sm flex-grow-1">
-      {{ ordenCompra.ordenCompraStatus.seRecibio | eBoolText }}
-    </div>
-  </div>
 
-  <div class="mb-1 flex">
-    <div class="text-color-secondary text-sm font-medium table-col-40">
-      Recibido por:
+    <div class="mb-2 flex align-items-center">
+      <div class="text-color-secondary text-xs font-semibold table-col-40">
+        ENTREGADO
+      </div>
+      <div class="flex-grow-1">
+        <p-tag
+          [severity]="
+            ordenCompra().ordenCompraStatus.seRecibio ? 'success' : 'secondary'
+          "
+          [icon]="
+            ordenCompra().ordenCompraStatus.seRecibio
+              ? 'pi pi-check'
+              : 'pi pi-minus'
+          "
+          [value]="
+            ordenCompra().ordenCompraStatus.seRecibio ? 'Recibido' : 'Pendiente'
+          "
+        />
+      </div>
     </div>
-    <div class="text-color-secondary text-sm flex-grow-1">
-      {{ ordenCompra.ordenCompraStatus.recibidoPor }}
+
+    @if (ordenCompra().ordenCompraStatus.recibidoPor) {
+    <div class="mb-2 flex">
+      <div class="text-color-secondary text-xs font-semibold table-col-40">
+        RECIBIDO POR
+      </div>
+      <div class="text-sm flex-grow-1">
+        {{ ordenCompra().ordenCompraStatus.recibidoPor }}
+      </div>
     </div>
+    }
   </div>
 </div>
+
 }

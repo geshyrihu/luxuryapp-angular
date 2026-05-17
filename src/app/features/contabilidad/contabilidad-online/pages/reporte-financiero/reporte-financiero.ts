@@ -61,10 +61,11 @@ export class ReporteFinanciero {
 
   formatNum(value: number): string {
     if (value === 0 || value === null || value === undefined) return "-";
-    return new Intl.NumberFormat("es-MX", {
+    const formatted = new Intl.NumberFormat("es-MX", {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
-    }).format(value);
+    }).format(Math.abs(value));
+    return value < 0 ? `(${formatted})` : formatted;
   }
 
   isNeg(value: number): boolean {

@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -43,7 +43,7 @@ export class EmployeePersonalDataForm implements OnInit {
   authS = inject(AuthService);
   formB = inject(FormBuilder);
   enumSelectS = inject(EnumSelectService);
-  @Input() employeeId: string = "";
+  employeeId = input<string>("");
 
   // Signals para ComboBoxes
   cb_blood_type = signal<ISelectItem[]>([]);
@@ -95,7 +95,7 @@ export class EmployeePersonalDataForm implements OnInit {
 
   async onLoadData(): Promise<void> {
     const result: any = await this.apiResponseS.onGetItem(
-      `EmployeeInternal/PersonalData/${this.employeeId}`,
+      `EmployeeInternal/PersonalData/${this.employeeId()}`,
     );
 
     // Extraer valores de objetos si es necesario
@@ -169,7 +169,7 @@ export class EmployeePersonalDataForm implements OnInit {
     };
 
     this.apiResponseS
-      .onPut(`EmployeeInternal/UpdatePersonalData/${this.employeeId}`, payload)
+      .onPut(`EmployeeInternal/UpdatePersonalData/${this.employeeId()}`, payload)
       .then((result: boolean) => {
         this.submitting.set(false);
         if (result) {

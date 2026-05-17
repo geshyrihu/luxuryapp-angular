@@ -900,6 +900,12 @@ export const Endpoints = {
       fechaFin: string,
     ) =>
       `aspel-cobranza/estado-cuenta-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
+    detalleCobranzaRango: (
+      customerId: string,
+      numCta: string,
+      fechaFin: string,
+    ) =>
+      `aspel-cobranza/detalle-cobranza-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaFin=${fechaFin}`,
     contrapartidasRango: (
       customerId: string,
       numCta: string,
@@ -956,6 +962,8 @@ export const Endpoints = {
         `contabilidad-online/cedula-extraordinaria/${customerId}/${year}/${mes}`,
       budgetVsActual: (customerId: string, year: number, mes: number) =>
         `contabilidad-online/cedula-presupuestal/${customerId}/${year}/${mes}`,
+      presupuestoContabilidad: (customerId: string, year: number, mes: number) =>
+        `contabilidad-online/presupuesto-contabilidad/${customerId}/${year}/${mes}`,
       financialReport: (customerId: string, year: number, mes: number) =>
         `contabilidad-online/reporte-financiero/${customerId}/${year}/${mes}`,
       cashFlow: (customerId: string, year: number) =>

@@ -17,30 +17,22 @@
     </div>
 
     <!-- Fecha de inicio -->
-    <div class="flex flex-column gap-1">
-      <label class="text-sm font-medium text-color-secondary">Desde</label>
-      <p-datepicker
-        [(ngModel)]="filtroFechaInicio"
-        [showIcon]="true"
-        dateFormat="yy-mm-dd"
-        placeholder="Fecha inicio"
-        styleClass="p-inputtext-sm"
-        style="width: 180px"
-      />
-    </div>
+    <custom-input-date-signal
+      [control]="filtroFechaInicioCtrl"
+      label="Desde"
+      id="fecha-inicio"
+      placeholder="Fecha inicio"
+      [noMargin]="true"
+    />
 
     <!-- Fecha de fin -->
-    <div class="flex flex-column gap-1">
-      <label class="text-sm font-medium text-color-secondary">Hasta</label>
-      <p-datepicker
-        [(ngModel)]="filtroFechaFin"
-        [showIcon]="true"
-        dateFormat="yy-mm-dd"
-        placeholder="Fecha fin"
-        styleClass="p-inputtext-sm"
-        style="width: 180px"
-      />
-    </div>
+    <custom-input-date-signal
+      [control]="filtroFechaFinCtrl"
+      label="Hasta"
+      id="fecha-fin"
+      placeholder="Fecha fin"
+      [noMargin]="true"
+    />
 
     <!-- Botones -->
     <custom-button

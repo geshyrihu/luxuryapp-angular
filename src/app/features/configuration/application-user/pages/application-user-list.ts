@@ -4,14 +4,13 @@ import {
   inject,
   OnInit,
   signal,
-  ViewChild,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { IonAvatar } from "@ionic/angular/standalone";
 import { AvatarModule } from "primeng/avatar";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { Table, TableModule } from "primeng/table";
+import { TableModule } from "primeng/table";
 import { firstValueFrom } from "rxjs";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
@@ -96,8 +95,6 @@ export class ApplicationUserList implements OnInit {
   applicationUserId: string = "";
   employeeId: any = 0;
   ref: DynamicDialogRef;
-  @ViewChild("dt") dt: Table; // Get a reference to the PrimeNG table
-
   state: boolean = true;
   title: string = "";
   applicationUserState: boolean = true;

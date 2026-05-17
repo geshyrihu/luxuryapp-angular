@@ -65,15 +65,15 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
       //   color: "#1d4ed8",
       //   bgColor: "#dbeafe",
       // },
-      {
-        title: "Reportes Dinámicos",
-        description:
-          "Configuración y visor de reportes financieros personalizados.",
-        route: "/contabilidad/reportes",
-        icon: "pi pi-cog",
-        color: "#7c3aed",
-        bgColor: "#f5f3ff",
-      },
+      // {
+      //   title: "Reportes Dinámicos",
+      //   description:
+      //     "Configuración y visor de reportes financieros personalizados.",
+      //   route: "/contabilidad/reportes",
+      //   icon: "pi pi-cog",
+      //   color: "#7c3aed",
+      //   bgColor: "#f5f3ff",
+      // },
       // {
       //   title: "Auditoría de Sincronización",
       //   description: "Consultar datos de sincronización Aspel por entidad.",
@@ -115,23 +115,23 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         color: "#047857",
         bgColor: "#d1fae5",
       },
-      {
-        title: "Cobranza Nativa",
-        description: "Gestión y seguimiento de cuentas por cobrar.",
-        route: "/cobranza-nativa",
-        icon: "pi pi-bolt",
-        color: "#0f766e",
-        bgColor: "#ccfbf1",
-      },
-      {
-        title: "Espejo Aspel Full",
-        description:
-          "Catalogo completo de cuentas Aspel con cargos, abonos y presupuesto mensual por grupo.",
-        route: "/contabilidad/espejo-aspel-full",
-        icon: "pi pi-table",
-        color: "#0f172a",
-        bgColor: "#f1f5f9",
-      },
+      // {
+      //   title: "Cobranza Nativa",
+      //   description: "Gestión y seguimiento de cuentas por cobrar.",
+      //   route: "/cobranza-nativa",
+      //   icon: "pi pi-bolt",
+      //   color: "#0f766e",
+      //   bgColor: "#ccfbf1",
+      // },
+      // {
+      //   title: "Espejo Aspel Full",
+      //   description:
+      //     "Catalogo completo de cuentas Aspel con cargos, abonos y presupuesto mensual por grupo.",
+      //   route: "/contabilidad/espejo-aspel-full",
+      //   icon: "pi pi-table",
+      //   color: "#0f172a",
+      //   bgColor: "#f1f5f9",
+      // },
     ],
   },
 

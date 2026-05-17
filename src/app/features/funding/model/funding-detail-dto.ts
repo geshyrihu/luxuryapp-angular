@@ -13,6 +13,7 @@ export interface FundingDetailDTO {
   tesorero: string;
   inProgress: boolean;
   grupos: FundingGastoDTO[];
+  ordenesFueraProceso: FundingOrdenDTO[];
 }
 
 export interface FundingGastoDTO {

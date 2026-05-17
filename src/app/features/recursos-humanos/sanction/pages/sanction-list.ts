@@ -1,5 +1,5 @@
 import { Component, inject, signal } from "@angular/core";
-import { DatePipe } from "@angular/common";
+import { CommonModule, DatePipe } from "@angular/common";
 import { TableModule } from "primeng/table";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
@@ -10,6 +10,9 @@ import { tablePrimeNgRows, rowsPerPageOptions, globalFilterFields } from "src/ap
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 import { SanctionListDTO } from "../models/sanction.dto";
 import { SanctionFormComponent } from "./sanction-form";
 
@@ -17,11 +20,15 @@ import { SanctionFormComponent } from "./sanction-form";
   selector: "app-sanction-list",
   templateUrl: "./sanction-list.html",
   imports: [
+    CommonModule,
     DatePipe,
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     CustomButtonItem,
+    DataViewMobile,
+    ActionMenu,
+    IonButtonItem,
   ],
 })
 export class SanctionList {

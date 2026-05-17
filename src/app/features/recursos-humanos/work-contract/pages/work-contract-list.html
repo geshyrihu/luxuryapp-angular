@@ -1,7 +1,8 @@
 <div class="card">
   <p-table
+    #dt
     [value]="items()"
-    styleClass="custom-table card hidden md:block"
+    styleClass="custom-table hidden md:block"
     [scrollable]="true"
     [scrollHeight]="tableScrollH.scrollHeight()"
     [paginator]="true"
@@ -52,4 +53,32 @@
       <primeng-custom-table-footer [totalRecords]="items().length" />
     </ng-template>
   </p-table>
+
+  <app-data-view-mobile
+    [dt]="dt"
+    [data]="items()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Contrato Laboral' })"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ion-item lines="full">
+        <ion-label>
+          <h2 class="font-bold">{{ item.contractNumber }}</h2>
+          <p class="text-sm text-500">{{ item.contractType }}</p>
+          <p class="text-sm text-500">
+            {{ item.startDate | date:'dd/MM/yyyy' }} —
+            {{ item.endDate ? (item.endDate | date:'dd/MM/yyyy') : 'Indefinido' }}
+          </p>
+          <p class="text-sm">
+            <span [class]="'badge ' + getStatusBadge(item.contractStatus)">{{ item.contractStatus }}</span>
+          </p>
+        </ion-label>
+        <app-action-menu slot="end">
+          <ng-container actions>
+            <ion-button-item label="Ver" iconName="eye-outline" (clicked)="onViewDetail(item)" />
+            <ion-button-item label="Editar" iconName="create-outline" (clicked)="onEdit(item)" />
+          </ng-container>
+        </app-action-menu>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
 </div>

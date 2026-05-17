@@ -1,47 +1,34 @@
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
+import { StorageService } from "src/app/core/services/storage.service";
+
 @Injectable({
   providedIn: "root",
 })
 export class DateRangeStorageService {
   private storageKey = "ticketDateRange";
+  private storageS = inject(StorageService);
 
-  constructor() {}
-
-  // Guardar las fechas seleccionadas en localStorage
   saveDateRange(from: Date | null, to: Date | null): void {
     if (from && to) {
-      const dateRange = {
+      this.storageS.store(this.storageKey, {
         from: from.toISOString(),
         to: to.toISOString(),
-      };
-      localStorage.setItem(this.storageKey, JSON.stringify(dateRange));
+      });
     }
   }
 
-  // Recuperar las fechas seleccionadas de localStorage
   getDateRange(): { from: Date | null; to: Date | null } {
-    const savedDates = localStorage.getItem(this.storageKey);
+    const savedDates = this.storageS.retrieve(this.storageKey);
     if (savedDates) {
-      const { from, to } = JSON.parse(savedDates);
       return {
-        from: new Date(from),
-        to: new Date(to),
+        from: new Date(savedDates.from),
+        to: new Date(savedDates.to),
       };
     }
     return { from: null, to: null };
   }
 
-  // Limpiar el almacenamiento de fechas
   clearDateRange(): void {
-    localStorage.removeItem(this.storageKey);
+    this.storageS.remove(this.storageKey);
   }
 }
-
-
-
-
-
-
-
-
-

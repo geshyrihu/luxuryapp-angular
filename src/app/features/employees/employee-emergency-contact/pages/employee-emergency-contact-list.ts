@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -47,8 +47,7 @@ export class EmployeeEmergencyContactList implements OnInit {
     addIcons({ callOutline, peopleOutline });
   }
 
-  @Input()
-  employeeId: any = 0;
+  employeeId = input<any>(0);
 
   id: string = "";
   contactEmployeeAdd: any;
@@ -58,14 +57,14 @@ export class EmployeeEmergencyContactList implements OnInit {
   loading = signal(true);
   dataBeneficiary: any = [];
   ngOnInit() {
-    if (this.employeeId !== 0 && this.employeeId !== undefined) {
+    if (this.employeeId() !== 0 && this.employeeId() !== undefined) {
       this.onLoadDataEmergencyContact();
       this.onLoadDataBeneficiary();
     }
   }
 
   onLoadDataEmergencyContact() {
-    const urlApi = `EmployeeEmergencyContact/ListEmployeeContact/${this.employeeId}/${0}`;
+    const urlApi = `EmployeeEmergencyContact/ListEmployeeContact/${this.employeeId()}/${0}`;
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.dataEmergencyContact = result;
 
@@ -73,7 +72,7 @@ export class EmployeeEmergencyContactList implements OnInit {
     });
   }
   onLoadDataBeneficiary() {
-    const urlApi = `EmployeeEmergencyContact/ListEmployeeContact/${this.employeeId}/${1}`;
+    const urlApi = `EmployeeEmergencyContact/ListEmployeeContact/${this.employeeId()}/${1}`;
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.dataBeneficiary = result;
     });

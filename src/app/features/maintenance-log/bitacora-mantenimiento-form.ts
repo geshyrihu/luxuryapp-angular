@@ -13,6 +13,7 @@ import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/cust
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -91,26 +92,17 @@ export class BitacoraMantenimientoForm implements OnInit {
   };
 
   onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-    // El form ya estó tipado y validado, podemos enviar getRawValue() directamente
-    // que contendró la estructura correcta, pero nos aseguramos de enviar el DTO esperado.
-    const formValue = this.form.getRawValue();
-
-    // Construir payload limpio (aunque getRawValue ya es bastante limpio)
-    const payload = {
-      customerId: formValue.customerId,
-      machineryId: formValue.machineryId,
-      descripcion: formValue.descripcion,
-      emergencia: formValue.emergencia,
-      applicationUserId: this.authS.applicationUserId,
-    };
-
-    this.apiResponseS
-      .onPost(`BitacoraMantenimiento`, payload)
-      .then((result: boolean) => {
-        result ? this.ref.close(true) : this.submitting.set(false);
-      });
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "BitacoraMantenimiento",
+      id: "",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => {
+        const { machinery, ...rest } = this.form.getRawValue();
+        return rest;
+      },
+    });
   }
 }

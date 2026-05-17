@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -43,7 +43,7 @@ export class EmployeeLaboralDataForm implements OnInit {
   // employeeAddOrEditService = inject(EmployeeAddOrEditService);
   enumSelectS = inject(EnumSelectService);
   formB = inject(FormBuilder);
-  @Input() applicationUserId: string = "";
+  applicationUserId = input<string>("");
 
   cb_type_contract = signal<ISelectItem[]>([]);
   cb_education_level = signal<ISelectItem[]>([]);
@@ -106,7 +106,7 @@ export class EmployeeLaboralDataForm implements OnInit {
     this.cb_education_level.set(educationLevel);
   }
   onLoadData() {
-    const urlApi = `EmployeeInternal/LaboralData/${this.applicationUserId}`;
+    const urlApi = `EmployeeInternal/LaboralData/${this.applicationUserId()}`;
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue(result);
     });
@@ -118,7 +118,7 @@ export class EmployeeLaboralDataForm implements OnInit {
 
     this.apiResponseS
       .onPut(
-        `EmployeeInternal/UpdateLaboralData/${this.applicationUserId}`,
+        `EmployeeInternal/UpdateLaboralData/${this.applicationUserId()}`,
         this.form.value,
       )
       .then((result: any) => {

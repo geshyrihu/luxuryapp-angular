@@ -1,29 +1,25 @@
 import { CommonModule, CurrencyPipe, NgClass } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import { ButtonModule } from "primeng/button";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-import {
-  AspelPendienteConceptoItem,
-  AspelPendientesConceptoResponse,
-} from "./aspel-cobranza-haus.models";
+import { AspelPendientesConceptoResponse } from "./aspel-cobranza-haus.models";
 
 @Component({
   selector: "app-aspel-cobranza-haus-debt-detail-modal",
   templateUrl: "./aspel-cobranza-haus-debt-detail-modal.html",
-  styleUrls: ["./aspel-cobranza-haus-debt-detail-modal.scss"],
   imports: [
     CommonModule,
     TableModule,
-    ButtonModule,
     MessageModule,
     TagModule,
+    CustomButton,
     CustomButtonDownload,
     PrimeNgCustomCaption,
     CurrencyPipe,
@@ -40,8 +36,8 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
 
   readonly row = this.config.data?.row;
   readonly customerId = this.config.data?.customerId as string | undefined;
-  readonly fechaInicio = this.config.data?.fechaInicio as string | undefined;
   readonly fechaFin = this.config.data?.fechaFin as string | undefined;
+  readonly fechaInicio = this.buildFechaInicio(this.fechaFin);
 
   readonly totalSaldoInicial = computed(() =>
     (this.detail()?.conceptos ?? []).reduce(
@@ -50,10 +46,16 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
     ),
   );
   readonly totalCargos = computed(() =>
-    (this.detail()?.conceptos ?? []).reduce((sum, item) => sum + (item.cargos ?? 0), 0),
+    (this.detail()?.conceptos ?? []).reduce(
+      (sum, item) => sum + (item.cargos ?? 0),
+      0,
+    ),
   );
   readonly totalAbonos = computed(() =>
-    (this.detail()?.conceptos ?? []).reduce((sum, item) => sum + (item.abonos ?? 0), 0),
+    (this.detail()?.conceptos ?? []).reduce(
+      (sum, item) => sum + (item.abonos ?? 0),
+      0,
+    ),
   );
   readonly totalPendiente = computed(() =>
     (this.detail()?.conceptos ?? []).reduce(
@@ -71,7 +73,13 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
   }
 
   downloadAvisoCobro(): void {
-    if (!this.customerId || !this.row?.numCtaBase || !this.fechaInicio || !this.fechaFin) return;
+    if (
+      !this.customerId ||
+      !this.row?.numCtaBase ||
+      !this.fechaInicio ||
+      !this.fechaFin
+    )
+      return;
 
     this.apiResponseS.onDownloadFile(
       Endpoints.AspelCobranza.avisoCobroPdf(
@@ -85,7 +93,13 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
   }
 
   downloadEstadoCuenta(): void {
-    if (!this.customerId || !this.row?.numCtaBase || !this.fechaInicio || !this.fechaFin) return;
+    if (
+      !this.customerId ||
+      !this.row?.numCtaBase ||
+      !this.fechaInicio ||
+      !this.fechaFin
+    )
+      return;
 
     this.apiResponseS.onDownloadFile(
       Endpoints.AspelCobranza.estadoCuentaPdf(
@@ -98,7 +112,9 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
     );
   }
 
-  getConceptSeverity(concepto: string): "success" | "info" | "warn" | "danger" | "secondary" | "contrast" {
+  getConceptSeverity(
+    concepto: string,
+  ): "success" | "info" | "warn" | "danger" | "secondary" | "contrast" {
     const normalized = concepto.toUpperCase();
     if (normalized.includes("MTTO")) return "info";
     if (normalized.includes("EXTRA")) return "warn";
@@ -114,21 +130,27 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
   }
 
   private async loadDetail() {
-    if (!this.customerId || !this.row?.numCtaBase || !this.fechaInicio || !this.fechaFin) {
+    if (
+      !this.customerId ||
+      !this.row?.numCtaBase ||
+      !this.fechaInicio ||
+      !this.fechaFin
+    ) {
       this.loading.set(false);
       return;
     }
 
     this.loading.set(true);
-    const response = await this.apiResponseS.onGetItem<AspelPendientesConceptoResponse>(
-      Endpoints.AspelCobranza.pendientesConceptoRango(
-        this.customerId,
-        this.row.numCtaBase,
-        this.fechaInicio,
-        this.fechaFin,
-      ),
-      false,
-    );
+    const response =
+      await this.apiResponseS.onGetItem<AspelPendientesConceptoResponse>(
+        Endpoints.AspelCobranza.pendientesConceptoRango(
+          this.customerId,
+          this.row.numCtaBase,
+          this.fechaInicio,
+          this.fechaFin,
+        ),
+        false,
+      );
 
     this.detail.set(response ? this.normalizeResponse(response) : null);
     this.loading.set(false);
@@ -143,7 +165,10 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
       fechaInicio: response.fechaInicio ?? response.fecha_inicio ?? "",
       fechaFin: response.fechaFin ?? response.fecha_fin ?? "",
       totalConceptos:
-        response.totalConceptos ?? response.total_conceptos ?? response.conceptos?.length ?? 0,
+        response.totalConceptos ??
+        response.total_conceptos ??
+        response.conceptos?.length ??
+        0,
       conceptos: (response.conceptos ?? []).map((item) => ({
         concepto: item.concepto ?? "",
         numCta: item.numCta ?? item.num_cta ?? "",
@@ -154,5 +179,12 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
         saldoPendiente: item.saldoPendiente ?? item.saldo_pendiente ?? 0,
       })),
     };
+  }
+
+  private buildFechaInicio(fechaFin?: string): string | undefined {
+    if (!fechaFin) return undefined;
+
+    const [year] = fechaFin.split("-");
+    return year ? `${year}-01-01` : undefined;
   }
 }

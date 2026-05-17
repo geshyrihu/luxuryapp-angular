@@ -3,12 +3,12 @@
     <div class="flex justify-content-between align-items-center">
       <h5 class="card-title mb-0">Mis Tareas Diarias</h5>
       <div>
-        <p-datepicker
-          [formControl]="selectedDateControl"
-          (onSelect)="onDateChange()"
-          dateFormat="dd/mm/yy"
-          [showIcon]="true"
-        ></p-datepicker>
+        <custom-input-date-signal
+          [control]="selectedDateControl"
+          label="Fecha"
+          id="fecha-filtro"
+          [noMargin]="true"
+        />
       </div>
     </div>
   </div>

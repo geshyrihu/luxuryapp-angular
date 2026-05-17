@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, output } from "@angular/core";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 @Component({
   selector: "app-task-report-actions",
@@ -6,8 +6,8 @@ import { CustomButton } from "src/app/core/components/buttons/web/custom-button"
   imports: [CustomButton],
 })
 export class TaskReportActions {
-  @Output() previewClicked = new EventEmitter<void>();
-  @Output() sendReportClicked = new EventEmitter<void>();
+  previewClicked = output<void>();
+  sendReportClicked = output<void>();
   onPreview(): void {
     this.previewClicked.emit();
   }

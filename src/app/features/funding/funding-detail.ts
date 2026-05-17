@@ -36,9 +36,10 @@ import { PdfGenerationService } from "src/app/features/purchases/generator-pdf/p
 import { CreateOrdenCompraWizard } from "src/app/features/purchases/purchase-order/components/create-orden-compra-wizard/create-orden-compra-wizard";
 import { PaymentVoucherModal } from "src/app/features/purchases/purchase-order/components/payment-voucher-modal/payment-voucher-modal";
 import { CreateOrdenCompra } from "src/app/features/purchases/purchase-order/create-orden-compra";
+import { CreateOrdenCompraFueraFondeo } from "./components/create-orden-compra-fuera-fondeo/create-orden-compra-fuera-fondeo";
 import { OrdenCompraDatosPago } from "src/app/features/purchases/purchase-order/forms/orden-compra-datos-pago";
 import { OrdenCompra } from "src/app/features/purchases/purchase-order/orden-compra";
-import { ETipoGasto } from "../../core/enums/tipo-gasto.enum";
+import { ETipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 import { FundingExcelExportService } from "../contabilidad/services/funding-excel-export.service";
 // import { SatReconciliationDialog } from "../sat-funding/components/sat-reconciliation-dialog/sat-reconciliation-dialog";
 import { FundingGroupFiles } from "./components/funding-group-files/funding-group-files.";
@@ -110,6 +111,7 @@ export class FundingDetail {
 
   dataSignal = signal<any[]>([]);
   fullData = signal<FundingDetailDTO | null>(null);
+  ordenesFueraProceso = signal<FundingOrdenDTO[]>([]);
 
   isRolAdministrador = this.aspRoleS.roleSignal(EApplicationRole.Administrador);
   isRolSuperUsuario = this.aspRoleS.roleSignal(EApplicationRole.SuperUsuario);
@@ -230,6 +232,16 @@ export class FundingDetail {
     this.isVerified.set(result.isVerified);
     this.isAuthorized.set(result.isAuthorized);
     this.isConfirmed.set(result.isConfirmed);
+
+    const fueraProceso = (result.ordenesFueraProceso ?? []).map((orden: any) => {
+      if (!orden.ordenCompraPagadaControl) {
+        orden.ordenCompraPagadaControl = new FormControl(orden.ordenCompraPagada);
+      } else {
+        orden.ordenCompraPagadaControl.setValue(orden.ordenCompraPagada, { emitEvent: false });
+      }
+      return orden;
+    });
+    this.ordenesFueraProceso.set(fueraProceso);
   }
 
   calculateGroupTotals(grupos: any[]): any[] {
@@ -386,6 +398,27 @@ export class FundingDetail {
         "Nueva Orden de compra",
         this.dialogHandlerS.sizeFull,
       )
+      .then((result: boolean) => {
+        if (result) this.onLoadData(this.customerIdS.customerId());
+      });
+  }
+
+  onAddFueraFondeo(): void {
+    this.dialogHandlerS
+      .openDialog(
+        CreateOrdenCompraFueraFondeo,
+        { fundingId: this.id },
+        "OC fuera de proceso de fondeo",
+        this.dialogHandlerS.sizeLg,
+      )
+      .then((result: boolean) => {
+        if (result) this.onLoadData(this.customerIdS.customerId());
+      });
+  }
+
+  onRemoveFueraFondeo(ordenCompraId: string): void {
+    this.apiResponseS
+      .onDelete(`OrdenCompra/${ordenCompraId}/fuera-fondeo`)
       .then((result: boolean) => {
         if (result) this.onLoadData(this.customerIdS.customerId());
       });

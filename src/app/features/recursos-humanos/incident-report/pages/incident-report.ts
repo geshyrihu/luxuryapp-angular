@@ -13,6 +13,7 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
+import { DateService } from "src/app/core/services/date.service";
 import {
   IncidentPendingDTO,
   IncidentStatsDTO,
@@ -40,6 +41,7 @@ export class IncidentReport {
   dataConnectorS = inject(DataConnectorService);
   toastS = inject(CustomToastService);
   fb = inject(NonNullableFormBuilder);
+  private dateS = inject(DateService);
 
   stats = signal<IncidentStatsDTO | null>(null);
   pending = signal<IncidentPendingDTO[]>([]);
@@ -127,7 +129,7 @@ export class IncidentReport {
           });
           saveAs(
             blob,
-            `incidencias_${new Date().toISOString().slice(0, 10)}.xlsx`,
+            `incidencias_${this.dateS.getDateNow()}.xlsx`,
           );
         },
         error: () =>

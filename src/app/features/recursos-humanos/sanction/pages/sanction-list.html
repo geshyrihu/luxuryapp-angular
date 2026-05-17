@@ -1,7 +1,8 @@
 <div class="card">
   <p-table
+    #dt
     [value]="items()"
-    styleClass="custom-table card hidden md:block"
+    styleClass="custom-table hidden md:block"
     [scrollable]="true"
     [scrollHeight]="tableScrollH.scrollHeight()"
     [paginator]="true"
@@ -64,4 +65,30 @@
       <primeng-custom-table-footer [totalRecords]="items().length" />
     </ng-template>
   </p-table>
+
+  <app-data-view-mobile
+    [dt]="dt"
+    [data]="items()"
+    [showAdd]="false"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ion-item lines="full">
+        <ion-label>
+          <h2 class="font-bold">{{ item.sanctionTypeName }}</h2>
+          <p class="text-sm text-500">{{ item.severityLevel }} · {{ item.appliedDate | date:'dd/MM/yyyy' }}</p>
+          <p class="text-sm">
+            <span
+              class="inline-flex align-items-center border-round-3xl border-1 surface-border px-2 py-1 text-xs font-semibold"
+              [ngClass]="getStatusBadge(item.sanctionStatus)"
+            >{{ item.sanctionStatus }}</span>
+          </p>
+        </ion-label>
+        <app-action-menu slot="end">
+          <ng-container actions>
+            <ion-button-item label="Cambiar estatus" iconName="sync-outline" (clicked)="onChangeStatus(item)" />
+          </ng-container>
+        </app-action-menu>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
 </div>

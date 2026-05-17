@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, Input, signal } from "@angular/core";
+import { Component, effect, inject, input, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import {
   IonBadge,
@@ -59,7 +59,7 @@ export class UnifiedPendingDashboardMobile {
   private dialogHandlerS = inject(DialogHandlerService);
   private aiService = inject(AiService);
   private swalService = inject(SwalService);
-  @Input() visibleModules: string[] = [];
+  visibleModules = input<string[]>([]);
 
   data = signal<PendingItemDTO[]>([]);
   allData: PendingItemDTO[] = [];
@@ -121,9 +121,9 @@ export class UnifiedPendingDashboardMobile {
     let filtered = this.allData;
 
     // 1. Filter by visibleModules input (if provided)
-    if (this.visibleModules.length > 0) {
+    if (this.visibleModules().length > 0) {
       filtered = filtered.filter((item) =>
-        this.visibleModules.some(
+        this.visibleModules().some(
           (m) => m.toLowerCase() === item.module.toLowerCase(),
         ),
       );

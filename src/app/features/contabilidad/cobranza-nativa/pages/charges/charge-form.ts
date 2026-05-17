@@ -8,6 +8,7 @@ import {
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CreateChargeDTO, UpdateChargeDTO } from "../../models/charge.dto";
 import { EChargeStatus, EChargeType } from "../../models/enums";
@@ -179,39 +180,20 @@ export class ChargeForm implements OnInit {
     }
   }
 
-  async onSubmit() {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
-
-    this.submitting.set(true);
-
-    try {
-      if (this.id) {
-        const payload: UpdateChargeDTO = {
-          id: this.id,
-          ...this.form.getRawValue(),
-        };
-        const res = await this.apiResponseS.onPut(
-          Endpoints.AccountingCoi.NativeCollection.Charges.update(this.id),
-          payload,
-        );
-        if (res) this.ref.close(true);
-      } else {
-        const payload: CreateChargeDTO = {
-          customerId: this.customerId,
-          sourcePolicyId: null,
-          ...this.form.getRawValue(),
-        };
-        const res = await this.apiResponseS.onPost(
-          Endpoints.AccountingCoi.NativeCollection.Charges.create,
-          payload,
-        );
-        if (res) this.ref.close(true);
-      }
-    } finally {
-      this.submitting.set(false);
-    }
+  onSubmit() {
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.AccountingCoi.NativeCollection.Charges.create,
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => {
+        const raw = this.form.getRawValue();
+        return this.id
+          ? ({ id: this.id, ...raw } as UpdateChargeDTO)
+          : ({ customerId: this.customerId, sourcePolicyId: null, ...raw } as CreateChargeDTO);
+      },
+    });
   }
 }

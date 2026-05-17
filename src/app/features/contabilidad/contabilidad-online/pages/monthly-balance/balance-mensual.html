@@ -1,4 +1,4 @@
-<div class="fadein">
+<div class="rf-shell">
   <!-- Filtros -->
   <div class="flex mb-4 align-items-center">
     <div class="mb-0">
@@ -29,7 +29,7 @@
 
   <!-- Loading -->
   @if (loading()) {
-  <div class="flex align-items-center text-color-secondary mb-4">
+  <div class="rf-card p-4 flex align-items-center text-color-secondary mb-4 gap-2">
     <i class="pi pi-spin pi-spinner"></i>
     <span>Consultando datos en Aspel...</span>
   </div>
@@ -37,18 +37,18 @@
 
   <!-- Sin datos -->
   @if (!loading() && !rows().length) {
-  <p class="text-color-secondary">
+  <div class="rf-card rf-empty">
     No hay datos. Verifique el cliente y el año, luego pulse
     <strong>Cargar</strong>.
-  </p>
+  </div>
   }
 
   <!-- Tabla -->
   @if (rows().length) {
-  <div style="overflow-x: auto">
+  <div class="rf-card rf-wrap">
     <p-table
       [value]="rows()"
-      styleClass="p-datatable-sm p-datatable-gridlines"
+      styleClass="rf-prime-table p-datatable-sm"
       [tableStyle]="{ 'min-width': '1200px' }"
     >
       <ng-template pTemplate="header">
@@ -66,7 +66,7 @@
       <ng-template pTemplate="body" let-row>
         <!-- Fila: encabezado de clasificación -->
         @if (row.tipo === "header") {
-        <tr [attr.style]="getHeaderStyle(row.clasificacionCodigo)">
+        <tr class="rf-row-section" [attr.style]="getHeaderStyle(row.clasificacionCodigo)">
           <td colspan="14" class="font-bold text-sm py-2 px-3">
             {{ row.descripcion }}
           </td>
@@ -75,12 +75,12 @@
 
         <!-- Fila: cuenta Mayor -->
         @if (row.tipo === "cuenta") {
-        <tr>
-          <td class="font-mono text-xs">{{ row.numeroCuenta }}</td>
-          <td class="text-sm">{{ row.descripcion }}</td>
+        <tr class="rf-row-concepto">
+          <td class="rf-td-cuenta">{{ row.numeroCuenta }}</td>
+          <td class="rf-td-descripcion--item">{{ row.descripcion }}</td>
           @for (monto of row.montos; track $index) {
-          <td class="text-right text-sm" [class.text-red-500]="monto < 0">
-            {{ monto === 0 ? "-" : (monto | number: "1.2-2") }}
+          <td class="rf-td-number" [class.rf-neg]="monto < 0">
+            {{ monto === 0 ? "-" : (monto | accountingNumber: "1.2-2") }}
           </td>
           }
         </tr>
@@ -88,12 +88,12 @@
 
         <!-- Fila: subtotal de clasificación -->
         @if (row.tipo === "subtotal") {
-        <tr class="font-bold surface-100">
+        <tr class="rf-row-total">
           <td></td>
-          <td class="text-sm">{{ row.descripcion }}</td>
+          <td class="rf-td-descripcion">{{ row.descripcion }}</td>
           @for (monto of row.montos; track $index) {
-          <td class="text-right text-sm" [class.text-red-500]="monto < 0">
-            {{ monto | number: "1.2-2" }}
+          <td class="rf-td-number--total" [class.rf-neg]="monto < 0">
+            {{ monto | accountingNumber: "1.2-2" }}
           </td>
           }
         </tr>

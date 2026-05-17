@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -36,11 +36,11 @@ export class EmployeePrincipalDataForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
   formB = inject(FormBuilder);
-  @Input() applicationUserId: string = "";
+  applicationUserId = input<string>("");
 
   submitting = signal(false);
   form: FormGroup<IEmployeePrincipalDataForm> = this.formB.group({
-    id: new FormControl({ value: this.applicationUserId, disabled: true }),
+    id: new FormControl({ value: this.applicationUserId(), disabled: true }),
     email: new FormControl("", {
       validators: [Validators.required],
       nonNullable: true,
@@ -63,7 +63,7 @@ export class EmployeePrincipalDataForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `EmployeeInternal/PrincipalData/${this.applicationUserId}`;
+    const urlApi = `EmployeeInternal/PrincipalData/${this.applicationUserId()}`;
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue(result);
     });
@@ -75,7 +75,7 @@ export class EmployeePrincipalDataForm implements OnInit {
     this.submitting.set(true);
     this.apiResponseS
       .onPut(
-        `EmployeeInternal/UpdatePrincipalData/${this.applicationUserId}`,
+        `EmployeeInternal/UpdatePrincipalData/${this.applicationUserId()}`,
         this.form.value,
       )
       .then(() => {

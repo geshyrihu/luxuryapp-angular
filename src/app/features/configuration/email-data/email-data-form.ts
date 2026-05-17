@@ -13,6 +13,7 @@ import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-but
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { IEmailDataForm } from "src/app/core/interfaces/email-data-form.interface";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -83,23 +84,14 @@ export class EmailDataForm implements OnInit {
   }
 
   onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-
-    if (this.id === "") {
-      this.apiResponseS
-        .onPost(`EmailData`, this.form.value)
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    } else {
-      this.apiResponseS
-        .onPut(`EmailData/${this.id}`, this.form.value)
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    }
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "EmailData",
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+    });
   }
 
   TestEmail(): void {

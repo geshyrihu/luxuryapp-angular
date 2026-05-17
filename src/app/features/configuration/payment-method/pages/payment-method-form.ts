@@ -10,10 +10,11 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { IPaymentMethodAddOrEditDTO, IPaymentMethodDTO } from "../models/payment-method.dto";
+import { IPaymentMethodAddOrEditDTO } from "../models/payment-method.dto";
 
 interface IPaymentMethodForm {
   id: FormControl<string | null>;
@@ -71,22 +72,14 @@ export class PaymentMethodForm implements OnInit {
   }
 
   onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-    if (!this.id) {
-      this.apiResponseS
-        .onPost<IPaymentMethodDTO>(Endpoints.PaymentMethods.create, this.form.value)
-        .then((result) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    } else {
-      this.apiResponseS
-        .onPut<IPaymentMethodDTO>(Endpoints.PaymentMethods.update(this.id), this.form.value)
-        .then((result) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    }
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.PaymentMethods.create,
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+    });
   }
 }
 

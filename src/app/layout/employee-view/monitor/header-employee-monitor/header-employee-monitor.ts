@@ -1,5 +1,5 @@
 import { CommonModule, Location } from "@angular/common";
-import { Component, effect, inject, Input, OnInit } from "@angular/core";
+import { Component, effect, inject, input, OnInit } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import {
@@ -51,7 +51,7 @@ import { Search } from "../search/search";
   styleUrl: "./header-employee-monitor.scss",
 })
 export class HeaderEmployeeMonitor implements OnInit {
-  @Input() isCommitteeView: boolean = false;
+  isCommitteeView = input<boolean>(false);
   // Injected services
   public aspRoleS = inject(AspRoleService);
   public authS = inject(AuthService);

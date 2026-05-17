@@ -15,7 +15,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { CustomInputAutoComplete } from "../../core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 @Component({
   selector: "app-projected-expenses-form",
   templateUrl: "./projected-expenses-form.html",

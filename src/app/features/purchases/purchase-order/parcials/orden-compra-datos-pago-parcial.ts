@@ -1,15 +1,16 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { CardModule } from "primeng/card";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { Component, input, output } from "@angular/core";
+import { ButtonModule } from "primeng/button";
+import { TagModule } from "primeng/tag";
+import { TooltipModule } from "primeng/tooltip";
 @Component({
   selector: "app-orden-compra-datos-pago-parcial",
   templateUrl: "./orden-compra-datos-pago-parcial.html",
-  imports: [CustomButton, CardModule],
+  imports: [ButtonModule, TagModule, TooltipModule],
 })
 export class OrdenCompraDatosPagoParcial {
-  @Input() ordenCompra: any;
-  @Input() bloqueada: boolean;
-  @Output() modalOrdenCompra: EventEmitter<string> = new EventEmitter();
+  ordenCompra = input<any>();
+  bloqueada = input<boolean>();
+  modalOrdenCompra = output<void>();
   onModalOrdenCompraDatosPago() {
     this.modalOrdenCompra.emit();
   }

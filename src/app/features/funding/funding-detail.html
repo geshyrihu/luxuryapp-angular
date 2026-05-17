@@ -489,6 +489,84 @@
   </div>
   }
 
+  <!-- SECCIÓN: ÓRDENES FUERA DE PROCESO DE FONDEO -->
+  <div class="card mt-4 border-1 border-orange-300 border-round-xl overflow-hidden shadow-1">
+    <div class="flex justify-content-between align-items-center bg-orange-50 px-3 py-2 border-bottom-1 border-orange-200">
+      <div class="flex align-items-center gap-2">
+        <i class="pi pi-bolt text-orange-500"></i>
+        <span class="font-bold text-orange-800 text-base">ÓRDENES FUERA DE PROCESO DE FONDEO</span>
+        <p-badge
+          [value]="ordenesFueraProceso().length"
+          severity="warn"
+          styleClass="font-bold"
+        ></p-badge>
+      </div>
+      @if (isRolAdministrador() || isRolSuperUsuario()) {
+      <custom-button
+        label="Agregar OC fuera de proceso"
+        iconClass="pi pi-plus"
+        severity="warn"
+        size="sm"
+        variant="outlined"
+        [showLabelOnDesktop]="true"
+        (clicked)="onAddFueraFondeo()"
+      />
+      }
+    </div>
+
+    @if (ordenesFueraProceso().length === 0) {
+    <div class="flex align-items-center gap-2 p-3 text-500 text-sm">
+      <i class="pi pi-info-circle"></i>
+      <span>No hay órdenes fuera de proceso para este fondeo.</span>
+    </div>
+    } @else {
+    <p-table [value]="ordenesFueraProceso()" styleClass="p-datatable-sm">
+      <ng-template #header>
+        <tr>
+          <th>Proveedor</th>
+          <th>Justificación</th>
+          <th class="text-right">Total</th>
+          <th class="text-center">Pagada</th>
+          <th class="text-center"></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-orden>
+        <tr>
+          <td class="text-sm font-medium">{{ orden.nameProvider }}</td>
+          <td class="text-sm">{{ orden.justificacionGasto }}</td>
+          <td class="text-sm text-right">{{ orden.total | number: "1.2-2" }}</td>
+          <td class="text-center">
+            <p-checkbox
+              [formControl]="orden.ordenCompraPagadaControl"
+              [binary]="true"
+              (onChange)="onPaymentStatusChange(orden)"
+            />
+          </td>
+          <td class="text-center">
+            <div class="flex gap-1 justify-content-center">
+              <custom-button
+                iconClass="pi pi-eye"
+                variant="text"
+                size="sm"
+                pTooltip="Ver orden de compra"
+                (clicked)="onOrdenCompraModal(orden.ordenCompraId)"
+              />
+              @if (isRolAdministrador() || isRolSuperUsuario()) {
+              <custom-button-delete
+                (confirmed)="onRemoveFueraFondeo(orden.ordenCompraId)"
+                pTooltip="Desvincular del fondeo"
+                [iconOnly]="true"
+                customClass="w-2rem h-2rem"
+              />
+              }
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    }
+  </div>
+
   <p-dialog
     header="Generando Solicitudes"
     [(visible)]="isDownloading"

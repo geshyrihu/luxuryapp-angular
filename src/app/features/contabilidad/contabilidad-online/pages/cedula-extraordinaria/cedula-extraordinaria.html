@@ -47,19 +47,19 @@
         <td class="rf-td-cuenta">{{ row.numeroCuenta }}</td>
         <td class="rf-td-descripcion--item">{{ row.descripcion }}</td>
         <td class="rf-td-number" [class.rf-neg]="row.mes1! < 0">
-          {{ row.mes1 === 0 ? "-" : (row.mes1 | number : "1.0-0") }}
+          {{ row.mes1 === 0 ? "-" : (row.mes1 | accountingNumber : "1.0-0") }}
         </td>
         <td class="rf-td-number" [class.rf-neg]="row.mes2! < 0">
-          {{ row.mes2 === 0 ? "-" : (row.mes2 | number : "1.0-0") }}
+          {{ row.mes2 === 0 ? "-" : (row.mes2 | accountingNumber : "1.0-0") }}
         </td>
         <td class="rf-td-number" [class.rf-neg]="row.mes3! < 0">
-          {{ row.mes3 === 0 ? "-" : (row.mes3 | number : "1.0-0") }}
+          {{ row.mes3 === 0 ? "-" : (row.mes3 | accountingNumber : "1.0-0") }}
         </td>
         <td
           class="rf-td-number--total"
           [class.rf-neg]="row.acum! < 0"
         >
-          {{ row.acum === 0 ? "-" : (row.acum | number : "1.0-0") }}
+          {{ row.acum === 0 ? "-" : (row.acum | accountingNumber : "1.0-0") }}
         </td>
       </tr>
       }
@@ -68,11 +68,11 @@
       <tr class="rf-row-total">
         <td></td>
         <td class="rf-td-descripcion">{{ row.descripcion }}</td>
-        <td class="rf-td-number--total">{{ row.mes1 | number : "1.0-0" }}</td>
-        <td class="rf-td-number--total">{{ row.mes2 | number : "1.0-0" }}</td>
-        <td class="rf-td-number--total">{{ row.mes3 | number : "1.0-0" }}</td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes1! < 0">{{ row.mes1 | accountingNumber : "1.0-0" }}</td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes2! < 0">{{ row.mes2 | accountingNumber : "1.0-0" }}</td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes3! < 0">{{ row.mes3 | accountingNumber : "1.0-0" }}</td>
         <td class="rf-td-number--total">
-          {{ row.acum | number : "1.0-0" }}
+          {{ row.acum | accountingNumber : "1.0-0" }}
         </td>
       </tr>
       }
@@ -105,19 +105,19 @@
           <div class="col-4 p-0">
             {{ monthHeaders()[0] }}:
             <span class="text-color font-medium block">{{
-              item.mes1 === 0 ? "-" : (item.mes1 | number : "1.0-0")
+              item.mes1 === 0 ? "-" : (item.mes1 | accountingNumber : "1.0-0")
             }}</span>
           </div>
           <div class="col-4 p-0">
             {{ monthHeaders()[1] }}:
             <span class="text-color font-medium block">{{
-              item.mes2 === 0 ? "-" : (item.mes2 | number : "1.0-0")
+              item.mes2 === 0 ? "-" : (item.mes2 | accountingNumber : "1.0-0")
             }}</span>
           </div>
           <div class="col-4 p-0">
             {{ monthHeaders()[2] }}:
             <span class="text-color font-medium block">{{
-              item.mes3 === 0 ? "-" : (item.mes3 | number : "1.0-0")
+              item.mes3 === 0 ? "-" : (item.mes3 | accountingNumber : "1.0-0")
             }}</span>
           </div>
         </div>
@@ -126,7 +126,7 @@
         >
           <span class="text-xs font-bold uppercase text-500">Acumulado</span>
           <span class="text-sm font-bold text-primary">{{
-            item.acum === 0 ? "-" : (item.acum | number : "1.0-0")
+            item.acum === 0 ? "-" : (item.acum | accountingNumber : "1.0-0")
           }}</span>
         </div>
       </div>
@@ -134,22 +134,22 @@
       <div class="p-3 mb-3 border-round shadow-2 surface-100">
         <div class="flex justify-content-between align-items-center mb-2">
           <span class="font-bold">{{ item.descripcion }}</span>
-          <span class="text-lg text-primary">{{
-            item.acum | number : "1.0-0"
+          <span class="text-lg text-primary" [class.text-red-500]="item.acum < 0">{{
+            item.acum | accountingNumber : "1.0-0"
           }}</span>
         </div>
         <div class="grid text-xs opacity-70">
           <div class="col-4">
             {{ monthHeaders()[0] }}:
-            <span class="block">{{ item.mes1 | number : "1.0-0" }}</span>
+            <span class="block" [class.text-red-500]="item.mes1 < 0">{{ item.mes1 | accountingNumber : "1.0-0" }}</span>
           </div>
           <div class="col-4">
             {{ monthHeaders()[1] }}:
-            <span class="block">{{ item.mes2 | number : "1.0-0" }}</span>
+            <span class="block" [class.text-red-500]="item.mes2 < 0">{{ item.mes2 | accountingNumber : "1.0-0" }}</span>
           </div>
           <div class="col-4">
             {{ monthHeaders()[2] }}:
-            <span class="block">{{ item.mes3 | number : "1.0-0" }}</span>
+            <span class="block" [class.text-red-500]="item.mes3 < 0">{{ item.mes3 | accountingNumber : "1.0-0" }}</span>
           </div>
         </div>
       </div>
@@ -190,19 +190,19 @@
         <td class="rf-td-cuenta">{{ row.numeroCuenta }}</td>
         <td class="rf-td-descripcion--item">{{ row.descripcion }}</td>
         <td class="rf-td-number" [class.rf-neg]="row.mes1! < 0">
-          {{ row.mes1 === 0 ? "-" : (row.mes1 | number : "1.0-0") }}
+          {{ row.mes1 === 0 ? "-" : (row.mes1 | accountingNumber : "1.0-0") }}
         </td>
         <td class="rf-td-number" [class.rf-neg]="row.mes2! < 0">
-          {{ row.mes2 === 0 ? "-" : (row.mes2 | number : "1.0-0") }}
+          {{ row.mes2 === 0 ? "-" : (row.mes2 | accountingNumber : "1.0-0") }}
         </td>
         <td class="rf-td-number" [class.rf-neg]="row.mes3! < 0">
-          {{ row.mes3 === 0 ? "-" : (row.mes3 | number : "1.0-0") }}
+          {{ row.mes3 === 0 ? "-" : (row.mes3 | accountingNumber : "1.0-0") }}
         </td>
         <td
           class="rf-td-number--total"
           [class.rf-neg]="row.acum! < 0"
         >
-          {{ row.acum === 0 ? "-" : (row.acum | number : "1.0-0") }}
+          {{ row.acum === 0 ? "-" : (row.acum | accountingNumber : "1.0-0") }}
         </td>
       </tr>
       }
@@ -211,11 +211,11 @@
       <tr class="rf-row-total">
         <td></td>
         <td class="rf-td-descripcion">{{ row.descripcion }}</td>
-        <td class="rf-td-number--total">{{ row.mes1 | number : "1.0-0" }}</td>
-        <td class="rf-td-number--total">{{ row.mes2 | number : "1.0-0" }}</td>
-        <td class="rf-td-number--total">{{ row.mes3 | number : "1.0-0" }}</td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes1! < 0">{{ row.mes1 | accountingNumber : "1.0-0" }}</td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes2! < 0">{{ row.mes2 | accountingNumber : "1.0-0" }}</td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes3! < 0">{{ row.mes3 | accountingNumber : "1.0-0" }}</td>
         <td class="rf-td-number--total">
-          {{ row.acum | number : "1.0-0" }}
+          {{ row.acum | accountingNumber : "1.0-0" }}
         </td>
       </tr>
       }

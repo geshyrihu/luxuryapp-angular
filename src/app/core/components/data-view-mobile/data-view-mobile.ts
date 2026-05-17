@@ -3,11 +3,10 @@ import {
   Component,
   computed,
   contentChild,
-  EventEmitter,
   inject,
   input,
   OnInit,
-  Output,
+  output,
   signal,
   TemplateRef,
   viewChild,
@@ -26,13 +25,12 @@ import {
   IonIcon,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
+  IonItem,
   IonItemDivider,
   IonLabel,
   IonList,
-  IonSearchbar,
-  IonItem,
-  IonBadge,
   IonProgressBar,
+  IonSearchbar,
 } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { add, addCircle, home } from "ionicons/icons";
@@ -95,8 +93,8 @@ export class DataViewMobile implements OnInit {
   );
 
   // <--- Outputs --->
-  @Output() add = new EventEmitter<any>();
-  @Output() nextPage = new EventEmitter<any>();
+  add = output<any>();
+  nextPage = output<any>();
 
   // <--- State --->
   filterValue = signal<string>("");

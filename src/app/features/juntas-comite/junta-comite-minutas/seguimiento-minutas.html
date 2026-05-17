@@ -129,3 +129,33 @@
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
+
+<app-data-view-mobile
+  [dt]="dt"
+  [data]="dataSignal()"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full">
+      <ion-label>
+        <h2 class="font-bold">{{ item.areaResponsable }}</h2>
+        <p class="text-sm text-500">{{ item.fechaSolicitud }} {{ item.titulo }}</p>
+        <p class="text-sm text-500" [innerHTML]="item.pendiente | sanitizeHtml"></p>
+        <p class="text-sm">
+          <p-tag
+            [severity]="item.status == 0 ? 'danger' : item.status == 1 ? 'success' : 'secondary'"
+            [value]="item.status == 0 ? 'Pendiente' : item.status == 1 ? 'Concluido' : 'Cancelado'"
+            styleClass="text-xs"
+          />
+        </p>
+      </ion-label>
+      <app-action-menu slot="end">
+        <ng-container actions>
+          <ion-button-item label="Ver seguimientos" iconName="list-outline" (clicked)="onModalTodosSeguimientos(item.id)" />
+          <ion-button-item label="Agregar Seguimiento" iconName="add-circle-outline" (clicked)="onModalFormSeguimiento(item.id, 0)" />
+          <ion-button-item label="Editar" iconName="create-outline" (clicked)="onModalFormMinutaDetalle({ id: item.id, header: 'Editar Asunto' })" />
+        </ng-container>
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

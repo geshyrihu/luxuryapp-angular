@@ -34,7 +34,7 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service"; // Added
-import { CustomButton } from "../../../../../core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/buttons/web";
 import { OrdenCompraDetalleForm } from "../orden-compra-detalle-form/orden-compra-detalle-form";
 const tipoGastoTitles: { [key: number]: string } = {
   [ETipoGasto.Fijo]: "GASTOS FIJOS",

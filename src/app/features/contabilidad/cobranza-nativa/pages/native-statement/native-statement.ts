@@ -26,7 +26,7 @@ import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/cust
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { CustomButton } from "../../../../../core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/buttons/web";
 import { NativeStatementResponseDTO } from "../../models/native-statement.dto";
 
 @Component({

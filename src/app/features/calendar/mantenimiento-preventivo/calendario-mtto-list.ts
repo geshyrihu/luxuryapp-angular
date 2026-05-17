@@ -1,4 +1,4 @@
-import { Component, Input, signal } from "@angular/core";
+import { Component, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import {
   IonLabel,
@@ -24,11 +24,10 @@ import { CronogramaAnualMantenimiento } from "./cronograma-anual-mantenimiento";
   ],
 })
 export class CalendarioMttoList {
-  @Input() tipoCalendario: string = "preventivo de equipos";
+  tipoCalendario = signal("preventivo de equipos");
   activeTabValue = signal("tab1");
-  // Función que recibe el mensaje y lo guarda en la variable `message`
   message(message: string) {
-    this.tipoCalendario = message;
+    this.tipoCalendario.set(message);
   }
 }
 

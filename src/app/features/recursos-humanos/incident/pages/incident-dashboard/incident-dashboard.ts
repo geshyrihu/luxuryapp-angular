@@ -1,11 +1,11 @@
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
+import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ChartModule } from "primeng/chart";
 import { TableModule } from "primeng/table";
 import { CardModule } from "primeng/card";
-import { DatePicker } from "primeng/datepicker";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import {
@@ -17,11 +17,11 @@ import {
   selector: "app-incident-dashboard",
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     ChartModule,
     TableModule,
     CardModule,
-    DatePicker,
+    CustomInputDateSignal,
     CustomButton,
   ],
   templateUrl: "./incident-dashboard.html",
@@ -32,8 +32,8 @@ export class IncidentDashboardComponent implements OnInit {
   loading = signal(false);
   dashboard = signal<IncidentDashboardDTO | null>(null);
 
-  startDate = signal<Date | null>(null);
-  endDate = signal<Date | null>(null);
+  startDateCtrl = new FormControl<string | null>(null);
+  endDateCtrl   = new FormControl<string | null>(null);
 
   barChartData = signal<any>(null);
   pieChartData = signal<any>(null);
@@ -87,11 +87,11 @@ export class IncidentDashboardComponent implements OnInit {
     this.loading.set(true);
 
     const filter: IncidentDashboardFilterDTO = {};
-    if (this.startDate()) {
-      filter.startDate = this.startDate()!.toISOString();
+    if (this.startDateCtrl.value) {
+      filter.startDate = this.startDateCtrl.value;
     }
-    if (this.endDate()) {
-      filter.endDate = this.endDate()!.toISOString();
+    if (this.endDateCtrl.value) {
+      filter.endDate = this.endDateCtrl.value;
     }
 
     const params = new URLSearchParams();
@@ -162,8 +162,8 @@ export class IncidentDashboardComponent implements OnInit {
   }
 
   onClearFilters(): void {
-    this.startDate.set(null);
-    this.endDate.set(null);
+    this.startDateCtrl.reset();
+    this.endDateCtrl.reset();
     this.loadDashboard();
   }
 }

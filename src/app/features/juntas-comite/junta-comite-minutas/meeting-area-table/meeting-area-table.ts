@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, input, output } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
@@ -41,46 +41,35 @@ export interface SeguimientoEvent {
   templateUrl: "./meeting-area-table.html",
 })
 export class AreaDetailsTable {
-  /** Título del área (e.g., 'Contable', 'Operaciones'). */
-  @Input() title: string = "";
-  /** ID de la minuta padre. */
-  @Input() meetingId: any = 0;
-  /** Array de detalles para mostrar en la tabla. */
-  @Input() details: any[] = [];
-  // @Input() details: IMeetingDetail[] = [];
-  /** Identificador numérico del área (0: Contable, 1: Operaciones, 2: Legal). */
-  @Input() areaResponsable: number = 0;
-  /** Evento emitido para agregar un nuevo detalle. */
-  @Output() addDetail = new EventEmitter<DetailEvent>();
-  /** Evento emitido para editar un detalle existente. */
-  @Output() editDetail = new EventEmitter<DetailEvent>();
-  /** Evento emitido para eliminar un detalle. */
-  @Output() deleteDetail = new EventEmitter<number>();
-  /** Evento emitido para enviar un email al área. */
-  @Output() sendAreaEmail = new EventEmitter<void>();
-  /** Evento emitido para agregar un nuevo seguimiento. */
-  @Output() addSeguimiento = new EventEmitter<SeguimientoEvent>();
-  /** Evento emitido para editar un seguimiento. */
-  @Output() editSeguimiento = new EventEmitter<SeguimientoEvent>();
-  /** Evento emitido para eliminar un seguimiento. */
-  @Output() deleteSeguimiento = new EventEmitter<number>();
+  title = input<string>("");
+  meetingId = input<any>(0);
+  details = input<any[]>([]);
+  areaResponsable = input<number>(0);
+
+  addDetail = output<DetailEvent>();
+  editDetail = output<DetailEvent>();
+  deleteDetail = output<number>();
+  sendAreaEmail = output<void>();
+  addSeguimiento = output<SeguimientoEvent>();
+  editSeguimiento = output<SeguimientoEvent>();
+  deleteSeguimiento = output<number>();
 
   // --- métodos para emitir eventos al componente padre ---
 
   onAddDetail(): void {
     this.addDetail.emit({
-      meetingId: this.meetingId,
+      meetingId: this.meetingId(),
       id: 0,
-      header: `Agregar a ${this.title}`,
-      areaResponsable: this.areaResponsable,
+      header: `Agregar a ${this.title()}`,
+      areaResponsable: this.areaResponsable(),
     });
   }
 
   onEditDetail(detailId: any): void {
     this.editDetail.emit({
-      meetingId: this.meetingId,
+      meetingId: this.meetingId(),
       id: detailId,
-      header: `Editar Asunto de ${this.title}`,
+      header: `Editar Asunto de ${this.title()}`,
     });
   }
 

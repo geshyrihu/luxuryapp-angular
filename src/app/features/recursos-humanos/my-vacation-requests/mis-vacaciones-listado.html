@@ -1,3 +1,4 @@
+<div class="card">
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -9,7 +10,7 @@
   [scrollHeight]="scrollHeight"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table card"
+  styleClass="custom-table hidden md:block"
 >
   <ng-template #caption>
     <div class="flex align-items-center">
@@ -109,3 +110,32 @@
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
+
+  <app-data-view-mobile
+    [dt]="dt"
+    [data]="dataSignal()"
+    (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ion-item lines="full">
+        <ion-label>
+          <h2 class="font-bold">{{ item.requestDate }}</h2>
+          <p class="text-sm text-500">{{ item.startDate }} — {{ item.endDate }}</p>
+          <p class="text-sm text-500">Días: {{ item.requestedDays }}</p>
+          <p class="text-sm">
+            <p-tag [value]="item.status" [severity]="getStatusSeverity(item.status)" />
+          </p>
+          <p class="text-sm text-500">{{ item.approverFullName || '—' }}</p>
+        </ion-label>
+        <app-action-menu slot="end">
+          <ng-container actions>
+            <ion-button-item label="Ver Detalle" iconName="eye-outline" (clicked)="onDetail(item.id)" />
+            @if (item.status === 'Pendiente') {
+              <ion-button-item label="Editar" iconName="create-outline" (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
+            }
+          </ng-container>
+        </app-action-menu>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
+</div>

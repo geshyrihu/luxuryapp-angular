@@ -4,14 +4,13 @@
       <h3 class="m-0">Mis Tareas Diarias</h3>
     </ng-template>
     <ng-template pTemplate="right">
-      <p-datepicker
-        [formControl]="selectedDateControl"
-        (ngModelChange)="onDateChange($event)"
-        dateFormat="dd/mm/yy"
-        [showIcon]="true"
-        inputId="calendar"
+      <custom-input-date-signal
+        [control]="selectedDateControl"
+        label="Fecha"
+        id="fecha-filtro"
         placeholder="Seleccionar Fecha"
-      ></p-datepicker>
+        [noMargin]="true"
+      />
     </ng-template>
   </p-toolbar>
 

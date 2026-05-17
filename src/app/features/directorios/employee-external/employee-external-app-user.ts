@@ -1,4 +1,4 @@
-import { Component, inject, Input } from "@angular/core";
+import { Component, inject, input } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { UpdatePasswordAccount } from "../../configuration/application-user/pages/update-password-account";
@@ -12,6 +12,5 @@ import { UpdateRole } from "../../configuration/application-user/pages/update-ro
 export class EmployeeExternalAppUser {
   apiResponseS = inject(ApiResponseService);
   config = inject(DynamicDialogConfig);
-  @Input()
-  applicationUserId: string = this.config.data.applicationUserId;
+  applicationUserId = input<string>(this.config.data?.applicationUserId ?? "");
 }

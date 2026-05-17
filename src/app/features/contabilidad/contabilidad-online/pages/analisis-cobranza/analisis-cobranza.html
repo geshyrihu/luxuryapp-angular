@@ -1,4 +1,4 @@
-<section class="px-3 md:px-4 pb-3 md:pb-4 pt-0">
+<div class="rf-shell px-3 md:px-4 pb-3 md:pb-4 pt-0">
   <div class="mb-3 flex justify-content-end">
     <input
       type="date"
@@ -9,7 +9,7 @@
   </div>
 
   <div
-    class="mb-4 border-1 surface-border border-round p-4"
+    class="rf-card mb-4 p-4"
     *ngIf="!hasCustomer()"
   >
     <div class="font-medium mb-2">Sin cliente activo</div>
@@ -18,14 +18,14 @@
     </div>
   </div>
 
-  <div *ngIf="loading()" class="text-color-secondary mb-4">
+  <div *ngIf="loading()" class="rf-card p-4 text-color-secondary mb-4">
     Consultando análisis de cobranza en Aspel...
   </div>
 
   <div *ngIf="!loading() && data() as d">
     <div class="grid mb-3">
       <div class="col-12 md:col-6 xl:col-3">
-        <div class="border-1 surface-border border-round p-3 h-full">
+        <div class="rf-card p-3 h-full">
           <div class="text-color-secondary mb-2">Departamentos</div>
           <div class="text-xl font-semibold">
             {{ d.totalCondominios | number:'1.0-0' }}
@@ -33,28 +33,28 @@
         </div>
       </div>
       <div class="col-12 md:col-6 xl:col-3">
-        <div class="border-1 surface-border border-round p-3 h-full">
+        <div class="rf-card p-3 h-full">
           <div class="text-color-secondary mb-2">Total mtto mensual</div>
           <div class="text-xl font-semibold">
-            {{ d.cuotaMttoVigente | number:'1.2-2' }}
+            {{ d.cuotaMttoVigente | accountingNumber:'1.2-2' }}
           </div>
         </div>
       </div>
       <div class="col-12 md:col-6 xl:col-3">
-        <div class="border-1 surface-border border-round p-3 h-full">
+        <div class="rf-card p-3 h-full">
           <div class="text-color-secondary mb-2">
             Total extraordinaria mensual
           </div>
           <div class="text-xl font-semibold">
-            {{ d.cuotaExtraordinariaVigente | number:'1.2-2' }}
+            {{ d.cuotaExtraordinariaVigente | accountingNumber:'1.2-2' }}
           </div>
         </div>
       </div>
       <div class="col-12 md:col-6 xl:col-3">
-        <div class="border-1 surface-border border-round p-3 h-full">
+        <div class="rf-card p-3 h-full">
           <div class="text-color-secondary mb-2">Total a recaudar mensual</div>
           <div class="text-xl font-semibold">
-            {{ d.cuotaMensualTotal | number:'1.2-2' }}
+            {{ d.cuotaMensualTotal | accountingNumber:'1.2-2' }}
           </div>
         </div>
       </div>
@@ -62,10 +62,10 @@
 
     <div class="grid mb-3">
       <div class="col-12 lg:col-6">
-        <div class="border-1 surface-border border-round p-4 h-full">
+        <div class="rf-card p-4 h-full">
           <div class="text-color-secondary mb-3">{{ d.periodo }}</div>
 
-          <table class="w-full text-sm">
+          <table class="rf-table">
             <thead>
               <tr class="border-bottom-1 surface-border">
                 <th class="text-left pb-2">Clasificación</th>
@@ -77,14 +77,14 @@
               <tr class="font-bold">
                 <td class="py-1">Cobranza perfecta</td>
                 <td class="text-right font-mono">
-                  {{ d.cobranzaPerfecta | number:'1.0-0' }}
+                  {{ d.cobranzaPerfecta | accountingNumber:'1.0-0' }}
                 </td>
                 <td class="text-right">100%</td>
               </tr>
               <tr>
                 <td class="py-1">Morosos</td>
                 <td class="text-right font-mono">
-                  {{ d.totalMorosos | number:'1.0-0' }}
+                  {{ d.totalMorosos | accountingNumber:'1.0-0' }}
                 </td>
                 <td class="text-right text-500 text-xs">
                   {{ pct(d.totalMorosos, d.cobranzaPerfecta) }}
@@ -93,7 +93,7 @@
               <tr>
                 <td class="py-1">Deuda corriente</td>
                 <td class="text-right font-mono">
-                  {{ d.totalDeudaCorriente | number:'1.0-0' }}
+                  {{ d.totalDeudaCorriente | accountingNumber:'1.0-0' }}
                 </td>
                 <td class="text-right text-500 text-xs">
                   {{ pct(d.totalDeudaCorriente, d.cobranzaPerfecta) }}
@@ -102,7 +102,7 @@
               <tr class="surface-ground font-bold">
                 <td class="py-1 text-green-700">Cobrado</td>
                 <td class="text-right font-mono text-green-700">
-                  {{ d.totalCobrado | number:'1.0-0' }}
+                  {{ d.totalCobrado | accountingNumber:'1.0-0' }}
                 </td>
                 <td class="text-right text-green-700 text-xs">
                   {{ pct(d.totalCobrado, d.cobranzaPerfecta) }}
@@ -125,7 +125,7 @@
       </div>
 
       <div class="col-12 lg:col-6">
-        <div class="border-1 surface-border border-round p-4 h-full">
+        <div class="rf-card p-4 h-full">
           <div class="text-lg font-semibold mb-1 text-red-600">
             Deuda Condóminos (EF)
           </div>
@@ -133,7 +133,7 @@
             Clasificación del saldo final por cuenta 104 al corte consultado.
           </div>
 
-          <table class="w-full text-sm">
+          <table class="rf-table">
             <thead>
               <tr class="border-bottom-1 surface-border">
                 <th class="text-left pb-2">Clasificación</th>
@@ -145,7 +145,7 @@
               <tr>
                 <td class="py-1">Cobranza judicial</td>
                 <td class="text-right font-mono">
-                  {{ d.totalJudicial | number:'1.0-0' }}
+                  {{ d.totalJudicial | accountingNumber:'1.0-0' }}
                 </td>
                 <td class="text-right text-500 text-xs">
                   {{ pct(d.totalJudicial, d.totalDeuda) }}
@@ -154,7 +154,7 @@
               <tr>
                 <td class="py-1">Morosos</td>
                 <td class="text-right font-mono">
-                  {{ d.totalMorosos | number:'1.0-0' }}
+                  {{ d.totalMorosos | accountingNumber:'1.0-0' }}
                 </td>
                 <td class="text-right text-500 text-xs">
                   {{ pct(d.totalMorosos, d.totalDeuda) }}
@@ -163,7 +163,7 @@
               <tr>
                 <td class="py-1">Deuda corriente</td>
                 <td class="text-right font-mono">
-                  {{ d.totalDeudaCorriente | number:'1.0-0' }}
+                  {{ d.totalDeudaCorriente | accountingNumber:'1.0-0' }}
                 </td>
                 <td class="text-right text-500 text-xs">
                   {{ pct(d.totalDeudaCorriente, d.totalDeuda) }}
@@ -172,21 +172,21 @@
               <tr class="font-bold border-top-1 surface-border">
                 <td class="pt-2">Total deuda</td>
                 <td class="text-right font-mono pt-2">
-                  {{ d.totalDeuda | number:'1.0-0' }}
+                  {{ d.totalDeuda | accountingNumber:'1.0-0' }}
                 </td>
                 <td class="text-right pt-2">100%</td>
               </tr>
               <tr class="text-500 text-xs">
                 <td class="py-1">Cuotas anticipadas</td>
                 <td class="text-right font-mono">
-                  {{ d.totalAnticipos | number:'1.0-0' }}
+                  {{ d.totalAnticipos | accountingNumber:'1.0-0' }}
                 </td>
                 <td></td>
               </tr>
               <tr class="font-bold surface-ground">
                 <td class="py-1 text-blue-700">Saldo según balanza</td>
                 <td class="text-right font-mono text-blue-700">
-                  {{ d.saldoBalanza | number:'1.0-0' }}
+                  {{ d.saldoBalanza | accountingNumber:'1.0-0' }}
                 </td>
                 <td></td>
               </tr>
@@ -206,7 +206,7 @@
       </div>
     </div>
 
-    <div class="border-1 surface-border border-round p-4">
+    <div class="rf-card p-4">
       <div
         class="flex align-items-center justify-content-between mb-3 flex-wrap gap-2"
       >
@@ -226,7 +226,7 @@
 
       <p-table
         [value]="filteredRows()"
-        styleClass="p-datatable-sm p-datatable-gridlines"
+        styleClass="rf-prime-table p-datatable-sm"
         [tableStyle]="{ 'min-width': '700px' }"
         [paginator]="true"
         [rows]="50"
@@ -242,14 +242,13 @@
         </ng-template>
         <ng-template pTemplate="body" let-row>
           <tr>
-            <td class="font-mono text-xs">{{ row.numeroCuenta }}</td>
-            <td class="text-sm">{{ row.condomino }}</td>
+            <td class="rf-td-cuenta">{{ row.numeroCuenta }}</td>
+            <td class="rf-td-descripcion--item">{{ row.condomino }}</td>
             <td
-              class="text-right font-mono text-sm"
-              [class.text-green-600]="row.saldo < 0"
-              [class.text-red-500]="row.saldo > 0"
+              class="rf-td-number"
+              [class.rf-neg]="row.saldo < 0"
             >
-              {{ row.saldo === 0 ? '—' : (row.saldo | number:'1.0-0') }}
+              {{ row.saldo === 0 ? '—' : (row.saldo | accountingNumber:'1.0-0') }}
             </td>
             <td>
               <p-tag
@@ -263,4 +262,6 @@
       </p-table>
     </div>
   </div>
-</section>
+</div>
+
+

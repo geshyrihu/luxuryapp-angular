@@ -1,36 +1,33 @@
 import {
   Component,
   computed,
-  EventEmitter,
   inject,
-  Input,
-  Output,
+  input,
+  output,
   Signal,
 } from "@angular/core";
-import { CardModule } from "primeng/card";
+import { ButtonModule } from "primeng/button";
 import { MessageModule } from "primeng/message";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 @Component({
   selector: "app-orden-compra-datos-auth-parcial",
-  // Convertido a standalone para simplicidad
-
   templateUrl: "./orden-compra-datos-auth-parcial.html",
-  imports: [CardModule, MessageModule],
+  imports: [ButtonModule, MessageModule],
 })
 export class OrdenCompraDatosAuthParcial {
   private ordenCompraService = inject(OrdenCompraService);
-  @Input({ required: true }) ordenCompra: any;
-  @Input() bloqueada: boolean;
+  ordenCompra = input.required<any>();
+  bloqueada = input<boolean>();
 
-  @Output() autorizarCompra = new EventEmitter<void>();
-  @Output() deautorizarCompra = new EventEmitter<void>();
+  autorizarCompra = output<void>();
+  deautorizarCompra = output<void>();
 
   // Crear computed signals específicas para cada condición
   public authorizationStatus = computed(() => {
-    const status = this.ordenCompra?.ordenCompraAuth?.statusOrdenCompra;
+    const status = this.ordenCompra()?.ordenCompraAuth?.statusOrdenCompra;
     const totalOC = this.ordenCompraService.totalOrdenCompra();
     const totalPorCubrir = this.ordenCompraService.totalPorCubrir();
-    const isDevolucion = this.ordenCompra?.isDevolucion;
+    const isDevolucion = this.ordenCompra()?.isDevolucion;
 
     if (status === "Autorizado") {
       return {
@@ -79,8 +76,8 @@ export class OrdenCompraDatosAuthParcial {
   // });
 
   public canRevoke: Signal<boolean> = computed(() => {
-    const status = this.ordenCompra?.ordenCompraAuth?.statusOrdenCompra;
-    const sePago = this.ordenCompra?.ordenCompraStatus?.sePago;
+    const status = this.ordenCompra()?.ordenCompraAuth?.statusOrdenCompra;
+    const sePago = this.ordenCompra()?.ordenCompraStatus?.sePago;
     return !sePago && status === "Autorizado";
   });
 

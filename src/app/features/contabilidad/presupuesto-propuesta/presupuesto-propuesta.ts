@@ -7,7 +7,7 @@ import {
   OnDestroy,
   OnInit,
   signal,
-  ViewChild,
+  viewChild,
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
@@ -90,8 +90,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   public aspRoleS = inject(AspRoleService);
   /** Servicio especializado en la exportación de datos a formato Excel. */
   private excelExportService = inject(ExcelExportService);
-  /** Referencia a la tabla de PrimeNG para poder invocar sus mótodos. */
-  @ViewChild("dt") dt: Table;
+  dt = viewChild<Table>("dt");
 
   // --------------------------------------------------------------------------------
   // Propiedades de Estado y Seóales (Signals)
@@ -528,8 +527,9 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
    */
   private recalculateTableLayout(): void {
     setTimeout(() => {
-      if (this.dt) {
-        (this.dt as any).initColumns();
+      const dt = this.dt();
+      if (dt) {
+        (dt as any).initColumns();
       }
     }, 0);
   }

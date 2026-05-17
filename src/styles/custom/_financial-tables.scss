@@ -537,3 +537,70 @@
   font-weight: 800;
   font-variant-numeric: tabular-nums;
 }
+
+// Paneles tipo EPF: mismo lenguaje visual rf-* sin tabla formal.
+.rf-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.rf-panel-title {
+  background: linear-gradient(180deg, #294575 0%, #182946 100%);
+  color: #ffffff;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-align: center;
+  padding: 0.55rem 0.9rem;
+  border-radius: 10px;
+  margin-bottom: 0.9rem;
+}
+
+.rf-panel-list {
+  flex: 1 1 auto;
+  border: 1px solid var(--rf-line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.rf-panel-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0.9rem;
+  border-bottom: 1px solid var(--rf-line);
+  background: #ffffff;
+}
+
+.rf-panel-row:last-child {
+  border-bottom: none;
+}
+
+.rf-panel-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.rf-panel-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.9rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: 12px;
+  background: var(--rf-total);
+  border: 1px solid var(--rf-line);
+  font-weight: 800;
+}
+
+.rf-panel-total--strong {
+  background: var(--rf-result);
+  color: var(--rf-result-ink);
+  text-transform: uppercase;
+}

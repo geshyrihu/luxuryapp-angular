@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { InputTextModule } from "primeng/inputtext";
 import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
@@ -11,7 +11,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 export class EmployeeAvatarForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
   // employeeAddOrEditService = inject(EmployeeAddOrEditService);
-  @Input() applicationUserId: string = "";
+  applicationUserId = input<string>("");
   photoPath = signal("");
   // Cambio de imagen
   imgUpload = signal<any>(null);
@@ -19,12 +19,12 @@ export class EmployeeAvatarForm implements OnInit {
   imgName: any = "";
 
   ngOnInit() {
-    // this.applicationUserId = this.employeeAddOrEditService.onGetId();
-    if (this.applicationUserId !== "") this.onLoadData();
+    // this.applicationUserId() = this.employeeAddOrEditService.onGetId();
+    if (this.applicationUserId() !== "") this.onLoadData();
   }
 
   onLoadData() {
-    const urlApi = `EmployeeInternal/PhotoPath/${this.applicationUserId}`;
+    const urlApi = `EmployeeInternal/PhotoPath/${this.applicationUserId()}`;
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.photoPath.set(result.photoPath);
     });
@@ -53,7 +53,7 @@ export class EmployeeAvatarForm implements OnInit {
     formData.append("file", this.imgUpload());
 
     this.apiResponseS
-      .onPut("EmployeeInternal/UpdateImage/" + this.applicationUserId, formData)
+      .onPut("EmployeeInternal/UpdateImage/" + this.applicationUserId(), formData)
       .then((result: any) => {
         if (result) this.photoPath.set(result.photoPath);
       });

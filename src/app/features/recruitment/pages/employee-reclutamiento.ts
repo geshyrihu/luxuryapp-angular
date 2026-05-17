@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -15,7 +15,7 @@ export class EmployeeReclutamiento implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
-  @Input() employeeId: any;
+  employeeId = input<any>();
 
   solicitudAltaStatus = signal<any>(null);
   solicitudBajaStatus = signal<any>(null);
@@ -30,7 +30,7 @@ export class EmployeeReclutamiento implements OnInit {
   // Solicitud de baja
   // Solicitud de modificacion de salario
   onValidarSolicitudesAbiertas() {
-    const urlApi = `employees/validarsolicitudesabiertas/${this.employeeId}`;
+    const urlApi = `employees/validarsolicitudesabiertas/${this.employeeId()}`;
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.workPosition.set(result.workPosition);
       this.solicitudAltaStatus.set(result.solicitudAlta);
@@ -46,7 +46,7 @@ export class EmployeeReclutamiento implements OnInit {
       .openDialog(
         SolicitudAltaForm,
         {
-          employeeId: this.employeeId,
+          employeeId: this.employeeId(),
           customerId: this.customerIdS.customerId(),
         },
         "Solicitud de alta",
@@ -66,7 +66,7 @@ export class EmployeeReclutamiento implements OnInit {
       .openDialog(
         SolicitudBajaForm,
         {
-          employeeId: this.employeeId,
+          employeeId: this.employeeId(),
         },
         "Solicitud de baja",
         this.dialogHandlerS.sizeFull,
@@ -83,7 +83,7 @@ export class EmployeeReclutamiento implements OnInit {
       .openDialog(
         SolicitudModificacionSalarioForm,
         {
-          workPositionId: this.employeeId,
+          workPositionId: this.employeeId(),
         },
         "Solicitud de Modificación de salario",
         this.dialogHandlerS.sizeFull,

@@ -3,14 +3,13 @@ import {
   Component,
   effect,
   inject,
-  Input,
+  input,
   signal,
-  ViewChild,
+  viewChild,
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { AvatarModule } from "primeng/avatar";
 import { CardModule } from "primeng/card";
-import { DialogService } from "primeng/dynamicdialog";
 import { IconFieldModule } from "primeng/iconfield";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
@@ -34,8 +33,8 @@ import { ServiceOrderForm } from "src/app/features/service-order/service-order-f
 import { TaskForm } from "src/app/features/tasks/task-message/pages/task-form";
 import { ImageAnalysisDialogComponent } from "src/app/shared/components/image-analysis-dialog/image-analysis-dialog.component";
 import Swal from "sweetalert2";
-import { EApplicationRole } from "../../core/enums/asp-net-roles.enum";
-import { AspRoleService } from "../../core/services/asp-role.service";
+import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { PendingItemDTO } from "./models/pending-item.dto";
 
 // Recruitment Dialog Components
@@ -43,7 +42,7 @@ import { SolicitudAltaStatusForm} from "src/app/features/recruitment-requests/co
 import { SolicitudBajaUpdateStatus } from "src/app/features/request-dismissal/components/solicitud-baja-update-status";
 import { ModificacionSalarioForm } from "src/app/features/salary-modification/components/modificacion-salario-form";
 import { VacanteForm } from "src/app/features/vacancy-requests/components/vacante-form";
-import { TableScrollHeightService } from "../../core/services/table-scroll-height.service";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { TicketLegalForm } from "../legal/ticket-legal/ticket-legal-form";
 
 @Component({
@@ -64,7 +63,6 @@ import { TicketLegalForm } from "../legal/ticket-legal/ticket-legal-form";
     ActionIconsGroupComponent,
   ],
   templateUrl: "./unified-pending-dashboard.html",
-  providers: [DialogService], // Ensure service provider
   styles: [
     `
       :host {
@@ -80,20 +78,18 @@ import { TicketLegalForm } from "../legal/ticket-legal/ticket-legal-form";
   ],
 })
 export class UnifiedPendingDashboard {
-  @ViewChild(ImageAnalysisDialogComponent)
-  visionDialog!: ImageAnalysisDialogComponent;
+  visionDialog = viewChild.required(ImageAnalysisDialogComponent);
 
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
-  private dialogService = inject(DialogService); // Added injection
   private router = inject(Router);
   private aiService = inject(AiService);
   private swalService = inject(SwalService);
   public aspRoleS = inject(AspRoleService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
-  @Input() visibleModules: string[] = [];
+  visibleModules = input<string[]>([]);
 
   public AspRole = EApplicationRole;
 
@@ -209,9 +205,9 @@ export class UnifiedPendingDashboard {
   filterData() {
     let filtered = this.allData;
 
-    if (this.visibleModules.length > 0) {
+    if (this.visibleModules().length > 0) {
       filtered = filtered.filter((item) =>
-        this.visibleModules.some(
+        this.visibleModules().some(
           (m) => m.toLowerCase() === item.module.toLowerCase(),
         ),
       );
@@ -325,58 +321,54 @@ export class UnifiedPendingDashboard {
         break;
       // Recruitment
       case "bajas":
-        this.dialogService
-          .open(SolicitudBajaUpdateStatus, {
-            header: "Actualizar Estatus Baja",
-            width: "50%",
-            data: {
-              id: item.id,
-              status: Number(item.metadata?.["statusId"] || 0),
-            },
-          })
-          .onClose.subscribe((res) => {
+        this.dialogHandlerS
+          .openDialog(
+            SolicitudBajaUpdateStatus,
+            { id: item.id, status: Number(item.metadata?.["statusId"] || 0) },
+            "Actualizar Estatus Baja",
+            this.dialogHandlerS.sizeMd,
+          )
+          .then((res) => {
             if (res) this.loadData(this.customerIdS.customerId());
           });
         break;
       case "altas":
-        this.dialogService
-          .open(SolicitudAltaStatusForm, {
-            header: "Estatus Solicitud de Alta",
-            width: "50%",
-            data: {
+        this.dialogHandlerS
+          .openDialog(
+            SolicitudAltaStatusForm,
+            {
               id: item.id,
               employeeName: item.metadata?.["employeeName"] || "",
               status: Number(item.metadata?.["statusId"] || 0),
             },
-          })
-          .onClose.subscribe((res) => {
+            "Estatus Solicitud de Alta",
+            this.dialogHandlerS.sizeMd,
+          )
+          .then((res) => {
             if (res) this.loadData(this.customerIdS.customerId());
           });
         break;
       case "vacantes":
-        this.dialogService
-          .open(VacanteForm, {
-            header: "Editar Vacante",
-            width: "70%",
-            data: {
-              id: item.id,
-              workPositionId: item.metadata?.["workPositionId"] || 0,
-            },
-          })
-          .onClose.subscribe((res) => {
+        this.dialogHandlerS
+          .openDialog(
+            VacanteForm,
+            { id: item.id, workPositionId: item.metadata?.["workPositionId"] || 0 },
+            "Editar Vacante",
+            this.dialogHandlerS.sizeLg,
+          )
+          .then((res) => {
             if (res) this.loadData(this.customerIdS.customerId());
           });
         break;
       case "modificaciones":
-        this.dialogService
-          .open(ModificacionSalarioForm, {
-            header: "Modificación Salarial",
-            width: "70%",
-            data: {
-              id: item.id,
-            },
-          })
-          .onClose.subscribe((res) => {
+        this.dialogHandlerS
+          .openDialog(
+            ModificacionSalarioForm,
+            { id: item.id },
+            "Modificación Salarial",
+            this.dialogHandlerS.sizeLg,
+          )
+          .then((res) => {
             if (res) this.loadData(this.customerIdS.customerId());
           });
         break;
@@ -535,7 +527,7 @@ export class UnifiedPendingDashboard {
   }
 
   openVision() {
-    this.visionDialog.show();
+    this.visionDialog().show();
   }
 
   onVisionResult(analysis: string) {

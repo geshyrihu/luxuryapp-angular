@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from "@angular/core";
+import { Component, inject, input, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
 import { PermissionDTO } from "src/app/core/interfaces/permission.dto";
@@ -17,8 +17,7 @@ export class EmployeePermissionApp implements OnInit {
   // employeeAddOrEditService = inject(EmployeeAddOrEditService);
   authS = inject(AuthService);
   customToastService = inject(CustomToastService);
-  @Input()
-  applicationUserId: string = "";
+  applicationUserId = input<string>("");
 
   data: any[] = [];
 
@@ -27,7 +26,7 @@ export class EmployeePermissionApp implements OnInit {
   }
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`Permission/PermissionUserAdmin/${this.applicationUserId}/`)
+      .onGetItem(`Permission/PermissionUserAdmin/${this.applicationUserId()}/`)
       .then((result: any) => {
         this.data = result;
       });

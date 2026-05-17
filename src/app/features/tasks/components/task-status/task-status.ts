@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
-import { Component, EventEmitter, inject, OnInit, Output } from "@angular/core";
+import { Component, inject, OnInit, output } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import {
   IonLabel,
@@ -31,7 +31,7 @@ export class TaskStatus implements OnInit {
   cb_status: any[] = []; // Lista de estados
 
   status: string = this.TaskGroupService.taskGroupMessageStatus || "NotStarted";
-  @Output() statusChange = new EventEmitter<string>(); // Evento para emitir el cambio de estado
+  statusChange = output<string>();
 
   isMobile: boolean = false; // Propiedad para detectar móvil
 

@@ -14,6 +14,9 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { AddendumTemplateListDTO } from "../models/addendum-template.dto";
 import { AddendumTemplateFormComponent } from "./addendum-template-form";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 
 @Component({
   selector: "app-addendum-template-list",
@@ -26,6 +29,9 @@ import { AddendumTemplateFormComponent } from "./addendum-template-form";
     CustomButtonEdit,
     CustomButtonDelete,
     CustomButtonItem,
+    DataViewMobile,
+    ActionMenu,
+    IonButtonItem,
   ],
 })
 export class AddendumTemplateList implements OnInit {

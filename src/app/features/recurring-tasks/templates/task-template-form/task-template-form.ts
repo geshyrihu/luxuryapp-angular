@@ -14,6 +14,7 @@ import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/cust
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 interface ITaskTemplateForm {
@@ -95,32 +96,14 @@ export class TaskTemplateForm implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.invalid) return;
-
-    this.submitting.set(true);
-
-    const dto = this.form.getRawValue();
-    const apiUrl = "recurring-tasks/templates";
-    let request: Promise<any>;
-
-    if (this.templateId()) {
-      request = this.apiResponseS.onPut<any>(
-        `${apiUrl}/${this.templateId()}`,
-        dto,
-      );
-    } else {
-      request = this.apiResponseS.onPost<any>(apiUrl, dto);
-    }
-
-    request
-      .then((result) => {
-        if (result) {
-          this.ref.close(true);
-        }
-      })
-      .catch((error) => {
-        console.error("Request Error:", error);
-      })
-      .finally(() => this.submitting.set(false));
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "recurring-tasks/templates",
+      id: this.templateId(),
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => this.form.getRawValue(),
+    });
   }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { Component, OnInit, output } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
@@ -25,10 +25,7 @@ export class TaskDateRangeSelector implements OnInit {
     }
   }
 
-  @Output() selectedDates = new EventEmitter<{
-    startDate: Date;
-    endDate: Date;
-  }>();
+  selectedDates = output<{ startDate: Date; endDate: Date }>();
 
   onDateChange(dates: { from: Date | null; to: Date | null }) {
     this.dateRangeControl.setValue(dates, { emitEvent: false });

@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit, signal } from "@angular/core";
+import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { SelectModule } from "primeng/select";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
@@ -20,10 +20,8 @@ export class ComiteForm implements OnInit {
   private customerIdS = inject(CustomerIdService);
   // private config = inject(DynamicDialogConfig); // Not used
 
-  @Input()
-  customerId: string;
-  @Input()
-  meetingId: any;
+  customerId = input<string>();
+  meetingId = input<any>();
   cb_ParticipantComite = signal<any[]>([]);
   comiteparticipante = new FormControl<string | null>(null);
   listaParticipantesComite = signal<any[]>([]);
@@ -35,7 +33,7 @@ export class ComiteForm implements OnInit {
 
   onLoadCB() {
     const urlApi = `GetListComiteMinuta/${this.customerIdS.customerId()}/${
-      this.meetingId
+      this.meetingId()
     }`;
     this.apiResponseS.onGetSelectItem(urlApi).then((result: any) => {
       this.cb_ParticipantComite.set(result);
@@ -45,7 +43,7 @@ export class ComiteForm implements OnInit {
   onSubmit() {
     if (!this.comiteparticipante.value) return;
 
-    const urlApi = `MeetingComite/AgregarParticipantesComite/${this.meetingId}/${this.comiteparticipante.value}`;
+    const urlApi = `MeetingComite/AgregarParticipantesComite/${this.meetingId()}/${this.comiteparticipante.value}`;
     this.apiResponseS.onPost(urlApi).then(() => {
       this.onLoadData();
       this.onLoadCB();
@@ -61,7 +59,7 @@ export class ComiteForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `MeetingComite/ParticipantesComite/${this.meetingId}`;
+    const urlApi = `MeetingComite/ParticipantesComite/${this.meetingId()}`;
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.listaParticipantesComite.set(result);
     });

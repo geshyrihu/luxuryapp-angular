@@ -18,6 +18,7 @@ import { EstadoResultadosV2 } from "./estado-resultados-v2/estado-resultados-v2"
 import { EstadoResultados } from "./estado-resultados/estado-resultados";
 import { FlujoEfectivo } from "./flujo-efectivo/flujo-efectivo";
 import { ReporteFinanciero } from "./reporte-financiero/reporte-financiero";
+import { PresupuestoContabilidad } from "./presupuesto-contabilidad/presupuesto-contabilidad";
 
 const REPORT_META = [
   {
@@ -60,6 +61,11 @@ const REPORT_META = [
     description:
       "Corte de cobranza, clasificación de saldos y lectura operativa por condómino.",
   },
+  {
+    title: "Presupuesto Contabilidad",
+    description:
+      "Ejercido mensual vs presupuesto aprobado por cuenta de gastos generales (excluye 605/606/607).",
+  },
 ] as const;
 
 @Component({
@@ -79,6 +85,7 @@ const REPORT_META = [
     FlujoEfectivo,
     CustomButton,
     AnalisisCobranza,
+    PresupuestoContabilidad,
     AiAgentComponent,
     AiAgentContabilidadOnlineComponent,
     AiAgentExplicadorContabilidadOnlineComponent,

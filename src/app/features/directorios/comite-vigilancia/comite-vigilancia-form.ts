@@ -14,6 +14,7 @@ import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/cust
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
@@ -116,24 +117,18 @@ export class ComiteVigilanciaForm implements OnInit {
   };
 
   onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-
-    // Construir payload limpio
-    const payload = {
-      customerId: this.form.get("customerId")?.value,
-      propertyMemberId: this.form.get("propertyMemberId")?.value,
-      ePosicionComite: this.form.get("ePosicionComite")?.value,
-    };
-
-    const request =
-      this.id === ""
-        ? this.apiResponseS.onPost(`ComiteVigilancia`, payload)
-        : this.apiResponseS.onPut(`ComiteVigilancia/${this.id}`, payload);
-
-    request.then((result: boolean) => {
-      result ? this.ref.close(true) : this.submitting.set(false);
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "ComiteVigilancia",
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => ({
+        customerId: this.form.get("customerId")?.value,
+        propertyMemberId: this.form.get("propertyMemberId")?.value,
+        ePosicionComite: this.form.get("ePosicionComite")?.value,
+      }),
     });
   }
 }
