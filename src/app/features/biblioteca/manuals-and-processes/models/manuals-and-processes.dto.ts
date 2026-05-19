@@ -15,6 +15,7 @@ export interface IManualTemplateSimpleDTO {
 }
 
 export interface IManualTemplateDetalleDTO extends IManualTemplateSimpleDTO {
+  departamentValue: number;
   roleIds: string[];
   customerIds: string[];
   pasos: IManualPasoDTO[];

@@ -4,7 +4,7 @@ import {
   moveItemInArray,
 } from "@angular/cdk/drag-drop";
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, HostListener, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -265,10 +265,33 @@ export class ManualsAndProcessesEditor implements OnInit {
   // ----------------------------------------------------------------
 
   onSubirImagen(event: any, uploader: any): void {
-    const paso = this.selectedPaso();
-    if (!paso) return;
     const file = event.files?.[0];
     if (!file) return;
+    this.uploadImageFile(file);
+    uploader.clear();
+  }
+
+  @HostListener("window:paste", ["$event"])
+  onPaste(event: ClipboardEvent): void {
+    if (this.activeTab() !== "pasos" || !this.selectedPaso() || this.isNewPaso()) return;
+    const items = event.clipboardData?.items;
+    if (!items) return;
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      if (item.kind === "file" && item.type.startsWith("image/")) {
+        const blob = item.getAsFile();
+        if (blob) {
+          const ext = item.type === "image/png" ? "png" : "jpg";
+          this.uploadImageFile(new File([blob], `paste-${Date.now()}.${ext}`, { type: blob.type }));
+        }
+        break;
+      }
+    }
+  }
+
+  private uploadImageFile(file: File): void {
+    const paso = this.selectedPaso();
+    if (!paso || this.uploadingImagen()) return;
 
     this.uploadingImagen.set(true);
     const formData = new FormData();
@@ -281,21 +304,16 @@ export class ManualsAndProcessesEditor implements OnInit {
       )
       .then((res) => {
         if (res) {
-          const updated = {
-            ...paso,
-            imagenes: [...(paso.imagenes ?? []), res],
-          };
+          const updated = { ...paso, imagenes: [...(paso.imagenes ?? []), res] };
           this.pasos.update((list) =>
             list.map((p) => (p.id === paso.id ? updated : p)),
           );
           this.selectedPaso.set(updated);
-          uploader.clear();
         }
         this.uploadingImagen.set(false);
       })
       .catch(() => {
         this.uploadingImagen.set(false);
-        uploader.clear();
       });
   }
 

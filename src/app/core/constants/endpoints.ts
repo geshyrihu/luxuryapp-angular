@@ -887,6 +887,10 @@ export const Endpoints = {
     get: (customerId: string, year: number, empresa: string) =>
       `espejo-aspel-full?customerId=${customerId}&intYear=${year}&empresa=${empresa}`,
   },
+  AutitoriaCuentasAspel: {
+    get: (year: number, empresa: string) =>
+      `autitoria-cuentas-aspel?intYear=${year}&empresa=${empresa}`,
+  },
   AspelCobranza: {
     customers: "aspel-cobranza/customers",
     accounts: (customerId: string, year: number) =>

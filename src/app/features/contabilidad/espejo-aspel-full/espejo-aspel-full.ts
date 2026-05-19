@@ -253,6 +253,10 @@ export class EspejoAspelFull {
     return fila.abonos.reduce((a, b) => a + b, 0);
   }
 
+  mostrarPresupuesto(fila: IEspejoFilaTabla): boolean {
+    return fila.grupoCodigo === "6";
+  }
+
   resultado(fila: IEspejoFilaTabla): number {
     return this.totalCargo(fila) - this.totalAbono(fila);
   }

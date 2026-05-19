@@ -1,6 +1,7 @@
+<div class="rf-shell">
 <!-- Barra superior fija -->
 <div
-  class="surface-card border-bottom-1 surface-border shadow-1"
+  class="rf-card border-bottom-1 surface-border"
   style="position: sticky; top: 0; z-index: 10; padding: 0.5rem 1rem; margin-bottom: 1.25rem"
 >
   <div class="flex align-items-center gap-3">
@@ -117,7 +118,7 @@
       </span>
       <span class="flex align-items-center gap-1 text-xs text-500">
         <span class="legend-dot legend-dot-presupuesto"></span>
-        P=Presupuesto
+        P=Presupuesto (solo gastos)
       </span>
     </div>
 
@@ -156,31 +157,32 @@
       </div>
     </div>
 
-    <div class="overflow-auto" style="max-height: 70vh">
+    <div class="rf-card overflow-hidden">
+    <div class="rf-wrap" style="max-height: 70vh">
       <p-table
         [value]="filasDe(grupo.codigo)"
-        styleClass="p-datatable-sm p-datatable-gridlines"
+        styleClass="rf-prime-table p-datatable-sm"
         [scrollable]="true"
         scrollHeight="flex"
         [rowHover]="true"
       >
         <ng-template pTemplate="header">
           <tr>
-            <th class="th-col-navy" style="min-width: 120px; position: sticky; left: 0; z-index: 3">
+            <th style="min-width: 120px; position: sticky; left: 0; z-index: 3">
               No. Cuenta
             </th>
-            <th class="th-col-navy" style="min-width: 220px; position: sticky; left: 120px; z-index: 3">
+            <th style="min-width: 220px; position: sticky; left: 120px; z-index: 3">
               Descripcion
             </th>
-            <th class="text-center th-col-navy" style="min-width: 100px; position: sticky; left: 340px; z-index: 3">
+            <th class="text-center" style="min-width: 100px; position: sticky; left: 340px; z-index: 3">
               Saldo Ini.
             </th>
             @for (mes of meses; track mes) {
-              <th class="text-center th-col-navy" style="min-width: 90px">
+              <th class="text-center" style="min-width: 90px">
                 {{ mes }}
               </th>
             }
-            <th class="text-center th-col-navy" style="min-width: 100px">
+            <th class="text-center" style="min-width: 100px">
               Resultado
             </th>
           </tr>
@@ -191,7 +193,7 @@
 
             <!-- No. Cuenta -->
             <td
-              class="numeric-column"
+              class="rf-td-cuenta numeric-column"
               style="position: sticky; left: 0; z-index: 1"
               [style.color]="fila.nivel === 'grupo' ? 'white' : '#1e293b'"
             >
@@ -200,12 +202,12 @@
 
             <!-- Descripcion -->
             <td
+              class="rf-td-descripcion--item"
               style="position: sticky; left: 120px; z-index: 1"
               [style.color]="fila.nivel === 'grupo' ? 'white' : '#1e293b'"
               [style.paddingLeft]="fila.nivel === 2 ? '1.5rem' : fila.nivel === 3 ? '2.5rem' : '0.75rem'"
             >
               <span
-                class="font-small-gray"
                 [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
                 [class.font-semibold]="fila.nivel === 2"
               >
@@ -215,7 +217,7 @@
 
             <!-- Saldo Inicial -->
             <td
-              class="numeric-column text-right"
+              class="rf-td-number numeric-column"
               style="position: sticky; left: 340px; z-index: 1; padding: 0.25rem 0.4rem"
               [style.color]="fila.nivel === 'grupo' ? '#bfdbfe' : '#374151'"
               [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
@@ -225,52 +227,60 @@
 
             <!-- Meses -->
             @for (i of [0,1,2,3,4,5,6,7,8,9,10,11]; track i) {
-              <td class="espejo-cell-compact">
+              <td class="espejo-cell-compact rf-td-number">
+                @if (mostrarPresupuesto(fila)) {
+                  <div
+                    class="text-right"
+                    [style.color]="fila.nivel === 'grupo' ? '#86efac' : '#16a34a'"
+                    [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
+                    style="font-size: 0.82rem; line-height: 1.2"
+                  >
+                    {{ formatMoney(fila.presupuesto[i]) }}
+                  </div>
+                }
                 <div
-                  class="text-right espejo-cell-xs"
+                  class="text-right"
                   [style.color]="fila.nivel === 'grupo' ? '#93c5fd' : '#1d4ed8'"
                   [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
+                  style="font-size: 0.82rem; line-height: 1.2"
                 >
                   {{ formatMoney(fila.cargos[i]) }}
                 </div>
                 <div
-                  class="text-right espejo-cell-xs"
+                  class="text-right"
                   [style.color]="fila.nivel === 'grupo' ? '#fca5a5' : '#dc2626'"
                   [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
+                  style="font-size: 0.82rem; line-height: 1.2"
                 >
                   {{ formatMoney(fila.abonos[i]) }}
-                </div>
-                <div
-                  class="text-right espejo-cell-xs"
-                  [style.color]="fila.nivel === 'grupo' ? '#86efac' : '#16a34a'"
-                  [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
-                >
-                  {{ formatMoney(fila.presupuesto[i]) }}
                 </div>
               </td>
             }
 
             <!-- Resultado -->
-            <td class="espejo-cell-compact text-right">
+            <td class="espejo-cell-compact text-right rf-td-number">
               <div
-                class="espejo-cell-xs"
+                class="text-right"
                 [style.color]="fila.nivel === 'grupo' ? '#93c5fd' : '#1d4ed8'"
                 [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
+                style="font-size: 0.82rem; line-height: 1.2"
               >
                 {{ formatMoney(totalCargo(fila)) }}
               </div>
               <div
-                class="espejo-cell-xs"
+                class="text-right"
                 [style.color]="fila.nivel === 'grupo' ? '#fca5a5' : '#dc2626'"
                 [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
+                style="font-size: 0.82rem; line-height: 1.2"
               >
                 {{ formatMoney(totalAbono(fila)) }}
               </div>
               <div
-                class="espejo-cell-xs font-bold"
+                class="text-right font-bold"
                 [style.color]="resultado(fila) >= 0
                   ? (fila.nivel === 'grupo' ? '#86efac' : '#16a34a')
                   : (fila.nivel === 'grupo' ? '#fca5a5' : '#dc2626')"
+                style="font-size: 0.82rem; line-height: 1.2"
               >
                 {{ formatMoney(resultado(fila)) }}
               </div>
@@ -280,12 +290,14 @@
         </ng-template>
       </p-table>
     </div>
+    </div>
   }
 }
 
 @if (!loading() && !rawData()) {
-  <div class="flex flex-column align-items-center justify-content-center py-8 text-500">
+  <div class="rf-card rf-empty flex flex-column align-items-center justify-content-center">
     <i class="pi pi-table text-4xl mb-3"></i>
     <p class="m-0">Selecciona un cliente y ejercicio para cargar el espejo Aspel.</p>
   </div>
 }
+</div>

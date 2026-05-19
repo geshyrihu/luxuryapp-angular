@@ -105,6 +105,7 @@ export class ManualsAndProcessesForm implements OnInit {
       description: res.description,
       objetivo: res.objetivo,
       marcoLegal: res.marcoLegal ?? "",
+      departament: res.departamentValue,
       currentVersion: res.currentVersion,
       isGlobal: res.isGlobal,
       isActive: res.isActive,

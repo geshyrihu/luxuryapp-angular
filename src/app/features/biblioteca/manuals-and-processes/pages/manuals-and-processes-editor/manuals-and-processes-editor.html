@@ -203,18 +203,21 @@
         <div class="flex flex-column gap-3 pt-3 border-top-1 border-200">
           <div class="flex align-items-center justify-content-between">
             <h4 class="text-base font-bold text-700 m-0">Imagenes del Paso</h4>
-            <p-fileUpload
-              #imgUploader
-              mode="basic"
-              chooseLabel="Subir Imagen"
-              chooseIcon="pi pi-image"
-              accept="image/*"
-              [auto]="true"
-              [customUpload]="true"
-              (uploadHandler)="onSubirImagen($event, imgUploader)"
-              styleClass="p-button-sm p-button-outlined"
-              [disabled]="uploadingImagen()"
-            />
+            <div class="flex align-items-center gap-2">
+              <span class="text-xs text-400">o Ctrl+V para pegar</span>
+              <p-fileUpload
+                #imgUploader
+                mode="basic"
+                chooseLabel="Subir Imagen"
+                chooseIcon="pi pi-image"
+                accept="image/*"
+                [auto]="true"
+                [customUpload]="true"
+                (uploadHandler)="onSubirImagen($event, imgUploader)"
+                styleClass="p-button-sm p-button-outlined"
+                [disabled]="uploadingImagen()"
+              />
+            </div>
           </div>
 
           @if (uploadingImagen()) {

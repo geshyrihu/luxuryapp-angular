@@ -248,23 +248,25 @@
 // ── FILAS JERÁRQUICAS — espejo-aspel-full ────────────────
 // Devueltas por rowClass() en espejo-aspel-full.ts.
 .fila-total-grupo > td {
-  background-color: #1e3a8a !important;
-  color: #ffffff !important;
-  font-weight: 700;
+  background: var(--rf-result) !important;
+  color: var(--rf-result-ink) !important;
+  font-weight: 800;
 }
 
 .fila-nivel1 > td {
-  background-color: #dbeafe !important;
-  color: #1e293b !important;
-  font-weight: 600;
+  background: var(--rf-total) !important;
+  color: var(--rf-head) !important;
+  font-weight: 700;
 }
 
 .fila-nivel2 > td {
-  background-color: #f1f5f9 !important;
+  background: #f8fafc !important;
+  color: var(--rf-ink) !important;
 }
 
 .fila-nivel3 > td {
   background-color: #ffffff !important;
+  color: var(--rf-ink) !important;
 }
 
 // ── REPORTE FINANCIERO (rf-*) ─────────────────────────────

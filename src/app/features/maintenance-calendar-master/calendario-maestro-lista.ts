@@ -62,17 +62,21 @@ export class CalendarioMaestroLista implements OnInit {
     this.apiResponseS
       .onGetList("calendariomaestro/list")
       .then((result: any) => {
-        this.data.set(result);
-        const flattenedData = this.flattenData(result);
+        const data = Array.isArray(result) ? result : [];
+        this.data.set(data);
+        const flattenedData = this.flattenData(data);
         this.flatData.set(flattenedData);
       });
   }
 
   flattenData(data: any[]): any[] {
+    if (!Array.isArray(data)) return [];
     const flat = [];
     for (const month of data) {
-      for (const item of month.items) {
-        flat.push({ ...item, month: month.month });
+      if (month && Array.isArray(month.items)) {
+        for (const item of month.items) {
+          flat.push({ ...item, month: month.month });
+        }
       }
     }
     return flat;

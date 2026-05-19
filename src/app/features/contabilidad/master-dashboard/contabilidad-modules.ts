@@ -123,15 +123,24 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
       //   color: "#0f766e",
       //   bgColor: "#ccfbf1",
       // },
-      // {
-      //   title: "Espejo Aspel Full",
-      //   description:
-      //     "Catalogo completo de cuentas Aspel con cargos, abonos y presupuesto mensual por grupo.",
-      //   route: "/contabilidad/espejo-aspel-full",
-      //   icon: "pi pi-table",
-      //   color: "#0f172a",
-      //   bgColor: "#f1f5f9",
-      // },
+      {
+        title: "Espejo Aspel Full",
+        description:
+          "Catalogo completo de cuentas Aspel con cargos, abonos y presupuesto mensual por grupo.",
+        route: "/contabilidad/espejo-aspel-full",
+        icon: "pi pi-table",
+        color: "#0f172a",
+        bgColor: "#f1f5f9",
+      },
+      {
+        title: "Auditoria de Cuentas Aspel",
+        description:
+          "Comparativa estructural de cuentas contables entre todos los customers activos con mapeo Aspel.",
+        route: "/contabilidad/autitoria-cuentas-aspel",
+        icon: "pi pi-sitemap",
+        color: "#7c2d12",
+        bgColor: "#ffedd5",
+      },
     ],
   },
 

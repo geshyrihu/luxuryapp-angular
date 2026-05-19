@@ -15,6 +15,7 @@ import {
   IModuleAppRolAssignedDTO,
   IModuleGroupRolDTO,
 } from "../models/module-app-rol.dto";
+
 @Component({
   selector: "app-module-app-rol-update",
   imports: [
@@ -30,7 +31,7 @@ export class ModuleAppRolUpdate implements OnInit {
   apiResponseS = inject(ApiResponseService);
   config = inject(DynamicDialogConfig);
   customerIdS = inject(CustomerIdService);
-  // Declaración e inicialización de variables
+  // Declaracion e inicializacion de variables
   groupedData = signal<IModuleGroupRolDTO[]>([]);
 
   globalFilterFields: string[] = [];
@@ -51,9 +52,7 @@ export class ModuleAppRolUpdate implements OnInit {
   onLoadData(roleId: string): void {
     this.loading.set(true);
     this.apiResponseS
-      .onGetList<
-        IModuleGroupRolDTO[]
-      >(Endpoints.ModuleAppRoles.assignments(roleId))
+      .onGetList<IModuleGroupRolDTO[]>(Endpoints.ModuleAppRoles.assignments(roleId))
       .then((result) => {
         this.groupedData.set(result || []);
         this.loading.set(false);
@@ -75,14 +74,16 @@ export class ModuleAppRolUpdate implements OnInit {
     this.apiResponseS
       .onPost(Endpoints.ModuleAppRoles.updateAssigned, data)
       .then(() => {
-        // TODO: Aquí podemos mandar al bakcend el cambio para signalR y posterior actualizar le menu a los lcientes que corresponda
+        this.onLoadData(this.roleId);
+        // TODO: Aqui podemos mandar al backend el cambio para signalR y posterior actualizar el menu a los clientes que corresponda
         // this.customerIdS.onLoadDataCustomer(this.customerIdS.customerId());
       });
   }
+
   checkIfTwoDigitsAndSpace(moduleAppName: string): boolean {
     if (!moduleAppName) return false;
 
-    // Expresión regular para verificar si después de dos dígitos hay un espacio
+    // Expresion regular para verificar si despues de dos digitos hay un espacio
     const regex = /^\d{2} /;
     const result = regex.test(moduleAppName);
     return result;

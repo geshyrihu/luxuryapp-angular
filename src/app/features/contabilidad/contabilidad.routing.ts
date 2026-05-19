@@ -293,4 +293,16 @@ export const CONTABILIDAD_ROUTES: Routes = [
       breadcrumb: "Espejo Aspel Full",
     },
   },
+  {
+    path: "autitoria-cuentas-aspel",
+    loadComponent: () =>
+      import("./autitoria-cuentas-aspel/autitoria-cuentas-aspel").then(
+        (m) => m.AutitoriaCuentasAspel,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Auditoria Cuentas Aspel",
+      breadcrumb: "Auditoria Cuentas Aspel",
+    },
+  },
 ];
