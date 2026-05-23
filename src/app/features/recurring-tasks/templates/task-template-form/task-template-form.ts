@@ -9,12 +9,12 @@ import {
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
-import { CustomInputMultiselect } from "src/app/core/components/inputs/web/custom-input-multiselect-signal";
+import { CustomInputMultiselectSignal } from "src/app/core/components/inputs/web/custom-input-multiselect-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 interface ITaskTemplateForm {
@@ -35,7 +35,7 @@ interface ITaskTemplateForm {
     CustomInputSelectSignal,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    CustomInputMultiselect,
+    CustomInputMultiselectSignal,
   ],
 })
 export class TaskTemplateForm implements OnInit {

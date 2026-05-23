@@ -29,13 +29,32 @@ import { ModuleAppRolUpdate } from "./module-app-rol-update";
 
     IonNote,
   ],
-  templateUrl: "./module-app-rol.html",
+  templateUrl: "./module-app-rol-list.html",
+  styles: [
+    `
+      :host ::ng-deep ion-item-divider {
+        --background: var(--blue-50);
+        --color: var(--blue-700);
+        font-weight: bold;
+        border-bottom: 1px solid var(--blue-100);
+      }
+    `,
+  ],
 })
 export class ModuleAppRol {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   dataSignal = signal<IModuleAppRolDTO[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
+  groupedData = computed(() => {
+    const data = this.dataSignal();
+    return data.reduce((acc: any, item) => {
+      const key = item.roleType || "Otros";
+      if (!acc[key]) acc[key] = [];
+      acc[key].push(item);
+      return acc;
+    }, {});
+  });
   constructor() {
     addIcons({ chevronForwardOutline });
   }

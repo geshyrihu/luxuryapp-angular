@@ -3,12 +3,12 @@ import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
-import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import {
   CustomButtonDelete,
   CustomButtonEdit,
 } from "src/app/core/components/buttons/web";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -29,6 +29,13 @@ interface DeptGroup {
   config: DeptConfig;
 }
 
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import {
+  IonButtonDelete,
+  IonButtonEdit,
+} from "src/app/core/components/buttons/mobile";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+
 @Component({
   selector: "app-manuals-and-processes-list",
   templateUrl: "./manuals-and-processes-list.html",
@@ -41,6 +48,11 @@ interface DeptGroup {
     CustomButton,
     CustomButtonDelete,
     CustomButtonEdit,
+    DataViewMobile,
+    IonItem,
+    IonLabel,
+    IonButtonEdit,
+    IonButtonDelete,
   ],
 })
 export class ManualsAndProcessesList implements OnInit {
@@ -51,29 +63,63 @@ export class ManualsAndProcessesList implements OnInit {
 
   readonly EApplicationRole = EApplicationRole;
 
+  isAdmin = computed(() => {
+    const roles = [
+      EApplicationRole.SuperUsuario,
+      EApplicationRole.Legal,
+      EApplicationRole.RecursosHumanos,
+      EApplicationRole.Reclutamiento,
+    ];
+    return roles.some((role) => this.aspRoleS.roleSignal(role)());
+  });
+
   dataSignal = signal<IManualTemplateSimpleDTO[]>([]);
   loading = signal(true);
   searchTerm = signal("");
 
   private readonly DEPT_CONFIG: Record<string, DeptConfig> = {
-    "Administración": { icon: "pi pi-building",       color: "#1e40af", bgColor: "#dbeafe" },
-    "Legal":           { icon: "pi pi-shield",         color: "#7c2d12", bgColor: "#ffedd5" },
-    "Contabilidad":    { icon: "pi pi-wallet",         color: "#0f766e", bgColor: "#ccfbf1" },
-    "Mantenimiento":   { icon: "pi pi-wrench",         color: "#92400e", bgColor: "#fef3c7" },
-    "Limpieza":        { icon: "pi pi-star",           color: "#065f46", bgColor: "#d1fae5" },
-    "Operaciones":     { icon: "pi pi-cog",            color: "#1e3a8a", bgColor: "#e0e7ff" },
-    "Jardinería":      { icon: "pi pi-sun",            color: "#15803d", bgColor: "#dcfce7" },
-    "Sistemas":        { icon: "pi pi-desktop",        color: "#6d28d9", bgColor: "#f5f3ff" },
-    "Seguridad":       { icon: "pi pi-lock",           color: "#dc2626", bgColor: "#fee2e2" },
-    "Constructora":    { icon: "pi pi-home",           color: "#7c3aed", bgColor: "#ede9fe" },
-    "Supervisión":     { icon: "pi pi-eye",            color: "#0891b2", bgColor: "#cffafe" },
-    "Dirección":       { icon: "pi pi-user",           color: "#374151", bgColor: "#f3f4f6" },
-    "Recursos Humanos":{ icon: "pi pi-users",          color: "#d97706", bgColor: "#fef3c7" },
-    "Reclutamiento":   { icon: "pi pi-briefcase",      color: "#0284c7", bgColor: "#e0f2fe" },
-    "Recepción":       { icon: "pi pi-phone",          color: "#047857", bgColor: "#d1fae5" },
-    "Mensajería":      { icon: "pi pi-envelope",       color: "#0369a1", bgColor: "#e0f2fe" },
-    "Ludoteca":        { icon: "pi pi-heart",          color: "#db2777", bgColor: "#fce7f3" },
-    "N/A":             { icon: "pi pi-minus-circle",   color: "#6b7280", bgColor: "#f3f4f6" },
+    Administración: {
+      icon: "pi pi-building",
+      color: "#1e40af",
+      bgColor: "#dbeafe",
+    },
+    Legal: { icon: "pi pi-shield", color: "#7c2d12", bgColor: "#ffedd5" },
+    Contabilidad: {
+      icon: "pi pi-wallet",
+      color: "#0f766e",
+      bgColor: "#ccfbf1",
+    },
+    Mantenimiento: {
+      icon: "pi pi-wrench",
+      color: "#92400e",
+      bgColor: "#fef3c7",
+    },
+    Limpieza: { icon: "pi pi-star", color: "#065f46", bgColor: "#d1fae5" },
+    Operaciones: { icon: "pi pi-cog", color: "#1e3a8a", bgColor: "#e0e7ff" },
+    Jardinería: { icon: "pi pi-sun", color: "#15803d", bgColor: "#dcfce7" },
+    Sistemas: { icon: "pi pi-desktop", color: "#6d28d9", bgColor: "#f5f3ff" },
+    Seguridad: { icon: "pi pi-lock", color: "#dc2626", bgColor: "#fee2e2" },
+    Constructora: { icon: "pi pi-home", color: "#7c3aed", bgColor: "#ede9fe" },
+    Supervisión: { icon: "pi pi-eye", color: "#0891b2", bgColor: "#cffafe" },
+    Dirección: { icon: "pi pi-user", color: "#374151", bgColor: "#f3f4f6" },
+    "Recursos Humanos": {
+      icon: "pi pi-users",
+      color: "#d97706",
+      bgColor: "#fef3c7",
+    },
+    Reclutamiento: {
+      icon: "pi pi-briefcase",
+      color: "#0284c7",
+      bgColor: "#e0f2fe",
+    },
+    Recepción: { icon: "pi pi-phone", color: "#047857", bgColor: "#d1fae5" },
+    Mensajería: {
+      icon: "pi pi-envelope",
+      color: "#0369a1",
+      bgColor: "#e0f2fe",
+    },
+    Ludoteca: { icon: "pi pi-heart", color: "#db2777", bgColor: "#fce7f3" },
+    "N/A": { icon: "pi pi-minus-circle", color: "#6b7280", bgColor: "#f3f4f6" },
   };
 
   private readonly DEFAULT_CONFIG: DeptConfig = {
@@ -84,11 +130,12 @@ export class ManualsAndProcessesList implements OnInit {
 
   groupedData = computed<DeptGroup[]>(() => {
     const term = this.searchTerm().toLowerCase().trim();
-    const items = this.dataSignal().filter((m) =>
-      !term ||
-      m.folio.toLowerCase().includes(term) ||
-      (m.description ?? "").toLowerCase().includes(term) ||
-      m.departament.toLowerCase().includes(term),
+    const items = this.dataSignal().filter(
+      (m) =>
+        !term ||
+        m.folio.toLowerCase().includes(term) ||
+        (m.description ?? "").toLowerCase().includes(term) ||
+        m.departament.toLowerCase().includes(term),
     );
     const map = new Map<string, IManualTemplateSimpleDTO[]>();
     for (const item of items) {
@@ -131,7 +178,7 @@ export class ManualsAndProcessesList implements OnInit {
         ManualsAndProcessesForm,
         data,
         data?.id ? "Editar Manual" : "Nuevo Manual",
-        this.dialogHandlerS.sizeLg,
+        this.dialogHandlerS.sizeFull,
       )
       .then((result: boolean) => {
         if (result) this.onLoadData();

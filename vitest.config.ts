@@ -23,7 +23,14 @@ export default defineConfig({
     reporters: ['default'],
     server: {
       deps: {
-        inline: [/@angular/, /primeng/],
+        inline: [
+          /@angular/,
+          /primeng/,
+          /@ionic\/angular/,
+          /@ionic\/angular\/standalone/,
+          /@ionic\/core/,
+          /@stencil\/core/,
+        ],
       },
     },
   },

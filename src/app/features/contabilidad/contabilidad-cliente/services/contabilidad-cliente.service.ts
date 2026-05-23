@@ -1,0 +1,72 @@
+import { Injectable, inject } from '@angular/core';
+import { Endpoints } from 'src/app/core/constants/endpoints';
+import { ApiResponseService } from 'src/app/core/services/api-response.service';
+import type {
+  ICedulaExtraordinariaDto,
+  IAnalisisCobranzaOnlineDto,
+  IEpfDTO,
+  IFinancialStatementDto,
+  IFlujoCajaDto,
+  IReporteFinancieroDto,
+} from '../../contabilidad-online/models/aspel-budget.interface';
+import type { PresupuestoContabilidadResponse } from '../../cobranza-online/models/presupuesto-contabilidad.model';
+
+@Injectable({ providedIn: 'root' })
+export class ContabilidadClienteService {
+  private readonly api = inject(ApiResponseService);
+
+  getEpf(customerId: string, year: number, mes: number) {
+    return this.api.onGetItem<IEpfDTO>(
+      Endpoints.ContabilidadOnline.FinancialStatements.epf(customerId, year, mes),
+    );
+  }
+
+  getEstadoResultados(customerId: string, year: number, mes: number) {
+    return this.api.onGetItem<IFinancialStatementDto>(
+      Endpoints.ContabilidadOnline.FinancialStatements.incomeStatement(customerId, year, mes),
+    );
+  }
+
+  getEstadoResultadosV2(customerId: string, year: number, mes: number) {
+    return this.api.onGetItem<IFinancialStatementDto>(
+      Endpoints.ContabilidadOnline.FinancialStatements.incomeStatementV2(customerId, year, mes),
+    );
+  }
+
+  getCedulaExtraordinaria(customerId: string, year: number, mes: number) {
+    return this.api.onGetItem<ICedulaExtraordinariaDto>(
+      Endpoints.ContabilidadOnline.FinancialStatements.extraordinaryFeeSchedule(customerId, year, mes),
+    );
+  }
+
+  getCedulaPresupuestal(customerId: string, year: number, mes: number) {
+    return this.api.onGetItem<IFinancialStatementDto>(
+      Endpoints.ContabilidadOnline.FinancialStatements.budgetVsActual(customerId, year, mes),
+    );
+  }
+
+  getReporteFinanciero(customerId: string, year: number, mes: number) {
+    return this.api.onGetItem<IReporteFinancieroDto>(
+      Endpoints.ContabilidadOnline.FinancialStatements.financialReport(customerId, year, mes),
+    );
+  }
+
+  getFlujoCaja(customerId: string, year: number) {
+    return this.api.onGetItem<IFlujoCajaDto>(
+      Endpoints.ContabilidadOnline.FinancialStatements.cashFlow(customerId, year),
+    );
+  }
+
+  getAnalisisCobranza(customerId: string, year: number, month: number, day: number) {
+    return this.api.onGetItem<IAnalisisCobranzaOnlineDto>(
+      Endpoints.ContabilidadOnline.FinancialStatements.collectionAnalysisOnline(customerId, year, month, day),
+      false,
+    );
+  }
+
+  getPresupuestoContabilidad(customerId: string, year: number, mes: number) {
+    return this.api.onGetItem<PresupuestoContabilidadResponse>(
+      Endpoints.ContabilidadOnline.FinancialStatements.presupuestoContabilidad(customerId, year, mes),
+    );
+  }
+}

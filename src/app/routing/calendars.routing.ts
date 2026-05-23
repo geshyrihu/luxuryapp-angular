@@ -85,4 +85,16 @@ export const calendarsRoutes: Routes = [
       breadcrumb: "Reuniones con Comité",
     },
   },
+  {
+    path: "google-calendar",
+    loadComponent: () =>
+      import("src/app/features/google-calendar/google-calendar").then(
+        (m) => m.GoogleCalendar,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Agenda de Comité",
+      breadcrumb: "Agenda de Comité",
+    },
+  },
 ];

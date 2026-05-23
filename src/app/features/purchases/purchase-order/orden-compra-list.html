@@ -9,7 +9,7 @@
   [value]="data()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table card hidden md:block"
+  styleClass="custom-table card hidden md:block orden-compra-table"
 >
   <ng-template #caption>
     <!-- ? INICIO: Botones de Tipo de Gasto -->
@@ -82,56 +82,74 @@
       </div>
     </div>
   </ng-template>
+  <ng-template #colgroup>
+    <colgroup>
+      <col class="oc-col-folio" />
+      <col class="oc-col-indice" />
+      <col class="oc-col-fondeo" />
+      <col class="oc-col-solicitud" />
+      <col class="oc-col-descripcion" />
+      <col class="oc-col-partida" />
+      <col class="oc-col-proveedor" />
+      <col class="oc-col-total" />
+      @if (statusCompra() === 1) {
+      <col class="oc-col-observaciones" />
+      } @if (this.statusCompra() === 0) {
+      <col class="oc-col-autoriza" />
+      }
+      <col class="oc-col-actions" />
+    </colgroup>
+  </ng-template>
   <ng-template #header>
     <tr>
-      <th class="table-col-7" pSortableColumn="folio">
+      <th pSortableColumn="folio">
         Folio
         <p-sortIcon field="folio" />
       </th>
-      <th class="table-col-7" pSortableColumn="indice">
+      <th pSortableColumn="indice">
         Id Fondeo
         <p-sortIcon field="indice" />
       </th>
-      <th class="table-col-10">Fondeo</th>
-      <th class="table-col-7" pSortableColumn="fechaSolicitud">
+      <th>Fondeo</th>
+      <th pSortableColumn="fechaSolicitud">
         Solicitud
         <p-sortIcon field="fechaSolicitud" />
       </th>
-      <th class="table-col-20" pSortableColumn="equipoOInstalacion">
+      <th pSortableColumn="equipoOInstalacion">
         DESCRIPCIóN
         <p-sortIcon field="equipoOInstalacion" />
       </th>
-      <th class="table-col-20" pSortableColumn="justificacionGasto">
+      <th pSortableColumn="justificacionGasto">
         PARTIDA PRESUPUESTAL
         <p-sortIcon field="justificacionGasto" />
       </th>
-      <th class="table-col-15" pSortableColumn="proveedor">
+      <th pSortableColumn="proveedor">
         Proveedor
         <p-sortIcon field="proveedor" />
       </th>
-      <th class="table-col-15" pSortableColumn="total">
+      <th pSortableColumn="total">
         Total
         <p-sortIcon field="total" />
       </th>
       @if (statusCompra() === 1) {
-      <th class="table-col-15" pSortableColumn="observaciones">
+      <th pSortableColumn="observaciones">
         Observaciones
         <p-sortIcon field="observaciones" />
       </th>
       } @if (this.statusCompra() === 0) {
-      <th class="table-col-15" pSortableColumn="fullName">
+      <th pSortableColumn="fullName">
         Autoriza
         <p-sortIcon field="fullName" />
       </th>
       }
-      <th class="table-col-5"></th>
+      <th></th>
     </tr>
   </ng-template>
   <ng-template #body let-item>
     <tr>
       <td class="text-sm">{{ item.folio }}</td>
       <td class="text-sm">{{ item.indice }}</td>
-      <td class="text-sm">
+      <td class="text-sm oc-cell-wrap">
         @if (item.isFueraFondeo) {
         <p-tag severity="warn" value="Fuera de proceso"></p-tag>
         } @else if (item.isFunded) {
@@ -139,12 +157,12 @@
         } @else { Sin Asignar }
       </td>
       <td>{{ item.fechaSolicitud | date : 'd MMM yyyy' : 'UTC' }}</td>
-      <td class="text-sm">
+      <td class="text-sm oc-cell-wrap">
         {{ item.equipoOInstalacion }}
         <br />
         {{ item.justificacionGasto }}
       </td>
-      <td class="text-sm">
+      <td class="text-sm oc-cell-wrap">
         <ul>
           @for (budget of item.budgets; track $index) {
           <li>
@@ -155,19 +173,19 @@
           }
         </ul>
       </td>
-      <td class="text-sm">{{ item.proveedor }}</td>
-      <td class="text-sm">{{ item.total | number: '1.2-2'}}</td>
+      <td class="text-sm oc-cell-wrap">{{ item.proveedor }}</td>
+      <td class="text-sm oc-cell-total">{{ item.total | number: '1.2-2'}}</td>
       @if (statusCompra() === 1) {
-      <td>{{ item.observaciones }}</td>
+      <td class="oc-cell-wrap">{{ item.observaciones }}</td>
       } @if (this.statusCompra() === 0) {
-      <td class="text-sm">
+      <td class="text-sm oc-cell-wrap">
         {{ item.fullName }}
         <br />
         {{ item.fechaAutorizacion | date: 'short' }}
       </td>
       }
-      <td class="no-print">
-        <div class="flex">
+      <td class="no-print oc-cell-actions">
+        <div class="flex oc-actions-container">
           <custom-button-item
             iconClass="pi pi-window-maximize"
             label="Editar en modal"

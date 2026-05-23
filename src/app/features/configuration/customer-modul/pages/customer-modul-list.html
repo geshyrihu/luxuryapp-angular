@@ -29,6 +29,7 @@
                 [showClear]="true"
                 customClass="w-full max-w-15rem"
                 [horizontal]="false"
+                [filter]="true"
               />
               <primeng-custom-global-filter [dt]="dt" />
             </div>
@@ -59,15 +60,15 @@
               <p-avatar
                 [image]="item.photoPath"
                 [alt]="item.nameCustomer"
-                size="large"
+                size="normal"
                 shape="circle"
-                styleClass="mr-3"
+                styleClass="mr-2"
               />
-              <h6 class="m-0">{{ item.nameCustomer }}</h6>
+              <span class="m-0 font-medium text-sm">{{ item.nameCustomer }}</span>
             </div>
           </td>
-          <td>{{ item.numeroCliente }}</td>
-          <td>{{ item.register }}</td>
+          <td class="text-xs">{{ item.numeroCliente }}</td>
+          <td class="text-xs">{{ item.register }}</td>
           <td>
             @if (item.isAssigned) {
             <p-tag severity="success" value="Activo"></p-tag>
@@ -102,6 +103,7 @@
           (selectionChange)="onSelectForCustomer($event)"
           [showClear]="true"
           [horizontal]="false"
+          [filter]="true"
         />
       </div>
     </div>

@@ -2,6 +2,7 @@ export interface ISelectItem {
   value: any;
   label?: any;
   isSelected?: boolean;
+  group?: string;
 }
 export interface SelectItem<T> {
   label: string;

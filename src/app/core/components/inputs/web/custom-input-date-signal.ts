@@ -23,6 +23,8 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [disabled]="disabled()"
       [required]="requiredInput()"
       [noMargin]="noMargin()"
+      [description]="description()"
+      [hidden]="hidden()"
     >
       <input
         pInputText

@@ -75,7 +75,9 @@
               "sweetalert2",
               "pdfmake",
               "exceljs",
-              "quill-delta"
+              "quill-delta",
+              "dagre",
+              "webcola"
             ],
             "styles": [
               "node_modules/primeflex/primeflex.css",
@@ -92,7 +94,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "3mb",
+                  "maximumWarning": "4mb",
                   "maximumError": "5mb"
                 },
                 {

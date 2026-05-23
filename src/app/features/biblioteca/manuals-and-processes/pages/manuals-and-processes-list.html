@@ -1,121 +1,152 @@
-<!-- Encabezado -->
-<div class="mb-6">
-  <div class="flex align-items-center justify-content-between gap-3 flex-wrap">
-    <div class="flex align-items-center gap-3">
-      <div
-        class="flex align-items-center justify-content-center bg-blue-50 border-round-xl flex-shrink-0"
-        style="width: 56px; height: 56px"
-      >
-        <i class="pi pi-book text-3xl text-blue-600"></i>
+<!-- DESKTOP: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block">
+  <!-- Encabezado -->
+  <div class="mb-6">
+    <div class="flex align-items-center justify-content-between gap-3 flex-wrap">
+      <div class="flex align-items-center gap-3">
+        <div
+          class="flex align-items-center justify-content-center bg-blue-50 border-round-xl flex-shrink-0"
+          style="width: 56px; height: 56px"
+        >
+          <i class="pi pi-book text-3xl text-blue-600"></i>
+        </div>
+        <div>
+          <h1 class="text-3xl font-bold text-900 m-0">Manuales y Procesos</h1>
+          <p class="text-base text-500 m-0">
+            Índice general de procedimientos y documentación operativa de la organización
+          </p>
+        </div>
       </div>
-      <div>
-        <h1 class="text-3xl font-bold text-900 m-0">Manuales y Procesos</h1>
-        <p class="text-base text-500 m-0">
-          Biblioteca de procedimientos y documentos operativos por departamento
-        </p>
+      <div class="flex align-items-center gap-2 flex-wrap">
+        <custom-search-input-signal
+          placeholder="Buscar manual..."
+          (searchChange)="searchTerm.set($event)"
+        />
+        @if (isAdmin()) {
+        <p-button
+          icon="pi pi-plus"
+          label="Nuevo Manual"
+          severity="primary"
+          (onClick)="onModalForm({})"
+        />
+        }
       </div>
-    </div>
-    <div class="flex align-items-center gap-2 flex-wrap">
-      <custom-search-input-signal
-        placeholder="Buscar manual..."
-        (searchChange)="searchTerm.set($event)"
-      />
-      @if (aspRoleS.roleSignal(EApplicationRole.SuperUsuario)()) {
-      <p-button
-        icon="pi pi-plus"
-        label="Nuevo Manual"
-        severity="primary"
-        (onClick)="onModalForm({})"
-      />
-      }
     </div>
   </div>
-</div>
 
-<!-- Loading -->
-@if (loading()) {
-<div class="flex justify-content-center align-items-center py-8">
-  <i class="pi pi-spin pi-spinner text-3xl text-400"></i>
-</div>
-}
+  <!-- Loading -->
+  @if (loading()) {
+  <div class="flex justify-content-center align-items-center py-8">
+    <i class="pi pi-spin pi-spinner text-3xl text-400"></i>
+  </div>
+  }
 
-<!-- Sin datos -->
-@else if (!groupedData().length) {
-<div class="text-center py-8">
-  <i class="pi pi-book text-5xl text-400 mb-3 block"></i>
-  <p class="text-600 font-medium m-0">Sin manuales registrados</p>
-  <p class="text-500 text-sm mt-1 m-0">Agrega el primer manual para comenzar.</p>
-</div>
-}
+  <!-- Sin datos -->
+  @else if (!groupedData().length) {
+  <div class="text-center py-8">
+    <i class="pi pi-book text-5xl text-400 mb-3 block"></i>
+    <p class="text-600 font-medium m-0">Sin manuales registrados</p>
+    <p class="text-500 text-sm mt-1 m-0">
+      Agrega el primer manual para comenzar.
+    </p>
+  </div>
+  }
 
-<!-- Grupos por departamento -->
-@else {
-  @for (group of groupedData(); track group.dept) {
-
-    <!-- Titulo del grupo (mismo patron que contabilidad) -->
-    <div class="flex align-items-center gap-2 mb-4 mt-6">
-      <div
-        class="flex align-items-center justify-content-center border-round-lg flex-shrink-0"
-        style="width: 32px; height: 32px"
-        [style.backgroundColor]="group.config.bgColor"
+  <!-- Índice de Contenidos -->
+  @else {
+  <div class="flex flex-column gap-5">
+    @for (group of groupedData(); track group.dept) {
+    <div class="surface-card border-round-xl border-1 surface-border shadow-2 overflow-hidden">
+      <!-- Encabezado de Sección (Departamento) -->
+      <div 
+        class="p-4 flex align-items-center justify-content-between gap-3 border-bottom-1 surface-border"
+        [style.border-top]="'4px solid ' + group.config.color"
       >
-        <i [class]="group.config.icon + ' text-sm'" [style.color]="group.config.color"></i>
+        <div class="flex align-items-center gap-3">
+          <div
+            class="flex align-items-center justify-content-center border-round-lg flex-shrink-0"
+            style="width: 40px; height: 40px"
+            [style.backgroundColor]="group.config.bgColor"
+          >
+            <i
+              [class]="group.config.icon + ' text-lg'"
+              [style.color]="group.config.color"
+            ></i>
+          </div>
+          <div>
+            <h2 class="text-lg font-bold text-900 m-0 uppercase tracking-wide">
+              {{ group.dept }}
+            </h2>
+            <p class="text-xs text-500 m-0 mt-1">
+              Manuales y directrices del área
+            </p>
+          </div>
+        </div>
+        <span 
+          class="text-xs font-bold px-3 py-2 border-round-full"
+          [style.backgroundColor]="group.config.bgColor"
+          [style.color]="group.config.color"
+        >
+          {{ group.manuals.length }} {{ group.manuals.length === 1 ? 'documento' : 'documentos' }}
+        </span>
       </div>
-      <h2 class="text-lg font-bold text-900 m-0 uppercase">{{ group.dept }}</h2>
-      <span class="text-xs text-400 font-normal">({{ group.manuals.length }})</span>
-      <div class="flex-grow-1 border-bottom-1 surface-border ml-2"></div>
-    </div>
 
-    <!-- Cards del grupo -->
-    <div class="grid">
-      @for (manual of group.manuals; track manual.id) {
-      <div class="col-12 sm:col-6 md:col-4 lg:col-3">
-        <p-card
-          styleClass="h-full border-top-3 surface-card shadow-2 cursor-pointer hover:shadow-4 transition-all transition-duration-200"
-          [style]="{ 'border-top-color': group.config.color }"
+      <!-- Lista de Contenidos (Tipo Índice) -->
+      <div class="p-2 md:p-3 flex flex-column gap-1">
+        @for (manual of group.manuals; track manual.id; let index = $index) {
+        <div
+          class="flex align-items-center justify-content-between p-3 border-round-lg hover:surface-100 cursor-pointer transition-all transition-duration-150"
           (click)="onViewTemplate(manual.id)"
         >
-          <div class="flex flex-column gap-3">
+          <!-- Izquierda: Número, Folio e Índice -->
+          <div class="flex align-items-center flex-grow-1 min-w-0 mr-4">
+            <!-- Número de índice de manual -->
+            <span class="font-mono text-sm text-400 font-bold w-2rem flex-shrink-0 hidden sm:inline-block">
+              {{ (index + 1) | number: '2.0-0' }}
+            </span>
 
-            <!-- Icono + badges -->
-            <div class="flex align-items-start justify-content-between">
-              <div
-                class="flex align-items-center justify-content-center border-round-lg flex-shrink-0"
-                style="width: 44px; height: 44px"
-                [style.backgroundColor]="group.config.bgColor"
-              >
-                <i class="pi pi-file-edit text-lg" [style.color]="group.config.color"></i>
-              </div>
-              <div class="flex align-items-center gap-1 flex-wrap justify-content-end">
-                @if (manual.isGlobal) {
-                <span class="text-xs font-bold px-2 py-1 border-round-lg bg-green-50 text-green-700">
-                  Global
-                </span>
-                }
-                <span class="text-xs text-400 font-mono">v{{ manual.currentVersion }}</span>
-              </div>
-            </div>
-
-            <!-- Folio y descripcion -->
-            <div class="flex-grow-1">
-              <h3 class="m-0 font-bold text-900 text-base line-height-2">
-                {{ manual.folio }}
-              </h3>
-              <p
-                class="text-sm text-600 m-0 mt-1 line-height-3"
-                style="min-height: 2.6rem"
-              >
-                {{ manual.description || '—' }}
-              </p>
-            </div>
-
-            <!-- Acciones -->
-            <div
-              class="flex align-items-center gap-1 pt-2 border-top-1 border-100"
-              (click)="$event.stopPropagation()"
+            <!-- Folio del manual como badge -->
+            <span 
+              class="font-mono text-xs font-bold px-2 py-1 border-round-lg mr-3 border-1 flex-shrink-0"
+              [style.borderColor]="group.config.color"
+              [style.color]="group.config.color"
+              [style.backgroundColor]="group.config.bgColor"
             >
-              @if (aspRoleS.roleSignal(EApplicationRole.SuperUsuario)()) {
-              <custom-button-edit size="large" (clicked)="onModalForm({ id: manual.id })" />
+              {{ manual.folio }}
+            </span>
+
+            <!-- Descripción/Título del Manual -->
+            <span class="text-base text-700 font-semibold truncate">
+              {{ manual.description || '—' }}
+            </span>
+
+            <!-- Línea punteada de índice (TOC Leader Line) -->
+            <div class="flex-grow-1 border-bottom-1 border-dotted surface-border mx-3 align-self-end mb-2 hidden md:block" style="opacity: 0.6;"></div>
+          </div>
+
+          <!-- Derecha: Metadatos y Acciones -->
+          <div class="flex align-items-center gap-3 flex-shrink-0" (click)="$event.stopPropagation()">
+            <!-- Versión -->
+            <span class="text-xs font-mono text-500 bg-100 border-round px-2 py-1">
+              v{{ manual.currentVersion }}
+            </span>
+
+            <!-- Alcance (Global / Local) -->
+            @if (manual.isGlobal) {
+            <span class="text-xs font-bold px-2 py-1 border-round bg-green-50 text-green-700">
+              Global
+            </span>
+            }
+
+            <!-- Divisor -->
+            <div class="hidden sm:block surface-border border-left-1 h-1.5rem mx-1"></div>
+
+            <!-- Botones de Acción -->
+            <div class="flex align-items-center gap-1">
+              @if (isAdmin()) {
+              <custom-button-edit
+                (clicked)="onModalForm({ id: manual.id })"
+              />
               <custom-button
                 iconClass="pi pi-cog"
                 label="Editor"
@@ -124,7 +155,7 @@
                 [variant]="'text'"
                 (clicked)="onOpenEditor(manual.id)"
               />
-              <custom-button-delete size="large" (confirmed)="onDelete(manual)" />
+              <custom-button-delete (confirmed)="onDelete(manual)" />
               }
               <custom-button
                 iconClass="pi pi-file"
@@ -135,12 +166,43 @@
                 (clicked)="onViewTemplate(manual.id)"
               />
             </div>
-
           </div>
-        </p-card>
+        </div>
+        }
       </div>
-      }
     </div>
-
+    }
+  </div>
   }
-}
+</div>
+
+<!-- MOBILE: Componente adaptado para versión móvil (oculto en md en adelante) -->
+<div class="block md:hidden">
+  <app-data-view-mobile
+    [data]="dataSignal()"
+    (add)="onModalForm({})"
+    [showAdd]="isAdmin()"
+  >
+    <ng-template #listItemTemplate let-item>
+      <ion-item lines="full" class="ion-no-padding" (click)="onViewTemplate(item.id)">
+        <ion-label>
+          <div class="flex align-items-center gap-2 mb-1">
+            <span class="font-mono text-xs font-bold text-primary">{{ item.folio }}</span>
+            @if (item.isGlobal) {
+            <span class="text-xs font-bold px-1.5 py-0.5 border-round bg-green-50 text-green-700">G</span>
+            }
+            <span class="text-xs text-500 font-mono">v{{ item.currentVersion }}</span>
+          </div>
+          <h2 class="font-semibold text-wrap m-0 text-color">{{ item.description }}</h2>
+          <p class="text-xs text-500 mt-1 uppercase">{{ item.departament }}</p>
+        </ion-label>
+        <div slot="end" class="flex align-items-center gap-1" (click)="$event.stopPropagation()">
+          @if (isAdmin()) {
+          <ion-button-edit (clicked)="onModalForm({ id: item.id })" />
+          <ion-button-delete (confirmed)="onDelete(item)" />
+          }
+        </div>
+      </ion-item>
+    </ng-template>
+  </app-data-view-mobile>
+</div>

@@ -20,6 +20,8 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [disabled]="disabled()"
       [required]="requiredInput()"
       [control]="control()"
+      [description]="description()"
+      [hidden]="hidden()"
     >
       <!-- 🚀 CHECKBOX DE PRIMENG -->
       <div class="checkbox-wrapper">

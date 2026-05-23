@@ -29,6 +29,8 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [disabled]="disabled()"
       [readonly]="readonly()"
       [required]="requiredInput()"
+      [description]="description()"
+      [hidden]="hidden()"
     >
       <p-autoComplete
         [suggestions]="filteredData"

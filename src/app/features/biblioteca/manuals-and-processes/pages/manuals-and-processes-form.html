@@ -1,109 +1,237 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="form" class="flex flex-column gap-4 p-2">
-
-  <!-- Folio y Version -->
-  <div class="grid align-items-end">
-    <div class="col-12 md:col-8">
-      <custom-input-text-signal
-        [control]="form.controls.folio"
-        label="Folio / Titulo del Manual"
-        placeholder="Ej: PROC-MANT-012"
-        [horizontal]="false"
-      />
-    </div>
-    <div class="col-12 md:col-4">
-      <custom-input-text-signal
-        [control]="form.controls.currentVersion"
-        label="Version Actual"
-        placeholder="Ej: 1.0"
-        [horizontal]="false"
-      />
-    </div>
-  </div>
-
-  <!-- Departamento -->
-  <custom-input-select-signal
-    [control]="form.controls.departament"
-    [data]="departments()"
-    label="Departamento Responsable"
-    placeholder="Seleccione area..."
-    [horizontal]="false"
-  />
-
-  <!-- Descripcion -->
-  <custom-input-text-signal
-    [control]="form.controls.description"
-    label="Descripcion"
-    placeholder="Resumen del proposito de este documento"
-    [horizontal]="false"
-  />
-
-  <!-- Objetivo -->
-  <custom-input-textarea-signal
-    [control]="form.controls.objetivo"
-    label="Objetivo"
-    placeholder="Describir el objetivo general del manual..."
-    [rows]="4"
-    [horizontal]="false"
-  />
-
-  <!-- Marco Legal -->
-  <custom-input-textarea-signal
-    [control]="form.controls.marcoLegal"
-    label="Marco Legal, Referencias y Anexos"
-    placeholder="Leyes, normas, reglamentos o referencias que aplican a este manual..."
-    [rows]="4"
-    [horizontal]="false"
-  />
-
-  <!-- Visibilidad -->
+<form
+  (ngSubmit)="onSubmit()"
+  [formGroup]="form"
+  class="flex flex-column gap-4 p-2"
+>
   <div class="grid">
-    <div class="col-12 md:col-6">
-      <label class="font-bold mb-2 block text-sm text-700">Visibilidad: Customers</label>
-      <p-listbox
-        [options]="customers()"
-        formControlName="customerIds"
-        [multiple]="true"
-        [checkbox]="true"
-        [filter]="true"
-        optionLabel="label"
-        optionValue="value"
-        [style]="{ width: '100%' }"
-        [listStyle]="{ 'max-height': '280px' }"
-        emptyFilterMessage="No se encontraron clientes"
-        styleClass="w-full border-round-xl overflow-hidden shadow-1"
-      />
+    <div class="col-12">
+      <div class="surface-ground border-round-xl p-4 mb-4 border-1 surface-border">
+        <div class="flex align-items-center gap-3 mb-2">
+          <i class="pi pi-info-circle text-2xl text-primary"></i>
+          <h3 class="m-0 text-900 font-semibold">Configuración General del Manual</h3>
+        </div>
+        <p class="text-color-secondary m-0 line-height-3">
+          Define los datos principales de tu manual o proceso. Un <strong>Folio</strong> claro ayuda a ubicarlo rápidamente, mientras que el <strong>Departamento</strong> y la <strong>Frecuencia</strong> aseguran que los responsables sean notificados en el momento correcto. Si este manual aplica a toda la empresa, marca la opción <strong>Manual Global</strong>.
+        </p>
+      </div>
     </div>
-    <div class="col-12 md:col-6">
-      <label class="font-bold mb-2 block text-sm text-700">Visibilidad: Roles</label>
-      <p-listbox
-        [options]="roles()"
-        formControlName="roleIds"
-        [multiple]="true"
-        [checkbox]="true"
-        [filter]="true"
-        optionLabel="label"
-        optionValue="value"
-        [style]="{ width: '100%' }"
-        [listStyle]="{ 'max-height': '280px' }"
-        emptyFilterMessage="No se encontraron roles"
-        styleClass="w-full border-round-xl overflow-hidden shadow-1"
-      />
-    </div>
-  </div>
+    <div class="col-12 lg:col-5">
+      <!-- Folio y Version -->
+      <div class="grid">
+        <div class="col-12 md:col-8">
+          <custom-input-text-signal
+            [control]="form.controls.folio"
+            label="Folio / Titulo del Manual"
+            placeholder="Ej: PROC-MANT-012"
+            [horizontal]="false"
+          />
+        </div>
+        <div class="col-12 md:col-4">
+          <custom-input-text-signal
+            [control]="form.controls.currentVersion"
+            label="Version Actual"
+            placeholder="Ej: 1.0"
+            [horizontal]="false"
+          />
+        </div>
+      </div>
 
-  <!-- Switches -->
-  <div class="flex gap-4 p-3 bg-gray-50 border-round-xl border-1 border-200">
-    <div class="flex align-items-center gap-2">
-      <input type="checkbox" formControlName="isGlobal" id="isGlobal" class="w-1.5rem h-1.5rem cursor-pointer" />
-      <label for="isGlobal" class="font-medium cursor-pointer">Manual Global (Todos los Clientes)</label>
-    </div>
-    <div class="flex align-items-center gap-2">
-      <input type="checkbox" formControlName="isActive" id="isActive" class="w-1.5rem h-1.5rem cursor-pointer" />
-      <label for="isActive" class="font-medium cursor-pointer">Activo / Publicado</label>
-    </div>
-  </div>
+      <!-- Departamento -->
+      <custom-input-select-signal
+        [control]="form.controls.departament"
+        [data]="departments()"
+        label="Departamento Responsable"
+        placeholder="Seleccione area..."
+        [horizontal]="false"
+        [filter]="true"
+      />
 
-  <div class="flex justify-content-end mt-4 pt-3 border-top-1 border-100">
-    <custom-button-save [loading]="submitting()" />
+      <!-- Periodicidad / Frecuencia -->
+      <div class="surface-ground p-3 border-round mb-3 border-1 surface-border">
+        <custom-input-select-signal
+          [control]="form.controls.periodicity"
+          [data]="periodicityOptions"
+          label="Frecuencia de Ejecución"
+          placeholder="Ej: Mensual, Anual..."
+          [horizontal]="false"
+          [filter]="true"
+        />
+
+        <!-- Opciones Semanales (3) -->
+        @if (periodicityVal() === 3) {
+          <custom-input-multiselect-signal
+            [control]="form.controls.executionDaysOfWeek"
+            [options]="daysOfWeekOptions"
+            label="¿Qué días de la semana?"
+            placeholder="Seleccionar días..."
+            [horizontal]="false"
+          />
+        }
+
+        <!-- Opciones Mensuales (4) -->
+        @if (periodicityVal() === 4) {
+          <div class="grid mt-2">
+            <div class="col-12 md:col-6">
+              <custom-input-select-signal
+                [control]="form.controls.executionDayOfMonth"
+                [data]="daysOfMonthOptions"
+                label="Día fijo del mes (Opcional)"
+                placeholder="Ej: Día 15"
+                [horizontal]="false"
+                [filter]="true"
+              />
+            </div>
+            <div class="col-12 text-center text-500 font-bold">O</div>
+            <div class="col-12 md:col-6">
+              <custom-input-select-signal
+                [control]="form.controls.executionWeekOfMonth"
+                [data]="weeksOfMonthOptions"
+                label="¿Qué semana?"
+                placeholder="Ej: 3ra Semana"
+                [horizontal]="false"
+                [filter]="true"
+              />
+            </div>
+            <div class="col-12 md:col-6">
+              <custom-input-multiselect-signal
+                [control]="form.controls.executionDaysOfWeek"
+                [options]="daysOfWeekOptions"
+                label="¿Qué día(s)?"
+                placeholder="Ej: Jueves"
+                [horizontal]="false"
+              />
+            </div>
+          </div>
+        }
+
+        <!-- Opciones Anuales (5) -->
+        @if (periodicityVal() === 5) {
+          <div class="grid mt-2">
+            <div class="col-12 md:col-6">
+              <custom-input-select-signal
+                [control]="form.controls.executionMonthOfYear"
+                [data]="monthsOfYearOptions"
+                label="Mes del Año"
+                placeholder="Seleccionar mes..."
+                [horizontal]="false"
+                [filter]="true"
+              />
+            </div>
+            <div class="col-12 md:col-6">
+              <custom-input-select-signal
+                [control]="form.controls.executionDayOfMonth"
+                [data]="daysOfMonthOptions"
+                label="Día del mes (Opcional)"
+                placeholder="Ej: Día 1"
+                [horizontal]="false"
+                [filter]="true"
+              />
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Descripcion -->
+      <custom-input-text-signal
+        [control]="form.controls.description"
+        label="Descripcion"
+        placeholder="Resumen del proposito de este documento"
+        [horizontal]="false"
+      />
+
+      <!-- Objetivo -->
+      <custom-input-textarea-signal
+        [control]="form.controls.objetivo"
+        label="Objetivo"
+        placeholder="Describir el objetivo general del manual..."
+        [rows]="4"
+        [horizontal]="false"
+      />
+
+      <!-- Marco Legal -->
+      <custom-input-textarea-signal
+        [control]="form.controls.marcoLegal"
+        label="Marco Legal, Referencias y Anexos"
+        placeholder="Leyes, normas, reglamentos o referencias que aplican a este manual..."
+        [rows]="4"
+        [horizontal]="false"
+      />
+      <div
+        class="flex align-items-center justify-content-between gap-4 p-3 bg-gray-50 border-round-xl border-1 border-200"
+      >
+        <div class="flex gap-4">
+          <div class="flex align-items-center gap-2">
+            <input
+              type="checkbox"
+              formControlName="isGlobal"
+              id="isGlobal"
+              class="w-1.5rem h-1.5rem cursor-pointer"
+            />
+            <label for="isGlobal" class="font-medium cursor-pointer"
+              >Manual Global (Todos los Clientes)</label
+            >
+          </div>
+          <div class="flex align-items-center gap-2">
+            <input
+              type="checkbox"
+              formControlName="isActive"
+              id="isActive"
+              class="w-1.5rem h-1.5rem cursor-pointer"
+            />
+            <label for="isActive" class="font-medium cursor-pointer"
+              >Activo / Publicado</label
+            >
+          </div>
+        </div>
+
+        <custom-button-save [loading]="submitting()" />
+      </div>
+    </div>
+    <div class="col-12 lg:col-7">
+      <!-- Visibilidad -->
+      <div class="grid">
+        <div class="col-12 md:col-6">
+          <label class="font-bold mb-2 block text-sm text-700"
+            >Visibilidad: Customers</label
+          >
+          <p-listbox
+            [options]="customers()"
+            formControlName="customerIds"
+            [multiple]="true"
+            [checkbox]="true"
+            [filter]="true"
+            optionLabel="label"
+            optionValue="value"
+            [style]="{ width: '100%' }"
+            [listStyle]="{ 'max-height': '680px' }"
+            emptyFilterMessage="No se encontraron clientes"
+            styleClass="w-full border-round-xl overflow-hidden shadow-1"
+          />
+        </div>
+        <div class="col-12 md:col-6">
+          <label class="font-bold mb-2 block text-sm text-700"
+            >Visibilidad: Roles</label
+          >
+          <p-listbox
+            [options]="roles()"
+            formControlName="roleIds"
+            [multiple]="true"
+            [checkbox]="true"
+            [filter]="true"
+            [group]="true"
+            optionGroupLabel="label"
+            optionGroupChildren="items"
+            optionLabel="label"
+            optionValue="value"
+            [style]="{ width: '100%' }"
+            [listStyle]="{ 'max-height': '680px' }"
+            emptyFilterMessage="No se encontraron roles"
+            styleClass="w-full border-round-xl overflow-hidden shadow-1"
+          />
+        </div>
+      </div>
+
+      <!-- Switches -->
+    </div>
   </div>
 </form>

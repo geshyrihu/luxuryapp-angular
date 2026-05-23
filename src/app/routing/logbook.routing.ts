@@ -124,6 +124,42 @@ export const logbookRoutes: Routes = [
       breadcrumb: "Ejecutar Inspección",
     },
   },
+  {
+    path: "water-truck-reception",
+    loadComponent: () =>
+      import("src/app/features/recepcion-pipas-agua/recepcion-pipas-agua-list").then(
+        (m) => m.RecepcionPipasAguaList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Recepcion de Pipas de Agua",
+      breadcrumb: "Recepcion de Pipas de Agua",
+    },
+  },
+  {
+    path: "water-truck-reception/reporte",
+    loadComponent: () =>
+      import("src/app/features/recepcion-pipas-agua/recepcion-pipas-agua-reporte").then(
+        (m) => m.RecepcionPipasAguaReporte,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Reporte de Pipas de Agua",
+      breadcrumb: "Reporte",
+    },
+  },
+  {
+    path: "water-truck-reception/analisis",
+    loadComponent: () =>
+      import("src/app/features/recepcion-pipas-agua/recepcion-pipas-agua-analisis").then(
+        (m) => m.RecepcionPipasAguaAnalisis,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Analisis de Pipas de Agua",
+      breadcrumb: "Analisis",
+    },
+  },
 ];
 
 

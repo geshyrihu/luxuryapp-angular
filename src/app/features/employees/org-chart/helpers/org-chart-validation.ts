@@ -23,15 +23,20 @@ export function validateReassignment(
     return { valid: false, reason: "No puedes asignar un puesto como su propio jefe" };
   }
 
-  const hasInSubtree = (node: IWorkPositionOrgChartNode, ancestorId: string): boolean => {
-    // Si el nodo actual es el virtual, no tiene hijos reales en el árbol original
-    if (node.workPositionId === "0") return false;
-    
-    if (node.reportsToWorkPositionId === ancestorId) return true;
-    return node.children.some((child) => hasInSubtree(child, ancestorId));
+  const hasNodeInSubtree = (
+    node: IWorkPositionOrgChartNode,
+    targetWorkPositionId: string,
+  ): boolean => {
+    if (node.workPositionId === targetWorkPositionId) {
+      return true;
+    }
+
+    return node.children.some((child) =>
+      hasNodeInSubtree(child, targetWorkPositionId),
+    );
   };
 
-  if (hasInSubtree(target, dragged.workPositionId)) {
+  if (hasNodeInSubtree(dragged, target.workPositionId)) {
     return { valid: false, reason: "No puedes reportar a uno de tus subordinados actuales (ciclo)" };
   }
 

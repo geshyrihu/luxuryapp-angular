@@ -51,6 +51,7 @@
           [control]="form.controls.applicationRoleId"
           label="Puesto"
           [data]="cb_applicationRole()"
+          [filter]="true"
         />
         <div class="mb-4">
           <custom-input-img-signal
@@ -151,11 +152,13 @@
       placeholder="Selecciona la vacante"
       [control]="vacanteForm.controls.positionRequestId"
       [data]="cb_vacantes()"
+      [filter]="true"
     />
     <custom-input-select-signal
       label="Tipo de contrato"
       [control]="vacanteForm.controls.typeContractRegister"
       [data]="cb_typeContractRegister()"
+      [filter]="true"
     />
   </div>
   }
@@ -168,11 +171,13 @@
       placeholder="Selecciona la vacante"
       [control]="altaForm.controls.positionRequestId"
       [data]="cb_vacantes()"
+      [filter]="true"
     />
     <custom-input-select-signal
       label="Tipo de contrato"
       [control]="altaForm.controls.typeContractRegister"
       [data]="cb_typeContractRegister()"
+      [filter]="true"
     />
     <custom-input-text-signal
       label="Jefe inmediato"

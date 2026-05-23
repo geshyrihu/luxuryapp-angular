@@ -33,6 +33,7 @@
             label="Quincena"
             [data]="cb_quincena()"
             [horizontal]="false"
+            [filter]="true"
           />
           <custom-input-autocomplete-signal
             (propagar)="saveProviderId($event)"
@@ -47,6 +48,7 @@
             label="Uso de Cfdi"
             [data]="cb_usoCFDI()"
             [horizontal]="false"
+            [filter]="true"
           />
 
           <custom-input-select-signal
@@ -54,6 +56,7 @@
             label="Forma de pago"
             [data]="cb_formaDePago()"
             [horizontal]="false"
+            [filter]="true"
           />
 
           <custom-input-select-signal
@@ -61,6 +64,7 @@
             label="Metodo de pago"
             [data]="cb_metodoDePago()"
             [horizontal]="false"
+            [filter]="true"
           />
         </div>
       </div>

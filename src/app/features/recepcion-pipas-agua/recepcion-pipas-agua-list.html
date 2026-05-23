@@ -1,0 +1,108 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      [title]="'Recepcion de Pipas de Agua'"
+      (add)="onModalForm({ id: '', title: 'Nueva Recepcion' })"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="horaLlegada">Llegada <p-sortIcon field="horaLlegada" /></th>
+      <th pSortableColumn="horaTermino">Termino <p-sortIcon field="horaTermino" /></th>
+      <th pSortableColumn="placasCamion">Placas <p-sortIcon field="placasCamion" /></th>
+      <th class="table-col-10 text-right">Cap. (L)</th>
+      <th class="table-col-10 text-right">Cisterna antes</th>
+      <th class="table-col-10 text-right">Cisterna despues</th>
+      <th class="table-col-10 text-right">Metro antes</th>
+      <th class="table-col-10 text-right">Metro despues</th>
+      <th class="table-col-10">Evidencias</th>
+      <th class="table-col-5"></th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr>
+      <td><small>{{ item.horaLlegada | date: 'dd/MM/yyyy HH:mm' }}</small></td>
+      <td>
+        <small *ngIf="item.horaTermino; else sinTermino">
+          {{ item.horaTermino | date: 'dd/MM/yyyy HH:mm' }}
+        </small>
+        <ng-template #sinTermino>
+          <span class="badge badge-warning text-xs">En curso</span>
+        </ng-template>
+      </td>
+      <td><small class="font-semibold">{{ item.placasCamion }}</small></td>
+      <td class="text-right"><small>{{ item.capacidadPipa | number: '1.0-0' }}</small></td>
+      <td class="text-right"><small>{{ item.nivelCisternaAntes | number: '1.2-2' }}</small></td>
+      <td class="text-right"><small>{{ item.nivelCisternaDespues | number: '1.2-2' }}</small></td>
+      <td class="text-right"><small>{{ item.lecturaMetroAntes | number: '1.4-4' }}</small></td>
+      <td class="text-right"><small>{{ item.lecturaMetroDespues | number: '1.4-4' }}</small></td>
+      <td>
+        <div class="flex gap-1">
+          <p-image *ngIf="item.fotoPipaLlenaUrl" [src]="item.fotoPipaLlenaUrl" alt="Pipa llena" width="36" [preview]="true" />
+          <p-image *ngIf="item.fotoPipaVaciaUrl" [src]="item.fotoPipaVaciaUrl" alt="Pipa vacia" width="36" [preview]="true" />
+          <p-image *ngIf="item.fotoIneChoferUrl" [src]="item.fotoIneChoferUrl" alt="INE chofer" width="36" [preview]="true" />
+        </div>
+      </td>
+      <td>
+        <div class="flex">
+          <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar Recepcion' })" />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nueva Recepcion' })"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div slot="start" style="
+        width:36px; height:36px; border-radius:10px;
+        background:#e0f2fe; display:flex; align-items:center;
+        justify-content:center; flex-shrink:0; margin-left:16px;
+      ">
+        <ion-icon name="water-outline" style="font-size:20px; color:#0284c7;"></ion-icon>
+      </div>
+
+      <ion-label>
+        <h3 class="font-bold">{{ item.placasCamion }}</h3>
+        <p>{{ item.horaLlegada | date: 'dd/MM/yyyy HH:mm' }}
+          <span *ngIf="item.horaTermino"> — {{ item.horaTermino | date: 'HH:mm' }}</span>
+          <span *ngIf="!item.horaTermino" class="text-orange-500"> (en curso)</span>
+        </p>
+        <div class="grid m-0 text-sm mt-1">
+          <div class="col-6 p-0"><strong>Cap:</strong> {{ item.capacidadPipa | number: '1.0-0' }} L</div>
+          <div class="col-6 p-0"><strong>Cisterna:</strong> {{ item.nivelCisternaAntes | number: '1.2-2' }} → {{ item.nivelCisternaDespues | number: '1.2-2' }}</div>
+        </div>
+      </ion-label>
+
+      <app-action-menu slot="end">
+        <ion-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar Recepcion' })" />
+        <ion-button-delete (confirmed)="onDelete(item.id)" />
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

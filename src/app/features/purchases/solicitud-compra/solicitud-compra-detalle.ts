@@ -16,7 +16,7 @@ export class SolicitudCompraDetalle {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   solicitudCompraService = inject(SolicitudCompraService);
-  SolicitudCompraDetalle = input<any[]>([]);
+  solicitudCompraDetalle = input<any[]>([], { alias: "SolicitudCompraDetalle" });
   solicitudCompraId = input<string>("");
 
   updateData = output<void>();

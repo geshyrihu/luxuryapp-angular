@@ -1,9 +1,9 @@
-import { CommonModule, DecimalPipe } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -18,7 +18,6 @@ import { AccountingNumberPipe } from "../../pipes/accounting-number.pipe";
     FormsModule,
     TableModule,
     CustomButton,
-    DecimalPipe,
     InputTextModule,
     AccountingNumberPipe,
   ],

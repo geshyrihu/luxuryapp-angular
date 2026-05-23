@@ -5,9 +5,7 @@ import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspelPendientesConceptoResponse } from "./aspel-cobranza-haus.models";
 
@@ -20,7 +18,6 @@ import { AspelPendientesConceptoResponse } from "./aspel-cobranza-haus.models";
     MessageModule,
     TagModule,
     CustomButton,
-    CustomButtonDownload,
     PrimeNgCustomCaption,
     CurrencyPipe,
     NgClass,
@@ -73,43 +70,41 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
   }
 
   downloadAvisoCobro(): void {
-    if (
-      !this.customerId ||
-      !this.row?.numCtaBase ||
-      !this.fechaInicio ||
-      !this.fechaFin
-    )
-      return;
-
-    this.apiResponseS.onDownloadFile(
-      Endpoints.AspelCobranza.avisoCobroPdf(
-        this.customerId,
-        this.row.numCtaBase,
-        this.fechaInicio,
-        this.fechaFin,
-      ),
-      `Aviso-Cobro-${this.row.numCtaBase}-${this.fechaFin}.pdf`,
-    );
+    // if (
+    //   !this.customerId ||
+    //   !this.row?.numCtaBase ||
+    //   !this.fechaInicio ||
+    //   !this.fechaFin
+    // )
+    //   return;
+    // this.apiResponseS.onDownloadFile(
+    //   Endpoints.AspelCobranza.avisoCobroPdf(
+    //     this.customerId,
+    //     this.row.numCtaBase,
+    //     this.fechaInicio,
+    //     this.fechaFin,
+    //   ),
+    //   `Aviso-Cobro-${this.row.numCtaBase}-${this.fechaFin}.pdf`,
+    // );
   }
 
   downloadEstadoCuenta(): void {
-    if (
-      !this.customerId ||
-      !this.row?.numCtaBase ||
-      !this.fechaInicio ||
-      !this.fechaFin
-    )
-      return;
-
-    this.apiResponseS.onDownloadFile(
-      Endpoints.AspelCobranza.estadoCuentaPdf(
-        this.customerId,
-        this.row.numCtaBase,
-        this.fechaInicio,
-        this.fechaFin,
-      ),
-      `Estado-Cuenta-${this.row.numCtaBase}-${this.fechaFin}.pdf`,
-    );
+    // if (
+    //   !this.customerId ||
+    //   !this.row?.numCtaBase ||
+    //   !this.fechaInicio ||
+    //   !this.fechaFin
+    // )
+    //   return;
+    // this.apiResponseS.onDownloadFile(
+    //   Endpoints.AspelCobranza.estadoCuentaPdf(
+    //     this.customerId,
+    //     this.row.numCtaBase,
+    //     this.fechaInicio,
+    //     this.fechaFin,
+    //   ),
+    //   `Estado-Cuenta-${this.row.numCtaBase}-${this.fechaFin}.pdf`,
+    // );
   }
 
   getConceptSeverity(
@@ -141,18 +136,18 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
     }
 
     this.loading.set(true);
-    const response =
-      await this.apiResponseS.onGetItem<AspelPendientesConceptoResponse>(
-        Endpoints.AspelCobranza.pendientesConceptoRango(
-          this.customerId,
-          this.row.numCtaBase,
-          this.fechaInicio,
-          this.fechaFin,
-        ),
-        false,
-      );
+    // const response =
+    //   await this.apiResponseS.onGetItem<AspelPendientesConceptoResponse>(
+    //     Endpoints.AspelCobranza.pendientesConceptoRango(
+    //       this.customerId,
+    //       this.row.numCtaBase,
+    //       this.fechaInicio,
+    //       this.fechaFin,
+    //     ),
+    //     false,
+    //   );
 
-    this.detail.set(response ? this.normalizeResponse(response) : null);
+    // this.detail.set(response ? this.normalizeResponse(response) : null);
     this.loading.set(false);
   }
 

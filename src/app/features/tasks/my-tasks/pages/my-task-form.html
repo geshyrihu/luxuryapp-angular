@@ -11,6 +11,7 @@
       [control]="form.controls.ticketGroupId"
       label="Grupo"
       [data]="cb_ticket_group()"
+      [filter]="true"
     />
     <custom-input-text-signal
       [control]="form.controls.title"
@@ -46,6 +47,7 @@
       [control]="form.controls.priority"
       label="Prioridad"
       [data]="cb_priority()"
+      [filter]="true"
     />
 
     <div class="grid">

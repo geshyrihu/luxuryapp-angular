@@ -1,71 +1,125 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <!-- Guía de usuario para mejorar la consistencia de datos -->
+  <div
+    class="border-round border-1 border-blue-200 bg-blue-50 p-3 mb-4 flex align-items-start gap-3 shadow-1"
+  >
+    <i class="pi pi-info-circle text-blue-600 text-xl mt-1"></i>
+    <div class="flex-1">
+      <div class="text-blue-900 font-bold mb-1 uppercase text-xs">
+        Guía de registro
+      </div>
+      <p class="m-0 text-blue-800 text-sm line-height-3">
+        Para facilitar el seguimiento y generar reportes precisos, por favor:
+      </p>
+      <ul class="mt-2 p-0 list-none text-blue-800 text-sm line-height-3">
+        <li class="mb-1 flex align-items-start">
+          <i class="pi pi-check text-blue-500 mr-2 mt-1 text-xs"></i>
+          <span>
+            <strong>Áreas consistentes:</strong> Usa siempre el mismo nombre
+            para un mismo lugar (ej:
+            <em>Administración, TORRE 1 s5, Ludoteca, Alberca</em>).
+          </span>
+        </li>
+        <li class="mb-1 flex align-items-start">
+          <i class="pi pi-check text-blue-500 mr-2 mt-1 text-xs"></i>
+          <span>
+            <strong>Evidencia visual:</strong> Toma las fotos en
+            <strong>horizontal</strong>, sin objetos que obstruyan y enfocadas
+            al detalle. Usa el <strong>mismo ángulo</strong> para el antes y
+            después.
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
   <custom-input-text-signal
     [control]="form.controls.id"
     [readonly]="true"
     label="Id"
-    [hidden]="false"
+    [hidden]="true"
   />
+
   <custom-input-select-signal
     [control]="form.controls.ticketGroupId"
     label="Grupo"
     [data]="cb_ticket_group()"
     (selectionChange)="onTicketGroupChange($event.value)"
+    [filter]="true"
   />
-
   @if (isLegalWorkGroup()) {
-  <custom-input-autocomplete-signal
-    (propagar)="saveLegalMatter($event)"
-    [control]="form.controls.title"
+  <custom-input-select-signal
+    (selectionChange)="onLegalMatterChange($event.value)"
     [data]="cb_legal_matter()"
     label="Asunto legal"
-    placeholder="Escribe para buscar asunto"
+    placeholder="Selecciona asunto"
+    [filter]="true"
+    description="Selecciona el asunto legal correspondiente para este ticket."
   />
   } @else {
   <custom-input-text-signal
     [control]="form.controls.title"
     label="Area"
-    placeholder="area"
+    placeholder="Ej: Administración, Pasillo Principal..."
+    description="Usa nombres consistentes para áreas (ej: Administración, TORRE 1 s5, Ludoteca)."
   />
   }
 
   <custom-input-textarea-signal
     [control]="form.controls.description"
     label="Descripción"
-    placeholder="descripción"
+    placeholder="Describe el problema de forma simple y concisa..."
+    description="Sé específico, simple y conciso (máx. 250 caracteres)."
+    [maxLength]="250"
   />
 
-  <custom-input-select-signal
-    [control]="form.controls.priority"
-    label="Prioridad"
-    [data]="cb_priority()"
-  />
+  <div class="grid">
+    <div class="col-12 md:col-6">
+      <custom-input-select-signal
+        [control]="form.controls.priority"
+        label="Prioridad"
+        [data]="cb_priority()"
+        [filter]="true"
+      />
+    </div>
+    <div class="col-12 md:col-6">
+      <custom-input-date-signal
+        [control]="form.controls.scheduledDate"
+        label="Fecha de programación"
+        placeholder="fecha"
+      />
+    </div>
+  </div>
 
-  <!-- programar -->
-  <custom-input-date-signal
-    [control]="form.controls.scheduledDate"
-    label="Fecha de programación"
-    placeholder="fecha"
-  />
-
-  <!-- Responsable -->
-  <custom-input-autocomplete-signal
-    (propagar)="saveUserId($event)"
-    [control]="form.controls.assignee"
-    [data]="cb_application_user()"
-    label="Asignar"
-    placeholder="Escribe para buscar colaborador"
-  />
-
-  <!-- Este es por si es ticket concluido -->
-  <custom-input-date-signal
-    [control]="form.controls.closedDate"
-    label="Fecha de término"
-    placeholder="Esta fecha se coloca cuando ya se término el ticket"
-  />
+  <div class="grid">
+    <div class="col-12 md:col-6">
+      <!-- Responsable -->
+      <custom-input-select-signal
+        (selectionChange)="onAssigneeChange($event.value)"
+        [control]="form.controls.assigneeId"
+        [data]="cb_application_user()"
+        label="Asignar"
+        placeholder="Selecciona colaborador"
+        [filter]="true"
+        description="Si se deja vacío, se asignará a los responsables del grupo."
+      />
+    </div>
+    <div class="col-12 md:col-6">
+      <!-- Este es por si es ticket concluido -->
+      <custom-input-date-signal
+        [control]="form.controls.closedDate"
+        label="Fecha de término"
+        placeholder="fecha de cierre"
+        description="Al colocar esta fecha, el ticket se marcará como completado."
+      />
+    </div>
+  </div>
 
   @if (isLegalWorkGroup()) {
   <div class="border-round border-1 border-orange-200 bg-orange-50 p-3 mb-3">
-    <div class="text-xs font-bold text-orange-700 uppercase mb-2">Campos legales</div>
+    <div class="text-xs font-bold text-orange-700 uppercase mb-2">
+      Campos legales
+    </div>
     <div class="flex flex-wrap gap-4">
       <custom-input-check-signal
         [control]="form.controls.isInternal"
@@ -87,57 +141,180 @@
   }
 
   <div class="grid">
+    <div class="col-12 mb-2">
+      <small class="text-500 italic">
+        <i class="pi pi-camera mr-1"></i>
+        Recuerda: Fotos horizontales, centradas en el detalle y desde el mismo
+        ángulo.
+      </small>
+    </div>
     <div class="col-12 md:col-6">
       <div class="mb-4">
         <p-fileUpload
-          mode="basic"
+          #fub
+          mode="advanced"
           name="beforeWork"
           (onSelect)="onFileChange($event.files[0], 'beforeWork')"
-          accept="image/*"
+          accept="image/*,.heic,.heif"
           [maxFileSize]="10000000"
-          chooseLabel="Seleccionar foto del antes"
-          styleClass="w-full"
-          chooseStyleClass="w-full"
-          [auto]="true"
-          fluid
           [showUploadButton]="false"
-        ></p-fileUpload>
-        @if (beforeWorkPreview()) {
-        <div class="mt-3">
-          <img
-            [src]="beforeWorkPreview()"
-            class="border-round w-12rem h-auto shadow-1"
-            alt="Before Work Image Preview"
-          />
-        </div>
-        }
+          [showCancelButton]="false"
+          styleClass="w-full"
+        >
+          <ng-template #header>
+            <span class="font-bold text-xs uppercase text-700"
+              >Foto del antes</span
+            >
+          </ng-template>
+          <ng-template #content>
+            <div
+              class="flex flex-column gap-3"
+              (dragover)="onDragOver($event)"
+              (drop)="onFileDrop($event, 'beforeWork')"
+            >
+              @if (processingBeforeWork()) {
+              <div
+                class="flex align-items-center justify-content-center gap-2 p-3 text-color-secondary"
+              >
+                <i class="pi pi-spin pi-spinner"></i>
+                <span class="text-sm">Procesando imagen...</span>
+              </div>
+              } @else if (!beforeWorkPreview()) {
+              <div
+                class="flex align-items-center justify-content-center gap-3 p-3 border-2 border-dashed surface-border border-round-xl bg-gray-50 hover:surface-100 transition-colors cursor-pointer"
+                (click)="fub.choose()"
+              >
+                <p-button
+                  label="Seleccionar"
+                  icon="pi pi-plus"
+                  (onClick)="$event.stopPropagation(); fub.choose()"
+                  severity="secondary"
+                  size="small"
+                />
+                <span class="text-500 font-medium text-sm"
+                  >Arrastra aquí la foto</span
+                >
+              </div>
+              } @else {
+              <div class="relative mx-auto" style="max-width: fit-content">
+                <img
+                  [src]="beforeWorkPreview()"
+                  class="border-round shadow-2"
+                  style="
+                    max-width: 100%;
+                    max-height: 200px;
+                    object-fit: contain;
+                  "
+                  alt="Before Work Preview"
+                />
+                <div class="absolute top-0 right-0 m-2">
+                  <p-button
+                    icon="pi pi-times"
+                    [rounded]="true"
+                    severity="danger"
+                    size="small"
+                    (onClick)="$event.stopPropagation(); onFileChange(null, 'beforeWork'); fub.clear()"
+                  />
+                </div>
+              </div>
+              <div class="flex justify-content-center">
+                <p-button
+                  label="Cambiar foto"
+                  icon="pi pi-refresh"
+                  [text]="true"
+                  size="small"
+                  (onClick)="fub.choose()"
+                />
+              </div>
+              }
+            </div>
+          </ng-template>
+        </p-fileUpload>
       </div>
     </div>
 
     <div class="col-12 md:col-6">
       <div class="mb-4">
         <p-fileUpload
-          mode="basic"
+          #fua
+          mode="advanced"
           name="afterWork"
           (onSelect)="onFileChange($event.files[0], 'afterWork')"
-          accept="image/*"
+          accept="image/*,.heic,.heif"
           [maxFileSize]="10000000"
-          chooseLabel="Seleccionar foto del despues"
-          styleClass="w-full"
-          chooseStyleClass="w-full"
-          [auto]="true"
-          fluid
           [showUploadButton]="false"
-        ></p-fileUpload>
-        @if (afterWorkPreview()) {
-        <div class="mt-3">
-          <img
-            [src]="afterWorkPreview()"
-            class="border-round w-12rem h-auto shadow-1"
-            alt="After Work Image Preview"
-          />
-        </div>
-        }
+          [showCancelButton]="false"
+          styleClass="w-full"
+        >
+          <ng-template #header>
+            <span class="font-bold text-xs uppercase text-700"
+              >Foto del después</span
+            >
+          </ng-template>
+          <ng-template #content>
+            <div
+              class="flex flex-column gap-3"
+              (dragover)="onDragOver($event)"
+              (drop)="onFileDrop($event, 'afterWork')"
+            >
+              @if (processingAfterWork()) {
+              <div
+                class="flex align-items-center justify-content-center gap-2 p-3 text-color-secondary"
+              >
+                <i class="pi pi-spin pi-spinner"></i>
+                <span class="text-sm">Procesando imagen...</span>
+              </div>
+              } @else if (!afterWorkPreview()) {
+              <div
+                class="flex align-items-center justify-content-center gap-3 p-3 border-2 border-dashed surface-border border-round-xl bg-gray-50 hover:surface-100 transition-colors cursor-pointer"
+                (click)="fua.choose()"
+              >
+                <p-button
+                  label="Seleccionar"
+                  icon="pi pi-plus"
+                  (onClick)="$event.stopPropagation(); fua.choose()"
+                  severity="secondary"
+                  size="small"
+                />
+                <span class="text-500 font-medium text-sm"
+                  >Arrastra aquí la foto</span
+                >
+              </div>
+              } @else {
+              <div class="relative mx-auto" style="max-width: fit-content">
+                <img
+                  [src]="afterWorkPreview()"
+                  class="border-round shadow-2"
+                  style="
+                    max-width: 100%;
+                    max-height: 200px;
+                    object-fit: contain;
+                  "
+                  alt="After Work Preview"
+                />
+                <div class="absolute top-0 right-0 m-2">
+                  <p-button
+                    icon="pi pi-times"
+                    [rounded]="true"
+                    severity="danger"
+                    size="small"
+                    (onClick)="$event.stopPropagation(); onFileChange(null, 'afterWork'); fua.clear()"
+                  />
+                </div>
+              </div>
+              <div class="flex justify-content-center">
+                <p-button
+                  label="Cambiar foto"
+                  icon="pi pi-refresh"
+                  [text]="true"
+                  size="small"
+                  (onClick)="fua.choose()"
+                />
+              </div>
+              }
+            </div>
+          </ng-template>
+        </p-fileUpload>
       </div>
     </div>
   </div>

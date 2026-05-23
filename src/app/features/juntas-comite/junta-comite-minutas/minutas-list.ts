@@ -115,20 +115,17 @@ export class MinutasList {
    * Carga la lista de minutas desde la API segón el tipo de junta.
    * @param tipoJunta El tipo de junta a cargar ('Comité', 'Asamblea', 'Operación').
    */
+  get tipoJuntaLabel(): string {
+    const labels: Record<number, string> = {
+      0: "Comité",
+      1: "Asamblea",
+      2: "Operación",
+    };
+    return labels[this.tipoJunta] ?? "";
+  }
+
   onLoadData(tipoJuntaEnum: number): void {
-    // console.log("ðŸš€ ~ MinutasList ~ onLoadData ~ tipoJunta:", tipoJunta);
-    // // Se actualiza el tipo de junta ANTES de la llamada para evitar race conditions.
-    // this.tipoJunta = tipoJunta;
-    // console.log(
-    //   "ðŸš€ ~ MinutasList ~ onLoadData ~ this.tipoJunta:",
-    //   this.tipoJunta,
-    // );
-
-    // // Mapeo manual de string a valor numérico del enum ETypeMeeting (0: Comite, 1: Asamblea, 2: Operacion)
-    // let tipoJuntaEnum = 0;
-    // if (tipoJunta.includes("Asamblea")) tipoJuntaEnum = 1;
-    // if (tipoJunta.includes("Operacion")) tipoJuntaEnum = 2;
-
+    this.tipoJunta = tipoJuntaEnum;
     const urlApi = `Meetings/list/${this.customerIdS.customerId()}/${tipoJuntaEnum}`;
     this.apiResponseS.onGetList(urlApi).then((result: IMeetingIndex[]) => {
       this.dataSignal.set(result);
@@ -339,7 +336,7 @@ export class MinutasList {
     if (data.minutaCliente?.customerLogo) {
       headerColumns.push({
         image: data.minutaCliente.customerLogo,
-        width: 100,
+        fit: [150, 70],
       });
     }
     headerColumns.push({

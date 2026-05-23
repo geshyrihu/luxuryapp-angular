@@ -38,6 +38,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
       <input
         pInputText
         mwlFlatpickr
+        ngDefaultControl
         type="text"
         [id]="id()"
         [formControl]="control() || internalControl"

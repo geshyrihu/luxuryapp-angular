@@ -5,11 +5,15 @@
   #dt1
   [value]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
-  styleClass="custom-table"
+  styleClass="custom-table hidden md:block"
   [paginator]="true"
   [rows]="40"
   [showCurrentPageReport]="true"
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros hidden md:block"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  sortField="roleType"
+  rowGroupMode="subheader"
+  groupRowsBy="roleType"
+  [sortOrder]="1"
 >
   <ng-template #caption>
     <primeng-custom-caption [dt]="dt1" />
@@ -22,6 +26,16 @@
         <p-sortIcon field="modules" />
       </th>
       <th class="table-col-10"></th>
+    </tr>
+  </ng-template>
+  <ng-template #groupheader let-item>
+    <tr pRowGroupHeader>
+      <td colspan="3" class="bg-blue-50">
+        <div class="flex align-items-center py-2 px-3">
+          <i class="pi pi-bookmark-fill mr-2 text-blue-500"></i>
+          <span class="font-bold text-blue-900">{{ item.roleType }}</span>
+        </div>
+      </td>
     </tr>
   </ng-template>
   <ng-template #body let-item>
@@ -43,7 +57,12 @@
 </p-table>
 
 <!-- 📱 INICIO: Vista para móviles -->
-<app-data-view-mobile [data]="dataSignal()" [showAdd]="false">
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [showAdd]="false"
+  [isGrouped]="true"
+  [groupedData]="groupedData()"
+>
   <ng-template #listItemTemplate let-item>
     <ion-item
       button

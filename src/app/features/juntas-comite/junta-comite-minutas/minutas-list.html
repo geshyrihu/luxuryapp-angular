@@ -43,31 +43,31 @@
               iconClass="pi pi-building-columns"
               label="ASAMBLEA"
               size="sm"
-              [variant]="tipoJunta === 'Asamblea' ? null : 'outlined'"
-              (clicked)="onLoadData('Asamblea')"
+              [variant]="tipoJunta === 1 ? null : 'outlined'"
+              (clicked)="onLoadData(1)"
               [showLabelOnDesktop]="true"
             />
             <custom-button
               iconClass="pi pi-users"
               label="COMITÉ"
               size="sm"
-              [variant]="tipoJunta === 'Comite' ? null : 'outlined'"
-              (clicked)="onLoadData('Comite')"
+              [variant]="tipoJunta === 0 ? null : 'outlined'"
+              (clicked)="onLoadData(0)"
               [showLabelOnDesktop]="true"
             />
             <custom-button
               iconClass="pi pi-cog"
               label="OPERACIÓN"
               size="sm"
-              [variant]="tipoJunta === 'Operacion' ? null : 'outlined'"
-              (clicked)="onLoadData('Operacion')"
+              [variant]="tipoJunta === 2 ? null : 'outlined'"
+              (clicked)="onLoadData(2)"
               [showLabelOnDesktop]="true"
             />
           </div>
 
           <div class="ml-auto">
             <primeng-custom-caption
-              [title]="'Minutas ' + tipoJunta"
+              [title]="'Minutas ' + tipoJuntaLabel"
               (add)="
                 showModalAddOrEditMeeting({ id: '', title: 'Nuevo Registro' })
               "
@@ -267,7 +267,7 @@
     >
       <div customFilters>
         <primeng-custom-caption
-          [title]="'Minutas ' + tipoJunta"
+          [title]="'Minutas ' + tipoJuntaLabel"
           (add)="showModalAddOrEditMeeting({ id: 0, title: 'Nuevo Registro' })"
           [showSearch]="false"
         />
@@ -292,24 +292,24 @@
               label="ASAMBLEA"
               size="sm"
               [fluid]="true"
-              [variant]="tipoJunta === 'Asamblea' ? null : 'outlined'"
-              (clicked)="onLoadData('Asamblea')"
+              [variant]="tipoJunta === 1 ? null : 'outlined'"
+              (clicked)="onLoadData(1)"
             />
             <custom-button
               iconClass="pi pi-users"
               label="COMITÉ"
               size="sm"
               [fluid]="true"
-              [variant]="tipoJunta === 'Comite' ? null : 'outlined'"
-              (clicked)="onLoadData('Comite')"
+              [variant]="tipoJunta === 0 ? null : 'outlined'"
+              (clicked)="onLoadData(0)"
             />
             <custom-button
               iconClass="pi pi-cog"
               label="OPERACIÓN"
               size="sm"
               [fluid]="true"
-              [variant]="tipoJunta === 'Operacion' ? null : 'outlined'"
-              (clicked)="onLoadData('Operacion')"
+              [variant]="tipoJunta === 2 ? null : 'outlined'"
+              (clicked)="onLoadData(2)"
             />
           </div>
         </div>
@@ -320,7 +320,7 @@
             >Total:
             <strong>{{ dataSignal() ? dataSignal().length : 0 }}</strong></span
           >
-          <span>{{ tipoJunta }}</span>
+          <span>{{ tipoJuntaLabel }}</span>
         </div>
       </div>
       <ng-template #listItemTemplate let-item>

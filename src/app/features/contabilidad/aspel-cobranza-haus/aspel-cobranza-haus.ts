@@ -34,8 +34,6 @@ import {
   AspelAccount,
   AspelAccountsByCustomerResponse,
   AspelCobranzaDetalleConcepto,
-  AspelCobranzaDetalleMovimiento,
-  AspelCobranzaDetalleRecibo,
   AspelCobranzaDetalleResponse,
   AspelContrapartidaGrupo,
   AspelContrapartidaResponse,
@@ -90,14 +88,14 @@ export class AspelCobranzaHaus {
       label: "Detalle cobranza",
       value: "detalle-cobranza-rango",
     },
-    {
-      label: "Contrapartidas",
-      value: "contrapartidas-rango",
-    },
-    {
-      label: "Pendientes por concepto",
-      value: "pendientes-concepto-rango",
-    },
+    // {
+    //   label: "Contrapartidas",
+    //   value: "contrapartidas-rango",
+    // },
+    // {
+    //   label: "Pendientes por concepto",
+    //   value: "pendientes-concepto-rango",
+    // },
     {
       label: "Deudas actuales",
       value: "deudas-actuales",
@@ -109,7 +107,7 @@ export class AspelCobranzaHaus {
   accountsLoading = signal(false);
   loading = signal(false);
   searched = signal(false);
-  mode = signal<AspelQueryMode>("pendientes-concepto-rango");
+  mode = signal<AspelQueryMode>("deudas-actuales");
   rawCatalog = signal<AspelAccount[]>([]);
   estadoCuenta = signal<AspelEstadoCuentaResponse | null>(null);
   detalleCobranza = signal<AspelCobranzaDetalleResponse | null>(null);
@@ -129,11 +127,7 @@ export class AspelCobranzaHaus {
   yearLabel = computed(() => this.getContextYear()?.toString() ?? "-");
   accountRows = computed(() => this.rawCatalog());
   estadoMovimientos = computed(() => this.estadoCuenta()?.movimientos ?? []);
-  detalleMovimientos = computed(
-    () => this.detalleCobranza()?.movimientos ?? [],
-  );
   detalleConceptRows = computed(() => this.detalleCobranza()?.conceptos ?? []);
-  detalleReciboRows = computed(() => this.detalleCobranza()?.recibos ?? []);
   contrapartidaRows = computed(() => this.contrapartidas()?.grupos ?? []);
   pendienteRows = computed(() => this.pendientes()?.conceptos ?? []);
   deudaActualRows = computed(() => this.deudasActuales()?.propiedades ?? []);
@@ -141,7 +135,7 @@ export class AspelCobranzaHaus {
   activeRows = computed<
     | AspelAccount[]
     | AspelMovimiento[]
-    | AspelCobranzaDetalleMovimiento[]
+    | AspelCobranzaDetalleConcepto[]
     | AspelContrapartidaGrupo[]
     | AspelPendienteConceptoItem[]
     | AspelDeudaActualItem[]
@@ -149,8 +143,8 @@ export class AspelCobranzaHaus {
     const mode = this.mode();
     if (mode === "accounts") return this.accountRows();
     if (mode === "estado-cuenta-rango") return this.estadoMovimientos();
-    if (mode === "detalle-cobranza-rango") return this.detalleMovimientos();
-    if (mode === "contrapartidas-rango") return this.contrapartidaRows();
+    if (mode === "detalle-cobranza-rango") return this.detalleConceptRows();
+    // if (mode === "contrapartidas-rango") return this.contrapartidaRows();
     if (mode === "deudas-actuales") return this.deudaActualRows();
     return this.pendienteRows();
   });
@@ -217,7 +211,7 @@ export class AspelCobranzaHaus {
 
   onClear(): void {
     this.request = this.buildDefaultRequest();
-    this.mode.set("pendientes-concepto-rango");
+    this.mode.set("deudas-actuales");
     this.searched.set(false);
     this.clearResults();
 
@@ -242,14 +236,14 @@ export class AspelCobranzaHaus {
 
   canSearch(): boolean {
     const mode = this.mode();
+    const numCta = this.getNormalizedNumCta();
     if (!this.hasCustomerContext()) return false;
     if (mode === "accounts") return this.getContextYear() !== null;
     if (mode === "deudas-actuales") return true;
-    if (mode === "detalle-cobranza-rango")
-      return !!this.request.numCta.trim() && !!this.request.fechaFin;
+    if (mode === "detalle-cobranza-rango") return !!numCta;
 
     return (
-      !!this.request.numCta.trim() &&
+      !!numCta &&
       !!this.request.fechaInicio &&
       !!this.request.fechaFin
     );
@@ -257,13 +251,12 @@ export class AspelCobranzaHaus {
 
   canDownloadAccountDocuments(): boolean {
     const mode = this.mode();
+    const numCta = this.getNormalizedNumCta();
     if (!this.hasCustomerContext()) return false;
     if (mode === "accounts" || mode === "deudas-actuales") return false;
-    if (mode === "detalle-cobranza-rango")
-      return !!this.request.numCta.trim() && !!this.request.fechaFin;
-
+    if (mode === "detalle-cobranza-rango") return !!numCta;
     return (
-      !!this.request.numCta.trim() &&
+      !!numCta &&
       !!this.request.fechaInicio &&
       !!this.request.fechaFin
     );
@@ -277,8 +270,8 @@ export class AspelCobranzaHaus {
         return "Estado de Cuenta Aspel";
       case "detalle-cobranza-rango":
         return "Detalle de Cobranza Aspel";
-      case "contrapartidas-rango":
-        return "Contrapartidas Aspel";
+      // case "contrapartidas-rango":
+      //   return "Contrapartidas Aspel";
       case "deudas-actuales":
         return "Deudas Actuales Aspel";
       default:
@@ -294,8 +287,8 @@ export class AspelCobranzaHaus {
         return "Consulta movimientos y saldo progresivo de una cuenta en un rango libre.";
       case "detalle-cobranza-rango":
         return "Consulta la deuda aplicada por concepto y agrupa abonos por recibo para lectura de cobranza.";
-      case "contrapartidas-rango":
-        return "Agrupa contrapartidas 401 relacionadas con la cuenta base.";
+      // case "contrapartidas-rango":
+      //   return "Agrupa contrapartidas 401 relacionadas con la cuenta base.";
       case "deudas-actuales":
         return "Lista las propiedades del customer con deuda vigente y permite abrir el detalle pendiente en modal.";
       default:
@@ -330,7 +323,7 @@ export class AspelCobranzaHaus {
     const fechaFin = this.request.fechaFin
       ? this.formatDate(this.request.fechaFin)
       : null;
-    const numCta = this.request.numCta.trim();
+    const numCta = this.getNormalizedNumCta();
 
     this.clearResults();
 
@@ -346,7 +339,7 @@ export class AspelCobranzaHaus {
     }
 
     if (mode === "estado-cuenta-rango") {
-      if (!fechaInicio || !fechaFin) return;
+      if (!fechaInicio || !fechaFin || !numCta) return;
       const result =
         await this.apiResponseS.onGetItem<AspelEstadoCuentaResponse>(
           Endpoints.AspelCobranza.estadoCuentaRango(
@@ -363,14 +356,10 @@ export class AspelCobranzaHaus {
     }
 
     if (mode === "detalle-cobranza-rango") {
-      if (!fechaFin) return;
+      if (!numCta) return;
       const result =
         await this.apiResponseS.onGetItem<AspelCobranzaDetalleResponse>(
-          Endpoints.AspelCobranza.detalleCobranzaRango(
-            customerId,
-            numCta,
-            fechaFin,
-          ),
+          Endpoints.AspelCobranza.detalleCobranzaRango(customerId, numCta),
         );
       this.detalleCobranza.set(
         result ? this.normalizeDetalleCobranzaResponse(result) : null,
@@ -378,22 +367,22 @@ export class AspelCobranzaHaus {
       return;
     }
 
-    if (mode === "contrapartidas-rango") {
-      if (!fechaInicio || !fechaFin) return;
-      const result =
-        await this.apiResponseS.onGetItem<AspelContrapartidaResponse>(
-          Endpoints.AspelCobranza.contrapartidasRango(
-            customerId,
-            numCta,
-            fechaInicio,
-            fechaFin,
-          ),
-        );
-      this.contrapartidas.set(
-        result ? this.normalizeContrapartidasResponse(result) : null,
-      );
-      return;
-    }
+    // if (mode === "contrapartidas-rango") {
+    //   if (!fechaInicio || !fechaFin) return;
+    //   const result =
+    //     await this.apiResponseS.onGetItem<AspelContrapartidaResponse>(
+    //       Endpoints.AspelCobranza.contrapartidasRango(
+    //         customerId,
+    //         numCta,
+    //         fechaInicio,
+    //         fechaFin,
+    //       ),
+    //     );
+    //   this.contrapartidas.set(
+    //     result ? this.normalizeContrapartidasResponse(result) : null,
+    //   );
+    //   return;
+    // }
 
     if (mode === "deudas-actuales") {
       const result =
@@ -406,18 +395,18 @@ export class AspelCobranzaHaus {
       return;
     }
 
-    const result =
-      await this.apiResponseS.onGetItem<AspelPendientesConceptoResponse>(
-        Endpoints.AspelCobranza.pendientesConceptoRango(
-          customerId,
-          numCta,
-          fechaInicio!,
-          fechaFin!,
-        ),
-      );
-    this.pendientes.set(
-      result ? this.normalizePendientesResponse(result) : null,
-    );
+    // const result =
+    //   await this.apiResponseS.onGetItem<AspelPendientesConceptoResponse>(
+    //     Endpoints.AspelCobranza.pendientesConceptoRango(
+    //       customerId,
+    //       numCta,
+    //       fechaInicio!,
+    //       fechaFin!,
+    //     ),
+    //   );
+    // this.pendientes.set(
+    //   result ? this.normalizePendientesResponse(result) : null,
+    // );
   }
 
   private clearResults(): void {
@@ -458,6 +447,19 @@ export class AspelCobranzaHaus {
     }
   }
 
+  async downloadAvisoCobroPdfAspel(): Promise<void> {
+    if (!this.canDownloadAccountDocuments()) return;
+
+    this.loading.set(true);
+    try {
+      const detalle = await this.getDetalleCobranzaForAviso();
+      if (!detalle) return;
+      await this.cobranzaPdfS.downloadAvisoCobroAspel(detalle, new Date());
+    } finally {
+      this.loading.set(false);
+    }
+  }
+
   async downloadEstadoCuentaPdf(): Promise<void> {
     if (!this.canDownloadAccountDocuments()) return;
 
@@ -470,6 +472,20 @@ export class AspelCobranzaHaus {
       this.loading.set(false);
     }
   }
+
+  async downloadEstadoCuentaPdfAspel(): Promise<void> {
+    if (!this.canDownloadAccountDocuments()) return;
+
+    this.loading.set(true);
+    try {
+      const estado = await this.getEstadoCuentaForPdf();
+      if (!estado) return;
+      await this.cobranzaPdfS.downloadEstadoCuentaAspel(estado, new Date());
+    } finally {
+      this.loading.set(false);
+    }
+  }
+
 
   private async loadAccountOptions(
     customerId: string,
@@ -522,7 +538,7 @@ export class AspelCobranzaHaus {
 
   private getContextYear(): number | null {
     if (this.mode() === "detalle-cobranza-rango") {
-      return this.request.fechaFin?.getFullYear() ?? null;
+      return new Date().getFullYear();
     }
 
     return this.request.fechaInicio?.getFullYear() ?? null;
@@ -564,23 +580,14 @@ export class AspelCobranzaHaus {
       fechaFin: response.fechaFin ?? response.fecha_Fin ?? "",
       saldoInicial: response.saldoInicial ?? response.saldo_Inicial ?? 0,
       saldoFinal: response.saldoFinal ?? response.saldo_Final ?? 0,
-      totalMovimientos:
-        response.totalMovimientos ??
-        response.total_Movimientos ??
-        response.movimientos?.length ??
-        0,
-      saldosFinalesPorConcepto:
-        response.saldosFinalesPorConcepto ??
-        response.saldos_finales_por_concepto ??
-        [],
       movimientos: (response.movimientos ?? []).map((item) => ({
         id: item.id ?? "",
         fecha: item.fecha ?? "",
         tipo: item.tipo ?? "",
         concepto: item.concepto ?? "",
         monto: item.monto ?? 0,
-        saldoAnterior: item.saldoAnterior ?? item.saldo_Anterior ?? 0,
-        saldoPosterior: item.saldoPosterior ?? item.saldo_Posterior ?? 0,
+        saldoAnterior: item.saldoAnterior ?? 0,
+        saldoPosterior: item.saldoPosterior ?? 0,
       })),
     };
   }
@@ -634,16 +641,6 @@ export class AspelCobranzaHaus {
         response.saldoFinalTotal ?? response.saldo_final_total ?? 0,
       totalAdelantos: response.totalAdelantos ?? response.total_adelantos ?? 0,
       totalConceptos: response.totalConceptos ?? response.total_conceptos ?? 0,
-      totalMovimientos:
-        response.totalMovimientos ??
-        response.total_movimientos ??
-        response.movimientos?.length ??
-        0,
-      totalRecibos:
-        response.totalRecibos ??
-        response.total_recibos ??
-        response.recibos?.length ??
-        0,
       conceptos: (response.conceptos ?? []).map(
         (item): AspelCobranzaDetalleConcepto => ({
           numCta: item.numCta ?? item.num_cta ?? "",
@@ -656,52 +653,9 @@ export class AspelCobranzaHaus {
           totalVencido: item.totalVencido ?? item.total_vencido ?? 0,
           adelanto: item.adelanto ?? 0,
           vencidos: (item.vencidos ?? []).map((v) => ({
-            id: v.id ?? "",
             fechaCargo: v.fechaCargo ?? v.fecha_cargo ?? "",
-            periodo: v.periodo ?? "",
             conceptoDetalle: v.conceptoDetalle ?? v.concepto_detalle ?? "",
-            montoOriginal: v.montoOriginal ?? v.monto_original ?? 0,
             saldoPendiente: v.saldoPendiente ?? v.saldo_pendiente ?? 0,
-          })),
-        }),
-      ),
-      movimientos: (response.movimientos ?? []).map(
-        (item): AspelCobranzaDetalleMovimiento => ({
-          id: item.id ?? "",
-          fecha: item.fecha ?? "",
-          tipo: item.tipo ?? "",
-          numCtaConcepto: item.numCtaConcepto ?? item.num_cta_concepto ?? "",
-          nombreCuenta: item.nombreCuenta ?? item.nombre_cuenta ?? "",
-          conceptoAplicado:
-            item.conceptoAplicado ?? item.concepto_aplicado ?? "",
-          conceptoDetalle: item.conceptoDetalle ?? item.concepto_detalle ?? "",
-          monto: item.monto ?? 0,
-          saldoAnteriorConcepto:
-            item.saldoAnteriorConcepto ?? item.saldo_anterior_concepto ?? 0,
-          saldoPosteriorConcepto:
-            item.saldoPosteriorConcepto ?? item.saldo_posterior_concepto ?? 0,
-          tipoPoli: item.tipoPoli ?? item.tipo_poli ?? "",
-          numPoliz: item.numPoliz ?? item.num_poliz ?? "",
-          periodo: item.periodo ?? 0,
-          ejercicio: item.ejercicio ?? 0,
-          reciboId: item.reciboId ?? item.recibo_id ?? null,
-        }),
-      ),
-      recibos: (response.recibos ?? []).map(
-        (item): AspelCobranzaDetalleRecibo => ({
-          reciboId: item.reciboId ?? item.recibo_id ?? "",
-          fecha: item.fecha ?? "",
-          tipoPoli: item.tipoPoli ?? item.tipo_poli ?? "",
-          numPoliz: item.numPoliz ?? item.num_poliz ?? "",
-          concepto: item.concepto ?? "",
-          montoTotal: item.montoTotal ?? item.monto_total ?? 0,
-          aplicaciones: (item.aplicaciones ?? []).map((app) => ({
-            numCtaConcepto: app.numCtaConcepto ?? app.num_cta_concepto ?? "",
-            nombreCuenta: app.nombreCuenta ?? app.nombre_cuenta ?? "",
-            conceptoAplicado:
-              app.conceptoAplicado ?? app.concepto_aplicado ?? "",
-            conceptoDetalle: app.conceptoDetalle ?? app.concepto_detalle ?? "",
-            montoAplicado: app.montoAplicado ?? app.monto_aplicado ?? 0,
           })),
         }),
       ),
@@ -766,23 +720,18 @@ export class AspelCobranzaHaus {
 
   private async getDetalleCobranzaForAviso(): Promise<AspelCobranzaDetalleResponse | null> {
     const existing = this.detalleCobranza();
-    if (existing && this.matchesDetalleRequest(existing)) {
+    const numCta = this.getNormalizedNumCta();
+    if (!numCta) return null;
+
+    if (existing && existing.numCtaBase === numCta) {
       return existing;
     }
 
     const customerId = this.customerId();
-    if (!this.request.fechaFin) return null;
-
-    const fechaFin = this.formatDate(this.request.fechaFin);
-    const numCta = this.request.numCta.trim();
 
     const result =
       await this.apiResponseS.onGetItem<AspelCobranzaDetalleResponse>(
-        Endpoints.AspelCobranza.detalleCobranzaRango(
-          customerId,
-          numCta,
-          fechaFin,
-        ),
+        Endpoints.AspelCobranza.detalleCobranzaRango(customerId, numCta),
       );
 
     const normalized = result
@@ -792,15 +741,6 @@ export class AspelCobranzaHaus {
     return normalized;
   }
 
-  private matchesDetalleRequest(data: AspelCobranzaDetalleResponse): boolean {
-    if (!this.request.fechaFin) return false;
-
-    return (
-      data.numCtaBase === this.request.numCta.trim() &&
-      data.fechaFin === this.formatDate(this.request.fechaFin)
-    );
-  }
-
   private async getEstadoCuentaForPdf(): Promise<AspelEstadoCuentaResponse | null> {
     const existing = this.estadoCuenta();
     if (existing && this.matchesEstadoCuentaRequest(existing)) {
@@ -808,9 +748,11 @@ export class AspelCobranzaHaus {
     }
 
     const customerId = this.customerId();
+    const numCta = this.getNormalizedNumCta();
+    if (!numCta || !this.request.fechaInicio || !this.request.fechaFin) return null;
+
     const fechaInicio = this.formatDate(this.request.fechaInicio!);
     const fechaFin = this.formatDate(this.request.fechaFin!);
-    const numCta = this.request.numCta.trim();
 
     const result = await this.apiResponseS.onGetItem<AspelEstadoCuentaResponse>(
       Endpoints.AspelCobranza.estadoCuentaRango(
@@ -829,12 +771,17 @@ export class AspelCobranzaHaus {
   }
 
   private matchesEstadoCuentaRequest(data: AspelEstadoCuentaResponse): boolean {
-    if (!this.request.fechaInicio || !this.request.fechaFin) return false;
+    const numCta = this.getNormalizedNumCta();
+    if (!numCta || !this.request.fechaInicio || !this.request.fechaFin) return false;
 
     return (
-      data.numCta === this.request.numCta.trim() &&
+      data.numCta === numCta &&
       data.fechaInicio === this.formatDate(this.request.fechaInicio) &&
       data.fechaFin === this.formatDate(this.request.fechaFin)
     );
+  }
+
+  private getNormalizedNumCta(): string {
+    return (this.request.numCta ?? "").trim();
   }
 }

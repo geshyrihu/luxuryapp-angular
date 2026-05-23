@@ -23,6 +23,7 @@
           customClass="w-36"
           size="small"
           [horizontal]="false"
+          [filter]="true"
         />
 
         <!-- Grupo 1ra Quincena -->
@@ -44,7 +45,7 @@
           size="small"
           severity="success"
           [showLabelOnDesktop]="true"
-          [disabled]="!isGenerationParamsSelected() || !isFirstQuincenaSelected() || isGenerationBlocked()"
+          [disabled]="!isGenerationParamsSelected() || !isFirstQuincenaSelected() || isFirstQuincenaGenerationBlocked()"
         />
 
         <!-- Grupo 2da Quincena -->
@@ -67,7 +68,7 @@
           size="small"
           severity="info"
           [showLabelOnDesktop]="true"
-          [disabled]="!isGenerationParamsSelected() || !isSecondQuincenaSelected() || isGenerationBlocked()"
+          [disabled]="!isGenerationParamsSelected() || !isSecondQuincenaSelected() || isSecondQuincenaGenerationBlocked()"
         />
       </div>
 
@@ -103,17 +104,30 @@
 
     <!-- Indicador de estado del fondeo para el mes seleccionado -->
     @if (selectedMonthName() && selectedFundingStatus()) {
-      @if (selectedFundingStatus()!.isVerified) {
+      @if (selectedFundingStatus()!.firstQNA?.isVerified) {
         <p-message severity="warn" styleClass="mb-1">
-          Fondeo de {{ selectedMonthName() }} ya fue verificado — no se pueden generar órdenes de compra.
+          1ra Quincena de {{ selectedMonthName() }} ya fue verificada — no se pueden generar órdenes de compra.
         </p-message>
-      } @else if (selectedFundingStatus()!.isConfirmed) {
+      } @else if (selectedFundingStatus()!.firstQNA?.isConfirmed) {
         <p-message severity="success" styleClass="mb-1">
-          Fondeo de {{ selectedMonthName() }} está confirmado.
+          1ra Quincena de {{ selectedMonthName() }} está confirmada.
         </p-message>
-      } @else if (selectedFundingStatus()!.isAuthorized) {
+      } @else if (selectedFundingStatus()!.firstQNA?.isAuthorized) {
         <p-message severity="info" styleClass="mb-1">
-          Fondeo de {{ selectedMonthName() }} está autorizado.
+          1ra Quincena de {{ selectedMonthName() }} está autorizada.
+        </p-message>
+      }
+      @if (selectedFundingStatus()!.secondQNA?.isVerified) {
+        <p-message severity="warn" styleClass="mb-1">
+          2da Quincena de {{ selectedMonthName() }} ya fue verificada — no se pueden generar órdenes de compra.
+        </p-message>
+      } @else if (selectedFundingStatus()!.secondQNA?.isConfirmed) {
+        <p-message severity="success" styleClass="mb-1">
+          2da Quincena de {{ selectedMonthName() }} está confirmada.
+        </p-message>
+      } @else if (selectedFundingStatus()!.secondQNA?.isAuthorized) {
+        <p-message severity="info" styleClass="mb-1">
+          2da Quincena de {{ selectedMonthName() }} está autorizada.
         </p-message>
       }
     }
@@ -297,7 +311,7 @@
                 expand="block"
                 color="success"
                 (click)="generateOrdenesPorQuincena(0)"
-                [disabled]="!isGenerationParamsSelected() || isGenerationBlocked()"
+                [disabled]="!isGenerationParamsSelected() || isFirstQuincenaGenerationBlocked()"
               >
                 <ion-icon name="calendar-outline" slot="start"></ion-icon>
                 Gen. 1ra Q
@@ -308,7 +322,7 @@
                 expand="block"
                 color="tertiary"
                 (click)="generateOrdenesPorQuincena(1)"
-                [disabled]="!isGenerationParamsSelected() || isGenerationBlocked()"
+                [disabled]="!isGenerationParamsSelected() || isSecondQuincenaGenerationBlocked()"
               >
                 <ion-icon name="calendar-outline" slot="start"></ion-icon>
                 Gen. 2da Q

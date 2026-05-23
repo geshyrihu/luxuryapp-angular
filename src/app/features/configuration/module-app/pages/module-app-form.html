@@ -34,11 +34,13 @@
         [control]="form.controls.pathParent"
         label="Padre"
         [data]="cb_pathParent()"
+        [filter]="true"
       />
       <custom-input-select-signal
         [control]="form.controls.rolLevel"
         label="Nivel"
         [data]="cb_rolLevel()"
+        [filter]="true"
       />
       <custom-button-save
         [propertyId]="id"

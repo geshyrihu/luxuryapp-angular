@@ -44,22 +44,39 @@ export class AspelCobranzaHausPdfService {
   async downloadAvisoCobro(
     data: AspelCobranzaDetalleResponse,
     generatedAt: Date,
+    options?: { showAspelAccounts?: boolean },
   ): Promise<void> {
+    const showAspelAccounts = options?.showAspelAccounts === true;
     const logo = await this.getLogoDataUrl();
     const conceptos = this.getVisibleConceptos(data.conceptos);
     const vencidos = conceptos
-      .filter((item) => item.vencidos.some((vencido) => vencido.saldoPendiente > 0))
+      .filter((item) =>
+        item.vencidos.some((vencido) => vencido.saldoPendiente > 0),
+      )
       .flatMap((item) =>
         item.vencidos
           .filter((vencido) => vencido.saldoPendiente > 0)
-          .map((vencido) => ({ concepto: item.concepto, ...vencido })),
+          .map((vencido) => ({
+            concepto: item.concepto,
+            numCta: item.numCta,
+            ...vencido,
+          })),
       );
 
     const totalCargos = conceptos.reduce((sum, item) => sum + item.cargos, 0);
     const totalAbonos = conceptos.reduce((sum, item) => sum + item.abonos, 0);
-    const totalPendiente = conceptos.reduce((sum, item) => sum + item.saldoFinal, 0);
-    const totalVencido = conceptos.reduce((sum, item) => sum + item.totalVencido, 0);
-    const totalAdelantos = conceptos.reduce((sum, item) => sum + item.adelanto, 0);
+    const totalPendiente = conceptos.reduce(
+      (sum, item) => sum + item.saldoFinal,
+      0,
+    );
+    const totalVencido = conceptos.reduce(
+      (sum, item) => sum + item.totalVencido,
+      0,
+    );
+    const totalAdelantos = conceptos.reduce(
+      (sum, item) => sum + item.adelanto,
+      0,
+    );
     const totalSimuladoConAjustes =
       totalPendiente +
       AspelCobranzaHausPdfService.simulatedInteresesMoratorios -
@@ -117,7 +134,12 @@ export class AspelCobranzaHausPdfService {
                   width: "*",
                   stack: [
                     { text: "AVISO DE COBRO", style: "title" },
-                    { text: "Resumen ejecutivo del adeudo por concepto", style: "eyebrowSubtle" },
+                    {
+                      text: showAspelAccounts
+                        ? "Resumen ejecutivo del adeudo por concepto con cuentas Aspel visibles"
+                        : "Resumen ejecutivo del adeudo por concepto",
+                      style: "eyebrowSubtle",
+                    },
                   ],
                 },
               ],
@@ -135,8 +157,24 @@ export class AspelCobranzaHausPdfService {
                     { text: "Periodo consultado: ", bold: true },
                     `${data.fechaInicio} al ${data.fechaFin}`,
                   ],
-                  margin: [0, 2, 0, 0],
+                  margin: [0, 2, 0, 0] as [number, number, number, number],
                 },
+                ...(showAspelAccounts
+                  ? [
+                      {
+                        text: [
+                          { text: "Cuenta Aspel base: ", bold: true },
+                          data.numCtaBase || "-",
+                        ],
+                        margin: [0, 2, 0, 0] as [
+                          number,
+                          number,
+                          number,
+                          number,
+                        ],
+                      },
+                    ]
+                  : []),
               ],
             },
             {
@@ -151,10 +189,10 @@ export class AspelCobranzaHausPdfService {
                   lineColor: "#2563EB",
                 },
               ],
-              margin: [0, 10, 0, 0],
+              margin: [0, 10, 0, 0] as [number, number, number, number],
             },
           ],
-        },
+        } as Content,
         this.buildSummaryTable(
           totalCargos,
           totalAbonos,
@@ -165,8 +203,9 @@ export class AspelCobranzaHausPdfService {
           conceptos,
           AspelCobranzaHausPdfService.simulatedInteresesMoratorios,
           AspelCobranzaHausPdfService.simulatedDescuentoProntoPago,
+          showAspelAccounts,
         ),
-        ...this.buildVencidosSections(vencidos),
+        ...this.buildVencidosSections(vencidos, showAspelAccounts),
         ...(totalAdelantos > 0 ? [this.buildAdelantosSection(conceptos)] : []),
         {
           margin: [0, 14, 0, 0],
@@ -176,14 +215,16 @@ export class AspelCobranzaHausPdfService {
       ],
     };
 
-    const fileName = `Aviso-Cobro-${data.numCtaBase || "cuenta"}-${data.fechaFin || "corte"}.pdf`;
+    const fileName = `Aviso-Cobro${showAspelAccounts ? "-Aspel" : ""}-${data.numCtaBase || "cuenta"}-${data.fechaFin || "corte"}.pdf`;
     this.pdfMakeInstance.createPdf(docDefinition).download(fileName);
   }
 
   async downloadEstadoCuenta(
     data: AspelEstadoCuentaResponse,
     generatedAt: Date,
+    options?: { showAspelAccounts?: boolean },
   ): Promise<void> {
+    const showAspelAccounts = options?.showAspelAccounts === true;
     const logo = await this.getLogoDataUrl();
     const movimientos = data.movimientos ?? [];
     const totalCargos = movimientos
@@ -199,6 +240,7 @@ export class AspelCobranzaHausPdfService {
         this.tableHeader("Numero"),
         this.tableHeader("Fecha"),
         this.tableHeader("Concepto del movimiento"),
+        ...(showAspelAccounts ? [this.tableHeader("Cuenta Aspel")] : []),
         this.tableHeader("Saldo inicial", "right"),
         this.tableHeader("Cargos", "right"),
         this.tableHeader("Abonos", "right"),
@@ -209,6 +251,9 @@ export class AspelCobranzaHausPdfService {
         { text: this.getMovementNumber(item, index), style: "monoTiny" },
         { text: item.fecha || "-", style: "monoTiny" },
         { text: item.concepto || "-", style: "bodyText" },
+        ...(showAspelAccounts
+          ? [{ text: data.numCta || "-", style: "monoTiny" }]
+          : []),
         {
           text: this.formatCurrency(item.saldoAnterior || 0),
           alignment: "right",
@@ -234,11 +279,16 @@ export class AspelCobranzaHausPdfService {
         },
       ]),
       [
-        { text: "Totales", colSpan: 5, style: "totalLabel" },
+        {
+          text: "Totales",
+          colSpan: showAspelAccounts ? 6 : 5,
+          style: "totalLabel",
+        },
         {},
         {},
         {},
         {},
+        ...(showAspelAccounts ? [{}] : []),
         {
           text: this.formatCurrency(totalCargos),
           alignment: "right",
@@ -313,7 +363,7 @@ export class AspelCobranzaHausPdfService {
                   style: "eyebrowSubtle",
                 },
                 {
-                  margin: [0, 10, 0, 0],
+                  margin: [0, 10, 0, 0] as [number, number, number, number],
                   text: [
                     { text: "Cuenta: ", bold: true },
                     data.numCta || "-",
@@ -326,8 +376,24 @@ export class AspelCobranzaHausPdfService {
                     { text: "Periodo consultado: ", bold: true },
                     `${data.fechaInicio || "-"} al ${data.fechaFin || "-"}`,
                   ],
-                  margin: [0, 2, 0, 0],
+                  margin: [0, 2, 0, 0] as [number, number, number, number],
                 },
+                ...(showAspelAccounts
+                  ? [
+                      {
+                        text: [
+                          { text: "Cuenta Aspel base: ", bold: true },
+                          data.numCta || "-",
+                        ],
+                        margin: [0, 2, 0, 0] as [
+                          number,
+                          number,
+                          number,
+                          number,
+                        ],
+                      },
+                    ]
+                  : []),
               ],
             },
             {
@@ -335,36 +401,53 @@ export class AspelCobranzaHausPdfService {
               stack: [
                 {
                   columns: [
-                    this.buildMetricCell("Saldo inicial", this.formatCurrency(data.saldoInicial || 0)),
-                    this.buildMetricCell("Saldo final", this.formatCurrency(data.saldoFinal || 0), true),
+                    this.buildMetricCell(
+                      "Saldo inicial",
+                      this.formatCurrency(data.saldoInicial || 0),
+                    ),
+                    this.buildMetricCell(
+                      "Saldo final",
+                      this.formatCurrency(data.saldoFinal || 0),
+                      true,
+                    ),
                   ],
                   columnGap: 8,
                 },
                 {
-                  margin: [0, 8, 0, 0],
+                  margin: [0, 8, 0, 0] as [number, number, number, number],
                   columns: [
-                    this.buildMetricCell("Cargos", this.formatCurrency(totalCargos)),
-                    this.buildMetricCell("Abonos", this.formatCurrency(totalAbonos)),
+                    this.buildMetricCell(
+                      "Cargos",
+                      this.formatCurrency(totalCargos),
+                    ),
+                    this.buildMetricCell(
+                      "Abonos",
+                      this.formatCurrency(totalAbonos),
+                    ),
                   ],
                   columnGap: 8,
                 },
               ],
             },
           ],
-        },
+        } as Content,
         {
-          margin: [0, 18, 0, 0],
+          margin: [0, 18, 0, 0] as [number, number, number, number],
           stack: [
             { text: "Movimientos del periodo", style: "sectionTitle" },
             {
-              text: `${movimientos.length} movimientos aplicados en el rango consultado.`,
+              text: showAspelAccounts
+                ? `${movimientos.length} movimientos aplicados en el rango consultado. Esta version muestra la cuenta Aspel base para ejemplificar el origen contable.`
+                : `${movimientos.length} movimientos aplicados en el rango consultado.`,
               style: "sectionHelp",
-              margin: [0, 2, 0, 8],
+              margin: [0, 2, 0, 8] as [number, number, number, number],
             },
             {
               table: {
                 headerRows: 1,
-                widths: [38, 52, 54, "*", 76, 68, 68, 76],
+                widths: showAspelAccounts
+                  ? [34, 46, 52, "*", 82, 68, 60, 60, 68]
+                  : [38, 52, 54, "*", 76, 68, 68, 76],
                 body,
               },
               layout: {
@@ -382,11 +465,11 @@ export class AspelCobranzaHausPdfService {
               },
             },
           ],
-        },
+        } as Content,
       ],
     };
 
-    const fileName = `Estado-Cuenta-${data.numCta || "cuenta"}-${data.fechaFin || "corte"}.pdf`;
+    const fileName = `Estado-Cuenta${showAspelAccounts ? "-Aspel" : ""}-${data.numCta || "cuenta"}-${data.fechaFin || "corte"}.pdf`;
     this.pdfMakeInstance.createPdf(docDefinition).download(fileName);
   }
 
@@ -404,7 +487,11 @@ export class AspelCobranzaHausPdfService {
           [
             this.buildMetricCell("Cargos", this.formatCurrency(totalCargos)),
             this.buildMetricCell("Abonos", this.formatCurrency(totalAbonos)),
-            this.buildMetricCell("Vencido actual", this.formatCurrency(totalVencido), true),
+            this.buildMetricCell(
+              "Vencido actual",
+              this.formatCurrency(totalVencido),
+              true,
+            ),
           ],
         ],
       },
@@ -423,17 +510,25 @@ export class AspelCobranzaHausPdfService {
     conceptos: AspelCobranzaDetalleConcepto[],
     totalInteresesSimulados: number,
     totalDescuentoSimulado: number,
+    showAspelAccounts: boolean = false,
   ): any {
     const totalCargos = conceptos.reduce((sum, item) => sum + item.cargos, 0);
     const totalAbonos = conceptos.reduce((sum, item) => sum + item.abonos, 0);
-    const totalVencido = conceptos.reduce((sum, item) => sum + item.totalVencido, 0);
-    const totalPendiente = conceptos.reduce((sum, item) => sum + item.saldoFinal, 0);
+    const totalVencido = conceptos.reduce(
+      (sum, item) => sum + item.totalVencido,
+      0,
+    );
+    const totalPendiente = conceptos.reduce(
+      (sum, item) => sum + item.saldoFinal,
+      0,
+    );
     const totalConSimulacion =
       totalPendiente + totalInteresesSimulados - totalDescuentoSimulado;
 
     const body = [
       [
         this.tableHeader("Concepto"),
+        ...(showAspelAccounts ? [this.tableHeader("Cuenta Aspel")] : []),
         this.tableHeader("Cargos", "right"),
         this.tableHeader("Abonos", "right"),
         this.tableHeader("Vencido", "right"),
@@ -449,8 +544,19 @@ export class AspelCobranzaHausPdfService {
               : []),
           ],
         },
-        { text: this.formatCurrency(item.cargos), alignment: "right", style: "mono" },
-        { text: this.formatCurrency(item.abonos), alignment: "right", style: "mono" },
+        ...(showAspelAccounts
+          ? [{ text: item.numCta || "-", style: "mono" }]
+          : []),
+        {
+          text: this.formatCurrency(item.cargos),
+          alignment: "right",
+          style: "mono",
+        },
+        {
+          text: this.formatCurrency(item.abonos),
+          alignment: "right",
+          style: "mono",
+        },
         {
           text: this.formatCurrency(item.totalVencido),
           alignment: "right",
@@ -469,6 +575,7 @@ export class AspelCobranzaHausPdfService {
           text: "Mas intereses moratorios (simulado)",
           style: "simRowLabelWarn",
         },
+        ...(showAspelAccounts ? [{ text: "", alignment: "right" }] : []),
         { text: "", alignment: "right" },
         { text: "", alignment: "right" },
         { text: "", alignment: "right" },
@@ -483,6 +590,7 @@ export class AspelCobranzaHausPdfService {
           text: "Menos descuento por pronto pago (simulado)",
           style: "simRowLabelOk",
         },
+        ...(showAspelAccounts ? [{ text: "", alignment: "right" }] : []),
         { text: "", alignment: "right" },
         { text: "", alignment: "right" },
         { text: "", alignment: "right" },
@@ -494,6 +602,7 @@ export class AspelCobranzaHausPdfService {
       ],
       [
         { text: "Totales", style: "totalLabel" },
+        ...(showAspelAccounts ? [{ text: "" }] : []),
         {
           text: this.formatCurrency(totalCargos),
           alignment: "right",
@@ -529,7 +638,9 @@ export class AspelCobranzaHausPdfService {
         {
           table: {
             headerRows: 1,
-            widths: [190, 74, 74, 74, 78],
+            widths: showAspelAccounts
+              ? [148, 92, 62, 62, 62, 68]
+              : [190, 74, 74, 74, 78],
             body,
           },
           layout: {
@@ -553,14 +664,21 @@ export class AspelCobranzaHausPdfService {
   }
 
   private buildVencidosSections(
-    vencidos: Array<AspelCobranzaDetalleVencido & { concepto: string }>,
+    vencidos: Array<
+      AspelCobranzaDetalleVencido & { concepto: string; numCta: string }
+    >,
+    showAspelAccounts: boolean = false,
   ): any[] {
     if (!vencidos.length) return [];
 
-    const groups = vencidos.reduce<Array<{
-      concepto: string;
-      items: Array<AspelCobranzaDetalleVencido & { concepto: string }>;
-    }>>((acc, item) => {
+    const groups = vencidos.reduce<
+      Array<{
+        concepto: string;
+        items: Array<
+          AspelCobranzaDetalleVencido & { concepto: string; numCta: string }
+        >;
+      }>
+    >((acc, item) => {
       const existing = acc.find((group) => group.concepto === item.concepto);
       if (existing) {
         existing.items.push(item);
@@ -575,11 +693,15 @@ export class AspelCobranzaHausPdfService {
       const body = [
         [
           this.tableHeader("Fecha"),
+          ...(showAspelAccounts ? [this.tableHeader("Cuenta Aspel")] : []),
           this.tableHeader("Detalle"),
           this.tableHeader("Pendiente", "right"),
         ],
         ...group.items.map((item) => [
           { text: item.fechaCargo || "-", style: "mono" },
+          ...(showAspelAccounts
+            ? [{ text: item.numCta || "-", style: "mono" }]
+            : []),
           { text: item.conceptoDetalle || "-", style: "bodyText" },
           {
             text: this.formatCurrency(item.saldoPendiente),
@@ -594,7 +716,12 @@ export class AspelCobranzaHausPdfService {
         margin: [0, index === 0 ? 18 : 12, 0, 0],
         stack: [
           ...(index === 0
-            ? [{ text: "Saldos vencidos que componen la deuda", style: "sectionTitle" }]
+            ? [
+                {
+                  text: "Saldos vencidos que componen la deuda",
+                  style: "sectionTitle",
+                },
+              ]
             : []),
           {
             text: group.concepto,
@@ -604,11 +731,16 @@ export class AspelCobranzaHausPdfService {
           {
             table: {
               headerRows: 1,
-              widths: [78, "*", 92],
+              widths: showAspelAccounts ? [68, 92, "*", 92] : [78, "*", 92],
               body,
             },
             layout: {
-              fillColor: (rowIndex: number) => (rowIndex === 0 ? "#FEF3C7" : rowIndex % 2 === 0 ? "#FFFBEB" : null),
+              fillColor: (rowIndex: number) =>
+                rowIndex === 0
+                  ? "#FEF3C7"
+                  : rowIndex % 2 === 0
+                    ? "#FFFBEB"
+                    : null,
               hLineColor: () => "#F3D28A",
               vLineColor: () => "#F3D28A",
               paddingLeft: () => 6,
@@ -661,7 +793,12 @@ export class AspelCobranzaHausPdfService {
             ],
           },
           layout: {
-            fillColor: (rowIndex: number) => (rowIndex === 0 ? "#DCFCE7" : rowIndex % 2 === 0 ? "#F0FDF4" : null),
+            fillColor: (rowIndex: number) =>
+              rowIndex === 0
+                ? "#DCFCE7"
+                : rowIndex % 2 === 0
+                  ? "#F0FDF4"
+                  : null,
             hLineColor: () => "#BBF7D0",
             vLineColor: () => "#BBF7D0",
             paddingLeft: () => 6,
@@ -674,11 +811,21 @@ export class AspelCobranzaHausPdfService {
     };
   }
 
-  private buildMetricCell(label: string, value: string, highlight: boolean = false): any {
+  private buildMetricCell(
+    label: string,
+    value: string,
+    highlight: boolean = false,
+  ): any {
     return {
       stack: [
-        { text: label, style: highlight ? "metricLabelHighlight" : "metricLabel" },
-        { text: value, style: highlight ? "metricValueHighlight" : "metricValue" },
+        {
+          text: label,
+          style: highlight ? "metricLabelHighlight" : "metricLabel",
+        },
+        {
+          text: value,
+          style: highlight ? "metricValueHighlight" : "metricValue",
+        },
       ],
       fillColor: highlight ? "#E0ECFF" : "#F3F4F6",
       margin: [0, 0, 0, 0],
@@ -734,8 +881,16 @@ export class AspelCobranzaHausPdfService {
                     },
                 {
                   stack: [
-                    { text: this.customerIdS.customerName() || "LuxuryApp", style: compact ? "headerCompanyCompact" : "headerCompany" },
-                    { text: options.title, style: compact ? "headerDocumentCompact" : "headerDocument" },
+                    {
+                      text: this.customerIdS.customerName() || "LuxuryApp",
+                      style: compact ? "headerCompanyCompact" : "headerCompany",
+                    },
+                    {
+                      text: options.title,
+                      style: compact
+                        ? "headerDocumentCompact"
+                        : "headerDocument",
+                    },
                     {
                       text: `${options.documentCode} | Generado ${this.formatDateTime(options.generatedAt)}`,
                       style: "headerMeta",
@@ -753,7 +908,10 @@ export class AspelCobranzaHausPdfService {
                       alignment: "right",
                     },
                     {
-                      text: this.customerIdS.nombreCorto() || this.customerIdS.customerName() || "",
+                      text:
+                        this.customerIdS.nombreCorto() ||
+                        this.customerIdS.customerName() ||
+                        "",
                       style: "headerMeta",
                       alignment: "right",
                       margin: [0, 8, 0, 0],
@@ -804,16 +962,20 @@ export class AspelCobranzaHausPdfService {
     conceptos: AspelCobranzaDetalleConcepto[],
   ): AspelCobranzaDetalleConcepto[] {
     return conceptos
-      .filter((item) =>
-        item.saldoInicial !== 0 ||
-        item.cargos !== 0 ||
-        item.abonos !== 0 ||
-        item.saldoFinal !== 0 ||
-        item.totalVencido !== 0 ||
-        item.adelanto !== 0 ||
-        item.vencidos.some((vencido) => vencido.saldoPendiente > 0),
+      .filter(
+        (item) =>
+          item.saldoInicial !== 0 ||
+          item.cargos !== 0 ||
+          item.abonos !== 0 ||
+          item.saldoFinal !== 0 ||
+          item.totalVencido !== 0 ||
+          item.adelanto !== 0 ||
+          item.vencidos.some((vencido) => vencido.saldoPendiente > 0),
       )
-      .sort((a, b) => b.saldoFinal - a.saldoFinal || a.concepto.localeCompare(b.concepto));
+      .sort(
+        (a, b) =>
+          b.saldoFinal - a.saldoFinal || a.concepto.localeCompare(b.concepto),
+      );
   }
 
   private formatCurrency(value: number): string {
@@ -845,10 +1007,29 @@ export class AspelCobranzaHausPdfService {
     return (item.tipo || "").toLowerCase() === "cargo";
   }
 
+  async downloadAvisoCobroAspel(
+    data: AspelCobranzaDetalleResponse,
+    generatedAt: Date,
+  ): Promise<void> {
+    await this.downloadAvisoCobro(data, generatedAt, {
+      showAspelAccounts: true,
+    });
+  }
+
+  async downloadEstadoCuentaAspel(
+    data: AspelEstadoCuentaResponse,
+    generatedAt: Date,
+  ): Promise<void> {
+    await this.downloadEstadoCuenta(data, generatedAt, {
+      showAspelAccounts: true,
+    });
+  }
+
   private async getLogoDataUrl(): Promise<string | null> {
     const nextSource = this.customerIdS.customerPhotoPath();
     if (!nextSource) return null;
-    if (this.logoDataUrl && this.logoSource === nextSource) return this.logoDataUrl;
+    if (this.logoDataUrl && this.logoSource === nextSource)
+      return this.logoDataUrl;
 
     try {
       const blob = await firstValueFrom(

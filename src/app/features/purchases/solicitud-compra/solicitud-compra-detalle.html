@@ -1,5 +1,5 @@
 <p-table
-  [value]="SolicitudCompraDetalle"
+  [value]="solicitudCompraDetalle()"
   styleClass="custom-table card hidden md:block"
 >
   <ng-template #header>
@@ -20,7 +20,7 @@
           <custom-button-edit
             (clicked)="
                 editProduct({
-                  purchasesolicitaId: solicitudCompraId,
+                  purchasesolicitaId: solicitudCompraId(),
                   id: item.id
                 })
               "

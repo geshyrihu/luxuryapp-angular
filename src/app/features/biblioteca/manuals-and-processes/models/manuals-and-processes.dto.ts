@@ -12,6 +12,12 @@ export interface IManualTemplateSimpleDTO {
   marcoLegal: string | null;
   isGlobal: boolean;
   isActive: boolean;
+  periodicity: number;
+  periodicityName?: string;
+  executionDaysOfWeek: number[];
+  executionWeekOfMonth: number | null;
+  executionDayOfMonth: number | null;
+  executionMonthOfYear: number | null;
 }
 
 export interface IManualTemplateDetalleDTO extends IManualTemplateSimpleDTO {
@@ -28,26 +34,39 @@ export interface IManualPasoDTO {
   orden: number;
   titulo: string;
   descripcion: string | null;
-  responsableRoleId: string | null;
-  responsableRoleNombre: string | null;
+  responsableRoleIds: string[];
+  responsableRoleNombres: string[];
   /** 0=Normal 1=Nota 2=Advertencia 3=BuenasPracticas */
   tipoNota: number;
   isActive: boolean;
   diagramaId: string | null;
   diagramaXml: string | null;
   imagenes: IManualPasoImagenDTO[];
+  enlaces: IManualPasoEnlaceDTO[];
 }
 
 export interface IManualPasoAddDTO {
   titulo: string;
   descripcion: string | null;
-  responsableRoleId: string | null;
+  responsableRoleIds: string[];
   /** 0=Normal 1=Nota 2=Advertencia 3=BuenasPracticas */
   tipoNota: number;
   orden: number;
 }
 
 export interface IManualPasoEditDTO extends IManualPasoAddDTO {}
+
+export interface IManualPasoEnlaceDTO {
+  id: string;
+  urlEnlace: string;
+  esVideo: boolean;
+  orden: number;
+}
+
+export interface IManualPasoEnlaceAddDTO {
+  urlEnlace: string;
+  esVideo: boolean;
+}
 
 export interface IManualPasoImagenDTO {
   id: string;
@@ -96,81 +115,16 @@ export interface IManualTemplateAddDTO {
   isActive: boolean;
   roleIds: string[];
   customerIds: string[];
+  periodicity: number;
+  executionDaysOfWeek: number[];
+  executionWeekOfMonth: number | null;
+  executionDayOfMonth: number | null;
+  executionMonthOfYear: number | null;
 }
 
 export interface IManualTemplateEditDTO extends IManualTemplateAddDTO {}
 
-// ----------------------------------------------------------------
-// LEGACY INTERFACES (api/manuals/templates — do not remove)
-// ----------------------------------------------------------------
-
-export interface IManualTemplateDTO {
-  id: string;
-  folio: string;
-  description: string;
-  departament: number;
-  departamentName?: string;
-  documentType: number;
-  documentTypeName?: string;
-  confidentialityLevel: number;
-  confidentialityLevelName?: string;
-  uploadDate: string;
-  currentVersion: string;
-  isGlobal: boolean;
-  isActive: boolean;
-  targetRoleIds: string[];
-  targetCustomerIds: string[];
-  items: IManualTemplateItemDTO[];
-  versions: IManualTemplateVersionDTO[];
-  attachments: IManualTemplateAttachmentDTO[];
-}
-
-export interface IManualTemplateAttachmentDTO {
-  id: string;
-  manualTemplateId: string;
-  name: string;
-  fileName: string;
-  fileExtension: string;
-  fileSize: number;
-  uploadedAt: string;
-  uploadedBy: string;
-  fileUrl: string;
-}
-
-export interface IManualTemplateVersionDTO {
-  id: string;
-  version: string;
-  changeDate: string;
-  author: string;
-  reviewedBy: string;
-  approvedBy: string;
-  changeDescription: string;
-}
-
-export interface IManualTemplateItemDTO {
-  id: string;
-  title: string;
-  description: string;
-  entityType: string;
-  entityFilter: string | null;
-  sortOrder: number;
-  isActive: boolean;
-  sectionType: ESectionType;
-  contentJson: string | null;
-  alertType: EAlertType | null;
-  manualFlowchartId: string | null;
-  flowchartName: string | null;
-  flowchartContent: string | null;
-}
-
-export interface IManualFlowchartDTO {
-  id: string;
-  manualTemplateItemId: string;
-  name: string;
-  content: string;
-  updatedAt: string;
-}
-
+// Legacy enums y types mantenidos por compatibilidad con datos historicos en BD (section-content.models.ts)
 export enum ESectionType {
   Objective = 0,
   Scope = 1,
@@ -188,26 +142,4 @@ export enum EAlertType {
   Warning = 0,
   Info = 1,
   BestPractice = 2
-}
-
-export interface IManualInstanceDTO {
-  id: string;
-  manualTemplateId: string;
-  templateName: string;
-  customerId: string | null;
-  name: string;
-  folio: string;
-  filePath: string;
-  status: number;
-  generatedBy: string;
-  generatedAt: string;
-}
-
-export enum EManualInstanceStatus {
-  Draft = 0,
-  Generated = 1,
-  Uploaded = 2,
-  Approved = 3,
-  Published = 4,
-  Archived = 5,
 }

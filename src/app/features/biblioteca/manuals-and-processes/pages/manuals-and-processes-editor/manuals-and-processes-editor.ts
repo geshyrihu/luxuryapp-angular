@@ -12,13 +12,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { FileUploadModule } from "primeng/fileupload";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TagModule } from "primeng/tag";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputMultiselectSignal } from "src/app/core/components/inputs/web/custom-input-multiselect-signal";
+import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -31,6 +33,8 @@ import {
   IManualDiagramSimpleDTO,
   IManualPasoAddDTO,
   IManualPasoDTO,
+  IManualPasoEnlaceAddDTO,
+  IManualPasoEnlaceDTO,
   IManualPasoImagenDTO,
   IManualTemplateDetalleDTO,
   IManualVersionAddDTO,
@@ -42,8 +46,13 @@ type EditorTab = "pasos" | "versiones" | "adjuntos";
 interface IPasoForm {
   titulo: FormControl<string>;
   descripcion: FormControl<string>;
-  responsableRoleId: FormControl<string | null>;
+  responsableRoleIds: FormControl<string[]>;
   tipoNota: FormControl<number>;
+}
+
+interface IEnlaceForm {
+  urlEnlace: FormControl<string>;
+  esVideo: FormControl<boolean>;
 }
 
 interface IVersionForm {
@@ -64,11 +73,12 @@ interface IVersionForm {
     ButtonModule,
     TagModule,
     SelectButtonModule,
+    CustomInputSwitch,
     FileUploadModule,
     CustomButtonSave,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    CustomInputSelectSignal,
+    CustomInputMultiselectSignal,
     DiagramPreviewComponent,
   ],
 })
@@ -78,6 +88,7 @@ export class ManualsAndProcessesEditor implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private fb = inject(FormBuilder);
+  private sanitizer = inject(DomSanitizer);
 
   id = signal<string>("");
   manual = signal<IManualTemplateDetalleDTO | null>(null);
@@ -90,6 +101,7 @@ export class ManualsAndProcessesEditor implements OnInit {
   savingPaso = signal(false);
   uploadingImagen = signal(false);
   creatingDiagram = signal(false);
+  savingEnlace = signal(false);
 
   // Versiones
   versiones = signal<IManualVersionSimpleDTO[]>([]);
@@ -115,8 +127,16 @@ export class ManualsAndProcessesEditor implements OnInit {
       validators: [Validators.required],
     }),
     descripcion: new FormControl("", { nonNullable: true }),
-    responsableRoleId: new FormControl<string | null>(null),
+    responsableRoleIds: new FormControl<string[]>([], { nonNullable: true }),
     tipoNota: new FormControl(0, { nonNullable: true }),
+  });
+
+  enlaceForm: FormGroup<IEnlaceForm> = this.fb.group({
+    urlEnlace: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    esVideo: new FormControl(false, { nonNullable: true }),
   });
 
   versionForm: FormGroup<IVersionForm> = this.fb.group({
@@ -156,7 +176,19 @@ export class ManualsAndProcessesEditor implements OnInit {
   onLoadRoles(): void {
     this.apiS
       .onGetSelectItem<ISelectItem[]>("roles-for-announcements")
-      .then((result) => this.roles.set(result ?? []));
+      .then((res) => {
+        const groupedRoles = (res || []).reduce((acc: any[], curr) => {
+          const groupName = curr.group || 'Otros';
+          let groupObj = acc.find(g => g.label === groupName);
+          if (!groupObj) {
+            groupObj = { label: groupName, items: [] };
+            acc.push(groupObj);
+          }
+          groupObj.items.push(curr);
+          return acc;
+        }, []);
+        this.roles.set(groupedRoles);
+      });
   }
 
   // ----------------------------------------------------------------
@@ -180,7 +212,7 @@ export class ManualsAndProcessesEditor implements OnInit {
     this.pasoForm.patchValue({
       titulo: paso.titulo,
       descripcion: paso.descripcion ?? "",
-      responsableRoleId: paso.responsableRoleId,
+      responsableRoleIds: paso.responsableRoleIds ?? [],
       tipoNota: paso.tipoNota,
     });
   }
@@ -191,10 +223,75 @@ export class ManualsAndProcessesEditor implements OnInit {
     this.pasoForm.reset({
       titulo: "",
       descripcion: "",
-      responsableRoleId: null,
+      responsableRoleIds: [],
       tipoNota: 0,
     });
     this.activeTab.set("pasos");
+  }
+
+  // ==========================================
+  // ENLACES
+  // ==========================================
+
+  async onAddEnlace(): Promise<void> {
+    if (this.enlaceForm.invalid || !this.selectedPaso()) {
+      this.enlaceForm.markAllAsTouched();
+      return;
+    }
+    this.savingEnlace.set(true);
+    const raw = this.enlaceForm.getRawValue();
+    const body: IManualPasoEnlaceAddDTO = {
+      urlEnlace: raw.urlEnlace,
+      esVideo: raw.esVideo,
+    };
+
+    const pasoId = this.selectedPaso()!.id;
+    const res = await this.apiS.onPost<IManualPasoEnlaceDTO>(
+      Endpoints.ManualsPasos.addEnlace(this.id(), pasoId),
+      body,
+    );
+
+    if (res) {
+      this.pasos.update((list) =>
+        list.map((p) => {
+          if (p.id === pasoId) {
+            const updated = { ...p, enlaces: [...(p.enlaces || []), res] };
+            if (this.selectedPaso()?.id === pasoId) {
+              this.selectedPaso.set(updated);
+            }
+            return updated;
+          }
+          return p;
+        }),
+      );
+      this.enlaceForm.reset({ urlEnlace: "", esVideo: false });
+    }
+    this.savingEnlace.set(false);
+  }
+
+  async onDeleteEnlace(enlaceId: string): Promise<void> {
+    const pasoId = this.selectedPaso()!.id;
+    const res = await this.apiS.onDelete(
+      Endpoints.ManualsPasos.deleteEnlace(this.id(), pasoId, enlaceId),
+    );
+
+    if (res) {
+      this.pasos.update((list) =>
+        list.map((p) => {
+          if (p.id === pasoId) {
+            const updated = {
+              ...p,
+              enlaces: p.enlaces.filter((e) => e.id !== enlaceId),
+            };
+            if (this.selectedPaso()?.id === pasoId) {
+              this.selectedPaso.set(updated);
+            }
+            return updated;
+          }
+          return p;
+        }),
+      );
+    }
   }
 
   async onSavePaso(): Promise<void> {
@@ -209,7 +306,7 @@ export class ManualsAndProcessesEditor implements OnInit {
       const body: IManualPasoAddDTO = {
         titulo: raw.titulo,
         descripcion: raw.descripcion || null,
-        responsableRoleId: raw.responsableRoleId,
+        responsableRoleIds: raw.responsableRoleIds,
         tipoNota: raw.tipoNota,
         orden: this.pasos().length + 1,
       };
@@ -227,7 +324,7 @@ export class ManualsAndProcessesEditor implements OnInit {
       const body: IManualPasoAddDTO = {
         titulo: raw.titulo,
         descripcion: raw.descripcion || null,
-        responsableRoleId: raw.responsableRoleId,
+        responsableRoleIds: raw.responsableRoleIds,
         tipoNota: raw.tipoNota,
         orden: paso.orden,
       };
@@ -273,7 +370,12 @@ export class ManualsAndProcessesEditor implements OnInit {
 
   @HostListener("window:paste", ["$event"])
   onPaste(event: ClipboardEvent): void {
-    if (this.activeTab() !== "pasos" || !this.selectedPaso() || this.isNewPaso()) return;
+    if (
+      this.activeTab() !== "pasos" ||
+      !this.selectedPaso() ||
+      this.isNewPaso()
+    )
+      return;
     const items = event.clipboardData?.items;
     if (!items) return;
     for (let i = 0; i < items.length; i++) {
@@ -282,7 +384,9 @@ export class ManualsAndProcessesEditor implements OnInit {
         const blob = item.getAsFile();
         if (blob) {
           const ext = item.type === "image/png" ? "png" : "jpg";
-          this.uploadImageFile(new File([blob], `paste-${Date.now()}.${ext}`, { type: blob.type }));
+          this.uploadImageFile(
+            new File([blob], `paste-${Date.now()}.${ext}`, { type: blob.type }),
+          );
         }
         break;
       }
@@ -304,7 +408,10 @@ export class ManualsAndProcessesEditor implements OnInit {
       )
       .then((res) => {
         if (res) {
-          const updated = { ...paso, imagenes: [...(paso.imagenes ?? []), res] };
+          const updated = {
+            ...paso,
+            imagenes: [...(paso.imagenes ?? []), res],
+          };
           this.pasos.update((list) =>
             list.map((p) => (p.id === paso.id ? updated : p)),
           );
@@ -492,5 +599,24 @@ export class ManualsAndProcessesEditor implements OnInit {
 
   onGoBack(): void {
     this.router.navigate(["/library/manuals-and-processes"]);
+  }
+
+  safeUrl(url: string | null): SafeResourceUrl | null {
+    if (!url) return null;
+    let embedUrl = url;
+    if (url.includes("youtube.com/watch?v=")) {
+      embedUrl = url.replace("youtube.com/watch?v=", "youtube.com/embed/");
+      const ampersandPosition = embedUrl.indexOf("&");
+      if (ampersandPosition !== -1) {
+        embedUrl = embedUrl.substring(0, ampersandPosition);
+      }
+    } else if (url.includes("youtu.be/")) {
+      embedUrl = url.replace("youtu.be/", "youtube.com/embed/");
+      const questionPosition = embedUrl.indexOf("?");
+      if (questionPosition !== -1) {
+        embedUrl = embedUrl.substring(0, questionPosition);
+      }
+    }
+    return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
 }

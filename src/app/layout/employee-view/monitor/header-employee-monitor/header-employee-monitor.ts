@@ -30,7 +30,6 @@ import { UpdateService } from "src/app/core/services/update-pwa.service";
 import { NotificationsGadget } from "../notifications-gadget/notifications-gadget";
 import { ProfileMonitor } from "../profile-monitor/profile-monitor";
 
-import { Search } from "../search/search";
 @Component({
   selector: "app-header-employee-monitor",
   imports: [
@@ -41,7 +40,7 @@ import { Search } from "../search/search";
     NotificationsGadget,
     ProfileMonitor,
     RouterModule,
-    Search,
+    // Search,
     BreadcrumbModule,
     SelectModule,
     ToolbarModule,

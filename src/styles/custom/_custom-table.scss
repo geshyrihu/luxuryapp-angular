@@ -40,25 +40,34 @@
       min-height: 0;
     }
 
+    .p-datatable-table,
     table {
+      width: 100%;
+      min-width: 760px;
       height: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
     }
 
-    /* Restore Black Header for custom-table items (Sidebar Match) */
+    /* Match rf-prime-table visual styling from _financial-tables.scss */
     .p-datatable-thead > tr > th {
-      background-color: var(
-        --sidebar-bg
-      ) !important; /* Matches Sidebar (#18181B) */
+      background: linear-gradient(180deg, #294575 0%, #182946 100%) !important;
       color: #ffffff !important;
-      border-color: #27272a !important; /* Zinc-800 for subtle border */
-      font-weight: 500;
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 0.55rem 0.9rem;
       text-transform: uppercase;
-      font-size: 0.85rem;
-      padding: 0.75rem 1rem;
+      letter-spacing: 0.04em;
+      border: 1px solid var(--rf-line, #d7dfeb) !important;
+      white-space: nowrap;
     }
 
     .p-datatable-tbody > tr > td {
-      font-size: 0.875rem; /* Harmonized with sidebar */
+      padding: 0.55rem 0.9rem;
+      font-size: 0.9rem;
+      border: 1px solid var(--rf-line, #d7dfeb) !important;
+      white-space: nowrap;
+      background: #ffffff;
     }
 
     .p-sortable-column-icon {
@@ -66,7 +75,53 @@
     }
 
     .p-sortable-column:hover {
-      background-color: var(--primary-600) !important;
+      background-color: var(--primary-600, #092953) !important;
+    }
+
+    .p-datatable-thead > tr > th.th-selected {
+      background-color: #15803d !important;
+      color: #ffffff !important;
+    }
+
+    .p-datatable-thead > tr > th.th-deselected {
+      background-color: #94a3b8 !important;
+      color: #e2e8f0 !important;
+      opacity: 0.7;
+    }
+
+    .p-datatable-thead > tr > th.th-col-dark {
+      background-color: #1f2937 !important;
+      color: #ffffff !important;
+    }
+
+    .p-datatable-thead > tr > th.th-col-green {
+      background-color: #15803d !important;
+      color: #ffffff !important;
+    }
+
+    .p-datatable-thead > tr > th.th-col-orange {
+      background-color: #ea580c !important;
+      color: #ffffff !important;
+    }
+
+    .p-datatable-thead > tr > th.th-col-red {
+      background-color: #b91c1c !important;
+      color: #ffffff !important;
+    }
+
+    .p-datatable-thead > tr > th.th-col-blue-medium {
+      background-color: #1669a3 !important;
+      color: #ffffff !important;
+    }
+
+    .p-datatable-thead > tr > th.th-col-blue-dark {
+      background-color: #0d3b66 !important;
+      color: #ffffff !important;
+    }
+
+    .p-datatable-thead > tr > th.th-col-navy {
+      background: #1e3a8a !important;
+      color: #ffffff !important;
     }
 
     /* Fix: Remove default PrimeNG caption borders/background LOCALLY for custom-table */
@@ -84,7 +139,4 @@
   background: transparent !important;
   padding-bottom: 0 !important;
 }
-
-
-
 

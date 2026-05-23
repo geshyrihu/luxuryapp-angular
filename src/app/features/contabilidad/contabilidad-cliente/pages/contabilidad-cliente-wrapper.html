@@ -1,0 +1,64 @@
+<section class="surface-ground min-h-screen flex flex-column gap-4">
+  <div class="w-full xl:w-11 mx-auto flex flex-column gap-4 p-3">
+    <header class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden">
+      <div class="bg-primary" style="height: 0.45rem"></div>
+      <div class="surface-100 p-3 flex align-items-center gap-3">
+        <div class="flex flex-column gap-1">
+          <small class="text-primary font-bold uppercase" style="letter-spacing: 0.14em">
+            LuxuryApp · Contabilidad
+          </small>
+          <h1 class="text-primary text-2xl md:text-3xl line-height-2 m-0">Estados Financieros</h1>
+          @if (periodo()) {
+            <p class="text-color-secondary m-0">Periodo: <strong>{{ periodo() }}</strong></p>
+          }
+        </div>
+      </div>
+      <div class="bg-yellow-500" style="height: 0.2rem"></div>
+    </header>
+
+    <div class="surface-card border-round-xl border-1 surface-border shadow-1">
+      <p-tabs [value]="tabIndex()" (valueChange)="onTabChange($event)">
+        <p-tablist>
+          <p-tab [value]="0"><i class="pi pi-balance-scale mr-2"></i>EPF</p-tab>
+          <p-tab [value]="1"><i class="pi pi-list mr-2"></i>E. Resultados</p-tab>
+          <p-tab [value]="2"><i class="pi pi-list mr-2"></i>E. Resultados V2</p-tab>
+          <p-tab [value]="3"><i class="pi pi-plus-circle mr-2"></i>C. Extraordinaria</p-tab>
+          <p-tab [value]="4"><i class="pi pi-percentage mr-2"></i>P vs R</p-tab>
+          <p-tab [value]="5"><i class="pi pi-table mr-2"></i>R. Financiero</p-tab>
+          <p-tab [value]="6"><i class="pi pi-money-bill mr-2"></i>Flujo Efectivo</p-tab>
+          <p-tab [value]="7"><i class="pi pi-users mr-2"></i>Cobranza</p-tab>
+          <p-tab [value]="8"><i class="pi pi-wallet mr-2"></i>Presupuesto</p-tab>
+        </p-tablist>
+        <p-tabpanels>
+          <p-tabpanel [value]="0" class="p-4 pt-5">
+            <app-epf-cliente [customerId]="customerId()" [year]="year()" [mes]="mes()" />
+          </p-tabpanel>
+          <p-tabpanel [value]="1" class="p-4 pt-5">
+            <app-estado-resultados-cliente [customerId]="customerId()" [year]="year()" [mes]="mes()" />
+          </p-tabpanel>
+          <p-tabpanel [value]="2" class="p-4 pt-5">
+            <app-estado-resultados-v2-cliente [customerId]="customerId()" [year]="year()" [mes]="mes()" />
+          </p-tabpanel>
+          <p-tabpanel [value]="3" class="p-4 pt-5">
+            <app-cedula-extraordinaria-cliente [customerId]="customerId()" [year]="year()" [mes]="mes()" />
+          </p-tabpanel>
+          <p-tabpanel [value]="4" class="p-4 pt-5">
+            <app-cedula-presupuestal-cliente [customerId]="customerId()" [year]="year()" [mes]="mes()" />
+          </p-tabpanel>
+          <p-tabpanel [value]="5" class="p-4 pt-5">
+            <app-reporte-financiero-cliente [customerId]="customerId()" [year]="year()" [mes]="mes()" />
+          </p-tabpanel>
+          <p-tabpanel [value]="6" class="p-4 pt-5">
+            <app-flujo-efectivo-cliente [customerId]="customerId()" [year]="year()" />
+          </p-tabpanel>
+          <p-tabpanel [value]="7" class="p-4 pt-5">
+            <app-analisis-cobranza-cliente [customerId]="customerId()" [year]="year()" [mes]="mes()" />
+          </p-tabpanel>
+          <p-tabpanel [value]="8" class="p-4 pt-5">
+            <app-presupuesto-contabilidad-cliente [customerId]="customerId()" [year]="year()" [mes]="mes()" />
+          </p-tabpanel>
+        </p-tabpanels>
+      </p-tabs>
+    </div>
+  </div>
+</section>

@@ -8,6 +8,7 @@
     label="Nuevo Estatus"
     [control]="changeStatusForm.controls.sanctionStatus"
     [data]="cb_sanctionStatus"
+    [filter]="true"
   />
   <custom-input-textarea-signal
     label="Notas Internas"
@@ -36,6 +37,7 @@
       label="Tipo de Sancion"
       [control]="form.controls.sanctionTypeId"
       [data]="sanctionTypes()"
+      [filter]="true"
     />
   </div>
   <div class="col-12 md:col-6">

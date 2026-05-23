@@ -29,6 +29,7 @@
             [data]="tiposDeGastoOptions"
             placeholder="Seleccione un tipo de gasto"
             [control]="step1Form.controls.tipoGasto"
+            [filter]="true"
           />
         </div>
         }
@@ -79,6 +80,7 @@
             placeholder="Selecciona el Año"
             [horizontal]="false"
             customClass="w-full"
+            [filter]="true"
           />
         </div>
 
@@ -234,6 +236,7 @@
             [data]="cb_fiscalYear()"
             (onChange)="onFiscalYearChange($event)"
             [horizontal]="false"
+            [filter]="true"
           ></custom-input-select-signal>
         </div>
         <div class="col-12 md:col-10">

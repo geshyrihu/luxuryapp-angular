@@ -30,7 +30,7 @@ export class SolicitudCompraPdfService {
 
     const headerColumns: any[] = [];
     if (customerData.logo) {
-      headerColumns.push({ image: customerData.logo, width: 100 });
+      headerColumns.push({ image: customerData.logo, fit: [150, 70] });
     }
     headerColumns.push({
       stack: [

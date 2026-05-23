@@ -43,7 +43,7 @@
   <ng-template #body let-item>
     <tr>
       <td>
-        <small> {{ item.fechaRegistro | date: "dd/MM/yy" : "UTC" }} </small>
+        <small> {{ item.fechaRegistro | date: "dd-MMM-yyyy" : "UTC" }} </small>
       </td>
       <td>
         <small> {{ item.lectura }} </small>
@@ -81,7 +81,7 @@
         <h2 class="font-bold m-0 text-base">{{ item.lectura }}</h2>
         <p class="text-sm text-500 m-0 mt-1">
           <i class="pi pi-calendar mr-1 text-xs"></i> {{ item.fechaRegistro |
-          date: "dd/MM/yy" : "UTC" }}
+          date: "dd-MMM-yyyy" : "UTC" }}
         </p>
       </ion-label>
 

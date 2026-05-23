@@ -16,17 +16,20 @@
         [control]="form.controls.departamento"
         label="Departamento"
         [data]="cb_area_responsable()"
+        [filter]="true"
       />
 
       <custom-input-select-signal
         [control]="form.controls.state"
         label="Estado"
         [data]="cb_state()"
+        [filter]="true"
       />
       <custom-input-select-signal
         [control]="form.controls.grupo"
         label="Grupo"
         [data]="cb_grupo()"
+        [filter]="true"
       />
 
       <custom-input-text-signal

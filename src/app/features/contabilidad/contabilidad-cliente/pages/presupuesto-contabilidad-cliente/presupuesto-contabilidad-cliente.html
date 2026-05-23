@@ -1,0 +1,66 @@
+<div class="rf-shell">
+  @if (loading()) {
+    <div class="flex align-items-center text-color-secondary mb-4 gap-2">
+      <i class="pi pi-spin pi-spinner"></i>
+      <span>Consultando datos...</span>
+    </div>
+  }
+
+  @if (!loading() && !data()) {
+    <p class="text-color-secondary m-0">No hay datos de gastos para este periodo.</p>
+  }
+
+  @if (!loading() && data(); as reporte) {
+    <div class="rf-card">
+      <div class="rf-wrap">
+        <table class="rf-table">
+          <thead>
+            <tr>
+              <th>DESCRIPCIÓN</th>
+              <th class="th-col-green">PSPTO MENSUAL</th>
+              @for (col of reporte.columnas; track col) {
+                <th>{{ col }}</th>
+              }
+              <th class="th-col-orange">{{ acumLabel() }}</th>
+              <th class="th-col-green">PSPTO ANUAL</th>
+              <th class="th-col-red">PSPTO RESTANTE</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (fila of reporte.filas; track trackByFila($index, fila)) {
+              @if (!isFilaVacia(fila)) {
+                <tr [ngClass]="rowClass(fila)">
+                  <td
+                    [ngClass]="descClass(fila)"
+                    [style.padding-left]="fila.nivel === 2 ? '1.5rem' : fila.nivel === 3 ? '2.5rem' : null"
+                  >
+                    {{ fila.descripcion }}
+                  </td>
+                  <td [ngClass]="numClass(fila)" [class.rf-neg]="isNeg(fila.pstoMensual)">{{ fmt(fila.pstoMensual) }}</td>
+                  @for (val of fila.montosEjercidos; track trackByIndex($index)) {
+                    <td [ngClass]="numClass(fila)" [class.rf-neg]="isNeg(val)">{{ fmt(val) }}</td>
+                  }
+                  <td [ngClass]="numClass(fila)" [class.rf-neg]="isNeg(fila.acumuladoAnual)">{{ fmt(fila.acumuladoAnual) }}</td>
+                  <td [ngClass]="numClass(fila)" [class.rf-neg]="isNeg(fila.presupAnual)">{{ fmt(fila.presupAnual) }}</td>
+                  <td [ngClass]="numClass(fila)" [class.rf-neg]="isNeg(fila.presupRestante)">{{ fmt(fila.presupRestante) }}</td>
+                </tr>
+              }
+            }
+
+            <tr class="rf-row-result">
+              <td class="rf-td-descripcion">{{ reporte.granTotal.descripcion }}</td>
+              <td class="rf-td-number--total" [class.rf-neg]="isNeg(reporte.granTotal.pstoMensual)">{{ fmt(reporte.granTotal.pstoMensual) }}</td>
+              @for (val of reporte.granTotal.montosEjercidos; track trackByIndex($index)) {
+                <td class="rf-td-number--total" [class.rf-neg]="isNeg(val)">{{ fmt(val) }}</td>
+              }
+              <td class="rf-td-number--total" [class.rf-neg]="isNeg(reporte.granTotal.acumuladoAnual)">{{ fmt(reporte.granTotal.acumuladoAnual) }}</td>
+              <td class="rf-td-number--total" [class.rf-neg]="isNeg(reporte.granTotal.presupAnual)">{{ fmt(reporte.granTotal.presupAnual) }}</td>
+              <td class="rf-td-number--total" [class.rf-neg]="isNeg(reporte.granTotal.presupRestante)">{{ fmt(reporte.granTotal.presupRestante) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  }
+</div>

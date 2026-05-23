@@ -895,8 +895,8 @@ export const Endpoints = {
     customers: "aspel-cobranza/customers",
     accounts: (customerId: string, year: number) =>
       `aspel-cobranza/accounts?customerId=${customerId}&year=${year}`,
-    accountsSelect: (customerId: string, year: number) =>
-      `aspel-cobranza/accounts-select?customerId=${customerId}&year=${year}`,
+    // accountsSelect: (customerId: string, year: number) =>
+    //   `aspel-cobranza/accounts-select?customerId=${customerId}&year=${year}`,
     estadoCuentaRango: (
       customerId: string,
       numCta: string,
@@ -904,40 +904,36 @@ export const Endpoints = {
       fechaFin: string,
     ) =>
       `aspel-cobranza/estado-cuenta-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
-    detalleCobranzaRango: (
-      customerId: string,
-      numCta: string,
-      fechaFin: string,
-    ) =>
-      `aspel-cobranza/detalle-cobranza-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaFin=${fechaFin}`,
-    contrapartidasRango: (
-      customerId: string,
-      numCta: string,
-      fechaInicio: string,
-      fechaFin: string,
-    ) =>
-      `aspel-cobranza/contrapartidas-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
-    pendientesConceptoRango: (
-      customerId: string,
-      numCta: string,
-      fechaInicio: string,
-      fechaFin: string,
-    ) =>
-      `aspel-cobranza/pendientes-concepto-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
-    avisoCobroPdf: (
-      customerId: string,
-      numCta: string,
-      fechaInicio: string,
-      fechaFin: string,
-    ) =>
-      `aspel-cobranza/aviso-cobro-pdf?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
-    estadoCuentaPdf: (
-      customerId: string,
-      numCta: string,
-      fechaInicio: string,
-      fechaFin: string,
-    ) =>
-      `aspel-cobranza/estado-cuenta-pdf?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
+    detalleCobranzaRango: (customerId: string, numCta: string) =>
+      `aspel-cobranza/detalle-cobranza-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}`,
+    // contrapartidasRango: (
+    //   customerId: string,
+    //   numCta: string,
+    //   fechaInicio: string,
+    //   fechaFin: string,
+    // ) =>
+    //   `aspel-cobranza/contrapartidas-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
+    // pendientesConceptoRango: (
+    //   customerId: string,
+    //   numCta: string,
+    //   fechaInicio: string,
+    //   fechaFin: string,
+    // ) =>
+    //   `aspel-cobranza/pendientes-concepto-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
+    // avisoCobroPdf: (
+    //   customerId: string,
+    //   numCta: string,
+    //   fechaInicio: string,
+    //   fechaFin: string,
+    // ) =>
+    //   `aspel-cobranza/aviso-cobro-pdf?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
+    // estadoCuentaPdf: (
+    //   customerId: string,
+    //   numCta: string,
+    //   fechaInicio: string,
+    //   fechaFin: string,
+    // ) =>
+    //   `aspel-cobranza/estado-cuenta-pdf?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
     deudasActuales: (customerId: string) =>
       `aspel-cobranza/deudas-actuales?customerId=${customerId}`,
   },
@@ -1272,6 +1268,10 @@ export const Endpoints = {
       `manuals/${manualId}/pasos/${pasoId}/imagenes`,
     eliminarImagen: (manualId: string, pasoId: string, imagenId: string) =>
       `manuals/${manualId}/pasos/${pasoId}/imagenes/${imagenId}`,
+    addEnlace: (manualId: string, pasoId: string) =>
+      `manuals/${manualId}/pasos/${pasoId}/enlaces`,
+    deleteEnlace: (manualId: string, pasoId: string, enlaceId: string) =>
+      `manuals/${manualId}/pasos/${pasoId}/enlaces/${enlaceId}`,
     addVersion: (manualId: string) => `manuals/${manualId}/versiones`,
     deleteVersion: (manualId: string, versionId: string) =>
       `manuals/${manualId}/versiones/${versionId}`,
@@ -1307,11 +1307,5 @@ export const Endpoints = {
   },
   SpecialDocuments: {
     updateOrder: "special-document/update-order",
-  },
-  ManualFlowcharts: {
-    getById: (id: string) => `manualFlowcharts/${id}`,
-    create: "manualFlowcharts",
-    update: (id: string) => `manualFlowcharts/${id}`,
-    delete: (id: string) => `manualFlowcharts/${id}`,
   },
 } as const;

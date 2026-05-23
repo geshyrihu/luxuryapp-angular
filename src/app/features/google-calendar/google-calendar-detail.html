@@ -1,0 +1,66 @@
+<div class="flex flex-column gap-3">
+  <div class="grid">
+    <div class="col-12 md:col-6">
+      <small class="block text-color-secondary">Asunto</small>
+      <strong>{{ item.subjectTypeName }}</strong>
+    </div>
+    <div class="col-12 md:col-6">
+      <small class="block text-color-secondary">Modalidad</small>
+      <strong>{{ item.modalityName }}</strong>
+    </div>
+    <div class="col-12 md:col-6">
+      <small class="block text-color-secondary">Repeticion</small>
+      <strong>{{ item.recurrenceSummary || "Unica" }}</strong>
+    </div>
+    <div class="col-12 md:col-6">
+      <small class="block text-color-secondary">Inicio</small>
+      <strong>{{ item.startAt | date: "dd/MM/yyyy HH:mm" }}</strong>
+    </div>
+    <div class="col-12 md:col-6">
+      <small class="block text-color-secondary">Fin</small>
+      <strong>{{ item.endAt | date: "dd/MM/yyyy HH:mm" }}</strong>
+    </div>
+    <div class="col-12 md:col-6">
+      <small class="block text-color-secondary">Ubicacion</small>
+      <strong>{{ item.location || "Sin ubicacion" }}</strong>
+    </div>
+    <div class="col-12 md:col-6">
+      <small class="block text-color-secondary">Invitados</small>
+      <strong>{{ item.guestCount }}</strong>
+    </div>
+    <div class="col-12 md:col-6">
+      <small class="block text-color-secondary">Estado</small>
+      <strong>{{ item.isSynchronized ? "Sincronizado" : "Pendiente" }}</strong>
+    </div>
+    <div class="col-12 md:col-6">
+      <small class="block text-color-secondary">Enlace</small>
+      @if (item.googleHtmlLink) {
+      <a [href]="item.googleHtmlLink" rel="noopener noreferrer" target="_blank">
+        Ver evento
+      </a>
+      } @else {
+      <strong>Sin enlace</strong>
+      }
+    </div>
+    <div class="col-12 md:col-6">
+      <small class="block text-color-secondary">Google Meet</small>
+      @if (item.googleMeetUrl) {
+      <a [href]="item.googleMeetUrl" rel="noopener noreferrer" target="_blank">
+        Abrir Meet
+      </a>
+      } @else {
+      <strong>Sin liga Meet</strong>
+      }
+    </div>
+  </div>
+
+  <div class="flex justify-content-end">
+    <button
+      class="p-button p-component p-button-outlined p-button-sm"
+      type="button"
+      (click)="onClose()"
+    >
+      <span class="p-button-label">Cerrar</span>
+    </button>
+  </div>
+</div>

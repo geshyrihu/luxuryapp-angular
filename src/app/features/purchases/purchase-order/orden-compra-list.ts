@@ -58,6 +58,79 @@ const tipoGastoIcons: { [key: number]: string } = {
 @Component({
   selector: "app-orden-compra-list",
   templateUrl: "./orden-compra-list.html",
+  styles: [`
+    :host ::ng-deep .orden-compra-table .p-datatable-table {
+      table-layout: fixed;
+      width: 100%;
+    }
+
+    :host ::ng-deep .orden-compra-table .oc-col-folio {
+      width: 7rem;
+    }
+
+    :host ::ng-deep .orden-compra-table .oc-col-indice {
+      width: 6.5rem;
+    }
+
+    :host ::ng-deep .orden-compra-table .oc-col-fondeo {
+      width: 12.5rem;
+    }
+
+    :host ::ng-deep .orden-compra-table .oc-col-solicitud {
+      width: 6.5rem;
+    }
+
+    :host ::ng-deep .orden-compra-table .oc-col-descripcion {
+      width: 27%;
+    }
+
+    :host ::ng-deep .orden-compra-table .oc-col-partida {
+      width: 17%;
+    }
+
+    :host ::ng-deep .orden-compra-table .oc-col-proveedor {
+      width: 11%;
+    }
+
+    :host ::ng-deep .orden-compra-table .oc-col-total {
+      width: 6rem;
+    }
+
+    :host ::ng-deep .orden-compra-table .oc-col-observaciones,
+    :host ::ng-deep .orden-compra-table .oc-col-autoriza {
+      width: 10%;
+    }
+
+    :host ::ng-deep .orden-compra-table .oc-col-actions {
+      width: 5rem;
+    }
+
+    :host ::ng-deep .orden-compra-table .p-datatable-tbody > tr > td.oc-cell-wrap {
+      white-space: normal;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    :host ::ng-deep .orden-compra-table .p-datatable-tbody > tr > td.oc-cell-total,
+    :host ::ng-deep .orden-compra-table .p-datatable-thead > tr > th:nth-child(8) {
+      text-align: right;
+    }
+
+    :host ::ng-deep .orden-compra-table .oc-cell-actions {
+      white-space: normal;
+    }
+
+    :host ::ng-deep .orden-compra-table .oc-actions-container {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.25rem;
+    }
+
+    :host ::ng-deep .orden-compra-table .oc-cell-wrap ul {
+      margin: 0;
+      padding-left: 1rem;
+    }
+  `],
   imports: [
     CommonModule,
     RouterModule,

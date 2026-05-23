@@ -5,10 +5,7 @@ import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -21,7 +18,7 @@ import {
   AspelBudgetDTO,
   CuentaAspelTercerNivelDTO,
 } from "../models/presupuesto-shared.models";
-import { BudgetAccountRuleDataDTO } from "./presupuestos.interfaces";
+import { PresupuestoWebAspelService } from "./presupuesto-web-aspel.service";
 import {
   ASPEL_MONTHS,
   getCuentaMonthValue,
@@ -31,8 +28,8 @@ import {
   normalizeAspelAccounts,
   splitAspelAccounts,
 } from "./presupuesto-web-aspel.shared";
+import { BudgetAccountRuleDataDTO } from "./presupuestos.interfaces";
 import { PurchaseHistory } from "./purchase-history";
-import { PresupuestoWebAspelService } from "./presupuesto-web-aspel.service";
 
 @Component({
   selector: "app-espejo-aspel-extraordinarios",
@@ -41,11 +38,8 @@ import { PresupuestoWebAspelService } from "./presupuesto-web-aspel.service";
     CommonModule,
     FormsModule,
     TableModule,
-    CustomInputSelectSignal,
     MessageModule,
     TagModule,
-    CustomButton,
-    CustomSearchInput,
     DataViewMobile,
     TooltipModule,
   ],
@@ -260,17 +254,15 @@ export class EspejoAspelExtraordinarios {
   getSumaPresupuestoMesesVisiblesCuenta(
     cuenta: CuentaAspelTercerNivelDTO,
   ): number {
-    return this.sharedS.mesesSeleccionados().reduce(
-      (sum, mes) => sum + this.getPresupuestoDelMes(cuenta, mes),
-      0,
-    );
+    return this.sharedS
+      .mesesSeleccionados()
+      .reduce((sum, mes) => sum + this.getPresupuestoDelMes(cuenta, mes), 0);
   }
 
   getSumaGastoMesesVisiblesCuenta(cuenta: CuentaAspelTercerNivelDTO): number {
-    return this.sharedS.mesesSeleccionados().reduce(
-      (sum, mes) => sum + this.getMontoMes(cuenta, mes),
-      0,
-    );
+    return this.sharedS
+      .mesesSeleccionados()
+      .reduce((sum, mes) => sum + this.getMontoMes(cuenta, mes), 0);
   }
 
   getPorcentajeGastadoMesesVisiblesCuenta(
@@ -281,18 +273,21 @@ export class EspejoAspelExtraordinarios {
     return presupuesto === 0 ? 0 : (gasto / presupuesto) * 100;
   }
 
-  getSumaPresupuestoMesesVisibles(cuentas: CuentaAspelTercerNivelDTO[]): number {
-    return this.sharedS.mesesSeleccionados().reduce(
-      (sum, mes) => sum + this.getTotalPresupuestoDelMes(cuentas, mes),
-      0,
-    );
+  getSumaPresupuestoMesesVisibles(
+    cuentas: CuentaAspelTercerNivelDTO[],
+  ): number {
+    return this.sharedS
+      .mesesSeleccionados()
+      .reduce(
+        (sum, mes) => sum + this.getTotalPresupuestoDelMes(cuentas, mes),
+        0,
+      );
   }
 
   getSumaGastoMesesVisibles(cuentas: CuentaAspelTercerNivelDTO[]): number {
-    return this.sharedS.mesesSeleccionados().reduce(
-      (sum, mes) => sum + this.getTotalMontoPorMes(cuentas, mes),
-      0,
-    );
+    return this.sharedS
+      .mesesSeleccionados()
+      .reduce((sum, mes) => sum + this.getTotalMontoPorMes(cuentas, mes), 0);
   }
 
   getPresupuestoRestanteMesesVisibles(

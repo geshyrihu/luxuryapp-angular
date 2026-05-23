@@ -34,6 +34,8 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [disabled]="disabled()"
       [required]="requiredInput()"
       [noMargin]="noMargin()"
+      [description]="description()"
+      [hidden]="hidden()"
     >
       <!--
         El INPUT real está aquí dentro.

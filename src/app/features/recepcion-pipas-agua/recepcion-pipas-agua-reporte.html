@@ -1,0 +1,88 @@
+<!-- Selector de periodo -->
+<div class="card mb-3">
+  <div class="card-body">
+    <app-rango-calendario-yyyymmdd (fechasChange)="onFechasChange($event)" />
+  </div>
+</div>
+
+<!-- Tarjetas de resumen -->
+<div class="grid mb-3">
+  <div class="col-12 md:col-4">
+    <div class="card text-center p-3">
+      <p class="text-500 text-sm mb-1">Total recepciones</p>
+      <p class="text-3xl font-bold text-primary m-0">{{ totalRecepciones() }}</p>
+    </div>
+  </div>
+  <div class="col-12 md:col-4">
+    <div class="card text-center p-3">
+      <p class="text-500 text-sm mb-1">Litros recibidos</p>
+      <p class="text-3xl font-bold text-blue-600 m-0">{{ totalLitros() | number: '1.0-0' }}</p>
+    </div>
+  </div>
+  <div class="col-12 md:col-4">
+    <div class="card text-center p-3">
+      <p class="text-500 text-sm mb-1">Descargas en curso</p>
+      <p class="text-3xl font-bold text-orange-500 m-0">{{ recepccionesEnCurso() }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- Tabla del periodo -->
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card"
+>
+  <ng-template #caption>
+    <primeng-custom-caption [title]="'Reporte por Periodo'" [dt]="dt" [showAdd]="false">
+      <ng-template #extraButtons>
+        <custom-button-download (clicked)="exportExcel()" />
+      </ng-template>
+    </primeng-custom-caption>
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="placasCamion">Placas <p-sortIcon field="placasCamion" /></th>
+      <th pSortableColumn="horaLlegada">Llegada <p-sortIcon field="horaLlegada" /></th>
+      <th>Termino</th>
+      <th class="text-right">Cap. (L)</th>
+      <th class="text-right">Cisterna antes</th>
+      <th class="text-right">Cisterna despues</th>
+      <th class="text-right">Diferencia cisterna</th>
+      <th class="text-right">Metro antes</th>
+      <th class="text-right">Metro despues</th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr>
+      <td><strong>{{ item.placasCamion }}</strong></td>
+      <td><small>{{ item.horaLlegada | date: 'dd/MM/yyyy HH:mm' }}</small></td>
+      <td>
+        <small *ngIf="item.horaTermino">{{ item.horaTermino | date: 'dd/MM/yyyy HH:mm' }}</small>
+        <span *ngIf="!item.horaTermino" class="text-orange-500 text-xs">En curso</span>
+      </td>
+      <td class="text-right">{{ item.capacidadPipa | number: '1.0-0' }}</td>
+      <td class="text-right">{{ item.nivelCisternaAntes | number: '1.2-2' }}</td>
+      <td class="text-right">{{ item.nivelCisternaDespues | number: '1.2-2' }}</td>
+      <td class="text-right font-semibold"
+          [class.text-green-600]="(item.nivelCisternaDespues - item.nivelCisternaAntes) > 0"
+          [class.text-red-500]="(item.nivelCisternaDespues - item.nivelCisternaAntes) <= 0">
+        {{ (item.nivelCisternaDespues - item.nivelCisternaAntes) | number: '1.2-2' }}
+      </td>
+      <td class="text-right">{{ item.lecturaMetroAntes | number: '1.4-4' }}</td>
+      <td class="text-right">{{ item.lecturaMetroDespues | number: '1.4-4' }}</td>
+    </tr>
+  </ng-template>
+
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>

@@ -26,11 +26,13 @@
         [control]="form.controls.status"
         label="Estatus"
         [data]="cb_status()"
+        [filter]="true"
       />
       <custom-input-select-signal
         [control]="form.controls.retroactive"
         label="Aplica retroactivo"
         [data]="cb_si_no()"
+        [filter]="true"
       />
       <custom-button-save
         [propertyId]="id"

@@ -6,7 +6,7 @@ import { MessageService } from "primeng/api";
 import { ToastModule } from "primeng/toast";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { IManualDiagramSimpleDTO, IManualFlowchartDTO } from "../../models/manuals-and-processes.dto";
+import { IManualDiagramSimpleDTO } from "../../models/manuals-and-processes.dto";
 
 // Draw.io requiere hexadecimales en el XML/config. Mantener estos valores
 // sincronizados con los tokens DS: primary ERP + paleta documental/premium.
@@ -67,9 +67,7 @@ export class ManualFlowchartEditor implements OnInit, OnDestroy {
   private messageS = inject(MessageService);
 
   id = signal<string>("");
-  source = signal<"legacy" | "diagram">("legacy");
   returnTo = signal<string>("/library/manuals-and-processes");
-  flowchart = signal<IManualFlowchartDTO | null>(null);
   diagram = signal<IManualDiagramSimpleDTO | null>(null);
   iframeUrl: SafeResourceUrl;
 
@@ -83,8 +81,6 @@ export class ManualFlowchartEditor implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.id.set(this.route.snapshot.params["id"]);
-    const src = this.route.snapshot.queryParams["source"];
-    this.source.set(src === "diagram" ? "diagram" : "legacy");
     this.returnTo.set(
       this.route.snapshot.queryParams["returnTo"] ??
         "/library/manuals-and-processes",
@@ -98,23 +94,13 @@ export class ManualFlowchartEditor implements OnInit, OnDestroy {
   }
 
   onLoadData(): void {
-    if (this.source() === "diagram") {
-      this.apiS
-        .onGetItem<IManualDiagramSimpleDTO>(
-          Endpoints.ManualsPasos.getDiagrama(this.id()),
-        )
-        .then((result) => {
-          if (result) this.diagram.set(result);
-        });
-    } else {
-      this.apiS
-        .onGetItem<IManualFlowchartDTO>(
-          Endpoints.ManualFlowcharts.getById(this.id()),
-        )
-        .then((result) => {
-          if (result) this.flowchart.set(result);
-        });
-    }
+    this.apiS
+      .onGetItem<IManualDiagramSimpleDTO>(
+        Endpoints.ManualsPasos.getDiagrama(this.id()),
+      )
+      .then((result) => {
+        if (result) this.diagram.set(result);
+      });
   }
 
   handleMessage(event: MessageEvent): void {
@@ -136,10 +122,9 @@ export class ManualFlowchartEditor implements OnInit, OnDestroy {
         break;
 
       case "init":
-        const xml =
-          this.source() === "diagram"
-            ? (this.diagram()?.xmlContent?.trim() ? this.diagram()!.xmlContent : CORPORATE_DEFAULT_XML)
-            : (this.flowchart()?.content?.trim() ? this.flowchart()!.content : CORPORATE_DEFAULT_XML);
+        const xml = this.diagram()?.xmlContent?.trim()
+          ? this.diagram()!.xmlContent
+          : CORPORATE_DEFAULT_XML;
         this.sendAction({ action: "load", xml, autosave: 1 });
         break;
 
@@ -164,35 +149,20 @@ export class ManualFlowchartEditor implements OnInit, OnDestroy {
   }
 
   onSave(xml: string): void {
-    if (this.source() === "diagram") {
-      const current = this.diagram();
-      if (!current) return;
-      this.apiS
-        .onPut<IManualDiagramSimpleDTO>(
-          Endpoints.ManualsPasos.updateDiagrama(this.id()),
-          { content: xml },
-        )
-        .then((res) => {
-          if (res) this.diagram.set(res);
-          this.messageS.add({
-            severity: "success",
-            summary: "Guardado",
-            detail: "Diagrama guardado correctamente",
-          });
+    const current = this.diagram();
+    if (!current) return;
+    this.apiS
+      .onPut<IManualDiagramSimpleDTO>(
+        Endpoints.ManualsPasos.updateDiagrama(this.id()),
+        { content: xml },
+      )
+      .then((res) => {
+        if (res) this.diagram.set(res);
+        this.messageS.add({
+          severity: "success",
+          summary: "Guardado",
+          detail: "Diagrama guardado correctamente",
         });
-    } else {
-      const current = this.flowchart();
-      if (!current) return;
-      this.apiS
-        .onPut(Endpoints.ManualFlowcharts.update(this.id()), { content: xml })
-        .then(() => {
-          this.flowchart.set({ ...current, content: xml });
-          this.messageS.add({
-            severity: "success",
-            summary: "Guardado",
-            detail: "Flujograma guardado correctamente",
-          });
-        });
-    }
+      });
   }
 }

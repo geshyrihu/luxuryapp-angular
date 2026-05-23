@@ -1,0 +1,103 @@
+<div class="rf-shell">
+  @if (data(); as epf) {
+  <div class="rf-card p-4">
+    <div class="grid">
+      <div class="col-12 lg:col-6 px-4">
+        <div class="rf-panel">
+          <div class="rf-panel-title">ACTIVO</div>
+          <div class="rf-panel-list">
+            @for (item of epfActivo(); track $index) {
+            <div class="rf-panel-row">
+              <div class="rf-panel-label">
+                <div class="rf-td-descripcion--item">{{ item.descripcion }}</div>
+              </div>
+              <div class="rf-td-number" [class.rf-neg]="item.saldoCorte < 0">
+                {{ item.saldoCorte | accountingNumber : "1.0-0" }}
+              </div>
+            </div>
+            }
+          </div>
+          <div class="rf-panel-total">
+            <div>TOTAL ACTIVO</div>
+            <div class="rf-td-number--total text-xl" [class.rf-neg]="totalActivo() < 0">
+              {{ totalActivo() | accountingNumber : "1.0-0" }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 lg:col-6 px-4 mt-6 lg:mt-0">
+        <div class="rf-panel">
+          <div class="rf-panel-title">PASIVO</div>
+          <div class="rf-panel-list">
+            @for (item of epfPasivo(); track $index) {
+            <div class="rf-panel-row">
+              <div class="rf-panel-label">
+                <div class="rf-td-descripcion--item">{{ item.descripcion }}</div>
+              </div>
+              <div class="rf-td-number" [class.rf-neg]="item.saldoCorte < 0">
+                {{ item.saldoCorte | accountingNumber : "1.0-0" }}
+              </div>
+            </div>
+            }
+          </div>
+          <div class="rf-panel-total mb-5">
+            <div>TOTAL PASIVO</div>
+            <div class="rf-td-number--total" [class.rf-neg]="totalPasivo() < 0">
+              {{ totalPasivo() | accountingNumber : "1.0-0" }}
+            </div>
+          </div>
+
+          <div class="rf-panel-title">CAPITAL</div>
+          <div class="rf-panel-list">
+            @for (item of epfCapital(); track $index) {
+            <div class="rf-panel-row">
+              <div class="rf-panel-label">
+                <div class="rf-td-descripcion--item">{{ item.descripcion }}</div>
+              </div>
+              <div class="rf-td-number" [class.rf-neg]="item.saldoCorte < 0">
+                {{ item.saldoCorte | accountingNumber : "1.0-0" }}
+              </div>
+            </div>
+            }
+          </div>
+          <div class="rf-panel-total mt-3">
+            <div>TOTAL CAPITAL</div>
+            <div class="rf-td-number--total" [class.rf-neg]="totalCapital() < 0">
+              {{ totalCapital() | accountingNumber : "1.0-0" }}
+            </div>
+          </div>
+
+          <div class="rf-panel-total rf-panel-total--strong mt-auto">
+            <div>TOTAL PASIVO Y CAPITAL</div>
+            <div class="rf-td-number--total text-xl" [class.rf-neg]="totalPasivoCapital() < 0">
+              {{ totalPasivoCapital() | accountingNumber : "1.0-0" }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  } @else { @if (loading()) {
+  <div class="rf-card p-6">
+    <div class="grid">
+      <div class="col-6">
+        <p-skeleton height="2rem" styleClass="mb-2" />
+        <p-skeleton height="1rem" styleClass="mb-2" />
+        <p-skeleton height="1rem" />
+      </div>
+      <div class="col-6">
+        <p-skeleton height="2rem" styleClass="mb-2" />
+        <p-skeleton height="1rem" styleClass="mb-2" />
+        <p-skeleton height="1rem" />
+      </div>
+    </div>
+  </div>
+  } @else {
+  <div class="rf-card flex flex-column align-items-center py-8 text-color-secondary">
+    <i class="pi pi-file-excel text-5xl mb-4 opacity-50"></i>
+    <p class="m-0 text-xl font-medium">No hay datos para mostrar</p>
+    <p class="mt-2 text-500">Verifique el periodo seleccionado</p>
+  </div>
+  } }
+</div>

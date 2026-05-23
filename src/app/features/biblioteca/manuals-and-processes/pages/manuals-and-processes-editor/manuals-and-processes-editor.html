@@ -1,25 +1,33 @@
 <div class="flex flex-column h-full">
-
   <!-- Top Bar -->
-  <div class="surface-card p-3 shadow-1 flex align-items-center justify-content-between border-bottom-1 border-200 flex-shrink-0">
+  <div
+    class="surface-card p-3 shadow-1 flex align-items-center justify-content-between border-bottom-1 border-200 flex-shrink-0"
+  >
     <div class="flex align-items-center gap-3">
-      <p-button icon="pi pi-arrow-left" [text]="true" severity="secondary" (onClick)="onGoBack()" />
+      <p-button
+        icon="pi pi-arrow-left"
+        [text]="true"
+        severity="secondary"
+        (onClick)="onGoBack()"
+      />
       <div>
         <h2 class="text-xl font-bold text-900 m-0">
           {{ manual()?.folio || 'Editor de Manual' }}
         </h2>
-        <p class="text-500 m-0 text-xs">{{ manual()?.departament }} &mdash; v{{ manual()?.currentVersion }}</p>
+        <p class="text-500 m-0 text-xs">
+          {{ manual()?.departament }} &mdash; v{{ manual()?.currentVersion }}
+        </p>
       </div>
     </div>
     <div class="flex align-items-center gap-2">
       @if (activeTab() === 'pasos') {
-        <p-button
-          icon="pi pi-plus"
-          label="Agregar Paso"
-          severity="primary"
-          size="small"
-          (onClick)="onNewPaso()"
-        />
+      <p-button
+        icon="pi pi-plus"
+        label="Agregar Paso"
+        severity="primary"
+        size="small"
+        (onClick)="onNewPaso()"
+      />
       }
       <p-button
         [label]="'Pasos (' + pasos().length + ')'"
@@ -53,24 +61,32 @@
   <!-- ============================================================ -->
   @if (activeTab() === 'pasos') {
   <div class="flex flex-grow-1 overflow-hidden">
-
     <!-- Panel izquierdo: lista de pasos -->
-    <div class="border-right-1 border-200 overflow-y-auto flex-shrink-0 w-20rem">
+    <div
+      class="border-right-1 border-200 overflow-y-auto flex-shrink-0 w-20rem"
+    >
       @if (!pasos().length) {
       <div class="p-4 text-center text-500">
         <i class="pi pi-list text-3xl mb-2 block"></i>
         <p class="text-sm m-0">Sin pasos. Agrega el primero.</p>
       </div>
       }
-      <div cdkDropList (cdkDropListDropped)="onDropPaso($event)" class="flex flex-column">
+      <div
+        cdkDropList
+        (cdkDropListDropped)="onDropPaso($event)"
+        class="flex flex-column"
+      >
         @for (paso of pasos(); track paso.id; let i = $index) {
         <div
           cdkDrag
-          class="flex align-items-center gap-2 p-3 border-bottom-1 border-200 cursor-pointer hover:surface-hover transition-colors transition-duration-150"
+          class="flex align-items-center gap-2 p-3 border-bottom-1 border-200 cursor-pointer hover:surface-100 transition-colors transition-duration-150"
           [class.surface-100]="selectedPaso()?.id === paso.id"
           (click)="onSelectPaso(paso)"
         >
-          <i cdkDragHandle class="pi pi-bars text-400 cursor-grab flex-shrink-0 text-xs"></i>
+          <i
+            cdkDragHandle
+            class="pi pi-bars text-400 cursor-grab flex-shrink-0 text-xs"
+          ></i>
 
           <div
             class="flex-shrink-0 w-2rem h-2rem border-circle flex align-items-center justify-content-center text-white font-bold text-xs"
@@ -83,18 +99,28 @@
           </div>
 
           <div class="flex-1 min-w-0">
-            <div class="text-sm font-medium text-900 white-space-nowrap overflow-hidden text-overflow-ellipsis">
+            <div
+              class="text-sm font-medium text-900 white-space-nowrap overflow-hidden text-overflow-ellipsis"
+            >
               {{ paso.titulo }}
             </div>
             @if (paso.responsableRoleNombre) {
-            <div class="text-xs text-500 mt-1">{{ paso.responsableRoleNombre }}</div>
-            }
-            @if (paso.tipoNota !== 0) {
-            <p-tag [value]="tipoNotaLabel(paso.tipoNota)" [severity]="tipoNotaSeverity(paso.tipoNota)" styleClass="text-xs mt-1" />
+            <div class="text-xs text-500 mt-1">
+              {{ paso.responsableRoleNombre }}
+            </div>
+            } @if (paso.tipoNota !== 0) {
+            <p-tag
+              [value]="tipoNotaLabel(paso.tipoNota)"
+              [severity]="tipoNotaSeverity(paso.tipoNota)"
+              styleClass="text-xs mt-1"
+            />
             }
           </div>
 
-          <div class="flex-shrink-0 flex gap-1" (click)="$event.stopPropagation()">
+          <div
+            class="flex-shrink-0 flex gap-1"
+            (click)="$event.stopPropagation()"
+          >
             @if (paso.diagramaId) {
             <p-button
               icon="pi pi-sitemap"
@@ -120,21 +146,42 @@
 
     <!-- Panel derecho: formulario del paso -->
     <div class="flex-grow-1 overflow-y-auto p-4">
-
       @if (!selectedPaso() && !isNewPaso()) {
-      <div class="flex flex-column align-items-center justify-content-center h-full text-center">
-        <i class="pi pi-hand-pointer text-4xl text-400 mb-3"></i>
-        <p class="text-500">Selecciona un paso de la lista o agrega uno nuevo.</p>
+      <div
+        class="flex flex-column align-items-center justify-content-center h-full text-center max-w-30rem mx-auto"
+      >
+        <i class="pi pi-book text-6xl text-primary mb-4"></i>
+        <h2 class="text-900 font-bold mb-2">Diseño del Manual</h2>
+        <p class="text-500 line-height-3 mb-4">
+          Aquí es donde defines el paso a paso de tu proceso. Selecciona un paso de la lista de la izquierda para editarlo, o haz clic en <strong>Agregar Paso</strong> para crear una nueva instrucción.
+        </p>
+        <p-button
+          icon="pi pi-plus"
+          label="Crear Primer Paso"
+          severity="primary"
+          (onClick)="onNewPaso()"
+          *ngIf="pasos().length === 0"
+        />
       </div>
       } @else {
 
       <div class="w-full xl:w-8 mx-auto flex flex-column gap-4">
+        
+        <div class="surface-ground border-round-xl p-4 border-1 surface-border">
+          <div class="flex align-items-center gap-3 mb-2">
+            <i class="pi pi-pen-to-square text-2xl text-primary"></i>
+            <h3 class="m-0 text-900 font-semibold">{{ isNewPaso() ? 'Nuevo Paso' : 'Editar Paso' }}</h3>
+          </div>
+          <p class="text-color-secondary m-0 line-height-3">
+            Detalla la instrucción a realizar. Usa el tipo <strong>Normal</strong> para instrucciones regulares, o resalta precauciones cambiando a <strong>Advertencia</strong> o <strong>Buenas Prácticas</strong>. Puedes asignar uno o más roles como responsables exclusivos de esta acción.
+          </p>
+        </div>
 
-        <h3 class="text-lg font-bold text-900 m-0">
-          {{ isNewPaso() ? 'Nuevo Paso' : 'Editar Paso' }}
-        </h3>
-
-        <form [formGroup]="pasoForm" (ngSubmit)="onSavePaso()" class="flex flex-column gap-3">
+        <form
+          [formGroup]="pasoForm"
+          (ngSubmit)="onSavePaso()"
+          class="flex flex-column gap-3"
+        >
           <custom-input-text-signal
             [control]="pasoForm.controls.titulo"
             label="Titulo del Paso"
@@ -150,11 +197,14 @@
             [horizontal]="false"
           />
 
-          <custom-input-select-signal
-            [control]="pasoForm.controls.responsableRoleId"
-            [data]="roles()"
-            label="Responsable (Rol)"
-            placeholder="Seleccionar rol..."
+          <custom-input-multiselect-signal
+            [control]="pasoForm.controls.responsableRoleIds"
+            [options]="roles()"
+            [group]="true"
+            optionGroupLabel="label"
+            optionGroupChildren="items"
+            label="Responsables (Roles)"
+            placeholder="Seleccionar roles..."
             [horizontal]="false"
           />
 
@@ -188,8 +238,27 @@
             />
           </div>
           @if (!selectedPaso()!.diagramaId) {
-          <p class="text-sm text-500 m-0">Este paso no tiene diagrama de flujo. Crea uno para visualizar el proceso.</p>
+          <div class="surface-ground border-round p-3 border-1 surface-border">
+            <div class="flex align-items-center gap-2 mb-2">
+              <i class="pi pi-lightbulb text-yellow-500"></i>
+              <span class="font-bold text-700 text-sm">Tip Visual</span>
+            </div>
+            <p class="text-sm text-500 m-0 line-height-3">
+              Puedes agregar un <strong>Diagrama de Flujo interactivo</strong> (estilo BPMN) para explicar visualmente este paso. Haz clic en "Crear Diagrama" para abrir el editor integrado de draw.io.
+            </p>
+          </div>
+          } @else {
+            <div class="surface-ground border-round p-3 border-1 surface-border mb-2">
+              <div class="flex align-items-center gap-2 mb-2">
+                <i class="pi pi-check-circle text-green-500"></i>
+                <span class="font-bold text-700 text-sm">Diagrama Vinculado</span>
+              </div>
+              <p class="text-sm text-500 m-0 line-height-3">
+                Este paso cuenta con un diagrama interactivo. Usa el botón "Abrir Diagrama" para realizar modificaciones.
+              </p>
+            </div>
           }
+          
           @if (selectedPaso()!.diagramaXml) {
           <div class="border-round overflow-hidden border-1 border-200">
             <app-diagram-preview [xml]="selectedPaso()!.diagramaXml!" />
@@ -224,9 +293,7 @@
           <div class="flex align-items-center gap-2 text-500 text-sm">
             <i class="pi pi-spin pi-spinner"></i> Subiendo...
           </div>
-          }
-
-          @if (selectedPaso()!.imagenes?.length) {
+          } @if (selectedPaso()!.imagenes?.length) {
           <div class="flex flex-wrap gap-3">
             @for (img of selectedPaso()!.imagenes; track img.id) {
             <div
@@ -255,6 +322,113 @@
         </div>
         }
 
+        <!-- Enlaces / Videos del paso (solo en edicion) -->
+        @if (!isNewPaso() && selectedPaso()) {
+        <div class="flex flex-column gap-3 pt-3 border-top-1 border-200">
+          <h4 class="text-base font-bold text-700 m-0">Enlaces y Videos</h4>
+
+          <form
+            [formGroup]="enlaceForm"
+            (ngSubmit)="onAddEnlace()"
+            class="flex flex-column gap-2 border-1 border-round p-3 surface-50 border-200"
+          >
+            <div class="grid align-items-end">
+              <div class="col-12 md:col-7">
+                <custom-input-text-signal
+                  [control]="enlaceForm.controls.urlEnlace"
+                  label="URL del Enlace o Video"
+                  placeholder="Ej: https://youtube.com/watch?v=..."
+                  [horizontal]="false"
+                />
+              </div>
+              <div class="col-12 md:col-3 pb-3">
+                <custom-input-switch-signal
+                  [control]="enlaceForm.controls.esVideo"
+                  label="¿Es un Video?"
+                  [horizontal]="false"
+                />
+              </div>
+              <div class="col-12 md:col-2 pb-3 flex justify-content-end">
+                <p-button
+                  type="submit"
+                  label="Agregar"
+                  icon="pi pi-plus"
+                  size="small"
+                  [loading]="savingEnlace()"
+                  [disabled]="enlaceForm.invalid"
+                />
+              </div>
+            </div>
+          </form>
+
+          @if (selectedPaso()!.enlaces?.length) {
+          <div class="flex flex-column gap-3 mt-2">
+            @for (enlace of selectedPaso()!.enlaces; track enlace.id) {
+            <div
+              class="relative border-round overflow-hidden border-1 border-200 p-3 bg-white"
+            >
+              <div class="absolute top-0 right-0 m-2 z-5">
+                <p-button
+                  icon="pi pi-trash"
+                  severity="danger"
+                  size="small"
+                  [rounded]="true"
+                  [text]="true"
+                  (onClick)="onDeleteEnlace(enlace.id)"
+                />
+              </div>
+
+              @if (enlace.esVideo) { @if (safeUrl(enlace.urlEnlace)) {
+              <div
+                class="border-round overflow-hidden mt-3"
+                style="aspect-ratio: 16/9"
+              >
+                <iframe
+                  [src]="safeUrl(enlace.urlEnlace)"
+                  class="w-full h-full border-none"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              } @else {
+              <p class="text-sm text-500 m-0">URL de video no válida.</p>
+              } } @else {
+              <div class="flex align-items-center gap-2 mt-2">
+                <a
+                  [href]="enlace.urlEnlace"
+                  target="_blank"
+                  class="no-underline"
+                >
+                  <p-button
+                    icon="pi pi-external-link"
+                    label="Abrir Enlace"
+                    severity="info"
+                    size="small"
+                    [outlined]="true"
+                  />
+                </a>
+                <span
+                  class="text-sm text-500 text-overflow-ellipsis overflow-hidden white-space-nowrap"
+                  style="max-width: 300px"
+                  >{{ enlace.urlEnlace }}</span
+                >
+              </div>
+              }
+            </div>
+            }
+          </div>
+          } @else {
+          <p class="text-sm text-500 m-0">No hay enlaces o videos adjuntos.</p>
+          }
+        </div>
+        }
       </div>
       }
     </div>
@@ -267,7 +441,6 @@
   @if (activeTab() === 'versiones') {
   <div class="flex-grow-1 overflow-y-auto p-4">
     <div class="w-full xl:w-8 mx-auto flex flex-column gap-4">
-
       <div class="flex align-items-center justify-content-between">
         <h3 class="text-lg font-bold text-900 m-0">Historial de Versiones</h3>
         <p-button
@@ -280,9 +453,15 @@
       </div>
 
       @if (showVersionForm()) {
-      <div class="surface-card p-4 border-round-xl border-1 border-200 shadow-1">
+      <div
+        class="surface-card p-4 border-round-xl border-1 border-200 shadow-1"
+      >
         <h4 class="text-base font-bold text-700 m-0 mb-3">Agregar Version</h4>
-        <form [formGroup]="versionForm" (ngSubmit)="onAgregarVersion()" class="flex flex-column gap-3">
+        <form
+          [formGroup]="versionForm"
+          (ngSubmit)="onAgregarVersion()"
+          class="flex flex-column gap-3"
+        >
           <div class="grid">
             <div class="col-12 md:col-4">
               <custom-input-text-signal
@@ -317,14 +496,18 @@
             [horizontal]="false"
           />
           <div class="flex justify-content-end gap-2">
-            <p-button label="Cancelar" severity="secondary" [outlined]="true" size="small" (onClick)="showVersionForm.set(false)" />
+            <p-button
+              label="Cancelar"
+              severity="secondary"
+              [outlined]="true"
+              size="small"
+              (onClick)="showVersionForm.set(false)"
+            />
             <custom-button-save [loading]="savingVersion()" />
           </div>
         </form>
       </div>
-      }
-
-      @if (!versiones().length) {
+      } @if (!versiones().length) {
       <div class="text-center text-500 py-5">
         <i class="pi pi-history text-4xl mb-3 block"></i>
         <p class="text-sm m-0">Sin versiones registradas.</p>
@@ -332,11 +515,15 @@
       } @else {
       <div class="flex flex-column gap-2">
         @for (v of versiones(); track v.id) {
-        <div class="surface-card p-3 border-round-xl border-1 border-200 flex align-items-start justify-content-between gap-3">
+        <div
+          class="surface-card p-3 border-round-xl border-1 border-200 flex align-items-start justify-content-between gap-3"
+        >
           <div class="flex-1">
             <div class="flex align-items-center gap-2 mb-1">
               <span class="font-bold text-primary">v{{ v.version }}</span>
-              <span class="text-500 text-xs">{{ v.fechaCambio | date: 'dd/MM/yyyy' }}</span>
+              <span class="text-500 text-xs"
+                >{{ v.fechaCambio | date: 'dd/MM/yyyy' }}</span
+              >
               @if (v.autor) {
               <span class="text-xs text-700">por {{ v.autor }}</span>
               }
@@ -356,7 +543,6 @@
         }
       </div>
       }
-
     </div>
   </div>
   }
@@ -367,14 +553,19 @@
   @if (activeTab() === 'adjuntos') {
   <div class="flex-grow-1 overflow-y-auto p-4">
     <div class="w-full xl:w-8 mx-auto flex flex-column gap-4">
+      <h3 class="text-lg font-bold text-900 m-0">
+        Archivos Adjuntos (Anexos y Referencias)
+      </h3>
 
-      <h3 class="text-lg font-bold text-900 m-0">Archivos Adjuntos (Anexos y Referencias)</h3>
-
-      <div class="surface-card p-4 border-round-xl border-1 border-200 shadow-1">
+      <div
+        class="surface-card p-4 border-round-xl border-1 border-200 shadow-1"
+      >
         <h4 class="text-base font-bold text-700 m-0 mb-3">Subir Archivo</h4>
         <div class="flex flex-column gap-3">
           <div class="flex flex-column gap-1">
-            <label class="font-bold text-sm text-700">Nombre del Documento</label>
+            <label class="font-bold text-sm text-700"
+              >Nombre del Documento</label
+            >
             <input
               #adjuntoNombreInput
               type="text"
@@ -401,7 +592,9 @@
             </span>
             }
           </div>
-          <p class="text-xs text-500 m-0">Formatos permitidos: PDF, Word, Excel.</p>
+          <p class="text-xs text-500 m-0">
+            Formatos permitidos: PDF, Word, Excel.
+          </p>
         </div>
       </div>
 
@@ -413,15 +606,28 @@
       } @else {
       <div class="flex flex-column gap-2">
         @for (adj of adjuntos(); track adj.id) {
-        <div class="surface-card p-3 border-round-xl border-1 border-200 flex align-items-center gap-3">
+        <div
+          class="surface-card p-3 border-round-xl border-1 border-200 flex align-items-center gap-3"
+        >
           <i class="pi pi-file text-2xl text-400 flex-shrink-0"></i>
           <div class="flex-1 min-w-0">
-            <div class="font-medium text-900 white-space-nowrap overflow-hidden text-overflow-ellipsis">{{ adj.nombre }}</div>
-            <div class="text-xs text-500 uppercase">{{ adj.fileExtension }}</div>
+            <div
+              class="font-medium text-900 white-space-nowrap overflow-hidden text-overflow-ellipsis"
+            >
+              {{ adj.nombre }}
+            </div>
+            <div class="text-xs text-500 uppercase">
+              {{ adj.fileExtension }}
+            </div>
           </div>
           <div class="flex gap-1 flex-shrink-0">
             <a [href]="adj.url" target="_blank" class="no-underline">
-              <p-button icon="pi pi-download" [text]="true" severity="info" size="small" />
+              <p-button
+                icon="pi pi-download"
+                [text]="true"
+                severity="info"
+                size="small"
+              />
             </a>
             <p-button
               icon="pi pi-trash"
@@ -435,9 +641,7 @@
         }
       </div>
       }
-
     </div>
   </div>
   }
-
 </div>

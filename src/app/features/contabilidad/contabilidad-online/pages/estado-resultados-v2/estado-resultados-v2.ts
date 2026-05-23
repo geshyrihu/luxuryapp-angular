@@ -1,4 +1,4 @@
-import { CommonModule, DecimalPipe } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SkeletonModule } from "primeng/skeleton";
@@ -64,7 +64,6 @@ type EstadoResultadosRow =
     TableModule,
     SkeletonModule,
     DataViewMobile,
-    DecimalPipe,
     AccountingNumberPipe,
   ],
   templateUrl: "./estado-resultados-v2.html",
@@ -80,7 +79,11 @@ export class EstadoResultadosV2 {
   monthHeaders = computed(() => {
     const idx = this.filterS.mesIdx();
     const wr = (i: number) => ((i % 12) + 12) % 12;
-    return [MONTH_NAMES[wr(idx - 2)], MONTH_NAMES[wr(idx - 1)], MONTH_NAMES[wr(idx)]];
+    return [
+      MONTH_NAMES[wr(idx - 2)],
+      MONTH_NAMES[wr(idx - 1)],
+      MONTH_NAMES[wr(idx)],
+    ];
   });
 
   rows = computed<EstadoResultadosRow[]>(() => {
@@ -100,7 +103,10 @@ export class EstadoResultadosV2 {
       const destino = esIngreso ? ingRows : gasRows;
 
       for (const mayor of clas.cuentasMayor ?? []) {
-        if (mayor.numeroCuenta === "400-000-000" || mayor.numeroCuenta === "600-000-000") {
+        if (
+          mayor.numeroCuenta === "400-000-000" ||
+          mayor.numeroCuenta === "600-000-000"
+        ) {
           continue;
         }
 
@@ -108,8 +114,7 @@ export class EstadoResultadosV2 {
           const groupRow = this.createRow("group", mayor, wr, mes);
           destino.push(groupRow);
 
-          for (const child of this.flatten401Children(mayor, wr, mes))
-          {
+          for (const child of this.flatten401Children(mayor, wr, mes)) {
             destino.push(child);
             totIng = this.addTotals(totIng, child);
           }
@@ -203,8 +208,7 @@ export class EstadoResultadosV2 {
 
     for (const sub of mayor.subcuentas ?? []) {
       if (sub.cuentasDetalle?.length) {
-        for (const det of sub.cuentasDetalle)
-        {
+        for (const det of sub.cuentasDetalle) {
           const row = this.createRow("item", det, wr, mes);
           if (this.hasVisibleValues(row)) {
             rows.push(row);

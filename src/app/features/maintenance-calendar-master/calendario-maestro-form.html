@@ -15,12 +15,14 @@
         optionLabel="label"
         optionValue="value"
         placeholder="Seleccione un mes"
+        [filter]="true"
       ></custom-input-select-signal>
 
       <custom-input-select-signal
         [control]="form.controls.calendarioMaestroEquipoId"
         label="Nombre Equipo"
         [data]="cb_equipoCalendarioMaestro()"
+        [filter]="true"
       />
       <custom-input-textarea-signal
         [control]="form.controls.descripcionServicio"

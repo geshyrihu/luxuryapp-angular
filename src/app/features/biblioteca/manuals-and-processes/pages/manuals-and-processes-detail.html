@@ -31,7 +31,7 @@
               <i class="pi pi-book text-xs"></i>
               <span>Manual de Proceso · {{ manual()!.folio }}</span>
             </div>
-            @if (aspRoleS.roleSignal(EApplicationRole.SuperUsuario)()) {
+            @if (isAdmin()) {
             <p-button
               icon="pi pi-cog"
               label="Editor"
@@ -69,6 +69,10 @@
           <div class="inline-flex align-items-center gap-2 text-color-secondary">
             <i class="pi pi-sitemap"></i>
             <span>Departamento: {{ manual()!.departament }}</span>
+          </div>
+          <div class="inline-flex align-items-center gap-2 text-color-secondary">
+            <i class="pi pi-calendar-clock"></i>
+            <span>Frecuencia: {{ getPeriodicityReadable(manual()) }}</span>
           </div>
           <div class="inline-flex align-items-center gap-2 text-color-secondary">
             <i class="pi pi-tag"></i>
@@ -195,9 +199,9 @@
             <div class="flex-1">
               <div class="flex align-items-center gap-2 flex-wrap mb-2">
                 <h4 class="text-base text-900 m-0">{{ paso.titulo }}</h4>
-                @if (paso.responsableRoleNombre) {
+                @for (nombre of paso.responsableRoleNombres; track nombre) {
                 <p-tag
-                  [value]="paso.responsableRoleNombre"
+                  [value]="nombre"
                   severity="secondary"
                 ></p-tag>
                 }
@@ -251,6 +255,33 @@
                 ></p-image>
               </div>
             </div>
+            }
+          </div>
+          }
+
+          @if (paso.enlaces?.length) {
+          <div class="flex flex-column gap-3 mt-3">
+            @for (enlace of paso.enlaces; track enlace.id) {
+              @if (enlace.esVideo) {
+                @if (safeUrl(enlace.urlEnlace)) {
+                <div class="border-round-xl overflow-hidden border-1 surface-border" style="aspect-ratio: 16/9;">
+                  <iframe
+                    [src]="safeUrl(enlace.urlEnlace)"
+                    class="w-full h-full border-none"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+                }
+              } @else {
+                <div class="flex align-items-center gap-2">
+                  <i class="pi pi-external-link text-primary"></i>
+                  <a [href]="enlace.urlEnlace" target="_blank" class="no-underline">
+                    <p-button icon="pi pi-external-link" label="Abrir Enlace" severity="info" size="small" [outlined]="true" />
+                  </a>
+                  <span class="text-sm text-color-secondary">{{ enlace.urlEnlace }}</span>
+                </div>
+              }
             }
           </div>
           }

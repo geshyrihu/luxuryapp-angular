@@ -10,6 +10,7 @@
             label="Categoría"
             [data]="cb_inventoryCategory"
             [horizontal]="false"
+            [filter]="true"
           />
           <custom-input-text-signal
             [control]="form.controls.nameMachinery"
@@ -60,12 +61,14 @@
             label="Estado"
             [data]="optionActive"
             [horizontal]="false"
+            [filter]="true"
           />
           <custom-input-select-signal
             [control]="form.controls.equipoClasificacionId"
             label="Clasificación"
             [data]="cb_equipoClasificacion"
             [horizontal]="false"
+            [filter]="true"
           />
         </div>
 
@@ -121,6 +124,7 @@ category == 7) {
             label="Categoría"
             [data]="cb_inventoryCategory"
             [horizontal]="false"
+            [filter]="true"
           />
           <custom-input-text-signal
             [control]="form.controls.nameMachinery"
@@ -153,12 +157,14 @@ category == 7) {
             label="Estado"
             [data]="optionActive"
             [horizontal]="false"
+            [filter]="true"
           />
           <custom-input-select-signal
             [control]="form.controls.equipoClasificacionId"
             label="Clasificación"
             [data]="cb_equipoClasificacion"
             [horizontal]="false"
+            [filter]="true"
           />
         </div>
 

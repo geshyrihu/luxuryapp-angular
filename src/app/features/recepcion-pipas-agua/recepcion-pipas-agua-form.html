@@ -1,0 +1,113 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+
+      <div class="grid">
+        <!-- Columna izquierda: datos del camion y tiempos -->
+        <div class="col-12 md:col-6">
+          <custom-input-text-signal
+            [control]="form.controls.placasCamion"
+            label="Placas del camion"
+            placeholder="Ej. ABC-1234"
+          />
+
+          <custom-input-date-time-signal
+            [control]="form.controls.horaLlegada"
+            label="Hora de llegada"
+            placeholder="Fecha y hora de llegada"
+          />
+
+          <custom-input-date-time-signal
+            [control]="form.controls.horaTermino"
+            label="Hora de termino"
+            placeholder="Completar al finalizar la descarga"
+          />
+
+          <custom-input-decimal-signal
+            [control]="form.controls.capacidadPipa"
+            label="Capacidad de la pipa (litros)"
+            [minFractionDigits]="0"
+            [maxFractionDigits]="0"
+          />
+        </div>
+
+        <!-- Columna derecha: lecturas y niveles -->
+        <div class="col-12 md:col-6">
+          <custom-input-decimal-signal
+            [control]="form.controls.nivelCisternaAntes"
+            label="Nivel cisterna antes"
+            [minFractionDigits]="2"
+            [maxFractionDigits]="2"
+          />
+          <custom-input-decimal-signal
+            [control]="form.controls.nivelCisternaDespues"
+            label="Nivel cisterna despues"
+            [minFractionDigits]="2"
+            [maxFractionDigits]="2"
+          />
+          <custom-input-decimal-signal
+            [control]="form.controls.lecturaMetroAntes"
+            label="Lectura metro antes"
+            [minFractionDigits]="4"
+            [maxFractionDigits]="4"
+          />
+          <custom-input-decimal-signal
+            [control]="form.controls.lecturaMetroDespues"
+            label="Lectura metro despues"
+            [minFractionDigits]="4"
+            [maxFractionDigits]="4"
+          />
+        </div>
+      </div>
+
+      <!-- Seccion de fotografias -->
+      <div class="mt-3 mb-2">
+        <p class="font-semibold text-sm mb-2">Fotografias de evidencia</p>
+        <div class="grid">
+          <div class="col-12 md:col-4">
+            <p class="text-xs text-500 mb-1">Pipa llena</p>
+            <div class="card text-center p-2">
+              <custom-input-img-signal
+                [control]="form.controls.fotoPipaLlena"
+                [urlImgCurrent]="urlFotoPipaLlena()"
+                [contentHeight]="80"
+                [contentWidth]="80"
+                label=""
+              />
+            </div>
+          </div>
+          <div class="col-12 md:col-4">
+            <p class="text-xs text-500 mb-1">Pipa vacia</p>
+            <div class="card text-center p-2">
+              <custom-input-img-signal
+                [control]="form.controls.fotoPipaVacia"
+                [urlImgCurrent]="urlFotoPipaVacia()"
+                [contentHeight]="80"
+                [contentWidth]="80"
+                label=""
+              />
+            </div>
+          </div>
+          <div class="col-12 md:col-4">
+            <p class="text-xs text-500 mb-1">INE del chofer</p>
+            <div class="card text-center p-2">
+              <custom-input-img-signal
+                [control]="form.controls.fotoIneChofer"
+                [urlImgCurrent]="urlFotoIneChofer()"
+                [contentHeight]="80"
+                [contentWidth]="80"
+                label=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </div>
+</div>

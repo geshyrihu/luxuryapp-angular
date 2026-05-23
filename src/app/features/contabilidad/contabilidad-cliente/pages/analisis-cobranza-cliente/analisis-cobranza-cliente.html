@@ -1,0 +1,168 @@
+<div class="rf-shell px-3 md:px-4 pb-3 md:pb-4 pt-0">
+  <div *ngIf="loading()" class="rf-card p-4 text-color-secondary mb-4">
+    Consultando análisis de cobranza...
+  </div>
+
+  <div *ngIf="!loading() && data() as d">
+    <div class="grid mb-3">
+      <div class="col-12 md:col-6 xl:col-3">
+        <div class="rf-card p-3 h-full">
+          <div class="text-color-secondary mb-2">Departamentos</div>
+          <div class="text-xl font-semibold">{{ d.totalCondominios | number:'1.0-0' }}</div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 xl:col-3">
+        <div class="rf-card p-3 h-full">
+          <div class="text-color-secondary mb-2">Total mtto mensual</div>
+          <div class="text-xl font-semibold">{{ d.cuotaMttoVigente | accountingNumber:'1.2-2' }}</div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 xl:col-3">
+        <div class="rf-card p-3 h-full">
+          <div class="text-color-secondary mb-2">Total extraordinaria mensual</div>
+          <div class="text-xl font-semibold">{{ d.cuotaExtraordinariaVigente | accountingNumber:'1.2-2' }}</div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 xl:col-3">
+        <div class="rf-card p-3 h-full">
+          <div class="text-color-secondary mb-2">Total a recaudar mensual</div>
+          <div class="text-xl font-semibold">{{ d.cuotaMensualTotal | accountingNumber:'1.2-2' }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid mb-3">
+      <div class="col-12 lg:col-6">
+        <div class="rf-card p-4 h-full">
+          <div class="text-color-secondary mb-3">{{ d.periodo }}</div>
+          <table class="rf-table">
+            <thead>
+              <tr class="border-bottom-1 surface-border">
+                <th class="text-left pb-2">Clasificación</th>
+                <th class="text-right pb-2">Saldo</th>
+                <th class="text-right pb-2">%</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="font-bold">
+                <td class="py-1">Cobranza perfecta</td>
+                <td class="text-right font-mono">{{ d.cobranzaPerfecta | accountingNumber:'1.0-0' }}</td>
+                <td class="text-right">100%</td>
+              </tr>
+              <tr>
+                <td class="py-1">Morosos</td>
+                <td class="text-right font-mono">{{ d.totalMorosos | accountingNumber:'1.0-0' }}</td>
+                <td class="text-right text-500 text-xs">{{ pct(d.totalMorosos, d.cobranzaPerfecta) }}</td>
+              </tr>
+              <tr>
+                <td class="py-1">Deuda corriente</td>
+                <td class="text-right font-mono">{{ d.totalDeudaCorriente | accountingNumber:'1.0-0' }}</td>
+                <td class="text-right text-500 text-xs">{{ pct(d.totalDeudaCorriente, d.cobranzaPerfecta) }}</td>
+              </tr>
+              <tr class="surface-ground font-bold">
+                <td class="py-1 text-green-700">Cobrado</td>
+                <td class="text-right font-mono text-green-700">{{ d.totalCobrado | accountingNumber:'1.0-0' }}</td>
+                <td class="text-right text-green-700 text-xs">{{ pct(d.totalCobrado, d.cobranzaPerfecta) }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="mt-4">
+            <div style="position: relative; width: 100%; height: 280px">
+              <p-chart type="pie" [data]="chartData()!" [options]="chartOptions" style="width: 100%; height: 100%" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 lg:col-6">
+        <div class="rf-card p-4 h-full">
+          <div class="text-lg font-semibold mb-1 text-red-600">Deuda Condóminos (EF)</div>
+          <table class="rf-table">
+            <thead>
+              <tr class="border-bottom-1 surface-border">
+                <th class="text-left pb-2">Clasificación</th>
+                <th class="text-right pb-2">Saldo</th>
+                <th class="text-right pb-2">%</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="py-1">Cobranza judicial</td>
+                <td class="text-right font-mono">{{ d.totalJudicial | accountingNumber:'1.0-0' }}</td>
+                <td class="text-right text-500 text-xs">{{ pct(d.totalJudicial, d.totalDeuda) }}</td>
+              </tr>
+              <tr>
+                <td class="py-1">Morosos</td>
+                <td class="text-right font-mono">{{ d.totalMorosos | accountingNumber:'1.0-0' }}</td>
+                <td class="text-right text-500 text-xs">{{ pct(d.totalMorosos, d.totalDeuda) }}</td>
+              </tr>
+              <tr>
+                <td class="py-1">Deuda corriente</td>
+                <td class="text-right font-mono">{{ d.totalDeudaCorriente | accountingNumber:'1.0-0' }}</td>
+                <td class="text-right text-500 text-xs">{{ pct(d.totalDeudaCorriente, d.totalDeuda) }}</td>
+              </tr>
+              <tr class="font-bold border-top-1 surface-border">
+                <td class="pt-2">Total deuda</td>
+                <td class="text-right font-mono pt-2">{{ d.totalDeuda | accountingNumber:'1.0-0' }}</td>
+                <td class="text-right pt-2">100%</td>
+              </tr>
+              <tr class="text-500 text-xs">
+                <td class="py-1">Cuotas anticipadas</td>
+                <td class="text-right font-mono">{{ d.totalAnticipos | accountingNumber:'1.0-0' }}</td>
+                <td></td>
+              </tr>
+              <tr class="font-bold surface-ground">
+                <td class="py-1 text-blue-700">Saldo según balanza</td>
+                <td class="text-right font-mono text-blue-700">{{ d.saldoBalanza | accountingNumber:'1.0-0' }}</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="mt-2 text-sm text-color-secondary">
+            Corte consultado: <strong>{{ d.periodo }}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rf-card p-4">
+      <div class="flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+        <div class="text-lg font-semibold">Detalle por condómino</div>
+        <p-select
+          [options]="classificationOptions"
+          [ngModel]="selectedClassification()"
+          (ngModelChange)="selectedClassification.set($event)"
+          class="w-14rem"
+        />
+      </div>
+
+      <p-table
+        [value]="filteredRows()"
+        styleClass="rf-prime-table p-datatable-sm"
+        [tableStyle]="{ 'min-width': '500px' }"
+        [paginator]="true"
+        [rows]="50"
+        [rowsPerPageOptions]="[25, 50, 100, 250]"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Condómino</th>
+            <th class="text-right table-col-130px">Saldo</th>
+            <th class="table-col-180px">Clasificación</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-row>
+          <tr>
+            <td class="rf-td-descripcion--item">{{ row.condomino }}</td>
+            <td class="rf-td-number" [class.rf-neg]="row.saldo < 0">
+              {{ row.saldo === 0 ? '—' : (row.saldo | accountingNumber:'1.0-0') }}
+            </td>
+            <td>
+              <p-tag [value]="row.clasificacion" [severity]="getSeverity(row.clasificacion)" styleClass="text-xs" />
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

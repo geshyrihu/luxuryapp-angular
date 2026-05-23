@@ -5,6 +5,7 @@
     [control]="form.controls.habitant"
     label="Habitante"
     [data]="cb_Habitant()"
+    [filter]="true"
   />
 
   <custom-input-text-signal
@@ -44,6 +45,7 @@
     [control]="form.controls.enviarMails"
     label="Enviar correos"
     [data]="cb_enviarMails"
+    [filter]="true"
   />
   <custom-input-autocomplete-signal
     (propagar)="savePropiedadId($event)"

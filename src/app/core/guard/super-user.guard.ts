@@ -13,13 +13,27 @@ export const superUserGuard: CanActivateFn = (route, state) => {
   const aspRoleS = inject(AspRoleService);
   const router = inject(Router);
 
-  // Verificamos si el usuario tiene el rol de SuperUsuario
-  if (aspRoleS.roleSignal(EApplicationRole.SuperUsuario)()) {
+  // Roles autorizados para funciones administrativas maestro
+  const authorizedRoles = [
+    EApplicationRole.SuperUsuario,
+    EApplicationRole.Legal,
+    EApplicationRole.RecursosHumanos,
+    EApplicationRole.Reclutamiento,
+  ];
+
+  // Verificamos si el usuario tiene alguno de los roles autorizados
+  const isAuthorized = authorizedRoles.some((role) =>
+    aspRoleS.roleSignal(role)(),
+  );
+
+  if (isAuthorized) {
     return true;
   }
 
-  // Si no es SuperUsuario, lo mandamos a la página de acceso no autorizado
-  console.warn(`[Access Denied] Intento de acceso a ruta protegida: ${state.url}`);
+  // Si no está autorizado, lo mandamos a la página de acceso no autorizado
+  console.warn(
+    `[Access Denied] Intento de acceso a ruta protegida: ${state.url}`,
+  );
   router.navigate(["/unauthorized"]);
   return false;
 };

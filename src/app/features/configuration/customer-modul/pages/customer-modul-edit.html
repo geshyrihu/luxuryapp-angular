@@ -1,35 +1,58 @@
 <!-- 📺 INICIO: Contenido adaptado para versión de escritorio -->
 <div class="hidden md:block p-4">
-  <div
-    class="p-3 mb-4 font-bold text-blue-700 bg-blue-50 border-1 border-blue-500 border-round-md"
-  >
-    MÓDULOS DE {{ customerName | uppercase }}
+  <div class="flex align-items-center justify-content-between mb-4 gap-4">
+    <div
+      class="p-2 px-3 font-bold text-blue-700 bg-blue-50 border-round-md border-left-3 border-blue-500"
+    >
+      MÓDULOS DE {{ customerName | uppercase }}
+    </div>
+
+    <!-- Buscador -->
+    <div class="p-input-icon-left flex-1 max-w-20rem">
+      <i class="pi pi-search"></i>
+      <input
+        pInputText
+        type="text"
+        [ngModel]="searchTerm()"
+        (ngModelChange)="searchTerm.set($event)"
+        placeholder="Buscar módulo o categoría..."
+        class="w-full p-inputtext-sm"
+      />
+    </div>
   </div>
+
   @if (loading()) {
   <div class="flex justify-content-center my-5">
     <p-progressSpinner ariaLabel="Cargando módulos"></p-progressSpinner>
   </div>
-  } @if (!loading() && groupedData.length === 0) {
-  <p-message severity="warn" text="No se encontraron módulos."></p-message>
+  } @if (!loading() && filteredGroupedData().length === 0) {
+  <p-message
+    severity="warn"
+    text="No se encontraron módulos."
+    styleClass="w-full"
+  ></p-message>
   }
+
   <!-- Grupos en filas -->
-  @for (group of groupedData; track group.groupTitle + $index) {
-  <div class="mb-5">
+  @for (group of filteredGroupedData(); track group.groupTitle + $index) {
+  <div class="mb-4">
     <!-- Título del grupo -->
-    <div class="flex align-items-center gap-2 mb-3 px-1">
-      <div class="w-1rem h-1rem border-round bg-primary"></div>
-      <h5 class="m-0 font-bold text-primary uppercase tracking-widest text-sm">
+    <div class="flex align-items-center gap-2 mb-2 px-1">
+      <div class="w-0-5rem h-1rem border-round bg-primary"></div>
+      <h5 class="m-0 font-bold text-primary uppercase text-xs tracking-wider">
         {{ group.groupTitle }}
       </h5>
-      <span class="text-xs text-500 ml-2">({{ group.items.length }} módulos)</span>
+      <span class="text-xs text-500 ml-2"
+        >({{ group.items.length }} módulos)</span
+      >
     </div>
 
     <!-- Grid de módulos -->
-    <div class="grid">
+    <div class="grid grid-nogutter gap-2">
       @for (item of group.items; track item.moduleAppId) {
-      <div class="col-12 md:col-6 lg:col-4">
+      <div class="col-6 md:col-4 lg:col-3 xl:col-2">
         <div
-          class="border-1 cursor-pointer p-3 border-round-lg transition-all transition-duration-200 shadow-hover h-full flex align-items-center"
+          class="border-1 cursor-pointer p-2 border-round-md transition-all transition-duration-200 shadow-hover flex align-items-center"
           [class.border-green-500]="item.isAssigned"
           [class.bg-green-50]="item.isAssigned"
           [class.shadow-1]="item.isAssigned"
@@ -37,25 +60,29 @@
           [class.surface-50]="!item.isAssigned"
           (click)="toggleModuleActivation(item)"
         >
-          <div class="flex justify-content-between align-items-center w-full">
-            <div class="flex align-items-center gap-3">
-              <span
-                class="w-2rem h-2rem border-round-circle flex align-items-center justify-content-center border-1"
-                [class.bg-green-100]="item.isAssigned"
-                [class.text-green-700]="item.isAssigned"
-                [class.border-green-200]="item.isAssigned"
-                [class.bg-red-50]="!item.isAssigned"
-                [class.text-red-400]="!item.isAssigned"
-                [class.border-red-100]="!item.isAssigned"
-              >
-                <i
-                  [class]="item.isAssigned ? 'pi pi-check text-xs' : 'pi pi-times text-xs'"
-                ></i>
-              </span>
-              <span class="font-bold text-sm" [class.text-900]="item.isAssigned" [class.text-600]="!item.isAssigned">
-                {{ item.moduleAppName | uppercase }}
-              </span>
-            </div>
+          <div class="flex align-items-center gap-2 w-full">
+            <span
+              class="w-1-5rem h-1-5rem border-round-circle flex align-items-center justify-content-center border-1 flex-shrink-0"
+              [class.bg-green-100]="item.isAssigned"
+              [class.text-green-700]="item.isAssigned"
+              [class.border-green-200]="item.isAssigned"
+              [class.bg-red-50]="!item.isAssigned"
+              [class.text-red-400]="!item.isAssigned"
+              [class.border-red-100]="!item.isAssigned"
+            >
+              <i
+                [class]="item.isAssigned ? 'pi pi-check' : 'pi pi-times'"
+                style="font-size: 0.7rem"
+              ></i>
+            </span>
+            <span
+              class="font-medium text-xs truncate"
+              [class.text-900]="item.isAssigned"
+              [class.text-600]="!item.isAssigned"
+              [title]="item.moduleAppName"
+            >
+              {{ item.moduleAppName }}
+            </span>
           </div>
         </div>
       </div>
@@ -69,27 +96,51 @@
 <div class="md:hidden">
   <div class="ion-padding">
     <div
-      class="p-3 mb-3 font-bold text-blue-700 bg-blue-50 border-1 border-blue-500 border-round-md text-center"
+      class="p-2 mb-3 font-bold text-blue-700 bg-blue-50 border-1 border-blue-500 border-round-md text-center text-sm"
     >
       MÓDULOS DE {{ customerName | uppercase }}
+    </div>
+
+    <!-- Buscador Móvil -->
+    <div class="p-input-icon-left w-full mb-3">
+      <i class="pi pi-search"></i>
+      <input
+        pInputText
+        type="text"
+        [ngModel]="searchTerm()"
+        (ngModelChange)="searchTerm.set($event)"
+        placeholder="Filtrar módulos..."
+        class="w-full p-inputtext-sm"
+      />
     </div>
 
     @if (loading()) {
     <div class="flex justify-content-center my-5">
       <p-progressSpinner ariaLabel="Cargando módulos"></p-progressSpinner>
     </div>
-    } @if (!loading() && groupedData.length === 0) {
+    } @if (!loading() && filteredGroupedData().length === 0) {
     <p-message severity="warn" text="No se encontraron módulos."></p-message>
-    } @for (group of groupedData; track group.groupTitle) {
+    } @for (group of filteredGroupedData(); track group.groupTitle) {
     <div class="mb-3">
-      <h3 class="text-sm text-500 font-bold px-3 uppercase m-0 mb-2">
+      <h3 class="text-xs text-500 font-bold px-3 uppercase m-0 mb-1">
         {{ group.groupTitle }}
       </h3>
-      <ion-list inset="true" class="m-0">
+      <ion-list inset="true" class="m-0 border-round-lg overflow-hidden shadow-1">
         @for (item of group.items; track item.moduleAppId) {
-        <ion-item>
-          <ion-label class="ion-text-wrap">
-            <h2>{{ item.moduleAppName }}</h2>
+        <ion-item class="ion-no-padding">
+          <div slot="start" class="pl-3 py-2 flex align-items-center">
+            <i 
+              class="pi" 
+              [class.pi-check-circle]="item.isAssigned"
+              [class.text-green-500]="item.isAssigned"
+              [class.pi-circle]="!item.isAssigned"
+              [class.text-400]="!item.isAssigned"
+            ></i>
+          </div>
+          <ion-label class="ion-text-wrap py-2">
+            <h2 class="text-sm font-medium" [class.text-900]="item.isAssigned" [class.text-500]="!item.isAssigned">
+              {{ item.moduleAppName }}
+            </h2>
           </ion-label>
           <ion-toggle
             slot="end"

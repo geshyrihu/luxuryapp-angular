@@ -115,8 +115,21 @@ export default class FinancialReportsWrapper {
       "Consulta operativa del módulo de contabilidad online.",
   );
 
+  readonly clienteUrl = computed(() => {
+    const cid = this.customerIdS.customerId();
+    const yr = this.filterS.year();
+    const mes = this.filterS.mesIdx() + 1;
+    if (!cid || !yr) return null;
+    return `/publico/contabilidad-cliente/${cid}/${yr}/${mes}`;
+  });
+
   refreshReports() {
     this.filterS.refreshTick.update((value) => value + 1);
+  }
+
+  openClienteView() {
+    const url = this.clienteUrl();
+    if (url) window.open(url, '_blank');
   }
 
   onTabChange(value: number) {

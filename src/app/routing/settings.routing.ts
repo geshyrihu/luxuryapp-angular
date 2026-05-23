@@ -15,7 +15,6 @@ export const settingsRoutes: Routes = [
     },
   },
 
-
   {
     path: "estandar-documental",
     loadComponent: () =>
@@ -109,7 +108,7 @@ export const settingsRoutes: Routes = [
     // Suggested path: 'module-app-role'
     path: "module-app-rol",
     loadComponent: () =>
-      import("src/app/features/configuration/module-app-rol/pages/module-app-rol").then(
+      import("src/app/features/configuration/module-app-rol/pages/module-app-rol-list").then(
         (m) => m.ModuleAppRol,
       ),
     canActivate: [authGuard],
@@ -503,9 +502,9 @@ export const settingsRoutes: Routes = [
   {
     path: "ui-catalog",
     loadComponent: () =>
-      import(
-        "src/app/features/configuration/catalog-component-ui/catalog-component-ui"
-      ).then((m) => m.CatalogComponentUi),
+      import("src/app/features/configuration/catalog-component-ui/catalog-component-ui").then(
+        (m) => m.CatalogComponentUi,
+      ),
     canActivate: [authGuard],
     data: {
       title: "Catálogo de Componentes UI",

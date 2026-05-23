@@ -166,7 +166,7 @@
                       <custom-input-date-signal [control]="webForm.controls['fecha']" label="Fecha" />
                     </div>
                   </div>
-                  <custom-input-select-signal [control]="webForm.controls['categoria']" [data]="options" label="Nivel de Acceso" />
+                  <custom-input-select-signal [control]="webForm.controls['categoria']" [data]="options" label="Nivel de Acceso" [filter]="true" />
                   <custom-input-switch-signal [control]="webForm.controls['activo']" label="Habilitar Cuenta" />
                 </form>
               </p-card>

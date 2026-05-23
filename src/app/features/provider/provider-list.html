@@ -28,6 +28,7 @@
           placeholder="Seleccionar Tipo de Servicio"
           customClass="w-full"
           [horizontal]="false"
+          [filter]="true"
         />
       </div>
 
@@ -219,8 +220,8 @@
 </p-table>
 
 <app-data-view-mobile
-  [data]="dataSignal()"
-  [globalFilterFields]="globalFilterFields()"
+  [data]="mobileData()"
+  [globalFilterFields]="mobileGlobalFilterFields"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
 >
   <ng-template #listItemTemplate let-item>

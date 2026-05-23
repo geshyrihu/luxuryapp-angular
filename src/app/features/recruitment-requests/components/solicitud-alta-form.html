@@ -6,6 +6,7 @@
         [control]="form.controls.positionRequestId"
         label="Vacante que cubre"
         [data]="cb_vacantes()"
+        [filter]="true"
       />
       <custom-input-text-signal
         [hidden]="true"
@@ -23,6 +24,7 @@
         [control]="form.controls.typeContractRegister"
         label="Tipo de contrato"
         [data]="cb_typeContractRegister()"
+        [filter]="true"
       />
       <custom-input-text-signal
         [control]="form.controls.boss"

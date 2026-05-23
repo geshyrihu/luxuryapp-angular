@@ -17,6 +17,7 @@
               [required]="true"
               [control]="form.controls.incidentTypeId"
               [data]="incidentTypes()"
+              [filter]="true"
             />
           </div>
           <div class="col-12 md:col-6">
@@ -25,6 +26,7 @@
               [required]="true"
               [control]="form.controls.severityLevel"
               [data]="cb_severity()"
+              [filter]="true"
             />
           </div>
           <div class="col-12 md:col-6">
@@ -40,6 +42,7 @@
               [control]="form.controls.sanctionTypeId"
               [data]="sanctionTypes()"
               placeholder="Sin sanción inmediata"
+              [filter]="true"
             />
           </div>
           <div class="col-12">

@@ -12,6 +12,8 @@ import { Dialog } from "primeng/dialog";
 import { Drawer } from "primeng/drawer";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
@@ -36,8 +38,6 @@ import { IWorkPosition } from "src/app/features/work-position/models/work-positi
 import { JobDescriptionForm } from "src/app/features/work-position/pages/job-description-form";
 import { WorkPositionForm } from "src/app/features/work-position/pages/work-position-form";
 import { WorkPositionHours } from "src/app/features/work-position/pages/work-position-hours";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { EmployeeProviderForm } from "../../provider/pages/employee-provider-form";
 
 @Component({
@@ -177,7 +177,7 @@ export class StaffBoard {
     this.allEmployees.set(employees ?? []);
   }
 
-  // â”€â”€ Inactivos â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Inactivos ─────────────────────────────────────────────────────────
 
   async onOpenInactivos(): Promise<void> {
     this.inactivosVisible.set(true);
@@ -194,6 +194,10 @@ export class StaffBoard {
     this.inactivePositions.set(positions ?? []);
     this.inactiveEmployees.set(employees ?? []);
     this.inactivosLoading.set(false);
+  }
+
+  onOrgChart(): void {
+    this.router.navigateByUrl("/directory/work-position-org-chart");
   }
 
   async onActivatePosition(id: string): Promise<void> {
@@ -231,7 +235,7 @@ export class StaffBoard {
     this.inactivosVisible.set(false);
   }
 
-  // â”€â”€ DnD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── DnD ────────────────────────────────────────────────────────────────
 
   async onDropToPosition(
     event: CdkDragDrop<IEmployee[]>,
@@ -249,7 +253,7 @@ export class StaffBoard {
 
   onDropBackToPool(_event: CdkDragDrop<IEmployee[]>): void {}
 
-  // â”€â”€ Drawer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Drawer ─────────────────────────────────────────────────────────────
 
   onOpenDrawer(position: IWorkPosition): void {
     this.selectedPosition.set(position);
@@ -268,7 +272,7 @@ export class StaffBoard {
     await this.onLoadData();
   }
 
-  // â”€â”€ Acciones de puesto â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Acciones de puesto ─────────────────────────────────────────────────
 
   async onUnassignEmployee(positionId: string): Promise<void> {
     await this.apiS.onPatch(
@@ -353,7 +357,7 @@ export class StaffBoard {
     await this.onLoadData();
   }
 
-  // â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Helpers ────────────────────────────────────────────────────────────
 
   isVacant(item: IWorkPosition): boolean {
     return !item.applicationUser;

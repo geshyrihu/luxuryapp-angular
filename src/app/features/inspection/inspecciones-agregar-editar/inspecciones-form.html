@@ -12,6 +12,7 @@
         [control]="form.controls.departament"
         label="Departamento"
         [data]="cb_departament()"
+        [filter]="true"
       />
 
       <!-- Selector de Frecuencia -->
@@ -25,6 +26,7 @@
         (selectionChange)="onFrequencyChange($event.value)"
         [horizontal]="true"
         placeholder="Seleccione una frecuencia"
+        [filter]="true"
       />
 
       <!-- Opciones de Frecuencia -->
@@ -68,6 +70,7 @@
         optionLabel="label"
         optionValue="value"
         [horizontal]="true"
+        [filter]="true"
       />
 
       <custom-button-save

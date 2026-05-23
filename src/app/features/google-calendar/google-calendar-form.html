@@ -1,0 +1,269 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="grid">
+  <div class="col-12 md:col-3">
+    <label class="block mb-2 field-label">Tipo de asunto *</label>
+    <div class="flex flex-wrap gap-2">
+      @for (option of subjectTypeOptions(); track option.value) {
+      <button
+        type="button"
+        class="p-button p-component p-button-sm"
+        [class.p-button-outlined]="form.controls.subjectType.value !== option.value"
+        [class.p-button-primary]="form.controls.subjectType.value === option.value"
+        (click)="selectSubjectType(option.value)"
+      >
+        <span class="p-button-label">{{ option.label }}</span>
+      </button>
+      }
+    </div>
+    @if (getSubjectTypeDescription()) {
+    <small class="text-color-secondary block mt-2">
+      {{ getSubjectTypeDescription() }}
+    </small>
+    }
+  </div>
+
+  <div class="col-12 md:col-2">
+    <label class="block mb-2 field-label">Modalidad *</label>
+    <div class="flex flex-wrap gap-2">
+      @for (option of modalityOptions(); track option.value) {
+      <button
+        type="button"
+        class="p-button p-component p-button-sm"
+        [class.p-button-outlined]="form.controls.modality.value !== option.value"
+        [class.p-button-primary]="form.controls.modality.value === option.value"
+        (click)="selectModality(option.value)"
+      >
+        <span class="p-button-label">{{ option.label }}</span>
+      </button>
+      }
+    </div>
+    @if (getModalityDescription()) {
+    <small class="text-color-secondary block mt-2">
+      {{ getModalityDescription() }}
+    </small>
+    }
+  </div>
+
+  <div class="col-12 md:col-3">
+    <custom-input-date-signal
+      [control]="form.controls.meetingDate"
+      label="Fecha de la junta"
+      placeholder="fecha de la junta"
+      [horizontal]="false"
+    />
+  </div>
+  <div class="col-12 md:col-4">
+    <label class="block mb-2 font-semibold">Hora de inicio *</label>
+    <p-select
+      [options]="startTimeOptions()"
+      formControlName="startTime"
+      optionLabel="label"
+      optionValue="value"
+      optionDisabled="disabled"
+      [placeholder]="
+        isStartTimeDisabled()
+          ? 'Selecciona primero una fecha'
+          : 'Selecciona una hora'
+      "
+      appendTo="body"
+      class="w-full"
+      size="small"
+    >
+      <ng-template let-selected pTemplate="selectedItem">
+        <div class="flex align-items-center min-h-2rem">
+          <span>{{ selected?.label || "Selecciona una hora" }}</span>
+        </div>
+      </ng-template>
+      <ng-template let-slot pTemplate="item">
+        <div
+          class="flex justify-content-between align-items-center w-full py-1"
+        >
+          <span>{{ slot.label }}</span>
+          @if (slot.conflictCount > 0) {
+          <small class="text-500">
+            {{ canOverrideScheduleConflicts() ? "Ocupado" : "No disponible" }}
+          </small>
+          }
+        </div>
+      </ng-template>
+    </p-select>
+  </div>
+
+  <div class="col-12">
+    <custom-input-switch-signal
+      [control]="form.controls.isRecurring"
+      label="Junta repetitiva"
+      placeholder="Configurar esta junta como repetitiva"
+      [horizontal]="false"
+    />
+    <small class="text-color-secondary block mt-2">
+      Usa esta opcion para juntas fijas, por ejemplo cada tercer martes a las
+      7:30 PM.
+    </small>
+    @if (isEditMode()) {
+    <small class="text-orange-600 block mt-2">
+      La configuracion de recurrencia esta bloqueada en edicion. Los cambios
+      aplican solo a esta ocurrencia individual.
+    </small>
+    }
+  </div>
+
+  @if (form.controls.isRecurring.getRawValue()) {
+  <div class="col-12 md:col-4">
+    <custom-input-select-signal
+      [control]="form.controls.recurrence"
+      label="Frecuencia"
+      placeholder="selecciona una frecuencia"
+      [data]="recurrenceOptions()"
+      [horizontal]="false"
+    />
+  </div>
+
+  <div class="col-12 md:col-4">
+    <custom-input-select-signal
+      [control]="form.controls.recurrenceMode"
+      label="Patron mensual"
+      placeholder="selecciona un patron"
+      [data]="recurrenceModeOptions()"
+      [horizontal]="false"
+    />
+  </div>
+
+  <div class="col-12 md:col-4">
+    <custom-input-date-signal
+      [control]="form.controls.recurrenceEndDate"
+      label="Repetir hasta"
+      placeholder="fecha limite"
+      [horizontal]="false"
+    />
+  </div>
+
+  @if (recurrencePreview()) {
+  <div class="col-12">
+    <div class="border-1 surface-border border-round p-3 bg-blue-50">
+      <strong class="block text-blue-900 mb-1">Resumen de la serie</strong>
+      <small class="text-blue-900">{{ recurrencePreview() }}</small>
+    </div>
+  </div>
+  } }
+
+  <div class="col-12">
+    <custom-input-text-signal
+      [control]="form.controls.location"
+      label="Ubicacion"
+      placeholder="ubicacion"
+      [horizontal]="false"
+    />
+  </div>
+
+  <div class="col-12">
+    <custom-input-textarea-signal
+      [control]="form.controls.description"
+      label="Descripcion"
+      placeholder="descripcion"
+      [horizontal]="false"
+      [rows]="5"
+    />
+  </div>
+
+  @if (form.errors?.["invalidDateRange"] && form.touched) {
+  <div class="col-12">
+    <small class="text-red-500">
+      La fecha y hora de fin deben ser posteriores a la fecha y hora de inicio.
+    </small>
+  </div>
+  } @if (form.errors?.["sameDayRequired"] && form.touched) {
+  <div class="col-12">
+    <small class="text-red-500">
+      La junta debe iniciar y terminar el mismo dia.
+    </small>
+  </div>
+  } @if (form.errors?.["invalidRecurrenceEndDate"] && form.touched) {
+  <div class="col-12">
+    <small class="text-red-500">
+      La fecha limite de recurrencia no puede ser anterior a la primera junta.
+    </small>
+  </div>
+  } @if (overlapConflicts.length > 0) {
+  <div class="col-12">
+    <div class="border-1 border-yellow-300 bg-yellow-50 border-round p-3">
+      <strong class="block mb-2 text-yellow-900">
+        Ya existe una junta en ese horario dentro del calendario central.
+      </strong>
+      @if (canOverrideScheduleConflicts()) {
+      <small class="block mb-2 text-yellow-900">
+        Como SuperUsuario puedes guardar aun con traslape.
+      </small>
+      }
+      <div class="flex flex-column gap-1">
+        @for (conflict of overlapConflicts; track conflict) {
+        <small class="text-yellow-900">{{ conflict }}</small>
+        }
+      </div>
+    </div>
+  </div>
+  }
+
+  <div class="col-12">
+    <div class="flex justify-content-between align-items-center mb-2">
+      <div>
+        <h3 class="m-0">Invitados</h3>
+        <small class="text-color-secondary">
+          Agrega a quienes deben quedar registrados dentro de Luxury App para
+          esta junta.
+        </small>
+      </div>
+      <button
+        class="p-button p-component p-button-sm"
+        type="button"
+        (click)="addGuest()"
+      >
+        <span class="p-button-label">Agregar invitado</span>
+      </button>
+    </div>
+
+    <div class="flex flex-column gap-3" formArrayName="guests">
+      @for (guest of guestsArray.controls; track guest; let index = $index) {
+      <div
+        [formGroupName]="index"
+        class="grid border-1 surface-border border-round p-3"
+      >
+        <div class="col-12 md:col-5">
+          <custom-input-text-signal
+            [control]="guest.controls.name"
+            [id]="'guest-name-' + index"
+            label="Nombre"
+            placeholder="nombre"
+            [horizontal]="false"
+          />
+        </div>
+
+        <div class="col-12 md:col-5">
+          <custom-input-text-signal
+            [control]="guest.controls.email"
+            [id]="'guest-email-' + index"
+            label="Correo"
+            placeholder="correo"
+            [horizontal]="false"
+            type="email"
+            [requiredInput]="true"
+          />
+        </div>
+
+        <div class="col-12 md:col-2 flex align-items-end">
+          <button
+            class="p-button p-component p-button-danger p-button-sm w-full"
+            type="button"
+            (click)="removeGuest(index)"
+          >
+            <span class="p-button-label">Quitar</span>
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+
+  <div class="col-12">
+    <custom-button-save [disabled]="form.invalid" [submitting]="submitting()" />
+  </div>
+</form>

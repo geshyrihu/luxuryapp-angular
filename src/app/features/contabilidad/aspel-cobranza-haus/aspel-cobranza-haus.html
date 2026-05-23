@@ -27,6 +27,7 @@
             [horizontal]="false"
             [noMargin]="true"
             (ngModelChange)="mode.set($event); onModeChange()"
+            [filter]="true"
           />
           <small class="text-500">Selecciona la consulta Aspel que quieres ejecutar.</small>
         </div>
@@ -65,18 +66,15 @@
           </div>
         }
 
-        @if (mode() !== "accounts" && mode() !== "deudas-actuales") {
+        @if (mode() !== "accounts" && mode() !== "deudas-actuales" && mode() !== "detalle-cobranza-rango") {
           <div class="col-12 md:col-6 lg:col flex flex-column gap-1">
             <custom-input-date-signal
-              [label]="mode() === 'detalle-cobranza-rango' ? 'Fecha corte' : 'Fecha fin'"
+              label="Fecha fin"
               [(ngModel)]="request.fechaFin"
               (ngModelChange)="onDateContextChange()"
               [horizontal]="false"
               [noMargin]="true"
             />
-            @if (mode() === "detalle-cobranza-rango") {
-              <small class="text-500">El detalle se reconstruye desde el inicio del ejercicio de esta fecha para no recortar la deuda.</small>
-            }
           </div>
         }
 
@@ -104,20 +102,38 @@
 
     @if (canDownloadAccountDocuments()) {
       <div class="flex justify-content-end flex-wrap gap-2">
-        <custom-button-download
-          label="Aviso de cobro"
-          iconClass="pi pi-file-pdf"
-          severity="danger"
-          [showLabelOnDesktop]="true"
-          (clicked)="downloadAvisoCobroPdf()"
-        />
-        <custom-button-download
-          label="Estado de cuenta"
-          iconClass="pi pi-file-pdf"
-          severity="info"
-          [showLabelOnDesktop]="true"
-          (clicked)="downloadEstadoCuentaPdf()"
-        />
+        @if (mode() === 'detalle-cobranza-rango') {
+          <custom-button-download
+            label="Aviso de cobro"
+            iconClass="pi pi-file-pdf"
+            severity="danger"
+            [showLabelOnDesktop]="true"
+            (clicked)="downloadAvisoCobroPdf()"
+          />
+          <custom-button-download
+            label="Aviso de cobro Aspel"
+            iconClass="pi pi-file-pdf"
+            severity="contrast"
+            [showLabelOnDesktop]="true"
+            (clicked)="downloadAvisoCobroPdfAspel()"
+          />
+        }
+        @if (mode() === 'estado-cuenta-rango') {
+          <custom-button-download
+            label="Estado de cuenta"
+            iconClass="pi pi-file-pdf"
+            severity="info"
+            [showLabelOnDesktop]="true"
+            (clicked)="downloadEstadoCuentaPdf()"
+          />
+          <custom-button-download
+            label="Estado de cuenta Aspel"
+            iconClass="pi pi-file-pdf"
+            severity="contrast"
+            [showLabelOnDesktop]="true"
+            (clicked)="downloadEstadoCuentaPdfAspel()"
+          />
+        }
       </div>
     }
 
@@ -220,7 +236,7 @@
           <p-card styleClass="shadow-none border-1 surface-border h-full">
             <span class="block mb-1 text-xs uppercase font-semibold text-500">Rango</span>
             <strong class="block text-xl">{{ estadoCuenta()?.fechaInicio }} - {{ estadoCuenta()?.fechaFin }}</strong>
-            <small class="text-500">{{ estadoCuenta()?.totalMovimientos }} movimientos</small>
+            <small class="text-500">{{ estadoMovimientos().length }} movimientos</small>
           </p-card>
         </div>
 
@@ -326,7 +342,7 @@
           <p-card styleClass="shadow-none border-1 surface-border h-full">
             <span class="block mb-1 text-xs uppercase font-semibold text-500">Rango</span>
             <strong class="block text-xl">{{ detalleCobranza()?.fechaInicio }} - {{ detalleCobranza()?.fechaFin }}</strong>
-            <small class="text-500">{{ detalleCobranza()?.totalMovimientos }} movimientos aplicados</small>
+            <small class="text-500">{{ detalleConceptRows().length }} conceptos</small>
           </p-card>
         </div>
 
@@ -346,7 +362,7 @@
               /
               {{ detalleCobranza()?.totalAbonos | currency: "MXN" : "symbol" : "1.2-2" }}
             </strong>
-            <small class="text-500">{{ detalleCobranza()?.totalRecibos }} recibos identificados</small>
+            <small class="text-500">{{ detalleCobranza()?.totalConceptos }} conceptos en deuda</small>
           </p-card>
         </div>
 
@@ -415,9 +431,9 @@
                     @if (!item.vencidos.length) {
                       <span class="text-500 text-sm">Sin vencidos abiertos</span>
                     }
-                    @for (vencido of item.vencidos; track vencido.id) {
+                    @for (vencido of item.vencidos; track $index) {
                       <div class="flex align-items-center flex-wrap gap-2 text-sm">
-                        <strong>{{ vencido.periodo }}</strong>
+                        <strong>{{ vencido.fechaCargo }}</strong>
                         <span>{{ vencido.saldoPendiente | currency: "MXN" : "symbol" : "1.2-2" }}</span>
                         <small class="text-500">{{ vencido.conceptoDetalle }}</small>
                       </div>
@@ -430,121 +446,7 @@
         </div>
       </p-card>
 
-      <p-card styleClass="shadow-none border-1 surface-border border-dashed">
-        <div class="flex flex-column gap-3">
-          <div class="flex justify-content-between align-items-start gap-3">
-            <div>
-              <h3 class="m-0 mb-1 text-lg font-bold text-900">Movimientos aplicados por concepto</h3>
-              <p class="m-0 text-600">Aqui los abonos ya quedan etiquetados con el concepto contable al que impactaron.</p>
-            </div>
-          </div>
-
-          <p-table
-            [paginator]="true"
-            [rows]="tablePrimeNgRows"
-            [rowsPerPageOptions]="rowsPerPageOptions"
-            [scrollable]="true"
-            [scrollHeight]="scrollHeight()"
-            [tableStyle]="{ 'min-width': '90rem' }"
-            [value]="detalleMovimientos()"
-            currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} movimientos"
-            styleClass="custom-table hidden md:block"
-          >
-            <ng-template #header>
-              <tr>
-                <th>Fecha</th>
-                <th>Tipo</th>
-                <th>Concepto aplicado</th>
-                <th>Detalle Aspel</th>
-                <th>Cuenta</th>
-                <th class="text-right">Monto</th>
-                <th class="text-right">Saldo anterior</th>
-                <th class="text-right">Saldo posterior</th>
-                <th>Recibo</th>
-              </tr>
-            </ng-template>
-
-            <ng-template #body let-item>
-              <tr>
-                <td>{{ item.fecha }}</td>
-                <td>
-                  <p-tag
-                    [value]="item.tipo"
-                    [severity]="item.tipo === 'cargo' ? 'warn' : 'success'"
-                  />
-                </td>
-                <td>
-                  <p-tag
-                    [value]="item.conceptoAplicado"
-                    [severity]="getConceptSeverity(item.conceptoAplicado)"
-                  />
-                </td>
-                <td>{{ item.conceptoDetalle }}</td>
-                <td><code class="text-sm px-2 py-1 border-round surface-100 font-mono">{{ item.numCtaConcepto }}</code></td>
-                <td class="text-right font-mono">{{ item.monto | currency: "MXN" : "symbol" : "1.2-2" }}</td>
-                <td class="text-right font-mono">{{ item.saldoAnteriorConcepto | currency: "MXN" : "symbol" : "1.2-2" }}</td>
-                <td class="text-right font-mono">{{ item.saldoPosteriorConcepto | currency: "MXN" : "symbol" : "1.2-2" }}</td>
-                <td><code class="text-sm px-2 py-1 border-round surface-100 font-mono">{{ item.reciboId || "-" }}</code></td>
-              </tr>
-            </ng-template>
-          </p-table>
-        </div>
-      </p-card>
-
-      <p-card styleClass="shadow-none border-1 surface-border border-dashed">
-        <div class="flex flex-column gap-3">
-          <div class="flex justify-content-between align-items-start gap-3">
-            <div>
-              <h3 class="m-0 mb-1 text-lg font-bold text-900">Recibos y composicion del pago</h3>
-              <p class="m-0 text-600">Un mismo recibo puede aplicarse a varios conceptos. Esta tabla agrupa esos abonos por poliza.</p>
-            </div>
-          </div>
-
-          <p-table
-            [paginator]="true"
-            [rows]="tablePrimeNgRows"
-            [rowsPerPageOptions]="rowsPerPageOptions"
-            [tableStyle]="{ 'min-width': '82rem' }"
-            [value]="detalleReciboRows()"
-            currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} recibos"
-            styleClass="custom-table hidden md:block"
-          >
-            <ng-template #header>
-              <tr>
-                <th>Fecha</th>
-                <th>Recibo</th>
-                <th>Detalle</th>
-                <th class="text-right">Monto total</th>
-                <th>Aplicaciones</th>
-              </tr>
-            </ng-template>
-
-            <ng-template #body let-item>
-              <tr>
-                <td>{{ item.fecha }}</td>
-                <td><code class="text-sm px-2 py-1 border-round surface-100 font-mono">{{ item.reciboId }}</code></td>
-                <td>{{ item.concepto }}</td>
-                <td class="text-right font-mono">{{ item.montoTotal | currency: "MXN" : "symbol" : "1.2-2" }}</td>
-                <td>
-                  <div class="flex flex-column gap-1">
-                    @for (app of item.aplicaciones; track app.numCtaConcepto + app.montoAplicado) {
-                      <div class="flex align-items-center flex-wrap gap-2">
-                        <p-tag
-                          [value]="app.conceptoAplicado"
-                          [severity]="getConceptSeverity(app.conceptoAplicado)"
-                        />
-                        <span class="text-sm">{{ app.montoAplicado | currency: "MXN" : "symbol" : "1.2-2" }}</span>
-                        <code class="text-sm px-2 py-1 border-round surface-100 font-mono">{{ app.numCtaConcepto }}</code>
-                      </div>
-                    }
-                  </div>
-                </td>
-              </tr>
-            </ng-template>
-          </p-table>
-        </div>
-      </p-card>
-    } @else if (mode() === "contrapartidas-rango" && contrapartidas()) {
+    <!-- } @else if (mode() === "contrapartidas-rango" && contrapartidas()) {
       <div class="grid">
         <div class="col-12 md:col-6 lg:col-3">
           <p-card styleClass="shadow-none border-1 surface-border h-full">
@@ -634,7 +536,7 @@
         <ng-template #paginatorleft>
           <primeng-custom-table-footer [data]="contrapartidaRows()" />
         </ng-template>
-      </p-table>
+      </p-table> -->
     } @else if (mode() === "deudas-actuales" && deudasActuales()) {
       <div class="grid">
         <div class="col-12 md:col-6 lg:col-3">
@@ -750,7 +652,7 @@
           <primeng-custom-table-footer [data]="deudaActualRows()" />
         </ng-template>
       </p-table>
-    } @else if (mode() === "pendientes-concepto-rango" && pendientes()) {
+    <!-- } @else if (mode() === "pendientes-concepto-rango" && pendientes()) {
       <div class="grid">
         <div class="col-12 md:col-6 lg:col-2">
           <p-card styleClass="shadow-none border-1 surface-border h-full">
@@ -894,7 +796,7 @@
         <ng-template #paginatorleft>
           <primeng-custom-table-footer [data]="pendienteRows()" />
         </ng-template>
-      </p-table>
+      </p-table> -->
     } @else if (searched()) {
       <p-message
         severity="info"

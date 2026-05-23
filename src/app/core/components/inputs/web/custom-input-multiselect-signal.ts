@@ -25,8 +25,13 @@ import { BaseInputSignal } from "../base/base-input-signal";
         [showClear]="showClear()"
         [optionLabel]="optionLabel()"
         [optionValue]="optionValue()"
+        [group]="group()"
+        [optionGroupLabel]="optionGroupLabel()"
+        [optionGroupChildren]="optionGroupChildren()"
         [inputId]="id()"
         [class]="getSizeClass()"
+        [scrollHeight]="scrollHeight()"
+        [panelStyle]="panelStyle()"
         (onChange)="onChange($event.value)"
         (onBlur)="onTouch()"
         appendTo="body"
@@ -37,18 +42,23 @@ import { BaseInputSignal } from "../base/base-input-signal";
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomInputMultiselect),
+      useExisting: forwardRef(() => CustomInputMultiselectSignal),
       multi: true,
     },
   ],
 })
-export class CustomInputMultiselect extends BaseInputSignal {
+export class CustomInputMultiselectSignal extends BaseInputSignal {
   options = input<ISelectItem[]>([]);
   optionLabel = input<string>("label");
   optionValue = input<string>("value");
+  group = input<boolean>(false);
+  optionGroupLabel = input<string>("label");
+  optionGroupChildren = input<string>("items");
   filter = input<boolean>(true);
   showClear = input<boolean>(true);
   size = input<"small" | "large" | undefined>(undefined);
+  scrollHeight = input<string>("350px");
+  panelStyle = input<Record<string, string>>({ "min-width": "20rem" });
 
   getSizeClass(): string {
     if (this.size() === "small") return "p-inputtext-sm";

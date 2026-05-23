@@ -27,12 +27,14 @@
     [control]="form.controls.typePerson"
     label="Tipo de persona"
     [data]="cb_typePerson()"
+    [filter]="true"
   />
 
   <custom-input-select-signal
     [control]="form.controls.customerId"
     label="Cliente"
     [data]="cb_customer()"
+    [filter]="true"
   />
   <custom-button-save
     [propertyId]="applicationUserId"

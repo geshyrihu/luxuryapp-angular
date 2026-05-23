@@ -7,16 +7,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
-import {
-  DynamicDialogConfig,
-  DynamicDialogRef,
-} from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { FileUploadModule } from "primeng/fileupload";
 import { firstValueFrom } from "rxjs";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
@@ -27,6 +24,7 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { TaskGroupService } from "src/app/features/tasks/task.service";
@@ -53,6 +51,7 @@ interface ITaskMessageForm {
 }
 
 import { DateService } from "src/app/core/services/date.service";
+import heic2any from "heic2any";
 
 @Component({
   selector: "app-task-form",
@@ -62,11 +61,11 @@ import { DateService } from "src/app/core/services/date.service";
     ReactiveFormsModule,
     CardModule,
     FileUploadModule,
+    ButtonModule,
     CustomInputTextSignal,
     CustomInputSelectSignal,
     CustomInputDateSignal,
     CustomInputTextAreaSignal,
-    CustomInputAutoComplete,
     CustomButtonSave,
     CustomButton,
     CustomInputCheckSignal,
@@ -76,6 +75,7 @@ export class TaskForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
   private authS = inject(AuthService);
   private config = inject(DynamicDialogConfig);
+  private customToastS = inject(CustomToastService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
   private enumSelectS = inject(EnumSelectService);
@@ -116,7 +116,7 @@ export class TaskForm implements OnInit {
     }),
     description: new FormControl<string>("", {
       nonNullable: true,
-      validators: [Validators.required, Validators.maxLength(150)],
+      validators: [Validators.required, Validators.maxLength(300)],
     }),
     priority: new FormControl<number>(1, {
       nonNullable: true,
@@ -147,18 +147,26 @@ export class TaskForm implements OnInit {
 
     // Sincronizar ID
     this.form.controls.id.setValue(this.id);
-    if (this.config.data?.ticketGroupId) {
-      this.form.controls.ticketGroupId.setValue(this.config.data.ticketGroupId);
-    }
 
     await this.onLoadSelectItems();
 
     if (this.config.data?.ticketGroupId) {
-      const isLegal =
-        this.workGroupLegalMap.get(this.config.data.ticketGroupId) ?? false;
-      this.isLegalWorkGroup.set(isLegal);
-      if (isLegal) await this.loadLegalMatters();
-      await this.onLoadUsers(this.config.data.ticketGroupId);
+      setTimeout(async () => {
+        let ticketGroupId = String(this.config.data.ticketGroupId);
+        // Garantizar que la capitalización (casing) coincida exactamente con la opción cargada
+        const exactMatch = this.cb_ticket_group().find(
+          (g) => String(g.value).toLowerCase() === ticketGroupId.toLowerCase()
+        );
+        if (exactMatch) ticketGroupId = String(exactMatch.value);
+
+        // Actualizar el valor en el siguiente ciclo (setTimeout) para dar tiempo a que PrimeNG renderice las opciones
+        this.form.patchValue({ ticketGroupId });
+
+        const isLegal = this.workGroupLegalMap.get(ticketGroupId) ?? false;
+        this.isLegalWorkGroup.set(isLegal);
+        if (isLegal) await this.loadLegalMatters();
+        await this.onLoadUsers(ticketGroupId);
+      }, 0);
     }
 
     if (this.id !== "") {
@@ -205,16 +213,17 @@ export class TaskForm implements OnInit {
       assigneeId =
         typeof result.assigneeId === "object" && result.assigneeId !== null
           ? (result.assigneeId as any).value
-          : result.assigneeId;
+          : String(result.assigneeId);
     }
 
     // Buscar el usuario asignado completo
     const selectedAssignee = assigneeId
-      ? this.cb_application_user().find((item) => item.value === assigneeId)
+      ? this.cb_application_user().find((item) => String(item.value) === assigneeId)
       : null;
 
     this.form.patchValue({
       ...result,
+      ticketGroupId: String(result.ticketGroupId || this.form.value.ticketGroupId),
       applicationUserId: this.authS.applicationUserId,
       assigneeId,
       assignee: selectedAssignee ? selectedAssignee.label : "",
@@ -233,27 +242,130 @@ export class TaskForm implements OnInit {
     }
   }
 
-  onFileChange(file: File | null, fieldName: "beforeWork" | "afterWork") {
-    if (file) {
-      this.form.get(fieldName)?.setValue(file);
+  processingBeforeWork = signal(false);
+  processingAfterWork = signal(false);
 
+  async onFileChange(file: File | null, fieldName: "beforeWork" | "afterWork"): Promise<void> {
+    if (!file) {
+      this.form.get(fieldName)?.setValue(null);
+      if (fieldName === "beforeWork") this.beforeWorkPreview.set(null);
+      else this.afterWorkPreview.set(null);
+      return;
+    }
+
+    const allowed = ["image/jpeg", "image/png", "image/webp"];
+    const isHeic = /\.(heic|heif)$/i.test(file.name) ||
+                   file.type === "image/heic" || file.type === "image/heif";
+
+    if (!isHeic && !allowed.includes(file.type)) {
+      this.customToastS.showError(
+        "Formato no compatible",
+        `Solo se permiten JPG, PNG, WebP o HEIC. El archivo "${file.name}" no puede cargarse.`,
+      );
+      return;
+    }
+
+    const processingSignal = fieldName === "beforeWork"
+      ? this.processingBeforeWork
+      : this.processingAfterWork;
+
+    processingSignal.set(true);
+    try {
+      let fileToProcess = file;
+
+      if (isHeic) {
+        try {
+          // Convertir explícitamente a Blob puro a través de arrayBuffer para evitar problemas de compatibilidad de la clase File con heic2any
+          const buffer = await file.arrayBuffer();
+          const heicBlob = new Blob([buffer], { type: file.type || "image/heic" });
+          
+          const convertedBlob = await heic2any({
+            blob: heicBlob,
+            toType: "image/jpeg",
+            quality: 0.9
+          });
+          const resultBlob = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
+          const newFileName = file.name.replace(/\.(heic|heif)$/i, ".jpg");
+          fileToProcess = new File([resultBlob], newFileName, { type: "image/jpeg" });
+        } catch (heicError) {
+          console.warn("heic2any falló al analizar el archivo, intentando como fallback nativo...", heicError);
+          // Si falla, fileToProcess sigue siendo el archivo original. 
+          // En navegadores como Safari puede funcionar nativamente, o si era un JPG renombrado.
+        }
+      }
+
+      const processed = await this.compressToMaxSize(fileToProcess, 2 * 1024 * 1024);
+      this.form.get(fieldName)?.setValue(processed);
       const reader = new FileReader();
       reader.onload = () => {
-        if (fieldName === "beforeWork") {
-          this.beforeWorkPreview.set(reader.result as string);
-        } else if (fieldName === "afterWork") {
-          this.afterWorkPreview.set(reader.result as string);
-        }
+        if (fieldName === "beforeWork") this.beforeWorkPreview.set(reader.result as string);
+        else this.afterWorkPreview.set(reader.result as string);
       };
-      reader.readAsDataURL(file);
-    } else {
-      this.form.get(fieldName)?.setValue(null);
-      if (fieldName === "beforeWork") {
-        this.beforeWorkPreview.set(null);
-      } else if (fieldName === "afterWork") {
-        this.afterWorkPreview.set(null);
-      }
+      reader.readAsDataURL(processed);
+    } catch {
+      this.customToastS.showError(
+        "Error al procesar imagen",
+        "No se pudo procesar o comprimir la imagen. Intenta con otro archivo.",
+      );
+    } finally {
+      processingSignal.set(false);
     }
+  }
+
+  private compressToMaxSize(file: File, maxBytes: number): Promise<File> {
+    if (file.size <= maxBytes) return Promise.resolve(file);
+
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      const url = URL.createObjectURL(file);
+
+      img.onload = () => {
+        URL.revokeObjectURL(url);
+        const canvas = document.createElement("canvas");
+        let w = img.naturalWidth;
+        let h = img.naturalHeight;
+
+        const MAX_DIM = 4000;
+        if (w > MAX_DIM || h > MAX_DIM) {
+          const ratio = Math.min(MAX_DIM / w, MAX_DIM / h);
+          w = Math.round(w * ratio);
+          h = Math.round(h * ratio);
+        }
+
+        canvas.width = w;
+        canvas.height = h;
+        canvas.getContext("2d")!.drawImage(img, 0, 0, w, h);
+
+        const baseName = file.name.replace(/\.[^.]+$/, "");
+        const outName = `${baseName}.jpg`;
+
+        const tryQuality = (quality: number) => {
+          canvas.toBlob((blob) => {
+            if (!blob) { reject(new Error("Canvas toBlob failed")); return; }
+            if (blob.size <= maxBytes || quality <= 0.1) {
+              resolve(new File([blob], outName, { type: "image/jpeg" }));
+            } else {
+              tryQuality(+(quality - 0.1).toFixed(1));
+            }
+          }, "image/jpeg", quality);
+        };
+
+        tryQuality(0.9);
+      };
+
+      img.onerror = () => { URL.revokeObjectURL(url); reject(new Error("Image load failed")); };
+      img.src = url;
+    });
+  }
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+  }
+
+  onFileDrop(event: DragEvent, fieldName: "beforeWork" | "afterWork") {
+    event.preventDefault();
+    const file = event.dataTransfer?.files[0] ?? null;
+    this.onFileChange(file, fieldName);
   }
 
   onTicketGroupChange(newValue: string) {
@@ -263,12 +375,25 @@ export class TaskForm implements OnInit {
     this.onLoadUsers(newValue);
   }
 
-  saveLegalMatter = (item: ISelectItem) => {
+  onLegalMatterChange(value: any) {
+    const selectedMatter = this.cb_legal_matter().find(
+      (item) => String(item.value) === String(value)
+    );
     this.form.patchValue({
-      title: item.label,
-      isInternal: !!item.value,
+      title: selectedMatter ? selectedMatter.label : "",
+      isInternal: !!value,
     });
-  };
+  }
+
+  onAssigneeChange(value: any) {
+    const selectedAssignee = this.cb_application_user().find(
+      (item) => String(item.value) === String(value)
+    );
+    this.form.patchValue({
+      assigneeId: value ? String(value) : "",
+      assignee: selectedAssignee ? selectedAssignee.label : "",
+    });
+  }
 
   private async loadLegalMatters(): Promise<void> {
     if (this.cb_legal_matter().length > 0) return;
@@ -277,13 +402,6 @@ export class TaskForm implements OnInit {
     );
     this.cb_legal_matter.set(result as ISelectItem[]);
   }
-
-  saveUserId = (item: ISelectItem) => {
-    this.form.patchValue({
-      assigneeId: String(item?.value),
-      assignee: item?.label,
-    });
-  };
 
   openFollowUp() {
     this.dialogHandlerS.openDialog(

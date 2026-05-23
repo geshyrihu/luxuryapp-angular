@@ -12,6 +12,7 @@
     [control]="form.controls.tipoGasto"
     label="Tipo de Gasto"
     [data]="cb_tipoGasto()"
+    [filter]="true"
   />
   <custom-input-text-signal
     [control]="form.controls.reference"
@@ -37,6 +38,7 @@
     placeholder="Selecciona el Año"
     [horizontal]="true"
     customClass="w-full"
+    [filter]="true"
   />
 
   <div class="grid col-12 md:col-6 lg:col-4">
@@ -64,18 +66,21 @@
     [control]="form.controls.usoCFDIId"
     label="Uso de CFDI"
     [data]="cb_usoCfdi()"
+    [filter]="true"
   />
 
   <custom-input-select-signal
     [control]="form.controls.metodoDePagoId"
     label="Metodo de Pago"
     [data]="cb_payment_method()"
+    [filter]="true"
   />
 
   <custom-input-select-signal
     [control]="form.controls.formaDePagoId"
     label="Forma de Pago"
     [data]="cb_formaPago()"
+    [filter]="true"
   />
   <custom-button-save [disabled]="form.invalid" [submitting]="submitting()" />
 </form>

@@ -88,6 +88,13 @@ export class ListProvider implements OnInit {
 
   // Opciones de paginación y filtro global para PrimeNG
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
+  mobileGlobalFilterFields = ["mobileSearchBlob"];
+  mobileData = computed(() =>
+    this.dataSignal().map((item) => ({
+      ...item,
+      mobileSearchBlob: this.buildMobileSearchBlob(item),
+    })),
+  );
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   loading = signal(true);
@@ -272,5 +279,77 @@ export class ListProvider implements OnInit {
       .then(() => {
         this.onLoadData();
       });
+  }
+
+  private buildMobileSearchBlob(item: IBusquedaProveedor): string {
+    const tokens = new Set<string>();
+
+    const pushToken = (value: unknown): void => {
+      if (value == null) return;
+
+      const normalized = String(value).trim().toLowerCase();
+      if (normalized) {
+        tokens.add(normalized);
+      }
+    };
+
+    const pushBooleanAliases = (key: string, value: boolean): void => {
+      pushToken(key);
+      pushToken(value ? "si" : "no");
+
+      if (key === "activo") {
+        pushToken(value ? "activo" : "inactivo");
+      }
+      if (key === "autorizado") {
+        pushToken(value ? "autorizado" : "desautorizado");
+      }
+      if (key === "sales" && value) {
+        pushToken("ventas");
+      }
+      if (key === "repair" && value) {
+        pushToken("reparacion");
+        pushToken("reparación");
+      }
+    };
+
+    const collectValues = (value: unknown, key = ""): void => {
+      if (value == null) return;
+
+      if (typeof value === "string" || typeof value === "number") {
+        pushToken(key);
+        pushToken(value);
+        return;
+      }
+
+      if (typeof value === "boolean") {
+        pushBooleanAliases(key, value);
+        return;
+      }
+
+      if (Array.isArray(value)) {
+        pushToken(key);
+        value.forEach((entry) => collectValues(entry, key));
+        return;
+      }
+
+      if (typeof value === "object") {
+        pushToken(key);
+        Object.entries(value as object).forEach(([childKey, childValue]) => {
+          pushToken(childKey);
+          collectValues(childValue, childKey);
+        });
+      }
+    };
+
+    Object.entries(item).forEach(([key, value]) => collectValues(value, key));
+
+    const categorias = Array.isArray(item.categorias) ? item.categorias : [];
+    categorias.forEach((categoria) => {
+      pushToken("categoria");
+      pushToken("categorias");
+      pushToken(categoria.nombreCategoria);
+    });
+
+    return Array.from(tokens).join(" ");
   }
 }

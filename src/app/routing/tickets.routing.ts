@@ -50,6 +50,18 @@ export const ticketsRoutes: Routes = [
     },
   },
   {
+    path: "pending-board/:ticketGroupId",
+    loadComponent: () =>
+      import("src/app/features/tasks/task-message/pages/task-pending-board").then(
+        (m) => m.TaskPendingBoard,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Tablero de Pendientes",
+      breadcrumb: "Tablero de Pendientes",
+    },
+  },
+  {
     path: "message/:ticketMessageId/:ticketGroupId",
     loadComponent: () =>
       import("src/app/features/tasks/task-message/pages/task-view").then(

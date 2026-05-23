@@ -1,11 +1,11 @@
 <div class="grid mb-2">
   <div class="col-12">
-    <p-table [value]="facturas" styleClass="custom-table">
+    <p-table [value]="facturas()" styleClass="custom-table">
       <ng-template #caption>
         <div class="flex justify-content-between align-items-center">
           <span class="text-xl font-bold">FACTURAS ASOCIADAS</span>
           <div class="flex">
-            @if (facturas.length > 0) {
+            @if (facturas().length > 0) {
             <custom-button
               label="Validar Todas"
               iconClass="pi pi-check"
@@ -69,7 +69,7 @@
                 severity="danger"
                 icon="pi pi-file-pdf"
                 value="PDF"
-                (click)="viewPdf(factura.pdfFile, factura.factura)"
+                (click)="viewPdf(factura.pdfFile, factura.factura || 'Factura')"
               ></p-tag>
               } @if (factura.xmlFile) {
               <p-tag

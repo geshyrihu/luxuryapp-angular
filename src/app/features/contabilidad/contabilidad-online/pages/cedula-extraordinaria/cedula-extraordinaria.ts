@@ -1,4 +1,4 @@
-import { CommonModule, DecimalPipe } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SkeletonModule } from "primeng/skeleton";
@@ -63,7 +63,6 @@ type ReportRow = {
     TableModule,
     SkeletonModule,
     DataViewMobile,
-    DecimalPipe,
     AccountingNumberPipe,
   ],
   templateUrl: "./cedula-extraordinaria.html",

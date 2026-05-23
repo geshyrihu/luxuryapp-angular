@@ -17,6 +17,7 @@
       [data]="areasResponsablesSignal()"
       placeholder="Todas las áreas"
       [horizontal]="false"
+      [filter]="true"
     />
 
     <custom-input-select-signal
@@ -30,6 +31,7 @@
       ]"
       placeholder="Todas las Recurrencias"
       [horizontal]="false"
+      [filter]="true"
     />
 
     <custom-button-item
@@ -99,6 +101,7 @@
         (ngModelChange)="selectedAreaSignal.set($event)"
         [data]="areasResponsablesSignal()"
         placeholder="Todas las áreas"
+        [filter]="true"
       />
       <custom-input-select-signal
         class="flex-1"
@@ -110,6 +113,7 @@
           { label: 'Mensual', value: 'Mensual' }
         ]"
         placeholder="Todas las Recurrencias"
+        [filter]="true"
       />
     </div>
     <custom-button-item

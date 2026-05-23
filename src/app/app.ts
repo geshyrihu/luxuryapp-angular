@@ -41,7 +41,6 @@ import { MessagingService } from "src/app/core/services/notification-messaging.s
 import { UpdateService } from "src/app/core/services/update-pwa.service";
 import { ConsoleLoggerService } from "./core/services/console-logger.service";
 import { TitleService } from "./core/services/title.service";
-import { AiChatWidget } from "./shared/components/ai-chat-widget/ai-chat-widget";
 @Component({
   selector: "app-root",
   imports: [
@@ -50,7 +49,7 @@ import { AiChatWidget } from "./shared/components/ai-chat-widget/ai-chat-widget"
     PrimeNgCustomToast,
     ConfirmDialogModule,
     // WhatsNew,
-    AiChatWidget,
+    // AiChatWidget,
   ],
   templateUrl: "./app.html",
 })

@@ -81,10 +81,14 @@ export class CatalogoGastosFijosList {
 
     if (matching.length === 0) return null;
 
+    const toStatus = (f: any) =>
+      f
+        ? { isVerified: !!f.verifiedByName, isAuthorized: !!f.authorizedByName, isConfirmed: !!f.confirmedByName }
+        : null;
+
     return {
-      isVerified: matching.some((f: any) => !!f.verifiedByName),
-      isAuthorized: matching.some((f: any) => !!f.authorizedByName),
-      isConfirmed: matching.some((f: any) => !!f.confirmedByName),
+      firstQNA: toStatus(matching.find((f: any) => new Date(f.periodDate).getDate() <= 15)),
+      secondQNA: toStatus(matching.find((f: any) => new Date(f.periodDate).getDate() > 15)),
     };
   });
 
@@ -92,8 +96,12 @@ export class CatalogoGastosFijosList {
     () => this.fundingYear() !== null && this.selectedMonthName() !== null,
   );
 
-  isGenerationBlocked = computed(
-    () => this.selectedFundingStatus()?.isVerified === true,
+  isFirstQuincenaGenerationBlocked = computed(
+    () => this.selectedFundingStatus()?.firstQNA?.isVerified === true,
+  );
+
+  isSecondQuincenaGenerationBlocked = computed(
+    () => this.selectedFundingStatus()?.secondQNA?.isVerified === true,
   );
 
   // Computed signal to determine if all items are selected

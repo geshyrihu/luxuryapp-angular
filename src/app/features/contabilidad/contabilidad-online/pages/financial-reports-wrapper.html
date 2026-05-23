@@ -94,6 +94,7 @@
                 [showClear]="false"
                 [horizontal]="false"
                 [noMargin]="true"
+                [filter]="true"
               />
             </div>
 
@@ -136,6 +137,16 @@
                   severity="help"
                   [showLabelOnDesktop]="true"
                   (clicked)="aiAgent.togglePanel()"
+                />
+                <custom-button
+                  iconClass="pi pi-external-link"
+                  label="Vista cliente"
+                  variant="outlined"
+                  size="small"
+                  severity="success"
+                  [showLabelOnDesktop]="true"
+                  [disabled]="!clienteUrl()"
+                  (clicked)="openClienteView()"
                 />
               </div>
             </div>

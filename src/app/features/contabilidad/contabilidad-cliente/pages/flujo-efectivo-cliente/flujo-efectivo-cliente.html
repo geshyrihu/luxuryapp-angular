@@ -1,0 +1,44 @@
+<div class="rf-shell">
+  @if (loading()) {
+  <div class="rf-card p-4 flex align-items-center text-color-secondary mb-4 gap-2">
+    <i class="pi pi-spin pi-spinner"></i>
+    <span>Calculando flujo de caja...</span>
+  </div>
+  } @if (!loading() && !meses().length) {
+  <div class="rf-card rf-empty">
+    No hay datos. Verifique el periodo seleccionado.
+  </div>
+  } @if (meses().length) {
+  <div class="rf-card">
+    <p-table [value]="meses()" styleClass="rf-prime-table p-datatable-sm">
+      <ng-template pTemplate="header">
+        <tr>
+          <th class="table-col-130px">Mes</th>
+          <th class="text-right table-col-140px">Ingresos</th>
+          <th class="text-right table-col-140px">Gastos</th>
+          <th class="text-right table-col-140px">Flujo Neto</th>
+          <th class="text-right table-col-150px">Saldo Acumulado</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-mes>
+        <tr class="rf-row-concepto">
+          <td class="rf-td-descripcion">{{ mes.nombre }}</td>
+          <td class="rf-td-number">{{ mes.ingresos === 0 ? '-' : (mes.ingresos | accountingNumber : '1.0-0') }}</td>
+          <td class="rf-td-number">{{ mes.gastos === 0 ? '-' : (mes.gastos | accountingNumber : '1.0-0') }}</td>
+          <td class="rf-td-number--total" [class.rf-neg]="mes.flujoNeto < 0">{{ mes.flujoNeto | accountingNumber : '1.0-0' }}</td>
+          <td class="rf-td-number--total" [class.rf-neg]="mes.saldoAcumulado < 0">{{ mes.saldoAcumulado | accountingNumber : '1.0-0' }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <tr class="rf-row-total">
+          <td class="text-sm">TOTAL AÑO</td>
+          <td class="rf-td-number--total">{{ totalIngresos() | accountingNumber : '1.0-0' }}</td>
+          <td class="rf-td-number--total">{{ totalGastos() | accountingNumber : '1.0-0' }}</td>
+          <td class="rf-td-number--total" [class.rf-neg]="totalFlujoNeto() < 0">{{ totalFlujoNeto() | accountingNumber : '1.0-0' }}</td>
+          <td></td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  }
+</div>

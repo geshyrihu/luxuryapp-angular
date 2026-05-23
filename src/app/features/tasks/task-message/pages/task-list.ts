@@ -32,6 +32,7 @@ import {
   createOutline,
   eyeOutline,
   folderOpenOutline,
+  gridOutline,
   lockClosedOutline,
   lockOpenOutline,
   mailOutline,
@@ -216,6 +217,7 @@ export class TaskList implements OnInit {
       eyeOutline,
       clipboardOutline,
       sendOutline,
+      gridOutline,
     });
   }
 
@@ -572,6 +574,10 @@ export class TaskList implements OnInit {
 
   onPreviewClickedWorkPlan(): void {
     this.router.navigate(["/tickets/work-plan-preview"]);
+  }
+
+  onPendingBoard(): void {
+    this.router.navigate(["/tickets/pending-board", this.ticketGroupId]);
   }
 
   onRowReorder(_event: { dragIndex: number; dropIndex: number }): void {

@@ -1,4 +1,4 @@
-import { CommonModule, DecimalPipe } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
@@ -15,34 +15,70 @@ import { reportFilterState } from "../../state/financial-report-filter.state";
 
 /** Nombres de meses para los encabezados de columnas */
 const MONTH_NAMES = [
-  "ENE", "FEB", "MAR", "ABR", "MAY", "JUN",
-  "JUL", "AGO", "SEP", "OCT", "NOV", "DIC",
+  "ENE",
+  "FEB",
+  "MAR",
+  "ABR",
+  "MAY",
+  "JUN",
+  "JUL",
+  "AGO",
+  "SEP",
+  "OCT",
+  "NOV",
+  "DIC",
 ];
 
 /** Claves de monto mensual en orden enero-diciembre */
 const MONTO_KEYS: (keyof IBaseAccountDto)[] = [
-  "montoEnero", "montoFebrero", "montoMarzo", "montoAbril",
-  "montoMayo", "montoJunio", "montoJulio", "montoAgosto",
-  "montoSeptiembre", "montoOctubre", "montoNoviembre", "montoDiciembre",
+  "montoEnero",
+  "montoFebrero",
+  "montoMarzo",
+  "montoAbril",
+  "montoMayo",
+  "montoJunio",
+  "montoJulio",
+  "montoAgosto",
+  "montoSeptiembre",
+  "montoOctubre",
+  "montoNoviembre",
+  "montoDiciembre",
 ];
 
 /** Claves de presupuesto mensual en orden enero-diciembre */
 const PRESUP_KEYS: (keyof IBaseAccountDto)[] = [
-  "presupEnero", "presupFebrero", "presupMarzo", "presupAbril",
-  "presupMayo", "presupJunio", "presupJulio", "presupAgosto",
-  "presupSeptiembre", "presupOctubre", "presupNoviembre", "presupDiciembre",
+  "presupEnero",
+  "presupFebrero",
+  "presupMarzo",
+  "presupAbril",
+  "presupMayo",
+  "presupJunio",
+  "presupJulio",
+  "presupAgosto",
+  "presupSeptiembre",
+  "presupOctubre",
+  "presupNoviembre",
+  "presupDiciembre",
 ];
 
 /**
  * Cuentas que pertenecen a "Gastos Generales" (bloque principal).
  * 605, 606, 607 se separan en su propio bloque al final del reporte.
  */
-const GASTOS_GENERALES = ["600-", "601-", "602-", "603-", "604-", "608-", "609-"];
+const GASTOS_GENERALES = [
+  "600-",
+  "601-",
+  "602-",
+  "603-",
+  "604-",
+  "608-",
+  "609-",
+];
 const GASTOS_EXTRA = ["605-", "606-", "607-"];
 
 @Component({
   selector: "app-cedula-presupuestal",
-  imports: [CommonModule, FormsModule, TableModule, DecimalPipe, AccountingNumberPipe],
+  imports: [CommonModule, FormsModule, TableModule, AccountingNumberPipe],
   templateUrl: "./cedula-presupuestal.html",
 })
 export class CedulaPresupuestal {
@@ -99,20 +135,34 @@ export class CedulaPresupuestal {
     const result: any[] = [];
 
     // Separar cuentas por su clasificación (General vs Extraordinario)
-    const todasLasCuentas = d.clasificaciones.flatMap((c) => c.cuentasMayor ?? []);
-    const cuentasGenerales = todasLasCuentas.filter((c) =>
-      GASTOS_GENERALES.some((prefix) => c.numeroCuenta.startsWith(prefix)) &&
-      c.numeroCuenta !== "600-000-000"
+    const todasLasCuentas = d.clasificaciones.flatMap(
+      (c) => c.cuentasMayor ?? [],
+    );
+    const cuentasGenerales = todasLasCuentas.filter(
+      (c) =>
+        GASTOS_GENERALES.some((prefix) => c.numeroCuenta.startsWith(prefix)) &&
+        c.numeroCuenta !== "600-000-000",
     );
     const cuentasExtra = todasLasCuentas.filter((c) =>
-      GASTOS_EXTRA.some((prefix) => c.numeroCuenta.startsWith(prefix))
+      GASTOS_EXTRA.some((prefix) => c.numeroCuenta.startsWith(prefix)),
     );
 
     // Acumuladores del Gran Total de Gastos Generales
-    let granTot = { presupMes: 0, oct: 0, nov: 0, mes: 0, acum: 0, presupAnual: 0 };
+    let granTot = {
+      presupMes: 0,
+      oct: 0,
+      nov: 0,
+      mes: 0,
+      acum: 0,
+      presupAnual: 0,
+    };
 
     // ─── BLOQUE 1: GASTOS GENERALES ───────────────────────────────────────────
-    result.push({ tipo: "header", descripcion: "GASTOS GENERALES", colspan: 7 });
+    result.push({
+      tipo: "header",
+      descripcion: "GASTOS GENERALES",
+      colspan: 7,
+    });
 
     for (const cuenta of cuentasGenerales) {
       const presupMes = getPresup(cuenta, idx);
@@ -167,7 +217,9 @@ export class CedulaPresupuestal {
     };
 
     for (const prefix of GASTOS_EXTRA) {
-      const bloqueCuentas = cuentasExtra.filter((c) => c.numeroCuenta.startsWith(prefix));
+      const bloqueCuentas = cuentasExtra.filter((c) =>
+        c.numeroCuenta.startsWith(prefix),
+      );
       if (!bloqueCuentas.length) continue;
 
       result.push({
@@ -176,7 +228,14 @@ export class CedulaPresupuestal {
         colspan: 7,
       });
 
-      let totBloque = { presupMes: 0, oct: 0, nov: 0, mes: 0, acum: 0, presupAnual: 0 };
+      let totBloque = {
+        presupMes: 0,
+        oct: 0,
+        nov: 0,
+        mes: 0,
+        acum: 0,
+        presupAnual: 0,
+      };
 
       for (const cuenta of bloqueCuentas) {
         const presupMes = getPresup(cuenta, idx);
@@ -239,11 +298,15 @@ export class CedulaPresupuestal {
   async loadData(customerId: string, year: number, mes: number) {
     this.loading.set(true);
     const result = await this.apiS.onGetItem<IFinancialStatementDto>(
-      Endpoints.ContabilidadOnline.FinancialStatements.budgetVsActual(customerId, year, mes),
+      Endpoints.ContabilidadOnline.FinancialStatements.budgetVsActual(
+        customerId,
+        year,
+        mes,
+      ),
     );
     if (result) {
       this.data.set(result);
-      this.filterS.currentReportName.set('Cédula Presupuestal vs Gastos');
+      this.filterS.currentReportName.set("Cédula Presupuestal vs Gastos");
       this.filterS.currentReportContext.set(JSON.stringify(result));
     }
     this.loading.set(false);

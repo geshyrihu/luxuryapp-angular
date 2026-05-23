@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ButtonModule } from "primeng/button";
 import { ImageModule } from "primeng/image";
 import { TagModule } from "primeng/tag";
@@ -27,10 +28,21 @@ export class ManualsAndProcessesDetail implements OnInit {
   private apiResponseS = inject(ApiResponseService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private sanitizer = inject(DomSanitizer);
   public aspRoleS = inject(AspRoleService);
 
   readonly EApplicationRole = EApplicationRole;
   readonly logoPath = "assets/images/LBG-negro.png";
+
+  isAdmin = computed(() => {
+    const roles = [
+      EApplicationRole.SuperUsuario,
+      EApplicationRole.Legal,
+      EApplicationRole.RecursosHumanos,
+      EApplicationRole.Reclutamiento,
+    ];
+    return roles.some((role) => this.aspRoleS.roleSignal(role)());
+  });
 
   manual = signal<IManualTemplateDetalleDTO | null>(null);
   loading = signal(true);
@@ -38,6 +50,55 @@ export class ManualsAndProcessesDetail implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get("id");
     if (id) this.onLoadData(id);
+  }
+
+  getPeriodicityReadable(manual: IManualTemplateDetalleDTO | null): string {
+    if (!manual) return "";
+    
+    let base = manual.periodicityName || "A Demanda";
+    if (manual.periodicity === 0) return "A Demanda";
+    if (manual.periodicity === 1) return "Única Vez";
+    if (manual.periodicity === 2) return "Diario";
+    
+    // Semanal
+    if (manual.periodicity === 3) {
+      if (manual.executionDaysOfWeek?.length) {
+        const days = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+        const selected = manual.executionDaysOfWeek.map(d => days[d]).join(", ");
+        return `Semanal (${selected})`;
+      }
+      return "Semanal";
+    }
+    
+    // Mensual
+    if (manual.periodicity === 4) {
+      if (manual.executionDayOfMonth) {
+        return `Mensual (Día ${manual.executionDayOfMonth})`;
+      }
+      if (manual.executionWeekOfMonth && manual.executionDaysOfWeek?.length) {
+        const weeks = ["1ra", "2da", "3ra", "4ta", "Última"];
+        const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+        const wk = weeks[manual.executionWeekOfMonth - 1] || "Semana";
+        const d = days[manual.executionDaysOfWeek[0]];
+        return `Mensual (${wk} semana, el ${d})`;
+      }
+      return "Mensual";
+    }
+
+    // Anual
+    if (manual.periodicity === 5) {
+      if (manual.executionMonthOfYear) {
+        const months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+        const m = months[manual.executionMonthOfYear - 1];
+        if (manual.executionDayOfMonth) {
+          return `Anual (Cada ${manual.executionDayOfMonth} de ${m})`;
+        }
+        return `Anual (En ${m})`;
+      }
+      return "Anual";
+    }
+
+    return base;
   }
 
   onLoadData(id: string) {
@@ -159,5 +220,20 @@ export class ManualsAndProcessesDetail implements OnInit {
       default:
         return "transparent";
     }
+  }
+
+  safeUrl(url: string): SafeResourceUrl | null {
+    if (!url) return null;
+    let embedUrl = url;
+    if (url.includes("youtube.com/watch?v=")) {
+      embedUrl = url.replace("youtube.com/watch?v=", "youtube.com/embed/");
+      const amp = embedUrl.indexOf("&");
+      if (amp !== -1) embedUrl = embedUrl.substring(0, amp);
+    } else if (url.includes("youtu.be/")) {
+      embedUrl = url.replace("youtu.be/", "youtube.com/embed/");
+      const q = embedUrl.indexOf("?");
+      if (q !== -1) embedUrl = embedUrl.substring(0, q);
+    }
+    return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
 }

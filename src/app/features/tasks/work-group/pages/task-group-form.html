@@ -12,12 +12,14 @@
         [control]="form.controls.TaskGroupCategoryId"
         label="Categoria"
         [data]="cb_TaskGroupCategory()"
+        [filter]="true"
       />
 
       <custom-input-select-signal
         [control]="form.controls.visibility"
         label="Privacidad"
         [data]="cb_visibility()"
+        [filter]="true"
       />
 
       <div class="text-center mt-3">

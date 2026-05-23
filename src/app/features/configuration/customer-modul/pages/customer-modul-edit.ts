@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonList, IonToggle } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -7,13 +7,15 @@ import { checkmarkOutline, closeOutline } from "ionicons/icons";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { InputTextModule } from "primeng/inputtext";
+import { FormsModule } from "@angular/forms";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
-// En tu componente .ts
+
 interface ModuleGroup {
-  key: string; // PathParent
+  groupTitle: string;
   items: CustomerModulListDTO[];
 }
 
@@ -35,8 +37,9 @@ interface CustomerModulListDTO {
     CommonModule,
     MessageModule,
     ProgressSpinnerModule,
+    InputTextModule,
+    FormsModule,
     IonList,
-
     IonToggle,
   ],
   templateUrl: "./customer-modul-edit.html",
@@ -49,7 +52,22 @@ export class CustomerModulEdit implements OnInit {
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
 
-  groupedData: any[] = []; // Ahora será un array de grupos
+  allData = signal<ModuleGroup[]>([]);
+  searchTerm = signal("");
+  
+  filteredGroupedData = computed(() => {
+    const term = this.searchTerm().toLowerCase().trim();
+    if (!term) return this.allData();
+
+    return this.allData().map(group => ({
+      ...group,
+      items: group.items.filter(item => 
+        item.moduleAppName.toLowerCase().includes(term) || 
+        group.groupTitle.toLowerCase().includes(term)
+      )
+    })).filter(group => group.items.length > 0);
+  });
+
   loading = signal(true);
   customerId: string | null = null;
   customerName: string = "";
@@ -66,9 +84,8 @@ export class CustomerModulEdit implements OnInit {
 
   onLoadData(customerId: string): void {
     const urlApi = Endpoints.ModuleAppCustomers.customerModules(customerId);
-    this.apiResponseS.onGetList(urlApi).then((result: any[]) => {
-      console.log("Datos recibidos:", result); // 👈 ¡Mira esto en la consola del navegador!
-      this.groupedData = result;
+    this.apiResponseS.onGetList(urlApi).then((result: ModuleGroup[]) => {
+      this.allData.set(result);
       this.loading.set(false);
     });
   }

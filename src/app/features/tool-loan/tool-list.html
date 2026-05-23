@@ -70,7 +70,7 @@
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          @if (aspRoleS.roleSignal(EApplicationRole.SuperUsuario)()) {
+          @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
           <custom-button-delete (confirmed)="onDelete(item.id)" />
           }
         </div>
@@ -109,7 +109,7 @@
             <ion-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             />
-            @if (aspRoleS.roleSignal(EApplicationRole.SuperUsuario)()) {
+            @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
             <ion-button-delete (confirmed)="onDelete(item.id)" />
             }
           </ng-container>

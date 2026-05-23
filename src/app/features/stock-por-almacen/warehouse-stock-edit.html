@@ -25,6 +25,7 @@
         [control]="form.controls.almacenId"
         label="Almacen"
         [data]="cb_almacenes()"
+        [filter]="true"
       />
 
       <custom-input-number-signal
@@ -36,6 +37,7 @@
         [control]="form.controls.unidadDeMedidaId"
         label="Unidad"
         [data]="cb_measurementUnits()"
+        [filter]="true"
       />
 
       <custom-input-number-signal

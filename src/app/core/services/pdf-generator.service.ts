@@ -102,13 +102,34 @@ export class PdfGeneratorService {
     includePrefix: boolean = false,
   ): Promise<string> {
     return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const result = reader.result as string;
-        resolve(includePrefix ? result : result.split(",")[1]);
+      const url = URL.createObjectURL(blob);
+      const img = new Image();
+      img.onload = () => {
+        URL.revokeObjectURL(url);
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return reject("Could not get canvas context");
+        // Fondo blanco para evitar fondos negros o problemas en pdfmake con imágenes transparentes/webp
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0);
+        const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+        resolve(includePrefix ? dataUrl : dataUrl.split(",")[1]);
       };
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
+      img.onerror = () => {
+        URL.revokeObjectURL(url);
+        // Fallback a FileReader normal si algo falla al cargar en la etiqueta Image
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const result = reader.result as string;
+          resolve(includePrefix ? result : result.split(",")[1]);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      };
+      img.src = url;
     });
   }
 

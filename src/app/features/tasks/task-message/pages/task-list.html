@@ -9,7 +9,7 @@
   [reorderableRows]="true"
   (onRowReorder)="onRowReorder($event)"
   [rowsPerPageOptions]="rowsPerPageOptions"
-  [totalRecords]="totalRecords"
+  [totalRecords]="totalRecords()"
   [value]="dataSignal().items"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
@@ -47,6 +47,7 @@
           (selectionChange)="onResponsibleChange($event.value)"
           size="small"
           [horizontal]="false"
+          [filter]="true"
         />
       </div>
 
@@ -62,6 +63,15 @@
       </div>
 
       <div class="flex align-items-center gap-2">
+        <custom-button
+          iconClass="pi pi-th-large"
+          label="Tablero"
+          variant="outlined"
+          severity="secondary"
+          size="small"
+          [showLabelOnDesktop]="true"
+          (clicked)="onPendingBoard()"
+        />
         <custom-button
           iconClass="pi pi-clipboard"
           label="Plan de trabajo"
@@ -355,7 +365,19 @@
       </ion-row>
 
       <ion-row class="ion-margin-top-small">
-        <ion-col size="4">
+        <ion-col size="3">
+          <ion-button
+            expand="block"
+            fill="outline"
+            size="small"
+            style="font-size: 11px; height: 32px; --padding-start: 4px; --padding-end: 4px;"
+            (click)="onPendingBoard()"
+          >
+            <ion-icon slot="start" name="grid-outline" style="font-size: 14px;"></ion-icon>
+            Tablero
+          </ion-button>
+        </ion-col>
+        <ion-col size="3">
           <ion-button
             expand="block"
             fill="outline"
@@ -367,7 +389,7 @@
             Plan
           </ion-button>
         </ion-col>
-        <ion-col size="4">
+        <ion-col size="3">
           <ion-button
             expand="block"
             fill="outline"
@@ -379,7 +401,7 @@
             Previa
           </ion-button>
         </ion-col>
-        <ion-col size="4">
+        <ion-col size="3">
           <ion-button
             expand="block"
             fill="outline"

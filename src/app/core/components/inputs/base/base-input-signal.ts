@@ -7,6 +7,7 @@ import {
   inject,
   input,
   OnInit,
+  HostBinding,
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
@@ -34,28 +35,36 @@ import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
     ValidationErrorsCustomInput,
   ],
   template: `
-    @if (onlyInput()) {
-      <div class="fluid">
-        <ng-content></ng-content>
-      </div>
-    } @else {
-      <div class="field" [class.field-horizontal]="horizontal()" [class.mb-0]="noMargin()">
-        @if (label()) {
-          <label [for]="id()" class="field-label">
-            {{ label() }}
-            @if (isRequired()) {
-              <span class="text-red-400">*</span>
-            }
-          </label>
-        }
-        <div class="field-content">
+    @if (!hidden()) {
+      @if (onlyInput()) {
+        <div class="fluid">
           <ng-content></ng-content>
-          <app-validation-errors-custom-input
-            [control]="control() || internalControl"
-            [placeholder]="placeholder() || label()"
-          />
         </div>
-      </div>
+      } @else {
+        <div class="field" [class.field-horizontal]="horizontal()" [class.mb-0]="noMargin()">
+          @if (label()) {
+            <label [for]="id()" class="field-label">
+              {{ label() }}
+              @if (isRequired()) {
+                <span class="text-red-400">*</span>
+              }
+            </label>
+          }
+          <div class="field-content">
+            <ng-content></ng-content>
+            @if (description()) {
+            <small class="block mt-1 text-500 line-height-2 italic px-1">
+              <i class="pi pi-info-circle mr-1 text-xs"></i>
+              {{ description() }}
+            </small>
+            }
+            <app-validation-errors-custom-input
+              [control]="control() || internalControl"
+              [placeholder]="placeholder() || label()"
+            />
+          </div>
+        </div>
+      }
     }
   `,
   styles: [
@@ -107,6 +116,11 @@ export class BaseInputSignal implements ControlValueAccessor, OnInit {
   requiredInput = input<boolean>(false, { alias: "required" });
   onlyInput = input<boolean>(false);
   noMargin = input<boolean>(false);
+  description = input<string>("");
+
+  @HostBinding("style.display") get display() {
+    return this.hidden() ? "none" : null;
+  }
 
   internalControl: FormControl = new FormControl();
 

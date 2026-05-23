@@ -49,6 +49,17 @@ export const publicRoutes: Routes = [
       breadcrumb: "Reporte de Tickets Pendientes de Proveedor",
     },
   },
+  {
+    path: "contabilidad-cliente/:customerId/:anio/:mes",
+    loadComponent: () =>
+      import("src/app/features/contabilidad/contabilidad-cliente/pages/contabilidad-cliente-wrapper").then(
+        (m) => m.default,
+      ),
+    data: {
+      title: "Estados Financieros Cliente",
+      breadcrumb: "Estados Financieros Cliente",
+    },
+  },
 ];
 
 

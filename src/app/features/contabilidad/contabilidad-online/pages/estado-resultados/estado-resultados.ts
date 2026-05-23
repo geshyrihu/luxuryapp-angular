@@ -1,8 +1,8 @@
-import { CommonModule, DecimalPipe } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { TableModule } from "primeng/table";
 import { SkeletonModule } from "primeng/skeleton";
+import { TableModule } from "primeng/table";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -52,7 +52,6 @@ const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
     TableModule,
     SkeletonModule,
     DataViewMobile,
-    DecimalPipe,
     AccountingNumberPipe,
   ],
   templateUrl: "./estado-resultados.html",
@@ -188,7 +187,7 @@ export class EstadoResultados {
     );
     if (result) {
       this.data.set(result);
-      this.filterS.currentReportName.set('Estado de Resultados');
+      this.filterS.currentReportName.set("Estado de Resultados");
       this.filterS.currentReportContext.set(JSON.stringify(result));
     }
     this.loading.set(false);
@@ -198,7 +197,12 @@ export class EstadoResultados {
     return (a[MONTH_KEYS[idx % 12]] as number) ?? 0;
   }
 
-  private hasVisibleValues(m1: number, m2: number, m3: number, acum: number): boolean {
+  private hasVisibleValues(
+    m1: number,
+    m2: number,
+    m3: number,
+    acum: number,
+  ): boolean {
     return m1 !== 0 || m2 !== 0 || m3 !== 0 || acum !== 0;
   }
 }

@@ -22,6 +22,8 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [disabled]="disabled()"
       [required]="requiredInput()"
       [noMargin]="noMargin()"
+      [description]="description()"
+      [hidden]="hidden()"
     >
       <p-select
         [options]="data()"
@@ -33,6 +35,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
         [inputId]="id()"
         [optionLabel]="optionLabel()"
         [optionValue]="optionValue()"
+        [dataKey]="optionValue()"
         [class]="customClass()"
         fluid
         (onChange)="selectionChange.emit($event)"

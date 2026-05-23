@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { CommonModule, formatDate } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import * as FileSaver from "file-saver";
@@ -75,7 +75,15 @@ export class MedidorLecturaList implements OnInit {
 
   exportExcel() {
     import("xlsx").then((xlsx) => {
-      const worksheet = xlsx.utils.json_to_sheet(this.dataSignal());
+      const dataToExport = this.dataSignal().map((item) => ({
+        Medidor: item.medidor || "",
+        "Número de Medidor": item.numeroMedidor || "",
+        Fecha: item.fechaRegistro
+          ? formatDate(item.fechaRegistro, "dd-MMM-yyyy", "en-US", "UTC")
+          : "",
+        Lectura: item.lectura || 0,
+      }));
+      const worksheet = xlsx.utils.json_to_sheet(dataToExport);
       const workbook = { Sheets: { data: worksheet }, SheetNames: ["data"] };
       const excelBuffer: any = xlsx.write(workbook, {
         bookType: "xlsx",

@@ -23,12 +23,14 @@
     [control]="form.controls.typeOfContract"
     label="Tipo de contrato"
     [data]="cb_type_of_contract()"
+    [filter]="true"
   />
 
   <custom-input-select-signal
     [control]="form.controls.isCurrent"
     label="Activo"
     [data]="cb_isCurrent()"
+    [filter]="true"
   />
 
   <custom-input-check-signal

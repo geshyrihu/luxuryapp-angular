@@ -38,8 +38,6 @@ export interface AspelMovimiento {
   monto: number;
   saldoAnterior: number;
   saldoPosterior: number;
-  saldo_Anterior?: number;
-  saldo_Posterior?: number;
 }
 
 export interface AspelEstadoCuentaResponse {
@@ -49,16 +47,12 @@ export interface AspelEstadoCuentaResponse {
   fechaFin: string;
   saldoInicial: number;
   saldoFinal: number;
-  totalMovimientos: number;
   movimientos: AspelMovimiento[];
-  saldosFinalesPorConcepto: Record<string, number>[];
   num_cta?: string;
   fecha_Inicio?: string;
   fecha_Fin?: string;
   saldo_Inicial?: number;
   saldo_Final?: number;
-  total_Movimientos?: number;
-  saldos_finales_por_concepto?: Record<string, number>[];
 }
 
 export interface AspelContrapartidaMovimiento {
@@ -170,70 +164,12 @@ export interface AspelCobranzaDetalleConcepto {
 }
 
 export interface AspelCobranzaDetalleVencido {
-  id: string;
   fechaCargo: string;
-  periodo: string;
   conceptoDetalle: string;
-  montoOriginal: number;
   saldoPendiente: number;
   fecha_cargo?: string;
   concepto_detalle?: string;
-  monto_original?: number;
   saldo_pendiente?: number;
-}
-
-export interface AspelCobranzaDetalleMovimiento {
-  id: string;
-  fecha: string;
-  tipo: string;
-  numCtaConcepto: string;
-  nombreCuenta: string;
-  conceptoAplicado: string;
-  conceptoDetalle: string;
-  monto: number;
-  saldoAnteriorConcepto: number;
-  saldoPosteriorConcepto: number;
-  tipoPoli: string;
-  numPoliz: string;
-  periodo: number;
-  ejercicio: number;
-  reciboId?: string | null;
-  num_cta_concepto?: string;
-  nombre_cuenta?: string;
-  concepto_aplicado?: string;
-  concepto_detalle?: string;
-  saldo_anterior_concepto?: number;
-  saldo_posterior_concepto?: number;
-  tipo_poli?: string;
-  num_poliz?: string;
-  recibo_id?: string | null;
-}
-
-export interface AspelCobranzaDetalleReciboAplicacion {
-  numCtaConcepto: string;
-  nombreCuenta: string;
-  conceptoAplicado: string;
-  conceptoDetalle: string;
-  montoAplicado: number;
-  num_cta_concepto?: string;
-  nombre_cuenta?: string;
-  concepto_aplicado?: string;
-  concepto_detalle?: string;
-  monto_aplicado?: number;
-}
-
-export interface AspelCobranzaDetalleRecibo {
-  reciboId: string;
-  fecha: string;
-  tipoPoli: string;
-  numPoliz: string;
-  concepto: string;
-  montoTotal: number;
-  aplicaciones: AspelCobranzaDetalleReciboAplicacion[];
-  recibo_id?: string;
-  tipo_poli?: string;
-  num_poliz?: string;
-  monto_total?: number;
 }
 
 export interface AspelCobranzaDetalleResponse {
@@ -247,11 +183,7 @@ export interface AspelCobranzaDetalleResponse {
   saldoFinalTotal: number;
   totalAdelantos: number;
   totalConceptos: number;
-  totalMovimientos: number;
-  totalRecibos: number;
   conceptos: AspelCobranzaDetalleConcepto[];
-  movimientos: AspelCobranzaDetalleMovimiento[];
-  recibos: AspelCobranzaDetalleRecibo[];
   num_cta_base?: string;
   fecha_inicio?: string;
   fecha_fin?: string;
@@ -261,12 +193,10 @@ export interface AspelCobranzaDetalleResponse {
   saldo_final_total?: number;
   total_adelantos?: number;
   total_conceptos?: number;
-  total_movimientos?: number;
-  total_recibos?: number;
 }
 
 export interface AspelQueryRequest {
-  numCta: string;
+  numCta: string | null;
   fechaInicio: Date | null;
   fechaFin: Date | null;
 }

@@ -19,6 +19,8 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [readonly]="readonly()"
       [disabled]="disabled()"
       [required]="requiredInput()"
+      [description]="description()"
+      [hidden]="hidden()"
     >
       <!-- 🚀 CONTENIDO PROYECTADO -->
       <textarea

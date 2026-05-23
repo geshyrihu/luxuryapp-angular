@@ -57,11 +57,13 @@
             [control]="form.controls.turnoTrabajo"
             label="Turno"
             [data]="cb_turnoTrabajo()"
+            [filter]="true"
           />
           <custom-input-select-signal
             [control]="form.controls.state"
             label="Estado de Vacante"
             [data]="cb_state()"
+            [filter]="true"
           />
           <custom-input-textarea-signal
             [control]="form.controls.observationsWorkShift"

@@ -29,6 +29,7 @@
         [control]="form.controls.executionMonth"
         [data]="cb_months"
         label="Mes de Ejecución"
+        [filter]="true"
       />
     </div>
     @if (form.controls.isFromRecurrence.value) {}
@@ -38,6 +39,7 @@
         [data]="cb_recurrences"
         label="Frecuencia"
         [disabled]="form.controls.isFromRecurrence.value"
+        [filter]="true"
       />
     </div>
 
@@ -69,6 +71,7 @@
         [control]="form.controls.expenseType"
         [data]="cb_expenseTypes"
         label="Tipo de Gasto"
+        [filter]="true"
       />
     </div>
 

@@ -1,0 +1,99 @@
+<div class="rf-shell">
+  @if (loading()) {
+  <div class="rf-card p-4">
+    <p-skeleton height="2rem" styleClass="mb-2" />
+    <p-skeleton height="10rem" />
+  </div>
+  } @else if (!mainRows().length && !extraRows().length) {
+  <div class="surface-card p-6 border-round shadow-1 text-center">
+    <i class="pi pi-search text-4xl text-500 mb-3"></i>
+    <p class="text-color-secondary m-0">No se encontraron registros para el periodo seleccionado.</p>
+  </div>
+  } @else {
+  @if (mainRows().length) {
+  <p-table
+    [value]="mainRows()"
+    styleClass="rf-prime-table card p-datatable-sm mb-4"
+    [tableStyle]="{ 'min-width': '700px' }"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Descripción</th>
+        <th class="text-right w-8rem">{{ monthHeaders()[0] }}</th>
+        <th class="text-right w-8rem">{{ monthHeaders()[1] }}</th>
+        <th class="text-right w-8rem">{{ monthHeaders()[2] }}</th>
+        <th class="text-right w-10rem">Acumulado</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-row>
+      @if (row.tipo === 'header') {
+      <tr class="rf-row-section">
+        <td colspan="5" class="py-2 px-3 uppercase text-xs tracking-wider">{{ row.descripcion }}</td>
+      </tr>
+      }
+      @if (row.tipo === 'item') {
+      <tr class="rf-row-concepto">
+        <td class="rf-td-descripcion--item">{{ row.descripcion }}</td>
+        <td class="rf-td-number" [class.rf-neg]="row.mes1 < 0">{{ row.mes1 === 0 ? '-' : (row.mes1 | accountingNumber : '1.0-0') }}</td>
+        <td class="rf-td-number" [class.rf-neg]="row.mes2 < 0">{{ row.mes2 === 0 ? '-' : (row.mes2 | accountingNumber : '1.0-0') }}</td>
+        <td class="rf-td-number" [class.rf-neg]="row.mes3 < 0">{{ row.mes3 === 0 ? '-' : (row.mes3 | accountingNumber : '1.0-0') }}</td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.acum < 0">{{ row.acum === 0 ? '-' : (row.acum | accountingNumber : '1.0-0') }}</td>
+      </tr>
+      }
+      @if (row.tipo === 'total') {
+      <tr class="rf-row-total">
+        <td class="rf-td-descripcion">{{ row.descripcion }}</td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes1 < 0">{{ row.mes1 | accountingNumber : '1.0-0' }}</td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes2 < 0">{{ row.mes2 | accountingNumber : '1.0-0' }}</td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes3 < 0">{{ row.mes3 | accountingNumber : '1.0-0' }}</td>
+        <td class="rf-td-number--total">{{ row.acum | accountingNumber : '1.0-0' }}</td>
+      </tr>
+      }
+    </ng-template>
+  </p-table>
+  }
+
+  @if (extraRows().length) {
+  <p-table
+    [value]="extraRows()"
+    styleClass="rf-prime-table card p-datatable-sm"
+    [tableStyle]="{ 'min-width': '700px' }"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Descripción</th>
+        <th class="text-right w-8rem">{{ monthHeaders()[0] }}</th>
+        <th class="text-right w-8rem">{{ monthHeaders()[1] }}</th>
+        <th class="text-right w-8rem">{{ monthHeaders()[2] }}</th>
+        <th class="text-right w-10rem">Acumulado</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-row>
+      @if (row.tipo === 'header') {
+      <tr class="rf-row-section">
+        <td colspan="5" class="py-2 px-3 uppercase text-xs tracking-wider">{{ row.descripcion }}</td>
+      </tr>
+      }
+      @if (row.tipo === 'item') {
+      <tr class="rf-row-concepto">
+        <td class="rf-td-descripcion--item">{{ row.descripcion }}</td>
+        <td class="rf-td-number" [class.rf-neg]="row.mes1 < 0">{{ row.mes1 === 0 ? '-' : (row.mes1 | accountingNumber : '1.0-0') }}</td>
+        <td class="rf-td-number" [class.rf-neg]="row.mes2 < 0">{{ row.mes2 === 0 ? '-' : (row.mes2 | accountingNumber : '1.0-0') }}</td>
+        <td class="rf-td-number" [class.rf-neg]="row.mes3 < 0">{{ row.mes3 === 0 ? '-' : (row.mes3 | accountingNumber : '1.0-0') }}</td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.acum < 0">{{ row.acum === 0 ? '-' : (row.acum | accountingNumber : '1.0-0') }}</td>
+      </tr>
+      }
+      @if (row.tipo === 'total') {
+      <tr class="rf-row-total">
+        <td class="rf-td-descripcion">{{ row.descripcion }}</td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes1 < 0">{{ row.mes1 | accountingNumber : '1.0-0' }}</td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes2 < 0">{{ row.mes2 | accountingNumber : '1.0-0' }}</td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes3 < 0">{{ row.mes3 | accountingNumber : '1.0-0' }}</td>
+        <td class="rf-td-number--total">{{ row.acum | accountingNumber : '1.0-0' }}</td>
+      </tr>
+      }
+    </ng-template>
+  </p-table>
+  }
+  }
+</div>

@@ -1,0 +1,109 @@
+<!-- Selector de periodo -->
+<div class="card mb-3">
+  <div class="card-body">
+    <app-rango-calendario-yyyymmdd (fechasChange)="onFechasChange($event)" />
+  </div>
+</div>
+
+<!-- KPIs -->
+<div class="grid mb-3">
+  <div class="col-6 md:col-2">
+    <div class="card text-center p-3">
+      <p class="text-500 text-xs mb-1">Recepciones</p>
+      <p class="text-2xl font-bold text-primary m-0">{{ totalRecepciones() }}</p>
+    </div>
+  </div>
+  <div class="col-6 md:col-3">
+    <div class="card text-center p-3">
+      <p class="text-500 text-xs mb-1">Total litros</p>
+      <p class="text-2xl font-bold text-blue-600 m-0">{{ totalLitros() | number: '1.0-0' }}</p>
+    </div>
+  </div>
+  <div class="col-6 md:col-3">
+    <div class="card text-center p-3">
+      <p class="text-500 text-xs mb-1">Promedio por entrega (L)</p>
+      <p class="text-2xl font-bold text-cyan-600 m-0">{{ promedioLitrosPorEntrega() | number: '1.0-0' }}</p>
+    </div>
+  </div>
+  <div class="col-6 md:col-2">
+    <div class="card text-center p-3">
+      <p class="text-500 text-xs mb-1">Dif. prom. cisterna</p>
+      <p class="text-2xl font-bold m-0"
+         [class.text-green-600]="diferenciaPromCisterna() > 0"
+         [class.text-red-500]="diferenciaPromCisterna() <= 0">
+        {{ diferenciaPromCisterna() | number: '1.2-2' }}
+      </p>
+    </div>
+  </div>
+  <div class="col-12 md:col-2">
+    <div class="card text-center p-3">
+      <p class="text-500 text-xs mb-1">Proveedor frecuente</p>
+      <p class="text-xl font-bold text-gray-700 m-0">{{ placasMasFrecuente() }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- Graficas -->
+<div class="grid mb-3">
+  <div class="col-12 md:col-7">
+    <div class="card p-3">
+      <p class="font-semibold text-sm mb-2">Litros recibidos por mes</p>
+      <div style="height: 260px;">
+        <canvas baseChart
+          [data]="chartLitros()"
+          type="bar">
+        </canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 md:col-5">
+    <div class="card p-3">
+      <p class="font-semibold text-sm mb-2">Diferencia promedio de cisterna</p>
+      <div style="height: 260px;">
+        <canvas baseChart
+          [data]="chartCisterna()"
+          type="line">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tabla de tendencia mensual -->
+<div class="card">
+  <div class="card-body">
+    <p class="font-semibold text-sm mb-3">Resumen por mes</p>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-bottom-1 border-300">
+            <th class="text-left py-2 pr-3 text-500 font-medium">Periodo</th>
+            <th class="text-right py-2 px-3 text-500 font-medium">Recepciones</th>
+            <th class="text-right py-2 px-3 text-500 font-medium">Total litros</th>
+            <th class="text-right py-2 px-3 text-500 font-medium">Prom. litros</th>
+            <th class="text-right py-2 pl-3 text-500 font-medium">Dif. cisterna prom.</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of tendenciaMensual(); track row.periodo) {
+            <tr class="border-bottom-1 border-100 hover:surface-100">
+              <td class="py-2 pr-3 font-semibold">{{ row.periodo }}</td>
+              <td class="text-right py-2 px-3">{{ row.recepciones }}</td>
+              <td class="text-right py-2 px-3">{{ row.totalLitros | number: '1.0-0' }}</td>
+              <td class="text-right py-2 px-3">{{ row.promedioLitros | number: '1.0-0' }}</td>
+              <td class="text-right py-2 pl-3 font-semibold"
+                  [class.text-green-600]="row.diferenciaPromCisterna > 0"
+                  [class.text-red-500]="row.diferenciaPromCisterna <= 0">
+                {{ row.diferenciaPromCisterna | number: '1.2-2' }}
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="5" class="text-center py-4 text-500">Sin datos para el periodo seleccionado</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
