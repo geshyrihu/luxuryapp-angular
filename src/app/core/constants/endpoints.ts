@@ -165,21 +165,7 @@ export const Endpoints = {
     deleteFile: (id: string) => `EntregaRecepcionCliente/DeleteFile/${id}`,
   },
   TaskLegal: {
-    getAllLegal: "task-legal/AllLegal",
-    getAllByCustomer: (customerId: string) => `task-legal/All/${customerId}`,
-    getById: (id: string) => `task-legal/${id}`,
-    create: "task-legal",
-    createToCustomer: "task-legal/ToCustomer",
-    update: (id: string) => `task-legal/${id}`,
-    employeeLegal: "task-legal/EmployeeLegal",
     selectForAddTicket: "SelectForAddTicket",
-    status: (id: string) => `task-legal/status/${id}`,
-    updateStatus: (id: string, status: number | null) =>
-      `task-legal/UpdateStatus/${id}/${status}`,
-    tracking: (ticketId: string) => `task-legal/Traking/${ticketId}`,
-    addTracking: "task-legal/Addtraking",
-    requestDetail: (id: string) => `task-legal/requestDetail/${id}`,
-    delete: (id: string) => `task-legal/${id}`,
   },
   LegalMatters: {
     getAll: "LegalMatter",
