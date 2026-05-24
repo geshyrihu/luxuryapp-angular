@@ -19,6 +19,7 @@ export interface PurchaseHistoryDTO {
   accountName: string;
   amount: number;
   invoiceUrl: string;
+  notasEspeciales?: string;
 }
 // ... (interfaces existentes)
 

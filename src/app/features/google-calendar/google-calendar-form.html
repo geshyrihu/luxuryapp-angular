@@ -100,9 +100,10 @@
       7:30 PM.
     </small>
     @if (isEditMode()) {
-    <small class="text-orange-600 block mt-2">
-      La configuracion de recurrencia esta bloqueada en edicion. Los cambios
-      aplican solo a esta ocurrencia individual.
+    <small class="text-blue-700 block mt-2">
+      Guardar actualiza solo esta ocurrencia. Guardar toda la serie aplica los
+      cambios de recurrencia, fecha base y configuracion comun a todas las
+      ocurrencias.
     </small>
     }
   </div>
@@ -261,9 +262,42 @@
       </div>
       }
     </div>
+
+    @if (!guestsArray.controls.length) {
+    <small class="text-color-secondary block mt-3">
+      No hay invitados registrados. Agrega solo los que realmente necesites.
+    </small>
+    }
   </div>
 
-  <div class="col-12">
+  <div class="col-12 flex flex-wrap justify-content-between gap-2">
+    @if (isEditMode() && (originalEventDetail()?.isRecurring || form.controls.isRecurring.getRawValue())) {
+    <div class="flex gap-2">
+      <button
+        class="p-button p-component p-button-outlined p-button-sm"
+        type="button"
+        [disabled]="form.invalid || submittingSeries() || deletingSeries()"
+        (click)="onSubmitSeries()"
+      >
+        <span class="p-button-label">
+          {{ submittingSeries() ? "Actualizando serie..." : "Guardar toda la serie" }}
+        </span>
+      </button>
+      @if (originalEventDetail()?.isRecurring) {
+      <button
+        class="p-button p-component p-button-danger p-button-outlined p-button-sm"
+        type="button"
+        [disabled]="submittingSeries() || deletingSeries()"
+        (click)="onDeleteSeries()"
+      >
+        <span class="p-button-label">
+          {{ deletingSeries() ? "Eliminando serie..." : "Eliminar toda la serie" }}
+        </span>
+      </button>
+      }
+    </div>
+    }
+
     <custom-button-save [disabled]="form.invalid" [submitting]="submitting()" />
   </div>
 </form>

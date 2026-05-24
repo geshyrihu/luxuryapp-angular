@@ -105,7 +105,10 @@ export class GoogleCalendarForm implements OnInit {
   private readonly enumSelectS = inject(EnumSelectService);
 
   readonly submitting = signal(false);
+  readonly submittingSeries = signal(false);
+  readonly deletingSeries = signal(false);
   readonly id = signal<string | null>(null);
+  readonly originalEventDetail = signal<IGoogleCalendarEventDetail | null>(null);
   readonly recurrenceOptions = signal<ISelectItem[]>([]);
   readonly recurrenceModeOptions = signal<ISelectItem[]>([
     {
@@ -240,12 +243,7 @@ export class GoogleCalendarForm implements OnInit {
     if (this.id()) {
       await this.onLoadData();
     } else {
-      this.addGuest();
       this.applyRecurringState(false, false);
-    }
-
-    if (this.isEditMode()) {
-      this.lockRecurrenceConfiguration();
     }
   }
 
@@ -257,6 +255,8 @@ export class GoogleCalendarForm implements OnInit {
     if (!result) {
       return;
     }
+
+    this.originalEventDetail.set(result);
 
     this.form.patchValue({
       customerId: result.customerId,
@@ -276,9 +276,7 @@ export class GoogleCalendarForm implements OnInit {
 
     this.guestsArray.clear();
     const guests = Array.isArray(result.guests) ? result.guests : [];
-    if (!guests.length) {
-      this.addGuest();
-    } else {
+    if (guests.length) {
       guests.forEach((guest) => this.addGuest(guest));
     }
 
@@ -310,33 +308,54 @@ export class GoogleCalendarForm implements OnInit {
       id: this.id(),
       ref: this.ref,
       submitting: this.submitting,
-      transformPayload: () => ({
-        customerId: this.form.controls.customerId.getRawValue(),
-        subjectType: this.form.controls.subjectType.value,
-        modality: this.form.controls.modality.value,
-        startAt: this.combineDateAndTime(
-          this.form.controls.meetingDate.value,
-          this.form.controls.startTime.value,
-        ),
-        endAt: this.combineDateAndTime(
-          this.form.controls.meetingDate.value,
-          this.getEndTimeForStart(this.form.controls.startTime.value),
-        ),
-        isRecurring: this.form.controls.isRecurring.getRawValue(),
-        recurrence: this.form.controls.isRecurring.getRawValue()
-          ? this.form.controls.recurrence.getRawValue()
-          : null,
-        recurrenceMode: this.form.controls.isRecurring.getRawValue()
-          ? this.form.controls.recurrenceMode.getRawValue()
-          : null,
-        recurrenceEndDate: this.form.controls.isRecurring.getRawValue()
-          ? this.form.controls.recurrenceEndDate.getRawValue()
-          : null,
-        description: this.form.controls.description.getRawValue(),
-        location: this.form.controls.location.getRawValue(),
-        guests: this.guestsArray.getRawValue().filter((guest) => guest.email),
-      }),
+      transformPayload: () => this.buildPayload(false),
     });
+  }
+
+  async onSubmitSeries() {
+    if (!this.id() || !this.apiResponseS.validateForm(this.form)) {
+      return;
+    }
+
+    this.submittingSeries.set(true);
+    try {
+      const result = await this.apiResponseS.onPut(
+        `google-calendar-events/${this.id()}/series`,
+        this.buildPayload(true),
+      );
+
+      if (result) {
+        this.ref.close(true);
+      }
+    } finally {
+      this.submittingSeries.set(false);
+    }
+  }
+
+  async onDeleteSeries() {
+    if (!this.id()) {
+      return;
+    }
+
+    const confirmed = window.confirm(
+      "Se eliminaran todas las ocurrencias de esta serie. Deseas continuar?",
+    );
+    if (!confirmed) {
+      return;
+    }
+
+    this.deletingSeries.set(true);
+    try {
+      const result = await this.apiResponseS.onDelete(
+        `google-calendar-events/${this.id()}/series`,
+      );
+
+      if (result) {
+        this.ref.close(true);
+      }
+    } finally {
+      this.deletingSeries.set(false);
+    }
   }
 
   private async loadRecurrenceOptions() {
@@ -431,13 +450,6 @@ export class GoogleCalendarForm implements OnInit {
     }
 
     this.form.updateValueAndValidity({ emitEvent: false });
-  }
-
-  private lockRecurrenceConfiguration() {
-    this.form.controls.isRecurring.disable({ emitEvent: false });
-    this.form.controls.recurrence.disable({ emitEvent: false });
-    this.form.controls.recurrenceMode.disable({ emitEvent: false });
-    this.form.controls.recurrenceEndDate.disable({ emitEvent: false });
   }
 
   private defaultRecurrenceEndDateValue(): string {
@@ -765,7 +777,11 @@ export class GoogleCalendarForm implements OnInit {
       0,
     );
 
-    return combined.toISOString();
+    return `${baseDate.getFullYear()}-${(baseDate.getMonth() + 1)
+      .toString()
+      .padStart(2, "0")}-${baseDate.getDate().toString().padStart(2, "0")}T${hours
+      .toString()
+      .padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:00`;
   }
 
   private extractDisplayDate(value: string): string {
@@ -776,6 +792,46 @@ export class GoogleCalendarForm implements OnInit {
     const hours = date.getHours().toString().padStart(2, "0");
     const minutes = date.getMinutes().toString().padStart(2, "0");
     return `${day}/${month}/${year} ${hours}:${minutes}`;
+  }
+
+  private buildPayload(forSeries: boolean) {
+    const isRecurring = this.form.controls.isRecurring.getRawValue();
+    const original = this.originalEventDetail();
+    const effectiveIsRecurring =
+      forSeries || !original ? isRecurring : original.isRecurring;
+
+    return {
+      customerId: this.form.controls.customerId.getRawValue(),
+      subjectType: this.form.controls.subjectType.value,
+      modality: this.form.controls.modality.value,
+      startAt: this.combineDateAndTime(
+        this.form.controls.meetingDate.value,
+        this.form.controls.startTime.value,
+      ),
+      endAt: this.combineDateAndTime(
+        this.form.controls.meetingDate.value,
+        this.getEndTimeForStart(this.form.controls.startTime.value),
+      ),
+      isRecurring: effectiveIsRecurring,
+      recurrence: effectiveIsRecurring
+        ? (forSeries || !original
+            ? this.form.controls.recurrence.getRawValue()
+            : original.recurrence)
+        : null,
+      recurrenceMode: effectiveIsRecurring
+        ? (forSeries || !original
+            ? this.form.controls.recurrenceMode.getRawValue()
+            : original.recurrenceMode)
+        : null,
+      recurrenceEndDate: effectiveIsRecurring
+        ? (forSeries || !original
+            ? this.form.controls.recurrenceEndDate.getRawValue()
+            : original.recurrenceEndDate)
+        : null,
+      description: this.form.controls.description.getRawValue(),
+      location: this.form.controls.location.getRawValue(),
+      guests: this.guestsArray.getRawValue().filter((guest) => guest.email),
+    };
   }
 
   private buildRecurrencePreview(): string {

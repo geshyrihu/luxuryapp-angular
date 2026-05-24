@@ -23,13 +23,17 @@ export const roleRedirectGuard: CanActivateFn = (): boolean => {
   const aspRoleS = inject(AspRoleService);
   const router = inject(Router);
 
-  const url = aspRoleS.hasRole(EApplicationRole.Comite)
-    ? "/committee"
-    : "/dashboard";
+  let url: string;
+  if (aspRoleS.hasRole(EApplicationRole.Comite)) {
+    url = "/committee";
+  } else if (aspRoleS.hasRole(EApplicationRole.Direccion)) {
+    url = "/direccion";
+  } else {
+    url = "/dashboard";
+  }
 
-  // Reemplaza /auth/login en el historial
   router.navigate([url], { replaceUrl: true });
-  return false; // ya navegamos
+  return false;
 };
 
 

@@ -1,31 +1,45 @@
-import { Component, inject, OnInit } from "@angular/core";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { Component, ElementRef, inject, OnInit, ViewChild } from "@angular/core";
+import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
 import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
 import { InfoAccountAuthDTO } from "src/app/core/interfaces/auth-user-token.dto";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { ProfielService } from "src/app/core/services/profiel-service";
+
 @Component({
   selector: "app-actualizar-foto-usuario-aplicacion",
   templateUrl: "./update-user-photo.html",
-  imports: [NgbModule, CardModule, CustomInputImg],
+  imports: [CardModule, CustomInputImg, ButtonModule],
 })
 export class UpdateUserPhotoComponent implements OnInit {
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
   public profielServiceService = inject(ProfielService);
+
   applicationUserId: string = this.authS.applicationUserId;
   infoEmployeeDTO: InfoAccountAuthDTO;
+
+  public imgUpload: any;
+  public imgTemp: any;
+  imgName: any = "";
+
+  @ViewChild("cameraInput") cameraInput!: ElementRef<HTMLInputElement>;
 
   ngOnInit(): void {
     this.infoEmployeeDTO = this.authS.infoUserAuth;
   }
 
-  // Cambio de imagen
-  public imgUpload: any;
-  public imgTemp: any;
-  imgName: any = "";
+  triggerCamera(): void {
+    this.cameraInput?.nativeElement.click();
+  }
+
+  onCameraCapture(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    input.value = "";
+    if (file) this.changeImg(file);
+  }
 
   changeImg(file: File) {
     this.imgUpload = file;
@@ -35,19 +49,16 @@ export class UpdateUserPhotoComponent implements OnInit {
     }
     const reader = new FileReader();
     reader.readAsDataURL(file);
-
     reader.onloadend = () => {
       this.imgTemp = reader.result;
       this.imgName = file;
     };
-
     this.uploadImg();
   }
+
   uploadImg() {
-    // Mostrar un mensaje de carga
     const formData = new FormData();
     formData.append("file", this.imgUpload);
-
     this.apiResponseS
       .onPut("Users/UpdateImage/" + this.applicationUserId, formData)
       .then((result: any) => {

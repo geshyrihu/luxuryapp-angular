@@ -1,0 +1,127 @@
+import { Component } from "@angular/core";
+import { AgendaSemanalCard } from "src/app/layout/direccion-view/components/agenda-semanal-card/agenda-semanal-card";
+import { ReclutamientoCard } from "src/app/layout/direccion-view/components/reclutamiento-card/reclutamiento-card";
+import { PersonalAusenteCard } from "src/app/layout/direccion-view/components/personal-ausente-card/personal-ausente-card";
+import { ContratosCard } from "src/app/layout/direccion-view/components/contratos-card/contratos-card";
+import {
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonCol,
+  IonGrid,
+  IonIcon,
+  IonLabel,
+  IonRow,
+} from "@ionic/angular/standalone";
+import { addIcons } from "ionicons";
+import {
+  briefcaseOutline,
+  calculatorOutline,
+  chatbubblesOutline,
+  constructOutline,
+  peopleOutline,
+  personAddOutline,
+  settingsOutline,
+} from "ionicons/icons";
+
+export interface AreaDireccion {
+  key: string;
+  label: string;
+  iconPi: string;
+  iconIon: string;
+  color: string;
+  metricas: string[];
+}
+
+@Component({
+  selector: "app-home-direccion",
+  imports: [
+    AgendaSemanalCard,
+    ReclutamientoCard,
+    PersonalAusenteCard,
+    ContratosCard,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardContent,
+    IonIcon,
+    IonLabel,
+  ],
+  templateUrl: "./home-direccion.html",
+})
+export class HomeDireccion {
+  readonly areas: AreaDireccion[] = [
+    {
+      key: "juntas-comite",
+      label: "Juntas con Comite",
+      iconPi: "pi pi-comments",
+      iconIon: "chatbubbles-outline",
+      color: "#0ea5e9",
+      metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
+    },
+    {
+      key: "contabilidad",
+      label: "Contabilidad",
+      iconPi: "pi pi-calculator",
+      iconIon: "calculator-outline",
+      color: "#22c55e",
+      metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
+    },
+    {
+      key: "legal",
+      label: "Legal",
+      iconPi: "pi pi-briefcase",
+      iconIon: "briefcase-outline",
+      color: "#3b82f6",
+      metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
+    },
+    {
+      key: "recursos-humanos",
+      label: "Recursos Humanos",
+      iconPi: "pi pi-users",
+      iconIon: "people-outline",
+      color: "#f97316",
+      metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
+    },
+    {
+      key: "reclutamiento",
+      label: "Reclutamiento",
+      iconPi: "pi pi-user-plus",
+      iconIon: "person-add-outline",
+      color: "#a855f7",
+      metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
+    },
+    {
+      key: "operaciones",
+      label: "Operaciones",
+      iconPi: "pi pi-cog",
+      iconIon: "settings-outline",
+      color: "#ef4444",
+      metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
+    },
+    {
+      key: "mantenimiento",
+      label: "Mantenimiento",
+      iconPi: "pi pi-wrench",
+      iconIon: "construct-outline",
+      color: "#8b5cf6",
+      metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
+    },
+  ];
+
+  constructor() {
+    addIcons({
+      calculatorOutline,
+      briefcaseOutline,
+      peopleOutline,
+      personAddOutline,
+      settingsOutline,
+      constructOutline,
+      chatbubblesOutline,
+    });
+  }
+}

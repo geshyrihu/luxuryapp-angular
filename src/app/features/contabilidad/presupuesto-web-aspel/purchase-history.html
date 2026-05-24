@@ -51,10 +51,17 @@
         class="text-center pointer"
         (click)="onShowPurchaseDetails(item.ordenCompraId)"
       >
-        ??
+        <i class="pi pi-pencil text-color-secondary"></i>
       </td>
       <td>{{ item.creationAt }}</td>
-      <td>{{ item.description }}</td>
+      <td>
+        <div class="flex flex-column gap-1">
+          <span>{{ item.description }}</span>
+          @if (item.notasEspeciales) {
+            <small class="text-color-secondary">{{ item.notasEspeciales }}</small>
+          }
+        </div>
+      </td>
       <td>{{ item.provider }}</td>
       <td>
         <div class="flex flex-column">
@@ -107,6 +114,9 @@
     <ion-item lines="full" class="ion-no-padding" detail="false">
       <ion-label>
         <h2 class="font-normal m-0">{{ item.description }}</h2>
+        @if (item.notasEspeciales) {
+          <p class="text-sm text-color-secondary m-0">{{ item.notasEspeciales }}</p>
+        }
         <p class="text-medium text-500 m-0">{{ item.provider }}</p>
         <p class="text-sm text-400 mt-1">
           {{ item.accountNumber }} ó {{ item.creationAt }}

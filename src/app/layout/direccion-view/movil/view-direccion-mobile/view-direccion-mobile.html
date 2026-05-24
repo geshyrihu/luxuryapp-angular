@@ -1,0 +1,18 @@
+<ion-app>
+  <div class="ion-page h-full flex flex-column">
+    <ion-header class="ion-no-border">
+      <ion-toolbar class="ion-no-padding">
+        <app-header-mobile />
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content [scrollY]="true" [fullscreen]="true" class="flex-flex-grow-1-1 relative">
+      <div class="page-body-wrapper">
+        <div class="pb-8">
+          <router-outlet />
+        </div>
+      </div>
+      <app-loader />
+    </ion-content>
+  </div>
+</ion-app>

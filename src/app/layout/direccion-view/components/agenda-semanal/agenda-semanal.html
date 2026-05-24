@@ -1,0 +1,161 @@
+<!-- Cabecera de navegacion -->
+<div class="flex align-items-center justify-content-between gap-2 mb-3 flex-wrap">
+  <div class="flex align-items-center gap-2">
+    <i class="pi pi-calendar text-primary text-xl"></i>
+    <span class="font-bold text-lg text-900">Agenda</span>
+    @if (totalEventos() > 0) {
+      <span class="text-xs surface-200 text-600 border-round px-2 py-1">
+        {{ totalEventos() }} evento{{ totalEventos() === 1 ? '' : 's' }}
+      </span>
+    }
+  </div>
+
+  <div class="flex align-items-center gap-1 flex-wrap">
+    <p-button
+      icon="pi pi-chevron-left"
+      styleClass="p-button-text p-button-secondary p-button-sm"
+      pTooltip="Dos semanas anteriores"
+      (onClick)="periodoAnterior()"
+    />
+    <span class="text-sm font-semibold text-700 px-2 white-space-nowrap">
+      {{ rangoLabel() }}
+    </span>
+    <p-button
+      icon="pi pi-chevron-right"
+      styleClass="p-button-text p-button-secondary p-button-sm"
+      pTooltip="Dos semanas siguientes"
+      (onClick)="periodoSiguiente()"
+    />
+    @if (!esPeriodoActual()) {
+      <p-button
+        label="Hoy"
+        styleClass="p-button-outlined p-button-sm ml-1"
+        (onClick)="volverHoy()"
+      />
+    }
+    <p-button
+      icon="pi pi-calendar-plus"
+      label="Ver meses"
+      styleClass="p-button-text p-button-sm ml-2"
+      pTooltip="Ver todos los meses con eventos"
+      (onClick)="abrirVistasMeses()"
+    />
+  </div>
+</div>
+
+<!-- Cargando -->
+@if (cargando()) {
+  <div class="flex justify-content-center align-items-center py-5">
+    <i class="pi pi-spin pi-spinner text-primary" style="font-size: 1.5rem"></i>
+    <span class="ml-2 text-500">Cargando agenda...</span>
+  </div>
+} @else {
+  <div class="flex flex-column gap-2">
+    @for (dia of diasPeriodo(); track dia.fecha) {
+
+      <div
+        class="border-1 border-round overflow-hidden"
+        [class.surface-border]="!dia.esHoy"
+        [class.border-primary]="dia.esHoy"
+      >
+        <!-- Cabecera del dia -->
+        <div
+          class="flex align-items-center justify-content-between px-3 py-2"
+          [class.surface-100]="!dia.esHoy"
+          [class.bg-primary]="dia.esHoy"
+        >
+          <span
+            class="text-sm font-bold capitalize"
+            [class.text-700]="!dia.esHoy"
+            [class.text-white]="dia.esHoy"
+          >
+            {{ dia.label }}
+          </span>
+          <div class="flex align-items-center gap-2">
+            @if (dia.esHoy) {
+              <span class="text-xs text-white opacity-80">Hoy</span>
+            }
+            @if (dia.eventos.length > 0) {
+              <span
+                class="text-xs border-round px-2 py-1"
+                [class.surface-300]="!dia.esHoy"
+                [style]="dia.esHoy ? 'background:rgba(255,255,255,0.2);color:#fff' : ''"
+              >
+                {{ dia.eventos.length }}
+              </span>
+            }
+          </div>
+        </div>
+
+        <!-- Eventos del dia -->
+        @if (dia.eventos.length === 0) {
+          <div class="px-3 py-2">
+            <span class="text-xs text-400 italic">Sin eventos</span>
+          </div>
+        } @else {
+          <div class="flex flex-column">
+            @for (evento of dia.eventos; track evento.id; let last = $last) {
+              <div
+                class="px-3 py-2 flex align-items-start gap-3"
+                [class.border-bottom-1]="!last"
+                [class.surface-border]="!last"
+              >
+                <!-- Hora -->
+                <div class="flex flex-column align-items-center flex-none" style="min-width: 3.5rem">
+                  <span class="text-sm font-bold text-900">{{ formatHora(evento.startAt) }}</span>
+                  <span class="text-xs text-400">{{ formatHora(evento.endAt) }}</span>
+                </div>
+
+                <!-- Detalle -->
+                <div class="flex flex-column gap-1 flex-auto min-w-0">
+                  <div class="flex align-items-center gap-2 flex-wrap">
+                    <span class="text-sm font-semibold text-900">{{ evento.title }}</span>
+                    @if (evento.isRecurring) {
+                      <i class="pi pi-refresh text-xs text-400" pTooltip="Recurrente"></i>
+                    }
+                  </div>
+                  <div class="flex align-items-center gap-2 flex-wrap">
+                    <span class="text-xs surface-200 text-600 border-round px-2 py-1">
+                      {{ evento.customerName }}
+                    </span>
+                    <span class="text-xs text-500">{{ evento.subjectTypeName }}</span>
+                    <p-tag
+                      [value]="evento.modalityName"
+                      [severity]="getModalityClass(evento.modalityName)"
+                      styleClass="text-xs"
+                    />
+                  </div>
+                  @if (evento.googleMeetUrl) {
+                    <a
+                      [href]="evento.googleMeetUrl"
+                      target="_blank"
+                      class="text-xs text-primary no-underline flex align-items-center gap-1"
+                    >
+                      <i class="pi pi-video"></i> Unirse a Meet
+                    </a>
+                  } @else if (evento.location) {
+                    <span class="text-xs text-500 flex align-items-center gap-1">
+                      <i class="pi pi-map-marker"></i> {{ evento.location }}
+                    </span>
+                  }
+                </div>
+
+                <!-- Invitados -->
+                @if (evento.guestCount > 0) {
+                  <div
+                    class="flex align-items-center gap-1 flex-none text-400"
+                    [pTooltip]="evento.guestCount + ' invitados'"
+                  >
+                    <i class="pi pi-users text-xs"></i>
+                    <span class="text-xs">{{ evento.guestCount }}</span>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        }
+      </div>
+
+    }
+  </div>
+}

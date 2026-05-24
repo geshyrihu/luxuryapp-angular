@@ -1,4 +1,4 @@
-import { Component, effect, inject, Signal } from "@angular/core";
+import { Component, computed, effect, inject, Signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
@@ -22,7 +22,9 @@ import {
 } from "ionicons/icons";
 import { InfoAccountAuthDTO } from "src/app/core/interfaces/auth-user-token.dto";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -51,7 +53,14 @@ export class ProfileCommitteeMobile {
   updateService = inject(UpdateService);
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
+  aspRoleS = inject(AspRoleService);
   customerIdS = inject(CustomerIdService);
+
+  profileRoute = computed(() =>
+    this.aspRoleS.roleSignal(EApplicationRole.Direccion)()
+      ? "/direccion/profile/update-user-profile"
+      : "/profile/update-user-profile",
+  );
   menuService = inject(MenuService);
   profielServiceService = inject(ProfielService);
   router = inject(Router);

@@ -1,0 +1,58 @@
+@if (cargando()) {
+  <div class="flex align-items-center gap-2 py-3">
+    <i class="pi pi-spin pi-spinner text-primary"></i>
+    <span class="text-sm text-500">Cargando agenda...</span>
+  </div>
+} @else {
+
+  <!-- Contador y boton -->
+  <div class="flex align-items-center justify-content-between mb-3">
+    <div class="flex align-items-center gap-2">
+      <span class="text-3xl font-bold text-900">{{ totalEventos() }}</span>
+      <span class="text-sm text-500">evento{{ totalEventos() === 1 ? '' : 's' }} en las proximas dos semanas</span>
+    </div>
+    <p-button
+      label="Ver agenda"
+      icon="pi pi-calendar"
+      styleClass="p-button-sm p-button-outlined"
+      (onClick)="abrirAgenda()"
+    />
+  </div>
+
+  <!-- Proximos eventos -->
+  @if (proximosEventos().length === 0) {
+    <div class="flex align-items-center gap-2 py-2 text-400">
+      <i class="pi pi-calendar-times"></i>
+      <span class="text-sm">Sin eventos proximos</span>
+    </div>
+  } @else {
+    <div class="flex flex-column gap-2">
+      @for (evento of proximosEventos(); track evento.id; let last = $last) {
+        <div
+          class="flex align-items-start gap-3 py-2"
+          [class.border-bottom-1]="!last"
+          [class.surface-border]="!last"
+        >
+          <!-- Fecha -->
+          <span class="text-xs text-500 flex-none" style="min-width: 7rem">
+            {{ formatFechaCorta(evento.startAt) }}
+          </span>
+          <!-- Titulo y cliente -->
+          <div class="flex flex-column gap-1 min-w-0 flex-auto">
+            <span class="text-sm font-semibold text-900 white-space-nowrap overflow-hidden text-overflow-ellipsis">
+              {{ evento.title }}
+            </span>
+            <span class="text-xs text-500">{{ evento.customerName }}</span>
+          </div>
+        </div>
+      }
+    </div>
+
+    @if (totalEventos() > 3) {
+      <div class="mt-2 text-xs text-400 text-right">
+        y {{ totalEventos() - 3 }} evento{{ totalEventos() - 3 === 1 ? '' : 's' }} mas...
+      </div>
+    }
+  }
+
+}

@@ -1,0 +1,21 @@
+<div class="w-screen h-screen overflow-hidden flex flex-column">
+
+  <!-- Header fijo -->
+  <div class="flex-none z-50 shadow-1">
+    <app-header-direccion-monitor />
+  </div>
+
+  <!-- Contenido con scroll -->
+  <div class="flex-auto overflow-y-auto overflow-x-hidden surface-ground relative">
+    <div class="w-full min-h-full pb-4">
+      <router-outlet />
+    </div>
+    <app-loader />
+  </div>
+
+  <!-- Footer fijo -->
+  <div class="flex-none surface-card border-top-1 surface-border">
+    <app-footer-direccion-monitor />
+  </div>
+
+</div>

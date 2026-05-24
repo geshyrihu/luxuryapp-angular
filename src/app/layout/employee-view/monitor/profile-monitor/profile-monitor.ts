@@ -1,4 +1,4 @@
-import { Component, effect, inject } from "@angular/core";
+import { Component, computed, effect, inject } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { AvatarModule } from "primeng/avatar";
@@ -6,7 +6,9 @@ import { AvatarGroupModule } from "primeng/avatargroup";
 import { Button, ButtonModule } from "primeng/button";
 import { Popover, PopoverModule } from "primeng/popover";
 import { InfoAccountAuthDTO } from "src/app/core/interfaces/auth-user-token.dto";
+import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -30,6 +32,13 @@ export class ProfileMonitor {
   updateService = inject(UpdateService);
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
+  aspRoleS = inject(AspRoleService);
+
+  profileRoute = computed(() =>
+    this.aspRoleS.roleSignal(EApplicationRole.Direccion)()
+      ? "/direccion/profile/update-user-profile"
+      : "/profile/update-user-profile",
+  );
   customerIdS = inject(CustomerIdService);
   profielServiceService = inject(ProfielService);
   router = inject(Router);

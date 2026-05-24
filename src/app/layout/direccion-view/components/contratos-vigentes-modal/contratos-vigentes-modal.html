@@ -1,0 +1,93 @@
+@if (cargando()) {
+  <div class="flex align-items-center gap-2 py-6 justify-content-center">
+    <i class="pi pi-spin pi-spinner text-primary" style="font-size:1.5rem"></i>
+    <span class="text-500">Cargando contratos...</span>
+  </div>
+} @else if (!resumen() || resumen()!.total === 0) {
+  <div class="flex flex-column align-items-center py-6 gap-3 text-400">
+    <i class="pi pi-file-edit" style="font-size:3rem"></i>
+    <span>Sin contratos vigentes registrados</span>
+  </div>
+} @else {
+
+  <div class="text-sm text-500 mb-3">
+    {{ resumen()!.total }} contrato{{ resumen()!.total === 1 ? '' : 's' }} vigente{{ resumen()!.total === 1 ? '' : 's' }}
+    en {{ resumen()!.customers.length }} cliente{{ resumen()!.customers.length === 1 ? '' : 's' }}
+  </div>
+
+  <div class="flex flex-column gap-2">
+    @for (customer of resumen()!.customers; track customer.customerName) {
+
+      <!-- Cabecera del cliente (acordeon) -->
+      <div class="surface-card border-1 surface-border border-round-lg overflow-hidden">
+        <div
+          class="flex align-items-center justify-content-between px-4 py-3 cursor-pointer hover:surface-hover"
+          (click)="toggleCliente(customer.customerName)"
+        >
+          <div class="flex align-items-center gap-2">
+            <i class="pi pi-building text-primary text-sm"></i>
+            <span class="font-bold text-800">{{ customer.customerName }}</span>
+          </div>
+          <div class="flex align-items-center gap-3">
+            <span class="text-xs text-500">{{ customer.total }} contrato{{ customer.total === 1 ? '' : 's' }}</span>
+            <i
+              class="pi text-400 text-xs"
+              [class.pi-chevron-down]="!estaExpandido(customer.customerName)"
+              [class.pi-chevron-up]="estaExpandido(customer.customerName)"
+            ></i>
+          </div>
+        </div>
+
+        <!-- Lista de contratos del cliente -->
+        @if (estaExpandido(customer.customerName)) {
+          <div class="flex flex-column border-top-1 surface-border">
+            @for (contrato of customer.contratos; track contrato.id; let last = $last) {
+              <div
+                class="px-4 py-3 flex align-items-start gap-3"
+                [class.border-bottom-1]="!last"
+                [class.surface-border]="!last"
+              >
+                <!-- Indicador vencimiento -->
+                <div class="flex-none mt-1">
+                  @if (contrato.porVencer) {
+                    <i class="pi pi-exclamation-triangle text-orange-500 text-sm" pTooltip="Por vencer"></i>
+                  } @else {
+                    <i class="pi pi-check-circle text-green-400 text-sm"></i>
+                  }
+                </div>
+
+                <!-- Detalle -->
+                <div class="flex flex-column gap-1 flex-auto min-w-0">
+                  <span class="text-sm font-semibold text-900">{{ contrato.description }}</span>
+                  <div class="flex align-items-center gap-2 flex-wrap">
+                    <span class="text-xs text-500">{{ contrato.provider }}</span>
+                    <span class="text-xs surface-200 text-600 border-round px-2 py-1">
+                      {{ contrato.typeOfContract }}
+                    </span>
+                  </div>
+                  <span class="text-xs text-400">
+                    {{ formatFecha(contrato.startDate) }} &mdash; {{ formatFecha(contrato.endDate) }}
+                  </span>
+                </div>
+
+                <!-- Dias restantes -->
+                @if (contrato.diasRestantes !== null) {
+                  <div class="flex-none">
+                    <p-tag
+                      [value]="contrato.diasRestantes + 'd'"
+                      [severity]="getSeverity(contrato)"
+                      styleClass="text-xs"
+                      [pTooltip]="contrato.diasRestantes + ' dias restantes'"
+                    />
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        }
+
+      </div>
+    }
+  </div>
+
+}

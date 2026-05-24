@@ -1,0 +1,83 @@
+<p-toolbar styleClass="direccion-header-toolbar w-full p-0 m-0">
+  <ng-template #start>
+    <div class="flex align-items-center gap-2 px-3">
+      <p-breadcrumb [model]="breadcrumbItems" />
+    </div>
+  </ng-template>
+
+  <ng-template #center>
+    <div class="flex align-items-center gap-2 px-3" style="min-width: 350px">
+      @if (cb_customer.length > 1) {
+        <p-select
+          [options]="cb_customer"
+          [ngModel]="customerId()"
+          (onChange)="selectCustomer($event.value)"
+          optionValue="value"
+          optionLabel="label"
+          styleClass="w-full"
+          [filter]="cb_customer.length > 10"
+          fluid
+          size="small"
+        >
+          <ng-template #selectedItem let-opt>
+            @if (opt) {
+              <div class="flex align-items-center gap-2">
+                <img [src]="opt.image" style="width: 20px; height: 20px; object-fit: contain" />
+                <span class="font-medium">{{ opt.label }}</span>
+              </div>
+            }
+          </ng-template>
+          <ng-template let-c #item>
+            <div class="flex align-items-center gap-2">
+              <img [src]="c.image" style="width: 24px; height: 24px; object-fit: contain" />
+              <span>{{ c.label }}</span>
+            </div>
+          </ng-template>
+        </p-select>
+      } @else {
+        <div class="flex align-items-center gap-3">
+          <img [src]="customerPhotoPath()" style="width: 38px; height: 38px; object-fit: contain" />
+          <span class="font-bold text-xl">{{ customerName() }}</span>
+        </div>
+      }
+    </div>
+  </ng-template>
+
+  <ng-template #end>
+    <div class="flex align-items-center gap-1 px-3">
+      <p-button
+        (click)="onBack()"
+        icon="icon icon-pi-angle-left"
+        styleClass="p-button-text p-button-secondary"
+        pTooltip="Atras"
+        tooltipPosition="bottom"
+        size="small"
+      />
+      <p-button
+        (click)="onForward()"
+        icon="icon icon-pi-angle-right"
+        styleClass="p-button-text p-button-secondary"
+        pTooltip="Adelante"
+        tooltipPosition="bottom"
+        size="small"
+      />
+      <p-button
+        (click)="onHome()"
+        icon="icon icon-pi-home"
+        styleClass="p-button-text p-button-secondary"
+        pTooltip="Inicio"
+        tooltipPosition="bottom"
+        size="small"
+      />
+      <p-button
+        (click)="toggleTheme()"
+        [icon]="getThemeIcon()"
+        styleClass="p-button-text p-button-secondary"
+        pTooltip="Cambiar Tema"
+        tooltipPosition="bottom"
+        size="small"
+      />
+      <app-profile-monitor />
+    </div>
+  </ng-template>
+</p-toolbar>

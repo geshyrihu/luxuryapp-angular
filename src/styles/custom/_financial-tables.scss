@@ -198,20 +198,36 @@
   background-color: #1e3a8a !important;
   color: #ffffff !important;
   font-weight: 700;
+  height: 2.25rem !important;
+  max-height: 2.25rem !important;
+  white-space: nowrap;
+  overflow: hidden;
+
+  span { color: inherit !important; }
 }
 
 .fila-nivel-2-agrupadora > td {
   background-color: #dbeafe !important;
   color: #1e3a8a !important;
   font-weight: 600;
+  height: 2.25rem !important;
+  max-height: 2.25rem !important;
+  white-space: nowrap;
+  overflow: hidden;
+
+  span { color: inherit !important; }
 }
 
 .fila-nivel-2-hoja > td {
   background-color: #f1f5f9;
+  max-height: 3.5rem !important;
+  overflow: hidden;
 }
 
 .fila-nivel-3-hoja > td {
   background-color: #ffffff;
+  max-height: 3.5rem !important;
+  overflow: hidden;
 }
 
 // ── ESPEJO ASPEL FULL — utilidades específicas ────────────

@@ -7,6 +7,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
+import { FloatLabelModule } from "primeng/floatlabel";
 import { PasswordModule } from "primeng/password";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { passwordValidation } from "src/app/core/directives/password-validation.directive";
@@ -22,6 +23,7 @@ import { AuthService } from "src/app/core/services/auth.service";
     CardModule,
     PasswordModule,
     CustomButtonSave,
+    FloatLabelModule,
   ],
 })
 export class UpdatePasswordComponent implements OnInit {

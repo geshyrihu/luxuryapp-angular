@@ -22,14 +22,13 @@ export const employeeGuard: CanActivateFn = (route, state) => {
     take(1),
     switchMap(() => authS.userToken$), // Cambiar al stream del token de usuario
     map((session) => {
-      // Verificar directamente los roles de la sesión
       const roles = new Set(session?.roles ?? []);
       if (roles.has(EApplicationRole.Comite)) {
-        // Si el usuario es del comité, no debe estar aquí. Redirigir a su dashboard.
         return router.createUrlTree(["/committee"]);
       }
-
-      // Si no es del comité, permitir acceso.
+      if (roles.has(EApplicationRole.Direccion)) {
+        return router.createUrlTree(["/direccion"]);
+      }
       return true;
     })
   );

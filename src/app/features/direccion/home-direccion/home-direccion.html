@@ -1,0 +1,117 @@
+<!-- Vista Monitor -->
+<div class="hidden md:block p-3">
+  <div class="flex flex-column gap-4">
+
+    @for (area of areas; track area.key) {
+    <div class="surface-card border-1 surface-border border-round-lg p-3">
+
+      <!-- Encabezado del area -->
+      <div class="flex align-items-center gap-2 mb-3 pb-2 border-bottom-1 surface-border">
+        <span
+          class="flex align-items-center justify-content-center border-round"
+          [style.width.rem]="2"
+          [style.height.rem]="2"
+          [style.background-color]="area.color + '22'"
+        >
+          <i [class]="area.iconPi" [style.color]="area.color"></i>
+        </span>
+        <h5 class="m-0 font-bold text-900">{{ area.label }}</h5>
+      </div>
+
+      <!-- Contenido por area -->
+      @if (area.key === 'juntas-comite') {
+        <app-agenda-semanal-card />
+      } @else if (area.key === 'reclutamiento') {
+        <app-reclutamiento-card />
+      } @else if (area.key === 'recursos-humanos') {
+        <app-personal-ausente-card />
+      } @else if (area.key === 'legal') {
+        <app-contratos-card />
+      } @else {
+        <!-- Grid de metricas placeholder -->
+        <div class="grid m-0">
+          @for (metrica of area.metricas; track $index) {
+          <div class="col-12 md:col-6 lg:col-4 xl:col-3 p-2">
+            <div
+              class="border-1 surface-border border-round p-3 h-full"
+              [style]="'border-left: 3px solid ' + area.color"
+            >
+              <p class="text-xs text-500 m-0 mb-1 uppercase font-semibold">
+                {{ metrica }}
+              </p>
+              <p class="text-2xl font-bold text-400 m-0">--</p>
+              <span class="text-xs text-300">Por configurar</span>
+            </div>
+          </div>
+          }
+        </div>
+      }
+
+    </div>
+    }
+
+  </div>
+</div>
+
+<!-- Vista Movil -->
+<div class="block md:hidden">
+  <ion-grid class="p-0">
+
+    @for (area of areas; track area.key) {
+    <ion-row class="mb-3">
+
+      <!-- Titulo del area -->
+      <ion-col size="12" class="pb-1 pt-3 px-3">
+        <div class="flex align-items-center gap-2">
+          <ion-icon
+            [name]="area.iconIon"
+            [style.color]="area.color"
+            style="font-size: 1.2rem"
+          ></ion-icon>
+          <ion-label class="font-bold text-900 text-base">
+            {{ area.label }}
+          </ion-label>
+        </div>
+      </ion-col>
+
+      <!-- Contenido movil por area -->
+      @if (area.key === 'juntas-comite') {
+        <ion-col size="12" class="p-2">
+          <app-agenda-semanal-card />
+        </ion-col>
+      } @else if (area.key === 'reclutamiento') {
+        <ion-col size="12" class="p-2">
+          <app-reclutamiento-card />
+        </ion-col>
+      } @else if (area.key === 'recursos-humanos') {
+        <ion-col size="12" class="p-2">
+          <app-personal-ausente-card />
+        </ion-col>
+      } @else if (area.key === 'legal') {
+        <ion-col size="12" class="p-2">
+          <app-contratos-card />
+        </ion-col>
+      } @else {
+        <!-- Cards de metricas placeholder -->
+        @for (metrica of area.metricas; track $index) {
+        <ion-col size="6" class="p-1">
+          <ion-card class="m-0 shadow-1">
+            <ion-card-header class="pb-0 pt-2 px-3">
+              <ion-card-title class="text-xs text-500 uppercase font-semibold">
+                {{ metrica }}
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="px-3 pb-3 pt-1">
+              <p class="text-xl font-bold text-400 m-0">--</p>
+              <span class="text-xs text-300">Por configurar</span>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        }
+      }
+
+    </ion-row>
+    }
+
+  </ion-grid>
+</div>

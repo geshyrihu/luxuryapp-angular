@@ -7,35 +7,59 @@
     overflow: hidden;
   }
 
-  .budget-wrapper ::ng-deep .budget-tabs {
+  /* Barra de navegación única */
+  .budget-nav-bar {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    background: var(--surface-card, #ffffff);
+    border-bottom: 1px solid var(--surface-border, #e2e8f0);
+    min-height: 3rem;
+    gap: 0;
+  }
+
+  /* Botones tipo tab */
+  .budget-tab-btn {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0 1rem;
+    height: 3rem;
+    cursor: pointer;
+    color: var(--text-color-secondary, #64748b);
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: color 150ms, border-color 150ms, background 150ms;
+    outline: none;
+  }
+
+  .budget-tab-btn:hover {
+    color: var(--primary-color, #1e40af);
+    background: var(--surface-hover, #f1f5f9);
+  }
+
+  .budget-tab-btn--active {
+    color: var(--primary-color, #1e40af);
+    border-bottom-color: var(--primary-color, #1e40af);
+    font-weight: 600;
+  }
+
+  /* Separador vertical */
+  .budget-nav-divider {
+    width: 1px;
+    height: 1.5rem;
+    background: var(--surface-border, #e2e8f0);
+    flex-shrink: 0;
+    margin: 0 0.5rem;
+  }
+
+  /* Área de contenido */
+  .budget-content {
+    flex: 1;
+    min-height: 0;
     display: flex;
     flex-direction: column;
-    flex: 1;
-    min-height: 0;
-  }
-
-  .budget-wrapper ::ng-deep .budget-tabs .p-tabpanels {
-    display: flex;
-    flex: 1;
-    min-height: 0;
-    padding: 0;
-  }
-
-  .budget-wrapper ::ng-deep .budget-tabs .p-tabpanel {
-    width: 100%;
-    min-width: 0;
-    padding: 0;
-  }
-
-  .budget-wrapper ::ng-deep .budget-tabs .p-tabpanel[hidden] {
-    display: none !important;
-  }
-
-  .budget-wrapper ::ng-deep .budget-tabs .p-tabpanel:not([hidden]) {
-    display: flex;
-    flex: 1;
-    min-height: 0;
-    padding: 0;
   }
 
   .budget-wrapper app-presupuesto-aspel-ejercicio-fiscal,
@@ -44,49 +68,67 @@
     width: 100%;
     height: 100%;
     min-height: 0;
+    flex: 1;
   }
 </style>
 
 <div class="budget-wrapper">
-  <!-- ENCABEZADO CENTRALIZADO -->
-  <div class="rf-card p-3 mb-2">
-    <div class="flex flex-column md:flex-row align-items-center justify-content-between gap-3">
-      <!-- Título principal y periodo -->
-      <div class="flex align-items-center gap-3 w-full md:w-auto">
-        <div class="budget-header-meta flex align-items-center gap-2">
-          @if (sharedS.budgetData()?.Periodo_Presupuesto) {
-          <h4 class="text-xl m-0 hidden lg:block">
-            <small class="text-color-secondary">
-              {{ sharedS.budgetData()?.Periodo_Presupuesto }}
-            </small>
-          </h4>
-          }
+  <!-- =========================
+       VISTA ESCRITORIO
+       ========================= -->
+  <div class="hidden md:flex flex-column flex-1 min-h-0">
 
-          <custom-input-select-signal
-            id="yearSelector"
-            label="Año Fiscal"
-            [data]="sharedS.availableYears"
-            [ngModel]="sharedS.intYear()"
-            (ngModelChange)="sharedS.intYear.set($event)"
-            optionLabel="label"
-            optionValue="value"
-            [horizontal]="true"
-            [noMargin]="true"
-            customClass="w-8rem"
-            [filter]="true"
-          />
-        </div>
+    <!-- Fila única: [Año Fiscal] | [Presupuesto] [Extraordinarios] | spacer | [Buscar] [Botones] -->
+    <div class="budget-nav-bar">
+
+      <!-- Año Fiscal -->
+      <div class="flex align-items-center gap-2 px-2">
+        <custom-input-select-signal
+          id="yearSelector"
+          label="Año Fiscal"
+          [data]="sharedS.availableYears"
+          [ngModel]="sharedS.intYear()"
+          (ngModelChange)="sharedS.intYear.set($event)"
+          optionLabel="label"
+          optionValue="value"
+          [horizontal]="true"
+          [noMargin]="true"
+          customClass="w-8rem"
+          [filter]="true"
+        />
       </div>
 
-      <!-- Controles alineados -->
-      <div class="flex flex-wrap align-items-center gap-2 w-full md:w-auto justify-content-end">
+      <div class="budget-nav-divider"></div>
+
+      <!-- Tabs de navegación -->
+      <button
+        class="budget-tab-btn"
+        [class.budget-tab-btn--active]="activeTabValue() === 'presupuesto'"
+        (click)="activeTabValue.set('presupuesto')"
+      >
+        Presupuesto
+      </button>
+      <button
+        class="budget-tab-btn"
+        [class.budget-tab-btn--active]="activeTabValue() === 'especiales'"
+        (click)="activeTabValue.set('especiales')"
+      >
+        Extraordinarios y Proyectos
+      </button>
+
+      <!-- Spacer -->
+      <div class="flex-1"></div>
+
+      <!-- Búsqueda y botones -->
+      @if (!sharedS.errorMensaje()) {
+      <div class="flex align-items-center gap-2 px-2">
+        <div class="budget-nav-divider"></div>
+
         <custom-search-input-signal
           (searchChange)="sharedS.searchTerm.set($event)"
-          class="w-full md:w-15rem"
+          class="w-15rem"
         />
 
-        <!-- Botones de filtros y acciones rápidas -->
-        @if (!sharedS.errorMensaje()) {
         <div class="flex align-items-center gap-1" role="toolbar">
           @if (activeTabValue() === 'presupuesto') {
           <custom-button
@@ -127,7 +169,6 @@
             variant="outlined"
             severity="info"
           />
-
           <custom-button
             iconClass="pi pi-sparkles"
             label="IA"
@@ -138,44 +179,56 @@
           />
           }
         </div>
-        }
       </div>
+      }
     </div>
 
-    <!-- Mensaje de error si existe -->
+    <!-- Mensaje de error -->
     @if (sharedS.errorMensaje()) {
-    <div class="mt-2">
-      <p-message
-        severity="error"
-        [text]="sharedS.errorMensaje()!"
-        styleClass="w-full"
-      ></p-message>
-    </div>
+    <p-message
+      severity="error"
+      [text]="sharedS.errorMensaje()!"
+      styleClass="w-full"
+    />
     }
-  </div>
 
-  <div class="hidden md:flex flex-column flex-1 min-h-0">
-    <p-tabs
-      [value]="activeTabValue()"
-      (valueChange)="activeTabValue.set($event)"
-      class="nav-tabs justify-content-center sm:justify-content-start budget-tabs h-full"
-    >
-      <p-tablist>
-        <p-tab value="presupuesto">Presupuesto</p-tab>
-        <p-tab value="especiales">Extraordinarios y Proyectos</p-tab>
-      </p-tablist>
-      <p-tabpanels class="flex-1 min-h-0">
-        <p-tabpanel value="presupuesto">
+    <!-- Contenido del tab activo -->
+    <div class="budget-content">
+      @switch (activeTabValue()) {
+        @case ('presupuesto') {
           <app-presupuesto-aspel-ejercicio-fiscal />
-        </p-tabpanel>
-        <p-tabpanel value="especiales">
+        }
+        @case ('especiales') {
           <app-espejo-aspel-extraordinarios />
-        </p-tabpanel>
-      </p-tabpanels>
-    </p-tabs>
+        }
+      }
+    </div>
   </div>
 
+  <!-- =========================
+       VISTA MÓVIL
+       ========================= -->
   <div class="block md:hidden">
+    <div class="flex align-items-center gap-2 p-2 surface-card border-round mb-2">
+      <custom-input-select-signal
+        id="yearSelectorMobile"
+        label="Año Fiscal"
+        [data]="sharedS.availableYears"
+        [ngModel]="sharedS.intYear()"
+        (ngModelChange)="sharedS.intYear.set($event)"
+        optionLabel="label"
+        optionValue="value"
+        [horizontal]="true"
+        [noMargin]="true"
+        customClass="w-8rem"
+        [filter]="true"
+      />
+      <custom-search-input-signal
+        (searchChange)="sharedS.searchTerm.set($event)"
+        class="flex-1"
+      />
+    </div>
+
     <ion-segment
       [ngModel]="activeTabValue()"
       (ngModelChange)="activeTabValue.set($event)"
@@ -190,11 +243,14 @@
     </ion-segment>
 
     <div class="mt-2">
-      @switch (activeTabValue()) { @case ('presupuesto') {
-      <app-presupuesto-aspel-ejercicio-fiscal />
-      } @case ('especiales') {
-      <app-espejo-aspel-extraordinarios />
-      } }
+      @switch (activeTabValue()) {
+        @case ('presupuesto') {
+          <app-presupuesto-aspel-ejercicio-fiscal />
+        }
+        @case ('especiales') {
+          <app-espejo-aspel-extraordinarios />
+        }
+      }
     </div>
   </div>
 </div>

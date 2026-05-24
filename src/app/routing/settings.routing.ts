@@ -550,6 +550,18 @@ export const settingsRoutes: Routes = [
 
   // Catálogos de Recursos Humanos
   {
+    path: "juntas-mensuales-conciliacion",
+    loadComponent: () =>
+      import(
+        "src/app/features/configuration/juntas-mensuales-backfill/juntas-mensuales-backfill"
+      ).then((m) => m.JuntasMensualesBackfill),
+    canActivate: [authGuard],
+    data: {
+      title: "Conciliacion de juntas mensuales",
+      breadcrumb: "Conciliacion de juntas mensuales",
+    },
+  },
+  {
     path: "incident-types",
     loadComponent: () =>
       import("src/app/features/configuration/hr-catalog/pages/incident-type-list").then(

@@ -2,6 +2,18 @@ import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 export const committeeMeetingsRoutes: Routes = [
   {
+    path: "sessions",
+    loadComponent: () =>
+      import("src/app/features/juntas-comite/juntas-mensuales-session/juntas-mensuales-session").then(
+        (m) => m.JuntasMensualesSession,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Sesiones Mensuales",
+      breadcrumb: "Sesiones Mensuales",
+    },
+  },
+  {
     path: "presentations", // Ruta anterior: 'presentaciones'
     loadComponent: () =>
       import("src/app/features/juntas-comite/presentacion-junta-comite/presentacion-junta-comite").then(

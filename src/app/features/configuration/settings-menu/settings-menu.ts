@@ -188,6 +188,13 @@ export const settingMenu = (aspRoleS: AspRoleService): ISettingsMenuItem[] => [
   {
     group: "Configuracion de Sistema",
     visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
+    label: "Conciliacion juntas mensuales",
+    routerLink: "/settings/juntas-mensuales-conciliacion",
+    icon: "pi pi-link",
+  },
+  {
+    group: "Configuracion de Sistema",
+    visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
     label: "Jobs",
     routerLink: "/settings/jobs",
     icon: "pi pi-briefcase",

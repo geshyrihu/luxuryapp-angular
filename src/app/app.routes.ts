@@ -2,9 +2,11 @@ import { Routes } from "@angular/router";
 import { Loader } from "./core/components/loader/loader";
 import { authGuard } from "./core/guard/auth.guard";
 import { committeeGuard } from "./core/guard/committee.guard";
+import { direccionGuard } from "./core/guard/direccion.guard";
 import { employeeGuard } from "./core/guard/employee.guard";
 import { roleRedirectGuard } from "./core/guard/role-redirect.guard";
 import { LayoutCommittee } from "./layout/committee-view/layout-committee";
+import { LayoutDireccion } from "./layout/direccion-view/layout-direccion";
 import { LayoutEmployee } from "./layout/employee-view/layout-employee";
 /**
  * Rutas Principales de la Aplicación: El Gran Distribuidor 🚦
@@ -74,7 +76,7 @@ export const appRoutes: Routes = [
     component: Loader, // Un componente cualquiera y ligero
   },
 
-  // --- Ruta para Comité (Nivel Superior) ---
+  // --- Ruta para Comite (Nivel Superior) ---
   {
     path: "committee",
     component: LayoutCommittee,
@@ -82,6 +84,17 @@ export const appRoutes: Routes = [
     loadChildren: () =>
       import("src/app/features/committee/committee.routing").then(
         (m) => m.committeeRoutes,
+      ),
+  },
+
+  // --- Ruta para Direccion (Nivel Superior) ---
+  {
+    path: "direccion",
+    component: LayoutDireccion,
+    canActivate: [authGuard, direccionGuard],
+    loadChildren: () =>
+      import("src/app/features/direccion/direccion.routing").then(
+        (m) => m.direccionRoutes,
       ),
   },
 
