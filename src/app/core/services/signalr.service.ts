@@ -5,46 +5,51 @@ import { BudgetProposalItemDTO } from "src/app/features/contabilidad/presupuesto
 import { environment } from "src/environments/environment";
 import { AuthService } from "./auth.service";
 import { ConsoleLoggerService } from "./console-logger.service";
+
+export interface GoogleCalendarEventRealTimeUpdateDTO {
+  customerId: string;
+  eventId: string | null;
+  recurrenceSeriesId: string | null;
+  action: string;
+  isRecurring: boolean;
+  timestampUtc: string;
+}
+
 @Injectable({
   providedIn: "root",
 })
 export class SignalRService {
-  // 🧩 Servicios inyectados
   private authService = inject(AuthService);
   private consoleLogger = inject(ConsoleLoggerService);
 
-  // 🔌 Conexión principal a SignalR
   private hubConnection!: signalR.HubConnection;
 
-  // 📡 Signal que indica si estamos conectados
   private connectionStateSignal: WritableSignal<boolean> = signal(false);
   public connectionState = this.connectionStateSignal.asReadonly();
 
-  // 🆔 ID de conexión asignada por el servidor
   private connectionIdSignal: WritableSignal<string | null> = signal(null);
   public connectionId = this.connectionIdSignal.asReadonly();
 
-  // 👤 Usuario conectado reportado por el Hub
   private connectedUserSignal: WritableSignal<string | null> = signal(null);
   public connectedUser = this.connectedUserSignal.asReadonly();
 
-  // ✉️ Stream general de mensajes entrantes
   private messageReceivedSource = new Subject<any>();
   public messageReceived$ = this.messageReceivedSource.asObservable();
 
-  // 🔄 Stream exclusivo para actualizaciones de ítems de propuesta
   private budgetProposalItemUpdateSource = new Subject<BudgetProposalItemDTO>();
   public budgetProposalItemUpdate$ =
     this.budgetProposalItemUpdateSource.asObservable();
 
-  // 📊 Stream para actualizaciones de gastos proyectados
-  private projectedExpenseUpdateSource = new Subject<any>(); // Usar un tipo específico si se crea un DTO
+  private projectedExpenseUpdateSource = new Subject<any>();
   public projectedExpenseUpdate$ =
     this.projectedExpenseUpdateSource.asObservable();
 
-  // 🚀 Iniciar conexión con SignalR
+  private googleCalendarEventUpdateSource =
+    new Subject<GoogleCalendarEventRealTimeUpdateDTO>();
+  public googleCalendarEventUpdate$ =
+    this.googleCalendarEventUpdateSource.asObservable();
+
   public start(): void {
-    // Evitar múltiples conexiones
     if (
       this.hubConnection &&
       this.hubConnection.state !== signalR.HubConnectionState.Disconnected
@@ -57,7 +62,6 @@ export class SignalRService {
       return;
     }
 
-    // Construcción de la conexión
     this.consoleLogger.custom(
       "🔌",
       "blue",
@@ -66,17 +70,13 @@ export class SignalRService {
 
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(`${environment.API_BASE_SIGNALR}`, {
-        // Se envía el token JWT en cada conexión
         accessTokenFactory: () => this.authService.getToken() as string,
-        // Header personalizado para enviar el ConnectionId
         headers: { "X-Connection-Id": this.connectionId() || "" },
       })
       .configureLogging(signalR.LogLevel.Information)
-      // Reintentos progresivos de reconexión
       .withAutomaticReconnect([2000, 5000, 10000, 20000, null])
       .build();
 
-    // Intento de conexión
     this.consoleLogger.custom("🔌", "blue", "[SignalR] Iniciando conexión...");
     this.hubConnection
       .start()
@@ -87,7 +87,6 @@ export class SignalRService {
           "[SignalR] Conexión iniciada con éxito.",
         );
 
-        // Actualizamos signals globales
         this.connectionStateSignal.set(true);
         this.connectionIdSignal.set(this.hubConnection.connectionId);
 
@@ -97,7 +96,6 @@ export class SignalRService {
           `[SignalR] connectionId = '${this.hubConnection.connectionId}'`,
         );
 
-        // 🎧 Registrar listeners de eventos del servidor
         this.registerListeners();
       })
       .catch((err) => {
@@ -110,11 +108,9 @@ export class SignalRService {
         this.connectionStateSignal.set(false);
       });
 
-    // 🔄 Listeners de ciclo de vida (reconexión, cierre, etc.)
     this.addConnectionLifecycleListeners();
   }
 
-  // 🛑 Detener conexión de forma manual
   public stop(): void {
     if (
       this.hubConnection &&
@@ -129,7 +125,6 @@ export class SignalRService {
             "[SignalR] Conexión detenida limpiamente.",
           );
 
-          // Reset total del estado
           this.connectionStateSignal.set(false);
           this.connectionIdSignal.set(null);
           this.connectedUserSignal.set(null);
@@ -143,7 +138,6 @@ export class SignalRService {
     }
   }
 
-  // 👥 Unirse a un grupo único para propuestas
   public async joinProposalGroup(
     customerId: string,
     fiscalYear: number,
@@ -168,7 +162,6 @@ export class SignalRService {
     }
   }
 
-  // 🚪 Abandonar grupo
   public async leaveProposalGroup(
     customerId: string,
     fiscalYear: number,
@@ -196,7 +189,6 @@ export class SignalRService {
     }
   }
 
-  // 🎧 Registración de eventos enviados por el servidor
   private registerListeners(): void {
     this.consoleLogger.custom(
       "🎧",
@@ -204,7 +196,6 @@ export class SignalRService {
       "[SignalR] Registrando listeners...",
     );
 
-    // Usuario conectado (mensaje directo del hub)
     this.hubConnection.on("ConnectedUser", (mensaje: string) => {
       this.consoleLogger.custom(
         "👤",
@@ -215,7 +206,6 @@ export class SignalRService {
       this.connectedUserSignal.set(mensaje);
     });
 
-    // Notificación general
     this.hubConnection.on("ReceiveNotification", (payload: any) => {
       this.consoleLogger.custom(
         "📨",
@@ -226,7 +216,6 @@ export class SignalRService {
       this.messageReceivedSource.next(payload);
     });
 
-    // Actualización de un ítem del presupuesto
     this.hubConnection.on(
       "ReceiveBudgetProposalItemUpdate",
       (itemDTO: BudgetProposalItemDTO) => {
@@ -240,7 +229,6 @@ export class SignalRService {
       },
     );
 
-    // Actualización de un gasto proyectado
     this.hubConnection.on("ReceiveProjectedExpenseUpdate", (payload: any) => {
       this.consoleLogger.custom(
         "📊",
@@ -250,11 +238,22 @@ export class SignalRService {
       );
       this.projectedExpenseUpdateSource.next(payload);
     });
+
+    this.hubConnection.on(
+      "ReceiveGoogleCalendarEventUpdate",
+      (payload: GoogleCalendarEventRealTimeUpdateDTO) => {
+        this.consoleLogger.custom(
+          "📅",
+          "dodgerblue",
+          "[SignalR] Update de Google Calendar recibido:",
+          payload,
+        );
+        this.googleCalendarEventUpdateSource.next(payload);
+      },
+    );
   }
 
-  // 🔁 Listeners para eventos de reconexión, cierre, etc.
   private addConnectionLifecycleListeners(): void {
-    // Intentando reconectar
     this.hubConnection.onreconnecting((error) => {
       this.consoleLogger.custom(
         "⏳",
@@ -265,7 +264,6 @@ export class SignalRService {
       this.connectionStateSignal.set(false);
     });
 
-    // Reconexión exitosa
     this.hubConnection.onreconnected((connectionId) => {
       this.consoleLogger.custom(
         "✅",
@@ -277,7 +275,6 @@ export class SignalRService {
       this.connectionIdSignal.set(connectionId);
     });
 
-    // Conexión cerrada (voluntaria o por error)
     this.hubConnection.onclose((error) => {
       this.consoleLogger.custom(
         "🔌",
@@ -292,12 +289,3 @@ export class SignalRService {
     });
   }
 }
-
-
-
-
-
-
-
-
-

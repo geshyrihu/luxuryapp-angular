@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
+import { RouterModule } from "@angular/router";
 import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { waterOutline } from "ionicons/icons";
@@ -30,6 +31,7 @@ import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
   templateUrl: "./recepcion-pipas-agua-list.html",
   imports: [
     CommonModule,
+    RouterModule,
     ImageModule,
     TableModule,
     CustomButtonEdit,

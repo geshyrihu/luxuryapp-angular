@@ -82,9 +82,10 @@ export class EmployeeExternalList {
   onLoadData() {
     const urlApi = `EmployeeExternal/List/${this.customerIdS.customerId()}/${this.activo}`;
 
-    this.apiResponseS
-      .onGetList(urlApi)
-      .then((result: any) => this.dataSignal.set(result));
+    this.apiResponseS.onGetList(urlApi).then((result: any) => {
+      console.log("🚀 ~ EmployeeExternalList ~ onLoadData ~ result:", result);
+      return this.dataSignal.set(result);
+    });
   }
 
   onModalForm(data: any) {

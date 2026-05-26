@@ -69,6 +69,7 @@
               "file-saver",
               "flatpickr/dist/l10n/es",
               "html2canvas",
+              "jspdf",
               "leaflet",
               "raf",
               "rgbcolor",

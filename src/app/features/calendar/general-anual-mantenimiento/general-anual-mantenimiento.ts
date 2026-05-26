@@ -31,37 +31,37 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
     SanitizeHtmlPipe,
   ],
 })
-export class GeneralAnualMantenimiento implements OnInit {
+export class GeneralAnualMantenimiento {
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
   dataSignal = signal<any[]>([]);
-  cb_providers: ISelectItem[] = [];
+  cb_providers = signal<ISelectItem[]>([]);
   providerIdControl = new FormControl<string>("");
 
   constructor() {
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
-      if (customerId) this.onLoadData();
+      if (customerId) {
+        this.onLoadProveedores();
+        this.onLoadData();
+      }
     });
   }
 
-  ngOnInit() {
-    this.onLoadData();
-    this.onLoadProveedores();
-  }
   onLoadProveedores() {
-    this.cb_providers = [];
     const url = `MaintenanceCalendars/ProveedoresCalendario/${this.customerIdS.customerId()}`;
     this.apiResponseS.onGetList(url).then((result: any) => {
-      this.cb_providers = result;
+      this.cb_providers.set(result || []);
     });
   }
+
   onLoadData() {
     this.dataSignal.set([]);
-    const url = `MaintenanceCalendars/GeneralMantenimiento/${this.customerIdS.customerId()}/${this.providerIdControl.value || ""
-      }`;
+    const url = `MaintenanceCalendars/GeneralMantenimiento/${this.customerIdS.customerId()}/${
+      this.providerIdControl.value || ""
+    }`;
     this.apiResponseS.onGetList(url).then((result: any) => {
-      this.dataSignal.set(result);
+      this.dataSignal.set(result || []);
     });
   }
 }

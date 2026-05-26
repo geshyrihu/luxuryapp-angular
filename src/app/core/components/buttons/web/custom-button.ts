@@ -18,7 +18,7 @@ import { BaseButton } from "../base/base-button";
       "
       [ngClass]="customNgClass()"
       (click)="clicked.emit($event)"
-      [pTooltip]="ngbTooltip()"
+      [pTooltip]="tooltip() || ngbTooltip() || label()"
       [tooltipPosition]="tooltipPosition()"
     >
       @if (loading()) {
@@ -30,12 +30,10 @@ import { BaseButton } from "../base/base-button";
           <i [class]="resolvedIconClass()"></i>
         </span>
       }
-      @if (showLabelOnDesktop()) {
-        <span>{{ finalLabel() }}</span>
+      @if (showLabelOnDesktop() && label()) {
+        <span>{{ label() }}</span>
       }
     </button>
   `,
 })
-export class CustomButton extends BaseButton {
-  finalLabel = computed(() => this.label() || "Accion");
-}
+export class CustomButton extends BaseButton {}

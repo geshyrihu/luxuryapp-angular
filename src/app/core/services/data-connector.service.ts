@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
-import { Injectable, OnDestroy, inject } from "@angular/core";
+import { Injectable, Injector, OnDestroy, inject } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 import { environment } from "src/environments/environment";
+import { SignalRService } from "./signalr.service";
+
 const urlBase = environment.API_BASE_URL;
 
 @Injectable({
@@ -9,10 +11,13 @@ const urlBase = environment.API_BASE_URL;
 })
 export class DataConnectorService implements OnDestroy {
   private http = inject(HttpClient);
+  private injector = inject(Injector);
+  private _signalRService?: SignalRService;
+
   /**
    * Realiza una solicitud GET al servidor.
    * @param url La URL del recurso.
-   * @param httpParams Los parámetros de la solicitud HTTP (opcional).
+   * @param httpParams Los parametros de la solicitud HTTP (opcional).
    * @returns Un observable que emite una respuesta HTTP con datos de tipo T.
    */
   get<T>(url: string, httpParams?: any): Observable<HttpResponse<T>> {
@@ -27,28 +32,27 @@ export class DataConnectorService implements OnDestroy {
   /**
    * Realiza una solicitud GET al servidor para obtener un archivo (por ejemplo, una imagen o un archivo PDF).
    * @param url La URL del recurso.
-   * @param httpParams Los parámetros de la solicitud HTTP (opcional).
+   * @param httpParams Los parametros de la solicitud HTTP (opcional).
    * @returns Un observable que emite un objeto Blob representando el archivo.
    */
   getFile(url: string, httpParams?: any): Observable<Blob> {
     const httpHeaders: HttpHeaders = this.getHeaders();
     return this.http.get(urlBase + url, {
-      // ⚠️ Quita el <Blob> del genérico
       headers: httpHeaders,
       params: httpParams,
-      responseType: "blob", // ✅ AGREGA ESTO
+      responseType: "blob",
     });
   }
+
   /**
-   * Realiza una solicitud GET a una URL completa para obtener un archivo (por ejemplo, una imagen o un archivo PDF). Sevicio DataConnectorService
+   * Realiza una solicitud GET a una URL completa para obtener un archivo (por ejemplo, una imagen o un archivo PDF).
    * @param fullUrl La URL completa del recurso.
-   * @param httpParams Los parámetros de la solicitud HTTP (opcional).
+   * @param httpParams Los parametros de la solicitud HTTP (opcional).
    * @returns Un observable que emite un objeto Blob representando el archivo.
    */
   getFileFromFullUrl(fullUrl: string, httpParams?: any): Observable<Blob> {
     const httpHeaders: HttpHeaders = this.getHeaders();
     return this.http.get<Blob>(fullUrl, {
-      // Use fullUrl directly
       headers: httpHeaders,
       params: httpParams,
       responseType: "blob" as "json",
@@ -108,10 +112,8 @@ export class DataConnectorService implements OnDestroy {
   /**
    * Realiza una solicitud DELETE al servidor.
    * @param url La URL del recurso.
-   * @param params Los parámetros de la solicitud HTTP (opcional).
    * @returns Un observable que emite una respuesta HTTP con datos de tipo T.
    */
-  // delete<T>(url: string, params?: any): Observable<HttpResponse<T>> {
   delete<T>(url: string): Observable<HttpResponse<T>> {
     const httpHeaders: HttpHeaders = this.getHeaders();
     return this.http.delete<T>(urlBase + url, {
@@ -126,25 +128,27 @@ export class DataConnectorService implements OnDestroy {
    */
   getHeaders(): HttpHeaders {
     let httpHeaders: HttpHeaders = new HttpHeaders();
-    // Aquí puedes agregar la lógica para incluir el token de autenticación si es necesario.
+    const connectionId = this.signalRService.connectionId();
+    if (connectionId) {
+      httpHeaders = httpHeaders.set("X-Connection-Id", connectionId);
+    }
+
     return httpHeaders;
   }
 
-  // Utilizado para la gestión de recursos al destruir el componente
+  private get signalRService(): SignalRService {
+    if (!this._signalRService) {
+      this._signalRService = this.injector.get(SignalRService);
+    }
+
+    return this._signalRService;
+  }
+
+  // Utilizado para la gestion de recursos al destruir el componente
   private destroy$ = new Subject<void>();
 
   ngOnDestroy(): void {
-    // Cuando se destruye el componente, desvincular y liberar recursos
     this.destroy$.next();
     this.destroy$.complete();
   }
 }
-
-
-
-
-
-
-
-
-

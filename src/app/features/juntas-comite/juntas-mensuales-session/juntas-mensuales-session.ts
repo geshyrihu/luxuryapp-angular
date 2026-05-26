@@ -1,5 +1,13 @@
 import { CommonModule, DatePipe } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import {
+  Component,
+  computed,
+  DestroyRef,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router, RouterModule } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
@@ -11,6 +19,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { SignalRService } from "src/app/core/services/signalr.service";
 import { JuntaMensualSessionRescheduleForm } from "./junta-mensual-session-reschedule-form";
 
 interface IJuntaMensualSessionListItem {
@@ -96,6 +105,8 @@ export class JuntasMensualesSession {
   private readonly aspRoleS = inject(AspRoleService);
   private readonly dialogHandlerS = inject(DialogHandlerService);
   private readonly router = inject(Router);
+  private readonly signalRService = inject(SignalRService);
+  private readonly destroyRef = inject(DestroyRef);
 
   readonly loading = signal(false);
   readonly detailLoading = signal(false);
@@ -113,6 +124,18 @@ export class JuntasMensualesSession {
   );
 
   constructor() {
+    this.signalRService.googleCalendarEventUpdate$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((payload) => {
+        const customerId = this.customerIdS.customerId();
+        if (
+          this.canViewAllCustomers() ||
+          (customerId && payload.customerId === customerId)
+        ) {
+          this.onLoadData();
+        }
+      });
+
     effect(() => {
       const customerId = this.customerIdS.customerId();
       if (customerId || this.canViewAllCustomers()) {

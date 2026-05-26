@@ -72,7 +72,6 @@ export class AuthService {
     return this.currentUserSession.value;
   }
   public get customerAccess(): SelectItemCustomerAccessDTO[] {
-    console.log("🚀 ~ customerAccess:", this.currentUserSession.value?.customerAccess);
     return this.currentUserSession.value?.customerAccess ?? [];
   }
 
@@ -218,12 +217,3 @@ export class AuthService {
     return throwError(() => error);
   }
 }
-
-
-
-
-
-
-
-
-

@@ -1,3 +1,29 @@
+<!-- Navegacion entre vistas -->
+<div class="flex gap-2 mb-3 hidden md:flex">
+  <a
+    routerLink="/logbook/water-truck-reception"
+    routerLinkActive="p-button-primary"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
+  >
+    <i class="pi pi-list mr-1"></i> Registros
+  </a>
+  <a
+    routerLink="/logbook/water-truck-reception/reporte"
+    routerLinkActive="p-button-primary"
+    class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
+  >
+    <i class="pi pi-table mr-1"></i> Reporte
+  </a>
+  <a
+    routerLink="/logbook/water-truck-reception/analisis"
+    routerLinkActive="p-button-primary"
+    class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
+  >
+    <i class="pi pi-chart-bar mr-1"></i> Analisis
+  </a>
+</div>
+
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -21,41 +47,66 @@
 
   <ng-template #header>
     <tr>
-      <th pSortableColumn="horaLlegada">Llegada <p-sortIcon field="horaLlegada" /></th>
-      <th pSortableColumn="horaTermino">Termino <p-sortIcon field="horaTermino" /></th>
-      <th pSortableColumn="placasCamion">Placas <p-sortIcon field="placasCamion" /></th>
-      <th class="table-col-10 text-right">Cap. (L)</th>
-      <th class="table-col-10 text-right">Cisterna antes</th>
-      <th class="table-col-10 text-right">Cisterna despues</th>
-      <th class="table-col-10 text-right">Metro antes</th>
-      <th class="table-col-10 text-right">Metro despues</th>
-      <th class="table-col-10">Evidencias</th>
+      <th pSortableColumn="horaLlegada" style="min-width:120px">Llegada <p-sortIcon field="horaLlegada" /></th>
+      <th style="min-width:110px">Termino</th>
+      <th pSortableColumn="placasCamion" style="min-width:100px">Placas <p-sortIcon field="placasCamion" /></th>
+      <th class="text-right" style="min-width:80px">Cap.(L)</th>
+      <th class="text-center" style="min-width:140px">Cisterna antes / despues</th>
+      <th class="text-center" style="min-width:160px">Medidor inicial / final</th>
+      <th class="text-right" style="min-width:80px">m³</th>
+      <th class="text-right" style="min-width:90px">Costo m³</th>
+      <th style="min-width:150px">Colaborador mtto</th>
+      <th style="min-width:130px">Guardia testigo</th>
+      <th style="min-width:160px">Fotos</th>
       <th class="table-col-5"></th>
     </tr>
   </ng-template>
 
   <ng-template #body let-item>
     <tr>
-      <td><small>{{ item.horaLlegada | date: 'dd/MM/yyyy HH:mm' }}</small></td>
+      <td><small>{{ item.horaLlegada | date: 'dd/MM/yy HH:mm' }}</small></td>
       <td>
-        <small *ngIf="item.horaTermino; else sinTermino">
-          {{ item.horaTermino | date: 'dd/MM/yyyy HH:mm' }}
-        </small>
-        <ng-template #sinTermino>
+        @if (item.horaTermino) {
+          <small>{{ item.horaTermino | date: 'dd/MM/yy HH:mm' }}</small>
+        } @else {
           <span class="badge badge-warning text-xs">En curso</span>
-        </ng-template>
+        }
       </td>
       <td><small class="font-semibold">{{ item.placasCamion }}</small></td>
       <td class="text-right"><small>{{ item.capacidadPipa | number: '1.0-0' }}</small></td>
-      <td class="text-right"><small>{{ item.nivelCisternaAntes | number: '1.2-2' }}</small></td>
-      <td class="text-right"><small>{{ item.nivelCisternaDespues | number: '1.2-2' }}</small></td>
-      <td class="text-right"><small>{{ item.lecturaMetroAntes | number: '1.4-4' }}</small></td>
-      <td class="text-right"><small>{{ item.lecturaMetroDespues | number: '1.4-4' }}</small></td>
+      <td class="text-center">
+        <small class="flex justify-content-center align-items-center gap-1">
+          <span>{{ item.nivelCisternaAntes | number: '1.2-2' }}</span>
+          <span class="text-400">→</span>
+          <span>{{ item.nivelCisternaDespues | number: '1.2-2' }}</span>
+        </small>
+      </td>
+      <td class="text-center">
+        <small class="flex justify-content-center align-items-center gap-1">
+          <span>{{ item.lecturaMedidorInicial | number: '1.4-4' }}</span>
+          <span class="text-400">→</span>
+          <span>{{ item.lecturaMedidorFinal | number: '1.4-4' }}</span>
+        </small>
+      </td>
+      <td class="text-right">
+        <small>{{ (item.lecturaMedidorFinal - item.lecturaMedidorInicial) | number: '1.4-4' }}</small>
+      </td>
+      <td class="text-right">
+        <small>{{ item.costoMetroCubico | number: '1.2-2' }}</small>
+      </td>
+      <td><small>{{ item.colaboradorMtto }}</small></td>
+      <td><small>{{ item.guardiaSeguridad }}</small></td>
       <td>
-        <div class="flex gap-1">
-          <p-image *ngIf="item.fotoPipaLlenaUrl" [src]="item.fotoPipaLlenaUrl" alt="Pipa llena" width="36" [preview]="true" />
-          <p-image *ngIf="item.fotoPipaVaciaUrl" [src]="item.fotoPipaVaciaUrl" alt="Pipa vacia" width="36" [preview]="true" />
-          <p-image *ngIf="item.fotoIneChoferUrl" [src]="item.fotoIneChoferUrl" alt="INE chofer" width="36" [preview]="true" />
+        <div class="flex flex-wrap gap-1">
+          <p-image *ngIf="item.fotoPipaLlenaUrl"     [src]="item.fotoPipaLlenaUrl"     alt="Pipa llena"     width="30" [preview]="true" />
+          <p-image *ngIf="item.fotoPipaVaciaUrl"     [src]="item.fotoPipaVaciaUrl"     alt="Pipa vacia"     width="30" [preview]="true" />
+          <p-image *ngIf="item.fotoPlacasUrl"        [src]="item.fotoPlacasUrl"        alt="Placas"         width="30" [preview]="true" />
+          <p-image *ngIf="item.fotoIneChoferUrl"     [src]="item.fotoIneChoferUrl"     alt="INE chofer"     width="30" [preview]="true" />
+          <p-image *ngIf="item.fotoMedidorAntesUrl"  [src]="item.fotoMedidorAntesUrl"  alt="Medidor antes"  width="30" [preview]="true" />
+          <p-image *ngIf="item.fotoMedidorDespuesUrl"[src]="item.fotoMedidorDespuesUrl"alt="Medidor despues" width="30" [preview]="true" />
+          <p-image *ngIf="item.fotoNivelAntesUrl"    [src]="item.fotoNivelAntesUrl"    alt="Nivel antes"    width="30" [preview]="true" />
+          <p-image *ngIf="item.fotoNivelDespuesUrl"  [src]="item.fotoNivelDespuesUrl"  alt="Nivel despues"  width="30" [preview]="true" />
+          <p-image *ngIf="item.fotoNotaUrl"          [src]="item.fotoNotaUrl"          alt="Nota"           width="30" [preview]="true" />
         </div>
       </td>
       <td>
@@ -71,6 +122,32 @@
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
+
+<!-- Navegacion movil -->
+<div class="flex md:hidden gap-2 mb-2 px-2">
+  <a
+    routerLink="/logbook/water-truck-reception"
+    routerLinkActive="p-button-primary"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
+  >
+    <i class="pi pi-list mr-1"></i> Registros
+  </a>
+  <a
+    routerLink="/logbook/water-truck-reception/reporte"
+    routerLinkActive="p-button-primary"
+    class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
+  >
+    <i class="pi pi-table mr-1"></i> Reporte
+  </a>
+  <a
+    routerLink="/logbook/water-truck-reception/analisis"
+    routerLinkActive="p-button-primary"
+    class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
+  >
+    <i class="pi pi-chart-bar mr-1"></i> Analisis
+  </a>
+</div>
 
 <app-data-view-mobile
   [data]="dataSignal()"
@@ -89,13 +166,30 @@
 
       <ion-label>
         <h3 class="font-bold">{{ item.placasCamion }}</h3>
-        <p>{{ item.horaLlegada | date: 'dd/MM/yyyy HH:mm' }}
+        <p>
+          {{ item.horaLlegada | date: 'dd/MM/yyyy HH:mm' }}
           <span *ngIf="item.horaTermino"> — {{ item.horaTermino | date: 'HH:mm' }}</span>
           <span *ngIf="!item.horaTermino" class="text-orange-500"> (en curso)</span>
         </p>
         <div class="grid m-0 text-sm mt-1">
           <div class="col-6 p-0"><strong>Cap:</strong> {{ item.capacidadPipa | number: '1.0-0' }} L</div>
-          <div class="col-6 p-0"><strong>Cisterna:</strong> {{ item.nivelCisternaAntes | number: '1.2-2' }} → {{ item.nivelCisternaDespues | number: '1.2-2' }}</div>
+          <div class="col-6 p-0">
+            <strong>m³:</strong>
+            {{ (item.lecturaMedidorFinal - item.lecturaMedidorInicial) | number: '1.4-4' }}
+          </div>
+          <div class="col-6 p-0">
+            <strong>Cisterna:</strong>
+            {{ item.nivelCisternaAntes | number: '1.2-2' }} → {{ item.nivelCisternaDespues | number: '1.2-2' }}
+          </div>
+          <div class="col-6 p-0">
+            <strong>Costo m³:</strong> {{ item.costoMetroCubico | number: '1.2-2' }}
+          </div>
+          <div *ngIf="item.colaboradorMtto" class="col-12 p-0">
+            <strong>Colaborador:</strong> {{ item.colaboradorMtto }}
+          </div>
+          <div *ngIf="item.guardiaSeguridad" class="col-12 p-0">
+            <strong>Guardia:</strong> {{ item.guardiaSeguridad }}
+          </div>
         </div>
       </ion-label>
 

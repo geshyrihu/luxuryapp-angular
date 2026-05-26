@@ -33,6 +33,7 @@ export abstract class BaseButton {
   emoji = input<string>("");
 
   label = input<string>("");
+  tooltip = input<string>("");
   ngbTooltip = input<string>("");
   tooltipPosition = input<string>("top");
   placement = input<TooltipPlacement>(TooltipPlacement.Top);

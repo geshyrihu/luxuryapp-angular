@@ -3,6 +3,7 @@ import { AgendaSemanalCard } from "src/app/layout/direccion-view/components/agen
 import { ReclutamientoCard } from "src/app/layout/direccion-view/components/reclutamiento-card/reclutamiento-card";
 import { PersonalAusenteCard } from "src/app/layout/direccion-view/components/personal-ausente-card/personal-ausente-card";
 import { ContratosCard } from "src/app/layout/direccion-view/components/contratos-card/contratos-card";
+import { TareasLegalCard } from "src/app/layout/direccion-view/components/tareas-legal-card/tareas-legal-card";
 import {
   IonCard,
   IonCardContent,
@@ -41,6 +42,7 @@ export interface AreaDireccion {
     ReclutamientoCard,
     PersonalAusenteCard,
     ContratosCard,
+    TareasLegalCard,
     IonGrid,
     IonRow,
     IonCol,

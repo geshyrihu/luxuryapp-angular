@@ -55,7 +55,12 @@ const LEGACY_ICON_RULES: LegacyIconRule[] = [
   { tokens: ["\u{1F6E1}"], iconClass: "pi pi-shield" },
   { tokens: ["\u{1F6E0}", "\u2699", "\u2699\uFE0F"], iconClass: "pi pi-cog" },
   { tokens: ["\u{1F3C1}"], iconClass: "pi pi-flag" },
-  { tokens: ["\u{1F3DB}"], iconClass: "pi pi-building" },
+  { tokens: ["\u{1F3DB}", "\u{1F3E2}"], iconClass: "pi pi-building" },
+  { tokens: ["\u2728"], iconClass: "pi pi-sparkles" },
+  { tokens: ["\u{1F3CB}", "\u{1F3CB}\uFE0F"], iconClass: "pi pi-heart" },
+  { tokens: ["\u{1F50C}"], iconClass: "pi pi-bolt" },
+  { tokens: ["\u{1F58C}", "\u{1F58C}\uFE0F"], iconClass: "pi pi-palette" },
+  { tokens: ["\u{1FA9A}"], iconClass: "pi pi-hammer" },
   { tokens: ["\u{1F9FE}"], iconClass: "pi pi-receipt" },
   { tokens: ["\u{1FA9F}"], iconClass: "pi pi-window-maximize" },
   {

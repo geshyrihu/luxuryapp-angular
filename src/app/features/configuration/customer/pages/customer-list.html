@@ -46,7 +46,6 @@
           [image]="item.photoPath"
           alt=""
           shape="square"
-          size="large"
           styleClass="b-r-8 img-40"
         />
       </td>
@@ -132,3 +131,28 @@
     </ion-item>
   </ng-template>
 </app-data-view-mobile>
+
+<style>
+  .img-40 {
+    width: auto !important;
+    height: 40px !important;
+    min-width: 40px;
+    max-width: 80px;
+    object-fit: contain !important;
+    background-color: var(--ds-bg-sunken, #f8fafc);
+    border-radius: 8px;
+  }
+  ion-avatar {
+    width: auto !important;
+    height: 40px !important;
+    max-width: 80px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  ion-avatar img {
+    width: auto !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    background-color: var(--ds-bg-sunken, #f8fafc);
+  }
+</style>

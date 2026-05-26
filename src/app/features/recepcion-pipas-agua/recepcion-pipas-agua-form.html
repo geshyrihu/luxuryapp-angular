@@ -46,16 +46,42 @@
             [maxFractionDigits]="2"
           />
           <custom-input-decimal-signal
-            [control]="form.controls.lecturaMetroAntes"
-            label="Lectura metro antes"
+            [control]="form.controls.lecturaMedidorInicial"
+            label="Lectura medidor inicial"
             [minFractionDigits]="4"
             [maxFractionDigits]="4"
           />
           <custom-input-decimal-signal
-            [control]="form.controls.lecturaMetroDespues"
-            label="Lectura metro despues"
+            [control]="form.controls.lecturaMedidorFinal"
+            label="Lectura medidor final"
             [minFractionDigits]="4"
             [maxFractionDigits]="4"
+          />
+          <custom-input-decimal-signal
+            [control]="form.controls.costoMetroCubico"
+            label="Costo por metro cubico"
+            [minFractionDigits]="2"
+            [maxFractionDigits]="4"
+          />
+        </div>
+      </div>
+
+      <!-- Firmas de recepcion -->
+      <div class="grid mb-2">
+        <div class="col-12 md:col-6">
+          <custom-input-autocomplete-signal
+            (propagar)="saveColaboradorMtto($event)"
+            [control]="form.controls.colaboradorMtto"
+            [data]="cb_empleados()"
+            label="Colaborador de mantenimiento"
+            placeholder="Buscar colaborador que recibe"
+          />
+        </div>
+        <div class="col-12 md:col-6">
+          <custom-input-text-signal
+            [control]="form.controls.guardiaSeguridad"
+            label="Guardia de seguridad testigo"
+            placeholder="Nombre del guardia testigo"
           />
         </div>
       </div>
@@ -94,6 +120,78 @@
               <custom-input-img-signal
                 [control]="form.controls.fotoIneChofer"
                 [urlImgCurrent]="urlFotoIneChofer()"
+                [contentHeight]="80"
+                [contentWidth]="80"
+                label=""
+              />
+            </div>
+          </div>
+          <div class="col-12 md:col-4">
+            <p class="text-xs text-500 mb-1">Placas del camion</p>
+            <div class="card text-center p-2">
+              <custom-input-img-signal
+                [control]="form.controls.fotoPlacas"
+                [urlImgCurrent]="urlFotoPlacas()"
+                [contentHeight]="80"
+                [contentWidth]="80"
+                label=""
+              />
+            </div>
+          </div>
+          <div class="col-12 md:col-4">
+            <p class="text-xs text-500 mb-1">Medidor antes</p>
+            <div class="card text-center p-2">
+              <custom-input-img-signal
+                [control]="form.controls.fotoMedidorAntes"
+                [urlImgCurrent]="urlFotoMedidorAntes()"
+                [contentHeight]="80"
+                [contentWidth]="80"
+                label=""
+              />
+            </div>
+          </div>
+          <div class="col-12 md:col-4">
+            <p class="text-xs text-500 mb-1">Medidor despues</p>
+            <div class="card text-center p-2">
+              <custom-input-img-signal
+                [control]="form.controls.fotoMedidorDespues"
+                [urlImgCurrent]="urlFotoMedidorDespues()"
+                [contentHeight]="80"
+                [contentWidth]="80"
+                label=""
+              />
+            </div>
+          </div>
+          <div class="col-12 md:col-4">
+            <p class="text-xs text-500 mb-1">Nivel antes</p>
+            <div class="card text-center p-2">
+              <custom-input-img-signal
+                [control]="form.controls.fotoNivelAntes"
+                [urlImgCurrent]="urlFotoNivelAntes()"
+                [contentHeight]="80"
+                [contentWidth]="80"
+                label=""
+              />
+            </div>
+          </div>
+          <div class="col-12 md:col-4">
+            <p class="text-xs text-500 mb-1">Nivel despues</p>
+            <div class="card text-center p-2">
+              <custom-input-img-signal
+                [control]="form.controls.fotoNivelDespues"
+                [urlImgCurrent]="urlFotoNivelDespues()"
+                [contentHeight]="80"
+                [contentWidth]="80"
+                label=""
+              />
+            </div>
+          </div>
+          <div class="col-12 md:col-4">
+            <p class="text-xs text-500 mb-1">Nota</p>
+            <div class="card text-center p-2">
+              <custom-input-img-signal
+                [control]="form.controls.fotoNota"
+                [urlImgCurrent]="urlFotoNota()"
                 [contentHeight]="80"
                 [contentWidth]="80"
                 label=""

@@ -1,6 +1,6 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <div class="grid col-12 md:col-6">
-    <!-- Foto -->
+  <div class="grid p-fluid">
+    <!-- Foto del Colaborador -->
     <div class="col-12 flex justify-content-center mb-4">
       <custom-input-img-signal
         (fileSelected)="change($event)"
@@ -10,7 +10,8 @@
       />
     </div>
 
-    <div>
+    <!-- Nombres -->
+    <div class="col-12 md:col-6">
       <custom-input-text-signal
         [control]="form.controls.firstName"
         label="Nombres"
@@ -19,7 +20,8 @@
       />
     </div>
 
-    <div>
+    <!-- Apellidos -->
+    <div class="col-12 md:col-6">
       <custom-input-text-signal
         [control]="form.controls.lastName"
         label="Apellidos"
@@ -28,7 +30,8 @@
       />
     </div>
 
-    <div>
+    <!-- Email -->
+    <div class="col-12 md:col-6">
       <custom-input-text-signal
         [control]="form.controls.email"
         label="Email"
@@ -38,57 +41,52 @@
       />
     </div>
 
-    <div>
-      <div class="flex">
-        <custom-input-text-signal
-          [control]="form.controls.phoneNumberPrefix"
-          label="Prefijo"
-          placeholder="+52"
-          class="w-4"
-          hidden
-          [horizontal]="false"
-        />
-        <custom-input-mask-signal
-          [control]="form.controls.phoneNumber"
-          label="Teléfono"
-          customMask="(99) 9999-9999"
-          mask="(999) 9999-9999"
-          placeholder="(55) 0000-0000"
-          class="flex-1"
-          (input)="searchExistingPhone()"
-          [horizontal]="false"
-        />
-      </div>
+    <!-- Teléfono -->
+    <div class="col-12 md:col-6">
+      <custom-input-mask-signal
+        [control]="form.controls.phoneNumber"
+        label="Teléfono"
+        customMask="(99) 9999-9999"
+        mask="(999) 9999-9999"
+        placeholder="(55) 0000-0000"
+        (input)="searchExistingPhone()"
+        [horizontal]="false"
+      />
     </div>
 
-    <div>
+    <!-- Rol de Usuario -->
+    <div class="col-12 md:col-6">
       <custom-input-select-signal
         [control]="form.controls.applicationRoleId"
-        label="Puesto"
+        label="Rol de Usuario"
         [data]="cb_applicationRole()"
         [horizontal]="false"
         [filter]="true"
       />
     </div>
 
-    <custom-input-autocomplete-signal
-      (propagar)="saveProviderId($event)"
-      [control]="form.controls.providerName"
-      [data]="cb_providers()"
-      label="Proveedor"
-      placeholder="Escribe para buscar proveedor"
-      [horizontal]="false"
-    />
+    <!-- Proveedor -->
+    <div class="col-12 md:col-6">
+      <custom-input-autocomplete-signal
+        (propagar)="saveProviderId($event)"
+        [control]="form.controls.providerName"
+        [data]="cb_providers()"
+        label="Proveedor"
+        placeholder="Escribe para buscar proveedor"
+        [horizontal]="false"
+      />
+    </div>
 
+    <!-- Usuarios Existentes -->
     <div class="col-12 mt-4">
       @if (existingApplicationUser().length > 0) {
       <div class="surface-ground p-3 border-round">
         <p class="text-900 font-bold mb-2">Usuarios existentes encontrados:</p>
-        <div class="flex flex-column">
+        <div class="flex flex-column gap-2">
           @for (user of existingApplicationUser(); track user.applicationUserId)
           {
           <div
-            class="flex justify-content-between align-items-center surface-card p-2 border-round shadow-1"
+            class="flex justify-content-between align-items-center surface-card p-3 border-round shadow-1"
           >
             <div class="flex flex-column">
               <span class="text-900 font-medium">{{ user.fullName }}</span>
@@ -115,6 +113,7 @@
       }
     </div>
 
+    <!-- Botón Guardar -->
     <div class="col-12 flex justify-content-end mt-4">
       <custom-button-save
         [disabled]="form.invalid"

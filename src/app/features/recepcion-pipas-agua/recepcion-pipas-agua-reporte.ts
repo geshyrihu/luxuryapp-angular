@@ -3,10 +3,10 @@ import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import * as FileSaver from "file-saver";
 import { TableModule } from "primeng/table";
-import { RangoCalendarioyyyymmdd } from "src/app/core/components/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { RangoCalendarioyyyymmdd } from "src/app/core/components/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -43,15 +43,19 @@ export class RecepcionPipasAguaReporte implements OnInit {
 
   fechasSignal = toSignal(this.filtroCalendarService.fechas$);
 
-  fechaInicio = signal(this.dateS.getDateFormat(this.filtroCalendarService.fechaInicioDateFull));
-  fechaFin = signal(this.dateS.getDateFormat(this.filtroCalendarService.fechaFinalDateFull));
+  fechaInicio = signal(
+    this.dateS.getDateFormat(this.filtroCalendarService.fechaInicioDateFull),
+  );
+  fechaFin = signal(
+    this.dateS.getDateFormat(this.filtroCalendarService.fechaFinalDateFull),
+  );
 
   totalLitros = computed(() =>
-    this.dataSignal().reduce((acc, x) => acc + (x.capacidadPipa ?? 0), 0)
+    this.dataSignal().reduce((acc, x) => acc + (x.capacidadPipa ?? 0), 0),
   );
   totalRecepciones = computed(() => this.dataSignal().length);
-  recepccionesEnCurso = computed(() =>
-    this.dataSignal().filter((x) => !x.horaTermino).length
+  recepccionesEnCurso = computed(
+    () => this.dataSignal().filter((x) => !x.horaTermino).length,
   );
 
   constructor() {
@@ -79,7 +83,7 @@ export class RecepcionPipasAguaReporte implements OnInit {
           (result ?? []).filter((x) => {
             const fecha = new Date(x.horaLlegada);
             return fecha >= inicio && fecha <= fin;
-          })
+          }),
         );
       });
   }
@@ -93,25 +97,27 @@ export class RecepcionPipasAguaReporte implements OnInit {
   exportExcel() {
     import("xlsx").then((xlsx) => {
       const rows = this.dataSignal().map((item) => ({
-        "Placas": item.placasCamion,
-        "Llegada": item.horaLlegada
+        Placas: item.placasCamion,
+        Llegada: item.horaLlegada
           ? formatDate(item.horaLlegada, "dd/MM/yyyy HH:mm", "es-MX")
           : "",
-        "Termino": item.horaTermino
+        Termino: item.horaTermino
           ? formatDate(item.horaTermino, "dd/MM/yyyy HH:mm", "es-MX")
           : "En curso",
         "Capacidad (L)": item.capacidadPipa,
         "Cisterna antes": item.nivelCisternaAntes,
         "Cisterna despues": item.nivelCisternaDespues,
-        "Metro antes": item.lecturaMetroAntes,
-        "Metro despues": item.lecturaMetroDespues,
+        // "Metro antes": item.lecturaMetroAntes,
+        // "Metro despues": item.lecturaMetroDespues,
       }));
       const ws = xlsx.utils.json_to_sheet(rows);
       const wb = { Sheets: { Reporte: ws }, SheetNames: ["Reporte"] };
       const buffer: any = xlsx.write(wb, { bookType: "xlsx", type: "array" });
       FileSaver.saveAs(
-        new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8" }),
-        `recepcion-pipas-${this.fechaInicio()}-${this.fechaFin()}.xlsx`
+        new Blob([buffer], {
+          type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8",
+        }),
+        `recepcion-pipas-${this.fechaInicio()}-${this.fechaFin()}.xlsx`,
       );
     });
   }

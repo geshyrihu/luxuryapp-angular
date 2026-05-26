@@ -67,7 +67,9 @@ export class UpdateRole implements OnInit {
     this.apiResponseS
       .onGetItem(`EmployeeInternal/OnValidateState/${this.applicationUserId()}`)
       .then((result: any) => {
-        this.applicationUserState = result;
+        if (result !== null) {
+          this.applicationUserState = result;
+        }
       });
   }
 
@@ -79,7 +81,8 @@ export class UpdateRole implements OnInit {
 
     this.apiResponseS
       .onGetList(urlApi)
-      .then((result: IRoles[]) => {
+      .then((result: IRoles[] | null) => {
+        if (!result) return;
         const grouped = new Map<ERoleType, IRoles[]>();
 
         // Agrupar roles por roleType

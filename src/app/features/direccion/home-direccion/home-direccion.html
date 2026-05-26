@@ -26,7 +26,12 @@
       } @else if (area.key === 'recursos-humanos') {
         <app-personal-ausente-card />
       } @else if (area.key === 'legal') {
-        <app-contratos-card />
+        <div class="flex flex-column gap-4">
+          <app-tareas-legal-card />
+          <div class="border-top-1 surface-border pt-3">
+            <app-contratos-card />
+          </div>
+        </div>
       } @else {
         <!-- Grid de metricas placeholder -->
         <div class="grid m-0">
@@ -89,6 +94,9 @@
         </ion-col>
       } @else if (area.key === 'legal') {
         <ion-col size="12" class="p-2">
+          <app-tareas-legal-card />
+        </ion-col>
+        <ion-col size="12" class="p-2 border-top-1 surface-border">
           <app-contratos-card />
         </ion-col>
       } @else {

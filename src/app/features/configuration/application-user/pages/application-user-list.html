@@ -71,8 +71,8 @@
             CLIENTE
             <p-sortIcon field="customer" />
           </th>
-          <th class="table-col-10" pSortableColumn="userName">
-            USUARIO
+          <th class="table-col-25" pSortableColumn="userName">
+            USUARIO / PUESTO DE TRABAJO
             <p-sortIcon field="userName" />
           </th>
           <th class="table-col-25" pSortableColumn="email">
@@ -99,8 +99,10 @@
           </td>
           <td>{{ item.customer }}</td>
           <td>
-            <small> {{ item.userName }} </small>
-            <small> {{ item.role }} </small>
+            <div class="flex flex-column">
+              <span class="font-bold text-sm"> {{ item.userName }} </span>
+              <span class="text-xs text-500 uppercase"> {{ item.role }} </span>
+            </div>
           </td>
           <td>{{ item.email }}</td>
           <td>{{ item.phoneNumber }}</td>
@@ -197,7 +199,7 @@
         <p class="text-sm m-0">
           <span class="text-primary font-medium">{{ item.userName }}</span>
           <span class="mx-1 text-400">|</span>
-          <span class="text-500">{{ item.role }}</span>
+          <span class="text-500 uppercase text-xs">{{ item.role }}</span>
         </p>
         <p class="text-sm m-0 text-600">{{ item.customer || "Sin Cliente" }}</p>
         <p class="text-xs m-0 text-500">

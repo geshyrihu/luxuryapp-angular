@@ -70,7 +70,7 @@ export class ListadoAnualMantenimiento {
   ref: DynamicDialogRef;
 
   monthControl = new FormControl<number>(new Date().getMonth() + 1);
-  months: ISelectItem[] = [];
+  months = signal<ISelectItem[]>([]);
 
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
@@ -91,10 +91,12 @@ export class ListadoAnualMantenimiento {
   });
 
   constructor() {
-    this.onLoadEnumSelectItem();
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
-      if (customerId) this.onLoadData();
+      if (customerId) {
+        this.onLoadEnumSelectItem();
+        this.onLoadData();
+      }
     });
   }
 
@@ -151,8 +153,8 @@ export class ListadoAnualMantenimiento {
     this.apiResponseS
       .onGetEnumSelectItem(`EMonth/${false}`)
       .then((result: any) => {
-        this.months = result;
-        this.months.sort((a, b) => a.value - b.value);
+        const sorted = (result || []).sort((a, b) => a.value - b.value);
+        this.months.set(sorted);
       });
   }
 }

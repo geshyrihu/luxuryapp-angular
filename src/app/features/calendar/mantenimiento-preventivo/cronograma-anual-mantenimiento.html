@@ -2,6 +2,88 @@
 ? PLANTILLA HTML COMPLETA Y CORREGIDA ?
 ================================================================== -->
 
+<style>
+  .gold-stripe {
+    height: 4px;
+    background: #c9a84c;
+    width: 100%;
+  }
+  .header-premium-luxury {
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .luxury-badge-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .logo-text-luxury {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #0b3164;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+  }
+  .logo-sub-luxury {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: #6b7280;
+    letter-spacing: 0.5px;
+  }
+  .badge-doc-luxury {
+    background: #f3f4f6;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #1a1a1a;
+    border: 0.5px solid #e5e7eb;
+    margin-left: 10px;
+  }
+  .btn-luxury-excel,
+  .btn-luxury-pdf {
+    background: #0b3164;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 40px;
+    color: white !important;
+    font-weight: 600;
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+  }
+  .btn-luxury-excel:hover,
+  .btn-luxury-pdf:hover {
+    background: #1e4a7a;
+    transform: translateY(-1px);
+  }
+  .btn-luxury-pdf {
+    background: #c9a84c;
+  }
+  .btn-luxury-pdf:hover {
+    background: #b3943d;
+  }
+  .btn-luxury-excel i,
+  .btn-luxury-pdf i {
+    font-size: 1rem;
+  }
+  @media (max-width: 768px) {
+    .header-premium-luxury {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+
 <ng-container>
   <ng-container>
     <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
@@ -17,35 +99,62 @@
         [loading]="loading()"
       >
         <ng-template #caption>
-          <div class="grid mt-1 no-print">
-            <!-- Custom Filter Buttons & Export (Left/Center) -->
-            <div class="col-12 md:col-8 flex align-items-center flex-wrap">
-              <custom-button-download
-                ngbTooltip="Exportar a Excel"
-                tooltipPosition="right"
-                iconClass="pi pi-file-excel"
-                severity="success"
-                (clicked)="exportExcel()"
-              />
-
-              @for (filtro of filtroEquipos; track trackByFiltro($index,
-              filtro)) {
-              <custom-button-item
-                [iconClass]="getFiltroIconClass(filtro.emoji)"
-                [tooltip]="'Ver ' + filtro.nombre"
-                tooltipPosition="right"
-                variant="outlined"
-                severity="info"
-                [customClass]="
-                filtroEquiposValue === filtro.nombre ? 'text-warning' : ''
-              "
-                (clicked)="clickButton(filtro)"
-              />
-              }
+          <div class="gold-stripe no-print"></div>
+          <div class="header-premium-luxury no-print">
+            <div class="flex align-items-center">
+              <div class="luxury-badge-container">
+                <div class="logo-text-luxury">Cronograma Anual</div>
+                <div class="logo-sub-luxury">Mantenimiento Preventivo</div>
+              </div>
+              <div class="badge-doc-luxury">
+                <i class="pi pi-tag mr-1"></i>
+                {{ filtroEquiposValue | titlecase }}
+              </div>
             </div>
 
+            <div class="flex align-items-center gap-2">
+              <button
+                class="btn-luxury-excel"
+                (click)="exportExcel()"
+                pTooltip="Exportar a Excel"
+                tooltipPosition="bottom"
+              >
+                <i class="pi pi-file-excel"></i>
+                <span>Exportar Excel</span>
+              </button>
+
+              <button
+                class="btn-luxury-pdf"
+                (click)="exportPdf()"
+                pTooltip="Exportar a PDF"
+                tooltipPosition="bottom"
+              >
+                <i class="pi pi-file-pdf"></i>
+                <span>Exportar PDF</span>
+              </button>
+
+              <div class="flex gap-1 ml-2">
+                @for (filtro of filtroEquipos; track trackByFiltro($index,
+                filtro)) {
+                <custom-button-item
+                  [iconClass]="getFiltroIconClass(filtro.emoji)"
+                  [tooltip]="'Ver ' + filtro.nombre"
+                  tooltipPosition="bottom"
+                  variant="outlined"
+                  severity="secondary"
+                  [customClass]="
+                    filtroEquiposValue === filtro.nombre ? 'text-warning' : ''
+                  "
+                  (clicked)="clickButton(filtro)"
+                />
+                }
+              </div>
+            </div>
+          </div>
+
+          <div class="grid mt-1 no-print">
             <!-- Primeng Custom Caption (Right) for Search -->
-            <div class="col-12 md:col-4">
+            <div class="col-12">
               <primeng-custom-caption
                 [dt]="dt"
                 [showAdd]="false"
@@ -101,6 +210,23 @@
 
     <!-- 📱 INICIO: Componente adaptado para versión móvil -->
     <div class="block md:hidden">
+      <div class="px-2 mb-3 flex flex-column gap-2">
+        <button
+          class="btn-luxury-excel w-full justify-content-center py-3"
+          (click)="exportExcel()"
+        >
+          <i class="pi pi-file-excel"></i>
+          <span>Exportar a Excel</span>
+        </button>
+        <button
+          class="btn-luxury-pdf w-full justify-content-center py-3"
+          (click)="exportPdf()"
+        >
+          <i class="pi pi-file-pdf"></i>
+          <span>Exportar a PDF</span>
+        </button>
+      </div>
+
       <!-- Category Filters (Chips) -->
       <div class="flex overflow-x-auto pb-2 mb-2 px-1">
         @for (filtro of filtroEquipos; track filtro.id) {

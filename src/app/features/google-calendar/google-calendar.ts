@@ -1,5 +1,12 @@
 import { CommonModule, DatePipe } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import {
+  Component,
+  computed,
+  DestroyRef,
+  effect,
+  inject,
+  signal,
+} from "@angular/core";
 import { FullCalendarModule } from "@fullcalendar/angular";
 import { CalendarOptions, EventClickArg, EventInput } from "@fullcalendar/core";
 import esLocale from "@fullcalendar/core/locales/es";
@@ -7,6 +14,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
   IonButtonDelete,
@@ -28,6 +36,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { SignalRService } from "src/app/core/services/signalr.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { GoogleCalendarDetail } from "./google-calendar-detail";
 import { GoogleCalendarForm } from "./google-calendar-form";
@@ -75,6 +84,8 @@ export class GoogleCalendar {
   private readonly customerIdS = inject(CustomerIdService);
   private readonly dialogHandlerS = inject(DialogHandlerService);
   private readonly aspRoleS = inject(AspRoleService);
+  private readonly signalRService = inject(SignalRService);
+  private readonly destroyRef = inject(DestroyRef);
 
   readonly dataSignal = signal<IGoogleCalendarEventListItem[]>([]);
   readonly loading = signal(false);
@@ -150,6 +161,17 @@ export class GoogleCalendar {
   });
 
   constructor() {
+    this.signalRService.googleCalendarEventUpdate$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((payload) => {
+        const currentCustomerId = this.customerIdS.customerId();
+        if (!currentCustomerId) return;
+
+        if (this.canViewAllDetails() || payload.customerId === currentCustomerId) {
+          this.onLoadData();
+        }
+      });
+
     effect(() => {
       const customerId = this.customerIdS.customerId();
       if (customerId) {

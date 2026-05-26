@@ -39,7 +39,7 @@
                 [alt]="'Imagen de cliente'"
                 [preview]="true"
                 appendTo="body"
-                imageClass="w-full h-15rem object-cover"
+                imageClass="w-full h-15rem object-contain bg-gray-100"
               />
               
               <!-- Botón Eliminar Overlay -->
@@ -70,6 +70,9 @@
 </div>
 
 <style>
+  .object-contain {
+    object-fit: contain;
+  }
   .object-cover {
     object-fit: cover;
   }

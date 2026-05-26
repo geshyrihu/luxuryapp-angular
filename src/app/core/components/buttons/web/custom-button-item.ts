@@ -37,5 +37,7 @@ export class CustomButtonItem extends BaseButton {
   override size = input<any>("small");
   override showLabelOnDesktop = input<boolean>(false);
 
-  getTooltip = computed(() => this.label() || "Accion");
+  getTooltip = computed(
+    () => this.tooltip() || this.ngbTooltip() || this.label() || "",
+  );
 }

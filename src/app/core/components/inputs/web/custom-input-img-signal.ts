@@ -31,8 +31,9 @@ import { BaseInputSignal } from "../base/base-input-signal";
           <img
             [src]="displayImageSrc()"
             [alt]="title()"
-            [style.height.px]="contentHeight()"
-            [style.width.px]="contentWidth()"
+            [style.max-height.px]="contentHeight()"
+            [style.max-width.px]="contentWidth()"
+            style="width: auto; height: auto;"
             class="image-preview"
             (error)="onImageError()"
           />
@@ -66,7 +67,8 @@ import { BaseInputSignal } from "../base/base-input-signal";
       }
 
       .image-preview {
-        object-fit: cover;
+        object-fit: contain;
+        background-color: var(--ds-bg-sunken);
         border-radius: var(--ds-radius-card);
         border: 1px solid var(--ds-border);
         box-shadow: var(--ds-shadow-sm);
@@ -131,7 +133,9 @@ export class CustomInputImg implements OnChanges {
   urlImgCurrent = input<string>("");
   title = input<string>("");
   chooseLabel = input<string>("Seleccionar imagen");
-  maxFileSize = input<number>(5000000); // 5MB
+  maxFileSize = input<number>(15000000); // 15MB — post-compresión
+  compressThreshold = input<number>(2000000); // 2MB — comprimir si supera esto
+  compressionQuality = input<number>(0.75);
   required = input<boolean>(false);
   label = input<string>("Logotipo");
   horizontal = input<boolean>(true);
@@ -196,41 +200,79 @@ export class CustomInputImg implements OnChanges {
     this.fileInput?.nativeElement.click();
   }
 
-  onFileSelected(event: Event): void {
+  async onFileSelected(event: Event): Promise<void> {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
 
-    // Reset para permitir reselección del mismo archivo
     input.value = "";
-
-    // Resetear error de imagen al seleccionar nuevo archivo
     this.hasImageError.set(false);
 
     if (!file) return;
 
-    if (file.size > this.maxFileSize()) {
-      const error = new Error(
-        `El archivo excede el tamaño máximo de ${this.maxFileSize() / 1000000} MB`,
-      );
-      console.error("Error de tamaño:", error);
-      this.uploadError.emit(error);
-      return;
-    }
+    try {
+      const processed = file.size > this.compressThreshold()
+        ? await this.compressImage(file)
+        : file;
 
-    this.convertToBase64(file)
-      .then((base64: string) => {
-        this.imgBase64.set(base64);
-        this.fileSelected.emit(file);
-        this.imageLoaded.emit(base64);
-        // Actualizar el control de formulario con el archivo
-        this.control().setValue(file);
-        this.control().markAsDirty();
-        this.control().updateValueAndValidity();
-      })
-      .catch((error) => {
-        console.error("Error al convertir imagen:", error);
-        this.uploadError.emit(error);
-      });
+      if (processed.size > this.maxFileSize()) {
+        this.uploadError.emit(new Error(
+          `El archivo excede el tamaño máximo de ${this.maxFileSize() / 1000000} MB`,
+        ));
+        return;
+      }
+
+      const base64 = await this.convertToBase64(processed);
+      this.imgBase64.set(base64);
+      this.fileSelected.emit(processed);
+      this.imageLoaded.emit(base64);
+      this.control().setValue(processed);
+      this.control().markAsDirty();
+      this.control().updateValueAndValidity();
+    } catch (error) {
+      console.error("Error al procesar imagen:", error);
+      this.uploadError.emit(error);
+    }
+  }
+
+  private compressImage(file: File): Promise<File> {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      const objectUrl = URL.createObjectURL(file);
+      img.onload = () => {
+        URL.revokeObjectURL(objectUrl);
+        const MAX = 1920;
+        let { width, height } = img;
+        if (width > MAX || height > MAX) {
+          if (width > height) {
+            height = Math.round((height * MAX) / width);
+            width = MAX;
+          } else {
+            width = Math.round((width * MAX) / height);
+            height = MAX;
+          }
+        }
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d")!.drawImage(img, 0, 0, width, height);
+        canvas.toBlob(
+          (blob) => {
+            if (!blob) {
+              reject(new Error("No se pudo comprimir la imagen"));
+              return;
+            }
+            resolve(new File([blob], file.name, { type: "image/jpeg", lastModified: Date.now() }));
+          },
+          "image/jpeg",
+          this.compressionQuality(),
+        );
+      };
+      img.onerror = () => {
+        URL.revokeObjectURL(objectUrl);
+        reject(new Error("No se pudo cargar la imagen para compresión"));
+      };
+      img.src = objectUrl;
+    });
   }
 
   private convertToBase64(file: File): Promise<string> {

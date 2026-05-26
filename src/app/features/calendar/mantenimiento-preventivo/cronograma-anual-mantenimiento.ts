@@ -21,7 +21,7 @@ import {
 import { addIcons } from "ionicons";
 import { checkboxOutline, createOutline } from "ionicons/icons";
 import * as FileSaver from "file-saver";
-import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
+import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
@@ -37,6 +37,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CronogramaMantenimientoService } from "src/app/core/services/cronograma-mantenimiento.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service";
 import { resolvePrimeIcon } from "src/app/core/utils/prime-icon-resolver";
 import { CronogramaItem } from "./interfaces/CronogramaItem";
 import { FiltroEquipo } from "./interfaces/FiltroEquipo";
@@ -46,11 +47,9 @@ import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
   templateUrl: "./cronograma-anual-mantenimiento.html",
   imports: [
     TableModule,
-    CustomButtonDownload,
     FormsModule,
     CustomButtonItem,
     CommonModule,
-    TooltipModule,
     TooltipModule,
     PrimeNgCustomCaption,
     IonSegment,
@@ -71,6 +70,7 @@ export class CronogramaAnualMantenimiento {
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
   cronogramaMantenimientoService = inject(CronogramaMantenimientoService);
+  private pdfGeneratorS = inject(PdfGeneratorService);
   // --- Propiedades del Componente ---
   // ? MEJORA: Usar signals para los datos
   dataSignal = signal<CronogramaItem[]>([]);
@@ -257,26 +257,148 @@ export class CronogramaAnualMantenimiento {
           const worksheet = xlsx.utils.json_to_sheet(dataToExport);
           const workbook = {
             Sheets: { data: worksheet },
-            SheetNames: ["data"],
+            SheetNames: ["Cronograma"],
           };
           const excelBuffer: any = xlsx.write(workbook, {
             bookType: "xlsx",
             type: "array",
           });
-          this.saveAsExcelFile(excelBuffer, "CalendarioMantenimiento");
+          const fileName = `Cronograma_Anual_Mantenimiento_LuxuryApp`;
+          this.saveAsExcelFile(excelBuffer, fileName);
         });
       });
   }
 
   private saveAsExcelFile(buffer: any, fileName: string): void {
     const EXCEL_TYPE =
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-T";
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
     const EXCEL_EXTENSION = ".xlsx";
     const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
-    FileSaver.saveAs(
-      data,
-      `${fileName}_${new Date().getTime()}${EXCEL_EXTENSION}`,
-    );
+    FileSaver.saveAs(data, `${fileName}${EXCEL_EXTENSION}`);
+  }
+
+  exportPdf(): void {
+    const data = this.dataSignal();
+    if (!data || data.length === 0) return;
+
+    this.loading.set(true);
+
+    const groups: { [sistema: string]: CronogramaItem[] } = {};
+    data.forEach((item) => {
+      if (!groups[item.sistema]) groups[item.sistema] = [];
+      groups[item.sistema].push(item);
+    });
+
+    const headerRow = [
+      {
+        text: "DESCRIPCION",
+        bold: true,
+        fontSize: 8,
+        fillColor: "#0b3164",
+        color: "#ffffff",
+        border: [false, false, false, false],
+        margin: [3, 4, 3, 4],
+      },
+      ...this.meses.map((mes) => ({
+        text: mes,
+        bold: true,
+        fontSize: 8,
+        fillColor: "#0b3164",
+        color: "#ffffff",
+        alignment: "center" as const,
+        border: [false, false, false, false],
+        margin: [1, 4, 1, 4],
+      })),
+    ];
+
+    const tableBody: any[] = [headerRow];
+
+    Object.keys(groups).forEach((sistema) => {
+      tableBody.push([
+        {
+          text: sistema.toUpperCase(),
+          colSpan: 13,
+          bold: true,
+          fontSize: 8,
+          fillColor: "#c9a84c",
+          color: "#ffffff",
+          border: [false, false, false, false],
+          margin: [4, 3, 4, 3],
+        },
+        ...Array(12).fill({ text: "", border: [false, false, false, false] }),
+      ]);
+
+      groups[sistema].forEach((item, idx) => {
+        const bg = idx % 2 === 0 ? "#ffffff" : "#f9fafb";
+        const row: any[] = [
+          {
+            text: item.nameMachinery,
+            fontSize: 7,
+            fillColor: bg,
+            border: [false, false, false, false],
+            margin: [3, 2, 3, 2],
+          },
+        ];
+        this.meses.forEach((mes) => {
+          const has = this.hasService(item, mes);
+          row.push(
+            has
+              ? {
+                  stack: [{ canvas: [{ type: "rect", x: 2, y: 2, w: 19, h: 10, color: "#0b3164" }] }],
+                  fillColor: bg,
+                  border: [false, false, false, false],
+                }
+              : {
+                  text: "",
+                  fillColor: bg,
+                  border: [false, false, false, false],
+                },
+          );
+        });
+        tableBody.push(row);
+      });
+    });
+
+    const docDefinition: TDocumentDefinitions = {
+      pageOrientation: "landscape",
+      pageSize: "A4",
+      content: [
+        {
+          canvas: [{ type: "rect", x: 0, y: 0, w: 762, h: 4, color: "#c9a84c" }],
+          margin: [0, 0, 0, 10],
+        },
+        {
+          text: `Plan de Mantenimiento Preventivo · ${this.filtroEquiposValue.toUpperCase()}`,
+          fontSize: 13,
+          bold: true,
+          color: "#0b3164",
+          margin: [0, 0, 0, 12],
+        },
+        {
+          table: {
+            widths: ["*", ...Array(12).fill(23)],
+            headerRows: 1,
+            heights: 14,
+            body: tableBody,
+          },
+          layout: {
+            hLineWidth: () => 0.5,
+            vLineWidth: () => 0,
+            hLineColor: () => "#e5e7eb",
+            paddingLeft: () => 0,
+            paddingRight: () => 0,
+            paddingTop: () => 0,
+            paddingBottom: () => 0,
+          },
+        },
+      ],
+    };
+
+    this.pdfGeneratorS
+      .generatePdf(docDefinition, `Cronograma_Mantenimiento_${this.filtroEquiposValue}`, {
+        clientName: "Cronograma Anual de Mantenimiento",
+      })
+      .finally(() => this.loading.set(false));
   }
 
   // --- TrackBy Functions ---

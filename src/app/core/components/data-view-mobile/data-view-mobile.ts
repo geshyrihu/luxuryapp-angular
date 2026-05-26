@@ -211,7 +211,8 @@ export class DataViewMobile implements OnInit {
     // 1. Si se especificó trackByProperty, usarla
     if (prop && item.hasOwnProperty(prop)) {
       const key = item[prop];
-      if (key != null) return key;
+      if (key != null && key !== "00000000-0000-0000-0000-000000000000")
+        return key;
     }
 
     // 2. Intentar propiedades comunes de ID
@@ -224,7 +225,11 @@ export class DataViewMobile implements OnInit {
       "_id",
     ];
     for (const p of commonIdProps) {
-      if (item.hasOwnProperty(p) && item[p] != null) {
+      if (
+        item.hasOwnProperty(p) &&
+        item[p] != null &&
+        item[p] !== "00000000-0000-0000-0000-000000000000"
+      ) {
         return item[p];
       }
     }
