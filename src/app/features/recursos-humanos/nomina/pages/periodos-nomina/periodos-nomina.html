@@ -50,9 +50,9 @@
     <tr>
       <td>{{ item.quincenaDisplay }}</td>
       <td>{{ item.anio }}</td>
-      <td>{{ item.fechaInicio | date: "dd/MM/yyyy" }}</td>
-      <td>{{ item.fechaFin | date: "dd/MM/yyyy" }}</td>
-      <td>{{ item.fechaPago ? (item.fechaPago | date: "dd/MM/yyyy") : "-" }}</td>
+      <td>{{ item.fechaInicio | date: "dd/MM/yyyy" : "UTC" }}</td>
+      <td>{{ item.fechaFin | date: "dd/MM/yyyy" : "UTC" }}</td>
+      <td>{{ item.fechaPago ? (item.fechaPago | date: "dd/MM/yyyy" : "UTC") : "-" }}</td>
       <td>{{ item.diasHabiles }}</td>
       <td>
         <p-tag [severity]="getEstadoSeverity(item.estado)" [value]="item.estado" />
@@ -90,7 +90,7 @@
       <ion-label>
         <h2 class="font-normal m-0">{{ item.quincenaDisplay }} {{ item.anio }}</h2>
         <p class="text-xs m-0">
-          {{ item.fechaInicio | date: "dd/MM/yyyy" }} - {{ item.fechaFin | date: "dd/MM/yyyy" }}
+          {{ item.fechaInicio | date: "dd/MM/yyyy" : "UTC" }} - {{ item.fechaFin | date: "dd/MM/yyyy" : "UTC" }}
         </p>
         <div class="flex align-items-center gap-2 mt-1">
           <p-tag [severity]="getEstadoSeverity(item.estado)" [value]="item.estado" />

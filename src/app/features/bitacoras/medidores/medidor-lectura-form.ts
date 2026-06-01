@@ -126,7 +126,12 @@ export class MedidorLecturaForm implements OnInit {
   onLoadData() {
     const urlApi = Endpoints.MeterReadings.getById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
-      this.form.patchValue(result);
+      this.form.patchValue({
+        ...result,
+        fechaRegistro: result.fechaRegistro
+          ? this.dateS.getDateFormat(result.fechaRegistro)
+          : null,
+      });
     });
   }
 
@@ -139,6 +144,12 @@ export class MedidorLecturaForm implements OnInit {
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
+      transformPayload: () => ({
+        ...this.form.getRawValue(),
+        fechaRegistro: this.form.controls.fechaRegistro.value
+          ? this.dateS.getDateFormat(this.form.controls.fechaRegistro.value)
+          : null,
+      }),
     });
   }
 }

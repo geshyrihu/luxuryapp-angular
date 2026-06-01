@@ -12,9 +12,11 @@ import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-but
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
+import { DateService } from "src/app/core/services/date.service";
 
 interface IMedidorLecturaAdminForm {
   id: FormControl<string | null>;
@@ -40,13 +42,14 @@ export class MedidorLecturaAdminForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
   config = inject(DynamicDialogConfig);
+  dateS = inject(DateService);
   formB = inject(FormBuilder);
   ref = inject(DynamicDialogRef);
 
   submitting = signal(false);
   id = signal<string>("");
   medidorId = signal<string>("");
-  today = signal<string>(new Date().toISOString().slice(0, 16));
+  today = signal<string>(this.dateS.getDateFormat(new Date()));
 
   form: FormGroup<IMedidorLecturaAdminForm> =
     new FormGroup<IMedidorLecturaAdminForm>({
@@ -89,7 +92,10 @@ export class MedidorLecturaAdminForm implements OnInit {
     const urlApi = Endpoints.MeterReadings.getById(this.id()!);
 
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
-      this.form.patchValue(result);
+      this.form.patchValue({
+        ...result,
+        fechaRegistro: this.dateS.getDateFormat(result.fechaRegistro),
+      });
     });
   }
 
@@ -102,8 +108,12 @@ export class MedidorLecturaAdminForm implements OnInit {
       id: this.id(),
       ref: this.ref,
       submitting: this.submitting,
-      transformPayload: () => this.form.getRawValue(),
+      transformPayload: () => ({
+        ...this.form.getRawValue(),
+        fechaRegistro: this.dateS.getDateFormat(
+          this.form.controls.fechaRegistro.value,
+        ),
+      }),
     });
   }
 }
-import { Endpoints } from "src/app/core/constants/endpoints";

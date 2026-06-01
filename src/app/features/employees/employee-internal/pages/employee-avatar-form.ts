@@ -2,6 +2,7 @@ import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { InputTextModule } from "primeng/inputtext";
 import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-employee-avatar-form",
@@ -24,10 +25,11 @@ export class EmployeeAvatarForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `EmployeeInternal/PhotoPath/${this.applicationUserId()}`;
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
-      this.photoPath.set(result.photoPath);
-    });
+    this.apiResponseS
+      .onGetItem(Endpoints.EmployeeInternal.photoPath(this.applicationUserId()))
+      .then((result: any) => {
+        this.photoPath.set(result.photoPath);
+      });
   }
 
   changeImg(file: File) {
@@ -53,7 +55,10 @@ export class EmployeeAvatarForm implements OnInit {
     formData.append("file", this.imgUpload());
 
     this.apiResponseS
-      .onPut("EmployeeInternal/UpdateImage/" + this.applicationUserId(), formData)
+      .onPut(
+        Endpoints.EmployeeInternal.updateImage(this.applicationUserId()),
+        formData,
+      )
       .then((result: any) => {
         if (result) this.photoPath.set(result.photoPath);
       });

@@ -17,6 +17,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DateService } from "src/app/core/services/date.service";
 
 interface IDocumentoPersonalizadoForm {
   id: FormControl<string>;
@@ -44,6 +45,7 @@ export class DocumentoPersonalizadoForm implements OnInit {
   private authS = inject(AuthService);
   private config = inject(DynamicDialogConfig);
   private customerIdS = inject(CustomerIdService);
+  private dateS = inject(DateService);
   private formB = inject(FormBuilder);
   private ref = inject(DynamicDialogRef);
   id: string = "";
@@ -86,7 +88,7 @@ export class DocumentoPersonalizadoForm implements OnInit {
       this.form.patchValue({
         id: result.id,
         name: result.name,
-        createAt: new Date(result.createAt),
+        createAt: this.dateS.parseDate(result.createAt) ?? new Date(),
       });
     });
   }
@@ -134,7 +136,7 @@ export class DocumentoPersonalizadoForm implements OnInit {
     formData.append("name", formValues.name);
     formData.append("createdById", this.authS.applicationUserId);
     formData.append("documentType", formValues.documentType.toString());
-    formData.append("createAt", formValues.createAt.toISOString());
+    formData.append("createAt", this.dateS.getDateFormat(formValues.createAt));
 
     if (this.file) formData.append("document", this.file);
 

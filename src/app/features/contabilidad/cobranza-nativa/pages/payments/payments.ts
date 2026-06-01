@@ -25,6 +25,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { DateService } from "src/app/core/services/date.service";
 import {
   ApplyPaymentToChargesDTO,
   PendingChargeDTO,
@@ -83,6 +84,7 @@ export class Payments implements OnInit {
   private dialogHandler = inject(DialogHandlerService);
   private toastService = inject(CustomToastService);
   private customerIdS = inject(CustomerIdService);
+  private dateS = inject(DateService);
 
   // Enums for template access
   EPaymentMethod = EPaymentMethod;
@@ -291,7 +293,8 @@ export class Payments implements OnInit {
         customerId: this.customerId(),
         propertyId: this.form.controls.propertyId.value,
         amount: this.form.controls.amount.value,
-        paymentDate: this.form.controls.paymentDate.value as Date,
+        paymentDate:
+          this.dateS.getDateFormat(this.form.controls.paymentDate.value) ?? "",
         method: this.form.controls.method.value,
         reference: this.form.controls.reference.value,
         status: EPaymentStatus.Registrado,

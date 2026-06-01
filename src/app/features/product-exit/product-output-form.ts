@@ -191,11 +191,16 @@ export class ProductOutputForm implements OnInit {
   }
   onSubmit() {
     this.id = this.config.data.id;
+    const values = this.form.getRawValue();
+    const payload = {
+      ...values,
+      fechaSalida: this.dateS.getDateFormat(values.fechaSalida),
+    };
 
     this.submitting.set(true);
     if (!this.id) {
       this.apiResponseS
-        .onPost(`SalidaProductos`, this.form.value)
+        .onPost(`SalidaProductos`, payload)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
@@ -203,7 +208,7 @@ export class ProductOutputForm implements OnInit {
       this.apiResponseS
         .onPut(
           `SalidaProductos/${this.id}/${this.cantidadActualUsada()}`,
-          this.form.value,
+          payload,
         )
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);

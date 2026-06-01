@@ -2,466 +2,18 @@
  * Archivo centralizado de endpoints del API.
  */
 export const Endpoints = {
-  Banks: {
-    getAll: "banks",
-    getById: (id: string) => `banks/${id}`,
-    create: "Banks",
-    update: (id: string) => `Banks/${id}`,
-    delete: (id: string) => `banks/${id}`,
-    selectItems: "select-items/banks",
-  },
-  Customers: {
-    getAll: (state: boolean) => `customers/list/${state}`,
-    getById: (id: string) => `customers/${id}`,
-    getByIdLegacy: (id: string) => `Customers/${id}`,
-    create: "customers",
-    update: (id: string) => `customers/${id}`,
-    delete: (id: string) => `customers/${id}`,
-  },
-  PaymentMethods: {
-    getAll: "payment-methods",
-    getById: (id: string) => `payment-methods/${id}`,
-    create: "payment-methods",
-    update: (id: string) => `payment-methods/${id}`,
-    delete: (id: string) => `payment-methods/${id}`,
-  },
-  CfdiUses: {
-    getAll: "cfdi-use",
-    getById: (id: string) => `cfdi-use/${id}`,
-    create: "cfdi-use",
-    update: (id: string) => `cfdi-use/${id}`,
-    delete: (id: string) => `cfdi-use/${id}`,
-  },
-  ApplicationRoles: {
-    getAll: "application-roles",
-    getById: (id: string) => `application-roles/${id}`,
-    create: "application-roles",
-    update: (id: string) => `application-roles/${id}`,
-    delete: (id: string) => `application-roles/${id}`,
-    getPdf: (id: string) => `application-roles/${id}/pdf`,
-  },
-  ApplicationUsers: {
-    getAll: (state: boolean, typePerson: any) =>
-      `application-users/List/${state}/${typePerson}`,
-    getById: (id: string) => `application-users/${id}`,
-    createAccount: "application-users/CreateAccount",
-    updateAccount: (id: string) => `application-users/UpdateAccount/${id}`,
-    delete: (id: string) => `application-users/Delete/${id}`,
-    toBlockAccount: (id: string) => `application-users/ToBlockAccount/${id}`,
-    toUnlockAccount: (id: string) => `application-users/ToUnlockAccount/${id}`,
-    addRoleToUser: (id: string) => `application-users/AddRoleToUser/${id}`,
-    getRoleUrl: (id: string, roleType: number | null) =>
-      roleType !== null
-        ? `application-users/GetRole/${id}/${roleType}`
-        : `application-users/GetRole/${id}`,
-  },
-  ModuleApps: {
-    getAll: "module-apps",
-    getById: (id: string) => `module-apps/${id}`,
-    create: "module-apps",
-    update: (id: string) => `module-apps/${id}`,
-    delete: (id: string) => `module-apps/${id}`,
-  },
-  ModuleAppRoles: {
-    listRole: "module-app-roles/ListRole",
-    listModule: "module-app-roles/ListModule",
-    assignments: (roleId: string) => `module-app-roles/Assignments/${roleId}`,
-    updateAssigned: "module-app-roles/UpdateModuleAppRolAssigned",
-  },
-  ModuleAppCustomers: {
-    permissions: (customerId: string) =>
-      `module-app-customers/${customerId}/Permissions`,
-    customers: (state: boolean) => `module-app-customers/Customers/${state}`,
-    customerModules: (customerId: string) =>
-      `module-app-customers/Customer/${customerId}`,
-    updateModuleStatus: "module-app-customers/UpdateModuleStatus",
-    activeModules: (customerId: string) =>
-      `module-app-customers/Customer/${customerId}/ActiveModules`,
-  },
-  CustomerAddresses: {
-    getByCustomerId: (customerId: string) => `customer-addresses/${customerId}`,
-    update: "customer-addresses",
-  },
-  CustomerImages: {
-    getByCustomerId: (customerId: string) => `customer-images/${customerId}`,
-    create: "customer-images",
-    delete: (id: string) => `customer-images/${id}`,
-  },
-  SelectItems: {
-    properties: (customerId: string) => `select-items/properties/${customerId}`,
-    rolesForAnnouncements: "roles-for-announcements",
-    customersActiveNameShort: "CustomersActiveNameShort",
-    applicationUsersByCustomer: (customerId: string) =>
-      `application-users/${customerId}`,
-    employeesByCustomer: (customerId: string) => `employee/${customerId}`,
-    customersActive: "customers-active",
-    bank: "bank",
-  },
-  EnumSelectItems: {
-    departament: "EDepartament",
-    relationEmployee: "ERelationEmployee",
-    assetCategory: "EAssetCategory",
-  },
-  Announcements: {
-    adminList: "announcements/admin-list",
-    getById: (id: string) => `announcements/${id}`,
-    analytics: (id: string) => `announcements/${id}/analytics`,
-    downloadPdf: (id: string) => `announcements/${id}/pdf`,
-    create: "announcements",
-    update: (id: string) => `announcements/${id}`,
-    delete: (id: string) => `announcements/${id}`,
-  },
-  EmailData: {
-    getAll: "EmailData/List",
-    delete: (id: string) => `emaildata/${id}`,
-    sendTestEmail: (id: string) => `SendEmail/TestEmail/${id}`,
-  },
-  SendEmail: {
-    operationReport: (
-      applicationUserId: string,
-      customerId: string,
-      year: number,
-      weekNumber: number,
-    ) =>
-      `sendemail/operation-report/${applicationUserId}/${customerId}/${year}/${weekNumber}`,
-  },
-  Logs: {
-    getAll: "Logs",
-    deleteAll: "Logs/all",
-  },
-  MachineryClassification: {
-    getAll: "EquipoClasificacion",
-    delete: (id: string) => `equipoclasificacion/${id}`,
-  },
-  MeterCategories: {
-    getAll: "MedidorCategoria",
-    delete: (id: string) => `medidorcategoria/${id}`,
-  },
-  PaymentTypes: {
-    getAll: "MetodoPago",
-    delete: (id: string) => `MetodoPago/${id}`,
-  },
-  UnitsOfMeasurement: {
-    getAll: "UnidadMedida",
-    delete: (id: string) => `unidadmedida/${id}`,
-  },
-  Properties: {
-    getById: (id: string) => `Property/${id}`,
-    create: "Property",
-    update: (id: string) => `Property/${id}`,
-  },
-  Presupuestos: {
-    create: "Presupuesto/Create",
-    update: (id: string) => `Presupuesto/UpdatePresupuesto/${id}`,
-  },
-  EntregaRecepcionCliente: {
-    generateData: "EntregaRecepcionCliente/GenerateData",
-    getByCustomerAndDepartment: (customerId: string, department: string) =>
-      `EntregaRecepcionCliente/${customerId}/${department}`,
-    validateFile: (applicationUserId: string, id: string) =>
-      `EntregaRecepcionCliente/ValidarArchivo/${applicationUserId}/${id}`,
-    invalidateFile: (id: string) =>
-      `EntregaRecepcionCliente/InvalidarArchivo/${id}`,
-    deleteFile: (id: string) => `EntregaRecepcionCliente/DeleteFile/${id}`,
-  },
-  TaskLegal: {
-    selectForAddTicket: "SelectForAddTicket",
-  },
-  LegalMatters: {
-    getAll: "LegalMatter",
-    getById: (id: string) => `LegalMatter/${id}`,
-    create: "LegalMatter",
-    update: (id: string) => `LegalMatter/${id}`,
-    delete: (id: string) => `LegalMatter/${id}`,
-    categories: "legalmattercategory",
-    categoryById: (id: string) => `LegalMatter/Category/${id}`,
-    createCategory: "LegalMatter/Category",
-    updateCategory: (id: string) => `LegalMatter/Category/${id}`,
-    deleteCategory: (id: string) => `LegalMatter/Category/${id}`,
-  },
-  LegalReports: {
-    results: (startDate: string, endDate: string, isInternal: boolean) =>
-      `LegalReport/Results/${startDate}/${endDate}/${isInternal}`,
-    requestsAttended: (
-      startDate: string,
-      endDate: string,
-      isInternal: boolean,
-    ) => `LegalReport/RequestsAttended/${startDate}/${endDate}/${isInternal}`,
-    requestsPending: (isInternal: boolean) =>
-      `LegalReport/RequestsPending/${isInternal}`,
-    summary: (startDate: string, endDate: string) =>
-      `LegalReport/Summary/${startDate}/${endDate}`,
-    summaryCustomer: (startDate: string, endDate: string) =>
-      `LegalReport/SummaryCustomer/${startDate}/${endDate}`,
-    summaryIndividual: (startDate: string, endDate: string) =>
-      `LegalReport/SummaryIndividual/${startDate}/${endDate}`,
-    totalRequests: (startDate: string, endDate: string) =>
-      `LegalReport/TotalRequests/${startDate}/${endDate}`,
-    generateWeeklyReport: (
-      startDate: string,
-      endDate: string,
-      isInternal: boolean,
-    ) =>
-      `LegalReport/GenerateWeeklyReport/${startDate}/${endDate}/${isInternal}`,
-    pending: (isExternal: boolean) =>
-      `LegalReport/Pending/${isExternal ? 1 : 0}`,
-    pendingUnassignedData: "LegalReport/PendingUnassignedData",
-    report: "LegalReport/Report",
-  },
-  LegalMinutes: {
-    pendingByUserAndStatus: (applicationUserId: string, status: number) =>
-      `ContabilidadMinuta/ListaMinutaLegal/${applicationUserId}/${status}`,
-  },
-  MeetingDetailsTracking: {
-    delete: (id: string | number) => `MeetingDertailsSeguimiento/${id}`,
-  },
-  Products: {
-    getAll: "Productos",
-    delete: (id: string) => `productos/${id}`,
-  },
-  ProviderSupport: {
-    getAll: "providersupport",
-    delete: (id: string) => `providersupport/${id}`,
-  },
-  RadioCommunication: {
-    getById: (id: string) => `RadioComunicacion/${id}`,
-    create: "RadioComunicacion",
-    update: (id: string) => `RadioComunicacion/${id}`,
-  },
-  RecurringTasks: {
-    Templates: {
-      getActiveList: "recurring-tasks/templates/list/true",
-      customerConfig: (customerId: string) =>
-        `recurring-tasks/templates/config/${customerId}`,
-      saveCustomerConfig: "recurring-tasks/templates/config",
-    },
-  },
-  Notifications: {
-    getAll: "notifications",
-    markAsRead: (notificationId: string) =>
-      `Notifications/mark-as-read/${notificationId}`,
-  },
-  MenuItems: {
-    byCustomer: (customerId: string) => `menu-items/${customerId}`,
-  },
   AccessHistory: {
     byCustomerAndRange: (
       customerId: string,
       fechaInicial: string,
       fechaFinal: string,
-    ) => `AccessHistory/${customerId}/${fechaInicial}/${fechaFinal}`,
+    ) => `UserActivityHistory?customerId=${customerId}&startDate=${fechaInicial}&endDate=${fechaFinal}`,
   },
-  Meters: {
-    getById: (id: string | number) => `Medidor/${id}`,
-    listByCustomer: (customerId: string) => `Medidor/list/${customerId}`,
-    create: "Medidor",
-    update: (id: string | number) => `Medidor/${id}`,
-    delete: (id: string | number) => `Medidor/${id}`,
-  },
-  MeterReadings: {
-    getById: (id: string | number) => `MedidorLectura/${id}`,
-    listByMeter: (medidorId: string) => `MedidorLectura/list/${medidorId}`,
-    create: "MedidorLectura",
-    update: (id: string | number) => `MedidorLectura/${id}`,
-    delete: (id: string | number) => `MedidorLectura/${id}`,
-    lastReading: (medidorId: string) =>
-      `MedidorLectura/UltimaLectura/${medidorId}`,
-    dailyChart: (medidorId: string, fechaInicial: string, fechaFinal: string) =>
-      `MedidorLectura/DataGraficoDiaria/${medidorId}/${fechaInicial}/${fechaFinal}`,
-    monthlyChart: (
-      medidorId: string,
-      fechaInicial: string,
-      fechaFinal: string,
-    ) =>
-      `MedidorLectura/DataGraficoMensual/${medidorId}/${fechaInicial}/${fechaFinal}`,
-    exportExcel: (id: string | number) => `MedidorLectura/ExportExcel/${id}`,
-  },
-  CatalogAssets: {
-    getAll: "CatalogAsset",
-    getById: (id: string) => `CatalogAsset/${id}`,
-    create: "CatalogAsset",
-    update: (id: string) => `CatalogAsset/${id}`,
-    delete: (id: string | number) => `CatalogAsset/${id}`,
-  },
-  InspectionReviewCatalog: {
-    getAll: "InspectionReviewsCatalog",
-    getById: (id: string) => `InspectionReviewsCatalog/${id}`,
-    create: "InspectionReviewsCatalog",
-    update: (id: string) => `InspectionReviewsCatalog/${id}`,
-    delete: (id: string | number) => `InspectionReviewsCatalog/${id}`,
-  },
-  Inspections: {
-    getById: (id: string) => `inspection/${id}`,
-    listByCustomer: (customerId: string) => `inspection/list/${customerId}`,
-    create: "Inspection",
-    update: (id: string) => `Inspection/${id}`,
-    delete: (id: string | number) => `inspection/${id}`,
-  },
-  CustomerInspections: {
-    selectByCustomer: (customerId: string) =>
-      `CustomerInspections/${customerId}`,
-  },
-  CondominiumAssets: {
-    selectByCustomer: (customerId: string) => `CondominiumAsset/${customerId}`,
-  },
-  InspectionResults: {
-    getByIdForExecution: (customerInspectionId: string) =>
-      `InspectionResult/InspectionResultGetById/${customerInspectionId}`,
-    updateInspectionData: (
-      customerInspectionId: string,
-      applicationUserId: string,
-    ) =>
-      `InspectionResult/UpdateInspectionData/${customerInspectionId}/${applicationUserId}`,
-    byUserCustomerAndDate: (
-      applicationUserId: string,
-      customerId: string,
-      formattedDate: string,
-    ) =>
-      `InspectionResult/GetInspectionsByCustomer/${applicationUserId}/${customerId}/${formattedDate}`,
-    report: (inspectionResultId: string, date?: string) =>
-      date
-        ? `InspectionResult/Report/${inspectionResultId}/${date}`
-        : `InspectionResult/Report/${inspectionResultId}`,
-    exportPdf: (inspectionId: string, date?: string) =>
-      date
-        ? `InspectionResult/ExportPDF/${inspectionId}/${date}`
-        : `InspectionResult/ExportPDF/${inspectionId}`,
-  },
-  InspectionResultImages: {
-    byInspectionResultAndCustomer: (
-      inspectionResultId: string,
-      customerId: string,
-    ) => `InspectionResultImage/${inspectionResultId}/${customerId}`,
-    deleteInspectionImage: (imageId: string, customerId: string) =>
-      `InspectionResultImage/DeleteInspectionImage/${imageId}/${customerId}`,
-  },
-  InspectionCondominiumAssets: {
-    listByInspection: (inspectionId: string) =>
-      `InspectionCondominiumAsset/List/${inspectionId}`,
-    getById: (assetId: string) => `InspectionCondominiumAsset/${assetId}`,
-    create: "InspectionCondominiumAsset",
-    update: (id: string) => `InspectionCondominiumAsset/${id}`,
-    deleteArea: (id: string) => `InspectionCondominiumAsset/DeleteArea/${id}`,
-    deleteReview: (reviewId: string) =>
-      `InspectionCondominiumAsset/DeleteReview/${reviewId}`,
-  },
-  TaskReads: {
-    listByTicketMessage: (ticketMessageId: string) =>
-      `task-read/list/${ticketMessageId}`,
-  },
-  TaskFollowUps: {
-    listByTicketMessage: (ticketMessageId: string) =>
-      `task-follow-up/List/${ticketMessageId}`,
-    create: "task-follow-up",
-  },
-  TaskGroupCategories: {
-    base: "task-group-categories",
-    getAll: "task-group-categories",
-    getById: (id: string) => `task-group-categories/${id}`,
-    delete: (id: string | number) => `task-group-categories/${id}`,
-    selectByCustomer: (customerId: string) =>
-      `task-group-category/${customerId}`,
-  },
-  Tasks: {
-    groupListByCustomer: (customerId: string) =>
-      `task-group-list/${customerId}`,
-    getById: (id: string) => `tasks/${id}`,
-    create: "tasks/Create",
-    update: (id: string) => `tasks/Update/${id}`,
-    participants: (ticketGroupId: string) =>
-      `tasks/participant/${ticketGroupId}`,
-    list: (ticketGroupId: string, status: string) =>
-      `tasks/List/${ticketGroupId}/${status}`,
-    view: (id: string) => `tasks/view/${id}`,
-    myAssignedTickets: (
-      applicationUserId: string,
-      status: string,
-      customerId: string,
-    ) => `tasks/MyAssignedTickets/${applicationUserId}/${status}/${customerId}`,
-    myRequests: (
-      applicationUserId: string,
-      status: string,
-      customerId: string,
-    ) => `tasks/MyRequest/${applicationUserId}/${status}/${customerId}`,
-    updatePriority: (id: string, applicationUserId: string) =>
-      `tasks/UpdatePriority/${id}/${applicationUserId}`,
-    inProgress: (id: string, applicationUserId: string) =>
-      `Tickets/InProgress/${id}/${applicationUserId}`,
-    inProgressLower: (id: string, applicationUserId: string) =>
-      `tasks/in-progress/${id}/${applicationUserId}`,
-    updatePriorityLower: (id: string, applicationUserId: string) =>
-      `tasks/update-priority/${id}/${applicationUserId}`,
-    getByClosed: (id: string) => `tasks/GetByClosed/${id}`,
-    close: "tasks/Closed",
-    reopen: "tasks/Reopen",
-    updateRelevanceLegacy: (id: string) => `tasks/UpdateRelevance/${id}`,
-    updateRelevance: (id: string) => `tasks/update-relevance/${id}`,
-    deleteByCustomer: (id: string, customerId: string) =>
-      `tasks/${id}/${customerId}`,
-    programation: (id: string) => `tasks/Programation/${id}`,
-    myTicketProgramation: (id: string) => `tasks/MyTicket/Programation/${id}`,
-    updateOrder: "tasks/UpdateOrder",
-    legalAll: (customerId?: string) =>
-      customerId
-        ? `tasks/legal/all?customerId=${customerId}`
-        : `tasks/legal/all`,
-    legalByCustomer: "tasks/legal/customer",
-    legalPending: (isInternal?: boolean, unassigned: boolean = false) => {
-      if (unassigned) return "tasks/legal/pending?unassigned=true";
-      return isInternal !== undefined
-        ? `tasks/legal/pending?isInternal=${isInternal}`
-        : "tasks/legal/pending";
-    },
-    getStatus: (id: string) => `tasks/${id}/status`,
-    updateStatus: (id: string) => `tasks/${id}/status`,
-  },
-  TaskGroups: {
-    base: "task-groups",
-    getById: (id: string) => `task-groups/${id}`,
-    list: (customerId: string, isActive: boolean, applicationUserId: string) =>
-      `task-groups/List/${customerId}/${isActive}/${applicationUserId}`,
-    toggleStatus: (id: string) => `task-groups/toggle-status/${id}`,
-    delete: (id: string | number) => `task-groups/${id}`,
-    sendReportPendingByGroup: (id: string) => `tasks/send-report-pending/${id}`,
-    sendReportPendingAll: "tasks/send-report-pending",
-  },
-  TaskGroupParticipants: {
-    base: "task-group-participant",
-    availableByCustomerAndGroup: (customerId: string, taskGroupId: string) =>
-      `task-group-participant/Participants/${customerId}/${taskGroupId}`,
-    listByGroup: (taskGroupId: string) =>
-      `task-group-participant/${taskGroupId}`,
-    update: (id: string) => `task-group-participant/${id}`,
-    delete: (id: string | number) => `task-group-participant/${id}`,
-  },
-  TaskReports: {
-    weeklyReport: (
-      customerId: string,
-      startDate: string | null,
-      endDate: string | null,
-      status: string | number,
-    ) =>
-      `task-report/WeeklyReport/${customerId}/${startDate}/${endDate}/${status}`,
-    ticketReport: (customerId: string, startDate: string, endDate: string) =>
-      `task-report/GetTicketReport/${customerId}/${startDate}/${endDate}`,
-    weeklyPreview: (customerId: string, year: number, weekNumber: number) =>
-      `task-report/WeeklyReportPreview/${customerId}/${year}/${weekNumber}`,
-  },
-  TaskWorkPlans: {
-    create: (
-      applicationUserId: string,
-      customerId: string,
-      year: number,
-      weekNumber: number,
-    ) =>
-      `task-work-plan/Create/${applicationUserId}/${customerId}/${year}/${weekNumber}`,
-    preview: (customerId: string, year: number, weekNumber: number) =>
-      `task-work-plan/preview/${customerId}/${year}/${weekNumber}`,
-    pending: (customerId: string) => `task-work-plan/pending/${customerId}`,
-  },
-  ResidentesEdificio: {
-    selectByCustomer: (customerId: string) =>
-      `residentesedificio/${customerId}`,
+  AccountingAccounts: {
+    base: "Cuentas",
+    delete: (id: string | number) => `cuentas/${id}`,
+    getById: (id: string | number) => `Cuentas/${id}`,
+    getList: (state: boolean) => `Cuentas/GetList/${state ? 0 : 1}`,
   },
   AccountingCoi: {
     Accounting: {
@@ -517,11 +69,7 @@ export const Endpoints = {
           `accounting-coi/cobranza-online/analysis/customer/${customerId}/year/${year}/month/${month}/day/${day}`,
         inspection: (customerId: string, year: number, month: number) =>
           `accounting-coi/cobranza-online/inspection/customer/${customerId}/year/${year}/month/${month}`,
-        inspectionHistory: (
-          customerId: string,
-          year: number,
-          accountNumber: string,
-        ) =>
+        inspectionHistory: (customerId: string, year: number, accountNumber: string) =>
           `accounting-coi/cobranza-online/inspection-history/customer/${customerId}/year/${year}/account/${encodeURIComponent(accountNumber)}`,
         syncStatus: (customerId: string, year: number) =>
           `accounting-coi/cobranza-online/sync-status/customer/${customerId}/year/${year}`,
@@ -580,6 +128,16 @@ export const Endpoints = {
           `accounting-coi/cobranza-online/reporte-financiero/customer/${customerId}/year/${year}/from/${mesInicio}/to/${mesFin}`,
       },
     },
+    Configuration: {
+      AspelSync: {
+        completo: (customerId: string, year: number) =>
+          `accounting-coi/migration/aspel-sync/${customerId}/ejercicio/${year}/completo`,
+        contabilidad: (customerId: string, year: number) =>
+          `accounting-coi/migration/aspel-sync/${customerId}/ejercicio/${year}/contabilidad`,
+        cobranza: (customerId: string, year: number) =>
+          `accounting-coi/migration/aspel-sync/${customerId}/ejercicio/${year}/cobranza`,
+      },
+    },
     LegacyCollection: {
       Dashboard: {
         get: (customerId: string, year: number, month: number) =>
@@ -623,6 +181,12 @@ export const Endpoints = {
         cuentasNivel3: (customerId: string) =>
           `accounting-coi/cobranza-online/statements/cuentas-nivel3/customer/${customerId}`,
       },
+    },
+    Migration: {
+      syncCoi: (customerId: string, year: number) =>
+        `accounting-coi/migration/coi/sync-aspel/${customerId}/ejercicio/${year}`,
+      syncCobranza: (customerId: string, year: number) =>
+        `accounting-coi/migration/legacy-collection/sync-aspel/${customerId}/ejercicio/${year}`,
     },
     NativeCollection: {
       Charges: {
@@ -703,7 +267,7 @@ export const Endpoints = {
           `accounting-coi/native-collection/late-fee-policies/${id}`,
         create: "accounting-coi/native-collection/late-fee-policies",
         update: (id: string) =>
-          `accounting-coi/native-collection/late-fee-policies/${id}`,
+          `accounting-coi/native-fee-policies/${id}`,
         delete: (id: string) =>
           `accounting-coi/native-collection/late-fee-policies/${id}`,
       },
@@ -836,100 +400,128 @@ export const Endpoints = {
         autoReconcile:
           "accounting-coi/native-collection/reconciliation/auto-apply-all",
       },
-    },
-
-    Configuration: {
-      AspelSync: {
-        completo: (customerId: string, year: number) =>
-          `accounting-coi/migration/aspel-sync/${customerId}/ejercicio/${year}/completo`,
-        contabilidad: (customerId: string, year: number) =>
-          `accounting-coi/migration/aspel-sync/${customerId}/ejercicio/${year}/contabilidad`,
-        cobranza: (customerId: string, year: number) =>
-          `accounting-coi/migration/aspel-sync/${customerId}/ejercicio/${year}/cobranza`,
+      Demo: {
+        showcaseData: "accounting-coi/native-collection/demo/showcase-data",
+        triggerAction: "accounting-coi/native-collection/demo/trigger-action",
+        seedSandbox: (customerId: string) =>
+          `accounting-coi/native-collection/demo/seed-sandbox/${customerId}`,
       },
     },
   },
-  DynamicReports: {
-    base: "dynamic-reports",
-    getById: (id: string) => `dynamic-reports/${id}`,
-    getByCustomer: (customerId: string) =>
-      `dynamic-reports/customer/${customerId}`,
-    getTemplates: "dynamic-reports/templates",
-    create: "dynamic-reports",
-    update: (id: string) => `dynamic-reports/${id}`,
-    delete: (id: string) => `dynamic-reports/${id}`,
-    execute: "dynamic-reports/execute",
-    executeExcel: "dynamic-reports/execute/excel",
-    executePdf: "dynamic-reports/execute/pdf",
-    livePreview: "dynamic-reports/live-preview",
-    Accounts: {
-      tree: (customerId: string, year: number, empresa: string) =>
-        `dynamic-reports/accounts/${customerId}/${year}/tree?empresa=${empresa}`,
-      flat: (customerId: string, year: number, empresa: string) =>
-        `dynamic-reports/accounts/${customerId}/${year}?empresa=${empresa}`,
-    },
+  AiKnowledgeBase: {
+    base: "AiKnowledgeBase",
+    delete: (id: string) => `AiKnowledgeBase/${id}`,
+    getById: (id: string) => `AiKnowledgeBase/${id}`,
+    modules: "AiKnowledgeBase/modules",
   },
-  EspejoAspelFull: {
-    get: (customerId: string, year: number, empresa: string) =>
-      `espejo-aspel-full?customerId=${customerId}&intYear=${year}&empresa=${empresa}`,
+  AiAssistant: {
+    testProfile: "AiAssistant/TestProfile",
   },
-  AutitoriaCuentasAspel: {
-    get: (year: number, empresa: string) =>
-      `autitoria-cuentas-aspel?intYear=${year}&empresa=${empresa}`,
+  Announcements: {
+    adminList: "announcements/admin-list",
+    analytics: (id: string) => `announcements/${id}/analytics`,
+    create: "announcements",
+    delete: (id: string) => `announcements/${id}`,
+    downloadPdf: (id: string) => `announcements/${id}/pdf`,
+    getById: (id: string) => `announcements/${id}`,
+    update: (id: string) => `announcements/${id}`,
+  },
+  ApplicationRoles: {
+    create: "application-roles",
+    delete: (id: string) => `application-roles/${id}`,
+    getAll: "application-roles",
+    getById: (id: string) => `application-roles/${id}`,
+    getPdf: (id: string) => `application-roles/${id}/pdf`,
+    update: (id: string) => `application-roles/${id}`,
+  },
+  ApplicationUsers: {
+    addRoleToUser: (id: string) => `application-users/AddRoleToUser/${id}`,
+    cardUser: (id: string) => `application-users/CardUser/${id}`,
+    createAccount: "application-users/CreateAccount",
+    delete: (id: string) => `application-users/Delete/${id}`,
+    getAll: (state: boolean, typePerson: any) =>
+      `application-users/List/${state}/${typePerson}`,
+    getById: (id: string) => `application-users/${id}`,
+    getRoleUrl: (id: string, roleType: number | null) =>
+      roleType !== null
+        ? `application-users/GetRole/${id}/${roleType}`
+        : `application-users/GetRole/${id}`,
+    searchExistingPerson: (fullName: string) =>
+      `application-users/SearchExistingPerson/${fullName}`,
+    searchExistingPhone: (phone: string) =>
+      `application-users/SearchExistingPhone/${phone}`,
+    sendNewUserNameForEmail: (id: string) =>
+      `application-users/SendNewUserNameForEmail/${id}`,
+    toBlockAccount: (id: string) => `application-users/ToBlockAccount/${id}`,
+    toUnlockAccount: (id: string) => `application-users/ToUnlockAccount/${id}`,
+    updateAccount: (id: string) => `application-users/UpdateAccount/${id}`,
+  },
+  ApprovalRules: {
+    matrix: "approval-rules/matrix",
   },
   AspelCobranza: {
-    customers: "aspel-cobranza/customers",
     accounts: (customerId: string, year: number) =>
       `aspel-cobranza/accounts?customerId=${customerId}&year=${year}`,
-    // accountsSelect: (customerId: string, year: number) =>
-    //   `aspel-cobranza/accounts-select?customerId=${customerId}&year=${year}`,
+    detalleCobranzaRango: (customerId: string, numCta: string) =>
+      `aspel-cobranza/detalle-cobranza-rango?customerId=${customerId}&numCta=${numCta}`,
+    deudasActuales: (customerId: string) =>
+      `aspel-cobranza/deudas-actuales?customerId=${customerId}`,
     estadoCuentaRango: (
       customerId: string,
       numCta: string,
       fechaInicio: string,
       fechaFin: string,
     ) =>
-      `aspel-cobranza/estado-cuenta-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
-    detalleCobranzaRango: (customerId: string, numCta: string) =>
-      `aspel-cobranza/detalle-cobranza-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}`,
-    // contrapartidasRango: (
-    //   customerId: string,
-    //   numCta: string,
-    //   fechaInicio: string,
-    //   fechaFin: string,
-    // ) =>
-    //   `aspel-cobranza/contrapartidas-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
-    // pendientesConceptoRango: (
-    //   customerId: string,
-    //   numCta: string,
-    //   fechaInicio: string,
-    //   fechaFin: string,
-    // ) =>
-    //   `aspel-cobranza/pendientes-concepto-rango?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
-    // avisoCobroPdf: (
-    //   customerId: string,
-    //   numCta: string,
-    //   fechaInicio: string,
-    //   fechaFin: string,
-    // ) =>
-    //   `aspel-cobranza/aviso-cobro-pdf?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
-    // estadoCuentaPdf: (
-    //   customerId: string,
-    //   numCta: string,
-    //   fechaInicio: string,
-    //   fechaFin: string,
-    // ) =>
-    //   `aspel-cobranza/estado-cuenta-pdf?customerId=${customerId}&numCta=${encodeURIComponent(numCta)}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
-    deudasActuales: (customerId: string) =>
-      `aspel-cobranza/deudas-actuales?customerId=${customerId}`,
+      `aspel-cobranza/estado-cuenta-rango?customerId=${customerId}&numCta=${numCta}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
+  },
+  Auth: {
+    sendNewPasswordForEmail: (id: string) => `Auth/SendNewPasswordForEmail/${id}`,
+  },
+  AutitoriaCuentasAspel: {
+    get: (year: number, empresa: string) =>
+      `autitoria-cuentas-aspel?intYear=${year}&empresa=${empresa}`,
+  },
+  Banks: {
+    create: "Banks",
+    delete: (id: string) => `banks/${id}`,
+    getAll: "banks",
+    getById: (id: string) => `banks/${id}`,
+    getPdf: (id: string) => `banks/${id}/pdf`,
+    selectItems: "select-items/banks",
+    update: (id: string) => `Banks/${id}`,
+  },
+  CalendarioMaestroEquipo: {
+    base: "CalendarioMaestroEquipo",
+    getById: (id: string) => `CalendarioMaestroEquipo/${id}`,
+  },
+  CatalogAssets: {
+    create: "CatalogAsset",
+    delete: (id: string | number) => `CatalogAsset/${id}`,
+    getAll: "CatalogAsset",
+    getById: (id: string) => `CatalogAsset/${id}`,
+    update: (id: string) => `CatalogAsset/${id}`,
+  },
+  CfdiUses: {
+    create: "cfdi-use",
+    delete: (id: string) => `cfdi-use/${id}`,
+    getAll: "cfdi-use",
+    getById: (id: string) => `cfdi-use/${id}`,
+    getPdf: (id: string) => `cfdi-use/${id}/pdf`,
+    update: (id: string) => `cfdi-use/${id}`,
+  },
+  CommitteeVigilance: {
+    create: "ComiteVigilancia",
+    delete: (id: string) => `comitevigilancia/${id}`,
+    getById: (id: string) => `ComiteVigilancia/${id}`,
+    list: (customerId: string) => `ComiteVigilancia/list/${customerId}`,
+    sendCredentials: (id: string) => `comitevigilancia/${id}/send-credentials`,
+    update: (id: string) => `ComiteVigilancia/${id}`,
+  },
+  CondominiumAssets: {
+    selectByCustomer: (customerId: string) => `CondominiumAsset/${customerId}`,
   },
   ContabilidadOnline: {
-    askAi: "contabilidad-online/ask-ai",
-    askAiContabilidadOnline: "contabilidad-online/ask-ai-contabilidad-online",
-    explainAiContabilidadOnline:
-      "contabilidad-online/explain-ai-contabilidad-online",
     FinancialStatements: {
-      /** EPF compacto: saldo acumulado al cierre del mes. Endpoint principal del componente balance-sheet. */
       epf: (customerId: string, year: number, mes: number) =>
         `contabilidad-online/estado-posicion-financiera/${customerId}/${year}/${mes}`,
       balanceSheet: (customerId: string, year: number) =>
@@ -952,42 +544,208 @@ export const Endpoints = {
         `contabilidad-online/presupuesto-contabilidad/${customerId}/${year}/${mes}`,
       financialReport: (customerId: string, year: number, mes: number) =>
         `contabilidad-online/reporte-financiero/${customerId}/${year}/${mes}`,
+      bancosInversiones: (customerId: string, year: number, mes: number) =>
+        `contabilidad-online/bancos-inversiones/${customerId}/${year}/${mes}`,
       cashFlow: (customerId: string, year: number) =>
         `contabilidad-online/flujo-caja/${customerId}/${year}`,
       collectionAnalysis: (customerId: string, year: number, month: number) =>
         `contabilidad-online/analisis-cobranza/${customerId}/${year}/${month}`,
-      collectionAnalysisOnline: (
-        customerId: string,
-        year: number,
-        month: number,
-        day: number,
-      ) =>
+      collectionAnalysisOnline: (customerId: string, year: number, month: number, day: number) =>
         `contabilidad-online/analisis-cobranza-online/${customerId}/${year}/${month}/${day}`,
+      debugRawAspelData: (customerId: string, year: number) =>
+        `contabilidad-online/debug-raw-aspel-data/${customerId}/${year}`,
     },
+    askAi: "contabilidad-online/ask-ai",
+    askAiContabilidadOnline: "contabilidad-online/ask-ai-contabilidad-online",
+    explainAiContabilidadOnline: "contabilidad-online/explain-ai-contabilidad-online",
   },
-  ApprovalRules: {
-    matrix: "approval-rules/matrix",
+  CustomDocuments: {
+    create: "customdocument",
+    delete: (id: string) => `customdocument/${id}`,
+    getById: (id: string) => `customdocument/${id}`,
+    list: (customerId: string, documentType: number) =>
+      `customdocument/list/${customerId}/${documentType}`,
+    update: (id: string) => `customdocument/${id}`,
+    updateOrder: "customdocument/update-order",
+  },
+  CustomerAddresses: {
+    getByCustomerId: (customerId: string) => `customer-addresses/${customerId}`,
+    update: "customer-addresses",
+  },
+  CustomerDataCompany: {
+    base: "customer-data-company",
+    delete: (id: string) => `customer-data-company/${id}`,
+    getAll: "customer-data-company",
+    getById: (id: string) => `customer-data-company/${id}`,
+  },
+  CustomerImages: {
+    create: "customer-images",
+    delete: (id: string) => `customer-images/${id}`,
+    getByCustomerId: (customerId: string) => `customer-images/${customerId}`,
+  },
+  CustomerInspections: {
+    selectByCustomer: (customerId: string) =>
+      `CustomerInspections/${customerId}`,
+  },
+  Customers: {
+    create: "customers",
+    delete: (id: string) => `customers/${id}`,
+    getAll: (state: boolean) => `customers/list/${state}`,
+    getById: (id: string) => `customers/${id}`,
+    getByIdLegacy: (id: string) => `Customers/${id}`,
+    getPdf: (id: string) => `customers/${id}/pdf`,
+    update: (id: string) => `customers/${id}`,
+  },
+  DynamicReports: {
+    Accounts: {
+      tree: (customerId: string, year: number, empresa: string) =>
+        `dynamic-reports/accounts/${customerId}/${year}/tree?empresa=${empresa}`,
+      flat: (customerId: string, year: number, empresa: string) =>
+        `dynamic-reports/accounts/${customerId}/${year}?empresa=${empresa}`,
+    },
+    create: "dynamic-reports",
+    delete: (id: string) => `dynamic-reports/${id}`,
+    execute: "dynamic-reports/execute",
+    executeExcel: "dynamic-reports/execute/excel",
+    executePdf: "dynamic-reports/execute/pdf",
+    getByCustomer: (customerId: string) => `dynamic-reports/customer/${customerId}`,
+    getById: (id: string) => `dynamic-reports/${id}`,
+    getTemplates: "dynamic-reports/templates",
+    livePreview: "dynamic-reports/live-preview",
+    update: (id: string) => `dynamic-reports/${id}`,
+  },
+  EmailData: {
+    delete: (id: string) => `emaildata/${id}`,
+    getAll: "EmailData/List",
+    sendTestEmail: (id: string) => `SendEmail/TestEmail/${id}`,
+  },
+  EmergencyPhones: {
+    create: "TelefonosEmergencia",
+    delete: (id: string) => `telefonosemergencia/${id}`,
+    getAll: "TelefonosEmergencia",
+    getById: (id: string | number) => `TelefonosEmergencia/${id}`,
+    update: (id: string | number) => `TelefonosEmergencia/${id}`,
+  },
+  EmployeeBankData: {
+    base: "EmployeeBankData",
+    byEmployee: (employeeId: string) =>
+      `EmployeeBankData/employee/${employeeId}`,
+    delete: (id: string) => `EmployeeBankData/${id}`,
+    getAll: (customerId: string) => `EmployeeBankData/list/${customerId}`,
+    getById: (id: string) => `EmployeeBankData/${id}`,
+    upsert: "EmployeeBankData",
+  },
+  EmployeeClinicalData: {
+    base: "EmployeeClinicalData",
+    byEmployee: (employeeId: string) =>
+      `EmployeeClinicalData/employee/${employeeId}`,
+    delete: (id: string) => `EmployeeClinicalData/${id}`,
+    getById: (id: string) => `EmployeeClinicalData/${id}`,
+  },
+  EmployeeEmergencyContact: {
+    base: "EmployeeEmergencyContact",
+    byEmployee: (employeeId: string) =>
+      `EmployeeEmergencyContact/employee/${employeeId}`,
+    delete: (id: string) => `EmployeeEmergencyContact/${id}`,
+    getById: (id: string) => `EmployeeEmergencyContact/${id}`,
+    listEmployeeContact: (employeeId: string, typeContact: number) =>
+      `EmployeeEmergencyContact/ListEmployeeContact/${employeeId}/${typeContact}`,
+  },
+  EmployeeExternal: {
+    addAccessCustomer: (applicationUserId: string, customerId: string) =>
+      `employeeexternal/add-access-cutomer/${applicationUserId}/${customerId}`,
+    create: "EmployeeExternal",
+    delete: (id: string) => `employeeexternal/${id}`,
+    deleteAccessCustomer: (applicationUserId: string, customerId: string) =>
+      `employeeexternal/delete-access-cutomer/${applicationUserId}/${customerId}`,
+    getById: (id: string) => `EmployeeExternal/${id}`,
+    list: (customerId: string, active: boolean) =>
+      `EmployeeExternal/List/${customerId}/${active}`,
+    searchByEmail: (customerId: string, email: string, excludeUserId?: string) =>
+      `employeeexternal/search-by-email/${customerId}?email=${email}${excludeUserId ? `&excludeUserId=${excludeUserId}` : ""}`,
+    searchByPhone: (
+      customerId: string,
+      phoneNumber: string,
+      excludeUserId?: string,
+    ) =>
+      `employeeexternal/search-by-phone/${customerId}?phoneNumber=${phoneNumber}${excludeUserId ? `&excludeUserId=${excludeUserId}` : ""}`,
+    update: (id: string) => `EmployeeExternal/${id}`,
+  },
+  EmployeeInternal: {
+    activate: (id: string) => `EmployeeInternal/${id}/activate`,
+    addressData: (employeeId: string | number) =>
+      `EmployeeInternal/AddressData/${employeeId}`,
+    dataForRecoveryPassword: (id: string) =>
+      `EmployeeInternal/DataForRecoveryPassword/${id}`,
+    laboralData: (applicationUserId: string) =>
+      `EmployeeInternal/LaboralData/${applicationUserId}`,
+    list: (customerId: string, active: boolean) =>
+      `EmployeeInternal/list/${customerId}/${active}`,
+    onValidateState: (id: string) => `EmployeeInternal/OnValidateState/${id}`,
+    personalData: (employeeId: string | number) =>
+      `EmployeeInternal/PersonalData/${employeeId}`,
+    photoPath: (applicationUserId: string) =>
+      `EmployeeInternal/PhotoPath/${applicationUserId}`,
+    principalData: (applicationUserId: string) =>
+      `EmployeeInternal/PrincipalData/${applicationUserId}`,
+    updateAddressData: (addressId: string) =>
+      `EmployeeInternal/UpdateAddressData/${addressId}`,
+    updateImage: (applicationUserId: string) =>
+      `EmployeeInternal/UpdateImage/${applicationUserId}`,
+    updateLaboralData: (applicationUserId: string) =>
+      `EmployeeInternal/UpdateLaboralData/${applicationUserId}`,
+    updatePersonalData: (employeeId: string | number) =>
+      `EmployeeInternal/UpdatePersonalData/${employeeId}`,
+    updatePrincipalData: (applicationUserId: string) =>
+      `EmployeeInternal/UpdatePrincipalData/${applicationUserId}`,
+  },
+  Employees: {
+    createEmployee: "Employees/CreateEmployee",
+    createEmployeeExternal: "Employees/CreateEmployeeExternal",
+  },
+  EntregaRecepcion: {
+    base: "CatalogoEntregaRecepcionDescripcion",
+    getByClient: (id: string) => `EntregaRecepcionCliente/${id}`,
+    getById: (id: string) => `CatalogoEntregaRecepcionDescripcion/${id}`,
+    grupos: "CatalogoEntregaRecepcionDescripcion/grupos",
+    updateClient: (id: string, userId: string, customerId: string) =>
+      `EntregaRecepcionCliente/${id}/${userId}/${customerId}`,
+  },
+  EntregaRecepcionCliente: {
+    deleteFile: (id: string) => `EntregaRecepcionCliente/DeleteFile/${id}`,
+    generateData: "EntregaRecepcionCliente/GenerateData",
+    getByCustomerAndDepartment: (customerId: string, department: string) =>
+      `EntregaRecepcionCliente/${customerId}/${department}`,
+    invalidateFile: (id: string) =>
+      `EntregaRecepcionCliente/InvalidarArchivo/${id}`,
+    validateFile: (applicationUserId: string, id: string) =>
+      `EntregaRecepcionCliente/ValidarArchivo/${applicationUserId}/${id}`,
+  },
+  EnumSelectItems: {
+    assetCategory: "EAssetCategory",
+    brand: "EBrand",
+    departament: "EDepartament",
+    inventoryCategory: "EInventoryCategory",
+    inventorySubCategory: "EInventorySubCategory",
+    measurementUnit: "EMeasurementUnit",
+    paymentMethod: "EPaymentMethod",
+    priority: "EPriority",
+    relationEmployee: "ERelationEmployee",
+    statusMaintenance: "EStatusMaintenance",
+    typeDocument: "ETypeDocument",
+  },
+  EspejoAspelFull: {
+    get: (customerId: string, year: number, empresa: string) =>
+      `espejo-aspel-full?customerId=${customerId}&year=${year}&empresa=${empresa}`,
   },
   HR: {
-    WorkContract: {
-      byEmployee: (employeeId: string) =>
-        `hr/work-contracts/by-employee/${employeeId}`,
-      getAll: "hr/work-contracts",
-      getById: (id: string) => `hr/work-contracts/${id}`,
-      create: "hr/work-contracts",
-      update: (id: string) => `hr/work-contracts/${id}`,
-      terminate: (id: string) => `hr/work-contracts/${id}/terminate`,
-      delete: (id: string) => `hr/work-contracts/${id}`,
-      expiring: (days: number) => `hr/work-contracts/expiring/${days}`,
-    },
-    ContractTemplate: {
-      getAll: "hr/contract-templates",
-      getById: (id: string) => `hr/contract-templates/${id}`,
-      create: "hr/contract-templates",
-      update: (id: string) => `hr/contract-templates/${id}`,
-      toggleActive: (id: string) => `hr/contract-templates/${id}/toggle-active`,
-      preview: "hr/contract-templates/preview",
-      delete: (id: string) => `hr/contract-templates/${id}`,
+    AddendumTemplate: {
+      getAll: "hr/addendum-templates",
+      getById: (id: string) => `hr/addendum-templates/${id}`,
+      create: "hr/addendum-templates",
+      update: (id: string) => `hr/addendum-templates/${id}`,
+      toggleActive: (id: string) => `hr/addendum-templates/${id}/toggle-active`,
+      delete: (id: string) => `hr/addendum-templates/${id}`,
     },
     ContractAddendum: {
       getAll: "hr/contract-addendums",
@@ -1000,13 +758,41 @@ export const Endpoints = {
       cancel: (id: string) => `hr/contract-addendums/${id}/cancel`,
       delete: (id: string) => `hr/contract-addendums/${id}`,
     },
-    AddendumTemplate: {
-      getAll: "hr/addendum-templates",
-      getById: (id: string) => `hr/addendum-templates/${id}`,
-      create: "hr/addendum-templates",
-      update: (id: string) => `hr/addendum-templates/${id}`,
-      toggleActive: (id: string) => `hr/addendum-templates/${id}/toggle-active`,
-      delete: (id: string) => `hr/addendum-templates/${id}`,
+    ContractTemplate: {
+      getAll: "hr/contract-templates",
+      getById: (id: string) => `hr/contract-templates/${id}`,
+      create: "hr/contract-templates",
+      update: (id: string) => `hr/contract-templates/${id}`,
+      toggleActive: (id: string) => `hr/contract-templates/${id}/toggle-active`,
+      preview: "hr/contract-templates/preview",
+      delete: (id: string) => `hr/contract-templates/${id}`,
+    },
+    EmployeeBankData: {
+      getAll: (customerId: string) => `EmployeeBankData/list/${customerId}`,
+      getById: (id: string) => `EmployeeBankData/${id}`,
+      upsert: "EmployeeBankData",
+      delete: (id: string) => `EmployeeBankData/${id}`,
+    },
+    EmployeeFile: {
+      getAll: (customerId: string, isActive?: boolean | null) => {
+        let url = `hr/employee-files?customerId=${customerId}`;
+        if (isActive !== null && isActive !== undefined)
+          url += `&isActive=${isActive}`;
+        return url;
+      },
+      summary: (id: string) => `hr/employee-files/${id}/summary`,
+      personalData: (id: string) => `hr/employee-files/${id}/personal-data`,
+      emergencyContacts: (id: string) =>
+        `hr/employee-files/${id}/emergency-contacts`,
+      clinicalData: (id: string) => `hr/employee-files/${id}/clinical-data`,
+      bankData: (id: string) => `hr/employee-files/${id}/bank-data`,
+      contracts: (id: string) => `hr/employee-files/${id}/contracts`,
+      workPosition: (id: string) => `hr/employee-files/${id}/work-position`,
+      vacationsLeaves: (id: string) =>
+        `hr/employee-files/${id}/vacations-leaves`,
+      incidents: (id: string) => `hr/employee-files/${id}/incidents`,
+      evaluations: (id: string) => `hr/employee-files/${id}/evaluations`,
+      requests: (id: string) => `hr/employee-files/${id}/requests`,
     },
     Incident: {
       getAll: (customerId: string) => `hr/incidents?customerId=${customerId}`,
@@ -1053,33 +839,6 @@ export const Endpoints = {
       pendingInvestigation: "hr/incident-report/pending-investigation",
       export: "hr/incident-report/export",
     },
-    EmployeeFile: {
-      getAll: (customerId: string, isActive?: boolean | null) => {
-        let url = `hr/employee-files?customerId=${customerId}`;
-        if (isActive !== null && isActive !== undefined)
-          url += `&isActive=${isActive}`;
-        return url;
-      },
-      summary: (id: string) => `hr/employee-files/${id}/summary`,
-      personalData: (id: string) => `hr/employee-files/${id}/personal-data`,
-      emergencyContacts: (id: string) =>
-        `hr/employee-files/${id}/emergency-contacts`,
-      clinicalData: (id: string) => `hr/employee-files/${id}/clinical-data`,
-      bankData: (id: string) => `hr/employee-files/${id}/bank-data`,
-      contracts: (id: string) => `hr/employee-files/${id}/contracts`,
-      workPosition: (id: string) => `hr/employee-files/${id}/work-position`,
-      vacationsLeaves: (id: string) =>
-        `hr/employee-files/${id}/vacations-leaves`,
-      incidents: (id: string) => `hr/employee-files/${id}/incidents`,
-      evaluations: (id: string) => `hr/employee-files/${id}/evaluations`,
-      requests: (id: string) => `hr/employee-files/${id}/requests`,
-    },
-    EmployeeBankData: {
-      getAll: (customerId: string) => `EmployeeBankData/list/${customerId}`,
-      getById: (id: string) => `EmployeeBankData/${id}`,
-      upsert: "EmployeeBankData",
-      delete: (id: string) => `EmployeeBankData/${id}`,
-    },
     LeaveRequest: {
       getAll: "my-leave-requests",
       getById: (id: string) => `my-leave-requests/${id}`,
@@ -1104,6 +863,54 @@ export const Endpoints = {
       approve: (id: string) => `leave-request-approvals/${id}/approve`,
       reject: (id: string) => `leave-request-approvals/${id}/reject`,
       cancel: (id: string) => `leave-request-approvals/${id}/cancel`,
+    },
+    Nomina: {
+      Periodos: {
+        autoCrear: (customerId: string) =>
+          `hr/nomina/periodos/auto-crear?customerId=${customerId}`,
+        byCustomerAndYear: (customerId: string, anio: number) =>
+          `hr/nomina/periodos?customerId=${customerId}&anio=${anio}`,
+      },
+      Incidencias: {
+        list: (periodoNominaId: string) =>
+          `hr/nomina/incidencias?periodoNominaId=${periodoNominaId}`,
+        create: "hr/nomina/incidencias",
+        delete: (id: string) => `hr/nomina/incidencias/${id}`,
+        syncVacaciones: "hr/nomina/incidencias/sincronizar-vacaciones",
+        syncPermisos: "hr/nomina/incidencias/sincronizar-permisos",
+        hoja: "hr/nomina/incidencias/hoja",
+        hojaByPeriodo: (periodoId: string) =>
+          `hr/nomina/incidencias/hoja/${periodoId}`,
+      },
+      Generar: {
+        nomina: "hr/nomina/generar",
+      },
+      Prestamos: {
+        create: "hr/nomina/prestamos",
+      },
+      TiempoExtra: {
+        create: "hr/nomina/tiempo-extra",
+        update: (id: string) => `hr/nomina/tiempo-extra/${id}`,
+      },
+    },
+    PastVacations: {
+      create: "past-vacations",
+    },
+    Sanction: {
+      getAll: "hr/sanctions",
+      getById: (id: string) => `hr/sanctions/${id}`,
+      byEmployee: (employeeId: string, customerId: string) =>
+        `hr/sanctions/employee/${employeeId}/${customerId}`,
+      expiring: (days: number) => `hr/sanctions/expiring/${days}`,
+      create: "hr/sanctions",
+      changeStatus: (id: string) => `hr/sanctions/${id}/change-status`,
+    },
+    VacationBalanceAdmin: {
+      byCustomer: (customerId: string) =>
+        `admin/vacation-balances/customer/${customerId}`,
+      recalculateAll: (customerId: string) =>
+        `admin/vacation-balances/recalculate-all/${customerId}`,
+      manualUpdate: "admin/vacation-balances/manual-update",
     },
     VacationRequest: {
       getAll: "my-vacation-requests",
@@ -1139,69 +946,273 @@ export const Endpoints = {
       reject: (id: string) => `vacation-request-approvals/${id}/reject`,
       cancel: (id: string) => `vacation-request-approvals/${id}/cancel`,
     },
-    VacationBalanceAdmin: {
-      byCustomer: (customerId: string) =>
-        `admin/vacation-balances/customer/${customerId}`,
-      recalculateAll: (customerId: string) =>
-        `admin/vacation-balances/recalculate-all/${customerId}`,
-      manualUpdate: "admin/vacation-balances/manual-update",
-    },
-    PastVacations: {
-      create: "past-vacations",
-    },
-    Sanction: {
-      getAll: "hr/sanctions",
-      getById: (id: string) => `hr/sanctions/${id}`,
-      byEmployee: (employeeId: string, customerId: string) =>
-        `hr/sanctions/employee/${employeeId}/${customerId}`,
-      expiring: (days: number) => `hr/sanctions/expiring/${days}`,
-      create: "hr/sanctions",
-      changeStatus: (id: string) => `hr/sanctions/${id}/change-status`,
-    },
-    Nomina: {
-      Periodos: {
-        autoCrear: (customerId: string) =>
-          `hr/nomina/periodos/auto-crear?customerId=${customerId}`,
-        byCustomerAndYear: (customerId: string, anio: number) =>
-          `hr/nomina/periodos?customerId=${customerId}&anio=${anio}`,
-      },
-      Incidencias: {
-        list: (periodoNominaId: string) =>
-          `hr/nomina/incidencias?periodoNominaId=${periodoNominaId}`,
-        create: "hr/nomina/incidencias",
-        delete: (id: string) => `hr/nomina/incidencias/${id}`,
-        syncVacaciones: "hr/nomina/incidencias/sincronizar-vacaciones",
-        syncPermisos: "hr/nomina/incidencias/sincronizar-permisos",
-        hoja: "hr/nomina/incidencias/hoja",
-        hojaByPeriodo: (periodoId: string) =>
-          `hr/nomina/incidencias/hoja/${periodoId}`,
-      },
-      Generar: {
-        nomina: "hr/nomina/generar",
-      },
-      Prestamos: {
-        create: "hr/nomina/prestamos",
-      },
-      TiempoExtra: {
-        create: "hr/nomina/tiempo-extra",
-        update: (id: string) => `hr/nomina/tiempo-extra/${id}`,
-      },
+    WorkContract: {
+      byEmployee: (employeeId: string) =>
+        `hr/work-contracts/by-employee/${employeeId}`,
+      getAll: "hr/work-contracts",
+      getById: (id: string) => `hr/work-contracts/${id}`,
+      create: "hr/work-contracts",
+      update: (id: string) => `hr/work-contracts/${id}`,
+      terminate: (id: string) => `hr/work-contracts/${id}/terminate`,
+      delete: (id: string) => `hr/work-contracts/${id}`,
+      expiring: (days: number) => `hr/work-contracts/expiring/${days}`,
     },
   },
-  Settings: {
-    holidaysByYear: (year: number) => `configuracion/dias-festivos/${year}`,
-    incidentTypes: "hr/incident-types",
-    incidentTypeById: (id: string) => `hr/incident-types/${id}`,
-    createIncidentType: "hr/incident-types",
-    updateIncidentType: (id: string) => `hr/incident-types/${id}`,
-    deleteIncidentType: (id: string) => `hr/incident-types/${id}`,
-    toggleIncidentType: (id: string) => `hr/incident-types/${id}/toggle`,
-    sanctionTypes: "hr/sanction-types",
-    sanctionTypeById: (id: string) => `hr/sanction-types/${id}`,
-    createSanctionType: "hr/sanction-types",
-    updateSanctionType: (id: string) => `hr/sanction-types/${id}`,
-    deleteSanctionType: (id: string) => `hr/sanction-types/${id}`,
-    toggleSanctionType: (id: string) => `hr/sanction-types/${id}/toggle`,
+  InspectionCondominiumAssets: {
+    create: "InspectionCondominiumAsset",
+    deleteArea: (id: string) => `InspectionCondominiumAsset/DeleteArea/${id}`,
+    deleteReview: (reviewId: string) =>
+      `InspectionCondominiumAsset/DeleteReview/${reviewId}`,
+    getById: (assetId: string) => `InspectionCondominiumAsset/${assetId}`,
+    listByInspection: (inspectionId: string) =>
+      `InspectionCondominiumAsset/List/${inspectionId}`,
+    update: (id: string) => `InspectionCondominiumAsset/${id}`,
+  },
+  InspectionResultImages: {
+    byInspectionResultAndCustomer: (
+      inspectionResultId: string,
+      customerId: string,
+    ) => `InspectionResultImage/${inspectionResultId}/${customerId}`,
+    deleteInspectionImage: (imageId: string, customerId: string) =>
+      `InspectionResultImage/DeleteInspectionImage/${imageId}/${customerId}`,
+  },
+  InspectionResults: {
+    byUserCustomerAndDate: (
+      applicationUserId: string,
+      customerId: string,
+      formattedDate: string,
+    ) =>
+      `InspectionResult/GetInspectionsByCustomer/${applicationUserId}/${customerId}/${formattedDate}`,
+    exportPdf: (inspectionId: string, date?: string) =>
+      date
+        ? `InspectionResult/ExportPDF/${inspectionId}/${date}`
+        : `InspectionResult/ExportPDF/${inspectionId}`,
+    getByIdForExecution: (customerInspectionId: string) =>
+      `InspectionResult/InspectionResultGetById/${customerInspectionId}`,
+    report: (inspectionResultId: string, date?: string) =>
+      date
+        ? `InspectionResult/Report/${inspectionResultId}/${date}`
+        : `InspectionResult/Report/${inspectionResultId}`,
+    updateInspectionData: (
+      customerInspectionId: string,
+      applicationUserId: string,
+    ) =>
+      `InspectionResult/UpdateInspectionData/${customerInspectionId}/${applicationUserId}`,
+  },
+  InspectionReviewCatalog: {
+    create: "InspectionReviewsCatalog",
+    delete: (id: string | number) => `InspectionReviewsCatalog/${id}`,
+    getAll: "InspectionReviewsCatalog",
+    getById: (id: string) => `InspectionReviewsCatalog/${id}`,
+    update: (id: string) => `InspectionReviewsCatalog/${id}`,
+  },
+  Inspections: {
+    create: "Inspection",
+    delete: (id: string | number) => `inspection/${id}`,
+    getById: (id: string) => `inspection/${id}`,
+    listByCustomer: (customerId: string) => `inspection/list/${customerId}`,
+    update: (id: string) => `Inspection/${id}`,
+  },
+  JobDescriptions: {
+    base: "job-descriptions",
+    getById: (id: string) => `job-descriptions/${id}`,
+    getByWorkPosition: (workPositionId: string) =>
+      `job-descriptions/by-workposition/${workPositionId}`,
+  },
+  LegalDirectories: {
+    committees: "LegalDirectories/Committees",
+  },
+  LegalMatters: {
+    categories: "legalmattercategory",
+    categoryById: (id: string) => `LegalMatter/Category/${id}`,
+    create: "LegalMatter",
+    createCategory: "LegalMatter/Category",
+    delete: (id: string) => `LegalMatter/${id}`,
+    deleteCategory: (id: string) => `LegalMatter/Category/${id}`,
+    getAll: "LegalMatter",
+    getById: (id: string) => `LegalMatter/${id}`,
+    update: (id: string) => `LegalMatter/${id}`,
+    updateCategory: (id: string) => `LegalMatter/Category/${id}`,
+  },
+  LegalMinutes: {
+    pendingByUserAndStatus: (applicationUserId: string, status: number) =>
+      `ContabilidadMinuta/ListaMinutaLegal/${applicationUserId}/${status}`,
+  },
+  LegalReports: {
+    generateWeeklyReport: (
+      startDate: string,
+      endDate: string,
+      isInternal: boolean,
+    ) =>
+      `LegalReport/GenerateWeeklyReport/${startDate}/${endDate}/${isInternal}`,
+    pending: (isExternal: boolean) =>
+      `LegalReport/Pending/${isExternal ? 1 : 0}`,
+    pendingUnassignedData: "LegalReport/PendingUnassignedData",
+    report: "LegalReport/Report",
+    requestsAttended: (
+      startDate: string,
+      endDate: string,
+      isInternal: boolean,
+    ) => `LegalReport/RequestsAttended/${startDate}/${endDate}/${isInternal}`,
+    requestsPending: (isInternal: boolean) =>
+      `LegalReport/RequestsPending/${isInternal}`,
+    results: (startDate: string, endDate: string, isInternal: boolean) =>
+      `LegalReport/Results/${startDate}/${endDate}/${isInternal}`,
+    summary: (startDate: string, endDate: string) =>
+      `LegalReport/Summary/${startDate}/${endDate}`,
+    summaryCustomer: (startDate: string, endDate: string) =>
+      `LegalReport/SummaryCustomer/${startDate}/${endDate}`,
+    summaryIndividual: (startDate: string, endDate: string) =>
+      `LegalReport/SummaryIndividual/${startDate}/${endDate}`,
+    totalRequests: (startDate: string, endDate: string) =>
+      `LegalReport/TotalRequests/${startDate}/${endDate}`,
+  },
+  Logs: {
+    deleteAll: "Logs/all",
+    getAll: "Logs",
+  },
+  MachineryClassification: {
+    create: "EquipoClasificacion",
+    delete: (id: string) => `equipoclasificacion/${id}`,
+    getAll: "EquipoClasificacion",
+    getById: (id: string | number) => `EquipoClasificacion/${id}`,
+    update: (id: string | number) => `EquipoClasificacion/${id}`,
+  },
+  ManualFlowcharts: {
+    create: "manualFlowcharts",
+    delete: (id: string) => `manualFlowcharts/${id}`,
+    getById: (id: string) => `manualFlowcharts/${id}`,
+    update: (id: string) => `manualFlowcharts/${id}`,
+  },
+  Manuals: {
+    createTemplate: "manuals/templates",
+    deleteInstance: (id: string) => `manuals/instances/${id}`,
+    deleteTemplate: (id: string) => `manuals/templates/${id}`,
+    deleteTemplateAttachment: (id: string) =>
+      `manuals/templates/attachments/${id}`,
+    getInstances: (customerId?: string) =>
+      customerId
+        ? `manuals/instances?customerId=${customerId}`
+        : "manuals/instances",
+    getTemplateById: (id: string) => `manuals/templates/${id}`,
+    getTemplates: "manuals/templates",
+    updateTemplate: (id: string) => `manuals/templates/${id}`,
+    updateTemplateItems: (id: string) => `manuals/templates/${id}/items`,
+    uploadInstance: "manuals/instances",
+    uploadTemplateAttachment: "manuals/templates/attachments",
+    upsertTemplate: "manuals/templates",
+  },
+  ManualsPasos: {
+    addAdjunto: (manualId: string) => `manuals/${manualId}/adjuntos`,
+    addEnlace: (manualId: string, pasoId: string) =>
+      `manuals/${manualId}/pasos/${pasoId}/enlaces`,
+    addPaso: (manualId: string) => `manuals/${manualId}/pasos`,
+    addVersion: (manualId: string) => `manuals/${manualId}/versiones`,
+    crearDiagrama: (manualId: string, pasoId: string) =>
+      `manuals/${manualId}/pasos/${pasoId}/diagrama`,
+    create: "manuals",
+    delete: (id: string) => `manuals/${id}`,
+    deleteAdjunto: (manualId: string, adjuntoId: string) =>
+      `manuals/${manualId}/adjuntos/${adjuntoId}`,
+    deleteDiagrama: (manualId: string, pasoId: string) =>
+      `manuals/${manualId}/pasos/${pasoId}/diagrama`,
+    deleteEnlace: (manualId: string, pasoId: string, enlaceId: string) =>
+      `manuals/${manualId}/pasos/${pasoId}/enlaces/${enlaceId}`,
+    deletePaso: (manualId: string, pasoId: string) =>
+      `manuals/${manualId}/pasos/${pasoId}`,
+    deleteVersion: (manualId: string, versionId: string) =>
+      `manuals/${manualId}/versiones/${versionId}`,
+    eliminarImagen: (manualId: string, pasoId: string, imagenId: string) =>
+      `manuals/${manualId}/pasos/${pasoId}/imagenes/${imagenId}`,
+    getAll: "manuals",
+    getById: (id: string) => `manuals/${id}`,
+    getDiagrama: (diagramaId: string) => `manuals/diagrama/${diagramaId}`,
+    reordenarPasos: (manualId: string) =>
+      `manuals/${manualId}/pasos/reordenar`,
+    subirImagen: (manualId: string, pasoId: string) =>
+      `manuals/${manualId}/pasos/${pasoId}/imagenes`,
+    update: (id: string) => `manuals/${id}`,
+    updateDiagrama: (diagramaId: string) => `manuals/diagrama/${diagramaId}`,
+    updatePaso: (manualId: string, pasoId: string) =>
+      `manuals/${manualId}/pasos/${pasoId}`,
+  },
+  MeetingDetailsTracking: {
+    delete: (id: string | number) => `MeetingDertailsSeguimiento/${id}`,
+  },
+  MenuItems: {
+    byCustomer: (customerId: string) => `menu-items/${customerId}`,
+  },
+  MeterCategories: {
+    create: "MedidorCategoria",
+    delete: (id: string) => `medidorcategoria/${id}`,
+    getAll: "MedidorCategoria",
+    getById: (id: string | number) => `MedidorCategoria/${id}`,
+    update: (id: string | number) => `MedidorCategoria/${id}`,
+  },
+  MeterReadings: {
+    create: "MedidorLectura",
+    dailyChart: (medidorId: string, fechaInicial: string, fechaFinal: string) =>
+      `MedidorLectura/DataGraficoDiaria/${medidorId}/${fechaInicial}/${fechaFinal}`,
+    delete: (id: string | number) => `MedidorLectura/${id}`,
+    exportExcel: (id: string | number) => `MedidorLectura/ExportExcel/${id}`,
+    getById: (id: string | number) => `MedidorLectura/${id}`,
+    lastReading: (medidorId: string) =>
+      `MedidorLectura/UltimaLectura/${medidorId}`,
+    listByMeter: (medidorId: string) => `MedidorLectura/list/${medidorId}`,
+    monthlyChart: (
+      medidorId: string,
+      fechaInicial: string,
+      fechaFinal: string,
+    ) =>
+      `MedidorLectura/DataGraficoMensual/${medidorId}/${fechaInicial}/${fechaFinal}`,
+    update: (id: string | number) => `MedidorLectura/${id}`,
+  },
+  Meters: {
+    create: "Medidor",
+    delete: (id: string | number) => `Medidor/${id}`,
+    getById: (id: string | number) => `Medidor/${id}`,
+    listByCustomer: (customerId: string) => `Medidor/list/${customerId}`,
+    update: (id: string | number) => `Medidor/${id}`,
+  },
+  ModuleAppCustomers: {
+    activeModules: (customerId: string) =>
+      `module-app-customers/Customer/${customerId}/ActiveModules`,
+    customerModules: (customerId: string) =>
+      `module-app-customers/Customer/${customerId}`,
+    customers: (state: boolean) => `module-app-customers/Customers/${state}`,
+    delete: (id: string) => `module-app-customers/${id}`,
+    permissions: (customerId: string) =>
+      `module-app-customers/${customerId}/Permissions`,
+    updateModuleStatus: "module-app-customers/UpdateModuleStatus",
+  },
+  ModuleAppRoles: {
+    assignments: (roleId: string) => `module-app-roles/Assignments/${roleId}`,
+    listModule: "module-app-roles/ListModule",
+    listRole: "module-app-roles/ListRole",
+    updateAssigned: "module-app-roles/UpdateModuleAppRolAssigned",
+  },
+  ModuleApps: {
+    create: "module-apps",
+    delete: (id: string) => `module-apps/${id}`,
+    getAll: "module-apps",
+    getById: (id: string) => `module-apps/${id}`,
+    getPdf: (id: string) => `module-apps/${id}/pdf`,
+    update: (id: string) => `module-apps/${id}`,
+  },
+  Notifications: {
+    getAll: "notifications",
+    markAsRead: (notificationId: string) =>
+      `Notifications/mark-as-read/${notificationId}`,
+    testOneSignal: "notifications/test-one-signal",
+    testOneSignalWeb: "notifications/test-one-signal-web",
+    testSignalR: (userId: string) => `notifications/test-signal-r/${userId}`,
+    testSignalUsers: "notifications/test-signal-users",
+    unreadCount: "Notifications/unread-count",
+    users: "notifications/users",
+  },
+  OrgChart: {
+    getTree: (customerId: string) => `WorkPositionOrgChart/tree/${customerId}`,
+    reassign: "WorkPositionOrgChart/reassign",
   },
   PasswordManager: {
     Credentials: {
@@ -1212,86 +1223,262 @@ export const Endpoints = {
       delete: (id: string) => `password-manager/credentials/${id}`,
     },
   },
-
-  // ═══════════════════════════════════════════════════════════════
-  // 🏢 ORGANIGRAMA JERÁRQUICO
-  // ═══════════════════════════════════════════════════════════════
-  OrgChart: {
-    getTree: (customerId: string) => `WorkPositionOrgChart/tree/${customerId}`,
-    reassign: "WorkPositionOrgChart/reassign",
+  PaymentMethods: {
+    create: "payment-methods",
+    delete: (id: string) => `payment-methods/${id}`,
+    getAll: "payment-methods",
+    getById: (id: string) => `payment-methods/${id}`,
+    getPdf: (id: string) => `payment-methods/${id}/pdf`,
+    update: (id: string) => `payment-methods/${id}`,
   },
-  Manuals: {
-    getTemplates: "manuals/templates",
-    getTemplateById: (id: string) => `manuals/templates/${id}`,
-    createTemplate: "manuals/templates",
-    updateTemplate: (id: string) => `manuals/templates/${id}`,
-    updateTemplateItems: (id: string) => `manuals/templates/${id}/items`,
-    upsertTemplate: "manuals/templates",
-    deleteTemplate: (id: string) => `manuals/templates/${id}`,
-    getInstances: (customerId?: string) =>
-      customerId
-        ? `manuals/instances?customerId=${customerId}`
-        : "manuals/instances",
-    uploadInstance: "manuals/instances",
-    deleteInstance: (id: string) => `manuals/instances/${id}`,
-    uploadTemplateAttachment: "manuals/templates/attachments",
-    deleteTemplateAttachment: (id: string) =>
-      `manuals/templates/attachments/${id}`,
-  },
-  ManualsPasos: {
-    getAll: "manuals",
-    getById: (id: string) => `manuals/${id}`,
-    create: "manuals",
-    update: (id: string) => `manuals/${id}`,
-    delete: (id: string) => `manuals/${id}`,
-    addPaso: (manualId: string) => `manuals/${manualId}/pasos`,
-    updatePaso: (manualId: string, pasoId: string) =>
-      `manuals/${manualId}/pasos/${pasoId}`,
-    deletePaso: (manualId: string, pasoId: string) =>
-      `manuals/${manualId}/pasos/${pasoId}`,
-    reordenarPasos: (manualId: string) => `manuals/${manualId}/pasos/reordenar`,
-    subirImagen: (manualId: string, pasoId: string) =>
-      `manuals/${manualId}/pasos/${pasoId}/imagenes`,
-    eliminarImagen: (manualId: string, pasoId: string, imagenId: string) =>
-      `manuals/${manualId}/pasos/${pasoId}/imagenes/${imagenId}`,
-    addEnlace: (manualId: string, pasoId: string) =>
-      `manuals/${manualId}/pasos/${pasoId}/enlaces`,
-    deleteEnlace: (manualId: string, pasoId: string, enlaceId: string) =>
-      `manuals/${manualId}/pasos/${pasoId}/enlaces/${enlaceId}`,
-    addVersion: (manualId: string) => `manuals/${manualId}/versiones`,
-    deleteVersion: (manualId: string, versionId: string) =>
-      `manuals/${manualId}/versiones/${versionId}`,
-    addAdjunto: (manualId: string) => `manuals/${manualId}/adjuntos`,
-    deleteAdjunto: (manualId: string, adjuntoId: string) =>
-      `manuals/${manualId}/adjuntos/${adjuntoId}`,
-    crearDiagrama: (manualId: string, pasoId: string) =>
-      `manuals/${manualId}/pasos/${pasoId}/diagrama`,
-    getDiagrama: (diagramaId: string) => `manuals/diagrama/${diagramaId}`,
-    updateDiagrama: (diagramaId: string) => `manuals/diagrama/${diagramaId}`,
-    deleteDiagrama: (manualId: string, pasoId: string) =>
-      `manuals/${manualId}/pasos/${pasoId}/diagrama`,
-  },
-  CustomDocuments: {
-    getById: (id: string) => `customdocument/${id}`,
-    list: (customerId: string, documentType: number) =>
-      `customdocument/list/${customerId}/${documentType}`,
-    create: "customdocument",
-    update: (id: string) => `customdocument/${id}`,
-    delete: (id: string) => `customdocument/${id}`,
-    updateOrder: "customdocument/update-order",
+  PaymentTypes: {
+    create: "MetodoPago",
+    delete: (id: string) => `MetodoPago/${id}`,
+    getAll: "MetodoPago",
+    getById: (id: string | number) => `MetodoPago/${id}`,
+    update: (id: string | number) => `MetodoPago/${id}`,
   },
   PolicyContracts: {
-    getById: (id: string | number) => `PolicyContract/${id}`,
-    list: (customerId: string, isCurrent: boolean) =>
-      `PolicyContract/List/${customerId}/${isCurrent}`,
     create: "PolicyContract",
-    update: (id: string | number) => `PolicyContract/${id}`,
     delete: (id: string | number) => `PolicyContract/${id}`,
     deleteDocument: (id: string | number) =>
       `PolicyContract/DeleteDocument/${id}`,
+    getById: (id: string | number) => `PolicyContract/${id}`,
+    list: (customerId: string, isCurrent: boolean) =>
+      `PolicyContract/List/${customerId}/${isCurrent}`,
     providersByCustomer: (customerId: string) => `Providers/${customerId}`,
+    update: (id: string | number) => `PolicyContract/${id}`,
+  },
+  Presupuestos: {
+    create: "Presupuesto/Create",
+    update: (id: string) => `Presupuesto/UpdatePresupuesto/${id}`,
+  },
+  ProductCategories: {
+    base: "Categories",
+    create: "categories",
+    delete: (id: string | number) => `categories/${id}`,
+    getAll: "Categories",
+    getById: (id: string | number) => `categories/${id}`,
+    update: (id: string | number) => `categories/${id}`,
+  },
+  Products: {
+    delete: (id: string) => `productos/${id}`,
+    getAll: "Productos",
+  },
+  Properties: {
+    create: "Property",
+    getById: (id: string) => `Property/${id}`,
+    update: (id: string) => `Property/${id}`,
+  },
+  ProviderSupport: {
+    delete: (id: string) => `providersupport/${id}`,
+    getAll: "providersupport",
+  },
+  RadioCommunication: {
+    create: "RadioComunicacion",
+    getById: (id: string) => `RadioComunicacion/${id}`,
+    update: (id: string) => `RadioComunicacion/${id}`,
+  },
+  RecurringTasks: {
+    Templates: {
+      getActiveList: "recurring-tasks/templates/list/true",
+      customerConfig: (customerId: string) =>
+        `recurring-tasks/templates/config/${customerId}`,
+      saveCustomerConfig: "recurring-tasks/templates/config",
+    },
+  },
+  ResidentesEdificio: {
+    selectByCustomer: (customerId: string) => `residentesedificio/${customerId}`,
+  },
+  SelectItems: {
+    applicationRolesToAdministrator: "application-roles-to-administrator",
+    applicationRolesToProvider: "application-roles-to-provider",
+    applicationUser: "ApplicationUser",
+    applicationUsersByCustomer: (customerId: string) =>
+      `application-users/${customerId}`,
+    bank: "bank",
+    customersActive: "customers-active",
+    customersActiveNameShort: "CustomersActiveNameShort",
+    employeesByCustomer: (customerId: string) => `employee/${customerId}`,
+    properties: (customerId: string) => `select-items/properties/${customerId}`,
+    propertyMembersByCustomer: (customerId: string) =>
+      `property-members/${customerId}`,
+    providers: (customerId: string) => `providers/${customerId}`,
+    rolesForAnnouncements: "roles-for-announcements",
+  },
+  SendEmail: {
+    operationReport: (
+      applicationUserId: string,
+      customerId: string,
+      year: number,
+      weekNumber: number,
+    ) =>
+      `sendemail/operation-report/${applicationUserId}/${customerId}/${year}/${weekNumber}`,
+  },
+  Settings: {
+    createIncidentType: "hr/incident-types",
+    createSanctionType: "hr/sanction-types",
+    deleteIncidentType: (id: string) => `hr/incident-types/${id}`,
+    deleteSanctionType: (id: string) => `hr/sanction-types/${id}`,
+    holidaysByYear: (year: number) => `configuracion/dias-festivos/${year}`,
+    incidentTypeById: (id: string) => `hr/incident-types/${id}`,
+    incidentTypes: "hr/incident-types",
+    sanctionTypeById: (id: string) => `hr/sanction-types/${id}`,
+    sanctionTypes: "hr/sanction-types",
+    toggleIncidentType: (id: string) => `hr/incident-types/${id}/toggle`,
+    toggleSanctionType: (id: string) => `hr/sanction-types/${id}/toggle`,
+    updateIncidentType: (id: string) => `hr/incident-types/${id}`,
+    updateSanctionType: (id: string) => `hr/sanction-types/${id}`,
   },
   SpecialDocuments: {
     updateOrder: "special-document/update-order",
+  },
+  TaskFollowUps: {
+    byMessage: (id: string) => `task-follow-up/by-message/${id}`,
+    create: "task-follow-up",
+    listByTicketMessage: (ticketMessageId: string) =>
+      `task-follow-up/List/${ticketMessageId}`,
+  },
+  TaskGroupCategories: {
+    base: "task-group-categories",
+    delete: (id: string | number) => `task-group-categories/${id}`,
+    getAll: "task-group-categories",
+    getById: (id: string) => `task-group-categories/${id}`,
+    selectByCustomer: (customerId: string) => `task-group-category/${customerId}`,
+  },
+  TaskGroupParticipants: {
+    availableByCustomerAndGroup: (customerId: string, taskGroupId: string) =>
+      `task-group-participant/Participants/${customerId}/${taskGroupId}`,
+    base: "task-group-participant",
+    delete: (id: string | number) => `task-group-participant/${id}`,
+    listByGroup: (taskGroupId: string) => `task-group-participant/${taskGroupId}`,
+    update: (id: string) => `task-group-participant/${id}`,
+  },
+  TaskGroups: {
+    base: "task-groups",
+    delete: (id: string | number) => `task-groups/${id}`,
+    getById: (id: string) => `task-groups/${id}`,
+    list: (customerId: string, isActive: boolean, applicationUserId: string) =>
+      `task-groups/List/${customerId}/${isActive}/${applicationUserId}`,
+    sendReportPendingAll: "tasks/send-report-pending",
+    sendReportPendingByGroup: (id: string) => `tasks/send-report-pending/${id}`,
+    toggleStatus: (id: string) => `task-groups/toggle-status/${id}`,
+  },
+  TaskLegal: {
+    addTracking: "task-legal/Addtraking",
+    create: "task-legal",
+    createToCustomer: "task-legal/ToCustomer",
+    delete: (id: string) => `task-legal/${id}`,
+    employeeLegal: "task-legal/EmployeeLegal",
+    getAllByCustomer: (customerId: string) => `task-legal/All/${customerId}`,
+    getAllLegal: "task-legal/AllLegal",
+    getById: (id: string) => `task-legal/${id}`,
+    requestDetail: (id: string) => `task-legal/requestDetail/${id}`,
+    selectForAddTicket: "SelectForAddTicket",
+    status: (id: string) => `task-legal/status/${id}`,
+    tracking: (ticketId: string) => `task-legal/Traking/${ticketId}`,
+    update: (id: string) => `task-legal/${id}`,
+    updateStatus: (id: string, status: number | null) =>
+      `task-legal/UpdateStatus/${id}/${status}`,
+  },
+  TaskReads: {
+    byMessage: (id: string) => `task-reads/by-message/${id}`,
+    listByTicketMessage: (ticketMessageId: string) =>
+      `task-read/list/${ticketMessageId}`,
+  },
+  TaskReports: {
+    ticketReport: (customerId: string, startDate: string, endDate: string) =>
+      `task-report/GetTicketReport/${customerId}/${startDate}/${endDate}`,
+    weeklyPreview: (customerId: string, year: number, weekNumber: number) =>
+      `task-report/WeeklyReportPreview/${customerId}/${year}/${weekNumber}`,
+    weeklyReport: (
+      customerId: string,
+      startDate: string | null,
+      endDate: string | null,
+      status: string | number,
+    ) => `task-report/WeeklyReport/${customerId}/${startDate}/${endDate}/${status}`,
+  },
+  TaskWorkPlans: {
+    create: (
+      applicationUserId: string,
+      customerId: string,
+      year: number,
+      weekNumber: number,
+    ) => `task-work-plan/Create/${applicationUserId}/${customerId}/${year}/${weekNumber}`,
+    pending: (customerId: string) => `task-work-plan/pending/${customerId}`,
+    preview: (customerId: string, year: number, weekNumber: number) =>
+      `task-work-plan/preview/${customerId}/${year}/${weekNumber}`,
+  },
+  Tasks: {
+    close: "tasks/Closed",
+    create: "tasks/Create",
+    deleteByCustomer: (id: string, customerId: string) =>
+      `tasks/${id}/${customerId}`,
+    getByClosed: (id: string) => `tasks/GetByClosed/${id}`,
+    getById: (id: string) => `tasks/${id}`,
+    getStatus: (id: string) => `tasks/${id}/status`,
+    groupListByCustomer: (customerId: string) => `task-group-list/${customerId}`,
+    inProgress: (id: string, applicationUserId: string) =>
+      `Tickets/InProgress/${id}/${applicationUserId}`,
+    inProgressLower: (id: string, applicationUserId: string) =>
+      `tasks/in-progress/${id}/${applicationUserId}`,
+    legalAll: (customerId?: string) => customerId ? `tasks/legal/all?customerId=${customerId}` : `tasks/legal/all`,
+    legalByCustomer: "tasks/legal/customer",
+    legalPending: (isInternal?: boolean, unassigned: boolean = false) => {
+      if (unassigned) return "tasks/legal/pending?unassigned=true";
+      return isInternal !== undefined ? `tasks/legal/pending?isInternal=${isInternal}` : "tasks/legal/pending";
+    },
+    list: (ticketGroupId: string, status: string) =>
+      `tasks/List/${ticketGroupId}/${status}`,
+    myAssignedTickets: (
+      applicationUserId: string,
+      status: string,
+      customerId: string,
+    ) => `tasks/MyAssignedTickets/${applicationUserId}/${status}/${customerId}`,
+    myRequests: (
+      applicationUserId: string,
+      status: string,
+      customerId: string,
+    ) => `tasks/MyRequest/${applicationUserId}/${status}/${customerId}`,
+    myTicketProgramation: (id: string) => `tasks/MyTicket/Programation/${id}`,
+    participants: (ticketGroupId: string) => `tasks/participant/${ticketGroupId}`,
+    programation: (id: string) => `tasks/Programation/${id}`,
+    reopen: "tasks/Reopen",
+    update: (id: string) => `tasks/Update/${id}`,
+    updateOrder: "tasks/UpdateOrder",
+    updatePriority: (id: string, applicationUserId: string) =>
+      `tasks/UpdatePriority/${id}/${applicationUserId}`,
+    updatePriorityLower: (id: string, applicationUserId: string) =>
+      `tasks/update-priority/${id}/${applicationUserId}`,
+    updateRelevance: (id: string) => `tasks/update-relevance/${id}`,
+    updateRelevanceLegacy: (id: string) => `tasks/UpdateRelevance/${id}`,
+    updateStatus: (id: string) => `tasks/${id}/status`,
+    view: (id: string) => `tasks/view/${id}`,
+    availablePredecessors: (groupId: string, excludeId?: string) =>
+      excludeId
+        ? `tasks/available-predecessors/${groupId}?excludeId=${excludeId}`
+        : `tasks/available-predecessors/${groupId}`,
+    setDependency: (taskId: string, predecessorId: string) =>
+      `tasks/set-predecessor/${taskId}/${predecessorId}`,
+    clearDependency: (taskId: string) => `tasks/clear-predecessor/${taskId}`,
+  },
+  UnitsOfMeasurement: {
+    create: "UnidadMedida",
+    delete: (id: string) => `unidadmedida/${id}`,
+    getAll: "UnidadMedida",
+    getById: (id: string | number) => `UnidadMedida/${id}`,
+    update: (id: string | number) => `UnidadMedida/${id}`,
+  },
+  UserActivityHistory: {
+    base: "UserActivityHistory",
+  },
+  WorkPositions: {
+    activate: (id: string) => `work-positions/${id}/activate`,
+    assignEmployee: (applicationUserId: string, positionId: string) =>
+      `work-positions/assign-employee/${applicationUserId}/${positionId}`,
+    delete: (id: string) => `work-positions/${id}`,
+    listByCustomer: (customerId: string, state: string) =>
+      `work-positions/list-by-customer/${customerId}/${state}`,
+    unassignEmployee: (id: string) => `work-positions/${id}/unassign-employee`,
   },
 } as const;

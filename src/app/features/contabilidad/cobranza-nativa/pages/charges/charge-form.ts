@@ -10,6 +10,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DateService } from "src/app/core/services/date.service";
 import { CreateChargeDTO, UpdateChargeDTO } from "../../models/charge.dto";
 import { EChargeStatus, EChargeType } from "../../models/enums";
 
@@ -52,6 +53,7 @@ interface IChargeForm {
 export class ChargeForm implements OnInit {
   private fb = inject(FormBuilder);
   private apiResponseS = inject(ApiResponseService);
+  private dateS = inject(DateService);
   private ref = inject(DynamicDialogRef);
   private config = inject(DynamicDialogConfig);
 
@@ -157,11 +159,11 @@ export class ChargeForm implements OnInit {
       Endpoints.AccountingCoi.NativeCollection.Charges.getById(this.id),
     );
     if (res) {
-      if (res.dueDate) res.dueDate = new Date(res.dueDate);
-      if (res.periodStart) res.periodStart = new Date(res.periodStart);
-      if (res.periodEnd) res.periodEnd = new Date(res.periodEnd);
+      if (res.dueDate) res.dueDate = this.dateS.parseDate(res.dueDate);
+      if (res.periodStart) res.periodStart = this.dateS.parseDate(res.periodStart);
+      if (res.periodEnd) res.periodEnd = this.dateS.parseDate(res.periodEnd);
       if (res.discountDeadline)
-        res.discountDeadline = new Date(res.discountDeadline);
+        res.discountDeadline = this.dateS.parseDate(res.discountDeadline);
       this.form.patchValue(res);
 
       // Si el cargo ya tiene pagos aplicados, bloquear edicion del formulario.
@@ -190,9 +192,20 @@ export class ChargeForm implements OnInit {
       submitting: this.submitting,
       transformPayload: () => {
         const raw = this.form.getRawValue();
+        const payload = {
+          ...raw,
+          dueDate: this.dateS.getDateFormat(raw.dueDate) ?? "",
+          periodStart: this.dateS.getDateFormat(raw.periodStart),
+          periodEnd: this.dateS.getDateFormat(raw.periodEnd),
+          discountDeadline: this.dateS.getDateFormat(raw.discountDeadline),
+        };
         return this.id
-          ? ({ id: this.id, ...raw } as UpdateChargeDTO)
-          : ({ customerId: this.customerId, sourcePolicyId: null, ...raw } as CreateChargeDTO);
+          ? ({ id: this.id, ...payload } as UpdateChargeDTO)
+          : ({
+              customerId: this.customerId,
+              sourcePolicyId: null,
+              ...payload,
+            } as CreateChargeDTO);
       },
     });
   }

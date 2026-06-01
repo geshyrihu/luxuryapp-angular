@@ -9,6 +9,7 @@ import {
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 // import { EmployeeAddOrEditService } from './employee-form.service';
@@ -63,10 +64,11 @@ export class EmployeePrincipalDataForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `EmployeeInternal/PrincipalData/${this.applicationUserId()}`;
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
-      this.form.patchValue(result);
-    });
+    this.apiResponseS
+      .onGetItem(Endpoints.EmployeeInternal.principalData(this.applicationUserId()))
+      .then((result: any) => {
+        this.form.patchValue(result);
+      });
   }
 
   onSubmit() {
@@ -75,7 +77,7 @@ export class EmployeePrincipalDataForm implements OnInit {
     this.submitting.set(true);
     this.apiResponseS
       .onPut(
-        `EmployeeInternal/UpdatePrincipalData/${this.applicationUserId()}`,
+        Endpoints.EmployeeInternal.updatePrincipalData(this.applicationUserId()),
         this.form.value,
       )
       .then(() => {

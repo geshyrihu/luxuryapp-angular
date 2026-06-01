@@ -76,8 +76,13 @@ export class DialogHandlerService {
       return Promise.resolve(null);
     }
     return new Promise<T>((resolve) => {
-      ref.onClose.subscribe((resp: T) => {
-        resolve(resp);
+      let lastValue: T;
+      const closeSub = ref.onClose.subscribe((resp: T) => {
+        lastValue = resp;
+      });
+      ref.onDestroy.subscribe(() => {
+        closeSub.unsubscribe();
+        resolve(lastValue);
       });
     });
   }

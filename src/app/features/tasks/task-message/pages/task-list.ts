@@ -16,12 +16,9 @@ import {
   IonCol,
   IonGrid,
   IonIcon,
-  IonInfiniteScroll,
-  IonInfiniteScrollContent,
   IonItem,
   IonLabel,
   IonRow,
-  IonSearchbar,
 } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import {
@@ -51,12 +48,12 @@ import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import {
   IonInputSelect,
   IonInputText,
 } from "src/app/core/components/inputs/mobile";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -76,6 +73,7 @@ import { CardEmployee } from "src/app/features/employees/employees/pages/card-em
 
 import Swal from "sweetalert2";
 
+import { CommonModule } from "@angular/common";
 import {
   IonButtonDelete,
   IonButtonEdit,
@@ -90,9 +88,9 @@ import { TaskReopen } from "../../components/task-reopen";
 import { TaskStatus } from "../../components/task-status/task-status";
 import { SendOperationReport } from "../../send-operation-report/pages/send-operation-report";
 import { TaskFollowup } from "../../task-follow-up/pages/task-followup";
+import { InitialsAbbrPipe } from "src/app/core/pipes/initials-abbr.pipe";
 import { ITaskResultDTO } from "../models/task-message.dto";
 import { TaskForm } from "./task-form";
-import { CommonModule } from "@angular/common";
 
 @Component({
   selector: "app-task-list",
@@ -107,6 +105,17 @@ import { CommonModule } from "@angular/common";
       }
       :host ::ng-deep base-input-signal .field {
         margin-bottom: 0 !important;
+      }
+      :host ::ng-deep tr.task-link-source > td {
+        opacity: 0.55;
+      }
+      :host ::ng-deep tr.task-link-target > td {
+        background-color: rgba(147, 51, 234, 0.1) !important;
+        outline: 2px dashed rgba(147, 51, 234, 0.55);
+        outline-offset: -2px;
+      }
+      :host ::ng-deep tr.task-chain-member > td:nth-child(2) {
+        border-left: 3px solid rgba(147, 51, 234, 0.45);
       }
     `,
   ],
@@ -140,6 +149,7 @@ import { CommonModule } from "@angular/common";
     IonButton,
     IonInputSelect,
     IonInputText,
+    InitialsAbbrPipe,
   ],
 })
 export class TaskList implements OnInit {
@@ -162,7 +172,15 @@ export class TaskList implements OnInit {
   readonly ticketGroupId: string =
     this.activatedRoute.snapshot.params.ticketGroupId;
 
-  readonly scrollHeight = this.tableScrollHeightS.scrollHeight;
+  // Task-list tiene caption doble (título + filtros + leyenda) que suma ~170px
+  // adicionales al offset estándar del servicio (240px). Total: ~410px.
+  private readonly TASK_LIST_OFFSET = 410;
+  scrollHeight = signal<string>(this.calcScrollHeight());
+
+  private calcScrollHeight(): string {
+    return `${window.innerHeight - this.TASK_LIST_OFFSET}px`;
+  }
+  readonly Math = Math;
   readonly tablePrimeNgRows: number = tablePrimeNgRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
 
@@ -218,6 +236,10 @@ export class TaskList implements OnInit {
       clipboardOutline,
       sendOutline,
       gridOutline,
+    });
+
+    window.addEventListener('resize', () => {
+      this.scrollHeight.set(this.calcScrollHeight());
     });
   }
 
@@ -406,10 +428,12 @@ export class TaskList implements OnInit {
     }).then((responseData) => {
       if (responseData.value) {
         this.apiS
-          .onGetItem(Endpoints.Tasks.inProgressLower(id, this.authS.applicationUserId))
+          .onGetItem(
+            Endpoints.Tasks.inProgressLower(id, this.authS.applicationUserId),
+          )
           .then(() => {
-          this.onLoadData();
-        });
+            this.onLoadData();
+          });
       }
     });
   }
@@ -442,14 +466,21 @@ export class TaskList implements OnInit {
 
   onFollowUp(id: string) {
     this.dialogHandlerS
-      .openDialog(
+      .openDialog<number>(
         TaskFollowup,
         { id: id },
         "Seguimiento",
         this.dialogHandlerS.sizeLg,
       )
-      .then((responseData: boolean) => {
-        if (responseData) this.onLoadData();
+      .then((count: number) => {
+        if (count >= 0) {
+          this.dataSignal.update((currentData) => ({
+            ...currentData,
+            items: currentData.items.map((item) =>
+              item.id === id ? { ...item, ticketMessageFollowUp: count } : item,
+            ),
+          }));
+        }
       });
   }
 
@@ -459,26 +490,28 @@ export class TaskList implements OnInit {
         Endpoints.Tasks.updatePriorityLower(id, this.authS.applicationUserId),
       )
       .then((responseData: any) => {
-      if (responseData) {
-        this.dataSignal.update((currentData) => {
-          const items = currentData.items.map((item) => {
-            if (item.id === id) {
-              return {
-                ...item,
-                priority: item.priority === "High" ? "Low" : "High",
-              };
-            }
-            return item;
+        if (responseData) {
+          this.dataSignal.update((currentData) => {
+            const items = currentData.items.map((item) => {
+              if (item.id === id) {
+                return {
+                  ...item,
+                  priority: item.priority === "High" ? "Low" : "High",
+                };
+              }
+              return item;
+            });
+            return { ...currentData, items };
           });
-          return { ...currentData, items };
-        });
-      }
-    });
+        }
+      });
   }
 
   onDelete(id: any) {
     this.apiS
-      .onDelete(Endpoints.Tasks.deleteByCustomer(id, this.customerIdS.customerId()))
+      .onDelete(
+        Endpoints.Tasks.deleteByCustomer(id, this.customerIdS.customerId()),
+      )
       .then((responseData: boolean) => {
         if (responseData) {
           this.dataSignal.update((currentData) => {
@@ -586,5 +619,115 @@ export class TaskList implements OnInit {
     this.dataSignal.update((current) => ({ ...current, items }));
     const ids = items.map((item) => item.id);
     this.apiS.onPut(Endpoints.Tasks.updateOrder, ids);
+  }
+
+  // ── Chain step computation (visual Gantt-style ordering) ─────────────────
+
+  readonly chainStepMap = computed(() => {
+    const items = this.dataSignal().items;
+    const predMap = new Map<string, string | null>(
+      items.map((i) => [i.id, i.dependsOnTaskId ?? null]),
+    );
+    const stepCache = new Map<string, number>();
+
+    const getStep = (id: string, visited = new Set<string>()): number => {
+      if (stepCache.has(id)) return stepCache.get(id)!;
+      if (visited.has(id)) return 1;
+      visited.add(id);
+      const predId = predMap.get(id);
+      if (!predId || !predMap.has(predId)) {
+        stepCache.set(id, 1);
+        return 1;
+      }
+      const step = getStep(predId, new Set(visited)) + 1;
+      stepCache.set(id, step);
+      return step;
+    };
+
+    for (const item of items) getStep(item.id);
+    return stepCache;
+  });
+
+  readonly chainedTaskIds = computed(() => {
+    const items = this.dataSignal().items;
+    const predecessorIds = new Set(
+      items.filter((i) => i.dependsOnTaskId).map((i) => i.dependsOnTaskId!),
+    );
+    return new Set(
+      items
+        .filter((i) => i.dependsOnTaskId || predecessorIds.has(i.id))
+        .map((i) => i.id),
+    );
+  });
+
+  // ── Drag-to-link (asignación de predecesora por arrastre) ─────────────────
+
+  readonly linkDragSourceId = signal<string | null>(null);
+  readonly linkDragTargetId = signal<string | null>(null);
+
+  onLinkDragStart(event: DragEvent, taskId: string): void {
+    event.stopPropagation();
+    this.linkDragSourceId.set(taskId);
+    event.dataTransfer?.setData('application/task-link', taskId);
+    if (event.dataTransfer) event.dataTransfer.effectAllowed = 'link';
+  }
+
+  onLinkDragOver(event: DragEvent, taskId: string): void {
+    if (!this.linkDragSourceId() || this.linkDragSourceId() === taskId) return;
+    event.preventDefault();
+    event.stopPropagation();
+    if (event.dataTransfer) event.dataTransfer.dropEffect = 'link';
+    this.linkDragTargetId.set(taskId);
+  }
+
+  onLinkDragLeave(event: DragEvent, taskId: string): void {
+    const related = event.relatedTarget as Element | null;
+    const target = event.currentTarget as Element;
+    if (!related || !target.contains(related)) {
+      if (this.linkDragTargetId() === taskId) this.linkDragTargetId.set(null);
+    }
+  }
+
+  onLinkDrop(event: DragEvent, targetTaskId: string): void {
+    event.preventDefault();
+    event.stopPropagation();
+    const sourceId = this.linkDragSourceId();
+    if (sourceId && sourceId !== targetTaskId) {
+      this.onSetDependency(sourceId, targetTaskId);
+    }
+    this.linkDragSourceId.set(null);
+    this.linkDragTargetId.set(null);
+  }
+
+  onLinkDragEnd(): void {
+    this.linkDragSourceId.set(null);
+    this.linkDragTargetId.set(null);
+  }
+
+  onSetDependency(taskId: string, predecessorId: string): void {
+    this.apiS.onGetItem(Endpoints.Tasks.setDependency(taskId, predecessorId)).then(() => {
+      this.dataSignal.update((current) => {
+        const predecessor = current.items.find((i) => i.id === predecessorId);
+        return {
+          ...current,
+          items: current.items.map((item) =>
+            item.id === taskId
+              ? { ...item, dependsOnTaskId: predecessorId, dependsOnTaskFolio: predecessor?.folio ?? null }
+              : item,
+          ),
+        };
+      });
+    });
+  }
+
+  onClearDependency(taskId: string): void {
+    this.apiS.onGetItem(Endpoints.Tasks.clearDependency(taskId)).then(() => {
+      this.dataSignal.update((current) => ({
+        ...current,
+        items: current.items.map((item) =>
+          item.id === taskId ? { ...item, dependsOnTaskId: null, dependsOnTaskFolio: null } : item,
+        ),
+      }));
+    });
   }
 }

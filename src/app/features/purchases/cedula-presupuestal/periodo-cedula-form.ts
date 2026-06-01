@@ -56,8 +56,8 @@ export class PeriodoCedulaForm implements OnInit {
       .then((result: any) => {
         this.form.patchValue({
           id: result.id,
-          desde: result.desde ? new Date(result.desde) : null,
-          hasta: result.hasta ? new Date(result.hasta) : null
+          desde: this.dateS.parseDate(result.desde),
+          hasta: this.dateS.parseDate(result.hasta),
         });
       });
   }

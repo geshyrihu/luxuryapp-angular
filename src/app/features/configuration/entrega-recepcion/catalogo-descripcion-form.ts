@@ -10,6 +10,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -80,24 +81,26 @@ export class CatalogoDescripcionForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `CatalogoEntregaRecepcionDescripcion/${this.id}`;
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
-      this.form.patchValue(result);
-    });
+    this.apiResponseS
+      .onGetItem(Endpoints.EntregaRecepcion.getById(this.id))
+      .then((result: any) => {
+        this.form.patchValue(result);
+      });
   }
 
   onLoadGrupos() {
-    const urlApi = `CatalogoEntregaRecepcionDescripcion/grupos`;
-    this.apiResponseS.onGetList(urlApi).then((result: any) => {
-      this.cb_grupo.set(result);
-    });
+    this.apiResponseS
+      .onGetList(Endpoints.EntregaRecepcion.grupos)
+      .then((result: any) => {
+        this.cb_grupo.set(result);
+      });
   }
 
   onSubmit() {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "CatalogoEntregaRecepcionDescripcion",
+      endpoint: Endpoints.EntregaRecepcion.base,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

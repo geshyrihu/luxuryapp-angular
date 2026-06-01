@@ -9,6 +9,7 @@ import { ButtonModule } from "primeng/button";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DateService } from "src/app/core/services/date.service";
 import {
   CreateChargeTemplateDTO,
   UpdateChargeTemplateDTO,
@@ -64,6 +65,7 @@ interface IChargeTemplateForm {
 })
 export class ChargeTemplateForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
+  private dateS = inject(DateService);
   private ref = inject(DynamicDialogRef);
   private config = inject(DynamicDialogConfig);
 
@@ -164,10 +166,10 @@ export class ChargeTemplateForm implements OnInit {
       Endpoints.AccountingCoi.NativeCollection.Templates.getById(this.id),
     );
     if (res) {
-      if (res.startDate) res.startDate = new Date(res.startDate);
-      if (res.endDate) res.endDate = new Date(res.endDate);
+      if (res.startDate) res.startDate = this.dateS.parseDate(res.startDate);
+      if (res.endDate) res.endDate = this.dateS.parseDate(res.endDate);
       if (res.retroactiveStartDate)
-        res.retroactiveStartDate = new Date(res.retroactiveStartDate);
+        res.retroactiveStartDate = this.dateS.parseDate(res.retroactiveStartDate);
       this.form.patchValue(res);
     }
   }
@@ -181,10 +183,17 @@ export class ChargeTemplateForm implements OnInit {
     this.submitting = true;
 
     try {
+      const raw = this.form.getRawValue();
+      const payloadBase = {
+        ...raw,
+        startDate: this.dateS.getDateFormat(raw.startDate) ?? "",
+        endDate: this.dateS.getDateFormat(raw.endDate),
+        retroactiveStartDate: this.dateS.getDateFormat(raw.retroactiveStartDate),
+      };
       if (this.id) {
         const payload: UpdateChargeTemplateDTO = {
           id: this.id,
-          ...(this.form.getRawValue() as any),
+          ...(payloadBase as any),
         };
         const res = await this.apiResponseS.onPut(
           Endpoints.AccountingCoi.NativeCollection.Templates.update(this.id),
@@ -194,7 +203,7 @@ export class ChargeTemplateForm implements OnInit {
       } else {
         const payload: CreateChargeTemplateDTO = {
           customerId: this.customerId,
-          ...(this.form.getRawValue() as any),
+          ...(payloadBase as any),
         };
         const res = await this.apiResponseS.onPost(
           Endpoints.AccountingCoi.NativeCollection.Templates.create,
@@ -215,14 +224,16 @@ export class ChargeTemplateForm implements OnInit {
       calculationMethod: formValue.calculationMethod,
       amount: formValue.amount,
       applyToAllProperties: formValue.applyToAllProperties,
-      startDate: this.form.getRawValue().startDate,
-      endDate: this.form.getRawValue().endDate,
+      startDate: this.dateS.getDateFormat(this.form.getRawValue().startDate),
+      endDate: this.dateS.getDateFormat(this.form.getRawValue().endDate),
       earlyPaymentDiscount: this.form.getRawValue().earlyPaymentDiscount,
       earlyPaymentDiscountType:
         this.form.getRawValue().earlyPaymentDiscountType,
       earlyPaymentGraceDays: this.form.getRawValue().earlyPaymentGraceDays,
       isRetroactive: this.form.getRawValue().isRetroactive,
-      retroactiveStartDate: this.form.getRawValue().retroactiveStartDate,
+      retroactiveStartDate: this.dateS.getDateFormat(
+        this.form.getRawValue().retroactiveStartDate,
+      ),
       isActive: this.form.getRawValue().isActive,
     };
 

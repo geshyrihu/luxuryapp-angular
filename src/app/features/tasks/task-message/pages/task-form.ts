@@ -48,6 +48,7 @@ interface ITaskMessageForm {
   isInternal: FormControl<boolean>;
   documentCloud: FormControl<boolean>;
   documentEmail: FormControl<boolean>;
+  dependsOnTaskId: FormControl<string | null>;
 }
 
 import { DateService } from "src/app/core/services/date.service";
@@ -92,6 +93,7 @@ export class TaskForm implements OnInit {
   cb_ticket_group = signal<ISelectItem[]>([]);
   cb_application_user = signal<ISelectItem[]>([]);
   cb_legal_matter = signal<ISelectItem[]>([]);
+  cb_predecessors = signal<ISelectItem[]>([]);
 
   // Signals para previews de imógenes
   beforeWorkPreview = signal<string | null>(null);
@@ -140,6 +142,7 @@ export class TaskForm implements OnInit {
     isInternal: new FormControl<boolean>(false, { nonNullable: true }),
     documentCloud: new FormControl<boolean>(false, { nonNullable: true }),
     documentEmail: new FormControl<boolean>(false, { nonNullable: true }),
+    dependsOnTaskId: new FormControl<string | null>(null),
   });
 
   async ngOnInit(): Promise<void> {
@@ -196,10 +199,14 @@ export class TaskForm implements OnInit {
   }
 
   async onLoadUsers(ticketGroupId: string): Promise<void> {
-    const result = await this.apiResponseS.onGetList<ISelectItem[]>(
-      Endpoints.Tasks.participants(ticketGroupId),
-    );
-    this.cb_application_user.set(result as ISelectItem[]);
+    const [users, predecessors] = await Promise.all([
+      this.apiResponseS.onGetList<ISelectItem[]>(Endpoints.Tasks.participants(ticketGroupId)),
+      this.apiResponseS.onGetList<ISelectItem[]>(
+        Endpoints.Tasks.availablePredecessors(ticketGroupId, this.id || undefined),
+      ),
+    ]);
+    this.cb_application_user.set(users as ISelectItem[]);
+    this.cb_predecessors.set(predecessors as ISelectItem[]);
   }
 
   async onLoadData(): Promise<void> {
@@ -231,6 +238,7 @@ export class TaskForm implements OnInit {
         ? result.scheduledDate.substring(0, 10)
         : null,
       closedDate: result.closedDate ? result.closedDate.substring(0, 10) : null,
+      dependsOnTaskId: result.dependsOnTaskId ?? null,
     });
 
     // Vistas previas de imógenes
@@ -430,10 +438,11 @@ export class TaskForm implements OnInit {
         }
       } else if (key === "scheduledDate" || key === "closedDate") {
         if (value) {
-          const dateVal = new Date(value);
-          const formattedDate = dateVal.toISOString().split("T")[0];
+          const formattedDate = this.dateS.getDateFormat(value);
           formData.append(key, formattedDate);
         }
+      } else if (key === "dependsOnTaskId") {
+        if (value) formData.append(key, value);
       } else if (key !== "assignee") {
         formData.append(key, value != null ? value : "");
       }

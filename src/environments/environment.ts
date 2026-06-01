@@ -12,7 +12,8 @@ export const environment = {
   HANGFIRE_DASHBOARD_URL: urlApi + "api/hangfire/",
   API_BASE_SIGNALR: urlApi + "ws/notificationHub",
   API_FIREBIRD_URL: "http://localhost:5212/api/",
-  ONESIGNAL_APPID: "cb497deb-0fe9-424a-900d-2a006ddadf4f", //Este es para el entorno de desarrollo Flutter
+  ONESIGNAL_APPID: "deeb5e28-6ebc-4260-967e-1b64331122fc",
+  ONESIGNAL_ALLOWED_ORIGINS: ["https://luxurybuildingapp.com"],
 
   // Firebase
 

@@ -12,6 +12,7 @@ import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custo
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 interface IAiKnowledgeBaseForm {
@@ -82,7 +83,7 @@ export class AiKnowledgeBaseForm implements OnInit {
 
   async onLoadModules() {
     const result = await this.apiResponseS.onGetList<any[]>(
-      "AiKnowledgeBase/modules",
+      Endpoints.AiKnowledgeBase.modules,
     );
     if (result) {
       this.modulesSignal.set(result);
@@ -90,8 +91,9 @@ export class AiKnowledgeBaseForm implements OnInit {
   }
 
   async onLoadData() {
-    const urlApi = `AiKnowledgeBase/${this.id}`;
-    const result = await this.apiResponseS.onGetItem(urlApi);
+    const result = await this.apiResponseS.onGetItem(
+      Endpoints.AiKnowledgeBase.getById(this.id),
+    );
     if (result) {
       this.form.patchValue(result);
     }
@@ -105,12 +107,12 @@ export class AiKnowledgeBaseForm implements OnInit {
 
     if (!this.id) {
       result = await this.apiResponseS.onPost(
-        `AiKnowledgeBase`,
+        Endpoints.AiKnowledgeBase.base,
         this.form.value,
       );
     } else {
       result = await this.apiResponseS.onPut(
-        `AiKnowledgeBase`,
+        Endpoints.AiKnowledgeBase.base,
         this.form.value,
       );
     }

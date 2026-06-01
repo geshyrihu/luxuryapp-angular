@@ -4,6 +4,7 @@ import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TagModule } from "primeng/tag";
 import { IUserCard } from "src/app/core/interfaces/user-card.interface";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-card-employee",
@@ -24,7 +25,7 @@ export class CardEmployee implements OnInit {
 
   onLoadData(applicationUserId: string) {
     this.apiResponseS
-      .onGetItem(`application-users/CardUser/${applicationUserId}`)
+      .onGetItem(Endpoints.ApplicationUsers.cardUser(applicationUserId))
       .then((result: any) => {
         if (result) {
           this.applicationUser = result;

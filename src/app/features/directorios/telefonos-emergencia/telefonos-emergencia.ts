@@ -3,6 +3,7 @@ import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -39,14 +40,13 @@ export class TelefonosEmergencia {
   }
 
   onLoadData() {
-    const urlApi = `TelefonosEmergencia`;
     this.apiResponseS
-      .onGetList(urlApi)
+      .onGetList(Endpoints.EmergencyPhones.getAll)
       .then((result: any) => this.dataSignal.set(result));
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`telefonosemergencia/${id}`)
+      .onDelete(Endpoints.EmergencyPhones.delete(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((currentData) =>

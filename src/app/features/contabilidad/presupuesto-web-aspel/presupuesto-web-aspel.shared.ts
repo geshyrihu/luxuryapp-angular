@@ -245,3 +245,13 @@ export function hasAnyExpense(
 ): boolean {
   return ASPEL_MONTHS.some((mes) => getCuentaMonthValue(cuenta, mes, "monto") !== 0);
 }
+
+export function hasAnyBudgetOrExpense(
+  cuenta: CuentaAspelTercerNivelDTO,
+): boolean {
+  return ASPEL_MONTHS.some((mes) => {
+    const monto = getCuentaMonthValue(cuenta, mes, "monto");
+    const presupuesto = getCuentaMonthValue(cuenta, mes, "presup");
+    return monto !== 0 || presupuesto !== 0;
+  });
+}

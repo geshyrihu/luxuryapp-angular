@@ -23,7 +23,7 @@ import {
   ASPEL_MONTHS,
   getCuentaMonthValue,
   getPresupuestoBaseMensual,
-  hasAnyExpense,
+  hasAnyBudgetOrExpense,
   isParentAccount,
   normalizeAspelAccounts,
   splitAspelAccounts,
@@ -62,14 +62,14 @@ export class EspejoAspelExtraordinarios {
 
   extraordinarias = computed(() =>
     this.filterAccounts(
-      this.filterAccountsWithExpense(this.allExtraordinarias()),
+      this.filterAccountsWithBudgetOrExpense(this.allExtraordinarias()),
       this.sharedS.searchTerm(),
     ),
   );
 
   proyectos = computed(() =>
     this.filterAccounts(
-      this.filterAccountsWithExpense(this.allProyectos()),
+      this.filterAccountsWithBudgetOrExpense(this.allProyectos()),
       this.sharedS.searchTerm(),
     ),
   );
@@ -142,11 +142,11 @@ export class EspejoAspelExtraordinarios {
     );
   }
 
-  private filterAccountsWithExpense(
+  private filterAccountsWithBudgetOrExpense(
     cuentas: CuentaAspelTercerNivelDTO[],
   ): CuentaAspelTercerNivelDTO[] {
     const visibleLeafAccounts = cuentas.filter(
-      (cuenta) => !cuenta.esFilaAgrupadora && hasAnyExpense(cuenta),
+      (cuenta) => !cuenta.esFilaAgrupadora && hasAnyBudgetOrExpense(cuenta),
     );
     const visibleParentCodes = new Set(
       visibleLeafAccounts.map((cuenta) => cuenta.cuenta_Padre).filter(Boolean),

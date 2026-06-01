@@ -47,7 +47,7 @@
 
     <ng-template pTemplate="body" let-item>
       <tr>
-        <td class="font-medium">{{ item.paymentDate | date: 'dd/MM/yyyy' }}</td>
+        <td class="font-medium">{{ item.paymentDate | date: 'dd/MM/yyyy':'UTC' }}</td>
         <td class="font-bold text-800">{{ item.propertyFullName || 'N/A' }}</td>
         <td class="text-xs">
           @switch (item.method) { @case (EPaymentMethod.Cash) {
@@ -118,7 +118,7 @@
       <ion-label>
         <h3>{{ item.propertyFullName || 'N/A' }}</h3>
         <p>
-          {{ item.paymentDate | date:'dd/MM/yyyy' }} · {{ item.amount |
+          {{ item.paymentDate | date:'dd/MM/yyyy':'UTC' }} · {{ item.amount |
           number:'1.2-2' }}
         </p>
         <p>{{ item.reference || '-' }}</p>

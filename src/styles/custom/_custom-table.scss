@@ -70,6 +70,19 @@
       background: #ffffff;
     }
 
+    .p-datatable-tbody > tr.row-status-completed > td:first-child {
+      border-left: 4px solid #22c55e !important;
+    }
+    .p-datatable-tbody > tr.row-status-in-progress > td:first-child {
+      border-left: 4px solid #3b82f6 !important;
+    }
+    .p-datatable-tbody > tr.row-status-reopened > td:first-child {
+      border-left: 4px solid #f97316 !important;
+    }
+    .p-datatable-tbody > tr.row-status-not-started > td:first-child {
+      border-left: 4px solid #f87171 !important;
+    }
+
     .p-sortable-column-icon {
       color: #ffffff !important;
     }

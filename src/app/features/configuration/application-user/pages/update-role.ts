@@ -53,7 +53,9 @@ export class UpdateRole implements OnInit {
     this.getRoles(this.roleType());
     this.apiResponseS
       .onGetItem(
-        `EmployeeInternal/DataForRecoveryPassword/${this.applicationUserId()}`,
+        Endpoints.EmployeeInternal.dataForRecoveryPassword(
+          this.applicationUserId(),
+        ),
       )
       .then((result: any) => {
         if (result) {
@@ -65,7 +67,9 @@ export class UpdateRole implements OnInit {
       });
 
     this.apiResponseS
-      .onGetItem(`EmployeeInternal/OnValidateState/${this.applicationUserId()}`)
+      .onGetItem(
+        Endpoints.EmployeeInternal.onValidateState(this.applicationUserId()),
+      )
       .then((result: any) => {
         if (result !== null) {
           this.applicationUserState = result;

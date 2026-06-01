@@ -117,6 +117,6 @@ export class TaskFollowup implements OnInit, OnDestroy {
     });
   }
   ngOnDestroy(): void {
-    this.ref.close(true);
+    this.ref.close(this.description().length);
   }
 }

@@ -6,6 +6,7 @@ export interface IRecepcionPipaAgua {
   horaLlegada: string;
   horaTermino: string | null;
   placasCamion: string;
+  empresa: string | null;
   capacidadPipa: number;
   nivelCisternaAntes: number;
   nivelCisternaDespues: number;
@@ -38,6 +39,7 @@ export interface IRecepcionPipaAguaForm {
   lecturaMedidorInicial: FormControl<number | null>;
   lecturaMedidorFinal: FormControl<number | null>;
   costoMetroCubico: FormControl<number | null>;
+  empresa: FormControl<string | null>;
   colaboradorMttoId: FormControl<string | null>;
   colaboradorMtto: FormControl<string | null>;
   guardiaSeguridad: FormControl<string | null>;

@@ -9,6 +9,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DateService } from "src/app/core/services/date.service";
 import {
   CreateCobranzaPaymentDTO,
   UpdateCobranzaPaymentDTO,
@@ -44,6 +45,7 @@ interface IPaymentEditForm {
 })
 export class PaymentForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
+  private dateS = inject(DateService);
   private ref = inject(DynamicDialogRef);
   private config = inject(DynamicDialogConfig);
 
@@ -110,7 +112,7 @@ export class PaymentForm implements OnInit {
       Endpoints.AccountingCoi.NativeCollection.Payments.getById(this.id),
     );
     if (!res) return;
-    if (res.paymentDate) res.paymentDate = new Date(res.paymentDate);
+    if (res.paymentDate) res.paymentDate = this.dateS.parseDate(res.paymentDate);
     this.form.patchValue(res);
 
     if (res.status === EPaymentStatus.Rechazado) {
@@ -137,9 +139,13 @@ export class PaymentForm implements OnInit {
       submitting: this.submitting,
       transformPayload: () => {
         const raw = this.form.getRawValue();
+        const payload = {
+          ...raw,
+          paymentDate: this.dateS.getDateFormat(raw.paymentDate),
+        };
         return this.id
-          ? ({ id: this.id, ...raw } as UpdateCobranzaPaymentDTO)
-          : ({ customerId: this.customerId, ...raw } as CreateCobranzaPaymentDTO);
+          ? ({ id: this.id, ...payload } as UpdateCobranzaPaymentDTO)
+          : ({ customerId: this.customerId, ...payload } as CreateCobranzaPaymentDTO);
       },
     });
   }

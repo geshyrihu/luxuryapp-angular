@@ -9,6 +9,7 @@ import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom
 import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DateService } from "src/app/core/services/date.service";
 import {
   DiasNoHabilesCreateDTO,
   DiasNoHabilesDTO,
@@ -32,6 +33,7 @@ export default class ModalDiasNoHabiles implements OnInit {
   private fb = inject(FormBuilder);
   private config = inject(DynamicDialogConfig);
   private apiResponseS = inject(ApiResponseService);
+  private dateS = inject(DateService);
 
   periodoId = signal<string>("");
   dias = signal<DiasNoHabilesDTO[]>([]);
@@ -62,7 +64,10 @@ export default class ModalDiasNoHabiles implements OnInit {
   async onSubmit(): Promise<void> {
     if (!this.apiResponseS.validateForm(this.form)) return;
     const periodoId = this.periodoId();
-    const dto: DiasNoHabilesCreateDTO = this.form.getRawValue();
+    const dto: DiasNoHabilesCreateDTO = {
+      ...this.form.getRawValue(),
+      fecha: this.dateS.getDateFormat(this.form.controls.fecha.value),
+    };
     this.submitting.set(true);
     const result = await this.apiResponseS.onPost(
       `hr/nomina/periodos/${periodoId}/dias-no-habiles`,

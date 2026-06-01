@@ -6,7 +6,7 @@ export interface CobranzaPaymentResponseDTO {
     propertyId: string;
     propertyFullName: string;
     amount: number;
-    paymentDate: Date;
+    paymentDate: Date | string;
     method: EPaymentMethod;
     reference?: string;
     status: EPaymentStatus;
@@ -18,7 +18,7 @@ export interface CreateCobranzaPaymentDTO {
     customerId: string;
     propertyId: string;
     amount: number;
-    paymentDate: Date;
+    paymentDate: Date | string;
     method: EPaymentMethod;
     reference?: string;
     status: EPaymentStatus;
@@ -30,7 +30,7 @@ export interface UpdateCobranzaPaymentDTO {
     id: string;
     propertyId: string;
     amount: number;
-    paymentDate: Date;
+    paymentDate: Date | string;
     method: EPaymentMethod;
     reference?: string;
     status: EPaymentStatus;

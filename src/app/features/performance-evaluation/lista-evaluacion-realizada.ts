@@ -22,6 +22,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { ChartGeneratorService } from "src/app/core/services/chart-generator.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DateService } from "src/app/core/services/date.service";
 import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service";
 import { IonButtonDelete, IonButtonItem } from "src/app/core/components/buttons/mobile";
 @Component({
@@ -51,6 +52,7 @@ export class ListaEvaluacionRealizada {
   pdfGeneratorS = inject(PdfGeneratorService);
   customToastS = inject(CustomToastService);
   chartGeneratorS = inject(ChartGeneratorService);
+  dateS = inject(DateService);
   dataSignal = signal<any[]>([]);
   loading = signal(true);
   tablePrimeNgRows: number = tablePrimeNgRows();
@@ -187,6 +189,11 @@ export class ListaEvaluacionRealizada {
     evaluationResult: any,
     chartImage: string,
   ): TDocumentDefinitions {
+    const formattedEvaluationDate = (() => {
+      const date = this.dateS.parseDate(evaluationResult.evaluationDate);
+      return date ? date.toLocaleDateString("es-ES") : "N/A";
+    })();
+
     const getScoreTagColor = () => {
       const score = evaluationResult.finalScore;
       if (score >= 4.5) return "#28a745";
@@ -300,9 +307,7 @@ export class ListaEvaluacionRealizada {
             ],
             [
               {
-                text: new Date(
-                  evaluationResult.evaluationDate,
-                ).toLocaleDateString("es-ES"),
+                text: formattedEvaluationDate,
                 style: "infoText",
               },
               {
@@ -404,7 +409,6 @@ export class ListaEvaluacionRealizada {
     };
   }
 }
-
 
 
 

@@ -10,6 +10,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DateService } from "src/app/core/services/date.service";
 @Component({
   selector: "app-lista-informe-inspeccion",
   imports: [
@@ -26,6 +27,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 export class ListaInformeInspeccion implements OnInit {
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
+  dateS = inject(DateService);
   // Declaración e inicialización de variables
   dataSignal = signal<any>(null);
 
@@ -34,11 +36,9 @@ export class ListaInformeInspeccion implements OnInit {
   dateControl = new FormControl<string>("");
 
   ngOnInit(): void {
-    const today = new Date();
-    today.setMinutes(today.getMinutes() - today.getTimezoneOffset()); // Ajuste de zona horaria
-    this.dateControl.setValue(today.toISOString().split("T")[0], {
+    this.dateControl.setValue(this.dateS.getDateFormat(new Date()), {
       emitEvent: false,
-    }); // Formato YYYY-MM-DD
+    });
     this.onLoadInspectionReport();
   }
   onDateChange(value: any) {

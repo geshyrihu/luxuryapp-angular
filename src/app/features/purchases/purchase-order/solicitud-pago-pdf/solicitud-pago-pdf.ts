@@ -92,6 +92,22 @@ export class SolicitudPagoPdfComponent implements OnInit {
     return `${clabe.slice(0, 3)} ${clabe.slice(3, 6)} ${clabe.slice(6, 9)} ${clabe.slice(9, 12)} ${clabe.slice(12, 15)} ${clabe.slice(15, 18)}`;
   }
 
+  private formatDateOnly(value: string | Date | null | undefined): string {
+    if (!value) return "";
+    if (value instanceof Date) {
+      return new Intl.DateTimeFormat("es-MX").format(value);
+    }
+
+    const [year, month, day] = value.slice(0, 10).split("-").map(Number);
+    if (!year || !month || !day) {
+      return value;
+    }
+
+    return new Intl.DateTimeFormat("es-MX").format(
+      new Date(year, month - 1, day),
+    );
+  }
+
   private getSolicitanteDisplayName(model: any): string {
     console.log(
       "🚀 ~ SolicitudPagoPdfComponent ~ getSolicitanteDisplayName ~ model:",
@@ -243,9 +259,7 @@ export class SolicitudPagoPdfComponent implements OnInit {
               stack: [
                 { text: "DATOS DE LA SOLICITUD", style: "subheader" },
                 {
-                  text: `Fecha: ${new Date(
-                    model.fechaSolicitud,
-                  ).toLocaleDateString("es-ES")}`,
+                  text: `Fecha: ${this.formatDateOnly(model.fechaSolicitud)}`,
                   fontSize: 9,
                 },
                 {

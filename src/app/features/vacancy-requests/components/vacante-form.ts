@@ -43,9 +43,9 @@ export class VacanteForm implements OnInit {
     id: [{ value: this.id, disabled: true }],
     folio: ["", Validators.required],
     status: [null as number | null, Validators.required],
-    requestDate: [null as Date | null, Validators.required],
-    selectionDate: [null as Date | null],
-    entryDate: [null as Date | null],
+    requestDate: [null as string | null, Validators.required],
+    selectionDate: [null as string | null],
+    entryDate: [null as string | null],
     observations: [""],
     workPositionId: [this.config.data.workPositionId],
     fuente: [this.config.data.workPositionId], // Keeping original logic despite looking odd

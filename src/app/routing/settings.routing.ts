@@ -597,4 +597,16 @@ export const settingsRoutes: Routes = [
       breadcrumb: "Configuración ElevenLabs",
     },
   },
+  {
+    path: "ia-test",
+    loadComponent: () =>
+      import("src/app/features/configuration/ia-test/ia-test.component").then(
+        (m) => m.default,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Prueba de Inteligencia Artificial",
+      breadcrumb: "Prueba de IA",
+    },
+  },
 ];

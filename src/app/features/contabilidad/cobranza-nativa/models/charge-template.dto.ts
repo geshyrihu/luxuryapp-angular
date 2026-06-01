@@ -11,9 +11,9 @@ export interface ChargeTemplateResponseDTO {
     dayOfMonth: number;
     applyToAllProperties: boolean;
     isRetroactive: boolean;
-    retroactiveStartDate?: string | Date | null;
-    startDate: string | Date;
-    endDate?: string | Date | null;
+    retroactiveStartDate?: string | null;
+    startDate: string;
+    endDate?: string | null;
     earlyPaymentDiscount?: number | null;
     earlyPaymentDiscountType?: EDiscountType | null;
     earlyPaymentGraceDays?: number | null;

@@ -318,4 +318,11 @@ export const settingMenu = (aspRoleS: AspRoleService): ISettingsMenuItem[] => [
     routerLink: "/settings/eleven-labs",
     icon: "pi pi-microphone",
   },
+  {
+    group: "Herramientas de Desarrollo/Prueba",
+    visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
+    label: "Prueba de Inteligencia Artificial",
+    routerLink: "/settings/ia-test",
+    icon: "pi pi-bolt",
+  },
 ];

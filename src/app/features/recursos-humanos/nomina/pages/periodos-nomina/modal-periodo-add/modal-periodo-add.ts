@@ -7,6 +7,7 @@ import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/cust
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DateService } from "src/app/core/services/date.service";
 import {
   MES_OPTIONS,
   PeriodoNominaCreateDTO,
@@ -32,6 +33,7 @@ export default class ModalPeriodoAdd implements OnInit {
   private config = inject(DynamicDialogConfig);
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
+  private dateS = inject(DateService);
 
   readonly quincenaOptions = QUINCENA_OPTIONS;
   readonly mesOptions = MES_OPTIONS;
@@ -73,6 +75,11 @@ export default class ModalPeriodoAdd implements OnInit {
       const dto: PeriodoNominaCreateDTO = {
         customerId,
         ...this.form.getRawValue(),
+        fechaInicio: this.dateS.getDateFormat(this.form.controls.fechaInicio.value),
+        fechaFin: this.dateS.getDateFormat(this.form.controls.fechaFin.value),
+        fechaPago: this.form.controls.fechaPago.value
+          ? this.dateS.getDateFormat(this.form.controls.fechaPago.value)
+          : undefined,
       };
       this.submitting.set(true);
       this.apiResponseS
@@ -82,9 +89,9 @@ export default class ModalPeriodoAdd implements OnInit {
     } else {
       const v = this.form.getRawValue();
       const dto: PeriodoNominaUpdateDTO = {
-        fechaInicio: v.fechaInicio || undefined,
-        fechaFin:    v.fechaFin    || undefined,
-        fechaPago:   v.fechaPago   || undefined,
+        fechaInicio: v.fechaInicio ? this.dateS.getDateFormat(v.fechaInicio) : undefined,
+        fechaFin:    v.fechaFin ? this.dateS.getDateFormat(v.fechaFin) : undefined,
+        fechaPago:   v.fechaPago ? this.dateS.getDateFormat(v.fechaPago) : undefined,
       };
       this.submitting.set(true);
       this.apiResponseS

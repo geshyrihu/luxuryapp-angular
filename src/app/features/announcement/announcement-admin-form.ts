@@ -29,6 +29,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { DateService } from "src/app/core/services/date.service";
 import { SwalService } from "src/app/core/services/swal.service";
 import {
   IAnnouncement,
@@ -69,6 +70,7 @@ export class AnnouncementAdminForm implements OnInit {
   private aiService = inject(AiService);
   private swalService = inject(SwalService);
   private dialogHandlerS = inject(DialogHandlerService);
+  private dateS = inject(DateService);
 
   // Signals
   allRoles = signal<IRole[]>([]);
@@ -154,12 +156,8 @@ export class AnnouncementAdminForm implements OnInit {
 
       this.form.patchValue({
         ...dataToPatch,
-        publishedAt: announcementData.publishedAt
-          ? new Date(announcementData.publishedAt)
-          : null,
-        expirationDate: announcementData.expirationDate
-          ? new Date(announcementData.expirationDate)
-          : null,
+        publishedAt: this.dateS.parseDate(announcementData.publishedAt),
+        expirationDate: this.dateS.parseDate(announcementData.expirationDate),
       });
 
       // Mapear Status y Type de string a numérico (si vienen como texto)
@@ -339,7 +337,7 @@ export class AnnouncementAdminForm implements OnInit {
     const toISO = (date: any) => {
       if (!date) return null;
       try {
-        return new Date(date).toISOString();
+        return this.dateS.getDateFormat(date);
       } catch {
         return null;
       }

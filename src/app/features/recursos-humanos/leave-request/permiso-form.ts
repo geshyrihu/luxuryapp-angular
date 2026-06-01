@@ -13,6 +13,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { SelectedFile } from "src/app/core/interfaces/selected-file";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DateService } from "src/app/core/services/date.service";
 import { LeaveRequestMyDTO } from "src/app/features/recursos-humanos/interfaces/leave-request.interface";
 
 interface LeaveRequestEditDTO {
@@ -41,6 +42,7 @@ interface LeaveRequestEditDTO {
 })
 export class PermisoForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
+  private dateS = inject(DateService);
   private formB = inject(FormBuilder);
   private config = inject(DynamicDialogConfig);
   private ref = inject(DynamicDialogRef);
@@ -103,8 +105,11 @@ export class PermisoForm implements OnInit {
             return;
           }
 
-          const start = new Date(request.startDate);
-          const end = new Date(request.endDate);
+          const start = this.dateS.parseDate(request.startDate);
+          const end = this.dateS.parseDate(request.endDate);
+          if (!start || !end) {
+            return;
+          }
           start.setUTCHours(0, 0, 0, 0);
           end.setUTCHours(0, 0, 0, 0);
 
@@ -174,8 +179,7 @@ export class PermisoForm implements OnInit {
   }
 
   private formatDate(date: Date | string): string {
-    const d = new Date(date);
-    return d.toISOString().split("T")[0];
+    return this.dateS.getDateFormat(date) ?? "";
   }
 
   onSubmit(): void {

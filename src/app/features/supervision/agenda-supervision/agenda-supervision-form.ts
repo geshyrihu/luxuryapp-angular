@@ -114,7 +114,15 @@ export class AgendaSupervisionForm implements OnInit {
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
-      transformPayload: () => this.form.getRawValue(),
+      transformPayload: () => ({
+        ...this.form.getRawValue(),
+        fechaSolicitud: this.dateS.getDateFormat(
+          this.form.controls.fechaSolicitud.value,
+        ),
+        fechaConclusion: this.dateS.getDateFormat(
+          this.form.controls.fechaConclusion.value,
+        ),
+      }),
     });
   }
 }

@@ -23,6 +23,7 @@ import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-but
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DateService } from "src/app/core/services/date.service";
 import { GlobalErrorService } from "src/app/core/services/global-error.service";
 import { VacationBalanceDTO } from "src/app/features/recursos-humanos/interfaces/vacation-balance.interface";
 import { VacationRequestMyDTO } from "../interfaces/vacation-request.interface";
@@ -52,6 +53,7 @@ interface VacationRequestEditDTO {
 })
 export class VacacionesForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  dateS = inject(DateService);
   formB = inject(FormBuilder);
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
@@ -110,7 +112,7 @@ export class VacacionesForm implements OnInit {
     this.form.controls.startDate.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((value) => {
-        const newDate = value ? new Date(value) : null;
+        const newDate = this.dateS.parseDate(value);
         this.startDateSignal.set(newDate);
 
         // Reactividad de Periodo: Si la fecha seleccionada pertenece a otro Periodo Laboral, recargamos el saldo correspondiente.
@@ -144,7 +146,7 @@ export class VacacionesForm implements OnInit {
     this.form.controls.endDate.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((value) => {
-        this.endDateSignal.set(value ? new Date(value) : null);
+        this.endDateSignal.set(this.dateS.parseDate(value));
       });
   }
 
@@ -217,9 +219,9 @@ export class VacacionesForm implements OnInit {
           if (!requestData) return;
           this.form.patchValue(requestData);
           if (requestData.startDate)
-            this.startDateSignal.set(new Date(requestData.startDate));
+            this.startDateSignal.set(this.dateS.parseDate(requestData.startDate));
           if (requestData.endDate)
-            this.endDateSignal.set(new Date(requestData.endDate));
+            this.endDateSignal.set(this.dateS.parseDate(requestData.endDate));
         });
     } else {
       this.form.updateValueAndValidity();
@@ -390,8 +392,7 @@ export class VacacionesForm implements OnInit {
   }
 
   private formatDate(date: Date | string): string {
-    const d = new Date(date);
-    return d.toISOString().split("T")[0];
+    return this.dateS.getDateFormat(date) ?? "";
   }
 
   onSubmit(): void {

@@ -13,6 +13,7 @@ import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/cust
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DateService } from "src/app/core/services/date.service";
 import { EPaymentMethod } from "../../models/enums";
 
 interface ICreditNoteForm {
@@ -47,6 +48,7 @@ interface CreditNoteRequestDTO {
 })
 export default class CreditNoteModalComponent implements OnInit {
   private apiResponseS = inject(ApiResponseService);
+  private dateS = inject(DateService);
   private ref = inject(DynamicDialogRef);
   private config = inject(DynamicDialogConfig);
 
@@ -106,7 +108,7 @@ export default class CreditNoteModalComponent implements OnInit {
       customerId: this.customerId,
       propertyId: raw.propertyId,
       amount: raw.amount,
-      paymentDate: raw.paymentDate.toISOString().split("T")[0],
+      paymentDate: this.dateS.getDateFormat(raw.paymentDate) ?? "",
       method: EPaymentMethod.DebtForgiveness,
       reference: raw.reference,
       notes: raw.notes,

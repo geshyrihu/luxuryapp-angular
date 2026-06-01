@@ -13,6 +13,7 @@ import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -66,9 +67,11 @@ export class EntregaRecepcionClienteForm implements OnInit {
 
     this.apiResponseS
       .onPut(
-        `EntregaRecepcionCliente/${this.id}/${
-          this.authS.applicationUserId
-        }/${this.customerIdS.customerId()}`,
+        Endpoints.EntregaRecepcion.updateClient(
+          this.id,
+          this.authS.applicationUserId,
+          this.customerIdS.customerId(),
+        ),
         model,
       )
       .then((result: boolean) => {
@@ -77,10 +80,11 @@ export class EntregaRecepcionClienteForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `EntregaRecepcionDescripcion/${this.id}`;
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
-      this.form.patchValue(result);
-    });
+    this.apiResponseS
+      .onGetItem(Endpoints.EntregaRecepcion.getById(this.id))
+      .then((result: any) => {
+        this.form.patchValue(result);
+      });
   }
 
   change(file: File) {

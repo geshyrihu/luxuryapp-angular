@@ -65,15 +65,15 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
       //   color: "#1d4ed8",
       //   bgColor: "#dbeafe",
       // },
-      // {
-      //   title: "Reportes Dinámicos",
-      //   description:
-      //     "Configuración y visor de reportes financieros personalizados.",
-      //   route: "/contabilidad/reportes",
-      //   icon: "pi pi-cog",
-      //   color: "#7c3aed",
-      //   bgColor: "#f5f3ff",
-      // },
+      {
+        title: "Reportes Dinámicos",
+        description:
+          "Configuración y visor de reportes financieros personalizados.",
+        route: "/contabilidad/reportes",
+        icon: "pi pi-cog",
+        color: "#7c3aed",
+        bgColor: "#f5f3ff",
+      },
       // {
       //   title: "Auditoría de Sincronización",
       //   description: "Consultar datos de sincronización Aspel por entidad.",

@@ -21,6 +21,7 @@ import { ICategory } from "src/app/core/interfaces/category.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { Endpoints } from "../../../core/constants/endpoints";
 import { ProductCategoryForm } from "./product-category-form";
 @Component({
   selector: "app-product-category-list",
@@ -60,20 +61,22 @@ export class ProductCategoryList implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `Categories`;
-    this.apiResponseS.onGetList(urlApi).then((result: any) => {
-      this.data.set(result);
-    });
+    this.apiResponseS
+      .onGetList(Endpoints.ProductCategories.getAll)
+      .then((result: any) => {
+        this.data.set(result);
+      });
   }
 
   onDelete(id: any) {
-    const urlApi = `categories/${id}`;
-    this.apiResponseS.onDelete(urlApi).then((result: boolean) => {
-      if (result)
-        this.data.update((currentData) =>
-          currentData.filter((item) => item.id !== id),
-        );
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.ProductCategories.delete(id))
+      .then((result: boolean) => {
+        if (result)
+          this.data.update((currentData) =>
+            currentData.filter((item) => item.id !== id),
+          );
+      });
   }
 
   onModalForm(data: any) {

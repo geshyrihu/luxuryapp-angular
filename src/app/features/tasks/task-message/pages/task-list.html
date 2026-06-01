@@ -12,13 +12,16 @@
   [totalRecords]="totalRecords()"
   [value]="dataSignal().items"
   [scrollable]="true"
-  [scrollHeight]="scrollHeight"
+  [scrollHeight]="scrollHeight()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   styleClass="custom-table hidden md:block"
+  [tableStyle]="{ 'min-width': '60rem' }"
 >
   <ng-template #caption>
-    <div class="flex align-items-center justify-content-between flex-wrap  gap-2">
+    <div
+      class="flex align-items-center justify-content-between flex-wrap gap-2"
+    >
       <h4 class="m-0 font-semibold text-900">
         GRUPO DE TRABAJO | {{ dataSignal().nameGroup }}
       </h4>
@@ -100,35 +103,45 @@
           (clicked)="onSendWeeklyReport()"
         />
       </div>
+
+      <div class="flex align-items-center gap-3 ml-auto">
+        <span class="flex align-items-center gap-1 text-xs text-color-secondary">
+          <span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#f87171"></span> No iniciado
+        </span>
+        <span class="flex align-items-center gap-1 text-xs text-color-secondary">
+          <span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#3b82f6"></span> En proceso
+        </span>
+        <span class="flex align-items-center gap-1 text-xs text-color-secondary">
+          <span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#22c55e"></span> Completado
+        </span>
+        <span class="flex align-items-center gap-1 text-xs text-color-secondary">
+          <span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#f97316"></span> Reabierto
+        </span>
+      </div>
     </div>
   </ng-template>
 
   <ng-template #header>
     <tr>
-      <th class="table-col-3"></th>
-      <th class="table-col-30" pSortableColumn="createdAtFilter">
+      <th style="width:4%"></th>
+      <th style="width:22%" pSortableColumn="createdAtFilter">
         SOLICITUD <p-sortIcon field="createdAtFilter" />
       </th>
-      <th class="table-col-10" pSortableColumn="responsableNombre">
-        RESPONSABLE <p-sortIcon field="responsableNombre" />
+      <th style="width:7%" pSortableColumn="responsableNombre">
+        RESP. <p-sortIcon field="responsableNombre" />
       </th>
-      <th class="table-col-7" pSortableColumn="priority">
-        PRIORIDAD <p-sortIcon field="priority" />
-      </th>
-      <th class="table-col-8" pSortableColumn="status">
-        ESTADO <p-sortIcon field="status" />
-      </th>
-      <th class="table-col-12" pSortableColumn="scheduledAtFilter">
+      <th style="width:9%" pSortableColumn="scheduledAtFilter">
         FECHAS <p-sortIcon field="scheduledAtFilter" />
       </th>
-      <th class="table-col-10">EVIDENCIAS</th>
-      <th class="table-col-7" pSortableColumn="daysDifference">
+      <th style="width:8%">EVIDENCIAS</th>
+      <th style="width:5%" pSortableColumn="daysDifference">
         DIAS <p-sortIcon field="daysDifference" />
       </th>
-      <th class="table-col-5" pSortableColumn="isRelevant">
+      <th style="width:6%" pSortableColumn="isRelevant">
         REPORTE <p-sortIcon field="isRelevant" />
       </th>
-      <th class="table-col-5 no-print"></th>
+      <th style="width:22%">ULTIMO SEGUIMIENTO</th>
+      <th style="width:9%" class="no-print"></th>
     </tr>
   </ng-template>
 
@@ -136,12 +149,46 @@
     <tr
       [pReorderableRow]="rowIndex"
       [style.background-color]="item.priority === 'High' ? 'var(--brand-danger-bg)' : (item.daysDifference > 15 && !item.scheduledAt) ? 'var(--brand-warning-bg)' : null"
+      [class.task-link-source]="linkDragSourceId() === item.id"
+      [class.task-link-target]="linkDragTargetId() === item.id"
+      [class.task-chain-member]="chainedTaskIds().has(item.id)"
+      [class.row-status-completed]="item.status === 'Completed'"
+      [class.row-status-in-progress]="item.status === 'InProgress'"
+      [class.row-status-reopened]="item.status === 'Reopened'"
+      [class.row-status-not-started]="item.status === 'NotStarted'"
+      (dragover)="onLinkDragOver($event, item.id)"
+      (dragleave)="onLinkDragLeave($event, item.id)"
+      (drop)="onLinkDrop($event, item.id)"
     >
-      <td pReorderableRowHandle class="text-center">
-        <i class="pi pi-bars cursor-move text-400"></i>
+      <td class="text-center">
+        <div class="flex align-items-center justify-content-center gap-1">
+          <i
+            pReorderableRowHandle
+            class="pi pi-bars cursor-move text-400"
+            style="font-size: 0.85rem"
+          ></i>
+          <i
+            draggable="true"
+            class="pi pi-link text-300 cursor-grab"
+            [class.text-purple-500]="linkDragSourceId() === item.id"
+            style="font-size: 0.85rem"
+            (dragstart)="onLinkDragStart($event, item.id)"
+            (dragend)="onLinkDragEnd()"
+            pTooltip="Arrastra sobre otra tarea para asignar predecesora"
+            tooltipPosition="top"
+          ></i>
+        </div>
       </td>
       <td>
-        <div class="flex align-items-start">
+        <div class="flex align-items-start"
+          [style.padding-left]="item.parentTaskId && !item.dependsOnTaskId ? '1.5rem' : (chainStepMap().get(item.id) ?? 1) > 1 ? ((Math.min(chainStepMap().get(item.id) - 1, 4) * 1.5) + 'rem') : '0'"
+        >
+          @if (item.parentTaskId) {
+          <i class="pi pi-level-down-alt text-400 flex-shrink-0 mr-1" style="font-size:0.75rem;margin-top:0.2rem" pTooltip="Tarea hija" tooltipPosition="top"></i>
+          }
+          @if (item.hasSubTasks) {
+          <i class="pi pi-sitemap text-primary flex-shrink-0 mr-1" style="font-size:0.75rem;margin-top:0.2rem" pTooltip="Tiene subtareas" tooltipPosition="top"></i>
+          }
           <p-avatar
             (click)="onCardEmployee(item.creatorId)"
             [image]="item.creatorImg || 'assets/images/default-avatar.jpg'"
@@ -151,18 +198,53 @@
             styleClass="cursor-pointer flex-shrink-0"
           />
           <div class="min-w-0">
-            <p class="m-0 text-xs text-color-secondary">
-              {{ item.folio }} | {{ item.createdAtDate }}
+            <p
+              class="m-0 text-xs text-color-secondary flex align-items-center gap-1 flex-wrap"
+            >
+              {{ item.folio }} | {{ item.createdAtDate }} @if
+              (chainedTaskIds().has(item.id)) {
+              <span
+                class="px-1 border-round text-xs font-semibold"
+                [style.background]="chainStepMap().get(item.id) === 1 ? 'rgba(16,185,129,0.15)' : 'rgba(147,51,234,0.15)'"
+                [style.color]="chainStepMap().get(item.id) === 1 ? '#059669' : '#7c3aed'"
+                [pTooltip]="'Secuencia: paso ' + chainStepMap().get(item.id)"
+              >
+                Paso {{ chainStepMap().get(item.id) }}
+              </span>
+              } @if (item.dependsOnTaskFolio) {
+              <span
+                class="text-purple-600 cursor-pointer"
+                (click)="onClearDependency(item.id)"
+                pTooltip="Despues de: {{ item.dependsOnTaskFolio }} | Click para quitar"
+              >
+                <i class="pi pi-arrow-right text-xs"></i>
+                {{ item.dependsOnTaskFolio }}
+              </span>
+              }
             </p>
-            <p class="m-0 font-semibold text-sm">
+            <p class="m-0 font-semibold text-sm flex align-items-center gap-1">
               @if (item.daysDifference > 15 && !item.scheduledAt) {
               <i
-                class="pi pi-clock text-orange-600 mr-1"
+                class="pi pi-clock text-orange-600"
                 pTooltip="Urgente: Más de 15 días sin programar"
+              ></i>
+              } @if (item.priority === 'High') {
+              <i
+                (click)="onUpdatePriority(item.id)"
+                class="pi pi-star text-primary cursor-pointer"
+                style="font-size: 0.8rem"
+                pTooltip="Alta prioridad - click para cambiar"
+              ></i>
+              } @if (item.priority === 'Low') {
+              <i
+                (click)="onUpdatePriority(item.id)"
+                class="pi pi-exclamation-triangle text-red-500 cursor-pointer"
+                style="font-size: 0.8rem"
+                pTooltip="Baja prioridad - click para cambiar"
               ></i>
               } {{ item.title }}
             </p>
-            <p class="m-0 text-xs text-color-secondary truncate">
+            <p class="m-0 text-xs text-color-secondary" style="white-space:normal;overflow-wrap:break-word;word-break:break-word">
               {{ item.description }}
             </p>
           </div>
@@ -178,38 +260,12 @@
           shape="circle"
           size="normal"
           styleClass="cursor-pointer"
+          [pTooltip]="item.assignee"
+          tooltipPosition="top"
         />
-        <p class="m-0 text-xs text-color-secondary mt-1 truncate">
-          {{ item.assignee }}
+        <p class="m-0 text-xs text-color-secondary mt-1 font-semibold">
+          {{ item.assignee | initialsAbbr }}
         </p>
-        }
-      </td>
-
-      <td class="text-center">
-        @if (item.priority === 'Low') {
-        <i
-          (click)="onUpdatePriority(item.id)"
-          class="pi pi-exclamation-triangle text-xl cursor-pointer text-red-500"
-          pTooltip="Baja - click para cambiar"
-        ></i>
-        } @if (item.priority === 'High') {
-        <i
-          (click)="onUpdatePriority(item.id)"
-          class="pi pi-star text-xl cursor-pointer text-primary"
-          pTooltip="Alta - click para cambiar"
-        ></i>
-        }
-      </td>
-
-      <td class="text-center">
-        @if (item.status === 'Completed') {
-        <span class="badge bg-success px-2 py-1 text-xs">Terminado</span>
-        } @if (item.status === 'InProgress') {
-        <span class="badge bg-warning px-2 py-1 text-xs">En Proceso</span>
-        } @if (item.status === 'NotStarted') {
-        <span class="badge bg-danger px-2 py-1 text-xs">No Iniciado</span>
-        } @if (item.status === 'Reopened') {
-        <span class="badge bg-danger px-2 py-1 text-xs">Reabierto</span>
         }
       </td>
 
@@ -256,12 +312,41 @@
         <p-toggleswitch
           [(ngModel)]="item.isRelevant"
           (onChange)="onUpdateStateTicket(item)"
+          size="small"
         />
+      </td>
+
+      <td
+        style="
+          white-space: normal;
+          overflow-wrap: break-word;
+          word-break: break-word;
+          overflow: hidden;
+          max-width: 0;
+        "
+      >
+        @if (item.lastFollowUp) {
+        <p
+          class="m-0 text-xs text-color-secondary"
+          style="
+            white-space: normal;
+            overflow-wrap: break-word;
+            word-break: break-word;
+          "
+        >
+          {{ item.lastFollowUp }}
+        </p>
+        }
       </td>
 
       <td class="text-center no-print">
         <div class="flex align-items-center justify-content-center gap-1">
-          <a (click)="onFollowUp(item.id)" class="cursor-pointer">
+          <a
+            (click)="onFollowUp(item.id)"
+            class="cursor-pointer flex align-items-center gap-1 text-decoration-none"
+            pTooltip="Seguimientos"
+          >
+            <i class="pi pi-comments text-blue-500"></i>
             <span class="badge bg-info px-2 py-1 text-xs font-semibold">
               {{ item.ticketMessageFollowUp }}
             </span>
@@ -370,10 +455,19 @@
             expand="block"
             fill="outline"
             size="small"
-            style="font-size: 11px; height: 32px; --padding-start: 4px; --padding-end: 4px;"
+            style="
+              font-size: 11px;
+              height: 32px;
+              --padding-start: 4px;
+              --padding-end: 4px;
+            "
             (click)="onPendingBoard()"
           >
-            <ion-icon slot="start" name="grid-outline" style="font-size: 14px;"></ion-icon>
+            <ion-icon
+              slot="start"
+              name="grid-outline"
+              style="font-size: 14px"
+            ></ion-icon>
             Tablero
           </ion-button>
         </ion-col>
@@ -382,10 +476,19 @@
             expand="block"
             fill="outline"
             size="small"
-            style="font-size: 11px; height: 32px; --padding-start: 4px; --padding-end: 4px;"
+            style="
+              font-size: 11px;
+              height: 32px;
+              --padding-start: 4px;
+              --padding-end: 4px;
+            "
             (click)="onPreviewClickedWorkPlan()"
           >
-            <ion-icon slot="start" name="clipboard-outline" style="font-size: 14px;"></ion-icon>
+            <ion-icon
+              slot="start"
+              name="clipboard-outline"
+              style="font-size: 14px"
+            ></ion-icon>
             Plan
           </ion-button>
         </ion-col>
@@ -394,10 +497,19 @@
             expand="block"
             fill="outline"
             size="small"
-            style="font-size: 11px; height: 32px; --padding-start: 4px; --padding-end: 4px;"
+            style="
+              font-size: 11px;
+              height: 32px;
+              --padding-start: 4px;
+              --padding-end: 4px;
+            "
             (click)="onPreviewWeeklyReport()"
           >
-            <ion-icon slot="start" name="eye-outline" style="font-size: 14px;"></ion-icon>
+            <ion-icon
+              slot="start"
+              name="eye-outline"
+              style="font-size: 14px"
+            ></ion-icon>
             Previa
           </ion-button>
         </ion-col>
@@ -406,11 +518,20 @@
             expand="block"
             fill="outline"
             size="small"
-            style="font-size: 11px; height: 32px; --padding-start: 4px; --padding-end: 4px;"
+            style="
+              font-size: 11px;
+              height: 32px;
+              --padding-start: 4px;
+              --padding-end: 4px;
+            "
             [disabled]="wekklyIsNullOrEmpty()"
             (click)="onSendWeeklyReport()"
           >
-            <ion-icon slot="start" name="send-outline" style="font-size: 14px;"></ion-icon>
+            <ion-icon
+              slot="start"
+              name="send-outline"
+              style="font-size: 14px"
+            ></ion-icon>
             Reporte
           </ion-button>
         </ion-col>
@@ -441,10 +562,26 @@
 
       <ion-label>
         <div class="flex justify-content-between align-items-center mb-1">
-          <p class="font-normal m-0 text-xs">
+          <p
+            class="font-normal m-0 text-xs flex align-items-center gap-1 flex-wrap"
+          >
             @if (item.priority === 'High') {
             <i class="pi pi-star text-warning mr-1"></i>
-            } {{ item.folio }}
+            } {{ item.folio }} @if (chainedTaskIds().has(item.id)) {
+            <span
+              class="px-1 border-round text-xs font-semibold"
+              [style.background]="chainStepMap().get(item.id) === 1 ? 'rgba(16,185,129,0.15)' : 'rgba(147,51,234,0.15)'"
+              [style.color]="chainStepMap().get(item.id) === 1 ? '#059669' : '#7c3aed'"
+              >Paso {{ chainStepMap().get(item.id) }}</span
+            >
+            } @if (item.dependsOnTaskFolio) {
+            <span
+              class="text-purple-500 text-xs cursor-pointer"
+              (click)="onClearDependency(item.id)"
+            >
+              <i class="pi pi-arrow-right"></i> {{ item.dependsOnTaskFolio }}
+            </span>
+            }
           </p>
           <ion-badge
             [color]="(item.status === 'NotStarted' || item.status === 'Reopened') ? 'danger' : item.status === 'InProgress' ? 'warning' : 'success'"

@@ -1,6 +1,7 @@
 import { Component, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { FlatpickrDirective } from "angularx-flatpickr";
+import { Spanish } from "flatpickr/dist/l10n/es";
 import { InputTextModule } from "primeng/inputtext";
 import { BaseInputSignal } from "../base/base-input-signal";
 
@@ -36,6 +37,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
         [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
         mwlFlatpickr
+        [locale]="spanishLocale"
         [altInput]="true"
         [convertModelValue]="true"
         [enableTime]="true"
@@ -58,6 +60,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
 export class CustomInputHour extends BaseInputSignal {
   // <--- Inputs Específicos --->
   size = input<"small" | "large" | undefined>(undefined);
+  protected readonly spanishLocale = Spanish;
 
   // 🔄 Manejo de cambios desde Flatpickr
   handleFlatpickrChange(date: string) {

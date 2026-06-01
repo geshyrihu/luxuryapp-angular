@@ -6,6 +6,7 @@ export const environment = {
   API_BASE_SIGNALR: "https://luxurybuildingapp.com/ws/notificationHub", // ✅ Nombre corregido
   API_FIREBIRD_URL: "http://localhost:5212/api/",
   ONESIGNAL_APPID: "deeb5e28-6ebc-4260-967e-1b64331122fc",
+  ONESIGNAL_ALLOWED_ORIGINS: ["https://luxurybuildingapp.com"],
 
   firebase: {
     projectId: "onesignalwebproduction",

@@ -13,6 +13,7 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DateService } from "src/app/core/services/date.service";
 import {
   ContractAddendumAddOrEditDTO,
   ContractAddendumDetailDTO,
@@ -44,6 +45,7 @@ interface IContractAddendumForm {
 })
 export class ContractAddendumFormComponent {
   apiS = inject(ApiResponseService);
+  dateS = inject(DateService);
   fb = inject(NonNullableFormBuilder);
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
@@ -84,7 +86,7 @@ export class ContractAddendumFormComponent {
       title: this.fb.control(data?.title ?? ""),
       content: this.fb.control(data?.content ?? ""),
       effectiveDate: this.fb.control<Date | null>(
-        data?.effectiveDate ? new Date(data.effectiveDate) : null,
+        this.dateS.parseDate(data?.effectiveDate),
       ),
       previousValue: this.fb.control(data?.previousValue ?? ""),
       newValue: this.fb.control(data?.newValue ?? ""),
@@ -106,9 +108,7 @@ export class ContractAddendumFormComponent {
           addendumType: value.addendumType,
           title: value.title,
           content: value.content,
-          effectiveDate: value.effectiveDate
-            ? new Date(value.effectiveDate).toISOString()
-            : "",
+          effectiveDate: this.dateS.getDateFormat(value.effectiveDate) ?? "",
           previousValue: value.previousValue || undefined,
           newValue: value.newValue || undefined,
           notes: value.notes || undefined,

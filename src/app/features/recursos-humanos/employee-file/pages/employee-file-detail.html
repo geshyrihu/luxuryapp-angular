@@ -99,7 +99,7 @@
         <div class="col-12 sm:col-6 lg:col-4">
           <span class="text-xs text-500">Fecha de nacimiento</span>
           <p class="font-medium m-0">
-            {{ (pd.birth | date:'dd/MM/yyyy') || '—' }}
+            {{ (pd.birth | date:'dd/MM/yyyy':'UTC') || '—' }}
           </p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
@@ -137,7 +137,7 @@
         <div class="col-12 sm:col-6 lg:col-4">
           <span class="text-xs text-500">Fecha de ingreso</span>
           <p class="font-medium m-0">
-            {{ (pd.dateAdmission | date:'dd/MM/yyyy') || '—' }}
+            {{ (pd.dateAdmission | date:'dd/MM/yyyy':'UTC') || '—' }}
           </p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
@@ -497,7 +497,7 @@
           <tr>
             <td>{{ item.templateName }}</td>
             <td>{{ item.evaluatorName }}</td>
-            <td>{{ item.evaluationDate | date:'dd/MM/yyyy' }}</td>
+            <td>{{ item.evaluationDate | date:'dd/MM/yyyy':'UTC' }}</td>
             <td>
               <span [class]="'badge ' + getStatusBadge(item.status)"
                 >{{ item.status }}</span

@@ -23,7 +23,7 @@
             Fecha de Evaluación:
           </div>
           <p class="text-lg m-0">
-            {{ evaluationResult.evaluationDate | date: "dd/MM/yyyy" }}
+            {{ evaluationResult.evaluationDate | date: "dd/MM/yyyy" : "UTC" }}
           </p>
         </div>
         <div class="col-12 md:col-4 mb-3 md:mb-0">

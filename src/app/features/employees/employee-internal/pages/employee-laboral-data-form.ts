@@ -13,12 +13,14 @@ import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/cu
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { DateService } from "src/app/core/services/date.service";
 // import { EmployeeAddOrEditService } from './employee-form.service';
 
 import { IEmployeeLaboralDataForm } from "../models/employee-laboral-data-form.interface";
@@ -42,6 +44,7 @@ export class EmployeeLaboralDataForm implements OnInit {
   aspRoleS = inject(AspRoleService);
   // employeeAddOrEditService = inject(EmployeeAddOrEditService);
   enumSelectS = inject(EnumSelectService);
+  dateS = inject(DateService);
   formB = inject(FormBuilder);
   applicationUserId = input<string>("");
 
@@ -79,6 +82,7 @@ export class EmployeeLaboralDataForm implements OnInit {
     salary: new FormControl<number | null>(null, {
       validators: [Validators.required],
     }),
+    dailySalary: new FormControl<number | null>({ value: null, disabled: true }),
     educationLevel: new FormControl<number | null>(null, {
       validators: [Validators.required],
     }),
@@ -91,8 +95,13 @@ export class EmployeeLaboralDataForm implements OnInit {
   });
 
   async ngOnInit() {
+    this.form.controls.salary.valueChanges.subscribe((val) => {
+      const daily = val ? val / 30.46 : null;
+      this.form.controls.dailySalary.setValue(daily);
+    });
+
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>(`customers-active`)
+      .onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.customersActive)
       .then((response: any) => {
         this.cb_customer.set(response);
       });
@@ -106,20 +115,31 @@ export class EmployeeLaboralDataForm implements OnInit {
     this.cb_education_level.set(educationLevel);
   }
   onLoadData() {
-    const urlApi = `EmployeeInternal/LaboralData/${this.applicationUserId()}`;
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
-      this.form.patchValue(result);
-    });
+    this.apiResponseS
+      .onGetItem(Endpoints.EmployeeInternal.laboralData(this.applicationUserId()))
+      .then((result: any) => {
+        this.form.patchValue(result);
+        if (result.salary) {
+          this.form.controls.dailySalary.setValue(result.salary / 30.46);
+        }
+      });
   }
 
   onSubmit() {
     if (!this.apiResponseS.validateForm(this.form)) return;
     this.submitting.set(true);
 
+    const payload = {
+      ...this.form.value,
+      dateAdmission: this.dateS.getDateFormat(
+        this.form.value.dateAdmission as any,
+      ),
+    };
+
     this.apiResponseS
       .onPut(
-        `EmployeeInternal/UpdateLaboralData/${this.applicationUserId()}`,
-        this.form.value,
+        Endpoints.EmployeeInternal.updateLaboralData(this.applicationUserId()),
+        payload,
       )
       .then((result: any) => {
         this.form.patchValue(result);

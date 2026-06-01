@@ -5,6 +5,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { EmployeeInternalService } from "../../employee-internal/services/employee-internal.service";
@@ -69,7 +70,7 @@ export class EmployeeClinicalDataForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form as FormGroup,
       api: this.apiResponseS,
-      endpoint: "EmployeeClinicalData",
+      endpoint: Endpoints.EmployeeClinicalData.base,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

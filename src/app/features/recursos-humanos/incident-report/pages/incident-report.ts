@@ -81,8 +81,8 @@ export class IncidentReport {
     this.isLoading.set(true);
     const raw = this.form.getRawValue();
     const params: Record<string, string> = {};
-    if (raw.from) params["from"] = raw.from.toISOString();
-    if (raw.to) params["to"] = raw.to.toISOString();
+    if (raw.from) params["from"] = this.dateS.getDateFormat(raw.from) ?? "";
+    if (raw.to) params["to"] = this.dateS.getDateFormat(raw.to) ?? "";
     if (raw.category) params["category"] = raw.category;
     if (raw.severity) params["severity"] = raw.severity;
 
@@ -115,8 +115,8 @@ export class IncidentReport {
   onExport(): void {
     const raw = this.form.getRawValue();
     const params: Record<string, string> = {};
-    if (raw.from) params["from"] = raw.from.toISOString();
-    if (raw.to) params["to"] = raw.to.toISOString();
+    if (raw.from) params["from"] = this.dateS.getDateFormat(raw.from) ?? "";
+    if (raw.to) params["to"] = this.dateS.getDateFormat(raw.to) ?? "";
     if (raw.category) params["category"] = raw.category;
     if (raw.severity) params["severity"] = raw.severity;
 

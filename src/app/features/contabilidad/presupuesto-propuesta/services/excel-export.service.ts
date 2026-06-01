@@ -3,6 +3,16 @@ import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 @Injectable({ providedIn: "root" })
 export class ExcelExportService {
+  private toUtcDateOnly(value: string | null | undefined) {
+    if (!value) return null;
+
+    const datePart = value.split("T")[0];
+    const [year, month, day] = datePart.split("-").map(Number);
+    if (!year || !month || !day) return null;
+
+    return new Date(Date.UTC(year, month - 1, day));
+  }
+
   async exportResumenPresupuesto(
     cuentas: any[],
     totales: any,
@@ -330,7 +340,7 @@ export class ExcelExportService {
 
     items.forEach((item, index) => {
       const row = ws.addRow({
-        fechaSalida: item.fechaSalida ? new Date(item.fechaSalida) : null,
+        fechaSalida: this.toUtcDateOnly(item.fechaSalida),
         producto: item.producto,
         cantidad: item.cantidad,
         unidadMedida: item.unidadMedida,

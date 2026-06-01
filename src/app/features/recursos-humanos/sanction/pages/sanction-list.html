@@ -18,12 +18,12 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th class="table-col-lg">Tipo de Sanción</th>
+        <th class="table-col-lg">Tipo de Sancion</th>
         <th class="table-col-md">Severidad</th>
-        <th class="table-col-sm">Fecha Aplicación</th>
+        <th class="table-col-sm">Fecha Aplicacion</th>
         <th class="table-col-sm">Fin Efecto</th>
         <th class="table-col-md text-center">Estatus</th>
-        <th class="table-col-sm text-center">Apelación</th>
+        <th class="table-col-sm text-center">Apelacion</th>
         <th class="table-col-actions">Acciones</th>
       </tr>
     </ng-template>
@@ -31,10 +31,9 @@
       <tr>
         <td>{{ item.sanctionTypeName }}</td>
         <td>{{ item.severityLevel }}</td>
-        <td>{{ item.appliedDate | date:'dd/MM/yyyy' }}</td>
+        <td>{{ item.appliedDate | date:'dd/MM/yyyy':'UTC' }}</td>
         <td>
-          {{ item.effectiveEndDate ? (item.effectiveEndDate | date:'dd/MM/yyyy')
-          : '—' }}
+          {{ item.effectiveEndDate ? (item.effectiveEndDate | date:'dd/MM/yyyy':'UTC') : '-' }}
         </td>
         <td class="text-center">
           <span
@@ -46,10 +45,10 @@
         <td class="text-center">
           @if (item.allowAppeal && item.appealDeadline) {
           <span class="text-color-secondary"
-            >{{ item.appealDeadline | date:'dd/MM/yyyy' }}</span
+            >{{ item.appealDeadline | date:'dd/MM/yyyy':'UTC' }}</span
           >
           } @else {
-          <span class="text-color-secondary">—</span>
+          <span class="text-color-secondary">-</span>
           }
         </td>
         <td class="text-center">
@@ -66,26 +65,29 @@
     </ng-template>
   </p-table>
 
-  <app-data-view-mobile
-    [dt]="dt"
-    [data]="items()"
-    [showAdd]="false"
-  >
+  <app-data-view-mobile [dt]="dt" [data]="items()" [showAdd]="false">
     <ng-template #listItemTemplate let-item>
       <ion-item lines="full">
         <ion-label>
           <h2 class="font-bold">{{ item.sanctionTypeName }}</h2>
-          <p class="text-sm text-500">{{ item.severityLevel }} · {{ item.appliedDate | date:'dd/MM/yyyy' }}</p>
+          <p class="text-sm text-500">
+            {{ item.severityLevel }} | {{ item.appliedDate | date:'dd/MM/yyyy':'UTC' }}
+          </p>
           <p class="text-sm">
             <span
               class="inline-flex align-items-center border-round-3xl border-1 surface-border px-2 py-1 text-xs font-semibold"
               [ngClass]="getStatusBadge(item.sanctionStatus)"
-            >{{ item.sanctionStatus }}</span>
+              >{{ item.sanctionStatus }}</span
+            >
           </p>
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-            <ion-button-item label="Cambiar estatus" iconName="sync-outline" (clicked)="onChangeStatus(item)" />
+            <ion-button-item
+              label="Cambiar estatus"
+              iconName="sync-outline"
+              (clicked)="onChangeStatus(item)"
+            />
           </ng-container>
         </app-action-menu>
       </ion-item>

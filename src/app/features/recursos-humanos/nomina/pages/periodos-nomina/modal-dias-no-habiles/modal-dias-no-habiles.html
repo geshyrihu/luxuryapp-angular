@@ -48,7 +48,7 @@
     </ng-template>
     <ng-template #body let-dia>
       <tr>
-        <td>{{ dia.fecha | date: "dd/MM/yyyy" }}</td>
+        <td>{{ dia.fecha | date: "dd/MM/yyyy" : "UTC" }}</td>
         <td>{{ dia.descripcion }}</td>
         <td>
           <p-tag

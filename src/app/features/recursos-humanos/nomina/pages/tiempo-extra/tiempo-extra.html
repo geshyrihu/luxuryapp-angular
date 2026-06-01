@@ -48,7 +48,7 @@
   <ng-template #body let-item>
     <tr>
       <td>{{ item.nombreEmpleado }}</td>
-      <td>{{ item.fecha | date: "dd/MM/yyyy" }}</td>
+      <td>{{ item.fecha | date: "dd/MM/yyyy" : "UTC" }}</td>
       <td class="text-right">{{ item.horasSimples }}</td>
       <td class="text-right">{{ item.horasDobles }}</td>
       <td class="text-right">{{ item.importeHorasSimples | currency: "MXN" : "symbol" : "1.2-2" }}</td>
@@ -93,7 +93,7 @@
     <ion-item lines="full" class="ion-no-padding" detail="false">
       <ion-label>
         <h2 class="font-normal m-0">{{ item.nombreEmpleado }}</h2>
-        <p class="text-xs m-0">{{ item.fecha | date: "dd/MM/yyyy" }} | {{ item.horasSimples + item.horasDobles }}h total</p>
+        <p class="text-xs m-0">{{ item.fecha | date: "dd/MM/yyyy" : "UTC" }} | {{ item.horasSimples + item.horasDobles }}h total</p>
         <div class="flex align-items-center gap-2 mt-1">
           <span class="font-bold">{{ item.totalImporte | currency: "MXN" : "symbol" : "1.2-2" }}</span>
           <p-tag [severity]="item.aprobado ? 'success' : 'warn'" [value]="item.aprobado ? 'Aprobado' : 'Pendiente'" />

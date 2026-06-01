@@ -13,6 +13,7 @@ import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-but
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -78,7 +79,9 @@ export class ComiteVigilanciaForm implements OnInit {
   async onLoadSelectItems(): Promise<void> {
     const [condominos, positions] = await Promise.all([
       this.apiResponseS.onGetSelectItem<ISelectItem[]>(
-        `property-members/${this.customerIdS.customerId()}`,
+        Endpoints.SelectItems.propertyMembersByCustomer(
+          this.customerIdS.customerId(),
+        ),
       ),
       firstValueFrom(this.enumSelectS.typePosicionComite()),
     ]);
@@ -89,7 +92,7 @@ export class ComiteVigilanciaForm implements OnInit {
 
   async onLoadData(): Promise<void> {
     const result: any = await this.apiResponseS.onGetItem(
-      `comitevigilancia/${this.id}`,
+      Endpoints.CommitteeVigilance.getById(this.id),
     );
 
     const propertyMemberId =
@@ -120,7 +123,7 @@ export class ComiteVigilanciaForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "ComiteVigilancia",
+      endpoint: Endpoints.CommitteeVigilance.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

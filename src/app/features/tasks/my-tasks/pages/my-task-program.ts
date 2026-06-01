@@ -7,6 +7,7 @@ import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
+import { DateService } from "src/app/core/services/date.service";
 @Component({
   selector: "app-my-task-program",
   templateUrl: "./my-task-program.html",
@@ -21,6 +22,7 @@ export class MyTaskProgram implements OnInit {
   private apiResponseS = inject(ApiResponseService);
   private authS = inject(AuthService);
   private formB = inject(FormBuilder);
+  private dateS = inject(DateService);
   // private customerIdS = inject(CustomerIdService); // Unused
   private config = inject(DynamicDialogConfig);
   private ref = inject(DynamicDialogRef);
@@ -43,7 +45,7 @@ export class MyTaskProgram implements OnInit {
       this.form.patchValue({
         assigneeId: result.assigneeId || "", // Ensure string if null
         scheduledDate: result.scheduledDate
-          ? new Date(result.scheduledDate)
+          ? (this.dateS.parseDate(result.scheduledDate) ?? new Date())
           : new Date(),
       });
     });
@@ -53,9 +55,13 @@ export class MyTaskProgram implements OnInit {
     this.submitting.set(true);
 
     const formValue = this.form.getRawValue();
+    const payload = {
+      ...formValue,
+      scheduledDate: this.dateS.getDateFormat(formValue.scheduledDate),
+    };
 
     this.apiResponseS
-      .onPost(Endpoints.Tasks.myTicketProgramation(this.id), formValue)
+      .onPost(Endpoints.Tasks.myTicketProgramation(this.id), payload)
       .then((result: boolean) => {
         result ? this.ref.close(true) : this.submitting.set(false);
       });

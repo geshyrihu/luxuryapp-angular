@@ -10,6 +10,7 @@ import { CustomButtonSendEmail } from "src/app/core/components/buttons/web/custo
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -68,22 +69,25 @@ export class ComiteVigilanciaList {
 
   onLoadData() {
     this.loading.set(true);
-    const urlApi = "ComiteVigilancia/list/" + this.customerIdS.customerId();
-    this.apiResponseS.onGetList(urlApi).then((result: any) => {
-      this.dataSignal.set(result);
-      this.loading.set(false);
-    });
+    this.apiResponseS
+      .onGetList(
+        Endpoints.CommitteeVigilance.list(this.customerIdS.customerId()),
+      )
+      .then((result: any) => {
+        this.dataSignal.set(result);
+        this.loading.set(false);
+      });
   }
   onSendCredential(id: any) {
     this.apiResponseS
-      .onPost(`comitevigilancia/${id}/send-credentials`)
+      .onPost(Endpoints.CommitteeVigilance.sendCredentials(id))
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`comitevigilancia/${id}`)
+      .onDelete(Endpoints.CommitteeVigilance.delete(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((currentData) =>

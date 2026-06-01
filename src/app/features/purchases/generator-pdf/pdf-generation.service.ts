@@ -121,6 +121,22 @@ export class PdfGenerationService {
     )} ${clabe.slice(9, 12)} ${clabe.slice(12, 15)} ${clabe.slice(15, 18)}`;
   }
 
+  private formatDateOnly(value: string | Date | null | undefined): string {
+    if (!value) return "";
+    if (value instanceof Date) {
+      return new Intl.DateTimeFormat("es-MX").format(value);
+    }
+
+    const [year, month, day] = value.slice(0, 10).split("-").map(Number);
+    if (!year || !month || !day) {
+      return value;
+    }
+
+    return new Intl.DateTimeFormat("es-MX").format(
+      new Date(year, month - 1, day),
+    );
+  }
+
   private getSolicitanteDisplayName(model: any): string {
     return model.solicitanteNombreCompleto || model.fullName || model.solicitante || "N/A";
   }
@@ -293,9 +309,7 @@ export class PdfGenerationService {
               stack: [
                 { text: "DATOS DE LA SOLICITUD", style: "subheader" },
                 {
-                  text: `Fecha: ${new Date(
-                    model.fechaSolicitud,
-                  ).toLocaleDateString("es-ES")}`,
+                  text: `Fecha: ${this.formatDateOnly(model.fechaSolicitud)}`,
                   fontSize: 9,
                 },
                 {
@@ -532,9 +546,7 @@ export class PdfGenerationService {
                 },
                 { text: `Folio: ${data.folio}`, alignment: "right" },
                 {
-                  text: `Fecha: ${new Date(
-                    data.fechaSolicitud,
-                  ).toLocaleDateString("es-ES")}`,
+                  text: `Fecha: ${this.formatDateOnly(data.fechaSolicitud)}`,
                   alignment: "right",
                 },
               ],

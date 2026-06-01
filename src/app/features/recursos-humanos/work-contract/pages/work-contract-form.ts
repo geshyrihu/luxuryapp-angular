@@ -14,9 +14,11 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DateService } from "src/app/core/services/date.service";
 import {
   EContractType,
   WorkContractAddOrEditDTO,
+  WorkContractDetailDTO,
   WorkContractListDTO,
 } from "../models/work-contract.dto";
 
@@ -44,11 +46,12 @@ interface IWorkContractForm {
 })
 export class WorkContractFormComponent implements OnInit {
   apiS = inject(ApiResponseService);
+  dateS = inject(DateService);
   fb = inject(NonNullableFormBuilder);
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
 
-  item = signal<WorkContractListDTO | null>(null);
+  item = signal<Partial<WorkContractDetailDTO> | null>(null);
   isEdit = signal(false);
   employeeId = signal<string>("");
   submitting = signal(false);
@@ -66,7 +69,7 @@ export class WorkContractFormComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    const data = this.config.data?.item as WorkContractListDTO | null;
+    const data = this.config.data?.item as Partial<WorkContractDetailDTO> | null;
     const empId = this.config.data?.employeeId as string;
     this.item.set(data);
     this.isEdit.set(!!data);
@@ -78,12 +81,14 @@ export class WorkContractFormComponent implements OnInit {
         data?.contractType ?? "Indeterminado",
       ),
       startDate: this.fb.control<Date | null>(
-        data?.startDate ? new Date(data.startDate) : null,
+        this.dateS.parseDate(data?.startDate),
       ),
       endDate: this.fb.control<Date | null>(
-        data?.endDate ? new Date(data.endDate) : null,
+        this.dateS.parseDate(data?.endDate),
       ),
-      probationEndDate: this.fb.control<Date | null>(null),
+      probationEndDate: this.fb.control<Date | null>(
+        this.dateS.parseDate(data?.probationEndDate),
+      ),
       contractSalary: this.fb.control(data?.contractSalary ?? 0),
       notes: this.fb.control(""),
     });
@@ -101,15 +106,10 @@ export class WorkContractFormComponent implements OnInit {
         const dto: WorkContractAddOrEditDTO = {
           employeeId: value.employeeId,
           contractType: value.contractType,
-          startDate: value.startDate
-            ? new Date(value.startDate).toISOString()
-            : "",
-          endDate: value.endDate
-            ? new Date(value.endDate).toISOString()
-            : undefined,
-          probationEndDate: value.probationEndDate
-            ? new Date(value.probationEndDate).toISOString()
-            : undefined,
+          startDate: this.dateS.getDateFormat(value.startDate) ?? "",
+          endDate: this.dateS.getDateFormat(value.endDate) ?? undefined,
+          probationEndDate:
+            this.dateS.getDateFormat(value.probationEndDate) ?? undefined,
           contractSalary: value.contractSalary,
           notes: value.notes,
         };

@@ -100,7 +100,7 @@ export class EmployeeBankDataForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form as FormGroup,
       api: this.apiResponseS,
-      endpoint: "EmployeeBankData",
+      endpoint: Endpoints.EmployeeBankData.base,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

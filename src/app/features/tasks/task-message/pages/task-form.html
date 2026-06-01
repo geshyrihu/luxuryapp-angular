@@ -115,6 +115,17 @@
     </div>
   </div>
 
+  @if (cb_predecessors().length > 0) {
+  <custom-input-select-signal
+    [control]="form.controls.dependsOnTaskId"
+    label="Tarea predecesora"
+    placeholder="Ninguna (sin dependencia)"
+    [data]="cb_predecessors()"
+    [filter]="true"
+    description="Esta tarea se ejecutará después de la seleccionada."
+  />
+  }
+
   @if (isLegalWorkGroup()) {
   <div class="border-round border-1 border-orange-200 bg-orange-50 p-3 mb-3">
     <div class="text-xs font-bold text-orange-700 uppercase mb-2">

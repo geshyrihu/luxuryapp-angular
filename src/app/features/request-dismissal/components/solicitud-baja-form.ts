@@ -22,6 +22,7 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 
 @Component({
@@ -47,6 +48,7 @@ export class SolicitudBajaForm implements OnInit {
   private customerIdS = inject(CustomerIdService);
   private ref = inject(DynamicDialogRef);
   private enumSelectS = inject(EnumSelectService);
+  private dateS = inject(DateService);
   data: any;
   id: string = "";
   submitting = signal(false);
@@ -183,13 +185,13 @@ export class SolicitudBajaForm implements OnInit {
     if (formValue.executionDate) {
       formData.append(
         "executionDate",
-        new Date(formValue.executionDate).toISOString(),
+        this.dateS.getDateFormat(formValue.executionDate) ?? "",
       );
     }
     if (formValue.lastdayofwork) {
       formData.append(
         "lastDayOfWork",
-        new Date(formValue.lastdayofwork).toISOString(),
+        this.dateS.getDateFormat(formValue.lastdayofwork) ?? "",
       );
     }
     formData.append(

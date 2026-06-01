@@ -20,6 +20,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DateService } from "src/app/core/services/date.service";
 
 interface IITaskMessageDTOCloseForm {
   id: FormControl<string | null>;
@@ -49,6 +50,7 @@ export class TaskClose implements OnInit {
   private authS = inject(AuthService);
   private formB = inject(FormBuilder);
   private customerIdS = inject(CustomerIdService);
+  private dateS = inject(DateService);
   private config = inject(DynamicDialogConfig);
   private ref = inject(DynamicDialogRef);
 
@@ -133,7 +135,10 @@ export class TaskClose implements OnInit {
           const value = formValue[key];
           if (key === "closedDate") {
             if (value)
-              formData.append("closedDate", new Date(value).toISOString());
+              formData.append(
+                "closedDate",
+                this.dateS.getDateFormat(value) ?? "",
+              );
           } else if (key === "beforeWork" || key === "afterWork") {
             const file = value as File;
             if (file instanceof File) formData.append(key, file, file.name);

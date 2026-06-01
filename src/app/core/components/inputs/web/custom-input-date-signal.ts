@@ -1,6 +1,7 @@
 import { Component, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { FlatpickrDirective } from "angularx-flatpickr";
+import { Spanish } from "flatpickr/dist/l10n/es";
 import { InputTextModule } from "primeng/inputtext";
 import { BaseInputSignal } from "../base/base-input-signal";
 
@@ -37,8 +38,10 @@ import { BaseInputSignal } from "../base/base-input-signal";
         [disabled]="disabled()"
         [disable]="disable()"
         [mode]="mode()"
+        [locale]="spanishLocale"
         [altInput]="true"
         [altFormat]="'d/M/Y'"
+        [convertModelValue]="true"
         [dateFormat]="'Y-m-d'"
         [allowInput]="true"
         fluid
@@ -56,10 +59,16 @@ import { BaseInputSignal } from "../base/base-input-signal";
 export class CustomInputDateSignal extends BaseInputSignal {
   disable = input<Date[]>([]);
   mode = input<"single" | "multiple" | "range">("single");
+  protected readonly spanishLocale = Spanish;
 
   override writeValue(value: any): void {
     if (value) {
-      super.writeValue(new Date(value));
+      if (typeof value === "string" && value.includes("-")) {
+        const [year, month, day] = value.slice(0, 10).split("-").map(Number);
+        super.writeValue(new Date(year, month - 1, day));
+      } else {
+        super.writeValue(new Date(value));
+      }
     } else {
       super.writeValue(value);
     }

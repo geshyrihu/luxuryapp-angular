@@ -11,6 +11,7 @@ import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-but
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -76,8 +77,9 @@ export class CustomerDataCompanyForm implements OnInit {
   }
 
   async onLoadData(): Promise<void> {
-    const urlApi = `customer-data-company/${this.id}`;
-    const result: any = await this.apiResponseS.onGetItem(urlApi);
+    const result: any = await this.apiResponseS.onGetItem(
+      Endpoints.CustomerDataCompany.getById(this.id),
+    );
 
     if (result) {
       // Extraer IDs de forma segura
@@ -119,10 +121,14 @@ export class CustomerDataCompanyForm implements OnInit {
 
   async onLoadSelectItem(): Promise<void> {
     const [customers, users, applicationRoles] = await Promise.all([
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>("customers-active"),
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>("ApplicationUser"),
       this.apiResponseS.onGetSelectItem<ISelectItem[]>(
-        "application-roles-to-administrator",
+        Endpoints.SelectItems.customersActive,
+      ),
+      this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+        Endpoints.SelectItems.applicationUser,
+      ),
+      this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+        Endpoints.SelectItems.applicationRolesToAdministrator,
       ),
     ]);
 
@@ -156,7 +162,7 @@ export class CustomerDataCompanyForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "customer-data-company",
+      endpoint: Endpoints.CustomerDataCompany.base,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

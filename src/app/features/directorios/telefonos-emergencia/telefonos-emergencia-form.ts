@@ -13,6 +13,7 @@ import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-
 import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 interface ITelefonosEmergenciaForm {
@@ -77,11 +78,12 @@ export class TelefonosEmergenciaForm {
   }
 
   onLoadData() {
-    const urlApi = `TelefonosEmergencia/${this.id}`;
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
-      this.urlBaseImg = result.logo;
-      this.form.patchValue(result);
-    });
+    this.apiResponseS
+      .onGetItem(Endpoints.EmergencyPhones.getById(this.id))
+      .then((result: any) => {
+        this.urlBaseImg = result.logo;
+        this.form.patchValue(result);
+      });
   }
 
   onSubmit() {
@@ -92,13 +94,13 @@ export class TelefonosEmergenciaForm {
 
     if (!this.id) {
       this.apiResponseS
-        .onPost("TelefonosEmergencia", formData)
+        .onPost(Endpoints.EmergencyPhones.create, formData)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
-        .onPut(`TelefonosEmergencia/${this.id}`, formData)
+        .onPut(Endpoints.EmergencyPhones.update(this.id), formData)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });

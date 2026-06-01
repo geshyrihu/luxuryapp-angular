@@ -10,6 +10,7 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -17,7 +18,6 @@ import { AuthService } from "src/app/core/services/auth.service";
 interface IUnitOfMeasurementForm {
   id: FormControl<string | null>;
   descripcion: FormControl<string>;
-  // user: FormControl<string | null>; // Not used in form group
 }
 
 @Component({
@@ -35,10 +35,11 @@ export class UnitOfMeasurementForm implements OnInit {
   formB = inject(FormBuilder);
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
-  authService = inject(AuthService);
+  authS = inject(AuthService);
   submitting = signal(false);
 
   id: string = "";
+
   form: FormGroup<IUnitOfMeasurementForm> = this.formB.group({
     id: new FormControl({ value: this.id, disabled: true }),
     descripcion: new FormControl("", {
@@ -54,7 +55,7 @@ export class UnitOfMeasurementForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`UnidadMedida/${this.id}`)
+      .onGetItem(Endpoints.UnitsOfMeasurement.getById(this.id))
       .then((result: any) => {
         this.form.patchValue(result);
       });
@@ -64,19 +65,10 @@ export class UnitOfMeasurementForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "UnidadMedida",
+      endpoint: Endpoints.UnitsOfMeasurement.getAll,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
     });
   }
 }
-
-
-
-
-
-
-
-
-

@@ -17,6 +17,7 @@ import { TooltipModule } from "primeng/tooltip";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonConfirm } from "src/app/core/components/buttons/web/custom-button-confirm";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EmployeeEmergencyContactForm } from "./employee-emergency-contact-form";
 @Component({
   selector: "employee-emergency-contact-list",
@@ -64,18 +65,31 @@ export class EmployeeEmergencyContactList implements OnInit {
   }
 
   onLoadDataEmergencyContact() {
-    const urlApi = `EmployeeEmergencyContact/ListEmployeeContact/${this.employeeId()}/${0}`;
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
-      this.dataEmergencyContact = result;
+    this.apiResponseS
+      .onGetItem(
+        Endpoints.EmployeeEmergencyContact.listEmployeeContact(
+          this.employeeId(),
+          0,
+        ),
+      )
+      .then((result: any) => {
+        this.dataEmergencyContact = result;
 
-      this.globalFilterFields = globalFilterFields(result);
-    });
+        this.globalFilterFields = globalFilterFields(result);
+      });
   }
+
   onLoadDataBeneficiary() {
-    const urlApi = `EmployeeEmergencyContact/ListEmployeeContact/${this.employeeId()}/${1}`;
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
-      this.dataBeneficiary = result;
-    });
+    this.apiResponseS
+      .onGetItem(
+        Endpoints.EmployeeEmergencyContact.listEmployeeContact(
+          this.employeeId(),
+          1,
+        ),
+      )
+      .then((result: any) => {
+        this.dataBeneficiary = result;
+      });
   }
 
   onModalForm(data: any) {
@@ -96,17 +110,17 @@ export class EmployeeEmergencyContactList implements OnInit {
 
   onDelete(id: string, typeContact: number) {
     this.apiResponseS
-      .onDelete(`EmployeeEmergencyContact/${id}`)
+      .onDelete(Endpoints.EmployeeEmergencyContact.delete(id))
       .then((result: any) => {
         if (result) {
           if (typeContact === 0) {
             this.dataEmergencyContact = this.dataEmergencyContact.filter(
-              (item) => item.id !== id,
+              (item: any) => item.id !== id,
             );
           }
           if (typeContact === 1) {
             this.dataBeneficiary = this.dataBeneficiary.filter(
-              (item) => item.id !== id,
+              (item: any) => item.id !== id,
             );
           }
         }

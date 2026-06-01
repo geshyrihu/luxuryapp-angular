@@ -19,6 +19,7 @@ import { EstadoResultados } from "./estado-resultados/estado-resultados";
 import { FlujoEfectivo } from "./flujo-efectivo/flujo-efectivo";
 import { ReporteFinanciero } from "./reporte-financiero/reporte-financiero";
 import { PresupuestoContabilidad } from "./presupuesto-contabilidad/presupuesto-contabilidad";
+import { BancosInversionesComponent } from "./bancos-inversiones/bancos-inversiones";
 
 const REPORT_META = [
   {
@@ -66,6 +67,10 @@ const REPORT_META = [
     description:
       "Ejercido mensual vs presupuesto aprobado por cuenta de gastos generales (excluye 605/606/607).",
   },
+  {
+    title: "Bancos e Inversiones",
+    description: "Saldo acumulado al mes de corte de bancos e inversiones.",
+  },
 ] as const;
 
 @Component({
@@ -86,6 +91,7 @@ const REPORT_META = [
     CustomButton,
     AnalisisCobranza,
     PresupuestoContabilidad,
+    BancosInversionesComponent,
     AiAgentComponent,
     AiAgentContabilidadOnlineComponent,
     AiAgentExplicadorContabilidadOnlineComponent,

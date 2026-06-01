@@ -60,7 +60,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-day>
       <tr>
-        <td>{{ day.suspensionDate | date: "dd/MM/yyyy" }}</td>
+        <td>{{ day.suspensionDate | date: "dd/MM/yyyy":"UTC" }}</td>
         <td>{{ day.notes || "—" }}</td>
         <td class="text-center">
           <custom-button-delete (confirmed)="deleteDay(day.id)" />

@@ -1,85 +1,111 @@
 <div class="rf-shell">
-<!-- Barra superior fija -->
-<div
-  class="rf-card border-bottom-1 surface-border"
-  style="position: sticky; top: 0; z-index: 10; padding: 0.5rem 1rem; margin-bottom: 1.25rem"
->
-  <div class="flex align-items-center gap-3">
-
-    <!-- Icono + Titulo -->
-    <div class="flex align-items-center gap-2" style="flex-shrink: 0">
-      <div
-        class="flex align-items-center justify-content-center bg-primary-50 border-round-lg"
-        style="width: 36px; height: 36px; flex-shrink: 0"
-      >
-        <i class="pi pi-table text-primary-600" style="font-size: 1rem"></i>
+  <!-- Barra superior fija -->
+  <div
+    class="rf-card border-bottom-1 surface-border"
+    style="
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1.25rem;
+    "
+  >
+    <div class="flex align-items-center gap-3">
+      <!-- Icono + Titulo -->
+      <div class="flex align-items-center gap-2" style="flex-shrink: 0">
+        <div
+          class="flex align-items-center justify-content-center bg-primary-50 border-round-lg"
+          style="width: 36px; height: 36px; flex-shrink: 0"
+        >
+          <i class="pi pi-table text-primary-600" style="font-size: 1rem"></i>
+        </div>
+        <div style="flex-shrink: 0">
+          <p
+            class="font-bold text-900 m-0 line-height-1"
+            style="font-size: 0.9rem"
+          >
+            Espejo Aspel Full
+          </p>
+          <p class="text-500 m-0" style="font-size: 0.7rem">
+            Plan de cuentas con movimientos mensuales
+          </p>
+        </div>
       </div>
+
+      <span
+        class="border-left-1 surface-border"
+        style="height: 2rem; flex-shrink: 0"
+      ></span>
+
+      <!-- Empresa -->
       <div style="flex-shrink: 0">
-        <p class="font-bold text-900 m-0 line-height-1" style="font-size: 0.9rem">
-          Espejo Aspel Full
-        </p>
-        <p class="text-500 m-0" style="font-size: 0.7rem">
-          Plan de cuentas con movimientos mensuales
-        </p>
+        <p-selectButton
+          [options]="empresaOptions"
+          [ngModel]="empresaSeleccionada()"
+          (ngModelChange)="$event != null && empresaSeleccionada.set($event)"
+          optionLabel="label"
+          optionValue="value"
+        />
       </div>
-    </div>
 
-    <span class="border-left-1 surface-border" style="height: 2rem; flex-shrink: 0"></span>
-
-    <!-- Empresa -->
-    <div style="flex-shrink: 0">
-      <p-selectButton
-        [options]="empresaOptions"
-        [ngModel]="empresaSeleccionada()"
-        (ngModelChange)="$event != null && empresaSeleccionada.set($event)"
-        optionLabel="label"
-        optionValue="value"
-      />
-    </div>
-
-    <!-- Ejercicio -->
-    <div class="flex align-items-center gap-1" style="flex-shrink: 0">
-      <custom-button
-        iconClass="pi-chevron-left"
-        variant="text"
-        severity="secondary"
-        size="small"
-        (clicked)="filterS.year.set(filterS.year() - 1)"
-      />
-      <span class="font-bold text-900 px-1" style="font-size: 0.9rem; min-width: 2.8rem; text-align: center">
-        {{ filterS.year() }}
-      </span>
-      <custom-button
-        iconClass="pi-chevron-right"
-        variant="text"
-        severity="secondary"
-        size="small"
-        (clicked)="filterS.year.set(filterS.year() + 1)"
-      />
-    </div>
-
-    @if (loading()) {
-      <p-progressSpinner styleClass="w-1rem h-1rem" strokeWidth="4" style="flex-shrink: 0" />
-    }
-
-    @if (!loading() && rawData()) {
-      <span class="border-left-1 surface-border" style="height: 2rem; flex-shrink: 0"></span>
-
-      <!-- Navegacion rapida -->
-      <span class="text-xs font-semibold text-500 uppercase" style="flex-shrink: 0">Ir a:</span>
-      @for (grupo of grupos(); track grupo.codigo) {
+      <!-- Ejercicio -->
+      <div class="flex align-items-center gap-1" style="flex-shrink: 0">
         <custom-button
-          [label]="grupo.nombre"
-          [showLabelOnDesktop]="true"
-          variant="outlined"
+          iconClass="pi-chevron-left"
+          variant="text"
           severity="secondary"
           size="small"
-          style="flex-shrink: 0"
-          (clicked)="irAGrupo(grupo.codigo)"
+          (clicked)="filterS.year.set(filterS.year() - 1)"
         />
+        <span
+          class="font-bold text-900 px-1"
+          style="font-size: 0.9rem; min-width: 2.8rem; text-align: center"
+        >
+          {{ filterS.year() }}
+        </span>
+        <custom-button
+          iconClass="pi-chevron-right"
+          variant="text"
+          severity="secondary"
+          size="small"
+          (clicked)="filterS.year.set(filterS.year() + 1)"
+        />
+      </div>
+
+      @if (loading()) {
+      <p-progressSpinner
+        styleClass="w-1rem h-1rem"
+        strokeWidth="4"
+        style="flex-shrink: 0"
+      />
+      } @if (!loading() && rawData()) {
+      <span
+        class="border-left-1 surface-border"
+        style="height: 2rem; flex-shrink: 0"
+      ></span>
+
+      <!-- Navegacion rapida -->
+      <span
+        class="text-xs font-semibold text-500 uppercase"
+        style="flex-shrink: 0"
+        >Ir a:</span
+      >
+      @for (grupo of grupos(); track grupo.codigo) {
+      <custom-button
+        [label]="grupo.nombre"
+        [showLabelOnDesktop]="true"
+        variant="outlined"
+        severity="secondary"
+        size="small"
+        style="flex-shrink: 0"
+        (clicked)="irAGrupo(grupo.codigo)"
+      />
       }
 
-      <span class="border-left-1 surface-border" style="height: 2rem; flex-shrink: 0"></span>
+      <span
+        class="border-left-1 surface-border"
+        style="height: 2rem; flex-shrink: 0"
+      ></span>
 
       <!-- Filtros de filas -->
       <custom-button
@@ -102,62 +128,71 @@
         style="flex-shrink: 0"
         (clicked)="ocultarSinDatos.set(true)"
       />
-    }
+      }
 
-    <span class="border-left-1 surface-border" style="height: 2rem; flex-shrink: 0"></span>
+      <span
+        class="border-left-1 surface-border"
+        style="height: 2rem; flex-shrink: 0"
+      ></span>
 
-    <!-- Leyenda -->
-    <div class="flex align-items-center gap-3" style="flex-shrink: 0">
-      <span class="flex align-items-center gap-1 text-xs text-500">
-        <span class="legend-dot legend-dot-cargo"></span>
-        C=Cargo
-      </span>
-      <span class="flex align-items-center gap-1 text-xs text-500">
-        <span class="legend-dot legend-dot-abono"></span>
-        A=Abono
-      </span>
-      <span class="flex align-items-center gap-1 text-xs text-500">
-        <span class="legend-dot legend-dot-presupuesto"></span>
-        P=Presupuesto (solo gastos)
-      </span>
+      <!-- Leyenda -->
+      <div class="flex align-items-center gap-3" style="flex-shrink: 0">
+        <span class="flex align-items-center gap-1 text-xs text-500">
+          <span class="legend-dot legend-dot-cargo"></span>
+          C=Cargo
+        </span>
+        <span class="flex align-items-center gap-1 text-xs text-500">
+          <span class="legend-dot legend-dot-abono"></span>
+          A=Abono
+        </span>
+        <span class="flex align-items-center gap-1 text-xs text-500">
+          <span class="legend-dot legend-dot-presupuesto"></span>
+          P=Presupuesto (solo gastos)
+        </span>
+      </div>
     </div>
-
   </div>
-</div>
 
-<!-- Contenido -->
-@if (!loading() && rawData()) {
-  @for (grupo of grupos(); track grupo.codigo) {
+  <!-- Contenido -->
+  @if (!loading() && rawData()) { @for (grupo of grupos(); track grupo.codigo) {
 
-    <!-- Caption del grupo -->
-    <div class="flex align-items-center gap-2 mb-3 mt-5" [id]="'grupo-' + grupo.codigo">
-      <i class="pi pi-chart-bar text-xl text-primary-600"></i>
-      <h2 class="text-base font-bold text-900 m-0 uppercase">{{ grupo.nombre }}</h2>
-      <div class="flex-grow-1 border-bottom-1 surface-border ml-2"></div>
-      <!-- Nivel visible -->
-      <div class="flex align-items-center gap-1" style="flex-shrink: 0">
-        @for (n of getNivelesDisponibles(grupo.codigo); track n) {
-          <custom-button
-            [label]="'N' + n"
-            [showLabelOnDesktop]="true"
-            size="small"
-            [severity]="getNivelVisible(grupo.codigo) === n ? 'primary' : 'secondary'"
-            [variant]="getNivelVisible(grupo.codigo) === n ? null : 'outlined'"
-            (clicked)="setNivelVisible(grupo.codigo, n)"
-          />
-        }
-      </div>
-      <span class="border-left-1 surface-border" style="height: 1.4rem; flex-shrink: 0"></span>
-      <!-- Busqueda -->
-      <div style="width: 180px; flex-shrink: 0">
-        <custom-search-input-signal
-          placeholder="Buscar cuenta..."
-          (searchChange)="setBusqueda(grupo.codigo, $event)"
-        />
-      </div>
+  <!-- Caption del grupo -->
+  <div
+    class="flex align-items-center gap-2 mb-3 mt-5"
+    [id]="'grupo-' + grupo.codigo"
+  >
+    <i class="pi pi-chart-bar text-xl text-primary-600"></i>
+    <h2 class="text-base font-bold text-900 m-0 uppercase">
+      {{ grupo.nombre }}
+    </h2>
+    <div class="flex-grow-1 border-bottom-1 surface-border ml-2"></div>
+    <!-- Nivel visible -->
+    <div class="flex align-items-center gap-1" style="flex-shrink: 0">
+      @for (n of getNivelesDisponibles(grupo.codigo); track n) {
+      <custom-button
+        [label]="'N' + n"
+        [showLabelOnDesktop]="true"
+        size="small"
+        [severity]="getNivelVisible(grupo.codigo) === n ? 'primary' : 'secondary'"
+        [variant]="getNivelVisible(grupo.codigo) === n ? null : 'outlined'"
+        (clicked)="setNivelVisible(grupo.codigo, n)"
+      />
+      }
     </div>
+    <span
+      class="border-left-1 surface-border"
+      style="height: 1.4rem; flex-shrink: 0"
+    ></span>
+    <!-- Busqueda -->
+    <div style="width: 180px; flex-shrink: 0">
+      <custom-search-input-signal
+        placeholder="Buscar cuenta..."
+        (searchChange)="setBusqueda(grupo.codigo, $event)"
+      />
+    </div>
+  </div>
 
-    <div class="rf-card overflow-hidden">
+  <div class="rf-card overflow-hidden">
     <div class="rf-wrap" style="max-height: 70vh">
       <p-table
         [value]="filasDe(grupo.codigo)"
@@ -171,26 +206,36 @@
             <th style="min-width: 120px; position: sticky; left: 0; z-index: 3">
               No. Cuenta
             </th>
-            <th style="min-width: 220px; position: sticky; left: 120px; z-index: 3">
+            <th
+              style="
+                min-width: 220px;
+                position: sticky;
+                left: 120px;
+                z-index: 3;
+              "
+            >
               Descripcion
             </th>
-            <th class="text-center" style="min-width: 100px; position: sticky; left: 340px; z-index: 3">
+            <th
+              class="text-center"
+              style="
+                min-width: 100px;
+                position: sticky;
+                left: 340px;
+                z-index: 3;
+              "
+            >
               Saldo Ini.
             </th>
             @for (mes of meses; track mes) {
-              <th class="text-center" style="min-width: 90px">
-                {{ mes }}
-              </th>
+            <th class="text-center" style="min-width: 90px">{{ mes }}</th>
             }
-            <th class="text-center" style="min-width: 100px">
-              Resultado
-            </th>
+            <th class="text-center" style="min-width: 100px">Resultado</th>
           </tr>
         </ng-template>
 
         <ng-template pTemplate="body" let-fila>
           <tr [class]="rowClass(fila)">
-
             <!-- No. Cuenta -->
             <td
               class="rf-td-cuenta numeric-column"
@@ -218,7 +263,12 @@
             <!-- Saldo Inicial -->
             <td
               class="rf-td-number numeric-column"
-              style="position: sticky; left: 340px; z-index: 1; padding: 0.25rem 0.4rem"
+              style="
+                position: sticky;
+                left: 340px;
+                z-index: 1;
+                padding: 0.25rem 0.4rem;
+              "
               [style.color]="fila.nivel === 'grupo' ? '#bfdbfe' : '#374151'"
               [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
             >
@@ -227,34 +277,34 @@
 
             <!-- Meses -->
             @for (i of [0,1,2,3,4,5,6,7,8,9,10,11]; track i) {
-              <td class="espejo-cell-compact rf-td-number">
-                @if (mostrarPresupuesto(fila)) {
-                  <div
-                    class="text-right"
-                    [style.color]="fila.nivel === 'grupo' ? '#86efac' : '#16a34a'"
-                    [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
-                    style="font-size: 0.82rem; line-height: 1.2"
-                  >
-                    {{ formatMoney(fila.presupuesto[i]) }}
-                  </div>
-                }
-                <div
-                  class="text-right"
-                  [style.color]="fila.nivel === 'grupo' ? '#93c5fd' : '#1d4ed8'"
-                  [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
-                  style="font-size: 0.82rem; line-height: 1.2"
-                >
-                  {{ formatMoney(fila.cargos[i]) }}
-                </div>
-                <div
-                  class="text-right"
-                  [style.color]="fila.nivel === 'grupo' ? '#fca5a5' : '#dc2626'"
-                  [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
-                  style="font-size: 0.82rem; line-height: 1.2"
-                >
-                  {{ formatMoney(fila.abonos[i]) }}
-                </div>
-              </td>
+            <td class="espejo-cell-compact rf-td-number">
+              @if (mostrarPresupuesto(fila)) {
+              <div
+                class="text-right"
+                [style.color]="fila.nivel === 'grupo' ? '#86efac' : '#16a34a'"
+                [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
+                style="font-size: 0.82rem; line-height: 1.2"
+              >
+                {{ formatMoney(fila.presupuesto[i]) }}
+              </div>
+              }
+              <div
+                class="text-right"
+                [style.color]="fila.nivel === 'grupo' ? '#93c5fd' : '#1d4ed8'"
+                [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
+                style="font-size: 0.82rem; line-height: 1.2"
+              >
+                {{ formatMoney(fila.cargos[i]) }}
+              </div>
+              <div
+                class="text-right"
+                [style.color]="fila.nivel === 'grupo' ? '#fca5a5' : '#dc2626'"
+                [class.font-bold]="fila.nivel === 1 || fila.nivel === 'grupo'"
+                style="font-size: 0.82rem; line-height: 1.2"
+              >
+                {{ formatMoney(fila.abonos[i]) }}
+              </div>
+            </td>
             }
 
             <!-- Resultado -->
@@ -285,19 +335,20 @@
                 {{ formatMoney(resultado(fila)) }}
               </div>
             </td>
-
           </tr>
         </ng-template>
       </p-table>
     </div>
-    </div>
-  }
-}
-
-@if (!loading() && !rawData()) {
-  <div class="rf-card rf-empty flex flex-column align-items-center justify-content-center">
-    <i class="pi pi-table text-4xl mb-3"></i>
-    <p class="m-0">Selecciona un cliente y ejercicio para cargar el espejo Aspel.</p>
   </div>
-}
+  } } @if (!loading() && !rawData()) {
+  <div
+    class="rf-card rf-empty flex flex-column align-items-center justify-content-center"
+  >
+    <i class="pi pi-table text-4xl mb-3"></i>
+    <p class="m-0">
+      Selecciona un cliente y ejercicio para cargar el espejo Aspel.
+    </p>
+  </div>
+  }
 </div>
+p

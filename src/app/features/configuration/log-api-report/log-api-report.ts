@@ -20,6 +20,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DateService } from "src/app/core/services/date.service";
 
 /**
  * Entrada de log del API
@@ -59,6 +60,7 @@ interface LogEntry {
 })
 export class LogApiReport implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  dateS = inject(DateService);
 
   data = signal<LogEntry[]>([]);
   loading = signal(true);
@@ -127,10 +129,10 @@ export class LogApiReport implements OnInit {
     const dates = this.filterDateRangeControl.value;
     if (dates && dates.length === 2) {
       if (dates[0]) {
-        params.startDate = dates[0].toISOString();
+        params.startDate = this.dateS.getDateFormat(dates[0]);
       }
       if (dates[1]) {
-        params.endDate = dates[1].toISOString();
+        params.endDate = this.dateS.getDateFormat(dates[1]);
       }
     }
 

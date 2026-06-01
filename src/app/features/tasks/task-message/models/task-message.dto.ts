@@ -29,6 +29,12 @@ export interface ITaskMessageDTO {
   beforeWork: string | null;
   ticketMessageFollowUp: number;
   ticketGroupMessageRead: number;
+  dependsOnTaskId: string | null;
+  dependsOnTaskFolio: string | null;
+  lastFollowUp: string | null;
+  actualStartDate: string | null;
+  parentTaskId: string | null;
+  hasSubTasks: boolean;
 }
 
 export interface ITaskResultDTO {

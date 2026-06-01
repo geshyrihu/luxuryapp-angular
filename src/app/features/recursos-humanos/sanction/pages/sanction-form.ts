@@ -14,6 +14,7 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DateService } from "src/app/core/services/date.service";
 import { SanctionTypeListDTO } from "../../../configuration/hr-catalog/models/hr-catalog.interfaces";
 import {
   ESanctionStatus,
@@ -52,6 +53,7 @@ interface ISanctionChangeStatusForm {
 })
 export class SanctionFormComponent {
   apiResponseS = inject(ApiResponseService);
+  dateS = inject(DateService);
   fb = inject(NonNullableFormBuilder);
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
@@ -134,16 +136,13 @@ export class SanctionFormComponent {
       const dto: SanctionAddOrEditDTO = {
         incidentId: this.form.value.incidentId ?? "",
         sanctionTypeId: this.form.value.sanctionTypeId ?? "",
-        effectiveStartDate: this.form.value.effectiveStartDate
-          ? new Date(this.form.value.effectiveStartDate).toISOString()
-          : "",
-        effectiveEndDate: this.form.value.effectiveEndDate
-          ? new Date(this.form.value.effectiveEndDate).toISOString()
-          : undefined,
+        effectiveStartDate:
+          this.dateS.getDateFormat(this.form.value.effectiveStartDate) ?? "",
+        effectiveEndDate:
+          this.dateS.getDateFormat(this.form.value.effectiveEndDate) ?? undefined,
         allowAppeal: this.form.value.allowAppeal ?? true,
-        appealDeadline: this.form.value.appealDeadline
-          ? new Date(this.form.value.appealDeadline).toISOString()
-          : undefined,
+        appealDeadline:
+          this.dateS.getDateFormat(this.form.value.appealDeadline) ?? undefined,
         conditions: this.form.value.conditions || undefined,
         internalNotes: this.form.value.internalNotes || undefined,
       };

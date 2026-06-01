@@ -67,6 +67,22 @@ export class OrdenCompraPdf implements OnInit {
     }).format(value);
   }
 
+  private formatDateOnly(value: string | Date | null | undefined): string {
+    if (!value) return "";
+    if (value instanceof Date) {
+      return new Intl.DateTimeFormat("es-MX").format(value);
+    }
+
+    const [year, month, day] = value.slice(0, 10).split("-").map(Number);
+    if (!year || !month || !day) {
+      return value;
+    }
+
+    return new Intl.DateTimeFormat("es-MX").format(
+      new Date(year, month - 1, day),
+    );
+  }
+
   private buildPdfContent(data: any): TDocumentDefinitions {
     // -- Calculos --
     let subTotal = 0;
@@ -184,7 +200,7 @@ export class OrdenCompraPdf implements OnInit {
                 },
                 { text: `Folio: ${data.folio}`, alignment: "right" },
                 {
-                  text: `Fecha: ${new Date(data.fechaSolicitud).toLocaleDateString("es-ES")}`,
+                  text: `Fecha: ${this.formatDateOnly(data.fechaSolicitud)}`,
                   alignment: "right",
                 },
               ],

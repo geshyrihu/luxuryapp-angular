@@ -16,6 +16,7 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { DateService } from "src/app/core/services/date.service";
 import {
   SuspensionDayAddDTO,
   SuspensionDayDetailDTO,
@@ -37,6 +38,7 @@ import {
 export class SuspensionDaysManager implements OnInit {
   private apiResponseS = inject(ApiResponseService);
   private toastS = inject(CustomToastService);
+  private dateS = inject(DateService);
   private fb = inject(NonNullableFormBuilder);
 
   incidentId = input.required<string>();
@@ -49,6 +51,10 @@ export class SuspensionDaysManager implements OnInit {
     dates: this.fb.control<Date[] | null>(null),
     notes: this.fb.control(""),
   });
+
+  private toYyyyMmDd(date: Date): string {
+    return this.dateS.getDateFormat(date);
+  }
 
   /** Parsea una fecha ISO "YYYY-MM-DD" sin desfase de zona horaria */
   private parseLocalDate(isoStr: string): Date {
@@ -152,11 +158,12 @@ export class SuspensionDaysManager implements OnInit {
     }
 
     // Validar duplicados contra lo ya registrado (comparar YYYY-MM-DD como string)
-    const toISO = (d: Date) => d.toISOString().substring(0, 10);
     const existentesISO = this.days().map((d) =>
       String(d.suspensionDate).substring(0, 10),
     );
-    const duplicadas = sorted.filter((f) => existentesISO.includes(toISO(f)));
+    const duplicadas = sorted.filter((f) =>
+      existentesISO.includes(this.toYyyyMmDd(f)),
+    );
 
     if (duplicadas.length > 0) {
       this.toastS.showWarn(
@@ -168,7 +175,7 @@ export class SuspensionDaysManager implements OnInit {
 
     const dto: SuspensionDayAddDTO = {
       incidentId: this.incidentId(),
-      suspensionDates: sorted,
+      suspensionDates: sorted.map((date) => this.toYyyyMmDd(date)),
       notes: this.form.controls.notes.value || undefined,
     };
 

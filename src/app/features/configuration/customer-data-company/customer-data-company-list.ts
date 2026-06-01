@@ -16,6 +16,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { Endpoints } from "../../../core/constants/endpoints";
 import { CustomerDataCompanyDTO } from "./customer-data-company-dto";
 import { CustomerDataCompanyForm } from "./customer-data-company-form";
 @Component({
@@ -32,10 +33,6 @@ import { CustomerDataCompanyForm } from "./customer-data-company-form";
     DataViewMobile,
     ActionMenu,
     SelectModule,
-
-
-
-
   ],
 })
 export class CustomerDataCompanyList implements OnInit {
@@ -99,9 +96,8 @@ export class CustomerDataCompanyList implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `customer-data-company`;
     this.apiResponseS
-      .onGetList(urlApi)
+      .onGetList(Endpoints.CustomerDataCompany.getAll)
       .then((result: CustomerDataCompanyDTO[]) => {
         this.data.set(result);
         this.loading.set(false);
@@ -111,7 +107,7 @@ export class CustomerDataCompanyList implements OnInit {
   // Funcion para eliminar un banco y refres
   onDelete(id: string) {
     this.apiResponseS
-      .onDelete(`customer-data-company/${id}`)
+      .onDelete(Endpoints.CustomerDataCompany.delete(id))
       .then((result: boolean) => {
         if (result)
           this.data.update((currentData) =>
@@ -134,12 +130,3 @@ export class CustomerDataCompanyList implements OnInit {
       });
   }
 }
-
-
-
-
-
-
-
-
-

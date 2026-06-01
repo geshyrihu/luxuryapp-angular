@@ -3,6 +3,7 @@ import {
   filterVisibleAccounts,
   getCuentaMonthValue,
   getPresupuestoBaseMensual,
+  hasAnyBudgetOrExpense,
   hasAnyExpense,
   normalizeAspelAccounts,
   splitAspelAccounts,
@@ -182,5 +183,15 @@ describe("presupuesto-web-aspel.shared", () => {
     expect(ASPEL_MONTHS.length).toBe(12);
     expect(hasAnyExpense(sinGasto)).toBe(false);
     expect(hasAnyExpense(conGasto)).toBe(true);
+  });
+
+  it("detects cuentas with budget or expense across Aspel months", () => {
+    const sinMovimientoNiPresupuesto = createAccount({});
+    const conPresupuesto = createAccount({ presup_Mayo: 100 });
+    const conGasto = createAccount({ monto_Agosto: 25 });
+
+    expect(hasAnyBudgetOrExpense(sinMovimientoNiPresupuesto)).toBe(false);
+    expect(hasAnyBudgetOrExpense(conPresupuesto)).toBe(true);
+    expect(hasAnyBudgetOrExpense(conGasto)).toBe(true);
   });
 });

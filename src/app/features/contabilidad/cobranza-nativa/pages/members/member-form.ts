@@ -17,6 +17,7 @@ import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { EMemberRole } from "../../models/enums";
 import {
@@ -60,6 +61,7 @@ interface IMemberForm {
 export default class MemberForm implements OnInit {
   private fb = inject(FormBuilder);
   private apiResponseS = inject(ApiResponseService);
+  private dateS = inject(DateService);
   private enumSelectS = inject(EnumSelectService);
   private ref = inject(DynamicDialogRef);
   private config = inject(DynamicDialogConfig);
@@ -158,8 +160,8 @@ export default class MemberForm implements OnInit {
     if (res) {
       this.memberForm.patchValue({
         ...res,
-        startDate: new Date(res.startDate),
-        endDate: res.endDate ? new Date(res.endDate) : null,
+        startDate: this.dateS.parseDate(res.startDate),
+        endDate: this.dateS.parseDate(res.endDate),
       });
     }
   }
@@ -179,8 +181,8 @@ export default class MemberForm implements OnInit {
           memberRole: raw.memberRole,
           isFinancialResponsible: raw.isFinancialResponsible,
           receiveNotifications: raw.receiveNotifications,
-          startDate: raw.startDate.toISOString(),
-          endDate: raw.endDate ? raw.endDate.toISOString() : null,
+          startDate: this.dateS.getDateFormat(raw.startDate) ?? "",
+          endDate: this.dateS.getDateFormat(raw.endDate),
           notes: raw.notes,
         };
         ok = await this.apiResponseS.onPost(

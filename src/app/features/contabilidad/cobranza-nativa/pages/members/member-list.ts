@@ -25,6 +25,7 @@ import {
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -53,6 +54,7 @@ import { PropertyMemberResponseDTO } from "../../models/property-member.dto";
 export default class MemberList {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
+  private dateS = inject(DateService);
   private dialogHandlerS = inject(DialogHandlerService);
   private enumSelectS = inject(EnumSelectService);
 
@@ -78,11 +80,9 @@ export default class MemberList {
     const customerId = this.customerIdS.customerId();
     if (!customerId) return;
     this.apiResponseS
-      .onGetItem<PropertyMemberResponseDTO[]>(
-        Endpoints.AccountingCoi.NativeCollection.PropertyMembers.byCustomer(
-          customerId,
-        ),
-      )
+      .onGetItem<
+        PropertyMemberResponseDTO[]
+      >(Endpoints.AccountingCoi.NativeCollection.PropertyMembers.byCustomer(customerId))
       .then((res) => this.dataSignal.set(res ?? []));
   }
 
@@ -111,12 +111,12 @@ export default class MemberList {
   }
 
   async onEndMembership(item: PropertyMemberResponseDTO) {
-    const today = new Date().toISOString().split("T")[0];
+    const today = this.dateS.getDateFormat(new Date());
     const res = await this.apiResponseS.onPost(
       Endpoints.AccountingCoi.NativeCollection.PropertyMembers.endMembership(
         item.id,
       ),
-      { endDate: today, updatedBy: "operador" },
+      { endDate: today ?? "", updatedBy: "operador" },
     );
     if (res) this.onLoadData();
   }

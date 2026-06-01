@@ -2,6 +2,7 @@ import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { UpdatePasswordDTO } from "src/app/core/interfaces/user-info.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -29,7 +30,9 @@ export class UpdatePasswordAccount implements OnInit {
   onLoadData() {
     this.apiResponseS
       .onGetItem(
-        `EmployeeInternal/DataForRecoveryPassword/${this.applicationUserId()}`,
+        Endpoints.EmployeeInternal.dataForRecoveryPassword(
+          this.applicationUserId(),
+        ),
       )
       .then((result: any) => {
         if (result) {
@@ -41,7 +44,9 @@ export class UpdatePasswordAccount implements OnInit {
       });
 
     this.apiResponseS
-      .onGetItem(`EmployeeInternal/OnValidateState/${this.applicationUserId()}`)
+      .onGetItem(
+        Endpoints.EmployeeInternal.onValidateState(this.applicationUserId()),
+      )
       .then((result: any) => {
         this.applicationUserState.set(result);
       });
@@ -49,14 +54,16 @@ export class UpdatePasswordAccount implements OnInit {
 
   sendOnlyPasswordEmail() {
     this.apiResponseS
-      .onGetItem(`Auth/SendNewPasswordForEmail/${this.applicationUserId()}`)
+      .onGetItem(Endpoints.Auth.sendNewPasswordForEmail(this.applicationUserId()))
       .then(() => {});
   }
 
   onGenerateUserNameAndPassword() {
     this.apiResponseS
       .onGetItem(
-        `application-users/SendNewUserNameForEmail/${this.applicationUserId()}`,
+        Endpoints.ApplicationUsers.sendNewUserNameForEmail(
+          this.applicationUserId(),
+        ),
       )
       .then(() => {
         this.onLoadData();
@@ -65,7 +72,9 @@ export class UpdatePasswordAccount implements OnInit {
 
   onToBlockAccount() {
     this.apiResponseS
-      .onGetItem(`application-users/ToBlockAccount/${this.applicationUserId()}`)
+      .onGetItem(
+        Endpoints.ApplicationUsers.toBlockAccount(this.applicationUserId()),
+      )
       .then(() => {
         this.onLoadData();
       });
@@ -74,10 +83,11 @@ export class UpdatePasswordAccount implements OnInit {
   onToUnlockAccount() {
     this.apiResponseS
       .onGetItem(
-        `application-users/ToUnlockAccount/${this.applicationUserId()}`,
+        Endpoints.ApplicationUsers.toUnlockAccount(this.applicationUserId()),
       )
       .then(() => {
         this.onLoadData();
       });
   }
 }
+

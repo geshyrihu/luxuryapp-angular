@@ -19,6 +19,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DateService } from "src/app/core/services/date.service";
 import { ReportService } from "src/app/core/services/report.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 
@@ -39,6 +40,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 export class ResumenMinuta implements OnInit {
   reportService = inject(ReportService);
   apiResponseS = inject(ApiResponseService);
+  dateS = inject(DateService);
   activatedRoute = inject(ActivatedRoute);
   tableScrollHeightS = inject(TableScrollHeightService);
   dataSignal = signal<any[]>([]);
@@ -61,18 +63,9 @@ export class ResumenMinuta implements OnInit {
       .onGetList(urlApi1)
       .then((result: any[]) => {
         const transformedData = result.map((item) => {
-          // Helper function to parse 'dd/MM/yyyy'
-          const parseDate = (dateString: string): Date | null => {
-            if (!dateString || !/^\d{2}\/\d{2}\/\d{4}/.test(dateString)) {
-              return null;
-            }
-            const [day, month, year] = dateString.split("/");
-            return new Date(+year, +month - 1, +day);
-          };
-
           // Transform deliveryDate
           if (item.deliveryDate) {
-            item.deliveryDate = parseDate(item.deliveryDate);
+            item.deliveryDate = this.dateS.parseDate(item.deliveryDate);
           }
 
           // Transform seguimiento dates
@@ -82,7 +75,7 @@ export class ResumenMinuta implements OnInit {
           ) {
             item.meetingDertailsSeguimientos.forEach((seguimiento: any) => {
               if (seguimiento.fecha) {
-                seguimiento.fecha = parseDate(seguimiento.fecha);
+                seguimiento.fecha = this.dateS.parseDate(seguimiento.fecha);
               }
             });
           }

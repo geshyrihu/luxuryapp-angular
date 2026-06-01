@@ -9,6 +9,7 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -64,17 +65,19 @@ export class LevelThreeAccountList implements OnInit {
   onLoadData(state: boolean) {
     this.state = state;
     this.apiResponseS
-      .onGetList("Cuentas/GetList/" + (state ? 0 : 1))
+      .onGetList(Endpoints.AccountingAccounts.getList(state))
       .then((result: any) => {
         this.dataSignal.set(result);
       });
   }
 
   onDelete(id: any) {
-    this.apiResponseS.onDelete(`cuentas/${id}`).then((result: boolean) => {
-      if (result)
-        this.dataSignal.update((data) => data.filter((item) => item.id !== id));
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.AccountingAccounts.delete(id))
+      .then((result: boolean) => {
+        if (result)
+          this.dataSignal.update((data) => data.filter((item) => item.id !== id));
+      });
   }
 
   onModalForm(data: any) {

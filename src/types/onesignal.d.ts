@@ -1,5 +1,3 @@
-// src/types/onesignal.d.ts
-
 declare global {
   interface Window {
     OneSignal?: OneSignalSDK;
@@ -14,22 +12,15 @@ interface OneSignalSDK {
     PushSubscription: {
       id?: string;
       optedIn: boolean;
+      optIn(): Promise<void>;
+      addEventListener(event: string, handler: (event: any) => void): void;
     };
   };
   Notifications: {
     addEventListener(event: string, handler: (event: any) => void): void;
+    requestPermission(): Promise<void>;
+    permission: boolean;
   };
 }
 
 export {};
-
-
-
-
-
-
-
-
-
-
-

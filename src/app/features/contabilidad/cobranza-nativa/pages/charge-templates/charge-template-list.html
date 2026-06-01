@@ -94,10 +94,10 @@
         </td>
         <td class="text-center text-xs">
           <div class="flex flex-column">
-            <span>{{ item.startDate | date:'dd/MM/yyyy' }}</span>
+            <span>{{ item.startDate | date:'dd/MM/yyyy':'UTC' }}</span>
             <span class="text-400">a</span>
             <span
-              >{{ item.endDate ? (item.endDate | date:'dd/MM/yyyy') :
+              >{{ item.endDate ? (item.endDate | date:'dd/MM/yyyy':'UTC') :
               'Indefinido' }}</span
             >
           </div>
@@ -150,8 +150,8 @@
         <h3>{{ item.name }}</h3>
         <p>{{ item.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}</p>
         <p>
-          {{ item.startDate | date:'dd/MM/yyyy' }} — {{ item.endDate ?
-          (item.endDate | date:'dd/MM/yyyy') : 'Indefinido' }}
+          {{ item.startDate | date:'dd/MM/yyyy':'UTC' }} — {{ item.endDate ?
+          (item.endDate | date:'dd/MM/yyyy':'UTC') : 'Indefinido' }}
         </p>
       </ion-label>
       <app-action-menu slot="end">

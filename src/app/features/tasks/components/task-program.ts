@@ -20,6 +20,7 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DateService } from "src/app/core/services/date.service";
 
 interface IITaskMessageDTOProgramForm {
   id: FormControl<string | null>;
@@ -45,6 +46,7 @@ export class TaskProgram implements OnInit {
   private authS = inject(AuthService);
   private formB = inject(FormBuilder);
   private customerIdS = inject(CustomerIdService);
+  private dateS = inject(DateService);
   private config = inject(DynamicDialogConfig);
   private ref = inject(DynamicDialogRef);
 
@@ -106,7 +108,7 @@ export class TaskProgram implements OnInit {
       : null;
 
     this.form.patchValue({
-      scheduledDate: new Date(result.scheduledDate), // Ensure date object
+      scheduledDate: this.dateS.parseDate(result.scheduledDate) ?? new Date(),
       assigneeId,
       assignee: selectedAssignee ? selectedAssignee.label : "",
     });
@@ -129,7 +131,7 @@ export class TaskProgram implements OnInit {
       submitting: this.submitting,
       transformPayload: (formValue: any) => {
         return {
-          scheduledDate: formValue.scheduledDate,
+          scheduledDate: this.dateS.getDateFormat(formValue.scheduledDate),
           assigneeId: formValue.assigneeId,
           applicationUserId: formValue.applicationUserId,
         };

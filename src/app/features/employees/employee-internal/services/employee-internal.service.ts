@@ -1,4 +1,5 @@
 import { Injectable, inject } from "@angular/core";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { IEmployee } from "src/app/features/employees/employees/models/employee.interface";
@@ -13,43 +14,51 @@ export class EmployeeInternalService {
   // ==========================================================================
 
   getList(customerId: string, active: boolean) {
-    const urlApi = `EmployeeInternal/list/${customerId}/${active}`;
-    return this._apiResponseS.onGetList<IEmployee[]>(urlApi);
+    return this._apiResponseS.onGetList<IEmployee[]>(
+      Endpoints.EmployeeInternal.list(customerId, active),
+    );
   }
 
   getPrincipalData(applicationUserId: string) {
-    const urlApi = `EmployeeInternal/PrincipalData/${applicationUserId}`;
-    return this._apiResponseS.onGetItem<any>(urlApi); // Replace specific DTO if available in interfaces
+    return this._apiResponseS.onGetItem<any>(
+      Endpoints.EmployeeInternal.principalData(applicationUserId),
+    ); // Replace specific DTO if available in interfaces
   }
 
   getPhotoPath(applicationUserId: string) {
-    const urlApi = `EmployeeInternal/PhotoPath/${applicationUserId}`;
-    return this._apiResponseS.onGetItem<any>(urlApi);
+    return this._apiResponseS.onGetItem<any>(
+      Endpoints.EmployeeInternal.photoPath(applicationUserId),
+    );
   }
 
   getPersonalData(employeeId: any) {
-    const urlApi = `EmployeeInternal/PersonalData/${employeeId}`;
-    return this._apiResponseS.onGetItem<any>(urlApi);
+    return this._apiResponseS.onGetItem<any>(
+      Endpoints.EmployeeInternal.personalData(employeeId),
+    );
   }
 
   getLaboralData(applicationUserId: string) {
-    const urlApi = `EmployeeInternal/LaboralData/${applicationUserId}`;
-    return this._apiResponseS.onGetItem<any>(urlApi);
+    return this._apiResponseS.onGetItem<any>(
+      Endpoints.EmployeeInternal.laboralData(applicationUserId),
+    );
   }
 
   getAddressData(employeeId: any) {
-    const urlApi = `EmployeeInternal/AddressData/${employeeId}`;
-    return this._apiResponseS.onGetItem<any>(urlApi);
+    return this._apiResponseS.onGetItem<any>(
+      Endpoints.EmployeeInternal.addressData(employeeId),
+    );
   }
 
   getDataForRecoveryPassword(applicationUserId: string) {
-    const urlApi = `EmployeeInternal/DataForRecoveryPassword/${applicationUserId}`;
-    return this._apiResponseS.onGetItem<any>(urlApi);
+    return this._apiResponseS.onGetItem<any>(
+      Endpoints.EmployeeInternal.dataForRecoveryPassword(applicationUserId),
+    );
   }
 
   validateState(applicationUserId: string) {
-    const urlApi = `EmployeeInternal/OnValidateState/${applicationUserId}`;
-    return this._apiResponseS.onGetItem<boolean>(urlApi);
+    return this._apiResponseS.onGetItem<boolean>(
+      Endpoints.EmployeeInternal.onValidateState(applicationUserId),
+    );
   }
 
   // ==========================================================================
@@ -57,13 +66,17 @@ export class EmployeeInternalService {
   // ==========================================================================
 
   createEmployee(data: FormData) {
-    const urlApi = `Employees/CreateEmployee`;
-    return this._apiResponseS.onPost<{ id: string }>(urlApi, data);
+    return this._apiResponseS.onPost<{ id: string }>(
+      Endpoints.Employees.createEmployee,
+      data,
+    );
   }
 
   createEmployeeExternal(data: FormData) {
-    const urlApi = `Employees/CreateEmployeeExternal`;
-    return this._apiResponseS.onPost<{ id: string }>(urlApi, data);
+    return this._apiResponseS.onPost<{ id: string }>(
+      Endpoints.Employees.createEmployeeExternal,
+      data,
+    );
   }
 
   // ==========================================================================
@@ -71,38 +84,52 @@ export class EmployeeInternalService {
   // ==========================================================================
 
   updatePrincipalData(applicationUserId: string, data: any) {
-    const urlApi = `EmployeeInternal/UpdatePrincipalData/${applicationUserId}`;
-    return this._apiResponseS.onPut<any>(urlApi, data);
+    return this._apiResponseS.onPut<any>(
+      Endpoints.EmployeeInternal.updatePrincipalData(applicationUserId),
+      data,
+    );
   }
 
   updateImage(applicationUserId: string, data: FormData) {
-    const urlApi = `EmployeeInternal/UpdateImage/${applicationUserId}`;
-    return this._apiResponseS.onPut<any>(urlApi, data);
+    return this._apiResponseS.onPut<any>(
+      Endpoints.EmployeeInternal.updateImage(applicationUserId),
+      data,
+    );
   }
 
   updatePersonalData(employeeId: any, data: any) {
-    const urlApi = `EmployeeInternal/UpdatePersonalData/${employeeId}`;
-    return this._apiResponseS.onPut<any>(urlApi, data);
+    return this._apiResponseS.onPut<any>(
+      Endpoints.EmployeeInternal.updatePersonalData(employeeId),
+      data,
+    );
   }
 
   updateLaboralData(applicationUserId: string, data: any) {
-    const urlApi = `EmployeeInternal/UpdateLaboralData/${applicationUserId}`;
-    return this._apiResponseS.onPut<any>(urlApi, data);
+    return this._apiResponseS.onPut<any>(
+      Endpoints.EmployeeInternal.updateLaboralData(applicationUserId),
+      data,
+    );
   }
 
   updateAddressData(addressId: string, data: any) {
-    const urlApi = `EmployeeInternal/UpdateAddressData/${addressId}`;
-    return this._apiResponseS.onPut<any>(urlApi, data);
+    return this._apiResponseS.onPut<any>(
+      Endpoints.EmployeeInternal.updateAddressData(addressId),
+      data,
+    );
   }
 
   updateBankData(id: string, data: any) {
-    const urlApi = `EmployeeBankData/${id}`;
-    return this._apiResponseS.onPut<any>(urlApi, data);
+    return this._apiResponseS.onPut<any>(
+      Endpoints.EmployeeBankData.getById(id),
+      data,
+    );
   }
 
   updateClinicalData(id: string, data: any) {
-    const urlApi = `EmployeeClinicalData/${id}`;
-    return this._apiResponseS.onPut<any>(urlApi, data);
+    return this._apiResponseS.onPut<any>(
+      Endpoints.EmployeeClinicalData.getById(id),
+      data,
+    );
   }
 
   // ==========================================================================
@@ -110,23 +137,23 @@ export class EmployeeInternalService {
   // ==========================================================================
 
   getBankData(employeeId: string) {
-    const urlApi = `EmployeeBankData/employee/${employeeId}`;
-    return this._apiResponseS.onGetList<any[]>(urlApi);
+    return this._apiResponseS.onGetList<any[]>(
+      Endpoints.EmployeeBankData.byEmployee(employeeId),
+    );
   }
 
   getBankDataById(id: string) {
-    const urlApi = `EmployeeBankData/${id}`;
-    return this._apiResponseS.onGetItem<any>(urlApi);
+    return this._apiResponseS.onGetItem<any>(
+      Endpoints.EmployeeBankData.getById(id),
+    );
   }
 
   createBankData(data: any) {
-    const urlApi = `EmployeeBankData`;
-    return this._apiResponseS.onPost<any>(urlApi, data);
+    return this._apiResponseS.onPost<any>(Endpoints.EmployeeBankData.base, data);
   }
 
   deleteBankData(id: string) {
-    const urlApi = `EmployeeBankData/${id}`;
-    return this._apiResponseS.onDelete(urlApi);
+    return this._apiResponseS.onDelete(Endpoints.EmployeeBankData.delete(id));
   }
 
   // ==========================================================================
@@ -134,23 +161,26 @@ export class EmployeeInternalService {
   // ==========================================================================
 
   getClinicalData(employeeId: string) {
-    const urlApi = `EmployeeClinicalData/employee/${employeeId}`;
-    return this._apiResponseS.onGetList<any[]>(urlApi);
+    return this._apiResponseS.onGetList<any[]>(
+      Endpoints.EmployeeClinicalData.byEmployee(employeeId),
+    );
   }
 
   getClinicalDataById(id: string) {
-    const urlApi = `EmployeeClinicalData/${id}`;
-    return this._apiResponseS.onGetItem<any>(urlApi);
+    return this._apiResponseS.onGetItem<any>(
+      Endpoints.EmployeeClinicalData.getById(id),
+    );
   }
 
   createClinicalData(data: any) {
-    const urlApi = `EmployeeClinicalData`;
-    return this._apiResponseS.onPost<any>(urlApi, data);
+    return this._apiResponseS.onPost<any>(
+      Endpoints.EmployeeClinicalData.base,
+      data,
+    );
   }
 
   deleteClinicalData(id: string) {
-    const urlApi = `EmployeeClinicalData/${id}`;
-    return this._apiResponseS.onDelete(urlApi);
+    return this._apiResponseS.onDelete(Endpoints.EmployeeClinicalData.delete(id));
   }
 
   // ==========================================================================
@@ -159,17 +189,19 @@ export class EmployeeInternalService {
 
   getApplicationRoles() {
     return this._apiResponseS.onGetSelectItem<ISelectItem[]>(
-      "application-roles-to-administrator",
+      Endpoints.SelectItems.applicationRolesToAdministrator,
     );
   }
 
   searchExistingPerson(fullName: string) {
-    const urlApi = `application-users/SearchExistingPerson/${fullName}`;
-    return this._apiResponseS.onGetListNotLoading<any>(urlApi);
+    return this._apiResponseS.onGetListNotLoading<any>(
+      Endpoints.ApplicationUsers.searchExistingPerson(fullName),
+    );
   }
 
   searchExistingPhone(phone: string) {
-    const urlApi = `application-users/SearchExistingPhone/${phone}`;
-    return this._apiResponseS.onGetListNotLoading<any>(urlApi);
+    return this._apiResponseS.onGetListNotLoading<any>(
+      Endpoints.ApplicationUsers.searchExistingPhone(phone),
+    );
   }
 }

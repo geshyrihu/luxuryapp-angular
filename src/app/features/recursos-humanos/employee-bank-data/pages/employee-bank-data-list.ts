@@ -1,9 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -16,8 +18,6 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { EmployeeBankDataDTO } from "../models/employee-bank-data.interfaces";
 import { EmployeeBankDataFormComponent } from "./employee-bank-data-form";
 

@@ -1,13 +1,13 @@
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
-import { IonButtonAdd } from "src/app/core/components/buttons/mobile/ion-button-add";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { IonButtonItem } from "src/app/core/components/buttons/mobile";
+import { IonButtonAdd } from "src/app/core/components/buttons/mobile/ion-button-add";
+import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -28,7 +28,9 @@ import { MinutaDetalleForm } from "../../juntas-comite/junta-comite-minutas/minu
 @Component({
   selector: "app-legal-pendientes-minuta",
   templateUrl: "./legal-pendientes-minuta.html",
-  imports: [IonButtonEdit, IonButtonAdd, 
+  imports: [
+    IonButtonEdit,
+    IonButtonAdd,
     CommonModule,
     TableModule,
     CustomButton,

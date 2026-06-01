@@ -123,7 +123,7 @@
       </td>
       <td>{{ item.customerName }}</td>
       <td>{{ item.publishedAt | date: "dd/MM/yyyy" }}</td>
-      <td>{{ item.expirationDate | date: "dd/MM/yyyy" }}</td>
+      <td>{{ item.expirationDate | date: "dd/MM/yyyy":"UTC" }}</td>
       <td>
         <div class="flex">
           <custom-button-edit (clicked)="onModalForm(item)" />

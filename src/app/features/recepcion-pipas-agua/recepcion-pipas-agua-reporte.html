@@ -1,28 +1,172 @@
-<!-- Selector de periodo -->
-<div class="card mb-3">
-  <div class="card-body">
-    <app-rango-calendario-yyyymmdd (fechasChange)="onFechasChange($event)" />
+<!-- Cabecera con logo del cliente y selector de periodo -->
+<div
+  class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden mb-3"
+>
+  <div class="bg-primary" style="height: 0.45rem"></div>
+  <div
+    class="surface-100 p-3 flex flex-column xl:flex-row xl:align-items-center xl:justify-content-between gap-3"
+  >
+    <div class="flex align-items-center gap-3 flex-1 min-w-0">
+      <div
+        class="surface-card border-round-xl border-1 surface-border inline-flex align-items-center justify-content-center p-2"
+        style="flex-shrink: 0"
+      >
+        <img
+          [src]="customerLogo()"
+          [alt]="customerName()"
+          style="
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 120px;
+            max-height: 52px;
+            object-fit: contain;
+          "
+        />
+      </div>
+      <div class="flex flex-column gap-1 min-w-0">
+        <small
+          class="text-primary font-bold uppercase"
+          style="letter-spacing: 0.14em"
+          >LuxuryApp · Bitacora</small
+        >
+        <h1 class="text-primary text-2xl line-height-2 m-0">
+          Recepcion de Pipas de Agua
+        </h1>
+        <p class="text-900 font-semibold m-0 line-height-3">
+          {{ customerName() }}
+        </p>
+      </div>
+    </div>
+
+    <div class="flex align-items-center gap-2 flex-wrap">
+      <div class="flex align-items-center gap-1">
+        <span class="text-500 text-xs">Desde</span>
+        <p-datepicker
+          [(ngModel)]="startDate"
+          [showIcon]="true"
+          [showTime]="true"
+          hourFormat="24"
+          dateFormat="dd/mm/yy"
+          [readonlyInput]="true"
+          (ngModelChange)="onFilterChange()"
+          placeholder="Inicio"
+          appendTo="body"
+          [showButtonBar]="true"
+          [style]="{ minWidth: '195px' }"
+        />
+      </div>
+      <div class="flex align-items-center gap-1">
+        <span class="text-500 text-xs">Hasta</span>
+        <p-datepicker
+          [(ngModel)]="endDate"
+          [showIcon]="true"
+          [showTime]="true"
+          hourFormat="24"
+          dateFormat="dd/mm/yy"
+          [readonlyInput]="true"
+          (ngModelChange)="onFilterChange()"
+          placeholder="Fin"
+          appendTo="body"
+          [showButtonBar]="true"
+          [style]="{ minWidth: '195px' }"
+        />
+      </div>
+      <custom-button-download (clicked)="onDownloadPdf()" />
+    </div>
   </div>
+  <div class="bg-yellow-500" style="height: 0.2rem"></div>
 </div>
 
-<!-- Tarjetas de resumen -->
+<!-- KPIs + Resumen de costos -->
 <div class="grid mb-3">
-  <div class="col-12 md:col-4">
-    <div class="card text-center p-3">
-      <p class="text-500 text-sm mb-1">Total recepciones</p>
-      <p class="text-3xl font-bold text-primary m-0">{{ totalRecepciones() }}</p>
+  <!-- KPI cards -->
+  <div class="col-12 md:col-4 flex flex-column gap-3">
+    <div
+      class="surface-card border-round-xl border-1 surface-border shadow-1 p-3 text-center flex-1"
+    >
+      <p class="text-500 text-sm m-0 mb-1">Total recepciones</p>
+      <p class="text-4xl font-bold text-primary m-0">
+        {{ totalRecepciones() }}
+      </p>
+    </div>
+    <div
+      class="surface-card border-round-xl border-1 surface-border shadow-1 p-3 text-center flex-1"
+    >
+      <p class="text-500 text-sm m-0 mb-1">Total m³ descargados</p>
+      <p class="text-4xl font-bold text-blue-600 m-0">
+        {{ totalM3() | number: '1.0-0' }}
+      </p>
     </div>
   </div>
-  <div class="col-12 md:col-4">
-    <div class="card text-center p-3">
-      <p class="text-500 text-sm mb-1">Litros recibidos</p>
-      <p class="text-3xl font-bold text-blue-600 m-0">{{ totalLitros() | number: '1.0-0' }}</p>
-    </div>
-  </div>
-  <div class="col-12 md:col-4">
-    <div class="card text-center p-3">
-      <p class="text-500 text-sm mb-1">Descargas en curso</p>
-      <p class="text-3xl font-bold text-orange-500 m-0">{{ recepccionesEnCurso() }}</p>
+
+  <!-- Resumen de costos -->
+  <div class="col-12 md:col-8">
+    <div
+      class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden h-full flex flex-column"
+    >
+      <div class="bg-primary" style="height: 0.35rem"></div>
+      <div class="p-3 flex flex-column flex-1">
+        <div class="mb-3">
+          <p class="text-primary font-bold text-base m-0 mb-1">
+            Resumen de costos del periodo
+          </p>
+          <p class="text-500 text-xs m-0">
+            El precio por m³ registrado incluye IVA — se desglosa para calcular
+            la retención.
+          </p>
+        </div>
+
+        <div class="flex flex-column flex-1 justify-content-between">
+          <div>
+            <div
+              class="flex justify-content-between align-items-center py-2 border-bottom-1 surface-border"
+            >
+              <span class="text-sm font-semibold"
+                >Importe total (precio con IVA × m³)</span
+              >
+              <span class="text-sm font-bold"
+                >${{ totalConIVA() | number: '1.2-2' }}</span
+              >
+            </div>
+            <div
+              class="flex justify-content-between align-items-center py-2 pl-3 border-bottom-1 surface-border"
+            >
+              <span class="text-xs text-500">Subtotal base (sin IVA)</span>
+              <span class="text-xs text-500"
+                >${{ subtotalSinIVA() | number: '1.2-2' }}</span
+              >
+            </div>
+            <div
+              class="flex justify-content-between align-items-center py-2 pl-3 border-bottom-1 surface-border"
+            >
+              <span class="text-xs text-500">IVA 16%</span>
+              <span class="text-xs text-500"
+                >${{ ivaDesglosado() | number: '1.2-2' }}</span
+              >
+            </div>
+            <div
+              class="flex justify-content-between align-items-center py-2 border-bottom-1 surface-border"
+            >
+              <span class="text-sm font-semibold text-red-500"
+                >Retención 4%</span
+              >
+              <span class="text-sm font-semibold text-red-500"
+                >(${{ retencion() | number: '1.2-2' }})</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="bg-primary border-round flex justify-content-between align-items-center px-3 py-2 mt-2"
+          >
+            <span class="text-white font-bold">TOTAL A PAGAR</span>
+            <span class="text-white font-bold text-xl"
+              >${{ totalAPagar() | number: '1.2-2' }}</span
+            >
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -40,7 +184,11 @@
   styleClass="custom-table card"
 >
   <ng-template #caption>
-    <primeng-custom-caption [title]="'Reporte por Periodo'" [dt]="dt" [showAdd]="false">
+    <primeng-custom-caption
+      [title]="'Detalle del periodo'"
+      [dt]="dt"
+      [showAdd]="false"
+    >
       <ng-template #extraButtons>
         <custom-button-download (clicked)="exportExcel()" />
       </ng-template>
@@ -49,46 +197,95 @@
 
   <ng-template #header>
     <tr>
-      <th pSortableColumn="placasCamion">Placas <p-sortIcon field="placasCamion" /></th>
-      <th pSortableColumn="horaLlegada">Llegada <p-sortIcon field="horaLlegada" /></th>
-      <th>Termino</th>
-      <th class="text-right">Cap. (L)</th>
-      <th class="text-right">Cisterna antes</th>
-      <th class="text-right">Cisterna despues</th>
-      <th class="text-right">Diferencia cisterna</th>
-      <th class="text-right">Medidor inicial</th>
-      <th class="text-right">Medidor final</th>
-      <th class="text-right">m³ ingresados</th>
-      <th class="text-right">Costo m³</th>
-      <th>Colaborador mtto</th>
-      <th>Guardia testigo</th>
+      <th pSortableColumn="empresa" style="min-width: 120px">
+        Empresa <p-sortIcon field="empresa" />
+      </th>
+      <th pSortableColumn="placasCamion" style="min-width: 110px">
+        Placas / Cap. <p-sortIcon field="placasCamion" />
+      </th>
+      <th pSortableColumn="horaLlegada" style="min-width: 140px">
+        Llegada / Termino <p-sortIcon field="horaLlegada" />
+      </th>
+      <th class="text-center" style="min-width: 140px">
+        Cisterna (ant → des / dif)
+      </th>
+      <th class="text-center" style="min-width: 160px">Medidor (ini → fin)</th>
+      <th class="text-right" style="min-width: 80px">m³</th>
+      <th class="text-right" style="min-width: 110px">Costo m³ / Importe</th>
+      <th style="min-width: 150px">Personal</th>
     </tr>
   </ng-template>
 
   <ng-template #body let-item>
     <tr>
-      <td><strong>{{ item.placasCamion }}</strong></td>
-      <td><small>{{ item.horaLlegada | date: 'dd/MM/yyyy HH:mm' }}</small></td>
       <td>
-        <small *ngIf="item.horaTermino">{{ item.horaTermino | date: 'dd/MM/yyyy HH:mm' }}</small>
-        <span *ngIf="!item.horaTermino" class="text-orange-500 text-xs">En curso</span>
+        <small>{{ item.empresa }}</small>
       </td>
-      <td class="text-right">{{ item.capacidadPipa | number: '1.0-0' }}</td>
-      <td class="text-right">{{ item.nivelCisternaAntes | number: '1.2-2' }}</td>
-      <td class="text-right">{{ item.nivelCisternaDespues | number: '1.2-2' }}</td>
-      <td class="text-right font-semibold"
+      <td>
+        <strong class="block">{{ item.placasCamion }}</strong>
+        <small class="text-500"
+          >{{ item.capacidadPipa | number: '1.0-0' }} L</small
+        >
+      </td>
+      <td>
+        <small class="block"
+          >{{ item.horaLlegada | date: 'dd/MM/yy HH:mm' : 'UTC' }}</small
+        >
+        @if (item.horaTermino) {
+        <small class="text-500"
+          >→ {{ item.horaTermino | date: 'dd/MM/yy HH:mm' : 'UTC' }}</small
+        >
+        } @else {
+        <span class="badge badge-warning text-xs">En curso</span>
+        }
+      </td>
+      <td class="text-center">
+        <small class="block">
+          {{ item.nivelCisternaAntes | number: '1.0-0' }}%
+          <span class="text-400"> → </span>
+          {{ item.nivelCisternaDespues | number: '1.0-0' }}%
+        </small>
+        <small
+          class="font-semibold"
           [class.text-green-600]="(item.nivelCisternaDespues - item.nivelCisternaAntes) > 0"
-          [class.text-red-500]="(item.nivelCisternaDespues - item.nivelCisternaAntes) <= 0">
-        {{ (item.nivelCisternaDespues - item.nivelCisternaAntes) | number: '1.2-2' }}
+          [class.text-red-500]="(item.nivelCisternaDespues - item.nivelCisternaAntes) <= 0"
+        >
+          ({{ (item.nivelCisternaDespues - item.nivelCisternaAntes) | number:
+          '1.0-0' }}%)
+        </small>
       </td>
-      <td class="text-right">{{ item.lecturaMedidorInicial | number: '1.4-4' }}</td>
-      <td class="text-right">{{ item.lecturaMedidorFinal | number: '1.4-4' }}</td>
+      <td class="text-center">
+        <small>
+          {{ item.lecturaMedidorInicial | number: '1.0-0' }}
+          <span class="text-400"> → </span>
+          {{ item.lecturaMedidorFinal | number: '1.0-0' }}
+        </small>
+      </td>
       <td class="text-right font-semibold">
-        {{ (item.lecturaMedidorFinal - item.lecturaMedidorInicial) | number: '1.4-4' }}
+        {{ (item.lecturaMedidorFinal - item.lecturaMedidorInicial) | number:
+        '1.0-0' }}
       </td>
-      <td class="text-right">{{ item.costoMetroCubico | number: '1.2-4' }}</td>
-      <td><small>{{ item.colaboradorMtto ?? '-' }}</small></td>
-      <td><small>{{ item.guardiaSeguridad ?? '-' }}</small></td>
+      <td class="text-right">
+        <small class="block text-500"
+          >{{ item.costoMetroCubico | number: '1.2-2' }}</small
+        >
+        <small class="font-semibold">
+          ${{ (item.costoMetroCubico * (item.lecturaMedidorFinal -
+          item.lecturaMedidorInicial)) | number: '1.2-2' }}
+        </small>
+      </td>
+      <td>
+        @if (item.colaboradorMtto) {
+        <small class="block"
+          ><i class="pi pi-wrench mr-1 text-400"></i>{{ item.colaboradorMtto
+          }}</small
+        >
+        } @if (item.guardiaSeguridad) {
+        <small class="text-500"
+          ><i class="pi pi-shield mr-1"></i>{{ item.guardiaSeguridad }}</small
+        >
+        }
+      </td>
     </tr>
   </ng-template>
 

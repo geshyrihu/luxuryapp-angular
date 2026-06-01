@@ -83,7 +83,7 @@
           }
         </td>
         <td class="text-center text-sm">
-          {{ item.startDate | date:'dd/MM/yyyy' }}
+          {{ item.startDate | date:'dd/MM/yyyy':'UTC' }}
         </td>
         <td class="text-center">
           @if (item.isActive) {
@@ -156,7 +156,7 @@
         <h3>{{ item.userName }}</h3>
         <p>{{ item.propertyName }} &middot; {{ item.accountNumber }}</p>
         <p>{{ rolLabel(item.memberRole) }} &middot; {{ item.email }}</p>
-        <p>Desde: {{ item.startDate | date:'dd/MM/yyyy' }}</p>
+        <p>Desde: {{ item.startDate | date:'dd/MM/yyyy':'UTC' }}</p>
       </ion-label>
       @if (item.isFinancialResponsible) {
       <ion-badge slot="end" color="success">Responsable</ion-badge>

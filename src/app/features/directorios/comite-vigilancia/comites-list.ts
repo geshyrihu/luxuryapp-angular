@@ -3,6 +3,7 @@ import { TableModule } from "primeng/table";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -17,8 +18,6 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
     PrimeNgCustomCaption,
     DataViewMobile,
     PrimeNgCustomTableFooter,
-
-
   ],
 })
 export class ComitesList implements OnInit {
@@ -31,7 +30,7 @@ export class ComitesList implements OnInit {
 
   flatData = computed(() => {
     return this.dataSignal().flatMap((customerGroup) =>
-      customerGroup.committeeMembers.map((member) => ({
+      customerGroup.committeeMembers.map((member: any) => ({
         ...member,
         customerName: customerGroup.customer.nombreCorto,
       })),
@@ -50,19 +49,11 @@ export class ComitesList implements OnInit {
 
   onLoadData() {
     this.loading.set(true);
-    const urlApi = `LegalDirectories/Committees`;
-    this.apiResponseS.onGetList(urlApi).then((result: any) => {
-      this.dataSignal.set(result);
-      this.loading.set(false);
-    });
+    this.apiResponseS
+      .onGetList(Endpoints.LegalDirectories.committees)
+      .then((result: any) => {
+        this.dataSignal.set(result);
+        this.loading.set(false);
+      });
   }
 }
-
-
-
-
-
-
-
-
-

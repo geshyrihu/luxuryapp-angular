@@ -57,6 +57,17 @@
           />
         </div>
 
+        <!-- SUELDO DIARIO -->
+        <div class="col-12 md:col-4 lg:col-3">
+          <custom-input-currency-signal
+            [control]="form.controls.dailySalary"
+            label="Sueldo diario"
+            placeholder="sueldo diario"
+            [horizontal]="false"
+            [readonly]="true"
+          />
+        </div>
+
         <!-- NÚMERO DE EMPLEADO -->
         <div class="col-12 md:col-4 lg:col-3">
           <custom-input-number-signal

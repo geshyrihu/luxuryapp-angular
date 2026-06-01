@@ -122,7 +122,7 @@ export interface SuspensionDayDetailDTO {
 
 export interface SuspensionDayAddDTO {
   incidentId: string;
-  suspensionDates: Date[];
+  suspensionDates: string[];
   notes?: string;
 }
 

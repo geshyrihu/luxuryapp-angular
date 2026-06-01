@@ -58,7 +58,7 @@
           {{ item.amount | number: "1.2-2" }}
         </td>
         <td class="text-center font-medium">
-          {{ item.dueDate | date: 'dd/MM/yyyy' }}
+          {{ item.dueDate | date: 'dd/MM/yyyy':'UTC' }}
         </td>
         <td class="text-center">
           @if (item.generatedAutomatically) {
@@ -118,7 +118,7 @@
       <ion-label>
         <h3>{{ item.propertyFullName || 'N/A' }}</h3>
         <p>{{ item.concept }} · {{ item.amount | number:'1.2-2' }}</p>
-        <p>Venc: {{ item.dueDate | date:'dd/MM/yyyy' }}</p>
+        <p>Venc: {{ item.dueDate | date:'dd/MM/yyyy':'UTC' }}</p>
       </ion-label>
       <app-action-menu slot="end">
         <ion-button-edit (clicked)="onModalForm(item.id)" />

@@ -8,6 +8,7 @@ import {
 } from "@angular/forms";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 // import { EmployeeAddOrEditService } from './employee-form.service';
@@ -71,22 +72,27 @@ export class EmployeeAddressForm implements OnInit {
     this.onLoadData();
   }
   onLoadData() {
-    const urlApi = `EmployeeInternal/AddressData/${this.employeeId()}`;
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
-      this.form.patchValue(result);
-      this.addressId = result.id;
-    });
+    this.apiResponseS
+      .onGetItem(Endpoints.EmployeeInternal.addressData(this.employeeId()))
+      .then((result: any) => {
+        this.form.patchValue(result);
+        this.addressId = result.id;
+      });
   }
 
   onSubmit() {
     if (!this.apiResponseS.validateForm(this.form)) return;
     this.submitting.set(true);
 
-    const urlApi = `EmployeeInternal/UpdateAddressData/${this.addressId}`;
-    this.apiResponseS.onPut(urlApi, this.form.value).then((result: any) => {
-      this.form.patchValue(result);
-      this.submitting.set(false);
-    });
+    this.apiResponseS
+      .onPut(
+        Endpoints.EmployeeInternal.updateAddressData(this.addressId),
+        this.form.value,
+      )
+      .then((result: any) => {
+        this.form.patchValue(result);
+        this.submitting.set(false);
+      });
   }
 }
 

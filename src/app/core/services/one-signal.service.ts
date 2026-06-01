@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { AuthService } from "src/app/core/services/auth.service";
 import { environment } from "src/environments/environment";
 import { ConsoleLoggerService } from "./console-logger.service";
+
 declare global {
   interface Window {
     OneSignalDeferred?: any[];
@@ -19,100 +20,114 @@ export class OneSignalService {
   private consoleLogger = inject(ConsoleLoggerService);
 
   private appId = environment.ONESIGNAL_APPID;
+  private allowedOrigins = environment.ONESIGNAL_ALLOWED_ORIGINS ?? [];
   private isInitialized = false;
+  private listenersRegistered = false;
 
   public async initializeAndLoginUser(externalUserId: string): Promise<void> {
-    if (this.isInitialized) {
-      this.consoleLogger.custom(
-        "ℹ️",
-        "gray",
-        "[OneSignal] Ya está inicializado (flag interno).",
-      );
-      return;
-    }
-
-    if (
-      window.OneSignal &&
-      typeof window.OneSignal.isPushNotificationsInitialized === "function" &&
-      window.OneSignal.isPushNotificationsInitialized()
-    ) {
-      this.consoleLogger.custom(
-        "ℹ️",
-        "gray",
-        "[OneSignal] SDK ya está inicializado (SDK check).",
-      );
-      this.isInitialized = true;
-      return;
-    }
-
     if (!externalUserId) {
       this.consoleLogger.custom(
-        "❌",
+        "x",
         "red",
         "[OneSignal] Se requiere un externalUserId para inicializar.",
       );
       return;
     }
 
-    try {
+    if (!this.isCurrentOriginAllowed()) {
       this.consoleLogger.custom(
-        "⏳",
+        "skip",
+        "gray",
+        `[OneSignal] Omitido en origen no permitido: ${window.location.origin}. Permitidos: ${this.allowedOrigins.join(", ") || "(ninguno configurado)"}`,
+      );
+      return;
+    }
+
+    try {
+      const oneSignal = window.OneSignal as any;
+
+      this.consoleLogger.custom(
+        "...",
         "orange",
-        "[OneSignal] Esperando que el SDK esté listo...",
+        "[OneSignal] Esperando que el SDK este listo...",
       );
       await this.waitForOneSignalSDK();
-      this.consoleLogger.custom("✅", "green", "[OneSignal] SDK listo");
+      this.consoleLogger.custom("ok", "green", "[OneSignal] SDK listo");
 
-      await window.OneSignal.init({
-        appId: this.appId,
-        allowLocalhostAsSecureOrigin: !environment.production,
-      });
-      this.consoleLogger.custom(
-        "📦",
-        "teal",
-        "[OneSignal] Inicializado con App ID:",
-        this.appId,
-      );
+      if (!this.isInitialized) {
+        await oneSignal.init({
+          appId: this.appId,
+          allowLocalhostAsSecureOrigin: !environment.production,
+        });
+        this.isInitialized = true;
+        this.consoleLogger.custom(
+          "pkg",
+          "teal",
+          "[OneSignal] Inicializado con App ID:",
+          this.appId,
+        );
+      }
 
       this.registerEventListeners();
 
-      await window.OneSignal.login(externalUserId);
+      await oneSignal.login(externalUserId);
       this.consoleLogger.custom(
-        "👤",
+        "user",
         "darkslateblue",
         `[OneSignal] Usuario logueado con ExternalUserId: ${externalUserId}`,
       );
 
-      this.isInitialized = true;
       await this.ensureOneSignalSubscription();
     } catch (error) {
       this.consoleLogger.custom(
-        "🔥",
+        "!",
         "red",
-        "[OneSignal] Error fatal durante la inicialización o login:",
+        "[OneSignal] Error fatal durante la inicializacion o login:",
         error,
       );
     }
   }
 
+  private isCurrentOriginAllowed(): boolean {
+    if (typeof window === "undefined") {
+      return false;
+    }
+
+    return this.allowedOrigins.includes(window.location.origin);
+  }
+
   private waitForOneSignalSDK(): Promise<void> {
     return new Promise((resolve) => {
       if (window.OneSignal && typeof window.OneSignal.init === "function") {
-        return resolve();
+        resolve();
+        return;
       }
-      window.OneSignal = window.OneSignal || [];
-      window.OneSignal.push(() => {
+
+      const deferred = ((window as any).OneSignal =
+        (window as any).OneSignal || []);
+      deferred.push(() => {
         resolve();
       });
     });
   }
 
-  async ensureOneSignalSubscription() {
+  async ensureOneSignalSubscription(): Promise<void> {
     const isGranted = Notification.permission === "granted";
-    const isOptedIn = await window.OneSignal.User.PushSubscription.optedIn;
+    const oneSignal = window.OneSignal as any;
+
+    if (isGranted && !oneSignal.User.PushSubscription.optedIn) {
+      this.consoleLogger.custom(
+        "sync",
+        "dodgerblue",
+        "[OneSignal] Permiso concedido pero sin suscripcion. Intentando opt-in...",
+      );
+      await oneSignal.User.PushSubscription.optIn();
+    }
+
+    const isOptedIn = oneSignal.User.PushSubscription.optedIn;
 
     this.consoleLogger.custom(
-      "📣",
+      "sub",
       "dodgerblue",
       "[OneSignal] Permiso:",
       isGranted,
@@ -122,7 +137,7 @@ export class OneSignalService {
 
     if (!isGranted || !isOptedIn) {
       this.consoleLogger.custom(
-        "⚠️",
+        "warn",
         "orange",
         "[OneSignal] Usuario no completamente suscrito.",
       );
@@ -130,40 +145,51 @@ export class OneSignalService {
   }
 
   private registerEventListeners(): void {
-    window.OneSignal.Notifications.addEventListener("click", (event: any) => {
+    if (this.listenersRegistered) {
+      return;
+    }
+
+    const oneSignal = window.OneSignal as any;
+
+    oneSignal.Notifications.addEventListener("click", (event: any) => {
       this.consoleLogger.custom(
-        "🔔",
+        "bell",
         "orange",
-        "[OneSignal] Notificación clickeada:",
+        "[OneSignal] Notificacion clickeada:",
         event,
       );
       const customData = event.notification?.data;
-      if (customData && customData.route) {
+      if (customData?.route) {
         this.zone.run(() => {
           this.router.navigateByUrl(customData.route);
         });
       }
     });
+
+    oneSignal.User.PushSubscription.addEventListener(
+      "change",
+      (event: any) => {
+        this.consoleLogger.custom(
+          "mail",
+          "mediumseagreen",
+          "[OneSignal] Cambio de suscripcion:",
+          event,
+        );
+      },
+    );
+
+    this.listenersRegistered = true;
     this.consoleLogger.custom(
-      "🎧",
+      "ear",
       "cyan",
-      "[OneSignal] Listener de 'click' en notificaciones registrado.",
+      "[OneSignal] Listeners registrados.",
     );
   }
 
   public async logout(): Promise<void> {
     if (!this.isInitialized) return;
-    await window.OneSignal.logout();
+    await (window.OneSignal as any).logout();
     this.isInitialized = false;
-    this.consoleLogger.custom("👋", "red", "[OneSignal] Usuario deslogueado");
+    this.consoleLogger.custom("bye", "red", "[OneSignal] Usuario deslogueado");
   }
 }
-
-
-
-
-
-
-
-
-

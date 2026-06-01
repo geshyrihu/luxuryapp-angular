@@ -83,11 +83,12 @@ export class CustomerModulEdit implements OnInit {
   }
 
   onLoadData(customerId: string): void {
-    const urlApi = Endpoints.ModuleAppCustomers.customerModules(customerId);
-    this.apiResponseS.onGetList(urlApi).then((result: ModuleGroup[]) => {
-      this.allData.set(result);
-      this.loading.set(false);
-    });
+    this.apiResponseS
+      .onGetList(Endpoints.ModuleAppCustomers.customerModules(customerId))
+      .then((result: ModuleGroup[]) => {
+        this.allData.set(result);
+        this.loading.set(false);
+      });
   }
 
   toggleModuleActivation(item: any): void {

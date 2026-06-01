@@ -50,11 +50,7 @@ export class MeetingForm implements OnInit {
   formB = inject(FormBuilder);
   customerId = this.config.data.customerId;
 
-  dateNow = new Date(
-    new Date().getTime() + new Date().getTimezoneOffset() * -60 * 1000,
-  )
-    .toISOString()
-    .slice(0, 19);
+  dateNow = new Date().toISOString().slice(0, 10);
   id: string = "";
   participantInvitado: any[] = [];
   cb_typeMeeting = signal<ISelectItem[]>([]);

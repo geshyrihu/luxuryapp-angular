@@ -94,11 +94,9 @@ export class ModalOrdenCompra implements OnInit {
       .then((result: any) => {
         this.form.patchValue(result);
         if (result.fechaSolicitud) {
-          const date = new Date(result.fechaSolicitud);
-          // Compensamos el offset para obtener la fecha local "real" sin desfases de UTC
-          const userTimezoneOffset = date.getTimezoneOffset() * 60000;
-          const localDate = new Date(date.getTime() + userTimezoneOffset);
-          this.form.controls.fechaSolicitud.setValue(localDate);
+          this.form.controls.fechaSolicitud.setValue(
+            this.dateS.parseDate(result.fechaSolicitud),
+          );
         }
       });
   }
@@ -108,13 +106,17 @@ export class ModalOrdenCompra implements OnInit {
     this.submitting.set(true);
 
     this.apiResponseS
-      .onPut(`OrdenCompra/${this.ordenCompraId}`, this.form.getRawValue())
+      .onPut(`OrdenCompra/${this.ordenCompraId}`, {
+        ...this.form.getRawValue(),
+        fechaSolicitud: this.dateS.getDateFormat(
+          this.form.controls.fechaSolicitud.value,
+        ),
+      })
       .then((result: boolean) => {
         result ? this.ref.close(true) : this.submitting.set(false);
       });
   }
 }
-
 
 
 

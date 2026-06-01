@@ -10,6 +10,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -56,17 +57,18 @@ export class CalendarioMaestroEquipoForm implements OnInit {
   }
 
   onLoadData(id: string) {
-    const url = `CalendarioMaestroEquipo/${id}`;
-    this.apiResponseS.onGetItem(url).then((result: any) => {
-      this.form.patchValue(result);
-    });
+    this.apiResponseS
+      .onGetItem(Endpoints.CalendarioMaestroEquipo.getById(id))
+      .then((result: any) => {
+        this.form.patchValue(result);
+      });
   }
 
   onSubmit() {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "CalendarioMaestroEquipo",
+      endpoint: Endpoints.CalendarioMaestroEquipo.base,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
@@ -75,7 +77,7 @@ export class CalendarioMaestroEquipoForm implements OnInit {
 
   onLoadEquipoClasificacion() {
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>("EquipoClasificacion")
+      .onGetSelectItem<ISelectItem[]>(Endpoints.MachineryClassification.getAll)
       .then((result: ISelectItem[]) => {
         this.cb_equipoClasificacion.set(result);
       });

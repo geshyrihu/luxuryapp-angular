@@ -41,4 +41,10 @@ body {
     border-width: var(--ds-control-border-width, 1px);
     border-style: solid;
   }
+
+  .p-toggleswitch {
+    --p-toggleswitch-width: 2rem;
+    --p-toggleswitch-height: 1.1rem;
+    --p-toggleswitch-handle-size: 0.8rem;
+  }
 }

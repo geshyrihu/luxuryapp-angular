@@ -13,6 +13,7 @@ import { PrimengRadarChart } from "src/app/core/components/charts/primeng-radar-
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ChartGeneratorService } from "src/app/core/services/chart-generator.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { DateService } from "src/app/core/services/date.service";
 import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service";
 @Component({
   selector: "app-resultado-evaluacion",
@@ -34,6 +35,7 @@ export class ResultadoEvaluacion implements OnInit {
   pdfGeneratorS = inject(PdfGeneratorService);
   customToastS = inject(CustomToastService);
   chartGeneratorS = inject(ChartGeneratorService);
+  dateS = inject(DateService);
   // Propiedades del componente
   today = new Date();
   evaluationResult: any | null = null;
@@ -85,6 +87,11 @@ export class ResultadoEvaluacion implements OnInit {
         this.evaluationResult = data;
         this.prepareChartData();
       });
+  }
+
+  formatEvaluationDate(value: string): string {
+    const date = this.dateS.parseDate(value);
+    return date ? date.toLocaleDateString("es-ES") : "N/A";
   }
 
   prepareChartData(): void {
@@ -270,9 +277,9 @@ export class ResultadoEvaluacion implements OnInit {
             ],
             [
               {
-                text: new Date(
+                text: this.formatEvaluationDate(
                   this.evaluationResult.evaluationDate,
-                ).toLocaleDateString("es-ES"),
+                ),
                 style: "infoText",
               },
               {

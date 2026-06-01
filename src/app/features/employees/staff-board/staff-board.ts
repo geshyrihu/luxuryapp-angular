@@ -19,6 +19,7 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { DialogSize } from "src/app/core/enums/dialog-size";
 import { EDepartament } from "src/app/core/enums/EDepartament";
@@ -166,10 +167,10 @@ export class StaffBoard {
 
     const [positions, employees] = await Promise.all([
       this.apiS.onGetList<IWorkPosition[]>(
-        `work-positions/list-by-customer/${customerId}/Activo`,
+        Endpoints.WorkPositions.listByCustomer(customerId, "Activo"),
       ),
       this.apiS.onGetList<IEmployee[]>(
-        `EmployeeInternal/list/${customerId}/true`,
+        Endpoints.EmployeeInternal.list(customerId, true),
       ),
     ]);
 
@@ -185,10 +186,10 @@ export class StaffBoard {
     const customerId = this.customerIdS.customerId();
     const [positions, employees] = await Promise.all([
       this.apiS.onGetList<IWorkPosition[]>(
-        `work-positions/list-by-customer/${customerId}/Inactivo`,
+        Endpoints.WorkPositions.listByCustomer(customerId, "Inactivo"),
       ),
       this.apiS.onGetList<IEmployee[]>(
-        `EmployeeInternal/list/${customerId}/false`,
+        Endpoints.EmployeeInternal.list(customerId, false),
       ),
     ]);
     this.inactivePositions.set(positions ?? []);
@@ -201,7 +202,7 @@ export class StaffBoard {
   }
 
   async onActivatePosition(id: string): Promise<void> {
-    const res = await this.apiS.onPatch(`work-positions/${id}/activate`, {});
+    const res = await this.apiS.onPatch(Endpoints.WorkPositions.activate(id), {});
     if (res) {
       this.inactivePositions.update((list) => list.filter((p) => p.id !== id));
       await this.onLoadData();
@@ -210,7 +211,7 @@ export class StaffBoard {
 
   async onActivateEmployee(applicationUserId: string): Promise<void> {
     const res = await this.apiS.onPatch(
-      `EmployeeInternal/${applicationUserId}/activate`,
+      Endpoints.EmployeeInternal.activate(applicationUserId),
       {},
     );
     if (res) {
@@ -223,7 +224,7 @@ export class StaffBoard {
 
   async onActivateAndAssign(employee: IEmployee): Promise<void> {
     const res = await this.apiS.onPatch(
-      `EmployeeInternal/${employee.applicationUserId}/activate`,
+      Endpoints.EmployeeInternal.activate(employee.applicationUserId),
       {},
     );
     if (!res) return;
@@ -245,7 +246,10 @@ export class StaffBoard {
     const employee: IEmployee = event.item.data;
     this.assignLoading.set(true);
     await this.apiS.onGetItem(
-      `work-positions/assign-employee/${employee.applicationUserId}/${position.id}`,
+      Endpoints.WorkPositions.assignEmployee(
+        employee.applicationUserId,
+        position.id,
+      ),
     );
     this.assignLoading.set(false);
     await this.onLoadData();
@@ -265,7 +269,10 @@ export class StaffBoard {
     if (!pos) return;
     this.assignLoading.set(true);
     await this.apiS.onGetItem(
-      `work-positions/assign-employee/${employee.applicationUserId}/${pos.id}`,
+      Endpoints.WorkPositions.assignEmployee(
+        employee.applicationUserId,
+        pos.id,
+      ),
     );
     this.assignLoading.set(false);
     this.drawerVisible.set(false);
@@ -276,7 +283,7 @@ export class StaffBoard {
 
   async onUnassignEmployee(positionId: string): Promise<void> {
     await this.apiS.onPatch(
-      `work-positions/${positionId}/unassign-employee`,
+      Endpoints.WorkPositions.unassignEmployee(positionId),
       {},
     );
     await this.onLoadData();
@@ -317,7 +324,7 @@ export class StaffBoard {
   }
 
   async onDelete(id: string): Promise<void> {
-    const res = await this.apiS.onDelete(`work-positions/${id}`);
+    const res = await this.apiS.onDelete(Endpoints.WorkPositions.delete(id));
     if (res) this.onLoadData();
   }
 

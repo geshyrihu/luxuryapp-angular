@@ -200,6 +200,7 @@ export class ProductEntryForm implements OnInit {
     const values = this.form.getRawValue();
     const payload = {
       ...values,
+      fechaEntrada: this.dateS.getDateFormat(values.fechaEntrada),
       customerId: this.customerIdS.customerId(),
     };
 

@@ -13,6 +13,7 @@ import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DateService } from "src/app/core/services/date.service";
 
 interface ICuadroComparativoAddProveedor {
   solicitudCompraId: FormControl<string>;
@@ -42,6 +43,7 @@ export class CuadroComparativoAddProveedor implements OnInit {
   config = inject(DynamicDialogConfig);
   formB = inject(FormBuilder);
   ref = inject(DynamicDialogRef);
+  dateS = inject(DateService);
   submitting = signal(false);
 
   form: FormGroup<ICuadroComparativoAddProveedor> = this.formB.group({
@@ -80,7 +82,7 @@ export class CuadroComparativoAddProveedor implements OnInit {
 
     let fecha = this.form.controls.fechaCotizacion.value;
     if (fecha) {
-      fecha = new Date(fecha).toISOString().split("T")[0];
+      fecha = this.dateS.getDateFormat(fecha) ?? "";
       formData.append("FechaCotizacion", fecha);
     }
 

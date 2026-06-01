@@ -18,6 +18,7 @@ import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-but
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -80,12 +81,17 @@ export class EmployeeExternalList {
   }
 
   onLoadData() {
-    const urlApi = `EmployeeExternal/List/${this.customerIdS.customerId()}/${this.activo}`;
-
-    this.apiResponseS.onGetList(urlApi).then((result: any) => {
-      console.log("🚀 ~ EmployeeExternalList ~ onLoadData ~ result:", result);
-      return this.dataSignal.set(result);
-    });
+    this.apiResponseS
+      .onGetList(
+        Endpoints.EmployeeExternal.list(
+          this.customerIdS.customerId(),
+          this.activo,
+        ),
+      )
+      .then((result: any) => {
+        console.log("🚀 ~ EmployeeExternalList ~ onLoadData ~ result:", result);
+        return this.dataSignal.set(result);
+      });
   }
 
   onModalForm(data: any) {
@@ -116,13 +122,19 @@ export class EmployeeExternalList {
   }
 
   deleteAccessCustomer(applicationUserId: string) {
-    const urlApi = `employeeexternal/delete-access-cutomer/${applicationUserId}/${this.customerIdS.customerId()}`;
-    this.apiResponseS.onDelete(urlApi).then((result: boolean) => {
-      if (result)
-        this.dataSignal.update((prev) =>
-          prev.filter((item) => item.applicationUserId !== applicationUserId),
-        );
-    });
+    this.apiResponseS
+      .onDelete(
+        Endpoints.EmployeeExternal.deleteAccessCustomer(
+          applicationUserId,
+          this.customerIdS.customerId(),
+        ),
+      )
+      .then((result: boolean) => {
+        if (result)
+          this.dataSignal.update((prev) =>
+            prev.filter((item) => item.applicationUserId !== applicationUserId),
+          );
+      });
   }
 
   onCardEmployee(applicationUserId: string) {

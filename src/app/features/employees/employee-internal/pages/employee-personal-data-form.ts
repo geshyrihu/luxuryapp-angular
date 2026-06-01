@@ -15,6 +15,7 @@ import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom
 import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ECountry } from "src/app/core/enums/paises.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -95,7 +96,7 @@ export class EmployeePersonalDataForm implements OnInit {
 
   async onLoadData(): Promise<void> {
     const result: any = await this.apiResponseS.onGetItem(
-      `EmployeeInternal/PersonalData/${this.employeeId()}`,
+      Endpoints.EmployeeInternal.personalData(this.employeeId()),
     );
 
     // Extraer valores de objetos si es necesario
@@ -169,7 +170,10 @@ export class EmployeePersonalDataForm implements OnInit {
     };
 
     this.apiResponseS
-      .onPut(`EmployeeInternal/UpdatePersonalData/${this.employeeId()}`, payload)
+      .onPut(
+        Endpoints.EmployeeInternal.updatePersonalData(this.employeeId()),
+        payload,
+      )
       .then((result: boolean) => {
         this.submitting.set(false);
         if (result) {

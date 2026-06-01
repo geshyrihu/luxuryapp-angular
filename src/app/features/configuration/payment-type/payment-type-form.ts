@@ -13,6 +13,7 @@ import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
+import { Endpoints } from "../../../core/constants/endpoints";
 
 interface IPaymentTypeForm {
   id: FormControl<string | null>;
@@ -62,30 +63,24 @@ export class PaymentTypeForm implements OnInit {
       this.onLoadData();
     }
   }
-
   onLoadData() {
-    this.apiResponseS.onGetItem(`MetodoPago/${this.id}`).then((result: any) => {
-      this.form.patchValue(result);
-    });
+    this.apiResponseS
+      .onGetItem(Endpoints.PaymentTypes.getById(this.id))
+      .then((result: any) => {
+        if (result) {
+          this.form.patchValue(result);
+        }
+      });
   }
 
   onSubmit() {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "MetodoPago",
+      endpoint: Endpoints.PaymentTypes.getAll,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
     });
   }
 }
-
-
-
-
-
-
-
-
-

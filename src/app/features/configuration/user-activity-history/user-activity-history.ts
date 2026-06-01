@@ -13,6 +13,7 @@ import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-vi
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -23,6 +24,8 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
+import { DateService } from "src/app/core/services/date.service";
+
 @Component({
   selector: "app-user-activity-history",
   imports: [
@@ -54,6 +57,7 @@ export class UserActivityHistory implements OnInit {
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
   aspRoleS = inject(AspRoleService);
+  dateS = inject(DateService);
   data = signal<any[]>([]);
   loading = signal(true);
 
@@ -116,9 +120,7 @@ export class UserActivityHistory implements OnInit {
         (c) => c.value === userCustomerId,
       )?.label;
       this.filterCustomerIdControl.setValue(userCustomerId);
-      this.customerOptions = [
-        { label: userCustomerName, value: userCustomerId },
-      ];
+      this.customerOptions = [{ label: userCustomerName, value: userCustomerId }];
     }
   }
 
@@ -128,7 +130,6 @@ export class UserActivityHistory implements OnInit {
     }
 
     this.loading.set(true);
-    const urlApi = "UserActivityHistory";
 
     const params: any = {
       page: this.currentPage(),
@@ -145,27 +146,29 @@ export class UserActivityHistory implements OnInit {
     const dates = this.filterDateRangeControl.value;
     if (dates && dates.length === 2) {
       if (dates[0]) {
-        params.startDate = dates[0].toISOString();
+        params.startDate = this.dateS.getDateFormat(dates[0]);
       }
       if (dates[1]) {
-        params.endDate = dates[1].toISOString();
+        params.endDate = this.dateS.getDateFormat(dates[1]);
       }
     }
 
-    this.apiResponseS.onGetList(urlApi, params).then((result: any) => {
-      if (result) {
-        if (isNewSearch) {
-          this.data.set(result.items);
+    this.apiResponseS
+      .onGetList(Endpoints.UserActivityHistory.base, params)
+      .then((result: any) => {
+        if (result) {
+          if (isNewSearch) {
+            this.data.set(result.items);
+          } else {
+            this.data.update((current) => [...current, ...result.items]);
+          }
+          this.totalRecords.set(result.totalRecords);
         } else {
-          this.data.update((current) => [...current, ...result.items]);
+          this.data.set([]);
+          this.totalRecords.set(0);
         }
-        this.totalRecords.set(result.totalRecords);
-      } else {
-        this.data.set([]);
-        this.totalRecords.set(0);
-      }
-      this.loading.set(false);
-    });
+        this.loading.set(false);
+      });
   }
 
   onPageChange(event: any): void {

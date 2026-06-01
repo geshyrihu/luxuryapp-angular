@@ -9,9 +9,9 @@ export interface ChargeResponseDTO {
     type: EChargeType;
     concept: string;
     amount: number;
-    dueDate: Date;
-    periodStart?: Date | null;
-    periodEnd?: Date | null;
+    dueDate: Date | string;
+    periodStart?: Date | string | null;
+    periodEnd?: Date | string | null;
     status: EChargeStatus;
     generatedAutomatically: boolean;
     sourcePolicyId?: string | null;
@@ -26,9 +26,9 @@ export interface CreateChargeDTO {
     type: EChargeType;
     concept: string;
     amount: number;
-    dueDate: Date;
-    periodStart?: Date | null;
-    periodEnd?: Date | null;
+    dueDate: Date | string;
+    periodStart?: Date | string | null;
+    periodEnd?: Date | string | null;
     status: EChargeStatus;
     generatedAutomatically: boolean;
     sourcePolicyId?: string | null;
@@ -49,7 +49,7 @@ export interface PropertyInitialBalanceDTO {
 export interface SetInitialBalanceItemDTO {
     propertyId: string;
     amount: number;
-    dueDate?: Date | null;
+    dueDate?: Date | string | null;
 }
 
 export interface BulkSetInitialBalanceDTO {
@@ -69,9 +69,9 @@ export interface UpdateChargeDTO {
     type: EChargeType;
     concept: string;
     amount: number;
-    dueDate: Date;
-    periodStart?: Date | null;
-    periodEnd?: Date | null;
+    dueDate: Date | string;
+    periodStart?: Date | string | null;
+    periodEnd?: Date | string | null;
     status: EChargeStatus;
     generatedAutomatically: boolean;
     sourcePolicyId?: string | null;

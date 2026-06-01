@@ -9,6 +9,7 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -57,9 +58,9 @@ export class AiKnowledgeBaseList implements OnInit {
   }
 
   async onLoadData() {
-    const urlApi = `AiKnowledgeBase`;
-    const result =
-      await this.apiResponseS.onGetList<AiKnowledgeBaseDTO[]>(urlApi);
+    const result = await this.apiResponseS.onGetList<AiKnowledgeBaseDTO[]>(
+      Endpoints.AiKnowledgeBase.base,
+    );
     if (result) {
       this.dataSignal.set(result);
       this.loading.set(false);
@@ -73,7 +74,7 @@ export class AiKnowledgeBaseList implements OnInit {
       icon: "pi pi-exclamation-triangle",
       accept: async () => {
         const success = await this.apiResponseS.onDelete(
-          `AiKnowledgeBase/${id}`,
+          Endpoints.AiKnowledgeBase.delete(id),
         );
         if (success) {
           this.dataSignal.update((currentData) =>

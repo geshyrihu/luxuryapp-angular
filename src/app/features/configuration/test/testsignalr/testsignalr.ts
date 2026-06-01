@@ -5,6 +5,7 @@ import { CustomButton } from "src/app/core/components/buttons/web/custom-button"
 import { CustomInputAutoMultiple } from "src/app/core/components/inputs/web/custom-input-autocomplete-multiple-signal";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
@@ -37,8 +38,9 @@ export class Testsignalr implements OnInit {
   }
 
   async onLoadUsers(): Promise<void> {
-    const result: any =
-      await this.apiResponseS.onGetListNotLoading(`notifications/users`);
+    const result: any = await this.apiResponseS.onGetListNotLoading(
+      Endpoints.Notifications.users,
+    );
     this.users.set(result as ISelectItem[]);
   }
 
@@ -54,8 +56,8 @@ export class Testsignalr implements OnInit {
   async sendSignalRToUser(): Promise<void> {
     if (!this.selectedUserId()) return;
 
-    const result: any = await this.apiResponseS.onPost(
-      `notifications/test-signal-r/${this.selectedUserId()}`,
+    await this.apiResponseS.onPost(
+      Endpoints.Notifications.testSignalR(this.selectedUserId()!),
       {},
     );
 
@@ -65,10 +67,9 @@ export class Testsignalr implements OnInit {
   async sendSignalRToUsers(): Promise<void> {
     if (!this.selectedUserIds().length) return;
 
-    const result: any = await this.apiResponseS.onPost(
-      `notifications/test-signal-users`,
-      { userIds: this.selectedUserIds() },
-    );
+    await this.apiResponseS.onPost(Endpoints.Notifications.testSignalUsers, {
+      userIds: this.selectedUserIds(),
+    });
 
     alert("SignalR enviado a usuarios seleccionados");
   }
@@ -84,7 +85,7 @@ export class Testsignalr implements OnInit {
     };
 
     const result: any = await this.apiResponseS.onPost(
-      `notifications/test-one-signal`,
+      Endpoints.Notifications.testOneSignal,
       body,
     );
 
@@ -103,7 +104,7 @@ export class Testsignalr implements OnInit {
     };
 
     const result: any = await this.apiResponseS.onPost(
-      `notifications/test-one-signal-web`,
+      Endpoints.Notifications.testOneSignalWeb,
       body,
     );
 

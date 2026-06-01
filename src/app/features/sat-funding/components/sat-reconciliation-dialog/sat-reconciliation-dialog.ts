@@ -14,6 +14,7 @@ import { ReconciledItemDTO } from "../../interfaces/sat-reconciliation.dtos";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DateService } from "src/app/core/services/date.service";
 
 @Component({
   selector: "app-sat-reconciliation-dialog",
@@ -37,6 +38,7 @@ export class SatReconciliationDialog implements OnInit {
   config = inject(DynamicDialogConfig);
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
+  dateS = inject(DateService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
   loading = signal(false);
@@ -96,8 +98,8 @@ export class SatReconciliationDialog implements OnInit {
 
       const dates = this.dateRangeControl.value;
       if (dates && dates.length === 2 && dates[0] && dates[1]) {
-        payload.startDate = dates[0].toISOString();
-        payload.endDate = dates[1].toISOString();
+        payload.startDate = this.dateS.getDateFormat(dates[0]);
+        payload.endDate = this.dateS.getDateFormat(dates[1]);
       }
 
       // 2. Request (POST)
@@ -204,7 +206,6 @@ export class SatReconciliationDialog implements OnInit {
     this.ref.close();
   }
 }
-
 
 
 

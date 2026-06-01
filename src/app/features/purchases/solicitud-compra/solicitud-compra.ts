@@ -190,7 +190,7 @@ export class SolicitudCompra implements OnInit {
         if (!result) return;
         this.solicitudCompra = result;
         this.onSetTipe(result.estatus);
-        result.fechaSolicitud = new Date(result.fechaSolicitud);
+        result.fechaSolicitud = this.dateS.parseDate(result.fechaSolicitud);
         this.form.patchValue(result);
         this.SolicitudCompraDetalle =
           this.solicitudCompra.solicitudCompraDetalle || [];
@@ -206,12 +206,16 @@ export class SolicitudCompra implements OnInit {
 
     this.submitting.set(true);
     const formValue = this.form.getRawValue();
+    const payload = {
+      ...formValue,
+      fechaSolicitud: this.dateS.getDateFormat(formValue.fechaSolicitud),
+    };
 
     // CREACIóN
     if (!this.id || this.id === "" || this.id === "0") {
       const result: any = await this.apiResponseS.onPost(
         `SolicitudCompra`,
-        formValue,
+        payload,
       );
       if (result && result.id) {
         this.id = result.id;
@@ -233,7 +237,7 @@ export class SolicitudCompra implements OnInit {
     // ACTUALIZACIóN
     else {
       this.apiResponseS
-        .onPut(`SolicitudCompra/${this.id}`, formValue)
+        .onPut(`SolicitudCompra/${this.id}`, payload)
         .then((result: boolean) => {
           if (result) {
             this.customToastS.showSuccess(

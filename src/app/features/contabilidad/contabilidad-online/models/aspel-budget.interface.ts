@@ -330,6 +330,12 @@ export interface IAspelAuxiliarDTO {
   tipo_Poli: string;
   num_Poliz: string;
   num_Part: number;
+
+
+
+
+
+
   periodo: number;
   ejercicio: number;
   num_Cta: string;
@@ -338,3 +344,121 @@ export interface IAspelAuxiliarDTO {
   debe_Haber: string;
   montoMov: number;
 }
+
+// ── Bancos e Inversiones ──────────────────────────────────────────────────────
+
+export interface IBancosInversionesDto {
+  nombreEmpresa: string;
+  fechaReporte: string;
+  bancos: IBancoRowDto[];
+  sumaBancos: number;
+  inversionesOrdinarias: IInversionRowDto[];
+  subtotalInversiones: number;
+  fondoReserva?: IInversionRowDto;
+  sumaInversiones: number;
+}
+
+export interface IBancoRowDto {
+  cuenta: string;
+  importe: number;
+}
+
+export interface IInversionRowDto {
+  cuenta: string;
+  importe: number;
+  descripcion: string;
+}
+
+// ── Aspel Raw Data (Debug) ──────────────────────────────────────────────────
+
+export interface IAspelDatosCombinadosDTO {
+  cuentas: IAspelCuentaDTO[];
+  saldos: IAspelSaldoDTO[];
+  presupuestos: IAspelPresupuestoDTO[];
+  polizasConDetalle: IAspelPolizaConDetalleDTO[];
+}
+
+export interface IAspelCuentaDTO {
+  num_Cta: string;
+  nombre: string;
+  nivel: number;
+  naturaleza: number;
+  cta_Papa: string;
+  status: string;
+  tipo: string;
+}
+
+export interface IAspelSaldoDTO {
+  num_Cta: string;
+  ejercicio: number;
+  inicial: number;
+  cargo01: number;
+  abono01: number;
+  cargo02: number;
+  abono02: number;
+  cargo03: number;
+  abono03: number;
+  cargo04: number;
+  abono04: number;
+  cargo05: number;
+  abono05: number;
+  cargo06: number;
+  abono06: number;
+  cargo07: number;
+  abono07: number;
+  cargo08: number;
+  abono08: number;
+  cargo09: number;
+  abono09: number;
+  cargo10: number;
+  abono10: number;
+  cargo11: number;
+  abono11: number;
+  cargo12: number;
+  abono12: number;
+}
+
+export interface IAspelPresupuestoDTO {
+  num_Cta: string;
+  ejercicio: number;
+  presup01: number;
+  presup02: number;
+  presup03: number;
+  presup04: number;
+  presup05: number;
+  presup06: number;
+  presup07: number;
+  presup08: number;
+  presup09: number;
+  presup10: number;
+  presup11: number;
+  presup12: number;
+}
+
+export interface IAspelPolizaConDetalleDTO {
+  header: IAspelPolizaDTO;
+  partidas: IAspelAuxiliarDTO[];
+}
+
+export interface IAspelPolizaDTO {
+  tipo_Poli: string;
+  num_Poliz: string;
+  periodo: number;
+  ejercicio: number;
+  fecha_Pol: string;
+  concep_Po: string;
+}
+
+export interface IAspelAuxiliarDTO {
+  tipo_Poli: string;
+  num_Poliz: string;
+  num_Part: number;
+  periodo: number;
+  ejercicio: number;
+  num_Cta: string;
+  fecha_Pol: string;
+  concep_Po: string;
+  debe_Haber: string;
+  montoMov: number;
+}
+

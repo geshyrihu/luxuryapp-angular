@@ -7,6 +7,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { FlatpickrDirective } from "angularx-flatpickr";
+import { Spanish } from "flatpickr/dist/l10n/es";
 import { InputTextModule } from "primeng/inputtext";
 import { BaseInputSignal } from "../base/base-input-signal";
 
@@ -45,6 +46,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
         [placeholder]="placeholder()"
         [readonly]="readonly()"
         [disabled]="disabled()"
+        [locale]="spanishLocale"
         [enableTime]="true"
         [time24hr]="true"
         [altInput]="true"
@@ -67,6 +69,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
 export class CustomInputDateTimeSignal extends BaseInputSignal {
   size = input<"small" | "large" | undefined>(undefined);
   cdr = inject(ChangeDetectorRef);
+  protected readonly spanishLocale = Spanish;
 
   // Manejo manual de cambios para asegurar que el valor se propague
   handleDateChange(date: any) {

@@ -17,6 +17,7 @@ import { CustomInputTime } from "src/app/core/components/inputs/web/custom-input
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
+import { DateService } from "src/app/core/services/date.service";
 
 interface IPiscinaBitacoraForm {
   id: FormControl<string | null>;
@@ -54,6 +55,7 @@ interface IPiscinaBitacoraForm {
 export class PiscinaBitacoraForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
+  dateS = inject(DateService);
   formB = inject(FormBuilder);
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
@@ -120,6 +122,7 @@ export class PiscinaBitacoraForm implements OnInit {
       transformPayload: () => ({
         ...this.form.getRawValue(),
         piscinaId: this.config.data.piscinaId,
+        date: this.dateS.getDateFormat(this.form.getRawValue().date),
       }),
     });
   }

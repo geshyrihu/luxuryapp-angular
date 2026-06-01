@@ -21,6 +21,7 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
+import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { MeetingSeguimientoEdit } from "./meeting-seguimiento-edit";
@@ -57,6 +58,7 @@ export class MinutaDetalleForm implements OnInit {
   private config = inject(DynamicDialogConfig);
   private authS = inject(AuthService);
   private formB = inject(FormBuilder);
+  private dateS = inject(DateService);
   private dialogHandlerS = inject(DialogHandlerService);
 
   // State Signals
@@ -118,9 +120,10 @@ export class MinutaDetalleForm implements OnInit {
       result.requestService = content;
 
       this.form.patchValue(result);
-      // Ensure date is Date object
       if (result.deliveryDate) {
-        this.form.controls.deliveryDate.setValue(new Date(result.deliveryDate));
+        this.form.controls.deliveryDate.setValue(
+          this.dateS.parseDate(result.deliveryDate),
+        );
       }
     });
   }
@@ -143,17 +146,24 @@ export class MinutaDetalleForm implements OnInit {
     this.submitting.set(true);
 
     const payload = this.form.getRawValue();
+    const normalizedPayload = {
+      ...payload,
+      deliveryDate: this.dateS.getDateFormat(payload.deliveryDate),
+    };
     const isNew = !this.id();
 
     // When creating a new record, the id can be 0, which is not a valid Guid.
     // We'll replace it with an empty Guid string. The backend will generate the real Guid.
     if (isNew) {
-      payload.id = "00000000-0000-0000-0000-000000000000";
+      normalizedPayload.id = "00000000-0000-0000-0000-000000000000";
     }
 
     const request = isNew
-      ? this.apiResponseS.onPost(`MeetingsDetails`, payload)
-      : this.apiResponseS.onPut(`MeetingsDetails/${this.id()}`, payload);
+      ? this.apiResponseS.onPost(`MeetingsDetails`, normalizedPayload)
+      : this.apiResponseS.onPut(
+          `MeetingsDetails/${this.id()}`,
+          normalizedPayload,
+        );
 
     request.then((result: boolean) => {
       result ? this.ref.close(true) : this.submitting.set(false);

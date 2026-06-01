@@ -3,7 +3,7 @@ export interface IRadioComunicacionForm {
   fotografia: any;
   modelo: string;
   serie: string;
-  fechaCompra: Date;
+  fechaCompra: string;
   customerId: string;
   bateria: string;
   departament: number;

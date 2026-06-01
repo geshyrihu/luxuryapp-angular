@@ -20,6 +20,7 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DateService } from "src/app/core/services/date.service";
 @Component({
   selector: "app-realizar-evaluacion",
 
@@ -41,6 +42,7 @@ export class RealizarEvaluacion implements OnInit {
   authS = inject(AuthService);
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
+  dateS = inject(DateService);
   activatedRoute = inject(ActivatedRoute);
   fb = inject(FormBuilder);
   route = inject(Router); // Inyecta ActivatedRoute
@@ -100,7 +102,7 @@ export class RealizarEvaluacion implements OnInit {
         evaluatorId: data.evaluatorId,
         evaluatedId: data.employeeId, // Usamos el ID numérico del empleado
         evaluationTemplateId: data.evaluationTemplateId,
-        evaluationDate: new Date(data.evaluationDate),
+        evaluationDate: data.evaluationDate,
       });
 
       // 3. Cargar la plantilla y ESPERAR a que el FormArray de respuestas se construya
@@ -145,7 +147,7 @@ export class RealizarEvaluacion implements OnInit {
         { value: null as string | null, disabled: this.isEditMode },
         Validators.required,
       ],
-      evaluationDate: [new Date(), Validators.required],
+      evaluationDate: [this.dateS.getDateNow(), Validators.required],
       answers: this.fb.array([]),
     });
   }

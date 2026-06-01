@@ -18,6 +18,7 @@ import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-
 import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -116,10 +117,10 @@ export class EmployeeExternalForm implements OnInit {
   async onLoadSelectItems(): Promise<void> {
     const [applicationRoles, providers] = await Promise.all([
       this.apiResponseS.onGetSelectItem<ISelectItem[]>(
-        "application-roles-to-provider",
+        Endpoints.SelectItems.applicationRolesToProvider,
       ),
       this.apiResponseS.onGetSelectItem<ISelectItem[]>(
-        `providers/${this.customerIdS.customerId()}`,
+        Endpoints.SelectItems.providers(this.customerIdS.customerId()),
       ),
     ]);
 
@@ -128,8 +129,9 @@ export class EmployeeExternalForm implements OnInit {
   }
 
   async onLoadData(): Promise<void> {
-    const urlApi = `employeeexternal/${this.userId}`;
-    const result: any = await this.apiResponseS.onGetItem(urlApi);
+    const result: any = await this.apiResponseS.onGetItem(
+      Endpoints.EmployeeExternal.getById(this.userId),
+    );
 
     // Extraer providerId
     const providerId =
@@ -169,8 +171,11 @@ export class EmployeeExternalForm implements OnInit {
       this.userId,
     );
     const request = !this.userId
-      ? this.apiResponseS.onPost(`employeeexternal`, modelData)
-      : this.apiResponseS.onPut(`employeeexternal/${this.userId}`, modelData);
+      ? this.apiResponseS.onPost(Endpoints.EmployeeExternal.create, modelData)
+      : this.apiResponseS.onPut(
+          Endpoints.EmployeeExternal.update(this.userId),
+          modelData,
+        );
 
     request.then((result: boolean) => {
       result ? this.ref.close(true) : this.submitting.set(false);
@@ -201,13 +206,14 @@ export class EmployeeExternalForm implements OnInit {
     const userId = this.userId;
 
     if (email && email.length > 5) {
-      let url = `employeeexternal/search-by-email/${this.customerIdS.customerId()}?email=${email}`;
-      if (userId) {
-        url += `&excludeUserId=${userId}`;
-      }
-
       this.apiResponseS
-        .onGetListNotLoading(url)
+        .onGetListNotLoading(
+          Endpoints.EmployeeExternal.searchByEmail(
+            this.customerIdS.customerId(),
+            email,
+            userId,
+          ),
+        )
         .then((res: any[]) => {
           this.existingApplicationUser.set(res);
         })
@@ -225,13 +231,14 @@ export class EmployeeExternalForm implements OnInit {
     const userId = this.userId;
 
     if (phone && phone.length >= 10) {
-      let url = `employeeexternal/search-by-phone/${this.customerIdS.customerId()}?phoneNumber=${phone}`;
-      if (userId) {
-        url += `&excludeUserId=${userId}`;
-      }
-
       this.apiResponseS
-        .onGetListNotLoading(url)
+        .onGetListNotLoading(
+          Endpoints.EmployeeExternal.searchByPhone(
+            this.customerIdS.customerId(),
+            phone,
+            userId,
+          ),
+        )
         .then((res: any[]) => {
           this.existingApplicationUser.set(res);
         })
@@ -265,17 +272,18 @@ export class EmployeeExternalForm implements OnInit {
       const email = control.value;
       const userId = this.userId;
 
-      let url = `employeeexternal/search-by-email/${this.customerIdS.customerId()}?email=${email}`;
-      if (userId) {
-        url += `&excludeUserId=${userId}`;
-      }
-
       if (!email || email.length < 5) {
         return of(null);
       }
 
       return this.apiResponseS
-        .onGetListNotLoading(url)
+        .onGetListNotLoading(
+          Endpoints.EmployeeExternal.searchByEmail(
+            this.customerIdS.customerId(),
+            email,
+            userId,
+          ),
+        )
         .then((res: any[]) => {
           if (res && res.length > 0) {
             return { emailExist: true };
@@ -295,11 +303,6 @@ export class EmployeeExternalForm implements OnInit {
       let phone = control.value;
       const userId = this.userId;
 
-      let url = `employeeexternal/search-by-phone/${this.customerIdS.customerId()}?phoneNumber=${phone}`;
-      if (userId) {
-        url += `&excludeUserId=${userId}`;
-      }
-
       if (!phone || phone.length < 10) {
         return of(null);
       }
@@ -307,7 +310,13 @@ export class EmployeeExternalForm implements OnInit {
       phone = phone.replace(/\D/g, "");
 
       return this.apiResponseS
-        .onGetListNotLoading(url)
+        .onGetListNotLoading(
+          Endpoints.EmployeeExternal.searchByPhone(
+            this.customerIdS.customerId(),
+            phone,
+            userId,
+          ),
+        )
         .then((res: any[]) => {
           if (res && res.length > 0) {
             return { phoneExist: true };
@@ -319,9 +328,16 @@ export class EmployeeExternalForm implements OnInit {
   }
 
   addAccessCustomer(applicationUserId: string) {
-    const urlApi = `employeeexternal/add-access-cutomer/${applicationUserId}/${this.customerIdS.customerId()}`;
-    this.apiResponseS.onPost(urlApi, null).then((result: boolean) => {
-      result ? this.ref.close(true) : this.submitting.set(false);
-    });
+    this.apiResponseS
+      .onPost(
+        Endpoints.EmployeeExternal.addAccessCustomer(
+          applicationUserId,
+          this.customerIdS.customerId(),
+        ),
+        null,
+      )
+      .then((result: boolean) => {
+        result ? this.ref.close(true) : this.submitting.set(false);
+      });
   }
 }

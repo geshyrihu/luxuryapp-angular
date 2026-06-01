@@ -179,6 +179,7 @@
           >
           <p-tab [value]="7"><i class="pi pi-users mr-2"></i>Cobranza</p-tab>
           <p-tab [value]="8"><i class="pi pi-wallet mr-2"></i>Presupuesto</p-tab>
+          <p-tab [value]="9"><i class="pi pi-building mr-2"></i>Bancos e Inv.</p-tab>
         </p-tablist>
 
         <p-tabpanels>
@@ -208,6 +209,9 @@
           </p-tabpanel>
           <p-tabpanel [value]="8" class="p-4 pt-5">
             <app-presupuesto-contabilidad />
+          </p-tabpanel>
+          <p-tabpanel [value]="9" class="p-4 pt-5">
+            <app-bancos-inversiones />
           </p-tabpanel>
         </p-tabpanels>
       </p-tabs>

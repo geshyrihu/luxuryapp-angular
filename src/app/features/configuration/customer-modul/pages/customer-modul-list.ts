@@ -70,20 +70,23 @@ export class CustomerModulList implements OnInit {
   }
 
   onLoadData(state: boolean): void {
-    const urlApi = Endpoints.ModuleAppCustomers.customers(state);
-    this.apiResponseS.onGetList(urlApi).then((result: any) => {
-      if (result) {
-        this.dataSignal.set(result);
-      }
-    });
+    this.apiResponseS
+      .onGetList(Endpoints.ModuleAppCustomers.customers(state))
+      .then((result: any) => {
+        if (result) {
+          this.dataSignal.set(result);
+        }
+      });
   }
 
   // Funcion para eliminar un banco y refres
   onDelete(id: any) {
-    this.apiResponseS.onDelete(`module-app-customers/${id}`).then((_) => {
-      // Actualizamos el signal para eliminar el elemento de la lista
-      this.dataSignal.update((data) => data.filter((item) => item.id !== id));
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.ModuleAppCustomers.delete(id))
+      .then((_) => {
+        // Actualizamos el signal para eliminar el elemento de la lista
+        this.dataSignal.update((data) => data.filter((item) => item.id !== id));
+      });
   }
 
   // Método para filtrar por cliente

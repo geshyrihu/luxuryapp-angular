@@ -22,7 +22,7 @@
         <ng-template #body let-item>
           <tr>
             <td>{{ item.nameMachinery }}</td>
-            <td>{{ item.executionDate | date }}</td>
+            <td>{{ item.executionDate | date:'dd/MM/yyyy':'UTC' }}</td>
             <td>
               <p-tag
                 [value]="item.status"
