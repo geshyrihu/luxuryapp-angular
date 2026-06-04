@@ -1,12 +1,6 @@
 <p-card>
   <div class="card-body">
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <!-- Id -->
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        label="Id"
-        [readonly]="true"
-      />
       <!-- Mes -->
       <custom-input-select-signal
         [control]="form.controls.mes"

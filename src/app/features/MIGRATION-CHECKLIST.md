@@ -29,11 +29,8 @@ Este documento registra el progreso de la migración de clases de Tailwind CSS y
 - [x] **work-position** ✅
 - [x] **vacation-balance-admin** ✅
 - [x] **vacation-request-approval** ✅
-- [x] **vacancy-requests** ✅
-- [x] **recruitment** / **recruitment-requests** ✅
+- [x] **reclutamiento-solicitudes** (`vacancy-requests`, `recruitment-requests`, `salary-modification`, `request-dismissal`) ✅
 - [x] **performance-evaluation** / **evaluation-template** ✅
-- [x] **salary-modification** ✅
-- [x] **request-dismissal** / **request-dismissal-discount** ✅
 - [x] **leave-request** / **leave-request-approval** ✅
 - [x] **past-vacations** / **my-vacation-requests** ✅
 

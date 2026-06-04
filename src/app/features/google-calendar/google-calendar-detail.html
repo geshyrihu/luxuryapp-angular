@@ -14,11 +14,11 @@
     </div>
     <div class="col-12 md:col-6">
       <small class="block text-color-secondary">Inicio</small>
-      <strong>{{ item.startAt | date: "dd/MM/yyyy HH:mm" }}</strong>
+      <strong>{{ formatBusinessDateTime(item.startAt) }}</strong>
     </div>
     <div class="col-12 md:col-6">
       <small class="block text-color-secondary">Fin</small>
-      <strong>{{ item.endAt | date: "dd/MM/yyyy HH:mm" }}</strong>
+      <strong>{{ formatBusinessDateTime(item.endAt) }}</strong>
     </div>
     <div class="col-12 md:col-6">
       <small class="block text-color-secondary">Ubicacion</small>
@@ -30,7 +30,7 @@
     </div>
     <div class="col-12 md:col-6">
       <small class="block text-color-secondary">Estado</small>
-      <strong>{{ item.isSynchronized ? "Sincronizado" : "Pendiente" }}</strong>
+      <strong>{{ getStatusLabel() }}</strong>
     </div>
     <div class="col-12 md:col-6">
       <small class="block text-color-secondary">Enlace</small>

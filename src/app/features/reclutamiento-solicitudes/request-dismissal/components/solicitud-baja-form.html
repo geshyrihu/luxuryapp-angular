@@ -1,0 +1,339 @@
+<div class="mt-2">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div
+      class="bg-red-50 text-red-900 border-1 border-red-200 p-3 mb-1 border-round"
+    >
+      <div class="grid">
+        <div class="col-12 sm:col-4">
+          <custom-input-text-signal
+            [control]="form.controls.employee"
+            label="Nombre del excolaborador"
+            placeholder="Nombre del excolaborador"
+            [readonly]="true"
+            [horizontal]="false"
+          />
+        </div>
+        <div class="col-12 sm:col-4">
+          <custom-input-text-signal
+            [control]="form.controls.phoneEmployee"
+            label="Telófono de excolaborador"
+            placeholder="Telófono de excolaborador"
+            [readonly]="true"
+            [horizontal]="false"
+          />
+        </div>
+        <div class="col-12 sm:col-4">
+          <custom-input-number-signal
+            [control]="form.controls.applicationRoleId"
+            label="applicationRoleId"
+            placeholder="applicationRoleId"
+            hidden
+          />
+
+          <custom-input-text-signal
+            [control]="form.controls.applicationRole"
+            label="Puesto"
+            placeholder="Puesto"
+            [readonly]="true"
+            [horizontal]="false"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="grid mb-4">
+      <div class="col-12 sm:col-4">
+        <div
+          class="bg-red-50 text-red-900 border-1 border-red-200 p-3 border-round h-full"
+        >
+          <p class="m-0">
+            @if (tipobaja() == 0) {
+
+            <strong>
+              NO OLVIDES AGREGAR LA RENUNCIA EN FORMATO PDF FIRMADA POR EL EX
+              EMPLEADO
+            </strong>
+
+            } @if (tipobaja() == 1) {
+
+            <strong>
+              NO OLVIDES AGREGAR EVIDENCIA QUE JUSTIFIQUE EL DESPIDO Y CONFIRMAR
+              SI SE REQUIERE ABOGADO PARA GESTIONAR LA RENUNCIA
+            </strong>
+
+            }
+          </p>
+
+          <custom-input-select-signal
+            [control]="form.controls.typeOfDeparture"
+            label="Tipo de baja"
+            [data]="cb_type_departure()"
+            [horizontal]="false"
+            [filter]="true"
+          />
+
+          <p class="text-justify">
+            <strong>Renuncia:</strong>
+            Se coloca el último día que se presentó a laborar.
+          </p>
+
+          <p class="text-justify">
+            <strong>Abandono:</strong>
+            Considerar 3 días naturales para enviar la baja. Si el empleado se
+            comunicó, colocar el último día que se presentó a trabajar.
+          </p>
+
+          <p class="text-justify">
+            <strong>Despido:</strong>
+            Solicitar con al menos 2 días hábiles de anticipación para que los
+            abogados coordinen agendas y referir si requiere cálculo.
+          </p>
+
+          <p class="text-justify">
+            <strong>Faltas graves:</strong>
+            Adjunta aquí mismo las actas administrativas debidamente firmadas
+            como evidencia en el panel de carga de archivos.
+          </p>
+
+          <p class="text-justify">
+            <strong>Evaluación de desempeño:</strong>
+            Las evaluaciones ya están en el sistema. El sistema validará que existan evaluaciones aplicadas para proceder con la baja. No necesitas adjuntarlas.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-12 sm:col-4">
+        <div
+          class="bg-red-50 text-red-900 border-1 border-red-200 p-3 border-round h-full"
+        >
+          <p class="m-0">
+            <strong>
+              ESTA FECHA CORRESPONDE A EL DóA EN QUE SE LLEVARA A CABO LA BAJA,
+              COLOCA LA FECHA CORRECTA
+            </strong>
+          </p>
+
+          <custom-input-date-signal
+            [control]="form.controls.executionDate"
+            label="* Fecha de la baja"
+            placeholder="fecha de la baja"
+            [horizontal]="false"
+          />
+
+          <p class="m-0">
+            <strong>
+              ESTA FECHA CORRESPONDE A EL ULTIMO DóA QUE TRABAJO EL EMPLEADO
+            </strong>
+          </p>
+
+          <custom-input-date-signal
+            [control]="form.controls.lastdayofwork"
+            label="* Ultimo día que trabajo"
+            placeholder="Ultimo día que trabajo"
+            [horizontal]="false"
+          />
+        </div>
+      </div>
+
+      <div class="col-12 sm:col-4">
+        <div
+          class="bg-red-50 text-red-900 border-1 border-red-200 p-3 border-round h-full"
+        >
+          <p class="m-0 mb-2">
+            <strong>
+              INGRESE UNA DESCRIPCIÓN BREVE Y CLARA DEL MOTIVO DE LA BAJA.
+              <br /><br />
+              (Ej: Motivos personales, bajo desempeño en métricas, ausentismo
+              recurrente, etc.)
+            </strong>
+          </p>
+
+          <custom-input-textarea-signal
+            [control]="form.controls.reasonForLeaving"
+            placeholder="motivo de la baja, con una breve descripción"
+            [horizontal]="false"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-12 md:col-8">
+        <div class="grid">
+          <div class="col-12 md:col-6">
+            <custom-input-select-signal
+              [control]="form.controls.lawyerAssistance"
+              label="Require abogado"
+              [data]="cb_si_no()"
+              [horizontal]="false"
+              [filter]="true"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <custom-input-select-signal
+              [control]="form.controls.employeeInformed"
+              label="Colaborador enterado de su baja"
+              [data]="cb_si_no()"
+              [horizontal]="false"
+              [filter]="true"
+            />
+          </div>
+          <div class="col-12">
+            <div formArrayName="discountDescriptions">
+              <div
+                class="bg-red-50 text-red-900 border-1 border-red-200 p-3 border-round flex flex-column md:flex-row justify-content-between align-items-center gap-3"
+              >
+                <strong>
+                  DESCUENTOS: REVISA SI SE VAN A APLICAR DESCUENTOS POR
+                  UNIFORMES, RADIO, HERRAMIENTA, MATERIAL, ETC.
+                </strong>
+
+                <div class="flex-shrink-0">
+                  <custom-button
+                    icon="plus"
+                    label="Agregar descuento"
+                    customClass="p-button-danger p-button-outlined"
+                    (clicked)="addDiscountDescription()"
+                  />
+                </div>
+              </div>
+
+              @for ( discount of discountDescriptions.controls; track discount;
+              let i = $index ) {
+              <div class="mt-2">
+                <div [formGroupName]="i">
+                  <div class="grid align-items-center mb-3">
+                    <div class="col-12 md:col-5">
+                      <div class="grid align-items-center">
+                        <div class="col-12 md:col-9">
+                          <custom-input-text-signal
+                            [control]="getDiscountControl(i, 'description')"
+                            customClass="w-full"
+                            [horizontal]="false"
+                            [noMargin]="true"
+                            label="Descripción del descuento"
+                            placeholder="Descripción del descuento"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 md:col-5">
+                      <div class="grid align-items-center">
+                        <div class="col-12 md:col-9">
+                          <custom-input-number-signal
+                            mode="decimal"
+                            [minFractionDigits]="0"
+                            [maxFractionDigits]="2"
+                            customClass="w-full"
+                            [control]="getDiscountControl(i, 'price')"
+                            [horizontal]="false"
+                            [noMargin]="true"
+                            label="Costo del descuento"
+                            placeholder="Costo del descuento"
+                          />
+                          @if ( isControlInvalid(getDiscountControl(i, 'price'))
+                          && (getDiscountControl(i, 'price').dirty ||
+                          getDiscountControl(i, 'price').touched) ) {
+                          <small class="p-error block">
+                            El costo es requerido.
+                          </small>
+                          }
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 md:col-2">
+                      <custom-button
+                        label="Borrar"
+                        variant="outlined"
+                        severity="danger"
+                        [fluid]="true"
+                        [noMargin]="true"
+                        (clicked)="removeDiscountDescription(i)"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-4">
+        @if (tipobaja() == 3 && hasEvaluations === false) {
+          <div class="mb-4 bg-red-100 text-red-900 border-1 border-red-500 p-3 border-round font-bold">
+            No se encontraron evaluaciones previas aplicadas para este empleado en el sistema. 
+            No se puede proceder con la baja por Evaluación de Desempeño hasta que existan evaluaciones registradas.
+            <br/><br/>
+            <a href="javascript:void(0)" (click)="goToCreateEvaluation()" class="text-red-700 underline cursor-pointer">
+              <i class="pi pi-external-link mr-1"></i> Ir a crear una evaluación de desempeño
+            </a>
+          </div>
+        }
+        <div
+          class="mb-4 bg-red-50 text-red-900 border-1 border-red-200 p-3 border-round"
+        >
+          <label class="block mb-2 font-bold text-center"
+            >Adjuntar evidencia (máximo 10MB)</label
+          >
+
+          @if (this.filesControl.status === "INVALID") { @if(mensajeRenuncia) {
+          <small class="p-error block">{{ mensajeRenuncia }}</small>
+          } @else {
+          <small class="p-error block"
+            >El archivo adjunto no es válido (solo PDF, Word, o Imágenes, máx
+            10MB).</small
+          >
+          } }
+
+          <file-upload
+            formControlName="files"
+            [animation]="true"
+            (change)="onFileChange()"
+            accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+          >
+            <ng-template
+              let-isFileDragDropAvailable="isFileDragDropAvailable"
+              #placeholder
+            >
+              <file-upload-drop-zone>
+                @if (isFileDragDropAvailable) {
+                <b>Arrastrar y soltar archivos</b><br />
+                <span>o haga clic aquí</span>
+                } @else {
+                <b>Haz clic aquí</b> para seleccionar un archivo
+                }
+              </file-upload-drop-zone>
+            </ng-template>
+
+            <ng-template
+              let-i="index"
+              let-file="file"
+              let-control="control"
+              #item
+            >
+              <file-upload-list-item
+                [index]="i"
+                [file]="file"
+                [control]="control"
+              >
+                Eliminar
+              </file-upload-list-item>
+            </ng-template>
+          </file-upload>
+          @if (maxSizeExceeded) {
+          <small class="p-error block">
+            Los archivos adjuntos no deben superar los 10 MB.
+          </small>
+          }
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-content-end mt-4">
+      <custom-button-save
+        label="Solicitar baja"
+        [disabled]="form.invalid || this.filesControl.status === 'INVALID' || (tipobaja() == 3 && hasEvaluations === false)"
+        [submitting]="submitting()"
+      />
+    </div>
+  </form>
+</div>

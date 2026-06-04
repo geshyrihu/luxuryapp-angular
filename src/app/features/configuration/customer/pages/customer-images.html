@@ -1,23 +1,37 @@
 <div class="p-4">
-  <!-- Header con botón de carga -->
-  <div class="flex align-items-center justify-content-between mb-4">
-    <div>
-      <h3 class="m-0 font-bold text-900">Galería de Imágenes</h3>
-      <p class="text-600 m-0">Gestiona las fotografías relacionadas con este cliente.</p>
-    </div>
-    <div>
-      <p-fileUpload
-        mode="basic"
-        name="image"
-        chooseLabel="Subir Imagen"
-        chooseIcon="pi pi-upload"
-        accept="image/*"
-        maxFileSize="5000000"
-        (onSelect)="onUpload($event)"
-        [auto]="true"
-        styleClass="p-button-rounded p-button-success shadow-2"
-      />
-    </div>
+  <!-- Zona de carga drag-and-drop -->
+  <div
+    class="drop-zone border-2 border-dashed border-round-xl p-5 mb-4 flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+    [class.drag-active]="isDragOver()"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)"
+    (click)="fileInput.click()"
+  >
+    @if (uploading()) {
+      <i class="pi pi-spin pi-spinner text-primary mb-2" style="font-size: 2.5rem"></i>
+      <p class="text-700 font-medium m-0">Subiendo imágenes...</p>
+    } @else {
+      <i class="pi pi-cloud-upload mb-2" style="font-size: 2.5rem"></i>
+      <p class="text-700 font-medium m-0">Arrastra imágenes aquí o haz clic para seleccionar</p>
+      <p class="text-400 m-0 text-sm mt-1">JPG, PNG, GIF, WEBP — Máx. 5 MB por imagen</p>
+    }
+    <input
+      #fileInput
+      type="file"
+      accept="image/*"
+      multiple
+      (change)="onFileSelect($event)"
+      style="display: none"
+    />
+  </div>
+
+  <!-- Encabezado galería -->
+  <div class="flex align-items-center mb-3">
+    <h3 class="m-0 font-bold text-900">Galería de Imágenes</h3>
+    @if (hasImages()) {
+      <span class="ml-2 text-500 text-sm">({{ images().length }})</span>
+    }
   </div>
 
   <hr class="border-top-1 border-300 mb-4" />
@@ -33,7 +47,6 @@
         @for (img of images(); track img.id) {
           <div class="col-12 sm:col-6 md:col-4 lg:col-3">
             <div class="card-image-container relative border-round overflow-hidden shadow-2 hover:shadow-4 transition-all transition-duration-300">
-              <!-- Imagen con Preview -->
               <p-image
                 [src]="img.pathImag"
                 [alt]="'Imagen de cliente'"
@@ -41,8 +54,6 @@
                 appendTo="body"
                 imageClass="w-full h-15rem object-contain bg-gray-100"
               />
-              
-              <!-- Botón Eliminar Overlay -->
               <div class="absolute top-0 right-0 p-2">
                 <p-button
                   icon="pi pi-trash"
@@ -60,27 +71,36 @@
         }
       </div>
     } @else {
-      <div class="flex flex-column align-items-center justify-content-center py-8 bg-gray-50 border-round-xl border-2 border-dashed border-300">
-        <i class="pi pi-images text-400 mb-3" style="font-size: 4rem"></i>
-        <p class="text-700 font-medium text-xl m-0">No hay imágenes disponibles</p>
-        <p class="text-500 m-0">Sube tu primera imagen para comenzar la galería.</p>
+      <div class="flex flex-column align-items-center justify-content-center py-6 text-center">
+        <i class="pi pi-images text-300 mb-2" style="font-size: 3rem"></i>
+        <p class="text-500 m-0">No hay imágenes aún</p>
       </div>
     }
   }
 </div>
 
 <style>
+  .drop-zone {
+    border-color: var(--surface-300);
+    background: var(--surface-50);
+    color: var(--text-color-secondary);
+  }
+  .drop-zone:hover {
+    border-color: var(--primary-color);
+    background: var(--primary-50);
+    color: var(--primary-color);
+  }
+  .drop-zone.drag-active {
+    border-color: var(--primary-color);
+    background: var(--primary-50);
+    color: var(--primary-color);
+    transform: scale(1.01);
+  }
   .object-contain {
     object-fit: contain;
   }
-  .object-cover {
-    object-fit: cover;
-  }
   .backdrop-blur-sm {
     backdrop-filter: blur(4px);
-  }
-  .card-image-container:hover p-image {
-    transform: scale(1.05);
   }
   p-image {
     transition: transform 0.3s ease-in-out;

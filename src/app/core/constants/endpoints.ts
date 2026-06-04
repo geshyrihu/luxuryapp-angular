@@ -490,6 +490,13 @@ export const Endpoints = {
     selectItems: "select-items/banks",
     update: (id: string) => `Banks/${id}`,
   },
+  AsambleaChecklistTemplate: {
+    create: "AsambleaChecklistTemplate",
+    delete: (id: string) => `AsambleaChecklistTemplate/${id}`,
+    getAll: "AsambleaChecklistTemplate",
+    getById: (id: string) => `AsambleaChecklistTemplate/${id}`,
+    update: (id: string) => `AsambleaChecklistTemplate/${id}`,
+  },
   CalendarioMaestroEquipo: {
     base: "CalendarioMaestroEquipo",
     getById: (id: string) => `CalendarioMaestroEquipo/${id}`,
@@ -546,6 +553,10 @@ export const Endpoints = {
         `contabilidad-online/reporte-financiero/${customerId}/${year}/${mes}`,
       bancosInversiones: (customerId: string, year: number, mes: number) =>
         `contabilidad-online/bancos-inversiones/${customerId}/${year}/${mes}`,
+      fondoReserva: (customerId: string, year: number, mes: number) =>
+        `contabilidad-online/fondo-reserva/${customerId}/${year}/${mes}`,
+      proyectosAprobados: (customerId: string, year: number) =>
+        `contabilidad-online/proyectos-aprobados/${customerId}/${year}`,
       cashFlow: (customerId: string, year: number) =>
         `contabilidad-online/flujo-caja/${customerId}/${year}`,
       collectionAnalysis: (customerId: string, year: number, month: number) =>
@@ -580,6 +591,7 @@ export const Endpoints = {
   },
   CustomerImages: {
     create: "customer-images",
+    createBulk: "customer-images/bulk",
     delete: (id: string) => `customer-images/${id}`,
     getByCustomerId: (customerId: string) => `customer-images/${customerId}`,
   },
@@ -1293,7 +1305,7 @@ export const Endpoints = {
   SelectItems: {
     applicationRolesToAdministrator: "application-roles-to-administrator",
     applicationRolesToProvider: "application-roles-to-provider",
-    applicationUser: "ApplicationUser",
+    applicationUser: "application-users",
     applicationUsersByCustomer: (customerId: string) =>
       `application-users/${customerId}`,
     bank: "bank",

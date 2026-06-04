@@ -1,13 +1,15 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { SelectModule } from "primeng/select";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { IonButtonDelete, IonButtonEdit } from "src/app/core/components/buttons/mobile";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -19,11 +21,14 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { Endpoints } from "../../../core/constants/endpoints";
 import { CustomerDataCompanyDTO } from "./customer-data-company-dto";
 import { CustomerDataCompanyForm } from "./customer-data-company-form";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
+
 @Component({
   selector: "app-customer-data-company-list",
   templateUrl: "./customer-data-company-list.html",
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     TableModule,
     SelectButtonModule,
     CustomButtonEdit,
@@ -33,14 +38,19 @@ import { CustomerDataCompanyForm } from "./customer-data-company-form";
     DataViewMobile,
     ActionMenu,
     SelectModule,
+    CustomInputSelectSignal,
+    IonItem,
+    IonLabel,
+    IonButtonEdit,
+    IonButtonDelete,
   ],
 })
 export class CustomerDataCompanyList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
-  // Declaración e inicialización de variables
+  // DeclaraciÃ³n e inicializaciÃ³n de variables
   data = signal<CustomerDataCompanyDTO[]>([]);
-  globalFilterFields = signal<string[]>([
+  readonly globalFilterFields = signal<string[]>([
     "customer",
     "email",
     "phoneNumber",
@@ -48,18 +58,19 @@ export class CustomerDataCompanyList implements OnInit {
     "applicationRoleName",
   ]);
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
-  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
+  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
+  ref: DynamicDialogRef; // Referencia a un cuadro de diÃ¡logo modal
 
   groupingOptions = [
     { label: "Agrupar por Cliente", value: "numeroCliente" },
     { label: "Agrupar por Rol", value: "applicationRoleSortOrder" },
   ];
+  groupingOptionControl = new FormControl<string>("numeroCliente", { nonNullable: true });
   groupingOption = signal<string>("numeroCliente");
 
   sortedData = computed(() => {
-    const data = [...this.data()];
+    const data = [...(this.data() ?? [])];
     const key = this.groupingOption();
 
     if (key === "numeroCliente") {
@@ -99,7 +110,7 @@ export class CustomerDataCompanyList implements OnInit {
     this.apiResponseS
       .onGetList(Endpoints.CustomerDataCompany.getAll)
       .then((result: CustomerDataCompanyDTO[]) => {
-        this.data.set(result);
+        this.data.set(result ?? []);
         this.loading.set(false);
       });
   }
@@ -116,7 +127,7 @@ export class CustomerDataCompanyList implements OnInit {
       });
   }
 
-  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
+  // FunciÃ³n para abrir un cuadro de diÃ¡logo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(

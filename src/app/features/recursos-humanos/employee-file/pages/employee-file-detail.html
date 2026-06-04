@@ -9,46 +9,52 @@
 
 <!-- ── Cabecera fija ────────────────────────────────────────────────────────── -->
 @if (header()) {
-<div class="card mb-4 flex flex-column sm:flex-row align-items-center gap-4">
+<div class="card mb-4 flex flex-column sm:flex-row align-items-center gap-4 shadow-1">
   <div class="flex-shrink-0">
     @if (header()!.photoUrl) {
     <img
       [src]="header()!.photoUrl"
       [alt]="header()!.fullName"
-      class="w-5rem h-5rem border-round-circle object-cover border-2 surface-border"
+      class="w-7rem h-7rem border-round-circle object-cover border-2 surface-border shadow-2"
     />
     } @else {
     <div
-      class="w-5rem h-5rem border-round-circle surface-100 flex align-items-center justify-content-center text-primary text-2xl font-bold"
+      class="w-7rem h-7rem border-round-circle surface-100 flex align-items-center justify-content-center text-primary text-3xl font-bold border-2 border-primary-100"
     >
       {{ header()!.fullName.charAt(0) }}
     </div>
     }
   </div>
-  <div class="flex-flex-grow-1-1">
-    <div class="flex flex-wrap align-items-center gap-3">
-      <h2 class="text-xl font-bold m-0">{{ header()!.fullName }}</h2>
+  <div class="flex-grow-1 text-center sm:text-left">
+    <div class="flex flex-wrap align-items-center justify-content-center sm:justify-content-start gap-3">
+      <h2 class="text-3xl font-bold m-0 text-900">{{ header()!.fullName }}</h2>
       <span
-        [class]="'badge border-1 px-2 py-1 text-xs ' + (header()!.isActive ? 'bg-green-100 text-green-700 border-green-200' : 'surface-100 text-600 surface-border')"
+        [class]="'badge border-1 px-3 py-1 text-xs font-semibold ' + (header()!.isActive ? 'bg-green-100 text-green-700 border-green-200' : 'surface-100 text-600 border-300')"
       >
         {{ header()!.isActive ? 'Activo' : 'Inactivo' }}
       </span>
     </div>
-    <p class="text-500 text-sm m-0">
+    <p class="text-600 text-lg m-0 mt-1 font-medium">
       {{ header()!.puesto }} — {{ header()!.departamento }}
     </p>
-    <div class="flex flex-wrap mt-2 text-sm text-500 gap-3">
-      <span
-        >No. Empleado:
-        <strong>{{ header()!.numberEmployee ?? '—' }}</strong></span
-      >
-      <span>Correo: <strong>{{ header()!.email }}</strong></span>
-      <span>Teléfono: <strong>{{ header()!.phoneNumber || '—' }}</strong></span>
+    <div class="flex flex-wrap justify-content-center sm:justify-content-start mt-3 text-sm text-500 gap-4">
+      <div class="flex align-items-center gap-2">
+        <i class="pi pi-id-card"></i>
+        <span>No. Empleado: <strong>{{ header()!.numberEmployee ?? '—' }}</strong></span>
+      </div>
+      <div class="flex align-items-center gap-2">
+        <i class="pi pi-envelope"></i>
+        <span><strong>{{ header()!.email }}</strong></span>
+      </div>
+      <div class="flex align-items-center gap-2">
+        <i class="pi pi-phone"></i>
+        <span><strong>{{ header()!.phoneNumber || '—' }}</strong></span>
+      </div>
       @if (header()!.dateAdmission) {
-      <span
-        >Ingreso:
-        <strong>{{ header()!.dateAdmission | date:'dd/MM/yyyy' }}</strong></span
-      >
+      <div class="flex align-items-center gap-2">
+        <i class="pi pi-calendar"></i>
+        <span>Ingreso: <strong>{{ header()!.dateAdmission | date:'dd/MM/yyyy' }}</strong></span>
+      </div>
       }
     </div>
   </div>
@@ -58,107 +64,96 @@
 <!-- ── Pestañas ─────────────────────────────────────────────────────────────── -->
 <p-tabs (activeIndexChange)="onTabChange($event)">
   <p-tablist>
-    <p-tab [value]="0">Datos Personales</p-tab>
-    <p-tab [value]="1">Contacto de Emergencia</p-tab>
-    <p-tab [value]="2">Datos Clínicos</p-tab>
-    <p-tab [value]="3">Datos Bancarios</p-tab>
-    <p-tab [value]="4">Contratos</p-tab>
-    <p-tab [value]="5">Puesto y Salario</p-tab>
-    <p-tab [value]="6">Vacaciones y Permisos</p-tab>
-    <p-tab [value]="7">Incidencias</p-tab>
-    <p-tab [value]="8">Evaluaciones</p-tab>
-    <p-tab [value]="9">Solicitudes</p-tab>
+    <p-tab [value]="0"><i class="pi pi-user mr-2"></i>Personales</p-tab>
+    <p-tab [value]="1"><i class="pi pi-phone mr-2"></i>Emergencia</p-tab>
+    <p-tab [value]="2"><i class="pi pi-heart mr-2"></i>Clínicos</p-tab>
+    <p-tab [value]="3"><i class="pi pi-wallet mr-2"></i>Bancarios</p-tab>
+    <p-tab [value]="4"><i class="pi pi-file mr-2"></i>Contratos</p-tab>
+    <p-tab [value]="5"><i class="pi pi-briefcase mr-2"></i>Puesto</p-tab>
+    <p-tab [value]="6"><i class="pi pi-calendar-plus mr-2"></i>Vacaciones</p-tab>
+    <p-tab [value]="7"><i class="pi pi-exclamation-triangle mr-2"></i>Incidencias</p-tab>
+    <p-tab [value]="8"><i class="pi pi-chart-line mr-2"></i>Evaluaciones</p-tab>
+    <p-tab [value]="9"><i class="pi pi-send mr-2"></i>Solicitudes</p-tab>
   </p-tablist>
 
   <p-tabpanels>
     <!-- Tab 1: Datos personales -->
     <p-tabpanel [value]="0">
       @if (personalData(); as pd) {
-      <div
-        class="grid py-4"
-      >
+      <div class="grid py-4 row-gap-4">
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Nombre</span>
-          <p class="font-medium m-0">{{ pd.firstName }} {{ pd.lastName }}</p>
-        </div>
-
-        <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Correo</span>
-          <p class="font-medium m-0">{{ pd.email }}</p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Nombre Completo</label>
+          <p class="font-semibold text-900 m-0">{{ pd.firstName }} {{ pd.lastName }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Teléfono</span>
-          <p class="font-medium m-0">
-            {{ pd.phoneNumberPrefix }} {{ pd.phoneNumber }}
-          </p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Correo Institucional</label>
+          <p class="font-semibold text-900 m-0">{{ pd.email }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Teléfono local</span>
-          <p class="font-medium m-0">{{ pd.localPhone || '—' }}</p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Teléfono Móvil</label>
+          <p class="font-semibold text-900 m-0">{{ pd.phoneNumberPrefix }} {{ pd.phoneNumber }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Fecha de nacimiento</span>
-          <p class="font-medium m-0">
-            {{ (pd.birth | date:'dd/MM/yyyy':'UTC') || '—' }}
-          </p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Teléfono Local</label>
+          <p class="font-semibold text-900 m-0">{{ pd.localPhone || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">CURP</span>
-          <p class="font-medium m-0">{{ pd.curp || '—' }}</p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Fecha de Nacimiento</label>
+          <p class="font-semibold text-900 m-0">{{ (pd.birth | date:'dd/MM/yyyy':'UTC') || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">RFC</span>
-          <p class="font-medium m-0">{{ pd.rfc || '—' }}</p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">CURP</label>
+          <p class="font-semibold text-900 m-0">{{ pd.curp || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">NSS</span>
-          <p class="font-medium m-0">{{ pd.nss || '—' }}</p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">RFC</label>
+          <p class="font-semibold text-900 m-0">{{ pd.rfc || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Sexo</span>
-          <p class="font-medium m-0">{{ pd.sex || '—' }}</p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">NSS</label>
+          <p class="font-semibold text-900 m-0">{{ pd.nss || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Tipo de sangre</span>
-          <p class="font-medium m-0">{{ pd.bloodType || '—' }}</p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Género</label>
+          <p class="font-semibold text-900 m-0">{{ pd.sex || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Nacionalidad</span>
-          <p class="font-medium m-0">{{ pd.nationality || '—' }}</p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Tipo de Sangre</label>
+          <p class="font-semibold text-900 m-0">{{ pd.bloodType || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Estado civil</span>
-          <p class="font-medium m-0">{{ pd.maritalStatus || '—' }}</p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Nacionalidad</label>
+          <p class="font-semibold text-900 m-0">{{ pd.nationality || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Escolaridad</span>
-          <p class="font-medium m-0">{{ pd.educationLevel || '—' }}</p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Estado Civil</label>
+          <p class="font-semibold text-900 m-0">{{ pd.maritalStatus || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Fecha de ingreso</span>
-          <p class="font-medium m-0">
-            {{ (pd.dateAdmission | date:'dd/MM/yyyy':'UTC') || '—' }}
-          </p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Nivel Educativo</label>
+          <p class="font-semibold text-900 m-0">{{ pd.educationLevel || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Salario</span>
-          <p class="font-medium m-0">
-            {{ pd.salary | currency:'MXN':'symbol':'1.2-2' }}
-          </p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Fecha de Ingreso</label>
+          <p class="font-semibold text-900 m-0">{{ (pd.dateAdmission | date:'dd/MM/yyyy':'UTC') || '—' }}</p>
+        </div>
+        <div class="col-12 sm:col-6 lg:col-4">
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Salario Mensual</label>
+          <p class="font-bold text-primary text-lg m-0">{{ pd.salary | currency:'MXN':'symbol':'1.2-2' }}</p>
         </div>
       </div>
       } @else {
-      <p class="text-400 py-4">Sin datos personales registrados.</p>
+      <div class="flex flex-column align-items-center py-8 text-400">
+        <i class="pi pi-user-minus text-5xl mb-3"></i>
+        <span>Sin datos personales registrados.</span>
+      </div>
       }
     </p-tabpanel>
 
     <!-- Tab 2: Contacto de emergencia -->
     <p-tabpanel [value]="1">
       @if (emergencyContacts().length > 0) {
-      <p-table
-        [value]="emergencyContacts()"
-        styleClass="custom-table card hidden md:block mt-2"
-      >
+      <p-table [value]="emergencyContacts()" styleClass="custom-table card shadow-1 mt-3">
         <ng-template pTemplate="header">
           <tr>
             <th>Nombre</th>
@@ -169,188 +164,200 @@
         </ng-template>
         <ng-template pTemplate="body" let-item>
           <tr>
-            <td>{{ item.nameContact }}</td>
-            <td>{{ item.phoneNumber }}</td>
+            <td class="font-medium">{{ item.nameContact }}</td>
+            <td><i class="pi pi-phone mr-2 text-primary"></i>{{ item.phoneNumber }}</td>
             <td>{{ item.relation }}</td>
-            <td>{{ item.contactOfBeneficiary }}</td>
+            <td>
+              <span class="badge surface-100 text-600">{{ item.contactOfBeneficiary }}</span>
+            </td>
           </tr>
         </ng-template>
       </p-table>
       } @else {
-      <p class="text-400 py-4">
-        Sin contactos de emergencia registrados.
-      </p>
+      <div class="flex flex-column align-items-center py-8 text-400">
+        <i class="pi pi-phone text-5xl mb-3"></i>
+        <span>Sin contactos de emergencia registrados.</span>
+      </div>
       }
     </p-tabpanel>
 
     <!-- Tab 3: Datos clínicos -->
     <p-tabpanel [value]="2">
       @if (clinicalData().length > 0) {
-      <p-table
-        [value]="clinicalData()"
-        styleClass="custom-table card hidden md:block mt-2"
-      >
+      <p-table [value]="clinicalData()" styleClass="custom-table card shadow-1 mt-3">
         <ng-template pTemplate="header">
           <tr>
-            <th>Padecimiento</th>
-            <th>Descripción</th>
+            <th>Padecimiento / Alergia</th>
+            <th>Observaciones y Descripción</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-item>
           <tr>
-            <td>{{ item.name }}</td>
+            <td class="font-medium text-red-600"><i class="pi pi-heart-fill mr-2"></i>{{ item.name }}</td>
             <td>{{ item.description }}</td>
           </tr>
         </ng-template>
       </p-table>
       } @else {
-      <p class="text-400 py-4">Sin datos clínicos registrados.</p>
+      <div class="flex flex-column align-items-center py-8 text-400">
+        <i class="pi pi-heart-fill text-5xl mb-3"></i>
+        <span>Sin datos clínicos registrados.</span>
+      </div>
       }
     </p-tabpanel>
 
     <!-- Tab 4: Datos bancarios -->
     <p-tabpanel [value]="3">
       @if (bankData().length > 0) {
-      <p-table
-        [value]="bankData()"
-        styleClass="custom-table card hidden md:block mt-2"
-      >
+      <p-table [value]="bankData()" styleClass="custom-table card shadow-1 mt-3">
         <ng-template pTemplate="header">
           <tr>
-            <th>Banco</th>
-            <th>No. Cuenta</th>
-            <th>CLABE</th>
-            <th>Titular</th>
-            <th>Teléfono</th>
-            <th>Parentesco</th>
+            <th>Institución Bancaria</th>
+            <th>Número de Cuenta</th>
+            <th>CLABE Interbancaria</th>
+            <th>Titular de la Cuenta</th>
+            <th>Información de Contacto</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-item>
           <tr>
-            <td>{{ item.bankName }}</td>
+            <td class="font-bold text-primary">{{ item.bankName }}</td>
             <td>{{ item.bankAccount }}</td>
-            <td>{{ item.bankKey }}</td>
+            <td class="font-medium">{{ item.bankKey }}</td>
             <td>{{ item.nameContact }}</td>
-            <td>{{ item.phoneNumber }}</td>
-            <td>{{ item.relacion || '—' }}</td>
+            <td>
+              <div class="flex flex-column">
+                <span>{{ item.phoneNumber }}</span>
+                <small class="text-500">{{ item.relacion || '—' }}</small>
+              </div>
+            </td>
           </tr>
         </ng-template>
       </p-table>
       } @else {
-      <p class="text-400 py-4">Sin datos bancarios registrados.</p>
+      <div class="flex flex-column align-items-center py-8 text-400">
+        <i class="pi pi-credit-card text-5xl mb-3"></i>
+        <span>Sin datos bancarios registrados.</span>
+      </div>
       }
     </p-tabpanel>
 
     <!-- Tab 5: Contratos -->
     <p-tabpanel [value]="4">
       @if (contracts().length > 0) {
-      <p-table
-        [value]="contracts()"
-        styleClass="custom-table card hidden md:block mt-2"
-      >
+      <p-table [value]="contracts()" styleClass="custom-table card shadow-1 mt-3">
         <ng-template pTemplate="header">
           <tr>
-            <th>No. Contrato</th>
-            <th>Tipo</th>
+            <th>Folio Contrato</th>
+            <th>Tipo de Contrato</th>
             <th>Estatus</th>
-            <th>Inicio</th>
-            <th>Fin</th>
-            <th>Salario</th>
+            <th>Vigencia (Inicio - Fin)</th>
+            <th>Salario Pactado</th>
+            <th>Notas</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-item>
           <tr>
-            <td>{{ item.contractNumber }}</td>
+            <td class="font-bold">#{{ item.contractNumber }}</td>
             <td>{{ item.contractType }}</td>
             <td>
-              <span [class]="'badge ' + getStatusBadge(item.contractStatus)"
-                >{{ item.contractStatus }}</span
-              >
+              <span [class]="'badge ' + getStatusBadge(item.contractStatus)">{{ item.contractStatus }}</span>
             </td>
-            <td>{{ item.startDate | date:'dd/MM/yyyy' }}</td>
-            <td>{{ (item.endDate | date:'dd/MM/yyyy') || '—' }}</td>
-            <td>{{ item.contractSalary | currency:'MXN':'symbol':'1.2-2' }}</td>
+            <td>
+              <div class="flex align-items-center gap-2">
+                <span>{{ item.startDate | date:'dd/MM/yyyy' }}</span>
+                <i class="pi pi-arrow-right text-xs text-400"></i>
+                <span>{{ (item.endDate | date:'dd/MM/yyyy') || 'Indeterminado' }}</span>
+              </div>
+            </td>
+            <td class="font-semibold text-primary">{{ item.contractSalary | currency:'MXN':'symbol':'1.2-2' }}</td>
+            <td><small class="text-500">{{ item.notes || '—' }}</small></td>
           </tr>
         </ng-template>
       </p-table>
       } @else {
-      <p class="text-400 py-4">Sin contratos registrados.</p>
+      <div class="flex flex-column align-items-center py-8 text-400">
+        <i class="pi pi-file text-5xl mb-3"></i>
+        <span>Sin contratos registrados en el sistema.</span>
+      </div>
       }
     </p-tabpanel>
 
     <!-- Tab 6: Puesto y salario -->
     <p-tabpanel [value]="5">
       @if (workPosition(); as wp) {
-      <div
-        class="grid py-4 mb-4"
-      >
+      <div class="grid py-4 mb-4 row-gap-4">
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Puesto</span>
-          <p class="font-medium m-0">{{ wp.puesto || '—' }}</p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Puesto Actual</label>
+          <p class="font-bold text-900 m-0 text-xl">{{ wp.puesto || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Departamento</span>
-          <p class="font-medium m-0">{{ wp.departamento || '—' }}</p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Departamento</label>
+          <p class="font-semibold text-900 m-0">{{ wp.departamento || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Folio</span>
-          <p class="font-medium m-0">{{ wp.folio || '—' }}</p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Folio Posición</label>
+          <p class="font-semibold text-900 m-0">#{{ wp.folio || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Sueldo base</span>
-          <p class="font-medium m-0">
-            {{ wp.sueldoBase | currency:'MXN':'symbol':'1.2-2' }}
-          </p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Sueldo de Contratación</label>
+          <p class="font-bold text-primary m-0 text-lg">{{ wp.sueldoBase | currency:'MXN':'symbol':'1.2-2' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Turno</span>
-          <p class="font-medium m-0">{{ wp.turnoTrabajo || '—' }}</p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Turno Asignado</label>
+          <p class="font-semibold text-900 m-0">{{ wp.turnoTrabajo || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Estado</span>
-          <p class="font-medium m-0">{{ wp.state || '—' }}</p>
+          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Estado de Ocupación</label>
+          <span class="badge bg-blue-100 text-blue-700 font-semibold">{{ wp.state || '—' }}</span>
         </div>
       </div>
 
       @if (wp.salaryModifications.length > 0) {
-      <h4 class="text-sm font-semibold text-500 mb-2">
-        Historial de modificaciones salariales
-      </h4>
-      <p-table
-        [value]="wp.salaryModifications"
-        styleClass="custom-table card hidden md:block"
-      >
-        <ng-template pTemplate="header">
-          <tr>
-            <th>Folio</th>
-            <th>Puesto Anterior</th>
-            <th>Puesto Nuevo</th>
-            <th>Sal. Anterior</th>
-            <th>Sal. Nuevo</th>
-            <th>Fecha</th>
-            <th>Estatus</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-item>
-          <tr>
-            <td>{{ item.folio }}</td>
-            <td>{{ item.puestoAnterior }}</td>
-            <td>{{ item.puestoNuevo }}</td>
-            <td>
-              {{ item.salarioAnterior | currency:'MXN':'symbol':'1.2-2' }}
-            </td>
-            <td>{{ item.salarioNuevo | currency:'MXN':'symbol':'1.2-2' }}</td>
-            <td>{{ item.executionDate | date:'dd/MM/yyyy' }}</td>
-            <td>
-              <span [class]="'badge ' + getStatusBadge(item.status)"
-                >{{ item.status }}</span
-              >
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
+      <div class="mt-4">
+        <h4 class="text-lg font-bold text-900 mb-3 flex align-items-center gap-2">
+          <i class="pi pi-history text-primary"></i>
+          Historial de Modificaciones Salariales
+        </h4>
+        <p-table [value]="wp.salaryModifications" styleClass="custom-table card shadow-1">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Folio</th>
+              <th>Movimiento de Puesto</th>
+              <th>Ajuste Salarial</th>
+              <th>Fecha de Aplicación</th>
+              <th>Estatus</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item>
+            <tr>
+              <td>#{{ item.folio }}</td>
+              <td>
+                <div class="flex align-items-center gap-2">
+                  <span class="text-500">{{ item.puestoAnterior }}</span>
+                  <i class="pi pi-chevron-right text-xs text-primary"></i>
+                  <span class="font-semibold">{{ item.puestoNuevo }}</span>
+                </div>
+              </td>
+              <td>
+                <div class="flex flex-column">
+                  <span class="text-xs text-500">De: {{ item.salarioAnterior | currency:'MXN' }}</span>
+                  <span class="font-bold text-green-600">A: {{ item.salarioNuevo | currency:'MXN' }}</span>
+                </div>
+              </td>
+              <td>{{ item.executionDate | date:'dd/MM/yyyy' }}</td>
+              <td>
+                <span [class]="'badge ' + getStatusBadge(item.status)">{{ item.status }}</span>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
       } } @else {
-      <p class="text-400 py-4">Sin información de posición laboral.</p>
+      <div class="flex flex-column align-items-center py-8 text-400">
+        <i class="pi pi-briefcase text-5xl mb-3"></i>
+        <span>Sin información de posición laboral activa.</span>
+      </div>
       }
     </p-tabpanel>
 
@@ -358,241 +365,350 @@
     <p-tabpanel [value]="6">
       @if (vacationsLeaves(); as vl) {
       <!-- Vacaciones -->
-      <h4 class="text-sm font-semibold text-500 mb-2 mt-2">Vacaciones</h4>
-      @if (vl.vacations.length > 0) {
-      <p-table
-        [value]="vl.vacations"
-        styleClass="custom-table card hidden md:block mb-4"
-      >
-        <ng-template pTemplate="header">
-          <tr>
-            <th>Inicio</th>
-            <th>Fin</th>
-            <th>Estatus</th>
-            <th>Solicitud</th>
-            <th>Prima Vacacional</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-item>
-          <tr>
-            <td>{{ item.startDate | date:'dd/MM/yyyy' }}</td>
-            <td>{{ item.endDate | date:'dd/MM/yyyy' }}</td>
-            <td>
-              <span [class]="'badge ' + getStatusBadge(item.status)"
-                >{{ item.status }}</span
-              >
-            </td>
-            <td>{{ item.requestDate | date:'dd/MM/yyyy' }}</td>
-            <td>{{ item.paidVacationBonus ? 'Sí' : 'No' }}</td>
-          </tr>
-        </ng-template>
-      </p-table>
-      } @else {
-      <p class="text-400 mb-4">Sin solicitudes de vacaciones.</p>
-      }
+      <div class="mb-5">
+        <h4 class="text-lg font-bold text-900 mb-3 flex align-items-center gap-2">
+          <i class="pi pi-sun text-orange-500"></i>
+          Solicitudes de Vacaciones
+        </h4>
+        @if (vl.vacations.length > 0) {
+        <p-table [value]="vl.vacations" styleClass="custom-table card shadow-1">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Periodo Disfrutado</th>
+              <th>Estatus</th>
+              <th>Fecha Solicitud</th>
+              <th>Prima Vacacional</th>
+              <th>Motivo/Comentarios</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item>
+            <tr>
+              <td class="font-semibold">
+                {{ item.startDate | date:'dd/MM/yyyy' }} - {{ item.endDate | date:'dd/MM/yyyy' }}
+              </td>
+              <td>
+                <span [class]="'badge ' + getStatusBadge(item.status)">{{ item.status }}</span>
+              </td>
+              <td>{{ item.requestDate | date:'dd/MM/yyyy' }}</td>
+              <td class="text-center">
+                @if (item.paidVacationBonus) {
+                <span class="badge bg-green-100 text-green-700">Pagada</span>
+                } @else {
+                <span class="text-400">N/A</span>
+                }
+              </td>
+              <td><small class="text-500">{{ item.reason || '—' }}</small></td>
+            </tr>
+          </ng-template>
+        </p-table>
+        } @else {
+        <p class="text-400 p-3 surface-50 border-round">No se registran periodos vacacionales solicitados.</p>
+        }
+      </div>
 
       <!-- Permisos -->
-      <h4 class="text-sm font-semibold text-500 mb-2">Permisos</h4>
-      @if (vl.leaves.length > 0) {
-      <p-table
-        [value]="vl.leaves"
-        styleClass="custom-table card hidden md:block"
-      >
-        <ng-template pTemplate="header">
-          <tr>
-            <th>Tipo</th>
-            <th>Inicio</th>
-            <th>Fin</th>
-            <th>Estatus</th>
-            <th>Goce de sueldo</th>
-            <th>Solicitud</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-item>
-          <tr>
-            <td>{{ item.leaveType }}</td>
-            <td>{{ item.startDate | date:'dd/MM/yyyy' }}</td>
-            <td>{{ item.endDate | date:'dd/MM/yyyy' }}</td>
-            <td>
-              <span [class]="'badge ' + getStatusBadge(item.status)"
-                >{{ item.status }}</span
-              >
-            </td>
-            <td>{{ item.paidStatus }}</td>
-            <td>{{ item.requestDate | date:'dd/MM/yyyy' }}</td>
-          </tr>
-        </ng-template>
-      </p-table>
-      } @else {
-      <p class="text-400">Sin solicitudes de permiso.</p>
-      } }
+      <div>
+        <h4 class="text-lg font-bold text-900 mb-3 flex align-items-center gap-2">
+          <i class="pi pi-clock text-blue-500"></i>
+          Permisos y Ausencias
+        </h4>
+        @if (vl.leaves.length > 0) {
+        <p-table [value]="vl.leaves" styleClass="custom-table card shadow-1">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Tipo de Permiso</th>
+              <th>Periodo</th>
+              <th>Estatus</th>
+              <th>Goce de Sueldo</th>
+              <th>Fecha Solicitud</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item>
+            <tr>
+              <td class="font-semibold text-primary">{{ item.leaveType }}</td>
+              <td>{{ item.startDate | date:'dd/MM/yyyy' }} - {{ item.endDate | date:'dd/MM/yyyy' }}</td>
+              <td>
+                <span [class]="'badge ' + getStatusBadge(item.status)">{{ item.status }}</span>
+              </td>
+              <td>
+                <span [class]="'badge ' + (item.paidStatus === 'Con Goce' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700')">
+                  {{ item.paidStatus }}
+                </span>
+              </td>
+              <td>{{ item.requestDate | date:'dd/MM/yyyy' }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+        } @else {
+        <p class="text-400 p-3 surface-50 border-round">No se registran permisos especiales.</p>
+        }
+      </div>
+      }
     </p-tabpanel>
 
     <!-- Tab 8: Incidencias -->
     <p-tabpanel [value]="7">
       @if (incidents().length > 0) {
-      <p-table
-        [value]="incidents()"
-        styleClass="custom-table card hidden md:block mt-2"
-      >
+      <p-table [value]="incidents()" styleClass="custom-table card shadow-1 mt-3">
         <ng-template pTemplate="header">
           <tr>
-            <th>Tipo</th>
-            <th>Categoría</th>
+            <th>Incidencia</th>
             <th>Severidad</th>
-            <th>Estatus</th>
-            <th>Fecha</th>
-            <th>Sanción</th>
-            <th>Acta</th>
+            <th>Investigación</th>
+            <th>Fecha Hechos</th>
+            <th>Sanción Aplicada</th>
+            <th class="text-center">Acta / Documentos</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-item>
           <tr>
-            <td>{{ item.incidentTypeName }}</td>
-            <td>{{ item.category }}</td>
             <td>
-              <span [class]="'badge ' + getSeverityBadge(item.severityLevel)"
-                >{{ item.severityLevel }}</span
-              >
+              <div class="flex flex-column">
+                <span class="font-bold text-900">{{ item.incidentTypeName }}</span>
+                <small class="text-500">{{ item.category }}</small>
+              </div>
             </td>
-            <td>{{ item.investigationStatus }}</td>
-            <td>{{ item.incidentDateTime | date:'dd/MM/yyyy' }}</td>
+            <td>
+              <span [class]="'badge font-semibold ' + getSeverityBadge(item.severityLevel)">{{ item.severityLevel }}</span>
+            </td>
+            <td>
+              <span class="badge surface-100 border-1 border-300 text-700">{{ item.investigationStatus }}</span>
+            </td>
+            <td class="font-medium">{{ item.incidentDateTime | date:'dd/MM/yyyy HH:mm' }}</td>
             <td>
               @if (item.sanction) {
-              <span class="text-sm">{{ item.sanction.sanctionTypeName }}</span>
-              } @else { <span class="text-400">—</span> }
+              <div class="flex flex-column">
+                <span class="font-semibold text-red-600">{{ item.sanction.sanctionTypeName }}</span>
+                <small class="text-500">Desde: {{ item.sanction.effectiveStartDate | date:'dd/MM/yyyy' }}</small>
+              </div>
+              } @else { <span class="text-400">Sin sanción</span> }
             </td>
             <td class="text-center">
-              @if (item.isActGenerated) {
-              <span class="badge bg-green-100 text-green-700">✓</span>
-              } @else {
-              <span class="badge surface-100 text-500">—</span>
-              }
+              <div class="flex justify-content-center gap-2">
+                @if (item.isActGenerated) {
+                <custom-button-item
+                  iconClass="pi pi-file-pdf"
+                  label="Ver Acta"
+                  [size]="'small'"
+                  severity="danger"
+                  variant="outlined"
+                  pTooltip="Descargar Acta Administrativa"
+                  (click)="onDownloadAct(item.administrativeActPdfPath)"
+                />
+                } @else {
+                <span class="text-400 text-xs italic">Acta no generada</span>
+                }
+              </div>
             </td>
           </tr>
         </ng-template>
       </p-table>
       } @else {
-      <p class="text-400 py-4">Sin incidencias registradas.</p>
+      <div class="flex flex-column align-items-center py-8 text-400">
+        <i class="pi pi-verified text-5xl mb-3"></i>
+        <span>El colaborador no cuenta con incidencias disciplinarias.</span>
+      </div>
       }
     </p-tabpanel>
 
     <!-- Tab 9: Evaluaciones -->
     <p-tabpanel [value]="8">
       @if (evaluations().length > 0) {
-      <p-table
-        [value]="evaluations()"
-        styleClass="custom-table card hidden md:block mt-2"
-      >
-        <ng-template pTemplate="header">
-          <tr>
-            <th>Plantilla</th>
-            <th>Evaluador</th>
-            <th>Fecha</th>
-            <th>Estatus</th>
-            <th>Calificación</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-item>
-          <tr>
-            <td>{{ item.templateName }}</td>
-            <td>{{ item.evaluatorName }}</td>
-            <td>{{ item.evaluationDate | date:'dd/MM/yyyy':'UTC' }}</td>
-            <td>
-              <span [class]="'badge ' + getStatusBadge(item.status)"
-                >{{ item.status }}</span
-              >
-            </td>
-            <td>{{ item.finalScore != null ? item.finalScore : '—' }}</td>
-          </tr>
-        </ng-template>
-      </p-table>
+      <div class="flex flex-column gap-4 mt-3">
+        @for (eval of evaluations(); track eval.id) {
+        <div class="card shadow-1 surface-ground p-0 overflow-hidden border-1 border-200">
+          <div class="flex flex-wrap align-items-center justify-content-between bg-white p-3 border-bottom-1 border-200">
+            <div class="flex align-items-center gap-3">
+              <div class="bg-primary-100 p-2 border-round">
+                <i class="pi pi-chart-bar text-primary text-xl"></i>
+              </div>
+              <div class="flex flex-column">
+                <span class="text-lg font-bold text-900">{{ eval.templateName }}</span>
+                <span class="text-sm text-500">Evaluador: <strong>{{ eval.evaluatorName }}</strong></span>
+              </div>
+            </div>
+            <div class="flex align-items-center gap-4">
+              <div class="text-center">
+                <span class="text-xs text-500 uppercase block">Calificación</span>
+                <span class="text-2xl font-black text-primary">{{ eval.finalScore != null ? (eval.finalScore | number:'1.1-1') : '—' }}</span>
+              </div>
+              <div class="text-right">
+                <span [class]="'badge ' + getStatusBadge(eval.status)">{{ eval.status }}</span>
+                <small class="block text-500 mt-1">{{ eval.evaluationDate | date:'dd/MM/yyyy':'UTC' }}</small>
+              </div>
+            </div>
+          </div>
+          @if (eval.finalComments) {
+          <div class="p-3 bg-white">
+            <label class="text-xs font-bold text-500 uppercase block mb-1">Comentarios del Evaluador</label>
+            <p class="m-0 text-700 italic border-left-3 border-primary-200 pl-3">"{{ eval.finalComments }}"</p>
+          </div>
+          }
+        </div>
+        }
+      </div>
       } @else {
-      <p class="text-400 py-4">Sin evaluaciones registradas.</p>
+      <div class="flex flex-column align-items-center py-8 text-400">
+        <i class="pi pi-chart-line text-5xl mb-3"></i>
+        <span>No se han realizado evaluaciones de desempeño a este colaborador.</span>
+      </div>
       }
     </p-tabpanel>
 
     <!-- Tab 10: Solicitudes -->
     <p-tabpanel [value]="9">
       @if (requests(); as req) {
+      <div class="grid py-3">
+        <!-- Alta -->
+        <div class="col-12 lg:col-6">
+          <h4 class="text-lg font-bold text-900 mb-3 flex align-items-center gap-2">
+            <i class="pi pi-user-plus text-green-500"></i>
+            Solicitud de Ingreso (Alta)
+          </h4>
+          @if (req.registerRequest; as r) {
+          <div class="card shadow-1 surface-50 p-4 border-round-xl">
+            <div class="grid row-gap-3">
+              <div class="col-6">
+                <span class="text-xs text-500 uppercase block">Folio</span>
+                <span class="font-bold text-primary">#{{ r.folio }}</span>
+              </div>
+              <div class="col-6">
+                <span class="text-xs text-500 uppercase block">Estatus</span>
+                <span class="badge bg-green-100 text-green-700">{{ r.status }}</span>
+              </div>
+              <div class="col-6">
+                <span class="text-xs text-500 uppercase block">Tipo Contrato</span>
+                <span class="font-medium">{{ r.typeContractRegister }}</span>
+              </div>
+              <div class="col-6">
+                <span class="text-xs text-500 uppercase block">Fuente</span>
+                <span class="font-medium">{{ r.fuente }}</span>
+              </div>
+              <div class="col-6">
+                <span class="text-xs text-500 uppercase block">Solicitado el</span>
+                <span class="font-medium">{{ r.requestDate | date:'dd/MM/yyyy' }}</span>
+              </div>
+              <div class="col-6">
+                <span class="text-xs text-500 uppercase block">Ejecutado el</span>
+                <span class="font-medium">{{ (r.executionDate | date:'dd/MM/yyyy') || 'Pendiente' }}</span>
+              </div>
+            </div>
+          </div>
+          } @else {
+          <div class="surface-50 border-round p-4 text-400 italic">No hay registros de solicitud de alta.</div>
+          }
+        </div>
 
-      <!-- Alta -->
-      <h4 class="text-sm font-semibold text-500 mb-2 mt-2">
-        Solicitud de Alta
-      </h4>
-      @if (req.registerRequest; as r) {
-      <div
-        class="grid mb-6"
-      >
-        <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Folio</span>
-          <p class="font-medium m-0">{{ r.folio }}</p>
-        </div>
-        <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Tipo de contrato</span>
-          <p class="font-medium m-0">{{ r.typeContractRegister }}</p>
-        </div>
-        <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Estatus</span>
-          <p class="font-medium m-0">{{ r.status }}</p>
-        </div>
-        <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Fecha de solicitud</span>
-          <p class="font-medium m-0">{{ r.requestDate | date:'dd/MM/yyyy' }}</p>
-        </div>
-        <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Fecha de ejecución</span>
-          <p class="font-medium m-0">
-            {{ (r.executionDate | date:'dd/MM/yyyy') || '—' }}
-          </p>
-        </div>
-        <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Fuente</span>
-          <p class="font-medium m-0">{{ r.fuente }}</p>
+        <!-- Baja -->
+        <div class="col-12 lg:col-6">
+          <h4 class="text-lg font-bold text-900 mb-3 flex align-items-center gap-2">
+            <i class="pi pi-user-minus text-red-500"></i>
+            Solicitud de Egreso (Baja)
+          </h4>
+          @if (req.dismissalRequest; as d) {
+          <div class="card shadow-1 surface-50 p-4 border-round-xl border-left-3 border-red-500">
+            <div class="grid row-gap-3">
+              <div class="col-6">
+                <span class="text-xs text-500 uppercase block">Folio</span>
+                <span class="font-bold text-red-600">#{{ d.folio }}</span>
+              </div>
+              <div class="col-6">
+                <span class="text-xs text-500 uppercase block">Estatus</span>
+                <span class="badge bg-red-100 text-red-700">{{ d.status }}</span>
+              </div>
+              
+              <!-- Firmas -->
+              <div class="col-6">
+                <span class="text-xs text-500 uppercase block">Firma Legal</span>
+                @if (d.isAuthorizedByLegal) {
+                  <span class="badge bg-green-100 text-green-700"><i class="pi pi-check mr-1"></i> {{ d.legalAuthorizationDate | date:'dd/MM/yyyy' }}</span>
+                } @else {
+                  <span class="badge surface-200 text-500"><i class="pi pi-clock mr-1"></i> Pendiente</span>
+                }
+              </div>
+              <div class="col-6">
+                <span class="text-xs text-500 uppercase block">Firma Nóminas</span>
+                @if (d.isAuthorizedByPayroll) {
+                  <span class="badge bg-green-100 text-green-700"><i class="pi pi-check mr-1"></i> {{ d.payrollAuthorizationDate | date:'dd/MM/yyyy' }}</span>
+                } @else {
+                  <span class="badge surface-200 text-500"><i class="pi pi-clock mr-1"></i> Pendiente</span>
+                }
+              </div>
+
+              <div class="col-6">
+                <span class="text-xs text-500 uppercase block">Motivo de Baja</span>
+                <span class="font-medium">{{ d.tipoBaja }}</span>
+              </div>
+              <div class="col-6">
+                <span class="text-xs text-500 uppercase block">Asistencia Legal</span>
+                <span class="font-medium">{{ d.lawyerAssistance ? 'Sí' : 'No' }}</span>
+              </div>
+              <div class="col-12">
+                <span class="text-xs text-500 uppercase block">Justificación</span>
+                <p class="m-0 text-700 italic">"{{ d.reasonForLeaving }}"</p>
+              </div>
+              <div class="col-6">
+                <span class="text-xs text-500 uppercase block">Último día</span>
+                <span class="font-bold">{{ (d.lastDayOfWork | date:'dd/MM/yyyy') || '—' }}</span>
+              </div>
+            </div>
+
+            <!-- Evidencia Adjunta -->
+            @if (d.supportFiles.length > 0 || d.incidents.length > 0 || d.evaluations.length > 0) {
+              <div class="mt-4 pt-3 border-top-1 border-300">
+                <h5 class="text-md font-bold text-800 mb-3"><i class="pi pi-folder-open mr-2 text-primary"></i> Evidencia Adjunta</h5>
+                
+                @if (d.supportFiles.length > 0) {
+                  <div class="mb-3">
+                    <span class="text-xs text-500 uppercase block mb-2">Archivos subidos</span>
+                    <div class="flex flex-wrap gap-2">
+                      @for (file of d.supportFiles; track file.id) {
+                        <a [href]="file.fileUrl" target="_blank" class="p-button p-button-outlined p-button-sm p-button-secondary no-underline">
+                          <i class="pi pi-file-pdf mr-2"></i> {{ file.fileName }}
+                        </a>
+                      }
+                    </div>
+                  </div>
+                }
+
+                @if (d.incidents.length > 0) {
+                  <div class="mb-3">
+                    <span class="text-xs text-500 uppercase block mb-2">Actas vinculadas</span>
+                    <div class="flex flex-wrap gap-2">
+                      @for (acta of d.incidents; track acta.id) {
+                        <div class="border-1 border-300 border-round p-2 surface-0 text-sm">
+                          <strong>{{ acta.incidentTypeName }}</strong> - {{ acta.incidentDateTime | date:'dd/MM/yyyy' }}
+                          @if (acta.administrativeActPdfUrl) {
+                            <a [href]="acta.administrativeActPdfUrl" target="_blank" class="ml-2 text-primary font-bold"><i class="pi pi-download"></i> PDF</a>
+                          }
+                        </div>
+                      }
+                    </div>
+                  </div>
+                }
+
+                @if (d.evaluations.length > 0) {
+                  <div class="mb-3">
+                    <span class="text-xs text-500 uppercase block mb-2">Evaluaciones vinculadas</span>
+                    <div class="flex flex-wrap gap-2">
+                      @for (eval of d.evaluations; track eval.id) {
+                        <div class="border-1 border-300 border-round p-2 surface-0 text-sm">
+                          <strong>{{ eval.templateName }}</strong> - {{ eval.evaluationDate | date:'dd/MM/yyyy' }}
+                          <span class="ml-2 text-500">Calificación: {{ eval.finalScore | number:'1.0-2' }}</span>
+                        </div>
+                      }
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+          } @else {
+          <div class="surface-50 border-round p-4 text-400 italic">No hay registros de solicitud de baja activa.</div>
+          }
         </div>
       </div>
-      } @else {
-      <p class="text-400 mb-4">Sin solicitud de alta.</p>
       }
-
-      <!-- Baja -->
-      <h4 class="text-sm font-semibold text-500 mb-2">
-        Solicitud de Baja
-      </h4>
-      @if (req.dismissalRequest; as d) {
-      <div
-        class="grid"
-      >
-        <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Folio</span>
-          <p class="font-medium m-0">{{ d.folio }}</p>
-        </div>
-        <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Tipo de baja</span>
-          <p class="font-medium m-0">{{ d.tipoBaja }}</p>
-        </div>
-        <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Estatus</span>
-          <p class="font-medium m-0">{{ d.status }}</p>
-        </div>
-        <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Motivo</span>
-          <p class="font-medium m-0">{{ d.reasonForLeaving }}</p>
-        </div>
-        <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Último día</span>
-          <p class="font-medium m-0">
-            {{ (d.lastDayOfWork | date:'dd/MM/yyyy') || '—' }}
-          </p>
-        </div>
-        <div class="col-12 sm:col-6 lg:col-4">
-          <span class="text-xs text-500">Asistencia legal</span>
-          <p class="font-medium m-0">{{ d.lawyerAssistance ? 'Sí' : 'No' }}</p>
-        </div>
-      </div>
-      } @else {
-      <p class="text-400">Sin solicitud de baja.</p>
-      } }
     </p-tabpanel>
   </p-tabpanels>
 </p-tabs>

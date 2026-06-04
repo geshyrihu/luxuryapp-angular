@@ -113,7 +113,7 @@ export const settingMenu = (aspRoleS: AspRoleService): ISettingsMenuItem[] => [
     visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
     label: "Unidades de medida",
     routerLink: "/settings/units-of-measurement",
-    icon: "pi pi-ruler",
+    icon: "pi pi-sliders-h",
   },
   {
     group: "Catalogos de Tickets y Mantenimiento",
@@ -126,7 +126,14 @@ export const settingMenu = (aspRoleS: AspRoleService): ISettingsMenuItem[] => [
     group: "Catalogos de Tickets y Mantenimiento",
     visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
     label: "Calendario maestro mtto",
-    routerLink: "/calendars/mantenimiento-master",
+    routerLink: "/calendars/maintenance-master",
+    icon: "pi pi-calendar",
+  },
+  {
+    group: "Catalogos de Tickets y Mantenimiento",
+    visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
+    label: "Calendario maestro Clasificacion",
+    routerLink: "/calendars/team-master-calendar",
     icon: "pi pi-calendar",
   },
   {
@@ -136,13 +143,13 @@ export const settingMenu = (aspRoleS: AspRoleService): ISettingsMenuItem[] => [
     routerLink: "/settings/catalog-asset",
     icon: "pi pi-star",
   },
-  {
-    group: "Catalogos de Tickets y Mantenimiento",
-    visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
-    label: "Catalogo de Permisos",
-    routerLink: "/settings/request-types-list",
-    icon: "pi pi-pencil",
-  },
+  // {
+  //   group: "Catalogos de Tickets y Mantenimiento",
+  //   visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
+  //   label: "Catalogo de Permisos",
+  //   routerLink: "/settings/request-types-list",
+  //   icon: "pi pi-pencil",
+  // },
   {
     group: "Catalogos de Tickets y Mantenimiento",
     visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
@@ -157,13 +164,13 @@ export const settingMenu = (aspRoleS: AspRoleService): ISettingsMenuItem[] => [
     routerLink: "/recurring-tasks",
     icon: "pi pi-clipboard",
   },
-  {
-    group: "Catalogos de Tickets y Mantenimiento",
-    visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
-    label: "Organigramas",
-    routerLink: "/organization-chart/view",
-    icon: "pi pi-sitemap",
-  },
+  // {
+  //   group: "Catalogos de Tickets y Mantenimiento",
+  //   visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
+  //   label: "Organigramas",
+  //   routerLink: "/organization-chart/view",
+  //   icon: "pi pi-sitemap",
+  // },
   {
     group: "Configuracion de Sistema",
     visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
@@ -191,6 +198,13 @@ export const settingMenu = (aspRoleS: AspRoleService): ISettingsMenuItem[] => [
     label: "Conciliacion juntas mensuales",
     routerLink: "/settings/juntas-mensuales-conciliacion",
     icon: "pi pi-link",
+  },
+  {
+    group: "Configuracion de Sistema",
+    visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
+    label: "Checklist asamblea",
+    routerLink: "/settings/asamblea-checklist-catalog",
+    icon: "pi pi-list-check",
   },
   {
     group: "Configuracion de Sistema",
@@ -232,7 +246,7 @@ export const settingMenu = (aspRoleS: AspRoleService): ISettingsMenuItem[] => [
     visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
     label: "Ajuste balance",
     routerLink: "/recursos-humanos/admin-balances-vacaciones",
-    icon: "pi pi-balance-scale",
+    icon: "pi pi-calculator",
   },
   {
     group: "Analisis y Registros",
@@ -279,14 +293,7 @@ export const settingMenu = (aspRoleS: AspRoleService): ISettingsMenuItem[] => [
   {
     group: "Herramientas de Desarrollo/Prueba",
     visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
-    label: "Estandar Documental",
-    routerLink: "/settings/estandar-documental",
-    icon: "pi pi-file",
-  },
-  {
-    group: "Herramientas de Desarrollo/Prueba",
-    visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
-    label: "Catálogo UI",
+    label: "Design System & Guide",
     routerLink: "/settings/ui-catalog",
     icon: "pi pi-compass",
   },
@@ -295,7 +302,7 @@ export const settingMenu = (aspRoleS: AspRoleService): ISettingsMenuItem[] => [
     visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
     label: "Depuracion",
     routerLink: "/settings/depuration",
-    icon: "pi pi-bug",
+    icon: "pi pi-cog",
   },
   {
     group: "Herramientas de Desarrollo/Prueba",

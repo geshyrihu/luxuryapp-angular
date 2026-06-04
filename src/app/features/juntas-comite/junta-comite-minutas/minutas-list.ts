@@ -170,6 +170,14 @@ export class MinutasList {
    * @param data Objeto con el ID de la minuta (0 para nuevo) y el título del modal.
    */
   showModalAddOrEditMeeting(data: { id: string; title: string }): void {
+    if (!data.id && this.tipoJunta !== 2) {
+      this.customToastS.showInfo(
+        "Alta desde agenda",
+        "Las minutas de comite y asamblea no pueden crearse directamente aqui. Primero registra la agenda de la junta para generar la sesion mensual y, desde ella, la minuta vinculada.",
+      );
+      return;
+    }
+
     this.dialogHandlerS
       .openDialog(
         MeetingForm,

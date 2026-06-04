@@ -1,0 +1,174 @@
+import { CommonModule, DatePipe } from "@angular/common";
+import { Component, computed, inject, signal } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { ButtonModule } from "primeng/button";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { SelectModule } from "primeng/select";
+import { TableModule } from "primeng/table";
+import { TagModule } from "primeng/tag";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+
+interface IChecklistItem {
+  id: string;
+  asambleaPlanId: string;
+  juntaMensualSessionId: string;
+  templateCode: string;
+  templateVersion: number;
+  title: string;
+  category: string;
+  description: string;
+  dueDate: string;
+  responsibleRole: string;
+  responsibleUserId: string;
+  status: number;
+  statusDisplayName: string;
+  completedAt: string | null;
+  evidenceNotes: string;
+  isManual: boolean;
+}
+
+interface IJuntaMensualSessionDetail {
+  id: string;
+  scheduledAt: string;
+  scheduledEndAt: string;
+  sessionTitle: string;
+  sessionTypeDisplayName: string;
+  location: string;
+  assembly?: {
+    requiresPaddles: boolean;
+    paddlesQuantity: number | null;
+    requiresAudioVisual: boolean;
+    audioVisualNotes: string;
+    operationalNotes: string;
+    specialInstructions: string;
+  } | null;
+}
+
+@Component({
+  selector: "app-junta-mensual-session-checklist-dialog",
+  templateUrl: "./junta-mensual-session-checklist-dialog.html",
+  imports: [
+    CommonModule,
+    FormsModule,
+    TableModule,
+    SelectModule,
+    ButtonModule,
+    TagModule,
+    DatePipe,
+  ],
+})
+export class JuntaMensualSessionChecklistDialog {
+  private readonly apiResponseS = inject(ApiResponseService);
+  private readonly config = inject(DynamicDialogConfig);
+  private readonly ref = inject(DynamicDialogRef);
+
+  readonly sessionId = this.config.data.sessionId as string;
+  readonly loading = signal(false);
+  readonly items = signal<IChecklistItem[]>([]);
+  readonly sessionDetail = signal<IJuntaMensualSessionDetail | null>(null);
+  readonly groupedItems = computed(() => {
+    const map = new Map<string, IChecklistItem[]>();
+
+    for (const item of this.items()) {
+      const key = item.responsibleRole || "Sin asignar";
+      const current = map.get(key) ?? [];
+      current.push(item);
+      map.set(key, current);
+    }
+
+    return Array.from(map.entries())
+      .map(([responsibleRole, items]) => ({
+        responsibleRole,
+        items: [...items].sort((a, b) => {
+          const dueA = a.dueDate ? new Date(a.dueDate).getTime() : 0;
+          const dueB = b.dueDate ? new Date(b.dueDate).getTime() : 0;
+          return dueA - dueB || a.title.localeCompare(b.title);
+        }),
+      }))
+      .sort((a, b) => a.responsibleRole.localeCompare(b.responsibleRole));
+  });
+  readonly statusOptions = [
+    { label: "Pendiente", value: 0 },
+    { label: "En progreso", value: 1 },
+    { label: "Completado", value: 2 },
+    { label: "Cancelado", value: 3 },
+    { label: "No aplica", value: 4 },
+  ];
+
+  constructor() {
+    this.onLoadData();
+  }
+
+  async onLoadData() {
+    this.loading.set(true);
+    try {
+      const result = await this.apiResponseS.onGetList<IChecklistItem[]>(
+        `AsambleaChecklist/session/${this.sessionId}`,
+      );
+      const sessionDetail = await this.apiResponseS.onGetItem<IJuntaMensualSessionDetail>(
+        `JuntaMensualSession/${this.sessionId}/detail`,
+      );
+
+      this.sessionDetail.set(sessionDetail ?? null);
+      this.items.set(result ?? []);
+    } finally {
+      this.loading.set(false);
+    }
+  }
+
+  async onSaveRow(item: IChecklistItem) {
+    const result = await this.apiResponseS.onPut<IChecklistItem>(
+      `AsambleaChecklist/${item.id}/status`,
+      {
+        status: item.status,
+        evidenceNotes: item.evidenceNotes ?? "",
+      },
+    );
+
+    if (!result) {
+      return;
+    }
+
+    item.status = result.status;
+    item.statusDisplayName = result.statusDisplayName;
+    item.completedAt = result.completedAt;
+    item.evidenceNotes = result.evidenceNotes;
+    this.items.set([...this.items()]);
+  }
+
+  onClose() {
+    this.ref.close(true);
+  }
+
+  getSeverity(status: number) {
+    switch (status) {
+      case 2:
+        return "success";
+      case 1:
+        return "info";
+      case 3:
+        return "danger";
+      case 4:
+        return "contrast";
+      default:
+        return "warn";
+    }
+  }
+
+  formatAssemblyDate() {
+    const scheduledAt = this.sessionDetail()?.scheduledAt;
+    if (!scheduledAt) return "";
+
+    const parsed = new Date(scheduledAt);
+    if (Number.isNaN(parsed.getTime())) return scheduledAt;
+
+    return parsed.toLocaleString("es-MX", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
+  }
+}

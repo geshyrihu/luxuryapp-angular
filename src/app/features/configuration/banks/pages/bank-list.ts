@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { businessOutline } from "ionicons/icons";
@@ -45,22 +45,22 @@ export class BankList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
-  // Declaración e inicialización de variables
+  // DeclaraciÃ³n e inicializaciÃ³n de variables
   dataSignal = signal<IBankDTO[]>([]);
 
   /*
   /PRIME NG TABLE OPTIONS
   */
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
+  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   // Usar el servicio global para scrollHeight
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
-  // óEsta es la magia!
-  // Se recalcularó automóticamente SOLO si dataSignal cambia.
-  globalFilterFields = computed(() => {
+  // Ã³Esta es la magia!
+  // Se recalcularÃ³ automÃ³ticamente SOLO si dataSignal cambia.
+  readonly globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
     return globalFilterFields(data);
@@ -96,7 +96,7 @@ export class BankList implements OnInit {
       });
   }
 
-  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
+  // FunciÃ³n para abrir un cuadro de diÃ¡logo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(BankForm, data, data.title, this.dialogHandlerS.sizeLg)

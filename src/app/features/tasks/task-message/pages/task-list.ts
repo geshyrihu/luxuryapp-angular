@@ -80,6 +80,7 @@ import {
   IonButtonItem,
 } from "src/app/core/components/buttons/mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { InitialsAbbrPipe } from "src/app/core/pipes/initials-abbr.pipe";
 import { TaskGroupService } from "src/app/features/tasks/task.service";
 import { TaskClose } from "../../components/task-close";
 import { TaskProgram } from "../../components/task-program";
@@ -88,7 +89,6 @@ import { TaskReopen } from "../../components/task-reopen";
 import { TaskStatus } from "../../components/task-status/task-status";
 import { SendOperationReport } from "../../send-operation-report/pages/send-operation-report";
 import { TaskFollowup } from "../../task-follow-up/pages/task-followup";
-import { InitialsAbbrPipe } from "src/app/core/pipes/initials-abbr.pipe";
 import { ITaskResultDTO } from "../models/task-message.dto";
 import { TaskForm } from "./task-form";
 
@@ -97,6 +97,12 @@ import { TaskForm } from "./task-form";
   templateUrl: "./task-list.html",
   styles: [
     `
+      :host {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+      }
       :host ::ng-deep primeng-custom-caption > div {
         margin-bottom: 0 !important;
       }
@@ -174,13 +180,49 @@ export class TaskList implements OnInit {
 
   // Task-list tiene caption doble (título + filtros + leyenda) que suma ~170px
   // adicionales al offset estándar del servicio (240px). Total: ~410px.
-  private readonly TASK_LIST_OFFSET = 410;
+  private readonly TASK_LIST_OFFSET = 320;
   scrollHeight = signal<string>(this.calcScrollHeight());
 
   private calcScrollHeight(): string {
     return `${window.innerHeight - this.TASK_LIST_OFFSET}px`;
   }
   readonly Math = Math;
+  readonly today = new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+  readonly pendingItems = computed(() =>
+    this.dataSignal().items.filter(i => i.status !== 'Completed')
+  );
+
+  statusLabel(status: string): string {
+    const map: Record<string, string> = {
+      NotStarted: 'No iniciado',
+      InProgress: 'En proceso',
+      Reopened: 'Reabierto',
+    };
+    return map[status] ?? status;
+  }
+
+  statusPillStyle(status: string): string {
+    const map: Record<string, string> = {
+      NotStarted: 'background:#fef2f2;color:#b91c1c',
+      InProgress:  'background:#eff6ff;color:#1d4ed8',
+      Reopened:    'background:#fff7ed;color:#c2410c',
+    };
+    return map[status] ?? 'background:#f3f4f6;color:#374151';
+  }
+
+  statusTdClass(status: string): string {
+    const map: Record<string, string> = {
+      NotStarted: 'td-status-not-started',
+      InProgress:  'td-status-in-progress',
+      Reopened:    'td-status-reopened',
+    };
+    return map[status] ?? '';
+  }
+
+  printReport(): void {
+    window.print();
+  }
+
   readonly tablePrimeNgRows: number = tablePrimeNgRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
 
@@ -238,7 +280,7 @@ export class TaskList implements OnInit {
       gridOutline,
     });
 
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       this.scrollHeight.set(this.calcScrollHeight());
     });
   }
@@ -668,15 +710,15 @@ export class TaskList implements OnInit {
   onLinkDragStart(event: DragEvent, taskId: string): void {
     event.stopPropagation();
     this.linkDragSourceId.set(taskId);
-    event.dataTransfer?.setData('application/task-link', taskId);
-    if (event.dataTransfer) event.dataTransfer.effectAllowed = 'link';
+    event.dataTransfer?.setData("application/task-link", taskId);
+    if (event.dataTransfer) event.dataTransfer.effectAllowed = "link";
   }
 
   onLinkDragOver(event: DragEvent, taskId: string): void {
     if (!this.linkDragSourceId() || this.linkDragSourceId() === taskId) return;
     event.preventDefault();
     event.stopPropagation();
-    if (event.dataTransfer) event.dataTransfer.dropEffect = 'link';
+    if (event.dataTransfer) event.dataTransfer.dropEffect = "link";
     this.linkDragTargetId.set(taskId);
   }
 
@@ -705,19 +747,25 @@ export class TaskList implements OnInit {
   }
 
   onSetDependency(taskId: string, predecessorId: string): void {
-    this.apiS.onGetItem(Endpoints.Tasks.setDependency(taskId, predecessorId)).then(() => {
-      this.dataSignal.update((current) => {
-        const predecessor = current.items.find((i) => i.id === predecessorId);
-        return {
-          ...current,
-          items: current.items.map((item) =>
-            item.id === taskId
-              ? { ...item, dependsOnTaskId: predecessorId, dependsOnTaskFolio: predecessor?.folio ?? null }
-              : item,
-          ),
-        };
+    this.apiS
+      .onGetItem(Endpoints.Tasks.setDependency(taskId, predecessorId))
+      .then(() => {
+        this.dataSignal.update((current) => {
+          const predecessor = current.items.find((i) => i.id === predecessorId);
+          return {
+            ...current,
+            items: current.items.map((item) =>
+              item.id === taskId
+                ? {
+                    ...item,
+                    dependsOnTaskId: predecessorId,
+                    dependsOnTaskFolio: predecessor?.folio ?? null,
+                  }
+                : item,
+            ),
+          };
+        });
       });
-    });
   }
 
   onClearDependency(taskId: string): void {
@@ -725,7 +773,9 @@ export class TaskList implements OnInit {
       this.dataSignal.update((current) => ({
         ...current,
         items: current.items.map((item) =>
-          item.id === taskId ? { ...item, dependsOnTaskId: null, dependsOnTaskFolio: null } : item,
+          item.id === taskId
+            ? { ...item, dependsOnTaskId: null, dependsOnTaskFolio: null }
+            : item,
         ),
       }));
     });

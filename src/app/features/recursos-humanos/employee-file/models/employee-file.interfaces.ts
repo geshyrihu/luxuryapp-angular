@@ -168,6 +168,7 @@ export interface EmployeeFileIncidentDTO {
   sanctionApplied: boolean;
   isCancelled: boolean;
   isActGenerated: boolean;
+  administrativeActPdfUrl?: string;
   sanction?: EmployeeFileIncidentSanctionDTO;
 }
 
@@ -196,6 +197,12 @@ export interface EmployeeFileRegisterRequestDTO {
   confirmationFinish: boolean;
 }
 
+export interface RequestDismissalFileDTO {
+  id: string;
+  fileName: string;
+  fileUrl: string;
+}
+
 export interface EmployeeFileDismissalDTO {
   id: string;
   folio: number;
@@ -206,6 +213,13 @@ export interface EmployeeFileDismissalDTO {
   lastDayOfWork?: string;
   status: string;
   lawyerAssistance: boolean;
+  isAuthorizedByLegal: boolean;
+  isAuthorizedByPayroll: boolean;
+  legalAuthorizationDate?: string;
+  payrollAuthorizationDate?: string;
+  incidents: EmployeeFileIncidentDTO[];
+  evaluations: EmployeeFileEvaluationDTO[];
+  supportFiles: RequestDismissalFileDTO[];
 }
 
 export interface EmployeeFileRequestsDTO {

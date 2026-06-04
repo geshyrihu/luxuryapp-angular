@@ -48,7 +48,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { SolicitudVacanteForm } from "src/app/features/vacancy-requests/components/solicitud-vacante-form";
+import { SolicitudVacanteForm } from "src/app/features/reclutamiento-solicitudes/vacancy-requests/components/solicitud-vacante-form";
 import { IWorkPosition } from "../models/work-position.model";
 import { JobDescriptionForm } from "./job-description-form";
 import { WorkPositionForm } from "./work-position-form";

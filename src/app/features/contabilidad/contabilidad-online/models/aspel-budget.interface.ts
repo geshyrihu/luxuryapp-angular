@@ -369,6 +369,44 @@ export interface IInversionRowDto {
   descripcion: string;
 }
 
+export interface IFondoReservaDTO {
+  nombreEmpresa: string;
+  fechaReporte: string;
+  disponibleInicial: number;
+  intereses: number;
+  disponibleTeorico: number;
+  cuentaBancaria: string;
+  disponibleReal: number;
+}
+
+export interface IProyectosAprobadosDTO {
+  idEmpresa: string;
+  empresa: string;
+  periodo: string;
+  totalGeneral?: IProyectoAprobadoRowDTO;
+  proyectos: IProyectoAprobadoRowDTO[];
+}
+
+export interface IProyectoAprobadoRowDTO {
+  numeroCuenta: string;
+  descripcion: string;
+  saldoInicial: number;
+  presupuestoMensual: number;
+  presupuestoAnual: number;
+  ejecutadoAnual: number;
+  porcentajeAvance: number;
+  totalACobrar: number;
+  totalCobrado: number;
+  saldoRestante: number;
+  meses: IProyectoMesDTO[];
+}
+
+export interface IProyectoMesDTO {
+  mes: number;
+  presupuesto: number;
+  cargo: number;
+}
+
 // ── Aspel Raw Data (Debug) ──────────────────────────────────────────────────
 
 export interface IAspelDatosCombinadosDTO {

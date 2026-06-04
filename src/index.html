@@ -19,9 +19,9 @@
     script-src 'self' https://cdn.onesignal.com https://api.onesignal.com https://*.firebaseio.com https://*.googleapis.com https://cdn.jsdelivr.net https://viewer.diagrams.net 'unsafe-inline' 'unsafe-eval';
     style-src 'self' https://fonts.googleapis.com https://onesignal.com 'unsafe-inline';
     font-src 'self' https://fonts.gstatic.com data:;
-    img-src 'self' https: data: blob:;
+    img-src 'self' https: http://localhost:* data: blob:;
     media-src 'self' blob:;
-    connect-src 'self' https://localhost:* http://localhost:* https://luxurybuildingapp.com https://*.firebaseio.com https://*.googleapis.com https://*.onesignal.com https://*.devtunnels.ms wss://localhost:* wss://luxurybuildingapp.com wss://*.devtunnels.ms blob: https://viewer.diagrams.net;
+    connect-src 'self' https://localhost:* http://localhost:* ws://localhost:* https://luxurybuildingapp.com https://*.firebaseio.com https://*.googleapis.com https://*.onesignal.com https://*.devtunnels.ms wss://localhost:* wss://luxurybuildingapp.com wss://*.devtunnels.ms blob: https://viewer.diagrams.net;
     frame-src 'self' https://localhost:* http://localhost:* https://luxurybuildingapp.com https://*.firebaseapp.com https://calendar.google.com https://embed.diagrams.net https://viewer.diagrams.net https://*.brevo.com https://www.youtube.com https://youtube.com https://youtu.be;
     worker-src 'self' blob: https://cdn.jsdelivr.net;
     manifest-src 'self';

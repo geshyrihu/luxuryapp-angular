@@ -12,6 +12,7 @@ import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-b
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
@@ -21,7 +22,6 @@ import {
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { resolvePrimeIcon } from "src/app/core/utils/prime-icon-resolver";
 import { TaskGroupCategoryForm } from "./task-group-category-form";
 @Component({
   selector: "app-task-group-category-list",
@@ -32,6 +32,7 @@ import { TaskGroupCategoryForm } from "./task-group-category-form";
     CustomButtonEdit,
     CustomButtonDelete,
     PrimeNgCustomCaption,
+    PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
     IonItem,
@@ -49,8 +50,6 @@ export class TaskGroupCategoryList implements OnInit {
   ref: DynamicDialogRef;
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  readonly resolvePrimeIcon = resolvePrimeIcon;
-
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
@@ -94,7 +93,4 @@ export class TaskGroupCategoryList implements OnInit {
       });
   }
 
-  getCategoryIconClass(icon: string | null | undefined): string {
-    return this.resolvePrimeIcon(icon, "pi pi-folder");
-  }
 }

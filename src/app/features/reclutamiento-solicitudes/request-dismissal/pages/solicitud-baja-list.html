@@ -1,0 +1,81 @@
+@if (dataSignal()) {
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="folio" style="width:5rem">FOLIO <p-sortIcon field="folio" /></th>
+      <th style="width:8rem">SOLICITUD</th>
+      <th style="width:12rem">CLIENTE</th>
+      <th style="width:12rem">EXCOLABORADOR</th>
+      <th style="width:10rem">PUESTO</th>
+      <th style="width:8rem">FECHA BAJA</th>
+      <th style="width:8rem">TIPO BAJA</th>
+      <th pSortableColumn="status" style="width:8rem">ESTATUS <p-sortIcon field="status" /></th>
+      <th style="width:6rem"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td class="text-center font-semibold">{{ item.folio }}</td>
+      <td class="text-center">{{ item.requestDate }}</td>
+      <td class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0" [title]="item.nameCustomer">{{ item.nameCustomer }}</td>
+      <td class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0" [title]="item.nameEmployee">{{ item.nameEmployee }}</td>
+      <td class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0" [title]="item.applicationRole">{{ item.applicationRole }}</td>
+      <td>{{ item.executionDate }}</td>
+      <td>{{ item.tipoBaja }}</td>
+      <td class="text-center">
+        <p-tag
+          [value]="item.status"
+          [severity]="item.status === 'Pendiente' ? 'danger' : item.status === 'Proceso' ? 'warn' : item.status === 'Concluido' ? 'success' : 'secondary'"
+        />
+      </td>
+      <td class="no-print">
+        <div class="flex gap-1">
+          <custom-button-edit (clicked)="onModalForm(item)" />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="paginatorleft">
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+}
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div
+        slot="start"
+        class="w-3rem h-3rem border-round flex align-items-center justify-content-center flex-shrink-0 ml-3 surface-100"
+      >
+        <ion-icon name="person-remove-outline" class="text-xl text-red-600"></ion-icon>
+      </div>
+      <ion-label>
+        <h3>{{ item.nameEmployee }}</h3>
+        <p>{{ item.nameCustomer }} · {{ item.applicationRole }}</p>
+        <p>Baja: {{ item.executionDate }} · {{ item.status }}</p>
+      </ion-label>
+      <app-action-menu slot="end">
+        <ion-button-edit (clicked)="onModalForm(item)" />
+        <ion-button-delete (confirmed)="onDelete(item.id)" />
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

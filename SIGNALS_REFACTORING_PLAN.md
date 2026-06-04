@@ -52,7 +52,7 @@ Son los cimientos de la UI. Refactorizarlos primero asegura que las nuevas vista
 - [x] `src/app/features/profile-users/pages/employee-permission-app.ts`
 - [x] `src/app/features/recruitment/pages/employee-reclutamiento.ts`
 - [x] `src/app/features/recruitment/recruitment-shared/filter-requests.ts`
-- [x] `src/app/features/recursos-humanos/incident/pages/incident-list.ts`
+- [x] `src/app/features/recursos-humanos/incidencias-sanciones/incident/pages/incident-list.ts`
 - [x] `src/app/features/recursos-humanos/shared/generic-approval-panel.ts`
 - [x] `src/app/features/recursos-humanos/work-contract/pages/work-contract-list.ts`
 
@@ -237,52 +237,18 @@ Son los cimientos de la UI. Refactorizarlos primero asegura que las nuevas vista
 ### radio-communication-inventory
 - [~] `radio-communication-inventory/radio-comunicacion-form.ts` — FormData (foto)
 
-### recruitment-requests
-- [~] `recruitment-requests/components/solicitud-alta-form.ts` — POST exclusivo a URL de acción con userId en path
-- [~] `recruitment-requests/components/solicitud-alta-status-form.ts` — PUT exclusivo a URL de acción (`/${id}/status`)
+### reclutamiento-solicitudes
+- [~] `reclutamiento-solicitudes/recruitment-requests/components/solicitud-alta-form.ts` — POST exclusivo a URL de acción con userId en path
+- [~] `reclutamiento-solicitudes/recruitment-requests/components/solicitud-alta-status-form.ts` — PUT exclusivo a URL de acción (`/${id}/status`)
+- [x] `reclutamiento-solicitudes/request-dismissal-discount/status-request-dismissal-discount-form.ts`
+- [~] `reclutamiento-solicitudes/request-dismissal/components/solicitud-baja-form.ts` — FormData; FormArray; POST a URL de acción con IDs en path
+- [x] `reclutamiento-solicitudes/salary-modification/components/modificacion-salario-form.ts`
+- [~] `reclutamiento-solicitudes/salary-modification/components/solicitud-modificacion-salario-form.ts` — FormData; POST exclusivo a URL con customerId/userId en path
+- [x] `reclutamiento-solicitudes/salary-modification/status-request-salary-modification-form.ts`
+- [~] `reclutamiento-solicitudes/vacancy-requests/components/solicitud-vacante-form.ts` — POST exclusivo a URL de acción con userId en path
+- [x] `reclutamiento-solicitudes/vacancy-requests/components/vacante-form.ts`
 
 ### recurring-tasks
-- [~] `recurring-tasks/instances/complete-task-form/complete-task-form.ts` — POST exclusivo a URL de acción con taskId en path
-- [x] `recurring-tasks/templates/task-template-form/task-template-form.ts`
-- [~] `recurring-tasks/templates/task-template-item-form/task-template-item-form.ts` — endpoints no estándar (POST con templateId en path; PUT con sufijo `items/`)
-
-### recursos-humanos
-- [~] `recursos-humanos/incident/pages/incident-form.ts` — multifase: CREATE queda abierto y cambia a pestaña de adjuntos
-- [~] `recursos-humanos/leave-request/permiso-form.ts` — FormData (adjunto)
-- [~] `recursos-humanos/my-vacation-requests/vacaciones-form.ts` — constantes de endpoint separadas para create/update; manejo custom de `serverError`
-- [~] `recursos-humanos/sanction/pages/sanction-form.ts` — forma dual: PATCH para cambio de estado; POST exclusivo para creación
-
-### request-dismissal
-- [x] `request-dismissal-discount/status-request-dismissal-discount-form.ts`
-- [~] `request-dismissal/components/solicitud-baja-form.ts` — FormData; FormArray; POST a URL de acción con IDs en path
-
-### salary-modification
-- [x] `salary-modification/components/modificacion-salario-form.ts`
-- [~] `salary-modification/components/solicitud-modificacion-salario-form.ts` — FormData; POST exclusivo a URL con customerId/userId en path
-- [x] `salary-modification/status-request-salary-modification-form.ts`
-
-### sat-funding
-- [~] `sat-funding/sat-funding-detail/sat-funding-invoice-edit-form.ts` — PUT exclusivo a `SatFunding/UpdateDetail` (id en body, no en URL)
-
-### service-order
-- [~] `service-order/service-order-form.ts` — `id = signal<number>(0)`, incompatible con FormHelper
-
-### supervision
-- [x] `supervision/agenda-supervision/agenda-supervision-form.ts`
-
-### tasks
-- [~] `tasks/my-tasks/pages/my-task-form.ts` — FormData (imágenes beforeWork/afterWork); URL de PUT no estándar
-- [~] `tasks/task-message/pages/task-form.ts` — FormData (imágenes); URL de PUT no estándar
-
-### templates
-- [~] `templates/templates-form.ts` — FormData (documento)
-
-### tool-loan
-- [~] `tool-loan/tool-form.ts` — FormData (foto)
-
-### vacancy-requests
-- [~] `vacancy-requests/components/solicitud-vacante-form.ts` — POST exclusivo a URL de acción con userId en path
-- [x] `vacancy-requests/components/vacante-form.ts`
 
 ### warehouse
 - [~] `warehouse/warehouse-form.ts` — submit en dos pasos: guarda almacén y luego PUT a `almacen/assign-responsibles`

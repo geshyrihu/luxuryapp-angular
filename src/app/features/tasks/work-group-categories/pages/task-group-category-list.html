@@ -4,8 +4,17 @@
   #dt
   styleClass="custom-table hidden md:block"
   [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   [scrollable]="true"
-  [scrollHeight]="scrollHeight"
+  [scrollHeight]="scrollHeight()"
+  sortField="departament"
+  rowGroupMode="subheader"
+  groupRowsBy="departament"
+  [sortOrder]="1"
 >
   <ng-template #caption>
     <primeng-custom-caption
@@ -21,18 +30,8 @@
         Codigo
         <p-sortIcon field="code" />
       </th>
-      <th pSortableColumn="emoji">
-        Icono
-        <p-sortIcon field="emoji" />
-      </th>
-      <th pSortableColumn="color">
-        Color
-        <p-sortIcon field="color" />
-      </th>
-      <th pSortableColumn="departament">
-        Departamento
-        <p-sortIcon field="departament" />
-      </th>
+      <th>Icono</th>
+      <th>Color</th>
       <th pSortableColumn="name">
         Nombre
         <p-sortIcon field="name" />
@@ -45,19 +44,27 @@
     </tr>
   </ng-template>
 
+  <ng-template #groupheader let-item>
+    <tr pRowGroupHeader>
+      <td colspan="6" class="bg-blue-50">
+        <div class="flex align-items-center py-2 px-3">
+          <i class="pi pi-tag mr-2 text-blue-500"></i>
+          <span class="font-bold text-blue-900">{{ item.departament }}</span>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
   <ng-template #body let-item>
     <tr>
       <td>{{ item.code }}</td>
-      <td class="text-xl">
-        <i [class]="getCategoryIconClass(item.emoji)"></i>
-      </td>
+      <td class="text-xl">{{ item.emoji }}</td>
       <td>
         <div
           class="w-8 h-8 border-round-md"
           [style.backgroundColor]="item.color"
         ></div>
       </td>
-      <td>{{ item.departament }}</td>
       <td>{{ item.name }}</td>
       <td>{{ item.description }}</td>
       <td class="no-print">
@@ -69,6 +76,9 @@
         </div>
       </td>
     </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
 
@@ -83,7 +93,7 @@
     <ion-item lines="full">
       <ion-label>
         <div class="flex align-items-center">
-          <i [class]="getCategoryIconClass(item.emoji)" class="text-xl"></i>
+          <span class="text-xl">{{ item.emoji }}</span>
           <div class="ml-2">
             <h2>{{ item.name }}</h2>
             <p>{{ item.code }} | {{ item.departament | uppercase }}</p>

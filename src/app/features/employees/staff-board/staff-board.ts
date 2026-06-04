@@ -34,7 +34,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { IEmployee } from "src/app/features/employees/employees/models/employee.interface";
 import { CardEmployee } from "src/app/features/employees/employees/pages/card-employee";
-import { SolicitudVacanteForm } from "src/app/features/vacancy-requests/components/solicitud-vacante-form";
+import { SolicitudVacanteForm } from "src/app/features/reclutamiento-solicitudes/vacancy-requests/components/solicitud-vacante-form";
 import { IWorkPosition } from "src/app/features/work-position/models/work-position.model";
 import { JobDescriptionForm } from "src/app/features/work-position/pages/job-description-form";
 import { WorkPositionForm } from "src/app/features/work-position/pages/work-position-form";
@@ -310,6 +310,13 @@ export class StaffBoard {
     if (!emp.employeeId || !emp.applicationUserId) return;
     this.router.navigateByUrl(
       `directory/empleado/${emp.employeeId}/${emp.applicationUserId}`,
+    );
+  }
+
+  onGoToEmployeeFile(item: IWorkPosition): void {
+    if (!item.employeeId) return;
+    this.router.navigateByUrl(
+      `/recursos-humanos/employee-files/${item.employeeId}`,
     );
   }
 

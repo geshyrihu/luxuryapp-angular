@@ -1,0 +1,169 @@
+<div class="flex flex-column gap-4">
+  @if (loading()) {
+    <p-skeleton width="100%" height="20rem" />
+  } @else if (data(); as reporte) {
+    <div class="surface-card border-round-xl border-1 surface-border shadow-1 p-0 xl:p-4 overflow-hidden">
+      <div class="text-center mb-4">
+        <h2 class="text-900 font-bold m-0 uppercase text-2xl border-bottom-1 surface-border pb-3">PROYECTOS APROBADOS</h2>
+      </div>
+
+      <!-- Card Total General -->
+      @if (reporte.totalGeneral; as total) {
+        <div class="surface-card p-4 shadow-2 border-round-xl border-2 border-blue-900 mb-4" style="background: linear-gradient(180deg, rgba(31,54,97,0.05) 0%, rgba(255,255,255,1) 100%);">
+          <div class="flex justify-content-between align-items-center mb-4 border-bottom-1 surface-border pb-3">
+            <span class="text-blue-900 font-bold uppercase text-lg line-height-3"><i class="pi pi-chart-line mr-2"></i> {{ total.descripcion }}</span>
+            <span class="text-500 text-sm font-medium border-round surface-200 px-2 py-1">{{ total.numeroCuenta }}</span>
+          </div>
+          <div class="grid">
+            <div class="col-12 md:col-4">
+              <div class="flex flex-column gap-1">
+                <span class="text-500 font-medium uppercase text-xs">Total a Cobrar</span>
+                <span class="text-900 font-bold text-2xl">{{ total.totalACobrar | currency:'MXN':'symbol-narrow':'1.0-0' }}</span>
+              </div>
+            </div>
+            <div class="col-12 md:col-4">
+              <div class="flex flex-column gap-1">
+                <span class="text-500 font-medium uppercase text-xs">Total Cobrado</span>
+                <span class="text-green-600 font-bold text-2xl">{{ total.totalCobrado | currency:'MXN':'symbol-narrow':'1.0-0' }}</span>
+              </div>
+            </div>
+            <div class="col-12 md:col-4">
+              <div class="flex flex-column gap-1">
+                <span class="text-500 font-medium uppercase text-xs">Saldo Restante</span>
+                <span class="text-blue-600 font-bold text-2xl">{{ total.saldoRestante | currency:'MXN':'symbol-narrow':'1.0-0' }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+
+      <!-- Resumen Cards Individuales -->
+      <p class="font-bold text-700 uppercase mb-3 text-sm">Detalle por Proyecto</p>
+      <div class="grid mb-4">
+        @for (proyecto of reporte.proyectos; track proyecto.numeroCuenta) {
+          <div class="col-12 md:col-6 xl:col-4">
+            <div class="surface-card p-4 shadow-1 border-round-xl border-1 surface-border h-full border-top-3 border-blue-500">
+              <div class="flex justify-content-between align-items-center mb-3">
+                <span class="text-900 font-bold uppercase text-sm line-height-3">{{ proyecto.descripcion }}</span>
+                <span class="text-500 text-xs">{{ proyecto.numeroCuenta }}</span>
+              </div>
+              <div class="flex flex-column gap-3">
+                <div class="flex justify-content-between">
+                  <span class="text-500 font-medium">Total a Cobrar</span>
+                  <span class="text-900 font-bold">{{ proyecto.totalACobrar | currency:'MXN':'symbol-narrow':'1.0-0' }}</span>
+                </div>
+                <div class="flex justify-content-between">
+                  <span class="text-500 font-medium">Total Cobrado</span>
+                  <span class="text-green-600 font-bold">{{ proyecto.totalCobrado | currency:'MXN':'symbol-narrow':'1.0-0' }}</span>
+                </div>
+                <div class="flex justify-content-between border-top-1 surface-border pt-2">
+                  <span class="text-500 font-medium">Saldo Restante</span>
+                  <span class="text-blue-600 font-bold">{{ proyecto.saldoRestante | currency:'MXN':'symbol-narrow':'1.0-0' }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <p-table [value]="reporte.proyectos" responsiveLayout="scroll" styleClass="p-datatable-sm p-datatable-gridlines">
+        <ng-template pTemplate="header">
+          <tr>
+            <th class="p-2 border-1 surface-border text-center text-white font-bold" style="background-color: #1f3661; min-width: 250px;">CUENTA</th>
+            <th class="p-2 border-1 surface-border text-center text-white font-bold" style="background-color: #1f3661;">PRE-MEN</th>
+            
+            @for (mes of mesesNombres; track mes) {
+              <th class="p-2 border-1 surface-border text-center text-white font-bold" style="background-color: #1f3661;">{{ mes | uppercase }}</th>
+            }
+
+            <th class="p-2 border-1 surface-border text-center text-white font-bold" style="background-color: #1f3661;">ACUMULADO</th>
+            <th class="p-2 border-1 surface-border text-center text-white font-bold" style="background-color: #1f3661;">%</th>
+            <th class="p-2 border-1 surface-border text-center text-white font-bold" style="background-color: #1f3661;">PRE-TOTAL</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-proyecto>
+          <tr>
+            <td class="p-2 border-bottom-1 surface-border">
+              <div class="flex flex-column gap-1">
+                <span class="text-500 text-xs">{{ proyecto.numeroCuenta }}</span>
+                <span class="font-bold text-sm uppercase">{{ proyecto.descripcion }}</span>
+              </div>
+            </td>
+            
+            <td class="text-center font-bold text-green-600 text-sm border-bottom-1 surface-border">
+              {{ proyecto.presupuestoMensual > 0 ? (proyecto.presupuestoMensual | number:'1.0-0') : '0' }}
+            </td>
+
+            @for (m of proyecto.meses; track m.mes) {
+              <td class="text-center p-1 border-bottom-1 surface-border" style="min-width: 80px;">
+                <div class="flex flex-column align-items-center justify-content-center h-full gap-1">
+                  <span class="text-400 text-xs" style="font-size: 0.7rem;">
+                    {{ m.presupuesto > 0 ? (m.presupuesto | number:'1.0-0') : '-' }}
+                  </span>
+                  <span class="text-sm font-bold" [ngClass]="{'text-red-500': m.cargo > m.presupuesto && m.presupuesto > 0}">
+                    {{ m.cargo > 0 ? (m.cargo | number:'1.0-0') : '-' }}
+                  </span>
+                </div>
+              </td>
+            }
+
+            <td class="text-center font-bold text-sm border-bottom-1 surface-border bg-blue-50">
+              {{ proyecto.ejecutadoAnual > 0 ? (proyecto.ejecutadoAnual | number:'1.0-0') : '0' }}
+            </td>
+            <td class="text-center font-bold text-sm border-bottom-1 surface-border">
+              {{ (proyecto.porcentajeAvance / 100) | percent:'1.0-0' }}
+            </td>
+            <td class="text-center font-bold text-sm border-bottom-1 surface-border bg-blue-50">
+              {{ proyecto.presupuestoAnual | number:'1.0-0' }}
+            </td>
+          </tr>
+        </ng-template>
+
+        @if (reporte.totalGeneral; as total) {
+          <ng-template pTemplate="footer">
+            <tr>
+              <td class="p-2 border-1 surface-border text-right text-blue-900 font-bold bg-blue-50 uppercase">TOTAL GENERAL</td>
+              <td class="text-center font-bold text-green-600 text-sm border-1 surface-border bg-blue-50">
+                {{ total.presupuestoMensual > 0 ? (total.presupuestoMensual | number:'1.0-0') : '0' }}
+              </td>
+              @for (m of total.meses; track m.mes) {
+                <td class="text-center p-1 border-1 surface-border bg-blue-50">
+                  <div class="flex flex-column align-items-center justify-content-center h-full gap-1">
+                    <span class="text-500 text-xs" style="font-size: 0.7rem;">
+                      {{ m.presupuesto > 0 ? (m.presupuesto | number:'1.0-0') : '-' }}
+                    </span>
+                    <span class="text-sm font-bold" [ngClass]="{'text-red-600': m.cargo > m.presupuesto && m.presupuesto > 0, 'text-blue-900': !(m.cargo > m.presupuesto && m.presupuesto > 0)}">
+                      {{ m.cargo > 0 ? (m.cargo | number:'1.0-0') : '-' }}
+                    </span>
+                  </div>
+                </td>
+              }
+              <td class="text-center font-bold text-sm border-1 surface-border bg-blue-100 text-blue-900">
+                {{ total.ejecutadoAnual > 0 ? (total.ejecutadoAnual | number:'1.0-0') : '0' }}
+              </td>
+              <td class="text-center font-bold text-sm border-1 surface-border bg-blue-50 text-blue-900">
+                {{ (total.porcentajeAvance / 100) | percent:'1.0-0' }}
+              </td>
+              <td class="text-center font-bold text-sm border-1 surface-border bg-blue-100 text-blue-900">
+                {{ total.presupuestoAnual | number:'1.0-0' }}
+              </td>
+            </tr>
+          </ng-template>
+        }
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="29" class="text-center p-4">No se encontraron proyectos aprobados (Cuentas 606 con presupuesto).</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  } @else {
+    <div class="rf-card flex flex-column align-items-center py-8 text-color-secondary">
+      <i class="pi pi-file-excel text-5xl mb-4 opacity-50"></i>
+      <p class="m-0 text-xl font-medium">No hay datos para mostrar</p>
+      <p class="mt-2 text-500">Verifique los parámetros seleccionados</p>
+    </div>
+  }
+</div>

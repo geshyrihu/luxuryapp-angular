@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
@@ -18,6 +18,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { IApplicationRoleDTO } from "../models/application-role.dto";
 import { RoleForm } from "./role-form";
 
@@ -43,17 +44,19 @@ import { RoleForm } from "./role-form";
 export class RolesList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
+  tableScrollHeightS = inject(TableScrollHeightService);
 
   dataSignal = signal<IApplicationRoleDTO[]>([]);
-  globalFilterFields = signal([
+  scrollHeight = this.tableScrollHeightS.scrollHeight;
+  readonly globalFilterFields = signal([
     "name",
     "displayName",
     "roleType",
     "departament",
   ]);
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
+  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
 
   ngOnInit(): void {

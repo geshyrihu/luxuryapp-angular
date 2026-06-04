@@ -22,40 +22,65 @@
     >
       <!-- Caption: selector de categorías + controles -->
       <ng-template #caption>
-        <div class="flex flex-wrap gap-2 mb-3 mt-1">
-          @for (category of categories; track category.id) {
-          <div
-            class="flex align-items-center gap-2 px-3 py-1 border-1 border-round-2xl cursor-pointer transition-all transition-duration-200 white-space-nowrap"
-            [ngClass]="
-              inventoryCategoryId() === category.id
-                ? 'bg-primary border-primary text-white'
-                : 'surface-100 border-300 text-color-secondary hover:surface-200 hover:border-primary-300'
-            "
-            (click)="onSelectCategory(category.id)"
-          >
-            <i [class]="category.emoji"></i>
-            <span class="font-medium text-sm">{{ category.name }}</span>
+        <div class="flex flex-column gap-3 mb-2 mt-1">
+          <!-- Categorías -->
+          <div class="flex flex-wrap gap-2">
+            @for (category of categories; track category.id) {
+            <div
+              class="flex align-items-center gap-2 px-3 py-1 border-1 border-round-2xl cursor-pointer transition-all transition-duration-200 white-space-nowrap"
+              [ngClass]="
+                inventoryCategoryId() === category.id
+                  ? 'bg-primary border-primary text-white'
+                  : 'surface-100 border-300 text-color-secondary hover:surface-200 hover:border-primary-300'
+              "
+              (click)="onSelectCategory(category.id)"
+            >
+              <i [class]="category.emoji"></i>
+              <span class="font-medium text-sm">{{ category.name }}</span>
+            </div>
+            }
           </div>
-          }
-        </div>
-        <div class="flex align-items-center gap-2">
-          <primeng-custom-caption
-            [title]="title()"
-            (add)="onModalAddOrEdit({ id: 0, title: 'Nuevo Registro' })"
-            [dt]="dt"
-          />
-          <custom-button
-            label="PDF"
-            iconClass="pi pi-file-pdf"
-            [severity]="'danger'"
-            (clicked)="onDownloadPdf()"
-            pTooltip="Descargar Inventario PDF"
-            tooltipPosition="top"
-          />
-          <custom-button-active-desactive
-            [state]="stateFilter() === 0"
-            (stateChange)="onSelectState($event ? 0 : 1)"
-          />
+
+          <!-- Barra de herramientas (Búsqueda y Acciones) -->
+          <div
+            class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round"
+          >
+            <div class="flex-grow-1">
+              <primeng-custom-caption
+                [title]="title()"
+                (add)="onModalAddOrEdit({ id: 0, title: 'Nuevo Registro' })"
+                [dt]="dt"
+                [noPadding]="true"
+                [noMargin]="true"
+              />
+            </div>
+            <div class="flex align-items-center gap-2">
+              <custom-button
+                label="Calendario Guia"
+                iconClass="pi pi-calendar"
+                [severity]="'secondary'"
+                [variant]="'outlined'"
+                (clicked)="calendarioGuiaVisible.set(true)"
+                pTooltip="Ver calendario de mantenimiento"
+                tooltipPosition="top"
+              />
+              <custom-button
+                label="PDF"
+                iconClass="pi pi-file-pdf"
+                [severity]="'danger'"
+                [variant]="'outlined'"
+                (clicked)="onDownloadPdf()"
+                pTooltip="Descargar Inventario PDF"
+                tooltipPosition="top"
+              />
+              <div class="flex-shrink-0" style="width: 150px">
+                <custom-button-active-desactive
+                  [state]="stateFilter() === 0"
+                  (stateChange)="onSelectState($event ? 0 : 1)"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </ng-template>
 
@@ -260,6 +285,19 @@
       } }
     </p-dialog>
   </div>
+
+  <!-- ================================================================== -->
+  <!-- DRAWER: Calendario General de Mantenimiento (solo consulta)        -->
+  <!-- ================================================================== -->
+  <p-drawer
+    [visible]="calendarioGuiaVisible()"
+    (visibleChange)="calendarioGuiaVisible.set($event)"
+    header="Calendario General de Mantenimiento"
+    position="right"
+    [style]="{ width: '90vw', maxWidth: '1200px' }"
+  >
+    <app-calendario-maestro-readonly />
+  </p-drawer>
 
   <!-- ================================================================== -->
   <!-- VISTA MÓVIL                                                          -->

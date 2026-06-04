@@ -236,6 +236,17 @@
                 pTooltip="Ir al perfil"
                 (clicked)="onShowEditEmpleado(item)"
               />
+              @if (aspRoleS.hasAny([ AspRole.SuperUsuario, AspRole.Legal,
+              AspRole.CoordinacionLegal, AspRole.RecursosHumanos,
+              AspRole.Reclutamiento ])) {
+              <custom-button-item
+                [showLabelOnDesktop]="true"
+                iconClass="pi pi-folder-open"
+                label="Expediente"
+                pTooltip="Ver expediente completo"
+                (clicked)="onGoToEmployeeFile(item)"
+              />
+              }
               @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
               <custom-button-item
                 [showLabelOnDesktop]="true"

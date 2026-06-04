@@ -30,7 +30,7 @@
       [scrollable]="true"
       [scrollHeight]="scrollHeight()"
       [showCurrentPageReport]="true"
-      [value]="dataSignal()"
+      [value]="listData()"
       #dt
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
       styleClass="custom-table card hidden md:block"
@@ -61,6 +61,7 @@
           </th>
           <th>Invitados</th>
           <th>Estado</th>
+          <th>Checklist</th>
           <th>Meet</th>
           <th>Enlace</th>
           @if (canCreate()) {
@@ -75,18 +76,28 @@
           <td>{{ item.subjectTypeName }}</td>
           <td>{{ item.modalityName }}</td>
           <td>{{ item.recurrenceSummary || "Unica" }}</td>
-          <td>{{ item.startAt | date: "dd/MM/yyyy HH:mm" }}</td>
+          <td>{{ formatBusinessDateTime(item.startAt) }}</td>
           <td class="text-center">{{ item.guestCount }}</td>
           <td>
             <span
               class="px-2 py-1 border-round text-sm"
-              [class.bg-green-100]="item.isSynchronized"
-              [class.text-green-800]="item.isSynchronized"
-              [class.bg-yellow-100]="!item.isSynchronized"
-              [class.text-yellow-800]="!item.isSynchronized"
+              [ngClass]="getStatusClasses(item)"
             >
-              {{ item.isSynchronized ? "Sincronizado" : "Pendiente" }}
+              {{ getStatusLabel(item) }}
             </span>
+          </td>
+          <td>
+            @if (canOpenAssemblyChecklist(item)) {
+            <custom-button
+              label="Checklist"
+              icon="pi pi-list-check"
+              [noMargin]="true"
+              customClass="p-button-sm p-button-outlined"
+              (clicked)="onOpenAssemblyChecklist(item)"
+            />
+            } @else {
+            <span class="text-color-secondary">No aplica</span>
+            }
           </td>
           <td>
             @if (item.googleMeetUrl) {
@@ -125,7 +136,7 @@
     </p-table>
 
     <app-data-view-mobile
-      [data]="dataSignal()"
+      [data]="listData()"
       [dt]="dt"
       [globalFilterFields]="globalFilterFields()"
       [showAdd]="canCreate()"
@@ -137,8 +148,19 @@
             <h2>{{ item.title }}</h2>
             <p>{{ item.subjectTypeName }} | {{ item.modalityName }}</p>
             <p>{{ item.recurrenceSummary || "Unica" }}</p>
-            <p>{{ item.startAt | date: "dd/MM/yyyy HH:mm" }}</p>
+            <p>{{ formatBusinessDateTime(item.startAt) }}</p>
             <p>Invitados: {{ item.guestCount }}</p>
+            @if (canOpenAssemblyChecklist(item)) {
+            <div class="mt-2">
+              <custom-button
+                label="Checklist asamblea"
+                icon="pi pi-list-check"
+                [noMargin]="true"
+                customClass="p-button-sm p-button-outlined"
+                (clicked)="onOpenAssemblyChecklist(item)"
+              />
+            </div>
+            }
           </ion-label>
           <div slot="end">
             <app-action-menu>

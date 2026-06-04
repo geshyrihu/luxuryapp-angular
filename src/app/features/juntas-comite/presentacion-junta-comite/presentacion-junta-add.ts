@@ -8,6 +8,7 @@ import {
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputTime } from "src/app/core/components/inputs/web/custom-input-time-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -19,6 +20,7 @@ import { DateService } from "src/app/core/services/date.service";
   imports: [
     ReactiveFormsModule,
     CustomInputDateSignal,
+    CustomInputTime,
     CustomButtonSave,
     CustomInputTextSignal,
   ],
@@ -39,15 +41,24 @@ export class PresentacionJuntaAdd implements OnInit {
   form = new FormGroup({
     id: new FormControl<string>({ value: "", disabled: true }),
     customerId: new FormControl<string>(this.customerIdS.customerId()),
+    juntaMensualSessionId: new FormControl<string | null>(null),
     fechaCorrespondiente: new FormControl<string>("", {
       nonNullable: true,
       validators: [Validators.required],
     }),
     fechaJunta: new FormControl<string>(""),
+    horaJunta: new FormControl<string>(""),
   });
+
+  private normalizeTime(value: string | null | undefined): string {
+    return value ? value.slice(0, 5) : "";
+  }
 
   ngOnInit(): void {
     this.id = this.config.data.id;
+    this.form.controls.juntaMensualSessionId.setValue(
+      this.config.data.juntaMensualSessionId ?? null,
+    );
     if (this.id) this.onLoadData();
   }
 
@@ -58,6 +69,7 @@ export class PresentacionJuntaAdd implements OnInit {
         result.fechaCorrespondiente,
       );
       result.fechaJunta = this.dateS.getDateFormat(result.fechaJunta);
+      result.horaJunta = this.normalizeTime(result.horaJunta);
       this.form.patchValue(result);
     });
   }
@@ -66,16 +78,25 @@ export class PresentacionJuntaAdd implements OnInit {
     if (!this.apiResponseS.validateForm(this.form)) return;
 
     this.submitting.set(true);
+    const raw = this.form.getRawValue();
+    const payload = {
+      ...raw,
+      fechaCorrespondiente:
+        this.dateS.getDateFormat(raw.fechaCorrespondiente) ?? "",
+      juntaMensualSessionId: raw.juntaMensualSessionId || null,
+      fechaJunta: this.dateS.getDateFormat(raw.fechaJunta),
+      horaJunta: raw.horaJunta || null,
+    };
 
     if (!this.id) {
       this.apiResponseS
-        .onPost(`PresentacionJuntaComite/AddFecha`, this.form.value)
+        .onPost(`PresentacionJuntaComite/AddFecha`, payload)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
-        .onPut(`PresentacionJuntaComite/AddFecha/${this.id}`, this.form.value)
+        .onPut(`PresentacionJuntaComite/AddFecha/${this.id}`, payload)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });

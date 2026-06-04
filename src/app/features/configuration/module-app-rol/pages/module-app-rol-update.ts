@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { IonList, IonToggle } from "@ionic/angular/standalone";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
@@ -36,8 +36,8 @@ export class ModuleAppRolUpdate implements OnInit {
 
   globalFilterFields: string[] = [];
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
+  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   roleId: string = "";
   roleName: string = ""; // Nombre del cliente para mostrar

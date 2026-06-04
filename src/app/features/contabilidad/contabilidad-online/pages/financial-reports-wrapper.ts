@@ -20,6 +20,8 @@ import { FlujoEfectivo } from "./flujo-efectivo/flujo-efectivo";
 import { ReporteFinanciero } from "./reporte-financiero/reporte-financiero";
 import { PresupuestoContabilidad } from "./presupuesto-contabilidad/presupuesto-contabilidad";
 import { BancosInversionesComponent } from "./bancos-inversiones/bancos-inversiones";
+import { FondoReservaComponent } from "./fondo-reserva/fondo-reserva";
+import { ProyectosAprobadosComponent } from "./proyectos-aprobados/proyectos-aprobados";
 
 const REPORT_META = [
   {
@@ -71,6 +73,10 @@ const REPORT_META = [
     title: "Bancos e Inversiones",
     description: "Saldo acumulado al mes de corte de bancos e inversiones.",
   },
+  {
+    title: "Proyectos Aprobados",
+    description: "Seguimiento de presupuesto y ejecución de proyectos aprobados.",
+  },
 ] as const;
 
 @Component({
@@ -92,6 +98,8 @@ const REPORT_META = [
     AnalisisCobranza,
     PresupuestoContabilidad,
     BancosInversionesComponent,
+    FondoReservaComponent,
+    ProyectosAprobadosComponent,
     AiAgentComponent,
     AiAgentContabilidadOnlineComponent,
     AiAgentExplicadorContabilidadOnlineComponent,
@@ -103,6 +111,8 @@ export default class FinancialReportsWrapper {
   private readonly customerIdS = inject(CustomerIdService);
 
   reportIndex = signal<number>(0);
+  printMode = signal(false);
+  isPreparing = signal(false);
 
   readonly customerName = computed(
     () => this.customerIdS.customerName() || "Cliente activo",
@@ -121,6 +131,13 @@ export default class FinancialReportsWrapper {
       "Consulta operativa del módulo de contabilidad online.",
   );
 
+  readonly periodLabel = computed(() => {
+    const months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    const m = months[this.filterS.mesIdx()] ?? '';
+    const y = this.filterS.year() ?? '';
+    return `${m} ${y}`.trim().toUpperCase();
+  });
+
   readonly clienteUrl = computed(() => {
     const cid = this.customerIdS.customerId();
     const yr = this.filterS.year();
@@ -131,6 +148,48 @@ export default class FinancialReportsWrapper {
 
   refreshReports() {
     this.filterS.refreshTick.update((value) => value + 1);
+  }
+
+  printReport() {
+    if (this.isPreparing()) return;
+    this.isPreparing.set(true);
+    this.printMode.set(true);
+    // Esperar a que Angular renderice el bloque @if antes de empezar polling
+    setTimeout(() => this.waitAndPrint(), 800);
+  }
+
+  private waitAndPrint(): void {
+    const MAX_MS = 18_000;
+    const POLL_MS = 600;
+    const start = Date.now();
+
+    const check = () => {
+      const section = document.querySelector('.print-all-reports');
+      // Si el section aun no existe, reintentar
+      if (!section) { setTimeout(check, POLL_MS); return; }
+
+      // Detectar cualquier indicador de carga activo
+      const stillLoading = !!(
+        section.querySelector('.pi-spin') ||
+        section.querySelector('p-skeleton') ||
+        section.querySelector('.p-skeleton')
+      );
+
+      if (!stillLoading || Date.now() - start >= MAX_MS) {
+        // Todos los datos cargaron (o se agoto el tiempo maximo)
+        this.isPreparing.set(false);
+        setTimeout(() => {
+          window.print();
+          window.addEventListener('afterprint', () => {
+            this.printMode.set(false);
+          }, { once: true });
+        }, 150);
+      } else {
+        setTimeout(check, POLL_MS);
+      }
+    };
+
+    setTimeout(check, POLL_MS);
   }
 
   openClienteView() {

@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { receiptOutline } from "ionicons/icons";
@@ -47,10 +47,10 @@ export class CfdiUseList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   tableScrollHeightS = inject(TableScrollHeightService);
   dataSignal = signal<ICfdiUseDTO[]>([]);
-  globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
+  readonly globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
+  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   ref: DynamicDialogRef;
   scrollHeight = this.tableScrollHeightS.scrollHeight;

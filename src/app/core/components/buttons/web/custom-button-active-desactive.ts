@@ -46,17 +46,16 @@ export class CustomBtnActiveDesactive extends BaseButton {
       "btn-icon-shell--soft",
       "btn-icon-shell--with-label",
       this.state()
-        ? "bg-white-alpha-20 text-green-900"
-        : "bg-white-alpha-20 text-red-900",
+        ? "bg-white-alpha-20 text-green-700"
+        : "bg-white-alpha-20 text-red-700",
     ].join(" "),
   );
 
   stateClasses = computed(() => {
-    const base =
-      "inline-flex align-items-center justify-content-center gap-2 px-3 py-2 text-sm font-medium border-round transition-colors transition-duration-200 cursor-pointer border-none w-full";
+    const base = "btn no-print w-full ";
     return this.state()
-      ? `${base} bg-green-100 text-green-800 hover:bg-green-200`
-      : `${base} bg-red-100 text-red-800 hover:bg-red-200`;
+      ? base + "btn-outline-success"
+      : base + "btn-outline-danger";
   });
 
   toggleState(): void {

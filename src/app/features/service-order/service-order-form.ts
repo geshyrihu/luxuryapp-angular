@@ -255,13 +255,15 @@ export class ServiceOrderForm implements OnInit {
     const payload = {
       machineryId: formValue.machineryId,
       activity: formValue.activity,
-      requestDate: formValue.requestDate,
+      requestDate: this.dateS.getDateFormat(formValue.requestDate as any),
       status: formValue.status,
       providerId: formValue.providerId,
       price: formValue.price,
       employeeResponsableId: formValue.employeeResponsableId,
       typeMaintance: formValue.typeMaintance,
-      executionDate: formValue.executionDate,
+      executionDate: formValue.executionDate
+        ? this.dateS.getDateFormat(formValue.executionDate as any)
+        : null,
       observations: formValue.observations,
       cumplimientoActividades: formValue.cumplimientoActividades,
       equiposOperando: formValue.equiposOperando,

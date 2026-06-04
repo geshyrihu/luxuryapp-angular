@@ -38,10 +38,10 @@ import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { PendingItemDTO } from "./models/pending-item.dto";
 
 // Recruitment Dialog Components
-import { SolicitudAltaStatusForm} from "src/app/features/recruitment-requests/components/solicitud-alta-status-form";
-import { SolicitudBajaUpdateStatus } from "src/app/features/request-dismissal/components/solicitud-baja-update-status";
-import { ModificacionSalarioForm } from "src/app/features/salary-modification/components/modificacion-salario-form";
-import { VacanteForm } from "src/app/features/vacancy-requests/components/vacante-form";
+import { SolicitudAltaStatusForm} from "src/app/features/reclutamiento-solicitudes/recruitment-requests/components/solicitud-alta-status-form";
+import { SolicitudBajaUpdateStatus } from "src/app/features/reclutamiento-solicitudes/request-dismissal/components/solicitud-baja-update-status";
+import { ModificacionSalarioForm } from "src/app/features/reclutamiento-solicitudes/salary-modification/components/modificacion-salario-form";
+import { VacanteForm } from "src/app/features/reclutamiento-solicitudes/vacancy-requests/components/vacante-form";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { TicketLegalForm } from "../legal/ticket-legal/ticket-legal-form";
 

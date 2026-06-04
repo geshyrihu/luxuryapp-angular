@@ -43,7 +43,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
         [filter]="filter()"
         [filterBy]="filterBy()"
         [invalid]="isInvalid()"
-        size="small"
+        [size]="size()"
       />
     </base-input-signal>
   `,
@@ -69,6 +69,7 @@ export class CustomInputSelectSignal
   optionLabel = input<string>("label");
   optionValue = input<string>("value");
   customClass = input<string>("");
+  size = input<"small" | "large" | undefined>(undefined);
 
   constructor() {
     super();

@@ -20,6 +20,7 @@ import { InputGroupAddonModule } from "primeng/inputgroupaddon";
 import { InputTextModule } from "primeng/inputtext";
 import { MessageModule } from "primeng/message";
 import { TooltipModule } from "primeng/tooltip";
+import { FieldsetModule } from "primeng/fieldset";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
@@ -51,6 +52,7 @@ interface ICategoryForm {
     InputTextModule,
     MessageModule,
     TooltipModule,
+    FieldsetModule,
     CustomButton,
     CustomButtonDelete,
     CustomButtonSave,

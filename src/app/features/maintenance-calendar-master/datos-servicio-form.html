@@ -1,38 +1,57 @@
-<div class="grid">
-  <div class="col-12">
-    <custom-input-textarea-signal
-      label="Actividad:"
-      customClass="w-full"
-      [readonly]="true"
-      [cols]="30"
-      [control]="actividadControl"
-      [rows]="10"
-    />
-    <custom-input-textarea-signal
-      label="Observaciones:"
-      customClass="w-full"
-      [readonly]="true"
-      [cols]="30"
-      [control]="observacionesControl"
-      [rows]="5"
-    />
-    <label>Proveedores:</label>
-    <div class="surface-card p-3 border-round">
-      @for (proveedor of proveedores; track proveedor) {
+<div class="flex flex-column gap-4">
+
+  @if (data?.nombreEquipo) {
+  <div class="flex align-items-center gap-2 pb-2 border-bottom-1 surface-border">
+    <i class="pi pi-cog text-primary text-xl"></i>
+    <span class="text-xl font-bold text-900">{{ data.nombreEquipo }}</span>
+  </div>
+  }
+
+  <div>
+    <label class="text-500 text-sm font-medium uppercase tracking-wide mb-2 block">Actividad</label>
+    <div class="surface-100 border-round p-3 text-900 line-height-3">
+      {{ data?.servicio || 'Sin descripcion' }}
+    </div>
+  </div>
+
+  @if (data?.observaciones) {
+  <div>
+    <label class="text-500 text-sm font-medium uppercase tracking-wide mb-2 block">Observaciones</label>
+    <div class="surface-100 border-round p-3 text-700 line-height-3">
+      {{ data.observaciones }}
+    </div>
+  </div>
+  }
+
+  <div>
+    <label class="text-500 text-sm font-medium uppercase tracking-wide mb-2 block">
+      Proveedores
+      @if (proveedores?.length > 0) {
+      <p-tag [value]="proveedores.length" severity="secondary" styleClass="ml-2 text-xs" />
+      }
+    </label>
+    @if (proveedores?.length > 0) {
+    <div class="surface-card border-1 surface-border border-round overflow-hidden">
+      @for (proveedor of proveedores; track proveedor; let last = $last) {
       <div
         (click)="onDataProveedor(proveedor.id)"
-        class="cursor-pointer p-2 border-bottom-1 surface-border hover:surface-hover"
+        class="flex align-items-center gap-3 cursor-pointer p-3 hover:surface-100 transition-colors transition-duration-150"
+        [class.border-bottom-1]="!last"
+        [class.surface-border]="!last"
       >
-        <span class="font-medium">{{ proveedor.nameProvider }}</span>
+        <div class="flex align-items-center justify-content-center w-2rem h-2rem border-round-lg bg-primary-100">
+          <i class="pi pi-building text-primary text-sm"></i>
+        </div>
+        <span class="font-medium text-900 flex-1">{{ proveedor.nameProvider }}</span>
+        <i class="pi pi-angle-right text-400"></i>
       </div>
       }
     </div>
+    } @else {
+    <div class="surface-100 border-round p-3 text-400 text-sm text-center">
+      <i class="pi pi-inbox mr-2"></i>Sin proveedores asignados
+    </div>
+    }
   </div>
+
 </div>
-
-
-
-
-
-
-

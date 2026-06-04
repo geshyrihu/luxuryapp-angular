@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
@@ -36,14 +36,14 @@ export class MeterCategoryList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   apiResponseS = inject(ApiResponseService);
   data = signal<IMedidorCategoria[]>([]);
-  globalFilterFields = computed(() => {
+  readonly globalFilterFields = computed(() => {
     const data = this.data();
     if (!data || data.length === 0) return [];
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
+  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
 
   ngOnInit(): void {

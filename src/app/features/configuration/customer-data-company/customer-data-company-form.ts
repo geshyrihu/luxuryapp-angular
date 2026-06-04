@@ -10,6 +10,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
+import { CustomInputPhonePrefix } from "src/app/core/components/inputs/web/custom-input-phone-prefix";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -24,6 +25,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
     CardModule,
     CustomInputTextSignal,
     CustomInputMaskSignal,
+    CustomInputPhonePrefix,
     CustomInputAutoComplete,
     CustomButtonSave,
   ],
@@ -54,7 +56,7 @@ export class CustomerDataCompanyForm implements OnInit {
       validators: [Validators.required],
     }),
     applicationRole: new FormControl<any>(null),
-    phoneNumberPrefix: new FormControl<string>(""),
+    phoneNumberPrefix: new FormControl<string>("+52"),
     applicationUserId: new FormControl<string | null>("", {
       nonNullable: true,
       validators: [Validators.required],
@@ -132,9 +134,9 @@ export class CustomerDataCompanyForm implements OnInit {
       ),
     ]);
 
-    this.cb_customer.set(customers as ISelectItem[]);
-    this.cb_applicationUser.set(users as ISelectItem[]);
-    this.cb_applicationRole.set(applicationRoles as ISelectItem[]);
+    this.cb_customer.set((customers as ISelectItem[]) ?? []);
+    this.cb_applicationUser.set((users as ISelectItem[]) ?? []);
+    this.cb_applicationRole.set((applicationRoles as ISelectItem[]) ?? []);
   }
 
   saveCustomer = (item: ISelectItem) => {

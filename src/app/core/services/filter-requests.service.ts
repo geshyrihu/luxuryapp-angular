@@ -1,5 +1,5 @@
 import { HttpParams } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { Injectable, signal } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 @Injectable({
   providedIn: "root",
@@ -10,6 +10,8 @@ export class FilterRequestsService {
 
   // Formateamos la fecha inicial en formato ISO (AAAA-MM) para usarla en la solicitud
   fechaFormateada = this.fechaInicial.toISOString().slice(0, 7);
+
+  searchTerm = signal<string>('');
 
   // Subject para emitir los parámetros de la solicitud HTTP
   private paramsEmit$: Subject<HttpParams> = new Subject<HttpParams>();
@@ -69,6 +71,10 @@ export class FilterRequestsService {
    */
   getParams() {
     return this.params;
+  }
+
+  setSearch(term: string) {
+    this.searchTerm.set(term);
   }
 }
 

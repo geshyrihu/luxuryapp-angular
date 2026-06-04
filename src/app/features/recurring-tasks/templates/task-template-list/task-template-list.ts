@@ -2,7 +2,11 @@ import { Component, OnInit, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile";
+import {
+  IonButtonActiveDesactive,
+  IonButtonDelete,
+  IonButtonItem,
+} from "src/app/core/components/buttons/mobile";
 import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/custom-button-active-desactive";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
@@ -29,6 +33,8 @@ import { TaskTemplateForm } from "../task-template-form/task-template-form";
     TableModule,
 
     IonButtonItem,
+    IonButtonActiveDesactive,
+    IonButtonDelete,
   ],
 })
 export class TaskTemplateList implements OnInit {

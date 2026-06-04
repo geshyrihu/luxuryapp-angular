@@ -79,7 +79,7 @@ export class VacacionesAdminAuditoria implements OnInit {
   /** Historial de solicitudes del empleado para el periodo seleccionado. */
   requests = signal<VacationHistoryItemDTO[]>([]);
 
-  /** Spinner global del órea de resultados. */
+  /** Spinner global del área de resultados. */
   loadingResults = signal(false);
 
   /** Spinner solo para la carga inicial de empleados. */

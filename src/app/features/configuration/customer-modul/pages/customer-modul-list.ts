@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { IonAvatar } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -11,6 +11,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { PrimeNgCustomGlobalFilter } from "src/app/core/components/primeng-custom-global-filter/primeng-custom-global-filter";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -21,6 +22,10 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CustomerModulEdit } from "./customer-modul-edit";
+import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/custom-button-active-desactive";
+import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { IonButtonActiveDesactive } from "src/app/core/components/buttons/mobile/ion-button-active-desactive";
+
 @Component({
   selector: "app-customer-modul-list",
   templateUrl: "./customer-modul-list.html",
@@ -32,9 +37,12 @@ import { CustomerModulEdit } from "./customer-modul-edit";
     TagModule,
     DataViewMobile,
     PrimeNgCustomGlobalFilter,
+    PrimeNgCustomTableFooter,
     CardModule,
-
     IonAvatar,
+    PrimeNgCustomCaption,
+    CustomBtnActiveDesactive,
+    IonButtonActiveDesactive,
   ],
 })
 export class CustomerModulList implements OnInit {
@@ -46,23 +54,19 @@ export class CustomerModulList implements OnInit {
     addIcons({ chevronForwardOutline });
   }
 
-  // Declaración e inicialización de variables
+  // DeclaraciÃ³n e inicializaciÃ³n de variables
   dataSignal = signal<any[]>([]);
 
-  globalFilterFields = computed(() => {
+  readonly globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
     return globalFilterFields(data);
   });
 
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
+  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   state: boolean = true;
-  selectCustomer: ISelectItem[] = [
-    { value: true, label: "Activo" },
-    { value: false, label: "Inactivo" },
-  ];
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   ngOnInit(): void {
@@ -89,16 +93,17 @@ export class CustomerModulList implements OnInit {
       });
   }
 
-  // Método para filtrar por cliente
-  onSelectForCustomer(selectedValue: boolean) {
+  // MÃ©todo para filtrar por estado
+  onSelectActive(selectedValue: boolean) {
+    this.state = selectedValue;
     this.onLoadData(selectedValue);
   }
-  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
+  // FunciÃ³n para abrir un cuadro de diÃ¡logo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS.openDialog(
       CustomerModulEdit,
       data,
-      "Asignar Módulos",
+      "Asignar MÃ³dulos",
       this.dialogHandlerS.sizeFull,
     );
   }

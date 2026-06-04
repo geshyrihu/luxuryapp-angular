@@ -30,6 +30,7 @@ export abstract class BaseButton {
   customClass = input<string>("");
   customNgClass = input<Record<string, boolean>>({});
   iconClass = input<string>("");
+  icon = input<string>("");
   emoji = input<string>("");
 
   label = input<string>("");
@@ -40,6 +41,7 @@ export abstract class BaseButton {
 
   mostrar = input<boolean>(true);
   showLabelOnDesktop = input<boolean>(false);
+  noMargin = input<boolean>(true);
 
   type = input<ButtonType>(ButtonType.Button);
 
@@ -56,7 +58,8 @@ export abstract class BaseButton {
   text = input<boolean>(false);
 
   resolvedIconClass = computed(() => {
-    const directIcon = normalizePrimeIconClass(this.iconClass());
+    const icon = this.icon() || this.iconClass();
+    const directIcon = normalizePrimeIconClass(icon);
     if (directIcon) return directIcon;
 
     return resolvePrimeIcon(this.emoji());

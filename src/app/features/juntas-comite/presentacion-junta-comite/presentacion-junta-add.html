@@ -18,6 +18,17 @@
       placeholder="Fecha de Junta"
     />
   </div>
+  <div class="mb-2">
+    <custom-input-time-signal
+      [control]="form.controls.horaJunta"
+      label="Hora de Junta"
+      placeholder="Hora de Junta"
+    />
+  </div>
+  <div class="mb-3 p-2 border-round bg-yellow-50 text-700 text-sm">
+    Al cambiar la fecha u hora de la junta, este dato debe mantenerse
+    alineado con la agenda mensual y con la minuta vinculada.
+  </div>
 
   <custom-button-save
     [propertyId]="id"

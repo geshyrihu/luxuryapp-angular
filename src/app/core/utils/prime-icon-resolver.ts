@@ -74,9 +74,21 @@ export function normalizePrimeIconClass(
 ): string {
   const trimmed = (rawIconClass ?? "").trim();
   if (!trimmed) return "";
-  if (trimmed.startsWith("pi ")) return trimmed;
-  if (trimmed.startsWith("pi-")) return `pi ${trimmed}`;
-  return trimmed;
+
+  // Si ya tiene el formato de icono custom del proyecto, lo respetamos
+  if (trimmed.startsWith("icon ")) return trimmed;
+
+  // Si ya tiene el formato pi pi-, lo devolvemos tal cual
+  if (trimmed.startsWith("pi pi-")) return trimmed;
+
+  // Extraer el nombre para normalizar a pi pi-
+  let name = trimmed;
+  if (trimmed.startsWith("pi-")) name = trimmed.replace("pi-", "");
+  else if (trimmed.startsWith("pi ")) {
+    name = trimmed.replace("pi ", "").replace("pi-", "");
+  }
+
+  return `pi pi-${name}`;
 }
 
 export function resolvePrimeIcon(
@@ -84,7 +96,7 @@ export function resolvePrimeIcon(
   fallback = "",
 ): string {
   const directIcon = normalizePrimeIconClass(rawValue);
-  if (directIcon.startsWith("pi ")) {
+  if (directIcon.startsWith("pi ") || directIcon.startsWith("icon ")) {
     return directIcon;
   }
 

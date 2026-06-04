@@ -36,10 +36,7 @@
       <!-- Fila de Encabezado de Sección -->
       @if (row.tipo === 'header') {
       <tr class="rf-row-section">
-        <td
-          colspan="6"
-          class="py-2 px-3 uppercase text-xs tracking-wider"
-        >
+        <td colspan="6" class="py-2 px-3 uppercase text-xs tracking-wider">
           {{ row.descripcion }}
         </td>
       </tr>
@@ -59,10 +56,7 @@
         <td class="rf-td-number" [class.rf-neg]="row.mes3 < 0">
           {{ row.mes3 === 0 ? "-" : (row.mes3 | accountingNumber : "1.0-0") }}
         </td>
-        <td
-          class="rf-td-number--total"
-          [class.rf-neg]="row.acum < 0"
-        >
+        <td class="rf-td-number--total" [class.rf-neg]="row.acum < 0">
           {{ row.acum === 0 ? "-" : (row.acum | accountingNumber : "1.0-0") }}
         </td>
       </tr>
@@ -73,9 +67,15 @@
       <tr class="rf-row-total">
         <td></td>
         <td class="rf-td-descripcion">{{ row.descripcion }}</td>
-        <td class="rf-td-number--total" [class.rf-neg]="row.mes1 < 0">{{ row.mes1 | accountingNumber : "1.0-0" }}</td>
-        <td class="rf-td-number--total" [class.rf-neg]="row.mes2 < 0">{{ row.mes2 | accountingNumber : "1.0-0" }}</td>
-        <td class="rf-td-number--total" [class.rf-neg]="row.mes3 < 0">{{ row.mes3 | accountingNumber : "1.0-0" }}</td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes1 < 0">
+          {{ row.mes1 | accountingNumber : "1.0-0" }}
+        </td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes2 < 0">
+          {{ row.mes2 | accountingNumber : "1.0-0" }}
+        </td>
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes3 < 0">
+          {{ row.mes3 | accountingNumber : "1.0-0" }}
+        </td>
         <td class="rf-td-number--total">
           {{ row.acum | accountingNumber : "1.0-0" }}
         </td>
@@ -87,28 +87,16 @@
       <tr class="rf-row-result">
         <td></td>
         <td class="rf-td-descripcion">{{ row.descripcion }}</td>
-        <td
-          class="rf-td-number--total"
-          [class.rf-neg]="row.mes1 < 0"
-        >
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes1 < 0">
           {{ row.mes1 | accountingNumber : "1.0-0" }}
         </td>
-        <td
-          class="rf-td-number--total"
-          [class.rf-neg]="row.mes2 < 0"
-        >
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes2 < 0">
           {{ row.mes2 | accountingNumber : "1.0-0" }}
         </td>
-        <td
-          class="rf-td-number--total"
-          [class.rf-neg]="row.mes3 < 0"
-        >
+        <td class="rf-td-number--total" [class.rf-neg]="row.mes3 < 0">
           {{ row.mes3 | accountingNumber : "1.0-0" }}
         </td>
-        <td
-          class="rf-td-number--total"
-          [class.rf-neg]="row.acum < 0"
-        >
+        <td class="rf-td-number--total" [class.rf-neg]="row.acum < 0">
           {{ row.acum | accountingNumber : "1.0-0" }}
         </td>
       </tr>
@@ -135,37 +123,45 @@
       <div class="surface-card p-3 mb-2 border-round shadow-1">
         <div class="flex justify-content-between align-items-start mb-2 gap-2">
           <span class="text-sm font-bold w-9">{{ item.descripcion }}</span>
-          <span class="text-xs font-mono text-500 shrink-0">{{
-            item.numeroCuenta
-          }}</span>
+          <span class="text-xs font-mono text-500 shrink-0"
+            >{{ item.numeroCuenta }}</span
+          >
         </div>
         <div class="grid m-0 text-xs text-500">
           <div class="col-4 p-0">
             {{ monthHeaders()[0] }}:
-            <span class="text-color font-medium block" [class.text-red-500]="item.mes1 < 0">{{
-              item.mes1 | accountingNumber : "1.0-0"
-            }}</span>
+            <span
+              class="text-color font-medium block"
+              [class.text-red-500]="item.mes1 < 0"
+              >{{ item.mes1 | accountingNumber : "1.0-0" }}</span
+            >
           </div>
           <div class="col-4 p-0">
             {{ monthHeaders()[1] }}:
-            <span class="text-color font-medium block" [class.text-red-500]="item.mes2 < 0">{{
-              item.mes2 | accountingNumber : "1.0-0"
-            }}</span>
+            <span
+              class="text-color font-medium block"
+              [class.text-red-500]="item.mes2 < 0"
+              >{{ item.mes2 | accountingNumber : "1.0-0" }}</span
+            >
           </div>
           <div class="col-4 p-0">
             {{ monthHeaders()[2] }}:
-            <span class="text-color font-medium block" [class.text-red-500]="item.mes3 < 0">{{
-              item.mes3 | accountingNumber : "1.0-0"
-            }}</span>
+            <span
+              class="text-color font-medium block"
+              [class.text-red-500]="item.mes3 < 0"
+              >{{ item.mes3 | accountingNumber : "1.0-0" }}</span
+            >
           </div>
         </div>
         <div
           class="mt-2 pt-2 border-top-1 border-100 flex justify-content-between align-items-center"
         >
           <span class="text-xs font-bold uppercase text-500">Acumulado</span>
-          <span class="text-sm font-bold text-primary" [class.text-red-500]="item.acum < 0">{{
-            item.acum | accountingNumber : "1.0-0"
-          }}</span>
+          <span
+            class="text-sm font-bold text-primary"
+            [class.text-red-500]="item.acum < 0"
+            >{{ item.acum | accountingNumber : "1.0-0" }}</span
+          >
         </div>
       </div>
       } @else {
@@ -186,7 +182,9 @@
         </div>
         <div class="flex justify-content-between text-xs opacity-70">
           <span>{{ monthHeaders()[2] }}</span>
-          <span [class.text-red-500]="item.mes3 < 0">{{ item.mes3 | accountingNumber : "1.0-0" }}</span>
+          <span [class.text-red-500]="item.mes3 < 0"
+            >{{ item.mes3 | accountingNumber : "1.0-0" }}</span
+          >
         </div>
       </div>
       }

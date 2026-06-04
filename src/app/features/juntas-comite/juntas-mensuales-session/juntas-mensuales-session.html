@@ -55,7 +55,7 @@
                 {{ item.customerShortName || item.customerName }}
               </small>
             </td>
-            <td>{{ item.scheduledAt | date: "dd/MM/yyyy HH:mm" }}</td>
+            <td>{{ formatBusinessDateTime(item.scheduledAt) }}</td>
             <td>
               <p-tag [value]="item.statusDisplayName" severity="info" />
             </td>
@@ -90,8 +90,8 @@
         <div class="col-12 md:col-6">
           <p class="m-0 text-color-secondary">Programada</p>
           <p class="mt-1 font-semibold">
-            {{ detail.scheduledAt | date: "dd/MM/yyyy HH:mm" }} -
-            {{ detail.scheduledEndAt | date: "HH:mm" }}
+            {{ formatBusinessDateTime(detail.scheduledAt) }} -
+            {{ formatBusinessTime(detail.scheduledEndAt) }}
           </p>
         </div>
         <div class="col-12 md:col-6">
@@ -127,6 +127,13 @@
           icon="pi pi-calendar-plus"
           label="Reprogramar"
           (clicked)="onOpenReschedule()"
+        />
+        }
+        @if (hasAssemblyChecklist(detail)) {
+        <custom-button
+          icon="pi pi-list-check"
+          label="Checklist asamblea"
+          (clicked)="onOpenAssemblyChecklist()"
         />
         }
         @if (detail.meetingId) {
@@ -185,6 +192,31 @@
             }
           </p-card>
         </div>
+
+        @if (detail.assembly) {
+        <div class="col-12">
+          <p-card header="Asamblea">
+            <div class="grid">
+              <div class="col-12 md:col-3">
+                <p class="m-0 text-color-secondary">Invitados</p>
+                <p class="mt-1 font-semibold">{{ detail.assembly.inviteesCount }}</p>
+              </div>
+              <div class="col-12 md:col-3">
+                <p class="m-0 text-color-secondary">Solicitudes de soporte</p>
+                <p class="mt-1 font-semibold">{{ detail.assembly.supportRequestsCount }}</p>
+              </div>
+              <div class="col-12 md:col-3">
+                <p class="m-0 text-color-secondary">Items checklist</p>
+                <p class="mt-1 font-semibold">{{ detail.assembly.checklistItemsCount }}</p>
+              </div>
+              <div class="col-12 md:col-3">
+                <p class="m-0 text-color-secondary">Pendientes</p>
+                <p class="mt-1 font-semibold">{{ detail.assembly.checklistPendingCount }}</p>
+              </div>
+            </div>
+          </p-card>
+        </div>
+        }
       </div>
       } @else {
       <p class="text-color-secondary m-0">

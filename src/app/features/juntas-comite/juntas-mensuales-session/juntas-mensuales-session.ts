@@ -19,7 +19,9 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { DateService } from "src/app/core/services/date.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
+import { JuntaMensualSessionChecklistDialog } from "./junta-mensual-session-checklist-dialog";
 import { JuntaMensualSessionRescheduleForm } from "./junta-mensual-session-reschedule-form";
 
 interface IJuntaMensualSessionListItem {
@@ -64,6 +66,30 @@ interface IJuntaMensualSessionDetail extends IJuntaMensualSessionListItem {
     recurrenceSeriesId: string | null;
     recurrenceRule: string;
   } | null;
+  assembly: {
+    asambleaPlanId: string;
+    copyLegal: boolean;
+    requiresPaddles: boolean;
+    paddlesQuantity: number | null;
+    requiresAudioVisual: boolean;
+    audioVisualNotes: string;
+    operationalNotes: string;
+    specialInstructions: string;
+    inviteesCount: number;
+    supportRequestsCount: number;
+    checklistItemsCount: number;
+    checklistPendingCount: number;
+    checklist: Array<{
+      id: string;
+      templateCode: string;
+      title: string;
+      category: string;
+      dueDate: string;
+      responsibleRole: string;
+      status: number;
+      statusDisplayName: string;
+    }>;
+  } | null;
   presentation: {
     id: string;
     fechaCorrespondiente: string;
@@ -104,6 +130,7 @@ export class JuntasMensualesSession {
   private readonly customerIdS = inject(CustomerIdService);
   private readonly aspRoleS = inject(AspRoleService);
   private readonly dialogHandlerS = inject(DialogHandlerService);
+  private readonly dateS = inject(DateService);
   private readonly router = inject(Router);
   private readonly signalRService = inject(SignalRService);
   private readonly destroyRef = inject(DestroyRef);
@@ -253,6 +280,24 @@ export class JuntasMensualesSession {
       });
   }
 
+  onOpenAssemblyChecklist() {
+    const detail = this.selectedDetail();
+    if (!detail?.assembly) return;
+
+    this.dialogHandlerS
+      .openDialog(
+        JuntaMensualSessionChecklistDialog,
+        { sessionId: detail.id },
+        "Checklist de asamblea",
+        this.dialogHandlerS.sizeLg,
+      )
+      .then((result: boolean) => {
+        if (result) {
+          this.onLoadDetail(detail.id);
+        }
+      });
+  }
+
   canCreateMeeting(detail: IJuntaMensualSessionDetail | null) {
     return !!detail && !detail.meetingId && detail.statusDisplayName !== "Cancelled";
   }
@@ -263,5 +308,57 @@ export class JuntasMensualesSession {
 
   canReschedule(detail: IJuntaMensualSessionDetail | null) {
     return !!detail && !detail.cancelledAt;
+  }
+
+  hasAssemblyChecklist(detail: IJuntaMensualSessionDetail | null) {
+    return !!detail?.assembly;
+  }
+
+  formatBusinessDateTime(value: string | Date | null | undefined) {
+    const parsed = this.parseBusinessDateTime(value);
+    if (!parsed) return "";
+
+    const day = `${parsed.getDate()}`.padStart(2, "0");
+    const month = `${parsed.getMonth() + 1}`.padStart(2, "0");
+    const year = parsed.getFullYear();
+    const hours = `${parsed.getHours()}`.padStart(2, "0");
+    const minutes = `${parsed.getMinutes()}`.padStart(2, "0");
+    return `${day}/${month}/${year} ${hours}:${minutes}`;
+  }
+
+  formatBusinessTime(value: string | Date | null | undefined) {
+    const parsed = this.parseBusinessDateTime(value);
+    if (!parsed) return "";
+
+    const hours = `${parsed.getHours()}`.padStart(2, "0");
+    const minutes = `${parsed.getMinutes()}`.padStart(2, "0");
+    return `${hours}:${minutes}`;
+  }
+
+  private parseBusinessDateTime(value: string | Date | null | undefined) {
+    if (!value) return null;
+
+    if (value instanceof Date) {
+      return isNaN(value.getTime()) ? null : value;
+    }
+
+    const normalized = `${value}`.trim();
+    const match = normalized.match(
+      /^(\d{4})-(\d{2})-(\d{2})[T\s](\d{2}):(\d{2})(?::(\d{2}))?/,
+    );
+
+    if (match) {
+      const [, year, month, day, hour, minute, second] = match;
+      return new Date(
+        Number(year),
+        Number(month) - 1,
+        Number(day),
+        Number(hour),
+        Number(minute),
+        Number(second ?? "0"),
+      );
+    }
+
+    return this.dateS.parseDate(normalized) ?? null;
   }
 }

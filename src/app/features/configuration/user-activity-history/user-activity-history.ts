@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { IonAvatar } from "@ionic/angular/standalone";
@@ -61,7 +61,7 @@ export class UserActivityHistory implements OnInit {
   data = signal<any[]>([]);
   loading = signal(true);
 
-  // Signals para paginación y búsqueda
+  // Signals para paginaciÃ³n y bÃºsqueda
   totalRecords = signal(0);
   rows = signal(tablePrimeNgRows());
   searchTerm = signal<string>("");
@@ -76,12 +76,12 @@ export class UserActivityHistory implements OnInit {
   userTypeOptions: ISelectItem[] = [];
   isUserAdmin = false;
 
-  globalFilterFields = computed(() => {
+  readonly globalFilterFields = computed(() => {
     const data = this.data();
     if (!data || data.length === 0) return [];
     return globalFilterFields(data);
   });
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
+  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   ngOnInit(): void {
     this.isUserAdmin = this.aspRoleS.hasAny([
@@ -174,7 +174,7 @@ export class UserActivityHistory implements OnInit {
   onPageChange(event: any): void {
     this.rows.set(event.rows);
     this.currentPage.set(event.first / event.rows + 1);
-    this.onLoadData(true); // En la tabla de escritorio, cada cambio de página es una nueva búsqueda
+    this.onLoadData(true); // En la tabla de escritorio, cada cambio de pÃ¡gina es una nueva bÃºsqueda
   }
 
   onSearch(term: string): void {

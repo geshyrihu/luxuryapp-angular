@@ -1,4 +1,4 @@
-import {
+﻿import {
   Component,
   computed,
   inject,
@@ -37,6 +37,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CustomerAddress } from "../customer-address/pages/customer-address";
 import { ICustomerDTO } from "../models/customer.dto";
 import { CustomerForm } from "./customer-form";
@@ -66,15 +67,20 @@ import { CustomerImages } from "./customer-images";
 export class CustomerList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   apiResponseS = inject(ApiResponseService);
-  // Declaración e inicialización de variables con Signals
+  tableScrollHeightS = inject(TableScrollHeightService);
+
+  // DeclaraciÃ³n e inicializaciÃ³n de variables con Signals
   dataSignal = signal<ICustomerDTO[]>([]);
   loading = signal(true);
 
-  tablePrimeNgRows: number = tablePrimeNgRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
+  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
+
+  // Usar el servicio global para scrollHeight
+  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   // Computed para globalFilterFields
-  globalFilterFields = computed(() => {
+  readonly globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
     return globalFilterFields(data);

@@ -1,4 +1,4 @@
-﻿import { Component, computed, inject, signal } from "@angular/core";
+import { Component, computed, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -40,16 +40,20 @@ export class CatalogoActivoLista {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
-  // Declaración e inicialización de variables
-  dataSignal = signal<any>(null);
+  // Declaracion e inicializacion de variables
+  dataSignal = signal<any[]>([]);
 
-  globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
+  globalFilterFields = computed(() => {
+    const data = this.dataSignal();
+    if (!data || data.length === 0) return [];
+    return globalFilterFields(data);
+  });
   loading = signal(true);
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
-  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de dialogo modal
 
   ngOnInit(): void {
     this.onLoadData();
@@ -72,7 +76,7 @@ export class CatalogoActivoLista {
     });
   }
 
-  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
+  // Funcion para abrir un cuadro de dialogo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(
@@ -97,7 +101,7 @@ export enum EAssetCategory {
   Equipo,
   Amenidades,
   Mobiliario,
-  ÁreasComunes,
+  AreasComunes,
   Gimnasio,
   Sistemas,
   "Almacenes, cuartos y bodegas",

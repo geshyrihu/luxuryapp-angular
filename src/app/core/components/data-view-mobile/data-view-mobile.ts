@@ -187,7 +187,7 @@ export class DataViewMobile implements OnInit {
   }
 
   filteredData = computed(() => {
-    const data = this.data();
+    const data = this.data() || [];
     const filterFields = this.globalFilterFields();
     const filterVal = this.filterValue();
 
@@ -206,6 +206,7 @@ export class DataViewMobile implements OnInit {
 
   // 👇 Función flexible de tracking
   trackByFn(index: number, item: any): any {
+    if (!item) return index;
     const prop = this.trackByProperty();
 
     // 1. Si se especificó trackByProperty, usarla
@@ -226,6 +227,7 @@ export class DataViewMobile implements OnInit {
     ];
     for (const p of commonIdProps) {
       if (
+        item &&
         item.hasOwnProperty(p) &&
         item[p] != null &&
         item[p] !== "00000000-0000-0000-0000-000000000000"
@@ -243,6 +245,6 @@ export class DataViewMobile implements OnInit {
   }
 
   objectKeys(obj: any) {
-    return Object.keys(obj);
+    return obj ? Object.keys(obj) : [];
   }
 }

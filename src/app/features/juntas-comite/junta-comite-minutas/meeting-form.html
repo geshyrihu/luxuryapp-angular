@@ -7,9 +7,18 @@
     />
     <custom-input-date-signal
       [control]="form.controls.date"
-      label="Fecha de Término"
-      placeholder="fecha de término"
+      label="Fecha de Junta"
+      placeholder="Fecha de Junta"
     />
+    <custom-input-time-signal
+      [control]="form.controls.time"
+      label="Hora de Junta"
+      placeholder="Hora de Junta"
+    />
+    <div class="mb-3 p-2 border-round bg-yellow-50 text-700 text-sm">
+      Al cambiar la fecha u hora de la junta, este dato debe mantenerse
+      alineado con la agenda mensual y con la presentación vinculada.
+    </div>
     <custom-input-select-signal
       [control]="form.controls.eTypeMeeting"
       label="Tipo de junta"

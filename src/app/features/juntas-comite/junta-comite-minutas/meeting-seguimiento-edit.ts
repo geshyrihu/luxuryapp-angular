@@ -79,15 +79,20 @@ export class MeetingSeguimientoEdit implements OnInit {
 
     this.submitting.set(true);
 
+    const payload = {
+      ...this.form.value,
+      fecha: this.dateS.getDateFormat(this.form.value.fecha as any),
+    };
+
     if (!this.id) {
       this.apiResponseS
-        .onPost(`MeetingDertailsSeguimiento`, this.form.value)
+        .onPost(`MeetingDertailsSeguimiento`, payload)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
-        .onPut(`MeetingDertailsSeguimiento/${this.id}`, this.form.value)
+        .onPut(`MeetingDertailsSeguimiento/${this.id}`, payload)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });

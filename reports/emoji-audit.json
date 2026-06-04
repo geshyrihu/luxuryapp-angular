@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-05-21T02:04:43.138Z",
-  "totalMatches": 1261,
-  "userFacingMatches": 424,
+  "generatedAt": "2026-06-03T14:51:00.906Z",
+  "totalMatches": 1236,
+  "userFacingMatches": 417,
   "buttonEmojiInputs": 0,
   "byModule": [
     {
       "key": "app/core",
-      "count": 342
+      "count": 306
     },
     {
       "key": "features/root",
-      "count": 150
+      "count": 147
     },
     {
       "key": "src/styles",
@@ -26,11 +26,11 @@
     },
     {
       "key": "features/configuration",
-      "count": 65
+      "count": 70
     },
     {
       "key": "features/recursos-humanos",
-      "count": 54
+      "count": 53
     },
     {
       "key": "features/biblioteca",
@@ -77,6 +77,10 @@
       "count": 13
     },
     {
+      "key": "features/recepcion-pipas-agua",
+      "count": 12
+    },
+    {
       "key": "features/announcement",
       "count": 10
     },
@@ -98,18 +102,18 @@
     },
     {
       "key": "features/directorios",
-      "count": 6
+      "count": 7
     },
     {
       "key": "features/legal",
       "count": 6
     },
     {
-      "key": "app/ui-catalog",
-      "count": 5
+      "key": "features/reclutamiento-solicitudes",
+      "count": 6
     },
     {
-      "key": "features/recruitment",
+      "key": "app/ui-catalog",
       "count": 5
     },
     {
@@ -118,10 +122,6 @@
     },
     {
       "key": "features/evaluation-template",
-      "count": 4
-    },
-    {
-      "key": "features/performance-evaluation",
       "count": 4
     },
     {
@@ -134,6 +134,10 @@
     },
     {
       "key": "features/stock-por-almacen",
+      "count": 3
+    },
+    {
+      "key": "features/tasks",
       "count": 3
     },
     {
@@ -165,10 +169,6 @@
       "count": 2
     },
     {
-      "key": "features/maintenance-calendar-master",
-      "count": 2
-    },
-    {
       "key": "features/password-manager",
       "count": 2
     },
@@ -186,10 +186,6 @@
     },
     {
       "key": "features/reports",
-      "count": 2
-    },
-    {
-      "key": "features/salary-modification",
       "count": 2
     },
     {
@@ -213,6 +209,10 @@
       "count": 1
     },
     {
+      "key": "features/recruitment",
+      "count": 1
+    },
+    {
       "key": "features/send-email",
       "count": 1
     },
@@ -224,7 +224,7 @@
   "byUserFacingModule": [
     {
       "key": "app/core",
-      "count": 114
+      "count": 99
     },
     {
       "key": "app/root",
@@ -232,7 +232,7 @@
     },
     {
       "key": "features/recursos-humanos",
-      "count": 47
+      "count": 46
     },
     {
       "key": "features/contabilidad",
@@ -259,12 +259,20 @@
       "count": 13
     },
     {
+      "key": "features/recepcion-pipas-agua",
+      "count": 12
+    },
+    {
       "key": "features/calendar",
       "count": 9
     },
     {
       "key": "features/service-order",
       "count": 8
+    },
+    {
+      "key": "features/reclutamiento-solicitudes",
+      "count": 6
     },
     {
       "key": "src/styles",
@@ -283,19 +291,15 @@
       "count": 4
     },
     {
-      "key": "features/configuration",
-      "count": 4
-    },
-    {
-      "key": "features/evaluation-template",
-      "count": 4
-    },
-    {
-      "key": "features/recruitment",
-      "count": 4
-    },
-    {
       "key": "features/biblioteca",
+      "count": 3
+    },
+    {
+      "key": "features/directorios",
+      "count": 3
+    },
+    {
+      "key": "features/tasks",
       "count": 3
     },
     {
@@ -303,11 +307,11 @@
       "count": 2
     },
     {
-      "key": "features/directorios",
+      "key": "features/employees",
       "count": 2
     },
     {
-      "key": "features/employees",
+      "key": "features/evaluation-template",
       "count": 2
     },
     {
@@ -319,15 +323,7 @@
       "count": 2
     },
     {
-      "key": "features/performance-evaluation",
-      "count": 2
-    },
-    {
       "key": "features/product-exit",
-      "count": 2
-    },
-    {
-      "key": "features/salary-modification",
       "count": 2
     },
     {
@@ -336,6 +332,10 @@
     },
     {
       "key": "app/shared",
+      "count": 1
+    },
+    {
+      "key": "features/configuration",
       "count": 1
     },
     {
@@ -350,15 +350,15 @@
   "byCategory": [
     {
       "key": "docs",
-      "count": 330
+      "count": 327
     },
     {
       "key": "code_string",
-      "count": 248
+      "count": 237
     },
     {
       "key": "code_comment",
-      "count": 241
+      "count": 225
     },
     {
       "key": "template_comment",
@@ -366,15 +366,15 @@
     },
     {
       "key": "template_text",
-      "count": 170
+      "count": 174
     },
     {
       "key": "style_comment",
-      "count": 48
+      "count": 51
     },
     {
       "key": "code_misc",
-      "count": 30
+      "count": 29
     },
     {
       "key": "style_text",
@@ -383,10 +383,6 @@
     {
       "key": "style_content",
       "count": 6
-    },
-    {
-      "key": "code_log",
-      "count": 1
     },
     {
       "key": "config",
@@ -485,7 +481,7 @@
     },
     {
       "file": "src/app/app.routes.ts",
-      "line": 10,
+      "line": 12,
       "category": "code_comment",
       "module": "app/root",
       "severity": "low",
@@ -496,7 +492,7 @@
     },
     {
       "file": "src/app/app.routes.ts",
-      "line": 73,
+      "line": 75,
       "category": "code_comment",
       "module": "app/root",
       "severity": "low",
@@ -1271,7 +1267,7 @@
     },
     {
       "file": "src/app/core/components/inputs/base/base-input-signal.ts",
-      "line": 22,
+      "line": 23,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -1547,7 +1543,7 @@
     },
     {
       "file": "src/app/core/components/inputs/web/custom-input-check-signal.ts",
-      "line": 24,
+      "line": 26,
       "category": "code_misc",
       "module": "app/core",
       "severity": "low",
@@ -1558,7 +1554,7 @@
     },
     {
       "file": "src/app/core/components/inputs/web/custom-input-check-signal.ts",
-      "line": 62,
+      "line": 64,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -1569,7 +1565,7 @@
     },
     {
       "file": "src/app/core/components/inputs/web/custom-input-check-signal.ts",
-      "line": 69,
+      "line": 71,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -1602,7 +1598,7 @@
     },
     {
       "file": "src/app/core/components/inputs/web/custom-input-date-time-signal.ts",
-      "line": 14,
+      "line": 15,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -1691,7 +1687,7 @@
     },
     {
       "file": "src/app/core/components/inputs/web/custom-input-hour-signal.ts",
-      "line": 8,
+      "line": 9,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -1702,7 +1698,7 @@
     },
     {
       "file": "src/app/core/components/inputs/web/custom-input-hour-signal.ts",
-      "line": 62,
+      "line": 65,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -1724,7 +1720,7 @@
     },
     {
       "file": "src/app/core/components/inputs/web/custom-input-img-signal.ts",
-      "line": 41,
+      "line": 42,
       "category": "code_misc",
       "module": "app/core",
       "severity": "low",
@@ -1735,7 +1731,7 @@
     },
     {
       "file": "src/app/core/components/inputs/web/custom-input-img-signal.ts",
-      "line": 190,
+      "line": 194,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -1746,7 +1742,7 @@
     },
     {
       "file": "src/app/core/components/inputs/web/custom-input-img-signal.ts",
-      "line": 195,
+      "line": 199,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -2044,7 +2040,7 @@
     },
     {
       "file": "src/app/core/components/inputs/web/custom-input-text-signal.ts",
-      "line": 40,
+      "line": 42,
       "category": "code_misc",
       "module": "app/core",
       "severity": "low",
@@ -2055,7 +2051,7 @@
     },
     {
       "file": "src/app/core/components/inputs/web/custom-input-text-signal.ts",
-      "line": 72,
+      "line": 74,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -2066,7 +2062,7 @@
     },
     {
       "file": "src/app/core/components/inputs/web/custom-input-text-signal.ts",
-      "line": 73,
+      "line": 75,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -2077,7 +2073,7 @@
     },
     {
       "file": "src/app/core/components/inputs/web/custom-input-text-signal.ts",
-      "line": 75,
+      "line": 77,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -2088,7 +2084,7 @@
     },
     {
       "file": "src/app/core/components/inputs/web/custom-input-text-signal.ts",
-      "line": 78,
+      "line": 80,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -2099,7 +2095,7 @@
     },
     {
       "file": "src/app/core/components/inputs/web/custom-input-text-signal.ts",
-      "line": 79,
+      "line": 81,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -2110,7 +2106,7 @@
     },
     {
       "file": "src/app/core/components/inputs/web/custom-input-text-signal.ts",
-      "line": 81,
+      "line": 83,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -2143,7 +2139,7 @@
     },
     {
       "file": "src/app/core/components/inputs/web/custom-input-textarea-signal.ts",
-      "line": 23,
+      "line": 25,
       "category": "code_misc",
       "module": "app/core",
       "severity": "low",
@@ -2154,7 +2150,7 @@
     },
     {
       "file": "src/app/core/components/inputs/web/custom-input-textarea-signal.ts",
-      "line": 50,
+      "line": 52,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -2352,7 +2348,7 @@
     },
     {
       "file": "src/app/core/components/status-badge/status-badge.ts",
-      "line": 18,
+      "line": 23,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -2505,17 +2501,6 @@
       "preview": ">Adjuntar Cotizaciones PDF 📎</span"
     },
     {
-      "file": "src/app/core/constants/endpoints.ts",
-      "line": 1231,
-      "category": "code_comment",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "🏢"
-      ],
-      "preview": "// 🏢 ORGANIGRAMA JERÁRQUICO"
-    },
-    {
       "file": "src/app/core/enums/asp-net-roles.enum.ts",
       "line": 2,
       "category": "code_comment",
@@ -2539,7 +2524,7 @@
     },
     {
       "file": "src/app/core/enums/asp-net-roles.enum.ts",
-      "line": 15,
+      "line": 16,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -2550,7 +2535,7 @@
     },
     {
       "file": "src/app/core/enums/asp-net-roles.enum.ts",
-      "line": 33,
+      "line": 42,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -2561,7 +2546,7 @@
     },
     {
       "file": "src/app/core/enums/asp-net-roles.enum.ts",
-      "line": 37,
+      "line": 46,
       "category": "code_comment",
       "module": "app/core",
       "severity": "low",
@@ -3111,18 +3096,7 @@
     },
     {
       "file": "src/app/core/services/auth.service.ts",
-      "line": 75,
-      "category": "code_string",
-      "module": "app/core",
-      "severity": "medium",
-      "symbols": [
-        "🚀"
-      ],
-      "preview": "console.log(\"🚀 ~ customerAccess:\", this.currentUserSession.value?.customerAccess);"
-    },
-    {
-      "file": "src/app/core/services/auth.service.ts",
-      "line": 86,
+      "line": 85,
       "category": "code_string",
       "module": "app/core",
       "severity": "medium",
@@ -3133,7 +3107,7 @@
     },
     {
       "file": "src/app/core/services/auth.service.ts",
-      "line": 94,
+      "line": 93,
       "category": "code_string",
       "module": "app/core",
       "severity": "medium",
@@ -3144,7 +3118,7 @@
     },
     {
       "file": "src/app/core/services/auth.service.ts",
-      "line": 101,
+      "line": 100,
       "category": "code_string",
       "module": "app/core",
       "severity": "medium",
@@ -3155,7 +3129,7 @@
     },
     {
       "file": "src/app/core/services/auth.service.ts",
-      "line": 168,
+      "line": 167,
       "category": "code_string",
       "module": "app/core",
       "severity": "medium",
@@ -3218,28 +3192,6 @@
         "⚠"
       ],
       "preview": "{ icon: \"⚠️\", color: \"orange\", fontStyle: \"italic\" },"
-    },
-    {
-      "file": "src/app/core/services/data-connector.service.ts",
-      "line": 36,
-      "category": "code_comment",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "⚠"
-      ],
-      "preview": "// ⚠️ Quita el <Blob> del genérico"
-    },
-    {
-      "file": "src/app/core/services/data-connector.service.ts",
-      "line": 39,
-      "category": "code_misc",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "responseType: \"blob\", // ✅ AGREGA ESTO"
     },
     {
       "file": "src/app/core/services/jwt-interceptor.service.ts",
@@ -3599,193 +3551,6 @@
       "preview": "* 🚦 Determina si se puede \"volver atrás\" de forma segura desde la UI."
     },
     {
-      "file": "src/app/core/services/notification-messaging.service.ts",
-      "line": 24,
-      "category": "code_comment",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "🔔"
-      ],
-      "preview": "* 🔔 Solicita permiso de notificaciones (SOLO cuando el usuario lo pida explícitamente)"
-    },
-    {
-      "file": "src/app/core/services/notification-messaging.service.ts",
-      "line": 34,
-      "category": "code_string",
-      "module": "app/core",
-      "severity": "medium",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "\"%c✅ [MessagingService] Ya tenemos permiso\","
-    },
-    {
-      "file": "src/app/core/services/notification-messaging.service.ts",
-      "line": 43,
-      "category": "code_string",
-      "module": "app/core",
-      "severity": "medium",
-      "symbols": [
-        "🔔"
-      ],
-      "preview": "`%c🔔 [MessagingService] Resultado permiso: ${permission}`,"
-    },
-    {
-      "file": "src/app/core/services/notification-messaging.service.ts",
-      "line": 54,
-      "category": "code_comment",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "📬"
-      ],
-      "preview": "* 📬 Muestra una notificación (solo si tenemos permiso)"
-    },
-    {
-      "file": "src/app/core/services/one-signal.service.ts",
-      "line": 27,
-      "category": "code_string",
-      "module": "app/core",
-      "severity": "medium",
-      "symbols": [
-        "ℹ"
-      ],
-      "preview": "\"ℹ️\","
-    },
-    {
-      "file": "src/app/core/services/one-signal.service.ts",
-      "line": 40,
-      "category": "code_string",
-      "module": "app/core",
-      "severity": "medium",
-      "symbols": [
-        "ℹ"
-      ],
-      "preview": "\"ℹ️\","
-    },
-    {
-      "file": "src/app/core/services/one-signal.service.ts",
-      "line": 50,
-      "category": "code_string",
-      "module": "app/core",
-      "severity": "medium",
-      "symbols": [
-        "❌"
-      ],
-      "preview": "\"❌\","
-    },
-    {
-      "file": "src/app/core/services/one-signal.service.ts",
-      "line": 59,
-      "category": "code_string",
-      "module": "app/core",
-      "severity": "medium",
-      "symbols": [
-        "⏳"
-      ],
-      "preview": "\"⏳\","
-    },
-    {
-      "file": "src/app/core/services/one-signal.service.ts",
-      "line": 64,
-      "category": "code_string",
-      "module": "app/core",
-      "severity": "medium",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "this.consoleLogger.custom(\"✅\", \"green\", \"[OneSignal] SDK listo\");"
-    },
-    {
-      "file": "src/app/core/services/one-signal.service.ts",
-      "line": 71,
-      "category": "code_string",
-      "module": "app/core",
-      "severity": "medium",
-      "symbols": [
-        "📦"
-      ],
-      "preview": "\"📦\","
-    },
-    {
-      "file": "src/app/core/services/one-signal.service.ts",
-      "line": 81,
-      "category": "code_string",
-      "module": "app/core",
-      "severity": "medium",
-      "symbols": [
-        "👤"
-      ],
-      "preview": "\"👤\","
-    },
-    {
-      "file": "src/app/core/services/one-signal.service.ts",
-      "line": 90,
-      "category": "code_string",
-      "module": "app/core",
-      "severity": "medium",
-      "symbols": [
-        "🔥"
-      ],
-      "preview": "\"🔥\","
-    },
-    {
-      "file": "src/app/core/services/one-signal.service.ts",
-      "line": 115,
-      "category": "code_string",
-      "module": "app/core",
-      "severity": "medium",
-      "symbols": [
-        "📣"
-      ],
-      "preview": "\"📣\","
-    },
-    {
-      "file": "src/app/core/services/one-signal.service.ts",
-      "line": 125,
-      "category": "code_string",
-      "module": "app/core",
-      "severity": "medium",
-      "symbols": [
-        "⚠"
-      ],
-      "preview": "\"⚠️\","
-    },
-    {
-      "file": "src/app/core/services/one-signal.service.ts",
-      "line": 135,
-      "category": "code_string",
-      "module": "app/core",
-      "severity": "medium",
-      "symbols": [
-        "🔔"
-      ],
-      "preview": "\"🔔\","
-    },
-    {
-      "file": "src/app/core/services/one-signal.service.ts",
-      "line": 148,
-      "category": "code_string",
-      "module": "app/core",
-      "severity": "medium",
-      "symbols": [
-        "🎧"
-      ],
-      "preview": "\"🎧\","
-    },
-    {
-      "file": "src/app/core/services/one-signal.service.ts",
-      "line": 158,
-      "category": "code_string",
-      "module": "app/core",
-      "severity": "medium",
-      "symbols": [
-        "👋"
-      ],
-      "preview": "this.consoleLogger.custom(\"👋\", \"red\", \"[OneSignal] Usuario deslogueado\");"
-    },
-    {
       "file": "src/app/core/services/pdf-generator.service.ts",
       "line": 78,
       "category": "code_comment",
@@ -3831,7 +3596,7 @@
     },
     {
       "file": "src/app/core/services/pdf-generator.service.ts",
-      "line": 178,
+      "line": 199,
       "category": "code_misc",
       "module": "app/core",
       "severity": "low",
@@ -3842,7 +3607,7 @@
     },
     {
       "file": "src/app/core/services/pdf-generator.service.ts",
-      "line": 186,
+      "line": 207,
       "category": "code_string",
       "module": "app/core",
       "severity": "medium",
@@ -3996,106 +3761,7 @@
     },
     {
       "file": "src/app/core/services/signalr.service.ts",
-      "line": 12,
-      "category": "code_comment",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "🧩"
-      ],
-      "preview": "// 🧩 Servicios inyectados"
-    },
-    {
-      "file": "src/app/core/services/signalr.service.ts",
-      "line": 16,
-      "category": "code_comment",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "🔌"
-      ],
-      "preview": "// 🔌 Conexión principal a SignalR"
-    },
-    {
-      "file": "src/app/core/services/signalr.service.ts",
-      "line": 19,
-      "category": "code_comment",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "📡"
-      ],
-      "preview": "// 📡 Signal que indica si estamos conectados"
-    },
-    {
-      "file": "src/app/core/services/signalr.service.ts",
-      "line": 23,
-      "category": "code_comment",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "🆔"
-      ],
-      "preview": "// 🆔 ID de conexión asignada por el servidor"
-    },
-    {
-      "file": "src/app/core/services/signalr.service.ts",
-      "line": 27,
-      "category": "code_comment",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "👤"
-      ],
-      "preview": "// 👤 Usuario conectado reportado por el Hub"
-    },
-    {
-      "file": "src/app/core/services/signalr.service.ts",
-      "line": 31,
-      "category": "code_comment",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "✉"
-      ],
-      "preview": "// ✉️ Stream general de mensajes entrantes"
-    },
-    {
-      "file": "src/app/core/services/signalr.service.ts",
-      "line": 35,
-      "category": "code_comment",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "🔄"
-      ],
-      "preview": "// 🔄 Stream exclusivo para actualizaciones de ítems de propuesta"
-    },
-    {
-      "file": "src/app/core/services/signalr.service.ts",
-      "line": 40,
-      "category": "code_comment",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "📊"
-      ],
-      "preview": "// 📊 Stream para actualizaciones de gastos proyectados"
-    },
-    {
-      "file": "src/app/core/services/signalr.service.ts",
-      "line": 45,
-      "category": "code_comment",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "🚀"
-      ],
-      "preview": "// 🚀 Iniciar conexión con SignalR"
-    },
-    {
-      "file": "src/app/core/services/signalr.service.ts",
-      "line": 53,
+      "line": 58,
       "category": "code_string",
       "module": "app/core",
       "severity": "medium",
@@ -4106,7 +3772,7 @@
     },
     {
       "file": "src/app/core/services/signalr.service.ts",
-      "line": 62,
+      "line": 66,
       "category": "code_string",
       "module": "app/core",
       "severity": "medium",
@@ -4139,18 +3805,7 @@
     },
     {
       "file": "src/app/core/services/signalr.service.ts",
-      "line": 100,
-      "category": "code_comment",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "🎧"
-      ],
-      "preview": "// 🎧 Registrar listeners de eventos del servidor"
-    },
-    {
-      "file": "src/app/core/services/signalr.service.ts",
-      "line": 105,
+      "line": 103,
       "category": "code_string",
       "module": "app/core",
       "severity": "medium",
@@ -4161,29 +3816,7 @@
     },
     {
       "file": "src/app/core/services/signalr.service.ts",
-      "line": 113,
-      "category": "code_comment",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "🔄"
-      ],
-      "preview": "// 🔄 Listeners de ciclo de vida (reconexión, cierre, etc.)"
-    },
-    {
-      "file": "src/app/core/services/signalr.service.ts",
-      "line": 117,
-      "category": "code_comment",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "🛑"
-      ],
-      "preview": "// 🛑 Detener conexión de forma manual"
-    },
-    {
-      "file": "src/app/core/services/signalr.service.ts",
-      "line": 127,
+      "line": 123,
       "category": "code_string",
       "module": "app/core",
       "severity": "medium",
@@ -4194,18 +3827,7 @@
     },
     {
       "file": "src/app/core/services/signalr.service.ts",
-      "line": 146,
-      "category": "code_comment",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "👥"
-      ],
-      "preview": "// 👥 Unirse a un grupo único para propuestas"
-    },
-    {
-      "file": "src/app/core/services/signalr.service.ts",
-      "line": 157,
+      "line": 151,
       "category": "code_string",
       "module": "app/core",
       "severity": "medium",
@@ -4216,18 +3838,7 @@
     },
     {
       "file": "src/app/core/services/signalr.service.ts",
-      "line": 171,
-      "category": "code_comment",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "🚪"
-      ],
-      "preview": "// 🚪 Abandonar grupo"
-    },
-    {
-      "file": "src/app/core/services/signalr.service.ts",
-      "line": 182,
+      "line": 175,
       "category": "code_string",
       "module": "app/core",
       "severity": "medium",
@@ -4238,18 +3849,7 @@
     },
     {
       "file": "src/app/core/services/signalr.service.ts",
-      "line": 199,
-      "category": "code_comment",
-      "module": "app/core",
-      "severity": "low",
-      "symbols": [
-        "🎧"
-      ],
-      "preview": "// 🎧 Registración de eventos enviados por el servidor"
-    },
-    {
-      "file": "src/app/core/services/signalr.service.ts",
-      "line": 202,
+      "line": 194,
       "category": "code_string",
       "module": "app/core",
       "severity": "medium",
@@ -4260,7 +3860,7 @@
     },
     {
       "file": "src/app/core/services/signalr.service.ts",
-      "line": 210,
+      "line": 201,
       "category": "code_string",
       "module": "app/core",
       "severity": "medium",
@@ -4271,7 +3871,7 @@
     },
     {
       "file": "src/app/core/services/signalr.service.ts",
-      "line": 221,
+      "line": 211,
       "category": "code_string",
       "module": "app/core",
       "severity": "medium",
@@ -4282,7 +3882,7 @@
     },
     {
       "file": "src/app/core/services/signalr.service.ts",
-      "line": 234,
+      "line": 223,
       "category": "code_string",
       "module": "app/core",
       "severity": "medium",
@@ -4293,7 +3893,7 @@
     },
     {
       "file": "src/app/core/services/signalr.service.ts",
-      "line": 246,
+      "line": 234,
       "category": "code_string",
       "module": "app/core",
       "severity": "medium",
@@ -4304,18 +3904,18 @@
     },
     {
       "file": "src/app/core/services/signalr.service.ts",
-      "line": 255,
-      "category": "code_comment",
+      "line": 246,
+      "category": "code_string",
       "module": "app/core",
-      "severity": "low",
+      "severity": "medium",
       "symbols": [
-        "🔁"
+        "📅"
       ],
-      "preview": "// 🔁 Listeners para eventos de reconexión, cierre, etc."
+      "preview": "\"📅\","
     },
     {
       "file": "src/app/core/services/signalr.service.ts",
-      "line": 260,
+      "line": 259,
       "category": "code_string",
       "module": "app/core",
       "severity": "medium",
@@ -4326,7 +3926,7 @@
     },
     {
       "file": "src/app/core/services/signalr.service.ts",
-      "line": 271,
+      "line": 269,
       "category": "code_string",
       "module": "app/core",
       "severity": "medium",
@@ -4337,7 +3937,7 @@
     },
     {
       "file": "src/app/core/services/signalr.service.ts",
-      "line": 283,
+      "line": 280,
       "category": "code_string",
       "module": "app/core",
       "severity": "medium",
@@ -4936,7 +4536,7 @@
     },
     {
       "file": "src/app/features/biblioteca/manuals-and-processes/pages/manuals-and-processes-detail.ts",
-      "line": 117,
+      "line": 176,
       "category": "code_string",
       "module": "features/biblioteca",
       "severity": "medium",
@@ -4947,7 +4547,7 @@
     },
     {
       "file": "src/app/features/biblioteca/manuals-and-processes/pages/manuals-and-processes-detail.ts",
-      "line": 119,
+      "line": 178,
       "category": "code_string",
       "module": "features/biblioteca",
       "severity": "medium",
@@ -4958,7 +4558,7 @@
     },
     {
       "file": "src/app/features/biblioteca/manuals-and-processes/pages/manuals-and-processes-detail.ts",
-      "line": 121,
+      "line": 180,
       "category": "code_string",
       "module": "features/biblioteca",
       "severity": "medium",
@@ -5255,7 +4855,7 @@
     },
     {
       "file": "src/app/features/calendar/mantenimiento-preventivo/cronograma-anual-mantenimiento.html",
-      "line": 7,
+      "line": 89,
       "category": "template_comment",
       "module": "features/calendar",
       "severity": "low",
@@ -5266,7 +4866,7 @@
     },
     {
       "file": "src/app/features/calendar/mantenimiento-preventivo/cronograma-anual-mantenimiento.html",
-      "line": 102,
+      "line": 211,
       "category": "template_comment",
       "module": "features/calendar",
       "severity": "low",
@@ -5420,7 +5020,7 @@
     },
     {
       "file": "src/app/features/catalogo-gastos-fijos/catalogo-gastos-fijos-list.html",
-      "line": 265,
+      "line": 266,
       "category": "template_comment",
       "module": "features/catalogo-gastos-fijos",
       "severity": "low",
@@ -5662,7 +5262,7 @@
     },
     {
       "file": "src/app/features/configuration/application-role/pages/roles-list.html",
-      "line": 75,
+      "line": 74,
       "category": "template_comment",
       "module": "features/configuration",
       "severity": "low",
@@ -5684,7 +5284,7 @@
     },
     {
       "file": "src/app/features/configuration/application-user/pages/application-user-list.html",
-      "line": 139,
+      "line": 145,
       "category": "template_comment",
       "module": "features/configuration",
       "severity": "low",
@@ -5695,14 +5295,47 @@
     },
     {
       "file": "src/app/features/configuration/application-user/pages/application-user-list.ts",
-      "line": 208,
-      "category": "code_string",
+      "line": 155,
+      "category": "code_comment",
       "module": "features/configuration",
-      "severity": "medium",
+      "severity": "low",
       "symbols": [
-        "🔐"
+        "©"
       ],
-      "preview": "\"🔐 Cuenta de acceso\","
+      "preview": "// MÃ©todo para filtrar por cliente"
+    },
+    {
+      "file": "src/app/features/configuration/approval-rules/pages/approval-rules.scss",
+      "line": 77,
+      "category": "style_comment",
+      "module": "features/configuration",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "// N/A activo → gris oscuro"
+    },
+    {
+      "file": "src/app/features/configuration/approval-rules/pages/approval-rules.scss",
+      "line": 87,
+      "category": "style_comment",
+      "module": "features/configuration",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "// Cliente activo → azul vivo"
+    },
+    {
+      "file": "src/app/features/configuration/approval-rules/pages/approval-rules.scss",
+      "line": 97,
+      "category": "style_comment",
+      "module": "features/configuration",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "// Global activo → verde vivo"
     },
     {
       "file": "src/app/features/configuration/aspel-customer-empresa/aspel-customer-empresa-list.html",
@@ -5717,7 +5350,7 @@
     },
     {
       "file": "src/app/features/configuration/aspel-customer-empresa/aspel-customer-empresa-list.html",
-      "line": 61,
+      "line": 57,
       "category": "template_comment",
       "module": "features/configuration",
       "severity": "low",
@@ -5783,40 +5416,40 @@
     },
     {
       "file": "src/app/features/configuration/catalog-component-ui/catalog-component-ui.html",
-      "line": 58,
+      "line": 78,
       "category": "template_comment",
       "module": "features/configuration",
       "severity": "low",
       "symbols": [
         "🎨"
       ],
-      "preview": "<!-- 🎨 SECCIÓN: DESIGN TOKENS -->"
+      "preview": "<!-- 🎨 SECCIÓN: TOKENS e IDENTIDAD -->"
     },
     {
       "file": "src/app/features/configuration/catalog-component-ui/catalog-component-ui.html",
-      "line": 131,
+      "line": 147,
       "category": "template_comment",
       "module": "features/configuration",
       "severity": "low",
       "symbols": [
         "🖥"
       ],
-      "preview": "<!-- 🖥️ SECCIÓN: WEB COMPONENTS (PRIMENG CUSTOM) -->"
+      "preview": "<!-- 🖥️ SECCIÓN: WEB COMPONENTS -->"
     },
     {
       "file": "src/app/features/configuration/catalog-component-ui/catalog-component-ui.html",
-      "line": 217,
+      "line": 233,
       "category": "template_comment",
       "module": "features/configuration",
       "severity": "low",
       "symbols": [
         "📱"
       ],
-      "preview": "<!-- 📱 SECCIÓN: MOBILE COMPONENTS (IONIC) -->"
+      "preview": "<!-- 📱 SECCIÓN: MOBILE COMPONENTS -->"
     },
     {
       "file": "src/app/features/configuration/catalog-component-ui/catalog-component-ui.html",
-      "line": 333,
+      "line": 306,
       "category": "template_comment",
       "module": "features/configuration",
       "severity": "low",
@@ -5827,7 +5460,7 @@
     },
     {
       "file": "src/app/features/configuration/catalog-component-ui/catalog-component-ui.html",
-      "line": 356,
+      "line": 320,
       "category": "template_comment",
       "module": "features/configuration",
       "severity": "low",
@@ -5835,6 +5468,28 @@
         "🧩"
       ],
       "preview": "<!-- 🧩 SECCIÓN: PATRONES UX -->"
+    },
+    {
+      "file": "src/app/features/configuration/catalog-component-ui/catalog-component-ui.html",
+      "line": 371,
+      "category": "template_comment",
+      "module": "features/configuration",
+      "severity": "low",
+      "symbols": [
+        "📄"
+      ],
+      "preview": "<!-- 📄 SECCIÓN: ESTÁNDAR DOCUMENTAL -->"
+    },
+    {
+      "file": "src/app/features/configuration/catalog-component-ui/catalog-component-ui.html",
+      "line": 445,
+      "category": "template_comment",
+      "module": "features/configuration",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "<!-- ✅ SECCIÓN: AUDITORÍA y COMPONENTES DOC -->"
     },
     {
       "file": "src/app/features/configuration/cfdi-use/pages/cfdi-use-list.html",
@@ -5871,7 +5526,7 @@
     },
     {
       "file": "src/app/features/configuration/customer-data-company/customer-data-company-list.html",
-      "line": 105,
+      "line": 109,
       "category": "template_comment",
       "module": "features/configuration",
       "severity": "low",
@@ -5893,7 +5548,7 @@
     },
     {
       "file": "src/app/features/configuration/customer-modul/pages/customer-modul-edit.html",
-      "line": 68,
+      "line": 95,
       "category": "template_comment",
       "module": "features/configuration",
       "severity": "low",
@@ -5901,17 +5556,6 @@
         "📱"
       ],
       "preview": "<!-- 📱 INICIO: Componente adaptado para versión móvil -->"
-    },
-    {
-      "file": "src/app/features/configuration/customer-modul/pages/customer-modul-edit.ts",
-      "line": 70,
-      "category": "code_log",
-      "module": "features/configuration",
-      "severity": "low",
-      "symbols": [
-        "👈"
-      ],
-      "preview": "console.log(\"Datos recibidos:\", result); // 👈 ¡Mira esto en la consola del navegador!"
     },
     {
       "file": "src/app/features/configuration/customer-modul/pages/customer-modul-list.html",
@@ -5926,7 +5570,7 @@
     },
     {
       "file": "src/app/features/configuration/customer-modul/pages/customer-modul-list.html",
-      "line": 87,
+      "line": 91,
       "category": "template_comment",
       "module": "features/configuration",
       "severity": "low",
@@ -5934,6 +5578,17 @@
         "📱"
       ],
       "preview": "<!-- 📱 INICIO: Componente adaptado para versión móvil -->"
+    },
+    {
+      "file": "src/app/features/configuration/customer-modul/pages/customer-modul-list.ts",
+      "line": 96,
+      "category": "code_comment",
+      "module": "features/configuration",
+      "severity": "low",
+      "symbols": [
+        "©"
+      ],
+      "preview": "// MÃ©todo para filtrar por estado"
     },
     {
       "file": "src/app/features/configuration/customer/pages/customer-list.html",
@@ -5959,7 +5614,7 @@
     },
     {
       "file": "src/app/features/configuration/email-data/email-data-list.html",
-      "line": 65,
+      "line": 67,
       "category": "template_comment",
       "module": "features/configuration",
       "severity": "low",
@@ -6058,7 +5713,7 @@
     },
     {
       "file": "src/app/features/configuration/log-api-report/log-api-report.html",
-      "line": 65,
+      "line": 66,
       "category": "template_text",
       "module": "features/configuration",
       "severity": "medium",
@@ -6066,6 +5721,28 @@
         "🔄"
       ],
       "preview": "<span class=\"text-lg\">🔄</span>"
+    },
+    {
+      "file": "src/app/features/configuration/log-api-report/log-api-report.ts",
+      "line": 118,
+      "category": "code_comment",
+      "module": "features/configuration",
+      "severity": "low",
+      "symbols": [
+        "©"
+      ],
+      "preview": "// Los parÃ¡metros deben ir prefixeados con \"pagination.\" para que el backend los bindÃ© correctamente"
+    },
+    {
+      "file": "src/app/features/configuration/log-api-report/log-api-report.ts",
+      "line": 174,
+      "category": "code_comment",
+      "module": "features/configuration",
+      "severity": "low",
+      "symbols": [
+        "©"
+      ],
+      "preview": "* BÃºsqueda por tÃ©rmino libre en el mensaje"
     },
     {
       "file": "src/app/features/configuration/machinery-classification/machinery-classification-list.html",
@@ -6112,6 +5789,28 @@
       "preview": "<!-- 📱 INICIO: Componente adaptado para versión móvil -->"
     },
     {
+      "file": "src/app/features/configuration/module-app-rol/pages/module-app-rol-list.html",
+      "line": 2,
+      "category": "template_comment",
+      "module": "features/configuration",
+      "severity": "low",
+      "symbols": [
+        "🖥"
+      ],
+      "preview": "<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->"
+    },
+    {
+      "file": "src/app/features/configuration/module-app-rol/pages/module-app-rol-list.html",
+      "line": 65,
+      "category": "template_comment",
+      "module": "features/configuration",
+      "severity": "low",
+      "symbols": [
+        "📱"
+      ],
+      "preview": "<!-- 📱 INICIO: Vista para móviles -->"
+    },
+    {
       "file": "src/app/features/configuration/module-app-rol/pages/module-app-rol-update.html",
       "line": 1,
       "category": "template_comment",
@@ -6134,28 +5833,6 @@
       "preview": "<!-- 📱 INICIO: Componente adaptado para versión móvil -->"
     },
     {
-      "file": "src/app/features/configuration/module-app-rol/pages/module-app-rol.html",
-      "line": 2,
-      "category": "template_comment",
-      "module": "features/configuration",
-      "severity": "low",
-      "symbols": [
-        "🖥"
-      ],
-      "preview": "<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->"
-    },
-    {
-      "file": "src/app/features/configuration/module-app-rol/pages/module-app-rol.html",
-      "line": 45,
-      "category": "template_comment",
-      "module": "features/configuration",
-      "severity": "low",
-      "symbols": [
-        "📱"
-      ],
-      "preview": "<!-- 📱 INICIO: Vista para móviles -->"
-    },
-    {
       "file": "src/app/features/configuration/module-app/pages/module-app-list.html",
       "line": 1,
       "category": "template_comment",
@@ -6168,7 +5845,7 @@
     },
     {
       "file": "src/app/features/configuration/module-app/pages/module-app-list.html",
-      "line": 87,
+      "line": 100,
       "category": "template_comment",
       "module": "features/configuration",
       "severity": "low",
@@ -6255,28 +5932,6 @@
       "preview": "🚀"
     },
     {
-      "file": "src/app/features/configuration/test/update-data-base/update-data-base.html",
-      "line": 6,
-      "category": "template_text",
-      "module": "features/configuration",
-      "severity": "medium",
-      "symbols": [
-        "🧰"
-      ],
-      "preview": "🧰 Mantenimiento de Base de Datos"
-    },
-    {
-      "file": "src/app/features/configuration/test/update-data-base/update-data-base.html",
-      "line": 27,
-      "category": "template_text",
-      "module": "features/configuration",
-      "severity": "medium",
-      "symbols": [
-        "🗃"
-      ],
-      "preview": "🗃️"
-    },
-    {
       "file": "src/app/features/configuration/units-of-measurement/unit-of-measurement-list.html",
       "line": 1,
       "category": "template_comment",
@@ -6300,7 +5955,7 @@
     },
     {
       "file": "src/app/features/configuration/user-activity-history/user-activity-history.html",
-      "line": 67,
+      "line": 69,
       "category": "template_comment",
       "module": "features/configuration",
       "severity": "low",
@@ -6311,7 +5966,7 @@
     },
     {
       "file": "src/app/features/configuration/user-activity-history/user-activity-history.html",
-      "line": 150,
+      "line": 152,
       "category": "template_comment",
       "module": "features/configuration",
       "severity": "low",
@@ -6931,7 +6586,7 @@
     },
     {
       "file": "src/app/features/contabilidad/pendientes-minuta/minuta-pendientes-list.html",
-      "line": 37,
+      "line": 38,
       "category": "template_text",
       "module": "features/contabilidad",
       "severity": "medium",
@@ -7254,7 +6909,7 @@
     },
     {
       "file": "src/app/features/contabilidad/presupuesto-web-aspel/purchase-history.html",
-      "line": 99,
+      "line": 106,
       "category": "template_comment",
       "module": "features/contabilidad",
       "severity": "low",
@@ -7760,7 +7415,7 @@
     },
     {
       "file": "src/app/features/CUSTOM-COMPONENTS-AUDIT.md",
-      "line": 241,
+      "line": 236,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -7925,7 +7580,7 @@
     },
     {
       "file": "src/app/features/delivery-reception-catalog/catalogo-descripcion-list.html",
-      "line": 72,
+      "line": 74,
       "category": "template_comment",
       "module": "features/delivery-reception-catalog",
       "severity": "low",
@@ -7969,7 +7624,7 @@
     },
     {
       "file": "src/app/features/directorios/employee-external/employee-external-form.ts",
-      "line": 168,
+      "line": 170,
       "category": "code_string",
       "module": "features/directorios",
       "severity": "medium",
@@ -7991,7 +7646,18 @@
     },
     {
       "file": "src/app/features/directorios/employee-external/employee-external-list.ts",
-      "line": 91,
+      "line": 92,
+      "category": "code_string",
+      "module": "features/directorios",
+      "severity": "medium",
+      "symbols": [
+        "🚀"
+      ],
+      "preview": "console.log(\"🚀 ~ EmployeeExternalList ~ onLoadData ~ result:\", result);"
+    },
+    {
+      "file": "src/app/features/directorios/employee-external/employee-external-list.ts",
+      "line": 98,
       "category": "code_string",
       "module": "features/directorios",
       "severity": "medium",
@@ -8134,7 +7800,7 @@
     },
     {
       "file": "src/app/features/employees/staff-board/staff-board.html",
-      "line": 287,
+      "line": 298,
       "category": "template_text",
       "module": "features/employees",
       "severity": "medium",
@@ -8145,7 +7811,7 @@
     },
     {
       "file": "src/app/features/employees/staff-board/staff-board.html",
-      "line": 294,
+      "line": 305,
       "category": "template_text",
       "module": "features/employees",
       "severity": "medium",
@@ -8519,49 +8185,48 @@
       "preview": "<!-- 📱 INICIO: Componente adaptado para versión móvil -->"
     },
     {
-      "file": "src/app/features/evaluation-template/formulario-plantilla-evaluacion.html",
-      "line": 33,
-      "category": "template_text",
+      "file": "src/app/features/evaluation-template/performance-evaluation/lista-evaluacion-realizada.html",
+      "line": 1,
+      "category": "template_comment",
       "module": "features/evaluation-template",
-      "severity": "medium",
+      "severity": "low",
       "symbols": [
-        "📋"
+        "🖥"
       ],
-      "preview": "📋 | Categorías y Preguntas"
+      "preview": "<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->"
     },
     {
-      "file": "src/app/features/evaluation-template/formulario-plantilla-evaluacion.html",
-      "line": 74,
-      "category": "template_text",
+      "file": "src/app/features/evaluation-template/performance-evaluation/lista-evaluacion-realizada.html",
+      "line": 89,
+      "category": "template_comment",
       "module": "features/evaluation-template",
-      "severity": "medium",
+      "severity": "low",
       "symbols": [
-        "☰"
+        "📱"
       ],
-      "preview": "☰ {{ i + 1 }}"
+      "preview": "<!-- 📱 INICIO: Componente adaptado para versión móvil -->"
     },
     {
-      "file": "src/app/features/evaluation-template/formulario-plantilla-evaluacion.html",
-      "line": 83,
+      "file": "src/app/features/evaluation-template/performance-evaluation/realizar-evaluacion.html",
+      "line": 68,
       "category": "template_text",
       "module": "features/evaluation-template",
       "severity": "medium",
       "symbols": [
-        "➕",
+        "📁"
+      ],
+      "preview": "<h3>📁 | {{ category.name }}</h3>"
+    },
+    {
+      "file": "src/app/features/evaluation-template/performance-evaluation/realizar-evaluacion.html",
+      "line": 77,
+      "category": "template_text",
+      "module": "features/evaluation-template",
+      "severity": "medium",
+      "symbols": [
         "❓"
       ],
-      "preview": "➕ ❓"
-    },
-    {
-      "file": "src/app/features/evaluation-template/formulario-plantilla-evaluacion.html",
-      "line": 124,
-      "category": "template_text",
-      "module": "features/evaluation-template",
-      "severity": "medium",
-      "symbols": [
-        "❓"
-      ],
-      "preview": "❓"
+      "preview": "<label>❓| {{ question.questionText }}</label>"
     },
     {
       "file": "src/app/features/funding-accounting/funding-accounting-detail.html",
@@ -9095,7 +8760,7 @@
     },
     {
       "file": "src/app/features/machinery/equipos-list.html",
-      "line": 216,
+      "line": 241,
       "category": "template_text",
       "module": "features/machinery",
       "severity": "medium",
@@ -9107,7 +8772,7 @@
     },
     {
       "file": "src/app/features/machinery/equipos-list.html",
-      "line": 385,
+      "line": 423,
       "category": "template_text",
       "module": "features/machinery",
       "severity": "medium",
@@ -9116,28 +8781,6 @@
         "⚪"
       ],
       "preview": "[innerHTML]=\"service.hasServiceOrder ? '🛠️' : '⚪'\""
-    },
-    {
-      "file": "src/app/features/maintenance-calendar-master/calendario-maestro-lista.html",
-      "line": 4,
-      "category": "template_comment",
-      "module": "features/maintenance-calendar-master",
-      "severity": "low",
-      "symbols": [
-        "🖥"
-      ],
-      "preview": "<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->"
-    },
-    {
-      "file": "src/app/features/maintenance-calendar-master/calendario-maestro-lista.html",
-      "line": 50,
-      "category": "template_comment",
-      "module": "features/maintenance-calendar-master",
-      "severity": "low",
-      "symbols": [
-        "📱"
-      ],
-      "preview": "<!-- 📱 INICIO: Componente adaptado para versión móvil -->"
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
@@ -9291,7 +8934,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "- [x] **vacancy-requests** ✅"
+      "preview": "- [x] **reclutamiento-solicitudes** (`vacancy-requests`, `recruitment-requests`, `salary-modification`, `request-dismissal`) ✅"
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
@@ -9302,7 +8945,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "- [x] **recruitment** / **recruitment-requests** ✅"
+      "preview": "- [x] **performance-evaluation** / **evaluation-template** ✅"
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
@@ -9313,7 +8956,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "- [x] **performance-evaluation** / **evaluation-template** ✅"
+      "preview": "- [x] **leave-request** / **leave-request-approval** ✅"
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
@@ -9324,18 +8967,7 @@
       "symbols": [
         "✅"
       ],
-      "preview": "- [x] **salary-modification** ✅"
-    },
-    {
-      "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 36,
-      "category": "docs",
-      "module": "features/root",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- [x] **request-dismissal** / **request-dismissal-discount** ✅"
+      "preview": "- [x] **past-vacations** / **my-vacation-requests** ✅"
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
@@ -9346,33 +8978,11 @@
       "symbols": [
         "✅"
       ],
-      "preview": "- [x] **leave-request** / **leave-request-approval** ✅"
-    },
-    {
-      "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 38,
-      "category": "docs",
-      "module": "features/root",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "- [x] **past-vacations** / **my-vacation-requests** ✅"
-    },
-    {
-      "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 40,
-      "category": "docs",
-      "module": "features/root",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
       "preview": "### Fase 2: Operaciones y Mantenimiento ✅"
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 42,
+      "line": 39,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9383,7 +8993,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 43,
+      "line": 40,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9394,7 +9004,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 44,
+      "line": 41,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9405,7 +9015,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 45,
+      "line": 42,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9416,7 +9026,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 46,
+      "line": 43,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9427,7 +9037,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 47,
+      "line": 44,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9438,7 +9048,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 48,
+      "line": 45,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9449,7 +9059,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 49,
+      "line": 46,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9460,7 +9070,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 50,
+      "line": 47,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9471,7 +9081,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 51,
+      "line": 48,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9482,7 +9092,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 53,
+      "line": 50,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9493,7 +9103,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 55,
+      "line": 52,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9504,7 +9114,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 56,
+      "line": 53,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9515,7 +9125,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 57,
+      "line": 54,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9526,7 +9136,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 58,
+      "line": 55,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9537,7 +9147,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 59,
+      "line": 56,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9548,7 +9158,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 60,
+      "line": 57,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9559,7 +9169,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 61,
+      "line": 58,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9570,7 +9180,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 62,
+      "line": 59,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9581,7 +9191,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 63,
+      "line": 60,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9592,7 +9202,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 64,
+      "line": 61,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9603,7 +9213,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 66,
+      "line": 63,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9614,7 +9224,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 68,
+      "line": 65,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9625,7 +9235,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 69,
+      "line": 66,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9636,7 +9246,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 70,
+      "line": 67,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9647,7 +9257,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 71,
+      "line": 68,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9658,7 +9268,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 72,
+      "line": 69,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9669,7 +9279,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 73,
+      "line": 70,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9680,7 +9290,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 74,
+      "line": 71,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9691,7 +9301,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 75,
+      "line": 72,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9702,7 +9312,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 76,
+      "line": 73,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9713,7 +9323,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 78,
+      "line": 75,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9724,7 +9334,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 80,
+      "line": 77,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9735,7 +9345,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 82,
+      "line": 79,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9746,7 +9356,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 86,
+      "line": 83,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9757,7 +9367,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 87,
+      "line": 84,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9768,7 +9378,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 88,
+      "line": 85,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9779,7 +9389,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 90,
+      "line": 87,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9790,7 +9400,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 92,
+      "line": 89,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9801,7 +9411,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 93,
+      "line": 90,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9812,7 +9422,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 94,
+      "line": 91,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9823,7 +9433,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 95,
+      "line": 92,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9834,7 +9444,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 96,
+      "line": 93,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9845,7 +9455,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 97,
+      "line": 94,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9856,7 +9466,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 98,
+      "line": 95,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9867,7 +9477,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 99,
+      "line": 96,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9878,7 +9488,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 100,
+      "line": 97,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9889,7 +9499,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 101,
+      "line": 98,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9900,7 +9510,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 102,
+      "line": 99,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9911,7 +9521,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 103,
+      "line": 100,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9922,7 +9532,7 @@
     },
     {
       "file": "src/app/features/MIGRATION-CHECKLIST.md",
-      "line": 104,
+      "line": 101,
       "category": "docs",
       "module": "features/root",
       "severity": "low",
@@ -9952,50 +9562,6 @@
         "📱"
       ],
       "preview": "<!-- 📱 INICIO: Componente adaptado para versión móvil -->"
-    },
-    {
-      "file": "src/app/features/performance-evaluation/lista-evaluacion-realizada.html",
-      "line": 1,
-      "category": "template_comment",
-      "module": "features/performance-evaluation",
-      "severity": "low",
-      "symbols": [
-        "🖥"
-      ],
-      "preview": "<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->"
-    },
-    {
-      "file": "src/app/features/performance-evaluation/lista-evaluacion-realizada.html",
-      "line": 89,
-      "category": "template_comment",
-      "module": "features/performance-evaluation",
-      "severity": "low",
-      "symbols": [
-        "📱"
-      ],
-      "preview": "<!-- 📱 INICIO: Componente adaptado para versión móvil -->"
-    },
-    {
-      "file": "src/app/features/performance-evaluation/realizar-evaluacion.html",
-      "line": 68,
-      "category": "template_text",
-      "module": "features/performance-evaluation",
-      "severity": "medium",
-      "symbols": [
-        "📁"
-      ],
-      "preview": "<h3>📁 | {{ category.name }}</h3>"
-    },
-    {
-      "file": "src/app/features/performance-evaluation/realizar-evaluacion.html",
-      "line": 77,
-      "category": "template_text",
-      "module": "features/performance-evaluation",
-      "severity": "medium",
-      "symbols": [
-        "❓"
-      ],
-      "preview": "<label>❓| {{ question.questionText }}</label>"
     },
     {
       "file": "src/app/features/piscina-bitacora/piscina-bitacora-list.html",
@@ -10572,7 +10138,7 @@
     },
     {
       "file": "src/app/features/purchases/generator-pdf/pdf-generation.service.ts",
-      "line": 134,
+      "line": 150,
       "category": "code_string",
       "module": "features/purchases",
       "severity": "medium",
@@ -10583,7 +10149,7 @@
     },
     {
       "file": "src/app/features/purchases/generator-pdf/pdf-generation.service.ts",
-      "line": 139,
+      "line": 155,
       "category": "code_string",
       "module": "features/purchases",
       "severity": "medium",
@@ -10638,7 +10204,7 @@
     },
     {
       "file": "src/app/features/purchases/purchase-order/solicitud-pago-pdf/solicitud-pago-pdf.ts",
-      "line": 97,
+      "line": 113,
       "category": "code_string",
       "module": "features/purchases",
       "severity": "medium",
@@ -10659,6 +10225,204 @@
       "preview": "<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->"
     },
     {
+      "file": "src/app/features/recepcion-pipas-agua/recepcion-pipas-agua-list.html",
+      "line": 96,
+      "category": "template_text",
+      "module": "features/recepcion-pipas-agua",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "<span class=\"text-400\">→</span>"
+    },
+    {
+      "file": "src/app/features/recepcion-pipas-agua/recepcion-pipas-agua-list.html",
+      "line": 103,
+      "category": "template_text",
+      "module": "features/recepcion-pipas-agua",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "<span class=\"text-400\">→</span>"
+    },
+    {
+      "file": "src/app/features/recepcion-pipas-agua/recepcion-pipas-agua-list.html",
+      "line": 284,
+      "category": "template_text",
+      "module": "features/recepcion-pipas-agua",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "{{ item.nivelCisternaAntes | number: '1.0-0' }}% → {{"
+    },
+    {
+      "file": "src/app/features/recepcion-pipas-agua/recepcion-pipas-agua-reporte.html",
+      "line": 210,
+      "category": "template_text",
+      "module": "features/recepcion-pipas-agua",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "Cisterna (ant → des / dif)"
+    },
+    {
+      "file": "src/app/features/recepcion-pipas-agua/recepcion-pipas-agua-reporte.html",
+      "line": 212,
+      "category": "template_text",
+      "module": "features/recepcion-pipas-agua",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "<th class=\"text-center\" style=\"min-width: 160px\">Medidor (ini → fin)</th>"
+    },
+    {
+      "file": "src/app/features/recepcion-pipas-agua/recepcion-pipas-agua-reporte.html",
+      "line": 236,
+      "category": "template_text",
+      "module": "features/recepcion-pipas-agua",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": ">→ {{ item.horaTermino | date: 'dd/MM/yy HH:mm' : 'UTC' }}</small"
+    },
+    {
+      "file": "src/app/features/recepcion-pipas-agua/recepcion-pipas-agua-reporte.html",
+      "line": 245,
+      "category": "template_text",
+      "module": "features/recepcion-pipas-agua",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "<span class=\"text-400\"> → </span>"
+    },
+    {
+      "file": "src/app/features/recepcion-pipas-agua/recepcion-pipas-agua-reporte.html",
+      "line": 260,
+      "category": "template_text",
+      "module": "features/recepcion-pipas-agua",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "<span class=\"text-400\"> → </span>"
+    },
+    {
+      "file": "src/app/features/recepcion-pipas-agua/recepcion-pipas-agua-reporte.ts",
+      "line": 170,
+      "category": "code_string",
+      "module": "features/recepcion-pipas-agua",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "const cist = `${Math.round(item.nivelCisternaAntes ?? 0)}%→${Math.round(item.nivelCisternaDespues ?? 0)}%\\n(${Math.round((item.nivelCisternaDespues ?? 0) - (item.nivelCisternaAntes"
+    },
+    {
+      "file": "src/app/features/recepcion-pipas-agua/recepcion-pipas-agua-reporte.ts",
+      "line": 177,
+      "category": "code_string",
+      "module": "features/recepcion-pipas-agua",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "td(`${Math.round(item.lecturaMedidorInicial ?? 0)} → ${Math.round(item.lecturaMedidorFinal ?? 0)}`, { alignment: \"center\", fillColor: fill }),"
+    },
+    {
+      "file": "src/app/features/recepcion-pipas-agua/recepcion-pipas-agua-reporte.ts",
+      "line": 295,
+      "category": "code_string",
+      "module": "features/recepcion-pipas-agua",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "th(\"Cisterna ant → des\"),"
+    },
+    {
+      "file": "src/app/features/recepcion-pipas-agua/recepcion-pipas-agua-reporte.ts",
+      "line": 296,
+      "category": "code_string",
+      "module": "features/recepcion-pipas-agua",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "th(\"Medidor ini → fin\"),"
+    },
+    {
+      "file": "src/app/features/reclutamiento-solicitudes/recruitment-shared/filter-requests.ts",
+      "line": 41,
+      "category": "code_string",
+      "module": "features/reclutamiento-solicitudes",
+      "severity": "medium",
+      "symbols": [
+        "📋"
+      ],
+      "preview": "{ label: \"📋 Vacantes\", path: \"vacancies\" },"
+    },
+    {
+      "file": "src/app/features/reclutamiento-solicitudes/recruitment-shared/filter-requests.ts",
+      "line": 42,
+      "category": "code_string",
+      "module": "features/reclutamiento-solicitudes",
+      "severity": "medium",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "{ label: \"✅ Altas\", path: \"hirings\" },"
+    },
+    {
+      "file": "src/app/features/reclutamiento-solicitudes/recruitment-shared/filter-requests.ts",
+      "line": 43,
+      "category": "code_string",
+      "module": "features/reclutamiento-solicitudes",
+      "severity": "medium",
+      "symbols": [
+        "🚪"
+      ],
+      "preview": "{ label: \"🚪 Bajas\", path: \"dismissals\" },"
+    },
+    {
+      "file": "src/app/features/reclutamiento-solicitudes/recruitment-shared/filter-requests.ts",
+      "line": 44,
+      "category": "code_string",
+      "module": "features/reclutamiento-solicitudes",
+      "severity": "medium",
+      "symbols": [
+        "💰"
+      ],
+      "preview": "{ label: \"💰 Modificación de salario\", path: \"salary-increase\" },"
+    },
+    {
+      "file": "src/app/features/reclutamiento-solicitudes/salary-modification/pages/solicitud-modificacion-list.html",
+      "line": 72,
+      "category": "template_text",
+      "module": "features/reclutamiento-solicitudes",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "<p>{{ item.applicationRoleCurrent }} → {{ item.applicationRoleNew }}</p>"
+    },
+    {
+      "file": "src/app/features/reclutamiento-solicitudes/salary-modification/pages/solicitud-modificacion-list.html",
+      "line": 73,
+      "category": "template_text",
+      "module": "features/reclutamiento-solicitudes",
+      "severity": "medium",
+      "symbols": [
+        "→"
+      ],
+      "preview": "<p>{{ item.currentSalary }} → {{ item.finalSalary }} · {{ item.status }}</p>"
+    },
+    {
       "file": "src/app/features/recruitment/recruitment-client-requests/solicitudes-cliente-list.html",
       "line": 1,
       "category": "template_comment",
@@ -10668,50 +10432,6 @@
         "🖥"
       ],
       "preview": "<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->"
-    },
-    {
-      "file": "src/app/features/recruitment/recruitment-shared/filter-requests.ts",
-      "line": 39,
-      "category": "code_string",
-      "module": "features/recruitment",
-      "severity": "medium",
-      "symbols": [
-        "📋"
-      ],
-      "preview": "{ label: \"📋 Vacantes\", path: \"vacancies\" },"
-    },
-    {
-      "file": "src/app/features/recruitment/recruitment-shared/filter-requests.ts",
-      "line": 40,
-      "category": "code_string",
-      "module": "features/recruitment",
-      "severity": "medium",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "{ label: \"✅ Altas\", path: \"hirings\" },"
-    },
-    {
-      "file": "src/app/features/recruitment/recruitment-shared/filter-requests.ts",
-      "line": 41,
-      "category": "code_string",
-      "module": "features/recruitment",
-      "severity": "medium",
-      "symbols": [
-        "🚪"
-      ],
-      "preview": "{ label: \"🚪 Bajas\", path: \"dismissals\" },"
-    },
-    {
-      "file": "src/app/features/recruitment/recruitment-shared/filter-requests.ts",
-      "line": 42,
-      "category": "code_string",
-      "module": "features/recruitment",
-      "severity": "medium",
-      "symbols": [
-        "💰"
-      ],
-      "preview": "{ label: \"💰 Modificación de salario\", path: \"salary-increase\" },"
     },
     {
       "file": "src/app/features/recursos-humanos/admin-vacaciones-balance/admin-vacaciones-balance.html",
@@ -11033,17 +10753,6 @@
       "preview": "<p class=\"text-sm text-500\">🔗 {{ item.relacionName }}: {{ item.nameContact }}</p>"
     },
     {
-      "file": "src/app/features/recursos-humanos/employee-file/pages/employee-file-detail.html",
-      "line": 467,
-      "category": "template_text",
-      "module": "features/recursos-humanos",
-      "severity": "medium",
-      "symbols": [
-        "✓"
-      ],
-      "preview": "<span class=\"badge bg-green-100 text-green-700\">✓</span>"
-    },
-    {
       "file": "src/app/features/recursos-humanos/incident/pages/incident-form.html",
       "line": 4,
       "category": "template_text",
@@ -11089,7 +10798,7 @@
     },
     {
       "file": "src/app/features/recursos-humanos/incident/pages/incident-form.html",
-      "line": 88,
+      "line": 91,
       "category": "template_text",
       "module": "features/recursos-humanos",
       "severity": "medium",
@@ -11100,7 +10809,7 @@
     },
     {
       "file": "src/app/features/recursos-humanos/incident/pages/incident-form.html",
-      "line": 93,
+      "line": 96,
       "category": "template_text",
       "module": "features/recursos-humanos",
       "severity": "medium",
@@ -11111,7 +10820,7 @@
     },
     {
       "file": "src/app/features/recursos-humanos/incident/pages/incident-form.html",
-      "line": 106,
+      "line": 109,
       "category": "template_text",
       "module": "features/recursos-humanos",
       "severity": "medium",
@@ -11287,7 +10996,7 @@
     },
     {
       "file": "src/app/features/recursos-humanos/vacation-balance-admin/vacaciones-admin-auditoria.html",
-      "line": 253,
+      "line": 254,
       "category": "template_text",
       "module": "features/recursos-humanos",
       "severity": "medium",
@@ -11298,7 +11007,7 @@
     },
     {
       "file": "src/app/features/recursos-humanos/vacation-balance-admin/vacaciones-saldo.html",
-      "line": 275,
+      "line": 276,
       "category": "template_text",
       "module": "features/recursos-humanos",
       "severity": "medium",
@@ -11328,28 +11037,6 @@
         "🖥"
       ],
       "preview": "<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->"
-    },
-    {
-      "file": "src/app/features/salary-modification/pages/solicitud-modificacion-list.html",
-      "line": 112,
-      "category": "template_text",
-      "module": "features/salary-modification",
-      "severity": "medium",
-      "symbols": [
-        "→"
-      ],
-      "preview": "<p>{{ item.applicationRoleCurrent }} → {{ item.applicationRoleNew }}</p>"
-    },
-    {
-      "file": "src/app/features/salary-modification/pages/solicitud-modificacion-list.html",
-      "line": 114,
-      "category": "template_text",
-      "module": "features/salary-modification",
-      "severity": "medium",
-      "symbols": [
-        "→"
-      ],
-      "preview": "{{ item.currentSalary }} → {{ item.finalSalary }} · {{ item.status }}"
     },
     {
       "file": "src/app/features/send-email/text-email.html",
@@ -11660,6 +11347,39 @@
       "preview": "<!-- 📱 INICIO: Componente adaptado para versión móvil -->"
     },
     {
+      "file": "src/app/features/tasks/task-message/pages/task-list.html",
+      "line": 759,
+      "category": "template_text",
+      "module": "features/tasks",
+      "severity": "medium",
+      "symbols": [
+        "✓"
+      ],
+      "preview": "@if (item.beforeWork || item.afterWork) { ✓ } @else { — }"
+    },
+    {
+      "file": "src/app/features/tasks/work-group/pages/task-group-list.html",
+      "line": 57,
+      "category": "template_text",
+      "module": "features/tasks",
+      "severity": "medium",
+      "symbols": [
+        "📁"
+      ],
+      "preview": "<span class=\"text-white text-xl\">{{ item.emoji || '📁' }}</span>"
+    },
+    {
+      "file": "src/app/features/tasks/work-group/pages/task-group-list.html",
+      "line": 154,
+      "category": "template_text",
+      "module": "features/tasks",
+      "severity": "medium",
+      "symbols": [
+        "📁"
+      ],
+      "preview": "<span>{{ item.emoji || '📁' }}</span>"
+    },
+    {
       "file": "src/app/features/tool-loan/tool-list.html",
       "line": 1,
       "category": "template_comment",
@@ -11859,7 +11579,7 @@
     },
     {
       "file": "src/app/layout/employee-view/monitor/profile-monitor/profile-monitor.ts",
-      "line": 65,
+      "line": 74,
       "category": "code_string",
       "module": "app/layout",
       "severity": "medium",
@@ -11870,7 +11590,7 @@
     },
     {
       "file": "src/app/layout/shared/profile-user-mobile/profile-user.ts",
-      "line": 133,
+      "line": 142,
       "category": "code_string",
       "module": "app/layout",
       "severity": "medium",
@@ -12794,7 +12514,7 @@
     },
     {
       "file": "src/app/routing/settings.routing.ts",
-      "line": 524,
+      "line": 523,
       "category": "code_string",
       "module": "app/routing",
       "severity": "medium",
@@ -13256,7 +12976,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 167,
+      "line": 169,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13267,7 +12987,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 178,
+      "line": 180,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13278,7 +12998,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 187,
+      "line": 189,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13289,7 +13009,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 196,
+      "line": 198,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13300,7 +13020,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 212,
+      "line": 214,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13311,7 +13031,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 222,
+      "line": 224,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13322,7 +13042,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 229,
+      "line": 231,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13333,7 +13053,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 251,
+      "line": 253,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13344,7 +13064,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 292,
+      "line": 294,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13355,7 +13075,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 366,
+      "line": 368,
       "category": "style_text",
       "module": "src/styles",
       "severity": "low",
@@ -13366,7 +13086,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 389,
+      "line": 391,
       "category": "style_text",
       "module": "src/styles",
       "severity": "low",
@@ -13377,7 +13097,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 411,
+      "line": 413,
       "category": "style_text",
       "module": "src/styles",
       "severity": "low",
@@ -13388,7 +13108,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 426,
+      "line": 428,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13399,7 +13119,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 442,
+      "line": 444,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13410,7 +13130,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 460,
+      "line": 462,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13421,7 +13141,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 562,
+      "line": 566,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13432,7 +13152,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 573,
+      "line": 577,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13443,7 +13163,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 582,
+      "line": 586,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13454,7 +13174,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 591,
+      "line": 595,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13465,7 +13185,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 607,
+      "line": 611,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13476,7 +13196,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 617,
+      "line": 621,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13487,7 +13207,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 624,
+      "line": 628,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13498,7 +13218,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 646,
+      "line": 650,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -13509,7 +13229,7 @@
     },
     {
       "file": "src/styles/custom/_custom-prime-icons.scss",
-      "line": 687,
+      "line": 691,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",
@@ -14736,7 +14456,7 @@
     },
     {
       "file": "src/styles/styles.scss",
-      "line": 68,
+      "line": 69,
       "category": "style_comment",
       "module": "src/styles",
       "severity": "low",

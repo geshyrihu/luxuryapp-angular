@@ -88,6 +88,99 @@
     </p-select>
   </div>
 
+  @if (isAssemblySelected()) {
+  <div class="col-12">
+    <div class="border-1 border-blue-200 bg-blue-50 border-round p-3">
+      <strong class="block text-blue-900 mb-2">
+        Configuracion inmediata de asamblea
+      </strong>
+      <small class="block text-blue-900">
+        Completa aqui, antes de guardar, si la asamblea requiere paletas,
+        apoyo de Sistemas o equipo de audio y video.
+      </small>
+      <small class="block text-blue-900 mt-2">
+        Esta informacion se guarda desde la agenda y despues se refleja en el
+        checklist operativo de la asamblea.
+      </small>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="border-1 surface-border border-round p-3">
+      <div class="grid">
+        <div class="col-12 md:col-3">
+          <custom-input-switch-signal
+            [control]="form.controls.assemblyRequiresPaddles"
+            label="Solicitar paletas"
+            placeholder="Solicitar paletas para la asamblea"
+            [horizontal]="false"
+          />
+        </div>
+
+        @if (form.controls.assemblyRequiresPaddles.getRawValue()) {
+        <div class="col-12 md:col-3">
+          <custom-input-text-signal
+            [control]="form.controls.assemblyPaddlesQuantity"
+            label="Cantidad de paletas"
+            placeholder="cantidad"
+            [horizontal]="false"
+            type="number"
+          />
+        </div>
+        }
+
+        <div class="col-12 md:col-3">
+          <custom-input-switch-signal
+            [control]="form.controls.assemblyRequiresAudioVisual"
+            label="Solicitar audio y video"
+            placeholder="Solicitar equipo audiovisual"
+            [horizontal]="false"
+          />
+        </div>
+
+        <div class="col-12 md:col-3 flex align-items-end">
+          <small class="text-color-secondary block">
+            Si solicitas paletas o audio/video, tambien se notificara a Sistemas
+            General.
+          </small>
+        </div>
+
+        @if (form.controls.assemblyRequiresAudioVisual.getRawValue()) {
+        <div class="col-12">
+          <custom-input-textarea-signal
+            [control]="form.controls.assemblyAudioVisualNotes"
+            label="Notas de audio y video"
+            placeholder="detalla equipo, microfonos, proyector o apoyo requerido"
+            [horizontal]="false"
+            [rows]="3"
+          />
+        </div>
+        }
+
+        <div class="col-12 md:col-6">
+          <custom-input-textarea-signal
+            [control]="form.controls.assemblyOperationalNotes"
+            label="Notas operativas"
+            placeholder="notas operativas de la asamblea"
+            [horizontal]="false"
+            [rows]="3"
+          />
+        </div>
+
+        <div class="col-12 md:col-6">
+          <custom-input-textarea-signal
+            [control]="form.controls.assemblySpecialInstructions"
+            label="Instrucciones especiales"
+            placeholder="instrucciones especiales"
+            [horizontal]="false"
+            [rows]="3"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+
   <div class="col-12">
     <custom-input-switch-signal
       [control]="form.controls.isRecurring"
@@ -153,6 +246,12 @@
       label="Ubicacion"
       placeholder="ubicacion"
       [horizontal]="false"
+      [required]="isPresentialSelected()"
+      [description]="
+        isPresentialSelected()
+          ? 'Requerida cuando la junta es presencial.'
+          : ''
+      "
     />
   </div>
 
@@ -166,7 +265,124 @@
     />
   </div>
 
-  @if (form.errors?.["invalidDateRange"] && form.touched) {
+  @if (isAssemblySelected()) {
+  <div class="col-12">
+    <div class="flex justify-content-between align-items-center mb-2">
+      <div>
+        <h3 class="m-0">Invitados especificos de asamblea</h3>
+        <small class="text-color-secondary">
+          Registra las personas puntuales que deben contemplarse dentro de la
+          organizacion de la asamblea.
+        </small>
+      </div>
+      <button
+        class="p-button p-component p-button-sm"
+        type="button"
+        (click)="addAssemblyInvitee()"
+      >
+        <span class="p-button-label">Agregar invitado</span>
+      </button>
+    </div>
+
+    <div class="flex flex-column gap-3" formArrayName="assemblyInvitees">
+      @for (invitee of assemblyInviteesArray.controls; track invitee; let index
+      = $index) {
+      <div
+        [formGroupName]="index"
+        class="grid border-1 surface-border border-round p-3"
+      >
+        <div class="col-12 md:col-4">
+          <custom-input-text-signal
+            [control]="invitee.controls.name"
+            [id]="'assembly-invitee-name-' + index"
+            label="Nombre"
+            placeholder="nombre"
+            [horizontal]="false"
+          />
+        </div>
+
+        <div class="col-12 md:col-4">
+          <custom-input-text-signal
+            [control]="invitee.controls.email"
+            [id]="'assembly-invitee-email-' + index"
+            label="Correo"
+            placeholder="correo"
+            [horizontal]="false"
+            type="email"
+            [requiredInput]="true"
+          />
+        </div>
+
+        <div class="col-12 md:col-4">
+          <custom-input-text-signal
+            [control]="invitee.controls.phone"
+            [id]="'assembly-invitee-phone-' + index"
+            label="Telefono"
+            placeholder="telefono"
+            [horizontal]="false"
+          />
+        </div>
+
+        <div class="col-12 md:col-4">
+          <custom-input-text-signal
+            [control]="invitee.controls.organization"
+            [id]="'assembly-invitee-org-' + index"
+            label="Organizacion"
+            placeholder="organizacion"
+            [horizontal]="false"
+          />
+        </div>
+
+        <div class="col-12 md:col-4">
+          <custom-input-text-signal
+            [control]="invitee.controls.position"
+            [id]="'assembly-invitee-position-' + index"
+            label="Puesto"
+            placeholder="puesto"
+            [horizontal]="false"
+          />
+        </div>
+
+        <div class="col-12 md:col-2">
+          <custom-input-switch-signal
+            [control]="invitee.controls.isInternal"
+            label="Interno"
+            placeholder="Marcar como interno"
+            [horizontal]="false"
+          />
+        </div>
+
+        <div class="col-12 md:col-2 flex align-items-end">
+          <button
+            class="p-button p-component p-button-danger p-button-sm w-full"
+            type="button"
+            (click)="removeAssemblyInvitee(index)"
+          >
+            <span class="p-button-label">Quitar</span>
+          </button>
+        </div>
+
+        <div class="col-12">
+          <custom-input-textarea-signal
+            [control]="invitee.controls.notes"
+            [id]="'assembly-invitee-notes-' + index"
+            label="Notas"
+            placeholder="notas del invitado"
+            [horizontal]="false"
+            [rows]="2"
+          />
+        </div>
+      </div>
+      }
+    </div>
+
+    @if (!assemblyInviteesArray.controls.length) {
+    <small class="text-color-secondary block mt-3">
+      No hay invitados especificos registrados para la asamblea.
+    </small>
+    }
+  </div>
+  } @if (form.errors?.["invalidDateRange"] && form.touched) {
   <div class="col-12">
     <small class="text-red-500">
       La fecha y hora de fin deben ser posteriores a la fecha y hora de inicio.
@@ -202,8 +418,7 @@
       </div>
     </div>
   </div>
-  }
-
+  } @if (!isAssemblySelected()) {
   <div class="col-12">
     <div class="flex justify-content-between align-items-center mb-2">
       <div>
@@ -269,9 +484,11 @@
     </small>
     }
   </div>
+  }
 
   <div class="col-12 flex flex-wrap justify-content-between gap-2">
-    @if (isEditMode() && (originalEventDetail()?.isRecurring || form.controls.isRecurring.getRawValue())) {
+    @if (isEditMode() && (originalEventDetail()?.isRecurring ||
+    form.controls.isRecurring.getRawValue())) {
     <div class="flex gap-2">
       <button
         class="p-button p-component p-button-outlined p-button-sm"
@@ -280,7 +497,8 @@
         (click)="onSubmitSeries()"
       >
         <span class="p-button-label">
-          {{ submittingSeries() ? "Actualizando serie..." : "Guardar toda la serie" }}
+          {{ submittingSeries() ? "Actualizando serie..." : "Guardar toda la
+          serie" }}
         </span>
       </button>
       @if (originalEventDetail()?.isRecurring) {
@@ -291,7 +509,8 @@
         (click)="onDeleteSeries()"
       >
         <span class="p-button-label">
-          {{ deletingSeries() ? "Eliminando serie..." : "Eliminar toda la serie" }}
+          {{ deletingSeries() ? "Eliminando serie..." : "Eliminar toda la serie"
+          }}
         </span>
       </button>
       }

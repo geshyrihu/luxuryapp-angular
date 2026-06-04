@@ -15,10 +15,10 @@ import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-but
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ERecurrence } from "src/app/core/enums/e-recurrence.enum";
 import { EGoogleCalendarRecurrenceMode } from "src/app/core/enums/google-calendar-recurrence-mode.enum";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
+import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { CustomInputDateSignal } from "../../core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "../../core/components/inputs/web/custom-input-select-signal";
@@ -30,6 +30,17 @@ interface IGoogleCalendarGuestForm {
   id: FormControl<string | null>;
   name: FormControl<string>;
   email: FormControl<string>;
+}
+
+interface IGoogleCalendarAssemblyInviteeForm {
+  id: FormControl<string | null>;
+  name: FormControl<string>;
+  email: FormControl<string>;
+  phone: FormControl<string>;
+  organization: FormControl<string>;
+  position: FormControl<string>;
+  isInternal: FormControl<boolean>;
+  notes: FormControl<string>;
 }
 
 interface IGoogleCalendarEventListItem {
@@ -54,7 +65,29 @@ interface IGoogleCalendarEventDetail {
   recurrenceMode: number | null;
   recurrenceEndDate: string | null;
   recurrenceSummary: string;
+  juntaMensualSessionId?: string | null;
+  hasAssemblyChecklist?: boolean;
   guests: Array<{ id?: string; name?: string; email?: string }>;
+  assembly?: {
+    id?: string;
+    copyLegal: boolean;
+    requiresPaddles: boolean;
+    paddlesQuantity?: number | null;
+    requiresAudioVisual: boolean;
+    audioVisualNotes: string;
+    operationalNotes: string;
+    specialInstructions: string;
+    invitees: Array<{
+      id?: string;
+      name?: string;
+      email?: string;
+      phone?: string;
+      organization?: string;
+      position?: string;
+      isInternal?: boolean;
+      notes?: string;
+    }>;
+  } | null;
 }
 
 interface IOptionShortcut {
@@ -76,6 +109,14 @@ interface IGoogleCalendarEventForm {
   description: FormControl<string>;
   location: FormControl<string>;
   guests: FormArray<FormGroup<IGoogleCalendarGuestForm>>;
+  assemblyCopyLegal: FormControl<boolean>;
+  assemblyRequiresPaddles: FormControl<boolean>;
+  assemblyPaddlesQuantity: FormControl<number | null>;
+  assemblyRequiresAudioVisual: FormControl<boolean>;
+  assemblyAudioVisualNotes: FormControl<string>;
+  assemblyOperationalNotes: FormControl<string>;
+  assemblySpecialInstructions: FormControl<string>;
+  assemblyInvitees: FormArray<FormGroup<IGoogleCalendarAssemblyInviteeForm>>;
 }
 
 @Component({
@@ -102,13 +143,16 @@ export class GoogleCalendarForm implements OnInit {
   private readonly config = inject(DynamicDialogConfig);
   private readonly ref = inject(DynamicDialogRef);
   private readonly aspRoleS = inject(AspRoleService);
+  private readonly dateS = inject(DateService);
   private readonly enumSelectS = inject(EnumSelectService);
 
   readonly submitting = signal(false);
   readonly submittingSeries = signal(false);
   readonly deletingSeries = signal(false);
   readonly id = signal<string | null>(null);
-  readonly originalEventDetail = signal<IGoogleCalendarEventDetail | null>(null);
+  readonly originalEventDetail = signal<IGoogleCalendarEventDetail | null>(
+    null,
+  );
   readonly recurrenceOptions = signal<ISelectItem[]>([]);
   readonly recurrenceModeOptions = signal<ISelectItem[]>([
     {
@@ -220,8 +264,21 @@ export class GoogleCalendarForm implements OnInit {
     recurrenceMode: new FormControl<number | null>(null),
     recurrenceEndDate: new FormControl<Date | string | null>(null),
     description: new FormControl("", { nonNullable: true }),
-    location: new FormControl("", { nonNullable: true }),
+    location: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
     guests: new FormArray<FormGroup<IGoogleCalendarGuestForm>>([]),
+    assemblyCopyLegal: new FormControl(true, { nonNullable: true }),
+    assemblyRequiresPaddles: new FormControl(false, { nonNullable: true }),
+    assemblyPaddlesQuantity: new FormControl<number | null>(null),
+    assemblyRequiresAudioVisual: new FormControl(false, { nonNullable: true }),
+    assemblyAudioVisualNotes: new FormControl("", { nonNullable: true }),
+    assemblyOperationalNotes: new FormControl("", { nonNullable: true }),
+    assemblySpecialInstructions: new FormControl("", { nonNullable: true }),
+    assemblyInvitees: new FormArray<
+      FormGroup<IGoogleCalendarAssemblyInviteeForm>
+    >([]),
   });
 
   get guestsArray(): FormArray<FormGroup<IGoogleCalendarGuestForm>> {
@@ -232,6 +289,12 @@ export class GoogleCalendarForm implements OnInit {
     return this.form.errors?.["overlappingSchedule"] ?? [];
   }
 
+  get assemblyInviteesArray(): FormArray<
+    FormGroup<IGoogleCalendarAssemblyInviteeForm>
+  > {
+    return this.form.controls.assemblyInvitees;
+  }
+
   async ngOnInit() {
     this.id.set(this.config.data.id ?? null);
     this.form.addValidators(() => this.validateScheduleRules());
@@ -239,11 +302,15 @@ export class GoogleCalendarForm implements OnInit {
     await this.loadRecurrenceOptions();
     this.setupScheduleValidationRefresh();
     this.setupRecurringStateRefresh();
+    this.setupAssemblyStateRefresh();
+    this.setupModalityStateRefresh();
 
     if (this.id()) {
       await this.onLoadData();
     } else {
       this.applyRecurringState(false, false);
+      this.applyAssemblyState(this.isAssemblySelected(), false);
+      this.applyModalityState(this.isPresentialSelected(), false);
     }
   }
 
@@ -270,14 +337,32 @@ export class GoogleCalendarForm implements OnInit {
       recurrenceEndDate: this.extractDateInputValue(result.recurrenceEndDate),
       description: result.description,
       location: result.location,
+      assemblyCopyLegal: result.assembly?.copyLegal ?? true,
+      assemblyRequiresPaddles: result.assembly?.requiresPaddles ?? false,
+      assemblyPaddlesQuantity: result.assembly?.paddlesQuantity ?? null,
+      assemblyRequiresAudioVisual:
+        result.assembly?.requiresAudioVisual ?? false,
+      assemblyAudioVisualNotes: result.assembly?.audioVisualNotes ?? "",
+      assemblyOperationalNotes: result.assembly?.operationalNotes ?? "",
+      assemblySpecialInstructions: result.assembly?.specialInstructions ?? "",
     });
     this.applyRecurringState(result.isRecurring, false);
+    this.applyAssemblyState(result.subjectType === 1, false);
+    this.applyModalityState(result.modality === 1, false);
     await this.loadEventsForSelectedDate();
 
     this.guestsArray.clear();
     const guests = Array.isArray(result.guests) ? result.guests : [];
     if (guests.length) {
       guests.forEach((guest) => this.addGuest(guest));
+    }
+
+    this.assemblyInviteesArray.clear();
+    const assemblyInvitees = Array.isArray(result.assembly?.invitees)
+      ? (result.assembly?.invitees ?? [])
+      : [];
+    if (assemblyInvitees.length) {
+      assemblyInvitees.forEach((invitee) => this.addAssemblyInvitee(invitee));
     }
 
     this.form.updateValueAndValidity();
@@ -300,16 +385,84 @@ export class GoogleCalendarForm implements OnInit {
     this.guestsArray.removeAt(index);
   }
 
+  addAssemblyInvitee(
+    invitee?: Partial<{
+      id: string;
+      name: string;
+      email: string;
+      phone: string;
+      organization: string;
+      position: string;
+      isInternal: boolean;
+      notes: string;
+    }>,
+  ) {
+    this.assemblyInviteesArray.push(
+      new FormGroup<IGoogleCalendarAssemblyInviteeForm>({
+        id: new FormControl(invitee?.id ?? null),
+        name: new FormControl(invitee?.name ?? "", { nonNullable: true }),
+        email: new FormControl(invitee?.email ?? "", {
+          nonNullable: true,
+          validators: [Validators.required, Validators.email],
+        }),
+        phone: new FormControl(invitee?.phone ?? "", { nonNullable: true }),
+        organization: new FormControl(invitee?.organization ?? "", {
+          nonNullable: true,
+        }),
+        position: new FormControl(invitee?.position ?? "", {
+          nonNullable: true,
+        }),
+        isInternal: new FormControl(invitee?.isInternal ?? false, {
+          nonNullable: true,
+        }),
+        notes: new FormControl(invitee?.notes ?? "", { nonNullable: true }),
+      }),
+    );
+  }
+
+  removeAssemblyInvitee(index: number) {
+    this.assemblyInviteesArray.removeAt(index);
+  }
+
   onSubmit() {
-    FormHelper.submitCrud({
-      form: this.form,
-      api: this.apiResponseS,
-      endpoint: "google-calendar-events",
-      id: this.id(),
-      ref: this.ref,
-      submitting: this.submitting,
-      transformPayload: () => this.buildPayload(false),
-    });
+    if (!this.apiResponseS.validateForm(this.form)) {
+      return;
+    }
+
+    this.submitting.set(true);
+    const payload = this.buildPayload(false);
+
+    const request = this.id()
+      ? this.apiResponseS.onPut<IGoogleCalendarEventDetail>(
+          `google-calendar-events/${this.id()}`,
+          payload,
+        )
+      : this.apiResponseS.onPost<IGoogleCalendarEventDetail>(
+          "google-calendar-events",
+          payload,
+        );
+
+    request
+      .then((result) => {
+        if (!result) {
+          return;
+        }
+
+        if (
+          this.form.controls.subjectType.getRawValue() === 1 &&
+          result.juntaMensualSessionId
+        ) {
+          this.ref.close({
+            refresh: true,
+            openAssemblyChecklist: true,
+            sessionId: result.juntaMensualSessionId,
+          });
+          return;
+        }
+
+        this.ref.close(true);
+      })
+      .finally(() => this.submitting.set(false));
   }
 
   async onSubmitSeries() {
@@ -394,6 +547,35 @@ export class GoogleCalendarForm implements OnInit {
     });
   }
 
+  private setupAssemblyStateRefresh() {
+    this.form.controls.subjectType.valueChanges.subscribe((subjectType) => {
+      this.applyAssemblyState(subjectType === 1);
+    });
+
+    this.form.controls.assemblyRequiresPaddles.valueChanges.subscribe(
+      (requiresPaddles) => {
+        const paddlesControl = this.form.controls.assemblyPaddlesQuantity;
+        if (requiresPaddles) {
+          paddlesControl.setValidators([
+            Validators.required,
+            Validators.min(1),
+          ]);
+        } else {
+          paddlesControl.clearValidators();
+          paddlesControl.setValue(null, { emitEvent: false });
+        }
+
+        paddlesControl.updateValueAndValidity({ emitEvent: false });
+      },
+    );
+  }
+
+  private setupModalityStateRefresh() {
+    this.form.controls.modality.valueChanges.subscribe((modality) => {
+      this.applyModalityState(modality === 1);
+    });
+  }
+
   private applyRecurringState(isRecurring: boolean, emitEvent = true) {
     const recurrenceControl = this.form.controls.recurrence;
     const recurrenceModeControl = this.form.controls.recurrenceMode;
@@ -450,6 +632,64 @@ export class GoogleCalendarForm implements OnInit {
     }
 
     this.form.updateValueAndValidity({ emitEvent: false });
+  }
+
+  private applyAssemblyState(isAssembly: boolean, emitEvent = true) {
+    const paddlesControl = this.form.controls.assemblyPaddlesQuantity;
+    const audioNotesControl = this.form.controls.assemblyAudioVisualNotes;
+    const operationalNotesControl = this.form.controls.assemblyOperationalNotes;
+    const specialInstructionsControl =
+      this.form.controls.assemblySpecialInstructions;
+
+    if (isAssembly) {
+      if (this.form.controls.assemblyRequiresPaddles.getRawValue()) {
+        paddlesControl.setValidators([Validators.required, Validators.min(1)]);
+      }
+      audioNotesControl.enable({ emitEvent: false });
+      operationalNotesControl.enable({ emitEvent: false });
+      specialInstructionsControl.enable({ emitEvent: false });
+    } else {
+      paddlesControl.clearValidators();
+      paddlesControl.setValue(null, { emitEvent: false });
+      this.form.controls.assemblyRequiresPaddles.setValue(false, {
+        emitEvent: false,
+      });
+      this.form.controls.assemblyRequiresAudioVisual.setValue(false, {
+        emitEvent: false,
+      });
+      this.form.controls.assemblyAudioVisualNotes.setValue("", {
+        emitEvent: false,
+      });
+      this.form.controls.assemblyOperationalNotes.setValue("", {
+        emitEvent: false,
+      });
+      this.form.controls.assemblySpecialInstructions.setValue("", {
+        emitEvent: false,
+      });
+      this.assemblyInviteesArray.clear();
+    }
+
+    paddlesControl.updateValueAndValidity({ emitEvent: false });
+
+    if (emitEvent) {
+      this.form.updateValueAndValidity({ emitEvent: false });
+    }
+  }
+
+  private applyModalityState(isPresential: boolean, emitEvent = true) {
+    const locationControl = this.form.controls.location;
+
+    if (isPresential) {
+      locationControl.setValidators([Validators.required]);
+    } else {
+      locationControl.clearValidators();
+    }
+
+    locationControl.updateValueAndValidity({ emitEvent: false });
+
+    if (emitEvent) {
+      this.form.updateValueAndValidity({ emitEvent: false });
+    }
   }
 
   private defaultRecurrenceEndDateValue(): string {
@@ -519,7 +759,8 @@ export class GoogleCalendarForm implements OnInit {
     return events
       .filter((event) => event.id !== currentId)
       .filter((event) => {
-        const existingStart = new Date(event.startAt);
+        const existingStart =
+          this.parseBusinessDateTime(event.startAt) ?? new Date(event.startAt);
         const differenceMinutes =
           (startAt.getTime() - existingStart.getTime()) / (60 * 1000);
 
@@ -555,6 +796,14 @@ export class GoogleCalendarForm implements OnInit {
       this.modalityOptions(),
       this.form.controls.modality.value,
     );
+  }
+
+  isAssemblySelected(): boolean {
+    return Number(this.form.controls.subjectType.getRawValue()) === 1;
+  }
+
+  isPresentialSelected(): boolean {
+    return Number(this.form.controls.modality.getRawValue()) === 1;
   }
 
   selectSubjectType(value: number) {
@@ -637,7 +886,10 @@ export class GoogleCalendarForm implements OnInit {
       >(`google-calendar-events/customer/${customerId}`);
 
       const filtered = (events ?? []).filter((event) =>
-        this.isSameDay(new Date(event.startAt), selectedDate),
+        this.isSameDay(
+          this.parseBusinessDateTime(event.startAt) ?? new Date(event.startAt),
+          selectedDate,
+        ),
       );
 
       this.dateEvents.set(filtered);
@@ -715,7 +967,7 @@ export class GoogleCalendarForm implements OnInit {
       return new Date(year, month - 1, day, 0, 0, 0, 0);
     }
 
-    const date = new Date(value);
+    const date = this.parseBusinessDateTime(value) ?? new Date(value);
     return Number.isNaN(date.getTime()) ? null : date;
   }
 
@@ -724,7 +976,7 @@ export class GoogleCalendarForm implements OnInit {
       return "";
     }
 
-    const date = new Date(value);
+    const date = this.parseBusinessDateTime(value) ?? new Date(value);
     return this.formatDateInputValue(date);
   }
 
@@ -740,7 +992,7 @@ export class GoogleCalendarForm implements OnInit {
       return "";
     }
 
-    const date = new Date(value);
+    const date = this.parseBusinessDateTime(value) ?? new Date(value);
     const hours = date.getHours().toString().padStart(2, "0");
     const minutes = date.getMinutes().toString().padStart(2, "0");
     return `${hours}:${minutes}`;
@@ -779,13 +1031,16 @@ export class GoogleCalendarForm implements OnInit {
 
     return `${baseDate.getFullYear()}-${(baseDate.getMonth() + 1)
       .toString()
-      .padStart(2, "0")}-${baseDate.getDate().toString().padStart(2, "0")}T${hours
+      .padStart(
+        2,
+        "0",
+      )}-${baseDate.getDate().toString().padStart(2, "0")}T${hours
       .toString()
       .padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:00`;
   }
 
   private extractDisplayDate(value: string): string {
-    const date = new Date(value);
+    const date = this.parseBusinessDateTime(value) ?? new Date(value);
     const day = date.getDate().toString().padStart(2, "0");
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const year = date.getFullYear();
@@ -794,11 +1049,41 @@ export class GoogleCalendarForm implements OnInit {
     return `${day}/${month}/${year} ${hours}:${minutes}`;
   }
 
+  private parseBusinessDateTime(value: string | Date | null | undefined) {
+    if (!value) {
+      return null;
+    }
+
+    if (value instanceof Date) {
+      return Number.isNaN(value.getTime()) ? null : value;
+    }
+
+    const normalized = `${value}`.trim();
+    const match = normalized.match(
+      /^(\d{4})-(\d{2})-(\d{2})[T\s](\d{2}):(\d{2})(?::(\d{2}))?/,
+    );
+
+    if (match) {
+      const [, year, month, day, hour, minute, second] = match;
+      return new Date(
+        Number(year),
+        Number(month) - 1,
+        Number(day),
+        Number(hour),
+        Number(minute),
+        Number(second ?? "0"),
+      );
+    }
+
+    return this.dateS.parseDate(normalized) ?? null;
+  }
+
   private buildPayload(forSeries: boolean) {
     const isRecurring = this.form.controls.isRecurring.getRawValue();
     const original = this.originalEventDetail();
     const effectiveIsRecurring =
       forSeries || !original ? isRecurring : original.isRecurring;
+    const isAssembly = this.form.controls.subjectType.getRawValue() === 1;
 
     return {
       customerId: this.form.controls.customerId.getRawValue(),
@@ -814,23 +1099,49 @@ export class GoogleCalendarForm implements OnInit {
       ),
       isRecurring: effectiveIsRecurring,
       recurrence: effectiveIsRecurring
-        ? (forSeries || !original
-            ? this.form.controls.recurrence.getRawValue()
-            : original.recurrence)
+        ? forSeries || !original
+          ? this.form.controls.recurrence.getRawValue()
+          : original.recurrence
         : null,
       recurrenceMode: effectiveIsRecurring
-        ? (forSeries || !original
-            ? this.form.controls.recurrenceMode.getRawValue()
-            : original.recurrenceMode)
+        ? forSeries || !original
+          ? this.form.controls.recurrenceMode.getRawValue()
+          : original.recurrenceMode
         : null,
       recurrenceEndDate: effectiveIsRecurring
-        ? (forSeries || !original
-            ? this.form.controls.recurrenceEndDate.getRawValue()
-            : original.recurrenceEndDate)
+        ? forSeries || !original
+          ? this.form.controls.recurrenceEndDate.getRawValue()
+          : original.recurrenceEndDate
         : null,
       description: this.form.controls.description.getRawValue(),
       location: this.form.controls.location.getRawValue(),
-      guests: this.guestsArray.getRawValue().filter((guest) => guest.email),
+      guests: isAssembly
+        ? []
+        : this.guestsArray.getRawValue().filter((guest) => guest.email),
+      assembly: isAssembly
+        ? {
+            copyLegal: true,
+            requiresPaddles:
+              this.form.controls.assemblyRequiresPaddles.getRawValue(),
+            paddlesQuantity:
+              this.form.controls.assemblyRequiresPaddles.getRawValue()
+                ? this.form.controls.assemblyPaddlesQuantity.getRawValue()
+                : null,
+            requiresAudioVisual:
+              this.form.controls.assemblyRequiresAudioVisual.getRawValue(),
+            audioVisualNotes:
+              this.form.controls.assemblyRequiresAudioVisual.getRawValue()
+                ? this.form.controls.assemblyAudioVisualNotes.getRawValue()
+                : "",
+            operationalNotes:
+              this.form.controls.assemblyOperationalNotes.getRawValue(),
+            specialInstructions:
+              this.form.controls.assemblySpecialInstructions.getRawValue(),
+            invitees: this.assemblyInviteesArray
+              .getRawValue()
+              .filter((invitee) => invitee.email),
+          }
+        : null,
     };
   }
 

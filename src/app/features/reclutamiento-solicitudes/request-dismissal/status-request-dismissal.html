@@ -1,0 +1,135 @@
+@if (dataSignal()) {
+<div class="card">
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>Folio</th>
+        <th>Fecha de solicitud</th>
+        <th>Puesto</th>
+        <th>Fecha de baja</th>
+        <th>Excolaborador</th>
+        <th>Télefono</th>
+        <th>Tipo de baja</th>
+        <th>Motivo de baja</th>
+        <th>Colaborador enterado</th>
+        <th>Se solicita abogado</th>
+        @if (aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.Reclutamiento])) {
+        <th></th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ dataSignal().folio }}</td>
+        <td>{{ dataSignal().requestDate }}</td>
+        <td>{{ dataSignal().applicationRole }}</td>
+        <td>{{ dataSignal().executionDate }}</td>
+        <td>{{ dataSignal().employee }}</td>
+        <td>{{ dataSignal().employeePhone | phoneFormat }}</td>
+        <td>{{ dataSignal().tipoBaja }}</td>
+        <td>{{ dataSignal().reasonForLeaving }}</td>
+        <td>{{ dataSignal().employeeInformed ? "Si" : "No" }}</td>
+        <td>{{ dataSignal().lawyerAssistance ? "Si" : "No" }}</td>
+        @if (aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.Reclutamiento])) {
+        <td>
+          <div class="flex justify-content-end">
+            <custom-button
+              icon="edit"
+              ngbTooltip="Editar"
+              (clicked)="onModalForm({ id: dataSignal().id, title: 'Editar' })"
+            />
+            <custom-button-confirm
+              icon="trash"
+              ngbTooltip="Eliminar"
+              (confirmed)="onDelete(dataSignal().id)"
+            />
+          </div>
+        </td>
+        }
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="mt-4">
+  <h3>Autorizaciones</h3>
+  <div class="grid">
+    <div class="col-12 md:col-6">
+      <div class="card h-100">
+        <h4>Visto Bueno Legal</h4>
+        <p>
+          <strong>Estado:</strong> {{ dataSignal().isAuthorizedByLegal ? 'Autorizado' : 'Pendiente' }}
+          @if(dataSignal().isAuthorizedByLegal) {
+             <br>
+             <strong>Fecha:</strong> {{ dataSignal().legalAuthorizationDate }} {{ dataSignal().legalAuthorizationTime }}
+          }
+        </p>
+        @if(!dataSignal().isAuthorizedByLegal && aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.Legal])) {
+           <div class="mt-2">
+             <custom-button-confirm ngbTooltip="Autorizar Legal" icon="check" (confirmed)="onAuthorize('Legal')" />
+           </div>
+        }
+      </div>
+    </div>
+    <div class="col-12 md:col-6">
+      <div class="card h-100">
+        <h4>Visto Bueno Nóminas</h4>
+        <p>
+          <strong>Estado:</strong> {{ dataSignal().isAuthorizedByPayroll ? 'Autorizado' : 'Pendiente' }}
+          @if(dataSignal().isAuthorizedByPayroll) {
+             <br>
+             <strong>Fecha:</strong> {{ dataSignal().payrollAuthorizationDate }} {{ dataSignal().payrollAuthorizationTime }}
+          }
+        </p>
+        @if(!dataSignal().isAuthorizedByPayroll && aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.RecursosHumanos])) {
+           <div class="mt-2">
+             <custom-button-confirm ngbTooltip="Autorizar Nóminas" icon="check" (confirmed)="onAuthorize('Nominas')" />
+           </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mt-4">
+  <div>
+    <h3>Lista de descuentos</h3>
+    <ul class="list-unstyle">
+      @for (item of dataSignal().discounts; track item) {
+      <li class="list-group-item mb-2">
+        <div class="grid align-items-center">
+          <div class="col-9">
+            <!-- <strong>ID:</strong> {{ item.id }}<br /> -->
+            <strong>Descripción:</strong>
+            {{ item.description }}
+            <br />
+            <strong>Descuento:</strong>
+            {{ item.discount }}
+          </div>
+          @if ( aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.Reclutamiento]) )
+          {
+          <div class="col-3">
+            <div class="flex justify-content-end">
+              <custom-button
+                icon="edit"
+                (clicked)="
+                        onModalFormDiscounts({
+                          id: item.id,
+                          title: 'Editar',
+                        })
+                      "
+              />
+              <custom-button-confirm
+                icon="trash"
+                ngbTooltip="Eliminar"
+                (clicked)="onDeleteDiscounts(item.id)"
+              />
+            </div>
+          </div>
+          }
+        </div>
+        <hr />
+      </li>
+      }
+    </ul>
+  </div>
+</div>
+}

@@ -1,4 +1,4 @@
-import {
+﻿import {
   Component,
   computed,
   inject,
@@ -37,6 +37,7 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CardEmployee } from "src/app/features/employees/employees/pages/card-employee";
 import { IApplicationUserDTO } from "../models/application-user.dto";
 import { ApplicationUserForm } from "./application-user-form";
@@ -71,26 +72,28 @@ export class ApplicationUserList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   apiResponseS = inject(ApiResponseService);
   enumSelectS = inject(EnumSelectService);
+  tableScrollHeightS = inject(TableScrollHeightService);
   // Signals
   dataSignal = signal<IApplicationUserDTO[]>([]);
   filteredDataSignal = signal<IApplicationUserDTO[]>([]);
 
-  searchText: string = ""; // Para almacenar el texto de búsqueda
+  searchText: string = ""; // Para almacenar el texto de bÃºsqueda
   selectCustomerSignal = signal<ISelectItem[]>([]);
   cbTypePersonSignal = signal<ISelectItem[]>([]);
 
   /*
     /PRIME NG TABLE OPTIONS
     */
-  globalFilterFields = computed(() => {
+  scrollHeight = this.tableScrollHeightS.scrollHeight;
+  readonly globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
     return globalFilterFields(data);
   });
 
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
+  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   applicationUserId: string = "";
   employeeId: any = 0;
@@ -130,14 +133,14 @@ export class ApplicationUserList implements OnInit {
           this.dataSignal.set(result);
           this.filteredDataSignal.set(result);
 
-          // Agrupar customers únicos para el select
+          // Agrupar customers Ãºnicos para el select
           const uniqueCustomers = [
             ...new Set(result.map((item: any) => item.customer)),
           ];
 
           // Crear opciones para el select
           this.selectCustomerSignal.set([
-            { label: "Mostrar todos", value: "all" }, // Opción para mostrar todos
+            { label: "Mostrar todos", value: "all" }, // OpciÃ³n para mostrar todos
             ...uniqueCustomers.map(
               (customer): ISelectItem => ({
                 label: customer ? String(customer) : "Sin Cliente",
@@ -149,7 +152,7 @@ export class ApplicationUserList implements OnInit {
       });
   }
 
-  // Método para filtrar por cliente
+  // MÃ©todo para filtrar por cliente
   onSelectForCustomer(selectedValue: string) {
     if (selectedValue === "all") {
       // Si selecciona "Mostrar todos", mostrar todos los datos
@@ -205,7 +208,7 @@ export class ApplicationUserList implements OnInit {
         applicationUserId,
         email,
       },
-      "🔐 Cuenta de acceso",
+      "ðŸ” Cuenta de acceso",
       this.dialogHandlerS.sizeFull,
     );
   }

@@ -51,4 +51,91 @@ export class UpdateDataBase {
         this.loading.set(false);
       });
   }
+
+  runImportAsambleaChecklistCatalog() {
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Importando checklist de asamblea...",
+      "Se insertaran solo los items faltantes del catalogo.",
+    );
+
+    this.apiResponseS
+      .onPost("UpdateDataBase/import-asamblea-checklist-catalog", {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Exito",
+          res?.message || "Catalogo de checklist de asamblea importado.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "La importacion del checklist de asamblea fallo.",
+        );
+        this.loading.set(false);
+      });
+  }
+
+  runBackfillAgendaEventsFromMeetings() {
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Generando agenda historica desde minutas...",
+      "Ejecuta este paso despues de recuperar las horas historicas de las juntas.",
+    );
+
+    this.apiResponseS
+      .onPost("UpdateDataBase/backfill-agenda-events-from-meetings", {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Exito",
+          res?.message || "Backfill historico de agenda completado.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "La generacion historica de agenda a partir de minutas fallo.",
+        );
+        this.loading.set(false);
+      });
+  }
+
+  runBackfillHistoricalMeetingTimes() {
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Recuperando horas historicas de juntas...",
+      "Este paso debe ejecutarse antes del backfill de agenda para reconstruir la fecha y hora correctas.",
+    );
+
+    this.apiResponseS
+      .onPost("UpdateDataBase/backfill-historical-meeting-times", {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Exito",
+          res?.message || "Horas historicas de juntas recuperadas.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "La recuperacion historica de horas para juntas fallo.",
+        );
+        this.loading.set(false);
+      });
+  }
 }

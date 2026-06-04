@@ -2,7 +2,6 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ButtonModule } from "primeng/button";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { FileUploadModule } from "primeng/fileupload";
 import { ImageModule } from "primeng/image";
 import { TooltipModule } from "primeng/tooltip";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -12,14 +11,7 @@ import { ICustomerImageDTO } from "../models/customer.dto";
 @Component({
   selector: "app-customer-images",
   templateUrl: "./customer-images.html",
-
-  imports: [
-    CommonModule,
-    FileUploadModule,
-    ImageModule,
-    ButtonModule,
-    TooltipModule,
-  ],
+  imports: [CommonModule, ImageModule, ButtonModule, TooltipModule],
 })
 export class CustomerImages implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -28,8 +20,9 @@ export class CustomerImages implements OnInit {
   customerId = signal<string>("");
   images = signal<ICustomerImageDTO[]>([]);
   loading = signal<boolean>(false);
+  uploading = signal<boolean>(false);
+  isDragOver = signal<boolean>(false);
 
-  // Computado para saber si hay imágenes
   hasImages = computed(() => this.images().length > 0);
 
   ngOnInit(): void {
@@ -43,29 +36,61 @@ export class CustomerImages implements OnInit {
   onLoadData() {
     this.loading.set(true);
     this.apiResponseS
-      .onGetItem<
-        ICustomerImageDTO[]
-      >(Endpoints.CustomerImages.getByCustomerId(this.customerId()))
+      .onGetItem<ICustomerImageDTO[]>(
+        Endpoints.CustomerImages.getByCustomerId(this.customerId())
+      )
       .then((result) => {
         this.images.set(result ?? []);
         this.loading.set(false);
       });
   }
 
-  onUpload(event: any) {
-    const file = event.files[0];
-    if (!file) return;
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isDragOver.set(true);
+  }
 
+  onDragLeave(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isDragOver.set(false);
+  }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isDragOver.set(false);
+    const files = event.dataTransfer?.files;
+    if (files && files.length > 0) {
+      this.uploadFiles(Array.from(files));
+    }
+  }
+
+  onFileSelect(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.uploadFiles(Array.from(input.files));
+      input.value = "";
+    }
+  }
+
+  uploadFiles(files: File[]) {
+    const imageFiles = files.filter((f) => f.type.startsWith("image/"));
+    if (imageFiles.length === 0) return;
+
+    this.uploading.set(true);
     const formData = new FormData();
     formData.append("customerId", this.customerId());
-    formData.append("image", file);
+    imageFiles.forEach((file) => formData.append("images", file));
 
     this.apiResponseS
-      .onPost<ICustomerImageDTO>(Endpoints.CustomerImages.create, formData)
+      .onPost<ICustomerImageDTO[]>(Endpoints.CustomerImages.createBulk, formData)
       .then((result) => {
         if (result) {
-          this.images.update((prev) => [...prev, result]);
+          this.images.update((prev) => [...prev, ...result]);
         }
+        this.uploading.set(false);
       });
   }
 

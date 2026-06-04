@@ -166,6 +166,10 @@ export class EmployeeFileDetail implements OnInit {
     }
   }
 
+  onDownloadAct(url: string | undefined): void {
+    if (url) window.open(url, "_blank");
+  }
+
   goBack(): void {
     this.router.navigate(["/recursos-humanos/employee-files"]);
   }

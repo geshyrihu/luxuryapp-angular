@@ -6,32 +6,44 @@
       puede tardar varios minutos.
     </ng-template>
 
-    <div class="grid col-1 md:col-2">
-      <div class="md:col-1">
-        <div class="alert alert-info h-full">
-          <div class="font-semibold mb-2">Cliente activo</div>
-          <div>Id: {{ currentCustomerId() || "Sin cliente activo" }}</div>
-          <div>Nombre: {{ currentCustomerName() || "Sin cliente activo" }}</div>
+    <div class="grid mt-2 mb-2">
+      <div class="col-12 md:col-6">
+        <div class="surface-ground p-3 border-round-lg border-1 border-blue-100 h-full">
+          <div class="flex align-items-center gap-2 mb-2 text-blue-700">
+            <i class="pi pi-info-circle text-xl"></i>
+            <span class="font-bold">Cliente Seleccionado</span>
+          </div>
+          <div class="text-sm line-height-3">
+            <div class="flex justify-content-between">
+              <span class="text-secondary">ID Interno:</span>
+              <span class="font-mono">{{ currentCustomerId() || '---' }}</span>
+            </div>
+            <div class="flex justify-content-between">
+              <span class="text-secondary">Nombre:</span>
+              <span class="font-bold">{{ currentCustomerName() || 'Sin cliente activo' }}</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="md:col-1">
+      <div class="col-12 md:col-6">
         <custom-input-number-signal
           [control]="form.controls.year"
-          label="Año a sincronizar"
+          label="Año fiscal a sincronizar"
           placeholder="2026"
           [min]="2000"
           [max]="2100"
           [showButtons]="true"
           [step]="1"
+          [noMargin]="true"
         />
       </div>
     </div>
 
-    <div class="flex flex-wrap mt-4">
+    <div class="flex flex-wrap gap-2 mt-4">
       <custom-button
-        label="Sincronización completa"
-        iconClass="pi pi-cloud-download"
+        label="Sincronización Completa"
+        iconClass="pi pi-sync"
         severity="success"
         [loading]="syncing()"
         [disabled]="!canExecute()"
@@ -39,7 +51,7 @@
         (clicked)="syncCompleto()"
       />
       <custom-button
-        label="Solo contabilidad"
+        label="Solo Contabilidad"
         iconClass="pi pi-book"
         severity="info"
         [loading]="syncing()"
@@ -48,7 +60,7 @@
         (clicked)="syncContabilidad()"
       />
       <custom-button
-        label="Solo cobranza"
+        label="Solo Cobranza"
         iconClass="pi pi-wallet"
         severity="warning"
         [loading]="syncing()"

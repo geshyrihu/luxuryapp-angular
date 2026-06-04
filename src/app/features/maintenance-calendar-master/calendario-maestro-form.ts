@@ -13,7 +13,6 @@ import { SelectModule } from "primeng/select";
 import { firstValueFrom } from "rxjs";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -27,7 +26,7 @@ interface ICalendarioMaestroForm {
   descripcionServicio: FormControl<string>;
   mes: FormControl<number | null>;
   observaciones: FormControl<string>;
-  proveedores: FormControl<number[]>;
+  proveedores: FormControl<string[]>;
 }
 
 @Component({
@@ -39,7 +38,6 @@ interface ICalendarioMaestroForm {
     CardModule,
     SelectModule,
     MultiSelectModule,
-    CustomInputTextSignal,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     CustomButtonSave,
@@ -75,7 +73,7 @@ export class CalendarioMaestroForm implements OnInit {
         validators: [Validators.required],
       }),
       observaciones: new FormControl<string>("", { nonNullable: true }),
-      proveedores: new FormControl<number[]>([], { nonNullable: true }),
+      proveedores: new FormControl<string[]>([], { nonNullable: true }),
     });
 
   async ngOnInit() {

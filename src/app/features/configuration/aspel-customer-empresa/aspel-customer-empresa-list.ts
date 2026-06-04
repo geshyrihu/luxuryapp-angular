@@ -1,8 +1,7 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, OnInit, computed, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
-import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
@@ -15,6 +14,10 @@ import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-vi
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
+  StatusBadge,
+  ETypeEmpresa,
+} from "src/app/core/components/status-badge/status-badge";
+import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
@@ -23,6 +26,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { AspelCustomerEmpresaForm } from "./aspel-customer-empresa-form";
+
 @Component({
   selector: "app-aspel-customer-empresa-list",
   templateUrl: "./aspel-customer-empresa-list.html",
@@ -37,10 +41,10 @@ import { AspelCustomerEmpresaForm } from "./aspel-customer-empresa-form";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     TableModule,
-    TagModule,
     TooltipModule,
     IonButtonDelete,
     IonButtonEdit,
+    StatusBadge,
   ],
 })
 export class AspelCustomerEmpresaList implements OnInit {
@@ -50,10 +54,11 @@ export class AspelCustomerEmpresaList implements OnInit {
 
   dataSignal = signal<any[]>([]);
   customerId = this.customerIdService.customerId;
+  ETypeEmpresa = ETypeEmpresa;
 
-  tablePrimeNgRows: number = tablePrimeNgRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
-  globalFilterFields = computed(() => {
+  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
+  readonly globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
     return globalFilterFields(data);

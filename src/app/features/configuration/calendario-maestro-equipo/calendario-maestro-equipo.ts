@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
@@ -31,10 +31,12 @@ export class CalendarioMaestroEquipo implements OnInit {
   tableScrollHeightS = inject(TableScrollHeightService);
   dataSignal = signal<any[]>([]);
 
-  globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
+  readonly globalFilterFields = computed(() =>
+    globalFilterFields(this.dataSignal()),
+  );
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
+  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
@@ -73,12 +75,3 @@ export class CalendarioMaestroEquipo implements OnInit {
       });
   }
 }
-
-
-
-
-
-
-
-
-

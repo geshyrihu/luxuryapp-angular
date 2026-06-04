@@ -1,5 +1,5 @@
 import { CommonModule, DatePipe } from "@angular/common";
-import { Component, computed, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
@@ -71,8 +71,12 @@ export class JuntasMensualesBackfill {
     () => this.items().filter((item) => this.hasSomethingToApply(item)).length,
   );
 
-  ngOnInit(): void {
-    this.onLoadData();
+  constructor() {
+    effect(() => {
+      this.customerIdS.customerId();
+      this.windowDays();
+      this.onLoadData();
+    });
   }
 
   onLoadData() {

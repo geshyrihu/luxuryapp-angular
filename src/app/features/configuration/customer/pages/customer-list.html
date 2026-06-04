@@ -2,6 +2,8 @@
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
   #dt
@@ -9,15 +11,14 @@
   styleClass="custom-table card hidden md:block"
 >
   <ng-template #caption>
-    <div class="grid align-items-center">
-      <div class="col-12 sm:col-10">
-        <primeng-custom-caption
-          [title]="'Clientes'"
-          (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-          [dt]="dt"
-        />
-      </div>
-      <div class="col-12 sm:col-2">
+    <div class="flex flex-column md:flex-row md:align-items-center justify-content-end p-2 gap-2">
+      <primeng-custom-caption
+        (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+        [dt]="dt"
+        [noPadding]="true"
+        [noMargin]="true"
+      />
+      <div class="flex-shrink-0" style="width: 160px">
         <custom-button-active-desactive
           [state]="state"
           (stateChange)="onSortChange($event)"

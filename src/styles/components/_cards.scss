@@ -146,6 +146,7 @@
 .badge-danger   { @extend .badge; background-color: var(--ds-danger-light);  color: var(--ds-danger);  border-color: #fecaca; }
 .badge-info     { @extend .badge; background-color: var(--ds-info-light);    color: var(--ds-info);    border-color: #a5f3fc; }
 .badge-neutral  { @extend .badge; background-color: #f4f4f5; color: #52525b; border-color: #e4e4e7; }
+.badge-secondary { @extend .badge; background-color: #f3f4f6; color: #4b5563; border-color: #d1d5db; }
 
 // ── VARIANTES OUTLINE ─────────────────────────────────────────
 .badge-outline-primary { @extend .badge; background: transparent; color: var(--ds-primary); border-color: var(--ds-primary); }

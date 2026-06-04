@@ -315,7 +315,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "incidents",
     loadComponent: () =>
-      import("src/app/features/recursos-humanos/incident/pages/incident-list").then(
+      import("src/app/features/recursos-humanos/incidencias-sanciones/incident/pages/incident-list").then(
         (m) => m.IncidentList,
       ),
     canActivate: [
@@ -333,7 +333,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "incident-dashboard",
     loadComponent: () =>
-      import("src/app/features/recursos-humanos/incident/pages/incident-dashboard/incident-dashboard").then(
+      import("src/app/features/recursos-humanos/incidencias-sanciones/incident/pages/incident-dashboard/incident-dashboard").then(
         (m) => m.IncidentDashboardComponent,
       ),
     canActivate: [
@@ -356,7 +356,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "incident-reports",
     loadComponent: () =>
-      import("src/app/features/recursos-humanos/incident-report/pages/incident-report").then(
+      import("src/app/features/recursos-humanos/incidencias-sanciones/incident-report/pages/incident-report").then(
         (m) => m.IncidentReport,
       ),
     canActivate: [
@@ -418,7 +418,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "sanctions",
     loadComponent: () =>
-      import("src/app/features/recursos-humanos/sanction/pages/sanction-list").then(
+      import("src/app/features/recursos-humanos/incidencias-sanciones/sanction/pages/sanction-list").then(
         (m) => m.SanctionList,
       ),
     canActivate: [

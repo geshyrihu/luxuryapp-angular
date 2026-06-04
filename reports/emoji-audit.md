@@ -1,9 +1,9 @@
 # Emoji Audit
 
-- Generated at: 2026-05-21T02:04:43.138Z
+- Generated at: 2026-06-03T14:51:00.906Z
 - Scope: `src/`
-- Total matches: 1261
-- User-facing matches: 424
+- Total matches: 1236
+- User-facing matches: 417
 - Button emoji inputs: 0
 
 ## Priority Order
@@ -15,13 +15,13 @@
 
 ## Top Modules
 
-- app/core: 342
-- features/root: 150
+- app/core: 306
+- features/root: 147
 - src/styles: 114
 - app/root: 107
 - features/contabilidad: 89
-- features/configuration: 65
-- features/recursos-humanos: 54
+- features/configuration: 70
+- features/recursos-humanos: 53
 - features/biblioteca: 35
 - features/entrega-recepcion-check: 31
 - features/calendar: 23
@@ -30,31 +30,30 @@
 
 ## Top User-Facing Modules
 
-- app/core: 114
+- app/core: 99
 - app/root: 83
-- features/recursos-humanos: 47
+- features/recursos-humanos: 46
 - features/contabilidad: 37
 - features/funding: 18
 - app/login: 14
 - features/funding-accounting: 14
 - features/dashboard: 13
 - features/supervision: 13
+- features/recepcion-pipas-agua: 12
 - features/calendar: 9
 - features/service-order: 8
-- src/styles: 6
 
 ## Top Categories
 
-- docs: 330
-- code_string: 248
-- code_comment: 241
+- docs: 327
+- code_string: 237
+- code_comment: 225
 - template_comment: 176
-- template_text: 170
-- style_comment: 48
-- code_misc: 30
+- template_text: 174
+- style_comment: 51
+- code_misc: 29
 - style_text: 10
 - style_content: 6
-- code_log: 1
 - config: 1
 
 ## Highest Priority Files

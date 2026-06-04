@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -44,10 +44,10 @@ export class UnitOfMeasurementList implements OnInit {
   tableScrollHeightS = inject(TableScrollHeightService);
   dataSignal = signal<any[]>([]);
 
-  globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
+  readonly globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
+  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   ref: DynamicDialogRef;
   scrollHeight = this.tableScrollHeightS.scrollHeight;

@@ -5,9 +5,12 @@
   #dt1
   [value]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
-  styleClass="custom-table hidden md:block"
+  styleClass="custom-table card hidden md:block"
   [paginator]="true"
-  [rows]="40"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
   [showCurrentPageReport]="true"
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   sortField="roleType"
@@ -54,6 +57,9 @@
       </td>
     </tr>
   </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
 </p-table>
 
 <!-- 📱 INICIO: Vista para móviles -->
@@ -81,10 +87,3 @@
   </ng-template>
 </app-data-view-mobile>
 }
-
-
-
-
-
-
-

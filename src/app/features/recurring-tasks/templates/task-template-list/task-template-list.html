@@ -16,13 +16,19 @@
       styleClass="hidden md:block custom-table"
     >
       <ng-template #caption>
-        <div class="flex flex-row-reverse flex-wrap">
-          <custom-button-active-desactive
-            [state]="state()"
-            (stateChange)="onChangeState($event)"
-            customClass="ml-2"
+        <div class="flex flex-column md:flex-row md:align-items-center justify-content-end p-2 gap-2">
+          <primeng-custom-caption
+            (add)="showForm()"
+            [dt]="dt"
+            [noPadding]="true"
+            [noMargin]="true"
           />
-          <primeng-custom-caption (add)="showForm()" [dt]="dt" />
+          <div class="flex-shrink-0" style="width: 160px">
+            <custom-button-active-desactive
+              [state]="state()"
+              (stateChange)="onChangeState($event)"
+            />
+          </div>
         </div>
       </ng-template>
       <ng-template #header>
@@ -64,6 +70,15 @@
       [dt]="dt"
       class="block md:hidden"
     >
+      <div customFilters>
+        <div class="px-4 py-2">
+          <ion-button-active-desactive
+            fluid
+            [state]="state()"
+            (stateChange)="onChangeState($event)"
+          />
+        </div>
+      </div>
       <ng-template #listItemTemplate let-template>
         <ion-item lines="full" class="ion-no-padding" detail="false">
           <ion-label>
@@ -76,7 +91,7 @@
               (clicked)="onManageItems(template.id)"
             />
             <ion-button-item label="Editar" (clicked)="showForm(template)" />
-            <ion-button-item-delete (confirmed)="onDelete(template.id)" />
+            <ion-button-delete (confirmed)="onDelete(template.id)" />
           </app-action-menu>
         </ion-item>
       </ng-template>

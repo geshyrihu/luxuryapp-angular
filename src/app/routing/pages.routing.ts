@@ -361,28 +361,6 @@ export const pagesRoutes: Routes = [
       breadcrumb: "Estados Financieros",
     },
   },
-  // {
-  //   path: "firebis-data",
-  //   loadChildren: () =>
-  //     import("src/app/routing/firebis-data.routing").then(
-  //       (m) => m.firebisRoutes,
-  //     ),
-  //   data: {
-  //     title: "Firebis Data",
-  //     breadcrumb: "Firebis Data",
-  //   },
-  // },
-  // {
-  //   path: "firebis-cxp",
-  //   loadChildren: () =>
-  //     import("src/app/routing/firebis-cxp.routing").then(
-  //       (m) => m.firebisCxpRoutes,
-  //     ),
-  //   data: {
-  //     title: "Cuentas por Pagar",
-  //     breadcrumb: "Cuentas por Pagar",
-  //   },
-  // },
   {
     path: "catalog-replica",
     loadComponent: () =>

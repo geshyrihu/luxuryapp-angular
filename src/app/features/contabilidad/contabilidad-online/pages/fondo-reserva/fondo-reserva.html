@@ -1,0 +1,72 @@
+<div class="flex flex-column gap-4">
+  @if (loading()) {
+    <p-skeleton width="100%" height="20rem" />
+  } @else if (data(); as reserva) {
+    <!-- Contenedor general del reporte -->
+    <div class="surface-card border-round-xl border-1 surface-border shadow-1 p-0 xl:p-4">
+      <div class="text-center mb-4">
+        <h2 class="text-900 font-bold m-0 uppercase text-2xl border-bottom-1 surface-border pb-3">FONDO DE RESERVA</h2>
+        <p class="font-bold text-900 mt-4 mb-2">{{ reserva.fechaReporte }}</p>
+      </div>
+
+      <div class="grid grid-nogutter justify-content-center">
+        <div class="col-12 xl:col-8">
+          
+          <!-- Encabezado de la tabla -->
+          <div class="grid grid-nogutter bg-blue-900 text-white font-bold p-3 border-round-top">
+            <div class="col-8 text-center text-lg">CONCEPTO</div>
+            <div class="col-4 text-center text-lg border-left-1 border-white-alpha-30">IMPORTE</div>
+          </div>
+
+          <!-- Fila 1: Disponible al 1 de Enero -->
+          <div class="grid grid-nogutter border-bottom-1 surface-border p-3 align-items-center">
+            <div class="col-8 font-bold">
+              DISPONIBLE AL 01 DE ENERO {{ filters.year() }}
+            </div>
+            <div class="col-4 text-right font-bold text-lg">
+              {{ reserva.disponibleInicial | number:'1.0-0' }}
+            </div>
+          </div>
+
+          <!-- Fila 2: Intereses -->
+          <div class="grid grid-nogutter border-bottom-1 surface-border p-3 align-items-center">
+            <div class="col-8 text-700">
+              +) INTERESES {{ filters.year() }}
+            </div>
+            <div class="col-4 text-right border-bottom-1 surface-border pb-1">
+              {{ reserva.intereses | number:'1.0-0' }}
+            </div>
+          </div>
+
+          <!-- Fila 3: Disponible Teórico -->
+          <div class="grid grid-nogutter p-3 align-items-center bg-white">
+            <div class="col-8 font-bold text-lg">
+              DISPONIBLE, CTA. {{ reserva.cuentaBancaria.replace('CTA. No. ', '') }}
+            </div>
+            <div class="col-4 text-right font-bold text-xl">
+              {{ reserva.disponibleTeorico | number:'1.0-0' }}
+            </div>
+          </div>
+
+          <!-- Fila 4: Cuenta Bancaria (Real) -->
+          <div class="grid grid-nogutter p-3 align-items-center bg-green-50 border-round-bottom">
+            <div class="col-8 font-bold text-green-900">
+              {{ reserva.cuentaBancaria }}
+            </div>
+            <div class="col-4 text-right text-green-900 text-lg">
+              {{ reserva.disponibleReal | number:'1.0-0' }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  } @else {
+    <div class="rf-card flex flex-column align-items-center py-8 text-color-secondary">
+      <i class="pi pi-file-excel text-5xl mb-4 opacity-50"></i>
+      <p class="m-0 text-xl font-medium">No hay datos para mostrar</p>
+      <p class="mt-2 text-500">Verifique los parámetros seleccionados</p>
+    </div>
+  }
+</div>

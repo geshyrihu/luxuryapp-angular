@@ -1,6 +1,7 @@
-import { CommonModule, DatePipe } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { DateService } from "src/app/core/services/date.service";
 
 interface IGoogleCalendarEventListItem {
   id: string;
@@ -14,6 +15,9 @@ interface IGoogleCalendarEventListItem {
   guestCount: number;
   googleHtmlLink: string;
   googleMeetUrl: string;
+  googleStatus: string;
+  juntaMensualSessionId: string | null;
+  hasAssemblyChecklist: boolean;
   isSynchronized: boolean;
   isRecurring: boolean;
   recurrenceSummary: string;
@@ -22,15 +26,78 @@ interface IGoogleCalendarEventListItem {
 @Component({
   selector: "app-google-calendar-detail",
   templateUrl: "./google-calendar-detail.html",
-  imports: [CommonModule, DatePipe],
+  imports: [CommonModule],
 })
 export class GoogleCalendarDetail {
   private readonly config = inject(DynamicDialogConfig);
   private readonly ref = inject(DynamicDialogRef);
+  private readonly dateS = inject(DateService);
 
   readonly item = this.config.data.item as IGoogleCalendarEventListItem;
 
   onClose() {
     this.ref.close(false);
+  }
+
+  formatBusinessDateTime(value: string | Date | null | undefined) {
+    const parsed = this.parseBusinessDateTime(value);
+    if (!parsed) return "";
+
+    const day = `${parsed.getDate()}`.padStart(2, "0");
+    const month = `${parsed.getMonth() + 1}`.padStart(2, "0");
+    const year = parsed.getFullYear();
+    const hours = `${parsed.getHours()}`.padStart(2, "0");
+    const minutes = `${parsed.getMinutes()}`.padStart(2, "0");
+    return `${day}/${month}/${year} ${hours}:${minutes}`;
+  }
+
+  getStatusLabel() {
+    if (this.item.isSynchronized) {
+      return "Sincronizado";
+    }
+
+    const normalizedStatus = (this.item.googleStatus || "")
+      .trim()
+      .toLowerCase();
+    if (
+      normalizedStatus === "historicolocal" ||
+      normalizedStatus === "historico local"
+    ) {
+      return "Historico local";
+    }
+
+    const startAt = this.parseBusinessDateTime(this.item.startAt);
+    if (startAt && startAt.getTime() < Date.now()) {
+      return "No sincronizado";
+    }
+
+    return "Pendiente";
+  }
+
+  private parseBusinessDateTime(value: string | Date | null | undefined) {
+    if (!value) return null;
+
+    if (value instanceof Date) {
+      return isNaN(value.getTime()) ? null : value;
+    }
+
+    const normalized = `${value}`.trim();
+    const match = normalized.match(
+      /^(\d{4})-(\d{2})-(\d{2})[T\s](\d{2}):(\d{2})(?::(\d{2}))?/,
+    );
+
+    if (match) {
+      const [, year, month, day, hour, minute, second] = match;
+      return new Date(
+        Number(year),
+        Number(month) - 1,
+        Number(day),
+        Number(hour),
+        Number(minute),
+        Number(second ?? "0"),
+      );
+    }
+
+    return this.dateS.parseDate(normalized) ?? null;
   }
 }

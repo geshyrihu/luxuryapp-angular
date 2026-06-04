@@ -177,10 +177,10 @@
         <td class="text-center vertical-align-middle">
           <div class="flex flex-column align-items-center">
             <span class="font-bold text-800 text-base mb-1"
-              >{{ item.date | date: 'dd MMM' }}</span
+              >{{ item.date | date: 'dd MMM' : 'UTC' }}</span
             >
             <span class="text-500 text-xs flex align-items-center gap-1"
-              ><i class="pi pi-clock text-xs"></i> {{ item.date | date: 'HH:mm'
+              ><i class="pi pi-clock text-xs"></i> {{ item.date | date: 'HH:mm' : 'UTC'
               }}</span
             >
           </div>

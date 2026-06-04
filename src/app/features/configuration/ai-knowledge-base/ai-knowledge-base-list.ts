@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ConfirmationService } from "primeng/api";
 import { DialogService } from "primeng/dynamicdialog";
@@ -44,10 +44,10 @@ export class AiKnowledgeBaseList implements OnInit {
 
   // PrimeNG Table Options
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
+  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
 
-  globalFilterFields = computed(() => {
+  readonly globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
     return globalFilterFields(data);
@@ -69,7 +69,7 @@ export class AiKnowledgeBaseList implements OnInit {
 
   async onDelete(id: string) {
     this.confirmationService.confirm({
-      message: "¿Estás seguro de que quieres eliminar este registro?",
+      message: "Â¿EstÃ¡s seguro de que quieres eliminar este registro?",
       header: "Confirmar",
       icon: "pi pi-exclamation-triangle",
       accept: async () => {

@@ -42,25 +42,10 @@ export class ApprovalRules implements OnInit {
   targetRoles = signal<string[]>([]);
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
-  scopeOptions = [
-    {
-      label: "N/A",
-      value: ApprovalScope.None,
-      icon: "pi pi-ban",
-      styleClass: "p-button-secondary p-button-sm",
-    },
-    {
-      label: "Cliente",
-      value: ApprovalScope.SameCustomer,
-      icon: "pi pi-users",
-      styleClass: "p-button-info p-button-sm",
-    },
-    {
-      label: "Global",
-      value: ApprovalScope.Global,
-      icon: "pi pi-globe",
-      styleClass: "p-button-success p-button-sm",
-    },
+  readonly scopeOptions = [
+    { label: "N/A",     value: ApprovalScope.None,         icon: "pi pi-ban",   styleClass: "opt-none" },
+    { label: "Cliente", value: ApprovalScope.SameCustomer, icon: "pi pi-users", styleClass: "opt-cliente" },
+    { label: "Global",  value: ApprovalScope.Global,       icon: "pi pi-globe", styleClass: "opt-global" },
   ];
 
   ngOnInit(): void {

@@ -1,17 +1,18 @@
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { MenuItem } from "primeng/api";
-import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { Menu, MenuModule } from "primeng/menu";
+import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
   IonButtonDelete,
   IonButtonEdit,
 } from "src/app/core/components/buttons/mobile";
+import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
+import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -29,6 +30,7 @@ import { DatosServicioAddOrEdit } from "./datos-servicio-form";
     CustomButtonItem,
     TooltipModule,
     MenuModule,
+    TagModule,
     DataViewMobile,
     ActionMenu,
     IonItem,

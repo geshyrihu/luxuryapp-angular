@@ -15,7 +15,6 @@
   .p-datatable .p-datatable-thead > tr > th.p-frozen-column,
   .p-datatable .p-datatable-tbody > tr > td.p-frozen-column,
   .sticky-column {
-    // background-color: var(--surface-card) !important;
     background-color: var(--ds-bg-surface);
     z-index: 100 !important;
     position: sticky !important;
@@ -34,12 +33,7 @@
     border-top: 1px solid var(--ds-border);
   }
 
-  .sticky-header {
-    position: sticky;
-    left: 0;
-    z-index: 2;
-  }
-
+  .sticky-header { position: sticky; left: 0; z-index: 2; }
   .sticky-col {
     position: sticky;
     left: 0;
@@ -51,7 +45,62 @@
   p-table .p-datatable-tbody > tr:not(.p-datatable-emptymessage-row):hover {
     background-color: var(--ds-bg-sunken) !important;
   }
+
+  // ── SelectButton: tamaño compacto ──────────────────────
+  .p-selectbutton {
+    gap: 0 !important;
+
+    // cubre tanto p-togglebutton (v17) como p-button (v18)
+    .p-togglebutton,
+    .p-button {
+      font-size: 0.7rem !important;
+      padding: 0.2rem 0.45rem !important;
+      line-height: 1.4 !important;
+      min-width: 0 !important;
+      white-space: nowrap;
+
+      .pi { font-size: 0.68rem !important; margin-right: 0.18rem !important; }
+    }
+  }
+
+  // ── Estado NO seleccionado: outline apagado ─────────────
+  .p-selectbutton .p-togglebutton:not(.p-togglebutton-checked):not(.p-highlight),
+  .p-selectbutton .p-button:not(.p-togglebutton-checked):not(.p-highlight):not([aria-pressed="true"]) {
+    background: transparent !important;
+    border-color: var(--surface-300) !important;
+    color: var(--text-color-secondary) !important;
+    box-shadow: none !important;
+  }
+
+  // ── Estado ACTIVO por clase semántica del option ────────
+
+  // N/A activo → gris oscuro
+  .opt-none.p-togglebutton-checked,
+  .opt-none.p-highlight,
+  .opt-none[aria-pressed="true"] {
+    background: var(--surface-500) !important;
+    border-color: var(--surface-600) !important;
+    color: #fff !important;
+    box-shadow: none !important;
+  }
+
+  // Cliente activo → azul vivo
+  .opt-cliente.p-togglebutton-checked,
+  .opt-cliente.p-highlight,
+  .opt-cliente[aria-pressed="true"] {
+    background: var(--blue-600) !important;
+    border-color: var(--blue-700) !important;
+    color: #fff !important;
+    box-shadow: 0 0 0 2px var(--blue-200) !important;
+  }
+
+  // Global activo → verde vivo
+  .opt-global.p-togglebutton-checked,
+  .opt-global.p-highlight,
+  .opt-global[aria-pressed="true"] {
+    background: var(--green-600) !important;
+    border-color: var(--green-700) !important;
+    color: #fff !important;
+    box-shadow: 0 0 0 2px var(--green-200) !important;
+  }
 }
-
-
-

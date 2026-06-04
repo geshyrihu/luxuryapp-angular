@@ -8,27 +8,48 @@
         <i class="pi pi-bolt text-white text-xl"></i>
       </div>
       <div>
-        <h1 class="m-0 text-lg font-bold">Luxury Design System</h1>
+        <h1 class="m-0 text-lg font-bold">Luxury Design System & Guide</h1>
         <div class="flex align-items-center gap-2">
           <p-tag value="v5.4.0" severity="secondary" [rounded]="true" class="text-xs"></p-tag>
-          <span class="text-xs opacity-60">Angular 21 + PrimeNG 21 + Ionic 8</span>
+          <span class="text-xs opacity-60">Guía Unificada: UI + Documentación</span>
         </div>
       </div>
     </div>
 
     <div class="flex align-items-center gap-2">
-      <p-selectButton 
-        [options]="categories" 
-        [ngModel]="activeCategory()" 
-        (ngModelChange)="activeCategory.set($event)"
-        optionLabel="label" 
-        optionValue="id"
-      >
-        <ng-template pTemplate="item" let-item>
-          <i [class]="item.icon + ' mr-2'"></i>
-          <span class="hidden md:inline">{{item.label}}</span>
-        </ng-template>
-      </p-selectButton>
+      <!-- Navegación por Categorías -->
+      <div class="hidden xl:flex">
+        <p-selectButton 
+          [options]="categories" 
+          [ngModel]="activeCategory()" 
+          (ngModelChange)="activeCategory.set($event)"
+          optionLabel="label" 
+          optionValue="id"
+        >
+          <ng-template pTemplate="item" let-item>
+            <i [class]="item.icon + ' mr-2'"></i>
+            <span>{{item.label}}</span>
+          </ng-template>
+        </p-selectButton>
+      </div>
+
+      <!-- Menú móvil para categorías si la pantalla es pequeña -->
+      <div class="xl:hidden">
+        <p-select [options]="categories" [ngModel]="activeCategory()" (ngModelChange)="activeCategory.set($event)" optionLabel="label" optionValue="id" placeholder="Seleccionar Sección">
+           <ng-template pTemplate="selectedItem" let-selectedOption>
+              <div class="flex align-items-center gap-2">
+                <i [class]="selectedOption.icon"></i>
+                <span>{{selectedOption.label}}</span>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="item" let-item>
+              <div class="flex align-items-center gap-2">
+                <i [class]="item.icon"></i>
+                <span>{{item.label}}</span>
+              </div>
+            </ng-template>
+        </p-select>
+      </div>
 
       <p-divider layout="vertical"></p-divider>
 
@@ -52,73 +73,68 @@
   </nav>
 
   <div class="catalog-main-layout">
-    <!-- CONTENIDO DINÁMICO SEGÚN CATEGORÍA -->
     <main class="catalog-body p-4">
       
-      <!-- 🎨 SECCIÓN: DESIGN TOKENS -->
+      <!-- 🎨 SECCIÓN: TOKENS e IDENTIDAD -->
       @if (activeCategory() === 'tokens') {
         <section class="fadein">
           <div class="section-header mb-4">
-            <h2 class="text-3xl font-bold m-0">Design Tokens</h2>
-            <p class="text-secondary">Variables base que definen la identidad visual del proyecto.</p>
+            <h2 class="text-3xl font-bold m-0">Tokens & Identidad Visual</h2>
+            <p class="text-secondary">Variables base y paletas oficiales que definen la marca LuxuryApp.</p>
           </div>
 
           <div class="grid">
             <div class="col-12">
-              <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">Colores Brand & Semánticos</h3>
-              <div class="flex flex-wrap gap-3">
-                <div class="token-swatch shadow-1" (click)="copy('--ds-primary')">
-                  <div class="swatch-color" style="background: var(--ds-primary);"></div>
-                  <div class="swatch-info">
-                    <span class="name">Primary</span>
-                    <span class="value">#0B3164</span>
+              <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">Paletas Cromáticas</h3>
+              <p-message severity="info" text="LuxuryApp utiliza una paleta primaria para la UI y una paleta Premium/Soporte para documentos oficiales." class="mb-4 block"></p-message>
+              
+              <div class="grid">
+                @for (color of paleta; track color.token) {
+                  <div class="col-12 md:col-6 xl:col-4">
+                    <div class="token-swatch shadow-1 flex align-items-center p-3 surface-card border-round cursor-pointer transition-all hover:shadow-3" (click)="copy(color.token)">
+                      <div class="swatch-color border-round-sm mr-3" [style.background]="'var(' + color.token + ')'" style="width: 50px; height: 50px;"></div>
+                      <div class="swatch-info flex-grow-1">
+                        <span class="block font-bold text-sm">{{ color.nombre }}</span>
+                        <code class="text-primary text-xs">{{ color.token }}</code>
+                        <div class="text-xs text-secondary mt-1 line-height-2">{{ color.uso }}</div>
+                      </div>
+                      <i class="pi pi-copy text-400"></i>
+                    </div>
                   </div>
-                </div>
-                <div class="token-swatch shadow-1" (click)="copy('--ds-luxury-gold')">
-                  <div class="swatch-color" style="background: var(--ds-luxury-gold);"></div>
-                  <div class="swatch-info">
-                    <span class="name">Luxury Gold</span>
-                    <span class="value">#C9A84C</span>
-                  </div>
-                </div>
-                <div class="token-swatch shadow-1" (click)="copy('--ds-success')">
-                  <div class="swatch-color" style="background: var(--ds-success);"></div>
-                  <div class="swatch-info">
-                    <span class="name">Success</span>
-                    <span class="value">#065F46</span>
-                  </div>
-                </div>
-                <div class="token-swatch shadow-1" (click)="copy('--ds-danger')">
-                  <div class="swatch-color" style="background: var(--ds-danger);"></div>
-                  <div class="swatch-info">
-                    <span class="name">Danger</span>
-                    <span class="value">#991B1B</span>
-                  </div>
-                </div>
+                }
               </div>
             </div>
 
             <div class="col-12 mt-5">
-              <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">Tipografía & Elevación</h3>
+              <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">Tipografía de Sistema</h3>
               <div class="grid">
-                <div class="col-12 md:col-6">
-                  <p-card header="Typography Scale">
-                    <div class="flex flex-column gap-3">
-                      <div class="text-4xl">Display Title (2rem)</div>
-                      <div class="text-2xl font-bold">Page Title (1.75rem)</div>
-                      <div class="text-xl font-semibold">Section Title (1.25rem)</div>
-                      <div class="text-base">Body Regular (0.9375rem) - Texto para lectura operativa.</div>
-                      <div class="text-xs font-mono bg-sunken p-2 border-round">--ds-font-family-base: "IBM Plex Sans"</div>
-                    </div>
-                  </p-card>
+                <div class="col-12 lg:col-8">
+                  <p-table [value]="estilosTipografia" responsiveLayout="scroll" styleClass="p-datatable-sm shadow-1 border-round overflow-hidden">
+                    <ng-template pTemplate="header">
+                      <tr>
+                        <th>Elemento</th>
+                        <th>Familia</th>
+                        <th>Tamaño</th>
+                        <th>Uso Recomendado</th>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-row>
+                      <tr>
+                        <td><strong>{{ row.elemento }}</strong></td>
+                        <td class="font-mono text-xs">{{ row.familia }}</td>
+                        <td><p-tag [value]="row.tamano" severity="secondary"></p-tag></td>
+                        <td class="text-sm">{{ row.uso }}</td>
+                      </tr>
+                    </ng-template>
+                  </p-table>
                 </div>
-                <div class="col-12 md:col-6">
-                  <p-card header="Elevation (Shadows)">
-                    <div class="flex flex-wrap gap-4">
-                      <div class="shadow-1 p-4 border-round surface-card">Shadow 1 (XS)</div>
-                      <div class="shadow-2 p-4 border-round surface-card">Shadow 2 (SM)</div>
-                      <div class="shadow-3 p-4 border-round surface-card">Shadow 3 (MD)</div>
-                      <div class="shadow-4 p-4 border-round surface-card">Shadow 4 (LG)</div>
+                <div class="col-12 lg:col-4">
+                  <p-card header="Reglas de Elevación">
+                    <div class="flex flex-column gap-3">
+                      <div class="shadow-1 p-3 border-round surface-card border-1 border-100">Shadow 1 (Cards Standard)</div>
+                      <div class="shadow-2 p-3 border-round surface-card border-1 border-100">Shadow 2 (Overlays / Modals)</div>
+                      <div class="shadow-3 p-3 border-round surface-card border-1 border-100">Shadow 3 (Popovers)</div>
+                      <div class="shadow-4 p-3 border-round surface-card border-1 border-100">Shadow 4 (Focus / Floating)</div>
                     </div>
                   </p-card>
                 </div>
@@ -128,22 +144,22 @@
         </section>
       }
 
-      <!-- 🖥️ SECCIÓN: WEB COMPONENTS (PRIMENG CUSTOM) -->
+      <!-- 🖥️ SECCIÓN: WEB COMPONENTS -->
       @if (activeCategory() === 'web') {
         <section class="fadein">
           <div class="section-header mb-4">
             <h2 class="text-3xl font-bold m-0">Web Architecture</h2>
-            <p class="text-secondary">Componentes optimizados para Desktop usando PrimeNG 21 y Design System.</p>
+            <p class="text-secondary">Componentes optimizados para Desktop usando PrimeNG y Design System.</p>
           </div>
 
           <div class="grid">
             <!-- Buttons Web -->
             <div class="col-12 lg:col-6">
-              <p-card header="Action Buttons (Web)">
+              <p-card header="Action Buttons (Web Custom)">
                 <div class="flex flex-wrap gap-2">
                   <custom-button-add label="Crear Solicitud" />
                   <custom-button-edit label="Modificar" />
-                  <custom-button-save label="Guardar Cambios" />
+                  <custom-button-save label="Guardar" />
                   <custom-button-delete label="Eliminar" />
                   <custom-button-download />
                   <custom-button-confirm label="Aprobar" />
@@ -155,7 +171,7 @@
 
             <!-- Inputs Web -->
             <div class="col-12 lg:col-6">
-              <p-card header="Smart Inputs (Signals)">
+              <p-card header="Smart Inputs (Signals Ready)">
                 <form [formGroup]="webForm" class="flex flex-column gap-3">
                   <custom-input-text-signal [control]="webForm.controls['nombre']" label="Nombre de Usuario" placeholder="Ingresa nombre..." />
                   <div class="grid">
@@ -175,9 +191,9 @@
             <!-- Overlays Web -->
             <div class="col-12">
               <p-card header="Navigation & Overlays">
-                <div class="flex gap-4 align-items-center">
+                <div class="flex flex-wrap gap-4 align-items-center">
                   <div class="flex flex-column gap-2">
-                    <span class="font-bold">Status Badge System</span>
+                    <span class="font-bold text-sm">Status Badge System</span>
                     <div class="flex gap-2">
                       <app-status-badge [status]="EStatus.Pendiente" />
                       <app-status-badge [status]="EStatus.Proceso" />
@@ -186,10 +202,10 @@
                     </div>
                   </div>
                   
-                  <p-divider layout="vertical"></p-divider>
+                  <p-divider layout="vertical" class="hidden md:block"></p-divider>
 
                   <div class="flex flex-column gap-2">
-                    <span class="font-bold">Contextual Menu</span>
+                    <span class="font-bold text-sm">Contextual Menu</span>
                     <app-action-menu [mobileMode]="false">
                       <p-button label="Ver Detalle" icon="pi pi-search" [text]="true" />
                       <p-button label="Exportar" icon="pi pi-file-pdf" [text]="true" />
@@ -197,10 +213,10 @@
                     </app-action-menu>
                   </div>
 
-                  <p-divider layout="vertical"></p-divider>
+                  <p-divider layout="vertical" class="hidden md:block"></p-divider>
 
                   <div class="flex flex-column gap-2">
-                    <span class="font-bold">Icons Group</span>
+                    <span class="font-bold text-sm">Icons Group</span>
                     <app-action-icons-group>
                       <i class="pi pi-pencil p-2 cursor-pointer hover:text-primary"></i>
                       <i class="pi pi-trash p-2 cursor-pointer hover:text-danger"></i>
@@ -214,18 +230,18 @@
         </section>
       }
 
-      <!-- 📱 SECCIÓN: MOBILE COMPONENTS (IONIC) -->
+      <!-- 📱 SECCIÓN: MOBILE COMPONENTS -->
       @if (activeCategory() === 'mobile') {
         <section class="fadein">
           <div class="section-header mb-4">
-            <h2 class="text-3xl font-bold m-0">Mobile Core</h2>
-            <p class="text-secondary">Componentes Ionic 8 nativos optimizados para iOS/Android.</p>
+            <h2 class="text-3xl font-bold m-0">Mobile Core (Ionic)</h2>
+            <p class="text-secondary">Componentes nativos optimizados para experiencias móviles iOS/Android.</p>
           </div>
 
           <div class="grid">
             <!-- Buttons Mobile -->
             <div class="col-12 lg:col-6">
-              <p-card header="Ionic Custom Buttons & Avatars">
+              <p-card header="Ionic Custom Buttons">
                 <div class="flex flex-column gap-4">
                   <ion-list lines="none" class="bg-transparent">
                     <ion-button-add label="Nuevo Registro" />
@@ -237,19 +253,9 @@
                   <p-divider></p-divider>
                   
                   <div class="flex align-items-center gap-3">
-                    <div class="flex flex-column align-items-center gap-1">
-                      <ion-avatar>
-                        <img src="assets/images/default-avatar.png" alt="avatar" />
-                      </ion-avatar>
-                      <span class="text-xs">Avatar</span>
-                    </div>
-                    <div class="flex flex-column align-items-center gap-1">
-                      <ion-chip>
-                        <ion-icon name="person-outline"></ion-icon>
-                        <ion-label>Usuario</ion-label>
-                      </ion-chip>
-                      <span class="text-xs">Chip</span>
-                    </div>
+                    <ion-avatar class="shadow-1"><img src="assets/images/default-avatar.png" alt="avatar" /></ion-avatar>
+                    <ion-chip color="primary"><ion-icon name="person-outline"></ion-icon><ion-label>Usuario</ion-label></ion-chip>
+                    <ion-badge color="success">Online</ion-badge>
                   </div>
                 </div>
               </p-card>
@@ -263,68 +269,35 @@
                   <ion-input-number [control]="mobileForm.controls['edad']" label="Edad" placeholder="0" />
                   <ion-input-select [control]="mobileForm.controls['categoria']" [options]="options" label="Categoría" />
                   <ion-input-toggle [control]="mobileForm.controls['activo']" label="Activo" />
-                  <ion-input-search (searchChange)="searchTerm.set($event)" label="Buscador" />
                 </form>
               </p-card>
             </div>
 
-            <!-- Mobile UI Elements (Restaurados) -->
             <div class="col-12">
-              <p-card header="Mobile UI Elements & Feedback">
+               <p-card header="Mobile UI Elements">
                 <div class="grid">
-                  <div class="col-12 md:col-4">
-                    <div class="p-3 border-1 border-300 border-round mb-3">
-                      <span class="block font-bold mb-2">Infinite Scroll Mockup</span>
-                      <div class="border-1 border-200 border-round" style="height: 150px; overflow-y: auto;">
-                        <ion-list lines="full">
-                          @for (i of [1,2,3]; track i) {
-                            <ion-item>
-                              <ion-label class="text-sm">Item de lista #{{i}}</ion-label>
-                            </ion-item>
-                          }
-                          <ion-infinite-scroll position="bottom">
-                            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más..."></ion-infinite-scroll-content>
-                          </ion-infinite-scroll>
-                        </ion-list>
+                  <div class="col-12 md:col-6">
+                    <span class="block font-bold mb-2 text-sm text-secondary">Feedback & Spinners</span>
+                    <div class="flex gap-4 align-items-center surface-100 p-3 border-round">
+                      <ion-spinner name="crescent" color="primary"></ion-spinner>
+                      <ion-spinner name="dots" color="secondary"></ion-spinner>
+                      <ion-spinner name="lines" color="success"></ion-spinner>
+                      <div class="flex-grow-1">
+                        <ion-progress-bar type="indeterminate"></ion-progress-bar>
                       </div>
                     </div>
                   </div>
-                  <div class="col-12 md:col-4">
-                    <div class="p-3 border-1 border-300 border-round mb-3">
-                      <span class="block font-bold mb-2">Progress & Spinners</span>
-                      <div class="flex flex-column gap-3">
-                        <div>
-                          <span class="text-xs text-secondary block mb-1">Carga Indeterminada</span>
-                          <ion-progress-bar type="indeterminate"></ion-progress-bar>
-                        </div>
-                        <div class="flex gap-2 align-items-center">
-                          <ion-spinner name="crescent" color="primary"></ion-spinner>
-                          <ion-spinner name="dots" color="secondary"></ion-spinner>
-                          <ion-spinner name="lines" color="success"></ion-spinner>
-                        </div>
-                        <div class="flex gap-2">
-                          <ion-badge color="danger">Urgente</ion-badge>
-                          <ion-badge color="warning">Pendiente</ion-badge>
-                          <ion-badge color="success">Pagado</ion-badge>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-12 md:col-4">
-                     <div class="p-3 border-1 border-300 border-round mb-3">
-                      <span class="block font-bold mb-2">Floating Action Button</span>
-                      <div class="relative surface-100 border-round" style="height: 100px;">
-                        <ion-fab vertical="bottom" horizontal="end" slot="fixed" style="position: absolute;">
-                          <ion-fab-button size="small">
-                            <ion-icon name="add-outline"></ion-icon>
-                          </ion-fab-button>
-                        </ion-fab>
-                        <p class="p-2 text-xs text-secondary">Los FABs se usan para acciones primarias como "Agregar".</p>
-                      </div>
+                  <div class="col-12 md:col-6">
+                    <span class="block font-bold mb-2 text-sm text-secondary">FAB Action</span>
+                    <div class="relative surface-100 border-round p-3" style="height: 60px;">
+                      <p class="m-0 text-xs text-secondary">El Floating Action Button (FAB) se sitúa en la esquina inferior derecha.</p>
+                      <ion-fab vertical="bottom" horizontal="end" style="position: absolute; bottom: 10px; right: 10px;">
+                        <ion-fab-button size="small"><ion-icon name="add-outline"></ion-icon></ion-fab-button>
+                      </ion-fab>
                     </div>
                   </div>
                 </div>
-              </p-card>
+               </p-card>
             </div>
           </div>
         </section>
@@ -335,20 +308,11 @@
         <section class="fadein">
           <div class="section-header mb-4">
             <h2 class="text-3xl font-bold m-0">Data Visualization</h2>
-            <p class="text-secondary">Componentes gráficos para reportes y dashboards.</p>
+            <p class="text-secondary">Dashboards y reportes visuales con Custom Charts.</p>
           </div>
-
           <div class="grid">
-            <div class="col-12 lg:col-6">
-              <p-card header="Bar Chart (Custom)">
-                <app-custom-bar-chart [data]="barChartData"></app-custom-bar-chart>
-              </p-card>
-            </div>
-            <div class="col-12 lg:col-6">
-              <p-card header="Pie Chart (Standard)">
-                <app-pie-chart [data]="pieChartData"></app-pie-chart>
-              </p-card>
-            </div>
+            <div class="col-12 lg:col-6"><p-card header="Bar Chart (Custom)"><app-custom-bar-chart [data]="barChartData"></app-custom-bar-chart></p-card></div>
+            <div class="col-12 lg:col-6"><p-card header="Pie Chart (Standard)"><app-pie-chart [data]="pieChartData"></app-pie-chart></p-card></div>
           </div>
         </section>
       }
@@ -358,78 +322,22 @@
         <section class="fadein">
           <div class="section-header mb-4">
             <h2 class="text-3xl font-bold m-0">UX Design Patterns</h2>
-            <p class="text-secondary">Combinación de componentes para resolver flujos comunes.</p>
+            <p class="text-secondary">Combinaciones complejas para flujos de trabajo eficientes.</p>
           </div>
-
           <div class="grid">
-            <!-- Breadcrumb Premium Pattern -->
             <div class="col-12">
-              <p-card header="Pill-Style Breadcrumb (Premium)">
-                <div class="p-4 border-1 border-300 border-round bg-sunken mb-3">
-                   <div class="flex justify-content-center px-3 py-2 border-bottom-1 border-50 surface-ground shadow-inner overflow-hidden">
-                    <div class="flex align-items-center gap-1 bg-white dark:bg-surface-900 px-3 py-1-5 border-round-pill shadow-1 border-1 border-200 overflow-x-auto no-scrollbar max-w-full">
-                      <div class="flex align-items-center">
-                        <ion-icon name="home-outline" class="text-lg text-primary"></ion-icon>
-                        <i class="pi pi-chevron-right text-300 text-xs mx-1"></i>
-                      </div>
-                      <div class="flex align-items-center">
-                        <span class="text-xs font-bold text-500 px-1">Configuración</span>
-                        <i class="pi pi-chevron-right text-300 text-xs mx-1"></i>
-                      </div>
-                      <div class="flex align-items-center">
-                        <span class="text-xs font-bold text-primary px-1">Catálogo UI</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <p class="text-sm text-secondary">Diseño centrado con scroll horizontal automático para móviles.</p>
-              </p-card>
-            </div>
-
-            <!-- Grouped List Pattern -->
-            <div class="col-12 lg:col-6">
-              <p-card header="Grouped List (Sticky Headers)">
-                <div class="border-1 border-300 border-round overflow-hidden" style="max-height: 300px; overflow-y: auto;">
-                  <ion-list lines="full">
-                    @for (group of ['Hoy', 'Mañana']; track group) {
-                      <ion-item-divider sticky="true" color="light">
-                        <ion-label class="font-bold">{{group}}</ion-label>
-                      </ion-item-divider>
-                      @for (item of [1, 2]; track item) {
-                        <ion-item>
-                          <ion-label>
-                            <h2>Tarea {{item}} de {{group}}</h2>
-                            <p>Descripción breve de la actividad...</p>
-                          </ion-label>
-                          <ion-badge slot="end" color="primary">{{item}}</ion-badge>
-                        </ion-item>
-                      }
-                    }
-                  </ion-list>
-                </div>
-              </p-card>
-            </div>
-
-            <!-- Card Item Pattern -->
-            <div class="col-12 lg:col-6">
-              <p-card header="Complex Card Item (No ion-item)">
-                <div class="flex flex-column gap-3">
-                  @for (item of complexDataExample; track item.id) {
-                    <div class="surface-card shadow-1 border-round-lg overflow-hidden border-left-3" [class]="'border-' + item.color + '-500'">
-                      <div class="p-3">
+              <p-card header="Complex Card Item & Action Menu">
+                <div class="grid">
+                   @for (item of complexDataExample; track item.id) {
+                    <div class="col-12 md:col-6">
+                      <div class="surface-card shadow-1 border-round-lg overflow-hidden border-left-3 p-3" [class]="'border-' + item.color + '-500'">
                         <div class="flex justify-content-between align-items-start mb-2">
-                          <div>
-                            <h3 class="m-0 font-bold">{{item.name}}</h3>
-                            <span class="text-xs text-secondary">{{item.folio}}</span>
-                          </div>
-                          <app-action-menu>
-                            <ion-button-edit />
-                            <ion-button-delete />
-                          </app-action-menu>
+                          <div><h3 class="m-0 font-bold text-lg">{{item.name}}</h3><span class="text-xs text-secondary">{{item.folio}}</span></div>
+                          <app-action-menu><ion-button-edit /><ion-button-delete /></app-action-menu>
                         </div>
                         <div class="flex align-items-center gap-2 mb-3">
                           <ion-icon [name]="item.icon" [color]="item.color" class="text-xl"></ion-icon>
-                          <span class="text-lg font-bold">{{item.consumption}}</span>
+                          <span class="text-xl font-bold">{{item.consumption}}</span>
                         </div>
                         <div class="flex justify-content-between align-items-center pt-2 border-top-1 surface-border">
                           <app-status-badge [status]="item.status" />
@@ -441,31 +349,14 @@
                 </div>
               </p-card>
             </div>
-
-            <!-- Data Table Hybrid Pattern -->
             <div class="col-12 lg:col-8">
-              <p-card header="Data Table Hybrid Pattern">
-                <primeng-custom-caption 
-                  label="Agregar Insumo"
-                  [rolAuth]="true"
-                  [showSearch]="true"
-                />
+               <p-card header="Data Table Hybrid">
+                <primeng-custom-caption label="Agregar Insumo" [rolAuth]="true" [showSearch]="true" />
                 <p-table [value]="[{id:1, name:'Pattern Test'}]" class="mt-2">
-                  <ng-template pTemplate="header">
-                    <tr>
-                      <th>Acciones</th>
-                      <th>Elemento</th>
-                      <th>Status</th>
-                    </tr>
-                  </ng-template>
+                  <ng-template pTemplate="header"><tr><th>Acciones</th><th>Elemento</th><th>Status</th></tr></ng-template>
                   <ng-template pTemplate="body" let-item>
                     <tr>
-                      <td>
-                        <app-action-icons-group>
-                          <custom-button-edit [label]="''" />
-                          <custom-button-delete [label]="''" />
-                        </app-action-icons-group>
-                      </td>
+                      <td><app-action-icons-group><custom-button-edit [label]="''" /><custom-button-delete [label]="''" /></app-action-icons-group></td>
                       <td>{{item.name}}</td>
                       <td><app-status-badge [status]="EStatus.Proceso" /></td>
                     </tr>
@@ -473,37 +364,151 @@
                 </p-table>
               </p-card>
             </div>
-            
-            <div class="col-12 lg:col-4">
-               <p-card header="Responsive Action Menu">
-                  <p class="text-sm text-secondary mb-3">El componente `ActionMenu` cambia de PrimeNG a Ionic Popover automáticamente.</p>
-                  <div class="flex flex-column gap-3">
-                    <div class="p-3 border-1 border-300 border-round">
-                      <span class="text-xs font-bold block mb-2">VISTA WEB</span>
-                      <app-action-menu [mobileMode]="false">
-                        <p-button label="Editar" icon="pi pi-pencil" [text]="true" />
-                        <p-button label="Eliminar" icon="pi pi-trash" [text]="true" severity="danger" />
-                      </app-action-menu>
-                    </div>
-                    <div class="p-3 border-1 border-300 border-round surface-100">
-                      <span class="text-xs font-bold block mb-2">VISTA MÓVIL (MOCK)</span>
-                      <app-action-menu [mobileMode]="true">
-                        <ion-item button>
-                          <ion-icon name="pencil-outline" slot="start"></ion-icon>
-                          <ion-label>Editar</ion-label>
-                        </ion-item>
-                        <ion-item button color="danger">
-                          <ion-icon name="trash-outline" slot="start"></ion-icon>
-                          <ion-label>Eliminar</ion-label>
-                        </ion-item>
-                      </app-action-menu>
-                    </div>
+          </div>
+        </section>
+      }
+
+      <!-- 📄 SECCIÓN: ESTÁNDAR DOCUMENTAL -->
+      @if (activeCategory() === 'docs') {
+        <section class="fadein">
+          <div class="section-header mb-4">
+            <h2 class="text-3xl font-bold m-0">Estándar Documental LuxuryApp</h2>
+            <p class="text-secondary">Guía de gobierno para procedimientos, manuales e instructivos corporativos.</p>
+          </div>
+
+          <div class="grid">
+            <!-- Tipos de Documento -->
+            <div class="col-12">
+              <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">Clasificación de Documentos</h3>
+              <div class="grid">
+                @for (doc of tiposDocumento; track doc.codigo) {
+                  <div class="col-12 md:col-6 xl:col-4">
+                    <p-card styleClass="h-full overflow-hidden shadow-1 transition-all hover:shadow-3">
+                      <div class="flex align-items-center justify-content-between text-white -mt-4 -mx-4 mb-3 px-4 py-3" [style.background]="doc.colorToken">
+                        <strong>{{ doc.codigo }}</strong>
+                        <p-tag [value]="doc.confidencialidad" [severity]="doc.severity"></p-tag>
+                      </div>
+                      <div class="flex flex-column gap-2">
+                        <strong class="text-lg">{{ doc.tipo }}</strong>
+                        <span class="text-xs text-secondary">Audiencia: {{ doc.destinatario }}</span>
+                        <code class="block surface-100 border-1 surface-border border-round px-3 py-2 text-primary text-xs mt-2">
+                          {{ getNomenclaturaEjemplo(doc) }}
+                        </code>
+                      </div>
+                    </p-card>
                   </div>
-               </p-card>
+                }
+              </div>
+            </div>
+
+            <!-- Nomenclatura -->
+            <div class="col-12 lg:col-6 mt-4">
+              <p-card header="Nomenclatura Inteligente">
+                <div class="bg-primary text-white border-round-lg p-3 mb-3">
+                  <small class="text-yellow-500 font-bold block mb-1">FORMATO OBLIGATORIO</small>
+                  <code class="text-sm md:text-base">[TIPO]-[DEPTO]-[CODIGO]_v[X.Y]_[AAAA-MM]_[ESTADO].pdf</code>
+                </div>
+                <p-table [value]="camposNomenclatura" styleClass="p-datatable-sm">
+                  <ng-template pTemplate="header"><tr><th>Campo</th><th>Valores</th></tr></ng-template>
+                  <ng-template pTemplate="body" let-row><tr><td><code>{{ row.campo }}</code></td><td class="text-xs">{{ row.valores }}</td></tr></ng-template>
+                </p-table>
+              </p-card>
+            </div>
+
+            <!-- Matriz de Acceso -->
+            <div class="col-12 lg:col-6 mt-4">
+              <p-card header="Matriz de Acceso por Rol">
+                <p-table [value]="matrizAcceso" [scrollable]="true" scrollHeight="300px" styleClass="p-datatable-sm">
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th>Documento</th>
+                      <th>Dirección</th>
+                      <th>Staff</th>
+                      <th>Condomino</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-row>
+                    <tr>
+                      <td class="text-xs font-bold">{{ row.documento }}</td>
+                      <td><p-tag [value]="row.direccion" [severity]="getColorAcceso(row.direccion)"></p-tag></td>
+                      <td><p-tag [value]="row.staff" [severity]="getColorAcceso(row.staff)"></p-tag></td>
+                      <td><p-tag [value]="row.condomino" [severity]="getColorAcceso(row.condomino)"></p-tag></td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </p-card>
             </div>
           </div>
         </section>
       }
+
+      <!-- ✅ SECCIÓN: AUDITORÍA y COMPONENTES DOC -->
+      @if (activeCategory() === 'audit') {
+        <section class="fadein">
+          <div class="section-header mb-4">
+            <h2 class="text-3xl font-bold m-0">Auditoría y Bloques Documentales</h2>
+            <p class="text-secondary">Herramientas para validar la calidad documental y bloques visuales de soporte.</p>
+          </div>
+
+          <div class="grid">
+            <!-- Bloques Visuales -->
+            <div class="col-12">
+              <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">Bloques de Contenido</h3>
+              <div class="grid">
+                @for (bloque of bloquesVisuales; track bloque.titulo) {
+                  <div class="col-12 lg:col-4">
+                    <article class="border-round-xl border-1 p-4 h-full"
+                      [class.bg-yellow-50]="bloque.titulo === 'Advertencia'" [class.border-yellow-300]="bloque.titulo === 'Advertencia'"
+                      [class.bg-blue-50]="bloque.titulo === 'Nota'" [class.border-blue-200]="bloque.titulo === 'Nota'"
+                      [class.bg-green-50]="bloque.titulo === 'Buena practica'" [class.border-green-200]="bloque.titulo === 'Buena practica'">
+                      <div class="flex align-items-center gap-2 mb-3">
+                        <i [class]="bloque.icono + ' text-xl'"></i>
+                        <strong class="text-lg">{{ bloque.titulo }}</strong>
+                      </div>
+                      <p class="m-0 text-color-secondary line-height-3 text-sm">{{ bloque.descripcion }}</p>
+                    </article>
+                  </div>
+                }
+              </div>
+            </div>
+
+            <!-- Checklist -->
+            <div class="col-12 mt-5">
+              <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">Checklist de Auditoría Rápida</h3>
+              <p-card [styleClass]="puntajeAprobatorio() ? 'border-left-3 border-green-500 mb-4' : 'border-left-3 border-red-500 mb-4'">
+                <div class="flex align-items-center gap-3">
+                  <div class="w-4rem h-4rem border-circle bg-primary text-white flex align-items-center justify-content-center text-2xl font-bold">
+                    {{ puntajeChecklist() }}
+                  </div>
+                  <div>
+                    <strong class="text-lg">{{ puntajeChecklist() }} / 15 ítems aprobados</strong>
+                    <p class="m-0 text-secondary text-sm">
+                      {{ puntajeAprobatorio() ? "Documento listo para publicación oficial." : "Requiere correcciones obligatorias antes de publicar." }}
+                    </p>
+                  </div>
+                </div>
+              </p-card>
+
+              <div class="grid">
+                @for (item of checklist; track item.numero) {
+                  <div class="col-12 md:col-6">
+                    <div class="flex align-items-start gap-3 border-round-lg border-1 p-3 h-full transition-all hover:surface-100"
+                      [class.bg-green-50]="item.aprobado" [class.border-green-200]="item.aprobado"
+                      [class.bg-red-50]="!item.aprobado" [class.border-red-200]="!item.aprobado"
+                      (click)="item.aprobado = !item.aprobado">
+                      <p-checkbox [(ngModel)]="item.aprobado" [binary]="true"></p-checkbox>
+                      <p class="m-0 text-sm line-height-2 cursor-pointer">
+                        <strong>{{ item.numero }}.</strong> {{ item.descripcion }}
+                      </p>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </section>
+      }
+
     </main>
   </div>
 </div>

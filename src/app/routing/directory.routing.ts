@@ -120,19 +120,6 @@ export const directoryRoutes: Routes = [
       breadcrumb: "Teléfonos de Emergencia",
     },
   },
-  // {
-  //   // Suggested path: 'internal-organization-chart'
-  //   path: "organigrama-interno",
-  //   loadComponent: () =>
-  //     import("src/app/features/directorios/organigrama-interno/organigrama-interno").then(
-  //       (m) => m.OrganigramaInterno,
-  //     ),
-  //   canActivate: [authGuard],
-  //   data: {
-  //     title: "Organigrama Interno",
-  //     breadcrumb: "Organigrama Interno",
-  //   },
-  // },
   {
     // Suggested path: 'my-providers'
     path: "mis-proveedores",

@@ -25,6 +25,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PresentacionJuntaAdd } from "./presentacion-junta-add";
@@ -59,6 +60,7 @@ export class PresentacionJuntaComite {
   aspRoleS = inject(AspRoleService);
   confirmationService = inject(ConfirmationService);
   customerIdS = inject(CustomerIdService);
+  customToastS = inject(CustomToastService);
   dateS = inject(DateService);
   public AspRole = EApplicationRole;
 
@@ -110,6 +112,14 @@ export class PresentacionJuntaComite {
       });
   }
   showModalAdd(data: any) {
+    if (!data.id) {
+      this.customToastS.showInfo(
+        "Alta desde agenda",
+        "La presentacion no puede crearse directamente aqui. Primero registra la agenda de la junta para que se genere la sesion y, desde ella, la presentacion vinculada.",
+      );
+      return;
+    }
+
     this.dialogHandlerS
       .openDialog(
         PresentacionJuntaAdd,
@@ -178,6 +188,7 @@ export interface PresentacionJuntaComiteDTO {
   fechaCorrespondienteFiltro: string;
   fechaCorrespondiente: string;
   fechaJunta: string;
+  horaJunta: string;
   fechaJuntaFiltro: string;
   archivoPortada: string;
   applicationUserPortada: string;
@@ -193,8 +204,6 @@ export interface PresentacionJuntaComiteDTO {
   fechaCargaSupervisor: string;
   enviadoComite: boolean;
 }
-
-
 
 
 

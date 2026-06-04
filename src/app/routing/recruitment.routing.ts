@@ -23,7 +23,7 @@ export const recruitmentRoutes: Routes = [
   {
     path: "requests", // Ruta anterior: 'solicitudes'
     loadChildren: () =>
-      import("src/app/routing/recruitment-requests.routing").then(
+      import("src/app/features/reclutamiento-solicitudes/recruitment-requests.routing").then(
         (m) => m.recruitmentRequestsRoutes,
       ),
     canActivate: [authGuard],
@@ -40,7 +40,7 @@ export const recruitmentRoutes: Routes = [
     // Suggested path: 'dismissal-request-status'
     path: "status-solicitud-baja",
     loadComponent: () =>
-      import("src/app/features/request-dismissal/status-request-dismissal").then(
+      import("src/app/features/reclutamiento-solicitudes/request-dismissal/status-request-dismissal").then(
         (m) => m.StatusRequestDismissal,
       ),
     canActivate: [authGuard],
@@ -53,7 +53,7 @@ export const recruitmentRoutes: Routes = [
     // Suggested path: 'salary-modification-request-status'
     path: "status-solicitud-modificacion-salario",
     loadComponent: () =>
-      import("src/app/features/salary-modification/status-request-salary-modification").then(
+      import("src/app/features/reclutamiento-solicitudes/salary-modification/status-request-salary-modification").then(
         (m) => m.StatusRequestSalaryModification,
       ),
     canActivate: [authGuard],
@@ -78,7 +78,7 @@ export const recruitmentRoutes: Routes = [
   {
     path: "dismissal-requests", // Ruta anterior: 'solicitudes-baja'
     loadComponent: () =>
-      import("src/app/features/request-dismissal/pages/solicitud-baja-list").then(
+      import("src/app/features/reclutamiento-solicitudes/request-dismissal/pages/solicitud-baja-list").then(
         (m) => m.SolicitudBajaList,
       ),
     canActivate: [authGuard],

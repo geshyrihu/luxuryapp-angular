@@ -10,7 +10,6 @@ import {
   mailOutline,
   peopleOutline,
 } from "ionicons/icons";
-import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
 import { CardModule } from "primeng/card";
 import { DataViewModule } from "primeng/dataview";
 import { TableModule } from "primeng/table";
@@ -18,14 +17,20 @@ import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
+  IonButtonActiveDesactive,
   IonButtonDelete,
   IonButtonEdit,
   IonButtonItem,
-  IonButtonActiveDesactive,
 } from "src/app/core/components/buttons/mobile";
-import { CustomButton } from "src/app/core/components/buttons/web";
+import {
+  CustomButton,
+  CustomButtonDelete,
+  CustomButtonEdit,
+  CustomButtonItem,
+} from "src/app/core/components/buttons/web";
 import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/custom-button-active-desactive";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -40,11 +45,12 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { resolvePrimeIcon } from "src/app/core/utils/prime-icon-resolver";
 import { TaskGroupParticipant } from "src/app/features/tasks/participants/pages/task-group-participant";
 import { TaskGroupService } from "src/app/features/tasks/task.service";
 import { EITaskMessageDTOStatus } from "../../task-message-status.enum";
 import { TaskGroupForm } from "./task-group-form";
+import { StatusBadge } from "src/app/core/components/status-badge/status-badge";
+
 @Component({
   selector: "app-task-group-list",
   templateUrl: "./task-group-list.html",
@@ -64,8 +70,12 @@ import { TaskGroupForm } from "./task-group-form";
     IonButtonEdit,
     IonButtonItem,
     IonButtonActiveDesactive,
-    CustomButtonAdd,
     TooltipModule,
+    CustomButtonDelete,
+    CustomButtonEdit,
+    CustomButtonItem,
+    PrimeNgCustomCaption,
+    StatusBadge,
   ],
 })
 export class TaskGroupList {
@@ -82,6 +92,7 @@ export class TaskGroupList {
   scrollHeight = this.tableScrollHeightS.scrollHeight;
   hasLegal = this.aspRoleS.roleSignal(EApplicationRole.Legal);
   hasSuperUsuario = this.aspRoleS.roleSignal(EApplicationRole.SuperUsuario);
+
   /*
   /PRIME NG TABLE OPTIONS
   */
@@ -91,7 +102,6 @@ export class TaskGroupList {
   loading = signal(true);
   readonly tablePrimeNgRows: number = tablePrimeNgRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
-  readonly resolvePrimeIcon = resolvePrimeIcon;
   /*
   /PRIME NG TABLE OPTIONS
   */
@@ -118,11 +128,7 @@ export class TaskGroupList {
     this.loading.set(true);
     this.apiResponseS
       .onGetList(
-        Endpoints.TaskGroups.list(
-          customerId,
-          this.value(),
-          applicationUserId,
-        ),
+        Endpoints.TaskGroups.list(customerId, this.value(), applicationUserId),
       )
       .then((result: any) => {
         this.dataSignal.set(result || []);
@@ -134,9 +140,11 @@ export class TaskGroupList {
     this.onLoadData();
   }
   onToggleStatus(id: string) {
-    this.apiResponseS.onPatch(Endpoints.TaskGroups.toggleStatus(id), null).then(() => {
-      this.onLoadData();
-    });
+    this.apiResponseS
+      .onPatch(Endpoints.TaskGroups.toggleStatus(id), null)
+      .then(() => {
+        this.onLoadData();
+      });
   }
   onModalForm(data: any) {
     this.dialogHandlerS
@@ -169,47 +177,32 @@ export class TaskGroupList {
   }
 
   onDelete(id: string) {
-    this.apiResponseS.onDelete(Endpoints.TaskGroups.delete(id)).then((result: boolean) => {
-      if (result)
-        this.dataSignal.set(this.dataSignal().filter((item) => item.id !== id));
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.TaskGroups.delete(id))
+      .then((result: boolean) => {
+        if (result)
+          this.dataSignal.set(
+            this.dataSignal().filter((item) => item.id !== id),
+          );
+      });
   }
 
   SendReportPendingTicketGroupAsync(item: any) {
     this.apiResponseS
       .onPost(Endpoints.TaskGroups.sendReportPendingByGroup(item.id), null)
       .then((result: any) => {
-      if (result) {
-      }
-    });
+        if (result) {
+        }
+      });
   }
 
   SendReportPendingTicketGroupAllAsync() {
-    this.apiResponseS.onPost(Endpoints.TaskGroups.sendReportPendingAll, null).then((result: any) => {
-      if (result) {
-      }
-    });
-  }
-
-  getVisibilityClass(visibility: string): string {
-    switch (visibility.toLowerCase()) {
-      case "interno":
-        return "";
-      case "externo":
-        return "warn";
-      case "póblico":
-      case "publico":
-        return "success";
-      case "condómino":
-      case "condomino":
-        return "info";
-      default:
-        return "";
-    }
-  }
-
-  getGroupIconClass(icon: string | null | undefined): string {
-    return this.resolvePrimeIcon(icon, "pi pi-folder");
+    this.apiResponseS
+      .onPost(Endpoints.TaskGroups.sendReportPendingAll, null)
+      .then((result: any) => {
+        if (result) {
+        }
+      });
   }
 }
 export interface WorkGroupDTO {

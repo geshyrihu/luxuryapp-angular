@@ -59,7 +59,7 @@ Estado: en progreso
 | `[x]` | `entrega-recepcion/entrega-recepcion-mantenimientos-pendientes.ts` |
 | `[x]` | `funding/funding-detail.ts` |
 | `[x]` | `recursos-humanos/employee-bank-data/pages/employee-bank-data-list.ts` |
-| `[x]` | `recursos-humanos/incident/components/incident-witnesses/incident-witness-form.ts` |
+| `[x]` | `recursos-humanos/incidencias-sanciones/incident/components/incident-witnesses/incident-witness-form.ts` |
 | `[x]` | `supervision/resultado-general-dashboard/resultado-general-dashboard.ts` |
 | `[x]` | `purchases/purchase-order/components/create-orden-compra-wizard/create-orden-compra-wizard.ts` |
 | `[x]` | `purchases/purchase-order/components/orden-compra-detalle-form/orden-compra-detalle-form.ts` |
@@ -77,7 +77,7 @@ Estado: en progreso
 |--------|---------|----------|
 | `[x]` | `biblioteca/manuals-and-processes/pages/manuals-and-processes-editor/manuals-and-processes-editor.ts` | 125, 379 |
 | `[x]` | `juntas-comite/junta-comite-minutas/minuta-pendientes.ts` | 124 |
-| `[x]` | `recursos-humanos/incident-report/pages/incident-report.ts` | 130 |
+| `[x]` | `recursos-humanos/incidencias-sanciones/incident-report/pages/incident-report.ts` | 130 |
 
 ### 3b. Omitidos — `new Date().getFullYear()`
 
@@ -119,7 +119,7 @@ Estado: en progreso
 | `[x]` | `recurring-tasks/instances/daily-task-list/daily-task-list.html` | Migrado a `custom-input-date-signal` |
 | `[x]` | `recurring-tasks/instances/task-instance-list/task-instance-list.html` | Migrado a `custom-input-date-signal` |
 | `[-]` | `recurring-tasks/templates/task-template-item-form/task-template-item-form.html` | Omitido — selector de hora (`[timeOnly]`) |
-| `[x]` | `recursos-humanos/incident/pages/incident-dashboard/incident-dashboard.html` | Migrado a `custom-input-date-signal` (2 instancias) |
+| `[x]` | `recursos-humanos/incidencias-sanciones/incident/pages/incident-dashboard/incident-dashboard.html` | Migrado a `custom-input-date-signal` (2 instancias) |
 | `[x]` | `sat-funding/sat-funding-detail/sat-funding-detail.html` | Migrado a `custom-input-date-signal` (2 instancias); DTO actualizado a `string` |
 
 ---
@@ -140,7 +140,7 @@ Estado: en progreso
 | `[x]` | `juntas-comite/junta-comite-minutas/resumen-minuta.ts` | Eliminada declaración muerta (`dt` nunca se usaba) |
 | `[x]` | `product/productos-list.ts` | Eliminada declaración muerta (`dt` nunca se usaba) |
 | `[x]` | `purchases/purchase-request/purchase-request.ts` | Eliminada declaración muerta (`addProductFormComponent` nunca se usaba) |
-| `[x]` | `recursos-humanos/incident/components/digital-signature/digital-signature.ts` | `@ViewChild("signatureCanvas", { static: true })` → `canvasRef = viewChild.required<ElementRef<HTMLCanvasElement>>("signatureCanvas")`; todos los `.canvasRef.` → `.canvasRef().` |
+| `[x]` | `recursos-humanos/incidencias-sanciones/incident/components/digital-signature/digital-signature.ts` | `@ViewChild("signatureCanvas", { static: true })` → `canvasRef = viewChild.required<ElementRef<HTMLCanvasElement>>("signatureCanvas")`; todos los `.canvasRef.` → `.canvasRef().` |
 | `[x]` | `tasks/my-tasks/pages/my-task-form.ts` | `@ViewChild(ImageAnalysisDialogComponent)` → `visionDialog = viewChild.required(...)`; `this.visionDialog.show()` → `this.visionDialog().show()` |
 
 ---

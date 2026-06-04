@@ -2,36 +2,40 @@
 
 <p-table
   [globalFilterFields]="globalFilterFields()"
-  [value]="sortedData()"
-  #dt
+  [groupRowsBy]="groupingOption()"
   [paginator]="true"
+  [rowGroupMode]="'subheader'"
   [rows]="tablePrimeNgRows"
   [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
   [scrollable]="true"
-  scrollHeight="70vh"
-  styleClass="custom-table card hidden md:block"
-  [rowGroupMode]="'subheader'"
-  [groupRowsBy]="groupingOption()"
-  sortMode="single"
+  [showCurrentPageReport]="true"
   [sortField]="groupingOption()"
+  [value]="sortedData()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  scrollHeight="70vh"
+  sortMode="single"
+  styleClass="custom-table card hidden md:block"
 >
   <ng-template #caption>
-    <div class="flex flex-wrap justify-content-between align-items-center">
-      <primeng-custom-caption
-        [title]="'Datos de contacto de la empresa'"
-        (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-        [dt]="dt"
-      />
-      <div class="flex align-items-center">
-        <span class="text-sm font-medium text-700">Agrupar por:</span>
-        <p-select
-          [options]="groupingOptions"
-          [(ngModel)]="groupingOption"
+    <div class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-3">
+      <div class="flex-grow-1">
+        <primeng-custom-caption
+          (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+          [dt]="dt"
+          [noPadding]="true"
+          [noMargin]="true"
+        />
+      </div>
+      <div class="flex-shrink-0" style="width: 200px">
+        <custom-input-select-signal
+          [data]="groupingOptions"
           optionLabel="label"
           optionValue="value"
-          class="w-full md:w-15rem"
+          [control]="groupingOptionControl"
+          (selectionChange)="groupingOption.set($event.value)"
+          [horizontal]="false"
+          [noMargin]="true"
         />
       </div>
     </div>
@@ -108,6 +112,19 @@
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
   [globalFilterFields]="globalFilterFields()"
 >
+  <div customFilters>
+    <div class="px-4 py-2">
+      <custom-input-select-signal
+        [data]="groupingOptions"
+        optionLabel="label"
+        optionValue="value"
+        [control]="groupingOptionControl"
+        (selectionChange)="groupingOption.set($event.value)"
+        [horizontal]="false"
+        [noMargin]="true"
+      />
+    </div>
+  </div>
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding">
       <ion-label class="p-3">

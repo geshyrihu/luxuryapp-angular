@@ -22,10 +22,10 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { StatusSolicitudVacanteService } from "src/app/core/services/status-solicitud-vacante.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { SolicitudAltaForm } from "src/app/features/recruitment-requests/components/solicitud-alta-form";
-import { SolicitudBajaForm } from "src/app/features/request-dismissal/components/solicitud-baja-form";
-import { SolicitudModificacionSalarioForm } from "src/app/features/salary-modification/components/solicitud-modificacion-salario-form";
-import { VacanteForm } from "src/app/features/vacancy-requests/components/vacante-form";
+import { SolicitudAltaForm } from "src/app/features/reclutamiento-solicitudes/recruitment-requests/components/solicitud-alta-form";
+import { SolicitudBajaForm } from "src/app/features/reclutamiento-solicitudes/request-dismissal/components/solicitud-baja-form";
+import { SolicitudModificacionSalarioForm } from "src/app/features/reclutamiento-solicitudes/salary-modification/components/solicitud-modificacion-salario-form";
+import { VacanteForm } from "src/app/features/reclutamiento-solicitudes/vacancy-requests/components/vacante-form";
 @Component({
   selector: "app-solicitudes-cliente-list",
   templateUrl: "./solicitudes-cliente-list.html",

@@ -5,33 +5,36 @@
       [value]="dataSignal()"
       styleClass="custom-table"
       [paginator]="true"
-      [rows]="10"
+      [rows]="tablePrimeNgRows"
+      [rowsPerPageOptions]="rowsPerPageOptions"
       [showCurrentPageReport]="true"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
       [globalFilterFields]="globalFilterFields()"
       [scrollable]="true"
-      [scrollHeight]="scrollHeight"
+      [scrollHeight]="scrollHeight()"
       #dt
     >
       <ng-template #caption>
-        <div class="grid">
-          <div class="col-12 sm:col-6">
-            <h5 class="m-0">Clientes Agrupados por Estado</h5>
+        <div
+          class="flex flex-column lg:flex-row lg:align-items-center justify-content-between p-2 gap-3"
+        >
+          <!-- Parte Izquierda: Título y búsqueda -->
+          <div class="flex-grow-1">
+            <primeng-custom-caption
+              [showAdd]="false"
+              [dt]="dt"
+              [noPadding]="true"
+              [noMargin]="true"
+            />
           </div>
-          <div class="col-12 sm:col-6">
-            <div class="flex justify-content-end">
-              <custom-input-select-signal
-                [data]="selectCustomer"
-                optionLabel="label"
-                optionValue="value"
-                placeholder="Filtrar por cliente"
-                (selectionChange)="onSelectForCustomer($event)"
-                [showClear]="true"
-                customClass="w-full max-w-15rem"
-                [horizontal]="false"
-                [filter]="true"
+
+          <!-- Parte Derecha: Filtros adicionales -->
+          <div class="flex flex-column sm:flex-row align-items-center gap-2">
+            <div style="width: 150px">
+              <custom-button-active-desactive
+                [state]="state"
+                (stateChange)="onSelectActive($event)"
               />
-              <primeng-custom-global-filter [dt]="dt" />
             </div>
           </div>
         </div>
@@ -39,18 +42,13 @@
       <ng-template #header>
         <tr>
           <th class="table-col-40">Cliente</th>
-          <th class="table-col-20">Nómero Cliente</th>
+          <th class="table-col-20">Número Cliente</th>
           <th class="table-col-20">Registrado</th>
           <th class="table-col-15">Estado</th>
           <th class="table-col-5"></th>
         </tr>
       </ng-template>
       <ng-template #body let-item>
-        <!-- [routerLink]="[
-            '/settings/customer-modul-edit',
-            item.customerId,
-            item.nameCustomer
-          ]" -->
         <tr
           class="cursor-pointer"
           (click)="onModalForm({ customerId: item.customerId, nameCustomer:  item.nameCustomer })"
@@ -64,7 +62,9 @@
                 shape="circle"
                 styleClass="mr-2"
               />
-              <span class="m-0 font-medium text-sm">{{ item.nameCustomer }}</span>
+              <span class="m-0 font-medium text-sm">{{
+                item.nameCustomer
+              }}</span>
             </div>
           </td>
           <td class="text-xs">{{ item.numeroCliente }}</td>
@@ -81,6 +81,9 @@
           </td>
         </tr>
       </ng-template>
+      <ng-template #paginatorleft>
+        <primeng-custom-table-footer [data]="dataSignal()" />
+      </ng-template>
     </p-table>
   </div>
 </div>
@@ -92,26 +95,21 @@
   [trackByProperty]="'customerId'"
 >
   <div customFilters>
-    <div class="p-4">
-      <h5 class="m-0">Clientes Agrupados por Estado</h5>
-      <div class="mt-3">
-        <custom-input-select-signal
-          [data]="selectCustomer"
-          optionLabel="label"
-          optionValue="value"
-          placeholder="Filtrar por cliente"
-          (selectionChange)="onSelectForCustomer($event)"
-          [showClear]="true"
-          [horizontal]="false"
-          [filter]="true"
-        />
-      </div>
+    <div class="px-4 py-2">
+      <h5 class="m-0 mb-3 text-secondary text-xs uppercase tracking-wider">
+        Filtrar por Estado
+      </h5>
+      <ion-button-active-desactive
+        fluid
+        [state]="state"
+        (stateChange)="onSelectActive($event)"
+      />
     </div>
   </div>
   <ng-template #listItemTemplate let-customer>
     <ion-item
       button
-      (click)="onModalForm({ customerId: item.customerId, nameCustomer:  item.nameCustomer })"
+      (click)="onModalForm({ customerId: customer.customerId, nameCustomer:  customer.nameCustomer })"
       lines="full"
       class="ion-no-padding"
       detail="true"

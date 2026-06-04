@@ -3,6 +3,8 @@
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
   #dt
   styleClass="card hidden md:block custom-table"
   [rowGroupMode]="'subheader'"
@@ -63,9 +65,6 @@
             (clicked)="onModalForm({ id: item.id, title: 'Editar Rol' })"
           />
           <custom-button-delete (confirmed)="onDelete(item.id)" />
-          <custom-button-download
-            (clicked)="downloadPDF(item.id, item.displayName || item.name)"
-          />
         </div>
       </td>
     </tr>
@@ -93,9 +92,6 @@
             (clicked)="onModalForm({ id: item.id, title: 'Editar Rol' })"
           />
           <ion-button-delete (confirmed)="onDelete(item.id)" />
-          <ion-button-download
-            (clicked)="downloadPDF(item.id, item.displayName || item.name)"
-          />
         </ng-container>
       </app-action-menu>
     </ion-item>

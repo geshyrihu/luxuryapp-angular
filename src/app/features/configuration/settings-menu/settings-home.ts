@@ -1,6 +1,8 @@
+import { CommonModule } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { CardModule } from "primeng/card";
 import { DialogModule } from "primeng/dialog";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { ISettingsMenuItem } from "src/app/core/interfaces/menu.model";
@@ -21,8 +23,17 @@ interface IMenuTone {
 
 @Component({
   selector: "app-settings-home",
-  imports: [RouterModule, DialogModule, DataViewMobile, IonItem, IonLabel],
+  imports: [
+    CommonModule,
+    RouterModule,
+    DialogModule,
+    CardModule,
+    DataViewMobile,
+    IonItem,
+    IonLabel,
+  ],
   templateUrl: "./settings-home.html",
+  styleUrls: ["./settings-home.scss"],
 })
 export class SettingsHome {
   public aspRoleS = inject(AspRoleService);
@@ -116,16 +127,18 @@ export class SettingsHome {
 
   menuIconClass(icon: string | null | undefined): string {
     const normalizedIcon = normalizePrimeIconClass(icon);
-    if (normalizedIcon.startsWith("pi ")) return normalizedIcon;
+    if (normalizedIcon.startsWith("pi ") || normalizedIcon.startsWith("icon "))
+      return normalizedIcon;
 
     return resolvePrimeIcon(icon, "pi pi-cog");
   }
 
   hasPrimeIcon(icon: string | null | undefined): boolean {
-    return this.menuIconClass(icon).startsWith("pi ");
+    const iconClass = this.menuIconClass(icon);
+    return iconClass.startsWith("pi ") || iconClass.includes("icon-pi-");
   }
 
-  private menuTone(group: string | null | undefined): IMenuTone {
+  public menuTone(group: string | null | undefined): IMenuTone {
     if (!group) return this.defaultTone;
 
     return this.toneByGroup[group] ?? this.defaultTone;
@@ -133,8 +146,8 @@ export class SettingsHome {
 
   menuCardClass(group: string | null | undefined): string {
     return [
-      "surface-card text-color text-center h-full border-1 p-3 shadow-2",
-      "hover:shadow-4 transition-all transition-duration-300 relative overflow-hidden",
+      "h-full border-1 shadow-1 overflow-hidden transition-all transition-duration-300 relative",
+      "hover:shadow-3 hover:border-primary cursor-pointer",
       this.menuTone(group).card,
     ].join(" ");
   }
@@ -143,7 +156,7 @@ export class SettingsHome {
     const tone = this.menuTone(group);
     const sizeClasses = isMobile
       ? "w-2rem h-2rem mr-2"
-      : "w-4rem h-4rem shadow-1 mb-2";
+      : "w-2.5rem h-2.5rem shadow-1 mb-2";
 
     return [
       "flex align-items-center justify-content-center flex-shrink-0",
@@ -157,13 +170,13 @@ export class SettingsHome {
     group: string | null | undefined,
     isMobile = false,
   ): string {
-    const sizeClass = isMobile ? "text-base" : "text-2xl";
+    const sizeClass = isMobile ? "text-base" : "text-lg";
     return [this.menuIconClass(icon), sizeClass, this.menuTone(group).glyph].join(
       " ",
     );
   }
 
   menuHeadingClass(group: string | null | undefined): string {
-    return `col-12 text-2xl font-bold mt-4 mb-2 ${this.menuTone(group).heading}`;
+    return `col-12 text-xl font-bold mt-4 mb-2 ${this.menuTone(group).heading}`;
   }
 }

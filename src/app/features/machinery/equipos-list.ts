@@ -24,6 +24,7 @@ import {
 import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { CardModule } from "primeng/card";
 import { Dialog } from "primeng/dialog";
+import { DrawerModule } from "primeng/drawer";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
@@ -57,6 +58,7 @@ import { ActivosDocumentos } from "src/app/features/machinery-document/activos-d
 import { FichaTecnicaActivo } from "src/app/features/machinery/ficha-tecnica-activo";
 import { ServiceHistoryMachinery } from "src/app/features/machinery/service-history-machinery";
 import { BitacoraIndividual } from "src/app/features/maintenance-log/bitacora-individual";
+import { CalendarioMaestroReadonly } from "src/app/features/maintenance-calendar-master/calendario-maestro-readonly";
 // ... el resto de las importaciones de componentes y módulos ...
 // ...
 
@@ -115,7 +117,9 @@ interface Equipo {
     IonIcon,
     IonChip,
     Dialog,
+    DrawerModule,
     Tag,
+    CalendarioMaestroReadonly,
   ],
 })
 export class EquiposList {
@@ -131,6 +135,7 @@ export class EquiposList {
   stateFilter = signal<number>(0);
   selectedEquipo = signal<Equipo | null>(null);
   mantenimientosVisible = signal(false);
+  calendarioGuiaVisible = signal(false);
   public AspRole = EApplicationRole;
 
   // óCAMBIO CLAVE! La categoróa ahora es un signal interno.

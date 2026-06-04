@@ -94,14 +94,14 @@ export class OrdenesServicio {
   filtroEquiposValue: any = "todos";
   filtroId: any | string = "";
   filtroEquipos = [
-    { icon: "📋", id: "", nombre: "todos" },
-    { icon: "⭐", id: 2, nombre: "amenidades" },
-    { icon: "🏠", id: 8, nombre: "A. Comunes" },
-    { icon: "📦", id: 7, nombre: "bodegas" },
-    { icon: "⚙️", id: 1, nombre: "equipos" },
-    { icon: "🏋️", id: 5, nombre: "gimnasio" },
-    { icon: "📹", id: 6, nombre: "sistemas" },
-    { icon: "🎨", id: 10, nombre: "pintura" },
+    { icon: "pi pi-list", id: "", nombre: "todos" },
+    { icon: "pi pi-star", id: 2, nombre: "amenidades" },
+    { icon: "pi pi-home", id: 8, nombre: "A. Comunes" },
+    { icon: "pi pi-box", id: 7, nombre: "bodegas" },
+    { icon: "pi pi-cog", id: 1, nombre: "equipos" },
+    { icon: "pi pi-bolt", id: 5, nombre: "gimnasio" },
+    { icon: "pi pi-video", id: 6, nombre: "sistemas" },
+    { icon: "pi pi-palette", id: 10, nombre: "pintura" },
   ];
 
   getInventoryIconClass(icon: string | null | undefined): string {
@@ -212,8 +212,13 @@ export class OrdenesServicio {
       });
   }
 
+  private parseFechaControl(): Date {
+    const [year, month] = (this.fechaControl.value || "").split("-").map(Number);
+    return new Date(year, month - 1, 1);
+  }
+
   onLoadPintura() {
-    let converToDate = new Date(this.fechaControl.value + "-" + 1);
+    let converToDate = this.parseFechaControl();
     this.reporteOrdenesServicioService.setDate(converToDate);
 
     const urlApi = `ServiceOrders/list-pintura/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
@@ -231,7 +236,7 @@ export class OrdenesServicio {
     });
   }
   onLoadData() {
-    let converToDate = new Date(this.fechaControl.value + "-" + 1);
+    let converToDate = this.parseFechaControl();
     this.reporteOrdenesServicioService.setDate(converToDate);
 
     const fechaFormateada = this.dateS.getDateFormat(converToDate);

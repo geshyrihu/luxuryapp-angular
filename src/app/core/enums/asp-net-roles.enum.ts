@@ -11,9 +11,9 @@ export enum EApplicationRole {
   GerenteMantenimiento = "GerenteMantenimiento",
   SistemasGeneral = "SistemasGeneral",
   Mensajeria = "Mensajeria",
+  SupervisionOperativa = "SupervisionOperativa",
 
   // 👷 ROLES OPERATIVOS
-  SupervisionOperativa = "SupervisionOperativa",
   Administrador = "Administrador",
   GerenteOperaciones = "GerenteOperaciones",
   GerenteAtencion = "GerenteAtencion",
@@ -23,12 +23,21 @@ export enum EApplicationRole {
   Cobranza = "Cobranza",
   JefeMantenimiento = "JefeMantenimiento",
   TecnicoMantenimiento = "TecnicoMantenimiento",
+  Recepcionista = "Recepcionista",
+  MasterConcierge = "MasterConcierge",
+  Concierge = "Concierge",
   JardineriaInterna = "JardineriaInterna",
+  JefeSeguridadInterna = "JefeSeguridadInterna",
   SeguridadInterna = "SeguridadInterna",
+  Monitorista = "Monitorista",
+  EntrenadorGimnasio = "EntrenadorGimnasio",
   SupervisorObra = "SupervisorObra",
   Sistemas = "Sistemas",
-  Recepcionista = "Recepcionista",
   Ludotecaria = "Ludotecaria",
+  Paqueteria = "Paqueteria",
+  Chofer = "Chofer",
+  BellBoy = "BellBoy",
+  SnackBar = "SnackBar",
 
   // 🏘️ CLIENTES
   Comite = "Comite",

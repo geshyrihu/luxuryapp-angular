@@ -1,0 +1,52 @@
+<div class="flex align-items-center gap-2 flex-wrap">
+
+  <!-- Menú de navegación -->
+  @for (item of menu; track item) {
+    <a
+      [routerLink]="['/recruitment/requests/', item.path]"
+      class="btn btn-secondary btn-sm mb-0"
+      [class.btn-outline]="isActive(item.path)"
+    >{{ item.label }}</a>
+  }
+
+  <!-- Search -->
+  <div class="flex-grow-1">
+    <custom-search-input-signal (searchChange)="onSearch($event)" />
+  </div>
+
+  <!-- Filtro de fecha -->
+  <custom-input-date-signal
+    id="fecha-desde"
+    label="Mostrar desde"
+    [control]="fechaFormateadaControl"
+    [horizontal]="true"
+    [noMargin]="true"
+  />
+
+  <!-- Filtro de estatus -->
+  <custom-input-select-signal
+    id="status-select"
+    label="Estatus"
+    placeholder="Mostrar todos"
+    [control]="statusRequestControl"
+    [data]="cb_status_request"
+    [showClear]="false"
+    (selectionChange)="onLoadData()"
+    [horizontal]="true"
+    [noMargin]="true"
+    [filter]="true"
+  />
+
+  <!-- Botón de exportar -->
+  <custom-button
+    customClass="mb-0"
+    [showLabelOnDesktop]="true"
+    iconClass="pi pi-chart-bar"
+    label="Exportar a excel"
+    (clicked)="exportToExcel()"
+    variant="outlined"
+    severity="success"
+    size="small"
+  />
+
+</div>

@@ -2,6 +2,11 @@
 <!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card border-none shadow-1">
+    <div class="mb-3 p-3 border-round bg-blue-50 text-700 text-sm">
+      La presentacion ya no se crea directamente desde este modulo. Primero
+      debe registrarse la agenda de la junta para generar la sesion mensual y,
+      desde ella, la presentacion vinculada.
+    </div>
     <p-table
       [globalFilterFields]="globalFilterFields"
       [value]="dataSignal()"
@@ -65,7 +70,9 @@
                 }
                 <div class="text-sm font-bold text-700">
                   PERIODO: {{ item.fechaCorrespondiente | uppercase }}, FECHA DE
-                  JUNTA: {{ item.fechaJunta | uppercase }}
+                  JUNTA: {{ item.fechaJunta | uppercase }}{{
+                    item.horaJunta ? ", HORA: " + item.horaJunta : ""
+                  }}
                 </div>
               </div>
               <div class="col-12 md:col-6">
@@ -313,6 +320,11 @@
 
 <!-- INICIO: Componente adaptado para version movil -->
 <div class="block md:hidden">
+  <div class="mb-3 p-3 border-round bg-blue-50 text-700 text-sm">
+    La presentacion ya no se crea directamente aqui. Primero registra la
+    agenda de la junta para generar la sesion mensual y la presentacion
+    relacionada.
+  </div>
   <app-data-view-mobile
     [data]="dataSignal()"
     (add)="showModalAdd({ id: 0, titulo: 'Nuevo Registro' })"
@@ -330,7 +342,9 @@
                 PERIODO: {{ item.fechaCorrespondiente | uppercase }}
               </h6>
               <small class="text-500 block mt-1"
-                >FECHA DE JUNTA: {{ item.fechaJunta | uppercase }}</small
+                >FECHA DE JUNTA: {{ item.fechaJunta | uppercase }}{{
+                  item.horaJunta ? ", HORA: " + item.horaJunta : ""
+                }}</small
               >
             </div>
             @if ( aspRoleS.anyOf([AspRole.Administrador,

@@ -2,7 +2,9 @@
 // const urlApi = `https://luxurybuildingapp.com/`;
 // const urlApi = `https://luxurybuildingapp.com/test/`;
 // const urlApi = `http://luxurybuildingapp.com:8060/`;
-const urlApi = `https://localhost:7069/`;
+// En desarrollo local preferimos HTTP en 7070 para evitar fallos de TLS/certificado
+// con fetch y extensiones del navegador sobre localhost.
+const urlApi = `http://localhost:7070/`;
 
 export const environment = {
   production: false,

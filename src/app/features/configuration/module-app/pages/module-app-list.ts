@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from "@angular/core";
+﻿import { Component, computed, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -7,17 +7,26 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import {
+  IonButtonDelete,
+  IonButtonEdit,
+} from "src/app/core/components/buttons/mobile";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
+} from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { ModuleAppForm } from "./module-app-form";
-import { IonButtonDelete, IonButtonEdit } from "src/app/core/components/buttons/mobile";
+import { TableScrollHeightService } from "../../../../core/services/table-scroll-height.service";
 import { IModuleAppDTO } from "../models/module-app.dto";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { ModuleAppForm } from "./module-app-form";
 @Component({
   selector: "app-module-app-list",
   imports: [
@@ -26,6 +35,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
     CustomButtonEdit,
     CustomButtonDelete,
     PrimeNgCustomCaption,
+    PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
     RouterModule,
@@ -40,45 +50,53 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 export class ModuleAppList {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
+  tableScrollHeightS = inject(TableScrollHeightService);
+
   constructor() {
     addIcons({ phonePortraitOutline });
   }
 
-  // Declaración e inicialización de variables
+  // DeclaraciÃ³n e inicializaciÃ³n de variables
   dataSignal = signal<IModuleAppDTO[]>([]);
 
-  globalFilterFields = computed(() => {
+  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
+  scrollHeight = this.tableScrollHeightS.scrollHeight;
+
+  readonly globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
     return globalFilterFields(data);
   });
 
   loading = signal(true);
-  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diÃ¡logo modal
 
   ngOnInit(): void {
     this.onLoadData();
   }
 
   onLoadData() {
-    this.apiResponseS.onGetList<IModuleAppDTO[]>(Endpoints.ModuleApps.getAll).then((result) => {
-      // Ordenar datos para agrupar por pathParent
-      const sortedData = (result || []).sort((a, b) => {
-        const pathParentA = a.pathParent || "";
-        const pathParentB = b.pathParent || "";
+    this.apiResponseS
+      .onGetList<IModuleAppDTO[]>(Endpoints.ModuleApps.getAll)
+      .then((result) => {
+        // Ordenar datos para agrupar por pathParent
+        const sortedData = (result || []).sort((a, b) => {
+          const pathParentA = a.pathParent || "";
+          const pathParentB = b.pathParent || "";
 
-        if (pathParentA < pathParentB) return -1;
-        if (pathParentA > pathParentB) return 1;
+          if (pathParentA < pathParentB) return -1;
+          if (pathParentA > pathParentB) return 1;
 
-        // If pathParent is the same, sort by nameModule
-        if (a.nameModule < b.nameModule) return -1;
-        if (a.nameModule > b.nameModule) return 1;
+          // If pathParent is the same, sort by nameModule
+          if (a.nameModule < b.nameModule) return -1;
+          if (a.nameModule > b.nameModule) return 1;
 
-        return 0;
+          return 0;
+        });
+
+        this.dataSignal.set(sortedData);
       });
-
-      this.dataSignal.set(sortedData);
-    });
   }
 
   // Funcion para eliminar un banco y refres
@@ -89,7 +107,7 @@ export class ModuleAppList {
     });
   }
 
-  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
+  // FunciÃ³n para abrir un cuadro de diÃ¡logo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(ModuleAppForm, data, data.title, this.dialogHandlerS.sizeLg)
@@ -98,12 +116,3 @@ export class ModuleAppList {
       });
   }
 }
-
-
-
-
-
-
-
-
-

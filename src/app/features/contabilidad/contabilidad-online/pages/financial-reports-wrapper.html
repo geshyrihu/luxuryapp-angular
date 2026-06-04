@@ -1,7 +1,36 @@
-<section class="surface-ground min-h-screen flex flex-column gap-4">
+<section class="surface-ground min-h-screen flex flex-column gap-4 print-financial-report">
+
+  <!-- Overlay mientras se preparan los reportes -->
+  @if (isPreparing()) {
+  <div class="print-preparing-overlay">
+    <i class="pi pi-spin pi-spinner" style="font-size: 2.5rem; color: #203453;"></i>
+    <p style="margin: 0; font-size: 1.1rem; color: #203453; font-weight: 700; letter-spacing: 0.04em;">
+      Cargando todos los reportes...
+    </p>
+    <p style="margin: 0; font-size: 0.85rem; color: #64748b;">
+      El dialogo de impresion abrira automaticamente cuando todos los datos esten listos.
+    </p>
+  </div>
+  }
+
+  <!-- Portada: oculta en pantalla, primera hoja en impresion -->
+  <div class="print-portada">
+    <div class="print-portada-bar-top"></div>
+    <div class="print-portada-body">
+      <img
+        [src]="customerLogo()"
+        [alt]="customerName()"
+        class="print-portada-logo"
+      />
+      <h1 class="print-portada-title">ESTADOS FINANCIEROS</h1>
+      <p class="print-portada-period">PERIODO: {{ periodLabel() }}</p>
+    </div>
+    <div class="print-portada-bar-bottom"></div>
+  </div>
+
   <div class="w-full xl:w-11 mx-auto flex flex-column gap-4">
     <header
-      class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden"
+      class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden print-hide-on-print"
     >
       <div class="bg-primary" style="height: 0.45rem"></div>
 
@@ -11,12 +40,7 @@
         <div class="flex align-items-center gap-3 flex-1 min-w-0">
           <div
             class="surface-card border-round-xl border-1 surface-border inline-flex align-items-center justify-content-center p-2"
-            style="
-              width: auto;
-              height: auto;
-              max-height: 72px;
-              flex-shrink: 0;
-            "
+            style="width: auto; height: auto; max-height: 72px; flex-shrink: 0"
           >
             <img
               [src]="customerLogo()"
@@ -112,6 +136,16 @@
                   (clicked)="refreshReports()"
                 />
                 <custom-button
+                  [iconClass]="isPreparing() ? 'pi pi-spin pi-spinner' : 'pi pi-print'"
+                  [label]="isPreparing() ? 'Preparando...' : 'Imprimir'"
+                  variant="outlined"
+                  severity="secondary"
+                  size="small"
+                  [showLabelOnDesktop]="true"
+                  [disabled]="isPreparing()"
+                  (clicked)="printReport()"
+                />
+                <custom-button
                   iconClass="pi pi-comments"
                   label="Explicar IA"
                   variant="outlined"
@@ -157,16 +191,66 @@
       <div class="bg-yellow-500" style="height: 0.2rem"></div>
     </header>
 
-    <div class="surface-card border-round-xl border-1 surface-border shadow-1">
+    <!-- Seccion de impresion: se renderiza solo al presionar Imprimir -->
+    @if (printMode()) {
+    <div class="print-all-reports">
+      <div class="print-report-section">
+        <div class="print-section-header"><span>Estado de Posicion Financiera</span></div>
+        <app-estado-posicion-financiera />
+      </div>
+      <div class="print-report-section">
+        <div class="print-section-header"><span>Estado de Resultados</span></div>
+        <app-estado-resultados />
+      </div>
+      <div class="print-report-section">
+        <div class="print-section-header"><span>Cedula Extraordinaria</span></div>
+        <app-cedula-extraordinaria />
+      </div>
+      <div class="print-report-section">
+        <div class="print-section-header"><span>Presupuesto vs Resultado</span></div>
+        <app-cedula-presupuestal />
+      </div>
+      <div class="print-report-section">
+        <div class="print-section-header"><span>Reporte Financiero</span></div>
+        <app-reporte-financiero />
+      </div>
+      <div class="print-report-section">
+        <div class="print-section-header"><span>Flujo de Efectivo</span></div>
+        <app-flujo-efectivo />
+      </div>
+      <div class="print-report-section">
+        <div class="print-section-header"><span>Analisis de Cobranza</span></div>
+        <app-analisis-cobranza />
+      </div>
+      <div class="print-report-section">
+        <div class="print-section-header"><span>Presupuesto Contabilidad</span></div>
+        <app-presupuesto-contabilidad />
+      </div>
+      <div class="print-report-section">
+        <div class="print-section-header"><span>Bancos e Inversiones</span></div>
+        <app-bancos-inversiones />
+      </div>
+      <div class="print-report-section">
+        <div class="print-section-header"><span>Fondo de Reserva</span></div>
+        <app-fondo-reserva />
+      </div>
+      <div class="print-report-section">
+        <div class="print-section-header"><span>Proyectos Aprobados</span></div>
+        <app-proyectos-aprobados />
+      </div>
+    </div>
+    }
+
+    <div class="surface-card border-round-xl border-1 surface-border shadow-1 print-hide-on-print">
       <p-tabs [value]="reportIndex()" (valueChange)="onTabChange($event)">
-        <p-tablist>
+        <p-tablist class="print-hide-on-print">
           <p-tab [value]="0"><i class="pi pi-balance-scale mr-2"></i>EPF</p-tab>
           <p-tab [value]="1"
             ><i class="pi pi-list mr-2"></i>E. Resultados</p-tab
           >
-          <p-tab [value]="2"
+          <!-- <p-tab [value]="2"
             ><i class="pi pi-list mr-2"></i>E. Resultados V2</p-tab
-          >
+          > -->
           <p-tab [value]="3"
             ><i class="pi pi-plus-circle mr-2"></i>C. Extraordinaria</p-tab
           >
@@ -178,8 +262,18 @@
             ><i class="pi pi-money-bill mr-2"></i>Flujo Efectivo</p-tab
           >
           <p-tab [value]="7"><i class="pi pi-users mr-2"></i>Cobranza</p-tab>
-          <p-tab [value]="8"><i class="pi pi-wallet mr-2"></i>Presupuesto</p-tab>
-          <p-tab [value]="9"><i class="pi pi-building mr-2"></i>Bancos e Inv.</p-tab>
+          <p-tab [value]="8"
+            ><i class="pi pi-wallet mr-2"></i>Presupuesto</p-tab
+          >
+          <p-tab [value]="9"
+            ><i class="pi pi-building mr-2"></i>Bancos e Inv.</p-tab
+          >
+          <p-tab [value]="10"
+            ><i class="pi pi-shield mr-2"></i>Fondo Reserva</p-tab
+          >
+          <p-tab [value]="11"
+            ><i class="pi pi-briefcase mr-2"></i>Proyectos</p-tab
+          >
         </p-tablist>
 
         <p-tabpanels>
@@ -213,18 +307,26 @@
           <p-tabpanel [value]="9" class="p-4 pt-5">
             <app-bancos-inversiones />
           </p-tabpanel>
+          <p-tabpanel [value]="10" class="p-4 pt-5">
+            <app-fondo-reserva />
+          </p-tabpanel>
+          <p-tabpanel [value]="11" class="p-4 pt-5">
+            <app-proyectos-aprobados />
+          </p-tabpanel>
         </p-tabpanels>
       </p-tabs>
     </div>
 
-    <app-contabilidad-ai-agent #aiAgent [autoReadResponses]="true" />
+    <app-contabilidad-ai-agent #aiAgent [autoReadResponses]="true" class="print-hide-on-print" />
     <app-contabilidad-online-ai-agent
       #aiAgentContabilidadOnline
       [autoReadResponses]="true"
+      class="print-hide-on-print"
     />
     <app-explicador-contabilidad-online-ai-agent
       #aiAgentExplicador
       [autoReadResponses]="true"
+      class="print-hide-on-print"
     />
   </div>
 </section>

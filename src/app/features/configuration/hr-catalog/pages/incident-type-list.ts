@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
@@ -46,9 +46,9 @@ export class IncidentTypeList implements OnInit {
 
   items = signal<IncidentTypeListDTO[]>([]);
   globalFilter = signal<string>("");
-  tablePrimeNgRows: number = tablePrimeNgRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
-  globalFilterFields = globalFilterFields([
+  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
+  readonly globalFilterFields = globalFilterFields([
     "name",
     "category",
     "defaultSeverity",

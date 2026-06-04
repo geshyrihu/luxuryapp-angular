@@ -72,6 +72,26 @@
     }
   }
 
+  // --- Documental Guide & Audit ---
+  .token-swatch.flex {
+    width: 100%;
+    
+    &:hover {
+      border-color: var(--ds-primary);
+    }
+  }
+
+  code {
+    background: var(--ds-bg-sunken);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: var(--ds-font-family-mono);
+  }
+
+  .cursor-pointer:hover {
+    filter: brightness(0.95);
+  }
+
   // --- Cards & Content ---
   .p-card {
     height: 100%;

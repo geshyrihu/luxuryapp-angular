@@ -16,18 +16,6 @@ export const settingsRoutes: Routes = [
   },
 
   {
-    path: "estandar-documental",
-    loadComponent: () =>
-      import("src/app/features/configuration/estandar-documental/estandar-documental").then(
-        (m) => m.EstandarDocumental,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Estandar Documental Corporativo",
-      breadcrumb: "Estandar Documental",
-    },
-  },
-  {
     path: "demo-app",
     loadComponent: () =>
       import("src/app/features/configuration/demo-app/demo-app").then(
@@ -209,6 +197,18 @@ export const settingsRoutes: Routes = [
     },
   },
   {
+    path: "asamblea-checklist-catalog",
+    loadComponent: () =>
+      import("src/app/features/configuration/banks/pages/asamblea-checklist-template-list").then(
+        (m) => m.AsambleaChecklistTemplateList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Catalogo de checklist de asamblea",
+      breadcrumb: "Catalogo checklist asamblea",
+    },
+  },
+  {
     // Suggested path: 'payment-method'
     path: "forma-pago",
     loadComponent: () =>
@@ -295,18 +295,18 @@ export const settingsRoutes: Routes = [
       breadcrumb: "Lista de Categorías de Productos",
     },
   },
-  {
-    path: "request-types-list",
-    loadComponent: () =>
-      import("src/app/features/configuration/approval-rules/pages/approval-rules").then(
-        (m) => m.ApprovalRules,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Aprovacion de permisos y vacaciones",
-      breadcrumb: "Aprovacion de permisos y vacaciones",
-    },
-  },
+  // {
+  //   path: "request-types-list",
+  //   loadComponent: () =>
+  //     import("src/app/features/configuration/approval-rules/pages/approval-rules").then(
+  //       (m) => m.ApprovalRules,
+  //     ),
+  //   canActivate: [authGuard],
+  //   data: {
+  //     title: "Aprovacion de permisos y vacaciones",
+  //     breadcrumb: "Aprovacion de permisos y vacaciones",
+  //   },
+  // },
   {
     // Suggested path: 'machinery-classification'
     path: "machinery-classification",
@@ -507,8 +507,8 @@ export const settingsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Catálogo de Componentes UI",
-      breadcrumb: "Catálogo UI",
+      title: "Design System & Guía Documental",
+      breadcrumb: "Guía de Estilos",
     },
   },
   {
@@ -552,9 +552,9 @@ export const settingsRoutes: Routes = [
   {
     path: "juntas-mensuales-conciliacion",
     loadComponent: () =>
-      import(
-        "src/app/features/configuration/juntas-mensuales-backfill/juntas-mensuales-backfill"
-      ).then((m) => m.JuntasMensualesBackfill),
+      import("src/app/features/configuration/juntas-mensuales-backfill/juntas-mensuales-backfill").then(
+        (m) => m.JuntasMensualesBackfill,
+      ),
     canActivate: [authGuard],
     data: {
       title: "Conciliacion de juntas mensuales",

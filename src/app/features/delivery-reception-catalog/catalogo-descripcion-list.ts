@@ -19,6 +19,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CatalogoDescripcionForm } from "src/app/features/configuration/entrega-recepcion/catalogo-descripcion-form";
 @Component({
   selector: "app-catalogo-descripcion-list",
@@ -40,6 +41,7 @@ import { CatalogoDescripcionForm } from "src/app/features/configuration/entrega-
 export class CatalogoDescripcionList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
+  tableScrollHeightS = inject(TableScrollHeightService);
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => {
@@ -51,6 +53,7 @@ export class CatalogoDescripcionList implements OnInit {
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
+  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   ngOnInit(): void {
     this.onLoadData();

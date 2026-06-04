@@ -21,7 +21,7 @@ import { EmployeeAvatarForm } from "../employee-internal/pages/employee-avatar-f
 import { EmployeeLaboralDataForm } from "../employee-internal/pages/employee-laboral-data-form";
 import { EmployeePersonalDataForm } from "../employee-internal/pages/employee-personal-data-form";
 import { EmployeePrincipalDataForm } from "../employee-internal/pages/employee-principal-data-form";
-import { IncidentList } from "src/app/features/recursos-humanos/incident/pages/incident-list";
+import { IncidentList } from "src/app/features/recursos-humanos/incidencias-sanciones/incident/pages/incident-list";
 @Component({
   selector: "app-employee-form",
   templateUrl: "./employee-form.html",

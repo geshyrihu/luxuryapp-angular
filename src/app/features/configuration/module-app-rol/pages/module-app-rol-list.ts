@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from "@angular/core";
+﻿import { Component, computed, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { IonNote } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -10,10 +10,16 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
+} from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { IModuleAppRolDTO } from "../models/module-app-rol.dto";
 import { ModuleAppRolUpdate } from "./module-app-rol-update";
 @Component({
@@ -24,6 +30,7 @@ import { ModuleAppRolUpdate } from "./module-app-rol-update";
     TagModule,
     ProgressSpinnerModule,
     PrimeNgCustomCaption,
+    PrimeNgCustomTableFooter,
     CardModule,
     DataViewMobile,
 
@@ -44,8 +51,17 @@ import { ModuleAppRolUpdate } from "./module-app-rol-update";
 export class ModuleAppRol {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
+  tableScrollHeightS = inject(TableScrollHeightService);
+
   dataSignal = signal<IModuleAppRolDTO[]>([]);
-  globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
+
+  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
+  readonly scrollHeight = this.tableScrollHeightS.scrollHeight;
+
+  readonly globalFilterFields = computed(() =>
+    globalFilterFields(this.dataSignal()),
+  );
   groupedData = computed(() => {
     const data = this.dataSignal();
     return data.reduce((acc: any, item) => {
@@ -59,7 +75,7 @@ export class ModuleAppRol {
     addIcons({ chevronForwardOutline });
   }
 
-  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diÃ¡logo modal
 
   ngOnInit(): void {
     this.onLoadData();
@@ -74,7 +90,7 @@ export class ModuleAppRol {
       });
   }
 
-  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
+  // FunciÃ³n para abrir un cuadro de diÃ¡logo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS.openDialog(
       ModuleAppRolUpdate,

@@ -2,6 +2,11 @@
 <!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card">
+    <div class="mb-3 p-3 border-round bg-blue-50 text-700 text-sm">
+      Las minutas de comite y asamblea ya no se crean directamente desde este
+      modulo. Primero debe registrarse la agenda de la junta para generar la
+      sesion mensual y, desde ella, la minuta vinculada.
+    </div>
     <p-table
       [value]="dataSignal()"
       dataKey="id"
@@ -260,6 +265,11 @@
 <!-- ðŸ“± INICIO: Componente adaptado para versión móvil -->
 <div class="block md:hidden">
   <div class="card border-none shadow-none">
+    <div class="mb-3 p-3 border-round bg-blue-50 text-700 text-sm">
+      Las minutas de comite y asamblea ya no se crean directamente aqui.
+      Primero registra la agenda de la junta para generar la sesion mensual y
+      la minuta relacionada.
+    </div>
     <app-data-view-mobile
       [data]="dataSignal()"
       [globalFilterFields]="globalFilterFields"

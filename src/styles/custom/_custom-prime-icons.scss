@@ -81,6 +81,8 @@
   --pi-verified: "\ea02"; /* Verificado */
   --pi-delete-left: "\ea03"; /* Borrar a la izquierda (retroceso) */
   --pi-wrench: "\e9ff"; /* Llave inglesa */
+  --pi-ruler: "\ea41"; /* Regla / Unidades de medida */
+  --pi-bug: "\ea42"; /* Bug / Depuración */
   --pi-arrows-alt: "\e9f0"; /* Flechas alternativas (mover) */
   --pi-calculator: "\e9ef"; /* Calculadora */
   --pi-sync: "\e9e6"; /* Sincronizar / Refrescar */
@@ -476,6 +478,8 @@
 @include pi-icon-class("verified");
 @include pi-icon-class("delete-left");
 @include pi-icon-class("wrench");
+@include pi-icon-class("ruler");
+@include pi-icon-class("bug");
 @include pi-icon-class("arrows-alt");
 @include pi-icon-class("calculator");
 @include pi-icon-class("sync");

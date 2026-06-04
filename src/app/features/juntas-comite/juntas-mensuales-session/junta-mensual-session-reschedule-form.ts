@@ -12,6 +12,7 @@ import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DateService } from "src/app/core/services/date.service";
 
 interface IRescheduleForm {
   meetingDate: FormControl<Date | string | null>;
@@ -36,6 +37,7 @@ interface IRescheduleForm {
 export class JuntaMensualSessionRescheduleForm implements OnInit {
   private readonly formB = inject(FormBuilder);
   private readonly apiResponseS = inject(ApiResponseService);
+  private readonly dateS = inject(DateService);
   private readonly config = inject(DynamicDialogConfig);
   private readonly ref = inject(DynamicDialogRef);
 
@@ -55,8 +57,16 @@ export class JuntaMensualSessionRescheduleForm implements OnInit {
     const detail = this.config.data.detail;
     this.id.set(detail.id);
 
-    const start = new Date(detail.agenda?.startAt ?? detail.scheduledAt);
-    const end = new Date(detail.agenda?.endAt ?? detail.scheduledEndAt);
+    const start = this.parseBusinessDateTime(
+      detail.agenda?.startAt ?? detail.scheduledAt,
+    );
+    const end = this.parseBusinessDateTime(
+      detail.agenda?.endAt ?? detail.scheduledEndAt,
+    );
+
+    if (!start || !end) {
+      return;
+    }
 
     this.form.patchValue({
       meetingDate: start,
@@ -112,7 +122,9 @@ export class JuntaMensualSessionRescheduleForm implements OnInit {
     if (!dateValue || !timeValue) return null;
 
     const date =
-      dateValue instanceof Date ? dateValue : new Date(`${dateValue}T00:00:00`);
+      dateValue instanceof Date
+        ? dateValue
+        : this.dateS.parseDate(dateValue) || new Date(`${dateValue}T00:00:00`);
     const [hours, minutes] = timeValue.split(":").map(Number);
     const year = date.getFullYear();
     const month = `${date.getMonth() + 1}`.padStart(2, "0");
@@ -121,5 +133,33 @@ export class JuntaMensualSessionRescheduleForm implements OnInit {
     const mm = `${minutes}`.padStart(2, "0");
 
     return `${year}-${month}-${day}T${hh}:${mm}:00`;
+  }
+
+  private parseBusinessDateTime(value: string | Date | null | undefined) {
+    if (!value) return null;
+
+    if (value instanceof Date) {
+      return isNaN(value.getTime()) ? null : value;
+    }
+
+    const normalized = `${value}`.trim();
+    const match = normalized.match(
+      /^(\d{4})-(\d{2})-(\d{2})[T\s](\d{2}):(\d{2})(?::(\d{2}))?/,
+    );
+
+    if (match) {
+      const [, year, month, day, hour, minute, second] = match;
+      return new Date(
+        Number(year),
+        Number(month) - 1,
+        Number(day),
+        Number(hour),
+        Number(minute),
+        Number(second ?? "0"),
+      );
+    }
+
+    const parsed = new Date(normalized);
+    return isNaN(parsed.getTime()) ? null : parsed;
   }
 }

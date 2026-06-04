@@ -1,12 +1,6 @@
 <p-card>
   <ng-template #content>
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        label="Id"
-        placeholder="id"
-      />
-
       <custom-input-autocomplete-signal
         (propagar)="saveCustomer($event)"
         [control]="form.controls.customer"
@@ -37,17 +31,16 @@
         placeholder="email"
       />
 
-      <div class="flex">
-        <custom-input-text-signal
+      <div class="flex gap-2">
+        <custom-input-phone-prefix
           [control]="form.controls.phoneNumberPrefix"
           label="Prefijo"
-          placeholder="+52"
-          class="w-4"
+          class="w-5"
         />
         <custom-input-mask-signal
           [control]="form.controls.phoneNumber"
           label="Teléfono"
-          mask="(999) 999-9999"
+          customMask="(999) 999-9999"
           placeholder="(555) 000-0000"
           class="flex-1"
         />

@@ -5,15 +5,15 @@
         (propagar)="saveCondominiumAsset($event)"
         [control]="form.controls.condominiumAssetName"
         [data]="cb_activos()"
-        label="Equipo o órea"
-        placeholder="Escribe para buscar equipo o órea"
+        label="Equipo o área"
+        placeholder="Escribe para buscar equipo o área"
         [horizontal]="false"
       />
 
       <custom-input-text-signal
         [control]="form.controls.position"
         label="Posición"
-        placeholder="Posición del órea"
+        placeholder="Posición del área"
         type="number"
         min="1"
         [horizontal]="false"
@@ -32,7 +32,9 @@
         <label>Revisiones agregadas</label>
         <div>
           @if (reviewsControl.controls.length === 0) {
-          <div class="text-color-secondary text-sm mb-2">No hay revisiones agregadas</div>
+          <div class="text-color-secondary text-sm mb-2">
+            No hay revisiones agregadas
+          </div>
           } @for (review of reviewsControl.controls; track $index; let i =
           $index) {
           <div
@@ -57,9 +59,3 @@
     </form>
   </div>
 </div>
-
-
-
-
-
-

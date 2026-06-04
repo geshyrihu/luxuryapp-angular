@@ -102,6 +102,15 @@
           [disabled]="wekklyIsNullOrEmpty()"
           (clicked)="onSendWeeklyReport()"
         />
+        <custom-button
+          iconClass="pi pi-print"
+          label="Imprimir pendientes"
+          variant="outlined"
+          severity="secondary"
+          size="small"
+          [showLabelOnDesktop]="true"
+          (clicked)="printReport()"
+        />
       </div>
 
       <div class="flex align-items-center gap-3 ml-auto">
@@ -222,7 +231,7 @@
               </span>
               }
             </p>
-            <p class="m-0 font-semibold text-sm flex align-items-center gap-1">
+            <p class="m-0 font-semibold text-xs text-900 flex align-items-center gap-1">
               @if (item.daysDifference > 15 && !item.scheduledAt) {
               <i
                 class="pi pi-clock text-orange-600"
@@ -244,7 +253,7 @@
               ></i>
               } {{ item.title }}
             </p>
-            <p class="m-0 text-xs text-color-secondary" style="white-space:normal;overflow-wrap:break-word;word-break:break-word">
+            <p class="m-0 text-xs text-700" style="white-space:normal;overflow-wrap:break-word;word-break:break-word">
               {{ item.description }}
             </p>
           </div>
@@ -327,7 +336,7 @@
       >
         @if (item.lastFollowUp) {
         <p
-          class="m-0 text-xs text-color-secondary"
+          class="m-0 text-xs text-700"
           style="
             white-space: normal;
             overflow-wrap: break-word;
@@ -681,5 +690,90 @@
     </ion-item>
   </ng-template>
 </app-data-view-mobile>
+
+<!-- ================================================================
+     REPORTE EJECUTIVO DE TAREAS PENDIENTES — solo visible al imprimir
+     ================================================================ -->
+<div class="print-task-report">
+
+  <div class="print-report-header">
+    <div class="print-report-header-left">
+      <h2>Reporte Ejecutivo de Tareas Pendientes</h2>
+      <p>Grupo de trabajo: <strong>{{ dataSignal().nameGroup }}</strong></p>
+    </div>
+    <div class="print-report-header-right">
+      <p>Fecha: <strong>{{ today }}</strong></p>
+      <p>Total de pendientes: <strong>{{ pendingItems().length }}</strong></p>
+    </div>
+  </div>
+
+  <div class="print-legend">
+    <span><span class="print-legend-dot" style="background:#f87171"></span> No iniciado</span>
+    <span><span class="print-legend-dot" style="background:#3b82f6"></span> En proceso</span>
+    <span><span class="print-legend-dot" style="background:#f97316"></span> Reabierto</span>
+  </div>
+
+  <table class="print-task-table">
+    <colgroup>
+      <col class="col-num">
+      <col class="col-req">
+      <col class="col-resp">
+      <col class="col-fecha">
+      <col class="col-estado">
+      <col class="col-dias">
+      <col class="col-evid">
+      <col class="col-seg">
+    </colgroup>
+    <thead>
+      <tr>
+        <th class="col-num">#</th>
+        <th class="col-req">Solicitud</th>
+        <th class="col-resp">Responsable</th>
+        <th class="col-fecha">Programado</th>
+        <th class="col-estado">Estado</th>
+        <th class="col-dias" style="text-align:center">Dias</th>
+        <th class="col-evid" style="text-align:center">Evidencias</th>
+        <th class="col-seg">Ultimo seguimiento</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of pendingItems(); track item.id; let idx = $index) {
+      <tr>
+        <td [class]="statusTdClass(item.status)" style="font-size:7.5pt;color:#666">{{ idx + 1 }}</td>
+        <td>
+          <div class="print-folio">{{ item.folio }} | {{ item.createdAtDate }}</div>
+          <div class="print-title">{{ item.title }}</div>
+          @if (item.description) {
+          <div class="print-desc">{{ item.description }}</div>
+          }
+        </td>
+        <td style="font-size:7.5pt">{{ item.assignee || '—' }}</td>
+        <td style="font-size:7.5pt;white-space:nowrap">{{ item.scheduledAt || '—' }}</td>
+        <td>
+          <span class="print-status-pill" [style]="statusPillStyle(item.status)">
+            {{ statusLabel(item.status) }}
+          </span>
+        </td>
+        <td style="text-align:center;font-size:7.5pt">{{ item.daysDifference }}</td>
+        <td style="text-align:center;font-size:9pt">
+          @if (item.beforeWork || item.afterWork) { ✓ } @else { — }
+        </td>
+        <td>
+          @if (item.lastFollowUp) {
+          <p class="print-followup">{{ item.lastFollowUp }}</p>
+          } @else {
+          <span style="font-size:7.5pt;color:#aaa">—</span>
+          }
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="print-report-footer">
+    <span>Luxury Building Group — Sistema de Gestion Operativa</span>
+    <span>Generado el {{ today }}</span>
+  </div>
+</div>
 
 }

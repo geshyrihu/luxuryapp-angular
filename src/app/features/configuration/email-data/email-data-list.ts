@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from "@angular/core";
+﻿import { Component, computed, inject, signal } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
@@ -17,6 +17,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { EmailDataForm } from "./email-data-form";
 @Component({
   selector: "app-email-data-list",
@@ -37,13 +38,17 @@ import { EmailDataForm } from "./email-data-form";
 export class EmailDataList {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
+  tableScrollHeightS = inject(TableScrollHeightService);
   dataSignal = signal<any[]>([]);
 
-  globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
+  readonly globalFilterFields = computed(() =>
+    globalFilterFields(this.dataSignal()),
+  );
   loading = signal(true);
-  tablePrimeNgRows: number = tablePrimeNgRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
+  readonly tablePrimeNgRows: number = tablePrimeNgRows();
+  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
+  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   ngOnInit(): void {
     this.onLoadData();

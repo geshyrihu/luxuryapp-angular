@@ -30,8 +30,8 @@ export class CustomButtonConfirm extends BaseButton {
   override text = input<boolean>(true);
   override severity = input<any>("success");
   override rounded = input<boolean>(false);
+  override icon = input<string>("check");
 
-  icon = input<string>("check");
   pTooltip = input<string>("");
 
   swalTitle = input<string>("Confirmar");
@@ -42,15 +42,7 @@ export class CustomButtonConfirm extends BaseButton {
 
   confirmed = output<void>();
 
-  finalIcon = computed(() => {
-    const resolvedIcon = this.resolvedIconClass();
-    if (resolvedIcon) return resolvedIcon;
-
-    const customIcon = (this.icon() || "check").trim();
-    if (customIcon.startsWith("pi ")) return customIcon;
-    if (customIcon.startsWith("pi-")) return `pi ${customIcon}`;
-    return `pi pi-${customIcon}`;
-  });
+  finalIcon = computed(() => this.resolvedIconClass() || "pi pi-check");
 
   async confirmAction(event: Event): Promise<void> {
     const result = await Swal.fire({

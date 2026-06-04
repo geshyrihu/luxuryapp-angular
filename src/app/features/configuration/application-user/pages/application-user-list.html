@@ -7,6 +7,8 @@
       [paginator]="true"
       [rows]="tablePrimeNgRows"
       [rowsPerPageOptions]="rowsPerPageOptions"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight()"
       [showCurrentPageReport]="true"
       [value]="filteredDataSignal()"
       #dt
@@ -14,49 +16,49 @@
       styleClass="custom-table hidden md:block"
     >
       <ng-template #caption>
-        <div class="grid align-items-end">
-          <div class="col-12 md:col-7">
+        <div class="flex flex-column lg:flex-row lg:align-items-center justify-content-between p-2 gap-3">
+          <!-- Parte Izquierda: Título y búsqueda -->
+          <div class="flex-grow-1">
             <primeng-custom-caption
               (add)="onModalForm('', 'Crear Cuenta')"
               [dt]="dt"
+              [noPadding]="true"
               [noMargin]="true"
             />
           </div>
-          <div class="col-12 md:col-5">
-            <div class="grid align-items-end">
-              <div class="col-4">
-                <custom-input-select-signal
-                  [data]="selectCustomerSignal()"
-                  optionLabel="label"
-                  optionValue="value"
-                  placeholder="Seleccionar Cliente"
-                  (selectionChange)="onSelectForCustomer($event.value)"
-                  [horizontal]="false"
-                  [noMargin]="true"
-                  size="small"
-                  [filter]="true"
-                />
-              </div>
-              <div class="col-4">
-                <custom-input-select-signal
-                  [data]="cbTypePersonSignal()"
-                  optionLabel="label"
-                  optionValue="value"
-                  placeholder="Tipo de Persona"
-                  [control]="typePersonControl"
-                  (selectionChange)="onSelectTypePerson($event.value)"
-                  [horizontal]="false"
-                  [noMargin]="true"
-                  size="small"
-                  [filter]="true"
-                />
-              </div>
-              <div class="col-4">
-                <custom-button-active-desactive
-                  [state]="applicationUserState"
-                  (stateChange)="onSelectActive($event)"
-                />
-              </div>
+
+          <!-- Parte Derecha: Filtros adicionales -->
+          <div class="flex flex-column sm:flex-row align-items-center gap-2">
+            <div style="min-width: 200px">
+              <custom-input-select-signal
+                [data]="selectCustomerSignal()"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Seleccionar Cliente"
+                (selectionChange)="onSelectForCustomer($event.value)"
+                [horizontal]="false"
+                [noMargin]="true"
+                [filter]="true"
+              />
+            </div>
+            <div style="min-width: 180px">
+              <custom-input-select-signal
+                [data]="cbTypePersonSignal()"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Tipo de Persona"
+                [control]="typePersonControl"
+                (selectionChange)="onSelectTypePerson($event.value)"
+                [horizontal]="false"
+                [noMargin]="true"
+                [filter]="true"
+              />
+            </div>
+            <div style="width: 150px">
+              <custom-button-active-desactive
+                [state]="applicationUserState"
+                (stateChange)="onSelectActive($event)"
+              />
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -7,6 +7,7 @@ import {
   inject,
   signal,
 } from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FullCalendarModule } from "@fullcalendar/angular";
 import { CalendarOptions, EventClickArg, EventInput } from "@fullcalendar/core";
 import esLocale from "@fullcalendar/core/locales/es";
@@ -14,7 +15,6 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
   IonButtonDelete,
@@ -24,6 +24,7 @@ import {
   CustomButtonDelete,
   CustomButtonEdit,
 } from "src/app/core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -35,9 +36,11 @@ import {
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { JuntaMensualSessionChecklistDialog } from "../juntas-comite/juntas-mensuales-session/junta-mensual-session-checklist-dialog";
 import { GoogleCalendarDetail } from "./google-calendar-detail";
 import { GoogleCalendarForm } from "./google-calendar-form";
 
@@ -55,6 +58,9 @@ interface IGoogleCalendarEventListItem {
   guestCount: number;
   googleHtmlLink: string;
   googleMeetUrl: string;
+  googleStatus: string;
+  juntaMensualSessionId: string | null;
+  hasAssemblyChecklist: boolean;
   isSynchronized: boolean;
   isRecurring: boolean;
   recurrenceSummary: string;
@@ -70,18 +76,19 @@ interface IGoogleCalendarEventListItem {
     PrimeNgCustomCaption,
     DataViewMobile,
     ActionMenu,
+    CustomButton,
     CustomButtonEdit,
     CustomButtonDelete,
     IonItem,
     IonLabel,
     IonButtonEdit,
     IonButtonDelete,
-    DatePipe,
   ],
 })
 export class GoogleCalendar {
   private readonly apiResponseS = inject(ApiResponseService);
   private readonly customerIdS = inject(CustomerIdService);
+  private readonly dateS = inject(DateService);
   private readonly dialogHandlerS = inject(DialogHandlerService);
   private readonly aspRoleS = inject(AspRoleService);
   private readonly signalRService = inject(SignalRService);
@@ -111,8 +118,8 @@ export class GoogleCalendar {
       return {
         id: item.id,
         title: item.title,
-        start: item.startAt,
-        end: item.endAt,
+        start: this.parseBusinessDateTime(item.startAt),
+        end: this.parseBusinessDateTime(item.endAt),
         allDay: false,
         backgroundColor: canViewDetails ? "#163B74" : "#64748B",
         borderColor: canViewDetails ? "#163B74" : "#64748B",
@@ -125,6 +132,14 @@ export class GoogleCalendar {
       };
     }),
   );
+  readonly listData = computed(() => {
+    if (this.canViewAllDetails()) {
+      return this.dataSignal();
+    }
+
+    const customerId = this.customerIdS.customerId();
+    return this.dataSignal().filter((item) => item.customerId === customerId);
+  });
   readonly calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, timeGridPlugin],
     locale: "es",
@@ -155,7 +170,7 @@ export class GoogleCalendar {
   };
 
   readonly globalFilterFields = computed(() => {
-    const data = this.dataSignal();
+    const data = this.listData();
     if (!data.length) return [];
     return globalFilterFields(data);
   });
@@ -167,7 +182,10 @@ export class GoogleCalendar {
         const currentCustomerId = this.customerIdS.customerId();
         if (!currentCustomerId) return;
 
-        if (this.canViewAllDetails() || payload.customerId === currentCustomerId) {
+        if (
+          this.canViewAllDetails() ||
+          payload.customerId === currentCustomerId
+        ) {
           this.onLoadData();
         }
       });
@@ -207,9 +225,30 @@ export class GoogleCalendar {
         id ? "Editar evento de comite" : "Nuevo evento de comite",
         this.dialogHandlerS.sizeLg,
       )
-      .then((result: boolean) => {
-        if (result) this.onLoadData();
-      });
+      .then(
+        (
+          result:
+            | boolean
+            | {
+                refresh?: boolean;
+                openAssemblyChecklist?: boolean;
+                sessionId?: string;
+              }
+            | undefined,
+        ) => {
+          if (!result) return;
+
+          this.onLoadData();
+
+          if (
+            typeof result === "object" &&
+            result.openAssemblyChecklist &&
+            result.sessionId
+          ) {
+            this.openAssemblyChecklistDialog(result.sessionId);
+          }
+        },
+      );
   }
 
   onDelete(id: string) {
@@ -261,5 +300,100 @@ export class GoogleCalendar {
       this.canViewAllDetails() ||
       item.customerId === this.customerIdS.customerId()
     );
+  }
+
+  canOpenAssemblyChecklist(item: IGoogleCalendarEventListItem) {
+    return item.subjectType === 1 && !!item.juntaMensualSessionId;
+  }
+
+  onOpenAssemblyChecklist(item: IGoogleCalendarEventListItem) {
+    if (!item.juntaMensualSessionId) {
+      return;
+    }
+
+    this.openAssemblyChecklistDialog(item.juntaMensualSessionId);
+  }
+
+  formatBusinessDateTime(value: string | Date | null | undefined) {
+    const parsed = this.parseBusinessDateTime(value);
+    if (!parsed) return "";
+
+    const day = `${parsed.getDate()}`.padStart(2, "0");
+    const month = `${parsed.getMonth() + 1}`.padStart(2, "0");
+    const year = parsed.getFullYear();
+    const hours = `${parsed.getHours()}`.padStart(2, "0");
+    const minutes = `${parsed.getMinutes()}`.padStart(2, "0");
+    return `${day}/${month}/${year} ${hours}:${minutes}`;
+  }
+
+  getStatusLabel(item: IGoogleCalendarEventListItem) {
+    if (item.isSynchronized) {
+      return "Sincronizado";
+    }
+
+    const normalizedStatus = (item.googleStatus || "").trim().toLowerCase();
+    if (
+      normalizedStatus === "historicolocal" ||
+      normalizedStatus === "historico local"
+    ) {
+      return "Historico local";
+    }
+
+    const startAt = this.parseBusinessDateTime(item.startAt);
+    if (startAt && startAt.getTime() < Date.now()) {
+      return "No sincronizado";
+    }
+
+    return "Pendiente";
+  }
+
+  getStatusClasses(item: IGoogleCalendarEventListItem) {
+    const label = this.getStatusLabel(item);
+    return {
+      "bg-green-100 text-green-800": label === "Sincronizado",
+      "bg-blue-100 text-blue-800": label === "Historico local",
+      "bg-orange-100 text-orange-800": label === "No sincronizado",
+      "bg-yellow-100 text-yellow-800": label === "Pendiente",
+    };
+  }
+
+  private openAssemblyChecklistDialog(sessionId: string) {
+    this.dialogHandlerS
+      .openDialog(
+        JuntaMensualSessionChecklistDialog,
+        { sessionId },
+        "Checklist de asamblea",
+        this.dialogHandlerS.sizeLg,
+      )
+      .then(() => {
+        this.onLoadData();
+      });
+  }
+
+  private parseBusinessDateTime(value: string | Date | null | undefined) {
+    if (!value) return null;
+
+    if (value instanceof Date) {
+      return isNaN(value.getTime()) ? null : value;
+    }
+
+    const normalized = `${value}`.trim();
+    const match = normalized.match(
+      /^(\d{4})-(\d{2})-(\d{2})[T\s](\d{2}):(\d{2})(?::(\d{2}))?/,
+    );
+
+    if (match) {
+      const [, year, month, day, hour, minute, second] = match;
+      return new Date(
+        Number(year),
+        Number(month) - 1,
+        Number(day),
+        Number(hour),
+        Number(minute),
+        Number(second ?? "0"),
+      );
+    }
+
+    return this.dateS.parseDate(normalized) ?? null;
   }
 }
