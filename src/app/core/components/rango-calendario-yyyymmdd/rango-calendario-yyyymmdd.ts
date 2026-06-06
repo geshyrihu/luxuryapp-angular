@@ -1,9 +1,7 @@
 import { Component, inject, input, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import {
-  FlatpickrDirective,
-  provideFlatpickrDefaults,
-} from "angularx-flatpickr";
+import { FlatpickrDirective } from "angularx-flatpickr";
+import { Spanish } from "flatpickr/dist/l10n/es";
 import { InputTextModule } from "primeng/inputtext";
 import { IFechasFiltro } from "src/app/core/interfaces/fechas-filtro.interface";
 import { DateService } from "src/app/core/services/date.service";
@@ -13,35 +11,35 @@ import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.ser
  * 📅 RANGO CALENDARIO (YYYY-MM-DD)
  * -------------------------------------------------------------------------
  * Selector de rango de fechas usando Flatpickr.
- * Permite seleccionar dia inicio y dia fin con un UI amigable.
+ * Permite seleccionar día inicio y día fin con un UI amigable.
  */
 @Component({
   selector: "app-rango-calendario-yyyymmdd",
-
   templateUrl: "./rango-calendario-yyyymmdd.html",
   imports: [FormsModule, FlatpickrDirective, InputTextModule],
-  providers: [provideFlatpickrDefaults()],
 })
 export class RangoCalendarioyyyymmdd implements OnInit {
   private dateS = inject(DateService);
   private rangoCalendarioService = inject(FiltroCalendarService);
 
   // <--- Inputs --->
-  mostrartextDesde = input<boolean>(true);
-  mostrartextHasta = input<boolean>(true);
+  mostrarLabelDesde = input<boolean>(true, { alias: "mostrartextDesde" });
+  mostrarLabelHasta = input<boolean>(true, { alias: "mostrartextHasta" });
 
-  // Default dates
+  readonly localeSpanish = Spanish;
+
+  // Fechas por defecto
   private date = new Date();
   fechaInicioDate: Date = new Date(
     this.date.getFullYear(),
     this.date.getMonth(),
     1,
-  ); //Dia primero del mes actual
+  ); // Día primero del mes actual
   fechaFinalDate: Date = new Date(
     this.date.getFullYear(),
     this.date.getMonth() + 1,
     0,
-  ); //Dia Ultimo del mes Actual
+  ); // Día último del mes actual
 
   ngOnInit(): void {}
 

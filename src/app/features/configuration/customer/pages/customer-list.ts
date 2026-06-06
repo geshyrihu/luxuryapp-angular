@@ -69,7 +69,7 @@ export class CustomerList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
-  // DeclaraciÃ³n e inicializaciÃ³n de variables con Signals
+  // Declaración e inicialización de variables con Signals
   dataSignal = signal<ICustomerDTO[]>([]);
   loading = signal(true);
 

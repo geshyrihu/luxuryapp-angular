@@ -299,6 +299,28 @@
                 </div>
                </p-card>
             </div>
+
+            <div class="col-12">
+              <p-card header="Grouped Data List (Mobile Pattern)">
+                @for (group of groupedDataExample | keyvalue; track group.key) {
+                  <div class="mb-3">
+                    <div class="font-bold text-sm text-primary mb-2 flex align-items-center gap-2">
+                      <i class="pi pi-calendar-clock"></i>
+                      <span>{{ group.key }}</span>
+                    </div>
+                    @for (item of group.value; track item.id) {
+                      <div class="surface-card border-1 surface-border border-round p-3 mb-2 flex align-items-center justify-content-between">
+                        <div>
+                          <span class="font-bold text-sm block">{{ item.title }}</span>
+                          <span class="text-xs text-secondary">{{ item.module }}</span>
+                        </div>
+                        <p-tag [value]="item.status" [severity]="item.status === 'Urgente' ? 'danger' : item.status === 'Proceso' ? 'info' : 'warn'"></p-tag>
+                      </div>
+                    }
+                  </div>
+                }
+              </p-card>
+            </div>
           </div>
         </section>
       }
@@ -419,20 +441,24 @@
             <div class="col-12 lg:col-6 mt-4">
               <p-card header="Matriz de Acceso por Rol">
                 <p-table [value]="matrizAcceso" [scrollable]="true" scrollHeight="300px" styleClass="p-datatable-sm">
-                  <ng-template pTemplate="header">
+                    <ng-template pTemplate="header">
                     <tr>
                       <th>Documento</th>
+                      <th>Super Usuario</th>
                       <th>Dirección</th>
                       <th>Staff</th>
                       <th>Condomino</th>
+                      <th>Proveedor</th>
                     </tr>
                   </ng-template>
                   <ng-template pTemplate="body" let-row>
                     <tr>
                       <td class="text-xs font-bold">{{ row.documento }}</td>
+                      <td><p-tag [value]="row.superUsuario" [severity]="getColorAcceso(row.superUsuario)"></p-tag></td>
                       <td><p-tag [value]="row.direccion" [severity]="getColorAcceso(row.direccion)"></p-tag></td>
                       <td><p-tag [value]="row.staff" [severity]="getColorAcceso(row.staff)"></p-tag></td>
                       <td><p-tag [value]="row.condomino" [severity]="getColorAcceso(row.condomino)"></p-tag></td>
+                      <td><p-tag [value]="row.proveedor" [severity]="getColorAcceso(row.proveedor)"></p-tag></td>
                     </tr>
                   </ng-template>
                 </p-table>
@@ -490,13 +516,13 @@
               </p-card>
 
               <div class="grid">
-                @for (item of checklist; track item.numero) {
+                @for (item of checklist(); track item.numero) {
                   <div class="col-12 md:col-6">
                     <div class="flex align-items-start gap-3 border-round-lg border-1 p-3 h-full transition-all hover:surface-100"
                       [class.bg-green-50]="item.aprobado" [class.border-green-200]="item.aprobado"
                       [class.bg-red-50]="!item.aprobado" [class.border-red-200]="!item.aprobado"
-                      (click)="item.aprobado = !item.aprobado">
-                      <p-checkbox [(ngModel)]="item.aprobado" [binary]="true"></p-checkbox>
+                      (click)="toggleChecklistItem(item.numero)">
+                      <p-checkbox [ngModel]="item.aprobado" (ngModelChange)="toggleChecklistItem(item.numero)" [binary]="true"></p-checkbox>
                       <p class="m-0 text-sm line-height-2 cursor-pointer">
                         <strong>{{ item.numero }}.</strong> {{ item.descripcion }}
                       </p>

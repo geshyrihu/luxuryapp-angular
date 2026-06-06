@@ -64,36 +64,28 @@ const tipoGastoIcons: { [key: number]: string } = {
       width: 100%;
     }
 
-    :host ::ng-deep .orden-compra-table .oc-col-folio {
-      width: 7rem;
+    :host ::ng-deep .orden-compra-table .oc-col-identificadores {
+      width: 9rem;
     }
 
-    :host ::ng-deep .orden-compra-table .oc-col-indice {
-      width: 6.5rem;
-    }
-
-    :host ::ng-deep .orden-compra-table .oc-col-fondeo {
-      width: 12.5rem;
-    }
-
-    :host ::ng-deep .orden-compra-table .oc-col-solicitud {
-      width: 6.5rem;
+    :host ::ng-deep .orden-compra-table .oc-col-seguimiento {
+      width: 11rem;
     }
 
     :host ::ng-deep .orden-compra-table .oc-col-descripcion {
-      width: 27%;
+      width: 28%;
     }
 
     :host ::ng-deep .orden-compra-table .oc-col-partida {
-      width: 17%;
+      width: 18%;
     }
 
     :host ::ng-deep .orden-compra-table .oc-col-proveedor {
-      width: 11%;
+      width: 14%;
     }
 
     :host ::ng-deep .orden-compra-table .oc-col-total {
-      width: 6rem;
+      width: 7rem;
     }
 
     :host ::ng-deep .orden-compra-table .oc-col-observaciones,
@@ -102,7 +94,7 @@ const tipoGastoIcons: { [key: number]: string } = {
     }
 
     :host ::ng-deep .orden-compra-table .oc-col-actions {
-      width: 5rem;
+      width: 4rem;
     }
 
     :host ::ng-deep .orden-compra-table .p-datatable-tbody > tr > td.oc-cell-wrap {
@@ -112,7 +104,7 @@ const tipoGastoIcons: { [key: number]: string } = {
     }
 
     :host ::ng-deep .orden-compra-table .p-datatable-tbody > tr > td.oc-cell-total,
-    :host ::ng-deep .orden-compra-table .p-datatable-thead > tr > th:nth-child(8) {
+    :host ::ng-deep .orden-compra-table .p-datatable-thead > tr > th:nth-child(6) {
       text-align: right;
     }
 

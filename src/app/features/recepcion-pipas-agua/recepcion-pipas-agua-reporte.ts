@@ -2,7 +2,6 @@ import { CommonModule, formatDate } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import FileSaver from "file-saver";
 import { FormsModule } from "@angular/forms";
-import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { DatePickerModule } from "primeng/datepicker";
 import { TableModule } from "primeng/table";
 import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
@@ -15,7 +14,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service";
+import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
 
 @Component({
@@ -34,7 +33,7 @@ import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
 export class RecepcionPipasAguaReporte implements OnInit {
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
-  pdfGeneratorS = inject(PdfGeneratorService);
+  htmlPrintS = inject(HtmlPrintService);
 
   dataSignal = signal<IRecepcionPipaAgua[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
@@ -104,16 +103,6 @@ export class RecepcionPipasAguaReporte implements OnInit {
   }
 
   async onDownloadPdf(): Promise<void> {
-    const BLUE = "#003A62";
-    const YELLOW = "#f59e0b";
-    const RED = "#dc2626";
-    const GRAY = "#6b7280";
-    const ROW_ALT = "#f8fafc";
-    const BORDER = "#e2e8f0";
-    // PdfGeneratorService overrides pageMargins to [40,80,40,40]
-    // Portrait LETTER content width: 612 - 40 - 40 = 532pt
-    const W = 532;
-
     const fmtMoney = (v: number) =>
       `$${v.toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
@@ -132,186 +121,126 @@ export class RecepcionPipasAguaReporte implements OnInit {
 
     const data = this.dataSignal();
 
-    // ── helpers ──────────────────────────────────────────────
-    const thinBorder = {
-      hLineWidth: () => 0.5,
-      vLineWidth: () => 0.5,
-      hLineColor: () => BORDER,
-      vLineColor: () => BORDER,
-    };
-
-    const tableHeaderLayout = {
-      hLineWidth: () => 0,
-      vLineWidth: () => 0,
-      hLineColor: () => BORDER,
-    };
-
-    const th = (text: string, align: "left" | "center" | "right" = "left"): any => ({
-      text,
-      bold: true,
-      fontSize: 7,
-      color: "#fff",
-      fillColor: BLUE,
-      alignment: align,
-      margin: [3, 4, 3, 4],
-    });
-
-    const td = (text: string, opts: any = {}): any => ({
-      text,
-      fontSize: 7,
-      margin: [3, 3, 3, 3],
-      ...opts,
-    });
-
-    const bodyRows = data.map((item, i) => {
+    let tableHtml = "";
+    data.forEach((item, i) => {
       const m3 = (item.lecturaMedidorFinal ?? 0) - (item.lecturaMedidorInicial ?? 0);
       const importe = (item.costoMetroCubico ?? 0) * m3;
-      const fill = i % 2 !== 0 ? ROW_ALT : undefined;
-      const cist = `${Math.round(item.nivelCisternaAntes ?? 0)}%→${Math.round(item.nivelCisternaDespues ?? 0)}%\n(${Math.round((item.nivelCisternaDespues ?? 0) - (item.nivelCisternaAntes ?? 0))}%)`;
-      const personal = [item.colaboradorMtto, item.guardiaSeguridad].filter(Boolean).join("\n");
-      return [
-        td(item.empresa ?? "", { fillColor: fill }),
-        td(`${item.placasCamion}\n${(item.capacidadPipa ?? 0).toLocaleString("es-MX")} L`, { fillColor: fill }),
-        td(`${fmtDate(item.horaLlegada)}\n${fmtDate(item.horaTermino)}`, { fillColor: fill }),
-        td(cist, { alignment: "center", fillColor: fill }),
-        td(`${Math.round(item.lecturaMedidorInicial ?? 0)} → ${Math.round(item.lecturaMedidorFinal ?? 0)}`, { alignment: "center", fillColor: fill }),
-        td(String(Math.round(m3)), { alignment: "right", bold: true, fillColor: fill }),
-        td(`${(item.costoMetroCubico ?? 0).toFixed(2)}\n${fmtMoney(importe)}`, { alignment: "right", fillColor: fill }),
-        td(personal, { fillColor: fill }),
-      ];
+      const bg = i % 2 === 0 ? "#ffffff" : "#f8fafc";
+      const cist = `${Math.round(item.nivelCisternaAntes ?? 0)}% → ${Math.round(item.nivelCisternaDespues ?? 0)}%<br>(${Math.round((item.nivelCisternaDespues ?? 0) - (item.nivelCisternaAntes ?? 0))}%)`;
+      const personal = [item.colaboradorMtto, item.guardiaSeguridad].filter(Boolean).join("<br>");
+      
+      tableHtml += `
+        <tr>
+          <td style="background-color: ${bg}; padding: 6px;">${this.htmlPrintS.esc(item.empresa ?? "")}</td>
+          <td style="background-color: ${bg}; padding: 6px;">${this.htmlPrintS.esc(item.placasCamion)}<br>${(item.capacidadPipa ?? 0).toLocaleString("es-MX")} L</td>
+          <td style="background-color: ${bg}; padding: 6px;">${fmtDate(item.horaLlegada)}<br>${fmtDate(item.horaTermino)}</td>
+          <td style="background-color: ${bg}; padding: 6px; text-align: center;">${cist}</td>
+          <td style="background-color: ${bg}; padding: 6px; text-align: center;">${Math.round(item.lecturaMedidorInicial ?? 0)} → ${Math.round(item.lecturaMedidorFinal ?? 0)}</td>
+          <td style="background-color: ${bg}; padding: 6px; text-align: right; font-weight: bold;">${Math.round(m3)}</td>
+          <td style="background-color: ${bg}; padding: 6px; text-align: right;">${(item.costoMetroCubico ?? 0).toFixed(2)}<br>${fmtMoney(importe)}</td>
+          <td style="background-color: ${bg}; padding: 6px;">${personal}</td>
+        </tr>
+      `;
     });
 
-    // ── document ─────────────────────────────────────────────
-    // NOTE: PdfGeneratorService injects its own page header (logo + company name)
-    // and overrides pageMargins to [40,80,40,40] — do not add a custom header here.
-    const docDef: TDocumentDefinitions = {
-      pageSize: "LETTER",
-      pageOrientation: "portrait",
-      content: [
+    const logo = await this.htmlPrintS.getLogoDataUrl();
+    const generatedAt = new Date();
 
-        // ─ Period subtitle (service header already shows title + logo) ─
-        {
-          columns: [
-            { text: "Recepcion de Pipas de Agua — Reporte", fontSize: 11, bold: true, color: BLUE },
-            { text: periodoLabel, fontSize: 9, color: GRAY, alignment: "right" },
-          ],
-          margin: [0, 0, 0, 4],
-        } as any,
-        { canvas: [{ type: "rect", x: 0, y: 0, w: W, h: 2, r: 0, color: YELLOW }], margin: [0, 0, 0, 10] } as any,
+    const html = `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+  @page { margin: 10mm; }
+  .container { max-width: 1000px; margin: auto; }
+  .kpi-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 20px; margin-bottom: 20px; margin-top: 20px; }
+  .kpi-cards { display: flex; flex-direction: column; gap: 10px; }
+  .kpi-card { border: 1px solid #e2e8f0; padding: 10px; text-align: center; border-radius: 4px; }
+  .kpi-title { font-size: 10px; color: #6b7280; margin-bottom: 5px; }
+  .kpi-value { font-size: 24px; font-weight: bold; color: #003A62; }
+  .kpi-value.blue { color: #1d4ed8; }
+  .summary-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .summary-table th { background-color: #003A62; color: white; padding: 8px; text-align: left; font-weight: bold; }
+  .summary-table td { padding: 6px 8px; border-bottom: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; }
+  .summary-table tr td:last-child { border-right: none; }
+  .data-table { width: 100%; border-collapse: collapse; font-size: 10px; }
+  .data-table th { background-color: #003A62; color: white; padding: 6px; text-align: left; font-weight: bold; }
+  .data-table td { border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, "Recepción de Pipas de Agua — Reporte", periodoLabel, generatedAt, "MANTENIMIENTO")}
 
-        // ─ KPI CARDS + COST SUMMARY ─
-        {
-          columns: [
-            // Left: two KPI cards stacked
-            {
-              width: 148,
-              stack: [
-                {
-                  table: {
-                    widths: ["*"],
-                    body: [[{
-                      stack: [
-                        { text: "Total recepciones", fontSize: 7, color: GRAY, alignment: "center", margin: [0, 0, 0, 2] },
-                        { text: String(this.totalRecepciones()), fontSize: 22, bold: true, color: BLUE, alignment: "center" },
-                      ],
-                      margin: [8, 10, 8, 10],
-                    }]],
-                  },
-                  layout: thinBorder,
-                  margin: [0, 0, 0, 6],
-                },
-                {
-                  table: {
-                    widths: ["*"],
-                    body: [[{
-                      stack: [
-                        { text: "Total m³ descargados", fontSize: 7, color: GRAY, alignment: "center", margin: [0, 0, 0, 2] },
-                        { text: String(Math.round(this.totalM3())), fontSize: 22, bold: true, color: "#1d4ed8", alignment: "center" },
-                      ],
-                      margin: [8, 10, 8, 10],
-                    }]],
-                  },
-                  layout: thinBorder,
-                },
-              ],
-            },
-            // Right: cost summary card
-            {
-              table: {
-                widths: ["*", "auto"],
-                body: [
-                  [
-                    {
-                      text: "Resumen de costos del periodo",
-                      bold: true, fontSize: 8, color: "#fff", fillColor: BLUE,
-                      colSpan: 2, border: [false, false, false, false],
-                      margin: [6, 6, 6, 6],
-                    },
-                    {},
-                  ],
-                  [
-                    { text: "Importe total (precio con IVA × m³)", fontSize: 8, border: [false, false, false, true], borderColor: ["", "", "", BORDER], margin: [6, 4, 6, 4] },
-                    { text: fmtMoney(this.totalConIVA()), fontSize: 8, bold: true, alignment: "right", border: [false, false, false, true], borderColor: ["", "", "", BORDER], margin: [6, 4, 6, 4] },
-                  ],
-                  [
-                    { text: "     Subtotal base (sin IVA)", fontSize: 7, color: GRAY, border: [false, false, false, true], borderColor: ["", "", "", BORDER], margin: [14, 3, 6, 3] },
-                    { text: fmtMoney(this.subtotalSinIVA()), fontSize: 7, color: GRAY, alignment: "right", border: [false, false, false, true], borderColor: ["", "", "", BORDER], margin: [6, 3, 6, 3] },
-                  ],
-                  [
-                    { text: "     IVA 16%", fontSize: 7, color: GRAY, border: [false, false, false, true], borderColor: ["", "", "", BORDER], margin: [14, 3, 6, 3] },
-                    { text: fmtMoney(this.ivaDesglosado()), fontSize: 7, color: GRAY, alignment: "right", border: [false, false, false, true], borderColor: ["", "", "", BORDER], margin: [6, 3, 6, 3] },
-                  ],
-                  [
-                    { text: "Retención 4%", fontSize: 8, bold: true, color: RED, border: [false, false, false, true], borderColor: ["", "", "", BORDER], margin: [6, 4, 6, 4] },
-                    { text: `(${fmtMoney(this.retencion())})`, fontSize: 8, bold: true, color: RED, alignment: "right", border: [false, false, false, true], borderColor: ["", "", "", BORDER], margin: [6, 4, 6, 4] },
-                  ],
-                  [
-                    { text: "TOTAL A PAGAR", fontSize: 10, bold: true, color: "#fff", fillColor: BLUE, border: [false, false, false, false], margin: [6, 7, 6, 7] },
-                    { text: fmtMoney(this.totalAPagar()), fontSize: 10, bold: true, color: "#fff", fillColor: BLUE, alignment: "right", border: [false, false, false, false], margin: [6, 7, 6, 7] },
-                  ],
-                ],
-              },
-              layout: {
-                hLineWidth: () => 0,
-                vLineWidth: () => 0,
-              },
-            },
-          ],
-          columnGap: 10,
-          margin: [0, 0, 0, 12],
-        } as any,
+  <div class="body-doc">
+    <div style="border-top: 2px solid #f59e0b; margin-bottom: 10px;"></div>
 
-        // ─ DATA TABLE ─
-        { text: "Detalle del periodo", fontSize: 9, bold: true, color: BLUE, margin: [0, 0, 0, 4] },
-        {
-          table: {
-            widths: ["*", 55, 78, 63, 60, 25, 68, 75],
-            headerRows: 1,
-            body: [
-              [
-                th("Empresa"),
-                th("Placas / Cap."),
-                th("Llegada / Termino"),
-                th("Cisterna ant → des"),
-                th("Medidor ini → fin"),
-                th("m³", "right"),
-                th("Costo / Importe", "right"),
-                th("Personal"),
-              ],
-              ...bodyRows,
-            ],
-          },
-          layout: tableHeaderLayout,
-        } as any,
+    <div class="kpi-grid">
+      <div class="kpi-cards">
+        <div class="kpi-card">
+          <div class="kpi-title">Total recepciones</div>
+          <div class="kpi-value">${this.totalRecepciones()}</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Total m³ descargados</div>
+          <div class="kpi-value blue">${Math.round(this.totalM3())}</div>
+        </div>
+      </div>
+      <div>
+        <table class="summary-table">
+          <thead>
+            <tr><th colspan="2">Resumen de costos del periodo</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Importe total (precio con IVA × m³)</td>
+              <td style="text-align: right; font-weight: bold;">${fmtMoney(this.totalConIVA())}</td>
+            </tr>
+            <tr>
+              <td style="color: #6b7280; padding-left: 20px;">Subtotal base (sin IVA)</td>
+              <td style="color: #6b7280; text-align: right;">${fmtMoney(this.subtotalSinIVA())}</td>
+            </tr>
+            <tr>
+              <td style="color: #6b7280; padding-left: 20px;">IVA 16%</td>
+              <td style="color: #6b7280; text-align: right;">${fmtMoney(this.ivaDesglosado())}</td>
+            </tr>
+            <tr>
+              <td style="color: #dc2626; font-weight: bold;">Retención 4%</td>
+              <td style="color: #dc2626; text-align: right; font-weight: bold;">(${fmtMoney(this.retencion())})</td>
+            </tr>
+            <tr style="background-color: #003A62; color: white;">
+              <td style="font-weight: bold; font-size: 14px;">TOTAL A PAGAR</td>
+              <td style="text-align: right; font-weight: bold; font-size: 14px;">${fmtMoney(this.totalAPagar())}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-      ],
-    };
+    <div style="font-size: 12px; font-weight: bold; color: #003A62; margin-bottom: 10px;">Detalle del periodo</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Empresa</th>
+          <th>Placas / Cap.</th>
+          <th>Llegada / Término</th>
+          <th style="text-align: center;">Cisterna ant → des</th>
+          <th style="text-align: center;">Medidor ini → fin</th>
+          <th style="text-align: right;">m³</th>
+          <th style="text-align: right;">Costo / Importe</th>
+          <th>Personal</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${tableHtml}
+      </tbody>
+    </table>
+  </div>
 
-    await this.pdfGeneratorS.generatePdf(
-      docDef,
-      `reporte-pipas-${periodoLabel.replace(/\//g, "-").replace(/ - /g, "_")}`,
-      { clientName: "Recepcion de Pipas de Agua" },
-    );
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+</div>
+</body></html>`;
+
+    const slug = periodoLabel.replace(/\//g, "-").replace(/ - /g, "_");
+    this.htmlPrintS.printHtml(html, `reporte-pipas-${slug}`);
   }
 
   exportExcel(): void {

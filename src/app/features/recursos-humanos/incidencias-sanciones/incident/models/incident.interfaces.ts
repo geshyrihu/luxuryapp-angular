@@ -11,6 +11,7 @@ export interface IncidentListDTO {
   severityLevel: string;
   investigationStatus: EInvestigationStatus;
   incidentDateTime: string;
+  description: string;
   sanctionApplied: boolean;
   isCancelled: boolean;
   cancellationReason?: string;

@@ -2,30 +2,30 @@
   <div class="w-full px-4 py-2">
     @for (group of objectKeys(menuItemsGrouped); track group) { @if
     (menuItemsGrouped[group]?.length > 0) {
-    <div class="section-header mb-3 mt-4">
-      <h2 class="text-2xl font-bold m-0" [class]="menuTone(group).heading">
+    <div class="section-header mb-4 mt-4">
+      <h2 class="ds-heading text-2xl font-bold m-0" [class]="menuTone(group).heading">
         {{ group }}
       </h2>
-      <p class="text-xs text-secondary mt-1">
+      <p class="ds-text-secondary text-xs mt-1">
         Gestión y configuración avanzada de {{ group | lowercase }}.
       </p>
     </div>
 
-    <div class="grid mb-4">
+    <div class="grid mb-5">
       @for (item of menuItemsGrouped[group]; track item) { @if (item.visible) {
       <div class="col-6 sm:col-4 md:col-3 lg:col-2 xl:col-2">
         <div
+          class="ds-menu-card surface-card border-round-xl p-3 h-full flex flex-column align-items-center justify-content-center text-center"
           [class]="menuCardClass(group)"
-          class="surface-card border-round-xl p-2 h-full flex flex-column align-items-center justify-content-center text-center transition-all transition-duration-300 hover:shadow-4"
         >
-          <div [class]="menuShellClass(group)" class="mb-1 mt-1">
+          <div class="ds-icon-shell" [class]="menuShellClass(group)">
             @if (hasPrimeIcon(item.icon)) {
             <i [class]="menuGlyphClass(item.icon, group)"></i>
             } @else {
-            <span class="text-sm font-bold">{{ item.icon }}</span>
+            <span class="text-sm font-bold ds-glyph-text">{{ item.icon }}</span>
             }
           </div>
-          <span class="m-0 font-bold text-900 text-xs line-height-2 px-1">
+          <span class="ds-card-label m-0 font-bold text-900 text-sm line-height-2 px-1 mt-2">
             {{ item.label }}
           </span>
           @if (!item.items) {
@@ -61,7 +61,7 @@
         <span class="text-sm font-bold">{{ item.icon }}</span>
         }
       </span>
-      <ion-label>{{ item.label }}</ion-label>
+      <ion-label class="ds-mobile-label">{{ item.label }}</ion-label>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

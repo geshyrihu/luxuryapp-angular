@@ -52,18 +52,7 @@ export const reportsRoutes: Routes = [
       breadcrumb: "Resumen de Órdenes de Servicio",
     },
   },
-  {
-    path: "ordenes-servicio",
-    loadComponent: () =>
-      import("src/app/features/service-order/reporte-ordenes-servicio").then(
-        (m) => m.ReporteOrdenesServicio,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Reporte de Órdenes de Servicio",
-      breadcrumb: "Reporte de Órdenes de Servicio",
-    },
-  },
+  // Route removed because report is generated directly to PDF
   {
     path: "pending-minutes",
     loadComponent: () =>

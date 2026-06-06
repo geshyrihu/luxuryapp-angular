@@ -4,7 +4,6 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { alertCircleOutline } from "ionicons/icons";
-import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { MessageService } from "primeng/api";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
@@ -25,7 +24,7 @@ import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service";
+import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { CustomButton } from "src/app/core/components/buttons/web";
 import { MeetingSeguimientoEdit } from "../../juntas-comite/junta-comite-minutas/meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "../../juntas-comite/junta-comite-minutas/minuta-detalle-form";
@@ -58,7 +57,7 @@ export class ContListMinutaPendientes implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   authS = inject(AuthService);
   messageS = inject(MessageService);
-  pdfS = inject(PdfGeneratorService);
+  htmlPrintS = inject(HtmlPrintService);
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => {
@@ -151,88 +150,72 @@ export class ContListMinutaPendientes implements OnInit {
       return;
     }
 
-    const bodyData = pendientes.map((p: any, index: number) => [
-      { text: (index + 1).toString(), fontSize: 9 },
-      { text: p.nombreCorto, fontSize: 9 },
-      { text: p.date, fontSize: 9 },
-      {
-        stack: [
-          { text: p.title, fontSize: 10, bold: true },
-          { text: this.stripHtml(p.pendiente), fontSize: 9 },
-        ],
-      },
-      p.seguimientos.length > 0
-        ? {
-            ul: p.seguimientos.map((s: any) => ({
-              text: `${s.fecha}: ${s.seguimiento}`,
-              fontSize: 9,
-            })),
-          }
-        : { text: "-", fontSize: 9 },
-    ]);
+    let tableHtml = "";
+    pendientes.forEach((p: any, index: number) => {
+      const bg = index % 2 === 0 ? "#ffffff" : "#f9fafb";
+      
+      let seguimientosHtml = "-";
+      if (p.seguimientos && p.seguimientos.length > 0) {
+        seguimientosHtml = `<ul style="margin: 0; padding-left: 15px; font-size: 11px;">`;
+        p.seguimientos.forEach((s: any) => {
+          seguimientosHtml += `<li><strong>${this.htmlPrintS.esc(s.fecha)}:</strong> ${this.htmlPrintS.esc(s.seguimiento)}</li>`;
+        });
+        seguimientosHtml += `</ul>`;
+      }
 
-    const docDefinition: TDocumentDefinitions = {
-      content: [
-        {
-          text: "Reporte de Pendientes en Minutas",
-          style: "header",
-        },
-        {
-          text: `Fecha de generación: ${new Date().toLocaleDateString()}`,
-          style: "subheader",
-        },
-        {
-          text: `Total de pendientes: ${pendientes.length}`,
-          style: "subheader",
-        },
-        {
-          table: {
-            headerRows: 1,
-            widths: ["auto", "*", "auto", "*", "*"] as any,
-            body: [
-              [
-                { text: "#", style: "tableHeader" },
-                { text: "Cliente", style: "tableHeader" },
-                { text: "Fecha", style: "tableHeader" },
-                { text: "Asunto", style: "tableHeader" },
-                { text: "Seguimiento", style: "tableHeader" },
-              ],
-              ...(bodyData as any),
-            ],
-          },
-          layout: "lightHorizontalLines",
-          margin: [0, 20, 0, 0],
-        },
-      ],
-      styles: {
-        header: {
-          fontSize: 18,
-          bold: true,
-          alignment: "center",
-          margin: [0, 0, 0, 10],
-        },
-        subheader: {
-          fontSize: 11,
-          color: "#666666",
-          margin: [0, 5, 0, 5],
-        },
-        tableHeader: {
-          bold: true,
-          fontSize: 10,
-          color: "#FFFFFF",
-          fillColor: "#4a5568",
-        },
-      },
-      defaultStyle: {
-        font: "Roboto",
-        fontSize: 9,
-      },
-    };
+      tableHtml += `
+        <tr>
+          <td style="background-color: ${bg}; padding: 8px; text-align: center;">${index + 1}</td>
+          <td style="background-color: ${bg}; padding: 8px;">${this.htmlPrintS.esc(p.nombreCorto)}</td>
+          <td style="background-color: ${bg}; padding: 8px; text-align: center;">${this.htmlPrintS.esc(p.date)}</td>
+          <td style="background-color: ${bg}; padding: 8px;">
+            <div style="font-weight: bold; margin-bottom: 2px;">${this.htmlPrintS.esc(p.title)}</div>
+            <div style="color: #555;">${this.htmlPrintS.esc(this.stripHtml(p.pendiente))}</div>
+          </td>
+          <td style="background-color: ${bg}; padding: 8px;">${seguimientosHtml}</td>
+        </tr>
+      `;
+    });
 
-    await this.pdfS.generatePdf(
-      docDefinition,
-      "Pendientes_Minutas_Contabilidad",
-    );
+    const logo = await this.htmlPrintS.getLogoDataUrl();
+    const generatedAt = new Date();
+
+    const html = `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+  @page { margin: 10mm; }
+  .container { max-width: 1000px; margin: auto; }
+  .data-table { width:100%; border-collapse:collapse; margin-bottom:16px; font-size: 12px; }
+  .data-table th, .data-table td { padding:8px; border-bottom:1px solid #EEEEEE; vertical-align: top; }
+  .data-table th { background-color: #4a5568; color: #ffffff; font-weight: bold; text-align: left; }
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, "Reporte de Pendientes en Minutas", `Total de pendientes: ${pendientes.length}`, generatedAt, "CONTABILIDAD")}
+
+  <div class="body-doc">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 5%; text-align: center;">#</th>
+          <th style="width: 15%;">Cliente</th>
+          <th style="width: 15%; text-align: center;">Fecha</th>
+          <th style="width: 35%;">Asunto</th>
+          <th style="width: 30%;">Seguimiento</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${tableHtml}
+      </tbody>
+    </table>
+  </div>
+  
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+</div>
+</body></html>`;
+
+    this.htmlPrintS.printHtml(html, "Pendientes_Minutas_Contabilidad");
   }
 
   private stripHtml(html: string): string {

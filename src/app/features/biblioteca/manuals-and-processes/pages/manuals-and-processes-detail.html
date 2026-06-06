@@ -1,15 +1,22 @@
 <section class="surface-ground min-h-screen p-3 md:p-4">
   @if (loading()) {
-  <div class="flex align-items-center justify-content-center py-8" style="min-height: 20rem">
+  <div
+    class="flex align-items-center justify-content-center py-8"
+    style="min-height: 20rem"
+  >
     <i class="pi pi-spin pi-spinner text-primary text-4xl"></i>
   </div>
   } @else if (manual()) {
   <div class="w-full xl:w-10 mx-auto flex flex-column gap-4">
-    <header class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden">
+    <header
+      class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden"
+    >
       <div class="bg-yellow-500" style="height: 0.4rem"></div>
 
       <div class="p-4 md:p-5 border-bottom-1 surface-border">
-        <div class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-4">
+        <div
+          class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-4"
+        >
           <div class="flex flex-column md:flex-row md:align-items-center gap-3">
             <img
               [src]="logoPath"
@@ -26,8 +33,12 @@
             </div>
           </div>
 
-          <div class="flex flex-column sm:flex-row align-items-start sm:align-items-center gap-3">
-            <div class="surface-100 border-1 surface-border border-round-xl px-3 py-2 inline-flex align-items-center gap-2 text-sm text-color">
+          <div
+            class="flex flex-column sm:flex-row align-items-start sm:align-items-center gap-3"
+          >
+            <div
+              class="surface-100 border-1 surface-border border-round-xl px-3 py-2 inline-flex align-items-center gap-2 text-sm text-color"
+            >
               <i class="pi pi-book text-xs"></i>
               <span>Manual de Proceso · {{ manual()!.folio }}</span>
             </div>
@@ -42,6 +53,8 @@
                 (onClick)="onOpenEditor(manual()!.id)"
               />
               }
+              <!--
+                @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {              } -->
               <p-button
                 class="no-print"
                 icon="pi pi-print"
@@ -65,47 +78,66 @@
           />
         </div>
 
-        <p class="text-xs font-bold text-color-secondary m-0 mb-2" style="letter-spacing: 0.12em">
+        <p
+          class="text-xs font-bold text-color-secondary m-0 mb-2"
+          style="letter-spacing: 0.12em"
+        >
           {{ manual()!.folio }}
         </p>
         <h1 class="text-primary text-4xl line-height-2 m-0 mb-3">
           {{ manual()!.description || manual()!.folio }}
         </h1>
         <p class="text-color-secondary line-height-3 m-0 mb-4 max-w-30rem">
-          Referencia documental para la operacion del area de
-          {{ manual()!.departament || "trabajo" }}.
+          Referencia documental para la operacion del area de {{
+          manual()!.departament || "trabajo" }}.
         </p>
 
         <div class="border-top-1 surface-border pt-3 flex flex-wrap gap-3">
-          <div class="inline-flex align-items-center gap-2 text-color-secondary">
+          <div
+            class="inline-flex align-items-center gap-2 text-color-secondary"
+          >
             <i class="pi pi-sitemap"></i>
             <span>Departamento: {{ manual()!.departament }}</span>
           </div>
-          <div class="inline-flex align-items-center gap-2 text-color-secondary">
+          <div
+            class="inline-flex align-items-center gap-2 text-color-secondary"
+          >
             <i class="pi pi-calendar-clock"></i>
             <span>Frecuencia: {{ getPeriodicityReadable(manual()) }}</span>
           </div>
-          <div class="inline-flex align-items-center gap-2 text-color-secondary">
+          <div
+            class="inline-flex align-items-center gap-2 text-color-secondary"
+          >
             <i class="pi pi-tag"></i>
             <span>Version: {{ manual()!.currentVersion }}</span>
           </div>
-          <div class="inline-flex align-items-center gap-2 text-color-secondary">
+          <div
+            class="inline-flex align-items-center gap-2 text-color-secondary"
+          >
             <i class="pi pi-verified"></i>
             <span>Estado: {{ manualStatusLabel() }}</span>
           </div>
-          <div class="inline-flex align-items-center gap-2 text-color-secondary">
+          <div
+            class="inline-flex align-items-center gap-2 text-color-secondary"
+          >
             <i class="pi pi-globe"></i>
             <span>Alcance: {{ scopeLabel() }}</span>
           </div>
-          <div class="inline-flex align-items-center gap-2 text-color-secondary">
+          <div
+            class="inline-flex align-items-center gap-2 text-color-secondary"
+          >
             <i class="pi pi-users"></i>
             <span>Dirigido a: {{ audienceLabel() }}</span>
           </div>
-          <div class="inline-flex align-items-center gap-2 text-color-secondary">
+          <div
+            class="inline-flex align-items-center gap-2 text-color-secondary"
+          >
             <i class="pi pi-building"></i>
             <span>Visibilidad: {{ visibilityLabel() }}</span>
           </div>
-          <div class="inline-flex align-items-center gap-2 text-color-secondary">
+          <div
+            class="inline-flex align-items-center gap-2 text-color-secondary"
+          >
             <i class="pi pi-list"></i>
             <span>Pasos: {{ manual()!.pasos?.length || 0 }}</span>
           </div>
@@ -118,7 +150,9 @@
     <div class="grid">
       @if (manual()!.objetivo) {
       <div class="col-12 lg:col-6">
-        <article class="surface-card border-round-xl border-1 surface-border p-4 shadow-1 h-full">
+        <article
+          class="surface-card border-round-xl border-1 surface-border p-4 shadow-1 h-full"
+        >
           <div class="flex align-items-center gap-3 mb-3">
             <span
               class="w-3rem h-3rem border-round flex align-items-center justify-content-center text-white font-bold"
@@ -138,11 +172,11 @@
           </p>
         </article>
       </div>
-      }
-
-      @if (manual()!.marcoLegal) {
+      } @if (manual()!.marcoLegal) {
       <div class="col-12 lg:col-6">
-        <article class="surface-card border-round-xl border-1 surface-border p-4 shadow-1 h-full">
+        <article
+          class="surface-card border-round-xl border-1 surface-border p-4 shadow-1 h-full"
+        >
           <div class="flex align-items-center gap-3 mb-3">
             <span
               class="w-3rem h-3rem border-round flex align-items-center justify-content-center text-white font-bold"
@@ -157,7 +191,10 @@
               </p>
             </div>
           </div>
-          <p class="m-0 line-height-3 text-color-secondary" style="white-space: pre-wrap">
+          <p
+            class="m-0 line-height-3 text-color-secondary"
+            style="white-space: pre-wrap"
+          >
             {{ manual()!.marcoLegal }}
           </p>
         </article>
@@ -165,8 +202,12 @@
       }
     </div>
 
-    <article class="surface-card border-round-xl border-1 surface-border p-4 shadow-1">
-      <div class="flex align-items-start justify-content-between gap-3 flex-wrap mb-4">
+    <article
+      class="surface-card border-round-xl border-1 surface-border p-4 shadow-1"
+    >
+      <div
+        class="flex align-items-start justify-content-between gap-3 flex-wrap mb-4"
+      >
         <div class="flex align-items-center gap-3">
           <span
             class="w-3rem h-3rem border-round flex align-items-center justify-content-center text-white font-bold"
@@ -211,23 +252,27 @@
               <div class="flex align-items-center gap-2 flex-wrap mb-2">
                 <h4 class="text-base text-900 m-0">{{ paso.titulo }}</h4>
                 @for (nombre of paso.responsableRoleNombres; track nombre) {
-                <p-tag
-                  [value]="nombre"
-                  severity="secondary"
-                ></p-tag>
+                <p-tag [value]="nombre" severity="secondary"></p-tag>
                 }
               </div>
               @if (paso.descripcion) {
-              <p class="m-0 line-height-3 text-color-secondary" style="white-space: pre-wrap">
+              <p
+                class="m-0 line-height-3 text-color-secondary"
+                style="white-space: pre-wrap"
+              >
                 {{ paso.descripcion }}
               </p>
               }
             </div>
           </div>
           } @else {
-          <div class="flex align-items-center justify-content-between gap-2 mb-3 flex-wrap">
+          <div
+            class="flex align-items-center justify-content-between gap-2 mb-3 flex-wrap"
+          >
             <div class="flex align-items-center gap-2">
-              <span class="text-sm line-height-1">{{ noteEmoji(paso.tipoNota) }}</span>
+              <span class="text-sm line-height-1"
+                >{{ noteEmoji(paso.tipoNota) }}</span
+              >
               <strong
                 [class.text-blue-800]="paso.tipoNota === 1"
                 [class.text-yellow-800]="paso.tipoNota === 2"
@@ -239,19 +284,19 @@
           </div>
           <h4 class="text-base text-900 mt-0 mb-2">{{ paso.titulo }}</h4>
           @if (paso.descripcion) {
-          <p class="m-0 line-height-3 text-color-secondary" style="white-space: pre-wrap">
+          <p
+            class="m-0 line-height-3 text-color-secondary"
+            style="white-space: pre-wrap"
+          >
             {{ paso.descripcion }}
           </p>
-          }
-          }
-
-          @if (paso.diagramaXml) {
-          <div class="mt-3 border-round-xl overflow-hidden border-1 surface-border">
+          } } @if (paso.diagramaXml) {
+          <div
+            class="mt-3 border-round-xl overflow-hidden border-1 surface-border"
+          >
             <app-diagram-preview [xml]="paso.diagramaXml" />
           </div>
-          }
-
-          @if (paso.imagenes?.length) {
+          } @if (paso.imagenes?.length) {
           <div class="grid mt-1">
             @for (img of paso.imagenes; track img.id) {
             <div class="col-12 sm:col-6 xl:col-4">
@@ -268,32 +313,45 @@
             </div>
             }
           </div>
-          }
-
-          @if (paso.enlaces?.length) {
+          } @if (paso.enlaces?.length) {
           <div class="flex flex-column gap-3 mt-3">
-            @for (enlace of paso.enlaces; track enlace.id) {
-              @if (enlace.esVideo) {
-                @if (safeUrl(enlace.urlEnlace)) {
-                <div class="border-round-xl overflow-hidden border-1 surface-border" style="aspect-ratio: 16/9;">
-                  <iframe
-                    [src]="safeUrl(enlace.urlEnlace)"
-                    class="w-full h-full border-none"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                  ></iframe>
-                </div>
-                }
-              } @else {
-                <div class="flex align-items-center gap-2">
-                  <i class="pi pi-external-link text-primary"></i>
-                  <a [href]="enlace.urlEnlace" target="_blank" class="no-underline">
-                    <p-button icon="pi pi-external-link" label="Abrir Enlace" severity="info" size="small" [outlined]="true" />
-                  </a>
-                  <span class="text-sm text-color-secondary">{{ enlace.urlEnlace }}</span>
-                </div>
-              }
-            }
+            @for (enlace of paso.enlaces; track enlace.id) { @if
+            (enlace.esVideo) { @if (safeUrl(enlace.urlEnlace)) {
+            <div
+              class="border-round-xl overflow-hidden border-1 surface-border"
+              style="aspect-ratio: 16/9"
+            >
+              <iframe
+                [src]="safeUrl(enlace.urlEnlace)"
+                class="w-full h-full border-none"
+                allow="
+                  accelerometer;
+                  autoplay;
+                  clipboard-write;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                "
+                allowfullscreen
+              ></iframe>
+            </div>
+            } } @else {
+            <div class="flex align-items-center gap-2">
+              <i class="pi pi-external-link text-primary"></i>
+              <a [href]="enlace.urlEnlace" target="_blank" class="no-underline">
+                <p-button
+                  icon="pi pi-external-link"
+                  label="Abrir Enlace"
+                  severity="info"
+                  size="small"
+                  [outlined]="true"
+                />
+              </a>
+              <span class="text-sm text-color-secondary"
+                >{{ enlace.urlEnlace }}</span
+              >
+            </div>
+            } }
           </div>
           }
         </article>
@@ -311,7 +369,9 @@
     <div class="grid">
       @if (manual()!.adjuntos?.length) {
       <div class="col-12 xl:col-6">
-        <article class="surface-card border-round-xl border-1 surface-border p-4 shadow-1 h-full">
+        <article
+          class="surface-card border-round-xl border-1 surface-border p-4 shadow-1 h-full"
+        >
           <div class="flex align-items-center gap-3 mb-4">
             <span
               class="w-3rem h-3rem border-round flex align-items-center justify-content-center text-white font-bold"
@@ -328,7 +388,9 @@
           </div>
           <div class="flex flex-column gap-3">
             @for (adj of manual()!.adjuntos; track adj.id) {
-            <div class="surface-ground border-round-xl border-1 surface-border p-3 flex align-items-center justify-content-between gap-3 flex-wrap">
+            <div
+              class="surface-ground border-round-xl border-1 surface-border p-3 flex align-items-center justify-content-between gap-3 flex-wrap"
+            >
               <div class="flex align-items-center gap-3">
                 <i class="pi pi-file text-xl text-primary"></i>
                 <div>
@@ -351,11 +413,11 @@
           </div>
         </article>
       </div>
-      }
-
-      @if (manual()!.versiones?.length) {
+      } @if (manual()!.versiones?.length) {
       <div class="col-12 xl:col-6">
-        <article class="surface-card border-round-xl border-1 surface-border p-4 shadow-1 h-full">
+        <article
+          class="surface-card border-round-xl border-1 surface-border p-4 shadow-1 h-full"
+        >
           <div class="flex align-items-center gap-3 mb-4">
             <span
               class="w-3rem h-3rem border-round flex align-items-center justify-content-center text-white font-bold"
@@ -372,7 +434,9 @@
           </div>
           <div class="flex flex-column gap-3">
             @for (v of manual()!.versiones; track v.id) {
-            <div class="surface-ground border-round-xl border-1 surface-border p-3">
+            <div
+              class="surface-ground border-round-xl border-1 surface-border p-3"
+            >
               <div class="flex align-items-start gap-3">
                 <span
                   class="bg-primary text-white border-round-xl px-3 py-2 text-xs font-bold flex-shrink-0"
@@ -398,6 +462,6 @@
       }
     </div>
     }
-    </div>
+  </div>
   }
 </section>

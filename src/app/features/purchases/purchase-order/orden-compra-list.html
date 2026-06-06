@@ -12,31 +12,59 @@
   styleClass="custom-table card hidden md:block orden-compra-table"
 >
   <ng-template #caption>
-    <!-- ? INICIO: Botones de Tipo de Gasto -->
-    <div class="mb-4">
-      <div class="flex gap-1 flex-wrap w-full">
-        @for (tipo of tiposDeGasto; track tipo.id) {
-        <custom-button
-          [label]="tipo.label"
-          [iconClass]="tipo.iconClass"
-          (clicked)="onSelectTipoGasto(tipo.id)"
-          [severity]="tipo.id === tipoGasto() ? 'primary' : 'secondary'"
-          [variant]="tipo.id !== tipoGasto() ? 'outlined' : null"
-          size="sm"
-          [showLabelOnDesktop]="true"
-        />
-        }
+    <!-- 🗂️ Fila 1: Filtros de Categorización (Tipos de Gasto) -->
+    <div class="grid p-0 mb-3 align-items-stretch">
+      @for (tipo of tiposDeGasto; track tipo.id) {
+      <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+        <div
+          (click)="onSelectTipoGasto(tipo.id)"
+          [class.bg-primary]="tipo.id === tipoGasto()"
+          [class.border-primary]="tipo.id === tipoGasto()"
+          [class.text-white]="tipo.id === tipoGasto()"
+          [class.surface-card]="tipo.id !== tipoGasto()"
+          [class.surface-border]="tipo.id !== tipoGasto()"
+          [class.hover:surface-hover]="tipo.id !== tipoGasto()"
+          class="border-1 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-colors transition-duration-150"
+        >
+          <i
+            [class]="tipo.iconClass"
+            class="mb-1 text-xl"
+            [class.text-primary]="tipo.id !== tipoGasto()"
+          ></i>
+          <span
+            class="text-xs text-center line-height-2"
+            [class.text-700]="tipo.id !== tipoGasto()"
+          >
+            {{ tipo.label }}
+          </span>
+        </div>
       </div>
+      }
     </div>
-    <!--  giu?ng FIN: Botones de Tipo de Gasto -->
-    <div class="flex flex-wrap align-items-center mb-3">
-      <!-- Título a la izquierda -->
-      <div class="flex-1">
-        <h4 class="mb-0">{{ customTitle() | uppercase }}</h4>
+
+    <!-- 🛠️ Contenedor Maestro: Alineación Perfecta (Título + Buscador + Acciones) -->
+    <div
+      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round shadow-1"
+    >
+      <!-- IZQUIERDA: Título y Buscador (Toma el espacio libre) -->
+      <div
+        class="flex flex-column sm:flex-row align-items-center gap-3 flex-grow-1"
+      >
+        <h4 class="m-0 uppercase text-primary font-bold whitespace-nowrap">
+          {{ customTitle() }}
+        </h4>
+        <div class="w-full sm:w-auto">
+          <primeng-custom-caption
+            (add)="onModalAdd()"
+            [dt]="dt"
+            [noPadding]="true"
+            [noMargin]="true"
+          />
+        </div>
       </div>
 
-      <!-- Custom-caption -->
-      <div class="flex-none flex">
+      <!-- DERECHA: Acciones Especiales y Filtros de Estado -->
+      <div class="flex flex-column sm:flex-row align-items-center gap-2">
         <custom-button
           label="Actualizar Referencias"
           iconClass="pi pi-link"
@@ -45,12 +73,11 @@
           size="sm"
           [showLabelOnDesktop]="true"
         />
-        <primeng-custom-caption (add)="onModalAdd()" [dt]="dt" />
-      </div>
 
-      <!-- Botones de estado -->
-      <div class="flex-none">
-        <div class="flex gap-1 flex-wrap">
+        <!-- Separador Visual -->
+        <div class="hidden md:block border-left-1 border-300 h-2rem mx-1"></div>
+
+        <div class="flex gap-1">
           <custom-button
             label="Denegadas"
             iconClass="pi pi-times-circle"
@@ -84,10 +111,8 @@
   </ng-template>
   <ng-template #colgroup>
     <colgroup>
-      <col class="oc-col-folio" />
-      <col class="oc-col-indice" />
-      <col class="oc-col-fondeo" />
-      <col class="oc-col-solicitud" />
+      <col class="oc-col-identificadores" />
+      <col class="oc-col-seguimiento" />
       <col class="oc-col-descripcion" />
       <col class="oc-col-partida" />
       <col class="oc-col-proveedor" />
@@ -103,16 +128,11 @@
   <ng-template #header>
     <tr>
       <th pSortableColumn="folio">
-        Folio
+        IDENTIFICADORES
         <p-sortIcon field="folio" />
       </th>
-      <th pSortableColumn="indice">
-        Id Fondeo
-        <p-sortIcon field="indice" />
-      </th>
-      <th>Fondeo</th>
       <th pSortableColumn="fechaSolicitud">
-        Solicitud
+        SEGUIMIENTO
         <p-sortIcon field="fechaSolicitud" />
       </th>
       <th pSortableColumn="equipoOInstalacion">
@@ -142,76 +162,100 @@
         <p-sortIcon field="fullName" />
       </th>
       }
-      <th></th>
+      <th class="text-center">ACCIONES</th>
     </tr>
   </ng-template>
   <ng-template #body let-item>
     <tr>
-      <td class="text-sm">{{ item.folio }}</td>
-      <td class="text-sm">{{ item.indice }}</td>
-      <td class="text-sm oc-cell-wrap">
-        @if (item.isFueraFondeo) {
-        <p-tag severity="warn" value="Fuera de proceso"></p-tag>
-        } @else if (item.isFunded) {
-        <p-tag severity="success" [value]="item.fundingPeriodName"></p-tag>
-        } @else { Sin Asignar }
-      </td>
-      <td>{{ item.fechaSolicitud | date : 'd MMM yyyy' : 'UTC' }}</td>
-      <td class="text-sm oc-cell-wrap">
-        {{ item.equipoOInstalacion }}
+      <td class="text-sm">
+        <span class="font-bold text-primary">{{ item.folio }}</span>
         <br />
-        {{ item.justificacionGasto }}
+        <small class="text-500">ID: {{ item.indice }}</small>
+      </td>
+      <td class="text-sm">
+        @if (item.isFueraFondeo) {
+        <p-tag severity="warn" value="Fuera de proceso" />
+        } @else if (item.isFunded) {
+        <p-tag severity="success" [value]="item.fundingPeriodName" />
+        } @else {
+        <span class="text-500 italic">Sin Asignar</span>
+        }
+        <br />
+        <span class="text-xs text-600">
+          <i class="pi pi-calendar mr-1"></i>
+          {{ item.fechaSolicitud | date : 'd MMM yyyy' : 'UTC' }}
+        </span>
       </td>
       <td class="text-sm oc-cell-wrap">
-        <ul>
+        <div class="font-bold">{{ item.equipoOInstalacion }}</div>
+        <div class="text-xs text-500">{{ item.justificacionGasto }}</div>
+      </td>
+      <td class="text-sm oc-cell-wrap">
+        <ul class="list-none p-0 m-0">
           @for (budget of item.budgets; track $index) {
-          <li>
-            {{ budget.accountNumber }}
+          <li class="mb-1">
+            <span class="text-primary font-medium"
+              >{{ budget.accountNumber }}</span
+            >
             <br />
-            {{ budget.accountName }}
+            <span class="text-xs text-600">{{ budget.accountName }}</span>
           </li>
           }
         </ul>
       </td>
       <td class="text-sm oc-cell-wrap">{{ item.proveedor }}</td>
-      <td class="text-sm oc-cell-total">{{ item.total | number: '1.2-2'}}</td>
+      <td class="text-sm oc-cell-total font-bold text-primary">
+        {{ item.total | number : '1.2-2' }}
+      </td>
       @if (statusCompra() === 1) {
-      <td class="oc-cell-wrap">{{ item.observaciones }}</td>
+      <td class="text-sm oc-cell-wrap text-500">{{ item.observaciones }}</td>
       } @if (this.statusCompra() === 0) {
       <td class="text-sm oc-cell-wrap">
-        {{ item.fullName }}
-        <br />
-        {{ item.fechaAutorizacion | date: 'short' }}
+        <div class="font-medium">{{ item.fullName }}</div>
+        <div class="text-xs text-500">
+          {{ item.fechaAutorizacion | date : 'short' }}
+        </div>
       </td>
       }
-      <td class="no-print oc-cell-actions">
-        <div class="flex oc-actions-container">
+      <td class="no-print oc-cell-actions text-center">
+        <app-action-menu>
           <custom-button-item
             iconClass="pi pi-window-maximize"
             label="Editar en modal"
             (clicked)="onOrdenCompraModal(item.id)"
+            variant="text"
+            [showLabelOnDesktop]="true"
           />
-          <custom-button-edit (clicked)="onAddOrEdit(item.id)" />
+          <custom-button-edit
+            (clicked)="onAddOrEdit(item.id)"
+            variant="text"
+            [showLabelOnDesktop]="true"
+            label="Editar"
+          />
 
           @if (statusCompra() === 0) {
-          <!-- routerLink="/compras/solicitud-pago-pdf/{{item.id}}" -->
           <custom-button-item
             iconClass="pi pi-money-bill"
             label="Solicitud de pago"
             (clicked)="onDownloadSolicitudPagoPdf(item.id)"
             variant="text"
+            [showLabelOnDesktop]="true"
           />
-          } @if (statusCompra() === 0) {
-          <!-- routerLink="/compras/orden-compra-pdf/{{item.id}}" -->
           <custom-button-item
             iconClass="pi pi-file-pdf"
             label="Orden de compra"
             (clicked)="onDownloadOrdenCompraPdf(item.id)"
             variant="text"
+            [showLabelOnDesktop]="true"
           />
-          } @if (statusCompra() === 2) { }
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
-        </div>
+          }
+          <custom-button-delete
+            (confirmed)="onDelete(item.id)"
+            variant="text"
+            [showLabelOnDesktop]="true"
+            label="Eliminar"
+          />
+        </app-action-menu>
       </td>
     </tr>
   </ng-template>
@@ -225,6 +269,73 @@
   [globalFilterFields]="globalFilterFields()"
   (add)="onModalAdd()"
 >
+  <div customFilters>
+    <div class="px-3 pb-2 flex flex-column gap-3">
+      <!-- Filtros de Tipo de Gasto -->
+      <div>
+        <p class="text-xs font-bold mb-2 uppercase text-500">Tipo de Gasto</p>
+        <div class="grid p-0 align-items-stretch">
+          @for (tipo of tiposDeGasto; track tipo.id) {
+          <div class="col-4 flex p-1">
+            <div
+              (click)="onSelectTipoGasto(tipo.id)"
+              [class.bg-primary]="tipo.id === tipoGasto()"
+              [class.border-primary]="tipo.id === tipoGasto()"
+              [class.text-white]="tipo.id === tipoGasto()"
+              [class.surface-card]="tipo.id !== tipoGasto()"
+              [class.surface-border]="tipo.id !== tipoGasto()"
+              [class.hover:surface-hover]="tipo.id !== tipoGasto()"
+              class="border-1 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-colors transition-duration-150"
+            >
+              <i
+                [class]="tipo.iconClass"
+                class="mb-1 text-xl"
+                [class.text-primary]="tipo.id !== tipoGasto()"
+              ></i>
+              <span
+                class="text-xs text-center line-height-2"
+                [class.text-700]="tipo.id !== tipoGasto()"
+              >
+                {{ tipo.label }}
+              </span>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+
+      <!-- Filtros de Estado -->
+      <div>
+        <p class="text-xs font-bold mb-2 uppercase text-500">Estado de Orden</p>
+        <div class="flex gap-1">
+          <custom-button
+            class="flex-1"
+            label="Denegadas"
+            (clicked)="onSelectStatus(1)"
+            [variant]="statusCompra() !== 1 ? 'outlined' : null"
+            [severity]="statusCompra() === 1 ? 'primary' : 'secondary'"
+            size="sm"
+          />
+          <custom-button
+            class="flex-1"
+            label="Autorizadas"
+            (clicked)="onSelectStatus(0)"
+            [variant]="statusCompra() !== 0 ? 'outlined' : null"
+            [severity]="statusCompra() === 0 ? 'primary' : 'secondary'"
+            size="sm"
+          />
+          <custom-button
+            class="flex-1"
+            label="Pendientes"
+            (clicked)="onSelectStatus(2)"
+            [variant]="statusCompra() !== 2 ? 'outlined' : null"
+            [severity]="statusCompra() === 2 ? 'primary' : 'secondary'"
+            size="sm"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
       <div

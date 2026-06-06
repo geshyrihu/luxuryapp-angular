@@ -8,7 +8,6 @@ import {
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
-import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
@@ -28,7 +27,7 @@ import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service";
+import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { WarehouseForm } from "./warehouse-form";
 import {
   IonButtonDelete,
@@ -61,7 +60,7 @@ export class WarehouseList implements OnInit {
   customerIdS = inject(CustomerIdService); // Inyectamos AuthService para obtener el customerId
   router = inject(Router);
   aspRoleService = inject(AspRoleService);
-  pdfGeneratorS = inject(PdfGeneratorService); // ? Added
+  htmlPrintS = inject(HtmlPrintService);
 
   // Declaración e inicialización de signals
   dataSignal = signal<any[]>([]);
@@ -167,7 +166,7 @@ export class WarehouseList implements OnInit {
       // Group by category
       const groups = sortedData.reduce(
         (acc, item) => {
-          const category = item.category || "SIN CATEGORóA";
+          const category = item.category || "SIN CATEGORÍA";
           if (!acc[category]) acc[category] = [];
           acc[category].push(item);
           return acc;
@@ -175,118 +174,73 @@ export class WarehouseList implements OnInit {
         {} as Record<string, any[]>,
       );
 
-      const content: any[] = [
-        {
-          text: `INVENTARIO: ${warehouseName.toUpperCase()}`,
-          style: "header",
-          margin: [0, 0, 0, 10],
-        },
-      ];
+      let tableHtml = "";
 
       for (const category in groups) {
-        content.push({
-          text: category,
-          style: "subheader",
-          margin: [0, 10, 0, 5],
-        });
+        tableHtml += `
+          <tr>
+            <td colspan="4" class="sistema-header">${this.htmlPrintS.esc(category)}</td>
+          </tr>
+        `;
 
-        const tableBody = groups[category].map((item) => {
-          return [
-            // Product Name
-            {
-              text: item.producto || "",
-              style: "tableCell",
-              margin: [0, 15, 0, 0],
-              bold: true,
-            },
-            // Unit
-            {
-              text: item.unidadDeMedida || "",
-              style: "tableCell",
-              margin: [0, 15, 0, 0],
-              alignment: "center",
-            },
-            // Stock
-            {
-              text: item.existencia?.toString() || "0",
-              style: "tableCell",
-              margin: [0, 15, 0, 0],
-              alignment: "center",
-              color:
-                item.existencia <= item.stockMin
-                  ? "red"
-                  : item.existencia > item.stockMax
-                    ? "orange"
-                    : "black",
-              bold: true,
-            },
-            // Limits
-            {
-              text: `${item.stockMin} / ${item.stockMax}`,
-              style: "tableCell",
-              margin: [0, 15, 0, 0],
-              alignment: "center",
-              color: "#666",
-            },
-          ];
-        });
+        groups[category].forEach((item, idx) => {
+          const bg = idx % 2 === 0 ? "#ffffff" : "#f9fafb";
+          
+          let color = "#000000";
+          if (item.existencia <= item.stockMin) color = "#dc3545"; // red
+          else if (item.existencia > item.stockMax) color = "#fd7e14"; // orange
 
-        content.push({
-          table: {
-            widths: ["*", "auto", "auto", "auto"],
-            headerRows: 1,
-            body: [
-              [
-                { text: "Producto", style: "tableHeader" },
-                { text: "Unidad", style: "tableHeader", alignment: "center" },
-                {
-                  text: "Existencia",
-                  style: "tableHeader",
-                  alignment: "center",
-                },
-                {
-                  text: "Min / Max",
-                  style: "tableHeader",
-                  alignment: "center",
-                },
-              ],
-              ...tableBody,
-            ],
-          },
-          layout: {
-            hLineWidth: (i: number, node: any) => 1,
-            vLineWidth: () => 0,
-            hLineColor: () => "#EEEEEE",
-          },
-          margin: [0, 0, 0, 15],
+          tableHtml += `
+            <tr>
+              <td style="background-color: ${bg}; padding: 8px; font-weight: bold;">${this.htmlPrintS.esc(item.producto || "")}</td>
+              <td style="background-color: ${bg}; padding: 8px; text-align: center;">${this.htmlPrintS.esc(item.unidadDeMedida || "")}</td>
+              <td style="background-color: ${bg}; padding: 8px; text-align: center; font-weight: bold; color: ${color};">${this.htmlPrintS.esc(item.existencia?.toString() || "0")}</td>
+              <td style="background-color: ${bg}; padding: 8px; text-align: center; color: #666;">${item.stockMin} / ${item.stockMax}</td>
+            </tr>
+          `;
         });
       }
 
-      const docDefinition: TDocumentDefinitions = {
-        content: content,
-        styles: {
-          header: { fontSize: 18, bold: true, color: "#003A62" },
-          subheader: {
-            fontSize: 14,
-            bold: true,
-            color: "#003A62",
-            fillColor: "#eef2f7",
-          },
-          tableHeader: {
-            bold: true,
-            fontSize: 10,
-            color: "#333333",
-            margin: [0, 5, 0, 5],
-          },
-          tableCell: { fontSize: 9, margin: [2, 4, 2, 4] },
-        },
-      };
+      const logo = await this.htmlPrintS.getLogoDataUrl();
+      const generatedAt = new Date();
 
-      this.pdfGeneratorS.generatePdf(
-        docDefinition,
-        `Inventario_${warehouseName.replace(/\s+/g, "_")}`,
-        { clientName: `Almacón: ${warehouseName}` },
-      );
+      const html = `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+  @page { margin: 10mm; }
+  .container { max-width: 1000px; }
+  .sistema-header { background-color: #eef2f7 !important; color: #003A62 !important; font-weight: bold; font-size: 14px; padding: 6px 10px !important; }
+  
+  .data-table { width:100%; border-collapse:collapse; margin-bottom:16px; }
+  .data-table th, .data-table td { padding:8px; border-bottom:1px solid #EEEEEE; }
+  .data-table th { background-color: #f8f9fa; font-weight: bold; color: #333; text-align: center; border-bottom: 2px solid #ddd; }
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, `INVENTARIO: ${warehouseName.toUpperCase()}`, `Almacén: ${warehouseName}`, generatedAt, "ALMACÉN")}
+
+  <div class="body-doc">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="text-align: left;">Producto</th>
+          <th>Unidad</th>
+          <th>Existencia</th>
+          <th>Min / Max</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${tableHtml}
+      </tbody>
+    </table>
+  </div>
+  
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+</div>
+</body></html>`;
+
+      this.htmlPrintS.printHtml(html, `Inventario_${warehouseName.replace(/\s+/g, "_")}`);
     } catch (e) {
       console.error("Error generating Warehouse PDF", e);
     } finally {

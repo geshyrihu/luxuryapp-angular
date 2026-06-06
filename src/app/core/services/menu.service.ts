@@ -6,6 +6,7 @@ import {
   Injectable,
   OnDestroy,
   signal,
+  untracked,
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { fromEvent } from "rxjs";
@@ -78,7 +79,9 @@ export class MenuService implements OnDestroy {
           "green",
           `[MenuService] Customer data is ready for ${customerId}. Loading menu...`,
         );
-        this.triggerMenuLoad();
+        untracked(() => {
+          void this.triggerMenuLoad();
+        });
       } else if (!isCustomerReady) {
         this.consoleLogger.custom(
           "🧹",
@@ -100,10 +103,7 @@ export class MenuService implements OnDestroy {
       return;
     }
 
-    if (
-      this.menuItemsSignal().length > 0 &&
-      this.lastCustomerId === customerId
-    ) {
+    if (this.menuLoadedSignal() && this.lastCustomerId === customerId) {
       this.menuLoadedSignal.set(true);
       this.menuLoadingSignal.set(false);
       return;

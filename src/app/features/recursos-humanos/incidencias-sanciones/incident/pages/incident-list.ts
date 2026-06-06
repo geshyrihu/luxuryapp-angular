@@ -71,11 +71,14 @@ export class IncidentList implements OnInit {
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
-  globalFilterFields = computed(() => {
-    const data = this.dataSignal();
-    if (!data || data.length === 0) return [];
-    return globalFilterFields(data);
-  });
+  globalFilterFields = signal([
+    "employeeName",
+    "incidentTypeName",
+    "category",
+    "severityLevel",
+    "investigationStatus",
+    "description",
+  ]);
 
   ngOnInit(): void {
     this.onLoadData();

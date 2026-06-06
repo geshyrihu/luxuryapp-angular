@@ -22,7 +22,11 @@ import {
   provideZonelessChangeDetection,
 } from "@angular/core";
 import { provideAnimations } from "@angular/platform-browser/animations";
-import { provideRouter, withInMemoryScrolling } from "@angular/router";
+import {
+  provideRouter,
+  withInMemoryScrolling,
+  withRouterConfig,
+} from "@angular/router";
 import { provideServiceWorker } from "@angular/service-worker";
 import { provideIonicAngular } from "@ionic/angular/standalone";
 // Importaciones de Firebase
@@ -59,6 +63,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       appRoutes,
       withInMemoryScrolling({ scrollPositionRestoration: "enabled" }),
+      withRouterConfig({ onSameUrlNavigation: "reload" }),
     ),
 
     provideAppInitializer(initializeAppState),
@@ -138,7 +143,6 @@ export const appConfig: ApplicationConfig = {
     provideIonicAngular({ mode: "ios" }),
   ],
 };
-
 
 
 

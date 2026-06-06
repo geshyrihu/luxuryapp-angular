@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, signal, ViewEncapsulation } from "@angular/core";
+import { Component, computed, inject, OnDestroy, signal, ViewEncapsulation } from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -149,7 +149,7 @@ interface AccesoRol {
   direccion: string;
   staff: string;
   condomino: string;
-  contractor: string;
+  proveedor: string;
 }
 
 interface ItemChecklist {
@@ -251,7 +251,7 @@ interface BloqueVisual {
   encapsulation: ViewEncapsulation.None,
   providers: [MessageService],
 })
-export class CatalogComponentUi {
+export class CatalogComponentUi implements OnDestroy {
   private messageService = inject(MessageService);
   private fb = inject(FormBuilder);
 
@@ -401,7 +401,7 @@ export class CatalogComponentUi {
       direccion: "Aprobar",
       staff: "Leer",
       condomino: "Sin acceso",
-      contractor: "Leer parcial",
+      proveedor: "Leer parcial",
     },
     {
       documento: "Manual Tecnico",
@@ -409,7 +409,7 @@ export class CatalogComponentUi {
       direccion: "Consultar",
       staff: "Leer",
       condomino: "Sin acceso",
-      contractor: "Si aplica",
+      proveedor: "Si aplica",
     },
     {
       documento: "Instructivo Residentes",
@@ -417,7 +417,7 @@ export class CatalogComponentUi {
       direccion: "Aprobar",
       staff: "Consultar",
       condomino: "Leer",
-      contractor: "Sin acceso",
+      proveedor: "Sin acceso",
     },
     {
       documento: "Protocolo Emergencia",
@@ -425,7 +425,7 @@ export class CatalogComponentUi {
       direccion: "Aprobar",
       staff: "Leer",
       condomino: "Version simplificada",
-      contractor: "Leer",
+      proveedor: "Leer",
     },
     {
       documento: "Politica Corporativa",
@@ -433,11 +433,11 @@ export class CatalogComponentUi {
       direccion: "Aprobar",
       staff: "Sin acceso",
       condomino: "Sin acceso",
-      contractor: "Sin acceso",
+      proveedor: "Sin acceso",
     },
   ];
 
-  readonly checklist: ItemChecklist[] = [
+  checklist = signal<ItemChecklist[]>([
     {
       numero: 1,
       descripcion: "El codigo sigue nomenclatura estandar TIPO-DEPTO-NNN.",
@@ -522,7 +522,7 @@ export class CatalogComponentUi {
         "El documento cumple contraste WCAG 2.1 AA en version digital.",
       aprobado: true,
     },
-  ];
+  ]);
 
   readonly estilosTipografia = [
     {
@@ -699,34 +699,56 @@ export class CatalogComponentUi {
     document.body.setAttribute("data-theme", newTheme ? "dark" : "light");
   }
 
-  copy(text: string) {
-    navigator.clipboard.writeText(text);
-    this.messageService.add({
-      severity: "success",
-      summary: "Copiado",
-      detail: text,
-      life: 1500,
-    });
+  async copy(text: string) {
+    try {
+      await navigator.clipboard.writeText(text);
+      this.messageService.add({
+        severity: "success",
+        summary: "Copiado",
+        detail: text,
+        life: 1500,
+      });
+    } catch {
+      this.messageService.add({
+        severity: "error",
+        summary: "Error al copiar",
+        detail: "No se pudo copiar al portapapeles",
+        life: 3000,
+      });
+    }
   }
 
   // --- Computadas Estándar Documental ---
   puntajeChecklist = computed(() =>
-    this.checklist.filter((item) => item.aprobado).length
+    this.checklist().filter((item) => item.aprobado).length
   );
 
   puntajeAprobatorio = computed(() => this.puntajeChecklist() >= 12);
+
+  toggleChecklistItem(numero: number) {
+    this.checklist.update(items =>
+      items.map(item =>
+        item.numero === numero ? { ...item, aprobado: !item.aprobado } : item
+      )
+    );
+  }
 
   getColorAcceso(valor: string): TagSeverity {
     if (valor === "Sin acceso") return "danger";
     if (valor === "Editar" || valor === "Publicar") return "success";
     if (valor === "Aprobar") return "info";
-    if (valor === "Leer" || valor === "Consultar" || valor === "Leer parcial") {
+    if (valor === "Leer" || valor === "Consultar" || valor === "Leer parcial" || valor === "Version simplificada") {
       return "secondary";
     }
+    if (valor === "Si aplica") return "warn";
     return "warn";
   }
 
   getNomenclaturaEjemplo(doc: TipoDocumento): string {
     return `${doc.codigo}-DEPTO-001_v1.0_2026-04_VIGENTE.pdf`;
+  }
+
+  ngOnDestroy() {
+    // Cleanup if needed
   }
 }

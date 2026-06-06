@@ -1,11 +1,9 @@
 import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service";
-import { SolicitudCompraPdfService } from "./solicitud-compra-pdf.service";
+import { HtmlPrintService } from "src/app/core/services/html-print.service";
 @Component({
   selector: "app-pdf-solicitud-compra",
   template: "",
@@ -13,11 +11,10 @@ import { SolicitudCompraPdfService } from "./solicitud-compra-pdf.service";
 export class PdfSolicitudCompra implements OnInit {
   apiResponseS = inject(ApiResponseService);
   routeActive = inject(ActivatedRoute);
-  pdfGeneratorS = inject(PdfGeneratorService);
+  htmlPrintS = inject(HtmlPrintService);
   customToastS = inject(CustomToastService);
   router = inject(Router);
   customerIdS = inject(CustomerIdService);
-  solicitudCompraPdfS = inject(SolicitudCompraPdfService);
 
   idSolicitudCompra: number = 0;
 
@@ -64,173 +61,88 @@ export class PdfSolicitudCompra implements OnInit {
     requestData: any,
     customerData: any,
   ): Promise<void> {
-    const docDefinition = this.buildPdfContent(requestData, customerData);
+    const html = await this.buildHtmlContent(requestData, customerData);
 
-    await this.pdfGeneratorS.generatePdf(
-      docDefinition,
-      `SolicitudCompra-${requestData.folio}`,
-    );
+    this.htmlPrintS.printHtml(html, `SolicitudCompra-${requestData.folio}`);
 
     this.router.navigate(["/purchases/solicitud-compra", requestData.id], {
       replaceUrl: true,
     });
   }
 
-  private buildPdfContent(data: any, customerData: any): TDocumentDefinitions {
-    const itemsTableBody = data.solicitudCompraDetalle.map(
-      (item: any, index: number) => {
-        return [
-          {
-            text: (index + 1).toString(),
-            style: "tableCell",
-            alignment: "center",
-          },
-          { text: item.producto, style: "tableCell" },
-          {
-            text: item.cantidad.toString(),
-            style: "tableCell",
-            alignment: "center",
-          },
-          { text: item.unidadMedida, style: "tableCell", alignment: "center" },
-        ];
-      },
-    );
-
-    const headerColumns: any[] = [];
-    if (customerData.logo) {
-      headerColumns.push({ image: customerData.logo, fit: [150, 70] });
-    }
-    headerColumns.push({
-      stack: [
-        { text: "SOLICITUD DE COTIZACIÓN", style: "header" },
-        { text: `Folio: ${data.folio}`, alignment: "right" },
-        {
-          text: `Fecha: ${new Date(data.fechaSolicitud).toLocaleDateString("es-MX")}`,
-          alignment: "right",
-        },
-      ],
+  private async buildHtmlContent(
+    data: any,
+    customerData: any,
+  ): Promise<string> {
+    let itemsRowsHtml = "";
+    data.solicitudCompraDetalle.forEach((item: any, index: number) => {
+      itemsRowsHtml += `
+        <tr>
+          <td style="text-align: center;">${index + 1}</td>
+          <td>${this.htmlPrintS.esc(item.producto)}</td>
+          <td style="text-align: center;">${item.cantidad}</td>
+          <td style="text-align: center;">${this.htmlPrintS.esc(item.unidadMedida)}</td>
+        </tr>
+      `;
     });
 
-    return {
-      content: [
-        {
-          columns: headerColumns,
-        },
-        {
-          canvas: [
-            {
-              type: "line",
-              x1: 0,
-              y1: 10,
-              x2: 515,
-              y2: 10,
-              lineWidth: 1,
-              lineColor: "#CCCCCC",
-            },
-          ],
-        },
-        { text: "", margin: [0, 0, 0, 10] },
+    const logo = await this.htmlPrintS.getLogoDataUrl();
+    const generatedAt = new Date();
+    const requestDateStr = new Date(data.fechaSolicitud).toLocaleDateString(
+      "es-MX",
+    );
 
-        // Items Table
-        { text: "DETALLE DE ARTÍCULOS / SERVICIOS", style: "subheader" },
-        {
-          table: {
-            headerRows: 1,
-            widths: ["auto", "*", "auto", "auto"],
-            body: [
-              [
-                { text: "#", style: "tableHeader", alignment: "center" },
-                { text: "DESCRIPCIÓN", style: "tableHeader" },
-                { text: "CANTIDAD", style: "tableHeader", alignment: "center" },
-                { text: "UNIDAD", style: "tableHeader", alignment: "center" },
-              ],
-              ...itemsTableBody,
-            ],
-          },
-          layout: "lightHorizontalLines",
-        },
+    return `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+  @page { margin: 10mm; }
+  .container { max-width: 1000px; margin: auto; }
 
-        // Signatures
-        { text: "", margin: [0, 0, 0, 40] },
-        {
-          columns: [
-            {
-              stack: [
-                {
-                  canvas: [
-                    {
-                      type: "line",
-                      x1: 0,
-                      y1: 0,
-                      x2: 200,
-                      y2: 0,
-                      lineWidth: 0.5,
-                    },
-                  ],
-                },
-                { text: data.solicita, style: "signatureName" },
-                { text: "SOLICITANTE", style: "signatureRole" },
-              ],
-              alignment: "center",
-            },
-            /* Optional: Add authorization signature if available
-              {
-                stack: [
-                  {
-                     canvas: [{ type: "line", x1: 0, y1: 0, x2: 200, y2: 0, lineWidth: 0.5 }]
-                  },
-                  { text: "AUTORIZACIÓN", style: "signatureRole", margin: [0, 5, 0, 0] }
-                ],
-                alignment: "center"
-              }
-              */
-          ],
-        },
-      ],
-      styles: {
-        header: {
-          fontSize: 16,
-          bold: true,
-          alignment: "right",
-          color: "#003A62",
-        },
-        subheader: {
-          fontSize: 12,
-          bold: true,
-          margin: [0, 10, 0, 5],
-          color: "#003A62",
-        },
-        tableHeader: {
-          bold: true,
-          fontSize: 10,
-          color: "#003A62",
-          fillColor: "#f2f2f2",
-          margin: [0, 5],
-        },
-        tableCell: {
-          fontSize: 10,
-          margin: [0, 5],
-        },
-        signatureName: {
-          fontSize: 10,
-          bold: true,
-          margin: [0, 5, 0, 0],
-        },
-        signatureRole: {
-          fontSize: 9,
-          italics: true,
-          color: "#555555",
-        },
-      },
-    };
+  .subheader { font-size: 14px; font-weight: bold; color: #003A62; margin-top: 20px; margin-bottom: 10px; }
+
+  .items-table { width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 40px; }
+  .items-table th { background-color: #f2f2f2; color: #003A62; font-weight: bold; padding: 8px; text-align: left; border-bottom: 1px solid #ccc; }
+  .items-table td { padding: 8px; border-bottom: 1px solid #eee; }
+
+  .signatures-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-top: 50px; justify-items: center; }
+  .signature-box { text-align: center; width: 200px; }
+  .signature-line { border-top: 1px solid #333; width: 100%; margin-bottom: 5px; }
+  .signature-name { font-size: 11px; font-weight: bold; margin-bottom: 2px; }
+  .signature-role { font-size: 10px; font-style: italic; color: #555; }
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, "SOLICITUD DE COTIZACIÓN", `Folio: ${data.folio}<br>Fecha: ${requestDateStr}`, generatedAt, "")}
+
+  <div class="body-doc">
+    <div class="subheader">DETALLE DE ARTÍCULOS / SERVICIOS</div>
+
+    <table class="items-table">
+      <thead>
+        <tr>
+          <th style="text-align: center; width: 50px;">#</th>
+          <th>DESCRIPCIÓN</th>
+          <th style="text-align: center; width: 100px;">CANTIDAD</th>
+          <th style="text-align: center; width: 100px;">UNIDAD</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${itemsRowsHtml}
+      </tbody>
+    </table>
+
+    <div class="signatures-grid">
+      <div class="signature-box">
+        <div class="signature-line"></div>
+        <div class="signature-name">${this.htmlPrintS.esc(data.solicita || " ")}</div>
+        <div class="signature-role">SOLICITANTE</div>
+      </div>
+    </div>
+  </div>
+
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+</div>
+</body></html>`;
   }
 }
-
-
-
-
-
-
-
-
-

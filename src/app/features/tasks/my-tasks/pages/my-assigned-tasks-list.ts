@@ -1,6 +1,7 @@
 import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 import { CommonModule } from "@angular/common";
+import { InitialsAbbrPipe } from "src/app/core/pipes/initials-abbr.pipe";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
@@ -11,7 +12,6 @@ import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
-import { CustomButtonTracking } from "src/app/core/components/buttons/web/custom-button-tracking";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -25,6 +25,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { PrintService } from "src/app/core/services/print.service";
 import { CardEmployee } from "src/app/features/employees/employees/pages/card-employee";
 import { TaskGroupService } from "src/app/features/tasks/task.service";
 import Swal from "sweetalert2";
@@ -51,14 +52,11 @@ import { MyTaskProgram } from "./my-task-program";
     ImageModule,
     AvatarModule,
     PrimeNgCustomCaption,
-    CustomButtonTracking,
     CustomInputTextSignal,
+    InitialsAbbrPipe,
   ],
 })
 export class MyAssignedTasksList {
-  onDelete(arg0: any) {
-    throw new Error("Method not implemented");
-  }
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
   dialogHandlerS = inject(DialogHandlerService);
@@ -66,6 +64,7 @@ export class MyAssignedTasksList {
   customerIdS = inject(CustomerIdService);
   tableScrollHeightS = inject(TableScrollHeightService);
   activatedRoute = inject(ActivatedRoute);
+  printS = inject(PrintService);
   status: string = this.TaskGroupService.taskGroupMessageStatus;
 
   constructor() {
@@ -84,6 +83,36 @@ export class MyAssignedTasksList {
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   searchTextSignal = signal("");
+
+  readonly today = new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+  readonly pendingItems = computed(() => this.dataSignal().filter(i => i.status !== 'Completed'));
+
+  statusLabel(status: string): string {
+    const map: Record<string, string> = { NotStarted: 'No iniciado', InProgress: 'En proceso', Reopened: 'Reabierto' };
+    return map[status] ?? status;
+  }
+
+  statusPillStyle(status: string): string {
+    const map: Record<string, string> = {
+      NotStarted: 'background:var(--ds-danger-light);color:var(--ds-danger)',
+      InProgress:  'background:var(--ds-warning-light);color:var(--ds-warning)',
+      Reopened:    'background:var(--ds-danger-light);color:var(--ds-danger)',
+    };
+    return map[status] ?? 'background:var(--ds-border);color:var(--ds-text-primary)';
+  }
+
+  statusTdClass(status: string): string {
+    const map: Record<string, string> = {
+      NotStarted: 'td-status-not-started',
+      InProgress:  'td-status-in-progress',
+      Reopened:    'td-status-reopened',
+    };
+    return map[status] ?? '';
+  }
+
+  printReport(): void {
+    this.printS.printElement(undefined, 'Reporte de Mis Tareas Pendientes');
+  }
 
   filteredDataSignal = computed(() => {
     const text = this.searchTextSignal().toLowerCase();
@@ -139,14 +168,22 @@ export class MyAssignedTasksList {
   }
   onFollowUp(id: string) {
     this.dialogHandlerS
-      .openDialog(
+      .openDialog<{ count: number; lastFollowUp: string | null; lastFollowUpDate: string | null }>(
         TaskFollowup,
         { id: id },
         "Seguimiento",
         this.dialogHandlerS.sizeLg,
       )
-      .then((result: boolean) => {
-        if (result) this.onLoadData(this.status);
+      .then((result) => {
+        if (result && result.count >= 0) {
+          this.dataSignal.update((items) =>
+            items.map((item) =>
+              item.id === id
+                ? { ...item, ticketMessageFollowUp: result.count, lastFollowUp: result.lastFollowUp, lastFollowUpDate: result.lastFollowUpDate }
+                : item,
+            ),
+          );
+        }
       });
   }
 

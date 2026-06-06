@@ -1,29 +1,15 @@
-import { HttpClient } from "@angular/common/http";
-import { inject, Injectable } from "@angular/core";
-import * as pdfMake from "pdfmake/build/pdfmake";
-import * as pdfFonts from "pdfmake/build/vfs_fonts";
-import {
-  Content,
-  StyleDictionary,
-  TDocumentDefinitions,
-} from "pdfmake/interfaces";
-import { firstValueFrom } from "rxjs";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { Injectable, inject } from "@angular/core";
+import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import {
   AspelCobranzaDetalleConcepto,
   AspelCobranzaDetalleResponse,
-  AspelCobranzaDetalleVencido,
   AspelEstadoCuentaResponse,
   AspelMovimiento,
 } from "./aspel-cobranza-haus.models";
 
 @Injectable({ providedIn: "root" })
 export class AspelCobranzaHausPdfService {
-  private readonly http = inject(HttpClient);
-  private readonly customerIdS = inject(CustomerIdService);
-  private readonly pdfMakeInstance: any;
-  private logoDataUrl: string | null = null;
-  private logoSource: string | null = null;
+  private readonly htmlPrintS = inject(HtmlPrintService);
   private readonly currencyFormatter = new Intl.NumberFormat("es-MX", {
     style: "currency",
     currency: "MXN",
@@ -31,12 +17,12 @@ export class AspelCobranzaHausPdfService {
     maximumFractionDigits: 2,
   });
 
-  constructor() {
-    this.pdfMakeInstance = (pdfMake as any).default || pdfMake;
-    if (this.pdfMakeInstance.vfs === undefined) {
-      const fonts = pdfFonts as any;
-      this.pdfMakeInstance.vfs = fonts.pdfMake?.vfs || fonts;
-    }
+  async downloadAvisoCobroAspel(data: AspelCobranzaDetalleResponse, generatedAt: Date): Promise<void> {
+    await this.downloadAvisoCobro(data, generatedAt, { showAspelAccounts: true });
+  }
+
+  async downloadEstadoCuentaAspel(data: AspelEstadoCuentaResponse, generatedAt: Date): Promise<void> {
+    await this.downloadEstadoCuenta(data, generatedAt, { showAspelAccounts: true });
   }
 
   async downloadAvisoCobro(
@@ -45,161 +31,11 @@ export class AspelCobranzaHausPdfService {
     options?: { showAspelAccounts?: boolean },
   ): Promise<void> {
     const showAspelAccounts = options?.showAspelAccounts === true;
-    const logo = await this.getLogoDataUrl();
-    const conceptos = this.getVisibleConceptos(data.conceptos);
-    const vencidos = conceptos
-      .filter((item) =>
-        item.vencidos.some((vencido) => vencido.saldoPendiente > 0),
-      )
-      .flatMap((item) =>
-        item.vencidos
-          .filter((vencido) => vencido.saldoPendiente > 0)
-          .map((vencido) => ({
-            concepto: item.concepto,
-            numCta: item.numCta,
-            ...vencido,
-          })),
-      );
-
-    const totalCargos = conceptos.reduce((sum, item) => sum + item.cargos, 0);
-    const totalAbonos = conceptos.reduce((sum, item) => sum + item.abonos, 0);
-    const totalVencido = conceptos.reduce(
-      (sum, item) => sum + item.totalVencido,
-      0,
-    );
-    const totalAdelantos = conceptos.reduce(
-      (sum, item) => sum + item.adelanto,
-      0,
-    );
-    const docDefinition: TDocumentDefinitions = {
-      pageSize: "LETTER",
-      pageMargins: [32, 104, 32, 28],
-      header: (currentPage: number) =>
-        currentPage === 1
-          ? this.buildDocumentHeader({
-              title: "AVISO DE COBRO",
-              documentCode: "COB-ASP-HAUS",
-              badge: "COBRANZA",
-              generatedAt,
-              logo,
-              compact: false,
-              headerWidth: 548,
-            })
-          : { text: "" },
-      footer: (currentPage, pageCount): Content => ({
-        margin: [32, 8, 32, 0],
-        columns: [
-          {
-            text: "Luxury Building Group SA de CV",
-            color: "#6B7280",
-            fontSize: 8,
-          },
-          {
-            text: `Generado ${this.formatDateTime(generatedAt)}`,
-            alignment: "center",
-            color: "#6B7280",
-            fontSize: 8,
-          },
-          {
-            text: `Pagina ${currentPage} de ${pageCount}`,
-            alignment: "right",
-            color: "#6B7280",
-            fontSize: 8,
-          },
-        ],
-      }),
-      defaultStyle: {
-        font: "Roboto",
-        fontSize: 9,
-        color: "#111827",
-      },
-      styles: this.buildStyles(),
-      content: [
-        {
-          stack: [
-            {
-              columns: [
-                {
-                  width: "*",
-                  stack: [
-                    { text: "AVISO DE COBRO", style: "title" },
-                    {
-                      text: showAspelAccounts
-                        ? "Resumen ejecutivo del adeudo por concepto con cuentas Aspel visibles"
-                        : "Resumen ejecutivo del adeudo por concepto",
-                      style: "eyebrowSubtle",
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              stack: [
-                {
-                  text: [
-                    { text: "Propiedad: ", bold: true },
-                    data.departamento || "-",
-                  ],
-                },
-                {
-                  text: [
-                    { text: "Periodo consultado: ", bold: true },
-                    `${data.fechaInicio} al ${data.fechaFin}`,
-                  ],
-                  margin: [0, 2, 0, 0] as [number, number, number, number],
-                },
-                ...(showAspelAccounts
-                  ? [
-                      {
-                        text: [
-                          { text: "Cuenta Aspel base: ", bold: true },
-                          data.numCtaBase || "-",
-                        ],
-                        margin: [0, 2, 0, 0] as [
-                          number,
-                          number,
-                          number,
-                          number,
-                        ],
-                      },
-                    ]
-                  : []),
-              ],
-            },
-            {
-              canvas: [
-                {
-                  type: "line",
-                  x1: 0,
-                  y1: 0,
-                  x2: 548,
-                  y2: 0,
-                  lineWidth: 1,
-                  lineColor: "#2563EB",
-                },
-              ],
-              margin: [0, 10, 0, 0] as [number, number, number, number],
-            },
-          ],
-        } as Content,
-        this.buildSummaryTable(
-          totalCargos,
-          totalAbonos,
-          totalVencido,
-        ),
-        this.buildConceptTable(conceptos, showAspelAccounts),
-        ...this.buildVencidosSections(vencidos, showAspelAccounts),
-        ...(totalAdelantos > 0 ? [this.buildAdelantosSection(conceptos)] : []),
-        {
-          margin: [0, 14, 0, 0],
-          text: "El saldo pendiente refleja la composicion actual del adeudo en el rango consultado.",
-          style: "note",
-        },
-      ],
-    };
-
-    const fileName = `Aviso-Cobro${showAspelAccounts ? "-Aspel" : ""}-${data.numCtaBase || "cuenta"}-${data.fechaFin || "corte"}.pdf`;
-    this.pdfMakeInstance.createPdf(docDefinition).download(fileName);
+    const logo = await this.htmlPrintS.getLogoDataUrl();
+    const html = this.buildAvisoCobroHtml(data, generatedAt, logo, showAspelAccounts);
+    
+    const fileName = `Aviso-Cobro${showAspelAccounts ? "-Aspel" : ""}-${data.numCtaBase || "cuenta"}-${data.fechaFin || "corte"}`;
+    this.htmlPrintS.printHtml(html, fileName);
   }
 
   async downloadEstadoCuenta(
@@ -208,734 +44,334 @@ export class AspelCobranzaHausPdfService {
     options?: { showAspelAccounts?: boolean },
   ): Promise<void> {
     const showAspelAccounts = options?.showAspelAccounts === true;
-    const logo = await this.getLogoDataUrl();
-    const movimientos = data.movimientos ?? [];
-    const totalCargos = movimientos
-      .filter((item) => this.isCharge(item))
-      .reduce((sum, item) => sum + (item.monto || 0), 0);
-    const totalAbonos = movimientos
-      .filter((item) => !this.isCharge(item))
-      .reduce((sum, item) => sum + (item.monto || 0), 0);
-
-    const body = [
-      [
-        this.tableHeader("Tipo"),
-        this.tableHeader("Numero"),
-        this.tableHeader("Fecha"),
-        this.tableHeader("Concepto del movimiento"),
-        ...(showAspelAccounts ? [this.tableHeader("Cuenta Aspel")] : []),
-        this.tableHeader("Saldo inicial", "right"),
-        this.tableHeader("Cargos", "right"),
-        this.tableHeader("Abonos", "right"),
-        this.tableHeader("Saldo final", "right"),
-      ],
-      ...movimientos.map((item, index) => [
-        { text: this.formatMovementType(item), style: "monoTiny" },
-        { text: this.getMovementNumber(item, index), style: "monoTiny" },
-        { text: item.fecha || "-", style: "monoTiny" },
-        { text: item.concepto || "-", style: "bodyText" },
-        ...(showAspelAccounts
-          ? [{ text: item.numCta || "-", style: "monoTiny" }]
-          : []),
-        {
-          text: this.formatCurrency(item.saldoAnterior || 0),
-          alignment: "right",
-          style: "monoTiny",
-        },
-        {
-          text: this.isCharge(item) ? this.formatCurrency(item.monto || 0) : "",
-          alignment: "right",
-          style: "monoTiny",
-          color: this.isCharge(item) ? "#1D4ED8" : "#111827",
-        },
-        {
-          text: this.isCharge(item) ? "" : this.formatCurrency(item.monto || 0),
-          alignment: "right",
-          style: "monoTiny",
-          color: !this.isCharge(item) ? "#047857" : "#111827",
-        },
-        {
-          text: this.formatCurrency(item.saldoPosterior || 0),
-          alignment: "right",
-          style: "amountStrong",
-          color: (item.saldoPosterior || 0) < 0 ? "#B91C1C" : "#111827",
-        },
-      ]),
-      [
-        {
-          text: "Totales",
-          colSpan: showAspelAccounts ? 6 : 5,
-          style: "totalLabel",
-        },
-        {},
-        {},
-        {},
-        {},
-        ...(showAspelAccounts ? [{}] : []),
-        {
-          text: this.formatCurrency(totalCargos),
-          alignment: "right",
-          style: "totalValue",
-        },
-        {
-          text: this.formatCurrency(totalAbonos),
-          alignment: "right",
-          style: "totalValue",
-        },
-        {
-          text: this.formatCurrency(data.saldoFinal || 0),
-          alignment: "right",
-          style: "totalValue",
-        },
-      ],
-    ];
-
-    const docDefinition: TDocumentDefinitions = {
-      pageSize: "LETTER",
-      pageOrientation: "landscape",
-      pageMargins: [28, 100, 28, 28],
-      header: (currentPage: number) =>
-        currentPage === 1
-          ? this.buildDocumentHeader({
-              title: "ESTADO DE CUENTA",
-              documentCode: "Luxury Building Group",
-              badge: "CONTABILIDAD",
-              generatedAt,
-              logo,
-              compact: false,
-              headerWidth: 735,
-            })
-          : { text: "" },
-      footer: (currentPage, pageCount): Content => ({
-        margin: [28, 8, 28, 0],
-        columns: [
-          {
-            text: "Luxury Building Group SA de CV",
-            color: "#6B7280",
-            fontSize: 8,
-          },
-          {
-            text: `Cuenta ${data.numCta || "-"} | Periodo ${data.fechaInicio || "-"} al ${data.fechaFin || "-"}`,
-            alignment: "center",
-            color: "#6B7280",
-            fontSize: 8,
-          },
-          {
-            text: `Pagina ${currentPage} de ${pageCount}`,
-            alignment: "right",
-            color: "#6B7280",
-            fontSize: 8,
-          },
-        ],
-      }),
-      defaultStyle: {
-        font: "Roboto",
-        fontSize: 8.5,
-        color: "#111827",
-      },
-      styles: this.buildStyles(),
-      content: [
-        {
-          columns: [
-            {
-              width: "*",
-              stack: [
-                { text: "ESTADO DE CUENTA", style: "title" },
-                {
-                  text: "Detalle cronologico de movimientos, cargos, abonos y saldo progresivo",
-                  style: "eyebrowSubtle",
-                },
-                {
-                  margin: [0, 10, 0, 0] as [number, number, number, number],
-                  text: [
-                    { text: "Cuenta: ", bold: true },
-                    data.numCta || "-",
-                    { text: "    Propiedad: ", bold: true },
-                    data.departamento || "-",
-                  ],
-                },
-                {
-                  text: [
-                    { text: "Periodo consultado: ", bold: true },
-                    `${data.fechaInicio || "-"} al ${data.fechaFin || "-"}`,
-                  ],
-                  margin: [0, 2, 0, 0] as [number, number, number, number],
-                },
-                ...(showAspelAccounts
-                  ? [
-                      {
-                        text: [
-                          { text: "Cuenta Aspel base: ", bold: true },
-                          data.numCta || "-",
-                        ],
-                        margin: [0, 2, 0, 0] as [
-                          number,
-                          number,
-                          number,
-                          number,
-                        ],
-                      },
-                    ]
-                  : []),
-              ],
-            },
-            {
-              width: 260,
-              stack: [
-                {
-                  columns: [
-                    this.buildMetricCell(
-                      "Saldo inicial",
-                      this.formatCurrency(data.saldoInicial || 0),
-                    ),
-                    this.buildMetricCell(
-                      "Saldo final",
-                      this.formatCurrency(data.saldoFinal || 0),
-                      true,
-                    ),
-                  ],
-                  columnGap: 8,
-                },
-                {
-                  margin: [0, 8, 0, 0] as [number, number, number, number],
-                  columns: [
-                    this.buildMetricCell(
-                      "Cargos",
-                      this.formatCurrency(totalCargos),
-                    ),
-                    this.buildMetricCell(
-                      "Abonos",
-                      this.formatCurrency(totalAbonos),
-                    ),
-                  ],
-                  columnGap: 8,
-                },
-              ],
-            },
-          ],
-        } as Content,
-        {
-          margin: [0, 18, 0, 0] as [number, number, number, number],
-          stack: [
-            { text: "Movimientos del periodo", style: "sectionTitle" },
-            {
-              text: showAspelAccounts
-                ? `${movimientos.length} movimientos aplicados en el rango consultado. Esta version muestra la cuenta Aspel base para ejemplificar el origen contable.`
-                : `${movimientos.length} movimientos aplicados en el rango consultado.`,
-              style: "sectionHelp",
-              margin: [0, 2, 0, 8] as [number, number, number, number],
-            },
-            {
-              table: {
-                headerRows: 1,
-                widths: showAspelAccounts
-                  ? [34, 46, 52, "*", 82, 68, 60, 60, 68]
-                  : [38, 52, 54, "*", 76, 68, 68, 76],
-                body,
-              },
-              layout: {
-                fillColor: (rowIndex: number) => {
-                  if (rowIndex === 0) return "#E5E7EB";
-                  if (rowIndex === body.length - 1) return "#F3F4F6";
-                  return rowIndex % 2 === 0 ? "#FAFAFA" : null;
-                },
-                hLineColor: () => "#D1D5DB",
-                vLineColor: () => "#D1D5DB",
-                paddingLeft: () => 4,
-                paddingRight: () => 4,
-                paddingTop: () => 4,
-                paddingBottom: () => 4,
-              },
-            },
-          ],
-        } as Content,
-      ],
-    };
-
-    const fileName = `Estado-Cuenta${showAspelAccounts ? "-Aspel" : ""}-${data.numCta || "cuenta"}-${data.fechaFin || "corte"}.pdf`;
-    this.pdfMakeInstance.createPdf(docDefinition).download(fileName);
+    const logo = await this.htmlPrintS.getLogoDataUrl();
+    const html = this.buildEstadoCuentaHtml(data, generatedAt, logo, showAspelAccounts);
+    
+    const fileName = `Estado-Cuenta${showAspelAccounts ? "-Aspel" : ""}-${data.numCta || "cuenta"}-${data.fechaFin || "corte"}`;
+    this.htmlPrintS.printHtml(html, fileName);
   }
 
-  private buildSummaryTable(
-    totalCargos: number,
-    totalAbonos: number,
-    totalVencido: number,
-  ): any {
-    return {
-      margin: [0, 16, 0, 0],
-      table: {
-        widths: ["*", "*", "*"],
-        body: [
-          [
-            this.buildMetricCell("Cargos", this.formatCurrency(totalCargos)),
-            this.buildMetricCell("Abonos", this.formatCurrency(totalAbonos)),
-            this.buildMetricCell(
-              "Vencido actual",
-              this.formatCurrency(totalVencido),
-              true,
-            ),
-          ],
-        ],
-      },
-      layout: {
-        hLineWidth: () => 0,
-        vLineWidth: () => 0,
-        paddingLeft: () => 0,
-        paddingRight: () => 10,
-        paddingTop: () => 0,
-        paddingBottom: () => 0,
-      },
-    };
-  }
+  private buildAvisoCobroHtml(
+    data: AspelCobranzaDetalleResponse,
+    generatedAt: Date,
+    logo: string | null,
+    showAspelAccounts: boolean
+  ): string {
+    const conceptos = this.getVisibleConceptos(data.conceptos || []);
+    const vencidos = conceptos
+      .filter((item) => item.vencidos.some((v) => v.saldoPendiente > 0))
+      .flatMap((item) => item.vencidos.filter((v) => v.saldoPendiente > 0).map(v => ({ concepto: item.concepto, numCta: item.numCta, ...v })));
 
-  private buildConceptTable(
-    conceptos: AspelCobranzaDetalleConcepto[],
-    showAspelAccounts: boolean = false,
-  ): any {
     const totalCargos = conceptos.reduce((sum, item) => sum + item.cargos, 0);
     const totalAbonos = conceptos.reduce((sum, item) => sum + item.abonos, 0);
-    const totalVencido = conceptos.reduce(
-      (sum, item) => sum + item.totalVencido,
-      0,
-    );
-    const totalFinal = conceptos.reduce(
-      (sum, item) => sum + item.saldoFinal,
-      0,
-    );
+    const totalVencido = conceptos.reduce((sum, item) => sum + item.totalVencido, 0);
+    const totalFinal = conceptos.reduce((sum, item) => sum + item.saldoFinal, 0);
+    const totalAdelantos = conceptos.reduce((sum, item) => sum + item.adelanto, 0);
 
-    const body = [
-      [
-        this.tableHeader("Concepto"),
-        ...(showAspelAccounts ? [this.tableHeader("Cuenta Aspel")] : []),
-        this.tableHeader("Cargos", "right"),
-        this.tableHeader("Abonos", "right"),
-        this.tableHeader("Vencido", "right"),
-        this.tableHeader("Pendiente", "right"),
-      ],
-      ...conceptos.map((item) => [
-        {
-          stack: [
-            { text: item.concepto || "-", style: "conceptTitle" },
-            ...(item.nombreCuenta &&
-            item.nombreCuenta.toUpperCase() !== item.concepto.toUpperCase()
-              ? [{ text: item.nombreCuenta, style: "conceptSubtitle" }]
-              : []),
-          ],
-        },
-        ...(showAspelAccounts
-          ? [{ text: item.numCta || "-", style: "mono" }]
-          : []),
-        {
-          text: this.formatCurrency(item.cargos),
-          alignment: "right",
-          style: "mono",
-        },
-        {
-          text: this.formatCurrency(item.abonos),
-          alignment: "right",
-          style: "mono",
-        },
-        {
-          text: this.formatCurrency(item.totalVencido),
-          alignment: "right",
-          style: "mono",
-          color: item.totalVencido > 0 ? "#B45309" : "#6B7280",
-        },
-        {
-          text: this.formatCurrency(item.saldoFinal),
-          alignment: "right",
-          style: "amountStrong",
-          color: item.saldoFinal > 0 ? "#B91C1C" : item.saldoFinal < 0 ? "#047857" : "#111827",
-        },
-      ]),
-      [
-        { text: "Totales", style: "totalLabel" },
-        ...(showAspelAccounts ? [{ text: "" }] : []),
-        {
-          text: this.formatCurrency(totalCargos),
-          alignment: "right",
-          style: "totalValue",
-        },
-        {
-          text: this.formatCurrency(totalAbonos),
-          alignment: "right",
-          style: "totalValue",
-        },
-        {
-          text: this.formatCurrency(totalVencido),
-          alignment: "right",
-          style: "totalValue",
-        },
-        {
-          text: this.formatCurrency(totalFinal),
-          alignment: "right",
-          style: "totalValue",
-        },
-      ],
-    ];
+    return `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+      .titulo { font-size:1.8rem; font-weight:700; color:#2563EB; margin-bottom:4px; }
+      .meta { font-size:0.8rem; color:#6b7280; }
+      .info-grid { display:flex; flex-wrap:wrap; gap:0.5rem 1.5rem; font-size:0.8rem; margin-top:6px; }
+      
+      .metric-card { background:#F3F4F6; padding:8px 12px; border-radius:4px; }
+      .metric-card.highlight { background:#E0ECFF; }
+      .metric-label { font-size:0.75rem; font-weight:700; color:#6b7280; }
+      .metric-card.highlight .metric-label { color:#1D4ED8; }
+      .metric-value { font-size:1.2rem; font-weight:700; color:#111827; margin-top:4px; }
+      .metric-card.highlight .metric-value { color:#1D4ED8; }
 
-    return {
-      margin: [0, 18, 0, 0],
-      stack: [
-        { text: "Desglose de la deuda", style: "sectionTitle" },
-        {
-          text: "Solo aparecen conceptos que realmente forman parte del adeudo o que tienen adelantos aplicables.",
-          style: "sectionHelp",
-          margin: [0, 2, 0, 8],
-        },
-        {
-          table: {
-            headerRows: 1,
-            widths: showAspelAccounts
-              ? [148, 92, 62, 62, 62, 68]
-              : [190, 74, 74, 74, 78],
-            body,
-          },
-          layout: {
-            fillColor: (rowIndex: number) => {
-              if (rowIndex === 0) return "#E8EEF8";
-              if (rowIndex === body.length - 1) return "#F3F4F6";
-              return rowIndex % 2 === 0 ? "#FAFAFA" : null;
-            },
-            hLineColor: () => "#D1D5DB",
-            vLineColor: () => "#D1D5DB",
-            paddingLeft: () => 4,
-            paddingRight: () => 4,
-            paddingTop: () => 5,
-            paddingBottom: () => 5,
-          },
-        },
-      ],
-    };
+      .section-title { font-size:1.1rem; font-weight:700; color:#111827; margin-bottom:4px; }
+      .section-help { font-size:0.75rem; color:#6b7280; margin-bottom:12px; }
+
+      .data-table { width:100%; border-collapse:collapse; margin-bottom:16px; font-size:0.8rem; }
+      .data-table th, .data-table td { padding:6px 8px; border:1px solid #D1D5DB; }
+      .data-table th { background:#E8EEF8; font-weight:700; text-align:left; color:#111827; }
+      .data-table tbody tr:nth-child(even) { background:#FAFAFA; }
+      .data-table tfoot td { background:#F3F4F6; border-top:2px solid #D1D5DB; }
+      
+      .yellow-table th { background:#FEF3C7; }
+      .yellow-table tbody tr:nth-child(even) { background:#FFFBEB; }
+      
+      .green-table th { background:#DCFCE7; }
+      .green-table tbody tr:nth-child(even) { background:#F0FDF4; }
+
+      .text-right { text-align:right !important; }
+      .mono { font-family: monospace; font-size: 0.9em; }
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, "AVISO DE COBRO", "COB-ASP-HAUS", generatedAt, "COBRANZA")}
+  
+  <div class="body-doc">
+    <div class="titulo">AVISO DE COBRO</div>
+    <div class="meta" style="margin-bottom:12px;">${showAspelAccounts ? "Resumen ejecutivo del adeudo por concepto con cuentas Aspel visibles" : "Resumen ejecutivo del adeudo por concepto"}</div>
+    
+    <div class="info-grid">
+      <span><strong>Propiedad:</strong> ${this.htmlPrintS.esc(data.departamento || "-")}</span>
+      <span><strong>Periodo consultado:</strong> ${this.htmlPrintS.esc(data.fechaInicio)} al ${this.htmlPrintS.esc(data.fechaFin)}</span>
+      ${showAspelAccounts ? `<span><strong>Cuenta Aspel base:</strong> ${this.htmlPrintS.esc(data.numCtaBase || "-")}</span>` : ""}
+    </div>
+    
+    <div style="border-top: 1px solid #2563EB; margin: 15px 0;"></div>
+    
+    <div class="summary-cards" style="display:flex; gap:16px; margin-bottom: 24px;">
+      <div class="metric-card">
+        <div class="metric-label">Cargos</div>
+        <div class="metric-value">${this.formatCurrency(totalCargos)}</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Abonos</div>
+        <div class="metric-value">${this.formatCurrency(totalAbonos)}</div>
+      </div>
+      <div class="metric-card highlight">
+        <div class="metric-label">Vencido actual</div>
+        <div class="metric-value">${this.formatCurrency(totalVencido)}</div>
+      </div>
+    </div>
+
+    <div class="section-title">Desglose de la deuda</div>
+    <div class="section-help">Solo aparecen conceptos que realmente forman parte del adeudo o que tienen adelantos aplicables.</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Concepto</th>
+          ${showAspelAccounts ? `<th>Cuenta Aspel</th>` : ""}
+          <th class="text-right">Cargos</th>
+          <th class="text-right">Abonos</th>
+          <th class="text-right">Vencido</th>
+          <th class="text-right">Pendiente</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${conceptos.map(item => `
+          <tr>
+            <td>
+              <div style="font-weight:700; color:#111827;">${this.htmlPrintS.esc(item.concepto || "-")}</div>
+              ${item.nombreCuenta && item.nombreCuenta.toUpperCase() !== item.concepto.toUpperCase() ? `<div style="font-size:0.75rem; color:#6B7280;">${this.htmlPrintS.esc(item.nombreCuenta)}</div>` : ""}
+            </td>
+            ${showAspelAccounts ? `<td class="mono">${this.htmlPrintS.esc(item.numCta || "-")}</td>` : ""}
+            <td class="text-right mono">${this.formatCurrency(item.cargos)}</td>
+            <td class="text-right mono">${this.formatCurrency(item.abonos)}</td>
+            <td class="text-right mono" style="color: ${item.totalVencido > 0 ? '#B45309' : '#6B7280'}">${this.formatCurrency(item.totalVencido)}</td>
+            <td class="text-right" style="font-weight:700; color: ${item.saldoFinal > 0 ? '#B91C1C' : item.saldoFinal < 0 ? '#047857' : '#111827'}">${this.formatCurrency(item.saldoFinal)}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td style="font-weight:bold;">Totales</td>
+          ${showAspelAccounts ? `<td></td>` : ""}
+          <td class="text-right" style="font-weight:bold;">${this.formatCurrency(totalCargos)}</td>
+          <td class="text-right" style="font-weight:bold;">${this.formatCurrency(totalAbonos)}</td>
+          <td class="text-right" style="font-weight:bold;">${this.formatCurrency(totalVencido)}</td>
+          <td class="text-right" style="font-weight:bold;">${this.formatCurrency(totalFinal)}</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    ${this.buildVencidosHtml(vencidos, showAspelAccounts)}
+    ${totalAdelantos > 0 ? this.buildAdelantosHtml(conceptos, showAspelAccounts) : ""}
+    
+    <div style="font-size: 0.8rem; color: #6B7280; margin-top: 20px;">El saldo pendiente refleja la composición actual del adeudo en el rango consultado.</div>
+  </div>
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+</div>
+</body></html>`;
   }
 
-  private buildVencidosSections(
-    vencidos: Array<
-      AspelCobranzaDetalleVencido & { concepto: string; numCta: string }
-    >,
-    showAspelAccounts: boolean = false,
-  ): any[] {
-    if (!vencidos.length) return [];
+  private buildEstadoCuentaHtml(
+    data: AspelEstadoCuentaResponse,
+    generatedAt: Date,
+    logo: string | null,
+    showAspelAccounts: boolean
+  ): string {
+    const movimientos = data.movimientos || [];
+    const totalCargos = movimientos.filter(item => this.isCharge(item)).reduce((sum, item) => sum + (item.monto || 0), 0);
+    const totalAbonos = movimientos.filter(item => !this.isCharge(item)).reduce((sum, item) => sum + (item.monto || 0), 0);
 
-    const groups = vencidos.reduce<
-      Array<{
-        concepto: string;
-        items: Array<
-          AspelCobranzaDetalleVencido & { concepto: string; numCta: string }
-        >;
-      }>
-    >((acc, item) => {
-      const existing = acc.find((group) => group.concepto === item.concepto);
-      if (existing) {
-        existing.items.push(item);
-        return acc;
-      }
+    return `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+@page { size: landscape; margin: 10mm; } .container { max-width:1300px; }
+      .titulo { font-size:1.8rem; font-weight:700; color:#2563EB; margin-bottom:4px; }
+      .meta { font-size:0.8rem; color:#6b7280; }
+      .info-grid { display:flex; flex-wrap:wrap; gap:0.5rem 1.5rem; font-size:0.8rem; margin-top:6px; }
+      
+      .metric-card { background:#F3F4F6; padding:8px 12px; border-radius:4px; }
+      .metric-card.highlight { background:#E0ECFF; }
+      .metric-label { font-size:0.75rem; font-weight:700; color:#6b7280; }
+      .metric-card.highlight .metric-label { color:#1D4ED8; }
+      .metric-value { font-size:1.2rem; font-weight:700; color:#111827; margin-top:4px; }
+      .metric-card.highlight .metric-value { color:#1D4ED8; }
 
-      acc.push({ concepto: item.concepto, items: [item] });
-      return acc;
-    }, []);
+      .section-title { font-size:1.1rem; font-weight:700; color:#111827; margin-bottom:4px; }
+      .section-help { font-size:0.75rem; color:#6b7280; margin-bottom:12px; }
 
-    return groups.map((group, index) => {
-      const body = [
-        [
-          this.tableHeader("Fecha"),
-          ...(showAspelAccounts ? [this.tableHeader("Cuenta Aspel")] : []),
-          this.tableHeader("Detalle"),
-          this.tableHeader("Pendiente", "right"),
-        ],
-        ...group.items.map((item) => [
-          { text: item.fechaCargo || "-", style: "mono" },
-          ...(showAspelAccounts
-            ? [{ text: item.numCta || "-", style: "mono" }]
-            : []),
-          { text: item.conceptoDetalle || "-", style: "bodyText" },
-          {
-            text: this.formatCurrency(item.saldoPendiente),
-            alignment: "right",
-            style: "amountStrong",
-            color: "#B45309",
-          },
-        ]),
-      ];
+      .data-table { width:100%; border-collapse:collapse; margin-bottom:16px; font-size:0.8rem; }
+      .data-table th, .data-table td { padding:6px 8px; border:1px solid #D1D5DB; }
+      .data-table th { background:#E8EEF8; font-weight:700; text-align:left; color:#111827; }
+      .data-table tbody tr:nth-child(even) { background:#FAFAFA; }
+      .data-table tfoot td { background:#F3F4F6; border-top:2px solid #D1D5DB; }
+      .text-right { text-align:right !important; }
+      .mono { font-family: monospace; font-size: 0.9em; }
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, "ESTADO DE CUENTA", "CONT-ASP-EST", generatedAt, "CONTABILIDAD")}
+  
+  <div class="body-doc">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+      <div>
+        <div class="titulo">ESTADO DE CUENTA</div>
+        <div class="meta" style="margin-bottom:12px;">Detalle cronológico de movimientos, cargos, abonos y saldo progresivo</div>
+        
+        <div class="info-grid">
+          <span><strong>Cuenta:</strong> ${this.htmlPrintS.esc(data.numCta || "-")}</span>
+          <span><strong>Propiedad:</strong> ${this.htmlPrintS.esc(data.departamento || "-")}</span>
+        </div>
+        <div class="info-grid">
+          <span><strong>Periodo consultado:</strong> ${this.htmlPrintS.esc(data.fechaInicio || "-")} al ${this.htmlPrintS.esc(data.fechaFin || "-")}</span>
+          ${showAspelAccounts ? `<span><strong>Cuenta Aspel base:</strong> ${this.htmlPrintS.esc(data.numCta || "-")}</span>` : ""}
+        </div>
+      </div>
+      
+      <div style="display:flex; gap:12px; flex-direction:column; width: 300px;">
+        <div style="display:flex; gap:8px;">
+          <div class="metric-card" style="flex:1;"><div class="metric-label">Saldo inicial</div><div class="metric-value">${this.formatCurrency(data.saldoInicial || 0)}</div></div>
+          <div class="metric-card highlight" style="flex:1;"><div class="metric-label">Saldo final</div><div class="metric-value">${this.formatCurrency(data.saldoFinal || 0)}</div></div>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <div class="metric-card" style="flex:1;"><div class="metric-label">Cargos</div><div class="metric-value">${this.formatCurrency(totalCargos)}</div></div>
+          <div class="metric-card" style="flex:1;"><div class="metric-label">Abonos</div><div class="metric-value">${this.formatCurrency(totalAbonos)}</div></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-title" style="margin-top:20px;">Movimientos del periodo</div>
+    <div class="section-help">${movimientos.length} movimientos aplicados en el rango consultado.${showAspelAccounts ? " Esta versión muestra la cuenta Aspel base para ejemplificar el origen contable." : ""}</div>
+    
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Número</th>
+          <th>Fecha</th>
+          <th>Concepto del movimiento</th>
+          ${showAspelAccounts ? `<th>Cuenta Aspel</th>` : ""}
+          <th class="text-right">Saldo inicial</th>
+          <th class="text-right">Cargos</th>
+          <th class="text-right">Abonos</th>
+          <th class="text-right">Saldo final</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${movimientos.map((item, i) => `
+          <tr>
+            <td class="mono">${this.formatMovementType(item)}</td>
+            <td class="mono">${this.htmlPrintS.esc(this.getMovementNumber(item, i))}</td>
+            <td class="mono" style="white-space:nowrap;">${this.htmlPrintS.esc(item.fecha || "-")}</td>
+            <td style="font-size:0.85rem; color:#374151;">${this.htmlPrintS.esc(item.concepto || "-")}</td>
+            ${showAspelAccounts ? `<td class="mono">${this.htmlPrintS.esc(item.numCta || "-")}</td>` : ""}
+            <td class="text-right mono">${this.formatCurrency(item.saldoAnterior || 0)}</td>
+            <td class="text-right mono" style="color: ${this.isCharge(item) ? '#1D4ED8' : '#111827'}">${this.isCharge(item) ? this.formatCurrency(item.monto || 0) : ""}</td>
+            <td class="text-right mono" style="color: ${!this.isCharge(item) ? '#047857' : '#111827'}">${!this.isCharge(item) ? this.formatCurrency(item.monto || 0) : ""}</td>
+            <td class="text-right" style="font-weight:bold; color: ${(item.saldoPosterior || 0) < 0 ? '#B91C1C' : '#111827'}">${this.formatCurrency(item.saldoPosterior || 0)}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="${showAspelAccounts ? 6 : 5}" style="font-weight:bold;">Totales</td>
+          <td class="text-right" style="font-weight:bold;">${this.formatCurrency(totalCargos)}</td>
+          <td class="text-right" style="font-weight:bold;">${this.formatCurrency(totalAbonos)}</td>
+          <td class="text-right" style="font-weight:bold;">${this.formatCurrency(data.saldoFinal || 0)}</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+</div>
+</body></html>`;
+  }
 
-      return {
-        margin: [0, index === 0 ? 18 : 12, 0, 0],
-        stack: [
-          ...(index === 0
-            ? [
-                {
-                  text: "Saldos vencidos que componen la deuda",
-                  style: "sectionTitle",
-                },
-              ]
-            : []),
-          {
-            text: group.concepto,
-            style: "yellowSectionTitle",
-            margin: [0, index === 0 ? 6 : 0, 0, 6],
-          },
-          {
-            table: {
-              headerRows: 1,
-              widths: showAspelAccounts ? [68, 92, "*", 92] : [78, "*", 92],
-              body,
-            },
-            layout: {
-              fillColor: (rowIndex: number) =>
-                rowIndex === 0
-                  ? "#FEF3C7"
-                  : rowIndex % 2 === 0
-                    ? "#FFFBEB"
-                    : null,
-              hLineColor: () => "#F3D28A",
-              vLineColor: () => "#F3D28A",
-              paddingLeft: () => 6,
-              paddingRight: () => 6,
-              paddingTop: () => 5,
-              paddingBottom: () => 5,
-            },
-          },
-        ],
-      };
+  private buildVencidosHtml(vencidos: any[], showAspelAccounts: boolean): string {
+    if (!vencidos.length) return "";
+    
+    // Agrupar por concepto
+    const groups: { [key: string]: any[] } = {};
+    vencidos.forEach(v => {
+      if (!groups[v.concepto]) groups[v.concepto] = [];
+      groups[v.concepto].push(v);
     });
+
+    return `
+      <div class="section-title" style="margin-top:24px;">Saldos vencidos que componen la deuda</div>
+      ${Object.keys(groups).map((concepto) => `
+        <div style="font-weight:bold; color:#9A3412; font-size:1.05rem; margin:12px 0 6px 0;">${this.htmlPrintS.esc(concepto)}</div>
+        <table class="data-table yellow-table">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              ${showAspelAccounts ? `<th>Cuenta Aspel</th>` : ""}
+              <th>Detalle</th>
+              <th class="text-right">Pendiente</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${groups[concepto].map(item => `
+              <tr>
+                <td class="mono">${this.htmlPrintS.esc(item.fechaCargo || "-")}</td>
+                ${showAspelAccounts ? `<td class="mono">${this.htmlPrintS.esc(item.numCta || "-")}</td>` : ""}
+                <td>${this.htmlPrintS.esc(item.conceptoDetalle || "-")}</td>
+                <td class="text-right" style="font-weight:bold; color:#B45309;">${this.formatCurrency(item.saldoPendiente)}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      `).join("")}
+    `;
   }
 
-  private buildAdelantosSection(
-    conceptos: AspelCobranzaDetalleConcepto[],
-  ): any {
-    const rows = conceptos
-      .filter((item) => item.adelanto > 0)
-      .map((item) => [
-        { text: item.concepto, style: "conceptTitle" },
-        { text: item.numCta || "-", style: "mono" },
-        {
-          text: this.formatCurrency(item.adelanto),
-          alignment: "right",
-          style: "amountStrong",
-          color: "#047857",
-        },
-      ]);
+  private buildAdelantosHtml(conceptos: AspelCobranzaDetalleConcepto[], showAspelAccounts: boolean): string {
+    const adelantos = conceptos.filter(item => item.adelanto > 0);
+    if (!adelantos.length) return "";
 
-    return {
-      margin: [0, 18, 0, 0],
-      stack: [
-        { text: "Adelantos a favor", style: "sectionTitle" },
-        {
-          text: "Los sobrepagos o pagos adelantados se muestran por separado para no inflar el adeudo pendiente.",
-          style: "sectionHelp",
-          margin: [0, 2, 0, 8],
-        },
-        {
-          table: {
-            headerRows: 1,
-            widths: ["*", 110, 90],
-            body: [
-              [
-                this.tableHeader("Concepto"),
-                this.tableHeader("Cuenta"),
-                this.tableHeader("Monto", "right"),
-              ],
-              ...rows,
-            ],
-          },
-          layout: {
-            fillColor: (rowIndex: number) =>
-              rowIndex === 0
-                ? "#DCFCE7"
-                : rowIndex % 2 === 0
-                  ? "#F0FDF4"
-                  : null,
-            hLineColor: () => "#BBF7D0",
-            vLineColor: () => "#BBF7D0",
-            paddingLeft: () => 6,
-            paddingRight: () => 6,
-            paddingTop: () => 5,
-            paddingBottom: () => 5,
-          },
-        },
-      ],
-    };
+    return `
+      <div class="section-title" style="margin-top:24px;">Adelantos a favor</div>
+      <div class="section-help">Los sobrepagos o pagos adelantados se muestran por separado para no inflar el adeudo pendiente.</div>
+      <table class="data-table green-table">
+        <thead>
+          <tr>
+            <th>Concepto</th>
+            <th>Cuenta</th>
+            <th class="text-right">Monto</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${adelantos.map(item => `
+            <tr>
+              <td style="font-weight:bold;">${this.htmlPrintS.esc(item.concepto)}</td>
+              <td class="mono">${this.htmlPrintS.esc(item.numCta || "-")}</td>
+              <td class="text-right" style="font-weight:bold; color:#047857;">${this.formatCurrency(item.adelanto)}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    `;
   }
 
-  private buildMetricCell(
-    label: string,
-    value: string,
-    highlight: boolean = false,
-  ): any {
-    return {
-      stack: [
-        {
-          text: label,
-          style: highlight ? "metricLabelHighlight" : "metricLabel",
-        },
-        {
-          text: value,
-          style: highlight ? "metricValueHighlight" : "metricValue",
-        },
-      ],
-      fillColor: highlight ? "#E0ECFF" : "#F3F4F6",
-      margin: [0, 0, 0, 0],
-      border: [false, false, false, false],
-    };
-  }
-
-  private buildDocumentHeader(options: {
-    title: string;
-    documentCode: string;
-    badge: string;
-    generatedAt: Date;
-    logo: string | null;
-    compact: boolean;
-    headerWidth: number;
-  }): Content {
-    const compact = options.compact;
-
-    return {
-      margin: compact ? [28, 12, 28, 0] : [28, 20, 28, 0],
-      stack: [
-        {
-          canvas: [
-            {
-              type: "rect",
-              x: 0,
-              y: 0,
-              w: options.headerWidth,
-              h: compact ? 3 : 5,
-              color: "#0B3164",
-            },
-          ],
-        },
-        {
-          margin: [0, 0, 0, 0],
-          table: {
-            widths: [74, "*", 150],
-            body: [
-              [
-                options.logo
-                  ? {
-                      image: options.logo,
-                      fit: compact ? [40, 34] : [52, 44],
-                      alignment: "center",
-                      margin: [0, 6, 0, 6],
-                      border: [false, false, false, false],
-                    }
-                  : {
-                      text: "LUX",
-                      style: "logoFallback",
-                      margin: [0, 8, 0, 0],
-                      border: [false, false, false, false],
-                    },
-                {
-                  stack: [
-                    {
-                      text: this.customerIdS.customerName() || "LuxuryApp",
-                      style: compact ? "headerCompanyCompact" : "headerCompany",
-                    },
-                    {
-                      text: options.title,
-                      style: compact
-                        ? "headerDocumentCompact"
-                        : "headerDocument",
-                    },
-                    {
-                      text: `${options.documentCode} | Generado ${this.formatDateTime(options.generatedAt)}`,
-                      style: "headerMeta",
-                      margin: [0, 2, 0, 0],
-                    },
-                  ],
-                  margin: [0, compact ? 6 : 10, 0, 6],
-                  border: [false, false, false, false],
-                },
-                {
-                  stack: [
-                    {
-                      text: options.badge,
-                      style: "headerBadge",
-                      alignment: "right",
-                    },
-                    {
-                      text:
-                        this.customerIdS.nombreCorto() ||
-                        this.customerIdS.customerName() ||
-                        "",
-                      style: "headerMeta",
-                      alignment: "right",
-                      margin: [0, 8, 0, 0],
-                    },
-                  ],
-                  margin: [0, compact ? 8 : 12, 0, 0],
-                  border: [false, false, false, false],
-                },
-              ],
-            ],
-          },
-          layout: {
-            fillColor: () => "#F3F4F6",
-            hLineWidth: () => 0,
-            vLineWidth: () => 0,
-            paddingLeft: () => 12,
-            paddingRight: () => 12,
-            paddingTop: () => 0,
-            paddingBottom: () => 0,
-          },
-        },
-        {
-          margin: [0, 0, 0, 2],
-          canvas: [
-            {
-              type: "rect",
-              x: 0,
-              y: 0,
-              w: options.headerWidth,
-              h: 3,
-              color: "#C9A84C",
-            },
-          ],
-        },
-      ],
-    };
-  }
-
-  private tableHeader(text: string, alignment: "left" | "right" = "left"): any {
-    return {
-      text,
-      style: "tableHeader",
-      alignment,
-    };
-  }
-
-  private getVisibleConceptos(
-    conceptos: AspelCobranzaDetalleConcepto[],
-  ): AspelCobranzaDetalleConcepto[] {
+  private getVisibleConceptos(conceptos: AspelCobranzaDetalleConcepto[]): AspelCobranzaDetalleConcepto[] {
     return conceptos
-      .filter(
-        (item) =>
-          item.saldoInicial !== 0 ||
-          item.cargos !== 0 ||
-          item.abonos !== 0 ||
-          item.saldoFinal !== 0 ||
-          item.totalVencido !== 0 ||
-          item.adelanto !== 0 ||
-          item.vencidos.some((vencido) => vencido.saldoPendiente > 0),
-      )
-      .sort(
-        (a, b) =>
-          b.saldoFinal - a.saldoFinal || a.concepto.localeCompare(b.concepto),
-      );
+      .filter((item) => item.saldoInicial !== 0 || item.cargos !== 0 || item.abonos !== 0 || item.saldoFinal !== 0 || item.totalVencido !== 0 || item.adelanto !== 0 || item.vencidos.some((v) => v.saldoPendiente > 0))
+      .sort((a, b) => b.saldoFinal - a.saldoFinal || a.concepto.localeCompare(b.concepto));
   }
 
   private formatCurrency(value: number): string {
     return this.currencyFormatter.format(value || 0);
-  }
-
-  private formatDateTime(date: Date): string {
-    return new Intl.DateTimeFormat("es-MX", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-    }).format(date);
   }
 
   private formatMovementType(item: AspelMovimiento): string {
@@ -951,207 +387,5 @@ export class AspelCobranzaHausPdfService {
 
   private isCharge(item: AspelMovimiento): boolean {
     return (item.tipo || "").toLowerCase() === "cargo";
-  }
-
-  async downloadAvisoCobroAspel(
-    data: AspelCobranzaDetalleResponse,
-    generatedAt: Date,
-  ): Promise<void> {
-    await this.downloadAvisoCobro(data, generatedAt, {
-      showAspelAccounts: true,
-    });
-  }
-
-  async downloadEstadoCuentaAspel(
-    data: AspelEstadoCuentaResponse,
-    generatedAt: Date,
-  ): Promise<void> {
-    await this.downloadEstadoCuenta(data, generatedAt, {
-      showAspelAccounts: true,
-    });
-  }
-
-  private async getLogoDataUrl(): Promise<string | null> {
-    const nextSource = this.customerIdS.customerPhotoPath();
-    if (!nextSource) return null;
-    if (this.logoDataUrl && this.logoSource === nextSource)
-      return this.logoDataUrl;
-
-    try {
-      const blob = await firstValueFrom(
-        this.http.get(nextSource, { responseType: "blob" }),
-      );
-      const base64 = await this.blobToDataUrl(blob);
-      this.logoSource = nextSource;
-      this.logoDataUrl = base64;
-      return base64;
-    } catch {
-      this.logoSource = nextSource;
-      this.logoDataUrl = null;
-      return null;
-    }
-  }
-
-  private blobToDataUrl(blob: Blob): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result as string);
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
-    });
-  }
-
-  private buildStyles(): StyleDictionary {
-    return {
-      title: {
-        fontSize: 20,
-        bold: true,
-        color: "#2563EB",
-      },
-      eyebrowSubtle: {
-        fontSize: 8.5,
-        color: "#6B7280",
-      },
-      metaLabel: {
-        fontSize: 8,
-        color: "#6B7280",
-      },
-      heroAmount: {
-        fontSize: 18,
-        bold: true,
-        color: "#1D4ED8",
-      },
-      sectionTitle: {
-        fontSize: 13,
-        bold: true,
-        color: "#111827",
-      },
-      yellowSectionTitle: {
-        fontSize: 10.5,
-        bold: true,
-        color: "#9A3412",
-      },
-      sectionHelp: {
-        fontSize: 8,
-        color: "#6B7280",
-      },
-      metricLabel: {
-        fontSize: 8,
-        color: "#6B7280",
-        bold: true,
-      },
-      metricValue: {
-        fontSize: 12,
-        bold: true,
-        color: "#111827",
-        margin: [0, 4, 0, 0],
-      },
-      metricLabelHighlight: {
-        fontSize: 8,
-        color: "#1D4ED8",
-        bold: true,
-      },
-      metricValueHighlight: {
-        fontSize: 13,
-        bold: true,
-        color: "#1D4ED8",
-        margin: [0, 4, 0, 0],
-      },
-      tableHeader: {
-        bold: true,
-        color: "#111827",
-        fontSize: 9,
-      },
-      conceptTitle: {
-        bold: true,
-        color: "#111827",
-      },
-      conceptSubtitle: {
-        fontSize: 7.5,
-        color: "#6B7280",
-        margin: [0, 2, 0, 0],
-      },
-      amountStrong: {
-        bold: true,
-        fontSize: 9,
-      },
-      totalLabel: {
-        bold: true,
-        color: "#111827",
-      },
-      totalValue: {
-        bold: true,
-        color: "#111827",
-        fontSize: 9,
-      },
-      mono: {
-        fontSize: 8.5,
-      },
-      bodyText: {
-        fontSize: 8.5,
-        color: "#374151",
-      },
-      note: {
-        fontSize: 8,
-        color: "#6B7280",
-      },
-      simBadgeTitle: {
-        bold: true,
-        fontSize: 10,
-        color: "#111827",
-      },
-      simBadgeText: {
-        fontSize: 8,
-        color: "#4B5563",
-      },
-      simBadgeValueWarn: {
-        bold: true,
-        fontSize: 16,
-        color: "#C2410C",
-      },
-      simBadgeValueOk: {
-        bold: true,
-        fontSize: 16,
-        color: "#047857",
-      },
-      headerCompany: {
-        fontSize: 13,
-        bold: true,
-        color: "#111827",
-      },
-      headerCompanyCompact: {
-        fontSize: 11,
-        bold: true,
-        color: "#111827",
-      },
-      headerDocument: {
-        fontSize: 13,
-        bold: true,
-        color: "#0B3164",
-      },
-      headerDocumentCompact: {
-        fontSize: 11,
-        bold: true,
-        color: "#0B3164",
-      },
-      headerMeta: {
-        fontSize: 8,
-        color: "#6B7280",
-      },
-      headerBadge: {
-        fontSize: 8,
-        bold: true,
-        color: "#FFFFFF",
-        background: "#0B3164",
-      },
-      logoFallback: {
-        fontSize: 14,
-        bold: true,
-        color: "#0B3164",
-      },
-      monoTiny: {
-        fontSize: 7.5,
-      },
-    };
   }
 }

@@ -5,6 +5,8 @@ import { TooltipModule } from "primeng/tooltip";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { InspeccionPdfService } from "../inspeccion-pdf.service";
+
 @Component({
   selector: "app-resultado-inspeccion",
   templateUrl: "./resultado-inspeccion.html",
@@ -13,10 +15,11 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 export class ResultadoInspeccion implements OnInit {
   apiResponseS = inject(ApiResponseService);
   activatedRoute = inject(ActivatedRoute);
-  // Declaración e inicialización de variables
+  inspeccionPdfS = inject(InspeccionPdfService);
+
   data: any = null;
   id: string = "";
-  
+
   private paramsSignal = toSignal(this.activatedRoute.params);
 
   constructor() {
@@ -29,30 +32,15 @@ export class ResultadoInspeccion implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    // Logic moved to effect
-  }
+  ngOnInit(): void {}
 
   onLoadData(inspectionResultId: string): void {
     this.apiResponseS.onGetList(Endpoints.InspectionResults.report(inspectionResultId)).then((result: any) => {
       this.data = result;
     });
   }
-  onExportPDF() {
-    const nameDocument = `Inspección_${this.id}.pdf`; // Nombre del archivo
 
-    this.apiResponseS.onDownloadFile(
-      Endpoints.InspectionResults.exportPdf(this.id),
-      nameDocument,
-    );
+  onExportPDF(): void {
+    this.inspeccionPdfS.generarReporte(this.data, `Inspeccion_${this.id}`);
   }
 }
-
-
-
-
-
-
-
-
-

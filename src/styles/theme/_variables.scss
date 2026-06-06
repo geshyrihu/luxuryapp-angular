@@ -138,6 +138,16 @@ $contrast-900: #000000;
 
   --ds-border: var(--brand-border, #e2e8f0);
   --ds-border-strong: var(--brand-border-strong, #cbd5e1);
+
+  /* ── Task status colors — aliases de los tokens DS existentes ── */
+  --task-not-started:      var(--ds-danger);
+  --task-in-progress:      var(--ds-warning);
+  --task-completed:        var(--ds-success);
+  --task-reopened:         var(--ds-danger);
+  --task-not-started-tint: var(--ds-danger-light);
+  --task-in-progress-tint: var(--ds-warning-light);
+  --task-completed-tint:   var(--ds-success-light);
+  --task-reopened-tint:    var(--ds-danger-light);
   --ds-bg-sunken: var(--brand-bg-sunken, #f1f5f9);
   --ds-bg-page: var(--brand-bg-page, #f8fafc);
   --ds-bg-surface: var(--brand-bg-surface, #ffffff);
@@ -299,7 +309,8 @@ $contrast-900: #000000;
   --ds-document-surface: #ffffff;
 
   // Tipografia Documental (Estandar Documental)
-  --ds-font-family-document: "IBM Plex Sans", "Inter", "Calibri", "Segoe UI", sans-serif;
+  --ds-font-family-document:
+    "IBM Plex Sans", "Inter", "Calibri", "Segoe UI", sans-serif;
   --ds-font-family-mono: "Roboto Mono", "Consolas", monospace;
   --ds-font-size-doc-title: 26pt; // Rango 24-28pt
   --ds-font-size-doc-body: 10.5pt; // Rango 10-11pt
@@ -321,7 +332,8 @@ $contrast-900: #000000;
   --ds-text-link: var(--primary-600);
 
   // Tipografia ERP
-  --ds-font-family-base: "IBM Plex Sans", "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  --ds-font-family-base:
+    "IBM Plex Sans", "Inter", "Segoe UI", Roboto, Arial, sans-serif;
   --ds-font-size-display: 2rem; // 32px - heroes internos o portada de modulo
   --ds-font-size-page-title: 1.75rem; // 28px - titulo principal de vista
   --ds-font-size-section-title: 1.25rem; // 20px - secciones y paneles
@@ -501,12 +513,36 @@ body.theme-dark {
   --ds-shadow-focus: 0 0 0 3px rgba(77, 159, 255, 0.3);
 
   // Neon glow tokens — efectos de borde luminoso para dark mode
-  --ds-glow-primary: var(--brand-glow-primary, 0 0 0 1px rgba(77, 159, 255, 0.45), 0 0 14px rgba(77, 159, 255, 0.2));
-  --ds-glow-success:  var(--brand-glow-success, 0 0 0 1px rgba(74, 222, 128, 0.45), 0 0 14px rgba(74, 222, 128, 0.2));
-  --ds-glow-danger:   var(--brand-glow-danger, 0 0 0 1px rgba(248, 113, 113, 0.45), 0 0 14px rgba(248, 113, 113, 0.2));
-  --ds-glow-warning:  var(--brand-glow-warning, 0 0 0 1px rgba(251, 191, 36, 0.45), 0 0 14px rgba(251, 191, 36, 0.2));
-  --ds-glow-info:     var(--brand-glow-info, 0 0 0 1px rgba(34, 211, 238, 0.45), 0 0 14px rgba(34, 211, 238, 0.2));
-  --ds-glow-help:     var(--brand-glow-help, 0 0 0 1px rgba(196, 181, 253, 0.45), 0 0 14px rgba(196, 181, 253, 0.2));
+  --ds-glow-primary: var(
+    --brand-glow-primary,
+    0 0 0 1px rgba(77, 159, 255, 0.45),
+    0 0 14px rgba(77, 159, 255, 0.2)
+  );
+  --ds-glow-success: var(
+    --brand-glow-success,
+    0 0 0 1px rgba(74, 222, 128, 0.45),
+    0 0 14px rgba(74, 222, 128, 0.2)
+  );
+  --ds-glow-danger: var(
+    --brand-glow-danger,
+    0 0 0 1px rgba(248, 113, 113, 0.45),
+    0 0 14px rgba(248, 113, 113, 0.2)
+  );
+  --ds-glow-warning: var(
+    --brand-glow-warning,
+    0 0 0 1px rgba(251, 191, 36, 0.45),
+    0 0 14px rgba(251, 191, 36, 0.2)
+  );
+  --ds-glow-info: var(
+    --brand-glow-info,
+    0 0 0 1px rgba(34, 211, 238, 0.45),
+    0 0 14px rgba(34, 211, 238, 0.2)
+  );
+  --ds-glow-help: var(
+    --brand-glow-help,
+    0 0 0 1px rgba(196, 181, 253, 0.45),
+    0 0 14px rgba(196, 181, 253, 0.2)
+  );
 
   // 💎 PrimeNG 21 Dark Mapping
   --p-primary-color: var(--ds-primary);

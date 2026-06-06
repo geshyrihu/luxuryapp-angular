@@ -1,5 +1,5 @@
 <div>
-  <div class="hidden md:block">
+  <div class="hidden md:block no-print">
     @if (dataSignal() && dataSignal() !== undefined) {
     <p-table
       [globalFilterFields]="globalFilterFields()"
@@ -9,103 +9,154 @@
       [showCurrentPageReport]="true"
       [value]="dataSignal()"
       [scrollable]="true"
-      [scrollHeight]="scrollHeight"
+      [scrollHeight]="scrollHeight()"
       #dt
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
       styleClass="custom-table hidden md:block"
+      [tableStyle]="{ 'min-width': '60rem' }"
     >
       <ng-template #caption>
-        <primeng-custom-caption
-          title="Mis tickets asignados"
-          (add)="
-              onModalAdd({
-                id: '',
-                title: 'Agregar',
-              })
-            "
-          [dt]="dt"
-        />
-        <div class="mt-2">
-          <app-task-status (statusChange)="onLoadData($event)" />
+        <div
+          class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-3 surface-ground border-round shadow-1"
+        >
+          <!-- IZQUIERDA: Título y Status Filter -->
+          <div class="flex flex-column sm:flex-row align-items-center gap-3">
+            <h4 class="m-0 uppercase text-primary font-bold whitespace-nowrap">
+              Mis tickets asignados
+            </h4>
+            <app-task-status (statusChange)="onLoadData($event)" />
+          </div>
+
+          <!-- DERECHA: Buscador, Agregar e Imprimir -->
+          <div class="flex flex-column sm:flex-row align-items-center gap-2">
+            <primeng-custom-caption
+              (add)="onModalAdd({ id: '', title: 'Agregar' })"
+              [dt]="dt"
+              [noPadding]="true"
+              [noMargin]="true"
+            />
+            <custom-button
+              iconClass="pi pi-print"
+              label="Imprimir pendientes"
+              variant="outlined"
+              severity="secondary"
+              size="small"
+              [showLabelOnDesktop]="true"
+              (clicked)="printReport()"
+            />
+          </div>
         </div>
       </ng-template>
       <ng-template #header>
         <tr>
-          <th class="font-size-12">FOLIO</th>
-          <th class="font-size-12 hidden md:table-cell">SOLICITA</th>
-          <th class="font-size-12">FECHA SOL.</th>
-          <th class="font-size-12">SOLICITUD</th>
-          <th class="font-size-12 hidden md:table-cell">EVIDENCIA</th>
-          <th class="font-size-12">PRIORIDAD</th>
-          <th class="font-size-12">PROGRAMADO</th>
-          <th class="font-size-12 hidden md:table-cell">CIERRE</th>
-          <th class="font-size-12">DIAS</th>
-          <th class="font-size-12"></th>
+          <th style="width: 7%">FOLIO</th>
+          <th style="width: 5%" class="hidden md:table-cell">SOLICITA</th>
+          <th style="width: 8%">FECHA SOL.</th>
+          <th style="width: 22%">SOLICITUD</th>
+          <th style="width: 5%" class="hidden md:table-cell">EVIDENCIA</th>
+          <th style="width: 6%">RESP.</th>
+          <th style="width: 8%">PROGRAMADO</th>
+          <th style="width: 7%" class="hidden md:table-cell">CIERRE</th>
+          <th style="width: 5%">DIAS</th>
+          <th style="width: 22%">ULTIMO SEGUIMIENTO</th>
+          <th style="width: 5%"></th>
         </tr>
       </ng-template>
       <ng-template #body let-item>
-        <tr>
-          <td>{{ item.folio }}</td>
+        <tr
+          [class.row-status-completed]="item.status === 'Completed'"
+          [class.row-status-in-progress]="item.status === 'InProgress'"
+          [class.row-status-reopened]="item.status === 'Reopened'"
+          [class.row-status-not-started]="item.status === 'NotStarted'"
+        >
+          <td>
+            <p class="m-0 text-xs text-400">{{ item.folio }}</p>
+            <p class="m-0 text-xs text-500">{{ item.createdAtDate }}</p>
+          </td>
           <td class="text-center hidden md:table-cell">
             <p-avatar
               (click)="onCardEmployee(item.creatorId)"
-              [image]="
-                  item.creatorImg
-                    ? item.creatorImg
-                    : 'assets/images/default-avatar.jpg'
-                "
+              [image]="item.creatorImg || 'assets/images/default-avatar.jpg'"
               alt="Creador"
-              shape="square"
-              size="large"
-              styleClass="mr-2 cursor-pointer"
+              shape="circle"
+              size="normal"
+              styleClass="cursor-pointer"
+              [pTooltip]="item.creator"
+              tooltipPosition="top"
             />
           </td>
-          <td>{{ item.createdAtDate }}</td>
+          <td class="text-xs text-600">{{ item.createdAtDate }}</td>
           <td>
-            <strong class="card-text">
-              <em>{{ item.title }}</em>
-            </strong>
-            <p class="card-text">{{ item.description }}</p>
+            <p class="m-0 font-semibold text-xs text-900">{{ item.title }}</p>
+            <p
+              class="m-0 text-xs text-700"
+              style="
+                white-space: normal;
+                overflow-wrap: break-word;
+                word-break: break-word;
+              "
+            >
+              {{ item.description }}
+            </p>
           </td>
           <td class="text-center hidden md:table-cell">
             @if (item.beforeWork) {
             <p-image
-              [src]="
-                    item.beforeWork
-                      ? item.beforeWork
-                      : 'assets/images/default-avatar.png'
-                  "
+              [src]="item.beforeWork"
               alt="."
               width="40"
-              class="mr-2 border border-danger"
               [preview]="true"
-            ></p-image>
+            />
             }
           </td>
-          <td class="text-center">
-            @if (item.priority === "Alta") {
-            <i class="icon icon-pi-star icon-xl"></i>
-            } @if (item.priority === "Baja") {
-            <i class="icon icon-pi-star icon-xl"></i>
-            }
+          <td class="text-center text-xs text-600">
+            {{ item.creator | initialsAbbr }}
           </td>
-          <td>{{ item.scheduledAt }}</td>
-          <td class="text-center hidden md:table-cell">
-            {{ item.closedAtDate }}
+          <td class="text-xs text-600">{{ item.scheduledAt || '—' }}</td>
+          <td class="text-center text-xs text-600 hidden md:table-cell">
+            {{ item.closedAtDate || '—' }}
           </td>
           <td class="text-center">
-            <p>
-              <strong>{{ item.daysDifference }}</strong>
+            <strong class="text-xs">{{ item.daysDifference }}</strong>
+          </td>
+          <td
+            style="
+              white-space: normal;
+              overflow-wrap: break-word;
+              word-break: break-word;
+              overflow: hidden;
+              max-width: 0;
+            "
+          >
+            @if (item.lastFollowUp) {
+            <span class="text-xs text-400 font-medium block mb-1"
+              >{{ item.lastFollowUpDate }}</span
+            >
+            <p
+              class="m-0 text-xs text-700"
+              style="
+                white-space: normal;
+                overflow-wrap: break-word;
+                word-break: break-word;
+              "
+            >
+              {{ item.lastFollowUp }}
             </p>
+            }
           </td>
           <td class="text-center no-print">
-            <div class="flex justify-content-center">
-              <custom-button-tracking
-                iconClass="pi pi-star"
-                ngbTooltip="Dar seguimiento"
-                [badgeCount]="item.ticketMessageFollowUp"
-                (clickTracking)="onFollowUp(item.id)"
-              />
+            <div class="flex align-items-center justify-content-center gap-1">
+              <a
+                (click)="onFollowUp(item.id)"
+                class="cursor-pointer flex align-items-center gap-1 text-decoration-none"
+                pTooltip="Seguimientos"
+                tooltipPosition="top"
+              >
+                <i class="pi pi-comments text-blue-500"></i>
+                <span class="badge bg-info px-2 py-1 text-xs font-semibold"
+                  >{{ item.ticketMessageFollowUp }}</span
+                >
+              </a>
               <app-action-menu>
                 <ng-container actions>
                   @if (item.status !== "Completed") {
@@ -152,7 +203,7 @@
     }
   </div>
 
-  <div class="block md:hidden mt-3">
+  <div class="block md:hidden mt-3 no-print">
     <div class="container-fluid py-1">
       <div class="flex justify-content-between align-items-center mb-1">
         <h4 class="mb-0">Mis Tickets Asignados</h4>
@@ -308,6 +359,122 @@
         }
       </div>
       }
+    </div>
+  </div>
+
+  <!-- ================================================================
+       REPORTE  DE TAREAS PENDIENTES — solo visible al imprimir
+       ================================================================ -->
+  <div class="print-task-report">
+    <div class="print-report-header">
+      <div class="print-report-header-left">
+        <h2>Reporte — Mis Tareas Pendientes</h2>
+        <p>Mis tareas asignadas pendientes</p>
+      </div>
+      <div class="print-report-header-right">
+        <p>Fecha: <strong>{{ today }}</strong></p>
+        <p>Total de pendientes: <strong>{{ pendingItems().length }}</strong></p>
+      </div>
+    </div>
+
+    <div class="print-legend">
+      <span
+        ><span class="print-legend-dot" style="background: #dc2626"></span> No
+        iniciado</span
+      >
+      <span
+        ><span class="print-legend-dot" style="background: #ea580c"></span> En
+        proceso</span
+      >
+      <span
+        ><span class="print-legend-dot" style="background: #dc2626"></span>
+        Reabierto</span
+      >
+    </div>
+
+    <table class="print-task-table">
+      <colgroup>
+        <col class="col-num" />
+        <col class="col-req" />
+        <col class="col-resp" />
+        <col class="col-fecha" />
+        <col class="col-estado" />
+        <col class="col-dias" />
+        <col class="col-evid" />
+        <col class="col-seg" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th class="col-num">#</th>
+          <th class="col-req">Solicitud</th>
+          <th class="col-resp">Responsable</th>
+          <th class="col-fecha">Programado</th>
+          <th class="col-estado">Estado</th>
+          <th class="col-dias" style="text-align: center">Dias</th>
+          <th class="col-evid" style="text-align: center">Evidencias</th>
+          <th class="col-seg">Ultimo seguimiento</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of pendingItems(); track item.id; let idx = $index) {
+        <tr>
+          <td
+            [class]="statusTdClass(item.status)"
+            style="font-size: 7.5pt; color: #666"
+          >
+            {{ idx + 1 }}
+          </td>
+          <td>
+            <div class="print-folio">
+              {{ item.folio }} | {{ item.createdAtDate }}
+            </div>
+            <div class="print-title">{{ item.title }}</div>
+            @if (item.description) {
+            <div class="print-desc">{{ item.description }}</div>
+            }
+          </td>
+          <td style="font-size: 7.5pt">{{ item.creator || '—' }}</td>
+          <td style="font-size: 7.5pt; white-space: nowrap">
+            {{ item.scheduledAt || '—' }}
+          </td>
+          <td>
+            <span
+              class="print-status-pill"
+              [style]="statusPillStyle(item.status)"
+            >
+              {{ statusLabel(item.status) }}
+            </span>
+          </td>
+          <td style="text-align: center; font-size: 7.5pt">
+            {{ item.daysDifference }}
+          </td>
+          <td style="text-align: center; font-size: 9pt">
+            @if (item.beforeWork || item.afterWork) { ✓ } @else { — }
+          </td>
+          <td>
+            @if (item.lastFollowUp) {
+            <span
+              style="
+                font-size: 7pt;
+                color: #777;
+                display: block;
+                margin-bottom: 2px;
+              "
+              >{{ item.lastFollowUpDate }}</span
+            >
+            <p class="print-followup">{{ item.lastFollowUp }}</p>
+            } @else {
+            <span style="font-size: 7.5pt; color: #aaa">—</span>
+            }
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+
+    <div class="print-report-footer">
+      <span>Luxury Building Group — Sistema de Gestion Operativa</span>
+      <span>Generado el {{ today }}</span>
     </div>
   </div>
 </div>

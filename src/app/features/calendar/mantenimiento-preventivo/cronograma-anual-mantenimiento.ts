@@ -21,7 +21,6 @@ import {
 import { addIcons } from "ionicons";
 import { checkboxOutline, createOutline } from "ionicons/icons";
 import * as FileSaver from "file-saver";
-import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
@@ -37,7 +36,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CronogramaMantenimientoService } from "src/app/core/services/cronograma-mantenimiento.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service";
+import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { resolvePrimeIcon } from "src/app/core/utils/prime-icon-resolver";
 import { CronogramaItem } from "./interfaces/CronogramaItem";
 import { FiltroEquipo } from "./interfaces/FiltroEquipo";
@@ -70,7 +69,7 @@ export class CronogramaAnualMantenimiento {
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
   cronogramaMantenimientoService = inject(CronogramaMantenimientoService);
-  private pdfGeneratorS = inject(PdfGeneratorService);
+  private htmlPrintS = inject(HtmlPrintService);
   // --- Propiedades del Componente ---
   // ? MEJORA: Usar signals para los datos
   dataSignal = signal<CronogramaItem[]>([]);
@@ -277,7 +276,7 @@ export class CronogramaAnualMantenimiento {
     FileSaver.saveAs(data, `${fileName}${EXCEL_EXTENSION}`);
   }
 
-  exportPdf(): void {
+  async exportPdf(): Promise<void> {
     const data = this.dataSignal();
     if (!data || data.length === 0) return;
 
@@ -289,116 +288,83 @@ export class CronogramaAnualMantenimiento {
       groups[item.sistema].push(item);
     });
 
-    const headerRow = [
-      {
-        text: "DESCRIPCION",
-        bold: true,
-        fontSize: 8,
-        fillColor: "#0b3164",
-        color: "#ffffff",
-        border: [false, false, false, false],
-        margin: [3, 4, 3, 4],
-      },
-      ...this.meses.map((mes) => ({
-        text: mes,
-        bold: true,
-        fontSize: 8,
-        fillColor: "#0b3164",
-        color: "#ffffff",
-        alignment: "center" as const,
-        border: [false, false, false, false],
-        margin: [1, 4, 1, 4],
-      })),
-    ];
-
-    const tableBody: any[] = [headerRow];
+    let tableHtml = "";
 
     Object.keys(groups).forEach((sistema) => {
-      tableBody.push([
-        {
-          text: sistema.toUpperCase(),
-          colSpan: 13,
-          bold: true,
-          fontSize: 8,
-          fillColor: "#c9a84c",
-          color: "#ffffff",
-          border: [false, false, false, false],
-          margin: [4, 3, 4, 3],
-        },
-        ...Array(12).fill({ text: "", border: [false, false, false, false] }),
-      ]);
+      tableHtml += `
+        <tr>
+          <td colspan="13" class="sistema-header">${this.htmlPrintS.esc(sistema.toUpperCase())}</td>
+        </tr>
+      `;
 
       groups[sistema].forEach((item, idx) => {
         const bg = idx % 2 === 0 ? "#ffffff" : "#f9fafb";
-        const row: any[] = [
-          {
-            text: item.nameMachinery,
-            fontSize: 7,
-            fillColor: bg,
-            border: [false, false, false, false],
-            margin: [3, 2, 3, 2],
-          },
-        ];
+        let tds = "";
         this.meses.forEach((mes) => {
           const has = this.hasService(item, mes);
-          row.push(
-            has
-              ? {
-                  stack: [{ canvas: [{ type: "rect", x: 2, y: 2, w: 19, h: 10, color: "#0b3164" }] }],
-                  fillColor: bg,
-                  border: [false, false, false, false],
-                }
-              : {
-                  text: "",
-                  fillColor: bg,
-                  border: [false, false, false, false],
-                },
-          );
+          tds += `<td style="background-color: ${bg}; text-align: center;">
+            ${has ? '<div class="block-indicator"></div>' : ''}
+          </td>`;
         });
-        tableBody.push(row);
+
+        tableHtml += `
+          <tr>
+            <td style="background-color: ${bg}; font-size: 9px; padding: 4px 6px;">${this.htmlPrintS.esc(item.nameMachinery)}</td>
+            ${tds}
+          </tr>
+        `;
       });
     });
 
-    const docDefinition: TDocumentDefinitions = {
-      pageOrientation: "landscape",
-      pageSize: "A4",
-      content: [
-        {
-          canvas: [{ type: "rect", x: 0, y: 0, w: 762, h: 4, color: "#c9a84c" }],
-          margin: [0, 0, 0, 10],
-        },
-        {
-          text: `Plan de Mantenimiento Preventivo · ${this.filtroEquiposValue.toUpperCase()}`,
-          fontSize: 13,
-          bold: true,
-          color: "#0b3164",
-          margin: [0, 0, 0, 12],
-        },
-        {
-          table: {
-            widths: ["*", ...Array(12).fill(23)],
-            headerRows: 1,
-            heights: 14,
-            body: tableBody,
-          },
-          layout: {
-            hLineWidth: () => 0.5,
-            vLineWidth: () => 0,
-            hLineColor: () => "#e5e7eb",
-            paddingLeft: () => 0,
-            paddingRight: () => 0,
-            paddingTop: () => 0,
-            paddingBottom: () => 0,
-          },
-        },
-      ],
-    };
+    const monthsHeaders = this.meses.map(m => `<th>${m}</th>`).join("");
+    const logo = await this.htmlPrintS.getLogoDataUrl();
+    const generatedAt = new Date();
 
-    this.pdfGeneratorS
-      .generatePdf(docDefinition, `Cronograma_Mantenimiento_${this.filtroEquiposValue}`, {
-        clientName: "Cronograma Anual de Mantenimiento",
-      })
-      .finally(() => this.loading.set(false));
+    const html = `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+  @page { size: landscape; margin: 10mm; }
+  .container { max-width: 1400px; }
+  th { background-color: #1E3A8A !important; color: #FFFFFF !important; }
+  
+  .sistema-header { background-color: #c9a84c !important; color: #ffffff !important; }
+  .block-indicator { background-color: #0b3164 !important; }
+  
+  .title { font-size: 16px; font-weight: bold; color: #0b3164; margin-bottom: 16px; }
+
+  .data-table { width:100%; border-collapse:collapse; margin-bottom:16px; }
+  .data-table th, .data-table td { padding:4px 2px; border:1px solid #e5e7eb; }
+  .data-table th { background:#1E3A8A; color: #ffffff; font-weight:700; text-align:center; font-size: 9px; }
+  
+  .sistema-header { background:#c9a84c; color: #ffffff; font-weight:700; font-size: 10px; padding: 4px 6px !important; }
+  .block-indicator { width: 100%; height: 12px; background-color: #1E3A8A; margin: 0 auto; border-radius: 1px; }
+
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, "Plan de Mantenimiento Preventivo", `TIPO: ${this.filtroEquiposValue.toUpperCase()}`, generatedAt, "MANTENIMIENTO")}
+
+  <div class="body-doc">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 25%;">DESCRIPCIÓN</th>
+          ${monthsHeaders}
+        </tr>
+      </thead>
+      <tbody>
+        ${tableHtml}
+      </tbody>
+    </table>
+  </div>
+  
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+</div>
+</body></html>`;
+
+    this.htmlPrintS.printHtml(html, `Cronograma_Mantenimiento_${this.filtroEquiposValue}`);
+    this.loading.set(false);
   }
 
   // --- TrackBy Functions ---

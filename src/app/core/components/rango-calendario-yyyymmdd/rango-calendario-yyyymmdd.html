@@ -1,6 +1,6 @@
 <div class="grid gap-4">
   <div class="col-12 sm:col-6">
-    @if (mostrartextDesde()) {
+    @if (mostrarLabelDesde()) {
     <label>Desde</label>
     }
     <input
@@ -8,6 +8,7 @@
       type="text"
       monthSelectorType="dropdown"
       mwlFlatpickr
+      [locale]="localeSpanish"
       [altInput]="true"
       [convertModelValue]="true"
       [(ngModel)]="fechaInicioDate"
@@ -15,7 +16,7 @@
     />
   </div>
   <div class="col-12 sm:col-6">
-    @if (mostrartextHasta()) {
+    @if (mostrarLabelHasta()) {
     <label>Hasta</label>
     }
     <input
@@ -23,6 +24,7 @@
       type="text"
       monthSelectorType="dropdown"
       mwlFlatpickr
+      [locale]="localeSpanish"
       [altInput]="true"
       [convertModelValue]="true"
       [(ngModel)]="fechaFinalDate"

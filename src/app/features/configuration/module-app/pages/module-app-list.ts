@@ -56,7 +56,7 @@ export class ModuleAppList {
     addIcons({ phonePortraitOutline });
   }
 
-  // DeclaraciÃ³n e inicializaciÃ³n de variables
+  // Declaración e inicialización de variables
   dataSignal = signal<IModuleAppDTO[]>([]);
 
   readonly tablePrimeNgRows: number = tablePrimeNgRows();
@@ -70,7 +70,7 @@ export class ModuleAppList {
   });
 
   loading = signal(true);
-  ref: DynamicDialogRef; // Referencia a un cuadro de diÃ¡logo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
 
   ngOnInit(): void {
     this.onLoadData();
@@ -107,7 +107,7 @@ export class ModuleAppList {
     });
   }
 
-  // FunciÃ³n para abrir un cuadro de diÃ¡logo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(ModuleAppForm, data, data.title, this.dialogHandlerS.sizeLg)

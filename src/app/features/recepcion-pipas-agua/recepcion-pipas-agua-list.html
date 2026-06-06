@@ -1,29 +1,3 @@
-<!-- Navegacion entre vistas -->
-<div class="flex gap-2 mb-3 hidden md:flex">
-  <a
-    routerLink="/logbook/water-truck-reception"
-    routerLinkActive="p-button-primary"
-    [routerLinkActiveOptions]="{ exact: true }"
-    class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
-  >
-    <i class="pi pi-list mr-1"></i> Registros
-  </a>
-  <a
-    routerLink="/logbook/water-truck-reception/reporte"
-    routerLinkActive="p-button-primary"
-    class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
-  >
-    <i class="pi pi-table mr-1"></i> Reporte
-  </a>
-  <a
-    routerLink="/logbook/water-truck-reception/analisis"
-    routerLinkActive="p-button-primary"
-    class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
-  >
-    <i class="pi pi-chart-bar mr-1"></i> Analisis
-  </a>
-</div>
-
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -38,11 +12,51 @@
   styleClass="custom-table card hidden md:block"
 >
   <ng-template #caption>
-    <primeng-custom-caption
-      [title]="'Recepcion de Pipas de Agua'"
-      (add)="onModalForm({ id: '', title: 'Nueva Recepcion' })"
-      [dt]="dt"
-    />
+    <div
+      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-3 surface-ground border-round shadow-1"
+    >
+      <!-- IZQUIERDA: Título y Navegación entre vistas -->
+      <div class="flex flex-column sm:flex-row align-items-center gap-3">
+        <h4 class="m-0 uppercase text-primary font-bold whitespace-nowrap">
+          Recepcion de Pipas
+        </h4>
+
+        <div class="flex gap-1">
+          <a
+            routerLink="/logbook/water-truck-reception"
+            routerLinkActive="p-button-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
+          >
+            <i class="pi pi-list mr-1"></i> Registros
+          </a>
+          <a
+            routerLink="/logbook/water-truck-reception/reporte"
+            routerLinkActive="p-button-primary"
+            class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
+          >
+            <i class="pi pi-table mr-1"></i> Reporte
+          </a>
+          <a
+            routerLink="/logbook/water-truck-reception/analisis"
+            routerLinkActive="p-button-primary"
+            class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
+          >
+            <i class="pi pi-chart-bar mr-1"></i> Analisis
+          </a>
+        </div>
+      </div>
+
+      <!-- DERECHA: Buscador y Agregar -->
+      <div class="flex-shrink-0">
+        <primeng-custom-caption
+          (add)="onModalForm({ id: '', title: 'Nueva Recepcion' })"
+          [dt]="dt"
+          [noPadding]="true"
+          [noMargin]="true"
+        />
+      </div>
+    </div>
   </ng-template>
 
   <ng-template #header>
@@ -203,37 +217,37 @@
   </ng-template>
 </p-table>
 
-<!-- Navegacion movil -->
-<div class="flex md:hidden gap-2 mb-2 px-2">
-  <a
-    routerLink="/logbook/water-truck-reception"
-    routerLinkActive="p-button-primary"
-    [routerLinkActiveOptions]="{ exact: true }"
-    class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
-  >
-    <i class="pi pi-list mr-1"></i> Registros
-  </a>
-  <a
-    routerLink="/logbook/water-truck-reception/reporte"
-    routerLinkActive="p-button-primary"
-    class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
-  >
-    <i class="pi pi-table mr-1"></i> Reporte
-  </a>
-  <a
-    routerLink="/logbook/water-truck-reception/analisis"
-    routerLinkActive="p-button-primary"
-    class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
-  >
-    <i class="pi pi-chart-bar mr-1"></i> Analisis
-  </a>
-</div>
-
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
   (add)="onModalForm({ id: '', title: 'Nueva Recepcion' })"
 >
+  <div customFilters>
+    <div class="flex gap-1 mb-2 px-3 pt-2">
+      <a
+        routerLink="/logbook/water-truck-reception"
+        routerLinkActive="p-button-primary"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
+      >
+        <i class="pi pi-list mr-1"></i> Registros
+      </a>
+      <a
+        routerLink="/logbook/water-truck-reception/reporte"
+        routerLinkActive="p-button-primary"
+        class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
+      >
+        <i class="pi pi-table mr-1"></i> Reporte
+      </a>
+      <a
+        routerLink="/logbook/water-truck-reception/analisis"
+        routerLinkActive="p-button-primary"
+        class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
+      >
+        <i class="pi pi-chart-bar mr-1"></i> Analisis
+      </a>
+    </div>
+  </div>
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
       <div

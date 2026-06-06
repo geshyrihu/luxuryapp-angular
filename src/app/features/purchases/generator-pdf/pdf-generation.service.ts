@@ -1,17 +1,16 @@
 import { DatePipe } from "@angular/common";
 import { inject, Injectable } from "@angular/core";
-import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service";
+import { HtmlPrintService } from "src/app/core/services/html-print.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class PdfGenerationService {
   apiResponseS = inject(ApiResponseService);
-  pdfGeneratorS = inject(PdfGeneratorService);
+  htmlPrintS = inject(HtmlPrintService);
   customToastS = inject(CustomToastService);
   customerIdS = inject(CustomerIdService);
   datePipe = inject(DatePipe);
@@ -32,14 +31,14 @@ export class PdfGenerationService {
     );
 
     Promise.all([orderRequest, customerRequest])
-      .then(([orderData, customerData]: [any, any]) => {
+      .then(async ([orderData, customerData]: [any, any]) => {
         if (orderData) {
-          const docDefinition = this.buildPaymentRequestPdfContent(
+          const html = await this.buildPaymentRequestHtmlContent(
             orderData,
             customerData,
           );
-          this.pdfGeneratorS.generatePdf(
-            docDefinition,
+          this.htmlPrintS.printHtml(
+            html,
             `SolicitudPago-${orderData.folio}`,
           );
         } else {
@@ -66,12 +65,10 @@ export class PdfGenerationService {
     );
     this.apiResponseS
       .onGetItem(`ordencompra/Pdf/${ordenCompraId}`, false)
-      .then((result: any) => {
+      .then(async (result: any) => {
         if (result) {
-          const docDefinition = this.buildOrdenCompraPdfContent(result);
-          this.pdfGeneratorS.generatePdf(docDefinition, `OC-${result.folio}`, {
-            clientName: result.customer,
-          });
+          const html = await this.buildOrdenCompraHtmlContent(result);
+          this.htmlPrintS.printHtml(html, `OC-${result.folio}`);
         } else {
           this.customToastS.showError(
             "Error",
@@ -141,20 +138,12 @@ export class PdfGenerationService {
     return model.solicitanteNombreCompleto || model.fullName || model.solicitante || "N/A";
   }
 
-  private buildPaymentRequestPdfContent(
+  private async buildPaymentRequestHtmlContent(
     orderData: any,
     customerData: any,
-  ): TDocumentDefinitions {
+  ): Promise<string> {
     const model = orderData;
-    console.log(
-      "🚀 ~ PdfGenerationService ~ buildPaymentRequestPdfContent ~ model:",
-      model,
-    );
     const datosPago = model.ordenCompraDatosPago;
-    console.log(
-      "🚀 ~ PdfGenerationService ~ buildPaymentRequestPdfContent ~ datosPago:",
-      datosPago,
-    );
 
     const correctTotal =
       model.subtotal + model.iva - model.retencionIva - model.retencionIsr;
@@ -165,286 +154,182 @@ export class PdfGenerationService {
     const retencionIsr = this.formatCurrency(model.retencionIsr);
     const total = this.formatCurrency(correctTotal);
 
-    const budgetTableBody = model.ordenCompraPresupuesto.map((item: any) => {
-      return [
-        { text: `${item.numeroCuenta} | ${item.cuenta}`, style: "tableCell" },
-        { text: item.cuenta, style: "tableCell" },
-        {
-          text: this.formatCurrency(item.dineroUsado),
-          style: "tableCell",
-          alignment: "right",
-        },
-      ];
+    let budgetRowsHtml = "";
+    model.ordenCompraPresupuesto.forEach((item: any) => {
+      budgetRowsHtml += `
+        <tr>
+          <td>${this.htmlPrintS.esc(item.numeroCuenta)} | ${this.htmlPrintS.esc(item.cuenta)}</td>
+          <td>${this.htmlPrintS.esc(item.cuenta)}</td>
+          <td style="text-align: right;">${this.formatCurrency(item.dineroUsado)}</td>
+        </tr>
+      `;
     });
 
-    // Agrupar firmantes en filas de máximo 3
-    const signatureRows: any[] = [];
+    let signaturesHtml = "";
     if (model.firmantes && model.firmantes.length > 0) {
-      for (let i = 0; i < model.firmantes.length; i += 3) {
-        const chunk = model.firmantes.slice(i, i + 3);
-        const columns = chunk.map((firmante: any) => ({
-          stack: [
-            {
-              canvas: [
-                { type: "line", x1: 0, y1: 0, x2: 150, y2: 0, lineWidth: 0.5 },
-              ],
-            },
-            { text: firmante.nombre || " ", style: "signatureName" },
-            { text: firmante.rol || " ", style: "signatureRole" },
-          ],
-          width: "*",
-        }));
-
-        signatureRows.push({
-          columns: columns,
-          alignment: "center",
-          margin: [0, 40, 0, 0],
-        });
-      }
+      signaturesHtml += `<div class="signatures-grid">`;
+      model.firmantes.forEach((firmante: any) => {
+        signaturesHtml += `
+          <div class="signature-box">
+            <div class="signature-line"></div>
+            <div class="signature-name">${this.htmlPrintS.esc(firmante.nombre || " ")}</div>
+            <div class="signature-role">${this.htmlPrintS.esc(firmante.rol || " ")}</div>
+          </div>
+        `;
+      });
+      signaturesHtml += `</div>`;
     }
 
-    const headerColumns: any[] = [];
-    if (customerData.logo) {
-      headerColumns.push({ image: customerData.logo, fit: [150, 70] });
-    }
-    headerColumns.push({
-      stack: [
-        { text: "SOLICITUD DE PAGO", style: "header" },
-        { text: `Folio O.C.: ${model.folio}`, alignment: "right" },
-        {
-          text: `Factura: ${model.ordenCompraStatus?.factura || ""}`,
-          alignment: "right",
-        },
-      ],
-    });
+    let totalsHtml = `
+      <tr>
+        <td style="text-align: right; font-size: 11px;">SubTotal:</td>
+        <td style="text-align: right; font-weight: bold; font-size: 11px; width: 100px;">${subtotal}</td>
+      </tr>
+      <tr>
+        <td style="text-align: right; font-size: 11px;">IVA:</td>
+        <td style="text-align: right; font-weight: bold; font-size: 11px;">${iva}</td>
+      </tr>
+    `;
 
-    return {
-      content: [
-        { columns: headerColumns },
-        {
-          canvas: [
-            {
-              type: "line",
-              x1: 0,
-              y1: 10,
-              x2: 515,
-              y2: 10,
-              lineWidth: 1,
-              lineColor: "#CCCCCC",
-            },
-          ],
-        },
-        { text: "", margin: [0, 0, 0, 2] },
-        {
-          style: "bankCard",
-          table: {
-            widths: ["*", "auto"],
-            body: [
-              [
-                {
-                  text: "DATOS DE PAGO / TRANSFERENCIA",
-                  colSpan: 2,
-                  style: "cardHeader",
-                },
-                {},
-              ],
-              [
-                {
-                  stack: [
-                    { text: "Beneficiario:", style: "label" },
-                    { text: datosPago.nameCheck, style: "beneficiaryName" },
-                    { text: "Banco:", style: "label", margin: [0, 5, 0, 0] },
-                    { text: datosPago.bank, style: "value" },
-                  ],
-                },
-                {
-                  stack: [
-                    {
-                      text: "CLABE Interbancaria:",
-                      style: "label",
-                      alignment: "right",
-                    },
-                    {
-                      text: this.formatClabe(datosPago.cuentaClave),
-                      style: "clabeNumber",
-                      alignment: "right",
-                    },
-                    {
-                      text: "Referencia:",
-                      style: "label",
-                      alignment: "right",
-                      margin: [0, 5, 0, 0],
-                    },
-                    {
-                      text: datosPago.reference || "",
-                      style: "value",
-                      alignment: "right",
-                    },
-                    {
-                      text: "Monto a Pagar:",
-                      style: "label",
-                      alignment: "right",
-                      margin: [0, 5, 0, 0],
-                    },
-                    { text: total, style: "totalAmount", alignment: "right" },
-                  ],
-                },
-              ],
-            ],
-          },
-          layout: "lightHorizontalLines",
-        },
-        {
-          stack: [
-            { text: "JUSTIFICACIÓN DEL GASTO", style: "subheader" },
-            {
-              text: model.justificacionGasto || "N/A",
-              fontSize: 9,
-            },
-          ],
-        },
-        {
-          columns: [
-            {
-              stack: [
-                { text: "DATOS DE LA SOLICITUD", style: "subheader" },
-                {
-                  text: `Fecha: ${this.formatDateOnly(model.fechaSolicitud)}`,
-                  fontSize: 9,
-                },
-                {
-                  text: `Área/Depto: ${model.equipoOInstalacion || "N/A"}`,
-                  fontSize: 9,
-                },
-                {
-                  text: `Solicitante: ${this.getSolicitanteDisplayName(model)}`,
-                  fontSize: 9,
-                },
-              ],
-            },
-            {
-              stack: [
-                { text: "DATOS DEL PROVEEDOR", style: "subheader" },
-                {
-                  text: `Proveedor: ${datosPago.providerName || "N/A"}`,
-                  fontSize: 9,
-                },
-                { text: `RFC: ${datosPago.providerRfc || "N/A"}`, fontSize: 9 },
-                {
-                  text: `Método de Pago: ${datosPago.metodoDePago || "N/A"}`,
-                  fontSize: 9,
-                },
-                {
-                  text: `Forma de Pago: ${datosPago.formaDePago || "N/A"}`,
-                  fontSize: 9,
-                },
-              ],
-            },
-          ],
-        },
-        { text: "", margin: [0, 0, 0, 5] },
-        { text: "DESGLOSE DE PAGO", style: "subheader" },
-        {
-          table: {
-            widths: ["auto", "*", "auto"],
-            body: [
-              [
-                { text: "CUENTA CONTABLE", style: "tableHeader" },
-                { text: "CONCEPTO", style: "tableHeader" },
-                { text: "IMPORTE", style: "tableHeader", alignment: "right" },
-              ],
-              ...budgetTableBody,
-            ],
-          },
-          layout: "lightHorizontalLines",
-        },
-        {
-          table: {
-            widths: ["*", "auto"],
-            body: [
-              [
-                { text: "SubTotal:", style: "totalLabel" },
-                { text: subtotal, style: "totalValue" },
-              ],
-              [
-                { text: "IVA:", style: "totalLabel" },
-                { text: iva, style: "totalValue" },
-              ],
-              ...(model.retencionIva > 0
-                ? [
-                    [
-                      { text: "Retención IVA:", style: "totalLabel" },
-                      {
-                        text: `- ${retencionIva}`,
-                        style: "totalValue",
-                        color: "red",
-                      },
-                    ],
-                  ]
-                : []),
-              ...(model.retencionIsr > 0
-                ? [
-                    [
-                      { text: "Retención ISR:", style: "totalLabel" },
-                      {
-                        text: `- ${retencionIsr}`,
-                        style: "totalValue",
-                        color: "red",
-                      },
-                    ],
-                  ]
-                : []),
-              [
-                { text: "Total a Pagar:", style: "totalFinalLabel" },
-                { text: total, style: "totalFinalValue" },
-              ],
-            ],
-          },
-          layout: {
-            defaultBorder: false,
-          },
-        },
-        { text: "", margin: [0, 0, 0, 30] },
-        { text: "AUTORIZACIONES", style: "subheader", alignment: "center" },
-        ...signatureRows,
-      ],
-      styles: {
-        header: {
-          fontSize: 16,
-          bold: true,
-          alignment: "right",
-          color: "#003A62",
-        },
-        subheader: {
-          fontSize: 12,
-          bold: true,
-          margin: [0, 10, 0, 5],
-          color: "#003A62",
-        },
-        bankCard: { margin: [0, 5, 0, 15] },
-        cardHeader: { bold: true, fillColor: "#f2f2f2", margin: [5, 5] },
-        label: { color: "gray", fontSize: 9 },
-        value: { bold: true },
-        beneficiaryName: { bold: true, fontSize: 12 },
-        clabeNumber: { bold: true, fontSize: 11 },
-        totalAmount: { bold: true, fontSize: 14, color: "#003A62" },
-        tableHeader: { bold: true, fontSize: 10, color: "#003A62" },
-        tableCell: { fontSize: 9 },
-        totalLabel: { fontSize: 10, alignment: "right" },
-        totalValue: { fontSize: 10, bold: true, alignment: "right" },
-        totalFinalLabel: { fontSize: 11, bold: true, alignment: "right" },
-        totalFinalValue: { fontSize: 11, bold: true, alignment: "right" },
-        signatureName: { fontSize: 10, bold: true, margin: [0, 5, 0, 0] },
-        signatureRole: { fontSize: 9, italics: true, color: "#555555" },
-      },
-    };
+    if (model.retencionIva > 0) {
+      totalsHtml += `
+        <tr>
+          <td style="text-align: right; font-size: 11px;">Retención IVA:</td>
+          <td style="text-align: right; font-weight: bold; font-size: 11px; color: #dc2626;">- ${retencionIva}</td>
+        </tr>
+      `;
+    }
+    if (model.retencionIsr > 0) {
+      totalsHtml += `
+        <tr>
+          <td style="text-align: right; font-size: 11px;">Retención ISR:</td>
+          <td style="text-align: right; font-weight: bold; font-size: 11px; color: #dc2626;">- ${retencionIsr}</td>
+        </tr>
+      `;
+    }
+    totalsHtml += `
+      <tr>
+        <td style="text-align: right; font-weight: bold; font-size: 13px; padding-top: 5px;">Total a Pagar:</td>
+        <td style="text-align: right; font-weight: bold; font-size: 13px; padding-top: 5px;">${total}</td>
+      </tr>
+    `;
+
+    const logo = await this.htmlPrintS.getLogoDataUrl();
+    const generatedAt = new Date();
+
+    return `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+  @page { margin: 10mm; }
+  .container { max-width: 1000px; margin: auto; }
+  
+  .bank-card { border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; margin-top: 10px; margin-bottom: 20px; }
+  .bank-card-header { background-color: #f2f2f2; padding: 5px 10px; font-weight: bold; font-size: 11px; }
+  .bank-card-body { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 10px; }
+  
+  .label { color: gray; font-size: 10px; }
+  .value { font-weight: bold; font-size: 11px; margin-bottom: 5px; }
+  .beneficiary { font-weight: bold; font-size: 14px; margin-bottom: 5px; }
+  .clabe { font-weight: bold; font-size: 13px; margin-bottom: 5px; }
+  .total-amount { font-weight: bold; font-size: 16px; color: #003A62; }
+  
+  .subheader { font-size: 14px; font-weight: bold; color: #003A62; margin-top: 15px; margin-bottom: 5px; }
+  .justificacion { font-size: 10px; margin-bottom: 20px; }
+  
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .info-text { font-size: 10px; margin-bottom: 2px; }
+  
+  .budget-table { width: 100%; border-collapse: collapse; font-size: 10px; margin-bottom: 20px; }
+  .budget-table th { color: #003A62; font-weight: bold; text-align: left; padding: 5px; border-bottom: 1px solid #ccc; }
+  .budget-table td { padding: 5px; border-bottom: 1px solid #eee; }
+  
+  .totals-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+  .totals-table td { padding: 4px 0; }
+  
+  .signatures-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 40px; margin-top: 40px; justify-items: center; }
+  .signature-box { text-align: center; width: 180px; }
+  .signature-line { border-top: 1px solid #333; width: 100%; margin-bottom: 5px; }
+  .signature-name { font-size: 11px; font-weight: bold; margin-bottom: 2px; }
+  .signature-role { font-size: 10px; font-style: italic; color: #555; }
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, "SOLICITUD DE PAGO", `Folio O.C.: ${model.folio}<br>Factura: ${model.ordenCompraStatus?.factura || ""}`, generatedAt, "")}
+
+  <div class="body-doc">
+    <div class="bank-card">
+      <div class="bank-card-header">DATOS DE PAGO / TRANSFERENCIA</div>
+      <div class="bank-card-body">
+        <div>
+          <div class="label">Beneficiario:</div>
+          <div class="beneficiary">${this.htmlPrintS.esc(datosPago.nameCheck)}</div>
+          <div class="label" style="margin-top: 10px;">Banco:</div>
+          <div class="value">${this.htmlPrintS.esc(datosPago.bank)}</div>
+        </div>
+        <div style="text-align: right;">
+          <div class="label">CLABE Interbancaria:</div>
+          <div class="clabe">${this.htmlPrintS.esc(this.formatClabe(datosPago.cuentaClave))}</div>
+          <div class="label" style="margin-top: 10px;">Monto a Pagar:</div>
+          <div class="total-amount">${total}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div>
+        <div class="subheader" style="margin-top: 0;">DATOS DE LA SOLICITUD</div>
+        <div class="info-text">Fecha: ${this.formatDateOnly(model.fechaSolicitud)}</div>
+        <div class="info-text">Área/Depto: ${this.htmlPrintS.esc(model.equipoOInstalacion || "N/A")}</div>
+        <div class="info-text">Solicitante: ${this.htmlPrintS.esc(this.getSolicitanteDisplayName(model))}</div>
+      </div>
+      <div>
+        <div class="subheader" style="margin-top: 0;">DATOS DEL PROVEEDOR</div>
+        <div class="info-text">Proveedor: ${this.htmlPrintS.esc(datosPago.providerName || "N/A")}</div>
+        <div class="info-text">RFC: ${this.htmlPrintS.esc(datosPago.providerRfc || "N/A")}</div>
+        <div class="info-text">Método de Pago: ${this.htmlPrintS.esc(datosPago.metodoDePago || "N/A")}</div>
+        <div class="info-text">Forma de Pago: ${this.htmlPrintS.esc(datosPago.formaDePago || "N/A")}</div>
+      </div>
+    </div>
+
+    <div class="subheader">JUSTIFICACIÓN DEL GASTO</div>
+    <div class="justificacion">${this.htmlPrintS.esc(model.justificacionGasto || "N/A")}</div>
+
+    <div class="subheader">DESGLOSE DE PAGO</div>
+    <table class="budget-table">
+      <thead>
+        <tr>
+          <th>CUENTA CONTABLE</th>
+          <th>CONCEPTO</th>
+          <th style="text-align: right;">IMPORTE</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${budgetRowsHtml}
+      </tbody>
+    </table>
+
+    <table class="totals-table">
+      <tbody>
+        ${totalsHtml}
+      </tbody>
+    </table>
+
+    <div class="subheader" style="text-align: center;">AUTORIZACIONES</div>
+    ${signaturesHtml}
+  </div>
+
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+</div>
+</body></html>`;
   }
 
-  private buildOrdenCompraPdfContent(data: any): TDocumentDefinitions {
+  private async buildOrdenCompraHtmlContent(data: any): Promise<string> {
     let subTotal = 0;
     let ivaTotal = 0;
     let retencionIvaTotal = 0;
     let retencionIsrTotal = 0;
+
     for (const item of data.ordenCompraDetalle) {
       const itemSubTotal =
         item.cantidad * item.precio * (1 - item.descuento / 100);
@@ -456,264 +341,148 @@ export class PdfGenerationService {
     const totalFinal =
       subTotal + ivaTotal - retencionIvaTotal - retencionIsrTotal;
 
-    const productTableBody: any[] = [
-      [
-        { text: "Cant.", style: "tableHeader", alignment: "center" },
-        { text: "Unidad", style: "tableHeader", alignment: "center" },
-        { text: "Descripción", style: "tableHeader" },
-        { text: "P. Unitario", style: "tableHeader", alignment: "right" },
-        { text: "Importe", style: "tableHeader", alignment: "right" },
-      ],
-    ];
+    let productRowsHtml = "";
     data.ordenCompraDetalle.forEach((item: any) => {
       const importe = item.cantidad * item.precio * (1 - item.descuento / 100);
-      productTableBody.push([
-        {
-          text: item.cantidad.toString(),
-          style: "tableBody",
-          alignment: "center",
-        },
-        { text: item.unidadMedida, style: "tableBody", alignment: "center" },
-        { text: item.productName, style: "tableBody" },
-        {
-          text: this.formatCurrency(item.precio),
-          style: "tableBody",
-          alignment: "right",
-        },
-        {
-          text: this.formatCurrency(importe),
-          style: "tableBodyBold",
-          alignment: "right",
-        },
-      ]);
+      productRowsHtml += `
+        <tr>
+          <td style="text-align: center;">${item.cantidad}</td>
+          <td style="text-align: center;">${this.htmlPrintS.esc(item.unidadMedida)}</td>
+          <td>${this.htmlPrintS.esc(item.productName)}</td>
+          <td style="text-align: right;">${this.formatCurrency(item.precio)}</td>
+          <td style="text-align: right; font-weight: bold;">${this.formatCurrency(importe)}</td>
+        </tr>
+      `;
     });
-    const totalsBody: any[] = [
-      [
-        { text: "Subtotal", style: "totalLabel" },
-        { text: this.formatCurrency(subTotal), style: "totalValue" },
-      ],
-      [
-        {
-          text: `IVA (${data.ordenCompraDetalle[0]?.ivaAplicado || 16}%)`,
-          style: "totalLabel",
-        },
-        { text: this.formatCurrency(ivaTotal), style: "totalValue" },
-      ],
-    ];
+
+    let totalsHtml = `
+      <tr>
+        <td style="text-align: right; font-size: 11px;">Subtotal</td>
+        <td style="text-align: right; font-weight: bold; font-size: 11px; width: 100px;">${this.formatCurrency(subTotal)}</td>
+      </tr>
+      <tr>
+        <td style="text-align: right; font-size: 11px;">IVA (${data.ordenCompraDetalle[0]?.ivaAplicado || 16}%)</td>
+        <td style="text-align: right; font-weight: bold; font-size: 11px;">${this.formatCurrency(ivaTotal)}</td>
+      </tr>
+    `;
+
     if (retencionIvaTotal > 0) {
-      totalsBody.push([
-        { text: "Retención IVA", style: "totalLabel" },
-        {
-          text: this.formatCurrency(retencionIvaTotal * -1),
-          style: "totalValue",
-          color: "red",
-        },
-      ]);
+      totalsHtml += `
+        <tr>
+          <td style="text-align: right; font-size: 11px;">Retención IVA</td>
+          <td style="text-align: right; font-weight: bold; font-size: 11px; color: #dc2626;">-${this.formatCurrency(retencionIvaTotal)}</td>
+        </tr>
+      `;
     }
     if (retencionIsrTotal > 0) {
-      totalsBody.push([
-        { text: "Retención ISR", style: "totalLabel" },
-        {
-          text: this.formatCurrency(retencionIsrTotal * -1),
-          style: "totalValue",
-          color: "red",
-        },
-      ]);
+      totalsHtml += `
+        <tr>
+          <td style="text-align: right; font-size: 11px;">Retención ISR</td>
+          <td style="text-align: right; font-weight: bold; font-size: 11px; color: #dc2626;">-${this.formatCurrency(retencionIsrTotal)}</td>
+        </tr>
+      `;
     }
-    totalsBody.push([
-      { text: "TOTAL", style: "totalFinalLabel" },
-      { text: this.formatCurrency(totalFinal), style: "totalFinalValue" },
-    ]);
+    totalsHtml += `
+      <tr>
+        <td style="text-align: right; font-weight: bold; font-size: 13px; padding-top: 5px;">TOTAL</td>
+        <td style="text-align: right; font-weight: bold; font-size: 13px; padding-top: 5px;">${this.formatCurrency(totalFinal)}</td>
+      </tr>
+    `;
 
-    return {
-      content: [
-        {
-          columns: [
-            {
-              stack: [
-                { text: data.customer, bold: true, fontSize: 14 },
-                { text: `RFC: ${data.rfc}` || "", fontSize: 9 },
-              ],
-            },
-            {
-              stack: [
-                {
-                  text: "ORDEN DE COMPRA",
-                  bold: true,
-                  fontSize: 22,
-                  alignment: "right",
-                  color: "#444444",
-                },
-                { text: `Folio: ${data.folio}`, alignment: "right" },
-                {
-                  text: `Fecha: ${this.formatDateOnly(data.fechaSolicitud)}`,
-                  alignment: "right",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          canvas: [
-            {
-              type: "line",
-              x1: 0,
-              y1: 10,
-              x2: 515,
-              y2: 10,
-              lineWidth: 1,
-              lineColor: "#CCCCCC",
-            },
-          ],
-        },
-        { text: "\n" },
-        {
-          table: {
-            widths: ["*", "*"],
-            body: [
-              [
-                {
-                  stack: [
-                    { text: "FACTURAR A / ENVIAR A", style: "labelBold" },
-                    { text: data.customer, style: "smallText" },
-                    { text: data.customerAdreess || "", style: "smallText" },
-                    { text: `Tel: ${data.phone}` || "", style: "smallText" },
-                  ],
-                  fillColor: "#F8F9FA",
-                  border: [false, false, false, false],
-                  margin: [10, 5, 10, 5],
-                },
-                {
-                  stack: [
-                    { text: "PROVEEDOR", style: "labelBold" },
-                    {
-                      text: data.ordenCompraDatosPago?.providerName || "—",
-                      style: "smallText",
-                    },
-                    {
-                      text: data.ordenCompraDatosPago?.providerAdreess || "—",
-                      style: "smallText",
-                    },
-                    {
-                      text: `Tel: ${
-                        data.ordenCompraDatosPago?.providerPhoneOne || ""
-                      }`,
-                      style: "smallText",
-                    },
-                  ],
-                  fillColor: "#F8F9FA",
-                  border: [false, false, false, false],
-                  margin: [10, 5, 10, 5],
-                },
-              ],
-            ],
-          },
-          layout: "noBorders",
-        },
-        { text: "\n" },
-        {
-          table: {
-            headerRows: 1,
-            widths: ["auto", "auto", "*", "auto", "auto"],
-            body: productTableBody,
-          },
-          layout: {
-            hLineWidth: (i, node) =>
-              i === 0 || i === 1 || i === node.table.body.length ? 1 : 0,
-            vLineWidth: () => 0,
-            fillColor: (rowIndex) => (rowIndex === 0 ? "#003A62" : null),
-          },
-        },
-        { text: "\n\n" },
-        {
-          columns: [
-            {
-              width: "*",
-              stack: [
-                { text: "Observaciones:", style: "labelBold" },
-                {
-                  text: data.observaciones || "Sin observaciones.",
-                  style: "smallText",
-                  margin: [0, 0, 0, 10],
-                },
-                {
-                  text: "Datos Fiscales / Pago:",
-                  style: "labelBold",
-                  margin: [0, 5, 0, 0],
-                },
-                {
-                  text: `Uso CFDI: ${
-                    data.ordenCompraDatosPago?.usoCFDI || "—"
-                  } | Forma: ${
-                    data.ordenCompraDatosPago?.formaDePago || "—"
-                  } | Método: ${
-                    data.ordenCompraDatosPago?.metodoDePago || "—"
-                  }`,
-                  style: "smallText",
-                  color: "#555",
-                },
-                { text: "\n\n\n\n\n\n" },
-                {
-                  canvas: [
-                    {
-                      type: "line",
-                      x1: 0,
-                      y1: 0,
-                      x2: 200,
-                      y2: 0,
-                      lineWidth: 1,
-                    },
-                  ],
-                },
-                {
-                  text: "Firma y Nombre de Autorización",
-                  style: "smallText",
-                  margin: [0, 2, 0, 0],
-                },
-              ],
-            },
-            {
-              width: "auto",
-              table: {
-                widths: ["auto", 80],
-                body: totalsBody,
-              },
-              layout: "noBorders",
-            },
-          ],
-        },
-      ],
-      styles: {
-        labelBold: { bold: true, fontSize: 10, color: "#333333" },
-        smallText: { fontSize: 9, color: "#555555" },
-        tableHeader: { bold: true, fontSize: 10, color: "white" },
-        tableBody: { fontSize: 9 },
-        tableBodyBold: { fontSize: 9, bold: true },
-        totalLabel: {
-          bold: false,
-          fontSize: 10,
-          alignment: "right",
-          margin: [0, 2, 5, 2],
-        },
-        totalValue: {
-          bold: true,
-          fontSize: 10,
-          alignment: "right",
-          margin: [0, 2, 0, 2],
-        },
-        totalFinalLabel: {
-          bold: true,
-          fontSize: 12,
-          alignment: "right",
-          margin: [0, 5, 5, 5],
-        },
-        totalFinalValue: {
-          bold: true,
-          fontSize: 12,
-          alignment: "right",
-          margin: [0, 5, 0, 5],
-        },
-      },
-    };
+    const logo = await this.htmlPrintS.getLogoDataUrl();
+    const generatedAt = new Date();
+    const requestDateStr = this.formatDateOnly(data.fechaSolicitud);
+
+    return `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+  @page { margin: 10mm; }
+  .container { max-width: 1000px; margin: auto; }
+  .info-boxes { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .info-box { background-color: #f8f9fa; padding: 12px; border-radius: 4px; }
+  .box-title { font-size: 11px; font-weight: bold; color: #333; margin-bottom: 5px; }
+  .box-text { font-size: 10px; color: #555; margin-bottom: 2px; }
+  .product-table { width: 100%; border-collapse: collapse; font-size: 10px; margin-bottom: 20px; }
+  .product-table th { background-color: #003A62; color: white; padding: 8px 6px; font-weight: bold; text-align: left; }
+  .product-table td { padding: 8px 6px; border-bottom: 1px solid #eee; vertical-align: top; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-top: 20px; margin-bottom: 40px; }
+  .obs-section { font-size: 10px; }
+  .obs-title { font-weight: bold; color: #333; margin-bottom: 4px; margin-top: 10px; }
+  .obs-text { color: #555; margin-bottom: 10px; }
+  .totals-table { width: 100%; border-collapse: collapse; }
+  .totals-table td { padding: 4px 0; }
+  .signature-line { border-top: 1px solid #333; width: 200px; margin-top: 50px; padding-top: 5px; text-align: center; font-size: 10px; color: #555; }
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, "ORDEN DE COMPRA", `Folio: ${data.folio}`, generatedAt, data.customer)}
+
+  <div class="body-doc">
+    <div style="text-align: right; font-size: 11px; margin-bottom: 15px;">
+      <span style="font-weight: bold;">Fecha:</span> ${requestDateStr}
+      <br><span style="font-weight: bold;">RFC:</span> ${this.htmlPrintS.esc(data.rfc || '')}
+    </div>
+
+    <div class="info-boxes">
+      <div class="info-box">
+        <div class="box-title">FACTURAR A / ENVIAR A</div>
+        <div class="box-text">${this.htmlPrintS.esc(data.customer)}</div>
+        <div class="box-text">${this.htmlPrintS.esc(data.customerAdreess || "")}</div>
+        <div class="box-text">Tel: ${this.htmlPrintS.esc(data.phone || "")}</div>
+      </div>
+      <div class="info-box">
+        <div class="box-title">PROVEEDOR</div>
+        <div class="box-text">${this.htmlPrintS.esc(data.ordenCompraDatosPago?.providerName || "—")}</div>
+        <div class="box-text">${this.htmlPrintS.esc(data.ordenCompraDatosPago?.providerAdreess || "—")}</div>
+        <div class="box-text">Tel: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.providerPhoneOne || "")}</div>
+      </div>
+    </div>
+
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th style="text-align: center; width: 60px;">Cant.</th>
+          <th style="text-align: center; width: 80px;">Unidad</th>
+          <th>Descripción</th>
+          <th style="text-align: right; width: 100px;">P. Unitario</th>
+          <th style="text-align: right; width: 100px;">Importe</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${productRowsHtml}
+      </tbody>
+    </table>
+
+    <div class="footer-grid">
+      <div class="obs-section">
+        <div class="obs-title">Observaciones:</div>
+        <div class="obs-text">${this.htmlPrintS.esc(data.observaciones || "Sin observaciones.")}</div>
+        
+        <div class="obs-title">Datos Fiscales / Pago:</div>
+        <div class="obs-text">
+          Uso CFDI: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.usoCFDI || "—")} | 
+          Forma: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.formaDePago || "—")} | 
+          Método: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.metodoDePago || "—")}
+        </div>
+
+        <div class="signature-line">
+          Firma y Nombre de Autorización
+        </div>
+      </div>
+      
+      <div>
+        <table class="totals-table">
+          <tbody>
+            ${totalsHtml}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+</div>
+</body></html>`;
   }
 }

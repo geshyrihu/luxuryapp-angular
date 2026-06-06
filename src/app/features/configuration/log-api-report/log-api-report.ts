@@ -91,7 +91,7 @@ export class LogApiReport implements OnInit {
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   /**
-   * Valida si el botÃ³n de bÃºsqueda debe estar deshabilitado
+   * Valida si el botón de búsqueda debe estar deshabilitado
    */
   get isSearchDisabled(): boolean {
     const dates = this.filterDateRangeControl.value;
@@ -104,8 +104,8 @@ export class LogApiReport implements OnInit {
   }
 
   /**
-   * Carga el listado de logs con filtros y paginaciÃ³n
-   * @param isNewSearch - Si es una nueva bÃºsqueda, reinicia a la pÃ¡gina 1
+   * Carga el listado de logs con filtros y paginación
+   * @param isNewSearch - Si es una nueva búsqueda, reinicia a la página 1
    */
   onLoadData(isNewSearch: boolean = false): void {
     if (isNewSearch) {
@@ -115,7 +115,7 @@ export class LogApiReport implements OnInit {
     this.loading.set(true);
     const urlApi = Endpoints.Logs.getAll;
 
-    // Los parÃ¡metros deben ir prefixeados con "pagination." para que el backend los bindÃ© correctamente
+    // Los parámetros deben ir prefixeados con "pagination." para que el backend los bindé correctamente
     const params: any = {
       "pagination.Page": this.currentPage(),
       "pagination.RecordsNumber": this.rows(),
@@ -155,7 +155,7 @@ export class LogApiReport implements OnInit {
   }
 
   /**
-   * Maneja el cambio de pÃ¡gina en la tabla de escritorio
+   * Maneja el cambio de página en la tabla de escritorio
    */
   onPageChange(event: any): void {
     this.rows.set(event.rows);
@@ -164,14 +164,14 @@ export class LogApiReport implements OnInit {
   }
 
   /**
-   * Alterna el estado de expansiÃ³n de un registro
+   * Alterna el estado de expansión de un registro
    */
   toggleExpand(item: LogEntry): void {
     item.expanded = !item.expanded;
   }
 
   /**
-   * BÃºsqueda por tÃ©rmino libre en el mensaje
+   * Búsqueda por término libre en el mensaje
    */
   onSearch(term: string): void {
     this.searchTerm.set(term);
@@ -179,7 +179,7 @@ export class LogApiReport implements OnInit {
   }
 
   /**
-   * Carga mÃ¡s registros en la vista mÃ³vil
+   * Carga más registros en la vista móvil
    */
   loadMore(): void {
     this.currentPage.update((p) => p + 1);
@@ -198,7 +198,7 @@ export class LogApiReport implements OnInit {
   }
 
   /**
-   * Obtiene la severidad del tag segÃºn el nivel del log
+   * Obtiene la severidad del tag según el nivel del log
    */
   getLevelSeverity(level: string): "success" | "info" | "warn" | "danger" {
     switch (level?.toLowerCase()) {

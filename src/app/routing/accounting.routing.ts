@@ -74,19 +74,19 @@ export const accountingRoutes: Routes = [
       breadcrumb: "Pendientes de Minutas Legal",
     },
   },
-  {
-    // Suggested path: 'pending-minutes-pdf'
-    path: "pendientes-minutas-pdf",
-    loadComponent: () =>
-      import("src/app/features/contabilidad/pendientes-minuta/cont-minuta-pendientes-pdf").then(
-        (m) => m.ConMinutaPendientesPdf,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "PDF Pendientes de Minutas",
-      breadcrumb: "PDF Pendientes de Minutas",
-    },
-  },
+  // {
+  //   // Suggested path: 'pending-minutes-pdf'
+  //   path: "pendientes-minutas-pdf",
+  //   loadComponent: () =>
+  //     import("src/app/features/contabilidad/pendientes-minuta/cont-minuta-pendientes-pdf").then(
+  //       (m) => m.ConMinutaPendientesPdf,
+  //     ),
+  //   canActivate: [authGuard],
+  //   data: {
+  //     title: "PDF Pendientes de Minutas",
+  //     breadcrumb: "PDF Pendientes de Minutas",
+  //   },
+  // },
   {
     path: "budget-execution",
     loadComponent: () =>
@@ -136,19 +136,19 @@ export const accountingRoutes: Routes = [
       breadcrumb: "Resumen Financiero",
     },
   },
-  {
-    // Suggested path: 'aspel-report'
-    path: "reporte-aspel",
-    loadComponent: () =>
-      import("src/app/features/contabilidad/aspel-reportes/report-aspel-list").then(
-        (m) => m.ReportAspelList,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Reportes Financieros Aspel",
-      breadcrumb: "Reportes Aspel",
-    },
-  },
+  // {
+  //   // Suggested path: 'aspel-report'
+  //   path: "reporte-aspel",
+  //   loadComponent: () =>
+  //     import("src/app/features/contabilidad/aspel-reportes/report-aspel-list").then(
+  //       (m) => m.ReportAspelList,
+  //     ),
+  //   canActivate: [authGuard],
+  //   data: {
+  //     title: "Reportes Financieros Aspel",
+  //     breadcrumb: "Reportes Aspel",
+  //   },
+  // },
   {
     path: "budget-proposal", // Ruta anterior: 'presupuesto-propuesta'
     loadComponent: () =>

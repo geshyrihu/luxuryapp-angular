@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import html2pdf from "html2pdf.js/dist/html2pdf.bundle.min.js";
 import type { IManualTemplateDetalleDTO } from "../models/manuals-and-processes.dto";
 import type { IManualPasoDTO } from "../models/manuals-and-processes.dto";
 
@@ -8,22 +7,39 @@ export class ManualPdfService {
 
   async descargar(manual: IManualTemplateDetalleDTO): Promise<void> {
     const html = this.buildHtml(manual);
-    const container = document.createElement("div");
-    container.style.width = "1020px";
-    container.style.background = "#fff";
-    container.style.fontFamily = "Inter, system-ui, -apple-system, sans-serif";
-    container.innerHTML = html;
+    
+    // Crear un iframe invisible para imprimir el documento con sus estilos aislados
+    const iframe = document.createElement("iframe");
+    iframe.style.position = "fixed";
+    iframe.style.right = "0";
+    iframe.style.bottom = "0";
+    iframe.style.width = "0";
+    iframe.style.height = "0";
+    iframe.style.border = "0";
+    document.body.appendChild(iframe);
 
-    const opt = {
-      margin: [0.2, 0.2, 0.2, 0.2] as [number, number, number, number],
-      filename: `${manual.folio}.pdf`,
-      image: { type: "jpeg" as const, quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true, allowTaint: true, logging: false, letterRendering: true },
-      jsPDF: { unit: "in" as const, format: "letter" as const, orientation: "portrait" as const },
-      pagebreak: { mode: "avoid-all" as const, before: ".page-break" },
+    // Inyectar el HTML en el iframe
+    iframe.contentWindow!.document.open();
+    iframe.contentWindow!.document.write(html);
+    iframe.contentWindow!.document.close();
+
+    // Modificar el título temporalmente para que el PDF se guarde con el nombre correcto
+    const originalTitle = document.title;
+    document.title = manual.folio || "Manual";
+
+    // Esperar a que el iframe (imágenes, etc.) cargue completamente antes de imprimir
+    iframe.onload = () => {
+      setTimeout(() => {
+        iframe.contentWindow!.focus();
+        iframe.contentWindow!.print();
+        
+        // Restaurar título y limpiar el DOM
+        document.title = originalTitle;
+        setTimeout(() => {
+          document.body.removeChild(iframe);
+        }, 1000);
+      }, 500);
     };
-
-    await html2pdf().set(opt).from(container).save();
   }
 
   private buildHtml(m: IManualTemplateDetalleDTO): string {
@@ -56,6 +72,13 @@ export class ManualPdfService {
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:"Inter",system-ui,-apple-system,sans-serif; line-height:1.45; color:#1a1a1a; }
   .container { max-width:1020px; margin:0 auto; background:#fff; }
+  
+  /* Reglas exclusivas para cuando se envíe a la impresora nativa */
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    @page { margin: 10mm; }
+  }
+
   .gold-stripe { height:6px; background:#c9a84c; width:100%; }
   .header-premium { padding:24px 36px 16px 36px; border-bottom:1px solid #f0f0f0; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:16px; }
   .logo-area { display:flex; align-items:center; gap:12px; }

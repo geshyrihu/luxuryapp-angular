@@ -88,14 +88,6 @@ export class AspelCobranzaHaus {
       label: "Detalle cobranza",
       value: "detalle-cobranza-rango",
     },
-    // {
-    //   label: "Contrapartidas",
-    //   value: "contrapartidas-rango",
-    // },
-    // {
-    //   label: "Pendientes por concepto",
-    //   value: "pendientes-concepto-rango",
-    // },
     {
       label: "Deudas actuales",
       value: "deudas-actuales",
@@ -144,7 +136,6 @@ export class AspelCobranzaHaus {
     if (mode === "accounts") return this.accountRows();
     if (mode === "estado-cuenta-rango") return this.estadoMovimientos();
     if (mode === "detalle-cobranza-rango") return this.detalleConceptRows();
-    // if (mode === "contrapartidas-rango") return this.contrapartidaRows();
     if (mode === "deudas-actuales") return this.deudaActualRows();
     return this.pendienteRows();
   });
@@ -262,8 +253,6 @@ export class AspelCobranzaHaus {
         return "Estado de Cuenta Aspel";
       case "detalle-cobranza-rango":
         return "Detalle de Cobranza Aspel";
-      // case "contrapartidas-rango":
-      //   return "Contrapartidas Aspel";
       case "deudas-actuales":
         return "Deudas Actuales Aspel";
       default:
@@ -279,8 +268,6 @@ export class AspelCobranzaHaus {
         return "Consulta movimientos y saldo progresivo de una cuenta en un rango libre.";
       case "detalle-cobranza-rango":
         return "Consulta la deuda aplicada por concepto y agrupa abonos por recibo para lectura de cobranza.";
-      // case "contrapartidas-rango":
-      //   return "Agrupa contrapartidas 401 relacionadas con la cuenta base.";
       case "deudas-actuales":
         return "Lista las propiedades del customer con deuda vigente y permite abrir el detalle pendiente en modal.";
       default:
@@ -359,23 +346,6 @@ export class AspelCobranzaHaus {
       return;
     }
 
-    // if (mode === "contrapartidas-rango") {
-    //   if (!fechaInicio || !fechaFin) return;
-    //   const result =
-    //     await this.apiResponseS.onGetItem<AspelContrapartidaResponse>(
-    //       Endpoints.AspelCobranza.contrapartidasRango(
-    //         customerId,
-    //         numCta,
-    //         fechaInicio,
-    //         fechaFin,
-    //       ),
-    //     );
-    //   this.contrapartidas.set(
-    //     result ? this.normalizeContrapartidasResponse(result) : null,
-    //   );
-    //   return;
-    // }
-
     if (mode === "deudas-actuales") {
       const result =
         await this.apiResponseS.onGetItem<AspelDeudasActualesResponse>(
@@ -399,7 +369,7 @@ export class AspelCobranzaHaus {
     // this.pendientes.set(
     //   result ? this.normalizePendientesResponse(result) : null,
     // );
-  }
+    }
 
   private clearResults(): void {
     this.rawCatalog.set([]);

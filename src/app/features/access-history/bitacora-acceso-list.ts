@@ -93,10 +93,53 @@ export class BitacoraAcceso {
       fechaFinal,
     );
 
-    this.apiResponseS.onGetList(urlApi).then((result: any) => {
-      this.data.set(result); // Actualizamos el signal de datos
-      this.globalFilterFields = globalFilterFields(result);
-    });
+    this.loading.set(true);
+    this.apiResponseS
+      .onGetList(urlApi)
+      .then((result: any) => {
+        if (result && result.items) {
+          // Agrupamos los datos por usuario (UserId)
+          const grouped = result.items.reduce((acc: any[], current: any) => {
+            let user = acc.find((u) => u.employeeId === current.userId);
+            if (!user) {
+              user = {
+                employeeId: current.userId,
+                fullName: current.userName,
+                photoPath: current.photoPath,
+                historial: [],
+              };
+              acc.push(user);
+            }
+            // Mapeamos el tipo de actividad a etiquetas legibles para el reporte
+            const evento =
+              current.activityType === "Auth_Login"
+                ? "Ingreso"
+                : current.activityType === "Auth_Logout"
+                  ? "Salida"
+                  : current.activityType;
+
+            user.historial.push({
+              evento: evento,
+              fechaRegistro: new Date(current.timestamp).toLocaleString("es-MX", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+              }),
+            });
+            return acc;
+          }, []);
+
+          this.data.set(grouped);
+          this.globalFilterFields = ["fullName"];
+        } else {
+          this.data.set([]);
+        }
+      })
+      .finally(() => {
+        this.loading.set(false);
+      });
   }
 }
 

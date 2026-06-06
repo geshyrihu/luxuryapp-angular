@@ -75,7 +75,7 @@ export class ModuleAppRol {
     addIcons({ chevronForwardOutline });
   }
 
-  ref: DynamicDialogRef; // Referencia a un cuadro de diÃ¡logo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
 
   ngOnInit(): void {
     this.onLoadData();
@@ -90,7 +90,7 @@ export class ModuleAppRol {
       });
   }
 
-  // FunciÃ³n para abrir un cuadro de diÃ¡logo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS.openDialog(
       ModuleAppRolUpdate,

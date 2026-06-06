@@ -995,10 +995,6 @@ export const Endpoints = {
       formattedDate: string,
     ) =>
       `InspectionResult/GetInspectionsByCustomer/${applicationUserId}/${customerId}/${formattedDate}`,
-    exportPdf: (inspectionId: string, date?: string) =>
-      date
-        ? `InspectionResult/ExportPDF/${inspectionId}/${date}`
-        : `InspectionResult/ExportPDF/${inspectionId}`,
     getByIdForExecution: (customerInspectionId: string) =>
       `InspectionResult/InspectionResultGetById/${customerInspectionId}`,
     report: (inspectionResultId: string, date?: string) =>
@@ -1447,7 +1443,7 @@ export const Endpoints = {
       applicationUserId: string,
       status: string,
       customerId: string,
-    ) => `tasks/MyAssignedTickets/${applicationUserId}/${status}/${customerId}`,
+    ) => `tasks/my-assigned-tasks/${applicationUserId}/${status}/${customerId}`,
     myRequests: (
       applicationUserId: string,
       status: string,

@@ -1,14 +1,13 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Content } from "pdfmake/interfaces";
 import { ButtonModule } from "primeng/button";
 import { ImageModule } from "primeng/image";
 import { TagModule } from "primeng/tag";
 import { firstValueFrom } from "rxjs";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service";
+import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { ITaskMessageDTO, ITaskResultDTO } from "../models/task-message.dto";
 
 interface ITaskAreaGroup {
@@ -26,7 +25,7 @@ export class TaskPendingBoard implements OnInit {
   private readonly router = inject(Router);
   private readonly apiS = inject(ApiResponseService);
   private readonly http = inject(HttpClient);
-  private readonly pdfS = inject(PdfGeneratorService);
+  private readonly htmlPrintS = inject(HtmlPrintService);
 
   readonly ticketGroupId: string = this.route.snapshot.params["ticketGroupId"];
   readonly nameGroup = signal("");
@@ -101,11 +100,7 @@ export class TaskPendingBoard implements OnInit {
     this.exportingPdf.set(true);
     try {
       const groups = this.groupedTasks();
-      const today = new Date().toLocaleDateString("es-MX", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
+      const today = new Date();
 
       const imageMap = new Map<string, string>();
       await Promise.all(
@@ -125,126 +120,81 @@ export class TaskPendingBoard implements OnInit {
           }),
       );
 
-      const content: Content[] = [
-        {
-          text: this.nameGroup(),
-          fontSize: 20,
-          bold: true,
-          color: "#0d3b66",
-          margin: [0, 0, 0, 4],
-        },
-        {
-          text: `Tablero de Pendientes - ${today}`,
-          fontSize: 11,
-          color: "#6b7280",
-          margin: [0, 0, 0, 4],
-        },
-        {
-          text: `Total: ${this.totalTasks()} tareas  |  Areas: ${groups.length}`,
-          fontSize: 10,
-          color: "#6b7280",
-          margin: [0, 0, 0, 12],
-        },
-        {
-          canvas: [
-            {
-              type: "line",
-              x1: 0,
-              y1: 0,
-              x2: 515,
-              y2: 0,
-              lineWidth: 1.5,
-              lineColor: "#c9a84c",
-            },
-          ],
-          margin: [0, 0, 0, 16],
-        },
-      ];
-
+      let groupsHtml = "";
       for (const group of groups) {
-        content.push({
-          text: group.title,
-          fontSize: 13,
-          bold: true,
-          color: "#0d3b66",
-          margin: [0, 4, 0, 8],
-        });
+        groupsHtml += `
+          <div style="font-size: 16px; font-weight: bold; color: #0d3b66; margin-top: 20px; margin-bottom: 10px;">
+            ${this.htmlPrintS.esc(group.title)}
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+        `;
 
-        for (let i = 0; i < group.tasks.length; i += 2) {
-          const pair = group.tasks.slice(i, i + 2);
-          const cols = pair.map((task) => this.buildTaskCell(task, imageMap));
-          while (cols.length < 2) cols.push({ text: "" });
-          content.push({ columns: cols, columnGap: 8, margin: [0, 0, 0, 8] });
+        for (const task of group.tasks) {
+          groupsHtml += this.buildTaskCellHtml(task, imageMap);
         }
 
-        content.push({ text: "", margin: [0, 8, 0, 0] });
+        groupsHtml += `</div>`;
       }
 
+      const logo = await this.htmlPrintS.getLogoDataUrl();
+      const html = `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+  @page { margin: 10mm; }
+  .container { max-width: 1000px; margin: auto; }
+  .task-card { width: calc(50% - 8px); box-sizing: border-box; border: 1px solid #EEEEEE; padding: 10px; border-radius: 6px; margin-bottom: 10px; break-inside: avoid; }
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, this.nameGroup(), `Total: ${this.totalTasks()} tareas | Áreas: ${groups.length}`, today, "TABLERO DE PENDIENTES")}
+
+  <div class="body-doc">
+    ${groupsHtml}
+  </div>
+
+  ${this.htmlPrintS.buildStandardFooter(today)}
+</div>
+</body></html>`;
+
       const slug = this.nameGroup().replace(/\s+/g, "-").toLowerCase();
-      await this.pdfS.generatePdf({ content }, `tablero-pendientes-${slug}`, {
-        clientName: "Tablero de Pendientes",
-      });
+      this.htmlPrintS.printHtml(html, `tablero-pendientes-${slug}`);
     } finally {
       this.exportingPdf.set(false);
     }
   }
 
-  private buildTaskCell(
+  private buildTaskCellHtml(
     task: ITaskMessageDTO,
     imageMap: Map<string, string>,
-  ): any {
-    const stack: Content[] = [
-      {
-        columns: [
-          {
-            text: task.folio,
-            fontSize: 8,
-            bold: true,
-            color: "#6b7280",
-            width: "*",
-          },
-          {
-            text: this.statusLabel(task.status),
-            fontSize: 8,
-            bold: true,
-            color: this.statusColor(task.status),
-            alignment: "right",
-            width: "auto",
-          },
-        ],
-        margin: [0, 0, 0, 4],
-      } as Content,
-    ];
+  ): string {
+    const statusColor = this.statusColor(task.status);
+    const statusLabel = this.statusLabel(task.status);
+    const imgData = task.beforeWork ? imageMap.get(task.beforeWork) : null;
+
+    let html = `
+      <div class="task-card">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+          <div style="font-size: 10px; font-weight: bold; color: #6b7280;">${this.htmlPrintS.esc(task.folio)}</div>
+          <div style="font-size: 10px; font-weight: bold; color: ${statusColor};">${this.htmlPrintS.esc(statusLabel)}</div>
+        </div>
+    `;
 
     if (task.assignee) {
-      stack.push({
-        text: task.assignee,
-        fontSize: 9,
-        color: "#4b5563",
-        margin: [0, 0, 0, 2],
-      });
+      html += `<div style="font-size: 12px; color: #4b5563; margin-bottom: 2px;">${this.htmlPrintS.esc(task.assignee)}</div>`;
     }
     if (task.scheduledAt) {
-      stack.push({
-        text: task.scheduledAt,
-        fontSize: 9,
-        color: "#4b5563",
-        margin: [0, 0, 0, 4],
-      });
+      html += `<div style="font-size: 12px; color: #4b5563; margin-bottom: 5px;">${this.htmlPrintS.esc(task.scheduledAt)}</div>`;
     }
     if (task.description) {
-      stack.push({
-        text: task.description,
-        fontSize: 10,
-        margin: [0, 0, 0, 6],
-      });
+      html += `<div style="font-size: 13px; margin-bottom: 10px;">${this.htmlPrintS.esc(task.description)}</div>`;
     }
-    const imgData = task.beforeWork ? imageMap.get(task.beforeWork) : null;
     if (imgData) {
-      stack.push({ image: imgData, width: 220, margin: [0, 4, 0, 0] });
+      html += `<div style="text-align: center;"><img src="${imgData}" style="max-width: 100%; max-height: 200px; object-fit: contain; border-radius: 4px;" /></div>`;
     }
 
-    return { stack, margin: [4, 4, 4, 4] };
+    html += `</div>`;
+    return html;
   }
 
   private statusColor(status: string): string {

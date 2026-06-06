@@ -3,7 +3,6 @@ import { Component, computed, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
 import { ChartConfiguration, ChartData } from "chart.js";
-import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
@@ -14,7 +13,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ChartGeneratorService } from "src/app/core/services/chart-generator.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DateService } from "src/app/core/services/date.service";
-import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service";
+import { HtmlPrintService } from "src/app/core/services/html-print.service";
 
 @Component({
   selector: "app-resultado-evaluacion",
@@ -33,7 +32,7 @@ export class ResultadoEvaluacion {
   // Inyección de servicios
   private readonly apiResponseS = inject(ApiResponseService);
   private readonly activatedRoute = inject(ActivatedRoute);
-  private readonly pdfGeneratorS = inject(PdfGeneratorService);
+  private readonly htmlPrintS = inject(HtmlPrintService);
   private readonly customToastS = inject(CustomToastService);
   private readonly chartGeneratorS = inject(ChartGeneratorService);
   private readonly dateS = inject(DateService);
@@ -139,12 +138,12 @@ export class ResultadoEvaluacion {
         return;
       }
 
-      const docDefinition = this.buildReportContent(chartImage, result);
+      const logo = await this.htmlPrintS.getLogoDataUrl();
+      const generatedAt = new Date();
+      const html = this.buildReportContent(chartImage, result, logo, generatedAt);
       const fileName = `Evaluacion-${result.employeeName.replace(/\s/g, "_")}`;
 
-      await this.pdfGeneratorS.generatePdf(docDefinition, fileName, {
-        clientName: `Evaluación de: ${result.employeeName}`,
-      });
+      this.htmlPrintS.printHtml(html, fileName);
     } catch (error) {
       console.error("Error al exportar a PDF:", error);
       this.customToastS.showError(
@@ -157,7 +156,9 @@ export class ResultadoEvaluacion {
   private buildReportContent(
     chartImage: string,
     result: any,
-  ): TDocumentDefinitions {
+    logo: string | null,
+    generatedAt: Date
+  ): string {
     const severity = this.finalScoreSeverity();
     const getScoreTagColor = () => {
       switch (severity) {
@@ -174,174 +175,104 @@ export class ResultadoEvaluacion {
       }
     };
 
-    const categoriesContent = (category: any) => ({
-      stack: [
-        {
-          table: {
-            widths: ["*", "auto"],
-            body: [
-              [
-                {
-                  text: category.name.toUpperCase(),
-                  style: "categoryTitle",
-                  fillColor: "#F1F3F5",
-                  border: [false, false, false, false],
-                  margin: [5, 5, 0, 5],
-                },
-                {
-                  text: `Promedio: ${(category.categoryScore / category.answers.length).toFixed(2)} / 5.0`,
-                  style: "categoryScore",
-                  fillColor: "#F1F3F5",
-                  alignment: "right",
-                  border: [false, false, false, false],
-                  margin: [0, 5, 5, 5],
-                },
-              ],
-            ],
-          },
-          margin: [0, 0, 0, 10],
-        },
-        ...category.answers.map((answer: any, index: number) => {
-          const hasComment =
-            answer.comments &&
-            answer.comments.trim().length > 0 &&
-            answer.comments !== "Sin comentarios.";
+    let categoriesHtml = "";
+    result.categories.forEach((category: any) => {
+      categoriesHtml += `
+        <div style="margin-bottom: 20px;">
+          <table style="width: 100%; margin-bottom: 10px; border-collapse: collapse;">
+            <tr>
+              <td style="background-color: #F1F3F5; padding: 5px; font-weight: bold; font-size: 14px;">${this.htmlPrintS.esc(category.name.toUpperCase())}</td>
+              <td style="background-color: #F1F3F5; padding: 5px; font-weight: bold; text-align: right; color: #333;">Promedio: ${(category.categoryScore / category.answers.length).toFixed(2)} / 5.0</td>
+            </tr>
+          </table>
+      `;
 
-          return {
-            style: "questionCard",
-            stack: [
-              {
-                columns: [
-                  { width: "auto", text: `${index + 1}.`, margin: [0, 0, 5, 0] },
-                  { width: "*", text: answer.questionText, style: "questionText" },
-                ],
-              },
-              {
-                columns: [
-                  this.pdfGeneratorS.createTag(`${answer.score}/5`, "answerScore"),
-                  hasComment
-                    ? {
-                        width: "*",
-                        text: `Comentarios: ${answer.comments}`,
-                        style: "answerComment",
-                        alignment: "right",
-                      }
-                    : { text: "", width: 0 },
-                ],
-                margin: [0, 5, 0, 0],
-              },
-              {
-                canvas: [
-                  {
-                    type: "line",
-                    x1: 0,
-                    y1: 5,
-                    x2: 515,
-                    y2: 5,
-                    lineWidth: 0.5,
-                    lineColor: "#E0E0E0",
-                  },
-                ],
-              },
-            ],
-            margin: [0, 0, 0, 10],
-          };
-        }),
-      ],
-      margin: [0, 0, 0, 20],
+      category.answers.forEach((answer: any, index: number) => {
+        const hasComment =
+          answer.comments &&
+          answer.comments.trim().length > 0 &&
+          answer.comments !== "Sin comentarios.";
+
+        categoriesHtml += `
+          <div style="margin-bottom: 10px; margin-left: 10px; margin-right: 10px;">
+            <div style="display: flex; margin-bottom: 5px;">
+              <div style="margin-right: 5px;">${index + 1}.</div>
+              <div style="flex-grow: 1;">${this.htmlPrintS.esc(answer.questionText)}</div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+              <div style="background-color: #E7F5E8; color: #28a745; font-weight: bold; padding: 2px 5px; border-radius: 4px; display: inline-block;">
+                ${answer.score}/5
+              </div>
+              ${hasComment ? `<div style="font-size: 10px; color: #555555; text-align: right; flex-grow: 1;">Comentarios: ${this.htmlPrintS.esc(answer.comments)}</div>` : ""}
+            </div>
+            <hr style="border: 0; border-top: 1px solid #E0E0E0; margin-top: 5px;" />
+          </div>
+        `;
+      });
+      categoriesHtml += `</div>`;
     });
 
-    const page1Stack: any[] = [
-      { text: `Evaluación: ${result.evaluationTemplateName}`, style: "header" },
-      {
-        style: "infoCard",
-        table: {
-          widths: ["*", "*", "*"],
-          body: [
-            [
-              { text: "Fecha de Evaluación:", style: "infoTitle" },
-              { text: "Empleado Evaluado:", style: "infoTitle" },
-              { text: "Evaluador:", style: "infoTitle" },
-            ],
-            [
-              { text: this.formatEvaluationDate(result.evaluationDate), style: "infoText" },
-              {
-                stack: [
-                  { text: result.employeeName, style: "infoText" },
-                  { text: result.employeePosition, style: "infoSubText" },
-                ],
-              },
-              {
-                stack: [
-                  { text: result.evaluatorName, style: "infoText" },
-                  { text: result.evaluatorPosition, style: "infoSubText" },
-                ],
-              },
-            ],
-          ],
-        },
-        layout: "noBorders",
-      },
-    ];
+    const summaryTableHtml = result.categories.map((cat: any) => `
+      <tr>
+        <td style="padding: 4px; border-bottom: 1px solid #ddd;">${this.htmlPrintS.esc(cat.name)}</td>
+        <td style="padding: 4px; border-bottom: 1px solid #ddd; text-align: right; font-weight: bold;">${(cat.categoryScore / cat.answers.length).toFixed(2)} / 5.0</td>
+      </tr>
+    `).join("");
 
-    if (chartImage) {
-      page1Stack.push({
-        image: chartImage,
-        fit: [500, 250],
-        alignment: "center",
-        margin: [0, 10, 0, 10],
-      });
-    }
+    return `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+  @page { margin: 10mm; }
+  .container { max-width: 800px; margin: auto; }
+  .info-title { font-weight: bold; color: #6c757d; font-size: 11px; }
+  .info-text { font-size: 12px; }
+  .info-subtext { font-size: 11px; color: #6c757d; }
+  .score-tag { font-size: 24px; font-weight: bold; color: #FFFFFF; text-align: center; margin: 10px 0; padding: 5px 10px; border-radius: 4px; display: inline-block; }
+  .page-break { page-break-after: always; }
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, `Evaluación: ${result.evaluationTemplateName}`, `Empleado: ${result.employeeName}`, generatedAt, "RECURSOS HUMANOS")}
 
-    page1Stack.push(
-      {
-        stack: [
-          { text: "Puntuación Final", style: "subheader", alignment: "center" },
-          this.pdfGeneratorS.createTag(
-            result.finalScoreFormatted,
-            "scoreTag",
-            getScoreTagColor(),
-          ),
-          {
-            text: `Promedio: ${result.finalScore.toFixed(2)} / 5.00`,
-            style: "scoreAverage",
-            alignment: "center",
-          },
-        ],
-        margin: [0, 10, 0, 20],
-      },
-      {
-        text: "Resumen de Desempeño por Categoría",
-        style: "subheader",
-        margin: [0, 10, 0, 5],
-      },
-      {
-        table: {
-          widths: ["*", "auto"],
-          dontBreakRows: true,
-          body: result.categories.map((cat: any) => [
-            { text: cat.name, style: "infoText", margin: [0, 2, 0, 2] },
-            {
-              text: `${(cat.categoryScore / cat.answers.length).toFixed(2)} / 5.0`,
-              style: "boldText",
-              alignment: "right",
-              margin: [0, 2, 0, 2],
-            },
-          ]),
-        },
-        layout: "lightHorizontalLines",
-      },
-    );
+  <div class="body-doc page-break">
+    <table style="width: 100%; margin-bottom: 20px;">
+      <tr>
+        <td style="width: 33%;"><div class="info-title">Fecha de Evaluación:</div><div class="info-text">${this.formatEvaluationDate(result.evaluationDate)}</div></td>
+        <td style="width: 33%;">
+          <div class="info-title">Empleado Evaluado:</div>
+          <div class="info-text">${this.htmlPrintS.esc(result.employeeName)}</div>
+          <div class="info-subtext">${this.htmlPrintS.esc(result.employeePosition)}</div>
+        </td>
+        <td style="width: 33%;">
+          <div class="info-title">Evaluador:</div>
+          <div class="info-text">${this.htmlPrintS.esc(result.evaluatorName)}</div>
+          <div class="info-subtext">${this.htmlPrintS.esc(result.evaluatorPosition)}</div>
+        </td>
+      </tr>
+    </table>
 
-    return {
-      content: [
-        { stack: page1Stack, pageBreak: "after" },
-        { text: "Detalle por Categorías", style: "sectionHeader" },
-        ...result.categories.map((category: any) => ({
-          ...categoriesContent(category),
-          unbreakable: true,
-        })),
-      ],
-    };
+    ${chartImage ? `<div style="text-align: center; margin: 10px 0;"><img src="${chartImage}" style="max-width: 500px; max-height: 250px;" /></div>` : ""}
+
+    <div style="text-align: center; margin: 20px 0;">
+      <div style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">Puntuación Final</div>
+      <div class="score-tag" style="background-color: ${getScoreTagColor()}">${this.htmlPrintS.esc(result.finalScoreFormatted)}</div>
+      <div style="font-size: 12px; color: #6c757d;">Promedio: ${result.finalScore.toFixed(2)} / 5.00</div>
+    </div>
+
+    <div style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">Resumen de Desempeño por Categoría</div>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+      ${summaryTableHtml}
+    </table>
+  </div>
+
+  <div class="body-doc">
+    <div style="font-size: 18px; font-weight: bold; background-color: #EEEEEE; padding: 5px; margin-bottom: 10px;">Detalle por Categorías</div>
+    ${categoriesHtml}
+  </div>
+
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+</div>
+</body></html>`;
   }
 }

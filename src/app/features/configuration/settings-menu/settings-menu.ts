@@ -258,6 +258,13 @@ export const settingMenu = (aspRoleS: AspRoleService): ISettingsMenuItem[] => [
   {
     group: "Analisis y Registros",
     visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
+    label: "Historial de ingresos",
+    routerLink: "/report/access-history",
+    icon: "pi pi-history",
+  },
+  {
+    group: "Analisis y Registros",
+    visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
     label: "Loggers Api",
     routerLink: "/settings/log-api-report",
     icon: "pi pi-file-edit",

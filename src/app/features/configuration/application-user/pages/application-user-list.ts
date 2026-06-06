@@ -77,7 +77,7 @@ export class ApplicationUserList implements OnInit {
   dataSignal = signal<IApplicationUserDTO[]>([]);
   filteredDataSignal = signal<IApplicationUserDTO[]>([]);
 
-  searchText: string = ""; // Para almacenar el texto de bÃºsqueda
+  searchText: string = ""; // Para almacenar el texto de búsqueda
   selectCustomerSignal = signal<ISelectItem[]>([]);
   cbTypePersonSignal = signal<ISelectItem[]>([]);
 
@@ -133,14 +133,14 @@ export class ApplicationUserList implements OnInit {
           this.dataSignal.set(result);
           this.filteredDataSignal.set(result);
 
-          // Agrupar customers Ãºnicos para el select
+          // Agrupar customers únicos para el select
           const uniqueCustomers = [
             ...new Set(result.map((item: any) => item.customer)),
           ];
 
           // Crear opciones para el select
           this.selectCustomerSignal.set([
-            { label: "Mostrar todos", value: "all" }, // OpciÃ³n para mostrar todos
+            { label: "Mostrar todos", value: "all" }, // Opción para mostrar todos
             ...uniqueCustomers.map(
               (customer): ISelectItem => ({
                 label: customer ? String(customer) : "Sin Cliente",
@@ -152,7 +152,7 @@ export class ApplicationUserList implements OnInit {
       });
   }
 
-  // MÃ©todo para filtrar por cliente
+  // Método para filtrar por cliente
   onSelectForCustomer(selectedValue: string) {
     if (selectedValue === "all") {
       // Si selecciona "Mostrar todos", mostrar todos los datos
@@ -208,7 +208,7 @@ export class ApplicationUserList implements OnInit {
         applicationUserId,
         email,
       },
-      "ðŸ” Cuenta de acceso",
+      "🔐 Cuenta de acceso",
       this.dialogHandlerS.sizeFull,
     );
   }

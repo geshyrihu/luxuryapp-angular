@@ -1,9 +1,7 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
-import * as pdfMake from "pdfmake/build/pdfmake";
-import * as pdfFonts from "pdfmake/build/vfs_fonts";
-import { TDocumentDefinitions } from "pdfmake/interfaces";
+import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import {
   IAutitoriaCuentaAspelCatalogoDTO,
   IAutitoriaCuentaAspelCustomerDTO,
@@ -12,15 +10,7 @@ import {
 
 @Injectable({ providedIn: "root" })
 export class AutitoriaCuentasAspelExportService {
-  private readonly pdfMakeInstance: any;
-
-  constructor() {
-    this.pdfMakeInstance = (pdfMake as any).default || pdfMake;
-    if (this.pdfMakeInstance.vfs === undefined) {
-      const fonts = pdfFonts as any;
-      this.pdfMakeInstance.vfs = fonts.pdfMake?.vfs || fonts;
-    }
-  }
+  private readonly htmlPrintS = inject(HtmlPrintService);
 
   async exportCatalogoExcel(
     cuentas: IAutitoriaCuentaAspelCatalogoDTO[],
@@ -138,150 +128,108 @@ export class AutitoriaCuentasAspelExportService {
     );
   }
 
-  exportCatalogoPdf(
+  async exportCatalogoPdf(
     cuentas: IAutitoriaCuentaAspelCatalogoDTO[],
     customers: IAutitoriaCuentaAspelCustomerDTO[],
     year: number,
     empresa: string,
-  ): void {
-    const headers = [
-      { text: "Nivel", style: "tableHeader" },
-      { text: "No. Cuenta", style: "tableHeader" },
-      { text: "Naturaleza", style: "tableHeader" },
-      { text: "Descripcion", style: "tableHeader" },
-      ...customers.map((customer) => ({
-        text: customer.customerShortName,
-        style: "tableHeader",
-      })),
-    ];
+  ): Promise<void> {
+    const logo = await this.htmlPrintS.getLogoDataUrl();
+    const generatedAt = new Date();
+    const html = this.buildCatalogoPdfHtml(cuentas, customers, year, empresa, logo, generatedAt);
+    const fileName = `CatalogoGeneralComparativo-${empresa}-${year}`;
+    this.htmlPrintS.printHtml(html, fileName);
+  }
 
-    const body: any[][] = [
-      headers,
-      ...cuentas.map((cuenta) => [
-        {
-          text: cuenta.nivelReferencia.toString(),
-          alignment: "center",
-          bold: true,
-          fillColor: this.getLevelFillColor(cuenta.nivelReferencia),
-          color: this.getLevelTextColor(cuenta.nivelReferencia),
-        },
-        {
-          text: cuenta.numCta,
-          bold: true,
-          fillColor: this.getLevelFillColor(cuenta.nivelReferencia),
-          color: this.getLevelTextColor(cuenta.nivelReferencia),
-        },
-        {
-          text: this.formatNaturaleza(cuenta.naturalezaReferencia),
-          alignment: "center",
-          color: "#374151",
-        },
-        {
-          text: cuenta.nombreReferencia || "-",
-          color: cuenta.tieneDiferenciaEstructural ? "#D97706" : "#111827",
-          bold: cuenta.tieneDiferenciaEstructural,
-        },
-        ...customers.map((customer) =>
-          this.buildPresencePdfCell(
-            cuenta.presencias.find((item) => item.customerId === customer.customerId),
-          ),
-        ),
-      ]),
-    ];
+  private buildCatalogoPdfHtml(
+    cuentas: IAutitoriaCuentaAspelCatalogoDTO[],
+    customers: IAutitoriaCuentaAspelCustomerDTO[],
+    year: number,
+    empresa: string,
+    logo: string | null,
+    generatedAt: Date
+  ): string {
+    const customerHeaders = customers.map(c => `<th>${this.htmlPrintS.esc(c.customerShortName)}</th>`).join("");
 
-    const columnWidths: any[] = [
-      36,
-      72,
-      58,
-      130,
-      ...customers.map(() => 48),
-    ];
+    const rows = cuentas.map(cuenta => {
+      const presencias = customers.map(c => {
+        const p = cuenta.presencias.find(item => item.customerId === c.customerId);
+        return this.buildPresenceHtmlCell(p);
+      }).join("");
 
-    const docDefinition: TDocumentDefinitions = {
-      pageSize: customers.length > 8 ? "A3" : "A4",
-      pageOrientation: "landscape",
-      pageMargins: [16, 20, 16, 20],
-      content: [
-        {
-          text: "Catalogo general comparativo Aspel",
-          fontSize: 15,
-          bold: true,
-          margin: [0, 0, 0, 4],
-        },
-        {
-          text: `Empresa: ${empresa} | Ejercicio: ${year}`,
-          fontSize: 10,
-          color: "#4B5563",
-          margin: [0, 0, 0, 6],
-        },
-        {
-          columns: [
-            {
-              text: "SI = Existe",
-              color: "#15803D",
-              fontSize: 9,
-              bold: true,
-            },
-            {
-              text: "NO = No existe",
-              color: "#DC2626",
-              fontSize: 9,
-              bold: true,
-            },
-            {
-              text: "DIF = Diferencia estructural",
-              color: "#D97706",
-              fontSize: 9,
-              bold: true,
-            },
-            {
-              text: "N1-N4 colorean nivel y numero de cuenta",
-              color: "#4B5563",
-              fontSize: 8,
-              alignment: "right",
-            },
-          ],
-          margin: [0, 0, 0, 10],
-        },
-        {
-          table: {
-            headerRows: 1,
-            widths: columnWidths,
-            body,
-          } as any,
-          layout: {
-            fillColor: (rowIndex: number) => {
-              if (rowIndex === 0) return "#1E3A8A";
-              return rowIndex % 2 === 0 ? "#F8FAFC" : undefined;
-            },
-            hLineColor: () => "#D1D5DB",
-            vLineColor: () => "#D1D5DB",
-            hLineWidth: () => 0.6,
-            vLineWidth: () => 0.6,
-            paddingLeft: () => 4,
-            paddingRight: () => 4,
-            paddingTop: () => 3,
-            paddingBottom: () => 3,
-          },
-        },
-      ],
-      styles: {
-        tableHeader: {
-          color: "#FFFFFF",
-          fillColor: "#1E3A8A",
-          bold: true,
-          fontSize: 8,
-          alignment: "center",
-        },
-      },
-      defaultStyle: {
-        fontSize: 7,
-      },
-    };
+      return `
+        <tr>
+          <td class="text-center bold" style="background-color: ${this.getLevelFillColor(cuenta.nivelReferencia)} !important; color: ${this.getLevelTextColor(cuenta.nivelReferencia)};">${cuenta.nivelReferencia}</td>
+          <td class="bold" style="background-color: ${this.getLevelFillColor(cuenta.nivelReferencia)} !important; color: ${this.getLevelTextColor(cuenta.nivelReferencia)};">${this.htmlPrintS.esc(cuenta.numCta)}</td>
+          <td class="text-center" style="color:#374151;">${this.formatNaturaleza(cuenta.naturalezaReferencia)}</td>
+          <td style="color: ${cuenta.tieneDiferenciaEstructural ? '#D97706' : '#111827'}; font-weight: ${cuenta.tieneDiferenciaEstructural ? 'bold' : 'normal'};">${this.htmlPrintS.esc(cuenta.nombreReferencia || "-")}</td>
+          ${presencias}
+        </tr>
+      `;
+    }).join("");
 
-    this.pdfMakeInstance
-      .createPdf(docDefinition)
-      .download(`CatalogoGeneralComparativo-${empresa}-${year}.pdf`);
+    return `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+  @page { size: landscape; margin: 10mm; }
+  .container { max-width: 1400px; }
+  th { background-color: #1E3A8A !important; color: #FFFFFF !important; }
+  tbody tr:nth-child(even) { background-color: #F8FAFC !important; }
+
+  .title { font-size: 18px; font-weight: bold; margin-bottom: 4px; }
+  .subtitle { font-size: 12px; color: #4B5563; margin-bottom: 10px; }
+  .legend { display: flex; gap: 16px; margin-bottom: 12px; font-size: 11px; }
+
+  .data-table { width:100%; border-collapse:collapse; margin-bottom:16px; }
+  .data-table th, .data-table td { padding:4px 6px; border:1px solid #D1D5DB; }
+  .data-table th { background:#1E3A8A; color: #FFFFFF; font-weight:700; text-align:center; }
+  .data-table tbody tr:nth-child(even) { background:#F8FAFC; }
+
+  .text-center { text-align:center !important; }
+  .bold { font-weight: bold !important; }
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, "Catálogo Comparativo Aspel", `EJERCICIO ${year}`, generatedAt, "AUDITORÍA", `Empresa base: ${empresa}`)}
+  
+  <div class="body-doc">
+    <div class="legend">
+      <div style="color:#15803D; font-weight:bold;">SI = Existe</div>
+      <div style="color:#DC2626; font-weight:bold;">NO = No existe</div>
+      <div style="color:#D97706; font-weight:bold;">DIF = Diferencia estructural</div>
+      <div style="color:#4B5563; margin-left: auto;">N1-N4 colorean nivel y número de cuenta</div>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 40px;">Nivel</th>
+          <th style="width: 100px;">No. Cuenta</th>
+          <th style="width: 80px;">Naturaleza</th>
+          <th>Descripción</th>
+          ${customerHeaders}
+        </tr>
+      </thead>
+      <tbody>
+        ${rows}
+      </tbody>
+    </table>
+  </div>
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+</div>
+</body></html>`;
+  }
+
+
+  private buildPresenceHtmlCell(presencia?: IAutitoriaCuentaAspelPresenciaDTO): string {
+    if (!presencia || !presencia.presente) {
+      return `<td class="text-center bold" style="color: #DC2626; background-color: #FEF2F2 !important;">NO</td>`;
+    }
+    if (!presencia.estructuraValida) {
+      return `<td class="text-center bold" style="color: #D97706; background-color: #FFFBEB !important;">DIF</td>`;
+    }
+    return `<td class="text-center bold" style="color: #15803D; background-color: #F0FDF4 !important;">SI</td>`;
   }
 
   private formatPresenceCell(
@@ -290,38 +238,6 @@ export class AutitoriaCuentasAspelExportService {
     if (!presencia || !presencia.presente) return "No";
     if (!presencia.estructuraValida) return "Dif";
     return "Si";
-  }
-
-  private buildPresencePdfCell(
-    presencia?: IAutitoriaCuentaAspelPresenciaDTO,
-  ): Record<string, unknown> {
-    if (!presencia || !presencia.presente) {
-      return {
-        text: "NO",
-        alignment: "center",
-        color: "#DC2626",
-        bold: true,
-        fillColor: "#FEF2F2",
-      };
-    }
-
-    if (!presencia.estructuraValida) {
-      return {
-        text: "DIF",
-        alignment: "center",
-        color: "#D97706",
-        bold: true,
-        fillColor: "#FFFBEB",
-      };
-    }
-
-    return {
-      text: "SI",
-        alignment: "center",
-      color: "#15803D",
-      bold: true,
-      fillColor: "#F0FDF4",
-    };
   }
 
   private formatNaturaleza(value: string): string {

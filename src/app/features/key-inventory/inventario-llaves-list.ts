@@ -2,7 +2,6 @@ import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { folderOpenOutline, keyOutline } from "ionicons/icons";
-import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
@@ -21,7 +20,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service";
+import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { InventarioLlaveForm } from "./inventario-llave-form";
 @Component({
@@ -49,7 +48,7 @@ export class InventarioLlavesList {
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
   dialogHandlerS = inject(DialogHandlerService);
-  pdfGeneratorS = inject(PdfGeneratorService); // ? Added
+  htmlPrintS = inject(HtmlPrintService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
   dataSignal = signal<IInventarioLlave[]>([]);
@@ -100,7 +99,7 @@ export class InventarioLlavesList {
       });
   }
 
-  onDownloadPdf() {
+  async onDownloadPdf(): Promise<void> {
     const data = this.dataSignal();
     if (!data || data.length === 0) return;
     this.loading.set(true);
@@ -117,7 +116,7 @@ export class InventarioLlavesList {
       const groups = sortedData.reduce(
         (acc, item) => {
           const classification =
-            item.equipoClasificacion || "SIN CLASIFICACIóN";
+            item.equipoClasificacion || "SIN CLASIFICACIÓN";
           if (!acc[classification]) acc[classification] = [];
           acc[classification].push(item);
           return acc;
@@ -125,83 +124,71 @@ export class InventarioLlavesList {
         {} as Record<string, any[]>,
       );
 
-      const content: any[] = [
-        {
-          text: "INVENTARIO DE LLAVES",
-          style: "header",
-          margin: [0, 0, 0, 10],
-        },
-      ];
+      let tableHtml = "";
 
       for (const classification in groups) {
-        content.push({
-          text: classification,
-          style: "subheader",
-          margin: [0, 10, 0, 5],
-        });
+        tableHtml += `
+          <tr>
+            <td colspan="4" class="sistema-header">${this.htmlPrintS.esc(classification)}</td>
+          </tr>
+        `;
 
-        const tableBody = groups[classification].map((item) => {
-          return [
-            { text: item.descripcion || "", style: "tableCell" },
-            { text: item.marca || "", style: "tableCell" },
-            {
-              text: item.numeroLlave?.toString() || "",
-              style: "tableCell",
-              alignment: "center",
-            },
-            {
-              text: item.cantidad?.toString() || "",
-              style: "tableCell",
-              alignment: "center",
-            },
-          ];
-        });
-
-        content.push({
-          table: {
-            widths: ["*", "auto", "auto", "auto"],
-            headerRows: 1,
-            body: [
-              [
-                { text: "Descripción", style: "tableHeader" },
-                { text: "Marca", style: "tableHeader" },
-                { text: "Nómero", style: "tableHeader", alignment: "center" },
-                { text: "Cant.", style: "tableHeader", alignment: "center" },
-              ],
-              ...tableBody,
-            ],
-          },
-          layout: {
-            fillColor: (rowIndex: number) =>
-              rowIndex === 0 ? "#f2f2f2" : null,
-            hLineWidth: (i: number, node: any) =>
-              i === 0 || i === node.table.body.length ? 1 : 0.5,
-            vLineWidth: () => 0.5,
-            hLineColor: () => "#CCCCCC",
-            vLineColor: () => "#CCCCCC",
-          },
-          margin: [0, 0, 0, 15],
+        groups[classification].forEach((item, idx) => {
+          const bg = idx % 2 === 0 ? "#ffffff" : "#f9fafb";
+          tableHtml += `
+            <tr>
+              <td style="background-color: ${bg}; padding: 4px 8px;">${this.htmlPrintS.esc(item.descripcion || "")}</td>
+              <td style="background-color: ${bg}; padding: 4px 8px;">${this.htmlPrintS.esc(item.marca || "")}</td>
+              <td style="background-color: ${bg}; text-align: center; padding: 4px 8px;">${this.htmlPrintS.esc(item.numeroLlave?.toString() || "")}</td>
+              <td style="background-color: ${bg}; text-align: center; padding: 4px 8px;">${this.htmlPrintS.esc(item.cantidad?.toString() || "")}</td>
+            </tr>
+          `;
         });
       }
 
-      const docDefinition: TDocumentDefinitions = {
-        content: content,
-        styles: {
-          header: { fontSize: 18, bold: true, color: "#003A62" },
-          subheader: {
-            fontSize: 14,
-            bold: true,
-            color: "#003A62",
-            fillColor: "#eef2f7",
-          },
-          tableHeader: { bold: true, fontSize: 10, color: "#333333" },
-          tableCell: { fontSize: 10, margin: [2, 4, 2, 4] },
-        },
-      };
+      const logo = await this.htmlPrintS.getLogoDataUrl();
+      const generatedAt = new Date();
 
-      this.pdfGeneratorS.generatePdf(docDefinition, "Inventario_Llaves", {
-        clientName: "Inventario de Llaves",
-      });
+      const html = `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+  @page { margin: 10mm; }
+  .container { max-width: 1000px; }
+  th { background-color: #1E3A8A !important; color: #FFFFFF !important; }
+  
+  .sistema-header { background-color: #eef2f7 !important; color: #003A62 !important; font-weight: bold; font-size: 14px; padding: 6px 10px !important; }
+  
+  .data-table { width:100%; border-collapse:collapse; margin-bottom:16px; }
+  .data-table th, .data-table td { padding:4px 8px; border:1px solid #D1D5DB; }
+  .data-table th { background:#1E3A8A; color: #ffffff; font-weight:700; text-align:center; font-size: 11px; }
+
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, "Inventario de Llaves", "LISTADO DE CONTROL", generatedAt, "MANTENIMIENTO")}
+
+  <div class="body-doc">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Descripción</th>
+          <th>Marca</th>
+          <th style="width: 80px;">Número</th>
+          <th style="width: 80px;">Cant.</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${tableHtml}
+      </tbody>
+    </table>
+  </div>
+  
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+</div>
+</body></html>`;
+
+      this.htmlPrintS.printHtml(html, "Inventario_Llaves");
     } catch (e) {
       console.error("Error generating PDF", e);
     } finally {

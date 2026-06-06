@@ -36,6 +36,7 @@ import { OrdenesServicioFotos } from "./ordenes-servicio-fotos";
 import { OrdenesServicioReporteProveedor } from "./ordenes-servicio-reporte-proveedor";
 import { ServiceOrderForm } from "./service-order-form";
 import { UploadImgForm } from "./upload-img-form";
+import { OrdenesServicioListPdfService } from "./ordenes-servicio-list-pdf.service";
 // ... (skipping other imports)|
 
 @Component({
@@ -73,6 +74,7 @@ export class OrdenesServicio {
   dateS = inject(DateService);
   dialogHandlerS = inject(DialogHandlerService);
   periodMonthService = inject(PeriodMonthService); // Asegurarse de que esté inyectado
+  pdfService = inject(OrdenesServicioListPdfService);
 
   mm: number;
   fechaControl = new FormControl<string>("");
@@ -148,10 +150,12 @@ export class OrdenesServicio {
     });
   }
 
-  // Nuevo método para navegar al reporte
+  // Descargar reporte PDF directamente
   onNavigateToReport() {
-    this.periodMonthService.setPeriodo(this.fechaControl.value || ""); // Asegurarse de que el servicio tenga la fecha correcta
-    this.route.navigate(["/report/ordenes-servicio"]);
+    this.periodMonthService.setPeriodo(this.fechaControl.value || "");
+    const converToDate = this.parseFechaControl();
+    const fechaFormateada = this.dateS.getDateFormat(converToDate);
+    this.pdfService.downloadReporte(fechaFormateada, this.filtroEquiposValue);
   }
 
   onModalFormUploadImg(id: any) {

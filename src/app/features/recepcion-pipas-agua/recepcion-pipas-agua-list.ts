@@ -4,7 +4,6 @@ import { RouterModule } from "@angular/router";
 import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { waterOutline } from "ionicons/icons";
-import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
@@ -25,7 +24,7 @@ import {
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service";
+import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { RecepcionPipasAguaForm } from "./recepcion-pipas-agua-form";
 import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
@@ -58,7 +57,7 @@ export class RecepcionPipasAguaList {
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
   tableScrollHeightS = inject(TableScrollHeightService);
-  pdfGeneratorS = inject(PdfGeneratorService);
+  htmlPrintS = inject(HtmlPrintService);
 
   dataSignal = signal<IRecepcionPipaAgua[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
@@ -120,64 +119,41 @@ export class RecepcionPipasAguaList {
 
     const m3 = item.lecturaMedidorFinal - item.lecturaMedidorInicial;
 
-    const photoCell = (p: { label: string; base64: string | null }): any => ({
-      stack: [
-        {
-          text: p.label,
-          bold: true,
-          fontSize: 7,
-          margin: [0, 0, 0, 2],
-          color: "#444",
-        },
-        p.base64
-          ? { image: p.base64, width: 140, maxHeight: 115, alignment: "center" }
-          : {
-              text: "Sin foto",
-              color: "#bbb",
-              fontSize: 7,
-              alignment: "center",
-              margin: [0, 20, 0, 20],
-            },
-      ],
-      margin: [1, 1, 1, 1],
-    });
+    const photoCellHtml = (p: { label: string; base64: string | null }): string => {
+      if (p.base64) {
+        return `
+          <div style="text-align: center;">
+            <div style="font-size: 10px; font-weight: bold; color: #444; margin-bottom: 5px;">${this.htmlPrintS.esc(p.label)}</div>
+            <img src="${p.base64}" style="max-width: 100%; max-height: 150px; object-fit: contain; border-radius: 4px;" />
+          </div>
+        `;
+      } else {
+        return `
+          <div style="text-align: center; padding: 20px 0;">
+            <div style="font-size: 10px; font-weight: bold; color: #444; margin-bottom: 5px;">${this.htmlPrintS.esc(p.label)}</div>
+            <div style="font-size: 10px; color: #bbb;">Sin foto</div>
+          </div>
+        `;
+      }
+    };
 
-    const signatureCell = (name: string | null, cargo: string): any => ({
-      stack: [
-        { text: "\n\n", fontSize: 9 },
-        {
-          text: "_".repeat(28),
-          color: "#444",
-          fontSize: 8,
-          alignment: "center",
-        },
-        {
-          text: name ? name.toUpperCase() : " ",
-          fontSize: 8,
-          bold: true,
-          alignment: "center",
-          margin: [0, 2, 0, 0],
-        },
-        {
-          text: cargo,
-          fontSize: 7,
-          alignment: "center",
-          color: "#555",
-          margin: [0, 1, 0, 0],
-        },
-      ],
-      border: [false, false, false, false],
-    });
+    const signatureCellHtml = (name: string | null, cargo: string): string => `
+      <div style="text-align: center; margin-top: 40px;">
+        <div style="border-bottom: 1px solid #444; width: 80%; margin: 0 auto; margin-bottom: 5px;"></div>
+        <div style="font-size: 10px; font-weight: bold;">${this.htmlPrintS.esc(name ? name.toUpperCase() : " ")}</div>
+        <div style="font-size: 9px; color: #555;">${this.htmlPrintS.esc(cargo)}</div>
+      </div>
+    `;
 
     const photoDefs = [
       { label: "Pipa llena", url: item.fotoPipaLlenaUrl },
-      { label: "Pipa vacia", url: item.fotoPipaVaciaUrl },
-      { label: "Placas del camion", url: item.fotoPlacasUrl },
+      { label: "Pipa vacía", url: item.fotoPipaVaciaUrl },
+      { label: "Placas del camión", url: item.fotoPlacasUrl },
       { label: "INE del chofer", url: item.fotoIneChoferUrl },
       { label: "Medidor antes", url: item.fotoMedidorAntesUrl },
-      { label: "Medidor despues", url: item.fotoMedidorDespuesUrl },
+      { label: "Medidor después", url: item.fotoMedidorDespuesUrl },
       { label: "Nivel antes", url: item.fotoNivelAntesUrl },
-      { label: "Nivel despues", url: item.fotoNivelDespuesUrl },
+      { label: "Nivel después", url: item.fotoNivelDespuesUrl },
       { label: "Nota", url: item.fotoNotaUrl },
     ];
 
@@ -194,159 +170,83 @@ export class RecepcionPipasAguaList {
     ]);
     const jefeMtto: string | null = (jefes as any[])?.[0]?.nameEmployee ?? null;
 
-    const sectionTitle = (text: string): any => ({
-      text,
-      fontSize: 10,
-      bold: true,
-      color: "#003A62",
-      margin: [0, 0, 0, 4],
-    });
+    const logo = await this.htmlPrintS.getLogoDataUrl();
+    const generatedAt = new Date();
 
-    const docDef: TDocumentDefinitions = {
-      pageSize: "LETTER",
-      pageMargins: [30, 30, 30, 20],
-      content: [
-        {
-          text: "SOPORTE DE RECEPCION DE PIPA DE AGUA",
-          fontSize: 13,
-          bold: true,
-          alignment: "center",
-          color: "#003A62",
-          margin: [0, 0, 0, 10],
-        },
+    const html = `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+  @page { margin: 10mm; }
+  .container { max-width: 1000px; margin: auto; }
+  .section-title { font-size: 14px; font-weight: bold; color: #003A62; margin-bottom: 10px; margin-top: 20px; border-bottom: 1px solid #EEEEEE; padding-bottom: 5px; }
+  .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .data-item { font-size: 12px; margin-bottom: 5px; }
+  .data-label { font-weight: bold; }
+  .data-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 12px; }
+  .data-table th, .data-table td { border: 1px solid #EEEEEE; padding: 8px; text-align: center; }
+  .data-table th { background-color: #f0f4f8; font-weight: bold; }
+  .photos-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+  .signatures-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 40px; margin-bottom: 20px; }
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, "Soporte de Recepción de Pipa de Agua", `Pipa: ${item.placasCamion}`, generatedAt, "MANTENIMIENTO")}
 
-        sectionTitle("Datos generales"),
-        {
-          columns: [
-            {
-              stack: [
-                {
-                  text: [
-                    { text: "Llegada: ", bold: true },
-                    fmtDate(item.horaLlegada),
-                  ],
-                },
-                {
-                  text: [
-                    { text: "Termino: ", bold: true },
-                    fmtDate(item.horaTermino),
-                  ],
-                  margin: [0, 3, 0, 0],
-                },
-                ...(item.empresa ? [{
-                  text: [{ text: "Empresa: ", bold: true }, item.empresa],
-                  margin: [0, 3, 0, 0],
-                }] : []),
-                {
-                  text: [{ text: "Placas: ", bold: true }, item.placasCamion],
-                  margin: [0, 3, 0, 0],
-                },
-                {
-                  text: [
-                    { text: "Capacidad pipa: ", bold: true },
-                    `${item.capacidadPipa?.toLocaleString("es-MX") ?? 0} L`,
-                  ],
-                  margin: [0, 3, 0, 0],
-                },
-              ],
-              fontSize: 9,
-            },
-            {
-              stack: [
-                {
-                  text: [
-                    { text: "Cisterna antes: ", bold: true },
-                    `${fmtNum(item.nivelCisternaAntes, 0)}%`,
-                  ],
-                },
-                {
-                  text: [
-                    { text: "Cisterna despues: ", bold: true },
-                    `${fmtNum(item.nivelCisternaDespues, 0)}%`,
-                  ],
-                  margin: [0, 3, 0, 0],
-                },
-                {
-                  text: [
-                    { text: "Dif. cisterna: ", bold: true },
-                    `${fmtNum(item.nivelCisternaDespues - item.nivelCisternaAntes, 0)}%`,
-                  ],
-                  margin: [0, 3, 0, 0],
-                },
-                {
-                  text: [
-                    { text: "Costo m³: ", bold: true },
-                    `$${fmtNum(item.costoMetroCubico, 2)}`,
-                  ],
-                  margin: [0, 3, 0, 0],
-                },
-              ],
-              fontSize: 9,
-            },
-          ],
-          columnGap: 20,
-          margin: [0, 0, 0, 10],
-        } as any,
+  <div class="body-doc">
+    <div class="section-title">Datos generales</div>
+    <div class="data-grid">
+      <div>
+        <div class="data-item"><span class="data-label">Llegada:</span> ${fmtDate(item.horaLlegada)}</div>
+        <div class="data-item"><span class="data-label">Término:</span> ${fmtDate(item.horaTermino)}</div>
+        ${item.empresa ? `<div class="data-item"><span class="data-label">Empresa:</span> ${this.htmlPrintS.esc(item.empresa)}</div>` : ''}
+        <div class="data-item"><span class="data-label">Placas:</span> ${this.htmlPrintS.esc(item.placasCamion)}</div>
+        <div class="data-item"><span class="data-label">Capacidad pipa:</span> ${item.capacidadPipa?.toLocaleString("es-MX") ?? 0} L</div>
+      </div>
+      <div>
+        <div class="data-item"><span class="data-label">Cisterna antes:</span> ${fmtNum(item.nivelCisternaAntes, 0)}%</div>
+        <div class="data-item"><span class="data-label">Cisterna después:</span> ${fmtNum(item.nivelCisternaDespues, 0)}%</div>
+        <div class="data-item"><span class="data-label">Dif. cisterna:</span> ${fmtNum(item.nivelCisternaDespues - item.nivelCisternaAntes, 0)}%</div>
+        <div class="data-item"><span class="data-label">Costo m³:</span> $${fmtNum(item.costoMetroCubico, 2)}</div>
+      </div>
+    </div>
 
-        sectionTitle("Lecturas del medidor de agua"),
-        {
-          table: {
-            widths: ["*", "*", "*"],
-            body: [
-              [
-                { text: "Medidor inicial", bold: true, fontSize: 8, fillColor: "#f0f4f8", alignment: "center" },
-                { text: "Medidor final", bold: true, fontSize: 8, fillColor: "#f0f4f8", alignment: "center" },
-                { text: "m³ ingresados", bold: true, fontSize: 8, fillColor: "#f0f4f8", alignment: "center" },
-              ],
-              [
-                { text: fmtNum(item.lecturaMedidorInicial, 0), fontSize: 9, alignment: "center" },
-                { text: fmtNum(item.lecturaMedidorFinal, 0), fontSize: 9, alignment: "center" },
-                { text: fmtNum(m3, 0), fontSize: 9, bold: true, alignment: "center" },
-              ],
-            ],
-          },
-          layout: "lightHorizontalLines",
-          margin: [0, 0, 0, 10],
-        } as any,
+    <div class="section-title">Lecturas del medidor de agua</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Medidor inicial</th>
+          <th>Medidor final</th>
+          <th>m³ ingresados</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>${fmtNum(item.lecturaMedidorInicial, 0)}</td>
+          <td>${fmtNum(item.lecturaMedidorFinal, 0)}</td>
+          <td style="font-weight: bold;">${fmtNum(m3, 0)}</td>
+        </tr>
+      </tbody>
+    </table>
 
-        sectionTitle("Fotografias de evidencia"),
-        {
-          table: {
-            widths: ["*", "*", "*"],
-            body: [
-              [loaded[0], loaded[1], loaded[2]].map(photoCell),
-              [loaded[3], loaded[4], loaded[5]].map(photoCell),
-              [loaded[6], loaded[7], loaded[8]].map(photoCell),
-            ],
-          },
-          margin: [0, 0, 0, 10],
-        } as any,
+    <div class="section-title">Fotografías de evidencia</div>
+    <div class="photos-grid">
+      ${loaded.map(photoCellHtml).join("")}
+    </div>
 
-        sectionTitle("Firmas de conformidad"),
-        {
-          table: {
-            widths: ["*", "*", "*"],
-            body: [
-              [
-                signatureCell(
-                  item.colaboradorMtto,
-                  "Colaborador de Mantenimiento",
-                ),
-                signatureCell(item.guardiaSeguridad, "Guardia de Seguridad"),
-                signatureCell(jefeMtto, "Jefe de Mantenimiento"),
-              ],
-            ],
-          },
-          layout: "noBorders",
-        } as any,
-      ],
-    };
+    <div class="section-title">Firmas de conformidad</div>
+    <div class="signatures-grid">
+      ${signatureCellHtml(item.colaboradorMtto, "Colaborador de Mantenimiento")}
+      ${signatureCellHtml(item.guardiaSeguridad, "Guardia de Seguridad")}
+      ${signatureCellHtml(jefeMtto, "Jefe de Mantenimiento")}
+    </div>
+  </div>
 
-    await this.pdfGeneratorS.generatePdf(
-      docDef,
-      `soporte-pipa-${item.placasCamion}-${item.horaLlegada.slice(0, 10)}`,
-      { clientName: "Recepcion de Pipa de Agua" },
-    );
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+</div>
+</body></html>`;
+
+    this.htmlPrintS.printHtml(html, `soporte-pipa-${item.placasCamion}-${item.horaLlegada.slice(0, 10)}`);
   }
 
   private async urlToBase64(url: string): Promise<string | null> {

@@ -1,11 +1,10 @@
 import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { CardModule } from "primeng/card";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service";
+import { HtmlPrintService } from "src/app/core/services/html-print.service";
 
 @Component({
   selector: "app-solicitud-pago-pdf",
@@ -15,7 +14,7 @@ import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service
 export class SolicitudPagoPdfComponent implements OnInit {
   apiResponseS = inject(ApiResponseService);
   routeActive = inject(ActivatedRoute);
-  pdfGeneratorS = inject(PdfGeneratorService);
+  htmlPrintS = inject(HtmlPrintService);
   customToastS = inject(CustomToastService);
   router = inject(Router);
   customerIdS = inject(CustomerIdService);
@@ -62,15 +61,9 @@ export class SolicitudPagoPdfComponent implements OnInit {
   }
 
   private async generatePdf(orderData: any, customerData: any): Promise<void> {
-    const docDefinition = this.buildPaymentRequestPdfContent(
-      orderData,
-      customerData,
-    );
+    const html = await this.buildHtmlContent(orderData, customerData);
 
-    await this.pdfGeneratorS.generatePdf(
-      docDefinition,
-      `SolicitudPago-${orderData.folio}`,
-    );
+    this.htmlPrintS.printHtml(html, `SolicitudPago-${orderData.folio}`);
 
     this.router.navigate(["/purchases/orden-compra", orderData.id], {
       replaceUrl: true,
@@ -109,17 +102,18 @@ export class SolicitudPagoPdfComponent implements OnInit {
   }
 
   private getSolicitanteDisplayName(model: any): string {
-    console.log(
-      "🚀 ~ SolicitudPagoPdfComponent ~ getSolicitanteDisplayName ~ model:",
-      model,
+    return (
+      model.solicitanteNombreCompleto ||
+      model.fullName ||
+      model.solicitante ||
+      "N/A"
     );
-    return model.solicitanteNombreCompleto || model.fullName || model.solicitante || "N/A";
   }
 
-  private buildPaymentRequestPdfContent(
+  private async buildHtmlContent(
     orderData: any,
     customerData: any,
-  ): TDocumentDefinitions {
+  ): Promise<string> {
     const model = orderData;
     const datosPago = model.ordenCompraDatosPago;
 
@@ -132,271 +126,173 @@ export class SolicitudPagoPdfComponent implements OnInit {
     const retencionIsr = this.formatCurrency(model.retencionIsr);
     const total = this.formatCurrency(correctTotal);
 
-    const budgetTableBody = model.ordenCompraPresupuesto.map((item: any) => {
-      return [
-        { text: `${item.numeroCuenta} | ${item.cuenta}`, style: "tableCell" },
-        { text: item.cuenta, style: "tableCell" },
-        {
-          text: this.formatCurrency(item.dineroUsado),
-          style: "tableCell",
-          alignment: "right",
-        },
-      ];
+    let budgetRowsHtml = "";
+    model.ordenCompraPresupuesto.forEach((item: any) => {
+      budgetRowsHtml += `
+        <tr>
+          <td>${this.htmlPrintS.esc(item.numeroCuenta)} | ${this.htmlPrintS.esc(item.cuenta)}</td>
+          <td>${this.htmlPrintS.esc(item.cuenta)}</td>
+          <td style="text-align: right;">${this.formatCurrency(item.dineroUsado)}</td>
+        </tr>
+      `;
     });
 
-    // Agrupar firmantes en filas de máximo 3
-    const signatureRows: any[] = [];
+    let signaturesHtml = "";
     if (model.firmantes && model.firmantes.length > 0) {
-      for (let i = 0; i < model.firmantes.length; i += 3) {
-        const chunk = model.firmantes.slice(i, i + 3);
-        const columns = chunk.map((firmante: any) => ({
-          stack: [
-            {
-              canvas: [
-                { type: "line", x1: 0, y1: 0, x2: 150, y2: 0, lineWidth: 0.5 },
-              ],
-            },
-            { text: firmante.nombre || " ", style: "signatureName" },
-            { text: firmante.rol || " ", style: "signatureRole" },
-          ],
-          width: "*",
-        }));
-
-        signatureRows.push({
-          columns: columns,
-          alignment: "center",
-          margin: [0, 40, 0, 0],
-        });
-      }
+      signaturesHtml += `<div class="signatures-grid">`;
+      model.firmantes.forEach((firmante: any) => {
+        signaturesHtml += `
+          <div class="signature-box">
+            <div class="signature-line"></div>
+            <div class="signature-name">${this.htmlPrintS.esc(firmante.nombre || " ")}</div>
+            <div class="signature-role">${this.htmlPrintS.esc(firmante.rol || " ")}</div>
+          </div>
+        `;
+      });
+      signaturesHtml += `</div>`;
     }
 
-    const headerColumns: any[] = [];
-    if (customerData.logo) {
-      headerColumns.push({ image: customerData.logo, fit: [150, 70] });
-    }
-    headerColumns.push({
-      stack: [
-        { text: "SOLICITUD DE PAGO", style: "header" },
-        { text: `Folio O.C.: ${model.folio}`, alignment: "right" },
-        {
-          text: `Factura: ${model.ordenCompraStatus?.factura || ""}`,
-          alignment: "right",
-        },
-      ],
-    });
+    let totalsHtml = `
+      <tr>
+        <td style="text-align: right; font-size: 11px;">SubTotal:</td>
+        <td style="text-align: right; font-weight: bold; font-size: 11px; width: 100px;">${subtotal}</td>
+      </tr>
+      <tr>
+        <td style="text-align: right; font-size: 11px;">IVA:</td>
+        <td style="text-align: right; font-weight: bold; font-size: 11px;">${iva}</td>
+      </tr>
+    `;
 
-    return {
-      content: [
-        { columns: headerColumns },
-        {
-          canvas: [
-            {
-              type: "line",
-              x1: 0,
-              y1: 10,
-              x2: 515,
-              y2: 10,
-              lineWidth: 1,
-              lineColor: "#CCCCCC",
-            },
-          ],
-        },
-        { text: "", margin: [0, 0, 0, 10] },
-        {
-          style: "bankCard",
-          table: {
-            widths: ["*", "auto"],
-            body: [
-              [
-                {
-                  text: "DATOS DE PAGO / TRANSFERENCIA",
-                  colSpan: 2,
-                  style: "cardHeader",
-                },
-                {},
-              ],
-              [
-                {
-                  stack: [
-                    { text: "Beneficiario:", style: "label" },
-                    { text: datosPago.nameCheck, style: "beneficiaryName" },
-                    { text: "Banco:", style: "label", margin: [0, 5, 0, 0] },
-                    { text: datosPago.bank, style: "value" },
-                  ],
-                  margin: [10, 10, 0, 10],
-                },
-                {
-                  stack: [
-                    {
-                      text: "CLABE Interbancaria:",
-                      style: "label",
-                      alignment: "right",
-                    },
-                    {
-                      text: this.formatClabe(datosPago.interbankCode),
-                      style: "clabeNumber",
-                      alignment: "right",
-                    },
-                    {
-                      text: "Monto a Pagar:",
-                      style: "label",
-                      alignment: "right",
-                      margin: [0, 5, 0, 0],
-                    },
-                    { text: total, style: "totalAmount", alignment: "right" },
-                  ],
-                  margin: [0, 10, 10, 10],
-                },
-              ],
-            ],
-          },
-          layout: "lightHorizontalLines",
-        },
-        { text: "", margin: [0, 0, 0, 5] },
-        {
-          columns: [
-            {
-              stack: [
-                { text: "DATOS DE LA SOLICITUD", style: "subheader" },
-                {
-                  text: `Fecha: ${this.formatDateOnly(model.fechaSolicitud)}`,
-                  fontSize: 9,
-                },
-                {
-                  text: `Área/Depto: ${model.equipoOInstalacion || "N/A"}`,
-                  fontSize: 9,
-                },
-                {
-                  text: `Solicitante: ${this.getSolicitanteDisplayName(model)}`,
-                  fontSize: 9,
-                },
-              ],
-            },
-            {
-              stack: [
-                { text: "DATOS DEL PROVEEDOR", style: "subheader" },
-                {
-                  text: `Proveedor: ${datosPago.providerName || "N/A"}`,
-                  fontSize: 9,
-                },
-                { text: `RFC: ${datosPago.providerRfc || "N/A"}`, fontSize: 9 },
-                {
-                  text: `Método de Pago: ${datosPago.metodoDePago || "N/A"}`,
-                  fontSize: 9,
-                },
-                {
-                  text: `Forma de Pago: ${datosPago.formaDePago || "N/A"}`,
-                  fontSize: 9,
-                },
-              ],
-            },
-          ],
-        },
-        { text: "", margin: [0, 0, 0, 10] },
-        {
-          stack: [
-            { text: "JUSTIFICACIÓN DEL GASTO", style: "subheader" },
-            {
-              text: model.justificacionGasto || "N/A",
-              fontSize: 9,
-            },
-          ],
-        },
-        { text: "", margin: [0, 0, 0, 20] },
-        { text: "DESGLOSE DE PAGO", style: "subheader" },
-        {
-          table: {
-            widths: ["auto", "*", "auto"],
-            body: [
-              [
-                { text: "CUENTA CONTABLE", style: "tableHeader" },
-                { text: "CONCEPTO", style: "tableHeader" },
-                { text: "IMPORTE", style: "tableHeader", alignment: "right" },
-              ],
-              ...budgetTableBody,
-            ],
-          },
-          layout: "lightHorizontalLines",
-        },
-        {
-          table: {
-            widths: ["*", "auto"],
-            body: [
-              [
-                { text: "SubTotal:", style: "totalLabel" },
-                { text: subtotal, style: "totalValue" },
-              ],
-              [
-                { text: "IVA:", style: "totalLabel" },
-                { text: iva, style: "totalValue" },
-              ],
-              ...(model.retencionIva > 0
-                ? [
-                    [
-                      { text: "Retención IVA:", style: "totalLabel" },
-                      {
-                        text: `- ${retencionIva}`,
-                        style: "totalValue",
-                        color: "red",
-                      },
-                    ],
-                  ]
-                : []),
-              ...(model.retencionIsr > 0
-                ? [
-                    [
-                      { text: "Retención ISR:", style: "totalLabel" },
-                      {
-                        text: `- ${retencionIsr}`,
-                        style: "totalValue",
-                        color: "red",
-                      },
-                    ],
-                  ]
-                : []),
-              [
-                { text: "Total a Pagar:", style: "totalFinalLabel" },
-                { text: total, style: "totalFinalValue" },
-              ],
-            ],
-          },
-          layout: {
-            defaultBorder: false,
-          },
-        },
-        { text: "", margin: [0, 0, 0, 30] },
-        { text: "AUTORIZACIONES", style: "subheader", alignment: "center" },
-        ...signatureRows,
-      ],
-      styles: {
-        header: {
-          fontSize: 16,
-          bold: true,
-          alignment: "right",
-          color: "#003A62",
-        },
-        subheader: {
-          fontSize: 12,
-          bold: true,
-          margin: [0, 10, 0, 5],
-          color: "#003A62",
-        },
-        bankCard: { margin: [0, 5, 0, 15] },
-        cardHeader: { bold: true, fillColor: "#f2f2f2", margin: [5, 5] },
-        label: { color: "gray", fontSize: 9 },
-        value: { bold: true },
-        beneficiaryName: { bold: true, fontSize: 12 },
-        clabeNumber: { bold: true, fontSize: 11 },
-        totalAmount: { bold: true, fontSize: 14, color: "#003A62" },
-        tableHeader: { bold: true, fontSize: 10, color: "#003A62" },
-        tableCell: { fontSize: 9 },
-        totalLabel: { fontSize: 10, alignment: "right" },
-        totalValue: { fontSize: 10, bold: true, alignment: "right" },
-        totalFinalLabel: { fontSize: 11, bold: true, alignment: "right" },
-        totalFinalValue: { fontSize: 11, bold: true, alignment: "right" },
-        signatureName: { fontSize: 10, bold: true, margin: [0, 5, 0, 0] },
-        signatureRole: { fontSize: 9, italics: true, color: "#555555" },
-      },
-    };
+    if (model.retencionIva > 0) {
+      totalsHtml += `
+        <tr>
+          <td style="text-align: right; font-size: 11px;">Retención IVA:</td>
+          <td style="text-align: right; font-weight: bold; font-size: 11px; color: #dc2626;">- ${retencionIva}</td>
+        </tr>
+      `;
+    }
+    if (model.retencionIsr > 0) {
+      totalsHtml += `
+        <tr>
+          <td style="text-align: right; font-size: 11px;">Retención ISR:</td>
+          <td style="text-align: right; font-weight: bold; font-size: 11px; color: #dc2626;">- ${retencionIsr}</td>
+        </tr>
+      `;
+    }
+    totalsHtml += `
+      <tr>
+        <td style="text-align: right; font-weight: bold; font-size: 13px; padding-top: 5px;">Total a Pagar:</td>
+        <td style="text-align: right; font-weight: bold; font-size: 13px; padding-top: 5px;">${total}</td>
+      </tr>
+    `;
+
+    const logo = await this.htmlPrintS.getLogoDataUrl();
+    const generatedAt = new Date();
+
+    return `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+  @page { margin: 10mm; }
+  .container { max-width: 1000px; margin: auto; }
+
+  .bank-card { border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; margin-top: 10px; margin-bottom: 20px; }
+  .bank-card-header { background-color: #f2f2f2; padding: 5px 10px; font-weight: bold; font-size: 11px; }
+  .bank-card-body { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 10px; }
+
+  .label { color: gray; font-size: 10px; }
+  .value { font-weight: bold; font-size: 11px; margin-bottom: 5px; }
+  .beneficiary { font-weight: bold; font-size: 14px; margin-bottom: 5px; }
+  .clabe { font-weight: bold; font-size: 13px; margin-bottom: 5px; }
+  .total-amount { font-weight: bold; font-size: 16px; color: #003A62; }
+
+  .subheader { font-size: 14px; font-weight: bold; color: #003A62; margin-top: 15px; margin-bottom: 5px; }
+  .justificacion { font-size: 10px; margin-bottom: 20px; }
+
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .info-text { font-size: 10px; margin-bottom: 2px; }
+
+  .budget-table { width: 100%; border-collapse: collapse; font-size: 10px; margin-bottom: 20px; }
+  .budget-table th { color: #003A62; font-weight: bold; text-align: left; padding: 5px; border-bottom: 1px solid #ccc; }
+  .budget-table td { padding: 5px; border-bottom: 1px solid #eee; }
+
+  .totals-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+  .totals-table td { padding: 4px 0; }
+
+  .signatures-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 40px; margin-top: 40px; justify-items: center; }
+  .signature-box { text-align: center; width: 180px; }
+  .signature-line { border-top: 1px solid #333; width: 100%; margin-bottom: 5px; }
+  .signature-name { font-size: 11px; font-weight: bold; margin-bottom: 2px; }
+  .signature-role { font-size: 10px; font-style: italic; color: #555; }
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, "SOLICITUD DE PAGO", `Folio O.C.: ${model.folio}<br>Factura: ${model.ordenCompraStatus?.factura || ""}`, generatedAt, "")}
+
+  <div class="body-doc">
+    <div class="bank-card">
+      <div class="bank-card-header">DATOS DE PAGO / TRANSFERENCIA</div>
+      <div class="bank-card-body">
+        <div>
+          <div class="label">Beneficiario:</div>
+          <div class="beneficiary">${this.htmlPrintS.esc(datosPago.nameCheck)}</div>
+          <div class="label" style="margin-top: 10px;">Banco:</div>
+          <div class="value">${this.htmlPrintS.esc(datosPago.bank)}</div>
+        </div>
+        <div style="text-align: right;">
+          <div class="label">CLABE Interbancaria:</div>
+          <div class="clabe">${this.htmlPrintS.esc(this.formatClabe(datosPago.interbankCode))}</div>
+          <div class="label" style="margin-top: 10px;">Monto a Pagar:</div>
+          <div class="total-amount">${total}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div>
+        <div class="subheader" style="margin-top: 0;">DATOS DE LA SOLICITUD</div>
+        <div class="info-text">Fecha: ${this.formatDateOnly(model.fechaSolicitud)}</div>
+        <div class="info-text">Área/Depto: ${this.htmlPrintS.esc(model.equipoOInstalacion || "N/A")}</div>
+        <div class="info-text">Solicitante: ${this.htmlPrintS.esc(this.getSolicitanteDisplayName(model))}</div>
+      </div>
+      <div>
+        <div class="subheader" style="margin-top: 0;">DATOS DEL PROVEEDOR</div>
+        <div class="info-text">Proveedor: ${this.htmlPrintS.esc(datosPago.providerName || "N/A")}</div>
+        <div class="info-text">RFC: ${this.htmlPrintS.esc(datosPago.providerRfc || "N/A")}</div>
+        <div class="info-text">Método de Pago: ${this.htmlPrintS.esc(datosPago.metodoDePago || "N/A")}</div>
+        <div class="info-text">Forma de Pago: ${this.htmlPrintS.esc(datosPago.formaDePago || "N/A")}</div>
+      </div>
+    </div>
+
+    <div class="subheader">JUSTIFICACIÓN DEL GASTO</div>
+    <div class="justificacion">${this.htmlPrintS.esc(model.justificacionGasto || "N/A")}</div>
+
+    <div class="subheader">DESGLOSE DE PAGO</div>
+    <table class="budget-table">
+      <thead>
+        <tr>
+          <th>CUENTA CONTABLE</th>
+          <th>CONCEPTO</th>
+          <th style="text-align: right;">IMPORTE</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${budgetRowsHtml}
+      </tbody>
+    </table>
+
+    <table class="totals-table">
+      <tbody>
+        ${totalsHtml}
+      </tbody>
+    </table>
+
+    <div class="subheader" style="text-align: center;">AUTORIZACIONES</div>
+    ${signaturesHtml}
+  </div>
+
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+</div>
+</body></html>`;
   }
 }

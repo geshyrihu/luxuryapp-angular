@@ -49,7 +49,7 @@ export class CustomerModulList implements OnInit {
     addIcons({ chevronForwardOutline });
   }
 
-  // DeclaraciÃ³n e inicializaciÃ³n de variables
+  // Declaración e inicialización de variables
   dataSignal = signal<any[]>([]);
 
   readonly globalFilterFields = computed(() => {
@@ -88,17 +88,17 @@ export class CustomerModulList implements OnInit {
       });
   }
 
-  // MÃ©todo para filtrar por estado
+  // Método para filtrar por estado
   onSelectActive(selectedValue: boolean) {
     this.state = selectedValue;
     this.onLoadData(selectedValue);
   }
-  // FunciÃ³n para abrir un cuadro de diÃ¡logo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS.openDialog(
       CustomerModulEdit,
       data,
-      "Asignar MÃ³dulos",
+      "Asignar Módulos",
       this.dialogHandlerS.sizeFull,
     );
   }

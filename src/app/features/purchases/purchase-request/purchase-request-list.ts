@@ -7,6 +7,7 @@ import { cartOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
 import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
@@ -33,7 +34,7 @@ import { PurchaseRequestForm } from "./purchase-request-form";
     CommonModule,
     RouterModule,
     TableModule,
-    CustomButtonComponent,
+    CustomButton,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     ActionMenu,

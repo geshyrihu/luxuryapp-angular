@@ -48,7 +48,7 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
 export class CustomerDataCompanyList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
-  // DeclaraciÃ³n e inicializaciÃ³n de variables
+  // Declaración e inicialización de variables
   data = signal<CustomerDataCompanyDTO[]>([]);
   readonly globalFilterFields = signal<string[]>([
     "customer",
@@ -60,7 +60,7 @@ export class CustomerDataCompanyList implements OnInit {
   loading = signal(true);
   readonly tablePrimeNgRows: number = tablePrimeNgRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
-  ref: DynamicDialogRef; // Referencia a un cuadro de diÃ¡logo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
 
   groupingOptions = [
     { label: "Agrupar por Cliente", value: "numeroCliente" },
@@ -127,7 +127,7 @@ export class CustomerDataCompanyList implements OnInit {
       });
   }
 
-  // FunciÃ³n para abrir un cuadro de diÃ¡logo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(

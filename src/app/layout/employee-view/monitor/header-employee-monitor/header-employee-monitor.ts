@@ -236,7 +236,18 @@ export class HeaderEmployeeMonitor implements OnInit {
   //   window.location.reload();
   // };
   onRefresh = () => {
-    this.navService.reloadMenu();
+    const currentUrl = this.router.url;
+    const originalShouldReuseRoute =
+      this.router.routeReuseStrategy.shouldReuseRoute.bind(
+        this.router.routeReuseStrategy,
+      );
+
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+
+    void this.router.navigateByUrl(currentUrl).finally(() => {
+      this.router.routeReuseStrategy.shouldReuseRoute =
+        originalShouldReuseRoute;
+    });
   };
 
   onHome = () => {

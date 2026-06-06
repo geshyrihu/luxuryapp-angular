@@ -69,7 +69,8 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+
+import { PrintService } from "src/app/core/services/print.service";
 import { CardEmployee } from "src/app/features/employees/employees/pages/card-employee";
 
 import Swal from "sweetalert2";
@@ -167,10 +168,11 @@ export class TaskList implements OnInit {
   private readonly customerIdS = inject(CustomerIdService);
   private readonly customToastS = inject(CustomToastService);
   private readonly dialogHandlerS = inject(DialogHandlerService);
-  private readonly tableScrollHeightS = inject(TableScrollHeightService);
+
   private readonly router = inject(Router);
   private readonly taskGroupS = inject(TaskGroupService);
   private readonly aspRoleS = inject(AspRoleService);
+  private readonly printS = inject(PrintService);
 
   // User and Data Setup
   readonly applicationUser = this.authS.applicationUserId;
@@ -205,11 +207,11 @@ export class TaskList implements OnInit {
 
   statusPillStyle(status: string): string {
     const map: Record<string, string> = {
-      NotStarted: 'background:#fee2e2;color:#991b1b',
-      InProgress:  'background:#ffedd5;color:#9a3412',
-      Reopened:    'background:#fee2e2;color:#991b1b',
+      NotStarted: 'background:var(--ds-danger-light);color:var(--ds-danger)',
+      InProgress:  'background:var(--ds-warning-light);color:var(--ds-warning)',
+      Reopened:    'background:var(--ds-danger-light);color:var(--ds-danger)',
     };
-    return map[status] ?? 'background:#f3f4f6;color:#374151';
+    return map[status] ?? 'background:var(--ds-border);color:var(--ds-text-primary)';
   }
 
   statusTdClass(status: string): string {
@@ -222,7 +224,7 @@ export class TaskList implements OnInit {
   }
 
   printReport(): void {
-    window.print();
+    this.printS.printElement(undefined, 'Reporte de Tareas Pendientes');
   }
 
   readonly tablePrimeNgRows: number = tablePrimeNgRows();

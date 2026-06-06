@@ -21,7 +21,6 @@ import {
   timeOutline,
   trashOutline,
 } from "ionicons/icons";
-import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { CardModule } from "primeng/card";
 import { Dialog } from "primeng/dialog";
 import { DrawerModule } from "primeng/drawer";
@@ -51,7 +50,7 @@ import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service";
+import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { MantenimientoPreventivoForm } from "src/app/features/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
 import { ActivosForm } from "src/app/features/machinery-asset/activos-form";
 import { ActivosDocumentos } from "src/app/features/machinery-document/activos-documentos";
@@ -128,7 +127,7 @@ export class EquiposList {
   apiResponseS = inject(ApiResponseService);
   private dialogHandlerS = inject(DialogHandlerService);
   private customerIdS = inject(CustomerIdService);
-  private pdfGeneratorS = inject(PdfGeneratorService);
+  private htmlPrintS = inject(HtmlPrintService);
   // --- ESTADO DEL COMPONENTE CON SIGNALS ---
   data = signal<any[]>([]);
   loading = signal(true);
@@ -248,7 +247,7 @@ export class EquiposList {
     });
   }
 
-  async onDownloadPdf() {
+  async onDownloadPdf(): Promise<void> {
     const data = this.data();
     if (!data || data.length === 0) return;
     this.loading.set(true); // Show loading indicator while processing images
@@ -295,7 +294,7 @@ export class EquiposList {
       // Group by system
       const groups = sortedData.reduce(
         (acc, item) => {
-          const system = item.equipoClasificacion || "SIN CLASIFICACIóN";
+          const system = item.equipoClasificacion || "SIN CLASIFICACIÓN";
           if (!acc[system]) acc[system] = [];
           acc[system].push(item);
           return acc;
@@ -303,136 +302,78 @@ export class EquiposList {
         {} as Record<string, any[]>,
       );
 
-      const content: any[] = [
-        {
-          text: `INVENTARIO DE ${this.title().toUpperCase()}`,
-          style: "header",
-          margin: [0, 0, 0, 10],
-        },
-        {
-          text: `Estado: ${this.subTitle()}`,
-          style: "infoSubText",
-          margin: [0, 0, 0, 20],
-        },
-      ];
+      let tableHtml = "";
 
       for (const system in groups) {
-        content.push({
-          text: system,
-          style: "subheader",
-          margin: [0, 10, 0, 5],
-        });
+        tableHtml += `
+          <tr>
+            <td colspan="2" class="sistema-header">${this.htmlPrintS.esc(system)}</td>
+          </tr>
+        `;
 
-        const tableBody = groups[system].map((item) => {
-          return [
-            // Column 1: Image
-            {
-              stack: item.base64Image
-                ? [
-                    {
-                      image: item.base64Image,
-                      fit: [100, 100],
-                      alignment: "center",
-                    },
-                  ]
-                : [
-                    {
-                      text: "Sin Imagen",
-                      fontSize: 8,
-                      color: "#999",
-                      alignment: "center",
-                      margin: [0, 20, 0, 0],
-                    },
-                  ],
-              border: [false, false, false, true],
-              margin: [0, 5, 0, 5],
-            },
-            // Column 2: Technical/Location Data
-            {
-              stack: [
-                {
-                  text: item.nameMachinery || "Sin Nombre",
-                  style: "tableHeader",
-                  fontSize: 11,
-                  margin: [0, 0, 0, 2],
-                },
-                {
-                  text: [
-                    { text: "Ubicación: ", bold: true, fontSize: 10 },
-                    { text: item.ubication || "N/A", fontSize: 10 },
-                  ],
-                  margin: [0, 0, 0, 2],
-                },
-                {
-                  columns: [
-                    {
-                      width: "auto",
-                      text: [
-                        { text: "Marca: ", bold: true, fontSize: 9 },
-                        { text: item.brand || "N/A", fontSize: 9 },
-                      ],
-                    },
-                    { width: 10, text: "" },
-                    {
-                      width: "auto",
-                      text: [
-                        { text: "Modelo: ", bold: true, fontSize: 9 },
-                        { text: item.model || "N/A", fontSize: 9 },
-                      ],
-                    },
-                    { width: 10, text: "" },
-                    {
-                      width: "auto",
-                      text: [
-                        { text: "Serie: ", bold: true, fontSize: 9 },
-                        { text: item.serie || "N/A", fontSize: 9 },
-                      ],
-                    },
-                  ],
-                  margin: [0, 0, 0, 2],
-                },
-              ],
-              border: [false, false, false, true],
-              margin: [5, 5, 0, 5],
-            },
-          ];
-        });
+        groups[system].forEach((item, idx) => {
+          const bg = idx % 2 === 0 ? "#ffffff" : "#f9fafb";
+          
+          const imgHtml = item.base64Image 
+            ? `<img src="${item.base64Image}" style="max-width:100px; max-height:100px; object-fit:contain;" />` 
+            : `<div style="font-size: 8px; color: #999; margin-top:20px; text-align:center;">Sin Imagen</div>`;
 
-        content.push({
-          table: {
-            widths: [110, "*"], // Fixed width for image column, rest for info
-            headerRows: 0,
-            body: tableBody,
-          },
-          layout: {
-            hLineWidth: (i: number, node: any) => 1, // Draw only bottom border defined in cells
-            vLineWidth: () => 0,
-            hLineColor: () => "#EEEEEE",
-          },
-          margin: [0, 0, 0, 15],
+          tableHtml += `
+            <tr>
+              <td style="background-color: ${bg}; padding: 10px; width: 120px; text-align: center; vertical-align: middle;">
+                ${imgHtml}
+              </td>
+              <td style="background-color: ${bg}; padding: 10px; vertical-align: top;">
+                <div style="font-size: 14px; font-weight: bold; color: #333; margin-bottom: 4px;">${this.htmlPrintS.esc(item.nameMachinery || "Sin Nombre")}</div>
+                <div style="margin-bottom: 4px;"><span style="font-weight: bold;">Ubicación:</span> ${this.htmlPrintS.esc(item.ubication || "N/A")}</div>
+                <table style="width: 100%; border: none;">
+                  <tr>
+                    <td style="border: none; padding: 0;"><span style="font-weight: bold;">Marca:</span> ${this.htmlPrintS.esc(item.brand || "N/A")}</td>
+                    <td style="border: none; padding: 0;"><span style="font-weight: bold;">Modelo:</span> ${this.htmlPrintS.esc(item.model || "N/A")}</td>
+                    <td style="border: none; padding: 0;"><span style="font-weight: bold;">Serie:</span> ${this.htmlPrintS.esc(item.serie || "N/A")}</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          `;
         });
       }
 
-      const docDefinition: TDocumentDefinitions = {
-        content: content,
-        styles: {
-          header: { fontSize: 18, bold: true, color: "#003A62" },
-          subheader: {
-            fontSize: 14,
-            bold: true,
-            color: "#003A62",
-            fillColor: "#eef2f7",
-          },
-          tableHeader: { bold: true, fontSize: 10, color: "#333333" },
-          tableCell: { fontSize: 9, margin: [2, 4, 2, 4] },
-        },
-      };
+      const logo = await this.htmlPrintS.getLogoDataUrl();
+      const generatedAt = new Date();
 
-      this.pdfGeneratorS.generatePdf(
-        docDefinition,
-        `Inventario_${this.title().replace(/\s+/g, "_")}`,
-        { clientName: "Inventario de Activos" },
-      );
+      const html = `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+  @page { margin: 10mm; }
+  .container { max-width: 1000px; }
+  th { background-color: #1E3A8A !important; color: #FFFFFF !important; }
+  
+  .sistema-header { background-color: #eef2f7 !important; color: #003A62 !important; font-weight: bold; font-size: 14px; padding: 6px 10px !important; }
+  
+  .data-table { width:100%; border-collapse:collapse; margin-bottom:16px; }
+  .data-table th, .data-table td { padding:4px 8px; border:1px solid #D1D5DB; }
+  .data-table th { background:#1E3A8A; color: #ffffff; font-weight:700; text-align:center; font-size: 11px; }
+
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, `INVENTARIO DE ${this.title().toUpperCase()}`, `Estado: ${this.subTitle()}`, generatedAt, "MANTENIMIENTO")}
+
+  <div class="body-doc">
+    <table class="data-table">
+      <tbody>
+        ${tableHtml}
+      </tbody>
+    </table>
+  </div>
+  
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+</div>
+</body></html>`;
+
+      this.htmlPrintS.printHtml(html, `Inventario_${this.title().replace(/\s+/g, "_")}`);
     } catch (e) {
       console.error("Error generating PDF", e);
     } finally {

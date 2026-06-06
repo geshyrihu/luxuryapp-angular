@@ -69,43 +69,9 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
     this.ref.close();
   }
 
-  downloadAvisoCobro(): void {
-    // if (
-    //   !this.customerId ||
-    //   !this.row?.numCtaBase ||
-    //   !this.fechaInicio ||
-    //   !this.fechaFin
-    // )
-    //   return;
-    // this.apiResponseS.onDownloadFile(
-    //   Endpoints.AspelCobranza.avisoCobroPdf(
-    //     this.customerId,
-    //     this.row.numCtaBase,
-    //     this.fechaInicio,
-    //     this.fechaFin,
-    //   ),
-    //   `Aviso-Cobro-${this.row.numCtaBase}-${this.fechaFin}.pdf`,
-    // );
-  }
+  downloadAvisoCobro(): void {}
 
-  downloadEstadoCuenta(): void {
-    // if (
-    //   !this.customerId ||
-    //   !this.row?.numCtaBase ||
-    //   !this.fechaInicio ||
-    //   !this.fechaFin
-    // )
-    //   return;
-    // this.apiResponseS.onDownloadFile(
-    //   Endpoints.AspelCobranza.estadoCuentaPdf(
-    //     this.customerId,
-    //     this.row.numCtaBase,
-    //     this.fechaInicio,
-    //     this.fechaFin,
-    //   ),
-    //   `Estado-Cuenta-${this.row.numCtaBase}-${this.fechaFin}.pdf`,
-    // );
-  }
+  downloadEstadoCuenta(): void {}
 
   getConceptSeverity(
     concepto: string,
@@ -136,18 +102,6 @@ export class AspelCobranzaHausDebtDetailModal implements OnInit {
     }
 
     this.loading.set(true);
-    // const response =
-    //   await this.apiResponseS.onGetItem<AspelPendientesConceptoResponse>(
-    //     Endpoints.AspelCobranza.pendientesConceptoRango(
-    //       this.customerId,
-    //       this.row.numCtaBase,
-    //       this.fechaInicio,
-    //       this.fechaFin,
-    //     ),
-    //     false,
-    //   );
-
-    // this.detail.set(response ? this.normalizeResponse(response) : null);
     this.loading.set(false);
   }
 

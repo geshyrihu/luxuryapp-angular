@@ -1,46 +1,123 @@
-import { Injectable } from "@angular/core";
-import * as pdfMake from "pdfmake/build/pdfmake";
-import * as pdfFonts from "pdfmake/build/vfs_fonts";
-import { TDocumentDefinitions } from "pdfmake/interfaces";
+import { Injectable, inject } from "@angular/core";
+import { HtmlPrintService } from "src/app/core/services/html-print.service";
 
-/**
- * Servicio independiente para generación de PDF de minutas.
- * No reutiliza PdfGeneratorService para evitar encabezados, estilos
- * y márgenes propios de ese servicio genérico.
- */
 @Injectable({ providedIn: "root" })
 export class MinutaPdfService {
-  private pdfMakeInstance: any;
+  private readonly htmlPrintS = inject(HtmlPrintService);
 
-  constructor() {
-    this.pdfMakeInstance = (pdfMake as any).default || pdfMake;
-    if (this.pdfMakeInstance.vfs === undefined) {
-      const fonts = pdfFonts as any;
-      this.pdfMakeInstance.vfs = fonts.pdfMake?.vfs || fonts;
+  async downloadMinuta(data: any, fileName: string): Promise<void> {
+    const logo = await this.htmlPrintS.getLogoDataUrl();
+    const generatedAt = new Date();
+    const html = this.buildHtml(data, logo, generatedAt);
+    this.htmlPrintS.printHtml(html, fileName);
+  }
+
+  private buildHtml(data: any, logo: string | null, generatedAt: Date): string {
+    const dateLabel = this.formatDate(data.minuta?.date);
+    const tipo = data.minuta?.eTypeMeeting || "Junta";
+    
+    let asistentesHtml = "";
+    if (data.comite?.length > 0) {
+      asistentesHtml += this.buildTableHtml("Comité de Vigilancia", ["Cargo", "Nombre"], data.comite.map((i: any) => [i.cargo, i.nombre]));
     }
+    if (data.administracion?.length > 0) {
+      asistentesHtml += this.buildTableHtml("Administración", ["Cargo", "Nombre"], data.administracion.map((i: any) => [i.cargo, i.nombre]));
+    }
+    if (data.externos?.length > 0) {
+      asistentesHtml += this.buildTableHtml("Invitados", ["Nombre"], data.externos.map((i: any) => [i.invitado]));
+    }
+
+    let asuntosHtml = "";
+    if (data.asuntos?.length > 0) {
+      asuntosHtml += `<div class="subheader">DETALLES DE LA JUNTA</div>`;
+      data.asuntos.forEach((area: any) => {
+        asuntosHtml += `<div class="area-title">${this.htmlPrintS.esc(area.responsibleArea)}</div>`;
+        area.items?.forEach((asunto: any, index: number) => {
+          asuntosHtml += `<div class="asunto-title">${index + 1}. ${this.htmlPrintS.esc(asunto.title)}</div>`;
+          const desc = this.stripHtml(asunto.requestService);
+          if (desc) {
+            asuntosHtml += `<div class="asunto-desc">${this.htmlPrintS.esc(desc)}</div>`;
+          }
+        });
+      });
+    }
+
+    return `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+  .subheader { font-size: 1.1rem; font-weight: bold; color: #111827; margin: 24px 0 12px 0; border-bottom: 2px solid #E8EEF8; padding-bottom: 4px; }
+  .section-title { font-size: 0.9rem; font-weight: bold; color: #4B5563; margin: 10px 0 6px 0; }
+  
+  .data-table { width: 100%; border-collapse: collapse; margin-bottom: 12px; font-size: 0.8rem; }
+  .data-table th, .data-table td { padding: 6px 8px; border: 1px solid #D1D5DB; text-align: left; }
+  .data-table th { font-weight: bold; color: #111827; background-color: #E8EEF8; }
+  .data-table tbody tr:nth-child(even) { background-color: #FAFAFA; }
+  
+  .asuntos-container { display: flex; flex-direction: column; gap: 10px; }
+  .area-title { font-size: 0.95rem; font-weight: bold; color: #0B3164; background: #E8EEF8; padding: 6px 10px; margin: 16px 0 8px 0; border-radius: 4px; }
+  .asunto-title { font-size: 0.85rem; font-weight: bold; margin-top: 10px; color: #111827; }
+  .asunto-desc { font-size: 0.8rem; color: #4B5563; margin-left: 16px; margin-top: 4px; border-left: 2px solid #D1D5DB; padding-left: 8px; }
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, "MINUTA DE JUNTA", `MINUTA-${tipo.toUpperCase()}`, generatedAt, "ADMINISTRACIÓN", `Fecha de junta: ${dateLabel}`)}
+  
+  <div class="body-doc">
+    <div class="subheader" style="margin-top:0;">ASISTENTES</div>
+    <div style="display:flex; gap:20px; flex-wrap: wrap;">
+      ${asistentesHtml}
+    </div>
+
+    ${asuntosHtml}
+  </div>
+  
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+</div>
+</body></html>`;
   }
 
-  /** Convierte una URL remota a base64 data-URL para que pdfmake la acepte. */
-  urlToBase64(url: string): Promise<string> {
-    return fetch(url)
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.blob();
-      })
-      .then(
-        (blob) =>
-          new Promise<string>((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onloadend = () => resolve(reader.result as string);
-            reader.onerror = reject;
-            reader.readAsDataURL(blob);
-          }),
-      );
+  private buildTableHtml(title: string, headers: string[], rows: string[][]): string {
+    const head = headers.map(h => `<th>${this.htmlPrintS.esc(h)}</th>`).join("");
+    const body = rows.map(r => `<tr>${r.map(c => `<td>${this.htmlPrintS.esc(c)}</td>`).join("")}</tr>`).join("");
+    return `
+      <div style="flex:1; min-width: 250px;">
+        <div class="section-title">${this.htmlPrintS.esc(title)}</div>
+        <table class="data-table">
+          <thead><tr>${head}</tr></thead>
+          <tbody>${body}</tbody>
+        </table>
+      </div>
+    `;
   }
 
-  /** Descarga el PDF directamente sin ningún encabezado ni estilo extra. */
-  download(docDefinition: TDocumentDefinitions, fileName: string): void {
-    this.pdfMakeInstance.createPdf(docDefinition).download(`${fileName}.pdf`);
+  private formatDate(dateValue: any): string {
+    if (!dateValue) return "N/A";
+    const d = dateValue instanceof Date ? dateValue : this.parseMeetingDate(dateValue.toString());
+    if (d) {
+      return d.toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" });
+    }
+    return dateValue.toString();
+  }
+
+  private parseMeetingDate(dateString: string): Date | null {
+    const monthMap: { [key: string]: number } = { ene: 0, feb: 1, mar: 2, abr: 3, may: 4, jun: 5, jul: 6, ago: 7, sep: 8, oct: 9, nov: 10, dic: 11 };
+    try {
+      const [datePart, timePart] = dateString.split(" ");
+      const [day, monthAbbr, yearAbbr] = datePart.split("-");
+      const monthNum = monthMap[monthAbbr.toLowerCase().replace(".", "")];
+      const fullYear = parseInt(yearAbbr) + 2000;
+      const [hours, minutes] = (timePart ?? "0:0").split(":");
+      if (monthNum !== undefined && !isNaN(fullYear) && !isNaN(parseInt(day))) {
+        return new Date(fullYear, monthNum, parseInt(day), parseInt(hours ?? "0"), parseInt(minutes ?? "0"));
+      }
+    } catch { }
+    return null;
+  }
+
+  private stripHtml(html: string): string {
+    if (!html) return "";
+    return html.replace(/<[^>]*>/g, " ").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
   }
 }
 

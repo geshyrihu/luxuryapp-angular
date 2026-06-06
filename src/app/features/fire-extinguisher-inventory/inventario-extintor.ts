@@ -22,7 +22,11 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { downloadOutline } from "ionicons/icons";
 import { InventarioExtintorForm } from "./inventario-extintor-form";
+import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
+import { IonButtonDownload } from "src/app/core/components/buttons/mobile/ion-button-download";
+import { InventarioExtintorPdfService } from "./inventario-extintor-pdf.service";
 @Component({
   selector: "app-inventario-extintor",
   templateUrl: "./inventario-extintor.html",
@@ -40,6 +44,8 @@ import { InventarioExtintorForm } from "./inventario-extintor-form";
     IonItem,
     IonLabel,
     IonIcon,
+    CustomButtonDownload,
+    IonButtonDownload,
   ],
 })
 export class InventarioExtintor {
@@ -47,6 +53,8 @@ export class InventarioExtintor {
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
   tableScrollHeightS = inject(TableScrollHeightService);
+  inventarioExtintorPdfS = inject(InventarioExtintorPdfService);
+  
   dataSignal = signal<IInventarioExtintor[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
@@ -54,11 +62,15 @@ export class InventarioExtintor {
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
   constructor() {
-    addIcons({ flameOutline, folderOpenOutline });
+    addIcons({ flameOutline, folderOpenOutline, downloadOutline });
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) this.onLoadData();
     });
+  }
+
+  onDownloadPdf() {
+    this.inventarioExtintorPdfS.downloadPdf(this.dataSignal());
   }
 
   onLoadData() {

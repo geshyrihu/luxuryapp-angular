@@ -1,7 +1,6 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { IonAvatar, IonItem, IonLabel } from "@ionic/angular/standalone";
-import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { AvatarModule } from "primeng/avatar";
 import { BadgeModule } from "primeng/badge";
 import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
@@ -28,7 +27,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service";
+import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { ToolForm } from "./tool-form";
 
 @Component({
@@ -111,7 +110,7 @@ export class ToolList {
       });
   }
 
-  pdfGeneratorS = inject(PdfGeneratorService);
+  htmlPrintS = inject(HtmlPrintService);
 
   // Helper to convert Blob to Base64
   private blobToBase64(blob: Blob): Promise<string> {
@@ -123,7 +122,7 @@ export class ToolList {
     });
   }
 
-  async onDownloadPdf() {
+  async onDownloadPdf(): Promise<void> {
     const data = this.dataSignal();
     if (!data || data.length === 0) return;
     this.loading.set(true);
@@ -175,87 +174,66 @@ export class ToolList {
         {} as Record<string, any[]>,
       );
 
-      const content: any[] = [
-        {
-          text: "INVENTARIO DE HERRAMIENTAS",
-          style: "header",
-          margin: [0, 0, 0, 10],
-        },
-      ];
+      let tableHtml = "";
 
       for (const category in groups) {
-        content.push({
-          text: category,
-          style: "subheader",
-          margin: [0, 10, 0, 5],
-        });
+        tableHtml += `
+          <tr>
+            <td colspan="2" class="sistema-header">${this.htmlPrintS.esc(category)}</td>
+          </tr>
+        `;
 
-        const tableBody = groups[category].map((item) => {
-          return [
-            // Column 1: Image
-            {
-              stack: item.base64Image
-                ? [
-                  {
-                    image: item.base64Image,
-                    fit: [60, 60],
-                    alignment: "center",
-                  },
-                ]
-                : [
-                  {
-                    text: "Sin Imagen",
-                    fontSize: 8,
-                    color: "#999",
-                    alignment: "center",
-                    margin: [0, 20, 0, 0],
-                  },
-                ],
-              border: [false, false, false, true],
-              margin: [0, 5, 0, 5],
-            },
-            // Column 2: Name
-            {
-              text: item.nameTool || "Sin Nombre",
-              style: "tableCell",
-              margin: [0, 25, 0, 0],
-              border: [false, false, false, true],
-            },
-          ];
-        });
+        groups[category].forEach((item, idx) => {
+          const bg = idx % 2 === 0 ? "#ffffff" : "#f9fafb";
+          
+          const imgHtml = item.base64Image 
+            ? `<img src="${item.base64Image}" style="max-width:60px; max-height:60px; object-fit:contain;" />` 
+            : `<div style="font-size: 8px; color: #999; margin-top:10px; text-align:center;">Sin Imagen</div>`;
 
-        content.push({
-          table: {
-            widths: [80, "*"],
-            headerRows: 0,
-            body: tableBody,
-          },
-          layout: {
-            hLineWidth: (i: number, node: any) => 1,
-            vLineWidth: () => 0,
-            hLineColor: () => "#EEEEEE",
-          },
-          margin: [0, 0, 0, 15],
+          tableHtml += `
+            <tr>
+              <td style="background-color: ${bg}; padding: 10px; width: 80px; text-align: center; vertical-align: middle;">
+                ${imgHtml}
+              </td>
+              <td style="background-color: ${bg}; padding: 10px; vertical-align: middle;">
+                <div style="font-size: 14px; color: #333;">${this.htmlPrintS.esc(item.nameTool || "Sin Nombre")}</div>
+              </td>
+            </tr>
+          `;
         });
       }
 
-      const docDefinition: TDocumentDefinitions = {
-        content: content,
-        styles: {
-          header: { fontSize: 18, bold: true, color: "#003A62" },
-          subheader: {
-            fontSize: 14,
-            bold: true,
-            color: "#003A62",
-            fillColor: "#eef2f7",
-          },
-          tableCell: { fontSize: 10, margin: [2, 4, 2, 4] },
-        },
-      };
+      const logo = await this.htmlPrintS.getLogoDataUrl();
+      const generatedAt = new Date();
 
-      this.pdfGeneratorS.generatePdf(docDefinition, "Inventario_Herramientas", {
-        clientName: "Inventario de Herramientas",
-      });
+      const html = `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+  @page { margin: 10mm; }
+  .container { max-width: 1000px; }
+  .sistema-header { background-color: #eef2f7 !important; color: #003A62 !important; font-weight: bold; font-size: 14px; padding: 6px 10px !important; }
+  
+  .data-table { width:100%; border-collapse:collapse; margin-bottom:16px; }
+  .data-table th, .data-table td { padding:4px 8px; border-bottom:1px solid #EEEEEE; }
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, "Inventario de Herramientas", "LISTADO DE CONTROL", generatedAt, "MANTENIMIENTO")}
+
+  <div class="body-doc">
+    <table class="data-table">
+      <tbody>
+        ${tableHtml}
+      </tbody>
+    </table>
+  </div>
+  
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+</div>
+</body></html>`;
+
+      this.htmlPrintS.printHtml(html, "Inventario_Herramientas");
     } catch (e) {
       console.error("Error generating Tool PDF", e);
     } finally {

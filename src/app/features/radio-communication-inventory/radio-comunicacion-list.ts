@@ -3,7 +3,6 @@ import { DatePipe } from "@angular/common";
 import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { folderOpenOutline, radioOutline } from "ionicons/icons";
-import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
@@ -23,7 +22,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { PdfGeneratorService } from "src/app/core/services/pdf-generator.service";
+import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { RadioComunicacionForm } from "./radio-comunicacion-form";
 @Component({
@@ -53,7 +52,7 @@ export class RadioComunicacionList {
   dialogHandlerS = inject(DialogHandlerService);
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
-  pdfGeneratorS = inject(PdfGeneratorService); // ? Added
+  htmlPrintS = inject(HtmlPrintService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
   dataSignal = signal<IRadioComunicacion[]>([]);
@@ -160,116 +159,69 @@ export class RadioComunicacionList {
         {} as Record<string, any[]>,
       );
 
-      const content: any[] = [
-        {
-          text: "INVENTARIO DE RADIO COMUNICACIóN",
-          style: "header",
-          margin: [0, 0, 0, 10],
-        },
-      ];
+      let tableHtml = "";
 
       for (const brand in groups) {
-        content.push({
-          text: brand,
-          style: "subheader",
-          margin: [0, 10, 0, 5],
-        });
+        tableHtml += `
+          <tr>
+            <td colspan="2" class="sistema-header">${this.htmlPrintS.esc(brand)}</td>
+          </tr>
+        `;
 
-        const tableBody = groups[brand].map((item) => {
-          return [
-            // Column 1: Image
-            {
-              stack: item.base64Image
-                ? [
-                    {
-                      image: item.base64Image,
-                      fit: [60, 60],
-                      alignment: "center",
-                    },
-                  ]
-                : [
-                    {
-                      text: "Sin Imagen",
-                      fontSize: 8,
-                      color: "#999",
-                      alignment: "center",
-                      margin: [0, 20, 0, 0],
-                    },
-                  ],
-              border: [false, false, false, true],
-              margin: [0, 5, 0, 5],
-            },
-            // Column 2: Details
-            {
-              stack: [
-                {
-                  text: [
-                    { text: "Modelo: ", bold: true, fontSize: 10 },
-                    { text: item.modelo || "N/A", fontSize: 10 },
-                  ],
-                  margin: [0, 0, 0, 2],
-                },
-                {
-                  text: [
-                    { text: "Serie: ", bold: true, fontSize: 10 },
-                    { text: item.serie || "N/A", fontSize: 10 },
-                  ],
-                  margin: [0, 0, 0, 2],
-                },
-                {
-                  text: [
-                    { text: "Bateróa: ", bold: true, fontSize: 10 },
-                    { text: item.bateria || "N/A", fontSize: 10 },
-                  ],
-                  margin: [0, 0, 0, 2],
-                },
-                {
-                  text: [
-                    { text: "Responsable: ", bold: true, fontSize: 10 },
-                    { text: item.applicationUser || "N/A", fontSize: 10 },
-                    { text: " / ", fontSize: 10 },
-                    { text: item.departament || "N/A", fontSize: 10 },
-                  ],
-                  margin: [0, 0, 0, 2],
-                },
-              ],
-              border: [false, false, false, true],
-              margin: [5, 5, 0, 5],
-            },
-          ];
-        });
+        groups[brand].forEach((item, idx) => {
+          const bg = idx % 2 === 0 ? "#ffffff" : "#f9fafb";
+          
+          const imgHtml = item.base64Image 
+            ? `<img src="${item.base64Image}" style="max-width:60px; max-height:60px; object-fit:contain;" />` 
+            : `<div style="font-size: 8px; color: #999; margin-top:10px; text-align:center;">Sin Imagen</div>`;
 
-        content.push({
-          table: {
-            widths: [80, "*"],
-            headerRows: 0,
-            body: tableBody,
-          },
-          layout: {
-            hLineWidth: (i: number, node: any) => 1,
-            vLineWidth: () => 0,
-            hLineColor: () => "#EEEEEE",
-          },
-          margin: [0, 0, 0, 15],
+          tableHtml += `
+            <tr>
+              <td style="background-color: ${bg}; padding: 10px; width: 80px; text-align: center; vertical-align: middle;">
+                ${imgHtml}
+              </td>
+              <td style="background-color: ${bg}; padding: 10px; vertical-align: middle;">
+                <div style="margin-bottom: 2px;"><span style="font-weight: bold; font-size: 11px;">Modelo: </span><span style="font-size: 11px;">${this.htmlPrintS.esc(item.modelo || "N/A")}</span></div>
+                <div style="margin-bottom: 2px;"><span style="font-weight: bold; font-size: 11px;">Serie: </span><span style="font-size: 11px;">${this.htmlPrintS.esc(item.serie || "N/A")}</span></div>
+                <div style="margin-bottom: 2px;"><span style="font-weight: bold; font-size: 11px;">Batería: </span><span style="font-size: 11px;">${this.htmlPrintS.esc(item.bateria || "N/A")}</span></div>
+                <div style="margin-bottom: 2px;"><span style="font-weight: bold; font-size: 11px;">Responsable: </span><span style="font-size: 11px;">${this.htmlPrintS.esc(item.applicationUser || "N/A")} / ${this.htmlPrintS.esc(item.departament || "N/A")}</span></div>
+              </td>
+            </tr>
+          `;
         });
       }
 
-      const docDefinition: TDocumentDefinitions = {
-        content: content,
-        styles: {
-          header: { fontSize: 18, bold: true, color: "#003A62" },
-          subheader: {
-            fontSize: 14,
-            bold: true,
-            color: "#003A62",
-            fillColor: "#eef2f7",
-          },
-        },
-      };
+      const logo = await this.htmlPrintS.getLogoDataUrl();
+      const generatedAt = new Date();
 
-      this.pdfGeneratorS.generatePdf(docDefinition, "Inventario_Radios", {
-        clientName: "Inventario de Radio Comunicación",
-      });
+      const html = `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+  @page { margin: 10mm; }
+  .container { max-width: 1000px; }
+  .sistema-header { background-color: #eef2f7 !important; color: #003A62 !important; font-weight: bold; font-size: 14px; padding: 6px 10px !important; }
+  
+  .data-table { width:100%; border-collapse:collapse; margin-bottom:16px; }
+  .data-table th, .data-table td { padding:4px 8px; border-bottom:1px solid #EEEEEE; }
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, "Inventario de Radio Comunicación", "LISTADO DE CONTROL", generatedAt, "MANTENIMIENTO")}
+
+  <div class="body-doc">
+    <table class="data-table">
+      <tbody>
+        ${tableHtml}
+      </tbody>
+    </table>
+  </div>
+  
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+</div>
+</body></html>`;
+
+      this.htmlPrintS.printHtml(html, "Inventario_Radios");
     } catch (e) {
       console.error("Error generating PDF", e);
     } finally {

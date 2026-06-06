@@ -11,6 +11,8 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
+import { InspeccionPdfService } from "../inspeccion-pdf.service";
+
 @Component({
   selector: "app-lista-informe-inspeccion",
   imports: [
@@ -28,54 +30,50 @@ export class ListaInformeInspeccion implements OnInit {
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
   dateS = inject(DateService);
-  // Declaración e inicialización de variables
-  dataSignal = signal<any>(null);
+  inspeccionPdfS = inject(InspeccionPdfService);
 
+  dataSignal = signal<any>(null);
   inspectionResultIdControl = new FormControl<string>("");
   inspectionResultSignal = signal<ISelectItem[]>([]);
   dateControl = new FormControl<string>("");
 
   ngOnInit(): void {
-    this.dateControl.setValue(this.dateS.getDateFormat(new Date()), {
-      emitEvent: false,
-    });
+    this.dateControl.setValue(this.dateS.getDateFormat(new Date()), { emitEvent: false });
     this.onLoadInspectionReport();
   }
-  onDateChange(value: any) {
-    this.onLoadData(this.inspectionResultIdControl.value || "", value);
+
+  onDateChange(value: any): void {
+    this.onLoadData(this.inspectionResultIdControl.value ?? "", value);
   }
+
   onLoadData(inspectionResultId: string, date: string): void {
     this.apiResponseS
       .onGetList(Endpoints.InspectionResults.report(inspectionResultId, date))
       .then((result: any) => this.dataSignal.set(result));
   }
-  onReload() {
+
+  onReload(): void {
     this.onLoadData(
-      this.inspectionResultIdControl.value || "",
-      this.dateControl.value || "",
+      this.inspectionResultIdControl.value ?? "",
+      this.dateControl.value ?? "",
     );
   }
 
-  onLoadInspectionReport() {
+  onLoadInspectionReport(): void {
     this.apiResponseS
       .onGetSelectItem<ISelectItem[]>(
-        Endpoints.CustomerInspections.selectByCustomer(
-          this.customerIdS.customerId(),
-        ),
+        Endpoints.CustomerInspections.selectByCustomer(this.customerIdS.customerId()),
       )
-      .then((result: any) => {
-        this.inspectionResultSignal.set(result);
-      });
+      .then((result: any) => this.inspectionResultSignal.set(result));
   }
 
-  onExportPDF() {
-    const inspectionId = this.inspectionResultIdControl.value || "";
-    const dateVal = this.dateControl.value || "";
-    const nameDocument = `Inspección_${inspectionId}.pdf`; // Nombre del archivo
+  onExportPDF(): void {
+    const inspectionId = this.inspectionResultIdControl.value ?? "";
+    const dateVal = this.dateControl.value ?? "";
+    const nombre = `Inspeccion_${inspectionId}${dateVal ? "_" + dateVal : ""}`;
 
-    this.apiResponseS.onDownloadFile(
-      Endpoints.InspectionResults.exportPdf(inspectionId, dateVal),
-      nameDocument,
-    );
+    this.apiResponseS
+      .onGetList(Endpoints.InspectionResults.report(inspectionId, dateVal))
+      .then((data: any) => this.inspeccionPdfS.generarReporte(data, nombre));
   }
 }
