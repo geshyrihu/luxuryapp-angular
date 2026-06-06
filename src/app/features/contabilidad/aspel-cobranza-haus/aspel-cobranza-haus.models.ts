@@ -32,6 +32,7 @@ export interface AspelAccountsByCustomerResponse {
 
 export interface AspelMovimiento {
   id: string;
+  numCta: string;
   fecha: string;
   tipo: string;
   concepto: string;

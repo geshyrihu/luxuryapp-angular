@@ -32,6 +32,7 @@ export interface ITaskMessageDTO {
   dependsOnTaskId: string | null;
   dependsOnTaskFolio: string | null;
   lastFollowUp: string | null;
+  lastFollowUpDate: string | null;
   actualStartDate: string | null;
   parentTaskId: string | null;
   hasSubTasks: boolean;

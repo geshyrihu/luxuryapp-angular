@@ -31,15 +31,25 @@
               <i class="pi pi-book text-xs"></i>
               <span>Manual de Proceso · {{ manual()!.folio }}</span>
             </div>
-            @if (isAdmin()) {
-            <p-button
-              icon="pi pi-cog"
-              label="Editor"
-              severity="secondary"
-              [outlined]="true"
-              (onClick)="onOpenEditor(manual()!.id)"
-            />
-            }
+            <div class="flex align-items-center gap-2">
+              @if (isAdmin()) {
+              <p-button
+                class="no-print"
+                icon="pi pi-cog"
+                label="Editor"
+                severity="secondary"
+                [outlined]="true"
+                (onClick)="onOpenEditor(manual()!.id)"
+              />
+              }
+              <p-button
+                class="no-print"
+                icon="pi pi-print"
+                label="Descargar PDF"
+                severity="primary"
+                (onClick)="descargarPDF()"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -47,6 +57,7 @@
       <div class="p-4 md:p-5">
         <div class="mb-3">
           <p-button
+            class="no-print"
             icon="pi pi-arrow-left"
             [text]="true"
             severity="secondary"
@@ -387,6 +398,6 @@
       }
     </div>
     }
-  </div>
+    </div>
   }
 </section>

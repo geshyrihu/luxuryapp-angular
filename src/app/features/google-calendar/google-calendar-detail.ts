@@ -53,7 +53,7 @@ export class GoogleCalendarDetail {
 
   getStatusLabel() {
     if (this.item.isSynchronized) {
-      return "Sincronizado";
+      return "Sincronizado con Google";
     }
 
     const normalizedStatus = (this.item.googleStatus || "")
@@ -63,15 +63,15 @@ export class GoogleCalendarDetail {
       normalizedStatus === "historicolocal" ||
       normalizedStatus === "historico local"
     ) {
-      return "Historico local";
+      return "Solo local (historico)";
     }
 
     const startAt = this.parseBusinessDateTime(this.item.startAt);
     if (startAt && startAt.getTime() < Date.now()) {
-      return "No sincronizado";
+      return "Solo local";
     }
 
-    return "Pendiente";
+    return "Pendiente de sincronizar";
   }
 
   private parseBusinessDateTime(value: string | Date | null | undefined) {

@@ -1,4 +1,4 @@
-# Guóa de Extensián: UpdateDataBase (Frontend)
+# Guía de Extensián: UpdateDataBase (Frontend)
 
 Este componente permite ejecutar scripts de mantenimiento y migración de base de datos.
 
@@ -45,7 +45,9 @@ Este componente permite ejecutar scripts de mantenimiento y migración de base d
        (click)="runMiNuevoScript()"
      >
        <div class="flex align-items-start gap-3">
-         <div class="flex w-3rem h-3rem flex-shrink-0 align-items-center justify-content-center border-round-xl bg-primary-50 text-2xl">
+         <div
+           class="flex w-3rem h-3rem flex-shrink-0 align-items-center justify-content-center border-round-xl bg-primary-50 text-2xl"
+         >
            🚀
          </div>
          <div class="flex flex-column gap-1">

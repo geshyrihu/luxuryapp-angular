@@ -23,15 +23,25 @@ export class FlujoEfectivo {
   loading = signal<boolean>(false);
   data = signal<IFlujoCajaDto | null>(null);
 
-  meses = computed(() => this.data()?.meses ?? []);
+  columnas = computed(() => {
+    const cols = this.data()?.columnas ?? [];
+    if (cols.length === 0) return [];
+    const maxIdx = Math.min(cols.length - 2, this.filterS.mesIdx());
+    return [...cols.slice(0, maxIdx + 1), cols[cols.length - 1]];
+  });
 
-  totalIngresos = computed(() =>
-    this.meses().reduce((s, m) => s + m.ingresos, 0),
-  );
-  totalGastos = computed(() => this.meses().reduce((s, m) => s + m.gastos, 0));
-  totalFlujoNeto = computed(() =>
-    this.meses().reduce((s, m) => s + m.flujoNeto, 0),
-  );
+  grupos = computed(() => {
+    const grps = this.data()?.grupos ?? [];
+    if (grps.length === 0) return [];
+    const maxIdx = Math.min(11, this.filterS.mesIdx());
+    return grps.map(g => ({
+      ...g,
+      filas: g.filas.map(f => ({
+        ...f,
+        montos: [...f.montos.slice(0, maxIdx + 1), f.montos[f.montos.length - 1]]
+      }))
+    }));
+  });
 
   constructor() {
     effect(() => {

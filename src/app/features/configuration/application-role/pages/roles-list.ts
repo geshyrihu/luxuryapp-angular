@@ -5,9 +5,7 @@ import { CheckboxModule } from "primeng/checkbox";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDownload } from "src/app/core/components/buttons/mobile";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
@@ -32,12 +30,8 @@ import { RoleForm } from "./role-form";
     PrimeNgCustomCaption,
     DataViewMobile,
     ActionMenu,
-
     CustomButtonEdit,
     CustomButtonDelete,
-    CustomButtonDownload,
-
-    IonButtonDownload,
   ],
   templateUrl: "./roles-list.html",
 })

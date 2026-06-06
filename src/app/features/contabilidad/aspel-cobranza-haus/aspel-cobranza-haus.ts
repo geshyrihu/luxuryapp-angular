@@ -242,11 +242,7 @@ export class AspelCobranzaHaus {
     if (mode === "deudas-actuales") return true;
     if (mode === "detalle-cobranza-rango") return !!numCta;
 
-    return (
-      !!numCta &&
-      !!this.request.fechaInicio &&
-      !!this.request.fechaFin
-    );
+    return !!numCta && !!this.request.fechaInicio && !!this.request.fechaFin;
   }
 
   canDownloadAccountDocuments(): boolean {
@@ -255,11 +251,7 @@ export class AspelCobranzaHaus {
     if (!this.hasCustomerContext()) return false;
     if (mode === "accounts" || mode === "deudas-actuales") return false;
     if (mode === "detalle-cobranza-rango") return !!numCta;
-    return (
-      !!numCta &&
-      !!this.request.fechaInicio &&
-      !!this.request.fechaFin
-    );
+    return !!numCta && !!this.request.fechaInicio && !!this.request.fechaFin;
   }
 
   getModeTitle(): string {
@@ -486,7 +478,6 @@ export class AspelCobranzaHaus {
     }
   }
 
-
   private async loadAccountOptions(
     customerId: string,
     year: number,
@@ -582,6 +573,7 @@ export class AspelCobranzaHaus {
       saldoFinal: response.saldoFinal ?? response.saldo_Final ?? 0,
       movimientos: (response.movimientos ?? []).map((item) => ({
         id: item.id ?? "",
+        numCta: item.numCta ?? "",
         fecha: item.fecha ?? "",
         tipo: item.tipo ?? "",
         concepto: item.concepto ?? "",
@@ -749,7 +741,8 @@ export class AspelCobranzaHaus {
 
     const customerId = this.customerId();
     const numCta = this.getNormalizedNumCta();
-    if (!numCta || !this.request.fechaInicio || !this.request.fechaFin) return null;
+    if (!numCta || !this.request.fechaInicio || !this.request.fechaFin)
+      return null;
 
     const fechaInicio = this.formatDate(this.request.fechaInicio!);
     const fechaFin = this.formatDate(this.request.fechaFin!);
@@ -772,7 +765,8 @@ export class AspelCobranzaHaus {
 
   private matchesEstadoCuentaRequest(data: AspelEstadoCuentaResponse): boolean {
     const numCta = this.getNormalizedNumCta();
-    if (!numCta || !this.request.fechaInicio || !this.request.fechaFin) return false;
+    if (!numCta || !this.request.fechaInicio || !this.request.fechaFin)
+      return false;
 
     return (
       data.numCta === numCta &&

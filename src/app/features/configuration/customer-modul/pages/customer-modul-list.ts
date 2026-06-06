@@ -7,24 +7,21 @@ import { AvatarModule } from "primeng/avatar";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { IonButtonActiveDesactive } from "src/app/core/components/buttons/mobile/ion-button-active-desactive";
+import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/custom-button-active-desactive";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { PrimeNgCustomGlobalFilter } from "src/app/core/components/primeng-custom-global-filter/primeng-custom-global-filter";
+import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CustomerModulEdit } from "./customer-modul-edit";
-import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/custom-button-active-desactive";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { IonButtonActiveDesactive } from "src/app/core/components/buttons/mobile/ion-button-active-desactive";
 
 @Component({
   selector: "app-customer-modul-list",
@@ -32,11 +29,9 @@ import { IonButtonActiveDesactive } from "src/app/core/components/buttons/mobile
   imports: [
     RouterModule,
     TableModule,
-    CustomInputSelectSignal,
     AvatarModule,
     TagModule,
     DataViewMobile,
-    PrimeNgCustomGlobalFilter,
     PrimeNgCustomTableFooter,
     CardModule,
     IonAvatar,

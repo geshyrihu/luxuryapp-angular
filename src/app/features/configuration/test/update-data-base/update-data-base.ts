@@ -138,4 +138,33 @@ export class UpdateDataBase {
         this.loading.set(false);
       });
   }
+
+  runResyncGoogleCalendarEventTimes() {
+    this.loading.set(true);
+    this.result.set(null);
+    this.customToastS.showInfo(
+      "Resincronizando horarios en Google Calendar...",
+      "Se reenviaran los eventos ya vinculados usando la fecha y hora guardadas en Luxury App.",
+    );
+
+    this.apiResponseS
+      .onPost("UpdateDataBase/resync-google-calendar-event-times", {})
+      .then((res: any) => {
+        this.result.set(res);
+        this.customToastS.showSuccess(
+          "Exito",
+          res?.message || "Horarios de Google Calendar resincronizados.",
+        );
+        this.loading.set(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.result.set(err.error || err);
+        this.customToastS.showError(
+          "Error",
+          "La resincronizacion de horarios de Google Calendar fallo.",
+        );
+        this.loading.set(false);
+      });
+  }
 }

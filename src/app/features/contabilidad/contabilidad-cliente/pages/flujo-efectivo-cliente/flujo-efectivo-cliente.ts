@@ -15,14 +15,30 @@ export class FlujoEfectivoClienteComponent {
 
   readonly customerId = input.required<string>();
   readonly year = input.required<number>();
+  readonly month = input.required<number>();
 
   readonly loading = signal(false);
   readonly data = signal<IFlujoCajaDto | null>(null);
 
-  readonly meses = computed(() => this.data()?.meses ?? []);
-  readonly totalIngresos = computed(() => this.meses().reduce((s, m) => s + m.ingresos, 0));
-  readonly totalGastos = computed(() => this.meses().reduce((s, m) => s + m.gastos, 0));
-  readonly totalFlujoNeto = computed(() => this.meses().reduce((s, m) => s + m.flujoNeto, 0));
+  readonly columnas = computed(() => {
+    const cols = this.data()?.columnas ?? [];
+    if (cols.length === 0) return [];
+    const maxIdx = Math.min(cols.length - 2, this.month() - 1);
+    return [...cols.slice(0, maxIdx + 1), cols[cols.length - 1]];
+  });
+
+  readonly grupos = computed(() => {
+    const grps = this.data()?.grupos ?? [];
+    if (grps.length === 0) return [];
+    const maxIdx = Math.min(11, this.month() - 1);
+    return grps.map(g => ({
+      ...g,
+      filas: g.filas.map(f => ({
+        ...f,
+        montos: [...f.montos.slice(0, maxIdx + 1), f.montos[f.montos.length - 1]]
+      }))
+    }));
+  });
 
   constructor() {
     effect(() => {

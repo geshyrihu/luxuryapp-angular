@@ -114,43 +114,203 @@
       </div>
 
       <div class="flex align-items-center gap-3 ml-auto">
-        <span class="flex align-items-center gap-1 text-xs text-color-secondary">
-          <span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#f87171"></span> No iniciado
+        <span
+          class="flex align-items-center gap-1 text-xs text-color-secondary"
+        >
+          <span
+            style="
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              border-radius: 2px;
+              background: #dc2626;
+            "
+          ></span>
+          No iniciado
         </span>
-        <span class="flex align-items-center gap-1 text-xs text-color-secondary">
-          <span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#3b82f6"></span> En proceso
+        <span
+          class="flex align-items-center gap-1 text-xs text-color-secondary"
+        >
+          <span
+            style="
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              border-radius: 2px;
+              background: #ea580c;
+            "
+          ></span>
+          En proceso
         </span>
-        <span class="flex align-items-center gap-1 text-xs text-color-secondary">
-          <span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#22c55e"></span> Completado
+        <span
+          class="flex align-items-center gap-1 text-xs text-color-secondary"
+        >
+          <span
+            style="
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              border-radius: 2px;
+              background: #16a34a;
+            "
+          ></span>
+          Completado
         </span>
-        <span class="flex align-items-center gap-1 text-xs text-color-secondary">
-          <span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#f97316"></span> Reabierto
+        <span
+          class="flex align-items-center gap-1 text-xs text-color-secondary"
+        >
+          <span
+            style="
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              border-radius: 2px;
+              background: #dc2626;
+            "
+          ></span>
+          Reabierto
         </span>
+
+        <!-- Ayuda de interacciones -->
+        <button
+          type="button"
+          class="border-circle border-1 border-300 bg-white cursor-pointer flex align-items-center justify-content-center text-500 hover:text-primary hover:border-primary transition-colors transition-duration-200"
+          style="
+            width: 1.4rem;
+            height: 1.4rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0;
+            flex-shrink: 0;
+          "
+          (click)="helpPopover.toggle($event)"
+          pTooltip="Ayuda de interacciones"
+          tooltipPosition="top"
+        >
+          ?
+        </button>
+
+        <p-popover #helpPopover styleClass="shadow-4">
+          <div style="width: 280px; padding: 0.25rem 0">
+            <p
+              class="m-0 mb-3 font-semibold text-900 text-sm border-bottom-1 surface-border pb-2"
+            >
+              <i class="pi pi-info-circle text-primary mr-1"></i> Como
+              interactuar con las tareas
+            </p>
+
+            <div class="flex flex-column gap-3">
+              <!-- Reordenar -->
+              <div class="flex align-items-start gap-2">
+                <span
+                  class="flex-shrink-0 border-circle bg-primary-100 flex align-items-center justify-content-center"
+                  style="width: 1.75rem; height: 1.75rem; margin-top: 1px"
+                >
+                  <i
+                    class="pi pi-bars text-primary"
+                    style="font-size: 0.75rem"
+                  ></i>
+                </span>
+                <div>
+                  <p class="m-0 font-semibold text-800 text-xs">
+                    Reordenar tareas
+                  </p>
+                  <p class="m-0 text-xs text-600 mt-1 line-height-3">
+                    Arrastra el icono <strong>&#9776;</strong> de la columna
+                    izquierda hacia arriba o abajo para cambiar el orden. Si la
+                    tarea tiene subtareas, estas se mueven automaticamente con
+                    ella.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Predecesora -->
+              <div class="flex align-items-start gap-2">
+                <span
+                  class="flex-shrink-0 border-circle bg-purple-100 flex align-items-center justify-content-center"
+                  style="width: 1.75rem; height: 1.75rem; margin-top: 1px"
+                >
+                  <i
+                    class="pi pi-link text-purple-600"
+                    style="font-size: 0.75rem"
+                  ></i>
+                </span>
+                <div>
+                  <p class="m-0 font-semibold text-800 text-xs">
+                    Asignar predecesora
+                  </p>
+                  <p class="m-0 text-xs text-600 mt-1 line-height-3">
+                    Arrastra el icono <strong>&#128279;</strong> de una tarea y
+                    sueltalo sobre otra para marcarla como predecesora. La tarea
+                    arrastrada no puede iniciar hasta que la predecesora este
+                    completa.
+                  </p>
+                  <p class="m-0 text-xs text-500 mt-1">
+                    Click en <strong>&#8594; FOLIO</strong> para quitar la
+                    dependencia.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Tarea hija -->
+              <div class="flex align-items-start gap-2">
+                <span
+                  class="flex-shrink-0 border-circle bg-orange-100 flex align-items-center justify-content-center"
+                  style="width: 1.75rem; height: 1.75rem; margin-top: 1px"
+                >
+                  <i
+                    class="pi pi-sitemap text-orange-600"
+                    style="font-size: 0.75rem"
+                  ></i>
+                </span>
+                <div>
+                  <p class="m-0 font-semibold text-800 text-xs">
+                    Tareas padre e hijos
+                  </p>
+                  <p class="m-0 text-xs text-600 mt-1 line-height-3">
+                    Las tareas con el icono
+                    <i
+                      class="pi pi-sitemap text-primary"
+                      style="font-size: 0.7rem"
+                    ></i>
+                    tienen subtareas. Las tareas con
+                    <i
+                      class="pi pi-level-down-alt text-400"
+                      style="font-size: 0.7rem"
+                    ></i>
+                    son hijas de otra. Al crear o editar una tarea puedes
+                    asignarle una tarea padre.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </p-popover>
       </div>
     </div>
   </ng-template>
 
   <ng-template #header>
     <tr>
-      <th style="width:4%"></th>
-      <th style="width:22%" pSortableColumn="createdAtFilter">
+      <th style="width: 4%"></th>
+      <th style="width: 22%" pSortableColumn="createdAtFilter">
         SOLICITUD <p-sortIcon field="createdAtFilter" />
       </th>
-      <th style="width:7%" pSortableColumn="responsableNombre">
+      <th style="width: 7%" pSortableColumn="responsableNombre">
         RESP. <p-sortIcon field="responsableNombre" />
       </th>
-      <th style="width:9%" pSortableColumn="scheduledAtFilter">
+      <th style="width: 9%" pSortableColumn="scheduledAtFilter">
         FECHAS <p-sortIcon field="scheduledAtFilter" />
       </th>
-      <th style="width:8%">EVIDENCIAS</th>
-      <th style="width:5%" pSortableColumn="daysDifference">
+      <th style="width: 8%">EVIDENCIAS</th>
+      <th style="width: 5%" pSortableColumn="daysDifference">
         DIAS <p-sortIcon field="daysDifference" />
       </th>
-      <th style="width:6%" pSortableColumn="isRelevant">
+      <th style="width: 6%" pSortableColumn="isRelevant">
         REPORTE <p-sortIcon field="isRelevant" />
       </th>
-      <th style="width:22%">ULTIMO SEGUIMIENTO</th>
-      <th style="width:9%" class="no-print"></th>
+      <th style="width: 22%">ULTIMO SEGUIMIENTO</th>
+      <th style="width: 9%" class="no-print"></th>
     </tr>
   </ng-template>
 
@@ -189,14 +349,24 @@
         </div>
       </td>
       <td>
-        <div class="flex align-items-start"
+        <div
+          class="flex align-items-start"
           [style.padding-left]="item.parentTaskId && !item.dependsOnTaskId ? '1.5rem' : (chainStepMap().get(item.id) ?? 1) > 1 ? ((Math.min(chainStepMap().get(item.id) - 1, 4) * 1.5) + 'rem') : '0'"
         >
           @if (item.parentTaskId) {
-          <i class="pi pi-level-down-alt text-400 flex-shrink-0 mr-1" style="font-size:0.75rem;margin-top:0.2rem" pTooltip="Tarea hija" tooltipPosition="top"></i>
-          }
-          @if (item.hasSubTasks) {
-          <i class="pi pi-sitemap text-primary flex-shrink-0 mr-1" style="font-size:0.75rem;margin-top:0.2rem" pTooltip="Tiene subtareas" tooltipPosition="top"></i>
+          <i
+            class="pi pi-level-down-alt text-400 flex-shrink-0 mr-1"
+            style="font-size: 0.75rem; margin-top: 0.2rem"
+            pTooltip="Tarea hija"
+            tooltipPosition="top"
+          ></i>
+          } @if (item.hasSubTasks) {
+          <i
+            class="pi pi-sitemap text-primary flex-shrink-0 mr-1"
+            style="font-size: 0.75rem; margin-top: 0.2rem"
+            pTooltip="Tiene subtareas"
+            tooltipPosition="top"
+          ></i>
           }
           <p-avatar
             (click)="onCardEmployee(item.creatorId)"
@@ -231,7 +401,9 @@
               </span>
               }
             </p>
-            <p class="m-0 font-semibold text-xs text-900 flex align-items-center gap-1">
+            <p
+              class="m-0 font-semibold text-xs text-900 flex align-items-center gap-1"
+            >
               @if (item.daysDifference > 15 && !item.scheduledAt) {
               <i
                 class="pi pi-clock text-orange-600"
@@ -253,7 +425,14 @@
               ></i>
               } {{ item.title }}
             </p>
-            <p class="m-0 text-xs text-700" style="white-space:normal;overflow-wrap:break-word;word-break:break-word">
+            <p
+              class="m-0 text-xs text-700"
+              style="
+                white-space: normal;
+                overflow-wrap: break-word;
+                word-break: break-word;
+              "
+            >
               {{ item.description }}
             </p>
           </div>
@@ -335,6 +514,9 @@
         "
       >
         @if (item.lastFollowUp) {
+        <span class="text-xs text-400 font-medium block mb-1"
+          >{{ item.lastFollowUpDate }}</span
+        >
         <p
           class="m-0 text-xs text-700"
           style="
@@ -695,10 +877,9 @@
      REPORTE EJECUTIVO DE TAREAS PENDIENTES — solo visible al imprimir
      ================================================================ -->
 <div class="print-task-report">
-
   <div class="print-report-header">
     <div class="print-report-header-left">
-      <h2>Reporte Ejecutivo de Tareas Pendientes</h2>
+      <h2>Reporte de Tareas Pendientes</h2>
       <p>Grupo de trabajo: <strong>{{ dataSignal().nameGroup }}</strong></p>
     </div>
     <div class="print-report-header-right">
@@ -708,21 +889,30 @@
   </div>
 
   <div class="print-legend">
-    <span><span class="print-legend-dot" style="background:#f87171"></span> No iniciado</span>
-    <span><span class="print-legend-dot" style="background:#3b82f6"></span> En proceso</span>
-    <span><span class="print-legend-dot" style="background:#f97316"></span> Reabierto</span>
+    <span
+      ><span class="print-legend-dot" style="background: #dc2626"></span> No
+      iniciado</span
+    >
+    <span
+      ><span class="print-legend-dot" style="background: #ea580c"></span> En
+      proceso</span
+    >
+    <span
+      ><span class="print-legend-dot" style="background: #dc2626"></span>
+      Reabierto</span
+    >
   </div>
 
   <table class="print-task-table">
     <colgroup>
-      <col class="col-num">
-      <col class="col-req">
-      <col class="col-resp">
-      <col class="col-fecha">
-      <col class="col-estado">
-      <col class="col-dias">
-      <col class="col-evid">
-      <col class="col-seg">
+      <col class="col-num" />
+      <col class="col-req" />
+      <col class="col-resp" />
+      <col class="col-fecha" />
+      <col class="col-estado" />
+      <col class="col-dias" />
+      <col class="col-evid" />
+      <col class="col-seg" />
     </colgroup>
     <thead>
       <tr>
@@ -731,38 +921,61 @@
         <th class="col-resp">Responsable</th>
         <th class="col-fecha">Programado</th>
         <th class="col-estado">Estado</th>
-        <th class="col-dias" style="text-align:center">Dias</th>
-        <th class="col-evid" style="text-align:center">Evidencias</th>
+        <th class="col-dias" style="text-align: center">Dias</th>
+        <th class="col-evid" style="text-align: center">Evidencias</th>
         <th class="col-seg">Ultimo seguimiento</th>
       </tr>
     </thead>
     <tbody>
       @for (item of pendingItems(); track item.id; let idx = $index) {
       <tr>
-        <td [class]="statusTdClass(item.status)" style="font-size:7.5pt;color:#666">{{ idx + 1 }}</td>
+        <td
+          [class]="statusTdClass(item.status)"
+          style="font-size: 7.5pt; color: #666"
+        >
+          {{ idx + 1 }}
+        </td>
         <td>
-          <div class="print-folio">{{ item.folio }} | {{ item.createdAtDate }}</div>
+          <div class="print-folio">
+            {{ item.folio }} | {{ item.createdAtDate }}
+          </div>
           <div class="print-title">{{ item.title }}</div>
           @if (item.description) {
           <div class="print-desc">{{ item.description }}</div>
           }
         </td>
-        <td style="font-size:7.5pt">{{ item.assignee || '—' }}</td>
-        <td style="font-size:7.5pt;white-space:nowrap">{{ item.scheduledAt || '—' }}</td>
+        <td style="font-size: 7.5pt">{{ item.assignee || '—' }}</td>
+        <td style="font-size: 7.5pt; white-space: nowrap">
+          {{ item.scheduledAt || '—' }}
+        </td>
         <td>
-          <span class="print-status-pill" [style]="statusPillStyle(item.status)">
+          <span
+            class="print-status-pill"
+            [style]="statusPillStyle(item.status)"
+          >
             {{ statusLabel(item.status) }}
           </span>
         </td>
-        <td style="text-align:center;font-size:7.5pt">{{ item.daysDifference }}</td>
-        <td style="text-align:center;font-size:9pt">
+        <td style="text-align: center; font-size: 7.5pt">
+          {{ item.daysDifference }}
+        </td>
+        <td style="text-align: center; font-size: 9pt">
           @if (item.beforeWork || item.afterWork) { ✓ } @else { — }
         </td>
         <td>
           @if (item.lastFollowUp) {
+          <span
+            style="
+              font-size: 7pt;
+              color: #777;
+              display: block;
+              margin-bottom: 2px;
+            "
+            >{{ item.lastFollowUpDate }}</span
+          >
           <p class="print-followup">{{ item.lastFollowUp }}</p>
           } @else {
-          <span style="font-size:7.5pt;color:#aaa">—</span>
+          <span style="font-size: 7.5pt; color: #aaa">—</span>
           }
         </td>
       </tr>

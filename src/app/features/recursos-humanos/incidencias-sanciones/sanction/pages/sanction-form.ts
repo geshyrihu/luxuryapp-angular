@@ -12,6 +12,7 @@ import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/cust
 import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -116,42 +117,39 @@ export class SanctionFormComponent {
 
   onSubmit(): void {
     if (this.isChangeStatus()) {
-      if (!this.apiResponseS.validateForm(this.changeStatusForm)) return;
-      this.submitting.set(true);
-
-      const dto: SanctionChangeStatusDTO = {
-        sanctionStatus: this.changeStatusForm.value.sanctionStatus ?? "Activa",
-        internalNotes: this.changeStatusForm.value.internalNotes || undefined,
-      };
-
-      this.apiResponseS
-        .onPatch(Endpoints.HR.Sanction.changeStatus(this.sanctionId()), dto)
-        .then((result) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
+      FormHelper.submitCrud({
+        form: this.changeStatusForm,
+        api: this.apiResponseS,
+        endpoint: Endpoints.HR.Sanction.changeStatus(this.sanctionId()),
+        ref: this.ref,
+        submitting: this.submitting,
+        method: "PATCH",
+        transformPayload: (value) => ({
+          sanctionStatus: value.sanctionStatus ?? "Activa",
+          internalNotes: value.internalNotes || undefined,
+        }),
+      });
     } else {
-      if (!this.apiResponseS.validateForm(this.form)) return;
-      this.submitting.set(true);
-
-      const dto: SanctionAddOrEditDTO = {
-        incidentId: this.form.value.incidentId ?? "",
-        sanctionTypeId: this.form.value.sanctionTypeId ?? "",
-        effectiveStartDate:
-          this.dateS.getDateFormat(this.form.value.effectiveStartDate) ?? "",
-        effectiveEndDate:
-          this.dateS.getDateFormat(this.form.value.effectiveEndDate) ?? undefined,
-        allowAppeal: this.form.value.allowAppeal ?? true,
-        appealDeadline:
-          this.dateS.getDateFormat(this.form.value.appealDeadline) ?? undefined,
-        conditions: this.form.value.conditions || undefined,
-        internalNotes: this.form.value.internalNotes || undefined,
-      };
-
-      this.apiResponseS
-        .onPost<SanctionAddOrEditDTO>(Endpoints.HR.Sanction.create, dto)
-        .then((result) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
+      FormHelper.submitCrud({
+        form: this.form,
+        api: this.apiResponseS,
+        endpoint: Endpoints.HR.Sanction.create,
+        ref: this.ref,
+        submitting: this.submitting,
+        transformPayload: (value) => ({
+          incidentId: value.incidentId ?? "",
+          sanctionTypeId: value.sanctionTypeId ?? "",
+          effectiveStartDate:
+            this.dateS.getDateFormat(value.effectiveStartDate) ?? "",
+          effectiveEndDate:
+            this.dateS.getDateFormat(value.effectiveEndDate) ?? undefined,
+          allowAppeal: value.allowAppeal ?? true,
+          appealDeadline:
+            this.dateS.getDateFormat(value.appealDeadline) ?? undefined,
+          conditions: value.conditions || undefined,
+          internalNotes: value.internalNotes || undefined,
+        }),
+      });
     }
   }
 

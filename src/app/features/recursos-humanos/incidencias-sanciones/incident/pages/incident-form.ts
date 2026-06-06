@@ -13,6 +13,7 @@ import { CustomInputDateTimeSignal } from "src/app/core/components/inputs/web/cu
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -140,33 +141,21 @@ export class IncidentFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-    const payload = this.buildPayload();
-
-    if (!this.id()) {
-      // CREATE: quedarse en el diálogo y activar las secciones secundarias
-      this.apiResponseS
-        .onPost<IncidentDetailDTO>("hr/incidents", payload)
-        .then((result) => {
-          if (result !== false) {
-            this.id.set(result.id);
-            this.activeTab.set("adjuntos");
-          }
-        })
-        .finally(() => this.submitting.set(false));
-    } else {
-      // UPDATE: cerrar el diálogo
-      this.apiResponseS
-        .onPut<IncidentDetailDTO>(`hr/incidents/${this.id()}`, payload)
-        .then((result) => {
-          if (result !== false) {
-            this.ref.close(true);
-          }
-        })
-        .finally(() => this.submitting.set(false));
-    }
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "hr/incidents",
+      id: this.id() || null,
+      ref: this.ref,
+      submitting: this.submitting,
+      closeOnSuccess: !!this.id(),
+      transformPayload: (value) => this.buildPayload(),
+    }).then((result) => {
+      if (result !== false && !this.id()) {
+        this.id.set(result.id);
+        this.activeTab.set("adjuntos");
+      }
+    });
   }
 
   /** Cierra el diálogo indicando cambios (recarga la lista padre). */

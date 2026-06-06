@@ -3,7 +3,7 @@
 
   Este componente es el corazón de la propuesta de presupuesto. Es una tabla compleja
   que presenta datos financieros de una manera densa pero (esperemos) comprensible.
-  Aquó te dejo una guóa para que no te pierdas en el laberinto de divs y ng-templates.
+  Aquó te dejo una Guía para que no te pierdas en el laberinto de divs y ng-templates.
 -->
 
 <!--
@@ -62,7 +62,9 @@
             (click)="showFeeComparisonModal()"
             class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover transition-colors transition-duration-150"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">🏷️</span>
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
+              >🏷️</span
+            >
             <span class="text-xs text-center line-height-2 text-700"
               >Cuotas (Fija)</span
             >
@@ -75,7 +77,9 @@
             (click)="showFeeComparisonByIndivisoModal()"
             class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover transition-colors transition-duration-150"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">📊</span>
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
+              >📊</span
+            >
             <span class="text-xs text-center line-height-2 text-700"
               >Cuotas (Indiviso)</span
             >
@@ -89,7 +93,9 @@
             [class.opacity-50]="currentProposal()?.status !== 'Borrador'"
             class="surface-card border-1 border-blue-200 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-blue-50 transition-colors transition-duration-150"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">➕</span>
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
+              >➕</span
+            >
             <span class="text-xs text-center line-height-2 text-blue-700"
               >Añadir Cuenta</span
             >
@@ -103,7 +109,9 @@
             (click)="auditProposal()"
             class="bg-gray-900 border-1 border-gray-900 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-gray-800 transition-colors transition-duration-150"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">🤖</span>
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
+              >🤖</span
+            >
             <span class="text-xs text-center line-height-2 text-white"
               >Auditoría IA</span
             >
@@ -117,7 +125,9 @@
             [class.opacity-50]="auditLoading || forecastLoading"
             class="bg-gray-900 border-1 border-gray-900 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-gray-800 transition-colors transition-duration-150"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">📈</span>
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
+              >📈</span
+            >
             <span class="text-xs text-center line-height-2 text-white"
               >Proyección 2026</span
             >
@@ -130,7 +140,9 @@
             (click)="exportarResumenExcel()"
             class="surface-card border-1 border-green-300 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-green-50 transition-colors transition-duration-150"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">📤</span>
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
+              >📤</span
+            >
             <span class="text-xs text-center line-height-2 text-green-700"
               >Excel</span
             >
@@ -158,7 +170,9 @@
             (click)="toggleBaseBudgetAnnualColumn()"
             class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">{{ baseBudgetAnnualButtonEmoji }}</span>
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
+              >{{ baseBudgetAnnualButtonEmoji }}</span
+            >
             <span class="text-xs text-center line-height-2 text-700"
               >{{ baseBudgetAnnualButtonLabel }}</span
             >
@@ -170,7 +184,9 @@
             (click)="toggleFiscalYearAnnualColumn()"
             class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">{{ fiscalYearAnnualButtonEmoji }}</span>
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
+              >{{ fiscalYearAnnualButtonEmoji }}</span
+            >
             <span class="text-xs text-center line-height-2 text-700"
               >{{ fiscalYearAnnualButtonLabel }}</span
             >
@@ -197,7 +213,9 @@
             (click)="showProjectedExpensesModal()"
             class="surface-card border-1 border-orange-300 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-orange-50 transition-colors transition-duration-150"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">⚙️</span>
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
+              >⚙️</span
+            >
             <span class="text-xs text-center line-height-2 text-orange-700"
               >Admin Proyección</span
             >
@@ -210,7 +228,9 @@
             (click)="showMaintenanceCalendarModal()"
             class="bg-gray-900 border-1 border-gray-900 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-gray-800 transition-colors transition-duration-150"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important">📅</span>
+            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
+              >📅</span
+            >
             <span class="text-xs text-center line-height-2 text-white"
               >Calendario Mtto</span
             >

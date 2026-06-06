@@ -19,8 +19,6 @@ import {
 
 @Injectable({ providedIn: "root" })
 export class AspelCobranzaHausPdfService {
-  private static readonly simulatedInteresesMoratorios = 1850;
-  private static readonly simulatedDescuentoProntoPago = 2500;
   private readonly http = inject(HttpClient);
   private readonly customerIdS = inject(CustomerIdService);
   private readonly pdfMakeInstance: any;
@@ -65,10 +63,6 @@ export class AspelCobranzaHausPdfService {
 
     const totalCargos = conceptos.reduce((sum, item) => sum + item.cargos, 0);
     const totalAbonos = conceptos.reduce((sum, item) => sum + item.abonos, 0);
-    const totalPendiente = conceptos.reduce(
-      (sum, item) => sum + item.saldoFinal,
-      0,
-    );
     const totalVencido = conceptos.reduce(
       (sum, item) => sum + item.totalVencido,
       0,
@@ -77,11 +71,6 @@ export class AspelCobranzaHausPdfService {
       (sum, item) => sum + item.adelanto,
       0,
     );
-    const totalSimuladoConAjustes =
-      totalPendiente +
-      AspelCobranzaHausPdfService.simulatedInteresesMoratorios -
-      AspelCobranzaHausPdfService.simulatedDescuentoProntoPago;
-
     const docDefinition: TDocumentDefinitions = {
       pageSize: "LETTER",
       pageMargins: [32, 104, 32, 28],
@@ -197,14 +186,8 @@ export class AspelCobranzaHausPdfService {
           totalCargos,
           totalAbonos,
           totalVencido,
-          totalPendiente,
         ),
-        this.buildConceptTable(
-          conceptos,
-          AspelCobranzaHausPdfService.simulatedInteresesMoratorios,
-          AspelCobranzaHausPdfService.simulatedDescuentoProntoPago,
-          showAspelAccounts,
-        ),
+        this.buildConceptTable(conceptos, showAspelAccounts),
         ...this.buildVencidosSections(vencidos, showAspelAccounts),
         ...(totalAdelantos > 0 ? [this.buildAdelantosSection(conceptos)] : []),
         {
@@ -252,7 +235,7 @@ export class AspelCobranzaHausPdfService {
         { text: item.fecha || "-", style: "monoTiny" },
         { text: item.concepto || "-", style: "bodyText" },
         ...(showAspelAccounts
-          ? [{ text: data.numCta || "-", style: "monoTiny" }]
+          ? [{ text: item.numCta || "-", style: "monoTiny" }]
           : []),
         {
           text: this.formatCurrency(item.saldoAnterior || 0),
@@ -477,7 +460,6 @@ export class AspelCobranzaHausPdfService {
     totalCargos: number,
     totalAbonos: number,
     totalVencido: number,
-    totalPendiente: number,
   ): any {
     return {
       margin: [0, 16, 0, 0],
@@ -508,8 +490,6 @@ export class AspelCobranzaHausPdfService {
 
   private buildConceptTable(
     conceptos: AspelCobranzaDetalleConcepto[],
-    totalInteresesSimulados: number,
-    totalDescuentoSimulado: number,
     showAspelAccounts: boolean = false,
   ): any {
     const totalCargos = conceptos.reduce((sum, item) => sum + item.cargos, 0);
@@ -518,12 +498,10 @@ export class AspelCobranzaHausPdfService {
       (sum, item) => sum + item.totalVencido,
       0,
     );
-    const totalPendiente = conceptos.reduce(
+    const totalFinal = conceptos.reduce(
       (sum, item) => sum + item.saldoFinal,
       0,
     );
-    const totalConSimulacion =
-      totalPendiente + totalInteresesSimulados - totalDescuentoSimulado;
 
     const body = [
       [
@@ -567,39 +545,9 @@ export class AspelCobranzaHausPdfService {
           text: this.formatCurrency(item.saldoFinal),
           alignment: "right",
           style: "amountStrong",
-          color: item.saldoFinal > 0 ? "#B91C1C" : "#111827",
+          color: item.saldoFinal > 0 ? "#B91C1C" : item.saldoFinal < 0 ? "#047857" : "#111827",
         },
       ]),
-      [
-        {
-          text: "Mas intereses moratorios (simulado)",
-          style: "simRowLabelWarn",
-        },
-        ...(showAspelAccounts ? [{ text: "", alignment: "right" }] : []),
-        { text: "", alignment: "right" },
-        { text: "", alignment: "right" },
-        { text: "", alignment: "right" },
-        {
-          text: `+ ${this.formatCurrency(totalInteresesSimulados)}`,
-          alignment: "right",
-          style: "simRowValueWarn",
-        },
-      ],
-      [
-        {
-          text: "Menos descuento por pronto pago (simulado)",
-          style: "simRowLabelOk",
-        },
-        ...(showAspelAccounts ? [{ text: "", alignment: "right" }] : []),
-        { text: "", alignment: "right" },
-        { text: "", alignment: "right" },
-        { text: "", alignment: "right" },
-        {
-          text: `- ${this.formatCurrency(totalDescuentoSimulado)}`,
-          alignment: "right",
-          style: "simRowValueOk",
-        },
-      ],
       [
         { text: "Totales", style: "totalLabel" },
         ...(showAspelAccounts ? [{ text: "" }] : []),
@@ -619,7 +567,7 @@ export class AspelCobranzaHausPdfService {
           style: "totalValue",
         },
         {
-          text: this.formatCurrency(totalConSimulacion),
+          text: this.formatCurrency(totalFinal),
           alignment: "right",
           style: "totalValue",
         },
@@ -646,8 +594,6 @@ export class AspelCobranzaHausPdfService {
           layout: {
             fillColor: (rowIndex: number) => {
               if (rowIndex === 0) return "#E8EEF8";
-              if (rowIndex === body.length - 3) return "#FFF7ED";
-              if (rowIndex === body.length - 2) return "#ECFDF5";
               if (rowIndex === body.length - 1) return "#F3F4F6";
               return rowIndex % 2 === 0 ? "#FAFAFA" : null;
             },
@@ -1167,45 +1113,6 @@ export class AspelCobranzaHausPdfService {
         bold: true,
         fontSize: 16,
         color: "#047857",
-      },
-      simRowLabel: {
-        fontSize: 9,
-        color: "#111827",
-      },
-      simRowLabelWarn: {
-        fontSize: 9,
-        color: "#9A3412",
-        bold: true,
-      },
-      simRowLabelOk: {
-        fontSize: 9,
-        color: "#047857",
-        bold: true,
-      },
-      simRowValue: {
-        fontSize: 9,
-        color: "#111827",
-        bold: true,
-      },
-      simRowValueWarn: {
-        fontSize: 9,
-        color: "#C2410C",
-        bold: true,
-      },
-      simRowValueOk: {
-        fontSize: 9,
-        color: "#047857",
-        bold: true,
-      },
-      simTotalLabel: {
-        fontSize: 10,
-        color: "#1D4ED8",
-        bold: true,
-      },
-      simTotalValue: {
-        fontSize: 11,
-        color: "#1D4ED8",
-        bold: true,
       },
       headerCompany: {
         fontSize: 13,

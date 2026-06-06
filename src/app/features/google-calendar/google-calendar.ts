@@ -328,7 +328,7 @@ export class GoogleCalendar {
 
   getStatusLabel(item: IGoogleCalendarEventListItem) {
     if (item.isSynchronized) {
-      return "Sincronizado";
+      return "Sincronizado con Google";
     }
 
     const normalizedStatus = (item.googleStatus || "").trim().toLowerCase();
@@ -336,24 +336,24 @@ export class GoogleCalendar {
       normalizedStatus === "historicolocal" ||
       normalizedStatus === "historico local"
     ) {
-      return "Historico local";
+      return "Solo local (historico)";
     }
 
     const startAt = this.parseBusinessDateTime(item.startAt);
     if (startAt && startAt.getTime() < Date.now()) {
-      return "No sincronizado";
+      return "Solo local";
     }
 
-    return "Pendiente";
+    return "Pendiente de sincronizar";
   }
 
   getStatusClasses(item: IGoogleCalendarEventListItem) {
     const label = this.getStatusLabel(item);
     return {
-      "bg-green-100 text-green-800": label === "Sincronizado",
-      "bg-blue-100 text-blue-800": label === "Historico local",
-      "bg-orange-100 text-orange-800": label === "No sincronizado",
-      "bg-yellow-100 text-yellow-800": label === "Pendiente",
+      "bg-green-100 text-green-800": label === "Sincronizado con Google",
+      "bg-blue-100 text-blue-800": label === "Solo local (historico)",
+      "bg-orange-100 text-orange-800": label === "Solo local",
+      "bg-yellow-100 text-yellow-800": label === "Pendiente de sincronizar",
     };
   }
 

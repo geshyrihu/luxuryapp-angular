@@ -42,6 +42,7 @@ import {
 } from "ionicons/icons";
 import { AvatarModule } from "primeng/avatar";
 import { ImageModule } from "primeng/image";
+import { PopoverModule } from "primeng/popover";
 import { TableModule } from "primeng/table";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { TooltipModule } from "primeng/tooltip";
@@ -140,6 +141,7 @@ import { TaskForm } from "./task-form";
     PrimeNgCustomCaption,
     DataViewMobile,
     TooltipModule,
+    PopoverModule,
     IonItem,
     IonLabel,
     IonAvatar,
@@ -203,9 +205,9 @@ export class TaskList implements OnInit {
 
   statusPillStyle(status: string): string {
     const map: Record<string, string> = {
-      NotStarted: 'background:#fef2f2;color:#b91c1c',
-      InProgress:  'background:#eff6ff;color:#1d4ed8',
-      Reopened:    'background:#fff7ed;color:#c2410c',
+      NotStarted: 'background:#fee2e2;color:#991b1b',
+      InProgress:  'background:#ffedd5;color:#9a3412',
+      Reopened:    'background:#fee2e2;color:#991b1b',
     };
     return map[status] ?? 'background:#f3f4f6;color:#374151';
   }
@@ -508,18 +510,25 @@ export class TaskList implements OnInit {
 
   onFollowUp(id: string) {
     this.dialogHandlerS
-      .openDialog<number>(
+      .openDialog<{ count: number; lastFollowUp: string | null; lastFollowUpDate: string | null }>(
         TaskFollowup,
         { id: id },
         "Seguimiento",
         this.dialogHandlerS.sizeLg,
       )
-      .then((count: number) => {
-        if (count >= 0) {
+      .then((result) => {
+        if (result && result.count >= 0) {
           this.dataSignal.update((currentData) => ({
             ...currentData,
             items: currentData.items.map((item) =>
-              item.id === id ? { ...item, ticketMessageFollowUp: count } : item,
+              item.id === id
+                ? {
+                    ...item,
+                    ticketMessageFollowUp: result.count,
+                    lastFollowUp: result.lastFollowUp,
+                    lastFollowUpDate: result.lastFollowUpDate,
+                  }
+                : item,
             ),
           }));
         }
@@ -655,12 +664,48 @@ export class TaskList implements OnInit {
     this.router.navigate(["/tickets/pending-board", this.ticketGroupId]);
   }
 
-  onRowReorder(_event: { dragIndex: number; dropIndex: number }): void {
-    // PrimeNG mutates the value array before emitting this event, so the array is already correctly ordered
-    const items = [...this.dataSignal().items];
+  onRowReorder(event: { dragIndex: number; dropIndex: number }): void {
+    // PrimeNG mutates the value array before emitting — array already has new order.
+    // items[dropIndex] is the item the user dragged.
+    let items = [...this.dataSignal().items];
+
+    const movedItem = items[event.dropIndex];
+    if (!movedItem) {
+      this.dataSignal.update((c) => ({ ...c, items }));
+      this.apiS.onPut(Endpoints.Tasks.updateOrder, items.map((i) => i.id));
+      return;
+    }
+
+    // BFS: collect ALL transitive dependents —
+    //   • parentTaskId === currentId  (true child tasks)
+    //   • dependsOnTaskId === currentId  (successor in predecessor chain)
+    const dependentIds = new Set<string>();
+    const queue = [movedItem.id];
+    const visited = new Set<string>([movedItem.id]);
+
+    while (queue.length > 0) {
+      const pid = queue.shift()!;
+      for (const item of items) {
+        if (visited.has(item.id)) continue;
+        if (item.parentTaskId === pid || item.dependsOnTaskId === pid) {
+          dependentIds.add(item.id);
+          visited.add(item.id);
+          queue.push(item.id);
+        }
+      }
+    }
+
+    if (dependentIds.size > 0) {
+      // Preserve the relative order of dependents as they appeared before
+      const dependents = items.filter((i) => dependentIds.has(i.id));
+      const rest = items.filter((i) => !dependentIds.has(i.id));
+      const parentIdx = rest.findIndex((i) => i.id === movedItem.id);
+      rest.splice(parentIdx + 1, 0, ...dependents);
+      items = rest;
+    }
+
     this.dataSignal.update((current) => ({ ...current, items }));
-    const ids = items.map((item) => item.id);
-    this.apiS.onPut(Endpoints.Tasks.updateOrder, ids);
+    this.apiS.onPut(Endpoints.Tasks.updateOrder, items.map((i) => i.id));
   }
 
   // ── Chain step computation (visual Gantt-style ordering) ─────────────────

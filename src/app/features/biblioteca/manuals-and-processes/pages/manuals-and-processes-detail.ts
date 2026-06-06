@@ -11,10 +11,12 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { DiagramPreviewComponent } from "../components/diagram-preview";
 import { IManualTemplateDetalleDTO } from "../models/manuals-and-processes.dto";
+import { ManualPdfService } from "../services/manual-pdf.service";
 
 @Component({
   selector: "app-manuals-and-processes-detail",
   templateUrl: "./manuals-and-processes-detail.html",
+  styleUrls: [],
 
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ export class ManualsAndProcessesDetail implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private sanitizer = inject(DomSanitizer);
+  private manualPdfS = inject(ManualPdfService);
   public aspRoleS = inject(AspRoleService);
 
   readonly EApplicationRole = EApplicationRole;
@@ -117,6 +120,12 @@ export class ManualsAndProcessesDetail implements OnInit {
 
   onOpenEditor(id: string) {
     this.router.navigate(["/library/manuals-and-processes/editor", id]);
+  }
+
+  async descargarPDF() {
+    const data = this.manual();
+    if (!data) return;
+    await this.manualPdfS.descargar(data);
   }
 
   manualStatusLabel(): string {

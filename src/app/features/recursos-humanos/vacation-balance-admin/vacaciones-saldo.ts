@@ -100,7 +100,7 @@ export class VacacionesSaldo implements OnInit {
    *
    * Se secuencia correctamente: primero obtiene los años del backend para validar
    * que `currentYear` sea un Año con datos. Si el Año en curso no estó disponible
-   * (ej. empleado ingresó el Año pasado), carga el óltimo Año disponible.
+   * (ej. empleado ingresó el Año pasado), carga el último Año disponible.
    *
    * **Importante:** `loadBalance()` se llama Después de validar `currentYear`
    * para evitar enviar un Año invólido al endpoint de balance.

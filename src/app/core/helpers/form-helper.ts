@@ -24,54 +24,38 @@ export interface CrudSubmitOptions {
   form: FormGroup;
   /** Servicio de API */
   api: ApiResponseService;
-  /** Endpoint base, ej: 'Banks' */
+  /** Endpoint base o completo. */
   endpoint: string;
-  /** ID del registro (vacío/null para creación) */
-  id: string | null;
+  /** ID del registro (opcional). Si se provee y no se especifica method, se usará PUT. */
+  id?: string | null;
   /** Referencia al dialogo para cerrarlo al completar */
   ref: DynamicDialogRef;
   /** Signal de loading para deshabilitar el botón */
   submitting: WritableSignal<boolean>;
   /** Transformación opcional del payload antes de enviar */
   transformPayload?: (value: any) => any;
+  /** Indica si se debe cerrar el diálogo tras éxito. Por defecto true. */
+  closeOnSuccess?: boolean;
+  /** Método HTTP explícito (POST, PUT, PATCH). Si no se provee, se infiere del ID. */
+  method?: "POST" | "PUT" | "PATCH";
 }
 
 export class FormHelper {
   /**
-   * Ejecuta el patrón POST/PUT estándar para formularios CRUD.
-   *
-   * @returns Promise<boolean> - true si la operación fue exitosa
-   *
-   * Antes (repetido 141+ veces):
-   * ```ts
-   * onSubmit() {
-   *   if (!this.apiResponseS.validateForm(this.form)) return;
-   *   this.submitting.set(true);
-   *   if (!this.id) {
-   *     this.apiResponseS.onPost(url, this.form.value).then(r => ...);
-   *   } else {
-   *     this.apiResponseS.onPut(url + '/' + this.id, this.form.value).then(r => ...);
-   *   }
-   * }
-   * ```
-   *
-   * Después:
-   * ```ts
-   * onSubmit() {
-   *   FormHelper.submitCrud({
-   *     form: this.form,
-   *     api: this.apiResponseS,
-   *     endpoint: 'Banks',
-   *     id: this.id,
-   *     ref: this.ref,
-   *     submitting: this.submitting,
-   *   });
-   * }
-   * ```
+   * Ejecuta el patrón POST/PUT/PATCH estándar para formularios CRUD.
    */
-  static async submitCrud(options: CrudSubmitOptions): Promise<boolean> {
-    const { form, api, endpoint, id, ref, submitting, transformPayload } =
-      options;
+  static async submitCrud(options: CrudSubmitOptions): Promise<any> {
+    const {
+      form,
+      api,
+      endpoint,
+      id,
+      ref,
+      submitting,
+      transformPayload,
+      closeOnSuccess = true,
+      method,
+    } = options;
 
     // Validar formulario
     if (!api.validateForm(form)) return false;
@@ -83,16 +67,29 @@ export class FormHelper {
       : form.value;
 
     try {
-      let result: boolean;
+      let result: any;
+      const url = id && !endpoint.includes(id) ? `${endpoint}/${id}` : endpoint;
 
-      if (!id) {
-        result = await api.onPost(endpoint, payload);
-      } else {
-        result = await api.onPut(`${endpoint}/${id}`, payload);
+      const httpMethod = method || (id ? "PUT" : "POST");
+
+      switch (httpMethod) {
+        case "PATCH":
+          result = await api.onPatch(url, payload);
+          break;
+        case "PUT":
+          result = await api.onPut(url, payload);
+          break;
+        default:
+          result = await api.onPost(url, payload);
+          break;
       }
 
-      if (result) {
-        ref.close(true);
+      if (result !== false) {
+        if (closeOnSuccess) {
+          ref.close(true);
+        } else {
+          submitting.set(false);
+        }
       } else {
         submitting.set(false);
       }

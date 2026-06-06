@@ -144,14 +144,11 @@
         <th pSortableColumn="responsible" class="table-col-15">
           Responsable <p-sortIcon field="responsible"></p-sortIcon>
         </th>
-        <th class="table-col-20">óltimo Seguimiento</th>
+        <th class="table-col-20">último Seguimiento</th>
         <th pSortableColumn="status" class="text-center table-col-10">
           Estatus <p-sortIcon field="status"></p-sortIcon>
         </th>
-        <th
-          pSortableColumn="daysOpen"
-          class="text-center pr-3 table-col-5"
-        >
+        <th pSortableColumn="daysOpen" class="text-center pr-3 table-col-5">
           Días <p-sortIcon field="daysOpen"></p-sortIcon>
         </th>
       </tr>
@@ -180,8 +177,8 @@
               >{{ item.date | date: 'dd MMM' : 'UTC' }}</span
             >
             <span class="text-500 text-xs flex align-items-center gap-1"
-              ><i class="pi pi-clock text-xs"></i> {{ item.date | date: 'HH:mm' : 'UTC'
-              }}</span
+              ><i class="pi pi-clock text-xs"></i> {{ item.date | date: 'HH:mm'
+              : 'UTC' }}</span
             >
           </div>
         </td>

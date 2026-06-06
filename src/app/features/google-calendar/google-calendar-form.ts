@@ -90,6 +90,13 @@ interface IGoogleCalendarEventDetail {
   } | null;
 }
 
+interface IGoogleCalendarInviteeSuggestion {
+  id: string;
+  email: string;
+  nameEmployee: string;
+  applicationRoleName: string;
+}
+
 interface IOptionShortcut {
   label: string;
   value: number;
@@ -210,6 +217,7 @@ export class GoogleCalendarForm implements OnInit {
   readonly selectedDate = signal<Date | null>(null);
   readonly selectedStartTime = signal<string>("");
   readonly loadingDateAvailability = signal(false);
+  readonly loadingSuggestedInvitees = signal(false);
   readonly isStartTimeDisabled = computed(
     () =>
       !this.selectedDate() ||
@@ -304,6 +312,7 @@ export class GoogleCalendarForm implements OnInit {
     this.setupRecurringStateRefresh();
     this.setupAssemblyStateRefresh();
     this.setupModalityStateRefresh();
+    this.setupSuggestedInviteesRefresh();
 
     if (this.id()) {
       await this.onLoadData();
@@ -311,6 +320,7 @@ export class GoogleCalendarForm implements OnInit {
       this.applyRecurringState(false, false);
       this.applyAssemblyState(this.isAssemblySelected(), false);
       this.applyModalityState(this.isPresentialSelected(), false);
+      await this.loadSuggestedInvitees();
     }
   }
 
@@ -548,12 +558,13 @@ export class GoogleCalendarForm implements OnInit {
   }
 
   private setupAssemblyStateRefresh() {
-    this.form.controls.subjectType.valueChanges.subscribe((subjectType) => {
+    this.form.controls.subjectType.valueChanges.subscribe(async (subjectType) => {
       this.applyAssemblyState(subjectType === 1);
+      await this.loadSuggestedInvitees();
     });
 
     this.form.controls.assemblyRequiresPaddles.valueChanges.subscribe(
-      (requiresPaddles) => {
+      async (requiresPaddles) => {
         const paddlesControl = this.form.controls.assemblyPaddlesQuantity;
         if (requiresPaddles) {
           paddlesControl.setValidators([
@@ -566,13 +577,113 @@ export class GoogleCalendarForm implements OnInit {
         }
 
         paddlesControl.updateValueAndValidity({ emitEvent: false });
+        await this.loadSuggestedInvitees();
       },
     );
+
+    this.form.controls.assemblyRequiresAudioVisual.valueChanges.subscribe(
+      async () => {
+        await this.loadSuggestedInvitees();
+      },
+    );
+  }
+
+  private setupSuggestedInviteesRefresh() {
+    this.form.controls.customerId.valueChanges.subscribe(async () => {
+      await this.loadSuggestedInvitees();
+    });
   }
 
   private setupModalityStateRefresh() {
     this.form.controls.modality.valueChanges.subscribe((modality) => {
       this.applyModalityState(modality === 1);
+    });
+  }
+
+  private async loadSuggestedInvitees() {
+    if (this.isEditMode()) {
+      return;
+    }
+
+    const customerId = this.form.controls.customerId.getRawValue();
+    const subjectType = this.form.controls.subjectType.getRawValue();
+
+    if (!customerId || subjectType === null || subjectType === undefined) {
+      return;
+    }
+
+    this.loadingSuggestedInvitees.set(true);
+    try {
+      const includeSystems =
+        subjectType === 1 &&
+        (this.form.controls.assemblyRequiresPaddles.getRawValue() ||
+          this.form.controls.assemblyRequiresAudioVisual.getRawValue());
+
+      const result = await this.apiResponseS.onGetList<
+        IGoogleCalendarInviteeSuggestion[]
+      >(
+        `responsables-cliente/sugeridos-agenda?customerId=${customerId}&subjectType=${subjectType}&includeSystems=${includeSystems}`,
+      );
+
+      const suggestions = Array.isArray(result) ? result : [];
+      if (subjectType === 1) {
+        this.mergeAssemblyInviteeSuggestions(suggestions);
+        return;
+      }
+
+      this.mergeGuestSuggestions(suggestions);
+    } finally {
+      this.loadingSuggestedInvitees.set(false);
+    }
+  }
+
+  private mergeGuestSuggestions(
+    suggestions: IGoogleCalendarInviteeSuggestion[],
+  ) {
+    const existingEmails = new Set(
+      this.guestsArray.controls
+        .map((control) => control.controls.email.getRawValue().trim().toLowerCase())
+        .filter((email) => !!email),
+    );
+
+    suggestions.forEach((suggestion) => {
+      const email = suggestion.email?.trim().toLowerCase();
+      if (!email || existingEmails.has(email)) {
+        return;
+      }
+
+      this.addGuest({
+        id: suggestion.id,
+        name: suggestion.nameEmployee,
+        email: suggestion.email,
+      });
+      existingEmails.add(email);
+    });
+  }
+
+  private mergeAssemblyInviteeSuggestions(
+    suggestions: IGoogleCalendarInviteeSuggestion[],
+  ) {
+    const existingEmails = new Set(
+      this.assemblyInviteesArray.controls
+        .map((control) => control.controls.email.getRawValue().trim().toLowerCase())
+        .filter((email) => !!email),
+    );
+
+    suggestions.forEach((suggestion) => {
+      const email = suggestion.email?.trim().toLowerCase();
+      if (!email || existingEmails.has(email)) {
+        return;
+      }
+
+      this.addAssemblyInvitee({
+        id: suggestion.id,
+        name: suggestion.nameEmployee,
+        email: suggestion.email,
+        position: suggestion.applicationRoleName,
+        isInternal: true,
+      });
+      existingEmails.add(email);
     });
   }
 

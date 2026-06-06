@@ -62,9 +62,14 @@
             <i class="pi pi-user mr-2 text-primary"></i>
             {{ follow.applicationUser }}
           </span>
-          <span class="text-xs text-500 surface-100 px-2 py-1 border-round">
-            {{ follow.createdAt }}
-          </span>
+          <div class="flex align-items-center gap-2">
+            <span class="text-xs text-500 surface-100 px-2 py-1 border-round">
+              {{ follow.createdAt }}
+            </span>
+            @if (isSuperUser()) {
+            <ion-button-delete (confirmed)="onDelete(follow.id)" />
+            }
+          </div>
         </div>
         <p class="m-0 text-700 line-height-3 text-sm">
           {{ follow.description }}

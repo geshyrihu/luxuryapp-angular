@@ -244,8 +244,8 @@ export class CatalogoGastoFijoForm implements OnInit {
         "Agregar/Editar Cuenta de Presupuesto",
         this.dialogHandlerS.sizeFull,
       )
-      .then((result: boolean) => {
-        if (result) {
+      .then(() => {
+        if (this.id()) {
           this.onLoadData();
         }
       });
@@ -260,8 +260,8 @@ export class CatalogoGastoFijoForm implements OnInit {
         "Agregar | Editar Producto o Servicio",
         this.dialogHandlerS.sizeFull,
       )
-      .then((result: boolean) => {
-        if (result) {
+      .then(() => {
+        if (this.id()) {
           this.onLoadData();
         }
       });

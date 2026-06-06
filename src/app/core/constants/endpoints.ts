@@ -1348,6 +1348,7 @@ export const Endpoints = {
   TaskFollowUps: {
     byMessage: (id: string) => `task-follow-up/by-message/${id}`,
     create: "task-follow-up",
+    delete: (id: string) => `task-follow-up/${id}`,
     listByTicketMessage: (ticketMessageId: string) =>
       `task-follow-up/List/${ticketMessageId}`,
   },

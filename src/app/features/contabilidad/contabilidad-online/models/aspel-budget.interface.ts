@@ -195,15 +195,22 @@ export interface IAnalisisCobranzaOnlineDto {
 export interface IFlujoCajaDto {
   nombreEmpresa: string;
   periodoPresupuesto: string;
-  meses: IFlujoCajaMesDto[];
+  columnas: string[];
+  grupos: IFlujoCajaGrupoDto[];
 }
 
-export interface IFlujoCajaMesDto {
+export interface IFlujoCajaGrupoDto {
   nombre: string;
-  ingresos: number;
-  gastos: number;
-  flujoNeto: number;
-  saldoAcumulado: number;
+  filas: IFlujoCajaFilaDto[];
+  filaTotales?: IFlujoCajaFilaDto;
+}
+
+export interface IFlujoCajaFilaDto {
+  concepto: string;
+  montos: number[];
+  esSuma: boolean;
+  esResta: boolean;
+  esFilaTotal: boolean;
 }
 
 export interface IReporteFinancieroDto {

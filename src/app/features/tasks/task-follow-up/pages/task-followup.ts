@@ -19,10 +19,13 @@ import {
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { IonButtonDelete } from "src/app/core/components/buttons/mobile";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
 interface ITicketMessageFollowupForm {
   id: FormControl<string>;
@@ -40,16 +43,20 @@ interface ITicketMessageFollowupForm {
     FormsModule,
     CardModule,
     CustomButtonSave,
+    IonButtonDelete,
     ProgressSpinnerModule,
     CustomInputTextAreaSignal,
   ],
 })
 export class TaskFollowup implements OnInit, OnDestroy {
   private apiResponseS = inject(ApiResponseService);
+  private aspRoleS = inject(AspRoleService);
   private authS = inject(AuthService);
   private config = inject(DynamicDialogConfig);
   private formB = inject(FormBuilder);
   private ref = inject(DynamicDialogRef);
+
+  readonly isSuperUser = this.aspRoleS.roleSignal(EApplicationRole.SuperUsuario);
   description = signal<any[]>([]);
   submitting = signal(false);
 
@@ -116,7 +123,19 @@ export class TaskFollowup implements OnInit, OnDestroy {
       this.submitting.set(false);
     });
   }
+  onDelete(id: string): void {
+    this.apiResponseS.onDelete(Endpoints.TaskFollowUps.delete(id)).then((ok) => {
+      if (ok) this.onCargaListaseguimientos();
+    });
+  }
+
   ngOnDestroy(): void {
-    this.ref.close(this.description().length);
+    const items = this.description();
+    const latest = items.length > 0 ? items[0] : null; // backend devuelve desc por fecha
+    this.ref.close({
+      count: items.length,
+      lastFollowUp: latest?.description ?? null,
+      lastFollowUpDate: latest ? (latest.createdAt as string).split(' ')[0] : null,
+    });
   }
 }

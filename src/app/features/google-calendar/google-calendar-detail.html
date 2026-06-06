@@ -31,6 +31,11 @@
     <div class="col-12 md:col-6">
       <small class="block text-color-secondary">Estado</small>
       <strong>{{ getStatusLabel() }}</strong>
+      @if (!item.isSynchronized) {
+      <small class="block text-color-secondary mt-1">
+        Este registro no tiene un vinculo activo con Google Calendar.
+      </small>
+      }
     </div>
     <div class="col-12 md:col-6">
       <small class="block text-color-secondary">Enlace</small>

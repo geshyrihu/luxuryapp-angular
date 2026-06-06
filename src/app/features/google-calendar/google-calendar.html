@@ -149,6 +149,7 @@
             <p>{{ item.subjectTypeName }} | {{ item.modalityName }}</p>
             <p>{{ item.recurrenceSummary || "Unica" }}</p>
             <p>{{ formatBusinessDateTime(item.startAt) }}</p>
+            <p>Estado: {{ getStatusLabel(item) }}</p>
             <p>Invitados: {{ item.guestCount }}</p>
             @if (canOpenAssemblyChecklist(item)) {
             <div class="mt-2">
