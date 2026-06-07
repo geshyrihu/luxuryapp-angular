@@ -36,9 +36,7 @@
 @import "theme/sidebar";
 
 /* 7. FONTS */
-// IBM Plex Sans y Montserrat se cargan desde index.html para evitar FOUT y optimizar CSP.
-// Poppins se mantiene via import solo si es necesario para compatibilidad, pero se prefiere IBM Plex Sans.
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+// DM Sans se carga desde index.html para evitar FOUT y optimizar CSP.
 
 body {
   font-family: var(--ds-font-family-base), sans-serif !important;
@@ -56,15 +54,22 @@ body {
 .ql-editor h1,
 .ql-editor h2,
 .ql-editor h3 {
-  font-family: "Montserrat", sans-serif !important;
+  font-family: var(--ds-font-family-document) !important;
   font-weight: 700 !important;
   color: #1b3a6b !important;
 }
 
 // button {
-//   font-family: "Poppins", sans-serif !important;
 //   border-radius: 4px !important;
 // }
+
+/* 8. ICONIFY */
+iconify-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -.125em;
+}
 
 /* 🖼️ FIX: PrimeNG Image Preview en Móvil (Ionic)
    --------------------------------------------------------------------------
@@ -73,4 +78,19 @@ body {
 */
 .p-image-mask {
   z-index: 110000 !important;
+}
+
+/* --- ANIMACIONES ICONIFY --- */
+.ds-animate-spin {
+  animation: ds-spin 1.5s linear infinite;
+  display: inline-block;
+}
+
+@keyframes ds-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

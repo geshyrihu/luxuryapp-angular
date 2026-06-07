@@ -7,6 +7,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
 import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
@@ -34,6 +35,7 @@ import { MedidorLecturaForm } from "./medidor-lectura-form";
     TooltipModule,
     PrimeNgCustomTableFooter,
     ActionMenu,
+    AppIcon,
     IonButtonDelete,
     IonButtonEdit,
   ],

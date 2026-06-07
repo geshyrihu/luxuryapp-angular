@@ -7,7 +7,7 @@
   margin-bottom: 2rem;
 
   .ds-heading {
-    font-family: 'IBM Plex Sans', 'Montserrat', sans-serif;
+    font-family: var(--ds-font-family-base);
     font-weight: 700;
     letter-spacing: -0.01em;
   }
@@ -63,13 +63,13 @@
 }
 
 .ds-glyph-text {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: var(--ds-font-family-base);
   font-weight: 600;
 }
 
 // --- Card Label ---
 .ds-card-label {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: var(--ds-font-family-base);
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -80,17 +80,17 @@
 
 // --- Typography ---
 .ds-heading {
-  font-family: 'IBM Plex Sans', 'Montserrat', sans-serif;
+  font-family: var(--ds-font-family-base);
   font-weight: 700;
 }
 
 .ds-text-secondary {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: var(--ds-font-family-base);
   color: var(--ds-document-neutral, #6B7280);
 }
 
 .ds-mobile-label {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: var(--ds-font-family-base);
   font-weight: 500;
 }
 

@@ -3,7 +3,7 @@
   @if (dataSignal().length === 0) {
   <div class="empty-state-card">
     <div class="empty-state-icon">
-      <i class="icon icon-pi-folder-open"></i>
+      <app-icon icon="mdi:folder-open" class="text-4xl text-primary" />
     </div>
     <h5 class="empty-state-title">No hay documentos disponibles</h5>
   </div>
@@ -16,16 +16,16 @@
       <a (click)="viewPdf(item.filePath, item.documentName)" class="file-item-link no-underline cursor-pointer">
         <div class="file-item flex align-items-center p-3 border-round border-1 surface-border hover:surface-hover transition-colors transition-duration-200">
           <div class="file-item-icon mr-3">
-            <i class="icon {{ getIconForFile(item.fileExtension).icon }} {{ getIconForFile(item.fileExtension).color }} text-2xl"></i>
+            <app-icon [icon]="getIconForFile(item.fileExtension).icon" [class]="getIconForFile(item.fileExtension).color + ' text-2xl'" />
           </div>
           <div class="file-item-content flex-flex-grow-1-1">
             <h6 class="file-item-title m-0 text-900 font-bold" [title]="item.documentName">
-              <i class="pi pi-calendar mr-1"></i> {{ item.documentName }}
+              <app-icon icon="mdi:calendar" class="mr-1" /> {{ item.documentName }}
             </h6>
             <p class="file-item-subtitle m-0 text-500 text-sm">Archivo .{{ item.fileExtension }}</p>
           </div>
           <div class="file-item-action">
-            <i class="pi pi-chevron-right text-400"></i>
+            <app-icon icon="mdi:chevron-right" class="text-400" />
           </div>
         </div>
       </a>
@@ -38,7 +38,7 @@
 <div class="block md:hidden">
   @if (dataSignal().length === 0) {
   <div class="text-center p-6">
-    <i class="pi pi-folder-open text-6xl text-400"></i>
+    <app-icon icon="mdi:folder-open" class="text-6xl text-400" />
     <p class="text-500 mt-3 text-base">No hay documentos disponibles</p>
   </div>
   }
@@ -52,7 +52,7 @@
     <ion-item button detail="true" lines="full"
       (click)="viewPdf(item.filePath, item.documentName)" class="ion-no-padding">
       <div slot="start" class="w-2rem h-2rem border-round bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
-        <i class="pi pi-file-pdf text-xl text-blue-700"></i>
+        <app-icon icon="mdi:file-pdf-box" class="text-xl text-blue-700" />
       </div>
       <ion-label class="ml-2">
         <h3 class="font-bold text-900">{{ item.documentName }}</h3>

@@ -1,11 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, input } from "@angular/core";
 import { TooltipModule } from "primeng/tooltip";
+import { AppIcon } from "../../app-icon/app-icon.component";
 import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "custom-button-add",
-  imports: [CommonModule, TooltipModule],
+  imports: [CommonModule, TooltipModule, AppIcon],
   template: `
     <button
       [type]="type()"
@@ -17,7 +18,7 @@ import { BaseButton } from "../base/base-button";
       tooltipPosition="top"
     >
       <span [class]="iconShellClasses(true)" aria-hidden="true">
-        <i [class]="finalIcon()"></i>
+        <app-icon [icon]="finalIcon()" />
       </span>
       <span>{{ label() || "Agregar" }}</span>
     </button>
@@ -28,5 +29,5 @@ export class CustomButtonAdd extends BaseButton {
   override variant = input<"outlined" | "text" | null>("outlined");
   override fluid = input<boolean>(true);
 
-  finalIcon = computed(() => this.resolvedIconClass() || "pi pi-plus");
+  finalIcon = computed(() => this.icon() || this.iconClass() || "mdi:plus");
 }

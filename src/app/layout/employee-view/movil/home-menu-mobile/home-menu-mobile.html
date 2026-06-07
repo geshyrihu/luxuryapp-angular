@@ -9,7 +9,7 @@
     @if (item.items && item.items.length > 0) {
     <ion-accordion [value]="item.label">
       <ion-item slot="header" lines="full">
-        <i [class]="item.icon" slot="start" class="text-xl text-primary"></i>
+        <app-icon [icon]="item.icon" slot="start" class="text-xl text-primary" />
         <ion-label class="font-medium">{{ item.label }}</ion-label>
       </ion-item>
 
@@ -23,11 +23,7 @@
             button
             class="text-sm"
           >
-            <i
-              [class]="subItem.icon || 'pi pi-circle-fill text-xs'"
-              slot="start"
-              class="text-500"
-            ></i>
+            <app-icon icon="circle" slot="start" class="text-500 text-xs" />
             <ion-label>{{ subItem.label }}</ion-label>
           </ion-item>
           }
@@ -47,7 +43,7 @@
         button
         class="border-round-xl"
       >
-        <i [class]="item.icon" slot="start" class="text-xl text-primary"></i>
+        <app-icon [icon]="item.icon" slot="start" class="text-xl text-primary" />
         <ion-label class="font-medium">{{ item.label }}</ion-label>
       </ion-item>
     </div>

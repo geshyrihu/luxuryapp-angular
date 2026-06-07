@@ -2,11 +2,12 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, input, output } from "@angular/core";
 import { TooltipModule } from "primeng/tooltip";
 import Swal from "sweetalert2";
+import { AppIcon } from "../../app-icon/app-icon.component";
 import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "custom-button-delete",
-  imports: [CommonModule, TooltipModule],
+  imports: [CommonModule, TooltipModule, AppIcon],
   template: `
     <button
       [type]="type()"
@@ -21,7 +22,7 @@ import { BaseButton } from "../base/base-button";
         [class]="iconShellClasses(showLabelOnDesktop() && !!label())"
         aria-hidden="true"
       >
-        <i [class]="finalIcon()"></i>
+        <app-icon [icon]="finalIcon()" />
       </span>
       @if (showLabelOnDesktop() && label()) {
         <span>{{ label() }}</span>
@@ -49,7 +50,7 @@ export class CustomButtonDelete extends BaseButton {
 
   confirmed = output<void>();
 
-  finalIcon = computed(() => this.resolvedIconClass() || "pi pi-trash");
+  finalIcon = computed(() => this.icon() || this.iconClass() || "mdi:delete");
 
   async confirmDelete(event: Event): Promise<void> {
     const message = this.isLinked()

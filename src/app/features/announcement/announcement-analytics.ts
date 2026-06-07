@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterModule } from "@angular/router";
 import { IonAvatar, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -20,6 +21,7 @@ import { IAnnouncementAnalyticsDTO } from "./announcement.model";
     IonItem,
     IonLabel,
     IonAvatar,
+    AppIcon,
   ],
   templateUrl: "./announcement-analytics.html",
 })

@@ -1,0 +1,1372 @@
+[
+  {
+    "Id": "019C6C02-7719-7673-800A-00B76AAF3AB3",
+    "NameModule": "40.03 BIBLIOTECA",
+    "Label": "Biblioteca",
+    "RolLevel": 0,
+    "RouterLink": "/board-directors/documents",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7AE4-B7DF-7C1062FB3EC1",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7E74-98AE-02A20D44DDF7",
+    "NameModule": "07.4 ALBERCAS",
+    "Label": "Albercas",
+    "RolLevel": 0,
+    "RouterLink": "/logbook/pool",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7429-BD70-D01E02B398ED",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7719-70E2-A447-03AB4E7E415A",
+    "NameModule": "15.6 MANTENIMIENTOS",
+    "Label": "Mantenimientos",
+    "RolLevel": 0,
+    "RouterLink": "/delivery-reception/maintenance",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-74EE-A030-25D72AB3B7B2",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-70FB-981E-045A2F3C25B5",
+    "NameModule": "14.2 MENSUAL MTTO",
+    "Label": "Mensual Mtto",
+    "RolLevel": 0,
+    "RouterLink": "/report/maintenance-report/panel",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7785-A59A-D3BC1D5368BB",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7D2C-9437-086FC204A9D4",
+    "NameModule": "09.7 RADIOS",
+    "Label": "Radios",
+    "RolLevel": 0,
+    "RouterLink": "/inventory/radios",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-766B-B0EE-853D4343D251",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7E3A-9A55-0A474C327A7D",
+    "NameModule": "01.01 ACTAS CONSTITUTIVAS",
+    "Label": "Actas constitutivas",
+    "RolLevel": 0,
+    "RouterLink": "/legal/documents/incorporation-deeds",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7663-B231-98CCF16BECBC",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7477-B3D8-0AB7343DAA38",
+    "NameModule": "10.16 CONTRATOS POLIZAS",
+    "Label": "Contratos y Pólizas",
+    "RolLevel": 0,
+    "RouterLink": "/library/maintenance-policies",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7F7B-943F-438BF08435FF",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7F76-B0DB-14C7E8C6BC99",
+    "NameModule": "04.1 CATALOGO",
+    "Label": "Administrar inspecciones",
+    "RolLevel": 0,
+    "RouterLink": "/inspections/catalog",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-739B-BA01-FFA93CCFBA42",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7342-B2C3-194075C44DA0",
+    "NameModule": "21.06 HISTORIAL",
+    "Label": "Historial",
+    "RolLevel": 0,
+    "RouterLink": "/human-resources/requests-history",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-78AA-85FD-433B0EA0C50C",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7EDF-8A46-1C8F4685D1CD",
+    "NameModule": "01.10 CONTRATOS EMPLEADOS",
+    "Label": "Contratos Empleados",
+    "RolLevel": 0,
+    "RouterLink": "/legal/documents/contratos-empleados",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7663-B231-98CCF16BECBC",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7F01-B965-1CB45FBC1C53",
+    "NameModule": "07.6 REFACCIONES ELEVADORES",
+    "Label": "Refacciones elevadores",
+    "RolLevel": 0,
+    "RouterLink": "/logbook/elevator-spare-parts-change",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7429-BD70-D01E02B398ED",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-746B-9A1F-1CDEDDE9F99E",
+    "NameModule": "11.3 CUMPLEAÑOS",
+    "Label": "Cumpleaños",
+    "RolLevel": 0,
+    "RouterLink": "/calendars/birthdays",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7050-8781-453A786E649E",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-78B4-839E-1E83AA60FECF",
+    "NameModule": "06.3 PRESUPUESTO MTTO",
+    "Label": "Presupuesto mtto",
+    "RolLevel": 0,
+    "RouterLink": "/purchases/maintenance-budget",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7728-AE75-B43E98B81E0F",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7DF1-889F-1E9A4EFB9C22",
+    "NameModule": "01.11 JUICIOS | DEMANDAS",
+    "Label": "Juicios | Demandas",
+    "RolLevel": 0,
+    "RouterLink": "/legal/documents/juicios",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7663-B231-98CCF16BECBC",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7A06-B275-1F15302E76F9",
+    "NameModule": "18 RESERVACIONES",
+    "Label": "Reservaciones",
+    "RolLevel": 0,
+    "RouterLink": null,
+    "Icon": "icon-pi-calendar-plus",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7C8E-B2EC-1F81D82857CA",
+    "NameModule": "03 TICKETS",
+    "Label": "Tickets",
+    "RolLevel": 1,
+    "RouterLink": null,
+    "Icon": "icon-pi-ticket",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-71A4-8938-22CDF1303C15",
+    "NameModule": "06.11 OC PAGADAS",
+    "Label": "OC Pagadas",
+    "RolLevel": 0,
+    "RouterLink": "/purchases/paid",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7728-AE75-B43E98B81E0F",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7719-78DC-AC70-23D4F94718A4",
+    "NameModule": "15.7 INSUMOS",
+    "Label": "Insumos",
+    "RolLevel": 0,
+    "RouterLink": "/delivery-reception/supplies",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-74EE-A030-25D72AB3B7B2",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7719-7986-8EE6-2506D306E434",
+    "NameModule": "14.1 SUPERVISION",
+    "Label": "Supervision",
+    "RolLevel": 0,
+    "RouterLink": "/report/supervision-report",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7785-A59A-D3BC1D5368BB",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7EE8-B48E-2512C26FE0DD",
+    "NameModule": "12.5 TELEFONOS DE EMERGENCIA",
+    "Label": "Telefonos de emergencia",
+    "RolLevel": 0,
+    "RouterLink": "/directory/emergency-phones",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7972-BF6E-AE3010CA16CF",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-74EE-A030-25D72AB3B7B2",
+    "NameModule": "15 ENTREGARECEPCION",
+    "Label": "Entrega recepción",
+    "RolLevel": 0,
+    "RouterLink": null,
+    "Icon": "icon-pi-truck",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-730E-818D-260A0F9A9F7C",
+    "NameModule": "03.3 MIS SOLICITUDES",
+    "Label": "Mis solicitudes",
+    "RolLevel": 0,
+    "RouterLink": "/tickets/my-requests",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7C8E-B2EC-1F81D82857CA",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7719-76DB-AB9C-27E62125AE7B",
+    "NameModule": "40.03 INFORME FINANCIERO",
+    "Label": "Informe financiero",
+    "RolLevel": 0,
+    "RouterLink": "/board-directors/financial-reports",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7AE4-B7DF-7C1062FB3EC1",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-726B-B8DA-28EA4E4B65D7",
+    "NameModule": "40.02 MINUTAS",
+    "Label": "Minutas",
+    "RolLevel": 0,
+    "RouterLink": "/board-directors/meeting-minutes",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7AE4-B7DF-7C1062FB3EC1",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-75F9-85DF-2C971C960ED6",
+    "NameModule": "14.4 HISTORIAL ACCESO",
+    "Label": "Historial Acceso",
+    "RolLevel": 0,
+    "RouterLink": "/report/access-history",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7785-A59A-D3BC1D5368BB",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-705D-92B0-2D59EC8AAFE1",
+    "NameModule": "12.2 PERSONAL INTERNO",
+    "Label": "Personal interno",
+    "RolLevel": 0,
+    "RouterLink": "/directory/staff",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7972-BF6E-AE3010CA16CF",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-73C8-BCAB-316F728632F2",
+    "NameModule": "08.3 ENTRADA DE INSUMOS",
+    "Label": "Entrada de insumos",
+    "RolLevel": 0,
+    "RouterLink": "/warehouse/product-entry",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-728F-A691-7156BB2AA172",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-713B-AA18-36D9AF620BEB",
+    "NameModule": "03.4 LEGAL",
+    "Label": "Legal",
+    "RolLevel": 0,
+    "RouterLink": "/tickets/legal",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7C8E-B2EC-1F81D82857CA",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-74AE-AFBD-372F41255A89",
+    "NameModule": "07.5 FALLA ELEVADORES",
+    "Label": "Falla elevadores",
+    "RolLevel": 0,
+    "RouterLink": "/logbook/elevators-emergency-call",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7429-BD70-D01E02B398ED",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-78AE-8010-375B6B5B17FD",
+    "NameModule": "06.001 PRESUPUESTO ASPEL",
+    "Label": "Presupuesto aspel",
+    "RolLevel": 0,
+    "RouterLink": "/accounting/budget",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7728-AE75-B43E98B81E0F",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019E50A8-3D34-7955-9EA0-3810C2F230DD",
+    "NameModule": "05.03 AGENDAR REUNIONES",
+    "Label": "🗓️ Agenda de reuniones",
+    "RolLevel": 0,
+    "RouterLink": "/calendars/google-calendar",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7AB9-ACB4-E6D9F02C7126",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7719-700C-9468-389FAD9B1024",
+    "NameModule": "15.3 EXTINTORES",
+    "Label": "Extintores",
+    "RolLevel": 0,
+    "RouterLink": "/delivery-reception/hidrantes",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-74EE-A030-25D72AB3B7B2",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7719-7E25-A77E-3D3AF813382E",
+    "NameModule": "11.4 RESERVACIONES",
+    "Label": "Reservaciones",
+    "RolLevel": 0,
+    "RouterLink": "/calendars/reservaciones",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7050-8781-453A786E649E",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-78AA-85FD-433B0EA0C50C",
+    "NameModule": "21 RECURSOS HUMANOS",
+    "Label": "Recursos Humanos",
+    "RolLevel": 0,
+    "RouterLink": "/human-resources/dashboard",
+    "Icon": "icon-pi-users",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7F7B-943F-438BF08435FF",
+    "NameModule": "10 BIBLIOTECA",
+    "Label": "Biblioteca",
+    "RolLevel": 1,
+    "RouterLink": null,
+    "Icon": "icon-pi-book",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7719-7050-8781-453A786E649E",
+    "NameModule": "11 CALENDARIOS",
+    "Label": "Calendarios",
+    "RolLevel": 1,
+    "RouterLink": null,
+    "Icon": "icon-pi-calendar",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7E24-842D-48755810E94B",
+    "NameModule": "10.05 CONSECION DE POZO",
+    "Label": "Concesión Pozo",
+    "RolLevel": 0,
+    "RouterLink": "/library/well-concession",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7F7B-943F-438BF08435FF",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7F7A-BB9C-48FFA2DB3DC0",
+    "NameModule": "09.9 EQUIPOS ELECTROMECANICOS",
+    "Label": "Equipos electromecanicos",
+    "RolLevel": 0,
+    "RouterLink": "/inventory/areas-equipment",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-766B-B0EE-853D4343D251",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-73E5-84A0-4DA422669E41",
+    "NameModule": "23.1 CALCULADORA IVA",
+    "Label": "Calculadora IVA",
+    "RolLevel": 0,
+    "RouterLink": "/utilities/calculate-vat",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7FD0-B3C3-6CEB5528CCF0",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-73F1-AA97-4FEE1D7BE972",
+    "NameModule": "10.18 MANUALES Y PROCESOS",
+    "Label": "📘 Manuales y procesos",
+    "RolLevel": 0,
+    "RouterLink": "/library/manuals-and-processes",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7F7B-943F-438BF08435FF",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7DF1-B59F-500D834C3D90",
+    "NameModule": "08.4 SALIDA DE INSUMOS",
+    "Label": "Salida de insumos",
+    "RolLevel": 0,
+    "RouterLink": "/warehouse/product-output",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-728F-A691-7156BB2AA172",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7B42-A821-519B2C0BABE1",
+    "NameModule": "02.4 FONDEO",
+    "Label": "Fondeos",
+    "RolLevel": 0,
+    "RouterLink": "/funding/list",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-77A5-AD37-A5AAF4C075A2",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-76A2-B115-565513472CE2",
+    "NameModule": "16.3 SOLICITUDES",
+    "Label": "Solicitudes",
+    "RolLevel": 0,
+    "RouterLink": "/recruitment/requests/vacantes",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7392-A97E-D6D46BCDB6FC",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-78C3-9A97-56DBA0623419",
+    "NameModule": "08.5 PRESTAMO HERRAMIENTAS",
+    "Label": "Prestamo herraminetas",
+    "RolLevel": 0,
+    "RouterLink": "/warehouse/tool-loan",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-728F-A691-7156BB2AA172",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7719-7C24-B773-5E2754C390B0",
+    "NameModule": "06.2 PRESUPUESTO ANUAL",
+    "Label": "Presupuesto anual",
+    "RolLevel": 0,
+    "RouterLink": "/contabilidad/budget",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7728-AE75-B43E98B81E0F",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-73AB-B439-6029212A06AF",
+    "NameModule": "21.03 CALENDARIO DE VACACIONES",
+    "Label": "🗓 Calendario",
+    "RolLevel": 0,
+    "RouterLink": "/human-resources/vacation-calendar",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-78AA-85FD-433B0EA0C50C",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7719-72EF-B394-6153F5C77C26",
+    "NameModule": "15.2 INSTALACIONES",
+    "Label": "Instalaciones",
+    "RolLevel": 0,
+    "RouterLink": "/delivery-reception/installations",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-74EE-A030-25D72AB3B7B2",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C7BB6-2C87-7F5C-82E0-6468EA413E96",
+    "NameModule": "21.07 AUDITORIA",
+    "Label": "🤝 Auditoria Saldos",
+    "RolLevel": 0,
+    "RouterLink": "/human-resources/auditoria-vacaciones",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-78AA-85FD-433B0EA0C50C",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7A6B-89B5-67DBF3E8E788",
+    "NameModule": "01.3 REPORTE GENERAL PENDIENTES",
+    "Label": "Reporte General pendientes",
+    "RolLevel": 0,
+    "RouterLink": "/legal/pendings",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7663-B231-98CCF16BECBC",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-73E8-B249-67E916EE41E1",
+    "NameModule": "14.3 ESTADOS FINANCIEROS",
+    "Label": "Estados financieros",
+    "RolLevel": 0,
+    "RouterLink": "/report/financial-statements",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7785-A59A-D3BC1D5368BB",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7719-7B32-BFAA-684CE12B4252",
+    "NameModule": "12.1 COMITE DE VIGILANCIA",
+    "Label": "Comite de vigilancia",
+    "RolLevel": 0,
+    "RouterLink": "/directory/vigilance-committee",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7972-BF6E-AE3010CA16CF",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019D3694-8FAE-71A4-A8D9-6AC580CEB888",
+    "NameModule": "21 RECURSOS HUMANOS",
+    "Label": "Recursos Humanos v2",
+    "RolLevel": 0,
+    "RouterLink": "recursos-humanos",
+    "Icon": "icon-pi-users",
+    "PathParent": null,
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-723F-8E03-6C12B6F13D18",
+    "NameModule": "13 SUPERVISION",
+    "Label": "Supervisión",
+    "RolLevel": 0,
+    "RouterLink": null,
+    "Icon": "icon-pi-briefcase",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7FD0-B3C3-6CEB5528CCF0",
+    "NameModule": "23 UTILIDADES",
+    "Label": "Utilidades",
+    "RolLevel": 0,
+    "RouterLink": null,
+    "Icon": "icon-pi-cog",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-728F-A691-7156BB2AA172",
+    "NameModule": "08 ALMACEN",
+    "Label": "Almacen",
+    "RolLevel": 1,
+    "RouterLink": null,
+    "Icon": "icon-pi-box",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7719-7B6F-88D0-718FEDD419BD",
+    "NameModule": "16.6 LISTADO EVALUACIÓN",
+    "Label": "Listado de evaluaciones",
+    "RolLevel": 0,
+    "RouterLink": "/employee-evaluation/conduct/list",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7392-A97E-D6D46BCDB6FC",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-788D-A499-72B853A885C4",
+    "NameModule": "06.03 PRODUCTOS Y SERVICIOS",
+    "Label": "Productos y servicios",
+    "RolLevel": 0,
+    "RouterLink": "/purchases/products-services",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7728-AE75-B43E98B81E0F",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7719-7BFA-AFA1-73E9676A7D74",
+    "NameModule": "06.04 SOLICITUDES DE COMPRA",
+    "Label": "📑 | Solicitudes de compra",
+    "RolLevel": 0,
+    "RouterLink": "/purchases/purchase-requests",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7728-AE75-B43E98B81E0F",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7B9A-8D09-7768A608485D",
+    "NameModule": "05.2 MINUTAS",
+    "Label": "📝 Minutas",
+    "RolLevel": 0,
+    "RouterLink": "/committee-meetings/minutes",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7AB9-ACB4-E6D9F02C7126",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7FAF-963E-77BC59C4F8E8",
+    "NameModule": "02.9 CATALOGO CUENTAS ASPEL",
+    "Label": "Catalogo cuentas",
+    "RolLevel": 0,
+    "RouterLink": "/contabilidad/accounting-catalog",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-77A5-AD37-A5AAF4C075A2",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7AE4-B7DF-7C1062FB3EC1",
+    "NameModule": "40 MESA DIRECTIVA",
+    "Label": "Mesa directiva",
+    "RolLevel": 0,
+    "RouterLink": null,
+    "Icon": "icon-pi-crown",
+    "PathParent": null,
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7206-9417-813640C00DD9",
+    "NameModule": "02.91 PROYECCION GASTOS",
+    "Label": "Proyección de gastos",
+    "RolLevel": 0,
+    "RouterLink": "/contabilidad/budget-execution",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-77A5-AD37-A5AAF4C075A2",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-766B-B0EE-853D4343D251",
+    "NameModule": "09 INVENTARIOS",
+    "Label": "Inventarios",
+    "RolLevel": 1,
+    "RouterLink": null,
+    "Icon": "icon-pi-warehouse",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7BCF-BE65-856D24EF2668",
+    "NameModule": "07.2.0 RECORRIDO DIARIO",
+    "Label": "Recorrido diario Jav",
+    "RolLevel": 0,
+    "RouterLink": "/logbook/equipment",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7429-BD70-D01E02B398ED",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019DB831-9B9A-730A-98C2-8637DE0EFF24",
+    "NameModule": "02.2 COBRANZA",
+    "Label": "💲COBRANZA",
+    "RolLevel": 0,
+    "RouterLink": "/cobranza-nativa",
+    "Icon": null,
+    "PathParent": null,
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7701-7B38-9397-86A812D138F7",
+    "NameModule": "06.10 FONDEO",
+    "Label": "Fondeo",
+    "RolLevel": 0,
+    "RouterLink": "/funding/list",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7728-AE75-B43E98B81E0F",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-728C-9F5C-8723747879D1",
+    "NameModule": "10.03 REGLAMENTOS",
+    "Label": "Reglamentos",
+    "RolLevel": 0,
+    "RouterLink": "/library/regulations",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7F7B-943F-438BF08435FF",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-75C3-B855-8920DD92C9C7",
+    "NameModule": "05.1 PRESETACIONES",
+    "Label": "🧮 Presentaciones",
+    "RolLevel": 0,
+    "RouterLink": "/committee-meetings/presentations",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7AB9-ACB4-E6D9F02C7126",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7719-7BE8-A9AA-8A0059617629",
+    "NameModule": "15.4 LLAVES",
+    "Label": "Llaves",
+    "RolLevel": 0,
+    "RouterLink": "/delivery-reception/llaves",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-74EE-A030-25D72AB3B7B2",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7E74-A798-8FAB23ED70EF",
+    "NameModule": "12.7 PROPIEDADES",
+    "Label": "Propiedades",
+    "RolLevel": 0,
+    "RouterLink": "/directory/properties",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7972-BF6E-AE3010CA16CF",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7F20-886D-90232F5467A4",
+    "NameModule": "10.20 CATALOGO DE ILUMINACIÓN",
+    "Label": "Catalog de iluminación",
+    "RolLevel": 0,
+    "RouterLink": "/library/lighting",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7F7B-943F-438BF08435FF",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-709A-AEAC-92964F65B616",
+    "NameModule": "01.4 REPORTE INTERNO",
+    "Label": "Reporte interno",
+    "RolLevel": 0,
+    "RouterLink": "/legal/reports-internal",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7663-B231-98CCF16BECBC",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-74D8-87A1-9404852A76F9",
+    "NameModule": "19 PASES QR",
+    "Label": "Pases QR",
+    "RolLevel": 0,
+    "RouterLink": null,
+    "Icon": "icon-pi-barcode",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-732B-ABC3-955641A90FEB",
+    "NameModule": "15.1 EQUIPOS",
+    "Label": "Equipos",
+    "RolLevel": 0,
+    "RouterLink": "/delivery-reception/equipment",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-74EE-A030-25D72AB3B7B2",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7719-7663-B231-98CCF16BECBC",
+    "NameModule": "01 LEGAL",
+    "Label": "Legal",
+    "RolLevel": 0,
+    "RouterLink": null,
+    "Icon": "icon-pi-briefcase",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7AC1-9A61-99B095E8183E",
+    "NameModule": "02.3 ESTADOS FINANCIEROS",
+    "Label": "Estados financieros",
+    "RolLevel": 0,
+    "RouterLink": "/contabilidad/financial-statements",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-77A5-AD37-A5AAF4C075A2",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-73F2-9849-9B6047CEFB19",
+    "NameModule": "01.13 ADMINISTRAR ASUNTOS",
+    "Label": "Administrar asuntos",
+    "RolLevel": 0,
+    "RouterLink": "/legal/legal-matter",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7663-B231-98CCF16BECBC",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7719-7556-8283-9D190F306A01",
+    "NameModule": "10.17 FORMATOS",
+    "Label": "Formatos",
+    "RolLevel": 0,
+    "RouterLink": "/library/templates",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7F7B-943F-438BF08435FF",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7DCC-87A6-9D45ED92D5F9",
+    "NameModule": "21.01 MIS PERMISOS",
+    "Label": "Mis permisos",
+    "RolLevel": 0,
+    "RouterLink": "/human-resources/my-requests",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-78AA-85FD-433B0EA0C50C",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7719-731C-849A-9D78CF4E0E4E",
+    "NameModule": "22 ANUNCIOS",
+    "Label": "Anuncios",
+    "RolLevel": 0,
+    "RouterLink": "/announcements/manage",
+    "Icon": "icon-pi-megaphone",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019D8CDE-F437-7719-91DA-9EA6F1608CC2",
+    "NameModule": "02.1 CONTABILIDAD",
+    "Label": "📒 CONTABILIDAD",
+    "RolLevel": 0,
+    "RouterLink": "/contabilidad",
+    "Icon": null,
+    "PathParent": null,
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7274-8876-9FE1837CB1E1",
+    "NameModule": "10.02 ASAMBLEAS",
+    "Label": "Asambleas",
+    "RolLevel": 0,
+    "RouterLink": "/library/assemblies",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7F7B-943F-438BF08435FF",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7E5A-A3E3-A4EA271D8FD3",
+    "NameModule": "02.7 REPORTES FINANCIEROS",
+    "Label": "Reportes financieros",
+    "RolLevel": 0,
+    "RouterLink": "/contabilidad/financial-summary",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-77A5-AD37-A5AAF4C075A2",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7719-74D1-B500-A57619038310",
+    "NameModule": "09.10 EXTINTORES",
+    "Label": "Extintores",
+    "RolLevel": 0,
+    "RouterLink": "/inventory/extinguishers",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-766B-B0EE-853D4343D251",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7624-898C-A83AE1A1B8E6",
+    "NameModule": "02.5 ENVIO FINANCIEROS",
+    "Label": "Envio financieros",
+    "RolLevel": 0,
+    "RouterLink": "/contabilidad/financial-report-sending",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-77A5-AD37-A5AAF4C075A2",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-766A-97EF-A9A861E51CE6",
+    "NameModule": "01.12 PENDIENTES DE MINUTAS",
+    "Label": "Pendientes de Minutas",
+    "RolLevel": 0,
+    "RouterLink": "/legal/legal-minutes-pendings",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7663-B231-98CCF16BECBC",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7719-74C1-8815-AC2DDCE05C34",
+    "NameModule": "01.5 REPORTE EXTERNO",
+    "Label": "Reporte externo",
+    "RolLevel": 0,
+    "RouterLink": "/legal/reports-external",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7663-B231-98CCF16BECBC",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7719-7972-BF6E-AE3010CA16CF",
+    "NameModule": "12 DIRECTORIOS",
+    "Label": "Directorios",
+    "RolLevel": 0,
+    "RouterLink": null,
+    "Icon": "icon-pi-address-book",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7CB2-A715-AE9769C22D40",
+    "NameModule": "11.2 MANTENIMIENTO PREVENTIVO",
+    "Label": "Mantenimiento preventivo",
+    "RolLevel": 0,
+    "RouterLink": "/maintenance/annual-calendar",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7050-8781-453A786E649E",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7349-A3AF-AFAA8EF22B5A",
+    "NameModule": "16.5 PLANTILLAS DE EVALUACION",
+    "Label": "Plantillas de evaluación",
+    "RolLevel": 0,
+    "RouterLink": "/employee-evaluation/templates/list",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7392-A97E-D6D46BCDB6FC",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7B9E-B40E-B1A02B0B6A4E",
+    "NameModule": "03.2 MIS ASIGNACIONES",
+    "Label": "Mis asignaciones",
+    "RolLevel": 0,
+    "RouterLink": "/tickets/my-assignments",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7C8E-B2EC-1F81D82857CA",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-75BE-9289-B1CC8393A98F",
+    "NameModule": "12.6 CONDOMINOS",
+    "Label": "Condominos",
+    "RolLevel": 0,
+    "RouterLink": "/directory/condos",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7972-BF6E-AE3010CA16CF",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7719-7C83-807B-B241A49C0D68",
+    "NameModule": "16.1 PLANTILLA INTERNA",
+    "Label": "Plantilla interna",
+    "RolLevel": 0,
+    "RouterLink": "/directory/staff",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7392-A97E-D6D46BCDB6FC",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7719-7FB0-9123-B3069A42D88F",
+    "NameModule": "10.19 CATALOGO DE PINTURA",
+    "Label": "Catalogo de pintura",
+    "RolLevel": 0,
+    "RouterLink": "/library/painting",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7F7B-943F-438BF08435FF",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7728-AE75-B43E98B81E0F",
+    "NameModule": "06 COMPRAS",
+    "Label": "Compras",
+    "RolLevel": 0,
+    "RouterLink": null,
+    "Icon": "icon-pi-shopping-bag",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-77B2-920A-BB75109AF6E1",
+    "NameModule": "11.1 REUNIONES CON COMITE",
+    "Label": "Reuniones con comite",
+    "RolLevel": 0,
+    "RouterLink": "/calendars/committee-meetings",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7050-8781-453A786E649E",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7153-89B6-BD6F5E474A69",
+    "NameModule": "17 SISTEMAS",
+    "Label": "Sistemas",
+    "RolLevel": 0,
+    "RouterLink": null,
+    "Icon": "icon-pi-desktop",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7EB3-83F9-BFD7C724310B",
+    "NameModule": "09.6 HERRAMIENTAS",
+    "Label": "Herramientas",
+    "RolLevel": 0,
+    "RouterLink": "/inventory/tools",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-766B-B0EE-853D4343D251",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7655-9756-C355D038B5D5",
+    "NameModule": "12.4 PROVEEDORES",
+    "Label": "Proveedores",
+    "RolLevel": 0,
+    "RouterLink": "/directory/provider",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7972-BF6E-AE3010CA16CF",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7194-9CA7-C57DB7C23CE3",
+    "NameModule": "04.2 EJECUTAR INSPECCIONES",
+    "Label": "Ejecutar inspecciones",
+    "RolLevel": 0,
+    "RouterLink": "/inspections/my-inspection-list",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-739B-BA01-FFA93CCFBA42",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7719-7CED-BC20-C59C3E517B40",
+    "NameModule": "01.2 TICKETS",
+    "Label": "Tickets",
+    "RolLevel": 0,
+    "RouterLink": "/legal/list-ticket-legal",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7663-B231-98CCF16BECBC",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7361-B179-C74FBEFA84C2",
+    "NameModule": "07.2 RECORRIDO DIARIO",
+    "Label": "Recorrido diario",
+    "RolLevel": 0,
+    "RouterLink": "/logbook/recorrido",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7429-BD70-D01E02B398ED",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7E40-9FDA-C7A9F7B55E20",
+    "NameModule": "12.3 PERSONAL EXTERNO",
+    "Label": "Personal externo",
+    "RolLevel": 0,
+    "RouterLink": "/directory/external-staff",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7972-BF6E-AE3010CA16CF",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7719-7187-800E-CA50FA7223B5",
+    "NameModule": "03.1 GRUPOS DE TRABAJO",
+    "Label": "Grupos de trabajo",
+    "RolLevel": 0,
+    "RouterLink": "/tickets/groups-list",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7C8E-B2EC-1F81D82857CA",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7DCB-AA73-CA78C7AB1278",
+    "NameModule": "06.05 CATALOGO OC FIJOS",
+    "Label": "📘 | Catalogo OC Fijos",
+    "RolLevel": 0,
+    "RouterLink": "/purchases/fixed-expenses-catalog",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7728-AE75-B43E98B81E0F",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-77C5-9237-CA8BF8546A41",
+    "NameModule": "10.04 CONSECION BARRANCA",
+    "Label": "Concesión barranca",
+    "RolLevel": 1,
+    "RouterLink": "/library/ravine-concession",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7F7B-943F-438BF08435FF",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7C9B-B370-CF07DEBA0FC2",
+    "NameModule": "08.1 ALMACENES",
+    "Label": "Almacenes",
+    "RolLevel": 0,
+    "RouterLink": "/warehouse/list",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-728F-A691-7156BB2AA172",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7107-A4F5-D0126C7C4982",
+    "NameModule": "02.8 PRESUPUESTO NUEVO",
+    "Label": "Presupuesto nuevo",
+    "RolLevel": 0,
+    "RouterLink": "/contabilidad/budget-proposal",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-77A5-AD37-A5AAF4C075A2",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7429-BD70-D01E02B398ED",
+    "NameModule": "07 BITACORAS",
+    "Label": "Bitacoras",
+    "RolLevel": 0,
+    "RouterLink": null,
+    "Icon": "icon-pi-book",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-76B3-8A96-D291B404DB5F",
+    "NameModule": "01.03 CONCESIÓN BARRANCA",
+    "Label": "Concesión barranca",
+    "RolLevel": 0,
+    "RouterLink": "/legal/documents/ravine-concession",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7663-B231-98CCF16BECBC",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-71D6-A11E-D33332101191",
+    "NameModule": "21.04 APROBAR SOLICITUDES",
+    "Label": "Aprobar solicitudes",
+    "RolLevel": 0,
+    "RouterLink": "/human-resources/approval",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-78AA-85FD-433B0EA0C50C",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7785-A59A-D3BC1D5368BB",
+    "NameModule": "14 REPORTES",
+    "Label": "Reportes",
+    "RolLevel": 0,
+    "RouterLink": null,
+    "Icon": "icon-pi-chart-bar",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7392-A97E-D6D46BCDB6FC",
+    "NameModule": "16 RECLUTAMIENTO",
+    "Label": "Reclutamiento",
+    "RolLevel": 0,
+    "RouterLink": null,
+    "Icon": "icon-pi-user-plus",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019E5FC5-FF03-7C88-920D-D897D694DD09",
+    "NameModule": "07.7 RECEPCION PIPAS DE AGUA",
+    "Label": "Recepción pipas de agua",
+    "RolLevel": 0,
+    "RouterLink": "/logbook/water-truck-reception",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7429-BD70-D01E02B398ED",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-75D7-87AC-DFDE1BFA6A1C",
+    "NameModule": "02.2 PENDIENTES MINUTAS",
+    "Label": "Pendientes minutas",
+    "RolLevel": 0,
+    "RouterLink": "/contabilidad/minutes-pendings",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-77A5-AD37-A5AAF4C075A2",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7EC0-BFAE-E1F03C2701AB",
+    "NameModule": "20 PAQUETERIA",
+    "Label": "Paqueteria",
+    "RolLevel": 0,
+    "RouterLink": null,
+    "Icon": "icon-pi-truck",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-776E-9C52-E232D55B99ED",
+    "NameModule": "10.15 ESTADOS FINANCIEROS",
+    "Label": "Estados Financieros",
+    "RolLevel": 0,
+    "RouterLink": "/library/financial-report",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7F7B-943F-438BF08435FF",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-763A-AB36-E52BAA24524C",
+    "NameModule": "06.06 ORDEN COMPRA",
+    "Label": "🛒 | Orden Compra",
+    "RolLevel": 0,
+    "RouterLink": "/purchases/purchase-orders",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7728-AE75-B43E98B81E0F",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-74FC-9EA8-E693CCF4D2DC",
+    "NameModule": "21.02 MIS VACACIONES",
+    "Label": "Mis vacaciones",
+    "RolLevel": 0,
+    "RouterLink": "/human-resources/my-vacations",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-78AA-85FD-433B0EA0C50C",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7F2E-A4A1-E6B987D22FC2",
+    "NameModule": "06.01 PRESUPUESTOS",
+    "Label": "Presupuestos",
+    "RolLevel": 0,
+    "RouterLink": "/purchases/presupuestos",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7728-AE75-B43E98B81E0F",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7AB9-ACB4-E6D9F02C7126",
+    "NameModule": "05 JUNTASCOMITE",
+    "Label": "Juntas de comite",
+    "RolLevel": 0,
+    "RouterLink": null,
+    "Icon": "icon-pi-graduation-cap",
+    "PathParent": null,
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7D56-972C-E70C89359206",
+    "NameModule": "01.04 POZO DE AGUA",
+    "Label": "Pozo de agua",
+    "RolLevel": 0,
+    "RouterLink": "/legal/documents/well-concession",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7663-B231-98CCF16BECBC",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7C77-B56E-E7A13D1620D6",
+    "NameModule": "01.08 REGLAMENTOS",
+    "Label": "Reglamentos",
+    "RolLevel": 0,
+    "RouterLink": "/legal/documents/regulations",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7663-B231-98CCF16BECBC",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7719-73C6-90BA-E89D9ADE4D61",
+    "NameModule": "02.1 PRESENTACIONES",
+    "Label": "Presentaciones",
+    "RolLevel": 0,
+    "RouterLink": "/committee-meetings/presentations",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-77A5-AD37-A5AAF4C075A2",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019DB129-B0C6-7892-87AE-E8CCA6BC90EA",
+    "NameModule": "10.21 DIAGRAM",
+    "Label": "📈 Diagramas",
+    "RolLevel": 0,
+    "RouterLink": "diagram",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7F7B-943F-438BF08435FF",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-78BA-959B-ED803633AA55",
+    "NameModule": "01.6 DIRECTORIO DE COMITES",
+    "Label": "Directorio de comites",
+    "RolLevel": 0,
+    "RouterLink": "/legal/committee-directory",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7663-B231-98CCF16BECBC",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7D53-A310-EDB08C40C065",
+    "NameModule": "40.01 JUNTA MENSUAL",
+    "Label": "Junta mensual",
+    "RolLevel": 0,
+    "RouterLink": "/board-directors/monthly-meetings",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7AE4-B7DF-7C1062FB3EC1",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7E01-B247-EDBDADF64B1F",
+    "NameModule": "15.5 HERRAMIENTAS",
+    "Label": "Herramientas",
+    "RolLevel": 0,
+    "RouterLink": "/delivery-reception/tools",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-74EE-A030-25D72AB3B7B2",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7D54-AEDC-EDFD725BA0B0",
+    "NameModule": "07.3 LECTURA DE CONSUMOES",
+    "Label": "Lectura de consumos",
+    "RolLevel": 0,
+    "RouterLink": "/logbook/meter-list",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7429-BD70-D01E02B398ED",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7BAC-9972-F1AB0B2E7783",
+    "NameModule": "07.1 ORDENES DE MTTO",
+    "Label": "Ordenes de mtto",
+    "RolLevel": 0,
+    "RouterLink": "/logbook/maintenance-orders",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7429-BD70-D01E02B398ED",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-742F-923A-F37A1794C682",
+    "NameModule": "16.2 SOLICITUDES CLIENTE",
+    "Label": "Solicitudes",
+    "RolLevel": 0,
+    "RouterLink": "/recruitment/requests",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7392-A97E-D6D46BCDB6FC",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-703D-B026-F5602B9AC996",
+    "NameModule": "10.01 ACTA CONSTITUTIVA",
+    "Label": "Acta constitutiva",
+    "RolLevel": 0,
+    "RouterLink": "/library/incorporation-deed",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-7F7B-943F-438BF08435FF",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7719-7CEF-89E5-F5D9C25D6D00",
+    "NameModule": "01.02 ASAMBLEAS",
+    "Label": "Asambleas",
+    "RolLevel": 0,
+    "RouterLink": "/legal/documents/assemblies",
+    "Icon": null,
+    "PathParent": "019C6C02-7719-7663-B231-98CCF16BECBC",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7718-7F4F-8B6E-F8F08949E232",
+    "NameModule": "02.6 ESPEJO ASPEL",
+    "Label": "Espejo Aspel",
+    "RolLevel": 0,
+    "RouterLink": "/contabilidad/budget",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-77A5-AD37-A5AAF4C075A2",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-7833-AB68-F9B8D625E5DD",
+    "NameModule": "21.05 REGISTRAR SOLICITUDES",
+    "Label": "Registro solicitudes",
+    "RolLevel": 0,
+    "RouterLink": "/human-resources/register-past-vacations",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-78AA-85FD-433B0EA0C50C",
+    "ViewMobile": 1
+  },
+  {
+    "Id": "019C6C02-7719-70AA-BE06-FAE9E288C30D",
+    "NameModule": "09.5 LLAVES",
+    "Label": "Llaves",
+    "RolLevel": 0,
+    "RouterLink": "/inventory/keys",
+    "Icon": null,
+    "PathParent": "019C6C02-7718-766B-B0EE-853D4343D251",
+    "ViewMobile": 0
+  },
+  {
+    "Id": "019C6C02-7718-739B-BA01-FFA93CCFBA42",
+    "NameModule": "04 INSPECCIONES",
+    "Label": "Inspecciones",
+    "RolLevel": 0,
+    "RouterLink": null,
+    "Icon": "icon-pi-list",
+    "PathParent": null,
+    "ViewMobile": 0
+  }
+]

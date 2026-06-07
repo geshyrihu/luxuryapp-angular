@@ -48,7 +48,7 @@
       <div class="col-12 md:col-2 flex align-items-end">
         <custom-button
           label="Filtrar"
-          iconClass="pi pi-search"
+          iconClass="mdi:magnify"
           variant="outlined"
           [fluid]="true"
           [showLabelOnDesktop]="true"
@@ -129,19 +129,19 @@
           <custom-button-edit (clicked)="onModalForm(item)" />
           <custom-button-delete (confirmed)="onDelete(item.id)" />
           <custom-button-download
-            iconClass="pi pi-file-pdf"
+            iconClass="mdi:file-pdf-box"
             ngbTooltip="Descargar PDF"
             severity="danger"
             (clicked)="onDownloadPdf(item.id)"
           />
           <custom-button-item
             (clicked)="onViewPreview(item.id)"
-            iconClass="pi pi-book"
+            iconClass="mdi:book"
             label="Vista previa"
           />
           <custom-button-item
             [routerLink]="['/announcements/analytics', item.id]"
-            iconClass="pi pi-chart-bar"
+            iconClass="mdi:chart-bar"
             label="Analóticas"
           />
         </div>
@@ -180,11 +180,11 @@
           ></p-tag>
         </div>
         <p class="text-medium text-500 m-0 text-sm mb-1">
-          <i class="pi pi-calendar mr-1"></i> Publicado: {{ item.publishedAt |
+          <app-icon icon="mdi:calendar" class="mr-1" /> Publicado: {{ item.publishedAt |
           date: "dd/MM/yyyy" }}
         </p>
         <p class="text-medium text-500 m-0 text-sm">
-          <i class="pi pi-building mr-1"></i> Cliente: {{ item.customerName }}
+          <app-icon icon="mdi:office-building" class="mr-1" /> Cliente: {{ item.customerName }}
         </p>
         <p-tag
           [value]="item.announcementType"

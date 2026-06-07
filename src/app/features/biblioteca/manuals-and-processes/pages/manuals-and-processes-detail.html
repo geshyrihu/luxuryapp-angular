@@ -4,7 +4,7 @@
     class="flex align-items-center justify-content-center py-8"
     style="min-height: 20rem"
   >
-    <i class="pi pi-spin pi-spinner text-primary text-4xl"></i>
+    <app-icon icon="mdi:loading" class="text-primary text-4xl ds-animate-spin" />
   </div>
   } @else if (manual()) {
   <div class="w-full xl:w-10 mx-auto flex flex-column gap-4">
@@ -39,28 +39,28 @@
             <div
               class="surface-100 border-1 surface-border border-round-xl px-3 py-2 inline-flex align-items-center gap-2 text-sm text-color"
             >
-              <i class="pi pi-book text-xs"></i>
+              <app-icon icon="mdi:book" class="text-xs" />
               <span>Manual de Proceso · {{ manual()!.folio }}</span>
             </div>
             <div class="flex align-items-center gap-2">
               @if (isAdmin()) {
-              <p-button
+              <custom-button
                 class="no-print"
-                icon="pi pi-cog"
+                iconClass="mdi:cog"
                 label="Editor"
                 severity="secondary"
-                [outlined]="true"
-                (onClick)="onOpenEditor(manual()!.id)"
+                [variant]="'outlined'"
+                (clicked)="onOpenEditor(manual()!.id)"
               />
               }
               <!--
                 @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {              } -->
-              <p-button
+              <custom-button
                 class="no-print"
-                icon="pi pi-print"
+                iconClass="mdi:printer"
                 label="Descargar PDF"
                 severity="primary"
-                (onClick)="descargarPDF()"
+                (clicked)="descargarPDF()"
               />
             </div>
           </div>
@@ -69,12 +69,12 @@
 
       <div class="p-4 md:p-5">
         <div class="mb-3">
-          <p-button
+          <custom-button
             class="no-print"
-            icon="pi pi-arrow-left"
-            [text]="true"
+            iconClass="mdi:arrow-left"
+            [variant]="'text'"
             severity="secondary"
-            (onClick)="onBack()"
+            (clicked)="onBack()"
           />
         </div>
 
@@ -96,49 +96,49 @@
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <i class="pi pi-sitemap"></i>
+            <app-icon icon="mdi:sitemap" />
             <span>Departamento: {{ manual()!.departament }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <i class="pi pi-calendar-clock"></i>
+            <app-icon icon="mdi:calendar-clock" />
             <span>Frecuencia: {{ getPeriodicityReadable(manual()) }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <i class="pi pi-tag"></i>
+            <app-icon icon="mdi:tag" />
             <span>Version: {{ manual()!.currentVersion }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <i class="pi pi-verified"></i>
+            <app-icon icon="mdi:check-decagram" />
             <span>Estado: {{ manualStatusLabel() }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <i class="pi pi-globe"></i>
+            <app-icon icon="mdi:web" />
             <span>Alcance: {{ scopeLabel() }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <i class="pi pi-users"></i>
+            <app-icon icon="mdi:account-group" />
             <span>Dirigido a: {{ audienceLabel() }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <i class="pi pi-building"></i>
+            <app-icon icon="mdi:office-building" />
             <span>Visibilidad: {{ visibilityLabel() }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <i class="pi pi-list"></i>
+            <app-icon icon="mdi:format-list-bulleted" />
             <span>Pasos: {{ manual()!.pasos?.length || 0 }}</span>
           </div>
         </div>
@@ -337,15 +337,16 @@
             </div>
             } } @else {
             <div class="flex align-items-center gap-2">
-              <i class="pi pi-external-link text-primary"></i>
+              <app-icon icon="mdi:external-link" class="text-primary" />
               <a [href]="enlace.urlEnlace" target="_blank" class="no-underline">
                 <p-button
-                  icon="pi pi-external-link"
                   label="Abrir Enlace"
                   severity="info"
                   size="small"
                   [outlined]="true"
-                />
+                >
+                  <app-icon icon="mdi:external-link" class="mr-2" />
+                </p-button>
               </a>
               <span class="text-sm text-color-secondary"
                 >{{ enlace.urlEnlace }}</span
@@ -359,7 +360,7 @@
       </div>
       } @else {
       <div class="text-center py-6">
-        <i class="pi pi-book text-4xl text-400 mb-3"></i>
+        <app-icon icon="mdi:book" class="text-4xl text-400 mb-3" />
         <p class="text-500 m-0">Este manual aun no tiene pasos definidos.</p>
       </div>
       }
@@ -392,7 +393,7 @@
               class="surface-ground border-round-xl border-1 surface-border p-3 flex align-items-center justify-content-between gap-3 flex-wrap"
             >
               <div class="flex align-items-center gap-3">
-                <i class="pi pi-file text-xl text-primary"></i>
+                <app-icon icon="mdi:file-document-outline" class="text-xl text-primary" />
                 <div>
                   <div class="font-medium text-900">{{ adj.nombre }}</div>
                   <div class="text-xs text-color-secondary mt-1">
@@ -402,11 +403,12 @@
               </div>
               <a [href]="adj.url" target="_blank" download>
                 <p-button
-                  icon="pi pi-download"
                   label="Descargar"
                   [text]="true"
                   size="small"
-                />
+                >
+                  <app-icon icon="mdi:download" class="mr-2" />
+                </p-button>
               </a>
             </div>
             }

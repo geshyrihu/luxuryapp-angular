@@ -33,7 +33,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PaginationService } from "src/app/core/services/pagination.service"; // Importar el nuevo servicio
 import { TarjetaProducto } from "src/app/features/product/tarjeta-producto";
-import { IProductData } from "src/app/features/purchases/purchase-request/product-data.interface";
+import { IProductData } from "./product-data.interface";
 /**
  * Componente modal para agregar productos a una solicitud de compra.
  * Utiliza una tabla paginada para mostrar los productos disponibles y permite

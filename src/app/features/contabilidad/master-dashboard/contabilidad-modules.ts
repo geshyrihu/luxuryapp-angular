@@ -59,7 +59,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
       },
       // {
       //   title: "Estados Financieros Online V2",
-      //   description: "Sandbox del nuevo Estado de Resultados sin afectar la versiÃ³n actual.",
+      //   description: "Sandbox del nuevo Estado de Resultados sin afectar la versión actual.",
       //   route: "/contabilidad/financial-statements-reports-v2",
       //   icon: "pi pi-chart-line",
       //   color: "#1d4ed8",

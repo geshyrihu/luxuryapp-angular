@@ -5,6 +5,7 @@ import { SelectButtonModule } from "primeng/selectbutton";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -26,6 +27,7 @@ import {
     SelectButtonModule,
     TooltipModule,
     SkeletonModule,
+    AppIcon,
     CustomButtonSave,
   ],
 })
@@ -43,9 +45,9 @@ export class ApprovalRules implements OnInit {
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   readonly scopeOptions = [
-    { label: "N/A",     value: ApprovalScope.None,         icon: "pi pi-ban",   styleClass: "opt-none" },
-    { label: "Cliente", value: ApprovalScope.SameCustomer, icon: "pi pi-users", styleClass: "opt-cliente" },
-    { label: "Global",  value: ApprovalScope.Global,       icon: "pi pi-globe", styleClass: "opt-global" },
+    { label: "N/A",     value: ApprovalScope.None,         icon: "mdi:block-helper",   styleClass: "opt-none" },
+    { label: "Cliente", value: ApprovalScope.SameCustomer, icon: "mdi:account-group", styleClass: "opt-cliente" },
+    { label: "Global",  value: ApprovalScope.Global,       icon: "mdi:earth", styleClass: "opt-global" },
   ];
 
   ngOnInit(): void {

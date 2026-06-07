@@ -22,19 +22,37 @@ import {
   personOutline,
   warningOutline,
 } from "ionicons/icons";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+
 @Component({
   selector: "app-minutas-reuniones-consejo-directivo-detalle",
   imports: [
     CommonModule,
-    IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCardSubtitle,
-    IonList, IonListHeader, IonItem, IonLabel, IonIcon, IonBadge,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardSubtitle,
+    IonList,
+    IonListHeader,
+    IonItem,
+    IonLabel,
+    IonIcon,
+    IonBadge,
+    AppIcon,
   ],
   templateUrl: "./minutas-reuniones-consejo-directivo-detalle.html",
 })
 export class MinutasReunionesConsejoDirectivoDetalle implements OnInit {
   constructor() {
-    addIcons({ calendarOutline, personOutline, peopleOutline, personAddOutline, warningOutline });
+    addIcons({
+      calendarOutline,
+      personOutline,
+      peopleOutline,
+      personAddOutline,
+      warningOutline,
+    });
   }
 
   apiResponseS = inject(ApiResponseService);
@@ -66,16 +84,21 @@ export class MinutasReunionesConsejoDirectivoDetalle implements OnInit {
    */
   getStatusBadgeColor(status: string): string {
     switch (status.toLowerCase().trim()) {
-      case "pendiente": return "warning";
+      case "pendiente":
+        return "warning";
       case "en progreso":
       case "proceso":
-      case "doing": return "primary";
+      case "doing":
+        return "primary";
       case "concluido":
       case "completado":
-      case "hecho": return "success";
+      case "hecho":
+        return "success";
       case "cancelado":
-      case "no autorizado": return "danger";
-      default: return "medium";
+      case "no autorizado":
+        return "danger";
+      default:
+        return "medium";
     }
   }
 
@@ -105,12 +128,3 @@ export class MinutasReunionesConsejoDirectivoDetalle implements OnInit {
     }
   }
 }
-
-
-
-
-
-
-
-
-

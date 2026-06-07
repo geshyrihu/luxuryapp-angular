@@ -7,11 +7,12 @@ import { TooltipModule } from "primeng/tooltip";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ICustomerImageDTO } from "../models/customer.dto";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 
 @Component({
   selector: "app-customer-images",
   templateUrl: "./customer-images.html",
-  imports: [CommonModule, ImageModule, ButtonModule, TooltipModule],
+  imports: [CommonModule, ImageModule, ButtonModule, TooltipModule, AppIcon],
 })
 export class CustomerImages implements OnInit {
   private apiResponseS = inject(ApiResponseService);

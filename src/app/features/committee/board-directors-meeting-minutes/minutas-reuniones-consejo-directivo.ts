@@ -9,6 +9,7 @@ import {
 import { addIcons } from "ionicons";
 import { folderOpenOutline, readerOutline } from "ionicons/icons"; // Importamos el Router para la navegación
 import { TableModule } from "primeng/table";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { getIconForFileHelper } from "src/app/core/helpers/extension-file";
 import {
   globalFilterFields,
@@ -26,6 +27,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
     IonListHeader,
     IonItem,
     IonLabel,
+    AppIcon,
   ],
   templateUrl: "./minutas-reuniones-consejo-directivo.html",
 })

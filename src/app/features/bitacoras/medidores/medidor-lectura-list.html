@@ -19,7 +19,7 @@
     <div class="mt-1">
       <custom-button-download
         ngbTooltip="Exportar a Excel"
-        iconClass="pi pi-file-excel"
+        iconClass="mdi:file-excel"
         severity="success"
         (clicked)="exportExcel()"
       />
@@ -80,7 +80,7 @@
       <ion-label>
         <h2 class="font-bold m-0 text-base">{{ item.lectura }}</h2>
         <p class="text-sm text-500 m-0 mt-1">
-          <i class="pi pi-calendar mr-1 text-xs"></i> {{ item.fechaRegistro |
+          <app-icon icon="mdi:calendar" class="mr-1 text-xs" /> {{ item.fechaRegistro |
           date: "dd-MMM-yyyy" : "UTC" }}
         </p>
       </ion-label>

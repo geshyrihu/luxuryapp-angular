@@ -4,6 +4,7 @@ import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MessageService } from "primeng/api";
 import { ToastModule } from "primeng/toast";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { IManualDiagramSimpleDTO } from "../../models/manuals-and-processes.dto";
@@ -55,7 +56,7 @@ const CORPORATE_DEFAULT_XML = `<mxGraphModel>
 
 @Component({
   selector: "app-manual-flowchart-editor",
-  imports: [CommonModule, ToastModule],
+  imports: [CommonModule, ToastModule, AppIcon],
   providers: [MessageService],
   templateUrl: "./manual-flowchart-editor.html",
 })

@@ -18,7 +18,12 @@ import { ButtonModule } from "primeng/button";
 import { FileUploadModule } from "primeng/fileupload";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TagModule } from "primeng/tag";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import {
+  CustomButtonDelete,
+  CustomButtonSave,
+} from "src/app/core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomInputMultiselectSignal } from "src/app/core/components/inputs/web/custom-input-multiselect-signal";
 import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
@@ -75,11 +80,14 @@ interface IVersionForm {
     SelectButtonModule,
     CustomInputSwitch,
     FileUploadModule,
+    CustomButton,
+    CustomButtonDelete,
     CustomButtonSave,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     CustomInputMultiselectSignal,
     DiagramPreviewComponent,
+    AppIcon,
   ],
 })
 export class ManualsAndProcessesEditor implements OnInit {

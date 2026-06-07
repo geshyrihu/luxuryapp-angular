@@ -310,7 +310,7 @@ $contrast-900: #000000;
 
   // Tipografia Documental (Estandar Documental)
   --ds-font-family-document:
-    "IBM Plex Sans", "Inter", "Calibri", "Segoe UI", sans-serif;
+    "DM Sans", sans-serif;
   --ds-font-family-mono: "Roboto Mono", "Consolas", monospace;
   --ds-font-size-doc-title: 26pt; // Rango 24-28pt
   --ds-font-size-doc-body: 10.5pt; // Rango 10-11pt
@@ -333,7 +333,7 @@ $contrast-900: #000000;
 
   // Tipografia ERP
   --ds-font-family-base:
-    "IBM Plex Sans", "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+    "DM Sans", sans-serif;
   --ds-font-size-display: 2rem; // 32px - heroes internos o portada de modulo
   --ds-font-size-page-title: 1.75rem; // 28px - titulo principal de vista
   --ds-font-size-section-title: 1.25rem; // 20px - secciones y paneles

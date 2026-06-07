@@ -1,15 +1,8 @@
-<!-- ── Botón regresar ───────────────────────────────────────────────────────── -->
-<div class="mb-4">
-  <custom-button-item
-    iconClass="pi pi-arrow-left"
-    label="Regresar"
-    (click)="goBack()"
-  />
-</div>
-
 <!-- ── Cabecera fija ────────────────────────────────────────────────────────── -->
 @if (header()) {
-<div class="card mb-4 flex flex-column sm:flex-row align-items-center gap-4 shadow-1">
+<div
+  class="card mb-4 flex flex-column sm:flex-row align-items-center gap-4 shadow-1"
+>
   <div class="flex-shrink-0">
     @if (header()!.photoUrl) {
     <img
@@ -26,7 +19,9 @@
     }
   </div>
   <div class="flex-grow-1 text-center sm:text-left">
-    <div class="flex flex-wrap align-items-center justify-content-center sm:justify-content-start gap-3">
+    <div
+      class="flex flex-wrap align-items-center justify-content-center sm:justify-content-start gap-3"
+    >
       <h2 class="text-3xl font-bold m-0 text-900">{{ header()!.fullName }}</h2>
       <span
         [class]="'badge border-1 px-3 py-1 text-xs font-semibold ' + (header()!.isActive ? 'bg-green-100 text-green-700 border-green-200' : 'surface-100 text-600 border-300')"
@@ -37,10 +32,15 @@
     <p class="text-600 text-lg m-0 mt-1 font-medium">
       {{ header()!.puesto }} — {{ header()!.departamento }}
     </p>
-    <div class="flex flex-wrap justify-content-center sm:justify-content-start mt-3 text-sm text-500 gap-4">
+    <div
+      class="flex flex-wrap justify-content-center sm:justify-content-start mt-3 text-sm text-500 gap-4"
+    >
       <div class="flex align-items-center gap-2">
         <i class="pi pi-id-card"></i>
-        <span>No. Empleado: <strong>{{ header()!.numberEmployee ?? '—' }}</strong></span>
+        <span
+          >No. Empleado:
+          <strong>{{ header()!.numberEmployee ?? '—' }}</strong></span
+        >
       </div>
       <div class="flex align-items-center gap-2">
         <i class="pi pi-envelope"></i>
@@ -53,7 +53,12 @@
       @if (header()!.dateAdmission) {
       <div class="flex align-items-center gap-2">
         <i class="pi pi-calendar"></i>
-        <span>Ingreso: <strong>{{ header()!.dateAdmission | date:'dd/MM/yyyy' }}</strong></span>
+        <span
+          >Ingreso:
+          <strong
+            >{{ header()!.dateAdmission | date:'dd/MM/yyyy' }}</strong
+          ></span
+        >
       </div>
       }
     </div>
@@ -62,7 +67,7 @@
 }
 
 <!-- ── Pestañas ─────────────────────────────────────────────────────────────── -->
-<p-tabs (activeIndexChange)="onTabChange($event)">
+<p-tabs [value]="0" (valueChange)="onTabChange($event)">
   <p-tablist>
     <p-tab [value]="0"><i class="pi pi-user mr-2"></i>Personales</p-tab>
     <p-tab [value]="1"><i class="pi pi-phone mr-2"></i>Emergencia</p-tab>
@@ -70,8 +75,12 @@
     <p-tab [value]="3"><i class="pi pi-wallet mr-2"></i>Bancarios</p-tab>
     <p-tab [value]="4"><i class="pi pi-file mr-2"></i>Contratos</p-tab>
     <p-tab [value]="5"><i class="pi pi-briefcase mr-2"></i>Puesto</p-tab>
-    <p-tab [value]="6"><i class="pi pi-calendar-plus mr-2"></i>Vacaciones</p-tab>
-    <p-tab [value]="7"><i class="pi pi-exclamation-triangle mr-2"></i>Incidencias</p-tab>
+    <p-tab [value]="6"
+      ><i class="pi pi-calendar-plus mr-2"></i>Vacaciones</p-tab
+    >
+    <p-tab [value]="7"
+      ><i class="pi pi-exclamation-triangle mr-2"></i>Incidencias</p-tab
+    >
     <p-tab [value]="8"><i class="pi pi-chart-line mr-2"></i>Evaluaciones</p-tab>
     <p-tab [value]="9"><i class="pi pi-send mr-2"></i>Solicitudes</p-tab>
   </p-tablist>
@@ -82,64 +91,162 @@
       @if (personalData(); as pd) {
       <div class="grid py-4 row-gap-4">
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Nombre Completo</label>
-          <p class="font-semibold text-900 m-0">{{ pd.firstName }} {{ pd.lastName }}</p>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >Nombre Completo</label
+          >
+          <p class="font-semibold text-900 m-0">
+            {{ pd.firstName }} {{ pd.lastName }}
+          </p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Correo Institucional</label>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >Correo Institucional</label
+          >
           <p class="font-semibold text-900 m-0">{{ pd.email }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Teléfono Móvil</label>
-          <p class="font-semibold text-900 m-0">{{ pd.phoneNumberPrefix }} {{ pd.phoneNumber }}</p>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >Teléfono Móvil</label
+          >
+          <p class="font-semibold text-900 m-0">
+            {{ pd.phoneNumberPrefix }} {{ pd.phoneNumber }}
+          </p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Teléfono Local</label>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >Teléfono Local</label
+          >
           <p class="font-semibold text-900 m-0">{{ pd.localPhone || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Fecha de Nacimiento</label>
-          <p class="font-semibold text-900 m-0">{{ (pd.birth | date:'dd/MM/yyyy':'UTC') || '—' }}</p>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >Fecha de Nacimiento</label
+          >
+          <p class="font-semibold text-900 m-0">
+            {{ (pd.birth | date:'dd/MM/yyyy':'UTC') || '—' }}
+          </p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">CURP</label>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >CURP</label
+          >
           <p class="font-semibold text-900 m-0">{{ pd.curp || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">RFC</label>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >RFC</label
+          >
           <p class="font-semibold text-900 m-0">{{ pd.rfc || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">NSS</label>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >NSS</label
+          >
           <p class="font-semibold text-900 m-0">{{ pd.nss || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Género</label>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >Género</label
+          >
           <p class="font-semibold text-900 m-0">{{ pd.sex || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Tipo de Sangre</label>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >Tipo de Sangre</label
+          >
           <p class="font-semibold text-900 m-0">{{ pd.bloodType || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Nacionalidad</label>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >Nacionalidad</label
+          >
           <p class="font-semibold text-900 m-0">{{ pd.nationality || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Estado Civil</label>
-          <p class="font-semibold text-900 m-0">{{ pd.maritalStatus || '—' }}</p>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >Estado Civil</label
+          >
+          <p class="font-semibold text-900 m-0">
+            {{ pd.maritalStatus || '—' }}
+          </p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Nivel Educativo</label>
-          <p class="font-semibold text-900 m-0">{{ pd.educationLevel || '—' }}</p>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >Nivel Educativo</label
+          >
+          <p class="font-semibold text-900 m-0">
+            {{ pd.educationLevel || '—' }}
+          </p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Fecha de Ingreso</label>
-          <p class="font-semibold text-900 m-0">{{ (pd.dateAdmission | date:'dd/MM/yyyy':'UTC') || '—' }}</p>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >Fecha de Ingreso</label
+          >
+          <p class="font-semibold text-900 m-0">
+            {{ (pd.dateAdmission | date:'dd/MM/yyyy':'UTC') || '—' }}
+          </p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Salario Mensual</label>
-          <p class="font-bold text-primary text-lg m-0">{{ pd.salary | currency:'MXN':'symbol':'1.2-2' }}</p>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >Salario Mensual</label
+          >
+          <p class="font-bold text-primary text-lg m-0">
+            {{ pd.salary | currency:'MXN':'symbol':'1.2-2' }}
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-4 border-top-1 border-200 pt-4">
+        <h4 class="text-lg font-bold text-900 mb-3 flex align-items-center gap-2">
+          <i class="pi pi-map-marker text-red-500"></i>
+          Dirección
+        </h4>
+        <div class="grid py-2 row-gap-4">
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Calle</label>
+            <p class="font-semibold text-900 m-0">{{ pd.street || '—' }}</p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Número Ext. / Int.</label>
+            <p class="font-semibold text-900 m-0">
+              {{ pd.number || '—' }} {{ pd.unitNumber ? ' / ' + pd.unitNumber : '' }}
+            </p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Colonia</label>
+            <p class="font-semibold text-900 m-0">{{ pd.district || '—' }}</p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Alcaldía / Municipio</label>
+            <p class="font-semibold text-900 m-0">{{ pd.townHall || '—' }}</p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Ciudad</label>
+            <p class="font-semibold text-900 m-0">{{ pd.city || '—' }}</p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Estado / País</label>
+            <p class="font-semibold text-900 m-0">{{ pd.country || '—' }}</p>
+          </div>
+          <div class="col-12 sm:col-6 lg:col-4">
+            <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Código Postal</label>
+            <p class="font-semibold text-900 m-0">{{ pd.zipCode || '—' }}</p>
+          </div>
         </div>
       </div>
       } @else {
@@ -153,7 +260,10 @@
     <!-- Tab 2: Contacto de emergencia -->
     <p-tabpanel [value]="1">
       @if (emergencyContacts().length > 0) {
-      <p-table [value]="emergencyContacts()" styleClass="custom-table card shadow-1 mt-3">
+      <p-table
+        [value]="emergencyContacts()"
+        styleClass="custom-table card shadow-1 mt-3"
+      >
         <ng-template pTemplate="header">
           <tr>
             <th>Nombre</th>
@@ -165,10 +275,15 @@
         <ng-template pTemplate="body" let-item>
           <tr>
             <td class="font-medium">{{ item.nameContact }}</td>
-            <td><i class="pi pi-phone mr-2 text-primary"></i>{{ item.phoneNumber }}</td>
+            <td>
+              <i class="pi pi-phone mr-2 text-primary"></i>{{ item.phoneNumber
+              }}
+            </td>
             <td>{{ item.relation }}</td>
             <td>
-              <span class="badge surface-100 text-600">{{ item.contactOfBeneficiary }}</span>
+              <span class="badge surface-100 text-600"
+                >{{ item.contactOfBeneficiary }}</span
+              >
             </td>
           </tr>
         </ng-template>
@@ -184,7 +299,10 @@
     <!-- Tab 3: Datos clínicos -->
     <p-tabpanel [value]="2">
       @if (clinicalData().length > 0) {
-      <p-table [value]="clinicalData()" styleClass="custom-table card shadow-1 mt-3">
+      <p-table
+        [value]="clinicalData()"
+        styleClass="custom-table card shadow-1 mt-3"
+      >
         <ng-template pTemplate="header">
           <tr>
             <th>Padecimiento / Alergia</th>
@@ -193,7 +311,9 @@
         </ng-template>
         <ng-template pTemplate="body" let-item>
           <tr>
-            <td class="font-medium text-red-600"><i class="pi pi-heart-fill mr-2"></i>{{ item.name }}</td>
+            <td class="font-medium text-red-600">
+              <i class="pi pi-heart-fill mr-2"></i>{{ item.name }}
+            </td>
             <td>{{ item.description }}</td>
           </tr>
         </ng-template>
@@ -209,7 +329,10 @@
     <!-- Tab 4: Datos bancarios -->
     <p-tabpanel [value]="3">
       @if (bankData().length > 0) {
-      <p-table [value]="bankData()" styleClass="custom-table card shadow-1 mt-3">
+      <p-table
+        [value]="bankData()"
+        styleClass="custom-table card shadow-1 mt-3"
+      >
         <ng-template pTemplate="header">
           <tr>
             <th>Institución Bancaria</th>
@@ -245,7 +368,10 @@
     <!-- Tab 5: Contratos -->
     <p-tabpanel [value]="4">
       @if (contracts().length > 0) {
-      <p-table [value]="contracts()" styleClass="custom-table card shadow-1 mt-3">
+      <p-table
+        [value]="contracts()"
+        styleClass="custom-table card shadow-1 mt-3"
+      >
         <ng-template pTemplate="header">
           <tr>
             <th>Folio Contrato</th>
@@ -261,16 +387,23 @@
             <td class="font-bold">#{{ item.contractNumber }}</td>
             <td>{{ item.contractType }}</td>
             <td>
-              <span [class]="'badge ' + getStatusBadge(item.contractStatus)">{{ item.contractStatus }}</span>
+              <span [class]="'badge ' + getStatusBadge(item.contractStatus)"
+                >{{ item.contractStatus }}</span
+              >
             </td>
             <td>
               <div class="flex align-items-center gap-2">
                 <span>{{ item.startDate | date:'dd/MM/yyyy' }}</span>
                 <i class="pi pi-arrow-right text-xs text-400"></i>
-                <span>{{ (item.endDate | date:'dd/MM/yyyy') || 'Indeterminado' }}</span>
+                <span
+                  >{{ (item.endDate | date:'dd/MM/yyyy') || 'Indeterminado'
+                  }}</span
+                >
               </div>
             </td>
-            <td class="font-semibold text-primary">{{ item.contractSalary | currency:'MXN':'symbol':'1.2-2' }}</td>
+            <td class="font-semibold text-primary">
+              {{ item.contractSalary | currency:'MXN':'symbol':'1.2-2' }}
+            </td>
             <td><small class="text-500">{{ item.notes || '—' }}</small></td>
           </tr>
         </ng-template>
@@ -288,38 +421,65 @@
       @if (workPosition(); as wp) {
       <div class="grid py-4 mb-4 row-gap-4">
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Puesto Actual</label>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >Puesto Actual</label
+          >
           <p class="font-bold text-900 m-0 text-xl">{{ wp.puesto || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Departamento</label>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >Departamento</label
+          >
           <p class="font-semibold text-900 m-0">{{ wp.departamento || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Folio Posición</label>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >Folio Posición</label
+          >
           <p class="font-semibold text-900 m-0">#{{ wp.folio || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Sueldo de Contratación</label>
-          <p class="font-bold text-primary m-0 text-lg">{{ wp.sueldoBase | currency:'MXN':'symbol':'1.2-2' }}</p>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >Sueldo de Contratación</label
+          >
+          <p class="font-bold text-primary m-0 text-lg">
+            {{ wp.sueldoBase | currency:'MXN':'symbol':'1.2-2' }}
+          </p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Turno Asignado</label>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >Turno Asignado</label
+          >
           <p class="font-semibold text-900 m-0">{{ wp.turnoTrabajo || '—' }}</p>
         </div>
         <div class="col-12 sm:col-6 lg:col-4">
-          <label class="text-xs font-bold text-500 uppercase tracking-wider block mb-1">Estado de Ocupación</label>
-          <span class="badge bg-blue-100 text-blue-700 font-semibold">{{ wp.state || '—' }}</span>
+          <label
+            class="text-xs font-bold text-500 uppercase tracking-wider block mb-1"
+            >Estado de Ocupación</label
+          >
+          <span class="badge bg-blue-100 text-blue-700 font-semibold"
+            >{{ wp.state || '—' }}</span
+          >
         </div>
       </div>
 
       @if (wp.salaryModifications.length > 0) {
       <div class="mt-4">
-        <h4 class="text-lg font-bold text-900 mb-3 flex align-items-center gap-2">
+        <h4
+          class="text-lg font-bold text-900 mb-3 flex align-items-center gap-2"
+        >
           <i class="pi pi-history text-primary"></i>
           Historial de Modificaciones Salariales
         </h4>
-        <p-table [value]="wp.salaryModifications" styleClass="custom-table card shadow-1">
+        <p-table
+          [value]="wp.salaryModifications"
+          styleClass="custom-table card shadow-1"
+        >
           <ng-template pTemplate="header">
             <tr>
               <th>Folio</th>
@@ -341,13 +501,19 @@
               </td>
               <td>
                 <div class="flex flex-column">
-                  <span class="text-xs text-500">De: {{ item.salarioAnterior | currency:'MXN' }}</span>
-                  <span class="font-bold text-green-600">A: {{ item.salarioNuevo | currency:'MXN' }}</span>
+                  <span class="text-xs text-500"
+                    >De: {{ item.salarioAnterior | currency:'MXN' }}</span
+                  >
+                  <span class="font-bold text-green-600"
+                    >A: {{ item.salarioNuevo | currency:'MXN' }}</span
+                  >
                 </div>
               </td>
               <td>{{ item.executionDate | date:'dd/MM/yyyy' }}</td>
               <td>
-                <span [class]="'badge ' + getStatusBadge(item.status)">{{ item.status }}</span>
+                <span [class]="'badge ' + getStatusBadge(item.status)"
+                  >{{ item.status }}</span
+                >
               </td>
             </tr>
           </ng-template>
@@ -366,7 +532,9 @@
       @if (vacationsLeaves(); as vl) {
       <!-- Vacaciones -->
       <div class="mb-5">
-        <h4 class="text-lg font-bold text-900 mb-3 flex align-items-center gap-2">
+        <h4
+          class="text-lg font-bold text-900 mb-3 flex align-items-center gap-2"
+        >
           <i class="pi pi-sun text-orange-500"></i>
           Solicitudes de Vacaciones
         </h4>
@@ -384,10 +552,13 @@
           <ng-template pTemplate="body" let-item>
             <tr>
               <td class="font-semibold">
-                {{ item.startDate | date:'dd/MM/yyyy' }} - {{ item.endDate | date:'dd/MM/yyyy' }}
+                {{ item.startDate | date:'dd/MM/yyyy' }} - {{ item.endDate |
+                date:'dd/MM/yyyy' }}
               </td>
               <td>
-                <span [class]="'badge ' + getStatusBadge(item.status)">{{ item.status }}</span>
+                <span [class]="'badge ' + getStatusBadge(item.status)"
+                  >{{ item.status }}</span
+                >
               </td>
               <td>{{ item.requestDate | date:'dd/MM/yyyy' }}</td>
               <td class="text-center">
@@ -402,13 +573,17 @@
           </ng-template>
         </p-table>
         } @else {
-        <p class="text-400 p-3 surface-50 border-round">No se registran periodos vacacionales solicitados.</p>
+        <p class="text-400 p-3 surface-50 border-round">
+          No se registran periodos vacacionales solicitados.
+        </p>
         }
       </div>
 
       <!-- Permisos -->
       <div>
-        <h4 class="text-lg font-bold text-900 mb-3 flex align-items-center gap-2">
+        <h4
+          class="text-lg font-bold text-900 mb-3 flex align-items-center gap-2"
+        >
           <i class="pi pi-clock text-blue-500"></i>
           Permisos y Ausencias
         </h4>
@@ -426,12 +601,19 @@
           <ng-template pTemplate="body" let-item>
             <tr>
               <td class="font-semibold text-primary">{{ item.leaveType }}</td>
-              <td>{{ item.startDate | date:'dd/MM/yyyy' }} - {{ item.endDate | date:'dd/MM/yyyy' }}</td>
               <td>
-                <span [class]="'badge ' + getStatusBadge(item.status)">{{ item.status }}</span>
+                {{ item.startDate | date:'dd/MM/yyyy' }} - {{ item.endDate |
+                date:'dd/MM/yyyy' }}
               </td>
               <td>
-                <span [class]="'badge ' + (item.paidStatus === 'Con Goce' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700')">
+                <span [class]="'badge ' + getStatusBadge(item.status)"
+                  >{{ item.status }}</span
+                >
+              </td>
+              <td>
+                <span
+                  [class]="'badge ' + (item.paidStatus === 'Con Goce' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700')"
+                >
                   {{ item.paidStatus }}
                 </span>
               </td>
@@ -440,7 +622,9 @@
           </ng-template>
         </p-table>
         } @else {
-        <p class="text-400 p-3 surface-50 border-round">No se registran permisos especiales.</p>
+        <p class="text-400 p-3 surface-50 border-round">
+          No se registran permisos especiales.
+        </p>
         }
       </div>
       }
@@ -449,7 +633,10 @@
     <!-- Tab 8: Incidencias -->
     <p-tabpanel [value]="7">
       @if (incidents().length > 0) {
-      <p-table [value]="incidents()" styleClass="custom-table card shadow-1 mt-3">
+      <p-table
+        [value]="incidents()"
+        styleClass="custom-table card shadow-1 mt-3"
+      >
         <ng-template pTemplate="header">
           <tr>
             <th>Incidencia</th>
@@ -464,22 +651,36 @@
           <tr>
             <td>
               <div class="flex flex-column">
-                <span class="font-bold text-900">{{ item.incidentTypeName }}</span>
+                <span class="font-bold text-900"
+                  >{{ item.incidentTypeName }}</span
+                >
                 <small class="text-500">{{ item.category }}</small>
               </div>
             </td>
             <td>
-              <span [class]="'badge font-semibold ' + getSeverityBadge(item.severityLevel)">{{ item.severityLevel }}</span>
+              <span
+                [class]="'badge font-semibold ' + getSeverityBadge(item.severityLevel)"
+                >{{ item.severityLevel }}</span
+              >
             </td>
             <td>
-              <span class="badge surface-100 border-1 border-300 text-700">{{ item.investigationStatus }}</span>
+              <span class="badge surface-100 border-1 border-300 text-700"
+                >{{ item.investigationStatus }}</span
+              >
             </td>
-            <td class="font-medium">{{ item.incidentDateTime | date:'dd/MM/yyyy HH:mm' }}</td>
+            <td class="font-medium">
+              {{ item.incidentDateTime | date:'dd/MM/yyyy HH:mm' }}
+            </td>
             <td>
               @if (item.sanction) {
               <div class="flex flex-column">
-                <span class="font-semibold text-red-600">{{ item.sanction.sanctionTypeName }}</span>
-                <small class="text-500">Desde: {{ item.sanction.effectiveStartDate | date:'dd/MM/yyyy' }}</small>
+                <span class="font-semibold text-red-600"
+                  >{{ item.sanction.sanctionTypeName }}</span
+                >
+                <small class="text-500"
+                  >Desde: {{ item.sanction.effectiveStartDate |
+                  date:'dd/MM/yyyy' }}</small
+                >
               </div>
               } @else { <span class="text-400">Sin sanción</span> }
             </td>
@@ -493,7 +694,7 @@
                   severity="danger"
                   variant="outlined"
                   pTooltip="Descargar Acta Administrativa"
-                  (click)="onDownloadAct(item.administrativeActPdfPath)"
+                  (click)="onDownloadAct(item.administrativeActPdfUrl)"
                 />
                 } @else {
                 <span class="text-400 text-xs italic">Acta no generada</span>
@@ -516,32 +717,55 @@
       @if (evaluations().length > 0) {
       <div class="flex flex-column gap-4 mt-3">
         @for (eval of evaluations(); track eval.id) {
-        <div class="card shadow-1 surface-ground p-0 overflow-hidden border-1 border-200">
-          <div class="flex flex-wrap align-items-center justify-content-between bg-white p-3 border-bottom-1 border-200">
+        <div
+          class="card shadow-1 surface-ground p-0 overflow-hidden border-1 border-200"
+        >
+          <div
+            class="flex flex-wrap align-items-center justify-content-between bg-white p-3 border-bottom-1 border-200"
+          >
             <div class="flex align-items-center gap-3">
               <div class="bg-primary-100 p-2 border-round">
                 <i class="pi pi-chart-bar text-primary text-xl"></i>
               </div>
               <div class="flex flex-column">
-                <span class="text-lg font-bold text-900">{{ eval.templateName }}</span>
-                <span class="text-sm text-500">Evaluador: <strong>{{ eval.evaluatorName }}</strong></span>
+                <span class="text-lg font-bold text-900"
+                  >{{ eval.templateName }}</span
+                >
+                <span class="text-sm text-500"
+                  >Evaluador: <strong>{{ eval.evaluatorName }}</strong></span
+                >
               </div>
             </div>
             <div class="flex align-items-center gap-4">
               <div class="text-center">
-                <span class="text-xs text-500 uppercase block">Calificación</span>
-                <span class="text-2xl font-black text-primary">{{ eval.finalScore != null ? (eval.finalScore | number:'1.1-1') : '—' }}</span>
+                <span class="text-xs text-500 uppercase block"
+                  >Calificación</span
+                >
+                <span class="text-2xl font-black text-primary"
+                  >{{ eval.finalScore != null ? (eval.finalScore |
+                  number:'1.1-1') : '—' }}</span
+                >
               </div>
               <div class="text-right">
-                <span [class]="'badge ' + getStatusBadge(eval.status)">{{ eval.status }}</span>
-                <small class="block text-500 mt-1">{{ eval.evaluationDate | date:'dd/MM/yyyy':'UTC' }}</small>
+                <span [class]="'badge ' + getStatusBadge(eval.status)"
+                  >{{ eval.status }}</span
+                >
+                <small class="block text-500 mt-1"
+                  >{{ eval.evaluationDate | date:'dd/MM/yyyy':'UTC' }}</small
+                >
               </div>
             </div>
           </div>
           @if (eval.finalComments) {
           <div class="p-3 bg-white">
-            <label class="text-xs font-bold text-500 uppercase block mb-1">Comentarios del Evaluador</label>
-            <p class="m-0 text-700 italic border-left-3 border-primary-200 pl-3">"{{ eval.finalComments }}"</p>
+            <label class="text-xs font-bold text-500 uppercase block mb-1"
+              >Comentarios del Evaluador</label
+            >
+            <p
+              class="m-0 text-700 italic border-left-3 border-primary-200 pl-3"
+            >
+              "{{ eval.finalComments }}"
+            </p>
           </div>
           }
         </div>
@@ -550,7 +774,10 @@
       } @else {
       <div class="flex flex-column align-items-center py-8 text-400">
         <i class="pi pi-chart-line text-5xl mb-3"></i>
-        <span>No se han realizado evaluaciones de desempeño a este colaborador.</span>
+        <span
+          >No se han realizado evaluaciones de desempeño a este
+          colaborador.</span
+        >
       </div>
       }
     </p-tabpanel>
@@ -561,7 +788,9 @@
       <div class="grid py-3">
         <!-- Alta -->
         <div class="col-12 lg:col-6">
-          <h4 class="text-lg font-bold text-900 mb-3 flex align-items-center gap-2">
+          <h4
+            class="text-lg font-bold text-900 mb-3 flex align-items-center gap-2"
+          >
             <i class="pi pi-user-plus text-green-500"></i>
             Solicitud de Ingreso (Alta)
           </h4>
@@ -574,10 +803,14 @@
               </div>
               <div class="col-6">
                 <span class="text-xs text-500 uppercase block">Estatus</span>
-                <span class="badge bg-green-100 text-green-700">{{ r.status }}</span>
+                <span class="badge bg-green-100 text-green-700"
+                  >{{ r.status }}</span
+                >
               </div>
               <div class="col-6">
-                <span class="text-xs text-500 uppercase block">Tipo Contrato</span>
+                <span class="text-xs text-500 uppercase block"
+                  >Tipo Contrato</span
+                >
                 <span class="font-medium">{{ r.typeContractRegister }}</span>
               </div>
               <div class="col-6">
@@ -585,28 +818,43 @@
                 <span class="font-medium">{{ r.fuente }}</span>
               </div>
               <div class="col-6">
-                <span class="text-xs text-500 uppercase block">Solicitado el</span>
-                <span class="font-medium">{{ r.requestDate | date:'dd/MM/yyyy' }}</span>
+                <span class="text-xs text-500 uppercase block"
+                  >Solicitado el</span
+                >
+                <span class="font-medium"
+                  >{{ r.requestDate | date:'dd/MM/yyyy' }}</span
+                >
               </div>
               <div class="col-6">
-                <span class="text-xs text-500 uppercase block">Ejecutado el</span>
-                <span class="font-medium">{{ (r.executionDate | date:'dd/MM/yyyy') || 'Pendiente' }}</span>
+                <span class="text-xs text-500 uppercase block"
+                  >Ejecutado el</span
+                >
+                <span class="font-medium"
+                  >{{ (r.executionDate | date:'dd/MM/yyyy') || 'Pendiente'
+                  }}</span
+                >
               </div>
             </div>
           </div>
           } @else {
-          <div class="surface-50 border-round p-4 text-400 italic">No hay registros de solicitud de alta.</div>
+          <div class="surface-50 border-round p-4 text-400 italic">
+            No hay registros de solicitud de alta.
+          </div>
           }
         </div>
 
         <!-- Baja -->
         <div class="col-12 lg:col-6">
-          <h4 class="text-lg font-bold text-900 mb-3 flex align-items-center gap-2">
+          <h4
+            class="text-lg font-bold text-900 mb-3 flex align-items-center gap-2"
+          >
             <i class="pi pi-user-minus text-red-500"></i>
             Solicitud de Egreso (Baja)
           </h4>
           @if (req.dismissalRequest; as d) {
-          <div class="card shadow-1 surface-50 p-4 border-round-xl border-left-3 border-red-500">
+          <div
+            class="card shadow-1 surface-50 p-4 border-round-xl border-left-3 border-red-500"
+          >
             <div class="grid row-gap-3">
               <div class="col-6">
                 <span class="text-xs text-500 uppercase block">Folio</span>
@@ -614,97 +862,149 @@
               </div>
               <div class="col-6">
                 <span class="text-xs text-500 uppercase block">Estatus</span>
-                <span class="badge bg-red-100 text-red-700">{{ d.status }}</span>
+                <span class="badge bg-red-100 text-red-700"
+                  >{{ d.status }}</span
+                >
               </div>
-              
+
               <!-- Firmas -->
               <div class="col-6">
-                <span class="text-xs text-500 uppercase block">Firma Legal</span>
+                <span class="text-xs text-500 uppercase block"
+                  >Firma Legal</span
+                >
                 @if (d.isAuthorizedByLegal) {
-                  <span class="badge bg-green-100 text-green-700"><i class="pi pi-check mr-1"></i> {{ d.legalAuthorizationDate | date:'dd/MM/yyyy' }}</span>
+                <span class="badge bg-green-100 text-green-700"
+                  ><i class="pi pi-check mr-1"></i> {{ d.legalAuthorizationDate
+                  | date:'dd/MM/yyyy' }}</span
+                >
                 } @else {
-                  <span class="badge surface-200 text-500"><i class="pi pi-clock mr-1"></i> Pendiente</span>
+                <span class="badge surface-200 text-500"
+                  ><i class="pi pi-clock mr-1"></i> Pendiente</span
+                >
                 }
               </div>
               <div class="col-6">
-                <span class="text-xs text-500 uppercase block">Firma Nóminas</span>
+                <span class="text-xs text-500 uppercase block"
+                  >Firma Nóminas</span
+                >
                 @if (d.isAuthorizedByPayroll) {
-                  <span class="badge bg-green-100 text-green-700"><i class="pi pi-check mr-1"></i> {{ d.payrollAuthorizationDate | date:'dd/MM/yyyy' }}</span>
+                <span class="badge bg-green-100 text-green-700"
+                  ><i class="pi pi-check mr-1"></i> {{
+                  d.payrollAuthorizationDate | date:'dd/MM/yyyy' }}</span
+                >
                 } @else {
-                  <span class="badge surface-200 text-500"><i class="pi pi-clock mr-1"></i> Pendiente</span>
+                <span class="badge surface-200 text-500"
+                  ><i class="pi pi-clock mr-1"></i> Pendiente</span
+                >
                 }
               </div>
 
               <div class="col-6">
-                <span class="text-xs text-500 uppercase block">Motivo de Baja</span>
+                <span class="text-xs text-500 uppercase block"
+                  >Motivo de Baja</span
+                >
                 <span class="font-medium">{{ d.tipoBaja }}</span>
               </div>
               <div class="col-6">
-                <span class="text-xs text-500 uppercase block">Asistencia Legal</span>
-                <span class="font-medium">{{ d.lawyerAssistance ? 'Sí' : 'No' }}</span>
+                <span class="text-xs text-500 uppercase block"
+                  >Asistencia Legal</span
+                >
+                <span class="font-medium"
+                  >{{ d.lawyerAssistance ? 'Sí' : 'No' }}</span
+                >
               </div>
               <div class="col-12">
-                <span class="text-xs text-500 uppercase block">Justificación</span>
+                <span class="text-xs text-500 uppercase block"
+                  >Justificación</span
+                >
                 <p class="m-0 text-700 italic">"{{ d.reasonForLeaving }}"</p>
               </div>
               <div class="col-6">
                 <span class="text-xs text-500 uppercase block">Último día</span>
-                <span class="font-bold">{{ (d.lastDayOfWork | date:'dd/MM/yyyy') || '—' }}</span>
+                <span class="font-bold"
+                  >{{ (d.lastDayOfWork | date:'dd/MM/yyyy') || '—' }}</span
+                >
               </div>
             </div>
 
             <!-- Evidencia Adjunta -->
-            @if (d.supportFiles.length > 0 || d.incidents.length > 0 || d.evaluations.length > 0) {
-              <div class="mt-4 pt-3 border-top-1 border-300">
-                <h5 class="text-md font-bold text-800 mb-3"><i class="pi pi-folder-open mr-2 text-primary"></i> Evidencia Adjunta</h5>
-                
-                @if (d.supportFiles.length > 0) {
-                  <div class="mb-3">
-                    <span class="text-xs text-500 uppercase block mb-2">Archivos subidos</span>
-                    <div class="flex flex-wrap gap-2">
-                      @for (file of d.supportFiles; track file.id) {
-                        <a [href]="file.fileUrl" target="_blank" class="p-button p-button-outlined p-button-sm p-button-secondary no-underline">
-                          <i class="pi pi-file-pdf mr-2"></i> {{ file.fileName }}
-                        </a>
-                      }
-                    </div>
-                  </div>
-                }
+            @if (d.supportFiles.length > 0 || d.incidents.length > 0 ||
+            d.evaluations.length > 0) {
+            <div class="mt-4 pt-3 border-top-1 border-300">
+              <h5 class="text-md font-bold text-800 mb-3">
+                <i class="pi pi-folder-open mr-2 text-primary"></i> Evidencia
+                Adjunta
+              </h5>
 
-                @if (d.incidents.length > 0) {
-                  <div class="mb-3">
-                    <span class="text-xs text-500 uppercase block mb-2">Actas vinculadas</span>
-                    <div class="flex flex-wrap gap-2">
-                      @for (acta of d.incidents; track acta.id) {
-                        <div class="border-1 border-300 border-round p-2 surface-0 text-sm">
-                          <strong>{{ acta.incidentTypeName }}</strong> - {{ acta.incidentDateTime | date:'dd/MM/yyyy' }}
-                          @if (acta.administrativeActPdfUrl) {
-                            <a [href]="acta.administrativeActPdfUrl" target="_blank" class="ml-2 text-primary font-bold"><i class="pi pi-download"></i> PDF</a>
-                          }
-                        </div>
-                      }
-                    </div>
-                  </div>
-                }
-
-                @if (d.evaluations.length > 0) {
-                  <div class="mb-3">
-                    <span class="text-xs text-500 uppercase block mb-2">Evaluaciones vinculadas</span>
-                    <div class="flex flex-wrap gap-2">
-                      @for (eval of d.evaluations; track eval.id) {
-                        <div class="border-1 border-300 border-round p-2 surface-0 text-sm">
-                          <strong>{{ eval.templateName }}</strong> - {{ eval.evaluationDate | date:'dd/MM/yyyy' }}
-                          <span class="ml-2 text-500">Calificación: {{ eval.finalScore | number:'1.0-2' }}</span>
-                        </div>
-                      }
-                    </div>
-                  </div>
-                }
+              @if (d.supportFiles.length > 0) {
+              <div class="mb-3">
+                <span class="text-xs text-500 uppercase block mb-2"
+                  >Archivos subidos</span
+                >
+                <div class="flex flex-wrap gap-2">
+                  @for (file of d.supportFiles; track file.id) {
+                  <a
+                    [href]="file.fileUrl"
+                    target="_blank"
+                    class="p-button p-button-outlined p-button-sm p-button-secondary no-underline"
+                  >
+                    <i class="pi pi-file-pdf mr-2"></i> {{ file.fileName }}
+                  </a>
+                  }
+                </div>
               </div>
+              } @if (d.incidents.length > 0) {
+              <div class="mb-3">
+                <span class="text-xs text-500 uppercase block mb-2"
+                  >Actas vinculadas</span
+                >
+                <div class="flex flex-wrap gap-2">
+                  @for (acta of d.incidents; track acta.id) {
+                  <div
+                    class="border-1 border-300 border-round p-2 surface-0 text-sm"
+                  >
+                    <strong>{{ acta.incidentTypeName }}</strong> - {{
+                    acta.incidentDateTime | date:'dd/MM/yyyy' }} @if
+                    (acta.administrativeActPdfUrl) {
+                    <a
+                      [href]="acta.administrativeActPdfUrl"
+                      target="_blank"
+                      class="ml-2 text-primary font-bold"
+                      ><i class="pi pi-download"></i> PDF</a
+                    >
+                    }
+                  </div>
+                  }
+                </div>
+              </div>
+              } @if (d.evaluations.length > 0) {
+              <div class="mb-3">
+                <span class="text-xs text-500 uppercase block mb-2"
+                  >Evaluaciones vinculadas</span
+                >
+                <div class="flex flex-wrap gap-2">
+                  @for (eval of d.evaluations; track eval.id) {
+                  <div
+                    class="border-1 border-300 border-round p-2 surface-0 text-sm"
+                  >
+                    <strong>{{ eval.templateName }}</strong> - {{
+                    eval.evaluationDate | date:'dd/MM/yyyy' }}
+                    <span class="ml-2 text-500"
+                      >Calificación: {{ eval.finalScore | number:'1.0-2'
+                      }}</span
+                    >
+                  </div>
+                  }
+                </div>
+              </div>
+              }
+            </div>
             }
           </div>
           } @else {
-          <div class="surface-50 border-round p-4 text-400 italic">No hay registros de solicitud de baja activa.</div>
+          <div class="surface-50 border-round p-4 text-400 italic">
+            No hay registros de solicitud de baja activa.
+          </div>
           }
         </div>
       </div>

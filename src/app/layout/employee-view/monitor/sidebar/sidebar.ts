@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import {
   Component,
+  CUSTOM_ELEMENTS_SCHEMA,
   effect,
   inject,
   OnDestroy,
@@ -15,6 +16,7 @@ import { AvatarModule } from "primeng/avatar";
 import { DividerModule } from "primeng/divider";
 import { InputTextModule } from "primeng/inputtext";
 import { filter, map } from "rxjs/operators";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { IMenuItem, ISubMenuItem } from "src/app/core/interfaces/menu.model";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -31,7 +33,9 @@ import { MenuService } from "src/app/core/services/menu.service";
     InputTextModule,
     AvatarModule,
     DividerModule,
+    AppIcon,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: "./sidebar.html",
 })
 export class Sidebar implements OnInit, OnDestroy {
@@ -95,7 +99,7 @@ export class Sidebar implements OnInit, OnDestroy {
       };
 
       if ((item as IMenuItem).icon) {
-        primeNGItem.icon = `pi ${(item as IMenuItem).icon}`;
+        primeNGItem.icon = (item as IMenuItem).icon;
       }
 
       if ((item as IMenuItem).items && (item as IMenuItem).items!.length > 0) {

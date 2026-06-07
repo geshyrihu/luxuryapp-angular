@@ -1,6 +1,7 @@
 import {
   Component,
   computed,
+  CUSTOM_ELEMENTS_SCHEMA,
   inject,
   output,
 } from "@angular/core";
@@ -8,9 +9,12 @@ import { RouterModule } from "@angular/router";
 import {
   IonAccordion,
   IonAccordionGroup,
+  IonItem,
+  IonLabel,
   IonList,
 } from "@ionic/angular/standalone";
 import { MenuItem } from "primeng/api";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { IMenuItem, ISubMenuItem } from "src/app/core/interfaces/menu.model";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -18,7 +22,16 @@ import { MenuService } from "src/app/core/services/menu.service";
 @Component({
   selector: "app-home-menu-mobile",
   templateUrl: "./home-menu-mobile.html",
-  imports: [RouterModule, IonAccordion, IonAccordionGroup, IonList],
+  imports: [
+    RouterModule,
+    IonAccordion,
+    IonAccordionGroup,
+    IonItem,
+    IonLabel,
+    IonList,
+    AppIcon,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomeMenu {
   onCloseMenu = output<void>();

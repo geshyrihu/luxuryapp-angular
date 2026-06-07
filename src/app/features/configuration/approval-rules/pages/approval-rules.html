@@ -66,7 +66,12 @@
               optionLabel="label"
               optionValue="value"
               [allowEmpty]="false"
-            />
+            >
+              <ng-template pTemplate="item" let-item>
+                <app-icon [icon]="item.icon" class="mr-2" />
+                <span>{{ item.label }}</span>
+              </ng-template>
+            </p-selectButton>
           </td>
           }
         </tr>

@@ -15,6 +15,7 @@ import {
     IonList,
 } from "@ionic/angular/standalone";
 import { CardModule } from "primeng/card";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { IAnnouncement } from "./announcement.model";
@@ -35,6 +36,7 @@ import { IAnnouncement } from "./announcement.model";
     IonList,
     IonItem,
     IonLabel,
+    AppIcon,
   ],
   templateUrl: "./announcement-detail.html",
 })

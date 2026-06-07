@@ -3,6 +3,7 @@ import { Component, computed, effect, inject, signal } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
@@ -32,11 +33,8 @@ import { PrestamoHerramientaFormControl } from "./prestamo-herramienta-form-cont
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-
-
     ActionMenu,
-
-
+    AppIcon,
   ],
 })
 export class PrestamoHerramientasControl {

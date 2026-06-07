@@ -19,11 +19,9 @@
           [class]="menuCardClass(group)"
         >
           <div class="ds-icon-shell" [class]="menuShellClass(group)">
-            @if (hasPrimeIcon(item.icon)) {
-            <i [class]="menuGlyphClass(item.icon, group)"></i>
-            } @else {
-            <span class="text-sm font-bold ds-glyph-text">{{ item.icon }}</span>
-            }
+            <span [class]="menuTone(group).glyph" class="flex align-items-center justify-content-center w-full h-full">
+              <app-icon [icon]="item.icon" class="text-lg" />
+            </span>
           </div>
           <span class="ds-card-label m-0 font-bold text-900 text-sm line-height-2 px-1 mt-2">
             {{ item.label }}
@@ -55,11 +53,9 @@
       detail="false"
     >
       <span slot="start" [class]="menuShellClass(item.group, true)">
-        @if (hasPrimeIcon(item.icon)) {
-        <i [class]="menuGlyphClass(item.icon, item.group, true)"></i>
-        } @else {
-        <span class="text-sm font-bold">{{ item.icon }}</span>
-        }
+        <span [class]="menuTone(item.group).glyph" class="flex align-items-center justify-content-center w-full h-full">
+          <app-icon [icon]="item.icon" class="text-base" />
+        </span>
       </span>
       <ion-label class="ds-mobile-label">{{ item.label }}</ion-label>
     </ion-item>

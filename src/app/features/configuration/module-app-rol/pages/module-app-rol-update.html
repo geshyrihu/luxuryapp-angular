@@ -53,11 +53,10 @@
                 [class.text-red-400]="!item.isAssigned"
                 [class.border-red-100]="!item.isAssigned"
               >
-                <i
-                  [class]="
-                    item.isAssigned ? 'pi pi-check text-xs' : 'pi pi-times text-xs'
-                  "
-                ></i>
+                <app-icon
+                  [icon]="item.isAssigned ? 'mdi:check' : 'mdi:close'"
+                  class="text-xs"
+                />
               </span>
               <span
                 class="font-bold text-sm"

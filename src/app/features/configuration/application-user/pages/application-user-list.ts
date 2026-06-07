@@ -13,6 +13,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { firstValueFrom } from "rxjs";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import {
   IonButtonActiveDesactive,
   IonButtonDelete,
@@ -57,6 +58,7 @@ import { MdEditAccount } from "./md-edit-account";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
+    AppIcon,
     CardModule,
     CustomInputSelectSignal,
 

@@ -5,6 +5,7 @@ import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ButtonModule } from "primeng/button";
 import { ImageModule } from "primeng/image";
 import { TagModule } from "primeng/tag";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -24,6 +25,7 @@ import { ManualPdfService } from "../services/manual-pdf.service";
     ImageModule,
     TagModule,
     DiagramPreviewComponent,
+    AppIcon,
   ],
 })
 export class ManualsAndProcessesDetail implements OnInit {

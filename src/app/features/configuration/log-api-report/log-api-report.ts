@@ -6,6 +6,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
@@ -54,6 +55,7 @@ interface LogEntry {
     CustomButton,
     DataViewMobile,
     PrimeNgCustomCaption,
+    AppIcon,
   ],
   templateUrl: "./log-api-report.html",
   styleUrls: ["./log-api-report.scss"],

@@ -22,7 +22,7 @@
       />
       <p-button
         label="Enviar"
-        icon="pi pi-send"
+        icon="mdi:send"
         [loading]="loading()"
         [disabled]="!url()"
         (onClick)="send()"
@@ -84,7 +84,7 @@
                     class="flex-1"
                   />
                   <p-button
-                    icon="pi pi-times"
+                    icon="mdi:close"
                     severity="danger"
                     [text]="true"
                     size="small"
@@ -94,7 +94,7 @@
               }
               <p-button
                 label="Agregar param"
-                icon="pi pi-plus"
+                icon="mdi:plus"
                 [text]="true"
                 size="small"
                 (onClick)="addParam()"
@@ -125,7 +125,7 @@
                     class="flex-1"
                   />
                   <p-button
-                    icon="pi pi-times"
+                    icon="mdi:close"
                     severity="danger"
                     [text]="true"
                     size="small"
@@ -135,7 +135,7 @@
               }
               <p-button
                 label="Agregar header"
-                icon="pi pi-plus"
+                icon="mdi:plus"
                 [text]="true"
                 size="small"
                 (onClick)="addHeader()"
@@ -174,7 +174,7 @@
           </span>
           <span class="text-500 text-xs">{{ durationMs() }} ms</span>
           <p-button
-            icon="pi pi-copy"
+            icon="mdi:content-copy"
             [text]="true"
             size="small"
             pTooltip="Copiar respuesta"
@@ -183,7 +183,7 @@
           />
         }
         @if (loading()) {
-          <i class="pi pi-spin pi-spinner text-primary ml-auto"></i>
+          <app-icon icon="mdi:loading" class="ds-animate-spin text-primary ml-auto" />
         }
       </div>
 
@@ -234,7 +234,7 @@
         <span class="font-semibold text-sm text-700">Historial reciente</span>
         <p-button
           label="Limpiar"
-          icon="pi pi-trash"
+          icon="mdi:trash-can"
           severity="danger"
           [text]="true"
           size="small"

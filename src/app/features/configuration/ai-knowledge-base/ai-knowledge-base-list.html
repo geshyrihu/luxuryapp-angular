@@ -52,10 +52,10 @@
       <td><span class="p-tag p-tag-info">{{ item.keywords }}</span></td>
       <td><code>{{ item.route }}</code></td>
       <td>
-        <i
-          class="pi"
-          [ngClass]="{ 'text-green-500 pi-check-circle': item.isActive, 'text-red-500 pi-times-circle': !item.isActive }"
-        ></i>
+        <app-icon
+          [icon]="item.isActive ? 'mdi:check-circle' : 'mdi:close-circle'"
+          [class]="item.isActive ? 'text-green-500' : 'text-red-500'"
+        />
       </td>
 
       <!-- Opciones -->

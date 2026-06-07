@@ -8,6 +8,7 @@ import {
 import { addIcons } from "ionicons";
 import { folderOpenOutline, videocamOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { PdfViewerModal } from "src/app/core/components/pdf-viewer-modal/pdf-viewer-modal";
 import { getIconForFileHelper } from "src/app/core/helpers/extension-file";
 import {
@@ -20,7 +21,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 @Component({
   selector: "app-reuniones-mensuales-consejo-directivo",
-  imports: [TableModule, IonList, IonListHeader, IonItem, IonLabel],
+  imports: [TableModule, IonList, IonListHeader, IonItem, IonLabel, AppIcon],
   templateUrl: "./reuniones-mensuales-consejo-directivo.html",
 })
 export class ReunionesMensualesConsejoDirectivo implements OnInit {

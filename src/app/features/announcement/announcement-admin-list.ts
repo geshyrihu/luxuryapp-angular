@@ -10,6 +10,7 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import {
   IonButtonDelete,
   IonButtonEdit,
@@ -50,6 +51,7 @@ import { IAnnouncementAdminList } from "./announcement.model";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
+    AppIcon,
     IonItem,
     IonLabel,
     IonButtonDelete,

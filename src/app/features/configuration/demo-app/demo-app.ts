@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { FormsModule } from "@angular/forms";
 import { BadgeModule } from "primeng/badge";
 import { ButtonModule } from "primeng/button";
@@ -148,6 +149,7 @@ interface InvoiceLine {
 @Component({
   selector: "app-demo-app",
   imports: [
+    AppIcon,
     CommonModule,
     FormsModule,
     BadgeModule,
@@ -205,19 +207,19 @@ export class DemoApp {
       title: "Master-Detail (Complejidad)",
       description: "Gestion de formularios con lineas dinamicas y calculos en tiempo real.",
       rule: "Usar botones outlined para acciones secundarias y primary para el cierre del flujo.",
-      icon: "pi pi-list-check"
+      icon: "mdi:format-list-checks"
     },
     {
       title: "Dashboard de Lujo (Identidad)",
       description: "Uso de Luxury Gold para jerarquizar KPIs financieros y resultados premium.",
       rule: "Maximo 5% de presencia dorada en pantalla para mantener la elegancia.",
-      icon: "pi pi-star"
+      icon: "mdi:star"
     },
     {
       title: "Responsive Total (Omnichannel)",
       description: "Transicion automatica de tablas densas a vistas de tarjetas en dispositivos moviles.",
       rule: "Obligatorio implementar app-data-view-mobile en cada listado operativo.",
-      icon: "pi pi-mobile"
+      icon: "mdi:cellphone"
     }
   ];
 
@@ -240,21 +242,21 @@ export class DemoApp {
       label: "Consistencia UI",
       value: "92%",
       detail: "Componentes alineados a DS",
-      icon: "pi pi-sliders-h",
+      icon: "mdi:tune",
       tone: "primary",
     },
     {
       label: "Densidad ERP",
       value: "Alta",
       detail: "Lectura rapida sin perder aire visual",
-      icon: "pi pi-table",
+      icon: "mdi:table",
       tone: "info",
     },
     {
       label: "Mobile ready",
       value: "AA",
       detail: "Controles tactiles y secciones apilables",
-      icon: "pi pi-mobile",
+      icon: "mdi:cellphone",
       tone: "success",
     },
   ];
@@ -385,7 +387,7 @@ export class DemoApp {
   readonly identityPillars: IdentityPillar[] = [
     {
       title: "Autoridad tranquila",
-      icon: "pi pi-building-columns",
+      icon: "mdi:bank",
       summary:
         "LuxuryApp debe sentirse corporativa, confiable y precisa sin parecer pesada.",
       application:
@@ -394,7 +396,7 @@ export class DemoApp {
     },
     {
       title: "Operacion sin friccion",
-      icon: "pi pi-bolt",
+      icon: "mdi:flash",
       summary:
         "El usuario ERP necesita decidir rapido, comparar datos y cerrar tareas.",
       application:
@@ -403,7 +405,7 @@ export class DemoApp {
     },
     {
       title: "Jerarquia auditables",
-      icon: "pi pi-shield",
+      icon: "mdi:shield",
       summary:
         "Cada pantalla debe dejar claro que es dato, estado, decision o accion.",
       application:
@@ -508,7 +510,7 @@ export class DemoApp {
       avoid: "No usar para acciones destructivas ni acciones repetidas.",
       severity: "info",
       cardClass: "h-full border-left-3 border-primary surface-card shadow-1",
-      iconClass: "pi pi-check-circle text-primary text-xl",
+      iconClass: "mdi:check-circle text-primary text-xl",
     },
     {
       variant: "Secondary",
@@ -516,7 +518,7 @@ export class DemoApp {
       avoid: "No competir visualmente con la accion principal.",
       severity: "secondary",
       cardClass: "h-full border-left-3 surface-border surface-card shadow-1",
-      iconClass: "pi pi-arrow-left text-color-secondary text-xl",
+      iconClass: "mdi:arrow-left text-color-secondary text-xl",
     },
     {
       variant: "Success",
@@ -524,7 +526,7 @@ export class DemoApp {
       avoid: "No usar solo porque el boton guarda; guardar suele ser primary.",
       severity: "success",
       cardClass: "h-full border-left-3 border-green-500 surface-card shadow-1",
-      iconClass: "pi pi-check text-green-600 text-xl",
+      iconClass: "mdi:check text-green-600 text-xl",
     },
     {
       variant: "Danger",
@@ -532,7 +534,7 @@ export class DemoApp {
       avoid: "Nunca ubicar sin confirmacion en acciones irreversibles.",
       severity: "danger",
       cardClass: "h-full border-left-3 border-red-500 surface-card shadow-1",
-      iconClass: "pi pi-trash text-red-600 text-xl",
+      iconClass: "mdi:delete text-red-600 text-xl",
     },
     {
       variant: "Text",
@@ -540,7 +542,7 @@ export class DemoApp {
       avoid: "No usar para el CTA principal de un formulario.",
       severity: "secondary",
       cardClass: "h-full border-left-3 border-300 surface-card shadow-1",
-      iconClass: "pi pi-ellipsis-h text-600 text-xl",
+      iconClass: "mdi:dots-horizontal text-600 text-xl",
     },
   ];
 
@@ -548,32 +550,32 @@ export class DemoApp {
     {
       title: "Card de acceso",
       subtitle: "Entrada a modulo",
-      icon: "pi pi-th-large",
+      icon: "mdi:view-grid",
       usage: "Menu, navegacion y accesos frecuentes.",
       meta: "Altura consistente, hover discreto y titulo corto.",
       severity: "info",
       cardClass: "h-full border-top-3 border-primary surface-card shadow-2 hover:shadow-4 transition-all transition-duration-200",
-      iconClass: "pi pi-th-large text-primary text-2xl",
+      iconClass: "mdi:view-grid text-primary text-2xl",
     },
     {
       title: "Card de metrica",
       subtitle: "Resumen ejecutivo",
-      icon: "pi pi-chart-line",
+      icon: "mdi:chart-line",
       usage: "KPIs, totales y alertas de gestion.",
       meta: "Valor dominante, contexto breve y estado claro.",
       severity: "success",
       cardClass: "h-full border-top-3 border-cyan-500 surface-card shadow-2 hover:shadow-4 transition-all transition-duration-200",
-      iconClass: "pi pi-chart-line text-cyan-600 text-2xl",
+      iconClass: "mdi:chart-line text-cyan-600 text-2xl",
     },
     {
       title: "Card de estado",
       subtitle: "Operacion actual",
-      icon: "pi pi-shield",
+      icon: "mdi:shield",
       usage: "Bloques de validacion, permisos o salud del sistema.",
       meta: "Tag visible, texto accionable y sin saturar la pantalla.",
       severity: "warn",
       cardClass: "h-full border-top-3 border-green-500 surface-card shadow-2 hover:shadow-4 transition-all transition-duration-200",
-      iconClass: "pi pi-shield text-green-600 text-2xl",
+      iconClass: "mdi:shield text-green-600 text-2xl",
     },
   ];
 

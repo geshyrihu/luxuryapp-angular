@@ -1,13 +1,14 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, input } from "@angular/core";
 import { TooltipModule } from "primeng/tooltip";
+import { AppIcon } from "../../app-icon/app-icon.component";
 import { DialogHandlerService } from "../../../services/dialog-handler.service";
 import { PdfViewerModal } from "../../pdf-viewer-modal/pdf-viewer-modal";
 import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "custom-button-view-pdf",
-  imports: [CommonModule, TooltipModule],
+  imports: [CommonModule, TooltipModule, AppIcon],
   template: `
     <button
       [type]="type()"
@@ -19,7 +20,7 @@ import { BaseButton } from "../base/base-button";
       tooltipPosition="top"
     >
       <span [class]="iconShellClasses(showLabelOnDesktop())" aria-hidden="true">
-        <i [class]="finalIcon()"></i>
+        <app-icon [icon]="finalIcon()" />
       </span>
       @if (showLabelOnDesktop()) {
         <span class="text-xs">{{ label() || "Ver archivo" }}</span>
@@ -36,7 +37,7 @@ export class CustomButtonViewPdf extends BaseButton {
   url = input<string>("");
   fileName = input<string>("");
 
-  finalIcon = computed(() => this.resolvedIconClass() || "pi pi-file-pdf");
+  finalIcon = computed(() => this.icon() || this.iconClass() || "mdi:file-pdf");
 
   viewPdf(): void {
     this.dialogHandlerS.openDialog(

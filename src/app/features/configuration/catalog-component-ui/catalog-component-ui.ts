@@ -117,6 +117,8 @@ import {
 // --- Custom Charts ---
 import { CustomBarChart } from "src/app/core/components/charts/custom-bar-chart";
 import { PieChart } from "src/app/core/components/charts/pie-chart";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { resolveIconifyIcon } from "src/app/core/utils/prime-icon-resolver";
 
 type TagSeverity =
   | "success"
@@ -245,6 +247,7 @@ interface BloqueVisual {
     // Charts
     CustomBarChart,
     PieChart,
+    AppIcon,
   ],
   templateUrl: "./catalog-component-ui.html",
   styleUrls: ["./catalog-component-ui.scss"],
@@ -280,13 +283,13 @@ export class CatalogComponentUi implements OnDestroy {
 
   // --- Constants ---
   readonly categories = [
-    { id: "tokens", label: "Tokens & Identidad", icon: "pi pi-palette" },
-    { id: "web", label: "Web (PrimeNG)", icon: "pi pi-desktop" },
-    { id: "mobile", label: "Mobile (Ionic)", icon: "pi pi-mobile" },
-    { id: "charts", label: "Gráficos", icon: "pi pi-chart-bar" },
-    { id: "patterns", label: "Patrones UX", icon: "pi pi-clone" },
-    { id: "docs", label: "Estándar Documental", icon: "pi pi-file-pdf" },
-    { id: "audit", label: "Auditoría", icon: "pi pi-check-square" },
+    { id: "tokens", label: "Tokens & Identidad", icon: "mdi:palette" },
+    { id: "web", label: "Web (PrimeNG)", icon: "mdi:desktop-mac" },
+    { id: "mobile", label: "Mobile (Ionic)", icon: "mdi:cellphone" },
+    { id: "charts", label: "Gráficos", icon: "mdi:chart-bar" },
+    { id: "patterns", label: "Patrones UX", icon: "mdi:content-copy" },
+    { id: "docs", label: "Estándar Documental", icon: "mdi:file-pdf-box" },
+    { id: "audit", label: "Auditoría", icon: "mdi:checkbox-marked" },
   ];
 
   EStatus = EStatus;
@@ -582,19 +585,19 @@ export class CatalogComponentUi implements OnDestroy {
   readonly bloquesVisuales: BloqueVisual[] = [
     {
       titulo: "Advertencia",
-      icono: "pi pi-exclamation-triangle",
+      icono: "mdi:alert",
       descripcion:
         "Usar cuando el incumplimiento genera riesgo fisico, legal, economico u operativo.",
     },
     {
       titulo: "Nota",
-      icono: "pi pi-info-circle",
+      icono: "mdi:information",
       descripcion:
         "Informacion complementaria que aclara el procedimiento sin ser un paso obligatorio.",
     },
     {
       titulo: "Buena practica",
-      icono: "pi pi-check-circle",
+      icono: "mdi:check-circle",
       descripcion:
         "Recomendacion validada por el equipo para elevar calidad y consistencia.",
     },
@@ -742,6 +745,10 @@ export class CatalogComponentUi implements OnDestroy {
     }
     if (valor === "Si aplica") return "warn";
     return "warn";
+  }
+
+  iconifyIcon(primeClass: string): string {
+    return resolveIconifyIcon(primeClass, "mdi:cog");
   }
 
   getNomenclaturaEjemplo(doc: TipoDocumento): string {

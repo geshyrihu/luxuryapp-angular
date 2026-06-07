@@ -35,7 +35,6 @@ import { CreateOrdenCompra } from "src/app/features/purchases/purchase-order/cre
     TableModule,
     CustomInputTextSignal,
     CustomInputNumberSignal,
-    CustomInputNumberSignal,
     CustomButton,
     CustomButtonViewPdf,
   ],
@@ -51,6 +50,7 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
   router = inject(Router);
   cdr = inject(ChangeDetectorRef);
   destroyRef = inject(DestroyRef);
+
   cotizacionProveedorId: string = "";
   cotizacionProveedor: any;
   solicitudCompra: any;
@@ -64,6 +64,7 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
   garantia = new FormControl<string>("", { nonNullable: true });
   entrega = new FormControl<string>("", { nonNullable: true });
   politicaPago = new FormControl<string>("", { nonNullable: true });
+  selectedFile: File | null = null;
 
   ngOnInit(): void {
     this.solicitudCompraId = this.config.data.solicitudCompraId;
@@ -76,36 +77,33 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
   }
 
   onGetCotizacioProveedor() {
-    // Determine fetch method: ID (preferred) or Position (fallback)
     if (this.cotizacionProveedorId) {
       this.apiResponseS
         .onGetItem(`CotizacionProveedor/${this.cotizacionProveedorId}`)
         .then((result: any) => {
           this.processProviderData(result);
         });
-    } else {
-      // Legacy fallback
-      const url = `CotizacionProveedor/posicionCotizacion/${this.solicitudCompraId}/${this.posicionCotizacion}`;
-      this.apiResponseS.onGetItem(url).then((result: any) => {
-        this.processProviderData(result);
-      });
+      return;
     }
+
+    const url = `CotizacionProveedor/posicionCotizacion/${this.solicitudCompraId}/${this.posicionCotizacion}`;
+    this.apiResponseS.onGetItem(url).then((result: any) => {
+      this.processProviderData(result);
+    });
   }
 
   processProviderData(result: any) {
     if (!result) return;
     this.cotizacionProveedor = result;
-    // CRITICAL: Update position from DB source of truth
     this.posicionCotizacion = result.posicionCotizacion;
-
     this.garantia.setValue(result.garantia || "");
     this.entrega.setValue(result.entrega || "");
     this.politicaPago.setValue(result.politicaPago || "");
     this.nameProvider.setValue(result.nameProvider || "");
-    this.cotizacionProveedorId = result.id; // Ensure consistent ID
-
+    this.cotizacionProveedorId = result.id;
     this.cdr.detectChanges();
   }
+
   onLoadData() {
     const urlApi = `solicitudcompra/${this.solicitudCompraId}`;
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
@@ -125,7 +123,6 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
             ? "2"
             : "3";
 
-      // Create controls
       item.controls = {
         precio: new FormControl(item["precio" + suffix] || 0, {
           nonNullable: true,
@@ -138,7 +135,6 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
         }),
       };
 
-      // Subscribe to changes
       item.controls.precio.valueChanges
         .pipe(debounceTime(400), takeUntilDestroyed(this.destroyRef))
         .subscribe((val: number) => {
@@ -158,7 +154,6 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
           this.calculateRowTotals(item);
         });
 
-      // Inherit initial calc
       this.calculateRowTotals(item);
     });
   }
@@ -195,83 +190,37 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
     if (!this.cotizacionProveedor?.id) return;
 
     this.apiResponseS
-      .onDelete(
-        `CotizacionProveedor/remove-file/${this.cotizacionProveedor.id}`,
-      )
+      .onDelete(`CotizacionProveedor/remove-file/${this.cotizacionProveedor.id}`)
       .then((success) => {
         if (success) {
           this.customToastService.showSuccess(
             "Eliminado",
             "Archivo eliminado correctamente.",
           );
-          this.onGetCotizacioProveedor(); // Refresh to update UI
+          this.onGetCotizacioProveedor();
         }
       });
   }
 
-  selectedFile: File | null = null;
-  onFileSelect(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      if (file.type !== "application/pdf") {
-        this.customToastService.showError(
-          "Solo se permiten archivos PDF",
-          "Error de formato",
-        );
-        return;
-      }
-      this.selectedFile = file;
-      // Opcional: Auto-guardar o esperar a que el usuario cambie otro campo?
-      // El usuario dijo "actualizar la cotización".
-      // Si pongo un botón "Subir", es mejor.
-      // Pero onUpdateProvider se llama en (change) de los inputs de texto.
-      // Si selecciono archivo, ódeberóa subirlo inmediatamente?
-      // Mejor Añadir un botón explócito para "Actualizar Archivo" o llamar a onUpdateProvider().
-      this.onUpdateProvider();
+  onFileSelect(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0] ?? null;
+    if (!file) return;
+
+    if (file.type !== "application/pdf") {
+      this.customToastService.showError(
+        "Solo se permiten archivos PDF",
+        "Error de formato",
+      );
+      input.value = "";
+      return;
     }
+
+    this.selectedFile = file;
+    this.onUpdateProvider();
+    input.value = "";
   }
 
-  onChange(item: any) {
-    // CRITICAL: Clone item and remove 'controls' to avoid circular JSON error
-    const { controls, ...cleanItem } = item;
-
-    this.apiResponseS
-      .onPut(`SolicitudCompraDetalle/UpdatePrice/${item.id}`, cleanItem)
-      .then((result: any) => {
-        if (result) {
-          // óNO llames a onLoadData() aquó!
-          // En su lugar, necesitas recalcular los totales para el item modificado.
-          // La API deberóa devolver el item actualizado con los nuevos totales.
-          // Si la API devuelve el objeto actualizado:
-
-          // Paso 1: Encuentra el óndice del item en tu array local
-          const index = this.solicitudCompraDetalle.findIndex(
-            (d) => d.id === result.id,
-          );
-
-          // Paso 2: Fusión inteligente para actualizar solo los campos con valor.
-          if (index !== -1) {
-            const existingItem = this.solicitudCompraDetalle[index];
-            // Itera sobre la respuesta de la API
-            for (const key in result) {
-              // Si la propiedad existe y no es nula/indefinida, actualózala
-              if (
-                Object.prototype.hasOwnProperty.call(result, key) &&
-                result[key] != null
-              ) {
-                existingItem[key] = result[key];
-              }
-            }
-            // Forzamos una copia para que la detección de cambios de Angular funcione
-            this.solicitudCompraDetalle = [...this.solicitudCompraDetalle];
-            this.cdr.detectChanges(); // Call detectChanges after updating the array
-          }
-        } else {
-          // Opcional: Si falla, podróas volver a llamar a onLoadData() para revertir los cambios visuales.
-          this.onLoadData();
-        }
-      });
-  }
   onDeleteProvider() {
     this.apiResponseS
       .onDelete(
@@ -282,11 +231,6 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
       });
   }
 
-  onEnterKey(event: any, item: any): void {
-    event.preventDefault(); // Previene comportamiento por defecto
-    const inputElement = event.target as HTMLInputElement;
-    inputElement.blur(); // Quita el foco, lo que dispararó onBlur automóticamente
-  }
   onModalCreateOrdenCompra() {
     this.ref.close(true);
     this.dialogHandlerS.openDialog(
@@ -305,18 +249,17 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
     const urlApi = `OrdenCompra/CotizacionesRelacionadas/${this.solicitudCompraId}`;
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.cotizacionesRelacionadas = result || [];
-      this.cdr.detectChanges(); // Call detectChanges after updating the data
+      this.cdr.detectChanges();
     });
   }
+
   ngOnDestroy(): void {
     this.ref.close(true);
   }
 
-  // Cólculos locales para feedback inmediato
   calculateRowTotals(item: any) {
     const qty = item.cantidad || 0;
 
-    // Obtener valores segón la posición
     let price = 0;
     let discount = 0;
     let iva = 0;
@@ -339,14 +282,12 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
         break;
     }
 
-    // Lógica estándar de cólculo
     const subTotal = price * qty;
     const discountAmount = subTotal * (discount / 100);
     const subTotalAfterDiscount = subTotal - discountAmount;
     const ivaAmount = subTotalAfterDiscount * (iva / 100);
     const total = subTotalAfterDiscount + ivaAmount;
 
-    // Asignar resultados a las propiedades correspondientes
     switch (this.posicionCotizacion) {
       case 1:
         item.subTotal = subTotal;
@@ -366,24 +307,14 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
     }
   }
 
-  // Mótodo unificado para guardar todo
   onSaveChanges() {
-    // Eliminamos el toast inicial "Guardando..." para evitar ruido visual
-
     const promises = [];
-
-    // 1. Guardar datos del proveedor (silencioso)
     promises.push(this.onUpdateProvider(false));
 
-    // 2. Guardar cada lónea de detalle (silencioso)
     this.solicitudCompraDetalle.forEach((item: any) => {
-      // Inject ApplicationUserId required by Backend DTO
       item.applicationUserId = this.authS.applicationUserId;
-
-      // CRITICAL: Clone item and remove 'controls' to avoid circular JSON error
       const { controls, ...cleanItem } = item;
 
-      // Pasar 'false' como tercer argumento para evitar toasts individuales
       promises.push(
         this.apiResponseS.onPut(
           `SolicitudCompraDetalle/UpdatePrice/${item.id}`,
@@ -395,15 +326,14 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
 
     Promise.all(promises)
       .then(() => {
-        // Un ónico toast de óxito al finalizar todo el lote
         this.customToastService.showSuccess(
           "Guardado",
-          "Cotización actualizada correctamente.",
+          "Cotizacion actualizada correctamente.",
         );
         this.onLoadData();
+        this.onGetCotizacioProveedor();
       })
-      .catch((err) => {
-        // Un ónico toast de error si algo falla
+      .catch(() => {
         this.customToastService.showError(
           "Error",
           "No se pudieron guardar algunos cambios.",
@@ -411,21 +341,11 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
       });
   }
 
-  formatDecimal(event: any, field: string, item: any): void {
-    const value = parseFloat(event.target.value);
-    if (!isNaN(value)) {
-      const formattedValue = parseFloat(value.toFixed(2));
-      item[field] = formattedValue;
-      event.target.value = formattedValue.toFixed(2);
-    }
-  }
-
   getTotalSubtotal(): number {
-    if (
-      !this.solicitudCompraDetalle ||
-      this.solicitudCompraDetalle.length === 0
-    )
+    if (!this.solicitudCompraDetalle || this.solicitudCompraDetalle.length === 0) {
       return 0;
+    }
+
     switch (this.posicionCotizacion) {
       case 1:
         return this.solicitudCompraDetalle.reduce(
@@ -448,11 +368,10 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
   }
 
   getTotalIva(): number {
-    if (
-      !this.solicitudCompraDetalle ||
-      this.solicitudCompraDetalle.length === 0
-    )
+    if (!this.solicitudCompraDetalle || this.solicitudCompraDetalle.length === 0) {
       return 0;
+    }
+
     switch (this.posicionCotizacion) {
       case 1:
         return this.solicitudCompraDetalle.reduce(
@@ -475,11 +394,10 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
   }
 
   getTotalGeneral(): number {
-    if (
-      !this.solicitudCompraDetalle ||
-      this.solicitudCompraDetalle.length === 0
-    )
+    if (!this.solicitudCompraDetalle || this.solicitudCompraDetalle.length === 0) {
       return 0;
+    }
+
     switch (this.posicionCotizacion) {
       case 1:
         return this.solicitudCompraDetalle.reduce(

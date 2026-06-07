@@ -10,6 +10,7 @@ import {
 import { CardModule } from "primeng/card";
 import { SelectModule } from "primeng/select";
 import { TooltipModule } from "primeng/tooltip";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -28,6 +29,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
     IonListHeader,
 
     IonAvatar,
+    AppIcon,
     SanitizeHtmlPipe,
   ],
 })

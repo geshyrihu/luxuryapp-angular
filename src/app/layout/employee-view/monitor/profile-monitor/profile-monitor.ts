@@ -3,7 +3,6 @@ import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { AvatarModule } from "primeng/avatar";
 import { AvatarGroupModule } from "primeng/avatargroup";
-import { Button, ButtonModule } from "primeng/button";
 import { Popover, PopoverModule } from "primeng/popover";
 import { InfoAccountAuthDTO } from "src/app/core/interfaces/auth-user-token.dto";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -12,19 +11,22 @@ import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { ProfielService } from "src/app/core/services/profiel-service";
 import { UpdateService } from "src/app/core/services/update-pwa.service";
+
 @Component({
   selector: "app-profile-monitor",
   imports: [
     RouterModule,
     FormsModule,
-    Button,
     Popover,
     AvatarModule,
     AvatarGroupModule,
     PopoverModule,
-    ButtonModule,
+    CustomButton,
+    AppIcon,
   ],
   templateUrl: "./profile-monitor.html",
 })
@@ -78,13 +80,3 @@ export class ProfileMonitor {
     this.updateService.activateUpdate();
   }
 }
-
-
-
-
-
-
-
-
-
-

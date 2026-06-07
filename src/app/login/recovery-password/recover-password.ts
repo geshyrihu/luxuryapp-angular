@@ -10,7 +10,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { ButtonModule } from "primeng/button";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { MessageModule } from "primeng/message";
 import { catchError, finalize, Subject, throwError } from "rxjs";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
@@ -42,7 +42,7 @@ interface IRecoverPasswordForm {
     ReactiveFormsModule,
     MessageModule,
     CustomInputTextSignal,
-    ButtonModule,
+    CustomButton,
     RouterModule,
   ],
 })

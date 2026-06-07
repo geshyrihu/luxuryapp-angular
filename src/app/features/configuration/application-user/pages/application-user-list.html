@@ -114,19 +114,19 @@
               @if (item.active) {
               <custom-button-item
                 (clicked)="onToBlockAccount(item.id)"
-                iconClass="pi pi-lock"
+                iconClass="mdi:lock"
                 label="Bloquear"
               />
               } @if (!item.active) {
               <custom-button-item
                 (clicked)="onToUnlockAccount(item.id)"
-                iconClass="pi pi-lock-open"
+                iconClass="mdi:lock-open"
                 label="Desbloquear"
               />
               }
               <custom-button-item
                 (clicked)="onModalEditAccount(item.id, item.email)"
-                iconClass="pi pi-user"
+                iconClass="mdi:account"
                 label="Permisos"
               />
               <custom-button-edit (clicked)="onModalForm(item.id, 'Editar')" />
@@ -205,11 +205,11 @@
         </p>
         <p class="text-sm m-0 text-600">{{ item.customer || "Sin Cliente" }}</p>
         <p class="text-xs m-0 text-500">
-          <i class="pi pi-envelope text-xs mr-1"></i>{{ item.email }}
+          <app-icon icon="mdi:email-outline" class="text-xs mr-1" />{{ item.email }}
         </p>
         @if (item.phoneNumber) {
         <p class="text-xs m-0 text-500">
-          <i class="pi pi-phone text-xs mr-1"></i>{{ item.phoneNumber }}
+          <app-icon icon="mdi:phone" class="text-xs mr-1" />{{ item.phoneNumber }}
         </p>
         }
       </ion-label>

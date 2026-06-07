@@ -8,6 +8,7 @@ import {
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ListboxModule } from "primeng/listbox";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
@@ -49,6 +50,7 @@ interface IManualTemplateForm {
     CustomButtonSave,
     ListboxModule,
     CustomInputMultiselectSignal,
+    AppIcon,
   ],
 })
 export class ManualsAndProcessesForm implements OnInit {

@@ -37,13 +37,13 @@
     <!-- Botones -->
     <custom-button
       label="Buscar"
-      iconClass="pi pi-search"
+      iconClass="mdi:magnify"
       size="sm"
       (clicked)="aplicarFiltros()"
     />
     <custom-button
       label="Limpiar"
-      iconClass="pi pi-times"
+      iconClass="mdi:close"
       severity="secondary"
       size="sm"
       variant="outlined"
@@ -141,7 +141,7 @@
   <ng-template pTemplate="emptymessage">
     <tr>
       <td colspan="6" class="text-center py-6 text-color-secondary">
-        <i class="pi pi-inbox text-3xl mb-2 block"></i>
+        <app-icon icon="mdi:inbox" class="text-3xl mb-2 block" />
         No se encontraron logs con los filtros seleccionados.
       </td>
     </tr>
@@ -160,4 +160,6 @@
     </tr>
     }
   </ng-template>
+</p-table>
+
 </p-table>

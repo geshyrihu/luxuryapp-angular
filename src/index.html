@@ -21,7 +21,7 @@
     font-src 'self' https://fonts.gstatic.com data:;
     img-src 'self' https: http://localhost:* data: blob:;
     media-src 'self' blob:;
-    connect-src 'self' https://localhost:* http://localhost:* ws://localhost:* https://luxurybuildingapp.com https://*.firebaseio.com https://*.googleapis.com https://*.onesignal.com https://*.devtunnels.ms wss://localhost:* wss://luxurybuildingapp.com wss://*.devtunnels.ms blob: https://viewer.diagrams.net;
+    connect-src 'self' https://localhost:* http://localhost:* ws://localhost:* https://luxurybuildingapp.com https://*.firebaseio.com https://*.googleapis.com https://*.onesignal.com https://*.devtunnels.ms wss://localhost:* wss://luxurybuildingapp.com wss://*.devtunnels.ms blob: https://viewer.diagrams.net https://api.iconify.design;
     frame-src 'self' https://localhost:* http://localhost:* https://luxurybuildingapp.com https://*.firebaseapp.com https://calendar.google.com https://embed.diagrams.net https://viewer.diagrams.net https://*.brevo.com https://www.youtube.com https://youtube.com https://youtu.be;
     worker-src 'self' blob: https://cdn.jsdelivr.net;
     manifest-src 'self';
@@ -40,8 +40,8 @@
     <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-    <!-- Fuentes Estandar Documental Corporativo: IBM Plex Sans + Montserrat Bold (titulos) + Open Sans Regular (cuerpo) -->
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:wght@700&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <!-- Fuente Estandar: DM Sans para toda la plataforma -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 
     <!-- animate.css se carga desde npm via angular.json (v4.x) -->
     <!-- Bootstrap Icons eliminado: no se usa en la app, se usa PrimeIcons -->

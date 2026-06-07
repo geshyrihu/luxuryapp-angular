@@ -2,6 +2,7 @@ import { registerLocaleData } from "@angular/common";
 import localeEsMX from "@angular/common/locales/es-MX";
 import { enableProdMode } from "@angular/core";
 import { bootstrapApplication } from "@angular/platform-browser";
+import "iconify-icon";
 import { environment } from "src/environments/environment";
 import { App } from "./app/app";
 import { appConfig } from "./app/app.config";

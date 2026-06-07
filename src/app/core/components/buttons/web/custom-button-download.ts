@@ -1,11 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, input } from "@angular/core";
 import { TooltipModule } from "primeng/tooltip";
+import { AppIcon } from "../../app-icon/app-icon.component";
 import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "custom-button-download",
-  imports: [CommonModule, TooltipModule],
+  imports: [CommonModule, TooltipModule, AppIcon],
   template: `
     <button
       [type]="type()"
@@ -20,7 +21,7 @@ import { BaseButton } from "../base/base-button";
         [class]="iconShellClasses(showLabelOnDesktop() && !!label())"
         aria-hidden="true"
       >
-        <i [class]="finalIcon()"></i>
+        <app-icon [icon]="finalIcon()" />
       </span>
       @if (showLabelOnDesktop() && label()) {
         <span>{{ label() }}</span>
@@ -33,5 +34,5 @@ export class CustomButtonDownload extends BaseButton {
   override severity = input<any>("secondary");
   override rounded = input<boolean>(true);
 
-  finalIcon = computed(() => this.resolvedIconClass() || "pi pi-download");
+  finalIcon = computed(() => this.icon() || this.iconClass() || "mdi:download");
 }

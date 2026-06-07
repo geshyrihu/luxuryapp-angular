@@ -5,6 +5,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { TextareaModule } from "primeng/textarea";
 import { TooltipModule } from "primeng/tooltip";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { AiService } from "src/app/core/services/ai.service";
 import { SwalService } from "src/app/core/services/swal.service";
 
@@ -18,6 +19,7 @@ import { SwalService } from "src/app/core/services/swal.service";
     CustomButton,
     TextareaModule,
     TooltipModule,
+    AppIcon,
   ],
 })
 export class ImageGenerationDialog {
@@ -40,22 +42,22 @@ export class ImageGenerationDialog {
     {
       label: "Realista",
       value: "photorealistic, high quality, 4k",
-      icon: "pi pi-camera",
+      icon: "mdi:camera",
     },
     {
       label: "Ilustración",
       value: "digital illustration, vector art, vibrant",
-      icon: "pi pi-pencil",
+      icon: "mdi:pencil",
     },
     {
       label: "3D Render",
       value: "3d render, blender, unreal engine, isometric",
-      icon: "pi pi-box",
+      icon: "mdi:package",
     },
     {
       label: "Minimalista",
       value: "minimalist, clean lines, flat colors, modern",
-      icon: "pi pi-minus-circle",
+      icon: "mdi:minus-circle-outline",
     },
   ];
 
@@ -82,22 +84,22 @@ export class ImageGenerationDialog {
     {
       label: "Edificio",
       value: "modern luxury building facade",
-      icon: "pi pi-building",
+      icon: "mdi:office-building",
     },
     {
       label: "Interiores",
       value: "luxury interior, lobby, marble",
-      icon: "pi pi-home",
+      icon: "mdi:home",
     },
     {
       label: "Personas",
       value: "professional people, happy residents, diverse",
-      icon: "pi pi-users",
+      icon: "mdi:account-group",
     },
     {
       label: "Abstracto",
       value: "abstract shapes, branding colors",
-      icon: "pi pi-palette",
+      icon: "mdi:palette",
     },
   ];
 

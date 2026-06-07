@@ -10,7 +10,7 @@
       <div class="col-12 md:col-6">
         <div class="surface-ground p-3 border-round-lg border-1 border-blue-100 h-full">
           <div class="flex align-items-center gap-2 mb-2 text-blue-700">
-            <i class="pi pi-info-circle text-xl"></i>
+            <app-icon icon="mdi:information" class="text-xl" />
             <span class="font-bold">Cliente Seleccionado</span>
           </div>
           <div class="text-sm line-height-3">
@@ -43,7 +43,7 @@
     <div class="flex flex-wrap gap-2 mt-4">
       <custom-button
         label="Sincronización Completa"
-        iconClass="pi pi-sync"
+        iconClass="mdi:sync"
         severity="success"
         [loading]="syncing()"
         [disabled]="!canExecute()"
@@ -52,7 +52,7 @@
       />
       <custom-button
         label="Solo Contabilidad"
-        iconClass="pi pi-book"
+        iconClass="mdi:book"
         severity="info"
         [loading]="syncing()"
         [disabled]="!canExecute()"
@@ -61,7 +61,7 @@
       />
       <custom-button
         label="Solo Cobranza"
-        iconClass="pi pi-wallet"
+        iconClass="mdi:wallet"
         severity="warning"
         [loading]="syncing()"
         [disabled]="!canExecute()"

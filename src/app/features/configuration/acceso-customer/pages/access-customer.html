@@ -2,7 +2,7 @@
   <!-- Encabezado Informativo -->
   <div class="surface-card p-3 border-round border-1 surface-border flex align-items-center gap-3">
     <div class="w-3rem h-3rem border-round bg-primary-50 flex align-items-center justify-content-center text-primary">
-      <i class="pi pi-building text-xl"></i>
+      <app-icon icon="mdi:office-building" class="text-xl" />
     </div>
     <div class="flex flex-column">
       <span class="text-900 font-bold uppercase tracking-wider text-sm">Acceso a Clientes</span>
@@ -32,9 +32,10 @@
             [class.text-red-400]="!item.isSelected"
             [class.border-red-100]="!item.isSelected"
           >
-            <i
-              [class]="item.isSelected ? 'pi pi-check text-xs' : 'pi pi-times text-xs'"
-            ></i>
+            <app-icon
+              [icon]="item.isSelected ? 'mdi:check' : 'mdi:close'"
+              class="text-xs"
+            />
           </span>
 
           <div class="flex flex-column min-w-0 flex-1">

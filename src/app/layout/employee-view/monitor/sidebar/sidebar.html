@@ -9,8 +9,8 @@
         <p-avatar
           [image]="profileImageUrl || 'assets/images/default-avatar.png'"
           size="xlarge"
-          shape="circle"
-          styleClass="border-2 border-white shadow-4"
+          shape="square"
+          styleClass="border-round-lg border-2 border-white shadow-4"
         ></p-avatar>
         <!-- Online Indicator -->
         <span class="online-indicator"></span>
@@ -80,17 +80,17 @@
     >
       <div class="flex align-items-center overflow-hidden min-w-0">
         @if(item.icon) {
-        <i [class]="item.icon" class="mr-3 text-lg opacity-70"></i>
+        <app-icon [icon]="item.icon" class="mr-3 text-xl opacity-80" />
         }
         <span class="white-space-nowrap overflow-hidden text-overflow-ellipsis">
           {{ item.label }}
         </span>
       </div>
 
-      <i
-        [class]="item.expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
-        class="text-xs opacity-50 ml-2"
-      ></i>
+      <iconify-icon
+        [attr.icon]="item.expanded ? 'mdi:chevron-down' : 'mdi:chevron-right'"
+        class="text-sm opacity-70 ml-2"
+      ></iconify-icon>
     </div>
 
     <!-- Submenu Container -->
@@ -110,7 +110,7 @@
       routerLinkActive="active-link"
     >
       @if(item.icon) {
-      <i [class]="item.icon" class="mr-3 text-lg opacity-70"></i>
+      <app-icon [icon]="item.icon" class="mr-3 text-xl opacity-80" />
       }
       <span
         class="white-space-nowrap overflow-hidden text-overflow-ellipsis block"

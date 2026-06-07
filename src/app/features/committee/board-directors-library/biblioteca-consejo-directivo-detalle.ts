@@ -12,6 +12,7 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { documentTextOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
@@ -35,6 +36,7 @@ import { EDocumentType } from "src/app/features/legal/models/document-type.enum"
     CustomSearchInput,
     IonItem,
     IonLabel,
+    AppIcon,
   ],
 
   templateUrl: "./biblioteca-consejo-directivo-detalle.html",

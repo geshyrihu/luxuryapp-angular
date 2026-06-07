@@ -18,21 +18,21 @@
         <custom-button
           (clicked)="sendSignalRToUser()"
           [disabled]="!selectedUserId()"
-          iconClass="pi pi-send"
+          iconClass="mdi:send"
           label="Enviar SignalR"
         />
         <custom-button
           severity="success"
           (clicked)="sendOneSignalToUser()"
           [disabled]="!selectedUserId()"
-          iconClass="pi pi-bell"
+          iconClass="mdi:bell"
           label="Enviar Push (OneSignal)"
         />
         <custom-button
           severity="success"
           (clicked)="sendOneSignalWebToUser()"
           [disabled]="!selectedUserId()"
-          iconClass="pi pi-bell"
+          iconClass="mdi:bell"
           label="Enviar Push (OneSignal) Web"
         />
       </div>
@@ -69,7 +69,7 @@
           [fluid]="true"
           (clicked)="sendSignalRToUsers()"
           [disabled]="!selectedUserIds().length"
-          iconClass="pi pi-send"
+          iconClass="mdi:send"
           label="Enviar SignalR a seleccionados"
         />
       </div>

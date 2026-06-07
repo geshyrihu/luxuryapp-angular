@@ -27,7 +27,7 @@
     } @else {
     <div class="empty-state-card">
       <div class="empty-state-icon">
-        <i class="icon icon-pi-folder-open"></i>
+        <app-icon icon="mdi:folder-open" class="text-4xl text-primary" />
       </div>
       <h5 class="empty-state-title">No hay documentos disponibles</h5>
     </div>
@@ -45,7 +45,7 @@
   <ion-list [inset]="true" class="m-0">
     <ion-item lines="full" class="ion-no-padding">
       <div slot="start" class="w-2rem h-2rem border-round bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
-        <i class="pi pi-building text-xl text-blue-700"></i>
+        <app-icon icon="mdi:office-building" class="text-xl text-blue-700" />
       </div>
       <ion-label class="ml-2">
         <h3 class="font-bold text-900">Proveedor</h3>
@@ -55,7 +55,7 @@
 
     <ion-item lines="full" class="ion-no-padding">
       <div slot="start" class="w-2rem h-2rem border-round bg-purple-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
-        <i class="pi pi-file-text text-xl text-purple-700"></i>
+        <app-icon icon="mdi:file-document-outline" class="text-xl text-purple-700" />
       </div>
       <ion-label class="ml-2">
         <h3 class="font-bold text-900">Descripción</h3>
@@ -65,7 +65,7 @@
 
     <ion-item lines="full" class="ion-no-padding">
       <div slot="start" class="w-2rem h-2rem border-round bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
-        <i class="pi pi-calendar text-xl text-green-600"></i>
+        <app-icon icon="mdi:calendar" class="text-xl text-green-600" />
       </div>
       <ion-label class="ml-2">
         <h3 class="font-bold text-900">Fecha de Inicio</h3>
@@ -75,7 +75,7 @@
 
     <ion-item lines="full" class="ion-no-padding">
       <div slot="start" class="w-2rem h-2rem border-round bg-red-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
-        <i class="pi pi-calendar-minus text-xl text-red-600"></i>
+        <app-icon icon="mdi:calendar-remove" class="text-xl text-red-600" />
       </div>
       <ion-label class="ml-2">
         <h3 class="font-bold text-900">Fecha de Fin</h3>
@@ -92,7 +92,7 @@
 
   } @else {
   <div class="text-center p-6">
-    <i class="pi pi-folder-open text-6xl text-400"></i>
+    <app-icon icon="mdi:folder-open" class="text-6xl text-400" />
     <p class="text-500 mt-3 text-base">No hay documentos disponibles</p>
   </div>
   }

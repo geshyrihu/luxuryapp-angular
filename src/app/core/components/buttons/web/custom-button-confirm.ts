@@ -2,11 +2,12 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, input, output } from "@angular/core";
 import { TooltipModule } from "primeng/tooltip";
 import Swal from "sweetalert2";
+import { AppIcon } from "../../app-icon/app-icon.component";
 import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "custom-button-confirm",
-  imports: [CommonModule, TooltipModule],
+  imports: [CommonModule, TooltipModule, AppIcon],
   template: `
     <button
       [type]="type()"
@@ -18,7 +19,7 @@ import { BaseButton } from "../base/base-button";
       tooltipPosition="top"
     >
       <span [class]="iconShellClasses(showLabelOnDesktop())" aria-hidden="true">
-        <i [class]="finalIcon()"></i>
+        <app-icon [icon]="finalIcon()" />
       </span>
       @if (showLabelOnDesktop()) {
         <span>{{ label() || "Confirmar" }}</span>
@@ -42,7 +43,7 @@ export class CustomButtonConfirm extends BaseButton {
 
   confirmed = output<void>();
 
-  finalIcon = computed(() => this.resolvedIconClass() || "pi pi-check");
+  finalIcon = computed(() => this.icon() || this.iconClass() || "mdi:check");
 
   async confirmAction(event: Event): Promise<void> {
     const result = await Swal.fire({

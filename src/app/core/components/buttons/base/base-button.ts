@@ -1,10 +1,7 @@
 import { computed, Directive, input, output } from "@angular/core";
 import { ButtonType } from "../../../enums/button-type";
 import { TooltipPlacement } from "../../../enums/tooltip-placement";
-import {
-  normalizePrimeIconClass,
-  resolvePrimeIcon,
-} from "../../../utils/prime-icon-resolver";
+import { resolveIconifyIcon } from "../../../utils/prime-icon-resolver";
 
 type Severity =
   | "primary"
@@ -29,8 +26,8 @@ export abstract class BaseButton {
   disabled = input<boolean>(false);
   customClass = input<string>("");
   customNgClass = input<Record<string, boolean>>({});
-  iconClass = input<string>("");
-  icon = input<string>("");
+  iconClass = input<string>(""); // Soporta pi pi-xxx o mdi:xxx
+  icon = input<string>(""); // Soporta pi pi-xxx o mdi:xxx
   emoji = input<string>("");
 
   label = input<string>("");
@@ -57,12 +54,13 @@ export abstract class BaseButton {
   link = input<boolean>(false);
   text = input<boolean>(false);
 
-  resolvedIconClass = computed(() => {
-    const icon = this.icon() || this.iconClass();
-    const directIcon = normalizePrimeIconClass(icon);
-    if (directIcon) return directIcon;
-
-    return resolvePrimeIcon(this.emoji());
+  /**
+   * Resuelve el icono a formato Iconify (mdi:xxx)
+   * Si viene pi pi-xxx, lo mapea. Si viene un emoji, lo intenta resolver.
+   */
+  resolvedIcon = computed(() => {
+    const rawIcon = this.icon() || this.iconClass() || this.emoji();
+    return resolveIconifyIcon(rawIcon);
   });
 
   btnClasses = computed(() => {

@@ -28,7 +28,7 @@
             </span>
           }
           @if (!last) {
-            <i class="pi pi-chevron-right text-300 text-xs mx-1"></i>
+            <app-icon icon="mdi:chevron-right" class="text-300 text-xs mx-1" />
           }
         </div>
         }
@@ -104,12 +104,12 @@
     <div
       class="flex flex-column align-items-center justify-content-center p-5 text-center text-500"
     >
-      <i class="pi pi-search text-4xl mb-3"></i>
+      <app-icon icon="mdi:magnify" class="text-4xl mb-3" />
       <p>No se encontraron resultados para "{{ filterValue() }}"</p>
     </div>
     } @else if (!loading() && filteredData().length === 0) {
       <div class="flex flex-column align-items-center justify-content-center p-5 text-center text-500">
-        <i class="pi pi-info-circle text-4xl mb-3"></i>
+        <app-icon icon="mdi:information-outline" class="text-4xl mb-3" />
         <p>No hay registros disponibles</p>
       </div>
     }

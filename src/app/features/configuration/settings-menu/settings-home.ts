@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject } from "@angular/core";
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { CardModule } from "primeng/card";
@@ -12,6 +12,7 @@ import {
   resolvePrimeIcon,
 } from "src/app/core/utils/prime-icon-resolver";
 import * as MenuItems from "./index-menu-item";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 
 interface IMenuTone {
   card: string;
@@ -31,7 +32,9 @@ interface IMenuTone {
     DataViewMobile,
     IonItem,
     IonLabel,
+    AppIcon,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: "./settings-home.html",
   styleUrls: ["./settings-home.scss"],
 })
@@ -134,8 +137,7 @@ export class SettingsHome {
   }
 
   hasPrimeIcon(icon: string | null | undefined): boolean {
-    const iconClass = this.menuIconClass(icon);
-    return iconClass.startsWith("pi ") || iconClass.includes("icon-pi-");
+    return !!icon && icon.trim().length > 0;
   }
 
   public menuTone(group: string | null | undefined): IMenuTone {
@@ -171,9 +173,11 @@ export class SettingsHome {
     isMobile = false,
   ): string {
     const sizeClass = isMobile ? "text-base" : "text-lg";
-    return [this.menuIconClass(icon), sizeClass, this.menuTone(group).glyph].join(
-      " ",
-    );
+    return [
+      this.menuIconClass(icon),
+      sizeClass,
+      this.menuTone(group).glyph,
+    ].join(" ");
   }
 
   menuHeadingClass(group: string | null | undefined): string {

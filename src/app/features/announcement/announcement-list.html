@@ -10,7 +10,7 @@
       <!-- Mensaje si no hay anuncios vigentes -->
       @if (!loading() && announcements().length === 0) {
       <div class="text-center p-4">
-        <i class="pi pi-inbox" style="font-size: 2rem"></i>
+        <app-icon icon="mdi:inbox" class="text-4xl" />
         <p class="mt-2">No hay comunicados para mostrar.</p>
       </div>
       }
@@ -50,10 +50,11 @@
             <ng-template #footer>
               <div class="flex justify-content-end align-items-center">
                 @if (anuncio.attachmentCount > 0) {
-                <i
-                  class="pi pi-paperclip text-color-secondary"
+                <app-icon
+                  icon="mdi:paperclip"
+                  class="text-color-secondary"
                   pTooltip="Contiene adjuntos"
-                ></i>
+                />
                 }
               </div>
             </ng-template>

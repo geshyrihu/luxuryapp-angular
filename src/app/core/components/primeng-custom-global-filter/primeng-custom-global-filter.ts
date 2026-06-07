@@ -4,6 +4,7 @@ import { IconFieldModule } from "primeng/iconfield";
 import { InputIconModule } from "primeng/inputicon";
 import { InputTextModule } from "primeng/inputtext";
 import { Table } from "primeng/table";
+import { AppIcon } from "../app-icon/app-icon.component";
 
 /**
  * 🔍 GLOBAL FILTER
@@ -13,11 +14,17 @@ import { Table } from "primeng/table";
  */
 @Component({
   selector: "primeng-custom-global-filter",
-  imports: [FormsModule, InputTextModule, IconFieldModule, InputIconModule],
+  imports: [
+    FormsModule,
+    InputTextModule,
+    IconFieldModule,
+    InputIconModule,
+    AppIcon,
+  ],
   template: `
     <p-iconfield iconPosition="left" fluid>
       <p-inputicon>
-        <i class="pi pi-search"></i>
+        <app-icon icon="mdi:magnify" />
       </p-inputicon>
       <input
         pInputText

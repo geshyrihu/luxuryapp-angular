@@ -9,6 +9,7 @@ import {
   IonSegmentButton,
 } from "@ionic/angular/standalone";
 import { AvatarModule } from "primeng/avatar";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -32,6 +33,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
     IonAvatar,
 
     IonNote,
+    AppIcon,
   ],
 })
 export class Cumpleanos implements OnInit {

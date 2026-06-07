@@ -70,7 +70,7 @@ export class ManualPdfService {
 <html lang="es"><head><meta charset="UTF-8">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:"Inter",system-ui,-apple-system,sans-serif; line-height:1.45; color:#1a1a1a; }
+  body { font-family:var(--ds-font-family-document); line-height:1.45; color:#1a1a1a; }
   .container { max-width:1020px; margin:0 auto; background:#fff; }
   
   /* Reglas exclusivas para cuando se envíe a la impresora nativa */

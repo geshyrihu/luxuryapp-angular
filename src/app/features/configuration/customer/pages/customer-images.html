@@ -9,12 +9,24 @@
     (click)="fileInput.click()"
   >
     @if (uploading()) {
-      <i class="pi pi-spin pi-spinner text-primary mb-2" style="font-size: 2.5rem"></i>
-      <p class="text-700 font-medium m-0">Subiendo imágenes...</p>
+    <app-icon
+      icon="mdi:loading"
+      class="ds-animate-spin text-primary mb-2"
+      style="font-size: 2.5rem"
+    ></app-icon>
+    <p class="text-700 font-medium m-0">Subiendo imágenes...</p>
     } @else {
-      <i class="pi pi-cloud-upload mb-2" style="font-size: 2.5rem"></i>
-      <p class="text-700 font-medium m-0">Arrastra imágenes aquí o haz clic para seleccionar</p>
-      <p class="text-400 m-0 text-sm mt-1">JPG, PNG, GIF, WEBP — Máx. 5 MB por imagen</p>
+    <app-icon
+      icon="mdi:cloud-upload"
+      class="mb-2"
+      style="font-size: 2.5rem"
+    ></app-icon>
+    <p class="text-700 font-medium m-0">
+      Arrastra imágenes aquí o haz clic para seleccionar
+    </p>
+    <p class="text-400 m-0 text-sm mt-1">
+      JPG, PNG, GIF, WEBP — Máx. 5 MB por imagen
+    </p>
     }
     <input
       #fileInput
@@ -30,7 +42,7 @@
   <div class="flex align-items-center mb-3">
     <h3 class="m-0 font-bold text-900">Galería de Imágenes</h3>
     @if (hasImages()) {
-      <span class="ml-2 text-500 text-sm">({{ images().length }})</span>
+    <span class="ml-2 text-500 text-sm">({{ images().length }})</span>
     }
   </div>
 
@@ -38,45 +50,55 @@
 
   <!-- Galería -->
   @if (loading()) {
-    <div class="flex justify-content-center align-items-center py-8">
-      <i class="pi pi-spin pi-spinner text-primary" style="font-size: 3rem"></i>
+  <div class="flex justify-content-center align-items-center py-8">
+    <app-icon
+      icon="mdi:loading"
+      class="ds-animate-spin text-primary"
+      style="font-size: 3rem"
+    ></app-icon>
+  </div>
+  } @else { @if (hasImages()) {
+  <div class="grid">
+    @for (img of images(); track img.id) {
+    <div class="col-12 sm:col-6 md:col-4 lg:col-3">
+      <div
+        class="card-image-container relative border-round overflow-hidden shadow-2 hover:shadow-4 transition-all transition-duration-300"
+      >
+        <p-image
+          [src]="img.pathImag"
+          [alt]="'Imagen de cliente'"
+          [preview]="true"
+          appendTo="body"
+          imageClass="w-full h-15rem object-contain bg-gray-100"
+        />
+        <div class="absolute top-0 right-0 p-2">
+          <p-button
+            icon="mdi:delete"
+            [rounded]="true"
+            [text]="true"
+            severity="danger"
+            (onClick)="onDelete(img.id)"
+            pTooltip="Eliminar imagen"
+            tooltipPosition="left"
+            styleClass="bg-white-alpha-40 backdrop-blur-sm hover:bg-red-500 hover:text-white"
+          />
+        </div>
+      </div>
     </div>
-  } @else {
-    @if (hasImages()) {
-      <div class="grid">
-        @for (img of images(); track img.id) {
-          <div class="col-12 sm:col-6 md:col-4 lg:col-3">
-            <div class="card-image-container relative border-round overflow-hidden shadow-2 hover:shadow-4 transition-all transition-duration-300">
-              <p-image
-                [src]="img.pathImag"
-                [alt]="'Imagen de cliente'"
-                [preview]="true"
-                appendTo="body"
-                imageClass="w-full h-15rem object-contain bg-gray-100"
-              />
-              <div class="absolute top-0 right-0 p-2">
-                <p-button
-                  icon="pi pi-trash"
-                  [rounded]="true"
-                  [text]="true"
-                  severity="danger"
-                  (onClick)="onDelete(img.id)"
-                  pTooltip="Eliminar imagen"
-                  tooltipPosition="left"
-                  styleClass="bg-white-alpha-40 backdrop-blur-sm hover:bg-red-500 hover:text-white"
-                />
-              </div>
-            </div>
-          </div>
-        }
-      </div>
-    } @else {
-      <div class="flex flex-column align-items-center justify-content-center py-6 text-center">
-        <i class="pi pi-images text-300 mb-2" style="font-size: 3rem"></i>
-        <p class="text-500 m-0">No hay imágenes aún</p>
-      </div>
     }
-  }
+  </div>
+  } @else {
+  <div
+    class="flex flex-column align-items-center justify-content-center py-6 text-center"
+  >
+    <app-icon
+      icon="mdi:image-multiple"
+      class="text-300 mb-2"
+      style="font-size: 3rem"
+    />
+    <p class="text-500 m-0">No hay imágenes aún</p>
+  </div>
+  } }
 </div>
 
 <style>

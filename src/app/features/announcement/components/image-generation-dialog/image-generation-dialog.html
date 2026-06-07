@@ -22,7 +22,7 @@
           [class.selected]="selectedStyle() === option.value"
           (click)="selectStyle(option.value)"
         >
-          <i [class]="option.icon + ' text-3xl mb-2 text-primary'"></i>
+          <app-icon [icon]="option.icon" class="text-3xl mb-2 text-primary" />
           <span class="font-bold">{{ option.label }}</span>
         </div>
       </div>
@@ -58,7 +58,7 @@
           [class.selected]="selectedElement() === option.value"
           (click)="selectElement(option.value)"
         >
-          <i [class]="option.icon + ' text-3xl mb-2 text-primary'"></i>
+          <app-icon [icon]="option.icon" class="text-3xl mb-2 text-primary" />
           <span class="font-bold">{{ option.label }}</span>
         </div>
       </div>
@@ -93,11 +93,10 @@
             pTooltip="Presiona para dictar"
             tooltipPosition="bottom"
           >
-            <i
-              class="pi"
-              [class.pi-microphone]="!isListening()"
-              [class.pi-stop]="isListening()"
-            ></i>
+            <app-icon
+              [icon]="isListening() ? 'mdi:stop' : 'mdi:microphone'"
+              class="text-xl"
+            />
           </button>
         </div>
 
@@ -114,7 +113,7 @@
   <div class="flex justify-content-between pt-3 border-top-1 border-200">
     <custom-button
       label="Atrós"
-      iconClass="pi pi-arrow-left"
+      iconClass="mdi:arrow-left"
       variant="ghost-text"
       (clicked)="prevStep()"
       [disabled]="currentStep() === 1"
@@ -123,14 +122,14 @@
     @if (currentStep() < 4) {
     <custom-button
       label="Siguiente"
-      iconClass="pi pi-arrow-right"
+      iconClass="mdi:arrow-right"
       (clicked)="nextStep()"
       [disabled]="!canProceed()"
     />
     } @else {
     <custom-button
       label="Generar Imagen"
-      iconClass="pi pi-sparkles"
+      iconClass="mdi:sparkles"
       severity="help"
       [loading]="generating()"
       (clicked)="generate()"

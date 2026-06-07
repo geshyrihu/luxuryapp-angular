@@ -4,6 +4,7 @@ import { ButtonModule } from "primeng/button";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { environment } from "src/environments/environment";
+import { AppIcon } from "../app-icon/app-icon.component";
 import { ApiResponseService } from "../../services/api-response.service";
 
 /**
@@ -13,7 +14,7 @@ import { ApiResponseService } from "../../services/api-response.service";
  */
 @Component({
   selector: "app-pdf-viewer-modal",
-  imports: [PdfViewerModule, ButtonModule, ProgressSpinnerModule],
+  imports: [PdfViewerModule, ButtonModule, ProgressSpinnerModule, AppIcon],
   templateUrl: "./pdf-viewer-modal.html",
 })
 export class PdfViewerModal implements OnInit, OnDestroy {

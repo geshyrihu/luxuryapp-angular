@@ -193,12 +193,3 @@ export class Loader {
   // Signal directo del servicio
   public isLoading = this.loaderService.loading$;
 }
-
-
-
-
-
-
-
-
-

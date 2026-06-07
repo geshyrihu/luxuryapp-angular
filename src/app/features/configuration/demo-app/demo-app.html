@@ -8,8 +8,8 @@
         PrimeNG 21, PrimeFlex, Ionic mobile y Design System propio.
       </p>
       <div class="flex flex-wrap gap-2">
-        <p-button label="Accion primaria" icon="pi pi-check" />
-        <p-button label="Ver reglas" icon="pi pi-book" severity="secondary" [outlined]="true" />
+        <p-button label="Accion primaria" icon="mdi:check" />
+        <p-button label="Ver reglas" icon="mdi:book" severity="secondary" [outlined]="true" />
       </div>
     </div>
 
@@ -17,7 +17,7 @@
       @for (metric of metrics; track metric.label) {
         <article class="demo-metric">
           <span class="demo-metric__icon" [class]="'demo-metric__icon demo-metric__icon--' + metric.tone">
-            <i [class]="metric.icon"></i>
+            <app-icon [icon]="metric.icon"></app-icon>
           </span>
           <div>
             <strong>{{ metric.value }}</strong>
@@ -59,7 +59,7 @@
               <div class="col-12 lg:col-4">
                 <p-card styleClass="h-full border-top-3 border-primary surface-card">
                   <div class="flex align-items-center gap-3 mb-3">
-                    <i [class]="scenario.icon + ' text-primary text-2xl'"></i>
+                    <app-icon [icon]="scenario.icon" class="text-primary text-2xl"></app-icon>
                     <strong class="text-xl">{{ scenario.title }}</strong>
                   </div>
                   <p class="text-color-secondary line-height-3 mb-3">{{ scenario.description }}</p>
@@ -73,7 +73,7 @@
 
           <p-divider align="left">
             <div class="inline-flex align-items-center">
-              <i class="pi pi-list mr-2"></i>
+              <app-icon icon="mdi:format-list-bulleted" class="mr-2"></app-icon>
               <b>Demo: Master-Detail (Facturacion/Gastos)</b>
             </div>
           </p-divider>
@@ -106,12 +106,12 @@
                   <td><p-inputnumber [(ngModel)]="line.quantity" class="p-inputtext-sm" [fluid]="true" /></td>
                   <td><p-inputnumber [(ngModel)]="line.price" mode="currency" currency="MXN" class="p-inputtext-sm" [fluid]="true" /></td>
                   <td class="font-bold">{{ line.price * line.quantity | currency:'MXN' }}</td>
-                  <td><p-button icon="pi pi-trash" severity="danger" [text]="true" size="small" /></td>
+                  <td><p-button icon="mdi:delete" severity="danger" [text]="true" size="small" /></td>
                 </tr>
               </ng-template>
               <ng-template #footer>
                 <div class="flex justify-content-between align-items-center p-2">
-                  <p-button label="Añadir Concepto" icon="pi pi-plus" [outlined]="true" size="small" />
+                  <p-button label="Añadir Concepto" icon="mdi:plus" [outlined]="true" size="small" />
                   <div class="text-right">
                     <span class="text-color-secondary mr-3">Subtotal:</span>
                     <span class="text-xl font-bold">$21,000.00</span>
@@ -122,13 +122,13 @@
 
             <div class="flex justify-content-end gap-2">
               <p-button label="Cancelar" severity="secondary" [outlined]="true" />
-              <p-button label="Guardar Factura" icon="pi pi-save" />
+              <p-button label="Guardar Factura" icon="mdi:content-save" />
             </div>
           </p-card>
 
           <p-divider align="left">
             <div class="inline-flex align-items-center">
-              <i class="pi pi-star mr-2"></i>
+              <app-icon icon="mdi:star" class="mr-2"></app-icon>
               <b>Demo: Luxury Metrics (Dorado Institucional)</b>
             </div>
           </p-divider>
@@ -142,7 +142,7 @@
                     <div class="text-900 font-bold text-3xl">$42.5M</div>
                   </div>
                   <div class="flex align-items-center justify-content-center bg-gold-100 border-round" style="width:2.5rem;height:2.5rem">
-                    <i class="pi pi-wallet text-gold-600 text-xl"></i>
+                    <app-icon icon="mdi:wallet" class="text-gold-600 text-xl"></app-icon>
                   </div>
                 </div>
                 <div class="mt-3">
@@ -316,7 +316,7 @@
                     <strong>Autorizaciones pendientes</strong>
                     <p>Decisiones visibles, datos auditables y una accion principal por bloque.</p>
                     <div class="flex gap-2 flex-wrap">
-                      <p-button label="Aprobar seleccion" icon="pi pi-check" size="small" />
+                      <p-button label="Aprobar seleccion" icon="mdi:check" size="small" />
                       <p-button label="Revisar" severity="secondary" [outlined]="true" size="small" />
                     </div>
                   </div>
@@ -414,14 +414,14 @@
           <p-card>
             <ng-template #title>Botones</ng-template>
             <div class="demo-button-board">
-              <p-button label="Primary" icon="pi pi-check" />
-              <p-button label="Secondary" severity="secondary" icon="pi pi-arrow-left" />
-              <p-button label="Success" severity="success" icon="pi pi-save" />
-              <p-button label="Warning" severity="warn" icon="pi pi-exclamation-triangle" />
-              <p-button label="Danger" severity="danger" icon="pi pi-trash" />
-              <p-button label="Outline" [outlined]="true" icon="pi pi-filter" />
-              <p-button label="Text" [text]="true" icon="pi pi-ellipsis-h" />
-              <p-button icon="pi pi-pencil" [rounded]="true" ariaLabel="Editar" />
+              <p-button label="Primary" icon="mdi:check" />
+              <p-button label="Secondary" severity="secondary" icon="mdi:arrow-left" />
+              <p-button label="Success" severity="success" icon="mdi:content-save" />
+              <p-button label="Warning" severity="warn" icon="mdi:alert" />
+              <p-button label="Danger" severity="danger" icon="mdi:delete" />
+              <p-button label="Outline" [outlined]="true" icon="mdi:filter" />
+              <p-button label="Text" [text]="true" icon="mdi:dots-horizontal" />
+              <p-button icon="mdi:pencil" [rounded]="true" ariaLabel="Editar" />
               <p-button label="Small" size="small" />
               <p-button label="Large" size="large" />
               <p-button label="Disabled" [disabled]="true" />
@@ -434,7 +434,7 @@
                 <div class="col-12 md:col-6 xl:col-4">
                   <p-card [styleClass]="rule.cardClass">
                     <div class="flex align-items-start gap-3">
-                      <i [class]="rule.iconClass"></i>
+                      <app-icon [icon]="rule.iconClass"></app-icon>
                       <div class="flex-1">
                         <div class="flex align-items-center justify-content-between gap-2 mb-2">
                           <strong>{{ rule.variant }}</strong>
@@ -456,7 +456,7 @@
                 <p-card [styleClass]="card.cardClass">
                   <div class="flex flex-column gap-3">
                     <div class="flex align-items-center justify-content-between gap-3">
-                      <i [class]="card.iconClass"></i>
+                      <app-icon [icon]="card.iconClass"></app-icon>
                       <p-tag [value]="card.subtitle" [severity]="card.severity"></p-tag>
                     </div>
                     <div>
@@ -479,9 +479,9 @@
             </ng-template>
             <ng-template #end>
               <div class="flex gap-2 flex-wrap justify-content-end">
-                <p-button label="Limpiar" severity="secondary" [outlined]="true" icon="pi pi-filter-slash" />
-                <p-button label="Exportar" severity="secondary" icon="pi pi-download" />
-                <p-button label="Nuevo" icon="pi pi-plus" />
+                <p-button label="Limpiar" severity="secondary" [outlined]="true" icon="mdi:filter-off" />
+                <p-button label="Exportar" severity="secondary" icon="mdi:download" />
+                <p-button label="Nuevo" icon="mdi:plus" />
               </div>
             </ng-template>
           </p-toolbar>
@@ -640,7 +640,7 @@
                 <label for="demo-search">Busqueda</label>
                 <p-iconfield iconPosition="left" fluid>
                   <p-inputicon>
-                    <i class="pi pi-search"></i>
+                    <app-icon icon="mdi:magnify"></app-icon>
                   </p-inputicon>
                   <input
                     id="demo-search"
@@ -688,7 +688,7 @@
 
             <div class="demo-form-actions">
               <p-button label="Cancelar" severity="secondary" [outlined]="true" />
-              <p-button label="Guardar cambios" icon="pi pi-save" />
+              <p-button label="Guardar cambios" icon="mdi:content-save" />
             </div>
           </p-card>
 
@@ -724,7 +724,7 @@
                     <strong>Solicitudes operativas</strong>
                     <span class="block text-sm text-color-secondary">Acciones visibles maximas: 2 + menu contextual.</span>
                   </div>
-                  <p-button label="Nuevo registro" icon="pi pi-plus" size="small" />
+                  <p-button label="Nuevo registro" icon="mdi:plus" size="small" />
                 </div>
               </ng-template>
               <ng-template #header>
@@ -750,8 +750,8 @@
                   </td>
                   <td>
                     <div class="flex justify-content-center gap-2">
-                      <p-button icon="pi pi-eye" [rounded]="true" [text]="true" ariaLabel="Ver" />
-                      <p-button icon="pi pi-pencil" [rounded]="true" [text]="true" severity="secondary" ariaLabel="Editar" />
+                      <p-button icon="mdi:eye" [rounded]="true" [text]="true" ariaLabel="Ver" />
+                      <p-button icon="mdi:pencil" [rounded]="true" [text]="true" severity="secondary" ariaLabel="Editar" />
                     </div>
                   </td>
                 </tr>
@@ -760,7 +760,7 @@
                 <tr>
                   <td colspan="7">
                     <div class="demo-empty">
-                      <i class="pi pi-inbox"></i>
+                      <app-icon icon="mdi:inbox"></app-icon>
                       <strong>Sin resultados</strong>
                       <span>Ajusta los filtros o crea un nuevo registro.</span>
                     </div>
@@ -792,7 +792,7 @@
             </div>
             <div class="col-12 md:col-6 xl:col-3">
               <p-message severity="error" text="No tienes permisos para aprobar este proceso."></p-message>
-              <p-button label="Abrir confirmacion" icon="pi pi-external-link" (onClick)="openDialog()" styleClass="mt-3 w-full" />
+              <p-button label="Abrir confirmacion" icon="mdi:external-link" (onClick)="openDialog()" styleClass="mt-3 w-full" />
             </div>
           </div>
         </div>
@@ -852,7 +852,7 @@
                       <dd>$48,000</dd>
                     </div>
                   </dl>
-                  <p-button label="Revisar solicitud" icon="pi pi-eye" styleClass="w-full" />
+                  <p-button label="Revisar solicitud" icon="mdi:eye" styleClass="w-full" />
                 </article>
               </div>
             </div>
@@ -928,7 +928,7 @@
     </p>
     <ng-template #footer>
       <p-button label="Cancelar" severity="secondary" [outlined]="true" (onClick)="dialogVisible = false" />
-      <p-button label="Confirmar" icon="pi pi-check" (onClick)="dialogVisible = false" />
+      <p-button label="Confirmar" icon="mdi:check" (onClick)="dialogVisible = false" />
     </ng-template>
   </p-dialog>
 </section>

@@ -2,6 +2,7 @@ import { Component, input, output } from "@angular/core";
 import { IconFieldModule } from "primeng/iconfield";
 import { InputIconModule } from "primeng/inputicon";
 import { InputTextModule } from "primeng/inputtext";
+import { AppIcon } from "../../app-icon/app-icon.component";
 
 /**
  * 🔍 CUSTOM SEARCH INPUT
@@ -11,11 +12,11 @@ import { InputTextModule } from "primeng/inputtext";
  */
 @Component({
   selector: "custom-search-input-signal",
-  imports: [IconFieldModule, InputIconModule, InputTextModule],
+  imports: [IconFieldModule, InputIconModule, InputTextModule, AppIcon],
   template: `
     <p-iconfield iconPosition="left" fluid>
       <p-inputicon>
-        <i class="pi pi-search"></i>
+        <app-icon icon="mdi:magnify" />
       </p-inputicon>
 
       <input

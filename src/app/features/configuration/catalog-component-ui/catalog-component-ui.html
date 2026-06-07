@@ -4,8 +4,8 @@
   <!-- TOOLBAR SUPERIOR -->
   <nav class="catalog-nav p-3 shadow-2 flex align-items-center justify-content-between gap-3">
     <div class="flex align-items-center gap-3">
-      <div class="logo-box border-circle bg-primary flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-        <i class="pi pi-bolt text-white text-xl"></i>
+      <div class="logo-box border-round-lg bg-primary flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+        <app-icon icon="bolt" class="text-white text-xl" />
       </div>
       <div>
         <h1 class="m-0 text-lg font-bold">Luxury Design System & Guide</h1>
@@ -27,7 +27,7 @@
           optionValue="id"
         >
           <ng-template pTemplate="item" let-item>
-            <i [class]="item.icon + ' mr-2'"></i>
+            <app-icon [icon]="iconifyIcon(item.icon)" class="mr-2" />
             <span>{{item.label}}</span>
           </ng-template>
         </p-selectButton>
@@ -36,15 +36,15 @@
       <!-- Menú móvil para categorías si la pantalla es pequeña -->
       <div class="xl:hidden">
         <p-select [options]="categories" [ngModel]="activeCategory()" (ngModelChange)="activeCategory.set($event)" optionLabel="label" optionValue="id" placeholder="Seleccionar Sección">
-           <ng-template pTemplate="selectedItem" let-selectedOption>
+            <ng-template pTemplate="selectedItem" let-selectedOption>
               <div class="flex align-items-center gap-2">
-                <i [class]="selectedOption.icon"></i>
+                <app-icon [icon]="iconifyIcon(selectedOption.icon)" />
                 <span>{{selectedOption.label}}</span>
               </div>
             </ng-template>
             <ng-template pTemplate="item" let-item>
               <div class="flex align-items-center gap-2">
-                <i [class]="item.icon"></i>
+                <app-icon [icon]="iconifyIcon(item.icon)" />
                 <span>{{item.label}}</span>
               </div>
             </ng-template>
@@ -54,7 +54,7 @@
       <p-divider layout="vertical"></p-divider>
 
       <p-button 
-        [icon]="isDarkMode() ? 'pi pi-sun' : 'pi pi-moon'" 
+        [icon]="isDarkMode() ? 'mdi:weather-sunny' : 'mdi:weather-night'" 
         [severity]="isDarkMode() ? 'warn' : 'secondary'"
         (onClick)="toggleTheme()"
         [rounded]="true"
@@ -62,7 +62,7 @@
       />
       
       <p-button 
-        icon="pi pi-mobile" 
+        icon="mdi:cellphone" 
         [severity]="mobilePreview() ? 'primary' : 'secondary'"
         (onClick)="mobilePreview.set(!mobilePreview())"
         [rounded]="true"
@@ -98,7 +98,7 @@
                         <code class="text-primary text-xs">{{ color.token }}</code>
                         <div class="text-xs text-secondary mt-1 line-height-2">{{ color.uso }}</div>
                       </div>
-                      <i class="pi pi-copy text-400"></i>
+                      <app-icon icon="copy" class="text-400" />
                     </div>
                   </div>
                 }
@@ -207,9 +207,9 @@
                   <div class="flex flex-column gap-2">
                     <span class="font-bold text-sm">Contextual Menu</span>
                     <app-action-menu [mobileMode]="false">
-                      <p-button label="Ver Detalle" icon="pi pi-search" [text]="true" />
-                      <p-button label="Exportar" icon="pi pi-file-pdf" [text]="true" />
-                      <p-button label="Eliminar" icon="pi pi-trash" [text]="true" severity="danger" />
+                      <p-button label="Ver Detalle" icon="mdi:magnify" [text]="true" />
+                      <p-button label="Exportar" icon="mdi:file-pdf-box" [text]="true" />
+                      <p-button label="Eliminar" icon="mdi:delete" [text]="true" severity="danger" />
                     </app-action-menu>
                   </div>
 
@@ -218,9 +218,9 @@
                   <div class="flex flex-column gap-2">
                     <span class="font-bold text-sm">Icons Group</span>
                     <app-action-icons-group>
-                      <i class="pi pi-pencil p-2 cursor-pointer hover:text-primary"></i>
-                      <i class="pi pi-trash p-2 cursor-pointer hover:text-danger"></i>
-                      <i class="pi pi-copy p-2 cursor-pointer hover:text-primary"></i>
+                      <app-icon icon="pencil" class="p-2 cursor-pointer hover:text-primary" />
+                      <app-icon icon="trash" class="p-2 cursor-pointer hover:text-danger" />
+                      <app-icon icon="copy" class="p-2 cursor-pointer hover:text-primary" />
                     </app-action-icons-group>
                   </div>
                 </div>
@@ -305,7 +305,7 @@
                 @for (group of groupedDataExample | keyvalue; track group.key) {
                   <div class="mb-3">
                     <div class="font-bold text-sm text-primary mb-2 flex align-items-center gap-2">
-                      <i class="pi pi-calendar-clock"></i>
+                      <app-icon icon="calendar-clock" />
                       <span>{{ group.key }}</span>
                     </div>
                     @for (item of group.value; track item.id) {
@@ -488,7 +488,7 @@
                       [class.bg-blue-50]="bloque.titulo === 'Nota'" [class.border-blue-200]="bloque.titulo === 'Nota'"
                       [class.bg-green-50]="bloque.titulo === 'Buena practica'" [class.border-green-200]="bloque.titulo === 'Buena practica'">
                       <div class="flex align-items-center gap-2 mb-3">
-                        <i [class]="bloque.icono + ' text-xl'"></i>
+                        <app-icon [icon]="iconifyIcon(bloque.icono)" class="text-xl" />
                         <strong class="text-lg">{{ bloque.titulo }}</strong>
                       </div>
                       <p class="m-0 text-color-secondary line-height-3 text-sm">{{ bloque.descripcion }}</p>
@@ -503,7 +503,7 @@
               <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">Checklist de Auditoría Rápida</h3>
               <p-card [styleClass]="puntajeAprobatorio() ? 'border-left-3 border-green-500 mb-4' : 'border-left-3 border-red-500 mb-4'">
                 <div class="flex align-items-center gap-3">
-                  <div class="w-4rem h-4rem border-circle bg-primary text-white flex align-items-center justify-content-center text-2xl font-bold">
+                  <div class="w-4rem h-4rem border-round-lg bg-primary text-white flex align-items-center justify-content-center text-2xl font-bold">
                     {{ puntajeChecklist() }}
                   </div>
                   <div>
@@ -538,3 +538,4 @@
     </main>
   </div>
 </div>
+

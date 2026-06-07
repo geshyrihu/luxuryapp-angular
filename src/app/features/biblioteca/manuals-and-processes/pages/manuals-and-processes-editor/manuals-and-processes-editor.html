@@ -4,11 +4,11 @@
     class="surface-card p-3 shadow-1 flex align-items-center justify-content-between border-bottom-1 border-200 flex-shrink-0"
   >
     <div class="flex align-items-center gap-3">
-      <p-button
-        icon="pi pi-arrow-left"
-        [text]="true"
+      <custom-button
+        iconClass="mdi:arrow-left"
+        [variant]="'text'"
         severity="secondary"
-        (onClick)="onGoBack()"
+        (clicked)="onGoBack()"
       />
       <div>
         <h2 class="text-xl font-bold text-900 m-0">
@@ -21,37 +21,37 @@
     </div>
     <div class="flex align-items-center gap-2">
       @if (activeTab() === 'pasos') {
-      <p-button
-        icon="pi pi-plus"
+      <custom-button
+        iconClass="mdi:plus"
         label="Agregar Paso"
         severity="primary"
         size="small"
-        (onClick)="onNewPaso()"
+        (clicked)="onNewPaso()"
       />
       }
-      <p-button
+      <custom-button
         [label]="'Pasos (' + pasos().length + ')'"
-        icon="pi pi-list"
+        iconClass="mdi:format-list-bulleted"
         [severity]="activeTab() === 'pasos' ? 'primary' : 'secondary'"
-        [outlined]="activeTab() !== 'pasos'"
+        [variant]="activeTab() === 'pasos' ? null : 'outlined'"
         size="small"
-        (onClick)="activeTab.set('pasos')"
+        (clicked)="activeTab.set('pasos')"
       />
-      <p-button
+      <custom-button
         [label]="'Versiones (' + versiones().length + ')'"
-        icon="pi pi-history"
+        iconClass="mdi:history"
         [severity]="activeTab() === 'versiones' ? 'primary' : 'secondary'"
-        [outlined]="activeTab() !== 'versiones'"
+        [variant]="activeTab() === 'versiones' ? null : 'outlined'"
         size="small"
-        (onClick)="activeTab.set('versiones')"
+        (clicked)="activeTab.set('versiones')"
       />
-      <p-button
+      <custom-button
         [label]="'Adjuntos (' + adjuntos().length + ')'"
-        icon="pi pi-paperclip"
+        iconClass="mdi:paperclip"
         [severity]="activeTab() === 'adjuntos' ? 'primary' : 'secondary'"
-        [outlined]="activeTab() !== 'adjuntos'"
+        [variant]="activeTab() === 'adjuntos' ? null : 'outlined'"
         size="small"
-        (onClick)="activeTab.set('adjuntos')"
+        (clicked)="activeTab.set('adjuntos')"
       />
     </div>
   </div>
@@ -67,7 +67,7 @@
     >
       @if (!pasos().length) {
       <div class="p-4 text-center text-500">
-        <i class="pi pi-list text-3xl mb-2 block"></i>
+        <app-icon icon="mdi:format-list-bulleted" class="text-3xl mb-2 block" />
         <p class="text-sm m-0">Sin pasos. Agrega el primero.</p>
       </div>
       }
@@ -83,10 +83,11 @@
           [class.surface-100]="selectedPaso()?.id === paso.id"
           (click)="onSelectPaso(paso)"
         >
-          <i
+          <app-icon
             cdkDragHandle
-            class="pi pi-bars text-400 cursor-grab flex-shrink-0 text-xs"
-          ></i>
+            icon="mdi:menu"
+            class="text-400 cursor-grab flex-shrink-0 text-xs"
+          />
 
           <div
             class="flex-shrink-0 w-2rem h-2rem border-circle flex align-items-center justify-content-center text-white font-bold text-xs"
@@ -122,22 +123,16 @@
             (click)="$event.stopPropagation()"
           >
             @if (paso.diagramaId) {
-            <p-button
-              icon="pi pi-sitemap"
-              [text]="true"
+            <custom-button
+              iconClass="mdi:sitemap"
+              [variant]="'text'"
               severity="info"
               size="small"
               pTooltip="Ver Diagrama"
-              (onClick)="onAbrirDiagrama(paso)"
+              (clicked)="onAbrirDiagrama(paso)"
             />
             }
-            <p-button
-              icon="pi pi-trash"
-              [text]="true"
-              severity="danger"
-              size="small"
-              (onClick)="onDeletePaso(paso)"
-            />
+            <custom-button-delete (confirmed)="onDeletePaso(paso)" />
           </div>
         </div>
         }
@@ -150,16 +145,16 @@
       <div
         class="flex flex-column align-items-center justify-content-center h-full text-center max-w-30rem mx-auto"
       >
-        <i class="pi pi-book text-6xl text-primary mb-4"></i>
+        <app-icon icon="mdi:book" class="text-6xl text-primary mb-4" />
         <h2 class="text-900 font-bold mb-2">Diseño del Manual</h2>
         <p class="text-500 line-height-3 mb-4">
           Aquí es donde defines el paso a paso de tu proceso. Selecciona un paso de la lista de la izquierda para editarlo, o haz clic en <strong>Agregar Paso</strong> para crear una nueva instrucción.
         </p>
-        <p-button
-          icon="pi pi-plus"
+        <custom-button
+          iconClass="mdi:plus"
           label="Crear Primer Paso"
           severity="primary"
-          (onClick)="onNewPaso()"
+          (clicked)="onNewPaso()"
           *ngIf="pasos().length === 0"
         />
       </div>
@@ -169,7 +164,7 @@
         
         <div class="surface-ground border-round-xl p-4 border-1 surface-border">
           <div class="flex align-items-center gap-3 mb-2">
-            <i class="pi pi-pen-to-square text-2xl text-primary"></i>
+            <app-icon icon="mdi:pencil" class="text-2xl text-primary" />
             <h3 class="m-0 text-900 font-semibold">{{ isNewPaso() ? 'Nuevo Paso' : 'Editar Paso' }}</h3>
           </div>
           <p class="text-color-secondary m-0 line-height-3">
@@ -228,19 +223,19 @@
         <div class="flex flex-column gap-3 pt-3 border-top-1 border-200">
           <div class="flex align-items-center justify-content-between">
             <h4 class="text-base font-bold text-700 m-0">Diagrama de Flujo</h4>
-            <p-button
-              [icon]="selectedPaso()!.diagramaId ? 'pi pi-sitemap' : 'pi pi-plus'"
+            <custom-button
+              [iconClass]="selectedPaso()!.diagramaId ? 'mdi:sitemap' : 'mdi:plus'"
               [label]="selectedPaso()!.diagramaId ? 'Abrir Diagrama' : 'Crear Diagrama'"
               [severity]="selectedPaso()!.diagramaId ? 'info' : 'secondary'"
               size="small"
               [loading]="creatingDiagram()"
-              (onClick)="onAbrirDiagrama(selectedPaso()!)"
+              (clicked)="onAbrirDiagrama(selectedPaso()!)"
             />
           </div>
           @if (!selectedPaso()!.diagramaId) {
           <div class="surface-ground border-round p-3 border-1 surface-border">
             <div class="flex align-items-center gap-2 mb-2">
-              <i class="pi pi-lightbulb text-yellow-500"></i>
+              <app-icon icon="mdi:lightbulb-on-outline" class="text-yellow-500" />
               <span class="font-bold text-700 text-sm">Tip Visual</span>
             </div>
             <p class="text-sm text-500 m-0 line-height-3">
@@ -250,7 +245,7 @@
           } @else {
             <div class="surface-ground border-round p-3 border-1 surface-border mb-2">
               <div class="flex align-items-center gap-2 mb-2">
-                <i class="pi pi-check-circle text-green-500"></i>
+                <app-icon icon="mdi:check-circle-outline" class="text-green-500" />
                 <span class="font-bold text-700 text-sm">Diagrama Vinculado</span>
               </div>
               <p class="text-sm text-500 m-0 line-height-3">
@@ -285,13 +280,17 @@
                 (uploadHandler)="onSubirImagen($event, imgUploader)"
                 styleClass="p-button-sm p-button-outlined"
                 [disabled]="uploadingImagen()"
-              />
+              >
+                <ng-template #content>
+                   <app-icon icon="mdi:image" class="mr-2" />
+                </ng-template>
+              </p-fileUpload>
             </div>
           </div>
 
           @if (uploadingImagen()) {
           <div class="flex align-items-center gap-2 text-500 text-sm">
-            <i class="pi pi-spin pi-spinner"></i> Subiendo...
+            <app-icon icon="mdi:loading" class="ds-animate-spin" /> Subiendo...
           </div>
           } @if (selectedPaso()!.imagenes?.length) {
           <div class="flex flex-wrap gap-3">
@@ -305,12 +304,12 @@
                 alt="imagen"
               />
               <div class="absolute top-0 right-0 m-1">
-                <p-button
-                  icon="pi pi-times"
+                <custom-button
+                  iconClass="mdi:close"
                   severity="danger"
                   size="small"
                   [rounded]="true"
-                  (onClick)="onEliminarImagen(img.id)"
+                  (clicked)="onEliminarImagen(img.id)"
                 />
               </div>
             </div>
@@ -349,10 +348,10 @@
                 />
               </div>
               <div class="col-12 md:col-2 pb-3 flex justify-content-end">
-                <p-button
+                <custom-button
                   type="submit"
                   label="Agregar"
-                  icon="pi pi-plus"
+                  iconClass="mdi:plus"
                   size="small"
                   [loading]="savingEnlace()"
                   [disabled]="enlaceForm.invalid"
@@ -368,13 +367,13 @@
               class="relative border-round overflow-hidden border-1 border-200 p-3 bg-white"
             >
               <div class="absolute top-0 right-0 m-2 z-5">
-                <p-button
-                  icon="pi pi-trash"
+                <custom-button
+                  iconClass="mdi:delete"
                   severity="danger"
                   size="small"
                   [rounded]="true"
-                  [text]="true"
-                  (onClick)="onDeleteEnlace(enlace.id)"
+                  [variant]="'text'"
+                  (clicked)="onDeleteEnlace(enlace.id)"
                 />
               </div>
 
@@ -406,12 +405,12 @@
                   target="_blank"
                   class="no-underline"
                 >
-                  <p-button
-                    icon="pi pi-external-link"
+                  <custom-button
+                    iconClass="mdi:external-link"
                     label="Abrir Enlace"
                     severity="info"
                     size="small"
-                    [outlined]="true"
+                    [variant]="'outlined'"
                   />
                 </a>
                 <span
@@ -443,12 +442,12 @@
     <div class="w-full xl:w-8 mx-auto flex flex-column gap-4">
       <div class="flex align-items-center justify-content-between">
         <h3 class="text-lg font-bold text-900 m-0">Historial de Versiones</h3>
-        <p-button
-          icon="pi pi-plus"
+        <custom-button
+          iconClass="mdi:plus"
           label="Nueva Version"
           severity="primary"
           size="small"
-          (onClick)="showVersionForm.set(!showVersionForm())"
+          (clicked)="showVersionForm.set(!showVersionForm())"
         />
       </div>
 
@@ -496,12 +495,12 @@
             [horizontal]="false"
           />
           <div class="flex justify-content-end gap-2">
-            <p-button
+            <custom-button
               label="Cancelar"
               severity="secondary"
-              [outlined]="true"
+              [variant]="'outlined'"
               size="small"
-              (onClick)="showVersionForm.set(false)"
+              (clicked)="showVersionForm.set(false)"
             />
             <custom-button-save [loading]="savingVersion()" />
           </div>
@@ -509,7 +508,7 @@
       </div>
       } @if (!versiones().length) {
       <div class="text-center text-500 py-5">
-        <i class="pi pi-history text-4xl mb-3 block"></i>
+        <app-icon icon="mdi:history" class="text-4xl mb-3 block" />
         <p class="text-sm m-0">Sin versiones registradas.</p>
       </div>
       } @else {
@@ -532,12 +531,12 @@
             <p class="text-sm text-600 m-0">{{ v.descripcionCambio }}</p>
             }
           </div>
-          <p-button
-            icon="pi pi-trash"
-            [text]="true"
+          <custom-button
+            iconClass="mdi:delete"
+            [variant]="'text'"
             severity="danger"
             size="small"
-            (onClick)="onEliminarVersion(v.id)"
+            (clicked)="onEliminarVersion(v.id)"
           />
         </div>
         }
@@ -585,10 +584,14 @@
               (uploadHandler)="onSubirAdjunto($event, adjuntoUploader, adjuntoNombreInput)"
               styleClass="p-button-sm p-button-outlined"
               [disabled]="uploadingAdjunto()"
-            />
+            >
+              <ng-template #content>
+                 <app-icon icon="mdi:upload" class="mr-2" />
+              </ng-template>
+            </p-fileUpload>
             @if (uploadingAdjunto()) {
             <span class="text-500 text-sm flex align-items-center gap-1">
-              <i class="pi pi-spin pi-spinner"></i> Subiendo...
+              <app-icon icon="mdi:loading" class="ds-animate-spin" /> Subiendo...
             </span>
             }
           </div>
@@ -600,7 +603,7 @@
 
       @if (!adjuntos().length) {
       <div class="text-center text-500 py-5">
-        <i class="pi pi-paperclip text-4xl mb-3 block"></i>
+        <app-icon icon="mdi:paperclip" class="text-4xl mb-3 block" />
         <p class="text-sm m-0">Sin archivos adjuntos.</p>
       </div>
       } @else {
@@ -609,7 +612,7 @@
         <div
           class="surface-card p-3 border-round-xl border-1 border-200 flex align-items-center gap-3"
         >
-          <i class="pi pi-file text-2xl text-400 flex-shrink-0"></i>
+          <app-icon icon="mdi:file-document-outline" class="text-2xl text-400 flex-shrink-0" />
           <div class="flex-1 min-w-0">
             <div
               class="font-medium text-900 white-space-nowrap overflow-hidden text-overflow-ellipsis"
@@ -622,19 +625,19 @@
           </div>
           <div class="flex gap-1 flex-shrink-0">
             <a [href]="adj.url" target="_blank" class="no-underline">
-              <p-button
-                icon="pi pi-download"
-                [text]="true"
+              <custom-button
+                iconClass="mdi:download"
+                [variant]="'text'"
                 severity="info"
                 size="small"
               />
             </a>
-            <p-button
-              icon="pi pi-trash"
-              [text]="true"
+            <custom-button
+              iconClass="mdi:delete"
+              [variant]="'text'"
               severity="danger"
               size="small"
-              (onClick)="onEliminarAdjunto(adj.id)"
+              (clicked)="onEliminarAdjunto(adj.id)"
             />
           </div>
         </div>

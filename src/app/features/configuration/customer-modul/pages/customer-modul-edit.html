@@ -9,7 +9,7 @@
 
     <!-- Buscador -->
     <div class="p-input-icon-left flex-1 max-w-20rem">
-      <i class="pi pi-search"></i>
+      <app-icon icon="mdi:magnify"></app-icon>
       <input
         pInputText
         type="text"
@@ -70,10 +70,7 @@
               [class.text-red-400]="!item.isAssigned"
               [class.border-red-100]="!item.isAssigned"
             >
-              <i
-                [class]="item.isAssigned ? 'pi pi-check' : 'pi pi-times'"
-                style="font-size: 0.7rem"
-              ></i>
+              <app-icon [icon]="item.isAssigned ? 'mdi:check' : 'mdi:close'" style="font-size: 0.7rem"></app-icon>
             </span>
             <span
               class="font-medium text-xs truncate"
@@ -103,7 +100,7 @@
 
     <!-- Buscador Móvil -->
     <div class="p-input-icon-left w-full mb-3">
-      <i class="pi pi-search"></i>
+      <app-icon icon="mdi:magnify"></app-icon>
       <input
         pInputText
         type="text"
@@ -129,13 +126,7 @@
         @for (item of group.items; track item.moduleAppId) {
         <ion-item class="ion-no-padding">
           <div slot="start" class="pl-3 py-2 flex align-items-center">
-            <i 
-              class="pi" 
-              [class.pi-check-circle]="item.isAssigned"
-              [class.text-green-500]="item.isAssigned"
-              [class.pi-circle]="!item.isAssigned"
-              [class.text-400]="!item.isAssigned"
-            ></i>
+            <app-icon [icon]="item.isAssigned ? 'mdi:check-circle' : 'mdi:circle-outline'" [class.text-green-500]="item.isAssigned" [class.text-400]="!item.isAssigned"></app-icon>
           </div>
           <ion-label class="ion-text-wrap py-2">
             <h2 class="text-sm font-medium" [class.text-900]="item.isAssigned" [class.text-500]="!item.isAssigned">

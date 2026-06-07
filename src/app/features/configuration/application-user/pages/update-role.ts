@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { FieldsetModule } from "primeng/fieldset";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { IRoles } from "src/app/core/interfaces/roles.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -32,7 +33,7 @@ const roleTypeNames: { [key in ERoleType]: string } = {
 @Component({
   selector: "app-update-role",
   templateUrl: "./update-role.html",
-  imports: [CommonModule, CardModule, FieldsetModule],
+  imports: [CommonModule, CardModule, FieldsetModule, AppIcon],
 })
 export class UpdateRole implements OnInit {
   apiResponseS = inject(ApiResponseService);

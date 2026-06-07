@@ -17,6 +17,7 @@ import {
 import { EditorModule } from "primeng/editor";
 import { ListboxModule } from "primeng/listbox";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
@@ -58,6 +59,7 @@ import { ImageGenerationDialog } from "./components/image-generation-dialog/imag
     DividerModule,
     ListboxModule,
     CustomButton,
+    AppIcon,
   ],
 })
 export class AnnouncementAdminForm implements OnInit {

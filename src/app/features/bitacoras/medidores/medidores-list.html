@@ -32,15 +32,15 @@
               @if (item.medidorCategoriaId ===
               '019c6c01-bbcf-76a2-a863-43569af55a55') {
               <!-- Gas -> Sol (Calor) -->
-              <i class="icon icon-pi-sun text-yellow-500 text-6xl"></i>
+              <app-icon icon="mdi:sun-bright" class="text-yellow-500 text-6xl" />
               } @if (item.medidorCategoriaId ===
               '019c6c01-bbde-703d-85dd-a4e88651e0d3') {
               <!-- Agua -> Filtro (Liquido) -->
-              <i class="icon icon-pi-filter-fill text-blue-500 text-6xl"></i>
+              <app-icon icon="mdi:filter" class="text-blue-500 text-6xl" />
               } @if (item.medidorCategoriaId ===
               '019c6c01-bbdd-7698-9f76-db06f3c6ef0c') {
               <!-- Luz -> Rayo -->
-              <i class="icon icon-pi-bolt text-green-500 text-6xl"></i>
+              <app-icon icon="mdi:lightning-bolt" class="text-green-500 text-6xl" />
               }
               <hr class="my-3" />
               <h6 class="mb-2 text-color-secondary">
@@ -61,19 +61,19 @@
                 (confirmed)="onDelete(item.id)"
               />
               <custom-button-item
-                iconClass="pi pi-save"
+                iconClass="mdi:content-save"
                 label="Lecturas"
                 class="text-xl"
                 (clicked)="onGoToLecturas(item.id)"
               />
               <custom-button-item
-                iconClass="pi pi-chart-line "
+                iconClass="mdi:chart-line"
                 label="Grófica"
                 class="text-xl"
                 (clicked)="onGoToGrafico(item.id)"
               />
               <custom-button-item
-                iconClass="pi pi-chart-bar"
+                iconClass="mdi:chart-bar"
                 label="Exportar a Excel"
                 class="text-xl"
                 (clicked)="exportExcel(item.id)"

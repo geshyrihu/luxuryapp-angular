@@ -1,18 +1,24 @@
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
+import { ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { DialogModule } from "primeng/dialog";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
+import { EAutorizacionCuadroComparativo } from "src/app/core/enums/e-autorizacion-cuadro-comparativo.enum";
 import { TooltipPlacement } from "src/app/core/enums/tooltip-placement";
+import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { AiService } from "src/app/core/services/ai.service";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { SwalService } from "src/app/core/services/swal.service";
 import { CuadroComparativoAddProveedor } from "./cuadro-comparativo-add-proveedor";
 import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
 
@@ -21,8 +27,10 @@ import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
   templateUrl: "./cuadro-comparativo-list.html",
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     TableModule,
     DividerModule,
+    ImageModule,
     CustomButton,
     CustomButtonViewPdf,
     DialogModule,
@@ -30,55 +38,56 @@ import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
 })
 export class CuadroComparativoList implements OnInit {
   tooltipPlacement = TooltipPlacement;
-  // Inyección de dependencias
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   customToastService = inject(CustomToastService);
   routeActive = inject(ActivatedRoute);
   aiService = inject(AiService);
-  // Referencia para diálogos dinómicos
+  authS = inject(AuthService);
+  swalService = inject(SwalService);
   ref: DynamicDialogRef;
 
-  // AI Analysis
   showAiModal: boolean = false;
   aiAnalysisResult: string = "";
   isAnalyzing: boolean = false;
 
-  // Datos de la solicitud de compra
   solicitudCompra: any;
   solicitudCompraDetalleSignal = signal<any[]>([]);
   cotizacionProveedorSignal = signal<any[]>([]);
+  evidenciasSignal = signal<any[]>([]);
 
-  // Información de proveedores
   provider1: any;
   provider2: any;
   provider3: any;
 
-  // IDs de cotizaciones
   cotizacionProveedorId1: any;
   cotizacionProveedorId2: any;
   cotizacionProveedorId3: any;
 
-  // Totales por proveedor
   total1 = 0;
   total2 = 0;
   total3 = 0;
 
-  // Banderas para resaltar los totales
   amarilloTotal1 = false;
   amarilloTotal2 = false;
   amarilloTotal3 = false;
 
-  // Datos generales
   solicitudCompraId: string = "";
   folio = "";
-
-  // Totales para la evaluación de "mejor opción"
   mejorPrecioTotal1 = 0;
   mejorPrecioTotal2 = 0;
   mejorPrecioTotal3 = 0;
   totalMejorPrecioTotal = 0;
   evaluarPrecioIndependiente = false;
+  cleanView = false;
+
+  autorizacionOptions: ISelectItem[] = [
+    { label: "Comite", value: EAutorizacionCuadroComparativo.Comite },
+    { label: "Administrador", value: EAutorizacionCuadroComparativo.Administrador },
+    { label: "Supervisor", value: EAutorizacionCuadroComparativo.Supervisor },
+    { label: "Direccion", value: EAutorizacionCuadroComparativo.Direccion },
+  ];
+  selectedEvidenceFiles: File[] = [];
 
   paramsSignal = toSignal(this.routeActive.params);
 
@@ -97,41 +106,27 @@ export class CuadroComparativoList implements OnInit {
   onLoadData() {
     if (!this.solicitudCompraId) return;
 
-    // Reseteo de datos antes de cargar nuevos
     this.onResetData();
     const urlApi = `solicitudcompra/cuadrocomparativo/${this.solicitudCompraId}`;
 
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       if (!result) return;
 
-      // Asignación de datos desde la API
       this.folio = result.folio;
       this.solicitudCompra = result;
-      this.cotizacionProveedorSignal.set(
-        this.solicitudCompra.cotizacionProveedor,
-      );
-      this.solicitudCompraDetalleSignal.set(
-        this.solicitudCompra.solicitudCompraDetalle,
-      );
-
-      // Asignación de proveedores y cólculo de totales de forma simplificada
+      this.evidenciasSignal.set(result.evidencias || []);
+      this.cotizacionProveedorSignal.set(result.cotizacionProveedor);
+      this.solicitudCompraDetalleSignal.set(result.solicitudCompraDetalle);
       this.setupProvidersAnDTOtals();
-
-      // Ejecutar las evaluaciones de precios
       this.onEvaluationPriceTotal();
       this.onTotalPreciosMenores(this.solicitudCompraDetalleSignal());
     });
   }
 
-  /**
-   * CORRECCIóN: Centraliza la asignación de proveedores y el cólculo de totales.
-   * Esto evita la repetición de código y es mós fócil de mantener.
-   */
   setupProvidersAnDTOtals(): void {
     const cotizacionProveedor = this.cotizacionProveedorSignal();
     const solicitudCompraDetalle = this.solicitudCompraDetalleSignal();
 
-    // Mapea los proveedores y sus IDs
     if (cotizacionProveedor.length >= 1) {
       this.provider1 = cotizacionProveedor[0].nameProvider;
       this.cotizacionProveedorId1 = cotizacionProveedor[0].id;
@@ -145,7 +140,6 @@ export class CuadroComparativoList implements OnInit {
       this.cotizacionProveedorId3 = cotizacionProveedor[2].id;
     }
 
-    // Calcula los totales para cada proveedor en un solo bucle
     solicitudCompraDetalle.forEach((n) => {
       this.total1 += n.total || 0;
       this.total2 += n.total2 || 0;
@@ -153,45 +147,24 @@ export class CuadroComparativoList implements OnInit {
     });
   }
 
-  /**
-   * CORRECCIóN: Lógica de evaluación de totales refactorizada y simplificada.
-   * Elimina las funciones onMejorOpcion1, 2 y 3, que eran complejas y propensas a errores.
-   */
   onEvaluationPriceTotal(): void {
-    // Resetea las banderas de resaltado
     this.amarilloTotal1 = false;
     this.amarilloTotal2 = false;
     this.amarilloTotal3 = false;
 
-    // 1. Crea un array con los totales que son vólidos (mayores que 0)
     const preciosValidos = [];
     if (this.total1 > 0) preciosValidos.push(this.total1);
     if (this.total2 > 0) preciosValidos.push(this.total2);
     if (this.total3 > 0) preciosValidos.push(this.total3);
+    if (preciosValidos.length === 0) return;
 
-    // 2. Si no hay precios vólidos, no hace nada mós
-    if (preciosValidos.length === 0) {
-      return;
-    }
-
-    // 3. Encuentra el precio mós bajo entre los vólidos
     const precioMasBajo = Math.min(...preciosValidos);
-
-    // 4. Activa la bandera amarilla solo para el total que coincida con el precio mós bajo
     if (this.total1 === precioMasBajo) this.amarilloTotal1 = true;
     if (this.total2 === precioMasBajo) this.amarilloTotal2 = true;
     if (this.total3 === precioMasBajo) this.amarilloTotal3 = true;
   }
 
-  /**
-   * CORRECCIóN: Nueva función para determinar si un precio individual es el mós bajo.
-   * Esta función se llamaró desde el HTML para mantener la plantilla limpia.
-   * @param item - El objeto de la fila actual (solicitudCompraDetalle).
-   * @param providerIndex - El óndice del proveedor (1, 2, o 3) que se estó evaluando.
-   * @returns `true` si el precio de este proveedor es el mós bajo (y mayor que 0).
-   */
   isLowestPrice(item: any, providerIndex: number): boolean {
-    // 1. Obtiene el precio del proveedor actual
     const currentPrice =
       providerIndex === 1
         ? item.total
@@ -199,27 +172,18 @@ export class CuadroComparativoList implements OnInit {
           ? item.total2
           : item.total3;
 
-    // 2. Si el precio actual es 0, no puede ser el mós bajo.
-    if (currentPrice <= 0) {
-      return false;
-    }
+    if (currentPrice <= 0) return false;
 
-    // 3. Crea un array con todos los precios de la fila que son mayores que 0.
     const preciosValidos = [item.total, item.total2, item.total3].filter(
       (p) => p > 0,
     );
 
-    // 4. Si no hay precios vólidos, no resalta nada.
-    if (preciosValidos.length === 0) {
-      return false;
-    }
+    if (preciosValidos.length === 0) return false;
 
-    // 5. Encuentra el precio mós bajo y compara.
     const precioMasBajo = Math.min(...preciosValidos);
     return currentPrice === precioMasBajo;
   }
 
-  // La lógica de `onTotalPreciosMenores` ya era correcta y robusta. Se mantiene igual.
   onTotalPreciosMenores(solicitudCompraDetalle: any[]): void {
     this.onResetMejorPrecio();
 
@@ -246,7 +210,6 @@ export class CuadroComparativoList implements OnInit {
       this.mejorPrecioTotal1 + this.mejorPrecioTotal2 + this.mejorPrecioTotal3;
   }
 
-  // Funciones de reseteo y modales (sin cambios, ya eran correctas)
   onModalAddProveedor() {
     this.dialogHandlerS
       .openDialog(
@@ -269,7 +232,7 @@ export class CuadroComparativoList implements OnInit {
           posicionCotizacion: posicionCotizacion,
           cotizacionProveedorId: cotizacionProveedorId,
         },
-        "Editar Cotización",
+        "Editar Cotizacion",
         this.dialogHandlerS.sizeFull,
       )
       .then(() => {
@@ -277,9 +240,175 @@ export class CuadroComparativoList implements OnInit {
       });
   }
 
+  async onOpenAutorizarModal() {
+    if (this.isAuthorized()) {
+      await this.onOpenDesautorizarModal();
+      return;
+    }
+
+    const inputOptions = this.autorizacionOptions.reduce<Record<string, string>>(
+      (acc, item) => {
+        acc[String(item.value)] = String(item.label);
+        return acc;
+      },
+      {},
+    );
+
+    const { value } = await this.swalService.fire({
+      title: "Autorizar solicitud",
+      input: "select",
+      inputOptions,
+      inputPlaceholder: "Selecciona quien autoriza",
+      inputValue:
+        this.solicitudCompra?.autorizadaPor !== null &&
+        this.solicitudCompra?.autorizadaPor !== undefined
+          ? String(this.solicitudCompra.autorizadaPor)
+          : "",
+      showCancelButton: true,
+      confirmButtonText: "Autorizar",
+      cancelButtonText: "Cancelar",
+      inputValidator: (selectedValue: string) => {
+        if (!selectedValue) {
+          return "Selecciona quien autoriza.";
+        }
+        return null;
+      },
+      didOpen: () => this.swalService.fixModalZIndex(),
+    });
+
+    if (value === undefined) return;
+
+    this.apiResponseS
+      .onPut(`SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}`, {
+        autorizadaPor: Number(value),
+        applicationUserId: this.authS.applicationUserId,
+      })
+      .then((result) => {
+        if (result) {
+          this.onLoadData();
+        }
+      });
+  }
+
+  async onOpenDesautorizarModal() {
+    const result = await this.swalService.fire({
+      title: "Desautorizar solicitud",
+      text: "Se eliminara la autorizacion registrada para esta solicitud.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Desautorizar",
+      cancelButtonText: "Cancelar",
+      didOpen: () => this.swalService.fixModalZIndex(),
+    });
+
+    if (!result.isConfirmed) return;
+
+    this.apiResponseS
+      .onPut(`SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}`, {
+        autorizadaPor: null,
+        applicationUserId: this.authS.applicationUserId,
+      })
+      .then((response) => {
+        if (response) {
+          this.onLoadData();
+        }
+      });
+  }
+
+  isAuthorized() {
+    return (
+      this.solicitudCompra?.autorizadaPor !== null &&
+      this.solicitudCompra?.autorizadaPor !== undefined
+    );
+  }
+
+  onEvidenceFilesSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const files = Array.from(input.files || []);
+    if (files.length === 0) return;
+    const availableSlots = 4 - this.evidenciasSignal().length;
+
+    if (availableSlots <= 0) {
+      this.customToastService.showError(
+        "Solo se permiten 4 fotos como maximo.",
+        "Limite alcanzado",
+      );
+      input.value = "";
+      return;
+    }
+
+    const invalidFile = files.find(
+      (file) => !["image/jpeg", "image/jpg", "image/png"].includes(file.type),
+    );
+
+    if (invalidFile) {
+      this.customToastService.showError(
+        "Solo se permiten imagenes JPG o PNG.",
+        "Error de formato",
+      );
+      input.value = "";
+      return;
+    }
+
+    if (files.length > availableSlots) {
+      this.customToastService.showInfo(
+        "Limite de fotos",
+        `Solo se agregaran ${availableSlots} foto(s) para completar el maximo de 4.`,
+      );
+    }
+
+    this.selectedEvidenceFiles = files.slice(0, availableSlots);
+    input.value = "";
+  }
+
+  async onUploadEvidenceFiles() {
+    if (this.selectedEvidenceFiles.length === 0) return;
+
+    let hasError = false;
+
+    for (const file of this.selectedEvidenceFiles) {
+      const formData = new FormData();
+      formData.append("File", file);
+      formData.append("Descripcion", file.name);
+      formData.append("ApplicationUserId", this.authS.applicationUserId);
+      const result = await this.apiResponseS.onPostFile(
+        `SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}/Evidences`,
+        formData,
+      );
+
+      if (!result) {
+        hasError = true;
+        break;
+      }
+    }
+
+    if (!hasError) {
+      this.selectedEvidenceFiles = [];
+      this.onLoadData();
+    }
+  }
+
+  onDeleteEvidence(evidenceId: string) {
+    this.apiResponseS
+      .onDelete(`SolicitudCompra/CuadroComparativo/Evidences/${evidenceId}`)
+      .then((success) => {
+        if (success) {
+          this.evidenciasSignal.set(
+            this.evidenciasSignal().filter((item) => item.id !== evidenceId),
+          );
+          this.onLoadData();
+        }
+      });
+  }
+
+  toggleCleanView() {
+    this.cleanView = !this.cleanView;
+  }
+
   onResetData(): void {
     this.solicitudCompraDetalleSignal.set([]);
     this.cotizacionProveedorSignal.set([]);
+    this.evidenciasSignal.set([]);
     this.provider1 = undefined;
     this.provider2 = undefined;
     this.provider3 = undefined;
@@ -299,7 +428,7 @@ export class CuadroComparativoList implements OnInit {
     this.isAnalyzing = true;
     this.customToastService.showInfo(
       "Analizando...",
-      "La IA estó revisando las cotizaciones y documentos adjuntos.",
+      "La IA esta revisando las cotizaciones y documentos adjuntos.",
     );
 
     this.aiService
@@ -315,12 +444,3 @@ export class CuadroComparativoList implements OnInit {
       });
   }
 }
-
-
-
-
-
-
-
-
-

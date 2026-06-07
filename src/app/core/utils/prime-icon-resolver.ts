@@ -1,3 +1,5 @@
+import { resolveToIconify } from "./icon-mapping";
+
 type LegacyIconRule = {
   iconClass: string;
   tokens: readonly string[];
@@ -95,23 +97,73 @@ export function resolvePrimeIcon(
   rawValue: string | null | undefined,
   fallback = "",
 ): string {
-  const directIcon = normalizePrimeIconClass(rawValue);
-  if (directIcon.startsWith("pi ") || directIcon.startsWith("icon ")) {
-    return directIcon;
+  if (!rawValue) return fallback;
+
+  // Si ya tiene formato de clase de icono, devolver normalizado
+  if (
+    rawValue.startsWith("pi ") ||
+    rawValue.startsWith("pi-") ||
+    rawValue.startsWith("icon ")
+  ) {
+    return normalizePrimeIconClass(rawValue);
   }
 
-  const normalized = (rawValue ?? "")
+  // Intentar resolver como emoji o regla legacy
+  const normalized = rawValue
     .normalize("NFKC")
     .replace(/\uFE0F/g, "")
     .trim();
-
-  if (!normalized) {
-    return fallback;
-  }
 
   const matchedRule = LEGACY_ICON_RULES.find(({ tokens }) =>
     tokens.some((token) => normalized.includes(token)),
   );
 
-  return matchedRule?.iconClass ?? fallback;
+  if (matchedRule) {
+    return matchedRule.iconClass;
+  }
+
+  // Si no es nada de lo anterior, intentar normalizar como pi pi-name
+  return normalizePrimeIconClass(rawValue) || fallback;
+}
+
+export function resolveIconifyIcon(
+  rawValue: string | null | undefined,
+  fallback = "mdi:cog",
+): string {
+  if (!rawValue) return fallback;
+
+  // 1. Si ya es formato Iconify, devolverlo
+  if (rawValue.includes(":")) return rawValue;
+
+  // 2. Intentar resolver como emoji/legacy primero
+  const emojiResolved = resolvePrimeIcon(rawValue);
+  if (emojiResolved && emojiResolved !== rawValue && emojiResolved.startsWith("pi pi-")) {
+    const name = emojiResolved.replace("pi pi-", "");
+    return resolveToIconify(name, fallback);
+  }
+
+  // 3. Normalizar como PrimeIcon y resolver a Iconify
+  const primeClass = normalizePrimeIconClass(rawValue);
+  const name = primeClass.replace("pi pi-", "");
+  if (name && name !== primeClass) {
+    return resolveToIconify(name, fallback);
+  }
+
+  // 4. Si es un emoji directo (que no se resolvió a pi pi-)
+  if (/\p{Emoji}/u.test(rawValue)) {
+    return rawValue; // Retornar el emoji tal cual (algunos componentes de Iconify pueden manejarlo o se mostrará como texto)
+  }
+
+  return resolveToIconify(rawValue, fallback);
+}
+
+export function resolveIcon(
+  rawValue: string | null | undefined,
+  format: "prime" | "iconify" = "prime",
+  fallback?: string,
+): string {
+  if (format === "iconify") {
+    return resolveIconifyIcon(rawValue, fallback as string | undefined);
+  }
+  return resolvePrimeIcon(rawValue, fallback);
 }

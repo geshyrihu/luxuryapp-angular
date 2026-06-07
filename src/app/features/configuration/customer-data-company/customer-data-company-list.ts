@@ -22,6 +22,7 @@ import { Endpoints } from "../../../core/constants/endpoints";
 import { CustomerDataCompanyDTO } from "./customer-data-company-dto";
 import { CustomerDataCompanyForm } from "./customer-data-company-form";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 
 @Component({
   selector: "app-customer-data-company-list",
@@ -43,6 +44,7 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
     IonLabel,
     IonButtonEdit,
     IonButtonDelete,
+    AppIcon,
   ],
 })
 export class CustomerDataCompanyList implements OnInit {

@@ -30,6 +30,7 @@ interface DeptGroup {
 }
 
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import {
   IonButtonDelete,
   IonButtonEdit,
@@ -53,6 +54,7 @@ import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-vi
     IonLabel,
     IonButtonEdit,
     IonButtonDelete,
+    AppIcon,
   ],
 })
 export class ManualsAndProcessesList implements OnInit {
@@ -79,51 +81,51 @@ export class ManualsAndProcessesList implements OnInit {
 
   private readonly DEPT_CONFIG: Record<string, DeptConfig> = {
     Administración: {
-      icon: "pi pi-building",
+      icon: "mdi:office-building",
       color: "#1e40af",
       bgColor: "#dbeafe",
     },
-    Legal: { icon: "pi pi-shield", color: "#7c2d12", bgColor: "#ffedd5" },
+    Legal: { icon: "mdi:shield", color: "#7c2d12", bgColor: "#ffedd5" },
     Contabilidad: {
-      icon: "pi pi-wallet",
+      icon: "mdi:wallet",
       color: "#0f766e",
       bgColor: "#ccfbf1",
     },
     Mantenimiento: {
-      icon: "pi pi-wrench",
+      icon: "mdi:wrench",
       color: "#92400e",
       bgColor: "#fef3c7",
     },
-    Limpieza: { icon: "pi pi-star", color: "#065f46", bgColor: "#d1fae5" },
-    Operaciones: { icon: "pi pi-cog", color: "#1e3a8a", bgColor: "#e0e7ff" },
-    Jardinería: { icon: "pi pi-sun", color: "#15803d", bgColor: "#dcfce7" },
-    Sistemas: { icon: "pi pi-desktop", color: "#6d28d9", bgColor: "#f5f3ff" },
-    Seguridad: { icon: "pi pi-lock", color: "#dc2626", bgColor: "#fee2e2" },
-    Constructora: { icon: "pi pi-home", color: "#7c3aed", bgColor: "#ede9fe" },
-    Supervisión: { icon: "pi pi-eye", color: "#0891b2", bgColor: "#cffafe" },
-    Dirección: { icon: "pi pi-user", color: "#374151", bgColor: "#f3f4f6" },
+    Limpieza: { icon: "mdi:star", color: "#065f46", bgColor: "#d1fae5" },
+    Operaciones: { icon: "mdi:cog", color: "#1e3a8a", bgColor: "#e0e7ff" },
+    Jardinería: { icon: "mdi:sun-bright", color: "#15803d", bgColor: "#dcfce7" },
+    Sistemas: { icon: "mdi:monitor", color: "#6d28d9", bgColor: "#f5f3ff" },
+    Seguridad: { icon: "mdi:lock", color: "#dc2626", bgColor: "#fee2e2" },
+    Constructora: { icon: "mdi:home", color: "#7c3aed", bgColor: "#ede9fe" },
+    Supervisión: { icon: "mdi:eye", color: "#0891b2", bgColor: "#cffafe" },
+    Dirección: { icon: "mdi:account", color: "#374151", bgColor: "#f3f4f6" },
     "Recursos Humanos": {
-      icon: "pi pi-users",
+      icon: "mdi:account-group",
       color: "#d97706",
       bgColor: "#fef3c7",
     },
     Reclutamiento: {
-      icon: "pi pi-briefcase",
+      icon: "mdi:briefcase",
       color: "#0284c7",
       bgColor: "#e0f2fe",
     },
-    Recepción: { icon: "pi pi-phone", color: "#047857", bgColor: "#d1fae5" },
+    Recepción: { icon: "mdi:phone", color: "#047857", bgColor: "#d1fae5" },
     Mensajería: {
-      icon: "pi pi-envelope",
+      icon: "mdi:email",
       color: "#0369a1",
       bgColor: "#e0f2fe",
     },
-    Ludoteca: { icon: "pi pi-heart", color: "#db2777", bgColor: "#fce7f3" },
-    "N/A": { icon: "pi pi-minus-circle", color: "#6b7280", bgColor: "#f3f4f6" },
+    Ludoteca: { icon: "mdi:heart", color: "#db2777", bgColor: "#fce7f3" },
+    "N/A": { icon: "mdi:minus-circle-outline", color: "#6b7280", bgColor: "#f3f4f6" },
   };
 
   private readonly DEFAULT_CONFIG: DeptConfig = {
-    icon: "pi pi-folder",
+    icon: "mdi:folder",
     color: "#6b7280",
     bgColor: "#f3f4f6",
   };

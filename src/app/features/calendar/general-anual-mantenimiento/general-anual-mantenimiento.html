@@ -146,13 +146,13 @@
           </div>
         </div>
         <p class="text-xs text-color-secondary mt-2 mb-0">
-          <i class="pi pi-briefcase mr-1"></i> {{ servicio.proveedor }}
+          <app-icon icon="mdi:briefcase" class="mr-1" /> {{ servicio.proveedor }}
         </p>
       </ion-label>
     </ion-item>
     } } @empty {
     <div class="p-4 text-center">
-      <i class="pi pi-search text-4xl text-gray-400 mb-2"></i>
+      <app-icon icon="mdi:magnify" class="text-4xl text-gray-400 mb-2" />
       <p>No hay mantenimientos programados para este criterio.</p>
     </div>
     }

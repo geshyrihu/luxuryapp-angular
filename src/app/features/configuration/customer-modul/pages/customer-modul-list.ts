@@ -22,6 +22,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CustomerModulEdit } from "./customer-modul-edit";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 
 @Component({
   selector: "app-customer-modul-list",
@@ -38,6 +39,7 @@ import { CustomerModulEdit } from "./customer-modul-edit";
     PrimeNgCustomCaption,
     CustomBtnActiveDesactive,
     IonButtonActiveDesactive,
+    AppIcon,
   ],
 })
 export class CustomerModulList implements OnInit {

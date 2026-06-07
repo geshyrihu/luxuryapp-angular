@@ -17,6 +17,7 @@ import {
 } from "ionicons/icons";
 import { CardModule } from "primeng/card";
 import { IonButtonViewPdf } from "src/app/core/components/buttons/mobile";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
 import { PdfViewerModal } from "src/app/core/components/pdf-viewer-modal/pdf-viewer-modal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -33,6 +34,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
     IonItem,
     IonLabel,
     IonButtonViewPdf,
+    AppIcon,
   ],
   templateUrl: "./poliza-seguro-edificio.html",
 })

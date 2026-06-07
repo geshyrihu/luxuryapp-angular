@@ -56,7 +56,7 @@
             <custom-button
               label="Buscar"
               styleClass="p-button p-button-primary w-full"
-              iconClass="pi pi-search"
+              iconClass="mdi:magnify"
               (clicked)="onLoadData(true)"
               [disabled]="isSearchDisabled"
             />
@@ -173,7 +173,7 @@
             </div>
 
             <p class="text-medium text-500 m-0 text-sm mb-1">
-              <i class="pi pi-clock mr-1 text-xs"></i> {{ item.timestamp | date:
+              <app-icon icon="mdi:clock-outline" class="mr-1 text-xs" /> {{ item.timestamp | date:
               "dd/MM/yyyy h:mm a" }}
             </p>
 
@@ -205,5 +205,7 @@
       (clicked)="loadMore()"
     />
     }
+  </div>
+</p-card>
   </div>
 </p-card>

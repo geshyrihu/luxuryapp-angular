@@ -62,7 +62,7 @@ import { PopoverModule } from "primeng/popover";
           pButton
           type="button"
           icon="icon icon-pi-ellipsis-v"
-          class="p-button-rounded p-button-text action-menu-button"
+          class="border-round-lg p-button-text action-menu-button"
           (click)="popover.toggle($event)"
         ></button>
 

@@ -11,7 +11,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { ButtonModule } from "primeng/button";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { MessageModule } from "primeng/message";
 import { catchError, finalize, Subject, throwError } from "rxjs";
 import { CustomInputPassword } from "src/app/core/components/inputs/web/custom-input-password-signal";
@@ -30,7 +30,7 @@ interface IResetPasswordForm {
     ReactiveFormsModule,
     MessageModule,
     CustomInputPassword,
-    ButtonModule,
+    CustomButton,
     RouterModule,
   ],
   template: `
@@ -97,13 +97,16 @@ interface IResetPasswordForm {
 
             <!-- Botón -->
             <div class="mt-4">
-              <p-button
-                class="w-full"
+              <custom-button
+                customClass="w-full border-round overflow-hidden"
                 type="submit"
-                label="Cambiar Contraseña"
+                label="CAMBIAR CONTRASEÑA"
+                [loading]="submitting()"
                 [disabled]="form.invalid || submitting()"
-                styleClass="w-full text-uppercase tracking-wider"
-              ></p-button>
+                icon="pi pi-lock-open"
+                [fluid]="true"
+                [showLabelOnDesktop]="true"
+              ></custom-button>
             </div>
 
             <!-- Mensaje Error -->

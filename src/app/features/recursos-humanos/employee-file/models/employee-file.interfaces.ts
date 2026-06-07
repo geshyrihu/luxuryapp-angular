@@ -47,6 +47,14 @@ export interface EmployeeFilePersonalDataDTO {
   educationLevel?: string;
   dateAdmission?: string;
   salary: number;
+  country: string;
+  city: string;
+  townHall: string;
+  zipCode: string;
+  district: string;
+  street: string;
+  number: string;
+  unitNumber: string;
 }
 
 // ── Tab 2: Contactos de emergencia ────────────────────────────────────────────

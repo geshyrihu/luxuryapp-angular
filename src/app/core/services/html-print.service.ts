@@ -145,7 +145,7 @@ ${this.getStandardCss()}
   getStandardCss(): string {
     return `<style>
       * { margin:0; padding:0; box-sizing:border-box; }
-      body { font-family:"Inter",system-ui,-apple-system,sans-serif; line-height:1.45; color:#1a1a1a; font-size:12px; }
+      body { font-family:var(--ds-font-family-document); line-height:1.45; color:#1a1a1a; font-size:12px; }
       .container { max-width:1020px; margin:0 auto; background:#fff; padding: 20px; }
       
       @media print {

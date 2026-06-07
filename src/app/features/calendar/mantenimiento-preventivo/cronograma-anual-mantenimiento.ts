@@ -24,6 +24,7 @@ import * as FileSaver from "file-saver";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { TooltipPlacement } from "src/app/core/enums/tooltip-placement";
@@ -37,7 +38,7 @@ import { CronogramaMantenimientoService } from "src/app/core/services/cronograma
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
-import { resolvePrimeIcon } from "src/app/core/utils/prime-icon-resolver";
+import { resolveIconifyIcon, resolvePrimeIcon } from "src/app/core/utils/prime-icon-resolver";
 import { CronogramaItem } from "./interfaces/CronogramaItem";
 import { FiltroEquipo } from "./interfaces/FiltroEquipo";
 import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
@@ -59,6 +60,7 @@ import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
     IonListHeader,
     IonChip,
     IonIcon,
+    AppIcon,
   ],
 })
 export class CronogramaAnualMantenimiento {
@@ -203,7 +205,7 @@ export class CronogramaAnualMantenimiento {
   }
 
   getFiltroIconClass(icon: string | null | undefined): string {
-    return this.resolvePrimeIcon(icon, "pi pi-box");
+    return resolveIconifyIcon(icon, "mdi:package");
   }
 
   // --- Funciones de Ayuda para la Vista ---

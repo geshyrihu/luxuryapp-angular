@@ -2,11 +2,12 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, input, output } from "@angular/core";
 import { OverlayBadgeModule } from "primeng/overlaybadge";
 import { TooltipModule } from "primeng/tooltip";
+import { AppIcon } from "../../app-icon/app-icon.component";
 import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "custom-button-tracking",
-  imports: [CommonModule, TooltipModule, OverlayBadgeModule],
+  imports: [CommonModule, TooltipModule, OverlayBadgeModule, AppIcon],
   template: `
     <button
       [type]="type()"
@@ -27,7 +28,7 @@ import { BaseButton } from "../base/base-button";
         class="custom-overlay-badge"
       >
         <span [class]="iconShellClasses(false)" aria-hidden="true">
-          <i [class]="finalIcon()"></i>
+          <app-icon [icon]="finalIcon()" />
         </span>
       </p-overlaybadge>
     </button>
@@ -66,7 +67,7 @@ export class CustomButtonTracking extends BaseButton {
 
   clickTracking = output<{ ticketId: string | number | null; title: string }>();
 
-  finalIcon = computed(() => this.resolvedIconClass() || "pi pi-map-marker");
+  finalIcon = computed(() => this.icon() || this.iconClass() || "mdi:map-marker");
 
   onTrackingClick(event: MouseEvent): void {
     event.stopPropagation();

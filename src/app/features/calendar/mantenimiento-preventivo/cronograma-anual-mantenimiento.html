@@ -72,8 +72,8 @@
   .btn-luxury-pdf:hover {
     background: #b3943d;
   }
-  .btn-luxury-excel i,
-  .btn-luxury-pdf i {
+  .btn-luxury-excel app-icon,
+  .btn-luxury-pdf app-icon {
     font-size: 1rem;
   }
   @media (max-width: 768px) {
@@ -107,7 +107,7 @@
                 <div class="logo-sub-luxury">Mantenimiento Preventivo</div>
               </div>
               <div class="badge-doc-luxury">
-                <i class="pi pi-tag mr-1"></i>
+                <app-icon icon="mdi:tag" class="mr-1" />
                 {{ filtroEquiposValue | titlecase }}
               </div>
             </div>
@@ -119,7 +119,7 @@
                 pTooltip="Exportar a Excel"
                 tooltipPosition="bottom"
               >
-                <i class="pi pi-file-excel"></i>
+                <app-icon icon="mdi:file-excel" />
                 <span>Exportar Excel</span>
               </button>
 
@@ -129,7 +129,7 @@
                 pTooltip="Exportar a PDF"
                 tooltipPosition="bottom"
               >
-                <i class="pi pi-file-pdf"></i>
+                <app-icon icon="mdi:file-pdf-box" />
                 <span>Exportar PDF</span>
               </button>
 
@@ -194,11 +194,11 @@
             @for (mes of meses; track trackByItem($index, mes)) {
             <td class="text-center">
               @if (hasService(customer, mes)) {
-              <div>
-                <span
-                  (click)="onModalForm(getServiceIdForMonth(customer, mes))"
-                  class="pi pi-check-square text-primary text-xl cursor-pointer"
-                ></span>
+              <div (click)="onModalForm(getServiceIdForMonth(customer, mes))" class="cursor-pointer">
+                <app-icon
+                  icon="mdi:checkbox-marked"
+                  class="text-primary text-xl"
+                />
               </div>
               }
             </td>
@@ -215,14 +215,14 @@
           class="btn-luxury-excel w-full justify-content-center py-3"
           (click)="exportExcel()"
         >
-          <i class="pi pi-file-excel"></i>
+          <app-icon icon="mdi:file-excel" />
           <span>Exportar a Excel</span>
         </button>
         <button
           class="btn-luxury-pdf w-full justify-content-center py-3"
           (click)="exportPdf()"
         >
-          <i class="pi pi-file-pdf"></i>
+          <app-icon icon="mdi:file-pdf-box" />
           <span>Exportar a PDF</span>
         </button>
       </div>
@@ -235,7 +235,7 @@
           [outline]="filtroEquiposValue !== filtro.nombre"
           (click)="clickButton(filtro)"
         >
-          <i [class]="getFiltroIconClass(filtro.emoji) + ' mr-1'"></i>
+          <app-icon [icon]="getFiltroIconClass(filtro.emoji)" class="mr-1" />
           <ion-label>{{ filtro.nombre | titlecase }}</ion-label>
         </ion-chip>
         }
@@ -289,9 +289,10 @@
         <div
           class="flex flex-column align-items-center justify-content-center p-5 text-center opacity-60"
         >
-          <i
-            class="pi pi-calendar-times text-6xl mb-3 text-color-secondary"
-          ></i>
+          <app-icon
+            icon="mdi:calendar-remove"
+            class="text-6xl mb-3 text-color-secondary"
+          />
           <h3 class="text-lg m-0 text-color-secondary">Sin Actividades</h3>
           <p class="text-sm m-0">
             No hay mantenimiento programado para este mes en la categoróa

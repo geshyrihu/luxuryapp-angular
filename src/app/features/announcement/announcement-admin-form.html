@@ -77,7 +77,7 @@
         <div class="flex justify-content-between align-items-center mb-2">
           <label>Imagen principal (Banner)</label>
           <custom-button
-            iconClass="pi pi-image"
+            iconClass="mdi:image"
             label="Generar con IA"
             variant="outlined"
             severity="help"
@@ -140,7 +140,7 @@
       <div class="flex justify-content-between align-items-center mb-2">
         <label class="font-bold">Contenido del Anuncio</label>
         <custom-button
-          iconClass="pi pi-sparkles"
+          iconClass="mdi:sparkles"
           label="Generar con IA"
           variant="outlined"
           severity="help"
@@ -180,7 +180,7 @@
                   class="text-primary hover:underline text-sm overflow-hidden text-overflow-ellipsis"
                   style="max-width: 200px"
                 >
-                  <i class="pi pi-file mr-2"></i> {{ item.fileName }}
+                  <app-icon icon="mdi:file-document-outline" class="mr-2" /> {{ item.fileName }}
                 </a>
 
                 <custom-button-delete
@@ -252,11 +252,11 @@
                   class="custom-list-item flex align-items-center"
                   [class.selected-item-green]="form.controls.targetedCustomerIds.value.includes(customer.value)"
                 >
-                  <i class="pi pi-building mr-2 text-500"></i>
+                  <app-icon icon="mdi:office-building" class="mr-2 text-500" />
                   <span class="flex-1">{{ customer.label }}</span>
                   @if(form.controls.targetedCustomerIds.value.includes(customer.value))
                   {
-                  <i class="pi pi-check text-green-700"></i>
+                  <app-icon icon="mdi:check" class="text-green-700" />
                   }
                 </div>
               </ng-template>
@@ -286,11 +286,11 @@
                   class="custom-list-item flex align-items-center"
                   [class.selected-item-green]="form.controls.recipientRoleIds.value.includes(role.value)"
                 >
-                  <i class="pi pi-id-card mr-2 text-500"></i>
+                  <app-icon icon="mdi:card-account-details" class="mr-2 text-500" />
                   <span class="flex-1">{{ role.label }}</span>
                   @if(form.controls.recipientRoleIds.value.includes(role.value))
                   {
-                  <i class="pi pi-check text-green-700"></i>
+                  <app-icon icon="mdi:check" class="text-green-700" />
                   }
                 </div>
               </ng-template>

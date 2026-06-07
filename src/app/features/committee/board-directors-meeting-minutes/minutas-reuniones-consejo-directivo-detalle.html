@@ -14,26 +14,27 @@
           Minuta de Junta con Mesa Directiva
         </h1>
         <p class="text-500 text-lg mb-0">
-          <i class="pi pi-calendar mr-2"></i>
+          <app-icon icon="mdi:calendar" class="mr-2" />
           Fecha: {{ meeting.date }}
         </p>
       </div>
 
       <div class="p-4 lg:p-5">
         <h2 class="text-xl border-bottom-1 surface-border pb-2 mb-3 flex align-items-center">
-          <i class="pi pi-users mr-2"></i>Asistentes
+          <app-icon icon="mdi:account-group" class="mr-2" />Asistentes
         </h2>
         <div class="grid">
           <div class="col-12 md:col-4 mb-3">
             <h6 class="font-bold mb-2 flex align-items-center">
-              <i class="pi pi-user mr-2"></i>Administración
+              <app-icon icon="mdi:account" class="mr-2" />Administración
             </h6>
             <div class="flex flex-column">
               @for (admin of meeting.administracion; track admin) {
               <div class="flex align-items-center py-1">
-                <i
-                  class="pi pi-circle-fill text-xs mr-2 text-500"
-                ></i>
+                <app-icon
+                  icon="mdi:circle"
+                  class="text-xs mr-2 text-500"
+                />
                 <span
                   >{{ admin.applicationUser }}
                   <small class="text-500"
@@ -49,14 +50,15 @@
           </div>
           <div class="col-12 md:col-4 mb-3">
             <h6 class="font-bold mb-2 flex align-items-center">
-              <i class="pi pi-sitemap mr-2"></i>Comité
+              <app-icon icon="mdi:sitemap" class="mr-2" />Comité
             </h6>
             <div class="flex flex-column">
               @for (member of meeting.comite; track member) {
               <div class="flex align-items-center py-1">
-                <i
-                  class="pi pi-circle-fill text-xs mr-2 text-500"
-                ></i>
+                <app-icon
+                  icon="mdi:circle"
+                  class="text-xs mr-2 text-500"
+                />
                 <span
                   >{{ member.applicationUser }}
                   <small class="text-500"
@@ -71,14 +73,15 @@
           </div>
           <div class="col-12 md:col-4 mb-3">
             <h6 class="font-bold mb-2 flex align-items-center">
-              <i class="pi pi-user-plus mr-2"></i>Invitados Externos
+              <app-icon icon="mdi:account-plus" class="mr-2" />Invitados Externos
             </h6>
             <div class="flex flex-column">
               @for (guest of meeting.externos; track guest) {
               <div class="flex align-items-center py-1">
-                <i
-                  class="pi pi-circle-fill text-xs mr-2 text-500"
-                ></i>
+                <app-icon
+                  icon="mdi:circle"
+                  class="text-xs mr-2 text-500"
+                />
                 <span>{{ guest.invitado }}</span>
               </div>
               } @if (!meeting.externos || meeting.externos.length === 0) {
@@ -91,7 +94,7 @@
         <hr class="my-4 border-top-1 surface-border" />
 
         <h2 class="text-xl border-bottom-1 surface-border pb-2 mb-3 flex align-items-center">
-          <i class="pi pi-clipboard mr-2"></i>Acuerdos y Asuntos Tratados
+          <app-icon icon="mdi:clipboard-text" class="mr-2" />Acuerdos y Asuntos Tratados
         </h2>
         @for (group of meeting.groupedDetails; track group) {
         <div class="mb-4">
@@ -142,7 +145,7 @@
     </div>
     } @if (!loading() && !data()) {
     <div class="surface-card shadow-1 p-4 border-round text-center">
-      <i class="pi pi-exclamation-triangle text-yellow-500 text-4xl mb-3"></i>
+      <app-icon icon="mdi:alert" class="text-yellow-500 text-4xl mb-3" />
       <p class="text-lg font-semibold text-500">
         No se pudo cargar la información de la minuta.
       </p>
@@ -292,7 +295,7 @@
   </ion-card>
   } } @if (!loading() && !data()) {
   <div class="text-center p-6">
-    <i class="pi pi-exclamation-triangle text-5xl text-orange-500 mb-3"></i>
+    <app-icon icon="mdi:alert" class="text-5xl text-orange-500 mb-3" />
     <p class="text-500 mt-3">
       No se pudo cargar la información de la minuta.
     </p>

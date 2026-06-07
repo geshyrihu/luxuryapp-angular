@@ -519,7 +519,7 @@
   width: 2.5rem;
   height: 2.5rem;
   padding: 0;
-  border-radius: 50%;
+  border-radius: var(--ds-radius-lg);
   flex-shrink: 0;
 
   &.btn-sm {
@@ -577,7 +577,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border-radius: 999px;
+  border-radius: var(--ds-radius-lg);
   background-color: var(--btn-icon-shell-bg);
   color: var(--btn-icon-shell-color);
   box-shadow:

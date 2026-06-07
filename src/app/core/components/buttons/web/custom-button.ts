@@ -1,18 +1,19 @@
 import { CommonModule } from "@angular/common";
 import { Component, input } from "@angular/core";
 import { TooltipModule } from "primeng/tooltip";
+import { AppIcon } from "../../app-icon/app-icon.component";
 import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "custom-button",
-  imports: [CommonModule, TooltipModule],
+  imports: [CommonModule, TooltipModule, AppIcon],
   template: `
     <div [class.field]="!noMargin()" [class.mb-0]="noMargin()">
       <button
         [type]="type()"
         [disabled]="disabled()"
         [class]="
-          'inline-flex align-items-center justify-content-center gap-1 ' +
+          'inline-flex align-items-center gap-1 ' +
           btnClasses() +
           ' ' +
           customClass()
@@ -27,14 +28,14 @@ import { BaseButton } from "../base/base-button";
             [class]="iconShellClasses(showLabelOnDesktop())"
             aria-hidden="true"
           >
-            <i class="pi pi-spin pi-spinner"></i>
+            <app-icon icon="mdi:loading" class="ds-animate-spin" />
           </span>
-        } @else if (resolvedIconClass()) {
+        } @else if (resolvedIcon()) {
           <span
             [class]="iconShellClasses(showLabelOnDesktop())"
             aria-hidden="true"
           >
-            <i [class]="resolvedIconClass()"></i>
+            <app-icon [icon]="resolvedIcon()" />
           </span>
         }
         @if (showLabelOnDesktop() && label()) {

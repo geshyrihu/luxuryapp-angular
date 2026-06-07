@@ -1,11 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, input } from "@angular/core";
 import { TooltipModule } from "primeng/tooltip";
+import { AppIcon } from "../../app-icon/app-icon.component";
 import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "custom-button-item",
-  imports: [CommonModule, TooltipModule],
+  imports: [CommonModule, TooltipModule, AppIcon],
   template: `
     <button
       [type]="type()"
@@ -16,12 +17,12 @@ import { BaseButton } from "../base/base-button";
       [pTooltip]="getTooltip()"
       [tooltipPosition]="tooltipPosition()"
     >
-      @if (resolvedIconClass()) {
+      @if (resolvedIcon()) {
         <span
           [class]="iconShellClasses(showLabelOnDesktop() && !!label())"
           aria-hidden="true"
         >
-          <i [class]="resolvedIconClass()"></i>
+          <app-icon [icon]="resolvedIcon()" />
         </span>
       }
       @if (showLabelOnDesktop() && label()) {

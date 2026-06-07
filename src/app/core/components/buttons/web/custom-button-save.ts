@@ -1,12 +1,13 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, input } from "@angular/core";
 import { TooltipModule } from "primeng/tooltip";
+import { AppIcon } from "../../app-icon/app-icon.component";
 import { ButtonType } from "../../../enums/button-type";
 import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "custom-button-save",
-  imports: [CommonModule, TooltipModule],
+  imports: [CommonModule, TooltipModule, AppIcon],
   template: `
     <div class="text-right">
       <button
@@ -18,9 +19,9 @@ import { BaseButton } from "../base/base-button";
       >
         <span [class]="iconShellClasses(true)" aria-hidden="true">
           @if (submitting()) {
-            <i class="pi pi-spin pi-spinner"></i>
+            <app-icon icon="mdi:loading" class="ds-animate-spin" />
           } @else {
-            <i [class]="finalIcon()"></i>
+            <app-icon [icon]="finalIcon()" />
           }
         </span>
         <span>{{ finalLabel() }}</span>
@@ -44,7 +45,8 @@ export class CustomButtonSave extends BaseButton {
 
   finalIcon = computed(
     () =>
-      this.resolvedIconClass() ||
-      (this.propertyId() ? "pi pi-sync" : "pi pi-save"),
+      this.icon() ||
+      this.iconClass() ||
+      (this.propertyId() ? "mdi:sync" : "mdi:content-save"),
   );
 }
