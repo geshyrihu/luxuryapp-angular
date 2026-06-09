@@ -48,7 +48,7 @@
       <td>
         <div class="flex gap-1">
           <custom-button
-            iconClass="pi pi-eye"
+            iconClass="mdi:eye-outline"
             severity="info"
             variant="ghost-text"
             pTooltip="Ver detalle"
@@ -56,7 +56,7 @@
           />
           @if (puedeEnviar(item.estadoValue)) {
           <custom-button
-            iconClass="pi pi-send"
+            iconClass="mdi:send"
             severity="secondary"
             variant="ghost-text"
             pTooltip="Enviar a revision"
@@ -65,7 +65,7 @@
           }
           @if (puedeAprobar(item.estadoValue)) {
           <custom-button
-            iconClass="pi pi-check"
+            iconClass="mdi:check"
             severity="success"
             variant="ghost-text"
             pTooltip="Aprobar nomina"
@@ -74,7 +74,7 @@
           }
           @if (puedePagar(item.estadoValue)) {
           <custom-button
-            iconClass="pi pi-dollar"
+            iconClass="mdi:dollar"
             severity="contrast"
             variant="ghost-text"
             pTooltip="Marcar como pagada"
@@ -83,7 +83,7 @@
           }
           @if (puedeCerrar(item.estadoValue)) {
           <custom-button
-            iconClass="pi pi-lock"
+            iconClass="mdi:lock"
             severity="secondary"
             variant="ghost-text"
             pTooltip="Cerrar nomina"
@@ -118,7 +118,7 @@
       </ion-label>
       <div slot="end">
         <custom-button
-          iconClass="pi pi-eye"
+          iconClass="mdi:eye-outline"
           severity="info"
           variant="ghost-text"
           (clicked)="verDetalle(item)"

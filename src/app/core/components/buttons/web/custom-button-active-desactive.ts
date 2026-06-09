@@ -37,7 +37,7 @@ export class CustomBtnActiveDesactive extends BaseButton {
   );
 
   dynamicIcon = computed(() =>
-    this.state() ? "pi pi-eye-slash" : "pi pi-eye",
+    this.state() ? "mdi:eye-off" : "mdi:eye-outline",
   );
 
   dynamicIconShellClass = computed(() =>

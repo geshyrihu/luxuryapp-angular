@@ -2,7 +2,7 @@
 
   <!-- Info -->
   <div class="p-3 mb-3 bg-purple-50 border-round border-1 border-purple-200 flex gap-2 align-items-start">
-    <i class="pi pi-shield text-purple-600 mt-1"></i>
+    <app-icon [icon]="'mdi:shield'" class="text-purple-600 mt-1"></app-icon>
     <div class="text-sm text-purple-800">
       <strong>Bitacora de Auditoria Financiera.</strong> Registro inmutable de todas las acciones
       de negocio relevantes: quién hizo qué, cuándo y con qué resultado. Complementa el Ledger
@@ -30,7 +30,7 @@
       <div class="field col-12 md:col-2 flex align-items-end">
         <custom-button
           label="Consultar"
-          iconClass="pi pi-search"
+          iconClass="mdi:magnify"
           severity="primary"
           [disabled]="loading()"
           (clicked)="onSearch()"

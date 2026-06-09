@@ -22,12 +22,14 @@ import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-but
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { AnnouncementAdminForm } from "./announcement-admin-form";
@@ -57,6 +59,7 @@ import { IAnnouncementAdminList } from "./announcement.model";
     IonButtonDelete,
     IonButtonEdit,
     IonButtonItem,
+    CustomInputSelectSignal,
   ],
   templateUrl: "./announcement-admin-list.html",
 })
@@ -77,6 +80,20 @@ export class AnnouncementAdminList implements OnInit {
 
   statusControl = new FormControl<string>("");
   typeControl = new FormControl<string>("");
+
+  statusOptions = signal<ISelectItem[]>([
+    { label: "Todos los estados", value: "" },
+    { label: "Borrador", value: "Draft" },
+    { label: "Publicado", value: "Published" },
+    { label: "Archivado", value: "Archived" },
+  ]);
+
+  typeOptions = signal<ISelectItem[]>([
+    { label: "Todos los tipos", value: "" },
+    { label: "General", value: "General" },
+    { label: "Urgente", value: "Urgente" },
+    { label: "Informativo", value: "Informativo" },
+  ]);
 
   onFilterChange() {
     // To do: Implement local filtering logic or pipe to the table

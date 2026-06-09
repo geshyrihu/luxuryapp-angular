@@ -51,7 +51,7 @@
         class="text-center pointer"
         (click)="onShowPurchaseDetails(item.ordenCompraId)"
       >
-        <i class="pi pi-pencil text-color-secondary"></i>
+        <app-icon [icon]="'mdi:pencil'" class="text-color-secondary"></app-icon>
       </td>
       <td>{{ item.creationAt }}</td>
       <td>
@@ -74,7 +74,7 @@
       <td class="text-center">
         @if (item.invoiceUrl) {
         <custom-button
-          iconClass="pi pi-download"
+          iconClass="mdi:download"
           variant="ghost-text"
           size="sm"
           (clicked)="viewPdf(item.invoiceUrl, item.provider)"
@@ -128,7 +128,7 @@
         </span>
         @if (item.invoiceUrl) {
         <custom-button
-          iconClass="pi pi-download"
+          iconClass="mdi:download"
           variant="ghost-text"
           size="sm"
           (clicked)="viewPdf(item.invoiceUrl, item.provider)"

@@ -136,11 +136,11 @@
         </div>
         <h2 class="text-base font-bold mb-1">{{ item.applicationUser }}</h2>
         <div class="flex align-items-center text-sm text-600 mb-1">
-          <app-icon icon="mdi:email-outline" class="text-xs"></app-icon>
+          <app-icon [icon]="'mdi:email-outline'" class="text-xs"></app-icon>
           <span>{{ item.email }}</span>
         </div>
         <div class="flex align-items-center text-sm text-600">
-          <app-icon icon="mdi:phone" class="text-xs"></app-icon>
+          <app-icon [icon]="'mdi:phone'" class="text-xs"></app-icon>
           <span>{{ item.phoneNumber }}</span>
         </div>
       </ion-label>

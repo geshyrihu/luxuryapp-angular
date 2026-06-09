@@ -67,7 +67,7 @@
       <div class="flex flex-column sm:flex-row align-items-center gap-2">
         <custom-button
           label="Actualizar Referencias"
-          iconClass="pi pi-link"
+          iconClass="mdi:link"
           (clicked)="onManageLinks()"
           severity="warn"
           size="sm"
@@ -80,7 +80,7 @@
         <div class="flex gap-1">
           <custom-button
             label="Denegadas"
-            iconClass="pi pi-times-circle"
+            iconClass="mdi:close-circle"
             (clicked)="onSelectStatus(1)"
             [variant]="statusCompra() !== 1 ? 'outlined' : null"
             [severity]="statusCompra() === 1 ? 'primary' : 'secondary'"
@@ -89,7 +89,7 @@
           />
           <custom-button
             label="Autorizadas"
-            iconClass="pi pi-check-circle"
+            iconClass="mdi:check-circle"
             (clicked)="onSelectStatus(0)"
             [variant]="statusCompra() !== 0 ? 'outlined' : null"
             [severity]="statusCompra() === 0 ? 'primary' : 'secondary'"
@@ -98,7 +98,7 @@
           />
           <custom-button
             label="Pendientes"
-            iconClass="pi pi-clock"
+            iconClass="mdi:clock-outline"
             (clicked)="onSelectStatus(2)"
             [variant]="statusCompra() !== 2 ? 'outlined' : null"
             [severity]="statusCompra() === 2 ? 'primary' : 'secondary'"
@@ -182,7 +182,7 @@
         }
         <br />
         <span class="text-xs text-600">
-          <i class="pi pi-calendar mr-1"></i>
+          <app-icon [icon]="'mdi:calendar'" class="mr-1"></app-icon>
           {{ item.fechaSolicitud | date : 'd MMM yyyy' : 'UTC' }}
         </span>
       </td>
@@ -220,7 +220,7 @@
       <td class="no-print oc-cell-actions text-center">
         <app-action-menu>
           <custom-button-item
-            iconClass="pi pi-window-maximize"
+            iconClass="mdi:window-maximize"
             label="Editar en modal"
             (clicked)="onOrdenCompraModal(item.id)"
             variant="text"
@@ -235,14 +235,14 @@
 
           @if (statusCompra() === 0) {
           <custom-button-item
-            iconClass="pi pi-money-bill"
+            iconClass="mdi:currency-usd"
             label="Solicitud de pago"
             (clicked)="onDownloadSolicitudPagoPdf(item.id)"
             variant="text"
             [showLabelOnDesktop]="true"
           />
           <custom-button-item
-            iconClass="pi pi-file-pdf"
+            iconClass="mdi:file-pdf-box"
             label="Orden de compra"
             (clicked)="onDownloadOrdenCompraPdf(item.id)"
             variant="text"
@@ -352,7 +352,7 @@
           margin-left: 16px;
         "
       >
-        <i class="pi pi-shopping-bag text-xl text-yellow-700"></i>
+        <app-icon [icon]="'mdi:shopping'" class="text-xl text-yellow-700"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.equipoOInstalacion }}</h3>

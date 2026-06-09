@@ -67,7 +67,7 @@ import { ApprovalInfoService } from "./approval-info.service";
         @if (request.requestType === "Permiso") {
           <div class="mb-4">
             <div class="flex items-center mb-2">
-              <i class="pi pi-history text-xl"></i>
+              <app-icon [icon]="'mdi:history'" class="text-xl"></app-icon>
               <h5 class="mb-0 font-semibold">Historial (últimos 3 meses)</h5>
             </div>
             <p class="text-600">
@@ -84,7 +84,7 @@ import { ApprovalInfoService } from "./approval-info.service";
         @if (request.requestType === "Vacaciones") {
           <div class="mb-4">
             <div class="flex items-center mb-2">
-              <i class="pi pi-sun text-xl"></i>
+              <app-icon [icon]="'mdi:weather-sunny'" class="text-xl"></app-icon>
               <h5 class="mb-0 font-semibold">Saldo de Vacaciones</h5>
             </div>
             <p class="text-600">
@@ -101,7 +101,7 @@ import { ApprovalInfoService } from "./approval-info.service";
 
         <div class="mt-4">
           <div class="flex items-center mb-3">
-            <i class="pi pi-users text-xl text-orange-500"></i>
+            <app-icon [icon]="'mdi:account-group'" class="text-xl text-orange-500"></app-icon>
             <h5 class="mb-0 font-semibold text-orange-500">
               Posible Solapamiento de Fechas
             </h5>
@@ -114,7 +114,7 @@ import { ApprovalInfoService } from "./approval-info.service";
                   @for (req of overlappingLeaveRequests; track req.id) {
                     <li class="flex items-center justify-between p-2">
                       <span>
-                        <i class="pi pi-user mr-2 text-gray-600"></i>
+                        <app-icon [icon]="'mdi:account'" class="mr-2 text-gray-600"></app-icon>
                         {{ req.fullName }}
                       </span>
                       <p-tag
@@ -145,7 +145,7 @@ import { ApprovalInfoService } from "./approval-info.service";
                   @for (req of overlappingVacationRequests; track req.id) {
                     <li class="flex items-center justify-between p-2">
                       <span>
-                        <i class="pi pi-user mr-2 text-gray-600"></i>
+                        <app-icon [icon]="'mdi:account'" class="mr-2 text-gray-600"></app-icon>
                         {{ req.fullName }}
                       </span>
                       <p-tag
@@ -180,7 +180,7 @@ import { ApprovalInfoService } from "./approval-info.service";
           <p-button
             (click)="onApprove()"
             label="Aprobar Solicitud"
-            icon="pi pi-check"
+            icon="mdi:check"
             [loading]="submitting"
           />
         </div>

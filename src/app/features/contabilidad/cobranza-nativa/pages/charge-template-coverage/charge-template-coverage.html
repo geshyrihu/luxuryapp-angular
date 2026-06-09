@@ -34,7 +34,7 @@
       <tr pRowGroupHeader>
         <td [attr.colspan]="3 + periodColumns().length" class="surface-100 py-2 px-3">
           <div class="flex align-items-center gap-2">
-            <i class="pi pi-building text-primary"></i>
+            <app-icon [icon]="'mdi:office-building'" class="text-primary"></app-icon>
             <span class="font-bold text-primary">{{ row.propertyName }}</span>
             <span class="text-500 text-sm">&middot; Cta: {{ row.accountNumber }}</span>
             @if (row.indivisoPercentage) {

@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule, CurrencyPipe, DatePipe } from "@angular/common";
 import {
   Component,
@@ -73,7 +74,7 @@ interface IPaymentForm {
     CustomInputTextAreaSignal,
     CustomButtonSave,
     CustomButton,
-  ],
+   AppIcon],
   providers: [DatePipe],
   templateUrl: "./payments.html",
 })

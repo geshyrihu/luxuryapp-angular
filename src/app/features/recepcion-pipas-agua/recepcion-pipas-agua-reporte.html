@@ -277,12 +277,12 @@
       <td>
         @if (item.colaboradorMtto) {
         <small class="block"
-          ><i class="pi pi-wrench mr-1 text-400"></i>{{ item.colaboradorMtto
+          ><app-icon [icon]="'mdi:wrench'" class="mr-1 text-400"></app-icon>{{ item.colaboradorMtto
           }}</small
         >
         } @if (item.guardiaSeguridad) {
         <small class="text-500"
-          ><i class="pi pi-shield mr-1"></i>{{ item.guardiaSeguridad }}</small
+          ><app-icon [icon]="'mdi:shield'" class="mr-1"></app-icon>{{ item.guardiaSeguridad }}</small
         >
         }
       </td>

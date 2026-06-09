@@ -62,7 +62,7 @@
         <td class="vertical-align-middle">
           @if (item.meetingDertailsSeguimientos.length > 0) {
           <div class="flex align-items-start p-2 surface-50 border-round">
-            <i class="pi pi-comment text-primary mt-1 mr-2"></i>
+            <app-icon [icon]="'mdi:comment'" class="text-primary mt-1 mr-2"></app-icon>
             <span
               class="text-600 text-xs line-height-2 line-clamp-2"
               [pTooltip]="item.meetingDertailsSeguimientos[0].seguimiento"
@@ -101,7 +101,7 @@
             <div
               class="border-circle bg-surface-200 p-4 flex align-items-center justify-content-center"
             >
-              <i class="pi pi-check text-4xl text-500"></i>
+              <app-icon [icon]="'mdi:check'" class="text-4xl text-500"></app-icon>
             </div>
             <span class="font-bold text-xl text-900"
               >¡No hay minutas por revisar!</span

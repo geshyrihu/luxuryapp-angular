@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
@@ -64,7 +65,7 @@ import { TaskForm } from "./task-form";
     IonRow,
     IonCol,
     IonList,
-  ],
+   AppIcon],
 })
 export class TaskView implements OnInit {
   apiResponseS = inject(ApiResponseService);

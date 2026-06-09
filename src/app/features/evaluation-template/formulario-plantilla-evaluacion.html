@@ -32,12 +32,12 @@
 
     <div class="flex flex-wrap justify-content-between align-items-center mb-4 pb-2 border-bottom-1 surface-border">
       <div class="flex align-items-center gap-2">
-        <i class="pi pi-list text-primary text-xl"></i>
+        <app-icon [icon]="'mdi:format-list-bulleted'" class="text-primary text-xl"></app-icon>
         <h2 class="text-xl font-semibold m-0">Categorías y Preguntas</h2>
       </div>
       <div class="flex gap-2">
         <custom-button
-          iconClass="pi pi-plus"
+          iconClass="mdi:plus"
           size="small"
           (clicked)="addCategory()"
           label="Nueva Categoría"
@@ -72,7 +72,7 @@
               class="cursor-move text-500 hover:text-primary transition-colors"
               pTooltip="Reordenar categoría"
             >
-              <i class="pi pi-bars"></i>
+              <app-icon [icon]="'mdi:menu'"></app-icon>
             </div>
             
             <span class="font-bold text-lg text-primary">{{ i + 1 }}.</span>
@@ -89,7 +89,7 @@
 
             <div class="flex gap-2">
               <custom-button
-                iconClass="pi pi-plus-circle"
+                iconClass="mdi:plus-circle"
                 [size]="'small'"
                 (clicked)="addQuestion(i)"
                 label="Pregunta"
@@ -119,7 +119,7 @@
               class="cursor-move text-400 hover:text-primary px-2"
               pTooltip="Reordenar pregunta"
             >
-              <i class="pi pi-ellipsis-v"></i>
+              <app-icon [icon]="'mdi:dots-vertical'"></app-icon>
             </div>
 
             <span class="text-600 font-medium w-2rem">{{ j + 1 }}.</span>
@@ -140,7 +140,7 @@
           
           @if (questions(i).controls.length === 0) {
             <div class="text-center p-4 border-2 border-dashed surface-border border-round text-500">
-              <i class="pi pi-info-circle mr-2"></i>
+              <app-icon [icon]="'mdi:information'" class="mr-2"></app-icon>
               No hay preguntas en esta categoría. Haga clic en "Pregunta" para agregar una.
             </div>
           }
@@ -150,11 +150,11 @@
 
       @if (categories.controls.length === 0) {
         <div class="text-center p-8 border-2 border-dashed surface-border border-round bg-white">
-          <i class="pi pi-folder-open text-6xl text-200 mb-3 block"></i>
+          <app-icon [icon]="'mdi:folder-open'" class="text-6xl text-200 mb-3 block"></app-icon>
           <span class="text-xl text-500 font-medium">No se han definido categorías</span>
           <p class="text-400 mt-2">Comience agregando una categoría para organizar sus preguntas de evaluación.</p>
           <custom-button
-            iconClass="pi pi-plus"
+            iconClass="mdi:plus"
             (clicked)="addCategory()"
             label="Agregar Primera Categoría"
             customClass="mt-4"

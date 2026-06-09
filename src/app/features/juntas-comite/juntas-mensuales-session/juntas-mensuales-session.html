@@ -11,17 +11,17 @@
 
         <div class="flex gap-2 flex-wrap">
           <custom-button
-            icon="pi pi-calendar"
+            icon="mdi:calendar"
             label="Agenda"
             (clicked)="onOpenAgenda()"
           />
           <custom-button
-            icon="pi pi-images"
+            icon="mdi:image-multiple"
             label="Presentaciones"
             (clicked)="onOpenPresentations()"
           />
           <custom-button
-            icon="pi pi-file-edit"
+            icon="mdi:file-edit"
             label="Minutas"
             (clicked)="onOpenMinutes()"
           />
@@ -117,28 +117,28 @@
       <div class="flex gap-2 flex-wrap mt-3">
         @if (canCreateMeeting(detail)) {
         <custom-button
-          icon="pi pi-file-plus"
+          icon="mdi:file-plus"
           label="Generar minuta"
           (clicked)="onCreateMeeting()"
         />
         }
         @if (canReschedule(detail)) {
         <custom-button
-          icon="pi pi-calendar-plus"
+          icon="mdi:calendar-plus"
           label="Reprogramar"
           (clicked)="onOpenReschedule()"
         />
         }
         @if (hasAssemblyChecklist(detail)) {
         <custom-button
-          icon="pi pi-list-check"
+          icon="mdi:format-list-checks"
           label="Checklist asamblea"
           (clicked)="onOpenAssemblyChecklist()"
         />
         }
         @if (detail.meetingId) {
         <custom-button
-          icon="pi pi-external-link"
+          icon="mdi:external-link"
           label="Abrir minuta"
           (clicked)="onOpenMinutes()"
         />

@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
@@ -70,7 +71,7 @@ import heic2any from "heic2any";
     CustomButtonSave,
     CustomButton,
     CustomInputCheckSignal,
-  ],
+   AppIcon],
 })
 export class TaskForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);

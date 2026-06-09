@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule, DecimalPipe, UpperCasePipe } from "@angular/common";
 import {
   Component,
@@ -89,7 +90,7 @@ const tipoGastoEmojis: { [key: number]: string } = {
     TooltipModule,
     UpperCasePipe,
     CheckboxModule,
-  ],
+   AppIcon],
   templateUrl: "./funding-detail.html",
 })
 export class FundingDetail {

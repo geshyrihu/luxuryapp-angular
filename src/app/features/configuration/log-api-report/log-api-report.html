@@ -120,7 +120,7 @@
           <td></td>
           <td colspan="4" class="surface-section p-3">
             <div class="flex align-items-center mb-2">
-              <app-icon icon="mdi:information" class="text-primary" />
+              <app-icon [icon]="'mdi:information'" class="text-primary" />
               <strong class="text-sm">Propiedades:</strong>
             </div>
             <pre
@@ -137,7 +137,7 @@
           <td></td>
           <td colspan="4" class="bg-red-50 p-3">
             <div class="flex align-items-center mb-2">
-              <app-icon icon="mdi:alert" class="text-red-600" />
+              <app-icon [icon]="'mdi:alert'" class="text-red-600" />
               <strong class="text-sm text-red-600">Excepción:</strong>
             </div>
             <pre
@@ -180,14 +180,14 @@
                 {{ item.level }}
               </h2>
               <p class="text-medium text-500 m-0 text-sm">
-                <app-icon icon="mdi:clock-outline" class="mr-1 text-xs" />
+                <app-icon [icon]="'mdi:clock-outline'" class="mr-1 text-xs" />
                 {{ item.timestamp | date: "dd/MM/yyyy h:mm a" }}
               </p>
             </div>
 
             @if (item.userName) {
             <p class="text-sm text-color-secondary m-0 mb-1">
-              <app-icon icon="mdi:account" class="mr-1 text-xs" /> {{ item.userName }}
+              <app-icon [icon]="'mdi:account'" class="mr-1 text-xs" /> {{ item.userName }}
             </p>
             }
 
@@ -196,7 +196,7 @@
             @if (item.properties) {
             <div class="mb-2">
               <ion-note class="text-xs flex align-items-center gap-1 mb-1">
-                <app-icon icon="mdi:information" /> Propiedades:
+                <app-icon [icon]="'mdi:information'" /> Propiedades:
               </ion-note>
               <pre class="text-xs bg-light p-2 border-radius overflow-auto">
 {{ item.properties }}</pre
@@ -207,7 +207,7 @@
               <ion-note
                 class="text-xs text-danger flex align-items-center gap-1 mb-1"
               >
-                <app-icon icon="mdi:alert" /> Excepción:
+                <app-icon [icon]="'mdi:alert'" /> Excepción:
               </ion-note>
               <pre
                 class="text-xs bg-danger-subtle p-2 border-radius border border-danger overflow-auto"

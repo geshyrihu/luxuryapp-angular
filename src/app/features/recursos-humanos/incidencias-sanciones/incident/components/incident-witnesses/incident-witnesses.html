@@ -2,14 +2,14 @@
   <!-- Header -->
   <div class="flex align-items-center justify-content-between mb-3">
     <div class="flex align-items-center">
-      <i class="pi pi-users text-xl text-primary mr-2"></i>
+      <app-icon [icon]="'mdi:account-group'" class="text-xl text-primary mr-2"></app-icon>
       <h3 class="text-base font-semibold text-color m-0">Testigos</h3>
       <span class="text-sm text-color-secondary"
         >({{ witnesses().length }})</span
       >
     </div>
     <custom-button
-      iconClass="pi pi-plus"
+      iconClass="mdi:plus"
       label="Agregar Testigo"
       [showLabelOnDesktop]="true"
       severity="secondary"
@@ -24,7 +24,7 @@
   </div>
   } @else if (witnesses().length === 0) {
   <div class="text-center p-4 text-color-secondary surface-100 border-round">
-    <i class="pi pi-user text-3xl text-400"></i>
+    <app-icon [icon]="'mdi:account'" class="text-3xl text-400"></app-icon>
     <p class="mt-2 m-0">No hay testigos registrados</p>
   </div>
   } @else {
@@ -53,7 +53,7 @@
           <span
             class="text-green-600 flex align-items-center justify-content-center gap-1"
           >
-            <i class="pi pi-check-circle"></i>
+            <app-icon [icon]="'mdi:check-circle'"></app-icon>
             <span>Firmado</span>
           </span>
           } @else {

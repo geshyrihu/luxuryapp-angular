@@ -96,18 +96,18 @@ export class OrdenesServicio {
   filtroEquiposValue: any = "todos";
   filtroId: any | string = "";
   filtroEquipos = [
-    { icon: "pi pi-list", id: "", nombre: "todos" },
-    { icon: "pi pi-star", id: 2, nombre: "amenidades" },
-    { icon: "pi pi-home", id: 8, nombre: "A. Comunes" },
-    { icon: "pi pi-box", id: 7, nombre: "bodegas" },
-    { icon: "pi pi-cog", id: 1, nombre: "equipos" },
-    { icon: "pi pi-bolt", id: 5, nombre: "gimnasio" },
-    { icon: "pi pi-video", id: 6, nombre: "sistemas" },
-    { icon: "pi pi-palette", id: 10, nombre: "pintura" },
+    { icon: "mdi:format-list-bulleted", id: "", nombre: "todos" },
+    { icon: "mdi:star-outline", id: 2, nombre: "amenidades" },
+    { icon: "mdi:home", id: 8, nombre: "A. Comunes" },
+    { icon: "mdi:package", id: 7, nombre: "bodegas" },
+    { icon: "mdi:cog", id: 1, nombre: "equipos" },
+    { icon: "mdi:lightning-bolt", id: 5, nombre: "gimnasio" },
+    { icon: "mdi:video", id: 6, nombre: "sistemas" },
+    { icon: "mdi:palette", id: 10, nombre: "pintura" },
   ];
 
   getInventoryIconClass(icon: string | null | undefined): string {
-    return this.resolvePrimeIcon(icon, "pi pi-box");
+    return this.resolvePrimeIcon(icon, "mdi:package");
   }
 
   onSegmentFilterChange(event: any) {

@@ -54,10 +54,9 @@
             @for (items of subCuenta.items; track items) {
             <tr>
               <td class="table-col-10 pointer">
-                <i
-                  class="icon icon-pi-hand-pointer"
+                <app-icon [icon]="'mdi:hand-pointer'" class="icon icon-"
                   (click)="onModalItem(items)"
-                ></i>
+                ></app-icon>
               </td>
               <td class="table-col-30">{{ items.equipo }}</td>
               <td class="table-col-20">{{ items.recurrencia }}</td>

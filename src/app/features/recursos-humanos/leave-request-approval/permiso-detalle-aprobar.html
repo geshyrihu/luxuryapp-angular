@@ -61,7 +61,7 @@
             class="p-button p-button-info p-button-sm"
           >
             <span
-              class="pi pi-download p-button-icon p-button-icon-left"
+              class="mdi:download p-button-icon p-button-icon-left"
             ></span>
             <span class="p-button-label">Descargar Comprobante</span>
           </a>
@@ -84,14 +84,14 @@
   <div class="card-footer text-right">
     <custom-button
       severity="success"
-      iconClass="pi pi-check"
+      iconClass="mdi:check"
       label="Aprobar"
       (clicked)="onApprove()"
       [disabled]="submitting()"
       customClass="mr-2"
     /><custom-button
       severity="danger"
-      iconClass="pi pi-times"
+      iconClass="mdi:close"
       label="Rechazar"
       (clicked)="onReject()"
       [disabled]="submitting()"

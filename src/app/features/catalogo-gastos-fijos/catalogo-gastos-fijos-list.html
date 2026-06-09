@@ -35,13 +35,13 @@
           size="small"
           [severity]="isFirstQuincenaSelected() ? 'success' : 'secondary'"
           [outlined]="isFirstQuincenaSelected() ? 'success' : 'secondary'"
-          [iconClass]="isFirstQuincenaSelected() ?  'pi pi-check' : 'pi pi-times'"
+          [iconClass]="isFirstQuincenaSelected() ?  'mdi:check' : 'mdi:close'"
         />
 
         <custom-button
           (clicked)="generateOrdenesPorQuincena(0)"
           label="Generar 1ra Quincena"
-          iconClass="pi pi-calendar"
+          iconClass="mdi:calendar"
           size="small"
           severity="success"
           [showLabelOnDesktop]="true"
@@ -57,14 +57,14 @@
           size="small"
           [severity]="isSecondQuincenaSelected() ? 'info' : 'secondary'"
           [outlined]="!isSecondQuincenaSelected()"
-          [iconClass]="isSecondQuincenaSelected() ?'pi pi-check' : 'pi pi-times'"
+          [iconClass]="isSecondQuincenaSelected() ?'mdi:check' : 'mdi:close'"
           [showLabelOnDesktop]="true"
         />
 
         <custom-button
           [label]="'Generar 2da Quincena'"
           (clicked)="generateOrdenesPorQuincena(1)"
-          iconClass="pi pi-calendar"
+          iconClass="mdi:calendar"
           size="small"
           severity="info"
           [showLabelOnDesktop]="true"
@@ -90,7 +90,7 @@
             [variant]="selectedMonthName() === month.monthName ? null : 'outlined'"
             [severity]="selectedMonthName() === month.monthName ? 'success' : 'secondary'"
             [raised]="true"
-            [iconClass]="selectedMonthName() === month.monthName ? 'pi pi-check' : 'pi pi-times'"
+            [iconClass]="selectedMonthName() === month.monthName ? 'mdi:check' : 'mdi:close'"
             customClass="w-full text-xs"
             size="small"
             [showLabelOnDesktop]="true"
@@ -135,7 +135,7 @@
       class="flex align-items-center flex-wrap px-3 py-2 mt-1 border-round surface-100 border-left-3 border-orange-500 mb-2 shadow-1"
     >
       <div class="flex align-items-center text-700">
-        <i class="pi pi-info-circle text-orange-500 font-bold"></i>
+        <app-icon [icon]="'mdi:information'" class="text-orange-500 font-bold"></app-icon>
         <span class="font-bold text-sm uppercase">Guía de Generación:</span>
       </div>
 
@@ -147,7 +147,7 @@
         <span class="text-sm font-medium">Marcar registros en la tabla</span>
       </div>
 
-      <i class="pi pi-chevron-right text-400 text-xs hidden md:block"></i>
+      <app-icon [icon]="'mdi:chevron-right'" class="text-400 text-xs hidden md:block"></app-icon>
 
       <div class="flex align-items-center">
         <span
@@ -157,7 +157,7 @@
         <span class="text-sm font-medium">Seleccionar Año y Mes de Fondeo</span>
       </div>
 
-      <i class="pi pi-chevron-right text-400 text-xs hidden md:block"></i>
+      <app-icon [icon]="'mdi:chevron-right'" class="text-400 text-xs hidden md:block"></app-icon>
 
       <div class="flex align-items-center">
         <span

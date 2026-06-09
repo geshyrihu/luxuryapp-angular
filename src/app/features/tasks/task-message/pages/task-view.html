@@ -20,7 +20,7 @@
     <custom-button
       (clicked)="goBack()"
       label="Volver al Listado"
-      iconClass="pi pi-arrow-left"
+      iconClass="mdi:arrow-left"
       variant="text"
     />
   </div>
@@ -39,7 +39,7 @@
             </div>
             <h2 class="text-2xl font-bold text-900 m-0">{{ t.title }}</h2>
             <div class="text-500 mt-1 flex align-items-center">
-              <i class="pi pi-user mr-2"></i> {{ t.customer }}
+              <app-icon [icon]="'mdi:account'" class="mr-2"></app-icon> {{ t.customer }}
             </div>
           </div>
           <div class="text-right">
@@ -137,14 +137,14 @@
           <custom-button
             (clicked)="onModalForm(t)"
             label="Editar Ticket"
-            iconClass="pi pi-pencil"
+            iconClass="mdi:pencil"
             variant="outlined"
             [showLabelOnDesktop]="true"
           />
           <custom-button
             (clicked)="onFollowUp(t.id)"
             label="Anadir Seguimiento"
-            iconClass="pi pi-comments"
+            iconClass="mdi:comment-multiple"
             severity="help"
             variant="outlined"
             [showLabelOnDesktop]="true"
@@ -152,7 +152,7 @@
           <custom-button
             (clicked)="onProgram(t.id)"
             label="Programar"
-            iconClass="pi pi-calendar"
+            iconClass="mdi:calendar"
             severity="info"
             variant="outlined"
             [showLabelOnDesktop]="true"
@@ -161,7 +161,7 @@
           <custom-button
             (clicked)="onProgress(t.id)"
             label="En Proceso"
-            iconClass="pi pi-sync"
+            iconClass="mdi:sync"
             severity="warn"
             variant="outlined"
             [showLabelOnDesktop]="true"
@@ -169,7 +169,7 @@
           <custom-button
             (clicked)="onClosed(t.id)"
             label="Cerrar Ticket"
-            iconClass="pi pi-lock"
+            iconClass="mdi:lock"
             severity="success"
             variant="outlined"
             [showLabelOnDesktop]="true"
@@ -178,7 +178,7 @@
           <custom-button
             (clicked)="onReopen(t.id)"
             label="Reabrir Ticket"
-            iconClass="pi pi-lock-open"
+            iconClass="mdi:lock-open"
             variant="outlined"
             severity="danger"
             [showLabelOnDesktop]="true"

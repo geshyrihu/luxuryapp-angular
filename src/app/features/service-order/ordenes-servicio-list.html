@@ -30,7 +30,7 @@
         }
       </div>
       <custom-button
-        iconClass="pi pi-file"
+        iconClass="mdi:file-document-outline"
         label="Reporte de órdenes"
         (click)="onNavigateToReport()"
         variant="outlined"
@@ -137,21 +137,21 @@
       <td class="no-print">
         <div class="flex">
           <custom-button-item
-            iconClass="pi pi-print"
+            iconClass="mdi:printer"
             label="Imprimir soporte"
             [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
             variant="outlined"
           />
 
           <custom-button-item
-            iconClass="pi pi-image"
+            iconClass="mdi:image"
             label="Cargar imagen"
             (clicked)="onModalFormUploadImg(item.id)"
             variant="outlined"
           />
 
           <custom-button-item
-            iconClass="pi pi-paperclip"
+            iconClass="mdi:paperclip"
             label="Cargar documentos"
             (clicked)="onModalFormUploadDoc(item.id)"
             variant="outlined"

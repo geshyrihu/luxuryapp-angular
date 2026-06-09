@@ -17,7 +17,7 @@
           class="flex align-items-center justify-content-center bg-primary-50 border-round-lg"
           style="width: 36px; height: 36px; flex-shrink: 0"
         >
-          <i class="pi pi-table text-primary-600" style="font-size: 1rem"></i>
+          <app-icon [icon]="'mdi:table'" class="text-primary-600" style="font-size: 1rem"></app-icon>
         </div>
         <div style="flex-shrink: 0">
           <p
@@ -51,7 +51,7 @@
       <!-- Ejercicio -->
       <div class="flex align-items-center gap-1" style="flex-shrink: 0">
         <custom-button
-          iconClass="pi-chevron-left"
+          iconClass="mdi:chevron-left"
           variant="text"
           severity="secondary"
           size="small"
@@ -64,7 +64,7 @@
           {{ filterS.year() }}
         </span>
         <custom-button
-          iconClass="pi-chevron-right"
+          iconClass="mdi:chevron-right"
           variant="text"
           severity="secondary"
           size="small"
@@ -111,7 +111,7 @@
       <custom-button
         label="Mostrar todo"
         [showLabelOnDesktop]="true"
-        iconClass="pi-eye"
+        iconClass="mdi:eye-outline"
         size="small"
         [severity]="!ocultarSinDatos() ? 'primary' : 'secondary'"
         [variant]="!ocultarSinDatos() ? null : 'outlined'"
@@ -121,7 +121,7 @@
       <custom-button
         label="Ocultar sin datos"
         [showLabelOnDesktop]="true"
-        iconClass="pi-eye-slash"
+        iconClass="mdi:eye-off"
         size="small"
         [severity]="ocultarSinDatos() ? 'primary' : 'secondary'"
         [variant]="ocultarSinDatos() ? null : 'outlined'"
@@ -161,7 +161,7 @@
     class="flex align-items-center gap-2 mb-3 mt-5"
     [id]="'grupo-' + grupo.codigo"
   >
-    <i class="pi pi-chart-bar text-xl text-primary-600"></i>
+    <app-icon [icon]="'mdi:chart-bar'" class="text-xl text-primary-600"></app-icon>
     <h2 class="text-base font-bold text-900 m-0 uppercase">
       {{ grupo.nombre }}
     </h2>
@@ -344,7 +344,7 @@
   <div
     class="rf-card rf-empty flex flex-column align-items-center justify-content-center"
   >
-    <i class="pi pi-table text-4xl mb-3"></i>
+    <app-icon [icon]="'mdi:table'" class="text-4xl mb-3"></app-icon>
     <p class="m-0">
       Selecciona un cliente y ejercicio para cargar el espejo Aspel.
     </p>

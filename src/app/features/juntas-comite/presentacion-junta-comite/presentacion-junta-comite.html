@@ -26,7 +26,7 @@
           <div class="flex gap-2">
             <custom-button
               variant="outlined"
-              iconClass="pi pi-calendar"
+              iconClass="mdi:calendar"
               label="PERIODO"
               size="sm"
               [showLabelOnDesktop]="true"
@@ -34,7 +34,7 @@
             />
             <custom-button
               variant="outlined"
-              iconClass="pi pi-users"
+              iconClass="mdi:account-group"
               label="FECHA DE JUNTA"
               size="sm"
               [showLabelOnDesktop]="true"
@@ -81,7 +81,7 @@
                   "Sí" }}
                   <i
                     class="pi"
-                    [class]="item.enviadoComite ? 'pi-check-circle text-green-500' : 'pi-times-circle text-red-500'"
+                    [class]="item.enviadoComite ? 'mdi:check-circle text-green-500' : 'mdi:close-circle text-red-500'"
                   ></i>
                 </p>
               </div>
@@ -97,7 +97,7 @@
               <custom-button
                 ngbTooltip="Cargar archivo de portada"
                 severity="info"
-                iconClass="pi pi-upload"
+                iconClass="mdi:upload"
                 label="Cargar archivo"
                 size="sm"
                 (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })"
@@ -110,7 +110,7 @@
                   [showLabelOnDesktop]="true"
                   [url]="item.archivoPortada"
                   fileName="Portada"
-                  iconClass="pi pi-file-pdf"
+                  iconClass="mdi:file-pdf-box"
                   label="Ver Archivo"
                 />
               </div>
@@ -133,11 +133,11 @@
             </div>
 
             <p class="m-0 text-xs text-500 flex align-items-center gap-1">
-              <i class="pi pi-user text-primary"></i>
+              <app-icon [icon]="'mdi:account'" class="text-primary"></app-icon>
               <span>{{ item.applicationUserPortada }}</span>
             </p>
             <p class="m-0 text-xs text-500 flex align-items-center gap-1">
-              <i class="pi pi-calendar text-primary"></i>
+              <app-icon [icon]="'mdi:calendar'" class="text-primary"></app-icon>
               <span>{{ item.fechaCargaPortada }}</span>
             </p>
             }
@@ -151,7 +151,7 @@
               <custom-button
                 ngbTooltip="Cargar archivo contable"
                 severity="info"
-                iconClass="pi pi-upload"
+                iconClass="mdi:upload"
                 label="Cargar archivo"
                 size="sm"
                 (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
@@ -164,7 +164,7 @@
                   [showLabelOnDesktop]="true"
                   [url]="item.archivoContable"
                   fileName="Contabilidad"
-                  iconClass="pi pi-chart-bar"
+                  iconClass="mdi:chart-bar"
                   label="Ver Archivo"
                 />
               </div>
@@ -187,11 +187,11 @@
             </div>
 
             <p class="m-0 text-xs text-500 flex align-items-center gap-1">
-              <i class="pi pi-user text-cyan-700"></i>
+              <app-icon [icon]="'mdi:account'" class="text-cyan-700"></app-icon>
               <span>{{ item.applicationUserContable }}</span>
             </p>
             <p class="m-0 text-xs text-500 flex align-items-center gap-1">
-              <i class="pi pi-calendar text-cyan-700"></i>
+              <app-icon [icon]="'mdi:calendar'" class="text-cyan-700"></app-icon>
               <span>{{ item.fechaCargaContable }}</span>
             </p>
             }
@@ -206,7 +206,7 @@
               <custom-button
                 ngbTooltip="Cargar archivo de operaciones"
                 severity="info"
-                iconClass="pi pi-upload"
+                iconClass="mdi:upload"
                 label="Cargar archivo"
                 size="sm"
                 (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
@@ -219,7 +219,7 @@
                   [showLabelOnDesktop]="true"
                   [url]="item.archivoJunta"
                   fileName="Operaciones"
-                  iconClass="pi pi-cog"
+                  iconClass="mdi:cog"
                   label="Ver Archivo"
                 />
               </div>
@@ -240,11 +240,11 @@
               </div>
             </div>
             <p class="m-0 text-xs text-500 flex align-items-center gap-1">
-              <i class="pi pi-user text-orange-600"></i>
+              <app-icon [icon]="'mdi:account'" class="text-orange-600"></app-icon>
               <span>{{ item.applicationUser }}</span>
             </p>
             <p class="m-0 text-xs text-500 flex align-items-center gap-1">
-              <i class="pi pi-calendar text-orange-600"></i>
+              <app-icon [icon]="'mdi:calendar'" class="text-orange-600"></app-icon>
               <span>{{ item.fechaCarga }}</span>
             </p>
             }
@@ -260,7 +260,7 @@
             <!-- Con Título personalizado y tipo de ócono -->
             <div class="text-center flex flex-column gap-2">
               <custom-button-confirm
-                iconClass="pi pi-send"
+                iconClass="mdi:send"
                 label="Validar y enviar"
                 swalTitle="óEnviar presentación?"
                 swalText="La presentación seró enviada al Comité."
@@ -271,7 +271,7 @@
                 [showLabelOnDesktop]="true"
               />
               <custom-button-confirm
-                iconClass="pi pi-check-circle"
+                iconClass="mdi:check-circle"
                 label="Validar presentación"
                 swalTitle="óValidar presentación?"
                 swalText="Confirmo que la presentación es correcta y se crearó versión final."
@@ -291,7 +291,7 @@
                 [showLabelOnDesktop]="true"
                 [url]="item.archivoFinal"
                 fileName="Final"
-                iconClass="pi pi-flag"
+                iconClass="mdi:flag-outline"
                 label="Ver Archivo"
               />
 
@@ -303,11 +303,11 @@
               }
             </div>
             <p class="m-0 text-xs text-500 flex align-items-center gap-1">
-              <i class="pi pi-user text-green-700"></i>
+              <app-icon [icon]="'mdi:account'" class="text-green-700"></app-icon>
               <span>{{ item.applicationUserSupervisor }}</span>
             </p>
             <p class="m-0 text-xs text-500 flex align-items-center gap-1">
-              <i class="pi pi-calendar text-green-700"></i>
+              <app-icon [icon]="'mdi:calendar'" class="text-green-700"></app-icon>
               <span>{{ item.fechaCargaSupervisor }}</span>
             </p>
             }
@@ -379,7 +379,7 @@
               {
               <custom-button
                 label="Cargar archivo"
-                iconClass="pi pi-upload"
+                iconClass="mdi:upload"
                 size="sm"
                 [fluid]="true"
                 (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })"
@@ -423,7 +423,7 @@
               AspRole.SuperUsuario])() ) {
               <custom-button
                 label="Cargar archivo"
-                iconClass="pi pi-upload"
+                iconClass="mdi:upload"
                 size="sm"
                 [fluid]="true"
                 (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
@@ -469,7 +469,7 @@
               AspRole.SuperUsuario])() ) {
               <custom-button
                 label="Cargar archivo"
-                iconClass="pi pi-upload"
+                iconClass="mdi:upload"
                 size="sm"
                 [fluid]="true"
                 (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
@@ -510,7 +510,7 @@
               {
               <div class="flex flex-column gap-2">
                 <ion-button-confirm
-                  icon="pi pi-send"
+                  icon="mdi:send"
                   label="Validar y enviar a comite"
                   swalTitle="óEnviar presentación?"
                   swalText="La presentación seró enviada al Comité."
@@ -520,7 +520,7 @@
                   customClass="w-full"
                 />
                 <ion-button-confirm
-                  icon="pi pi-check-circle"
+                  icon="mdi:check-circle"
                   label="Solo validar"
                   swalTitle="óValidar presentación?"
                   swalText="Confirmo que la presentación es correcta y se crearó versión final."

@@ -3,7 +3,7 @@
   <!-- Overlay mientras se preparan los reportes -->
   @if (isPreparing()) {
   <div class="print-preparing-overlay">
-    <i class="pi pi-spin pi-spinner" style="font-size: 2.5rem; color: #203453;"></i>
+    <app-icon [icon]="'mdi:spin'" style="font-size: 2.5rem; color: #203453;"></app-icon>
     <p style="margin: 0; font-size: 1.1rem; color: #203453; font-weight: 700; letter-spacing: 0.04em;">
       Cargando todos los reportes...
     </p>
@@ -127,7 +127,7 @@
                 class="flex flex-wrap md:flex-nowrap gap-2 w-full xl:justify-content-end align-items-end"
               >
                 <custom-button
-                  iconClass="pi pi-refresh"
+                  iconClass="mdi:refresh"
                   label="Actualizar"
                   variant="outlined"
                   severity="secondary"
@@ -136,7 +136,7 @@
                   (clicked)="refreshReports()"
                 />
                 <custom-button
-                  [iconClass]="isPreparing() ? 'pi pi-spin pi-spinner' : 'pi pi-print'"
+                  [iconClass]="isPreparing() ? 'mdi:spin pi-spinner' : 'mdi:printer'"
                   [label]="isPreparing() ? 'Preparando...' : 'Imprimir'"
                   variant="outlined"
                   severity="secondary"
@@ -146,7 +146,7 @@
                   (clicked)="printReport()"
                 />
                 <custom-button
-                  iconClass="pi pi-comments"
+                  iconClass="mdi:comment-multiple"
                   label="Explicar IA"
                   variant="outlined"
                   size="small"
@@ -155,7 +155,7 @@
                   (clicked)="aiAgentExplicador.togglePanel()"
                 />
                 <custom-button
-                  iconClass="pi pi-sparkles"
+                  iconClass="mdi:sparkles"
                   label="Auditor CO"
                   variant="outlined"
                   size="small"
@@ -164,7 +164,7 @@
                   (clicked)="aiAgentContabilidadOnline.togglePanel()"
                 />
                 <custom-button
-                  iconClass="pi pi-sparkles"
+                  iconClass="mdi:sparkles"
                   label="Auditor IA"
                   variant="outlined"
                   size="small"
@@ -173,7 +173,7 @@
                   (clicked)="aiAgent.togglePanel()"
                 />
                 <custom-button
-                  iconClass="pi pi-external-link"
+                  iconClass="mdi:external-link"
                   label="Vista cliente"
                   variant="outlined"
                   size="small"
@@ -244,35 +244,35 @@
     <div class="surface-card border-round-xl border-1 surface-border shadow-1 print-hide-on-print">
       <p-tabs [value]="reportIndex()" (valueChange)="onTabChange($event)">
         <p-tablist class="print-hide-on-print">
-          <p-tab [value]="0"><i class="pi pi-balance-scale mr-2"></i>EPF</p-tab>
+          <p-tab [value]="0"><app-icon [icon]="'mdi:scale-balance'" class="mr-2"></app-icon>EPF</p-tab>
           <p-tab [value]="1"
-            ><i class="pi pi-list mr-2"></i>E. Resultados</p-tab
+            ><app-icon [icon]="'mdi:format-list-bulleted'" class="mr-2"></app-icon>E. Resultados</p-tab
           >
           <!-- <p-tab [value]="2"
-            ><i class="pi pi-list mr-2"></i>E. Resultados V2</p-tab
+            ><app-icon [icon]="'mdi:format-list-bulleted'" class="mr-2"></app-icon>E. Resultados V2</p-tab
           > -->
           <p-tab [value]="3"
-            ><i class="pi pi-plus-circle mr-2"></i>C. Extraordinaria</p-tab
+            ><app-icon [icon]="'mdi:plus-circle'" class="mr-2"></app-icon>C. Extraordinaria</p-tab
           >
-          <p-tab [value]="4"><i class="pi pi-percentage mr-2"></i>P vs R</p-tab>
+          <p-tab [value]="4"><app-icon [icon]="'mdi:percent'" class="mr-2"></app-icon>P vs R</p-tab>
           <p-tab [value]="5"
-            ><i class="pi pi-table mr-2"></i>R. Financiero</p-tab
+            ><app-icon [icon]="'mdi:table'" class="mr-2"></app-icon>R. Financiero</p-tab
           >
           <p-tab [value]="6"
-            ><i class="pi pi-money-bill mr-2"></i>Flujo Efectivo</p-tab
+            ><app-icon [icon]="'mdi:currency-usd'" class="mr-2"></app-icon>Flujo Efectivo</p-tab
           >
-          <p-tab [value]="7"><i class="pi pi-users mr-2"></i>Cobranza</p-tab>
+          <p-tab [value]="7"><app-icon [icon]="'mdi:account-group'" class="mr-2"></app-icon>Cobranza</p-tab>
           <p-tab [value]="8"
-            ><i class="pi pi-wallet mr-2"></i>Presupuesto</p-tab
+            ><app-icon [icon]="'mdi:wallet'" class="mr-2"></app-icon>Presupuesto</p-tab
           >
           <p-tab [value]="9"
-            ><i class="pi pi-building mr-2"></i>Bancos e Inv.</p-tab
+            ><app-icon [icon]="'mdi:office-building'" class="mr-2"></app-icon>Bancos e Inv.</p-tab
           >
           <p-tab [value]="10"
-            ><i class="pi pi-shield mr-2"></i>Fondo Reserva</p-tab
+            ><app-icon [icon]="'mdi:shield'" class="mr-2"></app-icon>Fondo Reserva</p-tab
           >
           <p-tab [value]="11"
-            ><i class="pi pi-briefcase mr-2"></i>Proyectos</p-tab
+            ><app-icon [icon]="'mdi:briefcase'" class="mr-2"></app-icon>Proyectos</p-tab
           >
         </p-tablist>
 

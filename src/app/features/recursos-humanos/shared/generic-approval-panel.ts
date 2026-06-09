@@ -87,14 +87,14 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
               }
               <custom-button
                 [showLabelOnDesktop]="true"
-                iconClass="pi pi-check-square"
+                iconClass="mdi:check-square"
                 label="Aprobar"
                 size="small"
                 (clicked)="onApprove(request)"
               />
               <custom-button
                 [showLabelOnDesktop]="true"
-                iconClass="pi pi-times"
+                iconClass="mdi:close"
                 label="Rechazar"
                 size="small"
                 (clicked)="onReject(request)"

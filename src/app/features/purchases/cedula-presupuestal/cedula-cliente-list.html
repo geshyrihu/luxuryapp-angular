@@ -41,7 +41,7 @@
         <custom-button
           pTooltip="Descargar excel"
           styleClass="p-button-outlined p-button-primary w-full"
-          iconClass="pi pi-file-excel text-success mr-2"
+          iconClass="mdi:file-excel text-success mr-2"
           label="Descargar excel"
           (clicked)="DownloadExcel()"
         />
@@ -127,18 +127,18 @@
           <custom-button
             styleClass="p-button-outlined p-button-primary"
             pTooltip="Gastos realizados"
-            iconClass="pi pi-shopping-cart"
+            iconClass="mdi:cart"
             (clicked)="onModalOrdenesCompraCedula(item.id)"
           />
 
           <custom-button
-            iconClass="pi pi-pencil"
+            iconClass="mdi:pencil"
             pTooltip="Editar"
             styleClass="p-button-outlined p-button-secondary"
             (clicked)="onModalEditar({ id: item.id, title: 'Editar' })"
           />
           <custom-button-confirm
-            iconClass="pi pi-trash"
+            iconClass="mdi:delete"
             pTooltip="Eliminar"
             styleClass="p-button-outlined p-button-danger"
             (confirmed)="onDelete(item.id)"

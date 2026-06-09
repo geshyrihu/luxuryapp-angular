@@ -10,7 +10,7 @@
 
     <div class="flex justify-content-end mb-3">
       <custom-button
-        iconClass="pi pi-download"
+        iconClass="mdi:download"
         label="Descargar CSV de Ejemplo"
         variant="outlined"
         severity="secondary"
@@ -22,7 +22,7 @@
     <div
       class="border-2 border-dashed border-300 border-round p-5 text-center surface-50 flex flex-column align-items-center"
     >
-      <i class="pi pi-cloud-upload text-5xl text-400 mb-3"></i>
+      <app-icon [icon]="'mdi:cloud-upload'" class="text-5xl text-400 mb-3"></app-icon>
       <h3 class="mt-0 text-700">Seleccionar archivo CSV</h3>
       <custom-input-file-signal
         accept=".csv"
@@ -37,7 +37,7 @@
   <div class="flex justify-content-end mt-4">
     <custom-button
       label="Cancelar"
-      iconClass="pi pi-times"
+      iconClass="mdi:close"
       variant="ghost-text"
       severity="secondary"
       (clicked)="onClose()"
@@ -45,7 +45,7 @@
     />
     <custom-button
       label="Importar Cargos"
-      iconClass="pi pi-check"
+      iconClass="mdi:check"
       [disabled]="!selectedFile"
       [loading]="isLoading"
       (clicked)="uploadFile()"
@@ -56,10 +56,10 @@
   <!-- Result View -->
   <div class="text-center py-4">
     @if (result.failedCount === 0) {
-    <i class="pi pi-check-circle text-green-500 text-6xl mb-3"></i>
+    <app-icon [icon]="'mdi:check-circle'" class="text-green-500 text-6xl mb-3"></app-icon>
     <h2 class="text-green-700 m-0">¡Importación Exitosa!</h2>
     } @else {
-    <i class="pi pi-exclamation-triangle text-orange-500 text-6xl mb-3"></i>
+    <app-icon [icon]="'mdi:alert'" class="text-orange-500 text-6xl mb-3"></app-icon>
     <h2 class="text-orange-700 m-0">Importación Finalizada con Errores</h2>
     }
 
@@ -92,7 +92,7 @@
       style="max-height: 200px; overflow-y: auto"
     >
       <h4 class="text-red-700 mt-0 mb-2">
-        <i class="pi pi-list mr-2"></i>Detalle de errores
+        <app-icon [icon]="'mdi:format-list-bulleted'" class="mr-2"></app-icon>Detalle de errores
       </h4>
       <ul class="m-0 pl-3 text-sm text-red-600">
         @for (err of result.errors; track $index) {
@@ -105,7 +105,7 @@
     <div class="flex justify-content-center mt-5">
       <custom-button
         label="Cerrar y Actualizar"
-        iconClass="pi pi-check"
+        iconClass="mdi:check"
         (clicked)="onClose()"
       />
     </div>

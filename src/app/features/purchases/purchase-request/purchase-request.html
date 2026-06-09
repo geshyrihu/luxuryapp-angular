@@ -6,10 +6,9 @@
   <div class="grid mb-3 align-items-center">
     <div class="col-12 md:col-2 flex align-items-center">
       <div class="mr-2">
-        <i
-          [class]="getTagSeverity(data.status)"
-          class="icon icon-pi-circle"
-        ></i>
+        <app-icon [icon]="'mdi:circle'"[class]="getTagSeverity(data.status)"
+           class="icon icon-"
+        ></app-icon>
       </div>
       <div>
         <strong class="block text-color-secondary">Folio:</strong>

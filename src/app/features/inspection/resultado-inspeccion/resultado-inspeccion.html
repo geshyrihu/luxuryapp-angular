@@ -46,9 +46,9 @@
       <div class="flex justify-content-between align-items-center">
         <h5 class="font-bold text-900 m-0">{{ item.inspectionDescription }}</h5>
         @if (item.state) {
-        <i class="icon icon-pi-check text-green-600 icon-xl"></i>
+        <app-icon [icon]="'mdi:check'" class="icon icon- text-green-600 icon-xl"></app-icon>
         } @if (!item.state) {
-        <i class="icon icon-pi-times text-red-600 icon-xl"></i>
+        <app-icon [icon]="'mdi:close'" class="icon icon- text-red-600 icon-xl"></app-icon>
         }
       </div>
       <div class="mt-2">

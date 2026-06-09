@@ -43,7 +43,7 @@
     <div class="col-12 md:col-1 flex align-items-end">
       <custom-button-save
         label="Subir"
-        iconClass="pi pi-upload"
+        iconClass="mdi:upload"
         (clicked)="onSubir()"
         [submitting]="uploading()"
         [disabled]="!archivoSeleccionado()"
@@ -55,12 +55,12 @@
 <!-- Galeria por tipo -->
 @if (loading()) {
 <div class="flex justify-content-center my-4">
-  <i class="pi pi-spin pi-spinner text-3xl text-primary"></i>
+  <app-icon [icon]="'mdi:spin'" class="text-3xl text-primary"></app-icon>
 </div>
 } @else if (evidencias().length === 0) {
 <div class="flex justify-content-center align-items-center py-6 text-500">
   <div class="text-center">
-    <i class="pi pi-file text-4xl mb-2"></i>
+    <app-icon [icon]="'mdi:file-document-outline'" class="text-4xl mb-2"></app-icon>
     <p>Sin evidencias cargadas para esta nomina.</p>
   </div>
 </div>
@@ -96,14 +96,14 @@
         </p>
         <div class="flex gap-2">
           <custom-button
-            iconClass="pi pi-external-link"
+            iconClass="mdi:external-link"
             severity="info"
             variant="ghost-text"
             pTooltip="Abrir"
             (clicked)="abrirEvidencia(ev.filePath)"
           />
           <custom-button
-            iconClass="pi pi-trash"
+            iconClass="mdi:delete"
             severity="danger"
             variant="ghost-text"
             pTooltip="Eliminar"

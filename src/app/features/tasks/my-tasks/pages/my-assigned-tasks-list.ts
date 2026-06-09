@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 import { CommonModule } from "@angular/common";
@@ -54,7 +55,7 @@ import { MyTaskProgram } from "./my-task-program";
     PrimeNgCustomCaption,
     CustomInputTextSignal,
     InitialsAbbrPipe,
-  ],
+   AppIcon],
 })
 export class MyAssignedTasksList {
   apiResponseS = inject(ApiResponseService);

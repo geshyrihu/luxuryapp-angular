@@ -4,7 +4,7 @@
       <div class="col-12 md:col-12">
         @if (loading()) {
         <div class="flex justify-content-center align-items-center p-4">
-          <i class="pi pi-spin pi-spinner text-primary m-1" aria-label="Cargando..."></i>
+          <app-icon [icon]="'mdi:spin'" class="text-primary m-1" aria-label="Cargando..."></app-icon>
           <span class="ml-2 text-600">Cargando seguimientos...</span>
         </div>
         }
@@ -29,7 +29,7 @@
           </ul>
           } @else {
           <div class="text-center p-5 border-round-sm surface-ground">
-            <i class="pi pi-info-circle text-3xl text-400"></i>
+            <app-icon [icon]="'mdi:information'" class="text-3xl text-400"></app-icon>
             <p class="mt-2 text-lg font-medium text-600">Sin Seguimiento</p>
             <p class="text-sm text-500">Aún no hay registros de seguimiento para este ticket.</p>
           </div>

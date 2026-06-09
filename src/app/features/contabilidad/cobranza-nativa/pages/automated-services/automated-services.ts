@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { DatePipe } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -19,7 +20,7 @@ interface JobResult {
 
 @Component({
   selector: 'app-automated-services',
-  imports: [CustomButton, CustomInputNumberSignal, CustomInputSelectSignal, ReactiveFormsModule, DatePipe],
+  imports: [CustomButton, CustomInputNumberSignal, CustomInputSelectSignal, ReactiveFormsModule, DatePipe, AppIcon],
   templateUrl: './automated-services.html',
 })
 export default class AutomatedServices {

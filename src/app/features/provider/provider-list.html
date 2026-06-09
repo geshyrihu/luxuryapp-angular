@@ -43,7 +43,7 @@
         @if (rolAuth) {
         <custom-button
           variant="outlined"
-          iconClass="pi pi-plus"
+          iconClass="mdi:plus"
           [label]="label"
           customClass="w-full"
           (clicked)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -68,11 +68,8 @@
             <div class="text-xs font-bold text-500 uppercase tracking-wider">
               {{ item.nivelAcceso }} | {{ item.tipoServicio }}
             </div>
-            <i
-              class="pi pi-id-card cursor-pointer text-primary text-xl"
-              pTooltip="Ver Ficha Técnica"
-              (click)="showModalCardProveedor(item)"
-            ></i>
+            <app-icon [icon]="'mdi:card-account-details'" class="cursor-pointer text-primary text-xl" pTooltip="Ver Ficha Técnica"
+              (click)="showModalCardProveedor(item)"></app-icon>
           </div>
 
           <!-- Calificaciones -->
@@ -138,12 +135,12 @@
             <!-- Contacto -->
             <div class="flex flex-column gap-1 text-sm">
               <div class="flex align-items-center text-600">
-                <i class="pi pi-phone mr-2"></i>
+                <app-icon [icon]="'mdi:phone'" class="mr-2"></app-icon>
                 <span>{{ item.phoneOne }}</span>
               </div>
               @if (item.phoneTwo) {
               <div class="flex align-items-center text-600">
-                <i class="pi pi-phone mr-2"></i>
+                <app-icon [icon]="'mdi:phone'" class="mr-2"></app-icon>
                 <span>{{ item.phoneTwo }}</span>
               </div>
               }
@@ -179,7 +176,7 @@
                 />
                 } @if (item.activo) {
                 <custom-button-item
-                  iconClass="pi pi-chart-bar"
+                  iconClass="mdi:chart-bar"
                   pTooltip="Calificar"
                   (clicked)="showModalCalificarProveedor({ providerId: item.providerId, nameProvider: item.nameComercial })"
                 />
@@ -188,25 +185,25 @@
                 } @if (!item.activo && validateRole([roles.SuperUsuario])) {
                 <custom-button-item
                   (clicked)="onActivateProvider({ providerId: item.providerId, state: !item.activo })"
-                  iconClass="pi pi-check"
+                  iconClass="mdi:check"
                   label="Activar"
                 />
                 } @if (item.activo && validateRole([roles.SuperUsuario])) {
                 <custom-button-item
                   (clicked)="onActivateProvider({ providerId: item.providerId, state: !item.activo })"
-                  iconClass="pi pi-ban"
+                  iconClass="mdi:ban"
                   label="Inactivar"
                 />
 
                 <custom-button-item
                   (clicked)="onConicidencias({ providerId: item.providerId, state: !item.activo })"
-                  iconClass="pi pi-search"
+                  iconClass="mdi:magnify"
                   pTooltip="Buscar Coincidencias"
                 />
 
                 <custom-button-item
                   (clicked)="onAutorizarProvider(item.providerId)"
-                  [iconClass]="item.autorizado ? 'pi pi-shield' : 'pi pi-ban'"
+                  [iconClass]="item.autorizado ? 'mdi:shield' : 'mdi:ban'"
                   [label]="item.autorizado ? 'Desautorizar' : 'Autorizar'"
                 />
                 }

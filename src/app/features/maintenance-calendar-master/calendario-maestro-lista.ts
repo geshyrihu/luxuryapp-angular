@@ -92,12 +92,12 @@ export class CalendarioMaestroLista implements OnInit {
         items: [
           {
             label: "Editar",
-            icon: "pi pi-fw pi-pencil",
+            icon: "mdi:pencil",
             command: () => this.onModalForm(item.id, item.eMonth),
           },
           {
             label: "Eliminar",
-            icon: "pi pi-fw pi-trash",
+            icon: "mdi:delete",
             command: () => this.onDelete(item.id),
           },
         ],

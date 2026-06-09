@@ -4,7 +4,7 @@
       @if(cb_providers().length == 0){
       <div class="text-center">
         <p>Cargando listado de proveedores</p>
-        <i class="pi pi-spin pi-spinner text-primary m-1" aria-label="Cargando..."></i>
+        <app-icon [icon]="'mdi:spin'" class="text-primary m-1" aria-label="Cargando..."></app-icon>
       </div>
       }@else {
       <custom-input-autocomplete-signal
@@ -18,7 +18,7 @@
       } @if(cb_applicationUserProvider().length == 0){
       <div class="text-center">
         <p>Cargando listado de personas</p>
-        <i class="pi pi-spin pi-spinner text-primary m-1" aria-label="Cargando..."></i>
+        <app-icon [icon]="'mdi:spin'" class="text-primary m-1" aria-label="Cargando..."></app-icon>
       </div>
       }@else {
       <custom-input-autocomplete-signal
@@ -32,7 +32,7 @@
       } @if(cb_applicationRoles().length == 0){
       <div class="text-center">
         <p>Cargando listado de puestos</p>
-        <i class="pi pi-spin pi-spinner text-primary m-1" aria-label="Cargando..."></i>
+        <app-icon [icon]="'mdi:spin'" class="text-primary m-1" aria-label="Cargando..."></app-icon>
       </div>
       } @else {
       <custom-input-autocomplete-signal
@@ -46,7 +46,7 @@
       } @if(cb_customers().length == 0){
       <div class="text-center">
         <p>Cargando listado de clientes</p>
-        <i class="pi pi-spin pi-spinner text-primary m-1" aria-label="Cargando..."></i>
+        <app-icon [icon]="'mdi:spin'" class="text-primary m-1" aria-label="Cargando..."></app-icon>
       </div>
       } @else {
       <custom-input-autocomplete-signal

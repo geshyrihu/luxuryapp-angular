@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -73,7 +74,7 @@ export interface ISolicitudCompraForm {
     CustomButton,
     DividerModule,
     BadgeModule,
-  ],
+   AppIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SolicitudCompra implements OnInit {

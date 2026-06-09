@@ -11,7 +11,7 @@
           {{ customerName() }}
         </h1>
         <span class="text-sm text-500 font-medium flex align-items-center gap-1"
-          ><i class="pi pi-calendar"></i> {{ periodo() }}</span
+          ><app-icon [icon]="'mdi:calendar'"></app-icon> {{ periodo() }}</span
         >
       </div>
     </div>
@@ -26,7 +26,7 @@
       <div class="flex gap-1 border-right-1 surface-border pr-2 mr-1">
         <custom-button
           label="Revertir confirmacion"
-          iconClass="pi pi-replay"
+          iconClass="mdi:replay"
           severity="danger"
           size="sm"
           variant="outlined"
@@ -41,7 +41,7 @@
         @if (!isVerified()) {
         <custom-button
           label="Validar"
-          iconClass="pi pi-check-circle"
+          iconClass="mdi:check-circle"
           severity="help"
           size="sm"
           [showLabelOnDesktop]="true"
@@ -50,7 +50,7 @@
         } @if (isVerified() && !isAuthorized()) {
         <custom-button
           label="Revertir verificacion"
-          iconClass="pi pi-undo"
+          iconClass="mdi:undo"
           severity="secondary"
           size="sm"
           variant="ghost-text"
@@ -61,7 +61,7 @@
         isRolSuperUsuario())) {
         <custom-button
           label="Autorizar"
-          iconClass="pi pi-verified"
+          iconClass="mdi:verified"
           severity="success"
           size="sm"
           [showLabelOnDesktop]="true"
@@ -71,7 +71,7 @@
         isRolSuperUsuario())) {
         <custom-button
           label="Desautorizar"
-          iconClass="pi pi-lock-open"
+          iconClass="mdi:lock-open"
           severity="danger"
           size="sm"
           variant="outlined"
@@ -82,7 +82,7 @@
         isRolSuperUsuario())) {
         <custom-button
           label="Confirmar recepcion"
-          iconClass="pi pi-check-square"
+          iconClass="mdi:check-square"
           severity="help"
           size="sm"
           [showLabelOnDesktop]="true"
@@ -110,7 +110,7 @@
             class="flex align-items-center gap-1 border-1 surface-border border-round-3xl px-2 py-1 bg-surface-0"
           >
             <custom-button
-              iconClass="pi pi-file-excel"
+              iconClass="mdi:file-excel"
               ngbTooltip="Excel"
               severity="success"
               size="sm"
@@ -123,13 +123,13 @@
               class="btn btn-secondary btn-sm"
               pTooltip="Catálogo de Gastos Fijos — generar OC automáticas"
               tooltipPosition="bottom"
-              ><i class="pi pi-list"></i
+              ><i class="mdi:format-list-bulleted"></i
             ></a>
             }
 
             @if(isRolSuperUsuario) {
             <!-- <p-button
-              icon="pi pi-search"
+              icon="mdi:magnify"
               pTooltip="Conciliar SAT"
               tooltipPosition="bottom"
               [text]="true"
@@ -138,7 +138,7 @@
               (onClick)="onConciliate()"
             ></p-button> -->
             <!-- <custom-button
-              iconClass="pi pi-code"
+              iconClass="mdi:code-tags"
               ngbTooltip="XMLs"
               severity="help"
               size="sm"
@@ -147,7 +147,7 @@
             /> -->
             } @if (dataSignal().length > 0) {
             <custom-button
-              iconClass="pi pi-print"
+              iconClass="mdi:printer"
               ngbTooltip="Solicitudes"
               severity="warn"
               size="sm"
@@ -156,7 +156,7 @@
             />
             }
             <custom-button
-              iconClass="pi pi-upload"
+              iconClass="mdi:upload"
               ngbTooltip="Cargar XMLs"
               severity="danger"
               size="sm"
@@ -176,36 +176,36 @@
   <div class="flex align-items-center gap-3 flex-wrap mt-2 pt-3 border-top-1 surface-border">
     <div class="flex align-items-center gap-1 text-sm">
       @if (isVerified()) {
-        <i class="pi pi-check-circle text-green-500"></i>
+        <app-icon [icon]="'mdi:check-circle'" class="text-green-500"></app-icon>
         <span class="text-green-700 font-medium">Verificado</span>
       } @else {
-        <i class="pi pi-circle text-orange-400"></i>
+        <app-icon [icon]="'mdi:circle'" class="text-orange-400"></app-icon>
         <span class="text-orange-600 font-medium">Pendiente — debe verificarse</span>
       }
     </div>
-    <i class="pi pi-chevron-right text-300 text-xs"></i>
+    <app-icon [icon]="'mdi:chevron-right'" class="text-300 text-xs"></app-icon>
     <div class="flex align-items-center gap-1 text-sm">
       @if (isAuthorized()) {
-        <i class="pi pi-check-circle text-green-500"></i>
+        <app-icon [icon]="'mdi:check-circle'" class="text-green-500"></app-icon>
         <span class="text-green-700 font-medium">Autorizado</span>
       } @else if (isVerified()) {
-        <i class="pi pi-circle text-orange-400"></i>
+        <app-icon [icon]="'mdi:circle'" class="text-orange-400"></app-icon>
         <span class="text-orange-600 font-medium">Pendiente — debe autorizarse</span>
       } @else {
-        <i class="pi pi-lock text-400"></i>
+        <app-icon [icon]="'mdi:lock'" class="text-400"></app-icon>
         <span class="text-400">Autorizar (requiere verificacion)</span>
       }
     </div>
-    <i class="pi pi-chevron-right text-300 text-xs"></i>
+    <app-icon [icon]="'mdi:chevron-right'" class="text-300 text-xs"></app-icon>
     <div class="flex align-items-center gap-1 text-sm">
       @if (isConfirmed()) {
-        <i class="pi pi-check-circle text-green-500"></i>
+        <app-icon [icon]="'mdi:check-circle'" class="text-green-500"></app-icon>
         <span class="text-green-700 font-medium">Confirmado por Contabilidad</span>
       } @else if (isAuthorized()) {
-        <i class="pi pi-circle text-orange-400"></i>
+        <app-icon [icon]="'mdi:circle'" class="text-orange-400"></app-icon>
         <span class="text-orange-600 font-medium">Pendiente — debe confirmar Contabilidad</span>
       } @else {
-        <i class="pi pi-lock text-400"></i>
+        <app-icon [icon]="'mdi:lock'" class="text-400"></app-icon>
         <span class="text-400">Confirmar (requiere autorizacion)</span>
       }
     </div>
@@ -227,7 +227,7 @@
   <div
     class="w-full bg-green-50 border-green-200 border-1 border-round p-3 mt-2 flex align-items-center gap-2 text-green-700"
   >
-    <i class="pi pi-verified text-xl"></i>
+    <app-icon [icon]="'mdi:verified'" class="text-xl"></app-icon>
     <span class="font-bold">Este fondeo ha sido procesado por contabilidad. No se pueden realizar cambios.</span>
   </div>
   } @if (dataSignal().length < 1) {
@@ -235,7 +235,7 @@
     class="flex flex-column align-items-center justify-content-center p-6 border-1 surface-border border-round-xl bg-surface-0 text-center shadow-1"
   >
     <div class="bg-surface-100 border-circle p-3 mb-3">
-      <i class="pi pi-folder-open text-4xl text-500"></i>
+      <app-icon [icon]="'mdi:folder-open'" class="text-4xl text-500"></app-icon>
     </div>
     <span class="text-xl font-medium text-900">Sin órdenes de Compra</span>
     <span class="text-500 mt-1"
@@ -265,7 +265,7 @@
           >{{ grupo.totalGrupo | number: "1.2-2" }}</span
         >
         <custom-button
-          iconClass="pi pi-folder"
+          iconClass="mdi:folder"
           variant="ghost-text"
           severity="secondary"
           size="sm"
@@ -333,10 +333,7 @@
         <tr [pReorderableRow]="rowIndex" class="text-sm">
           <!-- Index -->
           <td class="text-center p-1 text-500 relative bg-surface-0">
-            <i
-              class="pi pi-ellipsis-v text-300 absolute left-0 top-50 mt--2 ml-1 cursor-move hidden md:block"
-              pReorderableRowHandle
-            ></i>
+            <app-icon [icon]="'mdi:dots-vertical'" class="text-300 absolute left-0 top-50 mt--2 ml-1 cursor-move hidden md:block" pReorderableRowHandle></app-icon>
             <span class="font-medium text-600">{{ orden.indice }}</span>
           </td>
 
@@ -377,7 +374,7 @@
                 <p-tag
                   severity="secondary"
                   value="PDF"
-                  icon="pi pi-file-pdf"
+                  icon="mdi:file-pdf-box"
                   class="cursor-pointer hover:surface-hover transition-duration-200"
                   (click)="viewPdf(orden.pdfFile,'Factura')"
                   styleClass="text-xs px-2 py-0 bg-surface-200 text-700 border-round-md"
@@ -386,7 +383,7 @@
                 <p-tag
                   severity="success"
                   value="Pago"
-                  icon="pi pi-check"
+                  icon="mdi:check"
                   class="cursor-pointer hover:surface-hover transition-duration-200"
                   (click)="viewPdf(orden.comprobantesPago[0].filePath, 'Comprobante')"
                   styleClass="text-xs px-2 py-0 border-round-md"
@@ -427,20 +424,11 @@
             <div class="flex justify-content-center align-items-center gap-3">
               <!-- XML Validation -->
               @if (orden.validationStatus === true) {
-              <i
-                class="pi pi-check-circle text-green-500 text-lg"
-                pTooltip="{{ orden.validationMessage }}"
-              ></i>
+              <app-icon [icon]="'mdi:check-circle'" class="text-green-500 text-lg" pTooltip="{{ orden.validationMessage }}"></app-icon>
               } @else if (orden.validationStatus === false) {
-              <i
-                class="pi pi-times-circle text-red-500 text-lg"
-                pTooltip="{{ orden.validationMessage }}"
-              ></i>
+              <app-icon [icon]="'mdi:close-circle'" class="text-red-500 text-lg" pTooltip="{{ orden.validationMessage }}"></app-icon>
               } @else {
-              <i
-                class="pi pi-circle text-300 text-lg"
-                pTooltip="Sin validar"
-              ></i>
+              <app-icon [icon]="'mdi:circle'" class="text-300 text-lg" pTooltip="Sin validar"></app-icon>
               }
 
               <!-- Paid Checkbox -->
@@ -458,7 +446,7 @@
             <div class="flex justify-content-center align-items-center gap-1">
               <!-- Start Solo lo ve el contador -->
               <custom-button
-                iconClass="pi pi-wallet"
+                iconClass="mdi:wallet"
                 variant="ghost-text"
                 severity="success"
                 size="sm"
@@ -467,7 +455,7 @@
               />
               <!-- Start Solo lo ve el contador -->
               <custom-button
-                iconClass="pi pi-pencil"
+                iconClass="mdi:pencil"
                 variant="ghost-text"
                 severity="info"
                 size="sm"
@@ -493,7 +481,7 @@
   <div class="card mt-4 border-1 border-orange-300 border-round-xl overflow-hidden shadow-1">
     <div class="flex justify-content-between align-items-center bg-orange-50 px-3 py-2 border-bottom-1 border-orange-200">
       <div class="flex align-items-center gap-2">
-        <i class="pi pi-bolt text-orange-500"></i>
+        <app-icon [icon]="'mdi:lightning-bolt'" class="text-orange-500"></app-icon>
         <span class="font-bold text-orange-800 text-base">ÓRDENES FUERA DE PROCESO DE FONDEO</span>
         <p-badge
           [value]="ordenesFueraProceso().length"
@@ -504,7 +492,7 @@
       @if (isRolAdministrador() || isRolSuperUsuario()) {
       <custom-button
         label="Agregar OC fuera de proceso"
-        iconClass="pi pi-plus"
+        iconClass="mdi:plus"
         severity="warn"
         size="sm"
         variant="outlined"
@@ -516,7 +504,7 @@
 
     @if (ordenesFueraProceso().length === 0) {
     <div class="flex align-items-center gap-2 p-3 text-500 text-sm">
-      <i class="pi pi-info-circle"></i>
+      <app-icon [icon]="'mdi:information'"></app-icon>
       <span>No hay órdenes fuera de proceso para este fondeo.</span>
     </div>
     } @else {
@@ -545,7 +533,7 @@
           <td class="text-center">
             <div class="flex gap-1 justify-content-center">
               <custom-button
-                iconClass="pi pi-eye"
+                iconClass="mdi:eye-outline"
                 variant="text"
                 size="sm"
                 pTooltip="Ver orden de compra"

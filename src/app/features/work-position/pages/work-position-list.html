@@ -67,7 +67,7 @@
             <p-tag
               severity="warn"
               value="Actualizar puesto"
-              icon="pi pi-exclamation-triangle"
+              icon="mdi:alert"
             />
             <custom-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
@@ -93,7 +93,7 @@
               class="cursor-pointer"
             />
             } @else {
-            <p-avatar icon="pi pi-user" shape="circle" size="large" />
+            <p-avatar icon="mdi:account" shape="circle" size="large" />
             }
             <span>{{ item.applicationUser || 'Vacante' }}</span>
           </div>
@@ -103,20 +103,20 @@
             @if (shouldShowVacancyRequest(item)) {
             <custom-button-item
               (clicked)="onModalSolicitudVacante(item.id)"
-              iconClass="pi pi-user-plus"
+              iconClass="mdi:account-plus"
               label="Solicitar vacante"
               [pTooltip]="'Solicitar vacante'"
             />
             }
             <custom-button-item
               (clicked)="onModalJobDescription(item.id, item.jobDescriptionId, item.applicationRoleName)"
-              iconClass="pi pi-book"
+              iconClass="mdi:book"
               label="Descripción"
               [pTooltip]="'Descripción de puesto'"
             />
             <custom-button-item
               (clicked)="onModalHoursWorkPosition(item.id)"
-              iconClass="pi pi-clock"
+              iconClass="mdi:clock-outline"
               label="Horarios"
               [pTooltip]="'Horarios de trabajo'"
             />
@@ -165,7 +165,7 @@
           <div
             class="flex align-items-center justify-content-center h-full w-full surface-200 text-500"
           >
-            <i class="pi pi-user"></i>
+            <app-icon [icon]="'mdi:account'"></app-icon>
           </div>
           }
         </ion-avatar>
@@ -180,7 +180,7 @@
           <h2 class="text-base font-bold m-0 text-900">
             @if (necesitaActualizacion(item)) {
             <ion-badge color="warning">
-              <i class="pi pi-exclamation-triangle mr-1"></i>Actualizar puesto
+              <app-icon [icon]="'mdi:alert'" class="mr-1"></app-icon>Actualizar puesto
             </ion-badge>
             } @else { {{ item.applicationRoleName }} }
           </h2>

@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import {
     CdkDragDrop,
     DragDropModule,
@@ -62,7 +63,7 @@ interface ICategoryForm {
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
-  ],
+   AppIcon],
 })
 export class FormularioPlantillaEvaluacion implements OnInit {
   // Inyección de dependencias

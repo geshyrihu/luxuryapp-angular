@@ -22,7 +22,7 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 
       <custom-button
         label="Ejecutar Validación de Empleados"
-        iconClass="pi pi-send"
+        iconClass="mdi:send"
         severity="primary"
         [loading]="loading()"
         (clicked)="triggerReport()"

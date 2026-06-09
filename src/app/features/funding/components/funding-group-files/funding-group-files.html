@@ -16,7 +16,7 @@
 
     <custom-button
       label="Descargar ({{ selectedFiles().length }})"
-      iconClass="pi pi-upload "
+      [iconClass]="'mdi:upload'"
       severity="success"
       [disabled]="selectedFiles().length === 0"
       (clicked)="downloadSelectedFiles()"
@@ -24,7 +24,7 @@
     </custom-button>
     <custom-button
       label="Descargar Todo"
-      iconClass="pi pi-box"
+      iconClass="mdi:package"
       severity="help"
       (clicked)="downloadAllFiles()"
     >
@@ -52,9 +52,9 @@
           >
             <div class="mb-3">
               @if (file.type === "pdf") {
-              <i class="pi pi-file-pdf text-red-500 text-6xl"></i>
+              <app-icon [icon]="'mdi:file-pdf-box'" class="text-red-500 text-6xl"></app-icon>
               } @else {
-              <i class="pi pi-code text-blue-500 text-6xl"></i>
+              <app-icon [icon]="'mdi:code-tags'" class="text-blue-500 text-6xl"></app-icon>
               }
             </div>
             <div
@@ -102,22 +102,22 @@
           <td><p-tableCheckbox [value]="file"></p-tableCheckbox></td>
           <td>
             @if (file.type === "pdf") {
-            <i class="pi pi-file-pdf text-red-500 text-xl"></i>
+            <app-icon [icon]="'mdi:file-pdf-box'" class="text-red-500 text-xl"></app-icon>
             } @else {
-            <i class="pi pi-code text-blue-500 text-xl"></i>
+            <app-icon [icon]="'mdi:code-tags'" class="text-blue-500 text-xl"></app-icon>
             }
           </td>
           <td>{{ file.displayName }}</td>
           <td>{{ file.folioOrden }}</td>
           <td class="text-center">
             <custom-button-item
-              iconClass="pi pi-eye"
+              iconClass="mdi:eye-outline"
               label="ver"
               [border-round]="true"
               (clicked)="viewPdf(file.url, file.displayName)"
             />
             <custom-button-item
-              iconClass="pi pi-upload "
+              [iconClass]="'mdi:upload'"
               label="descargar"
               [border-round]="true"
               severity="success"
@@ -129,7 +129,7 @@
     </p-table>
     } @if (selectedGroupFiles().length === 0) {
     <div class="text-center p-6">
-      <i class="pi pi-folder-open text-6xl text-300 mb-3"></i>
+      <app-icon [icon]="'mdi:folder-open'" class="text-6xl text-300 mb-3"></app-icon>
       <div class="text-500 text-xl font-medium">
         No se encontraron archivos en este grupo de gasto.
       </div>

@@ -42,11 +42,7 @@
           <td>{{ item.title }}</td>
           <td class="text-center">
             @if (item.description && item.description.length > 0) {
-            <i
-              (click)="onModalViewDetail({ id: item.id })"
-              class="pi pi-book icon-xl cursor-pointer"
-              pTooltip="Ver detalles"
-            ></i>
+            <app-icon [icon]="'mdi:book'" class="icon-xl cursor-pointer" (click)="onModalViewDetail({ id: item.id })" pTooltip="Ver detalles"></app-icon>
             }
           </td>
           <td class="text-center">

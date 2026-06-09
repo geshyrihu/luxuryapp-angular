@@ -29,8 +29,8 @@ export class FundingGroupFiles implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   selectedGroupFiles = signal<any[]>([]);
   viewOptions: any[] = [
-    { icon: "pi pi-th-large", value: "grid" },
-    { icon: "pi pi-list", value: "list" },
+    { icon: "mdi:grid", value: "grid" },
+    { icon: "mdi:format-list-bulleted", value: "list" },
   ];
   viewMode = signal("grid");
   selectedFiles = signal<any[]>([]);

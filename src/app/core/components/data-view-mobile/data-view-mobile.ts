@@ -161,7 +161,7 @@ export class DataViewMobile implements OnInit {
 
     const items: IMobileBreadcrumbItem[] = [
       {
-        icon: "home",
+        icon: "mdi:home",
         routerLink: "/dashboard/default",
       },
     ];

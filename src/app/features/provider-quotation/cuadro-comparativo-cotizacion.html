@@ -3,7 +3,7 @@
     <div class="flex flex-wrap justify-content-between mb-4">
       <div class="flex gap-2">
         <custom-button
-          iconClass="pi pi-save"
+          iconClass="mdi:content-save"
           label="Guardar"
           [showLabelOnDesktop]="true"
           (clicked)="onSaveChanges()"
@@ -11,7 +11,7 @@
           severity="success"
         />
         <custom-button
-          iconClass="pi pi-file-pdf"
+          iconClass="mdi:file-pdf-box"
           label="Crear Orden"
           [showLabelOnDesktop]="true"
           (clicked)="onModalCreateOrdenCompra()"
@@ -30,7 +30,7 @@
         />
 
         <custom-button
-          iconClass="pi pi-upload"
+          iconClass="mdi:upload"
           label="Adjuntar/Actualizar"
           [showLabelOnDesktop]="true"
           (clicked)="fileInput.click()"
@@ -47,7 +47,7 @@
           [showLabelOnDesktop]="true"
         />
         <custom-button
-          iconClass="pi pi-trash"
+          iconClass="mdi:delete"
           label="Eliminar Archivo"
           [showLabelOnDesktop]="true"
           (clicked)="onRemoveFile()"
@@ -59,7 +59,7 @@
 
       <div class="flex">
         <custom-button
-          iconClass="pi pi-trash"
+          iconClass="mdi:delete"
           label="Eliminar Proveedor"
           [showLabelOnDesktop]="true"
           (clicked)="onDeleteProvider()"

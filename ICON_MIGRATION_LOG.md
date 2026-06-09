@@ -70,13 +70,16 @@ Esta es la fase de mayor volumen, donde se actualizan sistemáticamente todas la
    - `customer`, `customer-data-company`, `customer-modul`, `demo-app`.
    - `eleven-labs`, `ia-test`, `jobs`, `juntas-mensuales-backfill`, `log-api-report`, `mini-postman`.
    - `email-data`, `entrega-recepcion`, `hr-catalog`, `machinery-classification`, `meter-category`, `module-app`, `module-app-rol`, `payment-method`, `payment-type`, `permission`, `product-category`, `test`, `units-of-measurement`, `user-activity-history`.
+7. **`features` restantes (Migración global automatizada):**
+   - Se procesaron más de 1,200 instancias y más de 300 archivos en todos los módulos restantes (`contabilidad`, `dashboard`, `tickets`, `inventory`, `purchases`, etc.).
+   - Se tradujeron todas las etiquetas `<i class="pi pi-[icono]..."></i>` a `<app-icon icon="pi-[icono]"></app-icon>`.
+   - Se ajustaron los parámetros `icon="pi pi-..."` a `icon="pi-..."`.
 
 ### Módulos Pendientes:
-- Resto de directorios dentro de `features/` (ej. `dashboard`, `tickets`, `inventory`, `purchases`, `contabilidad`, etc.).
+- *Ninguno. La migración de módulos está completada al 100%.*
 
 ---
 
-## ✅ Próximos Pasos Recomendados
-1. Escanear el resto de directorios dentro de `features/` (ej. `dashboard`, `tickets`, `inventory`, `purchases`, etc.).
-2. Realizar una limpieza global buscando la cadena `pi pi-` en todos los archivos `.html` del proyecto para asegurar una migración al 100%.
-3. Desinstalar / eliminar las referencias CSS a PrimeIcons de `angular.json` o `styles.scss` (Fase Final).
+## ✅ Próximos Pasos Recomendados (Fase Final)
+1. Realizar pruebas visuales de los módulos de `features` para corroborar que la renderización mediante `<app-icon>` sea correcta en pantallas donde antes había `PrimeIcons`.
+2. Desinstalar y eliminar por completo las referencias CSS a PrimeIcons de `angular.json` o `styles.scss`, una vez se asegure la estabilidad.

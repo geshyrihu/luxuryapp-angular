@@ -60,7 +60,7 @@ export abstract class BaseButton {
    */
   resolvedIcon = computed(() => {
     const rawIcon = this.icon() || this.iconClass() || this.emoji();
-    return resolveIconifyIcon(rawIcon);
+    return resolveIconifyIcon(rawIcon, "");
   });
 
   btnClasses = computed(() => {

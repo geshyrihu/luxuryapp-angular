@@ -35,7 +35,7 @@
     <tr pRowGroupHeader>
       <td colspan="3" class="bg-blue-50">
         <div class="flex align-items-center py-2 px-3">
-          <app-icon icon="mdi:bookmark" class="mr-2 text-blue-500" />
+          <app-icon [icon]="'mdi:bookmark'" class="mr-2 text-blue-500" />
           <span class="font-bold text-blue-900">{{ item.roleType }}</span>
         </div>
       </td>
@@ -53,7 +53,7 @@
         <p-tag [value]="item.modules + ' Módulos'" severity="info"></p-tag>
       </td>
       <td class="text-right">
-        <app-icon icon="mdi:chevron-right" />
+        <app-icon [icon]="'mdi:chevron-right'" />
       </td>
     </tr>
   </ng-template>

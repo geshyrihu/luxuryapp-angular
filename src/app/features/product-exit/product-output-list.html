@@ -36,7 +36,7 @@
             />
             @if (selectedDateControl.value) {
             <custom-button
-              iconClass="pi pi-times"
+              iconClass="mdi:close"
               (clicked)="clearFilter()"
               severity="danger"
             />
@@ -47,7 +47,7 @@
           <custom-button-download
             label="Generar Reporte"
             [showLabelOnDesktop]="true"
-            iconClass="pi pi-file-excel"
+            iconClass="mdi:file-excel"
             severity="success"
             (clicked)="onGenerateReport()"
           />
@@ -62,7 +62,7 @@
             [horizontal]="false"
           />
           <custom-button
-            iconClass="pi pi-search"
+            iconClass="mdi:magnify"
             (clicked)="onLoadData()"
             severity="primary"
           />

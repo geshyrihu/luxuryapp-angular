@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
@@ -29,7 +30,7 @@ import {
     CustomButton,
     CustomButtonDownload,
     CustomSearchInput,
-  ],
+   AppIcon],
   templateUrl: "./autitoria-cuentas-aspel.html",
 })
 export class AutitoriaCuentasAspel {
@@ -144,9 +145,9 @@ export class AutitoriaCuentasAspel {
   }
 
   getPresenceIcon(presencia?: IAutitoriaCuentaAspelPresenciaDTO): string {
-    if (!presencia || !presencia.presente) return "pi pi-times";
-    if (!presencia.estructuraValida) return "pi pi-exclamation-triangle";
-    return "pi pi-check";
+    if (!presencia || !presencia.presente) return "mdi:close";
+    if (!presencia.estructuraValida) return "mdi:alert";
+    return "mdi:check";
   }
 
   getPresenceColor(presencia?: IAutitoriaCuentaAspelPresenciaDTO): string {

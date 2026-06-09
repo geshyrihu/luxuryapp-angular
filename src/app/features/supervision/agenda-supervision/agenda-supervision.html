@@ -16,23 +16,31 @@
   styleClass="custom-table hidden md:block"
 >
   <ng-template #caption>
-    <primeng-custom-caption
-      class="ocultar"
-      [title]="'Bitacora Supervisión'"
-      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-      [dt]="dt"
-    />
-    <div class="grid align-items-center mb-3">
-      <div class="col-12 sm:col-5">
-        <app-rango-calendario-yyyymmdd></app-rango-calendario-yyyymmdd>
-      </div>
-      <div class="col-12 sm:col-7 text-right">
-        <custom-button
-          ngbTooltip="Actualizar Información"
-          [customClass]="'btn-outline-info btn-sm'"
-          icon="pi-sync txt-primary"
-          (clicked)="onLoadData()"
+    <div class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round">
+      <div class="flex-grow-1">
+        <primeng-custom-caption
+          class="ocultar"
+          [title]="'Bitacora Supervisión'"
+          (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+          [dt]="dt"
+          [noPadding]="true"
+          [noMargin]="true"
         />
+      </div>
+      <div class="flex flex-column sm:flex-row align-items-center gap-2">
+        <div style="min-width: 200px">
+          <app-rango-calendario-yyyymmdd />
+        </div>
+        <div class="flex-shrink-0">
+          <custom-button
+            ngbTooltip="Actualizar Información"
+            icon="mdi:sync"
+            (clicked)="onLoadData()"
+            [rounded]="true"
+            [text]="true"
+            severity="info"
+          />
+        </div>
       </div>
     </div>
   </ng-template>
@@ -192,10 +200,3 @@
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
-
-
-
-
-
-
-

@@ -27,7 +27,7 @@
 
   <custom-button
     label="PROCESAR FONDEO"
-    iconClass="pi pi-check-square"
+    iconClass="mdi:check-square"
     customClass="mr-1  border-2 border-surface-200"
     size="small"
     (clicked)="onConfirmed()"
@@ -36,7 +36,7 @@
 
   <custom-button-item
     label="REABRIR FONDEO"
-    iconClass="pi pi-arrow-left"
+    iconClass="mdi:arrow-left"
     class="mr-1"
     (clicked)="onRevokeConfirmation()"
   />
@@ -44,7 +44,7 @@
 
   <custom-button
     label="FINALIZAR FONDEO"
-    iconClass="pi pi-lock"
+    iconClass="mdi:lock"
     customClass="mr-1  border-2 border-surface-200"
     size="small"
     (clicked)="onCompleted()"
@@ -53,28 +53,28 @@
 
   <custom-button
     label="REVERTIR FONDEO COMPLETADO"
-    iconClass="pi pi-exclamation-triangle"
+    iconClass="mdi:alert"
     customClass="mr-1  border-2 border-surface-200"
     size="small"
     (clicked)="onRevertComplete()"
   />
   } @if (isVerified() && isAuthorized()) {
   <custom-button
-    iconClass="pi pi-chart-bar"
+    iconClass="mdi:chart-bar"
     label="Excel"
     customClass="mr-1  border-2 border-surface-200"
     size="small"
     (clicked)="onDownloadFileExcel()"
   />
   <custom-button
-    iconClass="pi pi-book"
+    iconClass="mdi:book"
     label="Pdf"
     customClass="mr-1  border-2 border-surface-200"
     size="small"
     (clicked)="onDownloadFilePdf()"
   />
   <custom-button
-    iconClass="pi pi-upload "
+    [iconClass]="'mdi:upload'"
     label="Facturas"
     customClass="mr-1  border-2 border-surface-200"
     size="small"
@@ -83,7 +83,7 @@
 
   } @if (isVerified() && isAuthorized()) { }
   <!-- <p-button
-    icon="pi pi-file-zip"
+    icon="mdi:zip-box"
     pTooltip="Descargar facturas"
     severity="info"
     text="true"
@@ -166,7 +166,7 @@
             styleClass=" cursor-pointer text-xs"
             pTooltip="{{ orden.validationMessage }}"
             tooltipPosition="left"
-            icon="pi pi-check-circle"
+            icon="mdi:check-circle"
             severity="success"
           ></p-tag>
           } @else if (orden.validationStatus === false) {
@@ -174,7 +174,7 @@
             styleClass=" cursor-pointer text-xs"
             pTooltip="{{ orden.validationMessage }}"
             tooltipPosition="left"
-            icon="pi pi-times-circle"
+            icon="mdi:close-circle"
             severity="danger"
           ></p-tag>
           } @else {
@@ -182,7 +182,7 @@
             styleClass="cursor-pointer text-xs"
             pTooltip="No hay XML para validar"
             tooltipPosition="left"
-            icon="pi pi-question-circle"
+            icon="mdi:help-circle"
             severity="secondary"
           ></p-tag>
           }

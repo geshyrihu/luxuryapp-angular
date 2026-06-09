@@ -22,14 +22,14 @@
       label="Limpiar"
       severity="secondary"
       variant="outlined"
-      iconClass="pi pi-trash"
+      iconClass="mdi:delete"
       [showLabelOnDesktop]="true"
       (clicked)="clearSignature()"
     />
 
     <custom-button
       label="Guardar Firma"
-      iconClass="pi pi-save"
+      iconClass="mdi:content-save"
       [disabled]="!hasSignature()"
       (clicked)="saveSignature()"
       [showLabelOnDesktop]="true"
@@ -38,7 +38,7 @@
 
   @if (hasSignature()) {
   <small class="text-green-600 mt-2 block font-medium">
-    <i class="pi pi-check-circle mr-1"></i>Firma capturada correctamente
+    <app-icon [icon]="'mdi:check-circle'" class="mr-1"></app-icon>Firma capturada correctamente
   </small>
   } @else {
   <small class="text-color-secondary mt-2 block italic">

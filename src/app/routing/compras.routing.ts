@@ -90,6 +90,18 @@ export const comprasRoutes: Routes = [
     },
   },
   {
+    path: "solicitud-compra-presentacion",
+    loadComponent: () =>
+      import("src/app/features/purchases/solicitud-compra/solicitud-compra-presentacion").then(
+        (m) => m.SolicitudCompraPresentacion,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Presentación de Solicitudes de Compra",
+      breadcrumb: "Presentación",
+    },
+  },
+  {
     path: "fixed-expenses-catalog", // Ruta anterior: 'catalogo-gastos-fijos'
     loadComponent: () =>
       import("src/app/features/catalogo-gastos-fijos/catalogo-gastos-fijos-list").then(

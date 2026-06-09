@@ -2,7 +2,7 @@
   <!-- Config Section -->
   <div *ngIf="step() === 'config'" class="flex flex-column">
     <div class="text-center">
-      <i class="pi pi-calendar text-primary text-5xl mb-3"></i>
+      <app-icon [icon]="'mdi:calendar'" class="text-primary text-5xl mb-3"></app-icon>
       <h3>
         {{ mode() === 'xml' ? 'Descargar XMLs (CFDI)' : 'Selecciona Periodo de
         Conciliación' }}
@@ -25,13 +25,13 @@
     <div class="flex justify-content-end mt-4">
       <custom-button
         label="Cancelar"
-        iconClass="pi pi-times"
+        iconClass="mdi:close"
         variant="ghost-text"
         (clicked)="close()"
       />
       <custom-button
         label="Iniciar Conciliación"
-        iconClass="pi pi-check"
+        iconClass="mdi:check"
         (clicked)="startReconciliation()"
       />
     </div>
@@ -55,12 +55,12 @@
 
   <!-- Error Section -->
   <div *ngIf="step() === 'error'" class="flex flex-column align-items-center">
-    <i class="pi pi-times-circle text-red-500 text-6xl"></i>
+    <app-icon [icon]="'mdi:close-circle'" class="text-red-500 text-6xl"></app-icon>
     <div class="text-xl text-red-600 font-bold">Error en la Conciliación</div>
     <p class="text-center">{{ errorMessage() }}</p>
     <custom-button
       label="Reintentar"
-      iconClass="pi pi-refresh"
+      iconClass="mdi:refresh"
       severity="danger"
       (clicked)="retry()"
     />
@@ -134,7 +134,7 @@
     <div class="flex justify-content-end mt-3">
       <custom-button
         label="Cerrar"
-        iconClass="pi pi-check"
+        iconClass="mdi:check"
         (clicked)="close()"
       />
     </div>

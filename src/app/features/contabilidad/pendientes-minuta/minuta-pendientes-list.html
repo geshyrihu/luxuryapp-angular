@@ -36,7 +36,7 @@
       <div class="flex align-items-center">
         <custom-button
           label="📄 Descargar PDF"
-          iconClass="pi pi-download"
+          iconClass="mdi:download"
           variant="outlined"
           size="sm"
           (clicked)="onDownloadPdf()"
@@ -114,12 +114,12 @@
       <td class="no-print">
         <div class="flex">
           <custom-button-item
-            iconClass="pi pi-comment"
+            iconClass="mdi:comment"
             label="Seguimientos"
             (clicked)="onModalTodosSeguimientos(item.id)"
           />
           <custom-button-item
-            iconClass="pi pi-plus "
+            [iconClass]="'mdi:plus'"
             label="Agregar seguimiento"
             (clicked)="onModalFormSeguimiento(item.id, 0)"
           />

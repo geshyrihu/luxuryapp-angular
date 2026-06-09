@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 ﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -44,7 +45,7 @@ import { DateService } from "src/app/core/services/date.service";
     IonAvatar,
     DataViewMobile,
     PrimeNgCustomCaption,
-  ],
+   AppIcon],
   templateUrl: "./user-activity-history.html",
   providers: [
     provideFlatpickrDefaults({

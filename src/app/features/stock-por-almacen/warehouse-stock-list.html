@@ -98,13 +98,13 @@
           <td class="no-print">
             <div class="flex">
               <custom-button-item
-                iconClass="pi pi-plus "
+                [iconClass]="'mdi:plus'"
                 label="Entrada"
                 (clicked)="onAddEntrada({ id: 0, idProducto: item.productoId, nombreProducto: item.producto, almacenId: item.almacenId })"
               />
 
               <custom-button-item
-                iconClass="pi pi-minus"
+                iconClass="mdi:minus"
                 label="Salida"
                 (clicked)="onAddSalida({ id: 0, idInventarioProducto: item.id, idProducto: item.productoId, nombreProducto: item.producto, almacenId: item.almacenId })"
               />

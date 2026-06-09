@@ -22,7 +22,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
         <h2 class="m-0">{{ diagram()?.name }}</h2>
         <p-button
           label="Volver"
-          icon="pi pi-arrow-left"
+          icon="mdi:arrow-left"
           (click)="goBack()"
           [text]="true"
           severity="secondary"

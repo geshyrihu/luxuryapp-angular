@@ -52,7 +52,7 @@
         @if (item.nameFileEstadoFinanciero === null) {
         <custom-button
           label="Cargar Informe"
-          iconClass="pi pi-upload"
+          iconClass="mdi:upload"
           [loading]="isProcessingUpload(item.id)"
           (clicked)="onUploadFile({ id: item.id, title: 'CARGAR ARCHIVO DE ESTADOS FINANCIEROS' })"
           [fluid]="true"
@@ -66,7 +66,7 @@
             </div>
           </div>
           <custom-button
-            iconClass="pi pi-download"
+            iconClass="mdi:download"
             variant="ghost-text"
             severity="secondary"
             ngbTooltip="Descargar"
@@ -74,7 +74,7 @@
           />
           @if (item.personWhoAuthorized === "" && item.personWhoSend === "") {
           <custom-button
-            iconClass="pi pi-replay"
+            iconClass="mdi:replay"
             variant="ghost-text"
             severity="warn"
             ngbTooltip="Actualizar Informe"
@@ -90,7 +90,7 @@
         (item.personWhoAuthorized === "") {
         <custom-button
           label="Autorizar"
-          iconClass="pi pi-check-square"
+          iconClass="mdi:check-square"
           severity="success"
           [loading]="isProcessingAuthorize(item.id)"
           (clicked)="onAuthorize(item.id)"
@@ -106,7 +106,7 @@
           </div>
           @if (item.personWhoSend === "") {
           <custom-button
-            iconClass="pi pi-replay"
+            iconClass="mdi:replay"
             variant="ghost-text"
             severity="warn"
             ngbTooltip="Deshacer autorización"
@@ -121,7 +121,7 @@
         @if ( item.nameFileEstadoFinanciero !== null && item.personWhoAuthorized
         !== "" ) { @if (item.personWhoSend === "") {
         <custom-button-confirm
-          icon="pi pi-send"
+          icon="mdi:send"
           label="ENVIAR PDF"
           styleClass="p-button-primary w-full mb-2"
           swalTitle="óEnviar estados financieros?"
@@ -276,7 +276,7 @@
           @if (item.nameFileEstadoFinanciero && item.personWhoAuthorized &&
           !item.personWhoSend) {
           <ion-button-confirm
-            icon="pi pi-send"
+            icon="mdi:send"
             label="ENVIAR"
             styleClass="p-button-text w-full text-left"
             swalTitle="óEnviar estados financieros?"

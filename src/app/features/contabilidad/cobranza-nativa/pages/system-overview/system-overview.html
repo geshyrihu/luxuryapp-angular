@@ -3,7 +3,7 @@
   <!-- Page title -->
   <div class="mb-5 text-center">
     <div class="inline-flex align-items-center justify-content-center w-4rem h-4rem border-round-xl bg-indigo-100 mb-3">
-      <i class="pi pi-sitemap text-indigo-600 text-2xl"></i>
+      <app-icon [icon]="'mdi:sitemap'" class="text-indigo-600 text-2xl"></app-icon>
     </div>
     <h1 class="text-2xl font-bold text-900 mb-2">Como Funciona el Sistema de Cobranza</h1>
     <p class="text-500 text-sm line-height-3 max-w-30rem mx-auto">
@@ -25,7 +25,7 @@
       </div>
       <div class="surface-card border-round-xl border-1 surface-border p-4 flex-1 mb-2">
         <div class="flex align-items-center gap-2 mb-2">
-          <i class="pi pi-users text-indigo-600"></i>
+          <app-icon [icon]="'mdi:account-group'" class="text-indigo-600"></app-icon>
           <span class="font-semibold text-900">Configurar propiedades y responsables</span>
         </div>
         <p class="text-sm text-500 line-height-3 m-0">
@@ -49,7 +49,7 @@
       </div>
       <div class="surface-card border-round-xl border-1 surface-border p-4 flex-1 mb-2">
         <div class="flex align-items-center gap-2 mb-2">
-          <i class="pi pi-file-edit text-green-600"></i>
+          <app-icon [icon]="'mdi:file-edit'" class="text-green-600"></app-icon>
           <span class="font-semibold text-900">Crear plantillas de cargos</span>
         </div>
         <p class="text-sm text-500 line-height-3 m-0">
@@ -72,7 +72,7 @@
       </div>
       <div class="surface-card border-round-xl border-1 surface-border p-4 flex-1 mb-2">
         <div class="flex align-items-center gap-2 mb-2">
-          <i class="pi pi-play-circle text-teal-600"></i>
+          <app-icon [icon]="'mdi:play-circle'" class="text-teal-600"></app-icon>
           <span class="font-semibold text-900">Generacion automatica de cargos (Job mensual)</span>
         </div>
         <p class="text-sm text-500 line-height-3 m-0">
@@ -96,7 +96,7 @@
       </div>
       <div class="surface-card border-round-xl border-1 surface-border p-4 flex-1 mb-2">
         <div class="flex align-items-center gap-2 mb-2">
-          <i class="pi pi-credit-card text-blue-600"></i>
+          <app-icon [icon]="'mdi:credit-card'" class="text-blue-600"></app-icon>
           <span class="font-semibold text-900">Registrar pagos y aplicarlos</span>
         </div>
         <p class="text-sm text-500 line-height-3 m-0">
@@ -120,7 +120,7 @@
       </div>
       <div class="surface-card border-round-xl border-1 surface-border p-4 flex-1 mb-2">
         <div class="flex align-items-center gap-2 mb-2">
-          <i class="pi pi-percentage text-orange-500"></i>
+          <app-icon [icon]="'mdi:percent'" class="text-orange-500"></app-icon>
           <span class="font-semibold text-900">Calculo de recargos por mora (Job diario)</span>
         </div>
         <p class="text-sm text-500 line-height-3 m-0">
@@ -144,7 +144,7 @@
       </div>
       <div class="surface-card border-round-xl border-1 surface-border p-4 flex-1 mb-2">
         <div class="flex align-items-center gap-2 mb-2">
-          <i class="pi pi-briefcase text-red-600"></i>
+          <app-icon [icon]="'mdi:briefcase'" class="text-red-600"></app-icon>
           <span class="font-semibold text-900">Escalada a cobranza legal (Job semanal)</span>
         </div>
         <p class="text-sm text-500 line-height-3 m-0">
@@ -168,7 +168,7 @@
       </div>
       <div class="surface-card border-round-xl border-1 surface-border p-4 flex-1 mb-2">
         <div class="flex align-items-center gap-2 mb-2">
-          <i class="pi pi-lock text-violet-600"></i>
+          <app-icon [icon]="'mdi:lock'" class="text-violet-600"></app-icon>
           <span class="font-semibold text-900">Cierre de periodo contable</span>
         </div>
         <p class="text-sm text-500 line-height-3 m-0">
@@ -192,7 +192,7 @@
       </div>
       <div class="surface-card border-round-xl border-1 surface-border p-4 flex-1">
         <div class="flex align-items-center gap-2 mb-2">
-          <i class="pi pi-shield text-gray-700"></i>
+          <app-icon [icon]="'mdi:shield'" class="text-gray-700"></app-icon>
           <span class="font-semibold text-900">Auditoria y verificacion de integridad</span>
         </div>
         <p class="text-sm text-500 line-height-3 m-0">
@@ -222,7 +222,7 @@
         <div class="surface-card border-round-xl border-1 surface-border p-4 h-full">
           <div class="flex align-items-center gap-2 mb-3">
             <div class="w-2rem h-2rem border-round-lg bg-indigo-100 flex align-items-center justify-content-center">
-              <i class="pi pi-list text-indigo-600 text-sm"></i>
+              <app-icon [icon]="'mdi:format-list-bulleted'" class="text-indigo-600 text-sm"></app-icon>
             </div>
             <span class="font-semibold text-900 text-sm">Ledger financiero inmutable</span>
           </div>
@@ -240,7 +240,7 @@
         <div class="surface-card border-round-xl border-1 surface-border p-4 h-full">
           <div class="flex align-items-center gap-2 mb-3">
             <div class="w-2rem h-2rem border-round-lg bg-purple-100 flex align-items-center justify-content-center">
-              <i class="pi pi-check-square text-purple-600 text-sm"></i>
+              <app-icon [icon]="'mdi:check-square'" class="text-purple-600 text-sm"></app-icon>
             </div>
             <span class="font-semibold text-900 text-sm">Patron Maker-Checker</span>
           </div>
@@ -257,7 +257,7 @@
         <div class="surface-card border-round-xl border-1 surface-border p-4 h-full">
           <div class="flex align-items-center gap-2 mb-3">
             <div class="w-2rem h-2rem border-round-lg bg-green-100 flex align-items-center justify-content-center">
-              <i class="pi pi-building text-green-600 text-sm"></i>
+              <app-icon [icon]="'mdi:office-building'" class="text-green-600 text-sm"></app-icon>
             </div>
             <span class="font-semibold text-900 text-sm">Multi-condominio (multi-tenant)</span>
           </div>
@@ -274,7 +274,7 @@
         <div class="surface-card border-round-xl border-1 surface-border p-4 h-full">
           <div class="flex align-items-center gap-2 mb-3">
             <div class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center">
-              <i class="pi pi-server text-orange-600 text-sm"></i>
+              <app-icon [icon]="'mdi:server'" class="text-orange-600 text-sm"></app-icon>
             </div>
             <span class="font-semibold text-900 text-sm">Automatizacion via Hangfire/CRON</span>
           </div>
@@ -297,7 +297,7 @@
     <div class="surface-card border-round-xl border-1 surface-border p-4">
       <div class="grid">
         <div class="col-12 md:col-4 flex gap-2 mb-3 md:mb-0">
-          <i class="pi pi-lock text-green-600 mt-1 flex-shrink-0"></i>
+          <app-icon [icon]="'mdi:lock'" class="text-green-600 mt-1 flex-shrink-0"></app-icon>
           <div>
             <div class="text-sm font-semibold text-900 mb-1">Periodos cerrados = inmutables</div>
             <div class="text-xs text-500 line-height-3">
@@ -307,7 +307,7 @@
           </div>
         </div>
         <div class="col-12 md:col-4 flex gap-2 mb-3 md:mb-0">
-          <i class="pi pi-eye text-blue-600 mt-1 flex-shrink-0"></i>
+          <app-icon [icon]="'mdi:eye-outline'" class="text-blue-600 mt-1 flex-shrink-0"></app-icon>
           <div>
             <div class="text-sm font-semibold text-900 mb-1">Bitacora de auditoria</div>
             <div class="text-xs text-500 line-height-3">
@@ -317,7 +317,7 @@
           </div>
         </div>
         <div class="col-12 md:col-4 flex gap-2">
-          <i class="pi pi-user-edit text-purple-600 mt-1 flex-shrink-0"></i>
+          <app-icon [icon]="'mdi:account-edit'" class="text-purple-600 mt-1 flex-shrink-0"></app-icon>
           <div>
             <div class="text-sm font-semibold text-900 mb-1">Responsable financiero unico</div>
             <div class="text-xs text-500 line-height-3">
@@ -337,7 +337,7 @@
     <div class="flex flex-column gap-3">
 
       <div class="flex gap-3 p-3 border-round-xl border-1 border-yellow-200 bg-yellow-50">
-        <i class="pi pi-bolt text-yellow-600 mt-1 flex-shrink-0"></i>
+        <app-icon [icon]="'mdi:lightning-bolt'" class="text-yellow-600 mt-1 flex-shrink-0"></app-icon>
         <div>
           <div class="font-semibold text-yellow-900 text-sm mb-1">Webhooks de pasarelas de pago</div>
           <div class="text-xs text-yellow-800 line-height-3">
@@ -350,7 +350,7 @@
       </div>
 
       <div class="flex gap-3 p-3 border-round-xl border-1 border-yellow-200 bg-yellow-50">
-        <i class="pi pi-receipt text-yellow-600 mt-1 flex-shrink-0"></i>
+        <app-icon [icon]="'mdi:receipt'" class="text-yellow-600 mt-1 flex-shrink-0"></app-icon>
         <div>
           <div class="font-semibold text-yellow-900 text-sm mb-1">Facturacion CFDI real (SAT)</div>
           <div class="text-xs text-yellow-800 line-height-3">
@@ -362,7 +362,7 @@
       </div>
 
       <div class="flex gap-3 p-3 border-round-xl border-1 border-yellow-200 bg-yellow-50">
-        <i class="pi pi-envelope text-yellow-600 mt-1 flex-shrink-0"></i>
+        <app-icon [icon]="'mdi:email-outline'" class="text-yellow-600 mt-1 flex-shrink-0"></app-icon>
         <div>
           <div class="font-semibold text-yellow-900 text-sm mb-1">Notificaciones automaticas</div>
           <div class="text-xs text-yellow-800 line-height-3">

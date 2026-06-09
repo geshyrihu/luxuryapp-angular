@@ -125,7 +125,7 @@ export default class PaymentList {
     this.confirmationS.confirm({
       message: `¿Deseas cancelar el pago de <strong>${item.propertyFullName}</strong> por <strong>$${item.amount.toFixed(2)}</strong>?<br/><span class="text-sm text-gray-500">Esta acción revertirá los cargos aplicados a este pago.</span>`,
       header: "Cancelar Pago Rebotado",
-      icon: "pi pi-exclamation-triangle",
+      icon: "mdi:alert",
       acceptLabel: "Sí, cancelar pago",
       rejectLabel: "No",
       acceptButtonStyleClass: "p-button-danger",

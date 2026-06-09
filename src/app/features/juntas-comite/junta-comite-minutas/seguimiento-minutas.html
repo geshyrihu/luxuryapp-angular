@@ -90,7 +90,7 @@
           [border-round]="true"
         >
           <ng-template pTemplate="content">
-            <i [class]="item.status == 0 ? 'pi pi-times' : item.status == 1 ? 'pi pi-check' : 'pi pi-ban'"></i>
+            <i [class]="item.status == 0 ? 'mdi:close' : item.status == 1 ? 'mdi:check' : 'mdi:ban'"></i>
           </ng-template>
         </p-tag>
       </td>
@@ -100,17 +100,17 @@
           <ng-container actions>
             <ion-button-item
               label="Ver todos los seguimientos"
-              iconClass="pi pi-list"
+              iconClass="mdi:format-list-bulleted"
               (clicked)="onModalTodosSeguimientos(item.id)"
             />
             <ion-button-item
               label="Agregar Seguimiento"
-              iconClass="pi pi-plus-circle"
+              iconClass="mdi:plus-circle"
               (clicked)="onModalFormSeguimiento(item.id, 0)"
             />
             <ion-button-item
               label="Editar"
-              iconClass="pi pi-pencil"
+              iconClass="mdi:pencil"
               (clicked)="
                 onModalFormMinutaDetalle({
                   id: item.id,

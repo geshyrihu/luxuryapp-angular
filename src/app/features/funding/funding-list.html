@@ -24,7 +24,7 @@
         />
         <custom-button
           (clicked)="onFaqsFondeo()"
-          iconClass="pi pi-question-circle"
+          iconClass="mdi:help-circle"
           label="Ayuda"
           variant="outlined"
         />
@@ -86,7 +86,7 @@
       </td>
 
       <td class="no-print text-center">
-        <i class="pi pi-chevron-right text-400"></i>
+        <app-icon [icon]="'mdi:chevron-right'" class="text-400"></app-icon>
       </td>
     </tr>
   </ng-template>
@@ -111,7 +111,7 @@
         slot="start"
         class="w-2rem h-2rem border-round bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <i class="pi pi-wallet text-green-600 text-xl"></i>
+        <app-icon [icon]="'mdi:wallet'" class="text-green-600 text-xl"></app-icon>
       </div>
       <ion-label class="ml-2">
         <h3 class="font-bold text-900">{{ item.period | uppercase }}</h3>

@@ -3,7 +3,7 @@
   <div class="flex justify-content-center gap-2 mb-3">
     <!-- Botón para abrir la cómara -->
     <custom-button
-      iconClass="pi pi-camera"
+      iconClass="mdi:camera"
       variant="outlined"
       (clicked)="cameraInput.click()"
     />
@@ -18,7 +18,7 @@
 
     <!-- Botón para abrir la galeróa -->
     <custom-button
-      iconClass="pi pi-image"
+      iconClass="mdi:image"
       severity="secondary"
       variant="outlined"
       (clicked)="galleryInput.click()"
@@ -45,7 +45,7 @@
         alt="Imagen seleccionada"
       />
       <custom-button
-        iconClass="pi pi-trash"
+        iconClass="mdi:delete"
         ngbTooltip="Eliminar"
         severity="danger"
         size="sm"
@@ -69,7 +69,7 @@
         alt="Imagen subida"
       />
       <custom-button
-        iconClass="pi pi-times"
+        iconClass="mdi:close"
         severity="danger"
         size="sm"
         variant="ghost-text"
@@ -84,7 +84,7 @@
   <div class="text-center mt-4">
     <custom-button
       label="Guardar imógenes"
-      iconClass="pi pi-save"
+      iconClass="mdi:content-save"
       variant="outlined"
       (clicked)="onSaveImages()"
     />

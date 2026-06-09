@@ -57,7 +57,7 @@
             <div class="flex align-items-center gap-2">
               <custom-button
                 label="Calendario Guia"
-                iconClass="pi pi-calendar"
+                iconClass="mdi:calendar"
                 [severity]="'secondary'"
                 [variant]="'outlined'"
                 (clicked)="calendarioGuiaVisible.set(true)"
@@ -66,7 +66,7 @@
               />
               <custom-button
                 label="PDF"
-                iconClass="pi pi-file-pdf"
+                iconClass="mdi:file-pdf-box"
                 [severity]="'danger'"
                 [variant]="'outlined'"
                 (clicked)="onDownloadPdf()"
@@ -150,32 +150,32 @@
             <div class="flex">
               <custom-button-item
                 (clicked)="onDocumentos(item.id)"
-                iconClass="pi pi-file-pdf"
+                iconClass="mdi:file-pdf-box"
                 label="Documentos"
                 variant="text"
               />
               <custom-button-item
                 (clicked)="onServiceHistory(item.id)"
-                iconClass="pi pi-file"
+                iconClass="mdi:file-document-outline"
                 label="Histórico de servicios"
                 variant="text"
               />
               <custom-button-item
                 (clicked)="onBitacoraIndividual(item.id)"
-                iconClass="pi pi-book"
+                iconClass="mdi:book"
                 label="Bitácora"
                 variant="text"
               />
               <custom-button-item
                 (clicked)="showModalFichatecnica(item.id)"
-                iconClass="pi pi-clipboard"
+                iconClass="mdi:clipboard-text"
                 label="Ficha técnica"
                 variant="text"
               />
               @if (!mostrarPreventivos()) {
               <custom-button-item
                 (clicked)="openMantenimientosDialog(item)"
-                iconClass="pi pi-wrench"
+                iconClass="mdi:wrench"
                 label="Mantenimientos"
                 variant="text"
               />
@@ -213,7 +213,7 @@
         AspRole.SuperUsuario])) {
         <custom-button
           label="Agregar"
-          iconClass="pi pi-plus"
+          iconClass="mdi:plus"
           (clicked)="onAddMantenimientoDialog(equipo.id)"
         />
         }
@@ -255,7 +255,7 @@
             <td>
               <div class="flex">
                 <custom-button-item
-                  iconClass="pi pi-copy"
+                  iconClass="mdi:content-copy"
                   label="Duplicar"
                   variant="text"
                   (clicked)="showModalMaintenanceCalendar({ id: order.id, task: 'copy', machineryId: order.machineryId, header: 'Duplicar Actividad' })"
@@ -332,7 +332,7 @@
         <div class="px-2 pb-2">
           <custom-button
             label="Descargar PDF"
-            iconClass="pi pi-file-pdf"
+            iconClass="mdi:file-pdf-box"
             [severity]="'danger'"
             [size]="'small'"
             [isFullWidth]="true"

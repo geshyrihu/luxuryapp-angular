@@ -28,21 +28,21 @@
             [routerLinkActiveOptions]="{ exact: true }"
             class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
           >
-            <i class="pi pi-list mr-1"></i> Registros
+            <app-icon [icon]="'mdi:format-list-bulleted'" class="mr-1"></app-icon> Registros
           </a>
           <a
             routerLink="/logbook/water-truck-reception/reporte"
             routerLinkActive="p-button-primary"
             class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
           >
-            <i class="pi pi-table mr-1"></i> Reporte
+            <app-icon [icon]="'mdi:table'" class="mr-1"></app-icon> Reporte
           </a>
           <a
             routerLink="/logbook/water-truck-reception/analisis"
             routerLinkActive="p-button-primary"
             class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
           >
-            <i class="pi pi-chart-bar mr-1"></i> Analisis
+            <app-icon [icon]="'mdi:chart-bar'" class="mr-1"></app-icon> Analisis
           </a>
         </div>
       </div>
@@ -199,7 +199,7 @@
       <td>
         <div class="flex">
           <custom-button-item
-            iconClass="pi pi-file-pdf"
+            iconClass="mdi:file-pdf-box"
             tooltip="Descargar soporte PDF"
             (clicked)="onDownloadPdf(item)"
           />
@@ -230,21 +230,21 @@
         [routerLinkActiveOptions]="{ exact: true }"
         class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
       >
-        <i class="pi pi-list mr-1"></i> Registros
+        <app-icon [icon]="'mdi:format-list-bulleted'" class="mr-1"></app-icon> Registros
       </a>
       <a
         routerLink="/logbook/water-truck-reception/reporte"
         routerLinkActive="p-button-primary"
         class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
       >
-        <i class="pi pi-table mr-1"></i> Reporte
+        <app-icon [icon]="'mdi:table'" class="mr-1"></app-icon> Reporte
       </a>
       <a
         routerLink="/logbook/water-truck-reception/analisis"
         routerLinkActive="p-button-primary"
         class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
       >
-        <i class="pi pi-chart-bar mr-1"></i> Analisis
+        <app-icon [icon]="'mdi:chart-bar'" class="mr-1"></app-icon> Analisis
       </a>
     </div>
   </div>

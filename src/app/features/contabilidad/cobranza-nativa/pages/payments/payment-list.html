@@ -22,7 +22,7 @@
         />
         <custom-button
           label="Nota de Crédito"
-          iconClass="pi pi-credit-card"
+          iconClass="mdi:credit-card"
           severity="secondary"
           variant="outlined"
           size="small"
@@ -77,7 +77,7 @@
             <custom-button-edit (clicked)="onModalForm(item.id)" />
             @if (item.status !== EPaymentStatus.Rechazado) {
             <custom-button
-              iconClass="pi pi-times-circle"
+              iconClass="mdi:close-circle"
               severity="warning"
               variant="outlined"
               size="small"

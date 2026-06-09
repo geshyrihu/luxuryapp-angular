@@ -24,6 +24,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [noMargin]="noMargin()"
       [description]="description()"
       [hidden]="hidden()"
+      [onlyInput]="onlyInput()"
     >
       <p-select
         [options]="data()"

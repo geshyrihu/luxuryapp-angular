@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
@@ -25,7 +26,7 @@ import { ReportFilterService } from "./services/financial-report-filter.service"
     ProgressSpinnerModule,
     CustomButton,
     CustomSearchInput,
-  ],
+   AppIcon],
   templateUrl: "./espejo-aspel-full.html",
 })
 export class EspejoAspelFull {

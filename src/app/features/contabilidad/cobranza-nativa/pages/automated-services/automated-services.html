@@ -2,7 +2,7 @@
 
   <!-- Info header -->
   <div class="mb-4 p-3 bg-indigo-50 border-round border-1 border-indigo-200 flex gap-2 align-items-start">
-    <i class="pi pi-cog text-indigo-600 mt-1 text-xl"></i>
+    <app-icon [icon]="'mdi:cog'" class="text-indigo-600 mt-1 text-xl"></app-icon>
     <div>
       <div class="font-bold text-indigo-800 mb-1">Servicios Automatizados del Sistema</div>
       <div class="text-sm text-indigo-700 line-height-3">
@@ -20,7 +20,7 @@
       <div class="surface-card border-round-xl border-1 surface-border p-4 h-full">
         <div class="flex align-items-center gap-2 mb-3">
           <div class="w-2rem h-2rem border-round-lg bg-green-100 flex align-items-center justify-content-center">
-            <i class="pi pi-plus-circle text-green-600"></i>
+            <app-icon [icon]="'mdi:plus-circle'" class="text-green-600"></app-icon>
           </div>
           <div class="font-semibold">Generacion de Cargos Mensuales</div>
         </div>
@@ -44,7 +44,7 @@
         </div>
         <custom-button
           label="Ejecutar Ahora"
-          iconClass="pi pi-play"
+          iconClass="mdi:play"
           severity="success"
           [disabled]="running() !== null"
           [loading]="running() === 'generate'"
@@ -58,7 +58,7 @@
       <div class="surface-card border-round-xl border-1 surface-border p-4 h-full">
         <div class="flex align-items-center gap-2 mb-3">
           <div class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center">
-            <i class="pi pi-percentage text-orange-600"></i>
+            <app-icon [icon]="'mdi:percent'" class="text-orange-600"></app-icon>
           </div>
           <div class="font-semibold">Calculo de Recargos por Mora</div>
         </div>
@@ -73,7 +73,7 @@
         </div>
         <custom-button
           label="Ejecutar Ahora"
-          iconClass="pi pi-play"
+          iconClass="mdi:play"
           severity="warn"
           [disabled]="running() !== null"
           [loading]="running() === 'latefees'"
@@ -87,7 +87,7 @@
       <div class="surface-card border-round-xl border-1 surface-border p-4 h-full">
         <div class="flex align-items-center gap-2 mb-3">
           <div class="w-2rem h-2rem border-round-lg bg-red-100 flex align-items-center justify-content-center">
-            <i class="pi pi-exclamation-triangle text-red-600"></i>
+            <app-icon [icon]="'mdi:alert'" class="text-red-600"></app-icon>
           </div>
           <div class="font-semibold">Escalada a Cobranza Legal (Gestoria)</div>
         </div>
@@ -102,7 +102,7 @@
         </div>
         <custom-button
           label="Evaluar y Escalar Ahora"
-          iconClass="pi pi-play"
+          iconClass="mdi:play"
           severity="danger"
           [disabled]="running() !== null"
           [loading]="running() === 'escalate'"
@@ -116,7 +116,7 @@
       <div class="surface-card border-round-xl border-1 surface-border p-4 h-full">
         <div class="flex align-items-center gap-2 mb-3">
           <div class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center">
-            <i class="pi pi-sync text-blue-600"></i>
+            <app-icon [icon]="'mdi:sync'" class="text-blue-600"></app-icon>
           </div>
           <div class="font-semibold">Auto-Conciliacion de Pagos</div>
         </div>
@@ -131,7 +131,7 @@
         </div>
         <custom-button
           label="Conciliar Ahora"
-          iconClass="pi pi-play"
+          iconClass="mdi:play"
           severity="info"
           [disabled]="running() !== null"
           [loading]="running() === 'reconcile'"
@@ -145,7 +145,7 @@
       <div class="surface-card border-round-xl border-1 surface-border p-4">
         <div class="flex align-items-center gap-2 mb-3">
           <div class="w-2rem h-2rem border-round-lg bg-purple-100 flex align-items-center justify-content-center">
-            <i class="pi pi-bolt text-purple-600"></i>
+            <app-icon [icon]="'mdi:lightning-bolt'" class="text-purple-600"></app-icon>
           </div>
           <div class="font-semibold">Webhooks de Pasarelas de Pago</div>
           <span class="badge bg-yellow-100 text-yellow-800 text-xs ml-2">Infraestructura lista, pendiente de activar</span>
@@ -172,7 +172,7 @@
       <div class="mt-2 flex flex-column gap-2">
         @for (r of results(); track r.executedAt) {
           <div class="flex align-items-center gap-3 p-2 surface-50 border-round border-1 surface-border text-sm">
-            <i class="pi" [class]="r.success ? 'pi-check-circle text-green-600' : 'pi-times-circle text-red-600'"></i>
+            <app-icon [icon]="'mdi:check-circle'" class="pi" [class]="r.success ? ' text-green-600' : 'mdi:close-circle text-red-600'"></app-icon>
             <span class="font-medium">{{ r.jobName }}</span>
             <span class="text-500">{{ r.recordsAffected }} registros afectados</span>
             <span class="text-400 ml-auto">{{ r.executedAt | date:'HH:mm:ss' }}</span>

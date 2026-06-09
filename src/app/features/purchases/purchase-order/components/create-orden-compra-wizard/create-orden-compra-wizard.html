@@ -152,7 +152,7 @@
                 />
                 } @else {
                 <p-avatar
-                  icon="pi pi-box"
+                  icon="mdi:package"
                   size="xlarge"
                   shape="square"
                 ></p-avatar>
@@ -199,13 +199,13 @@
               </td>
               <td class="text-center">
                 <custom-button
-                  iconClass="pi pi-pencil"
+                  iconClass="mdi:pencil"
                   variant="text"
                   severity="info"
                   (clicked)="editItem(item, i)"
                 />
                 <custom-button
-                  iconClass="pi pi-trash"
+                  iconClass="mdi:delete"
                   variant="text"
                   severity="danger"
                   (clicked)="removeItem(i)"
@@ -289,7 +289,7 @@
               </td>
               <td>
                 <custom-button
-                  iconClass="pi pi-trash"
+                  iconClass="mdi:delete"
                   severity="danger"
                   variant="text"
                   (clicked)="removeBudget(i)"
@@ -348,9 +348,7 @@
             <div
               class="flex align-items-center justify-content-center flex-column py-5"
             >
-              <i
-                class="pi pi-cloud-upload border-2 border-circle p-5 text-8xl text-400 border-400"
-              ></i>
+              <app-icon [icon]="'mdi:cloud-upload'" class="border-2 border-circle p-5 text-8xl text-400 border-400"></app-icon>
               <p class="mt-4 mb-0">Arrastre y suelte los archivos aquó.</p>
             </div>
             }
@@ -473,7 +471,7 @@
   <div class="wizard-navigation mt-4 flex justify-content-between">
     <custom-button
       label="Anterior"
-      iconClass="pi pi-arrow-left"
+      iconClass="mdi:arrow-left"
       (clicked)="prevStep()"
       [disabled]="activeIndex === 0"
       variant="secondary"
@@ -482,14 +480,14 @@
     @if (activeIndex < items.length - 1) {
     <custom-button
       label="Siguiente"
-      iconClass="pi pi-arrow-right"
+      iconClass="mdi:arrow-right"
       (clicked)="nextStep()"
       iconPosition="right"
     />
     } @if (activeIndex === items.length - 1) {
     <custom-button
       label="Finalizar y Crear Orden"
-      iconClass="pi pi-check"
+      iconClass="mdi:check"
       (clicked)="onSubmit()"
       [loading]="submitting()"
       severity="success"

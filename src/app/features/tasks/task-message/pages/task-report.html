@@ -5,7 +5,7 @@
       <!-- Enlace a otra página -->
       <div class="card text-center shadow-1 border-none cursor-pointer">
         <div class="card-body">
-          <i class="icon icon-pi-calendar icon-xl mb-3 text-primary"></i>
+          <app-icon [icon]="'mdi:calendar'" class="icon icon- icon-xl mb-3 text-primary"></app-icon>
           <p class="card-text h5">Reporte semanal</p>
         </div>
       </div>
@@ -17,7 +17,7 @@
     <a [routerLink]="['/tickets/work-plan']" class="no-underline">
       <div class="surface-card text-center shadow-2 border-round p-3 cursor-pointer">
         <div>
-          <i class="icon icon-pi-list-check icon-xl mb-3 text-green-600"></i>
+          <app-icon [icon]="'mdi:format-list-checks'" class="icon icon- icon-xl mb-3 text-green-600"></app-icon>
           <p class="card-text h5">Plan de trabajo</p>
         </div>
       </div>
@@ -29,7 +29,7 @@
     <a [routerLink]="['/tickets/resumen']" class="no-underline">
       <div class="surface-card text-center shadow-2 border-round p-3 cursor-pointer">
         <div>
-          <i class="icon icon-pi-chart-pie icon-xl mb-3 text-yellow-600"></i>
+          <app-icon [icon]="'mdi:chart-pie'" class="icon icon- icon-xl mb-3 text-yellow-600"></app-icon>
           <p class="card-text h5">Resumen</p>
         </div>
       </div>

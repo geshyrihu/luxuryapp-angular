@@ -2,8 +2,8 @@
 <ng-container *ngIf="authS.userToken$ | async">
   <!-- Floating Bubble -->
   <div class="chat-bubble" (click)="toggleChat()">
-    <i class="pi pi-sparkles text-2xl text-white" *ngIf="!isOpen()"></i>
-    <i class="pi pi-times text-xl text-white" *ngIf="isOpen()"></i>
+    <app-icon [icon]="'mdi:sparkles'" class="pi text-2xl text-white" *ngIf="!isOpen()"></app-icon>
+    <app-icon [icon]="'mdi:close'" class="pi text-xl text-white" *ngIf="isOpen()"></app-icon>
   </div>
 
   <!-- Chat Window -->
@@ -16,7 +16,7 @@
         <div
           class="border-round-circle surface-100 p-2 flex align-items-center justify-content-center w-2rem h-2rem"
         >
-          <i class="pi pi-sparkles text-primary-500"></i>
+          <app-icon [icon]="'mdi:sparkles'" class="pi text-primary-500"></app-icon>
         </div>
         <div>
           <h3 class="m-0 text-color font-semibold text-sm">Luxury Assistant</h3>
@@ -32,7 +32,7 @@
       <div
         class="w-6rem h-6rem border-round-circle surface-100 flex align-items-center justify-content-center mb-4 relative overflow-hidden"
       >
-        <i class="pi pi-sparkles text-6xl text-primary-500 relative z-1"></i>
+        <app-icon [icon]="'mdi:sparkles'" class="pi text-6xl text-primary-500 relative z-1"></app-icon>
         <div
           class="absolute w-full h-full surface-200 opacity-50 border-round-circle"
           style="animation: pulse 2s infinite"

@@ -67,7 +67,7 @@
 
       <div class="flex align-items-center gap-2">
         <custom-button
-          iconClass="pi pi-th-large"
+          iconClass="mdi:grid"
           label="Tablero"
           variant="outlined"
           severity="secondary"
@@ -76,7 +76,7 @@
           (clicked)="onPendingBoard()"
         />
         <custom-button
-          iconClass="pi pi-clipboard"
+          iconClass="mdi:clipboard-text"
           label="Plan de trabajo"
           variant="outlined"
           severity="secondary"
@@ -85,7 +85,7 @@
           (clicked)="onPreviewClickedWorkPlan()"
         />
         <custom-button
-          iconClass="pi pi-eye"
+          iconClass="mdi:eye-outline"
           label="Vista previa"
           variant="outlined"
           severity="secondary"
@@ -94,7 +94,7 @@
           (clicked)="onPreviewWeeklyReport()"
         />
         <custom-button
-          iconClass="pi pi-send"
+          iconClass="mdi:send"
           label="Enviar reporte"
           variant="outlined"
           size="small"
@@ -103,7 +103,7 @@
           (clicked)="onSendWeeklyReport()"
         />
         <custom-button
-          iconClass="pi pi-print"
+          iconClass="mdi:printer"
           label="Imprimir pendientes"
           variant="outlined"
           severity="secondary"
@@ -195,7 +195,7 @@
             <p
               class="m-0 mb-3 font-semibold text-900 text-sm border-bottom-1 surface-border pb-2"
             >
-              <i class="pi pi-info-circle text-primary mr-1"></i> Como
+              <app-icon [icon]="'mdi:information'" class="text-primary mr-1"></app-icon> Como
               interactuar con las tareas
             </p>
 
@@ -206,10 +206,7 @@
                   class="flex-shrink-0 border-circle bg-primary-100 flex align-items-center justify-content-center"
                   style="width: 1.75rem; height: 1.75rem; margin-top: 1px"
                 >
-                  <i
-                    class="pi pi-bars text-primary"
-                    style="font-size: 0.75rem"
-                  ></i>
+                  <app-icon [icon]="'mdi:menu'" class="text-primary" style="font-size: 0.75rem"></app-icon>
                 </span>
                 <div>
                   <p class="m-0 font-semibold text-800 text-xs">
@@ -230,10 +227,7 @@
                   class="flex-shrink-0 border-circle bg-purple-100 flex align-items-center justify-content-center"
                   style="width: 1.75rem; height: 1.75rem; margin-top: 1px"
                 >
-                  <i
-                    class="pi pi-link text-purple-600"
-                    style="font-size: 0.75rem"
-                  ></i>
+                  <app-icon [icon]="'mdi:link'" class="text-purple-600" style="font-size: 0.75rem"></app-icon>
                 </span>
                 <div>
                   <p class="m-0 font-semibold text-800 text-xs">
@@ -258,10 +252,7 @@
                   class="flex-shrink-0 border-circle bg-orange-100 flex align-items-center justify-content-center"
                   style="width: 1.75rem; height: 1.75rem; margin-top: 1px"
                 >
-                  <i
-                    class="pi pi-sitemap text-orange-600"
-                    style="font-size: 0.75rem"
-                  ></i>
+                  <app-icon [icon]="'mdi:sitemap'" class="text-orange-600" style="font-size: 0.75rem"></app-icon>
                 </span>
                 <div>
                   <p class="m-0 font-semibold text-800 text-xs">
@@ -269,15 +260,9 @@
                   </p>
                   <p class="m-0 text-xs text-600 mt-1 line-height-3">
                     Las tareas con el icono
-                    <i
-                      class="pi pi-sitemap text-primary"
-                      style="font-size: 0.7rem"
-                    ></i>
+                    <app-icon [icon]="'mdi:sitemap'" class="text-primary" style="font-size: 0.7rem"></app-icon>
                     tienen subtareas. Las tareas con
-                    <i
-                      class="pi pi-level-down-alt text-400"
-                      style="font-size: 0.7rem"
-                    ></i>
+                    <app-icon [icon]="'mdi:arrow-down-bold'" class="text-400" style="font-size: 0.7rem"></app-icon>
                     son hijas de otra. Al crear o editar una tarea puedes
                     asignarle una tarea padre.
                   </p>
@@ -331,21 +316,13 @@
     >
       <td class="text-center">
         <div class="flex align-items-center justify-content-center gap-1">
-          <i
-            pReorderableRowHandle
-            class="pi pi-bars cursor-move text-400"
-            style="font-size: 0.85rem"
-          ></i>
-          <i
-            draggable="true"
-            class="pi pi-link text-300 cursor-grab"
-            [class.text-purple-500]="linkDragSourceId() === item.id"
+          <app-icon [icon]="'mdi:menu'" class="cursor-move text-400" pReorderableRowHandle style="font-size: 0.85rem"></app-icon>
+          <app-icon [icon]="'mdi:link'" class="text-300 cursor-grab" draggable="true" [class.text-purple-500]="linkDragSourceId() === item.id"
             style="font-size: 0.85rem"
             (dragstart)="onLinkDragStart($event, item.id)"
             (dragend)="onLinkDragEnd()"
             pTooltip="Arrastra sobre otra tarea para asignar predecesora"
-            tooltipPosition="top"
-          ></i>
+            tooltipPosition="top"></app-icon>
         </div>
       </td>
       <td>
@@ -354,19 +331,13 @@
           [style.padding-left]="item.parentTaskId && !item.dependsOnTaskId ? '1.5rem' : (chainStepMap().get(item.id) ?? 1) > 1 ? ((Math.min(chainStepMap().get(item.id) - 1, 4) * 1.5) + 'rem') : '0'"
         >
           @if (item.parentTaskId) {
-          <i
-            class="pi pi-level-down-alt text-400 flex-shrink-0 mr-1"
-            style="font-size: 0.75rem; margin-top: 0.2rem"
+          <app-icon [icon]="'mdi:arrow-down-bold'" class="text-400 flex-shrink-0 mr-1" style="font-size: 0.75rem; margin-top: 0.2rem"
             pTooltip="Tarea hija"
-            tooltipPosition="top"
-          ></i>
+            tooltipPosition="top"></app-icon>
           } @if (item.hasSubTasks) {
-          <i
-            class="pi pi-sitemap text-primary flex-shrink-0 mr-1"
-            style="font-size: 0.75rem; margin-top: 0.2rem"
+          <app-icon [icon]="'mdi:sitemap'" class="text-primary flex-shrink-0 mr-1" style="font-size: 0.75rem; margin-top: 0.2rem"
             pTooltip="Tiene subtareas"
-            tooltipPosition="top"
-          ></i>
+            tooltipPosition="top"></app-icon>
           }
           <p-avatar
             (click)="onCardEmployee(item.creatorId)"
@@ -396,7 +367,7 @@
                 (click)="onClearDependency(item.id)"
                 pTooltip="Despues de: {{ item.dependsOnTaskFolio }} | Click para quitar"
               >
-                <i class="pi pi-arrow-right text-xs"></i>
+                <app-icon [icon]="'mdi:arrow-right'" class="text-xs"></app-icon>
                 {{ item.dependsOnTaskFolio }}
               </span>
               }
@@ -405,24 +376,13 @@
               class="m-0 font-semibold text-xs text-900 flex align-items-center gap-1"
             >
               @if (item.daysDifference > 15 && !item.scheduledAt) {
-              <i
-                class="pi pi-clock text-orange-600"
-                pTooltip="Urgente: Más de 15 días sin programar"
-              ></i>
+              <app-icon [icon]="'mdi:clock-outline'" class="text-orange-600" pTooltip="Urgente: Más de 15 días sin programar"></app-icon>
               } @if (item.priority === 'High') {
-              <i
-                (click)="onUpdatePriority(item.id)"
-                class="pi pi-star text-primary cursor-pointer"
-                style="font-size: 0.8rem"
-                pTooltip="Alta prioridad - click para cambiar"
-              ></i>
+              <app-icon [icon]="'mdi:star-outline'" class="text-primary cursor-pointer" (click)="onUpdatePriority(item.id)" style="font-size: 0.8rem"
+                pTooltip="Alta prioridad - click para cambiar"></app-icon>
               } @if (item.priority === 'Low') {
-              <i
-                (click)="onUpdatePriority(item.id)"
-                class="pi pi-exclamation-triangle text-red-500 cursor-pointer"
-                style="font-size: 0.8rem"
-                pTooltip="Baja prioridad - click para cambiar"
-              ></i>
+              <app-icon [icon]="'mdi:alert'" class="text-red-500 cursor-pointer" (click)="onUpdatePriority(item.id)" style="font-size: 0.8rem"
+                pTooltip="Baja prioridad - click para cambiar"></app-icon>
               } {{ item.title }}
             </p>
             <p
@@ -459,11 +419,11 @@
 
       <td>
         <p class="m-0 text-xs text-color-secondary">
-          <i class="pi pi-calendar mr-1"></i>{{ item.scheduledAt }}
+          <app-icon [icon]="'mdi:calendar'" class="mr-1"></app-icon>{{ item.scheduledAt }}
         </p>
         @if (item.closedAtDate) {
         <p class="m-0 text-xs text-color-secondary mt-1">
-          <i class="pi pi-lock mr-1"></i>{{ item.closedAtDate }}
+          <app-icon [icon]="'mdi:lock'" class="mr-1"></app-icon>{{ item.closedAtDate }}
         </p>
         }
       </td>
@@ -537,7 +497,7 @@
             class="cursor-pointer flex align-items-center gap-1 text-decoration-none"
             pTooltip="Seguimientos"
           >
-            <i class="pi pi-comments text-blue-500"></i>
+            <app-icon [icon]="'mdi:comment-multiple'" class="text-blue-500"></app-icon>
             <span class="badge bg-info px-2 py-1 text-xs font-semibold">
               {{ item.ticketMessageFollowUp }}
             </span>
@@ -545,28 +505,28 @@
           <app-action-menu>
             <ng-container actions>
               <ion-button-item
-                iconClass="pi pi-calendar"
+                iconClass="mdi:calendar"
                 label="Programar"
                 [showLabelOnDesktop]="true"
                 (clicked)="onProgram(item.id)"
               />
               @if (item.status !== 'Completed') {
               <ion-button-item
-                iconClass="pi pi-lock"
+                iconClass="mdi:lock"
                 label="Cerrar"
                 [showLabelOnDesktop]="true"
                 (clicked)="onClosed(item.id)"
               />
               } @if (item.status !== 'InProgress') {
               <ion-button-item
-                iconClass="pi pi-sync"
+                iconClass="mdi:sync"
                 label="En proceso"
                 [showLabelOnDesktop]="true"
                 (clicked)="onProgress(item.id)"
               />
               } @if (item.status === 'Completed') {
               <ion-button-item
-                iconClass="pi pi-lock-open"
+                iconClass="mdi:lock-open"
                 label="Reabrir"
                 [showLabelOnDesktop]="true"
                 (clicked)="onReopen(item.id)"
@@ -757,7 +717,7 @@
             class="font-normal m-0 text-xs flex align-items-center gap-1 flex-wrap"
           >
             @if (item.priority === 'High') {
-            <i class="pi pi-star text-warning mr-1"></i>
+            <app-icon [icon]="'mdi:star-outline'" class="text-warning mr-1"></app-icon>
             } {{ item.folio }} @if (chainedTaskIds().has(item.id)) {
             <span
               class="px-1 border-round text-xs font-semibold"
@@ -770,7 +730,7 @@
               class="text-purple-500 text-xs cursor-pointer"
               (click)="onClearDependency(item.id)"
             >
-              <i class="pi pi-arrow-right"></i> {{ item.dependsOnTaskFolio }}
+              <app-icon [icon]="'mdi:arrow-right'"></app-icon> {{ item.dependsOnTaskFolio }}
             </span>
             }
           </p>
@@ -785,7 +745,7 @@
 
         <h2 class="text-sm font-normal m-0 text-wrap mb-1">
           @if (item.daysDifference > 15 && !item.scheduledAt) {
-          <i class="pi pi-clock text-orange-600 mr-1"></i>
+          <app-icon [icon]="'mdi:clock-outline'" class="text-orange-600 mr-1"></app-icon>
           } {{ item.title }}
         </h2>
         <p class="text-xs text-500 m-0 text-wrap truncate">

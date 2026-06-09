@@ -7,7 +7,7 @@
             class="inline-flex align-items-center justify-content-center border-round-xl"
             style="width: 2.5rem; height: 2.5rem; background: #e9f0fb; color: #173b72;"
           >
-            <i class="pi pi-chart-line text-sm"></i>
+            <app-icon [icon]="'mdi:chart-line'" class="text-sm"></app-icon>
           </span>
           <div>
             <h2 class="m-0 text-xl font-semibold">Cobranza Online</h2>
@@ -120,38 +120,38 @@
   <div class="grid mb-3" *ngIf="dashboard()?.kpis">
     <div class="col-12 md:col-6 xl:col-3">
       <div class="co-panel co-kpi p-3">
-        <div class="co-kpi-label">Total departamentos</div>
-        <div class="co-kpi-value mt-3">
+        <div class="co-kmdi:label">Total departamentos</div>
+        <div class="co-kmdi:value mt-3">
           {{ dashboard()?.kpis?.totalDepartments | number: "1.0-0" }}
         </div>
-        <div class="co-kpi-note mt-3">Universo visible del módulo</div>
+        <div class="co-kmdi:note mt-3">Universo visible del módulo</div>
       </div>
     </div>
     <div class="col-12 md:col-6 xl:col-3">
       <div class="co-panel co-kpi p-3">
-        <div class="co-kpi-label">Cargos del mes</div>
-        <div class="co-kpi-value mt-3">
+        <div class="co-kmdi:label">Cargos del mes</div>
+        <div class="co-kmdi:value mt-3">
           {{ dashboard()?.kpis?.totalDueCurrentMonth | currency: "MXN":"symbol":"1.0-0" }}
         </div>
-        <div class="co-kpi-note mt-3">Cuotas y cargos aplicados en abril</div>
+        <div class="co-kmdi:note mt-3">Cuotas y cargos aplicados en abril</div>
       </div>
     </div>
     <div class="col-12 md:col-6 xl:col-3">
       <div class="co-panel co-kpi p-3">
-        <div class="co-kpi-label">Abonos del mes</div>
-        <div class="co-kpi-value mt-3" style="color: var(--co-good);">
+        <div class="co-kmdi:label">Abonos del mes</div>
+        <div class="co-kmdi:value mt-3" style="color: var(--co-good);">
           {{ dashboard()?.kpis?.totalCollectedCurrentMonth | currency: "MXN":"symbol":"1.0-0" }}
         </div>
-        <div class="co-kpi-note mt-3">Pagos recibidos y aplicados</div>
+        <div class="co-kmdi:note mt-3">Pagos recibidos y aplicados</div>
       </div>
     </div>
     <div class="col-12 md:col-6 xl:col-3">
       <div class="co-panel co-kpi p-3">
-        <div class="co-kpi-label">Saldo neto del mes</div>
-        <div class="co-kpi-value mt-3" style="color: var(--co-bad);">
+        <div class="co-kmdi:label">Saldo neto del mes</div>
+        <div class="co-kmdi:value mt-3" style="color: var(--co-bad);">
           {{ dashboard()?.kpis?.netBalanceCurrentMonth | currency: "MXN":"symbol":"1.0-0" }}
         </div>
-        <div class="co-kpi-note mt-3">Cargos menos abonos del corte validado</div>
+        <div class="co-kmdi:note mt-3">Cargos menos abonos del corte validado</div>
       </div>
     </div>
   </div>
@@ -178,26 +178,26 @@
 
     <div class="co-chip-grid mb-3">
       <div class="co-chip-card">
-        <div class="co-kpi-label">Mtto vigente</div>
-        <div class="co-kpi-value mt-2" style="font-size: 1.35rem;">
+        <div class="co-kmdi:label">Mtto vigente</div>
+        <div class="co-kmdi:value mt-2" style="font-size: 1.35rem;">
           {{ currentCharges.maintenanceFee | currency: "MXN":"symbol":"1.0-0" }}
         </div>
       </div>
       <div class="co-chip-card">
-        <div class="co-kpi-label">Extraordinaria vigente</div>
-        <div class="co-kpi-value mt-2" style="font-size: 1.35rem;">
+        <div class="co-kmdi:label">Extraordinaria vigente</div>
+        <div class="co-kmdi:value mt-2" style="font-size: 1.35rem;">
           {{ currentCharges.extraordinaryFee | currency: "MXN":"symbol":"1.0-0" }}
         </div>
       </div>
       <div class="co-chip-card">
-        <div class="co-kpi-label">Cuota mensual total</div>
-        <div class="co-kpi-value mt-2" style="font-size: 1.35rem;">
+        <div class="co-kmdi:label">Cuota mensual total</div>
+        <div class="co-kmdi:value mt-2" style="font-size: 1.35rem;">
           {{ currentCharges.monthlyFeeTotal | currency: "MXN":"symbol":"1.0-0" }}
         </div>
       </div>
       <div class="co-chip-card">
-        <div class="co-kpi-label">Deptos por Property</div>
-        <div class="co-kpi-value mt-2" style="font-size: 1.35rem;">
+        <div class="co-kmdi:label">Deptos por Property</div>
+        <div class="co-kmdi:value mt-2" style="font-size: 1.35rem;">
           {{ currentCharges.totalDepartmentsByProperty | number: "1.0-0" }}
         </div>
       </div>
@@ -216,7 +216,7 @@
             </div>
           </div>
           <p-button
-            icon="pi pi-pencil"
+            icon="mdi:pencil"
             size="small"
             severity="secondary"
             [text]="true"
@@ -254,7 +254,7 @@
             </div>
           </div>
           <div class="text-right">
-            <div class="co-kpi-label">Balance mensual</div>
+            <div class="co-kmdi:label">Balance mensual</div>
             <div class="text-xl font-semibold" style="color: var(--co-bad);">
               {{ dashboard()?.kpis?.netBalanceCurrentMonth | currency: "MXN":"symbol":"1.0-0" }}
             </div>

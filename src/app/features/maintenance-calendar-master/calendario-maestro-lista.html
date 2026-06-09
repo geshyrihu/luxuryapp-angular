@@ -34,7 +34,7 @@
             <div class="flex-shrink-0">
               <p-menu #menu [model]="menuItems()" [popup]="true"></p-menu>
               <custom-button-item
-                iconClass="pi pi-bars"
+                iconClass="mdi:menu"
                 (clicked)="onSelectItem(evento, menu, $event)"
               />
             </div>
@@ -64,12 +64,12 @@
               <p-tag
                 [value]="evento.frequency"
                 severity="info"
-                icon="pi pi-clock"
+                icon="mdi:clock-outline"
                 styleClass="text-xs"
               />
               }
             </div>
-            <i class="pi pi-angle-right text-400 flex-shrink-0 mt-1"></i>
+            <app-icon [icon]="'mdi:chevron-right'" class="text-400 flex-shrink-0 mt-1"></app-icon>
           </div>
         </div>
         } @empty {

@@ -51,10 +51,10 @@ export class TaskStatus implements OnInit {
 
   ngOnInit() {
     this.cb_status = [
-      { value: "NotStarted", label: "Abierto",    icon: "pi pi-folder-open" },
-      { value: "InProgress", label: "En Proceso", icon: "pi pi-sync" },
-      { value: "Completed",  label: "Completado", icon: "pi pi-check-circle" },
-      { value: "Reopened",   label: "Reabierto",  icon: "pi pi-refresh" },
+      { value: "NotStarted", label: "Abierto",    icon: "mdi:folder-open" },
+      { value: "InProgress", label: "En Proceso", icon: "mdi:sync" },
+      { value: "Completed",  label: "Completado", icon: "mdi:check-circle" },
+      { value: "Reopened",   label: "Reabierto",  icon: "mdi:refresh" },
     ];
   }
 
@@ -66,12 +66,12 @@ export class TaskStatus implements OnInit {
 
   getIconForStatus(value: string): string {
     const map: Record<string, string> = {
-      NotStarted: "pi pi-folder-open",
-      InProgress: "pi pi-sync",
-      Completed:  "pi pi-check-circle",
-      Reopened:   "pi pi-refresh",
+      NotStarted: "mdi:folder-open",
+      InProgress: "mdi:sync",
+      Completed:  "mdi:check-circle",
+      Reopened:   "mdi:refresh",
     };
-    return map[value] || "pi pi-circle";
+    return map[value] || "mdi:circle";
   }
 
   getSeverityForStatus(value: string): "danger" | "warn" | "success" | "info" {

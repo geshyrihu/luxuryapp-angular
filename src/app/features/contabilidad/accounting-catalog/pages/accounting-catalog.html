@@ -20,7 +20,7 @@
         <div class="flex justify-content-between">
           <primeng-custom-caption [showAdd]="false" [dt]="dt" />
           <custom-button
-            iconClass="pi pi-download"
+            iconClass="mdi:download"
             label="Exportar"
             (clicked)="exportData()"
             severity="success"
@@ -63,7 +63,7 @@
       <ng-template emptymessage>
         <tr>
           <td colspan="2" class="text-center py-4">
-            <i class="pi pi-info-circle mr-2"></i>
+            <app-icon [icon]="'mdi:information'" class="mr-2"></app-icon>
             No hay cuentas para mostrar.
           </td>
         </tr>

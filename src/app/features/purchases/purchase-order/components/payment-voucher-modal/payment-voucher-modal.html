@@ -16,7 +16,7 @@
         <td class="text-center">
           <div class="flex justify-content-center">
             <custom-button
-              iconClass="pi pi-eye"
+              iconClass="mdi:eye-outline"
               [border-round]="true"
               [text]="true"
               (clicked)="viewFile(item.filePath, item.fileName)"
@@ -48,13 +48,13 @@
   <div class="flex justify-content-end mt-3">
     <custom-button
       label="Cerrar"
-      iconClass="pi pi-times"
+      iconClass="mdi:close"
       severity="secondary"
       (clicked)="close()"
     />
     <custom-button
       label="Subir"
-      iconClass="pi pi-upload"
+      iconClass="mdi:upload"
       severity="primary"
       (clicked)="onAdd()"
       [disabled]="!file || submitting()"

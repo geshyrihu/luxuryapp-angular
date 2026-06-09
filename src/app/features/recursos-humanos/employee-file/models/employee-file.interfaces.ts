@@ -122,10 +122,25 @@ export interface EmployeeFileSalaryModDTO {
 export interface EmployeeFileWorkPositionDTO {
   puesto: string;
   departamento: string;
+  managerName: string;
   folio?: string;
   sueldoBase: number;
   turnoTrabajo: string;
   state: string;
+  lunesEntrada?: string;
+  lunesSalida?: string;
+  martesEntrada?: string;
+  martesSalida?: string;
+  miercolesEntrada?: string;
+  miercolesSalida?: string;
+  juevesEntrada?: string;
+  juevesSalida?: string;
+  viernesEntrada?: string;
+  viernesSalida?: string;
+  sabadoEntrada?: string;
+  sabadoSalida?: string;
+  domingoEntrada?: string;
+  domingoSalida?: string;
   salaryModifications: EmployeeFileSalaryModDTO[];
 }
 
@@ -152,7 +167,17 @@ export interface EmployeeFileLeaveDTO {
   paidStatus: string;
 }
 
+export interface EmployeeFileVacationBalanceDTO {
+  year: number;
+  seniorityYears: number;
+  totalDays: number;
+  usedDays: number;
+  pendingDays: number;
+  availableDays: number;
+}
+
 export interface EmployeeFileVacationsLeavesDTO {
+  balance?: EmployeeFileVacationBalanceDTO;
   vacations: EmployeeFileVacationDTO[];
   leaves: EmployeeFileLeaveDTO[];
 }
@@ -170,6 +195,7 @@ export interface EmployeeFileIncidentDTO {
   id: string;
   incidentTypeName: string;
   category: string;
+  description: string;
   severityLevel: string;
   investigationStatus: string;
   incidentDateTime: string;

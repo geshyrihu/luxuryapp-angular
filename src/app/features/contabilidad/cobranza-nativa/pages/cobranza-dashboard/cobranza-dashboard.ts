@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule, DecimalPipe } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
@@ -37,7 +38,7 @@ export interface TendenciaMensualDTO {
 
 @Component({
   selector: "app-cobranza-dashboard",
-  imports: [CommonModule, DecimalPipe, CustomButton],
+  imports: [CommonModule, DecimalPipe, CustomButton, AppIcon],
   templateUrl: "./cobranza-dashboard.html",
 })
 export default class CobranzaDashboard {

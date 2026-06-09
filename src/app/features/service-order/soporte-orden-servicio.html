@@ -39,12 +39,11 @@
         </p>
         <p class="m-0 font-size-11">
           Tipo de servicio:
-          <i
-            class="icon icon-pi-thumbtack"
+          <app-icon [icon]="'mdi:thumbtack'" class="icon icon-"
             [class.text-success]="item.tipoServicio == 'Preventivo'"
             [class.text-danger]="item.tipoServicio == 'Correctivo'"
             [class.txt-primary]="item.tipoServicio == 'Predictivo'"
-          ></i>
+          ></app-icon>
           {{ item.tipoServicio }}, {{ item.recurrencia }}
         </p>
       </div>
@@ -122,16 +121,16 @@
             <div>
               <p class="m-0">
                 @if (item.cumplimientoActividades) {
-                <i class="text-success mr-1 icon icon-pi-check"></i>
+                <app-icon [icon]="'mdi:check'" class="text-success mr-1 icon icon-"></app-icon>
                 } @if (!item.cumplimientoActividades) {
-                <i class="text-danger mr-1 icon icon-pi-times"></i>
+                <app-icon [icon]="'mdi:close'" class="text-danger mr-1 icon icon-"></app-icon>
                 } Se cumplio con las actividades correspondientes a la orden
               </p>
               <p>
                 @if (item.equiposOperando) {
-                <i class="text-success mr-1 icon icon-pi-check"></i>
+                <app-icon [icon]="'mdi:check'" class="text-success mr-1 icon icon-"></app-icon>
                 } @if (!item.equiposOperando) {
-                <i class="text-danger mr-1 icon icon-pi-times"></i>
+                <app-icon [icon]="'mdi:close'" class="text-danger mr-1 icon icon-"></app-icon>
                 } Equipos/Areas operando sin ningun inconveniente
               </p>
             </div>
@@ -140,16 +139,16 @@
             <div>
               <p class="m-0">
                 @if (item.ocacionoDanos) {
-                <i class="text-success mr-1 icon icon-pi-check"></i>
+                <app-icon [icon]="'mdi:check'" class="text-success mr-1 icon icon-"></app-icon>
                 } @if (!item.ocacionoDanos) {
-                <i class="text-danger mr-1 icon icon-pi-times"></i>
+                <app-icon [icon]="'mdi:close'" class="text-danger mr-1 icon icon-"></app-icon>
                 } Afectación en el Area donde se realizo el trabajo
               </p>
               <p class="m-0">
                 @if (item.calidadTrabajos) {
-                <i class="text-success mr-1 icon icon-pi-check"></i>
+                <app-icon [icon]="'mdi:check'" class="text-success mr-1 icon icon-"></app-icon>
                 } @if (!item.calidadTrabajos) {
-                <i class="text-danger mr-1 icon icon-pi-times"></i>
+                <app-icon [icon]="'mdi:close'" class="text-danger mr-1 icon icon-"></app-icon>
                 } Se cumplio con la calidad de los trabajos realizados
               </p>
             </div>

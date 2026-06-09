@@ -3,7 +3,7 @@
     <!-- Header -->
     <div class="flex align-items-center mb-5">
       <p-button
-        icon="pi pi-arrow-left"
+        icon="mdi:arrow-left"
         [text]="true"
         severity="secondary"
         (onClick)="onBack()"
@@ -31,7 +31,7 @@
           >
             <ng-template pTemplate="header">
               <div class="flex align-items-center gap-2 px-2 text-blue-900">
-                <i class="pi pi-pencil"></i>
+                <app-icon [icon]="'mdi:pencil'"></app-icon>
                 <span class="font-bold">La "Plantilla"</span>
               </div>
             </ng-template>
@@ -50,7 +50,7 @@
           >
             <ng-template pTemplate="header">
               <div class="flex align-items-center gap-2 px-2 text-green-900">
-                <i class="pi pi-file-pdf"></i>
+                <app-icon [icon]="'mdi:file-pdf-box'"></app-icon>
                 <span class="font-bold">La "Instancia"</span>
               </div>
             </ng-template>
@@ -78,7 +78,7 @@
 
           <p-card styleClass="mb-3 bg-gray-50 shadow-none border-1 border-300">
             <div class="flex align-items-start">
-              <i class="pi pi-sitemap text-3xl text-primary mr-3 mt-1"></i>
+              <app-icon [icon]="'mdi:sitemap'" class="text-3xl text-primary mr-3 mt-1"></app-icon>
               <div>
                 <h4 class="m-0 mb-2 text-lg text-900">
                   Diagramas de Flujo (Draw.io)
@@ -95,7 +95,7 @@
 
           <p-card styleClass="mb-3 bg-gray-50 shadow-none border-1 border-300">
             <div class="flex align-items-start">
-              <i class="pi pi-table text-3xl text-orange-500 mr-3 mt-1"></i>
+              <app-icon [icon]="'mdi:table'" class="text-3xl text-orange-500 mr-3 mt-1"></app-icon>
               <div>
                 <h4 class="m-0 mb-2 text-lg text-900">Matriz RACI</h4>
                 <p class="m-0 text-700 line-height-3">
@@ -109,7 +109,7 @@
 
           <p-card styleClass="mb-0 bg-gray-50 shadow-none border-1 border-300">
             <div class="flex align-items-start">
-              <i class="pi pi-paperclip text-3xl text-teal-500 mr-3 mt-1"></i>
+              <app-icon [icon]="'mdi:paperclip'" class="text-3xl text-teal-500 mr-3 mt-1"></app-icon>
               <div>
                 <h4 class="m-0 mb-2 text-lg text-900">
                   Anexos y Archivos Auxiliares
@@ -200,8 +200,8 @@
                   severity="success"
                   [rounded]="true"
                   styleClass="w-2rem h-2rem text-lg"
-                  ><i class="pi pi-check font-bold"></i
-                ></p-tag>
+                  ><app-icon [icon]="'mdi:check'" class="font-bold"></app-icon>
+                </p-tag>
               </div>
               <div>
                 <h4 class="m-0 mb-2 text-lg text-green-700">Subir PDF Final</h4>
@@ -286,7 +286,7 @@
       <div class="mt-4 flex justify-content-end">
         <p-button
           label="Ver Estándar Documental Completo"
-          icon="pi pi-external-link"
+          icon="mdi:external-link"
           severity="help"
           [text]="true"
           routerLink="/settings/ui-catalog"

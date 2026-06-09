@@ -1,41 +1,29 @@
-<div class="grid gap-4">
-  <div class="col-12 sm:col-6">
-    @if (mostrarLabelDesde()) {
-    <label>Desde</label>
-    }
-    <input
-      pInputText
-      type="text"
-      monthSelectorType="dropdown"
-      mwlFlatpickr
-      [locale]="localeSpanish"
-      [altInput]="true"
-      [convertModelValue]="true"
-      [(ngModel)]="fechaInicioDate"
-      (change)="onSendDateRange($event.target['defaultValue'], fechaFinalDate)"
-    />
-  </div>
-  <div class="col-12 sm:col-6">
-    @if (mostrarLabelHasta()) {
-    <label>Hasta</label>
-    }
-    <input
-      pInputText
-      type="text"
-      monthSelectorType="dropdown"
-      mwlFlatpickr
-      [locale]="localeSpanish"
-      [altInput]="true"
-      [convertModelValue]="true"
-      [(ngModel)]="fechaFinalDate"
-      (change)="onSendDateRange(fechaInicioDate, $event.target['defaultValue'])"
-    />
-  </div>
+<div class="flex align-items-center gap-2">
+  @if (mostrarLabelDesde()) {
+  <label class="font-semibold white-space-nowrap">Rango</label>
+  }
+  <input
+    pInputText
+    type="text"
+    monthSelectorType="dropdown"
+    mwlFlatpickr
+    [locale]="localeSpanish"
+    [altInput]="true"
+    [convertModelValue]="true"
+    [(ngModel)]="fechaInicioDate"
+    (change)="onSendDateRange($event.target['defaultValue'], fechaFinalDate)"
+  />
+  <input
+    pInputText
+    type="text"
+    monthSelectorType="dropdown"
+    mwlFlatpickr
+    [locale]="localeSpanish"
+    [altInput]="true"
+    [convertModelValue]="true"
+    [(ngModel)]="fechaFinalDate"
+    (change)="onSendDateRange(fechaInicioDate, $event.target['defaultValue'])"
+  />
 </div>
-
-
-
-
-
 
 

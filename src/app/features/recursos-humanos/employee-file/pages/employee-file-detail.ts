@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CurrencyPipe, DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -23,7 +24,7 @@ import {
 @Component({
   selector: "app-employee-file-detail",
   templateUrl: "./employee-file-detail.html",
-  imports: [DatePipe, CurrencyPipe, TableModule, TabsModule, CustomButtonItem],
+  imports: [DatePipe, CurrencyPipe, TableModule, TabsModule, CustomButtonItem, AppIcon],
 })
 export class EmployeeFileDetail implements OnInit {
   apiResponseS = inject(ApiResponseService);

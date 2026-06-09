@@ -59,7 +59,7 @@
       >
         <div class="flex align-items-center justify-content-between mb-2">
           <span class="font-bold text-900 text-sm">
-            <i class="pi pi-user mr-2 text-primary"></i>
+            <app-icon [icon]="'mdi:account'" class="mr-2 text-primary"></app-icon>
             {{ follow.applicationUser }}
           </span>
           <div class="flex align-items-center gap-2">
@@ -82,7 +82,7 @@
       class="flex flex-column align-items-center justify-content-center p-5 surface-50 border-round"
     >
       <div class="border-circle surface-200 p-3 mb-3">
-        <i class="pi pi-comments text-3xl text-500"></i>
+        <app-icon [icon]="'mdi:comment-multiple'" class="text-3xl text-500"></app-icon>
       </div>
       <span class="text-700 font-medium">No hay seguimientos registrados</span>
       <span class="text-500 text-sm mt-1">Só el primero en agregar uno.</span>

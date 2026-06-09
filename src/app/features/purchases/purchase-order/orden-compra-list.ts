@@ -44,15 +44,15 @@ const tipoGastoTitles: { [key: number]: string } = {
 };
 
 const tipoGastoIcons: { [key: number]: string } = {
-  [ETipoGasto.Fijo]: "pi pi-briefcase",
-  [ETipoGasto.Variable]: "pi pi-sync",
-  [ETipoGasto.CajaChica]: "pi pi-wallet",
-  [ETipoGasto.Extraordinario]: "pi pi-bolt",
-  [ETipoGasto.Devoluciones]: "pi pi-replay",
-  [ETipoGasto.TarjetaDebito]: "pi pi-credit-card",
-  [ETipoGasto.Proyectos]: "pi pi-folder-open",
-  [ETipoGasto.Nomina]: "pi pi-users",
-  [ETipoGasto.Impuestos]: "pi pi-receipt",
+  [ETipoGasto.Fijo]: "mdi:briefcase",
+  [ETipoGasto.Variable]: "mdi:sync",
+  [ETipoGasto.CajaChica]: "mdi:wallet",
+  [ETipoGasto.Extraordinario]: "mdi:lightning-bolt",
+  [ETipoGasto.Devoluciones]: "mdi:replay",
+  [ETipoGasto.TarjetaDebito]: "mdi:credit-card",
+  [ETipoGasto.Proyectos]: "mdi:folder-open",
+  [ETipoGasto.Nomina]: "mdi:account-group",
+  [ETipoGasto.Impuestos]: "mdi:receipt",
 };
 
 @Component({
@@ -167,7 +167,7 @@ export class OrdenCompraList {
       return {
         id,
         label: tipoGastoTitles[id] || key.replace(/([A-Z])/g, " $1").trim(),
-        iconClass: tipoGastoIcons[id] || "pi pi-tag",
+        iconClass: tipoGastoIcons[id] || "mdi:tag",
       };
     });
 

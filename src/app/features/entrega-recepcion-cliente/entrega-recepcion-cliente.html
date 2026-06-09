@@ -58,9 +58,9 @@ cb_departamento; track item) {
           [class.bg-success]="item.estatus === 1"
         >
           @if (item.estatus === 0) {
-          <i class="icon icon-pi-times"></i>
+          <app-icon [icon]="'mdi:close'" class="icon icon-"></app-icon>
           } @if (item.estatus === 1) {
-          <i class="icon icon-pi-check"></i>
+          <app-icon [icon]="'mdi:check'" class="icon icon-"></app-icon>
           }
         </span>
       </td>
@@ -97,13 +97,13 @@ cb_departamento; track item) {
             />
             @if (item.archivo && item.superviso === "") {
             <ion-button-item
-              iconClass="pi pi-check"
+              iconClass="mdi:check"
               label="Validar"
               (clicked)="onValidarDocument(item.id)"
             />
             } @if (item.archivo && item.superviso !== "") {
             <ion-button-item
-              iconClass="pi pi-arrow-left"
+              iconClass="mdi:arrow-left"
               label="Revocar"
               (clicked)="onInvalidarDocument(item.id)"
             />

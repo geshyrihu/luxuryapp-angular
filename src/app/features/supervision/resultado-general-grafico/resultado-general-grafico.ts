@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { Component, inject, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
@@ -6,7 +7,7 @@ import { ResultadoGeneralService } from "src/app/core/services/resultado-general
 @Component({
   selector: "app-grafico-resultado-general",
   templateUrl: "./resultado-general-grafico.html",
-  imports: [FormsModule, CardModule],
+  imports: [FormsModule, CardModule, AppIcon],
 })
 export class ResultadoGeneralGrafico implements OnInit {
   private resultadoGeneralService = inject(ResultadoGeneralService);

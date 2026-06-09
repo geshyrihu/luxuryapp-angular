@@ -20,7 +20,7 @@
           class="flex-grow-1"
         />
         <custom-button
-          iconClass="pi pi-upload"
+          iconClass="mdi:upload"
           label="Importar Saldos Iniciales"
           severity="warn"
           size="small"
@@ -62,10 +62,7 @@
         </td>
         <td class="text-center">
           @if (item.generatedAutomatically) {
-          <i
-            class="pi pi-bolt text-purple-600"
-            title="Generado por sistema"
-          ></i>
+          <app-icon [icon]="'mdi:lightning-bolt'" class="text-purple-600" title="Generado por sistema"></app-icon>
           }
         </td>
         <td class="text-center">

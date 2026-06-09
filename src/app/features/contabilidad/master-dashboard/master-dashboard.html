@@ -2,7 +2,7 @@
 <div class="mb-6">
   <div class="flex align-items-center gap-3 mb-2">
     <div class="flex align-items-center justify-content-center bg-primary-50 border-round-xl" style="width: 56px; height: 56px">
-      <i class="pi pi-wallet text-3xl text-primary-600"></i>
+      <app-icon [icon]="'mdi:wallet'" class="text-3xl text-primary-600"></app-icon>
     </div>
     <div>
       <h1 class="text-3xl font-bold text-900 m-0">Contabilidad</h1>
@@ -17,7 +17,7 @@
 @for (group of getVisibleGroups(); track group.label) {
   <!-- Título del grupo -->
   <div class="flex align-items-center gap-2 mb-4 mt-6">
-    <i [class]="group.icon + ' text-xl text-primary-600'"></i>
+    <app-icon [icon]="group.icon" class="text-xl text-primary-600"></app-icon>
     <h2 class="text-lg font-bold text-900 m-0 uppercase">
       {{ group.label }}
     </h2>
@@ -41,9 +41,9 @@
                 style="width: 48px; height: 48px"
                 [style.backgroundColor]="module.bgColor"
               >
-                <i [class]="module.icon" [style.color]="module.color"></i>
+                <app-icon [icon]="module.icon" [style.color]="module.color"></app-icon>
               </div>
-              <i class="pi pi-arrow-up-right text-400"></i>
+              <app-icon [icon]="'mdi:arrow-up-right'" class="text-400"></app-icon>
             </div>
 
             <!-- Título y descripción -->

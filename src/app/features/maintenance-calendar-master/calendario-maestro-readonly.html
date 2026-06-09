@@ -31,10 +31,10 @@
             </div>
             }
             @if (evento.frequency) {
-            <p-tag [value]="evento.frequency" severity="info" icon="pi pi-clock" styleClass="text-xs" />
+            <p-tag [value]="evento.frequency" severity="info" icon="mdi:clock-outline" styleClass="text-xs" />
             }
           </div>
-          <i class="pi pi-angle-right text-400 flex-shrink-0 mt-1"></i>
+          <app-icon [icon]="'mdi:chevron-right'" class="text-400 flex-shrink-0 mt-1"></app-icon>
         </div>
       </div>
       } @empty {
@@ -45,7 +45,7 @@
   </div>
   } @empty {
   <div class="col-12 text-center text-400 p-5">
-    <i class="pi pi-calendar text-4xl mb-3 block"></i>
+    <app-icon [icon]="'mdi:calendar'" class="text-4xl mb-3 block"></app-icon>
     <span>Sin datos en el calendario</span>
   </div>
   }

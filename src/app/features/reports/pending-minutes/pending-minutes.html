@@ -33,7 +33,7 @@
             </div>
             <!-- Título del Reporte -->
             <div class="col-12 md:col-4 text-center">
-              <i class="icon icon-pi-times icon-lg text-danger mr-2"></i>
+              <app-icon [icon]="'mdi:close'" class="icon icon- icon-lg text-danger mr-2"></app-icon>
               SOLICITUDES PENDIENTES
             </div>
             <!-- Información de los Administradores -->
@@ -65,7 +65,7 @@
                     style="text-transform: none"
                     style="font-size: 0.9rem"
                   >
-                    <i class="icon icon-pi-at mr-1"></i>{{ admin.phoneNumber }}
+                    <app-icon [icon]="'mdi:at'" class="icon icon- mr-1"></app-icon>{{ admin.phoneNumber }}
                   </p>
                 </div>
               </div>

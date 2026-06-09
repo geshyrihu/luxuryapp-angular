@@ -3,7 +3,7 @@
   <div
     class="border-round border-1 border-blue-200 bg-blue-50 p-3 mb-4 flex align-items-start gap-3 shadow-1"
   >
-    <i class="pi pi-info-circle text-blue-600 text-xl mt-1"></i>
+    <app-icon [icon]="'mdi:information'" class="text-blue-600 text-xl mt-1"></app-icon>
     <div class="flex-1">
       <div class="text-blue-900 font-bold mb-1 uppercase text-xs">
         Guía de registro
@@ -13,7 +13,7 @@
       </p>
       <ul class="mt-2 p-0 list-none text-blue-800 text-sm line-height-3">
         <li class="mb-1 flex align-items-start">
-          <i class="pi pi-check text-blue-500 mr-2 mt-1 text-xs"></i>
+          <app-icon [icon]="'mdi:check'" class="text-blue-500 mr-2 mt-1 text-xs"></app-icon>
           <span>
             <strong>Áreas consistentes:</strong> Usa siempre el mismo nombre
             para un mismo lugar (ej:
@@ -21,7 +21,7 @@
           </span>
         </li>
         <li class="mb-1 flex align-items-start">
-          <i class="pi pi-check text-blue-500 mr-2 mt-1 text-xs"></i>
+          <app-icon [icon]="'mdi:check'" class="text-blue-500 mr-2 mt-1 text-xs"></app-icon>
           <span>
             <strong>Evidencia visual:</strong> Toma las fotos en
             <strong>horizontal</strong>, sin objetos que obstruyan y enfocadas
@@ -154,7 +154,7 @@
   <div class="grid">
     <div class="col-12 mb-2">
       <small class="text-500 italic">
-        <i class="pi pi-camera mr-1"></i>
+        <app-icon [icon]="'mdi:camera'" class="mr-1"></app-icon>
         Recuerda: Fotos horizontales, centradas en el detalle y desde el mismo
         ángulo.
       </small>
@@ -187,7 +187,7 @@
               <div
                 class="flex align-items-center justify-content-center gap-2 p-3 text-color-secondary"
               >
-                <i class="pi pi-spin pi-spinner"></i>
+                <app-icon [icon]="'mdi:spin'"></app-icon>
                 <span class="text-sm">Procesando imagen...</span>
               </div>
               } @else if (!beforeWorkPreview()) {
@@ -197,7 +197,7 @@
               >
                 <p-button
                   label="Seleccionar"
-                  icon="pi pi-plus"
+                  icon="mdi:plus"
                   (onClick)="$event.stopPropagation(); fub.choose()"
                   severity="secondary"
                   size="small"
@@ -220,7 +220,7 @@
                 />
                 <div class="absolute top-0 right-0 m-2">
                   <p-button
-                    icon="pi pi-times"
+                    icon="mdi:close"
                     [rounded]="true"
                     severity="danger"
                     size="small"
@@ -231,7 +231,7 @@
               <div class="flex justify-content-center">
                 <p-button
                   label="Cambiar foto"
-                  icon="pi pi-refresh"
+                  icon="mdi:refresh"
                   [text]="true"
                   size="small"
                   (onClick)="fub.choose()"
@@ -272,7 +272,7 @@
               <div
                 class="flex align-items-center justify-content-center gap-2 p-3 text-color-secondary"
               >
-                <i class="pi pi-spin pi-spinner"></i>
+                <app-icon [icon]="'mdi:spin'"></app-icon>
                 <span class="text-sm">Procesando imagen...</span>
               </div>
               } @else if (!afterWorkPreview()) {
@@ -282,7 +282,7 @@
               >
                 <p-button
                   label="Seleccionar"
-                  icon="pi pi-plus"
+                  icon="mdi:plus"
                   (onClick)="$event.stopPropagation(); fua.choose()"
                   severity="secondary"
                   size="small"
@@ -305,7 +305,7 @@
                 />
                 <div class="absolute top-0 right-0 m-2">
                   <p-button
-                    icon="pi pi-times"
+                    icon="mdi:close"
                     [rounded]="true"
                     severity="danger"
                     size="small"
@@ -316,7 +316,7 @@
               <div class="flex justify-content-center">
                 <p-button
                   label="Cambiar foto"
-                  icon="pi pi-refresh"
+                  icon="mdi:refresh"
                   [text]="true"
                   size="small"
                   (onClick)="fua.choose()"
@@ -333,7 +333,7 @@
     <custom-button
       [variant]="'outlined'"
       label="Seguimientos"
-      iconClass="pi pi-comments"
+      iconClass="mdi:comment-multiple"
       (clicked)="openFollowUp()"
     />
     <custom-button-save

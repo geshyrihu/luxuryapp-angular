@@ -180,7 +180,7 @@
                   class="text-primary hover:underline text-sm overflow-hidden text-overflow-ellipsis"
                   style="max-width: 200px"
                 >
-                  <app-icon icon="mdi:file-document-outline" class="mr-2" /> {{ item.fileName }}
+                  <app-icon [icon]="'mdi:file-document-outline'" class="mr-2" /> {{ item.fileName }}
                 </a>
 
                 <custom-button-delete
@@ -252,11 +252,11 @@
                   class="custom-list-item flex align-items-center"
                   [class.selected-item-green]="form.controls.targetedCustomerIds.value.includes(customer.value)"
                 >
-                  <app-icon icon="mdi:office-building" class="mr-2 text-500" />
+                  <app-icon [icon]="'mdi:office-building'" class="mr-2 text-500" />
                   <span class="flex-1">{{ customer.label }}</span>
                   @if(form.controls.targetedCustomerIds.value.includes(customer.value))
                   {
-                  <app-icon icon="mdi:check" class="text-green-700" />
+                  <app-icon [icon]="'mdi:check'" class="text-green-700" />
                   }
                 </div>
               </ng-template>
@@ -286,11 +286,11 @@
                   class="custom-list-item flex align-items-center"
                   [class.selected-item-green]="form.controls.recipientRoleIds.value.includes(role.value)"
                 >
-                  <app-icon icon="mdi:card-account-details" class="mr-2 text-500" />
+                  <app-icon [icon]="'mdi:card-account-details'" class="mr-2 text-500" />
                   <span class="flex-1">{{ role.label }}</span>
                   @if(form.controls.recipientRoleIds.value.includes(role.value))
                   {
-                  <app-icon icon="mdi:check" class="text-green-700" />
+                  <app-icon [icon]="'mdi:check'" class="text-green-700" />
                   }
                 </div>
               </ng-template>

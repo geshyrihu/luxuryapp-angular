@@ -22,7 +22,7 @@
   >
     <span>{{ account.codigoCuenta }} - {{ account.descripcionCuenta }}</span>
     @if (isSelected(account.codigoCuenta)) {
-    <i class="pi pi-check text-primary"></i>
+    <app-icon [icon]="'mdi:check'" class="text-primary"></app-icon>
     }
   </div>
   }
@@ -34,7 +34,7 @@
     size="sm"
     (clicked)="submitSelectedAccounts()"
     [disabled]="selectedAccounts().length === 0"
-    iconClass="pi pi-plus"
+    iconClass="mdi:plus"
     label="Añadir Seleccionadas ({{selectedAccounts().length}})"
   />
 </div>

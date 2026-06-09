@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { DatePipe } from "@angular/common";
 import { HttpParams } from "@angular/common/http";
 import { Component, effect, inject, signal } from "@angular/core";
@@ -35,7 +36,7 @@ import { FinancialAuditLogDTO } from "../../models/financial-audit.dto";
     ReactiveFormsModule,
     CustomInputSelectSignal,
     CustomInputDateSignal,
-  ],
+   AppIcon],
   templateUrl: "./financial-audit-log.html",
 })
 export default class FinancialAuditLog {

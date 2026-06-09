@@ -7,7 +7,7 @@
 >
   <ng-template pTemplate="header">
     <div class="flex align-items-center gap-2">
-      <i class="pi pi-sparkles text-primary text-2xl font-bold"></i>
+      <app-icon [icon]="'mdi:sparkles'" class="text-primary text-2xl font-bold"></app-icon>
       <div class="flex flex-column">
         <span class="font-bold text-xl">Auditor Inteligente</span>
         <span class="text-xs text-500"
@@ -35,11 +35,11 @@
                 <div class="flex align-items-center justify-content-between gap-2 mb-2">
                   <i
                     class="pi"
-                    [ngClass]="msg.role === 'user' ? 'pi-user' : 'pi-sparkles'"
+                    [ngClass]="msg.role === 'user' ? 'mdi:account' : 'mdi:sparkles'"
                   ></i>
                   <p-button
                     *ngIf="msg.role === 'assistant'"
-                    icon="pi pi-volume-up"
+                    icon="mdi:volume-high"
                     size="small"
                     styleClass="p-button-text p-button-sm"
                     (onClick)="replayMessage(msg)"
@@ -77,7 +77,7 @@
               <div
                 class="p-3 surface-100 border-round-xl border-1 border-primary flex align-items-center gap-2"
               >
-                <i class="pi pi-volume-up text-primary"></i>
+                <app-icon [icon]="'mdi:volume-high'" class="text-primary"></app-icon>
                 <span class="text-sm">Reproduciendo respuesta con ElevenLabs...</span>
               </div>
             </div>
@@ -98,7 +98,7 @@
                 [label]="q"
                 size="small"
                 styleClass="p-button-outlined p-button-secondary text-xs justify-content-start w-full"
-                icon="pi pi-question-circle"
+                icon="mdi:help-circle"
               >
               </p-button>
             </div>
@@ -110,7 +110,7 @@
             </div>
             <div class="flex flex-column gap-2">
               <p-button
-                icon="pi pi-volume-up"
+                icon="mdi:volume-high"
                 label="Releer última respuesta"
                 size="small"
                 styleClass="p-button-text p-button-sm justify-content-start"
@@ -118,7 +118,7 @@
                 (onClick)="replayMessage(messages()[messages().length - 1])"
               />
               <p-button
-                icon="pi pi-stop"
+                icon="mdi:stop"
                 label="Detener audio"
                 size="small"
                 styleClass="p-button-text p-button-sm justify-content-start"
@@ -143,7 +143,7 @@
             class="border-round-left-3xl pl-4"
           />
           <p-button
-            icon="pi pi-send"
+            icon="mdi:send"
             (onClick)="sendQuery()"
             [disabled]="loading() || !currentQuery()"
             styleClass="p-button-primary border-round-right-3xl px-4"

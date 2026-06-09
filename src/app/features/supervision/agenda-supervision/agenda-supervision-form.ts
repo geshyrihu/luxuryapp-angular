@@ -16,7 +16,6 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
-import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DateService } from "src/app/core/services/date.service";
 
 interface IAgendaSupervisionForm {
@@ -48,7 +47,6 @@ export class AgendaSupervisionForm implements OnInit {
   private config = inject(DynamicDialogConfig);
   private ref = inject(DynamicDialogRef);
   private dateS = inject(DateService);
-  private customToastService = inject(CustomToastService);
   submitting = signal(false);
 
   id: string = "";
@@ -74,7 +72,7 @@ export class AgendaSupervisionForm implements OnInit {
 
   onLoadSelectItem() {
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>(`customers`)
+      .onGetSelectItem<ISelectItem[]>(`customers-active`)
       .then((response: any) => {
         this.cb_customer.set(response);
       });

@@ -67,12 +67,12 @@
           <custom-button-item
             (clicked)="onDetail(item.id)"
             label="Detalle"
-            iconClass="pi pi-receipt "
+            [iconClass]="'mdi:receipt'"
           />
           <custom-button-item
             (clicked)="onDownloadIndividual(item.id, item.employeeName)"
             label="Descargar"
-            iconClass="pi pi-upload"
+            iconClass="mdi:upload"
             iconClass="icon icon-pi-download"
           />
           <custom-button-delete (confirmed)="onDelete(item.id)" />

@@ -11,7 +11,7 @@
     </div>
     <custom-button
       label="Guardar Cambios"
-      iconClass="pi pi-save"
+      iconClass="mdi:content-save"
       severity="primary"
       [disabled]="saving() || !hasPendingChanges()"
       [loading]="saving()"
@@ -21,7 +21,7 @@
 
   @if (loading()) {
   <div class="flex justify-content-center p-5">
-    <i class="pi pi-spin pi-spinner text-3xl text-primary"></i>
+    <app-icon [icon]="'mdi:spin'" class="text-3xl text-primary"></app-icon>
   </div>
   } @else {
 
@@ -66,7 +66,7 @@
         <th class="w-9rem text-center">Estado</th>
         <th class="w-16rem">
           <div class="flex align-items-center gap-1">
-            <i class="pi pi-pencil text-xs text-500"></i>
+            <app-icon [icon]="'mdi:pencil'" class="text-xs text-500"></app-icon>
             Monto ($) — editable
           </div>
         </th>

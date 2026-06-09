@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
@@ -50,7 +51,7 @@ import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
     IonItem,
     IonLabel,
     IonIcon,
-  ],
+   AppIcon],
 })
 export class RecepcionPipasAguaList {
   apiResponseS = inject(ApiResponseService);

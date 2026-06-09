@@ -29,7 +29,7 @@
         @if (id && id !== "" && id !== "0") {
         <custom-button
           [showLabelOnDesktop]="true"
-          iconClass="pi pi-whatsapp"
+          iconClass="mdi:whatsapp"
           label="Compartir WA"
           (clicked)="onSendWhatsApp()"
           severity="success"
@@ -39,7 +39,7 @@
         />
         <custom-button
           [showLabelOnDesktop]="true"
-          iconClass="pi pi-envelope"
+          iconClass="mdi:email-outline"
           label="Enviar Correo"
           (clicked)="onSendEmail()"
           severity="info"
@@ -53,7 +53,7 @@
         >
           <custom-button
             [showLabelOnDesktop]="true"
-            iconClass="pi pi-file-pdf"
+            iconClass="mdi:file-pdf-box"
             label="Ver PDF"
             severity="danger"
             variant="outlined"
@@ -62,7 +62,7 @@
         </a>
         <custom-button
           [showLabelOnDesktop]="true"
-          iconClass="pi pi-table"
+          iconClass="mdi:table"
           label="Cuadro Comparativo"
           (clicked)="router.navigate(['/purchases/cuadro-comparativo', id])"
           severity="info"
@@ -124,7 +124,10 @@
   <!-- SECCION DE PRODUCTOS -->
   <div class="flex align-items-center justify-content-between mb-3">
     <div class="flex align-items-center">
-      <i class="pi pi-shopping-cart text-xl text-primary mr-2"></i>
+      <app-icon
+        [icon]="'mdi:cart'"
+        class="text-xl text-primary mr-2"
+      ></app-icon>
       <h4 class="m-0 font-bold text-800 mr-2">Productos Solicitados</h4>
       <p-badge
         [value]="SolicitudCompraDetalle.length.toString()"
@@ -156,7 +159,7 @@
         >Órdenes de Compra Relacionadas:</span
       >
       <custom-button
-        iconClass="pi pi-link"
+        iconClass="mdi:link"
         label="Actualizar Referencias"
         (clicked)="onManageLinks()"
         severity="warn"

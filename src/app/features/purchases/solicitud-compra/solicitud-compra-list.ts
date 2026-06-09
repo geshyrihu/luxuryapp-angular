@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
@@ -8,6 +9,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { Subscription } from "rxjs";
+import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
 import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
@@ -39,6 +41,7 @@ import { PurchaseLinkManager } from "../purchase-link-manager/purchase-link-mana
     CommonModule,
     TableModule,
     TagModule,
+    TooltipModule,
     CustomButton,
     CustomButtonEdit,
     CustomButtonDelete,
@@ -51,7 +54,7 @@ import { PurchaseLinkManager } from "../purchase-link-manager/purchase-link-mana
     IonItem,
     IonLabel,
     IonIcon,
-  ],
+   AppIcon],
 })
 export class SolicitudCompraList {
   apiResponseS = inject(ApiResponseService);
@@ -81,6 +84,7 @@ export class SolicitudCompraList {
   statusCompra = signal<number>(
     this.solicitudCompraService.onGetStatusFiltro(),
   );
+  selectedSolicitudIds = signal<string[]>([]);
 
   constructor() {
     addIcons({ cartOutline });
@@ -96,7 +100,14 @@ export class SolicitudCompraList {
         `solicitudcompra/list/${this.customerIdS.customerId()}/${this.solicitudCompraService.onGetStatusFiltro()}`,
       )
       .then((result: any) => {
-        this.data.set(result);
+        const normalized = Array.from(result || []);
+        this.data.set(normalized);
+        this.selectedSolicitudIds.set(
+          normalized
+            .filter((item: any) => item.selectedForPresentation)
+            .sort((a: any, b: any) => a.sortOrder - b.sortOrder)
+            .map((item: any) => item.id),
+        );
       });
   }
 
@@ -116,8 +127,113 @@ export class SolicitudCompraList {
 
   onSelectStatus(status: any) {
     this.solicitudCompraService.onSetStatusFiltro(status);
+    this.onLoadData();
+  }
+
+  isPendingView(): boolean {
+    return this.statusCompra() === 2;
+  }
+
+  isSelected(id: string): boolean {
+    return this.selectedSolicitudIds().includes(id);
+  }
+
+  async onToggleSelection(id: string, checked: boolean) {
+    const result = await this.apiResponseS.onPut(
+      `SolicitudCompra/Presentation/${id}/Selection`,
+      { selectedForPresentation: checked },
+      true,
+      true,
+    );
+
+    if (!result) return;
+
+    this.data.update((prev) =>
+      prev.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              selectedForPresentation: checked,
+              sortOrder:
+                typeof (result as any).sortOrder === "number"
+                  ? (result as any).sortOrder
+                  : item.sortOrder,
+            }
+          : item,
+      ),
+    );
+
+    this.selectedSolicitudIds.set(
+      this.data()
+        .filter((item) => item.selectedForPresentation)
+        .sort((a, b) => a.sortOrder - b.sortOrder)
+        .map((item) => item.id),
+    );
+  }
+
+  async onToggleAllVisible(checked: boolean) {
+    if (!this.isPendingView()) {
+      this.selectedSolicitudIds.set([]);
+      return;
+    }
+
+    const visibleItems = this.data().filter(
+      (item) => item.selectedForPresentation !== checked,
+    );
+
+    if (visibleItems.length === 0) return;
+
+    for (const item of visibleItems) {
+      await this.apiResponseS.onPut(
+        `SolicitudCompra/Presentation/${item.id}/Selection`,
+        { selectedForPresentation: checked },
+        false,
+        false,
+      );
+    }
 
     this.onLoadData();
+  }
+
+  areAllVisibleSelected(): boolean {
+    return this.isPendingView() && this.data().length > 0
+      ? this.data().every((item) => this.selectedSolicitudIds().includes(item.id))
+      : false;
+  }
+
+  onPresentationMode() {
+    if (this.selectedSolicitudIds().length === 0) return;
+
+    this.router.navigate(["/purchases/solicitud-compra-presentacion"]);
+  }
+
+  async onRowReorder(event: any) {
+    const reordered = [...this.data()];
+    const orderedIds = reordered.map((item: any) => item.id);
+
+    if (orderedIds.length === 0) {
+      return;
+    }
+
+    const result = await this.apiResponseS.onPut(
+      "SolicitudCompra/Presentation/Order",
+      { solicitudCompraIds: orderedIds },
+      true,
+      true,
+    );
+
+    if (!result) {
+      this.onLoadData();
+      return;
+    }
+
+    this.data.update((prev) => prev.map((item, index) => ({ ...item, sortOrder: index })));
+    this.selectedSolicitudIds.set(
+      this.data()
+        .filter((item) => item.selectedForPresentation)
+        .sort((a, b) => a.sortOrder - b.sortOrder)
+        .map((item) => item.id),
+    );
   }
   onCuadroComparativo(id: string) {
     this.router.navigateByUrl(`/purchases/cuadro-comparativo/${id}`);

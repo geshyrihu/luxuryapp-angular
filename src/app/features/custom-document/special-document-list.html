@@ -35,7 +35,7 @@
         <tr [pReorderableRow]="index">
           <td>
             <div>
-              <span class="icon icon-pi-bars" pReorderableRowHandle></span>
+              <span class="icon icon-mdi:menu" pReorderableRowHandle></span>
             </div>
           </td>
           <td class="text-center">{{ item.folio }}</td>
@@ -68,10 +68,10 @@
             <h2 class="font-bold m-0 text-base text-wrap">{{ item.name }}</h2>
           </div>
           <p class="text-sm text-500 m-0">
-            <i class="pi pi-hashtag mr-1 text-xs"></i> Folio: {{ item.folio }}
+            <app-icon [icon]="'mdi:pound'" class="mr-1 text-xs"></app-icon> Folio: {{ item.folio }}
           </p>
           <p class="text-sm text-500 m-0">
-            <i class="pi pi-calendar mr-1 text-xs"></i> Fecha: {{ item.createAt
+            <app-icon [icon]="'mdi:calendar'" class="mr-1 text-xs"></app-icon> Fecha: {{ item.createAt
             }}
           </p>
         </ion-label>

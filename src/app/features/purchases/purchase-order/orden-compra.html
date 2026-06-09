@@ -30,7 +30,7 @@
     @if (oc.folioSolicitudCompra && !oc.solicitudCompraId) {
     <p-message
       severity="warn"
-      icon="pi pi-exclamation-triangle"
+      icon="mdi:alert"
       styleClass="mt-2 p-0 w-full"
     >
       <div class="flex align-items-center">
@@ -107,7 +107,7 @@
 <div class="flex justify-content-end mb-2">
   <custom-button
     label="Administrar Facturas"
-    iconClass="pi pi-cog"
+    iconClass="mdi:cog"
     severity="secondary"
     size="small"
     (clicked)="onManageInvoices()"
@@ -152,13 +152,13 @@
         </div>
       </ng-template>
       <ng-template #header>
-        <tr>
-          <th class="table-col-50">CUENTA</th>
-          <th class="table-col-15">PAGOS X REALIZAR</th>
-          <th class="table-col-15">DISPONIBLE</th>
-          <th class="table-col-10">GASTO</th>
+        <tr class="text-white">
+          <th class="table-col-50 text-white">CUENTA</th>
+          <th class="table-col-15 text-white">PAGOS X REALIZAR</th>
+          <th class="table-col-15 text-white">DISPONIBLE</th>
+          <th class="table-col-10 text-white">GASTO</th>
           @if (canEditBudget()) {
-          <th class="table-col-10"></th>
+          <th class="table-col-10 text-white"></th>
           }
         </tr>
       </ng-template>
@@ -203,7 +203,7 @@
       <div class="flex flex-column">
         @if (solicitudCompraId() > 0) {
         <custom-button-item
-          iconClass="pi pi-dollar"
+          iconClass="mdi:dollar"
           label="Cuadro Comparativo"
           [routerLink]="['//purchases/cuadro-comparativo/', solicitudCompraId()]"
           variant="text"
@@ -212,7 +212,7 @@
         />
         } @if (isAuthorized()) {
         <custom-button-item
-          iconClass="pi pi-shopping-cart"
+          iconClass="mdi:cart"
           label="Orden de Compra"
           (click)="onDownloadOrdenCompraPdf()"
           variant="text"
@@ -221,7 +221,7 @@
         />
 
         <custom-button-item
-          iconClass="pi pi-wallet"
+          iconClass="mdi:wallet"
           label="Solicitud de Pago"
           (click)="onDownloadSolicitudPagoPdf()"
           variant="text"
@@ -256,13 +256,13 @@
     <tr>
       <th class="table-col-2">Nó</th>
       <th class="table-col-28">
-        <div class="text-center">
+        <div class="text-center text-white">
           <span>PRODUCTO |</span>
           <!-- REFACTOR: Condición simplificada con `computed signal`. -->
           @if (canAddProducts()) {
-          <span (click)="onModalAgregarproducto()" class="pointer ml-1">
+          <span (click)="onModalAgregarproducto()" class="pointer ml-1 text-white">
             AGREGAR
-            <i class="icon icon-pi-plus ml-1"></i>
+            <app-icon [icon]="'mdi:plus'" class="icon ml-1 text-white"></app-icon>
           </span>
           }
         </div>

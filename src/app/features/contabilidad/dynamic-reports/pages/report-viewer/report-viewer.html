@@ -22,7 +22,7 @@
       </div>
       <custom-button
         label="Ejecutar"
-        iconClass="pi pi-play"
+        iconClass="mdi:play"
         [showLabelOnDesktop]="true"
         [loading]="loading()"
         (clicked)="ejecutar()"
@@ -32,28 +32,28 @@
       <div class="flex gap-2">
         <custom-button
           label="Excel"
-          iconClass="pi pi-file-excel"
+          iconClass="mdi:file-excel"
           severity="success"
           [showLabelOnDesktop]="true"
           (clicked)="exportarExcel()"
         />
         <custom-button
           label="PDF"
-          iconClass="pi pi-file-pdf"
+          iconClass="mdi:file-pdf-box"
           severity="danger"
           [showLabelOnDesktop]="true"
           (clicked)="exportarPdf()"
         />
         <custom-button
           label="Compartir"
-          iconClass="pi pi-link"
+          iconClass="mdi:link"
           severity="secondary"
           [showLabelOnDesktop]="true"
           (clicked)="compartir()"
         />
         <custom-button
           label="Auditor IA"
-          iconClass="pi pi-sparkles"
+          iconClass="mdi:sparkles"
           severity="info"
           [showLabelOnDesktop]="true"
           (clicked)="aiAgent()?.togglePanel()"

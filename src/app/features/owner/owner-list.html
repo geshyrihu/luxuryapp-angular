@@ -21,7 +21,7 @@
       <div class="flex">
         <custom-button
           severity="success"
-          iconClass="pi pi-file-excel"
+          iconClass="mdi:file-excel"
           (clicked)="onExportExcel()"
           label="Exportar"
         />
@@ -80,9 +80,9 @@
       <td>{{ item.email }}</td>
       <td class="no-print">
         @if (item.enviarMails) {
-        <i class="text-success icon icon-pi-check"></i>
+        <app-icon [icon]="'mdi:check'" class="text-success icon icon-"></app-icon>
         } @if (!item.enviarMails) {
-        <i class="text-danger icon icon-pi-times"></i>
+        <app-icon [icon]="'mdi:close'" class="text-danger icon icon-"></app-icon>
         }
       </td>
       @if ( aspRoleS.hasAny([ AspRole.Asistente, AspRole.Administrador,

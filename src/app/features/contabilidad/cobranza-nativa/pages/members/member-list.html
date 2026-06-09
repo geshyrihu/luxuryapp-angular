@@ -36,7 +36,7 @@
         <td colspan="8" class="surface-100 py-2 px-3">
           <div class="flex align-items-center justify-content-between">
             <div class="flex align-items-center gap-2">
-              <i class="pi pi-building text-primary"></i>
+              <app-icon [icon]="'mdi:office-building'" class="text-primary"></app-icon>
               <span class="font-bold text-primary"
                 >{{ item.propertyName }}</span
               >
@@ -46,7 +46,7 @@
             </div>
             <custom-button
               label="Nuevo Miembro"
-              iconClass="pi pi-user-plus"
+              iconClass="mdi:account-plus"
               severity="success"
               size="small"
               (clicked)="onModalForm('', item.propertyId)"
@@ -69,17 +69,14 @@
         </td>
         <td class="text-center">
           @if (item.isFinancialResponsible) {
-          <i
-            class="pi pi-check-circle text-green-600 text-xl"
-            title="Responsable financiero"
-          ></i>
+          <app-icon [icon]="'mdi:check-circle'" class="text-green-600 text-xl" title="Responsable financiero"></app-icon>
           }
         </td>
         <td class="text-center">
           @if (item.receiveNotifications) {
-          <i class="pi pi-bell text-blue-500"></i>
+          <app-icon [icon]="'mdi:bell'" class="text-blue-500"></app-icon>
           } @else {
-          <i class="pi pi-bell-slash text-400"></i>
+          <app-icon [icon]="'mdi:bell-off'" class="text-400"></app-icon>
           }
         </td>
         <td class="text-center text-sm">
@@ -113,7 +110,7 @@
             />
             }
             <custom-button-delete
-              iconClass="pi pi-user-minus"
+              iconClass="mdi:account-minus"
               title="Eliminar usuario del sistema"
               confirmHeader="Eliminar usuario"
               confirmMessage="¿Eliminar permanentemente a {{ item.userName }} del sistema? Esta acción no se puede deshacer."

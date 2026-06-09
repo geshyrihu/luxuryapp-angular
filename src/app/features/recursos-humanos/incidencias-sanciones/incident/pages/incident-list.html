@@ -88,13 +88,13 @@
             @if (item.investigationStatus === 'Reportado' ||
             item.investigationStatus === 'EnInvestigacion') {
             <custom-button-item
-              iconClass="pi pi-check-circle"
+              iconClass="mdi:check-circle"
               label="Resolver"
               (click)="onResolve(item)"
             />
             <custom-button-edit (click)="onEdit(item)" />
             <custom-button-item
-              iconClass="pi pi-times-circle"
+              iconClass="mdi:close-circle"
               label="Cancelar"
               (click)="onCancel(item)"
             />
@@ -102,14 +102,14 @@
 
             <!-- Generar y descargar acta para firma física -->
             <custom-button-download
-              iconClass="pi pi-file-edit"
+              iconClass="mdi:file-edit"
               size="small"
               (clicked)="onGenerateAct(item)"
             />
 
             <!-- Subir acta firmada escaneada -->
             <custom-button-item
-              iconClass="pi pi-upload"
+              iconClass="mdi:upload"
               [label]="item.isActGenerated ? 'Reemplazar Acta' : 'Subir Acta'"
               (click)="onUploadSignedAct(item)"
             />
@@ -117,7 +117,7 @@
             <!-- Ver acta firmada en visor — solo si ya fue subida -->
             @if (item.isActGenerated && item.administrativeActPdfUrl) {
             <custom-button-view-pdf
-              iconClass="pi pi-file-pdf"
+              iconClass="mdi:file-pdf-box"
               [url]="item.administrativeActPdfUrl"
               fileName="Acta Administrativa"
               size="small"

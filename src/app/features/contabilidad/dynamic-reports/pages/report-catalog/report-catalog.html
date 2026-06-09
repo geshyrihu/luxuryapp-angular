@@ -8,7 +8,7 @@
     </div>
     <div class="flex gap-2">
       <custom-button 
-        iconClass="pi pi-book" 
+        iconClass="mdi:book" 
         severity="secondary" 
         ngbTooltip="Ver guía del módulo" 
         routerLink="/contabilidad/reportes/guia" 
@@ -59,7 +59,7 @@
               <td>{{ r.createdAt | date: 'dd/MM/yyyy' }}</td>
               <td>
                 <div class="flex gap-1">
-                  <custom-button (clicked)="ver(r.id)" iconClass="pi pi-eye" ngbTooltip="Ver reporte" />
+                  <custom-button (clicked)="ver(r.id)" iconClass="mdi:eye-outline" ngbTooltip="Ver reporte" />
                   <custom-button-edit (clicked)="editar(r.id)" />
                   <custom-button-delete (clicked)="confirmarEliminar(r.id, r.name)" />
                 </div>
@@ -91,7 +91,7 @@
               <p class="text-sm text-600 m-0">{{ r.description }}</p>
               <span class="text-xs text-500">{{ r.createdAt | date: 'dd/MM/yyyy' }}</span>
               <div class="flex mt-2 justify-content-end gap-1">
-                <custom-button iconClass="pi pi-eye" (clicked)="ver(r.id)" />
+                <custom-button iconClass="mdi:eye-outline" (clicked)="ver(r.id)" />
                 <custom-button-edit (clicked)="editar(r.id)" />
                 <custom-button-delete (clicked)="confirmarEliminar(r.id, r.name)" />
               </div>
@@ -125,7 +125,7 @@
               <td><p-tag [value]="r.visualizationType" severity="success" /></td>
               <td>{{ r.createdBy }}</td>
               <td>
-                <custom-button (clicked)="ver(r.id)" iconClass="pi pi-eye" ngbTooltip="Ver plantilla" />
+                <custom-button (clicked)="ver(r.id)" iconClass="mdi:eye-outline" ngbTooltip="Ver plantilla" />
               </td>
             </tr>
           </ng-template>
@@ -151,7 +151,7 @@
               <p class="text-sm text-600 m-0">{{ r.description }}</p>
               <span class="text-xs text-500">Por: {{ r.createdBy }}</span>
               <div class="flex mt-2 justify-content-end">
-                <custom-button iconClass="pi pi-eye" (clicked)="ver(r.id)" />
+                <custom-button iconClass="mdi:eye-outline" (clicked)="ver(r.id)" />
               </div>
             </div>
           </ng-template>

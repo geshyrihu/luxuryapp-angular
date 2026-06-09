@@ -60,7 +60,7 @@ export class HomeDireccion {
     {
       key: "juntas-comite",
       label: "Juntas con Comite",
-      iconPi: "pi pi-comments",
+      iconPi: "mdi:comment-multiple",
       iconIon: "chatbubbles-outline",
       color: "#0ea5e9",
       metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
@@ -68,7 +68,7 @@ export class HomeDireccion {
     {
       key: "contabilidad",
       label: "Contabilidad",
-      iconPi: "pi pi-calculator",
+      iconPi: "mdi:calculator",
       iconIon: "calculator-outline",
       color: "#22c55e",
       metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
@@ -76,7 +76,7 @@ export class HomeDireccion {
     {
       key: "legal",
       label: "Legal",
-      iconPi: "pi pi-briefcase",
+      iconPi: "mdi:briefcase",
       iconIon: "briefcase-outline",
       color: "#3b82f6",
       metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
@@ -84,7 +84,7 @@ export class HomeDireccion {
     {
       key: "recursos-humanos",
       label: "Recursos Humanos",
-      iconPi: "pi pi-users",
+      iconPi: "mdi:account-group",
       iconIon: "people-outline",
       color: "#f97316",
       metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
@@ -92,7 +92,7 @@ export class HomeDireccion {
     {
       key: "reclutamiento",
       label: "Reclutamiento",
-      iconPi: "pi pi-user-plus",
+      iconPi: "mdi:account-plus",
       iconIon: "person-add-outline",
       color: "#a855f7",
       metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
@@ -100,7 +100,7 @@ export class HomeDireccion {
     {
       key: "operaciones",
       label: "Operaciones",
-      iconPi: "pi pi-cog",
+      iconPi: "mdi:cog",
       iconIon: "settings-outline",
       color: "#ef4444",
       metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
@@ -108,7 +108,7 @@ export class HomeDireccion {
     {
       key: "mantenimiento",
       label: "Mantenimiento",
-      iconPi: "pi pi-wrench",
+      iconPi: "mdi:wrench",
       iconIon: "construct-outline",
       color: "#8b5cf6",
       metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],

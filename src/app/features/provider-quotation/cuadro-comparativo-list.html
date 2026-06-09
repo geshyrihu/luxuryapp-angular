@@ -1,14 +1,35 @@
 @if (solicitudCompra) {
-<div class="grid mb-3">
-  <div class="col-12 md:col-8 mt-5">
-    <h5 class="font-semibold text-lg">Folio de cotizacion {{ folio }}</h5>
-    <p class="mb-1 text-600">{{ solicitudCompra.equipoOInstalacion }}</p>
-    <p class="mb-1 text-600">{{ solicitudCompra.justificacionGasto }}</p>
+<header
+  class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden mb-4 w-full"
+>
+  <div class="bg-primary" style="height: 0.45rem"></div>
+  <div class="surface-100 p-1 md:p-2 text-center">
+    <div class="w-full">
+      <h1 class="text-primary text-3xl md:text-4xl line-height-2 m-0">
+        {{ solicitudCompra.equipoOInstalacion }}
+      </h1>
+      <p class="text-900 font-semibold m-0 mt-2 line-height-3">
+        {{ solicitudCompra.justificacionGasto }}
+      </p>
+    </div>
   </div>
-  <div class="col-12 md:col-4 mt-5">
-    <div class="flex justify-content-end gap-2">
+</header>
+}
+<div
+  class="surface-card border-round-xl border-1 surface-border shadow-1 p-2 mb-4"
+>
+  <div
+    class="flex align-items-center justify-content-between gap-2 flex-wrap md:flex-nowrap"
+  >
+    <!-- Folio alineado a la izquierda -->
+    <p class="text-color-secondary m-0 mt-0">{{ folio }}</p>
+
+    <!-- Contenedor de botones alineados a la derecha (con scroll horizontal en móvil) -->
+    <div
+      class="flex align-items-center justify-content-end gap-2 overflow-x-auto"
+    >
       <custom-button
-        [iconClass]="cleanView ? 'pi pi-eye' : 'pi pi-eye-slash'"
+        [iconClass]="cleanView ? 'mdi:eye-outline' : 'mdi:eye-off'"
         [label]="cleanView ? 'Mostrar vista' : 'Limpiar vista'"
         [showLabelOnDesktop]="false"
         (clicked)="toggleCleanView()"
@@ -20,8 +41,9 @@
       />
       @if (!cleanView && cotizacionProveedorSignal().length > 1) {
       <custom-button
-        iconClass="pi pi-microchip"
+        iconClass="mdi:chip"
         label="AI Auditoria"
+        [showLabelOnDesktop]="false"
         (clicked)="onAnalyzeAI()"
         [disabled]="isAnalyzing"
         severity="help"
@@ -30,8 +52,9 @@
         tooltipPosition="left"
       />
       <custom-button
-        iconClass="pi pi-chart-bar"
+        iconClass="mdi:chart-bar"
         label="Evaluar"
+        [showLabelOnDesktop]="false"
         (clicked)="evaluarPrecioIndependiente = !evaluarPrecioIndependiente"
         [variant]="!evaluarPrecioIndependiente ? 'outlined' : undefined"
         severity="warning"
@@ -39,77 +62,107 @@
         size="small"
         tooltipPosition="left"
       />
-      } @if (!cleanView && cotizacionProveedorSignal().length < 3) {
+      @if (canOptimizeProducts()) {
       <custom-button
-        iconClass="pi pi-plus"
+        [iconClass]="optimizeProducts ? 'mdi:view-list' : 'mdi:table-eye-off'"
+        [label]="optimizeProducts ? 'Ver detalle' : 'Optimizar'"
+        (clicked)="toggleOptimizeProducts()"
+        severity="info"
+        variant="outlined"
+        tooltip="Compactar productos para vista ejecutiva"
         size="small"
+        tooltipPosition="left"
+      />
+      } } @if (!cleanView && cotizacionProveedorSignal().length < 3) {
+      <custom-button
+        iconClass="mdi:plus"
         label="Agregar cotizacion"
         variant="outlined"
         (clicked)="onModalAddProveedor()"
         tooltip="Agregar Cotizacion"
         tooltipPosition="left"
+        size="small"
+      />
+      } @if (!cleanView) {
+      <custom-button
+        iconClass="mdi:wallet-outline"
+        label="Agregar presupuesto"
+        [showLabelOnDesktop]="true"
+        (clicked)="onOpenAddBudgetModal()"
+        severity="contrast"
+        variant="outlined"
+        size="small"
+      />
+      <input
+        type="file"
+        #evidenceInput
+        style="display: none"
+        accept=".jpg,.jpeg,.png"
+        multiple
+        (change)="onEvidenceFilesSelected($event)"
+      />
+      <custom-button
+        iconClass="mdi:image-multiple"
+        label="Seleccionar fotos"
+        [showLabelOnDesktop]="true"
+        (clicked)="evidenceInput.click()"
+        severity="secondary"
+        variant="outlined"
+        [disabled]="evidenciasSignal().length >= 4"
+        size="small"
+      />
+      <custom-button
+        iconClass="mdi:upload"
+        label="Subir fotos"
+        [showLabelOnDesktop]="true"
+        (clicked)="onUploadEvidenceFiles()"
+        [disabled]="selectedEvidenceFiles.length === 0"
+        severity="success"
+        variant="outlined"
+        size="small"
       />
       }
+      <custom-button
+        [iconClass]="isAuthorized() ? 'mdi:close' : (isDenied() ? 'mdi:cancel' : 'mdi:check')"
+        [label]="isAuthorized() ? 'Desautorizar' : (isDenied() ? 'Resolver' : 'Autorizar')"
+        [showLabelOnDesktop]="true"
+        (clicked)="onOpenAutorizarModal()"
+        [severity]="isAuthorized() ? 'danger' : (isDenied() ? 'warning' : 'success')"
+        variant="outlined"
+        size="small"
+      />
     </div>
   </div>
 </div>
-}
-
-<p-divider styleClass="border-t-2 border-gray-900"></p-divider>
-
 <div class="grid mb-4">
   <div class="col-12">
     <div class="surface-card border-round p-3">
-      <div class="flex flex-wrap xl:flex-nowrap align-items-center justify-content-between gap-3">
-        <div class="flex align-items-center gap-2 min-w-0">
-          <span class="font-semibold">Autorizada por</span>
-          <span class="text-600 white-space-nowrap overflow-hidden text-overflow-ellipsis">
-            {{ solicitudCompra?.autorizadaPorDisplay || "Sin autorizacion" }}
-          </span>
-        </div>
-        <div class="flex flex-wrap xl:flex-nowrap align-items-center justify-content-end gap-2">
-          @if (!cleanView) {
-          <input
-            type="file"
-            #evidenceInput
-            style="display: none"
-            accept=".jpg,.jpeg,.png"
-            multiple
-            (change)="onEvidenceFilesSelected($event)"
-          />
-          <custom-button
-            iconClass="pi pi-images"
-            label="Seleccionar fotos"
-            [showLabelOnDesktop]="true"
-            (clicked)="evidenceInput.click()"
-            severity="secondary"
-            variant="outlined"
-            [disabled]="evidenciasSignal().length >= 4"
-          />
-          <custom-button
-            iconClass="pi pi-upload"
-            label="Subir fotos"
-            [showLabelOnDesktop]="true"
-            (clicked)="onUploadEvidenceFiles()"
-            [disabled]="selectedEvidenceFiles.length === 0"
-            severity="success"
-            variant="outlined"
-          />
+      <div
+        class="flex flex-wrap xl:flex-nowrap align-items-center justify-content-between gap-3"
+      >
+        <div class="flex flex-column gap-1 min-w-0">
+          <div class="flex align-items-center gap-2 min-w-0">
+            <span class="font-semibold">Autorizada por</span>
+            <span
+              class="text-600 white-space-nowrap overflow-hidden text-overflow-ellipsis"
+            >
+              {{ solicitudCompra?.autorizadaPorDisplay || "Sin autorizacion" }}
+            </span>
+          </div>
+          <small class="text-600">
+            Estado: {{ solicitudCompra?.estatusDisplay || "Pendiente" }}
+          </small>
+          @if (isDenied() && solicitudCompra?.motivoNoAutorizacion) {
+          <small class="text-red-600">
+            Motivo: {{ solicitudCompra?.motivoNoAutorizacion }}
+          </small>
           }
-          <custom-button
-            [iconClass]="isAuthorized() ? 'pi pi-times' : 'pi pi-check'"
-            [label]="isAuthorized() ? 'Desautorizar' : 'Autorizar'"
-            [showLabelOnDesktop]="true"
-            (clicked)="onOpenAutorizarModal()"
-            [severity]="isAuthorized() ? 'danger' : 'success'"
-            variant="outlined"
-          />
         </div>
       </div>
 
       @if (!cleanView && selectedEvidenceFiles.length > 0) {
       <div class="mt-3">
-        <small class="block font-semibold mb-2">Archivos seleccionados</small>
+        <small class="block font-semibold mb-2">Fotos listas para subir</small>
         <div class="flex flex-wrap gap-2">
           @for (file of selectedEvidenceFiles; track file.name + file.size) {
           <span class="text-sm">{{ file.name }}</span>
@@ -119,42 +172,53 @@
       }
 
       <div class="mt-3">
-        <div
-          style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem;"
-        >
-          @if (evidenciasSignal().length === 0) {
-          <p class="mb-0 text-600">No hay evidencias cargadas para esta solicitud.</p>
-          } @else {
-          @for (evidencia of evidenciasSignal(); track evidencia.id) {
-          <div class="border-1 surface-border border-round p-2 h-full">
-            <p-image
-              [src]="evidencia.fileUrl"
-              [alt]="evidencia.fileName"
-              width="100%"
-              imageClass="border-round"
-              [preview]="true"
-            />
-            <div class="flex justify-content-end align-items-center mt-2">
-              @if (!cleanView) {
-              <custom-button
-                iconClass="pi pi-trash"
-                label="Eliminar"
-                [showLabelOnDesktop]="false"
-                (clicked)="onDeleteEvidence(evidencia.id)"
-                severity="danger"
-                variant="text"
-                tooltip="Eliminar foto"
+        <div class="grid mx-0">
+          @if (getVisualEvidenceCards().length === 0) {
+          <p class="mb-0 text-600 col-12">
+            No hay evidencias cargadas para esta solicitud.
+          </p>
+          } @else { @for (evidencia of getVisualEvidenceCards(); track
+          evidencia.id) {
+          <div class="col-12 md:col-3 px-2">
+            <div
+              class="border-1 surface-border border-round p-2 h-full surface-card"
+            >
+              <p-image
+                [src]="evidencia.src"
+                [alt]="evidencia.alt"
+                styleClass="block w-full"
+                [imageStyle]="{
+                width: '100%',
+                height: '220px',
+                display: 'block',
+                'object-fit': 'cover',
+                'border-radius': '10px'
+              }"
+                [preview]="true"
               />
-              }
+              <div class="flex justify-content-between align-items-center mt-2">
+                <small class="text-600">
+                  {{ evidencia.isPending ? "Pendiente de carga" : "Guardada" }}
+                </small>
+                @if (!cleanView && !evidencia.isPending) {
+                <custom-button
+                  iconClass="mdi:delete"
+                  label="Eliminar"
+                  [showLabelOnDesktop]="false"
+                  (clicked)="onDeleteEvidence(evidencia.id)"
+                  severity="danger"
+                  variant="text"
+                  tooltip="Eliminar foto"
+                />
+                }
+              </div>
             </div>
           </div>
-          }
-          }
+          } }
         </div>
       </div>
     </div>
   </div>
-
 </div>
 
 <div class="block md:hidden p-4 text-center text-gray-500">
@@ -162,8 +226,8 @@
 </div>
 
 <p-table
-  [value]="solicitudCompraDetalleSignal()"
-  styleClass="custom-table hidden md:block text-lg"
+  [value]="getDisplayedSolicitudDetalle()"
+  styleClass="custom-table hidden md:block "
 >
   <ng-template #header>
     <tr>
@@ -183,7 +247,9 @@
   </ng-template>
   <ng-template #body let-item>
     <tr>
-      <td>{{ item.producto | uppercase }}</td>
+      <td [class.font-semibold]="optimizeProducts">
+        {{ item.producto | uppercase }}
+      </td>
       <td>{{ item.cantidad }}</td>
       <td>{{ item.unidadMedida }}</td>
       @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
@@ -197,6 +263,7 @@
     </tr>
   </ng-template>
   <ng-template #footer>
+    @if (!optimizeProducts) {
     <tr>
       <td colspan="3" class="text-right font-bold">TOTAL</td>
       @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
@@ -207,7 +274,7 @@
       </td>
       }
     </tr>
-    @if (evaluarPrecioIndependiente) {
+    } @if (evaluarPrecioIndependiente) {
     <tr>
       <td colspan="3" class="text-right font-bold">
         MEJOR PRECIO POR PROVEEDOR
@@ -309,7 +376,73 @@
   </ng-template>
 </p-table>
 }
-
+<div class="mt-3">
+  <p-table
+    [value]="budgetSignal()"
+    styleClass="custom-table text-sm"
+    responsiveLayout="scroll"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="text-left">CUENTA</th>
+        <th class="text-right">PRE-MEN</th>
+        <th class="text-right">ACUMULADO</th>
+        <th class="text-right">%</th>
+        <th class="text-right">PRE-TOTAL</th>
+        <th class="text-right">RESTANTE</th>
+        <th class="text-right">MONTO A USAR</th>
+        <th class="text-center"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-budget>
+      <tr>
+        <td>
+          <div class="font-semibold">{{ budget.accountNumber }}</div>
+          <div class="text-600">{{ budget.accountName }}</div>
+        </td>
+        <td class="text-right">
+          {{ budget.presupuestoMensual | number : "1.0-0" }}
+        </td>
+        <td class="text-right">
+          {{ (budget.totalGastadoEjecutado + budget.totalGastosPendientes) |
+          number : "1.0-0" }}
+        </td>
+        <td class="text-right">
+          {{ budget.porcentajeGastado | number : "1.0-0" }}%
+        </td>
+        <td class="text-right">
+          {{ budget.presupuestoAnual | number : "1.0-0" }}
+        </td>
+        <td class="text-right">
+          {{ budget.presupuestoRestante | number : "1.0-0" }}
+        </td>
+        <td class="text-right font-semibold">
+          {{ budget.amount | number : "1.0-0" }}
+        </td>
+        <td class="text-center">
+          @if (!cleanView) {
+          <custom-button
+            iconClass="mdi:delete"
+            [showLabelOnDesktop]="false"
+            (clicked)="onDeleteBudget(budget.id)"
+            severity="danger"
+            variant="text"
+            tooltip="Eliminar presupuesto"
+            size="small"
+          />
+          }
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8" class="text-600">
+          No hay presupuesto seleccionado para esta solicitud.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
 <p-dialog
   header="Auditoria de Compras - Analisis IA"
   [(visible)]="showAiModal"
@@ -330,7 +463,7 @@
     <div class="flex justify-content-end pt-3">
       <custom-button
         label="Cerrar Reporte"
-        icon="pi pi-check"
+        icon="mdi:check"
         (clicked)="showAiModal=false"
         size="small"
         severity="secondary"

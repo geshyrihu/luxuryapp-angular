@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -33,7 +34,7 @@ const MONTH_NAMES = [
     FlujoEfectivoClienteComponent,
     AnalisisCobranzaClienteComponent,
     PresupuestoContabilidadClienteComponent,
-  ],
+   AppIcon],
   templateUrl: './contabilidad-cliente-wrapper.html',
 })
 export default class ContabilidadClienteWrapper {

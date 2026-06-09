@@ -19,15 +19,15 @@
     <div class="surface-card border-round-xl border-1 surface-border shadow-1">
       <p-tabs [value]="tabIndex()" (valueChange)="onTabChange($event)">
         <p-tablist>
-          <p-tab [value]="0"><i class="pi pi-balance-scale mr-2"></i>EPF</p-tab>
-          <p-tab [value]="1"><i class="pi pi-list mr-2"></i>E. Resultados</p-tab>
-          <p-tab [value]="2"><i class="pi pi-list mr-2"></i>E. Resultados V2</p-tab>
-          <p-tab [value]="3"><i class="pi pi-plus-circle mr-2"></i>C. Extraordinaria</p-tab>
-          <p-tab [value]="4"><i class="pi pi-percentage mr-2"></i>P vs R</p-tab>
-          <p-tab [value]="5"><i class="pi pi-table mr-2"></i>R. Financiero</p-tab>
-          <p-tab [value]="6"><i class="pi pi-money-bill mr-2"></i>Flujo Efectivo</p-tab>
-          <p-tab [value]="7"><i class="pi pi-users mr-2"></i>Cobranza</p-tab>
-          <p-tab [value]="8"><i class="pi pi-wallet mr-2"></i>Presupuesto</p-tab>
+          <p-tab [value]="0"><app-icon [icon]="'mdi:scale-balance'" class="mr-2"></app-icon>EPF</p-tab>
+          <p-tab [value]="1"><app-icon [icon]="'mdi:format-list-bulleted'" class="mr-2"></app-icon>E. Resultados</p-tab>
+          <p-tab [value]="2"><app-icon [icon]="'mdi:format-list-bulleted'" class="mr-2"></app-icon>E. Resultados V2</p-tab>
+          <p-tab [value]="3"><app-icon [icon]="'mdi:plus-circle'" class="mr-2"></app-icon>C. Extraordinaria</p-tab>
+          <p-tab [value]="4"><app-icon [icon]="'mdi:percent'" class="mr-2"></app-icon>P vs R</p-tab>
+          <p-tab [value]="5"><app-icon [icon]="'mdi:table'" class="mr-2"></app-icon>R. Financiero</p-tab>
+          <p-tab [value]="6"><app-icon [icon]="'mdi:currency-usd'" class="mr-2"></app-icon>Flujo Efectivo</p-tab>
+          <p-tab [value]="7"><app-icon [icon]="'mdi:account-group'" class="mr-2"></app-icon>Cobranza</p-tab>
+          <p-tab [value]="8"><app-icon [icon]="'mdi:wallet'" class="mr-2"></app-icon>Presupuesto</p-tab>
         </p-tablist>
         <p-tabpanels>
           <p-tabpanel [value]="0" class="p-4 pt-5">

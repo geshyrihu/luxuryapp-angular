@@ -86,7 +86,7 @@
             >
               {{ item.open + item.inProgress + item.reopened }}
             </span>
-            <i class="pi pi-inbox text-500"></i>
+            <app-icon [icon]="'mdi:inbox'" class="text-500"></app-icon>
           </div>
         </td>
         <td class="no-print">
@@ -94,14 +94,14 @@
             @if (item.customerId === customerIdS.customerId()) {
             <custom-button-item
               (clicked)="onModalParticipants(item)"
-              iconClass="pi pi-users"
+              iconClass="mdi:account-group"
               label="Integrantes"
               variant="text"
             />
             } @if (hasSuperUsuario()) {
             <custom-button-item
               (clicked)="SendReportPendingTicketGroupAsync(item)"
-              iconClass="pi pi-envelope"
+              iconClass="mdi:email-outline"
               label="Reporte"
               variant="text"
             />
@@ -110,7 +110,7 @@
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             />
             <custom-button
-              [iconClass]="item.active ? 'pi pi-lock' : 'pi pi-lock-open'"
+              [iconClass]="item.active ? 'mdi:lock' : 'mdi:lock-open'"
               (click)="onToggleStatus(item.id)"
               [ngbTooltip]="item.active ? 'Bloquear' : 'Desbloquear'"
               variant="text"

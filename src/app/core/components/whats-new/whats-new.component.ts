@@ -31,10 +31,9 @@ import { FeatureAnnouncementService } from "src/app/core/services/feature-announ
 
         <ul class="list-none p-0 m-0">
           <li class="flex items-start mb-3">
-            <i
-              class="pi pi-check-circle text-green-500 mr-2 mt-1"
+            <app-icon [icon]="'mdi:check-circle'" class="pi text-green-500 mr-2 mt-1"
               style="font-size: 1.2rem"
-            ></i>
+            ></app-icon>
             <div>
               <span class="font-bold text-900">Auditoría IA en Compras 🤖</span>
               <p class="text-600 m-0">
@@ -45,10 +44,9 @@ import { FeatureAnnouncementService } from "src/app/core/services/feature-announ
           </li>
 
           <li class="flex items-start mb-3">
-            <i
-              class="pi pi-check-circle text-green-500 mr-2 mt-1"
+            <app-icon [icon]="'mdi:check-circle'" class="pi text-green-500 mr-2 mt-1"
               style="font-size: 1.2rem"
-            ></i>
+            ></app-icon>
             <div>
               <span class="font-bold text-900"
                 >Listado de Solicitudes Mejorado 📊</span
@@ -61,10 +59,9 @@ import { FeatureAnnouncementService } from "src/app/core/services/feature-announ
           </li>
 
           <li class="flex items-start mb-3">
-            <i
-              class="pi pi-check-circle text-green-500 mr-2 mt-1"
+            <app-icon [icon]="'mdi:check-circle'" class="pi text-green-500 mr-2 mt-1"
               style="font-size: 1.2rem"
-            ></i>
+            ></app-icon>
             <div>
               <span class="font-bold text-900">Compartir Solicitudes 🚀</span>
               <p class="text-600 m-0">
@@ -75,10 +72,9 @@ import { FeatureAnnouncementService } from "src/app/core/services/feature-announ
           </li>
 
           <li class="flex items-start mb-3">
-            <i
-              class="pi pi-check-circle text-green-500 mr-2 mt-1"
+            <app-icon [icon]="'mdi:check-circle'" class="pi text-green-500 mr-2 mt-1"
               style="font-size: 1.2rem"
-            ></i>
+            ></app-icon>
             <div>
               <span class="font-bold text-900"
                 >Adjuntar Cotizaciones PDF 📎</span
@@ -92,7 +88,7 @@ import { FeatureAnnouncementService } from "src/app/core/services/feature-announ
         </ul>
 
         <div class="surface-ground p-3 border-round mt-4 text-sm text-700">
-          <i class="pi pi-info-circle mr-1"></i>
+          <app-icon [icon]="'mdi:information'" class="pi mr-1"></app-icon>
           Recuerda usar el botón <strong>"Guardar Cambios"</strong> al editar
           cotizaciones.
         </div>
@@ -101,7 +97,7 @@ import { FeatureAnnouncementService } from "src/app/core/services/feature-announ
       <ng-template #footer>
         <p-button
           label="¡Entendido, gracias!"
-          icon="pi pi-thumbs-up"
+          icon="mdi:thumb-up"
           (onClick)="onClose()"
           autofocus="true"
           styleClass="p-button-rounded "

@@ -11,7 +11,7 @@
       @if (reporte.totalGeneral; as total) {
         <div class="surface-card p-4 shadow-2 border-round-xl border-2 border-blue-900 mb-4" style="background: linear-gradient(180deg, rgba(31,54,97,0.05) 0%, rgba(255,255,255,1) 100%);">
           <div class="flex justify-content-between align-items-center mb-4 border-bottom-1 surface-border pb-3">
-            <span class="text-blue-900 font-bold uppercase text-lg line-height-3"><i class="pi pi-chart-line mr-2"></i> {{ total.descripcion }}</span>
+            <span class="text-blue-900 font-bold uppercase text-lg line-height-3"><app-icon [icon]="'mdi:chart-line'" class="mr-2"></app-icon> {{ total.descripcion }}</span>
             <span class="text-500 text-sm font-medium border-round surface-200 px-2 py-1">{{ total.numeroCuenta }}</span>
           </div>
           <div class="grid">
@@ -161,7 +161,7 @@
     </div>
   } @else {
     <div class="rf-card flex flex-column align-items-center py-8 text-color-secondary">
-      <i class="pi pi-file-excel text-5xl mb-4 opacity-50"></i>
+      <app-icon [icon]="'mdi:file-excel'" class="text-5xl mb-4 opacity-50"></app-icon>
       <p class="m-0 text-xl font-medium">No hay datos para mostrar</p>
       <p class="mt-2 text-500">Verifique los parámetros seleccionados</p>
     </div>

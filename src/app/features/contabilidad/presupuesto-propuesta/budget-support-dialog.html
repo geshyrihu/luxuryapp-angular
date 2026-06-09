@@ -35,11 +35,8 @@
           supportForm.get("files")?.value; track file.name) {
           <p-tag value="{{ file.name }}" severity="info"></p-tag>
           }
-          <i
-            class="pi pi-times-circle text-danger text-xl cursor-pointer"
-            (click)="removeFile()"
-            pTooltip="Limpiar selección"
-          ></i>
+          <app-icon [icon]="'mdi:close-circle'" class="text-danger text-xl cursor-pointer" (click)="removeFile()"
+            pTooltip="Limpiar selección"></app-icon>
           }
         </div>
       </div>
@@ -49,7 +46,7 @@
           [label]="budgetProposalItem()?.id ? 'Actualizar Soporte' : 'Agregar Soporte'"
           [loading]="loading()"
           [disabled]="loading()"
-          iconClass="pi pi-save"
+          iconClass="mdi:content-save"
           severity="primary"
           [showLabelOnDesktop]="true"
         />
@@ -73,12 +70,12 @@
     <ng-template let-file pTemplate="item">
       <div class="flex justify-content-between align-items-center w-full py-1">
         <div class="flex align-items-center gap-2 overflow-hidden">
-          <i class="pi pi-file-pdf text-danger text-xl"></i>
+          <app-icon [icon]="'mdi:file-pdf-box'" class="text-danger text-xl"></app-icon>
           <span class="text-sm font-medium truncate">{{ file.fileName }}</span>
         </div>
         <div class="flex gap-2">
           <custom-button
-            iconClass="pi pi-eye"
+            iconClass="mdi:eye-outline"
             (clicked)="viewPdf(file.fileUrl, file.fileName)"
             label="Ver"
             variant="text"
@@ -86,7 +83,7 @@
             [showLabelOnDesktop]="true"
           />
           <custom-button
-            iconClass="pi pi-trash"
+            iconClass="mdi:delete"
             (clicked)="onDeleteFile(file.id)"
             label="Eliminar"
             variant="text"
@@ -100,7 +97,7 @@
 </p-card>
 } @else if (budgetProposalItem()) {
 <div class="surface-50 border-round p-4 text-center mt-3">
-  <i class="pi pi-info-circle text-4xl text-info mb-2"></i>
+  <app-icon [icon]="'mdi:information'" class="text-4xl text-info mb-2"></app-icon>
   <p class="text-500 italic">No hay archivos adjuntos para esta partida.</p>
 </div>
 } }

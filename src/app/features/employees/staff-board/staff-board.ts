@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import {
   CdkDrag,
   CdkDragDrop,
@@ -62,7 +63,7 @@ import { EmployeeProviderForm } from "../../provider/pages/employee-provider-for
     CustomButtonEdit,
     CustomButtonDelete,
     ActionMenu,
-  ],
+   AppIcon],
 })
 export class StaffBoard {
   readonly apiS = inject(ApiResponseService);

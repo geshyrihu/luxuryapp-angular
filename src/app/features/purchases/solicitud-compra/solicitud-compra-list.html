@@ -6,16 +6,25 @@
   [rowsPerPageOptions]="rowsPerPageOptions"
   [showCurrentPageReport]="true"
   [value]="data()"
+  (onRowReorder)="onRowReorder($event)"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table card hidden md:block"
+  [tableStyle]="{ 'table-layout': 'fixed', 'min-width': 'auto' }"
+  styleClass="custom-table custom-table-fixed card hidden md:block"
 >
   <ng-template #caption>
-    <!-- Caption: extremo izquierdo -->
-    <div class="flex align-items-center w-full">
-      <div class="flex-none flex">
+    <div class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round">
+      <div class="flex-grow-1">
+        <primeng-custom-caption
+          (add)="onSolicitudCompra(0)"
+          [dt]="dt"
+          [noPadding]="true"
+          [noMargin]="true"
+        />
+      </div>
+      <div class="flex flex-column sm:flex-row align-items-center gap-2">
         <custom-button
-          iconClass="pi pi-times"
+          iconClass="mdi:close"
           label="Denegadas"
           (clicked)="onSelectStatus(1); statusCompra.set(1)"
           [variant]="statusCompra() !== 1 ? 'outlined' : undefined"
@@ -23,9 +32,8 @@
           size="small"
           [showLabelOnDesktop]="true"
         />
-
         <custom-button
-          iconClass="pi pi-check"
+          iconClass="mdi:check"
           label="Autorizadas"
           (clicked)="onSelectStatus(0); statusCompra.set(0)"
           [variant]="statusCompra() !== 0 ? 'outlined' : undefined"
@@ -33,9 +41,8 @@
           size="small"
           [showLabelOnDesktop]="true"
         />
-
         <custom-button
-          iconClass="pi pi-hourglass"
+          iconClass="mdi:hourglass"
           label="Pendientes"
           (clicked)="onSelectStatus(2); statusCompra.set(2)"
           [variant]="statusCompra() !== 2 ? 'outlined' : undefined"
@@ -43,60 +50,102 @@
           size="small"
           [showLabelOnDesktop]="true"
         />
-      </div>
-
-      <!-- Botones: extremo derecho -->
-      <div class="flex flex-wrap ml-auto">
+        @if (isPendingView()) {
         <custom-button
-          iconClass="pi pi-link"
+          iconClass="mdi:presentation-play"
+          label="Modo presentacion"
+          (clicked)="onPresentationMode()"
+          severity="contrast"
+          variant="outlined"
+          size="small"
+          [showLabelOnDesktop]="true"
+          [disabled]="selectedSolicitudIds().length === 0"
+        />
+        }
+        <custom-button
+          iconClass="mdi:link"
           label="Actualizar Referencias"
           (clicked)="onManageLinks()"
           severity="warn"
           size="small"
           [showLabelOnDesktop]="true"
         />
-        <primeng-custom-caption (add)="onSolicitudCompra(0)" [dt]="dt" />
       </div>
     </div>
   </ng-template>
 
   <ng-template #header>
     <tr>
+      @if (isPendingView()) {
+      <th class="table-col-5 text-center"></th>
+      <th class="table-col-5 text-center">
+        <input
+          type="checkbox"
+          [checked]="areAllVisibleSelected()"
+          (change)="onToggleAllVisible($any($event.target).checked)"
+        />
+      </th>
+      }
       <th class="table-col-10" pSortableColumn="folio">
         FOLIO
         <p-sortIcon field="folio" />
       </th>
-      <th class="table-col-10" pSortableColumn="fechaSolicitud">
+      <th class="table-col-7" pSortableColumn="fechaSolicitud">
         FECHA
         <p-sortIcon field="fechaSolicitud" />
       </th>
-      <th class="table-col-16" pSortableColumn="solicita">
+      <th class="table-col-12" pSortableColumn="solicita">
         SOLICITA
         <p-sortIcon field="solicita" />
       </th>
-      <th class="table-col-40">DESCRIPCIóN</th>
-      <th class="table-col-10 text-center">COTIZACIONES</th>
-      <th class="table-col-40">ORDENES DE COMPRA</th>
+      <th class="table-col-44">DESCRIPCIóN</th>
+      <th class="table-col-5 text-center">COT</th>
+      <th class="table-col-13">OC</th>
       <th class="table-col-10"></th>
     </tr>
   </ng-template>
-  <ng-template #body let-item>
-    <tr>
+  <ng-template #body let-item let-rowIndex="rowIndex">
+    <tr [pReorderableRow]="rowIndex">
+      @if (isPendingView()) {
+      <td class="text-center">
+        <app-icon
+          [icon]="'mdi:menu'"
+          class="cursor-move text-400"
+          pReorderableRowHandle
+          style="font-size: 0.9rem"
+        />
+      </td>
+      <td class="text-center">
+        <input
+          type="checkbox"
+          [checked]="isSelected(item.id)"
+          (change)="onToggleSelection(item.id, $any($event.target).checked)"
+        />
+      </td>
+      }
       <td>{{ item.folio }}</td>
       <td>{{ item.fechaSolicitud | date }}</td>
       <td>{{ item.solicita }}</td>
-      <td>
-        <div class="font-bold">{{ item.equipoOInstalacion }}</div>
-        <div class="text-sm text-600">{{ item.justificacionGasto }}</div>
+      <td class="table-col-description">
+        <div class="font-bold truncate">{{ item.equipoOInstalacion }}</div>
+        <div
+          class="text-sm text-600 truncate-2"
+          [title]="item.justificacionGasto"
+        >
+          {{ item.justificacionGasto }}
+        </div>
       </td>
 
       <td class="text-center">
         <custom-button
-          [showLabelOnDesktop]="true"
+          icon="mdi:file-document-multiple"
           [label]="item.cotizacionesCount"
+          [showLabelOnDesktop]="true"
           (clicked)="onCuadroComparativo(item.id)"
           size="small"
           severity="help"
+          [rounded]="true"
+          [text]="true"
           tooltip="Ver Cuadro Comparativo"
         />
       </td>
@@ -104,15 +153,17 @@
       <td>
         @for (orden of item.ordenesRelacionadas; track orden.id) {
         <div class="inline-flex align-items-center mb-1 mr-1">
-          <p-tag
-            [value]="orden.folio"
-            severity="warning"
-            [style]="{ cursor: 'pointer', 'padding-right': '2rem' }"
+          <button
+            type="button"
+            class="btn no-print btn-ghost-warning btn--pill btn-sm"
             (click)="onViewPurchaseOrder(orden.id)"
+            pTooltip="Ver Orden de Compra"
+            tooltipPosition="top"
           >
-          </p-tag>
+            {{ orden.folio }}
+          </button>
           <span
-            class="pi pi-times cursor-pointer text-red-500 hover:text-red-700 ml-1"
+            class="mdi:close cursor-pointer text-red-500 hover:text-red-700 ml-1"
             style="font-size: 0.8rem; margin-left: -1.5rem; z-index: 1"
             (click)="$event.stopPropagation(); onUnlinkPurchaseOrder(orden.id)"
             title="Desvincular Orden de Compra"
@@ -141,6 +192,19 @@
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
+      @if (isPendingView()) {
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center"
+        style="padding-left: 0.75rem"
+      >
+        <input
+          type="checkbox"
+          [checked]="isSelected(item.id)"
+          (change)="onToggleSelection(item.id, $any($event.target).checked)"
+        />
+      </div>
+      }
       <div
         slot="start"
         style="
@@ -172,3 +236,18 @@
     </ion-item>
   </ng-template>
 </app-data-view-mobile>
+
+@if (isPendingView()) {
+<div class="md:hidden mt-3 flex justify-content-end">
+  <custom-button
+    iconClass="mdi:presentation-play"
+    label="Modo presentacion"
+    (clicked)="onPresentationMode()"
+    severity="contrast"
+    variant="outlined"
+    size="small"
+    [showLabelOnDesktop]="true"
+    [disabled]="selectedSolicitudIds().length === 0"
+  />
+</div>
+}

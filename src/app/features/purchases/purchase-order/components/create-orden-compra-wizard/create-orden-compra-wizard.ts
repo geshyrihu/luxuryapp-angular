@@ -466,9 +466,9 @@ export class CreateOrdenCompraWizard implements OnInit {
   }
 
   getActionIcon(fileName: string): string {
-    if (fileName.endsWith(".pdf")) return "pi pi-file-pdf text-red-500";
-    if (fileName.endsWith(".xml")) return "pi pi-file-code text-blue-500";
-    return "pi pi-file";
+    if (fileName.endsWith(".pdf")) return "mdi:file-pdf-box text-red-500";
+    if (fileName.endsWith(".xml")) return "mdi:file-code text-blue-500";
+    return "mdi:file-document-outline";
   }
 
   saveProviderId(item: ISelectItem): void {

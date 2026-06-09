@@ -19,7 +19,7 @@
         <div class="flex gap-2">
           <custom-button
             label="Galería"
-            iconClass="pi pi-images"
+            iconClass="mdi:image-multiple"
             [showLabelOnDesktop]="true"
             severity="secondary"
             variant="ghost-text"
@@ -49,7 +49,7 @@
         <td>
           <div class="flex justify-content-center gap-2">
             <custom-button
-              iconClass="pi pi-pencil"
+              iconClass="mdi:pencil"
               (clicked)="onEditDiagram(diagram.id)"
               ngbTooltip="Editar Propiedades"
               variant="text"
@@ -58,7 +58,7 @@
               label="Propiedades"
             />
             <custom-button
-              iconClass="pi pi-palette"
+              iconClass="mdi:palette"
               (clicked)="onOpenEditor(diagram.id)"
               ngbTooltip="Abrir Editor Gráfico"
               variant="text"
@@ -67,7 +67,7 @@
               label="Editor"
             />
             <custom-button
-              iconClass="pi pi-eye"
+              iconClass="mdi:eye-outline"
               (clicked)="onViewDiagram(diagram.id)"
               ngbTooltip="Visualizar Diagrama"
               variant="text"
@@ -113,14 +113,14 @@
       <app-action-menu slot="end">
         <ion-button-edit (clicked)="onEditDiagram(diagram.id)" />
         <custom-button
-          iconClass="pi pi-palette"
+          iconClass="mdi:palette"
           (clicked)="onOpenEditor(diagram.id)"
           label="Editor"
           variant="text"
           severity="info"
         />
         <custom-button
-          iconClass="pi pi-eye"
+          iconClass="mdi:eye-outline"
           (clicked)="onViewDiagram(diagram.id)"
           label="Ver"
           variant="text"

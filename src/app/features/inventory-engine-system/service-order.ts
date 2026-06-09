@@ -61,7 +61,7 @@ export class ServiceOrder implements OnInit {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
       message: "óDesea Eliminar este registro?",
-      icon: "pi pi-exclamation-triangle",
+      icon: "mdi:alert",
       accept: () => {
         //confirm action
 

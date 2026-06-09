@@ -47,7 +47,7 @@
     </div>
     <custom-button
       label="Guardar Hoja"
-      iconClass="pi pi-save"
+      iconClass="mdi:content-save"
       severity="success"
       [disabled]="!hayCambios() || guardando()"
       [loading]="guardando()"
@@ -59,14 +59,14 @@
 <!-- Loading -->
 @if (loading()) {
 <div class="flex justify-content-center align-items-center" style="min-height: 200px">
-  <i class="pi pi-spin pi-spinner text-4xl text-primary"></i>
+  <app-icon [icon]="'mdi:spin'" class="text-4xl text-primary"></app-icon>
 </div>
 }
 
 <!-- Sin periodos -->
 @if (!loading() && !periodos().length) {
 <div class="flex flex-column align-items-center justify-content-center gap-2 text-color-secondary" style="min-height: 200px">
-  <i class="pi pi-calendar-times text-5xl"></i>
+  <app-icon [icon]="'mdi:calendar-remove'" class="text-5xl"></app-icon>
   <span class="text-lg">No hay periodos de nómina para {{ anioFiltro() }}</span>
   <span class="text-sm">Crea un periodo desde <strong>Periodos de Nómina</strong> para comenzar.</span>
 </div>

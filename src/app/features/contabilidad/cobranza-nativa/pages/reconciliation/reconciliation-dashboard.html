@@ -11,14 +11,14 @@
         </div>
         @if (lastResult() !== null) {
           <div class="mt-2 text-sm text-green-700 font-medium">
-            <i class="pi pi-check-circle mr-1"></i>
+            <app-icon [icon]="'mdi:check-circle'" class="mr-1"></app-icon>
             Ultima ejecucion: {{ lastResult() }} pagos conciliados.
           </div>
         }
       </div>
       <custom-button
         label="Ejecutar Auto-Conciliacion"
-        iconClass="pi pi-refresh"
+        iconClass="mdi:refresh"
         severity="primary"
         [disabled]="reconciling() || dataSignal().length === 0"
         (clicked)="onAutoReconcile()"

@@ -40,7 +40,7 @@
                 [class.bg-primary-50]="selectedModule() === null"
                 (click)="onModuleFilterChange(null)"
               >
-                <i class="pi pi-th-large text-primary"></i>
+                <app-icon [icon]="'mdi:grid'" class="text-primary"></app-icon>
                 <span class="font-bold text-sm">Todos</span>
                 <p-tag
                   [value]="allData.length"
@@ -72,7 +72,7 @@
             <!-- Action Icons Group -->
             <app-action-icons-group>
               <custom-button
-                iconClass="pi pi-camera"
+                iconClass="mdi:camera"
                 severity="secondary"
                 variant="ghost-text"
                 size="sm"
@@ -80,7 +80,7 @@
                 (clicked)="openVision()"
               />
               <custom-button
-                iconClass="pi pi-sparkles"
+                iconClass="mdi:sparkles"
                 severity="help"
                 variant="ghost-text"
                 size="sm"
@@ -90,7 +90,7 @@
               @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
               <div class="border-left-1 surface-border h-1rem mx-1"></div>
               <custom-button
-                iconClass="pi pi-envelope"
+                iconClass="mdi:email-outline"
                 severity="danger"
                 variant="ghost-text"
                 size="sm"
@@ -106,7 +106,7 @@
 
           <!-- Contextual Legend (Small) -->
           <div class="flex align-items-center text-xs text-600 px-1">
-            <i class="pi pi-info-circle text-primary"></i>
+            <app-icon [icon]="'mdi:information'" class="text-primary"></app-icon>
             <div class="flex align-items-center gap-1">
               <span
                 class="w-1rem h-0_5rem bg-red-100 border-1 border-red-300 border-round"
@@ -177,7 +177,7 @@
               >{{ item.date | date: 'dd MMM' : 'UTC' }}</span
             >
             <span class="text-500 text-xs flex align-items-center gap-1"
-              ><i class="pi pi-clock text-xs"></i> {{ item.date | date: 'HH:mm'
+              ><app-icon [icon]="'mdi:clock-outline'" class="text-xs"></app-icon> {{ item.date | date: 'HH:mm'
               : 'UTC' }}</span
             >
           </div>
@@ -219,7 +219,7 @@
         <td class="vertical-align-middle">
           @if (item.lastFollowup && item.lastFollowup !== 'Sin seguimiento') {
           <div class="flex align-items-start p-2 surface-50 border-round">
-            <i class="pi pi-comment text-primary mt-1"></i>
+            <app-icon [icon]="'mdi:comment'" class="text-primary mt-1"></app-icon>
             <span
               class="text-600 text-xs line-height-2 line-clamp-2"
               [pTooltip]="item.lastFollowup"
@@ -270,7 +270,7 @@
             <div
               class="border-circle bg-surface-200 p-4 flex align-items-center justify-content-center"
             >
-              <i class="pi pi-check text-4xl text-500"></i>
+              <app-icon [icon]="'mdi:check'" class="text-4xl text-500"></app-icon>
             </div>
             <span class="font-medium text-xl text-700"
               >Bien Bandeja Limpia!</span

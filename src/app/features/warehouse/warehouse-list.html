@@ -47,12 +47,12 @@
           <custom-button-item
             (clicked)="onViewProducts(item.id)"
             label="Ver Productos"
-            iconClass="pi pi-box"
+            iconClass="mdi:package"
           />
           <custom-button-item
             (clicked)="onDownloadInventory(item.id, item.nombre)"
             label="Descargar Inventario"
-            iconClass="pi pi-file-pdf"
+            iconClass="mdi:file-pdf-box"
           />
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"

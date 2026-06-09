@@ -54,13 +54,13 @@
         <td>
           <custom-button
             (clicked)="onCompleteTask(task)"
-            icon="pi pi-check"
+            icon="mdi:check"
             [disabled]="task.status === 1"
             tooltip="Completar Tarea"
           />
           <custom-button-confirm
             (confirmed)="onReopenTask(task.id)"
-            icon="pi pi-undo"
+            icon="mdi:undo"
             [disabled]="task.status !== 1"
             confirmMessage="¿Estás seguro de reabrir esta tarea?"
             tooltip="Reabrir Tarea"

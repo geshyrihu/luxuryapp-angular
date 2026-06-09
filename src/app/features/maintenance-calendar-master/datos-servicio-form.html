@@ -2,7 +2,7 @@
 
   @if (data?.nombreEquipo) {
   <div class="flex align-items-center gap-2 pb-2 border-bottom-1 surface-border">
-    <i class="pi pi-cog text-primary text-xl"></i>
+    <app-icon [icon]="'mdi:cog'" class="text-primary text-xl"></app-icon>
     <span class="text-xl font-bold text-900">{{ data.nombreEquipo }}</span>
   </div>
   }
@@ -40,16 +40,16 @@
         [class.surface-border]="!last"
       >
         <div class="flex align-items-center justify-content-center w-2rem h-2rem border-round-lg bg-primary-100">
-          <i class="pi pi-building text-primary text-sm"></i>
+          <app-icon [icon]="'mdi:office-building'" class="text-primary text-sm"></app-icon>
         </div>
         <span class="font-medium text-900 flex-1">{{ proveedor.nameProvider }}</span>
-        <i class="pi pi-angle-right text-400"></i>
+        <app-icon [icon]="'mdi:chevron-right'" class="text-400"></app-icon>
       </div>
       }
     </div>
     } @else {
     <div class="surface-100 border-round p-3 text-400 text-sm text-center">
-      <i class="pi pi-inbox mr-2"></i>Sin proveedores asignados
+      <app-icon [icon]="'mdi:inbox'" class="mr-2"></app-icon>Sin proveedores asignados
     </div>
     }
   </div>

@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { DatePipe } from "@angular/common";
 import { Component, inject, input, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -24,7 +25,7 @@ const ALLOWED_TYPES = ["image/jpeg", "image/png", "application/pdf"];
     DatePipe,
     CustomButton,
     CustomButtonDelete,
-  ],
+   AppIcon],
   templateUrl: "./incident-attachments.html",
 })
 export class IncidentAttachmentsComponent {
@@ -147,8 +148,8 @@ export class IncidentAttachmentsComponent {
   }
 
   getFileIconClass(mimeType: string): string {
-    if (mimeType.startsWith("image/")) return "pi pi-image text-blue-600";
-    if (mimeType === "application/pdf") return "pi pi-file-pdf text-red-500";
-    return "pi pi-file text-primary";
+    if (mimeType.startsWith("image/")) return "mdi:image text-blue-600";
+    if (mimeType === "application/pdf") return "mdi:file-pdf-box text-red-500";
+    return "mdi:file-document-outline text-primary";
   }
 }

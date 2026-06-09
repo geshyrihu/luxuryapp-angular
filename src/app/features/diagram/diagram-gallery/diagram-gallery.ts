@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
@@ -17,7 +18,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
     CardModule,
     InputTextModule,
     ButtonModule,
-  ],
+   AppIcon],
   template: `
     <div class="card p-4">
       <div class="flex justify-content-between align-items-center mb-4">
@@ -25,14 +26,14 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
           <h2 class="m-0">Galería de Diagramas</h2>
           <p-button
             label="Gestión"
-            icon="pi pi-list"
+            icon="mdi:format-list-bulleted"
             (click)="onOpenList()"
             severity="secondary"
             [text]="true"
           />
         </div>
         <span class="p-input-icon-left">
-          <i class="pi pi-search"></i>
+          <app-icon [icon]="'mdi:magnify'"></app-icon>
           <input
             type="text"
             pInputText
@@ -63,14 +64,14 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
                   class="flex flex-column align-items-center justify-content-center py-4 bg-gray-50 border-round mb-3"
                   style="min-height: 150px"
                 >
-                  <i class="pi pi-images text-6xl text-primary-400"></i>
+                  <app-icon [icon]="'mdi:image-multiple'" class="text-6xl text-primary-400"></app-icon>
                 </div>
                 <ng-template #footer>
                   <div class="flex ">
                     <button
                       pButton
                       label="Visualizar"
-                      icon="pi pi-eye"
+                      icon="mdi:eye-outline"
                       class="p-button-success w-full"
                       (click)="onView(diagram.id)"
                     ></button>

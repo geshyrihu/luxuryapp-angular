@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { DatePipe } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -32,7 +33,7 @@ import { InvoiceResponseDTO } from "../../models/invoice.dto";
     DatePipe,
     ReactiveFormsModule,
     CustomInputSelectSignal,
-  ],
+   AppIcon],
   templateUrl: "./invoice-list.html",
 })
 export default class InvoiceList {

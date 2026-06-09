@@ -17,13 +17,13 @@
       <div class="flex gap-2">
         <custom-button
           label="Filtrar"
-          iconClass="pi pi-search"
+          iconClass="mdi:magnify"
           (clicked)="onFilter()"
           [loading]="loading()"
         />
         <custom-button
           label="Limpiar"
-          iconClass="pi pi-times"
+          iconClass="mdi:close"
           (clicked)="onClearFilters()"
           variant="outlined"
         />
@@ -33,7 +33,7 @@
 
   @if (loading()) {
   <div class="flex justify-content-center py-8">
-    <i class="pi pi-spin pi-spinner text-4xl text-primary"></i>
+    <app-icon [icon]="'mdi:spin'" class="text-4xl text-primary"></app-icon>
   </div>
   } @else if (dashboard()) {
   <!-- KPIs -->

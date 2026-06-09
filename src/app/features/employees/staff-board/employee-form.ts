@@ -105,7 +105,7 @@ export class EmployeeForm implements OnInit {
       // Sin restricción de rol — visible para cualquier usuario autorizado
       {
         label: "Datos principales",
-        icon: "pi pi-user",
+        icon: "mdi:account",
         section: "principal",
         roles: [
           EApplicationRole.SuperUsuario,
@@ -116,7 +116,7 @@ export class EmployeeForm implements OnInit {
       },
       {
         label: "Foto de perfil",
-        icon: "pi pi-image",
+        icon: "mdi:image",
         section: "avatar",
         roles: [
           EApplicationRole.SuperUsuario,
@@ -127,7 +127,7 @@ export class EmployeeForm implements OnInit {
       },
       {
         label: "Datos personales",
-        icon: "pi pi-id-card",
+        icon: "mdi:card-account-details",
         section: "personal",
         roles: [
           EApplicationRole.SuperUsuario,
@@ -138,7 +138,7 @@ export class EmployeeForm implements OnInit {
       },
       {
         label: "Dirección",
-        icon: "pi pi-map-marker",
+        icon: "mdi:map-marker",
         section: "address",
         roles: [
           EApplicationRole.SuperUsuario,
@@ -149,7 +149,7 @@ export class EmployeeForm implements OnInit {
       },
       {
         label: "Contactos",
-        icon: "pi pi-phone",
+        icon: "mdi:phone",
         section: "contacts",
         roles: [
           EApplicationRole.SuperUsuario,
@@ -160,7 +160,7 @@ export class EmployeeForm implements OnInit {
       },
       {
         label: "Datos bancarios y beneficiario",
-        icon: "pi pi-credit-card",
+        icon: "mdi:credit-card",
         section: "bank-data",
         roles: [
           EApplicationRole.SuperUsuario,
@@ -171,7 +171,7 @@ export class EmployeeForm implements OnInit {
       },
       {
         label: "Datos clinicos",
-        icon: "pi pi-heart",
+        icon: "mdi:heart-outline",
         section: "clinical-data",
         roles: [
           EApplicationRole.SuperUsuario,
@@ -184,7 +184,7 @@ export class EmployeeForm implements OnInit {
       // Solo gestión interna RR.HH.
       {
         label: "Datos laborales",
-        icon: "pi pi-briefcase",
+        icon: "mdi:briefcase",
         section: "laboral",
         roles: [
           EApplicationRole.SuperUsuario,
@@ -197,7 +197,7 @@ export class EmployeeForm implements OnInit {
       // Solo quienes gestionan reclutamiento
       {
         label: "Reclutamiento",
-        icon: "pi pi-list",
+        icon: "mdi:format-list-bulleted",
         section: "recruitment",
         roles: [
           EApplicationRole.SuperUsuario,
@@ -210,7 +210,7 @@ export class EmployeeForm implements OnInit {
       // Solo quienes pueden ver / registrar incidencias
       {
         label: "Incidencias Administrativas",
-        icon: "pi pi-exclamation-triangle",
+        icon: "mdi:alert",
         section: "incidents",
         roles: [
           EApplicationRole.SuperUsuario,
@@ -223,7 +223,7 @@ export class EmployeeForm implements OnInit {
       // Solo acceso técnico / sistemas
       {
         label: "Usuario app",
-        icon: "pi pi-key",
+        icon: "mdi:key",
         section: "user",
         roles: [
           EApplicationRole.SuperUsuario,

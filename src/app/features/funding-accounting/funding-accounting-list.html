@@ -14,7 +14,7 @@
 
     <custom-button-item
       (clicked)="onFaqsFondeo()"
-      iconClass="pi pi-question-circle"
+      iconClass="mdi:help-circle"
       label="Ayuda"
       [showLabelOnDesktop]="true"
     />
@@ -80,10 +80,9 @@
       </td>
 
       <td class="no-print">
-        <i
-          class="icon icon-pi-arrow-right icon-xl pointer"
+        <app-icon [icon]="'mdi:arrow-right'" class="icon icon- icon-xl pointer"
           (click)="onDetails(item.id)"
-        ></i>
+        ></app-icon>
         <!-- <app-action-menu>
           <ng-container actions>
             <ion-button-item

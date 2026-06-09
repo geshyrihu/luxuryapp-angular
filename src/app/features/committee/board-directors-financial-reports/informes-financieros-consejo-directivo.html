@@ -3,7 +3,7 @@
   @if (dataSignal().length === 0) {
   <div class="empty-state-card">
     <div class="empty-state-icon">
-      <app-icon icon="mdi:folder-open" class="text-4xl text-primary" />
+      <app-icon [icon]="'mdi:folder-open'" class="text-4xl text-primary" />
     </div>
     <h5 class="empty-state-title">No hay documentos disponibles</h5>
   </div>
@@ -20,12 +20,12 @@
           </div>
           <div class="file-item-content flex-flex-grow-1-1">
             <h6 class="file-item-title m-0 text-900 font-bold" [title]="item.documentName">
-              <app-icon icon="mdi:calendar" class="mr-1" /> {{ item.documentName }}
+              <app-icon [icon]="'mdi:calendar'" class="mr-1" /> {{ item.documentName }}
             </h6>
             <p class="file-item-subtitle m-0 text-500 text-sm">Archivo .{{ item.fileExtension }}</p>
           </div>
           <div class="file-item-action">
-            <app-icon icon="mdi:chevron-right" class="text-400" />
+            <app-icon [icon]="'mdi:chevron-right'" class="text-400" />
           </div>
         </div>
       </a>
@@ -38,7 +38,7 @@
 <div class="block md:hidden">
   @if (dataSignal().length === 0) {
   <div class="text-center p-6">
-    <app-icon icon="mdi:folder-open" class="text-6xl text-400" />
+    <app-icon [icon]="'mdi:folder-open'" class="text-6xl text-400" />
     <p class="text-500 mt-3 text-base">No hay documentos disponibles</p>
   </div>
   }
@@ -52,7 +52,7 @@
     <ion-item button detail="true" lines="full"
       (click)="viewPdf(item.filePath, item.documentName)" class="ion-no-padding">
       <div slot="start" class="w-2rem h-2rem border-round bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3">
-        <app-icon icon="mdi:file-pdf-box" class="text-xl text-blue-700" />
+        <app-icon [icon]="'mdi:file-pdf-box'" class="text-xl text-blue-700" />
       </div>
       <ion-label class="ml-2">
         <h3 class="font-bold text-900">{{ item.documentName }}</h3>

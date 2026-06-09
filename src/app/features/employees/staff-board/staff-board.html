@@ -26,7 +26,7 @@
         AspRole.Reclutamiento ])) {
         <custom-button
           (clicked)="onModalForm({ id: '', title: 'Nuevo Puesto de Trabajo' })"
-          iconClass="pi pi-briefcase"
+          iconClass="mdi:briefcase"
           label="Agregar Puesto"
           severity="info"
           variant="outlined"
@@ -34,7 +34,7 @@
         />
         <custom-button
           (clicked)="showModalAddEmployee()"
-          iconClass="pi pi-user"
+          iconClass="mdi:account"
           label="Agregar Empleado"
           severity="info"
           variant="outlined"
@@ -43,7 +43,7 @@
         }
         <custom-button
           (clicked)="onOpenInactivos()"
-          iconClass="pi pi-box"
+          iconClass="mdi:package"
           label="Inactivos"
           severity="info"
           variant="outlined"
@@ -51,7 +51,7 @@
         />
         <custom-button
           (clicked)="onOrgChart()"
-          iconClass="pi pi-sitemap"
+          iconClass="mdi:sitemap"
           label="Organigrama"
           severity="info"
           variant="outlined"
@@ -69,14 +69,14 @@
         class="text-center bg-primary-reverse text-primary font-bold border-bottom-2 border-primary"
         style="padding: 0.5rem"
       >
-        <i class="pi pi-briefcase mr-2"></i>GESTIÓN DEL PUESTO DE TRABAJO
+        <app-icon [icon]="'mdi:briefcase'" class="mr-2"></app-icon>GESTIÓN DEL PUESTO DE TRABAJO
       </th>
       <th
         colspan="1"
         class="text-center bg-bluegray-50 text-bluegray-700 font-bold border-bottom-2 border-bluegray-200 border-left-2"
         style="padding: 0.5rem"
       >
-        <i class="pi pi-user mr-2"></i>COLABORADOR ASIGNADO
+        <app-icon [icon]="'mdi:account'" class="mr-2"></app-icon>COLABORADOR ASIGNADO
       </th>
     </tr>
 
@@ -118,7 +118,7 @@
           <p-tag
             severity="warn"
             value="Actualizar puesto"
-            icon="pi pi-exclamation-triangle"
+            icon="mdi:alert"
           />
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
@@ -165,27 +165,27 @@
 
             <custom-button-item
               [showLabelOnDesktop]="true"
-              iconClass="pi pi-receipt"
+              iconClass="mdi:receipt"
               label="Solicitar Vacante"
               (clicked)="onModalSolicitudVacante(item.id)"
             />
             }
             <custom-button-item
               [showLabelOnDesktop]="true"
-              iconClass="pi pi-clipboard"
+              iconClass="mdi:clipboard-text"
               label="Descripción"
               (clicked)="onModalJobDescription(item.id, item.jobDescriptionId!, item.applicationRoleName)"
             />
             <custom-button-item
               [showLabelOnDesktop]="true"
-              iconClass="pi pi-clock"
+              iconClass="mdi:clock-outline"
               label="Horarios"
               (clicked)="onModalHoursWorkPosition(item.id)"
             />
             <custom-button-item
               [showLabelOnDesktop]="true"
               label="Editar"
-              iconClass="pi pi-pencil"
+              iconClass="mdi:pencil"
               (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
             />
 
@@ -217,7 +217,7 @@
             />
             } @else {
             <p-avatar
-              icon="pi pi-user"
+              icon="mdi:account"
               shape="circle"
               size="large"
               class="mr-2"
@@ -231,7 +231,7 @@
             <app-action-menu>
               <custom-button-item
                 [showLabelOnDesktop]="true"
-                iconClass="pi pi-user-edit"
+                iconClass="mdi:account-edit"
                 label="Perfil"
                 pTooltip="Ir al perfil"
                 (clicked)="onShowEditEmpleado(item)"
@@ -241,7 +241,7 @@
               AspRole.Reclutamiento ])) {
               <custom-button-item
                 [showLabelOnDesktop]="true"
-                iconClass="pi pi-folder-open"
+                iconClass="mdi:folder-open"
                 label="Expediente"
                 pTooltip="Ver expediente completo"
                 (clicked)="onGoToEmployeeFile(item)"
@@ -250,7 +250,7 @@
               @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
               <custom-button-item
                 [showLabelOnDesktop]="true"
-                iconClass="pi pi-sign-out"
+                iconClass="mdi:logout"
                 label="Desvincular del puesto"
                 pTooltip="Desvincular del puesto"
                 (clicked)="onUnassignEmployee(item.id)"
@@ -269,19 +269,19 @@
             class="drop-zone flex align-items-center justify-content-between p-2"
           >
             <div class="flex align-items-center gap-2">
-              <i class="pi pi-users text-400"></i>
+              <app-icon [icon]="'mdi:account-group'" class="text-400"></app-icon>
               <span class="text-sm font-bold" style="color: var(--p-orange-600)"
                 >VACANTE</span
               >
             </div>
             <div class="flex gap-1">
               <custom-button-item
-                iconClass="pi pi-link"
+                iconClass="mdi:link"
                 pTooltip="Vincular del pool"
                 (clicked)="onOpenDrawer(item)"
               />
               <custom-button-item
-                iconClass="pi pi-user-plus"
+                iconClass="mdi:account-plus"
                 pTooltip="Registrar nuevo empleado"
                 (clicked)="showModalAddEmployeeFromPosition(item)"
               />
@@ -322,17 +322,17 @@
   <!-- Header expandible -->
   <div class="pool-header" (click)="poolExpanded.set(!poolExpanded())">
     <div class="flex align-items-center">
-      <i class="pi pi-users text-lg"></i>
+      <app-icon [icon]="'mdi:account-group'" class="text-lg"></app-icon>
       <span class="font-semibold">Sin puesto asignado</span>
       <!-- DS: badge + badge-primary -->
       <span class="badge badge-primary"
         >{{ unassignedEmployees().length }}</span
       >
       @if (assignLoading()) {
-      <i class="pi pi-spin pi-spinner text-sm"></i>
+      <app-icon [icon]="'mdi:spin'" class="text-sm"></app-icon>
       }
     </div>
-    <i [class]="poolExpanded() ? 'pi pi-chevron-up' : 'pi pi-chevron-down'"></i>
+    <i [class]="poolExpanded() ? 'mdi:chevron-up' : 'mdi:chevron-down'"></i>
   </div>
 
   <!-- Guía rápida -->
@@ -340,7 +340,7 @@
   <p class="text-sm text-color-secondary m-0 px-3 pt-2 pb-1">
     Arrastra un colaborador hacia un puesto vacante para asignarlo, o haz clic
     en
-    <i class="pi pi-user-edit text-xs"></i> para editar sus datos.
+    <app-icon [icon]="'mdi:account-edit'" class="text-xs"></app-icon> para editar sus datos.
   </p>
   }
 
@@ -366,7 +366,7 @@
         <span class="chip-sub">{{ emp.userName }}</span>
       </div>
       <custom-button-item
-        iconClass="pi pi-user-edit"
+        iconClass="mdi:account-edit"
         label="Ver perfil"
         (clicked)="onGoToProfile(emp)"
       />
@@ -399,7 +399,7 @@
     <!-- DS: drawer-position-card (border-left primario, no cubierto por .card--primary) -->
     <div class="drawer-position-card">
       <div class="flex align-items-center mb-1">
-        <i class="pi pi-briefcase"></i>
+        <app-icon [icon]="'mdi:briefcase'"></app-icon>
         <span class="font-bold" style="color: var(--ds-primary)"
           >{{ pos.folio }}</span
         >
@@ -414,7 +414,7 @@
 
     @if (assignLoading()) {
     <div class="flex justify-content-center py-4">
-      <i class="pi pi-spin pi-spinner text-2xl"></i>
+      <app-icon [icon]="'mdi:spin'" class="text-2xl"></app-icon>
     </div>
     } @else if (unassignedEmployees().length === 0) {
     <p class="text-center text-500 py-4 m-0">
@@ -435,7 +435,7 @@
         <span class="font-semibold truncate">{{ emp.fullName }}</span>
         <span class="text-sm text-500 truncate">{{ emp.userName }}</span>
       </div>
-      <i class="pi pi-angle-right" style="color: var(--ds-primary)"></i>
+      <app-icon [icon]="'mdi:chevron-right'" style="color: var(--ds-primary)"></app-icon>
     </div>
     } }
   </div>
@@ -462,7 +462,7 @@
       [class.btn-ghost-secondary]="inactivosTab() !== 'positions'"
       (click)="inactivosTab.set('positions')"
     >
-      <i class="pi pi-building mr-1"></i>
+      <app-icon [icon]="'mdi:office-building'" class="mr-1"></app-icon>
       Puestos
       <span class="badge badge-neutral ml-1"
         >{{ inactivePositions().length }}</span
@@ -475,7 +475,7 @@
       [class.btn-ghost-secondary]="inactivosTab() !== 'employees'"
       (click)="inactivosTab.set('employees')"
     >
-      <i class="pi pi-user mr-1"></i>
+      <app-icon [icon]="'mdi:account'" class="mr-1"></app-icon>
       Colaboradores
       <span class="badge badge-neutral ml-1"
         >{{ inactiveEmployees().length }}</span
@@ -485,14 +485,14 @@
 
   @if (inactivosLoading()) {
   <div class="flex justify-content-center py-8">
-    <i class="pi pi-spin pi-spinner text-3xl"></i>
+    <app-icon [icon]="'mdi:spin'" class="text-3xl"></app-icon>
   </div>
 
   } @else if (inactivosTab() === 'positions') {
   <!-- ── Tab: Puestos inactivos ── -->
   @if (inactivePositions().length === 0) {
   <div class="alert alert-neutral">
-    <i class="alert__icon pi pi-inbox"></i>
+    <app-icon [icon]="'mdi:inbox'" class="alert__icon"></app-icon>
     <div class="alert__body">No hay puestos inactivos.</div>
   </div>
   } @else {
@@ -516,7 +516,7 @@
         >
       </div>
       <custom-button-item
-        iconClass="pi pi-check"
+        iconClass="mdi:check"
         label="Activar"
         pTooltip="Activar puesto"
         (clicked)="onActivatePosition(pos.id)"
@@ -528,7 +528,7 @@
   <!-- ── Tab: Colaboradores inactivos ── -->
   @if (inactiveEmployees().length === 0) {
   <div class="alert alert-neutral">
-    <i class="alert__icon pi pi-inbox"></i>
+    <app-icon [icon]="'mdi:inbox'" class="alert__icon"></app-icon>
     <div class="alert__body">No hay colaboradores inactivos.</div>
   </div>
   } @else {
@@ -555,13 +555,13 @@
       </div>
       <div class="flex gap-1">
         <custom-button-item
-          iconClass="pi pi-check"
+          iconClass="mdi:check"
           label="Activar"
           pTooltip="Activar colaborador"
           (clicked)="onActivateEmployee(emp.applicationUserId)"
         />
         <custom-button-item
-          iconClass="pi pi-plus"
+          iconClass="mdi:plus"
           label="Activar y asignar"
           pTooltip="Activar y mover al pool para asignar puesto"
           (clicked)="onActivateAndAssign(emp)"

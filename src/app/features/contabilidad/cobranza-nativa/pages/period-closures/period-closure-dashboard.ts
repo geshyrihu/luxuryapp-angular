@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { DatePipe } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
@@ -37,7 +38,7 @@ import { PeriodClosureResponseDTO } from "../../models/period-closure.dto";
     CustomInputTextSignal,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
-  ],
+   AppIcon],
   templateUrl: "./period-closure-dashboard.html",
 })
 export default class PeriodClosureDashboard {

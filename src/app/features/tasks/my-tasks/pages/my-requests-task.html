@@ -92,15 +92,13 @@
           </td>
           <td class="text-center">
             @if (item.priority === "High") {
-            <i
-              (click)="onUpdatePriority(item.id)"
-              class="icon icon-pi-star icon-xl pointer text-primary"
-            ></i>
+            <app-icon [icon]="'mdi:star-outline'"(click)="onUpdatePriority(item.id)"
+               class="icon icon- icon-xl pointer text-primary"
+            ></app-icon>
             } @if (item.priority === "Low") {
-            <i
-              (click)="onUpdatePriority(item.id)"
-              class="icon icon-pi-star icon-xl pointer text-primary"
-            ></i>
+            <app-icon [icon]="'mdi:star-outline'"(click)="onUpdatePriority(item.id)"
+               class="icon icon- icon-xl pointer text-primary"
+            ></app-icon>
             }
           </td>
           <td>{{ item.scheduledAt }}</td>
@@ -141,7 +139,7 @@
                 />
 
                 <ion-button-item
-                  iconClass="pi pi-comment"
+                  iconClass="mdi:comment"
                   label="Seguimiento"
                   (clicked)="onFollowUp(item.id)"
                   [showLabelOnDesktop]="true"

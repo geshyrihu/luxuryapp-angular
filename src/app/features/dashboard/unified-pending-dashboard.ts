@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import {
   Component,
@@ -61,7 +62,7 @@ import { TicketLegalForm } from "../legal/ticket-legal/ticket-legal-form";
     PrimeNgCustomCaption,
     ImageAnalysisDialogComponent,
     ActionIconsGroupComponent,
-  ],
+   AppIcon],
   templateUrl: "./unified-pending-dashboard.html",
   styles: [
     `

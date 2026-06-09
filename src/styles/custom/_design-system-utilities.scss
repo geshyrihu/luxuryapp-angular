@@ -1370,6 +1370,12 @@
   }
 }
 
+// Celda de descripción — permite truncado multi-línea
+td.table-col-description {
+  white-space: normal !important;
+  word-break: break-word;
+}
+
 // ══════════════════════════════════════════════════════════
 // 11. COMPONENTES DE UI — contenedores de icono / avatar
 // ══════════════════════════════════════════════════════════

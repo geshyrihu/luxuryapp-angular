@@ -97,7 +97,7 @@ export class ReportCatalog implements OnInit {
     this.confirmS.confirm({
       message: `Eliminar el reporte "${nombre}"?`,
       header: "Confirmar eliminacion",
-      icon: "pi pi-trash",
+      icon: "mdi:delete",
       accept: () => this.eliminar(id),
     });
   }

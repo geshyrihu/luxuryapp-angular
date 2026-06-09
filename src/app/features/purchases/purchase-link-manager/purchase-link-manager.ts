@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CdkDragDrop, DragDropModule } from "@angular/cdk/drag-drop";
 import { CommonModule } from "@angular/common";
 import {
@@ -34,7 +35,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
     TooltipModule,
     DragDropModule,
     SelectButtonModule,
-  ],
+   AppIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PurchaseLinkManager implements OnInit {

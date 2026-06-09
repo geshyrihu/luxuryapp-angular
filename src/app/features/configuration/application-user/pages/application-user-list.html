@@ -205,11 +205,11 @@
         </p>
         <p class="text-sm m-0 text-600">{{ item.customer || "Sin Cliente" }}</p>
         <p class="text-xs m-0 text-500">
-          <app-icon icon="mdi:email-outline" class="text-xs mr-1" />{{ item.email }}
+          <app-icon [icon]="'mdi:email-outline'" class="text-xs mr-1" />{{ item.email }}
         </p>
         @if (item.phoneNumber) {
         <p class="text-xs m-0 text-500">
-          <app-icon icon="mdi:phone" class="text-xs mr-1" />{{ item.phoneNumber }}
+          <app-icon [icon]="'mdi:phone'" class="text-xs mr-1" />{{ item.phoneNumber }}
         </p>
         }
       </ion-label>

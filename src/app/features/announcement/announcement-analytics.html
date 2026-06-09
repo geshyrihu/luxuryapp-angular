@@ -4,14 +4,14 @@
       <div class="flex justify-content-between align-items-center">
         <h2 class="text-2xl font-bold mb-0">Analóticas del Comunicado</h2>
         <a routerLink="/announcements/manage" class="btn btn-secondary btn-sm">
-          <app-icon icon="mdi:arrow-left" class="mr-1" /> Volver al listado
+          <app-icon [icon]="'mdi:arrow-left'" class="mr-1" /> Volver al listado
         </a>
       </div>
     </ng-template>
     <ng-template #content>
       @if (analytics().length === 0) {
       <div class="text-center p-4">
-        <app-icon icon="mdi:chart-bar" class="text-4xl" />
+        <app-icon [icon]="'mdi:chart-bar'" class="text-4xl" />
         <p class="mt-2">Aón no hay visualizaciones para este comunicado.</p>
       </div>
       } @else {
@@ -76,15 +76,15 @@
                 <h2 class="font-bold m-0 text-base">{{ analytic.userName }}</h2>
                 <div class="flex flex-column gap-1 mt-1">
                   <p class="text-medium text-500 m-0 text-sm">
-                    <app-icon icon="mdi:email-outline" class="mr-1 text-xs" />
+                    <app-icon [icon]="'mdi:email-outline'" class="mr-1 text-xs" />
                     {{ analytic.userEmail }}
                   </p>
                   <p class="text-medium text-500 m-0 text-sm">
-                    <app-icon icon="mdi:office-building" class="mr-1 text-xs" />
+                    <app-icon [icon]="'mdi:office-building'" class="mr-1 text-xs" />
                     {{ analytic.customerName }} ({{ analytic.role }})
                   </p>
                   <p class="text-primary font-medium m-0 text-sm">
-                    <app-icon icon="mdi:clock-outline" class="mr-1 text-xs" />
+                    <app-icon [icon]="'mdi:clock-outline'" class="mr-1 text-xs" />
                     {{ analytic.viewDate | date : "dd/MM/yyyy h:mm a" }}
                   </p>
                 </div>

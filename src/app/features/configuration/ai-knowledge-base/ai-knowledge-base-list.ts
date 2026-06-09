@@ -73,7 +73,7 @@ export class AiKnowledgeBaseList implements OnInit {
     this.confirmationService.confirm({
       message: "¿Estás seguro de que quieres eliminar este registro?",
       header: "Confirmar",
-      icon: "pi pi-exclamation-triangle",
+      icon: "mdi:alert",
       accept: async () => {
         const success = await this.apiResponseS.onDelete(
           Endpoints.AiKnowledgeBase.delete(id),

@@ -4,7 +4,7 @@
     class="flex align-items-center justify-content-center py-8"
     style="min-height: 20rem"
   >
-    <app-icon icon="mdi:loading" class="text-primary text-4xl ds-animate-spin" />
+    <app-icon [icon]="'mdi:loading'" class="text-primary text-4xl ds-animate-spin" />
   </div>
   } @else if (manual()) {
   <div class="w-full xl:w-10 mx-auto flex flex-column gap-4">
@@ -39,7 +39,7 @@
             <div
               class="surface-100 border-1 surface-border border-round-xl px-3 py-2 inline-flex align-items-center gap-2 text-sm text-color"
             >
-              <app-icon icon="mdi:book" class="text-xs" />
+              <app-icon [icon]="'mdi:book'" class="text-xs" />
               <span>Manual de Proceso · {{ manual()!.folio }}</span>
             </div>
             <div class="flex align-items-center gap-2">
@@ -96,49 +96,49 @@
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <app-icon icon="mdi:sitemap" />
+            <app-icon [icon]="'mdi:sitemap'" />
             <span>Departamento: {{ manual()!.departament }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <app-icon icon="mdi:calendar-clock" />
+            <app-icon [icon]="'mdi:calendar-clock'" />
             <span>Frecuencia: {{ getPeriodicityReadable(manual()) }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <app-icon icon="mdi:tag" />
+            <app-icon [icon]="'mdi:tag'" />
             <span>Version: {{ manual()!.currentVersion }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <app-icon icon="mdi:check-decagram" />
+            <app-icon [icon]="'mdi:check-decagram'" />
             <span>Estado: {{ manualStatusLabel() }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <app-icon icon="mdi:web" />
+            <app-icon [icon]="'mdi:web'" />
             <span>Alcance: {{ scopeLabel() }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <app-icon icon="mdi:account-group" />
+            <app-icon [icon]="'mdi:account-group'" />
             <span>Dirigido a: {{ audienceLabel() }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <app-icon icon="mdi:office-building" />
+            <app-icon [icon]="'mdi:office-building'" />
             <span>Visibilidad: {{ visibilityLabel() }}</span>
           </div>
           <div
             class="inline-flex align-items-center gap-2 text-color-secondary"
           >
-            <app-icon icon="mdi:format-list-bulleted" />
+            <app-icon [icon]="'mdi:format-list-bulleted'" />
             <span>Pasos: {{ manual()!.pasos?.length || 0 }}</span>
           </div>
         </div>
@@ -337,7 +337,7 @@
             </div>
             } } @else {
             <div class="flex align-items-center gap-2">
-              <app-icon icon="mdi:external-link" class="text-primary" />
+              <app-icon [icon]="'mdi:external-link'" class="text-primary" />
               <a [href]="enlace.urlEnlace" target="_blank" class="no-underline">
                 <p-button
                   label="Abrir Enlace"
@@ -345,7 +345,7 @@
                   size="small"
                   [outlined]="true"
                 >
-                  <app-icon icon="mdi:external-link" class="mr-2" />
+                  <app-icon [icon]="'mdi:external-link'" class="mr-2" />
                 </p-button>
               </a>
               <span class="text-sm text-color-secondary"
@@ -360,7 +360,7 @@
       </div>
       } @else {
       <div class="text-center py-6">
-        <app-icon icon="mdi:book" class="text-4xl text-400 mb-3" />
+        <app-icon [icon]="'mdi:book'" class="text-4xl text-400 mb-3" />
         <p class="text-500 m-0">Este manual aun no tiene pasos definidos.</p>
       </div>
       }
@@ -393,7 +393,7 @@
               class="surface-ground border-round-xl border-1 surface-border p-3 flex align-items-center justify-content-between gap-3 flex-wrap"
             >
               <div class="flex align-items-center gap-3">
-                <app-icon icon="mdi:file-document-outline" class="text-xl text-primary" />
+                <app-icon [icon]="'mdi:file-document-outline'" class="text-xl text-primary" />
                 <div>
                   <div class="font-medium text-900">{{ adj.nombre }}</div>
                   <div class="text-xs text-color-secondary mt-1">
@@ -407,7 +407,7 @@
                   [text]="true"
                   size="small"
                 >
-                  <app-icon icon="mdi:download" class="mr-2" />
+                  <app-icon [icon]="'mdi:download'" class="mr-2" />
                 </p-button>
               </a>
             </div>

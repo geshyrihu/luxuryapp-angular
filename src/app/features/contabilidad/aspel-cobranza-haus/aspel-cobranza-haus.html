@@ -83,7 +83,7 @@
           <div class="flex gap-2 w-full mt-1 lg:mt-0">
             <custom-button
               label="Consultar"
-              iconClass="pi pi-search"
+              iconClass="mdi:magnify"
               [loading]="loading()"
               [disabled]="!canSearch()"
               customClass="flex-1"
@@ -91,7 +91,7 @@
             />
             <custom-button
               label="Limpiar"
-              iconClass="pi pi-eraser"
+              iconClass="mdi:eraser"
               customClass="flex-1 p-button-secondary"
               (clicked)="onClear()"
             />
@@ -105,14 +105,14 @@
         @if (mode() === 'detalle-cobranza-rango') {
           <custom-button-download
             label="Aviso de cobro"
-            iconClass="pi pi-file-pdf"
+            iconClass="mdi:file-pdf-box"
             severity="danger"
             [showLabelOnDesktop]="true"
             (clicked)="downloadAvisoCobroPdf()"
           />
           <custom-button-download
             label="Aviso de cobro Aspel"
-            iconClass="pi pi-file-pdf"
+            iconClass="mdi:file-pdf-box"
             severity="contrast"
             [showLabelOnDesktop]="true"
             (clicked)="downloadAvisoCobroPdfAspel()"
@@ -121,14 +121,14 @@
         @if (mode() === 'estado-cuenta-rango') {
           <custom-button-download
             label="Estado de cuenta"
-            iconClass="pi pi-file-pdf"
+            iconClass="mdi:file-pdf-box"
             severity="info"
             [showLabelOnDesktop]="true"
             (clicked)="downloadEstadoCuentaPdf()"
           />
           <custom-button-download
             label="Estado de cuenta Aspel"
-            iconClass="pi pi-file-pdf"
+            iconClass="mdi:file-pdf-box"
             severity="contrast"
             [showLabelOnDesktop]="true"
             (clicked)="downloadEstadoCuentaPdfAspel()"
@@ -140,7 +140,7 @@
     @if (loading()) {
       <p-card styleClass="shadow-none border-1 surface-border border-dashed border-round-xl">
         <div class="flex align-items-center justify-content-center gap-3 min-h-6rem text-600">
-          <i class="pi pi-spin pi-spinner text-2xl"></i>
+          <app-icon [icon]="'mdi:spin'" class="text-2xl"></app-icon>
           <span class="text-lg">Consultando informacion en Aspel...</span>
         </div>
       </p-card>

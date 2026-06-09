@@ -109,7 +109,7 @@
         <!-- Alineación opcional -->
         @if (item.document) {
         <custom-button-view-pdf
-          iconClass="pi pi-file-pdf"
+          iconClass="mdi:file-pdf-box"
           [url]="item.pathDocument"
           fileName="Poliza | Contrato"
           label="Ver documento"
@@ -157,7 +157,7 @@
         </div>
         <p class="text-sm text-700 m-0 mb-1">{{ item.description }}</p>
         <p class="text-xs text-500 m-0">
-          <i class="pi pi-calendar mr-1"></i> Inicio: {{ item.startDate }}
+          <app-icon [icon]="'mdi:calendar'" class="mr-1"></app-icon> Inicio: {{ item.startDate }}
         </p>
       </ion-label>
 

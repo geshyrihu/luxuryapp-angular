@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, OnInit, signal } from "@angular/core";
+import { Component, effect, inject, OnDestroy, OnInit, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
@@ -19,6 +19,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SwalService } from "src/app/core/services/swal.service";
+import Swal from "sweetalert2";
 import { CuadroComparativoAddProveedor } from "./cuadro-comparativo-add-proveedor";
 import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
 
@@ -36,7 +37,7 @@ import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
     DialogModule,
   ],
 })
-export class CuadroComparativoList implements OnInit {
+export class CuadroComparativoList implements OnInit, OnDestroy {
   tooltipPlacement = TooltipPlacement;
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
@@ -55,6 +56,8 @@ export class CuadroComparativoList implements OnInit {
   solicitudCompraDetalleSignal = signal<any[]>([]);
   cotizacionProveedorSignal = signal<any[]>([]);
   evidenciasSignal = signal<any[]>([]);
+  budgetSignal = signal<any[]>([]);
+  availableBudgetSignal = signal<any[]>([]);
 
   provider1: any;
   provider2: any;
@@ -80,6 +83,7 @@ export class CuadroComparativoList implements OnInit {
   totalMejorPrecioTotal = 0;
   evaluarPrecioIndependiente = false;
   cleanView = false;
+  optimizeProducts = false;
 
   autorizacionOptions: ISelectItem[] = [
     { label: "Comite", value: EAutorizacionCuadroComparativo.Comite },
@@ -88,6 +92,7 @@ export class CuadroComparativoList implements OnInit {
     { label: "Direccion", value: EAutorizacionCuadroComparativo.Direccion },
   ];
   selectedEvidenceFiles: File[] = [];
+  selectedEvidencePreviewUrls: string[] = [];
 
   paramsSignal = toSignal(this.routeActive.params);
 
@@ -103,6 +108,10 @@ export class CuadroComparativoList implements OnInit {
 
   ngOnInit(): void {}
 
+  ngOnDestroy(): void {
+    this.revokeSelectedEvidencePreviews();
+  }
+
   onLoadData() {
     if (!this.solicitudCompraId) return;
 
@@ -115,12 +124,22 @@ export class CuadroComparativoList implements OnInit {
       this.folio = result.folio;
       this.solicitudCompra = result;
       this.evidenciasSignal.set(result.evidencias || []);
+      this.budgetSignal.set(result.budgets || []);
       this.cotizacionProveedorSignal.set(result.cotizacionProveedor);
       this.solicitudCompraDetalleSignal.set(result.solicitudCompraDetalle);
       this.setupProvidersAnDTOtals();
       this.onEvaluationPriceTotal();
       this.onTotalPreciosMenores(this.solicitudCompraDetalleSignal());
+      this.onLoadAvailableBudgets();
     });
+  }
+
+  onLoadAvailableBudgets() {
+    this.apiResponseS
+      .onGetItem(`SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}/Budgets`)
+      .then((result: any) => {
+        this.availableBudgetSignal.set(Array.from(result?.accounts || []));
+      });
   }
 
   setupProvidersAnDTOtals(): void {
@@ -246,6 +265,32 @@ export class CuadroComparativoList implements OnInit {
       return;
     }
 
+    const statusSelection = await this.swalService.fire({
+      title: "Resolver solicitud",
+      input: "radio",
+      inputOptions: {
+        autorizar: "Autorizar",
+        denegar: "No se autoriza",
+      },
+      inputValidator: (value: string) => {
+        if (!value) {
+          return "Selecciona una opci\u00f3n.";
+        }
+        return null;
+      },
+      showCancelButton: true,
+      confirmButtonText: "Continuar",
+      cancelButtonText: "Cancelar",
+      didOpen: () => this.swalService.fixModalZIndex(),
+    });
+
+    if (!statusSelection.isConfirmed || !statusSelection.value) return;
+
+    if (statusSelection.value === "denegar") {
+      await this.onOpenNoAutorizaModal();
+      return;
+    }
+
     const inputOptions = this.autorizacionOptions.reduce<Record<string, string>>(
       (acc, item) => {
         acc[String(item.value)] = String(item.label);
@@ -280,11 +325,81 @@ export class CuadroComparativoList implements OnInit {
 
     this.apiResponseS
       .onPut(`SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}`, {
+        estatus: 0,
         autorizadaPor: Number(value),
+        motivoNoAutorizacion: "",
         applicationUserId: this.authS.applicationUserId,
       })
       .then((result) => {
         if (result) {
+          this.onLoadData();
+        }
+      });
+  }
+
+  async onOpenNoAutorizaModal() {
+    const inputOptions = this.autorizacionOptions.reduce<Record<string, string>>(
+      (acc, item) => {
+        acc[String(item.value)] = String(item.label);
+        return acc;
+      },
+      {},
+    );
+
+    const result = await this.swalService.fire({
+      title: "No se autoriza",
+      html: `
+        <div class="flex flex-column gap-2 text-left">
+          <label for="swal-authorizer" class="font-semibold">Quien decide</label>
+          <select id="swal-authorizer" class="swal2-select" style="display:flex; width:100%;">
+            <option value="">Selecciona quien decide</option>
+            ${Object.entries(inputOptions)
+              .map(([value, label]) => `<option value="${value}">${label}</option>`)
+              .join("")}
+          </select>
+          <label for="swal-reason" class="font-semibold mt-2">Motivo</label>
+          <textarea id="swal-reason" class="swal2-textarea" style="display:flex; width:100%; margin:0;" placeholder="Explica por que no se autoriza"></textarea>
+        </div>
+      `,
+      showCancelButton: true,
+      confirmButtonText: "Guardar decision",
+      cancelButtonText: "Cancelar",
+      focusConfirm: false,
+      preConfirm: () => {
+        const select = document.getElementById("swal-authorizer") as HTMLSelectElement | null;
+        const textarea = document.getElementById("swal-reason") as HTMLTextAreaElement | null;
+        const autorizadaPor = select?.value ?? "";
+        const motivo = textarea?.value?.trim() ?? "";
+
+        if (!autorizadaPor) {
+          Swal.showValidationMessage("Selecciona quien toma la decision.");
+          return null;
+        }
+
+        if (!motivo) {
+          Swal.showValidationMessage("Debes indicar el motivo de no autorizacion.");
+          return null;
+        }
+
+        return {
+          autorizadaPor: Number(autorizadaPor),
+          motivo,
+        };
+      },
+      didOpen: () => this.swalService.fixModalZIndex(),
+    });
+
+    if (!result.isConfirmed || !result.value) return;
+
+    this.apiResponseS
+      .onPut(`SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}`, {
+        estatus: 1,
+        autorizadaPor: result.value.autorizadaPor,
+        motivoNoAutorizacion: result.value.motivo,
+        applicationUserId: this.authS.applicationUserId,
+      })
+      .then((response) => {
+        if (response) {
           this.onLoadData();
         }
       });
@@ -305,7 +420,9 @@ export class CuadroComparativoList implements OnInit {
 
     this.apiResponseS
       .onPut(`SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}`, {
+        estatus: 2,
         autorizadaPor: null,
+        motivoNoAutorizacion: "",
         applicationUserId: this.authS.applicationUserId,
       })
       .then((response) => {
@@ -316,10 +433,177 @@ export class CuadroComparativoList implements OnInit {
   }
 
   isAuthorized() {
-    return (
-      this.solicitudCompra?.autorizadaPor !== null &&
-      this.solicitudCompra?.autorizadaPor !== undefined
+    return this.solicitudCompra?.estatus === 0;
+  }
+
+  isDenied() {
+    return this.solicitudCompra?.estatus === 1;
+  }
+
+  canOptimizeProducts() {
+    return this.solicitudCompraDetalleSignal().length > 4;
+  }
+
+  toggleOptimizeProducts() {
+    if (!this.canOptimizeProducts()) return;
+    this.optimizeProducts = !this.optimizeProducts;
+  }
+
+  getDisplayedSolicitudDetalle() {
+    const details = this.solicitudCompraDetalleSignal();
+
+    if (!this.optimizeProducts || details.length <= 4) {
+      return details;
+    }
+
+    return [
+      {
+        producto: `PRODUCTOS AGRUPADOS (${details.length} PARTIDAS)`,
+        cantidad: details.reduce((sum, item) => sum + Number(item.cantidad || 0), 0),
+        unidadMedida: "Lote",
+        total: this.total1,
+        total2: this.total2,
+        total3: this.total3,
+      },
+    ];
+  }
+
+  getVisualEvidenceCards() {
+    const uploadedCards = this.evidenciasSignal().map((evidencia) => ({
+      id: evidencia.id,
+      src: evidencia.fileUrl,
+      alt: evidencia.fileName,
+      isPending: false,
+    }));
+
+    const pendingCards = this.selectedEvidencePreviewUrls.map((previewUrl, index) => ({
+      id: `pending-${index}`,
+      src: previewUrl,
+      alt: this.selectedEvidenceFiles[index]?.name || "Vista previa",
+      isPending: true,
+    }));
+
+    return [...uploadedCards, ...pendingCards].slice(0, 4);
+  }
+
+  async onOpenAddBudgetModal() {
+    if (this.availableBudgetSignal().length === 0) {
+      this.customToastService.showInfo(
+        "Sin presupuestos",
+        "No se encontraron cuentas presupuestales disponibles para seleccionar.",
+      );
+      return;
+    }
+
+    const inputOptions = this.availableBudgetSignal().reduce<Record<string, string>>(
+      (acc, item) => {
+        acc[item.accountNumber] =
+          `${item.accountNumber} | ${item.accountName} | Restante ${this.formatCurrency(item.availableBudget)}`;
+        return acc;
+      },
+      {},
     );
+
+    const selectedBudget = await this.swalService.fire({
+      title: "Agregar presupuesto",
+      input: "select",
+      inputOptions,
+      inputPlaceholder: "Selecciona una cuenta",
+      showCancelButton: true,
+      confirmButtonText: "Continuar",
+      cancelButtonText: "Cancelar",
+      inputValidator: (value: string) => {
+        if (!value) {
+          return "Selecciona una cuenta presupuestal.";
+        }
+        return null;
+      },
+      didOpen: () => this.swalService.fixModalZIndex(),
+    });
+
+    if (!selectedBudget.isConfirmed || !selectedBudget.value) return;
+
+    const budgetData = this.availableBudgetSignal().find(
+      (item) => item.accountNumber === selectedBudget.value,
+    );
+    if (!budgetData) return;
+
+    const amountModal = await this.swalService.fire({
+      title: "Monto a usar",
+      input: "number",
+      inputLabel: `${budgetData.accountNumber} | Restante ${this.formatCurrency(budgetData.availableBudget)}`,
+      inputValue: String(this.getCheapestQuotationTotal()),
+      inputAttributes: {
+        min: "0.01",
+        step: "0.01",
+      },
+      showCancelButton: true,
+      confirmButtonText: "Guardar",
+      cancelButtonText: "Cancelar",
+      inputValidator: (value: string) => {
+        const amount = Number(value);
+        if (!value || Number.isNaN(amount) || amount <= 0) {
+          return "Ingresa un monto v\u00e1lido.";
+        }
+        if (amount > Number(budgetData.availableBudget)) {
+          return "El monto excede el presupuesto restante.";
+        }
+        return null;
+      },
+      didOpen: () => this.swalService.fixModalZIndex(),
+    });
+
+    if (!amountModal.isConfirmed || !amountModal.value) return;
+
+    this.apiResponseS
+      .onPost(`SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}/Budgets`, {
+        fiscalYear: String(this.getFiscalYear()),
+        accountNumber: budgetData.accountNumber,
+        accountName: budgetData.accountName,
+        amount: Number(amountModal.value),
+      })
+      .then((result) => {
+        if (result) {
+          this.onLoadData();
+        }
+      });
+  }
+
+  onDeleteBudget(budgetId: string) {
+    this.apiResponseS
+      .onDelete(`SolicitudCompra/CuadroComparativo/Budgets/${budgetId}`)
+      .then((success) => {
+        if (success) {
+          this.onLoadData();
+        }
+      });
+  }
+
+  getFiscalYear() {
+    if (this.solicitudCompra?.fechaSolicitud) {
+      return new Date(this.solicitudCompra.fechaSolicitud).getFullYear();
+    }
+
+    return new Date().getFullYear();
+  }
+
+  formatCurrency(value: number) {
+    return new Intl.NumberFormat("es-MX", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(Number(value || 0));
+  }
+
+  getCheapestQuotationTotal() {
+    const validTotals = [this.total1, this.total2, this.total3].filter(
+      (value) => Number(value) > 0,
+    );
+
+    if (validTotals.length === 0) {
+      return 0;
+    }
+
+    return Math.min(...validTotals);
   }
 
   onEvidenceFilesSelected(event: Event) {
@@ -357,7 +641,11 @@ export class CuadroComparativoList implements OnInit {
       );
     }
 
+    this.revokeSelectedEvidencePreviews();
     this.selectedEvidenceFiles = files.slice(0, availableSlots);
+    this.selectedEvidencePreviewUrls = this.selectedEvidenceFiles.map((file) =>
+      URL.createObjectURL(file),
+    );
     input.value = "";
   }
 
@@ -383,6 +671,7 @@ export class CuadroComparativoList implements OnInit {
     }
 
     if (!hasError) {
+      this.revokeSelectedEvidencePreviews();
       this.selectedEvidenceFiles = [];
       this.onLoadData();
     }
@@ -406,15 +695,24 @@ export class CuadroComparativoList implements OnInit {
   }
 
   onResetData(): void {
+    this.revokeSelectedEvidencePreviews();
     this.solicitudCompraDetalleSignal.set([]);
     this.cotizacionProveedorSignal.set([]);
     this.evidenciasSignal.set([]);
+    this.budgetSignal.set([]);
     this.provider1 = undefined;
     this.provider2 = undefined;
     this.provider3 = undefined;
     this.total1 = 0;
     this.total2 = 0;
     this.total3 = 0;
+  }
+
+  revokeSelectedEvidencePreviews() {
+    for (const previewUrl of this.selectedEvidencePreviewUrls) {
+      URL.revokeObjectURL(previewUrl);
+    }
+    this.selectedEvidencePreviewUrls = [];
   }
 
   onResetMejorPrecio() {

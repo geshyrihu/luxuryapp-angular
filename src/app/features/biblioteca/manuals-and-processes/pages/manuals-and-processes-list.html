@@ -8,7 +8,7 @@
           class="flex align-items-center justify-content-center bg-blue-50 border-round-xl flex-shrink-0"
           style="width: 56px; height: 56px"
         >
-          <app-icon icon="mdi:book" class="text-3xl text-blue-600" />
+          <app-icon [icon]="'mdi:book'" class="text-3xl text-blue-600" />
         </div>
         <div>
           <h1 class="text-3xl font-bold text-900 m-0">Manuales y Procesos</h1>
@@ -37,14 +37,14 @@
   <!-- Loading -->
   @if (loading()) {
   <div class="flex justify-content-center align-items-center py-8">
-    <app-icon icon="mdi:loading" class="text-3xl text-400 ds-animate-spin" />
+    <app-icon [icon]="'mdi:loading'" class="text-3xl text-400 ds-animate-spin" />
   </div>
   }
 
   <!-- Sin datos -->
   @else if (!groupedData().length) {
   <div class="text-center py-8">
-    <app-icon icon="mdi:book" class="text-5xl text-400 mb-3 block" />
+    <app-icon [icon]="'mdi:book'" class="text-5xl text-400 mb-3 block" />
     <p class="text-600 font-medium m-0">Sin manuales registrados</p>
     <p class="text-500 text-sm mt-1 m-0">
       Agrega el primer manual para comenzar.

@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
@@ -21,7 +22,7 @@ import { TagModule } from "primeng/tag";
     DividerModule,
     TagModule,
     FieldsetModule,
-  ],
+   AppIcon],
 })
 export class ManualsAndProcessesGuide {
   private router = inject(Router);

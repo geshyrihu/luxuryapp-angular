@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Component, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
@@ -30,7 +31,7 @@ interface FrontendRoute {
     TagModule,
     DividerModule,
     CustomButton,
-  ],
+   AppIcon],
   templateUrl: "./report-guide.html",
 })
 export class ReportGuide {

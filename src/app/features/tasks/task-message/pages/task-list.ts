@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import {
   Component,
   computed,
@@ -159,7 +160,7 @@ import { TaskForm } from "./task-form";
     IonInputSelect,
     IonInputText,
     InitialsAbbrPipe,
-  ],
+   AppIcon],
 })
 export class TaskList implements OnInit {
   private readonly activatedRoute = inject(ActivatedRoute);

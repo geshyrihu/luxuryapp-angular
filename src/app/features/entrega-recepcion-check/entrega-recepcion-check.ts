@@ -33,23 +33,23 @@ export class EntregaRecepcionCheckComponent implements OnInit {
 
   ngOnInit() {
     this.statusOptions = [
-      { label: "Completo", value: "completo", icon: "pi pi-check-circle" },
+      { label: "Completo", value: "completo", icon: "mdi:check-circle" },
       {
         label: "Parcial",
         value: "parcial",
-        icon: "pi pi-exclamation-triangle",
+        icon: "mdi:alert",
       },
       {
         label: "No Entregado",
         value: "no-entregado",
-        icon: "pi pi-times-circle",
+        icon: "mdi:close-circle",
       },
     ];
 
     this.auditModules = [
       {
         name: "Legal y Régimen Condominal",
-        icon: "pi pi-book",
+        icon: "mdi:book",
         items: [
           {
             control:
@@ -104,7 +104,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
       },
       {
         name: "Fiscal y Contable",
-        icon: "pi pi-chart-bar",
+        icon: "mdi:chart-bar",
         items: [
           {
             control: "Constancia de Situación Fiscal (RFC) de la A.C.",
@@ -190,7 +190,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
       },
       {
         name: "Recursos Humanos y Seguridad Social",
-        icon: "pi pi-users",
+        icon: "mdi:account-group",
         items: [
           {
             control: "Listado de personal activo.",
@@ -250,7 +250,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
       },
       {
         name: "Operación y Servicios",
-        icon: "pi pi-cog",
+        icon: "mdi:cog",
         items: [
           {
             control: "Directorio de residentes actualizado.",
@@ -298,7 +298,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
       },
       {
         name: "Mantenimiento y Activos",
-        icon: "pi pi-wrench",
+        icon: "mdi:wrench",
         items: [
           {
             control:
@@ -340,7 +340,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
       },
       {
         name: "Protección Civil y Riesgos",
-        icon: "pi pi-shield",
+        icon: "mdi:shield",
         items: [
           {
             control:
@@ -394,7 +394,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
       },
       {
         name: "Tecnología, Accesos y Contraseñas",
-        icon: "pi pi-key",
+        icon: "mdi:key",
         items: [
           {
             control:
@@ -423,7 +423,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
       },
       {
         name: "Relación con Comité y Gobierno Interno",
-        icon: "pi pi-sitemap",
+        icon: "mdi:sitemap",
         items: [
           {
             control:
@@ -451,7 +451,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
       },
       {
         name: "Juicios, Cobranza y Morosidad",
-        icon: "pi pi-briefcase",
+        icon: "mdi:briefcase",
         items: [
           {
             control: "Reporte de cartera vencida detallado.",
@@ -484,7 +484,7 @@ export class EntregaRecepcionCheckComponent implements OnInit {
       },
       {
         name: "Proyectos y Pendientes Heredados",
-        icon: "pi pi-inbox",
+        icon: "mdi:inbox",
         items: [
           {
             control: "Listado de proyectos en curso y pendientes importantes.",

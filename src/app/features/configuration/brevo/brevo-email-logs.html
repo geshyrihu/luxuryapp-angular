@@ -141,7 +141,7 @@
   <ng-template pTemplate="emptymessage">
     <tr>
       <td colspan="6" class="text-center py-6 text-color-secondary">
-        <app-icon icon="mdi:inbox" class="text-3xl mb-2 block" />
+        <app-icon [icon]="'mdi:inbox'" class="text-3xl mb-2 block" />
         No se encontraron logs con los filtros seleccionados.
       </td>
     </tr>
@@ -160,6 +160,4 @@
     </tr>
     }
   </ng-template>
-</p-table>
-
 </p-table>

@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CdkDragDrop, DragDropModule } from "@angular/cdk/drag-drop";
 import { CommonModule, CurrencyPipe } from "@angular/common";
 import {
@@ -81,7 +82,7 @@ const flatCatalogCache = new Map<string, IAccountFlatItem[]>();
     InputGroupAddonModule,
     AccountTreeSelect,
     CurrencyPipe,
-  ],
+   AppIcon],
   templateUrl: "./report-builder.html",
 })
 export class ReportBuilder implements OnInit, OnDestroy {

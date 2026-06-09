@@ -3,7 +3,7 @@ import { CobranzaGroup } from "../../models/cobranza-nativa.model";
 export const COBRANZA_GROUPS: CobranzaGroup[] = [
   {
     label: "Identidad y Responsables",
-    icon: "pi pi-users",
+    icon: "mdi:account-group",
     description:
       "Modelo unificado de quien vive o es responsable en cada propiedad del condominio.",
     cards: [
@@ -12,7 +12,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Catalogo de unidades del condominio: departamento, torre, piso, numero de cuenta, superficie, indiviso y cajones. Base del sistema de cobranza.",
         route: "/cobranza-nativa/properties",
-        icon: "pi pi-home",
+        icon: "mdi:home",
         bgColor: "#dbeafe",
         roles: ["Administrador"],
         actions: [
@@ -50,7 +50,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Registro de propietarios, copropietarios, inquilinos, residentes y administradores por propiedad. Define quien es el responsable financiero activo.",
         route: "/cobranza-nativa/members",
-        icon: "pi pi-id-card",
+        icon: "mdi:card-account-details",
         bgColor: "#ede9fe",
         roles: ["Administrador"],
         actions: [
@@ -98,7 +98,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
   },
   {
     label: "Operacion Diaria",
-    icon: "pi pi-calendar",
+    icon: "mdi:calendar",
     description:
       "Funciones que el administrador usa en el dia a dia para registrar cargos y pagos.",
     cards: [
@@ -107,7 +107,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "KPIs en tiempo real: porcentaje de cobro, totales cobrados/pendientes/vencidos, tendencia mensual y top deudores.",
         route: "/cobranza-nativa/dashboard",
-        icon: "pi pi-chart-bar",
+        icon: "mdi:chart-bar",
         bgColor: "#ccfbf1",
         roles: ["Administrador", "Cobranza", "Contador"],
         actions: [
@@ -129,7 +129,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Configuracion de cargos recurrentes: mantenimiento ordinario, cuotas extraordinarias. Define monto fijo o calculo por indiviso.",
         route: "/cobranza-nativa/charge-templates",
-        icon: "pi pi-file-edit",
+        icon: "mdi:file-edit",
         bgColor: "#dcfce7",
         roles: ["Administrador"],
         actions: [
@@ -169,7 +169,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Matriz de cobertura: visualiza qué cuota aplica a cada propiedad mes a mes. Muestra monto fijo o calculado por indiviso para cada periodo vigente.",
         route: "/cobranza-nativa/charge-template-coverage",
-        icon: "pi pi-table",
+        icon: "mdi:table",
         bgColor: "#ede9fe",
         roles: ["Administrador", "Contador"],
         actions: [
@@ -190,7 +190,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Gestion individual de cargos aplicados a cada propiedad. Los cargos se generan desde plantillas o se crean manualmente.",
         route: "/cobranza-nativa/charges",
-        icon: "pi pi-dollar",
+        icon: "mdi:dollar",
         bgColor: "#bbf7d0",
         roles: ["Administrador", "Cobranza"],
         actions: [
@@ -240,7 +240,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Registro de la deuda historica de cada propiedad al momento de migrar al sistema. Permite capturar o actualizar el monto de arranque directamente en la tabla.",
         route: "/cobranza-nativa/initial-balance",
-        icon: "pi pi-wallet",
+        icon: "mdi:wallet",
         bgColor: "#fef9c3",
         roles: ["Administrador", "Contador"],
         actions: [
@@ -265,7 +265,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Registro de pagos de condominios con asignacion automatica FIFO a cargos pendientes. Soporta notas de credito y cancelaciones.",
         route: "/cobranza-nativa/payments",
-        icon: "pi pi-credit-card",
+        icon: "mdi:credit-card",
         bgColor: "#a7f3d0",
         roles: ["Administrador", "Cobranza"],
         actions: [
@@ -306,7 +306,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
   },
   {
     label: "Gobierno Financiero",
-    icon: "pi pi-shield",
+    icon: "mdi:shield",
     description:
       "Controles de integridad, aprobacion de operaciones sensibles y cierre contable de periodos.",
     cards: [
@@ -315,7 +315,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Registro inmutable (append-only) de todos los eventos financieros. Es la fuente de verdad contable del sistema. No se pueden editar ni eliminar entradas.",
         route: "/cobranza-nativa/ledger",
-        icon: "pi pi-list",
+        icon: "mdi:format-list-bulleted",
         bgColor: "#e0e7ff",
         roles: ["Contador", "SuperUsuario"],
         actions: [
@@ -361,7 +361,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Bandeja de solicitudes que requieren autorizacion de un segundo revisor (maker-checker). Previene que quien solicita una operacion sensible la apruebe el mismo.",
         route: "/cobranza-nativa/approvals",
-        icon: "pi pi-check-square",
+        icon: "mdi:check-square",
         bgColor: "#f3e8ff",
         roles: ["Administrador", "Contador"],
         actions: [
@@ -396,7 +396,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Control de apertura y cierre de periodos contables mensuales. Un periodo cerrado bloquea la creacion de nuevos movimientos en ese mes.",
         route: "/cobranza-nativa/period-closures",
-        icon: "pi pi-lock",
+        icon: "mdi:lock",
         bgColor: "#fce7f3",
         roles: ["Administrador", "Contador"],
         actions: [
@@ -433,7 +433,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Bitacora de todas las acciones de negocio relevantes en lenguaje operacional. Complementa el ledger con contexto de quien hizo que y por que.",
         route: "/cobranza-nativa/audit",
-        icon: "pi pi-eye",
+        icon: "mdi:eye-outline",
         bgColor: "#f5f3ff",
         roles: ["SuperUsuario", "Contador"],
         actions: [
@@ -459,7 +459,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
 
   {
     label: "Cobranza Legal",
-    icon: "pi pi-exclamation-triangle",
+    icon: "mdi:alert",
     description:
       "Seguimiento formal de propiedades con morosidad grave que requieren gestion activa.",
     cards: [
@@ -468,7 +468,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Expedientes de cobranza legal para propiedades con deuda grave (30/60/90+ dias). Permite asignar un gestor, registrar actividades y fechas de promesa de pago.",
         route: "/cobranza-nativa/collection-cases",
-        icon: "pi pi-briefcase",
+        icon: "mdi:briefcase",
         bgColor: "#fee2e2",
         roles: ["Administrador", "Cobranza", "Legal"],
         actions: [
@@ -506,7 +506,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Catalogo de articulos del reglamento interno del condominio. Define los tipos de infraccion con su numero, texto oficial y monto de multa predeterminado.",
         route: "/cobranza-nativa/regulation-articles",
-        icon: "pi pi-book",
+        icon: "mdi:book",
         bgColor: "#ede9fe",
         roles: ["Administrador"],
         actions: [
@@ -551,7 +551,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Expedientes de infracciones al reglamento interno. Cada multa puede tener evidencia adjunta (PDF, fotos) y genera un cargo financiero al confirmarse.",
         route: "/cobranza-nativa/property-fines",
-        icon: "pi pi-ban",
+        icon: "mdi:ban",
         bgColor: "#fce7f3",
         roles: ["Administrador"],
         actions: [
@@ -616,7 +616,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
   },
   {
     label: "Facturacion CFDI",
-    icon: "pi pi-receipt",
+    icon: "mdi:receipt",
     description:
       "Emision y cancelacion de comprobantes fiscales digitales (CFDI 4.0) vinculados a los cargos.",
     cards: [
@@ -625,7 +625,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Gestion de facturas CFDI 4.0 asociadas a cargos del condominio. Preparado para integracion con SW Sapien. Almacena XML y PDF generados.",
         route: "/cobranza-nativa/invoices",
-        icon: "pi pi-file-pdf",
+        icon: "mdi:file-pdf-box",
         bgColor: "#fef9c3",
         roles: ["Administrador", "Contador"],
         actions: [
@@ -655,7 +655,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
   },
   {
     label: "Conciliacion Bancaria",
-    icon: "pi pi-sync",
+    icon: "mdi:sync",
     description:
       "Cruce automatico de pagos registrados sin aplicar contra cargos pendientes.",
     cards: [
@@ -664,7 +664,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Bolsa de pagos no identificados: pagos registrados en el sistema que aun no han sido aplicados a ningun cargo. La auto-conciliacion los cruza automaticamente.",
         route: "/cobranza-nativa/reconciliation",
-        icon: "pi pi-arrows-h",
+        icon: "mdi:arrow-expand-horizontal",
         bgColor: "#fff7ed",
         roles: ["Contador"],
         actions: [
@@ -690,7 +690,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
   },
   {
     label: "Configuracion",
-    icon: "pi pi-cog",
+    icon: "mdi:cog",
     description:
       "Parametros del modulo: politicas de mora, modo de facturacion y estado de cuenta.",
     cards: [
@@ -699,7 +699,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Catalogo de unidades del condominio: torre, departamento, piso, numero de cuenta, area, indiviso, cajones y bodega. Registra o edita cada propiedad desde aqui.",
         route: "/property",
-        icon: "pi pi-building",
+        icon: "mdi:office-building",
         bgColor: "#e0e7ff",
         roles: ["Administrador", "SuperUsuario"],
         actions: [
@@ -735,7 +735,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Configuracion de recargos automaticos por pago tardio: dias de gracia, tasa fija o porcentaje, topes maximos y calculo de interes compuesto.",
         route: "/cobranza-nativa/late-fee-policies",
-        icon: "pi pi-percentage",
+        icon: "mdi:percent",
         bgColor: "#fed7aa",
         roles: ["Administrador"],
         actions: [
@@ -772,7 +772,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Define si el condominio genera cargos de forma nativa (en esta app) o sincronizado con ASPEL COI. Tambien configura dias de vencimiento y dias de gracia globales.",
         route: "",
-        icon: "pi pi-sliders-h",
+        icon: "mdi:tune",
         bgColor: "#e0f2fe",
         roles: ["Administrador", "SuperUsuario"],
         actions: [
@@ -801,7 +801,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Kardex de movimientos por propiedad: todos los cargos, pagos y recargos con saldo acumulado. Exportable a PDF.",
         route: "/cobranza-nativa/estado-cuenta",
-        icon: "pi pi-file",
+        icon: "mdi:file-document-outline",
         bgColor: "#cffafe",
         roles: ["Administrador", "Cobranza", "Contador"],
         actions: [
@@ -822,7 +822,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
   },
   {
     label: "Servicios Automatizados del API",
-    icon: "pi pi-server",
+    icon: "mdi:server",
     description:
       "Procesos que corren automaticamente via jobs nocturnos (Hangfire/CRON). Tambien disparables manualmente.",
     cards: [
@@ -831,7 +831,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Job que crea automaticamente los cargos del mes para todas las propiedades activas basandose en las plantillas configuradas. Se ejecuta el primer dia de cada mes.",
         route: "/cobranza-nativa/automated-services",
-        icon: "pi pi-play-circle",
+        icon: "mdi:play-circle",
         bgColor: "#dcfce7",
         roles: ["Administrador"],
         actions: [
@@ -851,7 +851,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Detecta cargos vencidos y aplica la politica de mora configurada. Genera nuevos cargos de tipo Recargo. Se ejecuta diariamente.",
         route: "/cobranza-nativa/automated-services",
-        icon: "pi pi-clock",
+        icon: "mdi:clock-outline",
         bgColor: "#fed7aa",
         roles: ["Administrador"],
         actions: [
@@ -871,7 +871,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Analiza antiguedad de deuda y escala propiedades a casos de gestoria cuando superan 90 dias. Se ejecuta cada lunes.",
         route: "/cobranza-nativa/automated-services",
-        icon: "pi pi-flag",
+        icon: "mdi:flag-outline",
         bgColor: "#fee2e2",
         roles: ["Administrador"],
         actions: [
@@ -891,7 +891,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Cruza pagos sin aplicar con cargos pendientes de la misma propiedad. Se ejecuta cada 4 horas para reducir la bolsa de pagos no identificados.",
         route: "/cobranza-nativa/automated-services",
-        icon: "pi pi-refresh",
+        icon: "mdi:refresh",
         bgColor: "#dbeafe",
         roles: ["Administrador"],
         actions: [
@@ -911,7 +911,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         description:
           "Campana de recordatorios por email: detecta cargos pendientes/vencidos y envia avisos a los ocupantes segun la proximidad al vencimiento. Evita duplicados via NotificationLog.",
         route: "",
-        icon: "pi pi-bell",
+        icon: "mdi:bell",
         bgColor: "#f0fdf4",
         roles: ["Administrador"],
         pending: true,

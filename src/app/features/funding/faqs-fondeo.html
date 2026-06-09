@@ -20,7 +20,7 @@
   <p-card styleClass="mb-3">
     <ng-template #header>
       <div class="flex align-items-center px-3 pt-3 gap-2">
-        <i class="pi pi-question-circle text-primary text-xl"></i>
+        <app-icon [icon]="'mdi:help-circle'" class="text-primary text-xl"></app-icon>
         <h5
           class="text-lg m-0 font-semibold text-900"
           [innerHTML]="faq.pregunta | highlight : searchTerm"

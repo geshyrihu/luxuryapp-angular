@@ -636,7 +636,7 @@ export class CatalogComponentUi implements OnDestroy {
       folio: "E-1002",
       consumption: "120 kWh",
       status: EStatus.Concluido,
-      icon: "flash-outline",
+      icon: "mdi:flash-outline",
       color: "success",
     },
     {
@@ -645,7 +645,7 @@ export class CatalogComponentUi implements OnDestroy {
       folio: "W-2005",
       consumption: "45 m³",
       status: EStatus.Proceso,
-      icon: "water-outline",
+      icon: "mdi:water-outline",
       color: "primary",
     },
   ];

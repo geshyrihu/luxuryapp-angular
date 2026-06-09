@@ -8,7 +8,7 @@
             @if (facturas().length > 0) {
             <custom-button
               label="Validar Todas"
-              iconClass="pi pi-check"
+              iconClass="mdi:check"
               severity="warning"
               size="small"
               [showLabelOnDesktop]="true"
@@ -67,7 +67,7 @@
               <p-tag
                 class="cursor-pointer"
                 severity="danger"
-                icon="pi pi-file-pdf"
+                icon="mdi:file-pdf-box"
                 value="PDF"
                 (click)="viewPdf(factura.pdfFile, factura.factura || 'Factura')"
               ></p-tag>
@@ -75,7 +75,7 @@
               <p-tag
                 class="cursor-pointer"
                 severity="info"
-                icon="pi pi-file"
+                icon="mdi:file-document-outline"
                 value="XML"
                 (click)="descargarArchivo(factura.xmlFile)"
               ></p-tag>
@@ -88,7 +88,7 @@
         <tr>
           <td colspan="8" class="text-center p-4">
             <div class="flex flex-column align-items-center">
-              <i class="pi pi-file-excel text-4xl text-500"></i>
+              <app-icon [icon]="'mdi:file-excel'" class="text-4xl text-500"></app-icon>
               <span
                 >No hay facturas asociadas. Haz clic en "Administrar" para
                 agregar una.</span

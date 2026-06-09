@@ -97,7 +97,7 @@
       <ion-label>
         <div class="flex justify-content-between align-items-center mb-1">
           <h2 class="font-bold m-0 text-base">
-            <i class="pi pi-calendar mr-1 text-primary"></i>
+            <app-icon [icon]="'mdi:calendar'" class="mr-1 text-primary"></app-icon>
             {{ item.dateString }}
           </h2>
         </div>
@@ -131,7 +131,7 @@
           >
             <i
               class="pi"
-              [class]="item.cepillado ? 'pi-check text-green-600' : 'pi-times text-400'"
+              [class]="item.cepillado ? 'mdi:check text-green-600' : 'mdi:close text-400'"
             ></i>
             <small class="text-xs">Cepillado</small>
           </div>
@@ -141,7 +141,7 @@
           >
             <i
               class="pi"
-              [class]="item.aspirado ? 'pi-check text-green-600' : 'pi-times text-400'"
+              [class]="item.aspirado ? 'mdi:check text-green-600' : 'mdi:close text-400'"
             ></i>
             <small class="text-xs">Aspirado</small>
           </div>

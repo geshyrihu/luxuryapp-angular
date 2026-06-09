@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import {
   Component,
   computed,
@@ -12,7 +13,7 @@ import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 @Component({
   selector: "app-orden-compra-datos-auth-parcial",
   templateUrl: "./orden-compra-datos-auth-parcial.html",
-  imports: [ButtonModule, MessageModule],
+  imports: [ButtonModule, MessageModule, AppIcon],
 })
 export class OrdenCompraDatosAuthParcial {
   private ordenCompraService = inject(OrdenCompraService);

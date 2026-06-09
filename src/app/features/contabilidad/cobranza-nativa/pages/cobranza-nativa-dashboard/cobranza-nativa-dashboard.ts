@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { Component, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { CardModule } from "primeng/card";
@@ -12,7 +13,7 @@ import { COBRANZA_GROUPS } from "./cobranza-nativa-groups.const";
 
 @Component({
   selector: "app-cobranza-nativa-dashboard",
-  imports: [CustomButton, TagModule, CardModule],
+  imports: [CustomButton, TagModule, CardModule, AppIcon],
   templateUrl: "./cobranza-nativa-dashboard.html",
   styleUrls: ["./cobranza-nativa-dashboard.scss"],
 })
@@ -27,14 +28,14 @@ export default class CobranzaNativaDashboard {
       label: "Modulos funcionales",
       value: String(COBRANZA_GROUPS.reduce((a, g) => a + g.cards.length, 0)),
       detail: "Paginas y funciones activas",
-      icon: "pi pi-th-large",
+      icon: "mdi:grid",
       tone: "primary",
     },
     {
       label: "Grupos de trabajo",
       value: String(COBRANZA_GROUPS.length),
       detail: "Areas funcionales del modulo",
-      icon: "pi pi-sitemap",
+      icon: "mdi:sitemap",
       tone: "info",
     },
     {
@@ -46,7 +47,7 @@ export default class CobranzaNativaDashboard {
         ),
       ),
       detail: "Rutas del API por funcionalidad",
-      icon: "pi pi-server",
+      icon: "mdi:server",
       tone: "success",
     },
   ];

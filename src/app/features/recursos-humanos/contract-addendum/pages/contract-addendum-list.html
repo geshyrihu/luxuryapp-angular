@@ -41,11 +41,11 @@
         <td>{{ item.signedDate ? (item.signedDate | date:'dd/MM/yyyy') : '—' }}</td>
         <td class="text-center">
           @if (item.addendumStatus === 'Borrador' || item.addendumStatus === 'Pendiente') {
-            <custom-button-item icon="pi pi-sign-in" title="Firmar" (click)="onSign(item)" />
+            <custom-button-item icon="mdi:login" title="Firmar" (click)="onSign(item)" />
             <custom-button-edit (click)="onEdit(item)" />
           }
           @if (item.addendumStatus === 'Borrador' || item.addendumStatus === 'Pendiente') {
-            <custom-button-item icon="pi pi-times-circle" title="Cancelar" severity="danger" (click)="onCancel(item)" />
+            <custom-button-item icon="mdi:close-circle" title="Cancelar" severity="danger" (click)="onCancel(item)" />
           }
           <custom-button-delete (click)="onDelete(item.id)" />
         </td>

@@ -26,7 +26,7 @@
         <div class="flex align-items-center flex-wrap gap-2 no-print mb-2 mt-1">
           <!-- Botones de acción -->
           <custom-button
-            iconClass="pi pi-print"
+            iconClass="mdi:printer"
             label="PENDIENTES"
             severity="danger"
             size="sm"
@@ -34,7 +34,7 @@
             [showLabelOnDesktop]="true"
           />
           <custom-button
-            iconClass="pi pi-send"
+            iconClass="mdi:send"
             label="SEGUIMIENTO"
             severity="secondary"
             size="sm"
@@ -45,7 +45,7 @@
           <!-- Filtros de tipo de junta -->
           <div class="flex gap-1 ml-2">
             <custom-button
-              iconClass="pi pi-building-columns"
+              iconClass="mdi:bank"
               label="ASAMBLEA"
               size="sm"
               [variant]="tipoJunta === 1 ? null : 'outlined'"
@@ -53,7 +53,7 @@
               [showLabelOnDesktop]="true"
             />
             <custom-button
-              iconClass="pi pi-users"
+              iconClass="mdi:account-group"
               label="COMITÉ"
               size="sm"
               [variant]="tipoJunta === 0 ? null : 'outlined'"
@@ -61,7 +61,7 @@
               [showLabelOnDesktop]="true"
             />
             <custom-button
-              iconClass="pi pi-cog"
+              iconClass="mdi:cog"
               label="OPERACIÓN"
               size="sm"
               [variant]="tipoJunta === 2 ? null : 'outlined'"
@@ -132,7 +132,7 @@
               style="max-width: 150px"
             >
               <span class="text-xs font-bold flex align-items-center gap-1">
-                <i class="pi pi-chart-bar text-xs"></i>
+                <app-icon [icon]="'mdi:chart-bar'" class="text-xs"></app-icon>
                 <span>TOTAL</span>
               </span>
               <span class="font-bold">{{ item.issues }}</span>
@@ -153,7 +153,7 @@
               style="max-width: 150px"
             >
               <span class="text-xs font-bold flex align-items-center gap-1">
-                <i class="pi pi-check-circle text-xs"></i>
+                <app-icon [icon]="'mdi:check-circle'" class="text-xs"></app-icon>
                 <span>CONCL.</span>
               </span>
               <span class="font-bold">{{ item.concluidos }}</span>
@@ -174,7 +174,7 @@
               style="max-width: 150px"
             >
               <span class="text-xs font-bold flex align-items-center gap-1">
-                <i class="pi pi-clock text-xs"></i>
+                <app-icon [icon]="'mdi:clock-outline'" class="text-xs"></app-icon>
                 <span>PEND.</span>
               </span>
               <span class="font-bold">{{ item.pending }}</span>
@@ -195,7 +195,7 @@
               style="max-width: 150px"
             >
               <span class="text-xs font-bold flex align-items-center gap-1">
-                <i class="pi pi-ban text-xs"></i>
+                <app-icon [icon]="'mdi:ban'" class="text-xs"></app-icon>
                 <span>NO AUT.</span>
               </span>
               <span class="font-bold">{{ item.noAutorizado }}</span>
@@ -205,7 +205,7 @@
           <!-- GESTIONAR -->
           <td class="text-center">
             <custom-button
-              iconClass="pi pi-file-edit"
+              iconClass="mdi:file-edit"
               label="GESTIONAR"
               severity="secondary"
               size="sm"
@@ -219,12 +219,12 @@
             <app-action-menu>
               <ng-container actions>
                 <ion-button-item
-                  iconClass="pi pi-chart-bar"
+                  iconClass="mdi:chart-bar"
                   label="Exportar Excel"
                   (clicked)="exportToExcel(item.id)"
                 />
                 <ion-button-confirm
-                  iconClass="pi pi-envelope"
+                  iconClass="mdi:email-outline"
                   label="Enviar a Comité"
                   swalTitle="Confirmar envío"
                   swalText="Esta seguro de que desea enviar la minuta?"
@@ -232,12 +232,12 @@
                   (confirmed)="onSendEmailMeeting(item.id)"
                 />
                 <ion-button-item
-                  iconClass="pi pi-file-pdf"
+                  iconClass="mdi:file-pdf-box"
                   label="Minuta PDF"
                   (clicked)="onNavigateMinutaPublico(item.id)"
                 />
                 <ion-button-item
-                  iconClass="pi pi-clipboard"
+                  iconClass="mdi:clipboard-text"
                   label="Resumen minuta"
                   (clicked)="resumenMinuta(item.id)"
                 />
@@ -283,14 +283,14 @@
         />
         <div class="mt-2 flex flex-column gap-2">
           <custom-button
-            iconClass="pi pi-print"
+            iconClass="mdi:printer"
             label="IMPRIMIR PENDIENTES"
             severity="danger"
             [fluid]="true"
             [routerLink]="['/committee-meetings/minuta-pendientes']"
           />
           <custom-button
-            iconClass="pi pi-send"
+            iconClass="mdi:send"
             label="SEGUIMIENTO PENDIENTES"
             severity="secondary"
             [fluid]="true"
@@ -298,7 +298,7 @@
           />
           <div class="flex gap-1 mt-1">
             <custom-button
-              iconClass="pi pi-building-columns"
+              iconClass="mdi:bank"
               label="ASAMBLEA"
               size="sm"
               [fluid]="true"
@@ -306,7 +306,7 @@
               (clicked)="onLoadData(1)"
             />
             <custom-button
-              iconClass="pi pi-users"
+              iconClass="mdi:account-group"
               label="COMITÉ"
               size="sm"
               [fluid]="true"
@@ -314,7 +314,7 @@
               (clicked)="onLoadData(0)"
             />
             <custom-button
-              iconClass="pi pi-cog"
+              iconClass="mdi:cog"
               label="OPERACIÓN"
               size="sm"
               [fluid]="true"

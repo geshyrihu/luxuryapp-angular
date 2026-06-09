@@ -1,7 +1,7 @@
 <div class="p-3" *ngIf="item() as c">
   <!-- Cabecera -->
   <div class="flex align-items-center gap-3 mb-4 p-3 border-round surface-100">
-    <i class="pi pi-exclamation-triangle text-3xl text-red-600"></i>
+    <app-icon [icon]="'mdi:alert'" class="text-3xl text-red-600"></app-icon>
     <div>
       <div class="font-bold text-lg">{{ c.propertyName }}</div>
       <div class="text-500 text-sm">
@@ -46,7 +46,7 @@
     <custom-button label="Cerrar" severity="secondary" (clicked)="onClose()" />
     <custom-button
       label="Guardar Actividad"
-      iconClass="pi pi-save"
+      iconClass="mdi:content-save"
       severity="success"
       [disabled]="submitting()"
       (clicked)="onLogActivity()"

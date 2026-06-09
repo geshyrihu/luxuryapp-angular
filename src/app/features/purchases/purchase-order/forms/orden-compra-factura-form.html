@@ -32,12 +32,12 @@
         <td>{{ invoice.fechaFactura }}</td>
         <td>
           @if(invoice.pdfFile) {
-          <i class="pi pi-file-pdf text-red-500 text-xl"></i>
+          <app-icon [icon]="'mdi:file-pdf-box'" class="text-red-500 text-xl"></app-icon>
           }
         </td>
         <td>
           @if(invoice.xmlFile) {
-          <i class="pi pi-file text-blue-500 text-xl"></i>
+          <app-icon [icon]="'mdi:file-document-outline'" class="text-blue-500 text-xl"></app-icon>
           }
         </td>
         <td>
@@ -80,7 +80,7 @@
       />
       @if(isEditing()) {
       <small class="text-green-600 block mt-1"
-        ><i class="pi pi-check-circle"></i> Archivo actual conservado. Subir
+        ><app-icon [icon]="'mdi:check-circle'"></app-icon> Archivo actual conservado. Subir
         nuevo para reemplazar.</small
       >
       }
@@ -94,7 +94,7 @@
       />
       @if(isEditing()) {
       <small class="text-green-600 block mt-1"
-        ><i class="pi pi-check-circle"></i> Archivo actual conservado. Subir
+        ><app-icon [icon]="'mdi:check-circle'"></app-icon> Archivo actual conservado. Subir
         nuevo para reemplazar.</small
       >
       }
@@ -109,7 +109,7 @@
       }
       <custom-button
         [label]="isEditing() ? 'Actualizar Factura' : 'Agregar Factura'"
-        [iconClass]="isEditing() ? 'pi pi-save' : 'pi pi-plus'"
+        [iconClass]="isEditing() ? 'mdi:content-save' : 'mdi:plus'"
         (clicked)="onSubmit()"
         [disabled]="submitting()"
         severity="primary"

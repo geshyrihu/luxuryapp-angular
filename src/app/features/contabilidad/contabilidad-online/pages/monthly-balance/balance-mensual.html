@@ -14,7 +14,7 @@
     <div class="mb-0">
       <custom-button
         label="Cargar"
-        iconClass="pi pi-refresh"
+        iconClass="mdi:refresh"
         size="sm"
         [loading]="loading()"
         (clicked)="onLoad()"
@@ -30,7 +30,7 @@
   <!-- Loading -->
   @if (loading()) {
   <div class="rf-card p-4 flex align-items-center text-color-secondary mb-4 gap-2">
-    <i class="pi pi-spin pi-spinner"></i>
+    <app-icon [icon]="'mdi:spin'"></app-icon>
     <span>Consultando datos en Aspel...</span>
   </div>
   }

@@ -3,7 +3,7 @@
 <div class="flex flex-wrap align-items-center">
   <!-- Botón Seleccionar Todos -->
   <custom-button
-    iconClass="pi pi-check-square"
+    iconClass="mdi:check-square"
     label="Seleccionar Todos"
     customClass="mr-2"
     size="small"
@@ -12,7 +12,7 @@
 
   <!-- Botón Desmarcar Todos -->
   <custom-button
-    iconClass="pi pi-times-circle"
+    iconClass="mdi:close-circle"
     label="Desmarcar Todos"
     customClass="mr-2"
     size="small"
@@ -21,7 +21,7 @@
 
   <!-- Botón Agregar PARA -->
   <custom-button
-    iconClass="pi pi-plus "
+    [iconClass]="'mdi:plus'"
     label="Agregar PARA"
     customClass="mr-2"
     size="small"
@@ -32,7 +32,7 @@
 
   <!-- Botón Agregar CC -->
   <custom-button
-    iconClass="pi pi-plus "
+    [iconClass]="'mdi:plus'"
     label="Agregar CC"
     customClass="mr-2"
     size="small"
@@ -43,7 +43,7 @@
 
   <!-- Botón Agregar CCO -->
   <custom-button
-    iconClass="pi pi-plus "
+    [iconClass]="'mdi:plus'"
     label="Agregar CCO"
     customClass="mr-2"
     size="small"
@@ -79,7 +79,7 @@
         [type]="ButtonTypeSubmit"
         label="Agregar Correo"
         [disabled]="form.invalid"
-        [iconClass]="form.invalid ? 'pi pi-times' : 'pi pi-check'"
+        [iconClass]="form.invalid ? 'mdi:close' : 'mdi:check'"
         [customNgClass]="{
                 'p-button-danger': form.invalid,
                 'p-button-success': !form.invalid,
@@ -120,12 +120,9 @@
       <span
         class="absolute top-0 right-0 -mt-2 -mr-2 p-badge p-badge-success p-badge-border-round"
       >
-        <i
-          pTooltip="Descartar correo"
+        <app-icon [icon]="'mdi:close'" class="cursor-pointer" pTooltip="Descartar correo"
           placement="top"
-          (click)="onDeleteDestinatariosAdicionales(i)"
-          class="pi pi-times cursor-pointer"
-        ></i>
+          (click)="onDeleteDestinatariosAdicionales(i)"></app-icon>
       </span>
     </p-tag>
     }

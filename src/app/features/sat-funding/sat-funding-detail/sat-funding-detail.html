@@ -72,7 +72,7 @@
                 [disabled]="!selection || selection.length === 0"
               ></custom-button-confirm>
               <span class="p-input-icon-left ml-auto">
-                <i class="pi pi-search"></i>
+                <app-icon [icon]="'mdi:magnify'"></app-icon>
                 <custom-input-text-signal
                   (input)="dtInvoices.filterGlobal($event.target.value, 'contains')"
                   placeholder="Buscar..."
@@ -127,7 +127,7 @@
                 class="flex align-items-center justify-content-center"
                 [pReorderableRowHandle]="i"
               >
-                <i class="pi pi-bars"></i>
+                <app-icon [icon]="'mdi:menu'"></app-icon>
               </div>
             </td>
             <td>

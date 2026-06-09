@@ -133,7 +133,7 @@ export class SettingsHome {
     if (normalizedIcon.startsWith("pi ") || normalizedIcon.startsWith("icon "))
       return normalizedIcon;
 
-    return resolvePrimeIcon(icon, "pi pi-cog");
+    return resolvePrimeIcon(icon, "mdi:cog");
   }
 
   hasPrimeIcon(icon: string | null | undefined): boolean {

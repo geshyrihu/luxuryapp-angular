@@ -109,13 +109,13 @@
               >
             </div>
             <p class="text-sm text-500 m-0">
-              <i class="pi pi-hashtag mr-1 text-xs"></i> Folio: {{ item.folio }}
+              <app-icon [icon]="'mdi:pound'" class="mr-1 text-xs"></app-icon> Folio: {{ item.folio }}
             </p>
             <p class="text-sm text-500 m-0">
-              <i class="pi pi-calendar mr-1 text-xs"></i> {{ item.changeDate }}
+              <app-icon [icon]="'mdi:calendar'" class="mr-1 text-xs"></app-icon> {{ item.changeDate }}
             </p>
             <p class="text-sm text-500 m-0">
-              <i class="pi pi-cog mr-1 text-xs"></i> {{ item.machinery }}
+              <app-icon [icon]="'mdi:cog'" class="mr-1 text-xs"></app-icon> {{ item.machinery }}
             </p>
             <p class="text-sm text-700 mt-2 mb-1">
               <strong>Falla:</strong> {{ item.failure }}

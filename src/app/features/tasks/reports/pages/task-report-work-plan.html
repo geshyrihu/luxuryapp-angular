@@ -19,7 +19,7 @@
       </div>
       <div class="col-12 lg:col-2">
         <custom-button
-          iconClass="pi pi-eye"
+          iconClass="mdi:eye-outline"
           label="Vista Previa"
           variant="outlined"
           customClass="w-full"
@@ -99,15 +99,9 @@
       </td>
       <td class="text-center">
         @if (item.priority === 'Alta') {
-        <i
-          (click)="onUpdatePriority(item.id)"
-          class="pi pi-star text-md text-primary-500 cursor-pointer"
-        ></i>
+        <app-icon [icon]="'mdi:star-outline'" class="text-md text-primary-500 cursor-pointer" (click)="onUpdatePriority(item.id)"></app-icon>
         } @if (item.priority === 'Baja') {
-        <i
-          (click)="onUpdatePriority(item.id)"
-          class="pi pi-star text-md text-primary-500 cursor-pointer"
-        ></i>
+        <app-icon [icon]="'mdi:star-outline'" class="text-md text-primary-500 cursor-pointer" (click)="onUpdatePriority(item.id)"></app-icon>
         }
       </td>
       <td class="text-center">
@@ -140,7 +134,7 @@
             (followUpCompleted)="onLoadData()"
           />
           <p-splitButton
-            icon="pi pi-ellipsis-v"
+            icon="mdi:dots-vertical"
             styleClass="p-button-outlined p-button-primary"
             pTooltip="Opciones"
             [model]="getMenuItems(item)"

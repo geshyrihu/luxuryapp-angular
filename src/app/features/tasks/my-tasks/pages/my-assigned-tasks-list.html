@@ -36,7 +36,7 @@
               [noMargin]="true"
             />
             <custom-button
-              iconClass="pi pi-print"
+              iconClass="mdi:printer"
               label="Imprimir pendientes"
               variant="outlined"
               severity="secondary"
@@ -152,7 +152,7 @@
                 pTooltip="Seguimientos"
                 tooltipPosition="top"
               >
-                <i class="pi pi-comments text-blue-500"></i>
+                <app-icon [icon]="'mdi:comment-multiple'" class="text-blue-500"></app-icon>
                 <span class="badge bg-info px-2 py-1 text-xs font-semibold"
                   >{{ item.ticketMessageFollowUp }}</span
                 >
@@ -161,7 +161,7 @@
                 <ng-container actions>
                   @if (item.status !== "Completed") {
                   <ion-button-item
-                    iconClass="pi pi-calendar"
+                    iconClass="mdi:calendar"
                     label="Programar"
                     [showLabelOnDesktop]="true"
                     (clicked)="onProgram(item.id)"
@@ -169,14 +169,14 @@
 
                   } @if (item.status !== "Completed") {
                   <ion-button-item
-                    iconClass="pi pi-lock"
+                    iconClass="mdi:lock"
                     label="Cerrar"
                     [showLabelOnDesktop]="true"
                     (clicked)="onClosed(item.id)"
                   />
                   } @if (item.status === "Completed") {
                   <ion-button-item
-                    iconClass="pi pi-lock-open"
+                    iconClass="mdi:lock-open"
                     label="Re abrir"
                     [showLabelOnDesktop]="true"
                     (clicked)="onReopen(item.id)"
@@ -219,7 +219,7 @@
         />
         <custom-button-add
           label="Agregar"
-          iconClass="pi pi-plus"
+          iconClass="mdi:plus"
           [pTooltip]="'Agregar'"
           tooltipPosition="top"
           customClass="p-button-outlined"
@@ -234,7 +234,7 @@
 
       <div class="flex mb-1">
         <custom-button
-          iconClass="pi pi-clock"
+          iconClass="mdi:clock-outline"
           label="Pend.."
           variant="outlined"
           size="small"
@@ -243,7 +243,7 @@
         />
 
         <custom-button
-          iconClass="pi pi-sync"
+          iconClass="mdi:sync"
           label="Reab.."
           variant="outlined"
           size="small"
@@ -252,7 +252,7 @@
         />
 
         <custom-button
-          iconClass="pi pi-cog"
+          iconClass="mdi:cog"
           label="Proc.."
           variant="outlined"
           size="small"
@@ -261,7 +261,7 @@
         />
 
         <custom-button
-          iconClass="pi pi-check-circle"
+          iconClass="mdi:check-circle"
           label="Term.."
           variant="outlined"
           size="small"
@@ -320,7 +320,7 @@
               <app-action-menu>
                 <ng-container actions>
                   <ion-button-item
-                    iconClass="pi pi-clipboard"
+                    iconClass="mdi:clipboard-text"
                     label="Seguimiento"
                     (clicked)="onFollowUp(item.id)"
                   />
@@ -329,24 +329,24 @@
                     (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
                   />
                   <ion-button-item
-                    iconClass="pi pi-calendar"
+                    iconClass="mdi:calendar"
                     label="Programar"
                     (clicked)="onProgram(item.id)"
                   />
                   <ion-button-item
-                    iconClass="pi pi-sync"
+                    iconClass="mdi:sync"
                     label="En proceso"
                     (clicked)="onProgress(item.id)"
                   />
                   } @if (item.status !== "Completed") {
                   <ion-button-item
-                    iconClass="pi pi-lock"
+                    iconClass="mdi:lock"
                     label="Cerrar"
                     (clicked)="onClosed(item.id)"
                   />
                   } @if (item.status === "Completed") {
                   <ion-button-item
-                    iconClass="pi pi-lock-open"
+                    iconClass="mdi:lock-open"
                     label="Re abrir"
                     (clicked)="onReopen(item.id)"
                   />

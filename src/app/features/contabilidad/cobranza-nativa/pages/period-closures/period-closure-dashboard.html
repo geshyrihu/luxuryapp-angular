@@ -3,7 +3,7 @@
   <!-- Panel de accion: cerrar periodo -->
   <div class="p-3 mb-4 surface-50 border-round border-1 surface-border">
     <div class="font-semibold mb-3 flex align-items-center gap-2">
-      <i class="pi pi-lock text-primary"></i>
+      <app-icon [icon]="'mdi:lock'" class="text-primary"></app-icon>
       <span>Cerrar Periodo Contable</span>
     </div>
 
@@ -25,11 +25,11 @@
 
       <div class="field col-12 md:col-3 flex gap-2">
         @if (!currentPeriodClosed()) {
-        <custom-button label="Cerrar Periodo" iconClass="pi pi-lock" severity="warn" [disabled]="submitting()"
+        <custom-button label="Cerrar Periodo" iconClass="mdi:lock" severity="warn" [disabled]="submitting()"
           (clicked)="onClosePeriod()" />
         } @else {
         <div class="flex align-items-center h-3rem gap-2 text-green-700">
-          <i class="pi pi-check-circle"></i>
+          <app-icon [icon]="'mdi:check-circle'"></app-icon>
           <span class="text-sm font-medium">Periodo ya cerrado</span>
         </div>
         }
@@ -63,11 +63,11 @@
         <td class="text-center">
           @if (item.isClosed) {
           <span class="badge bg-red-100 text-red-800 text-xs">
-            <i class="pi pi-lock mr-1"></i>Cerrado
+            <app-icon [icon]="'mdi:lock'" class="mr-1"></app-icon>Cerrado
           </span>
           } @else {
           <span class="badge bg-green-100 text-green-800 text-xs">
-            <i class="pi pi-lock-open mr-1"></i>Abierto
+            <app-icon [icon]="'mdi:lock-open'" class="mr-1"></app-icon>Abierto
           </span>
           }
         </td>
@@ -76,7 +76,7 @@
         <td class="text-sm text-500">{{ item.closureNotes }}</td>
         <td class="text-center">
           @if (item.isClosed) {
-          <custom-button label="Reabrir" iconClass="pi pi-lock-open" size="small" severity="danger"
+          <custom-button label="Reabrir" iconClass="mdi:lock-open" size="small" severity="danger"
             [disabled]="submitting()" (clicked)="onReopenPeriod(item)" />
           }
         </td>
@@ -110,7 +110,7 @@
           }
         </ion-label>
         @if (item.isClosed) {
-        <custom-button slot="end" label="Reabrir" iconClass="pi pi-lock-open" size="small" severity="danger"
+        <custom-button slot="end" label="Reabrir" iconClass="mdi:lock-open" size="small" severity="danger"
           [disabled]="submitting()" (clicked)="onReopenPeriod(item)" />
         }
       </ion-item>

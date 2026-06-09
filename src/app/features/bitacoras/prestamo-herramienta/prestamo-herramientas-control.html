@@ -99,12 +99,12 @@
       <ion-label>
         <div class="flex justify-content-between align-items-center mb-1">
           <h2 class="font-bold m-0 text-base flex align-items-center">
-            <app-icon icon="mdi:wrench" class="text-primary mr-2" />
+            <app-icon [icon]="'mdi:wrench'" class="text-primary mr-2" />
             {{ item.tool }}
           </h2>
         </div>
         <p class="text-sm text-700 m-0 mb-1">
-          <app-icon icon="mdi:account" class="mr-1 text-500" /> {{ item.applicationUser }}
+          <app-icon [icon]="'mdi:account'" class="mr-1 text-500" /> {{ item.applicationUser }}
         </p>
 
         <div class="grid col-2 m-0 p-0 text-xs mt-2">

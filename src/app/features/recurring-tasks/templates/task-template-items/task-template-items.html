@@ -44,7 +44,7 @@
   <ng-template #body let-item let-rowIndex="rowIndex">
     <tr [pReorderableRow]="rowIndex">
       <td>
-        <i class="icon icon-pi-bars" pReorderableRowHandle></i>
+        <app-icon [icon]="'mdi:menu'" class="icon icon-" pReorderableRowHandle></app-icon>
       </td>
       <td>{{ item.title }}</td>
       <td>

@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
@@ -29,7 +30,7 @@ import type {
     MessageModule,
     ChartModule,
     ButtonModule,
-  ],
+   AppIcon],
   templateUrl: "./cobranza-online-dashboard.html",
   styles: `
     :host {

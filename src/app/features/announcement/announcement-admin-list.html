@@ -12,47 +12,47 @@
   styleClass="custom-table card hidden md:block"
 >
   <ng-template #caption>
-    <primeng-custom-caption
-      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-      [dt]="dt"
-    />
-    <div class="grid">
-      <div class="col-12 md:col-3">
-        <label>Estado</label>
-        <p-select
-          [formControl]="statusControl"
-          (onChange)="onFilterChange()"
-          placeholder="Todos"
-          fluid
-        >
-          <p-option value="">Todos</p-option>
-          <p-option value="Draft">Borrador</p-option>
-          <p-option value="Published">Publicado</p-option>
-          <p-option value="Archived">Archivado</p-option>
-        </p-select>
-      </div>
-      <div class="col-12 md:col-3">
-        <label>Tipo</label>
-        <p-select
-          [formControl]="typeControl"
-          (onChange)="onFilterChange()"
-          placeholder="Todos"
-          fluid
-        >
-          <p-option value="">Todos</p-option>
-          <p-option value="General">General</p-option>
-          <p-option value="Urgente">Urgente</p-option>
-          <p-option value="Informativo">Informativo</p-option>
-        </p-select>
-      </div>
-      <div class="col-12 md:col-2 flex align-items-end">
-        <custom-button
-          label="Filtrar"
-          iconClass="mdi:magnify"
-          variant="outlined"
-          [fluid]="true"
-          [showLabelOnDesktop]="true"
+    <div
+      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round"
+    >
+      <div class="flex-grow-1">
+        <primeng-custom-caption
+          (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+          [dt]="dt"
+          [noPadding]="true"
+          [noMargin]="true"
         />
+      </div>
+
+      <div class="flex flex-column sm:flex-row align-items-center gap-2">
+        <div style="min-width: 200px">
+          <custom-input-select-signal
+            [control]="statusControl"
+            (onChange)="onFilterChange()"
+            [data]="statusOptions()"
+            placeholder="Estado"
+            [horizontal]="false"
+            [noMargin]="true"
+          />
+        </div>
+        <div style="min-width: 200px">
+          <custom-input-select-signal
+            [control]="typeControl"
+            (onChange)="onFilterChange()"
+            [data]="typeOptions()"
+            placeholder="Tipo"
+            [horizontal]="false"
+            [noMargin]="true"
+          />
+        </div>
+        <div class="flex-shrink-0">
+          <custom-button
+            label="Filtrar"
+            iconClass="mdi:magnify"
+            variant="outlined"
+            [showLabelOnDesktop]="true"
+          />
+        </div>
       </div>
     </div>
   </ng-template>
@@ -161,6 +161,29 @@
   [globalFilterFields]="globalFilterFields()"
   [dt]="dt"
 >
+  <div customFilters class="px-4 py-2 flex flex-column gap-3">
+    <div>
+      <h5 class="m-0 mb-2 text-secondary text-xs uppercase tracking-wider">Filtrar por Estado</h5>
+      <custom-input-select-signal
+        [control]="statusControl"
+        (onChange)="onFilterChange()"
+        [data]="statusOptions()"
+        placeholder="Estado"
+        [horizontal]="false"
+      />
+    </div>
+
+    <div>
+      <h5 class="m-0 mb-2 text-secondary text-xs uppercase tracking-wider">Filtrar por Tipo</h5>
+      <custom-input-select-signal
+        [control]="typeControl"
+        (onChange)="onFilterChange()"
+        [data]="typeOptions()"
+        placeholder="Tipo"
+        [horizontal]="false"
+      />
+    </div>
+  </div>
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding">
       <ion-label>
@@ -180,11 +203,12 @@
           ></p-tag>
         </div>
         <p class="text-medium text-500 m-0 text-sm mb-1">
-          <app-icon icon="mdi:calendar" class="mr-1" /> Publicado: {{ item.publishedAt |
-          date: "dd/MM/yyyy" }}
+          <app-icon [icon]="'mdi:calendar'" class="mr-1" /> Publicado: {{
+          item.publishedAt | date: "dd/MM/yyyy" }}
         </p>
         <p class="text-medium text-500 m-0 text-sm">
-          <app-icon icon="mdi:office-building" class="mr-1" /> Cliente: {{ item.customerName }}
+          <app-icon [icon]="'mdi:office-building'" class="mr-1" /> Cliente: {{
+          item.customerName }}
         </p>
         <p-tag
           [value]="item.announcementType"

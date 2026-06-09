@@ -89,7 +89,7 @@ export class CustomToastService {
       buttons: [
         {
           side: "end",
-          icon: "close",
+          icon: "mdi:close",
           role: "cancel",
         },
       ],

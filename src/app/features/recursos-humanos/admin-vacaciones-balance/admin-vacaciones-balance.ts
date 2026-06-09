@@ -87,7 +87,7 @@ export class AdminVacacionesBalance {
       message:
         "¿Estás seguro de recalcular todos los balances de vacaciones para este cliente? Esta acción corregirá los días totales de cada empleado según su antigüedad actual. Esta acción no se puede deshacer.",
       header: "Confirmación",
-      icon: "pi pi-exclamation-triangle",
+      icon: "mdi:alert",
       accept: () => {
         this.loading.set(true);
         this.apiResponseS

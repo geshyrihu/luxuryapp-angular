@@ -173,15 +173,15 @@ ${this.htmlPrintS.getStandardCss()}
   <div class="body-doc">
     <div style="border-top: 2px solid #f59e0b; margin-bottom: 10px;"></div>
 
-    <div class="kpi-grid">
-      <div class="kpi-cards">
-        <div class="kpi-card">
-          <div class="kpi-title">Total recepciones</div>
-          <div class="kpi-value">${this.totalRecepciones()}</div>
+    <div class="kmdi:grid">
+      <div class="kmdi:cards">
+        <div class="kmdi:card">
+          <div class="kmdi:title">Total recepciones</div>
+          <div class="kmdi:value">${this.totalRecepciones()}</div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-title">Total m³ descargados</div>
-          <div class="kpi-value blue">${Math.round(this.totalM3())}</div>
+        <div class="kmdi:card">
+          <div class="kmdi:title">Total m³ descargados</div>
+          <div class="kmdi:value blue">${Math.round(this.totalM3())}</div>
         </div>
       </div>
       <div>

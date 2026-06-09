@@ -8,7 +8,7 @@
     <div class="text-center mb-5">
       <div class="mb-4">
         <span class="text-900 font-black text-9xl">4</span>
-        <i class="pi pi-exclamation-circle text-primary text-8xl mx-3"></i>
+        <app-icon [icon]="'mdi:alert-circle'" class="pi text-primary text-8xl mx-3"></app-icon>
         <span class="text-900 font-black text-9xl">4</span>
       </div>
 
@@ -53,7 +53,7 @@
             class="flex align-items-center gap-2 text-primary hover:text-primary-600 cursor-pointer no-underline"
             href="/"
           >
-            <i class="pi pi-arrow-left"></i>
+            <app-icon [icon]="'mdi:arrow-left'" class="pi"></app-icon>
             <span>Regresar</span>
           </a>
           <span class="text-300">|</span>
@@ -61,7 +61,7 @@
             class="flex align-items-center gap-2 text-primary hover:text-primary-600 cursor-pointer no-underline"
             href="#"
           >
-            <i class="pi pi-question-circle"></i>
+            <app-icon [icon]="'mdi:help-circle'" class="pi"></app-icon>
             <span>Centro de Ayuda</span>
           </a>
         </div>

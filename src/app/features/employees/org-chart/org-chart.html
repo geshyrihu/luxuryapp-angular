@@ -26,7 +26,7 @@
       <p-tabpanel value="view">
         @if (loading()) {
           <div class="org-chart-state">
-            <i class="pi pi-spin pi-spinner text-primary text-4xl"></i>
+            <app-icon [icon]="'mdi:spin'" class="text-primary text-4xl"></app-icon>
           </div>
         } @else if (graphModel().nodes.length === 0) {
           <div class="org-chart-state org-chart-state--empty">
@@ -44,7 +44,7 @@
           </div>
         } @else if (loading()) {
           <div class="org-chart-state">
-            <i class="pi pi-spin pi-spinner text-primary text-4xl"></i>
+            <app-icon [icon]="'mdi:spin'" class="text-primary text-4xl"></app-icon>
           </div>
         } @else {
           <div class="org-chart-toolbar">
@@ -175,7 +175,7 @@
                         [style.padding-left]="getEditorRowIndent(row.depth)"
                       >
                         <span
-                          class="org-editor-node__drag-handle pi pi-arrows-alt"
+                          class="org-editor-node__drag-handle mdi:arrow-expand-all"
                           aria-hidden="true"
                         ></span>
                         <span class="org-editor-node__tree-guide"></span>
@@ -445,7 +445,7 @@
           <p-avatar [image]="node.employeePhoto" shape="circle" size="large" />
         } @else {
           <p-avatar
-            icon="pi pi-briefcase"
+            icon="mdi:briefcase"
             shape="circle"
             size="large"
             styleClass="surface-300 text-600"

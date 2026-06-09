@@ -40,9 +40,9 @@
         <tr>
           <td>
             @if (item.isRealized) {
-            <i class="pi pi-check text-green-600"> Realizada</i>
+            <app-icon [icon]="'mdi:check'" class="text-green-600"></app-icon> Realizada
             } @else {
-            <i class="pi pi-times text-red-600"> Pendiente</i>
+            <app-icon [icon]="'mdi:close'" class="text-red-600"></app-icon> Pendiente
             }
           </td>
           <td>{{ item.nameInspection }}</td>
@@ -55,13 +55,13 @@
                 [routerLink]="['/inspections/result', item.id]"
                 class="btn btn-secondary btn-sm"
                 ngbTooltip="Ver resultado"
-              ><i class="pi pi-book"></i></a>
+              ><app-icon [icon]="'mdi:book'"></app-icon></a>
               }
               <a
                 [routerLink]="['/logbook/my-inspection', item.id]"
                 class="btn btn-secondary btn-sm"
                 ngbTooltip="Inspeccionar"
-              ><i class="pi pi-chevron-right"></i></a>
+              ><app-icon [icon]="'mdi:chevron-right'"></app-icon></a>
             </div>
           </td>
         </tr>
@@ -80,9 +80,9 @@
         <ion-label>
           <div class="flex align-items-center">
             @if (item.isRealized) {
-            <i class="pi pi-check text-green-600 mr-2"> </i>
+            <app-icon [icon]="'mdi:check'" class="text-green-600 mr-2"></app-icon>
             } @if (!item.isRealized) {
-            <i class="pi pi-times text-red-600 mr-2"> </i>
+            <app-icon [icon]="'mdi:close'" class="text-red-600 mr-2"></app-icon>
             }
             <h2 class="font-normal m-0">{{ item.nameInspection }}</h2>
           </div>

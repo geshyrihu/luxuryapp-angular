@@ -35,9 +35,9 @@
       <tr [ngClass]="{'opacity-50': !item.isActive}">
         <td class="text-center">
           @if (item.isActive) {
-          <i class="pi pi-check-circle text-green-500 text-lg"></i>
+          <app-icon [icon]="'mdi:check-circle'" class="text-green-500 text-lg"></app-icon>
           } @else {
-          <i class="pi pi-times-circle text-red-500 text-lg"></i>
+          <app-icon [icon]="'mdi:close-circle'" class="text-red-500 text-lg"></app-icon>
           }
         </td>
         <td>

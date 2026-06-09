@@ -9,15 +9,13 @@
     (click)="fileInput.click()"
   >
     @if (uploading()) {
-    <app-icon
-      icon="mdi:loading"
+    <app-icon [icon]="'mdi:loading'"
       class="ds-animate-spin text-primary mb-2"
       style="font-size: 2.5rem"
     ></app-icon>
     <p class="text-700 font-medium m-0">Subiendo imágenes...</p>
     } @else {
-    <app-icon
-      icon="mdi:cloud-upload"
+    <app-icon [icon]="'mdi:cloud-upload'"
       class="mb-2"
       style="font-size: 2.5rem"
     ></app-icon>
@@ -51,8 +49,7 @@
   <!-- Galería -->
   @if (loading()) {
   <div class="flex justify-content-center align-items-center py-8">
-    <app-icon
-      icon="mdi:loading"
+    <app-icon [icon]="'mdi:loading'"
       class="ds-animate-spin text-primary"
       style="font-size: 3rem"
     ></app-icon>
@@ -91,8 +88,7 @@
   <div
     class="flex flex-column align-items-center justify-content-center py-6 text-center"
   >
-    <app-icon
-      icon="mdi:image-multiple"
+    <app-icon [icon]="'mdi:image-multiple'"
       class="text-300 mb-2"
       style="font-size: 3rem"
     />

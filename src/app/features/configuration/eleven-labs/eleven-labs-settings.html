@@ -110,14 +110,14 @@
         <div class="flex flex-wrap gap-2 mt-3">
           <custom-button
             label="Guardar configuración"
-            iconClass="pi pi-save"
+            iconClass="mdi:content-save"
             severity="success"
             [showLabelOnDesktop]="true"
             (clicked)="saveSettings()"
           />
           <custom-button
             label="Probar audio"
-            iconClass="pi pi-volume-up"
+            iconClass="mdi:volume-high"
             severity="info"
             [showLabelOnDesktop]="true"
             [loading]="testingAudio()"
@@ -125,7 +125,7 @@
           />
           <custom-button
             label="Detener audio"
-            iconClass="pi pi-stop"
+            iconClass="mdi:stop"
             severity="secondary"
             [showLabelOnDesktop]="true"
             (clicked)="stopAudio()"
@@ -179,7 +179,7 @@
           </div>
           <custom-button
             label="Actualizar estado"
-            iconClass="pi pi-sync"
+            iconClass="mdi:sync"
             severity="warning"
             [showLabelOnDesktop]="true"
             [loading]="loadingSubscription()"

@@ -3,18 +3,21 @@
     class="flex align-items-center justify-content-between px-3 py-2 bg-gray-800"
   >
     <div class="flex align-items-center gap-2">
-      <i class="pi pi-clipboard text-white text-sm"></i>
+      <app-icon [icon]="'mdi:clipboard-text'" class="text-white text-sm"></app-icon>
       <span class="font-semibold text-sm text-white">DATOS PRINCIPALES</span>
     </div>
+    @if (!bloqueada()) {
     <p-button
-      icon="pi pi-pencil"
       size="small"
       variant="text"
       rounded
       (onClick)="onModalOrdenCompra()"
       pTooltip="Editar datos principales"
       styleClass="text-white"
-    />
+    >
+      <app-icon icon="mdi:pencil" />
+    </p-button>
+    }
   </div>
 
   <div class="p-3">

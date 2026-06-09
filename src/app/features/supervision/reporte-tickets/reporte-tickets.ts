@@ -1,6 +1,7 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { AvatarModule } from "primeng/avatar";
 import { TableModule } from "primeng/table";
+import { TagModule } from "primeng/tag";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { Mesanio } from "src/app/core/components/mesanio/mesanio";
 import {
@@ -17,7 +18,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 @Component({
   selector: "app-reporte-tickets",
   templateUrl: "./reporte-tickets.html",
-  imports: [TableModule, AvatarModule, CustomInputTextSignal, Mesanio],
+  imports: [TableModule, AvatarModule, TagModule, CustomInputTextSignal, Mesanio],
 })
 export class ReporteTickets {
   apiResponseS = inject(ApiResponseService);
@@ -59,17 +60,13 @@ export class ReporteTickets {
     let atendidas = 0;
     let pendientes = 0;
 
-    data.forEach((resp) => {
+    (data ?? []).forEach((resp) => {
       solicitudes += resp.solicitudes;
       atendidas += resp.atendidas;
       pendientes += resp.pendientes;
     });
 
-    return {
-      solicitudes,
-      atendidas,
-      pendientes,
-    };
+    return { solicitudes, atendidas, pendientes };
   }
 }
 

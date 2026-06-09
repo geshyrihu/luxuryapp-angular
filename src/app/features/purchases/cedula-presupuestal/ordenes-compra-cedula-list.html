@@ -27,12 +27,11 @@
       <tr>
         <td>
           {{ item.folio }}
-          <i
-            ngbTooltip="Ver"
+          <app-icon [icon]="'mdi:hand-point-right'"ngbTooltip="Ver"
             placement="top"
-            class="icon icon-pi-hand-point-right pointer"
+             class="icon icon- pointer"
             (click)="onOrdenCompraModal(item.ordenCompraId)"
-          ></i>
+          ></app-icon>
           <!-- {{ item.folio }} -->
         </td>
         <td>{{ item.justificacion }}</td>

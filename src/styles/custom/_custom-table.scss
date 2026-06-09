@@ -153,3 +153,43 @@
   padding-bottom: 0 !important;
 }
 
+/* ─── Modifier: sin scroll horizontal ───────────────────────────
+   Uso: <p-table styleClass="custom-table custom-table-fixed">
+   Elimina min-width fijo, fuerza table-layout:fixed y permite
+   que las celdas envuelvan texto en vez de desbordar.
+   ─────────────────────────────────────────────────────────────── */
+.custom-table-fixed {
+  &.p-datatable,
+  .p-datatable {
+    .p-datatable-table,
+    table {
+      min-width: auto;
+      table-layout: fixed;
+    }
+
+    .p-datatable-tbody > tr > td,
+    .p-datatable-thead > tr > th {
+      white-space: normal !important;
+      word-break: break-word;
+    }
+
+    // Columnas con ancho fijo porcentual
+    .p-datatable-thead > tr > th,
+    .p-datatable-tbody > tr > td {
+      &.table-col-7  { width: 7%; }
+      &.table-col-5  { width: 5%; }
+      &.table-col-12 { width: 12%; }
+      &.table-col-50 { width: 50%; }
+      &.table-col-3  { width: 3%; }
+      &.table-col-13 { width: 13%; }
+      &.table-col-10 { width: 10%; }
+    }
+
+    // Celda de descripción — permite truncado multi-línea
+    td.table-col-description {
+      white-space: normal !important;
+      word-break: break-word;
+    }
+  }
+}
+

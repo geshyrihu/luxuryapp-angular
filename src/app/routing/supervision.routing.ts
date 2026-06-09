@@ -2,6 +2,18 @@ import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 export const supervisionRoutes: Routes = [
   {
+    path: "",
+    loadComponent: () =>
+      import("src/app/features/supervision/master-dashboard/master-dashboard").then(
+        (m) => m.SupervisionMasterDashboard,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Supervision",
+      breadcrumb: "Supervision",
+    },
+  },
+  {
     path: "supervision-agenda", // Ruta anterior: 'agenda-supervision'
     loadComponent: () =>
       import("src/app/features/supervision/agenda-supervision/agenda-supervision").then(
@@ -85,6 +97,18 @@ export const supervisionRoutes: Routes = [
     data: {
       title: "Dashboard de Resultado General",
       breadcrumb: "Dashboard de Resultado General",
+    },
+  },
+  {
+    path: "supervision-report",
+    loadComponent: () =>
+      import("src/app/features/supervision-report/report-supervision").then(
+        (m) => m.ReportSupervision,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Reporte de Supervisión",
+      breadcrumb: "Reporte de Supervisión",
     },
   },
   {

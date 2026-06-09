@@ -3,7 +3,7 @@
   <div
     class="p-3 mb-3 bg-blue-50 border-round border-1 border-blue-200 flex gap-2 align-items-start"
   >
-    <i class="pi pi-info-circle text-blue-600 mt-1"></i>
+    <app-icon [icon]="'mdi:information'" class="text-blue-600 mt-1"></app-icon>
     <div class="text-sm text-blue-800">
       <strong>Facturacion CFDI 4.0.</strong> Este modulo gestiona la emision y
       cancelacion de comprobantes fiscales vinculados a los cargos del
@@ -38,7 +38,7 @@
         <div class="field col-12 md:col-3">
           <custom-button
             label="Buscar Facturas"
-            iconClass="pi pi-search"
+            iconClass="mdi:magnify"
             severity="primary"
             [disabled]="!chargeIdCtrl.value"
             (clicked)="onSearch()"
@@ -87,14 +87,14 @@
               label="XML"
               size="small"
               severity="secondary"
-              iconClass="pi pi-code"
+              iconClass="mdi:code-tags"
             />
             } @if (inv.pdfFilePath) {
             <custom-button
               label="PDF"
               size="small"
               severity="info"
-              iconClass="pi pi-file-pdf"
+              iconClass="mdi:file-pdf-box"
             />
             }
           </div>

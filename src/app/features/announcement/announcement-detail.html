@@ -4,7 +4,7 @@
     <div class="w-full max-w-4xl mx-auto">
       <div class="mb-3">
         <a routerLink="../" class="btn btn-secondary btn-sm">
-          <app-icon icon="mdi:arrow-left" class="mr-1" /> Volver al listado
+          <app-icon [icon]="'mdi:arrow-left'" class="mr-1" /> Volver al listado
         </a>
       </div>
 
@@ -23,7 +23,7 @@
           <h1 class="text-3xl font-bold mb-2">{{ announcement.title }}</h1>
           <div class="text-sm text-color-secondary mb-4">
             <span
-              ><app-icon icon="mdi:calendar" class="mr-2" />Publicado: {{
+              ><app-icon [icon]="'mdi:calendar'" class="mr-2" />Publicado: {{
               announcement.publishedAt | date: 'fullDate' }}</span
             >
           </div>
@@ -41,7 +41,7 @@
               [href]="announcement.externalLink"
               target="_blank"
               class="btn btn-secondary btn-sm"
-              ><app-icon icon="mdi:external-link" class="mr-1" /> Visitar Enlace</a
+              ><app-icon [icon]="'mdi:external-link'" class="mr-1" /> Visitar Enlace</a
             >
           </div>
           }
@@ -59,7 +59,7 @@
                 target="_blank"
                 class="p-2 surface-100 border-round text-color hover:surface-200 transition-colors transition-duration-200 flex align-items-center"
               >
-                <app-icon icon="mdi:download" class="mr-2" />
+                <app-icon [icon]="'mdi:download'" class="mr-2" />
                 <span>{{ item.fileName }}</span>
               </a>
               }

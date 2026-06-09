@@ -141,14 +141,14 @@ export class EquiposList {
   inventoryCategoryId = signal<number>(1);
 
   categories = [
-    { id: 1, name: "Equipos Electromecanicos", emoji: "pi pi-cog" },
-    { id: 2, name: "Amenidades", emoji: "pi pi-star" },
-    { id: 3, name: "Mobiliario", emoji: "pi pi-table" },
-    { id: 4, name: "Equipamiento", emoji: "pi pi-wrench" },
-    { id: 5, name: "Equipos de Gimnasio", emoji: "pi pi-heart" },
-    { id: 6, name: "Equipos de Sistemas", emoji: "pi pi-desktop" },
-    { id: 8, name: "Areas Comunes", emoji: "pi pi-map-marker" },
-    { id: 7, name: "Bodegas, Cuartos de Maquinas", emoji: "pi pi-box" },
+    { id: 1, name: "Equipos Electromecanicos", emoji: "mdi:cog" },
+    { id: 2, name: "Amenidades", emoji: "mdi:star-outline" },
+    { id: 3, name: "Mobiliario", emoji: "mdi:table" },
+    { id: 4, name: "Equipamiento", emoji: "mdi:wrench" },
+    { id: 5, name: "Equipos de Gimnasio", emoji: "mdi:heart-outline" },
+    { id: 6, name: "Equipos de Sistemas", emoji: "mdi:monitor" },
+    { id: 8, name: "Areas Comunes", emoji: "mdi:map-marker" },
+    { id: 7, name: "Bodegas, Cuartos de Maquinas", emoji: "mdi:package" },
   ];
 
   // --- ESTADO DERIVADO CON `computed` ---

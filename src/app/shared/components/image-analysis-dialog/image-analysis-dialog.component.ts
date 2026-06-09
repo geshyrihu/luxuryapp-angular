@@ -71,7 +71,7 @@ import { TicketAnalysisService } from "src/app/core/services/ticket-analysis.ser
                   pButton
                   type="button"
                   label="Analizar Ahora"
-                  icon="pi pi-bolt"
+                  icon="mdi:lightning-bolt"
                   (click)="analyze()"
                   class="p-button-primary w-full mt-2"
                 ></button>
@@ -84,7 +84,7 @@ import { TicketAnalysisService } from "src/app/core/services/ticket-analysis.ser
       @if (analysisResult) {
         <div class="result-container">
           <div class="text-center mb-3">
-            <i class="pi pi-check-circle text-green-500 text-3xl"></i>
+            <app-icon [icon]="'mdi:check-circle'" class="pi text-green-500 text-3xl"></app-icon>
             <h3 class="m-0">Análisis Completado</h3>
           </div>
 
@@ -106,7 +106,7 @@ import { TicketAnalysisService } from "src/app/core/services/ticket-analysis.ser
             <button
               pButton
               label="Copiar y Usar"
-              icon="pi pi-copy"
+              icon="mdi:content-copy"
               (click)="useResult()"
             ></button>
           </div>

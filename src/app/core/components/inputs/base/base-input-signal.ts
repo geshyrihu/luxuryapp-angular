@@ -54,7 +54,7 @@ import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
             <ng-content></ng-content>
             @if (description()) {
             <small class="block mt-1 text-500 line-height-2 italic px-1">
-              <i class="pi pi-info-circle mr-1 text-xs"></i>
+              <app-icon [icon]="'mdi:information'" class="pi mr-1 text-xs"></app-icon>
               {{ description() }}
             </small>
             }

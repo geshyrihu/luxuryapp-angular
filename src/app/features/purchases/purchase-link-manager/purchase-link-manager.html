@@ -8,7 +8,7 @@
   >
     <div class="flex align-items-center">
       <div class="bg-primary-100 p-2 border-round">
-        <i class="pi pi-link text-primary text-2xl"></i>
+        <app-icon [icon]="'mdi:link'" class="text-primary text-2xl"></app-icon>
       </div>
       <div>
         <h2 class="text-2xl font-bold m-0 text-900 uppercase tracking-wider">
@@ -21,13 +21,13 @@
     </div>
     <div class="flex">
       <custom-button
-        iconClass="pi pi-refresh"
+        iconClass="mdi:refresh"
         label="Refrescar"
         severity="info"
         (clicked)="onLoadSolicitudes(); onLoadOrdenes()"
       />
       <custom-button
-        iconClass="pi pi-times"
+        iconClass="mdi:close"
         label="Finalizar"
         severity="secondary"
         (clicked)="onClose()"
@@ -49,7 +49,7 @@
         <div class="p-3 bg-green-50 border-bottom-1 surface-border flex-shrink-0">
           <div class="flex align-items-center justify-content-between mb-3">
             <h3 class="m-0 text-green-700 font-bold">
-              <i class="pi pi-file mr-2"></i>SOLICITUDES
+              <app-icon [icon]="'mdi:file-document-outline'" class="mr-2"></app-icon>SOLICITUDES
             </h3>
             <p-selectButton
               [options]="statusOptions"
@@ -101,7 +101,7 @@
                     <span
                       class="text-xs text-500 font-bold border-left-1 pl-2 border-300"
                     >
-                      <i class="pi pi-calendar-minus mr-1"></i>{{
+                      <app-icon [icon]="'mdi:calendar-minus'" class="mr-1"></app-icon>{{
                       sc.fechaSolicitud | date:'dd-MMM-yy':'UTC' }}
                     </span>
                   </div>
@@ -113,7 +113,7 @@
                   cdkDragHandle
                   class="cursor-grab active:cursor-grabbing p-2 bg-gray-100 border-round hover:bg-gray-200 transition-colors"
                 >
-                  <i class="pi pi-bars text-600"></i>
+                  <app-icon [icon]="'mdi:menu'" class="text-600"></app-icon>
                 </div>
               </div>
 
@@ -135,13 +135,10 @@
                   styleClass="px-3 py-1 shadow-2 border-1 border-orange-200"
                 >
                   <div class="flex align-items-center">
-                    <i class="pi pi-shopping-cart text-xs"></i>
+                    <app-icon [icon]="'mdi:cart'" class="text-xs"></app-icon>
                     <span class="text-xs font-bold">{{ orden.folio }}</span>
-                    <i
-                      class="pi pi-times-circle cursor-pointer hover:text-red-500 scalein transition-all transition-duration-200"
-                      (click)="onUnlink(orden.id)"
-                      pTooltip="Desvincular Orden"
-                    ></i>
+                    <app-icon [icon]="'mdi:close-circle'" class="cursor-pointer hover:text-red-500 scalein transition-all transition-duration-200" (click)="onUnlink(orden.id)"
+                      pTooltip="Desvincular Orden"></app-icon>
                   </div>
                 </p-tag>
                 } @empty {
@@ -156,7 +153,7 @@
           <div
             class="text-center p-5 surface-50 border-round-xl text-500 border-dashed border-2"
           >
-            <i class="pi pi-search text-4xl mb-3 block"></i>
+            <app-icon [icon]="'mdi:magnify'" class="text-4xl mb-3 block"></app-icon>
             No se encontraron solicitudes con estos criterios.
           </div>
           }
@@ -173,7 +170,7 @@
         <div class="p-3 bg-orange-50 border-bottom-1 surface-border flex-shrink-0">
           <div class="flex align-items-center justify-content-between mb-3">
             <h3 class="m-0 text-orange-700 font-bold">
-              <i class="pi pi-shopping-bag mr-2"></i>ÓRDENES
+              <app-icon [icon]="'mdi:shopping'" class="mr-2"></app-icon>ÓRDENES
             </h3>
             <p-selectButton
               [options]="statusOptions"
@@ -229,7 +226,7 @@
                     <span
                       class="text-xs text-500 font-bold border-left-1 pl-2 border-300"
                     >
-                      <i class="pi pi-calendar mr-1"></i>{{ oc.fechaSolicitud |
+                      <app-icon [icon]="'mdi:calendar'" class="mr-1"></app-icon>{{ oc.fechaSolicitud |
                       date:'dd-MMM-yy':'UTC' }}
                     </span>
                   </div>
@@ -241,7 +238,7 @@
                   cdkDragHandle
                   class="cursor-grab active:cursor-grabbing p-2 bg-gray-100 border-round hover:bg-gray-200 transition-colors"
                 >
-                  <i class="pi pi-bars text-600"></i>
+                  <app-icon [icon]="'mdi:menu'" class="text-600"></app-icon>
                 </div>
               </div>
 
@@ -261,15 +258,12 @@
                   styleClass="px-3 py-1 shadow-2 border-1 border-green-200"
                 >
                   <div class="flex align-items-center">
-                    <i class="pi pi-file text-xs"></i>
+                    <app-icon [icon]="'mdi:file-document-outline'" class="text-xs"></app-icon>
                     <span class="text-xs font-bold uppercase"
                       >{{ oc.folioSolicitudCompra }}</span
                     >
-                    <i
-                      class="pi pi-times-circle cursor-pointer hover:text-red-500 transition-all"
-                      (click)="onUnlink(oc.id)"
-                      pTooltip="Eliminar vínculo"
-                    ></i>
+                    <app-icon [icon]="'mdi:close-circle'" class="cursor-pointer hover:text-red-500 transition-all" (click)="onUnlink(oc.id)"
+                      pTooltip="Eliminar vínculo"></app-icon>
                   </div>
                 </p-tag>
                 } @else {
@@ -284,7 +278,7 @@
           <div
             class="text-center p-5 surface-50 border-round-xl text-500 border-dashed border-2"
           >
-            <i class="pi pi-shopping-bag text-4xl mb-3 block"></i>
+            <app-icon [icon]="'mdi:shopping'" class="text-4xl mb-3 block"></app-icon>
             No hay órdenes disponibles para este estado.
           </div>
           }

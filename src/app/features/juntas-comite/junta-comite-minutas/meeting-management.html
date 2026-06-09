@@ -5,7 +5,7 @@
       <a routerLink="/junta-comite/list-minutas" class="no-underline">
         <custom-button
           label="VOLVER AL LISTADO"
-          iconClass="pi pi-arrow-left"
+          iconClass="mdi:arrow-left"
           severity="secondary"
           size="small"
         />
@@ -79,7 +79,7 @@
 </div>
 } @else {
 <div class="flex align-items-center justify-content-center h-screen">
-  <i class="pi pi-spin pi-spinner text-4xl text-primary"></i>
+  <app-icon [icon]="'mdi:spin'" class="text-4xl text-primary"></app-icon>
   <span class="ml-3 text-lg font-medium text-700"
     >Cargando detalles de la minuta...</span
   >

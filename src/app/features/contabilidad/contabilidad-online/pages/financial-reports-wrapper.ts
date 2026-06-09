@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
@@ -103,7 +104,7 @@ const REPORT_META = [
     AiAgentComponent,
     AiAgentContabilidadOnlineComponent,
     AiAgentExplicadorContabilidadOnlineComponent,
-  ],
+   AppIcon],
   templateUrl: "./financial-reports-wrapper.html",
 })
 export default class FinancialReportsWrapper {

@@ -5,7 +5,7 @@
   <nav class="catalog-nav p-3 shadow-2 flex align-items-center justify-content-between gap-3">
     <div class="flex align-items-center gap-3">
       <div class="logo-box border-round-lg bg-primary flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-        <app-icon icon="bolt" class="text-white text-xl" />
+        <app-icon [icon]="'bolt'" class="text-white text-xl" />
       </div>
       <div>
         <h1 class="m-0 text-lg font-bold">Luxury Design System & Guide</h1>
@@ -98,7 +98,7 @@
                         <code class="text-primary text-xs">{{ color.token }}</code>
                         <div class="text-xs text-secondary mt-1 line-height-2">{{ color.uso }}</div>
                       </div>
-                      <app-icon icon="copy" class="text-400" />
+                      <app-icon [icon]="'copy'" class="text-400" />
                     </div>
                   </div>
                 }
@@ -218,9 +218,9 @@
                   <div class="flex flex-column gap-2">
                     <span class="font-bold text-sm">Icons Group</span>
                     <app-action-icons-group>
-                      <app-icon icon="pencil" class="p-2 cursor-pointer hover:text-primary" />
-                      <app-icon icon="trash" class="p-2 cursor-pointer hover:text-danger" />
-                      <app-icon icon="copy" class="p-2 cursor-pointer hover:text-primary" />
+                      <app-icon [icon]="'pencil'" class="p-2 cursor-pointer hover:text-primary" />
+                      <app-icon [icon]="'trash'" class="p-2 cursor-pointer hover:text-danger" />
+                      <app-icon [icon]="'copy'" class="p-2 cursor-pointer hover:text-primary" />
                     </app-action-icons-group>
                   </div>
                 </div>
@@ -305,7 +305,7 @@
                 @for (group of groupedDataExample | keyvalue; track group.key) {
                   <div class="mb-3">
                     <div class="font-bold text-sm text-primary mb-2 flex align-items-center gap-2">
-                      <app-icon icon="calendar-clock" />
+                      <app-icon [icon]="'calendar-clock'" />
                       <span>{{ group.key }}</span>
                     </div>
                     @for (item of group.value; track item.id) {

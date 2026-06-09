@@ -4,7 +4,7 @@
     class="flex align-items-center justify-content-center py-8"
     style="min-height: 20rem"
   >
-    <i class="pi pi-spin pi-spinner text-primary text-4xl"></i>
+    <app-icon [icon]="'mdi:spin'" class="text-primary text-4xl"></app-icon>
   </div>
   } @else {
   <div class="w-full xl:w-10 mx-auto flex flex-column gap-4">
@@ -18,7 +18,7 @@
       <div class="p-4 md:p-5">
         <div class="mb-3">
           <p-button
-            icon="pi pi-arrow-left"
+            icon="mdi:arrow-left"
             [text]="true"
             severity="secondary"
             (onClick)="onBack()"
@@ -42,16 +42,16 @@
         <div class="border-top-1 surface-border pt-3 flex flex-wrap align-items-center justify-content-between gap-3">
           <div class="flex flex-wrap gap-3">
             <div class="inline-flex align-items-center gap-2 text-color-secondary">
-              <i class="pi pi-list"></i>
+              <app-icon [icon]="'mdi:format-list-bulleted'"></app-icon>
               <span>Total: {{ totalTasks() }} tareas</span>
             </div>
             <div class="inline-flex align-items-center gap-2 text-color-secondary">
-              <i class="pi pi-th-large"></i>
+              <app-icon [icon]="'mdi:grid'"></app-icon>
               <span>Areas: {{ groupedTasks().length }}</span>
             </div>
           </div>
           <p-button
-            icon="pi pi-file-pdf"
+            icon="mdi:file-pdf-box"
             label="Exportar PDF"
             severity="secondary"
             [outlined]="true"
@@ -123,11 +123,11 @@
                 />
                 @if (task.assignee) {
                 <span class="text-xs text-color-secondary"
-                  ><i class="pi pi-user mr-1"></i>{{ task.assignee }}</span
+                  ><app-icon [icon]="'mdi:account'" class="mr-1"></app-icon>{{ task.assignee }}</span
                 >
                 } @if (task.scheduledAt) {
                 <span class="text-xs text-color-secondary"
-                  ><i class="pi pi-calendar mr-1"></i
+                  ><i class="mdi:calendar mr-1"></i
                   >{{ task.scheduledAt }}</span
                 >
                 }
@@ -161,7 +161,7 @@
     <div
       class="surface-card border-round-xl border-1 surface-border p-6 shadow-1 text-center"
     >
-      <i class="pi pi-check-circle text-4xl text-400 mb-3 block"></i>
+      <app-icon [icon]="'mdi:check-circle'" class="text-4xl text-400 mb-3 block"></app-icon>
       <p class="text-500 m-0 text-lg">
         No hay tareas pendientes en este grupo.
       </p>
