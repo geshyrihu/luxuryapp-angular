@@ -74,6 +74,9 @@ export class AuthService {
   public get customerAccess(): SelectItemCustomerAccessDTO[] {
     return this.currentUserSession.value?.customerAccess ?? [];
   }
+  public readonly customerAccess$ = this.currentUserSession.pipe(
+    map((s) => s?.customerAccess ?? []),
+  );
 
   // === CONSTRUCTOR E INICIALIZACIÓN ===
   constructor() {
@@ -82,24 +85,23 @@ export class AuthService {
       path.startsWith("/publico") || path.startsWith("/auth");
 
     this.consoleLogger.custom(
-      "🗺️",
+      "",
       "#9C27B0",
-      `[AuthService] Verificando ruta inicial: ${path} | ¿Es pública?: ${isPublicRoute}`,
+      `[AuthService] Verificando ruta inicial: ${path} | Es publica: ${isPublicRoute}`,
     );
 
-    // Solo intentar el login silencioso si no estamos en una ruta pública.
     if (!isPublicRoute) {
       this.consoleLogger.custom(
-        "🛡️",
+        "",
         "#009688",
-        "[AuthService] Ruta no pública. Intentando login silencioso...",
+        "[AuthService] Ruta no publica. Intentando login silencioso...",
       );
       this.trySilentLogin().subscribe();
     } else {
       this.consoleLogger.custom(
-        "🌍",
+        "",
         "#FFC107",
-        "[AuthService] Ruta pública detectada. Omitiendo login silencioso.",
+        "[AuthService] Ruta publica detectada. Omitiendo login silencioso.",
       );
       // Si estamos en una ruta pública, simplemente marcamos la comprobación inicial como completa.
       this.initialAuthCheckCompleted.next(true);
@@ -115,7 +117,7 @@ export class AuthService {
   }
 
   // === MÉTODOS DE AUTENTICACIÓN ===
-  login(credentials: any): Observable<UserTokenDTO> {
+  login(credentials: { userName: string; password: string }): Observable<UserTokenDTO> {
     return this.http
       .post<ApiResponseDTO<UserTokenDTO>>(
         `${environment.API_BASE_URL}Auth/Login`,
@@ -131,6 +133,7 @@ export class AuthService {
         }),
         tap((session) => {
           this.currentUserSession.next(session);
+          this.signalRService.start();
         }),
         catchError(this.handleError),
       );
@@ -164,11 +167,12 @@ export class AuthService {
         }),
         tap((newSession) => {
           this.consoleLogger.custom(
-            "✅",
+            "",
             "color: #4CAF50; font-style: italic;",
-            "[AuthService] Token renovado. Actualizando sesión en memoria.",
+            "[AuthService] Token renovado. Actualizando sesion en memoria.",
           );
           this.currentUserSession.next(newSession);
+          this.signalRService.start();
         }),
         catchError((error) => {
           this.consoleLogger.error(

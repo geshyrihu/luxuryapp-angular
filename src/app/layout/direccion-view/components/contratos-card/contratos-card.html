@@ -1,6 +1,6 @@
 @if (cargando()) {
   <div class="flex align-items-center gap-2 py-3">
-    <i class="pi pi-spin pi-spinner text-primary"></i>
+    <app-icon icon="mdi:loading" class="pi-spin text-primary"></app-icon>
     <span class="text-sm text-500">Cargando contratos...</span>
   </div>
 } @else {
@@ -14,16 +14,19 @@
           contrato{{ resumen()!.total === 1 ? '' : 's' }} vence{{ resumen()!.total === 1 ? '' : 'n' }} en menos de 2 meses
         </span>
       } @else {
-        <i class="pi pi-check-circle text-green-500"></i>
+        <app-icon icon="mdi:check-circle" class="text-green-500"></app-icon>
         <span class="text-sm text-500">Sin contratos proximos a vencer</span>
       }
     </div>
     <p-button
       label="Ver vigentes"
-      icon="pi pi-file-edit"
       styleClass="p-button-sm p-button-outlined"
       (onClick)="abrirVigentes()"
-    />
+    >
+      <ng-template #icon>
+        <app-icon icon="mdi:file-document-edit" class="mr-2"></app-icon>
+      </ng-template>
+    </p-button>
   </div>
 
   <!-- Lista por cliente -->

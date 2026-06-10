@@ -26,19 +26,25 @@
       >
         <p-button
           label="Volver al Inicio"
-          icon="pi pi-home"
           routerLink="/"
           [rounded]="true"
           styleClass="px-5"
-        ></p-button>
+        >
+          <ng-template #icon>
+            <app-icon icon="mdi:home" class="mr-2"></app-icon>
+          </ng-template>
+        </p-button>
 
         <p-button
           label="Contactar Soporte"
-          icon="pi pi-envelope"
           [variant]="'outlined'"
           [rounded]="true"
           styleClass="px-5"
-        ></p-button>
+        >
+          <ng-template #icon>
+            <app-icon icon="mdi:envelope" class="mr-2"></app-icon>
+          </ng-template>
+        </p-button>
       </div>
     </div>
 

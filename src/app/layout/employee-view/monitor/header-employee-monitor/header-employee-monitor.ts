@@ -17,7 +17,6 @@ import { ToolbarModule } from "primeng/toolbar";
 import { TooltipModule } from "primeng/tooltip";
 import { filter, map, startWith } from "rxjs";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -82,7 +81,7 @@ export class HeaderEmployeeMonitor implements OnInit {
   public customerId = this.customerIdS.customerId;
   public customerName = this.customerIdS.nombreCorto;
   public customerPhotoPath = this.customerIdS.customerPhotoPath;
-  public cb_customer: ISelectItem[] = this.authS.customerAccess;
+  public readonly cb_customer = toSignal(this.authS.customerAccess$, { initialValue: [] });
 
   // SIGNALS
   private routeEventSignal = toSignal(
@@ -274,7 +273,7 @@ export class HeaderEmployeeMonitor implements OnInit {
     this.featureAnnouncementS.showDialog.set(true);
   }
 
-  selectCustomer(newCustomerId: any) {
+  selectCustomer(newCustomerId: string) {
     this.customerIdS.setCustomerId(newCustomerId).subscribe();
   }
 }

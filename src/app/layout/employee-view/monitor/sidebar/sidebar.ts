@@ -4,8 +4,7 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   effect,
   inject,
-  OnDestroy,
-  OnInit,
+  signal,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
@@ -38,26 +37,32 @@ import { MenuService } from "src/app/core/services/menu.service";
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: "./sidebar.html",
 })
-export class Sidebar implements OnInit, OnDestroy {
+export class Sidebar {
   menuService = inject(MenuService);
   customerIdS = inject(CustomerIdService);
   authS = inject(AuthService);
   router = inject(Router);
   public layoutService = inject(LayoutService);
 
-  // Datos visibles del usuario y customer actual.
   public infoAccountAuthDTO = this.authS.infoUserAuth;
   public customerName = this.customerIdS.nombreCorto;
   public customerPhotoPath = this.customerIdS.customerPhotoPath;
-  public profileImageUrl: string = this.infoAccountAuthDTO.photoPath;
 
-  public menuItemsList: IMenuItem[] = [];
-  public primengMenuItems: MenuItem[] = []; // New property for PrimeNG menu items
-  public allMenuItems: IMenuItem[] = [];
+  public get profileImageUrl(): string {
+    return this.authS.infoUserAuth?.photoPath ?? "assets/images/default-avatar.png";
+  }
+
+  public primengMenuItems: MenuItem[] = [];
   public searchText: string = "";
-  public searchResults: ISubMenuItem[] = []; // Changed to ISubMenuItem[]
+  public searchResults: ISubMenuItem[] = [];
   public isSearching: boolean = false;
   public loading = this.menuService.menuLoading;
+
+  public isShow: boolean = false;
+  public pinnedData: boolean = false;
+  public pinnedDataList: string[] = [];
+
+  private allMenuItems = signal<IMenuItem[]>([]);
 
   private routerEventSignal = toSignal(
     this.router.events.pipe(
@@ -67,21 +72,14 @@ export class Sidebar implements OnInit, OnDestroy {
     { initialValue: null },
   );
 
-  public isShow: boolean = false;
-  public pinnedData: boolean = false;
-  public pinnedDataList: string[] = [];
-
   constructor() {
-    // Sincroniza el árbol visual cada vez que cambia el menú del servicio.
     effect(() => {
       const items = this.menuService.sidebarMenuItems();
-      this.menuItemsList = items;
       this.primengMenuItems = this.transformMenuItems(items);
-      this.allMenuItems = JSON.parse(JSON.stringify(items));
+      this.allMenuItems.set(JSON.parse(JSON.stringify(items)) as IMenuItem[]);
       this.setActiveOnNavigation(this.router.url);
     });
 
-    // Mantiene expandido el grupo correspondiente a la ruta actual.
     effect(() => {
       const url = this.routerEventSignal();
       if (url) {
@@ -109,14 +107,8 @@ export class Sidebar implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit(): void {
-    // Los effects del constructor reemplazan la suscripción manual clásica.
-  }
-
   private setActiveOnNavigation(url: string): void {
-    // Reinicia el estado expandido antes de marcar la rama activa.
     this.primengMenuItems.forEach((item) => this.resetExpandedState(item));
-
     for (const menuItem of this.primengMenuItems) {
       if (this.findAndExpandActiveItem(menuItem, url)) {
         break;
@@ -160,11 +152,7 @@ export class Sidebar implements OnInit, OnDestroy {
     } else {
       this.pinnedDataList.push(title);
     }
-    if (this.pinnedDataList.length <= 0) {
-      this.pinnedData = false;
-    } else {
-      this.pinnedData = true;
-    }
+    this.pinnedData = this.pinnedDataList.length > 0;
   }
 
   sidebarToggle() {
@@ -177,8 +165,7 @@ export class Sidebar implements OnInit, OnDestroy {
 
     if (this.searchText) {
       const lowerCaseSearchText = this.searchText.toLowerCase();
-
-      this.allMenuItems.forEach((menuItem) => {
+      this.allMenuItems().forEach((menuItem) => {
         if (menuItem.items && menuItem.items.length > 0) {
           menuItem.items.forEach((subItem) => {
             if (subItem.label?.toLowerCase().includes(lowerCaseSearchText)) {
@@ -201,17 +188,4 @@ export class Sidebar implements OnInit, OnDestroy {
       item.expanded = !item.expanded;
     }
   }
-
-  ngOnDestroy(): void {
-    // Limpieza automática gracias a Signals
-  }
 }
-
-
-
-
-
-
-
-
-

@@ -35,41 +35,42 @@ interface IResetPasswordForm {
   ],
   template: `
     <!-- Contenedor principal similar al login -->
-    <div class="login-container">
-      <!-- Carrusel de imógenes de fondo -->
-      <div class="background-slider">
+    <div class="relative w-full overflow-hidden min-h-screen bg-black-alpha-90">
+      <!-- Carrusel de imágenes de fondo -->
+      <div class="absolute top-0 left-0 w-full h-full z-10">
         @for (image of visibleImages(); track image) {
           <div
-            class="slide"
+            class="absolute top-0 left-0 w-full h-full"
             [@slideAnimation]
             [style.background-image]="'url(' + image + ')'"
+            style="background-size: cover; background-position: center"
           ></div>
         }
-        <div class="overlay"></div>
+        <div class="absolute top-0 left-0 w-full h-full bg-black-alpha-80 md:bg-black-alpha-60"></div>
       </div>
 
       <!-- Contenido centrado -->
       <div
-        class="login-content-wrapper flex align-items-center justify-content-center w-full p-4 min-h-screen"
+        class="relative z-20 flex align-items-center justify-content-center w-full min-h-screen fadeinup animation-duration-500"
       >
         <div
-          class="login-card surface-card shadow-6 border-round-2xl max-w-40rem w-full"
+          class="w-full flex flex-column justify-content-center overflow-hidden glass-auth-card max-w-30rem"
         >
           <form
-            class="theme-form p-4"
+            class="w-full px-4 py-6 md:p-5"
             [formGroup]="form"
             (ngSubmit)="onSubmit()"
           >
             <!-- Logo -->
-            <div class="text-center mb-4">
+            <div class="text-center mb-5">
               <img
-                class="logo w-11rem h-auto shadow-2 mx-auto"
-                src="assets/images/login/LBG-negro.png"
+                class="mx-auto mb-3 w-13rem h-auto"
+                src="assets/images/login/LBG-blanco.png"
                 alt="Logo LuxuryApp"
               />
-              <h4 class="mt-3 mb-1 font-semibold text-900 tracking-tight">Restablecer Contraseña</h4>
+              <h4 class="mb-1 text-2xl font-bold tracking-tight">Restablecer Contraseña</h4>
               @if (email()) {
-                <p class="text-600">Para: {{ email() }}</p>
+                <p class="font-medium text-sm text-600">Para: {{ email() }}</p>
               }
             </div>
 
@@ -96,14 +97,14 @@ interface IResetPasswordForm {
             />
 
             <!-- Botón -->
-            <div class="mt-4">
+            <div class="mt-5">
               <custom-button
                 customClass="w-full border-round overflow-hidden"
                 type="submit"
                 label="CAMBIAR CONTRASEÑA"
                 [loading]="submitting()"
                 [disabled]="form.invalid || submitting()"
-                icon="pi pi-lock-open"
+                icon="mdi:lock-reset"
                 [fluid]="true"
                 [showLabelOnDesktop]="true"
               ></custom-button>
@@ -111,18 +112,19 @@ interface IResetPasswordForm {
 
             <!-- Mensaje Error -->
             @if (errorMessage()) {
-              <p-message
-                class="mt-3 block"
-                severity="error"
-                [text]="errorMessage()"
-                styleClass="w-full shadow-1"
-              ></p-message>
+              <div class="mt-4 fadein animation-duration-300">
+                <p-message
+                  severity="error"
+                  [text]="errorMessage()"
+                  styleClass="w-full shadow-1"
+                ></p-message>
+              </div>
             }
 
-            <div class="text-center mt-3">
+            <div class="text-center mt-4">
               <a
                 [routerLink]="['/auth/login']"
-                class="font-semibold text-sm text-primary no-underline hover:underline"
+                class="font-semibold text-sm text-primary transition-colors hover:text-white"
               >
                 Volver al Login
               </a>
@@ -150,42 +152,7 @@ interface IResetPasswordForm {
         height: 100vh;
         width: 100vw;
       }
-      .login-container {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-      }
-      .background-slider {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-      }
-      .slide {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: center;
-      }
-      .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.4);
-        z-index: 1;
-      }
-      .login-content-wrapper {
-        position: relative;
-        z-index: 2;
-      }
+
     `,
   ],
 })

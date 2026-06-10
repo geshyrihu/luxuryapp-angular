@@ -72,7 +72,7 @@ export class ProductosList implements OnInit {
   }
 
   onLoadData() {
-    this.apiResponseS.onGetList(Endpoints.Products.getAll).then((result: any) => {
+    return this.apiResponseS.onGetList(Endpoints.Products.getAll).then((result: any) => {
       if (result) {
         this.dataSignal.set(result);
         this.filteredDataSignal.set(result);
@@ -82,7 +82,7 @@ export class ProductosList implements OnInit {
 
   // ... Eliminar registro
   onDelete(id: any) {
-    this.apiResponseS.onDelete(Endpoints.Products.delete(id)).then((result: boolean) => {
+    return this.apiResponseS.onDelete(Endpoints.Products.delete(id)).then((result: boolean) => {
       if (result) {
         this.dataSignal.update((data) => data.filter((item) => item.id !== id));
         this.filteredDataSignal.update((data) =>

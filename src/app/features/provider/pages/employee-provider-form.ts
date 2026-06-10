@@ -195,7 +195,7 @@ export class EmployeeProviderForm implements OnInit {
         ? this.employeeS.createEmployee(formData)
         : this.employeeS.createEmployeeExternal(formData);
 
-    request$.then((result: any) => {
+    return request$.then((result: any) => {
       if (result) {
         const employeeId = result?.id ?? result?.employeeId ?? "";
         if (employeeId) {
@@ -241,7 +241,6 @@ export class EmployeeProviderForm implements OnInit {
         )
         .then(() => this.ref.close(true))
         .finally(() => this.submitting.set(false));
-      return;
     }
 
     if (opcion === "alta") {

@@ -34,7 +34,6 @@ export class MenuService implements OnDestroy {
   public language: boolean = false;
 
   // --- GESTIÓN DEL CACHÉ ---
-  private menuItemsCache: IMenuItem[] | null = null;
   private lastCustomerId: string | null = null;
   private allowedRoutes = new Set<string>();
   private menuLoadPromise: Promise<void> | null = null;
@@ -75,7 +74,7 @@ export class MenuService implements OnDestroy {
 
       if (isCustomerReady && customerId) {
         this.consoleLogger.custom(
-          "✅",
+          "",
           "green",
           `[MenuService] Customer data is ready for ${customerId}. Loading menu...`,
         );
@@ -84,7 +83,7 @@ export class MenuService implements OnDestroy {
         });
       } else if (!isCustomerReady) {
         this.consoleLogger.custom(
-          "🧹",
+          "",
           "gray",
           "[MenuService] Customer data not ready. Clearing menu...",
         );
@@ -120,11 +119,13 @@ export class MenuService implements OnDestroy {
     
     this.menuLoadPromise = (async () => {
       try {
+        this.lastCustomerId = customerId;
         const rawItems = await this.fetchMenuItemsFromApi(customerId);
         this.menuItemsSignal.set(rawItems);
         this.menuLoadedSignal.set(true);
       } catch (error) {
-        this.consoleLogger.error("Fallo en el proceso de carga del menú:", error);
+        this.lastCustomerId = null;
+        this.consoleLogger.error("Fallo en el proceso de carga del menu:", error);
         this.menuItemsSignal.set([]);
         this.menuLoadedSignal.set(false);
       } finally {
@@ -170,8 +171,6 @@ export class MenuService implements OnDestroy {
       });
     });
 
-    this.menuItemsCache = result;
-    this.lastCustomerId = customerId;
     return result;
   }
 
@@ -181,7 +180,6 @@ export class MenuService implements OnDestroy {
   }
 
   clearCache(): void {
-    this.menuItemsCache = null;
     this.lastCustomerId = null;
     this.allowedRoutes.clear();
     // Limpiamos el estado completo para que el siguiente customer recargue desde cero.

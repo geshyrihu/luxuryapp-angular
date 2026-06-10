@@ -29,7 +29,7 @@ export class ProviderUse implements OnInit {
 
   onLoadData(providerId: any) {
     const urlApi = `providers/coincidencias/${providerId}`;
-    this.apiResponseS.onGetList(urlApi).then((result: any) => {
+    return this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data = result;
 
       this.globalFilterFields = globalFilterFields(this.data);

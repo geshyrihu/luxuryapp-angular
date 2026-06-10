@@ -226,7 +226,7 @@ export class ProveedorForm implements OnInit {
         ? this.apiResponseS.onPost(`Providers/`, model)
         : this.apiResponseS.onPut(`Providers/${this.id}`, model);
 
-    request.then((result: boolean) => {
+    return request.then((result: boolean) => {
       result ? this.ref.close(true) : this.submitting.set(false);
     });
   }

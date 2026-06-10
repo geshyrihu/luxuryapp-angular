@@ -1,8 +1,8 @@
 import { animate, style, transition, trigger } from "@angular/animations";
 import { HttpErrorResponse } from "@angular/common/http";
 import { NgOptimizedImage } from "@angular/common";
-import { Component, computed, inject, OnDestroy, OnInit, signal } from "@angular/core";
-import { toSignal } from "@angular/core/rxjs-interop";
+import { Component, computed, DestroyRef, inject, OnInit, signal } from "@angular/core";
+import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import {
   FormBuilder,
   FormGroup,
@@ -15,10 +15,8 @@ import {
   catchError,
   finalize,
   of,
-  Subject,
   startWith,
   switchMap,
-  takeUntil,
 } from "rxjs";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
@@ -59,7 +57,7 @@ import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom
     NgOptimizedImage,
   ],
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
   private activateRoute = inject(ActivatedRoute);
   public aspRoleS = inject(AspRoleService);
   private formBuilder = inject(FormBuilder);
@@ -70,7 +68,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private loaderService = inject(LoaderService);
   private consoleLogger = inject(ConsoleLoggerService);
   private sliderService = inject(LoginSliderService);
-  private destroy$ = new Subject<void>();
+  private destroyRef = inject(DestroyRef);
 
   public readonly loading = signal(false);
   public readonly errorMessage = signal("");
@@ -95,26 +93,22 @@ export class LoginComponent implements OnInit, OnDestroy {
   private preservedRedirectUrl: string = "/";
 
   ngOnInit(): void {
-    this.consoleLogger.custom("🚪", "#607D8B", "[Login] Iniciando..");
+    this.consoleLogger.custom("", "#607D8B", "[Login] Iniciando..");
     this.preservedRedirectUrl = this.getRedirectUrl();
     this.consoleLogger.custom(
-      "🧭",
+      "",
       "#2196F3",
-      `[Login] URL final de redirección: ${this.preservedRedirectUrl}`,
+      `[Login] URL final de redireccion: ${this.preservedRedirectUrl}`,
     );
     this.onLoadForm();
     this.securityS.resetAuthData();
     this.consoleLogger.custom(
-      "🧹",
+      "",
       "#9E9E9E",
-      "[Login] Datos de sesión previa eliminados.",
+      "[Login] Datos de sesion previa eliminados.",
     );
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
 
   showPassword() {
     this.show = !this.show;
@@ -124,16 +118,16 @@ export class LoginComponent implements OnInit, OnDestroy {
     const fromQuery = this.activateRoute.snapshot.queryParams["returnUrl"];
     if (fromQuery && typeof fromQuery === "string") {
       this.consoleLogger.custom(
-        "🔍",
+        "",
         "#2196F3",
         `[Login] Usando URL de queryParams: ${fromQuery}`,
       );
       return fromQuery;
     }
     this.consoleLogger.custom(
-      "🏠",
+      "",
       "#607D8B",
-      "[Login] Usando / como redirección por defecto.",
+      "[Login] Usando / como redireccion por defecto.",
     );
     return "/";
   }
@@ -141,18 +135,17 @@ export class LoginComponent implements OnInit, OnDestroy {
   onLoadForm(): void {
     const savedUser = localStorage.getItem("savedUsername");
     const savedPass = localStorage.getItem("savedPassword");
-    if (savedUser && savedPass) {
-      this.loginForm.patchValue({ userName: savedUser, password: savedPass });
-      this.consoleLogger.custom(
-        "💾",
-        "#FF9800",
-        "[Login] Credenciales recuperadas.",
-      );
+    if (savedUser) {
+      this.loginForm.patchValue({
+        userName: savedUser,
+        ...(savedPass ? { password: savedPass } : {}),
+      });
+      this.consoleLogger.custom("", "#FF9800", "[Login] Usuario recuperado.");
     }
   }
 
   onSubmit(): void {
-    this.consoleLogger.custom("🚀", "#03A9F4", "[Login] Iniciando login...");
+    this.consoleLogger.custom("", "#03A9F4", "[Login] Iniciando login...");
 
     if (this.loginForm.invalid) {
       return;
@@ -170,7 +163,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         switchMap((userTokenData: UserTokenDTO) => {
           if (userTokenData) {
             this.consoleLogger.custom(
-              "🏢",
+              "",
               "#3F51B5",
               "[Login] Inicializando estado del cliente...",
             );
@@ -185,32 +178,32 @@ export class LoginComponent implements OnInit, OnDestroy {
         }),
         catchError((error) => {
           this.errorMessage.set(this.buildLoginErrorMessage(error));
-          this.consoleLogger.custom("💀", "#D32F2F", "Error en login:", error);
+          this.consoleLogger.custom("", "#D32F2F", "Error en login:", error);
           return of(false);
         }),
         finalize(() => {
           this.loading.set(false);
           this.loaderService.hide();
           this.consoleLogger.custom(
-            "✅",
+            "",
             "#9E9E9E",
             "[Login] Spinner finalizo.",
           );
         }),
-        takeUntil(this.destroy$),
+        takeUntilDestroyed(this.destroyRef),
       )
       .subscribe({
         next: (loginSuccess: boolean) => {
           if (loginSuccess) {
             this.consoleLogger.custom(
-              "🎉",
+              "",
               "#4CAF50",
               "[Login] Login y carga de cliente OK.",
             );
             this.consoleLogger.custom(
-              "🧭",
+              "",
               "#2196F3",
-              `[Login] Redirigiendo a: ${this.preservedRedirectUrl}. El guardián decidirá el resto...`,
+              `[Login] Redirigiendo a: ${this.preservedRedirectUrl}.`,
             );
             this.router.navigateByUrl(this.preservedRedirectUrl, {
               replaceUrl: true,
@@ -242,15 +235,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (rememberMe) {
       const username = this.loginForm.get("userName")?.value;
       const password = this.loginForm.get("password")?.value;
-      if (username && password) {
-        localStorage.setItem("savedUsername", username);
-        localStorage.setItem("savedPassword", password);
-        this.consoleLogger.custom("🔖", "#FF9800", "Credenciales guardadas");
-      }
+      if (username) localStorage.setItem("savedUsername", username);
+      if (password) localStorage.setItem("savedPassword", password);
+      this.consoleLogger.custom("", "#FF9800", "[Login] Credenciales guardadas");
     } else {
       localStorage.removeItem("savedUsername");
       localStorage.removeItem("savedPassword");
-      this.consoleLogger.custom("🗑️", "#9E9E9E", "Credenciales eliminadas");
+      this.consoleLogger.custom("", "#9E9E9E", "[Login] Datos guardados eliminados");
     }
   }
 }

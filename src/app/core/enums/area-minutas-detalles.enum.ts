@@ -3,12 +3,3 @@ export enum EAreaMinutasDetalles {
   Operaciones,
   Legal,
 }
-
-
-
-
-
-
-
-
-

@@ -172,7 +172,7 @@ export class ListProvider implements OnInit {
     // if (this.selectedNivelAcceso)
     //   httpParams.nivelAcceso = this.selectedNivelAcceso;
 
-    this.apiResponseS.onGetList(urlApi, httpParams).then((result: any) => {
+    return this.apiResponseS.onGetList(urlApi, httpParams).then((result: any) => {
       // Manejo seguro de la respuesta para evitar errores si el backend responde con error
       this.dataSignal.set(result?.items ?? []);
       this.totalRecords = result?.totalRecords ?? 0;
@@ -203,7 +203,7 @@ export class ListProvider implements OnInit {
 
   // Elimina un proveedor
   onDelete(id: any) {
-    this.apiResponseS.onDelete(`providers/${id}`).then((result: boolean) => {
+    return this.apiResponseS.onDelete(`providers/${id}`).then((result: boolean) => {
       if (result)
         this.dataSignal.update((currentData) =>
           currentData.filter((item) => item.providerId !== id),

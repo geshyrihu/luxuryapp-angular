@@ -4,6 +4,8 @@
    Extraídos de styles.scss (Phase 3 — Design System integration)
    ========================================================================== */
 
+@use 'core/colors' as c;
+
 /* =======================================
    PRIME PANELMENU (Sidebar)
    ======================================= */
@@ -92,20 +94,20 @@ body.theme-dark .p-panelmenu {
   flex-direction: column !important;
   height: 100% !important;
   overflow: hidden !important;
-  background: #18181b !important;
-  color: #f4f4f5 !important;
-  border-color: rgba(255, 255, 255, 0.08) !important;
+  background: var(--sidebar-bg, c.$neutral-900) !important;
+  color: c.$neutral-100 !important;
+  border-color: rgba(c.$neutral-0, 0.08) !important;
 }
 
 .sidebar-header {
   flex-shrink: 0 !important;
   z-index: 50 !important;
   position: relative !important;
-  background-color: #18181b;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: var(--sidebar-bg, c.$neutral-900);
+  border-bottom: 1px solid rgba(c.$neutral-0, 0.08);
 
   .user-name {
-    color: #ffffff;
+    color: c.$neutral-0;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.25;
@@ -113,7 +115,7 @@ body.theme-dark .p-panelmenu {
   }
 
   .user-position {
-    color: #4ade80;
+    color: c.$success-400;
     font-size: 0.75rem;
     font-weight: 400;
     line-height: 1.25;
@@ -122,14 +124,14 @@ body.theme-dark .p-panelmenu {
 
   .customer-divider {
     margin: 0.25rem 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(c.$neutral-0, 0.1);
     width: 100%;
   }
 
   .customer-name {
     font-size: 0.625rem;
     font-weight: 700;
-    color: #a1a1aa;
+    color: c.$neutral-400;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin: 0;
@@ -142,8 +144,8 @@ body.theme-dark .p-panelmenu {
     width: 0.875rem;
     height: 0.875rem;
     border-radius: 50%;
-    border: 2px solid #18181b;
-    background-color: #22c55e;
+    border: 2px solid var(--sidebar-bg, c.$neutral-900);
+    background-color: c.$success-500;
   }
 }
 
@@ -178,6 +180,13 @@ body.theme-dark .p-panelmenu {
   max-width: 100% !important;
 }
 
+/* Helper de impresión en lugar de usar tailwind (print:hidden) */
+@media print {
+  .hide-on-print {
+    display: none !important;
+  }
+}
+
 /* =======================================
    ANIMATIONS (Menu Transitions)
    ======================================= */
@@ -210,7 +219,16 @@ body.theme-dark .p-panelmenu {
   width: 100% !important;
 }
 
-  .guide-menu-item {
+.guide-menu-sublist {
+  display: flex !important;
+  flex-direction: column !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 0 0 1.5rem !important; /* Identación de submenús */
+  width: 100% !important;
+}
+
+.guide-menu-item {
   display: block !important;
   width: 100% !important;
   margin-bottom: 0.25rem !important;
@@ -220,7 +238,7 @@ body.theme-dark .p-panelmenu {
     display: flex !important;
     align-items: center !important;
     padding: 0.6rem 1rem !important;
-    color: #f4f4f5 !important;
+    color: c.$neutral-100 !important;
     border-radius: 0 0.5rem 0.5rem 0 !important; /* Rounded Right */
     border-left: 3px solid transparent !important;
     transition: all 0.2s ease-in-out !important;
@@ -230,25 +248,25 @@ body.theme-dark .p-panelmenu {
     width: 100% !important;
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.08) !important;
-      color: #ffffff !important;
+      background-color: rgba(c.$neutral-0, 0.08) !important;
+      color: c.$neutral-0 !important;
     }
 
     /* Active State */
     &.active-link,
     &.router-link-active {
-      background-color: rgba(255, 255, 255, 0.12) !important;
-      color: #ffffff !important;
-      border-left-color: var(--ds-primary) !important;
+      background-color: rgba(c.$neutral-0, 0.12) !important;
+      color: c.$neutral-0 !important;
+      border-left-color: var(--ds-document-neutral, c.$neutral-400) !important;
       font-weight: 500 !important;
 
       i {
-        color: #ffffff !important;
+        color: c.$neutral-0 !important;
       }
     }
 
     i {
-      color: #d4d4d8 !important;
+      color: c.$neutral-300 !important;
     }
   }
 
@@ -269,24 +287,24 @@ body.theme-dark .p-panelmenu {
     padding: 0.6rem 1rem !important;
     width: 100% !important;
     cursor: pointer !important;
-    color: #f4f4f5 !important;
+    color: c.$neutral-100 !important;
     font-size: 0.875rem !important;
     font-weight: 400 !important;
     border-radius: 0.5rem !important;
     transition: background-color 0.2s !important;
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.08) !important;
-      color: #ffffff !important;
+      background-color: rgba(c.$neutral-0, 0.08) !important;
+      color: c.$neutral-0 !important;
     }
 
     &.expanded {
-      color: #ffffff !important;
+      color: c.$neutral-0 !important;
       font-weight: 500 !important;
     }
 
     i {
-      color: #d4d4d8 !important;
+      color: c.$neutral-300 !important;
     }
   }
 }
@@ -296,8 +314,8 @@ body.theme-dark .p-panelmenu {
    ======================================= */
 .hidden.md\:block .p-toolbar,
 .mobile-header-toolbar {
-  background: #18181b !important;
-  color: #f4f4f5 !important;
+  background: var(--header-bg, c.$neutral-900) !important;
+  color: c.$neutral-100 !important;
 
   /* Breadcrumb text visibility */
   .p-breadcrumb {
@@ -306,15 +324,15 @@ body.theme-dark .p-panelmenu {
 
     .p-breadcrumb-list {
       .p-menuitem-link {
-        color: #f4f4f5 !important;
+        color: c.$neutral-100 !important;
 
         &:hover {
-          color: #ffffff !important;
+          color: c.$neutral-0 !important;
         }
       }
 
       .p-menuitem-separator {
-        color: #a1a1aa !important;
+        color: c.$neutral-400 !important;
       }
     }
   }
@@ -322,11 +340,11 @@ body.theme-dark .p-panelmenu {
   /* Button icons visibility */
   .p-button-text,
   .monitor-toolbar-button {
-    color: #f4f4f5 !important;
+    color: c.$neutral-100 !important;
 
     &:hover {
-      color: #ffffff !important;
-      background: rgba(255, 255, 255, 0.08) !important;
+      color: c.$neutral-0 !important;
+      background: rgba(c.$neutral-0, 0.08) !important;
     }
   }
 }

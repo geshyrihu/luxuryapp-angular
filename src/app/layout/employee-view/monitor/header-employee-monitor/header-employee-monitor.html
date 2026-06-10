@@ -22,10 +22,10 @@
     <ng-template #center>
       <div class="flex align-items-center gap-2 px-3" style="min-width: 350px">
         <!-- Selector de Condominio (Select de PrimeNG) -->
-        @if (cb_customer.length > 1) {
+        @if (cb_customer().length > 1) {
         <div class="p-2 w-full">
           <p-select
-            [options]="cb_customer"
+            [options]="cb_customer()"
             [ngModel]="customerId()"
             (onChange)="selectCustomer($event.value)"
             optionValue="value"

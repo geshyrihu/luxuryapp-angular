@@ -76,7 +76,7 @@ export class PropiedadesList {
   }
 
   onDelete(id: any) {
-    this.apiResponseS.onDelete(`Property/${id}`).then((result: boolean) => {
+    return this.apiResponseS.onDelete(`Property/${id}`).then((result: boolean) => {
       if (result)
         this.dataSignal.update((currentData) =>
           currentData.filter((item) => item.id !== id),

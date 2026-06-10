@@ -20,7 +20,7 @@ No usar estilos inline para layout, colores o overrides de componentes.
 
 Antes de crear una clase o tocar un estilo, decidir su nivel:
 
-- Identidad visual: editar `src/styles/theme/_variables.scss`.
+- Identidad visual: editar `src/styles/theme/_variables.scss`. Esta es la **única fuente de verdad**; queda prohibido crear archivos `.css` estáticos o huérfanos (ej. `tokens.css`).
 - PrimeNG global: editar o crear `src/styles/prime-overrides/_prime-[component].scss` y registrarlo en `src/styles/ds-entry.scss`.
 - Componente reusable propio: editar o crear un partial en `src/styles/components`.
 - Utilidad transversal: editar `src/styles/custom/_design-system-utilities.scss`.
@@ -50,7 +50,7 @@ Uso recomendado:
 - `--ds-document-ink`: texto formal en documentos o vistas de lectura.
 - `--ds-document-surface`: superficies de lectura/documento.
 
-No crear paletas locales por modulo. Si Biblioteca, Configuracion o un componente core necesitan el mismo lenguaje visual, deben consumir estos tokens.
+No crear paletas locales por modulo. Si Biblioteca, Configuracion o un componente core necesitan el mismo lenguaje visual, deben consumir estos tokens declarados en `_variables.scss`.
 
 ## Orden real de carga
 

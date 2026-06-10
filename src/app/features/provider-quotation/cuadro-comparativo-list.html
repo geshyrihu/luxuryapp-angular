@@ -160,6 +160,62 @@
         </div>
       </div>
 
+      <div class="flex flex-wrap gap-3 mt-3 align-items-center border-top-1 surface-border pt-3">
+        <!-- Requiere contrato -->
+        <div class="flex align-items-center gap-2">
+          <span class="font-semibold text-sm">Requiere contrato:</span>
+          @if (!cleanView) {
+          <custom-button
+            [iconClass]="solicitudCompra?.requiereContrato ? 'mdi:file-sign' : 'mdi:file-document-outline'"
+            [label]="solicitudCompra?.requiereContrato ? 'Si requiere' : 'No requiere'"
+            [severity]="solicitudCompra?.requiereContrato ? 'success' : 'secondary'"
+            [variant]="solicitudCompra?.requiereContrato ? undefined : 'outlined'"
+            size="small"
+            (clicked)="onToggleRequiereContrato()"
+          />
+          } @else {
+          <span class="text-sm font-semibold" [class.text-green-600]="solicitudCompra?.requiereContrato">
+            {{ solicitudCompra?.requiereContrato ? 'Si' : 'No' }}
+          </span>
+          }
+        </div>
+
+        <!-- Junta de comite -->
+        <div class="flex align-items-center gap-2 flex-wrap">
+          <span class="font-semibold text-sm">Junta de comite:</span>
+          @if (solicitudCompra?.comiteEvento) {
+          <span class="text-sm text-color-secondary">
+            {{ solicitudCompra.comiteEvento.startAt | date:'dd MMM yyyy' }} &mdash; {{ solicitudCompra.comiteEvento.title }}
+          </span>
+          @if (!cleanView) {
+          <custom-button
+            iconClass="mdi:calendar-edit"
+            label="Cambiar"
+            size="small"
+            severity="secondary"
+            variant="text"
+            tooltip="Cambiar junta asignada"
+            (clicked)="onOpenAsignarJuntaModal()"
+          />
+          }
+          } @else {
+          @if (!cleanView) {
+          <custom-button
+            iconClass="mdi:calendar-plus"
+            label="Asignar junta"
+            size="small"
+            severity="info"
+            variant="outlined"
+            tooltip="Seleccionar la junta donde se presentara esta solicitud"
+            (clicked)="onOpenAsignarJuntaModal()"
+          />
+          } @else {
+          <span class="text-600 text-sm">Sin asignar</span>
+          }
+          }
+        </div>
+      </div>
+
       @if (!cleanView && selectedEvidenceFiles.length > 0) {
       <div class="mt-3">
         <small class="block font-semibold mb-2">Fotos listas para subir</small>

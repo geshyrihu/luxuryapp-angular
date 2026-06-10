@@ -3,12 +3,3 @@ export interface IAddCustomerPermisoToUser {
   customerName: string;
   isSelected: boolean;
 }
-
-
-
-
-
-
-
-
-

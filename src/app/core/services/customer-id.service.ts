@@ -4,7 +4,15 @@ import { catchError, map, Observable, of, tap } from "rxjs";
 import { environment } from "src/environments/environment";
 import { UserTokenDTO } from "../interfaces/auth-user-token.dto";
 import { ConsoleLoggerService } from "./console-logger.service";
+import type { ApiResponseDTO } from "./api-response.service";
 import { StorageService } from "./storage.service";
+
+interface CustomerDetailDTO {
+  id: string;
+  nombreCorto: string;
+  photoPath: string;
+  nameCustomer: string;
+}
 @Injectable({
   providedIn: "root",
 })
@@ -114,14 +122,21 @@ export class CustomerIdService {
     }
 
     return this.http
-      .get<any>(`${environment.API_BASE_URL}Customers/${customerId}`)
+      .get<ApiResponseDTO<CustomerDetailDTO>>(`${environment.API_BASE_URL}Customers/${customerId}`)
       .pipe(
-        tap((response: any) => {
-          this.consoleLogger.info("CustomerIdService :", response);
+        tap((response) => {
+          if (!response.success || !response.data) {
+            this.consoleLogger.error(
+              "[CustomerIdService] API retorno error o datos nulos.",
+              response.message,
+            );
+            this.zone.run(() => {
+              this.customerState.update((s) => ({ ...s, isLoaded: false }));
+            });
+            return;
+          }
           this.zone.run(() => {
             this.customerState.set({
-              // Publicamos el estado completo en una sola escritura para que
-              // los consumidores reactivos reciban un cambio consistente.
               id: response.data.id,
               nombreCorto: response.data.nombreCorto,
               photoCustomer: response.data.photoPath,
@@ -130,7 +145,7 @@ export class CustomerIdService {
             });
           });
         }),
-        map(() => true),
+        map((response) => response.success && !!response.data),
         catchError((error) => {
           this.consoleLogger.error(
             "[CustomerIdService] API call FAILED.",

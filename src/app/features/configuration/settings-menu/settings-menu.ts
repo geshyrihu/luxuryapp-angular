@@ -209,6 +209,13 @@ export const settingMenu = (aspRoleS: AspRoleService): ISettingsMenuItem[] => [
   {
     group: "Configuracion de Sistema",
     visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
+    label: "Vault de Secretos",
+    routerLink: "/settings/vault-secrets",
+    icon: "mdi:shield-key",
+  },
+  {
+    group: "Configuracion de Sistema",
+    visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
     label: "Jobs",
     routerLink: "/settings/jobs",
     icon: "mdi:briefcase",

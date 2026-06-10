@@ -631,6 +631,13 @@ export const Endpoints = {
     getAll: "EmailData/List",
     sendTestEmail: (id: string) => `SendEmail/TestEmail/${id}`,
   },
+  VaultSecrets: {
+    getAll: "vault-secrets/list",
+    store: "vault-secrets",
+    update: (secretName: string) => `vault-secrets/${secretName}`,
+    rotate: (secretName: string) => `vault-secrets/${secretName}/rotate`,
+    revoke: (secretName: string) => `vault-secrets/${secretName}/revoke`,
+  },
   EmergencyPhones: {
     create: "TelefonosEmergencia",
     delete: (id: string) => `telefonosemergencia/${id}`,

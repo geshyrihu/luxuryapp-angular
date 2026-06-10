@@ -91,6 +91,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
     { label: "Supervisor", value: EAutorizacionCuadroComparativo.Supervisor },
     { label: "Direccion", value: EAutorizacionCuadroComparativo.Direccion },
   ];
+  comiteEventsSignal = signal<any[]>([]);
   selectedEvidenceFiles: File[] = [];
   selectedEvidencePreviewUrls: string[] = [];
 
@@ -692,6 +693,83 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
 
   toggleCleanView() {
     this.cleanView = !this.cleanView;
+  }
+
+  onToggleRequiereContrato() {
+    const nuevoValor = !this.solicitudCompra.requiereContrato;
+    this.apiResponseS
+      .onPut(`SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}`, {
+        estatus: this.solicitudCompra.estatus,
+        autorizadaPor: this.solicitudCompra.autorizadaPor ?? null,
+        motivoNoAutorizacion: this.solicitudCompra.motivoNoAutorizacion ?? '',
+        applicationUserId: this.authS.applicationUserId,
+        requiereContrato: nuevoValor,
+        comiteGoogleCalendarEventId: this.solicitudCompra.comiteGoogleCalendarEventId ?? null,
+      })
+      .then((result) => {
+        if (result) {
+          this.solicitudCompra = { ...this.solicitudCompra, requiereContrato: nuevoValor };
+        }
+      });
+  }
+
+  async onOpenAsignarJuntaModal() {
+    let events = this.comiteEventsSignal();
+
+    if (events.length === 0) {
+      const fetched: any = await this.apiResponseS.onGetItem(
+        `SolicitudCompra/comite-events/${this.solicitudCompra.customerId}`,
+      );
+      events = Array.isArray(fetched) ? fetched : [];
+      this.comiteEventsSignal.set(events);
+    }
+
+    if (events.length === 0) {
+      this.customToastService.showInfo(
+        'Sin juntas',
+        'No hay eventos de comite disponibles para este cliente.',
+      );
+      return;
+    }
+
+    const inputOptions: Record<string, string> = { '': '-- Sin asignar --' };
+    for (const e of events) {
+      const fecha = new Date(e.startAt).toLocaleDateString('es-MX', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+      });
+      inputOptions[e.id] = `${fecha} | ${e.title}`;
+    }
+
+    const selected = await this.swalService.fire({
+      title: 'Asignar a junta de comite',
+      input: 'select',
+      inputOptions,
+      inputValue: this.solicitudCompra.comiteGoogleCalendarEventId ?? '',
+      inputPlaceholder: 'Selecciona una junta',
+      showCancelButton: true,
+      confirmButtonText: 'Asignar',
+      cancelButtonText: 'Cancelar',
+      didOpen: () => this.swalService.fixModalZIndex(),
+    });
+
+    if (!selected.isConfirmed) return;
+
+    const eventoId = selected.value === '' ? null : selected.value;
+
+    this.apiResponseS
+      .onPut(`SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}`, {
+        estatus: this.solicitudCompra.estatus,
+        autorizadaPor: this.solicitudCompra.autorizadaPor ?? null,
+        motivoNoAutorizacion: this.solicitudCompra.motivoNoAutorizacion ?? '',
+        applicationUserId: this.authS.applicationUserId,
+        requiereContrato: this.solicitudCompra.requiereContrato,
+        comiteGoogleCalendarEventId: eventoId,
+      })
+      .then((result) => {
+        if (result) this.onLoadData();
+      });
   }
 
   onResetData(): void {

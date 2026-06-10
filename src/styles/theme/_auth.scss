@@ -1,0 +1,36 @@
+/* ==========================================================================
+   AUTHENTICATION STYLES (GLASSMORPHISM)
+   ========================================================================== */
+
+.glass-auth-card {
+  /* Vista Móvil (Nativa): Sin bordes, sombras ni fondo cristal para integrarse con la pantalla completa */
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  color: #ffffff;
+
+  /* Vista Escritorio: Efecto de cristal flotante */
+  @media screen and (min-width: 768px) {
+    background: rgba(15, 15, 18, 0.75) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.5) !important;
+    border-radius: 1rem !important;
+  }
+}
+
+/* Override explícito para inputs/botones dentro de auth para mantener contraste */
+.glass-auth-card h4, 
+.glass-auth-card p {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.glass-auth-card .text-600 {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.glass-auth-card .text-900 {
+  color: #ffffff !important;
+}

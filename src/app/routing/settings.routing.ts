@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
+import { superUsuarioGuard } from "src/app/core/guard/super-usuario.guard";
 export const settingsRoutes: Routes = [
   // Rutas principales de configuración
   {
@@ -583,6 +584,18 @@ export const settingsRoutes: Routes = [
     data: {
       title: "Tipos de Sanción",
       breadcrumb: "Tipos de Sanción",
+    },
+  },
+  {
+    path: "vault-secrets",
+    loadComponent: () =>
+      import("src/app/features/configuration/settings-menu/vault-secrets/vault-secrets-list").then(
+        (m) => m.VaultSecretsList,
+      ),
+    canActivate: [authGuard, superUsuarioGuard],
+    data: {
+      title: "Secretos del Vault",
+      breadcrumb: "Secretos del Vault",
     },
   },
   {

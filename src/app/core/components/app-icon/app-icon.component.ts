@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, input, computed } from "@angular/core";
 import { resolveIconifyIcon } from "src/app/core/utils/prime-icon-resolver";
 
 @Component({
   selector: "app-icon",
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  template: `<iconify-icon [attr.icon]="resolvedIcon"></iconify-icon>`,
+  template: `<iconify-icon [attr.icon]="resolvedIcon()"></iconify-icon>`,
   styles: [
     `
       :host {
@@ -25,10 +25,7 @@ import { resolveIconifyIcon } from "src/app/core/utils/prime-icon-resolver";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppIcon {
-  protected resolvedIcon = "mdi:cog";
+  icon = input<string | null | undefined>();
 
-  @Input()
-  set icon(value: string | null | undefined) {
-    this.resolvedIcon = resolveIconifyIcon(value);
-  }
+  protected resolvedIcon = computed(() => resolveIconifyIcon(this.icon()));
 }

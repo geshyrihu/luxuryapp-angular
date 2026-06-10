@@ -1,4 +1,4 @@
-<div class="print:hidden h-full">
+<div class="hide-on-print h-full">
   <nav class="sidebar-layout">
     <!-- Fixed Header Section -->
     <div
@@ -10,7 +10,7 @@
           [image]="profileImageUrl || 'assets/images/default-avatar.png'"
           size="xlarge"
           shape="square"
-          styleClass="border-round-lg border-2 border-white shadow-4"
+          styleClass="border-round-lg border-2 border-transparent shadow-4"
         ></p-avatar>
         <!-- Online Indicator -->
         <span class="online-indicator"></span>
@@ -20,14 +20,14 @@
       <div class="w-full">
         <h2
           class="user-name white-space-nowrap overflow-hidden text-overflow-ellipsis"
-          title="{{ infoAccountAuthDTO.fullName }}"
+          title="{{ infoAccountAuthDTO?.fullName }}"
         >
-          {{ infoAccountAuthDTO.fullName }}
+          {{ infoAccountAuthDTO?.fullName }}
         </h2>
         <p
           class="user-position white-space-nowrap overflow-hidden text-overflow-ellipsis"
         >
-          {{ infoAccountAuthDTO.position || 'En línea' }}
+          {{ infoAccountAuthDTO?.position || 'En línea' }}
         </p>
       </div>
 
@@ -87,15 +87,15 @@
         </span>
       </div>
 
-      <iconify-icon
-        [attr.icon]="item.expanded ? 'mdi:chevron-down' : 'mdi:chevron-right'"
+      <app-icon
+        [icon]="item.expanded ? 'mdi:chevron-down' : 'mdi:chevron-right'"
         class="text-sm opacity-70 ml-2"
-      ></iconify-icon>
+      ></app-icon>
     </div>
 
     <!-- Submenu Container -->
     @if(item.expanded) {
-    <ul class="guide-menu-list pl-6 animate-fade-in-down">
+    <ul class="guide-menu-sublist animate-fade-in-down">
       <ng-container
         *ngTemplateOutlet="recursiveMenu; context:{ $implicit: item.items }"
       ></ng-container>

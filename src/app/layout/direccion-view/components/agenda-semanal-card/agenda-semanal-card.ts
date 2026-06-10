@@ -6,11 +6,12 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { AgendaSemanal } from "../agenda-semanal/agenda-semanal";
 import type { AgendaSemanalEventDTO } from "../agenda-semanal/agenda-semanal.model";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 
 @Component({
   selector: "app-agenda-semanal-card",
   templateUrl: "./agenda-semanal-card.html",
-  imports: [CommonModule, ButtonModule],
+  imports: [CommonModule, ButtonModule, AppIcon],
 })
 export class AgendaSemanalCard implements OnInit {
   private apiResponseS = inject(ApiResponseService);

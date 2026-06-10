@@ -21,20 +21,27 @@
         class="flex align-items-center justify-content-center gap-3 flex-wrap"
       >
         <p-button
-          label="Volver al Inicio"
-          icon="pi pi-home"
+          label="Ir al Inicio"
           routerLink="/"
           [rounded]="true"
           styleClass="px-5"
-        ></p-button>
+        >
+          <ng-template #icon>
+            <app-icon icon="mdi:home" class="mr-2"></app-icon>
+          </ng-template>
+        </p-button>
 
         <p-button
-          label="Solicitar Acceso"
-          icon="pi pi-key"
+          label="Iniciar Sesión"
+          routerLink="/auth/login"
           [variant]="'outlined'"
           [rounded]="true"
           styleClass="px-5"
-        ></p-button>
+        >
+          <ng-template #icon>
+            <app-icon icon="mdi:key" class="mr-2"></app-icon>
+          </ng-template>
+        </p-button>
       </div>
     </div>
 

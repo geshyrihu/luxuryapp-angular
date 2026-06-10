@@ -1,110 +1,9 @@
 <!-- Contenedor principal de la página de login -->
-
-<div class="relative w-full overflow-hidden surface-ground min-h-screen">
-  <!-- ============================================================ -->
-  <!-- VISTA MÓVIL: Barra superior 30% + Formulario 70% -->
-  <!-- ============================================================ -->
-  <div class="flex flex-column w-full h-screen md:hidden">
-    <!-- Barra superior 30vh - Logo y texto -->
-    <div
-      class="flex flex-column align-items-center justify-content-center px-4 bg-primary h-15rem"
-    >
-      <img
-        class="mb-2 w-11rem h-auto shadow-2 border-round"
-        src="assets/images/login/LBG-blanco.png"
-        alt="Logo Luxury Building Group"
-        width="180"
-        height="69"
-        priority
-      />
-      <p class="font-semibold text-lg text-white">Luxury Bulding Group</p>
-    </div>
-
-    <!-- Formulario 70vh - Sin card -->
-    <div class="px-5 surface-ground flex-flex-grow-1-1">
-      <form class="w-full" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <!-- Logo pequeño oculto para móvil -->
-        <div class="text-center mb-2 md:hidden">
-          <h4 class="mb-4 text-xl font-bold text-900">Bienvenido!</h4>
-          <p class="font-medium text-sm mb-5 text-600">
-            Ingresa tus credenciales.
-          </p>
-        </div>
-
-        <custom-input-text-signal
-          [control]="loginForm.controls['userName']"
-          id="username-mobile"
-          label="Usuario"
-          placeholder="Usuario"
-          [horizontal]="false"
-          [noMargin]="true"
-          customClass="w-full font-semibold h-3rem surface-border"
-        />
-
-        <div class="mt-4">
-          <custom-input-password-signal
-            [control]="loginForm.controls['password']"
-            id="password-mobile"
-            label="Contraseña"
-            placeholder="Contraseña"
-            [horizontal]="false"
-            [showStrengthIndicator]="false"
-            customClass="w-full font-semibold h-3rem surface-border"
-          />
-        </div>
-
-        <div class="flex align-items-center justify-content-between mt-3">
-          <div class="flex align-items-center">
-            <custom-input-check-signal
-              [control]="loginForm.controls['rememberMe']"
-              id="checkbox-remember-mobile"
-              placeholder="Recordarme"
-              [horizontal]="false"
-              [onlyInput]="true"
-              [noMargin]="true"
-            />
-          </div>
-          <a
-            [routerLink]="['/auth/recovery-password']"
-            class="font-semibold text-sm text-primary"
-          >
-            ¿Olvidaste tu contraseña?
-          </a>
-        </div>
-
-        <div class="mt-4">
-          <custom-button
-            customClass="w-full border-round overflow-hidden"
-            type="submit"
-            label="INICIAR SESIÓN"
-            icon="pi pi-sign-in"
-            [loading]="loading()"
-            [disabled]="isSubmitDisabled()"
-            [fluid]="true"
-            [showLabelOnDesktop]="true"
-          ></custom-button>
-        </div>
-
-        @if (errorMessage()) {
-        <div class="mt-4">
-          <p-message
-            severity="error"
-            [text]="errorMessage()"
-            styleClass="w-full shadow-1"
-          ></p-message>
-        </div>
-        }
-      </form>
-    </div>
-  </div>
-
-  <!-- ============================================================ -->
-  <!-- VISTA ESCRITORIO: Diseño actual con card (md+) -->
-  <!-- ============================================================ -->
-  <div class="hidden md:flex flex-column relative w-full min-h-screen">
-    <!-- Fondo Estático (Luxury Building) -->
-    <div class="absolute top-0 left-0 w-full h-full z-10">
-      @for (image of sliderImages(); track image) {
+<div class="relative w-full overflow-hidden min-h-screen bg-black-alpha-90">
+  
+  <!-- Fondo Fotográfico Global (Escritorio y Móvil) -->
+  <div class="absolute top-0 left-0 w-full h-full z-10">
+    @for (image of sliderImages(); track image) {
       <img
         [ngSrc]="image"
         fill
@@ -114,115 +13,96 @@
         style="object-fit: cover; object-position: center"
         @slideAnimation
       />
-      }
-      <!-- Capa oscura semitransparente -->
-      <div class="absolute top-0 left-0 w-full h-full bg-black-alpha-40"></div>
-    </div>
+    }
+    <!-- Capa oscura de alto contraste para asegurar legibilidad en cualquier dispositivo -->
+    <div class="absolute top-0 left-0 w-full h-full bg-black-alpha-80 md:bg-black-alpha-60"></div>
+  </div>
 
-    <!-- Contenedor centrado: Tarjeta de Login -->
-    <div
-      class="relative z-20 flex align-items-center justify-content-center w-full px-4 min-h-screen"
-    >
-      <!--
-      TARJETA SEGURA (BULLETPROOF CARD)
-      Aquí puedes ajustar el ANCHO y el ALTO de la tarjeta.
-    -->
-      <div
-        class="w-full flex flex-column justify-content-center overflow-hidden surface-card shadow-4 border-round-xl max-w-40rem"
-      >
-        <form
-          class="w-full p-5"
-          [formGroup]="loginForm"
-          (ngSubmit)="onSubmit()"
-        >
-          <!-- Logo -->
-          <div class="text-center mb-4">
-            <img
-              class="mx-auto mb-3 w-15rem h-auto shadow-2"
-              src="assets/images/login/LBG-negro.png"
-              alt="Logo Luxury Building Group"
-              width="240"
-              height="92"
-              priority
-            />
-            <p>Luxury Building Group</p>
+  <!-- Contenedor centrado: Tarjeta de Login Glassmorphism -->
+  <div class="relative z-20 flex align-items-center justify-content-center w-full min-h-screen fadeinup animation-duration-500">
+    
+    <div class="w-full flex flex-column justify-content-center overflow-hidden glass-auth-card max-w-30rem">
+      <form class="w-full px-4 py-6 md:p-5" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        
+        <!-- Logo -->
+        <div class="text-center mb-5">
+          <img
+            class="mx-auto mb-3 w-13rem h-auto"
+            src="assets/images/login/LBG-blanco.png"
+            alt="Logo Luxury Building Group"
+            width="240"
+            height="92"
+            priority
+          />
+          <h4 class="mb-1 text-2xl font-bold tracking-tight">¡Bienvenido!</h4>
+          <p class="font-medium text-sm text-600">Ingresa tus credenciales para continuar.</p>
+        </div>
 
-            <h4 class="mb-1 text-2xl font-bold text-900 tracking-tight">
-              ¡Bienvenido!
-            </h4>
-            <p class="font-medium text-base text-600">
-              Ingresa tus credenciales para continuar.
-            </p>
-          </div>
+        <custom-input-text-signal
+          [control]="loginForm.controls['userName']"
+          id="username-global"
+          label="Usuario"
+          placeholder="Ej: jperez"
+          [horizontal]="false"
+          [noMargin]="true"
+          customClass="w-full font-semibold h-3rem surface-border"
+        />
 
-          <custom-input-text-signal
-            [control]="loginForm.controls['userName']"
-            id="username-desktop"
-            label="Usuario"
-            placeholder="Usuario"
+        <div class="mt-4">
+          <custom-input-password-signal
+            [control]="loginForm.controls['password']"
+            id="password-global"
+            label="Contraseña"
+            placeholder="********"
             [horizontal]="false"
-            [noMargin]="true"
+            [showStrengthIndicator]="false"
             customClass="w-full font-semibold h-3rem surface-border"
           />
+        </div>
 
-          <div class="mt-4">
-            <custom-input-password-signal
-              [control]="loginForm.controls['password']"
-              id="password-desktop"
-              label="Contraseña"
-              placeholder="Contraseña"
+        <!-- Opciones: Recordar y Recuperar Contraseña -->
+        <div class="flex align-items-center justify-content-between mt-4">
+          <div class="flex align-items-center">
+            <custom-input-check-signal
+              [control]="loginForm.controls['rememberMe']"
+              id="checkbox-remember-global"
+              placeholder="Recordarme"
               [horizontal]="false"
-              [showStrengthIndicator]="false"
-              customClass="w-full font-semibold h-3rem surface-border"
+              [onlyInput]="true"
+              [noMargin]="true"
             />
           </div>
+          <a [routerLink]="['/auth/recovery-password']" class="font-semibold text-sm text-primary transition-colors hover:text-white">
+            ¿Olvidaste tu contraseña?
+          </a>
+        </div>
 
-          <!-- Opciones: Recordar y Recuperar Contraseña -->
-          <div class="flex align-items-center justify-content-between mt-3">
-            <div class="flex align-items-center">
-              <custom-input-check-signal
-                [control]="loginForm.controls['rememberMe']"
-                id="checkbox-remember-desktop"
-                placeholder="Recordarme"
-                [horizontal]="false"
-                [onlyInput]="true"
-                [noMargin]="true"
-              />
-            </div>
-            <a
-              [routerLink]="['/auth/recovery-password']"
-              class="font-semibold text-sm text-primary"
-            >
-              ¿Olvidaste tu contraseña?
-            </a>
-          </div>
+        <!-- Botón de Iniciar Sesión -->
+        <div class="mt-5">
+          <custom-button
+            customClass="w-full border-round overflow-hidden"
+            type="submit"
+            label="INICIAR SESIÓN"
+            icon="mdi:login"
+            [loading]="loading()"
+            [disabled]="isSubmitDisabled()"
+            [fluid]="true"
+            [showLabelOnDesktop]="true"
+          ></custom-button>
+        </div>
 
-          <!-- Botón de Iniciar Sesión -->
-          <div class="mt-2">
-            <custom-button
-              customClass="w-full border-round overflow-hidden"
-              type="submit"
-              label="INICIAR SESIÓN"
-              icon="pi pi-sign-in"
-              [loading]="loading()"
-              [disabled]="isSubmitDisabled()"
-              [fluid]="true"
-              [showLabelOnDesktop]="true"
-            ></custom-button>
-          </div>
-
-          <!-- Mensaje de error -->
-          @if (errorMessage()) {
-          <div class="mt-4">
+        <!-- Mensaje de error -->
+        @if (errorMessage()) {
+          <div class="mt-4 fadein animation-duration-300">
             <p-message
               severity="error"
               [text]="errorMessage()"
               styleClass="w-full shadow-1"
             ></p-message>
           </div>
-          }
-        </form>
-      </div>
+        }
+      </form>
     </div>
+
   </div>
 </div>

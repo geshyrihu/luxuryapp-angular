@@ -11,11 +11,12 @@ import type {
   AgendaDiaGroup,
   AgendaSemanalEventDTO,
 } from "./agenda-semanal.model";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 
 @Component({
   selector: "app-agenda-semanal",
   templateUrl: "./agenda-semanal.html",
-  imports: [CommonModule, ButtonModule, TagModule, TooltipModule],
+  imports: [CommonModule, ButtonModule, TagModule, TooltipModule, AppIcon],
 })
 export class AgendaSemanal {
   private apiResponseS = inject(ApiResponseService);

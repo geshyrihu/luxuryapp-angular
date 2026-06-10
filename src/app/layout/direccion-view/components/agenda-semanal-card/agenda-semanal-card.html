@@ -1,6 +1,6 @@
 @if (cargando()) {
   <div class="flex align-items-center gap-2 py-3">
-    <i class="pi pi-spin pi-spinner text-primary"></i>
+    <app-icon icon="mdi:loading" class="pi-spin text-primary"></app-icon>
     <span class="text-sm text-500">Cargando agenda...</span>
   </div>
 } @else {
@@ -13,16 +13,19 @@
     </div>
     <p-button
       label="Ver agenda"
-      icon="pi pi-calendar"
       styleClass="p-button-sm p-button-outlined"
       (onClick)="abrirAgenda()"
-    />
+    >
+      <ng-template #icon>
+        <app-icon icon="mdi:calendar" class="mr-2"></app-icon>
+      </ng-template>
+    </p-button>
   </div>
 
   <!-- Proximos eventos -->
   @if (proximosEventos().length === 0) {
     <div class="flex align-items-center gap-2 py-2 text-400">
-      <i class="pi pi-calendar-times"></i>
+      <app-icon icon="mdi:calendar-remove"></app-icon>
       <span class="text-sm">Sin eventos proximos</span>
     </div>
   } @else {

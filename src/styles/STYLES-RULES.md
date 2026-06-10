@@ -9,7 +9,7 @@ Bootstrap y Tailwind CSS no forman parte del stack activo. No introducir clases 
 
 - `client/angular/angular.json` define el orden global de estilos.
 - `src/styles/ds-entry.scss` es el punto de entrada del Design System.
-- `src/styles/theme/_variables.scss` define identidad visual, paleta, tipografia, radios, sombras y tokens base `--ds-*`.
+- `src/styles/theme/_variables.scss` es la **única fuente de verdad** que define la identidad visual, paleta, tipografía (**DM Sans**), radios, sombras, tokens base `--ds-*` y el mapeo nativo hacia `--ion-color-*`.
 - `src/styles/prime-overrides/*.scss` contiene los overrides activos de PrimeNG 21.
 - `src/styles/components/*.scss` contiene componentes propios reutilizables del DS.
 - `src/styles/styles.scss` es la hoja global legacy/maestra.
@@ -141,13 +141,13 @@ Para PrimeNG, preferir variables `--p-*` antes que propiedades directas.
 
 ## Dark mode
 
-El selector activo es:
+El selector activo es exclusivamente:
 
 ```scss
-[data-theme="dark"], .theme-dark
+body.theme-dark
 ```
 
-`ThemeService` aplica `data-theme` y las clases `theme-dark` / `theme-light` en `html` y `body`.
+`ThemeService` y otros componentes de control (como el UI Catalog) aplican la clase `theme-dark` directamente en la etiqueta `body` (e idealmente también en `html`). Los tokens CSS reaccionan a este selector directamente dentro de `theme/_variables.scss` para invertir los colores del sistema.
 
 ## Auditoria
 

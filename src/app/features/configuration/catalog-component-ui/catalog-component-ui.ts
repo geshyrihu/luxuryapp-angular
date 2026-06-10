@@ -132,7 +132,6 @@ interface PaletaColor {
   nombre: string;
   rol: string;
   token: string;
-  hex: string;
   uso: string;
 }
 
@@ -278,7 +277,7 @@ export class CatalogComponentUi implements OnDestroy {
   // --- Signals ---
   activeCategory = signal<string>("tokens");
   searchTerm = signal<string>("");
-  isDarkMode = signal<boolean>(document.body.classList.contains("theme-dark"));
+  isDarkMode = signal<boolean>(document.documentElement.classList.contains("theme-dark"));
   mobilePreview = signal<boolean>(false);
 
   // --- Constants ---
@@ -300,49 +299,67 @@ export class CatalogComponentUi implements OnDestroy {
     { label: "Opción 3", value: 3 },
   ];
 
-  // --- Datos Estándar Documental ---
+  // --- Paleta de UI y Documental ---
   readonly paleta: PaletaColor[] = [
     {
-      nombre: "Azul ERP LuxuryApp",
-      rol: "Primario de aplicacion",
+      nombre: "Primary",
+      rol: "Acción principal",
       token: "--ds-primary",
-      hex: "#0B3164",
-      uso: "Accion principal, foco, navegacion activa y encabezados de sistema.",
+      uso: "Botones principales, foco, navegación activa y encabezados.",
     },
     {
-      nombre: "Dorado Luxury",
+      nombre: "Success",
+      rol: "Estado de éxito",
+      token: "--ds-success",
+      uso: "Mensajes de éxito, insignias de aprobado.",
+    },
+    {
+      nombre: "Danger",
+      rol: "Estado de error",
+      token: "--ds-danger",
+      uso: "Acciones destructivas, errores y alertas graves.",
+    },
+    {
+      nombre: "Warning",
+      rol: "Estado de advertencia",
+      token: "--ds-warning",
+      uso: "Avisos, pendientes o estados precautorios.",
+    },
+    {
+      nombre: "Info",
+      rol: "Información",
+      token: "--ds-info",
+      uso: "Notificaciones y estados informativos.",
+    },
+    {
+      nombre: "Surface Base",
+      rol: "Superficie general",
+      token: "--ds-bg-surface",
+      uso: "Fondos de tarjetas, modales y contenedores.",
+    },
+    {
+      nombre: "Document Gold",
       rol: "Acento premium documental",
       token: "--ds-luxury-gold",
-      hex: "#C9A84C",
       uso: "Portadas, separadores, reportes formales y detalles institucionales.",
     },
     {
-      nombre: "Gris documental",
-      rol: "Texto secundario",
+      nombre: "Document Neutral",
+      rol: "Texto secundario documental",
       token: "--ds-document-neutral",
-      hex: "#6B7280",
-      uso: "Metadatos, version, responsable, fecha y notas de soporte.",
+      uso: "Metadatos, versión, responsable, fecha y notas de soporte.",
     },
     {
-      nombre: "Fondo documental",
-      rol: "Superficie suave",
+      nombre: "Document Muted",
+      rol: "Superficie suave documental",
       token: "--ds-document-bg-muted",
-      hex: "#F3F4F6",
       uso: "Bandas de portada, bloques de metadatos y fondo de muestras.",
     },
     {
-      nombre: "Tinta documental",
-      rol: "Texto formal",
+      nombre: "Document Ink",
+      rol: "Texto formal documental",
       token: "--ds-document-ink",
-      hex: "#1A1A1A",
       uso: "Contenido principal en documentos y muestras imprimibles.",
-    },
-    {
-      nombre: "Blanco",
-      rol: "Superficie",
-      token: "--ds-document-surface",
-      hex: "#FFFFFF",
-      uso: "Cards, paginas simuladas, tablas y fondos de lectura.",
     },
   ];
 
@@ -360,7 +377,7 @@ export class CatalogComponentUi implements OnDestroy {
       codigo: "MANT",
       destinatario: "Staff especializado",
       confidencialidad: "Restringido",
-      colorToken: "var(--help-700)",
+      colorToken: "var(--ds-help, #7c3aed)",
       severity: "danger",
     },
     {
@@ -483,7 +500,7 @@ export class CatalogComponentUi implements OnDestroy {
     {
       numero: 8,
       descripcion:
-        "La tipografia corresponde al estandar: IBM Plex Sans para UI, familia documental solo en PDF.",
+        "La tipografia corresponde al estandar: DM Sans para UI, familia documental segun aplique en exportación.",
       aprobado: false,
     },
     {
@@ -530,19 +547,19 @@ export class CatalogComponentUi implements OnDestroy {
   readonly estilosTipografia = [
     {
       elemento: "UI ERP",
-      familia: "IBM Plex Sans",
+      familia: "DM Sans / Inter",
       tamano: "13-32px",
       uso: "Pantallas Angular, PrimeNG, Ionic y operaciones diarias.",
     },
     {
       elemento: "Titulo de documento",
-      familia: "IBM Plex Sans / Montserrat",
+      familia: "DM Sans / Montserrat",
       tamano: "24-28pt",
       uso: "Portadas y encabezados de documentos exportables.",
     },
     {
       elemento: "Cuerpo documental",
-      familia: "IBM Plex Sans / Open Sans",
+      familia: "DM Sans / Inter",
       tamano: "10-11pt",
       uso: "Contenido extenso imprimible o PDF corporativo.",
     },
@@ -698,8 +715,13 @@ export class CatalogComponentUi implements OnDestroy {
   toggleTheme() {
     const newTheme = !this.isDarkMode();
     this.isDarkMode.set(newTheme);
+    
+    // Mantenemos document.body para Angular/Ionic y agregamos documentElement por si ThemeService lo requiere.
     document.body.classList.toggle("theme-dark", newTheme);
     document.body.setAttribute("data-theme", newTheme ? "dark" : "light");
+    
+    document.documentElement.classList.toggle("theme-dark", newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme ? "dark" : "light");
   }
 
   async copy(text: string) {

@@ -8,7 +8,7 @@
   grid-column: 2;
   grid-row: 1;
   height: 70px;
-  background-color: #18181b;
+  background-color: var(--header-bg, #18181b);
   border-bottom: none;
 }
 
@@ -18,7 +18,7 @@
   height: 100%;
   box-shadow: 4px 0 24px -2px rgba(0, 0, 0, 0.1);
   transition: width 0.3s ease;
-  background-color: #18181b;
+  background-color: var(--sidebar-bg, #18181b);
 }
 
 .main-content-wrapper {
