@@ -23,9 +23,9 @@
 
 ---
 
-## 1. Servicios (P0)
+## 1. Servicios (P0) ✅
 
-### 1.1 `AuthService` (`core/services/auth.service.ts`)
+### 1.1 `AuthService` (`core/services/auth.service.ts`) ✅
 
 | # | Caso de prueba | Descripción |
 |---|----------------|-------------|
@@ -38,7 +38,7 @@
 | 1.1.7 | Estados iniciales | `isAuthenticated$` comienza como false, `initialAuthCheckCompleted$` false |
 | 1.1.8 | Manejo de NgZone | `runOutsideAngular` se usa correctamente para refresh |
 
-### 1.2 `AspRoleService` (`core/services/asp-role.service.ts`)
+### 1.2 `AspRoleService` (`core/services/asp-role.service.ts`) ✅
 
 | # | Caso de prueba | Descripción |
 |---|----------------|-------------|
@@ -50,7 +50,7 @@
 | 1.2.6 | Actualización reactiva | Signals se actualizan cuando `userToken$` cambia |
 | 1.2.7 | Sin sesión | Todos los signals false cuando no hay usuario autenticado |
 
-### 1.3 `CustomerIdService` (`core/services/customer-id.service.ts`)
+### 1.3 `CustomerIdService` (`core/services/customer-id.service.ts`) ✅
 
 | # | Caso de prueba | Descripción |
 |---|----------------|-------------|
@@ -60,7 +60,7 @@
 | 1.3.4 | `customerDataReady` | Computado true solo cuando `isLoaded` es true |
 | 1.3.5 | Persistencia | `setCustomerId` guarda en storage |
 
-### 1.4 `SecurityService` (`core/services/security.service.ts`)
+### 1.4 `SecurityService` (`core/services/security.service.ts`) ✅
 
 | # | Caso de prueba | Descripción |
 |---|----------------|-------------|
@@ -69,7 +69,7 @@
 | 1.4.3 | `resetAuthData()` | Limpia todos los datos de autenticación |
 | 1.4.4 | `getToken()` | Retorna el token JWT almacenado |
 
-### 1.5 `StorageService` (`core/services/storage.service.ts`)
+### 1.5 `StorageService` (`core/services/storage.service.ts`) ✅
 
 | # | Caso de prueba | Descripción |
 |---|----------------|-------------|
@@ -79,7 +79,7 @@
 | 1.5.4 | `clear()` | Limpia todo o por key específica |
 | 1.5.5 | JSON inválido | `retrieve()` retorna null cuando el JSON es inválido |
 
-### 1.6 `ConnectivityService` (`core/services/connectivity.service.ts`)
+### 1.6 `ConnectivityService` (`core/services/connectivity.service.ts`) ✅
 
 | # | Caso de prueba | Descripción |
 |---|----------------|-------------|
@@ -89,7 +89,7 @@
 | 1.6.4 | Navegación offline | Efecto navega a `/offline` cuando se pierde conexión |
 | 1.6.5 | Reconexión | Efecto navega de vuelta a la última URL cuando se recupera |
 
-### 1.7 `ThemeService` (`core/services/theme.service.ts`)
+### 1.7 `ThemeService` (`core/services/theme.service.ts`) ✅
 
 | # | Caso de prueba | Descripción |
 |---|----------------|-------------|
@@ -99,7 +99,7 @@
 | 1.7.4 | `isDarkMode()` | Retorna true si el tema actual es dark |
 | 1.7.5 | Aplicación de clases | Agrega/remueve clases en `<html>` y `<body>` |
 
-### 1.8 `LoaderService` (`core/services/loader.service.ts`)
+### 1.8 `LoaderService` (`core/services/loader.service.ts`) ✅
 
 | # | Caso de prueba | Descripción |
 |---|----------------|-------------|
@@ -107,7 +107,7 @@
 | 1.8.2 | `show()` | Pone loading$ a true |
 | 1.8.3 | `hide()` | Pone loading$ a false |
 
-### 1.9 `CustomToastService` (`core/services/custom-toast.service.ts`)
+### 1.9 `CustomToastService` (`core/services/custom-toast.service.ts`) ✅
 
 | # | Caso de prueba | Descripción |
 |---|----------------|-------------|
@@ -154,9 +154,9 @@
 
 ---
 
-## 2. Guards (P1)
+## 2. Guards (P1) ✅
 
-### 2.1 `auth.guard.ts`
+### 2.1 `auth.guard.ts` ✅
 
 | # | Caso de prueba | Descripción |
 |---|----------------|-------------|
@@ -166,7 +166,7 @@
 | 2.1.4 | Offline | `ConnectivityService.isOnline` false → retorna false |
 | 2.1.5 | Auth check en progreso | Espera a `initialAuthCheckCompleted$` |
 
-### 2.2 `employee.guard.ts`
+### 2.2 `employee.guard.ts` ✅
 
 | # | Caso de prueba | Descripción |
 |---|----------------|-------------|
@@ -176,7 +176,7 @@
 | 2.2.4 | No autenticado | Redirige a login |
 | 2.2.5 | Auth check pendiente | Espera a `initialAuthCheckCompleted$` |
 
-### 2.3 `committee.guard.ts`
+### 2.3 `committee.guard.ts` ✅
 
 | # | Caso de prueba | Descripción |
 |---|----------------|-------------|
@@ -184,7 +184,7 @@
 | 2.3.2 | Otro rol | Redirige a `/auth/login` |
 | 2.3.3 | No autenticado | Redirige a login |
 
-### 2.4 `direccion.guard.ts`
+### 2.4 `direccion.guard.ts` ✅
 
 | # | Caso de prueba | Descripción |
 |---|----------------|-------------|
@@ -192,7 +192,7 @@
 | 2.4.2 | Otro rol | Redirige a `/unauthorized` |
 | 2.4.3 | No autenticado | Redirige a `/unauthorized` |
 
-### 2.5 `role-redirect.guard.ts`
+### 2.5 `role-redirect.guard.ts` ✅
 
 | # | Caso de prueba | Descripción |
 |---|----------------|-------------|
@@ -201,7 +201,7 @@
 | 2.5.3 | Rol Employee | Redirige a `/dashboard`, retorna false |
 | 2.5.4 | Síncrono | Verificar que no depende de observables asíncronos |
 
-### 2.6 `super-user.guard.ts`
+### 2.6 `super-user.guard.ts` ✅
 
 | # | Caso de prueba | Descripción |
 |---|----------------|-------------|
@@ -213,147 +213,36 @@
 
 ---
 
-## 3. Pipes (P2)
+## 3. Pipes (P2) ✅
 
-### 3.1 `CapitalizadoPipe`
+(12 pipes implementados — `CapitalizadoPipe`, `CurrencyMexicoPipe`, `EBoolTextPipe`, `PhoneFormatPipe`, `CelularNumberPipe`, `FilesizePipe`, `StripTagsPipe`, `SanitizeHtmlPipe`, `HighlightPipe`, `InitialsAbbrPipe`, `ETipoGastoPipe`, `EAreaMinutasDetallesPipe`)
 
-| # | Caso de prueba | Descripción |
-|---|----------------|-------------|
-| 3.1.1 | Palabras separadas | `"hola mundo"` → `"Hola Mundo"` |
-| 3.1.2 | String vacío | `""` → `""` |
-| 3.1.3 | Una palabra | `"hola"` → `"Hola"` |
-| 3.1.4 | Null/undefined | `null` o `undefined` → `""` |
+## 4. Directivas (P3) ✅
 
-### 3.2 `CurrencyMexicoPipe`
-
-| # | Caso de prueba | Descripción |
-|---|----------------|-------------|
-| 3.2.1 | Número entero | `1000` → `"$1,000.00"` |
-| 3.2.2 | Número decimal | `1234.56` → `"$1,234.56"` |
-| 3.2.3 | Cero | `0` → `"$0.00"` |
-| 3.2.4 | Null/undefined | `null` → `""` |
-
-### 3.3 `EBoolTextPipe`
-
-| # | Caso de prueba | Descripción |
-|---|----------------|-------------|
-| 3.3.1 | true | `true` → `"Si"` |
-| 3.3.2 | false | `false` → `"No"` |
-| 3.3.3 | Null/undefined | `null` → `""` |
-
-### 3.4 `PhoneFormatPipe`
-
-| # | Caso de prueba | Descripción |
-|---|----------------|-------------|
-| 3.4.1 | 10 dígitos | `"5512345678"` → `"(55) 1234-5678"` |
-| 3.4.2 | Menos de 10 dígitos | `"1234"` → `"1234"` (sin formato) |
-| 3.4.3 | Null/empty | `""` → `""` |
-
-### 3.5 `CelularNumberPipe`
-
-| # | Caso de prueba | Descripción |
-|---|----------------|-------------|
-| 3.5.1 | 9 dígitos | `"551234567"` → `"55-1234-567"` |
-| 3.5.2 | Formato inválido | `"123"` → `"123"` |
-| 3.5.3 | Null/empty | `null` → `""` |
-
-### 3.6 `FilesizePipe`
-
-| # | Caso de prueba | Descripción |
-|---|----------------|-------------|
-| 3.6.1 | Bytes | `500` → `"500 B"` |
-| 3.6.2 | KB | `1024` → `"1 KB"` |
-| 3.6.3 | MB | `1048576` → `"1 MB"` |
-| 3.6.4 | GB | `1073741824` → `"1 GB"` |
-| 3.6.5 | Cero | `0` → `"0 B"` |
-
-### 3.7 `StripTagsPipe`
-
-| # | Caso de prueba | Descripción |
-|---|----------------|-------------|
-| 3.7.1 | HTML básico | `"<p>Hola</p>"` → `"Hola"` |
-| 3.7.2 | HTML con atributos | `"<div class='test'>Texto</div>"` → `"Texto"` |
-| 3.7.3 | Sin HTML | `"Hola mundo"` → `"Hola mundo"` |
-| 3.7.4 | Null/undefined | `null` → `""` |
-
-### 3.8 `SanitizeHtmlPipe`
-
-| # | Caso de prueba | Descripción |
-|---|----------------|-------------|
-| 3.8.1 | Stripea tags | `"<p>Test</p>"` → `"Test"` |
-| 3.8.2 | Marca como safe | Resultado pasa por `DomSanitizer.sanitize(SecurityContext.HTML, ...)` |
-
-### 3.9 `HighlightPipe`
-
-| # | Caso de prueba | Descripción |
-|---|----------------|-------------|
-| 3.9.1 | Término encontrado | `"Hola mundo", "mundo"` → `"Hola <mark>mundo</mark>"` |
-| 3.9.2 | Término no encontrado | `"Hola mundo", "foo"` → `"Hola mundo"` |
-| 3.9.3 | Sin término | `"Hola mundo", ""` → `"Hola mundo"` |
-| 3.9.4 | Acentos normalizados | `"canción", "cancion"` → `"<mark>canción</mark>"` |
-
-### 3.10 `InitialsAbbrPipe`
-
-| # | Caso de prueba | Descripción |
-|---|----------------|-------------|
-| 3.10.1 | Nombre completo | `"Juan Perez Lopez"` → `"JPL"` |
-| 3.10.2 | Una palabra | `"Juan"` → `"J"` |
-| 3.10.3 | String vacío | `""` → `""` |
-
-### 3.11 `ETipoGastoPipe`
-
-| # | Caso de prueba | Descripción |
-|---|----------------|-------------|
-| 3.11.1 | Valor válido | Valor del enum → label correspondiente |
-| 3.11.2 | Valor inválido | Valor no existente → `""` o valor original |
-
-### 3.12 `EAreaMinutasDetallesPipe`
-
-| # | Caso de prueba | Descripción |
-|---|----------------|-------------|
-| 3.12.1 | Valor válido | Valor del enum → label correspondiente |
-| 3.12.2 | Valor inválido | `undefined` → `""` |
-
----
-
-## 4. Directivas (P3)
-
-### 4.1 `ClickOutsideDirective`
-
-| # | Caso de prueba | Descripción |
-|---|----------------|-------------|
-| 4.1.1 | Click fuera | Click fuera del elemento → emite evento `clickOutside` |
-| 4.1.2 | Click dentro | Click dentro del elemento → no emite |
-| 4.1.3 | Cleanup | `ngOnDestroy` remueve el event listener |
-
-### 4.2 `PasswordValidationDirective`
-
-| # | Caso de prueba | Descripción |
-|---|----------------|-------------|
-| 4.2.1 | Contraseña válida | `"Abc123"` → valid (min 6, mayúscula, minúscula, dígito) |
-| 4.2.2 | Muy corta | `"Ab1"` → invalid |
-| 4.2.3 | Sin mayúscula | `"abc123"` → invalid |
-| 4.2.4 | Sin minúscula | `"ABC123"` → invalid |
-| 4.2.5 | Sin dígito | `"Abcdef"` → invalid |
-| 4.2.6 | En lista prohibida | Contraseña en `prohibitedPasswords` → invalid |
-| 4.2.7 | Implementa NG_VALIDATORS | Se registra como provider multi |
-
-### 4.3 `AutosizeDirective`
-
-| # | Caso de prueba | Descripción |
-|---|----------------|-------------|
-| 4.3.1 | Auto resize | Al escribir en textarea, la altura se ajusta |
-| 4.3.2 | Cleanup | `ngOnDestroy` remueve listener |
-
-### 4.4 `PrintableDirective`
-
-| # | Caso de prueba | Descripción |
-|---|----------------|-------------|
-| 4.4.1 | Click | Scroll al elemento + llama `window.print()` después de 300ms |
-
----
+### 4.1 `ClickOutsideDirective` ✅
+### 4.2 `PasswordValidationDirective` ✅
+### 4.3 `AutosizeDirective` ✅
 
 ## 5. Componentes Core (P4)
+
+### 5.1 `AppIcon` ✅
+### 5.2 `Loader` ✅
+### 5.3 `TapToTop` ✅
+### 5.4 `StatusBadge` ✅
+### 5.5 `GlobalErrorAlert` ✅
+### 5.6 `PrimeNgCustomToast` ✅
+### 5.7 `ActionIconsGroup` ✅
+### 5.8 `ActionMenu` ✅
+### 5.9 `PrimeNgCustomGlobalFilter` ✅
+### 5.10 `Touchspin` ✅
+### 5.11 `HeaderCustomer` ✅
+### 5.12 `PageTitleReport` ✅
+### 5.13 `ReportHeader` ✅
+### 5.14 `PrimeNgCustomCaption` ✅
+### 5.15 Botones web/mobile 🟡 (6/20+ completados)
+### 5.16 Inputs web/mobile *(pendiente: ~20+ componentes)*
+### 5.17 Charts *(pendiente: 5 componentes)*
+### 5.18 Calendarios, Mesanio, PdfViewerModal, etc. *(pendiente)*
 
 ### 5.1 `AppIcon`
 
@@ -997,18 +886,18 @@ ng test --browsers=ChromeHeadless  # Sin UI
 
 ## 14. Resumen Ejecutivo
 
-| Categoría | Cantidad | Prioridad | Esfuerzo Estimado |
-|-----------|----------|-----------|-------------------|
-| Servicios core | 15+ | P0 | 3-4 días |
-| Guards | 6 | P1 | 0.5 días |
-| Pipes | 12 | P2 | 1 día |
-| Directivas | 4 | P3 | 0.5 días |
-| Core components | 35+ | P4 | 3-4 días |
-| Login components | 5 | P5 | 1 día |
-| Layout components | 25+ | P6 | 2-3 días |
-| Shared components | 2 | P7 | 0.5 días |
-| Feature components | 84 | P8 | 10-15 días |
-| **Total** | **~188+** | | **~22-29 días** |
+| Categoría | Cantidad | Prioridad | Esfuerzo Estimado | Estado |
+|-----------|----------|-----------|-------------------|--------|
+| Servicios core | 15+ | P0 | 3-4 días | ✅ Completado |
+| Guards | 6 | P1 | 0.5 días | ✅ Completado |
+| Pipes | 12 | P2 | 1 día | ✅ Completado |
+| Directivas | 4 | P3 | 0.5 días | ✅ Completado |
+| Core components | ~50+ | P4 | 3-4 días | 🟡 16/50 completados |
+| Login components | 5 | P5 | 1 día | ⬜ Pendiente |
+| Layout components | 25+ | P6 | 2-3 días | ⬜ Pendiente |
+| Shared components | 2 | P7 | 0.5 días | ⬜ Pendiente |
+| Feature components | 84 | P8 | 10-15 días | ⬜ Pendiente |
+| **Total** | **~188+** | | | **244 tests — 45 files — 0 fallos** |
 
 ### Fases de implementación sugeridas
 

@@ -4,7 +4,10 @@
     class="flex align-items-center justify-content-center py-8"
     style="min-height: 20rem"
   >
-    <app-icon [icon]="'mdi:loading'" class="text-primary text-4xl ds-animate-spin" />
+    <app-icon
+      [icon]="'mdi:loading'"
+      class="text-primary text-4xl ds-animate-spin"
+    />
   </div>
   } @else if (manual()) {
   <div class="w-full xl:w-10 mx-auto flex flex-column gap-4">
@@ -15,14 +18,17 @@
 
       <div class="p-4 md:p-5 border-bottom-1 surface-border">
         <div
-          class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-4"
+          class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between gap-4 print-header-row"
         >
           <div class="flex flex-column md:flex-row md:align-items-center gap-3">
-            <img
-              [src]="logoPath"
-              alt="Luxury Building Group"
-              class="block h-3rem md:h-4rem"
-            />
+            <div>
+              <img
+                [src]="logoPath"
+                alt="Luxury Building Group"
+                class="block h-3rem md:h-4rem w-auto"
+                style="object-fit: contain; max-width: 250px;"
+              />
+            </div>
             <div>
               <div class="text-primary text-3xl font-bold line-height-1">
                 LuxuryApp
@@ -53,8 +59,6 @@
                 (clicked)="onOpenEditor(manual()!.id)"
               />
               }
-              <!--
-                @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {              } -->
               <custom-button
                 class="no-print"
                 iconClass="mdi:printer"
@@ -167,7 +171,10 @@
               </p>
             </div>
           </div>
-          <p class="m-0 line-height-3 text-color-secondary">
+          <p
+            class="m-0 line-height-3 text-color-secondary"
+            style="white-space: pre-wrap"
+          >
             {{ manual()!.objetivo }}
           </p>
         </article>
@@ -393,7 +400,10 @@
               class="surface-ground border-round-xl border-1 surface-border p-3 flex align-items-center justify-content-between gap-3 flex-wrap"
             >
               <div class="flex align-items-center gap-3">
-                <app-icon [icon]="'mdi:file-document-outline'" class="text-xl text-primary" />
+                <app-icon
+                  [icon]="'mdi:file-document-outline'"
+                  class="text-xl text-primary"
+                />
                 <div>
                   <div class="font-medium text-900">{{ adj.nombre }}</div>
                   <div class="text-xs text-color-secondary mt-1">
@@ -402,11 +412,7 @@
                 </div>
               </div>
               <a [href]="adj.url" target="_blank" download>
-                <p-button
-                  label="Descargar"
-                  [text]="true"
-                  size="small"
-                >
+                <p-button label="Descargar" [text]="true" size="small">
                   <app-icon [icon]="'mdi:download'" class="mr-2" />
                 </p-button>
               </a>
@@ -450,7 +456,10 @@
                     {{ v.fechaCambio | date:'dd/MM/yyyy' }} | {{ v.autor }}
                   </div>
                   @if (v.descripcionCambio) {
-                  <p class="m-0 text-sm line-height-3 text-color-secondary">
+                  <p
+                    class="m-0 text-sm line-height-3 text-color-secondary"
+                    style="white-space: pre-wrap"
+                  >
                     {{ v.descripcionCambio }}
                   </p>
                   }

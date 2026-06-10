@@ -1,4 +1,4 @@
-import { Component, effect, inject, input } from "@angular/core";
+import { Component, effect, inject, input, signal } from "@angular/core";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { AvatarModule } from "primeng/avatar";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -18,7 +18,7 @@ import { TicketFilterService } from "src/app/core/services/ticket-filter.service
     <div class="header-customer flex align-items-center justify-content-between">
       <p-avatar
         [image]="
-          logoCustomer ? logoCustomer : 'assets/images/default-avatar.png'
+          logoCustomer() ? logoCustomer() : 'assets/images/default-avatar.png'
         "
         shape="circle"
         size="xlarge"
@@ -26,7 +26,7 @@ import { TicketFilterService } from "src/app/core/services/ticket-filter.service
       ></p-avatar>
       <div class="header-details text-center">
         <!-- Mostramos el nombre recuperado de la API -->
-        <h4 class="mb-1">{{ nameCustomer }}</h4>
+        <h4 class="mb-1">{{ nameCustomer() }}</h4>
         <!-- Título y subtítulo personalizables -->
         <h4 class="mb-1">{{ title() }}</h4>
         <p class="mb-0">{{ subTitle() }}</p>
@@ -64,8 +64,8 @@ export class HeaderCustomer {
   title = input<string>("Titulo de cabecera");
   subTitle = input<string>("");
 
-  logoCustomer = "";
-  nameCustomer = "";
+  logoCustomer = signal<string>("");
+  nameCustomer = signal<string>("");
 
   constructor() {
     // Reacciona a cambios en el ID del cliente automágicamente ✨
@@ -80,8 +80,8 @@ export class HeaderCustomer {
       this.customerIdS.customerId(),
     );
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
-      this.nameCustomer = result.nameCustomer;
-      this.logoCustomer = result.photoPath;
+      this.nameCustomer.set(result.nameCustomer);
+      this.logoCustomer.set(result.photoPath);
     });
   }
 }

@@ -25,11 +25,13 @@ import { CustomInputSelectSignal } from "../../core/components/inputs/web/custom
 import { CustomInputSwitch } from "../../core/components/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "../../core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "../../core/components/inputs/web/custom-input-textarea-signal";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 
 interface IGoogleCalendarGuestForm {
   id: FormControl<string | null>;
   name: FormControl<string>;
   email: FormControl<string>;
+  isImplicit: FormControl<boolean>;
 }
 
 interface IGoogleCalendarAssemblyInviteeForm {
@@ -41,6 +43,7 @@ interface IGoogleCalendarAssemblyInviteeForm {
   position: FormControl<string>;
   isInternal: FormControl<boolean>;
   notes: FormControl<string>;
+  isImplicit: FormControl<boolean>;
 }
 
 interface IGoogleCalendarEventListItem {
@@ -140,6 +143,7 @@ interface IGoogleCalendarEventForm {
     CustomInputSwitch,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
+    AppIcon,
   ],
 })
 export class GoogleCalendarForm implements OnInit {
@@ -178,6 +182,19 @@ export class GoogleCalendarForm implements OnInit {
     EApplicationRole.SuperUsuario,
   ]);
   readonly isEditMode = computed(() => !!this.id());
+  readonly subjectType = signal<number | null>(null);
+  readonly modality = signal<number | null>(null);
+  readonly isRecurring = signal<boolean>(false);
+  readonly recurrence = signal<number | null>(null);
+  readonly recurrenceMode = signal<number | null>(null);
+  readonly recurrenceEndDate = signal<Date | string | null>(null);
+  readonly meetingDate = signal<Date | string | null>(null);
+
+  readonly isAssemblySelected = computed(() => Number(this.subjectType()) === 1);
+  readonly isPresentialSelected = computed(() => Number(this.modality()) === 1);
+  readonly assemblyRequiresPaddles = signal<boolean>(false);
+  readonly assemblyRequiresAudioVisual = signal<boolean>(false);
+
   readonly subjectTypeOptions = signal<IOptionShortcut[]>([
     {
       label: "JCM",
@@ -317,9 +334,25 @@ export class GoogleCalendarForm implements OnInit {
     if (this.id()) {
       await this.onLoadData();
     } else {
-      this.applyRecurringState(false, false);
-      this.applyAssemblyState(this.isAssemblySelected(), false);
-      this.applyModalityState(this.isPresentialSelected(), false);
+      const isRecurring = this.form.controls.isRecurring.getRawValue();
+      const subjectType = this.form.controls.subjectType.getRawValue();
+      const modality = this.form.controls.modality.getRawValue();
+      const meetingDate = this.form.controls.meetingDate.getRawValue();
+      const recurrence = this.form.controls.recurrence.getRawValue();
+      const recurrenceMode = this.form.controls.recurrenceMode.getRawValue();
+      const recurrenceEndDate = this.form.controls.recurrenceEndDate.getRawValue();
+
+      this.isRecurring.set(isRecurring);
+      this.subjectType.set(subjectType);
+      this.modality.set(modality);
+      this.meetingDate.set(meetingDate);
+      this.recurrence.set(recurrence);
+      this.recurrenceMode.set(recurrenceMode);
+      this.recurrenceEndDate.set(recurrenceEndDate);
+
+      this.applyRecurringState(isRecurring, false);
+      this.applyAssemblyState(subjectType === 1, false);
+      this.applyModalityState(modality === 1, false);
       await this.loadSuggestedInvitees();
     }
   }
@@ -356,6 +389,17 @@ export class GoogleCalendarForm implements OnInit {
       assemblyOperationalNotes: result.assembly?.operationalNotes ?? "",
       assemblySpecialInstructions: result.assembly?.specialInstructions ?? "",
     });
+
+    this.isRecurring.set(result.isRecurring);
+    this.subjectType.set(result.subjectType);
+    this.modality.set(result.modality);
+    this.assemblyRequiresPaddles.set(result.assembly?.requiresPaddles ?? false);
+    this.assemblyRequiresAudioVisual.set(result.assembly?.requiresAudioVisual ?? false);
+    this.meetingDate.set(this.extractDateInputValue(result.startAt));
+    this.recurrence.set(result.recurrence);
+    this.recurrenceMode.set(result.recurrenceMode);
+    this.recurrenceEndDate.set(this.extractDateInputValue(result.recurrenceEndDate));
+
     this.applyRecurringState(result.isRecurring, false);
     this.applyAssemblyState(result.subjectType === 1, false);
     this.applyModalityState(result.modality === 1, false);
@@ -378,15 +422,16 @@ export class GoogleCalendarForm implements OnInit {
     this.form.updateValueAndValidity();
   }
 
-  addGuest(guest?: { id?: string; name?: string; email?: string }) {
+  addGuest(guest?: { id?: string; name?: string; email?: string; isImplicit?: boolean }) {
     this.guestsArray.push(
       new FormGroup<IGoogleCalendarGuestForm>({
         id: new FormControl(guest?.id ?? null),
-        name: new FormControl(guest?.name ?? "", { nonNullable: true }),
-        email: new FormControl(guest?.email ?? "", {
+        name: new FormControl({ value: guest?.name ?? "", disabled: guest?.isImplicit ?? false }, { nonNullable: true }),
+        email: new FormControl({ value: guest?.email ?? "", disabled: guest?.isImplicit ?? false }, {
           nonNullable: true,
           validators: [Validators.required, Validators.email],
         }),
+        isImplicit: new FormControl(guest?.isImplicit ?? false, { nonNullable: true }),
       }),
     );
   }
@@ -405,13 +450,14 @@ export class GoogleCalendarForm implements OnInit {
       position: string;
       isInternal: boolean;
       notes: string;
+      isImplicit: boolean;
     }>,
   ) {
     this.assemblyInviteesArray.push(
       new FormGroup<IGoogleCalendarAssemblyInviteeForm>({
         id: new FormControl(invitee?.id ?? null),
-        name: new FormControl(invitee?.name ?? "", { nonNullable: true }),
-        email: new FormControl(invitee?.email ?? "", {
+        name: new FormControl({ value: invitee?.name ?? "", disabled: invitee?.isImplicit ?? false }, { nonNullable: true }),
+        email: new FormControl({ value: invitee?.email ?? "", disabled: invitee?.isImplicit ?? false }, {
           nonNullable: true,
           validators: [Validators.required, Validators.email],
         }),
@@ -426,6 +472,7 @@ export class GoogleCalendarForm implements OnInit {
           nonNullable: true,
         }),
         notes: new FormControl(invitee?.notes ?? "", { nonNullable: true }),
+        isImplicit: new FormControl(invitee?.isImplicit ?? false, { nonNullable: true }),
       }),
     );
   }
@@ -530,6 +577,7 @@ export class GoogleCalendarForm implements OnInit {
 
   private setupScheduleValidationRefresh() {
     this.form.controls.meetingDate.valueChanges.subscribe(async (value) => {
+      this.meetingDate.set(value);
       this.selectedDate.set(this.extractDatePart(value as string | null));
       await this.loadEventsForSelectedDate();
       this.syncTimeSelection();
@@ -540,31 +588,37 @@ export class GoogleCalendarForm implements OnInit {
       this.syncTimeSelection();
       this.form.updateValueAndValidity({ emitEvent: false });
     });
-    this.form.controls.recurrence.valueChanges.subscribe(() => {
+    this.form.controls.recurrence.valueChanges.subscribe((value) => {
+      this.recurrence.set(value);
       this.form.updateValueAndValidity({ emitEvent: false });
     });
-    this.form.controls.recurrenceMode.valueChanges.subscribe(() => {
+    this.form.controls.recurrenceMode.valueChanges.subscribe((value) => {
+      this.recurrenceMode.set(value);
       this.form.updateValueAndValidity({ emitEvent: false });
     });
-    this.form.controls.recurrenceEndDate.valueChanges.subscribe(() => {
+    this.form.controls.recurrenceEndDate.valueChanges.subscribe((value) => {
+      this.recurrenceEndDate.set(value);
       this.form.updateValueAndValidity({ emitEvent: false });
     });
   }
 
   private setupRecurringStateRefresh() {
     this.form.controls.isRecurring.valueChanges.subscribe((isRecurring) => {
+      this.isRecurring.set(isRecurring);
       this.applyRecurringState(isRecurring);
     });
   }
 
   private setupAssemblyStateRefresh() {
     this.form.controls.subjectType.valueChanges.subscribe(async (subjectType) => {
+      this.subjectType.set(subjectType);
       this.applyAssemblyState(subjectType === 1);
       await this.loadSuggestedInvitees();
     });
 
     this.form.controls.assemblyRequiresPaddles.valueChanges.subscribe(
       async (requiresPaddles) => {
+        this.assemblyRequiresPaddles.set(requiresPaddles);
         const paddlesControl = this.form.controls.assemblyPaddlesQuantity;
         if (requiresPaddles) {
           paddlesControl.setValidators([
@@ -582,7 +636,8 @@ export class GoogleCalendarForm implements OnInit {
     );
 
     this.form.controls.assemblyRequiresAudioVisual.valueChanges.subscribe(
-      async () => {
+      async (requiresAV) => {
+        this.assemblyRequiresAudioVisual.set(requiresAV);
         await this.loadSuggestedInvitees();
       },
     );
@@ -596,6 +651,7 @@ export class GoogleCalendarForm implements OnInit {
 
   private setupModalityStateRefresh() {
     this.form.controls.modality.valueChanges.subscribe((modality) => {
+      this.modality.set(modality);
       this.applyModalityState(modality === 1);
     });
   }
@@ -640,50 +696,92 @@ export class GoogleCalendarForm implements OnInit {
   private mergeGuestSuggestions(
     suggestions: IGoogleCalendarInviteeSuggestion[],
   ) {
-    const existingEmails = new Set(
-      this.guestsArray.controls
-        .map((control) => control.controls.email.getRawValue().trim().toLowerCase())
-        .filter((email) => !!email),
-    );
-
-    suggestions.forEach((suggestion) => {
-      const email = suggestion.email?.trim().toLowerCase();
-      if (!email || existingEmails.has(email)) {
-        return;
-      }
-
-      this.addGuest({
-        id: suggestion.id,
-        name: suggestion.nameEmployee,
-        email: suggestion.email,
+    setTimeout(() => {
+      const existingControlsByEmail = new Map<string, FormGroup<IGoogleCalendarGuestForm>>();
+      this.guestsArray.controls.forEach((control) => {
+        const email = control.controls.email.getRawValue().trim().toLowerCase();
+        if (email) existingControlsByEmail.set(email, control);
       });
-      existingEmails.add(email);
+
+      suggestions.forEach((suggestion) => {
+        const email = suggestion.email?.trim().toLowerCase();
+        if (!email) return;
+
+        if (existingControlsByEmail.has(email)) {
+          const control = existingControlsByEmail.get(email)!;
+          control.controls.isImplicit.setValue(true, { emitEvent: false });
+          control.controls.name.disable({ emitEvent: false });
+          control.controls.email.disable({ emitEvent: false });
+        } else {
+          this.addGuest({
+            id: suggestion.id,
+            name: suggestion.nameEmployee,
+            email: suggestion.email,
+            isImplicit: true,
+          }); // prevent emitEvent
+        }
+      });
+
+      const sortedControls = [...this.guestsArray.controls].sort((a, b) => {
+        const emailA = a.controls.email.getRawValue().trim().toLowerCase();
+        const emailB = b.controls.email.getRawValue().trim().toLowerCase();
+        const idxA = suggestions.findIndex(s => s.email?.trim().toLowerCase() === emailA);
+        const idxB = suggestions.findIndex(s => s.email?.trim().toLowerCase() === emailB);
+        const posA = idxA === -1 ? 9999 : idxA;
+        const posB = idxB === -1 ? 9999 : idxB;
+        return posA - posB;
+      });
+
+      this.guestsArray.clear({ emitEvent: false });
+      sortedControls.forEach(c => this.guestsArray.push(c));
+      this.guestsArray.updateValueAndValidity({ emitEvent: false });
     });
   }
 
   private mergeAssemblyInviteeSuggestions(
     suggestions: IGoogleCalendarInviteeSuggestion[],
   ) {
-    const existingEmails = new Set(
-      this.assemblyInviteesArray.controls
-        .map((control) => control.controls.email.getRawValue().trim().toLowerCase())
-        .filter((email) => !!email),
-    );
-
-    suggestions.forEach((suggestion) => {
-      const email = suggestion.email?.trim().toLowerCase();
-      if (!email || existingEmails.has(email)) {
-        return;
-      }
-
-      this.addAssemblyInvitee({
-        id: suggestion.id,
-        name: suggestion.nameEmployee,
-        email: suggestion.email,
-        position: suggestion.applicationRoleName,
-        isInternal: true,
+    setTimeout(() => {
+      const existingControlsByEmail = new Map<string, FormGroup<IGoogleCalendarAssemblyInviteeForm>>();
+      this.assemblyInviteesArray.controls.forEach((control) => {
+        const email = control.controls.email.getRawValue().trim().toLowerCase();
+        if (email) existingControlsByEmail.set(email, control);
       });
-      existingEmails.add(email);
+
+      suggestions.forEach((suggestion) => {
+        const email = suggestion.email?.trim().toLowerCase();
+        if (!email) return;
+
+        if (existingControlsByEmail.has(email)) {
+          const control = existingControlsByEmail.get(email)!;
+          control.controls.isImplicit.setValue(true, { emitEvent: false });
+          control.controls.name.disable({ emitEvent: false });
+          control.controls.email.disable({ emitEvent: false });
+        } else {
+          this.addAssemblyInvitee({
+            id: suggestion.id,
+            name: suggestion.nameEmployee,
+            email: suggestion.email,
+            position: suggestion.applicationRoleName,
+            isInternal: true,
+            isImplicit: true,
+          }); // emitEvent: false
+        }
+      });
+
+      const sortedControls = [...this.assemblyInviteesArray.controls].sort((a, b) => {
+        const emailA = a.controls.email.getRawValue().trim().toLowerCase();
+        const emailB = b.controls.email.getRawValue().trim().toLowerCase();
+        const idxA = suggestions.findIndex(s => s.email?.trim().toLowerCase() === emailA);
+        const idxB = suggestions.findIndex(s => s.email?.trim().toLowerCase() === emailB);
+        const posA = idxA === -1 ? 9999 : idxA;
+        const posB = idxB === -1 ? 9999 : idxB;
+        return posA - posB;
+      });
+
+      this.assemblyInviteesArray.clear({ emitEvent: false });
+      sortedControls.forEach(c => this.assemblyInviteesArray.push(c));
+      this.assemblyInviteesArray.updateValueAndValidity({ emitEvent: false });
     });
   }
 
@@ -697,9 +795,11 @@ export class GoogleCalendarForm implements OnInit {
       recurrenceModeControl.setValidators([Validators.required]);
       recurrenceEndDateControl.setValidators([Validators.required]);
 
-      recurrenceControl.enable({ emitEvent: false });
-      recurrenceModeControl.enable({ emitEvent: false });
-      recurrenceEndDateControl.enable({ emitEvent: false });
+      setTimeout(() => {
+        recurrenceControl.enable({ emitEvent: false });
+        recurrenceModeControl.enable({ emitEvent: false });
+        recurrenceEndDateControl.enable({ emitEvent: false });
+      });
 
       if (!recurrenceControl.value) {
         recurrenceControl.setValue(ERecurrence.Mensual, { emitEvent: false });
@@ -729,9 +829,11 @@ export class GoogleCalendarForm implements OnInit {
       recurrenceModeControl.setValue(null, { emitEvent: false });
       recurrenceEndDateControl.setValue(null, { emitEvent: false });
 
-      recurrenceControl.disable({ emitEvent: false });
-      recurrenceModeControl.disable({ emitEvent: false });
-      recurrenceEndDateControl.disable({ emitEvent: false });
+      setTimeout(() => {
+        recurrenceControl.disable({ emitEvent: false });
+        recurrenceModeControl.disable({ emitEvent: false });
+        recurrenceEndDateControl.disable({ emitEvent: false });
+      });
     }
 
     recurrenceControl.updateValueAndValidity({ emitEvent: false });
@@ -756,9 +858,11 @@ export class GoogleCalendarForm implements OnInit {
       if (this.form.controls.assemblyRequiresPaddles.getRawValue()) {
         paddlesControl.setValidators([Validators.required, Validators.min(1)]);
       }
-      audioNotesControl.enable({ emitEvent: false });
-      operationalNotesControl.enable({ emitEvent: false });
-      specialInstructionsControl.enable({ emitEvent: false });
+      setTimeout(() => {
+        audioNotesControl.enable({ emitEvent: false });
+        operationalNotesControl.enable({ emitEvent: false });
+        specialInstructionsControl.enable({ emitEvent: false });
+      });
     } else {
       paddlesControl.clearValidators();
       paddlesControl.setValue(null, { emitEvent: false });
@@ -907,14 +1011,6 @@ export class GoogleCalendarForm implements OnInit {
       this.modalityOptions(),
       this.form.controls.modality.value,
     );
-  }
-
-  isAssemblySelected(): boolean {
-    return Number(this.form.controls.subjectType.getRawValue()) === 1;
-  }
-
-  isPresentialSelected(): boolean {
-    return Number(this.form.controls.modality.getRawValue()) === 1;
   }
 
   selectSubjectType(value: number) {
@@ -1257,20 +1353,16 @@ export class GoogleCalendarForm implements OnInit {
   }
 
   private buildRecurrencePreview(): string {
-    if (!this.form.controls.isRecurring.getRawValue()) {
+    if (!this.isRecurring()) {
       return "";
     }
 
     const recurrenceOption = this.recurrenceOptions().find(
-      (item) => item.value === this.form.controls.recurrence.getRawValue(),
+      (item) => item.value === this.recurrence(),
     );
-    const recurrenceMode = this.form.controls.recurrenceMode.getRawValue();
-    const recurrenceEndDate = this.extractDatePart(
-      this.form.controls.recurrenceEndDate.getRawValue(),
-    );
-    const meetingDate = this.extractDatePart(
-      this.form.controls.meetingDate.getRawValue(),
-    );
+    const recurrenceMode = this.recurrenceMode();
+    const recurrenceEndDate = this.extractDatePart(this.recurrenceEndDate());
+    const meetingDate = this.extractDatePart(this.meetingDate());
 
     if (!recurrenceOption?.label || !recurrenceMode || !recurrenceEndDate) {
       return "";
@@ -1295,7 +1387,7 @@ export class GoogleCalendarForm implements OnInit {
     const ordinal =
       position === -1
         ? "ultimo"
-        : (["primer", "segundo", "tercer", "cuarto", "quinto"][position - 1] ??
+        : (["primer", "segundo", "tercer", "cuarto", "quinto"][position - 1] ||
           "mismo");
 
     const weekday = [

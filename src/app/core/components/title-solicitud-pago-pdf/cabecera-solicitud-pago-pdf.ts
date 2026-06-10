@@ -13,7 +13,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
   selector: "app-cabecera-solicitud-pago-pdf",
 
   templateUrl: "./cabecera-solicitud-pago-pdf.html",
-  styleUrls: ["./cabecera-solicitud-pago-pdf.scss"],
+  styleUrls: ["./cabecera-solicitud-pago-pdf.component.scss"],
 })
 export class CabeceraSolicitudPagoPdf {
   private apiResponseS = inject(ApiResponseService);

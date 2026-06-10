@@ -1,4 +1,4 @@
-import { Component, effect, inject, input } from "@angular/core";
+import { Component, effect, inject, input, signal } from "@angular/core";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -20,7 +20,7 @@ import { PeriodMonthService } from "src/app/core/services/periodo-month.service"
       <div class="col-fixed" style="width: 60px">
         <img
           [src]="
-            logoCustomer ? logoCustomer : 'assets/images/default-avatar.png'
+            logoCustomer() ? logoCustomer() : 'assets/images/default-avatar.png'
           "
           alt=""
           class="w-full border-round"
@@ -29,7 +29,7 @@ import { PeriodMonthService } from "src/app/core/services/periodo-month.service"
       </div>
       <!-- Texto Central -->
       <div class="col text-center">
-        <h4 class="mb-0 font-bold">{{ nameCustomer }}</h4>
+        <h4 class="mb-0 font-bold">{{ nameCustomer() }}</h4>
         <h6 class="mt-2 mb-0">{{ title() }}</h6>
         <h6 class="mt-2 mb-0">{{ periodo() }}</h6>
       </div>
@@ -70,8 +70,8 @@ export class PageTitleReport {
     ),
   );
 
-  nameCustomer: string = "";
-  logoCustomer: string = "";
+  nameCustomer = signal<string>("");
+  logoCustomer = signal<string>("");
 
   constructor() {
     effect(() => {
@@ -87,17 +87,8 @@ export class PageTitleReport {
       this.customerIdS.customerId(),
     );
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
-      this.nameCustomer = result.nameCustomer;
-      this.logoCustomer = result.photoPath;
+      this.nameCustomer.set(result.nameCustomer);
+      this.logoCustomer.set(result.photoPath);
     });
   }
 }
-
-
-
-
-
-
-
-
-

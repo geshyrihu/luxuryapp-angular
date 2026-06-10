@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { ImageModule } from "primeng/image";
 import { TagModule } from "primeng/tag";
@@ -10,9 +10,10 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
+import { CustomButton } from "../../../../core/components/buttons/web";
 import { DiagramPreviewComponent } from "../components/diagram-preview";
 import { IManualTemplateDetalleDTO } from "../models/manuals-and-processes.dto";
-import { ManualPdfService } from "../services/manual-pdf.service";
+import { PrintService } from "src/app/core/services/print.service";
 
 @Component({
   selector: "app-manuals-and-processes-detail",
@@ -26,6 +27,7 @@ import { ManualPdfService } from "../services/manual-pdf.service";
     TagModule,
     DiagramPreviewComponent,
     AppIcon,
+    CustomButton,
   ],
 })
 export class ManualsAndProcessesDetail implements OnInit {
@@ -33,7 +35,7 @@ export class ManualsAndProcessesDetail implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private sanitizer = inject(DomSanitizer);
-  private manualPdfS = inject(ManualPdfService);
+  private printS = inject(PrintService);
   public aspRoleS = inject(AspRoleService);
 
   readonly EApplicationRole = EApplicationRole;
@@ -59,22 +61,24 @@ export class ManualsAndProcessesDetail implements OnInit {
 
   getPeriodicityReadable(manual: IManualTemplateDetalleDTO | null): string {
     if (!manual) return "";
-    
+
     let base = manual.periodicityName || "A Demanda";
     if (manual.periodicity === 0) return "A Demanda";
     if (manual.periodicity === 1) return "Única Vez";
     if (manual.periodicity === 2) return "Diario";
-    
+
     // Semanal
     if (manual.periodicity === 3) {
       if (manual.executionDaysOfWeek?.length) {
         const days = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
-        const selected = manual.executionDaysOfWeek.map(d => days[d]).join(", ");
+        const selected = manual.executionDaysOfWeek
+          .map((d) => days[d])
+          .join(", ");
         return `Semanal (${selected})`;
       }
       return "Semanal";
     }
-    
+
     // Mensual
     if (manual.periodicity === 4) {
       if (manual.executionDayOfMonth) {
@@ -82,7 +86,15 @@ export class ManualsAndProcessesDetail implements OnInit {
       }
       if (manual.executionWeekOfMonth && manual.executionDaysOfWeek?.length) {
         const weeks = ["1ra", "2da", "3ra", "4ta", "Última"];
-        const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+        const days = [
+          "Domingo",
+          "Lunes",
+          "Martes",
+          "Miércoles",
+          "Jueves",
+          "Viernes",
+          "Sábado",
+        ];
         const wk = weeks[manual.executionWeekOfMonth - 1] || "Semana";
         const d = days[manual.executionDaysOfWeek[0]];
         return `Mensual (${wk} semana, el ${d})`;
@@ -93,7 +105,20 @@ export class ManualsAndProcessesDetail implements OnInit {
     // Anual
     if (manual.periodicity === 5) {
       if (manual.executionMonthOfYear) {
-        const months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+        const months = [
+          "Ene",
+          "Feb",
+          "Mar",
+          "Abr",
+          "May",
+          "Jun",
+          "Jul",
+          "Ago",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dic",
+        ];
         const m = months[manual.executionMonthOfYear - 1];
         if (manual.executionDayOfMonth) {
           return `Anual (Cada ${manual.executionDayOfMonth} de ${m})`;
@@ -126,8 +151,9 @@ export class ManualsAndProcessesDetail implements OnInit {
 
   async descargarPDF() {
     const data = this.manual();
-    if (!data) return;
-    await this.manualPdfS.descargar(data);
+    if (data) {
+      this.printS.printElement(undefined, data.folio || "Manual de Proceso");
+    }
   }
 
   manualStatusLabel(): string {
@@ -142,7 +168,8 @@ export class ManualsAndProcessesDetail implements OnInit {
     const data = this.manual();
     if (!data) return "Sin definir";
     if (data.isGlobal) return "Todos los condominios";
-    if (data.customerIds?.length) return `${data.customerIds.length} condominios`;
+    if (data.customerIds?.length)
+      return `${data.customerIds.length} condominios`;
     return "Sin clientes asignados";
   }
 

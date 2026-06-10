@@ -34,6 +34,13 @@
     display: none !important;
   }
 
+  /* Reducir el tamaño base (rem) global al imprimir para que textos,
+     paddings y márgenes (basados en PrimeFlex) sean más compactos y 
+     el documento consuma menos hojas. */
+  html, body {
+    font-size: 11px !important;
+  }
+
   /* Reclamar el espacio visual para el contenedor principal */
   .main-content, .app-wrapper, .mat-drawer-content {
     margin: 0 !important;
@@ -64,12 +71,11 @@
   }
 
   @page {
-    size: letter landscape;
     margin: 0.4in 0.5in;
   }
 
   /* Reset de host y componentes contenedor para permitir paginacion */
-  app-task-list, app-my-assigned-tasks-list {
+  app-task-list, app-my-assigned-tasks-list, app-manuals-and-processes-detail {
     display: block !important;
     height: auto !important;
     overflow: visible !important;
@@ -480,5 +486,39 @@
   .print-all-reports [class*="th-col"] {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+  }
+
+  /* 10. Reglas específicas para el Detalle de Manuales en PDF (WYSIWYG) */
+  app-manuals-and-processes-detail {
+    .print-header-row,
+    .print-header-row > div.flex {
+      flex-direction: row !important;
+      align-items: center !important;
+    }
+    .print-header-row {
+      justify-content: space-between !important;
+    }
+
+    .grid {
+      display: flex !important;
+      flex-wrap: wrap !important;
+    }
+    .col-12.lg\:col-6,
+    .col-12.xl\:col-6 {
+      width: 50% !important;
+      max-width: 50% !important;
+      flex: 0 0 50% !important;
+    }
+    .col-12.sm\:col-6.xl\:col-4 {
+      width: 33.333% !important;
+      max-width: 33.333% !important;
+      flex: 0 0 33.333% !important;
+    }
+    
+    /* Evitar que las tarjetas/pasos se corten a la mitad */
+    article, .surface-card, .paso-box {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
   }
 }

@@ -73,18 +73,18 @@ export const calendarsRoutes: Routes = [
       breadcrumb: "Calendario Maestro Equipo",
     },
   },
-  {
-    path: "committee-meetings", // Ruta anterior: 'reuniones-comite'
-    loadComponent: () =>
-      import("src/app/features/calendar/reuniones-comite/reuniones-comite").then(
-        (m) => m.ReunionesComite,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Reuniones con Comité",
-      breadcrumb: "Reuniones con Comité",
-    },
-  },
+  // {
+  //   path: "committee-meetings", // Ruta anterior: 'reuniones-comite'
+  //   loadComponent: () =>
+  //     import("src/app/features/calendar/reuniones-comite/reuniones-comite").then(
+  //       (m) => m.ReunionesComite,
+  //     ),
+  //   canActivate: [authGuard],
+  //   data: {
+  //     title: "Reuniones con Comité",
+  //     breadcrumb: "Reuniones con Comité",
+  //   },
+  // },
   {
     path: "google-calendar",
     loadComponent: () =>

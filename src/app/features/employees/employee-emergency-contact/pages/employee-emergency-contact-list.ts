@@ -1,5 +1,4 @@
-import { Component, inject, input, OnInit, signal } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
+import { Component, computed, inject, input, OnInit, signal } from "@angular/core";
 import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { callOutline, peopleOutline } from "ionicons/icons";
@@ -42,7 +41,6 @@ export class EmployeeEmergencyContactList implements OnInit {
   // employeeAddOrEditService = inject(EmployeeAddOrEditService);
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
-  formB = inject(FormBuilder);
 
   constructor() {
     addIcons({ callOutline, peopleOutline });
@@ -50,13 +48,13 @@ export class EmployeeEmergencyContactList implements OnInit {
 
   employeeId = input<any>(0);
 
-  id: string = "";
-  contactEmployeeAdd: any;
-
-  dataEmergencyContact: any = [];
-  globalFilterFields: string[] = [];
+  dataEmergencyContact = signal<any[]>([]);
+  dataBeneficiary = signal<any[]>([]);
+  globalFilterFields = computed(() => {
+    const data = this.dataEmergencyContact();
+    return data.length > 0 ? globalFilterFields(data) : [];
+  });
   loading = signal(true);
-  dataBeneficiary: any = [];
   ngOnInit() {
     if (this.employeeId() !== 0 && this.employeeId() !== undefined) {
       this.onLoadDataEmergencyContact();
@@ -73,9 +71,7 @@ export class EmployeeEmergencyContactList implements OnInit {
         ),
       )
       .then((result: any) => {
-        this.dataEmergencyContact = result;
-
-        this.globalFilterFields = globalFilterFields(result);
+        this.dataEmergencyContact.set(result ?? []);
       });
   }
 
@@ -88,15 +84,20 @@ export class EmployeeEmergencyContactList implements OnInit {
         ),
       )
       .then((result: any) => {
-        this.dataBeneficiary = result;
+        this.dataBeneficiary.set(result ?? []);
       });
   }
 
-  onModalForm(data: any) {
+  onModalForm(data: { id: string; title: string; contacOfBeneficiary: number }) {
     this.dialogHandlerS
       .openDialog(
         EmployeeEmergencyContactForm,
-        data,
+        {
+          id: data.id,
+          title: data.title,
+          contacOfBeneficiary: data.contacOfBeneficiary,
+          employeeId: this.employeeId(),
+        },
         data.title,
         this.dialogHandlerS.sizeLg,
       )
@@ -114,14 +115,10 @@ export class EmployeeEmergencyContactList implements OnInit {
       .then((result: any) => {
         if (result) {
           if (typeContact === 0) {
-            this.dataEmergencyContact = this.dataEmergencyContact.filter(
-              (item: any) => item.id !== id,
-            );
+            this.dataEmergencyContact.update(data => data.filter((item: any) => item.id !== id));
           }
           if (typeContact === 1) {
-            this.dataBeneficiary = this.dataBeneficiary.filter(
-              (item: any) => item.id !== id,
-            );
+            this.dataBeneficiary.update(data => data.filter((item: any) => item.id !== id));
           }
         }
       });

@@ -95,8 +95,8 @@
         Configuracion inmediata de asamblea
       </strong>
       <small class="block text-blue-900">
-        Completa aqui, antes de guardar, si la asamblea requiere paletas,
-        apoyo de Sistemas o equipo de audio y video.
+        Completa aqui, antes de guardar, si la asamblea requiere paletas, apoyo
+        de Sistemas o equipo de audio y video.
       </small>
       <small class="block text-blue-900 mt-2">
         Esta informacion se guarda desde la agenda y despues se refleja en el
@@ -117,7 +117,7 @@
           />
         </div>
 
-        @if (form.controls.assemblyRequiresPaddles.getRawValue()) {
+        @if (assemblyRequiresPaddles()) {
         <div class="col-12 md:col-3">
           <custom-input-text-signal
             [control]="form.controls.assemblyPaddlesQuantity"
@@ -145,7 +145,7 @@
           </small>
         </div>
 
-        @if (form.controls.assemblyRequiresAudioVisual.getRawValue()) {
+        @if (assemblyRequiresAudioVisual()) {
         <div class="col-12">
           <custom-input-textarea-signal
             [control]="form.controls.assemblyAudioVisualNotes"
@@ -201,7 +201,7 @@
     }
   </div>
 
-  @if (form.controls.isRecurring.getRawValue()) {
+  @if (isRecurring()) {
   <div class="col-12 md:col-4">
     <custom-input-select-signal
       [control]="form.controls.recurrence"
@@ -283,93 +283,101 @@
         <span class="p-button-label">Agregar invitado</span>
       </button>
     </div>
-
     <div class="flex flex-column gap-3" formArrayName="assemblyInvitees">
       @for (invitee of assemblyInviteesArray.controls; track invitee; let index
       = $index) {
       <div
         [formGroupName]="index"
-        class="grid border-1 surface-border border-round p-3"
+        class="grid align-items-center border-bottom-1 surface-border pb-3 mb-3"
       >
-        <div class="col-12 md:col-4">
-          <custom-input-text-signal
-            [control]="invitee.controls.name"
-            [id]="'assembly-invitee-name-' + index"
-            label="Nombre"
-            placeholder="nombre"
-            [horizontal]="false"
-          />
-        </div>
-
-        <div class="col-12 md:col-4">
-          <custom-input-text-signal
-            [control]="invitee.controls.email"
-            [id]="'assembly-invitee-email-' + index"
-            label="Correo"
-            placeholder="correo"
-            [horizontal]="false"
-            type="email"
-            [requiredInput]="true"
-          />
-        </div>
-
-        <div class="col-12 md:col-4">
-          <custom-input-text-signal
-            [control]="invitee.controls.phone"
-            [id]="'assembly-invitee-phone-' + index"
-            label="Telefono"
-            placeholder="telefono"
-            [horizontal]="false"
-          />
-        </div>
-
-        <div class="col-12 md:col-4">
-          <custom-input-text-signal
-            [control]="invitee.controls.organization"
-            [id]="'assembly-invitee-org-' + index"
-            label="Organizacion"
-            placeholder="organizacion"
-            [horizontal]="false"
-          />
-        </div>
-
-        <div class="col-12 md:col-4">
-          <custom-input-text-signal
-            [control]="invitee.controls.position"
-            [id]="'assembly-invitee-position-' + index"
-            label="Puesto"
-            placeholder="puesto"
-            [horizontal]="false"
-          />
-        </div>
-
-        <div class="col-12 md:col-2">
-          <custom-input-switch-signal
-            [control]="invitee.controls.isInternal"
-            label="Interno"
-            placeholder="Marcar como interno"
-            [horizontal]="false"
-          />
-        </div>
-
-        <div class="col-12 md:col-2 flex align-items-end">
+        <div
+          class="col-12 flex justify-content-between align-items-center mb-2"
+        >
+          <span class="font-semibold text-color-secondary"
+            >Invitado {{ index + 1 }}</span
+          >
           <button
-            class="p-button p-component p-button-danger p-button-sm w-full"
+            class="p-button p-component p-button-sm p-button-text p-button-icon-only"
+            [ngClass]="invitee.controls.isImplicit.value ? 'p-button-secondary' : 'p-button-danger'"
             type="button"
             (click)="removeAssemblyInvitee(index)"
+            [disabled]="invitee.controls.isImplicit.value"
+            [title]="invitee.controls.isImplicit.value ? 'Invitado requerido (no se puede quitar)' : 'Quitar invitado'"
           >
-            <span class="p-button-label">Quitar</span>
+            <app-icon
+              [icon]="invitee.controls.isImplicit.value ? 'mdi:lock' : 'mdi:delete'"
+              class="text-xl"
+            />
           </button>
         </div>
 
-        <div class="col-12">
+        <div class="col-12 md:col-4 py-1 px-1">
+          <custom-input-text-signal
+            [control]="invitee.controls.name"
+            [id]="'assembly-invitee-name-' + index"
+            placeholder="Nombre"
+            [horizontal]="false"
+            size="small"
+          />
+        </div>
+
+        <div class="col-12 md:col-4 py-1 px-1">
+          <custom-input-text-signal
+            [control]="invitee.controls.email"
+            [id]="'assembly-invitee-email-' + index"
+            placeholder="Correo"
+            [horizontal]="false"
+            type="email"
+            [requiredInput]="true"
+            size="small"
+          />
+        </div>
+
+        <div class="col-12 md:col-4 py-1 px-1">
+          <custom-input-text-signal
+            [control]="invitee.controls.phone"
+            [id]="'assembly-invitee-phone-' + index"
+            placeholder="Teléfono"
+            [horizontal]="false"
+            size="small"
+          />
+        </div>
+
+        <div class="col-12 md:col-5 py-1 px-1">
+          <custom-input-text-signal
+            [control]="invitee.controls.organization"
+            [id]="'assembly-invitee-org-' + index"
+            placeholder="Organización"
+            [horizontal]="false"
+            size="small"
+          />
+        </div>
+
+        <div class="col-12 md:col-5 py-1 px-1">
+          <custom-input-text-signal
+            [control]="invitee.controls.position"
+            [id]="'assembly-invitee-position-' + index"
+            placeholder="Puesto"
+            [horizontal]="false"
+            size="small"
+          />
+        </div>
+
+        <div class="col-12 md:col-2 py-1 px-1 flex align-items-center">
+          <custom-input-switch-signal
+            [control]="invitee.controls.isInternal"
+            label="Interno"
+            [horizontal]="false"
+          />
+        </div>
+
+        <div class="col-12 py-1 px-1">
           <custom-input-textarea-signal
             [control]="invitee.controls.notes"
             [id]="'assembly-invitee-notes-' + index"
-            label="Notas"
-            placeholder="notas del invitado"
+            placeholder="Notas del invitado"
             [horizontal]="false"
-            [rows]="2"
+            [rows]="1"
           />
         </div>
       </div>
@@ -441,37 +449,43 @@
       @for (guest of guestsArray.controls; track guest; let index = $index) {
       <div
         [formGroupName]="index"
-        class="grid border-1 surface-border border-round p-3"
+        class="flex flex-row align-items-center w-full pb-1 mb-1 border-bottom-1 surface-border"
       >
-        <div class="col-12 md:col-5">
+        <div class="flex-1 px-1">
           <custom-input-text-signal
             [control]="guest.controls.name"
             [id]="'guest-name-' + index"
-            label="Nombre"
-            placeholder="nombre"
+            placeholder="Nombre"
             [horizontal]="false"
+            size="small"
           />
         </div>
 
-        <div class="col-12 md:col-5">
+        <div class="flex-1 px-1">
           <custom-input-text-signal
             [control]="guest.controls.email"
             [id]="'guest-email-' + index"
-            label="Correo"
-            placeholder="correo"
+            placeholder="Correo"
             [horizontal]="false"
             type="email"
             [requiredInput]="true"
+            size="small"
           />
         </div>
 
-        <div class="col-12 md:col-2 flex align-items-end">
+        <div class="flex-none flex align-items-center h-full">
           <button
-            class="p-button p-component p-button-danger p-button-sm w-full"
+            class="p-button p-component p-button-sm p-button-text p-button-icon-only"
+            [ngClass]="guest.controls.isImplicit.value ? 'p-button-secondary' : 'p-button-danger'"
             type="button"
             (click)="removeGuest(index)"
+            [disabled]="guest.controls.isImplicit.value"
+            [title]="guest.controls.isImplicit.value ? 'Invitado requerido (no se puede quitar)' : 'Quitar invitado'"
           >
-            <span class="p-button-label">Quitar</span>
+            <app-icon
+              [icon]="guest.controls.isImplicit.value ? 'mdi:lock' : 'mdi:delete'"
+              class="text-xl"
+            />
           </button>
         </div>
       </div>
@@ -488,7 +502,7 @@
 
   <div class="col-12 flex flex-wrap justify-content-between gap-2">
     @if (isEditMode() && (originalEventDetail()?.isRecurring ||
-    form.controls.isRecurring.getRawValue())) {
+    isRecurring())) {
     <div class="flex gap-2">
       <button
         class="p-button p-component p-button-outlined p-button-sm"

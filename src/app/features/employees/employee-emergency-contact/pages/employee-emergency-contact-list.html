@@ -1,6 +1,6 @@
 <p-table
-  [globalFilterFields]="globalFilterFields"
-  [value]="dataEmergencyContact"
+  [globalFilterFields]="globalFilterFields()"
+  [value]="dataEmergencyContact()"
   #dt
   styleClass="custom-table card hidden md:block"
 >
@@ -11,15 +11,14 @@
           id: '',
           title: 'Nuevo Registro',
           contacOfBeneficiary: 0,
-          employeeId: employeeId,
         })
       "
-      [showSearch]="dataEmergencyContact.length > 0"
+      [showSearch]="dataEmergencyContact().length > 0"
       [dt]="dt"
     />
   </ng-template>
 
-  @if (dataEmergencyContact.length !== 0) {
+  @if (dataEmergencyContact().length !== 0) {
   <ng-template #header>
     <tr>
       <th>Nombre</th>
@@ -47,7 +46,6 @@
                 id: item.id,
                 title: 'Editar',
                 contacOfBeneficiary: 0,
-                employeeId: employeeId,
               })
             "
           />
@@ -61,7 +59,7 @@
     </tr>
   </ng-template>
 
-  @if (dataEmergencyContact.length === 0) {
+  @if (dataEmergencyContact().length === 0) {
   <ng-template emptymessage>
     <tr>
       <td colspan="4">No hay beneficiarios.</td>
@@ -71,9 +69,9 @@
 </p-table>
 
 <app-data-view-mobile
-  [data]="dataEmergencyContact"
-  [globalFilterFields]="globalFilterFields"
-  (add)="onModalForm({ id: '', title: 'Nuevo Registro', contacOfBeneficiary: 0, employeeId: employeeId })"
+  [data]="dataEmergencyContact()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro', contacOfBeneficiary: 0 })"
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
@@ -102,7 +100,7 @@
       </ion-label>
       <app-action-menu slot="end">
         <ion-button-edit
-          (clicked)="onModalForm({ id: item.id, title: 'Editar', contacOfBeneficiary: 0, employeeId: employeeId })"
+          (clicked)="onModalForm({ id: item.id, title: 'Editar', contacOfBeneficiary: 0 })"
         />
         <ion-button-delete (confirmed)="onDelete(item.id, 0)" />
       </app-action-menu>
@@ -114,8 +112,8 @@
 
 <p-table
   #dt
-  [value]="dataBeneficiary"
-  [globalFilterFields]="globalFilterFields"
+  [value]="dataBeneficiary()"
+  [globalFilterFields]="globalFilterFields()"
   styleClass="custom-table card hidden md:block"
 >
   <ng-template #caption>
@@ -125,15 +123,14 @@
           id: '',
           title: 'Nuevo Registro',
           contacOfBeneficiary: 1,
-          employeeId: employeeId,
         })
       "
-      [showSearch]="dataBeneficiary.length > 0"
+      [showSearch]="dataBeneficiary().length > 0"
       [dt]="dt"
     />
   </ng-template>
 
-  @if (dataBeneficiary.length !== 0) {
+  @if (dataBeneficiary().length !== 0) {
   <ng-template #header>
     <tr>
       <th>Nombre</th>
@@ -161,7 +158,6 @@
                 id: item.id,
                 title: 'Editar',
                 contacOfBeneficiary: 1,
-                employeeId: employeeId,
               })
             "
           />
@@ -175,7 +171,7 @@
     </tr>
   </ng-template>
 
-  @if (dataBeneficiary.length === 0) {
+  @if (dataBeneficiary().length === 0) {
   <ng-template emptymessage>
     <tr>
       <td colspan="4">No hay beneficiarios</td>
@@ -185,9 +181,9 @@
 </p-table>
 
 <app-data-view-mobile
-  [data]="dataBeneficiary"
-  [globalFilterFields]="globalFilterFields"
-  (add)="onModalForm({ id: '', title: 'Nuevo Registro', contacOfBeneficiary: 1, employeeId: employeeId })"
+  [data]="dataBeneficiary()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro', contacOfBeneficiary: 1 })"
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
@@ -216,7 +212,7 @@
       </ion-label>
       <app-action-menu slot="end">
         <ion-button-edit
-          (clicked)="onModalForm({ id: item.id, title: 'Editar', contacOfBeneficiary: 1, employeeId: employeeId })"
+          (clicked)="onModalForm({ id: item.id, title: 'Editar', contacOfBeneficiary: 1 })"
         />
         <ion-button-delete (confirmed)="onDelete(item.id, 1)" />
       </app-action-menu>

@@ -10,7 +10,7 @@ export class LoginSliderService {
   private allImages: string[] = [];
 
   // Configuración
-  // private readonly VISIBLE_SLIDES = 5; 
+  // private readonly VISIBLE_SLIDES = 5;
   // private readonly TRANSITION_INTERVAL = 3000;
 
   // Estado actual
@@ -47,15 +47,6 @@ export class LoginSliderService {
   }
 
   getVisibleImages(): string[] {
-      return [];
+    return [];
   }
 }
-
-
-
-
-
-
-
-
-

@@ -1,52 +1,20 @@
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
+import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import type { IManualTemplateDetalleDTO } from "../models/manuals-and-processes.dto";
 import type { IManualPasoDTO } from "../models/manuals-and-processes.dto";
 
 @Injectable({ providedIn: "root" })
 export class ManualPdfService {
+  private readonly htmlPrintS = inject(HtmlPrintService);
 
   async descargar(manual: IManualTemplateDetalleDTO): Promise<void> {
-    const html = this.buildHtml(manual);
-    
-    // Crear un iframe invisible para imprimir el documento con sus estilos aislados
-    const iframe = document.createElement("iframe");
-    iframe.style.position = "fixed";
-    iframe.style.right = "0";
-    iframe.style.bottom = "0";
-    iframe.style.width = "0";
-    iframe.style.height = "0";
-    iframe.style.border = "0";
-    document.body.appendChild(iframe);
-
-    // Inyectar el HTML en el iframe
-    iframe.contentWindow!.document.open();
-    iframe.contentWindow!.document.write(html);
-    iframe.contentWindow!.document.close();
-
-    // Modificar el título temporalmente para que el PDF se guarde con el nombre correcto
-    const originalTitle = document.title;
-    document.title = manual.folio || "Manual";
-
-    // Esperar a que el iframe (imágenes, etc.) cargue completamente antes de imprimir
-    iframe.onload = () => {
-      setTimeout(() => {
-        iframe.contentWindow!.focus();
-        iframe.contentWindow!.print();
-        
-        // Restaurar título y limpiar el DOM
-        document.title = originalTitle;
-        setTimeout(() => {
-          document.body.removeChild(iframe);
-        }, 1000);
-      }, 500);
-    };
+    const html = await this.buildHtml(manual);
+    this.htmlPrintS.printHtml(html, manual.folio || "Manual");
   }
 
-  private buildHtml(m: IManualTemplateDetalleDTO): string {
-    const logo = "assets/images/LBG-negro.png";
-    const fecha = new Date().toLocaleDateString("es-MX", {
-      year: "numeric", month: "long", day: "numeric",
-    });
+  private async buildHtml(m: IManualTemplateDetalleDTO): Promise<string> {
+    const logo = await this.htmlPrintS.getLogoDataUrl();
+    const generatedAt = new Date();
 
     const labelTipo = (t: number) =>
       t === 1 ? "Nota" : t === 2 ? "Advertencia" : t === 3 ? "Buenas Practicas" : "Paso";
@@ -55,37 +23,21 @@ export class ManualPdfService {
 
     const adjuntosHtml = (m.adjuntos ?? []).map((a) => `
       <div style="padding:0.4rem 0;border-bottom:1px solid #eee;page-break-inside:avoid;">
-        <strong style="font-size:9pt;color:#1a1a1a;">${this.esc(a.nombre)}</strong>
-        <span style="font-size:7pt;color:#999;margin-left:0.5rem;">${this.esc(a.fileExtension)}</span>
+        <strong style="font-size:9pt;color:#1a1a1a;">${this.htmlPrintS.esc(a.nombre)}</strong>
+        <span style="font-size:7pt;color:#999;margin-left:0.5rem;">${this.htmlPrintS.esc(a.fileExtension)}</span>
       </div>`).join("");
 
     const versionesHtml = (m.versiones ?? []).map((v) => `
       <div style="padding:0.4rem 0;border-bottom:1px solid #eee;page-break-inside:avoid;">
-        <span style="display:inline-block;background:#0b3164;color:#fff;padding:0.15rem 0.5rem;font-size:7pt;border-radius:3px;font-weight:700;">v${this.esc(v.version)}</span>
-        <span style="font-size:7pt;color:#666;margin-left:0.5rem;">${this.esc(v.fechaCambio)} &middot; ${this.esc(v.autor)}</span>
-        ${v.descripcionCambio ? `<p style="font-size:8pt;color:#333;margin:0.15rem 0 0 0;">${this.esc(v.descripcionCambio)}</p>` : ""}
+        <span style="display:inline-block;background:#0b3164;color:#fff;padding:0.15rem 0.5rem;font-size:7pt;border-radius:3px;font-weight:700;">v${this.htmlPrintS.esc(v.version)}</span>
+        <span style="font-size:7pt;color:#666;margin-left:0.5rem;">${this.htmlPrintS.esc(v.fechaCambio)} &middot; ${this.htmlPrintS.esc(v.autor)}</span>
+        ${v.descripcionCambio ? `<p style="font-size:8pt;color:#333;margin:0.15rem 0 0 0;">${this.htmlPrintS.esc(v.descripcionCambio)}</p>` : ""}
       </div>`).join("");
 
     return `<!doctype html>
 <html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:var(--ds-font-family-document); line-height:1.45; color:#1a1a1a; }
-  .container { max-width:1020px; margin:0 auto; background:#fff; }
-  
-  /* Reglas exclusivas para cuando se envíe a la impresora nativa */
-  @media print {
-    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    @page { margin: 10mm; }
-  }
-
-  .gold-stripe { height:6px; background:#c9a84c; width:100%; }
-  .header-premium { padding:24px 36px 16px 36px; border-bottom:1px solid #f0f0f0; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:16px; }
-  .logo-area { display:flex; align-items:center; gap:12px; }
-  .logo-img { height:48px; width:auto; }
-  .logo-text { font-weight:700; font-size:1.4rem; color:#0b3164; }
-  .logo-sub { font-size:0.65rem; color:#6b7280; letter-spacing:0.5px; }
-  .badge-doc { background:#f3f4f6; padding:5px 12px; border-radius:100px; font-size:0.7rem; font-weight:500; color:#1a1a1a; border:0.5px solid #e5e7eb; }
   .body-doc { padding:28px 36px 36px 36px; }
   .titulo { font-size:1.7rem; font-weight:700; color:#0b3164; margin-bottom:4px; }
   .meta { font-size:0.7rem; color:#6b7280; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:2px; }
@@ -110,31 +62,20 @@ export class ManualPdfService {
   .enlace-line { margin-top:6px; font-size:0.7rem; }
   .enlace-line a { color:#0b3164; word-break:break-all; }
   .diagram-box { margin-top:8px; max-width:80%; }
-  .footer-doc { border-top:1px solid #e5e7eb; padding:0.75rem 36px; font-size:0.6rem; color:#999; text-align:right; }
 </style></head><body>
 <div class="container">
-  <div class="gold-stripe"></div>
-  <div class="header-premium">
-    <div class="logo-area">
-      <img class="logo-img" src="${logo}" alt="LBG" onerror="this.style.display='none'" />
-      <div><div class="logo-text">LuxuryApp</div><div class="logo-sub">ERP &middot; Biblioteca Operativa</div></div>
-    </div>
-    <div class="badge-doc">${this.esc(m.folio)}</div>
-  </div>
+  ${this.htmlPrintS.buildStandardHeader(logo, m.description || m.folio || "Manual", m.folio || "", generatedAt, "MANUAL DE PROCESO", m.departament ? (m.departament + " - v" + m.currentVersion) : ("v" + m.currentVersion))}
   <div class="body-doc">
-    <div class="meta">${this.esc(m.folio)}</div>
-    <div class="titulo">${this.esc(m.description || m.folio)}</div>
-    <div class="dept-line">${this.esc(m.departament)} &mdash; v${this.esc(m.currentVersion)}</div>
     <div class="info-grid">
       <span>Frecuencia: ${this.periodicidad(m)}</span>
-      <span>Versi&oacute;n: ${this.esc(m.currentVersion)}</span>
+      <span>Versi&oacute;n: ${this.htmlPrintS.esc(m.currentVersion)}</span>
       <span>Estado: ${m.isActive ? "Vigente" : "Inactivo"}</span>
       <span>Alcance: ${m.isGlobal ? "Global" : "Segmentado"}</span>
       <span>Pasos: ${(m.pasos ?? []).length}</span>
     </div>
 
-    ${m.objetivo ? `<div class="section"><div class="section-title">Objetivo</div><div class="section-content">${this.esc(m.objetivo)}</div></div>` : ""}
-    ${m.marcoLegal ? `<div class="section"><div class="section-title">Marco Legal y Referencias</div><div class="section-content">${this.esc(m.marcoLegal)}</div></div>` : ""}
+    ${m.objetivo ? `<div class="section"><div class="section-title">Objetivo</div><div class="section-content">${this.htmlPrintS.esc(m.objetivo)}</div></div>` : ""}
+    ${m.marcoLegal ? `<div class="section"><div class="section-title">Marco Legal y Referencias</div><div class="section-content">${this.htmlPrintS.esc(m.marcoLegal)}</div></div>` : ""}
 
     <div class="section steps-section">
       <div class="section-title">Pasos del Procedimiento (${(m.pasos ?? []).length})</div>
@@ -153,8 +94,7 @@ export class ManualPdfService {
       ${versionesHtml}
     </div>` : ""}
   </div>
-  <div class="gold-stripe" style="height:4px;"></div>
-  <div class="footer-doc">Documento generado el ${fecha} desde LuxuryApp &mdash; ${this.esc(m.folio)} v${this.esc(m.currentVersion)}</div>
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
 </div>
 </body></html>`;
   }
@@ -165,14 +105,14 @@ export class ManualPdfService {
     labelTipo: (t: number) => string,
   ): string {
     const cls = p.tipoNota === 1 ? "nota" : p.tipoNota === 2 ? "advertencia" : p.tipoNota === 3 ? "buena" : "";
-    const roleNames = (p.responsableRoleNombres ?? []).map((r) => `<span class="paso-tag">${this.esc(r)}</span>`).join("");
+    const roleNames = (p.responsableRoleNombres ?? []).map((r) => `<span class="paso-tag">${this.htmlPrintS.esc(r)}</span>`).join("");
 
     const imgs = (p.imagenes ?? []).map((img) =>
-      `<img src="${this.esc(img.url)}" alt="Imagen" />`).join("");
+      `<img src="${this.htmlPrintS.esc(img.url)}" alt="Imagen" />`).join("");
     const imgsHtml = imgs ? `<div class="img-grid">${imgs}</div>` : "";
 
     const enlaces = (p.enlaces ?? []).map((e) =>
-      `<div class="enlace-line">&rarr; <a href="${this.esc(e.urlEnlace)}" target="_blank">${this.esc(e.urlEnlace)}</a></div>`).join("");
+      `<div class="enlace-line">&rarr; <a href="${this.htmlPrintS.esc(e.urlEnlace)}" target="_blank">${this.htmlPrintS.esc(e.urlEnlace)}</a></div>`).join("");
 
     const diagrama = p.diagramaXml
       ? `<div class="diagram-box"><em style="font-size:0.65rem;color:#999;">Diagrama de flujo vinculado a este paso.</em></div>`
@@ -182,11 +122,11 @@ export class ManualPdfService {
     <div class="paso-box${cls ? " " + cls : ""}">
       <div class="paso-header">
         <span class="paso-numero">${p.tipoNota === 0 ? i + 1 : "&bull;"}</span>
-        <span class="paso-titulo">${this.esc(p.titulo)}</span>
+        <span class="paso-titulo">${this.htmlPrintS.esc(p.titulo)}</span>
         ${p.tipoNota !== 0 ? `<span class="paso-label">${labelTipo(p.tipoNota)}</span>` : ""}
         ${roleNames}
       </div>
-      ${p.descripcion ? `<div class="paso-desc">${this.esc(p.descripcion)}</div>` : ""}
+      ${p.descripcion ? `<div class="paso-desc">${this.htmlPrintS.esc(p.descripcion)}</div>` : ""}
       ${diagrama}
       ${imgsHtml}
       ${enlaces}
@@ -221,11 +161,5 @@ export class ManualPdfService {
       return "Anual";
     }
     return m.periodicityName || "A Demanda";
-  }
-
-  private esc(s: string | null | undefined): string {
-    if (!s) return "";
-    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;").replace(/'/g, "&#039;");
   }
 }
