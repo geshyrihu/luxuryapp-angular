@@ -14,6 +14,7 @@ import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IAiKnowledgeBaseForm {
   id: FormControl<string | null>;
@@ -100,27 +101,13 @@ export class AiKnowledgeBaseForm implements OnInit {
   }
 
   async onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-    this.submitting.set(true);
-
-    let result: boolean;
-
-    if (!this.id) {
-      result = await this.apiResponseS.onPost(
-        Endpoints.AiKnowledgeBase.base,
-        this.form.value,
-      );
-    } else {
-      result = await this.apiResponseS.onPut(
-        Endpoints.AiKnowledgeBase.base,
-        this.form.value,
-      );
-    }
-
-    if (result) {
-      this.ref.close(true);
-    } else {
-      this.submitting.set(false);
-    }
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.AiKnowledgeBase.base,
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+    });
   }
 }

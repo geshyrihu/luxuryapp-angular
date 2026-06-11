@@ -15,6 +15,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-application-user-form",
@@ -85,30 +86,17 @@ export class ApplicationUserForm implements OnInit {
     });
   }
 
-  onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-
-    if (this.applicationUserId === "") {
-      this.apiResponseS
-        .onPost(Endpoints.ApplicationUsers.createAccount, this.form.value)
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    } else {
-      this.apiResponseS
-        .onPut(
-          Endpoints.ApplicationUsers.updateAccount(this.applicationUserId),
-          this.form.value,
-        )
-        .then((result: boolean) => {
-          if (result) {
-            this.ref.close(true);
-          } else {
-            this.submitting.set(false);
-          }
-        });
-    }
+  async onSubmit() {
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint:
+        this.applicationUserId === ""
+          ? Endpoints.ApplicationUsers.createAccount
+          : Endpoints.ApplicationUsers.updateAccount(this.applicationUserId),
+      method: this.applicationUserId === "" ? "POST" : "PUT",
+      ref: this.ref,
+      submitting: this.submitting,
+    });
   }
 }

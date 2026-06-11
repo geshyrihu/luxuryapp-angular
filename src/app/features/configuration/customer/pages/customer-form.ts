@@ -21,6 +21,7 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { ICustomerAddOrEditDTO, ICustomerDTO } from "../models/customer.dto";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface ICustomerFormGroup {
   id: FormControl<string | null>;
@@ -128,28 +129,16 @@ export class CustomerForm implements OnInit {
       });
   }
 
-  onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    const formData = this.createFormData(
-      this.form.getRawValue() as unknown as ICustomerForm,
-    );
-
-    this.submitting.set(true);
-
-    if (!this.id) {
-      this.apiResponseS
-        .onPost<ICustomerDTO>(Endpoints.Customers.create, formData)
-        .then((result) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    } else {
-      this.apiResponseS
-        .onPut<ICustomerDTO>(Endpoints.Customers.update(this.id), formData)
-        .then((result) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    }
+  async onSubmit() {
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: !this.id ? Endpoints.Customers.create : Endpoints.Customers.update(this.id),
+      method: !this.id ? "POST" : "PUT",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => this.createFormData(this.form.getRawValue() as unknown as ICustomerForm)
+    });
   }
 
   private createFormData(customerAdCustomerForm: ICustomerForm): FormData {
