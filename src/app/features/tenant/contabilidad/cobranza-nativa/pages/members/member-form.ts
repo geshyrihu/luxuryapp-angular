@@ -24,6 +24,7 @@ import {
   CreatePropertyMemberDTO,
   UpdatePropertyMemberDTO,
 } from "../../models/property-member.dto";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 // ETypePerson.Client = 2
 const E_TYPE_PERSON_CLIENT = 2;
@@ -129,27 +130,26 @@ export default class MemberForm implements OnInit {
   }
 
   async onNextStep() {
-    if (!this.apiResponseS.validateForm(this.userForm)) return;
-    this.submitting.set(true);
-    try {
-      const raw = this.userForm.getRawValue();
-      const result = await this.apiResponseS.onPost<{ id: string }>(
-        Endpoints.ApplicationUsers.createAccount,
-        {
-          customerId: this.customerId,
-          typePerson: E_TYPE_PERSON_CLIENT,
-          firstName: raw.firstName,
-          lastName: raw.lastName,
-          email: raw.email,
-          phoneNumber: raw.phoneNumber,
-        },
-      );
-      if (result && typeof result === "object") {
-        this.createdUserId.set(result.id ?? "");
-        this.step.set(2);
-      }
-    } finally {
-      this.submitting.set(false);
+    const result = await FormHelper.submitCrud({
+      form: this.userForm,
+      api: this.apiResponseS,
+      endpoint: Endpoints.ApplicationUsers.createAccount,
+      method: "POST",
+      submitting: this.submitting,
+      closeOnSuccess: false,
+      transformPayload: (raw) => ({
+        customerId: this.customerId,
+        typePerson: E_TYPE_PERSON_CLIENT,
+        firstName: raw.firstName,
+        lastName: raw.lastName,
+        email: raw.email,
+        phoneNumber: raw.phoneNumber,
+      }),
+    });
+
+    if (result && typeof result === "object") {
+      this.createdUserId.set(result.id ?? "");
+      this.step.set(2);
     }
   }
 
@@ -167,47 +167,38 @@ export default class MemberForm implements OnInit {
   }
 
   async onSubmit() {
-    if (!this.apiResponseS.validateForm(this.memberForm)) return;
-    this.submitting.set(true);
-    try {
-      const raw = this.memberForm.getRawValue();
-      let ok: boolean;
-
-      if (!this.id) {
-        const payload: CreatePropertyMemberDTO = {
-          customerId: this.customerId,
-          propertyId: this.propertyId,
-          userId: this.createdUserId(),
-          memberRole: raw.memberRole,
-          isFinancialResponsible: raw.isFinancialResponsible,
-          receiveNotifications: raw.receiveNotifications,
-          startDate: this.dateS.getDateFormat(raw.startDate) ?? "",
-          endDate: this.dateS.getDateFormat(raw.endDate),
-          notes: raw.notes,
-        };
-        ok = await this.apiResponseS.onPost(
-          Endpoints.AccountingCoi.NativeCollection.PropertyMembers.create,
-          payload,
-        );
-      } else {
-        const payload: UpdatePropertyMemberDTO = {
-          id: this.id,
-          memberRole: raw.memberRole,
-          isFinancialResponsible: raw.isFinancialResponsible,
-          receiveNotifications: raw.receiveNotifications,
-          notes: raw.notes,
-        };
-        ok = await this.apiResponseS.onPut(
-          Endpoints.AccountingCoi.NativeCollection.PropertyMembers.update(
-            this.id,
-          ),
-          payload,
-        );
-      }
-
-      if (ok) this.ref.close(true);
-    } finally {
-      this.submitting.set(false);
-    }
+    await FormHelper.submitCrud({
+      form: this.memberForm,
+      api: this.apiResponseS,
+      endpoint: this.id
+        ? Endpoints.AccountingCoi.NativeCollection.PropertyMembers.update(this.id)
+        : Endpoints.AccountingCoi.NativeCollection.PropertyMembers.create,
+      method: this.id ? "PUT" : "POST",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (raw) => {
+        if (!this.id) {
+          return {
+            customerId: this.customerId,
+            propertyId: this.propertyId,
+            userId: this.createdUserId(),
+            memberRole: raw.memberRole,
+            isFinancialResponsible: raw.isFinancialResponsible,
+            receiveNotifications: raw.receiveNotifications,
+            startDate: this.dateS.getDateFormat(raw.startDate) ?? "",
+            endDate: this.dateS.getDateFormat(raw.endDate),
+            notes: raw.notes,
+          } as CreatePropertyMemberDTO;
+        } else {
+          return {
+            id: this.id,
+            memberRole: raw.memberRole,
+            isFinancialResponsible: raw.isFinancialResponsible,
+            receiveNotifications: raw.receiveNotifications,
+            notes: raw.notes,
+          } as UpdatePropertyMemberDTO;
+        }
+      },
+    });
   }
 }

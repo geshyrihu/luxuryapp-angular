@@ -21,6 +21,7 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { CustomButton } from "src/app/core/components/buttons/web";
 import { EBillingMode } from "../../models/enums";
 import { UpsertBillingConfigDTO } from "../../models/billing-config.dto";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-billing-config-modal",
@@ -44,6 +45,7 @@ export default class BillingConfigModal implements OnInit {
   form!: FormGroup;
   customerId: string = "";
   isLoading = false;
+  submitting = signal(false);
   billingModeOptions = signal<ISelectItem[]>([]);
 
   constructor() {
@@ -86,24 +88,21 @@ export default class BillingConfigModal implements OnInit {
   }
 
   async onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    const value = this.form.value;
-    const dto: UpsertBillingConfigDTO = {
-      customerId: this.customerId,
-      billingMode: value.billingMode,
-      defaultDueDays: value.defaultDueDays,
-      graceDays: value.graceDays,
-      globalLateFeePercentage: value.globalLateFeePercentage,
-    };
-
-    const result = await this.apiResponseS.onPost(
-      Endpoints.AccountingCoi.NativeCollection.BillingConfig.save,
-      dto,
-    );
-    if (result) {
-      this.ref.close(true);
-    }
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.AccountingCoi.NativeCollection.BillingConfig.save,
+      method: "POST",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (value) => ({
+        customerId: this.customerId,
+        billingMode: value.billingMode,
+        defaultDueDays: value.defaultDueDays,
+        graceDays: value.graceDays,
+        globalLateFeePercentage: value.globalLateFeePercentage,
+      } as UpsertBillingConfigDTO),
+    });
   }
 
   onClose() {

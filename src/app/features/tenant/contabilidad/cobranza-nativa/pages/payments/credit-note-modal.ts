@@ -15,6 +15,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { EPaymentMethod } from "../../models/enums";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface ICreditNoteForm {
   propertyId: FormControl<string>;
@@ -101,28 +102,22 @@ export default class CreditNoteModalComponent implements OnInit {
   }
 
   async onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    const raw = this.form.getRawValue();
-    const payload: CreditNoteRequestDTO = {
-      customerId: this.customerId,
-      propertyId: raw.propertyId,
-      amount: raw.amount,
-      paymentDate: this.dateS.getDateFormat(raw.paymentDate) ?? "",
-      method: EPaymentMethod.DebtForgiveness,
-      reference: raw.reference,
-      notes: raw.notes,
-    };
-
-    this.submitting.set(true);
-    try {
-      const res = await this.apiResponseS.onPost(
-        Endpoints.AccountingCoi.NativeCollection.Payments.create,
-        payload,
-      );
-      if (res !== false) this.ref.close(true);
-    } finally {
-      this.submitting.set(false);
-    }
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.AccountingCoi.NativeCollection.Payments.create,
+      method: "POST",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (raw) => ({
+        customerId: this.customerId,
+        propertyId: raw.propertyId,
+        amount: raw.amount,
+        paymentDate: this.dateS.getDateFormat(raw.paymentDate) ?? "",
+        method: EPaymentMethod.DebtForgiveness,
+        reference: raw.reference,
+        notes: raw.notes,
+      } as CreditNoteRequestDTO),
+    });
   }
 }

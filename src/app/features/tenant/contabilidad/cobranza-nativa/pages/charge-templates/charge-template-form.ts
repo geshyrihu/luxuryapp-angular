@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -20,6 +20,7 @@ import {
   EDiscountType,
   ERecurrence,
 } from "../../models/enums";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 // Custom Inputs
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
@@ -72,7 +73,7 @@ export class ChargeTemplateForm implements OnInit {
   id: string = "";
   customerId: string = "";
   form: FormGroup<IChargeTemplateForm>;
-  submitting = false;
+  submitting = signal(false);
 
   recurrenceOptions = [
     { label: "Eventual", value: ERecurrence.Eventual },
@@ -175,45 +176,36 @@ export class ChargeTemplateForm implements OnInit {
   }
 
   async onSubmit() {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
-
-    this.submitting = true;
-
-    try {
-      const raw = this.form.getRawValue();
-      const payloadBase = {
-        ...raw,
-        startDate: this.dateS.getDateFormat(raw.startDate) ?? "",
-        endDate: this.dateS.getDateFormat(raw.endDate),
-        retroactiveStartDate: this.dateS.getDateFormat(raw.retroactiveStartDate),
-      };
-      if (this.id) {
-        const payload: UpdateChargeTemplateDTO = {
-          id: this.id,
-          ...(payloadBase as any),
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: this.id
+        ? Endpoints.AccountingCoi.NativeCollection.Templates.update(this.id)
+        : Endpoints.AccountingCoi.NativeCollection.Templates.create,
+      method: this.id ? "PUT" : "POST",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => {
+        const raw = this.form.getRawValue();
+        const payloadBase = {
+          ...raw,
+          startDate: this.dateS.getDateFormat(raw.startDate) ?? "",
+          endDate: this.dateS.getDateFormat(raw.endDate),
+          retroactiveStartDate: this.dateS.getDateFormat(raw.retroactiveStartDate),
         };
-        const res = await this.apiResponseS.onPut(
-          Endpoints.AccountingCoi.NativeCollection.Templates.update(this.id),
-          payload,
-        );
-        if (res) this.ref.close(true);
-      } else {
-        const payload: CreateChargeTemplateDTO = {
-          customerId: this.customerId,
-          ...(payloadBase as any),
-        };
-        const res = await this.apiResponseS.onPost(
-          Endpoints.AccountingCoi.NativeCollection.Templates.create,
-          payload,
-        );
-        if (res) this.ref.close(true);
-      }
-    } finally {
-      this.submitting = false;
-    }
+        if (this.id) {
+          return {
+            id: this.id,
+            ...payloadBase,
+          } as UpdateChargeTemplateDTO;
+        } else {
+          return {
+            customerId: this.customerId,
+            ...payloadBase,
+          } as CreateChargeTemplateDTO;
+        }
+      },
+    });
   }
 
   async onPreviewFees() {
