@@ -15,6 +15,7 @@ import {
   TiempoExtraDTO,
   TiempoExtraUpdateDTO,
 } from "../../../interfaces/tiempo-extra.interface";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-modal-tiempo-extra-add",
@@ -89,39 +90,37 @@ export default class ModalTiempoExtraAdd implements OnInit {
   };
 
   async onSubmit(): Promise<void> {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-    const v = this.form.getRawValue();
     const existing = this.item();
 
-    this.submitting.set(true);
-    if (!existing) {
-      const periodoNominaId: string = this.config.data?.periodoNominaId ?? "";
-      const dto: TiempoExtraCreateDTO = {
-        periodoNominaId,
-        employeeId: v.employeeId,
-        fecha:         v.fecha,
-        horasSimples:  v.horasSimples,
-        horasDobles:   v.horasDobles,
-        observaciones: v.observaciones || undefined,
-      };
-      const result = await this.apiResponseS.onPost(
-        Endpoints.HR.Nomina.TiempoExtra.create,
-        dto,
-      );
-      if (result) this.ref.close(true);
-    } else {
-      const dto: TiempoExtraUpdateDTO = {
-        fecha:         v.fecha,
-        horasSimples:  v.horasSimples,
-        horasDobles:   v.horasDobles,
-        observaciones: v.observaciones || undefined,
-      };
-      const result = await this.apiResponseS.onPut(
-        Endpoints.HR.Nomina.TiempoExtra.update(existing.id),
-        dto,
-      );
-      if (result) this.ref.close(true);
-    }
-    this.submitting.set(false);
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: existing
+        ? Endpoints.HR.Nomina.TiempoExtra.update(existing.id)
+        : Endpoints.HR.Nomina.TiempoExtra.create,
+      method: existing ? "PUT" : "POST",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (v) => {
+        if (!existing) {
+          const periodoNominaId: string = this.config.data?.periodoNominaId ?? "";
+          return {
+            periodoNominaId,
+            employeeId: v.employeeId,
+            fecha: v.fecha,
+            horasSimples: v.horasSimples,
+            horasDobles: v.horasDobles,
+            observaciones: v.observaciones || undefined,
+          } as TiempoExtraCreateDTO;
+        } else {
+          return {
+            fecha: v.fecha,
+            horasSimples: v.horasSimples,
+            horasDobles: v.horasDobles,
+            observaciones: v.observaciones || undefined,
+          } as TiempoExtraUpdateDTO;
+        }
+      },
+    });
   }
 }

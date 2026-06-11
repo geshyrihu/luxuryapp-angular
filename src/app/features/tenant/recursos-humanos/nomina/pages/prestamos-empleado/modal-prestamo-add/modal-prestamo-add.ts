@@ -15,6 +15,7 @@ import {
   NUMERO_PAGOS_OPTIONS,
   PrestamoEmpleadoCreateDTO,
 } from "../../../interfaces/prestamo-empleado.interface";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-modal-prestamo-add",
@@ -64,23 +65,23 @@ export default class ModalPrestamoAdd implements OnInit {
   };
 
   async onSubmit(): Promise<void> {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-    const customerId = this.customerIdS.customerId();
-    const v = this.form.getRawValue();
-    const dto: PrestamoEmpleadoCreateDTO = {
-      customerId,
-      employeeId:    v.employeeId,
-      montoTotal:    v.montoTotal,
-      numeroPagos:   v.numeroPagos,
-      motivo:        v.motivo,
-      observaciones: v.observaciones || undefined,
-    };
-    this.submitting.set(true);
-    const result = await this.apiResponseS.onPost(
-      Endpoints.HR.Nomina.Prestamos.create,
-      dto,
-    );
-    this.submitting.set(false);
-    if (result) this.ref.close(true);
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.HR.Nomina.Prestamos.create,
+      method: "POST",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (v) => {
+        return {
+          customerId: this.customerIdS.customerId(),
+          employeeId: v.employeeId,
+          montoTotal: v.montoTotal,
+          numeroPagos: v.numeroPagos,
+          motivo: v.motivo,
+          observaciones: v.observaciones || undefined,
+        } as PrestamoEmpleadoCreateDTO;
+      },
+    });
   }
 }

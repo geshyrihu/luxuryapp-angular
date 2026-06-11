@@ -14,6 +14,7 @@ import {
   DiasNoHabilesCreateDTO,
   DiasNoHabilesDTO,
 } from "../../../interfaces/periodo-nomina.interface";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-modal-dias-no-habiles",
@@ -62,18 +63,20 @@ export default class ModalDiasNoHabiles implements OnInit {
   }
 
   async onSubmit(): Promise<void> {
-    if (!this.apiResponseS.validateForm(this.form)) return;
     const periodoId = this.periodoId();
-    const dto: DiasNoHabilesCreateDTO = {
-      ...this.form.getRawValue(),
-      fecha: this.dateS.getDateFormat(this.form.controls.fecha.value),
-    };
-    this.submitting.set(true);
-    const result = await this.apiResponseS.onPost(
-      `hr/nomina/periodos/${periodoId}/dias-no-habiles`,
-      dto,
-    );
-    this.submitting.set(false);
+    const result = await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: `hr/nomina/periodos/${periodoId}/dias-no-habiles`,
+      method: "POST",
+      submitting: this.submitting,
+      closeOnSuccess: false,
+      transformPayload: (v) => ({
+        ...v,
+        fecha: this.dateS.getDateFormat(v.fecha),
+      } as DiasNoHabilesCreateDTO),
+    });
+
     if (result) {
       this.form.reset({ esFestivoOficial: false });
       await this.loadDias(periodoId);

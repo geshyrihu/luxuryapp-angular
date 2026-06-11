@@ -158,7 +158,7 @@ export class IncidentFormComponent implements OnInit {
     });
   }
 
-  /** Cierra el diÃ¡logo indicando cambios (recarga la lista padre). */
+  /** Cierra el diálogo indicando cambios (recarga la lista padre). */
   onFinish(): void {
     this.ref.close(true);
   }

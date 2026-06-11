@@ -204,14 +204,14 @@ export class VacacionesPasadasRegistro implements OnInit {
       });
   }
 
-  // Nuevo mÃ³todo para capturar la selecciÃ³n manual
+  // Nuevo mótodo para capturar la selección manual
   onDateSelect(value: Date[] | null) {
     console.log("click ðŸ“… [onSelect] Calendario:", value);
-    // Forzamos la actualizaciÃ³n por si el ValueChanges falla
+    // Forzamos la actualización por si el ValueChanges falla
     this.dateRangeSignal.set(value);
     this.form.updateValueAndValidity();
     console.log(
-      "ðŸ” Estado Form tras selecciÃ³n:",
+      "ðŸ” Estado Form tras selección:",
       this.form.status,
       "Errores:",
       this.form.errors,
@@ -271,7 +271,7 @@ export class VacacionesPasadasRegistro implements OnInit {
             this.availableAdvanceDaysDisplay.set(null);
             this.form.controls.dateRange.enable();
           } else {
-            console.warn("âš ï¸ No elegible este AÃ±o");
+            console.warn("âš ï¸ No elegible este Año");
             this.eligibilityStatus.set("not-eligible-this-year");
             this.form.controls.dateRange.disable();
           }
@@ -345,7 +345,7 @@ export class VacacionesPasadasRegistro implements OnInit {
     );
 
     if (requestedDays > available) {
-      console.error("? Error: DÃ­as insuficientes");
+      console.error("? Error: Días insuficientes");
       return {
         notEnoughDays: {
           requested: requestedDays,
@@ -354,7 +354,7 @@ export class VacacionesPasadasRegistro implements OnInit {
       };
     }
 
-    console.log("? ValidaciÃ³n exitosa");
+    console.log("? Validación exitosa");
     return null;
   }
 
@@ -408,7 +408,7 @@ export class VacacionesPasadasRegistro implements OnInit {
         } else {
           const error = this.globalErrorS.errorSubject.getValue();
           this.serverError.set(
-            error?.message || "OcurriÃ³ un error inesperado.",
+            error?.message || "Ocurrió un error inesperado.",
           );
         }
       })

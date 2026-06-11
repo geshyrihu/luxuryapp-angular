@@ -18,6 +18,7 @@ import {
   TIPO_INCAPACIDAD_OPTIONS,
   TIPO_INCIDENCIA_OPTIONS,
 } from "../../../interfaces/incidencia-nomina.interface";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-modal-incidencia-add",
@@ -95,26 +96,27 @@ export default class ModalIncidenciaAdd implements OnInit {
   };
 
   async onSubmit(): Promise<void> {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-    const v = this.form.getRawValue();
-    const dto: IncidenciaNominaCreateDTO = {
-      employeeId:      v.employeeId,
-      periodoNominaId: v.periodoNominaId,
-      tipoIncidencia:  v.tipoIncidencia,
-      fecha:           v.fecha,
-      diasAfectados:   v.diasAfectados,
-      minutosRetardo:  v.minutosRetardo,
-      numeroFolioImss: v.numeroFolioImss || undefined,
-      tipoIncapacidad: v.tipoIncapacidad ?? undefined,
-      porcentajePagoImss: v.porcentajePagoImss ?? undefined,
-      observaciones:   v.observaciones || undefined,
-    };
-    this.submitting.set(true);
-    const result = await this.apiResponseS.onPost(
-      Endpoints.HR.Nomina.Incidencias.create,
-      dto,
-    );
-    this.submitting.set(false);
-    if (result) this.ref.close(true);
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.HR.Nomina.Incidencias.create,
+      method: "POST",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (v) => {
+        return {
+          employeeId: v.employeeId,
+          periodoNominaId: v.periodoNominaId,
+          tipoIncidencia: v.tipoIncidencia,
+          fecha: v.fecha,
+          diasAfectados: v.diasAfectados,
+          minutosRetardo: v.minutosRetardo,
+          numeroFolioImss: v.numeroFolioImss || undefined,
+          tipoIncapacidad: v.tipoIncapacidad ?? undefined,
+          porcentajePagoImss: v.porcentajePagoImss ?? undefined,
+          observaciones: v.observaciones || undefined,
+        } as IncidenciaNominaCreateDTO;
+      },
+    });
   }
 }

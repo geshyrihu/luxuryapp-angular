@@ -13,6 +13,7 @@ import {
   PrestamoEmpleadoDecisionDTO,
   PrestamoEmpleadoDTO,
 } from "../../../interfaces/prestamo-empleado.interface";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-modal-prestamo-detalle",
@@ -58,29 +59,29 @@ export default class ModalPrestamoDetalle implements OnInit {
   }
 
   async autorizar(): Promise<void> {
-    if (!this.apiResponseS.validateForm(this.formDecision)) return;
     const prestamoId = this.prestamo()?.id ?? "";
-    const dto: PrestamoEmpleadoDecisionDTO = this.formDecision.getRawValue();
-    this.procesando.set(true);
-    const result = await this.apiResponseS.onPut(
-      `hr/nomina/prestamos/${prestamoId}/autorizar`,
-      dto,
-    );
-    this.procesando.set(false);
-    if (result) this.ref.close(true);
+    await FormHelper.submitCrud({
+      form: this.formDecision,
+      api: this.apiResponseS,
+      endpoint: `hr/nomina/prestamos/${prestamoId}/autorizar`,
+      method: "PUT",
+      ref: this.ref,
+      submitting: this.procesando,
+      transformPayload: () => this.formDecision.getRawValue() as PrestamoEmpleadoDecisionDTO,
+    });
   }
 
   async cancelar(): Promise<void> {
-    if (!this.apiResponseS.validateForm(this.formDecision)) return;
     const prestamoId = this.prestamo()?.id ?? "";
-    const dto: PrestamoEmpleadoDecisionDTO = this.formDecision.getRawValue();
-    this.procesando.set(true);
-    const result = await this.apiResponseS.onPut(
-      `hr/nomina/prestamos/${prestamoId}/cancelar`,
-      dto,
-    );
-    this.procesando.set(false);
-    if (result) this.ref.close(true);
+    await FormHelper.submitCrud({
+      form: this.formDecision,
+      api: this.apiResponseS,
+      endpoint: `hr/nomina/prestamos/${prestamoId}/cancelar`,
+      method: "PUT",
+      ref: this.ref,
+      submitting: this.procesando,
+      transformPayload: () => this.formDecision.getRawValue() as PrestamoEmpleadoDecisionDTO,
+    });
   }
 
   get progreso(): number {

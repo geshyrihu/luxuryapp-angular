@@ -10,6 +10,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { GenerarNominaDTO } from "../../../interfaces/nomina-encabezado.interface";
 import { PeriodoNominaDTO } from "../../../interfaces/periodo-nomina.interface";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-modal-generar-nomina",
@@ -60,18 +61,17 @@ export default class ModalGenerarNomina implements OnInit {
   }
 
   async onSubmit(): Promise<void> {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-    const customerId = this.customerIdS.customerId();
-    const dto: GenerarNominaDTO = {
-      customerId,
-      ...this.form.getRawValue(),
-    };
-    this.submitting.set(true);
-    const result = await this.apiResponseS.onPost(
-      Endpoints.HR.Nomina.Generar.nomina,
-      dto,
-    );
-    this.submitting.set(false);
-    if (result) this.ref.close(true);
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.HR.Nomina.Generar.nomina,
+      method: "POST",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (v) => ({
+        customerId: this.customerIdS.customerId(),
+        ...v,
+      } as GenerarNominaDTO),
+    });
   }
 }

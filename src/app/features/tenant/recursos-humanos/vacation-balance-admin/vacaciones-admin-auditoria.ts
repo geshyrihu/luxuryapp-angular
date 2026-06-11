@@ -29,17 +29,17 @@ export interface VacationHistoryItemDTO {
 }
 
 /**
- * ?? Componente de AuditorÃ³a Admin Ã³ Balance de Vacaciones por Empleado.
+ * ?? Componente de Auditoróa Admin ó Balance de Vacaciones por Empleado.
  *
  * Permite a SuperUsuario/RecursosHumanos seleccionar cualquier empleado del
- * cliente en sesiÃ³n y revisar su balance y historial de solicitudes por periodo
+ * cliente en sesión y revisar su balance y historial de solicitudes por periodo
  * de aniversario, para validar que las reglas de negocio (RN-001 a RN-013)
- * se estÃ¡n aplicando correctamente.
+ * se están aplicando correctamente.
  *
  * **Flujo:**
- * 1. Carga empleados del `customerId` en sesiÃ³n usando `select-item/employee/{customerId}`.
- * 2. Al seleccionar empleado ? carga sus aÃ±os disponibles y el balance+historial del mÃ³s reciente.
- * 3. Al cambiar AÃ±o ? recarga balance e historial filtrado por ese periodo de aniversario.
+ * 1. Carga empleados del `customerId` en sesión usando `select-item/employee/{customerId}`.
+ * 2. Al seleccionar empleado ? carga sus años disponibles y el balance+historial del mós reciente.
+ * 3. Al cambiar Año ? recarga balance e historial filtrado por ese periodo de aniversario.
  */
 @Component({
   selector: "app-vacaciones-admin-auditoria",
@@ -61,16 +61,16 @@ export class VacacionesAdminAuditoria implements OnInit {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
 
-  /** Lista de empleados del cliente en sesiÃ³n para el selector. */
+  /** Lista de empleados del cliente en sesión para el selector. */
   employees = signal<ISelectItem[]>([]);
 
   /** ID del empleado seleccionado actualmente. */
   selectedEmployeeId = signal<string | null>(null);
 
-  /** aÃ±os de aniversario disponibles para el empleado seleccionado. */
+  /** años de aniversario disponibles para el empleado seleccionado. */
   availableYears = signal<{ label: string; value: number }[]>([]);
 
-  /** AÃ±o de inicio del periodo de aniversario seleccionado. */
+  /** Año de inicio del periodo de aniversario seleccionado. */
   selectedYear = signal<number>(new Date().getFullYear());
 
   /** Balance del empleado para el periodo seleccionado. */
@@ -79,14 +79,14 @@ export class VacacionesAdminAuditoria implements OnInit {
   /** Historial de solicitudes del empleado para el periodo seleccionado. */
   requests = signal<VacationHistoryItemDTO[]>([]);
 
-  /** Spinner global del Ã¡rea de resultados. */
+  /** Spinner global del área de resultados. */
   loadingResults = signal(false);
 
   /** Spinner solo para la carga inicial de empleados. */
   loadingEmployees = signal(true);
 
   constructor() {
-    // Recarga la lista de empleados si el customerId cambia en sesiÃ³n.
+    // Recarga la lista de empleados si el customerId cambia en sesión.
     effect(() => {
       const customerId = this.customerIdS.customerId();
       if (customerId) {
@@ -99,7 +99,7 @@ export class VacacionesAdminAuditoria implements OnInit {
     this.loadEmployees(this.customerIdS.customerId());
   }
 
-  /** Carga la lista de empleados activos del cliente en sesiÃ³n. */
+  /** Carga la lista de empleados activos del cliente en sesión. */
   loadEmployees(customerId: string): void {
     if (!customerId) return;
     this.loadingEmployees.set(true);
@@ -112,8 +112,8 @@ export class VacacionesAdminAuditoria implements OnInit {
   /**
    * Al seleccionar un empleado:
    * 1. Limpia el estado anterior.
-   * 2. Carga los aÃ±os disponibles del empleado.
-   * 3. Carga el balance + historial para el AÃ±o mÃ³s reciente.
+   * 2. Carga los años disponibles del empleado.
+   * 3. Carga el balance + historial para el Año mós reciente.
    */
   async onEmployeeChange(employeeId: string | null): Promise<void> {
     this.selectedEmployeeId.set(employeeId);
@@ -125,7 +125,7 @@ export class VacacionesAdminAuditoria implements OnInit {
 
     this.loadingResults.set(true);
     try {
-      // 1. Cargar aÃ±os disponibles para este empleado.
+      // 1. Cargar años disponibles para este empleado.
       const years = await this.apiResponseS.onGetList<
         { label: string; value: number }[]
       >(Endpoints.HR.VacationRequestApproval.availableYears(employeeId));
@@ -133,7 +133,7 @@ export class VacacionesAdminAuditoria implements OnInit {
       if (years && years.length > 0) {
         this.availableYears.set(years);
 
-        // Inteligencia de SelecciÃ³n:
+        // Inteligencia de Selección:
         const currentCalendarYear = new Date().getFullYear();
         const targetYear = currentCalendarYear - 1;
 
@@ -142,20 +142,20 @@ export class VacacionesAdminAuditoria implements OnInit {
         if (yearOption) {
           this.selectedYear.set(yearOption.value);
         } else {
-          // Si no existe (ej. es un empleado que acaba de entrar este mismo AÃ±o calendario),
-          // seleccionamos el Ã³nico/ultimo AÃ±o disponible.
+          // Si no existe (ej. es un empleado que acaba de entrar este mismo Año calendario),
+          // seleccionamos el ónico/ultimo Año disponible.
           this.selectedYear.set(years[years.length - 1].value);
         }
       }
 
-      // 2. Cargar balance + historial para el AÃ±o seleccionado.
+      // 2. Cargar balance + historial para el Año seleccionado.
       await this.loadBalanceAndHistory(employeeId, this.selectedYear());
     } finally {
       this.loadingResults.set(false);
     }
   }
 
-  /** Al cambiar el AÃ±o del selector: recarga balance e historial. */
+  /** Al cambiar el Año del selector: recarga balance e historial. */
   async onYearChange(year: number): Promise<void> {
     this.selectedYear.set(year);
     const employeeId = this.selectedEmployeeId();
@@ -198,7 +198,7 @@ export class VacacionesAdminAuditoria implements OnInit {
 
   /**
    * Filtra el historial para incluir solo solicitudes dentro del periodo de aniversario
-   * del AÃ±o seleccionado (RN-002, RN-007).
+   * del Año seleccionado (RN-002, RN-007).
    */
   private filterByAnniversaryPeriod(
     allHistory: VacationHistoryItemDTO[],

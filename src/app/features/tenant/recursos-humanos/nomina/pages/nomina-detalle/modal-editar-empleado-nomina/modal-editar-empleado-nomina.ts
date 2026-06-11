@@ -75,14 +75,14 @@ export default class ModalEditarEmpleadoNomina implements OnInit {
   }
 
   async onSubmit(): Promise<void> {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-    const dto: NominaDetalleEditDTO = this.form.getRawValue();
-    this.submitting.set(true);
-    const result = await this.apiResponseS.onPut(
-      `hr/nomina/${this.nominaId()}/detalles/${this.detalleId()}`,
-      dto,
-    );
-    this.submitting.set(false);
-    if (result) this.ref.close(true);
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: `hr/nomina/${this.nominaId()}/detalles/${this.detalleId()}`,
+      method: "PUT",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => this.form.getRawValue() as NominaDetalleEditDTO,
+    });
   }
 }

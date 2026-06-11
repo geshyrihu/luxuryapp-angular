@@ -1,4 +1,4 @@
-﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
@@ -15,6 +15,7 @@ import { SelectedFile } from "src/app/core/interfaces/selected-file";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { LeaveRequestMyDTO } from "src/app/features/tenant/recursos-humanos/interfaces/leave-request.interface";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface LeaveRequestEditDTO {
   leaveType: number;
@@ -192,34 +193,35 @@ export class PermisoForm implements OnInit {
       this.form.controls.endDate.setValue(startDate);
     }
 
-    if (!this.apiResponseS.validateForm(this.form)) return;
-    this.submitting.set(true);
-
-    const formValue = this.form.getRawValue();
-    const formData = new FormData();
-    formData.append("leaveType", String(formValue.leaveType));
-    formData.append("startDate", this.formatDate(formValue.startDate));
-    formData.append("endDate", this.formatDate(formValue.endDate));
-    if (formValue.startTime) formData.append("startTime", formValue.startTime);
-    if (formValue.endTime) formData.append("endTime", formValue.endTime);
-    if (formValue.reason) formData.append("reason", formValue.reason.trim());
-    if (this.selectedFile) {
-      formData.append(
-        "attachmentPath",
-        this.selectedFile.file,
-        this.selectedFile.file.name,
-      );
-    }
-
-    const requestPromise = this.id
-      ? this.apiResponseS.onPut(Endpoints.HR.LeaveRequest.update(this.id), formData)
-      : this.apiResponseS.onPost(Endpoints.HR.LeaveRequest.create, formData);
-
-    requestPromise
-      .then((result: boolean) => {
-        if (result) this.ref.close(true);
-      })
-      .finally(() => this.submitting.set(false));
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: this.id
+        ? Endpoints.HR.LeaveRequest.update(this.id)
+        : Endpoints.HR.LeaveRequest.create,
+      method: this.id ? "PUT" : "POST",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (formValue) => {
+        const formData = new FormData();
+        formData.append("leaveType", String(formValue.leaveType));
+        formData.append("startDate", this.formatDate(formValue.startDate));
+        formData.append("endDate", this.formatDate(formValue.endDate));
+        if (formValue.startTime)
+          formData.append("startTime", formValue.startTime);
+        if (formValue.endTime) formData.append("endTime", formValue.endTime);
+        if (formValue.reason)
+          formData.append("reason", formValue.reason.trim());
+        if (this.selectedFile) {
+          formData.append(
+            "attachmentPath",
+            this.selectedFile.file,
+            this.selectedFile.file.name,
+          );
+        }
+        return formData;
+      },
+    });
   }
 }
 
