@@ -1,5 +1,6 @@
 import { Component, inject, input, OnInit, signal } from "@angular/core";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { SelectModule } from "primeng/select";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
@@ -18,14 +19,20 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 export class AdministrationFormList implements OnInit {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
-  // Usar FormBuilder o simplemente FormControl
-  administrationparticipante = new FormControl<string | null>(null);
-
   customerId = input<string>();
   meetingId = input<any>();
 
   cb_Administration = signal<any[]>([]);
   listaParticipantesAdministration = signal<any[]>([]);
+  submitting = signal(false);
+
+  form = new FormGroup({
+    administrationparticipante: new FormControl<string | null>(null, [Validators.required]),
+  });
+
+  get administrationparticipante() {
+    return this.form.controls.administrationparticipante;
+  }
 
   ngOnInit(): void {
     this.onLoadCB();
@@ -41,18 +48,26 @@ export class AdministrationFormList implements OnInit {
     });
   }
 
-  onSubmit() {
-    if (!this.administrationparticipante.value) return;
-
+  async onSubmit() {
     const urlApi = `MeetingAdministracion/AgregarParticipantesAdministracion/${
       this.meetingId()
     }/${this.administrationparticipante.value}/${1}`;
 
-    this.apiResponseS.onPost(urlApi).then(() => {
+    const result = await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: urlApi,
+      method: "POST",
+      submitting: this.submitting,
+      closeOnSuccess: false,
+      transformPayload: () => ({}),
+    });
+
+    if (result) {
       this.onLoadData();
       this.onLoadCB();
       this.administrationparticipante.reset();
-    });
+    }
   }
 
   onDelete(idParticipant: number): void {

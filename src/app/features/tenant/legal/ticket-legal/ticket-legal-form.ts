@@ -13,6 +13,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TicketLegalSeguimiento } from "./ticket-legal-seguimiento";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 // ID del WorkGroup Legal global — constante de dominio
 const LEGAL_WORK_GROUP_ID = "019df32f-4945-71c5-8fd0-ab574ea412cd";
@@ -133,30 +134,29 @@ export class TicketLegalForm implements OnInit {
     );
   }
 
-  onSubmit(): void {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-    this.submitting.set(true);
-
-    const raw = this.form.getRawValue();
-    const formData = new FormData();
-    formData.append("ticketGroupId", raw.ticketGroupId);
-    formData.append("customerId", raw.customerId);
-    formData.append("creatorId", raw.creatorId);
-    formData.append("applicationUserId", raw.applicationUserId);
-    if (raw.assigneeId) formData.append("assigneeId", raw.assigneeId);
-    formData.append("title", raw.title);
-    formData.append("description", raw.description);
-    formData.append("priority", String(raw.priority));
-    if (raw.isInternal !== null) formData.append("isInternal", String(raw.isInternal));
-    formData.append("documentCloud", String(raw.documentCloud));
-    formData.append("documentEmail", String(raw.documentEmail));
-
-    const request = this.id === ""
-      ? this.apiResponseS.onPost(Endpoints.Tasks.create, formData)
-      : this.apiResponseS.onPut(Endpoints.Tasks.update(this.id), formData);
-
-    request.then((result: any) => {
-      result ? this.ref.close(true) : this.submitting.set(false);
+  async onSubmit(): Promise<void> {
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: this.id === "" ? Endpoints.Tasks.create : Endpoints.Tasks.update(this.id),
+      method: this.id === "" ? "POST" : "PUT",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (raw) => {
+        const formData = new FormData();
+        formData.append("ticketGroupId", raw.ticketGroupId);
+        formData.append("customerId", raw.customerId);
+        formData.append("creatorId", raw.creatorId);
+        formData.append("applicationUserId", raw.applicationUserId);
+        if (raw.assigneeId) formData.append("assigneeId", raw.assigneeId);
+        formData.append("title", raw.title);
+        formData.append("description", raw.description);
+        formData.append("priority", String(raw.priority));
+        if (raw.isInternal !== null) formData.append("isInternal", String(raw.isInternal));
+        formData.append("documentCloud", String(raw.documentCloud));
+        formData.append("documentEmail", String(raw.documentEmail));
+        return formData;
+      },
     });
   }
 }

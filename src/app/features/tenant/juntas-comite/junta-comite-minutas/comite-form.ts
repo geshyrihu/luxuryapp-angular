@@ -1,5 +1,6 @@
 import { Component, inject, input, OnInit, signal } from "@angular/core";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { SelectModule } from "primeng/select";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
@@ -23,8 +24,16 @@ export class ComiteForm implements OnInit {
   customerId = input<string>();
   meetingId = input<any>();
   cb_ParticipantComite = signal<any[]>([]);
-  comiteparticipante = new FormControl<string | null>(null);
   listaParticipantesComite = signal<any[]>([]);
+  submitting = signal(false);
+
+  form = new FormGroup({
+    comiteparticipante: new FormControl<string | null>(null, [Validators.required]),
+  });
+
+  get comiteparticipante() {
+    return this.form.controls.comiteparticipante;
+  }
 
   ngOnInit(): void {
     this.onLoadCB();
@@ -40,15 +49,23 @@ export class ComiteForm implements OnInit {
     });
   }
 
-  onSubmit() {
-    if (!this.comiteparticipante.value) return;
-
+  async onSubmit() {
     const urlApi = `MeetingComite/AgregarParticipantesComite/${this.meetingId()}/${this.comiteparticipante.value}`;
-    this.apiResponseS.onPost(urlApi).then(() => {
+    const result = await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: urlApi,
+      method: "POST",
+      submitting: this.submitting,
+      closeOnSuccess: false,
+      transformPayload: () => ({}),
+    });
+
+    if (result) {
       this.onLoadData();
       this.onLoadCB();
       this.comiteparticipante.reset();
-    });
+    }
   }
 
   onDelete(idParticipant: number): void {

@@ -10,6 +10,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface ILegalEditarForm {
   id: FormControl<string>;
@@ -108,25 +109,28 @@ export class TicketLegalEditar implements OnInit {
     this.form.patchValue({ assigneeId: String(item?.value), assignee: item?.label });
   };
 
-  onSubmit(): void {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-    this.submitting.set(true);
-
-    const raw = this.form.getRawValue();
-    const formData = new FormData();
-    formData.append("ticketGroupId", raw.ticketGroupId);
-    formData.append("customerId", raw.customerId);
-    formData.append("creatorId", raw.creatorId);
-    formData.append("applicationUserId", raw.applicationUserId);
-    formData.append("title", raw.title);
-    formData.append("description", raw.description);
-    formData.append("priority", String(raw.priority));
-    formData.append("documentCloud", String(raw.documentCloud));
-    formData.append("documentEmail", String(raw.documentEmail));
-    if (raw.assigneeId) formData.append("assigneeId", raw.assigneeId);
-
-    this.apiResponseS.onPut(Endpoints.Tasks.update(this.id), formData).then((result: any) => {
-      result ? this.ref.close(true) : this.submitting.set(false);
+  async onSubmit(): Promise<void> {
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.Tasks.update(this.id),
+      method: "PUT",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (raw) => {
+        const formData = new FormData();
+        formData.append("ticketGroupId", raw.ticketGroupId);
+        formData.append("customerId", raw.customerId);
+        formData.append("creatorId", raw.creatorId);
+        formData.append("applicationUserId", raw.applicationUserId);
+        formData.append("title", raw.title);
+        formData.append("description", raw.description);
+        formData.append("priority", String(raw.priority));
+        formData.append("documentCloud", String(raw.documentCloud));
+        formData.append("documentEmail", String(raw.documentEmail));
+        if (raw.assigneeId) formData.append("assigneeId", raw.assigneeId);
+        return formData;
+      },
     });
   }
 }

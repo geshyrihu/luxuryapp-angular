@@ -22,6 +22,7 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-ticket-legal-seguimiento",
@@ -94,18 +95,25 @@ export class TicketLegalSeguimiento implements OnInit, OnDestroy {
       });
   }
 
-  onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-    this.submitting.set(true);
+  async onSubmit() {
+    const result = await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.TaskFollowUps.create,
+      method: "POST",
+      submitting: this.submitting,
+      closeOnSuccess: false,
+      transformPayload: (raw) => {
+        const { id, ...dto } = raw;
+        return dto;
+      },
+    });
 
-    const { id, ...dto } = this.form.getRawValue();
-
-    this.apiResponseS.onPost(Endpoints.TaskFollowUps.create, dto).then(() => {
+    if (result) {
       this.onCargaListaseguimientos();
       this.form.controls.description.setValue("");
       this.onCreateItem = true;
-      this.submitting.set(false);
-    });
+    }
   }
 
   ngOnDestroy(): void {

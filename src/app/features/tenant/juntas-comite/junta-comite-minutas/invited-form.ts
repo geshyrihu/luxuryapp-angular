@@ -1,5 +1,6 @@
 import { Component, inject, input, OnInit, signal } from "@angular/core";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
@@ -24,20 +25,36 @@ export class InvitedForm implements OnInit {
   meetingId = input<any>();
 
   listaInvitados = signal<any[]>([]);
-  invitado = new FormControl<string | null>(null);
+  submitting = signal(false);
+
+  form = new FormGroup({
+    invitado: new FormControl<string | null>(null, [Validators.required]),
+  });
+
+  get invitado() {
+    return this.form.controls.invitado;
+  }
 
   ngOnInit(): void {
     this.onLoadData();
   }
 
-  onSubmit() {
-    if (!this.invitado.value) return;
-
+  async onSubmit() {
     const urlApi = `MeetingInvitado/AgregarParticipantesInvitado/${this.meetingId()}/${this.invitado.value}`;
-    this.apiResponseS.onPost(urlApi).then(() => {
+    const result = await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: urlApi,
+      method: "POST",
+      submitting: this.submitting,
+      closeOnSuccess: false,
+      transformPayload: () => ({}),
+    });
+
+    if (result) {
       this.onLoadData();
       this.invitado.reset();
-    });
+    }
   }
 
   onDelete(idParticipant: number): void {
