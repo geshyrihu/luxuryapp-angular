@@ -9,8 +9,8 @@ export const logbookRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Ã“rdenes de Mantenimiento", // Corregido
-      breadcrumb: "Ã“rdenes de Mantenimiento",
+      title: "Órdenes de Mantenimiento", // Corregido
+      breadcrumb: "Órdenes de Mantenimiento",
     },
   },
   {
@@ -21,8 +21,8 @@ export const logbookRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Ãreas de InspecciÃ³n", // Corregido
-      breadcrumb: "Ãreas de InspecciÃ³n",
+      title: "Áreas de Inspección", // Corregido
+      breadcrumb: "Áreas de Inspección",
     },
   },
   {
@@ -33,8 +33,8 @@ export const logbookRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "BitÃ¡cora de Piscinas", // Mejorado
-      breadcrumb: "BitÃ¡cora de Piscinas",
+      title: "Bitácora de Piscinas", // Mejorado
+      breadcrumb: "Bitácora de Piscinas",
     },
   },
   {
@@ -46,8 +46,8 @@ export const logbookRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Registro de BitÃ¡cora de Piscina", // Mejorado para ser mÃ¡s especÃ­fico
-      breadcrumb: "Registro de BitÃ¡cora de Piscina",
+      title: "Registro de Bitácora de Piscina", // Mejorado para ser más específico
+      breadcrumb: "Registro de Bitácora de Piscina",
     },
   },
   {
@@ -84,8 +84,8 @@ export const logbookRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "GrÃ¡fico de Lectura",
-      breadcrumb: "GrÃ¡fico de Lectura",
+      title: "Gráfico de Lectura",
+      breadcrumb: "Gráfico de Lectura",
     },
   },
   {
@@ -96,7 +96,7 @@ export const logbookRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Cambio de Refacciones de Elevador", // Mejorado para ser mÃ¡s especÃ­fico
+      title: "Cambio de Refacciones de Elevador", // Mejorado para ser más específico
       breadcrumb: "Cambio de Refacciones de Elevador",
     },
   },
@@ -108,7 +108,7 @@ export const logbookRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Llamados de Emergencia de Elevador", // Mejorado para ser mÃ¡s especÃ­fico
+      title: "Llamados de Emergencia de Elevador", // Mejorado para ser más específico
       breadcrumb: "Llamados de Emergencia de Elevador",
     },
   },
@@ -120,8 +120,8 @@ export const logbookRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Ejecutar InspecciÃ³n", // Corregido, el tÃ­tulo anterior era incorrecto
-      breadcrumb: "Ejecutar InspecciÃ³n",
+      title: "Ejecutar Inspección", // Corregido, el título anterior era incorrecto
+      breadcrumb: "Ejecutar Inspección",
     },
   },
   {

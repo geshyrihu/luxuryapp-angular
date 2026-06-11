@@ -22,6 +22,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IEmployeeExternalForm {
   firstName: FormControl<string>;
@@ -160,25 +161,17 @@ export class EmployeeExternalForm implements OnInit {
     });
   };
 
-  onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-    this.submitting.set(true);
-
-    const modelData = this.createFormData(this.form.value);
-
-    console.log(
-      "🚀 ~ EmployeeExternalForm ~ onSubmit ~ this.userId:",
-      this.userId,
-    );
-    const request = !this.userId
-      ? this.apiResponseS.onPost(Endpoints.EmployeeExternal.create, modelData)
-      : this.apiResponseS.onPut(
-          Endpoints.EmployeeExternal.update(this.userId),
-          modelData,
-        );
-
-    request.then((result: boolean) => {
-      result ? this.ref.close(true) : this.submitting.set(false);
+  async onSubmit() {
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: !this.userId
+        ? Endpoints.EmployeeExternal.create
+        : Endpoints.EmployeeExternal.update(this.userId),
+      method: !this.userId ? "POST" : "PUT",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (val) => this.createFormData(val),
     });
   }
 

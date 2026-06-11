@@ -39,7 +39,7 @@ import { FundingDetailDTO } from "src/app/features/tenant/funding/model/funding-
 export class FundingAccountingDetail {
   routeActive = inject(ActivatedRoute);
   dialogHandlerS = inject(DialogHandlerService);
-  destroyRef = inject(DestroyRef); // Para la limpieza automÃ³tica de suscripciones.
+  destroyRef = inject(DestroyRef); // Para la limpieza automótica de suscripciones.
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
   signalRS = inject(SignalRService);
@@ -67,7 +67,7 @@ export class FundingAccountingDetail {
   private routeParamsSignal = toSignal(this.routeActive.params);
 
   constructor() {
-    // Efecto reactivo: cuando el customerId estÃ³ listo y cargado, carga los datos
+    // Efecto reactivo: cuando el customerId estó listo y cargado, carga los datos
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       const isLoaded = this.customerIdS.customerDataReady();
@@ -198,8 +198,8 @@ export class FundingAccountingDetail {
 
   /**
    * Se dispara cuando el usuario cambia el estado de pago de una orden.
-   * Llama a la API usando el nuevo mÃ³todo onPatch para persistir el cambio.
-   * @param orden El objeto completo de la fila que se estÃ³ modificando.
+   * Llama a la API usando el nuevo mótodo onPatch para persistir el cambio.
+   * @param orden El objeto completo de la fila que se estó modificando.
    */
   onPaymentStatusChange(orden: any): void {
     const nuevoEstado = orden.ordenCompraPagadaControl.value;
@@ -209,19 +209,19 @@ export class FundingAccountingDetail {
       `? Actualizando estado de pago para OC ID: ${ordenId} a: ${nuevoEstado}`,
     );
 
-    // 1. Preparamos la URL y el cuerpo (body) para la peticiÃ³n PATCH.
+    // 1. Preparamos la URL y el cuerpo (body) para la petición PATCH.
     const urlApi = `funding/update-purchase-paid-status/${ordenId}`;
     const body = { isPaid: nuevoEstado };
 
-    // 2. Llamamos a nuestro nuevo y flamante mÃ³todo onPatch.
-    //    Tu servicio ya se encarga de los toasts de carga y Ã³xito/error.
+    // 2. Llamamos a nuestro nuevo y flamante mótodo onPatch.
+    //    Tu servicio ya se encarga de los toasts de carga y óxito/error.
     this.apiResponseS.onPatch(urlApi, body).then((success) => {
-      // 3. Manejamos el caso de error. Si la API falla, 'success' serÃ³ false.
+      // 3. Manejamos el caso de error. Si la API falla, 'success' seró false.
       if (!success) {
-        // Ã³CRÃ³TICO! Si la actualizaciÃ³n fallÃ³ en el backend,
+        // óCRóTICO! Si la actualización falló en el backend,
         // revertimos el cambio en la UI para que no mienta al usuario.
         console.error(
-          `FallÃ³ la actualizaciÃ³n para la OC ${ordenId}. Revertiendo el cambio en la UI.`,
+          `Falló la actualización para la OC ${ordenId}. Revertiendo el cambio en la UI.`,
         );
         orden.ordenCompraPagadaControl.setValue(!nuevoEstado, {
           emitEvent: false,

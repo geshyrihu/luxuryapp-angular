@@ -10,7 +10,7 @@ export const maintenanceRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Calendario Anual de Mantenimiento", // Mejorado para ser mÃ¡s especÃ­fico
+      title: "Calendario Anual de Mantenimiento", // Mejorado para ser más específico
       breadcrumb: "Calendario Anual de Mantenimiento",
     },
   },

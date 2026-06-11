@@ -21,6 +21,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IPolicyContractForm {
   id: FormControl<string | null>;
@@ -196,21 +197,17 @@ export class PolicyContractForm implements OnInit {
     this.onEndDateIndefiniteChange();
   }
 
-  submit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    const formData = this.createModel(this.form);
-    this.submitting.set(true);
-
-    const request = !this.id()
-      ? this.apiResponseS.onPost(Endpoints.PolicyContracts.create, formData)
-      : this.apiResponseS.onPut(
-          Endpoints.PolicyContracts.update(this.id()),
-          formData,
-        );
-
-    request.then((result: boolean) => {
-      result ? this.ref.close(true) : this.submitting.set(false);
+  async submit() {
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: !this.id()
+        ? Endpoints.PolicyContracts.create
+        : Endpoints.PolicyContracts.update(this.id()),
+      method: !this.id() ? "POST" : "PUT",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => this.createModel(this.form),
     });
   }
 

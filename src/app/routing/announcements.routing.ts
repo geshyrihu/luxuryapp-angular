@@ -50,8 +50,8 @@ export const announcementsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "AnÃ¡lisis de vistas",
-      breadcrumb: "AnÃ¡lisis de vistas",
+      title: "Análisis de vistas",
+      breadcrumb: "Análisis de vistas",
     },
   },
 ];

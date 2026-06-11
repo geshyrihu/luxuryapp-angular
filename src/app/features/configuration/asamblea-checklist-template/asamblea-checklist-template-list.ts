@@ -20,8 +20,8 @@ import {
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { IAsambleaChecklistTemplateDTO } from "./asamblea-checklist-template.dto";
 import { AsambleaChecklistTemplateForm } from "./asamblea-checklist-template-form";
+import { IAsambleaChecklistTemplateDTO } from "./asamblea-checklist-template.dto";
 
 @Component({
   selector: "app-asamblea-checklist-template-list",
@@ -64,9 +64,9 @@ export class AsambleaChecklistTemplateList implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList<IAsambleaChecklistTemplateDTO[]>(
-        Endpoints.AsambleaChecklistTemplate.getAll,
-      )
+      .onGetList<
+        IAsambleaChecklistTemplateDTO[]
+      >(Endpoints.AsambleaChecklistTemplate.getAll)
       .then((result) => {
         if (result) {
           this.dataSignal.set(result);

@@ -24,7 +24,7 @@ export const libraryRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Informe Financiero", // Ajustado a mayÃºsculas
+      title: "Informe Financiero", // Ajustado a mayúsculas
       breadcrumb: "Informe Financiero",
     },
   },
@@ -61,8 +61,8 @@ export const libraryRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "GuÃ­a del MÃ³dulo",
-      breadcrumb: "GuÃ­a",
+      title: "Guía del Módulo",
+      breadcrumb: "Guía",
     },
   },
   {
@@ -109,8 +109,8 @@ export const libraryRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Contratos y PÃ³lizas",
-      breadcrumb: "Contratos y PÃ³lizas",
+      title: "Contratos y Pólizas",
+      breadcrumb: "Contratos y Pólizas",
     },
   },
 
@@ -122,8 +122,8 @@ export const libraryRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Vista de Contratos y PÃ³lizas", // Ajustado para diferenciar de la ruta anterior
-      breadcrumb: "Vista de Contratos y PÃ³lizas",
+      title: "Vista de Contratos y Pólizas", // Ajustado para diferenciar de la ruta anterior
+      breadcrumb: "Vista de Contratos y Pólizas",
     },
   },
 
@@ -159,8 +159,8 @@ export const libraryRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "ConcesiÃ³n Barranca",
-      breadcrumb: "ConcesiÃ³n Barranca",
+      title: "Concesión Barranca",
+      breadcrumb: "Concesión Barranca",
       documentType: EDocumentType.ConcesionBarranca,
     },
   },
@@ -172,8 +172,8 @@ export const libraryRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "ConcesiÃ³n Pozo",
-      breadcrumb: "ConcesiÃ³n Pozo",
+      title: "Concesión Pozo",
+      breadcrumb: "Concesión Pozo",
       documentType: EDocumentType.ConcesionPozo,
     },
   },
@@ -198,8 +198,8 @@ export const libraryRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Inventario de IluminaciÃ³n", // Ajustado para mayor claridad
-      breadcrumb: "Inventario de IluminaciÃ³n",
+      title: "Inventario de Iluminación", // Ajustado para mayor claridad
+      breadcrumb: "Inventario de Iluminación",
     },
   },
 ];

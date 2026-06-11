@@ -1,12 +1,12 @@
 ﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 import { documentTypeRoutesConfig } from "../legal/models/documentTypeRoutesConfig";
-// DefiniciÃ³n del componente de detalle para reutilizar
+// Definición del componente de detalle para reutilizar
 const CustomDocumentList = () =>
   import("src/app/features/tenant/committee/board-directors-library/biblioteca-consejo-directivo-detalle").then(
     (m) => m.BibliotecaConsejoDirectivoDetalle,
   );
-// GeneraciÃ³n de rutas de documentos
+// Generación de rutas de documentos
 const documentRoutes: Routes = documentTypeRoutesConfig.map((config) => ({
   path: config.routeParam,
   loadComponent: CustomDocumentList,
@@ -18,7 +18,7 @@ const documentRoutes: Routes = documentTypeRoutesConfig.map((config) => ({
   },
 }));
 
-// Rutas principales del comitÃ©
+// Rutas principales del comité
 export const committeeRoutes: Routes = [
   {
     path: "",
@@ -26,7 +26,7 @@ export const committeeRoutes: Routes = [
       import("./home-committee/home-comite").then((m) => m.HomeComite),
     canActivate: [authGuard],
     data: {
-      title: "Inicio ComitÃ©",
+      title: "Inicio Comité",
       breadcrumb: "Inicio",
     },
   },

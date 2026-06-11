@@ -9,17 +9,17 @@ import { LayoutCommittee } from "./layout/committee-view/layout-committee";
 import { LayoutDireccion } from "./layout/direccion-view/layout-direccion";
 import { LayoutEmployee } from "./layout/employee-view/layout-employee";
 /**
- * Rutas Principales de la AplicaciÃ³n: El Gran Distribuidor ðŸš¦
+ * Rutas Principales de la Aplicación: El Gran Distribuidor ðŸš¦
  *
- * Este es el mapa maestro de la aplicaciÃ³n. AquÃ­ se decide a dÃ³nde va el usuario
- * basÃ¡ndose en la URL y su estado de autenticaciÃ³n.
+ * Este es el mapa maestro de la aplicación. Aquí se decide a dónde va el usuario
+ * basándose en la URL y su estado de autenticación.
  *
  * El Flujo es el siguiente:
- *   1. Rutas pÃºblicas como `auth` y `publico` son de libre acceso. Sin guardias, sin problemas.
- *   2. La ruta raÃ­z (`''`) es la mÃ¡s inteligente. Primero, el `AuthGuard` te pide tus credenciales (Â¿estÃ¡s en la lista?).
+ *   1. Rutas públicas como `auth` y `publico` son de libre acceso. Sin guardias, sin problemas.
+ *   2. La ruta raíz (`''`) es la más inteligente. Primero, el `AuthGuard` te pide tus credenciales (¿estás en la lista?).
  *      Luego, el `roleRedirectGuard` (el portero) te mira de arriba abajo y te manda al layout que te corresponde.
  *   3. La ruta `/app` es el contenedor de las zonas privadas. Dentro de ella, se decide si se carga el `FullLayoutComponent`
- *      (la fiesta para empleados) o el `MinimalLayoutComponent` (la sala de juntas para el comitÃ©).
+ *      (la fiesta para empleados) o el `MinimalLayoutComponent` (la sala de juntas para el comité).
  *   4. Cada layout tiene sus propias rutas hijas (`loadChildren`), manteniendo todo ordenado y modular.
  */
 export const appRoutes: Routes = [
@@ -40,7 +40,7 @@ export const appRoutes: Routes = [
         (m) => m.Offline,
       ),
     data: {
-      title: "Sin ConexiÃ³n",
+      title: "Sin Conexión",
     },
   },
   {
@@ -62,17 +62,17 @@ export const appRoutes: Routes = [
         (m) => m.Page404,
       ),
     data: {
-      title: "PÃ¡gina No Encontrada",
+      title: "Página No Encontrada",
     },
   },
 
-  // --- El CorazÃ³n de la RedirecciÃ³n --- //
+  // --- El Corazón de la Redirección --- //
   {
     path: "",
     pathMatch: "full",
     canActivate: [authGuard, roleRedirectGuard],
-    // Este componente nunca se renderiza, porque el guardiÃ¡n SIEMPRE redirige.
-    // Es solo un peÃ³n en el juego del enrutamiento. â™Ÿï¸
+    // Este componente nunca se renderiza, porque el guardián SIEMPRE redirige.
+    // Es solo un peón en el juego del enrutamiento. â™Ÿï¸
     component: Loader, // Un componente cualquiera y ligero
   },
 
@@ -99,8 +99,8 @@ export const appRoutes: Routes = [
   },
 
   // --- Rutas de Empleado (Full Layout) ---
-  // Esta serÃ¡ la ruta por defecto para usuarios no-comitÃ©.
-  // Captura la raÃ­z y todas las demÃ¡s rutas (dashboard, home, etc.) definidas en pages.routing.
+  // Esta será la ruta por defecto para usuarios no-comité.
+  // Captura la raíz y todas las demás rutas (dashboard, home, etc.) definidas en pages.routing.
   {
     path: "",
     component: LayoutEmployee,
@@ -109,8 +109,8 @@ export const appRoutes: Routes = [
       import("src/app/routing/pages.routing").then((m) => m.pagesRoutes),
   },
 
-  // --- Wildcard Route (Captura todo lo demÃ¡s) ---
-  // IMPORTANTE: Debe ser SIEMPRE la Ãºltima ruta.
+  // --- Wildcard Route (Captura todo lo demás) ---
+  // IMPORTANTE: Debe ser SIEMPRE la última ruta.
   {
     path: "**",
     redirectTo: "page404",

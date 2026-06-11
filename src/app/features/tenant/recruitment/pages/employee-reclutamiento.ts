@@ -85,7 +85,7 @@ export class EmployeeReclutamiento implements OnInit {
         {
           workPositionId: this.employeeId(),
         },
-        "Solicitud de ModificaciÃ³n de salario",
+        "Solicitud de Modificación de salario",
         this.dialogHandlerS.sizeFull,
       )
       .then((result: boolean) => {

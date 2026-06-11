@@ -58,7 +58,7 @@ import { FichaTecnicaActivo } from "src/app/features/tenant/machinery/ficha-tecn
 import { ServiceHistoryMachinery } from "src/app/features/tenant/machinery/service-history-machinery";
 import { BitacoraIndividual } from "src/app/features/tenant/maintenance-log/bitacora-individual";
 import { CalendarioMaestroReadonly } from "src/app/features/tenant/maintenance-calendar-master/calendario-maestro-readonly";
-// ... el resto de las importaciones de componentes y mÃ³dulos ...
+// ... el resto de las importaciones de componentes y módulos ...
 // ...
 
 // Interfaz para seguridad de tipos
@@ -137,7 +137,7 @@ export class EquiposList {
   calendarioGuiaVisible = signal(false);
   public AspRole = EApplicationRole;
 
-  // Ã³CAMBIO CLAVE! La categorÃ³a ahora es un signal interno.
+  // óCAMBIO CLAVE! La categoróa ahora es un signal interno.
   inventoryCategoryId = signal<number>(1);
 
   categories = [
@@ -157,7 +157,7 @@ export class EquiposList {
 
     // Manejo de valores undefined/0
     if (!categoryId || categoryId === 0) {
-      return "Equipos"; // TÃ­tulo por defecto
+      return "Equipos"; // Título por defecto
     }
 
     switch (categoryId) {
@@ -214,7 +214,7 @@ export class EquiposList {
       const categoryId = this.inventoryCategoryId();
       const state = this.stateFilter();
 
-      // ValidaciÃ³n mÃ³s estricta para evitar llamadas con valores invÃ³lidos
+      // Validación mós estricta para evitar llamadas con valores invólidos
       if (customerId && categoryId && categoryId > 0) {
         this.onLoadData(customerId, categoryId, state);
       }
@@ -294,7 +294,7 @@ export class EquiposList {
       // Group by system
       const groups = sortedData.reduce(
         (acc, item) => {
-          const system = item.equipoClasificacion || "SIN CLASIFICACIÃ“N";
+          const system = item.equipoClasificacion || "SIN CLASIFICACIÓN";
           if (!acc[system]) acc[system] = [];
           acc[system].push(item);
           return acc;
@@ -325,7 +325,7 @@ export class EquiposList {
               </td>
               <td style="background-color: ${bg}; padding: 10px; vertical-align: top;">
                 <div style="font-size: 14px; font-weight: bold; color: #333; margin-bottom: 4px;">${this.htmlPrintS.esc(item.nameMachinery || "Sin Nombre")}</div>
-                <div style="margin-bottom: 4px;"><span style="font-weight: bold;">UbicaciÃ³n:</span> ${this.htmlPrintS.esc(item.ubication || "N/A")}</div>
+                <div style="margin-bottom: 4px;"><span style="font-weight: bold;">Ubicación:</span> ${this.htmlPrintS.esc(item.ubication || "N/A")}</div>
                 <table style="width: 100%; border: none;">
                   <tr>
                     <td style="border: none; padding: 0;"><span style="font-weight: bold;">Marca:</span> ${this.htmlPrintS.esc(item.brand || "N/A")}</td>
@@ -383,7 +383,7 @@ ${this.htmlPrintS.getStandardCss()}
 
   // --- MANEJADORES DE EVENTOS (Refactorizados) ---
   onSelectState(value: number): void {
-    // Ã³CAMBIO! Solo actualizamos el signal. El `effect` se encarga del resto.
+    // óCAMBIO! Solo actualizamos el signal. El `effect` se encarga del resto.
     this.stateFilter.set(value);
   }
 
@@ -401,7 +401,7 @@ ${this.htmlPrintS.getStandardCss()}
     );
   }
 
-  // --- MÃ³TODOS DE MODALES (LÃ³gica de recarga actualizada) ---
+  // --- MóTODOS DE MODALES (Lógica de recarga actualizada) ---
   // Actualizamos las llamadas a onLoadData para que usen los valores actuales de los signals.
   private reloadDataAfterDialog(result: any) {
     if (result) {
@@ -418,7 +418,7 @@ ${this.htmlPrintS.getStandardCss()}
       .openDialog(
         FichaTecnicaActivo,
         data,
-        "Ficha TÃ©cnica",
+        "Ficha Técnica",
         this.dialogHandlerS.sizeFull,
       )
       .then((result) => this.reloadDataAfterDialog(result));
@@ -430,7 +430,7 @@ ${this.htmlPrintS.getStandardCss()}
         ActivosForm,
         {
           id: data.id,
-          paramId: this.inventoryCategoryId(), // Ahora captura correctamente el parÃ³metro categorÃ³a
+          paramId: this.inventoryCategoryId(), // Ahora captura correctamente el parómetro categoróa
           inventoryCategory: data.inventoryCategory,
         },
         data.title,

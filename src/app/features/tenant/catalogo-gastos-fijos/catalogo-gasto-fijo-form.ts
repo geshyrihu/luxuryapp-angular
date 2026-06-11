@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -32,6 +32,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { GastoFijoPresupuesto } from "src/app/features/tenant/expense-catalog-budget/gasto-fijo-presupuesto";
 import { GastoFijoServicios } from "src/app/features/tenant/expense-catalog-detail/gasto-fijo-servicios";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface ICatalogoGastoFijoForm {
   id: FormControl<string>;
@@ -67,7 +68,7 @@ interface ICatalogoGastoFijoForm {
   ],
 })
 export class CatalogoGastoFijoForm implements OnInit {
-  // InyecciÃ³n de dependencias
+  // Inyección de dependencias
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
@@ -177,7 +178,7 @@ export class CatalogoGastoFijoForm implements OnInit {
       formaDePagoId: result.formaDePagoId ? String(result.formaDePagoId) : null,
     });
 
-    // Mapear colecciones segÃ³n el DTO: CatalogoGastosFijosDTO
+    // Mapear colecciones segón el DTO: CatalogoGastosFijosDTO
     this.detalles.set(result.detalles || []);
     this.budgets.set(result.presupuesto || []);
   }
@@ -198,44 +199,41 @@ export class CatalogoGastoFijoForm implements OnInit {
     this.cb_providers.set((providers as ISelectItem[]) || []);
   }
 
-  onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
+  async onSubmit() {
+    const result: any = await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "CatalogoGastosFijos",
+      id: this.id() || "",
+      submitting: this.submitting,
+      closeOnSuccess: false,
+      transformPayload: (formValue) => {
+        const payload = {
+          ...formValue,
+          idFondeo: Number(formValue.idFondeo),
+          quincena: Number(formValue.quincena),
+        };
 
-    this.submitting.set(true);
-    const formValue = this.form.getRawValue();
+        delete (payload as any).providerName;
 
-    // Construir payload limpio para el DTO de C#
-    const payload = {
-      ...formValue,
-      idFondeo: Number(formValue.idFondeo),
-      quincena: Number(formValue.quincena),
-    };
-
-    // Eliminar propiedades visuales o que causan error de mapeo (Guid no nulable)
-    delete (payload as any).providerName;
-
-    if (!this.id()) {
-      delete (payload as any).id; // No enviar ID si es nuevo
-    } else {
-      payload.id = this.id();
-    }
-
-    const request = !this.id()
-      ? this.apiResponseS.onPost(`CatalogoGastosFijos`, payload)
-      : this.apiResponseS.onPut(`CatalogoGastosFijos/${this.id()}`, payload);
-
-    request.then((result: any) => {
-      if (result) {
-        if (!this.id() && result.id) {
-          this.id.set(String(result.id));
+        if (!this.id()) {
+          delete (payload as any).id;
+        } else {
+          payload.id = this.id();
         }
-        this.onLoadData();
-      }
-      this.submitting.set(false);
+        return payload;
+      },
     });
+
+    if (result) {
+      if (!this.id() && result?.id) {
+        this.id.set(String(result.id));
+      }
+      this.onLoadData();
+    }
   }
 
-  // GestiÃ³n de la lista de Presupuesto
+  // Gestión de la lista de Presupuesto
   onAddOrEditBudget() {
     this.dialogHandlerS
       .openDialog(
@@ -251,7 +249,7 @@ export class CatalogoGastoFijoForm implements OnInit {
       });
   }
 
-  // GestiÃ³n de la lista de Detalles/Productos
+  // Gestión de la lista de Detalles/Productos
   onAddOrEditDetail() {
     this.dialogHandlerS
       .openDialog(
@@ -313,7 +311,7 @@ export interface CatalogoGastosFijosDetalleAddOrEditDTO {
   cantidad: number;
   unidadMedidaid: any;
   precio: number;
-  // Campos adicionales para visualizaciÃ³n
+  // Campos adicionales para visualización
   productoDescription?: string;
 }
 

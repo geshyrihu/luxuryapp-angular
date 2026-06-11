@@ -21,8 +21,8 @@ export const supervisionRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Agenda de SupervisiÃ³n",
-      breadcrumb: "Agenda de SupervisiÃ³n",
+      title: "Agenda de Supervisión",
+      breadcrumb: "Agenda de Supervisión",
     },
   },
   {
@@ -58,8 +58,8 @@ export const supervisionRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "GrÃ¡fico de Resultado General", // Mejorado para mayor claridad
-      breadcrumb: "GrÃ¡fico de Resultado General",
+      title: "Gráfico de Resultado General", // Mejorado para mayor claridad
+      breadcrumb: "Gráfico de Resultado General",
     },
   },
   {
@@ -71,8 +71,8 @@ export const supervisionRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Resultado General por PosiciÃ³n",
-      breadcrumb: "Resultado General por PosiciÃ³n",
+      title: "Resultado General por Posición",
+      breadcrumb: "Resultado General por Posición",
     },
   },
   {
@@ -83,8 +83,8 @@ export const supervisionRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "EvaluaciÃ³n de Ãreas",
-      breadcrumb: "EvaluaciÃ³n de Ãreas",
+      title: "Evaluación de Áreas",
+      breadcrumb: "Evaluación de Áreas",
     },
   },
   {
@@ -107,8 +107,8 @@ export const supervisionRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Reporte de SupervisiÃ³n",
-      breadcrumb: "Reporte de SupervisiÃ³n",
+      title: "Reporte de Supervisión",
+      breadcrumb: "Reporte de Supervisión",
     },
   },
   {
@@ -120,8 +120,8 @@ export const supervisionRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Presentaciones de Juntas de ComitÃ©", // Ajustado para mayor claridad
-      breadcrumb: "Presentaciones de Juntas de ComitÃ©",
+      title: "Presentaciones de Juntas de Comité", // Ajustado para mayor claridad
+      breadcrumb: "Presentaciones de Juntas de Comité",
     },
   },
 ];

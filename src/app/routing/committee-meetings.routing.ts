@@ -58,8 +58,8 @@ export const committeeMeetingsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "GestiÃ³n de Minuta",
-      breadcrumb: "GestiÃ³n de Minuta",
+      title: "Gestión de Minuta",
+      breadcrumb: "Gestión de Minuta",
     },
   },
   {

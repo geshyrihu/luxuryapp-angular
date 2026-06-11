@@ -21,8 +21,8 @@ export const inventoriesRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Equipos por CategorÃ­a",
-      breadcrumb: "Equipos por CategorÃ­a",
+      title: "Equipos por Categoría",
+      breadcrumb: "Equipos por Categoría",
     },
   },
   {
@@ -97,8 +97,8 @@ export const inventoriesRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Radios de ComunicaciÃ³n", // Ajustado para ser mÃ¡s descriptivo
-      breadcrumb: "Radios de ComunicaciÃ³n",
+      title: "Radios de Comunicación", // Ajustado para ser más descriptivo
+      breadcrumb: "Radios de Comunicación",
     },
   },
   {
@@ -110,8 +110,8 @@ export const inventoriesRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "CÃ©dula Anual de Mantenimientos",
-      breadcrumb: "CÃ©dula Anual de Mantenimientos",
+      title: "Cédula Anual de Mantenimientos",
+      breadcrumb: "Cédula Anual de Mantenimientos",
     },
   },
   {
@@ -134,7 +134,7 @@ export const inventoriesRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Grupos de Extintores", // Ajustado para sonar mÃ¡s natural
+      title: "Grupos de Extintores", // Ajustado para sonar más natural
       breadcrumb: "Grupos de Extintores",
     },
   },

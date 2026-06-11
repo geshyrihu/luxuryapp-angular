@@ -9,7 +9,7 @@ export const ticketsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Grupos de Trabajo", // Ajustado a mayÃºsculas
+      title: "Grupos de Trabajo", // Ajustado a mayúsculas
       breadcrumb: "Grupos de Trabajo",
     },
   },
@@ -21,7 +21,7 @@ export const ticketsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Mis Asignaciones", // Ajustado a mayÃºsculas
+      title: "Mis Asignaciones", // Ajustado a mayúsculas
       breadcrumb: "Mis Asignaciones",
     },
   },
@@ -33,7 +33,7 @@ export const ticketsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Mis Solicitudes", // Ajustado a mayÃºsculas
+      title: "Mis Solicitudes", // Ajustado a mayúsculas
       breadcrumb: "Mis Solicitudes",
     },
   },
@@ -45,7 +45,7 @@ export const ticketsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Listado de Tickets", // Mejorado para ser mÃ¡s especÃ­fico
+      title: "Listado de Tickets", // Mejorado para ser más específico
       breadcrumb: "Listado de Tickets",
     },
   },
@@ -69,7 +69,7 @@ export const ticketsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Detalle del Ticket", // Mejorado para ser mÃ¡s especÃ­fico
+      title: "Detalle del Ticket", // Mejorado para ser más específico
       breadcrumb: "Detalle del Ticket",
     },
   },
@@ -81,7 +81,7 @@ export const ticketsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Reportes de Tickets", // Mejorado para ser mÃ¡s especÃ­fico
+      title: "Reportes de Tickets", // Mejorado para ser más específico
       breadcrumb: "Reportes de Tickets",
     },
   },

@@ -33,8 +33,8 @@ export const recurringTasksRoutes: Routes = [
       ).then((m) => m.CustomerConfig),
     canActivate: [authGuard],
     data: {
-      title: "ConfiguraciÃ³n por Cliente",
-      breadcrumb: "ConfiguraciÃ³n",
+      title: "Configuración por Cliente",
+      breadcrumb: "Configuración",
     },
   },
   {

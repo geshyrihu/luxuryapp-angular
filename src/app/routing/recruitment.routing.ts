@@ -58,8 +58,8 @@ export const recruitmentRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Estatus de Solicitud de ModificaciÃ³n de Salario", // Mejorado para mayor claridad
-      breadcrumb: "Estatus de Solicitud de ModificaciÃ³n de Salario",
+      title: "Estatus de Solicitud de Modificación de Salario", // Mejorado para mayor claridad
+      breadcrumb: "Estatus de Solicitud de Modificación de Salario",
     },
   },
   {

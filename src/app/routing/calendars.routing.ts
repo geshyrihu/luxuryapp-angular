@@ -9,8 +9,8 @@ export const calendarsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Fiestas JudÃ­as",
-      breadcrumb: "Fiestas JudÃ­as",
+      title: "Fiestas Judías",
+      breadcrumb: "Fiestas Judías",
     },
   },
   {
@@ -33,8 +33,8 @@ export const calendarsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Fiestas CumpleaÃ±os",
-      breadcrumb: "Fiestas CumpleaÃ±os",
+      title: "Fiestas Cumpleaños",
+      breadcrumb: "Fiestas Cumpleaños",
     },
   },
   {
@@ -81,8 +81,8 @@ export const calendarsRoutes: Routes = [
   //     ),
   //   canActivate: [authGuard],
   //   data: {
-  //     title: "Reuniones con ComitÃ©",
-  //     breadcrumb: "Reuniones con ComitÃ©",
+  //     title: "Reuniones con Comité",
+  //     breadcrumb: "Reuniones con Comité",
   //   },
   // },
   {
@@ -93,8 +93,8 @@ export const calendarsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Agenda de ComitÃ©",
-      breadcrumb: "Agenda de ComitÃ©",
+      title: "Agenda de Comité",
+      breadcrumb: "Agenda de Comité",
     },
   },
 ];

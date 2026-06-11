@@ -1,7 +1,7 @@
 ﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 export const employeeEvaluationRoutes: Routes = [
-  // 1. Ruta para la creaciÃ³n de plantillas de evaluaciÃ³n
+  // 1. Ruta para la creación de plantillas de evaluación
   {
     path: "templates/list",
     loadComponent: () =>
@@ -10,11 +10,11 @@ export const employeeEvaluationRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Plantillas de EvaluaciÃ³n",
-      breadcrumb: "Plantillas de EvaluaciÃ³n",
+      title: "Plantillas de Evaluación",
+      breadcrumb: "Plantillas de Evaluación",
     },
   },
-  // 2. Ruta para la administraciÃ³n de plantillas de evaluaciÃ³n
+  // 2. Ruta para la administración de plantillas de evaluación
   {
     path: "templates/create",
     loadComponent: () =>
@@ -23,11 +23,11 @@ export const employeeEvaluationRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Crear plantilla de evaluaciÃ³n",
-      breadcrumb: "Crear  plantilla de evaluaciÃ³n",
+      title: "Crear plantilla de evaluación",
+      breadcrumb: "Crear  plantilla de evaluación",
     },
   },
-  // 2. Ruta para la edicion de plantillas de evaluaciÃ³n
+  // 2. Ruta para la edicion de plantillas de evaluación
   {
     path: "templates/edit/:id",
     loadComponent: () =>
@@ -36,11 +36,11 @@ export const employeeEvaluationRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Editar plantilla de evaluaciÃ³n",
-      breadcrumb: "Editar  plantilla de evaluaciÃ³n",
+      title: "Editar plantilla de evaluación",
+      breadcrumb: "Editar  plantilla de evaluación",
     },
   },
-  // 2. Ruta para la pÃ¡gina donde se realiza activamente una evaluaciÃ³n
+  // 2. Ruta para la página donde se realiza activamente una evaluación
   {
     path: "conduct/create",
     loadComponent: () =>
@@ -49,8 +49,8 @@ export const employeeEvaluationRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Realizar EvaluaciÃ³n",
-      breadcrumb: "Realizar EvaluaciÃ³n",
+      title: "Realizar Evaluación",
+      breadcrumb: "Realizar Evaluación",
     },
   },
   {
@@ -61,8 +61,8 @@ export const employeeEvaluationRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Editar EvaluaciÃ³n",
-      breadcrumb: "Editar EvaluaciÃ³n",
+      title: "Editar Evaluación",
+      breadcrumb: "Editar Evaluación",
     },
   },
   {
@@ -90,7 +90,7 @@ export const employeeEvaluationRoutes: Routes = [
       breadcrumb: "Historial de Evaluaciones",
     },
   },
-  // 4. Ruta para ver el reporte de resultados de una evaluaciÃ³n especÃ­fica
+  // 4. Ruta para ver el reporte de resultados de una evaluación específica
   {
     path: "result/:id", // El :id es el PerformanceEvaluationId
     loadComponent: () =>
@@ -99,8 +99,8 @@ export const employeeEvaluationRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Resultado de EvaluaciÃ³n",
-      breadcrumb: "Resultado de EvaluaciÃ³n",
+      title: "Resultado de Evaluación",
+      breadcrumb: "Resultado de Evaluación",
     },
   },
 ];

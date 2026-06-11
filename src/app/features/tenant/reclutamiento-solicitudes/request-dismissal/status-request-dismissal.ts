@@ -95,7 +95,7 @@ export class StatusRequestDismissal implements OnInit {
       .onDelete(`RequestDismissal/${id}`)
       .then((result: boolean) => {
         if (result) {
-          // Si es un objeto Ã³nico y se borra, recargar o limpiar
+          // Si es un objeto ónico y se borra, recargar o limpiar
           this.onLoadData();
         }
       });

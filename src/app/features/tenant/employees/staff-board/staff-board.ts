@@ -77,22 +77,22 @@ export class StaffBoard {
   readonly tablePrimeNgRows = getTablePrimeNgRows();
 
   readonly departamentLabels: Record<number, string> = {
-    [EDepartament.Administracion]: "AdministraciÃ³n",
+    [EDepartament.Administracion]: "Administración",
     [EDepartament.Legal]: "Legal",
     [EDepartament.Contabilidad]: "Contabilidad",
     [EDepartament.Mantenimiento]: "Mantenimiento",
     [EDepartament.Limpieza]: "Limpieza",
     [EDepartament.Operaciones]: "Operaciones",
-    [EDepartament.Jardineria]: "JardinerÃ­a",
+    [EDepartament.Jardineria]: "Jardinería",
     [EDepartament.Sistemas]: "Sistemas",
     [EDepartament.Seguridad]: "Seguridad",
     [EDepartament.Constructora]: "Constructora",
-    [EDepartament.Supervision]: "SupervisiÃ³n",
-    [EDepartament.Direcciones]: "DirecciÃ³n",
+    [EDepartament.Supervision]: "Supervisión",
+    [EDepartament.Direcciones]: "Dirección",
     [EDepartament.RecusrosHumanos]: "Recursos Humanos",
     [EDepartament.Reclutamiento]: "Reclutamiento",
-    [EDepartament.Recepcion]: "RecepciÃ³n",
-    [EDepartament.Mensajeria]: "MensajerÃ­a",
+    [EDepartament.Recepcion]: "Recepción",
+    [EDepartament.Mensajeria]: "Mensajería",
     [EDepartament.Ludoteca]: "Ludoteca",
     [EDepartament.NA]: "Sin Departamento",
   };
@@ -348,7 +348,7 @@ export class StaffBoard {
         id: jobDescriptionId,
         applicationRoleName: applicationRoleName,
       },
-      "DESCRIPCIÃ“N de puesto: " + applicationRoleName,
+      "DESCRIPCIÓN de puesto: " + applicationRoleName,
       DialogSize.lg,
     );
   }
@@ -382,7 +382,7 @@ export class StaffBoard {
     return !item.applicationRoleName || item.applicationRoleName === "Asignar";
   }
 
-  /** Muestra el botÃ³n si no hay solicitud activa (Pendiente/Proceso), independiente de si hay empleado. */
+  /** Muestra el botón si no hay solicitud activa (Pendiente/Proceso), independiente de si hay empleado. */
   shouldShowVacancyRequest(item: IWorkPosition): boolean {
     return !item.positionRequest;
   }

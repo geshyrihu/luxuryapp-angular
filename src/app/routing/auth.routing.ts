@@ -30,8 +30,8 @@ export const authRoutes: Routes = [
         (m) => m.RecoveryWrapper,
       ),
     data: {
-      title: "Recuperar ContraseÃ±a", // Ajustado a mayÃºsculas
-      breadcrumb: "Recuperar ContraseÃ±a",
+      title: "Recuperar Contraseña", // Ajustado a mayúsculas
+      breadcrumb: "Recuperar Contraseña",
     },
   },
   {
@@ -41,8 +41,8 @@ export const authRoutes: Routes = [
         (m) => m.ResetPassword,
       ),
     data: {
-      title: "Restablecer ContraseÃ±a",
-      breadcrumb: "Restablecer ContraseÃ±a",
+      title: "Restablecer Contraseña",
+      breadcrumb: "Restablecer Contraseña",
     },
   },
   {

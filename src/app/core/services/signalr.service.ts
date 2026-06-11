@@ -57,7 +57,7 @@ export class SignalRService {
       this.consoleLogger.custom(
         "ðŸ”Œ",
         "orange",
-        "[SignalR] Se intentÃ³ iniciar una conexiÃ³n ya existente.",
+        "[SignalR] Se intentó iniciar una conexión ya existente.",
       );
       return;
     }
@@ -65,7 +65,7 @@ export class SignalRService {
     this.consoleLogger.custom(
       "ðŸ”Œ",
       "blue",
-      "[SignalR] Construyendo conexiÃ³n...",
+      "[SignalR] Construyendo conexión...",
     );
 
     this.hubConnection = new signalR.HubConnectionBuilder()
@@ -77,14 +77,14 @@ export class SignalRService {
       .withAutomaticReconnect([2000, 5000, 10000, 20000, null])
       .build();
 
-    this.consoleLogger.custom("ðŸ”Œ", "blue", "[SignalR] Iniciando conexiÃ³n...");
+    this.consoleLogger.custom("ðŸ”Œ", "blue", "[SignalR] Iniciando conexión...");
     this.hubConnection
       .start()
       .then(() => {
         this.consoleLogger.custom(
           "ðŸ”Œ",
           "green",
-          "[SignalR] ConexiÃ³n iniciada con Ã©xito.",
+          "[SignalR] Conexión iniciada con éxito.",
         );
 
         this.connectionStateSignal.set(true);
@@ -102,7 +102,7 @@ export class SignalRService {
         this.consoleLogger.custom(
           "âŒ",
           "red",
-          "[SignalR] Error iniciando conexiÃ³n:",
+          "[SignalR] Error iniciando conexión:",
           err,
         );
         this.connectionStateSignal.set(false);
@@ -122,7 +122,7 @@ export class SignalRService {
           this.consoleLogger.custom(
             "ðŸ›‘",
             "red",
-            "[SignalR] ConexiÃ³n detenida limpiamente.",
+            "[SignalR] Conexión detenida limpiamente.",
           );
 
           this.connectionStateSignal.set(false);
@@ -131,7 +131,7 @@ export class SignalRService {
         })
         .catch((err) =>
           this.consoleLogger.error(
-            "Error al detener la conexiÃ³n SignalR:",
+            "Error al detener la conexión SignalR:",
             err,
           ),
         );
@@ -157,7 +157,7 @@ export class SignalRService {
       }
     } else {
       this.consoleLogger.warn(
-        `No se pudo unir al grupo ${groupName}. ConexiÃ³n no establecida.`,
+        `No se pudo unir al grupo ${groupName}. Conexión no establecida.`,
       );
     }
   }
@@ -184,7 +184,7 @@ export class SignalRService {
       }
     } else {
       this.consoleLogger.warn(
-        `No se pudo abandonar el grupo ${groupName}. ConexiÃ³n no establecida.`,
+        `No se pudo abandonar el grupo ${groupName}. Conexión no establecida.`,
       );
     }
   }
@@ -210,7 +210,7 @@ export class SignalRService {
       this.consoleLogger.custom(
         "ðŸ“¨",
         "purple",
-        "[SignalR] NotificaciÃ³n recibida:",
+        "[SignalR] Notificación recibida:",
         payload,
       );
       this.messageReceivedSource.next(payload);
@@ -279,7 +279,7 @@ export class SignalRService {
       this.consoleLogger.custom(
         "ðŸ”Œ",
         "red",
-        "[SignalR] ConexiÃ³n cerrada:",
+        "[SignalR] Conexión cerrada:",
         error,
       );
 

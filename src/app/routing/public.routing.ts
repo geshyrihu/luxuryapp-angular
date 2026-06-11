@@ -9,8 +9,8 @@ export const publicRoutes: Routes = [
         (m) => m.ReportClient,
       ),
     data: {
-      title: "Reporte de OperaciÃ³n", // Ajustado para consistencia
-      breadcrumb: "Reporte de OperaciÃ³n",
+      title: "Reporte de Operación", // Ajustado para consistencia
+      breadcrumb: "Reporte de Operación",
     },
   },
   {
@@ -20,8 +20,8 @@ export const publicRoutes: Routes = [
         (m) => m.OperationReportClient,
       ),
     data: {
-      title: "Reporte de OperaciÃ³n del Cliente", // Ajustado para mayor claridad
-      breadcrumb: "Reporte de OperaciÃ³n del Cliente",
+      title: "Reporte de Operación del Cliente", // Ajustado para mayor claridad
+      breadcrumb: "Reporte de Operación del Cliente",
     },
   },
   {

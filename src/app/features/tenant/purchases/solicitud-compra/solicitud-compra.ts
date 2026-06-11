@@ -131,10 +131,10 @@ export class SolicitudCompra implements OnInit {
     );
   }
 
-  // Manejar productos aÃ³adidos localmente antes de guardar cabecera
+  // Manejar productos aóadidos localmente antes de guardar cabecera
   onAddedLocal(product: any) {
     this.tempProducts.update((prev) => [...prev, product]);
-    // Actualizamos visualmente la lista combinando lo local con lo que pudiera haber (que deberÃ³a ser nada)
+    // Actualizamos visualmente la lista combinando lo local con lo que pudiera haber (que deberóa ser nada)
     this.SolicitudCompraDetalle = [...this.SolicitudCompraDetalle, product];
     this.cdr.detectChanges();
   }
@@ -302,18 +302,18 @@ export class SolicitudCompra implements OnInit {
 
   onSendEmail() {
     if (!this.solicitudCompra) return;
-    const subject = `Solicitud de CotizaciÃ³n - Folio: ${this.solicitudCompra.folio}`;
+    const subject = `Solicitud de Cotización - Folio: ${this.solicitudCompra.folio}`;
     const body = this.getFormattedMessage();
     const mailUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailUrl;
   }
 
   getFormattedMessage(): string {
-    let message = `*Solicitud de CotizaciÃ³n*\n`;
+    let message = `*Solicitud de Cotización*\n`;
     message += `Folio: ${this.solicitudCompra.folio}\n`;
     message += `Solicita: ${this.solicitudCompra.solicita}\n`;
     if (this.solicitudCompra.equipoOInstalacion)
-      message += `Ã¡rea/Equipo: ${this.solicitudCompra.equipoOInstalacion}\n`;
+      message += `área/Equipo: ${this.solicitudCompra.equipoOInstalacion}\n`;
     message += `\n*Detalle de Requerimiento:*\n`;
 
     this.SolicitudCompraDetalle.forEach((item, index) => {
@@ -329,7 +329,7 @@ export class SolicitudCompra implements OnInit {
       .openDialog(
         PurchaseLinkManager,
         {},
-        "GestiÃ³n de VÃ³nculos",
+        "Gestión de Vónculos",
         this.dialogHandlerS.sizeLg,
       )
       .then((result) => {

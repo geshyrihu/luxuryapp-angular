@@ -66,7 +66,7 @@ export class BibliotecaConsejoDirectivoDetalle implements OnInit {
         this.pageTitle = data["title"];
         this.documentType = data["documentType"];
         console.log("Tipo de documento:", this.documentType);
-        console.log("TÃ­tulo de la pÃ³gina:", this.pageTitle);
+        console.log("Título de la pógina:", this.pageTitle);
         this.onLoadData();
       }
     });

@@ -1,5 +1,5 @@
 ﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { businessOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
@@ -20,8 +20,8 @@ import {
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { IBankDTO } from "../models/bank.dto";
 import { BankForm } from "./bank-form";
+import { IBankDTO } from "./bank.dto";
 
 @Component({
   selector: "app-bank-list",

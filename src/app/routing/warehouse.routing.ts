@@ -57,8 +57,8 @@ export const warehouseRoutes: Routes = [
       ).then((m) => m.PrestamoHerramientasControl),
     canActivate: [authGuard],
     data: {
-      title: "PrÃ©stamo de Herramientas", // Corregido acento y mayÃºscula
-      breadcrumb: "PrÃ©stamo de Herramientas",
+      title: "Préstamo de Herramientas", // Corregido acento y mayúscula
+      breadcrumb: "Préstamo de Herramientas",
     },
   },
 ];

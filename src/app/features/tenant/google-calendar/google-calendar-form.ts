@@ -26,6 +26,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IGoogleCalendarGuestForm {
   id: FormControl<string | null>;
@@ -515,65 +516,45 @@ export class GoogleCalendarForm implements OnInit {
     this.assemblyInviteesArray.removeAt(index);
   }
 
-  onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) {
-      return;
+  async onSubmit() {
+    const result: any = await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "google-calendar-events",
+      id: this.id() || null,
+      ref: this.ref,
+      submitting: this.submitting,
+      closeOnSuccess: false,
+      transformPayload: () => this.buildPayload(false),
+    });
+
+    if (!result) return;
+    if (
+      this.form.controls.subjectType.getRawValue() === 1 &&
+      result.juntaMensualSessionId
+    ) {
+      this.ref.close({
+        refresh: true,
+        openAssemblyChecklist: true,
+        sessionId: result.juntaMensualSessionId,
+      });
+    } else {
+      this.ref.close(true);
     }
-
-    this.submitting.set(true);
-    const payload = this.buildPayload(false);
-
-    const request = this.id()
-      ? this.apiResponseS.onPut<IGoogleCalendarEventDetail>(
-          `google-calendar-events/${this.id()}`,
-          payload,
-        )
-      : this.apiResponseS.onPost<IGoogleCalendarEventDetail>(
-          "google-calendar-events",
-          payload,
-        );
-
-    request
-      .then((result) => {
-        if (!result) {
-          return;
-        }
-
-        if (
-          this.form.controls.subjectType.getRawValue() === 1 &&
-          result.juntaMensualSessionId
-        ) {
-          this.ref.close({
-            refresh: true,
-            openAssemblyChecklist: true,
-            sessionId: result.juntaMensualSessionId,
-          });
-          return;
-        }
-
-        this.ref.close(true);
-      })
-      .finally(() => this.submitting.set(false));
   }
 
   async onSubmitSeries() {
-    if (!this.id() || !this.apiResponseS.validateForm(this.form)) {
-      return;
-    }
-
-    this.submittingSeries.set(true);
-    try {
-      const result = await this.apiResponseS.onPut(
-        `google-calendar-events/${this.id()}/series`,
-        this.buildPayload(true),
-      );
-
-      if (result) {
-        this.ref.close(true);
-      }
-    } finally {
-      this.submittingSeries.set(false);
-    }
+    if (!this.id()) return;
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: `google-calendar-events/${this.id()}/series`,
+      method: "PUT",
+      id: null,
+      ref: this.ref,
+      submitting: this.submittingSeries,
+      transformPayload: () => this.buildPayload(true),
+    });
   }
 
   async onDeleteSeries() {

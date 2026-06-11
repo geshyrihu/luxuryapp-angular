@@ -43,8 +43,8 @@ export const directoryRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "ComitÃ© de Vigilancia",
-      breadcrumb: "ComitÃ© de Vigilancia",
+      title: "Comité de Vigilancia",
+      breadcrumb: "Comité de Vigilancia",
     },
   },
   {
@@ -116,8 +116,8 @@ export const directoryRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "TelÃ©fonos de Emergencia",
-      breadcrumb: "TelÃ©fonos de Emergencia",
+      title: "Teléfonos de Emergencia",
+      breadcrumb: "Teléfonos de Emergencia",
     },
   },
   {

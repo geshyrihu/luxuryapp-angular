@@ -55,10 +55,10 @@ export class EmployeeForm implements OnInit {
   nameEmployee = signal("");
   tienePermiso: boolean = true;
 
-  // ðŸŽ¯ SecciÃ³n activa
+  // ðŸŽ¯ Sección activa
   activeSection: string = "principal";
 
-  // ðŸ“‹ Items del menÃº
+  // ðŸ“‹ Items del menú
   menuItems: MenuItem[] = [];
 
   paramsSignal = toSignal(this.route.paramMap);
@@ -83,7 +83,7 @@ export class EmployeeForm implements OnInit {
           .then((result: any) => {
             this.nameEmployee.set(`${result.fullName} `);
           });
-        // Inicializar menÃº despuÃ©s de tener los datos
+        // Inicializar menú después de tener los datos
         this.initializeMenu();
       }
     });
@@ -102,7 +102,7 @@ export class EmployeeForm implements OnInit {
     };
 
     const all: MenuDef[] = [
-      // Sin restricciÃ³n de rol â€” visible para cualquier usuario autorizado
+      // Sin restricción de rol â€” visible para cualquier usuario autorizado
       {
         label: "Datos principales",
         icon: "mdi:account",
@@ -137,7 +137,7 @@ export class EmployeeForm implements OnInit {
         ],
       },
       {
-        label: "DirecciÃ³n",
+        label: "Dirección",
         icon: "mdi:map-marker",
         section: "address",
         roles: [
@@ -181,7 +181,7 @@ export class EmployeeForm implements OnInit {
         ],
       },
 
-      // Solo gestiÃ³n interna RR.HH.
+      // Solo gestión interna RR.HH.
       {
         label: "Datos laborales",
         icon: "mdi:briefcase",
@@ -220,7 +220,7 @@ export class EmployeeForm implements OnInit {
         ],
       },
 
-      // Solo acceso tÃ©cnico / sistemas
+      // Solo acceso técnico / sistemas
       {
         label: "Usuario app",
         icon: "mdi:key",

@@ -9,8 +9,8 @@ export const reportsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Reporte de SupervisiÃ³n", // Ajustado para consistencia
-      breadcrumb: "Reporte de SupervisiÃ³n",
+      title: "Reporte de Supervisión", // Ajustado para consistencia
+      breadcrumb: "Reporte de Supervisión",
     },
   },
   {
@@ -35,7 +35,7 @@ export const reportsRoutes: Routes = [
     canActivate: [authGuard],
 
     data: {
-      title: "Reportes de Mantenimiento", // TÃ­tulo mejorado
+      title: "Reportes de Mantenimiento", // Título mejorado
       breadcrumb: "Reportes de Mantenimiento",
     },
   },
@@ -48,8 +48,8 @@ export const reportsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Resumen de Ã“rdenes de Servicio", // Ajustado acento
-      breadcrumb: "Resumen de Ã“rdenes de Servicio",
+      title: "Resumen de Órdenes de Servicio", // Ajustado acento
+      breadcrumb: "Resumen de Órdenes de Servicio",
     },
   },
   // Route removed because report is generated directly to PDF
@@ -61,7 +61,7 @@ export const reportsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Reporte de Minutas Pendientes", // Ajustado a mayÃºsculas
+      title: "Reporte de Minutas Pendientes", // Ajustado a mayúsculas
       breadcrumb: "Reporte de Minutas Pendientes",
     },
   },

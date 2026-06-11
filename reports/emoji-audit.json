@@ -5302,7 +5302,7 @@
       "symbols": [
         "©"
       ],
-      "preview": "// MÃ©todo para filtrar por cliente"
+      "preview": "// Método para filtrar por cliente"
     },
     {
       "file": "src/app/features/configuration/approval-rules/pages/approval-rules.scss",
@@ -5588,7 +5588,7 @@
       "symbols": [
         "©"
       ],
-      "preview": "// MÃ©todo para filtrar por estado"
+      "preview": "// Método para filtrar por estado"
     },
     {
       "file": "src/app/features/configuration/customer/pages/customer-list.html",
@@ -5731,7 +5731,7 @@
       "symbols": [
         "©"
       ],
-      "preview": "// Los parÃ¡metros deben ir prefixeados con \"pagination.\" para que el backend los bindÃ© correctamente"
+      "preview": "// Los parámetros deben ir prefixeados con \"pagination.\" para que el backend los bindé correctamente"
     },
     {
       "file": "src/app/features/configuration/log-api-report/log-api-report.ts",
@@ -5742,7 +5742,7 @@
       "symbols": [
         "©"
       ],
-      "preview": "* BÃºsqueda por tÃ©rmino libre en el mensaje"
+      "preview": "* Búsqueda por término libre en el mensaje"
     },
     {
       "file": "src/app/features/configuration/machinery-classification/machinery-classification-list.html",

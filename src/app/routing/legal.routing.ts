@@ -6,7 +6,7 @@ const CustomDocumentList = () =>
   import("src/app/features/tenant/legal/documento-personalizado/documento-personalizado-lista").then(
     (m) => m.DocumentoPersonalizadoLista,
   );
-// Genera las rutas dinÃ¡micamente
+// Genera las rutas dinámicamente
 const documentRoutes: Routes = documentTypeRoutesConfig.map((config) => ({
   path: config.routeParam, // Usa el nombre de la carpeta como la ruta
   loadComponent: CustomDocumentList,
@@ -32,7 +32,7 @@ export const legalRoutes: Routes = [
     },
   },
   {
-    path: "list-ticket-legal", // Sincronizado con BD (ya en inglÃ©s)
+    path: "list-ticket-legal", // Sincronizado con BD (ya en inglés)
     loadComponent: () =>
       import("src/app/features/tenant/legal/ticket-legal/ticket-legal-lista").then(
         (m) => m.TicketLegalLista,
@@ -44,14 +44,14 @@ export const legalRoutes: Routes = [
     },
   },
   {
-    path: "pendings", // Sincronizado con BD (ya en inglÃ©s)
+    path: "pendings", // Sincronizado con BD (ya en inglés)
     loadComponent: () =>
       import("src/app/features/tenant/legal/ticket-legal/ticket-legal-reportes-pendientes").then(
         (m) => m.TicketLegalReportesPendientes,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Reporte General de Pendientes", // Ajustado a mayÃºsculas
+      title: "Reporte General de Pendientes", // Ajustado a mayúsculas
       breadcrumb: "Reporte General de Pendientes",
     },
   },
@@ -63,7 +63,7 @@ export const legalRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Reporte Interno", // Ajustado a mayÃºsculas
+      title: "Reporte Interno", // Ajustado a mayúsculas
       breadcrumb: "Reporte Interno",
     },
   },
@@ -75,7 +75,7 @@ export const legalRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Reporte Externo", // Ajustado a mayÃºsculas
+      title: "Reporte Externo", // Ajustado a mayúsculas
       breadcrumb: "Reporte Externo",
     },
   },
@@ -87,8 +87,8 @@ export const legalRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Directorio de ComitÃ©s", // Corregida mayÃºscula y acento
-      breadcrumb: "Directorio de ComitÃ©s",
+      title: "Directorio de Comités", // Corregida mayúscula y acento
+      breadcrumb: "Directorio de Comités",
     },
   },
   {
@@ -99,11 +99,11 @@ export const legalRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "CatÃ¡logo de Asuntos Legales", // Corregido acento
-      breadcrumb: "CatÃ¡logo de Asuntos Legales",
+      title: "Catálogo de Asuntos Legales", // Corregido acento
+      breadcrumb: "Catálogo de Asuntos Legales",
     },
   },
-  //Esta ruta se agregÃ³ en la versiÃ³n 1.0.0 para que accedieran los adminsitradores
+  //Esta ruta se agregó en la versión 1.0.0 para que accedieran los adminsitradores
   {
     path: "list-ticket-customer",
     loadComponent: () =>

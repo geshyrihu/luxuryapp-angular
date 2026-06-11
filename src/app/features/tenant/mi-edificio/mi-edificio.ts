@@ -42,7 +42,7 @@ export class MiEdificio {
       .openDialog(
         FichaTecnicaActivo,
         data,
-        "Ficha TÃ©cnica",
+        "Ficha Técnica",
         this.dialogHandlerS.sizeFull,
       )
       .then((result: boolean) => {

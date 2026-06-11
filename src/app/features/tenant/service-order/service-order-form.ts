@@ -20,6 +20,7 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IServiceOrderForm {
   id: FormControl<string | null>;
@@ -243,42 +244,33 @@ export class ServiceOrderForm implements OnInit {
     });
   }
 
-  onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-
-    const formValue = this.form.getRawValue();
-
-    // Reconstruir payload segón lo que espera el backend
-    // Aunque formValue ya deberóa tener la mayoróa, extraemos explócitamente para asegurar
-    const payload = {
-      machineryId: formValue.machineryId,
-      activity: formValue.activity,
-      requestDate: this.dateS.getDateFormat(formValue.requestDate as any),
-      status: formValue.status,
-      providerId: formValue.providerId,
-      price: formValue.price,
-      employeeResponsableId: formValue.employeeResponsableId,
-      typeMaintance: formValue.typeMaintance,
-      executionDate: formValue.executionDate
-        ? this.dateS.getDateFormat(formValue.executionDate as any)
-        : null,
-      observations: formValue.observations,
-      cumplimientoActividades: formValue.cumplimientoActividades,
-      equiposOperando: formValue.equiposOperando,
-      ocacionoDanos: formValue.ocacionoDanos,
-      calidadTrabajos: formValue.calidadTrabajos,
-      maintenanceCalendarId: formValue.maintenanceCalendarId,
-    };
-
-    const request =
-      this.id() === 0
-        ? this.apiResponseS.onPost(`ServiceOrders`, payload)
-        : this.apiResponseS.onPut(`ServiceOrders/${this.id()}`, payload);
-
-    request.then((result: boolean) => {
-      result ? this.ref.close(true) : this.submitting.set(false);
+  async onSubmit() {
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "ServiceOrders",
+      id: this.id() === 0 ? null : String(this.id()),
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (formValue) => ({
+        machineryId: formValue.machineryId,
+        activity: formValue.activity,
+        requestDate: this.dateS.getDateFormat(formValue.requestDate as any),
+        status: formValue.status,
+        providerId: formValue.providerId,
+        price: formValue.price,
+        employeeResponsableId: formValue.employeeResponsableId,
+        typeMaintance: formValue.typeMaintance,
+        executionDate: formValue.executionDate
+          ? this.dateS.getDateFormat(formValue.executionDate as any)
+          : null,
+        observations: formValue.observations,
+        cumplimientoActividades: formValue.cumplimientoActividades,
+        equiposOperando: formValue.equiposOperando,
+        ocacionoDanos: formValue.ocacionoDanos,
+        calidadTrabajos: formValue.calidadTrabajos,
+        maintenanceCalendarId: formValue.maintenanceCalendarId,
+      }),
     });
   }
 }

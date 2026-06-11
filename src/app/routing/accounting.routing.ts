@@ -22,8 +22,8 @@ export const accountingRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "CatÃ¡logo Contable",
-      breadcrumb: "CatÃ¡logo Contable",
+      title: "Catálogo Contable",
+      breadcrumb: "Catálogo Contable",
     },
   },
   {
@@ -58,7 +58,7 @@ export const accountingRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Detalle de Fondeo Contable", // Mejorado para ser mÃ¡s especÃ­fico
+      title: "Detalle de Fondeo Contable", // Mejorado para ser más específico
       breadcrumb: "Detalle de Fondeo Contable",
     },
   },
@@ -95,8 +95,8 @@ export const accountingRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "EjecuciÃ³n Presupuestaria",
-      breadcrumb: "EjecuciÃ³n Presupuestaria",
+      title: "Ejecución Presupuestaria",
+      breadcrumb: "Ejecución Presupuestaria",
     },
   },
 
@@ -108,8 +108,8 @@ export const accountingRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Reporte de EnvÃ­o Financieros",
-      breadcrumb: "Reporte de EnvÃ­o Financieros",
+      title: "Reporte de Envío Financieros",
+      breadcrumb: "Reporte de Envío Financieros",
     },
   },
   {
@@ -132,7 +132,7 @@ export const accountingRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Resumen Financiero", // Mejorado para ser mÃ¡s conciso
+      title: "Resumen Financiero", // Mejorado para ser más conciso
       breadcrumb: "Resumen Financiero",
     },
   },
@@ -169,8 +169,8 @@ export const accountingRoutes: Routes = [
   //     ),
   //   canActivate: [authGuard],
   //   data: {
-  //     title: "Reportes Financieros DinÃ¡micos",
-  //     breadcrumb: "Reportes Financieros DinÃ¡micos",
+  //     title: "Reportes Financieros Dinámicos",
+  //     breadcrumb: "Reportes Financieros Dinámicos",
   //   },
   // },
 ];

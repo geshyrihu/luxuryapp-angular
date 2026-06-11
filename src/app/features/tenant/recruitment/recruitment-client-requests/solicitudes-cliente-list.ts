@@ -50,7 +50,7 @@ export class SolicitudesClienteList {
   router = inject(Router);
   authS = inject(AuthService);
   tableScrollHeightS = inject(TableScrollHeightService);
-  // DeclaraciÃ³n e inicializaciÃ³n de variables
+  // Declaración e inicialización de variables
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => {
@@ -61,7 +61,7 @@ export class SolicitudesClienteList {
   loading = signal(true);
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  ref: DynamicDialogRef; // Referencia a un cuadro de diÃ¡logo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   constructor() {

@@ -2,7 +2,7 @@
 import { authGuard } from "src/app/core/guard/auth.guard";
 import { superUsuarioGuard } from "src/app/core/guard/super-usuario.guard";
 export const settingsRoutes: Routes = [
-  // Rutas principales de configuraciÃ³n
+  // Rutas principales de configuración
   {
     path: "home",
     loadComponent: () =>
@@ -11,8 +11,8 @@ export const settingsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "ConfiguraciÃ³n de sistema",
-      breadcrumb: "ConfiguraciÃ³n de sistema",
+      title: "Configuración de sistema",
+      breadcrumb: "Configuración de sistema",
     },
   },
 
@@ -29,7 +29,7 @@ export const settingsRoutes: Routes = [
     },
   },
 
-  // Rutas de gestiÃ³n de usuarios y permisos
+  // Rutas de gestión de usuarios y permisos
   {
     path: "application-user",
     loadComponent: () =>
@@ -102,8 +102,8 @@ export const settingsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "AdministraciÃ³n Roles-Modulos",
-      breadcrumb: "AdministraciÃ³n Roles-Modulos",
+      title: "Administración Roles-Modulos",
+      breadcrumb: "Administración Roles-Modulos",
     },
   },
   {
@@ -140,12 +140,12 @@ export const settingsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "JerarquÃ­a de AprobaciÃ³n",
-      breadcrumb: "JerarquÃ­a de AprobaciÃ³n",
+      title: "Jerarquía de Aprobación",
+      breadcrumb: "Jerarquía de Aprobación",
     },
   },
 
-  // Rutas de configuraciÃ³n de empresa y correo
+  // Rutas de configuración de empresa y correo
   {
     path: "customer-data-company",
     loadComponent: () =>
@@ -179,16 +179,16 @@ export const settingsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "DepuraciÃ³n",
-      breadcrumb: "DepuraciÃ³n",
+      title: "Depuración",
+      breadcrumb: "Depuración",
     },
   },
 
-  // Rutas de catÃ¡logos
+  // Rutas de catálogos
   {
     path: "banks",
     loadComponent: () =>
-      import("src/app/features/configuration/banks/pages/bank-list").then(
+      import("src/app/features/configuration/banks/bank-list").then(
         (m) => m.BankList,
       ),
     canActivate: [authGuard],
@@ -200,7 +200,7 @@ export const settingsRoutes: Routes = [
   {
     path: "asamblea-checklist-catalog",
     loadComponent: () =>
-      import("src/app/features/configuration/banks/pages/asamblea-checklist-template-list").then(
+      import("src/app/features/configuration/asamblea-checklist-template/asamblea-checklist-template-list").then(
         (m) => m.AsambleaChecklistTemplateList,
       ),
     canActivate: [authGuard],
@@ -231,8 +231,8 @@ export const settingsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Lista de MÃ©todos de Pago",
-      breadcrumb: "Lista de MÃ©todos de Pago",
+      title: "Lista de Métodos de Pago",
+      breadcrumb: "Lista de Métodos de Pago",
     },
   },
   {
@@ -280,8 +280,8 @@ export const settingsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Lista de CategorÃ­as de Medidores",
-      breadcrumb: "Lista de CategorÃ­as de Medidores",
+      title: "Lista de Categorías de Medidores",
+      breadcrumb: "Lista de Categorías de Medidores",
     },
   },
   {
@@ -292,8 +292,8 @@ export const settingsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Lista de CategorÃ­as de Productos",
-      breadcrumb: "Lista de CategorÃ­as de Productos",
+      title: "Lista de Categorías de Productos",
+      breadcrumb: "Lista de Categorías de Productos",
     },
   },
   // {
@@ -317,8 +317,8 @@ export const settingsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "ClasificaciÃ³n de Maquinaria",
-      breadcrumb: "ClasificaciÃ³n de Maquinaria",
+      title: "Clasificación de Maquinaria",
+      breadcrumb: "Clasificación de Maquinaria",
     },
   },
   {
@@ -341,8 +341,8 @@ export const settingsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "CategorÃ­a de Grupos de Tickets",
-      breadcrumb: "CategorÃ­a de Grupos de Tickets",
+      title: "Categoría de Grupos de Tickets",
+      breadcrumb: "Categoría de Grupos de Tickets",
     },
   },
   {
@@ -382,8 +382,8 @@ export const settingsRoutes: Routes = [
     },
   },
 
-  // RUTAS QUE DEBEN REUBICARSE (no pertenecen a configuraciÃ³n)
-  // TODO: Mover a mÃ³dulo de inventarios
+  // RUTAS QUE DEBEN REUBICARSE (no pertenecen a configuración)
+  // TODO: Mover a módulo de inventarios
   {
     // Suggested path: 'product-inventory'
     path: "inventario-productos",
@@ -424,7 +424,7 @@ export const settingsRoutes: Routes = [
     },
   },
 
-  // TODO: Mover a mÃ³dulo de bitÃ¡coras
+  // TODO: Mover a módulo de bitácoras
   {
     path: "catalog-asset",
     loadComponent: () =>
@@ -450,7 +450,7 @@ export const settingsRoutes: Routes = [
     },
   },
 
-  // TODO: Mover a mÃ³dulo de biblioteca
+  // TODO: Mover a módulo de biblioteca
   {
     // Suggested path: 'client-delivery-reception'
     path: "entrega-recepcion-cliente",
@@ -460,8 +460,8 @@ export const settingsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Entrega y RecepciÃ³n",
-      breadcrumb: "Entrega y RecepciÃ³n",
+      title: "Entrega y Recepción",
+      breadcrumb: "Entrega y Recepción",
     },
   },
 
@@ -481,7 +481,9 @@ export const settingsRoutes: Routes = [
   {
     path: "test-email",
     loadComponent: () =>
-      import("src/app/features/tenant/send-email/text-email").then((m) => m.TextEmail),
+      import("src/app/features/tenant/send-email/text-email").then(
+        (m) => m.TextEmail,
+      ),
     canActivate: [authGuard],
     data: {
       title: "Iconos SVG",
@@ -508,8 +510,8 @@ export const settingsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Design System & GuÃ­a Documental",
-      breadcrumb: "GuÃ­a de Estilos",
+      title: "Design System & Guía Documental",
+      breadcrumb: "Guía de Estilos",
     },
   },
   {
@@ -532,8 +534,8 @@ export const settingsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "ConfiguraciÃ³n Aspel",
-      breadcrumb: "ConfiguraciÃ³n Aspel",
+      title: "Configuración Aspel",
+      breadcrumb: "Configuración Aspel",
     },
   },
   {
@@ -544,12 +546,12 @@ export const settingsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "SincronizaciÃ³n Aspel",
-      breadcrumb: "SincronizaciÃ³n Aspel",
+      title: "Sincronización Aspel",
+      breadcrumb: "Sincronización Aspel",
     },
   },
 
-  // CatÃ¡logos de Recursos Humanos
+  // Catálogos de Recursos Humanos
   {
     path: "juntas-mensuales-conciliacion",
     loadComponent: () =>
@@ -582,8 +584,8 @@ export const settingsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Tipos de SanciÃ³n",
-      breadcrumb: "Tipos de SanciÃ³n",
+      title: "Tipos de Sanción",
+      breadcrumb: "Tipos de Sanción",
     },
   },
   {
@@ -606,8 +608,8 @@ export const settingsRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "ConfiguraciÃ³n ElevenLabs",
-      breadcrumb: "ConfiguraciÃ³n ElevenLabs",
+      title: "Configuración ElevenLabs",
+      breadcrumb: "Configuración ElevenLabs",
     },
   },
   {
@@ -623,5 +625,3 @@ export const settingsRoutes: Routes = [
     },
   },
 ];
-
-

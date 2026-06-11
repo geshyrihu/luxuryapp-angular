@@ -56,8 +56,8 @@ export const pagesRoutes: Routes = [
       import("src/app/routing/settings.routing").then((m) => m.settingsRoutes),
 
     data: {
-      title: "ConfiguraciÃ³n del sistema",
-      breadcrumb: "ConfiguraciÃ³n del sistema",
+      title: "Configuración del sistema",
+      breadcrumb: "Configuración del sistema",
     },
   },
   {
@@ -93,8 +93,8 @@ export const pagesRoutes: Routes = [
       ),
 
     data: {
-      title: "AlmacÃ©n",
-      breadcrumb: "AlmacÃ©n",
+      title: "Almacén",
+      breadcrumb: "Almacén",
     },
   },
   {
@@ -112,7 +112,7 @@ export const pagesRoutes: Routes = [
 
   ///INICIO Seccion contabilidad
 
-  // RUTA PRINCIPAL DE CONTABILIDAD - Todas las rutas estÃ¡n centralizadas en contabilidad.routing.ts
+  // RUTA PRINCIPAL DE CONTABILIDAD - Todas las rutas están centralizadas en contabilidad.routing.ts
   {
     path: "contabilidad",
     loadChildren: () =>
@@ -191,8 +191,8 @@ export const pagesRoutes: Routes = [
       ),
 
     data: {
-      title: "Entrega RecepciÃ³n",
-      breadcrumb: "Entrega RecepciÃ³n",
+      title: "Entrega Recepción",
+      breadcrumb: "Entrega Recepción",
     },
   },
   {
@@ -246,8 +246,8 @@ export const pagesRoutes: Routes = [
       import("src/app/routing/logbook.routing").then((m) => m.logbookRoutes),
 
     data: {
-      title: "BitÃ¡cora",
-      breadcrumb: "BitÃ¡cora",
+      title: "Bitácora",
+      breadcrumb: "Bitácora",
     },
   },
 
@@ -348,7 +348,7 @@ export const pagesRoutes: Routes = [
       import("src/app/features/tenant/contabilidad/dynamic-reports/pages/report-guide/report-guide").then(
         (m) => m.ReportGuide,
       ),
-    data: { title: "GuÃ­a del MÃ³dulo de Reportes", breadcrumb: "GuÃ­a" },
+    data: { title: "Guía del Módulo de Reportes", breadcrumb: "Guía" },
   },
   {
     path: "report-financial-statements",
@@ -533,8 +533,8 @@ export const pagesRoutes: Routes = [
         (m) => m.PASSWORD_MANAGER_ROUTES,
       ),
     data: {
-      title: "Gestor de ContraseÃ±as",
-      breadcrumb: "Gestor de ContraseÃ±as",
+      title: "Gestor de Contraseñas",
+      breadcrumb: "Gestor de Contraseñas",
     },
   },
   // Rutas temporales para check de auditoria
@@ -549,13 +549,13 @@ export const pagesRoutes: Routes = [
     path: "config",
     loadChildren: () =>
       import("src/app/features/configuration/configuration.routing").then((m) => m.configurationRoutes),
-    data: { title: "ConfiguraciÃ³n", breadcrumb: "ConfiguraciÃ³n" }
+    data: { title: "Configuración", breadcrumb: "Configuración" }
   },
   {
     path: "vault",
     loadChildren: () =>
       import("src/app/features/vault/vault.routing").then((m) => m.vaultRoutes),
-    data: { title: "BÃ³veda de Secretos", breadcrumb: "BÃ³veda" }
+    data: { title: "Bóveda de Secretos", breadcrumb: "Bóveda" }
   },
   // --- FIN RUTAS 3DB ---
 
@@ -566,7 +566,7 @@ export const pagesRoutes: Routes = [
         (m) => m.Page404,
       ),
     data: {
-      title: "PÃ¡gina No Encontrada",
+      title: "Página No Encontrada",
       breadcrumb: "Error 404",
     },
   },

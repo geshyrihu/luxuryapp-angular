@@ -107,7 +107,7 @@ export class Reglamentos {
     } catch (error) {
       console.error(error);
       this.aiResponse.set(
-        "OcurriÃ³ un error al consultar el documento. Por favor intenta de nuevo.",
+        "Ocurrió un error al consultar el documento. Por favor intenta de nuevo.",
       );
     } finally {
       this.consultingDoc.set(false);
@@ -119,7 +119,7 @@ export class Reglamentos {
     this.apiResponseS
       .onPut(Endpoints.CustomDocuments.updateOrder, { documentIds })
       .then((result) => {
-        // Opcional: Mostrar una notificaciÃ³n de Ã³xito
+        // Opcional: Mostrar una notificación de óxito
       })
       .catch((error) => {
         // Opcional: Manejar el error y revertir el orden si es necesario

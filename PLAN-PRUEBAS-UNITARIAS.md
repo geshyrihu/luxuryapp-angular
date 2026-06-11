@@ -2,11 +2,33 @@
 
 ## Proyecto: LuxuryApp Angular (Standalone Components + Signals)
 
-**Framework de pruebas:** Jasmine + Karma (configuración existente en `test-setup.ts`)
+**Framework de pruebas:** Vitest v4.0.18 (`angular.json` aún referencia Karma, pero la ejecución real usa `vitest.config.ts`)
 
 > **Constitución del proyecto:** Este plan cumple con los mandatos de `GEMINI.md` (raíz del repositorio). Las reglas arquitectónicas vinculantes se detallan en la sección 15.
 
 ---
+
+## Estado Actual (Junio 2026)
+
+### Estructura de features
+
+Solo `features/configuration/` y `features/vault/` han sido migrados de `features/tenant/` a `features/`. El resto de los features (tasks, supervision, employees, dashboard, etc.) aún residen en `features/tenant/`. **Hasta que un feature sea migrado, sus specs deben permanecer en `features/tenant/`.**
+
+### Inventario de pruebas
+
+| Área | Specs | Estado |
+|------|-------|--------|
+| `core/` (servicios, guards, pipes, directivas, componentes) | 135 | ✅ Funcionales (Vitest) |
+| `features/tenant/` (no migrados aún) | 113 | ✅ Funcionales (Vitest) |
+| `features/` (configuration, vault) | 0 | ⬜ Specs pendientes |
+| `layout/` | 26 | ✅ Funcionales |
+| `login/` | 4 | ✅ Funcionales |
+| `shared/` | 2 | ✅ Funcionales |
+| **Total** | **280** (~1585 tests) | |
+
+### Dependencia: migración de features
+
+Los specs de `features/tenant/` NO deben copiarse a `features/` hasta que los fuentes del feature respectivo sean migrados. La migración de cada feature incluye mover sus `.ts`, `.html` y `.spec.ts` juntos.
 
 ## Prioridades de Implementación
 
@@ -838,16 +860,19 @@ fixture.detectChanges();
 
 ### 12.1 Configuración existente
 
-- `test-setup.ts` ya configurado
-- `angular.json` tiene configuración de Karma
-- Tests existentes en: `auth.guard.spec.ts`, `employee.guard.spec.ts`, `committee.guard.spec.ts`, `role-redirect.guard.spec.ts`, `customer-id.service.spec.ts`, `auth.service.spec.ts`, `asp-role.service.spec.ts`, `connectivity.service.spec.ts`
+- **Framework:** Vitest v4.0.18 (vía `vitest.config.ts`)
+- `test-setup.ts` ya configurado con polyfills (Worker para `heic2any`)
+- `angular.json` tiene configuración de Karma (obsoleta, no usar)
+- `vitest.config.ts` incluye `server.deps.inline` para `ng2-pdf-viewer`
+- Tests existentes: 280 spec files (~1585 tests)
 
 ### 12.2 Comandos
 
 ```bash
-ng test --code-coverage  # Ejecutar pruebas con cobertura
-ng test --watch=false     # Una sola ejecución
-ng test --browsers=ChromeHeadless  # Sin UI
+npx vitest run                          # Una sola ejecución
+npx vitest run --reporter verbose       # Con detalle por test
+npx vitest run <path/to/file>           # Archivo específico
+npx vitest --ui                         # UI interactiva (si está configurado)
 ```
 
 ### 12.3 Patrones recomendados
@@ -886,28 +911,50 @@ ng test --browsers=ChromeHeadless  # Sin UI
 
 ## 14. Resumen Ejecutivo
 
-| Categoría | Cantidad | Prioridad | Esfuerzo Estimado | Estado |
-|-----------|----------|-----------|-------------------|--------|
-| Servicios core | 15+ | P0 | 3-4 días | ✅ Completado |
-| Guards | 6 | P1 | 0.5 días | ✅ Completado |
-| Pipes | 12 | P2 | 1 día | ✅ Completado |
-| Directivas | 4 | P3 | 0.5 días | ✅ Completado |
-| Core components | ~50+ | P4 | 3-4 días | 🟡 16/50 completados |
-| Login components | 5 | P5 | 1 día | ⬜ Pendiente |
-| Layout components | 25+ | P6 | 2-3 días | ⬜ Pendiente |
-| Shared components | 2 | P7 | 0.5 días | ⬜ Pendiente |
-| Feature components | 84 | P8 | 10-15 días | ⬜ Pendiente |
-| **Total** | **~188+** | | | **244 tests — 45 files — 0 fallos** |
+### Tests existentes (280 files, ~1585 tests)
 
-### Fases de implementación sugeridas
+| Categoría | Specs | Prioridad | Framework | Estado |
+|-----------|-------|-----------|-----------|--------|
+| Servicios core | 10 | P0 | Vitest | ✅ Funcional |
+| Guards | 6 | P1 | Vitest | ✅ Funcional |
+| Pipes | 12 | P2 | Vitest | ✅ Funcional |
+| Directivas | 3 | P3 | Vitest | ✅ Funcional |
+| Core components | ~105 | P4 | Vitest | ✅ Funcional |
+| Login components | 4 | P5 | Vitest | ✅ Funcional |
+| Layout components | 26 | P6 | Vitest | ✅ Funcional |
+| Shared components | 2 | P7 | Vitest | ✅ Funcional |
+| Feature components (tenant/) | 113 | P8 | Vitest | ✅ Funcional (en tenant/) |
+| **Total** | **280** | | | **~1585 tests — 0 fallos** |
 
-| Fase | Semana | Alcance |
-|------|--------|---------|
-| **Fase 1** | Semana 1 | P0 (servicios críticos) + P1 (guards) |
-| **Fase 2** | Semana 2 | P2 (pipes) + P3 (directivas) + P4 (core components) |
-| **Fase 3** | Semana 3 | P5 (login) + P6 (layout) + P7 (shared) |
-| **Fase 4** | Semana 4-5 | P8 (features prioritarios: dashboard, employees, property, provider, product) |
-| **Fase 5** | Semana 6+ | Features restantes + cobertura general |
+### Migración pendiente: features/tenant/ → features/
+
+Cuando un feature sea migrado de `features/tenant/` a `features/`, sus spec files deben migrarse junto con los fuentes, actualizando imports de `features/tenant/` → `features/`.
+
+| Feature | Specs | Depende de migración de fuentes |
+|---------|-------|-------------------------------|
+| `tasks/` | 28 | ⬜ Pendiente |
+| `supervision/` | 14 | ⬜ Pendiente |
+| `employees/` | 13 | ⬜ Pendiente |
+| `calendar/` | 9 | ⬜ Pendiente |
+| `reports/` | 8 | ⬜ Pendiente |
+| `recurring-tasks/` | 8 | ⬜ Pendiente |
+| `dashboard/` | 4 | ⬜ Pendiente |
+| `funding/` | 4 | ⬜ Pendiente |
+| `google-calendar/` | 3 | ⬜ Pendiente |
+| `property/` | 3 | ⬜ Pendiente |
+| `provider/` | 5 | ⬜ Pendiente |
+| `product/` | 3 | ⬜ Pendiente |
+| `contabilidad/` | 1 | ⬜ Pendiente |
+
+### Fases de implementación
+
+| Fase | Alcance | Estado |
+|------|---------|--------|
+| **Fase 1** | P0 (servicios críticos) + P1 (guards) | ✅ Completado en core/ |
+| **Fase 2** | P2 (pipes) + P3 (directivas) + P4 (core components) | ✅ Completado en core/ |
+| **Fase 3** | P5 (login) + P6 (layout) + P7 (shared) | ✅ Completado |
+| **Fase 4** | P8 (features: tasks, supervision, employees, dashboard, etc.) | ✅ Specs existen en tenant/ |
+| **Migración** | Mover specs de tenant/ → features/ junto con fuentes | ⬜ Pendiente de migración de features |
 
 ---
 

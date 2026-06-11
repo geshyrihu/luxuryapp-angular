@@ -54,7 +54,7 @@ export class PresupuestoContabilidad {
     this.loading.set(false);
   }
 
-  /** Fila vacÃ­a = todos los montos son cero. Los totales (nivel 4) nunca se omiten. */
+  /** Fila vacía = todos los montos son cero. Los totales (nivel 4) nunca se omiten. */
   isFilaVacia(fila: PresupuestoContabilidadFila): boolean {
     if (fila.nivel === 4) return false;
     return (

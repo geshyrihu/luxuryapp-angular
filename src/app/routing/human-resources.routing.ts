@@ -185,7 +185,7 @@ export const humanResourcesRoutes: Routes = [
   },
 
   // =============================================================
-  // ADMINISTRACIÃ“N (SOLO SUPERUSUARIO)
+  // ADMINISTRACIÓN (SOLO SUPERUSUARIO)
   // =============================================================
   {
     path: "admin-balances-vacaciones",
@@ -197,12 +197,12 @@ export const humanResourcesRoutes: Routes = [
       () => inject(AspRoleService).hasRole(EApplicationRole.SuperUsuario),
     ],
     data: {
-      title: "AdministraciÃ³n de Balances",
+      title: "Administración de Balances",
       breadcrumb: "Admin Balances",
     },
   },
   {
-    // Vista de auditorÃ­a: ver balance e historial de cualquier empleado del cliente.
+    // Vista de auditoría: ver balance e historial de cualquier empleado del cliente.
     path: "auditoria-vacaciones",
     loadComponent: () =>
       import("src/app/features/tenant/recursos-humanos/vacation-balance-admin/vacaciones-admin-auditoria").then(
@@ -216,8 +216,8 @@ export const humanResourcesRoutes: Routes = [
         ]),
     ],
     data: {
-      title: "AuditorÃ­a de Vacaciones",
-      breadcrumb: "AuditorÃ­a Vacaciones",
+      title: "Auditoría de Vacaciones",
+      breadcrumb: "Auditoría Vacaciones",
     },
   },
 

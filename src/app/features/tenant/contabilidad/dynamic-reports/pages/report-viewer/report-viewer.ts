@@ -131,7 +131,7 @@ export class ReportViewer implements OnInit {
       );
   }
 
-  // â”€â”€ Helpers de tipo de visualizaciÃ³n â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // â”€â”€ Helpers de tipo de visualización â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   esDobleColumna(): boolean {
     return this.resultado()?.visualizationType === "table-twoColumn";

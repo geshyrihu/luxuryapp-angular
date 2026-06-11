@@ -17,6 +17,7 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { IRecepcionPipaAguaForm } from "./recepcion-pipas-agua.interfaces";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-recepcion-pipas-agua-form",
@@ -134,17 +135,15 @@ export class RecepcionPipasAguaForm implements OnInit {
       });
   }
 
-  onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-    const formData = this.buildFormData(this.form.getRawValue());
-    this.submitting.set(true);
-
-    const request = this.id
-      ? this.apiResponseS.onPut(`recepcion-pipas-agua/${this.id}`, formData)
-      : this.apiResponseS.onPost("recepcion-pipas-agua", formData);
-
-    request.then((result: boolean) => {
-      result ? this.ref.close(true) : this.submitting.set(false);
+  async onSubmit() {
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "recepcion-pipas-agua",
+      id: this.id || null,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (val) => this.buildFormData(val),
     });
   }
 

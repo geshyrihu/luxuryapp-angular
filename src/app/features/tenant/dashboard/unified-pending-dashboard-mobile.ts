@@ -266,7 +266,7 @@ export class UnifiedPendingDashboardMobile {
         this.data().length === 0
       ) {
         this.swalService.fire({
-          title: "Dashboard en actualizaciÃ³n",
+          title: "Dashboard en actualización",
           text: "Estamos sincronizando los datos del cliente. Por favor intenta de nuevo en unos segundos.",
           icon: "info",
         });
@@ -305,8 +305,8 @@ export class UnifiedPendingDashboardMobile {
     } catch (error) {
       console.error(error);
       this.swalService.error(
-        "Error de AnÃ¡lisis",
-        "No se pudo generar el informe. Por favor intenta mÃ¡s tarde.",
+        "Error de Análisis",
+        "No se pudo generar el informe. Por favor intenta más tarde.",
       );
     }
   }

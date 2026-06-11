@@ -244,7 +244,7 @@ export class SolicitudCompraList {
       .openDialog(
         PurchaseLinkManager,
         {},
-        "GestiÃ³n de VÃ³nculos",
+        "Gestión de Vónculos",
         this.dialogHandlerS.sizeLg,
       )
       .then((result) => {
@@ -272,10 +272,10 @@ export class SolicitudCompraList {
   onUnlinkPurchaseOrder(ordenCompraId: string) {
     Swal.fire({
       title: "Confirmar",
-      text: "Ã³EstÃ¡ seguro de que desea desvincular esta orden de compra?",
+      text: "óEstá seguro de que desea desvincular esta orden de compra?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "SÃ­, desvincular",
+      confirmButtonText: "Sí, desvincular",
       cancelButtonText: "Cancelar",
       customClass: {
         container: "my-swal-container",

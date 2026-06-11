@@ -32,7 +32,7 @@ export class InventoryEngineSystem {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
-  // DeclaraciÃ³n e inicializaciÃ³n de variables
+  // Declaración e inicialización de variables
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
@@ -41,7 +41,7 @@ export class InventoryEngineSystem {
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   filteredDataSignal = signal<any[]>([]); // Usar signal para datos filtrados
 
-  ref: DynamicDialogRef; // Referencia a un cuadro de diÃ¡logo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
 
   constructor() {
     effect(() => {
@@ -63,7 +63,7 @@ export class InventoryEngineSystem {
       .openDialog(
         FichaTecnicaActivo,
         data,
-        "Ficha TÃ©cnica",
+        "Ficha Técnica",
         this.dialogHandlerS.sizeFull,
       )
       .then((result: boolean) => {
@@ -108,10 +108,10 @@ export class InventoryEngineSystem {
       });
   }
 
-  // MÃ³todo para filtrar los datos por sistema
+  // Mótodo para filtrar los datos por sistema
   onFilterForSystem(system: string) {
     if (system === "") {
-      // Si el valor es vacÃ³o, mostrar todos
+      // Si el valor es vacóo, mostrar todos
       this.showAll();
     } else {
       // Filtra los datos basados en el sistema seleccionado

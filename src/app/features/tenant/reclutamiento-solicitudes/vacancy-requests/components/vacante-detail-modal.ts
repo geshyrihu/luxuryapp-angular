@@ -33,10 +33,10 @@ export class VacanteDetailModal implements OnInit {
   dias = [
     { n: "Lunes", e: "lunesEntrada" as const, s: "lunesSalida" as const },
     { n: "Martes", e: "martesEntrada" as const, s: "martesSalida" as const },
-    { n: "MiÃ©rcoles", e: "miercolesEntrada" as const, s: "miercolesSalida" as const },
+    { n: "Miércoles", e: "miercolesEntrada" as const, s: "miercolesSalida" as const },
     { n: "Jueves", e: "juevesEntrada" as const, s: "juevesSalida" as const },
     { n: "Viernes", e: "viernesEntrada" as const, s: "viernesSalida" as const },
-    { n: "SÃ¡bado", e: "sabadoEntrada" as const, s: "sabadoSalida" as const },
+    { n: "Sábado", e: "sabadoEntrada" as const, s: "sabadoSalida" as const },
     { n: "Domingo", e: "domingoEntrada" as const, s: "domingoSalida" as const },
   ];
 

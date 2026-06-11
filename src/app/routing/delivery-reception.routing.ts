@@ -9,8 +9,8 @@ export const deliveryReceptionRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Entrega RecepciÃ³n - General",
-      breadcrumb: "Entrega RecepciÃ³n - General",
+      title: "Entrega Recepción - General",
+      breadcrumb: "Entrega Recepción - General",
     },
   },
   {
@@ -21,8 +21,8 @@ export const deliveryReceptionRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Entrega RecepciÃ³n - Equipos",
-      breadcrumb: "Entrega RecepciÃ³n - Equipos",
+      title: "Entrega Recepción - Equipos",
+      breadcrumb: "Entrega Recepción - Equipos",
     },
   },
   {
@@ -33,8 +33,8 @@ export const deliveryReceptionRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Entrega RecepciÃ³n - Instalaciones",
-      breadcrumb: "Entrega RecepciÃ³n - Instalaciones",
+      title: "Entrega Recepción - Instalaciones",
+      breadcrumb: "Entrega Recepción - Instalaciones",
     },
   },
   {
@@ -45,8 +45,8 @@ export const deliveryReceptionRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Entrega RecepciÃ³n - Herramientas",
-      breadcrumb: "Entrega RecepciÃ³n - Herramientas",
+      title: "Entrega Recepción - Herramientas",
+      breadcrumb: "Entrega Recepción - Herramientas",
     },
   },
   {
@@ -57,8 +57,8 @@ export const deliveryReceptionRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Entrega RecepciÃ³n - Insumos",
-      breadcrumb: "Entrega RecepciÃ³n - Insumos",
+      title: "Entrega Recepción - Insumos",
+      breadcrumb: "Entrega Recepción - Insumos",
     },
   },
   {
@@ -69,8 +69,8 @@ export const deliveryReceptionRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Entrega RecepciÃ³n - Mantenimientos",
-      breadcrumb: "Entrega RecepciÃ³n - Mantenimientos",
+      title: "Entrega Recepción - Mantenimientos",
+      breadcrumb: "Entrega Recepción - Mantenimientos",
     },
   },
   {
@@ -82,8 +82,8 @@ export const deliveryReceptionRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Entrega RecepciÃ³n - Organigrama",
-      breadcrumb: "Entrega RecepciÃ³n - Organigrama",
+      title: "Entrega Recepción - Organigrama",
+      breadcrumb: "Entrega Recepción - Organigrama",
     },
   },
   {
@@ -94,8 +94,8 @@ export const deliveryReceptionRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Entrega RecepciÃ³n - Llaves",
-      breadcrumb: "Entrega RecepciÃ³n - Llaves",
+      title: "Entrega Recepción - Llaves",
+      breadcrumb: "Entrega Recepción - Llaves",
     },
   },
   {
@@ -106,8 +106,8 @@ export const deliveryReceptionRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Entrega RecepciÃ³n - Hidrantes",
-      breadcrumb: "Entrega RecepciÃ³n - Hidrantes",
+      title: "Entrega Recepción - Hidrantes",
+      breadcrumb: "Entrega Recepción - Hidrantes",
     },
   },
   {
@@ -119,8 +119,8 @@ export const deliveryReceptionRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Entrega RecepciÃ³n - Mantenimientos Pendientes",
-      breadcrumb: "Entrega RecepciÃ³n - Mantenimientos Pendientes",
+      title: "Entrega Recepción - Mantenimientos Pendientes",
+      breadcrumb: "Entrega Recepción - Mantenimientos Pendientes",
     },
   },
 ];

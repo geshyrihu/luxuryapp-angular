@@ -39,6 +39,7 @@ import {
   IRole,
 } from "./announcement.model";
 import { ImageGenerationDialog } from "./components/image-generation-dialog/image-generation-dialog";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-announcement-admin-form",
@@ -320,81 +321,70 @@ export class AnnouncementAdminForm implements OnInit {
   // --- Submit ---
 
   async onSubmit() {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      this.apiResponseS.validateForm(this.form);
-      return;
-    }
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: this.id()
+        ? Endpoints.Announcements.update(this.id()!)
+        : Endpoints.Announcements.create,
+      method: this.id() ? "PUT" : "POST",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => {
+        const formData = new FormData();
+        const rawValue = this.form.getRawValue();
 
-    this.submitting.set(true);
-    const formData = new FormData();
-    const rawValue = this.form.getRawValue();
+        // Helpers para append
+        const append = (key: string, val: any) => {
+          if (val !== null && val !== undefined && val !== "")
+            formData.append(key, val);
+        };
 
-    // Helpers para append
-    const append = (key: string, val: any) => {
-      if (val !== null && val !== undefined && val !== "")
-        formData.append(key, val);
-    };
+        const toISO = (date: any) => {
+          if (!date) return null;
+          try {
+            return this.dateS.getDateFormat(date);
+          } catch {
+            return null;
+          }
+        };
 
-    const toISO = (date: any) => {
-      if (!date) return null;
-      try {
-        return this.dateS.getDateFormat(date);
-      } catch {
-        return null;
-      }
-    };
+        // Campos bósicos
+        append("title", rawValue.title);
+        append("content", rawValue.content);
+        append("announcementType", rawValue.announcementType);
+        append("status", rawValue.status);
+        append("externalLink", rawValue.externalLink);
+        append("sendByEmail", rawValue.sendByEmail);
+        append("publishedAt", toISO(rawValue.publishedAt));
+        append("expirationDate", toISO(rawValue.expirationDate));
 
-    // Campos bósicos
-    append("title", rawValue.title);
-    append("content", rawValue.content);
-    append("announcementType", rawValue.announcementType);
-    append("status", rawValue.status);
-    append("externalLink", rawValue.externalLink);
-    append("sendByEmail", rawValue.sendByEmail);
-    append("publishedAt", toISO(rawValue.publishedAt));
-    append("expirationDate", toISO(rawValue.expirationDate));
+        // Arrays de IDs
+        (rawValue.recipientRoleIds || []).forEach((id: string) =>
+          formData.append("recipientRoleIds", id),
+        );
+        (rawValue.targetedCustomerIds || []).forEach((id: any) =>
+          formData.append("targetedCustomerIds", String(id)),
+        );
 
-    // Arrays de IDs
-    (rawValue.recipientRoleIds || []).forEach((id: string) =>
-      formData.append("recipientRoleIds", id),
-    );
-    (rawValue.targetedCustomerIds || []).forEach((id: any) =>
-      formData.append("targetedCustomerIds", String(id)),
-    );
+        // Imagen Principal (Nueva vs Borrar Existente)
+        const mainFiles: File[] = rawValue.mainImageControl || [];
+        if (mainFiles.length > 0) {
+          formData.append("image", mainFiles[0]); // Solo la primera si hubiera varias
+        }
+        formData.append("deleteImage", String(this.mainImageToDelete()));
 
-    // Imagen Principal (Nueva vs Borrar Existente)
-    const mainFiles: File[] = rawValue.mainImageControl || [];
-    if (mainFiles.length > 0) {
-      formData.append("image", mainFiles[0]); // Solo la primera si hubiera varias
-    }
-    formData.append("deleteImage", String(this.mainImageToDelete()));
+        // Adjuntos (Nuevos)
+        const attachmentFiles: File[] = rawValue.attachmentsControl || [];
+        attachmentFiles.forEach((file) => formData.append("attachments", file));
 
-    // Adjuntos (Nuevos)
-    const attachmentFiles: File[] = rawValue.attachmentsControl || [];
-    attachmentFiles.forEach((file) => formData.append("attachments", file));
+        // Adjuntos (Borrar Existentes)
+        this.attachmentsToDelete().forEach((id) =>
+          formData.append("attachmentsToDeleteIds", id),
+        );
 
-    // Adjuntos (Borrar Existentes)
-    this.attachmentsToDelete().forEach((id) =>
-      formData.append("attachmentsToDeleteIds", id),
-    );
-
-    // Enviar
-    try {
-      const success = this.id()
-        ? await this.apiResponseS.onPut(
-            Endpoints.Announcements.update(this.id()!),
-            formData,
-          )
-        : await this.apiResponseS.onPost(Endpoints.Announcements.create, formData);
-
-      if (success) {
-        this.ref.close(true);
-      }
-    } catch (e) {
-      console.error(e);
-    } finally {
-      this.submitting.set(false);
-    }
+        return formData;
+      },
+    });
   }
 }

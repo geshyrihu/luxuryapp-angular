@@ -18,7 +18,7 @@ export const maintenanceReportRoutes: Routes = [
         (m) => m.ResumenMantenimientos,
       ),
     data: {
-      title: "Resumen de Mantenimientos", // Ajustado a mayÃºsculas
+      title: "Resumen de Mantenimientos", // Ajustado a mayúsculas
       breadcrumb: "Resumen de Mantenimientos",
     },
   },
@@ -40,8 +40,8 @@ export const maintenanceReportRoutes: Routes = [
         (m) => m.ReportEntradaAlmacen,
       ),
     data: {
-      title: "Reporte de Entradas a AlmacÃ©n", // Ajustado para consistencia
-      breadcrumb: "Reporte de Entradas a AlmacÃ©n",
+      title: "Reporte de Entradas a Almacén", // Ajustado para consistencia
+      breadcrumb: "Reporte de Entradas a Almacén",
     },
   },
   {
@@ -51,8 +51,8 @@ export const maintenanceReportRoutes: Routes = [
         (m) => m.ReportSalidaAlmacen,
       ),
     data: {
-      title: "Reporte de Salidas de AlmacÃ©n", // Ajustado para consistencia
-      breadcrumb: "Reporte de Salidas de AlmacÃ©n",
+      title: "Reporte de Salidas de Almacén", // Ajustado para consistencia
+      breadcrumb: "Reporte de Salidas de Almacén",
     },
   },
   {
@@ -73,8 +73,8 @@ export const maintenanceReportRoutes: Routes = [
         (m) => m.ReportPrestamoHerramienta,
       ),
     data: {
-      title: "Reporte de PrÃ©stamo de Herramientas", // Ajustado para consistencia
-      breadcrumb: "Reporte de PrÃ©stamo de Herramientas",
+      title: "Reporte de Préstamo de Herramientas", // Ajustado para consistencia
+      breadcrumb: "Reporte de Préstamo de Herramientas",
     },
   },
   {
@@ -95,8 +95,8 @@ export const maintenanceReportRoutes: Routes = [
         (m) => m.ReportBitacoraAlberca,
       ),
     data: {
-      title: "Reporte de BitÃ¡cora de Alberca", // Ajustado para consistencia
-      breadcrumb: "Reporte de BitÃ¡cora de Alberca",
+      title: "Reporte de Bitácora de Alberca", // Ajustado para consistencia
+      breadcrumb: "Reporte de Bitácora de Alberca",
     },
   },
   {
@@ -117,7 +117,7 @@ export const maintenanceReportRoutes: Routes = [
         (m) => m.ElevatorsEmergencyCallList,
       ),
     data: {
-      title: "Reporte de Llamados de Elevador", // Ajustado para ser mÃ¡s especÃ­fico
+      title: "Reporte de Llamados de Elevador", // Ajustado para ser más específico
       breadcrumb: "Reporte de Llamados de Elevador",
     },
   },

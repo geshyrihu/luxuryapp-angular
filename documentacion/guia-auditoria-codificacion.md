@@ -4,9 +4,9 @@ Esta regla ha sido implementada para prevenir la aparición de caracteres corrup
 
 ## 🚫 El Problema: Mojibake
 Se manifiesta como símbolos extraños en la interfaz de usuario o comentarios:
-- `DescripciÃ³n` en lugar de **Descripción**
-- `CotizaciÃ³n` en lugar de **Cotización**
-- `GarantÃ­a` en lugar de **Garantía**
+- `Descripción` en lugar de **Descripción**
+- `Cotización` en lugar de **Cotización**
+- `Garantía` en lugar de **Garantía**
 
 ## 🛠️ Herramienta de Auditoría
 Se ha creado un script automatizado que escanea el proyecto en busca de estos patrones.

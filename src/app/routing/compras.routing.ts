@@ -97,8 +97,8 @@ export const comprasRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "PresentaciÃ³n de Solicitudes de Compra",
-      breadcrumb: "PresentaciÃ³n",
+      title: "Presentación de Solicitudes de Compra",
+      breadcrumb: "Presentación",
     },
   },
   {
@@ -109,8 +109,8 @@ export const comprasRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "CatÃ¡logo de Gastos Fijos",
-      breadcrumb: "CatÃ¡logo de Gastos Fijos",
+      title: "Catálogo de Gastos Fijos",
+      breadcrumb: "Catálogo de Gastos Fijos",
     },
   },
   {
@@ -122,8 +122,8 @@ export const comprasRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "CatÃ¡logo de Gastos Fijos",
-      breadcrumb: "CatÃ¡logo de Gastos Fijos",
+      title: "Catálogo de Gastos Fijos",
+      breadcrumb: "Catálogo de Gastos Fijos",
     },
   },
   {
@@ -134,8 +134,8 @@ export const comprasRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Ã“rdenes de Compra",
-      breadcrumb: "Ã“rdenes de Compra",
+      title: "Órdenes de Compra",
+      breadcrumb: "Órdenes de Compra",
     },
   },
   {
@@ -186,8 +186,8 @@ export const comprasRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Ã“rdenes de Compra Pagadas",
-      breadcrumb: "Ã“rdenes de Compra Pagadas",
+      title: "Órdenes de Compra Pagadas",
+      breadcrumb: "Órdenes de Compra Pagadas",
     },
   },
   {

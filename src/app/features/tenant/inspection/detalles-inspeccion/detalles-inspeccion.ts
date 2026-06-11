@@ -33,7 +33,7 @@ export class DetallesInspeccion implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   data: any;
 
-  nombre: string = "Equipos electromecÃ¡nicos";
+  nombre: string = "Equipos electromecánicos";
   areaResponsable: string = "Mantenimiento";
   id: string = this.activatedRoute.snapshot.paramMap.get("id");
 
@@ -111,8 +111,8 @@ export class DetallesInspeccion implements OnInit {
   onModalAddRevision() {
     this.dialogHandlerS.openDialog(
       InspeccionAgregarRevision,
-      { title: "Agregar Ã¡rea" },
-      "Agregar revisiÃ³n",
+      { title: "Agregar área" },
+      "Agregar revisión",
       this.dialogHandlerS.sizeLg,
     );
   }
