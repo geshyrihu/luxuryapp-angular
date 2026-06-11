@@ -1,4 +1,4 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 export const recruitmentRoutes: Routes = [
   {
@@ -10,7 +10,7 @@ export const recruitmentRoutes: Routes = [
     // Suggested path: 'internal-template'
     path: "plantilla-interna",
     loadComponent: () =>
-      import("src/app/features/work-position/pages/work-position-list").then(
+      import("src/app/features/tenant/work-position/pages/work-position-list").then(
         (m) => m.WorkPositionList,
       ),
     canActivate: [authGuard],
@@ -23,7 +23,7 @@ export const recruitmentRoutes: Routes = [
   {
     path: "requests", // Ruta anterior: 'solicitudes'
     loadChildren: () =>
-      import("src/app/features/reclutamiento-solicitudes/recruitment-requests.routing").then(
+      import("src/app/features/tenant/reclutamiento-solicitudes/recruitment-requests.routing").then(
         (m) => m.recruitmentRequestsRoutes,
       ),
     canActivate: [authGuard],
@@ -40,7 +40,7 @@ export const recruitmentRoutes: Routes = [
     // Suggested path: 'dismissal-request-status'
     path: "status-solicitud-baja",
     loadComponent: () =>
-      import("src/app/features/reclutamiento-solicitudes/request-dismissal/status-request-dismissal").then(
+      import("src/app/features/tenant/reclutamiento-solicitudes/request-dismissal/status-request-dismissal").then(
         (m) => m.StatusRequestDismissal,
       ),
     canActivate: [authGuard],
@@ -53,20 +53,20 @@ export const recruitmentRoutes: Routes = [
     // Suggested path: 'salary-modification-request-status'
     path: "status-solicitud-modificacion-salario",
     loadComponent: () =>
-      import("src/app/features/reclutamiento-solicitudes/salary-modification/status-request-salary-modification").then(
+      import("src/app/features/tenant/reclutamiento-solicitudes/salary-modification/status-request-salary-modification").then(
         (m) => m.StatusRequestSalaryModification,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Estatus de Solicitud de Modificación de Salario", // Mejorado para mayor claridad
-      breadcrumb: "Estatus de Solicitud de Modificación de Salario",
+      title: "Estatus de Solicitud de ModificaciÃ³n de Salario", // Mejorado para mayor claridad
+      breadcrumb: "Estatus de Solicitud de ModificaciÃ³n de Salario",
     },
   },
   {
     // Suggested path: 'customer-requests'
     path: "solicitudes_cliente",
     loadComponent: () =>
-      import("src/app/features/recruitment/recruitment-client-requests/solicitudes-cliente-list").then(
+      import("src/app/features/tenant/recruitment/recruitment-client-requests/solicitudes-cliente-list").then(
         (m) => m.SolicitudesClienteList,
       ),
     canActivate: [authGuard],
@@ -78,7 +78,7 @@ export const recruitmentRoutes: Routes = [
   {
     path: "dismissal-requests", // Ruta anterior: 'solicitudes-baja'
     loadComponent: () =>
-      import("src/app/features/reclutamiento-solicitudes/request-dismissal/pages/solicitud-baja-list").then(
+      import("src/app/features/tenant/reclutamiento-solicitudes/request-dismissal/pages/solicitud-baja-list").then(
         (m) => m.SolicitudBajaList,
       ),
     canActivate: [authGuard],
@@ -88,3 +88,4 @@ export const recruitmentRoutes: Routes = [
     },
   },
 ];
+

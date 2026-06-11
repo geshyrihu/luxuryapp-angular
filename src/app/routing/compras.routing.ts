@@ -1,11 +1,11 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 export const comprasRoutes: Routes = [
   {
     // Suggested path: 'budget'
     path: "presupuesto",
     loadComponent: () =>
-      import("src/app/features/contabilidad/presupuesto-web-aspel/wrapper").then(
+      import("src/app/features/tenant/contabilidad/presupuesto-web-aspel/wrapper").then(
         (m) => m.PresupuestoWebAspelWrapper,
       ),
     canActivate: [authGuard],
@@ -17,7 +17,7 @@ export const comprasRoutes: Routes = [
   // {
   //   path: "presupuesto/:id",
   //   loadComponent: () =>
-  //     import("src/app/features/contabilidad/edicion-presupuesto/presupuesto-individual").then(
+  //     import("src/app/features/tenant/contabilidad/edicion-presupuesto/presupuesto-individual").then(
   //       (m) => m.PresupuestoIndividual,
   //     ),
   //   canActivate: [authGuard],
@@ -29,7 +29,7 @@ export const comprasRoutes: Routes = [
   {
     path: "products-services",
     loadComponent: () =>
-      import("src/app/features/product/productos-list").then(
+      import("src/app/features/tenant/product/productos-list").then(
         (m) => m.ProductosList,
       ),
     canActivate: [authGuard],
@@ -41,7 +41,7 @@ export const comprasRoutes: Routes = [
   {
     path: "purchase-requests", // Ruta anterior: 'solicitudes-compra'
     loadComponent: () =>
-      import("src/app/features/purchases/solicitud-compra/solicitud-compra-list").then(
+      import("src/app/features/tenant/purchases/solicitud-compra/solicitud-compra-list").then(
         (m) => m.SolicitudCompraList,
       ),
     canActivate: [authGuard],
@@ -54,7 +54,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'purchase-request/:id'
     path: "solicitud-compra/:id",
     loadComponent: () =>
-      import("src/app/features/purchases/solicitud-compra/solicitud-compra").then(
+      import("src/app/features/tenant/purchases/solicitud-compra/solicitud-compra").then(
         (m) => m.SolicitudCompra,
       ),
     canActivate: [authGuard],
@@ -67,7 +67,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'purchase-request-pdf/:id'
     path: "pdf-solicitud-compra/:id",
     loadComponent: () =>
-      import("src/app/features/purchases/solicitud-compra/pdf-solicitud-compra").then(
+      import("src/app/features/tenant/purchases/solicitud-compra/pdf-solicitud-compra").then(
         (m) => m.PdfSolicitudCompra,
       ),
     canActivate: [authGuard],
@@ -80,7 +80,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'comparison-chart/:id'
     path: "cuadro-comparativo/:id",
     loadComponent: () =>
-      import("src/app/features/provider-quotation/cuadro-comparativo-list").then(
+      import("src/app/features/tenant/provider-quotation/cuadro-comparativo-list").then(
         (m) => m.CuadroComparativoList,
       ),
     canActivate: [authGuard],
@@ -92,57 +92,57 @@ export const comprasRoutes: Routes = [
   {
     path: "solicitud-compra-presentacion",
     loadComponent: () =>
-      import("src/app/features/purchases/solicitud-compra/solicitud-compra-presentacion").then(
+      import("src/app/features/tenant/purchases/solicitud-compra/solicitud-compra-presentacion").then(
         (m) => m.SolicitudCompraPresentacion,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Presentación de Solicitudes de Compra",
-      breadcrumb: "Presentación",
+      title: "PresentaciÃ³n de Solicitudes de Compra",
+      breadcrumb: "PresentaciÃ³n",
     },
   },
   {
     path: "fixed-expenses-catalog", // Ruta anterior: 'catalogo-gastos-fijos'
     loadComponent: () =>
-      import("src/app/features/catalogo-gastos-fijos/catalogo-gastos-fijos-list").then(
+      import("src/app/features/tenant/catalogo-gastos-fijos/catalogo-gastos-fijos-list").then(
         (m) => m.CatalogoGastosFijosList,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Catálogo de Gastos Fijos",
-      breadcrumb: "Catálogo de Gastos Fijos",
+      title: "CatÃ¡logo de Gastos Fijos",
+      breadcrumb: "CatÃ¡logo de Gastos Fijos",
     },
   },
   {
     // Suggested path: 'fixed-expenses-catalog-form/:id'
     path: "catalogo-gastos-fijos-form/:id",
     loadComponent: () =>
-      import("src/app/features/catalogo-gastos-fijos/catalogo-gasto-fijo-form").then(
+      import("src/app/features/tenant/catalogo-gastos-fijos/catalogo-gasto-fijo-form").then(
         (m) => m.CatalogoGastoFijoForm,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Catálogo de Gastos Fijos",
-      breadcrumb: "Catálogo de Gastos Fijos",
+      title: "CatÃ¡logo de Gastos Fijos",
+      breadcrumb: "CatÃ¡logo de Gastos Fijos",
     },
   },
   {
     path: "purchase-orders", // Ruta anterior: 'ordenes-compra'
     loadComponent: () =>
-      import("src/app/features/purchases/purchase-order/orden-compra-list").then(
+      import("src/app/features/tenant/purchases/purchase-order/orden-compra-list").then(
         (m) => m.OrdenCompraList,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Órdenes de Compra",
-      breadcrumb: "Órdenes de Compra",
+      title: "Ã“rdenes de Compra",
+      breadcrumb: "Ã“rdenes de Compra",
     },
   },
   {
     // Suggested path: 'purchase-order/:id'
     path: "orden-compra/:id",
     loadComponent: () =>
-      import("src/app/features/purchases/purchase-order/orden-compra").then(
+      import("src/app/features/tenant/purchases/purchase-order/orden-compra").then(
         (m) => m.OrdenCompra,
       ),
     canActivate: [authGuard],
@@ -155,7 +155,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'purchase-order-pdf/:id'
     path: "orden-compra-pdf/:id",
     loadComponent: () =>
-      import("src/app/features/purchases/purchase-order/orden-compra-pdf/orden-compra-pdf").then(
+      import("src/app/features/tenant/purchases/purchase-order/orden-compra-pdf/orden-compra-pdf").then(
         (m) => m.OrdenCompraPdf,
       ),
     canActivate: [authGuard],
@@ -168,7 +168,7 @@ export const comprasRoutes: Routes = [
     // Suggested path: 'payment-request-pdf/:id'
     path: "solicitud-pago-pdf/:id",
     loadComponent: () =>
-      import("src/app/features/purchases/purchase-order/solicitud-pago-pdf/solicitud-pago-pdf").then(
+      import("src/app/features/tenant/purchases/purchase-order/solicitud-pago-pdf/solicitud-pago-pdf").then(
         (m) => m.SolicitudPagoPdfComponent,
       ),
     canActivate: [authGuard],
@@ -181,19 +181,19 @@ export const comprasRoutes: Routes = [
   {
     path: "paid", // Ruta anterior: 'pagadas'
     loadComponent: () =>
-      import("src/app/features/purchases/purchase-order/orden-compra-pagadas/orden-compra-pagadas").then(
+      import("src/app/features/tenant/purchases/purchase-order/orden-compra-pagadas/orden-compra-pagadas").then(
         (m) => m.OrdenCompraPagadas,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Órdenes de Compra Pagadas",
-      breadcrumb: "Órdenes de Compra Pagadas",
+      title: "Ã“rdenes de Compra Pagadas",
+      breadcrumb: "Ã“rdenes de Compra Pagadas",
     },
   },
   {
     path: "maintenance-budget", // Ruta anterior: 'mtto-presupuesto'
     loadComponent: () =>
-      import("src/app/features/reports/mantenimiento-presupuesto/gastos-mantenimiento").then(
+      import("src/app/features/tenant/reports/mantenimiento-presupuesto/gastos-mantenimiento").then(
         (m) => m.GastosMantenimiento,
       ),
     canActivate: [authGuard],
@@ -203,3 +203,4 @@ export const comprasRoutes: Routes = [
     },
   },
 ];
+

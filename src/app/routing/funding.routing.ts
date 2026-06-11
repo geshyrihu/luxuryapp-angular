@@ -1,10 +1,10 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 export const fundingRoutes: Routes = [
   {
     path: "list",
     loadComponent: () =>
-      import("src/app/features/funding/funding-list").then(
+      import("src/app/features/tenant/funding/funding-list").then(
         (m) => m.FundingList,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const fundingRoutes: Routes = [
   {
     path: "details/:id",
     loadComponent: () =>
-      import("src/app/features/funding/funding-detail").then(
+      import("src/app/features/tenant/funding/funding-detail").then(
         (m) => m.FundingDetail,
       ),
     canActivate: [authGuard],
@@ -26,6 +26,7 @@ export const fundingRoutes: Routes = [
     },
   },
 ];
+
 
 
 

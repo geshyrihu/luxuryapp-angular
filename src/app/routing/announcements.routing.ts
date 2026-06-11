@@ -1,11 +1,11 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 export const announcementsRoutes: Routes = [
   {
     // Suggested path: 'manage'
     path: "manage",
     loadComponent: () =>
-      import("src/app/features/announcement/announcement-admin-list").then(
+      import("src/app/features/tenant/announcement/announcement-admin-list").then(
         (m) => m.AnnouncementAdminList,
       ),
     canActivate: [authGuard],
@@ -19,7 +19,7 @@ export const announcementsRoutes: Routes = [
     // Suggested path: 'list'
     path: "list",
     loadComponent: () =>
-      import("src/app/features/announcement/announcement-list").then(
+      import("src/app/features/tenant/announcement/announcement-list").then(
         (m) => m.AnnouncementList,
       ),
     canActivate: [authGuard],
@@ -32,7 +32,7 @@ export const announcementsRoutes: Routes = [
     // Suggested path: 'detail/:id'
     path: "detail/:id",
     loadComponent: () =>
-      import("src/app/features/announcement/announcement-detail").then(
+      import("src/app/features/tenant/announcement/announcement-detail").then(
         (m) => m.announcementDetail,
       ),
     canActivate: [authGuard],
@@ -45,16 +45,17 @@ export const announcementsRoutes: Routes = [
     // Suggested path: 'detail/:id'
     path: "analytics/:id",
     loadComponent: () =>
-      import("src/app/features/announcement/announcement-analytics").then(
+      import("src/app/features/tenant/announcement/announcement-analytics").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Análisis de vistas",
-      breadcrumb: "Análisis de vistas",
+      title: "AnÃ¡lisis de vistas",
+      breadcrumb: "AnÃ¡lisis de vistas",
     },
   },
 ];
+
 
 
 

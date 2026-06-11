@@ -1,4 +1,4 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 import { Loader } from "./core/components/loader/loader";
 import { authGuard } from "./core/guard/auth.guard";
 import { committeeGuard } from "./core/guard/committee.guard";
@@ -9,17 +9,17 @@ import { LayoutCommittee } from "./layout/committee-view/layout-committee";
 import { LayoutDireccion } from "./layout/direccion-view/layout-direccion";
 import { LayoutEmployee } from "./layout/employee-view/layout-employee";
 /**
- * Rutas Principales de la Aplicación: El Gran Distribuidor 🚦
+ * Rutas Principales de la AplicaciÃ³n: El Gran Distribuidor ðŸš¦
  *
- * Este es el mapa maestro de la aplicación. Aquí se decide a dónde va el usuario
- * basándose en la URL y su estado de autenticación.
+ * Este es el mapa maestro de la aplicaciÃ³n. AquÃ­ se decide a dÃ³nde va el usuario
+ * basÃ¡ndose en la URL y su estado de autenticaciÃ³n.
  *
  * El Flujo es el siguiente:
- *   1. Rutas públicas como `auth` y `publico` son de libre acceso. Sin guardias, sin problemas.
- *   2. La ruta raíz (`''`) es la más inteligente. Primero, el `AuthGuard` te pide tus credenciales (¿estás en la lista?).
+ *   1. Rutas pÃºblicas como `auth` y `publico` son de libre acceso. Sin guardias, sin problemas.
+ *   2. La ruta raÃ­z (`''`) es la mÃ¡s inteligente. Primero, el `AuthGuard` te pide tus credenciales (Â¿estÃ¡s en la lista?).
  *      Luego, el `roleRedirectGuard` (el portero) te mira de arriba abajo y te manda al layout que te corresponde.
  *   3. La ruta `/app` es el contenedor de las zonas privadas. Dentro de ella, se decide si se carga el `FullLayoutComponent`
- *      (la fiesta para empleados) o el `MinimalLayoutComponent` (la sala de juntas para el comité).
+ *      (la fiesta para empleados) o el `MinimalLayoutComponent` (la sala de juntas para el comitÃ©).
  *   4. Cada layout tiene sus propias rutas hijas (`loadChildren`), manteniendo todo ordenado y modular.
  */
 export const appRoutes: Routes = [
@@ -40,7 +40,7 @@ export const appRoutes: Routes = [
         (m) => m.Offline,
       ),
     data: {
-      title: "Sin Conexión",
+      title: "Sin ConexiÃ³n",
     },
   },
   {
@@ -62,17 +62,17 @@ export const appRoutes: Routes = [
         (m) => m.Page404,
       ),
     data: {
-      title: "Página No Encontrada",
+      title: "PÃ¡gina No Encontrada",
     },
   },
 
-  // --- El Corazón de la Redirección --- //
+  // --- El CorazÃ³n de la RedirecciÃ³n --- //
   {
     path: "",
     pathMatch: "full",
     canActivate: [authGuard, roleRedirectGuard],
-    // Este componente nunca se renderiza, porque el guardián SIEMPRE redirige.
-    // Es solo un peón en el juego del enrutamiento. ♟️
+    // Este componente nunca se renderiza, porque el guardiÃ¡n SIEMPRE redirige.
+    // Es solo un peÃ³n en el juego del enrutamiento. â™Ÿï¸
     component: Loader, // Un componente cualquiera y ligero
   },
 
@@ -82,7 +82,7 @@ export const appRoutes: Routes = [
     component: LayoutCommittee,
     canActivate: [authGuard, committeeGuard],
     loadChildren: () =>
-      import("src/app/features/committee/committee.routing").then(
+      import("src/app/features/tenant/committee/committee.routing").then(
         (m) => m.committeeRoutes,
       ),
   },
@@ -93,14 +93,14 @@ export const appRoutes: Routes = [
     component: LayoutDireccion,
     canActivate: [authGuard, direccionGuard],
     loadChildren: () =>
-      import("src/app/features/direccion/direccion.routing").then(
+      import("src/app/features/tenant/direccion/direccion.routing").then(
         (m) => m.direccionRoutes,
       ),
   },
 
   // --- Rutas de Empleado (Full Layout) ---
-  // Esta será la ruta por defecto para usuarios no-comité.
-  // Captura la raíz y todas las demás rutas (dashboard, home, etc.) definidas en pages.routing.
+  // Esta serÃ¡ la ruta por defecto para usuarios no-comitÃ©.
+  // Captura la raÃ­z y todas las demÃ¡s rutas (dashboard, home, etc.) definidas en pages.routing.
   {
     path: "",
     component: LayoutEmployee,
@@ -109,10 +109,11 @@ export const appRoutes: Routes = [
       import("src/app/routing/pages.routing").then((m) => m.pagesRoutes),
   },
 
-  // --- Wildcard Route (Captura todo lo demás) ---
-  // IMPORTANTE: Debe ser SIEMPRE la última ruta.
+  // --- Wildcard Route (Captura todo lo demÃ¡s) ---
+  // IMPORTANTE: Debe ser SIEMPRE la Ãºltima ruta.
   {
     path: "**",
     redirectTo: "page404",
   },
 ];
+

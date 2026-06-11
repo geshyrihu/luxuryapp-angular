@@ -1,0 +1,107 @@
+﻿import { CommonModule } from "@angular/common";
+import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import type {
+  PresupuestoContabilidadFila,
+  PresupuestoContabilidadResponse,
+} from "src/app/features/tenant/contabilidad/cobranza-online/models/presupuesto-contabilidad.model";
+import { reportFilterState } from "../../state/financial-report-filter.state";
+
+@Component({
+  selector: "app-presupuesto-contabilidad",
+  imports: [CommonModule],
+  templateUrl: "./presupuesto-contabilidad.html",
+})
+export class PresupuestoContabilidad {
+  private apiS = inject(ApiResponseService);
+  private customerIdS = inject(CustomerIdService);
+  public filterS = reportFilterState;
+
+  loading = signal(false);
+  data = signal<PresupuestoContabilidadResponse | null>(null);
+
+  readonly acumLabel = computed(() => {
+    const names = ["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"];
+    return `ACUMULADO ENE-${names[this.filterS.mesIdx()]}`;
+  });
+
+  constructor() {
+    effect(() => {
+      const custId = this.customerIdS.customerId();
+      const yr = this.filterS.year();
+      const mes = this.filterS.mesIdx() + 1;
+      this.filterS.refreshTick();
+      if (custId && yr) void this.loadData(custId, yr, mes);
+    });
+  }
+
+  async loadData(customerId: string, year: number, mes: number) {
+    this.loading.set(true);
+    const result = await this.apiS.onGetItem<PresupuestoContabilidadResponse>(
+      Endpoints.ContabilidadOnline.FinancialStatements.presupuestoContabilidad(
+        customerId,
+        year,
+        mes,
+      ),
+    );
+    if (result) {
+      this.data.set(result);
+      this.filterS.currentReportName.set("Presupuesto Contabilidad");
+      this.filterS.currentReportContext.set(JSON.stringify(result));
+    }
+    this.loading.set(false);
+  }
+
+  /** Fila vacÃ­a = todos los montos son cero. Los totales (nivel 4) nunca se omiten. */
+  isFilaVacia(fila: PresupuestoContabilidadFila): boolean {
+    if (fila.nivel === 4) return false;
+    return (
+      fila.pstoMensual === 0 &&
+      fila.acumuladoAnual === 0 &&
+      fila.presupAnual === 0 &&
+      fila.montosEjercidos.every((v) => v === 0)
+    );
+  }
+
+  rowClass(fila: PresupuestoContabilidadFila): string {
+    switch (fila.nivel) {
+      case 1: return "rf-row-section";
+      case 2: return "rf-row-group";
+      case 4: return "rf-row-total";
+      default: return "";
+    }
+  }
+
+  descClass(fila: PresupuestoContabilidadFila): string {
+    if (fila.nivel === 1 || fila.nivel === 4) return "rf-td-descripcion";
+    if (fila.nivel === 2) return "rf-td-descripcion";
+    return "rf-td-descripcion--item";
+  }
+
+  numClass(fila: PresupuestoContabilidadFila): string {
+    return fila.nivel === 4 ? "rf-td-number--total" : "rf-td-number";
+  }
+
+  fmt(v: number): string {
+    if (v === 0) return "-";
+    const formatted = new Intl.NumberFormat("es-MX", {
+      maximumFractionDigits: 0,
+    }).format(Math.abs(v));
+    return v < 0 ? `(${formatted})` : formatted;
+  }
+
+  isNeg(v: number): boolean {
+    return v < 0;
+  }
+
+  trackByCuenta(_i: number, fila: PresupuestoContabilidadFila): string {
+    return fila.numeroCuenta + fila.descripcion;
+  }
+
+  trackByIndex(i: number): number {
+    return i;
+  }
+}
+

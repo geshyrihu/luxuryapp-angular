@@ -1,10 +1,10 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 export const pagesRoutes: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("src/app/features/dashboard/container-dashboard").then(
+      import("src/app/features/tenant/dashboard/container-dashboard").then(
         (m) => m.ContainerDashboard,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const pagesRoutes: Routes = [
   {
     path: "dashboard",
     loadComponent: () =>
-      import("src/app/features/dashboard/container-dashboard").then(
+      import("src/app/features/tenant/dashboard/container-dashboard").then(
         (m) => m.ContainerDashboard,
       ),
     canActivate: [authGuard],
@@ -56,8 +56,8 @@ export const pagesRoutes: Routes = [
       import("src/app/routing/settings.routing").then((m) => m.settingsRoutes),
 
     data: {
-      title: "Configuración del sistema",
-      breadcrumb: "Configuración del sistema",
+      title: "ConfiguraciÃ³n del sistema",
+      breadcrumb: "ConfiguraciÃ³n del sistema",
     },
   },
   {
@@ -93,8 +93,8 @@ export const pagesRoutes: Routes = [
       ),
 
     data: {
-      title: "Almacén",
-      breadcrumb: "Almacén",
+      title: "AlmacÃ©n",
+      breadcrumb: "AlmacÃ©n",
     },
   },
   {
@@ -112,11 +112,11 @@ export const pagesRoutes: Routes = [
 
   ///INICIO Seccion contabilidad
 
-  // RUTA PRINCIPAL DE CONTABILIDAD - Todas las rutas están centralizadas en contabilidad.routing.ts
+  // RUTA PRINCIPAL DE CONTABILIDAD - Todas las rutas estÃ¡n centralizadas en contabilidad.routing.ts
   {
     path: "contabilidad",
     loadChildren: () =>
-      import("src/app/features/contabilidad/contabilidad.routing").then(
+      import("src/app/features/tenant/contabilidad/contabilidad.routing").then(
         (m) => m.CONTABILIDAD_ROUTES,
       ),
     data: {
@@ -127,7 +127,7 @@ export const pagesRoutes: Routes = [
   {
     path: "cobranza-nativa",
     loadChildren: () =>
-      import("src/app/features/contabilidad/cobranza-nativa/cobranza-nativa.routing").then(
+      import("src/app/features/tenant/contabilidad/cobranza-nativa/cobranza-nativa.routing").then(
         (m) => m.COBRANZA_NATIVA_ROUTES,
       ),
     data: {
@@ -191,8 +191,8 @@ export const pagesRoutes: Routes = [
       ),
 
     data: {
-      title: "Entrega Recepción",
-      breadcrumb: "Entrega Recepción",
+      title: "Entrega RecepciÃ³n",
+      breadcrumb: "Entrega RecepciÃ³n",
     },
   },
   {
@@ -246,8 +246,8 @@ export const pagesRoutes: Routes = [
       import("src/app/routing/logbook.routing").then((m) => m.logbookRoutes),
 
     data: {
-      title: "Bitácora",
-      breadcrumb: "Bitácora",
+      title: "BitÃ¡cora",
+      breadcrumb: "BitÃ¡cora",
     },
   },
 
@@ -313,7 +313,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes",
     loadComponent: () =>
-      import("src/app/features/contabilidad/dynamic-reports/pages/report-catalog/report-catalog").then(
+      import("src/app/features/tenant/contabilidad/dynamic-reports/pages/report-catalog/report-catalog").then(
         (m) => m.ReportCatalog,
       ),
     data: { title: "Reportes Financieros", breadcrumb: "Reportes" },
@@ -321,7 +321,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/nuevo",
     loadComponent: () =>
-      import("src/app/features/contabilidad/dynamic-reports/pages/report-builder/report-builder").then(
+      import("src/app/features/tenant/contabilidad/dynamic-reports/pages/report-builder/report-builder").then(
         (m) => m.ReportBuilder,
       ),
     data: { title: "Nuevo Reporte", breadcrumb: "Nuevo Reporte" },
@@ -329,7 +329,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/editar/:id",
     loadComponent: () =>
-      import("src/app/features/contabilidad/dynamic-reports/pages/report-builder/report-builder").then(
+      import("src/app/features/tenant/contabilidad/dynamic-reports/pages/report-builder/report-builder").then(
         (m) => m.ReportBuilder,
       ),
     data: { title: "Editar Reporte", breadcrumb: "Editar Reporte" },
@@ -337,7 +337,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/ver/:id",
     loadComponent: () =>
-      import("src/app/features/contabilidad/dynamic-reports/pages/report-viewer/report-viewer").then(
+      import("src/app/features/tenant/contabilidad/dynamic-reports/pages/report-viewer/report-viewer").then(
         (m) => m.ReportViewer,
       ),
     data: { title: "Ver Reporte", breadcrumb: "Ver Reporte" },
@@ -345,15 +345,15 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/guia",
     loadComponent: () =>
-      import("src/app/features/contabilidad/dynamic-reports/pages/report-guide/report-guide").then(
+      import("src/app/features/tenant/contabilidad/dynamic-reports/pages/report-guide/report-guide").then(
         (m) => m.ReportGuide,
       ),
-    data: { title: "Guía del Módulo de Reportes", breadcrumb: "Guía" },
+    data: { title: "GuÃ­a del MÃ³dulo de Reportes", breadcrumb: "GuÃ­a" },
   },
   {
     path: "report-financial-statements",
     loadComponent: () =>
-      import("src/app/features/contabilidad/contabilidad-online/pages/financial-reports-wrapper").then(
+      import("src/app/features/tenant/contabilidad/contabilidad-online/pages/financial-reports-wrapper").then(
         (m) => m.default,
       ),
     data: {
@@ -364,7 +364,7 @@ export const pagesRoutes: Routes = [
   {
     path: "catalog-replica",
     loadComponent: () =>
-      import("src/app/features/contabilidad/contabilidad-online/pages/validacion-catalogo/catalog-replica").then(
+      import("src/app/features/tenant/contabilidad/contabilidad-online/pages/validacion-catalogo/catalog-replica").then(
         (m) => m.CatalogReplica,
       ),
     data: {
@@ -375,7 +375,7 @@ export const pagesRoutes: Routes = [
   {
     path: "balance-mensual",
     loadComponent: () =>
-      import("src/app/features/contabilidad/contabilidad-online/pages/monthly-balance/balance-mensual").then(
+      import("src/app/features/tenant/contabilidad/contabilidad-online/pages/monthly-balance/balance-mensual").then(
         (m) => m.BalanceMensual,
       ),
     data: {
@@ -494,7 +494,7 @@ export const pagesRoutes: Routes = [
   {
     path: "sat-funding",
     loadChildren: () =>
-      import("src/app/features/sat-funding/sat-funding.routes").then(
+      import("src/app/features/tenant/sat-funding/sat-funding.routes").then(
         (m) => m.SAT_FUNDING_ROUTES,
       ),
     data: {
@@ -518,7 +518,7 @@ export const pagesRoutes: Routes = [
   {
     path: "entrega-recepcion-check",
     loadComponent: () =>
-      import("src/app/features/entrega-recepcion-check/entrega-recepcion-check").then(
+      import("src/app/features/tenant/entrega-recepcion-check/entrega-recepcion-check").then(
         (m) => m.EntregaRecepcionCheckComponent,
       ),
     data: {
@@ -529,15 +529,36 @@ export const pagesRoutes: Routes = [
   {
     path: "password-manager",
     loadChildren: () =>
-      import("src/app/features/password-manager/password-manager.routes").then(
+      import("src/app/features/vault/password-manager/password-manager.routes").then(
         (m) => m.PASSWORD_MANAGER_ROUTES,
       ),
     data: {
-      title: "Gestor de Contraseñas",
-      breadcrumb: "Gestor de Contraseñas",
+      title: "Gestor de ContraseÃ±as",
+      breadcrumb: "Gestor de ContraseÃ±as",
     },
   },
   // Rutas temporales para check de auditoria
+    // --- RUTAS DE ARQUITECTURA 3DB ---
+  {
+    path: "tenant",
+    loadChildren: () =>
+      import("src/app/features/tenant/tenant.routing").then((m) => m.tenantRoutes),
+    data: { title: "Tenant", breadcrumb: "Tenant" }
+  },
+  {
+    path: "config",
+    loadChildren: () =>
+      import("src/app/features/configuration/configuration.routing").then((m) => m.configurationRoutes),
+    data: { title: "ConfiguraciÃ³n", breadcrumb: "ConfiguraciÃ³n" }
+  },
+  {
+    path: "vault",
+    loadChildren: () =>
+      import("src/app/features/vault/vault.routing").then((m) => m.vaultRoutes),
+    data: { title: "BÃ³veda de Secretos", breadcrumb: "BÃ³veda" }
+  },
+  // --- FIN RUTAS 3DB ---
+
   {
     path: "**",
     loadComponent: () =>
@@ -545,8 +566,11 @@ export const pagesRoutes: Routes = [
         (m) => m.Page404,
       ),
     data: {
-      title: "Página No Encontrada",
+      title: "PÃ¡gina No Encontrada",
       breadcrumb: "Error 404",
     },
   },
 ];
+
+
+

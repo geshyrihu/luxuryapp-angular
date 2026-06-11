@@ -1,10 +1,10 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 export const accountingRoutes: Routes = [
   {
     path: "budget", // Ruta anterior: 'presupuesto'
     loadComponent: () =>
-      import("src/app/features/contabilidad/presupuesto-web-aspel/wrapper").then(
+      import("src/app/features/tenant/contabilidad/presupuesto-web-aspel/wrapper").then(
         (m) => m.PresupuestoWebAspelWrapper,
       ),
     canActivate: [authGuard],
@@ -17,19 +17,19 @@ export const accountingRoutes: Routes = [
   {
     path: "accounting-catalog",
     loadComponent: () =>
-      import("src/app/features/contabilidad/accounting-catalog/pages/accounting-catalog").then(
+      import("src/app/features/tenant/contabilidad/accounting-catalog/pages/accounting-catalog").then(
         (m) => m.AccountingCatalog,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Catálogo Contable",
-      breadcrumb: "Catálogo Contable",
+      title: "CatÃ¡logo Contable",
+      breadcrumb: "CatÃ¡logo Contable",
     },
   },
   {
     path: "minutes-pendings", // Ruta anterior: 'pendientes-minutas'
     loadComponent: () =>
-      import("src/app/features/contabilidad/pendientes-minuta/cont-list-minuta-pendientes").then(
+      import("src/app/features/tenant/contabilidad/pendientes-minuta/cont-list-minuta-pendientes").then(
         (m) => m.ContListMinutaPendientes,
       ),
     canActivate: [authGuard],
@@ -41,7 +41,7 @@ export const accountingRoutes: Routes = [
   {
     path: "funding-list",
     loadComponent: () =>
-      import("src/app/features/funding-accounting/funding-accounting-list").then(
+      import("src/app/features/tenant/funding-accounting/funding-accounting-list").then(
         (m) => m.FundingAccountingList,
       ),
     canActivate: [authGuard],
@@ -53,19 +53,19 @@ export const accountingRoutes: Routes = [
   {
     path: "funding-details/:id",
     loadComponent: () =>
-      import("src/app/features/funding-accounting/funding-accounting-detail").then(
+      import("src/app/features/tenant/funding-accounting/funding-accounting-detail").then(
         (m) => m.FundingAccountingDetail,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Detalle de Fondeo Contable", // Mejorado para ser más específico
+      title: "Detalle de Fondeo Contable", // Mejorado para ser mÃ¡s especÃ­fico
       breadcrumb: "Detalle de Fondeo Contable",
     },
   },
   {
     path: "legal-minutes-pendings", // Ruta anterior: 'pendientes-minutas-legal'
     loadComponent: () =>
-      import("src/app/features/legal/minutas/legal-pendientes-minuta").then(
+      import("src/app/features/tenant/legal/minutas/legal-pendientes-minuta").then(
         (m) => m.LegalPendientesMinuta,
       ),
     canActivate: [authGuard],
@@ -78,7 +78,7 @@ export const accountingRoutes: Routes = [
   //   // Suggested path: 'pending-minutes-pdf'
   //   path: "pendientes-minutas-pdf",
   //   loadComponent: () =>
-  //     import("src/app/features/contabilidad/pendientes-minuta/cont-minuta-pendientes-pdf").then(
+  //     import("src/app/features/tenant/contabilidad/pendientes-minuta/cont-minuta-pendientes-pdf").then(
   //       (m) => m.ConMinutaPendientesPdf,
   //     ),
   //   canActivate: [authGuard],
@@ -90,32 +90,32 @@ export const accountingRoutes: Routes = [
   {
     path: "budget-execution",
     loadComponent: () =>
-      import("src/app/features/espejo-aspel/projected-expenses-list").then(
+      import("src/app/features/tenant/espejo-aspel/projected-expenses-list").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Ejecución Presupuestaria",
-      breadcrumb: "Ejecución Presupuestaria",
+      title: "EjecuciÃ³n Presupuestaria",
+      breadcrumb: "EjecuciÃ³n Presupuestaria",
     },
   },
 
   {
     path: "financial-report-sending", // Ruta anterior: 'reporte-envio-financieros'
     loadComponent: () =>
-      import("src/app/features/contabilidad/reporte-envio-financieros/reporte-envio-financieros").then(
+      import("src/app/features/tenant/contabilidad/reporte-envio-financieros/reporte-envio-financieros").then(
         (m) => m.ReporteEnvioFinancieros,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Reporte de Envío Financieros",
-      breadcrumb: "Reporte de Envío Financieros",
+      title: "Reporte de EnvÃ­o Financieros",
+      breadcrumb: "Reporte de EnvÃ­o Financieros",
     },
   },
   {
     path: "financial-statements", // Ruta anterior: 'estados-financieros'
     loadComponent: () =>
-      import("src/app/features/contabilidad/estados-financieros/estado-financiero-list").then(
+      import("src/app/features/tenant/contabilidad/estados-financieros/estado-financiero-list").then(
         (m) => m.EstadoFinancieroList,
       ),
     canActivate: [authGuard],
@@ -127,12 +127,12 @@ export const accountingRoutes: Routes = [
   {
     path: "financial-summary",
     loadComponent: () =>
-      import("src/app/features/contabilidad/resumen-financiero/financial-summary").then(
+      import("src/app/features/tenant/contabilidad/resumen-financiero/financial-summary").then(
         (m) => m.FinancialSummary,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Resumen Financiero", // Mejorado para ser más conciso
+      title: "Resumen Financiero", // Mejorado para ser mÃ¡s conciso
       breadcrumb: "Resumen Financiero",
     },
   },
@@ -140,7 +140,7 @@ export const accountingRoutes: Routes = [
   //   // Suggested path: 'aspel-report'
   //   path: "reporte-aspel",
   //   loadComponent: () =>
-  //     import("src/app/features/contabilidad/aspel-reportes/report-aspel-list").then(
+  //     import("src/app/features/tenant/contabilidad/aspel-reportes/report-aspel-list").then(
   //       (m) => m.ReportAspelList,
   //     ),
   //   canActivate: [authGuard],
@@ -152,7 +152,7 @@ export const accountingRoutes: Routes = [
   {
     path: "budget-proposal", // Ruta anterior: 'presupuesto-propuesta'
     loadComponent: () =>
-      import("src/app/features/contabilidad/presupuesto-propuesta/presupuesto-propuesta").then(
+      import("src/app/features/tenant/contabilidad/presupuesto-propuesta/presupuesto-propuesta").then(
         (m) => m.PresupuestoPropuesta,
       ),
     canActivate: [authGuard],
@@ -169,8 +169,9 @@ export const accountingRoutes: Routes = [
   //     ),
   //   canActivate: [authGuard],
   //   data: {
-  //     title: "Reportes Financieros Dinámicos",
-  //     breadcrumb: "Reportes Financieros Dinámicos",
+  //     title: "Reportes Financieros DinÃ¡micos",
+  //     breadcrumb: "Reportes Financieros DinÃ¡micos",
   //   },
   // },
 ];
+

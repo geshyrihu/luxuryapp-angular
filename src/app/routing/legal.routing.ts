@@ -1,12 +1,12 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
-import { documentTypeRoutesConfig } from "../features/legal/models/documentTypeRoutesConfig";
+import { documentTypeRoutesConfig } from "../features/tenant/legal/models/documentTypeRoutesConfig";
 // Importa el componente de forma perezosa
 const CustomDocumentList = () =>
-  import("src/app/features/legal/documento-personalizado/documento-personalizado-lista").then(
+  import("src/app/features/tenant/legal/documento-personalizado/documento-personalizado-lista").then(
     (m) => m.DocumentoPersonalizadoLista,
   );
-// Genera las rutas dinámicamente
+// Genera las rutas dinÃ¡micamente
 const documentRoutes: Routes = documentTypeRoutesConfig.map((config) => ({
   path: config.routeParam, // Usa el nombre de la carpeta como la ruta
   loadComponent: CustomDocumentList,
@@ -22,7 +22,7 @@ export const legalRoutes: Routes = [
   {
     path: "legal-minutes-pendings", // Ruta anterior: 'pendientes-minutas-legal'
     loadComponent: () =>
-      import("src/app/features/legal/minutas/legal-pendientes-minuta").then(
+      import("src/app/features/tenant/legal/minutas/legal-pendientes-minuta").then(
         (m) => m.LegalPendientesMinuta,
       ),
     canActivate: [authGuard],
@@ -32,9 +32,9 @@ export const legalRoutes: Routes = [
     },
   },
   {
-    path: "list-ticket-legal", // Sincronizado con BD (ya en inglés)
+    path: "list-ticket-legal", // Sincronizado con BD (ya en inglÃ©s)
     loadComponent: () =>
-      import("src/app/features/legal/ticket-legal/ticket-legal-lista").then(
+      import("src/app/features/tenant/legal/ticket-legal/ticket-legal-lista").then(
         (m) => m.TicketLegalLista,
       ),
     canActivate: [authGuard],
@@ -44,70 +44,70 @@ export const legalRoutes: Routes = [
     },
   },
   {
-    path: "pendings", // Sincronizado con BD (ya en inglés)
+    path: "pendings", // Sincronizado con BD (ya en inglÃ©s)
     loadComponent: () =>
-      import("src/app/features/legal/ticket-legal/ticket-legal-reportes-pendientes").then(
+      import("src/app/features/tenant/legal/ticket-legal/ticket-legal-reportes-pendientes").then(
         (m) => m.TicketLegalReportesPendientes,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Reporte General de Pendientes", // Ajustado a mayúsculas
+      title: "Reporte General de Pendientes", // Ajustado a mayÃºsculas
       breadcrumb: "Reporte General de Pendientes",
     },
   },
   {
     path: "reports-internal",
     loadComponent: () =>
-      import("src/app/features/legal/ticket-legal/ticket-legal-reportes-internos").then(
+      import("src/app/features/tenant/legal/ticket-legal/ticket-legal-reportes-internos").then(
         (m) => m.TicketLegalReportesInternos,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Reporte Interno", // Ajustado a mayúsculas
+      title: "Reporte Interno", // Ajustado a mayÃºsculas
       breadcrumb: "Reporte Interno",
     },
   },
   {
     path: "reports-external",
     loadComponent: () =>
-      import("src/app/features/legal/ticket-legal/ticket-legal-reportes-externos").then(
+      import("src/app/features/tenant/legal/ticket-legal/ticket-legal-reportes-externos").then(
         (m) => m.TicketLegalReportesExternos,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Reporte Externo", // Ajustado a mayúsculas
+      title: "Reporte Externo", // Ajustado a mayÃºsculas
       breadcrumb: "Reporte Externo",
     },
   },
   {
     path: "committee-directory", // Ruta anterior: 'directorio-comites'
     loadComponent: () =>
-      import("src/app/features/directorios/comite-vigilancia/comites-list").then(
+      import("src/app/features/tenant/directorios/comite-vigilancia/comites-list").then(
         (m) => m.ComitesList,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Directorio de Comités", // Corregida mayúscula y acento
-      breadcrumb: "Directorio de Comités",
+      title: "Directorio de ComitÃ©s", // Corregida mayÃºscula y acento
+      breadcrumb: "Directorio de ComitÃ©s",
     },
   },
   {
     path: "legal-matter",
     loadComponent: () =>
-      import("src/app/features/legal/asunto-legal/asunto-legal-lista").then(
+      import("src/app/features/tenant/legal/asunto-legal/asunto-legal-lista").then(
         (m) => m.AsuntoLegalLista,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Catálogo de Asuntos Legales", // Corregido acento
-      breadcrumb: "Catálogo de Asuntos Legales",
+      title: "CatÃ¡logo de Asuntos Legales", // Corregido acento
+      breadcrumb: "CatÃ¡logo de Asuntos Legales",
     },
   },
-  //Esta ruta se agregó en la versión 1.0.0 para que accedieran los adminsitradores
+  //Esta ruta se agregÃ³ en la versiÃ³n 1.0.0 para que accedieran los adminsitradores
   {
     path: "list-ticket-customer",
     loadComponent: () =>
-      import("src/app/features/legal/ticket-legal/ticket-legal-lista-cliente").then(
+      import("src/app/features/tenant/legal/ticket-legal/ticket-legal-lista-cliente").then(
         (m) => m.TicketLegalListaCliente,
       ),
     canActivate: [authGuard],
@@ -119,7 +119,7 @@ export const legalRoutes: Routes = [
   {
     path: "ticket/:ticketId",
     loadComponent: () =>
-      import("src/app/features/legal/ticket-legal/ticket-legal-individual").then(
+      import("src/app/features/tenant/legal/ticket-legal/ticket-legal-individual").then(
         (m) => m.TicketLegalIndividual,
       ),
     canActivate: [authGuard],
@@ -135,6 +135,8 @@ export const legalRoutes: Routes = [
     children: documentRoutes,
   },
 ];
+
+
 
 
 

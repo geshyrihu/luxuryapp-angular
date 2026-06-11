@@ -1,10 +1,10 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 export const warehouseRoutes: Routes = [
   {
     path: "list",
     loadComponent: () =>
-      import("src/app/features/warehouse/warehouse-list").then(
+      import("src/app/features/tenant/warehouse/warehouse-list").then(
         (m) => m.WarehouseList
       ),
     canActivate: [authGuard],
@@ -17,7 +17,7 @@ export const warehouseRoutes: Routes = [
     path: "products/:almacenId",
     loadComponent: () =>
       import(
-        "src/app/features/stock-por-almacen/warehouse-stock-list"
+        "src/app/features/tenant/stock-por-almacen/warehouse-stock-list"
       ).then((m) => m.WarehouseStockList),
     canActivate: [authGuard],
     data: {
@@ -29,7 +29,7 @@ export const warehouseRoutes: Routes = [
     path: "product-output", // Ruta anterior: 'salida-productos'
     loadComponent: () =>
       import(
-        "src/app/features/product-exit/product-output-list"
+        "src/app/features/tenant/product-exit/product-output-list"
       ).then((m) => m.ProductOutputList),
     canActivate: [authGuard],
     data: {
@@ -40,7 +40,7 @@ export const warehouseRoutes: Routes = [
   {
     path: "product-entry", // Ruta anterior: 'entrada-productos'
     loadComponent: () =>
-      import("src/app/features/product-entry/product-entry-list").then(
+      import("src/app/features/tenant/product-entry/product-entry-list").then(
         (m) => m.ProductEntryList
       ),
     canActivate: [authGuard],
@@ -53,15 +53,16 @@ export const warehouseRoutes: Routes = [
     path: "tool-loan", // Ruta anterior: 'prestamo-herramienta'
     loadComponent: () =>
       import(
-        "src/app/features/bitacoras/prestamo-herramienta/prestamo-herramientas-control"
+        "src/app/features/tenant/bitacoras/prestamo-herramienta/prestamo-herramientas-control"
       ).then((m) => m.PrestamoHerramientasControl),
     canActivate: [authGuard],
     data: {
-      title: "Préstamo de Herramientas", // Corregido acento y mayúscula
-      breadcrumb: "Préstamo de Herramientas",
+      title: "PrÃ©stamo de Herramientas", // Corregido acento y mayÃºscula
+      breadcrumb: "PrÃ©stamo de Herramientas",
     },
   },
 ];
+
 
 
 

@@ -4,19 +4,19 @@ import { Component, effect, inject, OnInit } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { NavigationEnd, Router, RouterOutlet } from "@angular/router";
 import {
-    IonApp,
-    IonContent,
-    IonHeader,
-    IonToolbar,
+  IonApp,
+  IonContent,
+  IonHeader,
+  IonToolbar,
 } from "@ionic/angular/standalone";
 import { filter, map } from "rxjs/operators";
-import { Loader } from "../../core/components/loader/loader";
-import { EApplicationRole } from "../../core/enums/asp-net-roles.enum";
-import { AspRoleService } from "../../core/services/asp-role.service";
-import { AuthService } from "../../core/services/auth.service";
-import { HidescrollnavService } from "../../core/services/hidescrollnav.service";
-import { LayoutService } from "../../core/services/layout.service";
-import { MenuService } from "../../core/services/menu.service";
+import { Loader } from "src/app/core/components/loader/loader";
+import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { AspRoleService } from "src/app/core/services/asp-role.service";
+import { AuthService } from "src/app/core/services/auth.service";
+import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
+import { LayoutService } from "src/app/core/services/layout.service";
+import { MenuService } from "src/app/core/services/menu.service";
 import { HeaderCommitteeMobile } from "../shared/header-mobile/header-mobile";
 import { FooterCommitteeMonitor } from "./monitor/components/footer-committee-monitor/footer-committee-monitor";
 import { HeaderCommitteeMonitor } from "./monitor/header-committee-monitor/header-committee-monitor";
@@ -110,12 +110,3 @@ export class LayoutCommittee implements OnInit {
     this.footerDark = false;
   }
 }
-
-
-
-
-
-
-
-
-

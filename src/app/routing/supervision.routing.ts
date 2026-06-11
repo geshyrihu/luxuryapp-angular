@@ -1,10 +1,10 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 export const supervisionRoutes: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("src/app/features/supervision/master-dashboard/master-dashboard").then(
+      import("src/app/features/tenant/supervision/master-dashboard/master-dashboard").then(
         (m) => m.SupervisionMasterDashboard,
       ),
     canActivate: [authGuard],
@@ -16,19 +16,19 @@ export const supervisionRoutes: Routes = [
   {
     path: "supervision-agenda", // Ruta anterior: 'agenda-supervision'
     loadComponent: () =>
-      import("src/app/features/supervision/agenda-supervision/agenda-supervision").then(
+      import("src/app/features/tenant/supervision/agenda-supervision/agenda-supervision").then(
         (m) => m.AgendaSupervision,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Agenda de Supervisión",
-      breadcrumb: "Agenda de Supervisión",
+      title: "Agenda de SupervisiÃ³n",
+      breadcrumb: "Agenda de SupervisiÃ³n",
     },
   },
   {
     path: "minutes-summary", // Ruta anterior: 'minutas-resumen'
     loadComponent: () =>
-      import("src/app/features/supervision/minutas-resumen/minutas-resumen").then(
+      import("src/app/features/tenant/supervision/minutas-resumen/minutas-resumen").then(
         (m) => m.MinutasResumen,
       ),
     canActivate: [authGuard],
@@ -40,7 +40,7 @@ export const supervisionRoutes: Routes = [
   {
     path: "tickets-report", // Ruta anterior: 'reporte-tickets'
     loadComponent: () =>
-      import("src/app/features/supervision/reporte-tickets/reporte-tickets").then(
+      import("src/app/features/tenant/supervision/reporte-tickets/reporte-tickets").then(
         (m) => m.ReporteTickets,
       ),
     canActivate: [authGuard],
@@ -53,44 +53,44 @@ export const supervisionRoutes: Routes = [
     // Suggested path: 'general-result-chart'
     path: "grafico-resultado-general",
     loadComponent: () =>
-      import("src/app/features/supervision/resultado-general-grafico/resultado-general-grafico").then(
+      import("src/app/features/tenant/supervision/resultado-general-grafico/resultado-general-grafico").then(
         (m) => m.ResultadoGeneralGrafico,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Gráfico de Resultado General", // Mejorado para mayor claridad
-      breadcrumb: "Gráfico de Resultado General",
+      title: "GrÃ¡fico de Resultado General", // Mejorado para mayor claridad
+      breadcrumb: "GrÃ¡fico de Resultado General",
     },
   },
   {
     // Suggested path: 'general-result-position'
     path: "resultado-general-posicion",
     loadComponent: () =>
-      import("src/app/features/supervision/resultado-general-posicion/resultado-general-posicion").then(
+      import("src/app/features/tenant/supervision/resultado-general-posicion/resultado-general-posicion").then(
         (m) => m.ResultadoGeneralPosicion,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Resultado General por Posición",
-      breadcrumb: "Resultado General por Posición",
+      title: "Resultado General por PosiciÃ³n",
+      breadcrumb: "Resultado General por PosiciÃ³n",
     },
   },
   {
     path: "areas-evaluation", // Ruta anterior: 'evaluacion-areas'
     loadComponent: () =>
-      import("src/app/features/supervision/resultado-general-evaluacion-areas/resultado-general-evaluacion-areas").then(
+      import("src/app/features/tenant/supervision/resultado-general-evaluacion-areas/resultado-general-evaluacion-areas").then(
         (m) => m.ResultadoGeneralEvaluacionAreas,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Evaluación de Áreas",
-      breadcrumb: "Evaluación de Áreas",
+      title: "EvaluaciÃ³n de Ãreas",
+      breadcrumb: "EvaluaciÃ³n de Ãreas",
     },
   },
   {
     path: "general-result-dashboard", // Ruta anterior: 'resultado-general-dashboard'
     loadComponent: () =>
-      import("src/app/features/supervision/resultado-general-dashboard/resultado-general-dashboard").then(
+      import("src/app/features/tenant/supervision/resultado-general-dashboard/resultado-general-dashboard").then(
         (m) => m.ResultadoGeneralDashboard,
       ),
     canActivate: [authGuard],
@@ -102,29 +102,30 @@ export const supervisionRoutes: Routes = [
   {
     path: "supervision-report",
     loadComponent: () =>
-      import("src/app/features/supervision-report/report-supervision").then(
+      import("src/app/features/tenant/supervision-report/report-supervision").then(
         (m) => m.ReportSupervision,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Reporte de Supervisión",
-      breadcrumb: "Reporte de Supervisión",
+      title: "Reporte de SupervisiÃ³n",
+      breadcrumb: "Reporte de SupervisiÃ³n",
     },
   },
   {
     // Suggested path: 'committee-meetings-presentations'
     path: "presentaciones-juntas-comite",
     loadComponent: () =>
-      import("src/app/features/supervision/presentaciones-juntas-comite/presentaciones-juntas-comite").then(
+      import("src/app/features/tenant/supervision/presentaciones-juntas-comite/presentaciones-juntas-comite").then(
         (m) => m.PresentacionesJuntasComite,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Presentaciones de Juntas de Comité", // Ajustado para mayor claridad
-      breadcrumb: "Presentaciones de Juntas de Comité",
+      title: "Presentaciones de Juntas de ComitÃ©", // Ajustado para mayor claridad
+      breadcrumb: "Presentaciones de Juntas de ComitÃ©",
     },
   },
 ];
+
 
 
 

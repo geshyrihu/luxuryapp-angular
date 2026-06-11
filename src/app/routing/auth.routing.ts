@@ -1,4 +1,4 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 export const authRoutes: Routes = [
   {
@@ -30,8 +30,8 @@ export const authRoutes: Routes = [
         (m) => m.RecoveryWrapper,
       ),
     data: {
-      title: "Recuperar Contraseña", // Ajustado a mayúsculas
-      breadcrumb: "Recuperar Contraseña",
+      title: "Recuperar ContraseÃ±a", // Ajustado a mayÃºsculas
+      breadcrumb: "Recuperar ContraseÃ±a",
     },
   },
   {
@@ -41,14 +41,14 @@ export const authRoutes: Routes = [
         (m) => m.ResetPassword,
       ),
     data: {
-      title: "Restablecer Contraseña",
-      breadcrumb: "Restablecer Contraseña",
+      title: "Restablecer ContraseÃ±a",
+      breadcrumb: "Restablecer ContraseÃ±a",
     },
   },
   {
     path: "update-user-profile",
     loadComponent: () =>
-      import("src/app/features/user-profile/update-profile").then(
+      import("src/app/features/tenant/user-profile/update-profile").then(
         (m) => m.UpdateProfile,
       ),
     canActivate: [authGuard],
@@ -58,6 +58,7 @@ export const authRoutes: Routes = [
     },
   },
 ];
+
 
 
 

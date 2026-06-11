@@ -1,22 +1,22 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 export const calendarsRoutes: Routes = [
   {
     path: "jewish-holidays", // Ruta anterior: 'fiestas-judias'
     loadComponent: () =>
-      import("src/app/features/calendar/fiestas-judias/fiestas-judias").then(
+      import("src/app/features/tenant/calendar/fiestas-judias/fiestas-judias").then(
         (m) => m.FiestasJudias,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Fiestas Judías",
-      breadcrumb: "Fiestas Judías",
+      title: "Fiestas JudÃ­as",
+      breadcrumb: "Fiestas JudÃ­as",
     },
   },
   {
     path: "christian-holidays", // Ruta anterior: 'fiestas-cristianas'
     loadComponent: () =>
-      import("src/app/features/calendar/fiestas-cristianas/fiestas-cristianas").then(
+      import("src/app/features/tenant/calendar/fiestas-cristianas/fiestas-cristianas").then(
         (m) => m.FiestasCristianas,
       ),
     canActivate: [authGuard],
@@ -28,19 +28,19 @@ export const calendarsRoutes: Routes = [
   {
     path: "birthdays", // Ruta anterior: 'cumpleanos'
     loadComponent: () =>
-      import("src/app/features/calendar/birthday/cumpleanos-list").then(
+      import("src/app/features/tenant/calendar/birthday/cumpleanos-list").then(
         (m) => m.Cumpleanos,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Fiestas Cumpleaños",
-      breadcrumb: "Fiestas Cumpleaños",
+      title: "Fiestas CumpleaÃ±os",
+      breadcrumb: "Fiestas CumpleaÃ±os",
     },
   },
   {
     path: "maintenance-master", // Ruta anterior: 'mantenimiento-master'
     loadComponent: () =>
-      import("src/app/features/maintenance-calendar-master/calendario-maestro-lista").then(
+      import("src/app/features/tenant/maintenance-calendar-master/calendario-maestro-lista").then(
         (m) => m.CalendarioMaestroLista,
       ),
     canActivate: [authGuard],
@@ -52,7 +52,7 @@ export const calendarsRoutes: Routes = [
   {
     path: "fundings", // Ruta anterior: 'fondeos'
     loadComponent: () =>
-      import("src/app/features/calendar/fondeos/fondeos").then(
+      import("src/app/features/tenant/calendar/fondeos/fondeos").then(
         (m) => m.Fondeos,
       ),
     canActivate: [authGuard],
@@ -76,25 +76,26 @@ export const calendarsRoutes: Routes = [
   // {
   //   path: "committee-meetings", // Ruta anterior: 'reuniones-comite'
   //   loadComponent: () =>
-  //     import("src/app/features/calendar/reuniones-comite/reuniones-comite").then(
+  //     import("src/app/features/tenant/calendar/reuniones-comite/reuniones-comite").then(
   //       (m) => m.ReunionesComite,
   //     ),
   //   canActivate: [authGuard],
   //   data: {
-  //     title: "Reuniones con Comité",
-  //     breadcrumb: "Reuniones con Comité",
+  //     title: "Reuniones con ComitÃ©",
+  //     breadcrumb: "Reuniones con ComitÃ©",
   //   },
   // },
   {
     path: "google-calendar",
     loadComponent: () =>
-      import("src/app/features/google-calendar/google-calendar").then(
+      import("src/app/features/tenant/google-calendar/google-calendar").then(
         (m) => m.GoogleCalendar,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Agenda de Comité",
-      breadcrumb: "Agenda de Comité",
+      title: "Agenda de ComitÃ©",
+      breadcrumb: "Agenda de ComitÃ©",
     },
   },
 ];
+

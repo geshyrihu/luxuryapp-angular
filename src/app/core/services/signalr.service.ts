@@ -1,7 +1,7 @@
-import { inject, Injectable, signal, WritableSignal } from "@angular/core";
+﻿import { inject, Injectable, signal, WritableSignal } from "@angular/core";
 import * as signalR from "@microsoft/signalr";
 import { Subject } from "rxjs";
-import { BudgetProposalItemDTO } from "src/app/features/contabilidad/presupuesto-propuesta/models/budget-proposal.model";
+import { BudgetProposalItemDTO } from "src/app/features/tenant/contabilidad/presupuesto-propuesta/models/budget-proposal.model";
 import { environment } from "src/environments/environment";
 import { AuthService } from "./auth.service";
 import { ConsoleLoggerService } from "./console-logger.service";
@@ -55,17 +55,17 @@ export class SignalRService {
       this.hubConnection.state !== signalR.HubConnectionState.Disconnected
     ) {
       this.consoleLogger.custom(
-        "🔌",
+        "ðŸ”Œ",
         "orange",
-        "[SignalR] Se intentó iniciar una conexión ya existente.",
+        "[SignalR] Se intentÃ³ iniciar una conexiÃ³n ya existente.",
       );
       return;
     }
 
     this.consoleLogger.custom(
-      "🔌",
+      "ðŸ”Œ",
       "blue",
-      "[SignalR] Construyendo conexión...",
+      "[SignalR] Construyendo conexiÃ³n...",
     );
 
     this.hubConnection = new signalR.HubConnectionBuilder()
@@ -77,14 +77,14 @@ export class SignalRService {
       .withAutomaticReconnect([2000, 5000, 10000, 20000, null])
       .build();
 
-    this.consoleLogger.custom("🔌", "blue", "[SignalR] Iniciando conexión...");
+    this.consoleLogger.custom("ðŸ”Œ", "blue", "[SignalR] Iniciando conexiÃ³n...");
     this.hubConnection
       .start()
       .then(() => {
         this.consoleLogger.custom(
-          "🔌",
+          "ðŸ”Œ",
           "green",
-          "[SignalR] Conexión iniciada con éxito.",
+          "[SignalR] ConexiÃ³n iniciada con Ã©xito.",
         );
 
         this.connectionStateSignal.set(true);
@@ -100,9 +100,9 @@ export class SignalRService {
       })
       .catch((err) => {
         this.consoleLogger.custom(
-          "❌",
+          "âŒ",
           "red",
-          "[SignalR] Error iniciando conexión:",
+          "[SignalR] Error iniciando conexiÃ³n:",
           err,
         );
         this.connectionStateSignal.set(false);
@@ -120,9 +120,9 @@ export class SignalRService {
         .stop()
         .then(() => {
           this.consoleLogger.custom(
-            "🛑",
+            "ðŸ›‘",
             "red",
-            "[SignalR] Conexión detenida limpiamente.",
+            "[SignalR] ConexiÃ³n detenida limpiamente.",
           );
 
           this.connectionStateSignal.set(false);
@@ -131,7 +131,7 @@ export class SignalRService {
         })
         .catch((err) =>
           this.consoleLogger.error(
-            "Error al detener la conexión SignalR:",
+            "Error al detener la conexiÃ³n SignalR:",
             err,
           ),
         );
@@ -148,7 +148,7 @@ export class SignalRService {
       try {
         await this.hubConnection.invoke("JoinGroup", groupName);
         this.consoleLogger.custom(
-          "🤝",
+          "ðŸ¤",
           "blue",
           `[SignalR] Unido al grupo: ${groupName}`,
         );
@@ -157,7 +157,7 @@ export class SignalRService {
       }
     } else {
       this.consoleLogger.warn(
-        `No se pudo unir al grupo ${groupName}. Conexión no establecida.`,
+        `No se pudo unir al grupo ${groupName}. ConexiÃ³n no establecida.`,
       );
     }
   }
@@ -172,7 +172,7 @@ export class SignalRService {
       try {
         await this.hubConnection.invoke("LeaveGroup", groupName);
         this.consoleLogger.custom(
-          "👋",
+          "ðŸ‘‹",
           "blue",
           `[SignalR] Abandonado el grupo: ${groupName}`,
         );
@@ -184,21 +184,21 @@ export class SignalRService {
       }
     } else {
       this.consoleLogger.warn(
-        `No se pudo abandonar el grupo ${groupName}. Conexión no establecida.`,
+        `No se pudo abandonar el grupo ${groupName}. ConexiÃ³n no establecida.`,
       );
     }
   }
 
   private registerListeners(): void {
     this.consoleLogger.custom(
-      "🎧",
+      "ðŸŽ§",
       "cyan",
       "[SignalR] Registrando listeners...",
     );
 
     this.hubConnection.on("ConnectedUser", (mensaje: string) => {
       this.consoleLogger.custom(
-        "👤",
+        "ðŸ‘¤",
         "blue",
         "[SignalR] Evento ConnectedUser recibido:",
         mensaje,
@@ -208,9 +208,9 @@ export class SignalRService {
 
     this.hubConnection.on("ReceiveNotification", (payload: any) => {
       this.consoleLogger.custom(
-        "📨",
+        "ðŸ“¨",
         "purple",
-        "[SignalR] Notificación recibida:",
+        "[SignalR] NotificaciÃ³n recibida:",
         payload,
       );
       this.messageReceivedSource.next(payload);
@@ -220,7 +220,7 @@ export class SignalRService {
       "ReceiveBudgetProposalItemUpdate",
       (itemDTO: BudgetProposalItemDTO) => {
         this.consoleLogger.custom(
-          "🔄",
+          "ðŸ”„",
           "green",
           "[SignalR] Update de Item recibido:",
           itemDTO,
@@ -231,7 +231,7 @@ export class SignalRService {
 
     this.hubConnection.on("ReceiveProjectedExpenseUpdate", (payload: any) => {
       this.consoleLogger.custom(
-        "📊",
+        "ðŸ“Š",
         "blue",
         "[SignalR] Update de Gasto Proyectado recibido:",
         payload,
@@ -243,7 +243,7 @@ export class SignalRService {
       "ReceiveGoogleCalendarEventUpdate",
       (payload: GoogleCalendarEventRealTimeUpdateDTO) => {
         this.consoleLogger.custom(
-          "📅",
+          "ðŸ“…",
           "dodgerblue",
           "[SignalR] Update de Google Calendar recibido:",
           payload,
@@ -256,7 +256,7 @@ export class SignalRService {
   private addConnectionLifecycleListeners(): void {
     this.hubConnection.onreconnecting((error) => {
       this.consoleLogger.custom(
-        "⏳",
+        "â³",
         "orange",
         "[SignalR] Reintentando...",
         error,
@@ -266,7 +266,7 @@ export class SignalRService {
 
     this.hubConnection.onreconnected((connectionId) => {
       this.consoleLogger.custom(
-        "✅",
+        "âœ…",
         "green",
         "[SignalR] Reconectado. ID:",
         connectionId,
@@ -277,9 +277,9 @@ export class SignalRService {
 
     this.hubConnection.onclose((error) => {
       this.consoleLogger.custom(
-        "🔌",
+        "ðŸ”Œ",
         "red",
-        "[SignalR] Conexión cerrada:",
+        "[SignalR] ConexiÃ³n cerrada:",
         error,
       );
 
@@ -289,3 +289,4 @@ export class SignalRService {
     });
   }
 }
+

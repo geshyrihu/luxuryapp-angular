@@ -39,7 +39,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { CardEmployee } from "src/app/features/employees/employees/pages/card-employee";
+import { CardEmployee } from "src/app/features/tenant/employees/employees/pages/card-employee";
 import { IApplicationUserDTO } from "../models/application-user.dto";
 import { ApplicationUserForm } from "./application-user-form";
 import { MdEditAccount } from "./md-edit-account";
@@ -295,3 +295,4 @@ export class ApplicationUserList implements OnInit {
       });
   }
 }
+

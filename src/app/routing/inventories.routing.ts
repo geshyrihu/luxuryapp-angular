@@ -1,10 +1,10 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 export const inventoriesRoutes: Routes = [
   {
     path: "inventory-engine-system",
     loadComponent: () =>
-      import("src/app/features/inventory-engine-system/inventory-engine-system").then(
+      import("src/app/features/tenant/inventory-engine-system/inventory-engine-system").then(
         (m) => m.InventoryEngineSystem,
       ),
     canActivate: [authGuard],
@@ -16,20 +16,20 @@ export const inventoriesRoutes: Routes = [
   {
     path: "areas-equipment", // Ruta anterior: 'areas-equipos'
     loadComponent: () =>
-      import("src/app/features/machinery/equipos-list").then(
+      import("src/app/features/tenant/machinery/equipos-list").then(
         (m) => m.EquiposList,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Equipos por Categoría",
-      breadcrumb: "Equipos por Categoría",
+      title: "Equipos por CategorÃ­a",
+      breadcrumb: "Equipos por CategorÃ­a",
     },
   },
   {
     // Suggested path: 'gym'
     path: "gimnasio",
     loadComponent: () =>
-      import("src/app/features/machinery/equipos-list").then(
+      import("src/app/features/tenant/machinery/equipos-list").then(
         (m) => m.EquiposList,
       ),
     canActivate: [authGuard],
@@ -41,7 +41,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "tools", // Ruta anterior: 'herramienta'
     loadComponent: () =>
-      import("src/app/features/tool-loan/tool-list").then(
+      import("src/app/features/tenant/tool-loan/tool-list").then(
         (m) => m.ToolList,
       ),
     canActivate: [authGuard],
@@ -54,7 +54,7 @@ export const inventoriesRoutes: Routes = [
     // Suggested path: 'paint'
     path: "pintura",
     loadComponent: () =>
-      import("src/app/features/paint-inventory/inventario-pintura").then(
+      import("src/app/features/tenant/paint-inventory/inventario-pintura").then(
         (m) => m.InventarioPintura,
       ),
     canActivate: [authGuard],
@@ -66,7 +66,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "keys", // Ruta anterior: 'llaves'
     loadComponent: () =>
-      import("src/app/features/key-inventory/inventario-llaves-list").then(
+      import("src/app/features/tenant/key-inventory/inventario-llaves-list").then(
         (m) => m.InventarioLlavesList,
       ),
     canActivate: [authGuard],
@@ -79,7 +79,7 @@ export const inventoriesRoutes: Routes = [
     // Suggested path: 'equipment-report'
     path: "reporte-equipos",
     loadComponent: () =>
-      import("src/app/features/machinery-asset/reporte-completo-activos").then(
+      import("src/app/features/tenant/machinery-asset/reporte-completo-activos").then(
         (m) => m.ReporteCompletoActivos,
       ),
     canActivate: [authGuard],
@@ -92,32 +92,32 @@ export const inventoriesRoutes: Routes = [
   {
     path: "radios",
     loadComponent: () =>
-      import("src/app/features/radio-communication-inventory/radio-comunicacion-list").then(
+      import("src/app/features/tenant/radio-communication-inventory/radio-comunicacion-list").then(
         (m) => m.RadioComunicacionList,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Radios de Comunicación", // Ajustado para ser más descriptivo
-      breadcrumb: "Radios de Comunicación",
+      title: "Radios de ComunicaciÃ³n", // Ajustado para ser mÃ¡s descriptivo
+      breadcrumb: "Radios de ComunicaciÃ³n",
     },
   },
   {
     // Suggested path: 'annual-maintenance-schedule'
     path: "cedula-anual-mantenimientos",
     loadComponent: () =>
-      import("src/app/features/reports/mantenimiento-presupuesto/gastos-mantenimiento").then(
+      import("src/app/features/tenant/reports/mantenimiento-presupuesto/gastos-mantenimiento").then(
         (m) => m.GastosMantenimiento,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Cédula Anual de Mantenimientos",
-      breadcrumb: "Cédula Anual de Mantenimientos",
+      title: "CÃ©dula Anual de Mantenimientos",
+      breadcrumb: "CÃ©dula Anual de Mantenimientos",
     },
   },
   {
     path: "extinguishers", // Ruta anterior: 'extintores'
     loadComponent: () =>
-      import("src/app/features/fire-extinguisher-inventory/inventario-extintor").then(
+      import("src/app/features/tenant/fire-extinguisher-inventory/inventario-extintor").then(
         (m) => m.InventarioExtintor,
       ),
     canActivate: [authGuard],
@@ -129,17 +129,18 @@ export const inventoriesRoutes: Routes = [
   {
     path: "extintores-group",
     loadComponent: () =>
-      import("src/app/features/fire-extinguisher-inventory/inventario-extintor-group").then(
+      import("src/app/features/tenant/fire-extinguisher-inventory/inventario-extintor-group").then(
         (m) => m.InventarioExtintorGroup,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Grupos de Extintores", // Ajustado para sonar más natural
+      title: "Grupos de Extintores", // Ajustado para sonar mÃ¡s natural
       breadcrumb: "Grupos de Extintores",
     },
   },
 
 ];
+
 
 
 

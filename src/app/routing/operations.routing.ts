@@ -1,10 +1,10 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 export const operationsRoutes: Routes = [
   {
     path: "my-building", // Ruta anterior: 'mi-edificio'
     loadComponent: () =>
-      import("src/app/features/mi-edificio/mi-edificio").then(
+      import("src/app/features/tenant/mi-edificio/mi-edificio").then(
         (m) => m.MiEdificio
       ),
     canActivate: [authGuard],
@@ -14,6 +14,7 @@ export const operationsRoutes: Routes = [
     },
   },
 ];
+
 
 
 

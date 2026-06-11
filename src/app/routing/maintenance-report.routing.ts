@@ -1,9 +1,9 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 export const maintenanceReportRoutes: Routes = [
   {
     path: "panel",
     loadComponent: () =>
-      import("src/app/features/reports-mantenance/maintenance-reports-list").then(
+      import("src/app/features/tenant/reports-mantenance/maintenance-reports-list").then(
         (m) => m.MaintenanceReports,
       ),
     data: {
@@ -14,18 +14,18 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "maintenances-summary", // Ruta anterior: 'resumen-mantenimientos'
     loadComponent: () =>
-      import("src/app/features/reports-mantenance/resumen-mantenimientos/resumen-mantenimientos").then(
+      import("src/app/features/tenant/reports-mantenance/resumen-mantenimientos/resumen-mantenimientos").then(
         (m) => m.ResumenMantenimientos,
       ),
     data: {
-      title: "Resumen de Mantenimientos", // Ajustado a mayúsculas
+      title: "Resumen de Mantenimientos", // Ajustado a mayÃºsculas
       breadcrumb: "Resumen de Mantenimientos",
     },
   },
   {
     path: "consumptions", // Ruta anterior: 'consumos'
     loadComponent: () =>
-      import("src/app/features/reports-mantenance/report-consumos/report-consumos").then(
+      import("src/app/features/tenant/reports-mantenance/report-consumos/report-consumos").then(
         (m) => m.ReportConsumos,
       ),
     data: {
@@ -36,29 +36,29 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "warehouse-entry", // Ruta anterior: 'entrada-almacen'
     loadComponent: () =>
-      import("src/app/features/reports-mantenance/report-entrada-almacen/report-entrada-almacen").then(
+      import("src/app/features/tenant/reports-mantenance/report-entrada-almacen/report-entrada-almacen").then(
         (m) => m.ReportEntradaAlmacen,
       ),
     data: {
-      title: "Reporte de Entradas a Almacén", // Ajustado para consistencia
-      breadcrumb: "Reporte de Entradas a Almacén",
+      title: "Reporte de Entradas a AlmacÃ©n", // Ajustado para consistencia
+      breadcrumb: "Reporte de Entradas a AlmacÃ©n",
     },
   },
   {
     path: "warehouse-exit", // Ruta anterior: 'salida-almacen'
     loadComponent: () =>
-      import("src/app/features/reports-mantenance/report-salida-almacen/report-salida-almacen").then(
+      import("src/app/features/tenant/reports-mantenance/report-salida-almacen/report-salida-almacen").then(
         (m) => m.ReportSalidaAlmacen,
       ),
     data: {
-      title: "Reporte de Salidas de Almacén", // Ajustado para consistencia
-      breadcrumb: "Reporte de Salidas de Almacén",
+      title: "Reporte de Salidas de AlmacÃ©n", // Ajustado para consistencia
+      breadcrumb: "Reporte de Salidas de AlmacÃ©n",
     },
   },
   {
     path: "daily-tour", // Ruta anterior: 'recorrido-diario'
     loadComponent: () =>
-      import("src/app/features/reports-mantenance/report-recorrido-diario/report-recorrido-diario").then(
+      import("src/app/features/tenant/reports-mantenance/report-recorrido-diario/report-recorrido-diario").then(
         (m) => m.ReportRecorridoDiario,
       ),
     data: {
@@ -69,18 +69,18 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "tool-loan-report", // Ruta anterior: 'prestamo-herramienta'
     loadComponent: () =>
-      import("src/app/features/reports-mantenance/report-prestamo-herramienta/report-prestamo-herramienta").then(
+      import("src/app/features/tenant/reports-mantenance/report-prestamo-herramienta/report-prestamo-herramienta").then(
         (m) => m.ReportPrestamoHerramienta,
       ),
     data: {
-      title: "Reporte de Préstamo de Herramientas", // Ajustado para consistencia
-      breadcrumb: "Reporte de Préstamo de Herramientas",
+      title: "Reporte de PrÃ©stamo de Herramientas", // Ajustado para consistencia
+      breadcrumb: "Reporte de PrÃ©stamo de Herramientas",
     },
   },
   {
     path: "purchase-request-report", // Ruta anterior: 'solicitud-compra'
     loadComponent: () =>
-      import("src/app/features/reports-mantenance/report-solicitud-compra/report-solicitud-compra").then(
+      import("src/app/features/tenant/reports-mantenance/report-solicitud-compra/report-solicitud-compra").then(
         (m) => m.ReportSolicitudCompra,
       ),
     data: {
@@ -91,18 +91,18 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "pool-report", // Ruta anterior: 'alberca'
     loadComponent: () =>
-      import("src/app/features/reports-mantenance/report-bitacora-alberca/report-bitacora-alberca").then(
+      import("src/app/features/tenant/reports-mantenance/report-bitacora-alberca/report-bitacora-alberca").then(
         (m) => m.ReportBitacoraAlberca,
       ),
     data: {
-      title: "Reporte de Bitácora de Alberca", // Ajustado para consistencia
-      breadcrumb: "Reporte de Bitácora de Alberca",
+      title: "Reporte de BitÃ¡cora de Alberca", // Ajustado para consistencia
+      breadcrumb: "Reporte de BitÃ¡cora de Alberca",
     },
   },
   {
     path: "tickets",
     loadComponent: () =>
-      import("src/app/features/reports-mantenance/report-ticket/report-ticket").then(
+      import("src/app/features/tenant/reports-mantenance/report-ticket/report-ticket").then(
         (m) => m.ReportTicket,
       ),
     data: {
@@ -113,11 +113,11 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "elevators", // Ruta anterior: 'elevadores'
     loadComponent: () =>
-      import("src/app/features/elevator-emergency-call/elevators-emergency-call-list").then(
+      import("src/app/features/tenant/elevator-emergency-call/elevators-emergency-call-list").then(
         (m) => m.ElevatorsEmergencyCallList,
       ),
     data: {
-      title: "Reporte de Llamados de Elevador", // Ajustado para ser más específico
+      title: "Reporte de Llamados de Elevador", // Ajustado para ser mÃ¡s especÃ­fico
       breadcrumb: "Reporte de Llamados de Elevador",
     },
   },
@@ -125,7 +125,7 @@ export const maintenanceReportRoutes: Routes = [
   //   path: "preventive-maintenance-report", // Ruta anterior: 'mantenimiento-preventivo-reporte'
   //   loadComponent: () =>
   //     import(
-  //       "src/app/features/service-order/reporte-ordenes-servicio"
+  //       "src/app/features/tenant/service-order/reporte-ordenes-servicio"
   //     ).then((m) => m.ReporteOrdenesServicio),
   //   data: {
   //     title: "Reporte de Mantenimiento Preventivo",
@@ -136,7 +136,7 @@ export const maintenanceReportRoutes: Routes = [
     // Suggested path: 'service-order-support/:id'
     path: "soporte-orden-servicio/:id",
     loadComponent: () =>
-      import("src/app/features/service-order/soporte-orden-servicio").then(
+      import("src/app/features/tenant/service-order/soporte-orden-servicio").then(
         (m) => m.SoporteOrdenServicio,
       ),
     data: {
@@ -145,3 +145,4 @@ export const maintenanceReportRoutes: Routes = [
     },
   },
 ];
+

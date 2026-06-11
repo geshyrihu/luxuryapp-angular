@@ -1,74 +1,74 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 export const employeeEvaluationRoutes: Routes = [
-  // 1. Ruta para la creación de plantillas de evaluación
+  // 1. Ruta para la creaciÃ³n de plantillas de evaluaciÃ³n
   {
     path: "templates/list",
     loadComponent: () =>
-      import("src/app/features/evaluation-template/lista-plantilla-evaluacion").then(
+      import("src/app/features/tenant/evaluation-template/lista-plantilla-evaluacion").then(
         (m) => m.ListaPlantillaEvaluacion,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Plantillas de Evaluación",
-      breadcrumb: "Plantillas de Evaluación",
+      title: "Plantillas de EvaluaciÃ³n",
+      breadcrumb: "Plantillas de EvaluaciÃ³n",
     },
   },
-  // 2. Ruta para la administración de plantillas de evaluación
+  // 2. Ruta para la administraciÃ³n de plantillas de evaluaciÃ³n
   {
     path: "templates/create",
     loadComponent: () =>
-      import("src/app/features/evaluation-template/formulario-plantilla-evaluacion").then(
+      import("src/app/features/tenant/evaluation-template/formulario-plantilla-evaluacion").then(
         (m) => m.FormularioPlantillaEvaluacion,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Crear plantilla de evaluación",
-      breadcrumb: "Crear  plantilla de evaluación",
+      title: "Crear plantilla de evaluaciÃ³n",
+      breadcrumb: "Crear  plantilla de evaluaciÃ³n",
     },
   },
-  // 2. Ruta para la edicion de plantillas de evaluación
+  // 2. Ruta para la edicion de plantillas de evaluaciÃ³n
   {
     path: "templates/edit/:id",
     loadComponent: () =>
-      import("src/app/features/evaluation-template/formulario-plantilla-evaluacion").then(
+      import("src/app/features/tenant/evaluation-template/formulario-plantilla-evaluacion").then(
         (m) => m.FormularioPlantillaEvaluacion,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Editar plantilla de evaluación",
-      breadcrumb: "Editar  plantilla de evaluación",
+      title: "Editar plantilla de evaluaciÃ³n",
+      breadcrumb: "Editar  plantilla de evaluaciÃ³n",
     },
   },
-  // 2. Ruta para la página donde se realiza activamente una evaluación
+  // 2. Ruta para la pÃ¡gina donde se realiza activamente una evaluaciÃ³n
   {
     path: "conduct/create",
     loadComponent: () =>
-      import("src/app/features/evaluation-template/performance-evaluation/realizar-evaluacion").then(
+      import("src/app/features/tenant/evaluation-template/performance-evaluation/realizar-evaluacion").then(
         (m) => m.RealizarEvaluacion,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Realizar Evaluación",
-      breadcrumb: "Realizar Evaluación",
+      title: "Realizar EvaluaciÃ³n",
+      breadcrumb: "Realizar EvaluaciÃ³n",
     },
   },
   {
     path: "conduct/edit/:id",
     loadComponent: () =>
-      import("src/app/features/evaluation-template/performance-evaluation/realizar-evaluacion").then(
+      import("src/app/features/tenant/evaluation-template/performance-evaluation/realizar-evaluacion").then(
         (m) => m.RealizarEvaluacion,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Editar Evaluación",
-      breadcrumb: "Editar Evaluación",
+      title: "Editar EvaluaciÃ³n",
+      breadcrumb: "Editar EvaluaciÃ³n",
     },
   },
   {
     path: "conduct/list",
     loadComponent: () =>
-      import("src/app/features/evaluation-template/performance-evaluation/lista-evaluacion-realizada").then(
+      import("src/app/features/tenant/evaluation-template/performance-evaluation/lista-evaluacion-realizada").then(
         (m) => m.ListaEvaluacionRealizada,
       ),
     canActivate: [authGuard],
@@ -81,7 +81,7 @@ export const employeeEvaluationRoutes: Routes = [
   {
     path: "employee/:employeeId/history",
     loadComponent: () =>
-      import("src/app/features/evaluation-template/performance-evaluation/historial-evaluacion").then(
+      import("src/app/features/tenant/evaluation-template/performance-evaluation/historial-evaluacion").then(
         (m) => m.HistorialEvaluacion,
       ),
     canActivate: [authGuard],
@@ -90,17 +90,18 @@ export const employeeEvaluationRoutes: Routes = [
       breadcrumb: "Historial de Evaluaciones",
     },
   },
-  // 4. Ruta para ver el reporte de resultados de una evaluación específica
+  // 4. Ruta para ver el reporte de resultados de una evaluaciÃ³n especÃ­fica
   {
     path: "result/:id", // El :id es el PerformanceEvaluationId
     loadComponent: () =>
-      import("src/app/features/evaluation-template/performance-evaluation/resultado-evaluacion").then(
+      import("src/app/features/tenant/evaluation-template/performance-evaluation/resultado-evaluacion").then(
         (m) => m.ResultadoEvaluacion,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Resultado de Evaluación",
-      breadcrumb: "Resultado de Evaluación",
+      title: "Resultado de EvaluaciÃ³n",
+      breadcrumb: "Resultado de EvaluaciÃ³n",
     },
   },
 ];
+

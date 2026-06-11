@@ -1,10 +1,10 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 export const directoryRoutes: Routes = [
   {
     path: "provider", // Ruta anterior: 'proveedor'
     loadComponent: () =>
-      import("src/app/features/provider/provider-list").then(
+      import("src/app/features/tenant/provider/provider-list").then(
         (m) => m.ListProvider,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const directoryRoutes: Routes = [
   {
     path: "condos", // Ruta anterior: 'condominos'
     loadComponent: () =>
-      import("src/app/features/owner/owner-list").then((m) => m.OwnerList),
+      import("src/app/features/tenant/owner/owner-list").then((m) => m.OwnerList),
     canActivate: [authGuard],
     data: {
       title: "Condominos",
@@ -26,7 +26,7 @@ export const directoryRoutes: Routes = [
   {
     path: "properties", // Ruta anterior: 'propiedades'
     loadComponent: () =>
-      import("src/app/features/property/propiedades-list").then(
+      import("src/app/features/tenant/property/propiedades-list").then(
         (m) => m.PropiedadesList,
       ),
     canActivate: [authGuard],
@@ -38,19 +38,19 @@ export const directoryRoutes: Routes = [
   {
     path: "vigilance-committee", // Ruta anterior: 'comite-vigilancia'
     loadComponent: () =>
-      import("src/app/features/directorios/comite-vigilancia/comite-vigilancia-list").then(
+      import("src/app/features/tenant/directorios/comite-vigilancia/comite-vigilancia-list").then(
         (m) => m.ComiteVigilanciaList,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Comité de Vigilancia",
-      breadcrumb: "Comité de Vigilancia",
+      title: "ComitÃ© de Vigilancia",
+      breadcrumb: "ComitÃ© de Vigilancia",
     },
   },
   {
     path: "staff",
     loadComponent: () =>
-      import("src/app/features/employees/staff-board/staff-board").then(
+      import("src/app/features/tenant/employees/staff-board/staff-board").then(
         (m) => m.StaffBoard,
       ),
     canActivate: [authGuard],
@@ -62,7 +62,7 @@ export const directoryRoutes: Routes = [
   {
     path: "work-position-org-chart",
     loadComponent: () =>
-      import("src/app/features/employees/org-chart/org-chart").then(
+      import("src/app/features/tenant/employees/org-chart/org-chart").then(
         (m) => m.OrgChart,
       ),
     canActivate: [authGuard],
@@ -74,7 +74,7 @@ export const directoryRoutes: Routes = [
   {
     path: "internal-staff", // Ruta anterior: 'personal-interno'
     loadComponent: () =>
-      import("src/app/features/employees/employees/pages/employee-list").then(
+      import("src/app/features/tenant/employees/employees/pages/employee-list").then(
         (m) => m.EmployeeList,
       ),
     canActivate: [authGuard],
@@ -86,7 +86,7 @@ export const directoryRoutes: Routes = [
   {
     path: "external-staff", // Ruta anterior: 'personal-externo'
     loadComponent: () =>
-      import("src/app/features/directorios/employee-external/employee-external-list").then(
+      import("src/app/features/tenant/directorios/employee-external/employee-external-list").then(
         (m) => m.EmployeeExternalList,
       ),
     canActivate: [authGuard],
@@ -99,7 +99,7 @@ export const directoryRoutes: Routes = [
     // Suggested path: 'employee/:employeeId/:applicationUserId'
     path: "empleado/:employeeId/:applicationUserId",
     loadComponent: () =>
-      import("src/app/features/employees/staff-board/employee-form").then(
+      import("src/app/features/tenant/employees/staff-board/employee-form").then(
         (m) => m.EmployeeForm,
       ),
     canActivate: [authGuard],
@@ -111,20 +111,20 @@ export const directoryRoutes: Routes = [
   {
     path: "emergency-phones", // Ruta anterior: 'telefonos-emergencia'
     loadComponent: () =>
-      import("src/app/features/directorios/telefonos-emergencia/telefonos-emergencia").then(
+      import("src/app/features/tenant/directorios/telefonos-emergencia/telefonos-emergencia").then(
         (m) => m.TelefonosEmergencia,
       ),
     canActivate: [authGuard],
     data: {
-      title: "Teléfonos de Emergencia",
-      breadcrumb: "Teléfonos de Emergencia",
+      title: "TelÃ©fonos de Emergencia",
+      breadcrumb: "TelÃ©fonos de Emergencia",
     },
   },
   {
     // Suggested path: 'my-providers'
     path: "mis-proveedores",
     loadComponent: () =>
-      import("src/app/features/customer-provider/mis-proveedores-list").then(
+      import("src/app/features/tenant/customer-provider/mis-proveedores-list").then(
         (m) => m.MisProveedores,
       ),
     canActivate: [authGuard],
@@ -134,3 +134,4 @@ export const directoryRoutes: Routes = [
     },
   },
 ];
+
