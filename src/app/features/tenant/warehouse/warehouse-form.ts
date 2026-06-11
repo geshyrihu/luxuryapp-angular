@@ -33,6 +33,7 @@ import { CardModule } from "primeng/card";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-warehouse-form",
@@ -166,31 +167,20 @@ export class WarehouseForm implements OnInit {
    * Guarda primero el almacón y luego asigna los responsables si aplica.
    */
   async onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
+    const savedWarehouse = await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "almacen",
+      id: this.id,
+      submitting: this.submitting,
+      closeOnSuccess: false,
+    });
 
-    this.submitting.set(true);
+    if (savedWarehouse === false) return;
 
     try {
       const warehouseId = this.id;
-      let savedWarehouse: any;
-
-      // Paso 1: Crear o actualizar el almacón
-      if (this.id === "") {
-        savedWarehouse = await this.apiResponseS.onPost(
-          "almacen",
-          this.form.value,
-        );
-      } else {
-        savedWarehouse = await this.apiResponseS.onPut(
-          `almacen/${this.id}`,
-          this.form.value,
-        );
-      }
-
-      // Paso 2: Asignar responsables (solo si es admin)
-      // Usamos el ID de la respuesta si es nuevo, o el ID actual si es edición
-      const finalId =
-        savedWarehouse?.id || savedWarehouse?.data?.id || warehouseId;
+      const finalId = savedWarehouse?.id || savedWarehouse?.data?.id || warehouseId;
 
       if (this.isAdmin() && finalId) {
         const DTO = {
@@ -204,11 +194,11 @@ export class WarehouseForm implements OnInit {
         );
       }
 
-      this.ref.close(true); // Cierra el diálogo con óxito
+      this.ref.close(true);
     } catch (error) {
       console.error("Error al guardar el almacón:", error);
     } finally {
-      this.submitting.set(false); // Siempre reestablecemos el estado
+      this.submitting.set(false);
     }
   }
 

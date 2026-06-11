@@ -21,6 +21,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IRadioComunicacionFormGroup {
   id: FormControl<string>;
@@ -171,23 +172,18 @@ export class RadioComunicacionForm implements OnInit {
     this.form.patchValue({ fotografia: file });
   }
 
-  onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    const formData = this.createFormData(this.form.getRawValue());
-
-    this.submitting.set(true);
-
-    const request =
-      this.id === ""
-        ? this.apiResponseS.onPost(Endpoints.RadioCommunication.create, formData)
-        : this.apiResponseS.onPut(
-            Endpoints.RadioCommunication.update(this.id),
-            formData,
-          );
-
-    request.then((result: boolean) => {
-      result ? this.ref.close(true) : this.submitting.set(false);
+  async onSubmit() {
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint:
+        this.id === ""
+          ? Endpoints.RadioCommunication.create
+          : Endpoints.RadioCommunication.update(this.id),
+      method: this.id === "" ? "POST" : "PUT",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (val) => this.createFormData(val),
     });
   }
 

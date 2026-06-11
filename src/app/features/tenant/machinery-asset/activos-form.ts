@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -21,6 +21,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IActivosFormGroup {
   id: FormControl<string>;
@@ -63,7 +64,7 @@ export class ActivosForm implements OnInit {
   ref = inject(DynamicDialogRef);
   customerIdS = inject(CustomerIdService);
   enumSelectS = inject(EnumSelectService);
-  submitting: boolean = false;
+  submitting = signal(false);
   id: string = "";
   applicationUserId = this.authS.userToken.infoUserAuthDTO.applicationUserId;
   machineryDTO: any;
@@ -164,24 +165,16 @@ export class ActivosForm implements OnInit {
     }, 0);
   }
 
-  onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    const model = this.createFormData(this.form.getRawValue());
-
-    this.submitting = true;
-
-    if (!this.id) {
-      this.apiResponseS.onPost(`machineries`, model).then((result: boolean) => {
-        result ? this.ref.close(true) : (this.submitting = false);
-      });
-    } else {
-      this.apiResponseS
-        .onPut(`machineries/${this.id}`, model)
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : (this.submitting = false);
-        });
-    }
+  async onSubmit() {
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "machineries",
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (val) => this.createFormData(val),
+    });
   }
 
   private createFormData(machineryDTO: any): FormData {

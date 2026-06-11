@@ -106,7 +106,7 @@
       </div>
 
       <div class="flex justify-content-end mt-4">
-        <custom-button-save [disabled]="form.invalid || submitting" />
+        <custom-button-save [disabled]="form.invalid || submitting()" />
       </div>
     </form>
   </div>
@@ -202,7 +202,7 @@ category == 7) {
       </div>
 
       <div class="flex justify-content-end mt-4">
-        <custom-button-save [disabled]="form.invalid || submitting" />
+        <custom-button-save [disabled]="form.invalid || submitting()" />
       </div>
     </form>
   </div>

@@ -16,6 +16,7 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IPrestamoHerramientaForm {
   id: FormControl<string | null>;
@@ -159,34 +160,23 @@ export class PrestamoHerramientaFormControl implements OnInit {
     });
   }
 
-  onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-
-    const formValues = this.form.getRawValue();
-
-    // Construir el payload solo con los campos necesarios
-    const payload = {
-      customerId: formValues.customerId,
-      fechaSalida: formValues.fechaSalida,
-      fechaRegreso: formValues.fechaRegreso,
-      applicationUserId: formValues.applicationUserId,
-      toolId: formValues.toolId,
-      observaciones: formValues.observaciones,
-      applicationUserResponsableId: formValues.applicationUserResponsableId,
-    };
-
-    const request =
-      this.id === ""
-        ? this.apiResponseS.onPost(`controlprestamoherramientas`, payload)
-        : this.apiResponseS.onPut(
-            `controlprestamoherramientas/${this.id}`,
-            payload,
-          );
-
-    request.then((result: boolean) => {
-      result ? this.ref.close(true) : this.submitting.set(false);
+  async onSubmit() {
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "controlprestamoherramientas",
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (formValues) => ({
+        customerId: formValues.customerId,
+        fechaSalida: formValues.fechaSalida,
+        fechaRegreso: formValues.fechaRegreso,
+        applicationUserId: formValues.applicationUserId,
+        toolId: formValues.toolId,
+        observaciones: formValues.observaciones,
+        applicationUserResponsableId: formValues.applicationUserResponsableId,
+      }),
     });
   }
 }

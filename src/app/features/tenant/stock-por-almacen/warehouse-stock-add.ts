@@ -1,4 +1,4 @@
-﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import {
   FormArray,
   FormBuilder,
@@ -24,6 +24,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TarjetaProducto } from "src/app/features/tenant/product/tarjeta-producto";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IWarehouseStockRowForm {
   productoId: FormControl<number>;
@@ -59,6 +60,7 @@ export class WarehouseStockAdd implements OnInit {
 
   dataSignal = signal<any[]>([]);
   formArray = new FormArray<FormGroup<IWarehouseStockRowForm>>([]);
+  submitting = signal(false);
 
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
@@ -70,10 +72,10 @@ export class WarehouseStockAdd implements OnInit {
   loading = signal(true);
   totalRecords: number = 0; // Total de registros para paginador
 
-  // ConfiguraciÃ³n de paginaciÃ³n y filtro
-  rows: number = 30; // Registros por pÃ¡gina
-  first: number = 0; // Ãndice del primer registro
-  page: number = 1; // PÃ¡gina actual
+  // Configuración de paginación y filtro
+  rows: number = 30; // Registros por página
+  first: number = 0; // Índice del primer registro
+  page: number = 1; // Página actual
   searchTerm: string = ""; // Filtro global
 
   tablePrimeNgRows: number = tablePrimeNgRows();
@@ -90,7 +92,7 @@ export class WarehouseStockAdd implements OnInit {
 
   ngOnInit(): void {
     this.onLoadSelectItem();
-    // La primera carga es disparada automÃ¡ticamente por el (onLazyLoad) de p-table
+    // La primera carga es disparada automáticamente por el (onLazyLoad) de p-table
   }
 
   onModalTarjetaProducto(productoId: any): void {
@@ -178,7 +180,7 @@ export class WarehouseStockAdd implements OnInit {
     this.onLoadData(this.page, this.rows, this.searchTerm);
   }
 
-  onSubmit(rowGroup: FormGroup<IWarehouseStockRowForm>) {
+  async onSubmit(rowGroup: FormGroup<IWarehouseStockRowForm>) {
     rowGroup.controls.errorMessage.setValue(null);
 
     if (rowGroup.invalid) {
@@ -191,25 +193,32 @@ export class WarehouseStockAdd implements OnInit {
 
     const value = rowGroup.getRawValue();
 
-    // Validar que Stock MÃ³nimo < Stock MÃ³ximo
+    // Validar que Stock Mónimo < Stock Móximo
     if (value.stockMax && value.stockMin && value.stockMin >= value.stockMax) {
       rowGroup.controls.errorMessage.setValue(
-        "El 'Stock MÃ³nimo' no puede ser mayor o igual al 'Stock MÃ³ximo'.",
+        "El 'Stock Mónimo' no puede ser mayor o igual al 'Stock Móximo'.",
       );
       return;
     }
 
-    const payload = {
-      ...value,
-      applicationUserId: this.authS.applicationUserId,
-      almacenId: this.config.data.almacenId,
-      customerId: this.customerIdS.customerId(),
-    };
-
-    // Si todo estÃ© bien, enviar
-    this.apiResponseS.onPost(`InventarioProducto/`, payload).then(() => {
-      this.onLoadData(this.page, this.rows, this.searchTerm);
+    const success = await FormHelper.submitCrud({
+      form: rowGroup,
+      api: this.apiResponseS,
+      endpoint: `InventarioProducto`,
+      method: "POST",
+      submitting: this.submitting,
+      closeOnSuccess: false,
+      transformPayload: (val) => ({
+        ...val,
+        applicationUserId: this.authS.applicationUserId,
+        almacenId: this.config.data.almacenId,
+        customerId: this.customerIdS.customerId(),
+      }),
     });
+
+    if (success !== false) {
+      this.onLoadData(this.page, this.rows, this.searchTerm);
+    }
   }
 }
 

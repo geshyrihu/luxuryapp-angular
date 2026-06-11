@@ -18,6 +18,7 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IProductosForm {
   id: FormControl<string | null>;
@@ -143,23 +144,15 @@ export class ProductosForm implements OnInit {
     });
   };
 
-  onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    const formData = this.createFormData();
-    this.submitting.set(true);
-
-    const request =
-      this.id() === ""
-        ? this.apiResponseS.onPost(`Productos`, formData)
-        : this.apiResponseS.onPut(`Productos/${this.id()}`, formData);
-
-    request.then((result) => {
-      if (result) {
-        this.ref.close(true);
-      } else {
-        this.submitting.set(false);
-      }
+  async onSubmit() {
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: this.id() === "" ? `Productos` : `Productos/${this.id()}`,
+      method: this.id() === "" ? "POST" : "PUT",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: () => this.createFormData(),
     });
   }
 

@@ -19,6 +19,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IToolForm {
   id: FormControl<string>;
@@ -129,24 +130,16 @@ export class ToolForm implements OnInit {
     });
   }
 
-  onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    const formDataDTO = this.onCreateFormData(this.form.value);
-
-    this.submitting.set(true);
-
-    if (!this.id) {
-      this.apiResponseS.onPost(`Tools`, formDataDTO).then((result: boolean) => {
-        result ? this.ref.close(true) : this.submitting.set(false);
-      });
-    } else {
-      this.apiResponseS
-        .onPut(`Tools/${this.id}`, formDataDTO)
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
-    }
+  async onSubmit() {
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "Tools",
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (val) => this.onCreateFormData(val),
+    });
   }
   onCreateFormData(DTO: any) {
     let formData = new FormData();

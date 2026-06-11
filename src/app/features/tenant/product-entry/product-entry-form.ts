@@ -21,6 +21,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IProductEntryForm {
   id: FormControl<string>;
@@ -192,28 +193,22 @@ export class ProductEntryForm implements OnInit {
     });
   }
 
-  onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-
-    const values = this.form.getRawValue();
-    const payload = {
-      ...values,
-      fechaEntrada: this.dateS.getDateFormat(values.fechaEntrada),
-      customerId: this.customerIdS.customerId(),
-    };
-
-    const request =
-      !this.id() || this.id() === "0"
-        ? this.apiResponseS.onPost(`EntradaProducto`, payload)
-        : this.apiResponseS.onPut(
-            `EntradaProducto/${this.id()}/${this.cantidadActual()}`,
-            payload,
-          );
-
-    request.then((result: boolean) => {
-      result ? this.ref.close(true) : this.submitting.set(false);
+  async onSubmit() {
+    const isNew = !this.id() || this.id() === "0";
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: isNew
+        ? `EntradaProducto`
+        : `EntradaProducto/${this.id()}/${this.cantidadActual()}`,
+      method: isNew ? "POST" : "PUT",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (values) => ({
+        ...values,
+        fechaEntrada: this.dateS.getDateFormat(values.fechaEntrada),
+        customerId: this.customerIdS.customerId(),
+      }),
     });
   }
 }
