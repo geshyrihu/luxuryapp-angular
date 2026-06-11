@@ -25,6 +25,7 @@ import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { MeetingSeguimientoEdit } from "./meeting-seguimiento-edit";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IMinutaDetalleForm {
   id: FormControl<string | null>;
@@ -137,36 +138,24 @@ export class MinutaDetalleForm implements OnInit {
     );
   }
 
-  onSubmit() {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
-
-    this.submitting.set(true);
-
-    const payload = this.form.getRawValue();
-    const normalizedPayload = {
-      ...payload,
-      deliveryDate: this.dateS.getDateFormat(payload.deliveryDate),
-    };
-    const isNew = !this.id();
-
-    // When creating a new record, the id can be 0, which is not a valid Guid.
-    // We'll replace it with an empty Guid string. The backend will generate the real Guid.
-    if (isNew) {
-      normalizedPayload.id = "00000000-0000-0000-0000-000000000000";
-    }
-
-    const request = isNew
-      ? this.apiResponseS.onPost(`MeetingsDetails`, normalizedPayload)
-      : this.apiResponseS.onPut(
-          `MeetingsDetails/${this.id()}`,
-          normalizedPayload,
-        );
-
-    request.then((result: boolean) => {
-      result ? this.ref.close(true) : this.submitting.set(false);
+  async onSubmit() {
+    FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "MeetingsDetails",
+      id: this.id(),
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (payload) => {
+        const normalizedPayload = {
+          ...payload,
+          deliveryDate: this.dateS.getDateFormat(payload.deliveryDate),
+        };
+        if (!this.id()) {
+          normalizedPayload.id = "00000000-0000-0000-0000-000000000000";
+        }
+        return normalizedPayload;
+      }
     });
   }
 }

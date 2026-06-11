@@ -21,6 +21,7 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { AdministrationFormList } from "./administration-form-list";
 import { ComiteForm } from "./comite-form";
 import { InvitedForm } from "./invited-form";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IMeetingForm {
   id: FormControl<string | null>;
@@ -90,7 +91,7 @@ export class MeetingForm implements OnInit {
     if (this.id) this.onLoadData();
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (!this.apiResponseS.validateForm(this.form)) return;
     if (
       !this.id &&
@@ -104,7 +105,6 @@ export class MeetingForm implements OnInit {
       return;
     }
 
-    this.submitting.set(true);
     const formValue = this.form.getRawValue();
     const payload = {
       ...formValue,
@@ -113,21 +113,26 @@ export class MeetingForm implements OnInit {
     };
 
     if (!this.id) {
-      // Eliminar ID si es un registro nuevo para evitar error de conversión de Guid
       delete (payload as any).id;
-      this.apiResponseS.onPost(`Meetings`, payload).then((result: any) => {
-        if (result) {
-          this.id = result.id;
-          this.form.controls.id.setValue(this.id);
-          this.onLoadData();
-        }
-        this.submitting.set(false);
-      });
-    } else {
-      this.apiResponseS.onPut(`Meetings/${this.id}`, payload).then(() => {
-        this.onLoadData();
-        this.submitting.set(false);
-      });
+    }
+
+    const result = await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "Meetings",
+      id: this.id,
+      ref: this.ref,
+      submitting: this.submitting,
+      closeOnSuccess: false,
+      transformPayload: () => payload
+    });
+
+    if (result) {
+      if (!this.id && result.id) {
+        this.id = result.id;
+        this.form.controls.id.setValue(this.id);
+      }
+      this.onLoadData();
     }
   }
 
