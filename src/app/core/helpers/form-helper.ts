@@ -28,8 +28,8 @@ export interface CrudSubmitOptions {
   endpoint: string;
   /** ID del registro (opcional). Si se provee y no se especifica method, se usará PUT. */
   id?: string | null;
-  /** Referencia al dialogo para cerrarlo al completar */
-  ref: DynamicDialogRef;
+  /** Referencia al dialogo para cerrarlo al completar (opcional si closeOnSuccess es false o no es un modal) */
+  ref?: DynamicDialogRef;
   /** Signal de loading para deshabilitar el botón */
   submitting: WritableSignal<boolean>;
   /** Transformación opcional del payload antes de enviar */
@@ -85,7 +85,7 @@ export class FormHelper {
       }
 
       if (result !== false) {
-        if (closeOnSuccess) {
+        if (closeOnSuccess && ref) {
           ref.close(true);
         } else {
           submitting.set(false);
@@ -101,12 +101,3 @@ export class FormHelper {
     }
   }
 }
-
-
-
-
-
-
-
-
-

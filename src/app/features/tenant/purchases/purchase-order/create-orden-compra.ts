@@ -17,6 +17,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-create-orden-compra",
@@ -115,27 +116,27 @@ export class CreateOrdenCompra implements OnInit {
     this.providerControl.setValue(item?.label);
   };
 
-  onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
+  async onSubmit() {
+    const isNew = !this.ordenCompraId;
+    const urlApi = isNew
+      ? `ordencompra/${this.providerId()}/${this.posicionCotizacion}/${this.solicitudCompraId}`
+      : `OrdenCompra/${this.ordenCompraId}`;
 
-    this.submitting.set(true);
+    const result = await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: urlApi,
+      method: isNew ? "POST" : "PUT",
+      ref: this.ref,
+      submitting: this.submitting,
+      closeOnSuccess: false,
+    });
 
-    if (!this.ordenCompraId) {
-      const urlApi = `ordencompra/${this.providerId()}/${this.posicionCotizacion}/${this.solicitudCompraId}`;
-      this.apiResponseS.onPost(urlApi, this.form.value).then((result: any) => {
-        if (result) {
-          this.ref.close(result.id);
-          this.router.navigateByUrl(`/purchases/orden-compra/${result.id}`);
-        } else {
-          this.submitting.set(false);
-        }
-      });
-    } else {
-      this.apiResponseS
-        .onPut(`OrdenCompra/${this.ordenCompraId}`, this.form.value)
-        .then((result: any) => {
-          result ? this.ref.close(result.id) : this.submitting.set(false);
-        });
+    if (result) {
+      this.ref.close(result.id);
+      if (isNew) {
+        this.router.navigateByUrl(`/purchases/orden-compra/${result.id}`);
+      }
     }
   }
 }

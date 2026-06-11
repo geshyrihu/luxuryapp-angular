@@ -22,6 +22,7 @@ import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IPurchaseRequestAddProductForm {
   id: FormControl<string | null>;
@@ -48,6 +49,8 @@ interface IPurchaseRequestAddProductForm {
 export class PurchaseRequestAddProduct implements OnInit {
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
+
+  submitting = signal(false);
 
   // Signals para ComboBoxes
   products = signal<ISelectItem[]>([]);
@@ -183,10 +186,7 @@ export class PurchaseRequestAddProduct implements OnInit {
     });
   }
 
-  onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    // Construir payload limpio usando .value (tipado)
+  async onSubmit() {
     const payload = {
       id: this.form.value.id,
       productId: this.form.value.productId,
@@ -199,15 +199,19 @@ export class PurchaseRequestAddProduct implements OnInit {
       ? `PurchaseRequest/update-product/${payload.id}`
       : `PurchaseRequest/add-product`;
 
-    const apiCall = payload.id
-      ? this.apiResponseS.onPut(endpoint, payload)
-      : this.apiResponseS.onPost(endpoint, payload);
-
-    apiCall.then((result: boolean) => {
-      if (result) {
-        this.updateData.emit();
-        this.resetForm();
-      }
+    const result = await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: endpoint,
+      method: payload.id ? "PUT" : "POST",
+      submitting: this.submitting,
+      closeOnSuccess: false,
+      transformPayload: () => payload,
     });
+
+    if (result) {
+      this.updateData.emit();
+      this.resetForm();
+    }
   }
 }

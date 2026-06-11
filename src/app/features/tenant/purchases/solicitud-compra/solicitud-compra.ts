@@ -1,4 +1,4 @@
-﻿import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -42,6 +42,7 @@ import { SolicitudCompraDetalle } from "src/app/features/tenant/purchases/solici
 import { PurchaseLinkManager } from "../purchase-link-manager/purchase-link-manager";
 import { ProductAdd } from "./product-add";
 import { ProductModalAdd } from "./product-modal-add";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 export interface ISolicitudCompraForm {
   id: FormControl<string | null>;
@@ -200,56 +201,46 @@ export class SolicitudCompra implements OnInit {
   }
 
   async onSubmit() {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
-
-    this.submitting.set(true);
     const formValue = this.form.getRawValue();
     const payload = {
       ...formValue,
       fechaSolicitud: this.dateS.getDateFormat(formValue.fechaSolicitud),
     };
 
-    // CREACIÃ³N
-    if (!this.id || this.id === "" || this.id === "0") {
-      const result: any = await this.apiResponseS.onPost(
-        `SolicitudCompra`,
-        payload,
-      );
-      if (result && result.id) {
+    const isNew = !this.id || this.id === "" || this.id === "0";
+
+    const result: any = await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: "SolicitudCompra",
+      id: isNew ? null : this.id,
+      submitting: this.submitting,
+      closeOnSuccess: false,
+      transformPayload: () => payload,
+    });
+
+    if (result) {
+      if (isNew && result.id) {
         this.id = result.id;
 
-        // Guardar productos del buffer local ahora que tenemos el ID real
         for (const product of this.tempProducts()) {
           product.solicitudCompraId = this.id;
           await this.apiResponseS.onPost(`SolicitudCompraDetalle`, product);
         }
 
-        this.tempProducts.set([]); // Limpiar buffer
+        this.tempProducts.set([]);
         this.customToastS.showSuccess(
-          "Ã³xito",
+          "óxito",
           "Solicitud y productos guardados correctamente",
         );
-        this.onLoadData();
+      } else {
+        this.customToastS.showSuccess(
+          "Actualizado",
+          "Solicitud actualizada correctamente",
+        );
       }
+      this.onLoadData();
     }
-    // ACTUALIZACIÃ³N
-    else {
-      this.apiResponseS
-        .onPut(`SolicitudCompra/${this.id}`, payload)
-        .then((result: boolean) => {
-          if (result) {
-            this.customToastS.showSuccess(
-              "Actualizado",
-              "Solicitud actualizada correctamente",
-            );
-            this.onLoadData();
-          }
-        });
-    }
-    this.submitting.set(false);
   }
 
   addProduct(data: any) {
