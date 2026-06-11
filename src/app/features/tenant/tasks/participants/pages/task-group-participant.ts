@@ -15,6 +15,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-task-group-participant",
@@ -115,33 +116,24 @@ export class TaskGroupParticipant implements OnInit, OnDestroy {
     });
   };
 
-  onSubmit(): void {
-    console.log("TaskGroupParticipant.onSubmit", this.form.value);
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-
-    const formValue = this.form.getRawValue();
-    const payload = {
-      TaskGroupId: formValue.ticketGroupId ?? this.config.data?.id,
-      ApplicationUserId: formValue.applicationUserId,
-      IsAdmin: formValue.isAdmin,
-    };
-
-    const request =
-      this.id === ""
-        ? this.apiResponseS.onPost(Endpoints.TaskGroupParticipants.base, payload)
-        : this.apiResponseS.onPut(
-            Endpoints.TaskGroupParticipants.update(this.id),
-            payload,
-          );
-
-    request.then(() => {
-      this.onCleanForm();
-      this.onLoadAppUsers();
-      this.onLoadExistingParticipants();
-      this.submitting.set(false);
+  async onSubmit(): Promise<void> {
+    const result = await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: this.id === "" ? Endpoints.TaskGroupParticipants.base : Endpoints.TaskGroupParticipants.update(this.id),
+      method: this.id === "" ? "POST" : "PUT",
+      submitting: this.submitting,
+      closeOnSuccess: false,
+      transformPayload: (formValue) => ({
+        TaskGroupId: formValue.ticketGroupId ?? this.config.data?.id,
+        ApplicationUserId: formValue.applicationUserId,
+        IsAdmin: formValue.isAdmin,
+      }),
     });
+
+    if (result) {
+      this.onCleanForm();
+    }
   }
 
   onEditParticipant(item: any) {

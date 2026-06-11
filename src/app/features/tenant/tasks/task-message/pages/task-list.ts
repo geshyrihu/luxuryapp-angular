@@ -183,8 +183,8 @@ export class TaskList implements OnInit {
   readonly ticketGroupId: string =
     this.activatedRoute.snapshot.params.ticketGroupId;
 
-  // Task-list tiene caption doble (tÃ­tulo + filtros + leyenda) que suma ~170px
-  // adicionales al offset estÃ¡ndar del servicio (240px). Total: ~410px.
+  // Task-list tiene caption doble (título + filtros + leyenda) que suma ~170px
+  // adicionales al offset estándar del servicio (240px). Total: ~410px.
   private readonly TASK_LIST_OFFSET = 320;
   scrollHeight = signal<string>(this.calcScrollHeight());
 
@@ -465,12 +465,12 @@ export class TaskList implements OnInit {
   onProgress(id: string) {
     Swal.fire({
       title: "Confirmar",
-      text: "Se colocarÃ¡ el ticket en proceso",
+      text: "Se colocará el ticket en proceso",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#0d3b66",
       cancelButtonColor: "#9B1B30",
-      confirmButtonText: "SÃ­, en proceso!",
+      confirmButtonText: "Sí, en proceso!",
       cancelButtonText: "Cancelar",
     }).then((responseData) => {
       if (responseData.value) {
@@ -750,7 +750,7 @@ export class TaskList implements OnInit {
     );
   });
 
-  // â”€â”€ Drag-to-link (asignaciÃ³n de predecesora por arrastre) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // â”€â”€ Drag-to-link (asignación de predecesora por arrastre) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   readonly linkDragSourceId = signal<string | null>(null);
   readonly linkDragTargetId = signal<string | null>(null);

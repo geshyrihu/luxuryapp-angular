@@ -20,6 +20,7 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { RecurrenceInput } from "../../instances/recurrence-input/recurrence-input";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface ITaskTemplateItemForm {
   title: FormControl<string>;
@@ -116,51 +117,34 @@ export class TaskTemplateItemForm implements OnInit {
     });
   }
 
-  onSubmit() {
-    if (this.form.invalid) return;
-
-    this.submitting.set(true);
-
-    const formValue = this.form.getRawValue();
-    const dto: any = { ...formValue };
-
-    // Transform Date objects back to "HH:mm" strings
-    if (formValue.timeWindowStart instanceof Date) {
-      dto.timeWindowStart = this.datePipe.transform(
-        formValue.timeWindowStart,
-        "HH:mm",
-      );
-    }
-    if (formValue.timeWindowEnd instanceof Date) {
-      dto.timeWindowEnd = this.datePipe.transform(
-        formValue.timeWindowEnd,
-        "HH:mm",
-      );
-    }
-
+  async onSubmit() {
     const apiUrl = "recurring-tasks/templates";
-    let request: Promise<any>;
 
-    if (this.item()) {
-      // Update item
-      request = this.apiResponseS.onPut<any>(
-        `${apiUrl}/items/${this.item().id}`,
-        dto,
-      );
-    } else {
-      // Add item to template
-      request = this.apiResponseS.onPost<any>(
-        `${apiUrl}/${this.templateId()}/items`,
-        dto,
-      );
-    }
-
-    request
-      .then((result) => {
-        if (result) {
-          this.ref.close(true);
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: this.item()
+        ? `${apiUrl}/items/${this.item().id}`
+        : `${apiUrl}/${this.templateId()}/items`,
+      method: this.item() ? "PUT" : "POST",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (formValue) => {
+        const dto: any = { ...formValue };
+        if (formValue.timeWindowStart instanceof Date) {
+          dto.timeWindowStart = this.datePipe.transform(
+            formValue.timeWindowStart,
+            "HH:mm",
+          );
         }
-      })
-      .finally(() => this.submitting.set(false));
+        if (formValue.timeWindowEnd instanceof Date) {
+          dto.timeWindowEnd = this.datePipe.transform(
+            formValue.timeWindowEnd,
+            "HH:mm",
+          );
+        }
+        return dto;
+      },
+    });
   }
 }

@@ -45,7 +45,7 @@ export class TaskMessageReportResumen {
     const startDateFormatted = event.startDate.toISOString(); // Formato: '2024-09-30T00:00:00.000Z'
     const endDateFormatted = event.endDate.toISOString(); // Formato: '2024-10-17T00:00:00.000Z'
 
-    // AquÃ­ puedes usar las fechas seleccionadas para obtener el reporte de tickets
+    // Aquí puedes usar las fechas seleccionadas para obtener el reporte de tickets
     this.onLoadData(startDateFormatted, endDateFormatted);
   }
 }

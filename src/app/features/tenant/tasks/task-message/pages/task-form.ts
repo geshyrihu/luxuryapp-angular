@@ -1,4 +1,4 @@
-﻿import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
@@ -30,6 +30,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { TaskGroupService } from "src/app/features/tenant/tasks/task.service";
 import { TaskFollowup } from "../../task-follow-up/pages/task-followup";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface ITaskMessageForm {
   id: FormControl<string>;
@@ -96,14 +97,14 @@ export class TaskForm implements OnInit {
   cb_legal_matter = signal<ISelectItem[]>([]);
   cb_predecessors = signal<ISelectItem[]>([]);
 
-  // Signals para previews de imÃ³genes
+  // Signals para previews de imógenes
   beforeWorkPreview = signal<string | null>(null);
   afterWorkPreview = signal<string | null>(null);
 
   isLegalWorkGroup = signal(false);
   private workGroupLegalMap = new Map<string, boolean>();
 
-  // DefiniciÃ³n estricta del formulario
+  // Definición estricta del formulario
   form: FormGroup<ITaskMessageForm> = this.formB.group({
     id: new FormControl<string>(
       { value: "", disabled: true },
@@ -157,7 +158,7 @@ export class TaskForm implements OnInit {
     if (this.config.data?.ticketGroupId) {
       setTimeout(async () => {
         let ticketGroupId = String(this.config.data.ticketGroupId);
-        // Garantizar que la capitalizaciÃ³n (casing) coincida exactamente con la opciÃ³n cargada
+        // Garantizar que la capitalización (casing) coincida exactamente con la opción cargada
         const exactMatch = this.cb_ticket_group().find(
           (g) => String(g.value).toLowerCase() === ticketGroupId.toLowerCase()
         );
@@ -242,7 +243,7 @@ export class TaskForm implements OnInit {
       dependsOnTaskId: result.dependsOnTaskId ?? null,
     });
 
-    // Vistas previas de imÃ³genes
+    // Vistas previas de imógenes
     if (result.beforeWorkPreview) {
       this.beforeWorkPreview.set(result.beforeWorkPreview);
     }
@@ -284,7 +285,7 @@ export class TaskForm implements OnInit {
 
       if (isHeic) {
         try {
-          // Convertir explÃ­citamente a Blob puro a travÃ©s de arrayBuffer para evitar problemas de compatibilidad de la clase File con heic2any
+          // Convertir explícitamente a Blob puro a través de arrayBuffer para evitar problemas de compatibilidad de la clase File con heic2any
           const buffer = await file.arrayBuffer();
           const heicBlob = new Blob([buffer], { type: file.type || "image/heic" });
           
@@ -297,7 +298,7 @@ export class TaskForm implements OnInit {
           const newFileName = file.name.replace(/\.(heic|heif)$/i, ".jpg");
           fileToProcess = new File([resultBlob], newFileName, { type: "image/jpeg" });
         } catch (heicError) {
-          console.warn("heic2any fallÃ³ al analizar el archivo, intentando como fallback nativo...", heicError);
+          console.warn("heic2any falló al analizar el archivo, intentando como fallback nativo...", heicError);
           // Si falla, fileToProcess sigue siendo el archivo original. 
           // En navegadores como Safari puede funcionar nativamente, o si era un JPG renombrado.
         }
@@ -421,45 +422,39 @@ export class TaskForm implements OnInit {
     );
   }
 
-  onSubmit(): void {
-    if (!this.apiResponseS.validateForm(this.form)) return;
+  async onSubmit(): Promise<void> {
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: this.id === "" ? Endpoints.Tasks.create : Endpoints.Tasks.update(this.id),
+      method: this.id === "" ? "POST" : "PUT",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (rawValues) => {
+        const formData = new FormData();
 
-    this.submitting.set(true);
+        Object.keys(rawValues).forEach((key) => {
+          const value = (rawValues as any)[key];
 
-    const formData = new FormData();
-    const rawValues = this.form.getRawValue() as any;
+          if (key === "beforeWork" || key === "afterWork") {
+            const file = value as File;
+            if (file && file instanceof File) {
+              formData.append(key, file, file.name);
+            }
+          } else if (key === "scheduledDate" || key === "closedDate") {
+            if (value) {
+              const formattedDate = this.dateS.getDateFormat(value);
+              formData.append(key, formattedDate);
+            }
+          } else if (key === "dependsOnTaskId") {
+            if (value) formData.append(key, value);
+          } else if (key !== "assignee") {
+            formData.append(key, value != null ? value : "");
+          }
+        });
 
-    Object.keys(rawValues).forEach((key) => {
-      const value = rawValues[key];
-
-      if (key === "beforeWork" || key === "afterWork") {
-        const file = value as File;
-        if (file && file instanceof File) {
-          formData.append(key, file, file.name);
-        }
-      } else if (key === "scheduledDate" || key === "closedDate") {
-        if (value) {
-          const formattedDate = this.dateS.getDateFormat(value);
-          formData.append(key, formattedDate);
-        }
-      } else if (key === "dependsOnTaskId") {
-        if (value) formData.append(key, value);
-      } else if (key !== "assignee") {
-        formData.append(key, value != null ? value : "");
-      }
-    });
-
-    const request =
-      this.id === ""
-        ? this.apiResponseS.onPost(Endpoints.Tasks.create, formData)
-        : this.apiResponseS.onPut(Endpoints.Tasks.update(this.id), formData);
-
-    request.then((result: any) => {
-      if (result) {
-        this.ref.close(result);
-      } else {
-        this.submitting.set(false);
-      }
+        return formData;
+      },
     });
   }
 }

@@ -117,7 +117,7 @@ export class TaskMessageOperationReport {
     this.startDate = startDateFormatted;
     this.endDate = endDateFormatted;
 
-    // AquÃ³ puedes usar las fechas seleccionadas para obtener el reporte de tickets
+    // Aquó puedes usar las fechas seleccionadas para obtener el reporte de tickets
     this.onLoadData();
   }
 
@@ -186,11 +186,11 @@ export class TaskMessageOperationReport {
   }
 
   onPreviewClicked(): void {
-    // LÃ³gica para la vista previa
+    // Lógica para la vista previa
     this.router.navigate(["/tickets/weekly-report-preview"]);
   }
   onSendReportClicked(): void {
-    // LÃ³gica para enviar el reporte
+    // Lógica para enviar el reporte
     this.dialogHandlerS
       .openDialog(
         SendOperationReport,

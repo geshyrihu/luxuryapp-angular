@@ -15,9 +15,9 @@ export class TaskWeeklyReportPreview implements OnInit {
   customerIdS = inject(CustomerIdService);
   dateRangeStorageService = inject(DateRangeStorageService);
   TaskGroupService = inject(TaskGroupService);
-  // DeclaraciÃ³n e inicializaciÃ³n de variables
+  // Declaración e inicialización de variables
   data = signal<any>(null);
-  // Modificamos la declaraciÃ³n de dateRange para que use un objeto con from y to
+  // Modificamos la declaración de dateRange para que use un objeto con from y to
   year: any = this.TaskGroupService.year || 0;
   numeroSemana: any = this.TaskGroupService.numeroSemana || 0;
 

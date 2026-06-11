@@ -105,7 +105,7 @@ export class TaskReportWorkPlan implements OnInit {
   }
 
   onPreviewClicked(): void {
-    // LÃ³gica para la vista previa
+    // Lógica para la vista previa
     this.router.navigate(["/tickets/work-plan-preview"]);
   }
   onModalForm(data: any) {

@@ -24,6 +24,7 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IProveedorForm {
   id: FormControl<string | null>;
@@ -214,20 +215,15 @@ export class ProveedorForm implements OnInit {
     });
   };
 
-  onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    const model = this.onCreateFormData(this.form.value);
-
-    this.submitting.set(true);
-
-    const request =
-      this.id === ""
-        ? this.apiResponseS.onPost(`Providers/`, model)
-        : this.apiResponseS.onPut(`Providers/${this.id}`, model);
-
-    return request.then((result: boolean) => {
-      result ? this.ref.close(true) : this.submitting.set(false);
+  async onSubmit() {
+    await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: this.id === "" ? `Providers/` : `Providers/${this.id}`,
+      method: this.id === "" ? "POST" : "PUT",
+      ref: this.ref,
+      submitting: this.submitting,
+      transformPayload: (formValue) => this.onCreateFormData(formValue),
     });
   }
 

@@ -27,6 +27,7 @@ import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 interface ITicketMessageFollowupForm {
   id: FormControl<string>;
   ticketMessageId: FormControl<string>;
@@ -107,21 +108,20 @@ export class TaskFollowup implements OnInit, OnDestroy {
     });
   }
 
-  onSubmit() {
-    if (!this.apiResponseS.validateForm(this.form)) return;
-
-    this.submitting.set(true);
-
-    const formValue = this.form.getRawValue();
-
-    this.apiResponseS.onPost(Endpoints.TaskFollowUps.create, formValue).then((_) => {
-      this.onCargaListaseguimientos();
-      this.form.patchValue({
-        description: "",
-      });
-      // remainingChars will update automatically via valueChanges
-      this.submitting.set(false);
+  async onSubmit() {
+    const result = await FormHelper.submitCrud({
+      form: this.form,
+      api: this.apiResponseS,
+      endpoint: Endpoints.TaskFollowUps.create,
+      method: "POST",
+      submitting: this.submitting,
+      closeOnSuccess: false,
     });
+
+    if (result) {
+      this.onCargaListaseguimientos();
+      this.form.patchValue({ description: "" });
+    }
   }
   onDelete(id: string): void {
     this.apiResponseS.onDelete(Endpoints.TaskFollowUps.delete(id)).then((ok) => {

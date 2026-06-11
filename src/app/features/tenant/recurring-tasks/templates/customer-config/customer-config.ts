@@ -9,6 +9,8 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { CustomerTaskItemConfig } from "src/app/core/models/recurring-tasks/customer-task-item-config.model";
 import { TaskTemplate } from "src/app/core/models/recurring-tasks/task-template.model";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { FormHelper } from "src/app/core/helpers/form-helper";
+import { FormGroup } from "@angular/forms";
 @Component({
   selector: "app-customer-config",
   templateUrl: "./customer-config.html",
@@ -79,8 +81,6 @@ export class CustomerConfig implements OnInit {
     const customerId = this.selectedCustomerId();
     if (!customerId) return;
 
-    this.submitting.set(true);
-
     const enabledTaskItemIds = Array.from(this.selectedItems().keys()).filter(
       (id) => this.selectedItems().get(id),
     );
@@ -90,11 +90,15 @@ export class CustomerConfig implements OnInit {
       enabledTaskItemIds: enabledTaskItemIds,
     };
 
-    await this.apiResponseS.onPost(
-      Endpoints.RecurringTasks.Templates.saveCustomerConfig,
-      config,
-    );
-    this.submitting.set(false);
+    await FormHelper.submitCrud({
+      form: new FormGroup({}),
+      api: this.apiResponseS,
+      endpoint: Endpoints.RecurringTasks.Templates.saveCustomerConfig,
+      method: "POST",
+      submitting: this.submitting,
+      transformPayload: () => config,
+      closeOnSuccess: false,
+    });
   }
 
   onItemCheckChange(itemId: string, isChecked: boolean) {
