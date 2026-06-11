@@ -12,6 +12,7 @@ import { TableModule } from "primeng/table";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 export interface IOrdenCompraStatusForm {
   id: FormControl<string | null>;
@@ -77,7 +78,7 @@ export class OrdenCompraStatus implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`OrdenCompraStatus/by-orden-compra/${this.ordenCompraId}`)
+      .onGetItem(Endpoints.OrdenCompraStatus.byOrdenCompra(this.ordenCompraId))
       .then((result: any) => {
         this.ordenCompraStatus = result;
         // Rellenamos el formulario con todos los datos, incluyendo factura y folioFiscal
@@ -107,7 +108,7 @@ export class OrdenCompraStatus implements OnInit {
 
     // Update only status fields (booleans)
     this.apiResponseS
-      .onPut(`OrdenCompraStatus/${this.ordenCompraStatus.id}`, formData)
+      .onPut(Endpoints.OrdenCompraStatus.update(this.ordenCompraStatus.id), formData)
       .then((result: any) => {
         this.ordenCompraStatus = result;
         this.form.patchValue(result);
@@ -132,7 +133,7 @@ export class OrdenCompraStatus implements OnInit {
     if (xml) formData.append("xmlFile", xml);
 
     this.apiResponseS
-      .onPost(`OrdenCompraStatus/${this.ordenCompraId}/invoices`, formData)
+      .onPost(Endpoints.PurchaseOrders.uploadInvoice(this.ordenCompraId), formData)
       .then((result: any) => {
         // Result should be the new Invoice object.
         // We need to refresh the list.
@@ -153,7 +154,7 @@ export class OrdenCompraStatus implements OnInit {
 
   onDeleteInvoice(id: string) {
     this.apiResponseS
-      .onDelete(`OrdenCompraStatus/invoices/${id}`)
+      .onDelete(Endpoints.OrdenCompraStatus.deleteInvoice(id))
       .then((result: boolean) => {
         if (result) {
           this.ordenCompraStatus.facturas =

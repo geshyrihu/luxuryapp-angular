@@ -48,4 +48,29 @@ describe('PieChart', () => {
   it('should have legend below by default', () => {
     expect(component.legendPosition).toBe('below');
   });
+
+  it('should handle empty data gracefully', () => {
+    fixture.componentRef.setInput('dataGrafico', []);
+    fixture.detectChanges();
+    expect(component.dataGrafico()).toEqual([]);
+  });
+
+  it('should accept custom data via input', () => {
+    const customData = [{ name: 'Test', value: 100 }];
+    fixture.componentRef.setInput('dataGrafico', customData);
+    fixture.detectChanges();
+    expect(component.dataGrafico()).toEqual(customData);
+  });
+
+  it('should accept custom color scheme via input', () => {
+    const customScheme = { domain: ['#FF0000'] };
+    fixture.componentRef.setInput('colorScheme', customScheme);
+    fixture.detectChanges();
+    expect(component.colorScheme()).toEqual(customScheme);
+  });
+
+  it('should toggle gradient', () => {
+    component.gradient = false;
+    expect(component.gradient).toBe(false);
+  });
 });

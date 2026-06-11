@@ -21,6 +21,7 @@ import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-b
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit"; // Added
 import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal"; // Added
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 export interface IOrdenCompraFacturaForm {
   pdfFile: FormControl<File | null>;
@@ -78,7 +79,7 @@ export class OrdenCompraFacturaForm implements OnInit {
   toggleType(invoice: any) {
     const newType = invoice.tipoComprobante === "E" ? "I" : "E";
     this.apiResponseS
-      .onPatch(`OrdenCompraStatus/invoices/${invoice.id}/type`, {
+      .onPatch(Endpoints.OrdenCompraStatus.updateInvoiceType(invoice.id), {
         tipoComprobante: newType,
       })
       .then((result) => {
@@ -136,7 +137,7 @@ export class OrdenCompraFacturaForm implements OnInit {
     formData.append("TipoComprobante", tipo);
 
     this.apiResponseS
-      .onPut(`OrdenCompraStatus/invoices/${this.editingInvoiceId}`, formData)
+      .onPut(Endpoints.OrdenCompraStatus.updateInvoice(this.editingInvoiceId), formData)
       .then((result: any) => {
         this.facturas.update((values) => {
           const index = values.findIndex((x) => x.id === this.editingInvoiceId);
@@ -167,7 +168,7 @@ export class OrdenCompraFacturaForm implements OnInit {
     formData.append("TipoComprobante", tipo);
 
     this.apiResponseS
-      .onPost(`OrdenCompraStatus/${this.ordenCompraId}/invoices`, formData)
+      .onPost(Endpoints.PurchaseOrders.uploadInvoice(this.ordenCompraId), formData)
       .then((result: any) => {
         this.facturas.update((values) => [...values, result]);
 
@@ -185,7 +186,7 @@ export class OrdenCompraFacturaForm implements OnInit {
   // Funcion para eliminar un banco y refres
   onDeleteInvoice(id: string) {
     this.apiResponseS
-      .onDelete(`OrdenCompraStatus/invoices/${id}`)
+      .onDelete(Endpoints.OrdenCompraStatus.deleteInvoice(id))
       .then((response: boolean) => {
         if (response) {
           this.facturas.update((values) =>

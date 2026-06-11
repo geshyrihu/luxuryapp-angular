@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CardModule } from "primeng/card";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
@@ -28,7 +29,7 @@ export class OrdenCompraPdf implements OnInit {
       "Espere un momento por favor...",
     );
     this.apiResponseS
-      .onGetItem(`ordencompra/Pdf/${this.ordenCompraId}`)
+      .onGetItem(Endpoints.PurchaseOrders.pdf(this.ordenCompraId))
       .then((result: any) => {
         if (result) {
           this.generatePdf(result);

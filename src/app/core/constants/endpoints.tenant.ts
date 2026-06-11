@@ -443,6 +443,13 @@ export const EndpointsTenant = {
     getById: (id: string) => `AsambleaChecklistTemplate/${id}`,
     update: (id: string) => `AsambleaChecklistTemplate/${id}`,
   },
+  CedulaPresupuestal: {
+    delete: (id: string | number) => `CedulaPresupuestal/${id}`,
+    list: (periodoPresupuestalId: string | number) =>
+      `CedulaPresupuestal/List/${periodoPresupuestalId}`,
+    ordenesCompra: (id: string | number) =>
+      `CedulaPresupuestal/OrdenesCompra/${id}`,
+  },
   CalendarioMaestroEquipo: {
     base: "CalendarioMaestroEquipo",
     getById: (id: string) => `CalendarioMaestroEquipo/${id}`,
@@ -637,6 +644,9 @@ export const EndpointsTenant = {
   EspejoAspelFull: {
     get: (customerId: string, year: number, empresa: string) =>
       `espejo-aspel-full?customerId=${customerId}&year=${year}&empresa=${empresa}`,
+  },
+  FundingFiles: {
+    solicitudesPago: "FundingFile/solicitudes-pago",
   },
   HR: {
     AddendumTemplate: {
@@ -1030,6 +1040,10 @@ export const EndpointsTenant = {
   },
   MeetingDetailsTracking: {
     delete: (id: string | number) => `MeetingDertailsSeguimiento/${id}`,
+    resumenGrafico: (customerId: string, date: string) =>
+      `MeetingDertailsSeguimiento/ResumenPreventivosGraficoPresentacion/${customerId}/${date}`,
+    resumenPreventivos: (customerId: string, date: string) =>
+      `MeetingDertailsSeguimiento/ResumenPreventivosPresentacion/${customerId}/${date}`,
   },
   MenuItems: {
     byCustomer: (customerId: string) => `menu-items/${customerId}`,
@@ -1065,6 +1079,15 @@ export const EndpointsTenant = {
     getById: (id: string | number) => `Medidor/${id}`,
     listByCustomer: (customerId: string) => `Medidor/list/${customerId}`,
     update: (id: string | number) => `Medidor/${id}`,
+  },
+  OrdenCompraStatus: {
+    byOrdenCompra: (ordenCompraId: string) =>
+      `OrdenCompraStatus/by-orden-compra/${ordenCompraId}`,
+    deleteInvoice: (id: string | number) => `OrdenCompraStatus/invoices/${id}`,
+    update: (id: string | number) => `OrdenCompraStatus/${id}`,
+    updateInvoice: (id: string | number) => `OrdenCompraStatus/invoices/${id}`,
+    updateInvoiceType: (id: string | number) =>
+      `OrdenCompraStatus/invoices/${id}/type`,
   },
   Notifications: {
     getAll: "notifications",
@@ -1103,7 +1126,95 @@ export const EndpointsTenant = {
   },
   Presupuestos: {
     create: "Presupuesto/Create",
+    toPurchaseOrder: (customerId: string, ordenCompraId: string, year: number) =>
+      `presupuesto/to-purchase-order/${customerId}/${ordenCompraId}/${year}`,
     update: (id: string) => `Presupuesto/UpdatePresupuesto/${id}`,
+  },
+  PurchaseOrderBudgets: {
+    create: "OrdenCompraPresupuesto",
+    delete: (id: string | number) => `OrdenCompraPresupuesto/${id}`,
+    getById: (id: string | number) => `OrdenCompraPresupuesto/${id}`,
+    update: (id: string | number) => `OrdenCompraPresupuesto/${id}`,
+  },
+  PurchaseOrderDetails: {
+    addProductToOrder: (ordenCompraId: string) =>
+      `OrdenCompraDetalle/AddProductToOrder/${ordenCompraId}`,
+    create: "OrdenCompraDetalle/",
+    delete: (id: string | number) => `OrdenCompraDetalle/${id}`,
+    getById: (id: string | number) => `OrdenCompraDetalle/${id}`,
+    update: (id: string | number) => `OrdenCompraDetalle/${id}`,
+  },
+  PurchaseOrderPaymentData: {
+    getById: (id: string | number) => `OrdenCompraDatosPago/${id}`,
+    update: (id: string | number) => `OrdenCompraDatosPago/${id}`,
+  },
+  PurchaseOrderPaymentVouchers: {
+    delete: (id: string | number) => `OrdenCompraComprobantePago/${id}`,
+    upload: (ordenCompraId: string | number) => `OrdenCompraComprobantePago/${ordenCompraId}`,
+  },
+  PurchaseOrders: {
+    authorize: (id: string, userId: string) =>
+      `OrdenCompraAuth/Autorizar/${id}/${userId}`,
+    create: (providerId: string | number, posicion: number, solicitudCompraId: string) =>
+      `ordencompra/${providerId}/${posicion}/${solicitudCompraId}`,
+    delete: (id: string | number) => `ordencompra/${id}`,
+    getById: (id: string | number) => `OrdenCompra/${id}`,
+    getForEdit: (id: string | number) => `OrdenCompra/GetForEdit/${id}`,
+    listPagadas: (customerId: string, type: string) =>
+      `OrdenCompra/Pagadas/${customerId}/${type}`,
+    pdf: (id: string | number) => `ordencompra/Pdf/${id}`,
+    progressiveCreate: "ordencompra/progressive-create",
+    relatedQuotes: (solicitudCompraId: string) =>
+      `OrdenCompra/CotizacionesRelacionadas/${solicitudCompraId}`,
+    solicitudPago: (id: string | number) => `OrdenCompra/SolicitudPago/${id}`,
+    unauthorize: (id: string) => `OrdenCompraAuth/Desautorizar/${id}`,
+    linkManagerList: (customerId: string) =>
+      `OrdenCompra/link-manager-list/${customerId}`,
+    linkToRequest: (ordenCompraId: string, solicitudCompraId: string) =>
+      `OrdenCompra/link-to-request/${ordenCompraId}/${solicitudCompraId}`,
+    unlinkSolicitud: (id: string | number) => `OrdenCompra/UnlinkSolicitud/${id}`,
+    update: (id: string | number) => `OrdenCompra/${id}`,
+    uploadInvoice: (id: string | number) => `OrdenCompraStatus/${id}/invoices`,
+    validateInvoice: (id: string | number) => `funding/validate-invoice/${id}`,
+  },
+  PurchaseRequestDetails: {
+    addProductList: (solicitudCompraId: string) =>
+      `SolicitudCompraDetalle/AddProduct/${solicitudCompraId}`,
+    create: "SolicitudCompraDetalle",
+    delete: (id: string | number) => `solicitudcompradetalle/${id}`,
+    editProduct: (id: string | number) =>
+      `solicitudcompradetalle/editproduct/${id}`,
+    searchToAdd: (solicitudId: string) =>
+      `SolicitudCompraDetalle/SearchToAddRequest/${solicitudId}`,
+    update: (id: string | number) => `SolicitudCompraDetalle/${id}`,
+  },
+  PurchaseRequests: {
+    addProduct: "PurchaseRequest/add-product",
+    addProductList: (purchaseRequestId: string) =>
+      `purchaserequest/add-product/${purchaseRequestId}`,
+    create: "purchaserequest",
+    deleteProduct: (id: string | number) => `purchaserequest/delete-product/${id}`,
+    cuadroComparativo: (id: string) => `solicitudcompra/cuadrocomparativo/${id}`,
+    cuadroComparativoUpdate: (id: string) => `SolicitudCompra/CuadroComparativo/${id}`,
+    delete: (id: string | number) => `solicitudcompra/${id}`,
+    getById: (id: string | number) => `SolicitudCompra/${id}`,
+    getDetail: (id: string) => `purchaserequest/datail/${id}`,
+    getIdByFolioAndCustomer: (folio: string, customerId: string) =>
+      `SolicitudCompra/GetIdSolicitudCompra/${folio}/${customerId}`,
+    getIndividual: (id: string | number) => `SolicitudCompra/GetSolicitudCompraIndividual/${id}`,
+    getSolicitudCompraById: (id: string) => `purchaserequest/${id}`,
+    listByCustomerAndStatus: (customerId: string, status: number | string) =>
+      `purchaserequest/list/${customerId}/${status}`,
+    listSolicitudCompraByCustomerAndStatus: (customerId: string, status: number | string) =>
+      `solicitudcompra/list/${customerId}/${status}`,
+    presentation: (customerId: string) => `SolicitudCompra/Presentation/${customerId}`,
+    presentationOrder: "SolicitudCompra/Presentation/Order",
+    presentationSelection: (id: string) => `SolicitudCompra/Presentation/${id}/Selection`,
+    searchToAdd: (purchaseRequestId: string) =>
+      `PurchaseRequest/SearchToAddRequest/${purchaseRequestId}`,
+    solicitudCompraBase: "SolicitudCompra",
+    update: (id: string) => `purchaserequest/${id}`,
+    updateProduct: (id: string | number) => `PurchaseRequest/update-product/${id}`,
   },
   ProductCategories: {
     base: "Categories",
@@ -1141,6 +1252,24 @@ export const EndpointsTenant = {
   },
   ResidentesEdificio: {
     selectByCustomer: (customerId: string) => `residentesedificio/${customerId}`,
+  },
+  ServiceOrders: {
+    create: "ServiceOrders",
+    delete: (id: string | number) => `ServiceOrders/${id}`,
+    deleteDocument: (id: string | number) => `ServiceOrders/DeleteDocument/${id}`,
+    deleteImg: (id: string | number) => `ServiceOrders/DeleteImg/${id}`,
+    getById: (id: string | number) => `ServiceOrders/${id}`,
+    listByCustomerAndDate: (customerId: string, date: string) =>
+      `ServiceOrders/list/${customerId}/${date}`,
+    listPintura: (customerId: string, date: string) =>
+      `ServiceOrders/list-pintura/${customerId}/${date}`,
+    photos: (id: string, customerId: string) =>
+      `ServiceOrders/OrdenesServicioFotos/${id}/${customerId}`,
+    reporte: (customerId: string, periodo: string) =>
+      `ServiceOrders/ReporteOrdenesServicio/${customerId}/${periodo}`,
+    reporteProveedor: (id: string, customerId: string) =>
+      `ServiceOrders/OrdenesServicioReporteProveedor/${id}/${customerId}`,
+    soporte: (id: string) => `ServiceOrders/SoporteOrdenServicio/${id}`,
   },
   SendEmail: {
     operationReport: (
@@ -1283,6 +1412,14 @@ export const EndpointsTenant = {
     setDependency: (taskId: string, predecessorId: string) =>
       `tasks/set-predecessor/${taskId}/${predecessorId}`,
     clearDependency: (taskId: string) => `tasks/clear-predecessor/${taskId}`,
+  },
+  ToolLoans: {
+    create: "controlprestamoherramientas",
+    delete: (id: string | number) => `ControlPrestamoHerramientas/${id}`,
+    getById: (id: string | number) => `controlprestamoherramientas/${id}`,
+    listByCustomer: (customerId: string) =>
+      `ControlPrestamoHerramientas/list/${customerId}`,
+    update: (id: string | number) => `controlprestamoherramientas/${id}`,
   },
   WorkPositions: {
     activate: (id: string) => `work-positions/${id}/activate`,

@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   Component,
   OnInit,
@@ -111,7 +112,7 @@ export class ProductAdd implements OnInit {
 
   async onLoadMeasurementUnits(): Promise<void> {
     const result: any = await this.apiResponseS.onGetSelectItem<ISelectItem[]>(
-      "getMeasurementUnits",
+      Endpoints.SelectItems.measurementUnits,
     );
     this.cb_measurement_units.set(result as ISelectItem[]);
   }
@@ -119,7 +120,7 @@ export class ProductAdd implements OnInit {
   onLoadProduct(param: string) {
     this.apiResponseS
       .onGetListNotLoading(
-        `SolicitudCompraDetalle/SearchToAddRequest/${this.solicitudCompraId()}`,
+        Endpoints.PurchaseRequestDetails.searchToAdd(this.solicitudCompraId()),
         {
           param: param,
         },
@@ -194,7 +195,7 @@ export class ProductAdd implements OnInit {
     };
 
     this.apiResponseS
-      .onPost(`SolicitudCompraDetalle`, payload)
+      .onPost(Endpoints.PurchaseRequestDetails.create, payload)
       .then((result: boolean) => {
         if (result) {
           this.updateData.emit();

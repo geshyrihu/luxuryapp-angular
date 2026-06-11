@@ -1,6 +1,7 @@
 import { Injectable, inject } from "@angular/core";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
@@ -14,9 +15,9 @@ export class OrdenesServicioListPdfService {
   async downloadReporte(periodo: string, filterName: string) {
     this.customToastS.showInfo("Generando Reporte", "Descargando datos, espere por favor...");
     const customerId = this.customerIdS.customerId();
-    const urlApi = `ServiceOrders/ReporteOrdenesServicio/${customerId}/${periodo}`;
-    
-    const customerData: any = await this.apiResponseS.onGetItem(`Customers/${customerId}`);
+    const urlApi = Endpoints.ServiceOrders.reporte(customerId, periodo);
+
+    const customerData: any = await this.apiResponseS.onGetItem(Endpoints.Customers.getByIdLegacy(customerId));
     const logoCustomer = customerData?.photoPath || null;
     const nameCustomer = customerData?.nameCustomer || 'Cliente';
     const address = customerData?.adreess || '';

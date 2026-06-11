@@ -11,6 +11,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 export interface IOrdenCompraPresupuestoForm {
   id: FormControl<string | null>;
@@ -57,7 +58,7 @@ export class OrdenCompraEditPresupustoUtilizado implements OnInit {
   }
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`OrdenCompraPresupuesto/${this.id}`)
+      .onGetItem(Endpoints.PurchaseOrderBudgets.getById(this.id))
       .then((result: any) => {
         this.form.patchValue(result);
       });
@@ -67,7 +68,7 @@ export class OrdenCompraEditPresupustoUtilizado implements OnInit {
 
     this.submitting.set(true);
     this.apiResponseS
-      .onPut(`OrdenCompraPresupuesto/${this.id}`, this.form.value)
+      .onPut(Endpoints.PurchaseOrderBudgets.update(this.id), this.form.value)
       .then((result: boolean) => {
         result ? this.ref.close(true) : this.submitting.set(false);
       });

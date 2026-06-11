@@ -1,4 +1,5 @@
-﻿import {
+﻿import { Endpoints } from "src/app/core/constants/endpoints";
+import {
   Component,
   computed,
   inject,
@@ -106,7 +107,7 @@ export class OrdenCompraDetalleAddProducto implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>("getMeasurementUnits")
+      .onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.measurementUnits)
       .then((response: any) => {
         this.cb_unidadMedida = response;
       });
@@ -132,7 +133,7 @@ export class OrdenCompraDetalleAddProducto implements OnInit, OnDestroy {
     if (!this.ordenCompraId) return;
     this.loading.set(true);
 
-    const urlApi = `OrdenCompraDetalle/AddProductoToOrder/${this.ordenCompraId}`;
+    const urlApi = Endpoints.PurchaseOrderDetails.addProductToOrder(this.ordenCompraId);
     const httpParams = {
       page: this.page,
       recordsNumber: this.rows,
@@ -205,7 +206,7 @@ export class OrdenCompraDetalleAddProducto implements OnInit, OnDestroy {
       ordenCompraId: this.ordenCompraId,
     };
 
-    this.apiResponseS.onPost(`OrdenCompraDetalle/`, payload).then(() => {
+    this.apiResponseS.onPost(Endpoints.PurchaseOrderDetails.create, payload).then(() => {
       this.mensajeError = false;
       this.onLoadProduct();
     });

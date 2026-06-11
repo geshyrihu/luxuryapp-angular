@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit } from "@angular/core";
+﻿import { Component, effect, inject, OnInit } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
@@ -18,6 +18,7 @@ import { IChartType } from "src/app/core/interfaces/chart-type.interface";
 import { IDataSet } from "src/app/core/interfaces/data-set.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.service";
 @Component({
   selector: "app-medidor-lectura-chart",
@@ -194,13 +195,3 @@ export class MedidorLecturaChart implements OnInit {
     };
   }
 }
-
-
-
-
-
-
-
-
-
-import { Endpoints } from "src/app/core/constants/endpoints";

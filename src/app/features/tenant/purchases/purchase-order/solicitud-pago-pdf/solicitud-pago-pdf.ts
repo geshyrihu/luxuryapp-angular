@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from "@angular/core";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -32,10 +33,10 @@ export class SolicitudPagoPdfComponent implements OnInit {
     );
 
     const orderRequest = this.apiResponseS.onGetItem(
-      `OrdenCompra/SolicitudPago/${this.ordenCompraId}`,
+      Endpoints.PurchaseOrders.solicitudPago(this.ordenCompraId),
     );
     const customerRequest = this.apiResponseS.onGetItem(
-      `Customers/${this.customerIdS.customerId()}`,
+      Endpoints.Customers.getByIdLegacy(this.customerIdS.customerId()),
     );
 
     Promise.all([orderRequest, customerRequest])

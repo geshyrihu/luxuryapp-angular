@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -84,7 +85,7 @@ export class OrdenCompraEditDetalle implements OnInit {
 
   onSelectItem() {
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>("getMeasurementUnits")
+      .onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.measurementUnits)
       .then((response: any) => {
         this.cb_unidadMedida = response;
         this.cdr.detectChanges(); // Call detectChanges after updating the data
@@ -93,7 +94,7 @@ export class OrdenCompraEditDetalle implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`OrdenCompraDetalle/${this.id}`)
+      .onGetItem(Endpoints.PurchaseOrderDetails.getById(this.id))
       .then((result: any) => {
         this.form.patchValue(result);
         this.cdr.detectChanges(); // Call detectChanges after patching the form
@@ -105,7 +106,7 @@ export class OrdenCompraEditDetalle implements OnInit {
     this.submitting.set(true);
 
     this.apiResponseS
-      .onPut(`OrdenCompraDetalle/${this.id}`, this.form.value)
+      .onPut(Endpoints.PurchaseOrderDetails.update(this.id), this.form.value)
       .then((result: boolean) => {
         result ? this.ref.close(true) : this.submitting.set(false);
       });

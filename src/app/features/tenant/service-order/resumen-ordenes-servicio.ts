@@ -7,6 +7,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -47,20 +48,13 @@ export class ResumenOrdenesServicio implements OnInit {
   }
 
   onLoadData() {
-    const urlApi =
-      "MeetingDertailsSeguimiento/ResumenPreventivosPresentacion/" +
-      this.customerId +
-      "/" +
-      this.dateS.getDateFormat(this.reporteOrdenesServicioService.getDate());
+    const fecha = this.dateS.getDateFormat(this.reporteOrdenesServicioService.getDate());
+    const urlApi = Endpoints.MeetingDetailsTracking.resumenPreventivos(this.customerId, fecha);
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
 
-    const urlApi2 =
-      "MeetingDertailsSeguimiento/ResumenPreventivosGraficoPresentacion/" +
-      this.customerId +
-      "/" +
-      this.dateS.getDateFormat(this.reporteOrdenesServicioService.getDate());
+    const urlApi2 = Endpoints.MeetingDetailsTracking.resumenGrafico(this.customerId, fecha);
     this.apiResponseS.onGetList(urlApi2).then((result: any) => {
       this.dataGraficos = result;
       this.reporteOrdenesServicioService.setDateGrafico(this.dataGraficos);

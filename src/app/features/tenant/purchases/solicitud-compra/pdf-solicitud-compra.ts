@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from "@angular/core";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -30,10 +31,10 @@ export class PdfSolicitudCompra implements OnInit {
     );
 
     const request = this.apiResponseS.onGetItem(
-      `SolicitudCompra/GetSolicitudCompraIndividual/${this.idSolicitudCompra}`,
+      Endpoints.PurchaseRequests.getIndividual(this.idSolicitudCompra),
     );
     const customerRequest = this.apiResponseS.onGetItem(
-      `Customers/${this.customerIdS.customerId()}`,
+      Endpoints.Customers.getByIdLegacy(this.customerIdS.customerId()),
     );
 
     Promise.all([request, customerRequest])

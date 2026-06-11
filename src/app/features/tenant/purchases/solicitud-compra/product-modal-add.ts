@@ -33,6 +33,7 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PaginationService } from "src/app/core/services/pagination.service"; // Importar el nuevo servicio
 import { TarjetaProducto } from "src/app/features/tenant/product/tarjeta-producto";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { IProductData } from "./product-data.interface";
 /**
  * Componente modal para agregar productos a una solicitud de compra.
@@ -146,7 +147,7 @@ export class ProductModalAdd implements OnInit, OnDestroy {
     this.solicitudCompraId = this.config.data.solicitudCompraId;
 
     // Inicializar el servicio de paginación
-    const apiUrl = `SolicitudCompraDetalle/AddProduct/${this.solicitudCompraId}`;
+    const apiUrl = Endpoints.PurchaseRequestDetails.addProductList(this.solicitudCompraId);
     this.paginationService.initialize(apiUrl, this.tablePrimeNgRows);
 
     // Cargar los datos iniciales
@@ -158,7 +159,7 @@ export class ProductModalAdd implements OnInit, OnDestroy {
    */
   private loadMeasurementUnits(): void {
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>("GetMeasurementUnits")
+      .onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.measurementUnits)
       .then((response: ISelectItem[]) => {
         this.cb_unidadMedida = response;
       })
@@ -214,7 +215,7 @@ export class ProductModalAdd implements OnInit, OnDestroy {
     };
 
     this.apiResponseS
-      .onPost(`solicitudcompradetalle/`, payload)
+      .onPost(Endpoints.PurchaseRequestDetails.create, payload)
       .then(() => {
         // Recargar los datos de la tabla para reflejar cualquier cambio (ej. si el producto ya no debe aparecer)
         this.paginationService.refreshData();

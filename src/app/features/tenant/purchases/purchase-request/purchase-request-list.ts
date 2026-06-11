@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, effect, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -86,7 +87,7 @@ export class PurchaseRequestList {
   async onLoadData(customerId: string, status: number) {
     try {
       const result = await this.apiResponseS.onGetList<any[]>(
-        `purchaserequest/list/${customerId}/${status}`,
+        Endpoints.PurchaseRequests.listByCustomerAndStatus(customerId, status),
       );
       this.data.set(result);
       this.globalFilterFields = globalFilterFields(result);
@@ -99,7 +100,7 @@ export class PurchaseRequestList {
   async onDelete(id: any) {
     // ¡MEJORA! En lugar de filtrar localmente, recargamos desde el servidor
     // para asegurar que la vista es 100% consistente con la base de datos.
-    await this.apiResponseS.onDelete(`solicitudcompra/${id}`);
+    await this.apiResponseS.onDelete(Endpoints.PurchaseRequests.delete(id));
     this.onLoadData(this.customerIdS.customerId(), this.statusFilter());
   }
 

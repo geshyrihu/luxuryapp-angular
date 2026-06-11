@@ -119,9 +119,12 @@ export const EndpointsConfig = {
     measurementUnit: "EMeasurementUnit",
     paymentMethod: "EPaymentMethod",
     priority: "EPriority",
+    purchaseRequestStatus: "EPurchaseRequestStatus",
     relationEmployee: "ERelationEmployee",
+    status: "EStatus",
     statusMaintenance: "EStatusMaintenance",
     typeDocument: "ETypeDocument",
+    typeMaintance: "ETypeMaintance",
   },
   Logs: {
     deleteAll: "Logs/all",
@@ -152,6 +155,10 @@ export const EndpointsConfig = {
     getPdf: (id: string) => `module-apps/${id}/pdf`,
     update: (id: string) => `module-apps/${id}`,
   },
+  PeriodoPresupuestals: {
+    base: "PeriodoPresupuestals",
+    getById: (id: string | number) => `PeriodoPresupuestals/${id}`,
+  },
   PaymentMethods: {
     create: "payment-methods",
     delete: (id: string) => `payment-methods/${id}`,
@@ -167,7 +174,13 @@ export const EndpointsConfig = {
     getById: (id: string | number) => `MetodoPago/${id}`,
     update: (id: string | number) => `MetodoPago/${id}`,
   },
+  Providers: {
+    getByIdAndCustomer: (id: string | number, customerId: string) =>
+      `providers/${id}/${customerId}`,
+  },
   SelectItems: {
+    accountingCatalogsByCustomerAndYear: (customerId: string, year: number) =>
+      `AccountingCatalogs/${customerId}?fiscalYear=${year}`,
     applicationRolesToAdministrator: "application-roles-to-administrator",
     applicationRolesToProvider: "application-roles-to-provider",
     applicationUser: "application-users",
@@ -177,11 +190,22 @@ export const EndpointsConfig = {
     customersActive: "customers-active",
     customersActiveNameShort: "CustomersActiveNameShort",
     employeesByCustomer: (customerId: string) => `employee/${customerId}`,
+    machineryActiveByCustomer: (customerId: string) =>
+      `machineries-active/${customerId}`,
+    measurementUnits: "getMeasurementUnits",
+    paymentMethod: "PaymentMethod",
+    periodoPresupuestals: (customerId: string) =>
+      `PeriodoPresupuestals/${customerId}`,
     properties: (customerId: string) => `select-items/properties/${customerId}`,
     propertyMembersByCustomer: (customerId: string) =>
       `property-members/${customerId}`,
     providers: (customerId: string) => `providers/${customerId}`,
+    richProducts: (term: string) => `get-rich-products?term=${term}`,
     rolesForAnnouncements: "roles-for-announcements",
+    toolsByCustomer: (customerId: string) => `tool/${customerId}`,
+    useCFDI: "UseCFDI",
+    usersByCustomer: (customerId: string) => `UserFromCustomer/${customerId}`,
+    wayToPay: "WayToPay",
   },
   Settings: {
     createIncidentType: "hr/incident-types",

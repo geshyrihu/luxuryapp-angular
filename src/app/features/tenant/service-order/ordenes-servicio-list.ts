@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
@@ -225,9 +226,10 @@ export class OrdenesServicio {
     let converToDate = this.parseFechaControl();
     this.reporteOrdenesServicioService.setDate(converToDate);
 
-    const urlApi = `ServiceOrders/list-pintura/${this.customerIdS.customerId()}/${this.dateS.getDateFormat(
-      converToDate,
-    )}`;
+    const urlApi = Endpoints.ServiceOrders.listPintura(
+      this.customerIdS.customerId(),
+      this.dateS.getDateFormat(converToDate),
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.dataSignal.set(result || []);
       this.reporteOrdenesServicioService.setData(this.dataSignal());
@@ -244,8 +246,10 @@ export class OrdenesServicio {
     this.reporteOrdenesServicioService.setDate(converToDate);
 
     const fechaFormateada = this.dateS.getDateFormat(converToDate);
-    let urlApi = `ServiceOrders/list/${this.customerIdS.customerId()}/${fechaFormateada}`;
-
+    let urlApi = Endpoints.ServiceOrders.listByCustomerAndDate(
+      this.customerIdS.customerId(),
+      fechaFormateada,
+    );
     if (this.filtroId) {
       urlApi += `?inventoryCategory=${this.filtroId}`;
     }

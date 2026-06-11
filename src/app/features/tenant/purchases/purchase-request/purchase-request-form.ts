@@ -1,4 +1,5 @@
 import { Component, inject, OnInit, signal } from "@angular/core";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
@@ -52,13 +53,13 @@ export class PurchaseRequestForm implements OnInit {
     this.form.controls.id.setValue(this.id);
   }
   onLoadData() {
-    const urlApi = `purchaserequest/${this.id}`;
+    const urlApi = Endpoints.PurchaseRequests.getSolicitudCompraById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.form.patchValue(result);
     });
   }
   onLoadEnumSelectItem() {
-    const urlApi = `EPurchaseRequestStatus`;
+    const urlApi = Endpoints.EnumSelectItems.purchaseRequestStatus;
     this.apiResponseS.onGetEnumSelectItem(urlApi).then((result: any) => {
       this.cb_status = result;
     });
@@ -68,7 +69,7 @@ export class PurchaseRequestForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "purchaserequest",
+      endpoint: Endpoints.PurchaseRequests.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

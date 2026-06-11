@@ -3,6 +3,7 @@ import { ConfirmationService, MessageService } from "primeng/api";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
@@ -34,7 +35,7 @@ export class OrdenesServicioFotos implements OnInit {
   async onLoadData() {
     this.loading.set(true);
     try {
-      const urlApi = `ServiceOrders/OrdenesServicioFotos/${this.id()}/${this.customerIdS.customerId()}`;
+      const urlApi = Endpoints.ServiceOrders.photos(this.id(), this.customerIdS.customerId());
       const result = await this.apiResponseS.onGetList<any[]>(urlApi);
       this.data.set(result);
     } finally {
@@ -47,8 +48,7 @@ export class OrdenesServicioFotos implements OnInit {
   }
 
   async deleteImg(id: string): Promise<void> {
-    const urlApi = `ServiceOrders/DeleteImg/${id}`;
-    await this.apiResponseS.onDelete(urlApi);
+    await this.apiResponseS.onDelete(Endpoints.ServiceOrders.deleteImg(id));
     await this.onLoadData();
   }
 }

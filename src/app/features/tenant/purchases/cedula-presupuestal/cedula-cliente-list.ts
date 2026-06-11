@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -84,7 +85,7 @@ export class CedulaClienteList implements OnInit {
 
   onLoadCedulas() {
     this.apiResponseS
-      .onGetSelectItem(`PeriodoPresupuestals/${this.customerIdS.customerId()}`)
+      .onGetSelectItem(Endpoints.SelectItems.periodoPresupuestals(this.customerIdS.customerId()))
       .then((result: any) => {
         this.cb_cedulas = result;
       });
@@ -97,7 +98,7 @@ export class CedulaClienteList implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(`CedulaPresupuestal/List/${this.idControl.value}`)
+      .onGetList(Endpoints.CedulaPresupuestal.list(this.idControl.value))
       .then((result: any) => {
         this.dataSignal.set(result);
 
@@ -151,7 +152,7 @@ export class CedulaClienteList implements OnInit {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`CedulaPresupuestal/${id}`)
+      .onDelete(Endpoints.CedulaPresupuestal.delete(id))
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });

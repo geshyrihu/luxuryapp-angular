@@ -1,4 +1,4 @@
-import { CommonModule, formatDate } from "@angular/common";
+﻿import { CommonModule, formatDate } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import * as FileSaver from "file-saver";
@@ -22,6 +22,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { MedidorLecturaAdminForm } from "./medidor-lectura-admin-form";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { MedidorLecturaForm } from "./medidor-lectura-form";
 @Component({
   selector: "app-medidor-lectura-list",
@@ -79,7 +80,7 @@ export class MedidorLecturaList implements OnInit {
     import("xlsx").then((xlsx) => {
       const dataToExport = this.dataSignal().map((item) => ({
         Medidor: item.medidor || "",
-        "Número de Medidor": item.numeroMedidor || "",
+        "NÃºmero de Medidor": item.numeroMedidor || "",
         Fecha: item.fechaRegistro
           ? formatDate(item.fechaRegistro, "dd-MMM-yyyy", "en-US", "UTC")
           : "",
@@ -161,4 +162,3 @@ export class MedidorLecturaList implements OnInit {
   ];
   numeros = [65, 59, 80, 81, 56, 55, 40, 36, 95, 85];
 }
-import { Endpoints } from "src/app/core/constants/endpoints";

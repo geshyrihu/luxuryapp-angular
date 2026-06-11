@@ -1,4 +1,5 @@
 import { Component, inject, OnInit, signal } from "@angular/core";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -52,7 +53,7 @@ export class PeriodoCedulaForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`PeriodoPresupuestals/${this.id}`)
+      .onGetItem(Endpoints.PeriodoPresupuestals.getById(this.id))
       .then((result: any) => {
         this.form.patchValue({
           id: result.id,
@@ -66,7 +67,7 @@ export class PeriodoCedulaForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "PeriodoPresupuestals",
+      endpoint: Endpoints.PeriodoPresupuestals.base,
       id: this.id === 0 ? null : String(this.id),
       ref: this.ref,
       submitting: this.submitting,

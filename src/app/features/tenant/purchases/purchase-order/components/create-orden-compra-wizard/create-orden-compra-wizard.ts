@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormArray,
@@ -266,11 +267,11 @@ export class CreateOrdenCompraWizard implements OnInit {
     if (customerId) {
       // Changed from !== 0 to truthy check (non-empty string)
       this.apiResponseS
-        .onGetSelectItem<ISelectItem[]>(`providers/${customerId}`)
+        .onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.providers(customerId))
         .then((data) => this.cb_providers.set(data));
     }
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>("getmeasurementunits")
+      .onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.measurementUnits)
       .then((data) => this.cb_measurement_units.set(data));
   }
 
@@ -281,7 +282,7 @@ export class CreateOrdenCompraWizard implements OnInit {
       this.apiResponseS
         .onGetSelectItem<
           ISelectItem[]
-        >(`AccountingCatalogs/${customerId}?fiscalYear=${fiscalYear}`)
+        >(Endpoints.SelectItems.accountingCatalogsByCustomerAndYear(customerId, fiscalYear))
         .then((data) => this.cb_accounts.set(data));
     }
   }
@@ -361,7 +362,7 @@ export class CreateOrdenCompraWizard implements OnInit {
     if (query.length < 3) return;
 
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>(`get-rich-products?term=${query}`)
+      .onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.richProducts(query))
       .then((data) => {
         this.filteredRichProducts.set(data || []);
       });
@@ -599,7 +600,7 @@ export class CreateOrdenCompraWizard implements OnInit {
     };
 
     this.apiResponseS
-      .onPost("ordencompra/progressive-create", finalPayload)
+      .onPost(Endpoints.PurchaseOrders.progressiveCreate, finalPayload)
       .then(async (result: any) => {
         if (result && result.id) {
           const ordenCompraId = result.id;
@@ -643,7 +644,7 @@ export class CreateOrdenCompraWizard implements OnInit {
               if (group.pdf || group.xml) {
                 try {
                   await this.apiResponseS.onPost(
-                    `OrdenCompraStatus/${ordenCompraId}/invoices`,
+                    Endpoints.PurchaseOrders.uploadInvoice(ordenCompraId),
                     formData,
                   );
                 } catch (error) {

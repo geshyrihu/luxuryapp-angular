@@ -1,4 +1,5 @@
 ﻿import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
@@ -97,7 +98,7 @@ export class SolicitudCompraList {
   onLoadData() {
     this.apiResponseS
       .onGetList(
-        `solicitudcompra/list/${this.customerIdS.customerId()}/${this.solicitudCompraService.onGetStatusFiltro()}`,
+        Endpoints.PurchaseRequests.listSolicitudCompraByCustomerAndStatus(this.customerIdS.customerId(), this.solicitudCompraService.onGetStatusFiltro()),
       )
       .then((result: any) => {
         const normalized = Array.from(result || []);
@@ -113,7 +114,7 @@ export class SolicitudCompraList {
 
   onDelete(id: string) {
     this.apiResponseS
-      .onDelete(`solicitudcompra/${id}`)
+      .onDelete(Endpoints.PurchaseRequests.delete(id))
       .then((result: boolean) => {
         if (result) {
           this.data.update((prev) => prev.filter((item) => item.id !== id));
@@ -140,7 +141,7 @@ export class SolicitudCompraList {
 
   async onToggleSelection(id: string, checked: boolean) {
     const result = await this.apiResponseS.onPut(
-      `SolicitudCompra/Presentation/${id}/Selection`,
+      Endpoints.PurchaseRequests.presentationSelection(id),
       { selectedForPresentation: checked },
       true,
       true,
@@ -185,7 +186,7 @@ export class SolicitudCompraList {
 
     for (const item of visibleItems) {
       await this.apiResponseS.onPut(
-        `SolicitudCompra/Presentation/${item.id}/Selection`,
+        Endpoints.PurchaseRequests.presentationSelection(item.id),
         { selectedForPresentation: checked },
         false,
         false,
@@ -216,7 +217,7 @@ export class SolicitudCompraList {
     }
 
     const result = await this.apiResponseS.onPut(
-      "SolicitudCompra/Presentation/Order",
+      Endpoints.PurchaseRequests.presentationOrder,
       { solicitudCompraIds: orderedIds },
       true,
       true,
@@ -283,7 +284,7 @@ export class SolicitudCompraList {
     }).then((result) => {
       if (result.isConfirmed) {
         this.apiResponseS
-          .onPut(`OrdenCompra/UnlinkSolicitud/${ordenCompraId}`, {})
+          .onPut(Endpoints.PurchaseOrders.unlinkSolicitud(ordenCompraId), {})
           .then((result) => {
             if (result) {
               this.onLoadData();

@@ -19,6 +19,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 @Component({
@@ -70,7 +71,7 @@ export class OrdenesCompraCedulaListComponent implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(`CedulaPresupuestal/OrdenesCompra/${this.id}`)
+      .onGetList(Endpoints.CedulaPresupuestal.ordenesCompra(this.id))
       .then((result: any) => {
         this.dataSignal.set(result);
         this.calculeTotales();

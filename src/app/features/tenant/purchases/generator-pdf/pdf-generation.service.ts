@@ -1,5 +1,6 @@
 import { DatePipe } from "@angular/common";
 import { inject, Injectable } from "@angular/core";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -22,11 +23,11 @@ export class PdfGenerationService {
     );
 
     const orderRequest = this.apiResponseS.onGetItem(
-      `OrdenCompra/SolicitudPago/${ordenCompraId}`,
+      Endpoints.PurchaseOrders.solicitudPago(ordenCompraId),
       false,
     );
     const customerRequest = this.apiResponseS.onGetItem(
-      `Customers/${this.customerIdS.customerId()}`,
+      Endpoints.Customers.getByIdLegacy(this.customerIdS.customerId()),
       false,
     );
 
@@ -64,7 +65,7 @@ export class PdfGenerationService {
       "Espere un momento por favor...",
     );
     this.apiResponseS
-      .onGetItem(`ordencompra/Pdf/${ordenCompraId}`, false)
+      .onGetItem(Endpoints.PurchaseOrders.pdf(ordenCompraId), false)
       .then(async (result: any) => {
         if (result) {
           const html = await this.buildOrdenCompraHtmlContent(result);
@@ -89,7 +90,7 @@ export class PdfGenerationService {
     const body = { ordenCompraIds: ordenCompraIds };
     const nameDocument = `${periodo}_SolicitudesDePago.zip`;
     this.apiResponseS.onDownloadFilePost(
-      `FundingFile/solicitudes-pago`,
+      Endpoints.FundingFiles.solicitudesPago,
       body,
       nameDocument,
     );

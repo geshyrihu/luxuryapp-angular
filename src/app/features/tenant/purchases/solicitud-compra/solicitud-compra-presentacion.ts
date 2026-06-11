@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, effect, inject, signal, ViewChild } from "@angular/core";
 import { Carousel, CarouselModule } from "primeng/carousel";
 import { ImageModule } from "primeng/image";
@@ -138,7 +139,7 @@ export class SolicitudCompraPresentacion {
 
   async onLoadSelectedSolicitudes(customerId: string) {
     const selectedItems = await this.apiResponseS.onGetList<any[]>(
-      `SolicitudCompra/Presentation/${customerId}`,
+      Endpoints.PurchaseRequests.presentation(customerId),
     );
 
     const ids = Array.from(selectedItems || []).map((item: any) => item.id);
@@ -154,7 +155,7 @@ export class SolicitudCompraPresentacion {
 
   async onLoadSolicitudes(ids: string[]) {
     const requests = ids.map((id) =>
-      this.apiResponseS.onGetItem(`solicitudcompra/cuadrocomparativo/${id}`),
+      this.apiResponseS.onGetItem(Endpoints.PurchaseRequests.cuadroComparativo(id)),
     );
 
     const results = await Promise.all(requests);
@@ -430,7 +431,7 @@ export class SolicitudCompraPresentacion {
 
   async updateAuthorization(solicitudId: string, payload: any) {
     const result = await this.apiResponseS.onPut(
-      `SolicitudCompra/CuadroComparativo/${solicitudId}`,
+      Endpoints.PurchaseRequests.cuadroComparativoUpdate(solicitudId),
       payload,
     );
 

@@ -1,4 +1,5 @@
 import { Component, inject, OnInit, signal } from "@angular/core";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   FormBuilder,
   FormControl,
@@ -101,14 +102,14 @@ export class PrestamoHerramientaFormControl implements OnInit {
 
   private async loadApplicationUsers(): Promise<void> {
     const data = await this.apiResponseS.onGetSelectItem<ISelectItem[]>(
-      `application-users/${this.customerIdS.customerId()}`,
+      Endpoints.SelectItems.applicationUsersByCustomer(this.customerIdS.customerId()),
     );
     this.cb_applicationUser.set(data);
   }
 
   private async loaDTOols(): Promise<void> {
     const data = await this.apiResponseS.onGetSelectItem<ISelectItem[]>(
-      `tool/${this.customerIdS.customerId()}`,
+      Endpoints.SelectItems.toolsByCustomer(this.customerIdS.customerId()),
     );
     this.cb_tool.set(data);
   }
@@ -132,7 +133,7 @@ export class PrestamoHerramientaFormControl implements OnInit {
   }
 
   async onLoadData(): Promise<void> {
-    const urlApi = `controlprestamoherramientas/${this.id}`;
+    const urlApi = Endpoints.ToolLoans.getById(this.id);
     const result: any = await this.apiResponseS.onGetItem(urlApi);
 
     // Extraer IDs si vienen como objetos
@@ -164,7 +165,7 @@ export class PrestamoHerramientaFormControl implements OnInit {
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "controlprestamoherramientas",
+      endpoint: Endpoints.ToolLoans.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

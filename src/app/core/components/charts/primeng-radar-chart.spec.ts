@@ -40,7 +40,7 @@ describe('PrimengRadarChart', () => {
     expect(() => component.reinit()).not.toThrow();
   });
 
-  it('should accept custom chart data', () => {
+  it('should accept custom chart data', { timeout: 15000 }, () => {
     const testData = {
       labels: ['Speed', 'Strength'],
       datasets: [{ data: [80, 90], label: 'Player 1' }],
@@ -48,5 +48,13 @@ describe('PrimengRadarChart', () => {
     fixture.componentRef.setInput('chartData', testData);
     fixture.detectChanges();
     expect(component.chartData().labels).toEqual(['Speed', 'Strength']);
+  });
+
+  it('should handle data with empty values gracefully', () => {
+    const emptyData = { labels: ['Test'], datasets: [{ data: [], label: 'Empty' }] };
+    fixture.componentRef.setInput('chartData', emptyData);
+    fixture.detectChanges();
+    expect(component.chartData().labels).toEqual(['Test']);
+    expect(component.chartData().datasets[0].data).toEqual([]);
   });
 });

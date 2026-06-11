@@ -1,4 +1,5 @@
 import { Component, inject, OnInit, signal } from "@angular/core";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   FormControl,
   FormGroup,
@@ -92,14 +93,14 @@ export class CreateOrdenCompra implements OnInit {
 
   async onLoadSelectItemProvider(): Promise<void> {
     const result: any = await this.apiResponseS.onGetSelectItem<ISelectItem[]>(
-      `providers/${this.customerIdS.customerId()}`,
+      Endpoints.SelectItems.providers(this.customerIdS.customerId()),
     );
     this.cb_providers.set(result as ISelectItem[]);
   }
 
   async onLoadSolicitudCompra(): Promise<void> {
     const result: any = await this.apiResponseS.onGetItem(
-      `SolicitudCompra/${this.solicitudCompraId}`,
+      Endpoints.PurchaseRequests.getById(this.solicitudCompraId),
     );
 
     this.solicitudCompra = result;
@@ -119,8 +120,8 @@ export class CreateOrdenCompra implements OnInit {
   async onSubmit() {
     const isNew = !this.ordenCompraId;
     const urlApi = isNew
-      ? `ordencompra/${this.providerId()}/${this.posicionCotizacion}/${this.solicitudCompraId}`
-      : `OrdenCompra/${this.ordenCompraId}`;
+      ? Endpoints.PurchaseOrders.create(this.providerId(), this.posicionCotizacion, this.solicitudCompraId)
+      : Endpoints.PurchaseOrders.update(this.ordenCompraId);
 
     const result = await FormHelper.submitCrud({
       form: this.form,

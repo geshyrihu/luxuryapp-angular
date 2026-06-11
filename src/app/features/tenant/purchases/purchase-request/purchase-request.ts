@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TagModule } from "primeng/tag";
@@ -40,7 +41,7 @@ export class PurchaseRequest implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `purchaserequest/datail/${this.purchaseRequestId}`;
+    const urlApi = Endpoints.PurchaseRequests.getDetail(this.purchaseRequestId);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       this.data = result;
       this.purchaseOrders = result.purchaseOrders;

@@ -52,4 +52,26 @@ describe('BaseIonicButton', () => {
     component.onClick(new MouseEvent('click'));
     expect(navigateSpy).toHaveBeenCalledWith(['/test-route']);
   });
+
+  it('should have disabled false by default', () => {
+    expect(component.disabled()).toBe(false);
+  });
+
+  it('should reflect disabled input signal', () => {
+    fixture.componentRef.setInput('disabled', true);
+    fixture.detectChanges();
+    expect(component.disabled()).toBe(true);
+  });
+
+  it('should have solid fill when set', () => {
+    fixture.componentRef.setInput('fill', 'solid');
+    fixture.detectChanges();
+    expect(component.fill()).toBe('solid');
+  });
+
+  it('should have secondary color when set', () => {
+    fixture.componentRef.setInput('color', 'secondary');
+    fixture.detectChanges();
+    expect(component.color()).toBe('secondary');
+  });
 });

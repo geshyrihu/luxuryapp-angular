@@ -1,4 +1,5 @@
 import { Component, inject, OnInit, signal } from "@angular/core";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   FormControl,
   FormGroup,
@@ -79,7 +80,7 @@ export class ProductoEdit implements OnInit {
 
   onLoadSelectItem() {
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>("getMeasurementUnits")
+      .onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.measurementUnits)
       .then((response: ISelectItem[]) => {
         this.cb_unidadMedida.set(response);
       });
@@ -87,7 +88,7 @@ export class ProductoEdit implements OnInit {
 
   onLoadProduct() {
     this.apiResponseS
-      .onGetItem(`solicitudcompradetalle/editproduct/${this.id}`)
+      .onGetItem(Endpoints.PurchaseRequestDetails.editProduct(this.id))
       .then((result: any) => {
         this.data = result;
         this.nombreProducto = result.nombreProducto;
@@ -110,7 +111,7 @@ export class ProductoEdit implements OnInit {
     };
 
     this.apiResponseS
-      .onPut(`SolicitudCompraDetalle/${this.id}`, payload)
+      .onPut(Endpoints.PurchaseRequestDetails.update(this.id), payload)
       .then((result: boolean) => {
         result ? this.ref.close(true) : this.submitting.set(false);
       });

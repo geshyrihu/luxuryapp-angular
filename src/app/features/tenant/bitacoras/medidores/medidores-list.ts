@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import {
@@ -45,6 +45,7 @@ import {
   IonButtonEdit,
   IonButtonItem,
 } from "src/app/core/components/buttons/mobile";
+import { Endpoints } from "src/app/core/constants/endpoints";
 @Component({
   selector: "app-medidores-list",
   templateUrl: "./medidores-list.html",
@@ -140,12 +141,12 @@ export class MedidoresList {
   exportExcel(id: any) {
     const urlApi = Endpoints.MeterReadings.exportExcel(id);
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
-      console.log("Datos recibidos de la API para Excel:", result); // Log para depuración
+      console.log("Datos recibidos de la API para Excel:", result); // Log para depuraciÃ³n
       this.datosExcel = result;
       if (result && result.length > 0) {
         this.generate();
       } else {
-        console.log("No se generó el Excel porque no hay datos");
+        console.log("No se generÃ³ el Excel porque no hay datos");
       }
     });
   }
@@ -183,12 +184,3 @@ export class MedidoresList {
     this.router.navigate(["/logbook/grafico", id]);
   }
 }
-
-
-
-
-
-
-
-
-import { Endpoints } from "src/app/core/constants/endpoints";

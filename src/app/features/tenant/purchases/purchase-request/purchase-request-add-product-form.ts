@@ -36,6 +36,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { PaginationService } from "src/app/core/services/pagination.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { TarjetaProducto } from "src/app/features/tenant/product/tarjeta-producto";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { IProductData } from "./product-data.interface";
 @Component({
   selector: "app-purchase-request-add-product-form",
@@ -118,7 +119,7 @@ export class PurchaseRequestAddProductForm implements OnInit, OnDestroy {
     this.purchaseRequestId = this.config.data.purchaseRequestId;
 
     // Inicializar el servicio de paginación
-    const apiUrl = `purchaserequest/add-product/${this.purchaseRequestId}`;
+    const apiUrl = Endpoints.PurchaseRequests.addProductList(this.purchaseRequestId);
     this.paginationService.initialize(apiUrl, this.tablePrimeNgRows);
 
     // Suscribirse a los observables del servicio de paginación
@@ -161,7 +162,7 @@ export class PurchaseRequestAddProductForm implements OnInit, OnDestroy {
    */
   private loadMeasurementUnits(): void {
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>("GetMeasurementUnits")
+      .onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.measurementUnits)
       .then((response: ISelectItem[]) => {
         this.cb_unidadMedida = response;
       });
@@ -204,7 +205,7 @@ export class PurchaseRequestAddProductForm implements OnInit, OnDestroy {
     };
 
     this.apiResponseS
-      .onPost(`purchaserequest/add-product`, payload)
+      .onPost(Endpoints.PurchaseRequests.addProduct, payload)
       .then(() => {
         // Recargar los datos de la tabla para reflejar cualquier cambio (ej. si el producto ya no debe aparecer)
         this.paginationService.refreshData();

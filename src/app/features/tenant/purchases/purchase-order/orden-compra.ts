@@ -1,4 +1,5 @@
 ﻿import { CommonModule } from "@angular/common";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   Component,
   computed,
@@ -202,7 +203,7 @@ export class OrdenCompra implements OnInit {
 
     this.loading.set(true);
     const result = await this.apiResponseS.onGetItem<any>(
-      `OrdenCompra/${ocId}`,
+      Endpoints.PurchaseOrders.getById(ocId),
     );
 
     if (result) {
@@ -216,7 +217,7 @@ export class OrdenCompra implements OnInit {
 
       if (result.folioSolicitudCompra) {
         const scId = await this.apiResponseS.onGetItem<string>(
-          `SolicitudCompra/GetIdSolicitudCompra/${result.folioSolicitudCompra}/${result.customerId}`,
+          Endpoints.PurchaseRequests.getIdByFolioAndCustomer(result.folioSolicitudCompra, result.customerId),
         );
         this.solicitudCompraId.set(scId ?? "");
       }
@@ -231,7 +232,7 @@ export class OrdenCompra implements OnInit {
   autorizarCompra(): void {
     this.apiResponseS
       .onGetList(
-        `OrdenCompraAuth/Autorizar/${this.ordenCompraId()}/${this.authS.applicationUserId}`,
+        Endpoints.PurchaseOrders.authorize(this.ordenCompraId(), this.authS.applicationUserId),
       )
       .then((result) => {
         this.ordenCompra.set(result);
@@ -241,7 +242,7 @@ export class OrdenCompra implements OnInit {
 
   deautorizarCompra(): void {
     this.apiResponseS
-      .onGetList(`OrdenCompraAuth/Desautorizar/${this.ordenCompraId()}`)
+      .onGetList(Endpoints.PurchaseOrders.unauthorize(this.ordenCompraId()))
       .then((result) => {
         this.ordenCompra.set(result);
         this.onLoadData();
@@ -272,7 +273,7 @@ export class OrdenCompra implements OnInit {
 
   onDeleteProduct(id: any): void {
     this.apiResponseS
-      .onDelete(`OrdenCompraDetalle/${id}`)
+      .onDelete(Endpoints.PurchaseOrderDetails.delete(id))
       .then(() => this.onLoadData());
   }
 
@@ -342,7 +343,7 @@ export class OrdenCompra implements OnInit {
   }
   onDeleteOrdenCompraPresupuesto(id: any): void {
     this.apiResponseS
-      .onDelete(`OrdenCompraPresupuesto/${id}`)
+      .onDelete(Endpoints.PurchaseOrderBudgets.delete(id))
       .then(() => this.onLoadData());
   }
   /** Nómero de columnas del cuerpo de la tabla (10 o 11 segón permisos). */
@@ -388,7 +389,7 @@ export class OrdenCompra implements OnInit {
     this.isValidating.set(true);
     this.validationResult.set(null);
 
-    const urlApi = `funding/validate-invoice/${ordenCompraId}`;
+    const urlApi = Endpoints.PurchaseOrders.validateInvoice(ordenCompraId);
 
     this.apiResponseS
       .onPost<ValidationResultDTO>(urlApi, {})

@@ -4,6 +4,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 @Component({
@@ -33,14 +34,14 @@ export class OrdenesServicioReporteProveedor {
   }
   onLoadData() {
     const customerId: string = this.customerIdS.customerId();
-    const urlApi = `ServiceOrders/OrdenesServicioReporteProveedor/${this.id}/${customerId}`;
+    const urlApi = Endpoints.ServiceOrders.reporteProveedor(this.id, customerId);
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
   }
 
   deleteDoc(id: string): void {
-    const urlApi = `ServiceOrders/DeleteDocument/${id}`;
+    const urlApi = Endpoints.ServiceOrders.deleteDocument(id);
 
     this.apiResponseS.onDelete(urlApi).then(() => {
       this.onLoadData();

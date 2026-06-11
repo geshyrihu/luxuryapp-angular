@@ -1,4 +1,5 @@
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -168,7 +169,7 @@ export class SolicitudCompra implements OnInit {
 
   onCotizacionesRelacionadas() {
     this.apiResponseS
-      .onGetList(`OrdenCompra/CotizacionesRelacionadas/${this.id}`)
+      .onGetList(Endpoints.PurchaseOrders.relatedQuotes(this.id))
       .then((result: any) => {
         this.cotizacionesRelacionadas = result;
         this.cdr.detectChanges();
@@ -187,7 +188,7 @@ export class SolicitudCompra implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`SolicitudCompra/GetSolicitudCompraIndividual/${this.id}`)
+      .onGetItem(Endpoints.PurchaseRequests.getIndividual(this.id))
       .then((result: any) => {
         if (!result) return;
         this.solicitudCompra = result;
@@ -212,7 +213,7 @@ export class SolicitudCompra implements OnInit {
     const result: any = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "SolicitudCompra",
+      endpoint: Endpoints.PurchaseRequests.solicitudCompraBase,
       id: isNew ? null : this.id,
       submitting: this.submitting,
       closeOnSuccess: false,
@@ -225,7 +226,7 @@ export class SolicitudCompra implements OnInit {
 
         for (const product of this.tempProducts()) {
           product.solicitudCompraId = this.id;
-          await this.apiResponseS.onPost(`SolicitudCompraDetalle`, product);
+          await this.apiResponseS.onPost(Endpoints.PurchaseRequestDetails.create, product);
         }
 
         this.tempProducts.set([]);

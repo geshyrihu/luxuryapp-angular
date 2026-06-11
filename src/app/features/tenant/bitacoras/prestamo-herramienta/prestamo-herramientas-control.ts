@@ -20,6 +20,7 @@ import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { PrestamoHerramientaFormControl } from "./prestamo-herramienta-form-control";
 @Component({
   selector: "app-prestamo-herramientas-control",
@@ -89,7 +90,7 @@ export class PrestamoHerramientasControl {
   }
 
   onLoadData() {
-    const urlApi = `ControlPrestamoHerramientas/list/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.ToolLoans.listByCustomer(this.customerIdS.customerId());
     const httpParams = {
       page: this.page,
       recordsNumber: this.rows,
@@ -107,7 +108,7 @@ export class PrestamoHerramientasControl {
 
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`ControlPrestamoHerramientas/${id}`)
+      .onDelete(Endpoints.ToolLoans.delete(id))
       .then((result: boolean) => {
         if (result) {
           this.dataSignal.update((data) => ({

@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -48,7 +49,7 @@ export class PaymentVoucherModal implements OnInit {
     formData.append("file", this.file);
 
     this.apiResponseS
-      .onPost(`OrdenCompraComprobantePago/${this.ordenCompraId}`, formData)
+      .onPost(Endpoints.PurchaseOrderPaymentVouchers.upload(this.ordenCompraId), formData)
       .then((res: any) => {
         this.comprobantes.update((list) => [...list, res]);
         this.file = null;
@@ -58,7 +59,7 @@ export class PaymentVoucherModal implements OnInit {
   }
 
   onDelete(id: string) {
-    this.apiResponseS.onDelete(`OrdenCompraComprobantePago/${id}`).then(() => {
+    this.apiResponseS.onDelete(Endpoints.PurchaseOrderPaymentVouchers.delete(id)).then(() => {
       this.comprobantes.update((list) => list.filter((x) => x.id !== id));
     });
   }

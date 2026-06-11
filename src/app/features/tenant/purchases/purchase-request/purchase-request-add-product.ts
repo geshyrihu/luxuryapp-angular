@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   Component,
   OnInit,
@@ -99,14 +100,14 @@ export class PurchaseRequestAddProduct implements OnInit {
 
   async onLoadMeasurementUnits(): Promise<void> {
     const result: any = await this.apiResponseS.onGetSelectItem<ISelectItem[]>(
-      "getMeasurementUnits",
+      Endpoints.SelectItems.measurementUnits,
     );
     this.cb_measurement_units.set(result as ISelectItem[]);
   }
 
   async onLoadProduct(param: string): Promise<void> {
     const result: any = await this.apiResponseS.onGetListNotLoading(
-      `PurchaseRequest/SearchToAddRequest/${this.purchaseRequestId()}`,
+      Endpoints.PurchaseRequests.searchToAdd(this.purchaseRequestId()),
       { param },
     );
 
@@ -196,8 +197,8 @@ export class PurchaseRequestAddProduct implements OnInit {
     };
 
     const endpoint = payload.id
-      ? `PurchaseRequest/update-product/${payload.id}`
-      : `PurchaseRequest/add-product`;
+      ? Endpoints.PurchaseRequests.updateProduct(payload.id)
+      : Endpoints.PurchaseRequests.addProduct;
 
     const result = await FormHelper.submitCrud({
       form: this.form,

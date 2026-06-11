@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -28,7 +29,7 @@ export class SoporteOrdenServicio implements OnInit {
     this.onLoadData();
   }
   onLoadItem() {
-    const urlApi = `ServiceOrders/SoporteOrdenServicio/${this.id}`;
+    const urlApi = Endpoints.ServiceOrders.soporte(this.id);
     // Controller returns ApiResponseDTO<object>.
     // SoporteOrdenServicio is a single object, but original code used onGetList?
     // Let's check original code: this.apiResponseS.onGetList(urlApi).then...
@@ -44,7 +45,7 @@ export class SoporteOrdenServicio implements OnInit {
     });
   }
   onLoadData() {
-    const urlApi = `Customers/${this.customerIdS.customerId()}`;
+    const urlApi = Endpoints.Customers.getByIdLegacy(this.customerIdS.customerId());
     // Customers/{id} returns ApiResponseDTO<CustomerDTO> (single item).
     // Should use onGetItem.
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {

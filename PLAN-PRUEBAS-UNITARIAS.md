@@ -18,13 +18,13 @@ Solo `features/configuration/` y `features/vault/` han sido migrados de `feature
 
 | Área | Specs | Estado |
 |------|-------|--------|
-| `core/` (servicios, guards, pipes, directivas, componentes) | 135 | ✅ Funcionales (Vitest) |
+| `core/` (servicios, guards, pipes, directivas, componentes) | 201 | ✅ Funcionales (Vitest) |
 | `features/tenant/` (no migrados aún) | 113 | ✅ Funcionales (Vitest) |
 | `features/` (configuration, vault) | 0 | ⬜ Specs pendientes |
 | `layout/` | 26 | ✅ Funcionales |
 | `login/` | 4 | ✅ Funcionales |
 | `shared/` | 2 | ✅ Funcionales |
-| **Total** | **280** (~1585 tests) | |
+| **Total** | **346** (~1585 tests) | |
 
 ### Dependencia: migración de features
 

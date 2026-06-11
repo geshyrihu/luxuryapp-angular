@@ -1,4 +1,5 @@
 import { Component, inject, input, output } from "@angular/core";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
@@ -42,7 +43,7 @@ export class SolicitudCompraDetalle {
   }
 
   onDeleteProduct(id: any) {
-    this.apiResponseS.onDelete(`solicitudcompradetalle/${id}`).then(() => {
+    this.apiResponseS.onDelete(Endpoints.PurchaseRequestDetails.delete(id)).then(() => {
       this.onUpdateData();
       this.solicitudCompraService.onDeleteProduct();
     });

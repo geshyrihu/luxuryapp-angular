@@ -5,6 +5,7 @@ import { Component, inject, input, output } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -41,7 +42,7 @@ export class PurchaseRequestProducts {
 
   onDelete(id: string) {
     this.apiResponseS
-      .onDelete(`purchaserequest/delete-product/${id}`)
+      .onDelete(Endpoints.PurchaseRequests.deleteProduct(id))
       .then(() => {
         this.onUpdateData();
       });

@@ -12,6 +12,7 @@ import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-but
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -90,7 +91,7 @@ export class ModalOrdenCompra implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(`OrdenCompra/GetForEdit/${this.ordenCompraId}`)
+      .onGetItem(Endpoints.PurchaseOrders.getForEdit(this.ordenCompraId))
       .then((result: any) => {
         this.form.patchValue(result);
         if (result.fechaSolicitud) {
@@ -106,7 +107,7 @@ export class ModalOrdenCompra implements OnInit {
     this.submitting.set(true);
 
     this.apiResponseS
-      .onPut(`OrdenCompra/${this.ordenCompraId}`, {
+      .onPut(Endpoints.PurchaseOrders.update(this.ordenCompraId), {
         ...this.form.getRawValue(),
         fechaSolicitud: this.dateS.getDateFormat(
           this.form.controls.fechaSolicitud.value,

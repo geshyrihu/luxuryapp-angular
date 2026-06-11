@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -14,6 +14,7 @@ import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
 interface IMedidorForm {
@@ -116,13 +117,3 @@ export class MedidorForm implements OnInit {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-import { Endpoints } from "src/app/core/constants/endpoints";

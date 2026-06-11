@@ -18,6 +18,7 @@ import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
@@ -117,7 +118,7 @@ export class PurchaseLinkManager implements OnInit {
     this.loadingSolicitudes.set(true);
     this.apiResponseS
       .onGetList(
-        `SolicitudCompra/list/${this.customerIdS.customerId()}/${this.statusSC()}`,
+        Endpoints.PurchaseRequests.listSolicitudCompraByCustomerAndStatus(this.customerIdS.customerId(), this.statusSC()),
       )
       .then((result: any) => {
         this.solicitudes.set(result || []);
@@ -129,7 +130,7 @@ export class PurchaseLinkManager implements OnInit {
     this.loadingOrdenes.set(true);
     this.apiResponseS
       .onGetList(
-        `OrdenCompra/link-manager-list/${this.customerIdS.customerId()}`,
+        Endpoints.PurchaseOrders.linkManagerList(this.customerIdS.customerId()),
       )
       .then((result: any[]) => {
         this.ordenes.set(result || []);
@@ -140,7 +141,7 @@ export class PurchaseLinkManager implements OnInit {
   onLink(ordenCompraId: string, solicitudCompraId: string) {
     this.apiResponseS
       .onPut(
-        `OrdenCompra/link-to-request/${ordenCompraId}/${solicitudCompraId}`,
+        Endpoints.PurchaseOrders.linkToRequest(ordenCompraId, solicitudCompraId),
         {},
       )
       .then((success) => {
@@ -153,7 +154,7 @@ export class PurchaseLinkManager implements OnInit {
 
   onUnlink(ordenCompraId: string) {
     this.apiResponseS
-      .onPut(`OrdenCompra/UnlinkSolicitud/${ordenCompraId}`, {})
+      .onPut(Endpoints.PurchaseOrders.unlinkSolicitud(ordenCompraId), {})
       .then((success) => {
         if (success) {
           this.onLoadSolicitudes();

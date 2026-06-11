@@ -1,5 +1,6 @@
 // --------------------------------------------------------------
 import { CommonModule } from "@angular/common";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   Component,
   computed,
@@ -105,7 +106,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
     this.loading.set(true);
 
     const customerId: string = this.customerIdS.customerId();
-    const urlApi = `presupuesto/to-purchase-order/${customerId}/${this.ordenCompraId}/${this.intYearControl.value}`;
+    const urlApi = Endpoints.Presupuestos.toPurchaseOrder(customerId, this.ordenCompraId, this.intYearControl.value);
 
     const result: any = await this.apiResponseS.onGetList(urlApi);
     if (result) {
@@ -151,7 +152,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
 
     // Post a la API y actualización automótica del total ??
     this.apiResponseS
-      .onPost(`OrdenCompraPresupuesto`, purchaseOrderBudget)
+      .onPost(Endpoints.PurchaseOrderBudgets.create, purchaseOrderBudget)
       .then(async () => {
         await this.ordenCompraService.actualizarTotalOrdenCompra(
           this.ordenCompraId,

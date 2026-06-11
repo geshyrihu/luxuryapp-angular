@@ -17,6 +17,7 @@ import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-inp
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -139,34 +140,34 @@ export class ServiceOrderForm implements OnInit {
 
   private async loadMachineries(): Promise<void> {
     const data = await this.apiResponseS.onGetSelectItem<ISelectItem[]>(
-      `machineries-active/${this.customerIdS.customerId()}`,
+      Endpoints.SelectItems.machineryActiveByCustomer(this.customerIdS.customerId()),
     );
     this.cb_machinery.set(data || []);
   }
 
   private async loadProviders(): Promise<void> {
     const data = await this.apiResponseS.onGetSelectItem<ISelectItem[]>(
-      `Providers/${this.customerIdS.customerId()}`,
+      Endpoints.SelectItems.providers(this.customerIdS.customerId()),
     );
     this.cb_providers.set(data || []);
   }
 
   private async loadApplicationUsers(): Promise<void> {
     const data = await this.apiResponseS.onGetSelectItem<ISelectItem[]>(
-      `UserFromCustomer/${this.customerIdS.customerId()}`,
+      Endpoints.SelectItems.usersByCustomer(this.customerIdS.customerId()),
     );
     this.cb_applicationUser.set(data || []);
   }
 
   private async loadStatus(): Promise<void> {
-    const data = await this.apiResponseS.onGetEnumSelectItem(`EStatus`);
+    const data = await this.apiResponseS.onGetEnumSelectItem(Endpoints.EnumSelectItems.status);
     this.cb_Status.set((data as ISelectItem[]) || []);
   }
 
   private async loadTypeMaintance(): Promise<void> {
     const data =
       await this.apiResponseS.onGetEnumSelectItem<ISelectItem[]>(
-        `ETypeMaintance`,
+        Endpoints.EnumSelectItems.typeMaintance,
       );
     this.cb_TypeMaintance.set(data || []);
   }
@@ -188,7 +189,7 @@ export class ServiceOrderForm implements OnInit {
     });
 
   async onLoadData(): Promise<void> {
-    const urlApi = `ServiceOrders/${this.id()}`;
+    const urlApi = Endpoints.ServiceOrders.getById(this.id());
     const result: any = await this.apiResponseS.onGetItem(urlApi);
 
     // Formatear fechas
@@ -248,7 +249,7 @@ export class ServiceOrderForm implements OnInit {
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "ServiceOrders",
+      endpoint: Endpoints.ServiceOrders.create,
       id: this.id() === 0 ? null : String(this.id()),
       ref: this.ref,
       submitting: this.submitting,

@@ -1,4 +1,5 @@
 ﻿import { CommonModule } from "@angular/common";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -204,7 +205,7 @@ export class OrdenCompraList {
   }
 
   onDelete(id: string) {
-    this.apiResponseS.onDelete(`ordencompra/${id}`).then(() => {
+    this.apiResponseS.onDelete(Endpoints.PurchaseOrders.delete(id)).then(() => {
       this.data.update((data) => data.filter((item) => item.id !== id));
     });
   }

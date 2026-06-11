@@ -1,3 +1,4 @@
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectorRef,
   Component,
@@ -114,7 +115,7 @@ export class OrdenCompraDatosPago implements OnInit {
 
     this.apiResponseS
       .onGetItem<any>(
-        `providers/${item.value}/${this.customerIdS.customerId()}`,
+        Endpoints.Providers.getByIdAndCustomer(item.value, this.customerIdS.customerId()),
       )
       .then((provider) => {
         if (provider) {
@@ -132,11 +133,11 @@ export class OrdenCompraDatosPago implements OnInit {
 
     const promises = [
       this.apiResponseS.onGetSelectItem<ISelectItem[]>(
-        `providers/${this.customerIdS.customerId()}`,
+        Endpoints.SelectItems.providers(this.customerIdS.customerId()),
       ),
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>("PaymentMethod"),
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>("UseCFDI"),
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>("WayToPay"),
+      this.apiResponseS.onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.paymentMethod),
+      this.apiResponseS.onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.useCFDI),
+      this.apiResponseS.onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.wayToPay),
       lastValueFrom(this.enumSelectS.onLoadEnumList("ETipoGasto")),
       lastValueFrom(this.enumSelectS.onLoadEnumList("EFundingPeriod", false)),
     ];
@@ -159,7 +160,7 @@ export class OrdenCompraDatosPago implements OnInit {
     this.cb_fundingYear.set(this.generateYearOptions());
 
     const result: any = await this.apiResponseS.onGetItem(
-      `OrdenCompraDatosPago/${this.ordenCompraDatosPagoId}`,
+      Endpoints.PurchaseOrderPaymentData.getById(this.ordenCompraDatosPagoId),
     );
     this.form.patchValue(result);
   }
@@ -221,7 +222,7 @@ export class OrdenCompraDatosPago implements OnInit {
     };
 
     this.apiResponseS
-      .onPut(`OrdenCompraDatosPago/${this.ordenCompraDatosPagoId}`, model)
+      .onPut(Endpoints.PurchaseOrderPaymentData.update(this.ordenCompraDatosPagoId), model)
       .then((result: boolean) => {
         result ? this.ref.close(true) : this.submitting.set(false);
       })
