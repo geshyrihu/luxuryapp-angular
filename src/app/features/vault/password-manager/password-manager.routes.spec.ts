@@ -1,6 +1,5 @@
-﻿describe('password-manager.routes', () => {
+describe('password-manager.routes', () => {
   it('should exist', () => {
     expect(true).toBe(true);
   });
 });
-
