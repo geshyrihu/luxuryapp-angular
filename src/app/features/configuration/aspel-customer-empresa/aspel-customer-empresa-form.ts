@@ -12,6 +12,7 @@ import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/cust
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 @Component({
@@ -46,7 +47,7 @@ export class AspelCustomerEmpresaForm implements OnInit {
 
   ngOnInit() {
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>(`customers-active`)
+      .onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.customersActive)
       .then((response: any) => {
         this.cb_customer.set(response);
       });
@@ -66,7 +67,7 @@ export class AspelCustomerEmpresaForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "aspel-customer-empresa",
+      endpoint: Endpoints.AspelCustomerEmpresa.base,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,

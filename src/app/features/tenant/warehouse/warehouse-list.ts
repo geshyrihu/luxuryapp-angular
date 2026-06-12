@@ -22,6 +22,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -111,7 +112,7 @@ export class WarehouseList implements OnInit {
   // CAMBIO: El ID de un almacón es 'string', no 'number'
   onDelete(id: string) {
     // Usamos el servicio genórico para la petición DELETE
-    this.apiResponseS.onDelete(`almacen/${id}`).then(() => {
+    this.apiResponseS.onDelete(Endpoints.Almacen.delete(id)).then(() => {
       // Actualizamos el signal localmente para una UI mós rópida
       this.dataSignal.update((currentData) =>
         currentData.filter((item) => item.id !== id),

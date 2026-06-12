@@ -2,6 +2,7 @@ import { Component, inject, input, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
 import { PermissionDTO } from "src/app/core/interfaces/permission.dto";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -36,6 +37,6 @@ export class EmployeePermissionApp implements OnInit {
     permission[field] = checked;
 
     // Aquí envías la solicitud para actualizar los permisos
-    this.apiResponseS.onPut(`Permission/${permission.id}`, permission, false);
+    this.apiResponseS.onPut(Endpoints.Permission.update(permission.id), permission, false);
   }
 }

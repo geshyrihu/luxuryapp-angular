@@ -7,6 +7,7 @@ import { TagModule } from "primeng/tag";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import {
   PagoPrestamoDTO,
@@ -52,7 +53,7 @@ export default class ModalPrestamoDetalle implements OnInit {
   async loadPagos(prestamoId: string): Promise<void> {
     this.loading.set(true);
     const result = await this.apiResponseS.onGetList<PagoPrestamoDTO[]>(
-      `hr/nomina/prestamos/${prestamoId}/historial-pagos`,
+      Endpoints.HR.Nomina.Prestamos.historialPagos(prestamoId),
     );
     this.pagos.set((result as any) ?? []);
     this.loading.set(false);
@@ -63,7 +64,7 @@ export default class ModalPrestamoDetalle implements OnInit {
     await FormHelper.submitCrud({
       form: this.formDecision,
       api: this.apiResponseS,
-      endpoint: `hr/nomina/prestamos/${prestamoId}/autorizar`,
+      endpoint: Endpoints.HR.Nomina.Prestamos.autorizar(prestamoId),
       method: "PUT",
       ref: this.ref,
       submitting: this.procesando,
@@ -76,7 +77,7 @@ export default class ModalPrestamoDetalle implements OnInit {
     await FormHelper.submitCrud({
       form: this.formDecision,
       api: this.apiResponseS,
-      endpoint: `hr/nomina/prestamos/${prestamoId}/cancelar`,
+      endpoint: Endpoints.HR.Nomina.Prestamos.cancelar(prestamoId),
       method: "PUT",
       ref: this.ref,
       submitting: this.procesando,

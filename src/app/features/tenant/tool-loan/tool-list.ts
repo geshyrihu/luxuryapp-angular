@@ -23,6 +23,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -90,7 +91,7 @@ export class ToolList {
   }
 
   onDelete(id: any) {
-    this.apiResponseS.onDelete(`Tools/${id}`).then((result: boolean) => {
+    this.apiResponseS.onDelete(Endpoints.Tools.delete(id)).then((result: boolean) => {
       if (result) {
         this.dataSignal.update((data) => data.filter((item) => item.id !== id));
       }

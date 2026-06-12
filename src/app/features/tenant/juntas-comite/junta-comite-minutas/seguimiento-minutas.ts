@@ -15,6 +15,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -65,9 +66,8 @@ export class SeguimientoMinuta {
   }
 
   onLoadData(filtro: number) {
-    const urlApi = `Meetings/SeguimientoMinutas/${this.customerIdS.customerId()}/${filtro}`;
     this.apiResponseS
-      .onGetList(urlApi)
+      .onGetList(Endpoints.Meetings.seguimientoMinutas(this.customerIdS.customerId(), filtro))
       .then((result: any) => this.dataSignal.set(result));
   }
 
@@ -104,7 +104,7 @@ export class SeguimientoMinuta {
   }
 
   onDeleteSeguimiento(id: any) {
-    this.apiResponseS.onDelete(`MeetingDertailsSeguimiento/${id}`).then(() => {
+    this.apiResponseS.onDelete(Endpoints.MeetingDetailsTracking.delete(id)).then(() => {
       this.onLoadData(this.statusFiltro);
     });
   }

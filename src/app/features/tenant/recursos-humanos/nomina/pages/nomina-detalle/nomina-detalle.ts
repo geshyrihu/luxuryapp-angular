@@ -11,6 +11,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -61,9 +62,9 @@ export default class NominaDetalle {
   async onLoadData(nominaId: string): Promise<void> {
     this.loading.set(true);
     const [enc, det, res] = await Promise.all([
-      this.apiResponseS.onGetItem<NominaEncabezadoDTO>(`hr/nomina/${nominaId}`),
-      this.apiResponseS.onGetList<NominaDetalleDTO[]>(`hr/nomina/${nominaId}/detalles`),
-      this.apiResponseS.onGetItem<NominaResumenDTO>(`hr/nomina/${nominaId}/resumen-ejecutivo`),
+      this.apiResponseS.onGetItem<NominaEncabezadoDTO>(Endpoints.HR.Nomina.Encabezado.getById(nominaId)),
+      this.apiResponseS.onGetList<NominaDetalleDTO[]>(Endpoints.HR.Nomina.Encabezado.getDetalles(nominaId)),
+      this.apiResponseS.onGetItem<NominaResumenDTO>(Endpoints.HR.Nomina.Encabezado.getResumenEjecutivo(nominaId)),
     ]);
     this.encabezado.set(enc ?? null);
     this.data.set(det ?? []);

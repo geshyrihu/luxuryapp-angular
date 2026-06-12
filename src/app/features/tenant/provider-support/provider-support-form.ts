@@ -7,6 +7,7 @@ import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-but
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CrudSubmitOptions, FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
@@ -73,7 +74,7 @@ export class ProviderSupportForm implements OnInit {
   }
 
   async onLoadData(): Promise<void> {
-    const result: any = await this.apiResponseS.onGetItem(`providersupport/${this.id}`);
+    const result: any = await this.apiResponseS.onGetItem(Endpoints.ProviderSupport.getById(this.id));
 
     // Extraer IDs
     const providerId = typeof result.providerId === "object" ? result.providerId.value : result.providerId;

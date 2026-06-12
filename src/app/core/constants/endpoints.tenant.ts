@@ -436,6 +436,10 @@ export const EndpointsTenant = {
     get: (year: number, empresa: string) =>
       `autitoria-cuentas-aspel?intYear=${year}&empresa=${empresa}`,
   },
+  AsambleaChecklist: {
+    bySession: (sessionId: string) => `AsambleaChecklist/session/${sessionId}`,
+    updateStatus: (id: string) => `AsambleaChecklist/${id}/status`,
+  },
   AsambleaChecklistTemplate: {
     create: "AsambleaChecklistTemplate",
     delete: (id: string) => `AsambleaChecklistTemplate/${id}`,
@@ -452,6 +456,7 @@ export const EndpointsTenant = {
   },
   CalendarioMaestroEquipo: {
     base: "CalendarioMaestroEquipo",
+    delete: (id: string | number) => `CalendarioMaestroEquipo/${id}`,
     getById: (id: string) => `CalendarioMaestroEquipo/${id}`,
   },
   CatalogAssets: {
@@ -775,11 +780,28 @@ export const EndpointsTenant = {
       cancel: (id: string) => `leave-request-approvals/${id}/cancel`,
     },
     Nomina: {
-      Periodos: {
-        autoCrear: (customerId: string) =>
-          `hr/nomina/periodos/auto-crear?customerId=${customerId}`,
-        byCustomerAndYear: (customerId: string, anio: number) =>
-          `hr/nomina/periodos?customerId=${customerId}&anio=${anio}`,
+      Configuracion: {
+        getByCustomer: (customerId: string) =>
+          `hr/nomina/configuracion/${customerId}`,
+        update: (customerId: string) => `hr/nomina/configuracion/${customerId}`,
+      },
+      Encabezado: {
+        changeState: (nominaId: string, accion: string) =>
+          `hr/nomina/${nominaId}/${accion}`,
+        getAll: (customerId: string) => `hr/nomina?customerId=${customerId}`,
+        getById: (nominaId: string) => `hr/nomina/${nominaId}`,
+        getDetalles: (nominaId: string) => `hr/nomina/${nominaId}/detalles`,
+        getResumenEjecutivo: (nominaId: string) =>
+          `hr/nomina/${nominaId}/resumen-ejecutivo`,
+        updateDetalle: (nominaId: string, detalleId: string) =>
+          `hr/nomina/${nominaId}/detalles/${detalleId}`,
+      },
+      Evidencias: {
+        byNomina: (nominaId: string) => `hr/nomina/${nominaId}/evidencias`,
+        delete: (id: string) => `hr/nomina/evidencias/${id}`,
+      },
+      Generar: {
+        nomina: "hr/nomina/generar",
       },
       Incidencias: {
         list: (periodoNominaId: string) =>
@@ -792,14 +814,30 @@ export const EndpointsTenant = {
         hojaByPeriodo: (periodoId: string) =>
           `hr/nomina/incidencias/hoja/${periodoId}`,
       },
-      Generar: {
-        nomina: "hr/nomina/generar",
+      Periodos: {
+        autoCrear: (customerId: string) =>
+          `hr/nomina/periodos/auto-crear?customerId=${customerId}`,
+        byCustomerAndYear: (customerId: string, anio: number) =>
+          `hr/nomina/periodos?customerId=${customerId}&anio=${anio}`,
+        delete: (id: string) => `hr/nomina/periodos/${id}`,
+        diasNoHabiles: (periodoId: string) =>
+          `hr/nomina/periodos/${periodoId}/dias-no-habiles`,
+        deleteDiaNoHabil: (periodoId: string, diaId: string) =>
+          `hr/nomina/periodos/${periodoId}/dias-no-habiles/${diaId}`,
       },
       Prestamos: {
+        autorizar: (prestamoId: string) => `hr/nomina/prestamos/${prestamoId}/autorizar`,
+        cancelar: (prestamoId: string) => `hr/nomina/prestamos/${prestamoId}/cancelar`,
         create: "hr/nomina/prestamos",
+        historialPagos: (prestamoId: string) =>
+          `hr/nomina/prestamos/${prestamoId}/historial-pagos`,
       },
       TiempoExtra: {
+        approve: (id: string) => `hr/nomina/tiempo-extra/${id}/aprobar`,
         create: "hr/nomina/tiempo-extra",
+        delete: (id: string) => `hr/nomina/tiempo-extra/${id}`,
+        list: (periodoId: string) =>
+          `hr/nomina/tiempo-extra?periodoNominaId=${periodoId}`,
         update: (id: string) => `hr/nomina/tiempo-extra/${id}`,
       },
     },
@@ -925,6 +963,9 @@ export const EndpointsTenant = {
     getByWorkPosition: (workPositionId: string) =>
       `job-descriptions/by-workposition/${workPositionId}`,
   },
+  JuntaMensualSession: {
+    detail: (sessionId: string) => `JuntaMensualSession/${sessionId}/detail`,
+  },
   LegalDirectories: {
     committees: "LegalDirectories/Committees",
   },
@@ -1038,12 +1079,72 @@ export const EndpointsTenant = {
     updatePaso: (manualId: string, pasoId: string) =>
       `manuals/${manualId}/pasos/${pasoId}`,
   },
+  MeetingAdministracion: {
+    addParticipant: (meetingId: string | number, participantId: string | number) =>
+      `MeetingAdministracion/AgregarParticipantesAdministracion/${meetingId}/${participantId}/1`,
+    delete: (id: string | number) => `MeetingAdministracion/${id}`,
+    listCandidates: (customerId: string, meetingId: string | number) =>
+      `GetListAdministracionMinuta/${customerId}/${meetingId}`,
+    participants: (meetingId: string | number) =>
+      `MeetingAdministracion/ParticipantesAdministracion/${meetingId}`,
+  },
+  MeetingComite: {
+    addParticipant: (meetingId: string | number, participantId: string | number) =>
+      `MeetingComite/AgregarParticipantesComite/${meetingId}/${participantId}`,
+    delete: (id: string | number) => `MeetingComite/${id}`,
+    listCandidates: (customerId: string, meetingId: string | number) =>
+      `GetListComiteMinuta/${customerId}/${meetingId}`,
+    participants: (meetingId: string | number) =>
+      `MeetingComite/ParticipantesComite/${meetingId}`,
+  },
   MeetingDetailsTracking: {
+    base: "MeetingDertailsSeguimiento",
     delete: (id: string | number) => `MeetingDertailsSeguimiento/${id}`,
+    exportSummaryToExcel: (meetingId: string | number) =>
+      `MeetingDertailsSeguimiento/ExportSummaryToExcel/${meetingId}`,
+    getById: (id: string | number) => `MeetingDertailsSeguimiento/${id}`,
     resumenGrafico: (customerId: string, date: string) =>
       `MeetingDertailsSeguimiento/ResumenPreventivosGraficoPresentacion/${customerId}/${date}`,
+    resumenGraficoPresentacion: (meetingId: string | number) =>
+      `MeetingDertailsSeguimiento/ResumenMinutasGraficoPresentacion/${meetingId}`,
     resumenPreventivos: (customerId: string, date: string) =>
       `MeetingDertailsSeguimiento/ResumenPreventivosPresentacion/${customerId}/${date}`,
+    resumenPresentacion: (meetingId: string | number) =>
+      `MeetingDertailsSeguimiento/ResumenMinutasPresentacion/${meetingId}`,
+    update: (id: string | number) => `MeetingDertailsSeguimiento/${id}`,
+  },
+  MeetingInvitado: {
+    addParticipant: (meetingId: string | number, invitado: string | null) =>
+      `MeetingInvitado/AgregarParticipantesInvitado/${meetingId}/${invitado}`,
+    delete: (id: string | number) => `MeetingInvitado/${id}`,
+    participants: (meetingId: string | number) =>
+      `MeetingInvitado/ParticipantesInvitado/${meetingId}`,
+  },
+  Meetings: {
+    allPendingMinutas: (customerId: string) =>
+      `Meetings/MinutaAllPendientes/${customerId}`,
+    base: "Meetings",
+    delete: (id: string) => `Meetings/${id}`,
+    getById: (id: string) => `Meetings/${id}`,
+    getDetails: (meetingId: string | null) => `Meetings/GetDetails/${meetingId}`,
+    list: (customerId: string, tipoJunta: number) =>
+      `Meetings/list/${customerId}/${tipoJunta}`,
+    reportPdf: (meetingId: string | number) =>
+      `Meetings/MeetingReportPdf/${meetingId}`,
+    seguimientoMinutas: (customerId: string, filtro: number) =>
+      `Meetings/SeguimientoMinutas/${customerId}/${filtro}`,
+    sendEmailResponsible: (
+      id: any,
+      customerId: string,
+      area: number,
+      applicationUserId: string,
+    ) =>
+      `Meetings/SendEmailResponsible/${id}/${customerId}/${area}/${applicationUserId}`,
+  },
+  MeetingsDetails: {
+    base: "MeetingsDetails",
+    delete: (id: string | number) => `MeetingsDetails/${id}`,
+    getById: (id: string | number) => `MeetingsDetails/${id}`,
   },
   MenuItems: {
     byCustomer: (customerId: string) => `menu-items/${customerId}`,
@@ -1112,6 +1213,16 @@ export const EndpointsTenant = {
       update: (id: string) => `password-manager/credentials/${id}`,
       delete: (id: string) => `password-manager/credentials/${id}`,
     },
+  },
+  PresentacionJuntaComite: {
+    addFecha: "PresentacionJuntaComite/AddFecha",
+    authorize: (id: any, userId: string) =>
+      `PresentacionJuntaComite/AutorizarPresentacion/${id}/${userId}`,
+    delete: (id: any) => `PresentacionJuntaComite/${id}`,
+    deleteFile: (id: any, area: string) => `PresentacionJuntaComite/${id}/${area}`,
+    getById: (id: string) => `PresentacionJuntaComite/Get/${id}`,
+    list: (customerId: string) => `PresentacionJuntaComite/list/${customerId}`,
+    updateFecha: (id: string) => `PresentacionJuntaComite/AddFecha/${id}`,
   },
   PolicyContracts: {
     create: "PolicyContract",
@@ -1225,17 +1336,20 @@ export const EndpointsTenant = {
     update: (id: string | number) => `categories/${id}`,
   },
   Products: {
+    autoComplete: "productos/getautocompleteselectitem/",
     delete: (id: string) => `productos/${id}`,
     getAll: "Productos",
   },
   Properties: {
     create: "Property",
+    delete: (id: string) => `Property/${id}`,
     getById: (id: string) => `Property/${id}`,
     update: (id: string) => `Property/${id}`,
   },
   ProviderSupport: {
     delete: (id: string) => `providersupport/${id}`,
     getAll: "providersupport",
+    getById: (id: string) => `providersupport/${id}`,
   },
   RadioCommunication: {
     create: "RadioComunicacion",
@@ -1272,6 +1386,7 @@ export const EndpointsTenant = {
     soporte: (id: string) => `ServiceOrders/SoporteOrdenServicio/${id}`,
   },
   SendEmail: {
+    meeting: (meetingId: string | number) => `sendemail/meeting/${meetingId}`,
     operationReport: (
       applicationUserId: string,
       customerId: string,
@@ -1279,6 +1394,8 @@ export const EndpointsTenant = {
       weekNumber: number,
     ) =>
       `sendemail/operation-report/${applicationUserId}/${customerId}/${year}/${weekNumber}`,
+    presentacionFinalComite: (idJunta: string | number) =>
+      `SendEmail/PresentacionFinalComite/${idJunta}`,
   },
   SpecialDocuments: {
     updateOrder: "special-document/update-order",
@@ -1412,6 +1529,54 @@ export const EndpointsTenant = {
     setDependency: (taskId: string, predecessorId: string) =>
       `tasks/set-predecessor/${taskId}/${predecessorId}`,
     clearDependency: (taskId: string) => `tasks/clear-predecessor/${taskId}`,
+  },
+  Almacen: {
+    delete: (id: string) => `almacen/${id}`,
+    getById: (id: string) => `almacen/${id}`,
+  },
+  BitacoraMantenimiento: {
+    delete: (id: string) => `BitacoraMantenimiento/${id}`,
+  },
+  CatalogoGastosFijosDetalles: {
+    base: "CatalogoGastosFijosDetalles",
+    delete: (id: string) => `CatalogoGastosFijosDetalles/${id}`,
+  },
+  DiagramDraw: {
+    delete: (id: string) => `DiagramDraw/${id}`,
+    getById: (id: string) => `DiagramDraw/${id}`,
+    update: (id: string) => `DiagramDraw/${id}`,
+  },
+  Funding: {
+    delete: (id: string) => `funding/${id}`,
+    deleteDetail: (id: string) => `funding/detail/${id}`,
+  },
+  GoogleCalendarEvents: {
+    updateSeries: (id: string) => `google-calendar-events/${id}/series`,
+  },
+  InventarioProducto: {
+    create: "InventarioProducto",
+  },
+  Machineries: {
+    delete: (id: string) => `Machineries/${id}`,
+  },
+  MaintenanceCalendars: {
+    delete: (id: string) => `maintenancecalendars/${id}`,
+  },
+  Owner: {
+    delete: (id: string) => `owner/${id}`,
+    getById: (id: string) => `owner/${id}`,
+  },
+  Permission: {
+    update: (id: string | number) => `Permission/${id}`,
+  },
+  Piscina: {
+    delete: (id: string) => `piscina/${id}`,
+  },
+  TemplateEvaluation: {
+    delete: (id: string) => `TemplateEvaluation/${id}`,
+  },
+  Tools: {
+    delete: (id: string) => `Tools/${id}`,
   },
   ToolLoans: {
     create: "controlprestamoherramientas",

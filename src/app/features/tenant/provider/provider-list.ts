@@ -33,6 +33,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { IBusquedaProveedor } from "src/app/core/interfaces/busqueda-proveedor.interface";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -203,7 +204,7 @@ export class ListProvider implements OnInit {
 
   // Elimina un proveedor
   onDelete(id: any) {
-    return this.apiResponseS.onDelete(`providers/${id}`).then((result: boolean) => {
+    return this.apiResponseS.onDelete(Endpoints.Providers.delete(id)).then((result: boolean) => {
       if (result)
         this.dataSignal.update((currentData) =>
           currentData.filter((item) => item.providerId !== id),

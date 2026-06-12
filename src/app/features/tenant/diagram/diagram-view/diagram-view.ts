@@ -10,6 +10,7 @@ import {
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ButtonModule } from "primeng/button";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
 
@@ -79,7 +80,7 @@ export class DiagramView implements OnInit, AfterViewInit {
   }
 
   onLoadDiagram(id: string) {
-    this.apiResponseS.onGetItem(`DiagramDraw/${id}`).then((result: any) => {
+    this.apiResponseS.onGetItem(Endpoints.DiagramDraw.getById(id)).then((result: any) => {
       this.diagram.set(result);
       this.setupConfig(result.content);
       setTimeout(() => this.renderDiagram());

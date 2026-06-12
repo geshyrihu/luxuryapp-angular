@@ -18,6 +18,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { ReportService } from "src/app/core/services/report.service";
@@ -58,9 +59,10 @@ export class ResumenMinuta implements OnInit {
 
   onLoadData() {
     this.loading.set(true);
-    const urlApi1 = `MeetingDertailsSeguimiento/ResumenMinutasPresentacion/${this.activatedRoute.snapshot.params.meetingId}`;
     this.apiResponseS
-      .onGetList(urlApi1)
+      .onGetList(Endpoints.MeetingDetailsTracking.resumenPresentacion(
+        this.activatedRoute.snapshot.params.meetingId,
+      ))
       .then((result: any[]) => {
         const transformedData = result.map((item) => {
           // Transform deliveryDate
@@ -89,8 +91,11 @@ export class ResumenMinuta implements OnInit {
         this.loading.set(false);
       });
 
-    const urlApi = `MeetingDertailsSeguimiento/ResumenMinutasGraficoPresentacion/${this.activatedRoute.snapshot.params.meetingId}`;
-    this.apiResponseS.onGetList(urlApi).then((result: any) => {
+    this.apiResponseS.onGetList(
+      Endpoints.MeetingDetailsTracking.resumenGraficoPresentacion(
+        this.activatedRoute.snapshot.params.meetingId,
+      ),
+    ).then((result: any) => {
       this.dataGrafico = result;
       this.reportService.setDataGrafico(result);
     });

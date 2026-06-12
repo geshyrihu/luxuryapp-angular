@@ -14,6 +14,7 @@ import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button
 import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -110,7 +111,7 @@ export class DiagramList implements OnInit {
   }
 
   onDeleteDiagram(id: string) {
-    this.apiResponseS.onDelete(`DiagramDraw/${id}`).then(() => {
+    this.apiResponseS.onDelete(Endpoints.DiagramDraw.delete(id)).then(() => {
       this.onLoadData();
     });
   }

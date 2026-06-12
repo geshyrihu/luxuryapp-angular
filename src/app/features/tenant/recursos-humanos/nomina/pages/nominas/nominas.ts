@@ -10,6 +10,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -58,7 +59,7 @@ export default class Nominas {
   onLoadData(customerId: string): void {
     this.loading.set(true);
     this.apiResponseS
-      .onGetList<NominaEncabezadoDTO[]>(`hr/nomina?customerId=${customerId}`)
+      .onGetList<NominaEncabezadoDTO[]>(Endpoints.HR.Nomina.Encabezado.getAll(customerId))
       .then((resp: any) => {
         this.data.set(resp ?? []);
         this.loading.set(false);
@@ -87,7 +88,7 @@ export default class Nominas {
     accion: string,
   ): Promise<void> {
     const result = await this.apiResponseS.onPut(
-      `hr/nomina/${item.id}/${accion}`,
+      Endpoints.HR.Nomina.Encabezado.changeState(item.id, accion),
       {},
     );
     if (result) this.onLoadData(this.customerIdS.customerId());

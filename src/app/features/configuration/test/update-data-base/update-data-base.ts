@@ -1,6 +1,7 @@
 import { CommonModule, JsonPipe } from "@angular/common";
 import { Component, inject, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 
@@ -30,7 +31,7 @@ export class UpdateDataBase {
     // Usamos el endpoint unificado de migración COI
     this.apiResponseS
       .onPost(
-        `accounting-coi/migration/aspel-sync/${customerId}/ejercicio/${year}/completo`,
+        Endpoints.AccountingCoi.Configuration.AspelSync.completo(customerId, year),
         {},
       )
       .then((res: any) => {
@@ -61,7 +62,7 @@ export class UpdateDataBase {
     );
 
     this.apiResponseS
-      .onPost("UpdateDataBase/import-asamblea-checklist-catalog", {})
+      .onPost(Endpoints.UpdateDataBase.importAsambleaChecklist, {})
       .then((res: any) => {
         this.result.set(res);
         this.customToastS.showSuccess(
@@ -90,7 +91,7 @@ export class UpdateDataBase {
     );
 
     this.apiResponseS
-      .onPost("UpdateDataBase/backfill-agenda-events-from-meetings", {})
+      .onPost(Endpoints.UpdateDataBase.backfillAgendaEvents, {})
       .then((res: any) => {
         this.result.set(res);
         this.customToastS.showSuccess(
@@ -119,7 +120,7 @@ export class UpdateDataBase {
     );
 
     this.apiResponseS
-      .onPost("UpdateDataBase/backfill-historical-meeting-times", {})
+      .onPost(Endpoints.UpdateDataBase.backfillHistoricalMeetings, {})
       .then((res: any) => {
         this.result.set(res);
         this.customToastS.showSuccess(
@@ -148,7 +149,7 @@ export class UpdateDataBase {
     );
 
     this.apiResponseS
-      .onPost("UpdateDataBase/resync-google-calendar-event-times", {})
+      .onPost(Endpoints.UpdateDataBase.resyncGoogleCalendar, {})
       .then((res: any) => {
         this.result.set(res);
         this.customToastS.showSuccess(

@@ -5,6 +5,7 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonConfirm } from "src/app/core/components/buttons/web/custom-button-confirm";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
@@ -91,7 +92,7 @@ export class JuntasMensualesBackfill {
     this.loading.set(true);
     this.apiResponseS
       .onGetList<IJuntaMensualSessionBackfillCandidate[]>(
-        `JuntaMensualSessionBackfill/preview?${query.toString()}`,
+        `${Endpoints.JuntaMensualSessionBackfill.preview}?${query.toString()}`,
       )
       .then((result) => {
         const items = result || [];
@@ -154,7 +155,7 @@ export class JuntasMensualesBackfill {
     }));
 
     this.apiResponseS
-      .onPost("JuntaMensualSessionBackfill/apply", dto)
+      .onPost(Endpoints.JuntaMensualSessionBackfill.apply, dto)
       .then((result) => {
         if (!result) return;
         this.onLoadData();

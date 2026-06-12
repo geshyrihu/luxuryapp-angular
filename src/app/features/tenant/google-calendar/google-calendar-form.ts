@@ -22,6 +22,7 @@ import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ERecurrence } from "src/app/core/enums/e-recurrence.enum";
 import { EGoogleCalendarRecurrenceMode } from "src/app/core/enums/google-calendar-recurrence-mode.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -548,7 +549,7 @@ export class GoogleCalendarForm implements OnInit {
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: `google-calendar-events/${this.id()}/series`,
+      endpoint: Endpoints.GoogleCalendarEvents.updateSeries(this.id()),
       method: "PUT",
       id: null,
       ref: this.ref,

@@ -6,6 +6,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 interface IChecklistItem {
@@ -103,10 +104,10 @@ export class JuntaMensualSessionChecklistDialog {
     this.loading.set(true);
     try {
       const result = await this.apiResponseS.onGetList<IChecklistItem[]>(
-        `AsambleaChecklist/session/${this.sessionId}`,
+        Endpoints.AsambleaChecklist.bySession(this.sessionId),
       );
       const sessionDetail = await this.apiResponseS.onGetItem<IJuntaMensualSessionDetail>(
-        `JuntaMensualSession/${this.sessionId}/detail`,
+        Endpoints.JuntaMensualSession.detail(this.sessionId),
       );
 
       this.sessionDetail.set(sessionDetail ?? null);
@@ -118,7 +119,7 @@ export class JuntaMensualSessionChecklistDialog {
 
   async onSaveRow(item: IChecklistItem) {
     const result = await this.apiResponseS.onPut<IChecklistItem>(
-      `AsambleaChecklist/${item.id}/status`,
+      Endpoints.AsambleaChecklist.updateStatus(item.id),
       {
         status: item.status,
         evidenceNotes: item.evidenceNotes ?? "",

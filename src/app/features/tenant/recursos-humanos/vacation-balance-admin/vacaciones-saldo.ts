@@ -7,6 +7,7 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 // Alias para evitar colisión de nombres con el mótodo de instancia onGetSeverity.
 import { getStatusSeverity as statusSeverityFn } from "src/app/features/tenant/recursos-humanos/helpers/status-severity.helper";
@@ -109,7 +110,7 @@ export class VacacionesSaldo implements OnInit {
     try {
       const response = await this.apiResponseS.onGetList<
         { label: string; value: number }[]
-      >(`my-vacation-requests/available-years`);
+      >(Endpoints.HR.VacationRequest.availableYears);
 
       if (response && response.length > 0) {
         this.availableYears = response;
@@ -162,10 +163,10 @@ export class VacacionesSaldo implements OnInit {
     // Carga balance e historial en paralelo para el Año seleccionado.
     Promise.all([
       this.apiResponseS.onGetItem<VacationBalanceDTO>(
-        `my-vacation-requests/my-balance?year=${this.currentYear}`,
+        Endpoints.HR.VacationRequest.getBalanceByYear(this.currentYear),
       ),
       this.apiResponseS.onGetList<VacationRequestMyDTO[]>(
-        `my-vacation-requests`,
+        Endpoints.HR.VacationRequest.getAll,
       ),
     ])
       .then(([balanceData, allRequests]) => {

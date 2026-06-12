@@ -12,6 +12,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -63,9 +64,9 @@ export default class TiempoExtra {
 
   async loadPeriodos(customerId: string): Promise<void> {
     const anio = new Date().getFullYear();
-    await this.apiResponseS.onPost(`hr/nomina/periodos/auto-crear?customerId=${customerId}`, {});
+    await this.apiResponseS.onPost(Endpoints.HR.Nomina.Periodos.autoCrear(customerId), {});
     const result = await this.apiResponseS.onGetList<PeriodoNominaDTO[]>(
-      `hr/nomina/periodos?customerId=${customerId}&anio=${anio}`,
+      Endpoints.HR.Nomina.Periodos.byCustomerAndYear(customerId, anio),
     );
     const options: ISelectItem[] = ((result as any) ?? []).map((p: any) => ({
       label: p.quincenaDisplay,
@@ -86,7 +87,7 @@ export default class TiempoExtra {
     this.apiResponseS
       .onGetList<
         TiempoExtraDTO[]
-      >(`hr/nomina/tiempo-extra?periodoNominaId=${periodoId}`)
+      >(Endpoints.HR.Nomina.TiempoExtra.list(periodoId))
       .then((resp: any) => {
         this.data.set(resp ?? []);
         this.loading.set(false);
@@ -126,7 +127,7 @@ export default class TiempoExtra {
 
   async aprobar(item: TiempoExtraDTO): Promise<void> {
     const result = await this.apiResponseS.onPut(
-      `hr/nomina/tiempo-extra/${item.id}/aprobar`,
+      Endpoints.HR.Nomina.TiempoExtra.approve(item.id),
       {},
     );
     if (result) this.onLoadData(this.periodoSeleccionado());
@@ -134,7 +135,7 @@ export default class TiempoExtra {
 
   onDelete(item: TiempoExtraDTO): void {
     this.apiResponseS
-      .onDelete(`hr/nomina/tiempo-extra/${item.id}`)
+      .onDelete(Endpoints.HR.Nomina.TiempoExtra.delete(item.id))
       .then((result) => {
         if (result) this.onLoadData(this.periodoSeleccionado());
       });

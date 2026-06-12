@@ -6,6 +6,7 @@ import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-but
 import { CustomInputDecimal } from "src/app/core/components/inputs/web/custom-input-decimal-signal";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import {
@@ -61,7 +62,7 @@ export default class ConfiguracionNomina implements OnInit {
   async loadData(customerId: string): Promise<void> {
     this.loading.set(true);
     const result = await this.apiResponseS.onGetItem<ConfiguracionNominaDTO>(
-      `hr/nomina/configuracion/${customerId}`,
+      Endpoints.HR.Nomina.Configuracion.getByCustomer(customerId),
     );
     this.loading.set(false);
     if (result) {
@@ -87,7 +88,7 @@ export default class ConfiguracionNomina implements OnInit {
 
     this.submitting.set(true);
     const dto: ConfiguracionNominaUpdateDTO = this.form.getRawValue();
-    await this.apiResponseS.onPut(`hr/nomina/configuracion/${customerId}`, dto);
+    await this.apiResponseS.onPut(Endpoints.HR.Nomina.Configuracion.update(customerId), dto);
     this.submitting.set(false);
   }
 }

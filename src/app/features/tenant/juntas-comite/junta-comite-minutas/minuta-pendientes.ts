@@ -10,6 +10,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -38,8 +39,9 @@ export class MinutaPendientes {
   }
   onLoadData() {
     this.loading.set(true);
-    const urlApi = `Meetings/MinutaAllPendientes/${this.customerIdS.customerId()}`;
-    this.apiResponseS.onGetList(urlApi).then((result: any) => {
+    this.apiResponseS.onGetList(
+      Endpoints.Meetings.allPendingMinutas(this.customerIdS.customerId()),
+    ).then((result: any) => {
       this.data = result;
       this.globalFilterFields = globalFilterFields(this.data);
       this.loading.set(false);

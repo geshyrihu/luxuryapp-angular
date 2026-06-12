@@ -13,6 +13,7 @@ import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/cust
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTime } from "src/app/core/components/inputs/web/custom-input-time-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -119,7 +120,7 @@ export class MeetingForm implements OnInit {
     const result = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "Meetings",
+      endpoint: Endpoints.Meetings.base,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
@@ -137,8 +138,7 @@ export class MeetingForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `Meetings/${this.id}`;
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
+    this.apiResponseS.onGetItem(Endpoints.Meetings.getById(this.id)).then((result: any) => {
       result.time = this.normalizeTime(result.time);
       this.form.patchValue(result);
     });

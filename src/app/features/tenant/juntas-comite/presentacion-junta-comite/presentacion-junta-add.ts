@@ -10,6 +10,7 @@ import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-but
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputTime } from "src/app/core/components/inputs/web/custom-input-time-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -63,8 +64,7 @@ export class PresentacionJuntaAdd implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `PresentacionJuntaComite/Get/${this.id}`;
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
+    this.apiResponseS.onGetItem(Endpoints.PresentacionJuntaComite.getById(this.id)).then((result: any) => {
       result.fechaCorrespondiente = this.dateS.getDateFormat(
         result.fechaCorrespondiente,
       );
@@ -90,13 +90,13 @@ export class PresentacionJuntaAdd implements OnInit {
 
     if (!this.id) {
       this.apiResponseS
-        .onPost(`PresentacionJuntaComite/AddFecha`, payload)
+        .onPost(Endpoints.PresentacionJuntaComite.addFecha, payload)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
-        .onPut(`PresentacionJuntaComite/AddFecha/${this.id}`, payload)
+        .onPut(Endpoints.PresentacionJuntaComite.updateFecha(this.id), payload)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });

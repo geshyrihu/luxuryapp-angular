@@ -9,6 +9,7 @@ import {
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -144,7 +145,7 @@ export class WarehouseForm implements OnInit {
    * Carga los datos del almacón cuando se estó en modo edición.
    */
   onLoadData() {
-    this.apiResponseS.onGetItem(`almacen/${this.id}`).then((result: any) => {
+    this.apiResponseS.onGetItem(Endpoints.Almacen.getById(this.id)).then((result: any) => {
       // Llenamos los campos bósicos del formulario
       this.form.patchValue(result);
 

@@ -25,6 +25,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 @Component({
@@ -84,7 +85,7 @@ export class ListaPlantillaEvaluacion implements OnInit {
   }
 
   onDelete(id: any) {
-    this.apiResponseS.onDelete(`TemplateEvaluation/${id}`).then(() => {
+    this.apiResponseS.onDelete(Endpoints.TemplateEvaluation.delete(id)).then(() => {
       // Actualizamos el signal para eliminar el elemento de la lista
       this.dataSignal.update((currentData) =>
         currentData.filter((item) => item.id !== id),

@@ -8,6 +8,7 @@ import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-but
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import {
@@ -56,7 +57,7 @@ export default class ModalDiasNoHabiles implements OnInit {
   async loadDias(periodoId: string): Promise<void> {
     this.loading.set(true);
     const result = await this.apiResponseS.onGetList<DiasNoHabilesDTO[]>(
-      `hr/nomina/periodos/${periodoId}/dias-no-habiles`,
+      Endpoints.HR.Nomina.Periodos.diasNoHabiles(periodoId),
     );
     this.dias.set((result as any) ?? []);
     this.loading.set(false);
@@ -67,7 +68,7 @@ export default class ModalDiasNoHabiles implements OnInit {
     const result = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: `hr/nomina/periodos/${periodoId}/dias-no-habiles`,
+      endpoint: Endpoints.HR.Nomina.Periodos.diasNoHabiles(periodoId),
       method: "POST",
       submitting: this.submitting,
       closeOnSuccess: false,
@@ -86,7 +87,7 @@ export default class ModalDiasNoHabiles implements OnInit {
   async onDelete(diaId: string): Promise<void> {
     const periodoId = this.periodoId();
     const result = await this.apiResponseS.onDelete(
-      `hr/nomina/periodos/${periodoId}/dias-no-habiles/${diaId}`,
+      Endpoints.HR.Nomina.Periodos.deleteDiaNoHabil(periodoId, diaId),
     );
     if (result) await this.loadDias(periodoId);
   }

@@ -22,6 +22,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -69,7 +70,7 @@ export class AspelCustomerEmpresaList implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(`aspel-customer-empresa`)
+      .onGetList(Endpoints.AspelCustomerEmpresa.getAll)
       .then((res: any) => this.dataSignal.set(res));
   }
 
@@ -90,7 +91,7 @@ export class AspelCustomerEmpresaList implements OnInit {
 
   onDelete(id: string) {
     this.apiResponseS
-      .onDelete(`aspel-customer-empresa/${id}`)
+      .onDelete(Endpoints.AspelCustomerEmpresa.delete(id))
       .then((res: any) => {
         if (res) this.onLoadData();
       });

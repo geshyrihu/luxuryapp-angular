@@ -10,6 +10,7 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -95,7 +96,7 @@ export class BitacoraMantenimiento {
   }
 
   onDelete(item: any) {
-    this.apiResponseS.onDelete(`BitacoraMantenimiento/${item.id}`).then(() => {
+    this.apiResponseS.onDelete(Endpoints.BitacoraMantenimiento.delete(item.id)).then(() => {
       this.dataSignal.update((data) => data.filter((d) => d.id !== item.id));
     });
   }

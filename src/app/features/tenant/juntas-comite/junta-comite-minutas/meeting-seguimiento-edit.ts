@@ -11,6 +11,7 @@ import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-but
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -66,8 +67,7 @@ export class MeetingSeguimientoEdit implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `MeetingDertailsSeguimiento/${this.id}`;
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
+    this.apiResponseS.onGetItem(Endpoints.MeetingDetailsTracking.getById(this.id)).then((result: any) => {
       result.fecha = this.dateS.getDateFormat(result.fecha);
       this.form.patchValue(result);
     });
@@ -86,13 +86,13 @@ export class MeetingSeguimientoEdit implements OnInit {
 
     if (!this.id) {
       this.apiResponseS
-        .onPost(`MeetingDertailsSeguimiento`, payload)
+        .onPost(Endpoints.MeetingDetailsTracking.base, payload)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
     } else {
       this.apiResponseS
-        .onPut(`MeetingDertailsSeguimiento/${this.id}`, payload)
+        .onPut(Endpoints.MeetingDetailsTracking.update(this.id), payload)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });

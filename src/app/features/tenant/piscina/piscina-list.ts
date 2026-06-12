@@ -17,6 +17,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -82,7 +83,7 @@ export class PiscinaList {
   }
 
   onDelete(id: any) {
-    this.apiResponseS.onDelete(`piscina/${id}`).then((result: boolean) => {
+    this.apiResponseS.onDelete(Endpoints.Piscina.delete(id)).then((result: boolean) => {
       if (result)
         this.dataSignal.update((data) => data.filter((item) => item.id !== id));
     });

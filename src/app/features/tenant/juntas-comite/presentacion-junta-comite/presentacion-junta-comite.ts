@@ -21,6 +21,7 @@ import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-vi
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -90,9 +91,8 @@ export class PresentacionJuntaComite {
   }
 
   onLoadData(): void {
-    const urlApi = `PresentacionJuntaComite/list/${this.customerIdS.customerId()}`;
     this.apiResponseS
-      .onGetList(urlApi)
+      .onGetList(Endpoints.PresentacionJuntaComite.list(this.customerIdS.customerId()))
       .then((result: any) => this.dataSignal.set(result));
   }
 
@@ -136,22 +136,21 @@ export class PresentacionJuntaComite {
 
   // Eliminar pdf
   onDeleteFile(id: any, area: string) {
-    const urlApi = `PresentacionJuntaComite/${id}/${area}`;
-    this.apiResponseS.onDelete(urlApi).then((result: boolean) => {
+    this.apiResponseS.onDelete(Endpoints.PresentacionJuntaComite.deleteFile(id, area)).then((result: boolean) => {
       if (result) this.onLoadData();
     });
   }
   // Eliminar registro completo
   onDeleteItem(id: any) {
-    const urlApi = `PresentacionJuntaComite/${id}`;
-    this.apiResponseS.onDelete(urlApi).then((result: boolean) => {
+    this.apiResponseS.onDelete(Endpoints.PresentacionJuntaComite.delete(id)).then((result: boolean) => {
       if (result) this.onLoadData();
     });
   }
 
   onValidarPresentacion(id: any) {
-    const urlApi = `PresentacionJuntaComite/AutorizarPresentacion/${id}/${this.authS.applicationUserId}`;
-    this.apiResponseS.onPost(urlApi).then((result: boolean) => {
+    this.apiResponseS.onPost(
+      Endpoints.PresentacionJuntaComite.authorize(id, this.authS.applicationUserId),
+    ).then((result: boolean) => {
       if (result) {
         this.enviarMailPresentacionComite(id);
         this.onLoadData();
@@ -160,8 +159,9 @@ export class PresentacionJuntaComite {
   }
 
   onOnlyValidate(id: any) {
-    const urlApi = `PresentacionJuntaComite/AutorizarPresentacion/${id}/${this.authS.applicationUserId}`;
-    this.apiResponseS.onPost(urlApi).then((result: boolean) => {
+    this.apiResponseS.onPost(
+      Endpoints.PresentacionJuntaComite.authorize(id, this.authS.applicationUserId),
+    ).then((result: boolean) => {
       if (result) {
         this.onLoadData();
       }
@@ -177,8 +177,7 @@ export class PresentacionJuntaComite {
   }
 
   enviarMailPresentacionComite(idJunta: number) {
-    const urlApi = `SendEmail/PresentacionFinalComite/${idJunta}`;
-    this.apiResponseS.onPost(urlApi).then(() => {
+    this.apiResponseS.onPost(Endpoints.SendEmail.presentacionFinalComite(idJunta)).then(() => {
       this.onLoadData();
     });
   }

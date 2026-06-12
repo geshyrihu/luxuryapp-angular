@@ -6,6 +6,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-invited-form",
@@ -40,11 +41,10 @@ export class InvitedForm implements OnInit {
   }
 
   async onSubmit() {
-    const urlApi = `MeetingInvitado/AgregarParticipantesInvitado/${this.meetingId()}/${this.invitado.value}`;
     const result = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: urlApi,
+      endpoint: Endpoints.MeetingInvitado.addParticipant(this.meetingId(), this.invitado.value),
       method: "POST",
       submitting: this.submitting,
       closeOnSuccess: false,
@@ -58,14 +58,15 @@ export class InvitedForm implements OnInit {
   }
 
   onDelete(idParticipant: number): void {
-    this.apiResponseS.onDelete(`MeetingInvitado/${idParticipant}`).then(() => {
+    this.apiResponseS.onDelete(Endpoints.MeetingInvitado.delete(idParticipant)).then(() => {
       this.onLoadData();
     });
   }
 
   onLoadData() {
-    const urlApi = `MeetingInvitado/ParticipantesInvitado/${this.meetingId()}`;
-    this.apiResponseS.onGetList(urlApi).then((result: any) => {
+    this.apiResponseS.onGetList(
+      Endpoints.MeetingInvitado.participants(this.meetingId()),
+    ).then((result: any) => {
       this.listaInvitados.set(result);
     });
   }

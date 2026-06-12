@@ -11,6 +11,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -67,9 +68,9 @@ export default class PeriodosNomina {
 
   async onLoadData(customerId: string, anio: number): Promise<void> {
     this.loading.set(true);
-    await this.apiResponseS.onPost(`hr/nomina/periodos/auto-crear?customerId=${customerId}`, {});
+    await this.apiResponseS.onPost(Endpoints.HR.Nomina.Periodos.autoCrear(customerId), {});
     const resp = await this.apiResponseS.onGetList<PeriodoNominaDTO[]>(
-      `hr/nomina/periodos?customerId=${customerId}&anio=${anio}`,
+      Endpoints.HR.Nomina.Periodos.byCustomerAndYear(customerId, anio),
     );
     this.data.set((resp as any) ?? []);
     this.loading.set(false);
@@ -108,7 +109,7 @@ export default class PeriodosNomina {
 
   onDelete(item: PeriodoNominaDTO): void {
     this.apiResponseS
-      .onDelete(`hr/nomina/periodos/${item.id}`)
+      .onDelete(Endpoints.HR.Nomina.Periodos.delete(item.id))
       .then((result) => {
         if (result) this.onLoadData(this.customerIdS.customerId(), this.anioFiltro());
       });

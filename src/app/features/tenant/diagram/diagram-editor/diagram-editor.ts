@@ -4,6 +4,7 @@ import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MessageService } from "primeng/api";
 import { ToastModule } from "primeng/toast";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
 
@@ -117,7 +118,7 @@ export class DiagramEditor implements OnInit, OnDestroy {
       content: xml,
     };
 
-    this.apiResponseS.onPut(`DiagramDraw/${this.id}`, body).then(() => {
+    this.apiResponseS.onPut(Endpoints.DiagramDraw.update(this.id), body).then(() => {
       this.messageS.add({
         severity: "success",
         summary: "Guardado",

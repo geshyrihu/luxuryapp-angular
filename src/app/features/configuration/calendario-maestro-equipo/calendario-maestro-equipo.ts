@@ -10,6 +10,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -46,14 +47,14 @@ export class CalendarioMaestroEquipo implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList("CalendarioMaestroEquipo")
+      .onGetList(Endpoints.CalendarioMaestroEquipo.base)
       .then((result: any) => {
         this.dataSignal.set(result);
       });
   }
   onDelete(id: any) {
     this.apiResponseS
-      .onDelete(`CalendarioMaestroEquipo/${id}`)
+      .onDelete(Endpoints.CalendarioMaestroEquipo.delete(id))
       .then((result: boolean) => {
         if (result)
           this.dataSignal.update((currentData) =>

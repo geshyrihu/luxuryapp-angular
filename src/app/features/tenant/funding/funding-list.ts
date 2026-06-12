@@ -14,6 +14,7 @@ import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -74,7 +75,7 @@ export class FundingList {
   }
 
   onDelete(id: any): void {
-    this.apiResponseS.onDelete(`funding/${id}`).then(() => {
+    this.apiResponseS.onDelete(Endpoints.Funding.delete(id)).then(() => {
       this.dataSignal.update((data) => data.filter((item) => item.id !== id));
     });
   }

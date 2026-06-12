@@ -14,6 +14,7 @@ import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/cust
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -92,7 +93,7 @@ export class InventarioIluminacionForm implements OnInit {
       this.apiResponseS.onGetList(
         `Machineries/GetAutocompeteInv/${this.customerIdS.customerId()}`,
       ),
-      this.apiResponseS.onGetList(`Productos/GetAutoCompleteSelectItem/`),
+      this.apiResponseS.onGetList(Endpoints.Products.autoComplete),
     ]);
 
     this.cb_machinery.set(machinery as ISelectItem[]);

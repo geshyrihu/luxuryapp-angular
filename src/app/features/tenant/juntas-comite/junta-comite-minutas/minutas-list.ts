@@ -26,6 +26,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { IMeetingIndex } from "src/app/core/interfaces/meeting-index.interface";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -126,8 +127,9 @@ export class MinutasList {
 
   onLoadData(tipoJuntaEnum: number): void {
     this.tipoJunta = tipoJuntaEnum;
-    const urlApi = `Meetings/list/${this.customerIdS.customerId()}/${tipoJuntaEnum}`;
-    this.apiResponseS.onGetList(urlApi).then((result: IMeetingIndex[]) => {
+    this.apiResponseS.onGetList(
+      Endpoints.Meetings.list(this.customerIdS.customerId(), tipoJuntaEnum),
+    ).then((result: IMeetingIndex[]) => {
       this.dataSignal.set(result);
     });
   }
@@ -137,8 +139,10 @@ export class MinutasList {
    * @param meetingId El ID de la minuta.
    */
   exportToExcel(meetingId: any): void {
-    const urlApi = `MeetingDertailsSeguimiento/ExportSummaryToExcel/${meetingId}`;
-    this.apiResponseS.exportToExcel(urlApi, "Pendientes Minuta");
+    this.apiResponseS.exportToExcel(
+      Endpoints.MeetingDetailsTracking.exportSummaryToExcel(meetingId),
+      "Pendientes Minuta",
+    );
   }
 
   /**
@@ -146,7 +150,7 @@ export class MinutasList {
    * @param id El ID de la minuta a eliminar.
    */
   onDelete(id: string): void {
-    this.apiResponseS.onDelete(`Meetings/${id}`).then((result: boolean) => {
+    this.apiResponseS.onDelete(Endpoints.Meetings.delete(id)).then((result: boolean) => {
       if (result) {
         // Optimización: Eliminar el item del array local en lugar de recargar todo.
         this.dataSignal.update((data) =>
@@ -161,8 +165,7 @@ export class MinutasList {
    * @param meetingId El ID de la minuta.
    */
   onSendEmailMeeting(meetingId: any): void {
-    const urlApi = `sendemail/meeting/${meetingId}`;
-    this.apiResponseS.onPost(urlApi).then(() => {});
+    this.apiResponseS.onPost(Endpoints.SendEmail.meeting(meetingId)).then(() => {});
   }
 
   /**
@@ -250,7 +253,7 @@ export class MinutasList {
       "Espere un momento por favor...",
     );
     this.apiResponseS
-      .onGetList(`Meetings/MeetingReportPdf/${meetingId}`)
+      .onGetList(Endpoints.Meetings.reportPdf(meetingId))
       .then(async (meetingData: any) => {
         if (!meetingData) {
           this.customToastS.showError(
@@ -289,10 +292,14 @@ export class MinutasList {
    * @param eAreaMinutasDetalles El identificador numérico del área.
    */
   onSendEmail(id: any, eAreaMinutasDetalles: number): void {
-    const urlApi = `Meetings/SendEmailResponsible/${id}/${this.customerIdS.customerId()}/${eAreaMinutasDetalles}/${
-      this.authS.infoUserAuth.applicationUserId
-    }`;
-    this.apiResponseS.onPost(urlApi).then(() => {});
+    this.apiResponseS.onPost(
+      Endpoints.Meetings.sendEmailResponsible(
+        id,
+        this.customerIdS.customerId(),
+        eAreaMinutasDetalles,
+        this.authS.infoUserAuth.applicationUserId,
+      ),
+    ).then(() => {});
   }
 
   /**
@@ -320,7 +327,7 @@ export class MinutasList {
    * @param id El ID del seguimiento a eliminar.
    */
   onDeleteSeguimiento(id: any): void {
-    this.apiResponseS.onDelete(`MeetingDertailsSeguimiento/${id}`).then(() => {
+    this.apiResponseS.onDelete(Endpoints.MeetingDetailsTracking.delete(id)).then(() => {
       // Optimización: Eliminar el seguimiento del array local.
       this.dataSignal.update((data) => {
         data.forEach((meeting) => {
@@ -344,7 +351,7 @@ export class MinutasList {
    * @param id El ID del detalle a eliminar.
    */
   onDeleteMeetingDetail(id: any): void {
-    this.apiResponseS.onDelete(`MeetingsDetails/${id}`).then(() => {
+    this.apiResponseS.onDelete(Endpoints.MeetingsDetails.delete(id)).then(() => {
       // Optimización: Eliminar el detalle del array local.
       this.dataSignal.update((data) => {
         data.forEach((meeting: any) => {

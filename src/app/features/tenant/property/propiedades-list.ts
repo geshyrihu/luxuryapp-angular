@@ -20,6 +20,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { IProperty } from "src/app/core/interfaces/property.interface";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -76,7 +77,7 @@ export class PropiedadesList {
   }
 
   onDelete(id: any) {
-    return this.apiResponseS.onDelete(`Property/${id}`).then((result: boolean) => {
+    return this.apiResponseS.onDelete(Endpoints.Properties.delete(id)).then((result: boolean) => {
       if (result)
         this.dataSignal.update((currentData) =>
           currentData.filter((item) => item.id !== id),

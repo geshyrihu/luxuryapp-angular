@@ -25,6 +25,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 @Component({
@@ -87,7 +88,7 @@ export class GastoFijoServicios implements OnInit {
   }
 
   deleteProductoAgregado(id: any) {
-    this.apiResponseS.onDelete(`CatalogoGastosFijosDetalles/${id}`).then(() => {
+    this.apiResponseS.onDelete(Endpoints.CatalogoGastosFijosDetalles.delete(id)).then(() => {
       this.onLoadProductsAgregados();
     });
   }
@@ -109,7 +110,7 @@ export class GastoFijoServicios implements OnInit {
 
     item.catalogoGastosFijosId = this.catalogoGastosFijosId;
 
-    this.apiResponseS.onPost(`CatalogoGastosFijosDetalles/`, item).then(() => {
+    this.apiResponseS.onPost(Endpoints.CatalogoGastosFijosDetalles.base, item).then(() => {
       this.mensajeError = false;
       this.onLoadProducts();
       this.onLoadProductsAgregados();

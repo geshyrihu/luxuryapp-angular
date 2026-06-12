@@ -4,6 +4,7 @@ import { FormHelper } from "src/app/core/helpers/form-helper";
 import { SelectModule } from "primeng/select";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 @Component({
@@ -41,20 +42,18 @@ export class ComiteForm implements OnInit {
   }
 
   onLoadCB() {
-    const urlApi = `GetListComiteMinuta/${this.customerIdS.customerId()}/${
-      this.meetingId()
-    }`;
-    this.apiResponseS.onGetSelectItem(urlApi).then((result: any) => {
+    this.apiResponseS.onGetSelectItem(
+      Endpoints.MeetingComite.listCandidates(this.customerIdS.customerId(), this.meetingId()),
+    ).then((result: any) => {
       this.cb_ParticipantComite.set(result);
     });
   }
 
   async onSubmit() {
-    const urlApi = `MeetingComite/AgregarParticipantesComite/${this.meetingId()}/${this.comiteparticipante.value}`;
     const result = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: urlApi,
+      endpoint: Endpoints.MeetingComite.addParticipant(this.meetingId(), this.comiteparticipante.value),
       method: "POST",
       submitting: this.submitting,
       closeOnSuccess: false,
@@ -69,15 +68,16 @@ export class ComiteForm implements OnInit {
   }
 
   onDelete(idParticipant: number): void {
-    this.apiResponseS.onDelete(`MeetingComite/${idParticipant}`).then(() => {
+    this.apiResponseS.onDelete(Endpoints.MeetingComite.delete(idParticipant)).then(() => {
       this.onLoadData();
       this.onLoadCB();
     });
   }
 
   onLoadData() {
-    const urlApi = `MeetingComite/ParticipantesComite/${this.meetingId()}`;
-    this.apiResponseS.onGetList(urlApi).then((result: any) => {
+    this.apiResponseS.onGetList(
+      Endpoints.MeetingComite.participants(this.meetingId()),
+    ).then((result: any) => {
       this.listaParticipantesComite.set(result);
     });
   }

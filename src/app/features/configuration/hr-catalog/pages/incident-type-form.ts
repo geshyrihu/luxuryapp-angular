@@ -93,7 +93,7 @@ export class IncidentTypeForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiS,
-      endpoint: "hr/incident-types",
+      endpoint: Endpoints.Settings.incidentTypes,
       id: this.id || null,
       ref: this.ref,
       submitting: this.submitting,

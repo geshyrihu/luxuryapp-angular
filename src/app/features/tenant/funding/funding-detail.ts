@@ -25,6 +25,7 @@ import { CustomButton } from "src/app/core/components/buttons/web/custom-button"
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { PdfViewerModal } from "src/app/core/components/pdf-viewer-modal/pdf-viewer-modal";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -563,7 +564,7 @@ export class FundingDetail {
   }
 
   onDeleteOrder(id: any) {
-    this.apiResponseS.onDelete(`funding/detail/${id}`).then(() => {
+    this.apiResponseS.onDelete(Endpoints.Funding.deleteDetail(id)).then(() => {
       this.onLoadData(this.customerIdS.customerId());
     });
   }

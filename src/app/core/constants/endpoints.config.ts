@@ -3,6 +3,12 @@
  */
 export const EndpointsConfig = {
 
+  AccesoCustomers: {
+    addToUser: (applicationUserId: string) =>
+      `AccesoCustomers/AddCustomerAccesoToUser/${applicationUserId}`,
+    getByUser: (applicationUserId: string) =>
+      `AccesoCustomers/GetCustomers/${applicationUserId}`,
+  },
   AccessHistory: {
     byCustomerAndRange: (
       customerId: string,
@@ -45,6 +51,15 @@ export const EndpointsConfig = {
     toBlockAccount: (id: string) => `application-users/ToBlockAccount/${id}`,
     toUnlockAccount: (id: string) => `application-users/ToUnlockAccount/${id}`,
     updateAccount: (id: string) => `application-users/UpdateAccount/${id}`,
+  },
+  AppImplementationTracking: {
+    triggerEmployeeValidation:
+      "appimplementationtracking/trigger-employee-validation",
+  },
+  AspelCustomerEmpresa: {
+    base: "aspel-customer-empresa",
+    delete: (id: string | number) => `aspel-customer-empresa/${id}`,
+    getAll: "aspel-customer-empresa",
   },
   Auth: {
     sendNewPasswordForEmail: (id: string) => `Auth/SendNewPasswordForEmail/${id}`,
@@ -92,8 +107,10 @@ export const EndpointsConfig = {
     update: (id: string) => `customers/${id}`,
   },
   EmailData: {
+    base: "EmailData",
     delete: (id: string) => `emaildata/${id}`,
     getAll: "EmailData/List",
+    getById: (id: string) => `EmailData/${id}`,
     sendTestEmail: (id: string) => `SendEmail/TestEmail/${id}`,
   },
   VaultSecrets: {
@@ -125,6 +142,10 @@ export const EndpointsConfig = {
     statusMaintenance: "EStatusMaintenance",
     typeDocument: "ETypeDocument",
     typeMaintance: "ETypeMaintance",
+  },
+  JuntaMensualSessionBackfill: {
+    apply: "JuntaMensualSessionBackfill/apply",
+    preview: "JuntaMensualSessionBackfill/preview",
   },
   Logs: {
     deleteAll: "Logs/all",
@@ -175,6 +196,7 @@ export const EndpointsConfig = {
     update: (id: string | number) => `MetodoPago/${id}`,
   },
   Providers: {
+    delete: (id: string) => `providers/${id}`,
     getByIdAndCustomer: (id: string | number, customerId: string) =>
       `providers/${id}/${customerId}`,
   },
@@ -190,6 +212,7 @@ export const EndpointsConfig = {
     customersActive: "customers-active",
     customersActiveNameShort: "CustomersActiveNameShort",
     employeesByCustomer: (customerId: string) => `employee/${customerId}`,
+    employeesByUserId: (userId: string) => `employee-by-user-id/${userId}`,
     machineryActiveByCustomer: (customerId: string) =>
       `machineries-active/${customerId}`,
     measurementUnits: "getMeasurementUnits",
@@ -228,6 +251,15 @@ export const EndpointsConfig = {
     getAll: "UnidadMedida",
     getById: (id: string | number) => `UnidadMedida/${id}`,
     update: (id: string | number) => `UnidadMedida/${id}`,
+  },
+  UpdateDataBase: {
+    backfillAgendaEvents:
+      "UpdateDataBase/backfill-agenda-events-from-meetings",
+    backfillHistoricalMeetings:
+      "UpdateDataBase/backfill-historical-meeting-times",
+    importAsambleaChecklist:
+      "UpdateDataBase/import-asamblea-checklist-catalog",
+    resyncGoogleCalendar: "UpdateDataBase/resync-google-calendar-event-times",
   },
   UserActivityHistory: {
     base: "UserActivityHistory",

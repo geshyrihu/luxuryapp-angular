@@ -3,6 +3,7 @@ import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { IMeetingIndex } from "src/app/core/interfaces/meeting-index.interface";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import {
@@ -40,7 +41,7 @@ export class MeetingManagement implements OnInit {
 
   onLoadDetails(): void {
     this.apiResponseS
-      .onGetItem<IMeetingIndex>(`Meetings/GetDetails/${this.meetingId}`)
+      .onGetItem<IMeetingIndex>(Endpoints.Meetings.getDetails(this.meetingId))
       .then((result) => {
         this.meetingData.set(result);
       });
@@ -80,14 +81,14 @@ export class MeetingManagement implements OnInit {
   }
 
   onDeleteMeetingDetail(id: any): void {
-    this.apiResponseS.onDelete(`MeetingsDetails/${id}`).then((result) => {
+    this.apiResponseS.onDelete(Endpoints.MeetingsDetails.delete(id)).then((result) => {
       if (result) this.onLoadDetails();
     });
   }
 
   onDeleteSeguimiento(id: any): void {
     this.apiResponseS
-      .onDelete(`MeetingDertailsSeguimiento/${id}`)
+      .onDelete(Endpoints.MeetingDetailsTracking.delete(id))
       .then((result) => {
         if (result) this.onLoadDetails();
       });
@@ -96,7 +97,8 @@ export class MeetingManagement implements OnInit {
   onSendEmail(area: number): void {
     // Lógica de envío de email (reutilizando la del componente anterior)
     const customerId = this.meetingData()?.customerId;
-    const urlApi = `Meetings/SendEmailResponsible/${this.meetingId}/${customerId}/${area}/0`; // ID de usuario dummy o real
-    this.apiResponseS.onPost(urlApi).then(() => {});
+    this.apiResponseS.onPost(
+      Endpoints.Meetings.sendEmailResponsible(this.meetingId, customerId, area, "0"),
+    ).then(() => {});
   }
 }

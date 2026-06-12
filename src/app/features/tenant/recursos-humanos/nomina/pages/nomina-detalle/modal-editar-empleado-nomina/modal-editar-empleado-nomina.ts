@@ -5,6 +5,7 @@ import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-but
 import { CustomInputDecimal } from "src/app/core/components/inputs/web/custom-input-decimal-signal";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import {
@@ -78,7 +79,7 @@ export default class ModalEditarEmpleadoNomina implements OnInit {
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: `hr/nomina/${this.nominaId()}/detalles/${this.detalleId()}`,
+      endpoint: Endpoints.HR.Nomina.Encabezado.updateDetalle(this.nominaId(), this.detalleId()),
       method: "PUT",
       ref: this.ref,
       submitting: this.submitting,

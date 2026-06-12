@@ -45,6 +45,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { CurrencyMexicoPipe } from "src/app/core/pipes/currencyMexico.pipe";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -392,7 +393,7 @@ ${this.htmlPrintS.getStandardCss()}
   }
 
   async onDelete(id: any) {
-    await this.apiResponseS.onDelete(`Machineries/${id}`);
+    await this.apiResponseS.onDelete(Endpoints.Machineries.delete(id));
     // Forzamos la recarga para asegurar consistencia con la BD.
     this.onLoadData(
       this.customerIdS.customerId(),
@@ -492,7 +493,7 @@ ${this.htmlPrintS.getStandardCss()}
   }
 
   async onDeleteOrder(id: any) {
-    await this.apiResponseS.onDelete(`maintenancecalendars/${id}`);
+    await this.apiResponseS.onDelete(Endpoints.MaintenanceCalendars.delete(id));
     // Recarga usando los valores actuales de TODOS los signals relevantes.
     this.onLoadData(
       this.customerIdS.customerId(),
@@ -548,7 +549,7 @@ ${this.htmlPrintS.getStandardCss()}
   }
 
   async onDeleteOrderFromDialog(orderId: any, machineryId: any) {
-    await this.apiResponseS.onDelete(`maintenancecalendars/${orderId}`);
+    await this.apiResponseS.onDelete(Endpoints.MaintenanceCalendars.delete(orderId));
     await this.refreshSelectedEquipo(machineryId);
   }
 }

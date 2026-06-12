@@ -14,6 +14,7 @@ import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/cust
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -107,7 +108,7 @@ export class PropiedadesForm implements OnInit {
     });
   }
   onLoadData() {
-    this.apiResponseS.onGetItem(`Property/${this.id}`).then((result: any) => {
+    this.apiResponseS.onGetItem(Endpoints.Properties.getById(this.id)).then((result: any) => {
       if (!result) return;
       this.isDelinquent = result.isDelinquent ?? false;
       this.delinquentSince = result.delinquentSince ?? null;

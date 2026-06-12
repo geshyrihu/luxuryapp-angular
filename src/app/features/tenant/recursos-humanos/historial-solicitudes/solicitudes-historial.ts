@@ -217,7 +217,7 @@ export class SolicitudesHistorial implements OnInit {
 
   loadEmployees(customerId: string) {
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>(`employee-by-user-id/${customerId}`)
+      .onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.employeesByUserId(customerId))
       .then((response) => {
         this.employees.set(response || []);
       });

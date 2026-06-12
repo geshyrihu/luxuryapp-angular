@@ -19,6 +19,7 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -204,7 +205,7 @@ export class WarehouseStockAdd implements OnInit {
     const success = await FormHelper.submitCrud({
       form: rowGroup,
       api: this.apiResponseS,
-      endpoint: `InventarioProducto`,
+      endpoint: Endpoints.InventarioProducto.create,
       method: "POST",
       submitting: this.submitting,
       closeOnSuccess: false,

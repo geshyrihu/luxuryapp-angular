@@ -14,6 +14,7 @@ import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { IEmailDataForm } from "src/app/core/interfaces/email-data-form.interface";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -74,7 +75,7 @@ export class EmailDataForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList<IEmailDataForm>(`EmailData/${this.id}`)
+      .onGetList<IEmailDataForm>(Endpoints.EmailData.getById(this.id))
       .then((result: any) => {
         if (result !== null) {
           this.form.patchValue(result);
@@ -87,7 +88,7 @@ export class EmailDataForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "EmailData",
+      endpoint: Endpoints.EmailData.base,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
@@ -96,9 +97,7 @@ export class EmailDataForm implements OnInit {
 
   TestEmail(): void {
     this.submitting.set(true);
-    const urlApi = `SendEmail/TestEmail/${this.id}`;
-
-    this.apiResponseS.onPost(urlApi, null).then((result: any) => {
+    this.apiResponseS.onPost(Endpoints.EmailData.sendTestEmail(this.id), null).then((result: any) => {
       this.testEmailMessage.set(result.message);
       this.submitting.set(false);
     });

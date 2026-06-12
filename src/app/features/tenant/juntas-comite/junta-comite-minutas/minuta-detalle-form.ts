@@ -19,6 +19,7 @@ import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/cust
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -111,8 +112,7 @@ export class MinutaDetalleForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `MeetingsDetails/${this.id()}`;
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
+    this.apiResponseS.onGetItem(Endpoints.MeetingsDetails.getById(this.id())).then((result: any) => {
       // Clean HTML from requestService if present
       let content = result.requestService || "";
       if (content) {
@@ -142,7 +142,7 @@ export class MinutaDetalleForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: "MeetingsDetails",
+      endpoint: Endpoints.MeetingsDetails.base,
       id: this.id(),
       ref: this.ref,
       submitting: this.submitting,

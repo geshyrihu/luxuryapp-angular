@@ -4,6 +4,7 @@ import { FormHelper } from "src/app/core/helpers/form-helper";
 import { SelectModule } from "primeng/select";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 @Component({
@@ -40,23 +41,18 @@ export class AdministrationFormList implements OnInit {
   }
 
   onLoadCB() {
-    const urlApi = `GetListAdministracionMinuta/${this.customerIdS.customerId()}/${
-      this.meetingId()
-    }`;
-    this.apiResponseS.onGetSelectItem(urlApi).then((result: any) => {
+    this.apiResponseS.onGetSelectItem(
+      Endpoints.MeetingAdministracion.listCandidates(this.customerIdS.customerId(), this.meetingId()),
+    ).then((result: any) => {
       this.cb_Administration.set(result);
     });
   }
 
   async onSubmit() {
-    const urlApi = `MeetingAdministracion/AgregarParticipantesAdministracion/${
-      this.meetingId()
-    }/${this.administrationparticipante.value}/${1}`;
-
     const result = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: urlApi,
+      endpoint: Endpoints.MeetingAdministracion.addParticipant(this.meetingId(), this.administrationparticipante.value),
       method: "POST",
       submitting: this.submitting,
       closeOnSuccess: false,
@@ -72,7 +68,7 @@ export class AdministrationFormList implements OnInit {
 
   onDelete(idParticipant: number): void {
     this.apiResponseS
-      .onDelete(`MeetingAdministracion/${idParticipant}`)
+      .onDelete(Endpoints.MeetingAdministracion.delete(idParticipant))
       .then(() => {
         this.onLoadData();
         this.onLoadCB();
@@ -80,8 +76,9 @@ export class AdministrationFormList implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = `MeetingAdministracion/ParticipantesAdministracion/${this.meetingId()}`;
-    this.apiResponseS.onGetList(urlApi).then((result: any) => {
+    this.apiResponseS.onGetList(
+      Endpoints.MeetingAdministracion.participants(this.meetingId()),
+    ).then((result: any) => {
       this.listaParticipantesAdministration.set(result);
     });
   }

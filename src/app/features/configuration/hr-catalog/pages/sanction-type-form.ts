@@ -91,7 +91,7 @@ export class SanctionTypeForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiS,
-      endpoint: "hr/sanction-types",
+      endpoint: Endpoints.Settings.sanctionTypes,
       id: this.id || null,
       ref: this.ref,
       submitting: this.submitting,

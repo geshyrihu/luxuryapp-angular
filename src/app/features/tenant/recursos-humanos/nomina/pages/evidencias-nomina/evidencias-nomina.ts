@@ -7,6 +7,7 @@ import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-but
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import {
@@ -68,7 +69,7 @@ export default class EvidenciasNomina {
 
   async loadNominas(customerId: string): Promise<void> {
     const result = await this.apiResponseS.onGetList<NominaEncabezadoDTO[]>(
-      `hr/nomina?customerId=${customerId}`,
+      Endpoints.HR.Nomina.Encabezado.getAll(customerId),
     );
     const options: ISelectItem[] = ((result as any) ?? []).map((n: any) => ({
       label: n.periodoDescripcion,
@@ -84,7 +85,7 @@ export default class EvidenciasNomina {
   async loadEvidencias(nominaId: string): Promise<void> {
     this.loading.set(true);
     const result = await this.apiResponseS.onGetList<EvidenciaNominaDTO[]>(
-      `hr/nomina/${nominaId}/evidencias`,
+      Endpoints.HR.Nomina.Evidencias.byNomina(nominaId),
     );
     this.evidencias.set((result as any) ?? []);
     this.loading.set(false);
@@ -117,7 +118,7 @@ export default class EvidenciasNomina {
 
     this.uploading.set(true);
     const result = await this.apiResponseS.onPost(
-      `hr/nomina/${nominaId}/evidencias`,
+      Endpoints.HR.Nomina.Evidencias.byNomina(nominaId),
       formData,
     );
     this.uploading.set(false);
@@ -130,7 +131,7 @@ export default class EvidenciasNomina {
 
   async onEliminar(id: string): Promise<void> {
     const result = await this.apiResponseS.onDelete(
-      `hr/nomina/evidencias/${id}`,
+      Endpoints.HR.Nomina.Evidencias.delete(id),
     );
     if (result) await this.loadEvidencias(this.nominaSeleccionada());
   }
