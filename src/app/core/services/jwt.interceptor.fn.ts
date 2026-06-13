@@ -10,6 +10,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, filter, switchMap, take } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ConsoleLoggerService } from './console-logger.service';
+import { StorageService } from './storage.service';
 import { UserTokenDTO } from '../interfaces/auth-user-token.dto';
 // State shared across requests (Singleton behavior)
 let isRefreshing = false;
@@ -18,6 +19,7 @@ const refreshTokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<
 export const jwtInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> => {
   const authService = inject(AuthService);
   const consoleLogger = inject(ConsoleLoggerService);
+  const storageService = inject(StorageService);
 
   // Si la ruta es para refrescar el token, la dejamos pasar sin modificar.
   if (req.url.includes('/Auth/Refresh')) {
@@ -41,6 +43,15 @@ export const jwtInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, nex
 
       if (token) {
         request = addToken(req, token);
+      }
+
+      // Condominio activo: el backend lo lee del header X-Customer-Id porque
+      // el cambio de condominio no reemite el token (el claim queda viejo).
+      const activeCustomerId = storageService.retrieve("customerId");
+      if (activeCustomerId) {
+        request = request.clone({
+          setHeaders: { "X-Customer-Id": activeCustomerId },
+        });
       }
 
       return next(request).pipe(

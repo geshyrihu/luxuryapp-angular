@@ -20,11 +20,11 @@ Solo `features/configuration/` y `features/vault/` han sido migrados de `feature
 |------|-------|--------|
 | `core/` (servicios, guards, pipes, directivas, componentes) | 201 | ✅ Funcionales (Vitest) |
 | `features/tenant/` (no migrados aún) | 113 | ✅ Funcionales (Vitest) |
-| `features/` (configuration, vault) | 0 | ⬜ Specs pendientes |
+| `features/` (configuration, vault) | 99 | ✅ Funcionales |
 | `layout/` | 26 | ✅ Funcionales |
 | `login/` | 4 | ✅ Funcionales |
 | `shared/` | 2 | ✅ Funcionales |
-| **Total** | **346** (~1585 tests) | |
+| **Total** | **445** (~1883 tests) | ✅ 0 fallos |
 
 ### Dependencia: migración de features
 
@@ -261,10 +261,10 @@ Los specs de `features/tenant/` NO deben copiarse a `features/` hasta que los fu
 ### 5.12 `PageTitleReport` ✅
 ### 5.13 `ReportHeader` ✅
 ### 5.14 `PrimeNgCustomCaption` ✅
-### 5.15 Botones web/mobile 🟡 (6/20+ completados)
-### 5.16 Inputs web/mobile *(pendiente: ~20+ componentes)*
-### 5.17 Charts *(pendiente: 5 componentes)*
-### 5.18 Calendarios, Mesanio, PdfViewerModal, etc. *(pendiente)*
+### 5.15 Botones web/mobile ✅ (12 web + 11 mobile = 23 completados)
+### 5.16 Inputs web/mobile ✅ (28 web + 14 mobile + 3 base = 45 completados)
+### 5.17 Charts ✅ (5 componentes completados)
+### 5.18 Calendarios, Mesanio, PdfViewerModal, etc. ✅
 
 ### 5.1 `AppIcon`
 
@@ -911,7 +911,7 @@ npx vitest --ui                         # UI interactiva (si está configurado)
 
 ## 14. Resumen Ejecutivo
 
-### Tests existentes (280 files, ~1585 tests)
+### Tests existentes (445 files, ~1883 tests)
 
 | Categoría | Specs | Prioridad | Framework | Estado |
 |-----------|-------|-----------|-----------|--------|
@@ -919,12 +919,13 @@ npx vitest --ui                         # UI interactiva (si está configurado)
 | Guards | 6 | P1 | Vitest | ✅ Funcional |
 | Pipes | 12 | P2 | Vitest | ✅ Funcional |
 | Directivas | 3 | P3 | Vitest | ✅ Funcional |
-| Core components | ~105 | P4 | Vitest | ✅ Funcional |
+| Core components | ~170 | P4 | Vitest | ✅ Funcional |
 | Login components | 4 | P5 | Vitest | ✅ Funcional |
 | Layout components | 26 | P6 | Vitest | ✅ Funcional |
 | Shared components | 2 | P7 | Vitest | ✅ Funcional |
 | Feature components (tenant/) | 113 | P8 | Vitest | ✅ Funcional (en tenant/) |
-| **Total** | **280** | | | **~1585 tests — 0 fallos** |
+| Feature components (configuration, vault) | 99 | P8 | Vitest | ✅ Funcional |
+| **Total** | **445** | | | **~1883 tests — 0 fallos** |
 
 ### Migración pendiente: features/tenant/ → features/
 
@@ -932,6 +933,8 @@ Cuando un feature sea migrado de `features/tenant/` a `features/`, sus spec file
 
 | Feature | Specs | Depende de migración de fuentes |
 |---------|-------|-------------------------------|
+| `configuration/` | 97 | ✅ Migrado (specs en features/) |
+| `vault/` | 2 | ✅ Migrado (specs en features/) |
 | `tasks/` | 28 | ⬜ Pendiente |
 | `supervision/` | 14 | ⬜ Pendiente |
 | `employees/` | 13 | ⬜ Pendiente |
@@ -954,6 +957,7 @@ Cuando un feature sea migrado de `features/tenant/` a `features/`, sus spec file
 | **Fase 2** | P2 (pipes) + P3 (directivas) + P4 (core components) | ✅ Completado en core/ |
 | **Fase 3** | P5 (login) + P6 (layout) + P7 (shared) | ✅ Completado |
 | **Fase 4** | P8 (features: tasks, supervision, employees, dashboard, etc.) | ✅ Specs existen en tenant/ |
+| **Fase 5** | P8 (features migrados: configuration, vault) | ✅ Completado (99 specs en features/) |
 | **Migración** | Mover specs de tenant/ → features/ junto con fuentes | ⬜ Pendiente de migración de features |
 
 ---

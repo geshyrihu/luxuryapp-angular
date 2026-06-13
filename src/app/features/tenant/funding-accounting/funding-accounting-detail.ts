@@ -1,4 +1,4 @@
-﻿import { CommonModule, DecimalPipe, UpperCasePipe } from "@angular/common";
+import { CommonModule, DecimalPipe, UpperCasePipe } from "@angular/common";
 import { Component, DestroyRef, effect, inject, signal } from "@angular/core";
 import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";

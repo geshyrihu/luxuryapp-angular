@@ -1,4 +1,4 @@
-﻿import { Component, computed, inject, signal } from "@angular/core";
+import { Component, computed, inject, signal } from "@angular/core";
 import {
   IonItem,
   IonItemDivider,

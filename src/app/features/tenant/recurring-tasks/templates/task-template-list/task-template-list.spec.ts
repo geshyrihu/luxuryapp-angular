@@ -136,6 +136,7 @@ describe('TaskTemplateList', () => {
 
   it('should not reload on delete when API returns false', async () => {
     mockApiResponseS.onDelete.mockResolvedValue(false);
+    await new Promise(resolve => setTimeout(resolve));
     mockApiResponseS.onGetList.mockClear();
 
     component.onDelete('tmpl-1');

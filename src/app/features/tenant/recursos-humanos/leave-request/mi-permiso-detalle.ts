@@ -1,4 +1,4 @@
-﻿import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TagModule } from "primeng/tag";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";

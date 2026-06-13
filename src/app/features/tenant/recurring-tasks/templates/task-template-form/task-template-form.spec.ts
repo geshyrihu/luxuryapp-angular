@@ -58,14 +58,19 @@ describe('TaskTemplateForm', () => {
     expect(component.form.controls.customerIds.value).toEqual([]);
   });
 
-  it('should load roles and customers on init', () => {
+  it('should load roles and customers on init', async () => {
     const fakeRoles = [{ value: 'r1', label: 'Admin' }];
     const fakeCustomers = [{ value: 'c1', label: 'Customer 1' }];
+
+    await new Promise(resolve => setTimeout(resolve));
     mockApiResponseS.onGetSelectItem
+      .mockReset()
       .mockResolvedValueOnce(fakeRoles)
-      .mockResolvedValueOnce(fakeCustomers);
+      .mockResolvedValueOnce(fakeCustomers)
+      .mockResolvedValue([]);
 
     component.ngOnInit();
+    await new Promise(resolve => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith('ApplicationRoles');
     expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith('customers-active');

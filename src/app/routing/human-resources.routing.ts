@@ -1,4 +1,4 @@
-﻿import { inject } from "@angular/core";
+import { inject } from "@angular/core";
 import { Routes } from "@angular/router";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { authGuard } from "src/app/core/guard/auth.guard";

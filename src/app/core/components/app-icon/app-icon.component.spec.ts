@@ -21,26 +21,26 @@ describe('AppIcon', () => {
   });
 
   it('should use default icon when no icon input provided', () => {
-    expect(component['resolvedIcon']).toBe('mdi:cog');
+    expect(component['resolvedIcon']()).toBe('mdi:cog');
   });
 
   it('should resolve iconify icon with colon prefix', () => {
-    component.icon = 'mdi:home';
-    expect(component['resolvedIcon']).toBe('mdi:home');
+    fixture.componentRef.setInput('icon', 'mdi:home');
+    expect(component['resolvedIcon']()).toBe('mdi:home');
   });
 
   it('should resolve prime icon format', () => {
-    component.icon = 'pi pi-user';
-    expect(component['resolvedIcon']).toContain(':');
+    fixture.componentRef.setInput('icon', 'pi pi-user');
+    expect(component['resolvedIcon']()).toContain(':');
   });
 
   it('should fallback to default icon for null value', () => {
-    component.icon = null;
-    expect(component['resolvedIcon']).toBe('mdi:cog');
+    fixture.componentRef.setInput('icon', null);
+    expect(component['resolvedIcon']()).toBe('mdi:cog');
   });
 
   it('should fallback to default icon for undefined value', () => {
-    component.icon = undefined;
-    expect(component['resolvedIcon']).toBe('mdi:cog');
+    fixture.componentRef.setInput('icon', undefined);
+    expect(component['resolvedIcon']()).toBe('mdi:cog');
   });
 });

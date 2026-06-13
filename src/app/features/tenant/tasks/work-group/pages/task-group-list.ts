@@ -1,4 +1,4 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonIcon } from "@ionic/angular/standalone";
 import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";

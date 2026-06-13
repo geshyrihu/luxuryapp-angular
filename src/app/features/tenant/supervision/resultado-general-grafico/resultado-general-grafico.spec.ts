@@ -75,12 +75,12 @@ describe('ResultadoGeneralGrafico', () => {
 
   it('ngOnInit should call onSetDataGraficos', () => {
     component.ngOnInit();
-    expect(component.graficoMinutas.length).toBeGreaterThan(0);
-    expect(component.graficoMttoPreventivos.length).toBeGreaterThan(0);
-    expect(component.graficosMantenimiento.length).toBeGreaterThan(0);
-    expect(component.graficoMinutasContable.length).toBeGreaterThan(0);
-    expect(component.graficoMinutasOperaciones.length).toBeGreaterThan(0);
-    expect(component.graficoMinutasLegal.length).toBeGreaterThan(0);
+    expect(component.graficoMinutas.totalItems).toBeGreaterThan(0);
+    expect(component.graficoMttoPreventivos.totalItems).toBeGreaterThan(0);
+    expect(component.graficosMantenimiento.totalItems).toBeGreaterThan(0);
+    expect(component.graficoMinutasContable.totalItems).toBeGreaterThan(0);
+    expect(component.graficoMinutasOperaciones.totalItems).toBeGreaterThan(0);
+    expect(component.graficoMinutasLegal.totalItems).toBeGreaterThan(0);
   });
 
   it('onSetDataGraficos should categorize data correctly', () => {

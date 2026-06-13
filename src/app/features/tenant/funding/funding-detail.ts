@@ -1,4 +1,4 @@
-﻿import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule, DecimalPipe, UpperCasePipe } from "@angular/common";
 import {
   Component,
@@ -69,7 +69,7 @@ const tipoGastoEmojis: { [key: number]: string } = {
   [ETipoGasto.TarjetaDebito]: "ðŸ’³",
   [ETipoGasto.Proyectos]: "ðŸ—ï¸",
   [ETipoGasto.Nomina]: "ðŸ‘¥",
-  [ETipoGasto.Impuestos]: "âš–ï¸",
+  [ETipoGasto.Impuestos]: "⚖️",
 };
 
 @Component({

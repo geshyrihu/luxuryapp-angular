@@ -60,14 +60,14 @@ describe('TaskFollowup', () => {
   });
 
   it('should have form with expected controls', () => {
-    expect(component.form.contains('id')).toBe(true);
+    expect(component.form.get('id')).not.toBeNull();
     expect(component.form.contains('ticketMessageId')).toBe(true);
     expect(component.form.contains('applicationUserId')).toBe(true);
     expect(component.form.contains('description')).toBe(true);
   });
 
   it('onCargaListaseguimientos should call api and set description', async () => {
-    const mockData = [{ id: '1', description: 'Follow-up 1' }];
+    const mockData = [{ id: '1', description: 'Follow-up 1', createdAt: '2024-01-15 10:00' }];
     mockApiResponseS.onGetList.mockResolvedValue(mockData);
 
     component.onCargaListaseguimientos();

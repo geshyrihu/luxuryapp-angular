@@ -23,6 +23,7 @@ const authServiceMock = {
   applicationUserId: 'test-user-id',
   infoUserAuth: { photoPath: 'profile.jpg' },
   customerAccess: [],
+  customerAccess$: of([]),
 };
 
 const customerIdServiceMock = {

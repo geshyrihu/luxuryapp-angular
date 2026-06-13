@@ -1,4 +1,4 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IonAvatar, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
@@ -89,13 +89,13 @@ export class EmployeeExternalList {
         ),
       )
       .then((result: any) => {
-        console.log("ðŸš€ ~ EmployeeExternalList ~ onLoadData ~ result:", result);
+        console.log("🚀 ~ EmployeeExternalList ~ onLoadData ~ result:", result);
         return this.dataSignal.set(result);
       });
   }
 
   onModalForm(data: any) {
-    console.log("ðŸš€ ~ EmployeeExternalList ~ onModalForm ~ data:", data);
+    console.log("🚀 ~ EmployeeExternalList ~ onModalForm ~ data:", data);
     this.dialogHandlerS
       .openDialog(
         EmployeeExternalForm,

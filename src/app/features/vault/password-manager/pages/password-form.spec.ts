@@ -3,6 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
+import { FlatpickrDefaults } from 'angularx-flatpickr';
 import { of } from 'rxjs';
 import { PasswordForm } from './password-form';
 
@@ -11,16 +12,20 @@ describe('PasswordForm', () => {
   let fixture: ComponentFixture<PasswordForm>;
 
   beforeEach(async () => {
+    TestBed.overrideComponent(PasswordForm, {
+      set: { template: '<div>Mock</div>', imports: [] },
+    });
+
     await TestBed.configureTestingModule({
       imports: [PasswordForm],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         { provide: MessageService, useValue: { add: vi.fn(), clear: vi.fn() } },
         { provide: DialogService, useValue: { open: vi.fn().mockReturnValue({ onClose: { subscribe: vi.fn() } }) } },
         { provide: DynamicDialogConfig, useValue: { data: {} } },
         { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
         { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
-        { provide: 'HttpClientWithoutInterceptors', useValue: {} },
+        { provide: FlatpickrDefaults, useValue: {} },
+        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
       ],
     }).compileComponents();
 

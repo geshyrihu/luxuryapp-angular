@@ -16,6 +16,7 @@ describe('CustomerConfig', () => {
       onGetList: vi.fn().mockResolvedValue([]),
       onGetItem: vi.fn().mockResolvedValue(null),
       onPost: vi.fn().mockResolvedValue(true),
+      validateForm: vi.fn().mockReturnValue(true),
     };
 
     TestBed.overrideComponent(CustomerConfig, {
@@ -46,11 +47,12 @@ describe('CustomerConfig', () => {
     expect(component.submitting()).toBe(false);
   });
 
-  it('should load customers on init', () => {
+  it('should load customers on init', async () => {
     const fakeCustomers = [{ value: 'c1', label: 'Customer 1' }];
     mockApiResponseS.onGetSelectItem.mockResolvedValue(fakeCustomers);
 
     component.ngOnInit();
+    await new Promise(resolve => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetSelectItem).toHaveBeenCalledWith(
       'customers-active',
@@ -58,7 +60,7 @@ describe('CustomerConfig', () => {
     expect(component.customers()).toEqual(fakeCustomers);
   });
 
-  it('should load templates and customer config when customer selected', () => {
+  it('should load templates and customer config when customer selected', async () => {
     const fakeTemplates = [{ id: 't1', name: 'Template 1' }];
     mockApiResponseS.onGetList.mockResolvedValue(fakeTemplates);
     mockApiResponseS.onGetItem.mockResolvedValue({
@@ -66,6 +68,7 @@ describe('CustomerConfig', () => {
     });
 
     component.selectedCustomerId.set('cust-123');
+    await new Promise(resolve => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
       'recurring-tasks/templates/list/true',
@@ -75,11 +78,12 @@ describe('CustomerConfig', () => {
     );
   });
 
-  it('should clear templates and items when customer deselected', () => {
+  it('should clear templates and items when customer deselected', async () => {
     component.templates.set([{ id: 't1' } as any]);
     component.selectedItems.set(new Map([['item-1', true]]));
 
     component.selectedCustomerId.set(null);
+    await new Promise(resolve => setTimeout(resolve));
 
     expect(component.templates()).toEqual([]);
     expect(component.selectedItems()).toEqual(new Map());

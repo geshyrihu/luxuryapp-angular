@@ -1,4 +1,4 @@
-﻿import { Routes } from "@angular/router"; // Trivial change to force re-evaluation
+import { Routes } from "@angular/router"; // Trivial change to force re-evaluation
 import { authGuard } from "src/app/core/guard/auth.guard";
 import { superUserGuard } from "src/app/core/guard/super-user.guard";
 import { EDocumentType } from "src/app/features/tenant/legal/models/document-type.enum";

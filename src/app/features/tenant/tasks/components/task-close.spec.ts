@@ -62,7 +62,7 @@ describe('TaskClose', () => {
   });
 
   it('should have form with expected controls', () => {
-    expect(component.form.contains('id')).toBe(true);
+    expect(component.form.get('id')).not.toBeNull();
     expect(component.form.contains('closedDate')).toBe(true);
     expect(component.form.contains('beforeWork')).toBe(true);
     expect(component.form.contains('afterWork')).toBe(true);

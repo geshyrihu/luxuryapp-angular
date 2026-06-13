@@ -5,6 +5,7 @@ import {
     BrowserDynamicTestingModule,
     platformBrowserDynamicTesting,
 } from '@angular/platform-browser-dynamic/testing';
+import { of } from 'rxjs';
 import { vi } from 'vitest';
 
 // ResizeObserver polyfill for chart.js compatibility in jsdom
@@ -24,6 +25,41 @@ if (typeof document !== 'undefined' && !('adoptedStyleSheets' in document)) {
     writable: true,
     configurable: true,
   });
+}
+
+// CSSStyleSheet.replaceSync override para @stencil/core en jsdom.
+// Stencil llama a replaceSync(cssText) con cssText que puede ser
+// undefined en el entorno de test, causando errores en @acemir/cssom.
+if (typeof CSSStyleSheet !== 'undefined') {
+  const origReplaceSync = CSSStyleSheet.prototype.replaceSync;
+  CSSStyleSheet.prototype.replaceSync = function (cssText: string): void {
+    if (typeof cssText !== 'string') return;
+    if (origReplaceSync) {
+      try { origReplaceSync.call(this, cssText); } catch { /* ignore */ }
+    }
+  };
+}
+
+// ng2-pdf-viewer: en su inicializacion de modulo intenta asignar
+// 'verbosity' a PDFJS (objeto no-extensible en test). Mockeamos
+// el modulo completo para evitar el side-effect al cargarse.
+vi.mock('ng2-pdf-viewer', () => ({
+  PdfViewerModule: { ngModule: class {} } as any,
+}));
+
+// Worker polyfill (heic2any requires Web Workers in jsdom)
+if (typeof globalThis.Worker === 'undefined') {
+  (globalThis as any).Worker = class WorkerMock {
+    url: string;
+    onmessage: ((this: Worker, ev: MessageEvent) => any) | null = null;
+    constructor(url: string | URL) { this.url = url.toString(); }
+    postMessage(msg: any) { /* no-op */ }
+    terminate() { /* no-op */ }
+    addEventListener() { /* no-op */ }
+    removeEventListener() { /* no-op */ }
+    dispatchEvent() { return false; }
+    onerror: any = null;
+  };
 }
 
 // Compatibility shim: alias 'jest' → 'vi' for existing specs
@@ -62,6 +98,21 @@ if (typeof document !== 'undefined' && !('adoptedStyleSheets' in document)) {
   objectContaining: (obj: any) => expect.objectContaining(obj),
   stringMatching: (pattern: RegExp | string) => expect.stringMatching(pattern),
 };
+
+// Mock compartido para HttpClientWithoutInterceptors.
+// Retorna un Observable real con estructura ApiResponseDTO exitosa
+// para que AuthService.initSilentLogin() pueda completar el flujo.
+// Se usa en ~75 spec files de features/configuration/ y vault/.
+(globalThis as any).__mockHttpClient = (() => {
+  const mockResponse = { success: true, data: { infoUserAuthDTO: { applicationUserId: '00000000-0000-0000-0000-000000000000' }, roles: [] }, message: '', errors: [] };
+  const obs = of(mockResponse);
+  return {
+    get: vi.fn(() => obs),
+    post: vi.fn(() => obs),
+    put: vi.fn(() => obs),
+    delete: vi.fn(() => obs),
+  };
+})();
 
 getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,

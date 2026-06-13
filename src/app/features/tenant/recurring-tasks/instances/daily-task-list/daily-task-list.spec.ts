@@ -61,11 +61,12 @@ describe('DailyTaskList', () => {
     expect(component.selectedDateControl.value).toBe('2026-06-09');
   });
 
-  it('should load tasks on init', () => {
+  it('should load tasks on init', async () => {
     const fakeTasks = [{ id: '1', title: 'Task 1' }];
     mockApiResponseS.onGetList.mockResolvedValue(fakeTasks);
 
     component.ngOnInit();
+    await new Promise(resolve => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith(
       'recurring-tasks/instances/my-daily-tasks?date=2026-06-09',

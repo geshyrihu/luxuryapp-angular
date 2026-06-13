@@ -1,4 +1,4 @@
-﻿import { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
+import { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
   FormBuilder,
@@ -51,7 +51,7 @@ export class MedidorLecturaForm implements OnInit {
   dateString: string = "";
   dateStringUltimoRegistro: string = "";
   seRegistroEsteDia: boolean = false;
-  seRegistroEsteDiaMensaje: string = "Ya se cargo el registro de este dÃ­a";
+  seRegistroEsteDiaMensaje: string = "Ya se cargo el registro de este día";
   id: string = "";
   ultimaLectura: number = 0;
   medidorId: string = "";
@@ -110,7 +110,7 @@ export class MedidorLecturaForm implements OnInit {
           this.form.controls.lectura.setErrors({ lecturaMenor: true });
           this.laLecturaEsMenor = true;
         } else {
-          // Si tenÃ³a error lecturaMenor, quitarlo.
+          // Si tenóa error lecturaMenor, quitarlo.
           // Nota: setErrors(null) quita todos. Si hay required, se valida solo.
           const errors = this.form.controls.lectura.errors;
           if (errors && errors["lecturaMenor"]) {

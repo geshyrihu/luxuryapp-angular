@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   effect,
@@ -277,26 +277,26 @@ export class UnifiedPendingDashboard {
   getModuleEmoji(module: string): string {
     switch (module.toLowerCase()) {
       case "tickets":
-        return "ðŸŽ«";
+        return "🎫";
       case "minutas":
-        return "ðŸ“";
+        return "📝";
       case "mantenimiento":
-        return "ðŸ”§";
+        return "🔧";
       case "legal":
-        return "âš–ï¸";
+        return "⚖️";
       case "polizas":
-        return "ðŸ“„";
+        return "📄";
       // Recruitment
       case "bajas":
-        return "ðŸ“‰";
+        return "📉";
       case "altas":
-        return "ðŸš€";
+        return "🚀";
       case "vacantes":
-        return "ðŸª‘";
+        return "🪑";
       case "modificaciones":
-        return "ðŸ’°";
+        return "💰";
       default:
-        return "ðŸ“Œ";
+        return "📌";
     }
   }
 
@@ -489,7 +489,7 @@ export class UnifiedPendingDashboard {
 
       // 3. Mostrar resultado
       Swal.fire({
-        title: "ðŸ“„ Informe Ejecutivo Diario",
+        title: "📄 Informe Ejecutivo Diario",
         html: htmlResult,
         icon: "info",
         width: "100%",

@@ -1,4 +1,4 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { TagModule } from "primeng/tag";

@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { FlatpickrDefaults } from 'angularx-flatpickr';
 import { CustomerDataCompanyForm } from './customer-data-company-form';
 
 describe('CustomerDataCompanyForm', () => {
@@ -20,13 +21,13 @@ describe('CustomerDataCompanyForm', () => {
         { provide: DynamicDialogConfig, useValue: { data: {} } },
         { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
         { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
-        { provide: 'HttpClientWithoutInterceptors', useValue: {} },
+        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
+        { provide: FlatpickrDefaults, useValue: {} },
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CustomerDataCompanyForm);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

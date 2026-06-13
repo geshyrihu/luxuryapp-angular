@@ -98,6 +98,7 @@ describe('AgendaSupervision', () => {
   });
 
   it('onDelete should remove item from dataSignal', async () => {
+    await new Promise(resolve => setTimeout(resolve));
     component.dataSignal.set([
       { id: '1', name: 'A' },
       { id: '2', name: 'B' },

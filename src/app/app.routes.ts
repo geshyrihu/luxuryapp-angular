@@ -1,4 +1,4 @@
-﻿import { Routes } from "@angular/router";
+import { Routes } from "@angular/router";
 import { Loader } from "./core/components/loader/loader";
 import { authGuard } from "./core/guard/auth.guard";
 import { committeeGuard } from "./core/guard/committee.guard";

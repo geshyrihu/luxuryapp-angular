@@ -30,6 +30,8 @@ export default defineConfig({
           /@ionic\/angular\/standalone/,
           /@ionic\/core/,
           /@stencil\/core/,
+          /angularx-flatpickr/,
+          /flatpickr/,
         ],
       },
     },

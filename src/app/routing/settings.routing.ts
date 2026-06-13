@@ -1,4 +1,4 @@
-﻿import { Routes } from "@angular/router";
+import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 import { superUsuarioGuard } from "src/app/core/guard/super-usuario.guard";
 export const settingsRoutes: Routes = [

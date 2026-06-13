@@ -72,7 +72,6 @@ describe('MinutasResumen', () => {
   });
 
   it('ngOnInit should set periodo and load data', async () => {
-    component.ngOnInit();
     await new Promise(resolve => setTimeout(resolve));
 
     expect(component.periodo()).toBe('Enero 2025');
@@ -83,6 +82,8 @@ describe('MinutasResumen', () => {
   it('onLoadData should fetch both general and grupo lists', async () => {
     const mockGeneral = [{ id: 1 }];
     const mockGrupo = [{ id: 2 }];
+    await new Promise(resolve => setTimeout(resolve));
+    mockApiResponseS.onGetList = vi.fn();
     mockApiResponseS.onGetList
       .mockResolvedValueOnce(mockGeneral)
       .mockResolvedValueOnce(mockGrupo);

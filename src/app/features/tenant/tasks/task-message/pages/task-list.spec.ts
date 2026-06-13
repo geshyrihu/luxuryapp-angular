@@ -1,4 +1,4 @@
-﻿import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { vi } from 'vitest';
 import { TaskList } from './task-list';
@@ -116,6 +116,7 @@ describe('TaskList', () => {
   });
 
   it('onDelete should remove item from data', async () => {
+    await new Promise(resolve => setTimeout(resolve));
     component.dataSignal.set({ nameGroup: '', assignee: null, totalRecords: 2, items: [{ id: '1' }, { id: '2' }] });
     mockApiS.onDelete.mockResolvedValue(true);
 
@@ -127,6 +128,7 @@ describe('TaskList', () => {
   });
 
   it('onUpdatePriority should toggle priority', async () => {
+    await new Promise(resolve => setTimeout(resolve));
     component.dataSignal.set({ nameGroup: '', assignee: null, totalRecords: 1, items: [{ id: '1', priority: 'High' }] });
     mockApiS.onGetItem.mockResolvedValue(true);
 

@@ -143,6 +143,7 @@ describe('TaskInstanceList', () => {
 
   it('should not reload on reopen when API returns false', async () => {
     mockApiResponseS.onPost.mockResolvedValue(false);
+    await new Promise(resolve => setTimeout(resolve));
     mockApiResponseS.onGetList.mockClear();
 
     component.onReopenTask('task-1');

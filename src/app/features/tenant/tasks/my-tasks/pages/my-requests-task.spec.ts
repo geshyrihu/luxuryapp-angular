@@ -1,4 +1,4 @@
-﻿import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { vi } from 'vitest';
 import { MyRequestsTask } from './my-requests-task';
@@ -84,6 +84,7 @@ describe('MyRequestsTask', () => {
   });
 
   it('onUpdatePriority should toggle priority', async () => {
+    await new Promise(resolve => setTimeout(resolve));
     component.dataSignal.set([{ id: '1', priority: 'Alta' }]);
     mockApiResponseS.onGetItem.mockResolvedValue(true);
 

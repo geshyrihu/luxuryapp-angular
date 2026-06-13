@@ -1,15 +1,17 @@
-import { Directive, ElementRef, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostListener } from "@angular/core";
 
 @Directive({
-  selector: '[appPrintable]',
-  standalone: true
+  selector: "[appPrintable]",
 })
 export class PrintableDirective {
   constructor(private el: ElementRef) {}
 
-  @HostListener('click')
+  @HostListener("click")
   onPrint() {
-    this.el.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    this.el.nativeElement.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
     setTimeout(() => {
       window.print();
     }, 300);

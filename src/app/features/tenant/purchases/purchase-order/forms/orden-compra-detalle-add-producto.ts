@@ -1,4 +1,4 @@
-﻿import { Endpoints } from "src/app/core/constants/endpoints";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   Component,
   computed,

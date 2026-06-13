@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { IonList, IonToggle } from "@ionic/angular/standalone";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";

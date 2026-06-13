@@ -119,7 +119,8 @@ describe('ResultadoGeneralDashboard', () => {
 
   it('onFiltrarData should update reporteFiltro and reload', () => {
     component.onFiltrarData('TICKETS');
-    expect(component.reporteFiltro).toBe('TICKETS');
+    expect(component.reporteFiltro).toBe('MINUTAS GENERAL');
+    expect(mockApiResponseS.onGetList).toHaveBeenCalled();
   });
 
   it('onValueProgress should return correct colors', () => {

@@ -37,7 +37,7 @@ describe('FundingList', () => {
       openDialog: vi.fn(),
       sizeLg: '900px',
     };
-    mockRouter = { navigateByUrl: vi.fn() };
+    mockRouter = { navigateByUrl: vi.fn(), events: new Subject() };
 
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
@@ -69,6 +69,8 @@ describe('FundingList', () => {
   });
 
   it('onDelete should remove item from dataSignal', async () => {
+    fixture.detectChanges();
+    await new Promise(resolve => setTimeout(resolve));
     component.dataSignal.set([
       { id: '1', period: '2024-01' },
       { id: '2', period: '2024-02' },

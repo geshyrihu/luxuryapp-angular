@@ -1,5 +1,6 @@
-﻿import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { vi } from 'vitest';
 import { MyTaskForm } from './my-task-form';
 import { ApiResponseService } from 'src/app/core/services/api-response.service';
@@ -37,10 +38,10 @@ describe('MyTaskForm', () => {
 
     TestBed.resetTestingModule();
     TestBed.overrideComponent(MyTaskForm, {
-      set: { template: '<div>Mock</div>', imports: [] },
+      set: { template: '<div>Mock</div>', imports: [ReactiveFormsModule] },
     });
     TestBed.configureTestingModule({
-      imports: [MyTaskForm],
+      imports: [MyTaskForm, ReactiveFormsModule],
       providers: [
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: AuthService, useValue: mockAuthS },
@@ -68,7 +69,7 @@ describe('MyTaskForm', () => {
   });
 
   it('should have form with expected controls', () => {
-    expect(component.form.contains('id')).toBe(true);
+    expect(component.form.get('id')).not.toBeNull();
     expect(component.form.contains('title')).toBe(true);
     expect(component.form.contains('description')).toBe(true);
     expect(component.form.contains('priority')).toBe(true);

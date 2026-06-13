@@ -1,4 +1,4 @@
-﻿import { Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 export const configurationRoutes: Routes = [
   // Aquí se registrarán las rutas de los módulos de Configuración Global

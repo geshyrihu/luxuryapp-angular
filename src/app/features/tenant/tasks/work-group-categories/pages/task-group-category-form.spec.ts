@@ -54,7 +54,7 @@ describe('TaskGroupCategoryForm', () => {
   });
 
   it('should have form with expected controls', () => {
-    expect(component.form.contains('id')).toBe(true);
+    expect(component.form.get('id')).not.toBeNull();
     expect(component.form.contains('name')).toBe(true);
     expect(component.form.contains('description')).toBe(true);
     expect(component.form.contains('departament')).toBe(true);

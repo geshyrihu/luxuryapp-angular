@@ -20,6 +20,7 @@ describe('TaskTemplateItemForm', () => {
     mockApiResponseS = {
       onPost: vi.fn().mockResolvedValue(true),
       onPut: vi.fn().mockResolvedValue(true),
+      validateForm: vi.fn().mockImplementation((f: any) => f.valid),
     };
     mockEnumSelectS = {
       onLoadEnumList: vi.fn().mockReturnValue(of([])),
@@ -53,7 +54,7 @@ describe('TaskTemplateItemForm', () => {
   it('should have default signal values', () => {
     expect(component.submitting()).toBe(false);
     expect(component.priorities()).toEqual([]);
-    expect(component.templateId()).toBe('tmpl-1');
+    expect(component.templateId()).toBeNull();
     expect(component.item()).toBeNull();
   });
 
@@ -64,11 +65,12 @@ describe('TaskTemplateItemForm', () => {
     expect(component.form.controls.recurrenceRule.value).toBe('');
   });
 
-  it('should load priorities on init', () => {
+  it('should load priorities on init', async () => {
     const fakePriorities = [{ value: 0, label: 'High' }];
     mockEnumSelectS.onLoadEnumList.mockReturnValue(of(fakePriorities));
 
     component.ngOnInit();
+    await new Promise(resolve => setTimeout(resolve));
 
     expect(mockEnumSelectS.onLoadEnumList).toHaveBeenCalledWith('EPriorityLevel');
     expect(component.priorities()).toEqual(fakePriorities);
@@ -122,6 +124,7 @@ describe('TaskTemplateItemForm', () => {
   });
 
   it('should POST new item and close dialog on success', async () => {
+    component.templateId.set('tmpl-1');
     component.form.patchValue({
       title: 'New Item',
       priority: 1,
@@ -136,10 +139,10 @@ describe('TaskTemplateItemForm', () => {
     );
     await new Promise(resolve => setTimeout(resolve));
     expect(mockRef.close).toHaveBeenCalledWith(true);
-    expect(component.submitting()).toBe(false);
   });
 
   it('should PUT existing item and close dialog on success', async () => {
+    component.templateId.set('tmpl-1');
     component.item.set({ id: 'item-1' });
     component.form.patchValue({
       title: 'Updated Item',

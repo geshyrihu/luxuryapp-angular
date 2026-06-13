@@ -1,4 +1,4 @@
-﻿import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { vi } from 'vitest';
 import { TaskGroupList } from './task-group-list';
@@ -96,6 +96,7 @@ describe('TaskGroupList', () => {
   });
 
   it('onDelete should remove item from signal', async () => {
+    await new Promise(resolve => setTimeout(resolve));
     component.dataSignal.set([{ id: '1' }, { id: '2' }]);
     mockApiResponseS.onDelete.mockResolvedValue(true);
 

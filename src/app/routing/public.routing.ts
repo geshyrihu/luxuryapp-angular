@@ -1,4 +1,4 @@
-﻿import { Routes } from "@angular/router";
+import { Routes } from "@angular/router";
 //Si se modifica esta ruta hay que revisar como esta actual ya que aqui entran ligas enviadas por correo
 export const publicRoutes: Routes = [
   {

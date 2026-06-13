@@ -63,6 +63,7 @@ describe('TaskGroupCategoryList', () => {
   });
 
   it('onDelete should remove item from signal', async () => {
+    await new Promise(resolve => setTimeout(resolve));
     component.dataSignal.set([{ id: '1' }, { id: '2' }]);
 
     component.onDelete('1');

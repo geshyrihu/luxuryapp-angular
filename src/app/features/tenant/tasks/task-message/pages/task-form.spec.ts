@@ -1,4 +1,4 @@
-﻿import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { vi } from 'vitest';
 import { TaskForm } from './task-form';
@@ -86,7 +86,7 @@ describe('TaskForm', () => {
   });
 
   it('should have form with expected controls', () => {
-    expect(component.form.contains('id')).toBe(true);
+    expect(component.form.get('id')).not.toBeNull();
     expect(component.form.contains('title')).toBe(true);
     expect(component.form.contains('description')).toBe(true);
     expect(component.form.contains('priority')).toBe(true);

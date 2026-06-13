@@ -1,4 +1,4 @@
-﻿import { CommonModule, DatePipe } from "@angular/common";
+import { CommonModule, DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";

@@ -1,4 +1,4 @@
-﻿import { BreakpointObserver } from "@angular/cdk/layout";
+import { BreakpointObserver } from "@angular/cdk/layout";
 import { CommonModule } from "@angular/common";
 import {
   Component,

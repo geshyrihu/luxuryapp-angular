@@ -1,4 +1,4 @@
-﻿import { Routes } from "@angular/router";
+import { Routes } from "@angular/router";
 import { RecruitmentRequestsShell } from "./recruitment-requests-shell";
 
 export const recruitmentRequestsRoutes: Routes = [

@@ -70,6 +70,7 @@ describe('TaskView', () => {
     component.id = '1';
     component.onLoadData();
     await new Promise(resolve => setTimeout(resolve));
+    await new Promise(resolve => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetItem).toHaveBeenCalled();
     expect(component.ticket()).toBe(mockTicket);

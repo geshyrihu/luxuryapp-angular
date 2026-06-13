@@ -78,6 +78,7 @@ describe('CustomerIdService', () => {
 
     const req = httpMock.expectOne(`${environment.API_BASE_URL}Customers/guid-123`);
     req.flush({
+      success: true,
       data: {
         id: 'guid-123',
         nombreCorto: 'Test Corp',

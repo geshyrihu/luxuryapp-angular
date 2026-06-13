@@ -4,6 +4,9 @@ import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { FlatpickrDefaults } from 'angularx-flatpickr';
+import { CustomInputMaskSignal } from 'src/app/core/components/inputs/web/custom-input-mask-signal';
+import { CustomInputSelectSignal } from 'src/app/core/components/inputs/web/custom-input-select-signal';
 import { ApplicationUserForm } from './application-user-form';
 
 describe('ApplicationUserForm', () => {
@@ -11,6 +14,13 @@ describe('ApplicationUserForm', () => {
   let fixture: ComponentFixture<ApplicationUserForm>;
 
   beforeEach(async () => {
+    TestBed.overrideComponent(CustomInputMaskSignal, {
+      set: { template: '<div>Mock Mask</div>', imports: [] },
+    });
+    TestBed.overrideComponent(CustomInputSelectSignal, {
+      set: { template: '<div>Mock Select</div>', imports: [] },
+    });
+
     await TestBed.configureTestingModule({
       imports: [ApplicationUserForm],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -20,13 +30,13 @@ describe('ApplicationUserForm', () => {
         { provide: DynamicDialogConfig, useValue: { data: {} } },
         { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
         { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
-        { provide: 'HttpClientWithoutInterceptors', useValue: {} },
+        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
+        { provide: FlatpickrDefaults, useValue: {} },
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ApplicationUserForm);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

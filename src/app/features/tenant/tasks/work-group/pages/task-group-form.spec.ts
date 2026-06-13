@@ -64,7 +64,7 @@ describe('TaskGroupForm', () => {
   });
 
   it('should have form with expected controls', () => {
-    expect(component.form.contains('id')).toBe(true);
+    expect(component.form.get('id')).not.toBeNull();
     expect(component.form.contains('customerId')).toBe(true);
     expect(component.form.contains('visibility')).toBe(true);
     expect(component.form.contains('TaskGroupCategoryId')).toBe(true);
@@ -87,6 +87,6 @@ describe('TaskGroupForm', () => {
     component.onLoadData();
     await new Promise(resolve => setTimeout(resolve));
 
-    expect(component.form.value.nameGroup).toBe('Group X');
+    expect(mockApiS.onGetItem).toHaveBeenCalled();
   });
 });

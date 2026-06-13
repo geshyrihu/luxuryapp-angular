@@ -81,13 +81,14 @@ describe('TaskTemplateItems', () => {
     expect(component.templateId).toBe('');
   });
 
-  it('should load template info and items on init', () => {
+  it('should load template info and items on init', async () => {
     const fakeTemplate = { id: 'tmpl-1', name: 'Template 1' };
     const fakeItems = [{ id: 'item-1', title: 'Item 1' }];
     mockApiResponseS.onGetItem.mockResolvedValue(fakeTemplate);
     mockApiResponseS.onGetList.mockResolvedValue(fakeItems);
 
     component.ngOnInit();
+    await new Promise(resolve => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetItem).toHaveBeenCalledWith(
       'recurring-tasks/templates/tmpl-1',
@@ -124,6 +125,7 @@ describe('TaskTemplateItems', () => {
 
   it('should not reload on delete when API returns false', async () => {
     mockApiResponseS.onDelete.mockResolvedValue(false);
+    await new Promise(resolve => setTimeout(resolve));
     mockApiResponseS.onGetList.mockClear();
 
     component.onDeleteItem('item-1');
@@ -132,8 +134,10 @@ describe('TaskTemplateItems', () => {
     expect(mockApiResponseS.onGetList).not.toHaveBeenCalled();
   });
 
-  it('should open item form dialog for new item', () => {
+  it('should open item form dialog for new item', async () => {
+    component.templateId = 'tmpl-1';
     component.showItemForm();
+    await new Promise(resolve => setTimeout(resolve));
 
     expect(mockDialogHandlerS.openDialog).toHaveBeenCalledWith(
       expect.any(Function),
@@ -143,9 +147,11 @@ describe('TaskTemplateItems', () => {
     );
   });
 
-  it('should open item form dialog for existing item', () => {
+  it('should open item form dialog for existing item', async () => {
     const item = { id: 'item-1', title: 'Test' };
+    component.templateId = 'tmpl-1';
     component.showItemForm(item as any);
+    await new Promise(resolve => setTimeout(resolve));
 
     expect(mockDialogHandlerS.openDialog).toHaveBeenCalledWith(
       expect.any(Function),
@@ -167,12 +173,14 @@ describe('TaskTemplateItems', () => {
   });
 
   it('should send reorder request on row reorder', async () => {
+    component.templateId = 'tmpl-1';
     component.items.set([
       { id: 'a', title: 'A' } as any,
       { id: 'b', title: 'B' } as any,
     ]);
 
     component.onRowReorder({});
+    await new Promise(resolve => setTimeout(resolve));
 
     expect(mockApiResponseS.onPut).toHaveBeenCalledWith(
       'recurring-tasks/templates/tmpl-1/items/reorder',

@@ -1,4 +1,4 @@
-﻿import { Injectable, inject } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";

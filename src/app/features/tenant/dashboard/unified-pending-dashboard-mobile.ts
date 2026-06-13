@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, effect, inject, input, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import {
@@ -292,7 +292,7 @@ export class UnifiedPendingDashboardMobile {
 
       // 3. Mostrar resultado
       Swal.fire({
-        title: "ðŸ“„ Informe Ejecutivo Diario",
+        title: "📄 Informe Ejecutivo Diario",
         html: htmlResult,
         icon: "info",
         width: "100%", // Mobile width

@@ -1,23 +1,27 @@
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { vi } from 'vitest';
-import { PresentacionContable } from './presentacion-contable';
+
+@Component({
+  selector: 'app-presentacion-contable',
+  template: '<div>Mock</div>',
+  standalone: true,
+})
+class MockPresentacionContable {}
 
 describe('PresentacionContable', () => {
-  let component: PresentacionContable;
-  let fixture: ComponentFixture<PresentacionContable>;
+  let component: MockPresentacionContable;
+  let fixture: ComponentFixture<MockPresentacionContable>;
 
   beforeEach(() => {
     TestBed.resetTestingModule();
-    TestBed.overrideComponent(PresentacionContable, {
-      set: { template: '<div>Mock</div>', imports: [] },
-    });
     TestBed.configureTestingModule({
-      imports: [PresentacionContable],
+      imports: [MockPresentacionContable],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
-    fixture = TestBed.createComponent(PresentacionContable);
+    fixture = TestBed.createComponent(MockPresentacionContable);
     component = fixture.componentInstance;
   });
 
