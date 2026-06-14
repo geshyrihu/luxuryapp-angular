@@ -1,7 +1,9 @@
 /**
- * Endpoints para el proyecto de Tenant/Aplicaci�n.
+ * Endpoints para el proyecto de Tenant/Aplicación.
  */
 export const EndpointsTenant = {
+
+  // ========================================== Módulo: Accounting ==========================================
 
   AccountingAccounts: {
     base: "Cuentas",
@@ -9,6 +11,7 @@ export const EndpointsTenant = {
     getById: (id: string | number) => `Cuentas/${id}`,
     getList: (state: boolean) => `Cuentas/GetList/${state ? 0 : 1}`,
   },
+
   AccountingCoi: {
     Accounting: {
       Accounts: {
@@ -402,21 +405,7 @@ export const EndpointsTenant = {
       },
     },
   },
-  AiAssistant: {
-    testProfile: "AiAssistant/TestProfile",
-  },
-  Announcements: {
-    adminList: "announcements/admin-list",
-    analytics: (id: string) => `announcements/${id}/analytics`,
-    create: "announcements",
-    delete: (id: string) => `announcements/${id}`,
-    downloadPdf: (id: string) => `announcements/${id}/pdf`,
-    getById: (id: string) => `announcements/${id}`,
-    update: (id: string) => `announcements/${id}`,
-  },
-  ApprovalRules: {
-    matrix: "approval-rules/matrix",
-  },
+
   AspelCobranza: {
     accounts: (customerId: string, year: number) =>
       `aspel-cobranza/accounts?customerId=${customerId}&year=${year}`,
@@ -432,51 +421,7 @@ export const EndpointsTenant = {
     ) =>
       `aspel-cobranza/estado-cuenta-rango?customerId=${customerId}&numCta=${numCta}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`,
   },
-  AutitoriaCuentasAspel: {
-    get: (year: number, empresa: string) =>
-      `autitoria-cuentas-aspel?intYear=${year}&empresa=${empresa}`,
-  },
-  AsambleaChecklist: {
-    bySession: (sessionId: string) => `AsambleaChecklist/session/${sessionId}`,
-    updateStatus: (id: string) => `AsambleaChecklist/${id}/status`,
-  },
-  AsambleaChecklistTemplate: {
-    create: "AsambleaChecklistTemplate",
-    delete: (id: string) => `AsambleaChecklistTemplate/${id}`,
-    getAll: "AsambleaChecklistTemplate",
-    getById: (id: string) => `AsambleaChecklistTemplate/${id}`,
-    update: (id: string) => `AsambleaChecklistTemplate/${id}`,
-  },
-  CedulaPresupuestal: {
-    delete: (id: string | number) => `CedulaPresupuestal/${id}`,
-    list: (periodoPresupuestalId: string | number) =>
-      `CedulaPresupuestal/List/${periodoPresupuestalId}`,
-    ordenesCompra: (id: string | number) =>
-      `CedulaPresupuestal/OrdenesCompra/${id}`,
-  },
-  CalendarioMaestroEquipo: {
-    base: "CalendarioMaestroEquipo",
-    delete: (id: string | number) => `CalendarioMaestroEquipo/${id}`,
-    getById: (id: string) => `CalendarioMaestroEquipo/${id}`,
-  },
-  CatalogAssets: {
-    create: "CatalogAsset",
-    delete: (id: string | number) => `CatalogAsset/${id}`,
-    getAll: "CatalogAsset",
-    getById: (id: string) => `CatalogAsset/${id}`,
-    update: (id: string) => `CatalogAsset/${id}`,
-  },
-  CommitteeVigilance: {
-    create: "ComiteVigilancia",
-    delete: (id: string) => `comitevigilancia/${id}`,
-    getById: (id: string) => `ComiteVigilancia/${id}`,
-    list: (customerId: string) => `ComiteVigilancia/list/${customerId}`,
-    sendCredentials: (id: string) => `comitevigilancia/${id}/send-credentials`,
-    update: (id: string) => `ComiteVigilancia/${id}`,
-  },
-  CondominiumAssets: {
-    selectByCustomer: (customerId: string) => `CondominiumAsset/${customerId}`,
-  },
+
   ContabilidadOnline: {
     FinancialStatements: {
       epf: (customerId: string, year: number, mes: number) =>
@@ -520,19 +465,36 @@ export const EndpointsTenant = {
     askAiContabilidadOnline: "contabilidad-online/ask-ai-contabilidad-online",
     explainAiContabilidadOnline: "contabilidad-online/explain-ai-contabilidad-online",
   },
-  CustomDocuments: {
-    create: "customdocument",
-    delete: (id: string) => `customdocument/${id}`,
-    getById: (id: string) => `customdocument/${id}`,
-    list: (customerId: string, documentType: number) =>
-      `customdocument/list/${customerId}/${documentType}`,
-    update: (id: string) => `customdocument/${id}`,
-    updateOrder: "customdocument/update-order",
+
+  Presupuestos: {
+    create: "Presupuesto/Create",
+    toPurchaseOrder: (customerId: string, ordenCompraId: string, year: number) =>
+      `presupuesto/to-purchase-order/${customerId}/${ordenCompraId}/${year}`,
+    update: (id: string) => `Presupuesto/UpdatePresupuesto/${id}`,
   },
-  CustomerInspections: {
-    selectByCustomer: (customerId: string) =>
-      `CustomerInspections/${customerId}`,
+
+  CedulaPresupuestal: {
+    delete: (id: string | number) => `CedulaPresupuestal/${id}`,
+    list: (periodoPresupuestalId: string | number) =>
+      `CedulaPresupuestal/List/${periodoPresupuestalId}`,
+    ordenesCompra: (id: string | number) =>
+      `CedulaPresupuestal/OrdenesCompra/${id}`,
   },
+
+  CatalogoGastosFijosDetalles: {
+    base: "CatalogoGastosFijosDetalles",
+    delete: (id: string) => `CatalogoGastosFijosDetalles/${id}`,
+  },
+
+  Funding: {
+    delete: (id: string) => `funding/${id}`,
+    deleteDetail: (id: string) => `funding/detail/${id}`,
+  },
+
+  FundingFiles: {
+    solicitudesPago: "FundingFile/solicitudes-pago",
+  },
+
   DynamicReports: {
     Accounts: {
       tree: (customerId: string, year: number, empresa: string) =>
@@ -551,108 +513,9 @@ export const EndpointsTenant = {
     livePreview: "dynamic-reports/live-preview",
     update: (id: string) => `dynamic-reports/${id}`,
   },
-  EmployeeBankData: {
-    base: "EmployeeBankData",
-    byEmployee: (employeeId: string) =>
-      `EmployeeBankData/employee/${employeeId}`,
-    delete: (id: string) => `EmployeeBankData/${id}`,
-    getAll: (customerId: string) => `EmployeeBankData/list/${customerId}`,
-    getById: (id: string) => `EmployeeBankData/${id}`,
-    upsert: "EmployeeBankData",
-  },
-  EmployeeClinicalData: {
-    base: "EmployeeClinicalData",
-    byEmployee: (employeeId: string) =>
-      `EmployeeClinicalData/employee/${employeeId}`,
-    delete: (id: string) => `EmployeeClinicalData/${id}`,
-    getById: (id: string) => `EmployeeClinicalData/${id}`,
-  },
-  EmployeeEmergencyContact: {
-    base: "EmployeeEmergencyContact",
-    byEmployee: (employeeId: string) =>
-      `EmployeeEmergencyContact/employee/${employeeId}`,
-    delete: (id: string) => `EmployeeEmergencyContact/${id}`,
-    getById: (id: string) => `EmployeeEmergencyContact/${id}`,
-    listEmployeeContact: (employeeId: string, typeContact: number) =>
-      `EmployeeEmergencyContact/ListEmployeeContact/${employeeId}/${typeContact}`,
-  },
-  EmployeeExternal: {
-    addAccessCustomer: (applicationUserId: string, customerId: string) =>
-      `employeeexternal/add-access-cutomer/${applicationUserId}/${customerId}`,
-    create: "EmployeeExternal",
-    delete: (id: string) => `employeeexternal/${id}`,
-    deleteAccessCustomer: (applicationUserId: string, customerId: string) =>
-      `employeeexternal/delete-access-cutomer/${applicationUserId}/${customerId}`,
-    getById: (id: string) => `EmployeeExternal/${id}`,
-    list: (customerId: string, active: boolean) =>
-      `EmployeeExternal/List/${customerId}/${active}`,
-    searchByEmail: (customerId: string, email: string, excludeUserId?: string) =>
-      `employeeexternal/search-by-email/${customerId}?email=${email}${excludeUserId ? `&excludeUserId=${excludeUserId}` : ""}`,
-    searchByPhone: (
-      customerId: string,
-      phoneNumber: string,
-      excludeUserId?: string,
-    ) =>
-      `employeeexternal/search-by-phone/${customerId}?phoneNumber=${phoneNumber}${excludeUserId ? `&excludeUserId=${excludeUserId}` : ""}`,
-    update: (id: string) => `EmployeeExternal/${id}`,
-  },
-  EmployeeInternal: {
-    activate: (id: string) => `EmployeeInternal/${id}/activate`,
-    addressData: (employeeId: string | number) =>
-      `EmployeeInternal/AddressData/${employeeId}`,
-    dataForRecoveryPassword: (id: string) =>
-      `EmployeeInternal/DataForRecoveryPassword/${id}`,
-    laboralData: (applicationUserId: string) =>
-      `EmployeeInternal/LaboralData/${applicationUserId}`,
-    list: (customerId: string, active: boolean) =>
-      `EmployeeInternal/list/${customerId}/${active}`,
-    onValidateState: (id: string) => `EmployeeInternal/OnValidateState/${id}`,
-    personalData: (employeeId: string | number) =>
-      `EmployeeInternal/PersonalData/${employeeId}`,
-    photoPath: (applicationUserId: string) =>
-      `EmployeeInternal/PhotoPath/${applicationUserId}`,
-    principalData: (applicationUserId: string) =>
-      `EmployeeInternal/PrincipalData/${applicationUserId}`,
-    updateAddressData: (addressId: string) =>
-      `EmployeeInternal/UpdateAddressData/${addressId}`,
-    updateImage: (applicationUserId: string) =>
-      `EmployeeInternal/UpdateImage/${applicationUserId}`,
-    updateLaboralData: (applicationUserId: string) =>
-      `EmployeeInternal/UpdateLaboralData/${applicationUserId}`,
-    updatePersonalData: (employeeId: string | number) =>
-      `EmployeeInternal/UpdatePersonalData/${employeeId}`,
-    updatePrincipalData: (applicationUserId: string) =>
-      `EmployeeInternal/UpdatePrincipalData/${applicationUserId}`,
-  },
-  Employees: {
-    createEmployee: "Employees/CreateEmployee",
-    createEmployeeExternal: "Employees/CreateEmployeeExternal",
-  },
-  EntregaRecepcion: {
-    base: "CatalogoEntregaRecepcionDescripcion",
-    getByClient: (id: string) => `EntregaRecepcionCliente/${id}`,
-    getById: (id: string) => `CatalogoEntregaRecepcionDescripcion/${id}`,
-    grupos: "CatalogoEntregaRecepcionDescripcion/grupos",
-    updateClient: (id: string, userId: string, customerId: string) =>
-      `EntregaRecepcionCliente/${id}/${userId}/${customerId}`,
-  },
-  EntregaRecepcionCliente: {
-    deleteFile: (id: string) => `EntregaRecepcionCliente/DeleteFile/${id}`,
-    generateData: "EntregaRecepcionCliente/GenerateData",
-    getByCustomerAndDepartment: (customerId: string, department: string) =>
-      `EntregaRecepcionCliente/${customerId}/${department}`,
-    invalidateFile: (id: string) =>
-      `EntregaRecepcionCliente/InvalidarArchivo/${id}`,
-    validateFile: (applicationUserId: string, id: string) =>
-      `EntregaRecepcionCliente/ValidarArchivo/${applicationUserId}/${id}`,
-  },
-  EspejoAspelFull: {
-    get: (customerId: string, year: number, empresa: string) =>
-      `espejo-aspel-full?customerId=${customerId}&year=${year}&empresa=${empresa}`,
-  },
-  FundingFiles: {
-    solicitudesPago: "FundingFile/solicitudes-pago",
-  },
+
+  // ========================================== Módulo: HR ==========================================
+
   HR: {
     AddendumTemplate: {
       getAll: "hr/addendum-templates",
@@ -906,69 +769,96 @@ export const EndpointsTenant = {
       expiring: (days: number) => `hr/work-contracts/expiring/${days}`,
     },
   },
-  InspectionCondominiumAssets: {
-    create: "InspectionCondominiumAsset",
-    deleteArea: (id: string) => `InspectionCondominiumAsset/DeleteArea/${id}`,
-    deleteReview: (reviewId: string) =>
-      `InspectionCondominiumAsset/DeleteReview/${reviewId}`,
-    getById: (assetId: string) => `InspectionCondominiumAsset/${assetId}`,
-    listByInspection: (inspectionId: string) =>
-      `InspectionCondominiumAsset/List/${inspectionId}`,
-    update: (id: string) => `InspectionCondominiumAsset/${id}`,
+
+  EmployeeInternal: {
+    activate: (id: string) => `EmployeeInternal/${id}/activate`,
+    addressData: (employeeId: string | number) =>
+      `EmployeeInternal/AddressData/${employeeId}`,
+    dataForRecoveryPassword: (id: string) =>
+      `EmployeeInternal/DataForRecoveryPassword/${id}`,
+    laboralData: (applicationUserId: string) =>
+      `EmployeeInternal/LaboralData/${applicationUserId}`,
+    list: (customerId: string, active: boolean) =>
+      `EmployeeInternal/list/${customerId}/${active}`,
+    onValidateState: (id: string) => `EmployeeInternal/OnValidateState/${id}`,
+    personalData: (employeeId: string | number) =>
+      `EmployeeInternal/PersonalData/${employeeId}`,
+    photoPath: (applicationUserId: string) =>
+      `EmployeeInternal/PhotoPath/${applicationUserId}`,
+    principalData: (applicationUserId: string) =>
+      `EmployeeInternal/PrincipalData/${applicationUserId}`,
+    updateAddressData: (addressId: string) =>
+      `EmployeeInternal/UpdateAddressData/${addressId}`,
+    updateImage: (applicationUserId: string) =>
+      `EmployeeInternal/UpdateImage/${applicationUserId}`,
+    updateLaboralData: (applicationUserId: string) =>
+      `EmployeeInternal/UpdateLaboralData/${applicationUserId}`,
+    updatePersonalData: (employeeId: string | number) =>
+      `EmployeeInternal/UpdatePersonalData/${employeeId}`,
+    updatePrincipalData: (applicationUserId: string) =>
+      `EmployeeInternal/UpdatePrincipalData/${applicationUserId}`,
   },
-  InspectionResultImages: {
-    byInspectionResultAndCustomer: (
-      inspectionResultId: string,
+
+  Employees: {
+    createEmployee: "Employees/CreateEmployee",
+    createEmployeeExternal: "Employees/CreateEmployeeExternal",
+  },
+
+  EmployeeBankData: {
+    base: "EmployeeBankData",
+    byEmployee: (employeeId: string) =>
+      `EmployeeBankData/employee/${employeeId}`,
+    delete: (id: string) => `EmployeeBankData/${id}`,
+    getAll: (customerId: string) => `EmployeeBankData/list/${customerId}`,
+    getById: (id: string) => `EmployeeBankData/${id}`,
+    upsert: "EmployeeBankData",
+  },
+
+  EmployeeClinicalData: {
+    base: "EmployeeClinicalData",
+    byEmployee: (employeeId: string) =>
+      `EmployeeClinicalData/employee/${employeeId}`,
+    delete: (id: string) => `EmployeeClinicalData/${id}`,
+    getById: (id: string) => `EmployeeClinicalData/${id}`,
+  },
+
+  EmployeeEmergencyContact: {
+    base: "EmployeeEmergencyContact",
+    byEmployee: (employeeId: string) =>
+      `EmployeeEmergencyContact/employee/${employeeId}`,
+    delete: (id: string) => `EmployeeEmergencyContact/${id}`,
+    getById: (id: string) => `EmployeeEmergencyContact/${id}`,
+    listEmployeeContact: (employeeId: string, typeContact: number) =>
+      `EmployeeEmergencyContact/ListEmployeeContact/${employeeId}/${typeContact}`,
+  },
+
+  EmployeeExternal: {
+    addAccessCustomer: (applicationUserId: string, customerId: string) =>
+      `employeeexternal/add-access-cutomer/${applicationUserId}/${customerId}`,
+    create: "EmployeeExternal",
+    delete: (id: string) => `employeeexternal/${id}`,
+    deleteAccessCustomer: (applicationUserId: string, customerId: string) =>
+      `employeeexternal/delete-access-cutomer/${applicationUserId}/${customerId}`,
+    getById: (id: string) => `EmployeeExternal/${id}`,
+    list: (customerId: string, active: boolean) =>
+      `EmployeeExternal/List/${customerId}/${active}`,
+    searchByEmail: (customerId: string, email: string, excludeUserId?: string) =>
+      `employeeexternal/search-by-email/${customerId}?email=${email}${excludeUserId ? `&excludeUserId=${excludeUserId}` : ""}`,
+    searchByPhone: (
       customerId: string,
-    ) => `InspectionResultImage/${inspectionResultId}/${customerId}`,
-    deleteInspectionImage: (imageId: string, customerId: string) =>
-      `InspectionResultImage/DeleteInspectionImage/${imageId}/${customerId}`,
-  },
-  InspectionResults: {
-    byUserCustomerAndDate: (
-      applicationUserId: string,
-      customerId: string,
-      formattedDate: string,
+      phoneNumber: string,
+      excludeUserId?: string,
     ) =>
-      `InspectionResult/GetInspectionsByCustomer/${applicationUserId}/${customerId}/${formattedDate}`,
-    getByIdForExecution: (customerInspectionId: string) =>
-      `InspectionResult/InspectionResultGetById/${customerInspectionId}`,
-    report: (inspectionResultId: string, date?: string) =>
-      date
-        ? `InspectionResult/Report/${inspectionResultId}/${date}`
-        : `InspectionResult/Report/${inspectionResultId}`,
-    updateInspectionData: (
-      customerInspectionId: string,
-      applicationUserId: string,
-    ) =>
-      `InspectionResult/UpdateInspectionData/${customerInspectionId}/${applicationUserId}`,
+      `employeeexternal/search-by-phone/${customerId}?phoneNumber=${phoneNumber}${excludeUserId ? `&excludeUserId=${excludeUserId}` : ""}`,
+    update: (id: string) => `EmployeeExternal/${id}`,
   },
-  InspectionReviewCatalog: {
-    create: "InspectionReviewsCatalog",
-    delete: (id: string | number) => `InspectionReviewsCatalog/${id}`,
-    getAll: "InspectionReviewsCatalog",
-    getById: (id: string) => `InspectionReviewsCatalog/${id}`,
-    update: (id: string) => `InspectionReviewsCatalog/${id}`,
+
+  TemplateEvaluation: {
+    delete: (id: string) => `TemplateEvaluation/${id}`,
   },
-  Inspections: {
-    create: "Inspection",
-    delete: (id: string | number) => `inspection/${id}`,
-    getById: (id: string) => `inspection/${id}`,
-    listByCustomer: (customerId: string) => `inspection/list/${customerId}`,
-    update: (id: string) => `Inspection/${id}`,
-  },
-  JobDescriptions: {
-    base: "job-descriptions",
-    getById: (id: string) => `job-descriptions/${id}`,
-    getByWorkPosition: (workPositionId: string) =>
-      `job-descriptions/by-workposition/${workPositionId}`,
-  },
-  JuntaMensualSession: {
-    detail: (sessionId: string) => `JuntaMensualSession/${sessionId}/detail`,
-  },
-  LegalDirectories: {
-    committees: "LegalDirectories/Committees",
-  },
+
+  // ========================================== Módulo: Legal ==========================================
+
   LegalMatters: {
     categories: "legalmattercategory",
     categoryById: (id: string) => `LegalMatter/Category/${id}`,
@@ -981,10 +871,37 @@ export const EndpointsTenant = {
     update: (id: string) => `LegalMatter/${id}`,
     updateCategory: (id: string) => `LegalMatter/Category/${id}`,
   },
+
+  PolicyContracts: {
+    create: "PolicyContract",
+    delete: (id: string | number) => `PolicyContract/${id}`,
+    deleteDocument: (id: string | number) =>
+      `PolicyContract/DeleteDocument/${id}`,
+    getById: (id: string | number) => `PolicyContract/${id}`,
+    list: (customerId: string, isCurrent: boolean) =>
+      `PolicyContract/List/${customerId}/${isCurrent}`,
+    providersByCustomer: (customerId: string) => `Providers/${customerId}`,
+    update: (id: string | number) => `PolicyContract/${id}`,
+  },
+
+  CommitteeVigilance: {
+    create: "ComiteVigilancia",
+    delete: (id: string) => `comitevigilancia/${id}`,
+    getById: (id: string) => `ComiteVigilancia/${id}`,
+    list: (customerId: string) => `ComiteVigilancia/list/${customerId}`,
+    sendCredentials: (id: string) => `comitevigilancia/${id}/send-credentials`,
+    update: (id: string) => `ComiteVigilancia/${id}`,
+  },
+
+  LegalDirectories: {
+    committees: "LegalDirectories/Committees",
+  },
+
   LegalMinutes: {
     pendingByUserAndStatus: (applicationUserId: string, status: number) =>
       `ContabilidadMinuta/ListaMinutaLegal/${applicationUserId}/${status}`,
   },
+
   LegalReports: {
     generateWeeklyReport: (
       startDate: string,
@@ -1014,148 +931,40 @@ export const EndpointsTenant = {
     totalRequests: (startDate: string, endDate: string) =>
       `LegalReport/TotalRequests/${startDate}/${endDate}`,
   },
-  MachineryClassification: {
-    create: "EquipoClasificacion",
-    delete: (id: string) => `equipoclasificacion/${id}`,
-    getAll: "EquipoClasificacion",
-    getById: (id: string | number) => `EquipoClasificacion/${id}`,
-    update: (id: string | number) => `EquipoClasificacion/${id}`,
+
+  // ========================================== Módulo: Maintenance ==========================================
+
+  MaintenanceCalendars: {
+    delete: (id: string) => `maintenancecalendars/${id}`,
   },
-  ManualFlowcharts: {
-    create: "manualFlowcharts",
-    delete: (id: string) => `manualFlowcharts/${id}`,
-    getById: (id: string) => `manualFlowcharts/${id}`,
-    update: (id: string) => `manualFlowcharts/${id}`,
+
+  CalendarioMaestroEquipo: {
+    base: "CalendarioMaestroEquipo",
+    delete: (id: string | number) => `CalendarioMaestroEquipo/${id}`,
+    getById: (id: string) => `CalendarioMaestroEquipo/${id}`,
   },
-  Manuals: {
-    createTemplate: "manuals/templates",
-    deleteInstance: (id: string) => `manuals/instances/${id}`,
-    deleteTemplate: (id: string) => `manuals/templates/${id}`,
-    deleteTemplateAttachment: (id: string) =>
-      `manuals/templates/attachments/${id}`,
-    getInstances: (customerId?: string) =>
-      customerId
-        ? `manuals/instances?customerId=${customerId}`
-        : "manuals/instances",
-    getTemplateById: (id: string) => `manuals/templates/${id}`,
-    getTemplates: "manuals/templates",
-    updateTemplate: (id: string) => `manuals/templates/${id}`,
-    updateTemplateItems: (id: string) => `manuals/templates/${id}/items`,
-    uploadInstance: "manuals/instances",
-    uploadTemplateAttachment: "manuals/templates/attachments",
-    upsertTemplate: "manuals/templates",
+
+  BitacoraMantenimiento: {
+    delete: (id: string) => `BitacoraMantenimiento/${id}`,
   },
-  ManualsPasos: {
-    addAdjunto: (manualId: string) => `manuals/${manualId}/adjuntos`,
-    addEnlace: (manualId: string, pasoId: string) =>
-      `manuals/${manualId}/pasos/${pasoId}/enlaces`,
-    addPaso: (manualId: string) => `manuals/${manualId}/pasos`,
-    addVersion: (manualId: string) => `manuals/${manualId}/versiones`,
-    crearDiagrama: (manualId: string, pasoId: string) =>
-      `manuals/${manualId}/pasos/${pasoId}/diagrama`,
-    create: "manuals",
-    delete: (id: string) => `manuals/${id}`,
-    deleteAdjunto: (manualId: string, adjuntoId: string) =>
-      `manuals/${manualId}/adjuntos/${adjuntoId}`,
-    deleteDiagrama: (manualId: string, pasoId: string) =>
-      `manuals/${manualId}/pasos/${pasoId}/diagrama`,
-    deleteEnlace: (manualId: string, pasoId: string, enlaceId: string) =>
-      `manuals/${manualId}/pasos/${pasoId}/enlaces/${enlaceId}`,
-    deletePaso: (manualId: string, pasoId: string) =>
-      `manuals/${manualId}/pasos/${pasoId}`,
-    deleteVersion: (manualId: string, versionId: string) =>
-      `manuals/${manualId}/versiones/${versionId}`,
-    eliminarImagen: (manualId: string, pasoId: string, imagenId: string) =>
-      `manuals/${manualId}/pasos/${pasoId}/imagenes/${imagenId}`,
-    getAll: "manuals",
-    getById: (id: string) => `manuals/${id}`,
-    getDiagrama: (diagramaId: string) => `manuals/diagrama/${diagramaId}`,
-    reordenarPasos: (manualId: string) =>
-      `manuals/${manualId}/pasos/reordenar`,
-    subirImagen: (manualId: string, pasoId: string) =>
-      `manuals/${manualId}/pasos/${pasoId}/imagenes`,
-    update: (id: string) => `manuals/${id}`,
-    updateDiagrama: (diagramaId: string) => `manuals/diagrama/${diagramaId}`,
-    updatePaso: (manualId: string, pasoId: string) =>
-      `manuals/${manualId}/pasos/${pasoId}`,
+
+  ToolLoans: {
+    create: "controlprestamoherramientas",
+    delete: (id: string | number) => `ControlPrestamoHerramientas/${id}`,
+    getById: (id: string | number) => `controlprestamoherramientas/${id}`,
+    listByCustomer: (customerId: string) =>
+      `ControlPrestamoHerramientas/list/${customerId}`,
+    update: (id: string | number) => `controlprestamoherramientas/${id}`,
   },
-  MeetingAdministracion: {
-    addParticipant: (meetingId: string | number, participantId: string | number) =>
-      `MeetingAdministracion/AgregarParticipantesAdministracion/${meetingId}/${participantId}/1`,
-    delete: (id: string | number) => `MeetingAdministracion/${id}`,
-    listCandidates: (customerId: string, meetingId: string | number) =>
-      `GetListAdministracionMinuta/${customerId}/${meetingId}`,
-    participants: (meetingId: string | number) =>
-      `MeetingAdministracion/ParticipantesAdministracion/${meetingId}`,
+
+  Meters: {
+    create: "Medidor",
+    delete: (id: string | number) => `Medidor/${id}`,
+    getById: (id: string | number) => `Medidor/${id}`,
+    listByCustomer: (customerId: string) => `Medidor/list/${customerId}`,
+    update: (id: string | number) => `Medidor/${id}`,
   },
-  MeetingComite: {
-    addParticipant: (meetingId: string | number, participantId: string | number) =>
-      `MeetingComite/AgregarParticipantesComite/${meetingId}/${participantId}`,
-    delete: (id: string | number) => `MeetingComite/${id}`,
-    listCandidates: (customerId: string, meetingId: string | number) =>
-      `GetListComiteMinuta/${customerId}/${meetingId}`,
-    participants: (meetingId: string | number) =>
-      `MeetingComite/ParticipantesComite/${meetingId}`,
-  },
-  MeetingDetailsTracking: {
-    base: "MeetingDertailsSeguimiento",
-    delete: (id: string | number) => `MeetingDertailsSeguimiento/${id}`,
-    exportSummaryToExcel: (meetingId: string | number) =>
-      `MeetingDertailsSeguimiento/ExportSummaryToExcel/${meetingId}`,
-    getById: (id: string | number) => `MeetingDertailsSeguimiento/${id}`,
-    resumenGrafico: (customerId: string, date: string) =>
-      `MeetingDertailsSeguimiento/ResumenPreventivosGraficoPresentacion/${customerId}/${date}`,
-    resumenGraficoPresentacion: (meetingId: string | number) =>
-      `MeetingDertailsSeguimiento/ResumenMinutasGraficoPresentacion/${meetingId}`,
-    resumenPreventivos: (customerId: string, date: string) =>
-      `MeetingDertailsSeguimiento/ResumenPreventivosPresentacion/${customerId}/${date}`,
-    resumenPresentacion: (meetingId: string | number) =>
-      `MeetingDertailsSeguimiento/ResumenMinutasPresentacion/${meetingId}`,
-    update: (id: string | number) => `MeetingDertailsSeguimiento/${id}`,
-  },
-  MeetingInvitado: {
-    addParticipant: (meetingId: string | number, invitado: string | null) =>
-      `MeetingInvitado/AgregarParticipantesInvitado/${meetingId}/${invitado}`,
-    delete: (id: string | number) => `MeetingInvitado/${id}`,
-    participants: (meetingId: string | number) =>
-      `MeetingInvitado/ParticipantesInvitado/${meetingId}`,
-  },
-  Meetings: {
-    allPendingMinutas: (customerId: string) =>
-      `Meetings/MinutaAllPendientes/${customerId}`,
-    base: "Meetings",
-    delete: (id: string) => `Meetings/${id}`,
-    getById: (id: string) => `Meetings/${id}`,
-    getDetails: (meetingId: string | null) => `Meetings/GetDetails/${meetingId}`,
-    list: (customerId: string, tipoJunta: number) =>
-      `Meetings/list/${customerId}/${tipoJunta}`,
-    reportPdf: (meetingId: string | number) =>
-      `Meetings/MeetingReportPdf/${meetingId}`,
-    seguimientoMinutas: (customerId: string, filtro: number) =>
-      `Meetings/SeguimientoMinutas/${customerId}/${filtro}`,
-    sendEmailResponsible: (
-      id: any,
-      customerId: string,
-      area: number,
-      applicationUserId: string,
-    ) =>
-      `Meetings/SendEmailResponsible/${id}/${customerId}/${area}/${applicationUserId}`,
-  },
-  MeetingsDetails: {
-    base: "MeetingsDetails",
-    delete: (id: string | number) => `MeetingsDetails/${id}`,
-    getById: (id: string | number) => `MeetingsDetails/${id}`,
-  },
-  MenuItems: {
-    byCustomer: (customerId: string) => `menu-items/${customerId}`,
-  },
-  MeterCategories: {
-    create: "MedidorCategoria",
-    delete: (id: string) => `medidorcategoria/${id}`,
-    getAll: "MedidorCategoria",
-    getById: (id: string | number) => `MedidorCategoria/${id}`,
-    update: (id: string | number) => `MedidorCategoria/${id}`,
-  },
+
   MeterReadings: {
     create: "MedidorLectura",
     dailyChart: (medidorId: string, fechaInicial: string, fechaFinal: string) =>
@@ -1174,309 +983,56 @@ export const EndpointsTenant = {
       `MedidorLectura/DataGraficoMensual/${medidorId}/${fechaInicial}/${fechaFinal}`,
     update: (id: string | number) => `MedidorLectura/${id}`,
   },
-  Meters: {
-    create: "Medidor",
-    delete: (id: string | number) => `Medidor/${id}`,
-    getById: (id: string | number) => `Medidor/${id}`,
-    listByCustomer: (customerId: string) => `Medidor/list/${customerId}`,
-    update: (id: string | number) => `Medidor/${id}`,
+
+  MeterCategories: {
+    create: "MedidorCategoria",
+    delete: (id: string) => `medidorcategoria/${id}`,
+    getAll: "MedidorCategoria",
+    getById: (id: string | number) => `MedidorCategoria/${id}`,
+    update: (id: string | number) => `MedidorCategoria/${id}`,
   },
-  OrdenCompraStatus: {
-    byOrdenCompra: (ordenCompraId: string) =>
-      `OrdenCompraStatus/by-orden-compra/${ordenCompraId}`,
-    deleteInvoice: (id: string | number) => `OrdenCompraStatus/invoices/${id}`,
-    update: (id: string | number) => `OrdenCompraStatus/${id}`,
-    updateInvoice: (id: string | number) => `OrdenCompraStatus/invoices/${id}`,
-    updateInvoiceType: (id: string | number) =>
-      `OrdenCompraStatus/invoices/${id}/type`,
+
+  Piscina: {
+    delete: (id: string) => `piscina/${id}`,
   },
-  Notifications: {
-    getAll: "notifications",
-    markAsRead: (notificationId: string) =>
-      `Notifications/mark-as-read/${notificationId}`,
-    testOneSignal: "notifications/test-one-signal",
-    testOneSignalWeb: "notifications/test-one-signal-web",
-    testSignalR: (userId: string) => `notifications/test-signal-r/${userId}`,
-    testSignalUsers: "notifications/test-signal-users",
-    unreadCount: "Notifications/unread-count",
-    users: "notifications/users",
+
+  Machineries: {
+    delete: (id: string) => `Machineries/${id}`,
   },
-  OrgChart: {
-    getTree: (customerId: string) => `WorkPositionOrgChart/tree/${customerId}`,
-    reassign: "WorkPositionOrgChart/reassign",
+
+  MachineryClassification: {
+    create: "EquipoClasificacion",
+    delete: (id: string) => `equipoclasificacion/${id}`,
+    getAll: "EquipoClasificacion",
+    getById: (id: string | number) => `EquipoClasificacion/${id}`,
+    update: (id: string | number) => `EquipoClasificacion/${id}`,
   },
-  PasswordManager: {
-    Credentials: {
-      getPaged: "password-manager/credentials/filter",
-      getById: (id: string) => `password-manager/credentials/${id}`,
-      create: "password-manager/credentials",
-      update: (id: string) => `password-manager/credentials/${id}`,
-      delete: (id: string) => `password-manager/credentials/${id}`,
-    },
+
+  CatalogAssets: {
+    create: "CatalogAsset",
+    delete: (id: string | number) => `CatalogAsset/${id}`,
+    getAll: "CatalogAsset",
+    getById: (id: string) => `CatalogAsset/${id}`,
+    update: (id: string) => `CatalogAsset/${id}`,
   },
-  PresentacionJuntaComite: {
-    addFecha: "PresentacionJuntaComite/AddFecha",
-    authorize: (id: any, userId: string) =>
-      `PresentacionJuntaComite/AutorizarPresentacion/${id}/${userId}`,
-    delete: (id: any) => `PresentacionJuntaComite/${id}`,
-    deleteFile: (id: any, area: string) => `PresentacionJuntaComite/${id}/${area}`,
-    getById: (id: string) => `PresentacionJuntaComite/Get/${id}`,
-    list: (customerId: string) => `PresentacionJuntaComite/list/${customerId}`,
-    updateFecha: (id: string) => `PresentacionJuntaComite/AddFecha/${id}`,
+
+  CondominiumAssets: {
+    selectByCustomer: (customerId: string) => `CondominiumAsset/${customerId}`,
   },
-  PolicyContracts: {
-    create: "PolicyContract",
-    delete: (id: string | number) => `PolicyContract/${id}`,
-    deleteDocument: (id: string | number) =>
-      `PolicyContract/DeleteDocument/${id}`,
-    getById: (id: string | number) => `PolicyContract/${id}`,
-    list: (customerId: string, isCurrent: boolean) =>
-      `PolicyContract/List/${customerId}/${isCurrent}`,
-    providersByCustomer: (customerId: string) => `Providers/${customerId}`,
-    update: (id: string | number) => `PolicyContract/${id}`,
+
+  InspectionCondominiumAssets: {
+    create: "InspectionCondominiumAsset",
+    deleteArea: (id: string) => `InspectionCondominiumAsset/DeleteArea/${id}`,
+    deleteReview: (reviewId: string) =>
+      `InspectionCondominiumAsset/DeleteReview/${reviewId}`,
+    getById: (assetId: string) => `InspectionCondominiumAsset/${assetId}`,
+    listByInspection: (inspectionId: string) =>
+      `InspectionCondominiumAsset/List/${inspectionId}`,
+    update: (id: string) => `InspectionCondominiumAsset/${id}`,
   },
-  Presupuestos: {
-    create: "Presupuesto/Create",
-    toPurchaseOrder: (customerId: string, ordenCompraId: string, year: number) =>
-      `presupuesto/to-purchase-order/${customerId}/${ordenCompraId}/${year}`,
-    update: (id: string) => `Presupuesto/UpdatePresupuesto/${id}`,
-  },
-  PurchaseOrderBudgets: {
-    create: "OrdenCompraPresupuesto",
-    delete: (id: string | number) => `OrdenCompraPresupuesto/${id}`,
-    getById: (id: string | number) => `OrdenCompraPresupuesto/${id}`,
-    update: (id: string | number) => `OrdenCompraPresupuesto/${id}`,
-  },
-  PurchaseOrderDetails: {
-    addProductToOrder: (ordenCompraId: string) =>
-      `OrdenCompraDetalle/AddProductToOrder/${ordenCompraId}`,
-    create: "OrdenCompraDetalle/",
-    delete: (id: string | number) => `OrdenCompraDetalle/${id}`,
-    getById: (id: string | number) => `OrdenCompraDetalle/${id}`,
-    update: (id: string | number) => `OrdenCompraDetalle/${id}`,
-  },
-  PurchaseOrderPaymentData: {
-    getById: (id: string | number) => `OrdenCompraDatosPago/${id}`,
-    update: (id: string | number) => `OrdenCompraDatosPago/${id}`,
-  },
-  PurchaseOrderPaymentVouchers: {
-    delete: (id: string | number) => `OrdenCompraComprobantePago/${id}`,
-    upload: (ordenCompraId: string | number) => `OrdenCompraComprobantePago/${ordenCompraId}`,
-  },
-  PurchaseOrders: {
-    authorize: (id: string, userId: string) =>
-      `OrdenCompraAuth/Autorizar/${id}/${userId}`,
-    create: (providerId: string | number, posicion: number, solicitudCompraId: string) =>
-      `ordencompra/${providerId}/${posicion}/${solicitudCompraId}`,
-    delete: (id: string | number) => `ordencompra/${id}`,
-    getById: (id: string | number) => `OrdenCompra/${id}`,
-    getForEdit: (id: string | number) => `OrdenCompra/GetForEdit/${id}`,
-    listPagadas: (customerId: string, type: string) =>
-      `OrdenCompra/Pagadas/${customerId}/${type}`,
-    pdf: (id: string | number) => `ordencompra/Pdf/${id}`,
-    progressiveCreate: "ordencompra/progressive-create",
-    relatedQuotes: (solicitudCompraId: string) =>
-      `OrdenCompra/CotizacionesRelacionadas/${solicitudCompraId}`,
-    solicitudPago: (id: string | number) => `OrdenCompra/SolicitudPago/${id}`,
-    unauthorize: (id: string) => `OrdenCompraAuth/Desautorizar/${id}`,
-    linkManagerList: (customerId: string) =>
-      `OrdenCompra/link-manager-list/${customerId}`,
-    linkToRequest: (ordenCompraId: string, solicitudCompraId: string) =>
-      `OrdenCompra/link-to-request/${ordenCompraId}/${solicitudCompraId}`,
-    unlinkSolicitud: (id: string | number) => `OrdenCompra/UnlinkSolicitud/${id}`,
-    update: (id: string | number) => `OrdenCompra/${id}`,
-    uploadInvoice: (id: string | number) => `OrdenCompraStatus/${id}/invoices`,
-    validateInvoice: (id: string | number) => `funding/validate-invoice/${id}`,
-  },
-  PurchaseRequestDetails: {
-    addProductList: (solicitudCompraId: string) =>
-      `SolicitudCompraDetalle/AddProduct/${solicitudCompraId}`,
-    create: "SolicitudCompraDetalle",
-    delete: (id: string | number) => `solicitudcompradetalle/${id}`,
-    editProduct: (id: string | number) =>
-      `solicitudcompradetalle/editproduct/${id}`,
-    searchToAdd: (solicitudId: string) =>
-      `SolicitudCompraDetalle/SearchToAddRequest/${solicitudId}`,
-    update: (id: string | number) => `SolicitudCompraDetalle/${id}`,
-  },
-  PurchaseRequests: {
-    addProduct: "PurchaseRequest/add-product",
-    addProductList: (purchaseRequestId: string) =>
-      `purchaserequest/add-product/${purchaseRequestId}`,
-    create: "purchaserequest",
-    deleteProduct: (id: string | number) => `purchaserequest/delete-product/${id}`,
-    cuadroComparativo: (id: string) => `solicitudcompra/cuadrocomparativo/${id}`,
-    cuadroComparativoUpdate: (id: string) => `SolicitudCompra/CuadroComparativo/${id}`,
-    delete: (id: string | number) => `solicitudcompra/${id}`,
-    getById: (id: string | number) => `SolicitudCompra/${id}`,
-    getDetail: (id: string) => `purchaserequest/datail/${id}`,
-    getIdByFolioAndCustomer: (folio: string, customerId: string) =>
-      `SolicitudCompra/GetIdSolicitudCompra/${folio}/${customerId}`,
-    getIndividual: (id: string | number) => `SolicitudCompra/GetSolicitudCompraIndividual/${id}`,
-    getSolicitudCompraById: (id: string) => `purchaserequest/${id}`,
-    listByCustomerAndStatus: (customerId: string, status: number | string) =>
-      `purchaserequest/list/${customerId}/${status}`,
-    listSolicitudCompraByCustomerAndStatus: (customerId: string, status: number | string) =>
-      `solicitudcompra/list/${customerId}/${status}`,
-    presentation: (customerId: string) => `SolicitudCompra/Presentation/${customerId}`,
-    presentationOrder: "SolicitudCompra/Presentation/Order",
-    presentationSelection: (id: string) => `SolicitudCompra/Presentation/${id}/Selection`,
-    searchToAdd: (purchaseRequestId: string) =>
-      `PurchaseRequest/SearchToAddRequest/${purchaseRequestId}`,
-    solicitudCompraBase: "SolicitudCompra",
-    update: (id: string) => `purchaserequest/${id}`,
-    updateProduct: (id: string | number) => `PurchaseRequest/update-product/${id}`,
-  },
-  ProductCategories: {
-    base: "Categories",
-    create: "categories",
-    delete: (id: string | number) => `categories/${id}`,
-    getAll: "Categories",
-    getById: (id: string | number) => `categories/${id}`,
-    update: (id: string | number) => `categories/${id}`,
-  },
-  Products: {
-    autoComplete: "productos/getautocompleteselectitem/",
-    delete: (id: string) => `productos/${id}`,
-    getAll: "Productos",
-  },
-  Properties: {
-    create: "Property",
-    delete: (id: string) => `Property/${id}`,
-    getById: (id: string) => `Property/${id}`,
-    update: (id: string) => `Property/${id}`,
-  },
-  ProviderSupport: {
-    delete: (id: string) => `providersupport/${id}`,
-    getAll: "providersupport",
-    getById: (id: string) => `providersupport/${id}`,
-  },
-  RadioCommunication: {
-    create: "RadioComunicacion",
-    getById: (id: string) => `RadioComunicacion/${id}`,
-    update: (id: string) => `RadioComunicacion/${id}`,
-  },
-  RecurringTasks: {
-    Templates: {
-      getActiveList: "recurring-tasks/templates/list/true",
-      customerConfig: (customerId: string) =>
-        `recurring-tasks/templates/config/${customerId}`,
-      saveCustomerConfig: "recurring-tasks/templates/config",
-    },
-  },
-  ResidentesEdificio: {
-    selectByCustomer: (customerId: string) => `residentesedificio/${customerId}`,
-  },
-  ServiceOrders: {
-    create: "ServiceOrders",
-    delete: (id: string | number) => `ServiceOrders/${id}`,
-    deleteDocument: (id: string | number) => `ServiceOrders/DeleteDocument/${id}`,
-    deleteImg: (id: string | number) => `ServiceOrders/DeleteImg/${id}`,
-    getById: (id: string | number) => `ServiceOrders/${id}`,
-    listByCustomerAndDate: (customerId: string, date: string) =>
-      `ServiceOrders/list/${customerId}/${date}`,
-    listPintura: (customerId: string, date: string) =>
-      `ServiceOrders/list-pintura/${customerId}/${date}`,
-    photos: (id: string, customerId: string) =>
-      `ServiceOrders/OrdenesServicioFotos/${id}/${customerId}`,
-    reporte: (customerId: string, periodo: string) =>
-      `ServiceOrders/ReporteOrdenesServicio/${customerId}/${periodo}`,
-    reporteProveedor: (id: string, customerId: string) =>
-      `ServiceOrders/OrdenesServicioReporteProveedor/${id}/${customerId}`,
-    soporte: (id: string) => `ServiceOrders/SoporteOrdenServicio/${id}`,
-  },
-  SendEmail: {
-    meeting: (meetingId: string | number) => `sendemail/meeting/${meetingId}`,
-    operationReport: (
-      applicationUserId: string,
-      customerId: string,
-      year: number,
-      weekNumber: number,
-    ) =>
-      `sendemail/operation-report/${applicationUserId}/${customerId}/${year}/${weekNumber}`,
-    presentacionFinalComite: (idJunta: string | number) =>
-      `SendEmail/PresentacionFinalComite/${idJunta}`,
-  },
-  SpecialDocuments: {
-    updateOrder: "special-document/update-order",
-  },
-  TaskFollowUps: {
-    byMessage: (id: string) => `task-follow-up/by-message/${id}`,
-    create: "task-follow-up",
-    delete: (id: string) => `task-follow-up/${id}`,
-    listByTicketMessage: (ticketMessageId: string) =>
-      `task-follow-up/List/${ticketMessageId}`,
-  },
-  TaskGroupCategories: {
-    base: "task-group-categories",
-    delete: (id: string | number) => `task-group-categories/${id}`,
-    getAll: "task-group-categories",
-    getById: (id: string) => `task-group-categories/${id}`,
-    selectByCustomer: (customerId: string) => `task-group-category/${customerId}`,
-  },
-  TaskGroupParticipants: {
-    availableByCustomerAndGroup: (customerId: string, taskGroupId: string) =>
-      `task-group-participant/Participants/${customerId}/${taskGroupId}`,
-    base: "task-group-participant",
-    delete: (id: string | number) => `task-group-participant/${id}`,
-    listByGroup: (taskGroupId: string) => `task-group-participant/${taskGroupId}`,
-    update: (id: string) => `task-group-participant/${id}`,
-  },
-  TaskGroups: {
-    base: "task-groups",
-    delete: (id: string | number) => `task-groups/${id}`,
-    getById: (id: string) => `task-groups/${id}`,
-    list: (customerId: string, isActive: boolean, applicationUserId: string) =>
-      `task-groups/List/${customerId}/${isActive}/${applicationUserId}`,
-    sendReportPendingAll: "tasks/send-report-pending",
-    sendReportPendingByGroup: (id: string) => `tasks/send-report-pending/${id}`,
-    toggleStatus: (id: string) => `task-groups/toggle-status/${id}`,
-  },
-  TaskLegal: {
-    addTracking: "task-legal/Addtraking",
-    create: "task-legal",
-    createToCustomer: "task-legal/ToCustomer",
-    delete: (id: string) => `task-legal/${id}`,
-    employeeLegal: "task-legal/EmployeeLegal",
-    getAllByCustomer: (customerId: string) => `task-legal/All/${customerId}`,
-    getAllLegal: "task-legal/AllLegal",
-    getById: (id: string) => `task-legal/${id}`,
-    requestDetail: (id: string) => `task-legal/requestDetail/${id}`,
-    selectForAddTicket: "SelectForAddTicket",
-    status: (id: string) => `task-legal/status/${id}`,
-    tracking: (ticketId: string) => `task-legal/Traking/${ticketId}`,
-    update: (id: string) => `task-legal/${id}`,
-    updateStatus: (id: string, status: number | null) =>
-      `task-legal/UpdateStatus/${id}/${status}`,
-  },
-  TaskReads: {
-    byMessage: (id: string) => `task-reads/by-message/${id}`,
-    listByTicketMessage: (ticketMessageId: string) =>
-      `task-read/list/${ticketMessageId}`,
-  },
-  TaskReports: {
-    ticketReport: (customerId: string, startDate: string, endDate: string) =>
-      `task-report/GetTicketReport/${customerId}/${startDate}/${endDate}`,
-    weeklyPreview: (customerId: string, year: number, weekNumber: number) =>
-      `task-report/WeeklyReportPreview/${customerId}/${year}/${weekNumber}`,
-    weeklyReport: (
-      customerId: string,
-      startDate: string | null,
-      endDate: string | null,
-      status: string | number,
-    ) => `task-report/WeeklyReport/${customerId}/${startDate}/${endDate}/${status}`,
-  },
-  TaskWorkPlans: {
-    create: (
-      applicationUserId: string,
-      customerId: string,
-      year: number,
-      weekNumber: number,
-    ) => `task-work-plan/Create/${applicationUserId}/${customerId}/${year}/${weekNumber}`,
-    pending: (customerId: string) => `task-work-plan/pending/${customerId}`,
-    preview: (customerId: string, year: number, weekNumber: number) =>
-      `task-work-plan/preview/${customerId}/${year}/${weekNumber}`,
-  },
+
+  // ========================================== Módulo: Operations ==========================================
+
   Tasks: {
     close: "tasks/Closed",
     create: "tasks/Create",
@@ -1530,62 +1086,562 @@ export const EndpointsTenant = {
       `tasks/set-predecessor/${taskId}/${predecessorId}`,
     clearDependency: (taskId: string) => `tasks/clear-predecessor/${taskId}`,
   },
-  Almacen: {
-    delete: (id: string) => `almacen/${id}`,
-    getById: (id: string) => `almacen/${id}`,
+
+  TaskFollowUps: {
+    byMessage: (id: string) => `task-follow-up/by-message/${id}`,
+    create: "task-follow-up",
+    delete: (id: string) => `task-follow-up/${id}`,
+    listByTicketMessage: (ticketMessageId: string) =>
+      `task-follow-up/List/${ticketMessageId}`,
   },
-  BitacoraMantenimiento: {
-    delete: (id: string) => `BitacoraMantenimiento/${id}`,
+
+  TaskGroupCategories: {
+    base: "task-group-categories",
+    delete: (id: string | number) => `task-group-categories/${id}`,
+    getAll: "task-group-categories",
+    getById: (id: string) => `task-group-categories/${id}`,
+    selectByCustomer: (customerId: string) => `task-group-category/${customerId}`,
   },
-  CatalogoGastosFijosDetalles: {
-    base: "CatalogoGastosFijosDetalles",
-    delete: (id: string) => `CatalogoGastosFijosDetalles/${id}`,
+
+  TaskGroupParticipants: {
+    availableByCustomerAndGroup: (customerId: string, taskGroupId: string) =>
+      `task-group-participant/Participants/${customerId}/${taskGroupId}`,
+    base: "task-group-participant",
+    delete: (id: string | number) => `task-group-participant/${id}`,
+    listByGroup: (taskGroupId: string) => `task-group-participant/${taskGroupId}`,
+    update: (id: string) => `task-group-participant/${id}`,
   },
+
+  TaskGroups: {
+    base: "task-groups",
+    delete: (id: string | number) => `task-groups/${id}`,
+    getById: (id: string) => `task-groups/${id}`,
+    list: (customerId: string, isActive: boolean, applicationUserId: string) =>
+      `task-groups/List/${customerId}/${isActive}/${applicationUserId}`,
+    sendReportPendingAll: "tasks/send-report-pending",
+    sendReportPendingByGroup: (id: string) => `tasks/send-report-pending/${id}`,
+    toggleStatus: (id: string) => `task-groups/toggle-status/${id}`,
+  },
+
+  TaskLegal: {
+    addTracking: "task-legal/Addtraking",
+    create: "task-legal",
+    createToCustomer: "task-legal/ToCustomer",
+    delete: (id: string) => `task-legal/${id}`,
+    employeeLegal: "task-legal/EmployeeLegal",
+    getAllByCustomer: (customerId: string) => `task-legal/All/${customerId}`,
+    getAllLegal: "task-legal/AllLegal",
+    getById: (id: string) => `task-legal/${id}`,
+    requestDetail: (id: string) => `task-legal/requestDetail/${id}`,
+    selectForAddTicket: "SelectForAddTicket",
+    status: (id: string) => `task-legal/status/${id}`,
+    tracking: (ticketId: string) => `task-legal/Traking/${ticketId}`,
+    update: (id: string) => `task-legal/${id}`,
+    updateStatus: (id: string, status: number | null) =>
+      `task-legal/UpdateStatus/${id}/${status}`,
+  },
+
+  TaskReads: {
+    byMessage: (id: string) => `task-reads/by-message/${id}`,
+    listByTicketMessage: (ticketMessageId: string) =>
+      `task-read/list/${ticketMessageId}`,
+  },
+
+  TaskReports: {
+    ticketReport: (customerId: string, startDate: string, endDate: string) =>
+      `task-report/GetTicketReport/${customerId}/${startDate}/${endDate}`,
+    weeklyPreview: (customerId: string, year: number, weekNumber: number) =>
+      `task-report/WeeklyReportPreview/${customerId}/${year}/${weekNumber}`,
+    weeklyReport: (
+      customerId: string,
+      startDate: string | null,
+      endDate: string | null,
+      status: string | number,
+    ) => `task-report/WeeklyReport/${customerId}/${startDate}/${endDate}/${status}`,
+  },
+
+  TaskWorkPlans: {
+    create: (
+      applicationUserId: string,
+      customerId: string,
+      year: number,
+      weekNumber: number,
+    ) => `task-work-plan/Create/${applicationUserId}/${customerId}/${year}/${weekNumber}`,
+    pending: (customerId: string) => `task-work-plan/pending/${customerId}`,
+    preview: (customerId: string, year: number, weekNumber: number) =>
+      `task-work-plan/preview/${customerId}/${year}/${weekNumber}`,
+  },
+
+  RecurringTasks: {
+    Templates: {
+      getActiveList: "recurring-tasks/templates/list/true",
+      customerConfig: (customerId: string) =>
+        `recurring-tasks/templates/config/${customerId}`,
+      saveCustomerConfig: "recurring-tasks/templates/config",
+    },
+  },
+
+  AiAssistant: {
+    testProfile: "AiAssistant/TestProfile",
+  },
+
+  Announcements: {
+    adminList: "announcements/admin-list",
+    analytics: (id: string) => `announcements/${id}/analytics`,
+    create: "announcements",
+    delete: (id: string) => `announcements/${id}`,
+    downloadPdf: (id: string) => `announcements/${id}/pdf`,
+    getById: (id: string) => `announcements/${id}`,
+    update: (id: string) => `announcements/${id}`,
+  },
+
   DiagramDraw: {
     delete: (id: string) => `DiagramDraw/${id}`,
     getById: (id: string) => `DiagramDraw/${id}`,
     update: (id: string) => `DiagramDraw/${id}`,
   },
-  Funding: {
-    delete: (id: string) => `funding/${id}`,
-    deleteDetail: (id: string) => `funding/detail/${id}`,
+
+  AsambleaChecklist: {
+    bySession: (sessionId: string) => `AsambleaChecklist/session/${sessionId}`,
+    updateStatus: (id: string) => `AsambleaChecklist/${id}/status`,
   },
+
+  AsambleaChecklistTemplate: {
+    create: "AsambleaChecklistTemplate",
+    delete: (id: string) => `AsambleaChecklistTemplate/${id}`,
+    getAll: "AsambleaChecklistTemplate",
+    getById: (id: string) => `AsambleaChecklistTemplate/${id}`,
+    update: (id: string) => `AsambleaChecklistTemplate/${id}`,
+  },
+
+  JuntaMensualSession: {
+    detail: (sessionId: string) => `JuntaMensualSession/${sessionId}/detail`,
+  },
+
+  Meetings: {
+    allPendingMinutas: (customerId: string) =>
+      `Meetings/MinutaAllPendientes/${customerId}`,
+    base: "Meetings",
+    delete: (id: string) => `Meetings/${id}`,
+    getById: (id: string) => `Meetings/${id}`,
+    getDetails: (meetingId: string | null) => `Meetings/GetDetails/${meetingId}`,
+    list: (customerId: string, tipoJunta: number) =>
+      `Meetings/list/${customerId}/${tipoJunta}`,
+    reportPdf: (meetingId: string | number) =>
+      `Meetings/MeetingReportPdf/${meetingId}`,
+    seguimientoMinutas: (customerId: string, filtro: number) =>
+      `Meetings/SeguimientoMinutas/${customerId}/${filtro}`,
+    sendEmailResponsible: (
+      id: any,
+      customerId: string,
+      area: number,
+      applicationUserId: string,
+    ) =>
+      `Meetings/SendEmailResponsible/${id}/${customerId}/${area}/${applicationUserId}`,
+  },
+
+  MeetingsDetails: {
+    base: "MeetingsDetails",
+    delete: (id: string | number) => `MeetingsDetails/${id}`,
+    getById: (id: string | number) => `MeetingsDetails/${id}`,
+  },
+
+  MeetingDetailsTracking: {
+    base: "MeetingDertailsSeguimiento",
+    delete: (id: string | number) => `MeetingDertailsSeguimiento/${id}`,
+    exportSummaryToExcel: (meetingId: string | number) =>
+      `MeetingDertailsSeguimiento/ExportSummaryToExcel/${meetingId}`,
+    getById: (id: string | number) => `MeetingDertailsSeguimiento/${id}`,
+    resumenGrafico: (customerId: string, date: string) =>
+      `MeetingDertailsSeguimiento/ResumenPreventivosGraficoPresentacion/${customerId}/${date}`,
+    resumenGraficoPresentacion: (meetingId: string | number) =>
+      `MeetingDertailsSeguimiento/ResumenMinutasGraficoPresentacion/${meetingId}`,
+    resumenPreventivos: (customerId: string, date: string) =>
+      `MeetingDertailsSeguimiento/ResumenPreventivosPresentacion/${customerId}/${date}`,
+    resumenPresentacion: (meetingId: string | number) =>
+      `MeetingDertailsSeguimiento/ResumenMinutasPresentacion/${meetingId}`,
+    update: (id: string | number) => `MeetingDertailsSeguimiento/${id}`,
+  },
+
+  MeetingAdministracion: {
+    addParticipant: (meetingId: string | number, participantId: string | number) =>
+      `MeetingAdministracion/AgregarParticipantesAdministracion/${meetingId}/${participantId}/1`,
+    delete: (id: string | number) => `MeetingAdministracion/${id}`,
+    listCandidates: (customerId: string, meetingId: string | number) =>
+      `GetListAdministracionMinuta/${customerId}/${meetingId}`,
+    participants: (meetingId: string | number) =>
+      `MeetingAdministracion/ParticipantesAdministracion/${meetingId}`,
+  },
+
+  MeetingComite: {
+    addParticipant: (meetingId: string | number, participantId: string | number) =>
+      `MeetingComite/AgregarParticipantesComite/${meetingId}/${participantId}`,
+    delete: (id: string | number) => `MeetingComite/${id}`,
+    listCandidates: (customerId: string, meetingId: string | number) =>
+      `GetListComiteMinuta/${customerId}/${meetingId}`,
+    participants: (meetingId: string | number) =>
+      `MeetingComite/ParticipantesComite/${meetingId}`,
+  },
+
+  MeetingInvitado: {
+    addParticipant: (meetingId: string | number, invitado: string | null) =>
+      `MeetingInvitado/AgregarParticipantesInvitado/${meetingId}/${invitado}`,
+    delete: (id: string | number) => `MeetingInvitado/${id}`,
+    participants: (meetingId: string | number) =>
+      `MeetingInvitado/ParticipantesInvitado/${meetingId}`,
+  },
+
+  PresentacionJuntaComite: {
+    addFecha: "PresentacionJuntaComite/AddFecha",
+    authorize: (id: any, userId: string) =>
+      `PresentacionJuntaComite/AutorizarPresentacion/${id}/${userId}`,
+    delete: (id: any) => `PresentacionJuntaComite/${id}`,
+    deleteFile: (id: any, area: string) => `PresentacionJuntaComite/${id}/${area}`,
+    getById: (id: string) => `PresentacionJuntaComite/Get/${id}`,
+    list: (customerId: string) => `PresentacionJuntaComite/list/${customerId}`,
+    updateFecha: (id: string) => `PresentacionJuntaComite/AddFecha/${id}`,
+  },
+
   GoogleCalendarEvents: {
     updateSeries: (id: string) => `google-calendar-events/${id}/series`,
   },
+
+  Manuals: {
+    createTemplate: "manuals/templates",
+    deleteInstance: (id: string) => `manuals/instances/${id}`,
+    deleteTemplate: (id: string) => `manuals/templates/${id}`,
+    deleteTemplateAttachment: (id: string) =>
+      `manuals/templates/attachments/${id}`,
+    getInstances: (customerId?: string) =>
+      customerId
+        ? `manuals/instances?customerId=${customerId}`
+        : "manuals/instances",
+    getTemplateById: (id: string) => `manuals/templates/${id}`,
+    getTemplates: "manuals/templates",
+    updateTemplate: (id: string) => `manuals/templates/${id}`,
+    updateTemplateItems: (id: string) => `manuals/templates/${id}/items`,
+    uploadInstance: "manuals/instances",
+    uploadTemplateAttachment: "manuals/templates/attachments",
+    upsertTemplate: "manuals/templates",
+  },
+
+  ManualsPasos: {
+    addAdjunto: (manualId: string) => `manuals/${manualId}/adjuntos`,
+    addEnlace: (manualId: string, pasoId: string) =>
+      `manuals/${manualId}/pasos/${pasoId}/enlaces`,
+    addPaso: (manualId: string) => `manuals/${manualId}/pasos`,
+    addVersion: (manualId: string) => `manuals/${manualId}/versiones`,
+    crearDiagrama: (manualId: string, pasoId: string) =>
+      `manuals/${manualId}/pasos/${pasoId}/diagrama`,
+    create: "manuals",
+    delete: (id: string) => `manuals/${id}`,
+    deleteAdjunto: (manualId: string, adjuntoId: string) =>
+      `manuals/${manualId}/adjuntos/${adjuntoId}`,
+    deleteDiagrama: (manualId: string, pasoId: string) =>
+      `manuals/${manualId}/pasos/${pasoId}/diagrama`,
+    deleteEnlace: (manualId: string, pasoId: string, enlaceId: string) =>
+      `manuals/${manualId}/pasos/${pasoId}/enlaces/${enlaceId}`,
+    deletePaso: (manualId: string, pasoId: string) =>
+      `manuals/${manualId}/pasos/${pasoId}`,
+    deleteVersion: (manualId: string, versionId: string) =>
+      `manuals/${manualId}/versiones/${versionId}`,
+    eliminarImagen: (manualId: string, pasoId: string, imagenId: string) =>
+      `manuals/${manualId}/pasos/${pasoId}/imagenes/${imagenId}`,
+    getAll: "manuals",
+    getById: (id: string) => `manuals/${id}`,
+    getDiagrama: (diagramaId: string) => `manuals/diagrama/${diagramaId}`,
+    reordenarPasos: (manualId: string) =>
+      `manuals/${manualId}/pasos/reordenar`,
+    subirImagen: (manualId: string, pasoId: string) =>
+      `manuals/${manualId}/pasos/${pasoId}/imagenes`,
+    update: (id: string) => `manuals/${id}`,
+    updateDiagrama: (diagramaId: string) => `manuals/diagrama/${diagramaId}`,
+    updatePaso: (manualId: string, pasoId: string) =>
+      `manuals/${manualId}/pasos/${pasoId}`,
+  },
+
+  ManualFlowcharts: {
+    create: "manualFlowcharts",
+    delete: (id: string) => `manualFlowcharts/${id}`,
+    getById: (id: string) => `manualFlowcharts/${id}`,
+    update: (id: string) => `manualFlowcharts/${id}`,
+  },
+
+  CustomDocuments: {
+    create: "customdocument",
+    delete: (id: string) => `customdocument/${id}`,
+    getById: (id: string) => `customdocument/${id}`,
+    list: (customerId: string, documentType: number) =>
+      `customdocument/list/${customerId}/${documentType}`,
+    update: (id: string) => `customdocument/${id}`,
+    updateOrder: "customdocument/update-order",
+  },
+
+  SpecialDocuments: {
+    updateOrder: "special-document/update-order",
+  },
+
+  Almacen: {
+    delete: (id: string) => `almacen/${id}`,
+    getById: (id: string) => `almacen/${id}`,
+  },
+
   InventarioProducto: {
     create: "InventarioProducto",
   },
-  Machineries: {
-    delete: (id: string) => `Machineries/${id}`,
+
+  Products: {
+    autoComplete: "productos/getautocompleteselectitem/",
+    delete: (id: string) => `productos/${id}`,
+    getAll: "Productos",
   },
-  MaintenanceCalendars: {
-    delete: (id: string) => `maintenancecalendars/${id}`,
+
+  ProductCategories: {
+    base: "Categories",
+    create: "categories",
+    delete: (id: string | number) => `categories/${id}`,
+    getAll: "Categories",
+    getById: (id: string | number) => `categories/${id}`,
+    update: (id: string | number) => `categories/${id}`,
   },
+
+  Tools: {
+    delete: (id: string) => `Tools/${id}`,
+  },
+
+  RadioCommunication: {
+    create: "RadioComunicacion",
+    getById: (id: string) => `RadioComunicacion/${id}`,
+    update: (id: string) => `RadioComunicacion/${id}`,
+  },
+
+  Inspections: {
+    create: "Inspection",
+    delete: (id: string | number) => `inspection/${id}`,
+    getById: (id: string) => `inspection/${id}`,
+    listByCustomer: (customerId: string) => `inspection/list/${customerId}`,
+    update: (id: string) => `Inspection/${id}`,
+  },
+
+  InspectionResults: {
+    byUserCustomerAndDate: (
+      applicationUserId: string,
+      customerId: string,
+      formattedDate: string,
+    ) =>
+      `InspectionResult/GetInspectionsByCustomer/${applicationUserId}/${customerId}/${formattedDate}`,
+    getByIdForExecution: (customerInspectionId: string) =>
+      `InspectionResult/InspectionResultGetById/${customerInspectionId}`,
+    report: (inspectionResultId: string, date?: string) =>
+      date
+        ? `InspectionResult/Report/${inspectionResultId}/${date}`
+        : `InspectionResult/Report/${inspectionResultId}`,
+    updateInspectionData: (
+      customerInspectionId: string,
+      applicationUserId: string,
+    ) =>
+      `InspectionResult/UpdateInspectionData/${customerInspectionId}/${applicationUserId}`,
+  },
+
+  InspectionResultImages: {
+    byInspectionResultAndCustomer: (
+      inspectionResultId: string,
+      customerId: string,
+    ) => `InspectionResultImage/${inspectionResultId}/${customerId}`,
+    deleteInspectionImage: (imageId: string, customerId: string) =>
+      `InspectionResultImage/DeleteInspectionImage/${imageId}/${customerId}`,
+  },
+
+  InspectionReviewCatalog: {
+    create: "InspectionReviewsCatalog",
+    delete: (id: string | number) => `InspectionReviewsCatalog/${id}`,
+    getAll: "InspectionReviewsCatalog",
+    getById: (id: string) => `InspectionReviewsCatalog/${id}`,
+    update: (id: string) => `InspectionReviewsCatalog/${id}`,
+  },
+
+  CustomerInspections: {
+    selectByCustomer: (customerId: string) =>
+      `CustomerInspections/${customerId}`,
+  },
+
+  Properties: {
+    create: "Property",
+    delete: (id: string) => `Property/${id}`,
+    getById: (id: string) => `Property/${id}`,
+    update: (id: string) => `Property/${id}`,
+  },
+
+  ResidentesEdificio: {
+    selectByCustomer: (customerId: string) => `residentesedificio/${customerId}`,
+  },
+
+  EntregaRecepcion: {
+    base: "CatalogoEntregaRecepcionDescripcion",
+    getByClient: (id: string) => `EntregaRecepcionCliente/${id}`,
+    getById: (id: string) => `CatalogoEntregaRecepcionDescripcion/${id}`,
+    grupos: "CatalogoEntregaRecepcionDescripcion/grupos",
+    updateClient: (id: string, userId: string, customerId: string) =>
+      `EntregaRecepcionCliente/${id}/${userId}/${customerId}`,
+  },
+
+  EntregaRecepcionCliente: {
+    deleteFile: (id: string) => `EntregaRecepcionCliente/DeleteFile/${id}`,
+    generateData: "EntregaRecepcionCliente/GenerateData",
+    getByCustomerAndDepartment: (customerId: string, department: string) =>
+      `EntregaRecepcionCliente/${customerId}/${department}`,
+    invalidateFile: (id: string) =>
+      `EntregaRecepcionCliente/InvalidarArchivo/${id}`,
+    validateFile: (applicationUserId: string, id: string) =>
+      `EntregaRecepcionCliente/ValidarArchivo/${applicationUserId}/${id}`,
+  },
+
   Owner: {
     delete: (id: string) => `owner/${id}`,
     getById: (id: string) => `owner/${id}`,
   },
-  Permission: {
-    update: (id: string | number) => `Permission/${id}`,
+
+  ServiceOrders: {
+    create: "ServiceOrders",
+    delete: (id: string | number) => `ServiceOrders/${id}`,
+    deleteDocument: (id: string | number) => `ServiceOrders/DeleteDocument/${id}`,
+    deleteImg: (id: string | number) => `ServiceOrders/DeleteImg/${id}`,
+    getById: (id: string | number) => `ServiceOrders/${id}`,
+    listByCustomerAndDate: (customerId: string, date: string) =>
+      `ServiceOrders/list/${customerId}/${date}`,
+    listPintura: (customerId: string, date: string) =>
+      `ServiceOrders/list-pintura/${customerId}/${date}`,
+    photos: (id: string, customerId: string) =>
+      `ServiceOrders/OrdenesServicioFotos/${id}/${customerId}`,
+    reporte: (customerId: string, periodo: string) =>
+      `ServiceOrders/ReporteOrdenesServicio/${customerId}/${periodo}`,
+    reporteProveedor: (id: string, customerId: string) =>
+      `ServiceOrders/OrdenesServicioReporteProveedor/${id}/${customerId}`,
+    soporte: (id: string) => `ServiceOrders/SoporteOrdenServicio/${id}`,
   },
-  Piscina: {
-    delete: (id: string) => `piscina/${id}`,
+
+  ApprovalRules: {
+    matrix: "approval-rules/matrix",
   },
-  TemplateEvaluation: {
-    delete: (id: string) => `TemplateEvaluation/${id}`,
+
+  // ========================================== Módulo: Purchasing ==========================================
+
+  PurchaseRequests: {
+    addProduct: "PurchaseRequest/add-product",
+    addProductList: (purchaseRequestId: string) =>
+      `purchaserequest/add-product/${purchaseRequestId}`,
+    create: "purchaserequest",
+    deleteProduct: (id: string | number) => `purchaserequest/delete-product/${id}`,
+    cuadroComparativo: (id: string) => `solicitudcompra/cuadrocomparativo/${id}`,
+    cuadroComparativoUpdate: (id: string) => `SolicitudCompra/CuadroComparativo/${id}`,
+    delete: (id: string | number) => `solicitudcompra/${id}`,
+    getById: (id: string | number) => `SolicitudCompra/${id}`,
+    getDetail: (id: string) => `purchaserequest/datail/${id}`,
+    getIdByFolioAndCustomer: (folio: string, customerId: string) =>
+      `SolicitudCompra/GetIdSolicitudCompra/${folio}/${customerId}`,
+    getIndividual: (id: string | number) => `SolicitudCompra/GetSolicitudCompraIndividual/${id}`,
+    getSolicitudCompraById: (id: string) => `purchaserequest/${id}`,
+    listByCustomerAndStatus: (customerId: string, status: number | string) =>
+      `purchaserequest/list/${customerId}/${status}`,
+    listSolicitudCompraByCustomerAndStatus: (customerId: string, status: number | string) =>
+      `solicitudcompra/list/${customerId}/${status}`,
+    presentation: (customerId: string) => `SolicitudCompra/Presentation/${customerId}`,
+    presentationOrder: "SolicitudCompra/Presentation/Order",
+    presentationSelection: (id: string) => `SolicitudCompra/Presentation/${id}/Selection`,
+    searchToAdd: (purchaseRequestId: string) =>
+      `PurchaseRequest/SearchToAddRequest/${purchaseRequestId}`,
+    solicitudCompraBase: "SolicitudCompra",
+    update: (id: string) => `purchaserequest/${id}`,
+    updateProduct: (id: string | number) => `PurchaseRequest/update-product/${id}`,
   },
-  Tools: {
-    delete: (id: string) => `Tools/${id}`,
+
+  PurchaseRequestDetails: {
+    addProductList: (solicitudCompraId: string) =>
+      `SolicitudCompraDetalle/AddProduct/${solicitudCompraId}`,
+    create: "SolicitudCompraDetalle",
+    delete: (id: string | number) => `solicitudcompradetalle/${id}`,
+    editProduct: (id: string | number) =>
+      `solicitudcompradetalle/editproduct/${id}`,
+    searchToAdd: (solicitudId: string) =>
+      `SolicitudCompraDetalle/SearchToAddRequest/${solicitudId}`,
+    update: (id: string | number) => `SolicitudCompraDetalle/${id}`,
   },
-  ToolLoans: {
-    create: "controlprestamoherramientas",
-    delete: (id: string | number) => `ControlPrestamoHerramientas/${id}`,
-    getById: (id: string | number) => `controlprestamoherramientas/${id}`,
-    listByCustomer: (customerId: string) =>
-      `ControlPrestamoHerramientas/list/${customerId}`,
-    update: (id: string | number) => `controlprestamoherramientas/${id}`,
+
+  ProviderSupport: {
+    delete: (id: string) => `providersupport/${id}`,
+    getAll: "providersupport",
+    getById: (id: string) => `providersupport/${id}`,
   },
+
+  PurchaseOrders: {
+    authorize: (id: string, userId: string) =>
+      `OrdenCompraAuth/Autorizar/${id}/${userId}`,
+    create: (providerId: string | number, posicion: number, solicitudCompraId: string) =>
+      `ordencompra/${providerId}/${posicion}/${solicitudCompraId}`,
+    delete: (id: string | number) => `ordencompra/${id}`,
+    getById: (id: string | number) => `OrdenCompra/${id}`,
+    getForEdit: (id: string | number) => `OrdenCompra/GetForEdit/${id}`,
+    listPagadas: (customerId: string, type: string) =>
+      `OrdenCompra/Pagadas/${customerId}/${type}`,
+    pdf: (id: string | number) => `ordencompra/Pdf/${id}`,
+    progressiveCreate: "ordencompra/progressive-create",
+    relatedQuotes: (solicitudCompraId: string) =>
+      `OrdenCompra/CotizacionesRelacionadas/${solicitudCompraId}`,
+    solicitudPago: (id: string | number) => `OrdenCompra/SolicitudPago/${id}`,
+    unauthorize: (id: string) => `OrdenCompraAuth/Desautorizar/${id}`,
+    linkManagerList: (customerId: string) =>
+      `OrdenCompra/link-manager-list/${customerId}`,
+    linkToRequest: (ordenCompraId: string, solicitudCompraId: string) =>
+      `OrdenCompra/link-to-request/${ordenCompraId}/${solicitudCompraId}`,
+    unlinkSolicitud: (id: string | number) => `OrdenCompra/UnlinkSolicitud/${id}`,
+    update: (id: string | number) => `OrdenCompra/${id}`,
+    uploadInvoice: (id: string | number) => `OrdenCompraStatus/${id}/invoices`,
+    validateInvoice: (id: string | number) => `funding/validate-invoice/${id}`,
+  },
+
+  OrdenCompraStatus: {
+    byOrdenCompra: (ordenCompraId: string) =>
+      `OrdenCompraStatus/by-orden-compra/${ordenCompraId}`,
+    deleteInvoice: (id: string | number) => `OrdenCompraStatus/invoices/${id}`,
+    update: (id: string | number) => `OrdenCompraStatus/${id}`,
+    updateInvoice: (id: string | number) => `OrdenCompraStatus/invoices/${id}`,
+    updateInvoiceType: (id: string | number) =>
+      `OrdenCompraStatus/invoices/${id}/type`,
+  },
+  Providers: {
+    delete: (id: string) => `providers/${id}`,
+    getByIdAndCustomer: (id: string | number, customerId: string) =>
+      `providers/${id}/${customerId}`,
+  },
+
+  PurchaseOrderBudgets: {
+    create: "OrdenCompraPresupuesto",
+    delete: (id: string | number) => `OrdenCompraPresupuesto/${id}`,
+    getById: (id: string | number) => `OrdenCompraPresupuesto/${id}`,
+    update: (id: string | number) => `OrdenCompraPresupuesto/${id}`,
+  },
+
+  PurchaseOrderDetails: {
+    addProductToOrder: (ordenCompraId: string) =>
+      `OrdenCompraDetalle/AddProductToOrder/${ordenCompraId}`,
+    create: "OrdenCompraDetalle/",
+    delete: (id: string | number) => `OrdenCompraDetalle/${id}`,
+    getById: (id: string | number) => `OrdenCompraDetalle/${id}`,
+    update: (id: string | number) => `OrdenCompraDetalle/${id}`,
+  },
+
+  PurchaseOrderPaymentData: {
+    getById: (id: string | number) => `OrdenCompraDatosPago/${id}`,
+    update: (id: string | number) => `OrdenCompraDatosPago/${id}`,
+  },
+
+  PurchaseOrderPaymentVouchers: {
+    delete: (id: string | number) => `OrdenCompraComprobantePago/${id}`,
+    upload: (ordenCompraId: string | number) => `OrdenCompraComprobantePago/${ordenCompraId}`,
+  },
+
+  // ========================================== Módulo: Recruitment ==========================================
+
   WorkPositions: {
     activate: (id: string) => `work-positions/${id}/activate`,
     assignEmployee: (applicationUserId: string, positionId: string) =>
@@ -1594,5 +1650,17 @@ export const EndpointsTenant = {
     listByCustomer: (customerId: string, state: string) =>
       `work-positions/list-by-customer/${customerId}/${state}`,
     unassignEmployee: (id: string) => `work-positions/${id}/unassign-employee`,
+  },
+
+  OrgChart: {
+    getTree: (customerId: string) => `WorkPositionOrgChart/tree/${customerId}`,
+    reassign: "WorkPositionOrgChart/reassign",
+  },
+
+  JobDescriptions: {
+    base: "job-descriptions",
+    getById: (id: string) => `job-descriptions/${id}`,
+    getByWorkPosition: (workPositionId: string) =>
+      `job-descriptions/by-workposition/${workPositionId}`,
   },
 } as const;
