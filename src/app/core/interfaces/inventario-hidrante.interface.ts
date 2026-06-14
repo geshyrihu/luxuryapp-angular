@@ -1,8 +1,8 @@
-export interface IInventarioExtintor {
+export interface IInventarioHidrante {
   id: any;
   customerId: string;
-  extinguisherType: string;
-  expirationDate: string;
+  hydrantType: string;
+  cabinetNumber?: string;
   location: string;
   localCode?: string;
   photo?: string;

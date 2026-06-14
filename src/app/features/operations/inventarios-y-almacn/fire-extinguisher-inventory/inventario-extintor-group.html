@@ -13,16 +13,16 @@
       <td colspan="3">
         <table>
           <tbody>
-            @for (ubicacion of tipo.ubicaciones; track ubicacion) {
+            @for (loc of tipo.locations; track loc) {
             <tr>
-              <td>{{ ubicacion.ubicacion }}</td>
-              <td>{{ ubicacion.cantidad }}</td>
+              <td>{{ loc.location }}</td>
+              <td>{{ loc.count }}</td>
               <td>
                 <table>
                   <tbody>
-                    @for ( extintor of ubicacion.extintores; track extintor ) {
+                    @for ( ext of loc.extinguishers; track ext ) {
                     <tr>
-                      <td>{{ extintor.ubicacion }}</td>
+                      <td>{{ ext.location }}</td>
                     </tr>
                     }
                   </tbody>
@@ -37,10 +37,3 @@
     }
   </tbody>
 </table>
-
-
-
-
-
-
-

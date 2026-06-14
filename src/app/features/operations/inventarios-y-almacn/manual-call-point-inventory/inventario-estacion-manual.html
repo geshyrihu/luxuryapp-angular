@@ -14,13 +14,14 @@
   <ng-template #caption>
     <div class="flex justify-content-between align-items-center w-full">
       <div class="flex align-items-center gap-2">
-        <custom-button-download (clicked)="onDownloadPdf()" label="PDF" />
-        <custom-button-download (clicked)="onDownloadAllQr()" label="QR" tooltip="Descargar todos los QR" />
         <custom-button-item (clicked)="onOpenScanner()" icon="pi pi-qrcode" tooltip="Escanear QR" />
+        <custom-button-download (clicked)="downloadTemplate()" label="Plantilla" tooltip="Descargar plantilla Excel" [showLabelOnDesktop]="true" />
+        <custom-button-download (clicked)="fileInput.click()" label="Importar" tooltip="Importar desde Excel" [showLabelOnDesktop]="true" />
+        <input type="file" accept=".xlsx" style="display:none" #fileInput (change)="onImportExcel($event)" />
       </div>
       <primeng-custom-caption
-        [title]="'Inventario de Extintores'"
-        (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+        [title]="'Inventario de Estaciones Manuales'"
+        (add)="onModalForm({ id: '', title: 'Nueva Estación Manual' })"
         [dt]="dt"
       />
     </div>
@@ -28,34 +29,21 @@
   <ng-template #header>
     <tr>
       <th class="table-col-5">Foto</th>
-      <th class="table-col-15" pSortableColumn="localCode">
-        Código <p-sortIcon field="localCode" />
-      </th>
-      <th class="table-col-25" pSortableColumn="extinguisherType">
-        Extintor <p-sortIcon field="extinguisherType" />
-      </th>
-      <th class="table-col-25" pSortableColumn="location">
-        Ubicación <p-sortIcon field="location" />
-      </th>
-      <th class="table-col-15" pSortableColumn="expirationDate">
-        Vencimiento <p-sortIcon field="expirationDate" />
-      </th>
+      <th class="table-col-15" pSortableColumn="localCode">Código <p-sortIcon field="localCode" /></th>
+      <th class="table-col-30" pSortableColumn="stationType">Tipo <p-sortIcon field="stationType" /></th>
+      <th class="table-col-35" pSortableColumn="location">Ubicación <p-sortIcon field="location" /></th>
       <th class="table-col-5"></th>
     </tr>
   </ng-template>
   <ng-template #body let-item>
     <tr>
-      <td>
-        <p-image [src]="item.photo" alt="." width="100" class="shadow-4" [preview]="true" />
-      </td>
+      <td><p-image [src]="item.photo" alt="." width="100" class="shadow-4" [preview]="true" /></td>
       <td><small>{{ item.localCode }}</small></td>
-      <td><small>{{ item.extinguisherType }}</small></td>
+      <td><small>{{ item.stationType }}</small></td>
       <td><small>{{ item.location }}</small></td>
-      <td><small>{{ item.expirationDate }}</small></td>
       <td>
         <div class="flex">
           <custom-button-item (clicked)="onViewHistory(item)" tooltip="Ver historial de inspecciones" icon="pi pi-list" />
-          <custom-button-download (clicked)="onDownloadQr(item)" tooltip="Descargar QR" />
           <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
           <custom-button-delete (confirmed)="onDelete(item.id)" />
         </div>
@@ -70,7 +58,7 @@
 <app-data-view-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
-  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  (add)="onModalForm({ id: '', title: 'Nueva Estación Manual' })"
 >
   <div customFilters class="px-3 pb-2">
     <ion-button expand="block" fill="outline" color="primary" (click)="onOpenScanner()">
@@ -78,24 +66,21 @@
       Escanear QR
     </ion-button>
   </div>
-
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
       <div slot="start" style="
         width:36px; height:36px; border-radius:10px;
-        background:#fee2e2; display:flex; align-items:center;
+        background:#fef9c3; display:flex; align-items:center;
         justify-content:center; flex-shrink:0; margin-left:16px;
       ">
-        <ion-icon name="flame-outline" style="font-size:20px; color:#dc2626;"></ion-icon>
+        <ion-icon name="alert-circle-outline" style="font-size:20px; color:#ca8a04;"></ion-icon>
       </div>
       <ion-label>
-        <h3>{{ item.localCode ? item.localCode + ' — ' : '' }}{{ item.extinguisherType }}</h3>
+        <h3>{{ item.localCode ? item.localCode + ' — ' : '' }}{{ item.stationType }}</h3>
         <p>{{ item.location }}</p>
       </ion-label>
       <app-action-menu slot="end">
         <ion-button-item (clicked)="onViewHistory(item)" label="Historial" iconName="list-outline" />
-        <ion-button-download (clicked)="onDownloadPdf()" label="PDF" />
-        <ion-button-download (clicked)="onDownloadQr(item)" label="QR" />
         <ion-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
         <ion-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>

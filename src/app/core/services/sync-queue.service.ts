@@ -1,5 +1,5 @@
 import { HttpClient, HttpContext, HttpContextToken, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, Injector } from '@angular/core';
 import * as localforage from 'localforage';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { ConnectivityService } from './connectivity.service';
@@ -21,9 +21,14 @@ export interface SyncRequest {
   providedIn: 'root'
 })
 export class SyncQueueService {
-  private http = inject(HttpClient);
+  private injector = inject(Injector);
   private connectivityService = inject(ConnectivityService);
   private consoleLogger = inject(ConsoleLoggerService);
+  
+  // Inyección perezosa para evitar dependencia circular con offlineInterceptorFn -> HttpClient
+  private get http(): HttpClient {
+    return this.injector.get(HttpClient);
+  }
   
   private queueSubject = new BehaviorSubject<number>(0);
   public queueLength$ = this.queueSubject.asObservable();

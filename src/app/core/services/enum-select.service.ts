@@ -62,7 +62,15 @@ export class EnumSelectService {
 
   educationLevel = (d?: boolean) => this.onLoadEnumList("EEducationLevel", d);
 
-  extintor = (d?: boolean) => this.onLoadEnumList("EExtintor", d);
+  extinguisherType = (d?: boolean) => this.onLoadEnumList("EExtinguisherType", d);
+
+  hydrantType = (d?: boolean) => this.onLoadEnumList("EHydrantType", d);
+
+  cabinetState = (d?: boolean) => this.onLoadEnumList("ECabinetState", d);
+
+  manualStationType = (d?: boolean) => this.onLoadEnumList("EManualStationType", d);
+
+  smokeDetectorType = (d?: boolean) => this.onLoadEnumList("ESmokeDetectorType", d);
 
   severityLevel = (d?: boolean) => this.onLoadEnumList("ESeverityLevel", d);
 

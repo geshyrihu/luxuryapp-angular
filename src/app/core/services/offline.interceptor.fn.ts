@@ -1,11 +1,11 @@
 import { HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest, HttpResponse } from '@angular/common/http';
-import { inject } from '@angular/core';
+import { inject, Injector } from '@angular/core';
 import { Observable, throwError, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { SyncQueueService, BYPASS_OFFLINE_INTERCEPTOR } from './sync-queue.service';
 
 export const offlineInterceptorFn: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> => {
-  const syncQueueService = inject(SyncQueueService);
+  const injector = inject(Injector);
 
   // Si esta petición viene de la cola de sincronización, la dejamos pasar sin interceptarla
   if (req.context.get(BYPASS_OFFLINE_INTERCEPTOR)) {
@@ -26,6 +26,9 @@ export const offlineInterceptorFn: HttpInterceptorFn = (req: HttpRequest<unknown
           const val = req.headers.getAll(key);
           if (val !== null) headersRecord[key] = val;
         });
+
+        // Obtener el servicio de forma perezosa para evitar dependencia circular
+        const syncQueueService = injector.get(SyncQueueService);
 
         // Encolar la petición
         syncQueueService.enqueueRequest({

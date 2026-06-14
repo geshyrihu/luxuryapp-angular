@@ -1,0 +1,71 @@
+import { CommonModule } from "@angular/common";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { TableModule } from "primeng/table";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
+import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
+import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { globalFilterFields, rowsPerPageOptions, tablePrimeNgRows } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { HidranteChecklist } from "../hydrant-checklist/hidrante-checklist";
+
+@Component({
+  selector: "app-hidrante-bitacora-list",
+  templateUrl: "./hidrante-bitacora-list.html",
+  imports: [
+    CommonModule, TableModule, DataViewMobile,
+    CustomButtonDelete, CustomButtonEdit,
+    PrimeNgCustomCaption, PrimeNgCustomTableFooter, ActionMenu,
+    IonItem, IonLabel, IonButtonEdit, IonButtonDelete,
+  ],
+})
+export class HidranteBitacoraList implements OnInit {
+  apiResponseS = inject(ApiResponseService);
+  dialogHandlerS = inject(DialogHandlerService);
+  rutaActiva = inject(ActivatedRoute);
+
+  dataSignal = signal<any[]>([]);
+  globalFilterFields = computed(() => {
+    const data = this.dataSignal();
+    if (!data || data.length === 0) return [];
+    return globalFilterFields(data);
+  });
+  loading = signal(true);
+  tablePrimeNgRows = tablePrimeNgRows();
+  rowsPerPageOptions = rowsPerPageOptions();
+  ref: DynamicDialogRef;
+  hydrantId = "";
+
+  ngOnInit(): void {
+    this.hydrantId = this.rutaActiva.snapshot.params["hydrantId"];
+    this.onLoadData();
+  }
+
+  onLoadData() {
+    this.apiResponseS
+      .onGetList(`BitacoraHidrante/list/${this.hydrantId}`)
+      .then((result: any) => this.dataSignal.set(result));
+  }
+
+  onDelete(id: any) {
+    this.apiResponseS
+      .onDelete(`BitacoraHidrante/${id}`)
+      .then((result: boolean) => {
+        if (result) this.dataSignal.update((data) => data.filter((item) => item.id !== id));
+      });
+  }
+
+  onModalForm(data: any) {
+    this.dialogHandlerS
+      .openDialog(HidranteChecklist, { id: data.id, hydrantId: this.hydrantId }, data.title, this.dialogHandlerS.sizeLg)
+      .then((result: boolean) => { if (result) this.onLoadData(); });
+  }
+}

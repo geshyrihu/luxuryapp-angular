@@ -29,6 +29,29 @@ export class AiService {
     }
   }
 
+  async generateOfficialAnnouncementDraft(
+    idea: string,
+    buildingName: string,
+  ): Promise<{ title: string; greeting: string; body: string; callToAction: string }> {
+    try {
+      const response = await this.apiResponseService.onPostNotLoading<any>(
+        "Announcements/generate-official-draft",
+        {
+          idea,
+          buildingName,
+        },
+      );
+
+      if (response === false) {
+        throw new Error("Error al generar el comunicado oficial.");
+      }
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async generateImage(prompt: string): Promise<Blob> {
     try {
       const response = await this.apiResponseService.onPostBlob(

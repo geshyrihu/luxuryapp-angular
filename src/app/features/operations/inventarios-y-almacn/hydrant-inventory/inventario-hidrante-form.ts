@@ -1,11 +1,5 @@
 import { Component, inject, OnInit, signal } from "@angular/core";
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
@@ -13,37 +7,29 @@ import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-but
 import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 
-interface IInventarioExtintorForm {
+interface IInventarioHidranteForm {
   id: FormControl<string>;
   customerId: FormControl<string | null>;
-  extinguisherType: FormControl<number | null>;
-  expirationDate: FormControl<string | null>;
+  hydrantType: FormControl<number | null>;
+  cabinetNumber: FormControl<string | null>;
   location: FormControl<string>;
   localCode: FormControl<string | null>;
   photo: FormControl<string | File>;
   applicationUserId: FormControl<string | null>;
 }
+
 @Component({
-  selector: "app-inventario-extintor",
-  templateUrl: "./inventario-extintor-form.html",
-  imports: [
-    ReactiveFormsModule,
-    CardModule,
-    CustomInputTextSignal,
-    CustomInputSelectSignal,
-    CustomInputImg,
-    CustomInputDateSignal,
-    CustomButtonSave,
-  ],
+  selector: "app-inventario-hidrante-form",
+  templateUrl: "./inventario-hidrante-form.html",
+  imports: [ReactiveFormsModule, CardModule, CustomInputTextSignal, CustomInputSelectSignal, CustomInputImg, CustomButtonSave],
 })
-export class InventarioExtintorForm implements OnInit {
+export class InventarioHidranteForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
   config = inject(DynamicDialogConfig);
@@ -53,31 +39,20 @@ export class InventarioExtintorForm implements OnInit {
   enumSelectS = inject(EnumSelectService);
   submitting = signal(false);
 
-  cb_extintor: ISelectItem[] = [];
-  photoFileUpdate: boolean = false;
-  urlBaseImg: string = "";
-  id: string = "";
+  cb_hydrantType: ISelectItem[] = [];
+  photoFileUpdate = false;
+  urlBaseImg = "";
+  id = "";
 
-  form: FormGroup<IInventarioExtintorForm> = this.formB.group({
-    id: new FormControl(this.id, { nonNullable: true }),
-    customerId: new FormControl<string | null>(this.customerIdS.customerId(), {
-      validators: [Validators.required],
-    }),
-    extinguisherType: new FormControl<number | null>(null, {
-      validators: [Validators.required],
-    }),
-    expirationDate: new FormControl<string | null>(null, {
-      validators: [Validators.required],
-    }),
-    location: new FormControl("", {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
+  form: FormGroup<IInventarioHidranteForm> = this.formB.group({
+    id: new FormControl("", { nonNullable: true }),
+    customerId: new FormControl<string | null>(this.customerIdS.customerId(), { validators: [Validators.required] }),
+    hydrantType: new FormControl<number | null>(null, { validators: [Validators.required] }),
+    cabinetNumber: new FormControl<string | null>(null),
+    location: new FormControl("", { nonNullable: true, validators: [Validators.required] }),
     localCode: new FormControl<string | null>(null),
     photo: new FormControl<string | File>("", { nonNullable: true }),
-    applicationUserId: new FormControl<string | null>(
-      this.authS.applicationUserId,
-    ),
+    applicationUserId: new FormControl<string | null>(this.authS.applicationUserId),
   });
 
   uploadFile(file: any) {
@@ -86,48 +61,40 @@ export class InventarioExtintorForm implements OnInit {
   }
 
   async ngOnInit() {
-    this.cb_extintor = await firstValueFrom(this.enumSelectS.extinguisherType());
+    this.cb_hydrantType = await firstValueFrom(this.enumSelectS.hydrantType());
     this.id = this.config.data.id;
     if (this.id) this.onLoadData();
   }
+
   onLoadData() {
-    const urlApi = `InventarioExtintor/${this.id}`;
-    this.apiResponseS.onGetItem(urlApi).then((result: any) => {
+    this.apiResponseS.onGetItem(`InventarioHidrante/${this.id}`).then((result: any) => {
       this.urlBaseImg = result.currentPhoto;
       this.form.patchValue(result);
     });
   }
+
   onSubmit() {
     if (!this.apiResponseS.validateForm(this.form)) return;
     const formData = this.createFormData(this.form.getRawValue());
-
     this.submitting.set(true);
-
     if (!this.id) {
-      this.apiResponseS
-        .onPost(`InventarioExtintor`, formData)
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
+      this.apiResponseS.onPost("InventarioHidrante", formData)
+        .then((result: boolean) => { result ? this.ref.close(true) : this.submitting.set(false); });
     } else {
-      this.apiResponseS
-        .onPut(`InventarioExtintor/${this.id}`, formData)
-        .then((result: boolean) => {
-          result ? this.ref.close(true) : this.submitting.set(false);
-        });
+      this.apiResponseS.onPut(`InventarioHidrante/${this.id}`, formData)
+        .then((result: boolean) => { result ? this.ref.close(true) : this.submitting.set(false); });
     }
   }
+
   private createFormData(DTO: any): FormData {
     const formData = new FormData();
     formData.append("customerId", String(DTO.customerId));
-    formData.append("extinguisherType", String(DTO.extinguisherType));
-    formData.append("expirationDate", String(DTO.expirationDate));
+    formData.append("hydrantType", String(DTO.hydrantType));
     formData.append("location", String(DTO.location));
+    if (DTO.cabinetNumber) formData.append("cabinetNumber", String(DTO.cabinetNumber));
     if (DTO.localCode) formData.append("localCode", String(DTO.localCode));
     formData.append("applicationUserId", String(DTO.applicationUserId));
-    if (DTO.photo) {
-      formData.append("photo", DTO.photo);
-    }
+    if (DTO.photo) formData.append("photo", DTO.photo);
     return formData;
   }
 }

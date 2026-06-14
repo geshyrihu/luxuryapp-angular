@@ -206,7 +206,7 @@ export class VacacionesPasadasRegistro implements OnInit {
 
   // Nuevo mótodo para capturar la selección manual
   onDateSelect(value: Date[] | null) {
-    console.log("click ðŸ“… [onSelect] Calendario:", value);
+    console.log("click 📅 [onSelect] Calendario:", value);
     // Forzamos la actualización por si el ValueChanges falla
     this.dateRangeSignal.set(value);
     this.form.updateValueAndValidity();

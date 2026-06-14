@@ -1,14 +1,19 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { Router } from "@angular/router";
+import { IonButton, IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
-import { flameOutline, folderOpenOutline } from "ionicons/icons";
+import { flameOutline, folderOpenOutline, downloadOutline, listOutline, qrCodeOutline } from "ionicons/icons";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
 import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
+import { IonButtonDownload } from "src/app/core/components/buttons/mobile/ion-button-download";
+import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
+import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -22,11 +27,10 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { downloadOutline } from "ionicons/icons";
 import { InventarioExtintorForm } from "./inventario-extintor-form";
-import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
-import { IonButtonDownload } from "src/app/core/components/buttons/mobile/ion-button-download";
 import { InventarioExtintorPdfService } from "./inventario-extintor-pdf.service";
+import { InventarioExtintorQrService } from "./inventario-extintor-qr.service";
+
 @Component({
   selector: "app-inventario-extintor",
   templateUrl: "./inventario-extintor.html",
@@ -35,17 +39,20 @@ import { InventarioExtintorPdfService } from "./inventario-extintor-pdf.service"
     TableModule,
     CustomButtonEdit,
     CustomButtonDelete,
+    CustomButtonDownload,
+    CustomButtonItem,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
     IonButtonEdit,
     IonButtonDelete,
+    IonButtonDownload,
+    IonButtonItem,
+    IonButton,
     IonItem,
     IonLabel,
     IonIcon,
-    CustomButtonDownload,
-    IonButtonDownload,
   ],
 })
 export class InventarioExtintor {
@@ -54,15 +61,18 @@ export class InventarioExtintor {
   customerIdS = inject(CustomerIdService);
   tableScrollHeightS = inject(TableScrollHeightService);
   inventarioExtintorPdfS = inject(InventarioExtintorPdfService);
-  
+  inventarioExtintorQrS = inject(InventarioExtintorQrService);
+  router = inject(Router);
+
   dataSignal = signal<IInventarioExtintor[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   scrollHeight = this.tableScrollHeightS.scrollHeight;
+
   constructor() {
-    addIcons({ flameOutline, folderOpenOutline, downloadOutline });
+    addIcons({ flameOutline, folderOpenOutline, downloadOutline, listOutline, qrCodeOutline });
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) this.onLoadData();
@@ -73,12 +83,29 @@ export class InventarioExtintor {
     this.inventarioExtintorPdfS.downloadPdf(this.dataSignal());
   }
 
+  onViewHistory(item: IInventarioExtintor) {
+    this.router.navigate(["/logbook/fire-extinguisher-log", item.id]);
+  }
+
+  onOpenScanner() {
+    this.router.navigate(["/logbook/fire-equipment-scanner"]);
+  }
+
+  async onDownloadQr(item: IInventarioExtintor) {
+    await this.inventarioExtintorQrS.downloadQr(item);
+  }
+
+  async onDownloadAllQr() {
+    await this.inventarioExtintorQrS.downloadAllQr(this.dataSignal());
+  }
+
   onLoadData() {
     const urlApi = "InventarioExtintor/list/" + this.customerIdS.customerId();
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
   }
+
   onDelete(id: any) {
     this.apiResponseS
       .onDelete(`InventarioExtintor/${id}`)
@@ -94,9 +121,7 @@ export class InventarioExtintor {
     this.dialogHandlerS
       .openDialog(
         InventarioExtintorForm,
-        {
-          id: data.id,
-        },
+        { id: data.id },
         data.title,
         this.dialogHandlerS.sizeLg,
       )
@@ -105,12 +130,3 @@ export class InventarioExtintor {
       });
   }
 }
-
-
-
-
-
-
-
-
-

@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-date-signal [control]="form.controls.date" label="Fecha" />
+      <custom-input-time-signal [control]="form.controls.hour" label="Hora" />
+      <custom-input-check-signal [control]="form.controls.noObstructions" label="Sin Obstrucciones en 50 cm" />
+      <custom-input-check-signal [control]="form.controls.noContamination" label="Sin Contaminación Visible" />
+      <custom-input-check-signal [control]="form.controls.noPhysicalDamage" label="Sin Daño Físico" />
+      <custom-input-check-signal [control]="form.controls.ledStatusOk" label="Indicador LED en Estado Normal" />
+      <custom-input-check-signal [control]="form.controls.mountingSecure" label="Montaje Seguro" />
+      <custom-input-textarea-signal [control]="form.controls.observations" label="Observaciones" />
+      <custom-button-save [propertyId]="id" [disabled]="form.invalid" [submitting]="submitting()" />
+    </form>
+  </div>
+</div>

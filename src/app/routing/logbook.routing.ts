@@ -160,15 +160,94 @@ export const logbookRoutes: Routes = [
       breadcrumb: "Analisis",
     },
   },
+  {
+    path: "fire-extinguisher-log/:extinguisherId",
+    loadComponent: () =>
+      import("src/app/features/maintenance/fire-equipment/extinguisher-log/extintor-bitacora-list").then(
+        (m) => m.ExtintorBitacoraList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Historial de Inspecciones de Extintor",
+      breadcrumb: "Historial de Extintor",
+    },
+  },
+  {
+    path: "fire-extinguisher-checklist/:id",
+    loadComponent: () =>
+      import("src/app/features/maintenance/fire-equipment/extinguisher-checklist/extintor-checklist").then(
+        (m) => m.ExtintorChecklist,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Inspección de Extintor",
+      breadcrumb: "Checklist Extintor",
+    },
+  },
+  {
+    path: "fire-equipment-scanner",
+    loadComponent: () =>
+      import("src/app/features/maintenance/fire-equipment/qr-scanner/qr-scanner").then(
+        (m) => m.QrScanner,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Escanear Equipo Contra Incendio",
+      breadcrumb: "Scanner QR",
+    },
+  },
+  {
+    path: "hydrant-log/:hydrantId",
+    loadComponent: () =>
+      import("src/app/features/maintenance/fire-equipment/hydrant-log/hidrante-bitacora-list").then(
+        (m) => m.HidranteBitacoraList,
+      ),
+    canActivate: [authGuard],
+    data: { title: "Historial de Inspecciones de Hidrante", breadcrumb: "Historial de Hidrante" },
+  },
+  {
+    path: "hydrant-checklist/:id",
+    loadComponent: () =>
+      import("src/app/features/maintenance/fire-equipment/hydrant-checklist/hidrante-checklist").then(
+        (m) => m.HidranteChecklist,
+      ),
+    canActivate: [authGuard],
+    data: { title: "Inspección de Hidrante", breadcrumb: "Checklist Hidrante" },
+  },
+  {
+    path: "manual-call-point-log/:stationId",
+    loadComponent: () =>
+      import("src/app/features/maintenance/fire-equipment/manual-call-point-log/estacion-manual-bitacora-list").then(
+        (m) => m.EstacionManualBitacoraList,
+      ),
+    canActivate: [authGuard],
+    data: { title: "Historial de Inspecciones de Estación Manual", breadcrumb: "Historial de Estación Manual" },
+  },
+  {
+    path: "manual-call-point-checklist/:id",
+    loadComponent: () =>
+      import("src/app/features/maintenance/fire-equipment/manual-call-point-checklist/estacion-manual-checklist").then(
+        (m) => m.EstacionManualChecklist,
+      ),
+    canActivate: [authGuard],
+    data: { title: "Inspección de Estación Manual", breadcrumb: "Checklist Estación Manual" },
+  },
+  {
+    path: "smoke-detector-log/:detectorId",
+    loadComponent: () =>
+      import("src/app/features/maintenance/fire-equipment/smoke-detector-log/detector-humo-bitacora-list").then(
+        (m) => m.DetectorHumoBitacoraList,
+      ),
+    canActivate: [authGuard],
+    data: { title: "Historial de Inspecciones de Detector de Humo", breadcrumb: "Historial de Detector de Humo" },
+  },
+  {
+    path: "smoke-detector-checklist/:id",
+    loadComponent: () =>
+      import("src/app/features/maintenance/fire-equipment/smoke-detector-checklist/detector-humo-checklist").then(
+        (m) => m.DetectorHumoChecklist,
+      ),
+    canActivate: [authGuard],
+    data: { title: "Inspección de Detector de Humo", breadcrumb: "Checklist Detector de Humo" },
+  },
 ];
-
-
-
-
-
-
-
-
-
-
-

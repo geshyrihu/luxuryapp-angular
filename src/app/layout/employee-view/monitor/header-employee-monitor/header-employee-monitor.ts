@@ -1,5 +1,12 @@
 import { CommonModule, Location } from "@angular/common";
-import { Component, effect, inject, input, OnInit } from "@angular/core";
+import {
+  Component,
+  effect,
+  inject,
+  input,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import {
@@ -16,6 +23,7 @@ import { SelectModule } from "primeng/select";
 import { ToolbarModule } from "primeng/toolbar";
 import { TooltipModule } from "primeng/tooltip";
 import { filter, map, startWith } from "rxjs";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -26,9 +34,14 @@ import { MenuService } from "src/app/core/services/menu.service";
 import { SearchService } from "src/app/core/services/search.service";
 import { ThemeService } from "src/app/core/services/theme.service";
 import { UpdateService } from "src/app/core/services/update-pwa.service";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { NotificationsGadget } from "../notifications-gadget/notifications-gadget";
 import { ProfileMonitor } from "../profile-monitor/profile-monitor";
+import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
+
+import { DialogModule } from "primeng/dialog";
+import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { AiService } from "src/app/core/services/ai.service";
+import { CustomInputTextAreaSignal } from "../../../../core/components/inputs/web";
 
 @Component({
   selector: "app-header-employee-monitor",
@@ -38,9 +51,12 @@ import { ProfileMonitor } from "../profile-monitor/profile-monitor";
     BreadcrumbModule,
     ButtonModule,
     CommonModule,
+    DialogModule,
     FormsModule,
+    CustomInputTextAreaSignal,
     NotificationsGadget,
     ProfileMonitor,
+    ProgressSpinnerModule,
     RouterModule,
     // Search,
     SelectModule,
@@ -64,7 +80,10 @@ export class HeaderEmployeeMonitor implements OnInit {
   public themeService = inject(ThemeService);
   public updateService = inject(UpdateService);
   public featureAnnouncementS = inject(FeatureAnnouncementService);
+  public aiService = inject(AiService);
+  public sanitizer = inject(DomSanitizer);
   activatedRoute = inject(ActivatedRoute);
+  
   public breadcrumbs: {
     parentBreadcrumb?: string;
     childBreadcrumb?: string;
@@ -83,7 +102,23 @@ export class HeaderEmployeeMonitor implements OnInit {
   public customerId = this.customerIdS.customerId;
   public customerName = this.customerIdS.nombreCorto;
   public customerPhotoPath = this.customerIdS.customerPhotoPath;
-  public readonly cb_customer = toSignal(this.authS.customerAccess$, { initialValue: [] });
+  public readonly cb_customer = toSignal(this.authS.customerAccess$, {
+    initialValue: [],
+  });
+
+  // AI Modal Signals
+  public displayAiModal = signal<boolean>(false);
+  public isGeneratingAnnouncement = signal<boolean>(false);
+  public isGeneratingImage = signal<boolean>(false);
+  public userIdea = signal<string>("");
+  public aiAnnouncementResult = signal<{
+    title: string;
+    greeting: string;
+    body: string;
+    callToAction: string;
+  } | null>(null);
+  public aiAnnouncementImageResult = signal<SafeUrl | null>(null);
+  public currentMode = signal<'text' | 'poster'>('text');
 
   // SIGNALS
   private routeEventSignal = toSignal(
@@ -193,6 +228,13 @@ export class HeaderEmployeeMonitor implements OnInit {
         action: () => this.onannouncement(),
       },
       {
+        id: "ai-announcement",
+        ngbTooltip: "Comunicado IA",
+        iconClass: "mdi:robot-outline",
+        iconExtraClass: "text-purple-500",
+        action: () => this.onAiAnnouncement(),
+      },
+      {
         id: "emergency-phones",
         ngbTooltip: "Telefonos de Emergencia",
         iconClass: "mdi:phone-alert",
@@ -239,9 +281,6 @@ export class HeaderEmployeeMonitor implements OnInit {
     this.location.forward();
   };
 
-  // onRefresh = () => {
-  //   window.location.reload();
-  // };
   onRefresh = () => {
     const currentUrl = this.router.url;
     const originalShouldReuseRoute =
@@ -287,5 +326,63 @@ export class HeaderEmployeeMonitor implements OnInit {
 
   selectCustomer(newCustomerId: string) {
     this.customerIdS.setCustomerId(newCustomerId).subscribe();
+  }
+
+  onAiAnnouncement() {
+    this.displayAiModal.set(true);
+    this.userIdea.set("");
+    this.aiAnnouncementResult.set(null);
+    this.aiAnnouncementImageResult.set(null);
+  }
+
+  async generateOfficialAnnouncement(mode: 'text' | 'poster') {
+    if (!this.userIdea() || !this.userIdea().trim()) return;
+
+    this.currentMode.set(mode);
+
+    try {
+      this.isGeneratingAnnouncement.set(true);
+
+      if (mode === 'text') {
+        const enrichedIdea = this.userIdea() + "\n\nINSTRUCCIONES ESTRICTAS: El texto debe ser lo más corto y claro posible, estar fuertemente apoyado con emojis. Adopta un tono sumamente empático, asegurando que el condómino se sienta entendido, y enfocado siempre en el bien común y la convivencia.";
+        const textResult = await this.aiService.generateOfficialAnnouncementDraft(enrichedIdea, this.customerName());
+        this.aiAnnouncementResult.set(textResult);
+        this.aiAnnouncementImageResult.set(null);
+      } else if (mode === 'poster') {
+        this.isGeneratingImage.set(true);
+        // Obtener solo un título corto para el póster
+        const shortTitleIdea = this.userIdea() + "\n\nSolo genera un título principal muy corto y directo (máximo 4-5 palabras) basado en esta idea.";
+        const textResult = await this.aiService.generateOfficialAnnouncementDraft(shortTitleIdea, this.customerName());
+        
+        const imagePrompt = `Design a professional, modern, and highly elegant vertical poster/flyer for a luxury residential building called ${this.customerName()}.
+Main highly legible VERY LARGE title: "${textResult.title}".
+IMPORTANT: DO NOT include any paragraphs or long text. The design must be purely visual using flat, modern iconography related to: ${this.userIdea()}.
+Use premium corporate style (e.g. navy blue tones, white, golden or silver details), a clean layout without visual saturation, and high-contrast typography.`;
+        
+        try {
+          const imageBlob = await this.aiService.generateImage(imagePrompt);
+          if (imageBlob) {
+            const imageUrl = URL.createObjectURL(imageBlob);
+            this.aiAnnouncementImageResult.set(this.sanitizer.bypassSecurityTrustUrl(imageUrl));
+          }
+          // Configurar resultado sin cuerpo para que solo se vea la imagen en la UI
+          this.aiAnnouncementResult.set({
+            title: textResult.title,
+            greeting: "",
+            body: "",
+            callToAction: ""
+          });
+        } catch (imgErr) {
+          console.error("Error al generar la imagen", imgErr);
+          this.aiAnnouncementResult.set(null);
+        }
+      }
+
+    } catch (e) {
+      console.error(e);
+    } finally {
+      this.isGeneratingAnnouncement.set(false);
+      this.isGeneratingImage.set(false);
+    }
   }
 }

@@ -1,8 +1,6 @@
 <!-- Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block no-print">
-  <p-toolbar
-    styleClass="mobile-header-toolbar monitor-header-toolbar w-full p-0 m-0"
-  >
+  <p-toolbar styleClass="mobile-header-toolbar monitor-header-toolbar w-full p-0 m-0">
     <ng-template #start>
       <!-- Botón para abrir/cerrar el sidebar -->
       <div class="flex align-items-center gap-2 px-3" style="min-width: 250px">
@@ -58,9 +56,7 @@
           </p-select>
         </div>
         } @else {
-        <div
-          class="p-2 w-full flex align-items-center justify-content-center gap-3"
-        >
+        <div class="p-2 w-full flex align-items-center justify-content-center gap-3">
           <img
             [src]="customerPhotoPath()"
             style="width: 38px; height: 38px; object-fit: contain"
@@ -72,29 +68,25 @@
     </ng-template>
 
     <ng-template #end>
-      <!-- @if (!aspRoleS.roleSignal(AspRole.Comite)()) {
-      <app-search />
-      } -->
-      <div class="user-actions-container px-3">
+      <div class="user-actions-container">
         <!-- Iconos de Navegación -->
-        @for (navIcon of displayNavIcons; track navIcon.id) {
-          @if (!navIcon.requiresRole || aspRoleS.hasAny(navIcon.requiresRole)) {
-            <p-button
-              type="button"
-              (click)="navIcon.action()"
-              styleClass="p-button-text p-button-secondary monitor-toolbar-button"
-              [pTooltip]="navIcon.ngbTooltip"
-              tooltipPosition="bottom"
-              size="small"
-            >
-              <app-icon
-                [icon]="navIcon.iconClass"
-                class="text-xl"
-                [ngClass]="navIcon.iconExtraClass"
-              />
-            </p-button>
-          }
-        }
+        @for (navIcon of displayNavIcons; track navIcon.id) { @if
+        (!navIcon.requiresRole || aspRoleS.hasAny(navIcon.requiresRole)) {
+        <p-button
+          type="button"
+          (click)="navIcon.action()"
+          styleClass="p-button-text p-button-secondary monitor-toolbar-button m-0"
+          [pTooltip]="navIcon.ngbTooltip"
+          tooltipPosition="bottom"
+          size="small"
+        >
+          <app-icon
+            [icon]="navIcon.iconClass"
+            class="text-xl"
+            [ngClass]="navIcon.iconExtraClass"
+          />
+        </p-button>
+        } }
 
         <!-- Theme Toggle Button -->
         <p-button
@@ -118,3 +110,134 @@
     </ng-template>
   </p-toolbar>
 </div>
+
+<!-- Modal para Comunicados de IA -->
+<p-dialog
+  header="Generador de Comunicados IA"
+  [(visible)]="displayAiModal"
+  [modal]="true"
+  [style]="{ width: '600px', 'max-width': '95vw' }"
+  [contentStyle]="{ 'max-height': '80vh', 'overflow-y': 'auto' }"
+  [draggable]="false"
+  [resizable]="false"
+  styleClass="elegant-modal"
+>
+  <ng-template pTemplate="header">
+    <div class="flex align-items-center gap-3">
+      <img
+        [src]="customerPhotoPath()"
+        style="width: 40px; height: 40px; object-fit: contain; border-radius: 8px;"
+      />
+      <div>
+        <span class="font-bold text-xl block">Asistente Ejecutivo IA</span>
+        <span class="text-sm text-gray-500">{{ customerName() }}</span>
+      </div>
+    </div>
+  </ng-template>
+
+  <div class="flex flex-column gap-4 py-3">
+    @if (!aiAnnouncementResult() && !isGeneratingAnnouncement()) {
+    <div class="flex flex-column gap-2">
+      <label for="ai-idea" class="font-semibold text-lg">¿Sobre qué quieres comunicar?</label>
+      <p class="text-sm text-gray-500 m-0 mb-2">
+        Ingresa tu idea y la IA redactará un comunicado formal, cálido y elegante para tus residentes.
+      </p>
+      <textarea
+        pInputTextarea
+        id="ai-idea"
+        [ngModel]="userIdea()"
+        (ngModelChange)="userIdea.set($event)"
+        rows="4"
+        placeholder="Ej: Avisar que mañana no habrá agua de 10am a 2pm por lavado de cisterna..."
+        class="w-full"
+      ></textarea>
+    </div>
+    }
+
+    @if (isGeneratingAnnouncement()) {
+    <div class="flex flex-column align-items-center justify-content-center py-5 gap-3">
+      <p-progressSpinner styleClass="w-3rem h-3rem" strokeWidth="4" animationDuration=".5s"></p-progressSpinner>
+      <p class="text-gray-600 font-medium text-center px-4">
+        {{ currentMode() === 'poster' ? 'Diseñando póster visual...' : 'Redactando comunicado empático con emojis...' }}
+      </p>
+    </div>
+    }
+
+    @if (aiAnnouncementResult() && !isGeneratingAnnouncement()) {
+    <div class="ai-result-container surface-ground p-4 border-round-xl border-1 surface-border">
+      
+      <!-- Imagen (si existe) -->
+      @if (aiAnnouncementImageResult()) {
+      <div class="mb-4 text-center flex justify-content-center">
+        <img
+          [src]="aiAnnouncementImageResult()"
+          alt="Banner del Comunicado"
+          class="border-round-lg shadow-4"
+          style="max-height: 500px; width: auto; object-fit: contain"
+        />
+      </div>
+      }
+
+      @if (aiAnnouncementResult()?.body) {
+      <!-- Título -->
+      <h2 class="text-primary mt-0 mb-3 text-2xl font-bold text-center border-bottom-1 surface-border pb-2">
+        {{ aiAnnouncementResult()?.title }}
+      </h2>
+      
+      <!-- Saludo -->
+      <p class="font-medium text-lg mb-4 text-700">
+        {{ aiAnnouncementResult()?.greeting }}
+      </p>
+      
+      <!-- Cuerpo (Viene como HTML) -->
+      <div class="text-800 line-height-3 mb-4" [innerHTML]="aiAnnouncementResult()?.body"></div>
+
+      <!-- Call to Action -->
+      <div class="surface-hover p-3 border-round-lg text-center mt-4">
+        <p class="m-0 font-semibold text-primary" [innerHTML]="aiAnnouncementResult()?.callToAction"></p>
+      </div>
+      }
+    </div>
+    }
+  </div>
+
+  <ng-template pTemplate="footer">
+    <div class="flex justify-content-end gap-2 w-full border-top-1 surface-border pt-3 mt-2">
+      @if (aiAnnouncementResult()) {
+      <p-button
+        label="Nueva Idea"
+        icon="pi pi-refresh"
+        severity="secondary"
+        [text]="true"
+        (click)="userIdea.set(''); aiAnnouncementResult.set(null); aiAnnouncementImageResult.set(null)"
+      />
+      <p-button
+        label="Cerrar"
+        icon="pi pi-times"
+        (click)="displayAiModal.set(false)"
+      />
+      } @else {
+      <p-button
+        label="Cancelar"
+        icon="pi pi-times"
+        severity="secondary"
+        [text]="true"
+        (click)="displayAiModal.set(false)"
+      />
+      <p-button
+        label="Comunicado (Texto + Emojis)"
+        icon="pi pi-face-smile"
+        severity="secondary"
+        (click)="generateOfficialAnnouncement('text')"
+        [disabled]="!userIdea().trim() || isGeneratingAnnouncement()"
+      />
+      <p-button
+        label="Póster Visual"
+        icon="pi pi-image"
+        (click)="generateOfficialAnnouncement('poster')"
+        [disabled]="!userIdea().trim() || isGeneratingAnnouncement()"
+      />
+      }
+    </div>
+  </ng-template>
+</p-dialog>

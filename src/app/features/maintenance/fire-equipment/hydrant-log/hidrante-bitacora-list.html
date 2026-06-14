@@ -1,0 +1,86 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
+      [dt]="dt"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="date">Fecha <p-sortIcon field="date" /></th>
+      <th class="table-col-10">Hora</th>
+      <th class="table-col-10">Etiqueta</th>
+      <th class="table-col-10">Cristal</th>
+      <th class="table-col-10">Llave</th>
+      <th class="table-col-10">Manguera</th>
+      <th class="table-col-10">Chiflón</th>
+      <th class="table-col-10">Válvula</th>
+      <th class="table-col-10">Cerradura</th>
+      <th>Estado Gabinete</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.date }}</td>
+      <td class="text-center">{{ item.hour }}</td>
+      <td class="text-center"><i class="icon" [class]="item.labelPresent ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i></td>
+      <td class="text-center"><i class="icon" [class]="item.glassIntact ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i></td>
+      <td class="text-center"><i class="icon" [class]="item.wrenchPresent ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i></td>
+      <td class="text-center"><i class="icon" [class]="item.hoseOk ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i></td>
+      <td class="text-center"><i class="icon" [class]="item.nozzlePresent ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i></td>
+      <td class="text-center"><i class="icon" [class]="item.valveOperational ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i></td>
+      <td class="text-center"><i class="icon" [class]="item.lockOk ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i></td>
+      <td><small>{{ item.cabinetState }}</small></td>
+      <td class="no-print">
+        <div class="flex justify-content-center">
+          <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })" />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding">
+      <ion-label>
+        <h3>{{ item.date }} {{ item.hour }}</h3>
+        <p>{{ item.cabinetState }}</p>
+        <div class="flex gap-2 mt-1">
+          <small [class]="item.labelPresent ? 'text-green-600' : 'text-red-600'">Etiqueta</small>
+          <small [class]="item.glassIntact ? 'text-green-600' : 'text-red-600'">Cristal</small>
+          <small [class]="item.wrenchPresent ? 'text-green-600' : 'text-red-600'">Llave</small>
+          <small [class]="item.hoseOk ? 'text-green-600' : 'text-red-600'">Manguera</small>
+          <small [class]="item.valveOperational ? 'text-green-600' : 'text-red-600'">Válvula</small>
+        </div>
+      </ion-label>
+      <div slot="end">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })" />
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+          </ng-container>
+        </app-action-menu>
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

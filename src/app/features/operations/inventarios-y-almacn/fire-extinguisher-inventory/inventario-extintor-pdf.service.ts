@@ -12,7 +12,7 @@ export class InventarioExtintorPdfService {
 
   async downloadPdf(data: IInventarioExtintor[]) {
     this.customToastS.showInfo("Generando PDF", "Espere por favor...");
-    
+
     const logo = await this.htmlPrintS.getLogoDataUrl();
     const generatedAt = new Date();
 
@@ -21,8 +21,10 @@ export class InventarioExtintorPdfService {
       itemsHtml += `
         <tr>
           <td style="text-align:center;">${i + 1}</td>
-          <td>${this.htmlPrintS.esc(item.eExtintor)}</td>
-          <td>${this.htmlPrintS.esc(item.ubicacion)}</td>
+          <td>${this.htmlPrintS.esc(item.localCode ?? "")}</td>
+          <td>${this.htmlPrintS.esc(item.extinguisherType)}</td>
+          <td>${this.htmlPrintS.esc(item.location)}</td>
+          <td>${this.htmlPrintS.esc(item.expirationDate ?? "")}</td>
         </tr>
       `;
     });
@@ -45,9 +47,11 @@ export class InventarioExtintorPdfService {
           <table class="items-table">
             <thead>
               <tr>
-                <th style="width: 50px; text-align:center;">#</th>
+                <th style="width: 40px; text-align:center;">#</th>
+                <th style="width: 80px;">Código</th>
                 <th>Extintor</th>
                 <th>Ubicación</th>
+                <th style="width: 100px;">Vencimiento</th>
               </tr>
             </thead>
             <tbody>

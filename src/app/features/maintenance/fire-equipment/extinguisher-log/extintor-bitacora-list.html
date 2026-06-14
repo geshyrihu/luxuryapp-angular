@@ -1,0 +1,89 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
+      [dt]="dt"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="date">Fecha <p-sortIcon field="date" /></th>
+      <th class="table-col-10">Hora</th>
+      <th class="table-col-10">Presión</th>
+      <th class="table-col-10">Seguro</th>
+      <th class="table-col-10">Etiquetas</th>
+      <th class="table-col-10">Sin Daños</th>
+      <th>Observaciones</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.date }}</td>
+      <td class="text-center">{{ item.hour }}</td>
+      <td class="text-center">
+        <i class="icon" [class]="item.adequatePressure ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i>
+      </td>
+      <td class="text-center">
+        <i class="icon" [class]="item.safetyPinOk ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i>
+      </td>
+      <td class="text-center">
+        <i class="icon" [class]="item.labelsOk ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i>
+      </td>
+      <td class="text-center">
+        <i class="icon" [class]="item.noPhysicalDamage ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i>
+      </td>
+      <td><small>{{ item.observations }}</small></td>
+      <td class="no-print">
+        <div class="flex justify-content-center">
+          <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })" />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding">
+      <ion-label>
+        <h3>{{ item.date }} {{ item.hour }}</h3>
+        @if (item.observations) {
+          <p>{{ item.observations }}</p>
+        }
+        <div class="flex gap-2 mt-1">
+          <small [class]="item.adequatePressure ? 'text-green-600' : 'text-red-600'">Presion</small>
+          <small [class]="item.safetyPinOk ? 'text-green-600' : 'text-red-600'">Seguro</small>
+          <small [class]="item.labelsOk ? 'text-green-600' : 'text-red-600'">Etiquetas</small>
+          <small [class]="item.noPhysicalDamage ? 'text-green-600' : 'text-red-600'">Sin Daños</small>
+        </div>
+      </ion-label>
+      <div slot="end">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })" />
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+          </ng-container>
+        </app-action-menu>
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

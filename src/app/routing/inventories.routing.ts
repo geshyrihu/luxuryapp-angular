@@ -134,11 +134,37 @@ export const inventoriesRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: {
-      title: "Grupos de Extintores", // Ajustado para sonar más natural
+      title: "Grupos de Extintores",
       breadcrumb: "Grupos de Extintores",
     },
   },
-
+  {
+    path: "hydrants",
+    loadComponent: () =>
+      import("src/app/features/operations/inventarios-y-almacn/hydrant-inventory/inventario-hidrante").then(
+        (m) => m.InventarioHidrante,
+      ),
+    canActivate: [authGuard],
+    data: { title: "Inventario de Hidrantes", breadcrumb: "Inventario de Hidrantes" },
+  },
+  {
+    path: "manual-call-points",
+    loadComponent: () =>
+      import("src/app/features/operations/inventarios-y-almacn/manual-call-point-inventory/inventario-estacion-manual").then(
+        (m) => m.InventarioEstacionManual,
+      ),
+    canActivate: [authGuard],
+    data: { title: "Inventario de Estaciones Manuales", breadcrumb: "Inventario de Estaciones Manuales" },
+  },
+  {
+    path: "smoke-detectors",
+    loadComponent: () =>
+      import("src/app/features/operations/inventarios-y-almacn/smoke-detector-inventory/inventario-detector-humo").then(
+        (m) => m.InventarioDetectorHumo,
+      ),
+    canActivate: [authGuard],
+    data: { title: "Inventario de Detectores de Humo", breadcrumb: "Inventario de Detectores de Humo" },
+  },
 ];
 
 

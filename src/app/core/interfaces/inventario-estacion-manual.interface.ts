@@ -1,8 +1,7 @@
-export interface IInventarioExtintor {
+export interface IInventarioEstacionManual {
   id: any;
   customerId: string;
-  extinguisherType: string;
-  expirationDate: string;
+  stationType: string;
   location: string;
   localCode?: string;
   photo?: string;

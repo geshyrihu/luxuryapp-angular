@@ -1,13 +1,6 @@
 <div class="card">
   <div class="card-body">
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <!-- Id -->
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        label="Id"
-        placeholder="Id"
-      />
-      <!-- Img -->
       <div class="mb-4 flex justify-content-center">
         <div class="w-full sm:w-9/12 max-w-sm">
           <div class="card text-center p-3">
@@ -22,27 +15,22 @@
       </div>
 
       <custom-input-select-signal
-        [control]="form.controls.extinguisherType"
-        label="Tipo de Extintor"
-        [data]="cb_extintor"
+        [control]="form.controls.stationType"
+        label="Tipo de Estación Manual"
+        [data]="cb_stationType"
         [filter]="true"
-      />
-
-      <custom-input-date-signal
-        [control]="form.controls.expirationDate"
-        label="Fecha de Vencimiento"
       />
 
       <custom-input-text-signal
         [control]="form.controls.location"
         label="Ubicación"
-        placeholder="Ej: Piso 3 - Pasillo A"
+        placeholder="Ej: Piso 2 - Escalera B"
       />
 
       <custom-input-text-signal
         [control]="form.controls.localCode"
         label="Código Local (opcional)"
-        placeholder="Ej: EXT-10-01"
+        placeholder="Ej: MCP-02-01"
       />
 
       <custom-button-save
