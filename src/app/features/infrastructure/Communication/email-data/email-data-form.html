@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-text-signal
+        [control]="form.controls.id"
+        label="Id"
+        [readonly]="true"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.applicationUserId"
+        label="Account Id"
+        [readonly]="true"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.applicationUser"
+        label="User"
+        [readonly]="true"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.port"
+        label="Ingrese el puerto"
+        placeholder="port"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.smtp"
+        label="Ingrese el smtp"
+        placeholder="smtp"
+      />
+      <custom-input-text-signal
+        [control]="form.controls.password"
+        label="Password"
+        placeholder="password"
+      />
+      <div class="flex justify-content-end mt-3">
+        @if (aspRoleS.hasRole(AspRole.SuperUsuario) && id !== '') {
+        <custom-button-send-email
+          label="Test de prueba"
+          [showLabelOnDesktop]="true"
+          [disabled]="submitting()"
+          (confirmed)="TestEmail()"
+        />
+        }
+        <custom-button-save
+          [propertyId]="id"
+          [disabled]="form.invalid"
+          [submitting]="submitting()"
+        />
+      </div>
+    </form>
+  </div>
+</div>
+@if (testEmailMessage()) {
+<div
+  class="alert"
+  [class]="
+      testEmailMessage() == 'Test realizo con exito!!!' ? 'alert-light-success' : 'alert-light-danger'
+    "
+>
+  {{ testEmailMessage() }}
+</div>
+}
