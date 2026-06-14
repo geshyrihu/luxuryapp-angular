@@ -1,0 +1,99 @@
+<br />
+<h3 class="text-center p-2 text-2xl font-bold text-900">{{ pageTitle }}</h3>
+
+<!-- 🖥️ DESKTOP: PrimeNG Table -->
+<p-table
+  #dt
+  [value]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [rows]="tablePrimeNgRows"
+  [paginator]="true"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
+  [loading]="loading()"
+  responsiveLayout="stack"
+  breakpoint="960px"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <div class="flex justify-content-between align-items-center">
+      <h5 class="m-0 text-900 font-bold">Documentos</h5>
+      <custom-search-input-signal
+        (searchChange)="dt.filterGlobal($event, 'contains')"
+        placeholder="Buscar..."
+      />
+    </div>
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="primaryDetail">
+        Folio <p-sortIcon field="primaryDetail"></p-sortIcon>
+      </th>
+      <th pSortableColumn="date">
+        Fecha <p-sortIcon field="date"></p-sortIcon>
+      </th>
+      <th pSortableColumn="name">
+        Nombre <p-sortIcon field="name"></p-sortIcon>
+      </th>
+      <th></th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.primaryDetail }}</td>
+      <td>{{ item.date }}</td>
+      <td>{{ item.name }}</td>
+      <td>
+        <custom-button-view-pdf
+          [showLabelOnDesktop]="true"
+          [url]="item.path"
+          fileName="Biblioteca"
+        />
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template emptymessage>
+    <tr>
+      <td colspan="5" class="text-center p-4">No se encontraron documentos.</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!-- 📱 MOBILE: app-data-view-mobile con ion-item moderno -->
+<app-data-view-mobile
+  class="block md:hidden"
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [dt]="dt"
+  [showAdd]="false"
+  [viewchildBreadcrumb]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item
+      button
+      detail="true"
+      lines="full"
+      (click)="viewPdf(item.path, item.name)"
+      class="ion-no-padding"
+    >
+      <div
+        slot="start"
+        class="w-2rem h-2rem border-round bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
+      >
+        <app-icon [icon]="'mdi:file-document-outline'" class="text-xl text-blue-700" />
+      </div>
+      <ion-label class="ml-2">
+        <h3 class="text-wrap font-bold text-900">{{ item.name }}</h3>
+        <p class="text-sm text-500">{{ item.primaryDetail }} @if (item.date) { | {{ item.date }} }</p>
+        @if (pageTitle.trim() === 'Póliza de Mantenimiento' &&
+        item.policyValidity) {
+        <p class="text-sm text-500">{{ item.policyValidity }}</p>
+        }
+      </ion-label>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

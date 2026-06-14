@@ -1,0 +1,478 @@
+<div class="org-chart-page">
+  <div class="org-chart-page__header">
+    <div>
+      <h2 class="org-chart-page__title">Organigrama de Puestos</h2>
+      <p class="org-chart-page__subtitle">
+        {{ totalNodes() }} puestos · {{ vacantCount() }} vacantes
+      </p>
+    </div>
+
+    <div class="org-chart-page__header-actions">
+      @if (reassignLoading()) {
+        <p-tag severity="info" value="Reasignando..." />
+      }
+    </div>
+  </div>
+
+  <p-tabs [value]="activeTab()" (valueChange)="onActiveTabChange($event)">
+    <p-tablist>
+      <p-tab value="view">Visualizar</p-tab>
+      <p-tab value="edit" [disabled]="editTabDisabled()">
+        Editar
+      </p-tab>
+    </p-tablist>
+
+    <p-tabpanels>
+      <p-tabpanel value="view">
+        @if (loading()) {
+          <div class="org-chart-state">
+            <app-icon [icon]="'mdi:spin'" class="text-primary text-4xl"></app-icon>
+          </div>
+        } @else if (graphModel().nodes.length === 0) {
+          <div class="org-chart-state org-chart-state--empty">
+            <p>No hay puestos definidos.</p>
+          </div>
+        } @else {
+          <ng-container [ngTemplateOutlet]="graphCanvas"></ng-container>
+        }
+      </p-tabpanel>
+
+      <p-tabpanel value="edit">
+        @if (editTabDisabled()) {
+          <div class="org-chart-state org-chart-state--empty">
+            <p>Solo SuperUsuario puede editar.</p>
+          </div>
+        } @else if (loading()) {
+          <div class="org-chart-state">
+            <app-icon [icon]="'mdi:spin'" class="text-primary text-4xl"></app-icon>
+          </div>
+        } @else {
+          <div class="org-chart-toolbar">
+            <custom-button
+              label="Limpiar seleccion"
+              variant="text"
+              [showLabelOnDesktop]="true"
+              (clicked)="clearSelection()"
+            />
+
+            @if (selectedOrigin()) {
+              <custom-button
+                label="Mover a raiz"
+                variant="text"
+                [showLabelOnDesktop]="true"
+                (clicked)="moveSelectedToRoot()"
+              />
+
+              <custom-button
+                label="Mover izquierda"
+                variant="text"
+                [showLabelOnDesktop]="true"
+                [disabled]="!canMoveSelectedUp()"
+                (clicked)="reorderSelected(-1)"
+              />
+
+              <custom-button
+                label="Mover derecha"
+                variant="text"
+                [showLabelOnDesktop]="true"
+                [disabled]="!canMoveSelectedDown()"
+                (clicked)="reorderSelected(1)"
+              />
+            }
+
+            @if (selectedOrigin()) {
+              <p-tag
+                severity="warn"
+                [value]="'Origen: ' + (selectedOrigin()?.folio ?? '')"
+              />
+            }
+          </div>
+
+          <p class="org-chart-help">
+            La edicion ahora se hace en una tabla jerarquica. Arrastra una fila
+            sobre otra para cambiar el jefe inmediato y usa el orden ascendente
+            de la tabla para definir el acomodo horizontal del organigrama.
+          </p>
+
+          <p class="org-chart-help org-chart-help--secondary">
+            Regla de visualizacion: dentro de cada mismo jefe, la posicion 1, 2,
+            3... de esta tabla sera el orden de izquierda a derecha al mostrar
+            el organigrama.
+          </p>
+
+          @if (editMode() && draggingNode()) {
+            <div class="org-chart-drag-guide" role="status" aria-live="polite">
+              <span class="org-chart-drag-guide__badge">Jerarquia</span>
+              <span>{{ getDragGuideMessage() }}</span>
+            </div>
+          }
+
+          @if (selectedOriginContext(); as context) {
+            <div class="org-chart-selection-panel">
+              <div class="org-chart-selection-panel__title">
+                Contexto del puesto seleccionado
+              </div>
+              <div class="org-chart-selection-panel__body">
+                <span>
+                  Padre:
+                  {{ context.parent?.folio ?? "Nivel raiz" }}
+                </span>
+                <span>
+                  Posicion:
+                  {{ context.index + 1 }} de {{ context.siblings.length }}
+                </span>
+              </div>
+            </div>
+          }
+
+          @if (editMode()) {
+            <div
+              class="org-chart-root-dropzone"
+              [class.org-chart-root-dropzone--active]="dragHoverRoot()"
+              role="status"
+              aria-live="polite"
+              (dragover)="onRootDragOver($event)"
+              (dragleave)="onRootDragLeave()"
+              (drop)="onRootDrop($event)"
+            >
+              Suelta aqui para mover el puesto al nivel raiz
+            </div>
+          }
+
+          <div class="org-editor-table-shell">
+            <table class="org-editor-table">
+              <thead>
+                <tr>
+                  <th>Orden</th>
+                  <th>Puesto</th>
+                  <th>Empleado</th>
+                  <th>Jefe inmediato</th>
+                  <th>Departamento</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (row of editRows(); track row.node.workPositionId) {
+                  <tr
+                    class="org-editor-row"
+                    [class.org-editor-row--selected]="selectedOrigin()?.workPositionId === row.node.workPositionId"
+                    [class.org-editor-row--drop-hover]="dragHoverNodeId() === row.node.workPositionId"
+                    [attr.draggable]="true"
+                    [attr.aria-label]="getNodeAriaLabel(row.node)"
+                    (click)="onEditorRowClick(row.node)"
+                    (dragstart)="onEditorRowDragStart(row.node, $event)"
+                    (dragend)="onCardDragEnd()"
+                    (dragover)="onEditorRowDragOver(row, $event)"
+                    (dragleave)="onEditorRowDragLeave(row)"
+                    (drop)="onEditorRowDrop(row, $event)"
+                  >
+                    <td class="org-editor-table__order">
+                      {{ row.siblingIndex + 1 }} / {{ row.siblingCount }}
+                    </td>
+                    <td>
+                      <div
+                        class="org-editor-node"
+                        [style.padding-left]="getEditorRowIndent(row.depth)"
+                      >
+                        <span
+                          class="org-editor-node__drag-handle mdi:arrow-expand-all"
+                          aria-hidden="true"
+                        ></span>
+                        <span class="org-editor-node__tree-guide"></span>
+                        <div class="org-editor-node__content">
+                          <span class="org-editor-node__folio">
+                            {{ row.node.folio }}
+                          </span>
+                          <span class="org-editor-node__role">
+                            {{ row.node.roleDisplayName }}
+                          </span>
+                          @if (dragHoverNodeId() === row.node.workPositionId) {
+                            <span class="org-editor-node__drop-hint">
+                              {{ getEditorDropMessage(row) }}
+                            </span>
+                          }
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      {{ row.node.employeeName ?? "Vacante" }}
+                    </td>
+                    <td>
+                      {{ getParentLabel(row) }}
+                    </td>
+                    <td>
+                      {{ row.node.departmentName }}
+                    </td>
+                    <td>
+                      <div class="org-editor-actions">
+                        <button
+                          type="button"
+                          class="org-editor-action"
+                          [disabled]="!canMoveNodeUp(row.node) || reassignLoading()"
+                          (click)="reorderNode(row.node, -1); $event.stopPropagation()"
+                        >
+                          Subir
+                        </button>
+                        <button
+                          type="button"
+                          class="org-editor-action"
+                          [disabled]="!canMoveNodeDown(row.node) || reassignLoading()"
+                          (click)="reorderNode(row.node, 1); $event.stopPropagation()"
+                        >
+                          Bajar
+                        </button>
+                        <button
+                          type="button"
+                          class="org-editor-action"
+                          [disabled]="reassignLoading()"
+                          (click)="moveNodeToRoot(row.node); $event.stopPropagation()"
+                        >
+                          A raiz
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
+</div>
+
+<ng-template #graphCanvas>
+  <div class="org-graph-shell">
+    <ngx-graph
+      class="org-graph"
+      [view]="graphView()"
+      layout="dagre"
+      [layoutSettings]="graphLayoutSettings"
+      [nodes]="graphModel().nodes"
+      [links]="graphModel().links"
+      [autoCenter]="true"
+      [autoZoom]="false"
+      [showMiniMap]="true"
+      [enableZoom]="true"
+      [enablePan]="true"
+      [animate]="false"
+      [nodeWidth]="260"
+      [nodeHeight]="146"
+    >
+      <ng-template #defsTemplate>
+        <svg:marker
+          id="org-chart-arrow"
+          viewBox="0 -5 10 10"
+          refX="8"
+          refY="0"
+          markerWidth="6"
+          markerHeight="6"
+          orient="auto"
+        >
+          <svg:path d="M0,-5L10,0L0,5" class="org-graph__arrow"></svg:path>
+        </svg:marker>
+      </ng-template>
+
+      <ng-template #linkTemplate let-link>
+        <svg:g class="edge">
+          <svg:path
+            class="line org-graph__line"
+            stroke-width="2"
+            marker-end="url(#org-chart-arrow)"
+          ></svg:path>
+        </svg:g>
+      </ng-template>
+
+      <ng-template #nodeTemplate let-node>
+        <svg:g (click)="onGraphNodeClick(node.data.orgNode, $event)">
+          <svg:foreignObject
+            [attr.width]="node.dimension?.width"
+            [attr.height]="node.dimension?.height"
+          >
+            <div
+              xmlns="http://www.w3.org/1999/xhtml"
+              class="org-graph-card"
+              [class.org-graph-card--root]="node.data.isVirtualRoot"
+              [class.org-graph-card--vacant]="node.data.isVacant"
+              [class.org-graph-card--interactive]="editMode()"
+              [class.org-graph-card--dragging]="
+                draggingNode()?.workPositionId === node.data.orgNode.workPositionId
+              "
+              [class.org-graph-card--drop-hover]="
+                dragHoverNodeId() === node.data.orgNode.workPositionId
+              "
+              [class.org-graph-card--drop-candidate]="
+                shouldShowReorderAffordances(node.data.orgNode)
+              "
+              [class.org-graph-card--origin]="
+                node.data.selectionState === 'origin'
+              "
+              [class.org-graph-card--destination]="
+                node.data.selectionState === 'destination'
+              "
+              [style.--org-node-accent]="node.data.accentColor"
+              [attr.role]="node.data.isVirtualRoot ? 'img' : 'button'"
+              [attr.aria-label]="getNodeAriaLabel(node.data.orgNode)"
+              [attr.aria-pressed]="
+                editMode() && node.data.selectionState === 'origin'
+                  ? 'true'
+                  : null
+              "
+              [attr.tabindex]="node.data.isVirtualRoot ? -1 : 0"
+              [attr.title]="getNodeAriaLabel(node.data.orgNode)"
+              [attr.draggable]="
+                editMode() && !node.data.isVirtualRoot ? true : null
+              "
+              (dragstart)="onCardDragStart(node.data.orgNode, $event)"
+              (dragend)="onCardDragEnd()"
+              (keydown)="onGraphNodeKeydown(node.data.orgNode, $event)"
+              (dragover)="onCardDragOver(node.data.orgNode, $event)"
+              (dragleave)="onCardDragLeave(node.data.orgNode)"
+              (drop)="onCardDrop(node.data.orgNode, $event)"
+            >
+              @if (shouldShowReorderAffordances(node.data.orgNode)) {
+                <div
+                  class="org-graph-card__dropzone org-graph-card__dropzone--before"
+                  [class.org-graph-card__dropzone--active]="isReorderHover(node.data.orgNode, 'before')"
+                  (dragover)="onReorderZoneDragOver(node.data.orgNode, 'before', $event)"
+                  (drop)="onReorderZoneDrop(node.data.orgNode, 'before', $event)"
+                >
+                  <span class="org-graph-card__dropzone-label">IZQUIERDA</span>
+                </div>
+              }
+
+              <div class="org-graph-card__accent"></div>
+
+              <div class="org-graph-card__body">
+                @if (shouldShowReorderAffordances(node.data.orgNode)) {
+                  <div class="org-graph-card__center-hint">
+                    Centro = cambiar de jefe
+                  </div>
+                }
+
+                <div
+                  class="org-graph-card__avatar"
+                  [class.org-graph-card__avatar--photo]="
+                    !!node.data.orgNode.employeePhoto
+                  "
+                  [style.background-image]="
+                    node.data.orgNode.employeePhoto
+                      ? 'url(' + node.data.orgNode.employeePhoto + ')'
+                      : null
+                  "
+                >
+                  @if (!node.data.orgNode.employeePhoto) {
+                    <span>{{ getNodeInitials(node.data.orgNode) }}</span>
+                  }
+                </div>
+
+                <div class="org-graph-card__content">
+                  <div class="org-graph-card__headline">
+                    {{ node.data.secondaryLabel }}
+                  </div>
+                  <div class="org-graph-card__role">
+                    {{ node.data.orgNode.roleDisplayName }}
+                  </div>
+                  <div class="org-graph-card__meta">
+                    {{ node.data.orgNode.departmentName }} ·
+                    {{ node.data.orgNode.folio }}
+                  </div>
+                </div>
+
+                <div class="org-graph-card__footer">
+                  @if (node.data.isVirtualRoot) {
+                    <span class="org-graph-badge org-graph-badge--neutral">
+                      Nodo virtual
+                    </span>
+                  } @else if (node.data.isVacant) {
+                    <span class="org-graph-badge org-graph-badge--warn">
+                      Vacante
+                    </span>
+                  } @else {
+                    <span class="org-graph-badge org-graph-badge--ok">
+                      Asignado
+                    </span>
+                  }
+
+                  @if (editMode() && node.data.selectionState === "origin") {
+                    <span class="org-graph-badge org-graph-badge--origin">
+                      Origen
+                    </span>
+                  }
+
+                  @if (
+                    editMode() && node.data.selectionState === "destination"
+                  ) {
+                    <span
+                      class="org-graph-badge org-graph-badge--destination"
+                    >
+                      Destino
+                    </span>
+                  }
+                </div>
+              </div>
+
+              @if (shouldShowReorderAffordances(node.data.orgNode)) {
+                <div
+                  class="org-graph-card__dropzone org-graph-card__dropzone--after"
+                  [class.org-graph-card__dropzone--active]="isReorderHover(node.data.orgNode, 'after')"
+                  (dragover)="onReorderZoneDragOver(node.data.orgNode, 'after', $event)"
+                  (drop)="onReorderZoneDrop(node.data.orgNode, 'after', $event)"
+                >
+                  <span class="org-graph-card__dropzone-label">DERECHA</span>
+                </div>
+              }
+            </div>
+          </svg:foreignObject>
+        </svg:g>
+      </ng-template>
+    </ngx-graph>
+  </div>
+</ng-template>
+
+<p-drawer
+  [visible]="drawerVisible()"
+  (visibleChange)="drawerVisible.set($event)"
+  position="right"
+  [style]="{ width: '380px' }"
+  header="Detalles del Puesto"
+>
+  @if (selectedNodeForDetails(); as node) {
+    <div class="org-detail">
+      <div class="org-detail__header">
+        @if (node.hasEmployee && node.employeePhoto) {
+          <p-avatar [image]="node.employeePhoto" shape="circle" size="large" />
+        } @else {
+          <p-avatar
+            icon="mdi:briefcase"
+            shape="circle"
+            size="large"
+            styleClass="surface-300 text-600"
+          />
+        }
+
+        <div>
+          <span class="org-detail__name">
+            {{ node.employeeName ?? "Vacante" }}
+          </span>
+          <p class="org-detail__role">{{ node.roleDisplayName }}</p>
+        </div>
+      </div>
+
+      <div class="org-detail__meta">
+        <p><strong>Folio:</strong> {{ node.folio }}</p>
+        <p><strong>Departamento:</strong> {{ node.departmentName }}</p>
+        <p><strong>Nivel:</strong> {{ node.hierarchyLevel }}</p>
+        @if (node.employeeEmail) {
+          <p><strong>Email:</strong> {{ node.employeeEmail }}</p>
+        }
+        @if (node.employeePhone) {
+          <p><strong>Telefono:</strong> {{ node.employeePhone }}</p>
+        }
+      </div>
+    </div>
+  }
+</p-drawer>
+
+<p-toast position="bottom-right" />

@@ -1,0 +1,163 @@
+<div class="grid">
+  <!-- Download Form Card -->
+  <div class="col-12">
+    <p-card header="Descargar CFDI desde SAT">
+      <form [formGroup]="form" (ngSubmit)="onSubmitDownload()">
+        <div class="grid">
+          <div class="col-12 md:col-4">
+            <custom-input-date-signal
+              [control]="form.controls.startDate"
+              label="Fecha Inicial"
+              id="startDate"
+              [required]="true"
+            />
+          </div>
+          <div class="col-12 md:col-4">
+            <custom-input-date-signal
+              [control]="form.controls.endDate"
+              label="Fecha Final"
+              id="endDate"
+              [required]="true"
+            />
+          </div>
+        </div>
+        <div class="flex justify-content-end mt-4">
+          <custom-button-save
+            [submitting]="submitting()"
+            label="Iniciar Descarga y Procesamiento"
+            [disabled]="form.invalid"
+          ></custom-button-save>
+        </div>
+      </form>
+    </p-card>
+  </div>
+
+  <!-- Invoices Table -->
+  <div class="col-12">
+    <p-card>
+      <p-table
+        #dtInvoices
+        [value]="invoices()"
+        [rows]="10"
+        [paginator]="true"
+        [globalFilterFields]="['emisorNombre', 'folio', 'total']"
+        [(selection)]="selection"
+        [rowHover]="true"
+        dataKey="satCfdiId"
+        sortField="tipoGasto"
+        sortMode="multiple"
+        rowGroupMode="subheader"
+        groupRowsBy="tipoGasto"
+        (onRowReorder)="onRowReorder($event)"
+        [scrollable]="true"
+        [scrollHeight]="scrollHeight"
+      >
+        <ng-template #caption>
+          <div class="flex justify-content-between align-items-center">
+            <h5 class="m-0">Facturas del Peróodo</h5>
+            <div class="flex">
+              <p-dropdown
+                #bulkTipoGasto
+                [options]="tiposGasto"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Cambiar tipo"
+                class="mr-2"
+                [style]="{'min-width':'150px'}"
+                [disabled]="!selection || selection.length === 0"
+              ></p-dropdown>
+              <custom-button-confirm
+                label="Aplicar"
+                (clicked)="onBulkUpdate(bulkTipoGasto.value)"
+                [disabled]="!selection || selection.length === 0"
+              ></custom-button-confirm>
+              <span class="p-input-icon-left ml-auto">
+                <app-icon [icon]="'mdi:magnify'"></app-icon>
+                <custom-input-text-signal
+                  (input)="dtInvoices.filterGlobal($event.target.value, 'contains')"
+                  placeholder="Buscar..."
+                  [horizontal]="false"
+                />
+              </span>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="groupheader" let-invoice>
+          <tr class="p-rowgroup-header">
+            <td colspan="7">
+              <span class="font-bold"
+                >{{ getTipoGastoLabel(invoice.tipoGasto) | uppercase }}</span
+              >
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template #header>
+          <tr>
+            <th class="table-col-3rem"></th>
+            <!-- Reorder Handle -->
+            <th class="table-col-4rem">Sel.</th>
+            <th pSortableColumn="fechaEmision">
+              Fecha <p-sortIcon field="fechaEmision"></p-sortIcon>
+            </th>
+            <th pSortableColumn="emisorNombre">
+              Emisor <p-sortIcon field="emisorNombre"></p-sortIcon>
+            </th>
+            <th pSortableColumn="total">
+              Total <p-sortIcon field="total"></p-sortIcon>
+            </th>
+            <th pSortableColumn="bankShortName">
+              Banco <p-sortIcon field="bankShortName"></p-sortIcon>
+            </th>
+            <th>Acciones</th>
+          </tr>
+        </ng-template>
+
+        <ng-template #body let-invoice let-i="rowIndex" let-editing="editing">
+          <tr
+            [pReorderableRow]="i"
+            [pSelectableRow]="invoice"
+            [pEditableRow]="invoice"
+            [pTooltip]="invoice.emisorRfc + ' | ' + invoice.folio"
+            tooltipPosition="top"
+          >
+            <td>
+              <div
+                class="flex align-items-center justify-content-center"
+                [pReorderableRowHandle]="i"
+              >
+                <app-icon [icon]="'mdi:menu'"></app-icon>
+              </div>
+            </td>
+            <td>
+              <p-tableCheckbox [value]="invoice"></p-tableCheckbox>
+            </td>
+            <td>{{ invoice.fechaEmision | date: 'short' }}</td>
+            <td>{{ invoice.emisorNombre }}</td>
+            <td>{{ invoice.total | number:'1.2-2' }}</td>
+            <td>{{ invoice.bankShortName }}</td>
+            <td>
+              <!-- Edit controls -->
+              <custom-button-edit
+                (clicked)="onRowEditInit(invoice)"
+              ></custom-button-edit>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+          <tr>
+            <td colspan="7">No hay facturas para mostrar.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+</div>
+
+
+
+
+
+
+

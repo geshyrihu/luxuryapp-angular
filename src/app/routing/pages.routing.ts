@@ -4,7 +4,7 @@ export const pagesRoutes: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("src/app/features/tenant/dashboard/container-dashboard").then(
+      import("src/app/features/operations/dashboard/container-dashboard").then(
         (m) => m.ContainerDashboard,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const pagesRoutes: Routes = [
   {
     path: "dashboard",
     loadComponent: () =>
-      import("src/app/features/tenant/dashboard/container-dashboard").then(
+      import("src/app/features/operations/dashboard/container-dashboard").then(
         (m) => m.ContainerDashboard,
       ),
     canActivate: [authGuard],
@@ -116,7 +116,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad",
     loadChildren: () =>
-      import("src/app/features/tenant/contabilidad/contabilidad.routing").then(
+      import("src/app/features/accounting/general-ledger/contabilidad/contabilidad.routing").then(
         (m) => m.CONTABILIDAD_ROUTES,
       ),
     data: {
@@ -127,7 +127,7 @@ export const pagesRoutes: Routes = [
   {
     path: "cobranza-nativa",
     loadChildren: () =>
-      import("src/app/features/tenant/contabilidad/cobranza-nativa/cobranza-nativa.routing").then(
+      import("src/app/features/accounting/general-ledger/contabilidad/cobranza-nativa/cobranza-nativa.routing").then(
         (m) => m.COBRANZA_NATIVA_ROUTES,
       ),
     data: {
@@ -313,7 +313,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes",
     loadComponent: () =>
-      import("src/app/features/tenant/contabilidad/dynamic-reports/pages/report-catalog/report-catalog").then(
+      import("src/app/features/accounting/general-ledger/contabilidad/dynamic-reports/pages/report-catalog/report-catalog").then(
         (m) => m.ReportCatalog,
       ),
     data: { title: "Reportes Financieros", breadcrumb: "Reportes" },
@@ -321,7 +321,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/nuevo",
     loadComponent: () =>
-      import("src/app/features/tenant/contabilidad/dynamic-reports/pages/report-builder/report-builder").then(
+      import("src/app/features/accounting/general-ledger/contabilidad/dynamic-reports/pages/report-builder/report-builder").then(
         (m) => m.ReportBuilder,
       ),
     data: { title: "Nuevo Reporte", breadcrumb: "Nuevo Reporte" },
@@ -329,7 +329,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/editar/:id",
     loadComponent: () =>
-      import("src/app/features/tenant/contabilidad/dynamic-reports/pages/report-builder/report-builder").then(
+      import("src/app/features/accounting/general-ledger/contabilidad/dynamic-reports/pages/report-builder/report-builder").then(
         (m) => m.ReportBuilder,
       ),
     data: { title: "Editar Reporte", breadcrumb: "Editar Reporte" },
@@ -337,7 +337,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/ver/:id",
     loadComponent: () =>
-      import("src/app/features/tenant/contabilidad/dynamic-reports/pages/report-viewer/report-viewer").then(
+      import("src/app/features/accounting/general-ledger/contabilidad/dynamic-reports/pages/report-viewer/report-viewer").then(
         (m) => m.ReportViewer,
       ),
     data: { title: "Ver Reporte", breadcrumb: "Ver Reporte" },
@@ -345,7 +345,7 @@ export const pagesRoutes: Routes = [
   {
     path: "contabilidad/reportes/guia",
     loadComponent: () =>
-      import("src/app/features/tenant/contabilidad/dynamic-reports/pages/report-guide/report-guide").then(
+      import("src/app/features/accounting/general-ledger/contabilidad/dynamic-reports/pages/report-guide/report-guide").then(
         (m) => m.ReportGuide,
       ),
     data: { title: "Guía del Módulo de Reportes", breadcrumb: "Guía" },
@@ -353,7 +353,7 @@ export const pagesRoutes: Routes = [
   {
     path: "report-financial-statements",
     loadComponent: () =>
-      import("src/app/features/tenant/contabilidad/contabilidad-online/pages/financial-reports-wrapper").then(
+      import("src/app/features/accounting/general-ledger/contabilidad/contabilidad-online/pages/financial-reports-wrapper").then(
         (m) => m.default,
       ),
     data: {
@@ -364,7 +364,7 @@ export const pagesRoutes: Routes = [
   {
     path: "catalog-replica",
     loadComponent: () =>
-      import("src/app/features/tenant/contabilidad/contabilidad-online/pages/validacion-catalogo/catalog-replica").then(
+      import("src/app/features/accounting/general-ledger/contabilidad/contabilidad-online/pages/validacion-catalogo/catalog-replica").then(
         (m) => m.CatalogReplica,
       ),
     data: {
@@ -375,7 +375,7 @@ export const pagesRoutes: Routes = [
   {
     path: "balance-mensual",
     loadComponent: () =>
-      import("src/app/features/tenant/contabilidad/contabilidad-online/pages/monthly-balance/balance-mensual").then(
+      import("src/app/features/accounting/general-ledger/contabilidad/contabilidad-online/pages/monthly-balance/balance-mensual").then(
         (m) => m.BalanceMensual,
       ),
     data: {
@@ -494,7 +494,7 @@ export const pagesRoutes: Routes = [
   {
     path: "sat-funding",
     loadChildren: () =>
-      import("src/app/features/tenant/sat-funding/sat-funding.routes").then(
+      import("src/app/features/accounting/fondeos-y-reporteo/sat-funding/sat-funding.routes").then(
         (m) => m.SAT_FUNDING_ROUTES,
       ),
     data: {
@@ -518,7 +518,7 @@ export const pagesRoutes: Routes = [
   {
     path: "entrega-recepcion-check",
     loadComponent: () =>
-      import("src/app/features/tenant/entrega-recepcion-check/entrega-recepcion-check").then(
+      import("src/app/features/operations/properties/entrega-recepcion-check/entrega-recepcion-check").then(
         (m) => m.EntregaRecepcionCheckComponent,
       ),
     data: {
@@ -529,7 +529,7 @@ export const pagesRoutes: Routes = [
   {
     path: "password-manager",
     loadChildren: () =>
-      import("src/app/features/vault/password-manager/password-manager.routes").then(
+      import("src/app/features/system/vault/password-manager/password-manager.routes").then(
         (m) => m.PASSWORD_MANAGER_ROUTES,
       ),
     data: {
@@ -538,26 +538,56 @@ export const pagesRoutes: Routes = [
     },
   },
   // Rutas temporales para check de auditoria
-    // --- RUTAS DE ARQUITECTURA 3DB ---
+  // --- RUTAS DE ARQUITECTURA 8 MÓDULOS ---
   {
-    path: "tenant",
+    path: "system",
     loadChildren: () =>
-      import("src/app/features/tenant/tenant.routing").then((m) => m.tenantRoutes),
-    data: { title: "Tenant", breadcrumb: "Tenant" }
+      import("src/app/features/system/system.routing").then((m) => m.systemRoutes),
+    data: { title: "Sistema", breadcrumb: "Sistema" }
   },
   {
-    path: "config",
+    path: "accounting",
     loadChildren: () =>
-      import("src/app/features/configuration/configuration.routing").then((m) => m.configurationRoutes),
-    data: { title: "Configuración", breadcrumb: "Configuración" }
+      import("src/app/features/accounting/accounting.routing").then((m) => m.accountingRoutes),
+    data: { title: "Contabilidad", breadcrumb: "Contabilidad" }
   },
   {
-    path: "vault",
+    path: "hr",
     loadChildren: () =>
-      import("src/app/features/vault/vault.routing").then((m) => m.vaultRoutes),
-    data: { title: "Bóveda de Secretos", breadcrumb: "Bóveda" }
+      import("src/app/features/hr/hr.routing").then((m) => m.hrRoutes),
+    data: { title: "Recursos Humanos", breadcrumb: "Recursos Humanos" }
   },
-  // --- FIN RUTAS 3DB ---
+  {
+    path: "legal",
+    loadChildren: () =>
+      import("src/app/features/legal/legal.routing").then((m) => m.legalRoutes),
+    data: { title: "Legal", breadcrumb: "Legal" }
+  },
+  {
+    path: "maintenance",
+    loadChildren: () =>
+      import("src/app/features/maintenance/maintenance.routing").then((m) => m.maintenanceRoutes),
+    data: { title: "Mantenimiento", breadcrumb: "Mantenimiento" }
+  },
+  {
+    path: "operations",
+    loadChildren: () =>
+      import("src/app/features/operations/operations.routing").then((m) => m.operationsRoutes),
+    data: { title: "Operaciones", breadcrumb: "Operaciones" }
+  },
+  {
+    path: "purchasing",
+    loadChildren: () =>
+      import("src/app/features/purchasing/purchasing.routing").then((m) => m.purchasingRoutes),
+    data: { title: "Compras", breadcrumb: "Compras" }
+  },
+  {
+    path: "recruitment",
+    loadChildren: () =>
+      import("src/app/features/recruitment/recruitment.routing").then((m) => m.recruitmentRoutes),
+    data: { title: "Reclutamiento", breadcrumb: "Reclutamiento" }
+  },
+  // --- FIN RUTAS ARQUITECTURA ---
 
   {
     path: "**",

@@ -1,0 +1,78 @@
+<div class="grid">
+  <div>
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      @if(cb_providers().length == 0){
+      <div class="text-center">
+        <p>Cargando listado de proveedores</p>
+        <app-icon [icon]="'mdi:spin'" class="text-primary m-1" aria-label="Cargando..."></app-icon>
+      </div>
+      }@else {
+      <custom-input-autocomplete-signal
+        (propagar)="saveProviderId($event)"
+        [control]="form.controls.nameProvider"
+        [data]="cb_providers()"
+        label="Proveedor"
+        placeholder="Escribe para buscar proveedor"
+        [horizontal]="false"
+      />
+      } @if(cb_applicationUserProvider().length == 0){
+      <div class="text-center">
+        <p>Cargando listado de personas</p>
+        <app-icon [icon]="'mdi:spin'" class="text-primary m-1" aria-label="Cargando..."></app-icon>
+      </div>
+      }@else {
+      <custom-input-autocomplete-signal
+        (propagar)="saveApplicationUserId($event)"
+        [control]="form.controls.applicationUser"
+        [data]="cb_applicationUserProvider()"
+        label="Personas"
+        placeholder="Escribe para buscar colaborador"
+        [horizontal]="false"
+      />
+      } @if(cb_applicationRoles().length == 0){
+      <div class="text-center">
+        <p>Cargando listado de puestos</p>
+        <app-icon [icon]="'mdi:spin'" class="text-primary m-1" aria-label="Cargando..."></app-icon>
+      </div>
+      } @else {
+      <custom-input-autocomplete-signal
+        (propagar)="saveApplicationRoleId($event)"
+        [control]="form.controls.applicationRoleName"
+        [data]="cb_applicationRoles()"
+        label="Puesto"
+        placeholder="Escribe para buscar puesto"
+        [horizontal]="false"
+      />
+      } @if(cb_customers().length == 0){
+      <div class="text-center">
+        <p>Cargando listado de clientes</p>
+        <app-icon [icon]="'mdi:spin'" class="text-primary m-1" aria-label="Cargando..."></app-icon>
+      </div>
+      } @else {
+      <custom-input-autocomplete-signal
+        (propagar)="saveCustomerId($event)"
+        [control]="form.controls.nameCustomer"
+        [data]="cb_customers()"
+        label="Cliente"
+        [horizontal]="false"
+        placeholder="Escribe para buscar cliente"
+      />
+      }
+
+      <div class="text-center mt-3">
+        <custom-button-save
+          [propertyId]="id"
+          [disabled]="form.invalid"
+          [loading]="submitting()"
+        />
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+

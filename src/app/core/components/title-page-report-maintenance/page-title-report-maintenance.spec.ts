@@ -38,7 +38,7 @@ describe('PageTitleReportMaintenance', () => {
   it('should render breadcrumb items when provided', () => {
     const items = [
       { label: 'Home', active: false },
-      { label: 'Settings', active: true },
+      { label: 'settings', active: true },
     ];
     fixture.componentRef.setInput('breadcrumbItems', items);
     fixture.detectChanges();

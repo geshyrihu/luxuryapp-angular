@@ -4,7 +4,7 @@ export const utilitiesRoutes: Routes = [
   {
     path: "calculate-vat", // Ruta anterior: 'calcular-iva'
     loadComponent: () =>
-      import("src/app/features/tenant/tools/calculator-list").then(
+      import("src/app/features/operations/inventarios-y-almacn/tools/calculator-list").then(
         (m) => m.CalculatorList
       ),
     canActivate: [authGuard],

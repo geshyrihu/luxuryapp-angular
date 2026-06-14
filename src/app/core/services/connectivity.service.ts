@@ -40,9 +40,8 @@ export class ConnectivityService {
         if (this.router.url === "/offline") {
           this.router.navigateByUrl(this.lastUrl());
         }
-      } else {
-        this.router.navigateByUrl("/offline");
-      }
+      } 
+      // Se eliminó la redirección forzada a /offline para permitir el uso Offline-First
     });
   }
 

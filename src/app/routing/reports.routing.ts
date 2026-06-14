@@ -4,7 +4,7 @@ export const reportsRoutes: Routes = [
   {
     path: "supervision-report", // Ruta anterior: 'report-supervision'
     loadComponent: () =>
-      import("src/app/features/tenant/supervision-report/report-supervision").then(
+      import("src/app/features/operations/supervision/supervision-report/report-supervision").then(
         (m) => m.ReportSupervision,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const reportsRoutes: Routes = [
   {
     path: "access-history",
     loadComponent: () =>
-      import("src/app/features/tenant/access-history/bitacora-acceso-list").then(
+      import("src/app/features/system/audit-logs/access-history/bitacora-acceso-list").then(
         (m) => m.BitacoraAcceso,
       ),
     canActivate: [authGuard],
@@ -43,7 +43,7 @@ export const reportsRoutes: Routes = [
     // Suggested path: 'service-orders-summary'
     path: "resumen-ordenes-servicio",
     loadComponent: () =>
-      import("src/app/features/tenant/service-order/resumen-ordenes-servicio").then(
+      import("src/app/features/operations/field-service/service-order/resumen-ordenes-servicio").then(
         (m) => m.ResumenOrdenesServicio,
       ),
     canActivate: [authGuard],
@@ -56,7 +56,7 @@ export const reportsRoutes: Routes = [
   {
     path: "pending-minutes",
     loadComponent: () =>
-      import("src/app/features/tenant/reports/pending-minutes/pending-minutes").then(
+      import("src/app/features/operations/reports/pending-minutes/pending-minutes").then(
         (m) => m.PendingMinutes,
       ),
     canActivate: [authGuard],
@@ -68,7 +68,7 @@ export const reportsRoutes: Routes = [
   {
     path: "financial-statements", // Ruta anterior: 'estados-financieros'
     loadComponent: () =>
-      import("src/app/features/tenant/reports/estados-financieros/estados-financieros").then(
+      import("src/app/features/operations/reports/estados-financieros/estados-financieros").then(
         (m) => m.EstadosFinancieros,
       ),
     canActivate: [authGuard],

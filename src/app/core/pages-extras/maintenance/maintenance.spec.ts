@@ -3,7 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Maintenance } from './maintenance';
 import { vi } from 'vitest';
 
-describe('Maintenance', () => {
+describe('maintenance', () => {
   let component: Maintenance;
   let fixture: ComponentFixture<Maintenance>;
 

@@ -1,0 +1,934 @@
+<section class="demo-page">
+  <div class="demo-hero">
+    <div class="demo-hero__copy">
+      <p-tag value="Guia viva UI ERP" severity="info"></p-tag>
+      <h1>Demo institucional de interfaz</h1>
+      <p>
+        Base visual y funcional para construir pantallas consistentes en LuxuryApp:
+        PrimeNG 21, PrimeFlex, Ionic mobile y Design System propio.
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <p-button label="Accion primaria" icon="mdi:check" />
+        <p-button label="Ver reglas" icon="mdi:book" severity="secondary" [outlined]="true" />
+      </div>
+    </div>
+
+    <div class="demo-hero__panel" aria-label="Resumen del estandar">
+      @for (metric of metrics; track metric.label) {
+        <article class="demo-metric">
+          <span class="demo-metric__icon" [class]="'demo-metric__icon demo-metric__icon--' + metric.tone">
+            <app-icon [icon]="metric.icon"></app-icon>
+          </span>
+          <div>
+            <strong>{{ metric.value }}</strong>
+            <span>{{ metric.label }}</span>
+            <small>{{ metric.detail }}</small>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+
+  <p-tabs [(value)]="activeTab" styleClass="demo-tabs">
+    <p-tablist>
+      <p-tab value="overview">Introduccion</p-tab>
+      <p-tab value="foundation">Fundamentos</p-tab>
+      <p-tab value="identity">Identidad ERP</p-tab>
+      <p-tab value="scenarios">Casos de Uso</p-tab>
+      <p-tab value="components">Componentes</p-tab>
+      <p-tab value="catalog">Catalogo core</p-tab>
+      <p-tab value="forms">Formularios</p-tab>
+      <p-tab value="data">Tablas y estados</p-tab>
+      <p-tab value="mobile">Mobile</p-tab>
+      <p-tab value="rules">Reglas ERP</p-tab>
+    </p-tablist>
+
+    <p-tabpanels>
+      <p-tabpanel value="scenarios">
+        <div class="demo-section">
+          <div class="demo-section__header">
+            <span class="demo-kicker">04</span>
+            <div>
+              <h2>Casos de Uso de Negocio</h2>
+              <p>Escenarios complejos resueltos con las reglas del Design System.</p>
+            </div>
+          </div>
+
+          <div class="grid">
+            @for (scenario of businessScenarios; track scenario.title) {
+              <div class="col-12 lg:col-4">
+                <p-card styleClass="h-full border-top-3 border-primary surface-card">
+                  <div class="flex align-items-center gap-3 mb-3">
+                    <app-icon [icon]="scenario.icon" class="text-primary text-2xl"></app-icon>
+                    <strong class="text-xl">{{ scenario.title }}</strong>
+                  </div>
+                  <p class="text-color-secondary line-height-3 mb-3">{{ scenario.description }}</p>
+                  <div class="p-3 border-round bg-primary-50 text-primary-900 text-sm">
+                    <strong>Regla:</strong> {{ scenario.rule }}
+                  </div>
+                </p-card>
+              </div>
+            }
+          </div>
+
+          <p-divider align="left">
+            <div class="inline-flex align-items-center">
+              <app-icon [icon]="'mdi:format-list-bulleted'" class="mr-2"></app-icon>
+              <b>Demo: Master-Detail (Facturacion/Gastos)</b>
+            </div>
+          </p-divider>
+
+          <p-card styleClass="mb-5">
+            <div class="grid formgrid mb-4">
+              <div class="field col-12 md:col-6">
+                <label>Proveedor</label>
+                <input pInputText class="w-full" value="Servicios Integrales de Lujo S.A." disabled />
+              </div>
+              <div class="field col-12 md:col-6">
+                <label>Folio Fiscal (UUID)</label>
+                <input pInputText class="w-full" placeholder="Cargue el XML para autocompletar" />
+              </div>
+            </div>
+
+            <p-table [value]="invoiceLines" styleClass="p-datatable-sm mb-4" [responsiveLayout]="'scroll'">
+              <ng-template #header>
+                <tr>
+                  <th>Concepto</th>
+                  <th style="width: 100px">Cant.</th>
+                  <th style="width: 150px">Precio Unit.</th>
+                  <th style="width: 150px">Total</th>
+                  <th style="width: 50px"></th>
+                </tr>
+              </ng-template>
+              <ng-template #body let-line>
+                <tr>
+                  <td><input pInputText [(ngModel)]="line.concept" class="w-full p-inputtext-sm" /></td>
+                  <td><p-inputnumber [(ngModel)]="line.quantity" class="p-inputtext-sm" [fluid]="true" /></td>
+                  <td><p-inputnumber [(ngModel)]="line.price" mode="currency" currency="MXN" class="p-inputtext-sm" [fluid]="true" /></td>
+                  <td class="font-bold">{{ line.price * line.quantity | currency:'MXN' }}</td>
+                  <td><p-button icon="mdi:delete" severity="danger" [text]="true" size="small" /></td>
+                </tr>
+              </ng-template>
+              <ng-template #footer>
+                <div class="flex justify-content-between align-items-center p-2">
+                  <p-button label="Añadir Concepto" icon="mdi:plus" [outlined]="true" size="small" />
+                  <div class="text-right">
+                    <span class="text-color-secondary mr-3">Subtotal:</span>
+                    <span class="text-xl font-bold">$21,000.00</span>
+                  </div>
+                </div>
+              </ng-template>
+            </p-table>
+
+            <div class="flex justify-content-end gap-2">
+              <p-button label="Cancelar" severity="secondary" [outlined]="true" />
+              <p-button label="Guardar Factura" icon="mdi:content-save" />
+            </div>
+          </p-card>
+
+          <p-divider align="left">
+            <div class="inline-flex align-items-center">
+              <app-icon [icon]="'mdi:star'" class="mr-2"></app-icon>
+              <b>Demo: Luxury Metrics (Dorado Institucional)</b>
+            </div>
+          </p-divider>
+
+          <div class="grid mb-5">
+            <div class="col-12 md:col-4">
+              <p-card styleClass="border-top-3 border-luxury shadow-2" [style]="{'--ds-border-color': 'var(--ds-luxury-gold)'}">
+                <div class="flex justify-content-between align-items-start">
+                  <div>
+                    <span class="block text-color-secondary font-medium mb-3">Patrimonio Total</span>
+                    <div class="text-900 font-bold text-3xl">$42.5M</div>
+                  </div>
+                  <div class="flex align-items-center justify-content-center bg-gold-100 border-round" style="width:2.5rem;height:2.5rem">
+                    <app-icon [icon]="'mdi:wallet'" class="text-gold-600 text-xl"></app-icon>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <span class="text-green-500 font-medium">+12% </span>
+                  <span class="text-color-secondary text-sm">vs mes anterior</span>
+                </div>
+              </p-card>
+            </div>
+            <div class="col-12 md:col-8">
+              <p-card styleClass="h-full border-left-3" [style]="{'border-color': 'var(--ds-luxury-gold)'}">
+                <div class="flex align-items-center gap-2 mb-3">
+                  <p-tag value="PREMIUM" severity="warn" [style]="{'background': 'var(--ds-luxury-gold)', 'color': '#fff'}"></p-tag>
+                  <h3 class="m-0">Resumen de Inversiones Torre A</h3>
+                </div>
+                <p class="m-0 text-color-secondary">Este reporte utiliza la paleta de lujo para indicar que el contenido es de alta jerarquia financiera. Solo se aplica en resultados consolidados o accesos directos de direccion.</p>
+              </p-card>
+            </div>
+          </div>
+        </div>
+      </p-tabpanel>
+      <p-tabpanel value="overview">
+        <div class="demo-section">
+          <div class="demo-section__header">
+            <span class="demo-kicker">01</span>
+            <div>
+              <h2>Introduccion institucional</h2>
+              <p>
+                Este modulo es la referencia operativa para disenar, revisar y construir
+                pantallas ERP con una experiencia seria, clara y mantenible.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="col-12 lg:col-4">
+              <p-card styleClass="h-full">
+                <ng-template #title>Principio base</ng-template>
+                <p>
+                  Cada pantalla debe responder tres preguntas: que ocurre, que necesita
+                  hacer el usuario y cual es la siguiente accion segura.
+                </p>
+              </p-card>
+            </div>
+            <div class="col-12 lg:col-4">
+              <p-card styleClass="h-full">
+                <ng-template #title>Stack oficial</ng-template>
+                <div class="flex flex-wrap gap-2">
+                  <p-tag value="Angular 21"></p-tag>
+                  <p-tag value="PrimeNG 21" severity="info"></p-tag>
+                  <p-tag value="PrimeFlex 4" severity="success"></p-tag>
+                  <p-tag value="Ionic mobile" severity="warn"></p-tag>
+                </div>
+              </p-card>
+            </div>
+            <div class="col-12 lg:col-4">
+              <p-card styleClass="h-full">
+                <ng-template #title>Criterio de calidad</ng-template>
+                <ul class="demo-list">
+                  <li>Consistencia antes que ornamentacion.</li>
+                  <li>Acciones claras antes que pantallas saturadas.</li>
+                  <li>Responsive real, no solo reduccion visual.</li>
+                </ul>
+              </p-card>
+            </div>
+          </div>
+        </div>
+      </p-tabpanel>
+
+      <p-tabpanel value="foundation">
+        <div class="demo-section">
+          <div class="demo-section__header">
+            <span class="demo-kicker">02</span>
+            <div>
+              <h2>Tipografia y color</h2>
+              <p>Escala visual para jerarquia, lectura ejecutiva y pantallas densas.</p>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="col-12 xl:col-6">
+              <p-card>
+                <ng-template #title>Escala tipografica</ng-template>
+                <div class="demo-stack">
+                  @for (item of typographyScale; track item.role) {
+                    <div class="demo-spec-row">
+                      <div>
+                        <strong>{{ item.role }}</strong>
+                        <span>{{ item.usage }}</span>
+                      </div>
+                      <p-tag [value]="item.size" severity="secondary"></p-tag>
+                    </div>
+                  }
+                </div>
+              </p-card>
+            </div>
+
+            <div class="col-12 xl:col-6">
+              <p-card>
+                <ng-template #title>Paleta institucional</ng-template>
+                <div class="demo-color-grid">
+                  @for (color of colors; track color.token) {
+                    <article class="demo-color">
+                      <span class="demo-color__swatch" [style.background]="color.value"></span>
+                      <strong>{{ color.name }}</strong>
+                      <code>{{ color.token }}</code>
+                      <small>{{ color.usage }}</small>
+                    </article>
+                  }
+                </div>
+              </p-card>
+            </div>
+          </div>
+
+          <p-message
+            severity="info"
+            text="Regla: labels y textos auxiliares deben permanecer visibles; el placeholder no reemplaza instrucciones ni nombres de campo."
+          ></p-message>
+        </div>
+      </p-tabpanel>
+
+      <p-tabpanel value="identity">
+        <div class="demo-section">
+          <div class="demo-section__header">
+            <span class="demo-kicker">03</span>
+            <div>
+              <h2>Identidad LuxuryApp ERP</h2>
+              <p>
+                Propuesta visual para fortalecer una entidad corporativa sobria,
+                confiable y operativa: identidad reconocible sin perder velocidad
+                en pantallas densas.
+              </p>
+            </div>
+          </div>
+
+          <p-message
+            severity="success"
+            text="Diagnostico: la paleta actual es consistente para ERP corporativo. El ajuste inmediato era alinear el demo con el azul real #0b3164 y formalizar tokens tipograficos en el Design System."
+          ></p-message>
+
+          <div class="grid">
+            @for (pillar of identityPillars; track pillar.title) {
+              <div class="col-12 lg:col-4">
+                <p-card styleClass="h-full border-left-3 border-primary surface-card shadow-1">
+                  <div class="flex align-items-start gap-3">
+                    <i [class]="pillar.icon + ' text-primary text-2xl'"></i>
+                    <div>
+                      <div class="flex align-items-center gap-2 mb-2">
+                        <strong>{{ pillar.title }}</strong>
+                        <p-tag [value]="pillar.severity" [severity]="pillar.severity"></p-tag>
+                      </div>
+                      <p class="m-0 line-height-3 text-color-secondary">{{ pillar.summary }}</p>
+                      <small class="block mt-3 text-color-secondary">{{ pillar.application }}</small>
+                    </div>
+                  </div>
+                </p-card>
+              </div>
+            }
+          </div>
+
+          <div class="grid align-items-start">
+            <div class="col-12 xl:col-5">
+              <p-card styleClass="h-full">
+                <ng-template #title>Firma visual propuesta</ng-template>
+                <div class="demo-brand-sample">
+                  <div class="demo-brand-sample__top">
+                    <span>LuxuryApp</span>
+                    <p-tag value="ERP" severity="info"></p-tag>
+                  </div>
+                  <div class="demo-brand-sample__body">
+                    <small>Modulo financiero</small>
+                    <strong>Autorizaciones pendientes</strong>
+                    <p>Decisiones visibles, datos auditables y una accion principal por bloque.</p>
+                    <div class="flex gap-2 flex-wrap">
+                      <p-button label="Aprobar seleccion" icon="mdi:check" size="small" />
+                      <p-button label="Revisar" severity="secondary" [outlined]="true" size="small" />
+                    </div>
+                  </div>
+                </div>
+              </p-card>
+            </div>
+
+            <div class="col-12 xl:col-7">
+              <p-card styleClass="h-full">
+                <ng-template #title>Escala tipografica recomendada</ng-template>
+                <p-table [value]="typographyScale" responsiveLayout="scroll" styleClass="p-datatable-sm">
+                  <ng-template #header>
+                    <tr>
+                      <th>Uso</th>
+                      <th>Token</th>
+                      <th>Tamano</th>
+                      <th>Ejemplo</th>
+                      <th>Criterio</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template #body let-item>
+                    <tr>
+                      <td><strong>{{ item.role }}</strong></td>
+                      <td><code>{{ item.token }}</code></td>
+                      <td><p-tag [value]="item.size" severity="secondary"></p-tag></td>
+                      <td>{{ item.example }}</td>
+                      <td>{{ item.usage }}</td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </p-card>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="col-12 xl:col-6">
+              <p-card>
+                <ng-template #title>Validacion de color actual</ng-template>
+                <p-table [value]="colorAssessment" responsiveLayout="scroll" styleClass="p-datatable-sm">
+                  <ng-template #header>
+                    <tr>
+                      <th>Rol</th>
+                      <th>Actual</th>
+                      <th>Veredicto</th>
+                      <th>Sugerencia</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template #body let-item>
+                    <tr>
+                      <td><strong>{{ item.role }}</strong></td>
+                      <td><code>{{ item.current }}</code></td>
+                      <td><p-tag [value]="item.verdict" [severity]="item.severity"></p-tag></td>
+                      <td>{{ item.recommendation }}</td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </p-card>
+            </div>
+
+            <div class="col-12 xl:col-6">
+              <p-card>
+                <ng-template #title>Ejemplos de aplicacion ERP</ng-template>
+                <div class="demo-stack">
+                  @for (scenario of identityScenarios; track scenario.title) {
+                    <div class="demo-spec-row">
+                      <div>
+                        <div class="flex align-items-center gap-2 mb-2">
+                          <strong>{{ scenario.title }}</strong>
+                          <p-tag [value]="scenario.severity" [severity]="scenario.severity"></p-tag>
+                        </div>
+                        <span>{{ scenario.context }}</span>
+                        <small class="block mt-2 text-color-secondary">
+                          {{ scenario.typography }} {{ scenario.color }} {{ scenario.action }}
+                        </small>
+                      </div>
+                    </div>
+                  }
+                </div>
+              </p-card>
+            </div>
+          </div>
+        </div>
+      </p-tabpanel>
+
+      <p-tabpanel value="components">
+        <div class="demo-section">
+          <div class="demo-section__header">
+            <span class="demo-kicker">05</span>
+            <div>
+              <h2>Botones, cards, tags y toolbars</h2>
+              <p>Patrones reales para acciones, resumen ejecutivo y navegacion de modulos.</p>
+            </div>
+          </div>
+
+          <p-card>
+            <ng-template #title>Botones</ng-template>
+            <div class="demo-button-board">
+              <p-button label="Primary" icon="mdi:check" />
+              <p-button label="Secondary" severity="secondary" icon="mdi:arrow-left" />
+              <p-button label="Success" severity="success" icon="mdi:content-save" />
+              <p-button label="Warning" severity="warn" icon="mdi:alert" />
+              <p-button label="Danger" severity="danger" icon="mdi:delete" />
+              <p-button label="Outline" [outlined]="true" icon="mdi:filter" />
+              <p-button label="Text" [text]="true" icon="mdi:dots-horizontal" />
+              <p-button icon="mdi:pencil" [rounded]="true" ariaLabel="Editar" />
+              <p-button label="Small" size="small" />
+              <p-button label="Large" size="large" />
+              <p-button label="Disabled" [disabled]="true" />
+            </div>
+
+            <p-divider></p-divider>
+
+            <div class="grid">
+              @for (rule of buttonRules; track rule.variant) {
+                <div class="col-12 md:col-6 xl:col-4">
+                  <p-card [styleClass]="rule.cardClass">
+                    <div class="flex align-items-start gap-3">
+                      <app-icon [icon]="rule.iconClass"></app-icon>
+                      <div class="flex-1">
+                        <div class="flex align-items-center justify-content-between gap-2 mb-2">
+                          <strong>{{ rule.variant }}</strong>
+                          <p-tag [value]="rule.variant" [severity]="rule.severity"></p-tag>
+                        </div>
+                        <p class="m-0 text-color-secondary line-height-3">{{ rule.usage }}</p>
+                        <small class="block mt-2 text-color-secondary">{{ rule.avoid }}</small>
+                      </div>
+                    </div>
+                  </p-card>
+                </div>
+              }
+            </div>
+          </p-card>
+
+          <div class="grid">
+            @for (card of cards; track card.title) {
+              <div class="col-12 md:col-4">
+                <p-card [styleClass]="card.cardClass">
+                  <div class="flex flex-column gap-3">
+                    <div class="flex align-items-center justify-content-between gap-3">
+                      <app-icon [icon]="card.iconClass"></app-icon>
+                      <p-tag [value]="card.subtitle" [severity]="card.severity"></p-tag>
+                    </div>
+                    <div>
+                      <h3 class="mt-0 mb-2">{{ card.title }}</h3>
+                      <p class="m-0 text-color-secondary line-height-3">{{ card.usage }}</p>
+                      <small class="block mt-3 text-color-secondary">{{ card.meta }}</small>
+                    </div>
+                  </div>
+                </p-card>
+              </div>
+            }
+          </div>
+
+          <p-toolbar styleClass="demo-toolbar">
+            <ng-template #start>
+              <div>
+                <strong>Toolbar ERP</strong>
+                <span class="block text-sm text-color-secondary">Filtros, acciones y estado de pantalla.</span>
+              </div>
+            </ng-template>
+            <ng-template #end>
+              <div class="flex gap-2 flex-wrap justify-content-end">
+                <p-button label="Limpiar" severity="secondary" [outlined]="true" icon="mdi:filter-off" />
+                <p-button label="Exportar" severity="secondary" icon="mdi:download" />
+                <p-button label="Nuevo" icon="mdi:plus" />
+              </div>
+            </ng-template>
+          </p-toolbar>
+        </div>
+      </p-tabpanel>
+
+      <p-tabpanel value="catalog">
+        <div class="demo-section">
+          <div class="demo-section__header">
+            <span class="demo-kicker">04</span>
+            <div>
+              <h2>Catalogo real de componentes core</h2>
+              <p>
+                Inventario de wrappers y componentes disponibles en
+                <code>src/app/core/components</code>, con su criterio de uso dentro
+                de LuxuryApp.
+              </p>
+            </div>
+          </div>
+
+          <p-message
+            severity="info"
+            text="Regla: si el componente core ya resuelve el caso, usarlo antes de crear HTML nuevo. Si el ajuste es visual global, moverlo a src/styles/prime-overrides o al DS, no al componente demo."
+          ></p-message>
+
+          <p-table
+            [value]="componentCatalog"
+            [paginator]="true"
+            [rows]="10"
+            responsiveLayout="scroll"
+            styleClass="p-datatable-sm"
+          >
+            <ng-template #header>
+              <tr>
+                <th>Familia</th>
+                <th>Selector</th>
+                <th>Ubicacion</th>
+                <th>Caso de uso</th>
+                <th>Usar cuando</th>
+                <th>Evitar cuando</th>
+                <th>Estado</th>
+              </tr>
+            </ng-template>
+            <ng-template #body let-item>
+              <tr>
+                <td><strong>{{ item.family }}</strong></td>
+                <td><code>{{ item.selector }}</code></td>
+                <td><span class="text-sm text-color-secondary">{{ item.source }}</span></td>
+                <td>{{ item.useCase }}</td>
+                <td>{{ item.preferredFor }}</td>
+                <td>{{ item.avoidWhen }}</td>
+                <td>
+                  <p-tag [value]="item.status" [severity]="getCatalogSeverity(item.status)"></p-tag>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+          <div class="grid">
+            <div class="col-12 lg:col-4">
+              <p-card styleClass="h-full border-left-3 border-primary">
+                <ng-template #title>Patron web</ng-template>
+                <p class="m-0 line-height-3 text-color-secondary">
+                  PrimeNG directo para componentes base; wrappers core cuando ya
+                  existe contrato de negocio, validacion o comportamiento comun.
+                </p>
+              </p-card>
+            </div>
+            <div class="col-12 lg:col-4">
+              <p-card styleClass="h-full border-left-3 border-green-500">
+                <ng-template #title>Patron mobile</ng-template>
+                <p class="m-0 line-height-3 text-color-secondary">
+                  Ionic para captura tactil y vistas operativas; DataViewMobile
+                  reemplaza tablas densas en pantallas pequenas.
+                </p>
+              </p-card>
+            </div>
+            <div class="col-12 lg:col-4">
+              <p-card styleClass="h-full border-left-3 border-cyan-500">
+                <ng-template #title>Patron de overrides</ng-template>
+                <p class="m-0 line-height-3 text-color-secondary">
+                  Las diferencias visuales institucionales pertenecen al DS y
+                  prime-overrides. El demo debe mostrar el uso final, no esconder
+                  estilos privados.
+                </p>
+              </p-card>
+            </div>
+          </div>
+        </div>
+      </p-tabpanel>
+
+      <p-tabpanel value="forms">
+        <div class="demo-section">
+          <div class="demo-section__header">
+            <span class="demo-kicker">06</span>
+            <div>
+              <h2>Inputs y formularios</h2>
+              <p>Labels superiores, ayudas visibles, validacion concreta y grillas adaptables.</p>
+            </div>
+          </div>
+
+          <p-card>
+            <ng-template #title>Formulario de referencia</ng-template>
+            <div class="grid formgrid">
+              <div class="field col-12 md:col-6 xl:col-4">
+                <label for="demo-name">Nombre del registro</label>
+                <input id="demo-name" type="text" pInputText [(ngModel)]="sampleName" />
+                <small>Usar nombres cortos, auditables y faciles de buscar.</small>
+              </div>
+
+              <div class="field col-12 md:col-6 xl:col-4">
+                <label for="demo-area">Area responsable</label>
+                <p-select
+                  inputId="demo-area"
+                  [options]="areas"
+                  [(ngModel)]="selectedArea"
+                  optionLabel="label"
+                  placeholder="Selecciona area"
+                  appendTo="body"
+                ></p-select>
+                <small>El select es preferible cuando solo hay una opcion valida.</small>
+              </div>
+
+              <div class="field col-12 md:col-6 xl:col-4">
+                <label for="demo-modules">Modulos relacionados</label>
+                <p-multiselect
+                  inputId="demo-modules"
+                  [options]="modules"
+                  [(ngModel)]="selectedModules"
+                  optionLabel="label"
+                  placeholder="Selecciona modulos"
+                  appendTo="body"
+                ></p-multiselect>
+                <small>MultiSelect solo cuando comparar opciones aporta valor.</small>
+              </div>
+
+              <div class="field col-12 md:col-6 xl:col-4">
+                <label for="demo-budget">Importe autorizado</label>
+                <p-inputnumber
+                  inputId="demo-budget"
+                  [(ngModel)]="sampleBudget"
+                  mode="currency"
+                  currency="MXN"
+                  locale="es-MX"
+                ></p-inputnumber>
+                <small>Alinear importes a la derecha en tablas y reportes.</small>
+              </div>
+
+              <div class="field col-12 md:col-6 xl:col-4">
+                <label for="demo-date">Fecha compromiso</label>
+                <p-datepicker inputId="demo-date" [(ngModel)]="selectedDate" dateFormat="dd/mm/yy" appendTo="body"></p-datepicker>
+                <small>Fechas siempre con formato local y contexto de zona horaria.</small>
+              </div>
+
+              <div class="field col-12 md:col-6 xl:col-4">
+                <label for="demo-search">Busqueda</label>
+                <p-iconfield iconPosition="left" fluid>
+                  <p-inputicon>
+                    <app-icon [icon]="'mdi:magnify'"></app-icon>
+                  </p-inputicon>
+                  <input
+                    id="demo-search"
+                    type="search"
+                    pInputText
+                    [(ngModel)]="search"
+                    placeholder="Buscar por folio, area o responsable"
+                    fluid
+                  />
+                </p-iconfield>
+                <small>La busqueda debe indicar que campos consulta.</small>
+              </div>
+
+              <div class="field col-12">
+                <label for="demo-description">Descripcion ejecutiva</label>
+                <textarea id="demo-description" pTextarea rows="4" [(ngModel)]="sampleDescription"></textarea>
+                <small>Textarea para observaciones; no usarlo para capturas que requieren estructura.</small>
+              </div>
+
+              <div class="field col-12 md:col-4">
+                <label>Activo</label>
+                <p-toggleSwitch [(ngModel)]="enabled"></p-toggleSwitch>
+              </div>
+
+              <div class="field col-12 md:col-4">
+                <label>Confirmacion requerida</label>
+                <p-checkbox inputId="demo-accepted" [(ngModel)]="accepted" [binary]="true"></p-checkbox>
+                <label for="demo-accepted" class="ml-2 font-normal">Aceptado por direccion</label>
+              </div>
+
+              <div class="field col-12 md:col-4">
+                <label>Prioridad</label>
+                <div class="flex gap-3 flex-wrap">
+                  <div class="flex align-items-center">
+                    <p-radioButton inputId="priority-low" name="priority" value="baja" [(ngModel)]="priority"></p-radioButton>
+                    <label for="priority-low" class="ml-2 font-normal">Baja</label>
+                  </div>
+                  <div class="flex align-items-center">
+                    <p-radioButton inputId="priority-med" name="priority" value="media" [(ngModel)]="priority"></p-radioButton>
+                    <label for="priority-med" class="ml-2 font-normal">Media</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="demo-form-actions">
+              <p-button label="Cancelar" severity="secondary" [outlined]="true" />
+              <p-button label="Guardar cambios" icon="mdi:content-save" />
+            </div>
+          </p-card>
+
+          <p-message
+            severity="warn"
+            text="Regla: en mobile los botones de cierre de formulario deben ocupar el ancho disponible y mantener orden Cancelar -> Guardar."
+          ></p-message>
+        </div>
+      </p-tabpanel>
+
+      <p-tabpanel value="data">
+        <div class="demo-section">
+          <div class="demo-section__header">
+            <span class="demo-kicker">07</span>
+            <div>
+              <h2>Tablas ERP y estados del sistema</h2>
+              <p>Informacion densa, acciones por fila y estados comprensibles.</p>
+            </div>
+          </div>
+
+          <p-card>
+            <ng-template #title>Tabla institucional</ng-template>
+            <p-table
+              [value]="tableRows"
+              [paginator]="true"
+              [rows]="4"
+              responsiveLayout="scroll"
+              styleClass="p-datatable-sm"
+            >
+              <ng-template #caption>
+                <div class="flex flex-wrap justify-content-between align-items-center gap-3">
+                  <div>
+                    <strong>Solicitudes operativas</strong>
+                    <span class="block text-sm text-color-secondary">Acciones visibles maximas: 2 + menu contextual.</span>
+                  </div>
+                  <p-button label="Nuevo registro" icon="mdi:plus" size="small" />
+                </div>
+              </ng-template>
+              <ng-template #header>
+                <tr>
+                  <th>Folio</th>
+                  <th>Area</th>
+                  <th>Responsable</th>
+                  <th>Fecha</th>
+                  <th class="text-right">Importe</th>
+                  <th>Estado</th>
+                  <th class="text-center">Acciones</th>
+                </tr>
+              </ng-template>
+              <ng-template #body let-row>
+                <tr>
+                  <td><strong>{{ row.folio }}</strong></td>
+                  <td>{{ row.area }}</td>
+                  <td>{{ row.responsible }}</td>
+                  <td>{{ row.dueDate }}</td>
+                  <td class="text-right">{{ row.amount | currency: "MXN" : "symbol" : "1.0-0" }}</td>
+                  <td>
+                    <p-tag [value]="row.status" [severity]="getStatusSeverity(row.status)"></p-tag>
+                  </td>
+                  <td>
+                    <div class="flex justify-content-center gap-2">
+                      <p-button icon="mdi:eye" [rounded]="true" [text]="true" ariaLabel="Ver" />
+                      <p-button icon="mdi:pencil" [rounded]="true" [text]="true" severity="secondary" ariaLabel="Editar" />
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
+              <ng-template #emptymessage>
+                <tr>
+                  <td colspan="7">
+                    <div class="demo-empty">
+                      <app-icon [icon]="'mdi:inbox'"></app-icon>
+                      <strong>Sin resultados</strong>
+                      <span>Ajusta los filtros o crea un nuevo registro.</span>
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </p-card>
+
+          <div class="grid">
+            <div class="col-12 md:col-6 xl:col-3">
+              <div class="demo-state">
+                <p-progressSpinner strokeWidth="4" ariaLabel="Cargando"></p-progressSpinner>
+                <strong>Loading</strong>
+                <span>Usar spinner en acciones cortas y skeleton en carga estructural.</span>
+              </div>
+            </div>
+            <div class="col-12 md:col-6 xl:col-3">
+              <div class="demo-state">
+                <p-skeleton width="100%" height="1.25rem"></p-skeleton>
+                <p-skeleton width="70%" height="1.25rem"></p-skeleton>
+                <strong>Skeleton</strong>
+                <span>Anticipa layout cuando se cargan cards, listas o tablas.</span>
+              </div>
+            </div>
+            <div class="col-12 md:col-6 xl:col-3">
+              <p-message severity="success" text="Registro guardado correctamente."></p-message>
+              <p-message severity="warn" text="Faltan documentos por validar."></p-message>
+            </div>
+            <div class="col-12 md:col-6 xl:col-3">
+              <p-message severity="error" text="No tienes permisos para aprobar este proceso."></p-message>
+              <p-button label="Abrir confirmacion" icon="mdi:external-link" (onClick)="openDialog()" styleClass="mt-3 w-full" />
+            </div>
+          </div>
+        </div>
+      </p-tabpanel>
+
+      <p-tabpanel value="mobile">
+        <div class="demo-section">
+          <div class="demo-section__header">
+            <span class="demo-kicker">08</span>
+            <div>
+              <h2>Mobile e Ionic</h2>
+              <p>El render movil debe simplificar la estructura, no esconder informacion critica.</p>
+            </div>
+          </div>
+
+          <div class="grid align-items-start">
+            <div class="col-12 lg:col-7">
+              <p-card>
+                <ng-template #title>Criterios mobile</ng-template>
+                <div class="demo-stack">
+                  <div class="demo-spec-row">
+                    <strong>Apilar primero</strong>
+                    <span>Formularios pasan a una columna; secciones largas se dividen por tabs o pasos.</span>
+                  </div>
+                  <div class="demo-spec-row">
+                    <strong>Acciones tactiles</strong>
+                    <span>Botones principales full width cuando cierran una tarea; iconos con area tactil suficiente.</span>
+                  </div>
+                  <div class="demo-spec-row">
+                    <strong>Tablas simplificadas</strong>
+                    <span>Mostrar cards por registro cuando haya mas de cuatro columnas relevantes.</span>
+                  </div>
+                  <div class="demo-spec-row">
+                    <strong>Ionic compatible</strong>
+                    <span>Respetar ion-content, safe areas y evitar toolbars flotantes que tapen acciones.</span>
+                  </div>
+                </div>
+              </p-card>
+            </div>
+
+            <div class="col-12 lg:col-5">
+              <div class="demo-phone">
+                <div class="demo-phone__bar"></div>
+                <article class="demo-mobile-card">
+                  <div>
+                    <strong>ERP-2026-002</strong>
+                    <span>Operaciones - Gerencia</span>
+                  </div>
+                  <p-tag value="Revision" severity="info"></p-tag>
+                  <dl>
+                    <div>
+                      <dt>Fecha</dt>
+                      <dd>25/04/2026</dd>
+                    </div>
+                    <div>
+                      <dt>Importe</dt>
+                      <dd>$48,000</dd>
+                    </div>
+                  </dl>
+                  <p-button label="Revisar solicitud" icon="mdi:eye" styleClass="w-full" />
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabpanel>
+
+      <p-tabpanel value="rules">
+        <div class="demo-section">
+          <div class="demo-section__header">
+            <span class="demo-kicker">09</span>
+            <div>
+              <h2>Reglas globales del ERP</h2>
+              <p>Lineamientos concretos para sostener consistencia en todo el producto.</p>
+            </div>
+          </div>
+
+          <div class="grid">
+            @for (rule of globalRules; track rule.title) {
+              <div class="col-12 md:col-6 xl:col-4">
+                <p-card styleClass="h-full border-left-3 border-primary surface-card shadow-1">
+                  <strong>{{ rule.title }}</strong>
+                  <p class="m-0 mt-3 text-color-secondary line-height-3">
+                    {{ rule.description }}
+                  </p>
+                </p-card>
+              </div>
+            }
+          </div>
+
+          <p-card>
+            <ng-template #title>Layout y espaciado</ng-template>
+            <div class="grid">
+              @for (rule of spacingRules; track rule.title) {
+                <div class="col-12 md:col-6">
+                  <div class="demo-spec-row">
+                    <strong>{{ rule.title }}</strong>
+                    <span>{{ rule.description }}</span>
+                  </div>
+                </div>
+              }
+            </div>
+          </p-card>
+
+          <p-card>
+            <ng-template #title>Estados obligatorios</ng-template>
+            <div class="grid">
+              @for (state of systemStates; track state.title) {
+                <div class="col-12 md:col-6">
+                  <div class="demo-spec-row">
+                    <strong>{{ state.title }}</strong>
+                    <span>{{ state.description }}</span>
+                  </div>
+                </div>
+              }
+            </div>
+          </p-card>
+        </div>
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
+
+  <p-dialog
+    header="Confirmacion institucional"
+    [(visible)]="dialogVisible"
+    [modal]="true"
+    [style]="{ width: 'min(92vw, 34rem)' }"
+    [draggable]="false"
+  >
+    <p>
+      Los dialogs deben resolver decisiones breves. Si el usuario necesita capturar
+      informacion extensa, navega a una pantalla dedicada.
+    </p>
+    <ng-template #footer>
+      <p-button label="Cancelar" severity="secondary" [outlined]="true" (onClick)="dialogVisible = false" />
+      <p-button label="Confirmar" icon="mdi:check" (onClick)="dialogVisible = false" />
+    </ng-template>
+  </p-dialog>
+</section>

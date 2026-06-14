@@ -1,0 +1,196 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <!-- SECCIóN 1: DATOS GENERALES -->
+      <h5>Datos Generales</h5>
+      <hr />
+      <div class="grid">
+        <div class="col-12 md:col-6">
+          <custom-input-textarea-signal
+            [control]="form.controls.equipoOInstalacion"
+            label="Equipo Area o Instalación"
+            placeholder="Equipo area o instalación"
+            rows="3"
+            [horizontal]="false"
+          />
+
+          <custom-input-textarea-signal
+            [control]="form.controls.justificacionGasto"
+            label="Justificación del gasto"
+            placeholder="justificación del gasto"
+            rows="3"
+            [horizontal]="false"
+          />
+        </div>
+        <div class="col-12 md:col-6">
+          <custom-input-text-signal
+            [control]="form.controls.idFondeo"
+            label="Índice de Fondeo"
+            [horizontal]="false"
+          />
+          <custom-input-select-signal
+            [control]="form.controls.quincena"
+            label="Quincena"
+            [data]="cb_quincena()"
+            [horizontal]="false"
+            [filter]="true"
+          />
+          <custom-input-autocomplete-signal
+            (propagar)="saveProviderId($event)"
+            [control]="form.controls.providerName"
+            [data]="cb_providers()"
+            label="Proveedor"
+            [horizontal]="false"
+            placeholder="Escribe para buscar proveedor"
+          />
+          <custom-input-select-signal
+            [control]="form.controls.usoCFDIId"
+            label="Uso de Cfdi"
+            [data]="cb_usoCFDI()"
+            [horizontal]="false"
+            [filter]="true"
+          />
+
+          <custom-input-select-signal
+            [control]="form.controls.formaDePagoId"
+            label="Forma de pago"
+            [data]="cb_formaDePago()"
+            [horizontal]="false"
+            [filter]="true"
+          />
+
+          <custom-input-select-signal
+            [control]="form.controls.metodoDePagoId"
+            label="Metodo de pago"
+            [data]="cb_metodoDePago()"
+            [horizontal]="false"
+            [filter]="true"
+          />
+        </div>
+      </div>
+
+      <!-- SECCIóN 4: BOTóN DE ENVÍO -->
+      <div class="flex justify-content-end">
+        @if (!id()) {
+        <p-message severity="info" styleClass="mr-2"
+          >Guarda primero para poder agregar Productos y Presupuesto.</p-message
+        >
+        } @if (id()) {
+        <custom-button
+          [showLabelOnDesktop]="true"
+          iconClass="mdi:dollar"
+          label="Presupuesto"
+          size="small"
+          (clicked)="onAddOrEditBudget()"
+          customClass="mr-1"
+          severity="info"
+        />
+
+        <custom-button
+          [showLabelOnDesktop]="true"
+          iconClass="mdi:shopping"
+          label="Producto | Servicio"
+          size="small"
+          customClass="mr-1"
+          severity="info"
+          (clicked)="onAddOrEditDetail()"
+        />
+
+        }
+        <custom-button-save
+          [propertyId]="id()"
+          customClass="mt-0"
+          [disabled]="form.invalid"
+          [submitting]="submitting()"
+        />
+      </div>
+    </form>
+
+    <br />
+    <hr class="my-4" />
+
+    <!-- SECCIóN 3: PRODUCTOS/SERVICIOS -->
+    <div class="flex justify-content-between align-items-center mb-3">
+      <h5 class="mb-0">Productos y Servicios</h5>
+    </div>
+
+    <p-table
+      [value]="detalles()"
+      responsiveLayout="scroll"
+      styleClass="card  custom-table"
+    >
+      <ng-template #header>
+        <tr>
+          <th>Producto</th>
+          <th class="text-right">Cantidad</th>
+          <th class="text-right">Precio</th>
+          <th class="text-right">Subtotal</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item let-i="rowIndex">
+        <tr>
+          <td>{{ item.productName }}</td>
+          <td class="text-right">{{ item.cantidad }}</td>
+          <td class="text-right">
+            {{ item.precio | currency: "MXN" : "symbol" : "1.2-2" : "es-MX" }}
+          </td>
+          <td class="text-right">
+            {{ item.cantidad * item.precio | currency: "MXN" : "symbol" :
+            "1.2-2" : "es-MX" }}
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template emptymessage>
+        <tr>
+          <td colspan="4">No hay productos o servicios agregados.</td>
+        </tr>
+      </ng-template>
+      <ng-template #footer>
+        <tr>
+          <td colspan="3" class="text-right font-bold">Total</td>
+          <td class="text-right font-bold">
+            {{ total() | currency: "MXN" : "symbol" : "1.2-2" : "es-MX" }}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+    <hr class="my-4" />
+
+    <!-- SECCIóN 2: PRESUPUESTO -->
+    <div class="flex justify-content-between align-items-center mb-3">
+      <h5 class="mb-0">Cuentas de Presupuesto</h5>
+    </div>
+    <p-table
+      [value]="budgets()"
+      responsiveLayout="scroll"
+      styleClass="card  custom-table"
+    >
+      <ng-template #header>
+        <tr>
+          <th>Año Psto</th>
+          <th>No. Cuenta</th>
+          <th>Nombre Cuenta</th>
+          <th class="text-right">Monto</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item let-i="rowIndex">
+        <tr>
+          <td>{{ item.fiscalYear }}</td>
+          <td>{{ item.accountNumber }}</td>
+          <td>{{ item.accountName }}</td>
+          <td class="text-right">
+            {{ item.amount | currency: "MXN" : "symbol" : "1.2-2" : "es-MX" }}
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template emptymessage>
+        <tr>
+          <td colspan="4">No hay cuentas de presupuesto agregadas.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+    <hr class="my-4" />
+  </div>
+</div>

@@ -4,7 +4,7 @@ export const calendarsRoutes: Routes = [
   {
     path: "jewish-holidays", // Ruta anterior: 'fiestas-judias'
     loadComponent: () =>
-      import("src/app/features/tenant/calendar/fiestas-judias/fiestas-judias").then(
+      import("src/app/features/operations/google-calendar/calendar/fiestas-judias/fiestas-judias").then(
         (m) => m.FiestasJudias,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const calendarsRoutes: Routes = [
   {
     path: "christian-holidays", // Ruta anterior: 'fiestas-cristianas'
     loadComponent: () =>
-      import("src/app/features/tenant/calendar/fiestas-cristianas/fiestas-cristianas").then(
+      import("src/app/features/operations/google-calendar/calendar/fiestas-cristianas/fiestas-cristianas").then(
         (m) => m.FiestasCristianas,
       ),
     canActivate: [authGuard],
@@ -28,7 +28,7 @@ export const calendarsRoutes: Routes = [
   {
     path: "birthdays", // Ruta anterior: 'cumpleanos'
     loadComponent: () =>
-      import("src/app/features/tenant/calendar/birthday/cumpleanos-list").then(
+      import("src/app/features/operations/google-calendar/calendar/birthday/cumpleanos-list").then(
         (m) => m.Cumpleanos,
       ),
     canActivate: [authGuard],
@@ -40,7 +40,7 @@ export const calendarsRoutes: Routes = [
   {
     path: "maintenance-master", // Ruta anterior: 'mantenimiento-master'
     loadComponent: () =>
-      import("src/app/features/tenant/maintenance-calendar-master/calendario-maestro-lista").then(
+      import("src/app/features/maintenance/planificacin-de-mantenimiento/maintenance-calendar-master/calendario-maestro-lista").then(
         (m) => m.CalendarioMaestroLista,
       ),
     canActivate: [authGuard],
@@ -52,7 +52,7 @@ export const calendarsRoutes: Routes = [
   {
     path: "fundings", // Ruta anterior: 'fondeos'
     loadComponent: () =>
-      import("src/app/features/tenant/calendar/fondeos/fondeos").then(
+      import("src/app/features/operations/google-calendar/calendar/fondeos/fondeos").then(
         (m) => m.Fondeos,
       ),
     canActivate: [authGuard],
@@ -64,7 +64,7 @@ export const calendarsRoutes: Routes = [
   {
     path: "team-master-calendar", // Ruta anterior: 'calendario-maestro-equipo'
     loadComponent: () =>
-      import("src/app/features/configuration/calendario-maestro-equipo/calendario-maestro-equipo").then(
+      import("src/app/features/maintenance/planificacin-de-mantenimiento/calendario-maestro-equipo/calendario-maestro-equipo").then(
         (m) => m.CalendarioMaestroEquipo,
       ),
     canActivate: [authGuard],
@@ -76,7 +76,7 @@ export const calendarsRoutes: Routes = [
   // {
   //   path: "committee-meetings", // Ruta anterior: 'reuniones-comite'
   //   loadComponent: () =>
-  //     import("src/app/features/tenant/calendar/reuniones-comite/reuniones-comite").then(
+  //     import("src/app/features/operations/google-calendar/reuniones-comite/reuniones-comite").then(
   //       (m) => m.ReunionesComite,
   //     ),
   //   canActivate: [authGuard],
@@ -88,7 +88,7 @@ export const calendarsRoutes: Routes = [
   {
     path: "google-calendar",
     loadComponent: () =>
-      import("src/app/features/tenant/google-calendar/google-calendar").then(
+      import("src/app/features/operations/google-calendar/google-calendar/google-calendar").then(
         (m) => m.GoogleCalendar,
       ),
     canActivate: [authGuard],

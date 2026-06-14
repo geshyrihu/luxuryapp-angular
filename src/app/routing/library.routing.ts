@@ -1,12 +1,12 @@
 import { Routes } from "@angular/router"; // Trivial change to force re-evaluation
 import { authGuard } from "src/app/core/guard/auth.guard";
 import { superUserGuard } from "src/app/core/guard/super-user.guard";
-import { EDocumentType } from "src/app/features/tenant/legal/models/document-type.enum";
+import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/models/document-type.enum";
 export const libraryRoutes: Routes = [
   {
     path: "incorporation-deed", // Ruta anterior: 'acta-constitutiva'
     loadComponent: () =>
-      import("src/app/features/tenant/custom-document/acta-constitutiva-list").then(
+      import("src/app/features/operations/custom-documents/custom-document/acta-constitutiva-list").then(
         (m) => m.ActaConstitutivaList,
       ),
     canActivate: [authGuard],
@@ -19,7 +19,7 @@ export const libraryRoutes: Routes = [
   {
     path: "financial-report",
     loadComponent: () =>
-      import("src/app/features/tenant/biblioteca/financial-report/informe-financiero-list").then(
+      import("src/app/features/operations/manuals/biblioteca/financial-report/informe-financiero-list").then(
         (m) => m.InformeFinanciero,
       ),
     canActivate: [authGuard],
@@ -32,7 +32,7 @@ export const libraryRoutes: Routes = [
   {
     path: "templates",
     loadComponent: () =>
-      import("src/app/features/tenant/templates/templates-list").then(
+      import("src/app/features/operations/templates/templates-list").then(
         (m) => m.TemplatesList,
       ),
     canActivate: [authGuard],
@@ -44,7 +44,7 @@ export const libraryRoutes: Routes = [
   {
     path: "manuals-and-processes",
     loadComponent: () =>
-      import("src/app/features/tenant/biblioteca/manuals-and-processes/pages/manuals-and-processes-list").then(
+      import("src/app/features/operations/manuals/biblioteca/manuals-and-processes/pages/manuals-and-processes-list").then(
         (m) => m.ManualsAndProcessesList,
       ),
     canActivate: [authGuard],
@@ -56,7 +56,7 @@ export const libraryRoutes: Routes = [
   {
     path: "manuals-and-processes/guide",
     loadComponent: () =>
-      import("src/app/features/tenant/biblioteca/manuals-and-processes/pages/manuals-and-processes-guide/manuals-and-processes-guide").then(
+      import("src/app/features/operations/manuals/biblioteca/manuals-and-processes/pages/manuals-and-processes-guide/manuals-and-processes-guide").then(
         (m) => m.ManualsAndProcessesGuide,
       ),
     canActivate: [authGuard],
@@ -68,7 +68,7 @@ export const libraryRoutes: Routes = [
   {
     path: "manuals-and-processes/detail/:id",
     loadComponent: () =>
-      import("src/app/features/tenant/biblioteca/manuals-and-processes/pages/manuals-and-processes-detail").then(
+      import("src/app/features/operations/manuals/biblioteca/manuals-and-processes/pages/manuals-and-processes-detail").then(
         (m) => m.ManualsAndProcessesDetail,
       ),
     canActivate: [authGuard],
@@ -81,7 +81,7 @@ export const libraryRoutes: Routes = [
     path: "manuals-and-processes/editor/:id",
     loadComponent: () =>
       import(
-        "src/app/features/tenant/biblioteca/manuals-and-processes/pages/manuals-and-processes-editor/manuals-and-processes-editor"
+        "src/app/features/operations/manuals/biblioteca/manuals-and-processes/pages/manuals-and-processes-editor/manuals-and-processes-editor"
       ).then((m) => m.ManualsAndProcessesEditor),
     canActivate: [authGuard, superUserGuard],
     data: {
@@ -93,7 +93,7 @@ export const libraryRoutes: Routes = [
     path: "manuals-and-processes/flowchart-editor/:id",
     loadComponent: () =>
       import(
-        "src/app/features/tenant/biblioteca/manuals-and-processes/pages/manual-flowchart-editor/manual-flowchart-editor"
+        "src/app/features/operations/manuals/biblioteca/manuals-and-processes/pages/manual-flowchart-editor/manual-flowchart-editor"
       ).then((m) => m.ManualFlowchartEditor),
     canActivate: [authGuard, superUserGuard],
     data: {
@@ -104,7 +104,7 @@ export const libraryRoutes: Routes = [
   {
     path: "maintenance-policies",
     loadComponent: () =>
-      import("src/app/features/tenant/custom-document/policy-contract/policy-contract-list").then(
+      import("src/app/features/operations/custom-documents/custom-document/policy-contract/policy-contract-list").then(
         (m) => m.PolicyContractList,
       ),
     canActivate: [authGuard],
@@ -117,7 +117,7 @@ export const libraryRoutes: Routes = [
   {
     path: "contracts-policies-view-legal",
     loadComponent: () =>
-      import("src/app/features/tenant/reports/contracts-policies/contracts-policies").then(
+      import("src/app/features/operations/reports/contracts-policies/contracts-policies").then(
         (m) => m.ContractsPolicies,
       ),
     canActivate: [authGuard],
@@ -130,7 +130,7 @@ export const libraryRoutes: Routes = [
   {
     path: "assemblies", // Ruta anterior: 'asambleas'
     loadComponent: () =>
-      import("src/app/features/tenant/custom-document/asambleas-list").then(
+      import("src/app/features/operations/custom-documents/custom-document/asambleas-list").then(
         (m) => m.Asambleas,
       ),
     canActivate: [authGuard],
@@ -142,7 +142,7 @@ export const libraryRoutes: Routes = [
   {
     path: "regulations", // Ruta anterior: 'reglamentos'
     loadComponent: () =>
-      import("src/app/features/tenant/custom-document/reglamentos-list").then(
+      import("src/app/features/operations/custom-documents/custom-document/reglamentos-list").then(
         (m) => m.Reglamentos,
       ),
     canActivate: [authGuard],
@@ -154,7 +154,7 @@ export const libraryRoutes: Routes = [
   {
     path: "ravine-concession", // Ruta anterior: 'concesion-barranca'
     loadComponent: () =>
-      import("src/app/features/tenant/custom-document/special-document-list").then(
+      import("src/app/features/operations/custom-documents/custom-document/special-document-list").then(
         (m) => m.SpecialDocumentList,
       ),
     canActivate: [authGuard],
@@ -167,7 +167,7 @@ export const libraryRoutes: Routes = [
   {
     path: "well-concession", // Ruta anterior: 'concesion-pozo'
     loadComponent: () =>
-      import("src/app/features/tenant/custom-document/special-document-list").then(
+      import("src/app/features/operations/custom-documents/custom-document/special-document-list").then(
         (m) => m.SpecialDocumentList,
       ),
     canActivate: [authGuard],
@@ -181,7 +181,7 @@ export const libraryRoutes: Routes = [
   {
     path: "painting", // Ruta anterior: 'pintura' (Note: using painting to match DB standard)
     loadComponent: () =>
-      import("src/app/features/tenant/paint-inventory/inventario-pintura").then(
+      import("src/app/features/operations/inventarios-y-almacn/paint-inventory/inventario-pintura").then(
         (m) => m.InventarioPintura,
       ),
     canActivate: [authGuard],
@@ -193,7 +193,7 @@ export const libraryRoutes: Routes = [
   {
     path: "lighting", // Ruta anterior: 'iluminacion'
     loadComponent: () =>
-      import("src/app/features/tenant/lighting-inventory/inventario-iluminacion").then(
+      import("src/app/features/operations/inventarios-y-almacn/lighting-inventory/inventario-iluminacion").then(
         (m) => m.InventarioIluminacion,
       ),
     canActivate: [authGuard],

@@ -1,0 +1,139 @@
+<div class="flex flex-column h-full">
+  <div class="flex align-items-center w-full pr-4 mb-3">
+    <span class="text-xl font-bold"></span>
+    <div class="flex-grow-1"></div>
+
+    <p-selectButton
+      [options]="viewOptions"
+      [formControl]="viewModeControl"
+      optionLabel="label"
+      optionValue="value"
+    >
+      <ng-template let-item pTemplate="item">
+        <i [class]="item.icon"></i>
+      </ng-template>
+    </p-selectButton>
+
+    <custom-button
+      label="Descargar ({{ selectedFiles().length }})"
+      [iconClass]="'mdi:upload'"
+      severity="success"
+      [disabled]="selectedFiles().length === 0"
+      (clicked)="downloadSelectedFiles()"
+    >
+    </custom-button>
+    <custom-button
+      label="Descargar Todo"
+      iconClass="mdi:package"
+      severity="help"
+      (clicked)="downloadAllFiles()"
+    >
+    </custom-button>
+  </div>
+
+  <div class="flex-grow-1 overflow-auto p-1">
+    @if (viewMode() === "grid") {
+    <div class="grid col-2 sm:col-3 md:col-4 lg:col-6">
+      @for (file of selectedGroupFiles(); track $index) {
+      <div class="p-2">
+        <div
+          class="surface-card border-1 surface-border border-round p-3 flex flex-column align-items-center justify-content-between hover:surface-100 transition-colors transition-duration-200 h-full text-center shadow-1 relative"
+        >
+          <div class="absolute top-0 right-0 p-2 z-1">
+            <p-checkbox
+              [value]="file"
+              [formControl]="selectedFilesControl"
+            ></p-checkbox>
+          </div>
+
+          <div
+            class="cursor-pointer mt-3 w-full"
+            (click)="viewPdf(file.url, file.displayName)"
+          >
+            <div class="mb-3">
+              @if (file.type === "pdf") {
+              <app-icon [icon]="'mdi:file-pdf-box'" class="text-red-500 text-6xl"></app-icon>
+              } @else {
+              <app-icon [icon]="'mdi:code-tags'" class="text-blue-500 text-6xl"></app-icon>
+              }
+            </div>
+            <div
+              class="font-semibold text-sm text-900 mb-1 w-full text-overflow-ellipsis overflow-hidden white-space-nowrap"
+              pTooltip="{{ file.fullName }}"
+              tooltipPosition="top"
+            >
+              {{file.indice}} | {{ file.displayName }}
+            </div>
+            <div class="text-xs text-500 font-bold mb-1">
+              {{ file.folioOrden }}
+            </div>
+            <div
+              class="text-xs text-primary font-bold overflow-hidden text-overflow-ellipsis white-space-nowrap"
+              pTooltip="{{ file.providerName }}"
+            >
+              {{ file.providerName }}
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    } @else {
+    <p-table
+      [value]="selectedGroupFiles()"
+      [selection]="selectedFilesControl.value || []"
+      (selectionChange)="selectedFilesControl.setValue($event)"
+      dataKey="url"
+      styleClass="p-datatable-sm"
+    >
+      <ng-template #header>
+        <tr>
+          <th class="table-col-4rem">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th class="table-col-4rem">Tipo</th>
+          <th>Nombre Archivo</th>
+          <th>Folio Orden</th>
+          <th class="text-center table-col-8rem">Acción</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-file>
+        <tr>
+          <td><p-tableCheckbox [value]="file"></p-tableCheckbox></td>
+          <td>
+            @if (file.type === "pdf") {
+            <app-icon [icon]="'mdi:file-pdf-box'" class="text-red-500 text-xl"></app-icon>
+            } @else {
+            <app-icon [icon]="'mdi:code-tags'" class="text-blue-500 text-xl"></app-icon>
+            }
+          </td>
+          <td>{{ file.displayName }}</td>
+          <td>{{ file.folioOrden }}</td>
+          <td class="text-center">
+            <custom-button-item
+              iconClass="mdi:eye-outline"
+              label="ver"
+              [border-round]="true"
+              (clicked)="viewPdf(file.url, file.displayName)"
+            />
+            <custom-button-item
+              [iconClass]="'mdi:upload'"
+              label="descargar"
+              [border-round]="true"
+              severity="success"
+              (clicked)="descargarArchivo(file.url)"
+            />
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    } @if (selectedGroupFiles().length === 0) {
+    <div class="text-center p-6">
+      <app-icon [icon]="'mdi:folder-open'" class="text-6xl text-300 mb-3"></app-icon>
+      <div class="text-500 text-xl font-medium">
+        No se encontraron archivos en este grupo de gasto.
+      </div>
+    </div>
+    }
+  </div>
+</div>

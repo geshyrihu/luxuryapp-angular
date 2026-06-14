@@ -1,0 +1,28 @@
+<p-card>
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <!-- Controles de Estado -->
+    <custom-input-check-signal
+      [control]="form.controls.sePago"
+      label="óPago Realizado?"
+    />
+
+    <custom-input-check-signal
+      [control]="form.controls.seRecibio"
+      label="óCompra recibida?"
+    />
+
+    <custom-input-text-signal
+      [control]="form.controls.recibidoPor"
+      label="Recibido Por"
+      placeholder="Nombre del receptor"
+    />
+
+    <div class="flex justify-content-end mt-4">
+      <custom-button-save
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+        label="Guardar Cambios de Estatus"
+      />
+    </div>
+  </form>
+</p-card>

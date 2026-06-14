@@ -4,7 +4,7 @@ export const fundingRoutes: Routes = [
   {
     path: "list",
     loadComponent: () =>
-      import("src/app/features/tenant/funding/funding-list").then(
+      import("src/app/features/accounting/fondeos-y-reporteo/funding/funding-list").then(
         (m) => m.FundingList,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const fundingRoutes: Routes = [
   {
     path: "details/:id",
     loadComponent: () =>
-      import("src/app/features/tenant/funding/funding-detail").then(
+      import("src/app/features/accounting/fondeos-y-reporteo/funding/funding-detail").then(
         (m) => m.FundingDetail,
       ),
     canActivate: [authGuard],

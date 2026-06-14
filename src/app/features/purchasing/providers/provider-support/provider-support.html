@@ -1,0 +1,116 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block"></div>
+<p-table
+  #dt
+  [value]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight"
+  styleClass="custom-table card hidden md:block"
+>
+  <!-- styleClass="p-datatable-sm" -->
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+    />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th class="table-col-15" pSortableColumn="nameCustomer">
+        Cliente
+        <p-sortIcon field="nameCustomer" />
+      </th>
+      <th colspan="2" class="table-col-30" pSortableColumn="nameComercial">
+        Proveedor
+        <p-sortIcon field="nameComercial" />
+      </th>
+
+      <th class="table-col-20" pSortableColumn="fullName">
+        Nombre
+        <p-sortIcon field="fullName" />
+      </th>
+
+      <th pSortableColumn="applicationRoleName">
+        Puesto
+        <p-sortIcon field="applicationRoleName" />
+      </th>
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.nameCustomer }}</td>
+      <td>
+        <p-avatar
+          [image]="item.pathPhoto"
+          alt="noImg"
+          shape="square"
+          size="large"
+          styleClass="b-r-8 img-70"
+        />
+      </td>
+      <td>
+        <h4 class="m-0 h4">{{ item.nameComercial }}</h4>
+        <p>{{ item.nameProvider }}</p>
+      </td>
+
+      <td>
+        {{ item.fullName }}
+
+        <b>
+          <i>{{ item.email }}</i>
+        </b>
+        <br />
+        <b>
+          <i>{{ item.phoneNumber }}</i>
+        </b>
+      </td>
+      <td>{{ item.applicationRoleName }}</td>
+      <!-- Opciones -->
+      <td class="no-print">
+        <div class="flex">
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+      <!-- Opciones -->
+    </tr>
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div slot="start" style="
+        width:36px; height:36px; border-radius:10px;
+        background:#f0fdf4; display:flex; align-items:center;
+        justify-content:center; flex-shrink:0; margin-left:16px;
+      ">
+        <ion-icon name="person-outline" style="font-size:20px; color:#16a34a;"></ion-icon>
+      </div>
+      <ion-label>
+        <h3>{{ item.fullName }}</h3>
+        <p>{{ item.nameComercial }} · {{ item.applicationRoleName }}</p>
+        <p>{{ item.nameCustomer }}</p>
+      </ion-label>
+      <app-action-menu slot="end">
+        <ion-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
+        <ion-button-delete (confirmed)="onDelete(item.id)" />
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+
+
+
+
+
+

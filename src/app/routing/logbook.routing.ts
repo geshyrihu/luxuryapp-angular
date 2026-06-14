@@ -4,7 +4,7 @@ export const logbookRoutes: Routes = [
   {
     path: "maintenance-orders", // Ruta anterior: 'ordenes-mantenimiento'
     loadComponent: () =>
-      import("src/app/features/tenant/service-order/ordenes-servicio-list").then(
+      import("src/app/features/operations/field-service/service-order/ordenes-servicio-list").then(
         (m) => m.OrdenesServicio,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const logbookRoutes: Routes = [
   {
     path: "inspections-areas",
     loadComponent: () =>
-      import("src/app/features/tenant/inspection/areas-inspeccion/inspections-areas").then(
+      import("src/app/features/operations/inspecciones-y-auditora/inspection/areas-inspeccion/inspections-areas").then(
         (m) => m.InspectionsAreas,
       ),
     canActivate: [authGuard],
@@ -28,7 +28,7 @@ export const logbookRoutes: Routes = [
   {
     path: "pool", // Ruta anterior: 'piscina'
     loadComponent: () =>
-      import("src/app/features/tenant/piscina/piscina-list").then(
+      import("src/app/features/maintenance/logs/piscina/piscina-list").then(
         (m) => m.PiscinaList,
       ),
     canActivate: [authGuard],
@@ -41,7 +41,7 @@ export const logbookRoutes: Routes = [
     // Suggested path: 'pool-logbook/:poolId'
     path: "piscina-bitacora/:piscinaId",
     loadComponent: () =>
-      import("src/app/features/tenant/piscina-bitacora/piscina-bitacora-list").then(
+      import("src/app/features/maintenance/logs/piscina-bitacora/piscina-bitacora-list").then(
         (m) => m.PiscinaBitacoraList,
       ),
     canActivate: [authGuard],
@@ -53,7 +53,7 @@ export const logbookRoutes: Routes = [
   {
     path: "meter-list", // Ruta anterior: 'lista-medidor'
     loadComponent: () =>
-      import("src/app/features/tenant/bitacoras/medidores/medidores-list").then(
+      import("src/app/features/maintenance/logs/bitacoras/medidores/medidores-list").then(
         (m) => m.MedidoresList,
       ),
     canActivate: [authGuard],
@@ -66,7 +66,7 @@ export const logbookRoutes: Routes = [
     // Suggested path: 'meter-reading-list/:id'
     path: "lista-medidor-lectura/:id", // Corregido typo "medidar"
     loadComponent: () =>
-      import("src/app/features/tenant/bitacoras/medidores/medidor-lectura-list").then(
+      import("src/app/features/maintenance/logs/bitacoras/medidores/medidor-lectura-list").then(
         (m) => m.MedidorLecturaList,
       ),
     canActivate: [authGuard],
@@ -79,7 +79,7 @@ export const logbookRoutes: Routes = [
     // Suggested path: 'chart/:id'
     path: "grafico/:id",
     loadComponent: () =>
-      import("src/app/features/tenant/bitacoras/medidores/medidor-lectura-chart").then(
+      import("src/app/features/maintenance/logs/bitacoras/medidores/medidor-lectura-chart").then(
         (m) => m.MedidorLecturaChart,
       ),
     canActivate: [authGuard],
@@ -91,7 +91,7 @@ export const logbookRoutes: Routes = [
   {
     path: "elevator-spare-parts-change",
     loadComponent: () =>
-      import("src/app/features/tenant/elevator-spare-parts/elevator-spare-parts-change-list").then(
+      import("src/app/features/maintenance/logs/elevator-spare-parts/elevator-spare-parts-change-list").then(
         (m) => m.ElevatorSparePartsChangeList,
       ),
     canActivate: [authGuard],
@@ -103,7 +103,7 @@ export const logbookRoutes: Routes = [
   {
     path: "elevators-emergency-call",
     loadComponent: () =>
-      import("src/app/features/tenant/elevator-emergency-call/elevators-emergency-call-list").then(
+      import("src/app/features/maintenance/logs/elevator-emergency-call/elevators-emergency-call-list").then(
         (m) => m.ElevatorsEmergencyCallList,
       ),
     canActivate: [authGuard],
@@ -115,7 +115,7 @@ export const logbookRoutes: Routes = [
   {
     path: "my-inspection/:customerInspectionId",
     loadComponent: () =>
-      import("src/app/features/tenant/inspection/bitacora/mis-inspecciones-ejecutar").then(
+      import("src/app/features/operations/inspecciones-y-auditora/inspection/bitacora/mis-inspecciones-ejecutar").then(
         (m) => m.MisInspeccionesEjecutar,
       ),
     canActivate: [authGuard],
@@ -127,7 +127,7 @@ export const logbookRoutes: Routes = [
   {
     path: "water-truck-reception",
     loadComponent: () =>
-      import("src/app/features/tenant/recepcion-pipas-agua/recepcion-pipas-agua-list").then(
+      import("src/app/features/maintenance/logs/recepcion-pipas-agua/recepcion-pipas-agua-list").then(
         (m) => m.RecepcionPipasAguaList,
       ),
     canActivate: [authGuard],
@@ -139,7 +139,7 @@ export const logbookRoutes: Routes = [
   {
     path: "water-truck-reception/reporte",
     loadComponent: () =>
-      import("src/app/features/tenant/recepcion-pipas-agua/recepcion-pipas-agua-reporte").then(
+      import("src/app/features/maintenance/logs/recepcion-pipas-agua/recepcion-pipas-agua-reporte").then(
         (m) => m.RecepcionPipasAguaReporte,
       ),
     canActivate: [authGuard],
@@ -151,7 +151,7 @@ export const logbookRoutes: Routes = [
   {
     path: "water-truck-reception/analisis",
     loadComponent: () =>
-      import("src/app/features/tenant/recepcion-pipas-agua/recepcion-pipas-agua-analisis").then(
+      import("src/app/features/maintenance/logs/recepcion-pipas-agua/recepcion-pipas-agua-analisis").then(
         (m) => m.RecepcionPipasAguaAnalisis,
       ),
     canActivate: [authGuard],

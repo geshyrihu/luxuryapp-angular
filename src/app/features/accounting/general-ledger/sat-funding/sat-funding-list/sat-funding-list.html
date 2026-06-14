@@ -1,0 +1,81 @@
+<div class="card p-0 md:p-4">
+  <p-table
+    styleClass="custom-table hidden md:block"
+    #dt
+    [value]="data()"
+    [rows]="10"
+    [paginator]="true"
+    [globalFilterFields]="['periodDisplayName', 'year']"
+    [tableStyle]="{'min-width': '75rem'}"
+    [(selection)]="selection"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    [showCurrentPageReport]="true"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight"
+  >
+    <ng-template #caption>
+      <primeng-custom-caption [dt]="dt" title="Listado de Fondeos SAT" />
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th pSortableColumn="periodDisplayName">
+          Peróodo <p-sortIcon field="periodDisplayName"></p-sortIcon>
+        </th>
+        <th pSortableColumn="invoiceCount">
+          # Facturas <p-sortIcon field="invoiceCount"></p-sortIcon>
+        </th>
+        <th pSortableColumn="totalAmount">
+          Monto Total <p-sortIcon field="totalAmount"></p-sortIcon>
+        </th>
+        <th class="table-col-10rem"></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td>{{ item.periodDisplayName }}</td>
+        <td>{{ item.invoiceCount }}</td>
+        <td>{{ item.totalAmount | number:'1.2-2' }}</td>
+        <td>
+          <div class="flex justify-content-end">
+            <custom-button
+              (click)="goToDetail(item.id)"
+              label="Ver Detalle"
+              icon="mdi:arrow-right"
+            />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="['periodDisplayName', 'year']"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div slot="start" style="
+        width:36px; height:36px; border-radius:10px;
+        background:#dcfce7; display:flex; align-items:center;
+        justify-content:center; flex-shrink:0; margin-left:16px;
+      ">
+        <ion-icon name="cash-outline" style="font-size:20px; color:#16a34a;"></ion-icon>
+      </div>
+      <ion-label>
+        <h3>{{ item.periodDisplayName }}</h3>
+        <p>Facturas: {{ item.invoiceCount }} ó {{ item.totalAmount | number:'1.2-2' }}</p>
+      </ion-label>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+
+
+
+
+
+

@@ -4,7 +4,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "inventory-engine-system",
     loadComponent: () =>
-      import("src/app/features/tenant/inventory-engine-system/inventory-engine-system").then(
+      import("src/app/features/operations/inventarios-y-almacn/inventory-engine-system/inventory-engine-system").then(
         (m) => m.InventoryEngineSystem,
       ),
     canActivate: [authGuard],
@@ -16,7 +16,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "areas-equipment", // Ruta anterior: 'areas-equipos'
     loadComponent: () =>
-      import("src/app/features/tenant/machinery/equipos-list").then(
+      import("src/app/features/maintenance/equipos-y-maquinaria/machinery/equipos-list").then(
         (m) => m.EquiposList,
       ),
     canActivate: [authGuard],
@@ -29,7 +29,7 @@ export const inventoriesRoutes: Routes = [
     // Suggested path: 'gym'
     path: "gimnasio",
     loadComponent: () =>
-      import("src/app/features/tenant/machinery/equipos-list").then(
+      import("src/app/features/maintenance/equipos-y-maquinaria/machinery/equipos-list").then(
         (m) => m.EquiposList,
       ),
     canActivate: [authGuard],
@@ -41,7 +41,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "tools", // Ruta anterior: 'herramienta'
     loadComponent: () =>
-      import("src/app/features/tenant/tool-loan/tool-list").then(
+      import("src/app/features/maintenance/logs/tool-loan/tool-list").then(
         (m) => m.ToolList,
       ),
     canActivate: [authGuard],
@@ -54,7 +54,7 @@ export const inventoriesRoutes: Routes = [
     // Suggested path: 'paint'
     path: "pintura",
     loadComponent: () =>
-      import("src/app/features/tenant/paint-inventory/inventario-pintura").then(
+      import("src/app/features/operations/inventarios-y-almacn/paint-inventory/inventario-pintura").then(
         (m) => m.InventarioPintura,
       ),
     canActivate: [authGuard],
@@ -66,7 +66,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "keys", // Ruta anterior: 'llaves'
     loadComponent: () =>
-      import("src/app/features/tenant/key-inventory/inventario-llaves-list").then(
+      import("src/app/features/operations/inventarios-y-almacn/key-inventory/inventario-llaves-list").then(
         (m) => m.InventarioLlavesList,
       ),
     canActivate: [authGuard],
@@ -79,7 +79,7 @@ export const inventoriesRoutes: Routes = [
     // Suggested path: 'equipment-report'
     path: "reporte-equipos",
     loadComponent: () =>
-      import("src/app/features/tenant/machinery-asset/reporte-completo-activos").then(
+      import("src/app/features/maintenance/equipos-y-maquinaria/machinery-asset/reporte-completo-activos").then(
         (m) => m.ReporteCompletoActivos,
       ),
     canActivate: [authGuard],
@@ -92,7 +92,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "radios",
     loadComponent: () =>
-      import("src/app/features/tenant/radio-communication-inventory/radio-comunicacion-list").then(
+      import("src/app/features/operations/inventarios-y-almacn/radio-communication-inventory/radio-comunicacion-list").then(
         (m) => m.RadioComunicacionList,
       ),
     canActivate: [authGuard],
@@ -105,7 +105,7 @@ export const inventoriesRoutes: Routes = [
     // Suggested path: 'annual-maintenance-schedule'
     path: "cedula-anual-mantenimientos",
     loadComponent: () =>
-      import("src/app/features/tenant/reports/mantenimiento-presupuesto/gastos-mantenimiento").then(
+      import("src/app/features/operations/reports/mantenimiento-presupuesto/gastos-mantenimiento").then(
         (m) => m.GastosMantenimiento,
       ),
     canActivate: [authGuard],
@@ -117,7 +117,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "extinguishers", // Ruta anterior: 'extintores'
     loadComponent: () =>
-      import("src/app/features/tenant/fire-extinguisher-inventory/inventario-extintor").then(
+      import("src/app/features/operations/inventarios-y-almacn/fire-extinguisher-inventory/inventario-extintor").then(
         (m) => m.InventarioExtintor,
       ),
     canActivate: [authGuard],
@@ -129,7 +129,7 @@ export const inventoriesRoutes: Routes = [
   {
     path: "extintores-group",
     loadComponent: () =>
-      import("src/app/features/tenant/fire-extinguisher-inventory/inventario-extintor-group").then(
+      import("src/app/features/operations/inventarios-y-almacn/fire-extinguisher-inventory/inventario-extintor-group").then(
         (m) => m.InventarioExtintorGroup,
       ),
     canActivate: [authGuard],

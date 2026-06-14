@@ -1,0 +1,81 @@
+<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="card hidden md:block custom-table"
+  size="small"
+  [scrollable]="true"
+  scrollHeight="750px"
+  [virtualScrollItemSize]="tablePrimeNgRows"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="onModalForm({ id: '', title: 'Nueva Configuración' })"
+      [dt]="dt"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="customerName">
+        Cliente <p-sortIcon field="customerName"></p-sortIcon>
+      </th>
+      <th pSortableColumn="empresa">
+        Empresa <p-sortIcon field="empresa"></p-sortIcon>
+      </th>
+      <th pSortableColumn="customerIdAspelId">
+        ID Aspel <p-sortIcon field="customerIdAspelId"></p-sortIcon>
+      </th>
+      <th class="table-col-10">Opciones</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.customerName }}</td>
+      <td>
+        <app-status-badge [status]="item.empresa" [isEmpresa]="true" [clickable]="false" />
+      </td>
+      <td>{{ item.customerIdAspelId }}</td>
+      <td class="text-center">
+        <div class="flex justify-content-center">
+          <custom-button-edit (clicked)="onModalForm(item)" />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<!-- 📱 INICIO: Componente adaptado para versión móvil -->
+<app-data-view-mobile
+  [data]="dataSignal()"
+  (add)="onModalForm({ id: '', title: 'Nueva Configuración' })"
+  [globalFilterFields]="['customerName', 'empresa', 'customerIdAspelId']"
+  [dt]="dt"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding">
+      <ion-label>
+        <h2>{{ item.customerName }}</h2>
+        <div class="flex align-items-center gap-2 mt-1">
+          <app-status-badge [status]="item.empresa" [isEmpresa]="true" [clickable]="false" />
+          <span class="text-sm text-500">- ID Aspel: {{ item.customerIdAspelId }}</span>
+        </div>
+      </ion-label>
+      <div slot="end">
+        <app-action-menu>
+          <ion-button-edit (clicked)="onModalForm(item)" />
+          <ion-button-delete (clicked)="onDelete(item.id)" />
+        </app-action-menu>
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

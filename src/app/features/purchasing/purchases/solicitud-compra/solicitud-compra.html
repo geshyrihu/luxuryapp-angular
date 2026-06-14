@@ -1,0 +1,187 @@
+<div class="card shadow-1 border-round p-4 surface-card">
+  <!-- BARRA DE ESTADO VISUAL -->
+  <div class="mb-4">
+    <p-progressBar
+      [value]="100"
+      [showValue]="false"
+      [style]="{ height: '6px' }"
+      [class]="'p-progressbar-' + type"
+    ></p-progressBar>
+  </div>
+
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <!-- ENCABEZADO Y ACCIONES -->
+    <div class="flex flex-wrap align-items-center justify-content-between mb-4">
+      <div class="flex align-items-center">
+        @if (id && id !== "" && id !== "0") {
+        <p-tag
+          [value]="form.controls.folio.value"
+          severity="info"
+          class="text-lg"
+        />
+        } @else {
+        <p-tag value="NUEVA SOLICITUD" severity="success" class="text-lg" />
+        }
+        <h3 class="m-0 font-bold text-900 ml-2">Solicitud de Compra</h3>
+      </div>
+
+      <div class="flex flex-wrap">
+        @if (id && id !== "" && id !== "0") {
+        <custom-button
+          [showLabelOnDesktop]="true"
+          iconClass="mdi:whatsapp"
+          label="Compartir WA"
+          (clicked)="onSendWhatsApp()"
+          severity="success"
+          variant="outlined"
+          class="mr-2"
+          size="small"
+        />
+        <custom-button
+          [showLabelOnDesktop]="true"
+          iconClass="mdi:email-outline"
+          label="Enviar Correo"
+          (clicked)="onSendEmail()"
+          severity="info"
+          variant="outlined"
+          class="mr-2"
+          size="small"
+        />
+        <a
+          [routerLink]="['/purchases/pdf-solicitud-compra', id]"
+          class="no-underline mr-2"
+        >
+          <custom-button
+            [showLabelOnDesktop]="true"
+            iconClass="mdi:file-pdf-box"
+            label="Ver PDF"
+            severity="danger"
+            variant="outlined"
+            size="small"
+          />
+        </a>
+        <custom-button
+          [showLabelOnDesktop]="true"
+          iconClass="mdi:table"
+          label="Cuadro Comparativo"
+          (clicked)="router.navigate(['/purchases/cuadro-comparativo', id])"
+          severity="info"
+          variant="outlined"
+          class="mr-2"
+          size="small"
+        />
+        }
+        <custom-button-save
+          [propertyId]="id"
+          [disabled]="form.invalid"
+          [submitting]="submitting()"
+          customClass="m-0"
+          class="mr-2"
+        />
+      </div>
+    </div>
+
+    <p-divider></p-divider>
+
+    <!-- CAMPOS DEL FORMULARIO -->
+    <div class="grid mt-2">
+      <div class="col-12 md:col-2">
+        <custom-input-text-signal
+          [control]="form.controls.solicita"
+          label="Persona que solicita"
+          placeholder="Nombre del solicitante"
+          [horizontal]="false"
+        />
+      </div>
+      <div class="col-12 md:col-2">
+        <custom-input-date-signal
+          [control]="form.controls.fechaSolicitud"
+          label="Fecha de solicitud"
+          [horizontal]="false"
+        />
+      </div>
+      <div class="col-12 md:col-4">
+        <custom-input-textarea-signal
+          [control]="form.controls.equipoOInstalacion"
+          label="Área / Equipo / Instalación"
+          placeholder="Ej: Aire Acondicionado Piso 5, Lobby, etc."
+          [horizontal]="false"
+          [rows]="1"
+        />
+      </div>
+      <div class="col-12 md:col-4">
+        <custom-input-textarea-signal
+          [control]="form.controls.justificacionGasto"
+          label="Justificación del Gasto"
+          placeholder="Explica brevemente la necesidad de esta compra..."
+          [horizontal]="false"
+          [rows]="2"
+        />
+      </div>
+    </div>
+  </form>
+
+  <!-- SECCION DE PRODUCTOS -->
+  <div class="flex align-items-center justify-content-between mb-3">
+    <div class="flex align-items-center">
+      <app-icon
+        [icon]="'mdi:cart'"
+        class="text-xl text-primary mr-2"
+      ></app-icon>
+      <h4 class="m-0 font-bold text-800 mr-2">Productos Solicitados</h4>
+      <p-badge
+        [value]="SolicitudCompraDetalle.length.toString()"
+        severity="info"
+      ></p-badge>
+    </div>
+  </div>
+
+  <!-- Buscador inline de productos -->
+  <div class="surface-ground p-3 border-round mb-4">
+    <app-product-add
+      [solicitudCompraId]="id"
+      (updateData)="onLoadData()"
+      (addedLocal)="onAddedLocal($event)"
+    />
+  </div>
+
+  <!-- Listado detallado de productos -->
+  <app-solicitud-compra-detalle
+    [SolicitudCompraDetalle]="SolicitudCompraDetalle"
+    [solicitudCompraId]="id"
+    (updateData)="onLoadData()"
+  />
+
+  <!-- Órdenes Relacionadas (Solo si existen) -->
+  <div class="mt-5 p-3 surface-100 border-round">
+    <div class="flex align-items-center justify-content-between mb-2">
+      <span class="text-sm font-bold text-600 uppercase"
+        >Órdenes de Compra Relacionadas:</span
+      >
+      <custom-button
+        iconClass="mdi:link"
+        label="Actualizar Referencias"
+        (clicked)="onManageLinks()"
+        severity="warn"
+        variant="text"
+        size="small"
+      />
+    </div>
+    <div class="flex flex-wrap">
+      @if (cotizacionesRelacionadas.length > 0) { @for (item of
+      cotizacionesRelacionadas; track item.id) {
+      <p-tag
+        (click)="onAddOrEdit(item.id)"
+        [value]="item.folio"
+        severity="warning"
+        class="cursor-pointer"
+        [pTooltip]="'Ver Orden de Compra'"
+      />
+      } } @else {
+      <span class="text-sm italic text-500"
+        >No hay órdenes de compra vinculadas formalmente.</span
+      >
+      }
+    </div>
+  </div>
+</div>

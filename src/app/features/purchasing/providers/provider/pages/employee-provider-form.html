@@ -1,0 +1,206 @@
+<!-- ══════════════════════════════════════════════════════
+     FASE 1: Registro del empleado
+     ══════════════════════════════════════════════════════ -->
+@if (fase() === 1) {
+<div class="card p-3">
+  <div class="grid col-12">
+    <div class="col-12 mb-3">
+      <p class="text-danger card-text">
+        Valida con el Administrador del sistema que este
+        <strong>COLABORADOR</strong>
+        no este ya en la base de datos, si este
+        <strong>COLABORADOR</strong>
+        ha trabajado en otro edificio de GRUPO LUXURY, es probable que ya este
+        registrado y solo sea necesario activar el registro y asignarlo al
+        edificio de nuevo ingreso (esta tarea la realizaría el administrador del
+        sistema)
+      </p>
+    </div>
+    <div class="col-12 sm:col-7">
+      <form autocomplete="off" (ngSubmit)="register()" [formGroup]="form">
+        <custom-input-text-signal
+          [control]="form.controls.firstName"
+          label="Nombre"
+          placeholder="nombre"
+          (input)="searchExistingPerson($event)"
+        />
+        <custom-input-text-signal
+          (input)="searchExistingPerson($event)"
+          [control]="form.controls.lastName"
+          label="Apellidos"
+          placeholder="apellidos"
+        />
+        <custom-input-mask-signal
+          [control]="form.controls.phoneNumber"
+          label="Tél. Celular"
+          placeholder="(00) 0000-0000"
+          customMask="(00) 0000-0000"
+          (input)="searchExistingPhone($event)"
+        />
+        <custom-input-date-signal
+          [control]="form.controls.birth"
+          label="Fecha de nacimiento"
+          placeholder="fecha de nacimiento"
+        />
+        <custom-input-text-signal
+          [control]="form.controls.email"
+          label="Email personal"
+          placeholder="email personal"
+        />
+        <custom-input-select-signal
+          [control]="form.controls.applicationRoleId"
+          label="Puesto"
+          [data]="cb_applicationRole()"
+          [filter]="true"
+        />
+        <div class="mb-4">
+          <custom-input-img-signal
+            (fileSelected)="change($event)"
+            [urlImgCurrent]="imgBase64"
+            label="Fotografia"
+            [horizontal]="true"
+            [required]="true"
+          />
+        </div>
+        <custom-button-save
+          [disabled]="form.invalid"
+          [submitting]="submitting()"
+          label="Registrar empleado"
+        />
+      </form>
+    </div>
+    <div class="col-12 sm:col-5">
+      <div class="mb-4">
+        <p class="text-danger text-justify">
+          <strong>Coincidencias registradas</strong>
+          , Si hay coincidencias, solicita el apoyo del administrador del
+          sistema
+        </p>
+      </div>
+      <div class="grid col-12 md:col-6">
+        <div>
+          <p class="text-danger font-bold">POR NOMBRE:</p>
+          @for (item of existingPerson; track item) {
+          <p class="text-danger m-0 text-sm">- {{ item }}</p>
+          }
+        </div>
+        <div>
+          <p class="text-danger font-bold">POR TÉLEFONO:</p>
+          @for (item of existingPhone; track item) {
+          <p class="text-danger m-0 text-sm">- {{ item }}</p>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}
+
+<!-- ══════════════════════════════════════════════════════
+     FASE 2: Acciones post-registro
+     ══════════════════════════════════════════════════════ -->
+@if (fase() === 2) {
+<div class="card p-4">
+  <p class="font-semibold mb-4">
+    Empleado registrado correctamente. ¿Qué desea hacer a continuación?
+  </p>
+
+  <!-- Opciones de radio -->
+  <div class="flex flex-column mb-4">
+    <!-- Opción: Solo cerrar -->
+    <label class="flex align-items-center cursor-pointer">
+      <input
+        type="radio"
+        name="opcion"
+        value="none"
+        [checked]="opcion() === 'none'"
+        (change)="setOpcion('none')"
+      />
+      <span>Solo registrar, sin acción adicional</span>
+    </label>
+
+    <!-- Opción: Registrar vacante -->
+    <label class="flex align-items-center cursor-pointer">
+      <input
+        type="radio"
+        name="opcion"
+        value="vacante"
+        [checked]="opcion() === 'vacante'"
+        (change)="setOpcion('vacante')"
+      />
+      <span>Registrar la vacante que cubre</span>
+    </label>
+
+    <!-- Opción: Alta completa -->
+    <label class="flex align-items-center cursor-pointer">
+      <input
+        type="radio"
+        name="opcion"
+        value="alta"
+        [checked]="opcion() === 'alta'"
+        (change)="setOpcion('alta')"
+      />
+      <span>Enviar solicitud de alta completa</span>
+    </label>
+  </div>
+
+  <!-- Campos para "solo vacante" -->
+  @if (opcion() === 'vacante') {
+  <div class="border-1 surface-border border-round p-3 mb-4">
+    <custom-input-select-signal
+      label="Vacante que cubre"
+      placeholder="Selecciona la vacante"
+      [control]="vacanteForm.controls.positionRequestId"
+      [data]="cb_vacantes()"
+      [filter]="true"
+    />
+    <custom-input-select-signal
+      label="Tipo de contrato"
+      [control]="vacanteForm.controls.typeContractRegister"
+      [data]="cb_typeContractRegister()"
+      [filter]="true"
+    />
+  </div>
+  }
+
+  <!-- Campos para "alta completa" -->
+  @if (opcion() === 'alta') {
+  <div class="border-1 surface-border border-round p-3 mb-4">
+    <custom-input-select-signal
+      label="Vacante que cubre"
+      placeholder="Selecciona la vacante"
+      [control]="altaForm.controls.positionRequestId"
+      [data]="cb_vacantes()"
+      [filter]="true"
+    />
+    <custom-input-select-signal
+      label="Tipo de contrato"
+      [control]="altaForm.controls.typeContractRegister"
+      [data]="cb_typeContractRegister()"
+      [filter]="true"
+    />
+    <custom-input-text-signal
+      label="Jefe inmediato"
+      placeholder="Nombre del jefe inmediato"
+      [control]="altaForm.controls.boss"
+    />
+    <custom-input-text-signal
+      label="Dirección de trabajo"
+      placeholder="Dirección donde laborará"
+      [control]="altaForm.controls.customerAddress"
+    />
+    <custom-input-textarea-signal
+      label="Comentarios adicionales"
+      placeholder="Información adicional relevante"
+      [control]="altaForm.controls.additionalInformation"
+    />
+  </div>
+  }
+
+  <custom-button-save
+    (clicked)="onConfirmarFase2()"
+    [submitting]="submitting()"
+    label="Confirmar"
+  />
+</div>
+}

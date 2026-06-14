@@ -4,40 +4,29 @@ export const diagramRoutes: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("../features/tenant/diagram/diagram-list/diagram-list").then(
+      import("src/app/features/operations/diagrams/diagram/diagram-list/diagram-list").then(
         (m) => m.DiagramList,
       ),
   },
   {
     path: "editor/:id",
     loadComponent: () =>
-      import("../features/tenant/diagram/diagram-editor/diagram-editor").then(
+      import("src/app/features/operations/diagrams/diagram/diagram-editor/diagram-editor").then(
         (m) => m.DiagramEditor,
       ),
   },
   {
     path: "gallery",
     loadComponent: () =>
-      import("../features/tenant/diagram/diagram-gallery/diagram-gallery").then(
+      import("src/app/features/operations/diagrams/diagram/diagram-gallery/diagram-gallery").then(
         (m) => m.DiagramGallery,
       ),
   },
   {
     path: "view/:id",
     loadComponent: () =>
-      import("../features/tenant/diagram/diagram-view/diagram-view").then(
+      import("src/app/features/operations/diagrams/diagram/diagram-view/diagram-view").then(
         (m) => m.DiagramView,
       ),
   },
 ];
-
-
-
-
-
-
-
-
-
-
-

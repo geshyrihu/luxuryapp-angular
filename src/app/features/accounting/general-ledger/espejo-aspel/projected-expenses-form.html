@@ -1,0 +1,96 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="grid">
+    <!-- Fila 1: Cuenta Contable y Mes de Ejecución -->
+    <div class="col-12 md:col-6">
+      <custom-input-autocomplete-signal
+        [control]="form.controls.accountingCatalogName"
+        [data]="cb_accountingCatalogs"
+        label="Cuenta Contable"
+        placeholder="Selecciona una cuenta"
+        (propagar)="saveAccountingCatalog($event)"
+      />
+    </div>
+
+    <!-- Fila 1.5: Recurrencia -->
+    <div class="col-12 md:col-6">
+      <div class="flex align-items-center mb-4 mt-4">
+        <p-checkbox
+          formControlName="isFromRecurrence"
+          [binary]="true"
+          inputId="isFromRecurrence"
+          (onChange)="toggleRecurrenceFields($event.checked)"
+        />
+        <label for="isFromRecurrence" class="ml-2">Es Recurrente?</label>
+      </div>
+    </div>
+
+    <div class="col-12 md:col-6">
+      <custom-input-select-signal
+        [control]="form.controls.executionMonth"
+        [data]="cb_months"
+        label="Mes de Ejecución"
+        [filter]="true"
+      />
+    </div>
+    @if (form.controls.isFromRecurrence.value) {}
+    <div class="col-12 md:col-6">
+      <custom-input-select-signal
+        [control]="form.controls.recurrence"
+        [data]="cb_recurrences"
+        label="Frecuencia"
+        [disabled]="form.controls.isFromRecurrence.value"
+        [filter]="true"
+      />
+    </div>
+
+    <!-- Fila 2: Concepto y Descripción -->
+    <div class="col-12 md:col-6">
+      <custom-input-text-signal
+        [control]="form.controls.concept"
+        label="Concepto"
+        placeholder="Ej. Mantenimiento Preventivo"
+      />
+    </div>
+    <div class="col-12 md:col-6">
+      <custom-input-textarea-signal
+        [control]="form.controls.description"
+        label="Descripción"
+        placeholder="Detalles de la ejecución presupuestaria"
+      />
+    </div>
+
+    <!-- Fila 3: Monto y Tipo de Gasto -->
+    <div class="col-12 md:col-6">
+      <custom-input-currency-signal
+        [control]="form.controls.budgetedAmount"
+        label="Monto Presupuestado"
+      />
+    </div>
+    <div class="col-12 md:col-6">
+      <custom-input-select-signal
+        [control]="form.controls.expenseType"
+        [data]="cb_expenseTypes"
+        label="Tipo de Gasto"
+        [filter]="true"
+      />
+    </div>
+
+    <!-- Fila 4: Proveedor -->
+    <div class="col-12 md:col-12">
+      <custom-input-autocomplete-signal
+        [control]="form.controls.providerName"
+        [data]="cb_providers"
+        label="Proveedor (Opcional)"
+        placeholder="Selecciona un proveedor"
+        (propagar)="saveProvider($event)"
+      />
+    </div>
+  </div>
+
+  <div class="flex justify-content-end mt-4">
+    <custom-button-save
+      [disabled]="form.invalid || submitting()"
+      [submitting]="submitting()"
+    />
+  </div>
+</form>

@@ -1,0 +1,127 @@
+<!-- Aviso cuando no hay partidas agregadas -->
+@if (presupuestoAgregados().length === 0) {
+<p-message severity="info">
+  <p>
+    No hay partidas agregadas. Seleccione una cuenta del católogo de cuentas
+    para agregarla al presupuesto.
+  </p>
+</p-message>
+} @if (presupuestoAgregados().length > 0) {
+<p-table
+  #dtt
+  styleClass="card hidden md:block"
+  [value]="presupuestoAgregados()"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      [title]="'Partidas agregadas'"
+      [showAdd]="false"
+      [showSearch]="false"
+    />
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <!-- <th class="table-col-35">Periodo</th> -->
+      <th>Cuenta</th>
+      <th>Gasto sin IVA</th>
+      <th class="table-col-5">Opciones</th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.accountNumber }} | {{ item.accountName }}</td>
+      <td>{{ item.amount | number: "1.0-0" }}</td>
+      <td>
+        <div class="flex justify-content-center">
+          <custom-button-delete
+            (confirmed)="deletePresupuestoAgregado(item.id)"
+          />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+} @if (dataSignal()) {
+<p-table
+  #dt
+  styleClass="custom-table card hidden md:block"
+  [value]="dataSignal()"
+  [rows]="tablePrimeNgRows"
+  [paginator]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #caption>
+    <div class="grid col-12">
+      <div class="col-12 md:col-10">
+        <primeng-custom-caption
+          [title]="'Cedula Presupuestal'"
+          [showAdd]="false"
+          [dt]="dt"
+        />
+      </div>
+      <div class="col-12 md:col-2">
+        <custom-input-select-signal
+          id="yearSelector"
+          [(ngModel)]="intYear"
+          (selectionChange)="onLoadPresupuesto()"
+          [data]="cb_availableYears"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Seleccionar Año Fiscal"
+          customClass="w-full"
+          [horizontal]="false"
+          [filter]="true"
+        />
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th>Cuenta</th>
+      <th>Pres. Mensual</th>
+      <th>Gasto sin IVA</th>
+      <th class="table-col-5"></th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.accountNumber }} | {{ item.accountName }}</td>
+      <td>{{ item.presupuestoMensual | number: "1.0-0" }}</td>
+      <td>
+        <p-inputNumber
+          [(ngModel)]="item.amount"
+          mode="decimal"
+          [minFractionDigits]="2"
+          class="w-full"
+        ></p-inputNumber>
+      </td>
+      <!-- Opciones -->
+      <td>
+        <div class="flex justify-content-center">
+          @if (submitting()) {
+          <p-progressSpinner
+            styleClass="w-2rem h-2rem"
+            strokeWidth="8"
+            fill="var(--surface-ground)"
+            animationDuration=".5s"
+          ></p-progressSpinner>
+          } @else {
+          <custom-button iconClass="mdi:content-save" (clicked)="onSubmit(item)" />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+}

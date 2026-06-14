@@ -1,0 +1,17 @@
+<div class="card p-2">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <custom-input-select-signal
+      [horizontal]="false"
+      [control]="form.controls.period"
+      label="Periodo"
+      [data]="cb_fondeos()"
+      [filter]="true"
+    />
+
+    <custom-button-save
+      [propertyId]="id"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+    />
+  </form>
+</div>

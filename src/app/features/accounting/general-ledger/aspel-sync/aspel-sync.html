@@ -1,0 +1,89 @@
+<div class="p-3">
+  <p-card>
+    <ng-template pTemplate="title">Sincronización manual Aspel</ng-template>
+    <ng-template pTemplate="subtitle">
+      Ejecuta la carga manual de Aspel para el cliente activo actual. El proceso
+      puede tardar varios minutos.
+    </ng-template>
+
+    <div class="grid mt-2 mb-2">
+      <div class="col-12 md:col-6">
+        <div class="surface-ground p-3 border-round-lg border-1 border-blue-100 h-full">
+          <div class="flex align-items-center gap-2 mb-2 text-blue-700">
+            <app-icon [icon]="'mdi:information'" class="text-xl" />
+            <span class="font-bold">Cliente Seleccionado</span>
+          </div>
+          <div class="text-sm line-height-3">
+            <div class="flex justify-content-between">
+              <span class="text-secondary">ID Interno:</span>
+              <span class="font-mono">{{ currentCustomerId() || '---' }}</span>
+            </div>
+            <div class="flex justify-content-between">
+              <span class="text-secondary">Nombre:</span>
+              <span class="font-bold">{{ currentCustomerName() || 'Sin cliente activo' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6">
+        <custom-input-number-signal
+          [control]="form.controls.year"
+          label="Año fiscal a sincronizar"
+          placeholder="2026"
+          [min]="2000"
+          [max]="2100"
+          [showButtons]="true"
+          [step]="1"
+          [noMargin]="true"
+        />
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mt-4">
+      <custom-button
+        label="Sincronización Completa"
+        iconClass="mdi:sync"
+        severity="success"
+        [loading]="syncing()"
+        [disabled]="!canExecute()"
+        [showLabelOnDesktop]="true"
+        (clicked)="syncCompleto()"
+      />
+      <custom-button
+        label="Solo Contabilidad"
+        iconClass="mdi:book"
+        severity="info"
+        [loading]="syncing()"
+        [disabled]="!canExecute()"
+        [showLabelOnDesktop]="true"
+        (clicked)="syncContabilidad()"
+      />
+      <custom-button
+        label="Solo Cobranza"
+        iconClass="mdi:wallet"
+        severity="warning"
+        [loading]="syncing()"
+        [disabled]="!canExecute()"
+        [showLabelOnDesktop]="true"
+        (clicked)="syncCobranza()"
+      />
+    </div>
+
+    <div class="mt-4" *ngIf="lastAction()">
+      <h5 class="mb-2">Última acción:</h5>
+      <div class="text-sm text-color-secondary">
+        {{ lastAction() | titlecase }}
+      </div>
+    </div>
+
+    @if (lastResult()) {
+    <div class="mt-4">
+      <h5 class="mb-2">Respuesta:</h5>
+      <pre
+        class="surface-section p-3 border-round overflow-x-auto overflow-y-auto"
+      ><code class="language-json">{{ lastResult() | json }}</code></pre>
+    </div>
+    }
+  </p-card>
+</div>

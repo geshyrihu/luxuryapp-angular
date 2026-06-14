@@ -10,7 +10,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/dashboard/hr-dashboard").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/dashboard/hr-dashboard").then(
         (m) => m.HRDashboard,
       ),
     canActivate: [
@@ -37,7 +37,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "my-requests", // Ruta anterior: 'mis-solicitudes'
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/leave-request/mis-permisos-listado").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/leave-request/mis-permisos-listado").then(
         (m) => m.MisPermisosListado,
       ),
     canActivate: [authGuard],
@@ -50,7 +50,7 @@ export const humanResourcesRoutes: Routes = [
     // Suggested path: 'request-leave'
     path: "solicitar-permiso",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/leave-request/permiso-form").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/leave-request/permiso-form").then(
         (m) => m.PermisoForm,
       ),
     canActivate: [authGuard],
@@ -63,7 +63,7 @@ export const humanResourcesRoutes: Routes = [
     // Suggested path: 'leave/:id/detail'
     path: "permiso/:id/detalle",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/leave-request-approval/permiso-detalle-aprobar").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/leave-request-approval/permiso-detalle-aprobar").then(
         (m) => m.PermisoDetalleAprobar,
       ),
     canActivate: [authGuard],
@@ -79,7 +79,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "approval",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/panel-aprobaciones/panel-aprobaciones").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/panel-aprobaciones/panel-aprobaciones").then(
         (m) => m.PanelAprobaciones,
       ),
     canActivate: [authGuard],
@@ -96,7 +96,7 @@ export const humanResourcesRoutes: Routes = [
     // Suggested path: 'request-vacation'
     path: "solicitar-vacaciones",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/my-vacation-requests/vacaciones-form").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/my-vacation-requests/vacaciones-form").then(
         (m) => m.VacacionesForm,
       ),
     canActivate: [authGuard],
@@ -108,7 +108,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "my-vacations", // Ruta anterior: 'mis-vacaciones'
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/my-vacation-requests/mis-vacaciones-listado").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/my-vacation-requests/mis-vacaciones-listado").then(
         (m) => m.MisVacacionesListado,
       ),
     canActivate: [authGuard],
@@ -121,7 +121,7 @@ export const humanResourcesRoutes: Routes = [
     // Suggested path: 'vacation/:id/detail'
     path: "vacaciones/:id/detalle",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/vacation-request-approval/vacacion-solicitud-detalle").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/vacation-request-approval/vacacion-solicitud-detalle").then(
         (m) => m.VacacionSolicitudDetalle,
       ),
     canActivate: [authGuard],
@@ -134,7 +134,7 @@ export const humanResourcesRoutes: Routes = [
     // Suggested path: 'vacation-balance'
     path: "saldo-vacaciones",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/vacation-balance-admin/vacaciones-saldo").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/vacation-balance-admin/vacaciones-saldo").then(
         (m) => m.VacacionesSaldo,
       ),
     canActivate: [authGuard],
@@ -150,7 +150,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "vacation-calendar", // Ruta anterior: 'calendario-vacaciones'
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/calendario-vacaciones-permisos/calendario-vacaciones-permisos").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/calendario-vacaciones-permisos/calendario-vacaciones-permisos").then(
         (m) => m.CalendarioVacacionesPermisos,
       ),
     canActivate: [authGuard],
@@ -162,7 +162,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "register-past-vacations", // Ruta anterior: 'registrar-vacaciones-pasadas'
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/past-vacations/vacaciones-pasadas-registro").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/past-vacations/vacaciones-pasadas-registro").then(
         (m) => m.VacacionesPasadasRegistro,
       ),
     canActivate: [authGuard],
@@ -174,7 +174,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "requests-history", // Ruta anterior: 'historial-solicitudes'
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/historial-solicitudes/solicitudes-historial").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/historial-solicitudes/solicitudes-historial").then(
         (m) => m.SolicitudesHistorial,
       ),
     canActivate: [authGuard],
@@ -190,7 +190,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "admin-balances-vacaciones",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/admin-vacaciones-balance/admin-vacaciones-balance").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/admin-vacaciones-balance/admin-vacaciones-balance").then(
         (m) => m.AdminVacacionesBalance,
       ),
     canActivate: [
@@ -205,7 +205,7 @@ export const humanResourcesRoutes: Routes = [
     // Vista de auditoría: ver balance e historial de cualquier empleado del cliente.
     path: "auditoria-vacaciones",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/vacation-balance-admin/vacaciones-admin-auditoria").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/vacation-balance-admin/vacaciones-admin-auditoria").then(
         (m) => m.VacacionesAdminAuditoria,
       ),
     canActivate: [
@@ -227,7 +227,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "contracts",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/work-contract/pages/work-contract-list").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/work-contract/pages/work-contract-list").then(
         (m) => m.WorkContractList,
       ),
     canActivate: [
@@ -249,7 +249,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "contract-templates",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/contract-template/pages/contract-template-list").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/contract-template/pages/contract-template-list").then(
         (m) => m.ContractTemplateList,
       ),
     canActivate: [
@@ -271,7 +271,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "contract-addendums",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/contract-addendum/pages/contract-addendum-list").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/contract-addendum/pages/contract-addendum-list").then(
         (m) => m.ContractAddendumList,
       ),
     canActivate: [
@@ -293,7 +293,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "addendum-templates",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/addendum-template/pages/addendum-template-list").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/addendum-template/pages/addendum-template-list").then(
         (m) => m.AddendumTemplateList,
       ),
     canActivate: [
@@ -315,7 +315,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "incidents",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/incidencias-sanciones/incident/pages/incident-list").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/incidencias-sanciones/incident/pages/incident-list").then(
         (m) => m.IncidentList,
       ),
     canActivate: [
@@ -333,7 +333,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "incident-dashboard",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/incidencias-sanciones/incident/pages/incident-dashboard/incident-dashboard").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/incidencias-sanciones/incident/pages/incident-dashboard/incident-dashboard").then(
         (m) => m.IncidentDashboardComponent,
       ),
     canActivate: [
@@ -356,7 +356,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "incident-reports",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/incidencias-sanciones/incident-report/pages/incident-report").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/incidencias-sanciones/incident-report/pages/incident-report").then(
         (m) => m.IncidentReport,
       ),
     canActivate: [
@@ -378,7 +378,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "employee-files",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/employee-file/pages/employee-file-list").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/employee-file/pages/employee-file-list").then(
         (m) => m.EmployeeFileList,
       ),
     canActivate: [
@@ -396,7 +396,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "employee-files/:employeeId",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/employee-file/pages/employee-file-detail").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/employee-file/pages/employee-file-detail").then(
         (m) => m.EmployeeFileDetail,
       ),
     canActivate: [
@@ -418,7 +418,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "sanctions",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/incidencias-sanciones/sanction/pages/sanction-list").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/incidencias-sanciones/sanction/pages/sanction-list").then(
         (m) => m.SanctionList,
       ),
     canActivate: [
@@ -440,7 +440,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "bank-data",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/employee-bank-data/pages/employee-bank-data-list").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/employee-bank-data/pages/employee-bank-data-list").then(
         (m) => m.EmployeeBankDataList,
       ),
     canActivate: [
@@ -462,7 +462,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/nomina/nomina-dashboard/nomina-dashboard").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/nomina/nomina-dashboard/nomina-dashboard").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -471,7 +471,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina/configuracion",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/nomina/pages/configuracion-nomina/configuracion-nomina").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/nomina/pages/configuracion-nomina/configuracion-nomina").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -480,7 +480,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina/periodos",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/nomina/pages/periodos-nomina/periodos-nomina").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/nomina/pages/periodos-nomina/periodos-nomina").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -489,7 +489,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina/nominas",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/nomina/pages/nominas/nominas").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/nomina/pages/nominas/nominas").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -498,7 +498,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina/nominas/:id/detalle",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/nomina/pages/nomina-detalle/nomina-detalle").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/nomina/pages/nomina-detalle/nomina-detalle").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -507,7 +507,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina/incidencias",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/nomina/pages/incidencias-nomina/incidencias-nomina").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/nomina/pages/incidencias-nomina/incidencias-nomina").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -516,7 +516,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina/tiempo-extra",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/nomina/pages/tiempo-extra/tiempo-extra").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/nomina/pages/tiempo-extra/tiempo-extra").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -525,7 +525,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina/prestamos",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/nomina/pages/prestamos-empleado/prestamos-empleado").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/nomina/pages/prestamos-empleado/prestamos-empleado").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -534,7 +534,7 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina/evidencias",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/nomina/pages/evidencias-nomina/evidencias-nomina").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/nomina/pages/evidencias-nomina/evidencias-nomina").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -543,11 +543,35 @@ export const humanResourcesRoutes: Routes = [
   {
     path: "nomina/hoja-incidencias",
     loadComponent: () =>
-      import("src/app/features/tenant/recursos-humanos/nomina/pages/hoja-incidencias/hoja-incidencias").then(
+      import("src/app/features/hr/expediente-del-empleado/recursos-humanos/nomina/pages/hoja-incidencias/hoja-incidencias").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
     data: { title: "Hoja de Incidencias", breadcrumb: "Hoja de Incidencias" },
+  },
+  {
+    path: "incident-types",
+    loadComponent: () =>
+      import("src/app/features/hr/evaluaciones-de-desempeo/hr-catalog/pages/incident-type-list").then(
+        (m) => m.IncidentTypeList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Tipos de Incidencia",
+      breadcrumb: "Tipos de Incidencia",
+    },
+  },
+  {
+    path: "sanction-types",
+    loadComponent: () =>
+      import("src/app/features/hr/evaluaciones-de-desempeo/hr-catalog/pages/sanction-type-list").then(
+        (m) => m.SanctionTypeList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Tipos de Sanción",
+      breadcrumb: "Tipos de Sanción",
+    },
   },
 ];
 

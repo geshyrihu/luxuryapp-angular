@@ -4,7 +4,7 @@ export const accountingRoutes: Routes = [
   {
     path: "budget", // Ruta anterior: 'presupuesto'
     loadComponent: () =>
-      import("src/app/features/tenant/contabilidad/presupuesto-web-aspel/wrapper").then(
+      import("src/app/features/accounting/general-ledger/contabilidad/presupuesto-web-aspel/wrapper").then(
         (m) => m.PresupuestoWebAspelWrapper,
       ),
     canActivate: [authGuard],
@@ -17,7 +17,7 @@ export const accountingRoutes: Routes = [
   {
     path: "accounting-catalog",
     loadComponent: () =>
-      import("src/app/features/tenant/contabilidad/accounting-catalog/pages/accounting-catalog").then(
+      import("src/app/features/accounting/general-ledger/contabilidad/accounting-catalog/pages/accounting-catalog").then(
         (m) => m.AccountingCatalog,
       ),
     canActivate: [authGuard],
@@ -29,7 +29,7 @@ export const accountingRoutes: Routes = [
   {
     path: "minutes-pendings", // Ruta anterior: 'pendientes-minutas'
     loadComponent: () =>
-      import("src/app/features/tenant/contabilidad/pendientes-minuta/cont-list-minuta-pendientes").then(
+      import("src/app/features/accounting/general-ledger/contabilidad/pendientes-minuta/cont-list-minuta-pendientes").then(
         (m) => m.ContListMinutaPendientes,
       ),
     canActivate: [authGuard],
@@ -41,7 +41,7 @@ export const accountingRoutes: Routes = [
   {
     path: "funding-list",
     loadComponent: () =>
-      import("src/app/features/tenant/funding-accounting/funding-accounting-list").then(
+      import("src/app/features/accounting/fondeos-y-reporteo/funding-accounting/funding-accounting-list").then(
         (m) => m.FundingAccountingList,
       ),
     canActivate: [authGuard],
@@ -53,7 +53,7 @@ export const accountingRoutes: Routes = [
   {
     path: "funding-details/:id",
     loadComponent: () =>
-      import("src/app/features/tenant/funding-accounting/funding-accounting-detail").then(
+      import("src/app/features/accounting/fondeos-y-reporteo/funding-accounting/funding-accounting-detail").then(
         (m) => m.FundingAccountingDetail,
       ),
     canActivate: [authGuard],
@@ -65,7 +65,7 @@ export const accountingRoutes: Routes = [
   {
     path: "legal-minutes-pendings", // Ruta anterior: 'pendientes-minutas-legal'
     loadComponent: () =>
-      import("src/app/features/tenant/legal/minutas/legal-pendientes-minuta").then(
+      import("src/app/features/legal/asuntos-legales-y-seguros/minutas/legal-pendientes-minuta").then(
         (m) => m.LegalPendientesMinuta,
       ),
     canActivate: [authGuard],
@@ -78,7 +78,7 @@ export const accountingRoutes: Routes = [
   //   // Suggested path: 'pending-minutes-pdf'
   //   path: "pendientes-minutas-pdf",
   //   loadComponent: () =>
-  //     import("src/app/features/tenant/contabilidad/pendientes-minuta/cont-minuta-pendientes-pdf").then(
+  //     import("src/app/features/accounting/general-ledger/contabilidad/pendientes-minuta/cont-minuta-pendientes-pdf").then(
   //       (m) => m.ConMinutaPendientesPdf,
   //     ),
   //   canActivate: [authGuard],
@@ -90,7 +90,7 @@ export const accountingRoutes: Routes = [
   {
     path: "budget-execution",
     loadComponent: () =>
-      import("src/app/features/tenant/espejo-aspel/projected-expenses-list").then(
+      import("src/app/features/accounting/ar/espejo-aspel/projected-expenses-list").then(
         (m) => m.default,
       ),
     canActivate: [authGuard],
@@ -103,7 +103,7 @@ export const accountingRoutes: Routes = [
   {
     path: "financial-report-sending", // Ruta anterior: 'reporte-envio-financieros'
     loadComponent: () =>
-      import("src/app/features/tenant/contabilidad/reporte-envio-financieros/reporte-envio-financieros").then(
+      import("src/app/features/accounting/general-ledger/contabilidad/reporte-envio-financieros/reporte-envio-financieros").then(
         (m) => m.ReporteEnvioFinancieros,
       ),
     canActivate: [authGuard],
@@ -115,7 +115,7 @@ export const accountingRoutes: Routes = [
   {
     path: "financial-statements", // Ruta anterior: 'estados-financieros'
     loadComponent: () =>
-      import("src/app/features/tenant/contabilidad/estados-financieros/estado-financiero-list").then(
+      import("src/app/features/accounting/general-ledger/contabilidad/estados-financieros/estado-financiero-list").then(
         (m) => m.EstadoFinancieroList,
       ),
     canActivate: [authGuard],
@@ -127,7 +127,7 @@ export const accountingRoutes: Routes = [
   {
     path: "financial-summary",
     loadComponent: () =>
-      import("src/app/features/tenant/contabilidad/resumen-financiero/financial-summary").then(
+      import("src/app/features/accounting/general-ledger/contabilidad/resumen-financiero/financial-summary").then(
         (m) => m.FinancialSummary,
       ),
     canActivate: [authGuard],
@@ -140,7 +140,7 @@ export const accountingRoutes: Routes = [
   //   // Suggested path: 'aspel-report'
   //   path: "reporte-aspel",
   //   loadComponent: () =>
-  //     import("src/app/features/tenant/contabilidad/aspel-reportes/report-aspel-list").then(
+  //     import("src/app/features/accounting/general-ledger/contabilidad/aspel-reportes/report-aspel-list").then(
   //       (m) => m.ReportAspelList,
   //     ),
   //   canActivate: [authGuard],
@@ -152,7 +152,7 @@ export const accountingRoutes: Routes = [
   {
     path: "budget-proposal", // Ruta anterior: 'presupuesto-propuesta'
     loadComponent: () =>
-      import("src/app/features/tenant/contabilidad/presupuesto-propuesta/presupuesto-propuesta").then(
+      import("src/app/features/accounting/general-ledger/contabilidad/presupuesto-propuesta/presupuesto-propuesta").then(
         (m) => m.PresupuestoPropuesta,
       ),
     canActivate: [authGuard],
@@ -173,5 +173,29 @@ export const accountingRoutes: Routes = [
   //     breadcrumb: "Reportes Financieros Dinámicos",
   //   },
   // },
+  {
+    path: "aspel-customer-empresa",
+    loadComponent: () =>
+      import("src/app/features/accounting/ar/aspel-customer-empresa/aspel-customer-empresa-list").then(
+        (m) => m.AspelCustomerEmpresaList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Configuración Aspel",
+      breadcrumb: "Configuración Aspel",
+    },
+  },
+  {
+    path: "aspel-sync",
+    loadComponent: () =>
+      import("src/app/features/accounting/ar/aspel-sync/aspel-sync").then(
+        (m) => m.AspelSyncComponent,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Sincronización Aspel",
+      breadcrumb: "Sincronización Aspel",
+    },
+  },
 ];
 

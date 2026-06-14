@@ -3,7 +3,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "panel",
     loadComponent: () =>
-      import("src/app/features/tenant/reports-mantenance/maintenance-reports-list").then(
+      import("src/app/features/operations/inspecciones-y-auditora/reports-mantenance/maintenance-reports-list").then(
         (m) => m.MaintenanceReports,
       ),
     data: {
@@ -14,7 +14,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "maintenances-summary", // Ruta anterior: 'resumen-mantenimientos'
     loadComponent: () =>
-      import("src/app/features/tenant/reports-mantenance/resumen-mantenimientos/resumen-mantenimientos").then(
+      import("src/app/features/operations/inspecciones-y-auditora/reports-mantenance/resumen-mantenimientos/resumen-mantenimientos").then(
         (m) => m.ResumenMantenimientos,
       ),
     data: {
@@ -25,7 +25,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "consumptions", // Ruta anterior: 'consumos'
     loadComponent: () =>
-      import("src/app/features/tenant/reports-mantenance/report-consumos/report-consumos").then(
+      import("src/app/features/operations/inspecciones-y-auditora/reports-mantenance/report-consumos/report-consumos").then(
         (m) => m.ReportConsumos,
       ),
     data: {
@@ -36,7 +36,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "warehouse-entry", // Ruta anterior: 'entrada-almacen'
     loadComponent: () =>
-      import("src/app/features/tenant/reports-mantenance/report-entrada-almacen/report-entrada-almacen").then(
+      import("src/app/features/operations/inspecciones-y-auditora/reports-mantenance/report-entrada-almacen/report-entrada-almacen").then(
         (m) => m.ReportEntradaAlmacen,
       ),
     data: {
@@ -47,7 +47,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "warehouse-exit", // Ruta anterior: 'salida-almacen'
     loadComponent: () =>
-      import("src/app/features/tenant/reports-mantenance/report-salida-almacen/report-salida-almacen").then(
+      import("src/app/features/operations/inspecciones-y-auditora/reports-mantenance/report-salida-almacen/report-salida-almacen").then(
         (m) => m.ReportSalidaAlmacen,
       ),
     data: {
@@ -58,7 +58,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "daily-tour", // Ruta anterior: 'recorrido-diario'
     loadComponent: () =>
-      import("src/app/features/tenant/reports-mantenance/report-recorrido-diario/report-recorrido-diario").then(
+      import("src/app/features/operations/inspecciones-y-auditora/reports-mantenance/report-recorrido-diario/report-recorrido-diario").then(
         (m) => m.ReportRecorridoDiario,
       ),
     data: {
@@ -69,7 +69,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "tool-loan-report", // Ruta anterior: 'prestamo-herramienta'
     loadComponent: () =>
-      import("src/app/features/tenant/reports-mantenance/report-prestamo-herramienta/report-prestamo-herramienta").then(
+      import("src/app/features/operations/inspecciones-y-auditora/reports-mantenance/report-prestamo-herramienta/report-prestamo-herramienta").then(
         (m) => m.ReportPrestamoHerramienta,
       ),
     data: {
@@ -80,7 +80,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "purchase-request-report", // Ruta anterior: 'solicitud-compra'
     loadComponent: () =>
-      import("src/app/features/tenant/reports-mantenance/report-solicitud-compra/report-solicitud-compra").then(
+      import("src/app/features/operations/inspecciones-y-auditora/reports-mantenance/report-solicitud-compra/report-solicitud-compra").then(
         (m) => m.ReportSolicitudCompra,
       ),
     data: {
@@ -91,7 +91,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "pool-report", // Ruta anterior: 'alberca'
     loadComponent: () =>
-      import("src/app/features/tenant/reports-mantenance/report-bitacora-alberca/report-bitacora-alberca").then(
+      import("src/app/features/operations/inspecciones-y-auditora/reports-mantenance/report-bitacora-alberca/report-bitacora-alberca").then(
         (m) => m.ReportBitacoraAlberca,
       ),
     data: {
@@ -102,7 +102,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "tickets",
     loadComponent: () =>
-      import("src/app/features/tenant/reports-mantenance/report-ticket/report-ticket").then(
+      import("src/app/features/operations/inspecciones-y-auditora/reports-mantenance/report-ticket/report-ticket").then(
         (m) => m.ReportTicket,
       ),
     data: {
@@ -113,7 +113,7 @@ export const maintenanceReportRoutes: Routes = [
   {
     path: "elevators", // Ruta anterior: 'elevadores'
     loadComponent: () =>
-      import("src/app/features/tenant/elevator-emergency-call/elevators-emergency-call-list").then(
+      import("src/app/features/maintenance/logs/elevator-emergency-call/elevators-emergency-call-list").then(
         (m) => m.ElevatorsEmergencyCallList,
       ),
     data: {
@@ -125,7 +125,7 @@ export const maintenanceReportRoutes: Routes = [
   //   path: "preventive-maintenance-report", // Ruta anterior: 'mantenimiento-preventivo-reporte'
   //   loadComponent: () =>
   //     import(
-  //       "src/app/features/tenant/service-order/reporte-ordenes-servicio"
+  //       "src/app/features/operations/field-service/reporte-ordenes-servicio"
   //     ).then((m) => m.ReporteOrdenesServicio),
   //   data: {
   //     title: "Reporte de Mantenimiento Preventivo",
@@ -136,7 +136,7 @@ export const maintenanceReportRoutes: Routes = [
     // Suggested path: 'service-order-support/:id'
     path: "soporte-orden-servicio/:id",
     loadComponent: () =>
-      import("src/app/features/tenant/service-order/soporte-orden-servicio").then(
+      import("src/app/features/operations/field-service/service-order/soporte-orden-servicio").then(
         (m) => m.SoporteOrdenServicio,
       ),
     data: {

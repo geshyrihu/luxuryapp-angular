@@ -1,0 +1,323 @@
+<div
+  class="purchase-link-manager p-3 flex flex-column h-full overflow-hidden surface-ground"
+  style="min-height: 90vh"
+>
+  <!-- HEADER MAESTRO -->
+  <div
+    class="flex align-items-center justify-content-between mb-3 p-3 surface-card border-round shadow-2 flex-shrink-0"
+  >
+    <div class="flex align-items-center">
+      <div class="bg-primary-100 p-2 border-round">
+        <app-icon [icon]="'mdi:link'" class="text-primary text-2xl"></app-icon>
+      </div>
+      <div>
+        <h2 class="text-2xl font-bold m-0 text-900 uppercase tracking-wider">
+          Control Maestro de Vínculos
+        </h2>
+        <p class="text-600 m-0 font-medium">
+          Sincroniza Solicitudes y Órdenes de Compra con precisión.
+        </p>
+      </div>
+    </div>
+    <div class="flex">
+      <custom-button
+        iconClass="mdi:refresh"
+        label="Refrescar"
+        severity="info"
+        (clicked)="onLoadSolicitudes(); onLoadOrdenes()"
+      />
+      <custom-button
+        iconClass="mdi:close"
+        label="Finalizar"
+        severity="secondary"
+        (clicked)="onClose()"
+      />
+    </div>
+  </div>
+
+  <div
+    class="grid flex-grow-1 overflow-hidden px-2"
+    cdkDropListGroup
+    [class.is-dragging]="isDragging()"
+  >
+    <!-- 🟢 COLUMNA: SOLICITUDES DE COMPRA -->
+    <div class="flex flex-column h-full pr-2">
+      <div
+        class="surface-card h-full flex flex-column border-round-xl shadow-3 border-top-3 border-green-500 overflow-hidden"
+      >
+        <!-- Filtros SC -->
+        <div class="p-3 bg-green-50 border-bottom-1 surface-border flex-shrink-0">
+          <div class="flex align-items-center justify-content-between mb-3">
+            <h3 class="m-0 text-green-700 font-bold">
+              <app-icon [icon]="'mdi:file-document-outline'" class="mr-2"></app-icon>SOLICITUDES
+            </h3>
+            <p-selectButton
+              [options]="statusOptions"
+              [formControl]="statusSCControl"
+              [unselectable]="true"
+              size="small"
+            />
+          </div>
+          <custom-input-text-signal
+            [control]="searchSCControl"
+            placeholder="Filtrar por folio, equipo o gasto..."
+            size="small"
+          />
+        </div>
+
+        <!-- Lista SC -->
+        <div class="flex-grow-1 overflow-y-auto p-2 custom-scrollbar">
+          @for (sc of filteredSolicitudes(); track sc.id) {
+          <div
+            cdkDropList
+            (cdkDropListDropped)="onDropOnSolicitud($event, sc)"
+            class="sc-card p-3 mb-2 border-round-lg surface-card border-1 surface-border shadow-1 hover:shadow-3 transition-all transition-duration-200"
+          >
+            <div
+              cdkDrag
+              [cdkDragData]="sc"
+              (cdkDragStarted)="dragStarted()"
+              (cdkDragEnded)="dragEnded()"
+              class="flex flex-column"
+            >
+              <!-- Drag Preview -->
+              <div
+                *cdkDragPreview
+                class="shadow-8 p-3 border-round-xl bg-green-100 border-green-500 border-2 w-20rem"
+              >
+                <div class="font-bold text-green-800">📦 {{ sc.folio }}</div>
+                <div class="text-xs text-green-600 truncate">
+                  {{ sc.equipoOInstalacion }}
+                </div>
+              </div>
+
+              <div class="flex justify-content-between align-items-start mb-2">
+                <div class="flex flex-column">
+                  <div class="flex align-items-center mb-1">
+                    <span
+                      class="text-xs font-bold text-green-600 uppercase tracking-tighter"
+                      >{{ sc.folio }}</span
+                    >
+                    <span
+                      class="text-xs text-500 font-bold border-left-1 pl-2 border-300"
+                    >
+                      <app-icon [icon]="'mdi:calendar-minus'" class="mr-1"></app-icon>{{
+                      sc.fechaSolicitud | date:'dd-MMM-yy':'UTC' }}
+                    </span>
+                  </div>
+                  <span class="font-bold text-900 text-lg line-height-2"
+                    >{{ sc.equipoOInstalacion }}</span
+                  >
+                </div>
+                <div
+                  cdkDragHandle
+                  class="cursor-grab active:cursor-grabbing p-2 bg-gray-100 border-round hover:bg-gray-200 transition-colors"
+                >
+                  <app-icon [icon]="'mdi:menu'" class="text-600"></app-icon>
+                </div>
+              </div>
+
+              <div
+                class="text-sm text-600 line-height-3 italic mb-3 bg-gray-50 p-2 border-round"
+              >
+                "{{ sc.justificacionGasto }}"
+              </div>
+
+              <!-- Chips: Órdenes Vinculadas -->
+              <div class="flex flex-wrap pt-2 border-top-1 border-50">
+                <span class="text-xs font-bold text-400 w-full mb-1"
+                  >ÓRDENES VINCULADAS:</span
+                >
+                @for (orden of sc.ordenesRelacionadas; track orden.id) {
+                <p-tag
+                  severity="warning"
+                  [border-round]="true"
+                  styleClass="px-3 py-1 shadow-2 border-1 border-orange-200"
+                >
+                  <div class="flex align-items-center">
+                    <app-icon [icon]="'mdi:cart'" class="text-xs"></app-icon>
+                    <span class="text-xs font-bold">{{ orden.folio }}</span>
+                    <app-icon [icon]="'mdi:close-circle'" class="cursor-pointer hover:text-red-500 scalein transition-all transition-duration-200" (click)="onUnlink(orden.id)"
+                      pTooltip="Desvincular Orden"></app-icon>
+                  </div>
+                </p-tag>
+                } @empty {
+                <span class="text-xs text-400 italic"
+                  >No hay órdenes enlazadas</span
+                >
+                }
+              </div>
+            </div>
+          </div>
+          } @empty {
+          <div
+            class="text-center p-5 surface-50 border-round-xl text-500 border-dashed border-2"
+          >
+            <app-icon [icon]="'mdi:magnify'" class="text-4xl mb-3 block"></app-icon>
+            No se encontraron solicitudes con estos criterios.
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- 🔵 COLUMNA: ÓRDENES DE COMPRA -->
+    <div class="flex flex-column h-full pl-2">
+      <div
+        class="surface-card h-full flex flex-column border-round-xl shadow-3 border-top-3 border-orange-500 overflow-hidden"
+      >
+        <!-- Filtros OC -->
+        <div class="p-3 bg-orange-50 border-bottom-1 surface-border flex-shrink-0">
+          <div class="flex align-items-center justify-content-between mb-3">
+            <h3 class="m-0 text-orange-700 font-bold">
+              <app-icon [icon]="'mdi:shopping'" class="mr-2"></app-icon>ÓRDENES
+            </h3>
+            <p-selectButton
+              [options]="statusOptions"
+              [formControl]="statusOCControl"
+              [unselectable]="true"
+              size="small"
+            />
+          </div>
+          <custom-input-text-signal
+            [control]="searchOCControl"
+            placeholder="Filtrar por folio, equipo o proveedor..."
+            size="small"
+          />
+        </div>
+
+        <!-- Lista OC -->
+        <div class="flex-grow-1 overflow-y-auto p-2 custom-scrollbar">
+          @for (oc of filteredOrdenes(); track oc.id) {
+          <div
+            cdkDropList
+            (cdkDropListDropped)="onDropOnOrder($event, oc)"
+            class="oc-card p-3 mb-2 border-round-lg border-1 transition-all transition-duration-200"
+            [class.bg-white]="!oc.solicitudCompraId"
+            [class.bg-orange-50]="oc.solicitudCompraId"
+            [class.surface-border]="!oc.solicitudCompraId"
+            [class.border-orange-200]="oc.solicitudCompraId"
+          >
+            <div
+              cdkDrag
+              [cdkDragData]="oc"
+              (cdkDragStarted)="dragStarted()"
+              (cdkDragEnded)="dragEnded()"
+              class="flex flex-column"
+            >
+              <!-- Drag Preview -->
+              <div
+                *cdkDragPreview
+                class="shadow-8 p-3 border-round-xl bg-orange-100 border-orange-500 border-2 w-20rem"
+              >
+                <div class="font-bold text-orange-800">🛒 {{ oc.folio }}</div>
+                <div class="text-xs text-orange-600 truncate">
+                  {{ oc.equipoOInstalacion }}
+                </div>
+              </div>
+
+              <div class="flex justify-content-between align-items-start mb-2">
+                <div class="flex flex-column">
+                  <div class="flex align-items-center mb-1">
+                    <span
+                      class="text-xs font-bold text-orange-600 uppercase tracking-tighter"
+                      >{{ oc.folio }}</span
+                    >
+                    <span
+                      class="text-xs text-500 font-bold border-left-1 pl-2 border-300"
+                    >
+                      <app-icon [icon]="'mdi:calendar'" class="mr-1"></app-icon>{{ oc.fechaSolicitud |
+                      date:'dd-MMM-yy':'UTC' }}
+                    </span>
+                  </div>
+                  <span class="font-bold text-900 text-lg line-height-2"
+                    >{{ oc.equipoOInstalacion }}</span
+                  >
+                </div>
+                <div
+                  cdkDragHandle
+                  class="cursor-grab active:cursor-grabbing p-2 bg-gray-100 border-round hover:bg-gray-200 transition-colors"
+                >
+                  <app-icon [icon]="'mdi:menu'" class="text-600"></app-icon>
+                </div>
+              </div>
+
+              <div class="text-sm text-600 line-height-3 mb-3">
+                {{ oc.justificacionGasto }}
+              </div>
+
+              <!-- Chip de Vínculo: Solicitud -->
+              <div class="flex flex-wrap pt-2 border-top-1 border-50">
+                <span class="text-xs font-bold text-400 w-full mb-1"
+                  >VINCULADA A:</span
+                >
+                @if (oc.solicitudCompraId) {
+                <p-tag
+                  severity="success"
+                  [border-round]="true"
+                  styleClass="px-3 py-1 shadow-2 border-1 border-green-200"
+                >
+                  <div class="flex align-items-center">
+                    <app-icon [icon]="'mdi:file-document-outline'" class="text-xs"></app-icon>
+                    <span class="text-xs font-bold uppercase"
+                      >{{ oc.folioSolicitudCompra }}</span
+                    >
+                    <app-icon [icon]="'mdi:close-circle'" class="cursor-pointer hover:text-red-500 transition-all" (click)="onUnlink(oc.id)"
+                      pTooltip="Eliminar vínculo"></app-icon>
+                  </div>
+                </p-tag>
+                } @else {
+                <span class="text-xs text-400 italic"
+                  >Orden sin solicitud vinculada</span
+                >
+                }
+              </div>
+            </div>
+          </div>
+          } @empty {
+          <div
+            class="text-center p-5 surface-50 border-round-xl text-500 border-dashed border-2"
+          >
+            <app-icon [icon]="'mdi:shopping'" class="text-4xl mb-3 block"></app-icon>
+            No hay órdenes disponibles para este estado.
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .sc-card,
+  .oc-card {
+    transition:
+      transform 0.2s,
+      box-shadow-2 0.2s;
+  }
+  .cdk-drop-list-receiving {
+    background-color: var(--primary-50) !important;
+    border: 2px dashed var(--primary-500) !important;
+    transform: scale(1.02);
+  }
+  .cdk-drag-placeholder {
+    opacity: 0;
+  }
+  .is-dragging .sc-card:not(.cdk-drop-list-receiving),
+  .is-dragging .oc-card:not(.cdk-drop-list-receiving) {
+    pointer-events: none;
+  }
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #e0e0e0;
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #bdbdbd;
+  }
+</style>

@@ -1,0 +1,95 @@
+@if(!bloqueada()) {
+
+@if (ordenCompra().ordenCompraAuth.statusOrdenCompra === 'Pendiente') {
+<p-message severity="warn" styleClass="w-full mt-1">
+  <div class="flex align-items-center justify-content-between w-full gap-3">
+    <div class="flex align-items-center gap-2">
+      <app-icon [icon]="'mdi:clock-outline'"></app-icon>
+      <span class="text-sm font-semibold">Pendiente de autorización</span>
+    </div>
+    @if (!isAuthorizationDisabled()) {
+    <p-button
+      label="Autorizar"
+      size="small"
+      severity="success"
+      (onClick)="onAutorizarCompra()"
+    >
+      <app-icon icon="mdi:check-circle" />
+    </p-button>
+    } @else {
+    <div class="flex align-items-center gap-2">
+      <app-icon [icon]="'mdi:alert'" class="text-red-500"></app-icon>
+      <span class="text-sm font-semibold text-red-600"
+        >No se puede autorizar | {{ authorizationStatus().message }}</span
+      >
+    </div>
+    }
+  </div>
+</p-message>
+}
+
+@if (ordenCompra().ordenCompraAuth.statusOrdenCompra === 'Autorizado') {
+<p-message severity="success" styleClass="w-full mt-1">
+  <div class="flex align-items-center justify-content-between w-full gap-3">
+    <div class="flex align-items-center gap-2">
+      <app-icon [icon]="'mdi:check-circle'"></app-icon>
+      <div class="flex flex-column">
+        <span class="font-semibold">Autorizado</span>
+        <span class="text-sm">{{
+          ordenCompra().ordenCompraAuth.revisadoPorResidente
+        }}</span>
+      </div>
+    </div>
+    @if (canRevoke()) {
+    <p-button
+      label="Revocar"
+      size="small"
+      severity="danger"
+      variant="outlined"
+      (onClick)="onDeautorizarCompra()"
+    >
+      <app-icon icon="mdi:undo" />
+    </p-button>
+    }
+  </div>
+</p-message>
+}
+
+@if (
+  ordenCompra().ordenCompraAuth.statusOrdenCompra !== 'Pendiente' &&
+  ordenCompra().ordenCompraAuth.statusOrdenCompra !== 'Autorizado'
+) {
+<p-message severity="info" styleClass="w-full mt-1">
+  <div class="flex align-items-center gap-2">
+    <app-icon [icon]="'mdi:information'"></app-icon>
+    <div class="flex flex-column">
+      <span class="font-semibold">{{
+        ordenCompra().ordenCompraAuth.statusOrdenCompra
+      }}</span>
+      <span class="text-sm">{{
+        ordenCompra().ordenCompraAuth.revisadoPorResidente
+      }}</span>
+    </div>
+  </div>
+</p-message>
+}
+
+}
+
+@if(bloqueada()) {
+<p-message severity="secondary" styleClass="w-full mt-1">
+  <div class="flex align-items-center gap-2">
+    <app-icon [icon]="'mdi:lock'"></app-icon>
+    <div class="flex flex-column gap-1">
+      <span class="font-semibold">{{
+        ordenCompra().ordenCompraAuth.statusOrdenCompra
+      }}</span>
+      @if (ordenCompra().ordenCompraAuth.statusOrdenCompra !== 'Pendiente') {
+      <span class="text-sm">{{
+        ordenCompra().ordenCompraAuth.revisadoPorResidente
+      }}</span>
+      }
+    </div>
+  </div>
+</p-message>
+}

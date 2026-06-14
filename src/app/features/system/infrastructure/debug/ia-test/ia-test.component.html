@@ -1,0 +1,61 @@
+<div class="p-4">
+  <p-card header="Prueba de Modelos de Inteligencia Artificial">
+    <div class="grid">
+      <div class="col-12 md:col-4" [formGroup]="form">
+        <div class="mb-4">
+          <custom-input-select-signal
+            id="profile"
+            label="Perfil de IA (Modelo)"
+            formControlName="profile"
+            [data]="profiles()"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Selecciona un perfil">
+          </custom-input-select-signal>
+        </div>
+
+        <div class="mb-4">
+          <custom-input-textarea-signal
+            id="prompt"
+            label="Prompt de Prueba"
+            formControlName="prompt"
+            [rows]="5"
+            placeholder="Escribe tu instrucción aquí...">
+          </custom-input-textarea-signal>
+        </div>
+
+        <p-button 
+          label="Probar Modelo" 
+          icon="mdi:lightning-bolt" 
+          (onClick)="onTestProfile()" 
+          [loading]="isLoading()">
+        </p-button>
+      </div>
+
+      <div class="col-12 md:col-8">
+        <div class="result-container border-round p-3 surface-100" style="min-height: 250px;">
+          <h4 class="mt-0 mb-3">Respuesta del Modelo</h4>
+          
+          <div *ngIf="isLoading()" class="flex align-items-center gap-2 text-primary">
+            <app-icon [icon]="'mdi:loading'" class="ds-animate-spin" style="font-size: 1.5rem" />
+            <span>Generando respuesta...</span>
+          </div>
+
+          <div *ngIf="!isLoading() && result()" class="response-content">
+            <div class="mb-2">
+              <span class="font-bold text-500">Perfil Respondiente:</span> 
+              <span class="p-badge p-badge-info ml-2">{{ result()?.profile }}</span>
+            </div>
+            <div class="p-3 surface-card border-round shadow-1 mt-3" style="white-space: pre-wrap;">
+              {{ result()?.response }}
+            </div>
+          </div>
+
+          <div *ngIf="!isLoading() && !result()" class="text-500 font-italic text-center mt-5">
+            Selecciona un modelo, escribe un prompt y presiona "Probar Modelo" para ver el resultado aquí.
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-card>
+</div>

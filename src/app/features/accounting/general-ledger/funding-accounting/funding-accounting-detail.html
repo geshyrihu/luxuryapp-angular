@@ -1,0 +1,217 @@
+<div class="header-container-fondeo">
+  <!-- <img [src]="customerPhoto()" alt="Logo" class="logo-fondeo" /> -->
+
+  <div class="text-center">
+    <h3 class="h3 mb-1">{{ customerName() }}</h3>
+    <div class="text-center font-size-16">{{ periodo() }}</div>
+  </div>
+</div>
+<p
+  class="font-bold font-size-16 mb-1"
+  [class.text-success]="isVerified()"
+  [class.text-color-secondary]="!isVerified()"
+>
+  {{ isVerified() ? '✅' : '⏳' }} Fondeo verificado por {{ verifiedBy() }}.
+</p>
+
+<p
+  class="font-bold font-size-16 mb-1"
+  [class.text-success]="isAuthorized()"
+  [class.text-color-secondary]="!isAuthorized()"
+>
+  {{ isAuthorized() ? '✅' : '⏳' }} Fondeo autorizado {{ authorizedBy() }}.
+</p>
+@if (isAuthorized()) {
+<div class="mb-1 flex">
+  @if (!isConfirmed() && inProgress()) {
+
+  <custom-button
+    label="PROCESAR FONDEO"
+    iconClass="mdi:check-square"
+    customClass="mr-1  border-2 border-surface-200"
+    size="small"
+    (clicked)="onConfirmed()"
+  />
+  } @if (isConfirmed() && isAuthorized() && inProgress()) {
+
+  <custom-button-item
+    label="REABRIR FONDEO"
+    iconClass="mdi:arrow-left"
+    class="mr-1"
+    (clicked)="onRevokeConfirmation()"
+  />
+  } @if (isConfirmed() && inProgress()) {
+
+  <custom-button
+    label="FINALIZAR FONDEO"
+    iconClass="mdi:lock"
+    customClass="mr-1  border-2 border-surface-200"
+    size="small"
+    (clicked)="onCompleted()"
+  />
+  } @if ( !inProgress()) {
+
+  <custom-button
+    label="REVERTIR FONDEO COMPLETADO"
+    iconClass="mdi:alert"
+    customClass="mr-1  border-2 border-surface-200"
+    size="small"
+    (clicked)="onRevertComplete()"
+  />
+  } @if (isVerified() && isAuthorized()) {
+  <custom-button
+    iconClass="mdi:chart-bar"
+    label="Excel"
+    customClass="mr-1  border-2 border-surface-200"
+    size="small"
+    (clicked)="onDownloadFileExcel()"
+  />
+  <custom-button
+    iconClass="mdi:book"
+    label="Pdf"
+    customClass="mr-1  border-2 border-surface-200"
+    size="small"
+    (clicked)="onDownloadFilePdf()"
+  />
+  <custom-button
+    [iconClass]="'mdi:upload'"
+    label="Facturas"
+    customClass="mr-1  border-2 border-surface-200"
+    size="small"
+    (clicked)="onDownloadInvoces()"
+  />
+
+  } @if (isVerified() && isAuthorized()) { }
+  <!-- <p-button
+    icon="mdi:zip-box"
+    pTooltip="Descargar facturas"
+    severity="info"
+    text="true"
+    class="mr-1"
+    (onClick)="onDownloadFilePdf()"
+  ></p-button> -->
+</div>
+} @for (grupo of dataSignal(); track grupo) {
+<div>
+  <p-table
+    [value]="grupo.ordenes"
+    styleClass="custom-table card hidden md:block"
+  >
+    <ng-template #caption>
+      <p-message severity="secondary"
+        >{{grupo.tipoGasto | uppercase}}</p-message
+      >
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th class="text-center" style="width: 30px">N°</th>
+        <th class="text-right table-col-80px">CUENTA</th>
+        <th class="text-start" style="width: 200px">CONCEPTO</th>
+        <th class="text-center" style="width: 20px">PAGADA</th>
+        <th class="text-center table-col-100px">FECHA</th>
+        <th class="text-start table-col-80px">FAC</th>
+        <th class="text-center table-col-60px">Val. XML</th>
+        <th class="text-start" style="width: 220px">PROVEEDOR Y/O ACREEDOR</th>
+        <th class="text-right table-col-120px">TOTAL</th>
+        <th class="text-right table-col-120px">BANCO</th>
+        <th class="text-right table-col-160px">CUENTA/CLABE</th>
+        <th class="text-right table-col-160px">REFERENCIA</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-orden let-rowIndex="rowIndex">
+      <tr>
+        <td
+          class="text-center pointer"
+          (click)="onShowPurchaseDetails(orden.ordenCompraId)"
+        >
+          <span> 🧾 | {{ orden.indice }} </span>
+        </td>
+        <td class="text-right">{{ orden.codigoCuenta }}</td>
+        <td class="text-start">{{ orden.justificacionGasto | uppercase }}</td>
+        <!-- ================================================== -->
+        <!-- INICIO DE LA NUEVA COLUMNA CON EL CHECKBOX         -->
+        <!-- ================================================== -->
+
+        <td class="text-center">
+          <p-checkbox
+            [binary]="true"
+            [formControl]="orden.ordenCompraPagadaControl"
+            (onChange)="onPaymentStatusChange(orden)"
+          ></p-checkbox>
+        </td>
+        <!-- ================================================== -->
+        <!-- FIN DE LA NUEVA COLUMNA                            -->
+        <!-- ================================================== -->
+        <td class="text-center">{{ orden.fechaFactura | uppercase }}</td>
+        <td class="text-start">
+          <!-- @if (orden.factura && !orden.pdfFile) {
+          <span class="text-color-secondary w-fluid">
+            {{ orden.factura | uppercase }}
+          </span>
+          }  -->
+          @if (orden.factura || orden.pdfFile) {
+          <p-tag
+            styleClass="tag-sm cursor-pointer w-fluid text-xs"
+            [style]="{ width: '100%' }"
+            severity="danger"
+            [value]="orden.folioFiscal"
+            (click)="viewPDF(orden.pdfFile)"
+          />
+          }
+        </td>
+        <!-- Columna de Validación XML -->
+        <td class="text-center">
+          @if (orden.validationStatus === true) {
+          <p-tag
+            styleClass=" cursor-pointer text-xs"
+            pTooltip="{{ orden.validationMessage }}"
+            tooltipPosition="left"
+            icon="mdi:check-circle"
+            severity="success"
+          ></p-tag>
+          } @else if (orden.validationStatus === false) {
+          <p-tag
+            styleClass=" cursor-pointer text-xs"
+            pTooltip="{{ orden.validationMessage }}"
+            tooltipPosition="left"
+            icon="mdi:close-circle"
+            severity="danger"
+          ></p-tag>
+          } @else {
+          <p-tag
+            styleClass="cursor-pointer text-xs"
+            pTooltip="No hay XML para validar"
+            tooltipPosition="left"
+            icon="mdi:help-circle"
+            severity="secondary"
+          ></p-tag>
+          }
+        </td>
+        <td class="text-start">{{ orden.nameProvider | uppercase }}</td>
+        <td class="text-right">{{ orden.total | number: '1.2-2' }}</td>
+
+        <td class="text-right">{{ orden.shortName | uppercase }}</td>
+        <td class="text-right">{{ orden.paymentAccount | uppercase }}</td>
+        <td class="text-right">{{ orden.interbankCode | uppercase }}</td>
+      </tr>
+    </ng-template>
+    <ng-template #footer>
+      <tr>
+        <td colspan="6"></td>
+        <td class="font-bold">TOTAL {{ grupo.tipoGasto | uppercase }}</td>
+        <td class="font-weight-bold td-background-f3f6fa">
+          {{ grupo.totalGrupo | number: '1.2-2' }}
+        </td>
+        <td colspan="3"></td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+}
+
+
+
+
+
+
+

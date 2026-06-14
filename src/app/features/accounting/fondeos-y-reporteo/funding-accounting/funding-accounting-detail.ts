@@ -1,0 +1,232 @@
+import { CommonModule, DecimalPipe, UpperCasePipe } from "@angular/common";
+import { Component, DestroyRef, effect, inject, signal } from "@angular/core";
+import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
+import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
+import { CheckboxModule } from "primeng/checkbox";
+import { MessageModule } from "primeng/message";
+import { TableModule } from "primeng/table";
+import { TagModule } from "primeng/tag";
+import { TooltipModule } from "primeng/tooltip";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
+import { PdfViewerModal } from "src/app/core/components/pdf-viewer-modal/pdf-viewer-modal";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { SignalRService } from "src/app/core/services/signalr.service";
+import { FundingExcelExportService } from "src/app/features/accounting/general-ledger/contabilidad/services/funding-excel-export.service";
+import { FundingPurchaseDetail } from "src/app/features/accounting/fondeos-y-reporteo/funding/funding-purchase-detail";
+import { FundingDetailDTO } from "src/app/features/accounting/fondeos-y-reporteo/funding/model/funding-detail-dto";
+@Component({
+  selector: "app-funding-accounting-detail",
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    TableModule,
+    CheckboxModule,
+    MessageModule,
+    TagModule,
+    TooltipModule,
+    UpperCasePipe,
+    DecimalPipe,
+    CustomButton,
+    CustomButtonItem,
+  ],
+  styleUrls: ["./funding-accounting-detail.scss"],
+  templateUrl: "./funding-accounting-detail.html",
+})
+export class FundingAccountingDetail {
+  routeActive = inject(ActivatedRoute);
+  dialogHandlerS = inject(DialogHandlerService);
+  destroyRef = inject(DestroyRef); // Para la limpieza automótica de suscripciones.
+  apiResponseS = inject(ApiResponseService);
+  customerIdS = inject(CustomerIdService);
+  signalRS = inject(SignalRService);
+  excelExportService = inject(FundingExcelExportService);
+  loading = signal(true);
+
+  dataSignal = signal<any[]>([]);
+  fullData = signal<FundingDetailDTO | null>(null);
+
+  customerName = signal("");
+  customerPhoto = signal("");
+  periodo = signal("");
+  rango = signal("");
+  isVerified = signal(false);
+  verifiedBy = signal("");
+  isAuthorized = signal(false);
+  authorizedBy = signal("");
+  isConfirmed = signal(false);
+  inProgress = signal(true);
+
+  viewInstructions = signal(false);
+
+  id: string = "";
+
+  private routeParamsSignal = toSignal(this.routeActive.params);
+
+  constructor() {
+    // Efecto reactivo: cuando el customerId estó listo y cargado, carga los datos
+    effect(() => {
+      const customerId: string = this.customerIdS.customerId();
+      const isLoaded = this.customerIdS.customerDataReady();
+      if (customerId && isLoaded) {
+        this.onLoadData(customerId);
+      }
+    });
+    this.signalRS.messageReceived$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.onLoadData(this.customerIdS.customerId());
+      });
+    effect(() => {
+      const params = this.routeParamsSignal();
+      if (params) {
+        this.id = params["id"];
+      }
+    });
+  }
+
+  onLoadData(customerId: string) {
+    const urlApi = `funding/details/${this.id}/${customerId}`;
+    this.apiResponseS.onGetList(urlApi).then((result: any) => {
+      this.fullData.set(result);
+      this.onSetSignalProperty(result);
+    });
+  }
+
+  onSetSignalProperty(result: any) {
+    const gruposConControls = result.grupos.map((grupo: any) => {
+      const ordenesWithControls = grupo.ordenes.map((orden: any) => {
+        if (!orden.ordenCompraPagadaControl) {
+          orden.ordenCompraPagadaControl = new FormControl(
+            orden.ordenCompraPagada,
+          );
+        } else {
+          orden.ordenCompraPagadaControl.setValue(orden.ordenCompraPagada, {
+            emitEvent: false,
+          });
+        }
+        return orden;
+      });
+      return { ...grupo, ordenes: ordenesWithControls };
+    });
+    this.dataSignal.set(gruposConControls);
+    this.customerName.set(result.customerName);
+    this.customerPhoto.set(result.customerPhoto);
+    this.periodo.set(result.periodo);
+    this.rango.set(result.rango);
+    this.isVerified.set(result.isVerified);
+    this.verifiedBy.set(result.verifiedBy);
+    this.authorizedBy.set(result.authorizedBy);
+    this.isAuthorized.set(result.isAuthorized);
+    this.isConfirmed.set(result.isConfirmed);
+    this.inProgress.set(result.inProgress);
+  }
+  viewPDF(url: string): void {
+    if (!url) return;
+    this.dialogHandlerS.openDialog(
+      PdfViewerModal,
+      { pdfSrc: url, fileName: "factura" },
+      "factura",
+      this.dialogHandlerS.sizeFull,
+      true, // ? autoMaximize = true
+    );
+  }
+
+  onDownloadFilePdf() {
+    const urlApi = `fundingfile/pdf/${this.id}`;
+    const nameReport = this.periodo() + ".pdf";
+    this.apiResponseS.onDownloadFile(urlApi, nameReport);
+  }
+  onDownloadInvoces() {
+    const urlApi = `fundingfile/invoices/${this.id}`; // Nota: "invoices" plural y coincidir con backend
+    const nameReport = this.periodo() + "_Facturas.zip";
+    this.apiResponseS.onDownloadFile(urlApi, nameReport);
+  }
+
+  onConfirmed() {
+    const urlApi = `funding/confirm/${this.id}`;
+    this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
+      if (result) {
+        this.isConfirmed.set(false);
+      }
+    });
+  }
+  onRevokeConfirmation() {
+    const urlApi = `funding/revoke-confirmation/${this.id}`;
+    this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
+      if (result) {
+        this.isConfirmed.set(false);
+      }
+    });
+  }
+  onCompleted() {
+    const urlApi = `funding/completed/${this.id}`;
+    this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
+      if (result) {
+        this.inProgress.set(false);
+      }
+    });
+  }
+  onRevertComplete() {
+    const urlApi = `funding/revert-complete/${this.id}`;
+    this.apiResponseS.onGetItem(urlApi).then((result: boolean) => {
+      if (result) {
+        this.inProgress.set(false);
+      }
+    });
+  }
+  onShowPurchaseDetails(ordenCompraId: string) {
+    this.dialogHandlerS.openDialog(
+      FundingPurchaseDetail,
+      { ordenCompraId: ordenCompraId },
+      "Detalles de la Orden de Compra",
+      this.dialogHandlerS.sizeFull,
+    );
+  }
+
+  onDownloadFileExcel() {
+    const data = this.fullData();
+    if (data) {
+      this.excelExportService.exportToExcel(data);
+    } else {
+      console.error("No hay datos disponibles para exportar.");
+    }
+  }
+
+  /**
+   * Se dispara cuando el usuario cambia el estado de pago de una orden.
+   * Llama a la API usando el nuevo mótodo onPatch para persistir el cambio.
+   * @param orden El objeto completo de la fila que se estó modificando.
+   */
+  onPaymentStatusChange(orden: any): void {
+    const nuevoEstado = orden.ordenCompraPagadaControl.value;
+    const ordenId = orden.ordenCompraId;
+
+    console.log(
+      `? Actualizando estado de pago para OC ID: ${ordenId} a: ${nuevoEstado}`,
+    );
+
+    // 1. Preparamos la URL y el cuerpo (body) para la petición PATCH.
+    const urlApi = `funding/update-purchase-paid-status/${ordenId}`;
+    const body = { isPaid: nuevoEstado };
+
+    // 2. Llamamos a nuestro nuevo y flamante mótodo onPatch.
+    //    Tu servicio ya se encarga de los toasts de carga y óxito/error.
+    this.apiResponseS.onPatch(urlApi, body).then((success) => {
+      // 3. Manejamos el caso de error. Si la API falla, 'success' seró false.
+      if (!success) {
+        // óCRóTICO! Si la actualización falló en el backend,
+        // revertimos el cambio en la UI para que no mienta al usuario.
+        console.error(
+          `Falló la actualización para la OC ${ordenId}. Revertiendo el cambio en la UI.`,
+        );
+        orden.ordenCompraPagadaControl.setValue(!nuevoEstado, {
+          emitEvent: false,
+        });
+      }
+    });
+  }
+}

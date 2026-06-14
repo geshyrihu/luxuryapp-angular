@@ -1,0 +1,174 @@
+.catalog-root {
+  min-height: 100vh;
+  background-color: var(--ds-bg-page);
+  color: var(--ds-text-primary);
+  font-family: var(--ds-font-family-base);
+  transition: all 0.3s ease;
+
+  // --- Nav Styling ---
+  .catalog-nav {
+    background-color: var(--ds-bg-surface);
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    border-bottom: 1px solid var(--ds-border);
+  }
+
+  // --- Main Layout ---
+  .catalog-main-layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .catalog-body {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  // --- Section Headers ---
+  .section-header {
+    border-left: 4px solid var(--ds-primary);
+    padding-left: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  // --- Design Tokens ---
+  .token-swatch {
+    width: 160px;
+    background: var(--ds-bg-surface);
+    border-radius: var(--ds-radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid var(--ds-border);
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: translateY(-4px);
+      border-color: var(--ds-primary);
+    }
+
+    .swatch-color {
+      height: 80px;
+      width: 100%;
+    }
+
+    .swatch-info {
+      padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+
+      .name {
+        font-weight: bold;
+        font-size: 0.85rem;
+      }
+
+      .value {
+        font-family: var(--ds-font-family-mono);
+        font-size: 0.75rem;
+        opacity: 0.7;
+      }
+    }
+  }
+
+  // --- Documental Guide & Audit ---
+  .token-swatch.flex {
+    width: 100%;
+    
+    &:hover {
+      border-color: var(--ds-primary);
+    }
+  }
+
+  code {
+    background: var(--ds-bg-sunken);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: var(--ds-font-family-mono);
+  }
+
+  .cursor-pointer:hover {
+    filter: brightness(0.95);
+  }
+
+  // --- Cards & Content ---
+  .p-card {
+    height: 100%;
+    border: 1px solid var(--ds-border);
+    box-shadow: var(--ds-shadow-sm) !important;
+  }
+
+  .bg-sunken {
+    background-color: var(--ds-bg-sunken);
+  }
+
+  // --- Animations ---
+  .fadein {
+    animation: fadeIn 0.4s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  // --- Mobile Simulation Mode ---
+  &.mobile-preview {
+    background-color: #1e1e1e;
+    
+    .catalog-body {
+      max-width: 400px;
+      margin: 2rem auto;
+      height: 800px;
+      overflow-y: auto;
+      border: 12px solid #333;
+      border-radius: 40px;
+      background-color: var(--ds-bg-page);
+      box-shadow: 0 0 50px rgba(0,0,0,0.5);
+      padding: 0 !important;
+
+      // Estilos específicos para que el preview móvil se vea "nativo"
+      section {
+        padding: 1rem;
+      }
+    }
+
+    .catalog-nav {
+      background: #111;
+      color: white;
+      border: none;
+      
+      .text-lg, .text-secondary, .text-xs { color: white !important; }
+      p-selectbutton ::ng-deep .p-button { background: #333; color: #ccc; border: none; }
+      p-selectbutton ::ng-deep .p-highlight { background: var(--ds-primary) !important; color: white !important; }
+    }
+  }
+}
+
+// --- Overrides PrimeNG para el catálogo ---
+.catalog-root {
+  p-selectbutton ::ng-deep {
+    .p-button {
+      font-size: 0.85rem;
+      padding: 0.5rem 1rem;
+    }
+  }
+
+  p-divider ::ng-deep {
+    .p-divider-vertical {
+      height: 24px;
+      margin: 0 0.5rem;
+    }
+  }
+}
+
+// Estilos para los snippets de código si se usan
+pre {
+  background: var(--ds-bg-sunken);
+  padding: 1rem;
+  border-radius: var(--ds-radius-md);
+  font-family: var(--ds-font-family-mono);
+  font-size: 0.8rem;
+  overflow-x: auto;
+}

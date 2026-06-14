@@ -5,7 +5,7 @@ export const recurringTasksRoutes: Routes = [
     path: "",
     loadComponent: () =>
       import(
-        "src/app/features/tenant/recurring-tasks/templates/task-template-list/task-template-list"
+        "src/app/features/operations/task-engine/recurring-tasks/templates/task-template-list/task-template-list"
       ).then((m) => m.TaskTemplateList),
     canActivate: [authGuard],
     data: {
@@ -17,7 +17,7 @@ export const recurringTasksRoutes: Routes = [
     path: ":id/items",
     loadComponent: () =>
       import(
-        "src/app/features/tenant/recurring-tasks/templates/task-template-items/task-template-items"
+        "src/app/features/operations/task-engine/recurring-tasks/templates/task-template-items/task-template-items"
       ).then((m) => m.TaskTemplateItems),
     canActivate: [authGuard],
     data: {
@@ -29,7 +29,7 @@ export const recurringTasksRoutes: Routes = [
     path: "customer-config",
     loadComponent: () =>
       import(
-        "src/app/features/tenant/recurring-tasks/templates/customer-config/customer-config"
+        "src/app/features/operations/task-engine/recurring-tasks/templates/customer-config/customer-config"
       ).then((m) => m.CustomerConfig),
     canActivate: [authGuard],
     data: {
@@ -41,7 +41,7 @@ export const recurringTasksRoutes: Routes = [
     path: "my-tasks",
     loadComponent: () =>
       import(
-        "src/app/features/tenant/recurring-tasks/instances/daily-task-list/daily-task-list"
+        "src/app/features/operations/task-engine/recurring-tasks/instances/daily-task-list/daily-task-list"
       ).then((m) => m.DailyTaskList),
     canActivate: [authGuard],
     data: {

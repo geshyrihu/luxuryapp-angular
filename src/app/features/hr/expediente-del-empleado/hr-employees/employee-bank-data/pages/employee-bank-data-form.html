@@ -1,0 +1,67 @@
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div class="grid">
+    <div class="col-12">
+      <p class="m-0 text-sm text-600">
+        Registra la cuenta bancaria del empleado y los datos del beneficiario o titular asociado.
+      </p>
+    </div>
+
+    <div class="col-12 md:col-6">
+      <custom-input-select-signal
+        [control]="f.bankId"
+        label="Banco"
+        [data]="cbBanks()"
+        placeholder="Seleccione un banco"
+        [filter]="true"
+      />
+    </div>
+
+    <div class="col-12 md:col-6">
+      <custom-input-select-signal
+        [control]="f.relacion"
+        label="Parentesco del beneficiario"
+        [data]="cbRelations()"
+        placeholder="Seleccione una opcion"
+        [filter]="true"
+      />
+    </div>
+
+    <div class="col-12 md:col-6">
+      <custom-input-text-signal
+        [control]="f.bankAccount"
+        label="Numero de Cuenta"
+        placeholder="Ej. 1234567890"
+      />
+    </div>
+
+    <div class="col-12 md:col-6">
+      <custom-input-mask-signal
+        [control]="f.bankKey"
+        label="CLABE Interbancaria"
+        customMask="000000000000000000"
+        placeholder="18 digitos"
+      />
+    </div>
+
+    <div class="col-12 md:col-6">
+      <custom-input-text-signal
+        [control]="f.nameContact"
+        label="Nombre del beneficiario o titular"
+        placeholder="Nombre completo del beneficiario"
+      />
+    </div>
+
+    <div class="col-12 md:col-6">
+      <custom-input-mask-signal
+        [control]="f.phoneNumber"
+        label="Telefono del beneficiario"
+        customMask="000 000 0000"
+        placeholder="10 digitos"
+      />
+    </div>
+
+    <div class="col-12 flex justify-content-end mt-4">
+      <custom-button-save [disabled]="form.invalid" [submitting]="submitting()" />
+    </div>
+  </div>
+</form>

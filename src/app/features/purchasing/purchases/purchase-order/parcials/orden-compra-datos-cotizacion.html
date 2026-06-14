@@ -1,0 +1,83 @@
+<div class="card p-0 overflow-hidden">
+  <div
+    class="flex align-items-center justify-content-between px-3 py-2 bg-gray-800"
+  >
+    <div class="flex align-items-center gap-2">
+      <app-icon [icon]="'mdi:clipboard-text'" class="text-white text-sm"></app-icon>
+      <span class="font-semibold text-sm text-white">DATOS PRINCIPALES</span>
+    </div>
+    @if (!bloqueada()) {
+    <p-button
+      size="small"
+      variant="text"
+      rounded
+      (onClick)="onModalOrdenCompra()"
+      pTooltip="Editar datos principales"
+      styleClass="text-white"
+    >
+      <app-icon icon="mdi:pencil" />
+    </p-button>
+    }
+  </div>
+
+  <div class="p-3">
+    <div class="mb-2 flex">
+      <div class="text-color-secondary text-xs font-semibold table-col-40">
+        FOLIO
+      </div>
+      <div class="text-sm flex-grow-1 font-medium">{{ ordenCompra().folio }}</div>
+    </div>
+
+    @if (ordenCompra().folioSolicitudCompra) {
+    <div class="mb-2 flex">
+      <div class="text-color-secondary text-xs font-semibold table-col-40">
+        SOLICITUD
+      </div>
+      <div class="flex-grow-1">
+        <a
+          class="text-sm"
+          [routerLink]="['/purchases/solicitud-compra/', solicitudCompraId]"
+        >
+          {{ ordenCompra().folioSolicitudCompra }}
+        </a>
+      </div>
+    </div>
+    }
+
+    <div class="mb-2 flex">
+      <div class="text-color-secondary text-xs font-semibold table-col-40">
+        FECHA
+      </div>
+      <div class="text-sm flex-grow-1">{{ ordenCompra().fechaSolicitud }}</div>
+    </div>
+
+    <div class="mb-2 flex">
+      <div class="text-color-secondary text-xs font-semibold table-col-40">
+        AREA
+      </div>
+      <div class="text-sm flex-grow-1">
+        {{ ordenCompra().equipoOInstalacion }}
+      </div>
+    </div>
+
+    <div class="mb-2 flex">
+      <div class="text-color-secondary text-xs font-semibold table-col-40">
+        JUSTIFICACION
+      </div>
+      <div class="text-sm flex-grow-1 text-justify">
+        {{ ordenCompra().justificacionGasto }}
+      </div>
+    </div>
+
+    @if (ordenCompra().notasEspeciales) {
+    <div class="mb-2 flex">
+      <div class="text-color-secondary text-xs font-semibold table-col-40">
+        NOTAS
+      </div>
+      <div class="text-sm flex-grow-1 text-justify">
+        {{ ordenCompra().notasEspeciales }}
+      </div>
+    </div>
+    }
+  </div>
+</div>

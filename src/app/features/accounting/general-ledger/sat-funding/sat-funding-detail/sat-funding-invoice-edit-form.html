@@ -1,0 +1,45 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="flex flex-column">
+    <div class="w-full">
+      <custom-input-select-signal
+        [control]="form.controls.bankId"
+        [data]="banks"
+        label="Banco"
+        [filter]="true"
+      />
+    </div>
+    <div class="w-full">
+      <custom-input-select-signal
+        [control]="form.controls.tipoGasto"
+        [data]="tiposGasto"
+        label="Tipo de Gasto"
+        [required]="true"
+        [filter]="true"
+      />
+    </div>
+    <div class="w-full">
+      <custom-input-text-signal
+        [control]="form.controls.interbankCode"
+        label="CLABE"
+      ></custom-input-text-signal>
+    </div>
+    <div class="w-full">
+      <custom-input-text-signal
+        [control]="form.controls.convenio"
+        label="Convenio"
+      ></custom-input-text-signal>
+    </div>
+    <div class="w-full">
+      <custom-input-text-signal
+        [control]="form.controls.referencia"
+        label="Referencia"
+      ></custom-input-text-signal>
+    </div>
+  </div>
+  <div class="flex justify-content-end mt-4">
+    <custom-button-save
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+    ></custom-button-save>
+  </div>
+</form>

@@ -1,0 +1,10 @@
+<div class="card">
+  <div class="card-body text-center m-5">
+    <custom-input-img-signal
+      (fileSelected)="changeImg($event)"
+      [urlImgCurrent]="imgUpload() ? imgTemp() : photoPath()"
+      label="Foto de perfil"
+      [horizontal]="false"
+    />
+  </div>
+</div>

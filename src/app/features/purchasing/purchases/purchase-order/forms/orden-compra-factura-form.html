@@ -1,0 +1,119 @@
+<p-card>
+  <p-table
+    [value]="facturas()"
+    [tableStyle]="{'min-width': '50rem'}"
+    styleClass="p-datatable-sm"
+  >
+    <ng-template #header>
+      <tr>
+        <th>Factura</th>
+        <th>Tipo</th>
+        <th>Folio Fiscal</th>
+        <th>Fecha</th>
+        <th>PDF</th>
+        <th>XML</th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-invoice>
+      <tr>
+        <td>{{ invoice.factura }}</td>
+        <td>
+          <span
+            class="font-bold cursor-pointer hover:underline"
+            [class]="invoice.tipoComprobante === 'E' ? 'text-red-500' : 'text-green-500'"
+            pTooltip="Clic para cambiar tipo"
+            (click)="toggleType(invoice)"
+          >
+            {{ invoice.tipoComprobante === 'E' ? 'EGRESO' : 'INGRESO' }}
+          </span>
+        </td>
+        <td>{{ invoice.folioFiscal }}</td>
+        <td>{{ invoice.fechaFactura }}</td>
+        <td>
+          @if(invoice.pdfFile) {
+          <app-icon [icon]="'mdi:file-pdf-box'" class="text-red-500 text-xl"></app-icon>
+          }
+        </td>
+        <td>
+          @if(invoice.xmlFile) {
+          <app-icon [icon]="'mdi:file-document-outline'" class="text-blue-500 text-xl"></app-icon>
+          }
+        </td>
+        <td>
+          <div class="flex gap-1">
+            <custom-button-edit (clicked)="onEditInvoice(invoice)" />
+            <custom-button-delete (confirmed)="onDeleteInvoice(invoice.id)" />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="7" class="text-center p-4">No hay facturas asociadas.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <div class="grid mt-4 surface-ground p-3 border-round">
+    <div class="col-12 font-bold mb-2">
+      {{ isEditing() ? 'Editar Factura' : 'Agregar Nueva Factura' }}
+    </div>
+
+    <div class="col-12 mb-3">
+      <custom-input-select-signal
+        label="Tipo de Comprobante"
+        [data]="cb_tipos"
+        [control]="form.controls.tipoComprobante"
+        placeholder="Selecciona el tipo"
+        [horizontal]="true"
+        [filter]="true"
+      />
+    </div>
+
+    <div class="col-12 md:col-6">
+      <label class="block mb-2">PDF</label>
+      <custom-input-file-signal
+        accept=".pdf"
+        (fileSelected)="onPdfFileChange($event)"
+        [horizontal]="false"
+      />
+      @if(isEditing()) {
+      <small class="text-green-600 block mt-1"
+        ><app-icon [icon]="'mdi:check-circle'"></app-icon> Archivo actual conservado. Subir
+        nuevo para reemplazar.</small
+      >
+      }
+    </div>
+    <div class="col-12 md:col-6">
+      <label class="block mb-2">XML</label>
+      <custom-input-file-signal
+        accept=".xml"
+        (fileSelected)="onXmlFileChange($event)"
+        [horizontal]="false"
+      />
+      @if(isEditing()) {
+      <small class="text-green-600 block mt-1"
+        ><app-icon [icon]="'mdi:check-circle'"></app-icon> Archivo actual conservado. Subir
+        nuevo para reemplazar.</small
+      >
+      }
+    </div>
+    <div class="col-12 md:col-12 mt-2 flex justify-content-end">
+      @if(isEditing()) {
+      <custom-button
+        label="Cancelar"
+        severity="secondary"
+        (clicked)="onCancelEdit()"
+      />
+      }
+      <custom-button
+        [label]="isEditing() ? 'Actualizar Factura' : 'Agregar Factura'"
+        [iconClass]="isEditing() ? 'mdi:content-save' : 'mdi:plus'"
+        (clicked)="onSubmit()"
+        [disabled]="submitting()"
+        severity="primary"
+      />
+    </div>
+  </div>
+</p-card>

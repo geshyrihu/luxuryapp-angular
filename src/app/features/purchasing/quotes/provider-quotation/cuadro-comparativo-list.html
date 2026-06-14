@@ -1,0 +1,529 @@
+@if (solicitudCompra) {
+<header
+  class="surface-card border-round-xl border-1 surface-border shadow-1 overflow-hidden mb-4 w-full"
+>
+  <div class="bg-primary" style="height: 0.45rem"></div>
+  <div class="surface-100 p-1 md:p-2 text-center">
+    <div class="w-full">
+      <h1 class="text-primary text-3xl md:text-4xl line-height-2 m-0">
+        {{ solicitudCompra.equipoOInstalacion }}
+      </h1>
+      <p class="text-900 font-semibold m-0 mt-2 line-height-3">
+        {{ solicitudCompra.justificacionGasto }}
+      </p>
+    </div>
+  </div>
+</header>
+}
+<div
+  class="surface-card border-round-xl border-1 surface-border shadow-1 p-2 mb-4"
+>
+  <div
+    class="flex align-items-center justify-content-between gap-2 flex-wrap md:flex-nowrap"
+  >
+    <!-- Folio alineado a la izquierda -->
+    <p class="text-color-secondary m-0 mt-0">{{ folio }}</p>
+
+    <!-- Contenedor de botones alineados a la derecha (con scroll horizontal en móvil) -->
+    <div
+      class="flex align-items-center justify-content-end gap-2 overflow-x-auto"
+    >
+      <custom-button
+        [iconClass]="cleanView ? 'mdi:eye-outline' : 'mdi:eye-off'"
+        [label]="cleanView ? 'Mostrar vista' : 'Limpiar vista'"
+        [showLabelOnDesktop]="false"
+        (clicked)="toggleCleanView()"
+        severity="secondary"
+        variant="outlined"
+        [tooltip]="cleanView ? 'Mostrar acciones' : 'Ocultar acciones y controles'"
+        size="small"
+        tooltipPosition="left"
+      />
+      @if (!cleanView && cotizacionProveedorSignal().length > 1) {
+      <custom-button
+        iconClass="mdi:chip"
+        label="AI Auditoria"
+        [showLabelOnDesktop]="false"
+        (clicked)="onAnalyzeAI()"
+        [disabled]="isAnalyzing"
+        severity="help"
+        tooltip="Analizar con Inteligencia Artificial"
+        size="small"
+        tooltipPosition="left"
+      />
+      <custom-button
+        iconClass="mdi:chart-bar"
+        label="Evaluar"
+        [showLabelOnDesktop]="false"
+        (clicked)="evaluarPrecioIndependiente = !evaluarPrecioIndependiente"
+        [variant]="!evaluarPrecioIndependiente ? 'outlined' : undefined"
+        severity="warning"
+        tooltip="Evaluar"
+        size="small"
+        tooltipPosition="left"
+      />
+      @if (canOptimizeProducts()) {
+      <custom-button
+        [iconClass]="optimizeProducts ? 'mdi:view-list' : 'mdi:table-eye-off'"
+        [label]="optimizeProducts ? 'Ver detalle' : 'Optimizar'"
+        (clicked)="toggleOptimizeProducts()"
+        severity="info"
+        variant="outlined"
+        tooltip="Compactar productos para vista ejecutiva"
+        size="small"
+        tooltipPosition="left"
+      />
+      } } @if (!cleanView && cotizacionProveedorSignal().length < 3) {
+      <custom-button
+        iconClass="mdi:plus"
+        label="Agregar cotizacion"
+        variant="outlined"
+        (clicked)="onModalAddProveedor()"
+        tooltip="Agregar Cotizacion"
+        tooltipPosition="left"
+        size="small"
+      />
+      } @if (!cleanView) {
+      <custom-button
+        iconClass="mdi:wallet-outline"
+        label="Agregar presupuesto"
+        [showLabelOnDesktop]="true"
+        (clicked)="onOpenAddBudgetModal()"
+        severity="contrast"
+        variant="outlined"
+        size="small"
+      />
+      <input
+        type="file"
+        #evidenceInput
+        style="display: none"
+        accept=".jpg,.jpeg,.png"
+        multiple
+        (change)="onEvidenceFilesSelected($event)"
+      />
+      <custom-button
+        iconClass="mdi:image-multiple"
+        label="Seleccionar fotos"
+        [showLabelOnDesktop]="true"
+        (clicked)="evidenceInput.click()"
+        severity="secondary"
+        variant="outlined"
+        [disabled]="evidenciasSignal().length >= 4"
+        size="small"
+      />
+      <custom-button
+        iconClass="mdi:upload"
+        label="Subir fotos"
+        [showLabelOnDesktop]="true"
+        (clicked)="onUploadEvidenceFiles()"
+        [disabled]="selectedEvidenceFiles.length === 0"
+        severity="success"
+        variant="outlined"
+        size="small"
+      />
+      }
+      <custom-button
+        [iconClass]="isAuthorized() ? 'mdi:close' : (isDenied() ? 'mdi:cancel' : 'mdi:check')"
+        [label]="isAuthorized() ? 'Desautorizar' : (isDenied() ? 'Resolver' : 'Autorizar')"
+        [showLabelOnDesktop]="true"
+        (clicked)="onOpenAutorizarModal()"
+        [severity]="isAuthorized() ? 'danger' : (isDenied() ? 'warning' : 'success')"
+        variant="outlined"
+        size="small"
+      />
+    </div>
+  </div>
+</div>
+<div class="grid mb-4">
+  <div class="col-12">
+    <div class="surface-card border-round p-3">
+      <div
+        class="flex flex-wrap xl:flex-nowrap align-items-center justify-content-between gap-3"
+      >
+        <div class="flex flex-column gap-1 min-w-0">
+          <div class="flex align-items-center gap-2 min-w-0">
+            <span class="font-semibold">Autorizada por</span>
+            <span
+              class="text-600 white-space-nowrap overflow-hidden text-overflow-ellipsis"
+            >
+              {{ solicitudCompra?.autorizadaPorDisplay || "Sin autorizacion" }}
+            </span>
+          </div>
+          <small class="text-600">
+            Estado: {{ solicitudCompra?.estatusDisplay || "Pendiente" }}
+          </small>
+          @if (isDenied() && solicitudCompra?.motivoNoAutorizacion) {
+          <small class="text-red-600">
+            Motivo: {{ solicitudCompra?.motivoNoAutorizacion }}
+          </small>
+          }
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-3 mt-3 align-items-center border-top-1 surface-border pt-3">
+        <!-- Requiere contrato -->
+        <div class="flex align-items-center gap-2">
+          <span class="font-semibold text-sm">Requiere contrato:</span>
+          @if (!cleanView) {
+          <custom-button
+            [iconClass]="solicitudCompra?.requiereContrato ? 'mdi:file-sign' : 'mdi:file-document-outline'"
+            [label]="solicitudCompra?.requiereContrato ? 'Si requiere' : 'No requiere'"
+            [severity]="solicitudCompra?.requiereContrato ? 'success' : 'secondary'"
+            [variant]="solicitudCompra?.requiereContrato ? undefined : 'outlined'"
+            size="small"
+            (clicked)="onToggleRequiereContrato()"
+          />
+          } @else {
+          <span class="text-sm font-semibold" [class.text-green-600]="solicitudCompra?.requiereContrato">
+            {{ solicitudCompra?.requiereContrato ? 'Si' : 'No' }}
+          </span>
+          }
+        </div>
+
+        <!-- Junta de comite -->
+        <div class="flex align-items-center gap-2 flex-wrap">
+          <span class="font-semibold text-sm">Junta de comite:</span>
+          @if (solicitudCompra?.comiteEvento) {
+          <span class="text-sm text-color-secondary">
+            {{ solicitudCompra.comiteEvento.startAt | date:'dd MMM yyyy' }} &mdash; {{ solicitudCompra.comiteEvento.title }}
+          </span>
+          @if (!cleanView) {
+          <custom-button
+            iconClass="mdi:calendar-edit"
+            label="Cambiar"
+            size="small"
+            severity="secondary"
+            variant="text"
+            tooltip="Cambiar junta asignada"
+            (clicked)="onOpenAsignarJuntaModal()"
+          />
+          }
+          } @else {
+          @if (!cleanView) {
+          <custom-button
+            iconClass="mdi:calendar-plus"
+            label="Asignar junta"
+            size="small"
+            severity="info"
+            variant="outlined"
+            tooltip="Seleccionar la junta donde se presentara esta solicitud"
+            (clicked)="onOpenAsignarJuntaModal()"
+          />
+          } @else {
+          <span class="text-600 text-sm">Sin asignar</span>
+          }
+          }
+        </div>
+      </div>
+
+      @if (!cleanView && selectedEvidenceFiles.length > 0) {
+      <div class="mt-3">
+        <small class="block font-semibold mb-2">Fotos listas para subir</small>
+        <div class="flex flex-wrap gap-2">
+          @for (file of selectedEvidenceFiles; track file.name + file.size) {
+          <span class="text-sm">{{ file.name }}</span>
+          }
+        </div>
+      </div>
+      }
+
+      <div class="mt-3">
+        <div class="grid mx-0">
+          @if (getVisualEvidenceCards().length === 0) {
+          <p class="mb-0 text-600 col-12">
+            No hay evidencias cargadas para esta solicitud.
+          </p>
+          } @else { @for (evidencia of getVisualEvidenceCards(); track
+          evidencia.id) {
+          <div class="col-12 md:col-3 px-2">
+            <div
+              class="border-1 surface-border border-round p-2 h-full surface-card"
+            >
+              <p-image
+                [src]="evidencia.src"
+                [alt]="evidencia.alt"
+                styleClass="block w-full"
+                [imageStyle]="{
+                width: '100%',
+                height: '220px',
+                display: 'block',
+                'object-fit': 'cover',
+                'border-radius': '10px'
+              }"
+                [preview]="true"
+              />
+              <div class="flex justify-content-between align-items-center mt-2">
+                <small class="text-600">
+                  {{ evidencia.isPending ? "Pendiente de carga" : "Guardada" }}
+                </small>
+                @if (!cleanView && !evidencia.isPending) {
+                <custom-button
+                  iconClass="mdi:delete"
+                  label="Eliminar"
+                  [showLabelOnDesktop]="false"
+                  (clicked)="onDeleteEvidence(evidencia.id)"
+                  severity="danger"
+                  variant="text"
+                  tooltip="Eliminar foto"
+                />
+                }
+              </div>
+            </div>
+          </div>
+          } }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="block md:hidden p-4 text-center text-gray-500">
+  <p>El cuadro comparativo esta optimizado para pantallas de escritorio.</p>
+</div>
+
+<p-table
+  [value]="getDisplayedSolicitudDetalle()"
+  styleClass="custom-table hidden md:block "
+>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-30">DESCRIPCION</th>
+      <th class="table-col-10">CANTIDAD</th>
+      <th class="table-col-10">UNIDAD</th>
+      @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
+      <th
+        class="text-center cursor-pointer"
+        (click)="onEditCotizacion(proveedor.posicionCotizacion, proveedor.id)"
+        [style.width.%]="50 / cotizacionProveedorSignal().length"
+      >
+        {{ proveedor.nameProvider | uppercase }}
+      </th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td [class.font-semibold]="optimizeProducts">
+        {{ item.producto | uppercase }}
+      </td>
+      <td>{{ item.cantidad }}</td>
+      <td>{{ item.unidadMedida }}</td>
+      @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
+      <td
+        [class.bg-yellow-200]="isLowestPrice(item, proveedor.posicionCotizacion) && evaluarPrecioIndependiente"
+      >
+        {{ item['total' + (proveedor.posicionCotizacion === 1 ? '' :
+        proveedor.posicionCotizacion)] | number : "1.0-0" }}
+      </td>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #footer>
+    @if (!optimizeProducts) {
+    <tr>
+      <td colspan="3" class="text-right font-bold">TOTAL</td>
+      @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
+      <td
+        [class.bg-yellow-200]="this['amarilloTotal' + proveedor.posicionCotizacion]"
+      >
+        {{ this['total' + proveedor.posicionCotizacion] | number : "1.0-0" }}
+      </td>
+      }
+    </tr>
+    } @if (evaluarPrecioIndependiente) {
+    <tr>
+      <td colspan="3" class="text-right font-bold">
+        MEJOR PRECIO POR PROVEEDOR
+      </td>
+      @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
+      <td>
+        {{ this['mejorPrecioTotal' + proveedor.posicionCotizacion] | number :
+        "1.0-0" }}
+      </td>
+      }
+    </tr>
+    <tr>
+      <td colspan="3"></td>
+      <td
+        class="text-center font-bold"
+        [attr.colspan]="cotizacionProveedorSignal().length"
+      >
+        <p>TOTAL A GASTAR (MEJOR PRECIO INDIVIDUAL):</p>
+        {{ totalMejorPrecioTotal | number : "1.0-0" }}
+      </td>
+    </tr>
+    }
+  </ng-template>
+</p-table>
+
+@if (cotizacionProveedorSignal()?.length) {
+<p-table
+  [value]="[{}]"
+  styleClass="custom-table w-full mt-4"
+  [tableStyle]="{ border: 'none' }"
+>
+  <ng-template #body>
+    <tr>
+      <td
+        style="width: 50%; border: none !important"
+        class="text-right font-bold"
+      >
+        TIEMPO DE ENTREGA
+      </td>
+      @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
+      <td
+        class="text-center"
+        [style.width.%]="50 / cotizacionProveedorSignal().length"
+      >
+        {{ proveedor.entrega }}
+      </td>
+      }
+    </tr>
+    <tr>
+      <td
+        style="width: 50%; border: none !important"
+        class="text-right font-bold"
+      >
+        GARANTIA
+      </td>
+      @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
+      <td
+        class="text-center"
+        [style.width.%]="50 / cotizacionProveedorSignal().length"
+      >
+        {{ proveedor.garantia }}
+      </td>
+      }
+    </tr>
+    <tr>
+      <td
+        style="width: 50%; border: none !important"
+        class="text-right font-bold"
+      >
+        POLITICAS DE PAGO
+      </td>
+      @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
+      <td
+        class="text-center"
+        [style.width.%]="50 / cotizacionProveedorSignal().length"
+      >
+        {{ proveedor.politicaPago }}
+      </td>
+      }
+    </tr>
+    <tr>
+      <td
+        style="width: 50%; border: none !important"
+        class="text-right font-bold"
+      >
+        VER COTIZACION
+      </td>
+      @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
+      <td
+        class="text-center"
+        [style.width.%]="50 / cotizacionProveedorSignal().length"
+      >
+        @if (proveedor.filePath) {
+        <custom-button-view-pdf [url]="proveedor.filePath" pdf="Cotizacion" />
+        }
+      </td>
+      }
+    </tr>
+  </ng-template>
+</p-table>
+}
+<div class="mt-3">
+  <p-table
+    [value]="budgetSignal()"
+    styleClass="custom-table text-sm"
+    responsiveLayout="scroll"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="text-left">CUENTA</th>
+        <th class="text-right">PRE-MEN</th>
+        <th class="text-right">ACUMULADO</th>
+        <th class="text-right">%</th>
+        <th class="text-right">PRE-TOTAL</th>
+        <th class="text-right">RESTANTE</th>
+        <th class="text-right">MONTO A USAR</th>
+        <th class="text-center"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-budget>
+      <tr>
+        <td>
+          <div class="font-semibold">{{ budget.accountNumber }}</div>
+          <div class="text-600">{{ budget.accountName }}</div>
+        </td>
+        <td class="text-right">
+          {{ budget.presupuestoMensual | number : "1.0-0" }}
+        </td>
+        <td class="text-right">
+          {{ (budget.totalGastadoEjecutado + budget.totalGastosPendientes) |
+          number : "1.0-0" }}
+        </td>
+        <td class="text-right">
+          {{ budget.porcentajeGastado | number : "1.0-0" }}%
+        </td>
+        <td class="text-right">
+          {{ budget.presupuestoAnual | number : "1.0-0" }}
+        </td>
+        <td class="text-right">
+          {{ budget.presupuestoRestante | number : "1.0-0" }}
+        </td>
+        <td class="text-right font-semibold">
+          {{ budget.amount | number : "1.0-0" }}
+        </td>
+        <td class="text-center">
+          @if (!cleanView) {
+          <custom-button
+            iconClass="mdi:delete"
+            [showLabelOnDesktop]="false"
+            (clicked)="onDeleteBudget(budget.id)"
+            severity="danger"
+            variant="text"
+            tooltip="Eliminar presupuesto"
+            size="small"
+          />
+          }
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8" class="text-600">
+          No hay presupuesto seleccionado para esta solicitud.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-dialog
+  header="Auditoria de Compras - Analisis IA"
+  [(visible)]="showAiModal"
+  [modal]="true"
+  [style]="{width: '75vw', maxWidth: '1000px'}"
+  [maximizable]="true"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="surface-card p-4 border-round shadow-2">
+    <div
+      [innerHTML]="aiAnalysisResult"
+      class="text-lg line-height-3 text-800"
+    ></div>
+  </div>
+
+  <ng-template #footer>
+    <div class="flex justify-content-end pt-3">
+      <custom-button
+        label="Cerrar Reporte"
+        icon="mdi:check"
+        (clicked)="showAiModal=false"
+        size="small"
+        severity="secondary"
+      />
+    </div>
+  </ng-template>
+</p-dialog>

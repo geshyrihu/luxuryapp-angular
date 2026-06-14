@@ -1,0 +1,32 @@
+@if (data) {
+<p-card>
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-text-signal
+        [control]="form.controls.nombreProducto"
+        label="Producto"
+        [readonly]="true"
+      />
+      <custom-input-number-signal
+        [control]="form.controls.cantidad"
+        label="Cantidad"
+        placeholder="cantidad"
+      />
+
+      <custom-input-select-signal
+        [control]="form.controls.unidadMedidaId"
+        label="Unidad"
+        [data]="cb_unidadMedida()"
+        placeholder="--Selecciona una opción--"
+        [horizontal]="true"
+        [filter]="true"
+      />
+      <custom-button-save
+        [propertyId]="id"
+        [disabled]="form.invalid"
+        [submitting]="submitting()"
+      />
+    </form>
+  </div>
+</p-card>
+}

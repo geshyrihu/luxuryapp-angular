@@ -48,6 +48,7 @@ import { providePrimeNG } from "primeng/config";
 import { DialogService } from "primeng/dynamicdialog";
 // Importaciones de Archivos del Proyecto
 import { jwtInterceptor } from "src/app/core/services/jwt.interceptor.fn";
+import { offlineInterceptorFn } from "src/app/core/services/offline.interceptor.fn";
 import { MessagingService } from "src/app/core/services/notification-messaging.service";
 import MyPreset, { PrimeNgSpanishLocale } from "src/app/mypreset";
 import { initializeAppState } from "./app-initializer";
@@ -69,7 +70,7 @@ export const appConfig: ApplicationConfig = {
     provideAppInitializer(initializeAppState),
 
     provideHttpClient(
-      withInterceptors([jwtInterceptor]),
+      withInterceptors([offlineInterceptorFn, jwtInterceptor]),
       withInterceptorsFromDi(),
       withFetch(),
     ),

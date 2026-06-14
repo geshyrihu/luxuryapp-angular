@@ -1,0 +1,223 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [value]="dataEmergencyContact()"
+  #dt
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="
+        onModalForm({
+          id: '',
+          title: 'Nuevo Registro',
+          contacOfBeneficiary: 0,
+        })
+      "
+      [showSearch]="dataEmergencyContact().length > 0"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  @if (dataEmergencyContact().length !== 0) {
+  <ng-template #header>
+    <tr>
+      <th>Nombre</th>
+      <th>Parentesco</th>
+      <th>Télefono</th>
+      <th class="table-col-5 no-print"></th>
+    </tr>
+  </ng-template>
+  }
+
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.nameContact }}</td>
+      <td>{{ item.relation }}</td>
+      <td>{{ item.phoneNumber }}</td>
+
+      <!-- Opciones -->
+      <td class="no-print">
+        <div class="flex justify-content-center">
+          <custom-button
+            icon="edit"
+            ngbTooltip="Editar"
+            (clicked)="
+              onModalForm({
+                id: item.id,
+                title: 'Editar',
+                contacOfBeneficiary: 0,
+              })
+            "
+          />
+          <custom-button-confirm
+            icon="trash"
+            ngbTooltip="Eliminar"
+            (confirmed)="onDelete(item.id, 0)"
+          />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  @if (dataEmergencyContact().length === 0) {
+  <ng-template emptymessage>
+    <tr>
+      <td colspan="4">No hay beneficiarios.</td>
+    </tr>
+  </ng-template>
+  }
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataEmergencyContact()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro', contacOfBeneficiary: 0 })"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div
+        slot="start"
+        style="
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          background: #fee2e2;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-left: 16px;
+        "
+      >
+        <ion-icon
+          name="call-outline"
+          style="font-size: 20px; color: #dc2626"
+        ></ion-icon>
+      </div>
+      <ion-label>
+        <h3>{{ item.nameContact }}</h3>
+        <p>{{ item.relation }} ó {{ item.phoneNumber }}</p>
+      </ion-label>
+      <app-action-menu slot="end">
+        <ion-button-edit
+          (clicked)="onModalForm({ id: item.id, title: 'Editar', contacOfBeneficiary: 0 })"
+        />
+        <ion-button-delete (confirmed)="onDelete(item.id, 0)" />
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+<hr />
+
+<p-table
+  #dt
+  [value]="dataBeneficiary()"
+  [globalFilterFields]="globalFilterFields()"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      (add)="
+        onModalForm({
+          id: '',
+          title: 'Nuevo Registro',
+          contacOfBeneficiary: 1,
+        })
+      "
+      [showSearch]="dataBeneficiary().length > 0"
+      [dt]="dt"
+    />
+  </ng-template>
+
+  @if (dataBeneficiary().length !== 0) {
+  <ng-template #header>
+    <tr>
+      <th>Nombre</th>
+      <th>Parentesco</th>
+      <th>Télefono</th>
+      <th class="table-col-5 no-print"></th>
+    </tr>
+  </ng-template>
+  }
+
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.nameContact }}</td>
+      <td>{{ item.relation }}</td>
+      <td>{{ item.phoneNumber }}</td>
+
+      <!-- Opciones -->
+      <td class="no-print">
+        <div class="flex justify-content-center">
+          <custom-button
+            icon="edit"
+            ngbTooltip="Editar"
+            (clicked)="
+              onModalForm({
+                id: item.id,
+                title: 'Editar',
+                contacOfBeneficiary: 1,
+              })
+            "
+          />
+          <custom-button-confirm
+            icon="trash"
+            ngbTooltip="Eliminar"
+            (confirmed)="onDelete(item.id, 1)"
+          />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  @if (dataBeneficiary().length === 0) {
+  <ng-template emptymessage>
+    <tr>
+      <td colspan="4">No hay beneficiarios</td>
+    </tr>
+  </ng-template>
+  }
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataBeneficiary()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro', contacOfBeneficiary: 1 })"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div
+        slot="start"
+        style="
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          background: #dbeafe;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-left: 16px;
+        "
+      >
+        <ion-icon
+          name="people-outline"
+          style="font-size: 20px; color: #2563eb"
+        ></ion-icon>
+      </div>
+      <ion-label>
+        <h3>{{ item.nameContact }}</h3>
+        <p>{{ item.relation }} ó {{ item.phoneNumber }}</p>
+      </ion-label>
+      <app-action-menu slot="end">
+        <ion-button-edit
+          (clicked)="onModalForm({ id: item.id, title: 'Editar', contacOfBeneficiary: 1 })"
+        />
+        <ion-button-delete (confirmed)="onDelete(item.id, 1)" />
+      </app-action-menu>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
+<hr />

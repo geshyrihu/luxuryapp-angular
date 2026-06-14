@@ -1,0 +1,212 @@
+<div class="p-3">
+  <p-card>
+    <ng-template pTemplate="title">Configuración ElevenLabs</ng-template>
+    <ng-template pTemplate="subtitle">
+      Define la voz que usará el Auditor IA en contabilidad y prueba la
+      reproducción antes de usarla en reportes financieros.
+    </ng-template>
+
+    <div class="grid">
+      <div class="col-12 lg:col-8">
+        <div class="grid">
+          <div class="col-12 md:col-6">
+            <custom-input-text-signal
+              [control]="form.controls.voiceId"
+              label="Voice ID manual"
+              placeholder="Ej: 21m00Tcm4TlvDq8ikWAM"
+            />
+          </div>
+
+          <div class="col-12 md:col-6">
+            <custom-input-select-signal
+              [control]="form.controls.voiceId"
+              label="Voz predeterminada"
+              [data]="voiceOptions()"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Selecciona una voz"
+              [filter]="true"
+            />
+          </div>
+
+          <div class="col-12 md:col-6">
+            <custom-input-select-signal
+              [control]="form.controls.modelId"
+              label="Modelo"
+              [data]="modelOptions"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Selecciona un modelo"
+              [filter]="true"
+            />
+          </div>
+
+          <div class="col-12 md:col-3">
+            <custom-input-number-signal
+              [control]="form.controls.stability"
+              label="Stability"
+              [min]="0"
+              [max]="1"
+              [step]="0.05"
+              [minFractionDigits]="0"
+              [maxFractionDigits]="2"
+            />
+          </div>
+
+          <div class="col-12 md:col-3">
+            <custom-input-number-signal
+              [control]="form.controls.similarity"
+              label="Similarity"
+              [min]="0"
+              [max]="1"
+              [step]="0.05"
+              [minFractionDigits]="0"
+              [maxFractionDigits]="2"
+            />
+          </div>
+
+          <div class="col-12 md:col-3">
+            <custom-input-number-signal
+              [control]="form.controls.style"
+              label="Style"
+              [min]="0"
+              [max]="1"
+              [step]="0.05"
+              [minFractionDigits]="0"
+              [maxFractionDigits]="2"
+            />
+          </div>
+
+          <div class="col-12 md:col-3">
+            <custom-input-number-signal
+              [control]="form.controls.speakerBoost"
+              label="Speaker Boost"
+              [min]="0"
+              [max]="1"
+              [step]="0.05"
+              [minFractionDigits]="0"
+              [maxFractionDigits]="2"
+            />
+          </div>
+
+          <div class="col-12">
+            <custom-input-switch-signal
+              [control]="form.controls.autoPlayResponses"
+              label="Lectura automática"
+              placeholder="Reproducir automáticamente la respuesta del Auditor IA"
+            />
+          </div>
+
+          <div class="col-12">
+            <custom-input-textarea-signal
+              [control]="form.controls.sampleText"
+              label="Texto de prueba"
+              placeholder="Escribe el texto de prueba para escuchar la voz"
+              [rows]="5"
+            />
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mt-3">
+          <custom-button
+            label="Guardar configuración"
+            iconClass="mdi:content-save"
+            severity="success"
+            [showLabelOnDesktop]="true"
+            (clicked)="saveSettings()"
+          />
+          <custom-button
+            label="Probar audio"
+            iconClass="mdi:volume-high"
+            severity="info"
+            [showLabelOnDesktop]="true"
+            [loading]="testingAudio()"
+            (clicked)="testAudio()"
+          />
+          <custom-button
+            label="Detener audio"
+            iconClass="mdi:stop"
+            severity="secondary"
+            [showLabelOnDesktop]="true"
+            (clicked)="stopAudio()"
+          />
+          <custom-button
+            label="Recargar voces"
+            iconClass="mdi:refresh"
+            severity="contrast"
+            [showLabelOnDesktop]="true"
+            [loading]="loadingVoices()"
+            (clicked)="loadVoices()"
+          />
+        </div>
+
+        @if (selectedVoicePreview()) {
+        <div class="mt-3 text-sm text-600">
+          <strong>Perfil de voz:</strong> {{ selectedVoicePreview() }}
+        </div>
+        }
+
+        @if (voicesLoadError()) {
+        <div class="mt-3 text-sm text-orange-600">
+          {{ voicesLoadError() }}
+        </div>
+        }
+      </div>
+
+      <div class="col-12 lg:col-4">
+        <div class="surface-100 border-round p-3 h-full">
+          <div class="text-lg font-semibold mb-3">Estado de suscripción</div>
+
+          @if (loadingSubscription()) {
+          <div class="text-500">Consultando uso actual...</div>
+          } @else if (subscription(); as sub) {
+          <div class="mb-2"><strong>Plan:</strong> {{ sub.tier }}</div>
+          <div class="mb-2">
+            <strong>Caracteres usados:</strong> {{ sub.characterCount }}
+          </div>
+          <div class="mb-2">
+            <strong>Límite:</strong> {{ sub.characterLimit }}
+          </div>
+          <div class="mb-2">
+            <strong>Disponibles:</strong> {{ sub.remainingCharacters }}
+          </div>
+          <div class="mb-2">
+            <strong>Uso:</strong> {{ sub.usagePercentage | number: "1.0-2" }}%
+          </div>
+          <div class="mb-3">
+            <strong>Próximo corte:</strong>
+            {{ sub.nextBillingDate ? (sub.nextBillingDate | date: "mediumDate") : "N/D" }}
+          </div>
+          <custom-button
+            label="Actualizar estado"
+            iconClass="mdi:sync"
+            severity="warning"
+            [showLabelOnDesktop]="true"
+            [loading]="loadingSubscription()"
+            (clicked)="loadSubscription()"
+          />
+          } @else {
+          <div class="text-500 mb-3">
+            No fue posible cargar la suscripción. Revisa la API Key configurada
+            en backend.
+          </div>
+          <custom-button
+            label="Reintentar"
+            iconClass="mdi:refresh"
+            severity="warning"
+            [showLabelOnDesktop]="true"
+            (clicked)="loadSubscription()"
+          />
+          }
+        </div>
+
+        <div class="text-xs text-500 mt-3">
+          Nota: la consulta de suscripción requiere el permiso
+          <strong>user_read</strong> en la API key de ElevenLabs. Si tu llave
+          solo se usa para generar audio, la lectura del Auditor IA puede seguir
+          funcionando aunque este panel no responda.
+        </div>
+      </div>
+    </div>
+  </p-card>
+</div>

@@ -1,0 +1,88 @@
+<div class="p-3">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="grid">
+      <div class="col-12 md:col-4">
+        <custom-input-text-signal
+          [control]="form.controls.code"
+          label="Codigo"
+          placeholder="Ej. LEGAL_PROSOC"
+        />
+      </div>
+
+      <div class="col-12 md:col-8">
+        <custom-input-text-signal
+          [control]="form.controls.title"
+          label="Titulo"
+          placeholder="Nombre operativo del item"
+        />
+      </div>
+
+      <div class="col-12 md:col-4">
+        <custom-input-text-signal
+          [control]="form.controls.category"
+          label="Categoria"
+          placeholder="Legal, Finanzas, Logistica..."
+        />
+      </div>
+
+      <div class="col-12 md:col-4">
+        <custom-input-select-signal
+          [control]="form.controls.defaultResponsibleRole"
+          [data]="roleOptions()"
+          [showClear]="false"
+          [filter]="true"
+          label="Rol responsable"
+          placeholder="Selecciona un rol"
+        />
+      </div>
+
+      <div class="col-12 md:col-2">
+        <custom-input-number-signal
+          [control]="form.controls.offsetDaysFromMeeting"
+          [useGrouping]="false"
+          label="Dias respecto a la asamblea"
+        />
+      </div>
+
+      <div class="col-12 md:col-2">
+        <custom-input-number-signal
+          [control]="form.controls.sortOrder"
+          [useGrouping]="false"
+          label="Orden"
+        />
+      </div>
+
+      <div class="col-12 md:col-6">
+        <custom-input-switch-signal
+          [control]="form.controls.isMandatory"
+          label="Obligatorio"
+          placeholder="Requerido en todas las asambleas"
+        />
+      </div>
+
+      <div class="col-12 md:col-6">
+        <custom-input-switch-signal
+          [control]="form.controls.isActive"
+          label="Activo"
+          placeholder="Disponible para nuevas asambleas"
+        />
+      </div>
+
+      <div class="col-12">
+        <custom-input-textarea-signal
+          [control]="form.controls.description"
+          [rows]="4"
+          label="Descripcion"
+          placeholder="Detalle operativo del item del checklist"
+        />
+      </div>
+    </div>
+
+    <custom-button-save
+      [propertyId]="id"
+      [disabled]="form.invalid"
+      [submitting]="submitting()"
+      class="pb-2"
+    />
+  </form>
+</div>

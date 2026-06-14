@@ -1,0 +1,85 @@
+<p-card>
+  <ng-template #header>
+    <div
+      class="p-4 flex justify-content-between align-items-center border-bottom-1 surface-border"
+    >
+      <div>
+        <h5 class="m-0">Matriz de Jerarquóa de Aprobación</h5>
+        <p class="m-0 mt-1 text-color-secondary text-sm">
+          Seleccione el alcance de la aprobación para cada par de roles.
+        </p>
+      </div>
+      <custom-button-save
+        label="Guardar Cambios"
+        [disabled]="loading() || saving()"
+        [submitting]="saving()"
+        (click)="onSave()"
+      />
+    </div>
+  </ng-template>
+
+  @if (loading()) {
+  <div class="p-4">
+    <p-skeleton height="400px" />
+  </div>
+  } @else {
+  <div class="table-container">
+    <p-table
+      [value]="targetRoles()"
+      styleClass="custom-table hidden md:block"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight()"
+      [rowHover]="true"
+      [stripedRows]="true"
+    >
+      <ng-template #header>
+        <tr>
+          <th
+            style="min-width: 250px"
+            pFrozenColumn
+            class="header-cell sticky-column"
+          >
+            Rol Solicitante
+          </th>
+          @for (approver of approverRoles(); track approver) {
+          <th class="header-cell text-center" style="min-width: 200px">
+            <span>{{ approver }}</span>
+          </th>
+          }
+        </tr>
+      </ng-template>
+      <ng-template #body let-target>
+        <tr>
+          <td
+            style="min-width: 250px"
+            pFrozenColumn
+            class="body-cell sticky-column"
+          >
+            <strong>{{ target }}</strong>
+          </td>
+          @for (approver of approverRoles(); track approver) {
+          <td class="body-cell text-center">
+            <p-selectButton
+              [options]="scopeOptions"
+              [ngModel]="getScope(approver, target)"
+              (ngModelChange)="onRuleChange(approver, target, $event)"
+              optionLabel="label"
+              optionValue="value"
+              [allowEmpty]="false"
+            >
+              <ng-template pTemplate="item" let-item>
+                <app-icon [icon]="item.icon" class="mr-2" />
+                <span>{{ item.label }}</span>
+              </ng-template>
+            </p-selectButton>
+          </td>
+          }
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="block md:hidden p-4 text-center text-500">
+    <p>La matriz de aprobación estó optimizada para pantallas de escritorio.</p>
+  </div>
+  }
+</p-card>

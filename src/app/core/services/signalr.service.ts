@@ -1,7 +1,7 @@
 import { inject, Injectable, signal, WritableSignal } from "@angular/core";
 import * as signalR from "@microsoft/signalr";
 import { Subject } from "rxjs";
-import { BudgetProposalItemDTO } from "src/app/features/tenant/contabilidad/presupuesto-propuesta/models/budget-proposal.model";
+import { BudgetProposalItemDTO } from "src/app/features/accounting/general-ledger/contabilidad/presupuesto-propuesta/models/budget-proposal.model";
 import { environment } from "src/environments/environment";
 import { AuthService } from "./auth.service";
 import { ConsoleLoggerService } from "./console-logger.service";

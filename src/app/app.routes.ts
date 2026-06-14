@@ -82,7 +82,7 @@ export const appRoutes: Routes = [
     component: LayoutCommittee,
     canActivate: [authGuard, committeeGuard],
     loadChildren: () =>
-      import("src/app/features/tenant/committee/committee.routing").then(
+      import("src/app/features/operations/meetings/committee/committee.routing").then(
         (m) => m.committeeRoutes,
       ),
   },
@@ -93,7 +93,7 @@ export const appRoutes: Routes = [
     component: LayoutDireccion,
     canActivate: [authGuard, direccionGuard],
     loadChildren: () =>
-      import("src/app/features/tenant/direccion/direccion.routing").then(
+      import("src/app/features/operations/direccion/direccion.routing").then(
         (m) => m.direccionRoutes,
       ),
   },
