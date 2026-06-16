@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
+  <custom-input-text-signal
+    [control]="form.controls.name"
+    label="Nombre de etiqueta"
+    placeholder="QR principal del equipo"
+  />
+
+  <custom-input-select-signal
+    [control]="form.controls.qrType"
+    [data]="qrTypeOptions"
+    label="Tipo de QR"
+  />
+
+  <custom-input-check-signal
+    [control]="form.controls.isActive"
+    label="Etiqueta activa"
+  />
+
+  <custom-input-textarea-signal
+    [control]="form.controls.notes"
+    label="Notas"
+    placeholder="Observaciones internas"
+  />
+
+  <custom-button-save [submitting]="submitting()" [disabled]="form.invalid" />
+</form>
+

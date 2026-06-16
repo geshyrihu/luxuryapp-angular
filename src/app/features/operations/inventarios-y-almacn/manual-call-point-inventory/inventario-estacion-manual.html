@@ -15,6 +15,8 @@
     <div class="flex justify-content-between align-items-center w-full">
       <div class="flex align-items-center gap-2">
         <custom-button-item (clicked)="onOpenScanner()" icon="pi pi-qrcode" tooltip="Escanear QR" />
+        <custom-button-download (clicked)="onDownloadAllQr()" label="QR" tooltip="Descargar todos los QR" />
+        <custom-button-item (clicked)="onViewPeriodos()" label="Periodos" tooltip="Configurar periodos de inspección" [showLabelOnDesktop]="true" />
         <custom-button-download (clicked)="downloadTemplate()" label="Plantilla" tooltip="Descargar plantilla Excel" [showLabelOnDesktop]="true" />
         <custom-button-download (clicked)="fileInput.click()" label="Importar" tooltip="Importar desde Excel" [showLabelOnDesktop]="true" />
         <input type="file" accept=".xlsx" style="display:none" #fileInput (change)="onImportExcel($event)" />
@@ -44,6 +46,7 @@
       <td>
         <div class="flex">
           <custom-button-item (clicked)="onViewHistory(item)" tooltip="Ver historial de inspecciones" icon="pi pi-list" />
+          <custom-button-download (clicked)="onDownloadQr(item)" tooltip="Descargar QR" />
           <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
           <custom-button-delete (confirmed)="onDelete(item.id)" />
         </div>
@@ -60,10 +63,14 @@
   [globalFilterFields]="globalFilterFields()"
   (add)="onModalForm({ id: '', title: 'Nueva Estación Manual' })"
 >
-  <div customFilters class="px-3 pb-2">
+  <div customFilters class="px-3 pb-2 flex flex-column gap-2">
     <ion-button expand="block" fill="outline" color="primary" (click)="onOpenScanner()">
       <ion-icon name="qr-code-outline" slot="start"></ion-icon>
       Escanear QR
+    </ion-button>
+    <ion-button expand="block" fill="outline" color="secondary" (click)="onViewPeriodos()">
+      <ion-icon name="time-outline" slot="start"></ion-icon>
+      Periodos de Inspección
     </ion-button>
   </div>
   <ng-template #listItemTemplate let-item>
@@ -81,6 +88,7 @@
       </ion-label>
       <app-action-menu slot="end">
         <ion-button-item (clicked)="onViewHistory(item)" label="Historial" iconName="list-outline" />
+        <ion-button-download (clicked)="onDownloadQr(item)" label="QR" />
         <ion-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
         <ion-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>

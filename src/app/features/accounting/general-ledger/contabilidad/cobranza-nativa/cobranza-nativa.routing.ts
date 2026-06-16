@@ -100,7 +100,9 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
   {
     path: "properties",
     loadComponent: () =>
-      import("src/app/features/operations/properties/property/propiedades-list").then((m) => m.PropiedadesList),
+      import("src/app/features/operations/properties/property/propiedades-list").then(
+        (m) => m.PropiedadesList,
+      ),
     canActivate: [authGuard],
     data: {
       title: "Propiedades",

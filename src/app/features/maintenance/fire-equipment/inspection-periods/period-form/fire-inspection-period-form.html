@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-text-signal [control]="form.controls.name" label="Nombre" [required]="true" />
+      <custom-input-textarea-signal [control]="form.controls.description" label="Descripción" />
+      <custom-input-date-signal [control]="form.controls.startDate" label="Fecha de Inicio" [required]="true" />
+      <custom-input-select-signal
+        [control]="form.controls.frecuencia"
+        label="Frecuencia"
+        [data]="cb_recurrences()"
+        [required]="true"
+      />
+      <custom-input-check-signal [control]="form.controls.isActive" label="Periodo Activo" />
+      <custom-button-save [propertyId]="id" [submitting]="submitting()" />
+    </form>
+  </div>
+</div>

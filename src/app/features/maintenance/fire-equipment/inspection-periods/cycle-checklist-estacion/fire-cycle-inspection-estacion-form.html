@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-check-signal [control]="form.controls.accessibleAndVisible" label="Accesible y Visible" />
+      <custom-input-check-signal [control]="form.controls.housingOk" label="Carcasa Ok" />
+      <custom-input-check-signal [control]="form.controls.leverOk" label="Palanca Ok" />
+      <custom-input-check-signal [control]="form.controls.glassIntact" label="Cristal Intacto" />
+      <custom-input-check-signal [control]="form.controls.mountingSecure" label="Montaje Seguro" />
+      <custom-input-check-signal [control]="form.controls.signageOk" label="Señalización Ok" />
+      <custom-input-textarea-signal [control]="form.controls.observations" label="Observaciones" />
+      <custom-button-save [submitting]="submitting()" />
+    </form>
+  </div>
+</div>

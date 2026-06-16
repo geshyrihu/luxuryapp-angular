@@ -1,9 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
-import { ConfirmationService } from "primeng/api";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { ConfirmationService } from "primeng/api";
 import { CardModule } from "primeng/card";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { FieldsetModule } from "primeng/fieldset";
 import { TableModule } from "primeng/table";
@@ -13,22 +12,24 @@ import {
   IonButtonConfirm,
   IonButtonViewPdf,
 } from "src/app/core/components/buttons/mobile";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonConfirm } from "src/app/core/components/buttons/web/custom-button-confirm";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { PresentacionJuntaAdd } from "./presentacion-junta-add";
 import { PresentacionJuntaComiteForm } from "./presentacion-junta-comite-form";
 @Component({
@@ -36,13 +37,10 @@ import { PresentacionJuntaComiteForm } from "./presentacion-junta-comite-form";
   templateUrl: "./presentacion-junta-comite.html",
   imports: [
     CommonModule,
-    TableModule,
     CustomButton,
     NgbTooltipModule,
-    TooltipModule,
     TagModule,
     FieldsetModule,
-    PrimeNgCustomCaption,
     DataViewMobile,
     CustomButtonEdit,
     CustomButtonDelete,
@@ -50,11 +48,12 @@ import { PresentacionJuntaComiteForm } from "./presentacion-junta-comite-form";
     CustomButtonViewPdf,
     CardModule,
     IonButtonConfirm,
-
     IonButtonViewPdf,
+    AppIcon,
   ],
 })
 export class PresentacionJuntaComite {
+
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   authS = inject(AuthService);
@@ -71,14 +70,17 @@ export class PresentacionJuntaComite {
 
   dataSignal = signal<PresentacionJuntaComiteDTO[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
-  loading = signal(true);
 
   supervisorContable: boolean = false;
 
   constructor() {
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
-      if (customerId) this.onLoadData();
+      if (customerId) {
+        this.onLoadData();
+      } else {
+        this.dataSignal.set([]);
+      }
     });
   }
 
@@ -92,8 +94,12 @@ export class PresentacionJuntaComite {
 
   onLoadData(): void {
     this.apiResponseS
-      .onGetList(Endpoints.PresentacionJuntaComite.list(this.customerIdS.customerId()))
-      .then((result: any) => this.dataSignal.set(result));
+      .onGetList(
+        Endpoints.PresentacionJuntaComite.list(this.customerIdS.customerId()),
+      )
+      .then((result: any) => {
+        this.dataSignal.set(result || []);
+      });
   }
 
   onModalForm(data: any) {
@@ -136,36 +142,50 @@ export class PresentacionJuntaComite {
 
   // Eliminar pdf
   onDeleteFile(id: any, area: string) {
-    this.apiResponseS.onDelete(Endpoints.PresentacionJuntaComite.deleteFile(id, area)).then((result: boolean) => {
-      if (result) this.onLoadData();
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.PresentacionJuntaComite.deleteFile(id, area))
+      .then((result: boolean) => {
+        if (result) this.onLoadData();
+      });
   }
   // Eliminar registro completo
   onDeleteItem(id: any) {
-    this.apiResponseS.onDelete(Endpoints.PresentacionJuntaComite.delete(id)).then((result: boolean) => {
-      if (result) this.onLoadData();
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.PresentacionJuntaComite.delete(id))
+      .then((result: boolean) => {
+        if (result) this.onLoadData();
+      });
   }
 
   onValidarPresentacion(id: any) {
-    this.apiResponseS.onPost(
-      Endpoints.PresentacionJuntaComite.authorize(id, this.authS.applicationUserId),
-    ).then((result: boolean) => {
-      if (result) {
-        this.enviarMailPresentacionComite(id);
-        this.onLoadData();
-      }
-    });
+    this.apiResponseS
+      .onPost(
+        Endpoints.PresentacionJuntaComite.authorize(
+          id,
+          this.authS.applicationUserId,
+        ),
+      )
+      .then((result: boolean) => {
+        if (result) {
+          this.enviarMailPresentacionComite(id);
+          this.onLoadData();
+        }
+      });
   }
 
   onOnlyValidate(id: any) {
-    this.apiResponseS.onPost(
-      Endpoints.PresentacionJuntaComite.authorize(id, this.authS.applicationUserId),
-    ).then((result: boolean) => {
-      if (result) {
-        this.onLoadData();
-      }
-    });
+    this.apiResponseS
+      .onPost(
+        Endpoints.PresentacionJuntaComite.authorize(
+          id,
+          this.authS.applicationUserId,
+        ),
+      )
+      .then((result: boolean) => {
+        if (result) {
+          this.onLoadData();
+        }
+      });
   }
 
   onValidarCargasCompletasPorArea(
@@ -177,13 +197,15 @@ export class PresentacionJuntaComite {
   }
 
   enviarMailPresentacionComite(idJunta: number) {
-    this.apiResponseS.onPost(Endpoints.SendEmail.presentacionFinalComite(idJunta)).then(() => {
-      this.onLoadData();
-    });
+    this.apiResponseS
+      .onPost(Endpoints.SendEmail.presentacionFinalComite(idJunta))
+      .then(() => {
+        this.onLoadData();
+      });
   }
 }
 export interface PresentacionJuntaComiteDTO {
-  id: any;
+  id: string;
   fechaCorrespondienteFiltro: string;
   fechaCorrespondiente: string;
   fechaJunta: string;
@@ -202,11 +224,5 @@ export interface PresentacionJuntaComiteDTO {
   applicationUserSupervisor: string;
   fechaCargaSupervisor: string;
   enviadoComite: boolean;
+  idAnterior: number;
 }
-
-
-
-
-
-
-

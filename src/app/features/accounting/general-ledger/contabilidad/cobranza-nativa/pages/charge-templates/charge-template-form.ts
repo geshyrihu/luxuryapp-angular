@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -8,6 +8,7 @@ import {
 import { ButtonModule } from "primeng/button";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import {
@@ -20,7 +21,6 @@ import {
   EDiscountType,
   ERecurrence,
 } from "../../models/enums";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 // Custom Inputs
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
@@ -74,6 +74,21 @@ export class ChargeTemplateForm implements OnInit {
   customerId: string = "";
   form: FormGroup<IChargeTemplateForm>;
   submitting = signal(false);
+
+  constructor() {
+    effect(() => {
+      const isRetroactive = this.form?.controls.isRetroactive.value;
+      const control = this.form?.controls.retroactiveStartDate;
+      if (!control) return;
+
+      if (isRetroactive) {
+        control.setValidators([Validators.required]);
+      } else {
+        control.clearValidators();
+      }
+      control.updateValueAndValidity({ emitEvent: false });
+    });
+  }
 
   recurrenceOptions = [
     { label: "Eventual", value: ERecurrence.Eventual },
@@ -170,7 +185,9 @@ export class ChargeTemplateForm implements OnInit {
       if (res.startDate) res.startDate = this.dateS.parseDate(res.startDate);
       if (res.endDate) res.endDate = this.dateS.parseDate(res.endDate);
       if (res.retroactiveStartDate)
-        res.retroactiveStartDate = this.dateS.parseDate(res.retroactiveStartDate);
+        res.retroactiveStartDate = this.dateS.parseDate(
+          res.retroactiveStartDate,
+        );
       this.form.patchValue(res);
     }
   }
@@ -191,7 +208,9 @@ export class ChargeTemplateForm implements OnInit {
           ...raw,
           startDate: this.dateS.getDateFormat(raw.startDate) ?? "",
           endDate: this.dateS.getDateFormat(raw.endDate),
-          retroactiveStartDate: this.dateS.getDateFormat(raw.retroactiveStartDate),
+          retroactiveStartDate: this.dateS.getDateFormat(
+            raw.retroactiveStartDate,
+          ),
         };
         if (this.id) {
           return {

@@ -1,35 +1,52 @@
-import { CommonModule } from "@angular/common";
+import { CommonModule, DatePipe } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { BitacoraFiltroFechaForm } from "src/app/core/components/bitacora-filtro-fecha/bitacora-filtro-fecha-form";
 import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
 import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
-import { globalFilterFields, rowsPerPageOptions, tablePrimeNgRows } from "src/app/core/helpers/table-primeng-option";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
+} from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { DetectorHumoChecklist } from "../smoke-detector-checklist/detector-humo-checklist";
+import { DetectorHumoBitacoraPdfService } from "./detector-humo-bitacora-pdf.service";
 
 @Component({
   selector: "app-detector-humo-bitacora-list",
   templateUrl: "./detector-humo-bitacora-list.html",
   imports: [
-    CommonModule, TableModule, DataViewMobile,
-    CustomButtonDelete, CustomButtonEdit,
-    PrimeNgCustomCaption, PrimeNgCustomTableFooter, ActionMenu,
-    IonItem, IonLabel, IonButtonEdit, IonButtonDelete,
+    CommonModule,
+    TableModule,
+    DataViewMobile,
+    CustomButtonDelete,
+    CustomButtonDownload,
+    CustomButtonEdit,
+    PrimeNgCustomCaption,
+    PrimeNgCustomTableFooter,
+    ActionMenu,
+    IonItem,
+    IonLabel,
+    IonButtonEdit,
+    IonButtonDelete,
+    DatePipe,
   ],
 })
 export class DetectorHumoBitacoraList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
+  pdfS = inject(DetectorHumoBitacoraPdfService);
   rutaActiva = inject(ActivatedRoute);
 
   dataSignal = signal<any[]>([]);
@@ -41,7 +58,6 @@ export class DetectorHumoBitacoraList implements OnInit {
   loading = signal(true);
   tablePrimeNgRows = tablePrimeNgRows();
   rowsPerPageOptions = rowsPerPageOptions();
-  ref: DynamicDialogRef;
   detectorId = "";
 
   ngOnInit(): void {
@@ -59,13 +75,34 @@ export class DetectorHumoBitacoraList implements OnInit {
     this.apiResponseS
       .onDelete(`BitacoraDetectorHumo/${id}`)
       .then((result: boolean) => {
-        if (result) this.dataSignal.update((data) => data.filter((item) => item.id !== id));
+        if (result)
+          this.dataSignal.update((data) =>
+            data.filter((item) => item.id !== id),
+          );
       });
+  }
+
+  async onPdfReport() {
+    const result = await this.dialogHandlerS.openDialog<{ from: Date; to: Date }>(
+      BitacoraFiltroFechaForm,
+      {},
+      "Reporte PDF — Bitácora Detectores de Humo",
+      this.dialogHandlerS.sizeSm,
+    );
+    if (result)
+      await this.pdfS.downloadPdf(this.dataSignal(), result.from, result.to);
   }
 
   onModalForm(data: any) {
     this.dialogHandlerS
-      .openDialog(DetectorHumoChecklist, { id: data.id, detectorId: this.detectorId }, data.title, this.dialogHandlerS.sizeLg)
-      .then((result: boolean) => { if (result) this.onLoadData(); });
+      .openDialog(
+        DetectorHumoChecklist,
+        { id: data.id, detectorId: this.detectorId },
+        data.title,
+        this.dialogHandlerS.sizeLg,
+      )
+      .then((result: boolean) => {
+        if (result) this.onLoadData();
+      });
   }
 }

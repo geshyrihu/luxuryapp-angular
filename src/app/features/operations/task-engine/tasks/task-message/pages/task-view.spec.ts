@@ -28,7 +28,7 @@ describe('TaskView', () => {
       openDialog: vi.fn().mockResolvedValue(true),
       sizeLg: '1200px',
     };
-    mockActivatedRoute = { params: vi.fn().mockReturnValue({ subscribe: vi.fn() }) };
+    mockActivatedRoute = { params: { subscribe: vi.fn() } };
     mockRouter = { navigate: vi.fn() };
 
     TestBed.resetTestingModule();

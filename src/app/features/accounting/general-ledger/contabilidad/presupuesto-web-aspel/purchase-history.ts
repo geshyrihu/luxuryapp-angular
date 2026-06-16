@@ -18,12 +18,14 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { OrdenCompraService } from "src/app/core/services/orden-compra.service";
 import { OrdenCompra } from "src/app/features/purchasing/po/purchase-order/orden-compra";
+import { AppIcon } from "../../../../../core/components/app-icon/app-icon.component";
 import { PurchaseHistoryDTO } from "./presupuestos.interfaces";
 
 @Component({
   selector: "app-purchase-history",
   templateUrl: "./purchase-history.html",
   imports: [
+    AppIcon,
     CommonModule,
     TableModule,
     CustomButton,
@@ -101,4 +103,3 @@ export class PurchaseHistory implements OnInit {
     );
   }
 }
-

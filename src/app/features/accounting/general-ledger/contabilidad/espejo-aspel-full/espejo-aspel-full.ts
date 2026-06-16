@@ -1,5 +1,6 @@
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
+import { SharedModule } from "primeng/api";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
@@ -26,6 +27,7 @@ import { ReportFilterService } from "./services/financial-report-filter.service"
     ProgressSpinnerModule,
     CustomButton,
     CustomSearchInput,
+    SharedModule,
    AppIcon],
   templateUrl: "./espejo-aspel-full.html",
 })
@@ -69,10 +71,10 @@ export class EspejoAspelFull {
 
     const mapa = new Map<string, IEspejoFilaTabla[]>();
 
-    for (const grupo of data.grupos) {
+    for (const grupo of data.grupos || []) {
       const filas: IEspejoFilaTabla[] = [];
 
-      for (const n1 of grupo.cuentasNivel1) {
+      for (const n1 of grupo.cuentasNivel1 || []) {
         filas.push(
           this.crearFila(
             n1.numCta,
@@ -89,7 +91,7 @@ export class EspejoAspelFull {
           ),
         );
 
-        for (const n2 of n1.subCuentas) {
+        for (const n2 of n1.subCuentas || []) {
           filas.push(
             this.crearFila(
               n2.numCta,
@@ -106,7 +108,7 @@ export class EspejoAspelFull {
             ),
           );
 
-          for (const n3 of n2.detalle) {
+          for (const n3 of n2.detalle || []) {
             filas.push(
               this.crearFila(
                 n3.numCta,
@@ -123,7 +125,7 @@ export class EspejoAspelFull {
               ),
             );
 
-            for (const n4 of n3.detalle) {
+            for (const n4 of n3.detalle || []) {
               filas.push(
                 this.crearFila(
                   n4.numCta,
@@ -166,50 +168,55 @@ export class EspejoAspelFull {
     return mapa;
   });
 
-  // Filas con filtros de nivel visible, busqueda y ocultamiento de ceros aplicados
   filasFiltradasPorGrupo = computed(() => {
-    const base = this.filasPorGrupo();
-    const ocultar = this.ocultarSinDatos();
-    const nivelesVisibles = this.nivelVisiblePorGrupo();
-    const busquedas = this.busquedaPorGrupo();
-    const resultado = new Map<string, IEspejoFilaTabla[]>();
+    try {
+      const base = this.filasPorGrupo();
+      const ocultar = this.ocultarSinDatos();
+      const nivelesVisibles = this.nivelVisiblePorGrupo();
+      const busquedas = this.busquedaPorGrupo();
+      const resultado = new Map<string, IEspejoFilaTabla[]>();
 
-    for (const [codigo, filas] of base) {
-      const maxDisponible = Math.max(...this.getNivelesDisponibles(codigo), 3);
-      const nivelMax = nivelesVisibles[codigo] ?? maxDisponible;
-      const texto = (busquedas[codigo] ?? "").toLowerCase().trim();
-      let filtradas = filas;
+      for (const [codigo, filas] of base) {
+        const maxDisponible = Math.max(...this.getNivelesDisponibles(codigo), 3);
+        const nivelMax = nivelesVisibles[codigo] ?? maxDisponible;
+        const texto = (busquedas[codigo] ?? "").toLowerCase().trim();
+        let filtradas = filas;
 
-      if (nivelMax < maxDisponible) {
-        filtradas = filtradas.filter(
-          (f) => f.nivel === "grupo" || (f.nivel as number) <= nivelMax,
-        );
+        if (nivelMax < maxDisponible) {
+          filtradas = filtradas.filter(
+            (f) => f.nivel === "grupo" || (f.nivel as number) <= nivelMax,
+          );
+        }
+
+        if (texto) {
+          filtradas = filtradas.filter(
+            (f) =>
+              f.nivel === "grupo" ||
+              (f.nombre || "").toLowerCase().includes(texto) ||
+              (f.numCta || "").toLowerCase().includes(texto),
+          );
+        }
+
+        if (ocultar) {
+          filtradas = filtradas.filter(
+            (f) =>
+              f.nivel === "grupo" ||
+              f.saldoInicial !== 0 ||
+              (f.cargos || []).some((v) => v !== 0) ||
+              (f.abonos || []).some((v) => v !== 0) ||
+              (f.presupuesto || []).some((v) => v !== 0),
+          );
+        }
+
+        resultado.set(codigo, filtradas);
       }
 
-      if (texto) {
-        filtradas = filtradas.filter(
-          (f) =>
-            f.nivel === "grupo" ||
-            f.nombre.toLowerCase().includes(texto) ||
-            f.numCta.toLowerCase().includes(texto),
-        );
-      }
-
-      if (ocultar) {
-        filtradas = filtradas.filter(
-          (f) =>
-            f.nivel === "grupo" ||
-            f.saldoInicial !== 0 ||
-            f.cargos.some((v) => v !== 0) ||
-            f.abonos.some((v) => v !== 0) ||
-            f.presupuesto.some((v) => v !== 0),
-        );
-      }
-
-      resultado.set(codigo, filtradas);
+      return resultado;
+    } catch (error) {
+      console.error("🔥 ERROR FATAL EN FILAS FILTRADAS POR GRUPO:", error);
+      alert("Error capturado: " + (error as any).message);
+      return new Map<string, IEspejoFilaTabla[]>();
     }
-
-    return resultado;
   });
 
   constructor() {
@@ -251,26 +258,26 @@ export class EspejoAspelFull {
     grupoNombre: string,
   ): IEspejoFilaTabla {
     return {
-      numCta,
-      nombre,
+      numCta: numCta || "",
+      nombre: nombre || "",
       nivel: nivel as any,
-      naturaleza,
+      naturaleza: naturaleza || "",
       esTotal,
-      saldoInicial,
-      cargos,
-      abonos,
-      presupuesto,
-      grupoCodigo,
-      grupoNombre,
+      saldoInicial: saldoInicial || 0,
+      cargos: cargos || Array(12).fill(0),
+      abonos: abonos || Array(12).fill(0),
+      presupuesto: presupuesto || Array(12).fill(0),
+      grupoCodigo: grupoCodigo || "",
+      grupoNombre: grupoNombre || "",
     };
   }
 
   totalCargo(fila: IEspejoFilaTabla): number {
-    return fila.cargos.reduce((a, b) => a + b, 0);
+    return (fila.cargos || []).reduce((a, b) => a + b, 0);
   }
 
   totalAbono(fila: IEspejoFilaTabla): number {
-    return fila.abonos.reduce((a, b) => a + b, 0);
+    return (fila.abonos || []).reduce((a, b) => a + b, 0);
   }
 
   mostrarPresupuesto(fila: IEspejoFilaTabla): boolean {
@@ -310,15 +317,37 @@ export class EspejoAspelFull {
   }
 
   setNivelVisible(codigo: string, nivel: number) {
-    this.nivelVisiblePorGrupo.update((prev) => ({ ...prev, [codigo]: nivel }));
+    this.loading.set(true);
+    // Cedemos el hilo principal para que el navegador pueda dibujar el spinner
+    setTimeout(() => {
+      this.nivelVisiblePorGrupo.update((prev) => ({ ...prev, [codigo]: nivel }));
+      // Damos un pequeño respiro para que Angular procese los miles de filas antes de quitar el spinner
+      setTimeout(() => {
+        this.loading.set(false);
+      }, 50);
+    }, 50);
   }
 
   getNivelesDisponibles(codigo: string): number[] {
     const filas = this.filasPorGrupo().get(codigo) ?? [];
     const niveles: number[] = [1];
-    if (filas.some((f) => f.nivel === 2)) niveles.push(2);
-    if (filas.some((f) => f.nivel === 3)) niveles.push(3);
-    if (filas.some((f) => f.nivel === 4)) niveles.push(4);
+    
+    let hasN2 = filas.some((f) => f.nivel === 2);
+    let hasN3 = filas.some((f) => f.nivel === 3);
+    let hasN4 = filas.some((f) => f.nivel === 4);
+
+    // Si la empresa usa máscara de 4 niveles (ej: 401-000-000-000), 
+    // habilitamos los 4 botones por coherencia con la estructura de Aspel.
+    if (!hasN4 && filas.some((f) => f.numCta && f.numCta.split('-').length === 4)) {
+      hasN2 = true;
+      hasN3 = true;
+      hasN4 = true;
+    }
+
+    if (hasN2) niveles.push(2);
+    if (hasN3) niveles.push(3);
+    if (hasN4) niveles.push(4);
+    
     return niveles;
   }
 

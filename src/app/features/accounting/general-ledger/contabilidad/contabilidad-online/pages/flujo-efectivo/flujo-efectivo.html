@@ -12,40 +12,61 @@
   </div>
   } @if (grupos().length) {
   <div class="rf-card">
-    <p-table [value]="grupos()" styleClass="rf-prime-table p-datatable-sm">
-      <ng-template pTemplate="header">
-        <tr>
-          <th class="table-col-130px">Concepto</th>
-          @for (col of columnas(); track col) {
-            <th class="text-right table-col-140px">{{ col }}</th>
-          }
-        </tr>
-      </ng-template>
-
-      <ng-template pTemplate="body" let-grupo>
-        <!-- Título del Grupo -->
-        <tr class="rf-row-grupo">
-          <td [colSpan]="columnas().length + 1" class="font-bold text-primary bg-primary-reverse p-2">
-            {{ grupo.nombre }}
-          </td>
-        </tr>
-
-        <!-- Filas del Grupo -->
-        @for (fila of grupo.filas; track fila.concepto) {
-          <tr [class.rf-row-total]="fila.esFilaTotal" [class.rf-row-concepto]="!fila.esFilaTotal">
-            <td [class.rf-td-descripcion]="!fila.esFilaTotal" [class.font-bold]="fila.esFilaTotal">
-              {{ fila.concepto }}
-            </td>
-            
-            @for (monto of fila.montos; track $index) {
-              <td class="text-right" [class.rf-td-number]="!fila.esFilaTotal" [class.rf-td-number--total]="fila.esFilaTotal" [class.rf-neg]="monto < 0">
-                {{ monto === 0 && !fila.esFilaTotal ? "-" : (monto | accountingNumber: "1.0-0") }}
-              </td>
+    <div class="rf-wrap">
+      <table class="rf-table rf-table--with-account">
+        <thead>
+          <tr>
+            <th class="table-col-50px"></th>
+            <th class="table-col-130px">Concepto</th>
+            <th class="table-col-140px" style="color: #6366f1;">Origen (Auditoría)</th>
+            @for (col of columnas(); track col) {
+              <th class="text-right table-col-140px">{{ col }}</th>
             }
           </tr>
-        }
-      </ng-template>
-    </p-table>
+        </thead>
+
+        <tbody>
+          @for (grupo of grupos(); track grupo.nombre) {
+            <!-- Título del Grupo -->
+            <tr class="rf-row-grupo">
+              <td [colSpan]="columnas().length + 3" class="font-bold text-primary bg-primary-reverse p-2">
+                {{ grupo.nombre }}
+              </td>
+            </tr>
+
+            <!-- Filas del Grupo -->
+            @for (fila of grupo.filas; track $index; let fIdx = $index) {
+              <tr [class.rf-row-total]="fila.esFilaTotal" [class.rf-row-concepto]="!fila.esFilaTotal" [class.bg-orange-100]="fila.esManual">
+                <td class="text-center font-bold" [class.rf-td-number]="!fila.esFilaTotal" [class.rf-td-number--total]="fila.esFilaTotal">
+                  {{ fila.signo }}
+                </td>
+                <td [class.rf-td-descripcion]="!fila.esFilaTotal" [class.font-bold]="fila.esFilaTotal">
+                  {{ fila.concepto }}
+                </td>
+                <td class="text-xs text-color-secondary" [class.font-bold]="fila.esFilaTotal">
+                  {{ fila.esFilaTotal ? '' : (fila.origen || 'Calculado') }}
+                </td>
+                
+                @for (monto of fila.montos; track $index; let colIdx = $index; let isLast = $last) {
+                  <td class="text-right" [class.rf-td-number]="!fila.esFilaTotal" [class.rf-td-number--total]="fila.esFilaTotal" [class.rf-neg]="monto < 0">
+                    @if (fila.esManual && !isLast) {
+                      <input
+                        type="number"
+                        class="p-inputtext p-component p-inputtext-sm w-full text-right bg-white"
+                        [ngModel]="monto"
+                        (ngModelChange)="onManualInput($event, fila.concepto, colIdx)"
+                      />
+                    } @else {
+                      {{ monto === 0 && !fila.esFilaTotal ? "-" : (monto | accountingNumber: "1.0-0") }}
+                    }
+                  </td>
+                }
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+    </div>
   </div>
   }
 </div>

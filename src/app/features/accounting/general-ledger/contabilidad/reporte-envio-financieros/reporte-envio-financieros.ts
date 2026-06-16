@@ -1,9 +1,10 @@
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { Mesanio } from "src/app/core/components/mesanio/mesanio";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { TooltipModule } from "primeng/tooltip";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -12,11 +13,18 @@ import {
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
+
 @Component({
   selector: "app-reporte-envio-financieros",
   templateUrl: "./reporte-envio-financieros.html",
   styleUrls: ["./reporte-envio-financieros.scss"],
-  imports: [TableModule, TagModule, PrimeNgCustomCaption, Mesanio],
+  imports: [
+    TableModule,
+    TagModule,
+    TooltipModule,
+    SelectModule,
+    FormsModule,
+  ],
 })
 export class ReporteEnvioFinancieros implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -24,6 +32,25 @@ export class ReporteEnvioFinancieros implements OnInit {
   dateS = inject(DateService);
   // Declaración e inicialización de variables
   dataSignal = signal<any[]>([]);
+  monthNames: string[] = [
+    "ENE",
+    "FEB",
+    "MAR",
+    "ABR",
+    "MAY",
+    "JUN",
+    "JUL",
+    "AGO",
+    "SEP",
+    "OCT",
+    "NOV",
+    "DIC",
+  ];
+
+  years: any[] = [];
+  selectedYear: number = new Date().getFullYear();
+  currentMonth: number = new Date().getMonth() + 1;
+  currentYear: number = new Date().getFullYear();
 
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
@@ -34,33 +61,25 @@ export class ReporteEnvioFinancieros implements OnInit {
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
-  periodo: string = "";
 
   ngOnInit(): void {
-    this.periodo = this.dateS.getNameMontYear(
-      this.PeriodMonthService.fechaInicial,
-    );
+    const currentYear = new Date().getFullYear();
+    for (let i = currentYear; i >= 2024; i--) {
+      this.years.push({ label: i.toString(), value: i });
+    }
     this.onLoadData();
   }
 
   // Función para cargar los datos de los reporte
   onLoadData() {
     this.apiResponseS
-      .onGetList(
-        `FinancialReport/reporteenviomensual/${this.dateS.getDateFormat(
-          this.PeriodMonthService.getPeriodoInicio,
-        )}`,
-      )
+      .onGetList(`FinancialReport/reporte-envio-anual/${this.selectedYear}`)
       .then((result: any) => {
         this.dataSignal.set(result);
       });
   }
 
-  onFiltrarPeriodo(periodo: string) {
-    this.PeriodMonthService.setPeriodo(periodo);
-    this.periodo = this.dateS.getNameMontYear(
-      this.PeriodMonthService.fechaInicial,
-    );
+  onChangeYear() {
     this.onLoadData();
   }
 }

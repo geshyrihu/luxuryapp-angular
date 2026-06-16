@@ -1,0 +1,72 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption
+      [title]="'Periodos de Inspección — ' + typeLabel()"
+      (add)="onModalForm({ id: '', title: 'Nuevo Periodo de Inspección' })"
+      [dt]="dt"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="name">Nombre <p-sortIcon field="name" /></th>
+      <th class="table-col-15">Frecuencia</th>
+      <th class="table-col-15">Inicio</th>
+      <th class="table-col-10">Items</th>
+      <th class="table-col-10">Activo</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr class="cursor-pointer" (click)="onViewDetail(item.id)">
+      <td>{{ item.name }}</td>
+      <td>{{ item.frecuencia }}</td>
+      <td>{{ item.startDate | date:'dd-MMM-yy' }}</td>
+      <td class="text-center">{{ item.totalItems }}</td>
+      <td class="text-center">
+        <i class="icon" [class]="item.isActive ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i>
+      </td>
+      <td class="no-print" (click)="$event.stopPropagation()">
+        <div class="flex justify-content-center">
+          <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar Periodo' })" />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Periodo de Inspección' })"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding" (click)="onViewDetail(item.id)">
+      <ion-label>
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.frecuencia }} &bull; Inicio: {{ item.startDate | date:'dd-MMM-yy' }} &bull; Items: {{ item.totalItems }}</p>
+      </ion-label>
+      <div slot="end">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar Periodo' })" />
+            <ion-button-delete (confirmed)="onDelete(item.id)" />
+          </ng-container>
+        </app-action-menu>
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

@@ -12,6 +12,96 @@ export class OrdenesServicioListPdfService {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
 
+  async downloadReporteTablaCategoria(data: any[], periodo: string, filterName: string): Promise<void> {
+    if (!data || data.length === 0) {
+      this.customToastS.showWarn("Sin Datos", "No hay órdenes de servicio para generar el reporte.");
+      return;
+    }
+
+    this.customToastS.showInfo("Generando Reporte", "Preparando reporte por categoría...");
+    const logo = await this.htmlPrintS.getLogoDataUrl();
+    const generatedAt = new Date();
+
+    const grouped = new Map<string, any[]>();
+    for (const item of data) {
+      const cat = item.equipoClasificacion || "Sin Categoría";
+      if (!grouped.has(cat)) grouped.set(cat, []);
+      grouped.get(cat)!.push(item);
+    }
+
+    let tablesHtml = "";
+    grouped.forEach((items, category) => {
+      const rows = items
+        .map(
+          (item) => `
+        <tr>
+          <td>${this.htmlPrintS.esc(String(item.machineryId || "").slice(-5))}</td>
+          <td>${this.htmlPrintS.esc(item.machinery || item.nameMachinery)}</td>
+          <td>${this.htmlPrintS.esc(item.typeMaintanceFilter || item.typeMaintance)}</td>
+          <td><span class="st-badge ${this.getStatusBadgeClass(item.status)}">${this.htmlPrintS.esc(this.getStatusLabel(item.status))}</span></td>
+          <td class="col-obs">${this.htmlPrintS.esc(item.observations)}</td>
+        </tr>`,
+        )
+        .join("");
+
+      tablesHtml += `
+        <div class="cat-title">${this.htmlPrintS.esc(category)} (${items.length})</div>
+        <table class="data-table">
+          <thead><tr>
+            <th style="width:10%">ID Equipo</th>
+            <th style="width:25%">Nombre del Equipo</th>
+            <th style="width:15%">Tipo de Servicio</th>
+            <th style="width:12%">Estatus</th>
+            <th>Observaciones</th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>`;
+    });
+
+    const html = `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8">
+${this.htmlPrintS.getStandardCss()}
+<style>
+  .cat-title { font-size:1rem; font-weight:700; color:#0B3164; border-bottom:2px solid #c9a84c; padding-bottom:4px; margin:20px 0 8px; }
+  .data-table { width:100%; border-collapse:collapse; font-size:0.75rem; margin-bottom:24px; }
+  .data-table th { background:#E8EEF8; font-weight:700; color:#111827; padding:6px 8px; border:1px solid #D1D5DB; text-align:left; }
+  .data-table td { padding:6px 8px; border:1px solid #D1D5DB; vertical-align:top; }
+  .data-table tbody tr:nth-child(even) { background:#FAFAFA; }
+  .col-obs { word-break:break-word; }
+  .st-badge { display:inline-block; padding:2px 6px; border-radius:4px; font-size:0.7rem; font-weight:600; }
+  .st-success { background:#dcfce7; color:#166534; }
+  .st-danger { background:#fee2e2; color:#991b1b; }
+  .st-secondary { background:#f3f4f6; color:#374151; }
+</style>
+</head><body>
+<div class="container">
+  ${this.htmlPrintS.buildStandardHeader(logo, "Reporte de Órdenes de Servicio", periodo, generatedAt, filterName)}
+  <div class="body-doc">${tablesHtml}</div>
+  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+</div>
+</body></html>`;
+
+    this.htmlPrintS.printHtml(html, `Reporte-Tabla-Ordenes-${filterName}-${periodo}`);
+  }
+
+  private getStatusLabel(status: number): string {
+    switch (status) {
+      case 0: return "Pendiente";
+      case 1: return "Terminado";
+      case 2: return "No Autorizado";
+      case 4: return "Cancelado";
+      default: return "-";
+    }
+  }
+
+  private getStatusBadgeClass(status: number): string {
+    switch (status) {
+      case 1: return "st-success";
+      case 0: return "st-danger";
+      default: return "st-secondary";
+    }
+  }
+
   async downloadReporte(periodo: string, filterName: string) {
     this.customToastS.showInfo("Generando Reporte", "Descargando datos, espere por favor...");
     const customerId = this.customerIdS.customerId();

@@ -26,6 +26,18 @@ export const committeeMeetingsRoutes: Routes = [
     },
   },
   {
+    path: "presentations-contador", // Ruta anterior: 'presentaciones'
+    loadComponent: () =>
+      import("src/app/features/operations/meetings/juntas-comite/presentacion-junta-comite/presentacion-junta-comite-contador").then(
+        (m) => m.PresentacionJuntaComiteContador,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Presentaciones",
+      breadcrumb: "Presentaciones",
+    },
+  },
+  {
     path: "minutes", // Ruta anterior: 'minutas'
     loadComponent: () =>
       import("src/app/features/operations/meetings/juntas-comite/junta-comite-minutas/minutas-list").then(
@@ -89,14 +101,3 @@ export const committeeMeetingsRoutes: Routes = [
     },
   },
 ];
-
-
-
-
-
-
-
-
-
-
-

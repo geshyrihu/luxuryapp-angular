@@ -1,0 +1,63 @@
+import { CommonModule } from "@angular/common";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Router } from "@angular/router";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { TableModule } from "primeng/table";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
+import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { globalFilterFields, rowsPerPageOptions, tablePrimeNgRows } from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { CustomerIdService } from "src/app/core/services/customer-id.service";
+
+@Component({
+  selector: "app-fire-inspection-cycle-list",
+  templateUrl: "./fire-inspection-cycle-list.html",
+  imports: [
+    CommonModule, TableModule, DataViewMobile,
+    CustomButtonItem,
+    PrimeNgCustomCaption, PrimeNgCustomTableFooter, ActionMenu,
+    IonItem, IonLabel, IonButtonItem,
+  ],
+})
+export class FireInspectionCycleList implements OnInit {
+  apiResponseS = inject(ApiResponseService);
+  customerIdS = inject(CustomerIdService);
+  router = inject(Router);
+
+  dataSignal = signal<any[]>([]);
+  globalFilterFields = computed(() => {
+    const data = this.dataSignal();
+    if (!data || data.length === 0) return [];
+    return globalFilterFields(data);
+  });
+  tablePrimeNgRows = tablePrimeNgRows();
+  rowsPerPageOptions = rowsPerPageOptions();
+
+  ngOnInit(): void {
+    this.onLoadData();
+  }
+
+  onLoadData() {
+    this.apiResponseS
+      .onGetList(`FireInspectionCycle/list/${this.customerIdS.customerId()}`)
+      .then((result: any) => this.dataSignal.set(result));
+  }
+
+  onViewDetail(id: string) {
+    this.router.navigate(["/logbook/fire-inspection-cycle", id]);
+  }
+
+  statusClass(status: string): string {
+    const map: Record<string, string> = {
+      Pendiente: "text-blue-600",
+      EnCurso: "text-orange-600",
+      Completado: "text-green-600",
+      Vencido: "text-red-600",
+    };
+    return map[status] ?? "";
+  }
+}

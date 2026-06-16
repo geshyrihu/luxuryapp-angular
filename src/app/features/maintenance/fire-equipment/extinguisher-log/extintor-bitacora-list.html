@@ -10,10 +10,15 @@
   styleClass="custom-table card hidden md:block"
 >
   <ng-template #caption>
-    <primeng-custom-caption
-      (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
-      [dt]="dt"
-    />
+    <div class="flex justify-content-between align-items-center w-full">
+      <div class="flex align-items-center gap-2">
+        <custom-button-download (clicked)="onPdfReport()" label="PDF" tooltip="Reporte PDF por rango de fecha" [showLabelOnDesktop]="true" />
+      </div>
+      <primeng-custom-caption
+        (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
+        [dt]="dt"
+      />
+    </div>
   </ng-template>
   <ng-template #header>
     <tr>
@@ -29,7 +34,7 @@
   </ng-template>
   <ng-template #body let-item>
     <tr>
-      <td>{{ item.date }}</td>
+      <td>{{ item.date | date:'dd-MMM-yy' }}</td>
       <td class="text-center">{{ item.hour }}</td>
       <td class="text-center">
         <i class="icon" [class]="item.adequatePressure ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i>
@@ -65,7 +70,7 @@
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding">
       <ion-label>
-        <h3>{{ item.date }} {{ item.hour }}</h3>
+        <h3>{{ item.date | date:'dd-MMM-yy' }} {{ item.hour }}</h3>
         @if (item.observations) {
           <p>{{ item.observations }}</p>
         }

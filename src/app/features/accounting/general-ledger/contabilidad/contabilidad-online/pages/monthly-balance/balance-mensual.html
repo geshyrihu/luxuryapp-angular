@@ -66,7 +66,10 @@
       <ng-template pTemplate="body" let-row>
         <!-- Fila: encabezado de clasificación -->
         @if (row.tipo === "header") {
-        <tr class="rf-row-section" [attr.style]="getHeaderStyle(row.clasificacionCodigo)">
+        <tr class="rf-row-section"
+            [class.rf-row-section--activo]="row.clasificacionCodigo === '1'"
+            [class.rf-row-section--pasivo]="row.clasificacionCodigo === '2'"
+            [class.rf-row-section--capital]="row.clasificacionCodigo === '3'">
           <td colspan="14" class="font-bold text-sm py-2 px-3">
             {{ row.descripcion }}
           </td>

@@ -52,9 +52,12 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
+import { EquipmentInspectionQrPrintService } from "src/app/features/maintenance/equipos-y-maquinaria/equipment-inspections/equipment-inspection-qr-print.service";
+import { EquipmentInspectionService } from "src/app/features/maintenance/equipos-y-maquinaria/equipment-inspections/equipment-inspection.service";
 import { MantenimientoPreventivoForm } from "src/app/features/operations/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
 import { ActivosForm } from "src/app/features/maintenance/equipos-y-maquinaria/machinery-asset/activos-form";
 import { ActivosDocumentos } from "src/app/features/maintenance/equipos-y-maquinaria/machinery-document/activos-documentos";
+import { EquipmentInspectionsShell } from "src/app/features/maintenance/equipos-y-maquinaria/equipment-inspections/equipment-inspections-shell";
 import { FichaTecnicaActivo } from "src/app/features/maintenance/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
 import { ServiceHistoryMachinery } from "src/app/features/maintenance/equipos-y-maquinaria/machinery/service-history-machinery";
 import { BitacoraIndividual } from "src/app/features/maintenance/logs/maintenance-log/bitacora-individual";
@@ -129,6 +132,8 @@ export class EquiposList {
   private dialogHandlerS = inject(DialogHandlerService);
   private customerIdS = inject(CustomerIdService);
   private htmlPrintS = inject(HtmlPrintService);
+  private equipmentInspectionS = inject(EquipmentInspectionService);
+  private equipmentInspectionQrPrintS = inject(EquipmentInspectionQrPrintService);
   // --- ESTADO DEL COMPONENTE CON SIGNALS ---
   data = signal<any[]>([]);
   loading = signal(true);
@@ -423,6 +428,41 @@ ${this.htmlPrintS.getStandardCss()}
         this.dialogHandlerS.sizeFull,
       )
       .then((result) => this.reloadDataAfterDialog(result));
+  }
+
+  async onDownloadEquipmentInspectionQrBatch(): Promise<void> {
+    const customerId = this.customerIdS.customerId();
+    const machineryIds = this.data().map((item) => item.id).filter(Boolean);
+
+    if (!customerId || machineryIds.length === 0) {
+      return;
+    }
+
+    const result = await this.equipmentInspectionS.downloadQrBatch({
+      customerId,
+      machineryIds,
+      qrLabelIds: [],
+      onlyActive: true,
+    });
+
+    if (result && result.length > 0) {
+      await this.equipmentInspectionQrPrintS.printMany(
+        result,
+        `QR-${this.title()}`,
+      );
+    }
+  }
+
+  onEquipmentInspections(item: Equipo) {
+    this.dialogHandlerS.openDialog(
+      EquipmentInspectionsShell,
+      {
+        id: item.id,
+        nameMachinery: item.nameMachinery,
+      },
+      `Inspecciones de ${item.nameMachinery}`,
+      this.dialogHandlerS.sizeLg,
+    );
   }
 
   onModalAddOrEdit(data: any) {

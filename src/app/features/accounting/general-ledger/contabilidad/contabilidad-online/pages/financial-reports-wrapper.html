@@ -34,9 +34,7 @@
     >
       <div class="bg-primary" style="height: 0.45rem"></div>
 
-      <div
-        class="surface-100 p-2 flex flex-column xl:flex-row xl:align-items-center xl:justify-content-between gap-3"
-      >
+      <div class="surface-100 p-2 flex gap-3">
         <div class="flex align-items-center gap-3 flex-1 min-w-0">
           <div
             class="surface-card border-round-xl border-1 surface-border inline-flex align-items-center justify-content-center p-2"
@@ -66,27 +64,21 @@
             <h1 class="text-primary text-3xl md:text-4xl line-height-2 m-0">
               Estados Financieros
             </h1>
-            <div class="flex flex-column gap-1">
-              <p class="text-900 font-semibold m-0 line-height-3">
-                {{ activeReportTitle() }}
-              </p>
-              <p class="text-color-secondary line-height-3 m-0 max-w-26rem">
-                {{ activeReportDescription() }}
-              </p>
-            </div>
           </div>
         </div>
 
-        <aside class="xl:w-auto xl:min-w-0">
-          <div
-            class="grid bg-white p-2 md:p-3 border-round-lg border-1 border-200 gap-2 md:gap-3"
-            style="
-              grid-template-columns:
-                minmax(150px, 170px) minmax(170px, 190px)
-                auto;
-            "
-          >
-            <div class="flex align-items-end">
+        <div class="flex flex-column justify-content-between gap-2">
+          <div class="flex flex-column gap-1">
+            <p class="text-900 font-semibold m-0 line-height-3">
+              {{ activeReportTitle() }}
+            </p>
+            <p class="text-color-secondary line-height-3 m-0">
+              {{ activeReportDescription() }}
+            </p>
+          </div>
+          <div class="flex justify-content-end">
+          <div class="flex align-items-center gap-2 bg-white px-2 py-1 border-round-lg border-1 border-200 flex-wrap">
+            <div style="width: 140px">
               <custom-input-text-signal
                 [(ngModel)]="filterS.year"
                 type="number"
@@ -96,7 +88,7 @@
               />
             </div>
 
-            <div class="flex align-items-end">
+            <div style="width: 165px">
               <custom-input-select-signal
                 [data]="[
                   { label: 'Enero', value: 0 },
@@ -115,6 +107,7 @@
                 [(ngModel)]="filterS.mesIdx"
                 optionLabel="label"
                 optionValue="value"
+                size="small"
                 [showClear]="false"
                 [horizontal]="false"
                 [noMargin]="true"
@@ -122,70 +115,67 @@
               />
             </div>
 
-            <div class="flex align-items-end h-full">
-              <div
-                class="flex flex-wrap md:flex-nowrap gap-2 w-full xl:justify-content-end align-items-end"
-              >
-                <custom-button
-                  iconClass="mdi:refresh"
-                  label="Actualizar"
-                  variant="outlined"
-                  severity="secondary"
-                  size="small"
-                  [showLabelOnDesktop]="true"
-                  (clicked)="refreshReports()"
-                />
-                <custom-button
-                  [iconClass]="isPreparing() ? 'mdi:spin pi-spinner' : 'mdi:printer'"
-                  [label]="isPreparing() ? 'Preparando...' : 'Imprimir'"
-                  variant="outlined"
-                  severity="secondary"
-                  size="small"
-                  [showLabelOnDesktop]="true"
-                  [disabled]="isPreparing()"
-                  (clicked)="printReport()"
-                />
-                <custom-button
-                  iconClass="mdi:comment-multiple"
-                  label="Explicar IA"
-                  variant="outlined"
-                  size="small"
-                  severity="info"
-                  [showLabelOnDesktop]="true"
-                  (clicked)="aiAgentExplicador.togglePanel()"
-                />
-                <custom-button
-                  iconClass="mdi:sparkles"
-                  label="Auditor CO"
-                  variant="outlined"
-                  size="small"
-                  severity="contrast"
-                  [showLabelOnDesktop]="true"
-                  (clicked)="aiAgentContabilidadOnline.togglePanel()"
-                />
-                <custom-button
-                  iconClass="mdi:sparkles"
-                  label="Auditor IA"
-                  variant="outlined"
-                  size="small"
-                  severity="help"
-                  [showLabelOnDesktop]="true"
-                  (clicked)="aiAgent.togglePanel()"
-                />
-                <custom-button
-                  iconClass="mdi:external-link"
-                  label="Vista cliente"
-                  variant="outlined"
-                  size="small"
-                  severity="success"
-                  [showLabelOnDesktop]="true"
-                  [disabled]="!clienteUrl()"
-                  (clicked)="openClienteView()"
-                />
-              </div>
+            <div class="flex gap-2 flex-wrap align-items-center">
+              <custom-button
+                iconClass="mdi:refresh"
+                label="Actualizar"
+                variant="outlined"
+                severity="secondary"
+                size="small"
+                [showLabelOnDesktop]="true"
+                (clicked)="refreshReports()"
+              />
+              <custom-button
+                [iconClass]="isPreparing() ? 'mdi:spin pi-spinner' : 'mdi:printer'"
+                [label]="isPreparing() ? 'Preparando...' : 'Imprimir'"
+                variant="outlined"
+                severity="secondary"
+                size="small"
+                [showLabelOnDesktop]="true"
+                [disabled]="isPreparing()"
+                (clicked)="printReport()"
+              />
+              <custom-button
+                iconClass="mdi:comment-multiple"
+                label="Explicar IA"
+                variant="outlined"
+                size="small"
+                severity="info"
+                [showLabelOnDesktop]="true"
+                (clicked)="aiAgentExplicador.togglePanel()"
+              />
+              <custom-button
+                iconClass="mdi:sparkles"
+                label="Auditor CO"
+                variant="outlined"
+                size="small"
+                severity="contrast"
+                [showLabelOnDesktop]="true"
+                (clicked)="aiAgentContabilidadOnline.togglePanel()"
+              />
+              <custom-button
+                iconClass="mdi:sparkles"
+                label="Auditor IA"
+                variant="outlined"
+                size="small"
+                severity="help"
+                [showLabelOnDesktop]="true"
+                (clicked)="aiAgent.togglePanel()"
+              />
+              <custom-button
+                iconClass="mdi:external-link"
+                label="Vista cliente"
+                variant="outlined"
+                size="small"
+                severity="success"
+                [showLabelOnDesktop]="true"
+                [disabled]="!clienteUrl()"
+                (clicked)="openClienteView()"
+              />
             </div>
           </div>
-        </aside>
+          </div>
+        </div>
       </div>
 
       <div class="bg-yellow-500" style="height: 0.2rem"></div>
@@ -252,8 +242,7 @@
             ><app-icon [icon]="'mdi:format-list-bulleted'" class="mr-2"></app-icon>E. Resultados V2</p-tab
           > -->
           <p-tab [value]="3"
-            ><app-icon [icon]="'mdi:plus-circle'" class="mr-2"></app-icon>C. Extraordinaria</p-tab
-          >
+            ><app-icon [icon]="'mdi:plus-circle'" class="mr-2"></app-icon>C. Extraordinaria</p-tab>
           <p-tab [value]="4"><app-icon [icon]="'mdi:percent'" class="mr-2"></app-icon>P vs R</p-tab>
           <p-tab [value]="5"
             ><app-icon [icon]="'mdi:table'" class="mr-2"></app-icon>R. Financiero</p-tab

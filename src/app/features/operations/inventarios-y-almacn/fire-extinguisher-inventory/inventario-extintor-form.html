@@ -39,10 +39,13 @@
         placeholder="Ej: Piso 3 - Pasillo A"
       />
 
-      <custom-input-text-signal
+      <custom-input-mask-signal
         [control]="form.controls.localCode"
-        label="Código Local (opcional)"
-        placeholder="Ej: EXT-10-01"
+        label="Código Local"
+        placeholder="EXT-IO-01"
+        customMask="SSS-SS-000"
+        [validation]="false"
+        [dropSpecialCharacters]="false"
       />
 
       <custom-button-save

@@ -12,5 +12,58 @@
 .user-actions-container {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 4px !important; // Espacio ligero entre iconos
+}
+
+/* 
+ * Usamos ::ng-deep para penetrar la encapsulación de PrimeNG 
+ * y afectar directamente al elemento <button> interno.
+ */
+:host ::ng-deep {
+  .monitor-toolbar-button.p-button {
+    width: 40px !important;      // Aumentado de 34px para mejor clicabilidad
+    height: 40px !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    // Aumentar un poco el tamaño del icono interno
+    app-icon {
+      font-size: 1.4rem !important; 
+    }
+
+    .p-button-label {
+      display: none !important;
+    }
+  }
+
+  // Ajustar también el botón de tema
+  .user-actions-container p-button {
+    margin: 0 !important;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #print-section, #print-section * {
+    visibility: visible;
+  }
+  #print-section {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    box-shadow: none !important;
+  }
+  /* Hide modal backdrop and other dialogs */
+  .p-dialog-mask {
+    background-color: transparent !important;
+  }
 }

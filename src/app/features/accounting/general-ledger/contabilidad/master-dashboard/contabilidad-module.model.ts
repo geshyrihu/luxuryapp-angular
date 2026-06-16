@@ -1,3 +1,5 @@
+import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+
 export interface ContabilidadModuleCard {
   title: string;
   description: string;
@@ -5,6 +7,7 @@ export interface ContabilidadModuleCard {
   icon: string;
   color: string;
   bgColor: string;
+  roles?: EApplicationRole[];
 }
 
 export interface ContabilidadModuleGroup {

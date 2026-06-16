@@ -33,10 +33,13 @@
         placeholder="Ej: Planta baja - Pasillo A"
       />
 
-      <custom-input-text-signal
+      <custom-input-mask-signal
         [control]="form.controls.localCode"
-        label="Código Local (opcional)"
-        placeholder="Ej: HID-01-02"
+        label="Código Local"
+        placeholder="HID-01-01"
+        customMask="SSS-SS-000"
+        [validation]="false"
+        [dropSpecialCharacters]="false"
       />
 
       <custom-button-save

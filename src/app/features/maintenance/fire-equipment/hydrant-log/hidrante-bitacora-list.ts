@@ -1,13 +1,14 @@
-import { CommonModule } from "@angular/common";
+import { CommonModule, DatePipe } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
-import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { BitacoraFiltroFechaForm } from "src/app/core/components/bitacora-filtro-fecha/bitacora-filtro-fecha-form";
 import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
 import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
@@ -16,20 +17,23 @@ import { globalFilterFields, rowsPerPageOptions, tablePrimeNgRows } from "src/ap
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { HidranteChecklist } from "../hydrant-checklist/hidrante-checklist";
+import { HidranteBitacoraPdfService } from "./hidrante-bitacora-pdf.service";
 
 @Component({
   selector: "app-hidrante-bitacora-list",
   templateUrl: "./hidrante-bitacora-list.html",
   imports: [
     CommonModule, TableModule, DataViewMobile,
-    CustomButtonDelete, CustomButtonEdit,
+    CustomButtonDelete, CustomButtonDownload, CustomButtonEdit,
     PrimeNgCustomCaption, PrimeNgCustomTableFooter, ActionMenu,
     IonItem, IonLabel, IonButtonEdit, IonButtonDelete,
+    DatePipe,
   ],
 })
 export class HidranteBitacoraList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
+  pdfS = inject(HidranteBitacoraPdfService);
   rutaActiva = inject(ActivatedRoute);
 
   dataSignal = signal<any[]>([]);
@@ -41,7 +45,6 @@ export class HidranteBitacoraList implements OnInit {
   loading = signal(true);
   tablePrimeNgRows = tablePrimeNgRows();
   rowsPerPageOptions = rowsPerPageOptions();
-  ref: DynamicDialogRef;
   hydrantId = "";
 
   ngOnInit(): void {
@@ -61,6 +64,16 @@ export class HidranteBitacoraList implements OnInit {
       .then((result: boolean) => {
         if (result) this.dataSignal.update((data) => data.filter((item) => item.id !== id));
       });
+  }
+
+  async onPdfReport() {
+    const result = await this.dialogHandlerS.openDialog<{ from: Date; to: Date }>(
+      BitacoraFiltroFechaForm,
+      {},
+      "Reporte PDF — Bitácora Hidrantes",
+      this.dialogHandlerS.sizeSm,
+    );
+    if (result) await this.pdfS.downloadPdf(this.dataSignal(), result.from, result.to);
   }
 
   onModalForm(data: any) {

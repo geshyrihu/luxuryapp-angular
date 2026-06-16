@@ -182,14 +182,14 @@ export const settingMenu = (aspRoleS: AspRoleService): ISettingsMenuItem[] => [
     group: "Configuracion de Sistema",
     visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
     label: "Configuracion Aspel",
-    routerLink: "/settings/aspel-customer-empresa",
+    routerLink: "/accounting/aspel-customer-empresa",
     icon: "mdi:cog",
   },
   {
     group: "Configuracion de Sistema",
     visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
     label: "Sincronizacion Aspel",
-    routerLink: "/settings/aspel-sync",
+    routerLink: "/accounting/aspel-sync",
     icon: "mdi:sync",
   },
   {

@@ -1,0 +1,84 @@
+<p-table
+  [value]="data()"
+  [loading]="loading()"
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table"
+  #dt
+>
+  <ng-template #caption>
+    <div class="flex flex-column gap-2 mb-2">
+      <div>
+        <div class="font-semibold text-lg">Historial de ejecuciones</div>
+        <div class="text-sm text-600">{{ machineryName }}</div>
+      </div>
+      <primeng-custom-caption [dt]="dt" [showAdd]="false" />
+    </div>
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th>Inspeccion</th>
+      <th>Fecha</th>
+      <th>Asignado</th>
+      <th class="text-center">Avance</th>
+      <th class="text-center">Estado</th>
+      <th class="text-center">Hallazgo</th>
+      <th></th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <div class="font-medium">{{ item.definitionName }}</div>
+        <div class="text-sm text-600">{{ item.machineryName }}</div>
+      </td>
+      <td>{{ item.executionDate }}</td>
+      <td>{{ item.assignedToUserName || "Sin asignar" }}</td>
+      <td class="text-center">
+        {{ item.totalItemsCount - item.pendingItemsCount }}/{{ item.totalItemsCount }}
+      </td>
+      <td class="text-center">
+        <p-tag [value]="statusLabel(item.status)" [severity]="statusTag(item.status)" />
+      </td>
+      <td class="text-center">
+        <p-tag
+          [value]="severityLabel(item.severity)"
+          [severity]="severityTag(item.severity)"
+        />
+      </td>
+      <td>
+        <div class="flex justify-content-end gap-1">
+          <custom-button-item
+            iconClass="mdi:eye-outline"
+            label="Ver"
+            [showLabelOnDesktop]="true"
+            (clicked)="onView(item.id)"
+          />
+          @if (!item.isClosed) {
+          <custom-button-item
+            iconClass="mdi:check-circle-outline"
+            label="Completar"
+            [showLabelOnDesktop]="true"
+            (clicked)="onContinue(item.id)"
+          />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template emptymessage>
+    <tr>
+      <td colspan="7" class="text-center text-500 py-4">
+        No hay ejecuciones registradas para este equipo.
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+

@@ -197,6 +197,18 @@ export const logbookRoutes: Routes = [
     },
   },
   {
+    path: "equipment-inspection/:code",
+    loadComponent: () =>
+      import("src/app/features/maintenance/equipos-y-maquinaria/equipment-inspections/equipment-inspection-qr-entry").then(
+        (m) => m.EquipmentInspectionQrEntry,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Inspeccion de Equipo",
+      breadcrumb: "Inspeccion de Equipo",
+    },
+  },
+  {
     path: "hydrant-log/:hydrantId",
     loadComponent: () =>
       import("src/app/features/maintenance/fire-equipment/hydrant-log/hidrante-bitacora-list").then(
@@ -249,5 +261,68 @@ export const logbookRoutes: Routes = [
       ),
     canActivate: [authGuard],
     data: { title: "Inspección de Detector de Humo", breadcrumb: "Checklist Detector de Humo" },
+  },
+  {
+    path: "fire-inspection-periods",
+    loadComponent: () =>
+      import("src/app/features/maintenance/fire-equipment/inspection-periods/period-list/fire-inspection-period-list").then(
+        (m) => m.FireInspectionPeriodList,
+      ),
+    canActivate: [authGuard],
+    data: { title: "Periodos de Inspección Contra Incendio", breadcrumb: "Periodos de Inspección" },
+  },
+  {
+    path: "fire-inspection-cycles",
+    loadComponent: () =>
+      import("src/app/features/maintenance/fire-equipment/inspection-periods/cycle-list/fire-inspection-cycle-list").then(
+        (m) => m.FireInspectionCycleList,
+      ),
+    canActivate: [authGuard],
+    data: { title: "Ciclos de Inspección Contra Incendio", breadcrumb: "Ciclos de Inspección" },
+  },
+  {
+    path: "fire-inspection-cycle/:cycleId",
+    loadComponent: () =>
+      import("src/app/features/maintenance/fire-equipment/inspection-periods/cycle-detail/fire-inspection-cycle-detail").then(
+        (m) => m.FireInspectionCycleDetail,
+      ),
+    canActivate: [authGuard],
+    data: { title: "Detalle del Ciclo de Inspección", breadcrumb: "Detalle del Ciclo" },
+  },
+  {
+    path: "fire-inspection-period-extintor/:periodId",
+    loadComponent: () =>
+      import("src/app/features/maintenance/fire-equipment/inspection-periods/period-detail-extintor/fire-inspection-period-extintor-detail").then(
+        (m) => m.FireInspectionPeriodExtintorDetail,
+      ),
+    canActivate: [authGuard],
+    data: { title: "Periodo de Inspección — Extintores", breadcrumb: "Detalle de Periodo" },
+  },
+  {
+    path: "fire-inspection-period-hidrante/:periodId",
+    loadComponent: () =>
+      import("src/app/features/maintenance/fire-equipment/inspection-periods/period-detail-hidrante/fire-inspection-period-hidrante-detail").then(
+        (m) => m.FireInspectionPeriodHidranteDetail,
+      ),
+    canActivate: [authGuard],
+    data: { title: "Periodo de Inspección — Hidrantes", breadcrumb: "Detalle de Periodo" },
+  },
+  {
+    path: "fire-inspection-period-estacion/:periodId",
+    loadComponent: () =>
+      import("src/app/features/maintenance/fire-equipment/inspection-periods/period-detail-estacion/fire-inspection-period-estacion-detail").then(
+        (m) => m.FireInspectionPeriodEstacionDetail,
+      ),
+    canActivate: [authGuard],
+    data: { title: "Periodo de Inspección — Estaciones Manuales", breadcrumb: "Detalle de Periodo" },
+  },
+  {
+    path: "fire-inspection-period-detector/:periodId",
+    loadComponent: () =>
+      import("src/app/features/maintenance/fire-equipment/inspection-periods/period-detail-detector/fire-inspection-period-detector-detail").then(
+        (m) => m.FireInspectionPeriodDetectorDetail,
+      ),
+    canActivate: [authGuard],
+    data: { title: "Periodo de Inspección — Detectores de Humo", breadcrumb: "Detalle de Periodo" },
   },
 ];

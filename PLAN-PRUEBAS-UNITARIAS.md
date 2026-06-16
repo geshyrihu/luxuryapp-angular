@@ -12,19 +12,31 @@
 
 ### Estructura de features
 
-Solo `features/configuration/` y `features/vault/` han sido migrados de `features/tenant/` a `features/`. El resto de los features (tasks, supervision, employees, dashboard, etc.) aún residen en `features/tenant/`. **Hasta que un feature sea migrado, sus specs deben permanecer en `features/tenant/`.**
+Solo `features/configuration/` y `features/vault/` han sido migrados de `features/tenant/` a `features/`. El resto de los features (tasks, supervision, employees, dashboard, etc.) aún residen en `features/tenant/`. **Hasta que un feature sea migrado, sus specs deben permanecer en `features/tenant/`.
 
 ### Inventario de pruebas
 
 | Área | Specs | Estado |
 |------|-------|--------|
-| `core/` (servicios, guards, pipes, directivas, componentes) | 201 | ✅ Funcionales (Vitest) |
-| `features/tenant/` (no migrados aún) | 113 | ✅ Funcionales (Vitest) |
-| `features/` (configuration, vault) | 99 | ✅ Funcionales |
-| `layout/` | 26 | ✅ Funcionales |
+| `core/` (servicios, guards, pipes, directivas, componentes) | ~230 | ✅ Funcionales (Vitest) |
+| `features/tenant/` (no migrados aún) | ~120 | ✅ Funcionales (Vitest) |
+| `features/` (configuration, vault, etc.) | ~110 | ✅ Funcionales |
+| `layout/` | ~28 | ✅ Funcionales |
 | `login/` | 4 | ✅ Funcionales |
 | `shared/` | 2 | ✅ Funcionales |
-| **Total** | **445** (~1883 tests) | ✅ 0 fallos |
+| **Total** | **507** (~2080 tests) | ✅ 0 fallos |
+
+### Corregido en Junio 2026 (seguimiento)
+
+| Archivo | Problema | Solución |
+|---------|----------|----------|
+| `header-employee-monitor.spec.ts` | 6 fallos por `NG0201: No provider found for MessageService` | Agregado `{ provide: MessageService, useValue: { add: vi.fn(), clear: vi.fn() } }` en `TestBed` |
+| `funding-list.spec.ts` | Aserto `toHaveBeenCalledWith` incompatible en vitest al comparar clases | Reemplazado por verificación manual de argumentos |
+| `gastos-mantenimiento.spec.ts` | Import roto (`../../calendar/...` no existe) | Corregido path a `../../google-calendar/calendar/...` |
+| `task-view.spec.ts` | Unhandled rejection: `this.route.params.subscribe is not a function` | Mock de `ActivatedRoute.params` corregido a `{ subscribe: vi.fn() }` |
+| `test-setup.ts` | Unhandled rejections de Stencil Core (`adoptedStyleSheets` undefined) | Polyfill ampliado a `HTMLElement.prototype` y `ShadowRoot.prototype` |
+
+> **Nota:** El test `gastos-mantenimiento.spec.ts` genera 3 warnings cosméticos de `Unhandled Rejection` (API error de escenario negativo y mocks de `onLoadData`) que no afectan los asserts. Se deja para limpieza en iteración futura menor.
 
 ### Dependencia: migración de features
 

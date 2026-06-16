@@ -6,6 +6,7 @@ import { CustomButton } from "src/app/core/components/buttons/web/custom-button"
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -37,6 +38,7 @@ import { MinutaDetalleForm } from "./minuta-detalle-form";
     SanitizeHtmlPipe,
     DataViewMobile,
     TagModule,
+    AppIcon,
   ],
 })
 export class SeguimientoMinuta {

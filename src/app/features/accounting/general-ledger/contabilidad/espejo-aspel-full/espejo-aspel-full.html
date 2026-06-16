@@ -200,15 +200,15 @@
   </div>
 
   <div class="rf-card overflow-hidden">
-    <div class="rf-wrap" style="max-height: 70vh">
+    <div>
       <p-table
         [value]="filasDe(grupo.codigo)"
         styleClass="rf-prime-table p-datatable-sm"
         [scrollable]="true"
-        scrollHeight="flex"
+        scrollHeight="65vh"
         [rowHover]="true"
       >
-        <ng-template pTemplate="header">
+        <ng-template #header>
           <tr>
             <th style="min-width: 120px; position: sticky; left: 0; z-index: 3">
               No. Cuenta
@@ -241,7 +241,7 @@
           </tr>
         </ng-template>
 
-        <ng-template pTemplate="body" let-fila>
+        <ng-template #body let-fila>
           <tr [class]="rowClass(fila)">
             <!-- No. Cuenta -->
             <td

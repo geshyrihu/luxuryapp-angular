@@ -18,8 +18,8 @@ import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { DateService } from "src/app/core/services/date.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
 import { JuntaMensualSessionChecklistDialog } from "./junta-mensual-session-checklist-dialog";
 import { JuntaMensualSessionRescheduleForm } from "./junta-mensual-session-reschedule-form";
@@ -146,8 +146,8 @@ export class JuntasMensualesSession {
     EApplicationRole.GerenteMantenimiento,
     EApplicationRole.SupervisionOperativa,
   ]);
-  readonly selectedSummary = computed(() =>
-    this.items().find((item) => item.id === this.selectedId()) ?? null,
+  readonly selectedSummary = computed(
+    () => this.items().find((item) => item.id === this.selectedId()) ?? null,
   );
 
   constructor() {
@@ -188,7 +188,7 @@ export class JuntasMensualesSession {
 
         const currentSelectedId = this.selectedId();
         const stillExists = items.some((item) => item.id === currentSelectedId);
-        const nextId = stillExists ? currentSelectedId : items[0]?.id ?? null;
+        const nextId = stillExists ? currentSelectedId : (items[0]?.id ?? null);
         this.selectedId.set(nextId);
 
         if (nextId) {
@@ -216,13 +216,29 @@ export class JuntasMensualesSession {
   }
 
   onOpenPresentations() {
-    this.router.navigateByUrl("/committee-meetings/presentations");
+    if (
+      this.aspRoleS.hasRole(EApplicationRole.Contador) &&
+      !this.aspRoleS.hasAny([
+        EApplicationRole.SuperUsuario,
+        EApplicationRole.Administrador,
+        EApplicationRole.GerenteOperaciones,
+        EApplicationRole.GerenteAtencion,
+        EApplicationRole.Asistente,
+      ])
+    ) {
+      this.router.navigateByUrl("/committee-meetings/presentations-contador");
+    } else {
+      this.router.navigateByUrl("/committee-meetings/presentations");
+    }
   }
 
   onOpenMinutes() {
     const detail = this.selectedDetail();
     if (detail?.meeting?.id) {
-      this.router.navigate(["/committee-meetings/gestion-minuta", detail.meeting.id]);
+      this.router.navigate([
+        "/committee-meetings/gestion-minuta",
+        detail.meeting.id,
+      ]);
       return;
     }
 
@@ -242,7 +258,10 @@ export class JuntasMensualesSession {
         if (!result) return;
         this.onLoadData();
         if (result.meetingId) {
-          this.router.navigate(["/committee-meetings/gestion-minuta", result.meetingId]);
+          this.router.navigate([
+            "/committee-meetings/gestion-minuta",
+            result.meetingId,
+          ]);
         }
       });
   }
@@ -254,7 +273,10 @@ export class JuntasMensualesSession {
     this.apiResponseS
       .onPost<IJuntaMensualSessionListItem>(
         `JuntaMensualSession/${detail.id}/cancel`,
-        { reason: "Sesion cancelada desde el modulo central de juntas mensuales." },
+        {
+          reason:
+            "Sesion cancelada desde el modulo central de juntas mensuales.",
+        },
       )
       .then((result) => {
         if (!result) return;
@@ -299,7 +321,9 @@ export class JuntasMensualesSession {
   }
 
   canCreateMeeting(detail: IJuntaMensualSessionDetail | null) {
-    return !!detail && !detail.meetingId && detail.statusDisplayName !== "Cancelled";
+    return (
+      !!detail && !detail.meetingId && detail.statusDisplayName !== "Cancelled"
+    );
   }
 
   canCancel(detail: IJuntaMensualSessionDetail | null) {

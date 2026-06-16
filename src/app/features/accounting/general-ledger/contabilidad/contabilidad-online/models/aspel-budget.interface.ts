@@ -156,11 +156,24 @@ export interface ICobranzaOnlineSyncMetadataDto {
   lastErrorAt: string | null;
 }
 
+export interface ICobranzaOnlineAnalysisCondominoDetalleDto {
+  cuenta: string;
+  concepto: string;
+  saldoAnterior: number;
+  cargosMes: number;
+  abonosMes: number;
+  saldoFinal: number;
+}
+
 export interface ICobranzaOnlineAnalysisCondominoDto {
   numeroCuenta: string;
   condomino: string;
+  saldoAnterior: number;
+  cargosMes: number;
+  abonosMes: number;
   saldo: number;
   clasificacion: string;
+  desglose: ICobranzaOnlineAnalysisCondominoDetalleDto[];
 }
 
 export interface IAnalisisCobranzaOnlineDto {
@@ -182,6 +195,9 @@ export interface IAnalisisCobranzaOnlineDto {
   totalSinAdeudo: number;
   totalAnticipos: number;
   totalDeuda: number;
+  totalSaldoAnterior: number;
+  totalCargosMes: number;
+  totalAbonosMes: number;
   totalCobrado: number;
   saldoBalanza: number;
   syncMetadata: ICobranzaOnlineSyncMetadataDto;

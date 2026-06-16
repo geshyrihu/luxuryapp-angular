@@ -7,10 +7,12 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { CustomerIdService } from 'src/app/core/services/customer-id.service';
 import { ApiResponseService } from 'src/app/core/services/api-response.service';
 
+import { TableModule } from 'primeng/table';
+
 @Component({
   selector: 'app-bancos-inversiones',
   standalone: true,
-  imports: [CommonModule, SkeletonModule],
+  imports: [CommonModule, SkeletonModule, TableModule],
   templateUrl: './bancos-inversiones.html',
 })
 export class BancosInversionesComponent {

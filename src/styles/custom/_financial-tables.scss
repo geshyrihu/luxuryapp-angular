@@ -7,13 +7,14 @@
 
 // ── VARIABLES CSS — Reporte Financiero ────────────────────
 :root {
-  --rf-ink: #0f172a;
-  --rf-muted: #64748b;
+  --rf-ink:        #0f172a;
+  --rf-muted:      #64748b;
   --rf-line:       #d7dfeb;
   --rf-soft:       #f5f7fb;
   --rf-head:       #203453;
   --rf-accent:     #1e3a5f;
-  --rf-total:      #e8edf5;
+  --rf-total:      color-mix(in srgb, var(--ds-document-neutral, #6b7280) 20%, white); /* tinte claro del neutral */
+  --rf-total-ink:  var(--rf-head);                      /* texto sobre fondo total */
   --rf-result:     #111827;
   --rf-result-ink: #ffffff;
   --rf-fondo-bg:   #f0f4f8;
@@ -361,6 +362,7 @@
 
 .rf-row-total td {
   background: var(--rf-total);
+  color: var(--rf-total-ink);
   font-weight: 800;
 }
 
@@ -466,6 +468,73 @@
   }
 }
 
+// Overrides de filas semánticas dentro de rf-prime-table.
+// Necesario porque .rf-prime-table aplica background:#ffffff a todos los td
+// con especificidad suficiente para tapar las clases rf-row-*.
+.rf-prime-table {
+  &.p-datatable,
+  .p-datatable {
+    .p-datatable-tbody > tr.rf-row-section > td {
+      background: var(--rf-soft) !important;
+      color: var(--rf-head) !important;
+      font-weight: 800 !important;
+      text-transform: uppercase;
+    }
+
+    .p-datatable-tbody > tr.rf-row-total > td {
+      background: var(--rf-total) !important;
+      color: var(--rf-total-ink) !important;
+      font-weight: 800 !important;
+    }
+
+    .p-datatable-tbody > tr.rf-row-result > td {
+      background: var(--rf-result) !important;
+      color: var(--rf-result-ink) !important;
+      font-weight: 800 !important;
+      text-transform: uppercase;
+    }
+
+    .p-datatable-tbody > tr.rf-row-fondo > td {
+      background: #dbe3ef !important;
+      color: var(--rf-head) !important;
+      font-weight: 800 !important;
+      text-transform: uppercase;
+    }
+
+    .p-datatable-tbody > tr.rf-row-group > td {
+      background: #f8fafc !important;
+      color: var(--rf-head) !important;
+      font-weight: 800 !important;
+    }
+
+    // tfoot: respeta la clase del tr igual que tbody
+    .p-datatable-tfoot > tr.rf-row-section > td {
+      background: var(--rf-soft) !important;
+      color: var(--rf-head) !important;
+      font-weight: 800 !important;
+      text-transform: uppercase;
+    }
+
+    .p-datatable-tfoot > tr.rf-row-total > td {
+      background: var(--rf-total) !important;
+      color: var(--rf-total-ink) !important;
+      font-weight: 800 !important;
+    }
+
+    .p-datatable-tfoot > tr.rf-row-result > td {
+      background: var(--rf-result) !important;
+      color: var(--rf-result-ink) !important;
+      font-weight: 800 !important;
+      text-transform: uppercase;
+    }
+
+    .p-datatable-tfoot > tr.rf-row-concepto > td {
+      background: #ffffff !important;
+      color: var(--rf-ink) !important;
+    }
+  }
+}
+
 // Permite que las tablas rf con encabezados semánticos de presupuesto
 // conserven sus colores especiales por columna/mes.
 .rf-prime-table {
@@ -556,6 +625,48 @@
   font-variant-numeric: tabular-nums;
 }
 
+// ── VISTAS MÓVILES ────────────────────────────────────────
+// Equivalentes de rf-row-* para contenedores div en mobile.
+.rf-mobile-section {
+  background: var(--rf-soft);
+  color: var(--rf-head);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.rf-mobile-total {
+  background: var(--rf-total);
+  color: var(--rf-total-ink);
+  font-weight: 800;
+}
+
+.rf-mobile-result {
+  background: var(--rf-result);
+  color: var(--rf-result-ink);
+  font-weight: 800;
+}
+
+// ── ENCABEZADOS SEMÁNTICOS DEL BALANCE MENSUAL ────────────
+// Código 1=Activo (azul), 2=Pasivo (rojo), 3=Capital (verde).
+// Se aplican a rf-row-section para sobreescribir el fondo neutro.
+.rf-prime-table {
+  &.p-datatable,
+  .p-datatable {
+    .p-datatable-tbody > tr.rf-row-section--activo > td {
+      background-color: #e3f2fd !important;
+      color: #0d47a1 !important;
+    }
+    .p-datatable-tbody > tr.rf-row-section--pasivo > td {
+      background-color: #fbe9e7 !important;
+      color: #b71c1c !important;
+    }
+    .p-datatable-tbody > tr.rf-row-section--capital > td {
+      background-color: #f1f8e9 !important;
+      color: #1b5e20 !important;
+    }
+  }
+}
+
 // Paneles tipo EPF: mismo lenguaje visual rf-* sin tabla formal.
 .rf-panel {
   display: flex;
@@ -613,6 +724,7 @@
   padding: 0.8rem 0.9rem;
   border-radius: 12px;
   background: var(--rf-total);
+  color: var(--rf-total-ink);
   border: 1px solid var(--rf-line);
   font-weight: 800;
 }

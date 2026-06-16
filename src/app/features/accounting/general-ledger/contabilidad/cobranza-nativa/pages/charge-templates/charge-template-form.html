@@ -112,6 +112,6 @@
   />
 
   <div class="flex justify-content-end mt-4">
-    <custom-button-save [disabled]="form.invalid || submitting" />
+    <custom-button-save [disabled]="form.invalid" [submitting]="submitting()" />
   </div>
 </form>

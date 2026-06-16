@@ -14,6 +14,9 @@ import { ReporteFinancieroClienteComponent } from './reporte-financiero-cliente/
 import { FlujoEfectivoClienteComponent } from './flujo-efectivo-cliente/flujo-efectivo-cliente';
 import { AnalisisCobranzaClienteComponent } from './analisis-cobranza-cliente/analisis-cobranza-cliente';
 import { PresupuestoContabilidadClienteComponent } from './presupuesto-contabilidad-cliente/presupuesto-contabilidad-cliente';
+import { BancosInversionesClienteComponent } from './bancos-inversiones-cliente/bancos-inversiones-cliente';
+import { FondoReservaClienteComponent } from './fondo-reserva-cliente/fondo-reserva-cliente';
+import { ProyectosAprobadosClienteComponent } from './proyectos-aprobados-cliente/proyectos-aprobados-cliente';
 
 const MONTH_NAMES = [
   'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -34,6 +37,9 @@ const MONTH_NAMES = [
     FlujoEfectivoClienteComponent,
     AnalisisCobranzaClienteComponent,
     PresupuestoContabilidadClienteComponent,
+    BancosInversionesClienteComponent,
+    FondoReservaClienteComponent,
+    ProyectosAprobadosClienteComponent,
    AppIcon],
   templateUrl: './contabilidad-cliente-wrapper.html',
 })

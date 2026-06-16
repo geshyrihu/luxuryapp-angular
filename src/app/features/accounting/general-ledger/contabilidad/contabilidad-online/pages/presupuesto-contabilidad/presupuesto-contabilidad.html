@@ -35,7 +35,19 @@
             @for (fila of reporte.filas; track trackByCuenta($index, fila)) {
               @if (!isFilaVacia(fila)) {
                 <tr [ngClass]="rowClass(fila)">
-                  <td class="rf-td-cuenta">{{ fila.numeroCuenta }}</td>
+                  <td class="rf-td-cuenta">
+                    @if (fila.nivel === 2 || fila.nivel === 3) {
+                      <span
+                        class="cursor-pointer hover:text-primary transition-colors transition-duration-200"
+                        (click)="showPurchaseHistory(fila)"
+                        title="Ver Historial de Compras"
+                      >
+                        {{ fila.numeroCuenta }} 🛒
+                      </span>
+                    } @else {
+                      {{ fila.numeroCuenta }}
+                    }
+                  </td>
                   <td [ngClass]="descClass(fila)"
                       [style.padding-left]="fila.nivel === 2 ? '1.5rem' : fila.nivel === 3 ? '2.5rem' : null">
                     {{ fila.descripcion }}

@@ -1,0 +1,398 @@
+@if (dataSignal()) {
+<!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+<div class="hidden md:block">
+  <div class="flex flex-column gap-3">
+    <!-- Header Section -->
+    <div class="card p-3 shadow-1 border-round-xl surface-card flex justify-content-between align-items-center border-left-3 border-cyan-500">
+      <div class="flex align-items-center gap-3">
+        <div class="p-3 border-round-circle bg-cyan-50 text-cyan-600 flex align-items-center justify-content-center">
+          <app-icon icon="mdi:calculator-variant" class="text-2xl"></app-icon>
+        </div>
+        <div>
+          <h5 class="m-0 font-bold text-900">Módulo Contable: Presentaciones</h5>
+          <span class="text-600 text-sm">Carga y gestión de reportes financieros para juntas mensuales</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info Banner for Accountant -->
+    <div class="p-3 border-round-lg bg-cyan-50 text-cyan-800 text-sm flex align-items-center gap-2">
+      <app-icon icon="mdi:information-outline" class="text-xl"></app-icon>
+      <span>Como contador, su responsabilidad es cargar el reporte financiero antes de la validación final.</span>
+    </div>
+
+    <!-- Rows Container (Full Width Row-Cards) -->
+    <div class="flex flex-column gap-3">
+      @for (item of dataSignal(); track item.id) {
+      <div class="card p-0 shadow-1 border-round-xl surface-card overflow-hidden border-left-3 transition-all hover:shadow-2"
+           [style.border-left-color]="item.archivoFinal ? 'var(--green-500)' : 'var(--cyan-500)'">
+        
+        <!-- Row Header -->
+        <div class="p-3 bg-gray-50 border-bottom-1 surface-border flex justify-content-between align-items-center">
+          <div class="flex align-items-center gap-5">
+            <div class="flex flex-column">
+              <span class="text-xs font-bold text-500 uppercase tracking-wider">Periodo</span>
+              <span class="font-bold text-900 text-lg uppercase">{{ item.fechaCorrespondiente }}</span>
+            </div>
+            <div class="flex flex-column">
+              <span class="text-xs font-bold text-500 uppercase tracking-wider">Fecha de Junta</span>
+              <div class="flex align-items-center gap-2 text-700">
+                <app-icon icon="mdi:calendar" class="text-cyan-500"></app-icon>
+                <span class="font-medium">{{ item.fechaJunta }}</span>
+              </div>
+            </div>
+            <div class="flex flex-column">
+              <span class="text-xs font-bold text-500 uppercase tracking-wider">Estado Archivo</span>
+              <p-tag [value]="item.archivoContable ? 'CARGADO' : 'PENDIENTE'" 
+                     [severity]="item.archivoContable ? 'success' : 'danger'"
+                     styleClass="text-xs"></p-tag>
+            </div>
+          </div>
+          
+          @if (item.archivoFinal) {
+            <div class="flex align-items-center gap-2 px-3 py-2 bg-green-50 text-green-700 border-round-lg font-bold border-1 border-green-100">
+              <app-icon icon="mdi:lock"></app-icon>
+              <span>SESIÓN FINALIZADA</span>
+            </div>
+          }
+        </div>
+
+        <!-- Row Body -->
+        <div class="p-4">
+          <div class="grid align-items-center">
+            
+            <!-- Main Content: Accounting Upload -->
+            <div class="col-12 md:col-7 border-right-1 surface-border pr-4">
+              <div class="flex align-items-center gap-4">
+                <div class="p-4 border-round-xl bg-cyan-50 text-cyan-600 flex align-items-center justify-content-center">
+                  <app-icon icon="mdi:chart-bar" class="text-4xl"></app-icon>
+                </div>
+                
+                <div class="flex-grow-1 flex flex-column gap-2">
+                  <h6 class="m-0 font-bold text-800 uppercase tracking-tight">Reporte Contable Mensual</h6>
+                  
+                  @if (item.archivoContable) {
+                    <div class="flex align-items-center gap-3 bg-white p-2 border-round shadow-1 border-1 border-gray-100">
+                      <custom-button-view-pdf [url]="item.archivoContable" fileName="Contabilidad" label="REVISAR ARCHIVO" severity="info" size="sm" [showLabelOnDesktop]="true" />
+                      @if (!item.archivoFinal) {
+                        <div class="flex gap-1 ml-auto">
+                          <custom-button-edit (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })" variant="text" size="sm" />
+                          <custom-button-delete (confirmed)="onDeleteFile(item.id, 'Contabilidad')" variant="text" size="sm" />
+                        </div>
+                      }
+                    </div>
+                    <div class="flex gap-4 mt-1">
+                      <div class="flex flex-column">
+                        <small class="text-700 font-bold">CARGADO POR:</small>
+                        <small class="text-600">{{ item.applicationUserContable }}</small>
+                      </div>
+                      <div class="flex flex-column">
+                        <small class="text-700 font-bold">FECHA CARGA:</small>
+                        <small class="text-600">{{ item.fechaCargaContable }}</small>
+                      </div>
+                    </div>
+                  } @else if (!item.archivoFinal) {
+                    <div class="flex align-items-center gap-3">
+                      <custom-button
+                        label="CARGAR REPORTE AHORA"
+                        iconClass="mdi:upload"
+                        severity="info"
+                        [showLabelOnDesktop]="true"
+                        customClass="justify-content-start px-3"
+                        (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
+                      />
+                      <span class="text-500 text-sm">Formato PDF permitido</span>
+                    </div>
+                  } @else {
+                    <div class="p-3 border-round bg-gray-100 text-center text-600">
+                      <app-icon icon="mdi:lock-outline" class="text-xl mb-1"></app-icon>
+                      <p class="m-0 text-sm font-medium">No se admiten cambios en sesiones finalizadas</p>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <!-- Side Content: Other Areas Status -->
+            <div class="col-12 md:col-5 pl-4 flex flex-column gap-3">
+              <span class="text-xs font-bold text-500 uppercase tracking-wider">Disponibilidad de otras áreas</span>
+              
+              <div class="flex flex-column gap-2">
+                <!-- Status Row: Portada -->
+                <div class="flex align-items-center justify-content-between p-2 border-round bg-gray-50 border-1 border-gray-100">
+                  <div class="flex align-items-center gap-2">
+                    <app-icon icon="mdi:image-filter-frames" class="text-blue-500"></app-icon>
+                    <span class="text-sm font-medium text-700">Documento de Portada</span>
+                  </div>
+                  <p-tag [severity]="item.archivoPortada ? 'success' : 'warning'" [value]="item.archivoPortada ? 'LISTO' : 'PENDIENTE'" styleClass="text-xs"></p-tag>
+                </div>
+
+                <!-- Status Row: Operaciones -->
+                <div class="flex align-items-center justify-content-between p-2 border-round bg-gray-50 border-1 border-gray-100">
+                  <div class="flex align-items-center gap-2">
+                    <app-icon icon="mdi:cog-sync" class="text-orange-500"></app-icon>
+                    <span class="text-sm font-medium text-700">Reporte de Operaciones</span>
+                  </div>
+                  <p-tag [severity]="item.archivoJunta ? 'success' : 'warning'" [value]="item.archivoJunta ? 'LISTO' : 'PENDIENTE'" styleClass="text-xs"></p-tag>
+                </div>
+              </div>
+
+              @if (item.archivoFinal) {
+                <div class="mt-2">
+                  <custom-button-view-pdf [url]="item.archivoFinal" fileName="Presentacion_Final" label="VER PRESENTACIÓN FINAL" [fluid]="true" severity="success" size="sm" [showLabelOnDesktop]="true" customClass="justify-content-start px-3" />
+                </div>
+              }
+            </div>
+
+          </div>
+        </div>
+      </div>
+      } @empty {
+      <div class="card p-8 shadow-1 border-round-xl surface-card flex flex-column align-items-center justify-content-center text-center gap-3">
+        <app-icon icon="mdi:file-clock-outline" class="text-6xl text-300"></app-icon>
+        <div>
+          <h6 class="m-0 font-bold text-900">Sin sesiones pendientes</h6>
+          <p class="text-600">No hay juntas programadas que requieran su intervención contable en este momento.</p>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>
+
+<!-- INICIO: Componente adaptado para version movil -->
+<div class="block md:hidden">
+  <div class="mb-3 p-3 border-round bg-blue-50 text-700 text-sm">
+    La presentacion ya no se crea directamente aqui. Primero registra la agenda
+    de la junta para generar la sesion mensual y la presentacion relacionada.
+  </div>
+  <app-data-view-mobile
+    [data]="dataSignal()"
+    (add)="showModalAdd({ id: 0, titulo: 'Nuevo Registro' })"
+    [globalFilterFields]="globalFilterFields"
+  >
+    <ng-template #listItemTemplate let-item>
+      <div
+        class="card p-3 mb-2 border-1 surface-border shadow-1 border-round-xl"
+      >
+        <!-- Header -->
+        <div class="border-bottom-1 surface-border pb-2 mb-2">
+          <div class="flex justify-content-between align-items-center mb-2">
+            <div>
+              <h6 class="m-0 font-bold text-900 uppercase">
+                PERIODO: {{ item.fechaCorrespondiente | uppercase }}
+              </h6>
+              <small class="text-500 block mt-1"
+                >FECHA DE JUNTA: {{ item.fechaJunta | uppercase }}{{
+                item.horaJunta ? ", HORA: " + item.horaJunta : "" }}</small
+              >
+            </div>
+            @if ( aspRoleS.anyOf([AspRole.Administrador,
+            AspRole.SuperUsuario])() && !item.archivoFinal ) {
+            <div class="flex gap-1">
+              <ion-button-edit
+                (clicked)="showModalAdd({ id: item.id, title: 'Editar' })"
+              />
+              <ion-button-delete (confirmed)="onDeleteItem(item.id)" />
+            </div>
+            }
+          </div>
+          <p-tag
+            [value]="item.enviadoComite ? 'Enviado a Comité' : 'No enviado a Comité'"
+            [severity]="item.enviadoComite ? 'success' : 'warning'"
+            styleClass="text-xs"
+          ></p-tag>
+        </div>
+
+        <!-- Body -->
+        <div class="grid">
+          <!-- Portada -->
+          <div class="col-12 sm:col-6">
+            <p-fieldset
+              legend="Portada"
+              [toggleable]="true"
+              [collapsed]="true"
+              styleClass="mb-2"
+            >
+              @if ( !item.archivoPortada &&
+              aspRoleS.anyOf([AspRole.Administrador, AspRole.SuperUsuario])() )
+              {
+              <custom-button
+                label="Cargar archivo"
+                iconClass="mdi:upload"
+                size="sm"
+                [fluid]="true"
+                (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })"
+              />
+              } @else if (item.archivoPortada) {
+              <div class="flex justify-content-between align-items-center">
+                <ion-button-view-pdf
+                  [url]="item.archivoPortada"
+                  pdf="Portada"
+                />
+                @if ( aspRoleS.anyOf([ AspRole.Administrador,
+                AspRole.SuperUsuario ])() && !item.archivoFinal ) {
+                <div class="flex gap-1">
+                  <ion-button-edit
+                    (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })"
+                  />
+                  <ion-button-delete
+                    (confirmed)="onDeleteFile(item.id, 'Portada')"
+                  />
+                </div>
+                }
+              </div>
+              <p class="m-0 text-xs text-500 mt-2">
+                {{ item.applicationUserPortada }} - {{ item.fechaCargaPortada }}
+              </p>
+              } @else {
+              <p class="text-500 text-sm italic m-0">Sin archivo</p>
+              }
+            </p-fieldset>
+          </div>
+
+          <!-- Contable -->
+          <div class="col-12 sm:col-6">
+            <p-fieldset
+              legend="Contable"
+              [toggleable]="true"
+              [collapsed]="true"
+              styleClass="mb-2"
+            >
+              @if ( !item.archivoContable && aspRoleS.anyOf([AspRole.Contador,
+              AspRole.SuperUsuario])() ) {
+              <custom-button
+                label="Cargar archivo"
+                iconClass="mdi:upload"
+                size="sm"
+                [fluid]="true"
+                (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
+              />
+              } @else if (item.archivoContable) {
+              <div class="flex justify-content-between align-items-center">
+                <ion-button-view-pdf
+                  [url]="item.archivoContable"
+                  pdf="Contabilidad"
+                />
+                @if ( aspRoleS.anyOf([AspRole.Contador, AspRole.SuperUsuario])()
+                && !item.archivoFinal && !item.applicationUserSupervisorContable
+                ) {
+                <div class="flex gap-1">
+                  <ion-button-edit
+                    (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
+                  />
+                  <ion-button-delete
+                    (confirmed)="onDeleteFile(item.id, 'Contabilidad')"
+                  />
+                </div>
+                }
+              </div>
+              <p class="m-0 text-xs text-500 mt-2">
+                {{ item.applicationUserContable }} - {{ item.fechaCargaContable
+                }}
+              </p>
+              } @else {
+              <p class="text-500 text-sm italic m-0">Sin archivo</p>
+              }
+            </p-fieldset>
+          </div>
+
+          <!-- Operaciones -->
+          <div class="col-12 sm:col-6">
+            <p-fieldset
+              legend="Operaciones"
+              [toggleable]="true"
+              [collapsed]="true"
+              styleClass="mb-2"
+            >
+              @if ( !item.archivoJunta && aspRoleS.anyOf([AspRole.Administrador,
+              AspRole.SuperUsuario])() ) {
+              <custom-button
+                label="Cargar archivo"
+                iconClass="mdi:upload"
+                size="sm"
+                [fluid]="true"
+                (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
+              />
+              } @else if (item.archivoJunta) {
+              <div class="flex justify-content-between align-items-center">
+                <ion-button-view-pdf
+                  [url]="item.archivoJunta"
+                  pdf="Operaciones"
+                />
+                @if ( aspRoleS.anyOf([ AspRole.Administrador,
+                AspRole.SuperUsuario ])() && !item.archivoFinal ) {
+                <div class="flex gap-1">
+                  <ion-button-edit
+                    (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
+                  />
+                  <button-delete
+                    (confirmed)="onDeleteFile(item.id, 'Operaciones')"
+                  />
+                </div>
+                }
+              </div>
+              <p class="m-0 text-xs text-500 mt-2">
+                {{ item.applicationUser }} - {{ item.fechaCarga }}
+              </p>
+              } @else {
+              <p class="text-500 text-sm italic m-0">Sin archivo</p>
+              }
+            </p-fieldset>
+          </div>
+
+          <!-- Final -->
+          <div class="col-12 sm:col-6">
+            <p-fieldset legend="Final" [toggleable]="true" [collapsed]="true">
+              @if ( !item.archivoFinal && aspRoleS.anyOf([
+              AspRole.SupervisionOperativa, AspRole.SuperUsuario ])() &&
+              item.archivoPortada && item.archivoContable && item.archivoJunta )
+              {
+              <div class="flex flex-column gap-2">
+                <ion-button-confirm
+                  icon="mdi:send"
+                  label="Validar y enviar a comite"
+                  swalTitle="óEnviar presentación?"
+                  swalText="La presentación seró enviada al Comité."
+                  swalConfirmButtonText="Sí, enviar"
+                  swalIcon="warning"
+                  (confirmed)="onValidarPresentacion(item.id)"
+                  customClass="w-full"
+                />
+                <ion-button-confirm
+                  icon="mdi:check-circle"
+                  label="Solo validar"
+                  swalTitle="óValidar presentación?"
+                  swalText="Confirmo que la presentación es correcta y se crearó versión final."
+                  swalConfirmButtonText="Sí, estó correcta, validar"
+                  swalIcon="info"
+                  (confirmed)="onOnlyValidate(item.id)"
+                  customClass="w-full p-button-secondary"
+                />
+              </div>
+              } @else if (item.archivoFinal) {
+              <div class="flex justify-content-between align-items-center">
+                <ion-button-view-pdf [url]="item.archivoFinal" pdf="Final" />
+                @if (aspRoleS.anyOf([AspRole.SuperUsuario])()) {
+                <ion-button-delete
+                  (confirmed)="onDeleteFile(item.id, 'Final')"
+                />
+                }
+              </div>
+              <p class="m-0 text-xs text-500 mt-2">
+                {{ item.applicationUserSupervisor }} - {{
+                item.fechaCargaSupervisor }}
+              </p>
+              } @else {
+              <p class="text-500 text-sm italic m-0">
+                Sin archivo o faltan documentos
+              </p>
+              }
+            </p-fieldset>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </app-data-view-mobile>
+</div>
+}

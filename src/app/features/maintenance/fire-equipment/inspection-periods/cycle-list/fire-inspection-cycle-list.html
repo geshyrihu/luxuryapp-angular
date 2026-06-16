@@ -1,0 +1,69 @@
+<p-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tablePrimeNgRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="dataSignal()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  styleClass="custom-table card hidden md:block"
+>
+  <ng-template #caption>
+    <primeng-custom-caption [dt]="dt" [showAdd]="false" />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="periodName">Periodo <p-sortIcon field="periodName" /></th>
+      <th class="table-col-15">Inicio</th>
+      <th class="table-col-15">Fin</th>
+      <th class="table-col-10">Total</th>
+      <th class="table-col-10">Pendientes</th>
+      <th class="table-col-10">Realizados</th>
+      <th class="table-col-15">Estado</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.periodName }}</td>
+      <td>{{ item.periodStart | date:'dd-MMM-yy' }}</td>
+      <td>{{ item.periodEnd | date:'dd-MMM-yy' }}</td>
+      <td class="text-center">{{ item.totalItems }}</td>
+      <td class="text-center">{{ item.pendingItems }}</td>
+      <td class="text-center">{{ item.completedItems }}</td>
+      <td><span [class]="statusClass(item.status)">{{ item.status }}</span></td>
+      <td>
+        <custom-button-item label="Detalle" (clicked)="onViewDetail(item.id)" tooltip="Ver detalle del ciclo" />
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #paginatorleft>
+    <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+</p-table>
+
+<app-data-view-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" class="ion-no-padding" (click)="onViewDetail(item.id)">
+      <ion-label>
+        <h3>{{ item.periodName }}</h3>
+        <p>{{ item.periodStart | date:'dd-MMM-yy' }} &mdash; {{ item.periodEnd | date:'dd-MMM-yy' }}</p>
+        <p>
+          <span [class]="statusClass(item.status)">{{ item.status }}</span>
+          &bull; Pendientes: {{ item.pendingItems }}/{{ item.totalItems }}
+        </p>
+      </ion-label>
+      <div slot="end">
+        <app-action-menu>
+          <ng-container actions>
+            <ion-button-item label="Ver Detalle" (clicked)="onViewDetail(item.id)" />
+          </ng-container>
+        </app-action-menu>
+      </div>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>

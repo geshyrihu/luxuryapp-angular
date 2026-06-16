@@ -73,6 +73,15 @@
                 pTooltip="Descargar Inventario PDF"
                 tooltipPosition="top"
               />
+              <custom-button
+                label="QR Global"
+                iconClass="mdi:qrcode"
+                [severity]="'secondary'"
+                [variant]="'outlined'"
+                (clicked)="onDownloadEquipmentInspectionQrBatch()"
+                pTooltip="Imprimir QR activos de los equipos visibles"
+                tooltipPosition="top"
+              />
               <div class="flex-shrink-0" style="width: 150px">
                 <custom-button-active-desactive
                   [state]="stateFilter() === 0"
@@ -170,6 +179,12 @@
                 (clicked)="showModalFichatecnica(item.id)"
                 iconClass="mdi:clipboard-text"
                 label="Ficha técnica"
+                variant="text"
+              />
+              <custom-button-item
+                (clicked)="onEquipmentInspections(item)"
+                iconClass="mdi:clipboard-check-outline"
+                label="Inspecciones"
                 variant="text"
               />
               @if (!mostrarPreventivos()) {
@@ -338,6 +353,14 @@
             [isFullWidth]="true"
             (clicked)="onDownloadPdf()"
           />
+          <custom-button
+            label="QR Global"
+            iconClass="mdi:qrcode"
+            [severity]="'secondary'"
+            [size]="'small'"
+            [isFullWidth]="true"
+            (clicked)="onDownloadEquipmentInspectionQrBatch()"
+          />
         </div>
       </ng-template>
       <ng-template #listItemTemplate let-item>
@@ -379,6 +402,13 @@
                 fill="clear"
                 size="small"
                 (click)="showModalFichatecnica(item.id)"
+              >
+                <ion-icon slot="icon-only" name="clipboard-outline"></ion-icon>
+              </ion-button>
+              <ion-button
+                fill="clear"
+                size="small"
+                (click)="onEquipmentInspections(item)"
               >
                 <ion-icon slot="icon-only" name="clipboard-outline"></ion-icon>
               </ion-button>

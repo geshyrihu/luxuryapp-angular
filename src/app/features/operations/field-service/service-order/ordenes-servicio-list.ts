@@ -1,3 +1,4 @@
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, computed, effect, inject, signal } from "@angular/core";
@@ -32,13 +33,11 @@ import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
 import { ReporteOrdenesServicioService } from "src/app/core/services/reporte-ordenes-servicio.service";
-import { resolvePrimeIcon } from "src/app/core/utils/prime-icon-resolver";
 import { OrdenesServicioFotos } from "./ordenes-servicio-fotos";
 import { OrdenesServicioReporteProveedor } from "./ordenes-servicio-reporte-proveedor";
 import { ServiceOrderForm } from "./service-order-form";
 import { UploadImgForm } from "./upload-img-form";
 import { OrdenesServicioListPdfService } from "./ordenes-servicio-list-pdf.service";
-// ... (skipping other imports)|
 
 @Component({
   selector: "app-ordenes-servicio-list",
@@ -64,6 +63,7 @@ import { OrdenesServicioListPdfService } from "./ordenes-servicio-list-pdf.servi
     IonItem,
     IonLabel,
     IonButtonItem,
+    AppIcon,
   ],
 })
 export class OrdenesServicio {
@@ -80,7 +80,6 @@ export class OrdenesServicio {
   mm: number;
   fechaControl = new FormControl<string>("");
   dataSignal = signal<any[]>([]);
-  readonly resolvePrimeIcon = resolvePrimeIcon;
 
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
@@ -106,10 +105,6 @@ export class OrdenesServicio {
     { icon: "mdi:video", id: 6, nombre: "sistemas" },
     { icon: "mdi:palette", id: 10, nombre: "pintura" },
   ];
-
-  getInventoryIconClass(icon: string | null | undefined): string {
-    return this.resolvePrimeIcon(icon, "mdi:package");
-  }
 
   onSegmentFilterChange(event: any) {
     const nombre = event.detail.value;
@@ -157,6 +152,12 @@ export class OrdenesServicio {
     const converToDate = this.parseFechaControl();
     const fechaFormateada = this.dateS.getDateFormat(converToDate);
     this.pdfService.downloadReporte(fechaFormateada, this.filtroEquiposValue);
+  }
+
+  onNavigateToReportTabla() {
+    const converToDate = this.parseFechaControl();
+    const fechaFormateada = this.dateS.getDateFormat(converToDate);
+    this.pdfService.downloadReporteTablaCategoria(this.dataSignal(), fechaFormateada, this.filtroEquiposValue);
   }
 
   onModalFormUploadImg(id: any) {

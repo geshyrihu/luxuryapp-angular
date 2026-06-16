@@ -5,6 +5,8 @@
   [value]="dataSignal()"
   #dt
   styleClass="custom-table card hidden md:block"
+  rowGroupMode="subheader"
+  groupRowsBy="equipoClasificacion"
 >
   <ng-template #caption>
     <div class="flex align-items-end flex-wrap gap-2 no-print mb-4 mt-1">
@@ -22,7 +24,7 @@
         @for (item of filtroEquipos; track item) {
         <custom-button
           [ngbTooltip]="'Ver ' + item.nombre"
-          [iconClass]="getInventoryIconClass(item.icon)"
+          [iconClass]="item.icon"
           variant="outlined"
           [ngClass]="{'bg-primary text-white': filtroEquiposValue == item.nombre}"
           (clicked)="onReloadOrdenes(item.id, item.nombre)"
@@ -33,6 +35,12 @@
         iconClass="mdi:file-document-outline"
         label="Reporte de órdenes"
         (click)="onNavigateToReport()"
+        variant="outlined"
+      />
+      <custom-button
+        iconClass="mdi:table"
+        label="Reporte por categoria"
+        (click)="onNavigateToReportTabla()"
         variant="outlined"
       />
       <div class="ml-auto">
@@ -89,6 +97,13 @@
         <p-sortIcon field="serviceOrderDocument.length" class="no-print" />
       </th>
       <th class="table-col-15 no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #groupheader let-item>
+    <tr>
+      <td colspan="8" class="font-bold text-sm surface-100 px-3 py-2">
+        {{ item.equipoClasificacion || 'Sin Categoría' }}
+      </td>
     </tr>
   </ng-template>
   <ng-template #body let-item>
@@ -220,7 +235,7 @@
       >
         @for (item of filtroEquipos; track item) {
         <ion-segment-button [value]="item.nombre">
-          <i [class]="getInventoryIconClass(item.icon) + ' text-xl mb-1'"></i>
+          <app-icon [icon]="item.icon" class="text-xl mb-1" />
           <ion-label class="text-xs">{{ item.nombre | titlecase }}</ion-label>
         </ion-segment-button>
         }
@@ -232,6 +247,15 @@
           iconName="document-text-outline"
           label="Reporte de órdenes"
           (click)="onNavigateToReport()"
+          variant="outlined"
+          fullWidth="true"
+        />
+      </div>
+      <div class="mb-2">
+        <ion-button-item
+          iconName="grid-outline"
+          label="Reporte por categoria"
+          (click)="onNavigateToReportTabla()"
           variant="outlined"
           fullWidth="true"
         />

@@ -18,7 +18,7 @@
   <!-- Tabla de Escritorio -->
   <p-table
     [value]="rows()"
-    styleClass="rf-prime-table card hidden md:block p-datatable-sm"
+    styleClass="rf-prime-table hidden md:block p-datatable-sm"
     [tableStyle]="{ 'min-width': '800px' }"
   >
     <ng-template pTemplate="header">
@@ -113,10 +113,7 @@
   >
     <ng-template #listItemTemplate let-item>
       @if (item.tipo === 'header') {
-      <div
-        class="p-2 font-bold text-xs uppercase mb-2 border-round-sm"
-        style="background-color: #0f172a; color: #ffffff !important"
-      >
+      <div class="rf-mobile-section p-2 text-xs mb-2 border-round-sm">
         {{ item.descripcion }}
       </div>
       } @else if (item.tipo === 'item') {
@@ -132,7 +129,7 @@
             {{ monthHeaders()[0] }}:
             <span
               class="text-color font-medium block"
-              [class.text-red-500]="item.mes1 < 0"
+              [class.rf-neg]="item.mes1 < 0"
               >{{ item.mes1 | accountingNumber : "1.0-0" }}</span
             >
           </div>
@@ -140,7 +137,7 @@
             {{ monthHeaders()[1] }}:
             <span
               class="text-color font-medium block"
-              [class.text-red-500]="item.mes2 < 0"
+              [class.rf-neg]="item.mes2 < 0"
               >{{ item.mes2 | accountingNumber : "1.0-0" }}</span
             >
           </div>
@@ -148,7 +145,7 @@
             {{ monthHeaders()[2] }}:
             <span
               class="text-color font-medium block"
-              [class.text-red-500]="item.mes3 < 0"
+              [class.rf-neg]="item.mes3 < 0"
               >{{ item.mes3 | accountingNumber : "1.0-0" }}</span
             >
           </div>
@@ -159,7 +156,7 @@
           <span class="text-xs font-bold uppercase text-500">Acumulado</span>
           <span
             class="text-sm font-bold text-primary"
-            [class.text-red-500]="item.acum < 0"
+            [class.rf-neg]="item.acum < 0"
             >{{ item.acum | accountingNumber : "1.0-0" }}</span
           >
         </div>
@@ -167,22 +164,20 @@
       } @else {
       <div
         class="p-3 mb-3 border-round shadow-2"
-        [class.surface-100]="item.tipo !== 'diferencia'"
-        [class.surface-900]="item.tipo === 'diferencia'"
-        [class.text-white]="item.tipo === 'diferencia'"
+        [style.background]="item.tipo === 'diferencia' ? 'var(--rf-result)' : 'var(--rf-total)'"
+        [style.color]="'var(--rf-total-ink)'"
       >
         <div class="flex justify-content-between align-items-center mb-2">
           <span class="font-bold">{{ item.descripcion }}</span>
           <span
-            class="text-lg"
-            [class.text-primary]="item.tipo !== 'diferencia'"
-            [class.text-red-500]="item.acum < 0"
+            class="text-lg font-bold"
+            [class.rf-neg]="item.acum < 0"
             >{{ item.acum | accountingNumber : "1.0-0" }}</span
           >
         </div>
         <div class="flex justify-content-between text-xs opacity-70">
           <span>{{ monthHeaders()[2] }}</span>
-          <span [class.text-red-500]="item.mes3 < 0"
+          <span [class.rf-neg]="item.mes3 < 0"
             >{{ item.mes3 | accountingNumber : "1.0-0" }}</span
           >
         </div>

@@ -10,11 +10,11 @@ import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-b
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -24,6 +24,7 @@ import { ChargeTemplateForm } from "./charge-template-form";
 
 // Pipes
 import { CurrencyPipe, DatePipe, NgClass } from "@angular/common";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import {
   ECalculationMethod,
   EChargeType,
@@ -33,20 +34,21 @@ import {
 @Component({
   selector: "app-charge-template-list",
   imports: [
-    TableModule,
-    PrimeNgCustomCaption,
-    CustomButtonEdit,
-    CustomButtonDelete,
-    DatePipe,
-    CurrencyPipe,
-    NgClass,
-    DataViewMobile,
+    AppIcon,
     ActionMenu,
-    IonButtonEdit,
+    CurrencyPipe,
+    CustomButtonDelete,
+    CustomButtonEdit,
+    DataViewMobile,
+    DatePipe,
     IonButtonDelete,
+    IonButtonEdit,
+    IonIcon,
     IonItem,
     IonLabel,
-    IonIcon,
+    NgClass,
+    PrimeNgCustomCaption,
+    TableModule,
   ],
   templateUrl: "./charge-template-list.html",
 })
@@ -111,7 +113,9 @@ export default class ChargeTemplateList {
 
   async onDelete(item: ChargeTemplateResponseDTO) {
     this.apiResponseS
-      .onDelete(Endpoints.AccountingCoi.NativeCollection.Templates.delete(item.id))
+      .onDelete(
+        Endpoints.AccountingCoi.NativeCollection.Templates.delete(item.id),
+      )
       .then((res) => {
         if (res) this.onLoadData();
       });

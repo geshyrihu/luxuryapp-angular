@@ -8,6 +8,9 @@ import type {
   IFinancialStatementDto,
   IFlujoCajaDto,
   IReporteFinancieroDto,
+  IBancosInversionesDto,
+  IFondoReservaDTO,
+  IProyectosAprobadosDTO,
 } from '../../contabilidad-online/models/aspel-budget.interface';
 import type { PresupuestoContabilidadResponse } from '../../cobranza-online/models/presupuesto-contabilidad.model';
 
@@ -67,6 +70,24 @@ export class ContabilidadClienteService {
   getPresupuestoContabilidad(customerId: string, year: number, mes: number) {
     return this.api.onGetItem<PresupuestoContabilidadResponse>(
       Endpoints.ContabilidadOnline.FinancialStatements.presupuestoContabilidad(customerId, year, mes),
+    );
+  }
+
+  getBancosInversiones(customerId: string, year: number, mes: number) {
+    return this.api.onGetItem<IBancosInversionesDto>(
+      Endpoints.ContabilidadOnline.FinancialStatements.bancosInversiones(customerId, year, mes),
+    );
+  }
+
+  getFondoReserva(customerId: string, year: number, mes: number) {
+    return this.api.onGetItem<IFondoReservaDTO>(
+      Endpoints.ContabilidadOnline.FinancialStatements.fondoReserva(customerId, year, mes),
+    );
+  }
+
+  getProyectosAprobados(customerId: string, year: number) {
+    return this.api.onGetItem<IProyectosAprobadosDTO>(
+      Endpoints.ContabilidadOnline.FinancialStatements.proyectosAprobados(customerId, year),
     );
   }
 }

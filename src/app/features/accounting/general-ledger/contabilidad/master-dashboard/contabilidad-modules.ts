@@ -1,3 +1,4 @@
+import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ContabilidadModuleGroup } from "./contabilidad-module.model";
 
 export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
@@ -74,6 +75,16 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         color: "#7c3aed",
         bgColor: "#f5f3ff",
       },
+      {
+        title: "Presentaciones de Junta de Comité",
+        description:
+          "Gestión y visualización de presentaciones para juntas de comité.",
+        route: "/committee-meetings/presentations-contador",
+        icon: "mdi:presentation",
+        color: "#c026d3",
+        bgColor: "#fae8ff",
+        roles: [EApplicationRole.Contador, EApplicationRole.SuperUsuario],
+      },
       // {
       //   title: "Auditoría de Sincronización",
       //   description: "Consultar datos de sincronización Aspel por entidad.",
@@ -145,68 +156,20 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
   },
 
   // ─────────────────────────────────────────────────────────────
-  // COBRANZA NATIVA
+  // COBRANZA
   // ─────────────────────────────────────────────────────────────
-  // {
-  //   label: "Cobranza Nativa",
-  //   icon: "mdi:lightning-bolt",
-  //   cards: [
-  //     {
-  //       title: "Dashboard de Métricas",
-  //       description: "KPIs de cobranza: porcentaje de cobro, totales y top deudores.",
-  //       route: "/cobranza-nativa/dashboard",
-  //       icon: "mdi:chart-bar",
-  //       color: "#0f766e",
-  //       bgColor: "#ccfbf1",
-  //     },
-  //     {
-  //       title: "Plantillas de Cargos",
-  //       description: "Configuración de cargos recurrentes por indiviso o monto fijo.",
-  //       route: "/cobranza-nativa/charge-templates",
-  //       icon: "mdi:pencil",
-  //       color: "#15803d",
-  //       bgColor: "#dcfce7",
-  //     },
-  //     {
-  //       title: "Cargos",
-  //       description: "Gestión de cargos aplicados a condóminos e importación masiva.",
-  //       route: "/cobranza-nativa/charges",
-  //       icon: "mdi:dollar",
-  //       color: "#166534",
-  //       bgColor: "#bbf7d0",
-  //     },
-  //     {
-  //       title: "Registrar Pagos",
-  //       description: "Registro de pagos con asignación automática FIFO a cargos.",
-  //       route: "/cobranza-nativa/payments",
-  //       icon: "mdi:credit-card",
-  //       color: "#047857",
-  //       bgColor: "#a7f3d0",
-  //     },
-  //     {
-  //       title: "Políticas de Mora",
-  //       description: "Configuración de recargos: días de gracia, tasa, interés compuesto.",
-  //       route: "/cobranza-nativa/late-fee-policies",
-  //       icon: "mdi:alert",
-  //       color: "#7c2d12",
-  //       bgColor: "#fed7aa",
-  //     },
-  //     {
-  //       title: "Estado de Cuenta Nativo",
-  //       description: "Kardex de movimientos por propiedad con exportación PDF.",
-  //       route: "/cobranza-nativa/estado-cuenta",
-  //       icon: "mdi:content-copy",
-  //       color: "#0891b2",
-  //       bgColor: "#cffafe",
-  //     },
-  //     {
-  //       title: "Demo Cobranza",
-  //       description: "Simulación interactiva del sistema de cobranza nativa.",
-  //       route: "/cobranza-nativa/demo",
-  //       icon: "mdi:graduation-cap",
-  //       color: "#6b7280",
-  //       bgColor: "#f3f4f6",
-  //     },
-  //   ],
-  // },
+  {
+    label: "Cobranza",
+    icon: "mdi:wallet",
+    cards: [
+      {
+        title: "Cuotas Vigentes",
+        description: "Registro de cuotas vigentes y plantillas de cargos recurrentes.",
+        route: "/cobranza-nativa/charge-templates",
+        icon: "mdi:pencil-box-multiple",
+        color: "#15803d",
+        bgColor: "#dcfce7",
+      },
+    ],
+  },
 ];

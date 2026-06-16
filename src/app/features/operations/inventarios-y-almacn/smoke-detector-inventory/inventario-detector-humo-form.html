@@ -27,10 +27,13 @@
         placeholder="Ej: Piso 4 - Sala de Servidores"
       />
 
-      <custom-input-text-signal
+      <custom-input-mask-signal
         [control]="form.controls.localCode"
-        label="Código Local (opcional)"
-        placeholder="Ej: DET-04-03"
+        label="Código Local"
+        placeholder="DET-04-01"
+        customMask="SSS-SS-000"
+        [validation]="false"
+        [dropSpecialCharacters]="false"
       />
 
       <custom-button-save

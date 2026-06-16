@@ -1,11 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, input, output } from "@angular/core";
 import { TooltipModule } from "primeng/tooltip";
+import { AppIcon } from "../../app-icon/app-icon.component";
 import { BaseButton } from "../base/base-button";
 
 @Component({
   selector: "custom-button-active-desactive",
-  imports: [CommonModule, TooltipModule],
+  imports: [CommonModule, TooltipModule, AppIcon],
   template: `
     <button
       [type]="type()"
@@ -16,7 +17,7 @@ import { BaseButton } from "../base/base-button";
       [tooltipPosition]="tooltipPosition()"
     >
       <span [class]="dynamicIconShellClass()" aria-hidden="true">
-        <i [class]="dynamicIcon()"></i>
+        <app-icon [icon]="dynamicIcon()" />
       </span>
       <span>{{ dynamicLabel() }}</span>
     </button>

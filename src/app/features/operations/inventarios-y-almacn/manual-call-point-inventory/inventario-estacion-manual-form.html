@@ -27,10 +27,13 @@
         placeholder="Ej: Piso 2 - Escalera B"
       />
 
-      <custom-input-text-signal
+      <custom-input-mask-signal
         [control]="form.controls.localCode"
-        label="Código Local (opcional)"
-        placeholder="Ej: MCP-02-01"
+        label="Código Local"
+        placeholder="MCP-02-01"
+        customMask="SSS-SS-000"
+        [validation]="false"
+        [dropSpecialCharacters]="false"
       />
 
       <custom-button-save

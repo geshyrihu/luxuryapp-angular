@@ -45,7 +45,8 @@ export const EndpointsSystem = {
     updateAccount: (id: string) => `application-users/UpdateAccount/${id}`,
   },
   Auth: {
-    sendNewPasswordForEmail: (id: string) => `Auth/SendNewPasswordForEmail/${id}`,
+    sendNewPasswordForEmail: (id: string) =>
+      `application-users/SendNewPasswordForEmail/${id}`,
   },
   ModuleAppRoles: {
     assignments: (roleId: string) => `module-app-roles/Assignments/${roleId}`,

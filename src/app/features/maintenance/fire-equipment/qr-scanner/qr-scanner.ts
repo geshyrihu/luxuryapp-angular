@@ -56,12 +56,15 @@ export class QrScanner implements OnDestroy {
       if (!this.scanning()) return;
 
       const barcodes = await this.detector!.detect(video).catch(() => []);
-      const qr = barcodes.find((b) => b.rawValue.startsWith("luxuryapp://inspect/"));
+      const qr = barcodes.find(
+        (b) =>
+          b.rawValue.startsWith("luxuryapp://inspect/") ||
+          b.rawValue.startsWith("luxuryapp://equipment-inspection/"),
+      );
 
       if (qr) {
-        const id = qr.rawValue.replace("luxuryapp://inspect/", "");
         this.stopScan();
-        await this.resolveEquipment(id);
+        await this.resolveQr(qr.rawValue);
       } else {
         this.scanLoop(video);
       }
@@ -73,10 +76,38 @@ export class QrScanner implements OnDestroy {
     if (!id) return;
     this.errorMsg.set("");
     this.statusMsg.set("Identificando equipo...");
-    await this.resolveEquipment(id);
+    await this.resolveQr(id);
   }
 
-  private async resolveEquipment(id: string) {
+  private readonly checklistRoutes: Record<string, string> = {
+    Extintor: "/logbook/fire-extinguisher-checklist",
+    Hydrant: "/logbook/hydrant-checklist",
+    ManualCallPoint: "/logbook/manual-call-point-checklist",
+    SmokeDetector: "/logbook/smoke-detector-checklist",
+  };
+
+  private async resolveQr(rawValue: string) {
+    if (rawValue.startsWith("luxuryapp://equipment-inspection/")) {
+      const code = rawValue.replace("luxuryapp://equipment-inspection/", "");
+      this.router.navigate(["/logbook/equipment-inspection", code]);
+      return;
+    }
+
+    const path = rawValue.replace("luxuryapp://inspect/", "");
+    const segments = path.split("/");
+
+    // Formato nuevo: luxuryapp://inspect/{type}/{id}
+    if (segments.length === 2) {
+      const [type, id] = segments;
+      const route = this.checklistRoutes[type];
+      if (route) {
+        this.router.navigate([route, id]);
+        return;
+      }
+    }
+
+    // Formato legacy / entrada manual: solo el ID → resolver API
+    const id = segments[0];
     this.statusMsg.set("Identificando equipo...");
     const result: any = await this.apiResponseS
       .onGetItem(`FireEquipment/resolve/${id}`)
@@ -88,22 +119,12 @@ export class QrScanner implements OnDestroy {
       return;
     }
 
-    switch (result.equipmentType) {
-      case "Extintor":
-        this.router.navigate(["/logbook/fire-extinguisher-checklist", result.id]);
-        break;
-      case "Hydrant":
-        this.router.navigate(["/logbook/hydrant-checklist", result.id]);
-        break;
-      case "ManualCallPoint":
-        this.router.navigate(["/logbook/manual-call-point-checklist", result.id]);
-        break;
-      case "SmokeDetector":
-        this.router.navigate(["/logbook/smoke-detector-checklist", result.id]);
-        break;
-      default:
-        this.errorMsg.set(`Tipo de equipo no soportado: ${result.equipmentType}`);
-        this.statusMsg.set("");
+    const route = this.checklistRoutes[result.equipmentType];
+    if (route) {
+      this.router.navigate([route, result.id]);
+    } else {
+      this.errorMsg.set(`Tipo de equipo no soportado: ${result.equipmentType}`);
+      this.statusMsg.set("");
     }
   }
 

@@ -6,6 +6,7 @@ import { firstValueFrom } from "rxjs";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -18,7 +19,7 @@ interface IInventarioDetectorHumoForm {
   customerId: FormControl<string | null>;
   detectorType: FormControl<number | null>;
   location: FormControl<string>;
-  localCode: FormControl<string | null>;
+  localCode: FormControl<string>;
   photo: FormControl<string | File>;
   applicationUserId: FormControl<string | null>;
 }
@@ -26,7 +27,7 @@ interface IInventarioDetectorHumoForm {
 @Component({
   selector: "app-inventario-detector-humo-form",
   templateUrl: "./inventario-detector-humo-form.html",
-  imports: [ReactiveFormsModule, CardModule, CustomInputTextSignal, CustomInputSelectSignal, CustomInputImg, CustomButtonSave],
+  imports: [ReactiveFormsModule, CardModule, CustomInputTextSignal, CustomInputMaskSignal, CustomInputSelectSignal, CustomInputImg, CustomButtonSave],
 })
 export class InventarioDetectorHumoForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -48,7 +49,7 @@ export class InventarioDetectorHumoForm implements OnInit {
     customerId: new FormControl<string | null>(this.customerIdS.customerId(), { validators: [Validators.required] }),
     detectorType: new FormControl<number | null>(null, { validators: [Validators.required] }),
     location: new FormControl("", { nonNullable: true, validators: [Validators.required] }),
-    localCode: new FormControl<string | null>(null),
+    localCode: new FormControl("", { nonNullable: true, validators: [Validators.required] }),
     photo: new FormControl<string | File>("", { nonNullable: true }),
     applicationUserId: new FormControl<string | null>(this.authS.applicationUserId),
   });
@@ -61,7 +62,11 @@ export class InventarioDetectorHumoForm implements OnInit {
   async ngOnInit() {
     this.cb_detectorType = await firstValueFrom(this.enumSelectS.smokeDetectorType());
     this.id = this.config.data.id;
-    if (this.id) this.onLoadData();
+    if (this.id) {
+      this.onLoadData();
+    } else {
+      this.form.patchValue({ localCode: "DET-" });
+    }
   }
 
   onLoadData() {
@@ -89,7 +94,7 @@ export class InventarioDetectorHumoForm implements OnInit {
     formData.append("customerId", String(DTO.customerId));
     formData.append("detectorType", String(DTO.detectorType));
     formData.append("location", String(DTO.location));
-    if (DTO.localCode) formData.append("localCode", String(DTO.localCode));
+    formData.append("localCode", String(DTO.localCode));
     formData.append("applicationUserId", String(DTO.applicationUserId));
     if (DTO.photo) formData.append("photo", DTO.photo);
     return formData;

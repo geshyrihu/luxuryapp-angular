@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-body">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <custom-input-check-signal [control]="form.controls.labelPresent" label="Etiqueta Presente" />
+      <custom-input-check-signal [control]="form.controls.glassIntact" label="Cristal Intacto" />
+      <custom-input-check-signal [control]="form.controls.wrenchPresent" label="Llave Presente" />
+      <custom-input-check-signal [control]="form.controls.hoseOk" label="Manguera Ok" />
+      <custom-input-check-signal [control]="form.controls.nozzlePresent" label="Chiflón Presente" />
+      <custom-input-check-signal [control]="form.controls.valveOperational" label="Válvula Operativa" />
+      <custom-input-check-signal [control]="form.controls.lockOk" label="Cerradura Ok" />
+      <custom-input-select-signal [control]="form.controls.cabinetState" label="Estado del Gabinete" [data]="cb_cabinetStates" [required]="true" />
+      <custom-input-textarea-signal [control]="form.controls.observations" label="Observaciones" />
+      <custom-button-save [submitting]="submitting()" />
+    </form>
+  </div>
+</div>

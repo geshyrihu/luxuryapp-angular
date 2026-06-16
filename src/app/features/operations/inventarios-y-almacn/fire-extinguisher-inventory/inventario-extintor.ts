@@ -1,18 +1,30 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonButton, IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import {
+  IonButton,
+  IonIcon,
+  IonItem,
+  IonLabel,
+} from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
-import { flameOutline, folderOpenOutline, downloadOutline, listOutline, qrCodeOutline } from "ionicons/icons";
+import {
+  calendarOutline,
+  downloadOutline,
+  flameOutline,
+  folderOpenOutline,
+  listOutline,
+  qrCodeOutline,
+} from "ionicons/icons";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { IonButtonDownload } from "src/app/core/components/buttons/mobile/ion-button-download";
+import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
+import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
@@ -27,6 +39,8 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { CustomButton } from "../../../../core/components/buttons/web";
+import { InventarioExtintorBulkDateForm } from "./inventario-extintor-bulk-date-form";
 import { InventarioExtintorForm } from "./inventario-extintor-form";
 import { InventarioExtintorPdfService } from "./inventario-extintor-pdf.service";
 import { InventarioExtintorQrService } from "./inventario-extintor-qr.service";
@@ -38,6 +52,7 @@ import { InventarioExtintorQrService } from "./inventario-extintor-qr.service";
     ImageModule,
     TableModule,
     CustomButtonEdit,
+    CustomButton,
     CustomButtonDelete,
     CustomButtonDownload,
     CustomButtonItem,
@@ -72,7 +87,14 @@ export class InventarioExtintor {
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   constructor() {
-    addIcons({ flameOutline, folderOpenOutline, downloadOutline, listOutline, qrCodeOutline });
+    addIcons({
+      flameOutline,
+      folderOpenOutline,
+      downloadOutline,
+      listOutline,
+      qrCodeOutline,
+      calendarOutline,
+    });
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) this.onLoadData();
@@ -89,6 +111,23 @@ export class InventarioExtintor {
 
   onOpenScanner() {
     this.router.navigate(["/logbook/fire-equipment-scanner"]);
+  }
+
+  onViewPeriodos() {
+    this.router.navigate(["/logbook/fire-inspection-periods"], { queryParams: { type: "extintor" } });
+  }
+
+  onBulkExpiration() {
+    this.dialogHandlerS
+      .openDialog(
+        InventarioExtintorBulkDateForm,
+        {},
+        "Actualizar fecha de vencimiento",
+        this.dialogHandlerS.sizeSm,
+      )
+      .then((result: boolean) => {
+        if (result) this.onLoadData();
+      });
   }
 
   async onDownloadQr(item: IInventarioExtintor) {

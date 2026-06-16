@@ -181,6 +181,7 @@ export class EstadoResultadosV2 {
 
   async loadData(customerId: string, year: number) {
     this.loading.set(true);
+    this.data.set(null);
     const mes = this.filterS.mesIdx() + 1;
     const result = await this.apiS.onGetItem<IFinancialStatementDto>(
       Endpoints.ContabilidadOnline.FinancialStatements.incomeStatementV2(

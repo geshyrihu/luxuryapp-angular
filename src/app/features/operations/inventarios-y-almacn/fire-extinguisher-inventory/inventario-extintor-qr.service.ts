@@ -10,7 +10,7 @@ export class InventarioExtintorQrService {
   private htmlPrintS = inject(HtmlPrintService);
 
   async downloadQr(item: IInventarioExtintor): Promise<void> {
-    const qrDataUrl = await QRCode.toDataURL(`luxuryapp://inspect/${item.id}`, {
+    const qrDataUrl = await QRCode.toDataURL(`luxuryapp://inspect/Extintor/${item.id}`, {
       width: 200,
       margin: 1,
     });
@@ -21,7 +21,7 @@ export class InventarioExtintorQrService {
   async downloadAllQr(items: IInventarioExtintor[]): Promise<void> {
     const blocks = await Promise.all(
       items.map(async (item) => {
-        const qrDataUrl = await QRCode.toDataURL(`luxuryapp://inspect/${item.id}`, {
+        const qrDataUrl = await QRCode.toDataURL(`luxuryapp://inspect/Extintor/${item.id}`, {
           width: 200,
           margin: 1,
         });

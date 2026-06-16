@@ -1000,6 +1000,42 @@ export const EndpointsTenant = {
     delete: (id: string) => `Machineries/${id}`,
   },
 
+  EquipmentInspectionDefinitions: {
+    byMachinery: (machineryId: string) =>
+      `EquipmentInspectionDefinitions/by-machinery/${machineryId}`,
+    getById: (id: string) => `EquipmentInspectionDefinitions/${id}`,
+    create: "EquipmentInspectionDefinitions",
+    update: (id: string) => `EquipmentInspectionDefinitions/${id}`,
+    toggleActive: (id: string, isActive: boolean) =>
+      `EquipmentInspectionDefinitions/${id}/active/${isActive}`,
+    delete: (id: string) => `EquipmentInspectionDefinitions/${id}`,
+  },
+
+  EquipmentInspectionExecutions: {
+    pending: (customerId: string) =>
+      `EquipmentInspectionExecutions/pending/${customerId}`,
+    byMachinery: (machineryId: string) =>
+      `EquipmentInspectionExecutions/by-machinery/${machineryId}`,
+    getById: (id: string) => `EquipmentInspectionExecutions/${id}`,
+    startFromQr: "EquipmentInspectionExecutions/start-from-qr",
+    startManual: (definitionId: string) =>
+      `EquipmentInspectionExecutions/start-manual/${definitionId}`,
+    complete: (id: string) => `EquipmentInspectionExecutions/${id}/complete`,
+    administrativeUpdate: (id: string) =>
+      `EquipmentInspectionExecutions/${id}/administrative-update`,
+  },
+
+  EquipmentQrLabels: {
+    byMachinery: (machineryId: string) =>
+      `EquipmentQrLabels/by-machinery/${machineryId}`,
+    getById: (id: string) => `EquipmentQrLabels/${id}`,
+    create: "EquipmentQrLabels",
+    regenerate: (id: string) => `EquipmentQrLabels/${id}/regenerate`,
+    download: (id: string) => `EquipmentQrLabels/${id}/download`,
+    downloadBatch: "EquipmentQrLabels/download-batch",
+    resolve: (code: string) => `EquipmentQrLabels/resolve/${encodeURIComponent(code)}`,
+  },
+
   MachineryClassification: {
     create: "EquipoClasificacion",
     delete: (id: string) => `equipoclasificacion/${id}`,

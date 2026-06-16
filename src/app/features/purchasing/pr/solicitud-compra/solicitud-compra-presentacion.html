@@ -22,13 +22,13 @@
       severity="secondary"
       variant="outlined"
       size="small"
-      [disabled]="currentPage() >= solicitudesSignal().length - 1"
+      [disabled]="currentPage() >= presentationSlides().length - 1"
       tooltip="Siguiente solicitud"
     />
   </div>
   <p-carousel
     #presentationCarousel
-    [value]="solicitudesSignal()"
+    [value]="presentationSlides()"
     [numVisible]="1"
     [numScroll]="1"
     [page]="currentPage()"
@@ -38,7 +38,68 @@
     styleClass="presentation-carousel"
     (onPage)="onCarouselPage($event)"
   >
-    <ng-template let-solicitud pTemplate="item">
+    <ng-template let-slide pTemplate="item">
+      @if (slide.kind === "summary") {
+      <section class="presentation-slide">
+        <div class="presentation-accent"></div>
+        <div class="p-3 md:p-4">
+          <div class="grid align-items-start mb-4">
+            <div class="col-12 lg:col-8">
+              <div class="presentation-kicker text-500 text-sm font-semibold mb-2">
+                Matriz de importancia
+              </div>
+              <h2 class="text-2xl md:text-4xl line-height-2 m-0 text-900">
+                Resumen de solicitudes de compra
+              </h2>
+              <p class="text-700 text-lg line-height-3 mt-2 mb-0">
+                De la más urgente a la menos urgente, según el orden de presentación definido.
+              </p>
+            </div>
+            <div class="col-12 lg:col-4">
+              <div class="surface-50 border-round-2xl p-3 h-full">
+                <div class="text-xs text-500 mb-1">Solicitudes consideradas</div>
+                <div class="text-3xl font-bold text-900 mb-3">{{ slide.rows.length }}</div>
+                <div class="text-xs text-500 mb-1">Costo total estimado con IVA</div>
+                <div class="text-xl font-semibold text-900">
+                  {{ getSummaryTotal(slide.rows) | number : "1.0-0" }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p-table
+            [value]="slide.rows"
+            styleClass="custom-table text-sm"
+            responsiveLayout="scroll"
+            [tableStyle]="{ 'table-layout': 'fixed', 'min-width': '74rem' }"
+          >
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width: 4rem">N°</th>
+                <th style="width: 28rem">DESCRIPCION</th>
+                <th class="text-right" style="width: 12rem">COSTO TOTAL CON IVA</th>
+                <th style="width: 16rem">PARTIDA PRESUPUESTAL</th>
+                <th class="text-right" style="width: 12rem">DINERO DISPONIBLE</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-row>
+              <tr>
+                <td class="font-semibold text-center">{{ row.numero }}</td>
+                <td class="line-height-3">{{ row.descripcion }}</td>
+                <td class="text-right white-space-nowrap font-semibold">
+                  {{ row.costoTotalConIva | number : "1.0-0" }}
+                </td>
+                <td class="line-height-3">{{ row.partidaPresupuestal }}</td>
+                <td class="text-right white-space-nowrap">
+                  {{ row.dineroDisponible | number : "1.0-0" }}
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </section>
+      } @else {
+      @let solicitud = slide;
       <section class="presentation-slide">
         <div class="presentation-accent"></div>
 
@@ -325,6 +386,7 @@
           </div>
         </div>
       </section>
+      }
     </ng-template>
   </p-carousel>
   }

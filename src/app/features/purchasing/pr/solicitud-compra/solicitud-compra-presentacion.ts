@@ -115,6 +115,7 @@ export class SolicitudCompraPresentacion {
   swalService = inject(SwalService);
 
   solicitudesSignal = signal<any[]>([]);
+  presentationSlides = signal<any[]>([]);
   optimizeMap = signal<Record<string, boolean>>({});
   solicitudIds: string[] = [];
   currentPage = signal(0);
@@ -133,11 +134,14 @@ export class SolicitudCompraPresentacion {
         this.onLoadSelectedSolicitudes(customerId);
       } else {
         this.solicitudesSignal.set([]);
+        this.presentationSlides.set([]);
       }
     });
   }
 
   async onLoadSelectedSolicitudes(customerId: string) {
+    this.currentPage.set(0);
+
     const selectedItems = await this.apiResponseS.onGetList<any[]>(
       Endpoints.PurchaseRequests.presentation(customerId),
     );
@@ -147,6 +151,7 @@ export class SolicitudCompraPresentacion {
 
     if (ids.length === 0) {
       this.solicitudesSignal.set([]);
+      this.presentationSlides.set([]);
       return;
     }
 
@@ -164,6 +169,20 @@ export class SolicitudCompraPresentacion {
       .map((item: any) => this.mapSolicitudForPresentation(item));
 
     this.solicitudesSignal.set(formatted);
+    this.presentationSlides.set([
+      {
+        id: "summary-slide",
+        kind: "summary",
+        rows: formatted.map((solicitud, index) =>
+          this.mapSolicitudSummaryRow(solicitud, index),
+        ),
+      },
+      ...formatted.map((solicitud) => ({
+        kind: "solicitud",
+        ...solicitud,
+      })),
+    ]);
+    this.currentPage.set(0);
     this.optimizeMap.update((prev) => {
       const next = { ...prev };
       for (const solicitud of formatted) {
@@ -210,6 +229,34 @@ export class SolicitudCompraPresentacion {
               : total3,
       })),
     };
+  }
+
+  mapSolicitudSummaryRow(solicitud: any, index: number) {
+    const budgets = Array.from(solicitud?.budgets || []);
+
+    return {
+      numero: index + 1,
+      descripcion: solicitud.equipoOInstalacion,
+      costoTotalConIva: solicitud.cheapestTotal || 0,
+      partidaPresupuestal:
+        budgets.length > 0
+          ? budgets.map((budget: any) => budget.accountNumber).join(", ")
+          : "Sin partida",
+      dineroDisponible:
+        budgets.length > 0
+          ? budgets.reduce(
+              (sum: number, budget: any) => sum + (budget.presupuestoRestante || 0),
+              0,
+            )
+          : 0,
+    };
+  }
+
+  getSummaryTotal(rows: any[]): number {
+    return Array.from(rows || []).reduce(
+      (sum: number, row: any) => sum + (row.costoTotalConIva || 0),
+      0,
+    );
   }
 
   getCheapestTotal(totals: number[]): number {
@@ -454,7 +501,7 @@ export class SolicitudCompraPresentacion {
   }
 
   nextSlide() {
-    const total = this.solicitudesSignal().length;
+    const total = this.presentationSlides().length;
     if (this.currentPage() >= total - 1) return;
     const nextPage = this.currentPage() + 1;
     this.currentPage.set(nextPage);

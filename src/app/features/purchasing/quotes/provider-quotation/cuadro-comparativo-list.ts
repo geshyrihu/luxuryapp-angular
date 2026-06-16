@@ -1,7 +1,14 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, OnDestroy, OnInit, signal } from "@angular/core";
+import {
+  Component,
+  effect,
+  inject,
+  OnDestroy,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { DialogModule } from "primeng/dialog";
 import { DividerModule } from "primeng/divider";
@@ -10,6 +17,7 @@ import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { EAutorizacionCuadroComparativo } from "src/app/core/enums/e-autorizacion-cuadro-comparativo.enum";
 import { TooltipPlacement } from "src/app/core/enums/tooltip-placement";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -34,6 +42,7 @@ import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
     ImageModule,
     CustomButton,
     CustomButtonViewPdf,
+    CustomInputSelectSignal,
     DialogModule,
   ],
 })
@@ -87,13 +96,19 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
 
   autorizacionOptions: ISelectItem[] = [
     { label: "Comite", value: EAutorizacionCuadroComparativo.Comite },
-    { label: "Administrador", value: EAutorizacionCuadroComparativo.Administrador },
+    {
+      label: "Administrador",
+      value: EAutorizacionCuadroComparativo.Administrador,
+    },
     { label: "Supervisor", value: EAutorizacionCuadroComparativo.Supervisor },
     { label: "Direccion", value: EAutorizacionCuadroComparativo.Direccion },
   ];
   comiteEventsSignal = signal<any[]>([]);
   selectedEvidenceFiles: File[] = [];
   selectedEvidencePreviewUrls: string[] = [];
+  showBudgetModal = false;
+  budgetSelectOptionsSignal = signal<ISelectItem[]>([]);
+  budgetAccountControl = new FormControl<string | null>(null);
 
   paramsSignal = toSignal(this.routeActive.params);
 
@@ -137,9 +152,18 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
 
   onLoadAvailableBudgets() {
     this.apiResponseS
-      .onGetItem(`SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}/Budgets`)
+      .onGetItem(
+        `SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}/Budgets`,
+      )
       .then((result: any) => {
-        this.availableBudgetSignal.set(Array.from(result?.accounts || []));
+        const accounts = Array.from(result?.accounts || []);
+        this.availableBudgetSignal.set(accounts);
+        this.budgetSelectOptionsSignal.set(
+          accounts.map((item: any) => ({
+            label: `${item.accountNumber} | ${item.accountName} | Restante ${this.formatCurrency(item.availableBudget)}`,
+            value: item.accountNumber,
+          })),
+        );
       });
   }
 
@@ -292,13 +316,12 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       return;
     }
 
-    const inputOptions = this.autorizacionOptions.reduce<Record<string, string>>(
-      (acc, item) => {
-        acc[String(item.value)] = String(item.label);
-        return acc;
-      },
-      {},
-    );
+    const inputOptions = this.autorizacionOptions.reduce<
+      Record<string, string>
+    >((acc, item) => {
+      acc[String(item.value)] = String(item.label);
+      return acc;
+    }, {});
 
     const { value } = await this.swalService.fire({
       title: "Autorizar solicitud",
@@ -339,13 +362,12 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
   }
 
   async onOpenNoAutorizaModal() {
-    const inputOptions = this.autorizacionOptions.reduce<Record<string, string>>(
-      (acc, item) => {
-        acc[String(item.value)] = String(item.label);
-        return acc;
-      },
-      {},
-    );
+    const inputOptions = this.autorizacionOptions.reduce<
+      Record<string, string>
+    >((acc, item) => {
+      acc[String(item.value)] = String(item.label);
+      return acc;
+    }, {});
 
     const result = await this.swalService.fire({
       title: "No se autoriza",
@@ -355,7 +377,10 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
           <select id="swal-authorizer" class="swal2-select" style="display:flex; width:100%;">
             <option value="">Selecciona quien decide</option>
             ${Object.entries(inputOptions)
-              .map(([value, label]) => `<option value="${value}">${label}</option>`)
+              .map(
+                ([value, label]) =>
+                  `<option value="${value}">${label}</option>`,
+              )
               .join("")}
           </select>
           <label for="swal-reason" class="font-semibold mt-2">Motivo</label>
@@ -367,8 +392,12 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       cancelButtonText: "Cancelar",
       focusConfirm: false,
       preConfirm: () => {
-        const select = document.getElementById("swal-authorizer") as HTMLSelectElement | null;
-        const textarea = document.getElementById("swal-reason") as HTMLTextAreaElement | null;
+        const select = document.getElementById(
+          "swal-authorizer",
+        ) as HTMLSelectElement | null;
+        const textarea = document.getElementById(
+          "swal-reason",
+        ) as HTMLTextAreaElement | null;
         const autorizadaPor = select?.value ?? "";
         const motivo = textarea?.value?.trim() ?? "";
 
@@ -378,7 +407,9 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
         }
 
         if (!motivo) {
-          Swal.showValidationMessage("Debes indicar el motivo de no autorizacion.");
+          Swal.showValidationMessage(
+            "Debes indicar el motivo de no autorizacion.",
+          );
           return null;
         }
 
@@ -460,7 +491,10 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
     return [
       {
         producto: `PRODUCTOS AGRUPADOS (${details.length} PARTIDAS)`,
-        cantidad: details.reduce((sum, item) => sum + Number(item.cantidad || 0), 0),
+        cantidad: details.reduce(
+          (sum, item) => sum + Number(item.cantidad || 0),
+          0,
+        ),
         unidadMedida: "Lote",
         total: this.total1,
         total2: this.total2,
@@ -477,12 +511,14 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       isPending: false,
     }));
 
-    const pendingCards = this.selectedEvidencePreviewUrls.map((previewUrl, index) => ({
-      id: `pending-${index}`,
-      src: previewUrl,
-      alt: this.selectedEvidenceFiles[index]?.name || "Vista previa",
-      isPending: true,
-    }));
+    const pendingCards = this.selectedEvidencePreviewUrls.map(
+      (previewUrl, index) => ({
+        id: `pending-${index}`,
+        src: previewUrl,
+        alt: this.selectedEvidenceFiles[index]?.name || "Vista previa",
+        isPending: true,
+      }),
+    );
 
     return [...uploadedCards, ...pendingCards].slice(0, 4);
   }
@@ -496,38 +532,26 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       return;
     }
 
-    const inputOptions = this.availableBudgetSignal().reduce<Record<string, string>>(
-      (acc, item) => {
-        acc[item.accountNumber] =
-          `${item.accountNumber} | ${item.accountName} | Restante ${this.formatCurrency(item.availableBudget)}`;
-        return acc;
-      },
-      {},
-    );
+    this.budgetAccountControl.setValue(null);
+    this.showBudgetModal = true;
+  }
 
-    const selectedBudget = await this.swalService.fire({
-      title: "Agregar presupuesto",
-      input: "select",
-      inputOptions,
-      inputPlaceholder: "Selecciona una cuenta",
-      showCancelButton: true,
-      confirmButtonText: "Continuar",
-      cancelButtonText: "Cancelar",
-      inputValidator: (value: string) => {
-        if (!value) {
-          return "Selecciona una cuenta presupuestal.";
-        }
-        return null;
-      },
-      didOpen: () => this.swalService.fixModalZIndex(),
-    });
-
-    if (!selectedBudget.isConfirmed || !selectedBudget.value) return;
+  async onConfirmAddBudgetModal() {
+    const selectedAccountNumber = this.budgetAccountControl.value;
+    if (!selectedAccountNumber) {
+      this.customToastService.showInfo(
+        "Cuenta requerida",
+        "Selecciona una cuenta presupuestal para continuar.",
+      );
+      return;
+    }
 
     const budgetData = this.availableBudgetSignal().find(
-      (item) => item.accountNumber === selectedBudget.value,
+      (item) => item.accountNumber === selectedAccountNumber,
     );
     if (!budgetData) return;
+
+    this.showBudgetModal = false;
 
     const amountModal = await this.swalService.fire({
       title: "Monto a usar",
@@ -557,17 +581,25 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
     if (!amountModal.isConfirmed || !amountModal.value) return;
 
     this.apiResponseS
-      .onPost(`SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}/Budgets`, {
-        fiscalYear: String(this.getFiscalYear()),
-        accountNumber: budgetData.accountNumber,
-        accountName: budgetData.accountName,
-        amount: Number(amountModal.value),
-      })
+      .onPost(
+        `SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}/Budgets`,
+        {
+          fiscalYear: String(this.getFiscalYear()),
+          accountNumber: budgetData.accountNumber,
+          accountName: budgetData.accountName,
+          amount: Number(amountModal.value),
+        },
+      )
       .then((result) => {
         if (result) {
           this.onLoadData();
         }
       });
+  }
+
+  onCancelAddBudgetModal() {
+    this.showBudgetModal = false;
+    this.budgetAccountControl.setValue(null);
   }
 
   onDeleteBudget(budgetId: string) {
@@ -701,14 +733,18 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       .onPut(`SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}`, {
         estatus: this.solicitudCompra.estatus,
         autorizadaPor: this.solicitudCompra.autorizadaPor ?? null,
-        motivoNoAutorizacion: this.solicitudCompra.motivoNoAutorizacion ?? '',
+        motivoNoAutorizacion: this.solicitudCompra.motivoNoAutorizacion ?? "",
         applicationUserId: this.authS.applicationUserId,
         requiereContrato: nuevoValor,
-        comiteGoogleCalendarEventId: this.solicitudCompra.comiteGoogleCalendarEventId ?? null,
+        comiteGoogleCalendarEventId:
+          this.solicitudCompra.comiteGoogleCalendarEventId ?? null,
       })
       .then((result) => {
         if (result) {
-          this.solicitudCompra = { ...this.solicitudCompra, requiereContrato: nuevoValor };
+          this.solicitudCompra = {
+            ...this.solicitudCompra,
+            requiereContrato: nuevoValor,
+          };
         }
       });
   }
@@ -726,43 +762,43 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
 
     if (events.length === 0) {
       this.customToastService.showInfo(
-        'Sin juntas',
-        'No hay eventos de comite disponibles para este cliente.',
+        "Sin juntas",
+        "No hay eventos de comite disponibles para este cliente.",
       );
       return;
     }
 
-    const inputOptions: Record<string, string> = { '': '-- Sin asignar --' };
+    const inputOptions: Record<string, string> = { "": "-- Sin asignar --" };
     for (const e of events) {
-      const fecha = new Date(e.startAt).toLocaleDateString('es-MX', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric',
+      const fecha = new Date(e.startAt).toLocaleDateString("es-MX", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
       });
       inputOptions[e.id] = `${fecha} | ${e.title}`;
     }
 
     const selected = await this.swalService.fire({
-      title: 'Asignar a junta de comite',
-      input: 'select',
+      title: "Asignar a junta de comite",
+      input: "select",
       inputOptions,
-      inputValue: this.solicitudCompra.comiteGoogleCalendarEventId ?? '',
-      inputPlaceholder: 'Selecciona una junta',
+      inputValue: this.solicitudCompra.comiteGoogleCalendarEventId ?? "",
+      inputPlaceholder: "Selecciona una junta",
       showCancelButton: true,
-      confirmButtonText: 'Asignar',
-      cancelButtonText: 'Cancelar',
+      confirmButtonText: "Asignar",
+      cancelButtonText: "Cancelar",
       didOpen: () => this.swalService.fixModalZIndex(),
     });
 
     if (!selected.isConfirmed) return;
 
-    const eventoId = selected.value === '' ? null : selected.value;
+    const eventoId = selected.value === "" ? null : selected.value;
 
     this.apiResponseS
       .onPut(`SolicitudCompra/CuadroComparativo/${this.solicitudCompraId}`, {
         estatus: this.solicitudCompra.estatus,
         autorizadaPor: this.solicitudCompra.autorizadaPor ?? null,
-        motivoNoAutorizacion: this.solicitudCompra.motivoNoAutorizacion ?? '',
+        motivoNoAutorizacion: this.solicitudCompra.motivoNoAutorizacion ?? "",
         applicationUserId: this.authS.applicationUserId,
         requiereContrato: this.solicitudCompra.requiereContrato,
         comiteGoogleCalendarEventId: eventoId,

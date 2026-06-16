@@ -12,6 +12,7 @@ import { firstValueFrom } from "rxjs";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -26,7 +27,7 @@ interface IInventarioExtintorForm {
   extinguisherType: FormControl<number | null>;
   expirationDate: FormControl<string | null>;
   location: FormControl<string>;
-  localCode: FormControl<string | null>;
+  localCode: FormControl<string>;
   photo: FormControl<string | File>;
   applicationUserId: FormControl<string | null>;
 }
@@ -37,6 +38,7 @@ interface IInventarioExtintorForm {
     ReactiveFormsModule,
     CardModule,
     CustomInputTextSignal,
+    CustomInputMaskSignal,
     CustomInputSelectSignal,
     CustomInputImg,
     CustomInputDateSignal,
@@ -73,7 +75,7 @@ export class InventarioExtintorForm implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    localCode: new FormControl<string | null>(null),
+    localCode: new FormControl("", { nonNullable: true, validators: [Validators.required] }),
     photo: new FormControl<string | File>("", { nonNullable: true }),
     applicationUserId: new FormControl<string | null>(
       this.authS.applicationUserId,
@@ -88,7 +90,11 @@ export class InventarioExtintorForm implements OnInit {
   async ngOnInit() {
     this.cb_extintor = await firstValueFrom(this.enumSelectS.extinguisherType());
     this.id = this.config.data.id;
-    if (this.id) this.onLoadData();
+    if (this.id) {
+      this.onLoadData();
+    } else {
+      this.form.patchValue({ localCode: "EXT-" });
+    }
   }
   onLoadData() {
     const urlApi = `InventarioExtintor/${this.id}`;
@@ -123,7 +129,7 @@ export class InventarioExtintorForm implements OnInit {
     formData.append("extinguisherType", String(DTO.extinguisherType));
     formData.append("expirationDate", String(DTO.expirationDate));
     formData.append("location", String(DTO.location));
-    if (DTO.localCode) formData.append("localCode", String(DTO.localCode));
+    formData.append("localCode", String(DTO.localCode));
     formData.append("applicationUserId", String(DTO.applicationUserId));
     if (DTO.photo) {
       formData.append("photo", DTO.photo);

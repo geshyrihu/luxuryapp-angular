@@ -38,6 +38,8 @@ import { BaseInputSignal } from "../base/base-input-signal";
         [readOnly]="readonly()"
         [disabled]="disabled()"
         [mask]="customMask()"
+        [validation]="validation()"
+        [dropSpecialCharacters]="dropSpecialCharacters()"
         [pSize]="size()"
         fluid
       />
@@ -53,7 +55,8 @@ import { BaseInputSignal } from "../base/base-input-signal";
   ],
 })
 export class CustomInputMaskSignal extends BaseInputSignal {
-  // 🎨 PROPIEDADES ADICIONALES
   customMask = input.required<string>();
   size = input<"small" | "large" | undefined>(undefined);
+  validation = input<boolean>(true);
+  dropSpecialCharacters = input<boolean>(true);
 }

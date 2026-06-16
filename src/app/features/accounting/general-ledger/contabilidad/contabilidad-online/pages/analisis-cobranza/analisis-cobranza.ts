@@ -47,44 +47,23 @@ export class AnalisisCobranza {
     "MOROSOS",
     "DEUDA CORRIENTE",
     "SIN ADEUDO",
-    "ANTICIPOS",
   ];
 
   readonly chartData = computed(() => {
     const analysis = this.data();
-    if (!analysis) {
-      return null;
-    }
-
-    if (analysis.cobranzaPerfecta > 0) {
-      return {
-        labels: ["Morosos", "Deuda Corriente", "Cobrado"],
-        datasets: [
-          {
-            data: [
-              analysis.totalMorosos,
-              analysis.totalDeudaCorriente,
-              analysis.totalCobrado,
-            ],
-            backgroundColor: ["#b91c1c", "#2563eb", "#166534"],
-            hoverBackgroundColor: ["#b91c1c", "#2563eb", "#166534"],
-            borderWidth: 0,
-          },
-        ],
-      };
-    }
+    if (!analysis) return null;
 
     return {
-      labels: ["Cobranza Judicial", "Morosos", "Deuda Corriente"],
+      labels: ["Morosos", "Deuda Corriente", "Cobrado"],
       datasets: [
         {
           data: [
-            analysis.totalJudicial,
             analysis.totalMorosos,
             analysis.totalDeudaCorriente,
+            analysis.totalCobrado,
           ],
-          backgroundColor: ["#b91c1c", "#d97706", "#2563eb"],
-          hoverBackgroundColor: ["#b91c1c", "#d97706", "#2563eb"],
+          backgroundColor: ["#dc2626", "#f59e0b", "#22c55e"],
+          hoverBackgroundColor: ["#dc2626", "#f59e0b", "#22c55e"],
           borderWidth: 0,
         },
       ],
@@ -114,15 +93,11 @@ export class AnalisisCobranza {
         return analysis.deudaCorriente;
       case "SIN ADEUDO":
         return analysis.sinAdeudo;
-      case "ANTICIPOS":
-        return analysis.anticipos;
       default:
         return [
           ...analysis.cobranzaJudicial,
           ...analysis.morosos,
           ...analysis.deudaCorriente,
-          ...analysis.sinAdeudo,
-          ...analysis.anticipos,
         ];
     }
   });
@@ -160,16 +135,52 @@ export class AnalisisCobranza {
       case "COBRANZA JUDICIAL":
         return "danger";
       case "MOROSOS":
-        return "warn";
+        return "danger";
       case "DEUDA CORRIENTE":
-        return "info";
+        return "warning";
       case "SIN ADEUDO":
         return "success";
       case "ANTICIPOS":
-        return "secondary";
+        return "info";
       default:
         return "secondary";
     }
+  }
+
+  readonly uniqueConcepts = computed(() => {
+    const rows = this.filteredRows();
+    const concepts = new Set<string>();
+    for (const row of rows) {
+      if (row.desglose) {
+        for (const item of row.desglose) {
+          concepts.add(item.concepto);
+        }
+      }
+    }
+    return Array.from(concepts).sort();
+  });
+
+  get summaryRows() {
+    return [...this.filteredRows()].sort((a, b) => b.saldo - a.saldo);
+  }
+
+  getConceptBalance(row: ICobranzaOnlineAnalysisCondominoDto, concepto: string) {
+    if (!row.desglose) return 0;
+    const item = row.desglose.find(d => d.concepto === concepto);
+    return item ? item.saldoFinal : 0;
+  }
+
+  getTotalConceptBalance(concepto: string) {
+    let total = 0;
+    const rows = this.filteredRows();
+    for (const row of rows) {
+      total += this.getConceptBalance(row, concepto);
+    }
+    return total;
+  }
+
+  get totalFilteredSaldo() {
+    return this.filteredRows().reduce((acc, curr) => acc + curr.saldo, 0);
   }
 
   private getLastDayOfMonth(year: number, month: number) {

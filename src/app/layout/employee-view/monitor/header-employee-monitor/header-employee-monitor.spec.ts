@@ -14,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subject, of } from 'rxjs';
 import { vi } from 'vitest';
+import { MessageService } from 'primeng/api';
 
 const aspRoleServiceMock = {
   roleSignal: vi.fn(() => vi.fn(() => false)),
@@ -114,6 +115,7 @@ describe('HeaderEmployeeMonitor', () => {
         { provide: UpdateService, useValue: updateServiceMock },
         { provide: FeatureAnnouncementService, useValue: featureAnnouncementServiceMock },
         { provide: ActivatedRoute, useValue: activatedRouteMock },
+        { provide: MessageService, useValue: { add: vi.fn(), clear: vi.fn() } },
       ],
     });
 

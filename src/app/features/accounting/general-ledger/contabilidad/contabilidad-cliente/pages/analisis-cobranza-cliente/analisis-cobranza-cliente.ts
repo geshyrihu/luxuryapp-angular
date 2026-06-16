@@ -27,40 +27,85 @@ export class AnalisisCobranzaClienteComponent {
   readonly selectedClassification = signal('TODAS');
   readonly data = signal<IAnalisisCobranzaOnlineDto | null>(null);
 
-  readonly classificationOptions = ['TODAS', 'COBRANZA JUDICIAL', 'MOROSOS', 'DEUDA CORRIENTE', 'SIN ADEUDO', 'ANTICIPOS'];
+  readonly classificationOptions = [
+    'TODAS',
+    'COBRANZA JUDICIAL',
+    'MOROSOS',
+    'DEUDA CORRIENTE',
+    'SIN ADEUDO',
+  ];
 
   readonly chartData = computed(() => {
-    const d = this.data();
-    if (!d) return null;
-
-    if (d.cobranzaPerfecta > 0) {
-      return {
-        labels: ['Morosos', 'Deuda Corriente', 'Cobrado'],
-        datasets: [{ data: [d.totalMorosos, d.totalDeudaCorriente, d.totalCobrado], backgroundColor: ['#b91c1c', '#2563eb', '#166534'], borderWidth: 0 }],
-      };
-    }
+    const analysis = this.data();
+    if (!analysis) return null;
 
     return {
-      labels: ['Cobranza Judicial', 'Morosos', 'Deuda Corriente'],
-      datasets: [{ data: [d.totalJudicial, d.totalMorosos, d.totalDeudaCorriente], backgroundColor: ['#b91c1c', '#d97706', '#2563eb'], borderWidth: 0 }],
+      labels: ['Morosos', 'Deuda Corriente', 'Cobrado'],
+      datasets: [
+        {
+          data: [
+            analysis.totalMorosos,
+            analysis.totalDeudaCorriente,
+            analysis.totalCobrado,
+          ],
+          backgroundColor: ['#dc2626', '#f59e0b', '#22c55e'],
+          hoverBackgroundColor: ['#dc2626', '#f59e0b', '#22c55e'],
+          borderWidth: 0,
+        },
+      ],
     };
   });
 
   readonly chartOptions = { plugins: { legend: { position: 'bottom' } }, responsive: true, maintainAspectRatio: false };
 
   readonly filteredRows = computed<ICobranzaOnlineAnalysisCondominoDto[]>(() => {
-    const d = this.data();
-    if (!d) return [];
+    const analysis = this.data();
+    if (!analysis) return [];
 
     switch (this.selectedClassification()) {
-      case 'COBRANZA JUDICIAL': return d.cobranzaJudicial;
-      case 'MOROSOS': return d.morosos;
-      case 'DEUDA CORRIENTE': return d.deudaCorriente;
-      case 'SIN ADEUDO': return d.sinAdeudo;
-      case 'ANTICIPOS': return d.anticipos;
-      default: return [...d.cobranzaJudicial, ...d.morosos, ...d.deudaCorriente, ...d.sinAdeudo, ...d.anticipos];
+      case 'COBRANZA JUDICIAL': return analysis.cobranzaJudicial;
+      case 'MOROSOS': return analysis.morosos;
+      case 'DEUDA CORRIENTE': return analysis.deudaCorriente;
+      case 'SIN ADEUDO': return analysis.sinAdeudo;
+      default: return [...analysis.cobranzaJudicial, ...analysis.morosos, ...analysis.deudaCorriente];
     }
   });
+
+  readonly uniqueConcepts = computed(() => {
+    const rows = this.filteredRows();
+    const concepts = new Set<string>();
+    for (const row of rows) {
+      if (row.desglose) {
+        for (const item of row.desglose) {
+          concepts.add(item.concepto);
+        }
+      }
+    }
+    return Array.from(concepts).sort();
+  });
+
+  get summaryRows() {
+    return [...this.filteredRows()].sort((a, b) => b.saldo - a.saldo);
+  }
+
+  getConceptBalance(row: ICobranzaOnlineAnalysisCondominoDto, concepto: string) {
+    if (!row.desglose) return 0;
+    const item = row.desglose.find(d => d.concepto === concepto);
+    return item ? item.saldoFinal : 0;
+  }
+
+  getTotalConceptBalance(concepto: string) {
+    let total = 0;
+    const rows = this.filteredRows();
+    for (const row of rows) {
+      total += this.getConceptBalance(row, concepto);
+    }
+    return total;
+  }
+
+  get totalFilteredSaldo() {
+    return this.filteredRows().reduce((acc, curr) => acc + curr.saldo, 0);
+  }
 
   constructor() {
     effect(() => {
@@ -79,10 +124,10 @@ export class AnalisisCobranzaClienteComponent {
   getSeverity(clasificacion: string) {
     switch (clasificacion) {
       case 'COBRANZA JUDICIAL': return 'danger';
-      case 'MOROSOS': return 'warn';
-      case 'DEUDA CORRIENTE': return 'info';
+      case 'MOROSOS': return 'danger';
+      case 'DEUDA CORRIENTE': return 'warning';
       case 'SIN ADEUDO': return 'success';
-      case 'ANTICIPOS': return 'secondary';
+      case 'ANTICIPOS': return 'info';
       default: return 'secondary';
     }
   }

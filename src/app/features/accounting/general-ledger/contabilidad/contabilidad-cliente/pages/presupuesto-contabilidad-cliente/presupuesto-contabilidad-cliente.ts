@@ -5,6 +5,8 @@ import type {
   PresupuestoContabilidadResponse,
 } from 'src/app/features/accounting/general-ledger/contabilidad/cobranza-online/models/presupuesto-contabilidad.model';
 import { ContabilidadClienteService } from '../../services/contabilidad-cliente.service';
+import { DialogHandlerService } from 'src/app/core/services/dialog-handler.service';
+import { PurchaseHistory } from 'src/app/features/accounting/general-ledger/contabilidad/presupuesto-web-aspel/purchase-history';
 
 @Component({
   selector: 'app-presupuesto-contabilidad-cliente',
@@ -13,6 +15,7 @@ import { ContabilidadClienteService } from '../../services/contabilidad-cliente.
 })
 export class PresupuestoContabilidadClienteComponent {
   private readonly svc = inject(ContabilidadClienteService);
+  private readonly dialogHandlerS = inject(DialogHandlerService);
 
   readonly customerId = input.required<string>();
   readonly year = input.required<number>();
@@ -74,5 +77,19 @@ export class PresupuestoContabilidadClienteComponent {
   isNeg(v: number): boolean { return v < 0; }
   trackByIndex(i: number): number { return i; }
   trackByFila(_i: number, fila: PresupuestoContabilidadFila): string { return fila.numeroCuenta + fila.descripcion; }
+
+  showPurchaseHistory(fila: PresupuestoContabilidadFila) {
+    if (fila.nivel === 4 || fila.nivel === 1) return;
+
+    this.dialogHandlerS.openDialog(
+      PurchaseHistory,
+      {
+        fiscalYear: this.year(),
+        accountNumber: fila.numeroCuenta,
+      },
+      `HISTORIAL DE COMPRAS DE ${fila.descripcion}`,
+      this.dialogHandlerS.sizeFull,
+    );
+  }
 }
 

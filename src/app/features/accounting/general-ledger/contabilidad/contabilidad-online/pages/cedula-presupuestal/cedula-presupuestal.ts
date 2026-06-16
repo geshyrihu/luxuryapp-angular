@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal, input } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
 
@@ -147,7 +147,7 @@ export class CedulaPresupuestal {
       GASTOS_EXTRA.some((prefix) => c.numeroCuenta.startsWith(prefix)),
     );
 
-    // Acumuladores del Gran Total de Gastos Generales
+    // ─── BLOQUE 1: GASTOS GENERALES ───────────────────────────────────────────
     let granTot = {
       presupMes: 0,
       oct: 0,
@@ -157,7 +157,6 @@ export class CedulaPresupuestal {
       presupAnual: 0,
     };
 
-    // ─── BLOQUE 1: GASTOS GENERALES ───────────────────────────────────────────
     result.push({
       tipo: "header",
       descripcion: "GASTOS GENERALES",
@@ -173,7 +172,6 @@ export class CedulaPresupuestal {
       const presupAnual = getPresupAnual(cuenta);
       const restante = presupAnual - acum;
 
-      // Acumular al Gran Total
       granTot.presupMes += presupMes;
       granTot.oct += oct;
       granTot.nov += nov;
@@ -195,7 +193,6 @@ export class CedulaPresupuestal {
       });
     }
 
-    // Gran Total Gastos Generales
     result.push({
       tipo: "gran-total",
       descripcion: "GRAN TOTAL GASTOS GENERALES",
@@ -207,77 +204,6 @@ export class CedulaPresupuestal {
       presupAnual: granTot.presupAnual,
       restante: granTot.presupAnual - granTot.acum,
     });
-
-    // ─── BLOQUE 2: GASTOS EXTRAORDINARIOS, MEJORAS Y EVENTOS ─────────────────
-    // Se muestran como bloques independientes al final del reporte
-    const extraLabels: Record<string, string> = {
-      "605-": "EXTRAORDINARIOS",
-      "606-": "MEJORAS Y PROYECTOS",
-      "607-": "GASTOS EN EVENTOS",
-    };
-
-    for (const prefix of GASTOS_EXTRA) {
-      const bloqueCuentas = cuentasExtra.filter((c) =>
-        c.numeroCuenta.startsWith(prefix),
-      );
-      if (!bloqueCuentas.length) continue;
-
-      result.push({
-        tipo: "header",
-        descripcion: extraLabels[prefix] ?? prefix,
-        colspan: 7,
-      });
-
-      let totBloque = {
-        presupMes: 0,
-        oct: 0,
-        nov: 0,
-        mes: 0,
-        acum: 0,
-        presupAnual: 0,
-      };
-
-      for (const cuenta of bloqueCuentas) {
-        const presupMes = getPresup(cuenta, idx);
-        const oct = getMonto(cuenta, wr(idx - 2));
-        const nov = getMonto(cuenta, wr(idx - 1));
-        const mes = getMonto(cuenta, idx);
-        const acum = cuenta.acumuladoAnual;
-        const presupAnual = getPresupAnual(cuenta);
-
-        totBloque.presupMes += presupMes;
-        totBloque.oct += oct;
-        totBloque.nov += nov;
-        totBloque.mes += mes;
-        totBloque.acum += acum;
-        totBloque.presupAnual += presupAnual;
-
-        result.push({
-          tipo: "item",
-          numeroCuenta: cuenta.numeroCuenta,
-          descripcion: cuenta.descripcion,
-          presupMes,
-          oct,
-          nov,
-          mes,
-          acum,
-          presupAnual,
-          restante: presupAnual - acum,
-        });
-      }
-
-      result.push({
-        tipo: "total-extra",
-        descripcion: `TOTAL ${extraLabels[prefix] ?? prefix}`,
-        presupMes: totBloque.presupMes,
-        oct: totBloque.oct,
-        nov: totBloque.nov,
-        mes: totBloque.mes,
-        acum: totBloque.acum,
-        presupAnual: totBloque.presupAnual,
-        restante: totBloque.presupAnual - totBloque.acum,
-      });
-    }
 
     return result;
   });
@@ -297,6 +223,7 @@ export class CedulaPresupuestal {
   /** Carga los datos del reporte desde el API */
   async loadData(customerId: string, year: number, mes: number) {
     this.loading.set(true);
+    this.data.set(null);
     const result = await this.apiS.onGetItem<IFinancialStatementDto>(
       Endpoints.ContabilidadOnline.FinancialStatements.budgetVsActual(
         customerId,

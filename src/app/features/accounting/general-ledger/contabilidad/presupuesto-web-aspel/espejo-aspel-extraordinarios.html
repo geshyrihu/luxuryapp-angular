@@ -35,10 +35,12 @@
             @if (isParentAccount(cuenta)) {
             <td pFrozenColumn>
               <div class="flex align-items-center gap-2">
-                <span class="font-semibold text-color">
-                  {{ cuenta.codigo_Cuenta }}
-                </span>
-                <span class="text-color-secondary">|</span>
+                @if (!isClientView()) {
+                  <span class="font-semibold text-color">
+                    {{ cuenta.codigo_Cuenta }}
+                  </span>
+                  <span class="text-color-secondary">|</span>
+                }
                 <span class="text-color font-bold">
                   {{ cuenta.descripcion_Cuenta }}
                 </span>
@@ -51,16 +53,26 @@
             } @else {
             <td pFrozenColumn>
               <div class="flex flex-column">
-                <span
-                  class="font-small-gray text-xs text-500 cursor-pointer hover:text-primary transition-colors transition-duration-200"
-                  (click)="showPurchaseHistory(cuenta)"
-                  pTooltip="Ver Historial"
-                >
-                  {{ cuenta.codigo_Cuenta }} 🛒
-                </span>
-                <span class="text-color mt-1 font-semibold">
-                  {{ cuenta.descripcion_Cuenta }}
-                </span>
+                @if (!isClientView()) {
+                  <span
+                    class="font-small-gray text-xs text-500 cursor-pointer hover:text-primary transition-colors transition-duration-200"
+                    (click)="showPurchaseHistory(cuenta)"
+                    pTooltip="Ver Historial"
+                  >
+                    {{ cuenta.codigo_Cuenta }} 🛒
+                  </span>
+                  <span class="text-color mt-1 font-semibold">
+                    {{ cuenta.descripcion_Cuenta }}
+                  </span>
+                } @else {
+                  <span
+                    class="text-color mt-1 font-semibold cursor-pointer hover:text-primary transition-colors transition-duration-200"
+                    (click)="showPurchaseHistory(cuenta)"
+                    pTooltip="Ver Historial"
+                  >
+                    {{ cuenta.descripcion_Cuenta }} 🛒
+                  </span>
+                }
               </div>
             </td>
             @for (mes of months; track mes) {
@@ -148,10 +160,12 @@
             @if (isParentAccount(cuenta)) {
             <td pFrozenColumn [attr.colspan]="2">
               <div class="flex align-items-center gap-2">
-                <span class="font-semibold text-color">
-                  {{ cuenta.codigo_Cuenta }}
-                </span>
-                <span class="text-color-secondary">|</span>
+                @if (!isClientView()) {
+                  <span class="font-semibold text-color">
+                    {{ cuenta.codigo_Cuenta }}
+                  </span>
+                  <span class="text-color-secondary">|</span>
+                }
                 <span class="text-color font-bold">
                   {{ cuenta.descripcion_Cuenta }}
                 </span>
@@ -167,16 +181,26 @@
             } @else {
             <td pFrozenColumn>
               <div class="flex flex-column">
-                <span
-                  class="font-small-gray text-xs text-500 cursor-pointer hover:text-primary transition-colors transition-duration-200"
-                  (click)="showPurchaseHistory(cuenta)"
-                  pTooltip="Ver Historial"
-                >
-                  {{ cuenta.codigo_Cuenta }} 🛒
-                </span>
-                <span class="text-color mt-1 font-semibold">
-                  {{ cuenta.descripcion_Cuenta }}
-                </span>
+                @if (!isClientView()) {
+                  <span
+                    class="font-small-gray text-xs text-500 cursor-pointer hover:text-primary transition-colors transition-duration-200"
+                    (click)="showPurchaseHistory(cuenta)"
+                    pTooltip="Ver Historial"
+                  >
+                    {{ cuenta.codigo_Cuenta }} 🛒
+                  </span>
+                  <span class="text-color mt-1 font-semibold">
+                    {{ cuenta.descripcion_Cuenta }}
+                  </span>
+                } @else {
+                  <span
+                    class="text-color mt-1 font-semibold cursor-pointer hover:text-primary transition-colors transition-duration-200"
+                    (click)="showPurchaseHistory(cuenta)"
+                    pTooltip="Ver Historial"
+                  >
+                    {{ cuenta.descripcion_Cuenta }} 🛒
+                  </span>
+                }
               </div>
             </td>
             <td pFrozenColumn class="text-right text-green-700 font-bold">
@@ -279,12 +303,18 @@
             class="w-full flex flex-column"
             (click)="showPurchaseHistory(cuenta)"
           >
-            <span class="text-sm font-bold text-color"
-              >{{ cuenta.codigo_Cuenta }}</span
-            >
-            <span class="text-sm text-color-secondary mb-2"
-              >{{ cuenta.descripcion_Cuenta }}</span
-            >
+            @if (!isClientView()) {
+              <span class="text-sm font-bold text-color"
+                >{{ cuenta.codigo_Cuenta }}</span
+              >
+              <span class="text-sm text-color-secondary mb-2"
+                >{{ cuenta.descripcion_Cuenta }} 🛒</span
+              >
+            } @else {
+              <span class="text-sm font-bold text-color mb-2"
+                >{{ cuenta.descripcion_Cuenta }} 🛒</span
+              >
+            }
             <span
               >Presupuesto: {{ getSumaPresupuestoMesesVisiblesCuenta(cuenta) |
               number:'1.0-0' }}</span
@@ -311,12 +341,18 @@
             class="w-full flex flex-column"
             (click)="showPurchaseHistory(cuenta)"
           >
-            <span class="text-sm font-bold text-color"
-              >{{ cuenta.codigo_Cuenta }}</span
-            >
-            <span class="text-sm text-color-secondary mb-2"
-              >{{ cuenta.descripcion_Cuenta }}</span
-            >
+            @if (!isClientView()) {
+              <span class="text-sm font-bold text-color"
+                >{{ cuenta.codigo_Cuenta }}</span
+              >
+              <span class="text-sm text-color-secondary mb-2"
+                >{{ cuenta.descripcion_Cuenta }} 🛒</span
+              >
+            } @else {
+              <span class="text-sm font-bold text-color mb-2"
+                >{{ cuenta.descripcion_Cuenta }} 🛒</span
+              >
+            }
             <span
               >Presupuesto: {{ getSumaPresupuestoMesesVisiblesCuenta(cuenta) |
               number:'1.0-0' }}</span

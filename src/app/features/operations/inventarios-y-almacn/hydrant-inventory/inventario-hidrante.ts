@@ -2,11 +2,12 @@ import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonButton, IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
-import { waterOutline, listOutline, qrCodeOutline } from "ionicons/icons";
+import { waterOutline, listOutline, qrCodeOutline, downloadOutline, timeOutline } from "ionicons/icons";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
+import { IonButtonDownload } from "src/app/core/components/buttons/mobile/ion-button-download";
 import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
@@ -24,6 +25,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { InventarioHidranteForm } from "./inventario-hidrante-form";
+import { InventarioHidranteQrService } from "./inventario-hidrante-qr.service";
 
 @Component({
   selector: "app-inventario-hidrante",
@@ -32,7 +34,7 @@ import { InventarioHidranteForm } from "./inventario-hidrante-form";
     ImageModule, TableModule,
     CustomButtonEdit, CustomButtonDelete, CustomButtonItem, CustomButtonDownload,
     PrimeNgCustomCaption, PrimeNgCustomTableFooter, DataViewMobile, ActionMenu,
-    IonButtonEdit, IonButtonDelete, IonButtonItem, IonButton, IonItem, IonLabel, IonIcon,
+    IonButtonEdit, IonButtonDelete, IonButtonDownload, IonButtonItem, IonButton, IonItem, IonLabel, IonIcon,
   ],
 })
 export class InventarioHidrante {
@@ -41,6 +43,7 @@ export class InventarioHidrante {
   customerIdS = inject(CustomerIdService);
   tableScrollHeightS = inject(TableScrollHeightService);
   excelS = inject(AccountingCatalogExcelService);
+  qrS = inject(InventarioHidranteQrService);
   router = inject(Router);
 
   dataSignal = signal<IInventarioHidrante[]>([]);
@@ -51,7 +54,7 @@ export class InventarioHidrante {
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   constructor() {
-    addIcons({ waterOutline, listOutline, qrCodeOutline });
+    addIcons({ waterOutline, listOutline, qrCodeOutline, downloadOutline, timeOutline });
     effect(() => {
       const customerId = this.customerIdS.customerId();
       if (customerId) this.onLoadData();
@@ -62,8 +65,20 @@ export class InventarioHidrante {
     this.router.navigate(["/logbook/fire-equipment-scanner"]);
   }
 
+  async onDownloadQr(item: IInventarioHidrante) {
+    await this.qrS.downloadQr(item);
+  }
+
+  async onDownloadAllQr() {
+    await this.qrS.downloadAllQr(this.dataSignal());
+  }
+
   onViewHistory(item: IInventarioHidrante) {
     this.router.navigate(["/logbook/hydrant-log", item.id]);
+  }
+
+  onViewPeriodos() {
+    this.router.navigate(["/logbook/fire-inspection-periods"], { queryParams: { type: "hidrante" } });
   }
 
   downloadTemplate() {

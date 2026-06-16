@@ -1,0 +1,70 @@
+@let execution = detail();
+
+@if (loading()) {
+<div class="text-center text-500 p-4">Preparando inspeccion...</div>
+} @else if (execution) {
+<form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
+  <div class="mb-3">
+    <div class="font-semibold text-lg">{{ execution.definitionName }}</div>
+    <div class="text-sm text-600">{{ execution.machineryName }}</div>
+    <div class="text-sm text-600 mt-1">
+      Fecha: {{ execution.executionDate }} | Asignado:
+      {{ execution.assignedToUserName || "Sin asignar" }}
+    </div>
+  </div>
+
+  <div formArrayName="items" class="flex flex-column gap-3 mb-4">
+    @for (item of items.controls; track $index) {
+    <div [formGroupName]="$index" class="surface-ground border-round p-3">
+      <div class="font-medium mb-1">{{ $index + 1 }}. {{ item.controls.criterionTitle.value }}</div>
+      <div class="text-sm text-600 mb-3">
+        {{ item.controls.criterionDescription.value || "Sin descripcion adicional" }}
+      </div>
+
+      <div class="grid">
+        <div class="col-12 md:col-3">
+          <custom-input-check-signal
+            [control]="item.controls.isCompliant"
+            label="Cumple"
+          />
+        </div>
+        <div class="col-12 md:col-9">
+          <custom-input-textarea-signal
+            [control]="item.controls.observation"
+            label="Observacion"
+            placeholder="Detalle del criterio"
+          />
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="grid">
+    <div class="col-12 md:col-4">
+      <custom-input-select-signal
+        [control]="form.controls.severity"
+        [data]="severityOptions"
+        label="Resultado general"
+      />
+    </div>
+    <div class="col-12 md:col-8">
+      <custom-input-textarea-signal
+        [control]="form.controls.observations"
+        label="Observaciones generales"
+        placeholder="Resumen final de la inspeccion"
+      />
+    </div>
+  </div>
+
+  <div class="text-sm text-600 mb-3">
+    La carga de evidencias fotograficas queda pendiente del siguiente tramo. El backend ya acepta `images`, pero esta primera captura web cierra sin adjuntos.
+  </div>
+
+  <custom-button-save [submitting]="submitting()" [disabled]="form.invalid" />
+</form>
+} @else {
+<div class="text-center text-500 p-4">
+  No fue posible preparar la ejecucion.
+</div>
+}

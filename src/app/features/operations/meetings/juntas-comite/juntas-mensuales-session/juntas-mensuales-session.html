@@ -1,7 +1,9 @@
 <div class="grid">
   <div class="col-12">
     <div class="card">
-      <div class="flex flex-column gap-2 md:flex-row md:justify-content-between md:align-items-center">
+      <div
+        class="flex flex-column gap-2 md:flex-row md:justify-content-between md:align-items-center"
+      >
         <div>
           <h2 class="m-0">Sesiones mensuales</h2>
           <p class="m-0 text-color-secondary">
@@ -90,13 +92,15 @@
         <div class="col-12 md:col-6">
           <p class="m-0 text-color-secondary">Programada</p>
           <p class="mt-1 font-semibold">
-            {{ formatBusinessDateTime(detail.scheduledAt) }} -
-            {{ formatBusinessTime(detail.scheduledEndAt) }}
+            {{ formatBusinessDateTime(detail.scheduledAt) }} - {{
+            formatBusinessTime(detail.scheduledEndAt) }}
           </p>
         </div>
         <div class="col-12 md:col-6">
           <p class="m-0 text-color-secondary">Modalidad</p>
-          <p class="mt-1 font-semibold">{{ detail.modality === 0 ? "Virtual" : "Presencial" }}</p>
+          <p class="mt-1 font-semibold">
+            {{ detail.modality === 0 ? "Virtual" : "Presencial" }}
+          </p>
         </div>
         <div class="col-12 md:col-6">
           <p class="m-0 text-color-secondary">Estatus</p>
@@ -104,7 +108,9 @@
         </div>
         <div class="col-12 md:col-6">
           <p class="m-0 text-color-secondary">Ubicacion</p>
-          <p class="mt-1 font-semibold">{{ detail.location || "Sin ubicacion" }}</p>
+          <p class="mt-1 font-semibold">
+            {{ detail.location || "Sin ubicacion" }}
+          </p>
         </div>
         @if (detail.cancelReason) {
         <div class="col-12">
@@ -121,29 +127,25 @@
           label="Generar minuta"
           (clicked)="onCreateMeeting()"
         />
-        }
-        @if (canReschedule(detail)) {
+        } @if (canReschedule(detail)) {
         <custom-button
           icon="mdi:calendar-plus"
           label="Reprogramar"
           (clicked)="onOpenReschedule()"
         />
-        }
-        @if (hasAssemblyChecklist(detail)) {
+        } @if (hasAssemblyChecklist(detail)) {
         <custom-button
           icon="mdi:format-list-checks"
           label="Checklist asamblea"
           (clicked)="onOpenAssemblyChecklist()"
         />
-        }
-        @if (detail.meetingId) {
+        } @if (detail.meetingId) {
         <custom-button
           icon="mdi:external-link"
           label="Abrir minuta"
           (clicked)="onOpenMinutes()"
         />
-        }
-        @if (canCancel(detail)) {
+        } @if (canCancel(detail)) {
         <custom-button-delete
           label="Cancelar sesion"
           [text]="true"
@@ -199,19 +201,27 @@
             <div class="grid">
               <div class="col-12 md:col-3">
                 <p class="m-0 text-color-secondary">Invitados</p>
-                <p class="mt-1 font-semibold">{{ detail.assembly.inviteesCount }}</p>
+                <p class="mt-1 font-semibold">
+                  {{ detail.assembly.inviteesCount }}
+                </p>
               </div>
               <div class="col-12 md:col-3">
                 <p class="m-0 text-color-secondary">Solicitudes de soporte</p>
-                <p class="mt-1 font-semibold">{{ detail.assembly.supportRequestsCount }}</p>
+                <p class="mt-1 font-semibold">
+                  {{ detail.assembly.supportRequestsCount }}
+                </p>
               </div>
               <div class="col-12 md:col-3">
                 <p class="m-0 text-color-secondary">Items checklist</p>
-                <p class="mt-1 font-semibold">{{ detail.assembly.checklistItemsCount }}</p>
+                <p class="mt-1 font-semibold">
+                  {{ detail.assembly.checklistItemsCount }}
+                </p>
               </div>
               <div class="col-12 md:col-3">
                 <p class="m-0 text-color-secondary">Pendientes</p>
-                <p class="mt-1 font-semibold">{{ detail.assembly.checklistPendingCount }}</p>
+                <p class="mt-1 font-semibold">
+                  {{ detail.assembly.checklistPendingCount }}
+                </p>
               </div>
             </div>
           </p-card>

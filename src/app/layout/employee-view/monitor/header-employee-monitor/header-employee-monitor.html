@@ -1,6 +1,8 @@
 <!-- Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block no-print">
-  <p-toolbar styleClass="mobile-header-toolbar monitor-header-toolbar w-full p-0 m-0">
+  <p-toolbar
+    styleClass="mobile-header-toolbar monitor-header-toolbar w-full p-0 m-0"
+  >
     <ng-template #start>
       <!-- Botón para abrir/cerrar el sidebar -->
       <div class="flex align-items-center gap-2 px-3" style="min-width: 250px">
@@ -25,11 +27,12 @@
           <p-select
             [options]="cb_customer()"
             [ngModel]="customerId()"
-            (onChange)="selectCustomer($event.value)"
+            (ngModelChange)="selectCustomer($event)"
             optionValue="value"
             optionLabel="label"
+            dataKey="value"
             styleClass="w-full"
-            [filter]="cb_customer.length > 10"
+            [filter]="cb_customer().length > 10"
             fluid
             size="small"
           >
@@ -56,7 +59,9 @@
           </p-select>
         </div>
         } @else {
-        <div class="p-2 w-full flex align-items-center justify-content-center gap-3">
+        <div
+          class="p-2 w-full flex align-items-center justify-content-center gap-3"
+        >
           <img
             [src]="customerPhotoPath()"
             style="width: 38px; height: 38px; object-fit: contain"
@@ -116,7 +121,7 @@
   header="Generador de Comunicados IA"
   [(visible)]="displayAiModal"
   [modal]="true"
-  [style]="{ width: '600px', 'max-width': '95vw' }"
+  [style]="{ width: '800px', 'max-width': '95vw' }"
   [contentStyle]="{ 'max-height': '80vh', 'overflow-y': 'auto' }"
   [draggable]="false"
   [resizable]="false"
@@ -126,10 +131,18 @@
     <div class="flex align-items-center gap-3">
       <img
         [src]="customerPhotoPath()"
-        style="width: 40px; height: 40px; object-fit: contain; border-radius: 8px;"
+        style="
+          width: 40px;
+          height: 40px;
+          object-fit: contain;
+          border-radius: 8px;
+        "
       />
       <div>
-        <span class="font-bold text-xl block">Asistente Ejecutivo IA</span>
+        <span class="font-bold text-xl block text-purple-700">
+          <i class="pi pi-sparkles text-purple-500 mr-2 text-xl"></i>Asistente
+          Ejecutivo IA
+        </span>
         <span class="text-sm text-gray-500">{{ customerName() }}</span>
       </div>
     </div>
@@ -138,71 +151,282 @@
   <div class="flex flex-column gap-4 py-3">
     @if (!aiAnnouncementResult() && !isGeneratingAnnouncement()) {
     <div class="flex flex-column gap-2">
-      <label for="ai-idea" class="font-semibold text-lg">¿Sobre qué quieres comunicar?</label>
+      <label for="ai-idea" class="font-semibold text-lg"
+        >¿Sobre qué quieres comunicar?</label
+      >
       <p class="text-sm text-gray-500 m-0 mb-2">
-        Ingresa tu idea y la IA redactará un comunicado formal, cálido y elegante para tus residentes.
+        Ingresa tu idea y la IA redactará un comunicado formal, cálido y
+        elegante para tus residentes.
       </p>
       <textarea
         pInputTextarea
         id="ai-idea"
-        [ngModel]="userIdea()"
-        (ngModelChange)="userIdea.set($event)"
+        [value]="userIdea()"
+        (input)="userIdea.set($any($event.target).value)"
         rows="4"
         placeholder="Ej: Avisar que mañana no habrá agua de 10am a 2pm por lavado de cisterna..."
         class="w-full"
       ></textarea>
     </div>
-    }
-
-    @if (isGeneratingAnnouncement()) {
-    <div class="flex flex-column align-items-center justify-content-center py-5 gap-3">
-      <p-progressSpinner styleClass="w-3rem h-3rem" strokeWidth="4" animationDuration=".5s"></p-progressSpinner>
+    } @if (isGeneratingAnnouncement()) {
+    <div
+      class="flex flex-column align-items-center justify-content-center py-5 gap-3"
+    >
+      <p-progressSpinner
+        styleClass="w-3rem h-3rem"
+        strokeWidth="4"
+        animationDuration=".5s"
+      ></p-progressSpinner>
       <p class="text-gray-600 font-medium text-center px-4">
-        {{ currentMode() === 'poster' ? 'Diseñando póster visual...' : 'Redactando comunicado empático con emojis...' }}
+        {{ currentMode() === 'poster' ? 'Diseñando póster visual...' :
+        'Redactando comunicado empático con emojis...' }}
       </p>
     </div>
-    }
+    } @if (aiAnnouncementResult() && !isGeneratingAnnouncement()) {
+    <div
+      class="ai-result-container surface-ground p-4 border-round-xl border-1 surface-border"
+    >
+      @if (currentMode() === 'poster' && aiAnnouncementImageResult()) {
+      <!-- Póster Infográfico Estructurado -->
+      <div
+        id="print-section"
+        class="surface-card p-0 border-round-xl shadow-1 mt-4 relative overflow-hidden flex flex-column bg-white"
+        style="border: 1px solid var(--surface-border); border-top: 6px solid"
+        [style.border-top-color]="'var(' + documentColor() + ')'"
+      >
+        <!-- Header del Póster -->
+        <div
+          class="p-4 flex flex-column align-items-center justify-content-center text-center border-bottom-1 surface-border"
+          style="background-color: var(--surface-50)"
+        >
+          <img
+            [src]="customerPhotoPath()"
+            alt="Logo del Condominio"
+            style="height: 60px; object-fit: contain; margin-bottom: 1rem"
+          />
+          <span
+            class="block font-bold text-xl uppercase tracking-wide mb-2"
+            [style.color]="'var(' + documentColor() + ')'"
+            >{{ customerName() }}</span
+          >
+          <h2
+            class="text-900 m-0 text-3xl font-bold line-height-2 uppercase"
+            style="max-width: 90%"
+          >
+            {{ aiAnnouncementResult()?.title }}
+          </h2>
+        </div>
 
-    @if (aiAnnouncementResult() && !isGeneratingAnnouncement()) {
-    <div class="ai-result-container surface-ground p-4 border-round-xl border-1 surface-border">
-      
-      <!-- Imagen (si existe) -->
-      @if (aiAnnouncementImageResult()) {
-      <div class="mb-4 text-center flex justify-content-center">
-        <img
-          [src]="aiAnnouncementImageResult()"
-          alt="Banner del Comunicado"
-          class="border-round-lg shadow-4"
-          style="max-height: 500px; width: auto; object-fit: contain"
-        />
+        <!-- Cuerpo del Póster (Grid a 2 columnas) -->
+        <div class="grid grid-nogutter w-full p-4 gap-4 align-items-center">
+          <!-- Columna Izquierda: Puntos Clave -->
+          <div class="col-12 md:col flex flex-column gap-3">
+            @if (aiAnnouncementPosterPoints().length > 0) { @for (point of
+            aiAnnouncementPosterPoints(); track point; let i = $index) {
+            <div
+              class="flex align-items-start gap-3 p-3 border-round-lg"
+              style="
+                background-color: var(--surface-50);
+                border-left: 4px solid;
+              "
+              [style.border-left-color]="'var(' + documentColor() + ')'"
+            >
+              <div
+                class="flex align-items-center justify-content-center border-round-circle p-2"
+                [style.background-color]="'var(' + documentColor() + ')'"
+                [style.color]="'white'"
+              >
+                <i
+                  class="pi text-xl"
+                  [ngClass]="['pi-info-circle', 'pi-shield', 'pi-users', 'pi-check-circle'][i % 4]"
+                ></i>
+              </div>
+              <div class="flex-1">
+                <p
+                  class="m-0 text-700 font-medium line-height-3 text-lg"
+                  [innerHTML]="point"
+                ></p>
+              </div>
+            </div>
+            } } @else {
+            <div
+              class="text-700 line-height-3 text-justify text-lg p-3"
+              [innerHTML]="aiAnnouncementResult()?.body"
+            ></div>
+            }
+          </div>
+
+          <!-- Columna Derecha: Imagen Ilustrativa -->
+          <div class="col-12 md:col-5 flex justify-content-center">
+            <div
+              class="relative w-full border-round-xl overflow-hidden shadow-2"
+              style="min-height: 250px; background-color: var(--surface-100)"
+            >
+              <img
+                [src]="aiAnnouncementImageResult()"
+                alt="Ilustración"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div
+          class="mx-4 mb-4 p-3 border-round-lg text-center"
+          style="
+            background-color: var(--surface-100);
+            border: 2px dashed var(--surface-300);
+          "
+        >
+          <p
+            class="m-0 font-bold text-800 text-xl"
+            [innerHTML]="aiAnnouncementResult()?.callToAction"
+          ></p>
+        </div>
+
+        <!-- Footer Administrativo -->
+        <div
+          class="p-3 bg-white flex flex-column align-items-center justify-content-center gap-2 border-top-1 surface-border"
+        >
+          <img
+            src="assets/images/LBG-negro.png"
+            alt="Administración LBG"
+            style="height: 45px; object-fit: contain; opacity: 0.9"
+          />
+          <div class="text-center">
+            <span
+              class="block text-xs text-500 font-bold tracking-wide uppercase"
+              >Administración</span
+            >
+            <span
+              class="block text-xs text-500 font-bold tracking-wide uppercase"
+              >Luxury Building Group</span
+            >
+          </div>
+        </div>
+      </div>
+      } @if (currentMode() === 'text' && aiAnnouncementResult()?.body) {
+      <!-- Documento Formal -->
+      <div
+        id="print-section"
+        class="surface-card p-5 border-round-xl shadow-1 mt-4 relative bg-white"
+        style="border: 1px solid var(--surface-border); border-top: 6px solid"
+        [style.border-top-color]="'var(' + documentColor() + ')'"
+      >
+        <!-- Header Institucional -->
+        <div
+          class="flex justify-content-between align-items-center border-bottom-2 surface-border pb-3 mb-4"
+        >
+          <img
+            [src]="customerPhotoPath()"
+            alt="Logo del Condominio"
+            style="height: 60px; object-fit: contain"
+          />
+          <div class="text-right">
+            <span
+              class="block font-bold"
+              [style.color]="'var(' + documentColor() + ')'"
+              >{{ customerName() }}</span
+            >
+            <span class="text-xs text-500 uppercase tracking-wide"
+              >Comunicado Oficial</span
+            >
+          </div>
+        </div>
+
+        <!-- Título -->
+        <h2 class="text-900 mt-0 mb-3 text-2xl font-bold text-center">
+          {{ aiAnnouncementResult()?.title }}
+        </h2>
+
+        <!-- Saludo -->
+        <p class="font-medium text-lg mb-4 text-800">
+          {{ aiAnnouncementResult()?.greeting }}
+        </p>
+
+        <!-- Cuerpo (Viene como HTML) -->
+        <div
+          class="text-700 line-height-3 mb-4 text-justify"
+          [innerHTML]="aiAnnouncementResult()?.body"
+        ></div>
+
+        <!-- Call to Action (Estilo Tema) -->
+        <div
+          class="surface-100 p-4 border-round-lg text-center mt-4 border-left-3"
+          [style.border-left-color]="'var(' + documentColor() + ')'"
+        >
+          <p
+            class="m-0 font-bold text-800 text-lg"
+            [innerHTML]="aiAnnouncementResult()?.callToAction"
+          ></p>
+        </div>
+
+        <!-- Footer Administrativo -->
+        <div
+          class="mt-6 pt-4 border-top-1 surface-border flex flex-column align-items-center justify-content-center gap-2"
+        >
+          <img
+            src="assets/images/LBG-negro.png"
+            alt="Administración LBG"
+            style="height: 40px; object-fit: contain; opacity: 0.9"
+          />
+          <div class="text-center">
+            <span
+              class="block text-xs text-500 font-bold tracking-wide uppercase"
+              >Administración</span
+            >
+            <span
+              class="block text-xs text-500 font-bold tracking-wide uppercase"
+              >Luxury Building Group</span
+            >
+          </div>
+        </div>
       </div>
       }
 
-      @if (aiAnnouncementResult()?.body) {
-      <!-- Título -->
-      <h2 class="text-primary mt-0 mb-3 text-2xl font-bold text-center border-bottom-1 surface-border pb-2">
-        {{ aiAnnouncementResult()?.title }}
-      </h2>
-      
-      <!-- Saludo -->
-      <p class="font-medium text-lg mb-4 text-700">
-        {{ aiAnnouncementResult()?.greeting }}
-      </p>
-      
-      <!-- Cuerpo (Viene como HTML) -->
-      <div class="text-800 line-height-3 mb-4" [innerHTML]="aiAnnouncementResult()?.body"></div>
-
-      <!-- Call to Action -->
-      <div class="surface-hover p-3 border-round-lg text-center mt-4">
-        <p class="m-0 font-semibold text-primary" [innerHTML]="aiAnnouncementResult()?.callToAction"></p>
+      <!-- Botones de Acción Extra -->
+      <div
+        class="flex flex-column sm:flex-row justify-content-between align-items-center gap-3 mt-4 no-print border-top-1 surface-border pt-4"
+      >
+        <div class="flex align-items-center gap-2">
+          <span class="text-sm font-semibold text-600"
+            >Tema del Documento:</span
+          >
+          <p-selectButton
+            [options]="colorOptions"
+            [ngModel]="documentColor()"
+            (ngModelChange)="documentColor.set($event)"
+            optionLabel="label"
+            optionValue="value"
+            size="small"
+          ></p-selectButton>
+        </div>
+        <div class="flex gap-2">
+          <p-button
+            icon="pi pi-copy"
+            [label]="currentMode() === 'poster' ? 'Copiar Póster' : 'Copiar como Imagen'"
+            severity="secondary"
+            size="small"
+            (click)="copyAsImage()"
+          />
+          <p-button
+            icon="pi pi-file-pdf"
+            [label]="currentMode() === 'poster' ? 'Descargar PDF' : 'Exportar a PDF'"
+            severity="secondary"
+            size="small"
+            (click)="printAnnouncement()"
+          />
+        </div>
       </div>
-      }
     </div>
     }
   </div>
 
   <ng-template pTemplate="footer">
-    <div class="flex justify-content-end gap-2 w-full border-top-1 surface-border pt-3 mt-2">
+    <div
+      class="flex justify-content-end gap-2 w-full border-top-1 surface-border pt-3 mt-2"
+    >
       @if (aiAnnouncementResult()) {
       <p-button
         label="Nueva Idea"
@@ -229,14 +453,14 @@
         icon="pi pi-face-smile"
         severity="secondary"
         (click)="generateOfficialAnnouncement('text')"
-        [disabled]="!userIdea().trim() || isGeneratingAnnouncement()"
+        [disabled]="(userIdea() || '').trim().length === 0 || isGeneratingAnnouncement()"
       />
-      <p-button
+      <!-- <p-button
         label="Póster Visual"
         icon="pi pi-image"
         (click)="generateOfficialAnnouncement('poster')"
-        [disabled]="!userIdea().trim() || isGeneratingAnnouncement()"
-      />
+        [disabled]="(userIdea() || '').trim().length === 0 || isGeneratingAnnouncement()"
+      /> -->
       }
     </div>
   </ng-template>

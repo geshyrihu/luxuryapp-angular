@@ -500,6 +500,46 @@
   </p-table>
 </div>
 <p-dialog
+  header="Agregar presupuesto"
+  [(visible)]="showBudgetModal"
+  [modal]="true"
+  [style]="{ width: '42rem', maxWidth: '96vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="pt-2">
+    <custom-input-select-signal
+      [control]="budgetAccountControl"
+      [data]="budgetSelectOptionsSignal()"
+      label="Cuenta presupuestal"
+      placeholder="Busca y selecciona una cuenta"
+      [filter]="true"
+      filterBy="label"
+      [showClear]="true"
+    />
+  </div>
+
+  <ng-template #footer>
+    <div class="flex justify-content-end gap-2">
+      <custom-button
+        label="Cancelar"
+        severity="secondary"
+        variant="outlined"
+        size="small"
+        (clicked)="onCancelAddBudgetModal()"
+      />
+      <custom-button
+        label="Continuar"
+        iconClass="mdi:arrow-right"
+        severity="contrast"
+        size="small"
+        (clicked)="onConfirmAddBudgetModal()"
+      />
+    </div>
+  </ng-template>
+</p-dialog>
+
+<p-dialog
   header="Auditoria de Compras - Analisis IA"
   [(visible)]="showAiModal"
   [modal]="true"

@@ -3,10 +3,12 @@ import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import type {
   PresupuestoContabilidadFila,
   PresupuestoContabilidadResponse,
 } from "src/app/features/accounting/general-ledger/contabilidad/cobranza-online/models/presupuesto-contabilidad.model";
+import { PurchaseHistory } from "src/app/features/accounting/general-ledger/contabilidad/presupuesto-web-aspel/purchase-history";
 import { reportFilterState } from "../../state/financial-report-filter.state";
 
 @Component({
@@ -17,6 +19,7 @@ import { reportFilterState } from "../../state/financial-report-filter.state";
 export class PresupuestoContabilidad {
   private apiS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
+  private dialogHandlerS = inject(DialogHandlerService);
   public filterS = reportFilterState;
 
   loading = signal(false);
@@ -39,6 +42,7 @@ export class PresupuestoContabilidad {
 
   async loadData(customerId: string, year: number, mes: number) {
     this.loading.set(true);
+    this.data.set(null);
     const result = await this.apiS.onGetItem<PresupuestoContabilidadResponse>(
       Endpoints.ContabilidadOnline.FinancialStatements.presupuestoContabilidad(
         customerId,
@@ -102,6 +106,20 @@ export class PresupuestoContabilidad {
 
   trackByIndex(i: number): number {
     return i;
+  }
+
+  showPurchaseHistory(fila: PresupuestoContabilidadFila) {
+    if (fila.nivel === 4 || fila.nivel === 1) return; // Prevent clicking on totals or top level sections if not intended
+
+    this.dialogHandlerS.openDialog(
+      PurchaseHistory,
+      {
+        fiscalYear: this.filterS.year(),
+        accountNumber: fila.numeroCuenta,
+      },
+      `HISTORIAL DE COMPRAS DE ${fila.descripcion}`,
+      this.dialogHandlerS.sizeFull,
+    );
   }
 }
 

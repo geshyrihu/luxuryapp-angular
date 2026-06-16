@@ -35,7 +35,17 @@
                     [ngClass]="descClass(fila)"
                     [style.padding-left]="fila.nivel === 2 ? '1.5rem' : fila.nivel === 3 ? '2.5rem' : null"
                   >
-                    {{ fila.descripcion }}
+                    @if (fila.nivel === 2 || fila.nivel === 3) {
+                      <span
+                        class="cursor-pointer hover:text-primary transition-colors transition-duration-200"
+                        (click)="showPurchaseHistory(fila)"
+                        title="Ver Historial de Compras"
+                      >
+                        {{ fila.descripcion }} 🛒
+                      </span>
+                    } @else {
+                      {{ fila.descripcion }}
+                    }
                   </td>
                   <td [ngClass]="numClass(fila)" [class.rf-neg]="isNeg(fila.pstoMensual)">{{ fmt(fila.pstoMensual) }}</td>
                   @for (val of fila.montosEjercidos; track trackByIndex($index)) {

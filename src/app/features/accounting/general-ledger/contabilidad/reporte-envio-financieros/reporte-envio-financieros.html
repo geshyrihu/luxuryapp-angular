@@ -1,45 +1,73 @@
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<p-table [value]="dataSignal()" styleClass="custom-table card hidden md:block">
+<p-table
+  [value]="dataSignal()"
+  styleClass="custom-table card"
+  [rows]="tablePrimeNgRows"
+  [paginator]="true"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [globalFilterFields]="globalFilterFields()"
+>
   <ng-template #caption>
     <div class="grid align-items-center">
       <div class="col-12 sm:col-9">
-        <primeng-custom-caption
-          title="REPORTE ENVIO DE ESTADOS FINANCIEROS"
-          [showAdd]="false"
-          [showSearch]="false"
-        />
+        <h3 class="m-0 text-uppercase font-bold text-primary">
+          REPORTE DE ENVÍO DE ESTADOS FINANCIEROS A CONDÓMINOS AÑO
+          {{ selectedYear }}
+        </h3>
+        <p class="m-0 text-muted" style="font-size: 0.85rem">
+          💡 Regla: El informe del mes anterior debe enviarse a más tardar el
+          día 10 de cada mes.
+        </p>
       </div>
       <div class="col-12 sm:col-3">
-        <app-mesanio (periodoEmit)="onFiltrarPeriodo($event)"></app-mesanio>
+        <div class="flex justify-content-end align-items-center gap-2">
+          <label class="font-bold">Año:</label>
+          <p-select
+            [options]="years"
+            [(ngModel)]="selectedYear"
+            optionLabel="label"
+            optionValue="value"
+            (onChange)="onChangeYear()"
+            class="w-full sm:w-10rem"
+          />
+        </div>
       </div>
     </div>
   </ng-template>
   <ng-template #header>
     <tr>
-      <th class="table-col-25">CLIENTE</th>
-      <th class="table-col-15">PERIODO</th>
-      <th class="table-col-20">CARGO</th>
-      <th class="table-col-10">FECHA CARGA</th>
-      <th class="table-col-20">AUTORIZO</th>
-      <th class="table-col-10">FECHA AUTORIZACIÓN</th>
-      <th class="table-col-10">ESTATUS</th>
+      <th class="table-col-20">CLIENTE</th>
+      @for (month of monthNames; track $index) {
+      <th class="text-center" style="min-width: 60px">{{ month }}</th>
+      }
     </tr>
   </ng-template>
   <ng-template #body let-item>
     <tr>
-      <td>{{ item.nombreCorto }}</td>
-      <td>{{ item.periodo }}</td>
-      <td>{{ item.applicationUserWhoCharge }}</td>
-      <td>{{ item.fechaCarga }}</td>
-      <td>{{ item.applicationUserWhoAuthorized }}</td>
-      <td>{{ item.fechaAutorizacion }}</td>
-      <td>
-        @if (item.estatus == 'Enviado') {
-        <p-tag severity="success" [value]="item.estatus" styleClass="w-full" />
-        } @if (item.estatus != 'Enviado') {
-        <p-tag severity="danger" [value]="item.estatus" styleClass="w-full" />
-        }
+      <td class="font-bold">{{ item.nombreCorto }}</td>
+      @for (mes of item.meses; track $index) {
+      <td class="text-center">
+        @if (selectedYear < currentYear || (selectedYear === currentYear &&
+        mes.mes <= currentMonth)) { @if (mes.estatus == 'Enviado') {
+        <div class="flex flex-column align-items-center">
+          <i
+            class="pi pi-check-circle text-success"
+            [pTooltip]="mes.fecha"
+            tooltipPosition="top"
+          ></i>
+          <span style="font-size: 0.65rem" class="text-success mt-1">
+            {{ mes.fecha }}
+          </span>
+        </div>
+        } @else {
+        <i
+          class="pi pi-times-circle text-danger"
+          pTooltip="No Enviado"
+          tooltipPosition="top"
+        ></i>
+        } }
       </td>
+      }
     </tr>
   </ng-template>
 </p-table>

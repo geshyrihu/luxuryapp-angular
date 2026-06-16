@@ -7,7 +7,7 @@ import { ApiResponseService } from 'src/app/core/services/api-response.service';
 import { CustomerIdService } from 'src/app/core/services/customer-id.service';
 import { DialogHandlerService } from 'src/app/core/services/dialog-handler.service';
 import { TableScrollHeightService } from 'src/app/core/services/table-scroll-height.service';
-import { MantenimientoPreventivoForm } from '../../calendar/mantenimiento-preventivo/mantenimiento-preventivo-form';
+import { MantenimientoPreventivoForm } from '../../google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form';
 
 describe('GastosMantenimiento', () => {
   let component: GastosMantenimiento;

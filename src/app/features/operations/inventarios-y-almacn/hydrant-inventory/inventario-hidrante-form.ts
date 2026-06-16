@@ -6,6 +6,7 @@ import { firstValueFrom } from "rxjs";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -19,7 +20,7 @@ interface IInventarioHidranteForm {
   hydrantType: FormControl<number | null>;
   cabinetNumber: FormControl<string | null>;
   location: FormControl<string>;
-  localCode: FormControl<string | null>;
+  localCode: FormControl<string>;
   photo: FormControl<string | File>;
   applicationUserId: FormControl<string | null>;
 }
@@ -27,7 +28,7 @@ interface IInventarioHidranteForm {
 @Component({
   selector: "app-inventario-hidrante-form",
   templateUrl: "./inventario-hidrante-form.html",
-  imports: [ReactiveFormsModule, CardModule, CustomInputTextSignal, CustomInputSelectSignal, CustomInputImg, CustomButtonSave],
+  imports: [ReactiveFormsModule, CardModule, CustomInputTextSignal, CustomInputMaskSignal, CustomInputSelectSignal, CustomInputImg, CustomButtonSave],
 })
 export class InventarioHidranteForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -50,7 +51,7 @@ export class InventarioHidranteForm implements OnInit {
     hydrantType: new FormControl<number | null>(null, { validators: [Validators.required] }),
     cabinetNumber: new FormControl<string | null>(null),
     location: new FormControl("", { nonNullable: true, validators: [Validators.required] }),
-    localCode: new FormControl<string | null>(null),
+    localCode: new FormControl("", { nonNullable: true, validators: [Validators.required] }),
     photo: new FormControl<string | File>("", { nonNullable: true }),
     applicationUserId: new FormControl<string | null>(this.authS.applicationUserId),
   });
@@ -63,7 +64,11 @@ export class InventarioHidranteForm implements OnInit {
   async ngOnInit() {
     this.cb_hydrantType = await firstValueFrom(this.enumSelectS.hydrantType());
     this.id = this.config.data.id;
-    if (this.id) this.onLoadData();
+    if (this.id) {
+      this.onLoadData();
+    } else {
+      this.form.patchValue({ localCode: "HID-" });
+    }
   }
 
   onLoadData() {
@@ -92,7 +97,7 @@ export class InventarioHidranteForm implements OnInit {
     formData.append("hydrantType", String(DTO.hydrantType));
     formData.append("location", String(DTO.location));
     if (DTO.cabinetNumber) formData.append("cabinetNumber", String(DTO.cabinetNumber));
-    if (DTO.localCode) formData.append("localCode", String(DTO.localCode));
+    formData.append("localCode", String(DTO.localCode));
     formData.append("applicationUserId", String(DTO.applicationUserId));
     if (DTO.photo) formData.append("photo", DTO.photo);
     return formData;

@@ -1,0 +1,100 @@
+@if (cycle()) {
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="flex justify-content-between align-items-center flex-wrap gap-2">
+        <div>
+          <h5 class="m-0">{{ cycle().periodName }}</h5>
+          <small class="text-600">
+            {{ cycle().periodStart | date:'dd-MMM-yy' }} &mdash; {{ cycle().periodEnd | date:'dd-MMM-yy' }}
+          </small>
+        </div>
+        <p-tag [value]="cycle().status" [severity]="cycleSeverity(cycle().status)" />
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="flex gap-2 align-items-center flex-wrap">
+        <span class="font-semibold">Escanear equipo:</span>
+        @if (!scanning()) {
+          <button
+            type="button"
+            class="p-button p-button-sm p-button-outlined"
+            (click)="startScan(video)"
+          >
+            Iniciar cámara
+          </button>
+        } @else {
+          <button type="button" class="p-button p-button-sm p-button-danger p-button-outlined" (click)="stopScan()">
+            Detener
+          </button>
+        }
+      </div>
+      @if (scanStatus()) {
+        <p class="text-600 text-sm mt-2 mb-0">{{ scanStatus() }}</p>
+      }
+      @if (scanError()) {
+        <p class="text-red-600 text-sm mt-2 mb-0">{{ scanError() }}</p>
+      }
+      <video #video [hidden]="!scanning()" autoplay playsinline class="w-full mt-2" style="max-height:280px;border-radius:8px;"></video>
+    </div>
+  </div>
+
+  <div class="card hidden md:block">
+    <table class="w-full" style="border-collapse:collapse;">
+      <thead>
+        <tr style="background:#f8fafc;">
+          <th class="p-2 text-left">Tipo</th>
+          <th class="p-2 text-left">Ubicación</th>
+          <th class="p-2 text-left">Código</th>
+          <th class="p-2 text-left">Estado</th>
+          <th class="p-2 text-left">Inspeccionado</th>
+          <th class="p-2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of cycle().items; track item.inspectionId) {
+          <tr style="border-top:1px solid #e2e8f0;">
+            <td class="p-2"><small>{{ item.equipmentType }}</small></td>
+            <td class="p-2">{{ item.location }}</td>
+            <td class="p-2"><small>{{ item.localCode }}</small></td>
+            <td class="p-2">
+              <p-tag [value]="item.status" [severity]="statusSeverity(item.status)" />
+            </td>
+            <td class="p-2">
+              <small>{{ item.inspectedAt | date:'dd-MMM-yy HH:mm' }}</small>
+            </td>
+            <td class="p-2">
+              <button
+                type="button"
+                class="p-button p-button-sm p-button-text"
+                (click)="openChecklist(item)"
+              >
+                Inspeccionar
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="md:hidden">
+    @for (item of cycle().items; track item.inspectionId) {
+      <ion-item lines="full" class="ion-no-padding mb-1" (click)="openChecklist(item)">
+        <ion-label>
+          <h3>{{ item.location }} <small class="text-400">{{ item.equipmentType }}</small></h3>
+          <p>
+            <p-tag [value]="item.status" [severity]="statusSeverity(item.status)" />
+            @if (item.inspectedAt) {
+              &nbsp; {{ item.inspectedAt | date:'dd-MMM-yy HH:mm' }}
+            }
+          </p>
+        </ion-label>
+      </ion-item>
+    }
+  </div>
+} @else {
+  <p class="text-600">Cargando ciclo...</p>
+}

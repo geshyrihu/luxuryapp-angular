@@ -9,6 +9,7 @@ import {
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
+import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -36,12 +37,13 @@ import { ThemeService } from "src/app/core/services/theme.service";
 import { UpdateService } from "src/app/core/services/update-pwa.service";
 import { NotificationsGadget } from "../notifications-gadget/notifications-gadget";
 import { ProfileMonitor } from "../profile-monitor/profile-monitor";
-import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 
+import * as htmlToImage from "html-to-image";
 import { DialogModule } from "primeng/dialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { AiService } from "src/app/core/services/ai.service";
-import { CustomInputTextAreaSignal } from "../../../../core/components/inputs/web";
+
+import { SelectButtonModule } from "primeng/selectbutton";
 
 @Component({
   selector: "app-header-employee-monitor",
@@ -53,11 +55,11 @@ import { CustomInputTextAreaSignal } from "../../../../core/components/inputs/we
     CommonModule,
     DialogModule,
     FormsModule,
-    CustomInputTextAreaSignal,
     NotificationsGadget,
     ProfileMonitor,
     ProgressSpinnerModule,
     RouterModule,
+    SelectButtonModule,
     // Search,
     SelectModule,
     ToolbarModule,
@@ -83,7 +85,7 @@ export class HeaderEmployeeMonitor implements OnInit {
   public aiService = inject(AiService);
   public sanitizer = inject(DomSanitizer);
   activatedRoute = inject(ActivatedRoute);
-  
+
   public breadcrumbs: {
     parentBreadcrumb?: string;
     childBreadcrumb?: string;
@@ -109,6 +111,8 @@ export class HeaderEmployeeMonitor implements OnInit {
   // AI Modal Signals
   public displayAiModal = signal<boolean>(false);
   public isGeneratingAnnouncement = signal<boolean>(false);
+  public aiAnnouncementImageResult = signal<SafeUrl | null>(null);
+  public aiAnnouncementPosterPoints = signal<string[]>([]);
   public isGeneratingImage = signal<boolean>(false);
   public userIdea = signal<string>("");
   public aiAnnouncementResult = signal<{
@@ -117,8 +121,15 @@ export class HeaderEmployeeMonitor implements OnInit {
     body: string;
     callToAction: string;
   } | null>(null);
-  public aiAnnouncementImageResult = signal<SafeUrl | null>(null);
-  public currentMode = signal<'text' | 'poster'>('text');
+  public currentMode = signal<"text" | "poster">("text");
+
+  public documentColor = signal<"--ds-luxury-gold" | "--ds-document-neutral">(
+    "--ds-luxury-gold",
+  );
+  public colorOptions = [
+    { label: "Gold", value: "--ds-luxury-gold" },
+    { label: "Neutral", value: "--ds-document-neutral" },
+  ];
 
   // SIGNALS
   private routeEventSignal = toSignal(
@@ -333,9 +344,10 @@ export class HeaderEmployeeMonitor implements OnInit {
     this.userIdea.set("");
     this.aiAnnouncementResult.set(null);
     this.aiAnnouncementImageResult.set(null);
+    this.aiAnnouncementPosterPoints.set([]);
   }
 
-  async generateOfficialAnnouncement(mode: 'text' | 'poster') {
+  async generateOfficialAnnouncement(mode: "text" | "poster") {
     if (!this.userIdea() || !this.userIdea().trim()) return;
 
     this.currentMode.set(mode);
@@ -343,46 +355,88 @@ export class HeaderEmployeeMonitor implements OnInit {
     try {
       this.isGeneratingAnnouncement.set(true);
 
-      if (mode === 'text') {
-        const enrichedIdea = this.userIdea() + "\n\nINSTRUCCIONES ESTRICTAS: El texto debe ser lo más corto y claro posible, estar fuertemente apoyado con emojis. Adopta un tono sumamente empático, asegurando que el condómino se sienta entendido, y enfocado siempre en el bien común y la convivencia.";
-        const textResult = await this.aiService.generateOfficialAnnouncementDraft(enrichedIdea, this.customerName());
+      if (mode === "text") {
+        const enrichedIdea =
+          this.userIdea() +
+          "\n\nINSTRUCCIONES ESTRICTAS: El texto debe ser lo más corto y claro posible, estar fuertemente apoyado con emojis. Adopta un tono sumamente empático, asegurando que el condómino se sienta entendido, y enfocado siempre en el bien común y la convivencia.";
+        const textResult =
+          await this.aiService.generateOfficialAnnouncementDraft(
+            enrichedIdea,
+            this.customerName(),
+          );
         this.aiAnnouncementResult.set(textResult);
         this.aiAnnouncementImageResult.set(null);
-      } else if (mode === 'poster') {
+      } else if (mode === "poster") {
         this.isGeneratingImage.set(true);
-        // Obtener solo un título corto para el póster
-        const shortTitleIdea = this.userIdea() + "\n\nSolo genera un título principal muy corto y directo (máximo 4-5 palabras) basado en esta idea.";
-        const textResult = await this.aiService.generateOfficialAnnouncementDraft(shortTitleIdea, this.customerName());
+        const shortTitleIdea =
+          this.userIdea() +
+          "\n\nINSTRUCCIONES PARA INFOGRAFÍA (IGNORA REGLAS HTML ANTERIORES):\n" +
+          "1. 'Title': Un título destacado y muy corto (máx 5 palabras).\n" +
+          "2. 'Body': PROHIBIDO USAR TAGS HTML (<p>, <strong>, etc). Escribe SOLO 3 o 4 recomendaciones MUY CORTAS (máx 10 palabras cada una), separadas EXCLUSIVAMENTE por '|||'. Ejemplo estricto: 'Primera recomendación corta|||Segunda recomendación corta|||Tercera recomendación corta'.\n" +
+          "3. 'CallToAction': Una instrucción final destacada sin HTML.\n" +
+          "4. 'Greeting': Vacío.";
         
-        const imagePrompt = `Design a professional, modern, and highly elegant vertical poster/flyer for a luxury residential building called ${this.customerName()}.
-Main highly legible VERY LARGE title: "${textResult.title}".
-IMPORTANT: DO NOT include any paragraphs or long text. The design must be purely visual using flat, modern iconography related to: ${this.userIdea()}.
-Use premium corporate style (e.g. navy blue tones, white, golden or silver details), a clean layout without visual saturation, and high-contrast typography.`;
-        
+        const textResult =
+          await this.aiService.generateOfficialAnnouncementDraft(
+            shortTitleIdea,
+            this.customerName(),
+          );
+
+        // Limpiar HTML residual por si la IA ignora la instrucción
+        const cleanBody = textResult.body.replace(/<[^>]*>?/gm, '');
+        const points = cleanBody.split('|||').map(p => p.trim()).filter(p => p.length > 0);
+        this.aiAnnouncementPosterPoints.set(points);
+
+        const imagePrompt = `Purely visual background illustration or photography representing the concept of "${textResult.title}". 
+Premium corporate luxury style, navy blue and gold tones, elegant layout.
+CRITICAL RULE: DO NOT INCLUDE ANY TEXT, LETTERS, TYPOGRAPHY, WORDS, OR NUMBERS IN THIS IMAGE. IT MUST BE 100% TEXT-FREE.`;
+
         try {
           const imageBlob = await this.aiService.generateImage(imagePrompt);
           if (imageBlob) {
             const imageUrl = URL.createObjectURL(imageBlob);
-            this.aiAnnouncementImageResult.set(this.sanitizer.bypassSecurityTrustUrl(imageUrl));
+            this.aiAnnouncementImageResult.set(
+              this.sanitizer.bypassSecurityTrustUrl(imageUrl),
+            );
           }
-          // Configurar resultado sin cuerpo para que solo se vea la imagen en la UI
-          this.aiAnnouncementResult.set({
-            title: textResult.title,
-            greeting: "",
-            body: "",
-            callToAction: ""
-          });
+          // Configurar resultado para que se renderice la infografía
+          this.aiAnnouncementResult.set(textResult);
         } catch (imgErr) {
           console.error("Error al generar la imagen", imgErr);
           this.aiAnnouncementResult.set(null);
         }
       }
-
     } catch (e) {
       console.error(e);
     } finally {
       this.isGeneratingAnnouncement.set(false);
       this.isGeneratingImage.set(false);
     }
+  }
+
+  async copyAsImage() {
+    const element = document.getElementById("print-section");
+    if (!element) return;
+
+    try {
+      // Configuramos html-to-image para asegurar fondos blancos y que cargue bien los logos
+      const blobPromise = htmlToImage.toBlob(element, {
+        backgroundColor: "#ffffff",
+        pixelRatio: 2,
+      });
+
+      // Pasar la promesa directamente a ClipboardItem evita que el navegador bloquee el copiado por falta de interacción inmediata
+      const item = new ClipboardItem({ "image/png": blobPromise });
+      await navigator.clipboard.write([item]);
+
+      // Alerta simple de confirmación
+      // alert("¡Copiado con éxito! Puedes pegarlo en WhatsApp u otros chats.");
+    } catch (e) {
+      console.error("Error capturando imagen", e);
+    }
+  }
+
+  printAnnouncement() {
+    window.print();
   }
 }

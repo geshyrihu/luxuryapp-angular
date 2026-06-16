@@ -1,0 +1,38 @@
+@let qr = context();
+
+@if (loading()) {
+<div class="card">
+  <div class="text-center text-500 p-5">Resolviendo equipo...</div>
+</div>
+} @else if (error()) {
+<div class="card">
+  <div class="text-center text-red-500 p-4">{{ error() }}</div>
+  <div class="flex justify-content-center">
+    <custom-button label="Volver a equipos" (clicked)="onBack()" />
+  </div>
+</div>
+} @else if (qr) {
+<div class="card flex flex-column gap-4">
+  <div>
+    <div class="font-semibold text-xl">{{ qr.machineryName }}</div>
+    <div class="text-sm text-600">{{ qr.machineryLocation || "Ubicacion no registrada" }}</div>
+    <div class="text-sm text-600 mt-1">
+      QR: {{ qr.qrLabelName }} | Tipo: {{ qr.qrTypeName }}
+    </div>
+  </div>
+
+  <div class="surface-ground border-round p-3 text-sm">
+    @if (qr.hasPendingExecution && qr.pendingExecutionId) {
+    <div>Se encontro una inspeccion pendiente para este equipo. Se abrira directamente esa ejecucion.</div>
+    } @else {
+    <div>Se iniciara una inspeccion nueva para este equipo usando la definicion sugerida.</div>
+    }
+  </div>
+
+  <app-equipment-inspection-execution-form
+    [executionIdInput]="qr.pendingExecutionId"
+    [qrCodeInput]="qr.hasPendingExecution ? null : qr.code"
+    [suggestedDefinitionIdInput]="qr.suggestedDefinitionId"
+  />
+</div>
+}

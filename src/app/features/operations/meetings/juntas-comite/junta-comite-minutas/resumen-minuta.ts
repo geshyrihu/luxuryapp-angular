@@ -10,6 +10,8 @@ import { ActivatedRoute } from "@angular/router";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { CardModule } from "primeng/card";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -36,6 +38,8 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
     TooltipModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
+    CardModule,
+    AppIcon,
   ],
 })
 export class ResumenMinuta implements OnInit {

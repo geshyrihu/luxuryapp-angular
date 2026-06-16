@@ -1,0 +1,89 @@
+<div class="flex flex-column gap-4">
+  @if (loading()) {
+    <div class="flex flex-column gap-3">
+      <p-skeleton width="100%" height="4rem"></p-skeleton>
+      <p-skeleton width="100%" height="15rem"></p-skeleton>
+      <p-skeleton width="100%" height="15rem"></p-skeleton>
+    </div>
+  } @else if (data()) {
+    <div class="rf-card">
+      <div class="p-4 mb-5">
+        
+        <!-- Bloque de Bancos -->
+        <div class="mb-5">
+          <p-table [value]="data()?.bancos || []" styleClass="rf-prime-table p-datatable-sm" [tableStyle]="{'max-width': '700px'}">
+            <ng-template pTemplate="caption">
+              <div class="text-lg font-bold text-primary">
+                SALDO EN BANCOS AL {{ data()?.fechaReporte | uppercase }}
+              </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width: 70%">DESCRIPCIÓN</th>
+                <th style="width: 30%" class="text-right">IMPORTE</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-banco>
+              <tr class="rf-row-concepto">
+                <td class="rf-td-descripcion--item">{{ banco.cuenta }}</td>
+                <td class="text-right rf-td-number">{{ banco.importe | number:'1.0-0' }}</td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="footer">
+              <tr class="rf-row-total">
+                <td class="rf-td-descripcion font-bold text-right">(1) SUMA</td>
+                <td class="text-right rf-td-number--total">{{ data()?.sumaBancos | number:'1.0-0' }}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+
+        <!-- Bloque de Inversiones -->
+        <div>
+          <p-table [value]="data()?.inversionesOrdinarias || []" styleClass="rf-prime-table p-datatable-sm" [tableStyle]="{'max-width': '900px'}">
+            <ng-template pTemplate="caption">
+              <div class="text-lg font-bold text-primary">
+                SALDO EN INVERSIONES AL {{ data()?.fechaReporte | uppercase }}
+              </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width: 75%">DESCRIPCIÓN</th>
+                <th style="width: 25%" class="text-right">IMPORTE</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-inv>
+              <tr class="rf-row-concepto">
+                <td class="rf-td-descripcion--item">{{ inv.descripcion }}</td>
+                <td class="text-right rf-td-number">{{ inv.importe | number:'1.0-0' }}</td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="footer">
+              <tr class="rf-row-result">
+                <td class="rf-td-descripcion font-bold text-right">(2) SUBTOTAL</td>
+                <td class="text-right rf-td-number--total">{{ data()?.subtotalInversiones | number:'1.0-0' }}</td>
+              </tr>
+              @if (data()?.fondoReserva; as fondoReserva) {
+                <tr class="rf-row-concepto">
+                  <td class="rf-td-descripcion--item text-right">(3) {{ fondoReserva.descripcion }}</td>
+                  <td class="text-right rf-td-number">{{ fondoReserva.importe | number:'1.0-0' }}</td>
+                </tr>
+              }
+              <tr class="rf-row-total">
+                <td class="rf-td-descripcion font-bold text-right">SUMA</td>
+                <td class="text-right rf-td-number--total">{{ data()?.sumaInversiones | number:'1.0-0' }}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+
+      </div>
+    </div>
+  } @else {
+    <div class="rf-card flex flex-column align-items-center py-8 text-color-secondary">
+      <app-icon [icon]="'mdi:file-excel'" class="text-5xl mb-4 opacity-50"></app-icon>
+      <p class="m-0 text-xl font-medium">No hay datos para mostrar</p>
+      <p class="mt-2 text-500">Verifique los parámetros seleccionados</p>
+    </div>
+  }
+</div>

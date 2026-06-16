@@ -18,11 +18,25 @@ if (typeof globalThis.ResizeObserver === 'undefined') {
   (globalThis as any).ResizeObserver = ResizeObserverMock;
 }
 
-// Stencil/ionicons require adoptedStyleSheets on document
+// Stencil/ionicons require adoptedStyleSheets on document and HTMLElements
 if (typeof document !== 'undefined' && !('adoptedStyleSheets' in document)) {
   Object.defineProperty(document, 'adoptedStyleSheets', {
     value: [],
     writable: true,
+    configurable: true,
+  });
+}
+if (typeof HTMLElement !== 'undefined' && !('adoptedStyleSheets' in HTMLElement.prototype)) {
+  Object.defineProperty(HTMLElement.prototype, 'adoptedStyleSheets', {
+    get() { return []; },
+    set() { /* no-op */ },
+    configurable: true,
+  });
+}
+if (typeof ShadowRoot !== 'undefined' && !('adoptedStyleSheets' in ShadowRoot.prototype)) {
+  Object.defineProperty(ShadowRoot.prototype, 'adoptedStyleSheets', {
+    get() { return []; },
+    set() { /* no-op */ },
     configurable: true,
   });
 }

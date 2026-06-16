@@ -12,7 +12,6 @@ import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-but
 import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
@@ -54,7 +53,6 @@ interface IServiceOrderForm {
     CustomInputAutoComplete,
     CustomInputCurrencySignal,
     CustomInputDateSignal,
-    CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     CustomInputSwitch,
     CustomInputTextSignal,
@@ -92,7 +90,7 @@ export class ServiceOrderForm implements OnInit {
       validators: [Validators.required],
     }),
     status: new FormControl<number | null>(null, [Validators.required]),
-    providerId: new FormControl<number | null>(null, [Validators.required]),
+    providerId: new FormControl<number | null>(null),
     provider: new FormControl<string | null>(null),
     price: new FormControl<number | null>(null, [Validators.required]),
     employeeResponsableId: new FormControl("", {

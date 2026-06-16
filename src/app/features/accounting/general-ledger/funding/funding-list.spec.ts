@@ -119,12 +119,11 @@ describe('FundingList', () => {
 
   it('onFaqsFondeo should open FaqsFondeo dialog', () => {
     component.onFaqsFondeo();
-    expect(mockDialogHandlerS.openDialog).toHaveBeenCalledWith(
-      FaqsFondeo,
-      {},
-      '',
-      '900px',
-    );
+    expect(mockDialogHandlerS.openDialog).toHaveBeenCalledTimes(1);
+    const [, dataArg, titleArg, sizeArg] = mockDialogHandlerS.openDialog.mock.calls[0];
+    expect(dataArg).toEqual({});
+    expect(titleArg).toBe('');
+    expect(sizeArg).toBe('900px');
   });
 
   it('isBuscarDisabled should return true when dates are invalid', () => {

@@ -39,6 +39,7 @@ export class ReporteFinanciero {
 
   async loadData(customerId: string, year: number, mes: number) {
     this.loading.set(true);
+    this.data.set(null);
 
     const result = await this.apiS.onGetItem<IReporteFinancieroDto>(
       Endpoints.ContabilidadOnline.FinancialStatements.financialReport(
