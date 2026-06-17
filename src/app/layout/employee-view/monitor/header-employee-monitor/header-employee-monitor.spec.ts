@@ -51,7 +51,7 @@ const menuServiceMock = {
 const routerMock = {
   events: new Subject(),
   url: '',
-  navigateByUrl: vi.fn(() => Promise.resolve(true)),
+  navigateByUrl: vi.fn(() => Promise.resolve(true)) as any,
   routeReuseStrategy: { shouldReuseRoute: vi.fn(() => true) },
   routerState: { snapshot: {} },
 };

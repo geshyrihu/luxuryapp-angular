@@ -90,7 +90,7 @@ describe('Sidebar', () => {
 
   it('should clear search', () => {
     component.searchText = 'test';
-    component.searchResults = [{ label: 'test', routerLink: '/test' }];
+    component.searchResults = [{ id: 'test-id', label: 'test', routerLink: '/test', nameModule: 'test-module' }];
     component.isSearching = true;
     component.clearSearch();
     expect(component.searchText).toBe('');

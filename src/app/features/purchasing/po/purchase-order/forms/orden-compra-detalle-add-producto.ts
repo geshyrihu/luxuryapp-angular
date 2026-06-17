@@ -113,6 +113,10 @@ export class OrdenCompraDetalleAddProducto implements OnInit, OnDestroy {
       });
 
     this.ordenCompraId = this.config.data.ordenCompraId;
+    console.debug("[OrdenCompraDetalleAddProducto] Modal initialized", {
+      ordenCompraId: this.ordenCompraId,
+      data: this.config.data,
+    });
   }
 
   loadDataLazy(event: any) {
@@ -130,7 +134,12 @@ export class OrdenCompraDetalleAddProducto implements OnInit, OnDestroy {
   }
 
   onLoadProduct() {
-    if (!this.ordenCompraId) return;
+    if (!this.ordenCompraId) {
+      console.error(
+        "[OrdenCompraDetalleAddProducto] Missing ordenCompraId while loading products",
+      );
+      return;
+    }
     this.loading.set(true);
 
     const urlApi = Endpoints.PurchaseOrderDetails.addProductToOrder(this.ordenCompraId);
@@ -143,6 +152,32 @@ export class OrdenCompraDetalleAddProducto implements OnInit, OnDestroy {
     };
 
     this.apiResponseS.onGetList(urlApi, httpParams).then((result: any) => {
+      if (!result) {
+        console.error(
+          "[OrdenCompraDetalleAddProducto] Failed to load products for purchase order",
+          {
+            ordenCompraId: this.ordenCompraId,
+            urlApi,
+            httpParams,
+          },
+        );
+        this.dataSignal.set({ items: [], totalRecords: 0 });
+        this.formArray.clear();
+        this.formControls.set([]);
+        this.totalRecords = 0;
+        this.loading.set(false);
+        return;
+      }
+
+      console.debug(
+        "[OrdenCompraDetalleAddProducto] Products loaded for purchase order",
+        {
+          ordenCompraId: this.ordenCompraId,
+          totalRecords: result?.totalRecords || 0,
+          currentPage: this.page,
+        },
+      );
+
       this.dataSignal.set(result);
       this.totalRecords = result?.totalRecords || 0;
       this.formArray.clear();
@@ -206,10 +241,31 @@ export class OrdenCompraDetalleAddProducto implements OnInit, OnDestroy {
       ordenCompraId: this.ordenCompraId,
     };
 
-    this.apiResponseS.onPost(Endpoints.PurchaseOrderDetails.create, payload).then(() => {
-      this.mensajeError = false;
-      this.onLoadProduct();
-    });
+    this.apiResponseS
+      .onPost(Endpoints.PurchaseOrderDetails.create, payload)
+      .then((result) => {
+        if (!result) {
+          console.error(
+            "[OrdenCompraDetalleAddProducto] Failed to add product to purchase order",
+            {
+              ordenCompraId: this.ordenCompraId,
+              productoId: value.productoId,
+              payload,
+            },
+          );
+          return;
+        }
+
+        console.debug(
+          "[OrdenCompraDetalleAddProducto] Product added to purchase order",
+          {
+            ordenCompraId: this.ordenCompraId,
+            productoId: value.productoId,
+          },
+        );
+        this.mensajeError = false;
+        this.onLoadProduct();
+      });
   }
 
   onModalForm() {

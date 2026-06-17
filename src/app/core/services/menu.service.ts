@@ -8,7 +8,7 @@ import {
   signal,
   untracked,
 } from "@angular/core";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import { fromEvent } from "rxjs";
 import { debounceTime } from "rxjs/operators";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -37,6 +37,8 @@ export class MenuService implements OnDestroy {
   private lastCustomerId: string | null = null;
   private allowedRoutes = new Set<string>();
   private menuLoadPromise: Promise<void> | null = null;
+  // Señal reactiva al token de usuario
+  private userTokenSignal = toSignal(this.authS.userToken$);
   // Señales base del estado del menú.
   private menuItemsSignal = signal<IMenuItem[]>([]);
   private menuLoadedSignal = signal(false);
@@ -66,28 +68,32 @@ export class MenuService implements OnDestroy {
         }
       });
 
-    // El menú depende del customer activo. Cuando cambia el customer, se invalida
+    // El menú depende del customer activo y del usuario autenticado. Cuando cambian, se invalida
     // el estado anterior y se dispara una nueva carga sin intervención del componente.
     effect(() => {
       const isCustomerReady = this.customerIdS.customerDataReady();
       const customerId = this.customerIdS.customerId();
+      const userToken = this.userTokenSignal();
+      const applicationUserId = userToken?.infoUserAuthDTO?.applicationUserId;
 
-      if (isCustomerReady && customerId) {
+      if (isCustomerReady && customerId && applicationUserId) {
         this.consoleLogger.custom(
           "",
           "green",
-          `[MenuService] Customer data is ready for ${customerId}. Loading menu...`,
+          `[MenuService] Customer data and session are ready. Loading menu...`,
         );
         untracked(() => {
           void this.triggerMenuLoad();
         });
-      } else if (!isCustomerReady) {
+      } else if (!isCustomerReady || !applicationUserId) {
         this.consoleLogger.custom(
           "",
           "gray",
-          "[MenuService] Customer data not ready. Clearing menu...",
+          `[MenuService] Data or session not ready. Clearing menu...`,
         );
-        this.clearCache();
+        untracked(() => {
+          this.clearCache();
+        });
       }
     });
   }
@@ -182,6 +188,7 @@ export class MenuService implements OnDestroy {
   clearCache(): void {
     this.lastCustomerId = null;
     this.allowedRoutes.clear();
+    this.menuLoadPromise = null;
     // Limpiamos el estado completo para que el siguiente customer recargue desde cero.
     this.menuItemsSignal.set([]);
     this.menuLoadedSignal.set(false);

@@ -1659,7 +1659,7 @@ export const EndpointsTenant = {
 
   PurchaseOrderDetails: {
     addProductToOrder: (ordenCompraId: string) =>
-      `OrdenCompraDetalle/AddProductToOrder/${ordenCompraId}`,
+      `OrdenCompraDetalle/AddProductoToOrder/${ordenCompraId}`,
     create: "OrdenCompraDetalle/",
     delete: (id: string | number) => `OrdenCompraDetalle/${id}`,
     getById: (id: string | number) => `OrdenCompraDetalle/${id}`,
