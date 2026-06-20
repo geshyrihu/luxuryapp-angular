@@ -1,0 +1,8 @@
+<div class="grid">
+    <div class="col-12 lg:col-6"><p-card header="Bar Chart (Custom)"><app-chart-bar [data]="barChartData()" /></p-card></div>
+    <div class="col-12 lg:col-6"><p-card header="Pie Chart (Standard)"><app-chart-pie [data]="pieChartData()" /></p-card></div>
+    
+    <div class="col-12 lg:col-8"><p-card header="Line Chart (Tendencias)"><p-chart type="line" [data]="lineChartData()" [options]="chartOptions" height="300px"></p-chart></p-card></div>
+    <div class="col-12 lg:col-4"><p-card header="Doughnut Chart (Distribución)"><p-chart type="doughnut" [data]="doughnutChartData()" [options]="circularOptions" height="300px"></p-chart></p-card></div>
+    <div class="col-12 lg:col-6"><p-card header="Radar Chart (Presupuesto)"><p-chart type="radar" [data]="radarChartData()" [options]="circularOptions" height="300px"></p-chart></p-card></div>
+</div>

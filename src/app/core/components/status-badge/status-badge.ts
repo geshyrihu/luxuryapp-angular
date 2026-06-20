@@ -1,5 +1,6 @@
 import { Component, input, output } from "@angular/core";
 import { TooltipModule } from "primeng/tooltip";
+import { TagModule } from "primeng/tag";
 
 export enum EStatus {
   Pendiente = 0,
@@ -27,15 +28,16 @@ export interface StatusClickEvent {
  */
 @Component({
   selector: "app-status-badge",
-  imports: [TooltipModule],
+  imports: [TooltipModule, TagModule],
   template: `
-    <span
+    <p-tag
       (click)="onStatusClick()"
-      [class]="getBadgeClass()"
-      [class.cursor-pointer]="clickable()"
+      [value]="getStatusText()"
+      [severity]="getSeverity()"
+      [rounded]="true"
       [pTooltip]="tooltip()"
-      >{{ getStatusText() }}</span
-    >
+      [style.cursor]="clickable() ? 'pointer' : 'default'"
+    ></p-tag>
   `,
   styles: [``],
 })
@@ -51,43 +53,43 @@ export class StatusBadge {
   // <--- Outputs --->
   statusClick = output<StatusClickEvent>();
 
-  private statusConfig: Record<number, { text: string; class: string }> = {
-    [EStatus.Pendiente]: { text: "PENDIENTE", class: "badge badge-danger" },
-    [EStatus.Concluido]: { text: "CONCLUIDO", class: "badge badge-success" },
+  private statusConfig: Record<number, { text: string; severity: "success" | "info" | "warn" | "danger" | "secondary" | "contrast" }> = {
+    [EStatus.Pendiente]: { text: "PENDIENTE", severity: "danger" },
+    [EStatus.Concluido]: { text: "CONCLUIDO", severity: "success" },
     [EStatus.noAutorizado]: {
       text: "NO AUTORIZADO",
-      class: "badge badge-neutral",
+      severity: "secondary",
     },
-    [EStatus.Proceso]: { text: "PROCESO", class: "badge badge-warning" },
-    [EStatus.Cancelado]: { text: "CANCELADO", class: "badge badge-neutral" },
+    [EStatus.Proceso]: { text: "PROCESO", severity: "warn" },
+    [EStatus.Cancelado]: { text: "CANCELADO", severity: "secondary" },
   };
 
-  private empresaConfig: Record<number, { text: string; class: string }> = {
-    [ETypeEmpresa.Cobranza]: { text: "COBRANZA", class: "badge badge-primary" },
-    [ETypeEmpresa.Gastos]: { text: "GASTOS", class: "badge badge-info" },
+  private empresaConfig: Record<number, { text: string; severity: "success" | "info" | "warn" | "danger" | "secondary" | "contrast" }> = {
+    [ETypeEmpresa.Cobranza]: { text: "COBRANZA", severity: "info" },
+    [ETypeEmpresa.Gastos]: { text: "GASTOS", severity: "warn" },
   };
 
-  private visibilityConfig: Record<string, { text: string; class: string }> = {
-    interno: { text: "INTERNO", class: "badge badge-secondary" },
-    externo: { text: "EXTERNO", class: "badge badge-warning" },
-    público: { text: "PÚBLICO", class: "badge badge-success" },
-    publico: { text: "PÚBLICO", class: "badge badge-success" },
-    condominios: { text: "CONDOMINIOS", class: "badge badge-info" },
-    condómino: { text: "CONDÓMINO", class: "badge badge-info" },
-    condomino: { text: "CONDÓMINO", class: "badge badge-info" },
-    condóminos: { text: "CONDÓMINOS", class: "badge badge-info" },
-    condominos: { text: "CONDÓMINOS", class: "badge badge-info" },
+  private visibilityConfig: Record<string, { text: string; severity: "success" | "info" | "warn" | "danger" | "secondary" | "contrast" }> = {
+    interno: { text: "INTERNO", severity: "secondary" },
+    externo: { text: "EXTERNO", severity: "warn" },
+    público: { text: "PÚBLICO", severity: "success" },
+    publico: { text: "PÚBLICO", severity: "success" },
+    condominios: { text: "CONDOMINIOS", severity: "info" },
+    condómino: { text: "CONDÓMINO", severity: "info" },
+    condomino: { text: "CONDÓMINO", severity: "info" },
+    condóminos: { text: "CONDÓMINOS", severity: "info" },
+    condominos: { text: "CONDÓMINOS", severity: "info" },
   };
 
-  getBadgeClass(): string {
+  getSeverity(): "success" | "info" | "warn" | "danger" | "secondary" | "contrast" {
     if (this.isVisibility()) {
       return (
-        this.visibilityConfig[String(this.status()).toLowerCase()]?.class ||
-        "badge badge-neutral"
+        this.visibilityConfig[String(this.status()).toLowerCase()]?.severity ||
+        "secondary"
       );
     }
     const config = this.isEmpresa() ? this.empresaConfig : this.statusConfig;
-    return config[this.status() as number]?.class || "badge badge-neutral";
+    return config[this.status() as number]?.severity || "secondary";
   }
 
   getStatusText(): string {

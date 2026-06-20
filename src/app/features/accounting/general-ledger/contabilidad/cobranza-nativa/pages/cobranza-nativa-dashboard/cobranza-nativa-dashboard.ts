@@ -3,6 +3,7 @@ import { Component, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { TagModule } from "primeng/tag";
+import { ButtonModule } from "primeng/button";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import {
   HeroMetric,
@@ -13,7 +14,7 @@ import { COBRANZA_GROUPS } from "./cobranza-nativa-groups.const";
 
 @Component({
   selector: "app-cobranza-nativa-dashboard",
-  imports: [CustomButton, TagModule, CardModule, AppIcon],
+  imports: [CustomButton, TagModule, CardModule, AppIcon, ButtonModule],
   templateUrl: "./cobranza-nativa-dashboard.html",
   styleUrls: ["./cobranza-nativa-dashboard.scss"],
 })

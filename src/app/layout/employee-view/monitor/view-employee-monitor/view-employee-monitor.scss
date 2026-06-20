@@ -5,7 +5,7 @@
 }
 
 .layout-header {
-  grid-column: 2;
+  grid-column: 1 / -1;
   grid-row: 1;
   height: 70px;
   background-color: var(--header-bg, #18181b);
@@ -14,7 +14,7 @@
 
 .layout-sidebar {
   grid-column: 1;
-  grid-row: 1 / span 2;
+  grid-row: 2;
   height: 100%;
   box-shadow: 4px 0 24px -2px rgba(0, 0, 0, 0.1);
   transition: width 0.3s ease;

@@ -8,6 +8,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
   {
     label: "Contabilidad General",
     icon: "mdi:chart-bar",
+    roles: [EApplicationRole.Contador, EApplicationRole.SuperUsuario],
     cards: [
       {
         title: "Catálogo Contable",
@@ -16,6 +17,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         icon: "mdi:book",
         color: "#1e40af",
         bgColor: "#dbeafe",
+        roles: [EApplicationRole.Contador, EApplicationRole.SuperUsuario],
       },
       {
         title: "END PIONTS Aspel",
@@ -25,6 +27,11 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         icon: "mdi:wallet",
         color: "#0f766e",
         bgColor: "#ccfbf1",
+        roles: [
+          EApplicationRole.Contador,
+          EApplicationRole.SuperUsuario,
+          EApplicationRole.Asistente,
+        ],
       },
       {
         title: "Reporte General de envío Edos. Financieros",
@@ -33,6 +40,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         icon: "mdi:email-outline",
         color: "#0284c7",
         bgColor: "#e0f2fe",
+        roles: [EApplicationRole.Contador, EApplicationRole.SuperUsuario],
       },
       {
         title: "Envío Edos. Financieros",
@@ -41,6 +49,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         icon: "mdi:email-outline",
         color: "#0284c7",
         bgColor: "#e0f2fe",
+        roles: [EApplicationRole.Contador, EApplicationRole.SuperUsuario],
       },
       {
         title: "Pendientes de Minutas",
@@ -49,6 +58,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         icon: "mdi:history",
         color: "#92400e",
         bgColor: "#fef3c7",
+        roles: [EApplicationRole.Contador, EApplicationRole.SuperUsuario],
       },
       {
         title: "Estados Financieros Online",
@@ -57,15 +67,8 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         icon: "mdi:chart-line",
         color: "#0891b2",
         bgColor: "#cffafe",
+        roles: [EApplicationRole.Contador, EApplicationRole.SuperUsuario],
       },
-      // {
-      //   title: "Estados Financieros Online V2",
-      //   description: "Sandbox del nuevo Estado de Resultados sin afectar la versión actual.",
-      //   route: "/contabilidad/financial-statements-reports-v2",
-      //   icon: "mdi:chart-line",
-      //   color: "#1d4ed8",
-      //   bgColor: "#dbeafe",
-      // },
       {
         title: "Reportes Dinámicos",
         description:
@@ -74,6 +77,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         icon: "mdi:cog",
         color: "#7c3aed",
         bgColor: "#f5f3ff",
+        roles: [EApplicationRole.SuperUsuario],
       },
       {
         title: "Presentaciones de Junta de Comité",
@@ -85,14 +89,6 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         bgColor: "#fae8ff",
         roles: [EApplicationRole.Contador, EApplicationRole.SuperUsuario],
       },
-      // {
-      //   title: "Auditoría de Sincronización",
-      //   description: "Consultar datos de sincronización Aspel por entidad.",
-      //   route: "/contabilidad/migration-test",
-      //   icon: "mdi:magnify",
-      //   color: "#6366f1",
-      //   bgColor: "#e0e7ff",
-      // },
     ],
   },
   // ─────────────────────────────────────────────────────────────
@@ -101,6 +97,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
   {
     label: "Espejo Contabilidad Presupuestal",
     icon: "mdi:chart-bar",
+    roles: [EApplicationRole.Contador, EApplicationRole.SuperUsuario],
     cards: [
       {
         title: "Propuesta Presupuesto Nuevo",
@@ -109,6 +106,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         icon: "mdi:file-edit",
         color: "#3730a3",
         bgColor: "#e0e7ff",
+        roles: [EApplicationRole.Contador, EApplicationRole.SuperUsuario],
       },
       {
         title: "Presupuesto Espejo Aspel",
@@ -117,6 +115,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         icon: "mdi:briefcase",
         color: "#1e3a8a",
         bgColor: "#dbeafe",
+        roles: [EApplicationRole.Contador, EApplicationRole.SuperUsuario],
       },
       {
         title: "Cobranza Online",
@@ -125,15 +124,8 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         icon: "mdi:wallet",
         color: "#047857",
         bgColor: "#d1fae5",
+        roles: [EApplicationRole.SuperUsuario],
       },
-      // {
-      //   title: "Cobranza Nativa",
-      //   description: "Gestión y seguimiento de cuentas por cobrar.",
-      //   route: "/cobranza-nativa",
-      //   icon: "mdi:lightning-bolt",
-      //   color: "#0f766e",
-      //   bgColor: "#ccfbf1",
-      // },
       {
         title: "Espejo Aspel Full",
         description:
@@ -142,6 +134,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         icon: "mdi:table",
         color: "#0f172a",
         bgColor: "#f1f5f9",
+        roles: [EApplicationRole.Contador, EApplicationRole.SuperUsuario],
       },
       {
         title: "Auditoria de Cuentas Aspel",
@@ -151,6 +144,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         icon: "mdi:sitemap",
         color: "#7c2d12",
         bgColor: "#ffedd5",
+        roles: [EApplicationRole.Contador, EApplicationRole.SuperUsuario],
       },
     ],
   },
@@ -161,14 +155,17 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
   {
     label: "Cobranza",
     icon: "mdi:wallet",
+    roles: [EApplicationRole.Contador, EApplicationRole.SuperUsuario],
     cards: [
       {
         title: "Cuotas Vigentes",
-        description: "Registro de cuotas vigentes y plantillas de cargos recurrentes.",
+        description:
+          "Registro de cuotas vigentes y plantillas de cargos recurrentes.",
         route: "/cobranza-nativa/charge-templates",
         icon: "mdi:pencil-box-multiple",
         color: "#15803d",
         bgColor: "#dcfce7",
+        roles: [EApplicationRole.Contador, EApplicationRole.SuperUsuario],
       },
     ],
   },

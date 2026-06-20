@@ -91,12 +91,14 @@
 
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->
 <app-data-view-mobile
-  [data]="filteredDataSignal()"
+  [data]="mobileDataSignal()"
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
   [globalFilterFields]="globalFilterFields()"
   [dt]="dt"
+  [enablePagination]="true"
+  (nextPage)="loadNextPage($event)"
 >
-  <!-- <ng-template #listItemTemplate let-item>
+  <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
       <ion-avatar slot="start">
         <img [src]="item.urlImagen" alt="Product Image" />
@@ -121,7 +123,7 @@
         </ng-container>
       </app-action-menu>
     </ion-item>
-  </ng-template> -->
+  </ng-template>
 </app-data-view-mobile>
 
 

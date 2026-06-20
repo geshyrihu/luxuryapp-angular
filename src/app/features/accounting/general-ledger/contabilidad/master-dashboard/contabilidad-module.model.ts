@@ -14,4 +14,5 @@ export interface ContabilidadModuleGroup {
   label: string;
   icon: string;
   cards: ContabilidadModuleCard[];
+  roles?: EApplicationRole[];
 }

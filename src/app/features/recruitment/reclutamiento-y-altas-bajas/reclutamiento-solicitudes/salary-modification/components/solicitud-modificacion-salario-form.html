@@ -17,8 +17,8 @@
           <custom-input-number-signal
             class="w-full"
             [control]="form.controls['finalSalary']"
-            label="Salario mensual final neto"
-            placeholder="salario mensual final neto"
+            label="Nuevo salario"
+            placeholder="Nuevo salario"
           />
         </div>
 
@@ -32,6 +32,29 @@
             placeholder="Puesto actual"
           />
         </div>
+
+        <div class="col-12 md:col-6">
+          <custom-input-select-signal
+            class="w-full"
+            [control]="form.controls['isCoveringVacancy']"
+            label="¿Va a cubrir una vacante abierta?"
+            [data]="cb_si_no()"
+            [filter]="true"
+          />
+        </div>
+
+        @if (form.controls['isCoveringVacancy'].value) {
+        <div class="col-12 md:col-6">
+          <custom-input-select-signal
+            class="w-full"
+            [control]="form.controls['vacancyId']"
+            label="Seleccionar vacante"
+            [data]="cb_vacantes()"
+            [filter]="true"
+            placeholder="Seleccione la vacante a cubrir"
+          />
+        </div>
+        }
 
         <div class="col-12 md:col-6">
           <custom-input-autocomplete-signal

@@ -120,8 +120,8 @@ export const pagesRoutes: Routes = [
         (m) => m.CONTABILIDAD_ROUTES,
       ),
     data: {
-      title: "Contabilidad",
-      breadcrumb: "Contabilidad",
+      title: "Tablero Principal de Contabilidad",
+      breadcrumb: "Tablero Principal de Contabilidad",
     },
   },
   {
@@ -542,50 +542,62 @@ export const pagesRoutes: Routes = [
   {
     path: "system",
     loadChildren: () =>
-      import("src/app/features/system/system.routing").then((m) => m.systemRoutes),
-    data: { title: "Sistema", breadcrumb: "Sistema" }
+      import("src/app/features/system/system.routing").then(
+        (m) => m.systemRoutes,
+      ),
+    data: { title: "Sistema", breadcrumb: "Sistema" },
   },
   {
     path: "accounting",
     loadChildren: () =>
-      import("src/app/features/accounting/accounting.routing").then((m) => m.accountingRoutes),
-    data: { title: "Contabilidad", breadcrumb: "Contabilidad" }
+      import("src/app/features/accounting/accounting.routing").then(
+        (m) => m.accountingRoutes,
+      ),
+    data: { title: "Contabilidad", breadcrumb: "Contabilidad" },
   },
   {
     path: "hr",
     loadChildren: () =>
       import("src/app/features/hr/hr.routing").then((m) => m.hrRoutes),
-    data: { title: "Recursos Humanos", breadcrumb: "Recursos Humanos" }
+    data: { title: "Recursos Humanos", breadcrumb: "Recursos Humanos" },
   },
   {
     path: "legal",
     loadChildren: () =>
       import("src/app/features/legal/legal.routing").then((m) => m.legalRoutes),
-    data: { title: "Legal", breadcrumb: "Legal" }
+    data: { title: "Legal", breadcrumb: "Legal" },
   },
   {
     path: "maintenance",
     loadChildren: () =>
-      import("src/app/features/maintenance/maintenance.routing").then((m) => m.maintenanceRoutes),
-    data: { title: "Mantenimiento", breadcrumb: "Mantenimiento" }
+      import("src/app/features/maintenance/maintenance.routing").then(
+        (m) => m.maintenanceRoutes,
+      ),
+    data: { title: "Mantenimiento", breadcrumb: "Mantenimiento" },
   },
   {
     path: "operations",
     loadChildren: () =>
-      import("src/app/features/operations/operations.routing").then((m) => m.operationsRoutes),
-    data: { title: "Operaciones", breadcrumb: "Operaciones" }
+      import("src/app/features/operations/operations.routing").then(
+        (m) => m.operationsRoutes,
+      ),
+    data: { title: "Operaciones", breadcrumb: "Operaciones" },
   },
   {
     path: "purchasing",
     loadChildren: () =>
-      import("src/app/features/purchasing/purchasing.routing").then((m) => m.purchasingRoutes),
-    data: { title: "Compras", breadcrumb: "Compras" }
+      import("src/app/features/purchasing/purchasing.routing").then(
+        (m) => m.purchasingRoutes,
+      ),
+    data: { title: "Compras", breadcrumb: "Compras" },
   },
   {
     path: "recruitment",
     loadChildren: () =>
-      import("src/app/features/recruitment/recruitment.routing").then((m) => m.recruitmentRoutes),
-    data: { title: "Reclutamiento", breadcrumb: "Reclutamiento" }
+      import("src/app/features/recruitment/recruitment.routing").then(
+        (m) => m.recruitmentRoutes,
+      ),
+    data: { title: "Reclutamiento", breadcrumb: "Reclutamiento" },
   },
   // --- FIN RUTAS ARQUITECTURA ---
 
@@ -601,6 +613,3 @@ export const pagesRoutes: Routes = [
     },
   },
 ];
-
-
-

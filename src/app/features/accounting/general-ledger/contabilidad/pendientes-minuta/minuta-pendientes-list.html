@@ -7,62 +7,86 @@
   [value]="dataSignal()"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table card hidden md:block"
+  styleClass="custom-table custom-table-fixed card hidden md:block"
 >
   <ng-template #caption>
-    <div class="flex align-items-start flex-wrap justify-content-start">
-      <custom-input-select-signal
-        [data]="[
-      { label: 'Pendientes', value: 0 },
-      { label: 'Concluidos', value: 1 },
-      { label: 'No Autorizados', value: 2 },
-      { label: 'Todos', value: 4 }
-    ]"
-        [control]="statusFiltroControl"
-        optionLabel="label"
-        optionValue="value"
-        (selectionChange)="onFiltrarData()"
-        customClass="mb-1"
-        [horizontal]="false"
-        [filter]="true"
-      />
-      <div>
+    <!-- Contenedor Maestro: Apila en móvil, alinea en línea en escritorio -->
+    <div
+      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round"
+    >
+      <!-- LADO IZQUIERDO: Buscador y Título (Toma el espacio libre) -->
+      <div class="flex-grow-1">
         <primeng-custom-caption
           [title]="'Contabilidad'"
           [showAdd]="false"
           [dt]="dt"
+          [noPadding]="true"
+          [noMargin]="true"
         />
       </div>
-      <div class="flex align-items-center">
-        <custom-button
-          label="📄 Descargar PDF"
-          iconClass="mdi:download"
-          variant="outlined"
-          size="sm"
-          (clicked)="onDownloadPdf()"
-        ></custom-button>
+
+      <!-- LADO DERECHO: Filtros, Acciones y Toggles -->
+      <div class="flex flex-column sm:flex-row align-items-center gap-2">
+        <!-- Filtro Select (Ancho mínimo fluido) -->
+        <div style="min-width: 200px">
+          <custom-input-select-signal
+            [data]="[
+              { label: 'Pendientes', value: 0 },
+              { label: 'Concluidos', value: 1 },
+              { label: 'No Autorizados', value: 2 },
+              { label: 'Todos', value: 4 }
+            ]"
+            [control]="statusFiltroControl"
+            optionLabel="label"
+            optionValue="value"
+            (selectionChange)="onFiltrarData()"
+            [horizontal]="false"
+            [filter]="true"
+            [noMargin]="true"
+          />
+        </div>
+
+        <!-- Botón de Descarga PDF (Ancho fijo preventivo) -->
+        <div class="flex-shrink-0">
+          <custom-button
+            label="📄 Descargar PDF"
+            iconClass="mdi:download"
+            variant="outlined"
+            (clicked)="onDownloadPdf()"
+          ></custom-button>
+        </div>
       </div>
     </div>
   </ng-template>
+  <ng-template #colgroup>
+    <colgroup>
+      <col class="table-col-8" />
+      <col class="table-col-8" />
+      <col class="table-col-28" />
+      <col class="table-col-40" />
+      <col class="table-col-8" />
+      <col class="table-col-8" />
+    </colgroup>
+  </ng-template>
   <ng-template #header>
     <tr>
-      <th class="table-col-8" pSortableColumn="code">
+      <th pSortableColumn="code">
         FOLIO
         <p-sortIcon field="code" />
       </th>
-      <th class="table-col-8" pSortableColumn="cliente">
+      <th pSortableColumn="cliente">
         CLIENTE
         <p-sortIcon field="cliente" />
       </th>
-      <th class="table-col-28" pSortableColumn="fechaSolicitudFiltro">
+      <th pSortableColumn="fechaSolicitudFiltro">
         SOLICITUD
         <p-sortIcon field="fechaSolicitudFiltro" />
       </th>
-      <th class="table-col-40" pSortableColumn="pendiente">
+      <th pSortableColumn="pendiente">
         SEGUIMIENTO
         <p-sortIcon field="pendiente" />
       </th>
-      <th colspan="2" class="table-col-16" pSortableColumn="status">
+      <th colspan="2" pSortableColumn="status">
         ESTATUS
         <p-sortIcon field="status" />
       </th>

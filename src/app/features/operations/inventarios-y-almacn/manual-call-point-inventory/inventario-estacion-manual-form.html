@@ -30,10 +30,11 @@
       <custom-input-mask-signal
         [control]="form.controls.localCode"
         label="Código Local"
-        placeholder="MCP-02-01"
-        customMask="SSS-SS-000"
+        placeholder="MCP-02-001"
+        customMask="AAA-00-000"
         [validation]="false"
         [dropSpecialCharacters]="false"
+        description="MCP = Estación Manual de Llamada (Manual Call Point) · Zona (2 dígitos) · Número de equipo (3 dígitos)"
       />
 
       <custom-button-save

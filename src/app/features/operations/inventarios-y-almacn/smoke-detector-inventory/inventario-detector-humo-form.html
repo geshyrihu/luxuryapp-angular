@@ -30,10 +30,11 @@
       <custom-input-mask-signal
         [control]="form.controls.localCode"
         label="Código Local"
-        placeholder="DET-04-01"
-        customMask="SSS-SS-000"
+        placeholder="DET-04-001"
+        customMask="AAA-00-000"
         [validation]="false"
         [dropSpecialCharacters]="false"
+        description="DET = Detector de Humo · Zona (2 dígitos) · Número de equipo (3 dígitos)"
       />
 
       <custom-button-save

@@ -60,7 +60,7 @@ import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
             }
             <app-validation-errors-custom-input
               [control]="control() || internalControl"
-              [placeholder]="placeholder() || label()"
+              [placeholder]="label()"
             />
           </div>
         </div>

@@ -7,6 +7,7 @@ import {
 } from "@ionic/angular/standalone";
 import { TabsModule } from "primeng/tabs";
 import { MessageModule } from "primeng/message";
+import { SelectButtonModule } from "primeng/selectbutton";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
@@ -29,6 +30,7 @@ import { PresupuestoWebAspelService } from "./presupuesto-web-aspel.service";
     CustomSearchInput,
     CustomInputSelectSignal,
     MessageModule,
+    SelectButtonModule,
   ],
   providers: [PresupuestoWebAspelService],
 })

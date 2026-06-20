@@ -1,31 +1,33 @@
-<div class="p-4">
+<div class="p-4 fadein">
 
-  <!-- Encabezado (Estilo Master Dashboard) -->
+  <!-- Encabezado (Estilo Luxury Design System) -->
   <div class="mb-6">
     <div class="flex align-items-center gap-3 mb-2">
-      <div class="flex align-items-center justify-content-center bg-primary-50 border-round-xl shadow-1" style="width: 56px; height: 56px">
-        <app-icon [icon]="'mdi:wallet'" class="text-3xl text-primary-600"></app-icon>
+      <div class="flex align-items-center justify-content-center bg-blue-50 dark:bg-blue-950/20 border-round-xl shadow-1" style="width: 56px; height: 56px">
+        <app-icon [icon]="'mdi:wallet'" class="text-3xl text-primary-600 dark:text-blue-300"></app-icon>
       </div>
       <div>
-        <h1 class="text-3xl font-bold text-900 m-0">Cobranza Nativa</h1>
-        <p class="text-base text-500 m-0">
+        <h1 class="ds-heading text-3xl font-bold text-900 m-0">Cobranza Nativa</h1>
+        <p class="ds-text-secondary text-base m-0">
           Sistema integral de cobranza condominial. Gestión de cargos, pagos, mora, facturación CFDI y auditoría financiera.
         </p>
       </div>
     </div>
   </div>
 
-  <!-- Métricas (Simplificadas) -->
+  <!-- Métricas (Tarjetas KPI Alineadas) -->
   <div class="grid mb-4">
     @for (metric of heroMetrics; track metric.label) {
       <div class="col-12 md:col-4">
-        <div class="surface-card p-3 border-round-xl shadow-1 flex align-items-center gap-3">
-          <div [class]="'flex align-items-center justify-content-center border-round-lg text-xl w-3rem h-3rem cb-metric__icon--' + metric.tone">
-            <i [class]="metric.icon"></i>
-          </div>
+        <div class="surface-card p-3 border-round-lg shadow-1 border-left-3 flex justify-content-between align-items-center"
+             [class]="'border-' + (metric.tone === 'primary' ? 'primary' : metric.tone === 'success' ? 'success' : 'warning')">
           <div>
-            <div class="text-2xl font-bold text-900">{{ metric.value }}</div>
-            <div class="text-sm text-500">{{ metric.label }}</div>
+            <span class="block text-secondary text-xs font-bold uppercase mb-1">{{ metric.label }}</span>
+            <span class="text-2xl font-bold text-900">{{ metric.value }}</span>
+          </div>
+          <div class="w-3rem h-3rem border-round flex align-items-center justify-content-center"
+               [class]="'bg-' + (metric.tone === 'primary' ? 'blue-50 dark:bg-blue-950/20 text-primary-600 dark:text-blue-300' : metric.tone === 'success' ? 'green-50 dark:bg-green-950/20 text-green-600 dark:text-green-300' : 'yellow-50 dark:bg-yellow-950/20 text-yellow-600 dark:text-yellow-300')">
+            <app-icon [icon]="metric.icon" class="text-2xl" />
           </div>
         </div>
       </div>
@@ -34,10 +36,10 @@
 
   <!-- Grupos de módulos -->
   @for (group of groups; track group.label) {
-    <!-- Título del grupo (Estilo Master Dashboard) -->
+    <!-- Título del grupo (Estilo Luxury Design System) -->
     <div class="flex align-items-center gap-2 mb-4 mt-6">
-      <i [class]="group.icon + ' text-xl text-primary-600'"></i>
-      <h2 class="text-lg font-bold text-900 m-0 uppercase">
+      <app-icon [icon]="group.icon" class="text-xl text-primary-600 dark:text-blue-300"></app-icon>
+      <h2 class="ds-heading text-lg font-bold text-900 m-0 uppercase">
         {{ group.label }}
       </h2>
       <div class="flex-grow-1 border-bottom-1 surface-border ml-3"></div>
@@ -47,8 +49,9 @@
       @for (card of group.cards; track card.title) {
         <div class="col-12 sm:col-6 lg:col-3">
           <p-card
-            styleClass="h-full border-top-3 surface-card shadow-2 hover:shadow-4 transition-all transition-duration-200"
-            [style]="{'border-top-color': card.bgColor}"
+            styleClass="card card--interactive card--elevated h-full"
+            [style]="{'border-top': '3px solid ' + card.bgColor}"
+            (click)="card.route ? navigateTo(card.route) : null"
           >
             <!-- Header de la card -->
             <div class="flex flex-column h-full">
@@ -58,23 +61,27 @@
                   style="width: 48px; height: 48px"
                   [style.backgroundColor]="card.bgColor"
                 >
-                  <i [class]="card.icon + ' text-800'"></i>
+                  <app-icon [icon]="card.icon" class="text-800"></app-icon>
                 </div>
-                <div class="flex gap-1">
+                <div class="flex align-items-center gap-2">
                   @if (card.pending) {
-                    <p-tag value="Pendiente" severity="warn" styleClass="text-xs" />
+                    <p-tag value="Hangfire" severity="warn" styleClass="text-xs" />
+                  } @else if (!card.route) {
+                    <p-tag value="Modal" severity="info" styleClass="text-xs" />
                   }
-                  <custom-button
-                    [iconClass]="isExpanded(card.title) ? 'mdi:chevron-up' : 'mdi:chevron-down'"
-                    variant="outlined"
-                    severity="secondary"
-                    size="small"
+                  <app-icon [icon]="'mdi:arrow-up-right'" class="text-400"></app-icon>
+                  <div class="border-left-1 surface-border h-2rem mx-1"></div>
+                  <button 
+                    class="p-link text-500 hover:text-700 transition-colors"
                     [title]="isExpanded(card.title) ? 'Ocultar detalle' : 'Ver detalle técnico'"
-                    (clicked)="toggleExpand(card.title)"
-                  />
+                    (click)="$event.stopPropagation(); toggleExpand(card.title)"
+                  >
+                    <app-icon [icon]="isExpanded(card.title) ? 'mdi:chevron-up' : 'mdi:chevron-down'" class="text-xl"></app-icon>
+                  </button>
                 </div>
               </div>
 
+              <!-- Título y descripción -->
               <div class="flex-1">
                 <h3 class="m-0 font-bold text-900 line-height-2 text-base">
                   {{ card.title }}
@@ -88,63 +95,40 @@
                     />
                   }
                 </div>
-                <p class="text-sm text-600 m-0 mt-3 line-height-3">
+                <p class="text-sm text-secondary m-0 mt-3 line-height-3">
                   {{ card.description }}
                 </p>
               </div>
 
-              <!-- Acciones principales -->
-              <div class="mt-4 pt-3 border-top-1 surface-border flex gap-2">
-                @if (card.pending) {
-                  <span class="flex-1 flex align-items-center justify-content-center gap-1 px-3 py-2 border-round-lg text-xs text-orange-700 bg-orange-50 border-1 border-orange-200">
-                    <app-icon [icon]="'mdi:clock-outline'" class="text-xs"></app-icon>
-                    Auto Hangfire
-                  </span>
-                } @else if (card.route) {
-                  <custom-button
-                    label="Abrir Módulo"
-                    iconClass="mdi:arrow-right"
-                    size="small"
-                    class="flex-1"
-                    (clicked)="navigateTo(card.route)"
-                  />
-                } @else {
-                  <span class="flex-1 flex align-items-center justify-content-center gap-1 px-3 py-2 border-round-lg text-xs text-500 surface-100 border-1 surface-border">
-                    <app-icon [icon]="'mdi:window-maximize'" class="text-xs"></app-icon>
-                    Abre como modal
-                  </span>
-                }
-              </div>
-
               <!-- Detalle expandible (Técnico) -->
               @if (isExpanded(card.title)) {
-                <div class="mt-4 pt-3 border-top-1 surface-border">
-                  <div class="text-xs font-semibold text-600 uppercase mb-2">
-                    <app-icon [icon]="'mdi:format-list-bulleted'" class="text-xs mr-1"></app-icon>Que puedes hacer
+                <div class="mt-4 p-3 border-round-lg bloque-advertencia" (click)="$event.stopPropagation()">
+                  <div class="text-xs font-semibold text-900 uppercase mb-2 flex align-items-center">
+                    <app-icon [icon]="'mdi:format-list-bulleted'" class="text-xs mr-2 text-primary"></app-icon>Acciones
                   </div>
-                  <ul class="m-0 pl-3 mb-3">
+                  <ul class="m-0 pl-3 mb-3 text-secondary">
                     @for (action of card.actions; track action.label) {
-                      <li class="text-xs text-700 line-height-3 mb-1">{{ action.label }}</li>
+                      <li class="text-xs line-height-3 mb-1">{{ action.label }}</li>
                     }
                   </ul>
 
-                  <div class="text-xs font-semibold text-600 uppercase mb-2">
-                    <app-icon [icon]="'mdi:server'" class="text-xs mr-1"></app-icon>Endpoints API
+                  <div class="text-xs font-semibold text-900 uppercase mb-2 flex align-items-center">
+                    <app-icon [icon]="'mdi:server'" class="text-xs mr-2 text-primary"></app-icon>Endpoints API
                   </div>
                   @for (ep of card.endpoints; track ep.path) {
-                    <div class="text-xs mb-1 p-2 surface-50 border-round flex align-items-start">
+                    <div class="text-xs mb-1 p-2 bg-white dark:bg-gray-900 border-round flex align-items-start border-1 surface-border">
                       <span
                         class="font-mono font-bold mr-2 w-3rem flex-shrink-0"
                         [class]="ep.method === 'GET' ? 'text-blue-600' : ep.method === 'DELETE' ? 'text-red-600' : 'text-green-600'"
                       >{{ ep.method }}</span>
-                      <span class="font-mono text-500 break-all">{{ ep.path }}</span>
+                      <span class="font-mono text-secondary break-all">{{ ep.path }}</span>
                     </div>
                   }
 
                   @if (card.states?.length) {
                     <div class="mt-3">
-                      <div class="text-xs font-semibold text-600 uppercase mb-2">
-                        <app-icon [icon]="'mdi:tag'" class="text-xs mr-1"></app-icon>Estados
+                      <div class="text-xs font-semibold text-900 uppercase mb-2 flex align-items-center">
+                        <app-icon [icon]="'mdi:tag'" class="text-xs mr-2 text-primary"></app-icon>Estados
                       </div>
                       <div class="flex flex-wrap gap-1">
                         @for (s of card.states; track s) {
@@ -155,9 +139,9 @@
                   }
 
                   @if (card.notes) {
-                    <div class="mt-3 p-2 bg-yellow-50 border-round border-1 border-yellow-200">
-                      <div class="text-xs text-yellow-800 line-height-3">
-                        <app-icon [icon]="'mdi:information'" class="mr-1"></app-icon>{{ card.notes }}
+                    <div class="mt-3 pt-3 border-top-1 border-primary-100 dark:border-primary-900">
+                      <div class="text-xs line-height-3 text-900">
+                        <app-icon [icon]="'mdi:information'" class="mr-1 text-primary"></app-icon> {{ card.notes }}
                       </div>
                     </div>
                   }
@@ -170,14 +154,14 @@
     </div>
   }
 
-  <!-- Footer CTA (Simplificado) -->
-  <div class="mt-6 p-4 bg-primary-50 border-round-xl border-1 border-primary-100 flex align-items-center gap-4">
-    <div class="bg-white p-3 border-round-lg shadow-1 hidden sm:block">
+  <!-- Footer CTA (Estilo Luxury Design System) -->
+  <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-950/20 border-round-xl border-1 border-primary-100 dark:border-blue-900/30 flex align-items-center gap-4">
+    <div class="bg-white dark:bg-blue-950 p-3 border-round-lg shadow-1 hidden sm:block">
       <app-icon [icon]="'mdi:sitemap'" class="text-primary text-3xl"></app-icon>
     </div>
     <div class="flex-1">
       <div class="font-bold text-900 text-lg mb-1">Entender la Arquitectura</div>
-      <div class="text-sm text-600 line-height-3">
+      <div class="ds-text-secondary text-sm line-height-3">
         Consulta el flujo completo: desde plantillas hasta cierre contable.
       </div>
     </div>

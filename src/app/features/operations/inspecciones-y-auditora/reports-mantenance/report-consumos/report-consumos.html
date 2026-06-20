@@ -1,13 +1,218 @@
-@for (item of medidores(); track item) {
-<div class="card breakPage">
-  <page-title-report-maintenance title="CONSUMOS" />
-  <app-multi-axis-chart [data]="item" />
+<div class="grid">
+  <div class="col-12">
+    <page-title-report-maintenance title="REPORTE EJECUTIVO DE CONSUMOS" />
+  </div>
+
+  <div class="col-12">
+    <p-card styleClass="shadow-1 border-round-xl overflow-hidden">
+      <ng-template #content>
+        <div class="grid">
+          <div class="col-12 lg:col-4">
+            <div class="text-sm font-semibold text-700 mb-2">
+              Rango de fechas
+            </div>
+            <app-rango-calendario-yyyymmdd
+              [mostrartextHasta]="false"
+              [mostrartextDesde]="false"
+            />
+            <small class="block mt-2 text-500">
+              Vista semanal sobre el rango seleccionado.
+            </small>
+          </div>
+
+          <div class="col-12 lg:col-8">
+            <form [formGroup]="filtersForm" class="grid">
+              <div class="col-12 md:col-6 xl:col-4">
+                <custom-input-multiselect-signal
+                  [control]="filtersForm.controls.medidorIds"
+                  [options]="medidorOptions()"
+                  label="Medidores"
+                  placeholder="Todos los medidores"
+                />
+              </div>
+
+              <div class="col-12 md:col-6 xl:col-4">
+                <custom-input-multiselect-signal
+                  [control]="filtersForm.controls.medidorCategoriaIds"
+                  [options]="categoriaOptions()"
+                  label="Categorias"
+                  placeholder="Todas las categorias"
+                />
+              </div>
+
+              <div class="col-12 md:col-6 xl:col-4">
+                <custom-input-multiselect-signal
+                  [control]="filtersForm.controls.areas"
+                  [options]="areaOptions()"
+                  label="Area / ubicacion"
+                  placeholder="Todas las areas"
+                />
+                <small class="text-500">
+                  Fuente actual: descripcion del medidor.
+                </small>
+              </div>
+            </form>
+
+            <div class="flex flex-wrap gap-2 justify-content-end mt-2">
+              <button
+                type="button"
+                class="border-none border-round-lg px-3 py-2 bg-primary text-white font-semibold cursor-pointer"
+                (click)="loadReport()"
+              >
+                Aplicar filtros
+              </button>
+              <button
+                type="button"
+                class="border-1 border-300 border-round-lg px-3 py-2 bg-white text-700 font-semibold cursor-pointer"
+                (click)="onClearFilters()"
+              >
+                Limpiar
+              </button>
+              <custom-button-download
+                iconClass="mdi:file-excel"
+                severity="success"
+                (clicked)="exportExcel()"
+              />
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+
+  @if (report(); as data) {
+  <div class="col-12 md:col-6 xl:col-3">
+    <div class="surface-card border-round-xl p-3 border-1 border-surface-200 h-full">
+      <div class="text-500 text-sm mb-2">Consumo total</div>
+      <div class="text-3xl font-bold text-900">{{ data.totalConsumo | number: "1.0-2" }}</div>
+      <div class="text-500 text-sm mt-2">
+        {{ data.fechaInicio | date: "dd/MM/yyyy" }} al
+        {{ data.fechaFin | date: "dd/MM/yyyy" }}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 md:col-6 xl:col-3">
+    <div class="surface-card border-round-xl p-3 border-1 border-surface-200 h-full">
+      <div class="text-500 text-sm mb-2">Promedio semanal</div>
+      <div class="text-3xl font-bold text-900">{{ data.promedioSemanal | number: "1.0-2" }}</div>
+      <div class="text-500 text-sm mt-2">{{ data.totalSemanas }} semanas consideradas</div>
+    </div>
+  </div>
+
+  <div class="col-12 md:col-6 xl:col-3">
+    <div class="surface-card border-round-xl p-3 border-1 border-surface-200 h-full">
+      <div class="text-500 text-sm mb-2">Medidores incluidos</div>
+      <div class="text-3xl font-bold text-900">{{ data.totalMedidores }}</div>
+      <div class="text-500 text-sm mt-2">Filtros aplicados sobre medidores activos</div>
+    </div>
+  </div>
+
+  <div class="col-12 md:col-6 xl:col-3">
+    <div class="surface-card border-round-xl p-3 border-1 border-surface-200 h-full">
+      <div class="text-500 text-sm mb-2">Categorias</div>
+      <div class="text-3xl font-bold text-900">{{ data.totalCategorias }}</div>
+      <div class="text-500 text-sm mt-2">Desglose ejecutivo por categoria</div>
+    </div>
+  </div>
+
+  <div class="col-12 xl:col-8">
+    <p-card styleClass="h-full shadow-1 border-round-xl">
+      <ng-template #header>
+        <div class="px-3 pt-3">
+          <div class="text-xl font-semibold">Consumo semanal</div>
+          <div class="text-500 text-sm">Acumulado del rango seleccionado</div>
+        </div>
+      </ng-template>
+      <ng-template #content>
+        <div style="height: 360px">
+          <app-multi-axis-chart [data]="data.graficaSemanal" />
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+
+  <div class="col-12 xl:col-4">
+    <p-card styleClass="h-full shadow-1 border-round-xl">
+      <ng-template #header>
+        <div class="px-3 pt-3">
+          <div class="text-xl font-semibold">Resumen por categoria</div>
+          <div class="text-500 text-sm">Consumo total y cantidad de medidores</div>
+        </div>
+      </ng-template>
+      <ng-template #content>
+        <div class="flex flex-column gap-2">
+          @for (categoria of data.categorias; track categoria.medidorCategoriaId) {
+          <div class="surface-50 border-round-lg p-3 border-1 border-surface-200">
+            <div class="flex justify-content-between gap-3">
+              <div>
+                <div class="font-semibold text-900">{{ categoria.categoria }}</div>
+                <div class="text-500 text-sm">{{ categoria.totalMedidores }} medidores</div>
+              </div>
+              <div class="text-right">
+                <div class="font-bold text-900">{{ categoria.totalConsumo | number: "1.0-2" }}</div>
+                <div class="text-500 text-sm">consumo</div>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+
+  <div class="col-12">
+    <p-card styleClass="shadow-1 border-round-xl">
+      <ng-template #header>
+        <div class="px-3 pt-3">
+          <div class="text-xl font-semibold">Detalle por medidor</div>
+          <div class="text-500 text-sm">Ordenado por mayor consumo total</div>
+        </div>
+      </ng-template>
+      <ng-template #content>
+        <p-table
+          [value]="data.medidores"
+          [paginator]="true"
+          [rows]="10"
+          [rowsPerPageOptions]="[10, 25, 50]"
+          responsiveLayout="scroll"
+          styleClass="p-datatable-sm"
+        >
+          <ng-template #header>
+            <tr>
+              <th>Categoria</th>
+              <th>Numero</th>
+              <th>Area / ubicacion</th>
+              <th>Descripcion</th>
+              <th class="text-right">Consumo total</th>
+              <th class="text-right">Promedio semanal</th>
+              <th class="text-right">Max. configurado</th>
+              <th class="text-right">Max. detectado</th>
+            </tr>
+          </ng-template>
+          <ng-template #body let-item>
+            <tr>
+              <td>{{ item.categoria }}</td>
+              <td>{{ item.numeroMedidor }}</td>
+              <td>{{ item.area }}</td>
+              <td>{{ item.descripcion }}</td>
+              <td class="text-right">{{ item.consumoTotal | number: "1.0-2" }}</td>
+              <td class="text-right">{{ item.promedioSemanal | number: "1.0-2" }}</td>
+              <td class="text-right">
+                {{ item.consumoDiarioMaximoConfigurado | number: "1.0-2" }}
+              </td>
+              <td class="text-right">{{ item.consumoMaximoDetectado | number: "1.0-2" }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </ng-template>
+    </p-card>
+  </div>
+  } @else {
+  <div class="col-12">
+    <div class="surface-card border-round-xl border-1 border-surface-200 p-4 text-center text-500">
+      No hay datos disponibles para el rango y filtros seleccionados.
+    </div>
+  </div>
+  }
 </div>
-}
-
-
-
-
-
-
-

@@ -62,6 +62,11 @@ export class ProductosList implements OnInit {
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
+  private readonly MOBILE_PAGE_SIZE = 20;
+  mobilePage = signal(1);
+  mobileDataSignal = signal<any[]>([]);
+  mobileTotalRecords = signal(0);
+
   ref: DynamicDialogRef;
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
@@ -69,6 +74,7 @@ export class ProductosList implements OnInit {
 
   ngOnInit(): void {
     this.onLoadData();
+    this.onLoadMobile();
   }
 
   onLoadData() {
@@ -80,16 +86,46 @@ export class ProductosList implements OnInit {
     });
   }
 
+  onLoadMobile() {
+    this.mobilePage.set(1);
+    const params = { page: 1, recordsNumber: this.MOBILE_PAGE_SIZE };
+    return this.apiResponseS
+      .onGetListNotLoading<any>(Endpoints.Products.getAllPaged, params)
+      .then((result: any) => {
+        if (result) {
+          this.mobileDataSignal.set(result.items ?? []);
+          this.mobileTotalRecords.set(result.totalRecords ?? 0);
+        }
+      });
+  }
+
   // ... Eliminar registro
   onDelete(id: any) {
     return this.apiResponseS.onDelete(Endpoints.Products.delete(id)).then((result: boolean) => {
       if (result) {
         this.dataSignal.update((data) => data.filter((item) => item.id !== id));
-        this.filteredDataSignal.update((data) =>
-          data.filter((item) => item.id !== id),
-        );
+        this.filteredDataSignal.update((data) => data.filter((item) => item.id !== id));
+        this.mobileDataSignal.update((data) => data.filter((item) => item.id !== id));
+        this.mobileTotalRecords.update((n) => n - 1);
       }
     });
+  }
+
+  loadNextPage(event: any) {
+    const nextPage = this.mobilePage() + 1;
+    const params = { page: nextPage, recordsNumber: this.MOBILE_PAGE_SIZE };
+    this.apiResponseS
+      .onGetListNotLoading<any>(Endpoints.Products.getAllPaged, params)
+      .then((result: any) => {
+        if (result?.items?.length) {
+          this.mobilePage.set(nextPage);
+          this.mobileDataSignal.update((items) => [...items, ...result.items]);
+        }
+        event.target.complete();
+        const noMore = !result || !result.items?.length;
+        const allLoaded = this.mobileDataSignal().length >= this.mobileTotalRecords();
+        if (noMore || allLoaded) event.target.disabled = true;
+      });
   }
 
   // ... Llamada al Modal agregar o editar
@@ -97,7 +133,7 @@ export class ProductosList implements OnInit {
     this.dialogHandlerS
       .openDialog(ProductosForm, data, data.title, this.dialogHandlerS.sizeLg)
       .then((result: boolean) => {
-        if (result) this.onLoadData();
+        if (result) { this.onLoadData(); this.onLoadMobile(); }
       });
   }
 }

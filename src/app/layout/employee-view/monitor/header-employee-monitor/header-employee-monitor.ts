@@ -158,11 +158,7 @@ export class HeaderEmployeeMonitor implements OnInit {
     effect(() => {
       const route = this.routeEventSignal();
       if (route) {
-        let snapshot = this.router.routerState.snapshot;
         let title = route.snapshot.data["title"];
-        let parent = route.parent?.snapshot.data["breadcrumb"];
-        let isEnable = route.parent?.snapshot.data["isEnable"];
-        let child = route.snapshot.data["breadcrumb"];
         this.breadcrumbs = {}; // Keep this for now, as the HTML still uses it
         this.title = title;
 
@@ -171,21 +167,34 @@ export class HeaderEmployeeMonitor implements OnInit {
         // Home item
         this.breadcrumbItems.push({
           icon: "pi pi-home", // PrimeNG icon class
-          routerLink: "/dashboard/default",
+          routerLink: "/dashboard",
         });
 
-        if (parent) {
-          this.breadcrumbItems.push({
-            label: parent,
-            routerLink: "/some/parent/route", // If parent has a specific route, add it here
-          });
-        }
+        // Dynamic breadcrumb generation
+        let currentRoute = this.activatedRoute.root;
+        let url = "";
 
-        if (child) {
-          this.breadcrumbItems.push({
-            label: child,
-            routerLink: "/some/child/route", // If child has a specific route, add it here
-          });
+        while (currentRoute.firstChild) {
+          currentRoute = currentRoute.firstChild;
+
+          const routeURL = currentRoute.snapshot.url
+            .map((segment) => segment.path)
+            .join("/");
+
+          if (routeURL) {
+            url += `/${routeURL}`;
+          }
+
+          const breadcrumb = currentRoute.snapshot.data["breadcrumb"];
+          if (breadcrumb) {
+            // Only add if it's not a duplicate of Dashboard or Inicio
+            if (breadcrumb !== "Dashboard" && breadcrumb !== "Inicio") {
+              this.breadcrumbItems.push({
+                label: breadcrumb,
+                routerLink: url,
+              });
+            }
+          }
         }
       }
     });

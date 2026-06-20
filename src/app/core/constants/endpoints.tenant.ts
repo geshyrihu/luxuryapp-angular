@@ -938,6 +938,10 @@ export const EndpointsTenant = {
     delete: (id: string) => `maintenancecalendars/${id}`,
   },
 
+  MaintenanceReports: {
+    weeklyExecutiveReport: "MaintenanceReport/WeeklyExecutiveReport",
+  },
+
   CalendarioMaestroEquipo: {
     base: "CalendarioMaestroEquipo",
     delete: (id: string | number) => `CalendarioMaestroEquipo/${id}`,
@@ -1430,6 +1434,7 @@ export const EndpointsTenant = {
     autoComplete: "productos/getautocompleteselectitem/",
     delete: (id: string) => `productos/${id}`,
     getAll: "Productos",
+    getAllPaged: "Productos/paged",
   },
 
   ProductCategories: {
@@ -1698,5 +1703,36 @@ export const EndpointsTenant = {
     getById: (id: string) => `job-descriptions/${id}`,
     getByWorkPosition: (workPositionId: string) =>
       `job-descriptions/by-workposition/${workPositionId}`,
+  },
+
+  // ========================================== Módulo: Checador de Empleados ==========================================
+
+  ChekadorEmpleados: {
+    registrar: "chekador-empleados/registrar",
+    misRegistros: (pagina: number, tamano: number) =>
+      `chekador-empleados/mis-registros?pagina=${pagina}&tamano=${tamano}`,
+    resumenHoy: "chekador-empleados/resumen-hoy",
+    porTenant: (params: {
+      empleadoId?: string;
+      desde?: string;
+      hasta?: string;
+      tipo?: number;
+      soloAnomalias?: boolean;
+    }) => {
+      const q = new URLSearchParams();
+      if (params.empleadoId) q.set("empleadoId", params.empleadoId);
+      if (params.desde) q.set("desde", params.desde);
+      if (params.hasta) q.set("hasta", params.hasta);
+      if (params.tipo !== undefined) q.set("tipo", String(params.tipo));
+      if (params.soloAnomalias !== undefined)
+        q.set("soloAnomalias", String(params.soloAnomalias));
+      const qs = q.toString();
+      return `chekador-empleados/por-tenant${qs ? "?" + qs : ""}`;
+    },
+    aprobarAnomalia: (id: string) =>
+      `chekador-empleados/${id}/aprobar-anomalia`,
+    rechazarAnomalia: (id: string) =>
+      `chekador-empleados/${id}/rechazar-anomalia`,
+    sedes: "chekador-empleados/sedes",
   },
 } as const;

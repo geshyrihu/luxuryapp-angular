@@ -222,6 +222,29 @@ export const humanResourcesRoutes: Routes = [
   },
 
   // =============================================================
+  // CHECADOR DE EMPLEADOS
+  // =============================================================
+  {
+    path: "chekador-empleados",
+    loadComponent: () =>
+      import("src/app/features/hr/chekador-empleados/pages/chekador-list").then(
+        (m) => m.ChekadorList,
+      ),
+    canActivate: [
+      () =>
+        inject(AspRoleService).hasAny([
+          EApplicationRole.SuperUsuario,
+          EApplicationRole.RecursosHumanos,
+          EApplicationRole.Administrador,
+        ]),
+    ],
+    data: {
+      title: "Checador de Empleados",
+      breadcrumb: "Checador",
+    },
+  },
+
+  // =============================================================
   // CONTRATOS LABORALES
   // =============================================================
   {

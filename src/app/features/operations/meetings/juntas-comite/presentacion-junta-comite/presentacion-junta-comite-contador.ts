@@ -12,7 +12,6 @@ import {
   IonButtonViewPdf,
 } from "src/app/core/components/buttons/mobile";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonConfirm } from "src/app/core/components/buttons/web/custom-button-confirm";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
@@ -41,7 +40,6 @@ import { PresentacionJuntaComiteForm } from "./presentacion-junta-comite-form";
     DataViewMobile,
     CustomButtonEdit,
     CustomButtonDelete,
-    CustomButtonConfirm,
     CustomButtonViewPdf,
     CardModule,
     IonButtonConfirm,

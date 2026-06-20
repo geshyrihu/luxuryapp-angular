@@ -1,6 +1,7 @@
 export interface IMedidor {
   id: any;
   customerId: string;
+  medidorCategoriaId: any;
   medidorCategoria: {
     id: any;
     nombreMedidorCategoria: string;

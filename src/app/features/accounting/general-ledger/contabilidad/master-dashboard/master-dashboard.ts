@@ -16,13 +16,18 @@ export class MasterDashboard {
   private aspRoleS = inject(AspRoleService);
 
   getVisibleGroups(): ContabilidadModuleGroup[] {
-    return CONTABILIDAD_MODULES.map((group) => ({
-      ...group,
-      cards: group.cards.filter((card) => {
-        if (!card.roles || card.roles.length === 0) return true;
-        return this.aspRoleS.hasAny(card.roles);
-      }),
-    })).filter((group) => group.cards.length > 0);
+    return CONTABILIDAD_MODULES.filter((group) => {
+      if (!group.roles || group.roles.length === 0) return true;
+      return this.aspRoleS.hasAny(group.roles);
+    })
+      .map((group) => ({
+        ...group,
+        cards: group.cards.filter((card) => {
+          if (!card.roles || card.roles.length === 0) return true;
+          return this.aspRoleS.hasAny(card.roles);
+        }),
+      }))
+      .filter((group) => group.cards.length > 0);
   }
 
   navigateTo(route: string): void {

@@ -48,10 +48,14 @@ export class GastosMantenimiento {
       this.apiResponseS.onGetList(urlApi2),
     ])
       .then(([result1, result2]: [any, any]) => {
-        this.data.set(result1.items);
+        this.data.set(result1?.items ?? []);
         this.globalFilterFields = globalFilterFields(this.data());
-        this.totalGasto.set(result1.totalGastos);
-        this.resumenGastos.set(result2);
+        this.totalGasto.set(result1?.totalGastos ?? 0);
+        this.resumenGastos.set(result2 ?? []);
+      })
+      .catch(() => {
+        this.data.set([]);
+        this.resumenGastos.set([]);
       })
       .finally(() => {
         this.loading.set(false);

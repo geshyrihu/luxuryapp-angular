@@ -8,6 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       'src/': resolve(__dirname, 'src') + '/',
+      '@core/': resolve(__dirname, 'src/app/core') + '/',
     },
   },
   optimizeDeps: {

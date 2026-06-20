@@ -1,0 +1,34 @@
+<p-card header="AI Patterns">
+  <div class="flex flex-column gap-5">
+    
+    <div>
+      <h3 class="text-xl font-bold mb-3" style="color: var(--ds-text-primary)">AI Chat Widget</h3>
+      <p class="text-sm mb-3" style="color: var(--ds-text-secondary)">Widget global para el agente virtual. Diseñado para flotar en la vista principal o en modales.</p>
+      
+      <div class="p-3 border-round border-1" style="border-color: var(--ds-border); background: var(--ds-surface)">
+        <!-- Emulando la llamada al componente AI Chat Widget -->
+        <app-ai-chat-widget></app-ai-chat-widget>
+      </div>
+    </div>
+    
+    <p-divider></p-divider>
+    
+    <div>
+      <h3 class="text-xl font-bold mb-3" style="color: var(--ds-text-primary)">Image Analysis Dialog</h3>
+      <p class="text-sm mb-3" style="color: var(--ds-text-secondary)">Modal de análisis de imágenes con inteligencia artificial para OCR o inspección visual.</p>
+      
+      <div class="p-3 border-round border-1 text-center" style="border-color: var(--ds-border); background: var(--ds-surface-variant)">
+        <p-button 
+            label="Simular Image Analysis Dialog" 
+            icon="pi pi-image" 
+            styleClass="p-button-outlined"
+            (onClick)="openImageAnalysis()">
+        </p-button>
+        
+        <!-- Componente oculto -->
+        <app-image-analysis-dialog #aiDialog></app-image-analysis-dialog>
+      </div>
+    </div>
+    
+  </div>
+</p-card>

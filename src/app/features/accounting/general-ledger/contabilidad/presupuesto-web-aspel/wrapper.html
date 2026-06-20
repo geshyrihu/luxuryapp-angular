@@ -79,51 +79,45 @@
   <div class="hidden md:flex flex-column flex-1 min-h-0">
 
     <!-- Fila única: [Año Fiscal] | [Presupuesto] [Extraordinarios] | spacer | [Buscar] [Botones] -->
-    <div class="budget-nav-bar">
+    <div class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round mb-2">
 
-      <!-- Año Fiscal -->
-      <div class="flex align-items-center gap-2 px-2">
-        <custom-input-select-signal
-          id="yearSelector"
-          label="Año Fiscal"
-          [data]="sharedS.availableYears"
-          [ngModel]="sharedS.intYear()"
-          (ngModelChange)="sharedS.intYear.set($event)"
-          optionLabel="label"
+      <!-- Lado Izquierdo: Año Fiscal y Tabs de navegación -->
+      <div class="flex flex-wrap align-items-center gap-3">
+        <!-- Año Fiscal -->
+        <div class="flex align-items-center gap-2">
+          <custom-input-select-signal
+            id="yearSelector"
+            label="Año Fiscal"
+            [data]="sharedS.availableYears"
+            [ngModel]="sharedS.intYear()"
+            (ngModelChange)="sharedS.intYear.set($event)"
+            optionLabel="label"
+            optionValue="value"
+            [horizontal]="true"
+            [noMargin]="true"
+            customClass="w-8rem"
+            [filter]="true"
+          />
+        </div>
+
+        <div class="budget-nav-divider"></div>
+
+        <!-- Tabs de navegación usando p-selectButton -->
+        <p-selectButton 
+          [options]="[
+            { label: 'Presupuesto', value: 'presupuesto' },
+            { label: 'Extraordinarios y Proyectos', value: 'especiales' }
+          ]" 
+          [ngModel]="activeTabValue()" 
+          (ngModelChange)="activeTabValue.set($event)"
+          optionLabel="label" 
           optionValue="value"
-          [horizontal]="true"
-          [noMargin]="true"
-          customClass="w-8rem"
-          [filter]="true"
         />
       </div>
 
-      <div class="budget-nav-divider"></div>
-
-      <!-- Tabs de navegación -->
-      <button
-        class="budget-tab-btn"
-        [class.budget-tab-btn--active]="activeTabValue() === 'presupuesto'"
-        (click)="activeTabValue.set('presupuesto')"
-      >
-        Presupuesto
-      </button>
-      <button
-        class="budget-tab-btn"
-        [class.budget-tab-btn--active]="activeTabValue() === 'especiales'"
-        (click)="activeTabValue.set('especiales')"
-      >
-        Extraordinarios y Proyectos
-      </button>
-
-      <!-- Spacer -->
-      <div class="flex-1"></div>
-
-      <!-- Búsqueda y botones -->
+      <!-- Lado Derecho: Búsqueda y botones -->
       @if (!sharedS.errorMensaje()) {
-      <div class="flex align-items-center gap-2 px-2">
-        <div class="budget-nav-divider"></div>
-
+      <div class="flex flex-column sm:flex-row align-items-center gap-2">
         <custom-search-input-signal
           (searchChange)="sharedS.searchTerm.set($event)"
           class="w-15rem"

@@ -9,13 +9,13 @@
   <div class="flex align-items-center justify-content-between mb-3">
     <div class="flex align-items-center gap-2">
       @if (resumen() && resumen()!.total > 0) {
-        <span class="text-3xl font-bold text-orange-500">{{ resumen()!.total }}</span>
-        <span class="text-sm text-500">
+        <span class="text-3xl font-bold" style="color: var(--ds-warning)">{{ resumen()!.total }}</span>
+        <span class="text-sm" style="color: var(--ds-text-secondary)">
           contrato{{ resumen()!.total === 1 ? '' : 's' }} vence{{ resumen()!.total === 1 ? '' : 'n' }} en menos de 2 meses
         </span>
       } @else {
-        <app-icon icon="mdi:check-circle" class="text-green-500"></app-icon>
-        <span class="text-sm text-500">Sin contratos proximos a vencer</span>
+        <app-icon icon="mdi:check-circle" style="color: var(--ds-success)"></app-icon>
+        <span class="text-sm" style="color: var(--ds-text-secondary)">Sin contratos proximos a vencer</span>
       }
     </div>
     <p-button
@@ -35,33 +35,32 @@
       @for (customer of resumen()!.customers; track customer.customerName) {
         <div>
           <div class="flex align-items-center justify-content-between mb-1">
-            <span class="text-sm font-bold text-700">{{ customer.customerName }}</span>
+            <span class="text-sm font-bold" style="color: var(--ds-text-primary)">{{ customer.customerName }}</span>
             <span
               class="text-xs font-semibold border-round px-2 py-1"
-              style="background: var(--orange-100); color: var(--orange-700)"
+              style="background: var(--ds-surface-variant); color: var(--ds-on-surface-variant)"
             >
               {{ customer.count }}
             </span>
           </div>
 
-          <div class="flex flex-column gap-1 pl-2 border-left-2 border-orange-300">
+          <div class="flex flex-column gap-1 pl-2 border-left-2" style="border-color: var(--ds-border) !important;">
             @for (contrato of customer.contratos; track contrato.id) {
               <div class="flex align-items-center justify-content-between py-1">
                 <div class="flex flex-column gap-0 min-w-0 flex-auto">
-                  <span class="text-xs text-800 white-space-nowrap overflow-hidden text-overflow-ellipsis">
+                  <span class="text-xs white-space-nowrap overflow-hidden text-overflow-ellipsis" style="color: var(--ds-text-primary)">
                     {{ contrato.description }}
                   </span>
-                  <span class="text-xs text-400">{{ contrato.provider }}</span>
+                  <span class="text-xs" style="color: var(--ds-text-secondary)">{{ contrato.provider }}</span>
                 </div>
                 <div class="flex align-items-center gap-2 flex-none ml-2">
                   <span
                     class="text-xs font-semibold flex-none"
-                    [class.text-red-500]="contrato.diasRestantes <= 30"
-                    [class.text-orange-500]="contrato.diasRestantes > 30"
+                    [style.color]="contrato.diasRestantes <= 30 ? 'var(--ds-error)' : 'var(--ds-warning)'"
                   >
                     {{ contrato.diasRestantes }}d
                   </span>
-                  <span class="text-xs text-400">{{ formatFecha(contrato.endDate) }}</span>
+                  <span class="text-xs" style="color: var(--ds-text-tertiary)">{{ formatFecha(contrato.endDate) }}</span>
                 </div>
               </div>
             }

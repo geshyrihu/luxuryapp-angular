@@ -18,8 +18,11 @@ describe('GastosMantenimiento', () => {
   let mockTableScrollHeightS: any;
 
   beforeEach(() => {
-    mockApiResponseS = { onGetList: vi.fn().mockResolvedValue({ items: [], totalGastos: 0 }) };
-    mockCustomerIdS = { customerId: signal('cust-123') };
+    mockApiResponseS = {
+      onGetList: vi.fn().mockResolvedValue({ items: [], totalGastos: 0 }),
+    };
+    // Inicializar customerId como null para que el effect no se dispare en el beforeEach
+    mockCustomerIdS = { customerId: signal(null) };
     mockDialogHandlerS = {
       openDialog: vi.fn().mockResolvedValue(true),
       sizeFull: 'full',
@@ -40,6 +43,11 @@ describe('GastosMantenimiento', () => {
 
     fixture = TestBed.createComponent(GastosMantenimiento);
     component = fixture.componentInstance;
+    // El effect se acaba de crear pero no se ha ejecutado porque customerId es null
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
   it('should create', () => {
@@ -55,8 +63,12 @@ describe('GastosMantenimiento', () => {
     expect(component.rowsPerPageOptions).toEqual([30, 50, 75, 100, 150, 200]);
   });
 
-  it('should call onLoadData when customerId is set via effect', () => {
-    fixture.detectChanges();
+  it('should call onLoadData when customerId is set via effect', async () => {
+    mockCustomerIdS.customerId.set('cust-123');
+    
+    // Esperar a que el effect se ejecute
+    await new Promise(resolve => setTimeout(resolve));
+    
     expect(mockApiResponseS.onGetList).toHaveBeenCalledTimes(2);
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith('BudgetMaintenance/SummaryOfExpenses/cust-123');
     expect(mockApiResponseS.onGetList).toHaveBeenCalledWith('BudgetMaintenance/Resumengastos/cust-123');
@@ -65,9 +77,14 @@ describe('GastosMantenimiento', () => {
   it('onLoadData should set data, totalGasto, and resumenGastos from API', async () => {
     const result1 = { items: [{ id: 1, concepto: 'Mantenimiento' }], totalGastos: 15000 };
     const result2 = [{ categoria: 'General', monto: 10000 }];
-    mockApiResponseS.onGetList = vi.fn()
-      .mockResolvedValueOnce(result1)
-      .mockResolvedValueOnce(result2);
+
+    let callCount = 0;
+    mockApiResponseS.onGetList.mockImplementation(() => {
+      callCount++;
+      if (callCount === 1) return Promise.resolve(result1);
+      if (callCount === 2) return Promise.resolve(result2);
+      return Promise.resolve({ items: [], totalGastos: 0 });
+    });
 
     component.onLoadData();
     await new Promise(resolve => setTimeout(resolve));
@@ -79,9 +96,13 @@ describe('GastosMantenimiento', () => {
   });
 
   it('onLoadData should set loading to false when API fails', async () => {
-    mockApiResponseS.onGetList.mockRejectedValue(new Error('API Error'));
+    // Simular un error de API de forma controlada:
+    mockApiResponseS.onGetList.mockRejectedValueOnce(new Error('API Error'));
+
     component.onLoadData();
     await new Promise(resolve => setTimeout(resolve));
+
+    // Verificar que loading se haya puesto a false gracias al finally
     expect(component.loading()).toBe(false);
   });
 

@@ -18,9 +18,8 @@
     "declaration": false,
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
-    "baseUrl": "src",
     "paths": {
-      "src/*": ["*"]
+      "src/*": ["./src/*"]
     },
     "importHelpers": true,
     "target": "ES2022",

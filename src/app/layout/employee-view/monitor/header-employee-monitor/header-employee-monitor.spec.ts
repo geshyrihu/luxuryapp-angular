@@ -80,6 +80,12 @@ const featureAnnouncementServiceMock = {
 };
 
 const activatedRouteMock = {
+  root: {
+    firstChild: {
+      snapshot: { url: [], data: { breadcrumb: 'Test' } },
+      firstChild: null,
+    },
+  },
   data: of({}),
   snapshot: { data: {} },
   firstChild: null,

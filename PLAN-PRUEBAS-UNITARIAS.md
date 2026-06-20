@@ -26,6 +26,8 @@ Solo `features/configuration/` y `features/vault/` han sido migrados de `feature
 | `shared/` | 2 | ✅ Funcionales |
 | **Total** | **507** (~2080 tests) | ✅ 0 fallos |
 
+> **Última actualización:** Junio 2026 — Corregidos 3 unhandled rejections en `gastos-mantenimiento.spec.ts` y 2 timeouts en `demo-app.spec.ts`. Suite completa: 507 specs, 2,080 tests, 0 fallos, 0 errors, 0 unhandled rejections.
+
 ### Corregido en Junio 2026 (seguimiento)
 
 | Archivo | Problema | Solución |
@@ -35,6 +37,8 @@ Solo `features/configuration/` y `features/vault/` han sido migrados de `feature
 | `gastos-mantenimiento.spec.ts` | Import roto (`../../calendar/...` no existe) | Corregido path a `../../google-calendar/calendar/...` |
 | `task-view.spec.ts` | Unhandled rejection: `this.route.params.subscribe is not a function` | Mock de `ActivatedRoute.params` corregido a `{ subscribe: vi.fn() }` |
 | `test-setup.ts` | Unhandled rejections de Stencil Core (`adoptedStyleSheets` undefined) | Polyfill ampliado a `HTMLElement.prototype` y `ShadowRoot.prototype` |
+| `menu.service.spec.ts` | `Cannot read properties of undefined (reading 'subscribe')` en `toSignal(this.authS.userToken$)` | Mock de `AuthService` con `userToken$` como `BehaviorSubject` y getter `applicationUserId` reactivo |
+| `header-employee-monitor.spec.ts` | `Cannot read properties of undefined (reading 'firstChild')` en `activatedRoute.root.firstChild` | Mock de `ActivatedRoute` con estructura `root.firstChild.snapshot` completa |
 
 > **Nota:** El test `gastos-mantenimiento.spec.ts` genera 3 warnings cosméticos de `Unhandled Rejection` (API error de escenario negativo y mocks de `onLoadData`) que no afectan los asserts. Se deja para limpieza en iteración futura menor.
 

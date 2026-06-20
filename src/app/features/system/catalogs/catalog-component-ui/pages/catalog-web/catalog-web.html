@@ -1,0 +1,35 @@
+<div class="grid">
+  <div class="col-12 lg:col-6">
+    <app-web-buttons />
+  </div>
+  <div class="col-12 lg:col-6">
+    <app-web-inputs />
+  </div>
+  <div class="col-12">
+    <app-web-alerts />
+  </div>
+  <div class="col-12 lg:col-6">
+    <app-web-badges />
+  </div>
+  <div class="col-12 lg:col-6">
+    <app-web-cards />
+  </div>
+  <div class="col-12">
+    <app-web-tables
+      [filterForm]="filterForm"
+      [tableData]="tableData()"
+      [statusOptions]="statusOptions()"
+      [deptoOptions]="deptoOptions()"
+      [EStatus]="EStatus"
+    />
+  </div>
+  <div class="col-12 lg:col-6">
+    <app-web-forms />
+  </div>
+  <div class="col-12">
+    <app-web-erp-patterns />
+  </div>
+  <div class="col-12">
+    <app-web-ai-patterns />
+  </div>
+</div>

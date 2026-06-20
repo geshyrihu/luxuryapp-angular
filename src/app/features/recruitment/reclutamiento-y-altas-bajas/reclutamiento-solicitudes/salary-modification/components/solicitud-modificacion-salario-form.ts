@@ -55,19 +55,23 @@ export class SolicitudModificacionSalarioForm implements OnInit {
   // Signals para ComboBoxes
   cb_applicationRole = signal<ISelectItem[]>([]);
   cb_si_no = signal<ISelectItem[]>([]);
+  cb_vacantes = signal<ISelectItem[]>([]);
 
   form = this.formB.group({
     employeeId: ["", Validators.required],
     employeeName: ["", Validators.required],
+    workPositionId: [null as any],
     applicationRoleCurrentId: [null as any],
     applicationRoleCurrent: [null as string | null],
     applicationRoleNewId: [null as any],
     applicationRoleNew: [null as string | null],
-    currentSalary: [0, Validators.required],
-    finalSalary: [0, [Validators.required, Validators.min(1)]],
+    currentSalary: [0],
+    finalSalary: [null as number | null],
     executionDate: [null as Date | null, Validators.required],
     retroactive: [false, Validators.required],
     additionalInformation: [""],
+    isCoveringVacancy: [false],
+    vacancyId: [null as string | null],
     files: new FormControl<File[] | null>(
       null,
       FileUploadValidators.fileSize(20000),
@@ -79,23 +83,50 @@ export class SolicitudModificacionSalarioForm implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    await this.onLoadSelectItems();
-    await this.onLoadData();
+    const data = await this.onLoadData();
+    const customerId = data?.customerId || this.customerIdS.customerId();
+    await this.onLoadSelectItems(customerId);
+
+    // Auto-completar el puesto nuevo basado en la vacante seleccionada
+    this.form.controls["vacancyId"].valueChanges.subscribe((vacancyId) => {
+      if (vacancyId) {
+        const selected = this.cb_vacantes().find((v) => v.value === vacancyId);
+        if (selected) {
+          const lastIndex = selected.label.lastIndexOf("-");
+          if (lastIndex !== -1) {
+            const roleName = selected.label.substring(lastIndex + 1).trim();
+            const role = this.cb_applicationRole().find(
+              (r) => r.label.trim().toLowerCase() === roleName.toLowerCase()
+            );
+            if (role) {
+              this.form.patchValue({
+                applicationRoleNewId: role.value,
+                applicationRoleNew: role.label,
+              });
+            }
+          }
+        }
+      }
+    });
   }
 
-  async onLoadSelectItems(): Promise<void> {
-    const [siNo, applicationRoles] = await Promise.all([
+  async onLoadSelectItems(customerId: string): Promise<void> {
+    const [siNo, applicationRoles, vacantes] = await Promise.all([
       firstValueFrom(this.enumSelectS.boolYesNo()),
       this.apiResponseS.onGetSelectItem<ISelectItem[]>(
         `application-roles-to-administrator`,
+      ),
+      this.apiResponseS.onGetList<ISelectItem[]>(
+        `requestemployeeregister/vacantes/${customerId}`,
       ),
     ]);
 
     this.cb_si_no.set(siNo);
     this.cb_applicationRole.set(applicationRoles as ISelectItem[]);
+    this.cb_vacantes.set(vacantes || []);
   }
 
-  async onLoadData(): Promise<void> {
+  async onLoadData(): Promise<any> {
     const result: any = await this.apiResponseS.onGetItem(
       `RequestSalaryModification/GetDataForModificacionSalario/${this.workPositionId}`,
     );
@@ -122,9 +153,12 @@ export class SolicitudModificacionSalarioForm implements OnInit {
 
     this.form.patchValue({
       ...result,
+      currentSalary: result.sueldoActual,
       applicationRoleCurrentId,
-      applicationRoleCurrent: selectedApplicationRole?.label || null,
+      applicationRoleCurrent: result.applicationRoleCurrent || selectedApplicationRole?.label || null,
     });
+
+    return result;
   }
 
   onSaveApplicationRoleIDTOAccount = (item: ISelectItem) => {
@@ -186,7 +220,8 @@ export class SolicitudModificacionSalarioForm implements OnInit {
 
     // Agregar campos del formulario
     formData.append("employeeId", formValue.employeeId);
-    formData.append("currentSalary", formValue.currentSalary);
+    formData.append("sueldoActual", formValue.currentSalary ? String(formValue.currentSalary) : "0");
+    formData.append("currentSalary", formValue.currentSalary ? String(formValue.currentSalary) : "0");
     formData.append(
       "applicationRoleCurrent",
       formValue.applicationRoleCurrent || "",
@@ -201,8 +236,8 @@ export class SolicitudModificacionSalarioForm implements OnInit {
     );
     formData.append("applicationRoleNew", formValue.applicationRoleNew || "");
     formData.append("employeeName", formValue.employeeName);
-    formData.append("finalSalary", formValue.finalSalary);
-    formData.append("workPositionId", String(this.workPositionId));
+    formData.append("finalSalary", formValue.finalSalary !== null && formValue.finalSalary !== undefined ? String(formValue.finalSalary) : "0");
+    formData.append("workPositionId", formValue.workPositionId || String(this.workPositionId));
     formData.append(
       "executionDate",
       this.dateS.getDateFormat(formValue.executionDate as Date),
@@ -212,6 +247,9 @@ export class SolicitudModificacionSalarioForm implements OnInit {
       "additionalInformation",
       formValue.additionalInformation || "",
     );
+    if (formValue.vacancyId) {
+      formData.append("vacancyId", formValue.vacancyId);
+    }
 
     return formData;
   }

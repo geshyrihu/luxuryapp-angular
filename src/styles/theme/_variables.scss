@@ -97,49 +97,23 @@ $contrast-900: #000000;
   --contrast-500: #{$contrast-500};
   --contrast-900: #{$contrast-900};
 
-  // Design System Bridge (Mapping brand to DS)
-  --ds-primary: var(--brand-primary, #{$primary-600});
-  --ds-primary-hover: var(--brand-primary-hover, #{$primary-700});
-  --ds-primary-active: var(--brand-primary-active, #{$primary-800});
-  --ds-primary-light: var(--brand-primary-light, #{$primary-50});
-  --ds-primary-text: #ffffff;
-
+  // Help (Purple) — único aquí, no duplicado en sección 4
   --ds-help: var(--brand-help, #{$help-600});
   --ds-help-hover: var(--brand-help-hover, #{$help-700});
   --ds-help-active: var(--brand-help-active, #{$help-800});
   --ds-help-light: var(--brand-help-light, #{$help-50});
 
+  // Contrast
   --ds-contrast: var(--brand-contrast, #{$contrast-500});
   --ds-contrast-hover: var(--brand-contrast-hover, #{$contrast-900});
   --ds-contrast-text: var(--brand-contrast-text, #ffffff);
   --ds-contrast-light: var(--brand-contrast-light, #f1f5f9);
 
-  --ds-danger: var(--brand-danger, #{$danger-color});
-  --ds-danger-hover: var(--brand-danger-hover, #{darken($danger-color, 10%)});
-  --ds-danger-light: var(--brand-danger-bg, #{$danger-bg});
-
-  --ds-success: var(--brand-success, #{$success-color});
-  --ds-success-hover: var(
-    --brand-success-hover,
-    #{darken($success-color, 10%)}
-  );
-  --ds-success-light: var(--brand-success-bg, #{$success-bg});
-
-  --ds-warning: var(--brand-warning, #{$warning-color});
-  --ds-warning-hover: var(
-    --brand-warning-hover,
-    #{darken($warning-color, 10%)}
-  );
-  --ds-warning-light: var(--brand-warning-bg, #{$warning-bg});
-
-  --ds-info: var(--brand-info, #06b6d4);
-  --ds-info-hover: var(--brand-info-hover, #0891b2);
-  --ds-info-light: var(--brand-info-bg, #ecfeff);
-
+  // Borders (brand bridge)
   --ds-border: var(--brand-border, #e2e8f0);
   --ds-border-strong: var(--brand-border-strong, #cbd5e1);
 
-  /* ── Task status colors — aliases de los tokens DS existentes ── */
+  /* ── Task status colors ── */
   --task-not-started:      var(--ds-danger);
   --task-in-progress:      var(--ds-warning);
   --task-completed:        var(--ds-success);
@@ -148,11 +122,6 @@ $contrast-900: #000000;
   --task-in-progress-tint: var(--ds-warning-light);
   --task-completed-tint:   var(--ds-success-light);
   --task-reopened-tint:    var(--ds-danger-light);
-  --ds-bg-sunken: var(--brand-bg-sunken, #f1f5f9);
-  --ds-bg-page: var(--brand-bg-page, #f8fafc);
-  --ds-bg-surface: var(--brand-bg-surface, #ffffff);
-  --ds-bg-elevated: var(--brand-bg-elevated, #ffffff);
-  --ds-text-primary: var(--brand-text-primary, #0f172a);
 
   // Colores semánticos
   --success-color: #{$success-color};
@@ -297,6 +266,35 @@ $contrast-900: #000000;
   --ds-info-hover: #0e7490;
   --ds-info-light: #ecfeff;
 
+  // Nuevos Tokens ERP (Material 3 roles)
+  --ds-primary-container: #dce7f3;
+  --ds-on-primary-container: #072042;
+  --ds-on-primary: #ffffff;
+  
+  --ds-secondary: #64748b;
+  --ds-on-secondary: #ffffff;
+  --ds-secondary-container: #f1f5f9;
+  --ds-on-secondary-container: #0f172a;
+
+  --ds-tertiary: #0f766e;
+  --ds-on-tertiary: #ffffff;
+
+  --ds-error: var(--danger-color);
+  --ds-on-error: #ffffff;
+  --ds-error-container: var(--danger-bg);
+  --ds-on-error-container: #7f1616;
+
+  --ds-surface: #ffffff;
+  --ds-on-surface: #0f172a;
+  --ds-surface-variant: #f8fafc;
+  --ds-on-surface-variant: #475569;
+
+  --ds-outline: #cbd5e1;
+  --ds-outline-variant: #e2e8f0;
+
+  --ds-background: #f8fafc;
+  --ds-on-background: #0f172a;
+
   // Identidad Luxury / Documental
   // Paleta de soporte para documentos, portadas, reportes formales y acentos premium.
   // No reemplaza al primary ERP; acompana la marca en contextos institucionales.
@@ -326,7 +324,7 @@ $contrast-900: #000000;
   // Texto
   --ds-text-primary: #0f172a;
   --ds-text-secondary: #475569;
-  --ds-text-muted: #94a3b8;
+  --ds-text-muted: #6b7280;
   --ds-text-inverse: #ffffff;
   --ds-text-disabled: #cbd5e1;
   --ds-text-link: var(--primary-600);
@@ -469,7 +467,7 @@ body.theme-dark {
   --ds-bg-overlay: rgba(0, 0, 0, 0.65);
   --ds-text-primary: #fafafa;
   --ds-text-secondary: #a1a1aa;
-  --ds-text-muted: #71717a;
+  --ds-text-muted: #a1a1aa;
   --ds-text-inverse: #09090b;
   --ds-text-disabled: #3f3f46;
   --ds-text-link: var(--primary-400);
@@ -493,6 +491,35 @@ body.theme-dark {
   --ds-info: #22d3ee;
   --ds-info-hover: #67e8f9;
   --ds-info-light: rgba(34, 211, 238, 0.12);
+
+  // Nuevos Tokens ERP Dark (Material 3 roles)
+  --ds-primary-container: #092953;
+  --ds-on-primary-container: #dce7f3;
+  --ds-on-primary: #020811;
+  
+  --ds-secondary: #94a3b8;
+  --ds-on-secondary: #0f172a;
+  --ds-secondary-container: #1e293b;
+  --ds-on-secondary-container: #e2e8f0;
+
+  --ds-tertiary: #14b8a6;
+  --ds-on-tertiary: #042f2e;
+
+  --ds-error: #f87171;
+  --ds-on-error: #450a0a;
+  --ds-error-container: #7f1616;
+  --ds-on-error-container: #fca5a5;
+
+  --ds-surface: #18181b;
+  --ds-on-surface: #f8fafc;
+  --ds-surface-variant: #27272a;
+  --ds-on-surface-variant: #94a3b8;
+
+  --ds-outline: #52525b;
+  --ds-outline-variant: #3f3f46;
+
+  --ds-background: #09090b;
+  --ds-on-background: #f8fafc;
   --ds-luxury-gold: #d8bd69;
   --ds-luxury-gold-hover: #e5cd7f;
   --ds-luxury-gold-light: rgba(201, 168, 76, 0.16);
