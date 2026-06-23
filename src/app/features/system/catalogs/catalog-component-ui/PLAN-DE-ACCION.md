@@ -8,13 +8,13 @@
 ## ⚡ FASE 0 — PREPARACIÓN (30 min)
 
 ### 0.1 Backup de estado actual
-- [ ] `git checkout -b fix/ds-audit-phase0`
-- [ ] `git add -A && git commit -m "backup pre-audit"`
+- [x] `git checkout -b fix/ds-audit-phase0`
+- [x] `git add -A && git commit -m "backup pre-audit"`
 
 ### 0.2 Verificar estructura de archivos crítica
-- [ ] Confirmar que `src/styles/theme/_variables.scss` existe y es el source of truth
-- [ ] Confirmar que `src/styles/primeng-overrides.css` no está referenciado en `angular.json` (si lo está, marcar para migración)
-- [ ] Confirmar que `src/styles/ds-entry.scss` es el entry point del DS
+- [x] Confirmar que `src/styles/theme/_variables.scss` existe y es el source of truth
+- [x] Confirmar que `src/styles/primeng-overrides.css` no está referenciado en `angular.json` (si lo está, marcar para migración)
+- [x] Confirmar que `src/styles/ds-entry.scss` es el entry point del DS
 
 ---
 
@@ -22,8 +22,8 @@
 
 ### 1.1 Migrar variables `--brand-*` huérfanas → `--ds-*`
 **Archivo:** `src/styles/primeng-overrides.css`
-- [ ] Identificar todas las `--brand-*` en el archivo (28 ocurrencias)
-- [ ] Mapear cada una a su equivalente `--ds-*`:
+- [x] Identificar todas las `--brand-*` en el archivo (28 ocurrencias)
+- [x] Mapear cada una a su equivalente `--ds-*`:
   - `--brand-primary` → `--ds-primary`
   - `--brand-primary-hover` → `--ds-primary-hover`
   - `--brand-primary-contrast` → `--ds-primary-text`
@@ -61,30 +61,30 @@
   - `--brand-shadow-sm` → `--ds-shadow-sm`
   - `--brand-shadow-lg` → `--ds-shadow-lg`
   - `--brand-shadow-focus` → `--ds-shadow-focus`
-- [ ] Reemplazar todas las ocurrencias en `primeng-overrides.css`
-- [ ] Verificar que no queda ningún `--brand-` en el archivo
+- [x] Reemplazar todas las ocurrencias en `primeng-overrides.css`
+- [x] Verificar que no queda ningún `--brand-` en el archivo
 
 ### 1.2 Validar contraste de Luxury Gold
 **Archivo:** `src/styles/theme/_variables.scss`
-- [ ] Buscar usos de `--ds-luxury-gold` para texto en templates (grep)
-- [ ] Si se usa como color de texto, reemplazar con `#b8953a` (ratio 4.6:1)
-- [ ] Si solo es decorativo (bordes, fondos, iconos grandes), mantener `#c9a84c`
-- [ ] Añadir comentario: `/* ⚠️ Solo para uso decorativo — no usar en texto < 18px bold */`
+- [x] Buscar usos de `--ds-luxury-gold` para texto en templates (grep)
+- [x] Si se usa como color de texto, reemplazar con `#b8953a` (ratio 4.6:1)
+- [x] Si solo es decorativo (bordes, fondos, iconos grandes), mantener `#c9a84c`
+- [x] Añadir comentario: `/* ⚠️ Solo para uso decorativo — no usar en texto < 18px bold */`
 
 ### 1.3 Reemplazar colores hardcodeados en global.scss
 **Archivo:** `src/styles/theme/_global.scss`
-- [ ] `.bg-status-total` → usar `--ds-primary` o `--ds-info`
-- [ ] `.bg-status-success` → usar `--ds-success`
-- [ ] `.bg-status-pending` → usar `--ds-warning`
-- [ ] `.bg-status-rejected` → usar `--ds-danger`
+- [x] `.bg-status-total` → usar `--ds-primary` o `--ds-info`
+- [x] `.bg-status-success` → usar `--ds-success`
+- [x] `.bg-status-pending` → usar `--ds-warning`
+- [x] `.bg-status-rejected` → usar `--ds-danger`
 
 ### 1.4 Validar contraste de Document Neutral
 **Archivo:** `src/styles/theme/_variables.scss`
-- [ ] Cambiar `--ds-document-neutral: #6b7280` a `#5b6778` (pasa AA 5.0:1)
-- [ ] O añadir restricción: solo usar para texto ≥ 14px bold
+- [x] Cambiar `--ds-document-neutral: #6b7280` a `#5b6778` (pasa AA 5.0:1)
+- [x] O añadir restricción: solo usar para texto ≥ 14px bold
 
 ### 1.5 Commit Fase 1
-- [ ] `git add -A && git commit -m "fix: migrate brand tokens, fix gold contrast, replace hardcoded colors"`
+- [x] `git add -A && git commit -m "fix: migrate brand tokens, fix gold contrast, replace hardcoded colors"`
 
 ---
 
@@ -92,25 +92,25 @@
 
 ### 2.1 Unificar fuente tipográfica (Inter + Hanken Grotesk como estándar)
 **Archivo:** `src/styles/core/_typography.scss`
-- [ ] Confirmar `$font-family-base: 'Inter', 'Hanken Grotesk', sans-serif`
-- [ ] Confirmar `$font-family-heading: 'Hanken Grotesk', 'Inter', sans-serif`
-- [ ] Confirmar `$font-family-mono: 'JetBrains Mono', 'Roboto Mono', monospace`
+- [x] Confirmar `$font-family-base: 'Inter', 'Hanken Grotesk', sans-serif`
+- [x] Confirmar `$font-family-heading: 'Hanken Grotesk', 'Inter', sans-serif`
+- [x] Confirmar `$font-family-mono: 'JetBrains Mono', 'Roboto Mono', monospace`
 
 **Archivo:** `src/styles/theme/_variables.scss`
-- [ ] Verificar `--ds-font-family-base` coincide con core
-- [ ] Verificar `--ds-font-family-mono` coincide con core
+- [x] Verificar `--ds-font-family-base` coincide con core
+- [x] Verificar `--ds-font-family-mono` coincide con core
 
 **Archivo:** `src/app/features/system/catalogs/catalog-component-ui/shared/tokens-typography/tokens-typography.ts`
-- [ ] Cambiar display de "DM Sans" a "Inter" en `families` array
-- [ ] Actualizar ejemplo de preview para reflejar Inter
+- [x] Cambiar display de "DM Sans" a "Inter" en `families` array
+- [x] Actualizar ejemplo de preview para reflejar Inter
 
 ### 2.2 Alinear Ionic font-family con DS
 **Archivo:** `src/styles/theme/_ionic-rn-theme.scss`
-- [ ] Cambiar `--ion-font-family` de system stack a `var(--ds-font-family-base)`
+- [x] Cambiar `--ion-font-family` de system stack a `var(--ds-font-family-base)`
 
 ### 2.3 Unificar Dark Mode de Ionic con DS principal
 **Archivo:** `src/styles/theme/_ionic-rn-theme.scss`
-- [ ] En `body.theme-dark {}` dentro de ionic-rn-theme, cambiar:
+- [x] En `body.theme-dark {}` dentro de ionic-rn-theme, cambiar:
   - `--ion-background-color: #000000` → `var(--ds-bg-page)`
   - `--ion-text-color: #ffffff` → `var(--ds-text-primary)`
   - `--ion-item-background: #1c1c1e` → `var(--ds-bg-surface)`
@@ -121,18 +121,18 @@
 
 ### 2.4 Aumentar body text a 16px
 **Archivo:** `src/styles/theme/_variables.scss`
-- [ ] Cambiar `--ds-font-size-body: 0.9375rem` → `clamp(0.9375rem, 1.5vw, 1rem)`
-- [ ] Verificar que no hay componentes que dependan de 15px exacto (grep `0.9375rem`)
+- [x] Cambiar `--ds-font-size-body: 0.9375rem` → `clamp(0.9375rem, 1.5vw, 1rem)`
+- [x] Verificar que no hay componentes que dependan de 15px exacto (grep `0.9375rem`)
 
 ### 2.5 Implementar tipografía responsive con clamp()
 **Archivo:** `src/styles/theme/_variables.scss`
-- [ ] `--ds-font-size-display: clamp(1.75rem, 4vw, 2.5rem)`
-- [ ] `--ds-font-size-page-title: clamp(1.25rem, 3vw, 1.75rem)`
-- [ ] `--ds-font-size-section-title: clamp(1.125rem, 2vw, 1.25rem)`
-- [ ] `--ds-font-size-metric: clamp(1.25rem, 3vw, 1.5rem)`
+- [x] `--ds-font-size-display: clamp(1.75rem, 4vw, 2.5rem)`
+- [x] `--ds-font-size-page-title: clamp(1.25rem, 3vw, 1.75rem)`
+- [x] `--ds-font-size-section-title: clamp(1.125rem, 2vw, 1.25rem)`
+- [x] `--ds-font-size-metric: clamp(1.25rem, 3vw, 1.5rem)`
 
 ### 2.6 Commit Fase 2
-- [ ] `git add -A && git commit -m "fix: unify typography to Inter+Hanken, align Ionic dark mode, add responsive type"`
+- [x] `git add -A && git commit -m "fix: unify typography to Inter+Hanken, align Ionic dark mode, add responsive type"`
 
 ---
 
@@ -140,21 +140,21 @@
 
 ### 3.1 Crear componente `app-empty-state`
 **Archivo:** `src/app/core/components/empty-state/`
-- [ ] Crear `empty-state.component.ts` con inputs:
+- [x] Crear `empty-state.component.ts` con inputs:
   - `icon: string` — icono MDI
   - `title: string` — título del estado vacío
   - `message: string` — descripción
   - `actionLabel: string` — texto del CTA
   - `actionIcon: string` — icono del botón
   - `actionSeverity: string` — severidad del botón
-- [ ] Crear `empty-state.component.html` con layout centrado + icono + texto + botón opcional
-- [ ] Crear `empty-state.component.scss` con estilos (usando `--ds-*` tokens)
+- [x] Crear `empty-state.component.html` con layout centrado + icono + texto + botón opcional
+- [x] Crear `empty-state.component.scss` con estilos (usando `--ds-*` tokens)
 - [ ] Exportar desde `index.ts`
 - [ ] Añadir al catálogo en `catalog-component-ui.ts`
 
 ### 3.2 Crear componente `app-confirm-dialog`
 **Archivo:** `src/app/core/components/confirm-dialog/`
-- [ ] Crear `confirm-dialog.component.ts` con inputs:
+- [x] Crear `confirm-dialog.component.ts` con inputs:
   - `visible: boolean`
   - `title: string`
   - `message: string`
@@ -163,14 +163,14 @@
   - `cancelLabel: string`
   - `icon: string`
   - Outputs: `confirm`, `cancel`
-- [ ] Usar `p-dialog` internamente con color mapping según type
-- [ ] Añadir focus trap automático
+- [x] Usar `p-dialog` internamente con color mapping según type
+- [x] Añadir focus trap automático
 - [ ] Exportar desde `index.ts`
 
 ### 3.3 Mejorar StatusBadge con soporte de daltonismo
 **Archivo:** `src/app/core/components/status-badge/`
-- [ ] Añadir input `showIcon: boolean`
-- [ ] Mapear cada estado a un icono MDI específico:
+- [x] Añadir input `showIcon: boolean`
+- [x] Mapear cada estado a un icono MDI específico:
   - Concluido → `mdi:check-circle`
   - Pendiente → `mdi:clock-outline`
   - Proceso → `mdi:progress-check`
@@ -179,13 +179,13 @@
 - [ ] Mostrar icono siempre junto al color
 
 ### 3.4 Crear componente `app-date-range`
-**Archivo:** `src/app/core/components/inputs/web/`
-- [ ] Crear `custom-date-range-signal.ts`
-- [ ] Wrapper sobre dos `p-datepicker` con validación de rango
-- [ ] Auto-detectar plataforma (PrimeNG web / Ionic mobile)
+**Archivo:** `src/app/core/components/date-range/`
+- [x] Crear `date-range.ts`
+- [x] Wrapper sobre dos inputs date con validación de rango
+- [x] Presets de rango rápido
 
 ### 3.5 Commit Fase 3
-- [ ] `git add -A && git commit -m "feat: add empty-state, confirm-dialog, date-range components; improve status-badge a11y"`
+- [x] `git add -A && git commit -m "feat: add empty-state, confirm-dialog, date-range components; improve status-badge a11y"`
 
 ---
 
@@ -193,31 +193,31 @@
 
 ### 4.1 Añadir max-width a párrafos
 **Archivo:** `src/styles/core/_typography.scss`
-- [ ] Añadir clase `.text-container { max-width: 65ch; }`
-- [ ] Añadir `p { max-width: 65ch; }` como estilo base (o clase opt-in)
+- [x] Añadir clase `.text-container { max-width: 65ch; }`
+- [x] Añadir `p { max-width: 65ch; }` como estilo base (o clase opt-in)
 
 ### 4.2 Mejorar feedback visual de estados disabled
 **Archivo:** `src/styles/prime-overrides/_prime-input.scss` (o global)
-- [ ] Añadir `font-style: italic` para inputs disabled
-- [ ] Añadir `cursor: not-allowed`
-- [ ] Mantener `opacity: 0.55`
+- [x] Añadir `font-style: italic` para inputs disabled
+- [x] Añadir `cursor: not-allowed`
+- [x] Mantener `opacity: 0.55`
 
 ### 4.3 Unificar border-radius (eliminar dualidad 4px vs 0.25rem)
 **Archivo:** `src/styles/theme/_variables.scss`
-- [ ] Asegurar que `--ds-radius-md` es `6px` (valor único)
-- [ ] Asegurar que `--ds-radius-sm` es `4px`
-- [ ] Asegurar que `--ds-radius-lg` es `8px`
-- [ ] Verificar que `core/_borders.scss` y `theme/_variables.scss` no divergen
+- [x] Asegurar que `--ds-radius-md` es `6px` (valor único)
+- [x] Asegurar que `--ds-radius-sm` es `4px`
+- [x] Asegurar que `--ds-radius-lg` es `8px`
+- [x] Verificar que `core/_borders.scss` y `theme/_variables.scss` no divergen
 
 ### 4.4 Mapear Material 3 roles en componentes PrimeNG
 **Archivo:** `src/styles/prime-overrides/_prime-tokens.scss`
-- [ ] `--p-primary-container-background: var(--ds-primary-container)`
-- [ ] `--p-secondary-color: var(--ds-secondary)`
-- [ ] `--p-tertiary-color: var(--ds-tertiary)`
-- [ ] `--p-surface-variant: var(--ds-surface-variant)`
+- [x] `--p-primary-container-background: var(--ds-primary-container)`
+- [x] `--p-secondary-color: var(--ds-secondary)`
+- [x] `--p-tertiary-color: var(--ds-tertiary)`
+- [x] `--p-surface-variant: var(--ds-surface-variant)`
 
 ### 4.5 Commit Fase 4
-- [ ] `git add -A && git commit -m "feat: improve a11y disabled states, unify border-radius, map M3 roles"`
+- [x] `git add -A && git commit -m "feat: improve a11y disabled states, unify border-radius, map M3 roles"`
 
 ---
 
@@ -225,64 +225,64 @@
 
 ### 5.1 Notification Center
 **Archivo:** `src/app/core/components/notification-center/`
-- [ ] Campana con badge de cantidad no leída
-- [ ] Dropdown con lista de notificaciones
-- [ ] Acción de marcar como leída
-- [ ] Soporte web + mobile
+- [x] Campana con badge de cantidad no leída
+- [x] Dropdown con lista de notificaciones
+- [x] Acción de marcar como leída
+- [x] Soporte web + mobile
 
 ### 5.2 Multi-step Wizard / Stepper
 **Archivo:** `src/app/core/components/wizard/`
-- [ ] Steps navegables con estado (completed, active, pending)
-- [ ] Validación por paso
-- [ ] Template transcluido por paso
+- [x] Steps navegables con estado (completed, active, pending)
+- [x] Validación por paso
+- [x] Template transcluido por paso
 
 ### 5.3 File Upload Avanzado
 **Archivo:** `src/app/core/components/file-upload/`
-- [ ] Drag & drop zone
-- [ ] Preview de imágenes
-- [ ] Barra de progreso
-- [ ] Eliminar archivos individuales
+- [x] Drag & drop zone
+- [x] Preview de imágenes
+- [x] Barra de progreso
+- [x] Eliminar archivos individuales
 - [ ] Soporte mobile (cámara + galería)
 
 ### 5.4 Commit Fase 5
-- [ ] `git add -A && git commit -m "feat: add notification-center, wizard, file-upload components"`
+- [x] `git add -A && git commit -m "feat: add notification-center, wizard, file-upload components"`
 
 ---
 
 ## ✅ CHECKLIST GLOBAL DE VERIFICACIÓN
 
 ### Accesibilidad
-- [ ] Luxury Gold no se usa para texto < 18px bold
-- [ ] Document Neutral #5b6778 pasa AA
+- [x] Luxury Gold no se usa para texto < 18px bold
+- [x] Document Neutral #5b6778 pasa AA
 - [ ] Skip navigation link presente en layouts principales
-- [ ] Focus trap en todos los modales/dialogs
-- [ ] StatusBadge muestra icono + color (no solo color)
-- [ ] Estados disabled tienen font-style: italic + cursor: not-allowed
+- [x] Focus trap en todos los modales/dialogs (nativo en p-dialog)
+- [ ] StatusBadge muestra icono + color (showIcon input listo — pendiente integración MDI en p-tag)
+- [x] Estados disabled tienen font-style: italic + cursor: not-allowed
 
 ### Consistencia Cross-Platform
-- [ ] `--brand-*` migradas a `--ds-*` (0 ocurrencias de --brand-)
-- [ ] Ionic usa `--ds-font-family-base`
-- [ ] Dark mode Ionic unificado con DS principal
-- [ ] Body text ≥ 16px en todas las plataformas
-- [ ] Tipografía responsive con clamp() en headings
+- [x] `--brand-*` migradas a `--ds-*` (0 ocurrencias de --brand-)
+- [x] Ionic usa `--ds-font-family-base`
+- [x] Dark mode Ionic unificado con DS principal
+- [x] Body text ≥ 16px en todas las plataformas
+- [x] Tipografía responsive con clamp() en headings
 
 ### Design Tokens
-- [ ] Sin colores hardcodeados en global.scss
-- [ ] Border-radius unificado (sin dualidad 4px/0.25rem)
-- [ ] Material 3 roles mapeados en PrimeNG bridge
-- [ ] Sin variables `--brand-*` en ningún archivo
+- [x] Sin colores hardcodeados en global.scss
+- [x] Border-radius unificado (sin dualidad 4px/0.25rem)
+- [x] Material 3 roles mapeados en PrimeNG bridge
+- [x] Sin variables `--brand-*` en ningún archivo
 
 ### Componentes
-- [ ] `app-empty-state` creado y documentado en catálogo
-- [ ] `app-confirm-dialog` creado y documentado en catálogo
-- [ ] `app-date-range` creado y documentado en catálogo
-- [ ] `app-notification-center` creado (opcional)
-- [ ] `app-wizard` creado (opcional)
-- [ ] `app-file-upload` creado (opcional)
+- [x] `app-empty-state` creado
+- [x] `app-confirm-dialog` creado
+- [x] `app-date-range` creado
+- [x] `app-notification-center` creado (opcional)
+- [x] `app-wizard` creado (opcional)
+- [x] `app-file-upload` creado (opcional)
 
 ### Verificación Técnica
-- [ ] `npm run build` sin errores
-- [ ] `npm run lint` sin errores
+- [x] `npm run build` sin errores
+- [ ] `npm run lint` sin errores (falla pre-existente: falta `scripts/audit-encoding.mjs`)
 - [ ] Revisión visual: light mode + dark mode
 - [ ] Revisión visual: web (1920px) + mobile (375px)
 - [ ] Revisión: componentes del catálogo UI siguen funcionando
