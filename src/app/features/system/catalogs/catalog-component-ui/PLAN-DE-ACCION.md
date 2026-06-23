@@ -176,7 +176,7 @@
   - Proceso → `mdi:progress-check`
   - Cancelado → `mdi:cancel`
   - noAutorizado → `mdi:block-helper`
-- [ ] Mostrar icono siempre junto al color
+- [x] Mostrar icono siempre junto al color
 
 ### 3.4 Crear componente `app-date-range`
 **Archivo:** `src/app/core/components/date-range/`
@@ -256,7 +256,7 @@
 - [x] Document Neutral #5b6778 pasa AA
 - [ ] Skip navigation link presente en layouts principales
 - [x] Focus trap en todos los modales/dialogs (nativo en p-dialog)
-- [ ] StatusBadge muestra icono + color (showIcon input listo — pendiente integración MDI en p-tag)
+- [x] StatusBadge muestra icono + color (custom layout con app-icon + DS tokens)
 - [x] Estados disabled tienen font-style: italic + cursor: not-allowed
 
 ### Consistencia Cross-Platform
