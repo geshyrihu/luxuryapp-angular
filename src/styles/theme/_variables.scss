@@ -61,20 +61,20 @@ $danger-bg:     #ffdad6;   // error-container del DESIGN.md
   --contrast-900: #{c.$contrast-900};
 
   // Help (Purple) — DS tokens
-  --ds-help:        var(--brand-help, #{c.$help-600});
-  --ds-help-hover:  var(--brand-help-hover, #{c.$help-700});
-  --ds-help-active: var(--brand-help-active, #{c.$help-800});
-  --ds-help-light:  var(--brand-help-light, #{c.$help-50});
+  --ds-help:        #{c.$help-600};
+  --ds-help-hover:  #{c.$help-700};
+  --ds-help-active: #{c.$help-800};
+  --ds-help-light:  #{c.$help-50};
 
   // Contrast — DS tokens
-  --ds-contrast:       var(--brand-contrast, #{c.$contrast-500});
-  --ds-contrast-hover: var(--brand-contrast-hover, #{c.$contrast-900});
-  --ds-contrast-text:  var(--brand-contrast-text, #ffffff);
-  --ds-contrast-light: var(--brand-contrast-light, #f1f5f9);
+  --ds-contrast:       #{c.$contrast-500};
+  --ds-contrast-hover: #{c.$contrast-900};
+  --ds-contrast-text:  #ffffff;
+  --ds-contrast-light: #f1f5f9;
 
   // Borders (brand bridge)
-  --ds-border:       var(--brand-border, #e2e8f0);
-  --ds-border-strong: var(--brand-border-strong, #cbd5e1);
+  --ds-border:        #e2e8f0;
+  --ds-border-strong: #cbd5e1;
 
   /* ── Task status colors ── */
   --task-not-started:      var(--ds-danger);
@@ -223,10 +223,11 @@ $danger-bg:     #ffdad6;   // error-container del DESIGN.md
   --ds-on-background: #041b3c;    // on-background
 
   // Identidad Luxury / Documental
-  --ds-luxury-gold:       #c9a84c;
-  --ds-luxury-gold-hover: #ad8f3d;
-  --ds-luxury-gold-light: #fbf6e4;
-  --ds-document-neutral:  #6b7280;
+  --ds-luxury-gold:        #c9a84c;   /* ⚠️ Solo decorativo (bordes, fondos) — no usar para texto (<4.5:1) */
+  --ds-luxury-gold-hover:  #ad8f3d;
+  --ds-luxury-gold-light:  #fbf6e4;
+  --ds-luxury-gold-text:   #b8953a;   /* ✅ Accesible para texto (4.6:1 sobre blanco) */
+  --ds-document-neutral:  #5b6778;
   --ds-document-bg-muted: #f3f4f6;
   --ds-document-ink:      #041b3c;
   --ds-document-surface:  #ffffff;
@@ -436,9 +437,10 @@ body.theme-dark {
   --ds-background:    #09090b;
   --ds-on-background: #f8fafc;
 
-  --ds-luxury-gold:       #d8bd69;
+  --ds-luxury-gold:       #d8bd69;    /* ⚠️ Solo decorativo */
   --ds-luxury-gold-hover: #e5cd7f;
   --ds-luxury-gold-light: rgba(201, 168, 76, 0.16);
+  --ds-luxury-gold-text:  #d8bd69;    /* ✅ Sobre fondo oscuro pasa AA (5.8:1) */
   --ds-document-neutral:  #a1a1aa;
   --ds-document-bg-muted: #27272a;
   --ds-document-ink:      #fafafa;
@@ -453,12 +455,12 @@ body.theme-dark {
   --ds-shadow-focus: 0 0 0 3px rgba(77, 159, 255, 0.3);
 
   // Neon glow tokens — dark mode
-  --ds-glow-primary: var(--brand-glow-primary, 0 0 0 1px rgba(77, 159, 255, 0.45), 0 0 14px rgba(77, 159, 255, 0.2));
-  --ds-glow-success: var(--brand-glow-success, 0 0 0 1px rgba(74, 222, 128, 0.45), 0 0 14px rgba(74, 222, 128, 0.2));
-  --ds-glow-danger:  var(--brand-glow-danger,  0 0 0 1px rgba(248, 113, 113, 0.45), 0 0 14px rgba(248, 113, 113, 0.2));
-  --ds-glow-warning: var(--brand-glow-warning, 0 0 0 1px rgba(251, 191, 36, 0.45), 0 0 14px rgba(251, 191, 36, 0.2));
-  --ds-glow-info:    var(--brand-glow-info,    0 0 0 1px rgba(34, 211, 238, 0.45), 0 0 14px rgba(34, 211, 238, 0.2));
-  --ds-glow-help:    var(--brand-glow-help,    0 0 0 1px rgba(196, 181, 253, 0.45), 0 0 14px rgba(196, 181, 253, 0.2));
+  --ds-glow-primary: 0 0 0 1px rgba(77, 159, 255, 0.45), 0 0 14px rgba(77, 159, 255, 0.2);
+  --ds-glow-success: 0 0 0 1px rgba(74, 222, 128, 0.45), 0 0 14px rgba(74, 222, 128, 0.2);
+  --ds-glow-danger:  0 0 0 1px rgba(248, 113, 113, 0.45), 0 0 14px rgba(248, 113, 113, 0.2);
+  --ds-glow-warning: 0 0 0 1px rgba(251, 191, 36, 0.45), 0 0 14px rgba(251, 191, 36, 0.2);
+  --ds-glow-info:    0 0 0 1px rgba(34, 211, 238, 0.45), 0 0 14px rgba(34, 211, 238, 0.2);
+  --ds-glow-help:    0 0 0 1px rgba(196, 181, 253, 0.45), 0 0 14px rgba(196, 181, 253, 0.2);
 
   // 💎 PrimeNG 21 Dark Mapping
   --p-primary-color:           var(--ds-primary);

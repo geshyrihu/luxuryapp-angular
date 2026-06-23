@@ -177,8 +177,8 @@
   .card.card-interactive,
   .card[tabindex],
   .card[role="button"] {
-    transition: box-shadow var(--brand-transition-base, 200ms ease),
-                border-color var(--brand-transition-base, 200ms ease);
+    transition: box-shadow 200ms ease,
+                border-color 200ms ease;
 
     &:hover {
       box-shadow: var(--ds-glow-primary);
@@ -191,7 +191,7 @@
   .card.border-danger  { box-shadow: var(--ds-glow-danger);  border-color: var(--ds-danger);  }
   .card.border-warning { box-shadow: var(--ds-glow-warning); border-color: var(--ds-warning); }
   .card.border-info    { box-shadow: var(--ds-glow-info);    border-color: var(--ds-info);    }
-  .card.border-help    { box-shadow: var(--ds-glow-help);    border-color: var(--ds-help, var(--brand-help)); }
+  .card.border-help    { box-shadow: var(--ds-glow-help);    border-color: var(--ds-help); }
 
   // ── 9. PrimeNG PANEL & FIELDSET ──────────────────────────────
 

@@ -25,53 +25,53 @@
   /* Altura consistente para todos los botones */
   .p-button {
     height: 40px;
-    font-family: var(--brand-font-sans);
-    font-size: var(--brand-font-size-sm);
+    font-family: var(--ds-font-family-base);
+    font-size: var(--ds-font-size-body);
     font-weight: 500;
-    border-radius: var(--brand-radius-btn);
-    transition: var(--brand-transition-base);
+    border-radius: var(--ds-radius-btn);
+    transition: var(200ms ease);
   }
 
   /* Botón primario - usar color de marca */
   .p-button.p-button-primary {
-    background: var(--brand-primary);
-    border-color: var(--brand-primary);
-    color: var(--brand-primary-contrast);
+    background: var(--ds-primary);
+    border-color: var(--ds-primary);
+    color: var(--ds-primary-text);
   }
 
   .p-button.p-button-primary:hover {
-    background: var(--brand-primary-hover);
-    border-color: var(--brand-primary-hover);
+    background: var(--ds-primary-hover);
+    border-color: var(--ds-primary-hover);
   }
 
   .p-button.p-button-primary:active {
-    background: var(--brand-primary-active);
-    border-color: var(--brand-primary-active);
+    background: var(--ds-primary-active);
+    border-color: var(--ds-primary-active);
   }
 
   /* Botón secundario */
   .p-button.p-button-secondary {
     background: transparent;
-    border-color: var(--brand-border);
-    color: var(--brand-text-primary);
+    border-color: var(--ds-border);
+    color: var(--ds-text-primary);
   }
 
   .p-button.p-button-secondary:hover {
-    background: var(--brand-bg-sunken);
-    border-color: var(--brand-border-strong);
+    background: var(--ds-bg-sunken);
+    border-color: var(--ds-border-strong);
   }
 
   /* Botón de éxito */
   .p-button.p-button-success {
-    background: var(--brand-success);
-    border-color: var(--brand-success);
+    background: var(--ds-success);
+    border-color: var(--ds-success);
     color: white;
   }
 
   /* Botón de peligro */
   .p-button.p-button-danger {
-    background: var(--brand-danger);
-    border-color: var(--brand-danger);
+    background: var(--ds-danger);
+    border-color: var(--ds-danger);
     color: white;
   }
 
@@ -88,30 +88,30 @@
   /* Altura consistente para inputs (40px igual que botones) */
   .p-inputtext {
     height: 40px;
-    font-family: var(--brand-font-sans);
-    font-size: var(--brand-font-size-sm);
-    border-radius: var(--brand-radius-input);
-    border-color: var(--brand-border);
-    transition: var(--brand-transition-fast);
+    font-family: var(--ds-font-family-base);
+    font-size: var(--ds-font-size-body);
+    border-radius: var(--ds-radius-input);
+    border-color: var(--ds-border);
+    transition: var(100ms ease);
   }
 
   .p-inputtext:hover {
-    border-color: var(--brand-border-strong);
+    border-color: var(--ds-border-strong);
   }
 
   .p-inputtext:focus {
-    border-color: var(--brand-border-focus);
-    box-shadow: 0 0 0 2px var(--brand-border-focus);
+    border-color: var(--ds-border-focus);
+    box-shadow: 0 0 0 2px var(--ds-border-focus);
   }
 
   .p-inputtext:disabled {
-    background-color: var(--brand-bg-sunken);
-    color: var(--brand-text-disabled);
+    background-color: var(--ds-bg-sunken);
+    color: var(--ds-text-disabled);
     cursor: not-allowed;
   }
 
   .p-inputtext.ng-dirty.ng-invalid {
-    border-color: var(--brand-danger);
+    border-color: var(--ds-danger);
   }
 
   /* Textarea - altura automática */
@@ -126,23 +126,23 @@
 
   .p-select {
     height: 40px;
-    font-family: var(--brand-font-sans);
-    font-size: var(--brand-font-size-sm);
-    border-radius: var(--brand-radius-input);
-    border-color: var(--brand-border);
+    font-family: var(--ds-font-family-base);
+    font-size: var(--ds-font-size-body);
+    border-radius: var(--ds-radius-input);
+    border-color: var(--ds-border);
   }
 
   .p-select:hover {
-    border-color: var(--brand-border-strong);
+    border-color: var(--ds-border-strong);
   }
 
   .p-select:focus {
-    border-color: var(--brand-border-focus);
-    box-shadow: 0 0 0 2px var(--brand-border-focus);
+    border-color: var(--ds-border-focus);
+    box-shadow: 0 0 0 2px var(--ds-border-focus);
   }
 
   .p-select.ng-dirty.ng-invalid {
-    border-color: var(--brand-danger);
+    border-color: var(--ds-danger);
   }
 
   /* ═══════════════════════════════════════════
@@ -151,29 +151,29 @@
 
   /* Header con color primario de marca */
   .p-datatable .p-datatable-header {
-    background: var(--brand-primary);
-    color: var(--brand-primary-contrast);
-    border-color: var(--brand-primary);
+    background: var(--ds-primary);
+    color: var(--ds-primary-text);
+    border-color: var(--ds-primary);
     font-weight: 600;
   }
 
   /* Filas de la tabla */
   .p-datatable .p-datatable-tbody > tr {
-    transition: var(--brand-transition-fast);
+    transition: var(100ms ease);
   }
 
   .p-datatable .p-datatable-tbody > tr:hover {
-    background: var(--brand-bg-sunken);
+    background: var(--ds-bg-sunken);
   }
 
   .p-datatable .p-datatable-tbody > tr.p-highlight {
-    background: color-mix(in srgb, var(--brand-primary) 10%, transparent);
-    color: var(--brand-primary);
+    background: color-mix(in srgb, var(--ds-primary) 10%, transparent);
+    color: var(--ds-primary);
   }
 
   /* Celdas */
   .p-datatable .p-datatable-tbody > tr > td {
-    border-color: var(--brand-border);
+    border-color: var(--ds-border);
     padding: 0.75rem 1rem;
   }
 
@@ -182,13 +182,13 @@
      ═══════════════════════════════════════════ */
 
   .p-dialog {
-    border-radius: var(--brand-radius-overlay);
-    box-shadow: var(--brand-shadow-xl);
+    border-radius: var(--ds-radius-modal);
+    box-shadow: var(--ds-shadow-xl);
   }
 
   .p-dialog .p-dialog-header {
-    background: var(--brand-bg-surface);
-    border-bottom: 1px solid var(--brand-border);
+    background: var(--ds-bg-surface);
+    border-bottom: 1px solid var(--ds-border);
     padding: 1rem 1.5rem;
     font-weight: 600;
   }
@@ -198,7 +198,7 @@
   }
 
   .p-dialog .p-dialog-footer {
-    border-top: 1px solid var(--brand-border);
+    border-top: 1px solid var(--ds-border);
     padding: 1rem 1.5rem;
     gap: 0.5rem;
   }
@@ -208,25 +208,25 @@
      ═══════════════════════════════════════════ */
 
   .p-tag {
-    font-size: var(--brand-font-size-xs);
+    font-size: var(--ds-font-size-micro);
     font-weight: 500;
     padding: 0.25rem 0.5rem;
-    border-radius: var(--brand-radius-btn);
+    border-radius: var(--ds-radius-btn);
   }
 
   .p-tag.p-tag-success {
-    background: var(--brand-success-bg);
-    color: var(--brand-success-text);
+    background: var(--ds-success-light);
+    color: var(--ds-success);
   }
 
   .p-tag.p-tag-warn {
-    background: var(--brand-warning-bg);
-    color: var(--brand-warning-text);
+    background: var(--ds-warning-light);
+    color: var(--ds-warning);
   }
 
   .p-tag.p-tag-danger {
-    background: var(--brand-danger-bg);
-    color: var(--brand-danger-text);
+    background: var(--ds-danger-light);
+    color: var(--ds-danger);
   }
 
   /* ═══════════════════════════════════════════
@@ -234,32 +234,32 @@
      ═══════════════════════════════════════════ */
 
   .p-message {
-    border-radius: var(--brand-radius-card);
+    border-radius: var(--ds-radius-card);
     border-width: 0 0 0 4px;
   }
 
   .p-message.p-message-success {
-    background: var(--brand-success-bg);
-    border-left-color: var(--brand-success);
-    color: var(--brand-success-text);
+    background: var(--ds-success-light);
+    border-left-color: var(--ds-success);
+    color: var(--ds-success);
   }
 
   .p-message.p-message-warn {
-    background: var(--brand-warning-bg);
-    border-left-color: var(--brand-warning);
-    color: var(--brand-warning-text);
+    background: var(--ds-warning-light);
+    border-left-color: var(--ds-warning);
+    color: var(--ds-warning);
   }
 
   .p-message.p-message-error {
-    background: var(--brand-danger-bg);
-    border-left-color: var(--brand-danger);
-    color: var(--brand-danger-text);
+    background: var(--ds-danger-light);
+    border-left-color: var(--ds-danger);
+    color: var(--ds-danger);
   }
 
   .p-message.p-message-info {
-    background: var(--brand-info-bg);
-    border-left-color: var(--brand-info);
-    color: var(--brand-info-text);
+    background: var(--ds-info-light);
+    border-left-color: var(--ds-info);
+    color: var(--ds-info);
   }
 
   /* ═══════════════════════════════════════════
@@ -271,8 +271,8 @@
   }
 
   .p-datepicker {
-    border-radius: var(--brand-radius-overlay);
-    box-shadow: var(--brand-shadow-lg);
+    border-radius: var(--ds-radius-modal);
+    box-shadow: var(--ds-shadow-lg);
   }
 
   /* ═══════════════════════════════════════════
@@ -280,24 +280,24 @@
      ═══════════════════════════════════════════ */
 
   .p-card {
-    border-radius: var(--brand-radius-card);
-    box-shadow: var(--brand-shadow-sm);
-    background: var(--brand-bg-surface);
-    color: var(--brand-text-primary);
+    border-radius: var(--ds-radius-card);
+    box-shadow: var(--ds-shadow-sm);
+    background: var(--ds-bg-surface);
+    color: var(--ds-text-primary);
   }
 
   .p-card .p-card-title {
-    font-size: var(--brand-font-size-lg);
+    font-size: var(--ds-font-size-card-title);
     font-weight: 600;
-    color: var(--brand-text-primary);
+    color: var(--ds-text-primary);
   }
 
   .p-card .p-card-subtitle {
-    color: var(--brand-text-secondary);
+    color: var(--ds-text-secondary);
   }
 
   .p-card .p-card-content {
-    color: var(--brand-text-primary);
+    color: var(--ds-text-primary);
   }
 
   /* ═══════════════════════════════════════════
@@ -305,7 +305,7 @@
      ═══════════════════════════════════════════ */
 
   .p-dialog-mask {
-    background: var(--brand-bg-overlay);
+    background: var(--ds-bg-overlay);
   }
 
   /* ═══════════════════════════════════════════
@@ -313,7 +313,7 @@
      ═══════════════════════════════════════════ */
 
   :focus-visible {
-    outline: 2px solid var(--brand-border-focus);
+    outline: 2px solid var(--ds-border-focus);
     outline-offset: 2px;
   }
 }

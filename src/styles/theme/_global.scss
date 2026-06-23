@@ -139,37 +139,37 @@ i,
 /* 6. CLASES DE ESTADO (Badges/Etiquetas) */
 /* Total - Azul corporativo opaco */
 .bg-status-total {
-  background-color: #4b6584 !important;
+  background-color: var(--ds-info) !important;
   color: #ffffff !important;
   &:hover {
-    background-color: #3c5368 !important;
+    background-color: var(--ds-info-hover) !important;
   }
 }
 
 /* Concluidos - Verde apagado */
 .bg-status-success {
-  background-color: #27ae60 !important;
+  background-color: var(--ds-success) !important;
   color: #ffffff !important;
   &:hover {
-    background-color: #1e8449 !important;
+    background-color: var(--ds-success-hover) !important;
   }
 }
 
 /* Pendientes - Naranja/Ámbar opaco */
 .bg-status-pending {
-  background-color: #e67e22 !important;
+  background-color: var(--ds-warning) !important;
   color: #ffffff !important;
   &:hover {
-    background-color: #ca6f1e !important;
+    background-color: var(--ds-warning-hover) !important;
   }
 }
 
 /* No Autorizados - Púrpura/Morado opaco */
 .bg-status-rejected {
-  background-color: #8e44ad !important;
+  background-color: var(--ds-help) !important;
   color: #ffffff !important;
   &:hover {
-    background-color: #7d3c98 !important;
+    background-color: var(--ds-help-hover) !important;
   }
 }
 

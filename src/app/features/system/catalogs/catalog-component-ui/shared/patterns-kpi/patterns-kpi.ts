@@ -100,7 +100,7 @@ import { IonIcon } from "@ionic/angular/standalone";
             <div class="surface-card shadow-1 border-round-lg p-3 border-left-3 border-success flex justify-content-between align-items-center">
               <div>
                 <span class="block text-secondary text-xs font-bold uppercase mb-1">Fondeo Disponible</span>
-                <span class="text-2xl font-bold" style="color: var(--ds-luxury-gold, #c9a84c); font-weight: 800;">$1,850,400.00</span>
+                <span class="text-2xl font-bold" style="color: var(--ds-luxury-gold-text, #b8953a); font-weight: 800;">$1,850,400.00</span>
                 <div class="text-xs text-green-600 mt-2 font-bold flex align-items-center gap-1">
                   <app-icon [icon]="'mdi:check-circle'" />
                   <span>Fondo de reserva consolidado</span>
