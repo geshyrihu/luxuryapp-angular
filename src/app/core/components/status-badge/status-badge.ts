@@ -20,12 +20,6 @@ export interface StatusClickEvent {
   status: any;
 }
 
-/**
- * 🏷️ STATUS BADGE
- * -------------------------------------------------------------------------
- * Badge de estado con colores codificados.
- * Clickable y con tooltip, estilizado para mostrar el ciclo de vida.
- */
 @Component({
   selector: "app-status-badge",
   imports: [TooltipModule, TagModule],
@@ -42,15 +36,14 @@ export interface StatusClickEvent {
   styles: [``],
 })
 export class StatusBadge {
-  // <--- Inputs --->
   status = input.required<any>();
   itemId = input<any>(undefined);
   clickable = input<boolean>(true);
   tooltip = input<string>("Actualizar estatus");
   isEmpresa = input<boolean>(false);
   isVisibility = input<boolean>(false);
+  showIcon = input<boolean>(true);
 
-  // <--- Outputs --->
   statusClick = output<StatusClickEvent>();
 
   private statusConfig: Record<number, { text: string; severity: "success" | "info" | "warn" | "danger" | "secondary" | "contrast" }> = {
