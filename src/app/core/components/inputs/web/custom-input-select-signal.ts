@@ -1,13 +1,12 @@
-﻿import { Component, forwardRef, inject, input, output } from "@angular/core";
+﻿import { Component, forwardRef, input, output } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { IonSelect, IonSelectOption } from "@ionic/angular/standalone";
 import { SelectModule } from "primeng/select";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 @Component({
   selector: "custom-input-select-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, SelectModule, IonSelect, IonSelectOption],
+  imports: [BaseInputSignal, ReactiveFormsModule, SelectModule],
   template: `
     <base-input-signal
       [control]="control()"
@@ -23,44 +22,26 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [hidden]="hidden()"
       [onlyInput]="onlyInput()"
     >
-      @if (platform.isMobile()) {
-        <ion-select
-          [id]="id()"
-          [formControl]="control() || internalControl"
-          [placeholder]="placeholder() || 'Seleccione una opción'"
-          [interface]="interfaceMode()"
-          [cancelText]="cancelText()"
-          [okText]="okText()"
-          (ionChange)="onIonChange($event)"
-        >
-          @for (opt of data(); track opt[optionValue()]) {
-            <ion-select-option [value]="opt[optionValue()]">
-              {{ opt[optionLabel()] }}
-            </ion-select-option>
-          }
-        </ion-select>
-      } @else {
-        <p-select
-          [options]="data()"
-          [formControl]="control() || internalControl"
-          [placeholder]="placeholder()"
-          [showClear]="showClear()"
-          [attr.disabled]="disabled() ? true : null"
-          [readonly]="readonly()"
-          [inputId]="id()"
-          [optionLabel]="optionLabel()"
-          [optionValue]="optionValue()"
-          [dataKey]="optionValue()"
-          [class]="customClass()"
-          fluid
-          (onChange)="selectionChange.emit($event)"
-          appendTo="body"
-          [filter]="filter()"
-          [filterBy]="filterBy()"
-          [invalid]="isInvalid()"
-          [size]="size()"
-        />
-      }
+      <p-select
+        [options]="data()"
+        [formControl]="control() || internalControl"
+        [placeholder]="placeholder()"
+        [showClear]="showClear()"
+        [attr.disabled]="disabled() ? true : null"
+        [readonly]="readonly()"
+        [inputId]="id()"
+        [optionLabel]="optionLabel()"
+        [optionValue]="optionValue()"
+        [dataKey]="optionValue()"
+        [class]="customClass()"
+        fluid
+        (onChange)="selectionChange.emit($event)"
+        appendTo="body"
+        [filter]="filter()"
+        [filterBy]="filterBy()"
+        [invalid]="isInvalid()"
+        [size]="size()"
+      />
     </base-input-signal>
   `,
   providers: [
@@ -84,16 +65,8 @@ export class CustomInputSelectSignal extends BaseInputSignal implements ControlV
   optionValue = input<string>("value");
   customClass = input<string>("");
   size = input<"small" | "large" | undefined>(undefined);
-  interfaceMode = input<"action-sheet" | "alert" | "popover">("action-sheet");
-  cancelText = input<string>("Cancelar");
-  okText = input<string>("Aceptar");
-
   constructor() {
     super();
-  }
-
-  onIonChange(event: any): void {
-    this.selectionChange.emit(event.detail.value);
   }
 
   override registerOnChange(fn: any): void { this.onChange = fn; }

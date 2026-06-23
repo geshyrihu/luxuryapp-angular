@@ -1,12 +1,11 @@
-﻿import { Component, computed, forwardRef, inject, input, output } from "@angular/core";
+﻿import { Component, computed, forwardRef, input, output } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { IonInput } from "@ionic/angular/standalone";
 import { InputNumberModule } from "primeng/inputnumber";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 @Component({
   selector: "custom-input-number-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, InputNumberModule, IonInput],
+  imports: [BaseInputSignal, ReactiveFormsModule, InputNumberModule],
   template: `
     <base-input-signal
       [control]="control() || internalControl"
@@ -20,45 +19,30 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [onlyInput]="onlyInput()"
       [noMargin]="noMargin()"
     >
-      @if (platform.isMobile()) {
-        <ion-input
-          type="number"
-          inputmode="decimal"
-          [id]="id()"
-          [formControl]="control() || internalControl"
-          [placeholder]="placeholder()"
-          clearInput
-          [readonly]="readonly()"
-          [min]="min()"
-          [max]="max()"
-          [step]="step()"
-        />
-      } @else {
-        <p-inputnumber
-          [inputId]="id()"
-          [formControl]="control() || internalControl"
-          [placeholder]="placeholder()"
-          [readonly]="readonly()"
-          [attr.min]="min()"
-          [attr.max]="max()"
-          [attr.step]="step()"
-          [showButtons]="showButtons()"
-          [minFractionDigits]="minFractionDigits()"
-          [maxFractionDigits]="maxFractionDigits()"
-          [mode]="mode()"
-          [currency]="currency()"
-          [locale]="locale()"
-          [useGrouping]="useGrouping()"
-          [prefix]="prefix()"
-          [suffix]="suffix()"
-          [showClear]="showClear()"
-          [inputStyleClass]="inputStyleClass()"
-          [invalid]="isInvalid()"
-          (onBlur)="blur.emit()"
-          (keydown.enter)="enter.emit()"
-          fluid
-        />
-      }
+      <p-inputnumber
+        [inputId]="id()"
+        [formControl]="control() || internalControl"
+        [placeholder]="placeholder()"
+        [readonly]="readonly()"
+        [attr.min]="min()"
+        [attr.max]="max()"
+        [attr.step]="step()"
+        [showButtons]="showButtons()"
+        [minFractionDigits]="minFractionDigits()"
+        [maxFractionDigits]="maxFractionDigits()"
+        [mode]="mode()"
+        [currency]="currency()"
+        [locale]="locale()"
+        [useGrouping]="useGrouping()"
+        [prefix]="prefix()"
+        [suffix]="suffix()"
+        [showClear]="showClear()"
+        [inputStyleClass]="inputStyleClass()"
+        [invalid]="isInvalid()"
+        (onBlur)="blur.emit()"
+        (keydown.enter)="enter.emit()"
+        fluid
+      />
     </base-input-signal>
   `,
   providers: [

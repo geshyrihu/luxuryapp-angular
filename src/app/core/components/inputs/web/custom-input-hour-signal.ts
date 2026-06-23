@@ -1,6 +1,5 @@
-﻿import { Component, forwardRef, inject, input } from "@angular/core";
+﻿import { Component, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { IonInput } from "@ionic/angular/standalone";
 import { FlatpickrDirective } from "angularx-flatpickr";
 import { Spanish } from "flatpickr/dist/l10n/es";
 import { InputTextModule } from "primeng/inputtext";
@@ -13,7 +12,6 @@ import { BaseInputSignal } from "../base/base-input-signal";
     ReactiveFormsModule,
     FlatpickrDirective,
     InputTextModule,
-    IonInput,
   ],
   template: `
     <base-input-signal
@@ -26,33 +24,23 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [disabled]="disabled()"
       [required]="requiredInput()"
     >
-      @if (platform.isMobile()) {
-        <ion-input
-          type="time"
-          [id]="id()"
-          [formControl]="control() || internalControl"
-          [placeholder]="placeholder()"
-          [readonly]="readonly()"
-        />
-      } @else {
-        <input
-          type="text"
-          pInputText
-          [id]="id()"
-          [formControl]="control() || internalControl"
-          [placeholder]="placeholder()"
-          mwlFlatpickr
-          [locale]="spanishLocale"
-          [altInput]="true"
-          [convertModelValue]="true"
-          [enableTime]="true"
-          [noCalendar]="true"
-          dateFormat="H:i"
-          [pSize]="size()"
-          (change)="handleFlatpickrChange($event.target.value)"
-          fluid
-        />
-      }
+      <input
+        type="text"
+        pInputText
+        [id]="id()"
+        [formControl]="control() || internalControl"
+        [placeholder]="placeholder()"
+        mwlFlatpickr
+        [locale]="spanishLocale"
+        [altInput]="true"
+        [convertModelValue]="true"
+        [enableTime]="true"
+        [noCalendar]="true"
+        dateFormat="H:i"
+        [pSize]="size()"
+        (change)="handleFlatpickrChange($event.target.value)"
+        fluid
+      />
     </base-input-signal>
   `,
   providers: [

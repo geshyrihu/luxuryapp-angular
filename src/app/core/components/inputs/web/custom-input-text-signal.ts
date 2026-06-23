@@ -1,12 +1,11 @@
-﻿import { Component, forwardRef, inject, input } from "@angular/core";
+﻿import { Component, forwardRef, input } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { IonInput } from "@ionic/angular/standalone";
 import { InputTextModule } from "primeng/inputtext";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 @Component({
   selector: "custom-input-text-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, InputTextModule, IonInput],
+  imports: [BaseInputSignal, ReactiveFormsModule, InputTextModule],
   template: `
     <base-input-signal
       [control]="control()"
@@ -21,30 +20,19 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [description]="description()"
       [hidden]="hidden()"
     >
-      @if (platform.isMobile()) {
-        <ion-input
-          [type]="type()"
-          [id]="id()"
-          [formControl]="control() || internalControl"
-          [placeholder]="placeholder()"
-          clearInput
-          [readonly]="readonly()"
-        />
-      } @else {
-        <input
-          [type]="type()"
-          pInputText
-          [id]="id()"
-          [formControl]="control() || internalControl"
-          [placeholder]="placeholder()"
-          [readOnly]="readonly()"
-          [class]="customClass()"
-          [pSize]="size()"
-          [invalid]="isInvalid()"
-          [attr.list]="list()"
-          fluid
-        />
-      }
+      <input
+        [type]="type()"
+        pInputText
+        [id]="id()"
+        [formControl]="control() || internalControl"
+        [placeholder]="placeholder()"
+        [readOnly]="readonly()"
+        [class]="customClass()"
+        [pSize]="size()"
+        [invalid]="isInvalid()"
+        [attr.list]="list()"
+        fluid
+      />
     </base-input-signal>
   `,
   providers: [

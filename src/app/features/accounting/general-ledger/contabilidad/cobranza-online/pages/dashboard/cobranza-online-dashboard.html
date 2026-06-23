@@ -272,7 +272,7 @@
           </div>
           <div class="text-right text-color-secondary text-sm">
             <div>DÃƒÂ­a {{ template.diayOfMonth }}</div>
-            <div>{{ formatdate(template.startdate) }}</div>
+            <div>{{ formatDate(template.startDate) }}</div>
           </div>
         </div>
       </div>
@@ -351,7 +351,7 @@
             <div class="col-12 xl:col-6 flex align-items-center justify-content-center">
               <div class="w-full" style="min-height: 250px;">
                 <app-pie-chart
-                  [dataGrafico]="pieChartdata()"
+                  [dataGrafico]="pieChartData()"
                   [colorScheme]="pieColorScheme()"
                 ></app-pie-chart>
               </div>

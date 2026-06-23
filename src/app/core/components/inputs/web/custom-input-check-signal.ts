@@ -1,12 +1,11 @@
-﻿import { Component, forwardRef, inject, output } from "@angular/core";
+﻿import { Component, forwardRef, output } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { IonCheckbox } from "@ionic/angular/standalone";
 import { CheckboxModule } from "primeng/checkbox";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 @Component({
   selector: "custom-input-check-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, CheckboxModule, IonCheckbox],
+  imports: [BaseInputSignal, ReactiveFormsModule, CheckboxModule],
   template: `
     <base-input-signal
       [id]="id()"
@@ -19,28 +18,15 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [description]="description()"
       [hidden]="hidden()"
     >
-      @if (platform.isMobile()) {
-        <div style="display: flex; align-items: center; gap: 0.5rem;">
-          <ion-checkbox
-            [id]="id()"
-            [formControl]="control() || internalControl"
-            (ionChange)="onIonCheckChange($event)"
-          />
-          @if (placeholder()) {
-            <label [for]="id()" style="cursor: pointer; margin: 0;">{{ placeholder() }}</label>
-          }
-        </div>
-      } @else {
-        <div class="checkbox-wrapper">
-          <p-checkbox
-            [inputId]="id()"
-            [formControl]="control() || internalControl"
-            [binary]="true"
-            (onChange)="onValueChange($event)"
-          />
-          <label [for]="id()" class="checkbox-label">{{ placeholder() }}</label>
-        </div>
-      }
+      <div class="checkbox-wrapper">
+        <p-checkbox
+          [inputId]="id()"
+          [formControl]="control() || internalControl"
+          [binary]="true"
+          (onChange)="onValueChange($event)"
+        />
+        <label [for]="id()" class="checkbox-label">{{ placeholder() }}</label>
+      </div>
     </base-input-signal>
   `,
   styles: [`
@@ -72,13 +58,6 @@ export class CustomInputCheckSignal extends BaseInputSignal implements ControlVa
 
   onValueChange(event: any): void {
     const newValue = event.checked;
-    this.onChange(newValue);
-    this.onTouch();
-    this.checkChange.emit(newValue);
-  }
-
-  onIonCheckChange(event: any): void {
-    const newValue = event.detail.checked;
     this.onChange(newValue);
     this.onTouch();
     this.checkChange.emit(newValue);

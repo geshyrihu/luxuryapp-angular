@@ -1,12 +1,11 @@
-﻿import { Component, computed, forwardRef, inject, input } from "@angular/core";
+﻿import { Component, computed, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { IonInput } from "@ionic/angular/standalone";
 import { InputNumberModule } from "primeng/inputnumber";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 @Component({
   selector: "custom-input-currency-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, InputNumberModule, IonInput],
+  imports: [BaseInputSignal, ReactiveFormsModule, InputNumberModule],
   template: `
     <base-input-signal
       [control]="control()"
@@ -18,40 +17,23 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [disabled]="disabled()"
       [required]="requiredInput()"
     >
-      @if (platform.isMobile()) {
-        <ion-input
-          type="number"
-          inputmode="decimal"
-          [id]="id()"
-          [formControl]="control() || internalControl"
-          [placeholder]="placeholder()"
-          clearInput
-          [readonly]="readonly()"
-          [step]="0.01"
-        >
-          @if (prefix()) {
-            <span slot="start" style="padding-right: 8px; font-weight: 500;">{{ prefix() }}</span>
-          }
-        </ion-input>
-      } @else {
-        <p-inputNumber
-          [inputId]="id()"
-          [formControl]="control() || internalControl"
-          [placeholder]="placeholder()"
-          [readonly]="readonly()"
-          [showButtons]="showButtons()"
-          [minFractionDigits]="minFractionDigits()"
-          [maxFractionDigits]="maxFractionDigits()"
-          mode="decimal"
-          [useGrouping]="useGrouping()"
-          [prefix]="prefix()"
-          [suffix]="suffix()"
-          [showClear]="showClear()"
-          locale="es-MX"
-          [inputStyleClass]="inputStyleClass()"
-          fluid
-        />
-      }
+      <p-inputNumber
+        [inputId]="id()"
+        [formControl]="control() || internalControl"
+        [placeholder]="placeholder()"
+        [readonly]="readonly()"
+        [showButtons]="showButtons()"
+        [minFractionDigits]="minFractionDigits()"
+        [maxFractionDigits]="maxFractionDigits()"
+        mode="decimal"
+        [useGrouping]="useGrouping()"
+        [prefix]="prefix()"
+        [suffix]="suffix()"
+        [showClear]="showClear()"
+        locale="es-MX"
+        [inputStyleClass]="inputStyleClass()"
+        fluid
+      />
     </base-input-signal>
   `,
   providers: [
