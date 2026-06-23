@@ -1,4 +1,4 @@
-import { Component, HostListener, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, HostListener, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -7,7 +7,6 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { IonButtonSave } from "src/app/core/components/buttons/mobile/ion-button-save";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputPassword } from "src/app/core/components/inputs/web/custom-input-password-signal";
@@ -37,7 +36,7 @@ interface ICredentialForm {
     CustomInputPassword,
     CustomInputDateSignal,
     CustomButtonSave,
-    IonButtonSave,
+    CustomButtonSave,
   ],
 })
 export class PasswordForm implements OnInit {

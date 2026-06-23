@@ -1,4 +1,4 @@
-<div class="card">
+﻿<div class="card">
   <div class="container-fluid py-3 p-2">
     <!-- Encabezado -->
     <div class="flex justify-content-between align-items-center mb-3">
@@ -92,13 +92,13 @@
         <app-action-menu slot="end">
           <ng-container actions>
             @if (item.isRealized) {
-            <ion-button-item
+            <custom-button-item
               label="Ver resultado"
               iconName="book-outline"
               [routerLink]="['/inspections/result', item.id]"
             />
             }
-            <ion-button-item
+            <custom-button-item
               label="Inspeccionar"
               iconName="chevron-forward-outline"
               [routerLink]="['/logbook/my-inspection', item.id]"

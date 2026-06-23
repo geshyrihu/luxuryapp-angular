@@ -1,14 +1,8 @@
-import { Component, forwardRef, input } from "@angular/core";
+﻿import { Component, computed, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonInput } from "@ionic/angular/standalone";
 import { BaseIonicInput } from "../base/base-ionic-input";
 
-/**
- * 💰 ION INPUT CURRENCY - Mobile (Ionic)
- * -------------------------------------------------------------------------
- * Input para manejar divisas en vistas móviles.
- * Utiliza el teclado numérico del dispositivo.
- */
 @Component({
   selector: "ion-input-currency",
   imports: [BaseIonicInput, ReactiveFormsModule, IonInput],
@@ -20,9 +14,13 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       [placeholder]="placeholder()"
       [readonly]="readonly()"
       [required]="requiredInput()"
+      [hidden]="hidden()"
+      [description]="description()"
+      [horizontal]="horizontal()"
+      [noMargin]="noMargin()"
+      [onlyInput]="onlyInput()"
+      [class]="inputStyleClass()"
     >
-      <!-- "money" icono no existe nativo dentro de input, pero podemos colocarlo en template si es necesario -->
-      <!-- prefix() set dynamically based on input binding -->
       <div style="display: flex; align-items: center; width: 100%;">
         <ion-input
           type="number"
@@ -33,7 +31,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
           [placeholder]="placeholder()"
           label-placement="floating"
           fill="outline"
-          shape="round"
           [readonly]="readonly()"
           [disabled]="disabled()"
           [step]="0.01"
@@ -61,8 +58,16 @@ import { BaseIonicInput } from "../base/base-ionic-input";
   ],
 })
 export class IonInputCurrency extends BaseIonicInput {
-  // <--- Configuración --->
-  prefix = input<string | undefined>("$ "); // Prefijo de moneda por defecto
+  prefix = input<string | undefined>("$ ");
+  customClass = input<string>("");
+  size = input<"small" | "large" | undefined>(undefined);
+
+  inputStyleClass = computed(() => {
+    let classes = this.customClass();
+    if (this.size() === "small") classes += " input-sm";
+    if (this.size() === "large") classes += " input-lg";
+    return classes.trim();
+  });
 
   override registerOnChange(fn: any): void {
     this.onChange = fn;

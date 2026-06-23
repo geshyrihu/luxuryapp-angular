@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -9,8 +9,8 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
+import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonConfirm } from "src/app/core/components/buttons/web/custom-button-confirm";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
@@ -45,8 +45,8 @@ import { PeriodoCedulaForm } from "./periodo-cedula-form";
     PeriodoCedulaForm,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
     IonItem,
     IonLabel,
     IonIcon,

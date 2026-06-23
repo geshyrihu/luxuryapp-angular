@@ -1,48 +1,106 @@
 import { CommonModule } from "@angular/common";
-import { Component, ViewEncapsulation } from "@angular/core";
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { Component, inject, ViewEncapsulation } from "@angular/core";
+import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
-import {
-  IonInputNumber,
-  IonInputSelect,
-  IonInputText,
-  IonInputToggle,
-} from "src/app/core/components/inputs/mobile";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
+import { CustomInputHour } from "src/app/core/components/inputs/web/custom-input-hour-signal";
+import { CustomInputMultiselectSignal } from "src/app/core/components/inputs/web/custom-input-multiselect-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputPassword } from "src/app/core/components/inputs/web/custom-input-password-signal";
+import { CustomInputSelectBool } from "src/app/core/components/inputs/web/custom-input-select-bool-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 
 @Component({
   selector: "app-mobile-inputs",
-  standalone: true,
   imports: [
     CommonModule,
-    FormsModule,
     ReactiveFormsModule,
     CardModule,
-    IonInputText,
-    IonInputNumber,
-    IonInputSelect,
-    IonInputToggle,
+    CustomInputTextSignal,
+    CustomInputTextAreaSignal,
+    CustomSearchInput,
+    CustomInputPassword,
+    CustomInputNumberSignal,
+    CustomInputCurrencySignal,
+    CustomInputDateSignal,
+    CustomInputHour,
+    CustomInputSelectSignal,
+    CustomInputMultiselectSignal,
+    CustomInputSelectBool,
+    CustomInputFile,
+    CustomInputSwitch,
+    CustomInputCheckSignal,
   ],
   template: `
-    <p-card header="Ionic Smart Inputs">
+    <p-card header="Inputs — auto-detectan plataforma (Ionic en mobile, PrimeNG en web)">
       <form [formGroup]="mobileForm">
-        <ion-input-text
+        <custom-input-text-signal
           [control]="mobileForm.controls['nombre']"
           label="Nombre"
-          placeholder="Nombre completo"
+          placeholder="Tu nombre..."
         />
-        <ion-input-number
+        <custom-input-textarea-signal
+          [control]="mobileForm.controls['comentarios']"
+          label="Comentarios"
+          placeholder="Notas..."
+        />
+        <custom-search-input-signal
+          placeholder="Buscar..."
+          (searchChange)="mobileForm.controls['buscar'].setValue($event)"
+        />
+        <custom-input-password-signal
+          [control]="mobileForm.controls['password']"
+          label="Contrasena"
+        />
+        <custom-input-number-signal
           [control]="mobileForm.controls['edad']"
           label="Edad"
-          placeholder="0"
         />
-        <ion-input-select
+        <custom-input-currency-signal
+          [control]="mobileForm.controls['precio']"
+          label="Precio"
+        />
+        <custom-input-date-signal
+          [control]="mobileForm.controls['fecha']"
+          label="Fecha"
+        />
+        <custom-input-hour-signal
+          [control]="mobileForm.controls['hora']"
+          label="Hora"
+        />
+        <custom-input-select-signal
           [control]="mobileForm.controls['categoria']"
           [data]="options"
-          label="Categoría"
+          label="Categoria"
         />
-        <ion-input-toggle
+        <custom-input-multiselect-signal
+          [control]="mobileForm.controls['roles']"
+          [options]="options"
+          label="Roles"
+        />
+        <custom-input-select-signal-bool
+          [control]="mobileForm.controls['activoBool']"
+          label="Estado"
+        />
+        <custom-input-file-signal
+          [control]="mobileForm.controls['archivo']"
+          label="Archivo"
+        />
+        <custom-input-switch-signal
           [control]="mobileForm.controls['activo']"
-          label="Activo"
+          label="Activar"
+          placeholder="Activar notificaciones"
+        />
+        <custom-input-check-signal
+          [control]="mobileForm.controls['terminos']"
+          placeholder="Aceptar Terminos"
         />
       </form>
     </p-card>
@@ -50,19 +108,28 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileInputs {
-  mobileForm: FormGroup;
-  options = [
-    { label: "Opción 1", value: 1 },
-    { label: "Opción 2", value: 2 },
-    { label: "Opción 3", value: 3 },
-  ];
+  private fb = inject(FormBuilder);
 
-  constructor(private fb: FormBuilder) {
-    this.mobileForm = this.fb.group({
-      nombre: [""],
-      edad: [null],
-      categoria: [null],
-      activo: [true],
-    });
-  }
+  mobileForm: FormGroup = this.fb.group({
+    nombre: [""],
+    comentarios: [""],
+    buscar: [""],
+    password: [""],
+    edad: [null],
+    precio: [null],
+    fecha: [null],
+    hora: [null],
+    categoria: [null],
+    roles: [[]],
+    activoBool: [null],
+    archivo: [null],
+    activo: [true],
+    terminos: [false],
+  });
+
+  readonly options = [
+    { label: "Opcion 1", value: 1 },
+    { label: "Opcion 2", value: 2 },
+    { label: "Opcion 3", value: 3 },
+  ];
 }

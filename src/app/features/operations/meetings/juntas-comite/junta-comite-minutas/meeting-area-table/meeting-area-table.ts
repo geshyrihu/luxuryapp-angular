@@ -1,12 +1,12 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, input, output } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
+import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
 import { CustomButtonConfirm } from "src/app/core/components/buttons/web/custom-button-confirm";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
@@ -26,9 +26,9 @@ export interface SeguimientoEvent {
 @Component({
   selector: "app-area-details-table",
   imports: [
-    IonButtonItem,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonItem,
+    CustomButtonEdit,
+    CustomButtonDelete,
     CommonModule,
     TableModule,
     CustomButtonAdd,

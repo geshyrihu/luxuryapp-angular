@@ -1,4 +1,4 @@
-import { Component, computed, forwardRef, input, output } from "@angular/core";
+﻿import { Component, computed, forwardRef, input, output } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
@@ -52,7 +52,6 @@ import { BaseInputSignal } from "../base/base-input-signal";
           [id]="id()"
           [formControl]="control() || internalControl"
           [readOnly]="readonly()"
-          [disabled]="disabled()"
           [placeholder]="inputPlaceholder()"
         />
       </p-inputgroup>

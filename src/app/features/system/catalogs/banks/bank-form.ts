@@ -1,4 +1,4 @@
-import { Component, HostListener, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -7,9 +7,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { IonButtonSave } from "src/app/core/components/buttons/mobile/ion-button-save";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { IonInputText } from "src/app/core/components/inputs/mobile/ion-input-text";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -30,8 +28,6 @@ interface IBankForm {
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomButtonSave,
-    IonInputText,
-    IonButtonSave,
   ],
 })
 export class BankForm implements OnInit {
@@ -41,12 +37,6 @@ export class BankForm implements OnInit {
   ref = inject(DynamicDialogRef);
   id: string = "";
   submitting = signal(false);
-  isMobile = signal<boolean>(window.innerWidth <= 768);
-
-  @HostListener("window:resize")
-  onResize() {
-    this.isMobile.set(window.innerWidth <= 768);
-  }
 
   form: FormGroup<IBankForm> = this.formB.group({
     id: new FormControl({ value: "", disabled: true }),

@@ -1,11 +1,9 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
@@ -38,8 +36,8 @@ import { IAsambleaChecklistTemplateDTO } from "./asamblea-checklist-template.dto
     CustomButtonDelete,
     IonItem,
     IonLabel,
-    IonButtonDelete,
-    IonButtonEdit,
+    CustomButtonDelete,
+    CustomButtonEdit,
   ],
 })
 export class AsambleaChecklistTemplateList implements OnInit {

@@ -1,16 +1,14 @@
-import { Component, effect, inject, signal } from "@angular/core";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+﻿import { Component, effect, inject, signal } from "@angular/core";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { warningOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
@@ -36,11 +34,10 @@ import { ELateFeeType } from "../../models/enums";
     DecimalPipe,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
   templateUrl: "./late-fee-policy-list.html",
 })
@@ -75,7 +72,11 @@ export default class LateFeePolicyList {
 
     const result = await this.apiResponseS.onGetItem<
       LateFeePolicyResponseDTO[]
-    >(Endpoints.AccountingCoi.NativeCollection.LateFeePolicies.customer(customerId));
+    >(
+      Endpoints.AccountingCoi.NativeCollection.LateFeePolicies.customer(
+        customerId,
+      ),
+    );
     if (result) {
       this.dataSignal.set(result);
     } else {
@@ -103,7 +104,11 @@ export default class LateFeePolicyList {
 
   async onDelete(item: LateFeePolicyResponseDTO) {
     this.apiResponseS
-      .onDelete(Endpoints.AccountingCoi.NativeCollection.LateFeePolicies.delete(item.id))
+      .onDelete(
+        Endpoints.AccountingCoi.NativeCollection.LateFeePolicies.delete(
+          item.id,
+        ),
+      )
       .then((res) => {
         if (res) this.onLoadData();
       });

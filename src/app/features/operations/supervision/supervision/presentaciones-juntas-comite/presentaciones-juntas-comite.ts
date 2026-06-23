@@ -1,10 +1,9 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { TableModule } from "primeng/table";
-import { IonButtonViewPdf } from "src/app/core/components/buttons/mobile";
-import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
+import { CustomButtonViewPdf } from "src/app/core/components/buttons/web";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
@@ -29,7 +28,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
     CustomButtonViewPdf,
     CustomInputTextSignal,
 
-    IonButtonViewPdf,
+    CustomButtonViewPdf,
   ],
 })
 export class PresentacionesJuntasComite implements OnInit {

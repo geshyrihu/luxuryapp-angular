@@ -1,21 +1,19 @@
-import { CommonModule } from "@angular/common";
-import { Endpoints } from "src/app/core/constants/endpoints";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { walletOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonConfirm } from "src/app/core/components/buttons/web/custom-button-confirm";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -41,15 +39,10 @@ import { PeriodoCedulaForm } from "./periodo-cedula-form";
     PrimeNgCustomCaption,
     CustomButton,
     CustomButtonConfirm,
-    OrdenesCompraCedulaListComponent,
-    PeriodoCedulaForm,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
 })
 export class CedulaClienteList implements OnInit {
@@ -85,7 +78,11 @@ export class CedulaClienteList implements OnInit {
 
   onLoadCedulas() {
     this.apiResponseS
-      .onGetSelectItem(Endpoints.SelectItems.periodoPresupuestals(this.customerIdS.customerId()))
+      .onGetSelectItem(
+        Endpoints.SelectItems.periodoPresupuestals(
+          this.customerIdS.customerId(),
+        ),
+      )
       .then((result: any) => {
         this.cb_cedulas = result;
       });

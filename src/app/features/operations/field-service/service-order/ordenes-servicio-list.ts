@@ -1,4 +1,4 @@
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+﻿import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, computed, effect, inject, signal } from "@angular/core";
@@ -16,11 +16,10 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile";
+import { CustomButtonItem } from "src/app/core/components/buttons/web";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button"; // Importar CustomButton
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item"; // Importar CustomButtonItem
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { SubirPdf } from "src/app/core/components/inputs/web/custom-input-upload-pdf-signal";
@@ -62,7 +61,7 @@ import { OrdenesServicioListPdfService } from "./ordenes-servicio-list-pdf.servi
     IonSegmentButton,
     IonItem,
     IonLabel,
-    IonButtonItem,
+    CustomButtonItem,
     AppIcon,
   ],
 })

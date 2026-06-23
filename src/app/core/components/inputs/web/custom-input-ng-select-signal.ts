@@ -1,4 +1,4 @@
-import { Component, computed, forwardRef, input } from "@angular/core";
+﻿import { Component, computed, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { SelectModule } from "primeng/select";
 import { BaseInputSignal } from "../base/base-input-signal";
@@ -31,7 +31,6 @@ import { BaseInputSignal } from "../base/base-input-signal";
         [placeholder]="placeholder()"
         [showClear]="clearable()"
         [filter]="searchable()"
-        [disabled]="disabled()"
         [readonly]="readonly()"
         [class]="getSizeClass()"
         fluid

@@ -1,17 +1,14 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
-  IonButtonDelete,
-  IonButtonEdit,
-  IonButtonViewPdf,
-} from "src/app/core/components/buttons/mobile";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
+  CustomButtonDelete,
+  CustomButtonEdit,
+  CustomButtonViewPdf,
+} from "src/app/core/components/buttons/web";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -40,9 +37,9 @@ import { PolicyContractForm } from "./policy-contract-form";
     IonItem,
     IonLabel,
     ActionMenu,
-    IonButtonDelete,
-    IonButtonEdit,
-    IonButtonViewPdf,
+    CustomButtonDelete,
+    CustomButtonEdit,
+    CustomButtonViewPdf,
   ],
 })
 export class PolicyContractList {

@@ -1,4 +1,4 @@
-@if (filteredDataSignal()) {
+﻿@if (filteredDataSignal()) {
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card">
@@ -179,7 +179,7 @@
         />
       </div>
       <div class="col-2 m-0">
-        <ion-button-active-desactive
+        <custom-button-active-desactive
           fluid
           [state]="applicationUserState"
           (stateChange)="onSelectActive($event)"
@@ -217,25 +217,25 @@
       <app-action-menu slot="end">
         <ng-container actions>
           @if (item.active) {
-          <ion-button-item
+          <custom-button-item
             (clicked)="onToBlockAccount(item.id)"
             iconName="lock-closed-outline"
             label="Bloquear"
           />
           } @if (!item.active) {
-          <ion-button-item
+          <custom-button-item
             (clicked)="onToUnlockAccount(item.id)"
             iconName="lock-open-outline"
             label="Desbloquear"
           />
           }
-          <ion-button-item
+          <custom-button-item
             (clicked)="onModalEditAccount(item.id, item.email)"
             iconName="person-outline"
             label="Permisos"
           />
-          <ion-button-edit (clicked)="onModalForm(item.id, 'Editar')" />
-          <ion-button-delete (confirmed)="DeleteUserId(item.id)" />
+          <custom-button-edit (clicked)="onModalForm(item.id, 'Editar')" />
+          <custom-button-delete (confirmed)="DeleteUserId(item.id)" />
         </ng-container>
       </app-action-menu>
     </ion-item>

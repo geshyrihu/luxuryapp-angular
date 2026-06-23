@@ -1,8 +1,8 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
+import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
@@ -34,7 +34,7 @@ import { EmployeeBankDataFormComponent } from "./employee-bank-data-form";
     CustomButtonDelete,
     DataViewMobile,
     ActionMenu,
-    IonButtonItem,
+    CustomButtonItem,
   ],
 })
 export class EmployeeBankDataList implements OnInit {

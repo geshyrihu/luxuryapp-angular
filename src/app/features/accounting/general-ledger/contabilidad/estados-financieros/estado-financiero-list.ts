@@ -1,14 +1,13 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import {
-  IonButtonConfirm,
-  IonButtonItem,
-} from "src/app/core/components/buttons/mobile";
-import { CustomButtonConfirm } from "src/app/core/components/buttons/web/custom-button-confirm";
+  CustomButtonConfirm,
+  CustomButtonItem,
+} from "src/app/core/components/buttons/web";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PdfViewerModal } from "src/app/core/components/pdf-viewer-modal/pdf-viewer-modal";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
@@ -37,8 +36,8 @@ import { AddFileEstadoFinanciero } from "./add-file-estado-financiero";
     DataViewMobile,
     CardModule,
 
-    IonButtonConfirm,
-    IonButtonItem,
+    CustomButtonConfirm,
+    CustomButtonItem,
   ],
 })
 export class EstadoFinancieroList {

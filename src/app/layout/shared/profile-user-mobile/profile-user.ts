@@ -5,7 +5,6 @@ import { Router, RouterModule } from "@angular/router";
 import {
   IonAvatar,
   IonContent,
-  IonIcon,
   IonItem,
   IonLabel,
   IonList,
@@ -20,9 +19,9 @@ import {
   refreshOutline,
   syncOutline,
 } from "ionicons/icons";
+import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { InfoAccountAuthDTO } from "src/app/core/interfaces/auth-user-token.dto";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -42,7 +41,6 @@ import { UpdateService } from "src/app/core/services/update-pwa.service";
     IonContent,
     IonList,
     IonItem,
-    IonIcon,
     IonLabel,
     IonSelect,
     IonSelectOption,
@@ -173,12 +171,3 @@ export class ProfileCommitteeMobile {
     }
   }
 }
-
-
-
-
-
-
-
-
-

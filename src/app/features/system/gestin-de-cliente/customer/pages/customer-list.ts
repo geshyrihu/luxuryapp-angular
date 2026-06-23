@@ -1,4 +1,4 @@
-import {
+﻿import {
   Component,
   computed,
   inject,
@@ -19,13 +19,11 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
-  IonButtonActiveDesactive,
-  IonButtonItem,
-} from "src/app/core/components/buttons/mobile";
-import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/custom-button-active-desactive";
+  CustomBtnActiveDesactive,
+  CustomButtonItem,
+} from "src/app/core/components/buttons/web";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -59,9 +57,9 @@ import { CustomerImages } from "./customer-images";
     ActionMenu,
 
     IonAvatar,
-    IonButtonActiveDesactive,
+    CustomBtnActiveDesactive,
 
-    IonButtonItem,
+    CustomButtonItem,
   ],
 })
 export class CustomerList implements OnInit {

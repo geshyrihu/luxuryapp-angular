@@ -1,12 +1,12 @@
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { DatePipe } from "@angular/common";
 import { HttpParams } from "@angular/common/http";
 import { Component, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { documentTextOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CustomButton } from "src/app/core/components/buttons/web";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
@@ -31,12 +31,12 @@ import { FinancialAuditLogDTO } from "../../models/financial-audit.dto";
     DataViewMobile,
     IonItem,
     IonLabel,
-    IonIcon,
     DatePipe,
     ReactiveFormsModule,
     CustomInputSelectSignal,
     CustomInputDateSignal,
-   AppIcon],
+    AppIcon,
+  ],
   templateUrl: "./financial-audit-log.html",
 })
 export default class FinancialAuditLog {

@@ -1,14 +1,8 @@
-import { Component, forwardRef, output } from "@angular/core";
+﻿import { Component, computed, forwardRef, input, output } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonToggle } from "@ionic/angular/standalone";
 import { BaseIonicInput } from "../base/base-ionic-input";
 
-/**
- * 🔄 ION INPUT TOGGLE - Mobile (Ionic)
- * -------------------------------------------------------------------------
- * Interruptor On/Off con estilo nativo iOS/Android.
- * Equivalente al custom-input-switch-signal de PrimeNG.
- */
 @Component({
   selector: "ion-input-toggle",
   imports: [BaseIonicInput, ReactiveFormsModule, IonToggle],
@@ -17,8 +11,15 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       [control]="control()"
       [id]="id()"
       [label]="label()"
+      [placeholder]="placeholder()"
       [readonly]="readonly()"
       [required]="requiredInput()"
+      [hidden]="hidden()"
+      [description]="description()"
+      [horizontal]="horizontal()"
+      [noMargin]="noMargin()"
+      [onlyInput]="onlyInput()"
+      [class]="inputStyleClass()"
     >
       <ion-toggle
         slot="end"
@@ -43,6 +44,9 @@ import { BaseIonicInput } from "../base/base-ionic-input";
 })
 export class IonInputToggle extends BaseIonicInput {
   toggleChange = output<boolean>();
+  customClass = input<string>("");
+
+  inputStyleClass = computed(() => this.customClass());
 
   onToggleChange(event: any): void {
     this.toggleChange.emit(event.detail.checked);

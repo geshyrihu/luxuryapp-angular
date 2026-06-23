@@ -1,4 +1,4 @@
-import {
+﻿import {
   Component,
   computed,
   inject,
@@ -15,15 +15,11 @@ import { firstValueFrom } from "rxjs";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import {
-  IonButtonActiveDesactive,
-  IonButtonDelete,
-  IonButtonEdit,
-  IonButtonItem,
-} from "src/app/core/components/buttons/mobile";
-import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/custom-button-active-desactive";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
+  CustomBtnActiveDesactive,
+  CustomButtonDelete,
+  CustomButtonEdit,
+  CustomButtonItem,
+} from "src/app/core/components/buttons/web";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
@@ -63,11 +59,11 @@ import { MdEditAccount } from "./md-edit-account";
     CustomInputSelectSignal,
 
     IonAvatar,
-    IonButtonActiveDesactive,
+    CustomBtnActiveDesactive,
 
-    IonButtonItem,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonItem,
+    CustomButtonEdit,
+    CustomButtonDelete,
   ],
 })
 export class ApplicationUserList implements OnInit {

@@ -19,17 +19,14 @@
     </div>
   </div>
 
-  <div
-    class="mb-3 border-1 surface-border border-round p-3"
-    *ngIf="loading()"
-  >
-    <div class="font-medium mb-1">Cargando histórico...</div>
-    <div class="text-color-secondary">
-      Consultando los movimientos del ejercicio para la cuenta seleccionada.
+  @if (loading()) {
+    <div class="mb-3 border-1 surface-border border-round p-3">
+      <div class="font-medium mb-1">Cargando histórico...</div>
+      <div class="text-color-secondary">
+        Consultando los movimientos del ejercicio para la cuenta seleccionada.
+      </div>
     </div>
-  </div>
-
-  <ng-container *ngIf="!loading() && history() as detail">
+  } @else if (history(); as detail) {
     <div class="grid mb-3">
       <div class="col-6 md:col-2">
         <div class="text-color-secondary text-sm">Saldo inicial</div>
@@ -57,35 +54,36 @@
       </div>
     </div>
 
-    <div
-      class="mb-3 border-1 surface-border border-round p-3"
-      *ngIf="selected401Summary().length"
-    >
-      <div class="font-medium mb-2">Resumen relacionado por cuenta 401</div>
-      <div class="text-color-secondary text-sm mb-3">
-        Agrupado de cuentas 401 encontradas en las mismas pólizas del histórico
-        seleccionado.
-      </div>
-      <div class="grid">
-        <div class="col-12 md:col-6 xl:col-4" *ngFor="let item of selected401Summary()">
-          <div class="border-1 surface-border border-round p-3 h-full">
-            <div class="font-medium mb-2">{{ item.related401Accounts }}</div>
-            <div class="text-sm text-color-secondary">
-              Cargos 401: {{ formatCurrency(item.debitTotal) }}
+    @if (selected401Summary().length) {
+      <div class="mb-3 border-1 surface-border border-round p-3">
+        <div class="font-medium mb-2">Resumen relacionado por cuenta 401</div>
+        <div class="text-color-secondary text-sm mb-3">
+          Agrupado de cuentas 401 encontradas en las mismas pólizas del histórico
+          seleccionado.
+        </div>
+        <div class="grid">
+          @for (item of selected401Summary(); track item.related401Accounts) {
+            <div class="col-12 md:col-6 xl:col-4">
+              <div class="border-1 surface-border border-round p-3 h-full">
+                <div class="font-medium mb-2">{{ item.related401Accounts }}</div>
+                <div class="text-sm text-color-secondary">
+                  Cargos 401: {{ formatCurrency(item.debitTotal) }}
+                </div>
+                <div class="text-sm text-color-secondary">
+                  Abonos 401: {{ formatCurrency(item.creditTotal) }}
+                </div>
+                <div class="text-sm text-color-secondary">
+                  Neto 401: {{ formatCurrency(item.netTotal) }}
+                </div>
+                <div class="text-sm text-color-secondary">
+                  Movimientos enlazados: {{ item.movementCount }}
+                </div>
+              </div>
             </div>
-            <div class="text-sm text-color-secondary">
-              Abonos 401: {{ formatCurrency(item.creditTotal) }}
-            </div>
-            <div class="text-sm text-color-secondary">
-              Neto 401: {{ formatCurrency(item.netTotal) }}
-            </div>
-            <div class="text-sm text-color-secondary">
-              Movimientos enlazados: {{ item.movementCount }}
-            </div>
-          </div>
+          }
         </div>
       </div>
-    </div>
+    }
 
     <p-table
       [value]="detail.movements"
@@ -133,5 +131,5 @@
         </tr>
       </ng-template>
     </p-table>
-  </ng-container>
+  }
 </section>

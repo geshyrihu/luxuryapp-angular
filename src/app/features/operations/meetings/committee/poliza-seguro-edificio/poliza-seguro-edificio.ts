@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import {
   IonItem,
@@ -16,9 +16,8 @@ import {
   warningOutline,
 } from "ionicons/icons";
 import { CardModule } from "primeng/card";
-import { IonButtonViewPdf } from "src/app/core/components/buttons/mobile";
+import { CustomButtonViewPdf } from "src/app/core/components/buttons/web";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
-import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
 import { PdfViewerModal } from "src/app/core/components/pdf-viewer-modal/pdf-viewer-modal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -33,7 +32,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
     IonListHeader,
     IonItem,
     IonLabel,
-    IonButtonViewPdf,
+    CustomButtonViewPdf,
     AppIcon,
   ],
   templateUrl: "./poliza-seguro-edificio.html",

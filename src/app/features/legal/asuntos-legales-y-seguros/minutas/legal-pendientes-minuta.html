@@ -1,4 +1,4 @@
-<div class="flex justify-content-start gap-1 flex-wrap">
+﻿<div class="flex justify-content-start gap-1 flex-wrap">
   <custom-button
     label="Pendientes"
     [severity]="statusFiltro == 0 ? 'primary' : 'secondary'"
@@ -113,17 +113,17 @@
       <td class="no-print">
         <app-action-menu>
           <ng-container actions>
-            <ion-button-item
+            <custom-button-item
               iconClass="mdi:file-pdf-box"
               (clicked)="onModalTodosSeguimientos(item.id)"
               label="Ver todos los seguimientos"
               iconClass="mdi:format-list-bulleted"
             />
-            <ion-button-add
+            <custom-button-add
               (clicked)="onModalFormSeguimiento(item.id, 0)"
               label="Agregar Seguimiento"
             />
-            <ion-button-edit
+            <custom-button-edit
               (clicked)="
                 onModalFormMinutaDetalle({
                   id: item.id,
@@ -198,17 +198,17 @@
 
       <app-action-menu slot="end">
         <ng-container actions>
-          <ion-button-item
+          <custom-button-item
             iconName="document-text-outline"
             (clicked)="onModalTodosSeguimientos(item.id)"
             label="Ver todos los seguimientos"
             iconName="list-outline"
           />
-          <ion-button-add
+          <custom-button-add
             label="Agregar Seguimiento"
             (clicked)="onModalFormSeguimiento(item.id, 0)"
           />
-          <ion-button-edit
+          <custom-button-edit
             label="Editar"
             iconClass="mdi:pencil"
             (clicked)="

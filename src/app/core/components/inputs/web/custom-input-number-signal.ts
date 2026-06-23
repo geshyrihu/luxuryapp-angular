@@ -1,16 +1,13 @@
-import { Component, computed, forwardRef, input, output } from "@angular/core";
+﻿import { Component, computed, forwardRef, inject, input, output } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
+import { IonInput } from "@ionic/angular/standalone";
 import { InputNumberModule } from "primeng/inputnumber";
 import { BaseInputSignal } from "../base/base-input-signal";
 
-// 🔢 COMPONENTE DE INPUT NUMÉRICO
-// Un componente para entradas numéricas que extiende la funcionalidad de BaseInput.
 @Component({
   selector: "custom-input-number-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, InputNumberModule],
+  imports: [BaseInputSignal, ReactiveFormsModule, InputNumberModule, IonInput],
   template: `
-    <!-- 🏗️ ESTRUCTURA BASE -->
-    <!-- Reutilizamos BaseInput para manejar la etiqueta, los errores y la disposición. -->
     <base-input-signal
       [control]="control() || internalControl"
       [id]="id()"
@@ -23,33 +20,45 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [onlyInput]="onlyInput()"
       [noMargin]="noMargin()"
     >
-      <!-- 🚀 CONTENIDO PROYECTADO -->
-      <!-- Este es el input numérico real que se inyectará en BaseInput. -->
-      <p-inputnumber
-        [inputId]="id()"
-        [formControl]="control() || internalControl"
-        [placeholder]="placeholder()"
-        [readonly]="readonly()"
-        [disabled]="disabled()"
-        [attr.min]="min()"
-        [attr.max]="max()"
-        [attr.step]="step()"
-        [showButtons]="showButtons()"
-        [minFractionDigits]="minFractionDigits()"
-        [maxFractionDigits]="maxFractionDigits()"
-        [mode]="mode()"
-        [currency]="currency()"
-        [locale]="locale()"
-        [useGrouping]="useGrouping()"
-        [prefix]="prefix()"
-        [suffix]="suffix()"
-        [showClear]="showClear()"
-        [inputStyleClass]="inputStyleClass()"
-        [invalid]="isInvalid()"
-        (onBlur)="blur.emit()"
-        (keydown.enter)="enter.emit()"
-        fluid
-      />
+      @if (platform.isMobile()) {
+        <ion-input
+          type="number"
+          inputmode="decimal"
+          [id]="id()"
+          [formControl]="control() || internalControl"
+          [placeholder]="placeholder()"
+          clearInput
+          [readonly]="readonly()"
+          [min]="min()"
+          [max]="max()"
+          [step]="step()"
+        />
+      } @else {
+        <p-inputnumber
+          [inputId]="id()"
+          [formControl]="control() || internalControl"
+          [placeholder]="placeholder()"
+          [readonly]="readonly()"
+          [attr.min]="min()"
+          [attr.max]="max()"
+          [attr.step]="step()"
+          [showButtons]="showButtons()"
+          [minFractionDigits]="minFractionDigits()"
+          [maxFractionDigits]="maxFractionDigits()"
+          [mode]="mode()"
+          [currency]="currency()"
+          [locale]="locale()"
+          [useGrouping]="useGrouping()"
+          [prefix]="prefix()"
+          [suffix]="suffix()"
+          [showClear]="showClear()"
+          [inputStyleClass]="inputStyleClass()"
+          [invalid]="isInvalid()"
+          (onBlur)="blur.emit()"
+          (keydown.enter)="enter.emit()"
+          fluid
+        />
+      }
     </base-input-signal>
   `,
   providers: [
@@ -61,7 +70,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
   ],
 })
 export class CustomInputNumberSignal extends BaseInputSignal {
-  // 🎨 PROPIEDADES ADICIONALES
+
   min = input<number | undefined>(undefined);
   max = input<number | undefined>(undefined);
   showButtons = input<boolean>(false);
@@ -78,7 +87,6 @@ export class CustomInputNumberSignal extends BaseInputSignal {
   showClear = input<boolean>(false);
   locale = input<string>("es-MX");
 
-  // 🔔 EVENTOS
   blur = output<void>();
   enter = output<void>();
 

@@ -1,4 +1,4 @@
-<div class="card p-0 md:p-4">
+﻿<div class="card p-0 md:p-4">
   <p-table
     [value]="dataSignal()"
     [paginator]="true"
@@ -87,10 +87,7 @@
         slot="start"
         class="w-2rem h-2rem border-round-lg bg-red-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <ion-icon
-          name="warning-outline"
-          class="text-red-600 text-xl"
-        ></ion-icon>
+        <app-icon icon="mdi:alert-outline" class="text-red-600 text-xl"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.graceDays }} días de gracia</h3>
@@ -101,8 +98,8 @@
         <p>Máx: {{ item.maxRate | number:'1.2-2' }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit (clicked)="onModalForm(item.id)" />
-        <ion-button-delete (confirmed)="onDelete(item)" />
+        <custom-button-edit (clicked)="onModalForm(item.id)" />
+        <custom-button-delete (confirmed)="onDelete(item)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

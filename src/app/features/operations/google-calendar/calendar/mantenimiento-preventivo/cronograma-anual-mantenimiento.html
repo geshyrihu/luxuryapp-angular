@@ -272,17 +272,14 @@
           (click)="onModalForm(item.serviceId)"
         >
           <!-- Icon based on system type could be cool here, but we don't have mapping easily available. Using generic check. -->
-          <ion-icon
-            name="checkbox-outline"
-            slot="start"
+          <app-icon icon="mdi:checkbox-marked-outline" slot="start"
             color="success"
-            class="text-xl"
-          ></ion-icon>
+            class="text-xl"></app-icon>
           <ion-label class="ion-text-wrap">
             <h3 class="text-base font-semibold">{{ item.nameMachinery }}</h3>
             <p class="text-xs text-color-secondary">Mantenimiento Preventivo</p>
           </ion-label>
-          <ion-icon name="create-outline" slot="end" color="medium"></ion-icon>
+          <app-icon icon="mdi:pencil-outline" slot="end" color="medium"></app-icon>
         </ion-item>
         } } @empty {
         <div

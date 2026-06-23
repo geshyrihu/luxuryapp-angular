@@ -4,7 +4,6 @@ import {
   IonAvatar,
   IonButton,
   IonChip,
-  IonIcon,
   IonItem,
   IonLabel,
 } from "@ionic/angular/standalone";
@@ -37,6 +36,7 @@ import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-but
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -45,7 +45,6 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { CurrencyMexicoPipe } from "src/app/core/pipes/currencyMexico.pipe";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -54,14 +53,14 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { EquipmentInspectionQrPrintService } from "src/app/features/maintenance/equipos-y-maquinaria/equipment-inspections/equipment-inspection-qr-print.service";
 import { EquipmentInspectionService } from "src/app/features/maintenance/equipos-y-maquinaria/equipment-inspections/equipment-inspection.service";
-import { MantenimientoPreventivoForm } from "src/app/features/operations/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
+import { EquipmentInspectionsShell } from "src/app/features/maintenance/equipos-y-maquinaria/equipment-inspections/equipment-inspections-shell";
 import { ActivosForm } from "src/app/features/maintenance/equipos-y-maquinaria/machinery-asset/activos-form";
 import { ActivosDocumentos } from "src/app/features/maintenance/equipos-y-maquinaria/machinery-document/activos-documentos";
-import { EquipmentInspectionsShell } from "src/app/features/maintenance/equipos-y-maquinaria/equipment-inspections/equipment-inspections-shell";
 import { FichaTecnicaActivo } from "src/app/features/maintenance/equipos-y-maquinaria/machinery/ficha-tecnica-activo";
 import { ServiceHistoryMachinery } from "src/app/features/maintenance/equipos-y-maquinaria/machinery/service-history-machinery";
 import { BitacoraIndividual } from "src/app/features/maintenance/logs/maintenance-log/bitacora-individual";
 import { CalendarioMaestroReadonly } from "src/app/features/maintenance/planificacin-de-mantenimiento/maintenance-calendar-master/calendario-maestro-readonly";
+import { MantenimientoPreventivoForm } from "src/app/features/operations/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
 // ... el resto de las importaciones de componentes y módulos ...
 // ...
 
@@ -117,7 +116,6 @@ interface Equipo {
     IonLabel,
     IonAvatar,
     IonButton,
-    IonIcon,
     IonChip,
     Dialog,
     DrawerModule,
@@ -133,7 +131,9 @@ export class EquiposList {
   private customerIdS = inject(CustomerIdService);
   private htmlPrintS = inject(HtmlPrintService);
   private equipmentInspectionS = inject(EquipmentInspectionService);
-  private equipmentInspectionQrPrintS = inject(EquipmentInspectionQrPrintService);
+  private equipmentInspectionQrPrintS = inject(
+    EquipmentInspectionQrPrintService,
+  );
   // --- ESTADO DEL COMPONENTE CON SIGNALS ---
   data = signal<any[]>([]);
   loading = signal(true);
@@ -319,9 +319,9 @@ export class EquiposList {
 
         groups[system].forEach((item, idx) => {
           const bg = idx % 2 === 0 ? "#ffffff" : "#f9fafb";
-          
-          const imgHtml = item.base64Image 
-            ? `<img src="${item.base64Image}" style="max-width:100px; max-height:100px; object-fit:contain;" />` 
+
+          const imgHtml = item.base64Image
+            ? `<img src="${item.base64Image}" style="max-width:100px; max-height:100px; object-fit:contain;" />`
             : `<div style="font-size: 8px; color: #999; margin-top:20px; text-align:center;">Sin Imagen</div>`;
 
           tableHtml += `
@@ -355,9 +355,9 @@ ${this.htmlPrintS.getStandardCss()}
   @page { margin: 10mm; }
   .container { max-width: 1000px; }
   th { background-color: #1E3A8A !important; color: #FFFFFF !important; }
-  
+
   .sistema-header { background-color: #eef2f7 !important; color: #003A62 !important; font-weight: bold; font-size: 14px; padding: 6px 10px !important; }
-  
+
   .data-table { width:100%; border-collapse:collapse; margin-bottom:16px; }
   .data-table th, .data-table td { padding:4px 8px; border:1px solid #D1D5DB; }
   .data-table th { background:#1E3A8A; color: #ffffff; font-weight:700; text-align:center; font-size: 11px; }
@@ -374,12 +374,15 @@ ${this.htmlPrintS.getStandardCss()}
       </tbody>
     </table>
   </div>
-  
+
   ${this.htmlPrintS.buildStandardFooter(generatedAt)}
 </div>
 </body></html>`;
 
-      this.htmlPrintS.printHtml(html, `Inventario_${this.title().replace(/\s+/g, "_")}`);
+      this.htmlPrintS.printHtml(
+        html,
+        `Inventario_${this.title().replace(/\s+/g, "_")}`,
+      );
     } catch (e) {
       console.error("Error generating PDF", e);
     } finally {
@@ -432,7 +435,9 @@ ${this.htmlPrintS.getStandardCss()}
 
   async onDownloadEquipmentInspectionQrBatch(): Promise<void> {
     const customerId = this.customerIdS.customerId();
-    const machineryIds = this.data().map((item) => item.id).filter(Boolean);
+    const machineryIds = this.data()
+      .map((item) => item.id)
+      .filter(Boolean);
 
     if (!customerId || machineryIds.length === 0) {
       return;
@@ -589,8 +594,9 @@ ${this.htmlPrintS.getStandardCss()}
   }
 
   async onDeleteOrderFromDialog(orderId: any, machineryId: any) {
-    await this.apiResponseS.onDelete(Endpoints.MaintenanceCalendars.delete(orderId));
+    await this.apiResponseS.onDelete(
+      Endpoints.MaintenanceCalendars.delete(orderId),
+    );
     await this.refreshSelectedEquipo(machineryId);
   }
 }
-

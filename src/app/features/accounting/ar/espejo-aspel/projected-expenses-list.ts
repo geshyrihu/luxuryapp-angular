@@ -1,4 +1,4 @@
-import { CommonModule, DecimalPipe } from "@angular/common";
+﻿import { CommonModule, DecimalPipe } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { CardModule } from "primeng/card";
@@ -20,7 +20,6 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ProjectedExpensesForm } from "./projected-expenses-form";
-import { IonButtonDelete, IonButtonEdit } from "src/app/core/components/buttons/mobile";
 @Component({
   selector: "app-projected-expenses-list",
   templateUrl: "./projected-expenses-list.html",
@@ -36,8 +35,8 @@ import { IonButtonDelete, IonButtonEdit } from "src/app/core/components/buttons/
     CardModule,
     IonItem,
     IonLabel,
-    IonButtonDelete,
-    IonButtonEdit,
+    CustomButtonDelete,
+    CustomButtonEdit,
   ],
 })
 export default class ProjectedExpensesList {

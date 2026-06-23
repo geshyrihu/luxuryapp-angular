@@ -1,14 +1,13 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { alertCircleOutline } from "ionicons/icons";
 import { MessageService } from "primeng/api";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { CustomButton } from "src/app/core/components/buttons/web";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
@@ -46,10 +45,9 @@ import { ContMinutaSeguimientos } from "./cont-minuta-seguimientos";
     SanitizeHtmlPipe,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
+    CustomButtonEdit,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
 })
 export class ContListMinutaPendientes implements OnInit {

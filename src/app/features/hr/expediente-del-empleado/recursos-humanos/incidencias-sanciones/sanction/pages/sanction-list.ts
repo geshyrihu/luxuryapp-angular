@@ -1,4 +1,4 @@
-import { Component, inject, signal } from "@angular/core";
+﻿import { Component, inject, signal } from "@angular/core";
 import { CommonModule, DatePipe } from "@angular/common";
 import { TableModule } from "primeng/table";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
@@ -12,7 +12,6 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 import { SanctionListDTO } from "../models/sanction.dto";
 import { SanctionFormComponent } from "./sanction-form";
 
@@ -28,7 +27,7 @@ import { SanctionFormComponent } from "./sanction-form";
     CustomButtonItem,
     DataViewMobile,
     ActionMenu,
-    IonButtonItem,
+    CustomButtonItem,
   ],
 })
 export class SanctionList {

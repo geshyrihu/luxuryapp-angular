@@ -1,14 +1,8 @@
-import { Component, forwardRef, input } from "@angular/core";
+﻿import { Component, computed, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonInput } from "@ionic/angular/standalone";
 import { BaseIonicInput } from "../base/base-ionic-input";
 
-/**
- * 🔢 ION INPUT NUMBER - Mobile (Ionic)
- * -------------------------------------------------------------------------
- * Input numérico general para dispositivos móviles.
- * Utiliza el teclado numérico nativo del celular.
- */
 @Component({
   selector: "ion-input-number",
   imports: [BaseIonicInput, ReactiveFormsModule, IonInput],
@@ -20,8 +14,13 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       [placeholder]="placeholder()"
       [readonly]="readonly()"
       [required]="requiredInput()"
+      [hidden]="hidden()"
+      [description]="description()"
+      [horizontal]="horizontal()"
+      [noMargin]="noMargin()"
+      [onlyInput]="onlyInput()"
+      [class]="inputStyleClass()"
     >
-      <!-- Mode decimal triggers number pad on iOS/Android -->
       <ion-input
         type="number"
         inputmode="decimal"
@@ -31,7 +30,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         [placeholder]="placeholder()"
         label-placement="floating"
         fill="outline"
-        shape="round"
         [readonly]="readonly()"
         [disabled]="disabled()"
         [min]="min()"
@@ -57,6 +55,15 @@ export class IonInputNumber extends BaseIonicInput {
   min = input<number | undefined>(undefined);
   max = input<number | undefined>(undefined);
   step = input<number>(1);
+  customClass = input<string>("");
+  size = input<"small" | "large" | undefined>(undefined);
+
+  inputStyleClass = computed(() => {
+    let classes = this.customClass();
+    if (this.size() === "small") classes += " input-sm";
+    if (this.size() === "large") classes += " input-lg";
+    return classes.trim();
+  });
 
   override registerOnChange(fn: any): void {
     this.onChange = fn;

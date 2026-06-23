@@ -1,45 +1,53 @@
-import { CommonModule } from "@angular/common";
-import { Component, input, ViewEncapsulation } from "@angular/core";
-import {
-  FormsModule,
-  ReactiveFormsModule,
-  FormGroup,
-} from "@angular/forms";
-import { TableModule } from "primeng/table";
-import { CardModule } from "primeng/card";
+import { CommonModule, CurrencyPipe } from "@angular/common";
+import { Component, signal, ViewEncapsulation } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
-import { TagModule } from "primeng/tag";
+import { CardModule } from "primeng/card";
+import { CheckboxModule } from "primeng/checkbox";
 import { DividerModule } from "primeng/divider";
-
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web";
-import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web";
-import {
-  CustomButtonEdit,
-  CustomButtonDelete,
-} from "src/app/core/components/buttons/web";
+import { IconFieldModule } from "primeng/iconfield";
+import { InputIconModule } from "primeng/inputicon";
+import { InputTextModule } from "primeng/inputtext";
+import { TableModule } from "primeng/table";
+import { TagModule } from "primeng/tag";
 import { ActionIconsGroupComponent } from "src/app/core/components/action-icons-group/action-icons-group.component";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import {
-  EStatus as StatusEnum,
-  StatusBadge,
-} from "src/app/core/components/status-badge/status-badge";
+import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { EStatus, StatusBadge } from "src/app/core/components/status-badge/status-badge";
+
+interface ErpRow {
+  id: number;
+  folio: string;
+  nombre: string;
+  depto: string;
+  fecha: string;
+  importe: number;
+  status: EStatus;
+  detail?: string;
+}
 
 @Component({
   selector: "app-web-tables",
+  standalone: true,
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
+    CurrencyPipe,
     TableModule,
     CardModule,
     ButtonModule,
     TagModule,
     DividerModule,
+    CheckboxModule,
+    InputTextModule,
+    IconFieldModule,
+    InputIconModule,
     PrimeNgCustomCaption,
-    CustomInputSelectSignal,
-    CustomBtnActiveDesactive,
+    PrimeNgCustomTableFooter,
     CustomButtonEdit,
     CustomButtonDelete,
     ActionIconsGroupComponent,
@@ -48,95 +56,228 @@ import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-vi
     DataViewMobile,
   ],
   template: `
-    <p-card header="Tabla Híbrida con Toolbar Alineado y Columnas Fijas">
-      <div class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round mb-3">
-        <div class="flex-grow-1">
+    <div class="grid">
+
+      <!-- Tabla completa ERP con caption + filtro + paginador -->
+      <div class="col-12">
+        <p-card header="Tabla ERP — Caption, Filtro, Sort, Paginación y Responsiva">
+          <p class="m-0 mb-3 text-sm text-color-secondary">
+            Patrón estándar ERP: <code>primeng-custom-caption</code> + <code>p-table</code> en desktop
+            y <code>app-data-view-mobile</code> en móvil (<code>md:hidden</code>).
+          </p>
+
+          <!-- Toolbar / Caption -->
           <primeng-custom-caption
-            [title]="'Insumos'"
-            label="Agregar Insumo"
             [dt]="dt"
-            [noPadding]="true"
-            [noMargin]="true"
+            label="Nueva solicitud"
+            [rolAuth]="true"
+            [showSearch]="true"
           />
-        </div>
-        <div class="flex flex-column sm:flex-row align-items-center gap-2">
-          <div style="min-width: 140px">
-            <custom-input-select-signal
-              [control]="filterForm()?.controls?.['estado']"
-              [data]="statusOptions()"
-              [noMargin]="true"
-              placeholder="Filtrar"
-            />
-          </div>
-          <div class="flex-shrink-0" style="width: 130px">
-            <custom-button-active-desactive
-              [state]="true"
-            />
-          </div>
-        </div>
+
+          <!-- Tabla desktop -->
+          <p-table
+            #dt
+            [value]="rows"
+            [paginator]="true"
+            [rows]="4"
+            [rowsPerPageOptions]="[4, 8, 16]"
+            [globalFilterFields]="['folio','nombre','depto']"
+            sortField="folio"
+            styleClass="custom-table card hidden md:block"
+            [rowHover]="true"
+          >
+            <ng-template #colgroup>
+              <colgroup>
+                <col style="width:130px" />
+                <col />
+                <col style="width:140px" />
+                <col style="width:110px" />
+                <col style="width:120px" />
+                <col style="width:130px" />
+                <col style="width:110px" />
+              </colgroup>
+            </ng-template>
+
+            <ng-template #header>
+              <tr>
+                <th pSortableColumn="folio">Folio <p-sort-icon field="folio" /></th>
+                <th pSortableColumn="nombre">Nombre <p-sort-icon field="nombre" /></th>
+                <th pSortableColumn="depto">Departamento <p-sort-icon field="depto" /></th>
+                <th pSortableColumn="fecha">Fecha <p-sort-icon field="fecha" /></th>
+                <th pSortableColumn="importe" class="text-right">Importe <p-sort-icon field="importe" /></th>
+                <th>Status</th>
+                <th class="text-center">Acciones</th>
+              </tr>
+            </ng-template>
+
+            <ng-template #body let-row>
+              <tr>
+                <td><strong>{{ row.folio }}</strong></td>
+                <td>
+                  <span class="block font-semibold text-sm">{{ row.nombre }}</span>
+                  <span class="text-xs text-color-secondary">{{ row.depto }}</span>
+                </td>
+                <td>{{ row.depto }}</td>
+                <td>{{ row.fecha }}</td>
+                <td class="text-right">{{ row.importe | currency:'MXN':'symbol':'1.0-0' }}</td>
+                <td><app-status-badge [status]="row.status" /></td>
+                <td>
+                  <div class="flex justify-content-center">
+                    <app-action-icons-group>
+                      <custom-button-edit label="" />
+                      <custom-button-delete label="" />
+                    </app-action-icons-group>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+
+            <ng-template #paginatorleft>
+              <primeng-custom-table-footer [data]="rows" />
+            </ng-template>
+          </p-table>
+
+          <!-- Vista móvil -->
+          <app-data-view-mobile
+            [data]="rows"
+            [dt]="dt"
+            [globalFilterFields]="['folio','nombre','depto']"
+            [showAdd]="false"
+            class="block md:hidden"
+          >
+            <ng-template #listItemTemplate let-row>
+              <div class="flex align-items-start justify-content-between p-3 border-bottom-1 surface-border">
+                <div>
+                  <strong class="text-sm block">{{ row.folio }}</strong>
+                  <span class="text-xs text-color-secondary block mt-1">{{ row.nombre }}</span>
+                  <div class="flex align-items-center gap-2 mt-2">
+                    <app-status-badge [status]="row.status" />
+                    <span class="text-xs font-bold">{{ row.importe | currency:'MXN':'symbol':'1.0-0' }}</span>
+                  </div>
+                </div>
+                <app-action-menu>
+                  <p-button label="Editar"   icon="mdi:pencil"    [text]="true" />
+                  <p-button label="Eliminar" icon="mdi:trash-can" [text]="true" severity="danger" />
+                </app-action-menu>
+              </div>
+            </ng-template>
+          </app-data-view-mobile>
+        </p-card>
       </div>
 
-      <p-table #dt [value]="tableData()" styleClass="custom-table custom-table-fixed card hidden md:block" [globalFilterFields]="['name']">
-        <ng-template pTemplate="colgroup">
-          <colgroup>
-            <col class="table-col-20" />
-            <col class="table-col-50" />
-            <col class="table-col-30" />
-          </colgroup>
-        </ng-template>
-
-        <ng-template pTemplate="header">
-          <tr>
-            <th>Acciones</th>
-            <th>Elemento (Ajuste automático de texto)</th>
-            <th>Status</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-item>
-          <tr>
-            <td>
-              <app-action-icons-group>
-                <custom-button-edit [label]="''" />
-                <custom-button-delete [label]="''" />
-              </app-action-icons-group>
-            </td>
-            <td>
-              <strong>{{ item.name }}</strong>
-              <span class="block text-xs text-secondary mt-1 line-height-2">Este texto largo simula una descripción del insumo que debe hacer salto de línea automático de forma fluida y sin desbordar la tabla.</span>
-            </td>
-            <td><app-status-badge [status]="item.status" /></td>
-          </tr>
-        </ng-template>
-      </p-table>
-
-      <app-data-view-mobile
-        [data]="tableData()"
-        [dt]="dt"
-        [globalFilterFields]="['name']"
-        [showAdd]="false"
-        class="block md:hidden"
-      >
-        <ng-template #listItemTemplate let-item>
-          <div class="flex align-items-center justify-content-between p-3 border-bottom-1 surface-border">
-            <div>
-              <span class="font-bold text-sm block">{{ item.name }}</span>
-              <app-status-badge [status]="item.status" />
-            </div>
-            <app-action-menu>
-              <p-button label="Editar" icon="mdi:pencil" [text]="true" />
-              <p-button label="Eliminar" icon="mdi:trash-can" [text]="true" severity="danger" />
-            </app-action-menu>
+      <!-- Tabla con selección por checkbox -->
+      <div class="col-12 lg:col-6">
+        <p-card header="Tabla con Selección (checkbox)">
+          <p class="m-0 mb-3 text-sm text-color-secondary">
+            Muestra el conteo de seleccionados y activa las acciones masivas en el toolbar.
+          </p>
+          <div class="flex align-items-center justify-content-between mb-3">
+            <span class="text-sm text-color-secondary">
+              {{ selectedRows().length }} de {{ rows.length }} seleccionados
+            </span>
+            @if (selectedRows().length > 0) {
+              <div class="flex gap-2">
+                <p-button label="Exportar" icon="mdi:download"  size="small" severity="secondary" [outlined]="true" />
+                <p-button label="Eliminar" icon="mdi:trash-can" size="small" severity="danger" />
+              </div>
+            }
           </div>
-        </ng-template>
-      </app-data-view-mobile>
-    </p-card>
+          <p-table
+            [value]="rows"
+            [(selection)]="selectedRowsModel"
+            (selectionChange)="selectedRows.set($event)"
+            dataKey="id"
+            styleClass="p-datatable-sm"
+          >
+            <ng-template #header>
+              <tr>
+                <th style="width:3rem"><p-tableHeaderCheckbox /></th>
+                <th>Folio</th>
+                <th>Nombre</th>
+                <th>Status</th>
+              </tr>
+            </ng-template>
+            <ng-template #body let-row>
+              <tr>
+                <td><p-tableCheckbox [value]="row" /></td>
+                <td><strong>{{ row.folio }}</strong></td>
+                <td>{{ row.nombre }}</td>
+                <td><app-status-badge [status]="row.status" /></td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </p-card>
+      </div>
+
+      <!-- Tabla con row expansion -->
+      <div class="col-12 lg:col-6">
+        <p-card header="Tabla con Row Expansion (detalle)">
+          <p class="m-0 mb-3 text-sm text-color-secondary">
+            Expande una fila para mostrar detalle sin navegar a otra vista.
+            Úsalo solo cuando el detalle es breve y consultivo.
+          </p>
+          <p-table
+            [value]="rows"
+            dataKey="id"
+            styleClass="p-datatable-sm"
+          >
+            <ng-template #header>
+              <tr>
+                <th style="width:3rem"></th>
+                <th>Folio</th>
+                <th>Importe</th>
+                <th>Status</th>
+              </tr>
+            </ng-template>
+            <ng-template #body let-row let-expanded="expanded">
+              <tr>
+                <td>
+                  <p-button
+                    [icon]="expanded ? 'mdi:chevron-up' : 'mdi:chevron-down'"
+                    [pRowToggler]="row"
+                    [text]="true"
+                    [rounded]="true"
+                    size="small"
+                  />
+                </td>
+                <td><strong>{{ row.folio }}</strong></td>
+                <td>{{ row.importe | currency:'MXN':'symbol':'1.0-0' }}</td>
+                <td><app-status-badge [status]="row.status" /></td>
+              </tr>
+            </ng-template>
+            <ng-template #rowexpansion let-row>
+              <tr>
+                <td colspan="4">
+                  <div class="p-3 surface-ground border-round m-2">
+                    <strong class="block text-sm mb-2">Detalle de {{ row.folio }}</strong>
+                    <div class="grid text-sm">
+                      <div class="col-6"><span class="text-color-secondary">Nombre:</span> {{ row.nombre }}</div>
+                      <div class="col-6"><span class="text-color-secondary">Depto:</span> {{ row.depto }}</div>
+                      <div class="col-6"><span class="text-color-secondary">Fecha:</span> {{ row.fecha }}</div>
+                      <div class="col-6"><span class="text-color-secondary">Importe:</span> {{ row.importe | currency:'MXN':'symbol':'1.0-0' }}</div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </p-card>
+      </div>
+
+    </div>
   `,
   encapsulation: ViewEncapsulation.None,
 })
 export class WebTables {
-  filterForm = input<FormGroup>();
-  tableData = input<any[]>([]);
-  statusOptions = input<any[]>([]);
-  deptoOptions = input<any[]>([]);
-  EStatus = input<typeof StatusEnum>();
+  readonly rows: ErpRow[] = [
+    { id: 1, folio: "ERP-001", nombre: "Solicitud de compra equipo TI",       depto: "Sistemas",        fecha: "2026-06-01", importe: 45000, status: EStatus.Pendiente,    detail: "Requiere aprobación de Dirección." },
+    { id: 2, folio: "ERP-002", nombre: "Mantenimiento preventivo elevadores",  depto: "Operaciones",     fecha: "2026-06-05", importe: 12800, status: EStatus.Proceso,      detail: "Proveedor asignado: TechElevadores SA." },
+    { id: 3, folio: "ERP-003", nombre: "Adquisición mobiliario administrativo",depto: "Administración",  fecha: "2026-06-10", importe: 89500, status: EStatus.Concluido,    detail: "Entregado y firmado en almacén." },
+    { id: 4, folio: "ERP-004", nombre: "Servicio de limpieza áreas comunes",   depto: "Servicios",       fecha: "2026-06-12", importe:  8500, status: EStatus.noAutorizado, detail: "Solicitud rechazada por política de techo." },
+    { id: 5, folio: "ERP-005", nombre: "Capacitación personal técnico",        depto: "Recursos Humanos",fecha: "2026-06-15", importe: 15000, status: EStatus.Proceso,      detail: "3 de 5 sesiones completadas." },
+    { id: 6, folio: "ERP-006", nombre: "Renovación de licencias de software",  depto: "Sistemas",        fecha: "2026-06-18", importe: 32000, status: EStatus.Pendiente,    detail: "Pendiente de cotización comparativa." },
+  ];
+
+  selectedRowsModel: ErpRow[] = [];
+  selectedRows = signal<ErpRow[]>([]);
 }

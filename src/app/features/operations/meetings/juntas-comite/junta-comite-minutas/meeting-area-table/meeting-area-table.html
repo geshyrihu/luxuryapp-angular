@@ -1,4 +1,4 @@
-<!-- La tabla ahora es genérica y se alimenta de los inputs -->
+﻿<!-- La tabla ahora es genérica y se alimenta de los inputs -->
 <p-table [value]="details()" dataKey="id" styleClass="p-datatable-sm">
   <ng-template #header>
     <!-- Cabecera con acciones para agregar y enviar email -->
@@ -51,9 +51,9 @@
               </div>
               <app-action-menu>
                 <ng-container actions>
-                  <ion-button-edit label="Editar" [showLabelOnDesktop]="true"
+                  <custom-button-edit label="Editar" [showLabelOnDesktop]="true"
                     (clicked)="onEditSeguimiento(detail.id, item.id)" />
-                  <ion-button-delete label="Eliminar" [showLabelOnDesktop]="true"
+                  <custom-button-delete label="Eliminar" [showLabelOnDesktop]="true"
                     (confirmed)="onDeleteSeguimiento(item.id)" />
                 </ng-container>
               </app-action-menu>
@@ -66,11 +66,11 @@
         <!-- Acciones a nivel de detalle -->
         <app-action-menu>
           <ng-container actions>
-            <ion-button-item iconClass="mdi:clipboard-text" label="Seguimiento" [showLabelOnDesktop]="true"
+            <custom-button-item iconClass="mdi:clipboard-text" label="Seguimiento" [showLabelOnDesktop]="true"
               (clicked)="onAddSeguimiento(detail.id)" />
 
-            <ion-button-edit label="Editar" [showLabelOnDesktop]="true" (clicked)="onEditDetail(detail.id)" />
-            <ion-button-delete label="Eliminar" [showLabelOnDesktop]="true"
+            <custom-button-edit label="Editar" [showLabelOnDesktop]="true" (clicked)="onEditDetail(detail.id)" />
+            <custom-button-delete label="Eliminar" [showLabelOnDesktop]="true"
               (confirmed)="onDeleteDetail(detail.id)" />
           </ng-container>
         </app-action-menu>

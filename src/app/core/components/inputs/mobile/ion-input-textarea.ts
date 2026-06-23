@@ -1,13 +1,8 @@
-import { Component, forwardRef, input } from "@angular/core";
+﻿import { Component, computed, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonTextarea } from "@ionic/angular/standalone";
 import { BaseIonicInput } from "../base/base-ionic-input";
 
-/**
- * 📄 ION INPUT TEXTAREA - Mobile (Ionic)
- * -------------------------------------------------------------------------
- * Área de texto multilinea responsiva nativa para vistas móviles.
- */
 @Component({
   selector: "ion-input-textarea",
   imports: [BaseIonicInput, ReactiveFormsModule, IonTextarea],
@@ -19,6 +14,12 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       [placeholder]="placeholder()"
       [readonly]="readonly()"
       [required]="requiredInput()"
+      [hidden]="hidden()"
+      [description]="description()"
+      [horizontal]="horizontal()"
+      [noMargin]="noMargin()"
+      [onlyInput]="onlyInput()"
+      [class]="inputStyleClass()"
     >
       <ion-textarea
         [id]="id()"
@@ -27,7 +28,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         [placeholder]="placeholder()"
         label-placement="floating"
         fill="outline"
-        shape="round"
         [readonly]="readonly()"
         [disabled]="disabled()"
         [rows]="rows()"
@@ -52,6 +52,15 @@ export class IonInputTextarea extends BaseIonicInput {
   rows = input<number>(3);
   maxLength = input<number | undefined>(undefined);
   autoGrow = input<boolean>(true);
+  customClass = input<string>("");
+  size = input<"small" | "large" | undefined>(undefined);
+
+  inputStyleClass = computed(() => {
+    let classes = this.customClass();
+    if (this.size() === "small") classes += " input-sm";
+    if (this.size() === "large") classes += " input-lg";
+    return classes.trim();
+  });
 
   override registerOnChange(fn: any): void {
     this.onChange = fn;

@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="globalFilterFields()"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -90,10 +90,10 @@
       <td class="no-print">
         <app-action-menu>
           <ng-container actions>
-            <ion-button-edit
+            <custom-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             />
-            <ion-button-delete (confirmed)="onDelete(item.id)" />
+            <custom-button-delete (confirmed)="onDelete(item.id)" />
           </ng-container>
         </app-action-menu>
       </td>
@@ -117,7 +117,7 @@
           width: 36px;
           height: 36px;
           border-radius: 10px;
-          background: #ede9fe;
+          background: var(--ds-border);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -125,10 +125,7 @@
           margin-left: 16px;
         "
       >
-        <ion-icon
-          name="home-outline"
-          style="font-size: 20px; color: #7c3aed"
-        ></ion-icon>
+        <app-icon icon="mdi:home-outline" style="font-size: 20px; color: #7c3aed"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.habitant }}</h3>
@@ -136,10 +133,10 @@
         <p>{{ item.email }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit
+        <custom-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
         />
-        <ion-button-delete (confirmed)="onDelete(item.id)" />
+        <custom-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

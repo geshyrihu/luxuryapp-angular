@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -19,7 +19,7 @@ import {
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile";
+import { CustomButtonDelete } from "src/app/core/components/buttons/web";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -44,7 +44,7 @@ interface ITicketMessageFollowupForm {
     FormsModule,
     CardModule,
     CustomButtonSave,
-    IonButtonDelete,
+    CustomButtonDelete,
     ProgressSpinnerModule,
     CustomInputTextAreaSignal,
   ],

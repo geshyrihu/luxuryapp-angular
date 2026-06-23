@@ -1,5 +1,5 @@
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
+﻿import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
@@ -30,7 +30,7 @@ import { AgendaSupervisionForm } from "./agenda-supervision-form";
 @Component({
   selector: "app-agenda-supervision",
   templateUrl: "./agenda-supervision.html",
-  imports: [IonButtonDelete, IonButtonEdit, 
+  imports: [CustomButtonDelete, CustomButtonEdit, 
     CommonModule,
     FormsModule,
     TableModule,

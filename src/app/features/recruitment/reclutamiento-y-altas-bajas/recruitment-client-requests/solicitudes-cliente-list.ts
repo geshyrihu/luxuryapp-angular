@@ -1,6 +1,6 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { peopleOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -39,7 +39,6 @@ import { VacanteForm } from "src/app/features/recruitment/reclutamiento-y-altas-
     DataViewMobile,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
 })
 export class SolicitudesClienteList {
@@ -167,4 +166,3 @@ export class SolicitudesClienteList {
     }
   }
 }
-

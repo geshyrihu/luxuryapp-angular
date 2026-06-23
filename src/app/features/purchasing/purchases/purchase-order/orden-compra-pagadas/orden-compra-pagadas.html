@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   #dt
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -107,7 +107,7 @@
           width: 36px;
           height: 36px;
           border-radius: 10px;
-          background: #dcfce7;
+          background: var(--ds-border);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -115,10 +115,7 @@
           margin-left: 16px;
         "
       >
-        <ion-icon
-          name="checkmark-circle-outline"
-          style="font-size: 20px; color: #16a34a"
-        ></ion-icon>
+        <app-icon icon="mdi:check-circle-outline" style="font-size: 20px; color: #16a34a"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.proveedor }}</h3>
@@ -129,7 +126,7 @@
         </p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit (clicked)="onAddOrEdit(item.id)" />
+        <custom-button-edit (clicked)="onAddOrEdit(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

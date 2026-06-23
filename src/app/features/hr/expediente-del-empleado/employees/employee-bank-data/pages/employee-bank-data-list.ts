@@ -1,11 +1,11 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, input, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
+import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonConfirm } from "src/app/core/components/buttons/web/custom-button-confirm";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
@@ -27,8 +27,8 @@ import { EmployeeBankDataForm } from "./employee-bank-data-form";
     CustomButtonConfirm,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
     IonItem,
     IonLabel,
     TooltipModule,

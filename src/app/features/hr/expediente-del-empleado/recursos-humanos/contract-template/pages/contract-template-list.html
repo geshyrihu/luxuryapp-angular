@@ -1,4 +1,4 @@
-<div class="card">
+﻿<div class="card">
   <p-table
     [value]="items()"
     styleClass="custom-table card hidden md:block"
@@ -76,8 +76,8 @@
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-            <ion-button-item label="Editar" iconName="create-outline" (clicked)="onEdit(item)" />
-            <ion-button-item
+            <custom-button-item label="Editar" iconName="create-outline" (clicked)="onEdit(item)" />
+            <custom-button-item
               [label]="item.isActive ? 'Desactivar' : 'Activar'"
               iconName="toggle-outline"
               (clicked)="onToggleActive(item)"

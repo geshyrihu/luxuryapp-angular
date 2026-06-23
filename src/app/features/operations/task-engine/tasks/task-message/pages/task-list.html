@@ -1,4 +1,4 @@
-@if (dataSignal().items && dataSignal().items !== undefined) {
+﻿@if (dataSignal().items && dataSignal().items !== undefined) {
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -234,7 +234,7 @@
                     Asignar predecesora
                   </p>
                   <p class="m-0 text-xs text-600 mt-1 line-height-3">
-                    Arrastra el icono <strong>&#128279;</strong> de una tarea y
+                    Arrastra el icono <strong>&var(--ds-info);</strong> de una tarea y
                     sueltalo sobre otra para marcarla como predecesora. La tarea
                     arrastrada no puede iniciar hasta que la predecesora este
                     completa.
@@ -504,41 +504,41 @@
           </a>
           <app-action-menu>
             <ng-container actions>
-              <ion-button-item
+              <custom-button-item
                 iconClass="mdi:calendar"
                 label="Programar"
                 [showLabelOnDesktop]="true"
                 (clicked)="onProgram(item.id)"
               />
               @if (item.status !== 'Completed') {
-              <ion-button-item
+              <custom-button-item
                 iconClass="mdi:lock"
                 label="Cerrar"
                 [showLabelOnDesktop]="true"
                 (clicked)="onClosed(item.id)"
               />
               } @if (item.status !== 'InProgress') {
-              <ion-button-item
+              <custom-button-item
                 iconClass="mdi:sync"
                 label="En proceso"
                 [showLabelOnDesktop]="true"
                 (clicked)="onProgress(item.id)"
               />
               } @if (item.status === 'Completed') {
-              <ion-button-item
+              <custom-button-item
                 iconClass="mdi:lock-open"
                 label="Reabrir"
                 [showLabelOnDesktop]="true"
                 (clicked)="onReopen(item.id)"
               />
               }
-              <ion-button-edit
+              <custom-button-edit
                 label="Editar"
                 [showLabelOnDesktop]="true"
                 (clicked)="onModalForm(item)"
               />
               @if (isSuperUser()) {
-              <ion-button-delete
+              <custom-button-delete
                 label="Eliminar"
                 [showLabelOnDesktop]="true"
                 (confirmed)="onDelete(item.id)"
@@ -614,11 +614,7 @@
             "
             (click)="onPendingBoard()"
           >
-            <ion-icon
-              slot="start"
-              name="grid-outline"
-              style="font-size: 14px"
-            ></ion-icon>
+            <app-icon icon="mdi:view-grid-outline" slot="start" style="font-size: 14px"></app-icon>
             Tablero
           </ion-button>
         </ion-col>
@@ -635,11 +631,7 @@
             "
             (click)="onPreviewClickedWorkPlan()"
           >
-            <ion-icon
-              slot="start"
-              name="clipboard-outline"
-              style="font-size: 14px"
-            ></ion-icon>
+            <app-icon icon="mdi:clipboard-text-outline" slot="start" style="font-size: 14px"></app-icon>
             Plan
           </ion-button>
         </ion-col>
@@ -656,11 +648,7 @@
             "
             (click)="onPreviewWeeklyReport()"
           >
-            <ion-icon
-              slot="start"
-              name="eye-outline"
-              style="font-size: 14px"
-            ></ion-icon>
+            <app-icon icon="mdi:eye-outline" slot="start" style="font-size: 14px"></app-icon>
             Previa
           </ion-button>
         </ion-col>
@@ -678,11 +666,7 @@
             [disabled]="wekklyIsNullOrEmpty()"
             (click)="onSendWeeklyReport()"
           >
-            <ion-icon
-              slot="start"
-              name="send-outline"
-              style="font-size: 14px"
-            ></ion-icon>
+            <app-icon icon="mdi:send-outline" slot="start" style="font-size: 14px"></app-icon>
             Reporte
           </ion-button>
         </ion-col>
@@ -781,7 +765,7 @@
             class="flex align-items-center gap-1"
             (click)="onFollowUp(item.id)"
           >
-            <ion-icon name="chatbubbles-outline"></ion-icon>
+            <app-icon icon="mdi:forum-outline"></app-icon>
             {{ item.ticketMessageFollowUp }}
           </ion-badge>
           <span class="text-xs" [class.text-red-500]="item.daysDifference > 7">
@@ -793,38 +777,38 @@
       <div slot="end" class="flex align-items-center">
         <app-action-menu>
           <ng-container actions>
-            <ion-button-item
+            <custom-button-item
               iconName="chatbubbles-outline"
               [label]="'Seguimiento (' + item.ticketMessageFollowUp + ')'"
               (clicked)="onFollowUp(item.id)"
             />
-            <ion-button-item
+            <custom-button-item
               iconName="calendar-outline"
               label="Programar"
               (clicked)="onProgram(item.id)"
             />
             @if (item.status !== 'Completed') {
-            <ion-button-item
+            <custom-button-item
               iconName="lock-closed-outline"
               label="Cerrar"
               (clicked)="onClosed(item.id)"
             />
             } @if (item.status !== 'InProgress') {
-            <ion-button-item
+            <custom-button-item
               iconName="sync-outline"
               label="En proceso"
               (clicked)="onProgress(item.id)"
             />
             } @if (item.status === 'Completed') {
-            <ion-button-item
+            <custom-button-item
               iconName="lock-open-outline"
               label="Reabrir"
               (clicked)="onReopen(item.id)"
             />
             }
-            <ion-button-edit (clicked)="onModalForm(item)" />
+            <custom-button-edit (clicked)="onModalForm(item)" />
             @if (isSuperUser()) {
-            <ion-button-delete (confirmed)="onDelete(item.id)" />
+            <custom-button-delete (confirmed)="onDelete(item.id)" />
             }
           </ng-container>
         </app-action-menu>
@@ -891,7 +875,7 @@
       <tr>
         <td
           [class]="statusTdClass(item.status)"
-          style="font-size: 7.5pt; color: #666"
+          style="font-size: 7.5pt; color: var(--ds-text-muted)"
         >
           {{ idx + 1 }}
         </td>
@@ -927,7 +911,7 @@
           <span
             style="
               font-size: 7pt;
-              color: #777;
+              color: var(--ds-text-muted);
               display: block;
               margin-bottom: 2px;
             "

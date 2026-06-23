@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -172,10 +172,7 @@
         slot="start"
         class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <ion-icon
-          name="alert-circle-outline"
-          class="text-orange-600 text-xl"
-        ></ion-icon>
+        <app-icon icon="mdi:alert-circle-outline" class="text-orange-600 text-xl"></app-icon>
       </div>
 
       <ion-label>
@@ -184,7 +181,7 @@
         <p>{{ item.fechaSolicitud }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit
+        <custom-button-edit
           (clicked)="onModalFormMinutaDetalle({ id: item.id, title: 'Editar asunto' })"
         />
       </app-action-menu>

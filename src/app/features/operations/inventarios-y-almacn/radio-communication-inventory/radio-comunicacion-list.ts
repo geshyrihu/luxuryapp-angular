@@ -1,15 +1,12 @@
+﻿import { DatePipe } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
-import { DatePipe } from "@angular/common";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { folderOpenOutline, radioOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonDownload } from "src/app/core/components/buttons/mobile/ion-button-download";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
@@ -38,12 +35,11 @@ import { RadioComunicacionForm } from "./radio-comunicacion-form";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
-    IonButtonDownload,
+    CustomButtonEdit,
+    CustomButtonDelete,
+    CustomButtonDownload,
     IonItem,
     IonLabel,
-    IonIcon,
     DatePipe,
   ],
 })
@@ -170,9 +166,9 @@ export class RadioComunicacionList {
 
         groups[brand].forEach((item, idx) => {
           const bg = idx % 2 === 0 ? "#ffffff" : "#f9fafb";
-          
-          const imgHtml = item.base64Image 
-            ? `<img src="${item.base64Image}" style="max-width:60px; max-height:60px; object-fit:contain;" />` 
+
+          const imgHtml = item.base64Image
+            ? `<img src="${item.base64Image}" style="max-width:60px; max-height:60px; object-fit:contain;" />`
             : `<div style="font-size: 8px; color: #999; margin-top:10px; text-align:center;">Sin Imagen</div>`;
 
           tableHtml += `
@@ -201,7 +197,7 @@ ${this.htmlPrintS.getStandardCss()}
   @page { margin: 10mm; }
   .container { max-width: 1000px; }
   .sistema-header { background-color: #eef2f7 !important; color: #003A62 !important; font-weight: bold; font-size: 14px; padding: 6px 10px !important; }
-  
+
   .data-table { width:100%; border-collapse:collapse; margin-bottom:16px; }
   .data-table th, .data-table td { padding:4px 8px; border-bottom:1px solid #EEEEEE; }
 </style>
@@ -216,7 +212,7 @@ ${this.htmlPrintS.getStandardCss()}
       </tbody>
     </table>
   </div>
-  
+
   ${this.htmlPrintS.buildStandardFooter(generatedAt)}
 </div>
 </body></html>`;
@@ -229,11 +225,3 @@ ${this.htmlPrintS.getStandardCss()}
     }
   }
 }
-
-
-
-
-
-
-
-

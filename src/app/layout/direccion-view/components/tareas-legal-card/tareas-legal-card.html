@@ -1,19 +1,19 @@
 @if (cargando()) {
   <div class="flex align-items-center gap-2 py-3">
-    <i class="pi pi-spin pi-spinner text-primary"></i>
+    <app-icon icon="mdi:spin"  class="ner text-primary ds-animate-spin"></app-icon>
     <span class="text-sm text-500">Cargando tareas...</span>
   </div>
 } @else if (!resumen() || resumen()!.total === 0) {
   <div class="flex align-items-center gap-2 py-2 text-400">
-    <i class="pi pi-check-circle"></i>
+    <app-icon icon="mdi:check-circle"></app-icon>
     <span class="text-sm">Sin tareas activas en Legal</span>
   </div>
 } @else {
 
   <!-- Total -->
   <div class="flex align-items-center gap-2 mb-3">
-    <span class="text-3xl font-bold" style="color: var(--ds-text-primary)">{{ resumen()!.total }}</span>
-    <span class="text-sm" style="color: var(--ds-text-secondary)">
+    <span class="text-3xl font-bold text-color">{{ resumen()!.total }}</span>
+    <span class="text-sm text-color-secondary">
       tarea{{ resumen()!.total === 1 ? '' : 's' }} activa{{ resumen()!.total === 1 ? '' : 's' }}
     </span>
   </div>
@@ -25,32 +25,28 @@
       <div>
         <!-- Cabecera cliente -->
         <div class="flex align-items-center justify-content-between mb-2">
-          <span class="text-xs font-bold uppercase" style="color: var(--ds-text-secondary)">{{ customer.customerName }}</span>
-          <span class="text-xs" style="color: var(--ds-text-tertiary)">{{ customer.total }}</span>
+          <span class="text-xs font-bold uppercase text-color-secondary">{{ customer.customerName }}</span>
+          <span class="text-xs text-color-secondary">{{ customer.total }}</span>
         </div>
 
         <!-- Lista de tareas -->
-        <div class="flex flex-column gap-2 pl-2 border-left-2" style="border-color: var(--ds-border) !important;">
+        <div class="flex flex-column gap-2 pl-2 border-left-2 surface-border">
           @for (tarea of customer.tareas; track tarea.id; let last = $last) {
             <div
               class="flex flex-column gap-1 py-2"
               [class.border-bottom-1]="!last"
-              [style.borderColor]="!last ? 'var(--ds-border)' : 'transparent'"
+              [class.surface-border]="!last"
             >
               <!-- Fila principal: folio + titulo + dias -->
               <div class="flex align-items-start justify-content-between gap-2">
                 <div class="flex align-items-center gap-2 min-w-0 flex-auto">
                   @if (tarea.esAltaPrioridad) {
-                    <i
-                      class="pi pi-flag-fill flex-none"
-                      style="font-size: 0.65rem; color: var(--ds-error)"
-                      pTooltip="Alta prioridad"
-                    ></i>
+                    <app-icon icon="mdi:flag-fill" class="text-xs text-red-500 flex-none"
+                      pTooltip="Alta prioridad"></app-icon>
                   }
-                  <span class="text-xs flex-none" style="color: var(--ds-text-tertiary)">{{ tarea.folio }}</span>
+                  <span class="text-xs flex-none text-color-secondary">{{ tarea.folio }}</span>
                   <span
-                    class="text-sm font-semibold white-space-nowrap overflow-hidden text-overflow-ellipsis"
-                    style="color: var(--ds-text-primary)"
+                    class="text-sm font-semibold white-space-nowrap overflow-hidden text-overflow-ellipsis text-color"
                     [pTooltip]="tarea.title"
                     tooltipPosition="top"
                   >
@@ -64,10 +60,7 @@
                   >
                     {{ tarea.diasPendiente }}d
                   </span>
-                  <span
-                    class="text-xs border-round px-2 py-0"
-                    style="background: var(--ds-surface-variant); color: var(--ds-on-surface-variant)"
-                  >
+                  <span class="text-xs border-round px-2 py-0 surface-100 text-color-secondary">
                     {{ tarea.status }}
                   </span>
                 </div>
@@ -75,31 +68,30 @@
 
               <!-- Asignado a -->
               @if (tarea.assigneeName) {
-                <span class="text-xs pl-4" style="color: var(--ds-text-secondary)">
-                  <i class="pi pi-user mr-1"></i>{{ tarea.assigneeName }}
+                <span class="text-xs pl-4 text-color-secondary">
+                  <app-icon icon="mdi:account-outline" class="mr-1"></app-icon>{{ tarea.assigneeName }}
                 </span>
               }
 
               <!-- Ultimo seguimiento -->
               @if (tarea.ultimoSeguimiento) {
                 <div class="flex align-items-start gap-1 pl-4">
-                  <i class="pi pi-comment flex-none" style="font-size: 0.65rem; margin-top: 0.2rem; color: var(--ds-text-tertiary)"></i>
+                  <app-icon icon="mdi:comment-outline" class="text-xs mt-1 text-color-secondary flex-none"></app-icon>
                   <span
-                    class="text-xs white-space-nowrap overflow-hidden text-overflow-ellipsis"
-                    style="color: var(--ds-text-secondary)"
+                    class="text-xs white-space-nowrap overflow-hidden text-overflow-ellipsis text-color-secondary"
                     [pTooltip]="tarea.ultimoSeguimiento"
                     tooltipPosition="bottom"
                   >
                     {{ tarea.ultimoSeguimiento }}
                   </span>
                   @if (tarea.ultimoSeguimientoFecha) {
-                    <span class="text-xs flex-none ml-1" style="color: var(--ds-text-tertiary)">
+                    <span class="text-xs flex-none ml-1 text-color-secondary">
                       &middot; {{ formatFechaRelativa(tarea.ultimoSeguimientoFecha) }}
                     </span>
                   }
                 </div>
               } @else {
-                <span class="text-xs pl-4" style="color: var(--ds-text-tertiary)">Sin seguimiento</span>
+                <span class="text-xs pl-4 text-color-secondary">Sin seguimiento</span>
               }
 
             </div>

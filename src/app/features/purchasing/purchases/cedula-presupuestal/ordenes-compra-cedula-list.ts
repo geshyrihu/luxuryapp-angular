@@ -1,11 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import {
-  IonBadge,
-  IonIcon,
-  IonItem,
-  IonLabel,
-} from "@ionic/angular/standalone";
+import { IonBadge, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { chevronForwardOutline } from "ionicons/icons";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -14,12 +9,12 @@ import { TooltipModule } from "primeng/tooltip";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 @Component({
@@ -35,7 +30,6 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
     IonItem,
     IonLabel,
     IonBadge,
-    IonIcon,
   ],
 })
 export class OrdenesCompraCedulaListComponent implements OnInit {
@@ -96,12 +90,3 @@ export class OrdenesCompraCedulaListComponent implements OnInit {
     );
   }
 }
-
-
-
-
-
-
-
-
-

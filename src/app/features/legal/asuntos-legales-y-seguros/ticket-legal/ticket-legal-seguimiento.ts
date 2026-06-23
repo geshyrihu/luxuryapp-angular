@@ -1,12 +1,12 @@
-import {
+﻿import {
   Component,
   computed,
   effect,
   inject,
   OnDestroy,
   OnInit,
-  Signal,
   signal,
+  Signal,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
@@ -20,9 +20,9 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-ticket-legal-seguimiento",
@@ -58,7 +58,11 @@ export class TicketLegalSeguimiento implements OnInit, OnDestroy {
     applicationUserId: [this.authS.applicationUserId, Validators.required],
     description: [
       "",
-      [Validators.required, Validators.maxLength(200), Validators.minLength(10)],
+      [
+        Validators.required,
+        Validators.maxLength(200),
+        Validators.minLength(10),
+      ],
     ],
   });
 

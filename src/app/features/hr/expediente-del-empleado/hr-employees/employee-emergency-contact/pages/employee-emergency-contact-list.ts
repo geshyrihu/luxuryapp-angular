@@ -1,10 +1,15 @@
-import { Component, computed, inject, input, OnInit, signal } from "@angular/core";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+﻿import {
+  Component,
+  computed,
+  inject,
+  input,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { callOutline, peopleOutline } from "ionicons/icons";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -30,11 +35,8 @@ import { EmployeeEmergencyContactForm } from "./employee-emergency-contact-form"
     CustomButtonConfirm,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
 })
 export class EmployeeEmergencyContactList implements OnInit {
@@ -88,7 +90,11 @@ export class EmployeeEmergencyContactList implements OnInit {
       });
   }
 
-  onModalForm(data: { id: string; title: string; contacOfBeneficiary: number }) {
+  onModalForm(data: {
+    id: string;
+    title: string;
+    contacOfBeneficiary: number;
+  }) {
     this.dialogHandlerS
       .openDialog(
         EmployeeEmergencyContactForm,
@@ -115,21 +121,16 @@ export class EmployeeEmergencyContactList implements OnInit {
       .then((result: any) => {
         if (result) {
           if (typeContact === 0) {
-            this.dataEmergencyContact.update(data => data.filter((item: any) => item.id !== id));
+            this.dataEmergencyContact.update((data) =>
+              data.filter((item: any) => item.id !== id),
+            );
           }
           if (typeContact === 1) {
-            this.dataBeneficiary.update(data => data.filter((item: any) => item.id !== id));
+            this.dataBeneficiary.update((data) =>
+              data.filter((item: any) => item.id !== id),
+            );
           }
         }
       });
   }
 }
-
-
-
-
-
-
-
-
-

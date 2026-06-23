@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   Component,
@@ -6,7 +6,6 @@ import {
   inject,
   OnInit,
   signal,
-  Signal,
   WritableSignal,
 } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";

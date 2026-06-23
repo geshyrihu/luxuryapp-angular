@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -17,7 +17,6 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { PaymentMethodForm } from "./payment-method-form";
-import { IonButtonDelete, IonButtonEdit } from "src/app/core/components/buttons/mobile";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { IPaymentMethodDTO } from "../models/payment-method.dto";
 
@@ -34,8 +33,8 @@ import { IPaymentMethodDTO } from "../models/payment-method.dto";
     ActionMenu,
     IonItem,
     IonLabel,
-    IonButtonDelete,
-    IonButtonEdit,
+    CustomButtonDelete,
+    CustomButtonEdit,
   ],
 })
 export class PaymentMethodList implements OnInit {

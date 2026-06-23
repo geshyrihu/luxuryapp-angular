@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import {
   IonAvatar,
@@ -23,15 +23,11 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
-  IonButtonActiveDesactive,
-  IonButtonDelete,
-  IonButtonEdit,
-  IonButtonItem,
-} from "src/app/core/components/buttons/mobile";
-import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/custom-button-active-desactive";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
+  CustomBtnActiveDesactive,
+  CustomButtonDelete,
+  CustomButtonEdit,
+  CustomButtonItem,
+} from "src/app/core/components/buttons/web";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -72,10 +68,10 @@ import { WorkPositionHours } from "./work-position-hours";
     IonBadge,
     IonItem,
     IonLabel,
-    IonButtonActiveDesactive,
-    IonButtonDelete,
-    IonButtonEdit,
-    IonButtonItem,
+    CustomBtnActiveDesactive,
+    CustomButtonDelete,
+    CustomButtonEdit,
+    CustomButtonItem,
   ],
 })
 export class WorkPositionList {

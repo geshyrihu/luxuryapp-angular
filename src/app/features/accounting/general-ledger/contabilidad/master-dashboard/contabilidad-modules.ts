@@ -124,7 +124,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         icon: "mdi:wallet",
         color: "#047857",
         bgColor: "#d1fae5",
-        roles: [EApplicationRole.SuperUsuario],
+        roles: [EApplicationRole.SuperUsuario, EApplicationRole.Contador],
       },
       {
         title: "Espejo Aspel Full",

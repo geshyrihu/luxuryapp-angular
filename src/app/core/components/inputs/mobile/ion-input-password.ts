@@ -1,15 +1,10 @@
-import { Component, forwardRef, signal } from "@angular/core";
+﻿import { Component, computed, forwardRef, input, signal } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonButton, IonIcon, IonInput } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { eyeOffOutline, eyeOutline } from "ionicons/icons";
 import { BaseIonicInput } from "../base/base-ionic-input";
 
-/**
- * 🔐 ION INPUT PASSWORD - Mobile (Ionic)
- * -------------------------------------------------------------------------
- * Input seguro para contraseñas con botón nativo para ver/ocultar ("ojito").
- */
 @Component({
   selector: "ion-input-password",
   imports: [BaseIonicInput, ReactiveFormsModule, IonInput, IonButton, IonIcon],
@@ -21,6 +16,12 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       [placeholder]="placeholder()"
       [readonly]="readonly()"
       [required]="requiredInput()"
+      [hidden]="hidden()"
+      [description]="description()"
+      [horizontal]="horizontal()"
+      [noMargin]="noMargin()"
+      [onlyInput]="onlyInput()"
+      [class]="inputStyleClass()"
     >
       <ion-input
         [type]="showPassword() ? 'text' : 'password'"
@@ -30,7 +31,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         [placeholder]="placeholder()"
         label-placement="floating"
         fill="outline"
-        shape="round"
         clearInput
         [readonly]="readonly()"
       >
@@ -62,6 +62,15 @@ import { BaseIonicInput } from "../base/base-ionic-input";
 })
 export class IonInputPassword extends BaseIonicInput {
   showPassword = signal(false);
+  customClass = input<string>("");
+  size = input<"small" | "large" | undefined>(undefined);
+
+  inputStyleClass = computed(() => {
+    let classes = this.customClass();
+    if (this.size() === "small") classes += " input-sm";
+    if (this.size() === "large") classes += " input-lg";
+    return classes.trim();
+  });
 
   constructor() {
     super();

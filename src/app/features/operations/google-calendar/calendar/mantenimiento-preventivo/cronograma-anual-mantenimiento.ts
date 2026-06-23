@@ -10,7 +10,6 @@ import {
 import { FormsModule } from "@angular/forms";
 import {
   IonChip,
-  IonIcon,
   IonItem,
   IonLabel,
   IonList,
@@ -18,9 +17,9 @@ import {
   IonSegment,
   IonSegmentButton,
 } from "@ionic/angular/standalone";
+import * as FileSaver from "file-saver";
 import { addIcons } from "ionicons";
 import { checkboxOutline, createOutline } from "ionicons/icons";
-import * as FileSaver from "file-saver";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
@@ -38,7 +37,10 @@ import { CronogramaMantenimientoService } from "src/app/core/services/cronograma
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
-import { resolveIconifyIcon, resolvePrimeIcon } from "src/app/core/utils/prime-icon-resolver";
+import {
+  resolveIconifyIcon,
+  resolvePrimeIcon,
+} from "src/app/core/utils/prime-icon-resolver";
 import { CronogramaItem } from "./interfaces/CronogramaItem";
 import { FiltroEquipo } from "./interfaces/FiltroEquipo";
 import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
@@ -59,7 +61,6 @@ import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
     IonLabel,
     IonListHeader,
     IonChip,
-    IonIcon,
     AppIcon,
   ],
 })
@@ -305,7 +306,7 @@ export class CronogramaAnualMantenimiento {
         this.meses.forEach((mes) => {
           const has = this.hasService(item, mes);
           tds += `<td style="background-color: ${bg}; text-align: center;">
-            ${has ? '<div class="block-indicator"></div>' : ''}
+            ${has ? '<div class="block-indicator"></div>' : ""}
           </td>`;
         });
 
@@ -318,7 +319,7 @@ export class CronogramaAnualMantenimiento {
       });
     });
 
-    const monthsHeaders = this.meses.map(m => `<th>${m}</th>`).join("");
+    const monthsHeaders = this.meses.map((m) => `<th>${m}</th>`).join("");
     const logo = await this.htmlPrintS.getLogoDataUrl();
     const generatedAt = new Date();
 
@@ -329,16 +330,16 @@ ${this.htmlPrintS.getStandardCss()}
   @page { size: landscape; margin: 10mm; }
   .container { max-width: 1400px; }
   th { background-color: #1E3A8A !important; color: #FFFFFF !important; }
-  
+
   .sistema-header { background-color: #c9a84c !important; color: #ffffff !important; }
   .block-indicator { background-color: #0b3164 !important; }
-  
+
   .title { font-size: 16px; font-weight: bold; color: #0b3164; margin-bottom: 16px; }
 
   .data-table { width:100%; border-collapse:collapse; margin-bottom:16px; }
   .data-table th, .data-table td { padding:4px 2px; border:1px solid #e5e7eb; }
   .data-table th { background:#1E3A8A; color: #ffffff; font-weight:700; text-align:center; font-size: 9px; }
-  
+
   .sistema-header { background:#c9a84c; color: #ffffff; font-weight:700; font-size: 10px; padding: 4px 6px !important; }
   .block-indicator { width: 100%; height: 12px; background-color: #1E3A8A; margin: 0 auto; border-radius: 1px; }
 
@@ -360,12 +361,15 @@ ${this.htmlPrintS.getStandardCss()}
       </tbody>
     </table>
   </div>
-  
+
   ${this.htmlPrintS.buildStandardFooter(generatedAt)}
 </div>
 </body></html>`;
 
-    this.htmlPrintS.printHtml(html, `Cronograma_Mantenimiento_${this.filtroEquiposValue}`);
+    this.htmlPrintS.printHtml(
+      html,
+      `Cronograma_Mantenimiento_${this.filtroEquiposValue}`,
+    );
     this.loading.set(false);
   }
 
@@ -382,11 +386,3 @@ ${this.htmlPrintS.getStandardCss()}
     return index;
   }
 }
-
-
-
-
-
-
-
-

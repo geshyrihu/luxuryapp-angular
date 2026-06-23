@@ -1,4 +1,4 @@
-<div class="card">
+﻿<div class="card">
   <div class="card-header">
     <h3 class="card-title">Plantillas de Tareas Recurrentes</h3>
   </div>
@@ -72,7 +72,7 @@
     >
       <div customFilters>
         <div class="px-4 py-2">
-          <ion-button-active-desactive
+          <custom-button-active-desactive
             fluid
             [state]="state()"
             (stateChange)="onChangeState($event)"
@@ -86,12 +86,12 @@
             <p class="text-sm text-600">Rol: {{ template.roleName }}</p>
           </ion-label>
           <app-action-menu slot="end">
-            <ion-button-item
+            <custom-button-item
               label="Administrar Items"
               (clicked)="onManageItems(template.id)"
             />
-            <ion-button-item label="Editar" (clicked)="showForm(template)" />
-            <ion-button-delete (confirmed)="onDelete(template.id)" />
+            <custom-button-item label="Editar" (clicked)="showForm(template)" />
+            <custom-button-delete (confirmed)="onDelete(template.id)" />
           </app-action-menu>
         </ion-item>
       </ng-template>

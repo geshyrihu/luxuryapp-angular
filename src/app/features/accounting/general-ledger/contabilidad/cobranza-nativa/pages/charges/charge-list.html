@@ -1,4 +1,4 @@
-<div class="card p-0 md:p-4">
+﻿<div class="card p-0 md:p-4">
   <p-table
     [value]="dataSignal()"
     [paginator]="true"
@@ -107,10 +107,7 @@
         slot="start"
         class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <ion-icon
-          name="card-outline"
-          class="text-orange-600 text-xl"
-        ></ion-icon>
+        <app-icon icon="mdi:credit-card-outline" class="text-orange-600 text-xl"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.propertyFullName || 'N/A' }}</h3>
@@ -118,8 +115,8 @@
         <p>Venc: {{ item.dueDate | date:'dd/MM/yyyy':'UTC' }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit (clicked)="onModalForm(item.id)" />
-        <ion-button-delete (confirmed)="onDelete(item)" />
+        <custom-button-edit (clicked)="onModalForm(item.id)" />
+        <custom-button-delete (confirmed)="onDelete(item)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

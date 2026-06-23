@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from "@angular/core";
+﻿import { Component, computed, inject, signal } from "@angular/core";
 import {
   IonItem,
   IonItemDivider,
@@ -23,7 +23,6 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { AsuntoLegalForm } from "src/app/features/legal/asuntos-legales-y-seguros/asunto-legal/asunto-legal-form";
 import { CategoriaAsuntoLegalForm } from "src/app/features/legal/asuntos-legales-y-seguros/asunto-legal/categoria-asunto-legal-form";
-import { IonButtonDelete, IonButtonEdit } from "src/app/core/components/buttons/mobile";
 @Component({
   selector: "app-asunto-legal-lista",
   templateUrl: "./asunto-legal-lista.html",
@@ -41,8 +40,8 @@ import { IonButtonDelete, IonButtonEdit } from "src/app/core/components/buttons/
     IonItemDivider,
     IonItem,
     IonLabel,
-    IonButtonDelete,
-    IonButtonEdit,
+    CustomButtonDelete,
+    CustomButtonEdit,
   ],
 })
 export class AsuntoLegalLista {

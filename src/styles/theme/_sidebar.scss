@@ -26,6 +26,17 @@
     }
   }
 
+  /* Panel header expanded/active — fondo suave, no sólido */
+  .p-panelmenu-header.p-panelmenu-header-active .p-panelmenu-header-content,
+  .p-highlight .p-panelmenu-header-content {
+    background-color: var(--ds-primary-light) !important;
+    .p-panelmenu-header-action {
+      color: var(--ds-primary) !important;
+      font-weight: 600 !important;
+      .p-menuitem-icon { color: var(--ds-primary) !important; }
+    }
+  }
+
   .p-panelmenu-header-action {
     font-weight: 600;
     font-size: 0.95rem;
@@ -62,7 +73,7 @@
       font-weight: 600;
       color: var(--ds-primary) !important;
       background-color: var(--ds-primary-light) !important;
-      border-left: 3px solid var(--ds-primary-hover);
+      border-left: 3px solid var(--ds-primary) !important;
 
       .p-menuitem-icon {
         color: var(--ds-primary) !important;
@@ -94,44 +105,45 @@ body.theme-dark .p-panelmenu {
   flex-direction: column !important;
   height: 100% !important;
   overflow: hidden !important;
-  background: var(--sidebar-bg, c.$neutral-900) !important;
-  color: c.$neutral-100 !important;
-  border-color: rgba(c.$neutral-0, 0.08) !important;
+  background: var(--sidebar-bg, #ffffff) !important;
+  color: var(--ds-text-primary) !important;
+  border-color: var(--ds-border) !important;
+  border-right: 1px solid var(--ds-border) !important;
 }
 
 .sidebar-header {
   flex-shrink: 0 !important;
   z-index: 50 !important;
   position: relative !important;
-  background-color: var(--sidebar-bg, c.$neutral-900);
-  border-bottom: 1px solid rgba(c.$neutral-0, 0.08);
+  background-color: var(--sidebar-bg, #ffffff);
+  border-bottom: 1px solid var(--ds-border);
 
   .user-name {
-    color: c.$neutral-0;
+    color: var(--ds-text-primary);
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: 600;
     line-height: 1.25;
     margin: 0;
   }
 
   .user-position {
-    color: c.$success-400;
+    color: var(--ds-success);
     font-size: 0.75rem;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.25;
     margin: 0.25rem 0 0 0;
   }
 
   .customer-divider {
     margin: 0.25rem 0;
-    border-top: 1px solid rgba(c.$neutral-0, 0.1);
+    border-top: 1px solid var(--ds-border);
     width: 100%;
   }
 
   .customer-name {
     font-size: 0.625rem;
     font-weight: 700;
-    color: c.$neutral-400;
+    color: var(--ds-text-muted);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin: 0;
@@ -144,7 +156,7 @@ body.theme-dark .p-panelmenu {
     width: 0.875rem;
     height: 0.875rem;
     border-radius: 50%;
-    border: 2px solid var(--sidebar-bg, c.$neutral-900);
+    border: 2px solid var(--sidebar-bg, #ffffff);
     background-color: c.$success-500;
   }
 }
@@ -238,8 +250,8 @@ body.theme-dark .p-panelmenu {
     display: flex !important;
     align-items: center !important;
     padding: 0.6rem 1rem !important;
-    color: c.$neutral-100 !important;
-    border-radius: 0 0.5rem 0.5rem 0 !important; /* Rounded Right */
+    color: var(--ds-text-primary) !important;
+    border-radius: 0.5rem !important;
     border-left: 3px solid transparent !important;
     transition: all 0.2s ease-in-out !important;
     text-decoration: none !important;
@@ -248,29 +260,29 @@ body.theme-dark .p-panelmenu {
     width: 100% !important;
 
     &:hover {
-      background-color: rgba(c.$neutral-0, 0.08) !important;
-      color: c.$neutral-0 !important;
+      background-color: var(--ds-bg-sunken) !important;
+      color: var(--ds-primary) !important;
     }
 
     /* Active State */
     &.active-link,
     &.router-link-active {
-      background-color: rgba(c.$neutral-0, 0.12) !important;
-      color: c.$neutral-0 !important;
-      border-left-color: var(--ds-document-neutral, c.$neutral-400) !important;
-      font-weight: 500 !important;
+      background-color: var(--ds-primary-light) !important;
+      color: var(--ds-primary) !important;
+      border-left-color: var(--ds-primary) !important;
+      font-weight: 600 !important;
 
       i {
-        color: c.$neutral-0 !important;
+        color: var(--ds-primary) !important;
       }
     }
 
     i {
-      color: c.$neutral-300 !important;
+      color: var(--ds-text-secondary) !important;
     }
   }
 
-  /* Sub-item specific styling: Original font size, keeping compact padding */
+  /* Sub-item specific styling */
   .guide-menu-list & {
     a,
     .menu-group-header {
@@ -287,24 +299,24 @@ body.theme-dark .p-panelmenu {
     padding: 0.6rem 1rem !important;
     width: 100% !important;
     cursor: pointer !important;
-    color: c.$neutral-100 !important;
+    color: var(--ds-text-primary) !important;
     font-size: 0.875rem !important;
-    font-weight: 400 !important;
+    font-weight: 500 !important;
     border-radius: 0.5rem !important;
     transition: background-color 0.2s !important;
 
     &:hover {
-      background-color: rgba(c.$neutral-0, 0.08) !important;
-      color: c.$neutral-0 !important;
+      background-color: var(--ds-bg-sunken) !important;
+      color: var(--ds-primary) !important;
     }
 
     &.expanded {
-      color: c.$neutral-0 !important;
-      font-weight: 500 !important;
+      color: var(--ds-primary) !important;
+      font-weight: 600 !important;
     }
 
     i {
-      color: c.$neutral-300 !important;
+      color: var(--ds-text-secondary) !important;
     }
   }
 }
@@ -314,8 +326,10 @@ body.theme-dark .p-panelmenu {
    ======================================= */
 .hidden.md\:block .p-toolbar,
 .mobile-header-toolbar {
-  background: var(--header-bg, c.$neutral-900) !important;
-  color: c.$neutral-100 !important;
+  background: var(--header-bg, #ffffff) !important;
+  color: var(--ds-text-primary) !important;
+  border-bottom: 1px solid var(--ds-border) !important;
+  box-shadow: var(--ds-shadow-sm) !important;
 
   /* Breadcrumb text visibility */
   .p-breadcrumb {
@@ -324,15 +338,15 @@ body.theme-dark .p-panelmenu {
 
     .p-breadcrumb-list {
       .p-menuitem-link {
-        color: c.$neutral-100 !important;
+        color: var(--ds-text-secondary) !important;
 
         &:hover {
-          color: c.$neutral-0 !important;
+          color: var(--ds-primary) !important;
         }
       }
 
       .p-menuitem-separator {
-        color: c.$neutral-400 !important;
+        color: var(--ds-text-muted) !important;
       }
     }
   }
@@ -340,11 +354,11 @@ body.theme-dark .p-panelmenu {
   /* Button icons visibility */
   .p-button-text,
   .monitor-toolbar-button {
-    color: c.$neutral-100 !important;
+    color: var(--ds-text-secondary) !important;
 
     &:hover {
-      color: c.$neutral-0 !important;
-      background: rgba(c.$neutral-0, 0.08) !important;
+      color: var(--ds-primary) !important;
+      background: var(--ds-bg-sunken) !important;
     }
   }
 }

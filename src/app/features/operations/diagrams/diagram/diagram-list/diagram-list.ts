@@ -1,18 +1,17 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { addIcons } from "ionicons";
 import { gitBranchOutline } from "ionicons/icons";
-import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { DialogService } from "primeng/dynamicdialog";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
-import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -32,11 +31,10 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
     CustomButtonDelete,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
   providers: [DialogService],
   templateUrl: "./diagram-list.html",

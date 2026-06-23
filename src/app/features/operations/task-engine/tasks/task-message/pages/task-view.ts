@@ -1,4 +1,3 @@
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
@@ -10,7 +9,6 @@ import {
   IonCardHeader,
   IonCol,
   IonGrid,
-  IonIcon,
   IonItem,
   IonLabel,
   IonList,
@@ -33,6 +31,7 @@ import {
 import { AvatarModule } from "primeng/avatar";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CustomButton } from "src/app/core/components/buttons/web";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -60,12 +59,12 @@ import { TaskForm } from "./task-form";
     IonAvatar,
     IonBadge,
     IonButton,
-    IonIcon,
     IonGrid,
     IonRow,
     IonCol,
     IonList,
-   AppIcon],
+    AppIcon,
+  ],
 })
 export class TaskView implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -210,10 +209,12 @@ export class TaskView implements OnInit {
     }).then((responseData) => {
       if (responseData.value) {
         this.apiResponseS
-          .onGetItem(Endpoints.Tasks.inProgressLower(id, this.authS.applicationUserId))
+          .onGetItem(
+            Endpoints.Tasks.inProgressLower(id, this.authS.applicationUserId),
+          )
           .then(() => {
-          this.onLoadData();
-        });
+            this.onLoadData();
+          });
       }
     });
   }

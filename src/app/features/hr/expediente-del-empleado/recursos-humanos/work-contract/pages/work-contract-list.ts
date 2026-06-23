@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+﻿import { DatePipe } from "@angular/common";
 import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
@@ -14,7 +14,6 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 import { WorkContractListDTO } from "../models/work-contract.dto";
 import { WorkContractDetailComponent } from "./work-contract-detail";
 import { WorkContractFormComponent } from "./work-contract-form";
@@ -32,7 +31,7 @@ import { WorkContractFormComponent } from "./work-contract-form";
     CustomButtonItem,
     DataViewMobile,
     ActionMenu,
-    IonButtonItem,
+    CustomButtonItem,
   ],
 })
 export class WorkContractList implements OnInit {

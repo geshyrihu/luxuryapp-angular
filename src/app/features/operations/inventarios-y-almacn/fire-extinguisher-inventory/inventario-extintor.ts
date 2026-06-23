@@ -1,11 +1,6 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
-import {
-  IonButton,
-  IonIcon,
-  IonItem,
-  IonLabel,
-} from "@ionic/angular/standalone";
+import { IonButton, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import {
   calendarOutline,
@@ -18,10 +13,7 @@ import {
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonDownload } from "src/app/core/components/buttons/mobile/ion-button-download";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
@@ -49,6 +41,7 @@ import { InventarioExtintorQrService } from "./inventario-extintor-qr.service";
   selector: "app-inventario-extintor",
   templateUrl: "./inventario-extintor.html",
   imports: [
+    AppIcon,
     ImageModule,
     TableModule,
     CustomButtonEdit,
@@ -60,14 +53,13 @@ import { InventarioExtintorQrService } from "./inventario-extintor-qr.service";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
-    IonButtonDownload,
-    IonButtonItem,
+    CustomButtonEdit,
+    CustomButtonDelete,
+    CustomButtonDownload,
+    CustomButtonItem,
     IonButton,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
 })
 export class InventarioExtintor {
@@ -114,7 +106,9 @@ export class InventarioExtintor {
   }
 
   onViewPeriodos() {
-    this.router.navigate(["/logbook/fire-inspection-periods"], { queryParams: { type: "extintor" } });
+    this.router.navigate(["/logbook/fire-inspection-periods"], {
+      queryParams: { type: "extintor" },
+    });
   }
 
   onBulkExpiration() {

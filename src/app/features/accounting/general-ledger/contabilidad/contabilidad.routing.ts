@@ -229,6 +229,18 @@ export const CONTABILIDAD_ROUTES: Routes = [
       breadcrumb: "Presupuesto Contabilidad",
     },
   },
+  {
+    path: "collections/exclusions",
+    loadComponent: () =>
+      import("./cobranza-online/pages/exclusions/cobranza-online-exclusions").then(
+        (m) => m.CobranzaOnlineExclusions,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Exclusiones",
+      breadcrumb: "Exclusiones",
+    },
+  },
 
   // ============================================================================
   // RUTAS CENTRALIZADAS DE accounting-coi.routes.ts

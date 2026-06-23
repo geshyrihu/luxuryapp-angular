@@ -1,4 +1,4 @@
-<div class="card shadow-3 p-3 border-round">
+﻿<div class="card shadow-3 p-3 border-round">
   <!-- Vista de escritorio -->
   <div class="hidden md:block">
     <p-table
@@ -80,7 +80,7 @@
           </p>
         </ion-label>
         <div slot="end" class="flex align-items-center">
-          <ion-button-view-pdf [url]="item.path" pdf="Documento Asamblea" />
+          <custom-button-view-pdf [url]="item.path" pdf="Documento Asamblea" />
         </div>
       </ion-item>
     </ng-template>

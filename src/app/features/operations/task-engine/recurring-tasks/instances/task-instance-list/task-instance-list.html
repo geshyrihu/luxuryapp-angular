@@ -1,4 +1,4 @@
-<div class="card">
+﻿<div class="card">
   <p-toolbar styleClass="mb-4 ">
     <ng-template pTemplate="left">
       <h3 class="m-0">Mis Tareas Diarias</h3>
@@ -101,12 +101,12 @@
           />
         </ion-label>
         <app-action-menu slot="end">
-          <ion-button-item
+          <custom-button-item
             label="Completar"
             (clicked)="onCompleteTask(task)"
             [disabled]="task.status === 1"
           />
-          <ion-button-confirm
+          <custom-button-confirm
             label="Reabrir"
             (confirmed)="onReopenTask(task.id)"
             [disabled]="task.status !== 1"

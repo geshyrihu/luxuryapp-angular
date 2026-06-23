@@ -1,7 +1,4 @@
-// 📱 MOBILE INPUTS - Componentes Ionic para vistas móviles
-// Importa desde aquí en páginas Ionic (ion-page / ion-content)
-
-export { IonInputCheckbox } from "./ion-input-checkbox";
+﻿export { IonInputCheckbox } from "./ion-input-checkbox";
 export { IonInputCurrency } from "./ion-input-currency";
 export { IonInputDate } from "./ion-input-date";
 export { IonInputFile } from "./ion-input-file";
@@ -15,13 +12,3 @@ export { IonInputText } from "./ion-input-text";
 export { IonInputTextarea } from "./ion-input-textarea";
 export { IonInputTime } from "./ion-input-time";
 export { IonInputToggle } from "./ion-input-toggle";
-
-
-
-
-
-
-
-
-
-

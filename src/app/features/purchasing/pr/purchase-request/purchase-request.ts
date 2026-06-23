@@ -1,10 +1,10 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TagModule } from "primeng/tag";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
+import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -16,7 +16,7 @@ import { PurchaseRequestProducts } from "./purchase-request-products";
   selector: "app-purchase-request",
   templateUrl: "./purchase-request.html",
   imports: [
-    IonButtonItem,
+    CustomButtonItem,
     CommonModule,
     TagModule,
     ActionMenu,

@@ -7,20 +7,19 @@
 // ── PALETA BASE ───────────────────────────────────────────────
 // Escala completa 50-950 para cada color
 
-// Primario (Azul corporativo — Luxury Building Group)
-// Paleta derivada de la identidad visual oficial
-// #0b3164 (navy principal) · #092953 · #072042 · #020811
-$primary-50:   #f0f4fa !default;
-$primary-100:  #dce7f3 !default;
-$primary-200:  #bfcfe4 !default;
-$primary-300:  #97afcf !default;
-$primary-400:  #6687b3 !default;
-$primary-500:  #0b3164 !default;  // Azul principal corporativo
-$primary-600:  #092953 !default;  // Azul medio corporativo
-$primary-700:  #072042 !default;
-$primary-800:  #051831 !default;  // Navy principal (logo bg)
-$primary-900:  #030f20 !default;
-$primary-950:  #020811 !default;  // Navy más oscuro
+// Primario (Azul corporativo — Corporate Integrity System / DESIGN.md)
+// Anchor points: primary-fixed #dae2ff · primary #003d9b · on-primary-fixed #001848
+$primary-50:   #edf1ff !default;  // surface-container-low
+$primary-100:  #dae2ff !default;  // primary-fixed
+$primary-200:  #b2c5ff !default;  // primary-fixed-dim / inverse-primary
+$primary-300:  #709bfe !default;
+$primary-400:  #285ab9 !default;  // secondary
+$primary-500:  #003d9b !default;  // PRIMARY — acción principal
+$primary-600:  #0040a2 !default;  // on-primary-fixed-variant
+$primary-700:  #003079 !default;
+$primary-800:  #001848 !default;  // on-primary-fixed
+$primary-900:  #000e2e !default;
+$primary-950:  #000818 !default;
 
 // Secundario (Gris neutro cálido)
 $secondary-50:   #f8fafc !default;

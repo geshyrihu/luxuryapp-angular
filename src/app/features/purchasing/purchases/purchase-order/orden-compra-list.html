@@ -1,4 +1,4 @@
-<!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+﻿<!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block"></div>
 <p-table
   [globalFilterFields]="globalFilterFields()"
@@ -344,7 +344,7 @@
           width: 36px;
           height: 36px;
           border-radius: 10px;
-          background: #fef3c7;
+          background: var(--ds-border);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -363,8 +363,8 @@
         </p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit (clicked)="onAddOrEdit(item.id)" />
-        <ion-button-delete (confirmed)="onDelete(item.id)" />
+        <custom-button-edit (clicked)="onAddOrEdit(item.id)" />
+        <custom-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

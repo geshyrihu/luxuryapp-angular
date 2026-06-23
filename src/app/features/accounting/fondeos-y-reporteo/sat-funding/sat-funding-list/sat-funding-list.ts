@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { cashOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
@@ -23,7 +23,6 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
     DataViewMobile,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
 })
 export class SatFundingListComponent implements OnInit {

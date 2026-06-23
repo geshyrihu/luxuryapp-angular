@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -256,7 +256,7 @@
           width: 36px;
           height: 36px;
           border-radius: 10px;
-          background: #e0f2fe;
+          background: var(--ds-border);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -264,10 +264,7 @@
           margin-left: 16px;
         "
       >
-        <ion-icon
-          name="water-outline"
-          style="font-size: 20px; color: #0284c7"
-        ></ion-icon>
+        <app-icon icon="mdi:water-outline" style="font-size: 20px; color: var(--ds-info)"></app-icon>
       </div>
 
       <ion-label>
@@ -312,11 +309,11 @@
       </ion-label>
 
       <app-action-menu slot="end">
-        <ion-button-download (clicked)="onDownloadPdf(item)" />
-        <ion-button-edit
+        <custom-button-download (clicked)="onDownloadPdf(item)" />
+        <custom-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar Recepcion' })"
         />
-        <ion-button-delete (confirmed)="onDelete(item.id)" />
+        <custom-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

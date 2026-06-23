@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -235,7 +235,7 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <ion-button-edit
+            <custom-button-edit
               (clicked)="
                   onModalForm({
                     idnombre: item.id,
@@ -245,7 +245,7 @@
                   })
                 "
             />
-            <ion-button-item
+            <custom-button-item
               (clicked)="
                   onModalForm({
                     idnombre: item.id,
@@ -257,7 +257,7 @@
               label="Duplicar"
               iconName="document-text-outline"
             />
-            <ion-button-delete
+            <custom-button-delete
               (confirmed)="onDelete(item.id)"
               [isLinked]="item.hasServiceOrder"
             />

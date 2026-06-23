@@ -1,4 +1,4 @@
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   #dt
   [value]="dataSignal()"
@@ -221,7 +221,7 @@
         <ng-container actions>
           <!-- 1. Cargar Informe (Si no hay archivo) -->
           @if (!item.nameFileEstadoFinanciero) {
-          <ion-button-item
+          <custom-button-item
             iconName="cloud-upload-outline"
             label="Cargar Informe"
             (clicked)="
@@ -236,7 +236,7 @@
           <!-- 2. Acciones si hay archivo -->
           @if (item.nameFileEstadoFinanciero) {
           <!-- Descargar -->
-          <ion-button-item
+          <custom-button-item
             iconName="cloud-upload-outline"
             label="Descargar PDF"
             (clicked)="
@@ -245,7 +245,7 @@
           />
           <!-- Actualizar (Si no autorizado ni enviado) -->
           @if (!item.personWhoAuthorized && !item.personWhoSend) {
-          <ion-button-item
+          <custom-button-item
             iconName="sync-outline"
             label="Actualizar Archivo"
             (clicked)="
@@ -258,7 +258,7 @@
           }
           <!-- Autorizar (Si no autorizado) -->
           @if (!item.personWhoAuthorized) {
-          <ion-button-item
+          <custom-button-item
             iconName="checkmark-outline"
             label="Autorizar"
             (clicked)="onAuthorize(item.id)"
@@ -266,7 +266,7 @@
           }
           <!-- Deshacer Autorización (Si autorizado y no enviado) -->
           @if (item.personWhoAuthorized && !item.personWhoSend) {
-          <ion-button-item
+          <custom-button-item
             iconName="arrow-back-outline"
             label="Deshacer Autorización"
             (clicked)="onDesauthorize(item.id)"
@@ -275,7 +275,7 @@
           <!-- Enviar (Si autorizado y no enviado) -->
           @if (item.nameFileEstadoFinanciero && item.personWhoAuthorized &&
           !item.personWhoSend) {
-          <ion-button-confirm
+          <custom-button-confirm
             icon="mdi:send"
             label="ENVIAR"
             styleClass="p-button-text w-full text-left"

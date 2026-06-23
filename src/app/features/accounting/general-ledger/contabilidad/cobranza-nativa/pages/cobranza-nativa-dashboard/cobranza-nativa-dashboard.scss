@@ -4,7 +4,7 @@
 
 /* ── Metric tiles ───────────────────────────────────────────── */
 .cb-metric__icon {
-  &--primary { background: var(--primary-50, #eff6ff); color: var(--ds-primary, #0b3164); }
-  &--info    { background: #ecfeff; color: var(--ds-info, #0891b2); }
-  &--success { background: #f0fdf4; color: var(--ds-success, #16a34a); }
+  &--primary { background: var(--primary-50, var(--ds-surface-variant)); color: var(--ds-primary, var(--ds-primary)); }
+  &--info    { background: var(--ds-surface-variant); color: var(--ds-info, var(--ds-info)); }
+  &--success { background: var(--ds-surface-variant); color: var(--ds-success, #16a34a); }
 }

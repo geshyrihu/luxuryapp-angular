@@ -1,11 +1,11 @@
 import { Component, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { RouterModule } from "@angular/router";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { addIcons } from "ionicons";
 import { documentTextOutline } from "ionicons/icons";
-import { RouterModule } from "@angular/router";
-import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
@@ -15,8 +15,8 @@ import { PageTitleReport } from "src/app/core/components/title-page-report/page-
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
-import { StorageService } from "src/app/core/services/storage.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
+import { StorageService } from "src/app/core/services/storage.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { MenuReportMaintenance } from "./menu-report-maintenance";
 @Component({
@@ -34,7 +34,6 @@ import { MenuReportMaintenance } from "./menu-report-maintenance";
     DataViewMobile,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
 })
 export class MaintenanceReports {
@@ -81,12 +80,3 @@ export class MaintenanceReports {
     this.menu.set(MenuReportMaintenance);
   }
 }
-
-
-
-
-
-
-
-
-

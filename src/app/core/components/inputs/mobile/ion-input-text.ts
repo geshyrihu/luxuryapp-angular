@@ -1,13 +1,8 @@
-import { Component, forwardRef, input } from "@angular/core";
+﻿import { Component, computed, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonInput } from "@ionic/angular/standalone";
 import { BaseIonicInput } from "../base/base-ionic-input";
 
-/**
- * ✍️ ION INPUT TEXT - Mobile (Ionic)
- * -------------------------------------------------------------------------
- * Input de texto nativo para vistas móviles. Equivalente a custom-input-text-signal.
- */
 @Component({
   selector: "ion-input-text",
   imports: [BaseIonicInput, ReactiveFormsModule, IonInput],
@@ -19,6 +14,12 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       [placeholder]="placeholder()"
       [readonly]="readonly()"
       [required]="requiredInput()"
+      [hidden]="hidden()"
+      [description]="description()"
+      [horizontal]="horizontal()"
+      [noMargin]="noMargin()"
+      [onlyInput]="onlyInput()"
+      [class]="inputStyleClass()"
     >
       <ion-input
         [type]="type()"
@@ -28,12 +29,10 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         [placeholder]="placeholder()"
         label-placement="floating"
         fill="outline"
-        shape="round"
         clearInput
         [readonly]="readonly()"
       >
         @if (requiredInput()) {
-          <!-- Se inyecta estrellita roja nativamente a la par del label si es obligatorio -->
           <div slot="label" style="color: var(--ion-color-danger)">*</div>
         }
       </ion-input>
@@ -48,8 +47,16 @@ import { BaseIonicInput } from "../base/base-ionic-input";
   ],
 })
 export class IonInputText extends BaseIonicInput {
-  // <--- Configuración --->
   type = input<string>("text");
+  customClass = input<string>("");
+  size = input<"small" | "large" | undefined>(undefined);
+
+  inputStyleClass = computed(() => {
+    let classes = this.customClass();
+    if (this.size() === "small") classes += " input-sm";
+    if (this.size() === "large") classes += " input-lg";
+    return classes.trim();
+  });
 
   override registerOnChange(fn: any): void {
     this.onChange = fn;

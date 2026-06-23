@@ -130,7 +130,7 @@
           (clicked)="exportPdf()"
         />
         <div class="text-xs text-500">
-          <span class="mr-3"><app-icon [icon]="'mdi:check'" class="mr-1" style="color: #15803d"></app-icon>Existe</span>
+          <span class="mr-3"><app-icon [icon]="'mdi:check'" class="mr-1" style="color: var(--ds-success)"></app-icon>Existe</span>
           <span class="mr-3"><app-icon [icon]="'mdi:close'" class="mr-1" style="color: #dc2626"></app-icon>No existe</span>
           <span><app-icon [icon]="'mdi:alert'" class="mr-1" style="color: #d97706"></app-icon>Estructura distinta</span>
         </div>
@@ -146,20 +146,20 @@
       >
         <ng-template pTemplate="header">
           <tr>
-            <th class="text-center" style="min-width: 70px; background: #f8fafc">
+            <th class="text-center" style="min-width: 70px; background: var(--ds-surface-variant)">
               Nivel
             </th>
-            <th style="min-width: 140px; background: #f8fafc">
+            <th style="min-width: 140px; background: var(--ds-surface-variant)">
               No. Cuenta
             </th>
-            <th class="text-center" style="min-width: 110px; background: #f8fafc">
+            <th class="text-center" style="min-width: 110px; background: var(--ds-surface-variant)">
               Naturaleza
             </th>
-            <th style="min-width: 220px; background: #f8fafc">
+            <th style="min-width: 220px; background: var(--ds-surface-variant)">
               Descripcion
             </th>
             @for (customer of customerColumns(); track customer.customerId) {
-              <th class="text-center" style="min-width: 120px; background: #f8fafc">
+              <th class="text-center" style="min-width: 120px; background: var(--ds-surface-variant)">
                 {{ customer.customerShortName }}
               </th>
             }

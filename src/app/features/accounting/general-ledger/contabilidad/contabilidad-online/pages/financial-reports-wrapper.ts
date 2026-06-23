@@ -1,8 +1,8 @@
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TabsModule } from "primeng/tabs";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
@@ -12,17 +12,17 @@ import { AiAgentExplicadorContabilidadOnlineComponent } from "../components/ai-a
 import { AiAgentComponent } from "../components/ai-agent/ai-agent";
 import { reportFilterState } from "../state/financial-report-filter.state";
 import { AnalisisCobranza } from "./analisis-cobranza/analisis-cobranza";
+import { BancosInversionesComponent } from "./bancos-inversiones/bancos-inversiones";
 import { CedulaExtraordinaria } from "./cedula-extraordinaria/cedula-extraordinaria";
 import { CedulaPresupuestal } from "./cedula-presupuestal/cedula-presupuestal";
 import { EstadoPosicionFinanciera } from "./estado-posicion-financiera/estado-posicion-financiera";
 import { EstadoResultadosV2 } from "./estado-resultados-v2/estado-resultados-v2";
 import { EstadoResultados } from "./estado-resultados/estado-resultados";
 import { FlujoEfectivo } from "./flujo-efectivo/flujo-efectivo";
-import { ReporteFinanciero } from "./reporte-financiero/reporte-financiero";
-import { PresupuestoContabilidad } from "./presupuesto-contabilidad/presupuesto-contabilidad";
-import { BancosInversionesComponent } from "./bancos-inversiones/bancos-inversiones";
 import { FondoReservaComponent } from "./fondo-reserva/fondo-reserva";
+import { PresupuestoContabilidad } from "./presupuesto-contabilidad/presupuesto-contabilidad";
 import { ProyectosAprobadosComponent } from "./proyectos-aprobados/proyectos-aprobados";
+import { ReporteFinanciero } from "./reporte-financiero/reporte-financiero";
 
 const REPORT_META = [
   {
@@ -76,7 +76,8 @@ const REPORT_META = [
   },
   {
     title: "Proyectos Aprobados",
-    description: "Seguimiento de presupuesto y ejecución de proyectos aprobados.",
+    description:
+      "Seguimiento de presupuesto y ejecución de proyectos aprobados.",
   },
 ] as const;
 
@@ -104,7 +105,8 @@ const REPORT_META = [
     AiAgentComponent,
     AiAgentContabilidadOnlineComponent,
     AiAgentExplicadorContabilidadOnlineComponent,
-   AppIcon],
+    AppIcon,
+  ],
   templateUrl: "./financial-reports-wrapper.html",
 })
 export default class FinancialReportsWrapper {
@@ -133,9 +135,22 @@ export default class FinancialReportsWrapper {
   );
 
   readonly periodLabel = computed(() => {
-    const months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-    const m = months[this.filterS.mesIdx()] ?? '';
-    const y = this.filterS.year() ?? '';
+    const months = [
+      "Enero",
+      "Febrero",
+      "Marzo",
+      "Abril",
+      "Mayo",
+      "Junio",
+      "Julio",
+      "Agosto",
+      "Septiembre",
+      "Octubre",
+      "Noviembre",
+      "Diciembre",
+    ];
+    const m = months[this.filterS.mesIdx()] ?? "";
+    const y = this.filterS.year() ?? "";
     return `${m} ${y}`.trim().toUpperCase();
   });
 
@@ -165,15 +180,18 @@ export default class FinancialReportsWrapper {
     const start = Date.now();
 
     const check = () => {
-      const section = document.querySelector('.print-all-reports');
+      const section = document.querySelector(".print-all-reports");
       // Si el section aun no existe, reintentar
-      if (!section) { setTimeout(check, POLL_MS); return; }
+      if (!section) {
+        setTimeout(check, POLL_MS);
+        return;
+      }
 
       // Detectar cualquier indicador de carga activo
       const stillLoading = !!(
-        section.querySelector('.pi-spin') ||
-        section.querySelector('p-skeleton') ||
-        section.querySelector('.p-skeleton')
+        section.querySelector(".pi-spin") ||
+        section.querySelector("p-skeleton") ||
+        section.querySelector(".p-skeleton")
       );
 
       if (!stillLoading || Date.now() - start >= MAX_MS) {
@@ -181,9 +199,13 @@ export default class FinancialReportsWrapper {
         this.isPreparing.set(false);
         setTimeout(() => {
           window.print();
-          window.addEventListener('afterprint', () => {
-            this.printMode.set(false);
-          }, { once: true });
+          window.addEventListener(
+            "afterprint",
+            () => {
+              this.printMode.set(false);
+            },
+            { once: true },
+          );
         }, 150);
       } else {
         setTimeout(check, POLL_MS);
@@ -195,7 +217,7 @@ export default class FinancialReportsWrapper {
 
   openClienteView() {
     const url = this.clienteUrl();
-    if (url) window.open(url, '_blank');
+    if (url) window.open(url, "_blank");
   }
 
   onTabChange(value: number) {

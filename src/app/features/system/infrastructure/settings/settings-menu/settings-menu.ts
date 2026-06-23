@@ -293,13 +293,6 @@ export const settingMenu = (aspRoleS: AspRoleService): ISettingsMenuItem[] => [
   {
     group: "Herramientas de Desarrollo/Prueba",
     visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
-    label: "Demo UI ERP",
-    routerLink: "/settings/demo-app",
-    icon: "mdi:monitor",
-  },
-  {
-    group: "Herramientas de Desarrollo/Prueba",
-    visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
     label: "Reporte Datos Empleados",
     routerLink: "/settings/app-implementation-report",
     icon: "mdi:account-group",

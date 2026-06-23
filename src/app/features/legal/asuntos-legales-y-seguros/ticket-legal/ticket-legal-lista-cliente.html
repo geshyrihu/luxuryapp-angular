@@ -1,4 +1,4 @@
-@if (dataSignal()) {
+﻿@if (dataSignal()) {
 <!-- 🖥️ Pantallas medianas y grandes -->
 <div class="hidden md:block">
   <div class="card">
@@ -130,19 +130,19 @@
 
           <app-action-menu slot="end">
             <ng-container actions>
-              <ion-button-item
+              <custom-button-item
                 iconName="book-outline"
                 label="Ver detalles"
                 (clicked)="onModalViewDetail({ id: item.id })"
                 [disabled]="!item.description || item.description.length === 0"
               />
-              <ion-button-item
+              <custom-button-item
                 iconName="ellipsis-horizontal-outline"
                 label="Seguimiento"
                 (clicked)="onModalSeguimientoCliente({ ticketId: item.id, title: 'Seguimiento' })"
               >
                 <p-badge [value]="item.tracking" severity="danger" />
-              </ion-button-item>
+              </custom-button-item>
             </ng-container>
           </app-action-menu>
         </ion-item>

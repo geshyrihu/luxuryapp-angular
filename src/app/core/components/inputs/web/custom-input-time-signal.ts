@@ -1,4 +1,4 @@
-import { Component, forwardRef } from "@angular/core";
+﻿import { Component, forwardRef } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { InputTextModule } from "primeng/inputtext";
 import { BaseInputSignal } from "../base/base-input-signal";
@@ -29,7 +29,6 @@ import { BaseInputSignal } from "../base/base-input-signal";
         type="time"
         [id]="id()"
         [placeholder]="placeholder()"
-        [disabled]="disabled()"
         fluid
         appendTo="body"
       />

@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -10,15 +10,13 @@ import {
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { briefcaseOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { Table, TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
@@ -51,11 +49,10 @@ import { VacanteForm } from "../components/vacante-form";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
 })
 export class VacantesList implements OnInit {
@@ -72,7 +69,7 @@ export class VacantesList implements OnInit {
   loading = signal(true);
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  @ViewChild('dt') dt?: Table;
+  @ViewChild("dt") dt?: Table;
   ref: DynamicDialogRef;
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
@@ -86,7 +83,7 @@ export class VacantesList implements OnInit {
     });
     effect(() => {
       const term = this.filterRequestsService.searchTerm();
-      this.dt?.filterGlobal(term, 'contains');
+      this.dt?.filterGlobal(term, "contains");
     });
   }
 
@@ -103,13 +100,20 @@ export class VacantesList implements OnInit {
       .onDelete(`RequestPosition/${id}`)
       .then((result: boolean) => {
         if (result)
-          this.dataSignal.update((data) => data.filter((item) => item.id !== id));
+          this.dataSignal.update((data) =>
+            data.filter((item) => item.id !== id),
+          );
       });
   }
 
   onModalForm(data: any) {
     this.dialogHandlerS
-      .openDialog(VacanteForm, { id: data.id }, "Editar vacante", this.dialogHandlerS.sizeLg)
+      .openDialog(
+        VacanteForm,
+        { id: data.id },
+        "Editar vacante",
+        this.dialogHandlerS.sizeLg,
+      )
       .then((result: boolean) => {
         if (result) this.onLoadData();
       });

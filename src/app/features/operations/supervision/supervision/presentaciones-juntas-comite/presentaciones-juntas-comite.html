@@ -1,4 +1,4 @@
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields"
   [showCurrentPageReport]="true"
@@ -178,7 +178,7 @@
           <p class="font-bold mb-0">Portada:</p>
           <p class="text-color-secondary mb-0">{{ item.userPortada }}</p>
           <p class="text-color-secondary mb-0">{{ item.fechaCargaPortada }}</p>
-          <ion-button-view-pdf
+          <custom-button-view-pdf
             [showLabelOnDesktop]="true"
             [url]="item.archivoPortada"
             pdf="Portada"
@@ -192,7 +192,7 @@
           <p class="font-bold mb-0">Contable:</p>
           <p class="text-color-secondary mb-0">{{ item.userContable }}</p>
           <p class="text-color-secondary mb-0">{{ item.fechaCargaContable }}</p>
-          <ion-button-view-pdf
+          <custom-button-view-pdf
             [showLabelOnDesktop]="true"
             [url]="item.archivoContable"
             pdf="Portada"
@@ -206,7 +206,7 @@
           <p class="font-bold mb-0">Operaciones:</p>
           <p class="text-color-secondary mb-0">{{ item.fullName }}</p>
           <p class="text-color-secondary mb-0">{{ item.fechaCarga }}</p>
-          <ion-button-view-pdf
+          <custom-button-view-pdf
             [showLabelOnDesktop]="true"
             [url]="item.archivoJunta"
             pdf="Portada"
@@ -222,7 +222,7 @@
           <p class="text-color-secondary mb-0">
             {{ item.fechaCargaSupervisor }}
           </p>
-          <ion-button-view-pdf
+          <custom-button-view-pdf
             [showLabelOnDesktop]="true"
             [url]="item.archivoFinal"
             pdf="Portada"

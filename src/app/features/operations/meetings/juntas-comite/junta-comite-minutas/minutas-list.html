@@ -1,4 +1,4 @@
-@if (dataSignal()) {
+﻿@if (dataSignal()) {
 <!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card">
@@ -218,12 +218,12 @@
           <td class="no-print">
             <app-action-menu>
               <ng-container actions>
-                <ion-button-item
+                <custom-button-item
                   iconClass="mdi:chart-bar"
                   label="Exportar Excel"
                   (clicked)="exportToExcel(item.id)"
                 />
-                <ion-button-confirm
+                <custom-button-confirm
                   iconClass="mdi:email-outline"
                   label="Enviar a Comité"
                   swalTitle="Confirmar envío"
@@ -231,23 +231,23 @@
                   swalConfirmButtonText="Sí­, enviar"
                   (confirmed)="onSendEmailMeeting(item.id)"
                 />
-                <ion-button-item
+                <custom-button-item
                   iconClass="mdi:file-pdf-box"
                   label="Minuta PDF"
                   (clicked)="onNavigateMinutaPublico(item.id)"
                 />
-                <ion-button-item
+                <custom-button-item
                   iconClass="mdi:clipboard-text"
                   label="Resumen minuta"
                   (clicked)="resumenMinuta(item.id)"
                 />
-                <ion-button-edit
+                <custom-button-edit
                   (clicked)="
                     showModalAddOrEditMeeting({ id: item.id, title: 'Editar' })
                   "
                 />
                 @if (aspRoleS.hasAny([AspRole.SuperUsuario])) {
-                <ion-button-delete (confirmed)="onDelete(item.id)" />
+                <custom-button-delete (confirmed)="onDelete(item.id)" />
                 }
               </ng-container>
             </app-action-menu>
@@ -347,29 +347,29 @@
               </ion-label>
               <app-action-menu slot="end">
                 <ng-container actions>
-                  <ion-button-item
+                  <custom-button-item
                     iconName="trending-up-outline"
                     label="Exportar Excel"
                     (clicked)="exportToExcel(item.id)"
                   />
-                  <ion-button-confirm
+                  <custom-button-confirm
                     label="Enviar a Comité"
                     swalTitle="Confirmar envío"
                     swalText="¿Está seguro de que desea enviar la minuta?"
                     swalConfirmButtonText="Sí, enviar"
                     (confirmed)="onSendEmailMeeting(item.id)"
                   />
-                  <ion-button-item
+                  <custom-button-item
                     iconName="document-outline"
                     label="Minuta PDF"
                     (clicked)="onGeneretePDF(item.id)"
                   />
-                  <ion-button-item
+                  <custom-button-item
                     iconName="bar-chart-outline"
                     label="Resumen minuta"
                     (clicked)="resumenMinuta(item.id)"
                   />
-                  <ion-button-edit
+                  <custom-button-edit
                     (clicked)="
                       showModalAddOrEditMeeting({
                         id: item.id,
@@ -378,7 +378,7 @@
                     "
                   />
                   @if (aspRoleS.hasAny([AspRole.SuperUsuario])) {
-                  <ion-button-delete
+                  <custom-button-delete
                     label="Eliminar"
                     (confirmed)="onDelete(item.id)"
                   />

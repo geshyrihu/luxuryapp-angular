@@ -1,4 +1,4 @@
-import { Component, forwardRef, input } from "@angular/core";
+﻿import { Component, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { FlatpickrDirective } from "angularx-flatpickr";
 import { Spanish } from "flatpickr/dist/l10n/es";
@@ -74,13 +74,3 @@ export class CustomInputDateSignal extends BaseInputSignal {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-

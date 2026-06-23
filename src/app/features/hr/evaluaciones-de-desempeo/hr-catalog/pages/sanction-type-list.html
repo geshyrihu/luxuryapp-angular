@@ -1,4 +1,4 @@
-<div class="card">
+﻿<div class="card">
   <p-table
     #dt
     [value]="items()"
@@ -98,10 +98,10 @@
         </ion-label>
         <div slot="end">
           <app-action-menu>
-            <ion-button-edit
+            <custom-button-edit
               (clicked)="onEdit(item)"
             />
-            <ion-button-delete
+            <custom-button-delete
               (confirmed)="onDelete(item.id)"
             />
           </app-action-menu>

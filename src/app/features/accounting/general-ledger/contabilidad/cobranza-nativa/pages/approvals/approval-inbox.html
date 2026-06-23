@@ -1,4 +1,4 @@
-<div class="card p-0 md:p-4">
+﻿<div class="card p-0 md:p-4">
   <p-table
     [value]="dataSignal()"
     [paginator]="true"
@@ -78,7 +78,7 @@
         slot="start"
         class="w-2rem h-2rem border-round-lg bg-purple-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <ion-icon name="shield-checkmark-outline" class="text-purple-600 text-xl"></ion-icon>
+        <app-icon icon="mdi:shield-check-outline" class="text-purple-600 text-xl"></app-icon>
       </div>
       <ion-label>
         <h3>{{ operationLabel(item.operationType) }}</h3>
@@ -87,7 +87,7 @@
       </ion-label>
       @if (item.status === EFinancialApprovalStatus.Pendiente) {
         <app-action-menu slot="end">
-          <ion-button-edit (clicked)="openDetail(item)" />
+          <custom-button-edit (clicked)="openDetail(item)" />
         </app-action-menu>
       }
     </ion-item>

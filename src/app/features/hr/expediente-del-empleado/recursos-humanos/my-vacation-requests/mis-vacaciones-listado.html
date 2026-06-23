@@ -1,4 +1,4 @@
-<div class="card">
+﻿<div class="card">
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -129,9 +129,9 @@
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-            <ion-button-item label="Ver Detalle" iconName="eye-outline" (clicked)="onDetail(item.id)" />
+            <custom-button-item label="Ver Detalle" iconName="eye-outline" (clicked)="onDetail(item.id)" />
             @if (item.status === 'Pendiente') {
-              <ion-button-item label="Editar" iconName="create-outline" (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
+              <custom-button-item label="Editar" iconName="create-outline" (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
             }
           </ng-container>
         </app-action-menu>

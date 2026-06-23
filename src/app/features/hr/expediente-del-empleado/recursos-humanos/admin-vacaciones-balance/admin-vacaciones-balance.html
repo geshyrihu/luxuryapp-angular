@@ -1,4 +1,4 @@
-<p-confirmDialog [style]="{ width: '50vw' }"></p-confirmDialog>
+﻿<p-confirmDialog [style]="{ width: '50vw' }"></p-confirmDialog>
 
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
@@ -124,7 +124,7 @@
       </ion-label>
 
       <div slot="end" class="flex align-items-center">
-        <ion-button-edit (clicked)="openEditModal(item)" />
+        <custom-button-edit (clicked)="openEditModal(item)" />
       </div>
     </ion-item>
   </ng-template>

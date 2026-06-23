@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
@@ -23,7 +23,6 @@ import { getStatusSeverity } from "src/app/features/hr/expediente-del-empleado/r
 import { LeaveRequestMyDTO } from "src/app/features/hr/expediente-del-empleado/recursos-humanos/interfaces/leave-request.interface";
 import { MiPermisoDetalle } from "./mi-permiso-detalle";
 import { PermisoForm } from "./permiso-form";
-import { IonButtonDelete, IonButtonEdit } from "src/app/core/components/buttons/mobile";
 @Component({
   selector: "app-leave-request-list-my",
   templateUrl: "./mis-permisos-listado.html",
@@ -40,8 +39,8 @@ import { IonButtonDelete, IonButtonEdit } from "src/app/core/components/buttons/
     ActionMenu,
     IonItem,
     IonLabel,
-    IonButtonDelete,
-    IonButtonEdit,
+    CustomButtonDelete,
+    CustomButtonEdit,
   ],
 })
 export class MisPermisosListado implements OnInit {

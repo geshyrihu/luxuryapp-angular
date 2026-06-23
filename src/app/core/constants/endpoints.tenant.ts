@@ -55,8 +55,8 @@ export const EndpointsTenant = {
     },
     CobranzaOnline: {
       Dashboard: {
-        get: (customerId: string, year: number, month: number) =>
-          `accounting-coi/cobranza-online/dashboard/customer/${customerId}/year/${year}/month/${month}`,
+        get: (customerId: string, year: number, month: number, day?: number) =>
+          `accounting-coi/cobranza-online/dashboard/customer/${customerId}/year/${year}/month/${month}${day ? '?day=' + day : ''}`,
         analysis: (
           customerId: string,
           year: number,

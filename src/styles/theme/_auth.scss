@@ -21,8 +21,8 @@
   }
 }
 
-/* Override explícito para inputs/botones dentro de auth para mantener contraste */
-.glass-auth-card h4, 
+/* Texto blanco solo en elementos tipográficos, no en controles de formulario */
+.glass-auth-card h4,
 .glass-auth-card p {
   color: rgba(255, 255, 255, 0.9) !important;
 }
@@ -33,4 +33,15 @@
 
 .glass-auth-card .text-900 {
   color: #ffffff !important;
+}
+
+/* Labels de campo en blanco para contraste sobre el fondo oscuro */
+.glass-auth-card .field-label {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Inputs y textareas: texto oscuro sobre fondo blanco del control */
+.glass-auth-card input,
+.glass-auth-card textarea {
+  color: var(--ds-text-primary, #1c1c1e) !important;
 }

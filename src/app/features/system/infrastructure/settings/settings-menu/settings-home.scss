@@ -2,7 +2,7 @@
 // Referencia: catalog-component-ui
 
 .section-header {
-  border-left: 4px solid var(--ds-primary, #0B3164);
+  border-left: 4px solid var(--ds-primary, var(--ds-primary));
   padding-left: 1rem;
   margin-bottom: 2rem;
 
@@ -17,7 +17,7 @@
 .ds-menu-card {
   position: relative;
   overflow: hidden;
-  border: 1px solid var(--ds-border, var(--surface-border, #e0e0e0));
+  border: 1px solid var(--ds-border, var(--surface-border, var(--ds-border)));
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 
@@ -29,7 +29,7 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: var(--ds-primary, #0B3164);
+    background: var(--ds-primary, var(--ds-primary));
     opacity: 0;
     transition: opacity 0.3s ease;
   }
@@ -37,7 +37,7 @@
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 4px 16px rgba(11, 49, 100, 0.12);
-    border-color: var(--ds-primary, #0B3164);
+    border-color: var(--ds-primary, var(--ds-primary));
 
     &::before {
       opacity: 1;
@@ -86,7 +86,7 @@
 
 .ds-text-secondary {
   font-family: var(--ds-font-family-base);
-  color: var(--ds-document-neutral, #6B7280);
+  color: var(--ds-document-neutral, var(--ds-text-muted));
 }
 
 .ds-mobile-label {

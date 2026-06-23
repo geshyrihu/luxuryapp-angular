@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -104,11 +104,11 @@
 
       <app-action-menu slot="end">
         <ng-container actions>
-          <ion-button-edit
+          <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <ion-button-delete (confirmed)="onDelete(item.id)" />
-          <ion-button-send-email
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <custom-button-send-email
             confirmMessage="Enviar usuario y contraseña de acceso."
             (confirmed)="onSendCredential(item.id)"
           />

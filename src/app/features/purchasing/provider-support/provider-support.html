@@ -1,4 +1,4 @@
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block"></div>
 <p-table
   #dt
@@ -90,10 +90,10 @@
     <ion-item lines="full" detail="false" class="ion-no-padding">
       <div slot="start" style="
         width:36px; height:36px; border-radius:10px;
-        background:#f0fdf4; display:flex; align-items:center;
+        background:var(--ds-surface-variant); display:flex; align-items:center;
         justify-content:center; flex-shrink:0; margin-left:16px;
       ">
-        <ion-icon name="person-outline" style="font-size:20px; color:#16a34a;"></ion-icon>
+        <app-icon icon="mdi:account-outline" style="font-size:20px; color:#16a34a;"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.fullName }}</h3>
@@ -101,8 +101,8 @@
         <p>{{ item.nameCustomer }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
-        <ion-button-delete (confirmed)="onDelete(item.id)" />
+        <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
+        <custom-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

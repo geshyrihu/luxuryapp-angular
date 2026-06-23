@@ -4,8 +4,8 @@ export const authRoutes: Routes = [
   {
     path: "",
     loadComponent: () =>
-      import("src/app/login/login/login").then(
-        (m) => m.LoginComponent,
+      import("src/app/login/login/login-wrapper").then(
+        (m) => m.LoginWrapper,
       ),
     data: {
       title: "Login",
@@ -15,8 +15,8 @@ export const authRoutes: Routes = [
   {
     path: "login",
     loadComponent: () =>
-      import("src/app/login/login/login").then(
-        (m) => m.LoginComponent,
+      import("src/app/login/login/login-wrapper").then(
+        (m) => m.LoginWrapper,
       ),
     data: {
       title: "Login",

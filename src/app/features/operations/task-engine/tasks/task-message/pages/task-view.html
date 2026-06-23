@@ -2,10 +2,7 @@
 <!-- Error View (Responsive) -->
 <div class="flex justify-content-center align-items-center h-full p-4">
   <div class="text-center">
-    <ion-icon
-      name="alert-circle-outline"
-      class="text-yellow-500 text-6xl mb-3"
-    ></ion-icon>
+    <app-icon icon="mdi:alert-circle-outline" class="text-yellow-500 text-6xl mb-3"></app-icon>
     <h2 class="text-lg font-bold text-700">Ticket no encontrado</h2>
     <p class="text-500 mt-2">
       El ticket que estas buscando no existe o ha sido eliminado.
@@ -236,7 +233,7 @@
 <div class="block md:hidden pb-6">
   <div class="flex align-items-center p-2 bg-white border-bottom">
     <ion-button fill="clear" (click)="goBack()">
-      <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      <app-icon icon="mdi:arrow-left" slot="icon-only"></app-icon>
     </ion-button>
     <h1 class="text-lg font-bold m-0 ml-2">Detalle del Ticket</h1>
   </div>
@@ -252,7 +249,7 @@
       </div>
       <h2 class="text-xl font-bold my-1 text-dark">{{ t.title }}</h2>
       <p class="text-sm text-color-secondary m-0 flex align-items-center gap-1">
-        <ion-icon name="time-outline"></ion-icon> {{ t.createDate }}
+        <app-icon icon="mdi:clock-outline"></app-icon> {{ t.createDate }}
       </p>
     </ion-card-header>
     <ion-card-content>
@@ -323,11 +320,8 @@
         <p class="text-dark font-semibold">{{ t.status }}</p>
       </ion-label>
       @if (t.status === 'Cerrado' || t.status === 'Completed') {
-      <ion-icon
-        name="checkmark-circle-outline"
-        slot="end"
-        color="success"
-      ></ion-icon>
+      <app-icon icon="mdi:check-circle-outline" slot="end"
+        color="success"></app-icon>
       }
     </ion-item>
   </ion-list>
@@ -335,7 +329,7 @@
   <div class="px-3">
     <div class="flex justify-content-between align-items-center mb-3">
       <h3 class="text-lg font-bold m-0 flex align-items-center">
-        <ion-icon name="chatbubbles-outline"></ion-icon> Seguimiento
+        <app-icon icon="mdi:forum-outline"></app-icon> Seguimiento
       </h3>
       @if (t.seeEditingOptions) {
       <ion-button
@@ -344,7 +338,7 @@
         color="primary"
         (click)="onFollowUp(t.id)"
       >
-        <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+        <app-icon icon="mdi:plus-circle-outline" slot="icon-only"></app-icon>
       </ion-button>
       }
     </div>
@@ -398,11 +392,7 @@
           "
           (click)="onModalForm(t)"
         >
-          <ion-icon
-            slot="start"
-            name="create-outline"
-            style="font-size: 0.9rem"
-          ></ion-icon>
+          <app-icon icon="mdi:pencil-outline" slot="start" style="font-size: 0.9rem"></app-icon>
           Editar
         </ion-button>
         <ion-button
@@ -417,11 +407,7 @@
           "
           (click)="onProgram(t.id)"
         >
-          <ion-icon
-            slot="start"
-            name="calendar-outline"
-            style="font-size: 0.9rem"
-          ></ion-icon>
+          <app-icon icon="mdi:calendar-blank" slot="start" style="font-size: 0.9rem"></app-icon>
           Programar
         </ion-button>
       </div>
@@ -440,11 +426,7 @@
           "
           (click)="onProgress(t.id)"
         >
-          <ion-icon
-            slot="start"
-            name="sync-outline"
-            style="font-size: 0.9rem"
-          ></ion-icon>
+          <app-icon icon="mdi:sync" slot="start" style="font-size: 0.9rem"></app-icon>
           Proceso
         </ion-button>
         <ion-button
@@ -459,11 +441,7 @@
           "
           (click)="onClosed(t.id)"
         >
-          <ion-icon
-            slot="start"
-            name="lock-closed-outline"
-            style="font-size: 0.9rem"
-          ></ion-icon>
+          <app-icon icon="mdi:lock-outline" slot="start" style="font-size: 0.9rem"></app-icon>
           Cerrar
         </ion-button>
         } @if (t.status === 'Cerrado' || t.status === 'Completed') {
@@ -474,11 +452,7 @@
           style="height: 32px; font-size: 0.75rem"
           (click)="onReopen(t.id)"
         >
-          <ion-icon
-            slot="start"
-            name="lock-open-outline"
-            style="font-size: 0.9rem"
-          ></ion-icon>
+          <app-icon icon="mdi:lock-open-outline" slot="start" style="font-size: 0.9rem"></app-icon>
           Reabrir Ticket
         </ion-button>
         }
@@ -491,11 +465,7 @@
         style="height: 32px; font-size: 0.75rem"
         (click)="onFollowUp(t.id)"
       >
-        <ion-icon
-          slot="start"
-          name="chatbubbles-outline"
-          style="font-size: 0.9rem"
-        ></ion-icon>
+        <app-icon icon="mdi:forum-outline" slot="start" style="font-size: 0.9rem"></app-icon>
         Seguimiento
       </ion-button>
     </div>

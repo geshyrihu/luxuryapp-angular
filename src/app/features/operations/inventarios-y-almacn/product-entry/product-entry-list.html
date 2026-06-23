@@ -1,4 +1,4 @@
-@if (dataSignal()) {
+﻿@if (dataSignal()) {
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="card">
@@ -103,7 +103,7 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <ion-button-edit
+            <custom-button-edit
               (clicked)="onAddEntrada({
                       id: item.id,
                       idProducto: item.productoId,
@@ -111,7 +111,7 @@
                       almacenId: item.almacenId
                     })"
             />
-            <ion-button-delete (confirmed)="onDelete(item.id)" />
+            <custom-button-delete (confirmed)="onDelete(item.id)" />
           </ng-container>
         </app-action-menu>
       </div>

@@ -44,7 +44,7 @@
   <div class="card hidden md:block">
     <table class="w-full" style="border-collapse:collapse;">
       <thead>
-        <tr style="background:#f8fafc;">
+        <tr style="background:var(--ds-surface-variant);">
           <th class="p-2 text-left">Tipo</th>
           <th class="p-2 text-left">Ubicación</th>
           <th class="p-2 text-left">Código</th>
@@ -55,7 +55,7 @@
       </thead>
       <tbody>
         @for (item of cycle().items; track item.inspectionId) {
-          <tr style="border-top:1px solid #e2e8f0;">
+          <tr style="border-top:1px solid var(--ds-border);">
             <td class="p-2"><small>{{ item.equipmentType }}</small></td>
             <td class="p-2">{{ item.location }}</td>
             <td class="p-2"><small>{{ item.localCode }}</small></td>

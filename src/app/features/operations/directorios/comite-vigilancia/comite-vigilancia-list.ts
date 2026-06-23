@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -22,7 +22,6 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ComiteVigilanciaForm } from "./comite-vigilancia-form";
-import { IonButtonDelete, IonButtonEdit, IonButtonSendEmail } from "src/app/core/components/buttons/mobile";
 @Component({
   selector: "app-comite-vigilancia-list",
   templateUrl: "./comite-vigilancia-list.html",
@@ -39,9 +38,9 @@ import { IonButtonDelete, IonButtonEdit, IonButtonSendEmail } from "src/app/core
     ActionMenu,
     IonItem,
     IonLabel,
-    IonButtonDelete,
-    IonButtonEdit,
-    IonButtonSendEmail,
+    CustomButtonDelete,
+    CustomButtonEdit,
+    CustomButtonSendEmail,
   ],
 })
 export class ComiteVigilanciaList {

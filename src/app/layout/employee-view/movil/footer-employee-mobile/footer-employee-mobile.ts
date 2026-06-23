@@ -150,12 +150,3 @@ export class FooterEmployeeMobile implements OnInit {
     return this.router.url === (Array.isArray(link) ? link[0] : link);
   }
 }
-
-
-
-
-
-
-
-
-

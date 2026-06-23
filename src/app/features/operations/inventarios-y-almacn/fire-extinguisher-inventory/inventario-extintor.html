@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -120,7 +120,7 @@
       color="primary"
       (click)="onOpenScanner()"
     >
-      <ion-icon name="qr-code-outline" slot="start"></ion-icon>
+      <app-icon icon="mdi:qrcode" slot="start"></app-icon>
       Escanear QR
     </ion-button>
     <ion-button
@@ -129,7 +129,7 @@
       color="warning"
       (click)="onBulkExpiration()"
     >
-      <ion-icon name="calendar-outline" slot="start"></ion-icon>
+      <app-icon icon="mdi:calendar-blank" slot="start"></app-icon>
       Actualizar vencimiento
     </ion-button>
     <ion-button
@@ -138,7 +138,7 @@
       color="secondary"
       (click)="onViewPeriodos()"
     >
-      <ion-icon name="time-outline" slot="start"></ion-icon>
+      <app-icon icon="mdi:clock-outline" slot="start"></app-icon>
       Periodos de Inspección
     </ion-button>
   </div>
@@ -151,7 +151,7 @@
           width: 36px;
           height: 36px;
           border-radius: 10px;
-          background: #fee2e2;
+          background: var(--ds-border);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -159,10 +159,7 @@
           margin-left: 16px;
         "
       >
-        <ion-icon
-          name="flame-outline"
-          style="font-size: 20px; color: #dc2626"
-        ></ion-icon>
+        <app-icon icon="mdi:fire" style="font-size: 20px; color: #dc2626"></app-icon>
       </div>
       <ion-label>
         <h3>
@@ -172,17 +169,17 @@
         <p>{{ item.location }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-item
+        <custom-button-item
           (clicked)="onViewHistory(item)"
           label="Historial"
           iconName="list-outline"
         />
-        <ion-button-download (clicked)="onDownloadPdf()" label="PDF" />
-        <ion-button-download (clicked)="onDownloadQr(item)" label="QR" />
-        <ion-button-edit
+        <custom-button-download (clicked)="onDownloadPdf()" label="PDF" />
+        <custom-button-download (clicked)="onDownloadQr(item)" label="QR" />
+        <custom-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
         />
-        <ion-button-delete (confirmed)="onDelete(item.id)" />
+        <custom-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

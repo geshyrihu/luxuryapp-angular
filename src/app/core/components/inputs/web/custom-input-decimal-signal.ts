@@ -1,4 +1,4 @@
-import { Component, computed, forwardRef, input } from "@angular/core";
+﻿import { Component, computed, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { InputNumberModule } from "primeng/inputnumber";
 import { BaseInputSignal } from "../base/base-input-signal";
@@ -28,7 +28,6 @@ import { BaseInputSignal } from "../base/base-input-signal";
         [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
         [readonly]="readonly()"
-        [disabled]="disabled()"
         [showButtons]="showButtons()"
         [minFractionDigits]="minFractionDigits()"
         [maxFractionDigits]="maxFractionDigits()"

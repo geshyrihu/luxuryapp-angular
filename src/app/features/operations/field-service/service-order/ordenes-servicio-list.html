@@ -1,4 +1,4 @@
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [showCurrentPageReport]="true"
@@ -243,7 +243,7 @@
 
       <!-- Botón Reporte -->
       <div class="mb-2">
-        <ion-button-item
+        <custom-button-item
           iconName="document-text-outline"
           label="Reporte de órdenes"
           (click)="onNavigateToReport()"
@@ -252,7 +252,7 @@
         />
       </div>
       <div class="mb-2">
-        <ion-button-item
+        <custom-button-item
           iconName="grid-outline"
           label="Reporte por categoria"
           (click)="onNavigateToReportTabla()"
@@ -316,25 +316,25 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <ion-button-item
+            <custom-button-item
               iconName="print-outline"
               label="Imprimir soporte"
               [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
             />
 
-            <ion-button-item
+            <custom-button-item
               iconName="image-outline"
               label="Cargar imagen"
               (clicked)="onModalFormUploadImg(item.id)"
             />
 
-            <ion-button-item
+            <custom-button-item
               iconName="ellipsis-horizontal-outline"
               label="Cargar documentos"
               (clicked)="onModalFormUploadDoc(item.id)"
               variant="outlined"
             />
-            <ion-button-edit
+            <custom-button-edit
               (clicked)="onEdit({
                     id: item.id,
                     title: 'Editar',
@@ -342,7 +342,7 @@
                     providerId: item.providerId
                     })"
             />
-            <ion-button-delete (confirmed)="onDelete(item.id)" />
+            <custom-button-delete (confirmed)="onDelete(item.id)" />
           </ng-container>
         </app-action-menu>
       </div>

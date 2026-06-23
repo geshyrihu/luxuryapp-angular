@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, effect, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
@@ -9,9 +9,9 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
+import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -40,9 +40,9 @@ import { PurchaseRequestForm } from "./purchase-request-form";
     PrimeNgCustomTableFooter,
     ActionMenu,
     DataViewMobile,
-    IonButtonEdit,
-    IonButtonDelete,
-    IonButtonItem,
+    CustomButtonEdit,
+    CustomButtonDelete,
+    CustomButtonItem,
     IonItem,
     IonLabel,
     IonIcon,

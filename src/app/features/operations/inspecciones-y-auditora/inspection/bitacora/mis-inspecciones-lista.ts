@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
@@ -7,7 +7,7 @@ import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile";
+import { CustomButtonItem } from "src/app/core/components/buttons/web";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -25,7 +25,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
     CommonModule,
     CustomInputDateSignal,
     DataViewMobile,
-    IonButtonItem,
+    CustomButtonItem,
     ReactiveFormsModule,
     RouterModule,
     TableModule,

@@ -2,12 +2,14 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
 import { ChartModule } from "primeng/chart";
 import { MessageModule } from "primeng/message";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -33,6 +35,9 @@ function buildTodayInputValue() {
     SelectModule,
     TableModule,
     TagModule,
+    DataViewMobile,
+    IonItem,
+    IonLabel,
   ],
   templateUrl: "./cobranza-online-analysis.html",
 })
@@ -55,6 +60,12 @@ export class CobranzaOnlineAnalysis {
     "SIN ADEUDO",
     "ANTICIPOS",
   ];
+
+  readonly globalFilterFields = computed(() => [
+    "numeroCuenta",
+    "condomino",
+    "clasificacion",
+  ]);
 
   readonly messageSeverity = computed(() =>
     this.data()?.syncMetadata?.dataSource === "aspel-live" ? "success" : "warn",

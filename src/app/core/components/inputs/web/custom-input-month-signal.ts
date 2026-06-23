@@ -1,4 +1,4 @@
-import { Component, forwardRef, input } from "@angular/core";
+﻿import { Component, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { InputTextModule } from "primeng/inputtext";
 import { BaseInputSignal } from "../base/base-input-signal";
@@ -30,7 +30,6 @@ import { BaseInputSignal } from "../base/base-input-signal";
         [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
         [readOnly]="readonly()"
-        [disabled]="disabled()"
         label
         [pSize]="size()"
         fluid

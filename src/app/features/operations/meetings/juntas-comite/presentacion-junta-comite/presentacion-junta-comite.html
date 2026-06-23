@@ -1,4 +1,4 @@
-@if (dataSignal()) {
+﻿@if (dataSignal()) {
 <!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="flex flex-column gap-3">
@@ -255,10 +255,10 @@
             @if ( aspRoleS.anyOf([AspRole.Administrador,
             AspRole.SuperUsuario])() && !item.archivoFinal ) {
             <div class="flex gap-1">
-              <ion-button-edit
+              <custom-button-edit
                 (clicked)="showModalAdd({ id: item.id, title: 'Editar' })"
               />
-              <ion-button-delete (confirmed)="onDeleteItem(item.id)" />
+              <custom-button-delete (confirmed)="onDeleteItem(item.id)" />
             </div>
             }
           </div>
@@ -291,17 +291,17 @@
               />
               } @else if (item.archivoPortada) {
               <div class="flex justify-content-between align-items-center">
-                <ion-button-view-pdf
+                <custom-button-view-pdf
                   [url]="item.archivoPortada"
                   pdf="Portada"
                 />
                 @if ( aspRoleS.anyOf([ AspRole.Administrador,
                 AspRole.SuperUsuario ])() && !item.archivoFinal ) {
                 <div class="flex gap-1">
-                  <ion-button-edit
+                  <custom-button-edit
                     (clicked)="onModalForm({ id: item.id, titulo: 'Portada' })"
                   />
-                  <ion-button-delete
+                  <custom-button-delete
                     (confirmed)="onDeleteFile(item.id, 'Portada')"
                   />
                 </div>
@@ -335,7 +335,7 @@
               />
               } @else if (item.archivoContable) {
               <div class="flex justify-content-between align-items-center">
-                <ion-button-view-pdf
+                <custom-button-view-pdf
                   [url]="item.archivoContable"
                   pdf="Contabilidad"
                 />
@@ -343,10 +343,10 @@
                 && !item.archivoFinal && !item.applicationUserSupervisorContable
                 ) {
                 <div class="flex gap-1">
-                  <ion-button-edit
+                  <custom-button-edit
                     (clicked)="onModalForm({ id: item.id, titulo: 'Contabilidad' })"
                   />
-                  <ion-button-delete
+                  <custom-button-delete
                     (confirmed)="onDeleteFile(item.id, 'Contabilidad')"
                   />
                 </div>
@@ -381,17 +381,17 @@
               />
               } @else if (item.archivoJunta) {
               <div class="flex justify-content-between align-items-center">
-                <ion-button-view-pdf
+                <custom-button-view-pdf
                   [url]="item.archivoJunta"
                   pdf="Operaciones"
                 />
                 @if ( aspRoleS.anyOf([ AspRole.Administrador,
                 AspRole.SuperUsuario ])() && !item.archivoFinal ) {
                 <div class="flex gap-1">
-                  <ion-button-edit
+                  <custom-button-edit
                     (clicked)="onModalForm({ id: item.id, titulo: 'Operaciones' })"
                   />
-                  <ion-button-delete
+                  <custom-button-delete
                     (confirmed)="onDeleteFile(item.id, 'Operaciones')"
                   />
                 </div>
@@ -414,7 +414,7 @@
               item.archivoPortada && item.archivoContable && item.archivoJunta )
               {
               <div class="flex flex-column gap-2">
-                <ion-button-confirm
+                <custom-button-confirm
                   icon="mdi:send"
                   label="Validar y enviar a comite"
                   swalTitle="óEnviar presentación?"
@@ -424,7 +424,7 @@
                   (confirmed)="onValidarPresentacion(item.id)"
                   customClass="w-full"
                 />
-                <ion-button-confirm
+                <custom-button-confirm
                   icon="mdi:check-circle"
                   label="Solo validar"
                   swalTitle="óValidar presentación?"
@@ -437,9 +437,9 @@
               </div>
               } @else if (item.archivoFinal) {
               <div class="flex justify-content-between align-items-center">
-                <ion-button-view-pdf [url]="item.archivoFinal" pdf="Final" />
+                <custom-button-view-pdf [url]="item.archivoFinal" pdf="Final" />
                 @if (aspRoleS.anyOf([AspRole.SuperUsuario])()) {
-                <ion-button-delete
+                <custom-button-delete
                   (confirmed)="onDeleteFile(item.id, 'Final')"
                 />
                 }

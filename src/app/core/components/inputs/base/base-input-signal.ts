@@ -17,14 +17,15 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from "@angular/forms";
+import { PlatformService } from "src/app/core/services/platform.service";
 import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
 
 /**
  * 🧱 BASE INPUT SIGNAL - El cimiento de tus formularios (Web/PrimeNG)
  * -------------------------------------------------------------------------
- * Componente base para inputs reactivos PrimeNG.
+ * Componente base para todos los inputs (web PrimeNG + mobile Ionic).
  * Layout con label, field-content y errores de validación.
- * Para inputs Ionic usar: BaseIonicInput
+ * Los inputs en inputs/web/ extienden esta clase y detectan plataforma via this.platform.
  */
 @Component({
   selector: "base-input-signal",
@@ -43,7 +44,7 @@ import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
       } @else {
         <div class="field" [class.field-horizontal]="horizontal()" [class.mb-0]="noMargin()">
           @if (label()) {
-            <label [for]="id()" class="field-label">
+            <label [for]="platform.isMobile() ? null : id()" class="field-label">
               {{ label() }}
               @if (isRequired()) {
                 <span class="text-red-400">*</span>
@@ -105,6 +106,8 @@ import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
   ],
 })
 export class BaseInputSignal implements ControlValueAccessor, OnInit {
+  readonly platform = inject(PlatformService);
+
   control = input<AbstractControl | any>();
   id = input<string>(`input-${Math.random().toString(36).substring(2, 9)}`);
   label = input<string | null>("");

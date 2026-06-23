@@ -1,20 +1,20 @@
-import { CurrencyPipe, DatePipe } from '@angular/common';
-import { Component, effect, inject, signal } from '@angular/core';
-import { IonIcon, IonItem, IonLabel } from '@ionic/angular/standalone';
-import { addIcons } from 'ionicons';
-import { gitMergeOutline } from 'ionicons/icons';
-import { TableModule } from 'primeng/table';
-import { CustomButton } from 'src/app/core/components/buttons/web';
-import { DataViewMobile } from 'src/app/core/components/data-view-mobile/data-view-mobile';
-import { PrimeNgCustomCaption } from 'src/app/core/components/primeng-custom-caption/primeng-custom-caption';
-import { Endpoints } from 'src/app/core/constants/endpoints';
-import { ApiResponseService } from 'src/app/core/services/api-response.service';
-import { CustomerIdService } from 'src/app/core/services/customer-id.service';
-import { TableScrollHeightService } from 'src/app/core/services/table-scroll-height.service';
+import { CurrencyPipe, DatePipe } from "@angular/common";
+import { Component, effect, inject, signal } from "@angular/core";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
+import { addIcons } from "ionicons";
+import { gitMergeOutline } from "ionicons/icons";
+import { TableModule } from "primeng/table";
+import { CustomButton } from "src/app/core/components/buttons/web";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
-} from 'src/app/core/helpers/table-primeng-option';
+} from "src/app/core/helpers/table-primeng-option";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 
 interface UnallocatedPayment {
   id: string;
@@ -26,7 +26,7 @@ interface UnallocatedPayment {
 }
 
 @Component({
-  selector: 'app-reconciliation-dashboard',
+  selector: "app-reconciliation-dashboard",
   imports: [
     TableModule,
     PrimeNgCustomCaption,
@@ -34,11 +34,10 @@ interface UnallocatedPayment {
     DataViewMobile,
     IonItem,
     IonLabel,
-    IonIcon,
     DatePipe,
     CurrencyPipe,
   ],
-  templateUrl: './reconciliation-dashboard.html',
+  templateUrl: "./reconciliation-dashboard.html",
 })
 export default class ReconciliationDashboard {
   private apiResponseS = inject(ApiResponseService);
@@ -74,7 +73,7 @@ export default class ReconciliationDashboard {
         Endpoints.AccountingCoi.NativeCollection.Reconciliation.autoApplyAll,
         {},
       );
-      this.lastResult.set(typeof count === 'number' ? count : 0);
+      this.lastResult.set(typeof count === "number" ? count : 0);
       await this.onLoadData();
     } finally {
       this.reconciling.set(false);

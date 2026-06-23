@@ -1,8 +1,10 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
 import { SelectModule } from "primeng/select";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -33,7 +35,7 @@ const MESES_OPCIONES: OpcionMes[] = [
 
 @Component({
   selector: "app-presupuesto-contabilidad",
-  imports: [CommonModule, FormsModule, ButtonModule, SelectModule],
+  imports: [CommonModule, FormsModule, ButtonModule, SelectModule, DataViewMobile, IonItem, IonLabel],
   templateUrl: "./presupuesto-contabilidad.html",
 })
 export class PresupuestoContabilidad {
@@ -48,6 +50,19 @@ export class PresupuestoContabilidad {
   readonly hasCustomer = computed(() => !!this.customerIdS.customerId());
   readonly customerName = computed(() => this.customerIdS.customerName());
   readonly mesesOpciones = MESES_OPCIONES;
+
+  readonly globalFilterFields = ["numeroCuenta", "descripcion"];
+  readonly mobileRows = computed(() => {
+    const d = this.data();
+    if (!d) return [];
+    return d.filas.map((f) => ({
+      numeroCuenta: f.numeroCuenta,
+      descripcion: f.descripcion,
+      pstoMensual: this.formatNum(f.pstoMensual),
+      acumuladoAnual: this.formatNum(f.acumuladoAnual),
+      presupRestante: this.formatNum(f.presupRestante),
+    }));
+  });
 
   readonly yearsOptions = computed(() => {
     const current = new Date().getFullYear();

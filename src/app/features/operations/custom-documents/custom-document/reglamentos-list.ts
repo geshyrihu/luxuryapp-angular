@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
@@ -22,7 +22,6 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/models/document-type.enum";
-import { IonButtonViewPdf } from "src/app/core/components/buttons/mobile";
 @Component({
   selector: "app-reglamentos",
   imports: [
@@ -38,7 +37,7 @@ import { IonButtonViewPdf } from "src/app/core/components/buttons/mobile";
     ReactiveFormsModule,
     IonItem,
     IonLabel,
-    IonButtonViewPdf,
+    CustomButtonViewPdf,
   ],
   templateUrl: "./reglamentos-list.html",
 })

@@ -1,4 +1,4 @@
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
 <p-table
   [globalFilterFields]="globalFilterFields()"
@@ -101,13 +101,13 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-          <ion-button-item
+          <custom-button-item
             (clicked)="onEdit(item.id)"
             label="Editar"
             iconName="create-outline"
           />
 
-          <ion-button-delete (confirmed)="onDelete(item.id)" />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
         </ng-container>
       </app-action-menu>
     </ion-item>

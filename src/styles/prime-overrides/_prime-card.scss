@@ -10,7 +10,7 @@
 body {
   .p-card {
     background: var(--ds-bg-surface);
-    border: 1px solid var(--ds-border);
+    border: 1px solid rgba(0, 0, 0, 0.07);
     border-radius: var(--ds-radius-card, 4px);
     box-shadow: var(--ds-shadow-sm);
     color: var(--ds-text-primary);

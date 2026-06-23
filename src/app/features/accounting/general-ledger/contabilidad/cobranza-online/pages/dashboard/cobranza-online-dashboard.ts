@@ -1,14 +1,19 @@
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { ChartModule } from "primeng/chart";
+import { IconFieldModule } from "primeng/iconfield";
+import { InputIconModule } from "primeng/inputicon";
+import { InputTextModule } from "primeng/inputtext";
 import { MessageModule } from "primeng/message";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { TableModule } from "primeng/table";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { PieChart } from "src/app/core/components/charts/pie-chart";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ChargeTemplateForm } from "src/app/features/accounting/general-ledger/contabilidad/cobranza-nativa/pages/charge-templates/charge-template-form";
 import type {
   CobranzaOnlineDashboardResponse,
@@ -30,7 +35,13 @@ import type {
     MessageModule,
     ChartModule,
     ButtonModule,
-   AppIcon],
+    TableModule,
+    IconFieldModule,
+    InputIconModule,
+    InputTextModule,
+    PieChart,
+    AppIcon,
+  ],
   templateUrl: "./cobranza-online-dashboard.html",
   styles: `
     :host {
@@ -47,7 +58,11 @@ import type {
 
     .co-shell {
       background:
-        radial-gradient(circle at top right, rgba(23, 59, 114, 0.06), transparent 24%),
+        radial-gradient(
+          circle at top right,
+          rgba(23, 59, 114, 0.06),
+          transparent 24%
+        ),
         linear-gradient(180deg, #fbfdff 0%, #f3f7fb 100%);
     }
 
@@ -316,23 +331,51 @@ export class CobranzaOnlineDashboard {
   private dialogHandlerS = inject(DialogHandlerService);
 
   readonly currentYear = signal(new Date().getFullYear());
-  readonly currentMonth = signal(4);
+  readonly currentMonth = signal(new Date().getMonth() + 1);
+  readonly currentDay = signal(new Date().getDate());
+
+  readonly currentDate = computed(() => {
+    const y = this.currentYear();
+    const m = this.currentMonth().toString().padStart(2, "0");
+    const d = this.currentDay().toString().padStart(2, "0");
+    return `${y}-${m}-${d}`;
+  });
+
+  readonly currentMonthName = computed(() => {
+    const date = new Date(this.currentYear(), this.currentMonth() - 1, 1);
+    return date.toLocaleDateString("es-MX", { month: "long" });
+  });
+
+  onDateChange(dateString: string) {
+    if (!dateString) return;
+    const parts = dateString.split("-");
+    if (parts.length === 3) {
+      this.currentYear.set(parseInt(parts[0], 10));
+      this.currentMonth.set(parseInt(parts[1], 10));
+      this.currentDay.set(parseInt(parts[2], 10));
+    }
+  }
   readonly loading = signal(false);
   readonly syncRunning = signal(false);
   readonly detailLoading = signal(false);
   readonly syncStatus = signal<CobranzaOnlineSyncMetadata | null>(null);
-  readonly lastSyncDiagnostics = signal<CobranzaOnlineSyncDiagnostics | null>(null);
+  readonly lastSyncDiagnostics = signal<CobranzaOnlineSyncDiagnostics | null>(
+    null,
+  );
   readonly dashboard = signal<CobranzaOnlineDashboardResponse | null>(null);
   readonly selectedSummaryAccountId = signal<string | null>(null);
   readonly selectedAccountId = signal<string | null>(null);
-  readonly selectedMovement = signal<CobranzaOnlineStatementMovement | null>(null);
+  readonly selectedMovement = signal<CobranzaOnlineStatementMovement | null>(
+    null,
+  );
   readonly selectedStatement = signal<CobranzaOnlineStatementResponse | null>(
     null,
   );
   readonly hasCustomer = computed(() => !!this.customerIdS.customerId());
   readonly customerName = computed(() => this.customerIdS.customerName());
   readonly currentCutLabel = computed(
-    () => `${this.currentMonth().toString().padStart(2, "0")}/${this.currentYear()}`,
+    () =>
+      `${this.currentMonth().toString().padStart(2, "0")}/${this.currentYear()}`,
   );
 
   readonly messageSeverity = computed(() => {
@@ -368,10 +411,7 @@ export class CobranzaOnlineDashboard {
       return lastSyncAt;
     }
 
-    return new Intl.DateTimeFormat("es-MX", {
-      dateStyle: "medium",
-      timeStyle: "short",
-    }).format(parsedDate);
+    return `${this.formatDateShort(parsedDate)} ${parsedDate.toLocaleTimeString("es-MX", { timeStyle: "short" })}`;
   });
 
   readonly chartData = computed(() => {
@@ -380,8 +420,9 @@ export class CobranzaOnlineDashboard {
       (category) => Math.abs(category.total) > 0,
     );
     const categoryColorMap: Record<string, string> = {
-      due: "#7f1d1d",
-      collected: "#166534",
+      morosos: "#b91c1c",
+      "deuda-corriente": "#1d4ed8",
+      collected: "#15803d",
     };
     const fallbackPalette = [
       "#1d4ed8",
@@ -408,7 +449,7 @@ export class CobranzaOnlineDashboard {
 
     return {
       labels: categories.map((category) => category.title),
-        datasets: [
+      datasets: [
         {
           data: categories.map((category) => Math.abs(category.total)),
           backgroundColor: categories.map(
@@ -425,6 +466,151 @@ export class CobranzaOnlineDashboard {
         },
       ],
     };
+  });
+
+  readonly pieChartData = computed<any[]>(() => {
+    const categories =
+      this.dashboard()?.categories.filter(
+        (c) => c.categoryId !== "deuda-anterior",
+      ) ?? [];
+    const hasVisibleTotals = categories.some(
+      (category) => Math.abs(category.total) > 0,
+    );
+
+    if (!hasVisibleTotals) {
+      return [
+        {
+          name: "Sin movimientos del mes",
+          value: 1,
+        },
+      ];
+    }
+
+    return categories.map((category) => ({
+      name: category.title,
+      value: Math.abs(category.total),
+    }));
+  });
+
+  readonly tableCobranzaPerfecta = computed(() => {
+    const kpis = this.dashboard()?.kpis;
+    const categories = this.dashboard()?.categories ?? [];
+    const total = kpis?.totalDueCurrentMonth ?? 0;
+
+    const cobrado =
+      categories.find((c) => c.categoryId === "collected")?.total ?? 0;
+    const morosos =
+      categories.find((c) => c.categoryId === "morosos")?.total ?? 0;
+    const deudaCorriente =
+      categories.find((c) => c.categoryId === "deuda-corriente")?.total ?? 0;
+
+    return [
+      {
+        id: "",
+        clasificacion: "COBRANZA PERFECTA",
+        saldo: total,
+        porcentaje: total ? 1 : 0,
+        isTotal: true,
+      },
+      {
+        id: "2",
+        clasificacion: "MOROSOS",
+        saldo: morosos,
+        porcentaje: total ? morosos / total : 0,
+        isTotal: false,
+      },
+      {
+        id: "3",
+        clasificacion: "DEUDA CORRIENTE",
+        saldo: deudaCorriente,
+        porcentaje: total ? deudaCorriente / total : 0,
+        isTotal: false,
+      },
+      {
+        id: "",
+        clasificacion: "COBRADO",
+        saldo: cobrado,
+        porcentaje: total ? cobrado / total : 0,
+        isTotal: false,
+      },
+    ];
+  });
+
+  readonly tableDeudaCondominos = computed(() => {
+    const categories = this.dashboard()?.categories ?? [];
+
+    const judicial =
+      categories.find((c) => c.categoryId === "deuda-anterior")?.total ?? 0;
+    const morosos =
+      categories.find((c) => c.categoryId === "morosos")?.total ?? 0;
+    const deudaCorriente =
+      categories.find((c) => c.categoryId === "deuda-corriente")?.total ?? 0;
+
+    const total = judicial + morosos + deudaCorriente;
+
+    return [
+      {
+        id: "1",
+        clasificacion: "COBRANZA JUDICIAL",
+        saldo: judicial,
+        porcentaje: total ? judicial / total : 0,
+        isTotal: false,
+      },
+      {
+        id: "2",
+        clasificacion: "MOROSOS",
+        saldo: morosos,
+        porcentaje: total ? morosos / total : 0,
+        isTotal: false,
+      },
+      {
+        id: "3",
+        clasificacion: "DEUDA CORRIENTE",
+        saldo: deudaCorriente,
+        porcentaje: total ? deudaCorriente / total : 0,
+        isTotal: false,
+      },
+      {
+        id: "",
+        clasificacion: "TOTAL",
+        saldo: total,
+        porcentaje: total ? 1 : 0,
+        isTotal: true,
+      },
+    ];
+  });
+
+  readonly pieColorScheme = computed<any>(() => {
+    const categories = this.dashboard()?.categories ?? [];
+    const hasVisibleTotals = categories.some(
+      (category) => Math.abs(category.total) > 0,
+    );
+
+    const categoryColorMap: Record<string, string> = {
+      morosos: "#b91c1c",
+      "deuda-corriente": "#1d4ed8",
+      collected: "#15803d",
+    };
+    const fallbackPalette = [
+      "#1d4ed8",
+      "#6d28d9",
+      "#0f766e",
+      "#be185d",
+      "#9a3412",
+      "#a16207",
+    ];
+
+    if (!hasVisibleTotals) {
+      return { domain: ["#cbd5e1"] };
+    }
+
+    const domain = categories.map(
+      (category, index) =>
+        categoryColorMap[category.categoryId] ??
+        fallbackPalette[index % fallbackPalette.length],
+    );
+
+    return { domain };
   });
 
   readonly chartOptions = {
@@ -451,7 +637,8 @@ export class CobranzaOnlineDashboard {
 
   readonly chartLegend = computed(() => {
     const categories = this.dashboard()?.categories ?? [];
-    const colors = (this.chartData().datasets?.[0]?.backgroundColor ?? []) as string[];
+    const colors = (this.chartData().datasets?.[0]?.backgroundColor ??
+      []) as string[];
     return categories.map((category, index) => ({
       title: category.title,
       subtitle: `${category.count} cuentas consideradas`,
@@ -462,6 +649,23 @@ export class CobranzaOnlineDashboard {
 
   readonly topDebtorsPreview = computed(() =>
     (this.dashboard()?.topDebtors ?? []).slice(0, 6),
+  );
+
+  readonly allDebtors = computed(() => this.dashboard()?.departments ?? []);
+
+  readonly totalDebtorsMaintenance = computed(() =>
+    this.allDebtors().reduce((sum, d) => sum + (d.maintenanceBalance || 0), 0),
+  );
+
+  readonly totalDebtorsExtraordinary = computed(() =>
+    this.allDebtors().reduce(
+      (sum, d) => sum + (d.extraordinaryBalance || 0),
+      0,
+    ),
+  );
+
+  readonly totalDebtorsBalance = computed(() =>
+    this.allDebtors().reduce((sum, d) => sum + (d.balance || 0), 0),
   );
 
   readonly selectedSummary = computed(
@@ -495,7 +699,7 @@ export class CobranzaOnlineDashboard {
 
     return {
       title: movement.concept || movement.policyConcept || "Movimiento",
-      subtitle: `${movement.policyType} ${movement.policyNumber} Â· ${this.formatDate(movement.policyDate)}`,
+      subtitle: `${movement.policyType} ${movement.policyNumber} · ${this.formatDate(movement.policyDate)}`,
       amountLabel: this.formatCurrency(movement.amount),
     };
   });
@@ -557,14 +761,16 @@ export class CobranzaOnlineDashboard {
   private async loadSummary(customerId: string) {
     this.loading.set(true);
 
-    const dashboard = await this.apiResponseS.onGetItem<CobranzaOnlineDashboardResponse>(
-      Endpoints.AccountingCoi.CobranzaOnline.Dashboard.get(
-        customerId,
-        this.currentYear(),
-        this.currentMonth(),
-      ),
-      false,
-    );
+    const dashboard =
+      await this.apiResponseS.onGetItem<CobranzaOnlineDashboardResponse>(
+        Endpoints.AccountingCoi.CobranzaOnline.Dashboard.get(
+          customerId,
+          this.currentYear(),
+          this.currentMonth(),
+          this.currentDay(),
+        ),
+        false,
+      );
 
     const typedDashboard = dashboard as CobranzaOnlineDashboardResponse | null;
     this.syncStatus.set(typedDashboard?.syncMetadata ?? null);
@@ -631,13 +837,14 @@ export class CobranzaOnlineDashboard {
 
     this.syncRunning.set(true);
     try {
-      const response = await this.apiResponseS.onPost<CobranzaOnlineSyncResponse>(
-        Endpoints.AccountingCoi.CobranzaOnline.Sync.cobranza(
-          customerId,
-          this.currentYear(),
-        ),
-        {},
-      );
+      const response =
+        await this.apiResponseS.onPost<CobranzaOnlineSyncResponse>(
+          Endpoints.AccountingCoi.CobranzaOnline.Sync.cobranza(
+            customerId,
+            this.currentYear(),
+          ),
+          {},
+        );
 
       if (response !== false) {
         this.lastSyncDiagnostics.set(response?.diagnostics ?? null);
@@ -695,9 +902,14 @@ export class CobranzaOnlineDashboard {
       return value;
     }
 
-    return new Intl.DateTimeFormat("es-MX", {
-      dateStyle: "medium",
-    }).format(parsedDate);
+    return this.formatDateShort(parsedDate);
+  }
+
+  formatDateShort(date: Date) {
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = date.toLocaleDateString("es-MX", { month: "short" });
+    const year = date.getFullYear().toString().slice(-2);
+    return `${day}-${month}-${year}`;
   }
 
   onSelectMovement(movement: CobranzaOnlineStatementMovement) {
@@ -709,13 +921,14 @@ export class CobranzaOnlineDashboard {
     this.selectedAccountId.set(accountId);
     this.selectedMovement.set(null);
 
-    const statement = await this.apiResponseS.onGetItem<CobranzaOnlineStatementResponse>(
-      Endpoints.AccountingCoi.CobranzaOnline.Statements.get(
-        customerId,
-        accountId,
-        this.currentYear(),
-      ),
-    );
+    const statement =
+      await this.apiResponseS.onGetItem<CobranzaOnlineStatementResponse>(
+        Endpoints.AccountingCoi.CobranzaOnline.Statements.get(
+          customerId,
+          accountId,
+          this.currentYear(),
+        ),
+      );
 
     const typedStatement = statement as CobranzaOnlineStatementResponse | null;
     this.selectedStatement.set(typedStatement);
@@ -723,4 +936,3 @@ export class CobranzaOnlineDashboard {
     this.detailLoading.set(false);
   }
 }
-

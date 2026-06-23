@@ -1,9 +1,7 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
@@ -35,8 +33,8 @@ import { SanctionTypeForm } from "./sanction-type-form";
     CustomButtonDelete,
     IonItem,
     IonLabel,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
   ],
 })
 export class SanctionTypeList implements OnInit {

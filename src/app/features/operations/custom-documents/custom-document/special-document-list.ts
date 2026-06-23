@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
@@ -19,7 +19,6 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/models/document-type.enum";
 import { DocumentoPersonalizadoForm } from "src/app/features/legal/asuntos-legales-y-seguros/documento-personalizado/documento-personalizado-form";
-import { IonButtonViewPdf } from "src/app/core/components/buttons/mobile";
 @Component({
   selector: "app-special-document-list",
   imports: [
@@ -30,7 +29,7 @@ import { IonButtonViewPdf } from "src/app/core/components/buttons/mobile";
     TooltipModule,
     IonItem,
     IonLabel,
-    IonButtonViewPdf,
+    CustomButtonViewPdf,
   ],
   templateUrl: "./special-document-list.html",
 })

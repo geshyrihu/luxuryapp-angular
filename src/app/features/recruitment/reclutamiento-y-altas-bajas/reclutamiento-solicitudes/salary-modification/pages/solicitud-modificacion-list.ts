@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -9,20 +9,17 @@ import {
   ViewChild,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { trendingUpOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { TableModule } from "primeng/table";
+import { Table, TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
-import { Table } from "primeng/table";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -46,11 +43,10 @@ import { ModificacionSalarioForm } from "../components/modificacion-salario-form
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
 })
 export class SolicitudModificacionList implements OnInit {
@@ -70,7 +66,7 @@ export class SolicitudModificacionList implements OnInit {
   loading = signal(true);
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  @ViewChild('dt') dt?: Table;
+  @ViewChild("dt") dt?: Table;
   ref: DynamicDialogRef;
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
@@ -84,7 +80,7 @@ export class SolicitudModificacionList implements OnInit {
     });
     effect(() => {
       const term = this.filterRequestsService.searchTerm();
-      this.dt?.filterGlobal(term, 'contains');
+      this.dt?.filterGlobal(term, "contains");
     });
   }
 

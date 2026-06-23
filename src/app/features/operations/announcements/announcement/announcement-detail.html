@@ -76,7 +76,7 @@
 <div class="block md:hidden pb-5">
   <div class="p-2">
     <ion-button routerLink="../" fill="clear" color="medium" class="mb-2">
-      <ion-icon slot="start" name="arrow-back"></ion-icon>
+      <app-icon icon="mdi:arrow-left" slot="start"></app-icon>
       Volver
     </ion-button>
 
@@ -108,7 +108,7 @@
             expand="block"
             fill="outline"
           >
-            Visitar Enlace <ion-icon slot="end" name="open-outline"></ion-icon>
+            Visitar Enlace <app-icon icon="mdi:open-in-new" slot="end"></app-icon>
           </ion-button>
         </div>
         } @if (announcement.attachments && announcement.attachments.length > 0)
@@ -119,13 +119,10 @@
           </ion-list-header>
           @for (item of announcement.attachments; track item.id) {
           <ion-item [href]="item.filePath" target="_blank" detail="false">
-            <ion-icon name="document-text-outline" slot="start"></ion-icon>
+            <app-icon icon="mdi:file-document-outline" slot="start"></app-icon>
             <ion-label>{{ item.fileName }}</ion-label>
-            <ion-icon
-              name="download-outline"
-              slot="end"
-              color="primary"
-            ></ion-icon>
+            <app-icon icon="mdi:download-outline" slot="end"
+              color="primary"></app-icon>
           </ion-item>
           }
         </ion-list>

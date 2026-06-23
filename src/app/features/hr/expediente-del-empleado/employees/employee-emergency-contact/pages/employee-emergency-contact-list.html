@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="globalFilterFields()"
   [value]="dataEmergencyContact()"
   #dt
@@ -81,7 +81,7 @@
           width: 36px;
           height: 36px;
           border-radius: 10px;
-          background: #fee2e2;
+          background: var(--ds-border);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -89,20 +89,17 @@
           margin-left: 16px;
         "
       >
-        <ion-icon
-          name="call-outline"
-          style="font-size: 20px; color: #dc2626"
-        ></ion-icon>
+        <app-icon icon="mdi:phone-outline" style="font-size: 20px; color: #dc2626"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.nameContact }}</h3>
         <p>{{ item.relation }} ó {{ item.phoneNumber }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit
+        <custom-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar', contacOfBeneficiary: 0 })"
         />
-        <ion-button-delete (confirmed)="onDelete(item.id, 0)" />
+        <custom-button-delete (confirmed)="onDelete(item.id, 0)" />
       </app-action-menu>
     </ion-item>
   </ng-template>
@@ -193,7 +190,7 @@
           width: 36px;
           height: 36px;
           border-radius: 10px;
-          background: #dbeafe;
+          background: var(--ds-border);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -201,20 +198,17 @@
           margin-left: 16px;
         "
       >
-        <ion-icon
-          name="people-outline"
-          style="font-size: 20px; color: #2563eb"
-        ></ion-icon>
+        <app-icon icon="mdi:account-group-outline" style="font-size: 20px; color: #2563eb"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.nameContact }}</h3>
         <p>{{ item.relation }} ó {{ item.phoneNumber }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit
+        <custom-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar', contacOfBeneficiary: 1 })"
         />
-        <ion-button-delete (confirmed)="onDelete(item.id, 1)" />
+        <custom-button-delete (confirmed)="onDelete(item.id, 1)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

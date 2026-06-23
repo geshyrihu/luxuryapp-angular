@@ -1,3 +1,4 @@
+import { AppIcon } from 'src/app/core/components/app-icon/app-icon.component';
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonAccordion, IonAccordionGroup } from "@ionic/angular/standalone";
@@ -24,7 +25,7 @@ import { CATALOGO_GASTOS_FIJOS_LIST_MODULES } from "./catalogo-gastos-fijos-list
 @Component({
   selector: "app-catalogo-gastos-fijos-list",
   templateUrl: "./catalogo-gastos-fijos-list.html",
-  imports: [
+  imports: [AppIcon, 
     IonAccordion,
     IonAccordionGroup,
     ...CATALOGO_GASTOS_FIJOS_LIST_MODULES,

@@ -1,24 +1,23 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { checkmarkCircleOutline } from "ionicons/icons";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { SelectModule } from "primeng/select";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
-    globalFilterFields,
-    rowsPerPageOptions,
-    tablePrimeNgRows,
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -39,10 +38,9 @@ import { OrdenCompra } from "../orden-compra";
     SelectModule,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
+    CustomButtonEdit,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
 })
 export class OrdenCompraPagadas {
@@ -92,12 +90,3 @@ export class OrdenCompraPagadas {
       });
   }
 }
-
-
-
-
-
-
-
-
-

@@ -1,4 +1,4 @@
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <p-table
     [globalFilterFields]="globalFilterFields()"
@@ -106,12 +106,8 @@
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
-      <ion-icon
-        slot="start"
-        name="phone-portrait-outline"
-        [color]="item.viewMobil ? 'success' : 'medium'"
-        class="text-2xl"
-      ></ion-icon>
+      <app-icon icon="mdi:cellphone" slot="start" [color]="item.viewMobil ? 'success' : 'medium'"
+        class="text-2xl"></app-icon>
       <ion-label>
         <h2 class="font-normal m-0">{{ item.nameModule }}</h2>
         <p class="text-medium text-500 m-0">{{ item.label }}</p>
@@ -119,10 +115,10 @@
 
       <app-action-menu slot="end">
         <ng-container actions>
-          <ion-button-edit
+          <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <ion-button-delete (confirmed)="onDelete(item.id)" />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
         </ng-container>
       </app-action-menu>
     </ion-item>

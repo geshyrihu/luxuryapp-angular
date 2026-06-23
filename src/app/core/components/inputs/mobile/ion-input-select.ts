@@ -1,13 +1,8 @@
-import { Component, forwardRef, input, output } from "@angular/core";
+﻿import { Component, computed, forwardRef, input, output } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonSelect, IonSelectOption } from "@ionic/angular/standalone";
 import { BaseIonicInput } from "../base/base-ionic-input";
 
-/**
- * 🔽 ION INPUT SELECT - Mobile (Ionic)
- * -------------------------------------------------------------------------
- * Selector nativo (Action Sheet o Popover) para vistas móviles.
- */
 @Component({
   selector: "ion-input-select",
   imports: [BaseIonicInput, ReactiveFormsModule, IonSelect, IonSelectOption],
@@ -19,6 +14,12 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       [placeholder]="placeholder()"
       [readonly]="readonly()"
       [required]="requiredInput()"
+      [hidden]="hidden()"
+      [description]="description()"
+      [horizontal]="horizontal()"
+      [noMargin]="noMargin()"
+      [onlyInput]="onlyInput()"
+      [class]="inputStyleClass()"
     >
       <ion-select
         [id]="id()"
@@ -27,7 +28,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         [placeholder]="placeholder() || 'Seleccione una opción'"
         label-placement="floating"
         fill="outline"
-        shape="round"
         [disabled]="disabled() || readonly()"
         [interface]="interfaceMode()"
         [cancelText]="cancelText()"
@@ -59,12 +59,17 @@ export class IonInputSelect extends BaseIonicInput {
   optionLabel = input<string>("label");
   optionValue = input<string>("value");
   interfaceMode = input<"action-sheet" | "alert" | "popover">("action-sheet");
-
-  // Botones para interfaz alert
   cancelText = input<string>("Cancelar");
   okText = input<string>("Aceptar");
+  customClass = input<string>("");
+  size = input<"small" | "large" | undefined>(undefined);
 
-  override readonly customClass = () => "ion-input-select-wrapper";
+  inputStyleClass = computed(() => {
+    let classes = "ion-input-select-wrapper " + this.customClass();
+    if (this.size() === "small") classes += " input-sm";
+    if (this.size() === "large") classes += " input-lg";
+    return classes.trim();
+  });
 
   onSelectionChange(event: any): void {
     this.selectionChange.emit(event.detail.value);

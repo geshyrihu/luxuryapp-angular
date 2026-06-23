@@ -1,8 +1,10 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
 import { SelectModule } from "primeng/select";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -33,7 +35,7 @@ const MESES_OPCIONES: OpcionMes[] = [
 
 @Component({
   selector: "app-cobranza-online-reporte-financiero",
-  imports: [CommonModule, FormsModule, ButtonModule, SelectModule],
+  imports: [CommonModule, FormsModule, ButtonModule, SelectModule, DataViewMobile, IonItem, IonLabel],
   templateUrl: "./cobranza-online-reporte-financiero.html",
 })
 export class CobranzaOnlineReporteFinanciero {
@@ -49,6 +51,33 @@ export class CobranzaOnlineReporteFinanciero {
   readonly hasCustomer = computed(() => !!this.customerIdS.customerId());
   readonly customerName = computed(() => this.customerIdS.customerName());
   readonly mesesOpciones = MESES_OPCIONES;
+
+  readonly globalFilterFields = ["seccion", "concepto"];
+  readonly mobileRows = computed(() => {
+    const d = this.data();
+    if (!d) return [];
+
+    const rows: { seccion: string; concepto: string; total: string }[] = [];
+    const pushRows = (seccion: string, filas: ReporteFinancieroFila[]) => {
+      for (const f of filas) {
+        rows.push({ seccion, concepto: f.concepto, total: this.formatNum(f.valores[f.valores.length - 1]) });
+      }
+    };
+    const pushTotal = (seccion: string, valores: number[]) => {
+      const last = valores[valores.length - 1];
+      rows.push({ seccion, concepto: seccion, total: this.formatNum(last) });
+    };
+
+    pushRows("INGRESOS", d.ingresos);
+    pushTotal("INGRESOS", d.totalIngresos);
+    pushRows("GASTOS GENERALES", d.gastosGenerales);
+    pushTotal("TOTAL GASTOS", d.totalGastos);
+    pushTotal("SUBTOTAL", d.subtotal);
+    if (d.otrosIngresos.length > 0) pushRows("OTROS INGRESOS", d.otrosIngresos);
+    pushTotal("RESULTADO DEL PERIODO", d.resultadoPeriodo);
+
+    return rows;
+  });
 
   readonly yearsOptions = computed(() => {
     const current = new Date().getFullYear();

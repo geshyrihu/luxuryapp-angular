@@ -1,4 +1,4 @@
-<div class="card p-3 md:p-4">
+﻿<div class="card p-3 md:p-4">
   <p-table
     [value]="dataSignal()"
     [paginator]="true"
@@ -91,8 +91,8 @@
         </p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit (clicked)="onModalForm(item.id)" />
-        <ion-button-delete (confirmed)="onDelete(item)" />
+        <custom-button-edit (clicked)="onModalForm(item.id)" />
+        <custom-button-delete (confirmed)="onDelete(item)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

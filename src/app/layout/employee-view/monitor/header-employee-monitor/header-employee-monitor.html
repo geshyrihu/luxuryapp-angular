@@ -6,13 +6,15 @@
     <ng-template #start>
       <!-- Botón para abrir/cerrar el sidebar -->
       <div class="flex align-items-center gap-2 px-3" style="min-width: 250px">
-        <p-button
+        <button
           type="button"
+          class="sidebar-toggle-btn"
           (click)="sidebarToggle()"
-          icon="icon icon-pi-bars"
-          size="small"
-          fluid
-        />
+          pTooltip="Menú"
+          tooltipPosition="bottom"
+        >
+          <i class="pi pi-bars"></i>
+        </button>
         <div class="flex-none breadcrumb-container">
           <p-breadcrumb [model]="breadcrumbItems"></p-breadcrumb>
         </div>
@@ -140,7 +142,7 @@
       />
       <div>
         <span class="font-bold text-xl block text-purple-700">
-          <i class="pi pi-sparkles text-purple-500 mr-2 text-xl"></i>Asistente
+          <app-icon icon="mdi:sparkles"  class="text-purple-500 mr-2 text-xl"></app-icon>Asistente
           Ejecutivo IA
         </span>
         <span class="text-sm text-gray-500">{{ customerName() }}</span>

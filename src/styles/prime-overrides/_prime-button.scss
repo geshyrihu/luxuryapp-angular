@@ -32,9 +32,13 @@
 body {
   .p-button,
   .p-togglebutton {
+    // Padding explícito — PrimeNG 21 no aplica --p-button-padding-* desde el preset Lara
+    // si el override de body reemplaza el bloque de estilos del componente.
+    padding: 0.5rem 1rem;
     font-family: inherit;
     font-size: 0.875rem;
     font-weight: 500;
+    line-height: 1.25;
     border-width: var(--p-button-border-width);
     border-style: solid;
     border-radius: var(--ds-radius-btn, 4px);
@@ -91,14 +95,22 @@ body {
     &:hover:not(:disabled) { background-color: var(--ds-bg-sunken); }
   }
 
+  // Tamaños
   .p-button-sm {
-    font-size: 0.8125rem;
     padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
   }
 
   .p-button-lg {
-    font-size: 1rem;
     padding: 0.625rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  // Rounded icon-only — compensar padding para mantener aspecto circular
+  .p-button-rounded.p-button-icon-only {
+    padding: 0.5rem;
+    width: 2.25rem;
+    height: 2.25rem;
   }
 
   .p-selectbutton .p-togglebutton {

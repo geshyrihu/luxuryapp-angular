@@ -1,4 +1,4 @@
-<div class="card">
+﻿<div class="card">
   <p-table
     #dt
     [value]="items()"
@@ -74,8 +74,8 @@
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-            <ion-button-item label="Ver" iconName="eye-outline" (clicked)="onViewDetail(item)" />
-            <ion-button-item label="Editar" iconName="create-outline" (clicked)="onEdit(item)" />
+            <custom-button-item label="Ver" iconName="eye-outline" (clicked)="onViewDetail(item)" />
+            <custom-button-item label="Editar" iconName="create-outline" (clicked)="onEdit(item)" />
           </ng-container>
         </app-action-menu>
       </ion-item>

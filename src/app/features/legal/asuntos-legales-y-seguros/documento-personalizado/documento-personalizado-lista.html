@@ -1,4 +1,4 @@
-<div class="card p-0 md:p-4">
+﻿<div class="card p-0 md:p-4">
   <p-table
     [globalFilterFields]="globalFilterFields()"
     [value]="dataSignal()"
@@ -73,18 +73,18 @@
     <ion-item lines="full" detail="false" class="ion-no-padding">
       <div slot="start" style="
         width:36px; height:36px; border-radius:10px;
-        background:#ede9fe; display:flex; align-items:center;
+        background:var(--ds-border); display:flex; align-items:center;
         justify-content:center; flex-shrink:0; margin-left:16px;
       ">
-        <ion-icon name="document-outline" style="font-size:20px; color:#7c3aed;"></ion-icon>
+        <app-icon icon="mdi:file-outline" style="font-size:20px; color:#7c3aed;"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.name }}</h3>
         <p>Folio: {{ item.folio }} ó {{ item.createAt }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
-        <ion-button-delete (confirmed)="onDelete(item.id)" />
+        <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
+        <custom-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

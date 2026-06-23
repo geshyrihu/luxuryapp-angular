@@ -1,0 +1,43 @@
+// ============================================================
+// _prime-message.scss
+// PrimeNG 21 — p-message override
+// Estilo: borde izquierdo de acento (4px) + fondo muy suave
+// ============================================================
+
+body {
+  .p-message {
+    // Solo borde izquierdo — 4px de acento con el color de severidad
+    border-style: solid;
+    border-width: 0 0 0 4px;
+    border-radius: 8px;
+
+    // Fondo ligeramente más claro que el token de preset
+    // (se sobreescribe por severidad abajo)
+  }
+
+  // Backgrounds más suaves — uno por severidad
+  .p-message-success {
+    background-color: #f0fdf4 !important;
+  }
+
+  .p-message-info {
+    background-color: #f0f9ff !important;
+  }
+
+  .p-message-warn {
+    background-color: #fffbeb !important;
+  }
+
+  .p-message-error {
+    background-color: #fef2f2 !important;
+  }
+
+  .p-message-secondary {
+    background-color: #f8fafc !important;
+    border-left-color: #94a3b8 !important;
+  }
+
+  .p-message-contrast {
+    border-left-color: #0f172a !important;
+  }
+}

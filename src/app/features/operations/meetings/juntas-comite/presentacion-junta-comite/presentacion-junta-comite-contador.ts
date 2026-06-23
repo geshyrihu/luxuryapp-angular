@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmationService } from "primeng/api";
@@ -8,13 +8,12 @@ import { FieldsetModule } from "primeng/fieldset";
 import { TagModule } from "primeng/tag";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import {
-  IonButtonConfirm,
-  IonButtonViewPdf,
-} from "src/app/core/components/buttons/mobile";
+  CustomButtonConfirm,
+  CustomButtonViewPdf,
+} from "src/app/core/components/buttons/web";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -42,8 +41,8 @@ import { PresentacionJuntaComiteForm } from "./presentacion-junta-comite-form";
     CustomButtonDelete,
     CustomButtonViewPdf,
     CardModule,
-    IonButtonConfirm,
-    IonButtonViewPdf,
+    CustomButtonConfirm,
+    CustomButtonViewPdf,
     AppIcon,
   ],
 })

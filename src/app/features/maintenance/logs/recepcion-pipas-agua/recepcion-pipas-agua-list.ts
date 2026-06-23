@@ -1,17 +1,15 @@
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { waterOutline } from "ionicons/icons";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonDownload } from "src/app/core/components/buttons/mobile/ion-button-download";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
@@ -45,13 +43,13 @@ import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
-    IonButtonDownload,
+    CustomButtonEdit,
+    CustomButtonDelete,
+    CustomButtonDownload,
     IonItem,
     IonLabel,
-    IonIcon,
-   AppIcon],
+    AppIcon,
+  ],
 })
 export class RecepcionPipasAguaList {
   apiResponseS = inject(ApiResponseService);
@@ -120,7 +118,10 @@ export class RecepcionPipasAguaList {
 
     const m3 = item.lecturaMedidorFinal - item.lecturaMedidorInicial;
 
-    const photoCellHtml = (p: { label: string; base64: string | null }): string => {
+    const photoCellHtml = (p: {
+      label: string;
+      base64: string | null;
+    }): string => {
       if (p.base64) {
         return `
           <div style="text-align: center;">
@@ -200,7 +201,7 @@ ${this.htmlPrintS.getStandardCss()}
       <div>
         <div class="data-item"><span class="data-label">Llegada:</span> ${fmtDate(item.horaLlegada)}</div>
         <div class="data-item"><span class="data-label">Término:</span> ${fmtDate(item.horaTermino)}</div>
-        ${item.empresa ? `<div class="data-item"><span class="data-label">Empresa:</span> ${this.htmlPrintS.esc(item.empresa)}</div>` : ''}
+        ${item.empresa ? `<div class="data-item"><span class="data-label">Empresa:</span> ${this.htmlPrintS.esc(item.empresa)}</div>` : ""}
         <div class="data-item"><span class="data-label">Placas:</span> ${this.htmlPrintS.esc(item.placasCamion)}</div>
         <div class="data-item"><span class="data-label">Capacidad pipa:</span> ${item.capacidadPipa?.toLocaleString("es-MX") ?? 0} L</div>
       </div>
@@ -247,7 +248,10 @@ ${this.htmlPrintS.getStandardCss()}
 </div>
 </body></html>`;
 
-    this.htmlPrintS.printHtml(html, `soporte-pipa-${item.placasCamion}-${item.horaLlegada.slice(0, 10)}`);
+    this.htmlPrintS.printHtml(
+      html,
+      `soporte-pipa-${item.placasCamion}-${item.horaLlegada.slice(0, 10)}`,
+    );
   }
 
   private async urlToBase64(url: string): Promise<string | null> {

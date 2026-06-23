@@ -1,16 +1,17 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { homeOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
+import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -18,7 +19,6 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { IOwner } from "src/app/core/interfaces/list-condomino.interface";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -37,11 +37,10 @@ import { OwnerForm } from "./owner-form";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
 })
 export class OwnerList {
@@ -78,12 +77,14 @@ export class OwnerList {
   }
 
   onDelete(id: any) {
-    this.apiResponseS.onDelete(Endpoints.Owner.delete(id)).then((result: boolean) => {
-      if (result)
-        this.dataSignal.update((currentData) =>
-          currentData.filter((item) => item.id !== id),
-        );
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.Owner.delete(id))
+      .then((result: boolean) => {
+        if (result)
+          this.dataSignal.update((currentData) =>
+            currentData.filter((item) => item.id !== id),
+          );
+      });
   }
 
   onModalForm(data: any) {
@@ -137,4 +138,3 @@ export class OwnerList {
     return xMatches.length - yMatches.length;
   }
 }
-

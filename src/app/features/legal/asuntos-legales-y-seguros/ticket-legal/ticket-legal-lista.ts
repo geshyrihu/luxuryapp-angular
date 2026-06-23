@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { addIcons } from "ionicons";
@@ -13,7 +13,7 @@ import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile";
+import { CustomButtonItem } from "src/app/core/components/buttons/web";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonTracking } from "src/app/core/components/buttons/web/custom-button-tracking";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
@@ -52,7 +52,7 @@ import { TicketLegalSeguimientoSolicitudDetalle } from "./ticket-legal-seguimien
     CustomButtonTracking,
     ActionMenu,
     DataViewMobile,
-    IonButtonItem,
+    CustomButtonItem,
   ],
 })
 export class TicketLegalLista implements OnInit {

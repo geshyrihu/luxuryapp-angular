@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -71,10 +71,7 @@
         slot="start"
         class="w-3rem h-3rem border-round flex align-items-center justify-content-center flex-shrink-0 ml-3 surface-100"
       >
-        <ion-icon
-          name="clipboard-outline"
-          class="text-xl text-yellow-600"
-        ></ion-icon>
+        <app-icon icon="mdi:clipboard-text-outline" class="text-xl text-yellow-600"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.name }}</h3>
@@ -85,8 +82,8 @@
         </p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit (clicked)="onEdit(item.id)" />
-        <ion-button-delete (confirmed)="onDelete(item.id)" />
+        <custom-button-edit (clicked)="onEdit(item.id)" />
+        <custom-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -19,7 +19,6 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { UnitOfMeasurementForm } from "./unit-of-measurement-form";
-import { IonButtonDelete, IonButtonEdit } from "src/app/core/components/buttons/mobile";
 @Component({
   selector: "app-unit-of-measurement-list",
   templateUrl: "./unit-of-measurement-list.html",
@@ -33,8 +32,8 @@ import { IonButtonDelete, IonButtonEdit } from "src/app/core/components/buttons/
     ActionMenu,
     IonItem,
     IonLabel,
-    IonButtonDelete,
-    IonButtonEdit,
+    CustomButtonDelete,
+    CustomButtonEdit,
   ],
 })
 export class UnitOfMeasurementList implements OnInit {

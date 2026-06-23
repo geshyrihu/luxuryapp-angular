@@ -1,73 +1,129 @@
-import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+﻿import { CommonModule } from "@angular/common";
+import { Component, input } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { IonNote } from "@ionic/angular/standalone";
 import { BaseInputSignal } from "./base-input-signal";
 
-/**
- * 📱 BASE IONIC INPUT - Cimiento para inputs de vistas móviles
- * -------------------------------------------------------------------------
- * Extiende BaseInputSignal para reutilizar toda la lógica de
- * ControlValueAccessor y validaciones, pero sobreescribe el template
- * para usar el layout nativo de Ionic: IonItem / IonLabel / IonNote.
- *
- * Para inputs web/desktop PrimeNG usar: BaseInputSignal (web/)
- *
- * Uso:
- * @Component({
- *   imports: [BaseIonicInput, IonInput, ReactiveFormsModule],
- *   template: `
- *     <base-ionic-input [label]="label()" [control]="control()" [required]="requiredInput()">
- *       <ion-input [formControl]="control()" [placeholder]="placeholder()"></ion-input>
- *     </base-ionic-input>
- *   `
- * })
- */
 @Component({
   selector: "base-ionic-input",
   imports: [CommonModule, ReactiveFormsModule, IonNote],
   template: `
-    @if (onlyInput()) {
-      <!-- Solo input sin wrapper (para casos embebidos) -->
-      <ng-content></ng-content>
-    } @else {
-      <!-- Layout Ionic: IonItem actúa como contenedor del label + control -->
-      @if (label()) {
-        <!-- El label nativo flotante lo manejará el ion-input interno, omitimos inyectar label manual -->
-        <ng-content></ng-content>
-      }
-      <!-- El input específico se proyecta aquí -->
-      <ng-content></ng-content>
-
-      <!-- Mensajes de error bajo el input -->
-      @if (shouldShowErrors()) {
-        <div class="ion-padding-horizontal ion-padding-bottom">
-          @for (error of getValidationErrors(); track error) {
-            <ion-note color="danger">
-              <small>{{ error }}</small>
-            </ion-note>
+    @if (!hidden()) {
+      @if (onlyInput()) {
+        <div class="fluid">
+          <ng-content></ng-content>
+        </div>
+      } @else {
+        <div class="field" [class.field-horizontal]="horizontal()" [class.mb-0]="noMargin()">
+          @if (label() && !ionicLabel()) {
+            <label [for]="id()" class="field-label">
+              {{ label() }}
+              @if (isRequired()) {
+                <span class="text-red-400">*</span>
+              }
+            </label>
           }
+          <div class="field-content">
+            <ng-content></ng-content>
+            @if (description()) {
+              <ion-note color="medium" class="description-note">
+                <small>{{ description() }}</small>
+              </ion-note>
+            }
+            @if (shouldShowErrors()) {
+              <div class="error-container">
+                @for (error of getValidationErrors(); track error) {
+                  <ion-note color="danger">
+                    <small>{{ error }}</small>
+                  </ion-note>
+                }
+              </div>
+            }
+          </div>
         </div>
       }
     }
   `,
   styles: [
     `
+      .field {
+        margin-bottom: 1rem;
+      }
+      .field.mb-0 {
+        margin-bottom: 0 !important;
+      }
+      .field-horizontal {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: 1rem;
+        align-items: start;
+      }
+      .field-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+      .field-horizontal .field-label {
+        margin-bottom: 0;
+        padding-top: 0.5rem;
+      }
+      .field-content {
+        width: 100%;
+      }
+      .fluid {
+        width: 100%;
+      }
+      @media (max-width: 768px) {
+        .field-horizontal {
+          grid-template-columns: 1fr;
+        }
+      }
       ion-input,
       ion-textarea,
       ion-select {
-        --border-radius: 12px;
-        --padding-start: 1rem;
-        --padding-end: 1rem;
-        --background: #ffffff;
+        --border-radius: var(--ds-radius-input, 4px);
+        --border-width: var(--ds-control-border-width, 1px);
+        --border-color: var(--ds-border, #e2e8f0);
+        --border-style: solid;
+        --background: var(--ds-bg-surface, #ffffff);
+        --box-shadow: var(--ds-shadow-xs, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+        --padding-start: 0.75rem;
+        --padding-end: 0.75rem;
+        --padding-top: 0.5rem;
+        --padding-bottom: 0.5rem;
+        --highlight-color-focused: var(--ds-border-focus, #0b3164);
+        --highlight-color-invalid: var(--ds-border-error, #ef4444);
+        --placeholder-color: var(--ds-text-muted, #6b7280);
+        --placeholder-opacity: 1;
         margin-bottom: 0px;
-        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        font-size: var(--ds-font-size-label, 0.875rem);
+        transition: border-color 150ms ease, box-shadow 150ms ease;
+        min-height: 40px;
+        width: 100%;
       }
-      .dark ion-input,
-      .dark ion-textarea,
-      .dark ion-select {
-        --background: #1e1e1e;
-        --color: #ffffff;
+      ion-input.ion-focused,
+      ion-textarea.ion-focused,
+      ion-select.ion-focused {
+        --border-color: var(--ds-border-focus, #0b3164) !important;
+        --box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        outline: none;
+      }
+      ion-input.ion-invalid.ion-touched,
+      ion-textarea.ion-invalid.ion-touched,
+      ion-select.ion-invalid.ion-touched {
+        --border-color: var(--ds-border-error, #ef4444) !important;
+      }
+      ion-input.ion-invalid.ion-focused,
+      ion-textarea.ion-invalid.ion-focused,
+      ion-select.ion-invalid.ion-focused {
+        --box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+      }
+      ion-input.ion-disabled,
+      ion-textarea.ion-disabled,
+      ion-select.ion-disabled {
+        opacity: 0.55;
+        --background: var(--ds-bg-sunken, #f1f5f9);
+        cursor: not-allowed;
       }
       ion-note {
         display: block;
@@ -75,15 +131,17 @@ import { BaseInputSignal } from "./base-input-signal";
         margin-top: 4px;
         margin-left: 12px;
       }
+      .description-note {
+        margin-top: 6px;
+        margin-left: 12px;
+        font-style: italic;
+        color: var(--ds-text-muted, #6b7280);
+      }
     `,
   ],
 })
 export class BaseIonicInput extends BaseInputSignal {
-  /** lines: separador del ion-item */
-  readonly lines = () => "full" as const;
-
-  /** Clase personalizada para el ion-item */
-  readonly customClass = () => "";
+  readonly ionicLabel = input<boolean>(true);
 
   shouldShowErrors(): boolean {
     const ctrl = this.control() || this.internalControl;
@@ -106,7 +164,7 @@ export class BaseIonicInput extends BaseInputSignal {
         case "max":
           return `Valor máximo: ${ctrl.errors[key].max}`;
         case "email":
-          return `Email inválido.`;
+          return "Email inválido.";
         case "pattern":
           return `Formato de ${label} inválido.`;
         case "customError":

@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -85,7 +85,7 @@
         ></app-icon>
         <!-- <app-action-menu>
           <ng-container actions>
-            <ion-button-item
+            <custom-button-item
               (clicked)="onDetails(item.id)"
               label="🔍 Detalles"
               />
@@ -108,10 +108,10 @@
     <ion-item lines="full" detail="false" class="ion-no-padding" (click)="onDetails(item.id)">
       <div slot="start" style="
         width:36px; height:36px; border-radius:10px;
-        background:#dbeafe; display:flex; align-items:center;
+        background:var(--ds-border); display:flex; align-items:center;
         justify-content:center; flex-shrink:0; margin-left:16px;
       ">
-        <ion-icon name="calculator-outline" style="font-size:20px; color:#2563eb;"></ion-icon>
+        <app-icon icon="mdi:calculator" style="font-size:20px; color:#2563eb;"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.period }}</h3>

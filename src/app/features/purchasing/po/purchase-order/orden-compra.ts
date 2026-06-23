@@ -1,17 +1,15 @@
-import { CommonModule } from "@angular/common";
-import { Endpoints } from "src/app/core/constants/endpoints";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
   inject,
   OnInit,
-  signal,
   Signal,
+  signal,
   WritableSignal,
 } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { ConfirmationService } from "primeng/api";
-import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
@@ -24,6 +22,7 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { PdfViewerModal } from "src/app/core/components/pdf-viewer-modal/pdf-viewer-modal";
 import { PrimeNgCustomToast } from "src/app/core/components/primeng-custom-toast/primeng-custom-toast";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service"; // Import added
@@ -40,9 +39,9 @@ import { OrdenCompraDenegada } from "./forms/orden-compra-denegada";
 import { OrdenCompraDetalleAddProducto } from "./forms/orden-compra-detalle-add-producto";
 import { OrdenCompraFacturaForm } from "./forms/orden-compra-factura-form";
 import { OrdenCompraStatus } from "./forms/orden-compra-status";
-import { ModalOrdenCompra } from "./orden-compra-modal";
 import { OrdenCompraEditDetalle } from "./orden-compra-edit-detalle";
 import { OrdenCompraEditPresupustoUtilizado } from "./orden-compra-edit-presupusto-utilizado";
+import { ModalOrdenCompra } from "./orden-compra-modal";
 import { OrdenCompraPresupuesto } from "./orden-compra-presupuesto/orden-compra-presupuesto";
 import { OrdenCompraFacturasParcial } from "./parcials/orden-compra-facturas-parcial";
 @Component({
@@ -217,7 +216,10 @@ export class OrdenCompra implements OnInit {
 
       if (result.folioSolicitudCompra) {
         const scId = await this.apiResponseS.onGetItem<string>(
-          Endpoints.PurchaseRequests.getIdByFolioAndCustomer(result.folioSolicitudCompra, result.customerId),
+          Endpoints.PurchaseRequests.getIdByFolioAndCustomer(
+            result.folioSolicitudCompra,
+            result.customerId,
+          ),
         );
         this.solicitudCompraId.set(scId ?? "");
       }
@@ -232,7 +234,10 @@ export class OrdenCompra implements OnInit {
   autorizarCompra(): void {
     this.apiResponseS
       .onGetList(
-        Endpoints.PurchaseOrders.authorize(this.ordenCompraId(), this.authS.applicationUserId),
+        Endpoints.PurchaseOrders.authorize(
+          this.ordenCompraId(),
+          this.authS.applicationUserId,
+        ),
       )
       .then((result) => {
         this.ordenCompra.set(result);
@@ -455,4 +460,3 @@ export interface ValidationResultDTO {
   invoiceTotal?: number;
   purchaseOrderTotal?: number;
 }
-

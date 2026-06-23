@@ -1,6 +1,6 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { calculatorOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
@@ -27,7 +27,6 @@ import { FaqsFondeo } from "src/app/features/accounting/fondeos-y-reporteo/fundi
     DataViewMobile,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
   templateUrl: "./funding-accounting-list.html",
 })

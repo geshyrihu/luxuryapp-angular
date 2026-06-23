@@ -1,13 +1,8 @@
-import { Component, forwardRef, output } from "@angular/core";
+﻿import { Component, computed, forwardRef, input, output } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonCheckbox } from "@ionic/angular/standalone";
 import { BaseIonicInput } from "../base/base-ionic-input";
 
-/**
- * ☑️ ION INPUT CHECKBOX - Mobile (Ionic)
- * -------------------------------------------------------------------------
- * Casilla de verificación nativa para formularios móviles.
- */
 @Component({
   selector: "ion-input-checkbox",
   imports: [BaseIonicInput, ReactiveFormsModule, IonCheckbox],
@@ -16,8 +11,15 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       [control]="control()"
       [id]="id()"
       [label]="label()"
+      [placeholder]="placeholder()"
       [readonly]="readonly()"
       [required]="requiredInput()"
+      [hidden]="hidden()"
+      [description]="description()"
+      [horizontal]="horizontal()"
+      [noMargin]="noMargin()"
+      [onlyInput]="onlyInput()"
+      [class]="inputStyleClass()"
     >
       <ion-checkbox
         slot="end"
@@ -42,6 +44,9 @@ import { BaseIonicInput } from "../base/base-ionic-input";
 })
 export class IonInputCheckbox extends BaseIonicInput {
   checkChange = output<boolean>();
+  customClass = input<string>("");
+
+  inputStyleClass = computed(() => this.customClass());
 
   onCheckboxChange(event: any): void {
     this.checkChange.emit(event.detail.checked);

@@ -1,4 +1,4 @@
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+﻿import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
@@ -12,11 +12,9 @@ import { TagModule } from "primeng/tag";
 import { Subscription } from "rxjs";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -50,8 +48,8 @@ import { PurchaseLinkManager } from "../purchase-link-manager/purchase-link-mana
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
     IonItem,
     IonLabel,
     IonIcon,

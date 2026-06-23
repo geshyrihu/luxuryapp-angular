@@ -1,17 +1,10 @@
-import { DatePipe } from "@angular/common";
+﻿import { DatePipe } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
-import {
-  IonBadge,
-  IonIcon,
-  IonItem,
-  IonLabel,
-} from "@ionic/angular/standalone";
+import { IonBadge, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { peopleOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { CustomButton } from "src/app/core/components/buttons/web";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
@@ -41,12 +34,11 @@ import { PropertyMemberResponseDTO } from "../../models/property-member.dto";
     CustomButtonDelete,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
     IonItem,
     IonLabel,
     IonBadge,
-    IonIcon,
     DatePipe,
   ],
   templateUrl: "./member-list.html",

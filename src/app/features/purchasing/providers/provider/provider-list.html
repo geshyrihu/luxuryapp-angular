@@ -1,4 +1,4 @@
-<!-- Tabla principal de proveedores con paginación, filtros y acciones -->
+﻿<!-- Tabla principal de proveedores con paginación, filtros y acciones -->
 <p-table
   (onLazyLoad)="loadDataLazy($event)"
   [first]="first"
@@ -227,10 +227,7 @@
         slot="start"
         class="w-3rem h-3rem border-round-lg bg-green-50 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <ion-icon
-          name="storefront-outline"
-          class="text-green-600 text-xl"
-        ></ion-icon>
+        <app-icon icon="mdi:store-outline" class="text-green-600 text-xl"></app-icon>
       </div>
       <ion-label>
         <h3 class="font-bold text-900">{{ item.nameComercial }}</h3>
@@ -238,10 +235,10 @@
         <p class="text-xs text-500">{{ item.phoneOne }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit
+        <custom-button-edit
           (clicked)="onModalForm({ id: item.providerId, title: 'Editar' })"
         />
-        <ion-button-delete (confirmed)="onDelete(item.providerId)" />
+        <custom-button-delete (confirmed)="onDelete(item.providerId)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

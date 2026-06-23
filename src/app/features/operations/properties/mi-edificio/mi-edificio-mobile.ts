@@ -3,7 +3,6 @@ import {
   IonAvatar,
   IonCard,
   IonCardContent,
-  IonIcon,
   IonItem,
   IonLabel,
   IonList,
@@ -13,15 +12,7 @@ import { callOutline, locationOutline, mailOutline } from "ionicons/icons";
 import { environment } from "src/environments/environment";
 @Component({
   selector: "app-mi-edificio-mobile",
-  imports: [
-    IonCard,
-    IonCardContent,
-    IonAvatar,
-    IonList,
-    IonItem,
-    IonLabel,
-    IonIcon,
-  ],
+  imports: [IonCard, IonCardContent, IonAvatar, IonList, IonItem, IonLabel],
   templateUrl: "./mi-edificio-mobile.html",
 })
 export class MiEdificioMobile {

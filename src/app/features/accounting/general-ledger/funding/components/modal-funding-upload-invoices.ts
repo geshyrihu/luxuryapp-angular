@@ -1,11 +1,10 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
   effect,
   inject,
   signal,
-  Signal,
 } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {

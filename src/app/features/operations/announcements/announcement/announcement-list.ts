@@ -7,7 +7,6 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
-  IonIcon,
   IonImg,
 } from "@ionic/angular/standalone";
 import { CardModule } from "primeng/card";
@@ -28,7 +27,6 @@ import { IAnnouncementList } from "./announcement.model";
     IonCardTitle,
     IonCardSubtitle,
     IonImg,
-    IonIcon,
     AppIcon,
   ],
   templateUrl: "./announcement-list.html",

@@ -1,4 +1,4 @@
-<div class="flex align-items-center gap-3 mb-3">
+﻿<div class="flex align-items-center gap-3 mb-3">
   <label class="font-semibold text-sm text-600 white-space-nowrap">Filtrar por cliente:</label>
   <p-select
     [options]="cb_customer()"
@@ -145,12 +145,12 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <ion-button-item
+            <custom-button-item
               iconName="clipboard-outline"
               label="Seguimiento"
               (clicked)="onModalSeguimiento({ ticketId: item.id, title: 'Seguimiento' })"
             />
-            <ion-button-item
+            <custom-button-item
               iconName="refresh-outline"
               label="Status"
               (clicked)="onModalUpdateStatus({ id: item.id })"

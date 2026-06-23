@@ -1,4 +1,4 @@
-<div class="card p-3 md:p-4">
+﻿<div class="card p-3 md:p-4">
   <!-- Tabla escritorio agrupada por propiedad -->
   <p-table
     [value]="dataSignal()"
@@ -144,10 +144,7 @@
         slot="start"
         class="w-2rem h-2rem border-round-lg bg-indigo-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <ion-icon
-          name="people-outline"
-          class="text-indigo-600 text-xl"
-        ></ion-icon>
+        <app-icon icon="mdi:account-group-outline" class="text-indigo-600 text-xl"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.userName }}</h3>
@@ -159,11 +156,11 @@
       <ion-badge slot="end" color="success">Responsable</ion-badge>
       }
       <app-action-menu slot="end">
-        <ion-button-edit (clicked)="onModalForm(item.id, item.propertyId)" />
+        <custom-button-edit (clicked)="onModalForm(item.id, item.propertyId)" />
         @if (item.isActive) {
-        <ion-button-delete (confirmed)="onEndMembership(item)" />
+        <custom-button-delete (confirmed)="onEndMembership(item)" />
         }
-        <ion-button-delete (confirmed)="onDeleteUser(item)" />
+        <custom-button-delete (confirmed)="onDeleteUser(item)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

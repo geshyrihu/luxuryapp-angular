@@ -1,13 +1,12 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IonAvatar } from "@ionic/angular/standalone";
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile";
+import { CustomButtonItem } from "src/app/core/components/buttons/web";
 import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/custom-button-active-desactive";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -35,7 +34,7 @@ import { CardEmployee } from "./card-employee";
     ActionMenu,
     AvatarModule,
     IonAvatar,
-    IonButtonItem,
+    CustomButtonItem,
   ],
 })
 export class EmployeeList {

@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [value]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
   styleClass="p-datatable-sm p-datatable-gridlines hidden md:block"
@@ -71,10 +71,7 @@
         slot="start"
         class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <ion-icon
-          name="analytics-outline"
-          class="text-blue-600 text-xl"
-        ></ion-icon>
+        <app-icon icon="mdi:google-analytics" class="text-blue-600 text-xl"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.accountNumber }} ó {{ item.accountName || '-' }}</h3>
@@ -84,10 +81,10 @@
         </p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit
+        <custom-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar Regla' })"
         />
-        <ion-button-delete (confirmed)="onDelete(item.id)" />
+        <custom-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

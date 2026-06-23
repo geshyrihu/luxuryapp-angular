@@ -223,10 +223,18 @@ export interface IFlujoCajaGrupoDto {
 
 export interface IFlujoCajaFilaDto {
   concepto: string;
+  signo: string;
   montos: number[];
+  montosMtto: number[];
+  montosObrasMejoras: number[];
+  montosFondoReserva: number[];
   esSuma: boolean;
   esResta: boolean;
   esFilaTotal: boolean;
+  esEncabezado: boolean;
+  ocultarOrigen: boolean;
+  esManual: boolean;
+  origen: string;
 }
 
 export interface IReporteFinancieroDto {

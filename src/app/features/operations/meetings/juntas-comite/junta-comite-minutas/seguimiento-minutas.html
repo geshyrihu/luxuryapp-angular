@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="globalFilterFields"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -140,17 +140,17 @@
       <td style="width: 3%" class="no-print">
         <app-action-menu>
           <ng-container actions>
-            <ion-button-item
+            <custom-button-item
               label="Ver todos los seguimientos"
               iconClass="mdi:format-list-bulleted"
               (clicked)="onModalTodosSeguimientos(item.id)"
             />
-            <ion-button-item
+            <custom-button-item
               label="Agregar Seguimiento"
               iconClass="mdi:plus-circle"
               (clicked)="onModalFormSeguimiento(item.id, 0)"
             />
-            <ion-button-item
+            <custom-button-item
               label="Editar"
               iconClass="mdi:pencil"
               (clicked)="
@@ -239,17 +239,17 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-          <ion-button-item
+          <custom-button-item
             label="Ver seguimientos"
             iconName="list-outline"
             (clicked)="onModalTodosSeguimientos(item.id)"
           />
-          <ion-button-item
+          <custom-button-item
             label="Agregar Seguimiento"
             iconName="add-circle-outline"
             (clicked)="onModalFormSeguimiento(item.id, 0)"
           />
-          <ion-button-item
+          <custom-button-item
             label="Editar"
             iconName="create-outline"
             (clicked)="

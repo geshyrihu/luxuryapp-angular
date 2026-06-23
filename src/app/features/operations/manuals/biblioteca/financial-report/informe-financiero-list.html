@@ -1,4 +1,4 @@
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="container-fluid hidden md:block">
   @if (dataSignal().length > 0) {
   <div class="list-group mt-1">
@@ -47,7 +47,7 @@
 
         <div slot="end" class="flex align-items-center">
           @if (item.hasDocument) {
-          <ion-button-view-pdf
+          <custom-button-view-pdf
             [url]="item.nameFileEstadoFinanciero"
             pdf="Informe"
           />

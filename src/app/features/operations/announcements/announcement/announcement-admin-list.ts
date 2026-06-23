@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
@@ -12,13 +12,10 @@ import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import {
-  IonButtonDelete,
-  IonButtonEdit,
-  IonButtonItem,
-} from "src/app/core/components/buttons/mobile";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
+  CustomButtonDelete,
+  CustomButtonEdit,
+  CustomButtonItem,
+} from "src/app/core/components/buttons/web";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -56,9 +53,9 @@ import { IAnnouncementAdminList } from "./announcement.model";
     AppIcon,
     IonItem,
     IonLabel,
-    IonButtonDelete,
-    IonButtonEdit,
-    IonButtonItem,
+    CustomButtonDelete,
+    CustomButtonEdit,
+    CustomButtonItem,
     CustomInputSelectSignal,
   ],
   templateUrl: "./announcement-admin-list.html",

@@ -6,29 +6,36 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background-color: var(--ion-background-color, #fff);
+      background-color: var(--ion-background-color, var(--ds-surface));
     "
     class="pb-1"
   >
     <!-- 🧭 Breadcrumb Premium (Pill Style) -->
     @if (viewchildBreadcrumb() && breadcrumbItems().length > 0) {
-    <div class="flex justify-content-center px-3 py-2 border-bottom-1 border-50 surface-ground shadow-inner overflow-hidden">
-      <div class="flex align-items-center gap-1 bg-white dark:bg-surface-900 px-3 py-1-5 border-round-pill shadow-1 border-1 border-200 overflow-x-auto no-scrollbar max-w-full">
+    <div
+      class="flex justify-content-center px-3 py-2 border-bottom-1 border-50 surface-ground shadow-inner overflow-hidden"
+    >
+      <div
+        class="flex align-items-center gap-1 bg-white dark:bg-surface-900 px-3 py-1-5 border-round-pill shadow-1 border-1 border-200 overflow-x-auto no-scrollbar max-w-full"
+      >
         @for (item of breadcrumbItems(); track $index; let last = $last) {
         <div class="flex align-items-center">
           @if (item.icon) {
-            <ion-icon 
-              [name]="item.icon" 
-              [routerLink]="item.routerLink" 
-              class="cursor-pointer text-lg text-primary hover:scale-110 transition-transform"
-            ></ion-icon>
+          <app-icon
+            [icon]="item.icon"
+            [routerLink]="item.routerLink"
+            class="cursor-pointer text-lg text-primary hover:scale-110 transition-transform"
+          ></app-icon>
           } @else {
-            <span class="text-xs font-bold px-1 whitespace-nowrap" [class.text-primary]="last" [class.text-500]="!last">
-              {{ item.label }}
-            </span>
-          }
-          @if (!last) {
-            <app-icon icon="mdi:chevron-right" class="text-300 text-xs mx-1" />
+          <span
+            class="text-xs font-bold px-1 whitespace-nowrap"
+            [class.text-primary]="last"
+            [class.text-500]="!last"
+          >
+            {{ item.label }}
+          </span>
+          } @if (!last) {
+          <app-icon icon="mdi:chevron-right" class="text-300 text-xs mx-1" />
           }
         </div>
         }
@@ -51,11 +58,11 @@
       <!-- Inline Add Button -->
       @if (showAdd()) {
       <ion-button fill="clear" (click)="onAdd($event)">
-        <ion-icon
+        <app-icon
+          icon="mdi:plus-circle"
           slot="icon-only"
-          name="add-circle"
           class="text-4xl"
-        ></ion-icon>
+        ></app-icon>
       </ion-button>
       }
     </div>
@@ -88,12 +95,12 @@
 
     <!-- Custom Filters Slot -->
     @if (filterValue() === '') {
-      <ng-content select="[customFilters]"></ng-content>
-    } 
+    <ng-content select="[customFilters]"></ng-content>
+    }
 
     <!-- Data List -->
     @if (filteredData().length > 0) {
-    <ion-list class="bg-transparent" lines="full">
+    <ion-list class="bg-transparent p-2" lines="full">
       @for (item of filteredData(); track trackByFn($index, item)) {
       <ng-container
         *ngTemplateOutlet="listItemTemplate() || defaultListItemTemplate; context: { $implicit: item, item: item }"
@@ -108,10 +115,12 @@
       <p>No se encontraron resultados para "{{ filterValue() }}"</p>
     </div>
     } @else if (!loading() && filteredData().length === 0) {
-      <div class="flex flex-column align-items-center justify-content-center p-5 text-center text-500">
-        <app-icon icon="mdi:information-outline" class="text-4xl mb-3" />
-        <p>No hay registros disponibles</p>
-      </div>
+    <div
+      class="flex flex-column align-items-center justify-content-center p-5 text-center text-500"
+    >
+      <app-icon icon="mdi:information-outline" class="text-4xl mb-3" />
+      <p>No hay registros disponibles</p>
+    </div>
     }
 
     <!-- Infinite Scroll -->
@@ -131,11 +140,9 @@
   <ng-template #defaultListItemTemplate let-item="item">
     <ion-item>
       <ion-label>
-        @for (key of objectKeys(item); track key) {
-          @if (key !== 'id') {
-            <p><strong>{{ key }}:</strong> {{ item[key] }}</p>
-          }
-        }
+        @for (key of objectKeys(item); track key) { @if (key !== 'id') {
+        <p><strong>{{ key }}:</strong> {{ item[key] }}</p>
+        } }
       </ion-label>
     </ion-item>
   </ng-template>

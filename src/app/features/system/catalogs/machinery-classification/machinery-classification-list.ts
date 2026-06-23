@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -18,7 +18,6 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { MachineryClassificationForm } from "./machinery-classification-form";
-import { IonButtonDelete, IonButtonEdit } from "src/app/core/components/buttons/mobile";
 @Component({
   selector: "app-machinery-classification-list",
   templateUrl: "./machinery-classification-list.html",
@@ -32,8 +31,8 @@ import { IonButtonDelete, IonButtonEdit } from "src/app/core/components/buttons/
     ActionMenu,
     IonItem,
     IonLabel,
-    IonButtonDelete,
-    IonButtonEdit,
+    CustomButtonDelete,
+    CustomButtonEdit,
   ],
 })
 export class MachineryClassificationList implements OnInit {

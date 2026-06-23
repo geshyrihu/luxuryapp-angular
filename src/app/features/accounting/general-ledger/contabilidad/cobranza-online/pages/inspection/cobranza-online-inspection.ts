@@ -75,6 +75,10 @@ export class CobranzaOnlineInspection {
   readonly currentCutLabel = computed(
     () => `${this.currentMonth().toString().padStart(2, "0")}/${this.currentYear()}`,
   );
+  readonly currentMonthName = computed(() => {
+    const date = new Date(this.currentYear(), this.currentMonth() - 1, 1);
+    return date.toLocaleDateString("es-MX", { month: "long" });
+  });
 
   constructor() {
     effect(() => {
@@ -150,8 +154,9 @@ export class CobranzaOnlineInspection {
       return value;
     }
 
-    return new Intl.DateTimeFormat("es-MX", {
-      dateStyle: "medium",
-    }).format(parsedDate);
+    const day = parsedDate.getDate().toString().padStart(2, "0");
+    const month = parsedDate.toLocaleDateString("es-MX", { month: "short" });
+    const year = parsedDate.getFullYear().toString().slice(-2);
+    return `${day}-${month}-${year}`;
   }
 }

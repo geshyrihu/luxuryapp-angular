@@ -1,13 +1,8 @@
-import { Component, forwardRef, input, output } from "@angular/core";
+﻿import { Component, computed, forwardRef, input, output } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonSelect, IonSelectOption } from "@ionic/angular/standalone";
 import { BaseIonicInput } from "../base/base-ionic-input";
 
-/**
- * 🗂️ ION INPUT MULTISELECT - Mobile (Ionic)
- * -------------------------------------------------------------------------
- * Selector de múltiples opciones para vistas móviles ("[multiple]=true").
- */
 @Component({
   selector: "ion-input-multiselect",
   imports: [BaseIonicInput, ReactiveFormsModule, IonSelect, IonSelectOption],
@@ -19,6 +14,12 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       [placeholder]="placeholder()"
       [readonly]="readonly()"
       [required]="requiredInput()"
+      [hidden]="hidden()"
+      [description]="description()"
+      [horizontal]="horizontal()"
+      [noMargin]="noMargin()"
+      [onlyInput]="onlyInput()"
+      [class]="inputStyleClass()"
     >
       <ion-select
         [id]="id()"
@@ -28,7 +29,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         [placeholder]="placeholder() || 'Selecciona múltiples'"
         label-placement="floating"
         fill="outline"
-        shape="round"
         [disabled]="disabled() || readonly()"
         interface="alert"
         [cancelText]="cancelText()"
@@ -59,10 +59,17 @@ export class IonInputMultiselect extends BaseIonicInput {
   options = input<any[]>([]);
   optionLabel = input<string>("label");
   optionValue = input<string>("value");
-
-  // Botones para interfaz alert
   cancelText = input<string>("Cancelar");
   okText = input<string>("Aceptar");
+  customClass = input<string>("");
+  size = input<"small" | "large" | undefined>(undefined);
+
+  inputStyleClass = computed(() => {
+    let classes = this.customClass();
+    if (this.size() === "small") classes += " input-sm";
+    if (this.size() === "large") classes += " input-lg";
+    return classes.trim();
+  });
 
   onSelectionChange(event: any): void {
     this.selectionChange.emit(event.detail.value);

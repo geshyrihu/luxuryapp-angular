@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -60,7 +60,7 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <ion-button-item label="Ver Detalle" (clicked)="onViewDetail(item.id)" />
+            <custom-button-item label="Ver Detalle" (clicked)="onViewDetail(item.id)" />
           </ng-container>
         </app-action-menu>
       </div>

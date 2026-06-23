@@ -1,4 +1,4 @@
-@if (data) {
+﻿@if (data) {
 <div class="p-2">
   <div class="flex justify-content-between align-items-center mb-3">
     <div>
@@ -32,7 +32,7 @@
       </div>
       <app-action-menu class="inline-block text-right">
         <ng-container actions>
-          <ion-button-edit
+          <custom-button-edit
             (clicked)="
                   onModalInspectionCondominiumAssetEdit({
                     title: 'Editar área',
@@ -42,12 +42,12 @@
                   })
                 "
           />
-          <ion-button-item
+          <custom-button-item
             [iconClass]="'mdi:plus'"
             label="Agregar Revisión"
             (clicked)="onModalAddRevision()"
           />
-          <ion-button-delete
+          <custom-button-delete
             (confirmed)="onDeleteArea(item.inspectionCondominiumAssetId, data.amenities)"
           />
         </ng-container>
@@ -60,7 +60,7 @@
 
       <app-action-menu class="inline-block text-right">
         <ng-container actions>
-          <ion-button-delete
+          <custom-button-delete
             (confirmed)="onDeleteReview(review.id, item.reviews)"
           />
         </ng-container>

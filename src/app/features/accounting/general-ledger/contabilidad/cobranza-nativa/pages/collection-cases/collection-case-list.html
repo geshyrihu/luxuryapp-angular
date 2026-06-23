@@ -1,4 +1,4 @@
-<div class="card p-0 md:p-4">
+﻿<div class="card p-0 md:p-4">
   <!-- Accion: evaluar y escalar -->
   <div
     class="p-3 mb-3 surface-50 border-round border-1 surface-border flex align-items-center justify-content-between flex-wrap gap-2"
@@ -104,10 +104,7 @@
           slot="start"
           class="w-2rem h-2rem border-round-lg bg-red-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
         >
-          <ion-icon
-            name="alert-circle-outline"
-            class="text-red-600 text-xl"
-          ></ion-icon>
+          <app-icon icon="mdi:alert-circle-outline" class="text-red-600 text-xl"></app-icon>
         </div>
         <ion-label>
           <h3>{{ item.propertyName }}</h3>
@@ -120,7 +117,7 @@
           </p>
         </ion-label>
         <app-action-menu slot="end">
-          <ion-button-edit (clicked)="openDetail(item)" />
+          <custom-button-edit (clicked)="openDetail(item)" />
         </app-action-menu>
       </ion-item>
     </ng-template>

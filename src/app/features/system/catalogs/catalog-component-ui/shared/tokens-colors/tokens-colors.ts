@@ -1,20 +1,25 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, ViewEncapsulation } from "@angular/core";
 import { MessageService } from "primeng/api";
-import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { ToastModule } from "primeng/toast";
 import { TooltipModule } from "primeng/tooltip";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 
-interface PaletaColor {
+interface TokenColor {
   nombre: string;
-  rol: string;
   token: string;
   uso: string;
+}
+
+interface TokenGroup {
+  titulo: string;
+  descripcion: string;
+  tokens: TokenColor[];
 }
 
 @Component({
@@ -23,96 +28,116 @@ interface PaletaColor {
   imports: [
     CommonModule,
     CardModule,
-    ButtonModule,
     TableModule,
     TagModule,
     DividerModule,
     TooltipModule,
     MessageModule,
+    ToastModule,
     AppIcon,
   ],
   template: `
-    <div class="grid">
-      <div class="col-12">
-        <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">Paletas Cromáticas</h3>
-        <p-message severity="info" text="LuxuryApp utiliza una paleta primaria para la UI y una paleta Premium/Soporte para documentos oficiales." class="mb-4 block"></p-message>
+    <p-toast position="top-right" />
 
-        <div class="grid">
-          @for (color of paleta; track color.token) {
-            <div class="col-12 md:col-6 xl:col-4">
-              <div class="token-swatch shadow-1 flex align-items-center p-3 surface-card border-round cursor-pointer transition-all hover:shadow-3" (click)="copy(color.token)">
-                <div class="swatch-color border-round-sm mr-3" [style.background]="'var(' + color.token + ')'" style="width: 50px; height: 50px;"></div>
-                <div class="swatch-info flex-grow-1">
-                  <span class="block font-bold text-sm">{{ color.nombre }}</span>
-                  <code class="text-primary text-xs">{{ color.token }}</code>
-                  <div class="text-xs text-secondary mt-1 line-height-2">{{ color.uso }}</div>
-                </div>
-                <app-icon [icon]="'copy'" class="text-400" />
+    <!-- ── Material 3 Structural Roles ──────────────────────────── -->
+    <div class="mb-6">
+      <h3 class="text-xl font-bold mb-1 border-bottom-1 border-300 pb-2">Roles Estructurales (Material 3)</h3>
+      <p class="text-sm text-color-secondary mt-1 mb-4">
+        Tokens de arquitectura de color. Definen superficies, texto y contornos del sistema.
+        Haz clic en cualquier swatch para copiar el token.
+      </p>
+      <div class="grid">
+        @for (color of paleta; track color.token) {
+          <div class="col-12 md:col-6 xl:col-4">
+            <div class="token-swatch flex align-items-center p-3 surface-card border-1 border-round cursor-pointer"
+                 (click)="copy(color.token)"
+                 [pTooltip]="'Copiar ' + color.token" tooltipPosition="top">
+              <div class="swatch-color border-round-sm mr-3 flex-shrink-0"
+                   [style.background]="'var(' + color.token + ')'"
+                   style="width:48px;height:48px;border:1px solid var(--ds-border)">
               </div>
+              <div class="flex-grow-1 min-w-0">
+                <span class="block font-bold text-sm">{{ color.nombre }}</span>
+                <code class="text-xs">{{ color.token }}</code>
+                <div class="text-xs text-color-secondary mt-1 line-height-2">{{ color.uso }}</div>
+              </div>
+              <app-icon [icon]="'mdi:content-copy'" class="text-color-secondary text-sm ml-2 flex-shrink-0" />
             </div>
-          }
-        </div>
+          </div>
+        }
       </div>
+    </div>
 
-      <div class="col-12 mt-5">
-        <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">Tipografía de Sistema</h3>
-        <div class="grid">
-          <div class="col-12 lg:col-8">
-            <p-table [value]="estilosTipografia" responsiveLayout="scroll" styleClass="p-datatable-sm shadow-1 border-round overflow-hidden">
-              <ng-template pTemplate="header">
-                <tr>
-                  <th>Elemento</th>
-                  <th>Familia</th>
-                  <th>Tamaño</th>
-                  <th>Uso Recomendado</th>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-row>
-                <tr>
-                  <td><strong>{{ row.elemento }}</strong></td>
-                  <td class="font-mono text-xs">{{ row.familia }}</td>
-                  <td><p-tag [value]="row.tamano" severity="secondary"></p-tag></td>
-                  <td class="text-sm">{{ row.uso }}</td>
-                </tr>
-              </ng-template>
-            </p-table>
+    <!-- ── Semantic Operational Tokens ──────────────────────────── -->
+    <div class="mb-6">
+      <h3 class="text-xl font-bold mb-1 border-bottom-1 border-300 pb-2">Tokens Semánticos Operacionales</h3>
+      <p class="text-sm text-color-secondary mt-1 mb-4">
+        Colores de uso directo en componentes: botones, badges, alertas y estados de negocio.
+        Son la capa que PrimeNG y los custom components consumen via <code>--ds-*</code>.
+      </p>
+
+      @for (group of semanticGroups; track group.titulo) {
+        <div class="mb-4">
+          <div class="flex align-items-center gap-2 mb-2">
+            <span class="font-semibold text-sm uppercase text-color-secondary" style="letter-spacing:.06em">{{ group.titulo }}</span>
+            <span class="text-xs text-color-secondary">— {{ group.descripcion }}</span>
           </div>
-          <div class="col-12 lg:col-4">
-            <p-card header="Reglas de Elevación">
-              <div class="flex flex-column gap-3">
-                <div class="shadow-1 p-3 border-round surface-card border-1 border-100">Shadow 1 (Cards Standard)</div>
-                <div class="shadow-2 p-3 border-round surface-card border-1 border-100">Shadow 2 (Overlays / Modals)</div>
-                <div class="shadow-3 p-3 border-round surface-card border-1 border-100">Shadow 3 (Popovers)</div>
-                <div class="shadow-4 p-3 border-round surface-card border-1 border-100">Shadow 4 (Focus / Floating)</div>
+          <div class="grid">
+            @for (color of group.tokens; track color.token) {
+              <div class="col-12 md:col-6 xl:col-3">
+                <div class="token-swatch flex align-items-center p-3 surface-card border-1 border-round cursor-pointer"
+                     (click)="copy(color.token)"
+                     [pTooltip]="'Copiar ' + color.token" tooltipPosition="top">
+                  <div class="swatch-color border-round-sm mr-3 flex-shrink-0"
+                       [style.background]="'var(' + color.token + ')'"
+                       style="width:40px;height:40px;border:1px solid var(--ds-border)">
+                  </div>
+                  <div class="flex-grow-1 min-w-0">
+                    <span class="block font-semibold text-sm">{{ color.nombre }}</span>
+                    <code class="text-xs">{{ color.token }}</code>
+                    <div class="text-xs text-color-secondary mt-1 line-height-2">{{ color.uso }}</div>
+                  </div>
+                  <app-icon [icon]="'mdi:content-copy'" class="text-color-secondary text-sm ml-2 flex-shrink-0" />
+                </div>
               </div>
-            </p-card>
+            }
           </div>
         </div>
+      }
+    </div>
+
+    <!-- ── Reglas de Elevación ────────────────────────────────────── -->
+    <div class="mb-2">
+      <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">Reglas de Elevación (Sombras)</h3>
+      <div class="grid">
+        @for (s of shadowLevels; track s.label) {
+          <div class="col-12 md:col-6 xl:col-3">
+            <div class="surface-card border-round p-4 flex flex-column gap-2" [ngStyle]="{'box-shadow': s.value}">
+              <span class="font-bold text-sm">{{ s.label }}</span>
+              <code class="text-xs text-color-secondary">{{ s.token }}</code>
+              <span class="text-xs text-color-secondary">{{ s.uso }}</span>
+            </div>
+          </div>
+        }
       </div>
     </div>
   `,
   styles: [`
     .token-swatch {
-      width: 100%;
-      background: var(--ds-bg-surface);
-      border-radius: var(--ds-radius-md);
-      overflow: hidden;
-      cursor: pointer;
-      border: 1px solid var(--ds-border);
-      transition: transform 0.2s;
+      border-color: var(--ds-border);
+      transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
     }
     .token-swatch:hover {
-      transform: translateY(-4px);
+      transform: translateY(-3px);
       border-color: var(--ds-primary);
-    }
-    .swatch-color {
-      border-radius: var(--ds-radius-sm);
+      box-shadow: var(--ds-shadow-md);
     }
     code {
       background: var(--ds-bg-sunken);
-      padding: 0.2rem 0.4rem;
+      padding: 0.15rem 0.35rem;
       border-radius: 4px;
       font-family: var(--ds-font-family-mono);
+      display: inline-block;
     }
   `],
   encapsulation: ViewEncapsulation.None,
@@ -121,61 +146,134 @@ interface PaletaColor {
 export class TokensColors {
   private messageService = inject(MessageService);
 
-  readonly paleta: PaletaColor[] = [
-    { nombre: "Primary", rol: "Acción principal", token: "--ds-primary", uso: "Botones principales, foco, navegación." },
-    { nombre: "On Primary", rol: "Texto sobre primario", token: "--ds-on-primary", uso: "Iconos y texto dentro de botones primarios." },
-    { nombre: "Primary Container", rol: "Fondo primario suave", token: "--ds-primary-container", uso: "Superficies destacadas o de selección." },
-    { nombre: "On Primary Container", rol: "Texto en contenedor primario", token: "--ds-on-primary-container", uso: "Textos en superficies destacadas." },
-    
-    { nombre: "Secondary", rol: "Acción secundaria", token: "--ds-secondary", uso: "Botones secundarios, chips, divisores." },
-    { nombre: "On Secondary", rol: "Texto sobre secundario", token: "--ds-on-secondary", uso: "Texto en elementos secundarios." },
-    { nombre: "Secondary Container", rol: "Fondo secundario suave", token: "--ds-secondary-container", uso: "Elementos inactivos o de menor prioridad." },
-    { nombre: "On Secondary Container", rol: "Texto en contenedor secundario", token: "--ds-on-secondary-container", uso: "Textos en superficies secundarias." },
+  // ── Material 3 structural roles ──────────────────────────────────
+  readonly paleta: TokenColor[] = [
+    { nombre: "Primary", token: "--ds-primary", uso: "Acción principal, navegación activa, foco." },
+    { nombre: "On Primary", token: "--ds-on-primary", uso: "Texto/icono sobre superficie primaria." },
+    { nombre: "Primary Container", token: "--ds-primary-container", uso: "Superficies destacadas o de selección." },
+    { nombre: "On Primary Container", token: "--ds-on-primary-container", uso: "Texto en contenedor primario suave." },
 
-    { nombre: "Tertiary", rol: "Accento / Destacado", token: "--ds-tertiary", uso: "Alertas informativas, elementos de éxito." },
-    { nombre: "On Tertiary", rol: "Texto sobre terciario", token: "--ds-on-tertiary", uso: "Texto en botones o alertas terciarias." },
+    { nombre: "Secondary", token: "--ds-secondary", uso: "Botones secundarios, chips, divisores." },
+    { nombre: "On Secondary", token: "--ds-on-secondary", uso: "Texto sobre elemento secundario." },
+    { nombre: "Secondary Container", token: "--ds-secondary-container", uso: "Fondos de menor prioridad, inactivos." },
+    { nombre: "On Secondary Container", token: "--ds-on-secondary-container", uso: "Texto en contenedor secundario." },
 
-    { nombre: "Error", rol: "Peligro / Destructivo", token: "--ds-error", uso: "Textos de error, botones de eliminar." },
-    { nombre: "On Error", rol: "Texto sobre error", token: "--ds-on-error", uso: "Texto blanco en botones destructivos." },
-    { nombre: "Error Container", rol: "Fondo de error suave", token: "--ds-error-container", uso: "Fondos de alertas de error." },
-    { nombre: "On Error Container", rol: "Texto en contenedor error", token: "--ds-on-error-container", uso: "Textos dentro de alertas de error." },
+    { nombre: "Tertiary", token: "--ds-tertiary", uso: "Acento terciario: éxito alternativo, teal." },
+    { nombre: "On Tertiary", token: "--ds-on-tertiary", uso: "Texto sobre elemento terciario." },
 
-    { nombre: "Surface", rol: "Fondo principal", token: "--ds-surface", uso: "Fondo de tarjetas, modales y listas." },
-    { nombre: "On Surface", rol: "Texto principal", token: "--ds-on-surface", uso: "Textos base legibles sobre Surface." },
-    { nombre: "Surface Variant", rol: "Fondo secundario", token: "--ds-surface-variant", uso: "Fondos de campos de texto o menús." },
-    { nombre: "On Surface Variant", rol: "Texto secundario", token: "--ds-on-surface-variant", uso: "Textos de ayuda, labels, iconos inactivos." },
-    
-    { nombre: "Outline", rol: "Bordes principales", token: "--ds-outline", uso: "Bordes de botones, inputs, separadores." },
-    { nombre: "Outline Variant", rol: "Bordes suaves", token: "--ds-outline-variant", uso: "Divisores tenues en listas." },
-    
-    { nombre: "Background", rol: "Fondo de aplicación", token: "--ds-background", uso: "Fondo de toda la página." },
-    { nombre: "On Background", rol: "Texto sobre fondo", token: "--ds-on-background", uso: "Titulos principales fuera de tarjetas." },
+    { nombre: "Error / Danger", token: "--ds-error", uso: "Eliminación, estados bloqueantes, errores." },
+    { nombre: "On Error", token: "--ds-on-error", uso: "Texto blanco en superficies de error." },
+    { nombre: "Error Container", token: "--ds-error-container", uso: "Fondo suave para alertas de error." },
+    { nombre: "On Error Container", token: "--ds-on-error-container", uso: "Texto dentro de alertas de error." },
+
+    { nombre: "Surface", token: "--ds-surface", uso: "Fondo de cards, modales y listas." },
+    { nombre: "On Surface", token: "--ds-on-surface", uso: "Texto principal sobre superficie." },
+    { nombre: "Surface Variant", token: "--ds-surface-variant", uso: "Fondos de inputs o menús secundarios." },
+    { nombre: "On Surface Variant", token: "--ds-on-surface-variant", uso: "Labels, iconos inactivos, texto ayuda." },
+
+    { nombre: "Outline", token: "--ds-outline", uso: "Bordes de controles interactivos." },
+    { nombre: "Outline Variant", token: "--ds-outline-variant", uso: "Divisores tenues entre secciones." },
+
+    { nombre: "Background", token: "--ds-background", uso: "Fondo general de la aplicación." },
+    { nombre: "On Background", token: "--ds-on-background", uso: "Títulos principales fuera de cards." },
   ];
 
-  readonly estilosTipografia = [
+  // ── Semantic operational tokens (grouped) ───────────────────────
+  readonly semanticGroups: TokenGroup[] = [
     {
-      elemento: "UI ERP",
-      familia: "DM Sans / Inter",
-      tamano: "13-32px",
-      uso: "Pantallas Angular, PrimeNG, Ionic y operaciones diarias.",
+      titulo: "Éxito",
+      descripcion: "Confirmaciones, métricas positivas, estados completados",
+      tokens: [
+        { nombre: "Success", token: "--ds-success", uso: "Color de texto/icono en elementos de éxito." },
+        { nombre: "Success Light", token: "--ds-success-light", uso: "Fondo suave para banners y badges de éxito." },
+      ],
     },
     {
-      elemento: "Titulo de documento",
-      familia: "DM Sans / Montserrat",
-      tamano: "24-28pt",
-      uso: "Portadas y encabezados de documentos exportables.",
+      titulo: "Atención",
+      descripcion: "Pendientes, riesgos moderados, alertas no críticas",
+      tokens: [
+        { nombre: "Warning", token: "--ds-warning", uso: "Texto/icono en alertas y estados pendientes." },
+        { nombre: "Warning Light", token: "--ds-warning-light", uso: "Fondo suave para alertas de atención." },
+      ],
     },
     {
-      elemento: "Cuerpo documental",
-      familia: "DM Sans / Inter",
-      tamano: "10-11pt",
-      uso: "Contenido extenso imprimible o PDF corporativo.",
+      titulo: "Peligro",
+      descripcion: "Errores, eliminación, estados bloqueantes",
+      tokens: [
+        { nombre: "Danger", token: "--ds-danger", uso: "Texto/icono en acciones destructivas." },
+        { nombre: "Danger Light", token: "--ds-danger-light", uso: "Fondo suave para alertas de error." },
+      ],
     },
     {
-      elemento: "Codigo y nomenclatura",
-      familia: "Roboto Mono / Consolas",
-      tamano: "9-10pt",
-      uso: "Folios, codigos, versiones y nombres de archivo.",
+      titulo: "Información",
+      descripcion: "Contexto, ayuda, mensajes informativos",
+      tokens: [
+        { nombre: "Info", token: "--ds-info", uso: "Texto/icono en mensajes informativos." },
+        { nombre: "Info Light", token: "--ds-info-light", uso: "Fondo suave para banners informativos." },
+      ],
+    },
+    {
+      titulo: "Identidad & Documental",
+      descripcion: "Acento premium y neutrales para documentos",
+      tokens: [
+        { nombre: "Luxury Gold", token: "--ds-luxury-gold", uso: "Acento premium en reportes y portadas." },
+        { nombre: "Luxury Gold Light", token: "--ds-luxury-gold-light", uso: "Fondo suave para acentos dorados." },
+        { nombre: "Document Neutral", token: "--ds-document-neutral", uso: "Metadatos, fechas, versionado." },
+      ],
+    },
+    {
+      titulo: "Fondos del Sistema",
+      descripcion: "Superficies de página, cards e inputs",
+      tokens: [
+        { nombre: "BG Page", token: "--ds-bg-page", uso: "Fondo general de vistas administrativas." },
+        { nombre: "BG Surface", token: "--ds-bg-surface", uso: "Cards, formularios, modales." },
+        { nombre: "BG Sunken", token: "--ds-bg-sunken", uso: "Inputs, zonas hundidas, código." },
+        { nombre: "BG Elevated", token: "--ds-bg-elevated", uso: "Elementos flotantes sobre la superficie." },
+      ],
+    },
+    {
+      titulo: "Texto",
+      descripcion: "Jerarquía tipográfica por importancia",
+      tokens: [
+        { nombre: "Text Primary", token: "--ds-text-primary", uso: "Cuerpo principal, títulos operativos." },
+        { nombre: "Text Secondary", token: "--ds-text-secondary", uso: "Labels, captions, texto de apoyo." },
+        { nombre: "Text Muted", token: "--ds-text-muted", uso: "Metadatos, hints, placeholders." },
+      ],
+    },
+    {
+      titulo: "Bordes",
+      descripcion: "Separación visual de controles y superficies",
+      tokens: [
+        { nombre: "Border", token: "--ds-border", uso: "Borde estándar de cards e inputs." },
+        { nombre: "Border Strong", token: "--ds-border-strong", uso: "Borde énfasis, divisores fuertes." },
+      ],
+    },
+  ];
+
+  readonly shadowLevels = [
+    {
+      label: "Shadow SM",
+      token: "--ds-shadow-sm",
+      value: "0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px -1px rgba(0,0,0,0.06)",
+      uso: "Cards estándar, listas.",
+    },
+    {
+      label: "Shadow MD",
+      token: "--ds-shadow-md",
+      value: "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.06)",
+      uso: "Overlays, paneles secundarios.",
+    },
+    {
+      label: "Shadow LG",
+      token: "--ds-shadow-lg",
+      value: "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.06)",
+      uso: "Popovers, tooltips grandes.",
+    },
+    {
+      label: "Shadow XL",
+      token: "--ds-shadow-xl",
+      value: "0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.06)",
+      uso: "Modales, drawers, FAB.",
     },
   ];
 

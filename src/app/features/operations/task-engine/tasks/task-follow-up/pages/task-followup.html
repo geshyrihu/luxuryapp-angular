@@ -1,4 +1,4 @@
-<div class="flex flex-column p-3 gap-3">
+﻿<div class="flex flex-column p-3 gap-3">
   <!-- Loading Spinner -->
   @if (loading()) {
   <div class="flex justify-content-center">
@@ -67,7 +67,7 @@
               {{ follow.createdAt }}
             </span>
             @if (isSuperUser()) {
-            <ion-button-delete (confirmed)="onDelete(follow.id)" />
+            <custom-button-delete (confirmed)="onDelete(follow.id)" />
             }
           </div>
         </div>

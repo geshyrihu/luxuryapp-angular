@@ -80,7 +80,7 @@
   .opt-none[aria-pressed="true"] {
     background: var(--surface-500) !important;
     border-color: var(--surface-600) !important;
-    color: #fff !important;
+    color: var(--ds-surface) !important;
     box-shadow: none !important;
   }
 
@@ -90,7 +90,7 @@
   .opt-cliente[aria-pressed="true"] {
     background: var(--blue-600) !important;
     border-color: var(--blue-700) !important;
-    color: #fff !important;
+    color: var(--ds-surface) !important;
     box-shadow: 0 0 0 2px var(--blue-200) !important;
   }
 
@@ -100,7 +100,7 @@
   .opt-global[aria-pressed="true"] {
     background: var(--green-600) !important;
     border-color: var(--green-700) !important;
-    color: #fff !important;
+    color: var(--ds-surface) !important;
     box-shadow: 0 0 0 2px var(--green-200) !important;
   }
 }

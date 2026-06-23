@@ -1,4 +1,4 @@
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -72,8 +72,8 @@
       </ion-label>
       <div slot="end">
         <app-action-menu>
-          <ion-button-edit (clicked)="onModalForm(item)" />
-          <ion-button-delete (clicked)="onDelete(item.id)" />
+          <custom-button-edit (clicked)="onModalForm(item)" />
+          <custom-button-delete (clicked)="onDelete(item.id)" />
         </app-action-menu>
       </div>
     </ion-item>

@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -68,7 +68,7 @@
         slot="start"
         class="w-3rem h-3rem border-round flex align-items-center justify-content-center flex-shrink-0 ml-3 surface-100"
       >
-        <ion-icon name="briefcase-outline" class="text-xl text-green-600"></ion-icon>
+        <app-icon icon="mdi:briefcase-outline" class="text-xl text-green-600"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.applicationRoleName }}</h3>
@@ -76,8 +76,8 @@
         <p>{{ item.status }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit (clicked)="onModalForm({ id: item.id, title: 'Vacante ' + item.applicationRoleName })" />
-        <ion-button-delete (confirmed)="onDelete(item.id)" />
+        <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Vacante ' + item.applicationRoleName })" />
+        <custom-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

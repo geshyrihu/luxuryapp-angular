@@ -1,11 +1,11 @@
 @if (cargando()) {
   <div class="flex align-items-center gap-2 py-3">
-    <i class="pi pi-spin pi-spinner text-primary"></i>
+    <app-icon icon="mdi:spin"  class="ner text-primary ds-animate-spin"></app-icon>
     <span class="text-sm text-500">Cargando vacantes...</span>
   </div>
 } @else if (!resumen() || resumen()!.total === 0) {
   <div class="flex align-items-center gap-2 py-2 text-400">
-    <i class="pi pi-check-circle"></i>
+    <app-icon icon="mdi:check-circle"></app-icon>
     <span class="text-sm">Sin vacantes pendientes</span>
   </div>
 } @else {
@@ -39,7 +39,7 @@
           @for (rol of customer.roles; track rol.roleName) {
             <div class="flex align-items-center justify-content-between py-1">
               <div class="flex align-items-center gap-2 min-w-0">
-                <i class="pi pi-briefcase text-xs text-400"></i>
+                <app-icon icon="mdi:briefcase"  class="text-xs text-400"></app-icon>
                 <span class="text-xs text-800 white-space-nowrap overflow-hidden text-overflow-ellipsis">
                   {{ rol.roleName }}
                 </span>

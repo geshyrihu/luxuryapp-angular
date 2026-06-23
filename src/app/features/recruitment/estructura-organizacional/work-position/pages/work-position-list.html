@@ -1,4 +1,4 @@
-<!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+﻿<!-- INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <p-table
     [globalFilterFields]="globalFilterFields"
@@ -150,7 +150,7 @@
       customFilters
       class="flex justify-content-end p-2 border-bottom-1 surface-border"
     >
-      <ion-button-active-desactive (stateChange)="onSelectActive($event)" />
+      <custom-button-active-desactive (stateChange)="onSelectActive($event)" />
     </div>
 
     <ng-template #listItemTemplate let-item>
@@ -199,27 +199,27 @@
 
         <app-action-menu slot="end">
           @if (shouldShowVacancyRequest(item)) {
-          <ion-button-item
+          <custom-button-item
             (clicked)="onModalSolicitudVacante(item.id)"
             iconName="person-add-outline"
             label="Solicitar vacante"
           />
           }
-          <ion-button-item
+          <custom-button-item
             (clicked)="onModalJobDescription(item.id, item.jobDescriptionId, item.applicationRoleName)"
             iconName="book-outline"
             label="Descripción"
           />
-          <ion-button-item
+          <custom-button-item
             (clicked)="onModalHoursWorkPosition(item.id)"
             iconName="time-outline"
             label="Horarios"
           />
-          <ion-button-edit
+          <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
           @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
-          <ion-button-delete (confirmed)="onDelete(item.id)" />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
           }
         </app-action-menu>
       </ion-item>

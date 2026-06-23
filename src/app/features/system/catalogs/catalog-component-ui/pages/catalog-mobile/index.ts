@@ -1,4 +1,4 @@
-export { CatalogMobile } from "./catalog-mobile";
+﻿export { CatalogMobile } from "./catalog-mobile";
 export { MobileButtons } from "./components/mobile-buttons/mobile-buttons";
 export { MobileInputs } from "./components/mobile-inputs/mobile-inputs";
 export { MobileFeedback } from "./components/mobile-feedback/mobile-feedback";

@@ -1,6 +1,6 @@
-import { Component, computed, inject, signal } from "@angular/core";
+﻿import { Component, computed, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { phonePortraitOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -8,11 +8,9 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
-  IonButtonDelete,
-  IonButtonEdit,
-} from "src/app/core/components/buttons/mobile";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+  CustomButtonDelete,
+  CustomButtonEdit,
+} from "src/app/core/components/buttons/web";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -41,9 +39,8 @@ import { ModuleAppForm } from "./module-app-form";
     RouterModule,
     IonItem,
     IonLabel,
-    IonIcon,
-    IonButtonDelete,
-    IonButtonEdit,
+    CustomButtonDelete,
+    CustomButtonEdit,
   ],
   templateUrl: "./module-app-list.html",
 })

@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from "@angular/core";
+﻿import { Component, effect, inject, signal } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
@@ -11,11 +11,11 @@ import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
-  IonButtonConfirm,
-  IonButtonDelete,
-  IonButtonEdit,
-  IonButtonItem,
-} from "src/app/core/components/buttons/mobile";
+  CustomButtonConfirm,
+  CustomButtonDelete,
+  CustomButtonEdit,
+  CustomButtonItem,
+} from "src/app/core/components/buttons/web";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
@@ -63,10 +63,10 @@ import { MinutaPdfService } from "./minuta-pdf.service";
     CardModule,
     IonItem,
     IonLabel,
-    IonButtonConfirm,
-    IonButtonDelete,
-    IonButtonEdit,
-    IonButtonItem,
+    CustomButtonConfirm,
+    CustomButtonDelete,
+    CustomButtonEdit,
+    CustomButtonItem,
   ],
 })
 export class MinutasList {

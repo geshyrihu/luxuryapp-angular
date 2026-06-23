@@ -1,4 +1,4 @@
-@if (!data) { Cargando.... } @if (data) { @if (data) {
+﻿@if (!data) { Cargando.... } @if (data) { @if (data) {
 <div class="p-4 mb-3">
   <div class="mb-4">
     <h3 class="text-2xl font-medium m-0">Detalles de la Solicitud de Compra</h3>
@@ -40,26 +40,26 @@
     <div class="col-12">
       <app-action-menu>
         <ng-container actions>
-          <ion-button-item
+          <custom-button-item
             (clicked)="onModalForm({ id: data.id, title: 'Editar' })"
             label="Editar"
             iconClass="icon icon-pi-pencil icon-italic txt-primary"
           />
-          <ion-button-item
+          <custom-button-item
             (clicked)="onModalForm({ id: data.id, title: 'Cotizar' })"
             label="Cotizar"
           />
-          <ion-button-item
+          <custom-button-item
             (clicked)="
                     onNavigatePage('purchase-request/comparison/' + data.id)
                   "
             label="Cuadro Comparativo"
           />
-          <ion-button-item
+          <custom-button-item
             (clicked)="onModalForm({ id: data.id, title: 'Crear Orden' })"
             label="Crear Orden"
           />
-          <ion-button-item
+          <custom-button-item
             (clicked)="
                     onModalAddProduct({
                       purchaseRequestId: data.id,

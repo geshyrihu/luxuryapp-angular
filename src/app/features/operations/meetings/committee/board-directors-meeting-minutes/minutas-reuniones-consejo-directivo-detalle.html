@@ -160,10 +160,7 @@
     <ion-card-header>
       <ion-card-title class="text-lg font-bold text-900">Minuta de Junta</ion-card-title>
       <ion-card-subtitle class="flex align-items-center">
-        <ion-icon
-          name="calendar-outline"
-          class="mr-1 vertical-align-middle"
-        ></ion-icon>
+        <app-icon icon="mdi:calendar-blank" class="mr-1 vertical-align-middle"></app-icon>
         {{ meeting.date }}
       </ion-card-subtitle>
     </ion-card-header>
@@ -176,11 +173,8 @@
   <ion-list [inset]="true" class="m-0">
     @for (admin of meeting.administracion; track admin) {
     <ion-item lines="full" class="ion-no-padding">
-      <ion-icon
-        name="person-outline"
-        slot="start"
-        class="text-blue-600 ml-3"
-      ></ion-icon>
+      <app-icon icon="mdi:account-outline" slot="start"
+        class="text-blue-600 ml-3"></app-icon>
       <ion-label class="ml-2">
         <h3 class="font-bold text-900">{{ admin.applicationUser }}</h3>
         <p class="text-sm text-500">{{ admin.cargo }}</p>
@@ -200,11 +194,8 @@
   <ion-list [inset]="true" class="m-0">
     @for (member of meeting.comite; track member) {
     <ion-item lines="full" class="ion-no-padding">
-      <ion-icon
-        name="people-outline"
-        slot="start"
-        class="text-blue-600 ml-3"
-      ></ion-icon>
+      <app-icon icon="mdi:account-group-outline" slot="start"
+        class="text-blue-600 ml-3"></app-icon>
       <ion-label class="ml-2">
         <h3 class="font-bold text-900">{{ member.applicationUser }}</h3>
         <p class="text-sm text-500">{{ member.cargo }}</p>
@@ -224,11 +215,8 @@
   <ion-list [inset]="true" class="m-0">
     @for (guest of meeting.externos; track guest) {
     <ion-item lines="full" class="ion-no-padding">
-      <ion-icon
-        name="person-add-outline"
-        slot="start"
-        class="text-blue-600 ml-3"
-      ></ion-icon>
+      <app-icon icon="mdi:account-plus-outline" slot="start"
+        class="text-blue-600 ml-3"></app-icon>
       <ion-label class="ml-2"><h3 class="font-bold text-900">{{ guest.invitado }}</h3></ion-label>
     </ion-item>
     } @if (!meeting.externos || meeting.externos.length === 0) {

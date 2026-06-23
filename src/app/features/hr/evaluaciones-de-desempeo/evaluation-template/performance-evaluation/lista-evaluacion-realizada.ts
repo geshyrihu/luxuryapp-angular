@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+﻿import { DatePipe } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -6,13 +6,11 @@ import { ChartConfiguration, ChartData } from "chart.js";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
-  IonButtonDelete,
-  IonButtonItem,
-} from "src/app/core/components/buttons/mobile";
+  CustomButtonDelete,
+  CustomButtonItem,
+} from "src/app/core/components/buttons/web";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -42,8 +40,8 @@ import { HtmlPrintService } from "src/app/core/services/html-print.service";
     PrimeNgCustomTableFooter,
     IonItem,
     IonLabel,
-    IonButtonDelete,
-    IonButtonItem,
+    CustomButtonDelete,
+    CustomButtonItem,
     DatePipe,
   ],
   templateUrl: "./lista-evaluacion-realizada.html",

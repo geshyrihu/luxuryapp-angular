@@ -50,21 +50,15 @@
         @if (selectedYear < currentYear || (selectedYear === currentYear &&
         mes.mes <= currentMonth)) { @if (mes.estatus == 'Enviado') {
         <div class="flex flex-column align-items-center">
-          <i
-            class="pi pi-check-circle text-success"
-            [pTooltip]="mes.fecha"
-            tooltipPosition="top"
-          ></i>
+          <app-icon icon="mdi:check-circle" [pTooltip]="mes.fecha"
+            tooltipPosition="top" class="text-success"></app-icon>
           <span style="font-size: 0.65rem" class="text-success mt-1">
             {{ mes.fecha }}
           </span>
         </div>
         } @else {
-        <i
-          class="pi pi-times-circle text-danger"
-          pTooltip="No Enviado"
-          tooltipPosition="top"
-        ></i>
+        <app-icon icon="mdi:times-circle" pTooltip="No Enviado"
+          tooltipPosition="top" class="text-danger"></app-icon>
         } }
       </td>
       }

@@ -1,5 +1,6 @@
-import {
+﻿import {
   Component,
+  computed,
   ElementRef,
   forwardRef,
   input,
@@ -12,12 +13,6 @@ import { addIcons } from "ionicons";
 import { cloudUploadOutline, trashOutline } from "ionicons/icons";
 import { BaseIonicInput } from "../base/base-ionic-input";
 
-/**
- * 📁 ION INPUT FILE - Mobile (Ionic)
- * -------------------------------------------------------------------------
- * Input para subir archivos nativo para móviles. Usa un botón para invocar
- * el File Explorer o la Cámara de iOS/Android de forma transparente.
- */
 @Component({
   selector: "ion-input-file",
   imports: [BaseIonicInput, ReactiveFormsModule, IonButton, IonIcon],
@@ -26,8 +21,15 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       [control]="control()"
       [id]="id()"
       [label]="label()"
+      [placeholder]="placeholder()"
       [readonly]="readonly()"
       [required]="requiredInput()"
+      [hidden]="hidden()"
+      [description]="description()"
+      [horizontal]="horizontal()"
+      [noMargin]="noMargin()"
+      [onlyInput]="onlyInput()"
+      [class]="inputStyleClass()"
     >
       <div
         style="width: 100%; display: flex; flex-direction: column; gap: 8px;"
@@ -65,7 +67,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
           </div>
         }
 
-        <!-- Hide the actual file input -->
         <input
           #fileInput
           [id]="id()"
@@ -87,13 +88,16 @@ import { BaseIonicInput } from "../base/base-ionic-input";
 })
 export class IonInputFile extends BaseIonicInput {
   accept = input<string>("");
-  maxFileSize = input<number>(10000000); // 10MB por defecto
+  maxFileSize = input<number>(10000000);
   chooseLabel = input<string>("Seleccionar archivo");
+  customClass = input<string>("");
 
   fileSelected = output<File | null>();
   uploadError = output<any>();
 
   fileSelectedValue: File | null = null;
+
+  inputStyleClass = computed(() => this.customClass());
 
   @ViewChild("fileInput", { static: false })
   fileInput!: ElementRef<HTMLInputElement>;
@@ -111,7 +115,7 @@ export class IonInputFile extends BaseIonicInput {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
 
-    input.value = ""; // Reset
+    input.value = "";
     if (!file) return;
 
     if (file.size > this.maxFileSize()) {
@@ -127,7 +131,6 @@ export class IonInputFile extends BaseIonicInput {
     this.onChange(file);
     this.onTouch();
 
-    // Actualizar control
     const ctrl = this.control() || this.internalControl;
     ctrl.setValue(file);
     ctrl.markAsDirty();

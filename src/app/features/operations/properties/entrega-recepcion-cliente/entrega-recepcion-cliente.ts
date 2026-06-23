@@ -1,12 +1,12 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
+import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
@@ -27,9 +27,9 @@ import { EntregaRecepcionClienteForm } from "src/app/features/operations/propert
   selector: "app-entrega-recepcion-cliente-lista",
   templateUrl: "./entrega-recepcion-cliente.html",
   imports: [
-    IonButtonEdit,
-    IonButtonItem,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonItem,
+    CustomButtonDelete,
     CommonModule,
     TableModule,
     CustomButton,

@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [value]="dataSignal()"
   #dt
   styleClass="custom-table card hidden md:block"
@@ -164,16 +164,16 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <ion-button-view-pdf
+            <custom-button-view-pdf
               [url]="item.pathDocument"
               fileName="Poliza | Contrato"
             />
-            <ion-button-edit
+            <custom-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             />
-            <ion-button-delete (confirmed)="onDelete(item.id)" />
+            <custom-button-delete (confirmed)="onDelete(item.id)" />
             @if (item.document) {
-            <ion-button-delete
+            <custom-button-delete
               label="Eliminar documento"
               ngbTooltip="Eliminar documento"
               (confirmed)="onDeleteDocument(item.id)"

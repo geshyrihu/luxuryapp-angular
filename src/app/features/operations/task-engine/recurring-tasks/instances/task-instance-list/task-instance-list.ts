@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, OnInit, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
@@ -7,12 +7,10 @@ import { TableModule } from "primeng/table";
 import { ToolbarModule } from "primeng/toolbar";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
-  IonButtonConfirm,
-  IonButtonItem,
-} from "src/app/core/components/buttons/mobile";
+  CustomButtonConfirm,
+  CustomButtonItem,
+} from "src/app/core/components/buttons/web";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonConfirm } from "src/app/core/components/buttons/web/custom-button-confirm";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -40,8 +38,8 @@ import { CompleteTaskForm } from "../complete-task-form/complete-task-form";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
 
-    IonButtonConfirm,
-    IonButtonItem,
+    CustomButtonConfirm,
+    CustomButtonItem,
   ],
 })
 export class TaskInstanceList implements OnInit {

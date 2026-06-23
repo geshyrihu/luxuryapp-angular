@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="globalFilterFields()"
   [value]="dataSignal()"
   #dt
@@ -65,10 +65,10 @@
         <p>{{ item.description }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit
+        <custom-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Clinico' })"
         />
-        <ion-button-delete (confirmed)="onDelete(item.id)" />
+        <custom-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

@@ -1,5 +1,4 @@
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
-import {
+﻿import {
   Component,
   computed,
   DestroyRef,
@@ -16,7 +15,6 @@ import {
   IonButton,
   IonCol,
   IonGrid,
-  IonIcon,
   IonItem,
   IonLabel,
   IonRow,
@@ -48,12 +46,9 @@ import { TableModule } from "primeng/table";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import {
-  IonInputSelect,
-  IonInputText,
-} from "src/app/core/components/inputs/mobile";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -78,10 +73,10 @@ import Swal from "sweetalert2";
 
 import { CommonModule } from "@angular/common";
 import {
-  IonButtonDelete,
-  IonButtonEdit,
-  IonButtonItem,
-} from "src/app/core/components/buttons/mobile";
+  CustomButtonDelete,
+  CustomButtonEdit,
+  CustomButtonItem,
+} from "src/app/core/components/buttons/web";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { InitialsAbbrPipe } from "src/app/core/pipes/initials-abbr.pipe";
 import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
@@ -148,19 +143,19 @@ import { TaskForm } from "./task-form";
     IonLabel,
     IonAvatar,
     IonBadge,
-    IonIcon,
-    IonButtonDelete,
-    IonButtonEdit,
-    IonButtonItem,
+    CustomButtonDelete,
+    CustomButtonEdit,
+    CustomButtonItem,
     CommonModule,
     IonGrid,
     IonRow,
     IonCol,
     IonButton,
-    IonInputSelect,
-    IonInputText,
+    CustomInputSelectSignal,
+    CustomInputTextSignal,
     InitialsAbbrPipe,
-   AppIcon],
+    AppIcon,
+  ],
 })
 export class TaskList implements OnInit {
   private readonly activatedRoute = inject(ActivatedRoute);
@@ -192,40 +187,46 @@ export class TaskList implements OnInit {
     return `${window.innerHeight - this.TASK_LIST_OFFSET}px`;
   }
   readonly Math = Math;
-  readonly today = new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+  readonly today = new Date().toLocaleDateString("es-MX", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
   readonly pendingItems = computed(() =>
-    this.dataSignal().items.filter(i => i.status !== 'Completed')
+    this.dataSignal().items.filter((i) => i.status !== "Completed"),
   );
 
   statusLabel(status: string): string {
     const map: Record<string, string> = {
-      NotStarted: 'No iniciado',
-      InProgress: 'En proceso',
-      Reopened: 'Reabierto',
+      NotStarted: "No iniciado",
+      InProgress: "En proceso",
+      Reopened: "Reabierto",
     };
     return map[status] ?? status;
   }
 
   statusPillStyle(status: string): string {
     const map: Record<string, string> = {
-      NotStarted: 'background:var(--ds-danger-light);color:var(--ds-danger)',
-      InProgress:  'background:var(--ds-warning-light);color:var(--ds-warning)',
-      Reopened:    'background:var(--ds-danger-light);color:var(--ds-danger)',
+      NotStarted: "background:var(--ds-danger-light);color:var(--ds-danger)",
+      InProgress: "background:var(--ds-warning-light);color:var(--ds-warning)",
+      Reopened: "background:var(--ds-danger-light);color:var(--ds-danger)",
     };
-    return map[status] ?? 'background:var(--ds-border);color:var(--ds-text-primary)';
+    return (
+      map[status] ?? "background:var(--ds-border);color:var(--ds-text-primary)"
+    );
   }
 
   statusTdClass(status: string): string {
     const map: Record<string, string> = {
-      NotStarted: 'td-status-not-started',
-      InProgress:  'td-status-in-progress',
-      Reopened:    'td-status-reopened',
+      NotStarted: "td-status-not-started",
+      InProgress: "td-status-in-progress",
+      Reopened: "td-status-reopened",
     };
-    return map[status] ?? '';
+    return map[status] ?? "";
   }
 
   printReport(): void {
-    this.printS.printElement(undefined, 'Reporte de Tareas Pendientes');
+    this.printS.printElement(undefined, "Reporte de Tareas Pendientes");
   }
 
   readonly tablePrimeNgRows: number = tablePrimeNgRows();
@@ -513,12 +514,11 @@ export class TaskList implements OnInit {
 
   onFollowUp(id: string) {
     this.dialogHandlerS
-      .openDialog<{ count: number; lastFollowUp: string | null; lastFollowUpDate: string | null }>(
-        TaskFollowup,
-        { id: id },
-        "Seguimiento",
-        this.dialogHandlerS.sizeLg,
-      )
+      .openDialog<{
+        count: number;
+        lastFollowUp: string | null;
+        lastFollowUpDate: string | null;
+      }>(TaskFollowup, { id: id }, "Seguimiento", this.dialogHandlerS.sizeLg)
       .then((result) => {
         if (result && result.count >= 0) {
           this.dataSignal.update((currentData) => ({
@@ -675,7 +675,10 @@ export class TaskList implements OnInit {
     const movedItem = items[event.dropIndex];
     if (!movedItem) {
       this.dataSignal.update((c) => ({ ...c, items }));
-      this.apiS.onPut(Endpoints.Tasks.updateOrder, items.map((i) => i.id));
+      this.apiS.onPut(
+        Endpoints.Tasks.updateOrder,
+        items.map((i) => i.id),
+      );
       return;
     }
 
@@ -708,7 +711,10 @@ export class TaskList implements OnInit {
     }
 
     this.dataSignal.update((current) => ({ ...current, items }));
-    this.apiS.onPut(Endpoints.Tasks.updateOrder, items.map((i) => i.id));
+    this.apiS.onPut(
+      Endpoints.Tasks.updateOrder,
+      items.map((i) => i.id),
+    );
   }
 
   // â”€â”€ Chain step computation (visual Gantt-style ordering) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -829,4 +835,3 @@ export class TaskList implements OnInit {
     });
   }
 }
-

@@ -1,4 +1,4 @@
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
 <p-table
   [globalFilterFields]="globalFilterFields()"
@@ -228,22 +228,22 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <ion-button-edit (clicked)="onModalForm(item)" />
-            <ion-button-delete (confirmed)="onDelete(item.id)" />
+            <custom-button-edit (clicked)="onModalForm(item)" />
+            <custom-button-delete (confirmed)="onDelete(item.id)" />
 
-            <ion-button-item
+            <custom-button-item
               (clicked)="onDownloadPdf(item.id)"
               iconName="document-text-outline"
               label="Descargar PDF"
             />
 
-            <ion-button-item
+            <custom-button-item
               (clicked)="onViewPreview(item.id)"
               iconName="book-outline"
               label="Vista previa"
             />
 
-            <ion-button-item
+            <custom-button-item
               [routerLink]="['/announcements/analytics', item.id]"
               iconName="bar-chart-outline"
               label="Analóticas"

@@ -31,6 +31,8 @@ export interface CobranzaOnlineDashboardDepartment {
   propertyId: string | null;
   propertyFullName: string | null;
   balance: number;
+  maintenanceBalance: number;
+  extraordinaryBalance: number;
   categoryId: string;
   movementCount: number;
 }

@@ -1,20 +1,29 @@
-import { Component, computed, forwardRef, input } from "@angular/core";
+﻿import {
+  Component,
+  computed,
+  forwardRef,
+  inject,
+  input,
+  signal,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
+import { IonButton, IonIcon, IonInput } from "@ionic/angular/standalone";
+import { addIcons } from "ionicons";
+import { eyeOffOutline, eyeOutline } from "ionicons/icons";
 import { PasswordModule } from "primeng/password";
 import { BaseInputSignal } from "../base/base-input-signal";
 
-/**
- * 🔐 CUSTOM INPUT PASSWORD
- * -------------------------------------------------------------------------
- * Componente seguro para contraseñas.
- * Incluye máscara (ojito), medidor de fuerza opcional y etiquetas personalizables.
- * Porque la seguridad no tiene por qué ser aburrida. 🕵️‍♂️
- */
 @Component({
   selector: "custom-input-password-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, PasswordModule],
+  imports: [
+    BaseInputSignal,
+    ReactiveFormsModule,
+    PasswordModule,
+    IonInput,
+    IonButton,
+    IonIcon,
+  ],
   template: `
-    <!-- 🏗️ ESTRUCTURA BASE -->
     <base-input-signal
       [control]="control()"
       [id]="id()"
@@ -24,21 +33,44 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [readonly]="readonly()"
       [required]="requiredInput()"
     >
-      <!-- 🚀 CONTENIDO PROYECTADO -->
-      <p-password
-        [inputId]="id()"
-        [formControl]="control() || internalControl"
-        [placeholder]="placeholder()"
-        [feedback]="showStrengthIndicator()"
-        [toggleMask]="true"
-        [promptLabel]="promptLabel()"
-        [weakLabel]="weakLabel()"
-        [mediumLabel]="mediumLabel()"
-        [strongLabel]="strongLabel()"
-        [inputStyleClass]="inputStyleClass()"
-        [invalid]="isInvalid()"
-        fluid
-      />
+      @if (platform.isMobile()) {
+        <ion-input
+          [type]="showPassword() ? 'text' : 'password'"
+          [id]="id()"
+          [formControl]="control() || internalControl"
+          [placeholder]="placeholder()"
+          clearInput
+          [readonly]="readonly()"
+        >
+          <ion-button
+            fill="clear"
+            slot="end"
+            aria-label="Toggle password visibility"
+            (click)="togglePassword()"
+          >
+            <ion-icon
+              slot="icon-only"
+              [name]="showPassword() ? 'eye-outline' : 'eye-off-outline'"
+              color="medium"
+            />
+          </ion-button>
+        </ion-input>
+      } @else {
+        <p-password
+          [inputId]="id()"
+          [formControl]="control() || internalControl"
+          [placeholder]="placeholder()"
+          [feedback]="showStrengthIndicator()"
+          [toggleMask]="true"
+          [promptLabel]="promptLabel()"
+          [weakLabel]="weakLabel()"
+          [mediumLabel]="mediumLabel()"
+          [strongLabel]="strongLabel()"
+          [inputStyleClass]="inputStyleClass()"
+          [invalid]="isInvalid()"
+          fluid
+        />
+      }
     </base-input-signal>
   `,
   providers: [
@@ -50,22 +82,30 @@ import { BaseInputSignal } from "../base/base-input-signal";
   ],
 })
 export class CustomInputPassword extends BaseInputSignal {
-  // <--- Inputs Específicos --->
+
+  showPassword = signal(false);
+
   customClass = input<string>("");
   showStrengthIndicator = input<boolean>(false);
   size = input<"small" | "large" | undefined>(undefined);
-
-  // Textos para el feedback de seguridad (¡100% en español!)
   promptLabel = input<string>("Ingresa una contraseña");
-  weakLabel = input<string>("Débil 😟");
-  mediumLabel = input<string>("Media 😐");
-  strongLabel = input<string>("Fuerte 💪");
+  weakLabel = input<string>("Débil");
+  mediumLabel = input<string>("Media");
+  strongLabel = input<string>("Fuerte");
 
-  // <--- Computados --->
   inputStyleClass = computed(() => {
     let classes = this.customClass();
     if (this.size() === "small") classes += " p-inputtext-sm";
     if (this.size() === "large") classes += " p-inputtext-lg";
     return classes.trim();
   });
+
+  constructor() {
+    super();
+    addIcons({ eyeOutline, eyeOffOutline });
+  }
+
+  togglePassword(): void {
+    this.showPassword.update((v) => !v);
+  }
 }

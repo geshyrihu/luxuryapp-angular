@@ -290,13 +290,13 @@ export const settingMenu = (aspRoleS: AspRoleService): ISettingsMenuItem[] => [
     routerLink: "/settings/mini-postman",
     icon: "mdi:send",
   },
-  {
-    group: "Herramientas de Desarrollo/Prueba",
-    visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
-    label: "Demo UI ERP",
-    routerLink: "/settings/demo-app",
-    icon: "mdi:monitor",
-  },
+  // {
+  //   group: "Herramientas de Desarrollo/Prueba",
+  //   visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
+  //   label: "Demo UI ERP",
+  //   routerLink: "/settings/demo-app",
+  //   icon: "mdi:monitor",
+  // },
   {
     group: "Herramientas de Desarrollo/Prueba",
     visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),

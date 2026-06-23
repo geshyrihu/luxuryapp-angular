@@ -1,15 +1,18 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonButton, IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonButton, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
-import { waterOutline, listOutline, qrCodeOutline, downloadOutline, timeOutline } from "ionicons/icons";
+import {
+  downloadOutline,
+  listOutline,
+  qrCodeOutline,
+  timeOutline,
+  waterOutline,
+} from "ionicons/icons";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonDownload } from "src/app/core/components/buttons/mobile/ion-button-download";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
@@ -17,7 +20,11 @@ import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-but
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
-import { globalFilterFields, rowsPerPageOptions, tablePrimeNgRows } from "src/app/core/helpers/table-primeng-option";
+import {
+  globalFilterFields,
+  rowsPerPageOptions,
+  tablePrimeNgRows,
+} from "src/app/core/helpers/table-primeng-option";
 import { IInventarioHidrante } from "src/app/core/interfaces/inventario-hidrante.interface";
 import { AccountingCatalogExcelService } from "src/app/core/services/accounting-catalog-excel.service";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -31,10 +38,24 @@ import { InventarioHidranteQrService } from "./inventario-hidrante-qr.service";
   selector: "app-inventario-hidrante",
   templateUrl: "./inventario-hidrante.html",
   imports: [
-    ImageModule, TableModule,
-    CustomButtonEdit, CustomButtonDelete, CustomButtonItem, CustomButtonDownload,
-    PrimeNgCustomCaption, PrimeNgCustomTableFooter, DataViewMobile, ActionMenu,
-    IonButtonEdit, IonButtonDelete, IonButtonDownload, IonButtonItem, IonButton, IonItem, IonLabel, IonIcon,
+    AppIcon,
+    ImageModule,
+    TableModule,
+    CustomButtonEdit,
+    CustomButtonDelete,
+    CustomButtonItem,
+    CustomButtonDownload,
+    PrimeNgCustomCaption,
+    PrimeNgCustomTableFooter,
+    DataViewMobile,
+    ActionMenu,
+    CustomButtonEdit,
+    CustomButtonDelete,
+    CustomButtonDownload,
+    CustomButtonItem,
+    IonButton,
+    IonItem,
+    IonLabel,
   ],
 })
 export class InventarioHidrante {
@@ -54,7 +75,13 @@ export class InventarioHidrante {
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   constructor() {
-    addIcons({ waterOutline, listOutline, qrCodeOutline, downloadOutline, timeOutline });
+    addIcons({
+      waterOutline,
+      listOutline,
+      qrCodeOutline,
+      downloadOutline,
+      timeOutline,
+    });
     effect(() => {
       const customerId = this.customerIdS.customerId();
       if (customerId) this.onLoadData();
@@ -78,16 +105,29 @@ export class InventarioHidrante {
   }
 
   onViewPeriodos() {
-    this.router.navigate(["/logbook/fire-inspection-periods"], { queryParams: { type: "hidrante" } });
+    this.router.navigate(["/logbook/fire-inspection-periods"], {
+      queryParams: { type: "hidrante" },
+    });
   }
 
   downloadTemplate() {
     void this.excelS.exportToExcel(
-      [{ ubicacion: "Lobby Piso 1", codigo: "HID-01", tipo: "IndoorCabinet", gabinete: "GAB-01-A" }],
+      [
+        {
+          ubicacion: "Lobby Piso 1",
+          codigo: "HID-01",
+          tipo: "IndoorCabinet",
+          gabinete: "GAB-01-A",
+        },
+      ],
       [
         { header: "Ubicacion *", key: "ubicacion", width: 30 },
         { header: "Codigo (opcional)", key: "codigo", width: 20 },
-        { header: "Tipo * (IndoorCabinet | OutdoorHydrant | SiameseConnection)", key: "tipo", width: 55 },
+        {
+          header: "Tipo * (IndoorCabinet | OutdoorHydrant | SiameseConnection)",
+          key: "tipo",
+          width: 55,
+        },
         { header: "Numero Gabinete (opcional)", key: "gabinete", width: 25 },
       ],
       "Hidrantes",
@@ -119,13 +159,23 @@ export class InventarioHidrante {
     this.apiResponseS
       .onDelete(`InventarioHidrante/${id}`)
       .then((result: boolean) => {
-        if (result) this.dataSignal.update((data) => data.filter((item) => item.id !== id));
+        if (result)
+          this.dataSignal.update((data) =>
+            data.filter((item) => item.id !== id),
+          );
       });
   }
 
   onModalForm(data: any) {
     this.dialogHandlerS
-      .openDialog(InventarioHidranteForm, { id: data.id }, data.title, this.dialogHandlerS.sizeLg)
-      .then((result: boolean) => { if (result) this.onLoadData(); });
+      .openDialog(
+        InventarioHidranteForm,
+        { id: data.id },
+        data.title,
+        this.dialogHandlerS.sizeLg,
+      )
+      .then((result: boolean) => {
+        if (result) this.onLoadData();
+      });
   }
 }

@@ -1,4 +1,4 @@
-<!-- Vista de Escritorio -->
+﻿<!-- Vista de Escritorio -->
 <div class="hidden md:block">
   <div class="grid">
     <div class="col-9"></div>
@@ -115,21 +115,21 @@
           </div>
           <app-action-menu>
             <ng-container actions>
-              <ion-button-edit
+              <custom-button-edit
                 (clicked)="modalAddEdit({ id: item.id, title: 'Editar' })"
               />
-              <ion-button-delete (confirmed)="onDelete(item.id)" />
-              <ion-button-item
+              <custom-button-delete (confirmed)="onDelete(item.id)" />
+              <custom-button-item
                 iconName="save-outline"
                 label="Lecturas"
                 (clicked)="onGoToLecturas(item.id)"
               />
-              <ion-button-item
+              <custom-button-item
                 iconName="trending-up-outline"
                 label="Grófica"
                 (clicked)="onGoToGrafico(item.id)"
               />
-              <ion-button-item
+              <custom-button-item
                 iconName="bar-chart-outline"
                 label="Exportar Excel"
                 (clicked)="exportExcel(item.id)"
@@ -149,23 +149,14 @@
         >
           <div class="flex align-items-center">
             @if (item.medidorCategoriaId === 1) {
-            <ion-icon
-              name="sunny"
-              color="warning"
-              class="text-2xl mr-2"
-            ></ion-icon>
+            <app-icon icon="mdi:white-balance-sunny" color="warning"
+              class="text-2xl mr-2"></app-icon>
             } @if (item.medidorCategoriaId === 3) {
-            <ion-icon
-              name="filter"
-              color="primary"
-              class="text-2xl mr-2"
-            ></ion-icon>
+            <app-icon icon="mdi:filter" color="primary"
+              class="text-2xl mr-2"></app-icon>
             } @if (item.medidorCategoriaId === 2) {
-            <ion-icon
-              name="flash"
-              color="success"
-              class="text-2xl mr-2"
-            ></ion-icon>
+            <app-icon icon="mdi:flash" color="success"
+              class="text-2xl mr-2"></app-icon>
             }
             <div class="flex flex-column">
               <span class="text-xs text-500 uppercase font-bold">Móximo</span>
@@ -181,7 +172,7 @@
             class="m-0"
             (click)="modalMedidorLecturaAddEdit(item)"
           >
-            <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+            <app-icon icon="mdi:plus-circle-outline" slot="start"></app-icon>
             Registrar
           </ion-button>
         </div>

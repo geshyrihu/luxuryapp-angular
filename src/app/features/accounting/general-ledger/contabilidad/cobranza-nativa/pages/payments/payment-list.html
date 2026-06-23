@@ -1,4 +1,4 @@
-<p-confirmDialog />
+﻿<p-confirmDialog />
 
 <div class="card p-0 md:p-4">
   <p-table
@@ -113,7 +113,7 @@
         slot="start"
         class="w-2rem h-2rem border-round-lg bg-green-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <ion-icon name="cash-outline" class="text-green-600 text-xl"></ion-icon>
+        <app-icon icon="mdi:cash" class="text-green-600 text-xl"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.propertyFullName || 'N/A' }}</h3>
@@ -124,8 +124,8 @@
         <p>{{ item.reference || '-' }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit (clicked)="onModalForm(item.id)" />
-        <ion-button-delete (confirmed)="onDelete(item)" />
+        <custom-button-edit (clicked)="onModalForm(item.id)" />
+        <custom-button-delete (confirmed)="onDelete(item)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="['fullName', 'applicationRoleName', 'userName', 'personalCellPhone', 'personalEmail']"
   [value]="dataSignal()"
   #dt
@@ -116,15 +116,15 @@
 
       <app-action-menu slot="end">
         <ng-container actions>
-          <ion-button-edit
+          <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <ion-button-item
+          <custom-button-item
             iconName="person-outline"
             label="Usuario App"
             (clicked)="onModalUserApp(item.applicationUserId)"
           />
-          <ion-button-delete (confirmed)="onDelete(item.id)" />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
         </ng-container>
       </app-action-menu>
     </ion-item>

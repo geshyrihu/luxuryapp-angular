@@ -1,4 +1,4 @@
-import {
+﻿import {
   Component,
   computed,
   effect,
@@ -30,11 +30,6 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { WarehouseForm } from "./warehouse-form";
-import {
-  IonButtonDelete,
-  IonButtonEdit,
-  IonButtonItem,
-} from "src/app/core/components/buttons/mobile";
 @Component({
   selector: "app-warehouse-list",
   templateUrl: "./warehouse-list.html",
@@ -49,9 +44,9 @@ import {
     CustomButtonDelete,
     IonItem,
     IonLabel,
-    IonButtonDelete,
-    IonButtonEdit,
-    IonButtonItem,
+    CustomButtonDelete,
+    CustomButtonEdit,
+    CustomButtonItem,
   ],
 })
 export class WarehouseList implements OnInit {

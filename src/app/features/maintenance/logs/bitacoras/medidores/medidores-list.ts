@@ -1,12 +1,7 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
-import {
-  IonButton,
-  IonIcon,
-  IonItem,
-  IonLabel,
-} from "@ionic/angular/standalone";
+import { IonButton } from "@ionic/angular/standalone";
 import * as FileSaver from "file-saver";
 import { addIcons } from "ionicons";
 import {
@@ -20,17 +15,18 @@ import {
   sunny,
   trashOutline,
 } from "ionicons/icons";
-import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { IMedidor } from "src/app/core/interfaces/medidor.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -40,12 +36,6 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { MedidorForm } from "./medidor-form";
 import { MedidorLecturaForm } from "./medidor-lectura-form";
-import {
-  IonButtonDelete,
-  IonButtonEdit,
-  IonButtonItem,
-} from "src/app/core/components/buttons/mobile";
-import { Endpoints } from "src/app/core/constants/endpoints";
 @Component({
   selector: "app-medidores-list",
   templateUrl: "./medidores-list.html",
@@ -59,13 +49,12 @@ import { Endpoints } from "src/app/core/constants/endpoints";
     CardModule,
     TooltipModule,
     CustomButtonItem,
-    IonIcon,
     IonButton,
     ActionMenu,
     AppIcon,
-    IonButtonDelete,
-    IonButtonEdit,
-    IonButtonItem,
+    CustomButtonDelete,
+    CustomButtonEdit,
+    CustomButtonItem,
   ],
 })
 export class MedidoresList {
@@ -106,11 +95,15 @@ export class MedidoresList {
       .then((result: any) => this.dataSignal.set(result));
   }
   onDelete(id: any) {
-    this.apiResponseS.onDelete(Endpoints.Meters.delete(id)).then((result: boolean) => {
-      if (result) {
-        this.dataSignal.update((data) => data.filter((item) => item.id !== id));
-      }
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.Meters.delete(id))
+      .then((result: boolean) => {
+        if (result) {
+          this.dataSignal.update((data) =>
+            data.filter((item) => item.id !== id),
+          );
+        }
+      });
   }
 
   modalAddEdit(data: any) {

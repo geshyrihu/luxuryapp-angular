@@ -104,10 +104,7 @@
           class="w-2rem h-2rem border-round-lg flex align-items-center justify-content-center flex-shrink-0 ml-3"
           [class]="log.isSuccess ? 'bg-green-100' : 'bg-red-100'"
         >
-          <ion-icon
-            name="document-text-outline"
-            [class]="log.isSuccess ? 'text-green-600 text-xl' : 'text-red-600 text-xl'"
-          ></ion-icon>
+          <app-icon icon="mdi:file-document-outline" [class]="log.isSuccess ? 'text-green-600 text-xl' : 'text-red-600 text-xl'"></app-icon>
         </div>
         <ion-label>
           <h3>{{ log.operationType }}</h3>

@@ -1,17 +1,13 @@
-import { Component, forwardRef, output } from "@angular/core";
-import {
-  ControlValueAccessor,
-  NG_VALUE_ACCESSOR,
-  ReactiveFormsModule,
-} from "@angular/forms";
+﻿import { Component, forwardRef, inject, output } from "@angular/core";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
+import { IonCheckbox } from "@ionic/angular/standalone";
 import { CheckboxModule } from "primeng/checkbox";
 import { BaseInputSignal } from "../base/base-input-signal";
 
 @Component({
   selector: "custom-input-check-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, CheckboxModule],
+  imports: [BaseInputSignal, ReactiveFormsModule, CheckboxModule, IonCheckbox],
   template: `
-    <!-- 🏗️ ESTRUCTURA BASE -->
     <base-input-signal
       [id]="id()"
       [label]="label()"
@@ -23,32 +19,41 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [description]="description()"
       [hidden]="hidden()"
     >
-      <!-- 🚀 CHECKBOX DE PRIMENG -->
-      <div class="checkbox-wrapper">
-        <p-checkbox
-          [inputId]="id()"
-          [formControl]="control() || internalControl"
-          [binary]="true"
-          (onChange)="onValueChange($event)"
-        />
-        <label [for]="id()" class="checkbox-label">{{ placeholder() }}</label>
-      </div>
+      @if (platform.isMobile()) {
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <ion-checkbox
+            [id]="id()"
+            [formControl]="control() || internalControl"
+            (ionChange)="onIonCheckChange($event)"
+          />
+          @if (placeholder()) {
+            <label [for]="id()" style="cursor: pointer; margin: 0;">{{ placeholder() }}</label>
+          }
+        </div>
+      } @else {
+        <div class="checkbox-wrapper">
+          <p-checkbox
+            [inputId]="id()"
+            [formControl]="control() || internalControl"
+            [binary]="true"
+            (onChange)="onValueChange($event)"
+          />
+          <label [for]="id()" class="checkbox-label">{{ placeholder() }}</label>
+        </div>
+      }
     </base-input-signal>
   `,
-  styles: [
-    `
-      .checkbox-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .checkbox-label {
-        cursor: pointer;
-        margin: 0;
-      }
-    `,
-  ],
+  styles: [`
+    .checkbox-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .checkbox-label {
+      cursor: pointer;
+      margin: 0;
+    }
+  `],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -57,19 +62,14 @@ import { BaseInputSignal } from "../base/base-input-signal";
     },
   ],
 })
-export class CustomInputCheckSignal
-  extends BaseInputSignal
-  implements ControlValueAccessor
-{
-  // 📤 EVENTO DE SALIDA
+export class CustomInputCheckSignal extends BaseInputSignal implements ControlValueAccessor {
+
   checkChange = output<boolean>();
 
   constructor() {
     super();
   }
 
-  // 🔄 MANEJO DE CAMBIOS
-  // El evento de PrimeNG checkbox devuelve un objeto con la propiedad 'checked'
   onValueChange(event: any): void {
     const newValue = event.checked;
     this.onChange(newValue);
@@ -77,30 +77,15 @@ export class CustomInputCheckSignal
     this.checkChange.emit(newValue);
   }
 
-  // Explicit implementation to avoid 'registerOnChange is not a function' error
-  override registerOnChange(fn: any): void {
-    this.onChange = fn;
+  onIonCheckChange(event: any): void {
+    const newValue = event.detail.checked;
+    this.onChange(newValue);
+    this.onTouch();
+    this.checkChange.emit(newValue);
   }
 
-  override registerOnTouched(fn: any): void {
-    this.onTouch = fn;
-  }
-
-  override writeValue(obj: any): void {
-    super.writeValue(obj);
-  }
-
-  override setDisabledState(isDisabled: boolean): void {
-    super.setDisabledState(isDisabled);
-  }
+  override registerOnChange(fn: any): void { this.onChange = fn; }
+  override registerOnTouched(fn: any): void { this.onTouch = fn; }
+  override writeValue(obj: any): void { super.writeValue(obj); }
+  override setDisabledState(isDisabled: boolean): void { super.setDisabledState(isDisabled); }
 }
-
-
-
-
-
-
-
-
-
-

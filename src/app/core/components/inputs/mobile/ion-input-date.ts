@@ -1,14 +1,8 @@
-import { Component, forwardRef } from "@angular/core";
+﻿import { Component, computed, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonInput } from "@ionic/angular/standalone";
 import { BaseIonicInput } from "../base/base-ionic-input";
 
-/**
- * 📅 ION INPUT DATE - Mobile (Ionic)
- * -------------------------------------------------------------------------
- * Input de fecha nativo para móviles. Usa el DateTimePicker del sistema
- * operativo (iOS/Android) para una experiencia fluida.
- */
 @Component({
   selector: "ion-input-date",
   imports: [BaseIonicInput, ReactiveFormsModule, IonInput],
@@ -20,6 +14,12 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       [placeholder]="placeholder()"
       [readonly]="readonly()"
       [required]="requiredInput()"
+      [hidden]="hidden()"
+      [description]="description()"
+      [horizontal]="horizontal()"
+      [noMargin]="noMargin()"
+      [onlyInput]="onlyInput()"
+      [class]="inputStyleClass()"
     >
       <ion-input
         type="date"
@@ -29,7 +29,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         [placeholder]="placeholder()"
         label-placement="floating"
         fill="outline"
-        shape="round"
         [readonly]="readonly()"
         [disabled]="disabled()"
       >
@@ -48,6 +47,10 @@ import { BaseIonicInput } from "../base/base-ionic-input";
   ],
 })
 export class IonInputDate extends BaseIonicInput {
+  customClass = input<string>("");
+
+  inputStyleClass = computed(() => this.customClass());
+
   override registerOnChange(fn: any): void {
     this.onChange = fn;
   }

@@ -9,7 +9,7 @@
       color="tertiary"
       (click)="generateDailyReport()"
     >
-      <ion-icon name="sparkles" color="dark"></ion-icon>
+      <app-icon icon="mdi:creation" color="dark"></app-icon>
       <ion-label class="font-bold text-dark">Informe IA</ion-label>
     </ion-chip>
 
@@ -105,7 +105,7 @@
           <div
             class="flex align-items-center gap-1 text-500 bg-surface-50 px-2 py-1 border-round-2xl"
           >
-            <ion-icon name="people-outline"></ion-icon>
+            <app-icon icon="mdi:account-group-outline"></app-icon>
             <span>{{ item.responsible?.split(' ')[0] }}</span>
           </div>
           } @if(item.daysOpen >= 0) {
@@ -116,7 +116,7 @@
             [class.text-400]="item.daysOpen <= 6"
           >
             @if(item.daysOpen > 6) {
-            <ion-icon name="alert-circle-outline"></ion-icon> }
+            <app-icon icon="mdi:alert-circle-outline"></app-icon> }
             <span>{{ item.daysOpen }} días</span>
           </div>
           }

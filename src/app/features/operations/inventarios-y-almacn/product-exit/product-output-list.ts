@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -17,7 +17,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 // import { Subscription } from "rxjs"; // Removed
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile";
+import { CustomButtonItem } from "src/app/core/components/buttons/web";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
@@ -57,7 +57,7 @@ import { ProductReturn } from "./product-return";
 
     DatePickerModule,
 
-    IonButtonItem,
+    CustomButtonItem,
   ],
   providers: [PaginationService],
 })

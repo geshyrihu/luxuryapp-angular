@@ -1,13 +1,10 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { folderOpenOutline, keyOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonDownload } from "src/app/core/components/buttons/mobile/ion-button-download";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
@@ -35,12 +32,11 @@ import { InventarioLlaveForm } from "./inventario-llave-form";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
-    IonButtonDownload,
+    CustomButtonEdit,
+    CustomButtonDelete,
+    CustomButtonDownload,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
 })
 export class InventarioLlavesList {
@@ -156,9 +152,9 @@ ${this.htmlPrintS.getStandardCss()}
   @page { margin: 10mm; }
   .container { max-width: 1000px; }
   th { background-color: #1E3A8A !important; color: #FFFFFF !important; }
-  
+
   .sistema-header { background-color: #eef2f7 !important; color: #003A62 !important; font-weight: bold; font-size: 14px; padding: 6px 10px !important; }
-  
+
   .data-table { width:100%; border-collapse:collapse; margin-bottom:16px; }
   .data-table th, .data-table td { padding:4px 8px; border:1px solid #D1D5DB; }
   .data-table th { background:#1E3A8A; color: #ffffff; font-weight:700; text-align:center; font-size: 11px; }
@@ -183,7 +179,7 @@ ${this.htmlPrintS.getStandardCss()}
       </tbody>
     </table>
   </div>
-  
+
   ${this.htmlPrintS.buildStandardFooter(generatedAt)}
 </div>
 </body></html>`;
@@ -196,12 +192,3 @@ ${this.htmlPrintS.getStandardCss()}
     }
   }
 }
-
-
-
-
-
-
-
-
-

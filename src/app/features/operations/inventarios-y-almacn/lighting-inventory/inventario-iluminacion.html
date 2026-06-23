@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -72,7 +72,7 @@
     <ion-item
       lines="none"
       class="ion-no-padding"
-      style="--background: #f0f9ff; --min-height: 44px"
+      style="--background: var(--ds-surface-variant); --min-height: 44px"
     >
       <div
         slot="start"
@@ -80,7 +80,7 @@
           width: 36px;
           height: 36px;
           border-radius: 10px;
-          background: #bae6fd;
+          background: var(--ds-outline);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -88,13 +88,10 @@
           margin-left: 16px;
         "
       >
-        <ion-icon
-          name="bulb-outline"
-          style="font-size: 20px; color: #0284c7"
-        ></ion-icon>
+        <app-icon icon="mdi:lightbulb-outline" style="font-size: 20px; color: var(--ds-info)"></app-icon>
       </div>
       <ion-label>
-        <h3 style="font-weight: 700; color: #0284c7">
+        <h3 style="font-weight: 700; color: var(--ds-info)">
           {{ item.luminaria.producto }}
         </h3>
       </ion-label>
@@ -111,10 +108,10 @@
         <p>{{ itm.area }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit
+        <custom-button-edit
           (clicked)="onModalForm({ id: itm.id, title: 'Editar' })"
         />
-        <ion-button-delete (confirmed)="onDelete(itm.id)" />
+        <custom-button-delete (confirmed)="onDelete(itm.id)" />
       </app-action-menu>
     </ion-item>
     }

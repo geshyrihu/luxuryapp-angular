@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { CardModule } from "primeng/card";
@@ -22,7 +22,6 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { ProductEntryForm } from "./product-entry-form";
-import { IonButtonDelete, IonButtonEdit } from "src/app/core/components/buttons/mobile";
 @Component({
   selector: "app-list-entradas",
   templateUrl: "./product-entry-list.html",
@@ -38,8 +37,8 @@ import { IonButtonDelete, IonButtonEdit } from "src/app/core/components/buttons/
     CardModule,
     IonItem,
     IonLabel,
-    IonButtonDelete,
-    IonButtonEdit,
+    CustomButtonDelete,
+    CustomButtonEdit,
   ],
 })
 export class ProductEntryList {

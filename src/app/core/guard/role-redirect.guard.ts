@@ -1,5 +1,5 @@
 import { inject } from "@angular/core";
-import { CanActivateFn, Router } from "@angular/router";
+import { CanActivateFn, Router, UrlTree } from "@angular/router";
 import { EApplicationRole } from "../enums/asp-net-roles.enum";
 import { AspRoleService } from "../services/asp-role.service";
 /**
@@ -19,21 +19,16 @@ import { AspRoleService } from "../services/asp-role.service";
  * @returns Un `UrlTree` para la redirección. ¡No te interpongas en su camino!
  */
 
-export const roleRedirectGuard: CanActivateFn = (): boolean => {
+export const roleRedirectGuard: CanActivateFn = (): UrlTree => {
   const aspRoleS = inject(AspRoleService);
   const router = inject(Router);
 
-  let url: string;
   if (aspRoleS.hasRole(EApplicationRole.Comite)) {
-    url = "/committee";
+    return router.createUrlTree(["/committee"]);
   } else if (aspRoleS.hasRole(EApplicationRole.Direccion)) {
-    url = "/direccion";
-  } else {
-    url = "/dashboard";
+    return router.createUrlTree(["/direccion"]);
   }
-
-  router.navigate([url], { replaceUrl: true });
-  return false;
+  return router.createUrlTree(["/dashboard"]);
 };
 
 

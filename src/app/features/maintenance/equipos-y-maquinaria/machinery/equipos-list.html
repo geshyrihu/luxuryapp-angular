@@ -379,38 +379,35 @@
                 size="small"
                 (click)="onDocumentos(item.id)"
               >
-                <ion-icon
-                  slot="icon-only"
-                  name="document-text-outline"
-                ></ion-icon>
+                <app-icon icon="mdi:file-document-outline" slot="icon-only"></app-icon>
               </ion-button>
               <ion-button
                 fill="clear"
                 size="small"
                 (click)="onServiceHistory(item.id)"
               >
-                <ion-icon slot="icon-only" name="time-outline"></ion-icon>
+                <app-icon icon="mdi:clock-outline" slot="icon-only"></app-icon>
               </ion-button>
               <ion-button
                 fill="clear"
                 size="small"
                 (click)="onBitacoraIndividual(item.id)"
               >
-                <ion-icon slot="icon-only" name="reader-outline"></ion-icon>
+                <app-icon icon="mdi:book-open-outline" slot="icon-only"></app-icon>
               </ion-button>
               <ion-button
                 fill="clear"
                 size="small"
                 (click)="showModalFichatecnica(item.id)"
               >
-                <ion-icon slot="icon-only" name="clipboard-outline"></ion-icon>
+                <app-icon icon="mdi:clipboard-text-outline" slot="icon-only"></app-icon>
               </ion-button>
               <ion-button
                 fill="clear"
                 size="small"
                 (click)="onEquipmentInspections(item)"
               >
-                <ion-icon slot="icon-only" name="clipboard-outline"></ion-icon>
+                <app-icon icon="mdi:clipboard-text-outline" slot="icon-only"></app-icon>
               </ion-button>
               <ion-button
                 fill="clear"
@@ -418,7 +415,7 @@
                 (click)="item.expanded = !item.expanded"
                 [color]="item.expanded ? 'primary' : 'medium'"
               >
-                <ion-icon slot="icon-only" name="construct-outline"></ion-icon>
+                <app-icon icon="mdi:hammer-wrench" slot="icon-only"></app-icon>
               </ion-button>
             </div>
 
@@ -435,7 +432,7 @@
                   size="small"
                   (click)="showModalMaintenanceCalendar({ id: 0, task: 'create', machineryId: item.id, header: 'Nuevo Servicio' })"
                 >
-                  <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+                  <app-icon icon="mdi:plus-circle-outline" slot="start"></app-icon>
                   Agregar
                 </ion-button>
               </div>
@@ -483,7 +480,7 @@
                       color="medium"
                       (click)="showModalMaintenanceCalendar({ id: service.id, task: 'copy', machineryId: service.machineryId, header: 'Duplicar' })"
                     >
-                      <ion-icon slot="icon-only" name="copy-outline"></ion-icon>
+                      <app-icon icon="mdi:content-copy" slot="icon-only"></app-icon>
                     </ion-button>
                     <ion-button
                       fill="clear"
@@ -491,10 +488,7 @@
                       color="primary"
                       (click)="showModalMaintenanceCalendar({ id: service.id, task: 'edit', machineryId: service.machineryId, header: 'Editar' })"
                     >
-                      <ion-icon
-                        slot="icon-only"
-                        name="create-outline"
-                      ></ion-icon>
+                      <app-icon icon="mdi:pencil-outline" slot="icon-only"></app-icon>
                     </ion-button>
                     <ion-button
                       fill="clear"
@@ -502,10 +496,7 @@
                       color="danger"
                       (click)="onDeleteOrder(service.id)"
                     >
-                      <ion-icon
-                        slot="icon-only"
-                        name="trash-outline"
-                      ></ion-icon>
+                      <app-icon icon="mdi:trash-can-outline" slot="icon-only"></app-icon>
                     </ion-button>
                   </div>
                   }
@@ -531,10 +522,10 @@
               color="primary"
               (click)="onModalAddOrEdit({ id: item.id, title: 'Editar' })"
             >
-              <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+              <app-icon icon="mdi:pencil-outline" slot="icon-only"></app-icon>
             </ion-button>
             <ion-button fill="clear" color="danger" (click)="onDelete(item.id)">
-              <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+              <app-icon icon="mdi:trash-can-outline" slot="icon-only"></app-icon>
             </ion-button>
             }
           </div>

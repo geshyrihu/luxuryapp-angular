@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -8,11 +8,9 @@ import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import {
-  IonButtonDelete,
-  IonButtonEdit,
-} from "src/app/core/components/buttons/mobile";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+  CustomButtonDelete,
+  CustomButtonEdit,
+} from "src/app/core/components/buttons/web";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
@@ -45,8 +43,8 @@ import { CustomerDataCompanyForm } from "./customer-data-company-form";
     CustomInputSelectSignal,
     IonItem,
     IonLabel,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
     AppIcon,
   ],
 })

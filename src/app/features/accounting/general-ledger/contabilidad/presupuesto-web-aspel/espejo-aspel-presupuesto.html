@@ -185,7 +185,7 @@ Contenedor principal de la vista de presupuesto.
               class="text-right font-bold"
               [class.text-color-secondary]="!isMesVisible(mes)"
             >
-              <span style="font-size: 0.8em; color: #6c757d">
+              <span style="font-size: 0.8em; color: var(--ds-text-muted)">
                 {{ getTotalPresupuestoDelMes(mes) !== 0 ?
                 (getTotalPresupuestoDelMes(mes) | number: "1.0-0") : "-" }}
               </span>

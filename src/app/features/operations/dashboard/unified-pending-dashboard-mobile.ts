@@ -1,3 +1,4 @@
+import { AppIcon } from 'src/app/core/components/app-icon/app-icon.component';
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, input, signal } from "@angular/core";
 import { Router } from "@angular/router";
@@ -34,7 +35,7 @@ import { TicketLegalForm } from "../../legal/asuntos-legales-y-seguros/ticket-le
 import { PendingItemDTO } from "./models/pending-item.dto";
 @Component({
   selector: "app-unified-pending-dashboard-mobile",
-  imports: [
+  imports: [AppIcon, 
     CommonModule,
     DataViewMobile,
     IonItem,

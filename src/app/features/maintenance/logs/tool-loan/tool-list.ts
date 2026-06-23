@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { IonAvatar, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { AvatarModule } from "primeng/avatar";
@@ -9,11 +9,9 @@ import { SplitButtonModule } from "primeng/splitbutton";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
-  IonButtonDelete,
-  IonButtonEdit,
-} from "src/app/core/components/buttons/mobile";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+  CustomButtonDelete,
+  CustomButtonEdit,
+} from "src/app/core/components/buttons/web";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -51,8 +49,8 @@ import { ToolForm } from "./tool-form";
     IonItem,
     IonLabel,
     IonAvatar,
-    IonButtonDelete,
-    IonButtonEdit,
+    CustomButtonDelete,
+    CustomButtonEdit,
   ],
 })
 export class ToolList {

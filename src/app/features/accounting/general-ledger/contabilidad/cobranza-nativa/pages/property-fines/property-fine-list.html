@@ -1,4 +1,4 @@
-<div class="card p-0 md:p-4">
+﻿<div class="card p-0 md:p-4">
   <p-table
     [value]="dataSignal()"
     [paginator]="true"
@@ -93,7 +93,7 @@
         slot="start"
         class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <ion-icon name="alert-circle-outline" class="text-orange-600 text-xl" />
+        <app-icon icon="mdi:alert-circle-outline" class="text-orange-600 text-xl"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.propertyFullName }}</h3>
@@ -105,13 +105,13 @@
       </ion-label>
       <app-action-menu slot="end">
         @if (canIssueCharge(item.status)) {
-          <ion-button-edit (clicked)="onIssueCharge(item)" />
+          <custom-button-edit (clicked)="onIssueCharge(item)" />
         }
         @if (canEdit(item.status)) {
-          <ion-button-edit (clicked)="onModalForm(item.id)" />
+          <custom-button-edit (clicked)="onModalForm(item.id)" />
         }
         @if (canVoid(item.status)) {
-          <ion-button-delete (confirmed)="onVoid(item)" />
+          <custom-button-delete (confirmed)="onVoid(item)" />
         }
       </app-action-menu>
     </ion-item>

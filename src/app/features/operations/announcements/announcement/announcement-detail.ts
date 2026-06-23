@@ -2,17 +2,16 @@ import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import {
-    IonButton,
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardSubtitle,
-    IonCardTitle,
-    IonIcon,
-    IonImg,
-    IonItem,
-    IonLabel,
-    IonList,
+  IonButton,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonImg,
+  IonItem,
+  IonLabel,
+  IonList,
 } from "@ionic/angular/standalone";
 import { CardModule } from "primeng/card";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
@@ -32,7 +31,7 @@ import { IAnnouncement } from "./announcement.model";
     IonCardSubtitle,
     IonImg,
     IonButton,
-    IonIcon,
+
     IonList,
     IonItem,
     IonLabel,
@@ -53,17 +52,9 @@ export class announcementDetail implements OnInit {
     const id = this.route.snapshot.paramMap.get("id");
     if (id) {
       const response = await this.apiResponseS.onGetItem<any>(
-        Endpoints.Announcements.getById(id)
+        Endpoints.Announcements.getById(id),
       );
       this.announcement = response;
     }
   }
 }
-
-
-
-
-
-
-
-

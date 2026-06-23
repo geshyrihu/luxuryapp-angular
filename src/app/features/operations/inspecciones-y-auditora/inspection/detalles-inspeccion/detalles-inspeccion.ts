@@ -1,11 +1,11 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
+import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -17,9 +17,9 @@ import { InspeccionActivoCondominioEditar } from "../inspeccion-activo-condomini
 @Component({
   selector: "app-detalles-inspeccion",
   imports: [
-    IonButtonEdit,
-    IonButtonItem,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonItem,
+    CustomButtonDelete,
     CommonModule,
     CustomButton,
     ActionMenu,

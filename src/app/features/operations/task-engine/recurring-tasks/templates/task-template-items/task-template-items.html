@@ -1,4 +1,4 @@
-@if (templateInfo(); as template) {
+﻿@if (templateInfo(); as template) {
 
 <!-- Desktop View -->
 <p-table
@@ -100,8 +100,8 @@
         </p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit label="Editar" (clicked)="showItemForm(item)" />
-        <ion-button-delete (confirmed)="onDeleteItem(item.id)" />
+        <custom-button-edit label="Editar" (clicked)="showItemForm(item)" />
+        <custom-button-delete (confirmed)="onDeleteItem(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

@@ -1,4 +1,4 @@
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
+﻿import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
@@ -28,7 +28,7 @@ import { MinutaDetalleForm } from "./minuta-detalle-form";
 @Component({
   selector: "app-seguimiento-minutas",
   templateUrl: "./seguimiento-minutas.html",
-  imports: [IonButtonItem, 
+  imports: [CustomButtonItem, 
     CommonModule,
     TableModule,
     CustomButton,

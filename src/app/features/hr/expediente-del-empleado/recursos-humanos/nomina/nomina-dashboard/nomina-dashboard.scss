@@ -3,8 +3,8 @@
 }
 
 .nom-page {
-  background: var(--ds-bg-page, #f8fafc);
-  color: var(--ds-text-primary, #0f172a);
+  background: var(--ds-bg-page, var(--ds-surface-variant));
+  color: var(--ds-text-primary, var(--ds-text-primary));
   font-family: var(--ds-font-family-base, "Segoe UI", Arial, sans-serif);
   min-height: 100%;
   padding: 1rem;
@@ -15,8 +15,8 @@
   align-items: stretch;
   background:
     linear-gradient(135deg, rgba(22, 163, 74, 0.08), rgba(5, 150, 105, 0.05)),
-    var(--ds-bg-surface, #fff);
-  border: 1px solid var(--ds-border, #e2e8f0);
+    var(--ds-bg-surface, var(--ds-surface));
+  border: 1px solid var(--ds-border, var(--ds-border));
   border-radius: var(--ds-radius-xl, 12px);
   box-shadow: var(--ds-shadow-sm, 0 1px 2px rgba(15, 23, 42, 0.08));
   display: grid;
@@ -33,14 +33,14 @@
 }
 
 .nom-hero h1 {
-  color: var(--ds-text-primary, #0f172a);
+  color: var(--ds-text-primary, var(--ds-text-primary));
   font-size: clamp(1.5rem, 3vw, 1.875rem);
   line-height: 1.1;
   margin: 0;
 }
 
 .nom-hero p {
-  color: var(--ds-text-secondary, #475569);
+  color: var(--ds-text-secondary, var(--ds-text-secondary));
   font-size: var(--ds-font-size-body, 0.9375rem);
   line-height: 1.7;
   margin: 0;
@@ -57,7 +57,7 @@
 .nom-metric {
   align-items: center;
   background: rgba(255, 255, 255, 0.82);
-  border: 1px solid var(--ds-border, #e2e8f0);
+  border: 1px solid var(--ds-border, var(--ds-border));
   border-radius: var(--ds-radius-lg, 10px);
   display: flex;
   gap: 0.875rem;
@@ -73,9 +73,9 @@
   justify-content: center;
   width: 2.5rem;
 
-  &--primary { background: var(--primary-50, #eff6ff); color: var(--ds-primary, #0b3164); }
-  &--info    { background: #ecfeff; color: var(--ds-info, #0891b2); }
-  &--success { background: #f0fdf4; color: #16a34a; }
+  &--primary { background: var(--primary-50, var(--ds-surface-variant)); color: var(--ds-primary, var(--ds-primary)); }
+  &--info    { background: var(--ds-surface-variant); color: var(--ds-info, var(--ds-info)); }
+  &--success { background: var(--ds-surface-variant); color: #16a34a; }
 }
 
 .nom-metric strong,
@@ -91,7 +91,7 @@
 }
 
 .nom-metric small {
-  color: var(--ds-text-secondary, #475569);
+  color: var(--ds-text-secondary, var(--ds-text-secondary));
   font-size: 0.75rem;
   margin-top: 0.2rem;
 }
@@ -107,11 +107,11 @@
 .nom-section__header h2 {
   font-size: var(--ds-font-size-section-title, 1.1rem);
   margin: 0 0 0.2rem;
-  color: var(--ds-text-primary, #0f172a);
+  color: var(--ds-text-primary, var(--ds-text-primary));
 }
 
 .nom-section__header p {
-  color: var(--ds-text-secondary, #475569);
+  color: var(--ds-text-secondary, var(--ds-text-secondary));
   font-size: 0.8rem;
   line-height: 1.55;
   margin: 0;
@@ -121,7 +121,7 @@
   align-items: center;
   background: #16a34a;
   border-radius: var(--ds-radius-md, 8px);
-  color: #fff;
+  color: var(--ds-surface);
   display: inline-flex;
   flex-shrink: 0;
   font-size: 0.7rem;
@@ -134,7 +134,7 @@
 
 /* ── Module card ─────────────────────────────────────────────── */
 .nom-card {
-  border: 1px solid var(--ds-border, #e2e8f0);
+  border: 1px solid var(--ds-border, var(--ds-border));
   border-radius: 12px;
   overflow: hidden;
   transition: box-shadow 0.2s ease, transform 0.15s ease;
@@ -162,12 +162,12 @@
 
 /* ── Expanded detail panel ───────────────────────────────────── */
 .nom-expand {
-  border-top: 1px solid var(--ds-border, #e2e8f0);
+  border-top: 1px solid var(--ds-border, var(--ds-border));
 }
 
 .nom-endpoint-row {
-  background: var(--ds-bg-page, #f8fafc);
-  border: 1px solid var(--ds-border, #e2e8f0);
+  background: var(--ds-bg-page, var(--ds-surface-variant));
+  border: 1px solid var(--ds-border, var(--ds-border));
   border-radius: 6px;
   display: flex;
   gap: 0.625rem;

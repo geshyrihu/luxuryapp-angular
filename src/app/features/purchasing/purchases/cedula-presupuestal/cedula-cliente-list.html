@@ -1,4 +1,4 @@
-@if (dataSignal() !== null) {
+﻿@if (dataSignal() !== null) {
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block"></div>
 <p-table
@@ -163,7 +163,7 @@
           width: 36px;
           height: 36px;
           border-radius: 10px;
-          background: #dbeafe;
+          background: var(--ds-border);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -171,10 +171,7 @@
           margin-left: 16px;
         "
       >
-        <ion-icon
-          name="wallet-outline"
-          style="font-size: 20px; color: #2563eb"
-        ></ion-icon>
+        <app-icon icon="mdi:wallet-outline" style="font-size: 20px; color: #2563eb"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.descripcion }}</h3>
@@ -185,10 +182,10 @@
         </p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit
+        <custom-button-edit
           (clicked)="onModalEditar({ id: item.id, title: 'Editar' })"
         />
-        <ion-button-delete (confirmed)="onDelete(item.id)" />
+        <custom-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

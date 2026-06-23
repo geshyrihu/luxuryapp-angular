@@ -70,10 +70,7 @@
 <div class="block md:hidden pb-5">
   @if (!loading() && announcements().length === 0) {
   <div class="ion-text-center ion-padding mt-5">
-    <ion-icon
-      name="file-tray-outline"
-      style="font-size: 4rem; color: var(--ion-color-medium)"
-    ></ion-icon>
+    <app-icon icon="mdi:tray-outline" style="font-size: 4rem; color: var(--ion-color-medium)"></app-icon>
     <p class="text-medium text-500 mt-2">No hay comunicados disponibles</p>
   </div>
   } @if (!loading() && announcements().length > 0) {
@@ -98,10 +95,7 @@
 
         @if (anuncio.attachmentCount > 0) {
         <div class="flex justify-content-end mt-2">
-          <ion-icon
-            name="attach-outline"
-            class="text-lg text-color-secondary"
-          ></ion-icon>
+          <app-icon icon="mdi:paperclip" class="text-lg text-color-secondary"></app-icon>
         </div>
         }
       </ion-card-content>

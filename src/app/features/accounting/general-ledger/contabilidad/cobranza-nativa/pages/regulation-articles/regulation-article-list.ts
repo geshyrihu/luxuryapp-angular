@@ -1,13 +1,11 @@
+﻿import { CurrencyPipe } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
-import { CurrencyPipe } from "@angular/common";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { documentTextOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
@@ -35,11 +33,10 @@ import { RegulationArticleForm } from "./regulation-article-form";
     CurrencyPipe,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
   templateUrl: "./regulation-article-list.html",
 })
@@ -65,8 +62,12 @@ export default class RegulationArticleList {
   async onLoadData() {
     const customerId = this.customerIdS.customerId();
     if (!customerId) return;
-    const result = await this.apiResponseS.onGetItem<RegulationArticleResponseDTO[]>(
-      Endpoints.AccountingCoi.NativeCollection.RegulationArticles.byCustomer(customerId),
+    const result = await this.apiResponseS.onGetItem<
+      RegulationArticleResponseDTO[]
+    >(
+      Endpoints.AccountingCoi.NativeCollection.RegulationArticles.byCustomer(
+        customerId,
+      ),
     );
     this.dataSignal.set(result ?? []);
   }
@@ -78,13 +79,26 @@ export default class RegulationArticleList {
       customerId: this.customerIdS.customerId(),
     };
     this.dialogHandlerS
-      .openDialog(RegulationArticleForm, data, data.title, this.dialogHandlerS.sizeLg)
-      .then((res: boolean) => { if (res) this.onLoadData(); });
+      .openDialog(
+        RegulationArticleForm,
+        data,
+        data.title,
+        this.dialogHandlerS.sizeLg,
+      )
+      .then((res: boolean) => {
+        if (res) this.onLoadData();
+      });
   }
 
   async onDelete(item: RegulationArticleResponseDTO) {
     this.apiResponseS
-      .onDelete(Endpoints.AccountingCoi.NativeCollection.RegulationArticles.delete(item.id))
-      .then((res) => { if (res) this.onLoadData(); });
+      .onDelete(
+        Endpoints.AccountingCoi.NativeCollection.RegulationArticles.delete(
+          item.id,
+        ),
+      )
+      .then((res) => {
+        if (res) this.onLoadData();
+      });
   }
 }

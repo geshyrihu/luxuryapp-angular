@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, inject, OnInit, signal } from "@angular/core";
 import { DatePipe } from "@angular/common";
 import { TableModule } from "primeng/table";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
@@ -16,7 +16,6 @@ import { AddendumTemplateListDTO } from "../models/addendum-template.dto";
 import { AddendumTemplateFormComponent } from "./addendum-template-form";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 
 @Component({
   selector: "app-addendum-template-list",
@@ -31,7 +30,7 @@ import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button
     CustomButtonItem,
     DataViewMobile,
     ActionMenu,
-    IonButtonItem,
+    CustomButtonItem,
   ],
 })
 export class AddendumTemplateList implements OnInit {

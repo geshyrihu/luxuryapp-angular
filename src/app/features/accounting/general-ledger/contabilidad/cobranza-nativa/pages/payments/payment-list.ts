@@ -1,13 +1,11 @@
-import { Component, effect, inject, signal } from "@angular/core";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+﻿import { Component, effect, inject, signal } from "@angular/core";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { cashOutline } from "ionicons/icons";
 import { ConfirmationService } from "primeng/api";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
@@ -42,11 +40,10 @@ import { EPaymentMethod, EPaymentStatus } from "../../models/enums";
     DatePipe,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
   providers: [ConfirmationService],
   templateUrl: "./payment-list.html",

@@ -22,7 +22,6 @@ import {
 } from "@angular/router";
 import {
   IonButton,
-  IonIcon,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonItem,
@@ -32,8 +31,6 @@ import {
   IonProgressBar,
   IonSearchbar,
 } from "@ionic/angular/standalone";
-import { addIcons } from "ionicons";
-import { add, addCircle, home } from "ionicons/icons";
 import { filter, map, startWith } from "rxjs";
 import { AppIcon } from "../app-icon/app-icon.component";
 
@@ -63,7 +60,6 @@ export interface IMobileBreadcrumbItem {
     IonItemDivider,
     IonLabel,
     IonSearchbar,
-    IonIcon,
     IonButton,
     IonInfiniteScroll,
     IonInfiniteScrollContent,
@@ -123,9 +119,7 @@ export class DataViewMobile implements OnInit {
     ),
   );
 
-  constructor() {
-    addIcons({ add, addCircle, home });
-  }
+  constructor() {}
 
   ngOnInit(): void {
     // Procesar cambios de ruta y actualizar señales

@@ -44,12 +44,12 @@
                   {{ fila.concepto }}
                 </td>
                 <td class="text-xs text-color-secondary" [class.font-bold]="fila.esFilaTotal">
-                  {{ fila.esFilaTotal ? '' : (fila.origen || 'Calculado') }}
+                  {{ fila.esFilaTotal || fila.ocultarOrigen ? '' : (fila.origen || 'Calculado') }}
                 </td>
                 
                 @for (monto of fila.montos; track $index; let colIdx = $index; let isLast = $last) {
                   <td class="text-right" [class.rf-td-number]="!fila.esFilaTotal" [class.rf-td-number--total]="fila.esFilaTotal" [class.rf-neg]="monto < 0">
-                    @if (fila.esManual && !isLast) {
+                    @if (fila.esManual) {
                       <input
                         type="number"
                         class="p-inputtext p-component p-inputtext-sm w-full text-right bg-white"

@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, input, signal, ViewEncapsulation } from "@angular/core";
 import { FormsModule, ReactiveFormsModule, FormGroup } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
@@ -26,8 +26,6 @@ import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-cap
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { IonIcon } from "@ionic/angular/standalone";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
 
 @Component({
   selector: "app-patterns-kpi",
@@ -57,8 +55,8 @@ import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-butt
     DataViewMobile,
     AppIcon,
     IonIcon,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
   ],
   template: `
     <div class="grid">
@@ -298,7 +296,7 @@ import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-butt
                 <div class="surface-card shadow-1 border-round-lg overflow-hidden border-left-3 p-3" [class]="'border-' + item.color + '-500'">
                   <div class="flex justify-content-between align-items-start mb-2">
                     <div><h3 class="m-0 font-bold text-lg">{{item.name}}</h3><span class="text-xs text-secondary">{{item.folio}}</span></div>
-                    <app-action-menu><ion-button-edit /><ion-button-delete /></app-action-menu>
+                    <app-action-menu><custom-button-edit /><custom-button-delete /></app-action-menu>
                   </div>
                   <div class="flex align-items-center gap-2 mb-3">
                     <ion-icon [name]="item.icon" [color]="item.color" class="text-xl"></ion-icon>

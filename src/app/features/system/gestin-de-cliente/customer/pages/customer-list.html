@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -92,7 +92,7 @@
   <div customFilters>
     <div class="mb-3 flex mt-1 mb-1">
       <div class="m-0">
-        <ion-button-active-desactive
+        <custom-button-active-desactive
           fluid
           [state]="state"
           (stateChange)="onSortChange($event)"
@@ -113,20 +113,20 @@
       </ion-label>
       <div slot="end">
         <app-action-menu>
-          <ion-button-edit
+          <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <ion-button-item
+          <custom-button-item
             iconName="image-outline"
             label="Imógenes"
             (clicked)="onUpdateImages(item.id)"
           />
-          <ion-button-item
+          <custom-button-item
             iconName="location-outline"
             label="Dirección"
             (clicked)="onUpdateAddress(item.id)"
           />
-          <ion-button-delete (confirmed)="onDelete(item.id)" />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
         </app-action-menu>
       </div>
     </ion-item>

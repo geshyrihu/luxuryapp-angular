@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { IonAvatar } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -7,7 +7,6 @@ import { AvatarModule } from "primeng/avatar";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { IonButtonActiveDesactive } from "src/app/core/components/buttons/mobile/ion-button-active-desactive";
 import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/custom-button-active-desactive";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
@@ -38,7 +37,7 @@ import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
     IonAvatar,
     PrimeNgCustomCaption,
     CustomBtnActiveDesactive,
-    IonButtonActiveDesactive,
+    CustomBtnActiveDesactive,
     AppIcon,
   ],
 })

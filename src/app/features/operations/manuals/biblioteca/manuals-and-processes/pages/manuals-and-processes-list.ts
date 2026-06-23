@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { ButtonModule } from "primeng/button";
@@ -31,10 +31,6 @@ interface DeptGroup {
 
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
-import {
-  IonButtonDelete,
-  IonButtonEdit,
-} from "src/app/core/components/buttons/mobile";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 
 @Component({
@@ -52,8 +48,8 @@ import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-vi
     DataViewMobile,
     IonItem,
     IonLabel,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
     AppIcon,
   ],
 })

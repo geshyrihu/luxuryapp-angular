@@ -25,36 +25,18 @@
     </div>
   </div>
 
-  <div class="mb-4 border-1 surface-border border-round p-4" *ngIf="!hasCustomer()">
-    <div class="font-medium mb-2">Sin cliente activo</div>
-    <div class="text-color-secondary">
-      Selecciona un cliente para consultar el análisis de cobranza.
+  @if (!hasCustomer()) {
+    <div class="mb-4 border-1 surface-border border-round p-4">
+      <div class="font-medium mb-2">Sin cliente activo</div>
+      <div class="text-color-secondary">
+        Selecciona un cliente para consultar el análisis de cobranza.
+      </div>
     </div>
-  </div>
-
-  <div class="flex mb-4 align-items-center flex-wrap gap-2" *ngIf="hasCustomer()">
-    <input
-      type="date"
-      class="p-inputtext p-component"
-      [ngModel]="cutoffDateInput()"
-      (ngModelChange)="cutoffDateInput.set($event)"
-    />
-    <p-button
-      label="Recargar"
-      icon="mdi:refresh"
-      [loading]="loading()"
-      (click)="onReload()"
-    />
-    <div class="text-sm text-color-secondary ml-auto">
-      {{ customerName() || "Cliente activo" }} · corte al día
+  } @else if (loading()) {
+    <div class="text-color-secondary mb-4">
+      Consultando Aspel y armando el análisis de cobranza...
     </div>
-  </div>
-
-  <div *ngIf="loading()" class="text-color-secondary mb-4">
-    Consultando Aspel y armando el análisis de cobranza...
-  </div>
-
-  <div *ngIf="!loading() && data() as d">
+  } @else if (data(); as d) {
     <p-message
       class="block mb-4"
       [severity]="messageSeverity()"
@@ -227,8 +209,10 @@
       </div>
 
       <p-table
+        #dt
         [value]="filteredRows()"
-        styleClass="p-datatable-sm p-datatable-gridlines"
+        [globalFilterFields]="globalFilterFields()"
+        styleClass="p-datatable-sm p-datatable-gridlines hidden md:block"
         [tableStyle]="{ 'min-width': '700px' }"
         [paginator]="true"
         [rows]="50"
@@ -270,6 +254,35 @@
           </tr>
         </ng-template>
       </p-table>
+
+      <app-data-view-mobile
+        [data]="filteredRows()"
+        [globalFilterFields]="globalFilterFields()"
+        [dt]="dt"
+        [showAdd]="false"
+      >
+        <ng-template #listItemTemplate let-item>
+          <ion-item lines="full" detail="false" class="ion-no-padding">
+            <ion-label class="ion-text-wrap">
+              <h3 class="font-semibold m-0 text-color">
+                {{ item.numeroCuenta }}
+              </h3>
+              <p class="text-xs m-0 mt-1 text-color-secondary">
+                {{ item.condomino }}
+              </p>
+              <p class="text-xs m-0 mt-1">
+                <span
+                  [class.text-green-600]="item.saldo < 0"
+                  [class.text-red-500]="item.saldo > 0"
+                >
+                  {{ item.saldo === 0 ? '—' : (item.saldo | number:'1.0-0') }}
+                </span>
+                · {{ item.clasificacion }}
+              </p>
+            </ion-label>
+          </ion-item>
+        </ng-template>
+      </app-data-view-mobile>
     </div>
-  </div>
+  }
 </section>

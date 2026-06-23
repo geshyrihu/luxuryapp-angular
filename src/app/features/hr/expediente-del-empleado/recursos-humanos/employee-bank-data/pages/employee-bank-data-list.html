@@ -1,4 +1,4 @@
-<div class="card">
+﻿<div class="card">
   <p-table
     #dt
     [value]="dataSignal()"
@@ -81,7 +81,7 @@
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-            <ion-button-item
+            <custom-button-item
               (clicked)="onModalForm({ id: item.id, title: 'Editar Datos Bancarios' })"
               label="Editar"
               iconName="create-outline"

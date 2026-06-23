@@ -1,14 +1,8 @@
-import { Component, forwardRef, input, output } from "@angular/core";
+﻿import { Component, forwardRef, input, output } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonSearchbar } from "@ionic/angular/standalone";
 import { BaseIonicInput } from "../base/base-ionic-input";
 
-/**
- * 🔍 ION INPUT SEARCH - Mobile (Ionic)
- * -------------------------------------------------------------------------
- * Barra de búsqueda nativa de Ionic, usada para filtrados o en reemplazo
- * de auto-completes complejos en mobile.
- */
 @Component({
   selector: "ion-input-search",
   imports: [BaseIonicInput, ReactiveFormsModule, IonSearchbar],
@@ -17,8 +11,13 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       [control]="control()"
       [id]="id()"
       [label]="label()"
+      [placeholder]="placeholder()"
       [readonly]="readonly()"
       [required]="requiredInput()"
+      [hidden]="hidden()"
+      [description]="description()"
+      [horizontal]="horizontal()"
+      [noMargin]="noMargin()"
       [onlyInput]="true"
     >
       <ion-searchbar

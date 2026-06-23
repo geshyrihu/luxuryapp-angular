@@ -1,4 +1,4 @@
-<div class="hidden md:block"></div>
+﻿<div class="hidden md:block"></div>
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -162,10 +162,10 @@
 
       <app-action-menu slot="end">
         <ng-container actions>
-          <ion-button-edit
+          <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <ion-button-delete (confirmed)="onDelete(item.id)" />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
         </ng-container>
       </app-action-menu>
     </ion-item>

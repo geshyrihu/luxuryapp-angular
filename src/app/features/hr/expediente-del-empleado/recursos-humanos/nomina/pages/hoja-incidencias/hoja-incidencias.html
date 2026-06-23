@@ -167,7 +167,7 @@
             {{ getStatus(emp.employeeId, celda.fecha) }}
           </span>
           @if (isSyncronizada(emp.employeeId, celda.fecha)) {
-          <span style="position: absolute; top: 1px; right: 2px; font-size: .55rem; color: #64748b">S</span>
+          <span style="position: absolute; top: 1px; right: 2px; font-size: .55rem; color: var(--ds-text-muted)">S</span>
           }
         </td>
         <!-- Context menu overlay para selección directa -->
@@ -196,23 +196,23 @@
 <style>
   .hoja-incidencias-table th,
   .hoja-incidencias-table td {
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--ds-border);
     padding: 0;
   }
   .hoja-th {
-    background: #f8fafc;
+    background: var(--ds-surface-variant);
     padding: 6px 4px;
     font-size: 0.75rem;
     font-weight: 600;
-    color: #475569;
+    color: var(--ds-text-secondary);
     white-space: nowrap;
   }
   .hoja-th-fixed {
-    background: #f1f5f9;
+    background: var(--ds-surface-variant);
     padding: 6px 10px;
     font-size: 0.75rem;
     font-weight: 700;
-    color: #334155;
+    color: var(--ds-text-secondary);
     position: sticky;
     z-index: 11;
     text-align: left;
@@ -222,7 +222,7 @@
     padding: 6px 10px;
     position: sticky;
     z-index: 5;
-    border-right: 2px solid #cbd5e1;
+    border-right: 2px solid var(--ds-outline);
   }
   .hoja-td {
     padding: 4px 6px;
@@ -240,13 +240,13 @@
     transition: background 0.1s;
   }
   .hoja-celda:hover {
-    background: #f0f9ff;
+    background: var(--ds-surface-variant);
   }
   .hoja-celda-descanso {
-    background: #f8fafc !important;
+    background: var(--ds-surface-variant) !important;
   }
   .hoja-celda-festivo {
-    background: #eff6ff !important;
+    background: var(--ds-surface-variant) !important;
   }
   .hoja-badge {
     display: inline-block;
@@ -277,7 +277,7 @@
   .hoja-row:hover .hoja-celda,
   .hoja-row:hover .hoja-td,
   .hoja-row:hover .hoja-td-fixed {
-    background: #fafafa;
+    background: var(--ds-surface-variant);
   }
 </style>
 }

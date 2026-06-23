@@ -147,6 +147,71 @@ export class CedulaPresupuestal {
       GASTOS_EXTRA.some((prefix) => c.numeroCuenta.startsWith(prefix)),
     );
 
+    const buildRow = (cuenta: IBaseAccountDto) => {
+      const presupMes = getPresup(cuenta, idx);
+      const oct = getMonto(cuenta, wr(idx - 2));
+      const nov = getMonto(cuenta, wr(idx - 1));
+      const mes = getMonto(cuenta, idx);
+      const acum = cuenta.acumuladoAnual;
+      const presupAnual = getPresupAnual(cuenta);
+      const restante = presupAnual - acum;
+
+      return {
+        tipo: "item",
+        numeroCuenta: cuenta.numeroCuenta,
+        descripcion: cuenta.descripcion,
+        presupMes,
+        oct,
+        nov,
+        mes,
+        acum,
+        presupAnual,
+        restante,
+      };
+    };
+
+    const appendSection = (
+      descripcion: string,
+      cuentas: IBaseAccountDto[],
+      totalDescripcion: string,
+    ) => {
+      if (!cuentas.length) return;
+
+      let total = {
+        presupMes: 0,
+        oct: 0,
+        nov: 0,
+        mes: 0,
+        acum: 0,
+        presupAnual: 0,
+      };
+
+      result.push({ tipo: "header", descripcion, colspan: 7 });
+
+      for (const cuenta of cuentas) {
+        const row = buildRow(cuenta);
+        total.presupMes += row.presupMes;
+        total.oct += row.oct;
+        total.nov += row.nov;
+        total.mes += row.mes;
+        total.acum += row.acum;
+        total.presupAnual += row.presupAnual;
+        result.push(row);
+      }
+
+      result.push({
+        tipo: "total-extra",
+        descripcion: totalDescripcion,
+        presupMes: total.presupMes,
+        oct: total.oct,
+        nov: total.nov,
+        mes: total.mes,
+        acum: total.acum,
+        presupAnual: total.presupAnual,
+        restante: total.presupAnual - total.acum,
+      });
+    };
+
     // ─── BLOQUE 1: GASTOS GENERALES ───────────────────────────────────────────
     let granTot = {
       presupMes: 0,
@@ -157,11 +222,13 @@ export class CedulaPresupuestal {
       presupAnual: 0,
     };
 
-    result.push({
-      tipo: "header",
-      descripcion: "GASTOS GENERALES",
-      colspan: 7,
-    });
+    if (cuentasGenerales.length) {
+      result.push({
+        tipo: "header",
+        descripcion: "GASTOS GENERALES",
+        colspan: 7,
+      });
+    }
 
     for (const cuenta of cuentasGenerales) {
       const presupMes = getPresup(cuenta, idx);
@@ -179,31 +246,38 @@ export class CedulaPresupuestal {
       granTot.acum += acum;
       granTot.presupAnual += presupAnual;
 
+      result.push(buildRow(cuenta));
+    }
+
+    if (cuentasGenerales.length) {
       result.push({
-        tipo: "item",
-        numeroCuenta: cuenta.numeroCuenta,
-        descripcion: cuenta.descripcion,
-        presupMes,
-        oct,
-        nov,
-        mes,
-        acum,
-        presupAnual,
-        restante,
+        tipo: "gran-total",
+        descripcion: "GRAN TOTAL GASTOS GENERALES",
+        presupMes: granTot.presupMes,
+        oct: granTot.oct,
+        nov: granTot.nov,
+        mes: granTot.mes,
+        acum: granTot.acum,
+        presupAnual: granTot.presupAnual,
+        restante: granTot.presupAnual - granTot.acum,
       });
     }
 
-    result.push({
-      tipo: "gran-total",
-      descripcion: "GRAN TOTAL GASTOS GENERALES",
-      presupMes: granTot.presupMes,
-      oct: granTot.oct,
-      nov: granTot.nov,
-      mes: granTot.mes,
-      acum: granTot.acum,
-      presupAnual: granTot.presupAnual,
-      restante: granTot.presupAnual - granTot.acum,
-    });
+    appendSection(
+      "EXTRAORDINARIOS",
+      cuentasExtra.filter((c) => c.numeroCuenta.startsWith("605-")),
+      "TOTAL EXTRAORDINARIOS",
+    );
+    appendSection(
+      "MEJORAS Y PROYECTOS",
+      cuentasExtra.filter((c) => c.numeroCuenta.startsWith("606-")),
+      "TOTAL MEJORAS Y PROYECTOS",
+    );
+    appendSection(
+      "GASTOS EN EVENTOS",
+      cuentasExtra.filter((c) => c.numeroCuenta.startsWith("607-")),
+      "TOTAL GASTOS EN EVENTOS",
+    );
 
     return result;
   });

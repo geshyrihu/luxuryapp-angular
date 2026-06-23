@@ -1,4 +1,4 @@
-import { CommonModule, formatDate } from "@angular/common";
+﻿import { CommonModule, formatDate } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import * as FileSaver from "file-saver";
@@ -8,8 +8,8 @@ import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
+import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -37,8 +37,8 @@ import { MedidorLecturaForm } from "./medidor-lectura-form";
     PrimeNgCustomTableFooter,
     ActionMenu,
     AppIcon,
-    IonButtonDelete,
-    IonButtonEdit,
+    CustomButtonDelete,
+    CustomButtonEdit,
   ],
 })
 export class MedidorLecturaList implements OnInit {

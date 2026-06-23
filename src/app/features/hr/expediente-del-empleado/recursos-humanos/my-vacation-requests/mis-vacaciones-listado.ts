@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { TableModule } from "primeng/table";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
@@ -22,7 +22,6 @@ import { VacationRequestMyDTO } from "src/app/features/hr/expediente-del-emplead
 import { VacacionesForm } from "./vacaciones-form";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 @Component({
   selector: "app-mis-vacaciones-listado",
   templateUrl: "./mis-vacaciones-listado.html",
@@ -37,7 +36,7 @@ import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button
     PrimeNgCustomTableFooter,
     ActionMenu,
     DataViewMobile,
-    IonButtonItem,
+    CustomButtonItem,
   ],
 })
 export class MisVacacionesListado implements OnInit {

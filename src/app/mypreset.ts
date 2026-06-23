@@ -175,6 +175,10 @@ const MyPreset = definePreset(Lara, {
             background: "var(--success-bg)",
             color: "var(--success-color)",
           },
+          info: {
+            background: "var(--ds-info-light)",
+            color: "var(--ds-info)",
+          },
           warn: {
             background: "var(--warning-bg)",
             color: "var(--warning-color)",

@@ -1,9 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
 import { CatalogComponentUi } from './catalog-component-ui';
 
 describe('CatalogComponentUi', () => {
@@ -16,11 +13,6 @@ describe('CatalogComponentUi', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         { provide: MessageService, useValue: { add: vi.fn(), clear: vi.fn() } },
-        { provide: DialogService, useValue: { open: vi.fn().mockReturnValue({ onClose: { subscribe: vi.fn() } }) } },
-        { provide: DynamicDialogConfig, useValue: { data: {} } },
-        { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
-        { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
-        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
       ],
     }).compileComponents();
 
@@ -31,5 +23,34 @@ describe('CatalogComponentUi', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should start on tokens category', () => {
+    expect(component.activeCategory()).toBe('tokens');
+  });
+
+  it('should toggle sidebar', () => {
+    expect(component.sidebarCollapsed()).toBe(false);
+    component.toggleSidebar();
+    expect(component.sidebarCollapsed()).toBe(true);
+  });
+
+  it('should navigate to category', () => {
+    component.navigateTo('web');
+    expect(component.activeCategory()).toBe('web');
+  });
+
+  it('should mock login with empty fields', () => {
+    component.loginForm.email = '';
+    component.loginForm.password = '';
+    component.mockLogin();
+    expect(component.loginMessage()).toContain('Completa ambos campos');
+  });
+
+  it('should mock login successfully', () => {
+    component.loginForm.email = 'test@luxuryapp.com';
+    component.loginForm.password = '123456';
+    component.mockLogin();
+    expect(component.loginMessage()).toContain('exitoso');
   });
 });

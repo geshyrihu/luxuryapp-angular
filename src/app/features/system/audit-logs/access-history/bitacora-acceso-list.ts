@@ -6,7 +6,6 @@ import {
   IonAccordionGroup,
   IonAvatar,
   IonBadge,
-  IonIcon,
   IonItem,
   IonLabel,
 } from "@ionic/angular/standalone";
@@ -18,7 +17,6 @@ import { CalendarRange } from "src/app/core/components/rango-calendario-mes-anio
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ButtonType } from "src/app/core/enums/button-type";
 import {
-  globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
@@ -40,7 +38,6 @@ import { FiltroCalendarService } from "src/app/core/services/filtro-calendar.ser
     IonLabel,
     IonAvatar,
     IonBadge,
-    IonIcon,
     IonAccordion,
     IonAccordionGroup,
   ],
@@ -120,13 +117,16 @@ export class BitacoraAcceso {
 
             user.historial.push({
               evento: evento,
-              fechaRegistro: new Date(current.timestamp).toLocaleString("es-MX", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-              }),
+              fechaRegistro: new Date(current.timestamp).toLocaleString(
+                "es-MX",
+                {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                },
+              ),
             });
             return acc;
           }, []);
@@ -142,11 +142,3 @@ export class BitacoraAcceso {
       });
   }
 }
-
-
-
-
-
-
-
-

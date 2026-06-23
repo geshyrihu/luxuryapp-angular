@@ -1,4 +1,4 @@
-import {
+﻿import {
   Component,
   computed,
   effect,
@@ -7,25 +7,23 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { clipboardOutline } from "ionicons/icons";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 @Component({
@@ -40,11 +38,10 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
     PrimeNgCustomTableFooter,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
 })
 export class ListaPlantillaEvaluacion implements OnInit {
@@ -85,12 +82,14 @@ export class ListaPlantillaEvaluacion implements OnInit {
   }
 
   onDelete(id: any) {
-    this.apiResponseS.onDelete(Endpoints.TemplateEvaluation.delete(id)).then(() => {
-      // Actualizamos el signal para eliminar el elemento de la lista
-      this.dataSignal.update((currentData) =>
-        currentData.filter((item) => item.id !== id),
-      );
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.TemplateEvaluation.delete(id))
+      .then(() => {
+        // Actualizamos el signal para eliminar el elemento de la lista
+        this.dataSignal.update((currentData) =>
+          currentData.filter((item) => item.id !== id),
+        );
+      });
   }
 
   // Para crear
@@ -103,12 +102,3 @@ export class ListaPlantillaEvaluacion implements OnInit {
     this.router.navigate(["/employee-evaluation/templates/edit", templateId]);
   }
 }
-
-
-
-
-
-
-
-
-

@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="globalFilterFields()"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -66,7 +66,7 @@
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
 >
   <div customFilters style="padding: 4px 16px 8px">
-    <ion-button-download
+    <custom-button-download
       (clicked)="onDownloadPdf()"
     />
   </div>
@@ -78,7 +78,7 @@
           width: 36px;
           height: 36px;
           border-radius: 10px;
-          background: #fef9c3;
+          background: var(--ds-border);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -86,10 +86,7 @@
           margin-left: 16px;
         "
       >
-        <ion-icon
-          name="key-outline"
-          style="font-size: 20px; color: #ca8a04"
-        ></ion-icon>
+        <app-icon icon="mdi:key-outline" style="font-size: 20px; color: #ca8a04"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.descripcion }}</h3>
@@ -100,10 +97,10 @@
         <p>{{ item.equipoClasificacion }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit
+        <custom-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
         />
-        <ion-button-delete (confirmed)="onDelete(item.id)" />
+        <custom-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

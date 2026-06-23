@@ -1,20 +1,17 @@
-import { CommonModule } from "@angular/common";
-import { Endpoints } from "src/app/core/constants/endpoints";
+﻿import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { cartOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -40,12 +37,8 @@ import { PurchaseRequestForm } from "./purchase-request-form";
     PrimeNgCustomTableFooter,
     ActionMenu,
     DataViewMobile,
-    IonButtonEdit,
-    IonButtonDelete,
-    IonButtonItem,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
 })
 export class PurchaseRequestList {

@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DataViewModule } from "primeng/dataview";
 import { TableModule } from "primeng/table";
@@ -16,7 +16,6 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/models/document-type.enum";
-import { IonButtonViewPdf } from "src/app/core/components/buttons/mobile";
 @Component({
   selector: "app-acta-constitutiva-list",
   templateUrl: "./acta-constitutiva-list.html",
@@ -29,7 +28,7 @@ import { IonButtonViewPdf } from "src/app/core/components/buttons/mobile";
     IonItem,
     IonLabel,
     CustomButtonViewPdf,
-    IonButtonViewPdf,
+    CustomButtonViewPdf,
   ],
 })
 export class ActaConstitutivaList {

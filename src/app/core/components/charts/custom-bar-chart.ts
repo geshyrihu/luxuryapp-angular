@@ -14,7 +14,7 @@ import { ChartModule } from "primeng/chart";
     <div class="p-card">
       <p-chart
         class="chart"
-        type="line"
+        [type]="chartType()"
         [data]="dataSignal()"
         [options]="chartOptions()"
       ></p-chart>
@@ -23,8 +23,9 @@ import { ChartModule } from "primeng/chart";
   `,
 })
 export class CustomBarChart {
-  dataSignal = input<ChartLinePrime | null>(null, { alias: "data" });
+  dataSignal   = input<ChartLinePrime | null>(null, { alias: "data" });
   optionsSignal = input<any>(null, { alias: "options" });
+  chartType    = input<'bar' | 'line' | 'doughnut' | 'pie'>('line');
 
   chartOptions = computed(() => {
     const documentStyle = getComputedStyle(document.documentElement);

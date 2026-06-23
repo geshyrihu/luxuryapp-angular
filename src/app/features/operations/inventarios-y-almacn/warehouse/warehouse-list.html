@@ -1,4 +1,4 @@
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
@@ -85,20 +85,20 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <ion-button-item
+            <custom-button-item
               (clicked)="onViewProducts(item.id)"
               label="Ver Productos"
               iconName="cube-outline"
             />
-            <ion-button-item
+            <custom-button-item
               (clicked)="onDownloadInventory(item.id, item.nombre)"
               label="Descargar Inventario"
               iconName="document-text-outline"
             />
-            <ion-button-edit
+            <custom-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             />
-            <ion-button-delete (confirmed)="onDelete(item.id)" />
+            <custom-button-delete (confirmed)="onDelete(item.id)" />
           </ng-container>
         </app-action-menu>
       </div>

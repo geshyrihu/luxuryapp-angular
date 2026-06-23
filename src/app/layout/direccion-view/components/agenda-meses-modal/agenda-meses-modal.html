@@ -22,12 +22,12 @@
 <!-- Cargando -->
 @if (cargando()) {
   <div class="flex justify-content-center align-items-center py-6">
-    <i class="pi pi-spin pi-spinner text-primary" style="font-size: 1.5rem"></i>
+    <app-icon icon="mdi:spin" style="font-size: 1.5rem" class="ner text-primary ds-animate-spin"></app-icon>
     <span class="ml-2 text-500">Cargando eventos...</span>
   </div>
 } @else if (eventosPorMes().length === 0) {
   <div class="flex flex-column align-items-center justify-content-center py-6 gap-3">
-    <i class="pi pi-calendar text-400" style="font-size: 3rem"></i>
+    <app-icon icon="mdi:calendar-blank" style="font-size: 3rem" class="text-400"></app-icon>
     <span class="text-500">No hay eventos en los proximos {{ mesesSeleccionados() }} meses</span>
   </div>
 } @else {
@@ -73,7 +73,7 @@
                     styleClass="text-xs"
                   />
                   @if (evento.isRecurring) {
-                    <i class="pi pi-refresh text-xs text-400" pTooltip="Recurrente"></i>
+                    <app-icon icon="mdi:refresh" pTooltip="Recurrente" class="text-xs text-400"></app-icon>
                   }
                 </div>
                 @if (evento.googleMeetUrl) {
@@ -82,11 +82,11 @@
                     target="_blank"
                     class="text-xs text-primary no-underline flex align-items-center gap-1"
                   >
-                    <i class="pi pi-video"></i> Unirse a Meet
+                    <app-icon icon="mdi:video-outline"></app-icon> Unirse a Meet
                   </a>
                 } @else if (evento.location) {
                   <span class="text-xs text-500 flex align-items-center gap-1">
-                    <i class="pi pi-map-marker"></i> {{ evento.location }}
+                    <app-icon icon="mdi:map-marker-outline"></app-icon> {{ evento.location }}
                   </span>
                 }
               </div>
@@ -97,7 +97,7 @@
                   class="flex align-items-center gap-1 flex-none text-400"
                   [pTooltip]="evento.guestCount + ' invitados'"
                 >
-                  <i class="pi pi-users text-xs"></i>
+                  <app-icon icon="mdi:account-group-outline"  class="text-xs"></app-icon>
                   <span class="text-xs">{{ evento.guestCount }}</span>
                 </div>
               }

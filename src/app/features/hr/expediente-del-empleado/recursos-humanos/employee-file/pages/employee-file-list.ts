@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { TableModule } from "primeng/table";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
@@ -17,7 +17,6 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { EmployeeFileSummaryDTO } from "../models/employee-file.interfaces";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 
 @Component({
   selector: "app-employee-file-list",
@@ -30,7 +29,7 @@ import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button
     CustomInputSelectSignal,
     ActionMenu,
     DataViewMobile,
-    IonButtonItem,
+    CustomButtonItem,
   ],
 })
 export class EmployeeFileList {

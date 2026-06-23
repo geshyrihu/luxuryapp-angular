@@ -1,15 +1,13 @@
-import { CommonModule, DatePipe } from "@angular/common";
+﻿import { CommonModule, DatePipe } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { BitacoraFiltroFechaForm } from "src/app/core/components/bitacora-filtro-fecha/bitacora-filtro-fecha-form";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -38,8 +36,8 @@ import { ExtintorBitacoraPdfService } from "./extintor-bitacora-pdf.service";
     ActionMenu,
     IonItem,
     IonLabel,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
     DatePipe,
   ],
 })

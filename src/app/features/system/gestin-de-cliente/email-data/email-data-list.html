@@ -1,4 +1,4 @@
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   #dt
   [globalFilterFields]="globalFilterFields()"
@@ -82,11 +82,11 @@
 
       <app-action-menu slot="end">
         <ng-container actions>
-          <ion-button-edit
+          <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <ion-button-delete (confirmed)="onDelete(item.id)" />
-          <ion-button-send-email (confirmed)="onSendTestEmail(item.id)" />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <custom-button-send-email (confirmed)="onSendTestEmail(item.id)" />
         </ng-container>
       </app-action-menu>
     </ion-item>

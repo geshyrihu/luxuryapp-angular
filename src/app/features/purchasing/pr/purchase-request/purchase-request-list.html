@@ -1,4 +1,4 @@
-<!--  INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+﻿<!--  INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block"></div>
 <p-table
   [globalFilterFields]="globalFilterFields"
@@ -103,17 +103,17 @@
             @if ( aspRoleS.hasAny([ AspRole.Asistente,
             AspRole.JefeMantenimiento, AspRole.Administrador,
             AspRole.SuperUsuario, ]) ) {
-            <ion-button-edit
+            <custom-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             />
-            <ion-button-item
+            <custom-button-item
               label="Detalles"
               iconName="information-circle-outline"
               routerLink="/purchase-request/detail/{{item.id}}"
             />
             } @if ( aspRoleS.hasAny([AspRole.SuperUsuario,
             AspRole.Administrador]) ) {
-            <ion-button-delete
+            <custom-button-delete
               (confirmed)="onDelete(item.id)"
             />
             }
@@ -140,7 +140,7 @@
           width: 36px;
           height: 36px;
           border-radius: 10px;
-          background: #fef3c7;
+          background: var(--ds-border);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -148,10 +148,7 @@
           margin-left: 16px;
         "
       >
-        <ion-icon
-          name="cart-outline"
-          style="font-size: 20px; color: #d97706"
-        ></ion-icon>
+        <app-icon icon="mdi:cart-outline" style="font-size: 20px; color: #d97706"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.requestedBy }}</h3>
@@ -159,10 +156,10 @@
         <p>{{ item.requestDate | date }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit
+        <custom-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
         />
-        <ion-button-delete (confirmed)="onDelete(item.id)" />
+        <custom-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

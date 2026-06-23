@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { FormsModule } from "@angular/forms";
@@ -593,7 +593,7 @@ export class DemoApp {
     {
       family: "Botones mobile",
       selector: "ion-button-*",
-      source: "core/components/buttons/mobile",
+      source: "core/components/buttons/web",
       useCase: "Acciones equivalentes optimizadas para render Ionic.",
       preferredFor:
         "Pantallas mobile, FAB, acciones tactiles y confirmaciones nativas.",
@@ -612,14 +612,13 @@ export class DemoApp {
       status: "Web",
     },
     {
-      family: "Inputs mobile",
-      selector: "ion-input-*",
-      source: "core/components/inputs/mobile",
-      useCase: "Campos equivalentes para experiencias Ionic.",
-      preferredFor:
-        "Captura tactil, pantallas de operacion y formularios dentro de ion-content.",
-      avoidWhen: "Tablas o formularios densos de escritorio.",
-      status: "Mobile",
+      family: "Inputs unificados (web + mobile)",
+      selector: "custom-input-*-signal",
+      source: "core/components/inputs/web",
+      useCase: "Un solo componente detecta plataforma: PrimeNG en desktop, Ionic en mobile (<768px).",
+      preferredFor: "Todos los formularios — web y mobile. No importar Ionic raw en features.",
+      avoidWhen: "Nunca — estos reemplazan los antiguos ion-input-* eliminados.",
+      status: "Usar",
     },
     {
       family: "Tabla PrimeNG",

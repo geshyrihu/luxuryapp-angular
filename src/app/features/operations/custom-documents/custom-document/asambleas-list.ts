@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
 import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
@@ -16,7 +16,6 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EDocumentType } from "src/app/features/legal/asuntos-legales-y-seguros/models/document-type.enum";
-import { IonButtonViewPdf } from "src/app/core/components/buttons/mobile";
 @Component({
   selector: "app-asambleas",
   imports: [
@@ -27,7 +26,7 @@ import { IonButtonViewPdf } from "src/app/core/components/buttons/mobile";
     CustomButtonViewPdf,
     IonItem,
     IonLabel,
-    IonButtonViewPdf,
+    CustomButtonViewPdf,
   ],
   templateUrl: "./asambleas-list.html",
 })

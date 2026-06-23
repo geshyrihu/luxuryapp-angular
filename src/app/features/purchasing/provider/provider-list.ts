@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -8,7 +8,7 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { storefrontOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -17,8 +17,6 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
@@ -26,6 +24,7 @@ import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-but
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -33,7 +32,6 @@ import {
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { IBusquedaProveedor } from "src/app/core/interfaces/busqueda-proveedor.interface";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -62,11 +60,10 @@ import { ProviderUse } from "./provider-use";
     CustomButtonItem,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
 })
 export class ListProvider implements OnInit {
@@ -173,11 +170,13 @@ export class ListProvider implements OnInit {
     // if (this.selectedNivelAcceso)
     //   httpParams.nivelAcceso = this.selectedNivelAcceso;
 
-    return this.apiResponseS.onGetList(urlApi, httpParams).then((result: any) => {
-      // Manejo seguro de la respuesta para evitar errores si el backend responde con error
-      this.dataSignal.set(result?.items ?? []);
-      this.totalRecords = result?.totalRecords ?? 0;
-    });
+    return this.apiResponseS
+      .onGetList(urlApi, httpParams)
+      .then((result: any) => {
+        // Manejo seguro de la respuesta para evitar errores si el backend responde con error
+        this.dataSignal.set(result?.items ?? []);
+        this.totalRecords = result?.totalRecords ?? 0;
+      });
   }
 
   // Evento de paginación de PrimeNG
@@ -204,12 +203,14 @@ export class ListProvider implements OnInit {
 
   // Elimina un proveedor
   onDelete(id: any) {
-    return this.apiResponseS.onDelete(Endpoints.Providers.delete(id)).then((result: boolean) => {
-      if (result)
-        this.dataSignal.update((currentData) =>
-          currentData.filter((item) => item.providerId !== id),
-        );
-    });
+    return this.apiResponseS
+      .onDelete(Endpoints.Providers.delete(id))
+      .then((result: boolean) => {
+        if (result)
+          this.dataSignal.update((currentData) =>
+            currentData.filter((item) => item.providerId !== id),
+          );
+      });
   }
 
   // Autoriza un proveedor
@@ -354,4 +355,3 @@ export class ListProvider implements OnInit {
     return Array.from(tokens).join(" ");
   }
 }
-

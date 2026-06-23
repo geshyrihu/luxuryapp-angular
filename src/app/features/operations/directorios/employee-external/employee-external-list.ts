@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IonAvatar, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
@@ -7,14 +7,11 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
-  IonButtonDelete,
-  IonButtonEdit,
-  IonButtonItem,
-} from "src/app/core/components/buttons/mobile";
+  CustomButtonDelete,
+  CustomButtonEdit,
+  CustomButtonItem,
+} from "src/app/core/components/buttons/web";
 import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/custom-button-active-desactive";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -42,9 +39,9 @@ import { EmployeeExternalForm } from "./employee-external-form";
     IonItem,
     IonLabel,
     IonAvatar,
-    IonButtonDelete,
-    IonButtonEdit,
-    IonButtonItem,
+    CustomButtonDelete,
+    CustomButtonEdit,
+    CustomButtonItem,
     AvatarModule,
   ],
   providers: [provideFlatpickrDefaults()],

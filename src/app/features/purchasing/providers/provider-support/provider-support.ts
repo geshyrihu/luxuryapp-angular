@@ -1,17 +1,15 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { personOutline } from "ionicons/icons";
 import { AvatarModule } from "primeng/avatar";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -33,11 +31,10 @@ import { ProviderSupportForm } from "./provider-support-form";
     PrimeNgCustomCaption,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
 })
 export class ProviderSupport implements OnInit {
@@ -62,9 +59,11 @@ export class ProviderSupport implements OnInit {
   }
   // Función para cargar los datos
   onLoadData() {
-    this.apiResponseS.onGetList(Endpoints.ProviderSupport.getAll).then((result: any) => {
-      this.dataSignal.set(result);
-    });
+    this.apiResponseS
+      .onGetList(Endpoints.ProviderSupport.getAll)
+      .then((result: any) => {
+        this.dataSignal.set(result);
+      });
   }
 
   //Modal Agregar o editar
@@ -93,12 +92,3 @@ export class ProviderSupport implements OnInit {
       });
   }
 }
-
-
-
-
-
-
-
-
-

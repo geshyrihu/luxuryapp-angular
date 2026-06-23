@@ -1,15 +1,13 @@
-import { Component, forwardRef, output } from "@angular/core";
+﻿import { Component, forwardRef, inject, output } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
+import { IonToggle } from "@ionic/angular/standalone";
+import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { BaseInputSignal } from "../base/base-input-signal";
 
-// 🔄 COMPONENTE DE SWITCH
-// Un componente para interruptores de tipo on/off.
 @Component({
   selector: "custom-input-switch-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule],
+  imports: [BaseInputSignal, ReactiveFormsModule, ToggleSwitchModule, IonToggle],
   template: `
-    <!-- 🏗️ ESTRUCTURA BASE -->
-    <!-- Reutilizamos BaseInput para manejar la etiqueta, los errores y la disposición. -->
     <base-input-signal
       [id]="id()"
       [label]="label()"
@@ -19,18 +17,31 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [required]="requiredInput()"
       [control]="control()"
     >
-      <!-- 🚀 CONTENIDO PROYECTADO -->
-      <!-- Este es el switch real que se inyectará en BaseInput. -->
-      <div class="form-check form-switch">
-        <input
-          type="checkbox"
-          class="form-check-input"
-          [id]="id()"
-          [formControl]="control() || internalControl"
-          (change)="onValueChange($event)"
-        />
-        <label class="form-check-label" [for]="id()">{{ placeholder() }}</label>
-      </div>
+      @if (platform.isMobile()) {
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <ion-toggle
+            [id]="id()"
+            [formControl]="control() || internalControl"
+            (ionChange)="onIonToggleChange($event)"
+          />
+          @if (placeholder()) {
+            <label [for]="id()" style="cursor: pointer; margin: 0;">{{ placeholder() }}</label>
+          }
+        </div>
+      } @else {
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <p-toggleswitch
+            [inputId]="id()"
+            [formControl]="control() || internalControl"
+            (onChange)="onValueChange($event)"
+          />
+          @if (placeholder()) {
+            <label [for]="id()" style="cursor: pointer; margin: 0; font-size: 0.875rem;">
+              {{ placeholder() }}
+            </label>
+          }
+        </div>
+      }
     </base-input-signal>
   `,
   providers: [
@@ -42,15 +53,18 @@ import { BaseInputSignal } from "../base/base-input-signal";
   ],
 })
 export class CustomInputSwitch extends BaseInputSignal {
-  // 📤 EVENTO DE SALIDA
-  // Notifica al componente padre cuando el valor del switch cambia.
+
   switchChange = output<boolean>();
 
-  // 🔄 MANEJO DE CAMBIOS
-  // Notifica a ControlValueAccessor y al componente padre cuando el valor del switch cambia.
-  onValueChange(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    const newValue = target.checked;
+  onValueChange(event: any): void {
+    const newValue = event.checked ?? (event.target as HTMLInputElement)?.checked;
+    this.onChange(newValue);
+    this.onTouch();
+    this.switchChange.emit(newValue);
+  }
+
+  onIonToggleChange(event: any): void {
+    const newValue = event.detail.checked;
     this.onChange(newValue);
     this.onTouch();
     this.switchChange.emit(newValue);

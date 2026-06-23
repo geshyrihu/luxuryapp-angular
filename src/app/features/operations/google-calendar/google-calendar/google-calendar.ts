@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -16,10 +16,6 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import {
-  IonButtonDelete,
-  IonButtonEdit,
-} from "src/app/core/components/buttons/mobile";
 import {
   CustomButtonDelete,
   CustomButtonEdit,
@@ -81,8 +77,8 @@ interface IGoogleCalendarEventListItem {
     CustomButtonDelete,
     IonItem,
     IonLabel,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
   ],
 })
 export class GoogleCalendar {

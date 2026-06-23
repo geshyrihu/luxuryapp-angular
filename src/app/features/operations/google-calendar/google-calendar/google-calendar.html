@@ -1,4 +1,4 @@
-<div class="grid">
+﻿<div class="grid">
   <div class="col-12">
     <div class="card">
       <div
@@ -168,8 +168,8 @@
           <div slot="end">
             <app-action-menu>
               @if (canManageItem(item)) {
-              <ion-button-edit (clicked)="onModalForm(item.id)" />
-              <ion-button-delete (confirmed)="onDelete(item.id)" />
+              <custom-button-edit (clicked)="onModalForm(item.id)" />
+              <custom-button-delete (confirmed)="onDelete(item.id)" />
               }
             </app-action-menu>
           </div>

@@ -1,4 +1,4 @@
-<div class="card">
+﻿<div class="card">
   <p-table
     [globalFilterFields]="globalFilterFields()"
     [paginator]="true"
@@ -162,8 +162,8 @@
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-            <ion-button-item label="Editar" iconName="create-outline" (clicked)="onEdit(item)" />
-            <ion-button-item label="Resolver" iconName="checkmark-circle-outline" (clicked)="onResolve(item)" />
+            <custom-button-item label="Editar" iconName="create-outline" (clicked)="onEdit(item)" />
+            <custom-button-item label="Resolver" iconName="checkmark-circle-outline" (clicked)="onResolve(item)" />
           </ng-container>
         </app-action-menu>
       </ion-item>

@@ -1,4 +1,4 @@
-<div class="h6">DEPTO : {{ depto }}</div>
+﻿<div class="h6">DEPTO : {{ depto }}</div>
 <div class="h6">NOMBRE : {{ nombre }}</div>
 <div class="h6">SEMANA : {{ semana }}</div>
 <p-table
@@ -180,10 +180,10 @@
           <ng-container actions>
             @if (applicationUserId == item.applicationUserId ||
             aspRoleS.hasRole(AspRole.SuperUsuario)) {
-            <ion-button-edit
+            <custom-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             />
-            <ion-button-delete (confirmed)="onDelete(item.id)" />
+            <custom-button-delete (confirmed)="onDelete(item.id)" />
 
             }
           </ng-container>

@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -64,7 +64,7 @@
         slot="start"
         class="w-3rem h-3rem border-round flex align-items-center justify-content-center flex-shrink-0 ml-3 surface-100"
       >
-        <ion-icon name="person-add-outline" class="text-xl text-green-600"></ion-icon>
+        <app-icon icon="mdi:account-plus-outline" class="text-xl text-green-600"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.nameEmployee }}</h3>
@@ -72,8 +72,8 @@
         <p>{{ item.executionDate }} · {{ item.status }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit (clicked)="onModalForm(item)" />
-        <ion-button-delete (confirmed)="onDelete(item.id)" />
+        <custom-button-edit (clicked)="onModalForm(item)" />
+        <custom-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

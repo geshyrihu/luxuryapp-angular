@@ -17,8 +17,8 @@
 
       body {
         font-family: "DM Sans", sans-serif;
-        background: #0a0a0a;
-        color: #ffffff;
+        background: var(--ds-text-primary);
+        color: var(--ds-surface);
         padding: 40px 20px;
       }
 
@@ -121,7 +121,7 @@
 
       .color-hex {
         font-family: "Courier New", monospace;
-        color: #888;
+        color: var(--ds-text-muted);
         font-size: 0.9rem;
         display: flex;
         justify-content: space-between;
@@ -133,7 +133,7 @@
         border: none;
         padding: 4px 8px;
         border-radius: 4px;
-        color: #fff;
+        color: var(--ds-surface);
         cursor: pointer;
         font-size: 0.75rem;
       }
@@ -149,7 +149,7 @@
       .typography-title {
         font-size: 1.5rem;
         margin-bottom: 20px;
-        color: #fff;
+        color: var(--ds-surface);
       }
 
       .font-showcase {
@@ -168,7 +168,7 @@
 
       .font-type {
         font-size: 0.8rem;
-        color: #888;
+        color: var(--ds-text-muted);
         text-transform: uppercase;
         letter-spacing: 1px;
         margin-bottom: 10px;
@@ -199,7 +199,7 @@
       }
 
       .app-mockup {
-        background: #ffffff;
+        background: var(--ds-surface);
         border-radius: 12px;
         overflow: hidden;
         box-shadow-2: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -270,7 +270,7 @@
       .stat-card {
         padding: 15px;
         border-radius: 8px;
-        border: 1px solid #e5e7eb;
+        border: 1px solid var(--ds-border);
       }
 
       .mockup-button {
@@ -346,8 +346,8 @@
             <div class="color-info">
               <div class="color-name">Negro Base</div>
               <div class="color-hex">
-                #0F172A
-                <button class="copy-btn" onclick="copyColor('#0F172A')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -355,12 +355,12 @@
           </div>
 
           <div class="color-card">
-            <div class="color-preview" style="background: #1e3a5f"></div>
+            <div class="color-preview" style="background: var(--ds-primary)"></div>
             <div class="color-info">
               <div class="color-name">Sidebar Navy</div>
               <div class="color-hex">
-                #1E3A5F
-                <button class="copy-btn" onclick="copyColor('#1E3A5F')">
+                var(--ds-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-primary)')">
                   Copiar
                 </button>
               </div>
@@ -402,13 +402,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #f8fafc; color: #0f172a"
+              style="background: var(--ds-surface-variant); color: var(--ds-text-primary)"
             ></div>
             <div class="color-info">
               <div class="color-name">Fondo Principal</div>
               <div class="color-hex">
-                #F8FAFC
-                <button class="copy-btn" onclick="copyColor('#F8FAFC')">
+                var(--ds-surface-variant)
+                <button class="copy-btn" onclick="copyColor('var(--ds-surface-variant)')">
                   Copiar
                 </button>
               </div>
@@ -418,13 +418,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #e2e8f0; color: #0f172a"
+              style="background: var(--ds-border); color: var(--ds-text-primary)"
             ></div>
             <div class="color-info">
               <div class="color-name">Gris Bordes</div>
               <div class="color-hex">
-                #E2E8F0
-                <button class="copy-btn" onclick="copyColor('#E2E8F0')">
+                var(--ds-border)
+                <button class="copy-btn" onclick="copyColor('var(--ds-border)')">
                   Copiar
                 </button>
               </div>
@@ -525,7 +525,7 @@
             <div class="mockup-content">
               <div
                 class="mockup-sidebar"
-                style="background: #1e3a5f; color: white"
+                style="background: var(--ds-primary); color: white"
               >
                 <div
                   class="mockup-sidebar-item"
@@ -565,14 +565,14 @@
                   ⚙️ Config
                 </div>
               </div>
-              <div class="mockup-main" style="background: #f8fafc">
+              <div class="mockup-main" style="background: var(--ds-surface-variant)">
                 <div class="mockup-stats">
                   <div class="stat-card" style="border-color: #2563eb">
                     <div
                       style="
                         font-family: &quot;Roboto&quot;, sans-serif;
                         font-size: 12px;
-                        color: #64748b;
+                        color: var(--ds-text-muted);
                       "
                     >
                       Ingresos
@@ -582,7 +582,7 @@
                         font-family: &quot;Inter&quot;, sans-serif;
                         font-size: 24px;
                         font-weight: 700;
-                        color: #0f172a;
+                        color: var(--ds-text-primary);
                       "
                     >
                       $245K
@@ -593,7 +593,7 @@
                       style="
                         font-family: &quot;Roboto&quot;, sans-serif;
                         font-size: 12px;
-                        color: #64748b;
+                        color: var(--ds-text-muted);
                       "
                     >
                       Usuarios
@@ -603,7 +603,7 @@
                         font-family: &quot;Inter&quot;, sans-serif;
                         font-size: 24px;
                         font-weight: 700;
-                        color: #0f172a;
+                        color: var(--ds-text-primary);
                       "
                     >
                       1,429
@@ -614,7 +614,7 @@
                       style="
                         font-family: &quot;Roboto&quot;, sans-serif;
                         font-size: 12px;
-                        color: #64748b;
+                        color: var(--ds-text-muted);
                       "
                     >
                       Tareas
@@ -624,7 +624,7 @@
                         font-family: &quot;Inter&quot;, sans-serif;
                         font-size: 24px;
                         font-weight: 700;
-                        color: #0f172a;
+                        color: var(--ds-text-primary);
                       "
                     >
                       38
@@ -634,7 +634,7 @@
                 <div class="mockup-card">
                   <h3
                     style="
-                      color: #0f172a;
+                      color: var(--ds-text-primary);
                       font-family: &quot;Inter&quot;, sans-serif;
                       margin-bottom: 10px;
                     "
@@ -643,7 +643,7 @@
                   </h3>
                   <p
                     style="
-                      color: #64748b;
+                      color: var(--ds-text-muted);
                       font-family: &quot;Roboto&quot;, sans-serif;
                       margin-bottom: 20px;
                       font-size: 14px;
@@ -671,7 +671,7 @@
           <h4>💡 Consejos de uso</h4>
           <ul>
             <li>
-              Sidebar #1E3A5F con 95% opacidad crea jerarquía visual clara
+              Sidebar var(--ds-primary) con 95% opacidad crea jerarquía visual clara
             </li>
             <li>Azul #2563EB para botones primarios y acciones importantes</li>
             <li>Azul claro #60A5FA para estados hover y elementos activos</li>
@@ -702,8 +702,8 @@
             <div class="color-info">
               <div class="color-name">Negro Profundo</div>
               <div class="color-hex">
-                #000000
-                <button class="copy-btn" onclick="copyColor('#000000')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -711,12 +711,12 @@
           </div>
 
           <div class="color-card">
-            <div class="color-preview" style="background: #0a0a0a"></div>
+            <div class="color-preview" style="background: var(--ds-text-primary)"></div>
             <div class="color-info">
               <div class="color-name">Panel Oscuro</div>
               <div class="color-hex">
-                #0A0A0A
-                <button class="copy-btn" onclick="copyColor('#0A0A0A')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -726,13 +726,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #0ea5e9; color: white"
+              style="background: var(--ds-info); color: white"
             ></div>
             <div class="color-info">
               <div class="color-name">Cyan Data</div>
               <div class="color-hex">
-                #0EA5E9
-                <button class="copy-btn" onclick="copyColor('#0EA5E9')">
+                var(--ds-info)
+                <button class="copy-btn" onclick="copyColor('var(--ds-info)')">
                   Copiar
                 </button>
               </div>
@@ -742,13 +742,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #1e293b; color: white"
+              style="background: var(--ds-text-primary); color: white"
             ></div>
             <div class="color-info">
               <div class="color-name">Gris Cards</div>
               <div class="color-hex">
-                #1E293B
-                <button class="copy-btn" onclick="copyColor('#1E293B')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -758,13 +758,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #ffffff; color: #000000"
+              style="background: var(--ds-surface); color: var(--ds-text-primary)"
             ></div>
             <div class="color-info">
               <div class="color-name">Blanco Puro</div>
               <div class="color-hex">
-                #FFFFFF
-                <button class="copy-btn" onclick="copyColor('#FFFFFF')">
+                var(--ds-surface)
+                <button class="copy-btn" onclick="copyColor('var(--ds-surface)')">
                   Copiar
                 </button>
               </div>
@@ -774,7 +774,7 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #38bdf8; color: #000000"
+              style="background: #38bdf8; color: var(--ds-text-primary)"
             ></div>
             <div class="color-info">
               <div class="color-name">Azul Gráficas</div>
@@ -861,7 +861,7 @@
                 class="mockup-logo"
                 style="
                   font-family: &quot;Space Grotesk&quot;, sans-serif;
-                  color: #0ea5e9;
+                  color: var(--ds-info);
                 "
               >
                 DataHub
@@ -879,7 +879,7 @@
               <div
                 class="mockup-sidebar"
                 style="
-                  background: #0a0a0a;
+                  background: var(--ds-text-primary);
                   color: white;
                   border-right: 1px solid rgba(255, 255, 255, 0.05);
                 "
@@ -888,8 +888,8 @@
                   class="mockup-sidebar-item"
                   style="
                     background: rgba(14, 165, 233, 0.15);
-                    color: #0ea5e9;
-                    border-left: 3px solid #0ea5e9;
+                    color: var(--ds-info);
+                    border-left: 3px solid var(--ds-info);
                     font-family: &quot;Inter&quot;, sans-serif;
                   "
                 >
@@ -914,11 +914,11 @@
                   🔍 Consultas
                 </div>
               </div>
-              <div class="mockup-main" style="background: #000000">
+              <div class="mockup-main" style="background: var(--ds-text-primary)">
                 <div
                   class="mockup-card"
                   style="
-                    background: #1e293b;
+                    background: var(--ds-text-primary);
                     color: white;
                     border: 1px solid rgba(14, 165, 233, 0.2);
                   "
@@ -926,7 +926,7 @@
                   <h3
                     style="
                       font-family: &quot;Space Grotesk&quot;, sans-serif;
-                      color: #0ea5e9;
+                      color: var(--ds-info);
                       margin-bottom: 10px;
                     "
                   >
@@ -945,7 +945,7 @@
                   <button
                     class="mockup-button"
                     style="
-                      background: #0ea5e9;
+                      background: var(--ds-info);
                       color: white;
                       font-family: &quot;Space Grotesk&quot;, sans-serif;
                     "
@@ -962,10 +962,10 @@
           <h4>💡 Consejos de uso</h4>
           <ul>
             <li>
-              Negro #0A0A0A con 96% opacidad ideal para fondos de gráficas
+              Negro var(--ds-text-primary) con 96% opacidad ideal para fondos de gráficas
             </li>
             <li>
-              Cyan #0EA5E9 perfecto para líneas y barras en visualizaciones
+              Cyan var(--ds-info) perfecto para líneas y barras en visualizaciones
             </li>
             <li>Space Grotesk da toque técnico y profesional</li>
             <li>Usa #38BDF8 para elementos secundarios en gráficas</li>
@@ -998,8 +998,8 @@
             <div class="color-info">
               <div class="color-name">Negro Base</div>
               <div class="color-hex">
-                #111827
-                <button class="copy-btn" onclick="copyColor('#111827')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -1007,12 +1007,12 @@
           </div>
 
           <div class="color-card">
-            <div class="color-preview" style="background: #1e3a8a"></div>
+            <div class="color-preview" style="background: var(--ds-primary)"></div>
             <div class="color-info">
               <div class="color-name">Azul Sistema</div>
               <div class="color-hex">
-                #1E3A8A
-                <button class="copy-btn" onclick="copyColor('#1E3A8A')">
+                var(--ds-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-primary)')">
                   Copiar
                 </button>
               </div>
@@ -1038,7 +1038,7 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #93c5fd; color: #111827"
+              style="background: #93c5fd; color: var(--ds-text-primary)"
             ></div>
             <div class="color-info">
               <div class="color-name">Azul Suave</div>
@@ -1054,13 +1054,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #f9fafb; color: #111827"
+              style="background: var(--ds-surface-variant); color: var(--ds-text-primary)"
             ></div>
             <div class="color-info">
               <div class="color-name">Fondo Claro</div>
               <div class="color-hex">
-                #F9FAFB
-                <button class="copy-btn" onclick="copyColor('#F9FAFB')">
+                var(--ds-surface-variant)
+                <button class="copy-btn" onclick="copyColor('var(--ds-surface-variant)')">
                   Copiar
                 </button>
               </div>
@@ -1070,13 +1070,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #1f2937; color: white"
+              style="background: var(--ds-text-primary); color: white"
             ></div>
             <div class="color-info">
               <div class="color-name">Gris Estructura</div>
               <div class="color-hex">
-                #1F2937
-                <button class="copy-btn" onclick="copyColor('#1F2937')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -1167,7 +1167,7 @@
             <div class="mockup-content">
               <div
                 class="mockup-sidebar"
-                style="background: #1e3a8a; color: white"
+                style="background: var(--ds-primary); color: white"
               >
                 <div
                   class="mockup-sidebar-item"
@@ -1207,11 +1207,11 @@
                   📊 Reportes
                 </div>
               </div>
-              <div class="mockup-main" style="background: #f9fafb">
+              <div class="mockup-main" style="background: var(--ds-surface-variant)">
                 <div class="mockup-card">
                   <h3
                     style="
-                      color: #111827;
+                      color: var(--ds-text-primary);
                       font-family: &quot;Outfit&quot;, sans-serif;
                       margin-bottom: 10px;
                     "
@@ -1220,7 +1220,7 @@
                   </h3>
                   <p
                     style="
-                      color: #6b7280;
+                      color: var(--ds-text-muted);
                       font-family: &quot;Roboto&quot;, sans-serif;
                       margin-bottom: 20px;
                       font-size: 14px;
@@ -1247,7 +1247,7 @@
         <div class="usage-tips">
           <h4>💡 Consejos de uso</h4>
           <ul>
-            <li>Azul #1E3A8A transmite estructura y organización</li>
+            <li>Azul var(--ds-primary) transmite estructura y organización</li>
             <li>#3B82F6 para botones de acciones en formularios</li>
             <li>Outfit moderna pero mantiene profesionalismo empresarial</li>
             <li>Azul suave #93C5FD para fondos de secciones informativas</li>
@@ -1280,8 +1280,8 @@
             <div class="color-info">
               <div class="color-name">Negro Slate</div>
               <div class="color-hex">
-                #0F172A
-                <button class="copy-btn" onclick="copyColor('#0F172A')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -1289,12 +1289,12 @@
           </div>
 
           <div class="color-card">
-            <div class="color-preview" style="background: #1e293b"></div>
+            <div class="color-preview" style="background: var(--ds-text-primary)"></div>
             <div class="color-info">
               <div class="color-name">Panel Lateral</div>
               <div class="color-hex">
-                #1E293B
-                <button class="copy-btn" onclick="copyColor('#1E293B')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -1304,13 +1304,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #06b6d4; color: white"
+              style="background: var(--ds-info); color: white"
             ></div>
             <div class="color-info">
               <div class="color-name">Cyan Interacción</div>
               <div class="color-hex">
-                #06B6D4
-                <button class="copy-btn" onclick="copyColor('#06B6D4')">
+                var(--ds-info)
+                <button class="copy-btn" onclick="copyColor('var(--ds-info)')">
                   Copiar
                 </button>
               </div>
@@ -1320,7 +1320,7 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #67e8f9; color: #0f172a"
+              style="background: #67e8f9; color: var(--ds-text-primary)"
             ></div>
             <div class="color-info">
               <div class="color-name">Azul Highlights</div>
@@ -1336,13 +1336,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #f0f9ff; color: #0f172a"
+              style="background: var(--ds-surface-variant); color: var(--ds-text-primary)"
             ></div>
             <div class="color-info">
               <div class="color-name">Fondo Limpio</div>
               <div class="color-hex">
-                #F0F9FF
-                <button class="copy-btn" onclick="copyColor('#F0F9FF')">
+                var(--ds-surface-variant)
+                <button class="copy-btn" onclick="copyColor('var(--ds-surface-variant)')">
                   Copiar
                 </button>
               </div>
@@ -1352,13 +1352,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #334155; color: white"
+              style="background: var(--ds-text-secondary); color: white"
             ></div>
             <div class="color-info">
               <div class="color-name">Gris Texto</div>
               <div class="color-hex">
-                #334155
-                <button class="copy-btn" onclick="copyColor('#334155')">
+                var(--ds-text-secondary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-secondary)')">
                   Copiar
                 </button>
               </div>
@@ -1456,14 +1456,14 @@
             <div class="mockup-content">
               <div
                 class="mockup-sidebar"
-                style="background: #1e293b; color: white"
+                style="background: var(--ds-text-primary); color: white"
               >
                 <div
                   class="mockup-sidebar-item"
                   style="
                     background: rgba(6, 182, 212, 0.15);
                     color: #67e8f9;
-                    border-left: 3px solid #06b6d4;
+                    border-left: 3px solid var(--ds-info);
                     font-family: &quot;Inter&quot;, sans-serif;
                   "
                 >
@@ -1488,11 +1488,11 @@
                   📧 Emails
                 </div>
               </div>
-              <div class="mockup-main" style="background: #f0f9ff">
+              <div class="mockup-main" style="background: var(--ds-surface-variant)">
                 <div class="mockup-card" style="border: 1px solid #67e8f9">
                   <h3
                     style="
-                      color: #0f172a;
+                      color: var(--ds-text-primary);
                       font-family: &quot;Manrope&quot;, sans-serif;
                       margin-bottom: 10px;
                     "
@@ -1501,7 +1501,7 @@
                   </h3>
                   <p
                     style="
-                      color: #334155;
+                      color: var(--ds-text-secondary);
                       font-family: &quot;Inter&quot;, sans-serif;
                       margin-bottom: 20px;
                       font-size: 14px;
@@ -1512,7 +1512,7 @@
                   <button
                     class="mockup-button"
                     style="
-                      background: #06b6d4;
+                      background: var(--ds-info);
                       color: white;
                       font-family: &quot;Inter&quot;, sans-serif;
                     "
@@ -1528,8 +1528,8 @@
         <div class="usage-tips">
           <h4>💡 Consejos de uso</h4>
           <ul>
-            <li>Cyan #06B6D4 perfecto para botones de acción rápida</li>
-            <li>Fondo #F0F9FF da sensación de amplitud y claridad</li>
+            <li>Cyan var(--ds-info) perfecto para botones de acción rápida</li>
+            <li>Fondo var(--ds-surface-variant) da sensación de amplitud y claridad</li>
             <li>Manrope es moderna y amigable para interfaces de ventas</li>
             <li>Usa #67E8F9 para badges de estado y notificaciones</li>
             <li>Ideal para CRM, gestión de leads y seguimiento</li>
@@ -1561,8 +1561,8 @@
             <div class="color-info">
               <div class="color-name">Negro Industrial</div>
               <div class="color-hex">
-                #111827
-                <button class="copy-btn" onclick="copyColor('#111827')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -1570,12 +1570,12 @@
           </div>
 
           <div class="color-card">
-            <div class="color-preview" style="background: #1f2937"></div>
+            <div class="color-preview" style="background: var(--ds-text-primary)"></div>
             <div class="color-info">
               <div class="color-name">Gris Panel</div>
               <div class="color-hex">
-                #1F2937
-                <button class="copy-btn" onclick="copyColor('#1F2937')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -1585,13 +1585,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #0284c7; color: white"
+              style="background: var(--ds-info); color: white"
             ></div>
             <div class="color-info">
               <div class="color-name">Azul Operación</div>
               <div class="color-hex">
-                #0284C7
-                <button class="copy-btn" onclick="copyColor('#0284C7')">
+                var(--ds-info)
+                <button class="copy-btn" onclick="copyColor('var(--ds-info)')">
                   Copiar
                 </button>
               </div>
@@ -1601,13 +1601,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #bae6fd; color: #111827"
+              style="background: var(--ds-outline); color: var(--ds-text-primary)"
             ></div>
             <div class="color-info">
               <div class="color-name">Azul Info</div>
               <div class="color-hex">
-                #BAE6FD
-                <button class="copy-btn" onclick="copyColor('#BAE6FD')">
+                var(--ds-outline)
+                <button class="copy-btn" onclick="copyColor('var(--ds-outline)')">
                   Copiar
                 </button>
               </div>
@@ -1617,13 +1617,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #f3f4f6; color: #111827"
+              style="background: var(--ds-surface-variant); color: var(--ds-text-primary)"
             ></div>
             <div class="color-info">
               <div class="color-name">Gris Fondo</div>
               <div class="color-hex">
-                #F3F4F6
-                <button class="copy-btn" onclick="copyColor('#F3F4F6')">
+                var(--ds-surface-variant)
+                <button class="copy-btn" onclick="copyColor('var(--ds-surface-variant)')">
                   Copiar
                 </button>
               </div>
@@ -1633,13 +1633,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #374151; color: white"
+              style="background: var(--ds-text-secondary); color: white"
             ></div>
             <div class="color-info">
               <div class="color-name">Gris Tablas</div>
               <div class="color-hex">
-                #374151
-                <button class="copy-btn" onclick="copyColor('#374151')">
+                var(--ds-text-secondary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-secondary)')">
                   Copiar
                 </button>
               </div>
@@ -1716,7 +1716,7 @@
                 class="mockup-logo"
                 style="
                   font-family: &quot;Roboto&quot;, sans-serif;
-                  color: #0284c7;
+                  color: var(--ds-info);
                 "
               >
                 StockPro
@@ -1733,13 +1733,13 @@
             <div class="mockup-content">
               <div
                 class="mockup-sidebar"
-                style="background: #1f2937; color: white"
+                style="background: var(--ds-text-primary); color: white"
               >
                 <div
                   class="mockup-sidebar-item"
                   style="
                     background: rgba(2, 132, 199, 0.2);
-                    color: #bae6fd;
+                    color: var(--ds-outline);
                     font-family: &quot;Inter&quot;, sans-serif;
                   "
                 >
@@ -1764,11 +1764,11 @@
                   🚚 Pedidos
                 </div>
               </div>
-              <div class="mockup-main" style="background: #f3f4f6">
+              <div class="mockup-main" style="background: var(--ds-surface-variant)">
                 <div class="mockup-card">
                   <h3
                     style="
-                      color: #111827;
+                      color: var(--ds-text-primary);
                       font-family: &quot;Roboto&quot;, sans-serif;
                       margin-bottom: 10px;
                     "
@@ -1777,7 +1777,7 @@
                   </h3>
                   <p
                     style="
-                      color: #6b7280;
+                      color: var(--ds-text-muted);
                       font-family: &quot;Inter&quot;, sans-serif;
                       margin-bottom: 20px;
                       font-size: 14px;
@@ -1788,7 +1788,7 @@
                   <button
                     class="mockup-button"
                     style="
-                      background: #0284c7;
+                      background: var(--ds-info);
                       color: white;
                       font-family: &quot;Roboto&quot;, sans-serif;
                     "
@@ -1804,10 +1804,10 @@
         <div class="usage-tips">
           <h4>💡 Consejos de uso</h4>
           <ul>
-            <li>Steel blue #0284C7 transmite solidez operacional</li>
+            <li>Steel blue var(--ds-info) transmite solidez operacional</li>
             <li>Grises robustos para tablas de datos extensas</li>
             <li>Roboto perfecta para interfaces industriales y logística</li>
-            <li>Usa #BAE6FD para indicadores de stock bajo</li>
+            <li>Usa var(--ds-outline) para indicadores de stock bajo</li>
             <li>Ideal para almacenes, inventarios, control de stock</li>
           </ul>
         </div>
@@ -1834,8 +1834,8 @@
             <div class="color-info">
               <div class="color-name">Negro Base</div>
               <div class="color-hex">
-                #030712
-                <button class="copy-btn" onclick="copyColor('#030712')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -1843,12 +1843,12 @@
           </div>
 
           <div class="color-card">
-            <div class="color-preview" style="background: #0c1222"></div>
+            <div class="color-preview" style="background: var(--ds-text-primary)"></div>
             <div class="color-info">
               <div class="color-name">Sidebar HR</div>
               <div class="color-hex">
-                #0C1222
-                <button class="copy-btn" onclick="copyColor('#0C1222')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -1890,13 +1890,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #fafafa; color: #030712"
+              style="background: var(--ds-surface-variant); color: var(--ds-text-primary)"
             ></div>
             <div class="color-info">
               <div class="color-name">Fondo Limpio</div>
               <div class="color-hex">
-                #FAFAFA
-                <button class="copy-btn" onclick="copyColor('#FAFAFA')">
+                var(--ds-surface-variant)
+                <button class="copy-btn" onclick="copyColor('var(--ds-surface-variant)')">
                   Copiar
                 </button>
               </div>
@@ -1906,13 +1906,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #172033; color: white"
+              style="background: var(--ds-text-primary); color: white"
             ></div>
             <div class="color-info">
               <div class="color-name">Azul Cards</div>
               <div class="color-hex">
-                #172033
-                <button class="copy-btn" onclick="copyColor('#172033')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -2010,7 +2010,7 @@
             <div class="mockup-content">
               <div
                 class="mockup-sidebar"
-                style="background: #0c1222; color: white"
+                style="background: var(--ds-text-primary); color: white"
               >
                 <div
                   class="mockup-sidebar-item"
@@ -2042,11 +2042,11 @@
                   📅 Calendario
                 </div>
               </div>
-              <div class="mockup-main" style="background: #fafafa">
+              <div class="mockup-main" style="background: var(--ds-surface-variant)">
                 <div class="mockup-card">
                   <h3
                     style="
-                      color: #030712;
+                      color: var(--ds-text-primary);
                       font-family: &quot;Poppins&quot;, sans-serif;
                       margin-bottom: 10px;
                     "
@@ -2055,7 +2055,7 @@
                   </h3>
                   <p
                     style="
-                      color: #6b7280;
+                      color: var(--ds-text-muted);
                       font-family: &quot;Inter&quot;, sans-serif;
                       margin-bottom: 20px;
                       font-size: 14px;
@@ -2112,8 +2112,8 @@
             <div class="color-info">
               <div class="color-name">Negro Elegante</div>
               <div class="color-hex">
-                #000000
-                <button class="copy-btn" onclick="copyColor('#000000')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -2121,12 +2121,12 @@
           </div>
 
           <div class="color-card">
-            <div class="color-preview" style="background: #0a0a14"></div>
+            <div class="color-preview" style="background: var(--ds-text-primary)"></div>
             <div class="color-info">
               <div class="color-name">Panel Financiero</div>
               <div class="color-hex">
-                #0A0A14
-                <button class="copy-btn" onclick="copyColor('#0A0A14')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -2152,13 +2152,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #dbeafe; color: #0a0a14"
+              style="background: var(--ds-border); color: var(--ds-text-primary)"
             ></div>
             <div class="color-info">
               <div class="color-name">Azul Suave</div>
               <div class="color-hex">
-                #DBEAFE
-                <button class="copy-btn" onclick="copyColor('#DBEAFE')">
+                var(--ds-border)
+                <button class="copy-btn" onclick="copyColor('var(--ds-border)')">
                   Copiar
                 </button>
               </div>
@@ -2168,13 +2168,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #ffffff; color: #000000"
+              style="background: var(--ds-surface); color: var(--ds-text-primary)"
             ></div>
             <div class="color-info">
               <div class="color-name">Blanco Puro</div>
               <div class="color-hex">
-                #FFFFFF
-                <button class="copy-btn" onclick="copyColor('#FFFFFF')">
+                var(--ds-surface)
+                <button class="copy-btn" onclick="copyColor('var(--ds-surface)')">
                   Copiar
                 </button>
               </div>
@@ -2184,13 +2184,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #1e293b; color: white"
+              style="background: var(--ds-text-primary); color: white"
             ></div>
             <div class="color-info">
               <div class="color-name">Gris Reportes</div>
               <div class="color-hex">
-                #1E293B
-                <button class="copy-btn" onclick="copyColor('#1E293B')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -2271,7 +2271,7 @@
                 class="mockup-logo"
                 style="
                   font-family: &quot;Outfit&quot;, sans-serif;
-                  color: #dbeafe;
+                  color: var(--ds-border);
                 "
               >
                 FinanceAdmin
@@ -2289,7 +2289,7 @@
               <div
                 class="mockup-sidebar"
                 style="
-                  background: #0a0a14;
+                  background: var(--ds-text-primary);
                   color: white;
                   border-right: 1px solid rgba(255, 255, 255, 0.05);
                 "
@@ -2298,7 +2298,7 @@
                   class="mockup-sidebar-item"
                   style="
                     background: rgba(30, 64, 175, 0.15);
-                    color: #dbeafe;
+                    color: var(--ds-border);
                     border-left: 2px solid #1e40af;
                     font-family: &quot;Roboto&quot;, sans-serif;
                   "
@@ -2324,11 +2324,11 @@
                   📊 Balance
                 </div>
               </div>
-              <div class="mockup-main" style="background: #ffffff">
+              <div class="mockup-main" style="background: var(--ds-surface)">
                 <div class="mockup-card">
                   <h3
                     style="
-                      color: #000000;
+                      color: var(--ds-text-primary);
                       font-family: &quot;Outfit&quot;, sans-serif;
                       margin-bottom: 10px;
                     "
@@ -2337,7 +2337,7 @@
                   </h3>
                   <p
                     style="
-                      color: #64748b;
+                      color: var(--ds-text-muted);
                       font-family: &quot;Roboto&quot;, sans-serif;
                       margin-bottom: 20px;
                       font-size: 14px;
@@ -2367,7 +2367,7 @@
             <li>Azul #1E40AF transmite máxima confianza financiera</li>
             <li>Negro elegante con 97% opacidad para seriedad</li>
             <li>Outfit moderna pero mantiene formalidad contable</li>
-            <li>Usa #DBEAFE para fondos de secciones informativas</li>
+            <li>Usa var(--ds-border) para fondos de secciones informativas</li>
             <li>Ideal para contabilidad, facturación, tesorería</li>
           </ul>
         </div>
@@ -2397,8 +2397,8 @@
             <div class="color-info">
               <div class="color-name">Negro Azulado</div>
               <div class="color-hex">
-                #0C141F
-                <button class="copy-btn" onclick="copyColor('#0C141F')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -2406,12 +2406,12 @@
           </div>
 
           <div class="color-card">
-            <div class="color-preview" style="background: #1b2c3f"></div>
+            <div class="color-preview" style="background: var(--ds-primary-hover)"></div>
             <div class="color-info">
               <div class="color-name">Panel Proyectos</div>
               <div class="color-hex">
-                #1B2C3F
-                <button class="copy-btn" onclick="copyColor('#1B2C3F')">
+                var(--ds-primary-hover)
+                <button class="copy-btn" onclick="copyColor('var(--ds-primary-hover)')">
                   Copiar
                 </button>
               </div>
@@ -2421,13 +2421,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #0369a1; color: white"
+              style="background: var(--ds-info); color: white"
             ></div>
             <div class="color-info">
               <div class="color-name">Azul Tareas</div>
               <div class="color-hex">
-                #0369A1
-                <button class="copy-btn" onclick="copyColor('#0369A1')">
+                var(--ds-info)
+                <button class="copy-btn" onclick="copyColor('var(--ds-info)')">
                   Copiar
                 </button>
               </div>
@@ -2437,7 +2437,7 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #7dd3fc; color: #0c141f"
+              style="background: #7dd3fc; color: var(--ds-text-primary)"
             ></div>
             <div class="color-info">
               <div class="color-name">Azul Tags</div>
@@ -2453,13 +2453,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #eff6ff; color: #0c141f"
+              style="background: var(--ds-surface-variant); color: var(--ds-text-primary)"
             ></div>
             <div class="color-info">
               <div class="color-name">Fondo Boards</div>
               <div class="color-hex">
-                #EFF6FF
-                <button class="copy-btn" onclick="copyColor('#EFF6FF')">
+                var(--ds-surface-variant)
+                <button class="copy-btn" onclick="copyColor('var(--ds-surface-variant)')">
                   Copiar
                 </button>
               </div>
@@ -2469,13 +2469,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #334e68; color: white"
+              style="background: var(--ds-text-secondary); color: white"
             ></div>
             <div class="color-info">
               <div class="color-name">Gris Columnas</div>
               <div class="color-hex">
-                #334E68
-                <button class="copy-btn" onclick="copyColor('#334E68')">
+                var(--ds-text-secondary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-secondary)')">
                   Copiar
                 </button>
               </div>
@@ -2573,7 +2573,7 @@
             <div class="mockup-content">
               <div
                 class="mockup-sidebar"
-                style="background: #1b2c3f; color: white"
+                style="background: var(--ds-primary-hover); color: white"
               >
                 <div
                   class="mockup-sidebar-item"
@@ -2604,11 +2604,11 @@
                   📅 Timeline
                 </div>
               </div>
-              <div class="mockup-main" style="background: #eff6ff">
+              <div class="mockup-main" style="background: var(--ds-surface-variant)">
                 <div class="mockup-card" style="border: 1px solid #7dd3fc">
                   <h3
                     style="
-                      color: #0c141f;
+                      color: var(--ds-text-primary);
                       font-family: &quot;Manrope&quot;, sans-serif;
                       margin-bottom: 10px;
                     "
@@ -2617,7 +2617,7 @@
                   </h3>
                   <p
                     style="
-                      color: #334e68;
+                      color: var(--ds-text-secondary);
                       font-family: &quot;Inter&quot;, sans-serif;
                       margin-bottom: 20px;
                       font-size: 14px;
@@ -2628,7 +2628,7 @@
                   <button
                     class="mockup-button"
                     style="
-                      background: #0369a1;
+                      background: var(--ds-info);
                       color: white;
                       font-family: &quot;Manrope&quot;, sans-serif;
                     "
@@ -2644,10 +2644,10 @@
         <div class="usage-tips">
           <h4>💡 Consejos de uso</h4>
           <ul>
-            <li>Azul #0369A1 perfecto para cards de tareas</li>
+            <li>Azul var(--ds-info) perfecto para cards de tareas</li>
             <li>#7DD3FC ideal para tags, etiquetas y prioridades</li>
             <li>Manrope excelente para títulos de proyectos</li>
-            <li>Fondo #EFF6FF da amplitud visual en boards</li>
+            <li>Fondo var(--ds-surface-variant) da amplitud visual en boards</li>
             <li>Ideal para kanban, scrum, gestión ágil</li>
           </ul>
         </div>
@@ -2674,8 +2674,8 @@
             <div class="color-info">
               <div class="color-name">Negro Zinc</div>
               <div class="color-hex">
-                #09090B
-                <button class="copy-btn" onclick="copyColor('#09090B')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -2683,12 +2683,12 @@
           </div>
 
           <div class="color-card">
-            <div class="color-preview" style="background: #18181b"></div>
+            <div class="color-preview" style="background: var(--ds-text-primary)"></div>
             <div class="color-info">
               <div class="color-name">Panel Archivos</div>
               <div class="color-hex">
-                #18181B
-                <button class="copy-btn" onclick="copyColor('#18181B')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -2730,13 +2730,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #fafafa; color: #09090b"
+              style="background: var(--ds-surface-variant); color: var(--ds-text-primary)"
             ></div>
             <div class="color-info">
               <div class="color-name">Fondo Vista</div>
               <div class="color-hex">
-                #FAFAFA
-                <button class="copy-btn" onclick="copyColor('#FAFAFA')">
+                var(--ds-surface-variant)
+                <button class="copy-btn" onclick="copyColor('var(--ds-surface-variant)')">
                   Copiar
                 </button>
               </div>
@@ -2746,13 +2746,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #27272a; color: white"
+              style="background: var(--ds-text-primary); color: white"
             ></div>
             <div class="color-info">
               <div class="color-name">Gris Cards</div>
               <div class="color-hex">
-                #27272A
-                <button class="copy-btn" onclick="copyColor('#27272A')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -2850,7 +2850,7 @@
             <div class="mockup-content">
               <div
                 class="mockup-sidebar"
-                style="background: #18181b; color: white"
+                style="background: var(--ds-text-primary); color: white"
               >
                 <div
                   class="mockup-sidebar-item"
@@ -2882,11 +2882,11 @@
                   ⭐ Favoritos
                 </div>
               </div>
-              <div class="mockup-main" style="background: #fafafa">
+              <div class="mockup-main" style="background: var(--ds-surface-variant)">
                 <div class="mockup-card">
                   <h3
                     style="
-                      color: #09090b;
+                      color: var(--ds-text-primary);
                       font-family: &quot;Outfit&quot;, sans-serif;
                       margin-bottom: 10px;
                     "
@@ -2895,7 +2895,7 @@
                   </h3>
                   <p
                     style="
-                      color: #52525b;
+                      color: var(--ds-text-secondary);
                       font-family: &quot;Inter&quot;, sans-serif;
                       margin-bottom: 20px;
                       font-size: 14px;
@@ -2953,8 +2953,8 @@
             <div class="color-info">
               <div class="color-name">Negro Nocturno</div>
               <div class="color-hex">
-                #020617
-                <button class="copy-btn" onclick="copyColor('#020617')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -2962,12 +2962,12 @@
           </div>
 
           <div class="color-card">
-            <div class="color-preview" style="background: #0f172a"></div>
+            <div class="color-preview" style="background: var(--ds-text-primary)"></div>
             <div class="color-info">
               <div class="color-name">Panel Control</div>
               <div class="color-hex">
-                #0F172A
-                <button class="copy-btn" onclick="copyColor('#0F172A')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -3009,13 +3009,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #f8fafc; color: #020617"
+              style="background: var(--ds-surface-variant); color: var(--ds-text-primary)"
             ></div>
             <div class="color-info">
               <div class="color-name">Blanco Info</div>
               <div class="color-hex">
-                #F8FAFC
-                <button class="copy-btn" onclick="copyColor('#F8FAFC')">
+                var(--ds-surface-variant)
+                <button class="copy-btn" onclick="copyColor('var(--ds-surface-variant)')">
                   Copiar
                 </button>
               </div>
@@ -3025,13 +3025,13 @@
           <div class="color-card">
             <div
               class="color-preview"
-              style="background: #1e293b; color: white"
+              style="background: var(--ds-text-primary); color: white"
             ></div>
             <div class="color-info">
               <div class="color-name">Gris Paneles</div>
               <div class="color-hex">
-                #1E293B
-                <button class="copy-btn" onclick="copyColor('#1E293B')">
+                var(--ds-text-primary)
+                <button class="copy-btn" onclick="copyColor('var(--ds-text-primary)')">
                   Copiar
                 </button>
               </div>
@@ -3129,7 +3129,7 @@
             <div class="mockup-content">
               <div
                 class="mockup-sidebar"
-                style="background: #0f172a; color: white"
+                style="background: var(--ds-text-primary); color: white"
               >
                 <div
                   class="mockup-sidebar-item"
@@ -3161,11 +3161,11 @@
                   📈 Métricas
                 </div>
               </div>
-              <div class="mockup-main" style="background: #020617">
+              <div class="mockup-main" style="background: var(--ds-text-primary)">
                 <div
                   class="mockup-card"
                   style="
-                    background: #1e293b;
+                    background: var(--ds-text-primary);
                     color: white;
                     border: 1px solid rgba(96, 165, 250, 0.2);
                   "

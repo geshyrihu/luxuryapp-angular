@@ -1,4 +1,4 @@
-<!-- DESKTOP: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+﻿<!-- DESKTOP: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <!-- Encabezado -->
   <div class="mb-6">
@@ -199,8 +199,8 @@
         </ion-label>
         <div slot="end" class="flex align-items-center gap-1" (click)="$event.stopPropagation()">
           @if (isAdmin()) {
-          <ion-button-edit (clicked)="onModalForm({ id: item.id })" />
-          <ion-button-delete (confirmed)="onDelete(item)" />
+          <custom-button-edit (clicked)="onModalForm({ id: item.id })" />
+          <custom-button-delete (confirmed)="onDelete(item)" />
           }
         </div>
       </ion-item>

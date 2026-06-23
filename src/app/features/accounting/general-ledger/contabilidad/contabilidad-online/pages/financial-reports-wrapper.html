@@ -3,11 +3,11 @@
   <!-- Overlay mientras se preparan los reportes -->
   @if (isPreparing()) {
   <div class="print-preparing-overlay">
-    <app-icon [icon]="'mdi:spin'" style="font-size: 2.5rem; color: #203453;"></app-icon>
-    <p style="margin: 0; font-size: 1.1rem; color: #203453; font-weight: 700; letter-spacing: 0.04em;">
+    <app-icon [icon]="'mdi:spin'" style="font-size: 2.5rem; color: var(--ds-primary-hover);"></app-icon>
+    <p style="margin: 0; font-size: 1.1rem; color: var(--ds-primary-hover); font-weight: 700; letter-spacing: 0.04em;">
       Cargando todos los reportes...
     </p>
-    <p style="margin: 0; font-size: 0.85rem; color: #64748b;">
+    <p style="margin: 0; font-size: 0.85rem; color: var(--ds-text-muted);">
       El dialogo de impresion abrira automaticamente cuando todos los datos esten listos.
     </p>
   </div>

@@ -5,6 +5,15 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
   selector: "app-operation-report-client",
   imports: [],
   templateUrl: "./operation-report-client.html",
+  styles: [
+    `
+      :host {
+        display: block;
+        height: 100%;
+        overflow-y: auto;
+      }
+    `,
+  ],
 })
 export class OperationReportClient implements OnInit {
   apiResponseS = inject(ApiResponseService);

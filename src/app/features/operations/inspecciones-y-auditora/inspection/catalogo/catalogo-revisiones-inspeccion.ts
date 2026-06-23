@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from "@angular/core";
+﻿import { Component, computed, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -18,7 +18,6 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CatalogoRevisionesInspeccionForm } from "./catalogo-revisiones-inspeccion-form";
-import { IonButtonDelete, IonButtonEdit } from "src/app/core/components/buttons/mobile";
 @Component({
   selector: "app-catalogo-revisiones-inspeccion",
   imports: [
@@ -31,8 +30,8 @@ import { IonButtonDelete, IonButtonEdit } from "src/app/core/components/buttons/
     ActionMenu,
     IonItem,
     IonLabel,
-    IonButtonDelete,
-    IonButtonEdit,
+    CustomButtonDelete,
+    CustomButtonEdit,
   ],
   templateUrl: "./catalogo-revisiones-inspeccion.html",
 })

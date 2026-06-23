@@ -1,4 +1,4 @@
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 
 <p-table
   [globalFilterFields]="globalFilterFields()"
@@ -72,10 +72,7 @@
         slot="start"
         class="w-9 h-9 border-round-md bg-blue-50 flex align-items-center justify-content-center flex-shrink-0 ml-4 mr-3"
       >
-        <ion-icon
-          name="business-outline"
-          class="text-xl text-blue-600"
-        ></ion-icon>
+        <app-icon icon="mdi:domain" class="text-xl text-blue-600"></app-icon>
       </div> -->
 
       <ion-label class="ion-text-wrap">
@@ -87,10 +84,10 @@
 
       <app-action-menu slot="end">
         <ng-container actions>
-          <ion-button-edit
+          <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <ion-button-delete (confirmed)="onDelete(item.id)" />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
         </ng-container>
       </app-action-menu>
     </ion-item>

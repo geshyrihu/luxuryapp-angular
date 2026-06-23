@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="globalFilterFields()"
   [paginator]="true"
   [rows]="tablePrimeNgRows"
@@ -65,11 +65,11 @@
 >
   <div customFilters class="px-3 pb-2 flex flex-column gap-2">
     <ion-button expand="block" fill="outline" color="primary" (click)="onOpenScanner()">
-      <ion-icon name="qr-code-outline" slot="start"></ion-icon>
+      <app-icon icon="mdi:qrcode" slot="start"></app-icon>
       Escanear QR
     </ion-button>
     <ion-button expand="block" fill="outline" color="secondary" (click)="onViewPeriodos()">
-      <ion-icon name="time-outline" slot="start"></ion-icon>
+      <app-icon icon="mdi:clock-outline" slot="start"></app-icon>
       Periodos de Inspección
     </ion-button>
   </div>
@@ -77,20 +77,20 @@
     <ion-item lines="full" detail="false" class="ion-no-padding">
       <div slot="start" style="
         width:36px; height:36px; border-radius:10px;
-        background:#fef9c3; display:flex; align-items:center;
+        background:var(--ds-border); display:flex; align-items:center;
         justify-content:center; flex-shrink:0; margin-left:16px;
       ">
-        <ion-icon name="alert-circle-outline" style="font-size:20px; color:#ca8a04;"></ion-icon>
+        <app-icon icon="mdi:alert-circle-outline" style="font-size:20px; color:#ca8a04;"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.localCode ? item.localCode + ' — ' : '' }}{{ item.stationType }}</h3>
         <p>{{ item.location }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-item (clicked)="onViewHistory(item)" label="Historial" iconName="list-outline" />
-        <ion-button-download (clicked)="onDownloadQr(item)" label="QR" />
-        <ion-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
-        <ion-button-delete (confirmed)="onDelete(item.id)" />
+        <custom-button-item (clicked)="onViewHistory(item)" label="Historial" iconName="list-outline" />
+        <custom-button-download (clicked)="onDownloadQr(item)" label="QR" />
+        <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
+        <custom-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

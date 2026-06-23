@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [globalFilterFields]="globalFilterFields()"
   [showCurrentPageReport]="true"
   [value]="dataSignal()"
@@ -65,16 +65,16 @@
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
 >
   <div customFilters style="padding: 4px 16px 8px;">
-    <ion-button-download (clicked)="onDownloadPdf()" />
+    <custom-button-download (clicked)="onDownloadPdf()" />
   </div>
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
       <div slot="start" style="
         width:36px; height:36px; border-radius:10px;
-        background:#dcfce7; display:flex; align-items:center;
+        background:var(--ds-border); display:flex; align-items:center;
         justify-content:center; flex-shrink:0; margin-left:16px;
       ">
-        <ion-icon name="radio-outline" style="font-size:20px; color:#16a34a;"></ion-icon>
+        <app-icon icon="mdi:radio" style="font-size:20px; color:#16a34a;"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.marca }} — {{ item.modelo }}</h3>
@@ -82,8 +82,8 @@
         <p>{{ item.applicationUser }} · {{ item.departament }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
-        <ion-button-delete (confirmed)="onDelete(item.id)" />
+        <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
+        <custom-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

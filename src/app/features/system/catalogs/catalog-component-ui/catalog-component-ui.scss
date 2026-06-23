@@ -1,39 +1,315 @@
+// ═════════════════════════════════════════════════════════════════════════════
+// CATALOG-COMPONENT-UI — Design System Catalog Styles
+// Admin Template Layout + Material Design Ionic Overrides
+// ═════════════════════════════════════════════════════════════════════════════
+
+// ─── VARIABLES LOCALES ───────────────────────────────────────────────────
+$sidebar-width: 240px;
+$sidebar-collapsed-width: 64px;
+$header-height: 56px;
+$transition-speed: 0.25s;
+
+// ─── ROOT ────────────────────────────────────────────────────────────────
 .catalog-root {
   min-height: 100vh;
   background-color: var(--ds-bg-page);
   color: var(--ds-text-primary);
   font-family: var(--ds-font-family-base);
-  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
 
-  // --- Nav Styling ---
-  .catalog-nav {
+  // ══════════════════════════════════════════════════════════════════════
+  // HEADER
+  // ══════════════════════════════════════════════════════════════════════
+  .catalog-header {
+    height: $header-height;
     background-color: var(--ds-bg-surface);
+    border-bottom: 1px solid var(--ds-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
     position: sticky;
     top: 0;
     z-index: var(--z-header);
-    border-bottom: 1px solid var(--ds-border);
+    flex-shrink: 0;
+
+    &__start {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    &__menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--ds-text-primary);
+      cursor: pointer;
+      padding: 0.25rem;
+
+      @media (max-width: 767px) {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    &__subtitle {
+      font-size: 0.72rem;
+      color: var(--ds-text-secondary);
+    }
+
+    &__end {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
   }
 
-  // --- Main Layout ---
-  .catalog-main-layout {
+  // ══════════════════════════════════════════════════════════════════════
+  // BODY (sidebar + content)
+  // ══════════════════════════════════════════════════════════════════════
+  .catalog-body {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+  }
+
+  // ══════════════════════════════════════════════════════════════════════
+  // SIDEBAR
+  // ══════════════════════════════════════════════════════════════════════
+  .catalog-sidebar {
+    width: $sidebar-width;
+    background-color: var(--ds-bg-surface);
+    border-right: 1px solid var(--ds-border);
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
+    transition: width $transition-speed ease;
+    overflow-y: auto;
+
+    &__nav {
+      padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.125rem;
+      flex: 1;
+    }
+
+    &__section-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ds-text-secondary);
+      padding: 0.5rem 0.75rem 0.25rem;
+    }
+
+    &__item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 0.75rem;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      color: var(--ds-text-primary);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-size: 0.875rem;
+      font-family: inherit;
+
+      &:hover {
+        background-color: var(--ds-bg-sunken);
+      }
+
+      &--active {
+        background-color: var(--ds-primary);
+        color: var(--ds-on-primary);
+        font-weight: 600;
+
+        &:hover {
+          background-color: var(--ds-primary);
+        }
+      }
+    }
+
+    &__item-icon {
+      font-size: 1.15rem;
+      flex-shrink: 0;
+      width: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__item-label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &__footer {
+      padding: 0.75rem;
+      text-align: center;
+      border-top: 1px solid var(--ds-border);
+    }
   }
 
-  .catalog-body {
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
+  // ─── Sidebar collapsed ──────────────────────────────────────────────
+  &.sidebar-collapsed {
+    .catalog-sidebar {
+      width: $sidebar-collapsed-width;
+
+      &__section-label {
+        display: none;
+      }
+
+      &__item-label {
+        display: none;
+      }
+
+      &__item {
+        justify-content: center;
+        padding: 0.6rem;
+      }
+
+      &__footer {
+        display: none;
+      }
+    }
   }
 
-  // --- Section Headers ---
+  // ─── Sidebar overlay (mobile) ───────────────────────────────────────
+  .catalog-sidebar-overlay {
+    display: none;
+
+    @media (max-width: 767px) {
+      display: block;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: calc(var(--z-header) + 1);
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════════════════
+  // CONTENT
+  // ══════════════════════════════════════════════════════════════════════
+  .catalog-content {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    max-width: 100%;
+    min-width: 0;
+
+    @media (min-width: 1200px) {
+      padding: 2rem;
+      max-width: calc(100vw - $sidebar-width);
+    }
+
+    &.sidebar-collapsed {
+      max-width: calc(100vw - $sidebar-collapsed-width);
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════════════════
+  // RESPONSIVE: Mobile < 768px
+  // ══════════════════════════════════════════════════════════════════════
+  @media (max-width: 767px) {
+    .catalog-sidebar {
+      position: fixed;
+      top: $header-height;
+      left: 0;
+      bottom: 0;
+      z-index: calc(var(--z-header) + 2);
+      transform: translateX(-100%);
+      transition: transform $transition-speed ease;
+      box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+
+      &--open {
+        transform: translateX(0);
+      }
+    }
+
+    .catalog-content {
+      padding: 1rem;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════════════════
+  // MOBILE PREVIEW MODE
+  // ══════════════════════════════════════════════════════════════════════
+  &.mobile-preview {
+    background-color: var(--ds-text-primary);
+
+    .catalog-header {
+      background: var(--ds-text-primary);
+      color: white;
+      border-color: transparent;
+
+      &__subtitle,
+      &__title {
+        color: white;
+      }
+    }
+
+    .catalog-body {
+      justify-content: center;
+      background: transparent;
+    }
+
+    .catalog-content {
+      max-width: 400px;
+      margin: 1rem auto;
+      height: 780px;
+      overflow-y: auto;
+      border: 10px solid #1a1a2e;
+      border-radius: 36px;
+      background-color: var(--ds-bg-page);
+      box-shadow: 0 0 60px rgba(0,0,0,0.5);
+      padding: 0 0.75rem;
+
+      section {
+        padding: 0.75rem 0;
+      }
+    }
+
+    .catalog-sidebar {
+      display: none;
+    }
+
+    .catalog-sidebar-overlay {
+      display: none !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════════════════
+  // SECTION HEADERS
+  // ══════════════════════════════════════════════════════════════════════
   .section-header {
     border-left: 4px solid var(--ds-primary);
     padding-left: 1rem;
     margin-bottom: 2rem;
   }
 
-  // --- Design Tokens ---
+  // ══════════════════════════════════════════════════════════════════════
+  // DESIGN TOKENS
+  // ══════════════════════════════════════════════════════════════════════
   .token-swatch {
     width: 160px;
     background: var(--ds-bg-surface);
@@ -72,15 +348,16 @@
     }
   }
 
-  // --- Documental Guide & Audit ---
   .token-swatch.flex {
     width: 100%;
-    
     &:hover {
       border-color: var(--ds-primary);
     }
   }
 
+  // ══════════════════════════════════════════════════════════════════════
+  // CODE
+  // ══════════════════════════════════════════════════════════════════════
   code {
     background: var(--ds-bg-sunken);
     padding: 0.2rem 0.4rem;
@@ -92,43 +369,9 @@
     filter: brightness(0.95);
   }
 
-  .bloque-advertencia {
-    background-color: var(--ds-warning-bg, #fffbeb);
-    border-color: var(--ds-warning-border, #fcd34d);
-    color: var(--ds-warning-text, #78350f);
-    
-    .theme-dark & {
-      background-color: rgba(245, 158, 11, 0.15) !important;
-      border-color: rgba(245, 158, 11, 0.3) !important;
-      color: #fef3c7 !important;
-    }
-  }
-
-  .bloque-nota {
-    background-color: var(--ds-info-bg, #eff6ff);
-    border-color: var(--ds-info-border, #bfdbfe);
-    color: var(--ds-info-text, #1e3a8a);
-
-    .theme-dark & {
-      background-color: rgba(59, 130, 246, 0.15) !important;
-      border-color: rgba(59, 130, 246, 0.3) !important;
-      color: #dbeafe !important;
-    }
-  }
-
-  .bloque-buena-practica {
-    background-color: var(--ds-success-bg, #f0fdf4);
-    border-color: var(--ds-success-border, #bbf7d0);
-    color: var(--ds-success-text, #14532d);
-
-    .theme-dark & {
-      background-color: rgba(16, 185, 129, 0.15) !important;
-      border-color: rgba(16, 185, 129, 0.3) !important;
-      color: #d1fae5 !important;
-    }
-  }
-
-  // --- Cards & Content ---
+  // ══════════════════════════════════════════════════════════════════════
+  // CARDS
+  // ══════════════════════════════════════════════════════════════════════
   .p-card {
     height: 100%;
     border: 1px solid var(--ds-border);
@@ -139,25 +382,9 @@
     background-color: var(--ds-bg-sunken);
   }
 
-  .bg-blue-50 {
-    .theme-dark & {
-      background-color: rgba(59, 130, 246, 0.15) !important;
-    }
-  }
-
-  .bg-yellow-50 {
-    .theme-dark & {
-      background-color: rgba(245, 158, 11, 0.15) !important;
-    }
-  }
-
-  .bg-green-50 {
-    .theme-dark & {
-      background-color: rgba(16, 185, 129, 0.15) !important;
-    }
-  }
-
-  // --- Animations ---
+  // ══════════════════════════════════════════════════════════════════════
+  // ANIMATIONS
+  // ══════════════════════════════════════════════════════════════════════
   .fadein {
     animation: fadeIn 0.4s ease-out;
   }
@@ -167,57 +394,137 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  // --- Mobile Simulation Mode ---
-  &.mobile-preview {
-    background-color: #1e1e1e;
-    
-    .catalog-body {
-      max-width: 400px;
-      margin: 2rem auto;
-      height: 800px;
-      overflow-y: auto;
-      border: 12px solid #333;
-      border-radius: 40px;
-      background-color: var(--ds-bg-page);
-      box-shadow: 0 0 50px rgba(0,0,0,0.5);
-      padding: 0 !important;
+  // ══════════════════════════════════════════════════════════════════════
+  // MATERIAL DESIGN OVERRIDES FOR IONIC
+  // ══════════════════════════════════════════════════════════════════════
+  // La app global usa mode: "ios" en Ionic. Estos overrides alinean
+  // los componentes Ionic con la línea visual Material Design dentro del catálogo.
 
-      // Estilos específicos para que el preview móvil se vea "nativo"
-      section {
-        padding: 1rem;
-      }
-    }
+  // Tipografía Material: DM Sans como Roboto replacement
+  --ds-md-font: 'DM Sans', 'Roboto', 'Helvetica Neue', sans-serif;
 
-    .catalog-nav {
-      background: #111;
-      color: white;
-      border: none;
-      
-      .text-lg, .text-secondary, .text-xs { color: white !important; }
-      p-selectbutton ::ng-deep .p-button { background: #333; color: #ccc; border: none; }
-      p-selectbutton ::ng-deep .p-highlight { background: var(--ds-primary) !important; color: white !important; }
+  // Sombras Material Design (elevation)
+  --ds-md-elevation-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+  --ds-md-elevation-2: 0 3px 6px rgba(0,0,0,0.14), 0 2px 4px rgba(0,0,0,0.1);
+  --ds-md-elevation-4: 0 6px 12px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.12);
+  --ds-md-radius: 12px;
+  --ds-md-radius-sm: 8px;
+
+  // Ion-Item — MD style (rounded, elevated)
+  ion-item {
+    --border-radius: var(--ds-md-radius-sm);
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --inner-padding-end: 16px;
+    --min-height: 52px;
+    --background: var(--ds-bg-surface);
+    --border-color: var(--ds-border);
+    margin-bottom: 4px;
+    border-radius: var(--ds-md-radius-sm);
+    box-shadow: var(--ds-md-elevation-1);
+
+    &.ion-no-padding {
+      --padding-start: 12px;
+      --padding-end: 12px;
     }
+  }
+
+  // Ion-List — remove default iOS inset
+  ion-list {
+    background: transparent;
+    padding: 0;
+    border-radius: var(--ds-md-radius);
+    overflow: hidden;
+
+    &.list-ios {
+      background: transparent;
+    }
+  }
+
+  // Ion-Item-Divider — MD style
+  ion-item-divider {
+    --background: transparent;
+    --color: var(--ds-text-secondary);
+    --padding-start: 12px;
+    --padding-top: 12px;
+    --padding-bottom: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: none;
+    min-height: 36px;
+  }
+
+  // Ion-Badge — MD rounded
+  ion-badge {
+    --padding-top: 4px;
+    --padding-bottom: 4px;
+    --padding-start: 10px;
+    --padding-end: 10px;
+    font-weight: 600;
+    font-size: 0.72rem;
+    border-radius: 16px;
+    min-width: 20px;
+  }
+
+  // Ion-Chip — MD shape
+  ion-chip {
+    --background: var(--ds-bg-sunken);
+    --color: var(--ds-text-primary);
+    border-radius: 8px;
+    height: 32px;
+    font-size: 0.82rem;
+  }
+
+  // Ion-Avatar — MD sizing
+  ion-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  // Ion-Spinner — MD colors
+  ion-spinner {
+    --color: var(--ds-primary);
+    width: 24px;
+    height: 24px;
+  }
+
+  // Ion-Progress-Bar — MD height + radius
+  ion-progress-bar {
+    --background: var(--ds-bg-sunken);
+    --progress-background: var(--ds-primary);
+    height: 4px;
+    border-radius: 2px;
+  }
+
+  // Ion-Fab-Button — MD elevation
+  ion-fab-button {
+    --background: var(--ds-primary);
+    --background-activated: var(--ds-primary-700);
+    --color: var(--ds-on-primary);
+    --box-shadow: var(--ds-md-elevation-4);
+    width: 48px;
+    height: 48px;
+  }
+
+  // Ion-Icon — sizing
+  ion-icon {
+    font-size: 1.25rem;
   }
 }
 
-// --- Overrides PrimeNG para el catálogo ---
-.catalog-root {
-  p-selectbutton ::ng-deep {
-    .p-button {
-      font-size: 0.85rem;
-      padding: 0.5rem 1rem;
-    }
-  }
-
-  p-divider ::ng-deep {
-    .p-divider-vertical {
-      height: 24px;
-      margin: 0 0.5rem;
-    }
-  }
+// ═════════════════════════════════════════════════════════════════════════════
+// PRIMENG OVERRIDES
+// ═════════════════════════════════════════════════════════════════════════════
+.catalog-root p-divider ::ng-deep .p-divider-vertical {
+  height: 24px;
+  margin: 0 0.5rem;
 }
 
-// Estilos para los snippets de código si se usan
+// ─── PRE / CODE BLOCKS ──────────────────────────────────────────────────
 pre {
   background: var(--ds-bg-sunken);
   padding: 1rem;

@@ -1,4 +1,4 @@
-<div>
+﻿<div>
   <!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
   <div class="hidden md:block">
     @if (dataSignal() && dataSignal() !== undefined) {
@@ -118,7 +118,7 @@
               <app-action-menu>
                 <ng-container actions>
                   @if (item.status !== "Completed") {
-                  <ion-button-item
+                  <custom-button-item
                     iconClass="mdi:calendar"
                     label="Programar"
                     [showLabelOnDesktop]="true"
@@ -126,21 +126,21 @@
                   />
 
                   } @if (item.status !== "Completed") {
-                  <ion-button-item
+                  <custom-button-item
                     iconClass="mdi:lock"
                     label="Cerrar"
                     [showLabelOnDesktop]="true"
                     (clicked)="onClosed(item.id)"
                   />
                   } @if (item.status === "Completed") {
-                  <ion-button-item
+                  <custom-button-item
                     iconClass="mdi:lock-open"
                     label="Re abrir"
                     [showLabelOnDesktop]="true"
                     (clicked)="onReopen(item.id)"
                   />
                   } @if (item.status !== "Completed") {
-                  <ion-button-edit
+                  <custom-button-edit
                     (clicked)="
                           onModalForm({
                             id: item.id,
@@ -278,33 +278,33 @@
             <div>
               <app-action-menu>
                 <ng-container actions>
-                  <ion-button-item
+                  <custom-button-item
                     iconClass="mdi:clipboard-text"
                     label="Seguimiento"
                     (clicked)="onFollowUp(item.id)"
                   />
                   @if (item.status !== "Completed") {
-                  <ion-button-edit
+                  <custom-button-edit
                     (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
                   />
-                  <ion-button-item
+                  <custom-button-item
                     iconClass="mdi:calendar"
                     label="Programar"
                     (clicked)="onProgram(item.id)"
                   />
-                  <ion-button-item
+                  <custom-button-item
                     iconClass="mdi:sync"
                     label="En proceso"
                     (clicked)="onProgress(item.id)"
                   />
                   } @if (item.status !== "Completed") {
-                  <ion-button-item
+                  <custom-button-item
                     iconClass="mdi:lock"
                     label="Cerrar"
                     (clicked)="onClosed(item.id)"
                   />
                   } @if (item.status === "Completed") {
-                  <ion-button-item
+                  <custom-button-item
                     iconClass="mdi:lock-open"
                     label="Re abrir"
                     (clicked)="onReopen(item.id)"

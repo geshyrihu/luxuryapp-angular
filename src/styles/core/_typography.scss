@@ -5,9 +5,11 @@
 // ============================================================
 
 // ── FAMILIAS TIPOGRÁFICAS ─────────────────────────────────────
-$font-family-base:    'DM Sans', sans-serif !default;
-$font-family-heading: 'DM Sans', sans-serif !default;
-$font-family-mono:    'JetBrains Mono', 'Fira Code', 'Courier New', monospace !default;
+// Corporate Integrity System — DESIGN.md typography
+// Headlines: Hanken Grotesk | Body: Inter
+$font-family-base:    'Inter', 'Hanken Grotesk', sans-serif !default;
+$font-family-heading: 'Hanken Grotesk', 'Inter', sans-serif !default;
+$font-family-mono:    'JetBrains Mono', 'Roboto Mono', 'Courier New', monospace !default;
 
 // ── ESCALA DE TAMAÑOS ─────────────────────────────────────────
 // Base: 16px (1rem) — escala modular 1.25

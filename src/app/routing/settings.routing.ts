@@ -16,19 +16,6 @@ export const settingsRoutes: Routes = [
     },
   },
 
-  {
-    path: "demo-app",
-    loadComponent: () =>
-      import("src/app/features/system/test/demo-app/demo-app").then(
-        (m) => m.DemoApp,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Demo institucional UI",
-      breadcrumb: "Demo institucional UI",
-    },
-  },
-
   // Rutas de gestión de usuarios y permisos
   {
     path: "application-user",

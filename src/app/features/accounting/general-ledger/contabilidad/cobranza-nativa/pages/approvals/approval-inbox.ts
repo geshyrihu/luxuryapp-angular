@@ -1,11 +1,11 @@
-import { DatePipe } from "@angular/common";
+﻿import { DatePipe } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { shieldCheckmarkOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
+import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButton } from "src/app/core/components/buttons/web";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
@@ -32,10 +32,9 @@ import { FinancialApprovalResponseDTO } from "../../models/financial-approval.dt
     CustomButton,
     DataViewMobile,
     ActionMenu,
-    IonButtonEdit,
+    CustomButtonEdit,
     IonItem,
     IonLabel,
-    IonIcon,
     DatePipe,
   ],
   templateUrl: "./approval-inbox.html",

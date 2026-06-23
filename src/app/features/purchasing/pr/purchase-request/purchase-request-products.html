@@ -1,4 +1,4 @@
-<p-table
+﻿<p-table
   [value]="products"
   [scrollable]="true"
   [scrollHeight]="scrollHeight"
@@ -17,10 +17,10 @@
       <td>
         <app-action-menu>
           <ng-container actions>
-            <ion-button-edit
+            <custom-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             />
-            <ion-button-delete (confirmed)="onDelete(item.id)" />
+            <custom-button-delete (confirmed)="onDelete(item.id)" />
           </ng-container>
         </app-action-menu>
       </td>

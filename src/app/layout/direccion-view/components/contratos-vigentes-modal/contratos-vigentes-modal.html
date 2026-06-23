@@ -1,11 +1,11 @@
 @if (cargando()) {
   <div class="flex align-items-center gap-2 py-6 justify-content-center">
-    <i class="pi pi-spin pi-spinner text-primary" style="font-size:1.5rem"></i>
+    <app-icon icon="mdi:spin" style="font-size:1.5rem" class="ner text-primary ds-animate-spin"></app-icon>
     <span class="text-500">Cargando contratos...</span>
   </div>
 } @else if (!resumen() || resumen()!.total === 0) {
   <div class="flex flex-column align-items-center py-6 gap-3 text-400">
-    <i class="pi pi-file-edit" style="font-size:3rem"></i>
+    <app-icon icon="mdi:file-edit" style="font-size:3rem"></app-icon>
     <span>Sin contratos vigentes registrados</span>
   </div>
 } @else {
@@ -25,7 +25,7 @@
           (click)="toggleCliente(customer.customerName)"
         >
           <div class="flex align-items-center gap-2">
-            <i class="pi pi-building text-primary text-sm"></i>
+            <app-icon icon="mdi:building"  class="text-primary text-sm"></app-icon>
             <span class="font-bold text-800">{{ customer.customerName }}</span>
           </div>
           <div class="flex align-items-center gap-3">
@@ -50,9 +50,9 @@
                 <!-- Indicador vencimiento -->
                 <div class="flex-none mt-1">
                   @if (contrato.porVencer) {
-                    <i class="pi pi-exclamation-triangle text-orange-500 text-sm" pTooltip="Por vencer"></i>
+                    <app-icon icon="mdi:alert-outline" pTooltip="Por vencer" class="text-orange-500 text-sm"></app-icon>
                   } @else {
-                    <i class="pi pi-check-circle text-green-400 text-sm"></i>
+                    <app-icon icon="mdi:check-circle"  class="text-green-400 text-sm"></app-icon>
                   }
                 </div>
 

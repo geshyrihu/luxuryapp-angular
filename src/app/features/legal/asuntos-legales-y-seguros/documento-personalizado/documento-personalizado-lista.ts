@@ -1,4 +1,4 @@
-import {
+﻿import {
   Component,
   computed,
   effect,
@@ -9,14 +9,12 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { documentOutline } from "ionicons/icons";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
@@ -48,11 +46,10 @@ import { DocumentoPersonalizadoForm } from "./documento-personalizado-form";
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     DataViewMobile,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
   templateUrl: "./documento-personalizado-lista.html",
 })
@@ -129,4 +126,3 @@ export class DocumentoPersonalizadoLista implements OnInit {
       });
   }
 }
-

@@ -50,7 +50,7 @@
 
   @if (hasCustomer() && loading()) {
     <div class="pc-card pc-empty">
-      <app-icon [icon]="'mdi:spin'" class="text-3xl" style="color:#1e3a5f"></app-icon>
+      <app-icon [icon]="'mdi:spin'" class="text-3xl" style="color:var(--ds-primary)"></app-icon>
       <p class="mt-3 mb-0">Generando reporte...</p>
     </div>
   }
@@ -139,49 +139,74 @@
 
 </div>
 
+<app-data-view-mobile
+  [data]="mobileRows()"
+  [globalFilterFields]="globalFilterFields"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+      <ion-label class="ion-text-wrap">
+        <h3 class="font-semibold m-0 text-color text-xs">
+          {{ item.numeroCuenta }}
+        </h3>
+        <p class="text-xs m-0 mt-1 text-color-secondary">
+          {{ item.descripcion }}
+        </p>
+        <p class="text-xs m-0 mt-1">
+          Psto: {{ item.pstoMensual }} · Ejer: {{ item.acumuladoAnual }}
+        </p>
+        <p class="text-xs m-0 mt-1 font-mono">
+          Restante: {{ item.presupRestante }}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ng-template>
+</app-data-view-mobile>
+
 <style>
   .pc-shell { font-family: var(--font-family, 'Inter', sans-serif); font-size: 0.8rem; }
-  .pc-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; }
-  .pc-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3rem; color: #64748b; }
+  .pc-card { background: var(--ds-surface); border: 1px solid var(--ds-border); border-radius: 8px; }
+  .pc-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3rem; color: var(--ds-text-muted); }
   .pc-toolbar { display: flex; align-items: flex-end; gap: 1rem; flex-wrap: wrap; }
   .pc-field { display: flex; flex-direction: column; gap: 0.25rem; min-width: 150px; }
-  .pc-label { font-size: 0.75rem; font-weight: 600; color: #475569; }
+  .pc-label { font-size: 0.75rem; font-weight: 600; color: var(--ds-text-secondary); }
 
   .pc-table-wrap { overflow-x: auto; }
   .pc-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
 
-  .pc-table thead tr { background: #1e3a5f; color: #fff; }
-  .pc-table thead th { padding: 0.5rem 0.6rem; text-align: right; font-weight: 700; white-space: nowrap; border: 1px solid #152d4a; }
+  .pc-table thead tr { background: var(--ds-primary); color: var(--ds-surface); }
+  .pc-table thead th { padding: 0.5rem 0.6rem; text-align: right; font-weight: 700; white-space: nowrap; border: 1px solid var(--ds-primary-hover); }
   .pc-table thead th.pc-col-desc { text-align: left; }
   .pc-table thead th.pc-col-num { min-width: 90px; }
 
   .pc-table thead th.pc-col-pspto-mes { background: #2563eb; }
-  .pc-table thead th.pc-col-acum { background: #374151; }
-  .pc-table thead th.pc-col-anual { background: #1f2937; }
-  .pc-table thead th.pc-col-restante { background: #991b1b; }
+  .pc-table thead th.pc-col-acum { background: var(--ds-text-secondary); }
+  .pc-table thead th.pc-col-anual { background: var(--ds-text-primary); }
+  .pc-table thead th.pc-col-restante { background: var(--ds-danger); }
 
-  .pc-table td { padding: 0.3rem 0.6rem; border: 1px solid #e2e8f0; }
+  .pc-table td { padding: 0.3rem 0.6rem; border: 1px solid var(--ds-border); }
   .pc-col-num { text-align: right; }
   .pc-col-desc { text-align: left; }
 
-  .pc-row-mayor td { background: #f1f5f9; font-weight: 700; color: #1e3a5f; }
-  .pc-row-subcuenta td { background: #fff; font-weight: 700; }
+  .pc-row-mayor td { background: var(--ds-surface-variant); font-weight: 700; color: var(--ds-primary); }
+  .pc-row-subcuenta td { background: var(--ds-surface); font-weight: 700; }
   .pc-row-subcuenta .pc-col-desc { padding-left: 1.2rem; }
-  .pc-row-detalle td { background: #fff; }
+  .pc-row-detalle td { background: var(--ds-surface); }
   .pc-row-detalle .pc-col-desc { padding-left: 2rem; }
-  .pc-row-total td { background: #e2e8f0; font-weight: 700; border-top: 2px solid #94a3b8; }
-  .pc-row-gran-total td { background: #1e3a5f; color: #fff; font-weight: 700; border-top: 3px solid #0f2544; }
+  .pc-row-total td { background: var(--ds-border); font-weight: 700; border-top: 2px solid #94a3b8; }
+  .pc-row-gran-total td { background: var(--ds-primary); color: var(--ds-surface); font-weight: 700; border-top: 3px solid var(--ds-primary-hover); }
 
-  .pc-table td.pc-col-acum { background: #f8fafc; font-weight: 600; }
-  .pc-table td.pc-col-anual { background: #f8fafc; font-weight: 600; }
-  .pc-table td.pc-col-restante { background: #fff7ed; font-weight: 600; }
+  .pc-table td.pc-col-acum { background: var(--ds-surface-variant); font-weight: 600; }
+  .pc-table td.pc-col-anual { background: var(--ds-surface-variant); font-weight: 600; }
+  .pc-table td.pc-col-restante { background: var(--ds-surface-variant); font-weight: 600; }
   .pc-row-total td.pc-col-acum,
   .pc-row-total td.pc-col-anual,
-  .pc-row-total td.pc-col-restante { background: #d1d5db; }
+  .pc-row-total td.pc-col-restante { background: var(--ds-outline); }
   .pc-row-gran-total td.pc-col-acum,
   .pc-row-gran-total td.pc-col-anual,
-  .pc-row-gran-total td.pc-col-restante { background: #0f2544; }
+  .pc-row-gran-total td.pc-col-restante { background: var(--ds-primary-hover); }
 
-  .pc-neg { color: #b91c1c; }
+  .pc-neg { color: var(--ds-danger); }
   .pc-row-gran-total .pc-neg { color: #fca5a5; }
 </style>

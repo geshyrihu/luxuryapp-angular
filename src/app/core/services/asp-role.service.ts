@@ -1,10 +1,10 @@
-import {
+﻿import {
   computed,
   DestroyRef,
   inject,
   Injectable,
-  signal,
   Signal,
+  signal,
   WritableSignal,
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
@@ -75,17 +75,8 @@ export class AspRoleService {
   // 🔹 Devuelve un array con los roles actuales del usuario
   // Útil para mostrar información de roles o filtrar opciones
   getUserRoles(): string[] {
-    return Object.values(EApplicationRole).filter(
-      (role) => this.roleChecks[role]()
+    return Object.values(EApplicationRole).filter((role) =>
+      this.roleChecks[role](),
     );
   }
 }
-
-
-
-
-
-
-
-
-

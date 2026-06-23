@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { CardModule } from "primeng/card";
@@ -8,9 +8,9 @@ import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
-  IonButtonEdit,
-  IonButtonItem,
-} from "src/app/core/components/buttons/mobile";
+  CustomButtonEdit,
+  CustomButtonItem,
+} from "src/app/core/components/buttons/web";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -46,8 +46,8 @@ import { MyTaskForm } from "./my-task-form";
     TooltipModule,
     IonItem,
     IonLabel,
-    IonButtonEdit,
-    IonButtonItem,
+    CustomButtonEdit,
+    CustomButtonItem,
   ],
 })
 export class MyRequestsTask implements OnInit {

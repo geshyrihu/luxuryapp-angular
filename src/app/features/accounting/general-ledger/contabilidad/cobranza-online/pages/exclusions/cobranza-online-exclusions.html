@@ -18,26 +18,32 @@
     </div>
   </div>
 
-  <div class="mb-4 border-1 surface-border border-round p-4" *ngIf="hasCustomer(); else noCustomer">
-    <div class="grid">
-      <div class="col-12 md:col-3">
-        <div class="font-medium">Customer</div>
-        <div>{{ customerName() || "Cliente activo" }}</div>
-      </div>
-      <div class="col-12 md:col-3">
-        <div class="font-medium">Origen</div>
-        <div>{{ data()?.dataSource || "Sin datos" }}</div>
-      </div>
-      <div class="col-12 md:col-3">
-        <div class="font-medium">Cuentas omitidas</div>
-        <div>{{ excludedCount() }}</div>
-      </div>
-      <div class="col-12 md:col-3">
-        <div class="font-medium">Candidatas a revisar</div>
-        <div>{{ rowsWithoutPropertyMatch() }}</div>
+  @if (hasCustomer()) {
+    <div class="mb-4 border-1 surface-border border-round p-4">
+      <div class="grid">
+        <div class="col-12 md:col-3">
+          <div class="font-medium">Customer</div>
+          <div>{{ customerName() || "Cliente activo" }}</div>
+        </div>
+        <div class="col-12 md:col-3">
+          <div class="font-medium">Origen</div>
+          <div>{{ data()?.dataSource || "Sin datos" }}</div>
+        </div>
+        <div class="col-12 md:col-3">
+          <div class="font-medium">Cuentas omitidas</div>
+          <div>{{ excludedCount() }}</div>
+        </div>
+        <div class="col-12 md:col-3">
+          <div class="font-medium">Candidatas a revisar</div>
+          <div>{{ rowsWithoutPropertyMatch() }}</div>
+        </div>
       </div>
     </div>
-  </div>
+  } @else {
+    <div class="mb-4 border-1 surface-border border-round p-4 text-color-secondary">
+      Selecciona un cliente para configurar qué cuentas se omiten del reporte de cobranza.
+    </div>
+  }
 
   <p-table
     [globalFilterFields]="globalFilterFields()"
@@ -75,36 +81,36 @@
         <th>Razón visible</th>
       </tr>
     </ng-template>
-    <ng-template #body let-item>
-      <tr>
-        <td>
-          <p-checkbox
-            [binary]="true"
-            [ngModel]="item.isExcluded"
-            [disabled]="savingAccountNumber() === item.accountNumber"
-            (ngModelChange)="onToggleExcluded(item, $event)"
-          />
-        </td>
-        <td>{{ item.accountNumber }}</td>
-        <td>{{ item.accountName }}</td>
-        <td>{{ item.accountLevel }}</td>
-        <td>
-          <span *ngIf="item.hasPropertyMatch; else noPropertyMatch">
-            {{ item.propertyTower }} / {{ item.propertyDepartment }}
-            <span
-              class="block text-xs text-color-secondary mt-1"
-              *ngIf="item.propertyFullName"
-            >
-              {{ item.propertyFullName }}
-            </span>
-          </span>
-          <ng-template #noPropertyMatch>
-            <span class="text-red-600 font-medium">Sin match</span>
-          </ng-template>
-        </td>
-        <td>{{ visibleReason(item) }}</td>
-      </tr>
-    </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>
+            <p-checkbox
+              [binary]="true"
+              [ngModel]="item.isExcluded"
+              [disabled]="savingAccountNumber() === item.accountNumber"
+              (ngModelChange)="onToggleExcluded(item, $event)"
+            />
+          </td>
+          <td>{{ item.accountNumber }}</td>
+          <td>{{ item.accountName }}</td>
+          <td>{{ item.accountLevel }}</td>
+          <td>
+            @if (item.hasPropertyMatch) {
+              <span>
+                {{ item.propertyTower }} / {{ item.propertyDepartment }}
+                @if (item.propertyFullName) {
+                  <span class="block text-xs text-color-secondary mt-1">
+                    {{ item.propertyFullName }}
+                  </span>
+                }
+              </span>
+            } @else {
+              <span class="text-red-600 font-medium">Sin match</span>
+            }
+          </td>
+          <td>{{ visibleReason(item) }}</td>
+        </tr>
+      </ng-template>
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="visibleRows()" />
     </ng-template>
@@ -131,12 +137,11 @@
                 : "Sin match con Property"
             }}
           </p>
-          <p
-            class="text-xs m-0 mt-1 text-color-secondary"
-            *ngIf="item.hasPropertyMatch && item.propertyFullName"
-          >
-            {{ item.propertyFullName }}
-          </p>
+          @if (item.hasPropertyMatch && item.propertyFullName) {
+            <p class="text-xs m-0 mt-1 text-color-secondary">
+              {{ item.propertyFullName }}
+            </p>
+          }
           <p class="text-xs m-0 mt-1 text-color-secondary">
             {{ visibleReason(item) }}
           </p>
@@ -154,9 +159,3 @@
     </ng-template>
   </app-data-view-mobile>
 </section>
-
-<ng-template #noCustomer>
-  <div class="border-1 surface-border border-round p-4 text-color-secondary">
-    Selecciona un cliente para configurar qué cuentas se omiten del reporte de cobranza.
-  </div>
-</ng-template>

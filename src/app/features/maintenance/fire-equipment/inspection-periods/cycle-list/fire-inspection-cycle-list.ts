@@ -1,10 +1,9 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
@@ -20,7 +19,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
     CommonModule, TableModule, DataViewMobile,
     CustomButtonItem,
     PrimeNgCustomCaption, PrimeNgCustomTableFooter, ActionMenu,
-    IonItem, IonLabel, IonButtonItem,
+    IonItem, IonLabel, CustomButtonItem,
   ],
 })
 export class FireInspectionCycleList implements OnInit {

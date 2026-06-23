@@ -1,15 +1,14 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { IonItem, IonLabel, IonText } from "@ionic/angular/standalone";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -34,9 +33,9 @@ import { InspeccionesForm } from "../inspecciones-agregar-editar/inspecciones-fo
     IonItem,
     IonLabel,
     IonText,
-    IonButtonEdit,
-    IonButtonDelete,
-    IonButtonItem,
+    CustomButtonEdit,
+    CustomButtonDelete,
+    CustomButtonItem,
   ],
   templateUrl: "./lista-inspecciones.html",
 })

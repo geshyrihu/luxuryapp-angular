@@ -1,4 +1,4 @@
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields"
   [paginator]="true"
@@ -211,7 +211,7 @@
           width: 36px;
           height: 36px;
           border-radius: 10px;
-          background: #fef3c7;
+          background: var(--ds-border);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -219,10 +219,7 @@
           margin-left: 16px;
         "
       >
-        <ion-icon
-          name="cart-outline"
-          style="font-size: 20px; color: #d97706"
-        ></ion-icon>
+        <app-icon icon="mdi:cart-outline" style="font-size: 20px; color: #d97706"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.equipoOInstalacion }}</h3>
@@ -230,8 +227,8 @@
         <p>{{ item.fechaSolicitud | date }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <ion-button-edit (clicked)="onSolicitudCompra(item.id)" />
-        <ion-button-delete (confirmed)="onDelete(item.id)" />
+        <custom-button-edit (clicked)="onSolicitudCompra(item.id)" />
+        <custom-button-delete (confirmed)="onDelete(item.id)" />
       </app-action-menu>
     </ion-item>
   </ng-template>

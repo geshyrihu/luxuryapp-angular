@@ -1,116 +1,79 @@
-// Archivo: src/theme/variables.scss
-// Descripción: FUENTE ÚNICA DE VERDAD PARA LOS COLORES DEL SISTEMA.
-// Define la paleta en SCSS y genera automáticamente las variables CSS para PrimeNG e Ionic.
+// Archivo: src/styles/theme/_variables.scss
+// Genera todas las CSS custom properties del sistema (--primary-*, --ds-*, --ion-*, --z-*).
+// La paleta Sass primitiva vive en core/_colors.scss — fuente única de verdad.
+
+@use '../core/colors' as c;
 
 // ===================================================================
-// 1. DEFINICIÓN DE LA PALETA (Sass Variables)
+// 1. VARIABLES DE TEMA (no-paleta — específicas de este tema)
 // ===================================================================
-// Modifica estos valores para cambiar el tema de toda la aplicación.
+$sidebar-bg:    #ffffff;
+$header-bg:     #ffffff;
 
-// ===================================================================
-// OPCIONES DE COLOR (Descomenta la que prefieras y comenta las demás)
-// ===================================================================
-
-// OPCIÓN 4: CORPORATE BLUE (Personalizado) - 🌟 APLICADA
-$primary-50: #f0f4fa;
-$primary-100: #dce7f3;
-$primary-200: #bfcfe4;
-$primary-300: #97afcf;
-$primary-400: #6687b3;
-$primary-500: #0b3164; // 👈 NUEVO COLOR PRIMARIO
-$primary-600: #092953;
-$primary-700: #072042;
-$primary-800: #051831;
-$primary-900: #030f20;
-$primary-950: #020811;
-
-// Sidebar & Header Dark Background
-$sidebar-bg: #18181b; // Zinc-900
-$header-bg: #18181b; // Zinc-900
-
-$success-color: #065f46;
-$success-bg: #d1fae5;
-
-$warning-color: #92400e;
-$warning-bg: #fef3c7;
-
-$danger-color: #991b1b;
-$danger-bg: #fee2e2;
-
-// HELP (Purple)
-$help-50: #f5f3ff;
-$help-100: #ede9fe;
-$help-200: #ddd6fe;
-$help-300: #c4b5fd;
-$help-400: #a78bfa;
-$help-500: #8b5cf6;
-$help-600: #7c3aed;
-$help-700: #6d28d9;
-$help-800: #5b21b6;
-$help-900: #4c1d95;
-$help-950: #2e1065;
-
-// CONTRAST (Black/White)
-$contrast-0: #ffffff;
-$contrast-500: #18181b;
-$contrast-900: #000000;
+// Semánticos con elección de marca (no están en la escala primitiva)
+$success-color: #006837;   // verde profesional coherente con paleta fría
+$success-bg:    #d1fae5;
+$warning-color: #b45309;   // ámbar legible, no rojo
+$warning-bg:    #fef3c7;
+$danger-color:  #ba1a1a;   // error del DESIGN.md
+$danger-bg:     #ffdad6;   // error-container del DESIGN.md
 
 // ===================================================================
 // 2. GENERACIÓN DE VARIABLES CSS
 // ===================================================================
 :root {
   // Altura del Topbar (Header Fijo)
-  --topbar-height: 4rem; // Aproximadamente 64px (3rem min-height + 1rem padding)
+  --topbar-height: 4rem;
 
   // Sidebar & Header Backgrounds
   --sidebar-bg: #{$sidebar-bg};
-  --header-bg: #{$header-bg};
+  --header-bg:  #{$header-bg};
 
-  // Paleta Primary expuesta como CSS Variables
-  --primary-50: #{$primary-50};
-  --primary-100: #{$primary-100};
-  --primary-200: #{$primary-200};
-  --primary-300: #{$primary-300};
-  --primary-400: #{$primary-400};
-  --primary-500: #{$primary-500};
-  --primary-600: #{$primary-600};
-  --primary-700: #{$primary-700};
-  --primary-800: #{$primary-800};
-  --primary-900: #{$primary-900};
-  --primary-950: #{$primary-950};
+  // Paleta Primary expuesta como CSS Variables (desde core/_colors.scss)
+  --primary-50:  #{c.$primary-50};
+  --primary-100: #{c.$primary-100};
+  --primary-200: #{c.$primary-200};
+  --primary-300: #{c.$primary-300};
+  --primary-400: #{c.$primary-400};
+  --primary-500: #{c.$primary-500};
+  --primary-600: #{c.$primary-600};
+  --primary-700: #{c.$primary-700};
+  --primary-800: #{c.$primary-800};
+  --primary-900: #{c.$primary-900};
+  --primary-950: #{c.$primary-950};
 
-  // Paleta Help
-  --help-50: #{$help-50};
-  --help-100: #{$help-100};
-  --help-200: #{$help-200};
-  --help-300: #{$help-300};
-  --help-400: #{$help-400};
-  --help-500: #{$help-500};
-  --help-600: #{$help-600};
-  --help-700: #{$help-700};
-  --help-800: #{$help-800};
-  --help-900: #{$help-900};
-  --help-950: #{$help-950};
+  // Paleta Help (desde core/_colors.scss)
+  --help-50:  #{c.$help-50};
+  --help-100: #{c.$help-100};
+  --help-200: #{c.$help-200};
+  --help-300: #{c.$help-300};
+  --help-400: #{c.$help-400};
+  --help-500: #{c.$help-500};
+  --help-600: #{c.$help-600};
+  --help-700: #{c.$help-700};
+  --help-800: #{c.$help-800};
+  --help-900: #{c.$help-900};
+  --help-950: #{c.$help-950};
 
-  // Contrast
-  --contrast-0: #{$contrast-0};
-  --contrast-500: #{$contrast-500};
-  --contrast-900: #{$contrast-900};
+  // Contrast (desde core/_colors.scss)
+  --contrast-0:   #{c.$contrast-0};
+  --contrast-500: #{c.$contrast-500};
+  --contrast-900: #{c.$contrast-900};
 
-  // Help (Purple) — único aquí, no duplicado en sección 4
-  --ds-help: var(--brand-help, #{$help-600});
-  --ds-help-hover: var(--brand-help-hover, #{$help-700});
-  --ds-help-active: var(--brand-help-active, #{$help-800});
-  --ds-help-light: var(--brand-help-light, #{$help-50});
+  // Help (Purple) — DS tokens
+  --ds-help:        var(--brand-help, #{c.$help-600});
+  --ds-help-hover:  var(--brand-help-hover, #{c.$help-700});
+  --ds-help-active: var(--brand-help-active, #{c.$help-800});
+  --ds-help-light:  var(--brand-help-light, #{c.$help-50});
 
-  // Contrast
-  --ds-contrast: var(--brand-contrast, #{$contrast-500});
-  --ds-contrast-hover: var(--brand-contrast-hover, #{$contrast-900});
-  --ds-contrast-text: var(--brand-contrast-text, #ffffff);
+  // Contrast — DS tokens
+  --ds-contrast:       var(--brand-contrast, #{c.$contrast-500});
+  --ds-contrast-hover: var(--brand-contrast-hover, #{c.$contrast-900});
+  --ds-contrast-text:  var(--brand-contrast-text, #ffffff);
   --ds-contrast-light: var(--brand-contrast-light, #f1f5f9);
 
   // Borders (brand bridge)
-  --ds-border: var(--brand-border, #e2e8f0);
+  --ds-border:       var(--brand-border, #e2e8f0);
   --ds-border-strong: var(--brand-border-strong, #cbd5e1);
 
   /* ── Task status colors ── */
@@ -123,457 +86,383 @@ $contrast-900: #000000;
   --task-completed-tint:   var(--ds-success-light);
   --task-reopened-tint:    var(--ds-danger-light);
 
-  // Colores semánticos
+  // Colores semánticos (raw, para PrimeNG preset)
   --success-color: #{$success-color};
-  --success-bg: #{$success-bg};
+  --success-bg:    #{$success-bg};
   --warning-color: #{$warning-color};
-  --warning-bg: #{$warning-bg};
-  --danger-color: #{$danger-color};
-  --danger-bg: #{$danger-bg};
+  --warning-bg:    #{$warning-bg};
+  --danger-color:  #{$danger-color};
+  --danger-bg:     #{$danger-bg};
 
   // ===================================================================
   // 3. MAPEO AUTOMÁTICO PARA IONIC
   // ===================================================================
-  // Usamos funciones de Sass (red(), green(), blue()) para calcular los RGB dinámicamente.
-
   /** Primary **/
-  --ion-color-primary: #{$primary-500};
-  --ion-color-primary-rgb:
-    #{red($primary-500)}, #{green($primary-500)}, #{blue($primary-500)};
-  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary:              #{c.$primary-500};
+  --ion-color-primary-rgb:          #{red(c.$primary-500)}, #{green(c.$primary-500)}, #{blue(c.$primary-500)};
+  --ion-color-primary-contrast:     #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #{$primary-600};
-  --ion-color-primary-tint: #{$primary-400};
+  --ion-color-primary-shade:        #{c.$primary-600};
+  --ion-color-primary-tint:         #{c.$primary-400};
 
   /** Success **/
-  --ion-color-success: #{$success-color};
-  --ion-color-success-rgb:
-    #{red($success-color)}, #{green($success-color)}, #{blue($success-color)};
-  --ion-color-success-contrast: #{$success-bg};
-  --ion-color-success-contrast-rgb:
-    #{red($success-bg)}, #{green($success-bg)}, #{blue($success-bg)};
-  --ion-color-success-shade: #{darken($success-color, 10%)};
-  --ion-color-success-tint: #{lighten($success-color, 10%)};
+  --ion-color-success:              #{$success-color};
+  --ion-color-success-rgb:          #{red($success-color)}, #{green($success-color)}, #{blue($success-color)};
+  --ion-color-success-contrast:     #{$success-bg};
+  --ion-color-success-contrast-rgb: #{red($success-bg)}, #{green($success-bg)}, #{blue($success-bg)};
+  --ion-color-success-shade:        #{darken($success-color, 10%)};
+  --ion-color-success-tint:         #{lighten($success-color, 10%)};
 
   /** Warning **/
-  --ion-color-warning: #{$warning-color};
-  --ion-color-warning-rgb:
-    #{red($warning-color)}, #{green($warning-color)}, #{blue($warning-color)};
-  --ion-color-warning-contrast: #{$warning-bg};
-  --ion-color-warning-contrast-rgb:
-    #{red($warning-bg)}, #{green($warning-bg)}, #{blue($warning-bg)};
-  --ion-color-warning-shade: #{darken($warning-color, 10%)};
-  --ion-color-warning-tint: #{lighten($warning-color, 10%)};
+  --ion-color-warning:              #{$warning-color};
+  --ion-color-warning-rgb:          #{red($warning-color)}, #{green($warning-color)}, #{blue($warning-color)};
+  --ion-color-warning-contrast:     #{$warning-bg};
+  --ion-color-warning-contrast-rgb: #{red($warning-bg)}, #{green($warning-bg)}, #{blue($warning-bg)};
+  --ion-color-warning-shade:        #{darken($warning-color, 10%)};
+  --ion-color-warning-tint:         #{lighten($warning-color, 10%)};
 
   /** Danger **/
-  --ion-color-danger: #{$danger-color};
-  --ion-color-danger-rgb:
-    #{red($danger-color)}, #{green($danger-color)}, #{blue($danger-color)};
-  --ion-color-danger-contrast: #{$danger-bg};
-  --ion-color-danger-contrast-rgb:
-    #{red($danger-bg)}, #{green($danger-bg)}, #{blue($danger-bg)};
-  --ion-color-danger-shade: #{darken($danger-color, 10%)};
-  --ion-color-danger-tint: #{lighten($danger-color, 10%)};
+  --ion-color-danger:              #{$danger-color};
+  --ion-color-danger-rgb:          #{red($danger-color)}, #{green($danger-color)}, #{blue($danger-color)};
+  --ion-color-danger-contrast:     #{$danger-bg};
+  --ion-color-danger-contrast-rgb: #{red($danger-bg)}, #{green($danger-bg)}, #{blue($danger-bg)};
+  --ion-color-danger-shade:        #{darken($danger-color, 10%)};
+  --ion-color-danger-tint:         #{lighten($danger-color, 10%)};
 
   /** UI Colors **/
-  --ion-color-light: #{$primary-100};
-  --ion-color-light-rgb:
-    #{red($primary-100)}, #{green($primary-100)}, #{blue($primary-100)};
-  --ion-color-light-contrast: #{$primary-900};
-  --ion-color-light-contrast-rgb:
-    #{red($primary-900)}, #{green($primary-900)}, #{blue($primary-900)};
+  --ion-color-light:              #{c.$primary-100};
+  --ion-color-light-rgb:          #{red(c.$primary-100)}, #{green(c.$primary-100)}, #{blue(c.$primary-100)};
+  --ion-color-light-contrast:     #{c.$primary-900};
+  --ion-color-light-contrast-rgb: #{red(c.$primary-900)}, #{green(c.$primary-900)}, #{blue(c.$primary-900)};
 
-  --ion-color-medium: #{$primary-400};
-  --ion-color-medium-rgb:
-    #{red($primary-400)}, #{green($primary-400)}, #{blue($primary-400)};
-  --ion-color-medium-contrast: #{$primary-950};
-  --ion-color-medium-contrast-rgb:
-    #{red($primary-950)}, #{green($primary-950)}, #{blue($primary-950)};
+  --ion-color-medium:              #{c.$primary-400};
+  --ion-color-medium-rgb:          #{red(c.$primary-400)}, #{green(c.$primary-400)}, #{blue(c.$primary-400)};
+  --ion-color-medium-contrast:     #{c.$primary-950};
+  --ion-color-medium-contrast-rgb: #{red(c.$primary-950)}, #{green(c.$primary-950)}, #{blue(c.$primary-950)};
 
-  --ion-color-dark: #{$primary-800};
-  --ion-color-dark-rgb:
-    #{red($primary-800)}, #{green($primary-800)}, #{blue($primary-800)};
-  --ion-color-dark-contrast: #{$primary-50};
-  --ion-color-dark-contrast-rgb:
-    #{red($primary-50)}, #{green($primary-50)}, #{blue($primary-50)};
+  --ion-color-dark:              #{c.$primary-800};
+  --ion-color-dark-rgb:          #{red(c.$primary-800)}, #{green(c.$primary-800)}, #{blue(c.$primary-800)};
+  --ion-color-dark-contrast:     #{c.$primary-50};
+  --ion-color-dark-contrast-rgb: #{red(c.$primary-50)}, #{green(c.$primary-50)}, #{blue(c.$primary-50)};
 
   /** Backgrounds **/
-  --ion-background-color: #{$primary-50};
-  --ion-background-color-rgb:
-    #{red($primary-50)}, #{green($primary-50)}, #{blue($primary-50)};
-  --ion-text-color: #{$primary-900};
-  --ion-text-color-rgb:
-    #{red($primary-900)}, #{green($primary-900)}, #{blue($primary-900)};
+  --ion-background-color:     #{c.$primary-50};
+  --ion-background-color-rgb: #{red(c.$primary-50)}, #{green(c.$primary-50)}, #{blue(c.$primary-50)};
+  --ion-text-color:           #{c.$primary-900};
+  --ion-text-color-rgb:       #{red(c.$primary-900)}, #{green(c.$primary-900)}, #{blue(c.$primary-900)};
 
   // ===================================================================
   // 4. SISTEMA CENTRALIZADO DE Z-INDEX
   // ===================================================================
-  // 📐 Escala ordenada para evitar conflictos entre PrimeNG, Ionic y custom.
-  // Usa SIEMPRE estas variables en vez de valores hardcodeados.
-  //
-  // Regla: cada capa tiene un rango reservado para sub-niveles internos.
-  //   Ejemplo: un frozen column dentro de una tabla usa var(--z-sticky) + 1
-  //
-  //  CAPA                 RANGO         USO
-  //  ─────────────────────────────────────────────
-  //  Base content         1-9           Elementos inline, badges
-  //  Sticky elements      10-49         Frozen columns, sticky headers
-  //  Sidebar              50-99         Sidebar, navigation panels
-  //  Header/Topbar        100-199       Fixed header, toolbars
-  //  Dropdown/Popover     1000-1999     Dropdowns, tooltips, popovers
-  //  Mobile header        9000-9999     Header mobile, FAB buttons
-  //  Modal/Dialog         10000-19999   PrimeNG dialog, Ionic modal
-  //  Toast/Notification   40000-49999   SweetAlert, PrimeNG toast
-  //  Overlay backdrop     100000+       Overlays de máxima prioridad
-  //  Loader (máximo)      999999        Fullscreen loader
-
-  --z-base: 1;
-  --z-sticky: 10;
-  --z-sidebar: 50;
-  --z-header: 100;
-  --z-dropdown: 1000;
+  --z-base:          1;
+  --z-sticky:        10;
+  --z-sidebar:       50;
+  --z-header:        100;
+  --z-dropdown:      1000;
   --z-mobile-header: 9999;
-  --z-modal: 10000;
-  --z-toast: 40000;
-  --z-overlay: 110000;
-  --z-loader: 999999;
+  --z-modal:         10000;
+  --z-toast:         40000;
+  --z-overlay:       110000;
+  --z-loader:        999999;
 
   // Presupuesto
-  --ds-bg-budget: #fff3e0;
+  --ds-bg-budget:   #fff3e0;
   --ds-text-budget: inherit;
 
   // ── DESIGN SYSTEM TOKENS (--ds-*) ────────────────────────────────
-  // Usados por components/*.scss (buttons, cards, forms, inputs, tables, alerts)
 
   // Primario
-  --ds-primary: var(--primary-500);
-  --ds-primary-hover: var(--primary-600);
+  --ds-primary:        var(--primary-500);
+  --ds-primary-hover:  var(--primary-600);
   --ds-primary-active: var(--primary-700);
-  --ds-primary-light: var(--primary-50);
-  --ds-primary-text: #ffffff;
+  --ds-primary-light:  var(--primary-50);
+  --ds-primary-text:   #ffffff;
 
   // Semánticos
-  --ds-success: var(--success-color);
-  --ds-success-hover: #054d38;
+  --ds-success:       var(--success-color);
+  --ds-success-hover: #005a2f;
   --ds-success-light: var(--success-bg);
-  --ds-warning: var(--warning-color);
-  --ds-warning-hover: #7a360c;
+  --ds-warning:       var(--warning-color);
+  --ds-warning-hover: #9a4208;
   --ds-warning-light: var(--warning-bg);
-  --ds-danger: var(--danger-color);
-  --ds-danger-hover: #7f1616;
-  --ds-danger-light: var(--danger-bg);
-  --ds-info: #0891b2;
-  --ds-info-hover: #0e7490;
-  --ds-info-light: #ecfeff;
+  --ds-danger:        var(--danger-color);
+  --ds-danger-hover:  #9b1515;
+  --ds-danger-light:  var(--danger-bg);
+  // info = teal corporativo (tertiary del DESIGN.md)
+  --ds-info:       #006477;
+  --ds-info-hover: #004b59;
+  --ds-info-light: #afecff;
 
-  // Nuevos Tokens ERP (Material 3 roles)
-  --ds-primary-container: #dce7f3;
-  --ds-on-primary-container: #072042;
-  --ds-on-primary: #ffffff;
-  
-  --ds-secondary: #64748b;
-  --ds-on-secondary: #ffffff;
-  --ds-secondary-container: #f1f5f9;
-  --ds-on-secondary-container: #0f172a;
+  // Material 3 roles — alineados con DESIGN.md
+  --ds-primary-container:    #{c.$primary-100};   // primary-fixed (azul claro)
+  --ds-on-primary-container: #c4d2ff;             // on-primary-container
+  --ds-on-primary:           #ffffff;
 
-  --ds-tertiary: #0f766e;
+  --ds-secondary:              #{c.$primary-400};  // secondary
+  --ds-on-secondary:           #ffffff;
+  --ds-secondary-container:    #{c.$primary-300};  // secondary-container
+  --ds-on-secondary-container: #{c.$primary-800};  // on-secondary-container
+
+  --ds-tertiary:    #004b59;  // tertiary
   --ds-on-tertiary: #ffffff;
 
-  --ds-error: var(--danger-color);
-  --ds-on-error: #ffffff;
-  --ds-error-container: var(--danger-bg);
-  --ds-on-error-container: #7f1616;
+  --ds-error:              var(--danger-color);
+  --ds-on-error:           #ffffff;
+  --ds-error-container:    var(--danger-bg);    // #ffdad6
+  --ds-on-error-container: #93000a;             // on-error-container
 
-  --ds-surface: #ffffff;
-  --ds-on-surface: #0f172a;
-  --ds-surface-variant: #f8fafc;
-  --ds-on-surface-variant: #475569;
+  --ds-surface:            #ffffff;             // surface-container-lowest
+  --ds-on-surface:         #041b3c;             // on-surface
+  --ds-surface-variant:    #{c.$primary-100};   // surface-variant
+  --ds-on-surface-variant: #434654;             // on-surface-variant
 
-  --ds-outline: #cbd5e1;
-  --ds-outline-variant: #e2e8f0;
+  --ds-outline:         #737685;  // outline
+  --ds-outline-variant: #c3c6d6;  // outline-variant
 
-  --ds-background: #f8fafc;
-  --ds-on-background: #0f172a;
+  --ds-background:    #f9f9ff;    // background
+  --ds-on-background: #041b3c;    // on-background
 
   // Identidad Luxury / Documental
-  // Paleta de soporte para documentos, portadas, reportes formales y acentos premium.
-  // No reemplaza al primary ERP; acompana la marca en contextos institucionales.
-  --ds-luxury-gold: #c9a84c;
+  --ds-luxury-gold:       #c9a84c;
   --ds-luxury-gold-hover: #ad8f3d;
   --ds-luxury-gold-light: #fbf6e4;
-  --ds-document-neutral: #6b7280;
+  --ds-document-neutral:  #6b7280;
   --ds-document-bg-muted: #f3f4f6;
-  --ds-document-ink: #1a1a1a;
-  --ds-document-surface: #ffffff;
+  --ds-document-ink:      #041b3c;
+  --ds-document-surface:  #ffffff;
 
-  // Tipografia Documental (Estandar Documental)
-  --ds-font-family-document:
-    "DM Sans", sans-serif;
-  --ds-font-family-mono: "Roboto Mono", "Consolas", monospace;
-  --ds-font-size-doc-title: 26pt; // Rango 24-28pt
-  --ds-font-size-doc-body: 10.5pt; // Rango 10-11pt
-  --ds-font-size-doc-code: 9.5pt; // Rango 9-10pt
+  // Tipografía Documental
+  --ds-font-family-document: "Hanken Grotesk", "Inter", sans-serif;
+  --ds-font-family-mono:     "JetBrains Mono", "Roboto Mono", "Consolas", monospace;
+  --ds-font-size-doc-title:  26pt;
+  --ds-font-size-doc-body:   10.5pt;
+  --ds-font-size-doc-code:   9.5pt;
 
-  // Fondos
-  --ds-bg-page: #f8fafc;
-  --ds-bg-surface: #ffffff;
-  --ds-bg-elevated: #ffffff;
-  --ds-bg-sunken: #f1f5f9;
-  --ds-bg-overlay: rgba(0, 0, 0, 0.45);
+  // Fondos — DESIGN.md surface tiers
+  --ds-bg-page:     #f9f9ff;              // background / surface
+  --ds-bg-surface:  #ffffff;             // surface-container-lowest
+  --ds-bg-elevated: #f1f3ff;             // surface-container-low
+  --ds-bg-sunken:   #e8edff;             // surface-container
+  --ds-bg-overlay:  rgba(4, 27, 60, 0.50);
 
-  // Texto
-  --ds-text-primary: #0f172a;
-  --ds-text-secondary: #475569;
-  --ds-text-muted: #6b7280;
-  --ds-text-inverse: #ffffff;
-  --ds-text-disabled: #cbd5e1;
-  --ds-text-link: var(--primary-600);
+  // Texto — DESIGN.md on-surface roles
+  --ds-text-primary:   #041b3c;          // on-surface
+  --ds-text-secondary: #434654;          // on-surface-variant
+  --ds-text-muted:     #737685;          // outline
+  --ds-text-inverse:   #edf0ff;          // inverse-on-surface
+  --ds-text-disabled:  #c3c6d6;          // outline-variant
+  --ds-text-link:      var(--primary-500);
 
-  // Tipografia ERP
-  --ds-font-family-base:
-    "DM Sans", sans-serif;
-  --ds-font-size-display: 2rem; // 32px - heroes internos o portada de modulo
-  --ds-font-size-page-title: 1.75rem; // 28px - titulo principal de vista
-  --ds-font-size-section-title: 1.25rem; // 20px - secciones y paneles
-  --ds-font-size-card-title: 1rem; // 16px - cards, dialogs y subtitulos
-  --ds-font-size-body: 0.9375rem; // 15px - lectura operativa
-  --ds-font-size-table: 0.875rem; // 14px - tablas y listas densas
-  --ds-font-size-label: 0.875rem; // 14px - labels persistentes
-  --ds-font-size-help: 0.8125rem; // 13px - ayudas, hints y validaciones
-  --ds-font-size-micro: 0.75rem; // 12px - metadatos y badges secundarios
-  --ds-font-size-metric: 1.5rem; // 24px - KPI compacto
-  --ds-line-height-tight: 1.2;
-  --ds-line-height-base: 1.5;
-  --ds-line-height-relaxed: 1.65;
-  --ds-font-weight-regular: 400;
-  --ds-font-weight-medium: 500;
+  // Tipografía ERP — Hanken Grotesk (headlines) + Inter (body)
+  --ds-font-family-base:        "Inter", "Hanken Grotesk", sans-serif;
+  --ds-font-size-display:       2rem;     // 32px
+  --ds-font-size-page-title:    1.75rem;  // 28px
+  --ds-font-size-section-title: 1.25rem;  // 20px
+  --ds-font-size-card-title:    1rem;     // 16px
+  --ds-font-size-body:          0.9375rem; // 15px
+  --ds-font-size-table:         0.875rem;  // 14px
+  --ds-font-size-label:         0.875rem;  // 14px
+  --ds-font-size-help:          0.8125rem; // 13px
+  --ds-font-size-micro:         0.75rem;   // 12px
+  --ds-font-size-metric:        1.5rem;    // 24px
+  --ds-line-height-tight:    1.2;
+  --ds-line-height-base:     1.5;
+  --ds-line-height-relaxed:  1.65;
+  --ds-font-weight-regular:  400;
+  --ds-font-weight-medium:   500;
   --ds-font-weight-semibold: 600;
-  --ds-font-weight-bold: 700;
+  --ds-font-weight-bold:     700;
 
   // Bordes
-  --ds-border: #e2e8f0;
-  --ds-border-strong: #cbd5e1;
-  --ds-border-focus: var(--primary-500);
-  --ds-border-error: #ef4444;
-  --ds-border-success: #22c55e;
+  --ds-border:              #e2e8f0;
+  --ds-border-strong:       #cbd5e1;
+  --ds-border-focus:        var(--primary-500);
+  --ds-border-error:        #ef4444;
+  --ds-border-success:      #22c55e;
   --ds-control-border-width: 1px;
 
   // Sombras
-  --ds-shadow-none: none;
-  --ds-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --ds-shadow-sm:
-    0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
-  --ds-shadow-md:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
-  --ds-shadow-lg:
-    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.06);
-  --ds-shadow-xl:
-    0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.06);
-  --ds-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --ds-shadow-none:  none;
+  --ds-shadow-xs:    0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --ds-shadow-sm:    0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+  --ds-shadow-md:    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+  --ds-shadow-lg:    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.06);
+  --ds-shadow-xl:    0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.06);
+  --ds-shadow-2xl:   0 25px 50px -12px rgba(0, 0, 0, 0.25);
   --ds-shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
   --ds-shadow-focus: 0 0 0 3px rgba(11, 49, 100, 0.25);
 
   // Border radius
   --ds-radius-none: 0px;
-  --ds-radius-xs: 2px;
-  --ds-radius-sm: 4px;
-  --ds-radius-md: 4px;
-  --ds-radius-lg: 8px;
-  --ds-radius-xl: 12px;
-  --ds-radius-2xl: 16px;
-  --ds-radius-full: 9999px;
-  --ds-radius-btn: 4px;
-  --ds-radius-input: 4px;
-  --ds-radius-card: 4px;
+  --ds-radius-xs:   2px;
+  --ds-radius-sm:   4px;
+  --ds-radius-md:   0.25rem;   // 4px  — DEFAULT
+  --ds-radius-lg:   0.5rem;    // 8px  — cards
+  --ds-radius-xl:   0.75rem;   // 12px — modals
+  --ds-radius-2xl:  1rem;      // 16px — overlays
+  --ds-radius-full: 9999px;    // pills
+  --ds-radius-btn:   0.25rem;
+  --ds-radius-input: 0.25rem;
+  --ds-radius-card:  0.5rem;
   --ds-radius-badge: 9999px;
-  --ds-radius-modal: 16px;
+  --ds-radius-modal: 0.75rem;
 
   // 💎 PrimeNG 21 Native Mapping (Bridge)
-  --p-primary-color: var(--ds-primary);
-  --p-primary-contrast-color: var(--ds-primary-text);
-  --p-content-border-radius: var(--ds-radius-md);
-  --p-button-border-radius: var(--ds-radius-btn);
-  --p-card-border-radius: var(--ds-radius-card);
-  --p-card-shadow: var(--ds-shadow-md);
-  --p-overlay-shadow: var(--ds-shadow-lg);
-  --p-focus-ring-color: var(--ds-shadow-focus);
+  --p-primary-color:           var(--ds-primary);
+  --p-primary-contrast-color:  var(--ds-primary-text);
+  --p-content-border-radius:   var(--ds-radius-md);
+  --p-button-border-radius:    var(--ds-radius-btn);
+  --p-card-border-radius:      var(--ds-radius-card);
+  --p-card-shadow:             var(--ds-shadow-md);
+  --p-overlay-shadow:          var(--ds-shadow-lg);
+  --p-focus-ring-color:        var(--ds-shadow-focus);
 }
 
 // ===================================================================
-// 5. DARK MODE — VARIABLES IONIC
+// 5. DARK MODE — VARIABLES IONIC Y DS
 // ===================================================================
-// 🌙 Cuando PrimeNG activa dark mode (.theme-dark en <body>),
-// Ionic necesita sus propias variables actualizadas para reflejar el tema oscuro.
-// Sin esto, la vista mobile mantiene fondos claros en dark mode.
-
 body.theme-dark {
-  /** Ionic Backgrounds (invertidos para dark mode) **/
-  --ion-background-color: #{$primary-900};
-  --ion-background-color-rgb:
-    #{red($primary-900)}, #{green($primary-900)}, #{blue($primary-900)};
-  --ion-text-color: #{$primary-100};
-  --ion-text-color-rgb:
-    #{red($primary-100)}, #{green($primary-100)}, #{blue($primary-100)};
+  // Sidebar y topbar vuelven a navy oscuro en dark mode
+  --sidebar-bg: #1d3052;
+  --header-bg:  #1d3052;
 
-  /** Ionic Step Colors (para cards, items, etc.) **/
-  --ion-background-color-step-50: #{$primary-950};
-  --ion-background-color-step-100: #{$primary-900};
-  --ion-background-color-step-150: #{$primary-800};
-  --ion-background-color-step-200: #{$primary-700};
-  --ion-background-color-step-250: #{$primary-600};
-  --ion-background-color-step-300: #{$primary-500};
+  /** Ionic Backgrounds **/
+  --ion-background-color:     #{c.$primary-900};
+  --ion-background-color-rgb: #{red(c.$primary-900)}, #{green(c.$primary-900)}, #{blue(c.$primary-900)};
+  --ion-text-color:           #{c.$primary-100};
+  --ion-text-color-rgb:       #{red(c.$primary-100)}, #{green(c.$primary-100)}, #{blue(c.$primary-100)};
 
-  /** Primary (más brillante para contraste en fondo oscuro) **/
-  --ion-color-primary: #{$primary-400};
-  --ion-color-primary-rgb:
-    #{red($primary-400)}, #{green($primary-400)}, #{blue($primary-400)};
-  --ion-color-primary-contrast: #{$primary-950};
-  --ion-color-primary-contrast-rgb:
-    #{red($primary-950)}, #{green($primary-950)}, #{blue($primary-950)};
-  --ion-color-primary-shade: #{$primary-500};
-  --ion-color-primary-tint: #{$primary-300};
+  /** Ionic Step Colors **/
+  --ion-background-color-step-50:  #{c.$primary-950};
+  --ion-background-color-step-100: #{c.$primary-900};
+  --ion-background-color-step-150: #{c.$primary-800};
+  --ion-background-color-step-200: #{c.$primary-700};
+  --ion-background-color-step-250: #{c.$primary-600};
+  --ion-background-color-step-300: #{c.$primary-500};
 
-  /** Light (invertido: ahora es oscuro) **/
-  --ion-color-light: #{$primary-800};
-  --ion-color-light-rgb:
-    #{red($primary-800)}, #{green($primary-800)}, #{blue($primary-800)};
-  --ion-color-light-contrast: #{$primary-100};
-  --ion-color-light-contrast-rgb:
-    #{red($primary-100)}, #{green($primary-100)}, #{blue($primary-100)};
+  /** Primary **/
+  --ion-color-primary:              #{c.$primary-400};
+  --ion-color-primary-rgb:          #{red(c.$primary-400)}, #{green(c.$primary-400)}, #{blue(c.$primary-400)};
+  --ion-color-primary-contrast:     #{c.$primary-950};
+  --ion-color-primary-contrast-rgb: #{red(c.$primary-950)}, #{green(c.$primary-950)}, #{blue(c.$primary-950)};
+  --ion-color-primary-shade:        #{c.$primary-500};
+  --ion-color-primary-tint:         #{c.$primary-300};
 
-  /** Dark (invertido: ahora es claro) **/
-  --ion-color-dark: #{$primary-100};
-  --ion-color-dark-rgb:
-    #{red($primary-100)}, #{green($primary-100)}, #{blue($primary-100)};
-  --ion-color-dark-contrast: #{$primary-900};
-  --ion-color-dark-contrast-rgb:
-    #{red($primary-900)}, #{green($primary-900)}, #{blue($primary-900)};
+  /** Light (invertido) **/
+  --ion-color-light:              #{c.$primary-800};
+  --ion-color-light-rgb:          #{red(c.$primary-800)}, #{green(c.$primary-800)}, #{blue(c.$primary-800)};
+  --ion-color-light-contrast:     #{c.$primary-100};
+  --ion-color-light-contrast-rgb: #{red(c.$primary-100)}, #{green(c.$primary-100)}, #{blue(c.$primary-100)};
+
+  /** Dark (invertido) **/
+  --ion-color-dark:              #{c.$primary-100};
+  --ion-color-dark-rgb:          #{red(c.$primary-100)}, #{green(c.$primary-100)}, #{blue(c.$primary-100)};
+  --ion-color-dark-contrast:     #{c.$primary-900};
+  --ion-color-dark-contrast-rgb: #{red(c.$primary-900)}, #{green(c.$primary-900)}, #{blue(c.$primary-900)};
 
   /** Toolbar & Item backgrounds **/
-  --ion-toolbar-background: #{$primary-950};
-  --ion-item-background: #{$primary-900};
-  --ion-card-background: #{$primary-900};
-  --ion-tab-bar-background: #{$primary-950};
+  --ion-toolbar-background: #{c.$primary-950};
+  --ion-item-background:    #{c.$primary-900};
+  --ion-card-background:    #{c.$primary-900};
+  --ion-tab-bar-background: #{c.$primary-950};
 
   // Presupuesto
-  --ds-bg-budget: #78350f;
+  --ds-bg-budget:   #78350f;
   --ds-text-budget: #ffffff;
 
-  // ── DESIGN SYSTEM TOKENS dark ─────────────────────────────────────
-  --ds-bg-page: #09090b;
-  --ds-bg-surface: #18181b;
-  --ds-bg-elevated: #27272a;
-  --ds-bg-sunken: #09090b;
-  --ds-bg-overlay: rgba(0, 0, 0, 0.65);
-  --ds-text-primary: #fafafa;
-  --ds-text-secondary: #a1a1aa;
-  --ds-text-muted: #a1a1aa;
-  --ds-text-inverse: #09090b;
-  --ds-text-disabled: #3f3f46;
-  --ds-text-link: var(--primary-400);
-  --ds-border: #3f3f46;
-  --ds-border-strong: #52525b;
-  --ds-border-focus: #60a5fa;
-  --ds-border-error: #f87171;
-  --ds-border-success: #4ade80;
-  --ds-primary: #4d9fff;
-  --ds-primary-hover: #60a5fa;
-  --ds-primary-light: rgba(77, 159, 255, 0.15);
-  --ds-success: #4ade80;
-  --ds-success-hover: #86efac;
-  --ds-success-light: rgba(74, 222, 128, 0.12);
-  --ds-warning: #fbbf24;
-  --ds-warning-hover: #fcd34d;
-  --ds-warning-light: rgba(251, 191, 36, 0.12);
-  --ds-danger: #f87171;
-  --ds-danger-hover: #fca5a5;
-  --ds-danger-light: rgba(248, 113, 113, 0.12);
-  --ds-info: #22d3ee;
-  --ds-info-hover: #67e8f9;
-  --ds-info-light: rgba(34, 211, 238, 0.12);
+  // ── DS TOKENS DARK — derivados de inverse-* del DESIGN.md ──────
+  --ds-bg-page:     #041b3c;
+  --ds-bg-surface:  #1d3052;
+  --ds-bg-elevated: #253e66;
+  --ds-bg-sunken:   #030f24;
+  --ds-bg-overlay:  rgba(4, 27, 60, 0.70);
 
-  // Nuevos Tokens ERP Dark (Material 3 roles)
-  --ds-primary-container: #092953;
+  --ds-text-primary:   #edf0ff;    // inverse-on-surface
+  --ds-text-secondary: #{c.$primary-200};  // primary-fixed-dim
+  --ds-text-muted:     #c3c6d6;
+  --ds-text-inverse:   #041b3c;
+  --ds-text-disabled:  #434654;
+  --ds-text-link:      var(--primary-200);
+
+  --ds-border:        #434654;
+  --ds-border-strong: #737685;
+  --ds-border-focus:  #{c.$primary-200};   // inverse-primary
+  --ds-border-error:  #ffb4ab;
+  --ds-border-success: #6efab4;
+
+  --ds-primary:        #{c.$primary-200};  // inverse-primary
+  --ds-primary-hover:  #{c.$primary-100};
+  --ds-primary-light:  rgba(178, 197, 255, 0.15);
+
+  --ds-success:       #6efab4;
+  --ds-success-hover: #9cf7ca;
+  --ds-success-light: rgba(110, 250, 180, 0.12);
+  --ds-warning:       #ffd180;
+  --ds-warning-hover: #ffe0a8;
+  --ds-warning-light: rgba(251, 191, 36, 0.12);
+  --ds-danger:        #f87171;
+  --ds-danger-hover:  #fca5a5;
+  --ds-danger-light:  rgba(248, 113, 113, 0.12);
+  --ds-info:          #22d3ee;
+  --ds-info-hover:    #67e8f9;
+  --ds-info-light:    rgba(34, 211, 238, 0.12);
+
+  // Material 3 roles dark
+  --ds-primary-container:    #092953;
   --ds-on-primary-container: #dce7f3;
-  --ds-on-primary: #020811;
-  
-  --ds-secondary: #94a3b8;
-  --ds-on-secondary: #0f172a;
-  --ds-secondary-container: #1e293b;
+  --ds-on-primary:           #020811;
+
+  --ds-secondary:              #94a3b8;
+  --ds-on-secondary:           #0f172a;
+  --ds-secondary-container:    #1e293b;
   --ds-on-secondary-container: #e2e8f0;
 
-  --ds-tertiary: #14b8a6;
+  --ds-tertiary:    #14b8a6;
   --ds-on-tertiary: #042f2e;
 
-  --ds-error: #f87171;
-  --ds-on-error: #450a0a;
-  --ds-error-container: #7f1616;
+  --ds-error:              #f87171;
+  --ds-on-error:           #450a0a;
+  --ds-error-container:    #7f1616;
   --ds-on-error-container: #fca5a5;
 
-  --ds-surface: #18181b;
-  --ds-on-surface: #f8fafc;
-  --ds-surface-variant: #27272a;
+  --ds-surface:            #18181b;
+  --ds-on-surface:         #f8fafc;
+  --ds-surface-variant:    #27272a;
   --ds-on-surface-variant: #94a3b8;
 
-  --ds-outline: #52525b;
+  --ds-outline:         #52525b;
   --ds-outline-variant: #3f3f46;
 
-  --ds-background: #09090b;
+  --ds-background:    #09090b;
   --ds-on-background: #f8fafc;
-  --ds-luxury-gold: #d8bd69;
+
+  --ds-luxury-gold:       #d8bd69;
   --ds-luxury-gold-hover: #e5cd7f;
   --ds-luxury-gold-light: rgba(201, 168, 76, 0.16);
-  --ds-document-neutral: #a1a1aa;
+  --ds-document-neutral:  #a1a1aa;
   --ds-document-bg-muted: #27272a;
-  --ds-document-ink: #fafafa;
-  --ds-document-surface: #18181b;
-  --ds-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  --ds-shadow-sm:
-    0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.3);
-  --ds-shadow-md:
-    0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
-  --ds-shadow-lg:
-    0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
-  --ds-shadow-xl:
-    0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
-  --ds-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  --ds-document-ink:      #fafafa;
+  --ds-document-surface:  #18181b;
+
+  --ds-shadow-xs:    0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --ds-shadow-sm:    0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.3);
+  --ds-shadow-md:    0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --ds-shadow-lg:    0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+  --ds-shadow-xl:    0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+  --ds-shadow-2xl:   0 25px 50px -12px rgba(0, 0, 0, 0.7);
   --ds-shadow-focus: 0 0 0 3px rgba(77, 159, 255, 0.3);
 
-  // Neon glow tokens — efectos de borde luminoso para dark mode
-  --ds-glow-primary: var(
-    --brand-glow-primary,
-    0 0 0 1px rgba(77, 159, 255, 0.45),
-    0 0 14px rgba(77, 159, 255, 0.2)
-  );
-  --ds-glow-success: var(
-    --brand-glow-success,
-    0 0 0 1px rgba(74, 222, 128, 0.45),
-    0 0 14px rgba(74, 222, 128, 0.2)
-  );
-  --ds-glow-danger: var(
-    --brand-glow-danger,
-    0 0 0 1px rgba(248, 113, 113, 0.45),
-    0 0 14px rgba(248, 113, 113, 0.2)
-  );
-  --ds-glow-warning: var(
-    --brand-glow-warning,
-    0 0 0 1px rgba(251, 191, 36, 0.45),
-    0 0 14px rgba(251, 191, 36, 0.2)
-  );
-  --ds-glow-info: var(
-    --brand-glow-info,
-    0 0 0 1px rgba(34, 211, 238, 0.45),
-    0 0 14px rgba(34, 211, 238, 0.2)
-  );
-  --ds-glow-help: var(
-    --brand-glow-help,
-    0 0 0 1px rgba(196, 181, 253, 0.45),
-    0 0 14px rgba(196, 181, 253, 0.2)
-  );
+  // Neon glow tokens — dark mode
+  --ds-glow-primary: var(--brand-glow-primary, 0 0 0 1px rgba(77, 159, 255, 0.45), 0 0 14px rgba(77, 159, 255, 0.2));
+  --ds-glow-success: var(--brand-glow-success, 0 0 0 1px rgba(74, 222, 128, 0.45), 0 0 14px rgba(74, 222, 128, 0.2));
+  --ds-glow-danger:  var(--brand-glow-danger,  0 0 0 1px rgba(248, 113, 113, 0.45), 0 0 14px rgba(248, 113, 113, 0.2));
+  --ds-glow-warning: var(--brand-glow-warning, 0 0 0 1px rgba(251, 191, 36, 0.45), 0 0 14px rgba(251, 191, 36, 0.2));
+  --ds-glow-info:    var(--brand-glow-info,    0 0 0 1px rgba(34, 211, 238, 0.45), 0 0 14px rgba(34, 211, 238, 0.2));
+  --ds-glow-help:    var(--brand-glow-help,    0 0 0 1px rgba(196, 181, 253, 0.45), 0 0 14px rgba(196, 181, 253, 0.2));
 
   // 💎 PrimeNG 21 Dark Mapping
-  --p-primary-color: var(--ds-primary);
-  --p-primary-contrast-color: var(--ds-text-inverse);
-  --p-content-background: var(--ds-bg-surface);
-  --p-content-border-color: var(--ds-border);
+  --p-primary-color:           var(--ds-primary);
+  --p-primary-contrast-color:  var(--ds-text-inverse);
+  --p-content-background:      var(--ds-bg-surface);
+  --p-content-border-color:    var(--ds-border);
 }

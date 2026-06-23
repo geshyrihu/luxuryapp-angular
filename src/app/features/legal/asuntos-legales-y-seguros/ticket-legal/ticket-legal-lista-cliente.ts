@@ -1,11 +1,11 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile";
+import { CustomButtonItem } from "src/app/core/components/buttons/web";
 import { CustomButtonTracking } from "src/app/core/components/buttons/web/custom-button-tracking";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
@@ -36,7 +36,7 @@ import { TicketLegalSeguimientoSolicitudDetalle } from "./ticket-legal-seguimien
     ActionMenu,
     DataViewMobile,
     CardModule,
-    IonButtonItem,
+    CustomButtonItem,
   ],
 })
 export class TicketLegalListaCliente implements OnInit {

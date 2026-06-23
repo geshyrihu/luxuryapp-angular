@@ -1,4 +1,4 @@
-@if (dataSignal()) {
+﻿@if (dataSignal()) {
 <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="card">
   <p-table
@@ -165,7 +165,7 @@
         <app-action-menu>
           <ng-container actions>
             @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
-            <ion-button-item
+            <custom-button-item
               (clicked)="
                 onEditSalida({
                   id: item.id,
@@ -179,13 +179,13 @@
               iconName="create-outline"
             />
             }
-            <ion-button-item
+            <custom-button-item
               (clicked)="onReturnProduct(item)"
               label="↩️ Devolver"
               [disabled]="item.cantidadDevuelta >= item.cantidad"
             />
 
-            <ion-button-delete (confirmed)="onDelete(item.id)" />
+            <custom-button-delete (confirmed)="onDelete(item.id)" />
           </ng-container>
         </app-action-menu>
       </div>

@@ -1,4 +1,4 @@
-@if (aspRoleS.roleSignal(AspRole.JefeMantenimiento)()) { @for (item of
+﻿@if (aspRoleS.roleSignal(AspRole.JefeMantenimiento)()) { @for (item of
 cb_departamento; track item) {
 <custom-button
   [customClass]="' mb-1'"
@@ -92,23 +92,23 @@ cb_departamento; track item) {
       <td class="no-print">
         <app-action-menu>
           <ng-container actions>
-            <ion-button-edit
+            <custom-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             />
             @if (item.archivo && item.superviso === "") {
-            <ion-button-item
+            <custom-button-item
               iconClass="mdi:check"
               label="Validar"
               (clicked)="onValidarDocument(item.id)"
             />
             } @if (item.archivo && item.superviso !== "") {
-            <ion-button-item
+            <custom-button-item
               iconClass="mdi:arrow-left"
               label="Revocar"
               (clicked)="onInvalidarDocument(item.id)"
             />
             } @if (item.archivo !== "") {
-            <ion-button-delete
+            <custom-button-delete
               label="Eliminar archivo"
               (confirmed)="onDeleteFile(item.id)"
             />

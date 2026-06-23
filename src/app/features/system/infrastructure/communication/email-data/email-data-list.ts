@@ -1,11 +1,10 @@
-import { Component, computed, inject, signal } from "@angular/core";
+﻿import { Component, computed, inject, signal } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonSendEmail } from "src/app/core/components/buttons/mobile";
+import { CustomButtonSendEmail } from "src/app/core/components/buttons/web";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButtonSendEmail } from "src/app/core/components/buttons/web/custom-button-send-email";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -32,7 +31,7 @@ import { EmailDataForm } from "./email-data-form";
     DataViewMobile,
     ActionMenu,
 
-    IonButtonSendEmail,
+    CustomButtonSendEmail,
   ],
 })
 export class EmailDataList {

@@ -98,9 +98,10 @@ export class CobranzaOnlineInspectionHistoryModal implements OnInit {
       return value;
     }
 
-    return new Intl.DateTimeFormat("es-MX", {
-      dateStyle: "medium",
-    }).format(parsedDate);
+    const day = parsedDate.getDate().toString().padStart(2, "0");
+    const month = parsedDate.toLocaleDateString("es-MX", { month: "short" });
+    const year = parsedDate.getFullYear().toString().slice(-2);
+    return `${day}-${month}-${year}`;
   }
 
   close() {

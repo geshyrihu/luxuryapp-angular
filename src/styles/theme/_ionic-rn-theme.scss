@@ -204,21 +204,65 @@ ion-fab-button {
 }
 
 // ── 9. ion-input / ion-textarea / ion-select ──────────────────
+// Design-system aligned inputs: label above, bordered box like web PrimeNG inputs
 ion-input,
 ion-textarea,
 ion-select {
-  --background: #f2f2f7;
-  --border-radius: 10px;
-  --padding-top: 12px;
-  --padding-bottom: 12px;
-  --padding-start: 14px;
-  --padding-end: 14px;
-  --placeholder-color: #8e8e93;
-  --highlight-color-valid: #155ec0;
-  --highlight-color-invalid: #ff3b30;
-  --color: #1c1c1e;
-  font-size: 15px;
-  border-radius: 10px;
+  // Host-element border (works in both iOS and MD mode regardless of fill prop)
+  border: 1px solid var(--ds-border, #e2e8f0);
+  border-radius: var(--ds-radius-input, 6px);
+  background-color: var(--ds-bg-surface, #ffffff);
+  min-height: 40px;
+  font-size: 0.875rem;
+  overflow: hidden;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+
+  // Suppress Ionic's own internal borders and bottom-line highlight
+  --border-width: 0;
+  --inner-border-width: 0;
+  --highlight-height: 0px;
+  --highlight-color-focused: transparent;
+  --highlight-color-valid: transparent;
+  --highlight-color-invalid: transparent;
+
+  // DS-aligned CSS custom properties (cascade into shadow DOM)
+  --background: var(--ds-bg-surface, #ffffff);
+  --border-radius: var(--ds-radius-input, 6px);
+  --color: var(--ds-text-primary, #1c1c1e);
+  --placeholder-color: var(--ds-text-muted, #6b7280);
+  --placeholder-opacity: 1;
+  --padding-start: 0.75rem;
+  --padding-end: 0.75rem;
+  --padding-top: 0.5rem;
+  --padding-bottom: 0.5rem;
+}
+
+ion-input.ion-focused,
+ion-textarea.ion-focused,
+ion-select.ion-focused {
+  border-color: var(--ds-border-focus, #0b3164);
+  box-shadow: 0 0 0 3px rgba(11, 49, 100, 0.15);
+  outline: none;
+}
+
+ion-input.ion-invalid.ion-touched,
+ion-textarea.ion-invalid.ion-touched,
+ion-select.ion-invalid.ion-touched {
+  border-color: var(--ds-border-error, #ef4444);
+}
+
+ion-input.ion-invalid.ion-focused,
+ion-textarea.ion-invalid.ion-focused,
+ion-select.ion-invalid.ion-focused {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+ion-input.ion-disabled,
+ion-textarea.ion-disabled,
+ion-select.ion-disabled {
+  opacity: 0.55;
+  background-color: var(--ds-bg-sunken, #f1f5f9);
+  cursor: not-allowed;
 }
 
 // ── 10. ion-searchbar ─────────────────────────────────────────

@@ -1,13 +1,8 @@
-import { Component, forwardRef, input } from "@angular/core";
+﻿import { Component, computed, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonSelect, IonSelectOption } from "@ionic/angular/standalone";
 import { BaseIonicInput } from "../base/base-ionic-input";
 
-/**
- * ☯️ ION INPUT SELECT BOOL - Mobile (Ionic)
- * -------------------------------------------------------------------------
- * Para decisiones binarias (Sí/No, Activo/Inactivo) con interfaz nativa.
- */
 @Component({
   selector: "ion-input-select-bool",
   imports: [BaseIonicInput, ReactiveFormsModule, IonSelect, IonSelectOption],
@@ -19,6 +14,12 @@ import { BaseIonicInput } from "../base/base-ionic-input";
       [placeholder]="placeholder()"
       [readonly]="readonly()"
       [required]="requiredInput()"
+      [hidden]="hidden()"
+      [description]="description()"
+      [horizontal]="horizontal()"
+      [noMargin]="noMargin()"
+      [onlyInput]="onlyInput()"
+      [class]="inputStyleClass()"
     >
       <ion-select
         [id]="id()"
@@ -27,7 +28,6 @@ import { BaseIonicInput } from "../base/base-ionic-input";
         [placeholder]="placeholder() || 'Seleccione una opción'"
         label-placement="floating"
         fill="outline"
-        shape="round"
         [disabled]="disabled() || readonly()"
         interface="action-sheet"
         cancelText="Cancelar"
@@ -55,6 +55,9 @@ import { BaseIonicInput } from "../base/base-ionic-input";
 export class IonInputSelectBool extends BaseIonicInput {
   activeLabel = input<string>("Activo");
   inactiveLabel = input<string>("Inactivo");
+  customClass = input<string>("");
+
+  inputStyleClass = computed(() => this.customClass());
 
   override registerOnChange(fn: any): void {
     this.onChange = fn;

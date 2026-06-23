@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectorRef,
   Component,
   forwardRef,
@@ -45,7 +45,6 @@ import { BaseInputSignal } from "../base/base-input-signal";
         [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
         [readonly]="readonly()"
-        [disabled]="disabled()"
         [locale]="spanishLocale"
         [enableTime]="true"
         [time24hr]="true"

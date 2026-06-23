@@ -40,12 +40,19 @@ export class FlujoEfectivo {
       const grps = this.data()?.grupos ?? [];
       if (grps.length === 0) return [];
       const maxIdx = Math.min(11, this.filterS.mesIdx() || 0);
-      return grps.map(g => ({
+      return grps.map((g) => ({
         ...g,
-        filas: (g.filas || []).map(f => ({
+        filas: (g.filas || []).map((f) => ({
           ...f,
-          montos: f.montos && f.montos.length ? f.montos.slice(0, maxIdx + 1) : []
-        }))
+          montos: f.montos?.length ? f.montos.slice(0, maxIdx + 1) : [],
+          montosMtto: f.montosMtto?.length ? f.montosMtto.slice(0, maxIdx + 1) : [],
+          montosObrasMejoras: f.montosObrasMejoras?.length
+            ? f.montosObrasMejoras.slice(0, maxIdx + 1)
+            : [],
+          montosFondoReserva: f.montosFondoReserva?.length
+            ? f.montosFondoReserva.slice(0, maxIdx + 1)
+            : [],
+        })),
       }));
     } catch (e) {
       console.error("Error en grupos computed:", e);
@@ -85,10 +92,8 @@ export class FlujoEfectivo {
     const currentData = this.data();
     if (!currentData) return;
 
-    // Deep copy to mutate
     const newData = JSON.parse(JSON.stringify(currentData)) as IFlujoCajaDto;
 
-    // Update the value
     for (const grupo of newData.grupos) {
       for (const fila of grupo.filas) {
         if (fila.concepto === concepto) {
@@ -97,88 +102,86 @@ export class FlujoEfectivo {
       }
     }
 
-    // Recalculate everything
     this.recalcular(newData);
-
     this.data.set(newData);
   }
 
   private recalcular(data: IFlujoCajaDto) {
     const gContable = data.grupos.find((g: any) => g.nombre === "CONTABLE");
-    const gAdmin = data.grupos.find((g: any) => g.nombre === "ADMINISTRACIÓN");
-    const gNota = data.grupos.find((g: any) => g.nombre === "NOTA - INVERSIONES");
+    const gAdmin = data.grupos.find((g: any) => g.nombre === "ADMINISTRACION");
 
-    if (!gContable || !gAdmin || !gNota) return;
+    if (!gContable || !gAdmin) return;
 
-    const getRow = (grupo: any, concepto: string) => grupo.filas.find((f: any) => f.concepto === concepto);
+    const getRow = (grupo: any, concepto: string) =>
+      grupo.filas.find((f: any) => f.concepto === concepto);
 
-    // CONTABLE
-    const rSaldoBancos = getRow(gContable, "✅ SALDO INICIAL BANCOS");
-    const rSaldoInversiones = getRow(gContable, "✅ SALDO INICIAL INVERSIONES");
-    const rCuotasMtto = getRow(gContable, "CUOTAS COBRADAS MTTO");
-    const rCuotasExtra = getRow(gContable, "✅ CUOTAS COBRADAS EXTRA");
-    const rOtrosIngresos = getRow(gContable, "✅ OTROS INGRESOS");
-    const rVentaFondos = getRow(gContable, "VENTA FONDOS INVERSIÓN");
+    const rSaldoBancos = getRow(gContable, "SALDO INICIAL BANCOS");
+    const rSaldoInversiones = getRow(gContable, "SALDO INICIAL INVERSIONES");
+    const rSaldoFondoReserva = getRow(gContable, "SALDO INICIAL FONDO DE RESERVA");
+    const rCuotasMtto = getRow(gContable, "CUOTAS COBRADAS MANTTO");
+    const rCuotasExtra = getRow(gContable, "CUOTAS COBRADAS EXTRA");
+    const rOtrosIngresos = getRow(gContable, "OTROS INGRESOS");
+    const rVentaFondos = getRow(gContable, "VENTA FONDOS INVERSION");
+    const rInteresesMtto = getRow(gContable, "INTERESES MANTTO");
+    const rInteresesExtra = getRow(gContable, "INTERESES EXTRA");
     const rTotalIngresos = getRow(gContable, "INGRESOS");
-    
+
     const rPagoProveedores = getRow(gContable, "PAGOS A PROVEEDORES");
     const rPagoAcreedores = getRow(gContable, "PAGOS A ACREEDORES");
     const rPagoTarjeta = getRow(gContable, "PAGOS TARJETA CORPORATIVA");
     const rPagoSueldos = getRow(gContable, "PAGOS DE SUELDOS");
     const rPagoImpuestos = getRow(gContable, "PAGOS DE IMPUESTOS (MES ANT)");
-    const rCompraFondos = getRow(gContable, "COMPRA FONDOS INVERSIÓN");
+    const rCompraFondos = getRow(gContable, "COMPRA FONDOS INVERSION");
     const rPagoComisiones = getRow(gContable, "PAGOS DE COMISIONES BANCARIAS");
+    const rIsrInversiones = getRow(gContable, "ISR POR INVERSIONES");
     const rTotalGastos = getRow(gContable, "GASTOS");
-    
     const rSaldoFinal = getRow(gContable, "SALDO BANCARIO FINAL");
 
-    // ADMIN
     const rTotalCxp = getRow(gAdmin, "CUENTAS POR PAGAR");
     const rCxpProveedores = getRow(gAdmin, "CXP A PROVEEDORES");
     const rCxpSueldos = getRow(gAdmin, "CXP DE SUELDOS");
     const rCxpImpuestos = getRow(gAdmin, "CXP DE IMPUESTOS");
     const rDispCxp = getRow(gAdmin, "EFECTIVO DISPONIBLE DESPUES DE CXP");
-    
     const rCxcCierre = getRow(gAdmin, "CUENTA POR COBRAR AL CIERRE");
     const rCobranzaJudicial = getRow(gAdmin, "COBRANZA JUDICIAL");
     const rCxcCortoPlazo = getRow(gAdmin, "CUENTA POR COBRAR A CORTO PLAZO");
     const rDispCxc = getRow(gAdmin, "EFECTIVO DISPONIBLE DESPUES DE CXC");
 
-    // NOTAS
-    const rFondoReserva = getRow(gNota, "FONDO DE RESERVA");
-    const rInvVenta = getRow(gNota, "VENTA FONDOS INVERSIÓN");
-    const rInvCompra = getRow(gNota, "COMPRA FONDOS INVERSIÓN");
-    const rIntereses = getRow(gNota, "INTERESES GANADOS");
-    const rTotalInversion = getRow(gNota, "TOTAL INVERSIÓN");
-
     for (let i = 0; i < 12; i++) {
-        // El Saldo Inicial viene real desde el backend (C#), no lo sobreescribimos
-        const saldoInicialBancosMes = rSaldoBancos.montos[i];
+      const totalIngresos =
+        rSaldoBancos.montos[i] +
+        rSaldoInversiones.montos[i] +
+        rSaldoFondoReserva.montos[i] +
+        rCuotasMtto.montos[i] +
+        rCuotasExtra.montos[i] +
+        rOtrosIngresos.montos[i] +
+        rVentaFondos.montos[i] +
+        rInteresesMtto.montos[i] +
+        rInteresesExtra.montos[i];
+      rTotalIngresos.montos[i] = totalIngresos;
 
-        // Ingresos
-        const totalIngresos = rCuotasMtto.montos[i] + rCuotasExtra.montos[i] + rOtrosIngresos.montos[i] + rVentaFondos.montos[i];
-        rTotalIngresos.montos[i] = totalIngresos;
+      const totalGastos =
+        rPagoProveedores.montos[i] +
+        rPagoAcreedores.montos[i] +
+        rPagoTarjeta.montos[i] +
+        rPagoSueldos.montos[i] +
+        rPagoImpuestos.montos[i] +
+        rCompraFondos.montos[i] +
+        rPagoComisiones.montos[i] +
+        rIsrInversiones.montos[i];
+      rTotalGastos.montos[i] = totalGastos;
 
-        // Gastos
-        const totalGastos = rPagoProveedores.montos[i] + rPagoAcreedores.montos[i] + rPagoTarjeta.montos[i] + 
-                            rPagoSueldos.montos[i] + rPagoImpuestos.montos[i] + rCompraFondos.montos[i] + rPagoComisiones.montos[i];
-        rTotalGastos.montos[i] = totalGastos;
+      rSaldoFinal.montos[i] = totalIngresos - totalGastos;
 
-        rSaldoFinal.montos[i] = saldoInicialBancosMes + totalIngresos - totalGastos;
+      const totalCxp =
+        rCxpProveedores.montos[i] +
+        rCxpSueldos.montos[i] +
+        rCxpImpuestos.montos[i];
+      rTotalCxp.montos[i] = totalCxp;
 
-        // ADMIN
-        const totalCxp = rCxpProveedores.montos[i] + rCxpSueldos.montos[i] + rCxpImpuestos.montos[i];
-        rTotalCxp.montos[i] = totalCxp;
-
-        rDispCxp.montos[i] = rSaldoFinal.montos[i] - totalCxp;
-
-        rCxcCortoPlazo.montos[i] = rCxcCierre.montos[i] - rCobranzaJudicial.montos[i];
-        rDispCxc.montos[i] = rDispCxp.montos[i] + rCxcCortoPlazo.montos[i];
-
-        // NOTAS
-        rInvVenta.montos[i] = -rVentaFondos.montos[i];
-        rInvCompra.montos[i] = -rCompraFondos.montos[i];
-        rTotalInversion.montos[i] = rFondoReserva.montos[i] + rInvVenta.montos[i] + rInvCompra.montos[i] + rIntereses.montos[i];
+      rDispCxp.montos[i] = rSaldoFinal.montos[i] - totalCxp;
+      rCxcCortoPlazo.montos[i] = rCxcCierre.montos[i] - rCobranzaJudicial.montos[i];
+      rDispCxc.montos[i] = rDispCxp.montos[i] + rCxcCortoPlazo.montos[i];
     }
   }
 }

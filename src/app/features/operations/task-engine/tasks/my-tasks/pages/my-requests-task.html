@@ -1,4 +1,4 @@
-@if (dataSignal()) {
+﻿@if (dataSignal()) {
 <!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="hidden md:block">
   <div class="p-3">
@@ -129,7 +129,7 @@
           <td class="text-center">
             <app-action-menu>
               <ng-container actions>
-                <ion-button-edit
+                <custom-button-edit
                   (clicked)="onModalForm({
                       id: item.id,
                       title: 'Editar',
@@ -138,7 +138,7 @@
                   [showLabelOnDesktop]="true"
                 />
 
-                <ion-button-item
+                <custom-button-item
                   iconClass="mdi:comment"
                   label="Seguimiento"
                   (clicked)="onFollowUp(item.id)"
@@ -212,7 +212,7 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <ion-button-edit
+            <custom-button-edit
               (clicked)="onModalForm({
                       id: item.id,
                       title: 'Editar',
@@ -220,7 +220,7 @@
                     })"
             />
 
-            <ion-button-item
+            <custom-button-item
               iconName="ellipsis-horizontal-outline"
               label="Seguimiento"
               (clicked)="onFollowUp(item.id)"

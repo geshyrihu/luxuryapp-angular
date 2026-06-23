@@ -1,4 +1,4 @@
-<!-- Desktop View -->
+﻿<!-- Desktop View -->
 <div class="hidden md:block">
   <p-table
     #dt
@@ -137,7 +137,7 @@
 >
   <ng-container customFilters>
     <div class="px-3 pb-3">
-      <ion-button-active-desactive
+      <custom-button-active-desactive
         [state]="value()"
         (stateChange)="onChange($event)"
       />
@@ -176,36 +176,36 @@
             <span class="font-semibold text-sm">
               {{ item.open + item.inProgress + item.reopened }}
             </span>
-            <ion-icon name="chatbubbles-outline" class="text-base"></ion-icon>
+            <app-icon icon="mdi:forum-outline" class="text-base"></app-icon>
           </div>
 
           <app-action-menu>
             <ng-container actions>
               @if (item.customerId === customerIdS.customerId()) {
-              <ion-button-item
+              <custom-button-item
                 (clicked)="onModalParticipants(item)"
                 [label]="'Integrantes (' + item.TaskGroupParticipant + ')'"
                 iconName="people-outline"
               />
               } @if (hasSuperUsuario()) {
-              <ion-button-item
+              <custom-button-item
                 iconName="mail-outline"
                 label="Enviar por correo"
                 (clicked)="SendReportPendingTicketGroupAsync(item)"
               />
               }
-              <ion-button-edit
+              <custom-button-edit
                 (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
               />
-              <ion-button-delete (confirmed)="onDelete(item.id)" />
+              <custom-button-delete (confirmed)="onDelete(item.id)" />
               @if (item.active) {
-              <ion-button-item
+              <custom-button-item
                 iconName="lock-closed-outline"
                 label="Bloquear"
                 (clicked)="onToggleStatus(item.id)"
               />
               } @if (!item.active) {
-              <ion-button-item
+              <custom-button-item
                 iconName="lock-open-outline"
                 label="Desbloquear"
                 (clicked)="onToggleStatus(item.id)"

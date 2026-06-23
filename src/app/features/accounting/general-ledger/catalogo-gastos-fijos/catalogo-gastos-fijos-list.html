@@ -1,4 +1,4 @@
-<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
+﻿<!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
   [globalFilterFields]="globalFilterFields"
   [value]="dataSignal()"
@@ -311,7 +311,7 @@
                 (click)="generateOrdenesPorQuincena(0)"
                 [disabled]="!isGenerationParamsSelected() || isFirstQuincenaGenerationBlocked()"
               >
-                <ion-icon name="calendar-outline" slot="start"></ion-icon>
+                <app-icon icon="mdi:calendar-blank" slot="start"></app-icon>
                 Gen. 1ra Q
               </ion-button>
             </div>
@@ -322,7 +322,7 @@
                 (click)="generateOrdenesPorQuincena(1)"
                 [disabled]="!isGenerationParamsSelected() || isSecondQuincenaGenerationBlocked()"
               >
-                <ion-icon name="calendar-outline" slot="start"></ion-icon>
+                <app-icon icon="mdi:calendar-blank" slot="start"></app-icon>
                 Gen. 2da Q
               </ion-button>
             </div>
@@ -381,7 +381,7 @@
             <h2 class="text-base font-bold">{{ item.equipoOInstalacion }}</h2>
             <p class="text-sm text-700">{{ item.justificacionGasto }}</p>
             <p class="text-xs text-color-secondary mt-1 uppercase">
-              <ion-icon name="briefcase-outline" class="mr-1"></ion-icon>
+              <app-icon icon="mdi:briefcase-outline" class="mr-1"></app-icon>
               {{ item.provider }}
             </p>
           </ion-label>
@@ -391,12 +391,12 @@
           AspRole.SuperUsuario, ])() ) {
           <div slot="end">
             <app-action-menu>
-              <ion-button-edit
+              <custom-button-edit
                 (clicked)="onModal({ id: item.id, title: 'Editar' })"
-              ></ion-button-edit>
-              <ion-button-delete
+              ></custom-button-edit>
+              <custom-button-delete
                 (confirmed)="onDelete(item.id)"
-              ></ion-button-delete>
+              ></custom-button-delete>
             </app-action-menu>
           </div>
           }

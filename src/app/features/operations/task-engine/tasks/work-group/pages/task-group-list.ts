@@ -1,6 +1,5 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
-import { IonIcon } from "@ionic/angular/standalone";
 import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
 import { addIcons } from "ionicons";
 import {
@@ -17,21 +16,18 @@ import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
-  IonButtonActiveDesactive,
-  IonButtonDelete,
-  IonButtonEdit,
-  IonButtonItem,
-} from "src/app/core/components/buttons/mobile";
-import {
-  CustomButton,
+  CustomBtnActiveDesactive,
   CustomButtonDelete,
   CustomButtonEdit,
   CustomButtonItem,
 } from "src/app/core/components/buttons/web";
-import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/custom-button-active-desactive";
+import {
+  CustomButton,
+} from "src/app/core/components/buttons/web";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { StatusBadge } from "src/app/core/components/status-badge/status-badge";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -49,7 +45,6 @@ import { TaskGroupParticipant } from "src/app/features/operations/task-engine/ta
 import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
 import { EITaskMessageDTOStatus } from "../../task-message-status.enum";
 import { TaskGroupForm } from "./task-group-form";
-import { StatusBadge } from "src/app/core/components/status-badge/status-badge";
 
 @Component({
   selector: "app-task-group-list",
@@ -65,11 +60,10 @@ import { StatusBadge } from "src/app/core/components/status-badge/status-badge";
     CustomButton,
     CustomBtnActiveDesactive,
     TagModule,
-    IonIcon,
-    IonButtonDelete,
-    IonButtonEdit,
-    IonButtonItem,
-    IonButtonActiveDesactive,
+    CustomButtonDelete,
+    CustomButtonEdit,
+    CustomButtonItem,
+    CustomBtnActiveDesactive,
     TooltipModule,
     CustomButtonDelete,
     CustomButtonEdit,
@@ -225,4 +219,3 @@ export interface WorkGroupDTO {
   active: boolean;
   isLegalGroup: boolean;
 }
-

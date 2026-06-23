@@ -1,17 +1,12 @@
-import { Component, computed, forwardRef, input } from "@angular/core";
+﻿import { Component, computed, forwardRef, inject, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
+import { IonInput } from "@ionic/angular/standalone";
 import { InputNumberModule } from "primeng/inputnumber";
 import { BaseInputSignal } from "../base/base-input-signal";
 
-/**
- * 💰 CUSTOM INPUT CURRENCY
- * -------------------------------------------------------------------------
- * Para manejar el billete. 💸
- * Formatea automáticamente como moneda (MXN por defecto) y evita errores de dedo.
- */
 @Component({
   selector: "custom-input-currency-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, InputNumberModule],
+  imports: [BaseInputSignal, ReactiveFormsModule, InputNumberModule, IonInput],
   template: `
     <base-input-signal
       [control]="control()"
@@ -23,24 +18,40 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [disabled]="disabled()"
       [required]="requiredInput()"
     >
-      <p-inputNumber
-        [inputId]="id()"
-        [formControl]="control() || internalControl"
-        [placeholder]="placeholder()"
-        [readonly]="readonly()"
-        [disabled]="disabled()"
-        [showButtons]="showButtons()"
-        [minFractionDigits]="minFractionDigits()"
-        [maxFractionDigits]="maxFractionDigits()"
-        mode="decimal"
-        [useGrouping]="useGrouping()"
-        [prefix]="prefix()"
-        [suffix]="suffix()"
-        [showClear]="showClear()"
-        locale="es-MX"
-        [inputStyleClass]="inputStyleClass()"
-        fluid
-      />
+      @if (platform.isMobile()) {
+        <ion-input
+          type="number"
+          inputmode="decimal"
+          [id]="id()"
+          [formControl]="control() || internalControl"
+          [placeholder]="placeholder()"
+          clearInput
+          [readonly]="readonly()"
+          [step]="0.01"
+        >
+          @if (prefix()) {
+            <span slot="start" style="padding-right: 8px; font-weight: 500;">{{ prefix() }}</span>
+          }
+        </ion-input>
+      } @else {
+        <p-inputNumber
+          [inputId]="id()"
+          [formControl]="control() || internalControl"
+          [placeholder]="placeholder()"
+          [readonly]="readonly()"
+          [showButtons]="showButtons()"
+          [minFractionDigits]="minFractionDigits()"
+          [maxFractionDigits]="maxFractionDigits()"
+          mode="decimal"
+          [useGrouping]="useGrouping()"
+          [prefix]="prefix()"
+          [suffix]="suffix()"
+          [showClear]="showClear()"
+          locale="es-MX"
+          [inputStyleClass]="inputStyleClass()"
+          fluid
+        />
+      }
     </base-input-signal>
   `,
   providers: [
@@ -52,18 +63,17 @@ import { BaseInputSignal } from "../base/base-input-signal";
   ],
 })
 export class CustomInputCurrencySignal extends BaseInputSignal {
-  // <--- Inputs Específicos --->
+
   showButtons = input<boolean>(false);
-  minFractionDigits = input<number>(2); // Por defecto 2 decimales para moneda
+  minFractionDigits = input<number>(2);
   maxFractionDigits = input<number>(2);
   customClass = input<string>("");
   size = input<"small" | "large" | undefined>(undefined);
   useGrouping = input<boolean>(true);
-  prefix = input<string | undefined>("$ "); // Prefijo de billete
+  prefix = input<string | undefined>("$ ");
   suffix = input<string | undefined>(undefined);
   showClear = input<boolean>(false);
 
-  // <--- Computados --->
   inputStyleClass = computed(() => {
     let classes = this.customClass();
     if (this.size() === "small") classes += " p-inputtext-sm";

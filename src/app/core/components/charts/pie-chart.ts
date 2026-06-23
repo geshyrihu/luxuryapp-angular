@@ -12,7 +12,7 @@ import { PieChartModule } from "@swimlane/ngx-charts";
   imports: [PieChartModule],
   template: `
     <ngx-charts-pie-chart
-      [view]="view"
+      [view]="view()"
       [scheme]="colorScheme()"
       [results]="dataGrafico()"
       [gradient]="gradient"
@@ -41,8 +41,9 @@ export class PieChart {
     domain: ["#5AA454", "#A10A28"],
   });
 
+  view = input<[number, number] | undefined>(undefined);
+
   // <--- Configuración --->
-  view: [number, number] = [700, 400];
   gradient: boolean = true;
   showLegend: boolean = true;
   showLabels: boolean = true;

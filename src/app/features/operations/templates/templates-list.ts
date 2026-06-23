@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -7,23 +7,21 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
-import { addIcons } from "ionicons";
-import { documentOutline } from "ionicons/icons";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import {
   NgbDropdownModule,
   NgbTooltipModule,
 } from "@ng-bootstrap/ng-bootstrap";
+import { addIcons } from "ionicons";
+import { documentOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -54,11 +52,10 @@ import { TemplatesForm } from "./templates-form";
     ActionMenu,
     CustomButtonViewPdf,
     DataViewMobile,
-    IonButtonEdit,
-    IonButtonDelete,
+    CustomButtonEdit,
+    CustomButtonDelete,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
 })
 export class TemplatesList implements OnInit {
@@ -127,13 +124,3 @@ export class TemplatesList implements OnInit {
       });
   }
 }
-
-
-
-
-
-
-
-
-
-

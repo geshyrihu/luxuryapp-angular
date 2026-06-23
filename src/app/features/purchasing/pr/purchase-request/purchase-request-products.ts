@@ -1,5 +1,5 @@
-import { IonButtonDelete } from "src/app/core/components/buttons/mobile/ion-button-delete";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
+﻿import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CommonModule } from "@angular/common";
 import { Component, inject, input, output } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -12,7 +12,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 @Component({
   selector: "app-purchase-request-products",
   templateUrl: "./purchase-request-products.html",
-  imports: [IonButtonDelete, IonButtonEdit, 
+  imports: [CustomButtonDelete, CustomButtonEdit, 
     CommonModule,
     TableModule,
     ActionMenu,

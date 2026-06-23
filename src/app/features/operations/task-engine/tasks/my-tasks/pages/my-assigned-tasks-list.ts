@@ -1,6 +1,6 @@
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
-import { IonButtonEdit } from "src/app/core/components/buttons/mobile/ion-button-edit";
-import { IonButtonItem } from "src/app/core/components/buttons/mobile/ion-button-item";
+﻿import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { CommonModule } from "@angular/common";
 import { InitialsAbbrPipe } from "src/app/core/pipes/initials-abbr.pipe";
 import { Component, computed, effect, inject, signal } from "@angular/core";
@@ -41,7 +41,7 @@ import { MyTaskProgram } from "./my-task-program";
 @Component({
   selector: "app-my-assigned-tasks-list",
   templateUrl: "./my-assigned-tasks-list.html",
-  imports: [IonButtonEdit, IonButtonItem, 
+  imports: [CustomButtonEdit, CustomButtonItem, 
     TaskStatus,
     CommonModule,
     TableModule,

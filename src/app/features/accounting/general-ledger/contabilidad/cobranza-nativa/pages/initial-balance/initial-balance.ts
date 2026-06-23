@@ -1,6 +1,6 @@
 import { Component, computed, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { walletOutline } from "ionicons/icons";
 import { InputNumberModule } from "primeng/inputnumber";
@@ -32,7 +32,6 @@ interface BalanceRow extends PropertyInitialBalanceDTO {
     PrimeNgCustomCaption,
     IonItem,
     IonLabel,
-    IonIcon,
   ],
   templateUrl: "./initial-balance.html",
 })
