@@ -14,7 +14,7 @@ $border-width-thick:   4px  !default;
 $radius-none:   0px     !default;
 $radius-xs:     2px     !default;
 $radius-sm:     4px     !default;
-$radius-md:     4px     !default;   // default de componentes
+$radius-md:     6px     !default;   // default de componentes
 $radius-lg:     8px     !default;
 $radius-xl:     12px    !default;
 $radius-2xl:    16px    !default;
@@ -32,12 +32,12 @@ $radius-full:   9999px  !default;   // completamente redondeado (pill)
   --ds-radius-2xl:   #{$radius-2xl};
   --ds-radius-full:  #{$radius-full};
 
-  // Radius por defecto de componentes
+  // Radius por defecto de componentes (alineado con _variables.scss)
   --ds-radius-btn:   #{$radius-md};
   --ds-radius-input: #{$radius-md};
-  --ds-radius-card:  #{$radius-sm};
+  --ds-radius-card:  8px;
   --ds-radius-badge: #{$radius-full};
-  --ds-radius-modal: #{$radius-2xl};
+  --ds-radius-modal: 12px;
 }
 
 

@@ -127,6 +127,10 @@ h6, .h6 {
   color: var(--ds-text-primary);
 }
 
+// ── READABILITY ───────────────────────────────────────────────
+.text-container { max-width: 65ch; }
+p { max-width: 65ch; }
+
 // ── ELEMENTOS ESPECIALES ──────────────────────────────────────
 code, .code-inline {
   font-family: $font-family-mono;

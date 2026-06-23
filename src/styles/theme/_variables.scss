@@ -297,16 +297,16 @@ $danger-bg:     #ffdad6;   // error-container del DESIGN.md
   --ds-radius-none: 0px;
   --ds-radius-xs:   2px;
   --ds-radius-sm:   4px;
-  --ds-radius-md:   0.25rem;   // 4px  — DEFAULT
-  --ds-radius-lg:   0.5rem;    // 8px  — cards
-  --ds-radius-xl:   0.75rem;   // 12px — modals
-  --ds-radius-2xl:  1rem;      // 16px — overlays
-  --ds-radius-full: 9999px;    // pills
-  --ds-radius-btn:   0.25rem;
-  --ds-radius-input: 0.25rem;
-  --ds-radius-card:  0.5rem;
+  --ds-radius-md:   6px;      // 6px  — DEFAULT (unificado)
+  --ds-radius-lg:   8px;      // 8px  — cards
+  --ds-radius-xl:   12px;     // 12px — modals
+  --ds-radius-2xl:  16px;     // 16px — overlays
+  --ds-radius-full: 9999px;   // pills
+  --ds-radius-btn:   6px;
+  --ds-radius-input: 6px;
+  --ds-radius-card:  8px;
   --ds-radius-badge: 9999px;
-  --ds-radius-modal: 0.75rem;
+  --ds-radius-modal: 12px;
 
   // 💎 PrimeNG 21 Native Mapping (Bridge)
   --p-primary-color:           var(--ds-primary);

@@ -59,6 +59,12 @@
   // Font
   --p-font-size:                  0.875rem;
   --p-font-family:                inherit;
+
+  // Material 3 role bridge
+  --p-primary-container-background: var(--ds-primary-container);
+  --p-secondary-color:              var(--ds-secondary);
+  --p-tertiary-color:               var(--ds-tertiary);
+  --p-surface-variant:              var(--ds-surface-variant);
 }
 
 // PrimeNG v16 compatibility classes still used in templates.

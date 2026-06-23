@@ -47,4 +47,15 @@ body {
     --p-toggleswitch-height: 1.1rem;
     --p-toggleswitch-handle-size: 0.8rem;
   }
+
+  // Disabled state — italic + not-allowed cursor
+  .p-inputtext:disabled,
+  .p-textarea:disabled,
+  .p-inputnumber-input:disabled,
+  .p-password-input:disabled,
+  .p-datepicker-input:disabled {
+    font-style: italic;
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
 }
