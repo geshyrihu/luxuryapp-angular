@@ -400,8 +400,8 @@ $transition-speed: 0.25s;
   // La app global usa mode: "ios" en Ionic. Estos overrides alinean
   // los componentes Ionic con la línea visual Material Design dentro del catálogo.
 
-  // Tipografía Material: DM Sans como Roboto replacement
-  --ds-md-font: 'DM Sans', 'Roboto', 'Helvetica Neue', sans-serif;
+  // Tipografía Material: Inter como Roboto replacement
+  --ds-md-font: 'Inter', 'Hanken Grotesk', 'Roboto', 'Helvetica Neue', sans-serif;
 
   // Sombras Material Design (elevation)
   --ds-md-elevation-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);

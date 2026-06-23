@@ -460,7 +460,7 @@ export class CatalogComponentUi {
     {
       numero: 8,
       descripcion:
-        "La tipografia corresponde al estandar: DM Sans para UI, familia documental segun aplique en exportación.",
+        "La tipografia corresponde al estandar: Inter para UI, Hanken Grotesk para headings, JetBrains Mono para código.",
       aprobado: false,
     },
     {

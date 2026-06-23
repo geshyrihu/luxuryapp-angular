@@ -14,7 +14,7 @@ import { MessageModule } from "primeng/message";
     <div class="mb-6">
       <h3 class="text-xl font-bold mb-1 border-bottom-1 border-300 pb-2">Escala de Encabezados</h3>
       <p class="text-sm text-color-secondary mt-1 mb-4">
-        Familia base: <strong>DM Sans</strong>. Usa un único nivel de heading por vista para mantener jerarquía clara.
+        Familia base: <strong>Inter</strong> (headings: <strong>Hanken Grotesk</strong>). Usa un único nivel de heading por vista para mantener jerarquía clara.
       </p>
       <div class="flex flex-column gap-3">
         @for (h of headings; track h.tag) {
@@ -129,7 +129,7 @@ export class TokensTypography {
     {
       label: "UI Base",
       token: "--ds-font-family-base",
-      css: "'DM Sans', sans-serif",
+      css: "'Inter', 'Hanken Grotesk', sans-serif",
       uso: "Pantallas Angular, PrimeNG, Ionic y todas las vistas operativas del ERP.",
     },
     {
@@ -141,7 +141,7 @@ export class TokensTypography {
     {
       label: "Documental",
       token: "--ds-font-family-document",
-      css: "'DM Sans', sans-serif",
+      css: "'Hanken Grotesk', 'Inter', sans-serif",
       uso: "Portadas, encabezados y cuerpo de documentos exportables (PDF, Word).",
     },
   ];
