@@ -17,6 +17,8 @@ import { InputTextModule } from "primeng/inputtext";
 import { filter, map } from "rxjs/operators";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { IMenuItem, ISubMenuItem } from "src/app/core/interfaces/menu.model";
+import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { LayoutService } from "src/app/core/services/layout.service";
@@ -43,6 +45,8 @@ export class Sidebar {
   authS = inject(AuthService);
   router = inject(Router);
   public layoutService = inject(LayoutService);
+  public aspRoleS = inject(AspRoleService);
+  readonly AspRole = EApplicationRole;
 
   public infoAccountAuthDTO = this.authS.infoUserAuth;
   public customerName = this.customerIdS.nombreCorto;
