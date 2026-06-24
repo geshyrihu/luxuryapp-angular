@@ -29,6 +29,12 @@ import { Loader } from "src/app/core/components/loader/loader";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
 import { StatusBadge } from "src/app/core/components/status-badge/status-badge";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { ConfirmDialog } from "src/app/core/components/confirm-dialog/confirm-dialog";
+import { DateRange } from "src/app/core/components/date-range/date-range";
+import { NotificationCenter, NotificationItem } from "src/app/core/components/notification-center/notification-center";
+import { Wizard, WizardStep } from "src/app/core/components/wizard/wizard";
+import { FileUpload } from "src/app/core/components/file-upload/file-upload";
 
 // --- Enums & Helpers ---
 import { AccordionModule } from "primeng/accordion";
@@ -263,6 +269,12 @@ interface BloqueVisual {
     CustomInputSwitch,
     // Custom Others
     StatusBadge,
+    EmptyState,
+    ConfirmDialog,
+    DateRange,
+    NotificationCenter,
+    Wizard,
+    FileUpload,
     Loader,
     DataViewMobile,
     ActionMenu,
@@ -322,6 +334,22 @@ export class CatalogComponentUi {
   ];
 
   EStatus = EStatus;
+
+  confirmVisible = signal(false);
+
+  readonly sampleNotifications: NotificationItem[] = [
+    { id: "1", icon: "mdi:file-document", title: "Documento aprobado", description: "El documento PROC-ADMI-012 ha sido aprobado.", time: "Hace 5 min", read: false, severity: "success" },
+    { id: "2", icon: "mdi:alert", title: "Mantenimiento programado", description: "Corte de energía eléctrica el 25/06.", time: "Hace 2 h", read: false, severity: "warn" },
+    { id: "3", icon: "mdi:check-circle", title: "Reporte completado", description: "Reporte mensual de finanzas disponible.", time: "Hace 1 d", read: true, severity: "info" },
+  ];
+
+  readonly wizardSteps: WizardStep[] = [
+    { value: 1, label: "Datos", icon: "mdi:file-document-outline" },
+    { value: 2, label: "Revisión", icon: "mdi:eye-outline" },
+    { value: 3, label: "Confirmar", icon: "mdi:check-circle-outline" },
+  ];
+
+  wizardActiveStep = signal(1);
 
   readonly tiposDocumento: TipoDocumento[] = [
     {

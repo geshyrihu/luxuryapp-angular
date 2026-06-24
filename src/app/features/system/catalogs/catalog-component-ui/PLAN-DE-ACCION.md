@@ -249,6 +249,12 @@
 
 ---
 
+### Hallazgos post-rebarrido ANALISIS-PROMPT.md
+- [x] Ionic theme migrado a DS tokens (`_ionic-rn-theme.scss` — 0 colores硬codeados)
+- [x] Componentes nuevos registrados en el catálogo visual (catalog-component-ui)
+- [x] Platform detection service exists (`src/app/core/services/platform.service.ts`)
+- [x] NotificationCenter migrado de OverlayPanel (deprecated) a Popover
+
 ## ✅ CHECKLIST GLOBAL DE VERIFICACIÓN
 
 ### Accesibilidad

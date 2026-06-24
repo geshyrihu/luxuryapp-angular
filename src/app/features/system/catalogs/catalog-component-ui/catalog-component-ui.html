@@ -460,6 +460,103 @@
             </p-card>
           </div>
 
+          <!-- Empty State -->
+          <div class="col-12 lg:col-4">
+            <p-card header="Empty State">
+              <div class="surface-ground p-3 border-round">
+                <app-empty-state
+                  icon="mdi:inbox-outline"
+                  title="Sin resultados"
+                  message="No se encontraron registros para los filtros aplicados."
+                  actionLabel="Nuevo registro"
+                  actionIcon="mdi:plus"
+                />
+              </div>
+            </p-card>
+          </div>
+
+          <!-- Date Range -->
+          <div class="col-12 lg:col-4">
+            <p-card header="Date Range">
+              <div class="surface-ground p-3 border-round">
+                <app-date-range />
+              </div>
+            </p-card>
+          </div>
+
+          <!-- Notification Center -->
+          <div class="col-12 lg:col-4">
+            <p-card header="Notification Center">
+              <div class="surface-ground p-3 border-round flex align-items-center justify-content-center" style="min-height: 120px">
+                <app-notification-center
+                  [notifications]="sampleNotifications"
+                  [unreadCount]="2"
+                />
+              </div>
+            </p-card>
+          </div>
+
+          <!-- Confirm Dialog -->
+          <div class="col-12 lg:col-6">
+            <p-card header="Confirm Dialog">
+              <div class="surface-ground p-3 border-round flex flex-column align-items-center gap-3">
+                <p class="text-sm text-color-secondary m-0">Diálogo de confirmación con tipo danger.</p>
+                <p-button
+                  label="Abrir confirmación"
+                  icon="mdi:alert-circle"
+                  severity="danger"
+                  (onClick)="confirmVisible.set(true)"
+                />
+                <app-confirm-dialog
+                  [(visible)]="confirmVisible"
+                  title="Eliminar registro"
+                  message="¿Estás seguro de eliminar este registro? Esta acción no se puede deshacer."
+                  type="danger"
+                  confirmLabel="Eliminar"
+                />
+              </div>
+            </p-card>
+          </div>
+
+          <!-- File Upload -->
+          <div class="col-12 lg:col-6">
+            <p-card header="File Upload">
+              <div class="surface-ground p-3 border-round">
+                <app-file-upload
+                  chooseLabel="Subir archivos"
+                  accept="image/*,.pdf"
+                  [maxFileSize]="5000000"
+                  [multiple]="true"
+                />
+              </div>
+            </p-card>
+          </div>
+
+          <!-- Wizard -->
+          <div class="col-12">
+            <p-card header="Wizard (Asistente pasos)">
+              <app-wizard
+                [steps]="wizardSteps"
+                [linear]="true"
+                finishLabel="Finalizar"
+                [(activeStep)]="wizardActiveStep"
+              >
+                <div step="1" class="flex flex-column gap-2 p-2">
+                  <strong>Paso 1: Datos básicos</strong>
+                  <p class="text-sm text-color-secondary m-0">Captura la información general del registro.</p>
+                </div>
+                <div step="2" class="flex flex-column gap-2 p-2">
+                  <strong>Paso 2: Revisión</strong>
+                  <p class="text-sm text-color-secondary m-0">Verifica que los datos capturados sean correctos.</p>
+                </div>
+                <div step="3" class="flex flex-column gap-2 p-2">
+                  <strong>Paso 3: Confirmación</strong>
+                  <p class="text-sm text-color-secondary m-0">Confirma el registro para completar el proceso.</p>
+                </div>
+              </app-wizard>
+            </p-card>
+          </div>
+
           <div class="col-12">
             <app-common-core-coverage />
           </div>

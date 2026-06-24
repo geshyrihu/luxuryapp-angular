@@ -1,7 +1,7 @@
 import { Component, input, output, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
-import { OverlayPanelModule } from "primeng/overlaypanel";
+import { PopoverModule } from "primeng/popover";
 import { BadgeModule } from "primeng/badge";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 
@@ -18,11 +18,10 @@ export interface NotificationItem {
 @Component({
   selector: "app-notification-center",
   standalone: true,
-  imports: [CommonModule, ButtonModule, OverlayPanelModule, BadgeModule, AppIcon],
+  imports: [CommonModule, ButtonModule, PopoverModule, BadgeModule, AppIcon],
   template: `
     <div class="notification-center-root">
       <p-button
-        #opBtn
         type="button"
         [rounded]="true"
         [text]="true"
@@ -38,52 +37,50 @@ export interface NotificationItem {
         </div>
       </p-button>
 
-      <p-overlaypanel #op [showCloseIcon]="true" [style]="{ width: '380px', maxWidth: '90vw' }">
-        <ng-template #content>
-          <div class="notification-panel">
-            <div class="notification-header flex align-items-center justify-content-between px-1 pb-2">
-              <strong class="text-sm">Notificaciones</strong>
-              @if (unreadCount() > 0) {
-                <p-button
-                  label="Marcar todo leído"
-                  [link]="true"
-                  size="small"
-                  (onClick)="markAllRead.emit()"
-                />
-              }
-            </div>
-
-            <div class="notification-list">
-              @for (item of notifications(); track item.id) {
-                <div
-                  class="notification-item flex align-items-start gap-2 p-2 border-round cursor-pointer"
-                  [class.notification-unread]="!item.read"
-                  (click)="onItemClick(item)"
-                >
-                  <app-icon
-                    [icon]="item.icon"
-                    class="text-lg mt-1"
-                    [style.color]="item.severity ? 'var(--ds-' + item.severity + ')' : 'var(--ds-text-muted)'"
-                  />
-                  <div class="flex flex-column gap-1 flex-1 min-w-0">
-                    <strong class="text-sm">{{ item.title }}</strong>
-                    <p class="m-0 text-xs text-color-secondary line-height-2">{{ item.description }}</p>
-                    <span class="text-xs text-color-muted">{{ item.time }}</span>
-                  </div>
-                  @if (!item.read) {
-                    <span class="notification-dot mt-2" />
-                  }
-                </div>
-              } @empty {
-                <div class="flex flex-column align-items-center gap-2 py-4 text-color-secondary">
-                  <app-icon icon="mdi:bell-off-outline" class="text-3xl" />
-                  <span class="text-sm">Sin notificaciones</span>
-                </div>
-              }
-            </div>
+      <p-popover #op appendTo="body" [style]="{ width: '380px', maxWidth: '90vw' }">
+        <div class="notification-panel">
+          <div class="notification-header flex align-items-center justify-content-between px-1 pb-2">
+            <strong class="text-sm">Notificaciones</strong>
+            @if (unreadCount() > 0) {
+              <p-button
+                label="Marcar todo leído"
+                [link]="true"
+                size="small"
+                (onClick)="markAllRead.emit()"
+              />
+            }
           </div>
-        </ng-template>
-      </p-overlaypanel>
+
+          <div class="notification-list">
+            @for (item of notifications(); track item.id) {
+              <div
+                class="notification-item flex align-items-start gap-2 p-2 border-round cursor-pointer"
+                [class.notification-unread]="!item.read"
+                (click)="onItemClick(item)"
+              >
+                <app-icon
+                  [icon]="item.icon"
+                  class="text-lg mt-1"
+                  [style.color]="item.severity ? 'var(--ds-' + item.severity + ')' : 'var(--ds-text-muted)'"
+                />
+                <div class="flex flex-column gap-1 flex-1 min-w-0">
+                  <strong class="text-sm">{{ item.title }}</strong>
+                  <p class="m-0 text-xs text-color-secondary line-height-2">{{ item.description }}</p>
+                  <span class="text-xs text-color-muted">{{ item.time }}</span>
+                </div>
+                @if (!item.read) {
+                  <span class="notification-dot mt-2"></span>
+                }
+              </div>
+            } @empty {
+              <div class="flex flex-column align-items-center gap-2 py-4 text-color-secondary">
+                <app-icon icon="mdi:bell-off-outline" class="text-3xl" />
+                <span class="text-sm">Sin notificaciones</span>
+              </div>
+            }
+          </div>
+        </div>
+      </p-popover>
     </div>
   `,
   styles: [`

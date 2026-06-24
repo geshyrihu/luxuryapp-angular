@@ -43,7 +43,7 @@ export interface WizardStep {
                     (onClick)="previous()"
                   />
                 } @else {
-                  <span />
+                  <div></div>
                 }
                 @if (step.value < lastStep()) {
                   <p-button
