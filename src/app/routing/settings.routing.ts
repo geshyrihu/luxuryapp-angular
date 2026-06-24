@@ -382,75 +382,85 @@ export const settingsRoutes: Routes = [
       breadcrumb: "Guía de Estilos",
     },
     children: [
-      { path: "", redirectTo: "tokens", pathMatch: "full" },
+      { path: "", redirectTo: "tokens/colors", pathMatch: "full" },
+      { path: "tokens", redirectTo: "tokens/colors" },
+      { path: "web", redirectTo: "web/accordion" },
+      { path: "mobile", redirectTo: "mobile/buttons" },
+      { path: "core", redirectTo: "core/actionmenu" },
+      { path: "charts", redirectTo: "charts/bar" },
+      { path: "patterns", redirectTo: "patterns/loginreference" },
+      { path: "layouts", redirectTo: "layouts/fullwidth" },
+      { path: "docs", redirectTo: "docs/documenttypes" },
+      { path: "audit", redirectTo: "audit/contentblocks" },
+      { path: "guia", redirectTo: "guia/identitypillars" },
       {
-        path: "tokens",
+        path: "tokens/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-tokens/catalog-tokens").then(
-            (m) => m.CatalogTokens,
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-tokens-item/catalog-tokens-item").then(
+            (m) => m.CatalogTokensItem,
           ),
       },
       {
-        path: "web",
+        path: "web/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-web/catalog-web").then(
-            (m) => m.CatalogWeb,
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-web-item/catalog-web-item").then(
+            (m) => m.CatalogWebItem,
           ),
       },
       {
-        path: "mobile",
+        path: "mobile/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/catalog-mobile").then(
-            (m) => m.CatalogMobile,
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile-item/catalog-mobile-item").then(
+            (m) => m.CatalogMobileItem,
           ),
       },
       {
-        path: "core",
+        path: "core/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-core/catalog-core").then(
-            (m) => m.CatalogCore,
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-core-item/catalog-core-item").then(
+            (m) => m.CatalogCoreItem,
           ),
       },
       {
-        path: "charts",
+        path: "charts/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-charts/catalog-charts").then(
-            (m) => m.CatalogCharts,
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-charts-item/catalog-charts-item").then(
+            (m) => m.CatalogChartsItem,
           ),
       },
       {
-        path: "patterns",
+        path: "patterns/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-patterns/catalog-patterns").then(
-            (m) => m.CatalogPatterns,
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-patterns-item/catalog-patterns-item").then(
+            (m) => m.CatalogPatternsItem,
           ),
       },
       {
-        path: "layouts",
+        path: "layouts/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-layouts/catalog-layouts").then(
-            (m) => m.CatalogLayouts,
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-layouts-item/catalog-layouts-item").then(
+            (m) => m.CatalogLayoutsItem,
           ),
       },
       {
-        path: "docs",
+        path: "docs/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-docs/catalog-docs").then(
-            (m) => m.CatalogDocs,
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-docs-item/catalog-docs-item").then(
+            (m) => m.CatalogDocsItem,
           ),
       },
       {
-        path: "audit",
+        path: "audit/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-audit/catalog-audit").then(
-            (m) => m.CatalogAudit,
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-audit-item/catalog-audit-item").then(
+            (m) => m.CatalogAuditItem,
           ),
       },
       {
-        path: "guia",
+        path: "guia/:item",
         loadComponent: () =>
-          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia/catalog-guia").then(
-            (m) => m.CatalogGuia,
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia-item/catalog-guia-item").then(
+            (m) => m.CatalogGuiaItem,
           ),
       },
     ],
