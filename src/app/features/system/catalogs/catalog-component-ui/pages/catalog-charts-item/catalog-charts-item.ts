@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, inject, signal, ViewEncapsulation } from "@angular/core";
+import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { ChartModule } from "primeng/chart";
@@ -22,13 +22,15 @@ const CHARTS_LABELS: Record<string, string> = {
       <div class="section-header mb-4">
         <h2 class="text-3xl font-bold m-0">{{ label }}</h2>
       </div>
-      @switch (item()) {
-        @case ('bar') { <div class="col-12"><app-chart-bar /></div> }
-        @case ('pie') { <div class="col-12"><app-chart-pie /></div> }
-        @case ('line') { <div class="col-12"><p-chart type="line" [data]="lineData" [options]="chartOptions" /></div> }
-        @case ('doughnut') { <div class="col-12"><p-chart type="doughnut" [data]="doughnutData" [options]="chartOptions" /></div> }
-        @case ('radar') { <div class="col-12"><p-chart type="radar" [data]="radarData" [options]="chartOptions" /></div> }
-      }
+      <p-card>
+        @switch (item()) {
+          @case ('bar') { <app-chart-bar [data]="barData" /> }
+          @case ('pie') { <app-chart-pie [data]="pieData" /> }
+          @case ('line') { <p-chart type="line" [data]="lineData" [options]="chartOptions" height="300px" /> }
+          @case ('doughnut') { <p-chart type="doughnut" [data]="doughnutData" [options]="circularOptions" height="300px" /> }
+          @case ('radar') { <p-chart type="radar" [data]="radarData" [options]="circularOptions" height="300px" /> }
+        }
+      </p-card>
     </section>
   `,
   encapsulation: ViewEncapsulation.None,
@@ -42,14 +44,26 @@ export class CatalogChartsItem {
     this.route.paramMap.subscribe(p => this.item.set(p.get('item') ?? ''));
   }
 
-  isDark = document.documentElement.classList.contains('theme-dark');
-  style = getComputedStyle(document.body);
-  primaryColor = this.style.getPropertyValue('--ds-primary').trim() || '#0b3164';
-  secondaryColor = this.style.getPropertyValue('--ds-secondary').trim() || '#64748b';
-  successColor = this.style.getPropertyValue('--ds-success').trim() || '#065f46';
-  warningColor = this.style.getPropertyValue('--ds-warning').trim() || '#c9a84c';
-  dangerColor = this.style.getPropertyValue('--ds-error').trim() || '#991b1b';
-  tertiaryColor = this.style.getPropertyValue('--ds-tertiary').trim() || '#0f766e';
+  private getStyle = (key: string, fallback: string) =>
+    getComputedStyle(document.body).getPropertyValue(key).trim() || fallback;
+
+  primaryColor = this.getStyle('--ds-primary', '#0b3164');
+  secondaryColor = this.getStyle('--ds-secondary', '#64748b');
+  tertiaryColor = this.getStyle('--ds-tertiary', '#0f766e');
+  warningColor = this.getStyle('--ds-warning', '#c9a84c');
+
+  barData = {
+    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May'],
+    datasets: [
+      { label: 'Consumo Eléctrico', data: [65, 59, 80, 81, 56], fill: false, borderColor: this.primaryColor, tension: 0.4 },
+    ],
+  };
+
+  pieData = [
+    { name: 'Completado', value: 300 },
+    { name: 'En Proceso', value: 50 },
+    { name: 'Pendiente', value: 100 },
+  ];
 
   lineData = {
     labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
@@ -66,8 +80,26 @@ export class CatalogChartsItem {
 
   radarData = {
     labels: ['Comida', 'Transporte', 'Vivienda', 'Servicios', 'Entretenimiento', 'Salud', 'Ahorro'],
-    datasets: [{ label: 'Presupuesto', data: [65, 59, 90, 81, 56, 55, 40], borderColor: this.primaryColor, backgroundColor: this.primaryColor + '33', pointBackgroundColor: this.primaryColor }],
+    datasets: [{
+      label: 'Presupuesto',
+      data: [65, 59, 90, 81, 56, 55, 40],
+      borderColor: this.primaryColor,
+      backgroundColor: this.primaryColor + '33',
+      pointBackgroundColor: this.primaryColor,
+    }],
   };
 
-  chartOptions = { plugins: { legend: { labels: { color: 'var(--ds-text-secondary)' } } } };
+  private textColor = this.getStyle('--ds-text-secondary', '#64748b');
+
+  chartOptions = {
+    plugins: { legend: { labels: { color: this.textColor } } },
+    scales: {
+      x: { ticks: { color: this.textColor }, grid: { color: 'var(--ds-border)' } },
+      y: { ticks: { color: this.textColor }, grid: { color: 'var(--ds-border)' } },
+    },
+  };
+
+  circularOptions = {
+    plugins: { legend: { labels: { color: this.textColor } } },
+  };
 }
