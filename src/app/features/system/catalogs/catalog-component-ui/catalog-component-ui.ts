@@ -12,8 +12,9 @@
  * @module CatalogComponentUi
  */
 import { CommonModule } from "@angular/common";
-import { Component, computed, signal, ViewEncapsulation } from "@angular/core";
+import { Component, computed, OnInit, signal, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
 
 // --- Custom Components - Core ---
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
@@ -219,7 +220,7 @@ interface BloqueVisual {
  * Organiza la navegación por categorías mediante sidebar,
  * con preview mobile y toggle de tema oscuro.
  */
-export class CatalogComponentUi {
+export class CatalogComponentUi implements OnInit {
   // --- Signals ---
   /** Categoría activa en el sidebar */
   activeCategory = signal<string>("tokens");
@@ -569,7 +570,7 @@ export class CatalogComponentUi {
   ];
 
 
-  constructor() {
+  constructor(private readonly route: ActivatedRoute) {
     addIcons({
       addOutline,
       pencilOutline,
@@ -650,6 +651,15 @@ export class CatalogComponentUi {
   /** Alterna colapso del sidebar en desktop */
   toggleSidebar(): void {
     this.sidebarCollapsed.update((v) => !v);
+  }
+
+  /** Lee el fragment de la URL al iniciar y navega a la sección */
+  ngOnInit(): void {
+    this.route.fragment.subscribe((fragment) => {
+      if (fragment) {
+        this.navigateTo(fragment);
+      }
+    });
   }
 
   /** Abre/cierra sidebar en mobile */

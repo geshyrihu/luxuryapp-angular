@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-06-24T16:19:14.915Z",
-  "totalMatches": 1555,
+  "generatedAt": "2026-06-24T17:28:29.654Z",
+  "totalMatches": 1571,
   "userFacingMatches": 419,
   "buttonEmojiInputs": 0,
   "byModule": [
     {
       "key": "features/system",
-      "count": 691
+      "count": 707
     },
     {
       "key": "app/core",
@@ -122,7 +122,7 @@
   "byCategory": [
     {
       "key": "docs",
-      "count": 654
+      "count": 670
     },
     {
       "key": "template_comment",
@@ -8375,6 +8375,61 @@
       "preview": "Issues clasificados por severidad: 🔴 Crítico (accesibilidad), 🟡 Importante (consistencia), 🟢 Mejora (optimización)"
     },
     {
+      "file": "src/app/features/system/catalogs/catalog-component-ui/ANALISIS-PROMPT-V2.md",
+      "line": 333,
+      "category": "docs",
+      "module": "features/system",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| 2 | web | Web (PrimeNG) | `CatalogWeb` | `pages/catalog-web/` | ✅ |"
+    },
+    {
+      "file": "src/app/features/system/catalogs/catalog-component-ui/ANALISIS-PROMPT-V2.md",
+      "line": 334,
+      "category": "docs",
+      "module": "features/system",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| 3 | mobile | Mobile (Ionic) | `CatalogMobile` | `pages/catalog-mobile/` | ✅ |"
+    },
+    {
+      "file": "src/app/features/system/catalogs/catalog-component-ui/ANALISIS-PROMPT-V2.md",
+      "line": 335,
+      "category": "docs",
+      "module": "features/system",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| 4 | charts | Gráficos | `CatalogCharts` | `pages/catalog-charts/` | ✅ |"
+    },
+    {
+      "file": "src/app/features/system/catalogs/catalog-component-ui/ANALISIS-PROMPT-V2.md",
+      "line": 338,
+      "category": "docs",
+      "module": "features/system",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "| 7 | docs | Estándar Documental | Inline | ~~`pages/catalog-documents/`~~ | ❌ Eliminado |"
+    },
+    {
+      "file": "src/app/features/system/catalogs/catalog-component-ui/ANALISIS-PROMPT-V2.md",
+      "line": 340,
+      "category": "docs",
+      "module": "features/system",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| 9 | layouts | Layouts | `CatalogLayouts` | `pages/catalog-layouts/` | ✅ |"
+    },
+    {
       "file": "src/app/features/system/catalogs/catalog-component-ui/AUDITORIA-COMPLETA.md",
       "line": 18,
       "category": "docs",
@@ -15294,7 +15349,130 @@
     },
     {
       "file": "src/app/features/system/catalogs/catalog-component-ui/PLAN-DE-ACCION.md",
-      "line": 645,
+      "line": 643,
+      "category": "docs",
+      "module": "features/system",
+      "severity": "low",
+      "symbols": [
+        "🧹"
+      ],
+      "preview": "## 🧹 FASE 12 — LIMPIEZA DE PÁGINAS HUÉRFANAS EN catalog-component-ui"
+    },
+    {
+      "file": "src/app/features/system/catalogs/catalog-component-ui/PLAN-DE-ACCION.md",
+      "line": 651,
+      "category": "docs",
+      "module": "features/system",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| `catalog-web/` | Web (PrimeNG) | ✅ Importado | — |"
+    },
+    {
+      "file": "src/app/features/system/catalogs/catalog-component-ui/PLAN-DE-ACCION.md",
+      "line": 652,
+      "category": "docs",
+      "module": "features/system",
+      "severity": "low",
+      "symbols": [
+        "✅"
+      ],
+      "preview": "| `catalog-layouts/` | Layouts | ✅ Importado | — |"
+    },
+    {
+      "file": "src/app/features/system/catalogs/catalog-component-ui/PLAN-DE-ACCION.md",
+      "line": 653,
+      "category": "docs",
+      "module": "features/system",
+      "severity": "low",
+      "symbols": [
+        "❌",
+        "✅"
+      ],
+      "preview": "| `catalog-mobile/` | Mobile (Ionic) | ❌ No importado (~250 líneas inline) | ✅ **Integrado** — reemplazó inline |"
+    },
+    {
+      "file": "src/app/features/system/catalogs/catalog-component-ui/PLAN-DE-ACCION.md",
+      "line": 654,
+      "category": "docs",
+      "module": "features/system",
+      "severity": "low",
+      "symbols": [
+        "❌",
+        "✅"
+      ],
+      "preview": "| `catalog-charts/` | Gráficos | ❌ No importado (solo 2 charts inline) | ✅ **Integrado** — ahora muestra 5 tipos |"
+    },
+    {
+      "file": "src/app/features/system/catalogs/catalog-component-ui/PLAN-DE-ACCION.md",
+      "line": 655,
+      "category": "docs",
+      "module": "features/system",
+      "severity": "low",
+      "symbols": [
+        "❌"
+      ],
+      "preview": "| `catalog-documents/` | Estándar Documental | ❌ No importado (contenido duplicado) | ❌ **Eliminado** — dead code |"
+    },
+    {
+      "file": "src/app/features/system/catalogs/catalog-component-ui/PLAN-DE-ACCION.md",
+      "line": 670,
+      "category": "docs",
+      "module": "features/system",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "│   ├── ~ Mobile section: ~250 líneas inline → <app-catalog-mobile />"
+    },
+    {
+      "file": "src/app/features/system/catalogs/catalog-component-ui/PLAN-DE-ACCION.md",
+      "line": 671,
+      "category": "docs",
+      "module": "features/system",
+      "severity": "low",
+      "symbols": [
+        "→"
+      ],
+      "preview": "│   └── ~ Charts section: inline 2 charts → <app-catalog-charts [isDarkMode]=\"isDarkMode()\" />"
+    },
+    {
+      "file": "src/app/features/system/catalogs/catalog-component-ui/PLAN-DE-ACCION.md",
+      "line": 673,
+      "category": "docs",
+      "module": "features/system",
+      "severity": "low",
+      "symbols": [
+        "←"
+      ],
+      "preview": "├── catalog-mobile/   ← ahora se renderiza"
+    },
+    {
+      "file": "src/app/features/system/catalogs/catalog-component-ui/PLAN-DE-ACCION.md",
+      "line": 674,
+      "category": "docs",
+      "module": "features/system",
+      "severity": "low",
+      "symbols": [
+        "←"
+      ],
+      "preview": "├── catalog-charts/   ← ahora se renderiza"
+    },
+    {
+      "file": "src/app/features/system/catalogs/catalog-component-ui/PLAN-DE-ACCION.md",
+      "line": 675,
+      "category": "docs",
+      "module": "features/system",
+      "severity": "low",
+      "symbols": [
+        "←"
+      ],
+      "preview": "└── catalog-documents/ ← ELIMINADO (directorio completo)"
+    },
+    {
+      "file": "src/app/features/system/catalogs/catalog-component-ui/PLAN-DE-ACCION.md",
+      "line": 685,
       "category": "docs",
       "module": "features/system",
       "severity": "low",

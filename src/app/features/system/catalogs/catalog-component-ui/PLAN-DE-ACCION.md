@@ -433,7 +433,7 @@
 - [x] **Skip navigation link** — ✅ VERIFICADO. Ya existe en `index.html:57-60` como `<a href="#app-root-outlet" class="skip-link">`. Target `#app-root-outlet` está en `app.html:4`. Cubre todos los layouts automáticamente (WCAG 2.4.1 compliant). No requiere cambios.
 
 ### 10.4 Commits Fase 10
-- [ ] `git commit -m "feat(ds): PivotTable, FocusTrap, SkipNav verification — fase 10"`
+- [x] `git commit -m "feat(ds): PivotTable, FocusTrap, SkipNav verification — fase 10"`
 
 ---
 
@@ -503,7 +503,7 @@ import { IonInputText } from "../mobile/ion-input-text";
 - [x] `npm run build` sin errores
 - [x] `npm run lint` sin errores
 
-- [ ] `git commit -m "fix: add mobile branch to 12 web input components using IonInput* from inputs/mobile"`
+- [x] `git commit -m "feat(ds): complete FASE 6-12 — ..."`
 
 ---
 
@@ -676,7 +676,7 @@ src/app/features/system/catalogs/catalog-component-ui/
 ```
 
 ### 12.3 Commits
-- [ ] `git commit -m "fix: integrate catalog-mobile/catalog-charts, delete orphaned catalog-documents"`
+- [x] `git commit -m "feat(ds): complete FASE 6-12 — ..."`
 
 ---
 
