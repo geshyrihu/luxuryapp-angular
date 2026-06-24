@@ -9,8 +9,8 @@ Hemos realizado múltiples cambios y ajustes en las siguientes rutas:
 
 La aplicación es un **CRM/ERP de nivel enterprise** con soporte dual:
 
-- 🖥️ **Web:** Angular + PrimeNG
-- 📱 **Mobile:** Ionic (Angular)
+- 🖥️ **Web:** Angular + PrimeNG 21
+- 📱 **Mobile:** Ionic (Angular 21)
 
 ---
 
@@ -319,6 +319,72 @@ Documento 5: Plan de Acción
 Issues clasificados por severidad: 🔴 Crítico (accesibilidad), 🟡 Importante (consistencia), 🟢 Mejora (optimización)
 Orden de implementación sugerido
 Estimación de esfuerzo por tarea
+---
+
+## TAREA 5: AUDITORÍA DE PÁGINAS DEL CATÁLOGO (PAGE-LEVEL AUDIT)
+
+### 5.1 Inventario de Páginas vs Navegación
+
+Genera un mapeo completo entre las 10 categorías del menú de navegación (nav) de `catalog-component-ui` y sus fuentes de contenido:
+
+| # | Nav ID | Label | Fuente del Contenido | Directorio `pages/` | ¿Importado? |
+|---|--------|-------|---------------------|-------------------|:---:|
+| 1 | tokens | Tokens & Identidad | Inline / shared component | — | — |
+| 2 | web | Web (PrimeNG) | `CatalogWeb` | `pages/catalog-web/` | ✅ |
+| 3 | mobile | Mobile (Ionic) | `CatalogMobile` | `pages/catalog-mobile/` | ✅ |
+| 4 | charts | Gráficos | `CatalogCharts` | `pages/catalog-charts/` | ✅ |
+| 5 | core | Core Components | Inline | — | — |
+| 6 | patterns | Patrones UX | Inline | — | — |
+| 7 | docs | Estándar Documental | Inline | ~~`pages/catalog-documents/`~~ | ❌ Eliminado |
+| 8 | audit | Auditoría | Inline | — | — |
+| 9 | layouts | Layouts | `CatalogLayouts` | `pages/catalog-layouts/` | ✅ |
+| 10 | guia | Guía ERP | Inline | — | — |
+
+### 5.2 Verificaciones
+
+Para cada directorio `pages/` existente:
+
+- [ ] ¿Está importado en `catalog-component-ui.ts`?
+- [ ] ¿Está incluido en el `imports` array del @Component?
+- [ ] ¿Se renderiza en `catalog-component-ui.html` dentro del `@if` correspondiente?
+- [ ] ¿Sus sub-componentes (en `components/`) están correctamente importados y usados dentro de la página?
+- [ ] ¿Hay componentes huérfanos (en disco pero no importados)?
+- [ ] ¿Hay componentes duplicados (mismo contenido inline y en página)?
+
+### 5.3 Consistencia de Contenido
+
+- [ ] El contenido de cada página componente coincide con lo que la nav label describe
+- [ ] Las páginas usan `--ds-*` design tokens en lugar de valores hardcodeados
+- [ ] Las páginas implementan detección de plataforma donde corresponde (web vs mobile)
+- [ ] No hay PrimeNG imports en páginas marcadas como 100% Ionic
+
+### 5.4 Cobertura de Componentes por Página
+
+Verifica que cada página contenga al menos los componentes que su categoría del nav promete:
+
+| Categoría | Componentes esperados en pantalla |
+|-----------|----------------------------------|
+| Tokens & Identidad | Color palette, Typography scale |
+| Web (PrimeNG) | Todos los wrappers de PrimeNG (inputs, buttons, data, overlays, feedback) |
+| Mobile (Ionic) | Ionic buttons, inputs, feedback, navigation, lists, data, forms |
+| Gráficos | Bar, Pie, Line, Doughnut, Radar charts |
+| Core Components | ActionMenu, AppIcon, StatusBadge, Loader, Wizard, EmptyState, etc. |
+| Patrones UX | Complex Card, Data Table Hybrid, Login Reference, Navigation Reference |
+| Estándar Documental | Document Types, Nomenclature, Access Matrix |
+| Auditoría | Content Blocks, Quick Checklist |
+| Layouts | Full Width, Sidebar+Content, Master-Detail, Wizard, Split Panels |
+| Guía ERP | Identity, Color Validation, Component Catalog, Button Rules, Reference Form |
+
+### 5.5 Acciones Correctivas
+
+Si se encuentra algún desajuste:
+- **Página no importada pero con contenido inline**: integrar la página (reemplazar inline)
+- **Página no importada sin contenido inline**: eliminar (dead code)
+- **Página importada pero sin contenido**: eliminar o crear contenido
+- **Página duplicada vs inline**: consolidar (elegir uno, eliminar el otro)
+
+---
+
 REGLAS DE ANÁLISIS
 No asumas: Si no encuentras evidencia en el código, márcalo como "No encontrado" en vez de inventar
 Sé específico: Cita el archivo y línea exacta donde encuentres cada hallazgo

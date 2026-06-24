@@ -2,39 +2,60 @@
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { InputNumberModule } from "primeng/inputnumber";
 import { BaseInputSignal } from "../base/base-input-signal";
+import { IonInputCurrency } from "../mobile/ion-input-currency";
 
 @Component({
   selector: "custom-input-currency-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, InputNumberModule],
+  imports: [BaseInputSignal, ReactiveFormsModule, InputNumberModule, IonInputCurrency],
   template: `
-    <base-input-signal
-      [control]="control()"
-      [id]="id()"
-      [label]="label()"
-      [placeholder]="placeholder()"
-      [horizontal]="horizontal()"
-      [readonly]="readonly()"
-      [disabled]="disabled()"
-      [required]="requiredInput()"
-    >
-      <p-inputNumber
-        [inputId]="id()"
-        [formControl]="control() || internalControl"
+    @if (platform.isMobile()) {
+      <ion-input-currency
+        [control]="control()"
+        [label]="label()"
         [placeholder]="placeholder()"
+        [horizontal]="horizontal()"
         [readonly]="readonly()"
-        [showButtons]="showButtons()"
-        [minFractionDigits]="minFractionDigits()"
-        [maxFractionDigits]="maxFractionDigits()"
-        mode="decimal"
-        [useGrouping]="useGrouping()"
-        [prefix]="prefix()"
-        [suffix]="suffix()"
+        [required]="requiredInput()"
+        [noMargin]="noMargin()"
+        [description]="description()"
+        [hidden]="hidden()"
+        [min]="min()"
+        [max]="max()"
+        [step]="step()"
+        [customClass]="customClass()"
+        [size]="size()"
         [showClear]="showClear()"
-        locale="es-MX"
-        [inputStyleClass]="inputStyleClass()"
-        fluid
       />
-    </base-input-signal>
+    } @else {
+      <base-input-signal
+        [control]="control()"
+        [id]="id()"
+        [label]="label()"
+        [placeholder]="placeholder()"
+        [horizontal]="horizontal()"
+        [readonly]="readonly()"
+        [disabled]="disabled()"
+        [required]="requiredInput()"
+      >
+        <p-inputNumber
+          [inputId]="id()"
+          [formControl]="control() || internalControl"
+          [placeholder]="placeholder()"
+          [readonly]="readonly()"
+          [showButtons]="showButtons()"
+          [minFractionDigits]="minFractionDigits()"
+          [maxFractionDigits]="maxFractionDigits()"
+          mode="decimal"
+          [useGrouping]="useGrouping()"
+          [prefix]="prefix()"
+          [suffix]="suffix()"
+          [showClear]="showClear()"
+          locale="es-MX"
+          [inputStyleClass]="inputStyleClass()"
+          fluid
+        />
+      </base-input-signal>
+    }
   `,
   providers: [
     {

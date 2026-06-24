@@ -2,6 +2,7 @@
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { PasswordModule } from "primeng/password";
 import { BaseInputSignal } from "../base/base-input-signal";
+import { IonInputPassword } from "../mobile/ion-input-password";
 
 @Component({
   selector: "custom-input-password-signal",
@@ -9,32 +10,49 @@ import { BaseInputSignal } from "../base/base-input-signal";
     BaseInputSignal,
     ReactiveFormsModule,
     PasswordModule,
+    IonInputPassword,
   ],
   template: `
-    <base-input-signal
-      [control]="control()"
-      [id]="id()"
-      [label]="label()"
-      [placeholder]="placeholder()"
-      [horizontal]="horizontal()"
-      [readonly]="readonly()"
-      [required]="requiredInput()"
-    >
-      <p-password
-        [inputId]="id()"
-        [formControl]="control() || internalControl"
+    @if (platform.isMobile()) {
+      <ion-input-password
+        [control]="control()"
+        [label]="label()"
         [placeholder]="placeholder()"
-        [feedback]="showStrengthIndicator()"
-        [toggleMask]="true"
-        [promptLabel]="promptLabel()"
-        [weakLabel]="weakLabel()"
-        [mediumLabel]="mediumLabel()"
-        [strongLabel]="strongLabel()"
-        [inputStyleClass]="inputStyleClass()"
-        [invalid]="isInvalid()"
-        fluid
+        [horizontal]="horizontal()"
+        [readonly]="readonly()"
+        [required]="requiredInput()"
+        [noMargin]="noMargin()"
+        [description]="description()"
+        [hidden]="hidden()"
+        [customClass]="customClass()"
+        [size]="size()"
       />
-    </base-input-signal>
+    } @else {
+      <base-input-signal
+        [control]="control()"
+        [id]="id()"
+        [label]="label()"
+        [placeholder]="placeholder()"
+        [horizontal]="horizontal()"
+        [readonly]="readonly()"
+        [required]="requiredInput()"
+      >
+        <p-password
+          [inputId]="id()"
+          [formControl]="control() || internalControl"
+          [placeholder]="placeholder()"
+          [feedback]="showStrengthIndicator()"
+          [toggleMask]="true"
+          [promptLabel]="promptLabel()"
+          [weakLabel]="weakLabel()"
+          [mediumLabel]="mediumLabel()"
+          [strongLabel]="strongLabel()"
+          [inputStyleClass]="inputStyleClass()"
+          [invalid]="isInvalid()"
+          fluid
+        />
+      </base-input-signal>
+    }
   `,
   providers: [
     {

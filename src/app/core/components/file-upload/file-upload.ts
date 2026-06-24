@@ -1,9 +1,10 @@
-import { Component, input, output, signal, ViewEncapsulation } from "@angular/core";
+import { Component, ElementRef, inject, input, output, signal, viewChild, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ButtonModule } from "primeng/button";
 import { ProgressBarModule } from "primeng/progressbar";
 import { FileUploadHandlerEvent, FileUploadModule } from "primeng/fileupload";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { PlatformService } from "src/app/core/services/platform.service";
 
 export interface UploadFile {
   name: string;
@@ -46,12 +47,55 @@ export interface UploadFile {
         }
       </div>
 
+      <!-- Mobile Actions (camera / gallery) -->
+      @if (isMobile() && mobileSource() !== "none") {
+        <div class="flex gap-2 mt-2">
+          @if (mobileSource() === "camera" || mobileSource() === "both") {
+            <p-button
+              [label]="'Tomar foto'"
+              icon="mdi:camera"
+              severity="secondary"
+              styleClass="w-full justify-content-center"
+              (onClick)="cameraInput().nativeElement.click()"
+            />
+          }
+          @if (mobileSource() === "gallery" || mobileSource() === "both") {
+            <p-button
+              [label]="'Galería'"
+              icon="mdi:image"
+              severity="secondary"
+              styleClass="w-full justify-content-center"
+              (onClick)="galleryInput().nativeElement.click()"
+            />
+          }
+        </div>
+      }
+
+      <!-- Hidden Camera Input -->
+      <input
+        #cameraInput
+        type="file"
+        accept="image/*"
+        capture="environment"
+        (change)="onNativeInput($event)"
+        hidden
+      />
+
+      <!-- Hidden Gallery Input -->
+      <input
+        #galleryInput
+        type="file"
+        [accept]="accept() || 'image/*'"
+        [multiple]="multiple()"
+        (change)="onNativeInput($event)"
+        hidden
+      />
+
       <!-- File List -->
       @if (files().length > 0) {
         <div class="file-list flex flex-column gap-2 mt-3">
           @for (file of files(); track file.name) {
             <div class="file-item flex align-items-center gap-2 p-2 surface-ground border-round">
-              <!-- Preview -->
               @if (isImage(file.type)) {
                 <img
                   [src]="file.objectURL"
@@ -62,7 +106,6 @@ export interface UploadFile {
                 <app-icon icon="mdi:file-document-outline" class="text-2xl text-color-muted" />
               }
 
-              <!-- Info -->
               <div class="flex flex-column gap-1 flex-1 min-w-0">
                 <strong class="text-sm truncate">{{ file.name }}</strong>
                 <span class="text-xs text-color-secondary">{{ formatSize(file.size) }}</span>
@@ -71,7 +114,6 @@ export interface UploadFile {
                 }
               </div>
 
-              <!-- Status / Remove -->
               @if (file.status === "done") {
                 <app-icon icon="mdi:check-circle" class="text-lg" style="color: var(--ds-success)" />
               } @else if (file.status === "error") {
@@ -120,17 +162,24 @@ export interface UploadFile {
   encapsulation: ViewEncapsulation.None,
 })
 export class FileUpload {
+  private platform = inject(PlatformService);
+
   chooseLabel = input("Seleccionar archivos");
   accept = input<string>("");
   maxFileSize = input<number>(10000000);
   multiple = input<boolean>(true);
   autoUpload = input<boolean>(true);
+  mobileSource = input<"camera" | "gallery" | "both" | "none">("both");
 
   filesChange = output<UploadFile[]>();
   upload = output<FileUploadHandlerEvent>();
 
   files = signal<UploadFile[]>([]);
   isDragOver = signal(false);
+  isMobile = this.platform.isMobile;
+
+  cameraInput = viewChild.required<ElementRef<HTMLInputElement>>("cameraInput");
+  galleryInput = viewChild.required<ElementRef<HTMLInputElement>>("galleryInput");
 
   onDragOver(event: DragEvent): void {
     event.preventDefault();
@@ -148,7 +197,6 @@ export class FileUpload {
     event.preventDefault();
     event.stopPropagation();
     this.isDragOver.set(false);
-
     const droppedFiles = event.dataTransfer?.files;
     if (droppedFiles) {
       this.addFiles(Array.from(droppedFiles));
@@ -158,6 +206,14 @@ export class FileUpload {
   onFilesSelected(event: any): void {
     if (event.files?.length) {
       this.addFiles(Array.from(event.files));
+    }
+  }
+
+  onNativeInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files?.length) {
+      this.addFiles(Array.from(input.files));
+      input.value = "";
     }
   }
 

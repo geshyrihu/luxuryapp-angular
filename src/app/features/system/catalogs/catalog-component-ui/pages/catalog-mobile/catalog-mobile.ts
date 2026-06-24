@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 
+import { MobileCoreCoverage } from "../../shared/mobile-core-coverage";
 import { MobileButtons } from "./components/mobile-buttons/mobile-buttons";
 import { MobileData } from "./components/mobile-data/mobile-data";
 import { MobileFeedback } from "./components/mobile-feedback/mobile-feedback";
@@ -8,7 +9,6 @@ import { MobileForms } from "./components/mobile-forms/mobile-forms";
 import { MobileInputs } from "./components/mobile-inputs/mobile-inputs";
 import { MobileLists } from "./components/mobile-lists/mobile-lists";
 import { MobileNavigation } from "./components/mobile-navigation/mobile-navigation";
-import { MobileCoreCoverage } from "../../shared/mobile-core-coverage";
 
 @Component({
   selector: "app-catalog-mobile",

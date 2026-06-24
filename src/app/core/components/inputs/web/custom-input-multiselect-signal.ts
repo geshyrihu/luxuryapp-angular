@@ -3,42 +3,62 @@ import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { MultiSelectModule } from "primeng/multiselect";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { BaseInputSignal } from "../base/base-input-signal";
+import { IonInputMultiselect } from "../mobile/ion-input-multiselect";
 
 @Component({
   selector: "custom-input-multiselect-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, MultiSelectModule],
+  imports: [BaseInputSignal, ReactiveFormsModule, MultiSelectModule, IonInputMultiselect],
   template: `
-    <base-input-signal
-      [control]="control()"
-      [id]="id()"
-      [label]="label()"
-      [placeholder]="placeholder()"
-      [horizontal]="horizontal()"
-      [readonly]="readonly()"
-      [disabled]="disabled()"
-    >
-      <p-multiSelect
-        [options]="options()"
-        [formControl]="control() || internalControl"
+    @if (platform.isMobile()) {
+      <ion-input-multiselect
+        [control]="control()"
+        [label]="label()"
         [placeholder]="placeholder()"
-        [filter]="filter()"
-        display="chip"
-        [showClear]="showClear()"
+        [horizontal]="horizontal()"
+        [readonly]="readonly()"
+        [required]="requiredInput()"
+        [noMargin]="noMargin()"
+        [description]="description()"
+        [hidden]="hidden()"
+        [data]="options()"
         [optionLabel]="optionLabel()"
         [optionValue]="optionValue()"
-        [group]="group()"
-        [optionGroupLabel]="optionGroupLabel()"
-        [optionGroupChildren]="optionGroupChildren()"
-        [inputId]="id()"
-        [class]="getSizeClass()"
-        [scrollHeight]="scrollHeight()"
-        [panelStyle]="panelStyle()"
-        (onChange)="onChange($event.value)"
-        (onBlur)="onTouch()"
-        appendTo="body"
-        fluid
+        [customClass]="customClass()"
+        [size]="size()"
       />
-    </base-input-signal>
+    } @else {
+      <base-input-signal
+        [control]="control()"
+        [id]="id()"
+        [label]="label()"
+        [placeholder]="placeholder()"
+        [horizontal]="horizontal()"
+        [readonly]="readonly()"
+        [disabled]="disabled()"
+      >
+        <p-multiSelect
+          [options]="options()"
+          [formControl]="control() || internalControl"
+          [placeholder]="placeholder()"
+          [filter]="filter()"
+          display="chip"
+          [showClear]="showClear()"
+          [optionLabel]="optionLabel()"
+          [optionValue]="optionValue()"
+          [group]="group()"
+          [optionGroupLabel]="optionGroupLabel()"
+          [optionGroupChildren]="optionGroupChildren()"
+          [inputId]="id()"
+          [class]="getSizeClass()"
+          [scrollHeight]="scrollHeight()"
+          [panelStyle]="panelStyle()"
+          (onChange)="onChange($event.value)"
+          (onBlur)="onTouch()"
+          appendTo="body"
+          fluid
+        />
+      </base-input-signal>
+    }
   `,
   providers: [
     {

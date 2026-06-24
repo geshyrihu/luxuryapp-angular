@@ -2,6 +2,7 @@
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { InputTextModule } from "primeng/inputtext";
 import { BaseInputSignal } from "../base/base-input-signal";
+import { IonInputTime } from "../mobile/ion-input-time";
 
 /**
  * ⏰ CUSTOM INPUT TIME
@@ -11,28 +12,43 @@ import { BaseInputSignal } from "../base/base-input-signal";
  */
 @Component({
   selector: "custom-input-time-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, InputTextModule],
+  imports: [BaseInputSignal, ReactiveFormsModule, InputTextModule, IonInputTime],
   template: `
-    <base-input-signal
-      [control]="control()"
-      [id]="id()"
-      [label]="label()"
-      [placeholder]="placeholder()"
-      [horizontal]="horizontal()"
-      [disabled]="disabled()"
-      [required]="requiredInput()"
-    >
-      <input
-        [formControl]="control() || internalControl"
-        pInputText
-        fluid
-        type="time"
-        [id]="id()"
+    @if (platform.isMobile()) {
+      <ion-input-time
+        [control]="control()"
+        [label]="label()"
         [placeholder]="placeholder()"
-        fluid
-        appendTo="body"
+        [horizontal]="horizontal()"
+        [readonly]="readonly()"
+        [required]="requiredInput()"
+        [noMargin]="noMargin()"
+        [description]="description()"
+        [hidden]="hidden()"
+        [customClass]="customClass()"
       />
-    </base-input-signal>
+    } @else {
+      <base-input-signal
+        [control]="control()"
+        [id]="id()"
+        [label]="label()"
+        [placeholder]="placeholder()"
+        [horizontal]="horizontal()"
+        [disabled]="disabled()"
+        [required]="requiredInput()"
+      >
+        <input
+          [formControl]="control() || internalControl"
+          pInputText
+          fluid
+          type="time"
+          [id]="id()"
+          [placeholder]="placeholder()"
+          fluid
+          appendTo="body"
+        />
+      </base-input-signal>
+    }
   `,
   providers: [
     {

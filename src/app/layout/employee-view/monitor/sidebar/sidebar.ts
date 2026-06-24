@@ -58,6 +58,149 @@ export class Sidebar {
   public isSearching: boolean = false;
   public loading = this.menuService.menuLoading;
 
+  readonly dsMenuItems: MenuItem[] = [
+    {
+      label: "Luxury Design System",
+      icon: "mdi:palette-outline",
+      expanded: true,
+      items: [
+        {
+          label: "Tokens & Identidad",
+          icon: "mdi:palette",
+          items: [
+            { label: "Colors", icon: "mdi:format-color-fill" },
+            { label: "Typography", icon: "mdi:format-letter-case" },
+          ],
+        },
+        {
+          label: "Web (PrimeNG)",
+          icon: "mdi:desktop-mac",
+          items: [
+            { label: "Accordion" },
+            { label: "Badge" },
+            { label: "Breadcrumb" },
+            { label: "Button" },
+            { label: "Card" },
+            { label: "Checkbox" },
+            { label: "DatePicker" },
+            { label: "Dialog" },
+            { label: "Divider" },
+            { label: "InputNumber" },
+            { label: "InputText" },
+            { label: "Message" },
+            { label: "MultiSelect" },
+            { label: "Popover" },
+            { label: "ProgressBar" },
+            { label: "ProgressSpinner" },
+            { label: "RadioButton" },
+            { label: "Select" },
+            { label: "SelectButton" },
+            { label: "Skeleton" },
+            { label: "Table" },
+            { label: "Tabs" },
+            { label: "Tag" },
+            { label: "Textarea" },
+            { label: "Toast" },
+            { label: "ToggleSwitch" },
+            { label: "Toolbar" },
+            { label: "Tooltip" },
+          ],
+        },
+        {
+          label: "Mobile (Ionic)",
+          icon: "mdi:cellphone",
+          items: [
+            { label: "Buttons", icon: "mdi:gesture-tap" },
+            { label: "Inputs", icon: "mdi:keyboard" },
+            { label: "Feedback", icon: "mdi:bell-outline" },
+            { label: "Navigation", icon: "mdi:menu" },
+            { label: "Lists", icon: "mdi:format-list-bulleted" },
+            { label: "Data", icon: "mdi:database-outline" },
+            { label: "Forms", icon: "mdi:form-dropdown" },
+          ],
+        },
+        {
+          label: "Gráficos",
+          icon: "mdi:chart-bar",
+          items: [
+            { label: "Bar Chart", icon: "mdi:chart-bar" },
+            { label: "Pie Chart", icon: "mdi:chart-pie" },
+            { label: "Line Chart", icon: "mdi:chart-line" },
+            { label: "Doughnut Chart", icon: "mdi:chart-donut" },
+            { label: "Radar Chart", icon: "mdi:chart-radar" },
+          ],
+        },
+        {
+          label: "Core Components",
+          icon: "mdi:cube",
+          items: [
+            { label: "Action Menu", icon: "mdi:dots-vertical" },
+            { label: "App Icon", icon: "mdi:star" },
+            { label: "Data View Mobile", icon: "mdi:view-list" },
+            { label: "Loader", icon: "mdi:loading" },
+            { label: "Notification Center", icon: "mdi:bell-outline" },
+            { label: "PrimeNg Custom Caption", icon: "mdi:table-headers-eye" },
+            { label: "Status Badge", icon: "mdi:check-circle" },
+            { label: "Wizard", icon: "mdi:steps" },
+            { label: "Empty State", icon: "mdi:inbox-outline" },
+            { label: "Confirm Dialog", icon: "mdi:alert-circle" },
+            { label: "Date Range", icon: "mdi:calendar-range" },
+            { label: "File Upload", icon: "mdi:upload" },
+          ],
+        },
+        {
+          label: "Patrones UX",
+          icon: "mdi:content-copy",
+          items: [
+            { label: "Complex Card" },
+            { label: "Data Table Hybrid" },
+            { label: "Login Reference" },
+            { label: "Navigation Reference" },
+          ],
+        },
+        {
+          label: "Estándar Documental",
+          icon: "mdi:file-pdf-box",
+          items: [
+            { label: "Document Types" },
+            { label: "Nomenclature" },
+            { label: "Access Matrix" },
+          ],
+        },
+        {
+          label: "Auditoría",
+          icon: "mdi:checkbox-marked",
+          items: [
+            { label: "Content Blocks" },
+            { label: "Quick Checklist" },
+          ],
+        },
+        {
+          label: "Layouts",
+          icon: "mdi:page-layout-body",
+          items: [
+            { label: "Full Width" },
+            { label: "Sidebar + Content" },
+            { label: "Master–Detail" },
+            { label: "Wizard (Stepper)" },
+            { label: "Split Panels" },
+          ],
+        },
+        {
+          label: "Guía ERP",
+          icon: "mdi:book-open-page-variant",
+          items: [
+            { label: "Identity Pillars" },
+            { label: "Color Validation" },
+            { label: "Component Catalog" },
+            { label: "Button Rules" },
+            { label: "Reference Form" },
+          ],
+        },
+      ],
+    },
+  ];
+
   public isShow: boolean = false;
   public pinnedData: boolean = false;
   public pinnedDataList: string[] = [];

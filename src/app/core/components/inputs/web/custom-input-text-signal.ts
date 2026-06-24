@@ -2,38 +2,56 @@
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { InputTextModule } from "primeng/inputtext";
 import { BaseInputSignal } from "../base/base-input-signal";
+import { IonInputText } from "../mobile/ion-input-text";
 
 @Component({
   selector: "custom-input-text-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, InputTextModule],
+  imports: [BaseInputSignal, ReactiveFormsModule, InputTextModule, IonInputText],
   template: `
-    <base-input-signal
-      [control]="control()"
-      [id]="id()"
-      [label]="label()"
-      [placeholder]="placeholder()"
-      [horizontal]="horizontal()"
-      [readonly]="readonly()"
-      [disabled]="disabled()"
-      [required]="requiredInput()"
-      [noMargin]="noMargin()"
-      [description]="description()"
-      [hidden]="hidden()"
-    >
-      <input
-        [type]="type()"
-        pInputText
-        [id]="id()"
-        [formControl]="control() || internalControl"
+    @if (platform.isMobile()) {
+      <ion-input-text
+        [control]="control()"
+        [label]="label()"
         [placeholder]="placeholder()"
-        [readOnly]="readonly()"
-        [class]="customClass()"
-        [pSize]="size()"
-        [invalid]="isInvalid()"
-        [attr.list]="list()"
-        fluid
+        [horizontal]="horizontal()"
+        [readonly]="readonly()"
+        [required]="requiredInput()"
+        [noMargin]="noMargin()"
+        [description]="description()"
+        [hidden]="hidden()"
+        [type]="type()"
+        [customClass]="customClass()"
+        [size]="size()"
       />
-    </base-input-signal>
+    } @else {
+      <base-input-signal
+        [control]="control()"
+        [id]="id()"
+        [label]="label()"
+        [placeholder]="placeholder()"
+        [horizontal]="horizontal()"
+        [readonly]="readonly()"
+        [disabled]="disabled()"
+        [required]="requiredInput()"
+        [noMargin]="noMargin()"
+        [description]="description()"
+        [hidden]="hidden()"
+      >
+        <input
+          [type]="type()"
+          pInputText
+          [id]="id()"
+          [formControl]="control() || internalControl"
+          [placeholder]="placeholder()"
+          [readOnly]="readonly()"
+          [class]="customClass()"
+          [pSize]="size()"
+          [invalid]="isInvalid()"
+          [attr.list]="list()"
+          fluid
+        />
+      </base-input-signal>
+    }
   `,
   providers: [
     {

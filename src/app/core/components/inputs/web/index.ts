@@ -29,3 +29,5 @@ export { CustomInputTime } from "./custom-input-time-signal";
 export { SubirPdf } from "./custom-input-upload-pdf-signal";
 export { CustomInputUrl } from "./custom-input-url-signal";
 export { CustomSearchInput } from "./custom-search-input-signal";
+export { CustomInputRemoteAutocomplete } from "./custom-input-remote-autocomplete-signal";
+export { CustomInputTransferList } from "./custom-input-transfer-list-signal";

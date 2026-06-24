@@ -1,6 +1,5 @@
 ﻿import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
-import { CardModule } from "primeng/card";
 import {
   IonList,
   IonItemDivider,
@@ -25,7 +24,6 @@ import {
   selector: "app-mobile-buttons",
   imports: [
     CommonModule,
-    CardModule,
     IonList,
     IonItemDivider,
     IonLabel,
@@ -42,9 +40,10 @@ import {
     CustomButtonViewPdf,
   ],
   template: `
-    <p-card header="Ionic Custom Buttons">
-      <div class="flex flex-column gap-4">
-        <ion-list lines="none" class="bg-transparent border-1 surface-border border-round">
+    <div class="mobile-card">
+      <div class="mobile-card-header">Ionic Custom Buttons</div>
+      <div class="mobile-card-body">
+        <ion-list lines="none" class="bg-transparent">
           <ion-item-divider class="bg-transparent"><ion-label class="text-xs text-500 font-bold uppercase">Acciones Principales</ion-label></ion-item-divider>
           <custom-button-add label="Nuevo Registro" />
           <custom-button-edit label="Editar Perfil" />
@@ -64,8 +63,13 @@ import {
           <custom-button-item icon="mdi:star" label="Destacar Elemento" />
         </ion-list>
       </div>
-    </p-card>
+    </div>
   `,
+  styles: [`
+    .mobile-card { background: var(--ds-bg-surface,#fff); border: 1px solid var(--ds-border,#e2e8f0); border-radius: var(--ds-radius-lg,8px); overflow: hidden; }
+    .mobile-card-header { padding: 0.75rem 1rem; background: var(--ds-bg-elevated,#f4f5f8); font-weight: 600; font-size: var(--ds-font-size-body,0.9375rem); color: var(--ds-text-primary); border-bottom: 1px solid var(--ds-border,#e2e8f0); }
+    .mobile-card-body { padding: 1rem; }
+  `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileButtons {}

@@ -14,7 +14,6 @@ import {
   CustomInputCheckSignal,
   CustomInputCurrencySignal,
   CustomInputDateSignal,
-  CustomInputDateTimeNative,
   CustomInputDateTimeSignal,
   CustomInputDecimal,
   CustomInputFile,
@@ -51,7 +50,6 @@ import {
     CustomInputCurrencySignal,
     CustomInputDateSignal,
     CustomInputDateTimeSignal,
-    CustomInputDateTimeNative,
     CustomInputDecimal,
     CustomInputFile,
     CustomInputHour,
@@ -291,10 +289,17 @@ import {
           </div>
           <div class="col-12 lg:col-4">
             <div class="flex flex-column gap-1">
-              <label class="block text-sm font-medium text-color-secondary">PDF masivo</label>
-              <div class="p-3 border-1 border-dashed border-round surface-ground text-center text-xs text-color-secondary">
-                <span class="block font-semibold mb-1">app-custom-input-upload-pdf-signal</span>
-                Componente de diálogo — se abre vía <code>DynamicDialogService</code>, no como input directo.
+              <label class="block text-sm font-medium text-color-secondary"
+                >PDF masivo</label
+              >
+              <div
+                class="p-3 border-1 border-dashed border-round surface-ground text-center text-xs text-color-secondary"
+              >
+                <span class="block font-semibold mb-1"
+                  >app-custom-input-upload-pdf-signal</span
+                >
+                Componente de diálogo — se abre vía
+                <code>DynamicDialogService</code>, no como input directo.
               </div>
             </div>
           </div>

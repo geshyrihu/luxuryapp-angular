@@ -12,13 +12,7 @@
  * @module CatalogComponentUi
  */
 import { CommonModule } from "@angular/common";
-import {
-  Component,
-  computed,
-  inject,
-  signal,
-  ViewEncapsulation,
-} from "@angular/core";
+import { Component, computed, signal, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 
 // --- Custom Components - Core ---
@@ -26,15 +20,10 @@ import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { Loader } from "src/app/core/components/loader/loader";
+import { NotificationItem } from "src/app/core/components/notification-center/notification-center";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
 import { StatusBadge } from "src/app/core/components/status-badge/status-badge";
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
-import { ConfirmDialog } from "src/app/core/components/confirm-dialog/confirm-dialog";
-import { DateRange } from "src/app/core/components/date-range/date-range";
-import { NotificationCenter, NotificationItem } from "src/app/core/components/notification-center/notification-center";
-import { Wizard, WizardStep } from "src/app/core/components/wizard/wizard";
-import { FileUpload } from "src/app/core/components/file-upload/file-upload";
+import { WizardStep } from "src/app/core/components/wizard/wizard";
 
 // --- Enums & Helpers ---
 import { AccordionModule } from "primeng/accordion";
@@ -67,22 +56,6 @@ import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { ToolbarModule } from "primeng/toolbar";
 import { TooltipModule } from "primeng/tooltip";
 
-// --- Ionic Modules (Standalone) ---
-import {
-  IonAlert,
-  IonAvatar,
-  IonBadge,
-  IonChip,
-  IonFab,
-  IonFabButton,
-  IonIcon,
-  IonItem,
-  IonItemDivider,
-  IonLabel,
-  IonList,
-  IonProgressBar,
-  IonSpinner,
-} from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import {
   addOutline,
@@ -107,41 +80,24 @@ import {
 
 // Custom buttons — unified, auto-detect platform (PrimeNG web / Ionic mobile)
 import {
-  CustomBtnActiveDesactive,
-  CustomButtonAdd,
-  CustomButtonConfirm,
   CustomButtonDelete,
-  CustomButtonDownload,
   CustomButtonEdit,
-  CustomButtonItem,
-  CustomButtonSave,
-  CustomButtonSendEmail,
-  CustomButtonTracking,
-  CustomButtonViewPdf,
 } from "src/app/core/components/buttons/web";
 
 // --- Custom Components - Inputs Web ---
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 
 // --- Custom Components - Others ---
 import { ActionIconsGroupComponent } from "src/app/core/components/action-icons-group/action-icons-group.component";
 import { EStatus } from "src/app/core/components/status-badge/status-badge";
 
-// --- Custom Charts ---
-import { CustomBarChart } from "src/app/core/components/charts/custom-bar-chart";
-import { PieChart } from "src/app/core/components/charts/pie-chart";
 import { resolveIconifyIcon } from "src/app/core/utils/prime-icon-resolver";
+import { CatalogCharts } from "./pages/catalog-charts";
+import { CatalogLayouts } from "./pages/catalog-layouts/catalog-layouts";
+import { CatalogMobile } from "./pages/catalog-mobile";
+import { CatalogWeb } from "./pages/catalog-web";
 import { CommonCoreCoverage } from "./shared/common-core-coverage";
-import { MobileCoreCoverage } from "./shared/mobile-core-coverage";
 import { TokensColors } from "./shared/tokens-colors/tokens-colors";
 import { TokensTypography } from "./shared/tokens-typography/tokens-typography";
-import { WebCoreCoverage } from "./shared/web-core-coverage";
-import { CatalogWeb } from "./pages/catalog-web";
-import { CatalogLayouts } from "./pages/catalog-layouts/catalog-layouts";
 
 type TagSeverity =
   | "success"
@@ -235,64 +191,24 @@ interface BloqueVisual {
     ProgressSpinnerModule,
     SkeletonModule,
     ToolbarModule,
-    // Ionic
-    IonAlert,
-    IonIcon,
-    IonItem,
-    IonItemDivider,
-    IonLabel,
-    IonList,
-    IonBadge,
-    IonFab,
-    IonFabButton,
-    IonProgressBar,
-    IonSpinner,
-    IonAvatar,
-    IonChip,
-    // Custom Buttons (unified web+mobile, auto-detect platform)
-    CustomBtnActiveDesactive,
-    CustomButtonAdd,
-    CustomButtonConfirm,
+    // Custom Buttons
     CustomButtonDelete,
-    CustomButtonDownload,
     CustomButtonEdit,
-    CustomButtonItem,
-    CustomButtonSave,
-    CustomButtonSendEmail,
-    CustomButtonTracking,
-    CustomButtonViewPdf,
-    // Custom Inputs Web
-    CustomInputTextSignal,
-    CustomInputNumberSignal,
-    CustomInputSelectSignal,
-    CustomInputDateSignal,
-    CustomInputSwitch,
     // Custom Others
     StatusBadge,
-    EmptyState,
-    ConfirmDialog,
-    DateRange,
-    NotificationCenter,
-    Wizard,
-    FileUpload,
     Loader,
-    DataViewMobile,
     ActionMenu,
     AppIcon,
     PrimeNgCustomCaption,
-    PrimeNgCustomTableFooter,
     ActionIconsGroupComponent,
-    // Charts
-    CustomBarChart,
-    PieChart,
     // Coverage & Tokens
-    WebCoreCoverage,
-    MobileCoreCoverage,
     CommonCoreCoverage,
     TokensColors,
     TokensTypography,
-    CatalogWeb,
+    CatalogCharts,
     CatalogLayouts,
+    CatalogMobile,
+    CatalogWeb,
   ],
   templateUrl: "./catalog-component-ui.html",
   styleUrls: ["./catalog-component-ui.scss"],
@@ -338,9 +254,33 @@ export class CatalogComponentUi {
   confirmVisible = signal(false);
 
   readonly sampleNotifications: NotificationItem[] = [
-    { id: "1", icon: "mdi:file-document", title: "Documento aprobado", description: "El documento PROC-ADMI-012 ha sido aprobado.", time: "Hace 5 min", read: false, severity: "success" },
-    { id: "2", icon: "mdi:alert", title: "Mantenimiento programado", description: "Corte de energía eléctrica el 25/06.", time: "Hace 2 h", read: false, severity: "warn" },
-    { id: "3", icon: "mdi:check-circle", title: "Reporte completado", description: "Reporte mensual de finanzas disponible.", time: "Hace 1 d", read: true, severity: "info" },
+    {
+      id: "1",
+      icon: "mdi:file-document",
+      title: "Documento aprobado",
+      description: "El documento PROC-ADMI-012 ha sido aprobado.",
+      time: "Hace 5 min",
+      read: false,
+      severity: "success",
+    },
+    {
+      id: "2",
+      icon: "mdi:alert",
+      title: "Mantenimiento programado",
+      description: "Corte de energía eléctrica el 25/06.",
+      time: "Hace 2 h",
+      read: false,
+      severity: "warn",
+    },
+    {
+      id: "3",
+      icon: "mdi:check-circle",
+      title: "Reporte completado",
+      description: "Reporte mensual de finanzas disponible.",
+      time: "Hace 1 d",
+      read: true,
+      severity: "info",
+    },
   ];
 
   readonly wizardSteps: WizardStep[] = [
@@ -628,27 +568,6 @@ export class CatalogComponentUi {
     },
   ];
 
-  // --- Datos para Gráficos ---
-  readonly barChartData = {
-    labels: ["Ene", "Feb", "Mar", "Abr", "May"],
-    datasets: [
-      {
-        label: "Consumo Eléctrico",
-        data: [65, 59, 80, 81, 56],
-        backgroundColor: "#0b3164",
-      },
-    ],
-  };
-
-  readonly pieChartData = {
-    labels: ["Completado", "En Proceso", "Pendiente"],
-    datasets: [
-      {
-        data: [300, 50, 100],
-        backgroundColor: ["#065f46", "#c9a84c", "#991b1b"],
-      },
-    ],
-  };
 
   constructor() {
     addIcons({
@@ -837,7 +756,6 @@ export class CatalogComponentUi {
       tone: "success",
     },
   ];
-
 
   readonly identityPillars = [
     {

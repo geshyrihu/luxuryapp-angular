@@ -45,6 +45,18 @@
     <div id="sidebar-menu" class="sidebar-content pt-2">
       @if(!loading()){
 
+      <!-- Design System Reference Menu -->
+      <div class="px-3 mb-2">
+        <span class="text-xs font-bold text-500 uppercase block">Design System</span>
+      </div>
+      <ul class="guide-menu-list mb-2">
+        <ng-container
+          *ngTemplateOutlet="recursiveMenu; context:{ $implicit: dsMenuItems }"
+        ></ng-container>
+      </ul>
+
+      <p-divider></p-divider>
+
       <!-- Main List: STRICT Custom Classes -->
       <ul class="guide-menu-list">
         <ng-container

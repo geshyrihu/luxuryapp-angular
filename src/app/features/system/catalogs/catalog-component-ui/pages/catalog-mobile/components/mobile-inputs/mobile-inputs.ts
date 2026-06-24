@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
-import { CardModule } from "primeng/card";
 import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
 import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
@@ -22,7 +21,6 @@ import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-sea
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CardModule,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     CustomSearchInput,
@@ -39,8 +37,10 @@ import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-sea
     CustomInputCheckSignal,
   ],
   template: `
-    <p-card header="Inputs — auto-detectan plataforma (Ionic en mobile, PrimeNG en web)">
-      <form [formGroup]="mobileForm">
+    <div class="mobile-card">
+      <div class="mobile-card-header">Inputs — auto-detectan plataforma (Ionic en mobile, PrimeNG en web)</div>
+      <div class="mobile-card-body">
+        <form [formGroup]="mobileForm">
         <custom-input-text-signal
           [control]="mobileForm.controls['nombre']"
           label="Nombre"
@@ -103,8 +103,14 @@ import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-sea
           placeholder="Aceptar Terminos"
         />
       </form>
-    </p-card>
+      </div>
+    </div>
   `,
+  styles: [`
+    .mobile-card { background: var(--ds-bg-surface,#fff); border: 1px solid var(--ds-border,#e2e8f0); border-radius: var(--ds-radius-lg,8px); overflow: hidden; }
+    .mobile-card-header { padding: 0.75rem 1rem; background: var(--ds-bg-elevated,#f4f5f8); font-weight: 600; font-size: var(--ds-font-size-body,0.9375rem); color: var(--ds-text-primary); border-bottom: 1px solid var(--ds-border,#e2e8f0); }
+    .mobile-card-body { padding: 1rem; }
+  `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileInputs {

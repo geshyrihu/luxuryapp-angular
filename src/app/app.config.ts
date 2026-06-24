@@ -16,11 +16,13 @@ import {
 import localeEs from "@angular/common/locales/es";
 import {
   ApplicationConfig,
+  ErrorHandler,
   isDevMode,
   LOCALE_ID,
   provideAppInitializer,
   provideZonelessChangeDetection,
 } from "@angular/core";
+import { GlobalErrorHandler } from "src/app/core/services/global-error-handler.service";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import {
   provideRouter,
@@ -128,6 +130,9 @@ export const appConfig: ApplicationConfig = {
     ConfirmationService,
     DatePipe,
     MessagingService,
+
+    // --- Error Handler Global ---
+    { provide: ErrorHandler, useClass: GlobalErrorHandler },
 
     // --- Configuración de Firebase ---
     provideFirebaseApp(() => initializeApp(environment.firebase)),

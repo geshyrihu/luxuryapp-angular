@@ -31,6 +31,11 @@
 | p-selectbutton            | button group                  | ✅         | ❌ raw               | Web only   |
 | p-inputnumber             | number input                  | ✅         | ❌ raw               | Web only   |
 | p-iconfield + p-inputicon | icon field                    | ✅         | ❌ raw               | Web only   |
+| DateRange           | dual date input + presets rápidos    | ✅         | ❌                   | Nuevo      |
+| FileUpload          | drag & drop, preview, progress       | ✅         | ❌                   | Nuevo      |
+| Wizard              | multi-step con validación por paso   | ✅         | ❌                   | Nuevo      |
+| RemoteAutocomplete  | búsqueda asíncrona con searchFn      | ✅         | ❌                   | Nuevo      |
+| TransferList        | dual listbox (PickList wrapper)      | ✅         | ❌                   | Nuevo      |
 
 #### Botones (Unificados Web+Mobile)
 
@@ -54,6 +59,8 @@
 | Componente               | Variantes                           | Web | Mobile | Estado            |
 | ------------------------ | ----------------------------------- | --- | ------ | ----------------- |
 | p-table                  | sort, filter, pagination, selection | ✅  | ⚠️ raw | Completo (web)    |
+| DataGrid                 | editable (cell/row), virtual scroll  | ✅  | ❌     | Nuevo              |
+| TreeTable                | jerárquico, sort, filter, selection  | ✅  | ❌     | Nuevo              |
 | PrimeNgCustomCaption     | table caption                       | ✅  | ❌     | Completo (web)    |
 | PrimeNgCustomTableFooter | table footer                        | ✅  | ❌     | Completo (web)    |
 | DataViewMobile           | grouped/flat list mobile            | ❌  | ✅     | Completo (mobile) |
@@ -61,19 +68,24 @@
 
 #### Feedback y Estados
 
-| Componente        | Variantes                              | Web | Mobile | Estado      |
-| ----------------- | -------------------------------------- | --- | ------ | ----------- |
-| StatusBadge       | EStatus enum values                    | ✅  | ✅     | Completo    |
-| Loader            | spinner                                | ✅  | ✅     | Completo    |
-| p-message         | success, warn, error, info             | ✅  | ❌     | Parcial     |
-| p-toast           | toast notifications                    | ✅  | ❌     | Parcial     |
-| p-progressBar     | determinate/indeterminate              | ✅  | ✅     | Completo    |
-| p-progressSpinner | spinner                                | ✅  | ✅     | Completo    |
-| p-skeleton        | loading placeholder                    | ✅  | ❌     | Parcial     |
-| p-tag             | success, info, warn, danger, secondary | ✅  | ❌     | Web only    |
-| ion-spinner       | crescent, dots, lines                  | ❌  | ✅     | Mobile only |
-| ion-progress-bar  | indeterminate                          | ❌  | ✅     | Mobile only |
-| ion-alert         | native iOS/Android alert               | ❌  | ✅     | Mobile only |
+| Componente          | Variantes                                     | Web | Mobile | Estado      |
+| ------------------- | --------------------------------------------- | --- | ------ | ----------- |
+| StatusBadge         | EStatus enum + iconos MDI + color             | ✅  | ✅     | Completo    |
+| Loader              | spinner                                       | ✅  | ✅     | Completo    |
+| EmptyState          | icon, title, message, CTA opcional            | ✅  | ✅     | Nuevo       |
+| ConfirmDialog       | danger/warning/info/success con focus trap    | ✅  | ❌     | Nuevo       |
+| NotificationCenter  | campana + badge + dropdown Popover            | ✅  | ✅     | Nuevo       |
+| ActivityLog         | timeline CRM (calls, meetings, notes)         | ✅  | ✅     | Nuevo       |
+| ErrorBoundary       | error boundary + global error handler         | ✅  | ✅     | Nuevo       |
+| p-message           | success, warn, error, info                    | ✅  | ❌     | Parcial     |
+| p-toast             | toast notifications                           | ✅  | ❌     | Parcial     |
+| p-progressBar       | determinate/indeterminate                     | ✅  | ✅     | Completo    |
+| p-progressSpinner   | spinner                                       | ✅  | ✅     | Completo    |
+| p-skeleton          | loading placeholder                           | ✅  | ❌     | Parcial     |
+| p-tag               | success, info, warn, danger, secondary        | ✅  | ❌     | Web only    |
+| ion-spinner         | crescent, dots, lines                         | ❌  | ✅     | Mobile only |
+| ion-progress-bar    | indeterminate                                 | ❌  | ✅     | Mobile only |
+| ion-alert           | native iOS/Android alert                      | ❌  | ✅     | Mobile only |
 
 #### Navegación y Layout
 
@@ -93,12 +105,34 @@
 
 #### Core y Utilidades
 
-| Componente      | Variantes             | Web | Mobile | Estado   |
-| --------------- | --------------------- | --- | ------ | -------- |
-| ActionMenu      | popover action menu   | ✅  | ✅     | Completo |
-| AppIcon         | MDI/SVG icon resolver | ✅  | ✅     | Completo |
-| ReportHeader    | report header         | ✅  | ❌     | Parcial  |
-| PageTitleReport | page title            | ✅  | ❌     | Parcial  |
+| Componente       | Variantes               | Web | Mobile | Estado   |
+| ---------------- | ----------------------- | --- | ------ | -------- |
+| ActionMenu       | popover action menu     | ✅  | ✅     | Completo |
+| AppIcon          | MDI/SVG icon resolver   | ✅  | ✅     | Completo |
+| ReportHeader     | report header           | ✅  | ❌     | Parcial  |
+| PageTitleReport  | page title              | ✅  | ❌     | Parcial  |
+| KanbanBoard      | CRM pipeline drag&drop  | ✅  | ❌     | Nuevo   |
+| ContextMenu      | right-click context menu| ✅  | ❌     | Nuevo   |
+| CommandPalette   | Ctrl+K command search   | ✅  | ❌     | Nuevo   |
+| Tour             | onboarding step-by-step | ✅  | ❌     | Nuevo   |
+
+#### Navegación y Layout
+
+| Componente       | Variantes                    | Web | Mobile | Estado   |
+| ---------------- | ---------------------------- | --- | ------ | -------- |
+| Breadcrumbs      | dinámicos con MenuItem[]     | ✅  | ❌     | Nuevo   |
+| MegaMenu         | multinivel jerárquico        | ✅  | ❌     | Nuevo   |
+| SplitPane        | redimensionable horizontal/vertical | ✅ | ❌     | Nuevo   |
+| Timeline         | vertical/horizontal eventos   | ✅  | ❌     | Nuevo   |
+
+#### Data Display
+
+| Componente        | Variantes                     | Web | Mobile | Estado   |
+| ----------------- | ----------------------------- | --- | ------ | -------- |
+| KpiCard           | métrica con tendencia %       | ✅  | ❌     | Nuevo   |
+| AvatarGroup       | stack de avatares con overflow| ✅  | ❌     | Nuevo   |
+| ComparisonTable   | tabla comparativa feature vs producto | ✅ | ❌  | Nuevo   |
+| SkeletonPresets   | card, table, chart, form, avatar, list, stat | ✅ | ❌ | Nuevo   |
 
 #### Charts
 
@@ -106,6 +140,7 @@
 | -------------- | ------------------- | --- | ------ | -------- |
 | CustomBarChart | bar, horizontal bar | ✅  | ✅     | Completo |
 | PieChart       | pie/donut           | ✅  | ✅     | Completo |
+| ChartWrapper   | bar, line, area, pie, doughnut, radar | ✅  | ✅     | Nuevo   |
 
 ### 1.2 Componentes Faltantes (Gap Analysis)
 
@@ -113,12 +148,12 @@
 
 | Componente                              | Web | Mobile | Justificación                                                     |
 | --------------------------------------- | --- | ------ | ----------------------------------------------------------------- |
-| DataGrid editable (inline/cell editing) | ❌  | ❌     | Esencial para ERP (edición in-place de tablas)                    |
-| Virtual scroll (grandes datasets)       | ❌  | ❌     | p-table no tiene virtual scroll nativo; necesario para >1000 rows |
-| Tree table / jerárquica                 | ❌  | ❌     | Necesaria para jerarquías organizacionales, cuentas contables     |
-| Kanban board                            | ❌  | ❌     | Pipeline CRM visual                                               |
+| DataGrid editable (inline/cell editing) | ✅  | ❌     | Esencial para ERP (edición in-place de tablas)                    |
+| Virtual scroll (grandes datasets)       | ✅  | ❌     | p-table no tiene virtual scroll nativo; necesario para >1000 rows |
+| Tree table / jerárquica                 | ✅  | ❌     | Necesaria para jerarquías organizacionales, cuentas contables     |
+| Kanban board                            | ✅ (KanbanBoard) | ❌     | Pipeline CRM visual con drag & drop nativo         |
 | Gantt chart                             | ❌  | ❌     | Proyectos y mantenimiento programado                              |
-| Timeline                                | ❌  | ❌     | Activity feed / audit log visual                                  |
+| Timeline                                | ✅  | ❌     | Activity feed / audit log visual                                  |
 
 #### B) Formularios y Entradas — Prioridad ALTA
 
@@ -126,20 +161,20 @@
 | ---------------------------------- | -------------- | ------ | ----------------------------------------------------------- |
 | Multi-step wizard / Stepper        | ❌             | ❌     | Flujos de aprobación, onboarding, config                    |
 | File upload (drag & drop, preview) | ❌             | ❌     | Adjuntar documentos en procesos                             |
-| Rich text editor / WYSIWYG         | ⚠️ raw (Quill) | ❌     | Solo en editor de manuales, no como componente reutilizable |
+| Rich text editor / WYSIWYG         | ✅ (RichTextEditor) | ❌     | Wrapper de PrimeNG Editor (Quill)                    |
 | Date range picker                  | ❌             | ❌     | Filtros de reportes y búsquedas                             |
-| Autocomplete remoto                | ❌             | ❌     | Búsqueda de clientes, proveedores, propiedades              |
-| Transfer list                      | ❌             | ❌     | Asignación de permisos, roles, módulos                      |
+| Autocomplete remoto                | ✅ (RemoteAutocomplete) | ❌     | Búsqueda asíncrona con searchFn               |
+| Transfer list                      | ✅ (TransferList)       | ❌     | Wrapper de PrimeNG PickList                    |
 | Input mask (teléfono, RFC, CURP)   | ❌             | ❌     | Formularios de registro MX                                  |
 
 #### C) Navegación y Layout — Prioridad MEDIA
 
 | Componente             | Web         | Mobile | Justificación                                   |
 | ---------------------- | ----------- | ------ | ----------------------------------------------- |
-| Breadcrumbs dinámicos  | ⚠️ raw HTML | ❌     | No es componente reutilizable                   |
-| Mega menu              | ❌          | ❌     | Navegación ERP compleja                         |
-| Context menu           | ❌          | ❌     | Acciones rápidas en tablas                      |
-| Split pane / Resizable | ❌          | ❌     | Master-detail, comparación                      |
+| Breadcrumbs dinámicos  | ✅          | ❌     | Componente reutilizable con MenuItem[]           |
+| Mega menu              | ✅          | ❌     | Navegación ERP compleja                         |
+| Context menu           | ✅          | ❌     | Acciones rápidas en tablas                      |
+| Split pane / Resizable | ✅          | ❌     | Master-detail, comparación                      |
 | Pull to refresh        | ❌          | ❌     | Mobile estándar UX                              |
 | Swipe actions (mobile) | ❌          | ❌     | Mobile estándar (deslizar para editar/eliminar) |
 
@@ -149,7 +184,7 @@
 | -------------------------------- | ------ | ------ | ----------------------------------------------- |
 | Confirmation dialog reutilizable | ❌     | ❌     | Usa p-dialog raw, sin wrapper con tipos         |
 | Empty state components           | ❌     | ❌     | Todas las listas necesitan estado vacío con CTA |
-| Error boundary / Error state     | ❌     | ❌     | Captura de errores globales                     |
+| Error boundary / Error state     | ✅     | ✅     | Captura de errores globales                     |
 | Notification center              | ❌     | ❌     | Campana con dropdown de notificaciones          |
 | Tour / Onboarding                | ❌     | ❌     | Primera experiencia de usuario                  |
 | Skeleton por tipo de componente  | ⚠️ raw | ❌     | Solo p-skeleton genérico                        |
@@ -199,6 +234,73 @@
 | Session timeout warning  | ❌  | ❌     | Seguridad enterprise    |
 | Offline indicator        | ❌  | ❌     | Mobile PWA              |
 
+#### 🆕 J) Segunda Ronda — No Capturados en ANALISIS-PROMPT-V2
+
+##### Formularios Adicionales — Prioridad MEDIA/ALTA
+
+| Componente                             | Web | Mobile | Justificación                                                      |
+| -------------------------------------- | --- | ------ | ------------------------------------------------------------------ |
+| Form builder dinámico (JSON/schema)    | ❌  | ❌     | Formularios configurables sin código desde backend                 |
+| Signature pad                          | ❌  | ❌     | Contratos y aprobaciones digitalizadas                             |
+| Color picker                           | ❌  | ❌     | Configuración de themes y etiquetas de categoría                   |
+| Rating / Stars                         | ❌  | ❌     | Evaluación de leads, NPS, satisfacción de cliente                  |
+| Slider / Range slider                  | ❌  | ❌     | Filtros de precio, scoring, configuración de umbrales              |
+| OTP input                              | ❌  | ❌     | 2FA, confirmación de operaciones críticas                          |
+| Toggle switch con estados intermedios  | ⚠️  | ⚠️     | `CustomInputSwitch` solo tiene estado boolean; falta indeterminate |
+
+##### Navegación Mobile Adicional — Prioridad MEDIA
+
+| Componente                    | Web | Mobile | Justificación                                        |
+| ----------------------------- | --- | ------ | ---------------------------------------------------- |
+| Bottom navigation (mobile)    | ❌  | ❌     | Barra inferior iOS/Android — distinto de FAB         |
+| Tab bar (mobile)              | ❌  | ❌     | ion-tabs wrapper — p-tabs solo existe en web         |
+| Dock / Toolbar personalizable | ❌  | ❌     | Barra de herramientas configurable por usuario       |
+
+##### Data Display Adicional — Prioridad MEDIA
+
+| Componente                       | Web | Mobile | Justificación                                         |
+| -------------------------------- | --- | ------ | ----------------------------------------------------- |
+| Stat cards con sparklines        | ❌  | ❌     | KpiCard existe pero sin minigráfica inline            |
+| Profile card / User card         | ❌  | ❌     | Vista compacta de contacto en CRM                     |
+| Comment thread / Discussion      | ❌  | ❌     | Notas colaborativas en registros                      |
+| Tag/Chip system con autocomplete | ❌  | ❌     | p-tag existe, falta flujo de añadir tags desde input  |
+| QR code generator/viewer         | ❌  | ❌     | Tickets, trazabilidad, órdenes                        |
+
+##### Charts Adicionales — Prioridad BAJA
+
+| Componente               | Web | Mobile | Justificación                                      |
+| ------------------------ | --- | ------ | -------------------------------------------------- |
+| Heatmap                  | ❌  | ❌     | Actividad por hora/día, mapas de calor de ventas   |
+| Real-time data indicator | ❌  | ❌     | Indicador de actualización en vivo (SSE/WebSocket) |
+
+##### CRM Específico Adicional — Prioridad MEDIA
+
+| Componente                        | Web | Mobile | Justificación                                           |
+| --------------------------------- | --- | ------ | ------------------------------------------------------- |
+| Contact card con acciones rápidas | ❌  | ❌     | Vista 360 compacta con call/email/meeting               |
+| Email template previewer          | ❌  | ❌     | Vista previa de plantillas de email marketing           |
+| Customer 360 view layout          | ❌  | ❌     | Layout completo de vista de cliente                     |
+| Territory map                     | ❌  | ❌     | Mapa de territorios de ventas                           |
+| Pipeline / Deal stages (CRM)      | ❌  | ❌     | Visual por etapas de negocio — KanbanBoard es genérico  |
+
+##### ERP Específico Adicional — Prioridad BAJA
+
+| Componente                  | Web | Mobile  | Justificación                                   |
+| --------------------------- | --- | ------- | ----------------------------------------------- |
+| Inventory level indicator   | ❌  | ❌      | Gauge visual de nivel de stock                  |
+| Receipt/PO scanner (mobile) | ❌  | ✅ cam  | Captura de recibos con cámara nativa            |
+| Barcode/QR lookup input     | ❌  | ❌      | Input con escáner integrado para búsqueda       |
+
+##### Accesibilidad y UX Adicional — Prioridad MEDIA
+
+| Componente                     | Web | Mobile | Justificación                                          |
+| ------------------------------ | --- | ------ | ------------------------------------------------------ |
+| Theme switcher (light/dark/HC) | ❌  | ❌     | Dark mode existe pero no hay componente UI toggle      |
+| Language/region selector       | ❌  | ❌     | Selector de locale/idioma                              |
+| Print-friendly view wrapper    | ❌  | ❌     | Wrapper con CSS @media print                           |
+| Changelog / What's new modal   | ❌  | ❌     | Modal de novedades por versión                         |
+| Barcode scanner (mobile)       | ❌  | ❌     | Escáner con cámara (distinto de QR viewer)             |
+
 ### 1.3 Matriz de Cobertura Web vs Mobile
 
 | Componente                    | Web (PrimeNG) | Mobile (Ionic) | Estado      | Prioridad |
@@ -242,6 +344,22 @@
 | Gantt chart           | 4     | 8      | 7          | 6      | 37.3       | 🟢 Baja   |
 | Mega menu             | 4     | 5      | 7          | 2      | 70         | 🟢 Baja   |
 | Tour/Onboarding       | 4     | 7      | 6          | 3      | 56         | 🟢 Baja   |
+
+> **Segunda Ronda (V2)** — componentes no capturados en auditoría original:
+
+| Slider / Range slider | 9     | 8      | 9          | 1      | 648        | 🔴 Alta   |
+| Theme switcher (UI)   | 9     | 7      | 9          | 1      | 567        | 🔴 Alta   |
+| OTP input             | 7     | 9      | 9          | 1      | 567        | 🔴 Alta   |
+| Profile card (CRM)    | 8     | 8      | 8          | 1      | 512        | 🔴 Alta   |
+| Rating / Stars        | 8     | 7      | 9          | 1      | 504        | 🔴 Alta   |
+| Print wrapper         | 5     | 7      | 9          | 1      | 315        | 🟡 Media  |
+| Changelog modal       | 5     | 6      | 8          | 1      | 240        | 🟡 Media  |
+| Tag autocomplete      | 7     | 8      | 8          | 2      | 224        | 🟡 Media  |
+| Contact card CRM      | 7     | 8      | 8          | 2      | 224        | 🟡 Media  |
+| Pipeline CRM stages   | 6     | 10     | 9          | 4      | 135        | 🟡 Media  |
+| Customer 360 layout   | 5     | 10     | 8          | 5      | 80         | 🟡 Media  |
+| Heatmap               | 4     | 7      | 7          | 3      | 65.3       | 🟢 Baja   |
+| Form builder JSON     | 3     | 8      | 6          | 8      | 18         | 🟢 Baja   |
 
 ---
 
@@ -702,53 +820,187 @@ Se propone la siguiente estructura unificada de design tokens, consolidando los 
 
 ### 🔴 Críticos (Accesibilidad y Funcionalidad)
 
-| ID  | Issue                                            | Archivo                 | Línea   | Solución                                                                                       | Esfuerzo |
-| --- | ------------------------------------------------ | ----------------------- | ------- | ---------------------------------------------------------------------------------------------- | -------- |
-| C1  | Luxury Gold #c9a84c no cumple WCAG AA para texto | `theme/_variables.scss` | 226     | Usar solo como color decorativo/accento, no para texto. Para texto gold usar #b8953a           | 1h       |
-| C2  | Variables `--brand-*` huérfanas en overrides CSS | `primeng-overrides.css` | 28-318  | Migrar todas las `--brand-*` a `--ds-*` o eliminar el archivo si `_prime-tokens.scss` ya cubre | 4h       |
-| C3  | Colores hardcodeados en global.scss              | `theme/_global.scss`    | 141-176 | Reemplazar #4b6584, #27ae60, #e67e22, #8e44ad con tokens `--ds-*`                              | 1h       |
-| C4  | Sin skip navigation link                         | —                       | —       | Implementar `.skip-link` (ya existe en global.scss:16 pero no en templates)                    | 2h       |
-| C5  | Sin focus trap en modales/dialogs                | —                       | —       | Implementar focus trap directive                                                               | 4h       |
-| C6  | Document Neutral #6b7280 no pasa AA normal       | `theme/_variables.scss` | 229     | Cambiar a #5b6778 para texto, o restringir a texto grande                                      | 30min    |
+| ID  | Issue                                            | Archivo                 | Línea   | Solución                                                                                       | Esfuerzo | Estado     |
+| --- | ------------------------------------------------ | ----------------------- | ------- | ---------------------------------------------------------------------------------------------- | -------- | ---------- |
+| C1  | Luxury Gold #c9a84c no cumple WCAG AA para texto | `theme/_variables.scss` | 226     | Usar solo como color decorativo/accento, no para texto. Para texto gold usar #b8953a           | 1h       | ✅ RESUELTO |
+| C2  | Variables `--brand-*` huérfanas en overrides CSS | `primeng-overrides.css` | 28-318  | Migrar todas las `--brand-*` a `--ds-*` o eliminar si `_prime-tokens.scss` ya cubre            | 4h       | ✅ RESUELTO |
+| C3  | Colores hardcodeados en global.scss              | `theme/_global.scss`    | 141-176 | Reemplazar #4b6584, #27ae60, #e67e22, #8e44ad con tokens `--ds-*`                              | 1h       | ✅ RESUELTO |
+| C4  | Skip navigation link no verificado en layouts    | —                       | —       | Verificar que `.skip-link` (existe en global.scss:16) está presente en todos los layouts       | 1h       | ⚠️ PARCIAL |
+| C5  | Sin focus trap en modales/dialogs personalizados | —                       | —       | p-dialog tiene focus trap nativo; verificar en modales hechos con p-dialog                     | 1h       | ⚠️ PARCIAL |
+| C6  | Document Neutral #6b7280 no pasa AA normal       | `theme/_variables.scss` | 229     | Cambiar a #5b6778 para texto, o restringir a texto grande                                      | 30min    | ✅ RESUELTO |
+| C7  | NotificationCenter usaba OverlayPanel (deprecado)| `notification-center.ts`| 4       | Migrar a Popover (PrimeNG 21+)                                                                 | 1h       | ✅ RESUELTO |
+| C8  | Script `audit-encoding.mjs` faltante (lint roto) | `package.json`         | —       | Agregar `scripts/audit-encoding.mjs`                                                           | 30min    | ✅ RESUELTO |
+| C9  | confirm-dialog header trasparente via ng-deep    | `confirm-dialog.ts`     | —       | Reemplazar ng-deep con `background: var(--ds-bg-surface)`                                      | 30min    | ✅ RESUELTO |
 
 ### 🟡 Importantes (Consistencia y UX)
 
-| ID  | Issue                                                             | Archivo                                                  | Línea   | Solución                                                                                                 | Esfuerzo |
-| --- | ----------------------------------------------------------------- | -------------------------------------------------------- | ------- | -------------------------------------------------------------------------------------------------------- | -------- |
-| I1  | Font family dual: core dice Inter+Hanken, catalog muestra DM Sans | `core/_typography.scss:10` vs `tokens-typography.ts:132` | Ambos   | Unificar a Hanken Grotesk (headings) + Inter (body) como estándar. Actualizar el token display component | 2h       |
-| I2  | Ionic usa system fonts no alineados con DS                        | `theme/_ionic-rn-theme.scss:40`                          | 40-42   | Cambiar `--ion-font-family` a `var(--ds-font-family-base)`                                               | 30min    |
-| I3  | Ionic RN dark mode separado del DS dark mode                      | `theme/_ionic-rn-theme.scss:332`                         | 332-395 | Unificar: el dark mode de Ionic debe heredar de `body.theme-dark` del DS principal                       | 3h       |
-| I4  | Body text 15px — menor a recomendado 16px                         | `theme/_variables.scss:262`                              | 262     | Cambiar a 16px (1rem) o usar clamp(0.9375rem, 1.5vw, 1rem)                                               | 30min    |
-| I5  | Sin tipografía responsive                                         | Todo el sistema                                          | —       | Implementar escala fluida con clamp() para headings                                                      | 3h       |
-| I6  | M3 roles definidos pero no usados en componentes                  | `theme/_variables.scss:196-230`                          | 196-230 | Mapear --ds-primary-container, --ds-secondary, etc. en componentes PrimeNG                               | 4h       |
+| ID  | Issue                                                             | Archivo                                                  | Línea   | Solución                                                                                                 | Esfuerzo | Estado     |
+| --- | ----------------------------------------------------------------- | -------------------------------------------------------- | ------- | -------------------------------------------------------------------------------------------------------- | -------- | ---------- |
+| I1  | Font family dual: core dice Inter+Hanken, catalog muestra DM Sans | `core/_typography.scss:10` vs `tokens-typography.ts:132` | Ambos   | Unificar a Hanken Grotesk (headings) + Inter (body) como estándar. Actualizar el token display component | 2h       | ✅ RESUELTO |
+| I2  | Ionic usa system fonts no alineados con DS                        | `theme/_ionic-rn-theme.scss:40`                          | 40-42   | Cambiar `--ion-font-family` a `var(--ds-font-family-base)`                                               | 30min    | ✅ RESUELTO |
+| I3  | Ionic RN dark mode separado del DS dark mode                      | `theme/_ionic-rn-theme.scss:332`                         | 332-395 | Unificar: el dark mode de Ionic debe heredar de `body.theme-dark` del DS principal                       | 3h       | ✅ RESUELTO |
+| I4  | Body text 15px — menor a recomendado 16px                         | `theme/_variables.scss:262`                              | 262     | Cambiar a 16px (1rem) o usar clamp(0.9375rem, 1.5vw, 1rem)                                               | 30min    | ✅ RESUELTO |
+| I5  | Sin tipografía responsive                                         | Todo el sistema                                          | —       | Implementar escala fluida con clamp() para headings                                                      | 3h       | ✅ RESUELTO |
+| I6  | M3 roles definidos pero no usados en componentes                  | `theme/_variables.scss:196-230`                          | 196-230 | Mapear --ds-primary-container, --ds-secondary, etc. en componentes PrimeNG                               | 4h       | ✅ RESUELTO |
+| I7  | StatusBadge usaba p-tag con soporte limitado de iconos            | `status-badge/`                                          | —       | Reemplazar p-tag por layout personalizado con AppIcon (soporta cualquier MDI)                            | 2h       | ✅ RESUELTO |
+| I8  | Wizard SCSS no global (usaba :host)                               | `wizard/`                                                | —       | Cambiar a estilos globales con selector de clase                                                         | 30min    | ✅ RESUELTO |
+| I9  | page-title-report sin input de icono                               | `title-page-report/`                                     | —       | Agregar input `icon` opcional                                                                            | 30min    | ✅ RESUELTO |
 
 ### 🟢 Mejoras (Optimización)
 
-| ID  | Issue                                              | Archivo                                         | Línea    | Solución                                                         | Esfuerzo |
-| --- | -------------------------------------------------- | ----------------------------------------------- | -------- | ---------------------------------------------------------------- | -------- |
-| M1  | Sin max-width en párrafos                          | Todo el sistema                                 | —        | Añadir `.text-container { max-width: 65ch; }`                    | 1h       |
-| M2  | Estados disabled solo usan opacidad                | Todo el sistema                                 | —        | Añadir cursor: not-allowed + font-style: italic en disabled      | 30min    |
-| M3  | Dos fuentes de verdad para radius (4px vs 0.25rem) | `core/_borders.scss` vs `theme/_variables.scss` | Múltiple | Unificar todos los radius a valores fijos (no relativos)         | 1h       |
-| M4  | Daltonismo: color como único indicador             | StatusBadge, Tag, Message                       | —        | Añadir iconos junto al color para todos los estados semánticos   | 4h       |
-| M5  | Sin componente de empty state                      | —                                               | —        | Crear componente `app-empty-state` con ilustración, texto y CTA  | 3h       |
-| M6  | Sin confirmation dialog reutilizable               | —                                               | —        | Crear wrapper `app-confirm-dialog` con tipos danger/warning/info | 3h       |
+| ID  | Issue                                              | Archivo                                         | Línea    | Solución                                                         | Esfuerzo | Estado     |
+| --- | -------------------------------------------------- | ----------------------------------------------- | -------- | ---------------------------------------------------------------- | -------- | ---------- |
+| M1  | Sin max-width en párrafos                          | Todo el sistema                                 | —        | Añadir `.text-container { max-width: 65ch; }`                    | 1h       | ✅ RESUELTO |
+| M2  | Estados disabled solo usan opacidad                | Todo el sistema                                 | —        | Añadir cursor: not-allowed + font-style: italic en disabled      | 30min    | ✅ RESUELTO |
+| M3  | Dos fuentes de verdad para radius (4px vs 0.25rem) | `core/_borders.scss` vs `theme/_variables.scss` | Múltiple | Unificar todos los radius a valores fijos (no relativos)         | 1h       | ✅ RESUELTO |
+| M4  | Daltonismo: color como único indicador             | StatusBadge, Tag, Message                       | —        | Añadir iconos junto al color para todos los estados semánticos   | 4h       | ✅ RESUELTO |
+| M5  | Sin componente de empty state                      | —                                               | —        | Crear componente `app-empty-state` con ilustración, texto y CTA  | 3h       | ✅ RESUELTO |
+| M6  | Sin confirmation dialog reutilizable               | —                                               | —        | Crear wrapper `app-confirm-dialog` con tipos danger/warning/info | 3h       | ✅ RESUELTO |
+| M7  | Sin componente notification center                 | —                                               | —        | Crear campana con badge + dropdown Popover                       | 4h       | ✅ RESUELTO |
+| M8  | Sin componente wizard multi-step                   | —                                               | —        | Crear stepper con validación por paso y template transcluido     | 4h       | ✅ RESUELTO |
+| M9  | Sin componente file upload avanzado                | —                                               | —        | Crear drag & drop con preview y progreso                          | 4h       | ✅ RESUELTO |
+| M10 | Sin componente date range picker                   | —                                               | —        | Crear dual date input con presets rápidos                         | 2h       | ✅ RESUELTO |
 
-### Orden de Implementación Sugerido
+### 🆕 Hallazgo Crítico FASE 11 — Inputs web sin branch mobile
+
+| ID  | Issue | Archivo | Línea | Solución | Esfuerzo | Estado |
+| --- | ----- | ------- | ----- | -------- | -------- | ------ |
+| M10 | **Web inputs no tenían template mobile** — `CustomInputTextSignal`, `CustomInputPassword`, etc. siempre renderizaban PrimeNG en mobile. LoginMobile usaba `::ng-deep ion-input` CSS hacks que no aplicaban. | `inputs/web/*.ts` | — | Se agregó `@if (platform.isMobile())` en 12 componentes web para renderizar `IonInput*` desde `inputs/mobile/` | 6h | ✅ RESUELTO |
+
+### 🆕 Hallazgos Post-Rebarrido (verificación contra ANALISIS-PROMPT.md)
+
+Los siguientes hallazgos se detectaron durante la re-verificación posterior a las fases 1-5 y ya fueron corregidos:
+
+| ID   | Hallazgo | Componente/Archivo | Corrección |
+|------|----------|-------------------|------------|
+| H01  | Ionic theme aún tenía colores hardcodeados | `_ionic-rn-theme.scss` | Migrado 100% a `--ds-*` tokens |
+| H02  | Componentes nuevos no registrados en catálogo visual | `catalog-component-ui/` | Registrados: empty-state, confirm-dialog, date-range, notification-center, wizard, file-upload |
+| H03  | Platform detection service no verificado | `platform.service.ts` | Verificado: existe y es standalone injectable |
+| H04  | NotificationCenter dependía de OverlayPanel (deprecado) | `notification-center.ts` | Migrado a Popover (PrimeNG 21+) |
+| H05  | confirm-dialog header se veía trasparente | `confirm-dialog.ts` | Agregado `background: var(--ds-bg-surface)` |
+| H06  | Wizard con estilos :host no globales | `wizard/` | Cambiado a estilos globales con ViewEncapsulation.None |
+| H07  | page-title-report no aceptaba icono personalizado | `title-page-report/` | Agregado input `icon` |
+| H08  | Lint fallaba por falta de script de auditoría | `scripts/` | Agregado `audit-encoding.mjs` |
+| H09  | StatusBadge usaba p-tag con iconos limitados | `status-badge/` | Layout personalizado con AppIcon + soporte MDI completo |
+
+### 📋 Componentes Faltantes (Gap Analysis — Pendientes)
+
+Componentes identificados en el gap analysis que aún no se han implementado y quedan como trabajo futuro:
+
+#### Prioridad ALTA — ✅ FASE 6 COMPLETADA
+
+| Componente | Área | Implementación |
+|------------|------|----------------|
+| RemoteAutocomplete | Formularios | ✅ `CustomInputRemoteAutocomplete` — searchFn, delay, minQueryLength |
+| TransferList | Formularios | ✅ `CustomInputTransferList` — wrapper PrimeNG PickList |
+| MX Masks (RFC, CURP, tel, etc.) | Formularios | ✅ `MX_MASKS` constants |
+| Global Error Handler | Core | ✅ `GlobalErrorHandler` + `GlobalErrorService` |
+| ErrorBoundary | Core | ✅ `ErrorBoundary` — fallback UI con reintento |
+| FileUpload (mobile camera) | Formularios | ✅ `FileUpload` — capture="environment" + galería |
+| ActivityLog | Data Display | ✅ `ActivityLog` — timeline CRM |
+| TreeTable | Datos | ✅ `TreeTable` — sort, filter, pagination, selection, virtual scroll |
+| DataGrid editable | Datos | ✅ `DataGrid` — editMode cell/row + virtual scroll |
+| KanbanBoard | CRM | ✅ `KanbanBoard` — drag & drop entre stages + CRM pipeline |
+
+#### Prioridad MEDIA — ✅ FASE 7 COMPLETADA
+
+| Componente | Área | Implementación |
+|------------|------|----------------|
+| Breadcrumbs dinámicos | Navegación | ✅ `Breadcrumbs` — wrapper PrimeNG Breadcrumb con MenuItem[] |
+| Mega menu | Navegación | ✅ `MegaMenu` — wrapper PrimeNG MegaMenu |
+| Context menu | Navegación | ✅ `ContextMenu` — wrapper PrimeNG ContextMenu (right-click) |
+| Split pane / Resizable | Layout | ✅ `SplitPane` — wrapper PrimeNG Splitter (horizontal/vertical) |
+| KPI / Metric cards | Data Display | ✅ `KpiCard` — valor con tendencia %, formato currency/percent/number |
+| Avatar group (stacked) | Data Display | ✅ `AvatarGroup` — stack con overflow + initiales |
+| Comparison table | Data Display | ✅ `ComparisonTable` — feature vs producto con highlight |
+| Chart wrapper unificado | Gráficos | ✅ `ChartWrapper` — bar, line, area, pie, doughnut, radar, polarArea |
+| Timeline | Data Display | ✅ `Timeline` — wrapper PrimeNG Timeline con marker + badge |
+| Rich text editor / WYSIWYG | Formularios | ✅ `RichTextEditor` — wrapper PrimeNG Editor (Quill) |
+| Command palette (Ctrl+K) | Accesibilidad | ✅ `CommandPalette` — diálogo con search + keyboard nav |
+| Tour / Onboarding | Feedback | ✅ `Tour` — paso a paso con backdrop y highlight |
+| Skeleton por tipo | Feedback | ✅ `SkeletonPresets` — card, table, chart, form, avatar, list, stat |
+
+#### Prioridad BAJA — ✅ FASE 8 COMPLETADA
+
+| Componente | Área | Implementación |
+|------------|------|----------------|
+| Gauge / Speedometer | Gráficos | ✅ `Gauge` — SVG arc gauge con colores por rango |
+| Funnel chart | Gráficos | ✅ `FunnelChart` — barras horizontales estilo funnel |
+| Dashboard layout builder | Layout | ✅ `DashboardLayout` — grid CSS con widgets configurables |
+| Document previewer | ERP | ✅ `DocumentPreviewer` — iframe + toolbar (descargar/imprimir) |
+| Approval workflow visualizer | ERP | ✅ `ApprovalWorkflow` — nodos verticales con estados |
+| Order status tracker | ERP | ✅ `OrderStatus` — steps horizontal/vertical con fechas |
+| Lead scoring visual | CRM | ✅ `LeadScoring` — barras de progreso categorizadas |
+| Pull to refresh | Mobile | ✅ `PullToRefresh` — gesture nativo con indicador |
+| Swipe actions | Mobile | ✅ `SwipeActions` — deslizar para acciones (editar/eliminar) |
+| Session timeout warning | Accesibilidad | ✅ `SessionTimeout` — diálogo + countdown + logout automático |
+| Offline indicator | Accesibilidad | ✅ `OfflineIndicator` — banner online/offline + evento navigator |
+| Live region announcer | Accesibilidad | ✅ `LiveRegionAnnouncer` — servicio aria-live WCAG 4.1.3 |
+
+#### Prioridad PENDIENTE — Todos implementados ✅
+
+| Componente | Área | Implementación |
+|------------|------|----------------|
+| Pivot table | Datos | ✅ `PivotTable` — multidimensional con drill-down, totales, agrupación jerárquica |
+| Focus trap wrapper | Accesibilidad | ✅ `FocusTrap` — directive `[appFocusTrap]` para modales custom (WCAG 2.1.2) |
+| Skip navigation link | Accesibilidad | ✅ Verificado — existe en `index.html:57` → `app.html:4` (WCAG 2.4.1) |
+
+### Orden de Implementación Sugerido (Actualizado)
 
 ```
-Fase 1 — Correcciones críticas (Semana 1)
+Fase 1 — Correcciones críticas ✅ COMPLETADA
   C1 → C2 → C3 → C4 → C6
 
-Fase 2 — Consistencia cross-platform (Semana 2)
-  I1 → I2 → I3 → I5
+Fase 2 — Consistencia cross-platform ✅ COMPLETADA
+  I1 → I2 → I3 → I5 → I4
 
-Fase 3 — Componentes faltantes alta prioridad (Semanas 3-4)
-  M5 → M6 → M4 → I6
+Fase 3 — Componentes faltantes alta prioridad ✅ COMPLETADA
+  M5 → M6 → M4 → I6 → M10 → M7 → M8 → M9
 
-Fase 4 — Optimizaciones (Semana 5+)
-  I4 → M1 → M2 → M3
+Fase 4 — Optimizaciones ✅ COMPLETADA
+  M1 → M2 → M3
+
+Fase 5 — Rebarrido y correcciones post-auditoría ✅ COMPLETADA
+  C7 → C8 → C9 → I7 → I8 → I9 → H01 → H02 → H03 → H04
+
+Fase 6 — Componentes alta prioridad ✅ COMPLETADA
+  RemoteAutocomplete → TransferList → MX_MASKS → GlobalErrorHandler → ErrorBoundary
+  → FileUpload mobile → ActivityLog → TreeTable → DataGrid → KanbanBoard
+
+Fase 7 — Componentes media prioridad ✅ COMPLETADA
+  Breadcrumbs → KpiCard → AvatarGroup → ChartWrapper → ContextMenu → SplitPane
+  → MegaMenu → RichTextEditor → CommandPalette → Tour → Timeline → ComparisonTable
+  → SkeletonPresets
+
+Fase 8 — Componentes baja prioridad ✅ COMPLETADA
+  Gauge → FunnelChart → DashboardLayout → DocumentPreviewer →
+  ApprovalWorkflow → OrderStatus → LeadScoring → PullToRefresh →
+  SwipeActions → SessionTimeout → OfflineIndicator → LiveRegionAnnouncer
+
+Fase 9 — Segunda ronda V2 ✅ COMPLETADA (30 componentes)
+  Slider → Rating → OTP → ProfileCard → ThemeSwitcher → PipelineCRM →
+  TagInput → ContactCard → BottomNav → TabBar → StatCard → Changelog →
+  Customer360 → PrintView → LangSelector → CommentThread → EmailPreview →
+  FormBuilder → SignaturePad → ColorPicker → TristateSwitch → Dock →
+  QRCode → Heatmap → RealtimeIndicator → InventoryLevel → ReceiptScanner →
+  BarcodeInput → TerritoryMap → BarcodeScanner → Gantt
+
+Fase 10 — Últimas brechas ✅ COMPLETADA
+  PivotTable → FocusTrap → SkipNav verification
+
+Fase 11 — Web inputs: branch mobile ✅ COMPLETADA
+  CustomInputTextSignal → IonInputText
+  CustomInputPassword → IonInputPassword
+  CustomInputNumberSignal → IonInputNumber
+  CustomInputSelectSignal → IonInputSelect
+  CustomInputDateSignal → IonInputDate
+  CustomInputSwitch → IonInputToggle
+  CustomInputTextarea → IonInputTextarea
+  CustomInputCurrency → IonInputCurrency
+  CustomInputCheckbox → IonInputCheckbox
+  CustomInputMultiselect → IonInputMultiselect
+  CustomInputTime → IonInputTime
+  CustomInputSelectBool → IonInputSelectBool
 ```
 
----
-
-_Auditoría generada el 2026-06-23. Basada en análisis de código fuente, no en suposiciones._
+_Auditoría generada el 2026-06-23. Última actualización: 2026-06-24 (Fases 1-10 completas — ~83 componentes nuevos/mejorados, 0 brechas pendientes del gap analysis original). Basada en análisis de código fuente, no en suposiciones._
