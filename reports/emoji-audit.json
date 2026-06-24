@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-06-24T17:28:29.654Z",
-  "totalMatches": 1571,
+  "generatedAt": "2026-06-24T17:48:31.258Z",
+  "totalMatches": 1562,
   "userFacingMatches": 419,
   "buttonEmojiInputs": 0,
   "byModule": [
     {
       "key": "features/system",
-      "count": 707
+      "count": 698
     },
     {
       "key": "app/core",
@@ -125,12 +125,12 @@
       "count": 670
     },
     {
-      "key": "template_comment",
-      "count": 217
-    },
-    {
       "key": "template_text",
       "count": 209
+    },
+    {
+      "key": "template_comment",
+      "count": 208
     },
     {
       "key": "code_string",
@@ -12486,105 +12486,6 @@
         "→"
       ],
       "preview": "CustomInputSelectBool → IonInputSelectBool"
-    },
-    {
-      "file": "src/app/features/system/catalogs/catalog-component-ui/catalog-component-ui.html",
-      "line": 98,
-      "category": "template_comment",
-      "module": "features/system",
-      "severity": "low",
-      "symbols": [
-        "🎨"
-      ],
-      "preview": "<!-- 🎨 SECCIÓN: TOKENS e IDENTIDAD -->"
-    },
-    {
-      "file": "src/app/features/system/catalogs/catalog-component-ui/catalog-component-ui.html",
-      "line": 118,
-      "category": "template_comment",
-      "module": "features/system",
-      "severity": "low",
-      "symbols": [
-        "🖥"
-      ],
-      "preview": "<!-- 🖥️ SECCIÓN: WEB COMPONENTS -->"
-    },
-    {
-      "file": "src/app/features/system/catalogs/catalog-component-ui/catalog-component-ui.html",
-      "line": 131,
-      "category": "template_comment",
-      "module": "features/system",
-      "severity": "low",
-      "symbols": [
-        "📱"
-      ],
-      "preview": "<!-- 📱 SECCIÓN: MOBILE COMPONENTS -->"
-    },
-    {
-      "file": "src/app/features/system/catalogs/catalog-component-ui/catalog-component-ui.html",
-      "line": 144,
-      "category": "template_comment",
-      "module": "features/system",
-      "severity": "low",
-      "symbols": [
-        "📊"
-      ],
-      "preview": "<!-- 📊 SECCIÓN: GRÁFICOS -->"
-    },
-    {
-      "file": "src/app/features/system/catalogs/catalog-component-ui/catalog-component-ui.html",
-      "line": 343,
-      "category": "template_comment",
-      "module": "features/system",
-      "severity": "low",
-      "symbols": [
-        "🧩"
-      ],
-      "preview": "<!-- 🧩 SECCIÓN: PATRONES UX -->"
-    },
-    {
-      "file": "src/app/features/system/catalogs/catalog-component-ui/catalog-component-ui.html",
-      "line": 561,
-      "category": "template_comment",
-      "module": "features/system",
-      "severity": "low",
-      "symbols": [
-        "📐"
-      ],
-      "preview": "<!-- 📐 SECCIÓN: LAYOUTS -->"
-    },
-    {
-      "file": "src/app/features/system/catalogs/catalog-component-ui/catalog-component-ui.html",
-      "line": 574,
-      "category": "template_comment",
-      "module": "features/system",
-      "severity": "low",
-      "symbols": [
-        "📄"
-      ],
-      "preview": "<!-- 📄 SECCIÓN: ESTÁNDAR DOCUMENTAL -->"
-    },
-    {
-      "file": "src/app/features/system/catalogs/catalog-component-ui/catalog-component-ui.html",
-      "line": 713,
-      "category": "template_comment",
-      "module": "features/system",
-      "severity": "low",
-      "symbols": [
-        "✅"
-      ],
-      "preview": "<!-- ✅ SECCIÓN: AUDITORÍA y COMPONENTES DOC -->"
-    },
-    {
-      "file": "src/app/features/system/catalogs/catalog-component-ui/catalog-component-ui.html",
-      "line": 814,
-      "category": "template_comment",
-      "module": "features/system",
-      "severity": "low",
-      "symbols": [
-        "📖"
-      ],
-      "preview": "<!-- 📖 SECCIÓN: GUÍA ERP (migrada desde demo-app) -->"
     },
     {
       "file": "src/app/features/system/catalogs/catalog-component-ui/pages/catalog-layouts/catalog-layouts.ts",

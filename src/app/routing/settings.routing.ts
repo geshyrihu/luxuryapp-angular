@@ -373,14 +373,87 @@ export const settingsRoutes: Routes = [
   {
     path: "ui-catalog",
     loadComponent: () =>
-      import("src/app/features/system/catalogs/catalog-component-ui/catalog-component-ui").then(
-        (m) => m.CatalogComponentUi,
+      import("src/app/features/system/catalogs/catalog-component-ui/catalog-layout/catalog-layout").then(
+        (m) => m.CatalogLayout,
       ),
     canActivate: [authGuard],
     data: {
       title: "Design System & Guía Documental",
       breadcrumb: "Guía de Estilos",
     },
+    children: [
+      { path: "", redirectTo: "tokens", pathMatch: "full" },
+      {
+        path: "tokens",
+        loadComponent: () =>
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-tokens/catalog-tokens").then(
+            (m) => m.CatalogTokens,
+          ),
+      },
+      {
+        path: "web",
+        loadComponent: () =>
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-web/catalog-web").then(
+            (m) => m.CatalogWeb,
+          ),
+      },
+      {
+        path: "mobile",
+        loadComponent: () =>
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-mobile/catalog-mobile").then(
+            (m) => m.CatalogMobile,
+          ),
+      },
+      {
+        path: "core",
+        loadComponent: () =>
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-core/catalog-core").then(
+            (m) => m.CatalogCore,
+          ),
+      },
+      {
+        path: "charts",
+        loadComponent: () =>
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-charts/catalog-charts").then(
+            (m) => m.CatalogCharts,
+          ),
+      },
+      {
+        path: "patterns",
+        loadComponent: () =>
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-patterns/catalog-patterns").then(
+            (m) => m.CatalogPatterns,
+          ),
+      },
+      {
+        path: "layouts",
+        loadComponent: () =>
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-layouts/catalog-layouts").then(
+            (m) => m.CatalogLayouts,
+          ),
+      },
+      {
+        path: "docs",
+        loadComponent: () =>
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-docs/catalog-docs").then(
+            (m) => m.CatalogDocs,
+          ),
+      },
+      {
+        path: "audit",
+        loadComponent: () =>
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-audit/catalog-audit").then(
+            (m) => m.CatalogAudit,
+          ),
+      },
+      {
+        path: "guia",
+        loadComponent: () =>
+          import("src/app/features/system/catalogs/catalog-component-ui/pages/catalog-guia/catalog-guia").then(
+            (m) => m.CatalogGuia,
+          ),
+      },
+    ],
   },
   {
     path: "ai-knowledge-base",

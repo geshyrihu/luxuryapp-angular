@@ -1,0 +1,259 @@
+<section class="fadein">
+  <div class="section-header mb-4">
+    <h2 class="text-3xl font-bold m-0">Guía ERP — Referencia Institucional</h2>
+    <p class="text-secondary">Fundamentos, identidad, reglas y catálogo de componentes del Design System LuxuryApp.</p>
+  </div>
+
+  <div class="grid mb-5">
+    @for (m of metrics; track m.label) {
+    <div class="col-12 md:col-4">
+      <p-card styleClass="h-full">
+        <div class="flex align-items-center gap-3">
+          <app-icon [icon]="m.icon" class="text-primary text-3xl" />
+          <div>
+            <div class="text-2xl font-bold">{{ m.value }}</div>
+            <div class="font-semibold">{{ m.label }}</div>
+            <small class="text-color-secondary">{{ m.detail }}</small>
+          </div>
+        </div>
+      </p-card>
+    </div>
+    }
+  </div>
+
+  <h3 class="text-xl font-bold mb-3">Casos de Uso de Negocio</h3>
+  <div class="grid mb-5">
+    @for (s of businessScenarios; track s.title) {
+    <div class="col-12 lg:col-4">
+      <p-card styleClass="h-full border-top-3 border-primary surface-card">
+        <div class="flex align-items-center gap-3 mb-3">
+          <app-icon [icon]="s.icon" class="text-primary text-2xl" />
+          <strong class="text-xl">{{ s.title }}</strong>
+        </div>
+        <p class="text-color-secondary line-height-3 mb-3">{{ s.description }}</p>
+        <div class="p-3 border-round bg-primary-50 text-primary-900 text-sm">
+          <strong>Regla:</strong> {{ s.rule }}
+        </div>
+      </p-card>
+    </div>
+    }
+  </div>
+
+  <h3 class="text-xl font-bold mb-3">Identidad LuxuryApp ERP</h3>
+  <p-message severity="success" text="Diagnostico: la paleta actual es consistente para ERP corporativo. El azul #0b3164 es la firma principal y el gold #c9a84c es el acento premium documental." class="mb-4 block" />
+  <div class="grid mb-4">
+    @for (p of identityPillars; track p.title) {
+    <div class="col-12 lg:col-4">
+      <p-card styleClass="h-full border-left-3 border-primary surface-card shadow-1">
+        <div class="flex align-items-start gap-3">
+          <app-icon [icon]="p.icon" class="text-primary text-2xl" />
+          <div>
+            <div class="flex align-items-center gap-2 mb-2">
+              <strong>{{ p.title }}</strong>
+              <p-tag [value]="p.severity" [severity]="p.severity" />
+            </div>
+            <p class="m-0 line-height-3 text-color-secondary">{{ p.summary }}</p>
+            <small class="block mt-3 text-color-secondary">{{ p.application }}</small>
+          </div>
+        </div>
+      </p-card>
+    </div>
+    }
+  </div>
+
+  <p-message severity="info" class="mb-5 block"
+    text="Tipografía y paleta de color están centralizados en la sección 'Tokens &amp; Identidad Visual'. Ve allí para la referencia completa con tokens CSS copiables." />
+
+  <h3 class="text-xl font-bold mb-3">Validación de Color</h3>
+  <p-card class="mb-5">
+    <p-table [value]="colorAssessment" responsiveLayout="scroll" styleClass="p-datatable-sm">
+      <ng-template #header><tr><th>Rol</th><th>Actual</th><th>Veredicto</th><th>Sugerencia</th></tr></ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td><strong>{{ item.role }}</strong></td>
+          <td><code>{{ item.current }}</code></td>
+          <td><p-tag [value]="item.verdict" [severity]="item.severity" /></td>
+          <td>{{ item.recommendation }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+
+  <h3 class="text-xl font-bold mb-3">Catálogo de Componentes Core</h3>
+  <p-message severity="info" text="Regla: si el componente core ya resuelve el caso, usarlo antes de crear HTML nuevo. Inputs y botones son unificados (web+mobile auto-detect)." class="mb-3 block" />
+  <p-card class="mb-5">
+    <p-table [value]="componentCatalog" [paginator]="true" [rows]="8" responsiveLayout="scroll" styleClass="p-datatable-sm">
+      <ng-template #header>
+        <tr><th>Familia</th><th>Selector</th><th>Ubicación</th><th>Caso de uso</th><th>Preferir cuando</th><th>Evitar cuando</th><th>Estado</th></tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td><strong>{{ item.family }}</strong></td>
+          <td><code>{{ item.selector }}</code></td>
+          <td><span class="text-sm text-color-secondary">{{ item.source }}</span></td>
+          <td>{{ item.useCase }}</td>
+          <td>{{ item.preferredFor }}</td>
+          <td>{{ item.avoidWhen }}</td>
+          <td><p-tag [value]="item.status" [severity]="getCatalogSeverity(item.status)" /></td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+
+  <h3 class="text-xl font-bold mb-3">Reglas de Botones</h3>
+  <div class="grid mb-5">
+    @for (r of buttonRules; track r.variant) {
+    <div class="col-12 md:col-6 xl:col-3">
+      <p-card [styleClass]="r.cardClass">
+        <div class="flex align-items-start gap-3">
+          <app-icon [icon]="r.iconClass" />
+          <div>
+            <div class="flex align-items-center gap-2 mb-2">
+              <strong>{{ r.variant }}</strong>
+              <p-tag [value]="r.variant" [severity]="r.severity" />
+            </div>
+            <p class="m-0 text-color-secondary line-height-3">{{ r.usage }}</p>
+            <small class="block mt-2 text-color-secondary">{{ r.avoid }}</small>
+          </div>
+        </div>
+      </p-card>
+    </div>
+    }
+  </div>
+
+  <h3 class="text-xl font-bold mb-3">Formulario de Referencia (Custom* inputs)</h3>
+  <p-card class="mb-5">
+    <div class="grid formgrid">
+      <div class="field col-12 md:col-6 xl:col-4">
+        <label>Nombre del registro</label>
+        <input type="text" pInputText [(ngModel)]="sampleName" class="w-full" />
+        <small>Usar nombres cortos, auditables y faciles de buscar.</small>
+      </div>
+      <div class="field col-12 md:col-6 xl:col-4">
+        <label>Area responsable</label>
+        <p-select [options]="areas" [(ngModel)]="selectedArea" optionLabel="label" placeholder="Selecciona area" appendTo="body" class="w-full" />
+      </div>
+      <div class="field col-12 md:col-6 xl:col-4">
+        <label>Modulos relacionados</label>
+        <p-multiselect [options]="modules" [(ngModel)]="selectedModules" optionLabel="label" placeholder="Selecciona modulos" appendTo="body" class="w-full" />
+      </div>
+      <div class="field col-12 md:col-6 xl:col-4">
+        <label>Importe autorizado</label>
+        <p-inputnumber [(ngModel)]="sampleBudget" mode="currency" currency="MXN" locale="es-MX" class="w-full" />
+      </div>
+      <div class="field col-12 md:col-6 xl:col-4">
+        <label>Fecha compromiso</label>
+        <p-datepicker [(ngModel)]="selectedDate" dateFormat="dd/mm/yy" appendTo="body" class="w-full" />
+      </div>
+      <div class="field col-12 md:col-6 xl:col-4">
+        <label>Busqueda</label>
+        <p-iconfield fluid>
+          <p-inputicon><app-icon [icon]="'mdi:magnify'" /></p-inputicon>
+          <input type="search" pInputText [(ngModel)]="search" placeholder="Buscar por folio, area o responsable" fluid />
+        </p-iconfield>
+      </div>
+      <div class="field col-12">
+        <label>Descripcion ejecutiva</label>
+        <textarea pTextarea rows="3" [(ngModel)]="sampleDescription" class="w-full"></textarea>
+      </div>
+      <div class="field col-12 md:col-4 flex align-items-center gap-3">
+        <label>Activo</label>
+        <p-toggleSwitch [(ngModel)]="enabled" />
+      </div>
+      <div class="field col-12 md:col-4 flex align-items-center gap-3">
+        <p-checkbox [(ngModel)]="accepted" [binary]="true" inputId="accepted" />
+        <label for="accepted" class="font-normal">Confirmacion requerida</label>
+      </div>
+      <div class="field col-12 md:col-4 flex align-items-center gap-3">
+        <label>Prioridad</label>
+        <div class="flex gap-3">
+          <div class="flex align-items-center gap-1"><p-radioButton name="priority" value="baja" [(ngModel)]="priority" inputId="pbaja" /><label for="pbaja" class="font-normal">Baja</label></div>
+          <div class="flex align-items-center gap-1"><p-radioButton name="priority" value="media" [(ngModel)]="priority" inputId="pmedia" /><label for="pmedia" class="font-normal">Media</label></div>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-content-end gap-2 mt-4">
+      <p-button label="Cancelar" severity="secondary" [outlined]="true" />
+      <p-button label="Guardar cambios" icon="mdi:content-save" />
+    </div>
+  </p-card>
+  <p-message severity="warn" text="Regla: en mobile los botones de cierre de formulario deben ocupar el ancho disponible y mantener orden Cancelar -> Guardar." class="mb-5 block" />
+
+  <h3 class="text-xl font-bold mb-3">Tabla ERP y Estados del Sistema</h3>
+  <p-card class="mb-5">
+    <p-table [value]="tableRows" [paginator]="true" [rows]="4" responsiveLayout="scroll" styleClass="p-datatable-sm">
+      <ng-template #caption>
+        <div class="flex flex-wrap justify-content-between align-items-center gap-3">
+          <div><strong>Solicitudes operativas</strong><span class="block text-sm text-color-secondary">Acciones visibles maximas: 2 + menu contextual.</span></div>
+          <p-button label="Nuevo registro" icon="mdi:plus" size="small" />
+        </div>
+      </ng-template>
+      <ng-template #header><tr><th>Folio</th><th>Area</th><th>Responsable</th><th>Fecha</th><th class="text-right">Importe</th><th>Estado</th><th class="text-center">Acciones</th></tr></ng-template>
+      <ng-template #body let-row>
+        <tr>
+          <td><strong>{{ row.folio }}</strong></td>
+          <td>{{ row.area }}</td>
+          <td>{{ row.responsible }}</td>
+          <td>{{ row.dueDate }}</td>
+          <td class="text-right">{{ row.amount | currency:'MXN':'symbol':'1.0-0' }}</td>
+          <td><p-tag [value]="row.status" [severity]="getStatusSeverity(row.status)" /></td>
+          <td><div class="flex justify-content-center gap-2"><p-button icon="mdi:eye" [rounded]="true" [text]="true" /><p-button icon="mdi:pencil" [rounded]="true" [text]="true" severity="secondary" /></div></td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+  <div class="grid mb-5">
+    <div class="col-12 md:col-6 xl:col-3"><div class="surface-card p-3 border-round text-center"><p-progressSpinner strokeWidth="4" /><strong class="block mt-2">Loading</strong><span class="text-xs text-color-secondary">Spinner en acciones cortas, skeleton en carga estructural.</span></div></div>
+    <div class="col-12 md:col-6 xl:col-3"><div class="surface-card p-3 border-round flex flex-column gap-2"><p-skeleton width="100%" height="1.25rem" /><p-skeleton width="70%" height="1.25rem" /><strong>Skeleton</strong><span class="text-xs text-color-secondary">Anticipa layout en cards, listas o tablas.</span></div></div>
+    <div class="col-12 md:col-6 xl:col-3"><div class="flex flex-column gap-2"><p-message severity="success" text="Registro guardado correctamente." /><p-message severity="warn" text="Faltan documentos por validar." /></div></div>
+    <div class="col-12 md:col-6 xl:col-3"><div class="flex flex-column gap-2"><p-message severity="error" text="Sin permisos para aprobar este proceso." /><p-button label="Abrir confirmacion" icon="mdi:external-link" (onClick)="openDialog()" styleClass="mt-2 w-full" /></div></div>
+  </div>
+
+  <h3 class="text-xl font-bold mb-3">Toolbar ERP</h3>
+  <p-toolbar class="mb-5">
+    <ng-template #start><div><strong>Solicitudes operativas</strong><span class="block text-sm text-color-secondary">Filtros, acciones y estado de pantalla.</span></div></ng-template>
+    <ng-template #end>
+      <div class="flex gap-2 flex-wrap justify-content-end">
+        <p-button label="Limpiar" severity="secondary" [outlined]="true" icon="mdi:filter-off" />
+        <p-button label="Exportar" severity="secondary" icon="mdi:download" />
+        <p-button label="Nuevo" icon="mdi:plus" />
+      </div>
+    </ng-template>
+  </p-toolbar>
+
+  <h3 class="text-xl font-bold mb-3">Reglas Globales del ERP</h3>
+  <div class="grid mb-4">
+    @for (r of globalRules; track r.title) {
+    <div class="col-12 md:col-6 xl:col-4">
+      <p-card styleClass="h-full border-left-3 border-primary surface-card shadow-1">
+        <strong>{{ r.title }}</strong>
+        <p class="m-0 mt-3 text-color-secondary line-height-3">{{ r.description }}</p>
+      </p-card>
+    </div>
+    }
+  </div>
+  <div class="grid mb-5">
+    <div class="col-12 md:col-6">
+      <p-card header="Layout y espaciado">
+        @for (r of spacingRules; track r.title) {
+        <div class="mb-3"><strong>{{ r.title }}</strong><p class="m-0 text-color-secondary">{{ r.description }}</p></div>
+        }
+      </p-card>
+    </div>
+    <div class="col-12 md:col-6">
+      <p-card header="Estados obligatorios">
+        @for (s of systemStates; track s.title) {
+        <div class="mb-3"><strong>{{ s.title }}</strong><p class="m-0 text-color-secondary">{{ s.description }}</p></div>
+        }
+      </p-card>
+    </div>
+  </div>
+
+  <p-dialog header="Confirmacion institucional" [(visible)]="dialogVisible" [modal]="true" [style]="{ width: 'min(92vw, 34rem)' }" [draggable]="false">
+    <p>Los dialogs deben resolver decisiones breves. Si el usuario necesita capturar informacion extensa, navega a una pantalla dedicada.</p>
+    <ng-template #footer>
+      <p-button label="Cancelar" severity="secondary" [outlined]="true" (onClick)="dialogVisible = false" />
+      <p-button label="Confirmar" icon="mdi:check" (onClick)="dialogVisible = false" />
+    </ng-template>
+  </p-dialog>
+</section>

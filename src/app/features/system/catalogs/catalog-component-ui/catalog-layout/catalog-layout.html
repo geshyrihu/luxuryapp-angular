@@ -1,0 +1,47 @@
+<div
+  class="catalog-root"
+  [class.mobile-preview]="mobilePreview()"
+>
+  <header class="catalog-header">
+    <div class="catalog-header__start">
+<div
+        class="logo-box border-round-lg bg-primary flex align-items-center justify-content-center"
+        style="width: 36px; height: 36px"
+      >
+        <app-icon [icon]="'bolt'" class="text-white text-lg" />
+      </div>
+      <div class="catalog-header__info">
+        <h1 class="catalog-header__title">Luxury Design System</h1>
+        <span class="catalog-header__subtitle"
+          >Admin Template · UI + Documentación</span
+        >
+      </div>
+      <p-tag value="v5.4.0" severity="secondary" [rounded]="true"></p-tag>
+    </div>
+
+    <div class="catalog-header__end">
+      <p-button
+        [icon]="isDarkMode() ? 'mdi:weather-sunny' : 'mdi:weather-night'"
+        [severity]="isDarkMode() ? 'warn' : 'secondary'"
+        (onClick)="toggleTheme()"
+        [rounded]="true"
+        [text]="true"
+        pTooltip="Alternar tema"
+      />
+      <p-button
+        icon="mdi:cellphone"
+        [severity]="mobilePreview() ? 'primary' : 'secondary'"
+        (onClick)="mobilePreview.set(!mobilePreview())"
+        [rounded]="true"
+        [text]="true"
+        pTooltip="Simular vista móvil"
+      />
+    </div>
+  </header>
+
+  <div class="catalog-body">
+    <main class="catalog-content">
+      <router-outlet />
+    </main>
+  </div>
+</div>
