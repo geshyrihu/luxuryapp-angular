@@ -81,8 +81,12 @@ const PATTERNS_LABELS: Record<string, string> = {
 })
 export class CatalogPatternsItem {
   private route = inject(ActivatedRoute);
-  item = signal(this.route.snapshot.paramMap.get('item') ?? '');
-  label = PATTERNS_LABELS[this.item()] ?? this.item();
+  item = signal('');
+  get label(): string { return PATTERNS_LABELS[this.item()] ?? this.item(); }
+
+  constructor() {
+    this.route.paramMap.subscribe(p => this.item.set(p.get('item') ?? ''));
+  }
   EStatus = EStatus;
   email = '';
   password = '';

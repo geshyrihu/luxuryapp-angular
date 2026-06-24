@@ -151,8 +151,12 @@ const CORE_LABELS: Record<string, string> = {
 })
 export class CatalogCoreItem {
   private route = inject(ActivatedRoute);
-  item = signal(this.route.snapshot.paramMap.get('item') ?? '');
-  label = CORE_LABELS[this.item()] ?? this.item();
+  item = signal('');
+  get label(): string { return CORE_LABELS[this.item()] ?? this.item(); }
+
+  constructor() {
+    this.route.paramMap.subscribe(p => this.item.set(p.get('item') ?? ''));
+  }
   EStatus = EStatus;
   confirmVisible = signal(false);
   wizardActiveStep = signal(1);

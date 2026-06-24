@@ -42,6 +42,10 @@ const MOBILE_LABELS: Record<string, string> = {
 })
 export class CatalogMobileItem {
   private route = inject(ActivatedRoute);
-  item = signal(this.route.snapshot.paramMap.get('item') ?? '');
-  label = MOBILE_LABELS[this.item()] ?? this.item();
+  item = signal('');
+  get label(): string { return MOBILE_LABELS[this.item()] ?? this.item(); }
+
+  constructor() {
+    this.route.paramMap.subscribe(p => this.item.set(p.get('item') ?? ''));
+  }
 }

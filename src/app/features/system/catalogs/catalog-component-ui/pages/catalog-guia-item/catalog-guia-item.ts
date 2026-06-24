@@ -256,8 +256,12 @@ const GUIA_LABELS: Record<string, string> = {
 })
 export class CatalogGuiaItem {
   private route = inject(ActivatedRoute);
-  item = signal(this.route.snapshot.paramMap.get('item') ?? '');
-  label = GUIA_LABELS[this.item()] ?? this.item();
+  item = signal('');
+  get label(): string { return GUIA_LABELS[this.item()] ?? this.item(); }
+
+  constructor() {
+    this.route.paramMap.subscribe(p => this.item.set(p.get('item') ?? ''));
+  }
 
   dialogVisible = false;
   sampleName = "Torre Administrativa";

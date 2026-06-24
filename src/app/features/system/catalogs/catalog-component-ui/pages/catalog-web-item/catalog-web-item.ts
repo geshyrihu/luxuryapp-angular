@@ -428,8 +428,12 @@ const WEB_ITEM_LABELS: Record<string, string> = {
 })
 export class CatalogWebItem {
   private route = inject(ActivatedRoute);
-  item = signal(this.route.snapshot.paramMap.get('item') ?? '');
-  label = WEB_ITEM_LABELS[this.item()] ?? this.item();
+  item = signal('');
+  get label(): string { return WEB_ITEM_LABELS[this.item()] ?? this.item(); }
+
+  constructor() {
+    this.route.paramMap.subscribe(p => this.item.set(p.get('item') ?? ''));
+  }
 
   // Shared state
   dialogVisible = signal(false);

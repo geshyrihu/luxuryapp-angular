@@ -56,8 +56,12 @@ const AUDIT_LABELS: Record<string, string> = {
 })
 export class CatalogAuditItem {
   private route = inject(ActivatedRoute);
-  item = signal(this.route.snapshot.paramMap.get('item') ?? '');
-  label = AUDIT_LABELS[this.item()] ?? this.item();
+  item = signal('');
+  get label(): string { return AUDIT_LABELS[this.item()] ?? this.item(); }
+
+  constructor() {
+    this.route.paramMap.subscribe(p => this.item.set(p.get('item') ?? ''));
+  }
 
   readonly bloques = [
     { titulo: "Advertencia", icono: "mdi:alert", descripcion: "Riesgo físico, legal o económico." },

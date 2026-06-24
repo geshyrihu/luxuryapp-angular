@@ -48,8 +48,12 @@ const DOCS_LABELS: Record<string, string> = {
 })
 export class CatalogDocsItem {
   private route = inject(ActivatedRoute);
-  item = signal(this.route.snapshot.paramMap.get('item') ?? '');
-  label = DOCS_LABELS[this.item()] ?? this.item();
+  item = signal('');
+  get label(): string { return DOCS_LABELS[this.item()] ?? this.item(); }
+
+  constructor() {
+    this.route.paramMap.subscribe(p => this.item.set(p.get('item') ?? ''));
+  }
 
   readonly tiposDocumento = [
     { tipo: "Procedimiento Operativo", codigo: "PROC", confidencialidad: "Interno", severity: "info" as TagSeverity },

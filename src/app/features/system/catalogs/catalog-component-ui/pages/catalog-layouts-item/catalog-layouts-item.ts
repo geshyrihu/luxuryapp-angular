@@ -37,6 +37,10 @@ const LAYOUTS_LABELS: Record<string, string> = {
 export class CatalogLayoutsItem {
   private route = inject(ActivatedRoute);
   router = inject(Router);
-  item = signal(this.route.snapshot.paramMap.get('item') ?? '');
-  label = LAYOUTS_LABELS[this.item()] ?? this.item();
+  item = signal('');
+  get label(): string { return LAYOUTS_LABELS[this.item()] ?? this.item(); }
+
+  constructor() {
+    this.route.paramMap.subscribe(p => this.item.set(p.get('item') ?? ''));
+  }
 }

@@ -22,6 +22,10 @@ import { TokensTypography } from "../../shared/tokens-typography/tokens-typograp
 })
 export class CatalogTokensItem {
   private route = inject(ActivatedRoute);
-  item = signal(this.route.snapshot.paramMap.get('item') ?? '');
-  label = this.item() === 'colors' ? 'Colors' : 'Typography';
+  item = signal('');
+  get label(): string { return this.item() === 'colors' ? 'Colors' : 'Typography'; }
+
+  constructor() {
+    this.route.paramMap.subscribe(p => this.item.set(p.get('item') ?? ''));
+  }
 }

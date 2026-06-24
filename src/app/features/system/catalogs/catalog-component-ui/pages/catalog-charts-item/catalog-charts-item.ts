@@ -35,8 +35,12 @@ const CHARTS_LABELS: Record<string, string> = {
 })
 export class CatalogChartsItem {
   private route = inject(ActivatedRoute);
-  item = signal(this.route.snapshot.paramMap.get('item') ?? '');
-  label = CHARTS_LABELS[this.item()] ?? this.item();
+  item = signal('');
+  get label(): string { return CHARTS_LABELS[this.item()] ?? this.item(); }
+
+  constructor() {
+    this.route.paramMap.subscribe(p => this.item.set(p.get('item') ?? ''));
+  }
 
   isDark = document.documentElement.classList.contains('theme-dark');
   style = getComputedStyle(document.body);
