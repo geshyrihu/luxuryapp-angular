@@ -82,14 +82,13 @@
                   </p-selectButton>
                 </td>
                 <td>
-                  <textarea
-                    pInputTextarea
-                    [formControl]="item.observationsControl"
-                    rows="2"
-                    class="w-full"
-                    autoResize="true"
-                  >
-                  </textarea>
+                  <custom-input-text-area-signal
+                    [control]="item.observationsControl"
+                    label=""
+                    [rows]="2"
+                    [noMargin]="true"
+                    [onlyInput]="true"
+                  ></custom-input-text-area-signal>
                 </td>
                 <td>
                   <!-- Placeholder para Carga de Archivos -->

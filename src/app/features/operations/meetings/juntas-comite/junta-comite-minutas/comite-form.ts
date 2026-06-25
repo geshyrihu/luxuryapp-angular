@@ -1,9 +1,9 @@
 import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { FormHelper } from "src/app/core/helpers/form-helper";
-import { SelectModule } from "primeng/select";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -12,7 +12,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
   templateUrl: "./comite-form.html",
   imports: [
     ReactiveFormsModule,
-    SelectModule,
+    CustomInputSelectSignal,
     CustomButtonItem,
     CustomButtonDelete,
   ],

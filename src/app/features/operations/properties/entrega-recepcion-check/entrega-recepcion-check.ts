@@ -8,7 +8,7 @@ import { CustomButton } from "src/app/core/components/buttons/web/custom-button"
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { TextareaModule } from "primeng/textarea";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 
 @Component({
   selector: "app-entrega-recepcion-check",
@@ -19,7 +19,7 @@ import { TextareaModule } from "primeng/textarea";
     TableModule,
     TagModule,
     SelectButtonModule,
-    TextareaModule,
+    CustomInputTextAreaSignal,
     CustomButton,
   ],
   templateUrl: "./entrega-recepcion-check.html",

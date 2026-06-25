@@ -3,13 +3,12 @@
   <div class="grid col-12 align-items-center">
     <div class="col-10">
       <div class="mb-2">
-        <p-select
-          [formControl]="comiteparticipante"
-          [options]="cb_ParticipantComite()"
-          optionLabel="label"
-          optionValue="value"
+        <custom-input-select-signal
+          [control]="comiteparticipante"
+          [data]="cb_ParticipantComite()"
+          label="Participante"
           placeholder="Seleccione una opción"
-          fluid
+          [noMargin]="true"
         />
       </div>
     </div>
