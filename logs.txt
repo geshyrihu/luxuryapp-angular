@@ -1,0 +1,63 @@
+X [ERROR] NG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags [plugin angular-compiler]
+
+    src/app/features/accounting/general-ledger/contabilidad/cobranza-nativa/pages/cobranza-nativa-dashboard/cobranza-nativa-dashboard.html:207:12:
+      207 │             </div><!-- /expandible -->
+          ╵             ~~~~~~
+
+  Error occurs in the template of component CobranzaNativaDashboard.
+
+    src/app/features/accounting/general-ledger/contabilidad/cobranza-nativa/pages/cobranza-nativa-dashboard/cobranza-nativa-dashboard.ts:20:15:
+      20 │   templateUrl: "./cobranza-nativa-dashboard.html",
+         ╵                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] NG5002: Unexpected closing tag "p-card". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags [plugin angular-compiler]
+
+    src/app/features/accounting/general-ledger/contabilidad/cobranza-nativa/pages/cobranza-nativa-dashboard/cobranza-nativa-dashboard.html:208:10:
+      208 │           </p-card>
+          ╵           ~~~~~~~~~
+
+  Error occurs in the template of component CobranzaNativaDashboard.
+
+    src/app/features/accounting/general-ledger/contabilidad/cobranza-nativa/pages/cobranza-nativa-dashboard/cobranza-nativa-dashboard.ts:20:15:
+      20 │   templateUrl: "./cobranza-nativa-dashboard.html",
+         ╵                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] NG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags [plugin angular-compiler]
+
+    src/app/features/accounting/general-ledger/contabilidad/cobranza-nativa/pages/cobranza-nativa-dashboard/cobranza-nativa-dashboard.html:209:8:
+      209 │         </div>
+          ╵         ~~~~~~
+
+  Error occurs in the template of component CobranzaNativaDashboard.
+
+    src/app/features/accounting/general-ledger/contabilidad/cobranza-nativa/pages/cobranza-nativa-dashboard/cobranza-nativa-dashboard.ts:20:15:
+      20 │   templateUrl: "./cobranza-nativa-dashboard.html",
+         ╵                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] NG5002: Unexpected closing block. The block may have been closed earlier. If you meant to write the `}` character, you should use the "&#125;" HTML entity instead. [plugin angular-compiler]
+
+    src/app/features/accounting/general-ledger/contabilidad/cobranza-nativa/pages/cobranza-nativa-dashboard/cobranza-nativa-dashboard.html:212:2:
+      212 │   }
+          ╵   ^
+
+  Error occurs in the template of component CobranzaNativaDashboard.
+
+    src/app/features/accounting/general-ledger/contabilidad/cobranza-nativa/pages/cobranza-nativa-dashboard/cobranza-nativa-dashboard.ts:20:15:
+      20 │   templateUrl: "./cobranza-nativa-dashboard.html",
+         ╵                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+X [ERROR] NG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags [plugin angular-compiler]
+
+    src/app/features/accounting/general-ledger/contabilidad/cobranza-nativa/pages/cobranza-nativa-dashboard/cobranza-nativa-dashboard.html:235:0:
+      235 │ </div><!-- /hidden md:block web -->
+          ╵ ~~~~~~
+
+  Error occurs in the template of component CobranzaNativaDashboard.
+
+    src/app/features/accounting/general-ledger/contabilidad/cobranza-nativa/pages/cobranza-nativa-dashboard/cobranza-nativa-dashboard.ts:20:15:
+      20 │   templateUrl: "./cobranza-nativa-dashboard.html",
+         ╵                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,12 +1,12 @@
 ﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { IonAvatar } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { chevronForwardOutline } from "ionicons/icons";
 import { AvatarModule } from "primeng/avatar";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/custom-button-active-desactive";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
@@ -21,7 +21,6 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { CustomerModulEdit } from "./customer-modul-edit";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 
 @Component({
   selector: "app-customer-modul-list",
@@ -34,7 +33,6 @@ import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
     DataViewMobile,
     PrimeNgCustomTableFooter,
     CardModule,
-    IonAvatar,
     PrimeNgCustomCaption,
     CustomBtnActiveDesactive,
     CustomBtnActiveDesactive,

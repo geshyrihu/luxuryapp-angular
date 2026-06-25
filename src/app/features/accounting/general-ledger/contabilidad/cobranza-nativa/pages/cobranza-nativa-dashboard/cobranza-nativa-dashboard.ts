@@ -67,6 +67,19 @@ export default class CobranzaNativaDashboard {
     return this.expandedCard() === cardTitle;
   }
 
+  /** Deriva el color de acento (borde/icono) desde el bgColor pastel si no está definido en los datos */
+  getCardColor(card: { bgColor: string; color?: string }): string {
+    if (card.color) return card.color;
+    const map: Record<string, string> = {
+      "#dbeafe": "#1d4ed8", "#e0f2fe": "#0284c7", "#e0e7ff": "#3730a3",
+      "#ede9fe": "#7c3aed", "#f3e8ff": "#7c3aed", "#f5f3ff": "#5b21b6",
+      "#dcfce7": "#15803d", "#bbf7d0": "#15803d", "#a7f3d0": "#065f46",
+      "#ccfbf1": "#0f766e", "#fef9c3": "#854d0e", "#fef3c7": "#92400e",
+      "#fee2e2": "#b91c1c", "#fce7f3": "#9d174d", "#fef2f2": "#dc2626",
+    };
+    return map[card.bgColor.toLowerCase()] ?? "#6b7280";
+  }
+
   roleTagSeverity(role: ProposedRole): TagSeverity {
     const map: Record<ProposedRole, TagSeverity> = {
       SuperUsuario: "warn",

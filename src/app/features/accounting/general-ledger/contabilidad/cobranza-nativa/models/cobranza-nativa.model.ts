@@ -21,6 +21,7 @@ export interface CobranzaCard {
   route: string;
   icon: string;
   bgColor: string;
+  color?: string;   // acento oscuro para borde/icono; si no se define se deriva de bgColor
   roles: ProposedRole[];
   actions: ModuleAction[];
   endpoints: ModuleEndpoint[];
