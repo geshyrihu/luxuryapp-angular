@@ -65,10 +65,11 @@ const GASTOS_GENERALES = [
   "602-",
   "603-",
   "604-",
+  "607-",
   "608-",
   "609-",
 ];
-const GASTOS_EXTRA = ["605-", "606-", "607-"];
+const GASTOS_EXTRA = ["605-"];
 
 @Component({
   selector: "app-cedula-presupuestal-cliente",
@@ -169,8 +170,6 @@ export class CedulaPresupuestalClienteComponent {
 
     const extraLabels: Record<string, string> = {
       "605-": "EXTRAORDINARIOS",
-      "606-": "MEJORAS Y PROYECTOS",
-      "607-": "GASTOS EN EVENTOS",
     };
 
     for (const prefix of GASTOS_EXTRA) {

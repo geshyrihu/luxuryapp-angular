@@ -1,15 +1,18 @@
 import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import {
+  IonAvatar,
+  IonButton,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonItem,
   IonLabel,
   IonList,
   IonProgressBar,
+  IonRefresher,
+  IonRefresherContent,
   IonSkeletonText,
   IonSpinner,
-  IonAvatar,
 } from "@ionic/angular/standalone";
 
 @Component({
@@ -18,12 +21,15 @@ import {
   imports: [
     CommonModule,
     IonAvatar,
+    IonButton,
     IonInfiniteScroll,
     IonInfiniteScrollContent,
     IonItem,
     IonLabel,
     IonList,
     IonProgressBar,
+    IonRefresher,
+    IonRefresherContent,
     IonSkeletonText,
     IonSpinner,
   ],
@@ -128,6 +134,32 @@ import {
           <p class="text-xs text-secondary mt-1">{{ items().length }} items cargados — desplázate para cargar más.</p>
         </div>
 
+        <!-- ─── Pull-to-Refresh ─── -->
+        <div>
+          <div class="font-bold text-sm mb-3">Pull-to-Refresh (ion-refresher)</div>
+          <div style="height:160px;overflow-y:auto;border:1px solid var(--ds-border,#e2e8f0);border-radius:12px;position:relative;">
+            <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+              <ion-refresher-content
+                pullingIcon="chevron-down-circle-outline"
+                pullingText="Desliza para actualizar"
+                refreshingSpinner="crescent"
+                refreshingText="Actualizando datos...">
+              </ion-refresher-content>
+            </ion-refresher>
+            <ion-list lines="full" class="p-2">
+              @for (r of refreshItems(); track r) {
+                <ion-item>
+                  <ion-label class="text-sm">{{ r }}</ion-label>
+                </ion-item>
+              }
+            </ion-list>
+          </div>
+          <p class="text-xs text-secondary mt-1">Actualizado: {{ refreshCount() }}x — desliza hacia abajo para simular.</p>
+          <ion-button size="small" fill="outline" (click)="simulateRefresh()" class="mt-2">
+            Simular refresh
+          </ion-button>
+        </div>
+
       </div>
     </div>
   `,
@@ -141,6 +173,23 @@ import {
 export class MobileFeedback {
   items = signal<string[]>(Array.from({ length: 10 }, (_, i) => `Elemento #${i + 1}`));
   disableScroll = signal(false);
+
+  // ─── Pull-to-Refresh ───
+  refreshCount = signal(0);
+  refreshItems = signal<string[]>(["Registro A", "Registro B", "Registro C"]);
+
+  handleRefresh(event: CustomEvent): void {
+    setTimeout(() => {
+      this.refreshCount.update(n => n + 1);
+      this.refreshItems.set([`Registro actualizado #${this.refreshCount()}`, "Registro A", "Registro B"]);
+      (event.target as HTMLIonRefresherElement).complete();
+    }, 1200);
+  }
+
+  simulateRefresh(): void {
+    this.refreshCount.update(n => n + 1);
+    this.refreshItems.set([`Simulado #${this.refreshCount()}`, "Nuevo dato", "Registro fresco"]);
+  }
 
   loadMore(event: CustomEvent): void {
     setTimeout(() => {

@@ -71,10 +71,11 @@ const GASTOS_GENERALES = [
   "602-",
   "603-",
   "604-",
+  "607-",
   "608-",
   "609-",
 ];
-const GASTOS_EXTRA = ["605-", "606-", "607-"];
+const GASTOS_EXTRA = ["605-"];
 
 @Component({
   selector: "app-cedula-presupuestal",
@@ -267,16 +268,6 @@ export class CedulaPresupuestal {
       "EXTRAORDINARIOS",
       cuentasExtra.filter((c) => c.numeroCuenta.startsWith("605-")),
       "TOTAL EXTRAORDINARIOS",
-    );
-    appendSection(
-      "MEJORAS Y PROYECTOS",
-      cuentasExtra.filter((c) => c.numeroCuenta.startsWith("606-")),
-      "TOTAL MEJORAS Y PROYECTOS",
-    );
-    appendSection(
-      "GASTOS EN EVENTOS",
-      cuentasExtra.filter((c) => c.numeroCuenta.startsWith("607-")),
-      "TOTAL GASTOS EN EVENTOS",
     );
 
     return result;
