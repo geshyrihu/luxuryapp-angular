@@ -1,13 +1,13 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, signal, ViewEncapsulation } from "@angular/core";
-import { IonBadge, IonButton, IonIcon, IonItem, IonItemDivider, IonItemGroup, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonListHeader, IonReorder, IonReorderGroup, IonSearchbar } from "@ionic/angular/standalone";
+import { IonBadge, IonButton, IonIcon, IonItem, IonItemDivider, IonItemGroup, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonListHeader, IonReorder, IonReorderGroup, IonRippleEffect, IonSearchbar } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { addOutline, createOutline, searchOutline, trashOutline } from "ionicons/icons";
 
 @Component({
   selector: "app-mobile-lists",
   standalone: true,
-  imports: [CommonModule, IonBadge, IonButton, IonIcon, IonItem, IonItemDivider, IonItemGroup, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonListHeader, IonReorder, IonReorderGroup, IonSearchbar],
+  imports: [CommonModule, IonBadge, IonButton, IonIcon, IonItem, IonItemDivider, IonItemGroup, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonListHeader, IonReorder, IonReorderGroup, IonRippleEffect, IonSearchbar],
   template: `
     <div class="mobile-card">
       <div class="mobile-card-header">Ionic List Patterns</div>
@@ -136,12 +136,40 @@ import { addOutline, createOutline, searchOutline, trashOutline } from "ionicons
             </ion-item>
           </ion-list>
         </div>
+        <!-- ion-ripple-effect -->
+        <div class="mt-4 px-1">
+          <div class="font-bold text-sm mb-1">Ripple Effect (ion-ripple-effect)</div>
+          <p class="text-xs text-secondary mb-2">
+            Efecto material al tocar. Requiere <code>position:relative</code> + <code>overflow:hidden</code> en el padre.
+          </p>
+          <div class="flex flex-column gap-2">
+            <div class="ripple-item ion-activatable" (click)="onRippleTap('primario')">
+              <span>Elemento con ripple primario</span>
+              <ion-ripple-effect type="bounded"></ion-ripple-effect>
+            </div>
+            <div class="ripple-item ripple-danger ion-activatable" (click)="onRippleTap('peligro')">
+              <span>Acción de eliminación</span>
+              <ion-ripple-effect type="bounded"></ion-ripple-effect>
+            </div>
+            <div class="ripple-item ripple-success ion-activatable" (click)="onRippleTap('éxito')">
+              <span>Acción de confirmación</span>
+              <ion-ripple-effect type="bounded"></ion-ripple-effect>
+            </div>
+          </div>
+          @if (lastRipple()) {
+            <p class="text-xs text-secondary mt-1">Tocaste: <strong>{{ lastRipple() }}</strong></p>
+          }
+        </div>
     </div>
   `,
   styles: [`
     .mobile-card { background: var(--ds-bg-surface,#fff); border: 1px solid var(--ds-border,#e2e8f0); border-radius: var(--ds-radius-lg,8px); overflow: hidden; }
     .mobile-card-header { padding: 0.75rem 1rem; background: var(--ds-bg-elevated,#f4f5f8); font-weight: 600; font-size: var(--ds-font-size-body,0.9375rem); color: var(--ds-text-primary); border-bottom: 1px solid var(--ds-border,#e2e8f0); }
     .mobile-card-body { padding: 1rem; }
+
+    .ripple-item { position: relative; overflow: hidden; padding: 0.75rem 1rem; border-radius: 10px; background: var(--ds-bg-elevated,#f4f5f8); font-size: 0.875rem; font-weight: 500; cursor: pointer; border: 1px solid var(--ds-border,#e2e8f0); --ripple-color: var(--ds-primary,#003d9b); }
+    .ripple-danger { --ripple-color: var(--ds-danger,#ba1a1a); background: #fff5f5; }
+    .ripple-success { --ripple-color: var(--ds-success,#006837); background: #f0fdf4; }
   `],
   encapsulation: ViewEncapsulation.None,
 })
@@ -175,6 +203,10 @@ export class MobileLists {
   });
 
   onAdd(): void { console.log("Agregar nuevo registro"); }
+
+  // ─── Ripple demo ───
+  lastRipple = signal<string>('');
+  onRippleTap(label: string): void { this.lastRipple.set(label); }
 
   constructor() {
     addIcons({ addOutline, createOutline, searchOutline, trashOutline });

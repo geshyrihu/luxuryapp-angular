@@ -10,6 +10,7 @@ import { MobileInputs } from "./components/mobile-inputs/mobile-inputs";
 import { MobileLists } from "./components/mobile-lists/mobile-lists";
 import { MobileNavigation } from "./components/mobile-navigation/mobile-navigation";
 import { MobileOverlays } from "./components/mobile-overlays/mobile-overlays";
+import { MobileLayout } from "./components/mobile-layout/mobile-layout";
 import { MobilePageStructure } from "./components/mobile-page-structure/mobile-page-structure";
 
 @Component({
@@ -25,6 +26,7 @@ import { MobilePageStructure } from "./components/mobile-page-structure/mobile-p
     MobileData,
     MobileForms,
     MobileOverlays,
+    MobileLayout,
     MobilePageStructure,
   ],
   template: `
@@ -51,6 +53,9 @@ import { MobilePageStructure } from "./components/mobile-page-structure/mobile-p
         </div>
         <div class="col-12 lg:col-6">
           <app-mobile-page-structure />
+        </div>
+        <div class="col-12 lg:col-6">
+          <app-mobile-layout />
         </div>
       </div>
     </div>
