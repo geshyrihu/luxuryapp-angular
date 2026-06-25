@@ -16,6 +16,8 @@ import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 
 interface IMenuTone {
   card: string;
+  accent: string;      // hex — border-top y color de icono (alineado con master-dashboard)
+  bgColor: string;     // hex — fondo del contenedor de icono
   desktopShell: string;
   mobileShell: string;
   glyph: string;
@@ -43,8 +45,9 @@ export class SettingsHome {
   menuItemsGrouped: any;
   private readonly defaultTone: IMenuTone = {
     card: "border-primary",
+    accent: "#003d9b",   bgColor: "#edf1ff",
     desktopShell: "surface-100 border-1 border-primary border-round-xl",
-    mobileShell: "surface-100 border-1 border-primary border-round-md",
+    mobileShell:  "surface-100 border-1 border-primary border-round-md",
     glyph: "text-primary",
     heading: "text-900",
   };
@@ -52,59 +55,59 @@ export class SettingsHome {
   private readonly toneByGroup: Record<string, IMenuTone> = {
     "Seguridad y Permisos": {
       card: "border-blue-200",
+      accent: "#1d4ed8", bgColor: "#dbeafe",
       desktopShell: "bg-blue-50 border-1 border-blue-200 border-round-xl",
-      mobileShell: "bg-blue-50 border-1 border-blue-200 border-round-md",
-      glyph: "text-blue-700",
-      heading: "text-blue-900",
+      mobileShell:  "bg-blue-50 border-1 border-blue-200 border-round-md",
+      glyph: "text-blue-700", heading: "text-blue-900",
     },
     "Catalogos Generales": {
       card: "border-cyan-200",
+      accent: "#0e7490", bgColor: "#cffafe",
       desktopShell: "bg-cyan-50 border-1 border-cyan-200 border-round-lg",
-      mobileShell: "bg-cyan-50 border-1 border-cyan-200 border-round-md",
-      glyph: "text-cyan-700",
-      heading: "text-cyan-900",
+      mobileShell:  "bg-cyan-50 border-1 border-cyan-200 border-round-md",
+      glyph: "text-cyan-700", heading: "text-cyan-900",
     },
     "Catalogos de Tickets y Mantenimiento": {
       card: "border-orange-200",
+      accent: "#c2410c", bgColor: "#ffedd5",
       desktopShell: "bg-orange-50 border-1 border-orange-200 border-round-xl",
-      mobileShell: "bg-orange-50 border-1 border-orange-200 border-round-lg",
-      glyph: "text-orange-700",
-      heading: "text-orange-900",
+      mobileShell:  "bg-orange-50 border-1 border-orange-200 border-round-lg",
+      glyph: "text-orange-700", heading: "text-orange-900",
     },
     "Configuracion de Sistema": {
       card: "border-indigo-200",
+      accent: "#4338ca", bgColor: "#e0e7ff",
       desktopShell: "bg-indigo-50 border-1 border-indigo-200 border-round-xl",
-      mobileShell: "bg-indigo-50 border-1 border-indigo-200 border-round-md",
-      glyph: "text-indigo-700",
-      heading: "text-indigo-900",
+      mobileShell:  "bg-indigo-50 border-1 border-indigo-200 border-round-md",
+      glyph: "text-indigo-700", heading: "text-indigo-900",
     },
     "Configuracion de Correo Electronico": {
       card: "border-pink-200",
+      accent: "#be185d", bgColor: "#fce7f3",
       desktopShell: "bg-pink-50 border-1 border-pink-200 border-round-lg",
-      mobileShell: "bg-pink-50 border-1 border-pink-200 border-round-md",
-      glyph: "text-pink-700",
-      heading: "text-pink-900",
+      mobileShell:  "bg-pink-50 border-1 border-pink-200 border-round-md",
+      glyph: "text-pink-700", heading: "text-pink-900",
     },
     "Recursos Humanos": {
       card: "border-teal-200",
+      accent: "#0f766e", bgColor: "#ccfbf1",
       desktopShell: "bg-teal-50 border-1 border-teal-200 border-round-xl",
-      mobileShell: "bg-teal-50 border-1 border-teal-200 border-round-md",
-      glyph: "text-teal-700",
-      heading: "text-teal-900",
+      mobileShell:  "bg-teal-50 border-1 border-teal-200 border-round-md",
+      glyph: "text-teal-700", heading: "text-teal-900",
     },
     "Analisis y Registros": {
       card: "border-yellow-200",
+      accent: "#a16207", bgColor: "#fef9c3",
       desktopShell: "bg-yellow-50 border-1 border-yellow-200 border-round-lg",
-      mobileShell: "bg-yellow-50 border-1 border-yellow-200 border-round-md",
-      glyph: "text-yellow-700",
-      heading: "text-yellow-900",
+      mobileShell:  "bg-yellow-50 border-1 border-yellow-200 border-round-md",
+      glyph: "text-yellow-700", heading: "text-yellow-900",
     },
     "Herramientas de Desarrollo/Prueba": {
       card: "border-green-200",
+      accent: "#15803d", bgColor: "#dcfce7",
       desktopShell: "bg-green-50 border-1 border-green-200 border-round-xl",
-      mobileShell: "bg-green-50 border-1 border-green-200 border-round-md",
-      glyph: "text-green-700",
-      heading: "text-green-900",
+      mobileShell:  "bg-green-50 border-1 border-green-200 border-round-md",
+      glyph: "text-green-700", heading: "text-green-900",
     },
   };
 
