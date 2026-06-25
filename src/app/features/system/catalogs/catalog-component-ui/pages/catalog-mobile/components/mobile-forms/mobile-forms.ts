@@ -1,14 +1,34 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { IonButton, IonCheckbox, IonIcon, IonInput, IonLabel, IonRadio, IonRadioGroup, IonRange, IonSelect, IonSelectOption, IonTextarea, IonToggle } from "@ionic/angular/standalone";
+import {
+  IonButton,
+  IonCheckbox,
+  IonDatetime,
+  IonDatetimeButton,
+  IonIcon,
+  IonInput,
+  IonInputOtp,
+  IonLabel,
+  IonModal,
+  IonPicker,
+  IonPickerColumn,
+  IonPickerColumnOption,
+  IonRadio,
+  IonRadioGroup,
+  IonRange,
+  IonSelect,
+  IonSelectOption,
+  IonTextarea,
+  IonToggle,
+} from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
-import { checkmarkCircleOutline } from "ionicons/icons";
+import { checkmarkCircleOutline, keyOutline, timeOutline } from "ionicons/icons";
 
 @Component({
   selector: "app-mobile-forms",
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, IonButton, IonCheckbox, IonIcon, IonInput, IonLabel, IonRadio, IonRadioGroup, IonRange, IonSelect, IonSelectOption, IonTextarea, IonToggle],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, IonButton, IonCheckbox, IonDatetime, IonDatetimeButton, IonIcon, IonInput, IonInputOtp, IonLabel, IonModal, IonPicker, IonPickerColumn, IonPickerColumnOption, IonRadio, IonRadioGroup, IonRange, IonSelect, IonSelectOption, IonTextarea, IonToggle],
   template: `
     <div class="mobile-card">
       <div class="mobile-card-header">Formulario nativo Ionic — Material Design moderno</div>
@@ -79,6 +99,68 @@ import { checkmarkCircleOutline } from "ionicons/icons";
             Modo oscuro
           </ion-toggle>
 
+          <!-- Datetime Button -->
+          <div>
+            <p class="text-xs font-bold m-0 mb-1" style="color:var(--ds-text-secondary)">
+              <ion-icon name="time-outline" style="vertical-align:middle;margin-right:4px"></ion-icon>
+              Fecha y hora (ion-datetime-button)
+            </p>
+            <p class="text-xs text-secondary mb-2">Abre ion-datetime en un modal nativo al tocar.</p>
+            <div class="flex align-items-center gap-3 flex-wrap">
+              <div class="flex align-items-center gap-1">
+                <span class="text-sm">Fecha:</span>
+                <ion-datetime-button datetime="cat-dt-date"></ion-datetime-button>
+              </div>
+              <div class="flex align-items-center gap-1">
+                <span class="text-sm">Hora:</span>
+                <ion-datetime-button datetime="cat-dt-time"></ion-datetime-button>
+              </div>
+            </div>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime id="cat-dt-date" presentation="date" [showDefaultButtons]="true"></ion-datetime>
+              </ng-template>
+            </ion-modal>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime id="cat-dt-time" presentation="time" [showDefaultButtons]="true"></ion-datetime>
+              </ng-template>
+            </ion-modal>
+          </div>
+
+          <!-- Picker inline -->
+          <div>
+            <p class="text-xs font-bold m-0 mb-1" style="color:var(--ds-text-secondary)">Picker de columnas (ion-picker)</p>
+            <p class="text-xs text-secondary mb-2">Rueda de selección nativa. Desliza para cambiar el valor.</p>
+            <ion-picker>
+              <ion-picker-column [value]="pickerAmPm">
+                <ion-picker-column-option value="AM">AM</ion-picker-column-option>
+                <ion-picker-column-option value="PM">PM</ion-picker-column-option>
+              </ion-picker-column>
+              <ion-picker-column [value]="pickerHour">
+                @for (h of hours; track h) {
+                  <ion-picker-column-option [value]="h">{{ h }}</ion-picker-column-option>
+                }
+              </ion-picker-column>
+              <ion-picker-column [value]="pickerMinute">
+                @for (m of minutes; track m) {
+                  <ion-picker-column-option [value]="m">{{ m }}</ion-picker-column-option>
+                }
+              </ion-picker-column>
+            </ion-picker>
+          </div>
+
+          <!-- OTP Input -->
+          <div>
+            <p class="text-xs font-bold m-0 mb-1" style="color:var(--ds-text-secondary)">
+              <ion-icon name="key-outline" style="vertical-align:middle;margin-right:4px"></ion-icon>
+              Código OTP (ion-input-otp)
+            </p>
+            <p class="text-xs text-secondary mb-2">Entrada segmentada para códigos de verificación de 6 dígitos.</p>
+            <ion-input-otp [(ngModel)]="otpValue" [length]="6" type="number"></ion-input-otp>
+            <p class="text-xs text-secondary mt-1">Código ingresado: <strong>{{ otpValue || '—' }}</strong></p>
+          </div>
+
           <!-- Botón submit estándar -->
           <ion-button expand="block" color="primary" style="--border-radius:12px;margin-top:0.5rem;">
             <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
@@ -97,7 +179,15 @@ import { checkmarkCircleOutline } from "ionicons/icons";
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileForms {
+  otpValue = '';
+  pickerAmPm = 'AM';
+  pickerHour = '09';
+  pickerMinute = '00';
+
+  readonly hours = ['01','02','03','04','05','06','07','08','09','10','11','12'];
+  readonly minutes = ['00','05','10','15','20','25','30','35','40','45','50','55'];
+
   constructor() {
-    addIcons({ checkmarkCircleOutline });
+    addIcons({ checkmarkCircleOutline, keyOutline, timeOutline });
   }
 }

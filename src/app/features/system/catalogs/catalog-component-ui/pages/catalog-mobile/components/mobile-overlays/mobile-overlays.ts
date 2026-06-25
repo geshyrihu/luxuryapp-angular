@@ -1,6 +1,15 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, ViewEncapsulation } from "@angular/core";
-import { IonButton, IonIcon } from "@ionic/angular/standalone";
+import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
+import {
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonModal,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/angular/standalone";
 import {
   ActionSheetController,
   AlertController,
@@ -11,6 +20,9 @@ import { addIcons } from "ionicons";
 import {
   alertCircleOutline,
   checkmarkCircleOutline,
+  chevronUpOutline,
+  closeOutline,
+  expandOutline,
   informationCircleOutline,
   layersOutline,
   listOutline,
@@ -22,7 +34,7 @@ import {
 @Component({
   selector: "app-mobile-overlays",
   standalone: true,
-  imports: [CommonModule, IonButton, IonIcon],
+  imports: [CommonModule, IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonModal, IonTitle, IonToolbar],
   template: `
     <div class="mobile-card">
       <div class="mobile-card-header">Overlays nativos (ion-alert / action-sheet / toast / loading)</div>
@@ -103,8 +115,74 @@ import {
           </div>
         </div>
 
+        <!-- Modal -->
+        <div>
+          <div class="font-bold text-sm mb-2">Modal (ion-modal)</div>
+          <p class="text-xs text-secondary mb-2">Overlay de pantalla completa o bottom sheet con breakpoints arrastrables.</p>
+          <div class="flex gap-2 flex-wrap">
+            <ion-button size="small" color="primary" (click)="modalOpen.set(true)">
+              <ion-icon name="expand-outline" slot="start"></ion-icon>
+              Modal completo
+            </ion-button>
+            <ion-button size="small" color="secondary" (click)="sheetOpen.set(true)">
+              <ion-icon name="chevron-up-outline" slot="start"></ion-icon>
+              Bottom sheet
+            </ion-button>
+          </div>
+        </div>
+
       </div>
     </div>
+
+    <!-- ion-modal: pantalla completa -->
+    <ion-modal [isOpen]="modalOpen()" (didDismiss)="modalOpen.set(false)">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar color="primary">
+            <ion-title>Detalle del registro</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="modalOpen.set(false)">
+                <ion-icon name="close-outline" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <p class="text-secondary text-sm mb-4">
+            Contenido del modal. Puede incluir formularios, listas o cualquier componente Angular/Ionic.
+          </p>
+          <ion-button expand="block" color="primary" (click)="modalOpen.set(false)">Guardar</ion-button>
+          <ion-button expand="block" fill="outline" color="medium" class="ion-margin-top" (click)="modalOpen.set(false)">Cancelar</ion-button>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
+    <!-- ion-modal: bottom sheet con breakpoints -->
+    <ion-modal
+      [isOpen]="sheetOpen()"
+      (didDismiss)="sheetOpen.set(false)"
+      [breakpoints]="[0, 0.4, 0.75]"
+      [initialBreakpoint]="0.4"
+      handleBehavior="cycle">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Opciones</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="sheetOpen.set(false)">
+                <ion-icon name="close-outline" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <p class="text-secondary text-sm mb-4">
+            Bottom sheet con breakpoints <code>[0, 0.4, 0.75]</code>. Arrastra el handle para expandir o cerrar.
+          </p>
+          <ion-button expand="block" fill="outline" (click)="sheetOpen.set(false)">Cerrar</ion-button>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
   `,
   styles: [`
     .mobile-card { background: var(--ds-bg-surface,#fff); border: 1px solid var(--ds-border,#e2e8f0); border-radius: var(--ds-radius-lg,8px); overflow: hidden; }
@@ -119,10 +197,16 @@ export class MobileOverlays {
   private toastCtrl = inject(ToastController);
   private loadingCtrl = inject(LoadingController);
 
+  modalOpen = signal(false);
+  sheetOpen = signal(false);
+
   constructor() {
     addIcons({
       alertCircleOutline,
       checkmarkCircleOutline,
+      chevronUpOutline,
+      closeOutline,
+      expandOutline,
       informationCircleOutline,
       layersOutline,
       listOutline,

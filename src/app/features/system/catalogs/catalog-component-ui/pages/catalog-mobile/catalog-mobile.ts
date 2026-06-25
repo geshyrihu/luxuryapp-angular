@@ -10,6 +10,7 @@ import { MobileInputs } from "./components/mobile-inputs/mobile-inputs";
 import { MobileLists } from "./components/mobile-lists/mobile-lists";
 import { MobileNavigation } from "./components/mobile-navigation/mobile-navigation";
 import { MobileOverlays } from "./components/mobile-overlays/mobile-overlays";
+import { MobilePageStructure } from "./components/mobile-page-structure/mobile-page-structure";
 
 @Component({
   selector: "app-catalog-mobile",
@@ -24,6 +25,7 @@ import { MobileOverlays } from "./components/mobile-overlays/mobile-overlays";
     MobileData,
     MobileForms,
     MobileOverlays,
+    MobilePageStructure,
   ],
   template: `
     <div class="flex flex-column gap-4">
@@ -46,6 +48,9 @@ import { MobileOverlays } from "./components/mobile-overlays/mobile-overlays";
         </div>
         <div class="col-12 lg:col-6">
           <app-mobile-overlays />
+        </div>
+        <div class="col-12 lg:col-6">
+          <app-mobile-page-structure />
         </div>
       </div>
     </div>
