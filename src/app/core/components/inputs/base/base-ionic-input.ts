@@ -1,5 +1,5 @@
 ﻿import { CommonModule } from "@angular/common";
-import { Component, input } from "@angular/core";
+import { Component, input, ViewEncapsulation } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { IonNote } from "@ionic/angular/standalone";
 import { BaseInputSignal } from "./base-input-signal";
@@ -7,6 +7,7 @@ import { BaseInputSignal } from "./base-input-signal";
 @Component({
   selector: "base-ionic-input",
   imports: [CommonModule, ReactiveFormsModule, IonNote],
+  encapsulation: ViewEncapsulation.None,
   template: `
     @if (!hidden()) {
       @if (onlyInput()) {
@@ -81,12 +82,12 @@ import { BaseInputSignal } from "./base-input-signal";
       ion-input,
       ion-textarea,
       ion-select {
-        --border-radius: var(--ds-radius-input, 4px);
-        --border-width: var(--ds-control-border-width, 1px);
-        --border-color: var(--ds-border, #e2e8f0);
+        --border-radius: var(--ds-radius-input, 8px);
+        --border-width: var(--ds-control-border-width, 1.5px);
+        --border-color: var(--ds-border-input, #94a3b8);
         --border-style: solid;
         --background: var(--ds-bg-surface, #ffffff);
-        --box-shadow: var(--ds-shadow-xs, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+        --box-shadow: none;
         --padding-start: 0.75rem;
         --padding-end: 0.75rem;
         --padding-top: 0.5rem;
@@ -97,8 +98,8 @@ import { BaseInputSignal } from "./base-input-signal";
         --placeholder-opacity: 1;
         margin-bottom: 0px;
         font-size: var(--ds-font-size-label, 0.875rem);
-        transition: border-color 150ms ease, box-shadow 150ms ease;
-        min-height: 40px;
+        transition: border-color 150ms ease;
+        min-height: 44px;
         width: 100%;
       }
       ion-input.ion-focused,
