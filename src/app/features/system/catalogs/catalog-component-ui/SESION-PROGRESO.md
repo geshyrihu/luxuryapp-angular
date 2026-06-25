@@ -1,8 +1,8 @@
 # SESIÓN DE PROGRESO — LuxuryApp DS
 
-**Última actualización:** 2026-06-25
+**Última actualización:** 2026-06-25 (sesión 2)
 **Branch activo:** `fix/ds-audit-phase1`
-**Último commit:** `6337a56` — Fase I mobile visual alignment
+**Último commit:** `7769404` — Fase II complete
 
 ---
 
@@ -45,21 +45,22 @@
 
 ---
 
-## 🚧 EN PROGRESO — IONIC CATALOG FASE II
+## ✅ IONIC CATALOG FASE II — COMPLETADA
 
-**Archivos a MEDIO hacer** (se quedaron a la mitad esta sesión):
+### mobile-overlays.ts — ✅ TERMINADO
+- ✅ `ion-modal` completo (pantalla completa + bottom sheet con breakpoints `[0, 0.4, 0.75]`)
+- ✅ Signals: `modalOpen`, `sheetOpen`
+- ✅ Imports: `IonModal`, `IonHeader`, `IonToolbar`, `IonTitle`, `IonContent`, `IonButtons`
 
-### mobile-lists.ts — ✅ TERMINADO en sesión
-- ✅ Search+Add pattern: `IonSearchbar` + `computed filteredItems` + `ion-list-header` + `ion-item-divider`
-- ✅ Imports actualizados: `IonButton`, `IonItemDivider`, `IonItemGroup`, `IonListHeader`, `IonSearchbar`
+### mobile-page-structure.ts — ✅ CREADO (nuevo componente)
+- ✅ Anatomía visual de página (ion-header / ion-content / ion-footer)
+- ✅ 3 demos en modal: básica, sub-toolbar, footer con acciones
+- ✅ Registrado en `catalog-mobile.ts`
 
-### mobile-feedback.ts — ✅ TERMINADO en sesión
-- ✅ `IonRefresher` + `IonRefresherContent` + `IonButton` importados
-- ✅ Pull-to-refresh showcase con `handleRefresh()` y `simulateRefresh()`
-
-### mobile-overlays.ts — ⚠️ PENDIENTE (sesión cortada aquí)
-- ❌ `ion-modal` NO implementado aún
-- El archivo tiene Alert, ActionSheet, Toast, Loading — falta Modal
+### mobile-forms.ts — ✅ AMPLIADO con controles avanzados
+- ✅ `ion-datetime-button` + `ion-datetime` en modal (`keepContentsMounted`, fecha + hora)
+- ✅ `ion-picker` inline (3 columnas: AM/PM, hora, minutos)
+- ✅ `ion-input-otp` (6 dígitos, `[(ngModel)]`)
 
 ---
 
@@ -69,23 +70,23 @@
 
 | Componente | Categoría | Prioridad | Dónde agregar |
 |---|---|:---:|---|
-| `ion-modal` | Overlays | 🔴 Alta | `mobile-overlays.ts` — agregar con `ModalController` |
-| `ion-content` + `ion-footer` | Page Structure | 🔴 Alta | Nuevo: `mobile-page-structure.ts` |
-| `ion-menu` | Navigation | 🟡 Media | `mobile-navigation.ts` — agregar sección |
+| `ion-modal` | Overlays | ✅ Hecho | `mobile-overlays.ts` |
+| `ion-content` + `ion-footer` | Page Structure | ✅ Hecho | `mobile-page-structure.ts` |
+| `ion-datetime-button` | Forms | ✅ Hecho | `mobile-forms.ts` |
+| `ion-picker` | Forms | ✅ Hecho | `mobile-forms.ts` |
+| `ion-input-otp` | Forms | ✅ Hecho | `mobile-forms.ts` |
 | `ion-refresher` | Feedback | ✅ Hecho | — |
 | `ion-list-header` + `ion-item-divider` | Lists | ✅ Hecho | — |
-| `ion-datetime-button` | Forms | 🟡 Media | `mobile-forms.ts` — agregar |
-| `ion-picker` | Forms | 🟡 Media | `mobile-forms.ts` — agregar |
-| `ion-input-otp` | Forms | 🟡 Media | `mobile-forms.ts` o nuevo |
+| `ion-menu` | Navigation | 🟡 Media | `mobile-navigation.ts` — agregar sección |
 | `ion-fab-list` | Navigation | 🟢 Baja | `mobile-navigation.ts` |
 | `ion-ripple-effect` | Gestures | 🟢 Baja | `mobile-lists.ts` |
 | `ion-split-pane` | Layout | 🟢 Baja | Nuevo showcase |
 
 ### Cobertura actual
 ```
-Ionic coverage: ~58 / 95 componentes (61%)
-  Fase II in-progress añade: +refresher +list-header +item-divider +search-pattern
-  Meta: >80% cobertura
+Ionic coverage: ~68 / 95 componentes (~72%)
+  Fase II completa añadió: modal + page-structure + datetime-button + picker + input-otp
+  Meta: >80% cobertura — 1 sesión más alcanza el objetivo
 ```
 
 ---
@@ -144,11 +145,12 @@ git commit -m "feat(catalog/mobile): Fase II — refresher, search+add, list-hea
 
 ## 🎯 PRÓXIMA SESIÓN — POR DÓNDE ARRANCAR
 
-1. **Commitear** los cambios pendientes de Fase II (mobile-lists, mobile-feedback)
-2. **ion-modal** en `mobile-overlays.ts` — el siguiente en la lista
-3. **Nuevo: `mobile-page-structure.ts`** — showcase de ion-header + ion-content + ion-footer
-4. Luego: `ion-datetime-button`, `ion-picker`, `ion-input-otp` en mobile-forms
-5. Opcional: revisar si vale la pena Fase III (cobertura Ionic >80%)
+### Para alcanzar >80% de cobertura Ionic (Fase III)
+1. **`ion-menu`** en `mobile-navigation.ts` — con `MenuController`, botón hamburger
+2. **`ion-fab-list`** en `mobile-navigation.ts` — lista de FABs secundarios
+3. **`ion-ripple-effect`** en `mobile-lists.ts` — efecto de toque en items custom
+4. **`ion-split-pane`** — nuevo showcase de layout tablet
+5. Opcional: revisar Accounting Fase 3 (C1: `p-tag` → `app-status-badge`, 76 instancias)
 
 ---
 
