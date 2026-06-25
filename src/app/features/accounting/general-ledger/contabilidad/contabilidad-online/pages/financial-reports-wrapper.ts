@@ -7,11 +7,11 @@ import { CustomButton } from "src/app/core/components/buttons/web/custom-button"
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { CobranzaOnlineDashboard } from "../../cobranza-online/pages/dashboard/cobranza-online-dashboard";
 import { AiAgentContabilidadOnlineComponent } from "../components/ai-agent-contabilidad-online/ai-agent-contabilidad-online";
 import { AiAgentExplicadorContabilidadOnlineComponent } from "../components/ai-agent-explicador-contabilidad-online/ai-agent-explicador-contabilidad-online";
 import { AiAgentComponent } from "../components/ai-agent/ai-agent";
 import { reportFilterState } from "../state/financial-report-filter.state";
-import { AnalisisCobranza } from "./analisis-cobranza/analisis-cobranza";
 import { BancosInversionesComponent } from "./bancos-inversiones/bancos-inversiones";
 import { CedulaExtraordinaria } from "./cedula-extraordinaria/cedula-extraordinaria";
 import { CedulaPresupuestal } from "./cedula-presupuestal/cedula-presupuestal";
@@ -61,9 +61,9 @@ const REPORT_META = [
       "Comportamiento mensual de ingresos, gastos, flujo neto y saldo acumulado.",
   },
   {
-    title: "Análisis de Cobranza",
+    title: "Dashboard de Cobranza",
     description:
-      "Corte de cobranza, clasificación de saldos y lectura operativa por condómino.",
+      "Vista ejecutiva de cobranza con corte, KPIs, top deudores y detalle operativo por condómino.",
   },
   {
     title: "Presupuesto Contabilidad",
@@ -97,7 +97,7 @@ const REPORT_META = [
     ReporteFinanciero,
     FlujoEfectivo,
     CustomButton,
-    AnalisisCobranza,
+    CobranzaOnlineDashboard,
     PresupuestoContabilidad,
     BancosInversionesComponent,
     FondoReservaComponent,

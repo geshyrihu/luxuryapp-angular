@@ -209,8 +209,8 @@
         <app-flujo-efectivo />
       </div>
       <div class="print-report-section">
-        <div class="print-section-header"><span>Analisis de Cobranza</span></div>
-        <app-analisis-cobranza />
+        <div class="print-section-header"><span>Dashboard de Cobranza</span></div>
+        <app-cobranza-online-dashboard />
       </div>
       <div class="print-report-section">
         <div class="print-section-header"><span>Presupuesto Contabilidad</span></div>
@@ -250,7 +250,7 @@
           <p-tab [value]="6"
             ><app-icon [icon]="'mdi:currency-usd'" class="mr-2"></app-icon>Flujo Efectivo</p-tab
           >
-          <p-tab [value]="7"><app-icon [icon]="'mdi:account-group'" class="mr-2"></app-icon>Cobranza</p-tab>
+          <p-tab [value]="7"><app-icon [icon]="'mdi:account-group'" class="mr-2"></app-icon>Dashboard Cobranza</p-tab>
           <p-tab [value]="8"
             ><app-icon [icon]="'mdi:wallet'" class="mr-2"></app-icon>Presupuesto</p-tab
           >
@@ -288,7 +288,7 @@
             <app-flujo-efectivo />
           </p-tabpanel>
           <p-tabpanel [value]="7" class="p-4 pt-5">
-            <app-analisis-cobranza />
+            <app-cobranza-online-dashboard />
           </p-tabpanel>
           <p-tabpanel [value]="8" class="p-4 pt-5">
             <app-presupuesto-contabilidad />
