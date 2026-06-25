@@ -384,15 +384,18 @@ export const settingsRoutes: Routes = [
     children: [
       { path: "", redirectTo: "tokens/colors", pathMatch: "full" },
       { path: "tokens", redirectTo: "tokens/colors" },
+      { path: "componentes", redirectTo: "web/accordion" },
       { path: "web", redirectTo: "web/accordion" },
       { path: "mobile", redirectTo: "mobile/buttons" },
       { path: "core", redirectTo: "core/actionmenu" },
       { path: "charts", redirectTo: "charts/bar" },
+      { path: "patrones-layouts", redirectTo: "patterns/loginreference" },
       { path: "patterns", redirectTo: "patterns/loginreference" },
       { path: "layouts", redirectTo: "layouts/fullwidth" },
+      { path: "guia-estandares", redirectTo: "guia/identitypillars" },
+      { path: "guia", redirectTo: "guia/identitypillars" },
       { path: "docs", redirectTo: "docs/documenttypes" },
       { path: "audit", redirectTo: "audit/contentblocks" },
-      { path: "guia", redirectTo: "guia/identitypillars" },
       {
         path: "tokens/:item",
         loadComponent: () =>

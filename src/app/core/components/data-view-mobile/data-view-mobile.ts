@@ -33,6 +33,7 @@ import {
 } from "@ionic/angular/standalone";
 import { filter, map, startWith } from "rxjs";
 import { AppIcon } from "../app-icon/app-icon.component";
+import { EmptyState } from "../empty-state/empty-state";
 
 export interface IMobileBreadcrumbItem {
   icon?: string;
@@ -64,6 +65,7 @@ export interface IMobileBreadcrumbItem {
     IonInfiniteScroll,
     IonInfiniteScrollContent,
     AppIcon,
+    EmptyState,
   ],
 })
 export class DataViewMobile implements OnInit {

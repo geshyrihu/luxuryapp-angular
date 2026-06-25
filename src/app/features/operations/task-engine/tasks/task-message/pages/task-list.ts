@@ -1,4 +1,5 @@
-﻿import {
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import {
   Component,
   computed,
   DestroyRef,
@@ -124,6 +125,7 @@ import { TaskForm } from "./task-form";
     `,
   ],
   imports: [
+    EmptyState,
     TableModule,
     ActionMenu,
     CustomInputTextSignal,

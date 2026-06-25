@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -23,6 +24,7 @@ import { ProviderSupportForm } from "./provider-support-form";
   selector: "app-provider-support",
   templateUrl: "./provider-support.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     AvatarModule,

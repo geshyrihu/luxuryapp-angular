@@ -1,4 +1,5 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { storefrontOutline } from "ionicons/icons";
@@ -23,6 +24,7 @@ import { CustomerProviderForm } from "./customer-provider-form";
 @Component({
   selector: "app-mis-proveedores",
   imports: [
+    EmptyState,
     TableModule,
     AvatarModule,
     PrimeNgCustomCaption,

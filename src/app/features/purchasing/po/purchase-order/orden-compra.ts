@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -48,6 +49,7 @@ import { OrdenCompraFacturasParcial } from "./parcials/orden-compra-facturas-par
   selector: "app-orden-compra",
   templateUrl: "./orden-compra.html",
   imports: [
+    EmptyState,
     CardModule,
     CommonModule,
     CustomButtonDelete,

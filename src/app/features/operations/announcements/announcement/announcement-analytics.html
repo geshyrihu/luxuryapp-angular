@@ -65,13 +65,9 @@
         >
           <ng-template #listItemTemplate let-analytic>
             <ion-item lines="full" class="ion-no-padding">
-              <ion-avatar slot="start">
-                <div
-                  class="flex align-items-center justify-content-center bg-primary border-circle w-full h-full text-white"
-                >
-                  {{ analytic.userName.charAt(0).toUpperCase() }}
-                </div>
-              </ion-avatar>
+              <div slot="start" class="mobile-avatar-slot" style="background:var(--ds-primary);border-radius:50%;">
+                <span style="font-size:1rem;font-weight:700;color:#fff;">{{ analytic.userName.charAt(0).toUpperCase() }}</span>
+              </div>
               <ion-label>
                 <h2 class="font-bold m-0 text-base">{{ analytic.userName }}</h2>
                 <div class="flex flex-column gap-1 mt-1">

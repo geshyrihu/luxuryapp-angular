@@ -1,4 +1,5 @@
-﻿import { Component, computed, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -28,6 +29,7 @@ import { ModuleAppForm } from "./module-app-form";
 @Component({
   selector: "app-module-app-list",
   imports: [
+    EmptyState,
     TableModule,
     TagModule,
     CustomButtonEdit,

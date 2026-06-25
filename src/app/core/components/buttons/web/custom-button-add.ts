@@ -19,7 +19,7 @@ import { BaseButton } from "../base/base-button";
             color="primary"
             [disabled]="disabled()"
             (click)="clicked.emit($event)"
-            style="--border-radius:16px;--box-shadow:0 6px 20px rgba(21,94,192,0.35);"
+            style="--border-radius:16px;--box-shadow:0 6px 20px rgba(0,61,155,0.35);"
           >
             <ion-icon name="add-outline" />
           </ion-fab-button>

@@ -30,7 +30,6 @@
           [variant]="statusCompra() !== 1 ? 'outlined' : undefined"
           [severity]="statusCompra() === 1 ? 'primary' : 'secondary'"
           size="small"
-          [showLabelOnDesktop]="true"
         />
         <custom-button
           iconClass="mdi:check"
@@ -39,7 +38,6 @@
           [variant]="statusCompra() !== 0 ? 'outlined' : undefined"
           [severity]="statusCompra() === 0 ? 'primary' : 'secondary'"
           size="small"
-          [showLabelOnDesktop]="true"
         />
         <custom-button
           iconClass="mdi:hourglass"
@@ -48,7 +46,6 @@
           [variant]="statusCompra() !== 2 ? 'outlined' : undefined"
           [severity]="statusCompra() === 2 ? 'primary' : 'secondary'"
           size="small"
-          [showLabelOnDesktop]="true"
         />
         @if (isPendingView()) {
         <custom-button
@@ -58,7 +55,6 @@
           severity="contrast"
           variant="outlined"
           size="small"
-          [showLabelOnDesktop]="true"
           [disabled]="selectedSolicitudIds().length === 0"
         />
         }
@@ -68,7 +64,6 @@
           (clicked)="onManageLinks()"
           severity="warn"
           size="small"
-          [showLabelOnDesktop]="true"
         />
       </div>
     </div>
@@ -140,7 +135,6 @@
         <custom-button
           icon="mdi:file-document-multiple"
           [label]="item.cotizacionesCount"
-          [showLabelOnDesktop]="true"
           (clicked)="onCuadroComparativo(item.id)"
           size="small"
           severity="help"
@@ -180,6 +174,13 @@
       </td>
     </tr>
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="9">
+          <app-empty-state icon="mdi:clipboard-list-outline" title="Sin solicitudes" message="No hay solicitudes de compra registradas." />
+        </td>
+      </tr>
+    </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="data()" />
   </ng-template>
@@ -219,7 +220,7 @@
           margin-left: 16px;
         "
       >
-        <app-icon icon="mdi:cart-outline" style="font-size: 20px; color: #d97706"></app-icon>
+        <app-icon icon="mdi:cart-outline" style="font-size: 20px; color:var(--ds-warning)"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.equipoOInstalacion }}</h3>
@@ -227,8 +228,10 @@
         <p>{{ item.fechaSolicitud | date }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <custom-button-edit (clicked)="onSolicitudCompra(item.id)" />
-        <custom-button-delete (confirmed)="onDelete(item.id)" />
+        <ng-container actions>
+        <custom-button-edit (clicked)="onSolicitudCompra(item.id)"  label="Editar" [showLabelOnDesktop]="true"/>
+        <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
+              </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>
@@ -243,7 +246,6 @@
     severity="contrast"
     variant="outlined"
     size="small"
-    [showLabelOnDesktop]="true"
     [disabled]="selectedSolicitudIds().length === 0"
   />
 </div>

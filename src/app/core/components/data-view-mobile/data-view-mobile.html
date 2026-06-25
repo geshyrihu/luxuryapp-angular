@@ -2,12 +2,7 @@
 <div class="flex md:hidden flex-column no-print h-full min-h-0">
   <!-- Sticky Header: Breadcrumb + Search + Add -->
   <div
-    style="
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background-color: var(--ion-background-color, var(--ds-surface));
-    "
+    style="position:sticky;top:0;z-index:1000;background-color:var(--ds-bg-surface);"
     class="pb-1"
   >
     <!-- 🧭 Breadcrumb Premium (Pill Style) -->
@@ -16,7 +11,8 @@
       class="flex justify-content-center px-3 py-2 border-bottom-1 border-50 surface-ground shadow-inner overflow-hidden"
     >
       <div
-        class="flex align-items-center gap-1 bg-white dark:bg-surface-900 px-3 py-1-5 border-round-pill shadow-1 border-1 border-200 overflow-x-auto no-scrollbar max-w-full"
+        class="flex align-items-center gap-1 px-3 py-1 border-round-pill shadow-1 border-1 overflow-x-auto no-scrollbar max-w-full"
+        style="background:var(--ds-bg-surface);border-color:var(--ds-border);"
       >
         @for (item of breadcrumbItems(); track $index; let last = $last) {
         <div class="flex align-items-center">
@@ -108,19 +104,17 @@
       }
     </ion-list>
     } @else if (filterValue() && !loading()) {
-    <div
-      class="flex flex-column align-items-center justify-content-center p-5 text-center text-500"
-    >
-      <app-icon icon="mdi:magnify" class="text-4xl mb-3" />
-      <p>No se encontraron resultados para "{{ filterValue() }}"</p>
-    </div>
+      <app-empty-state
+        icon="mdi:magnify"
+        title="Sin resultados"
+        [message]="'No se encontraron resultados para &quot;' + filterValue() + '&quot;'"
+      />
     } @else if (!loading() && filteredData().length === 0) {
-    <div
-      class="flex flex-column align-items-center justify-content-center p-5 text-center text-500"
-    >
-      <app-icon icon="mdi:information-outline" class="text-4xl mb-3" />
-      <p>No hay registros disponibles</p>
-    </div>
+      <app-empty-state
+        icon="mdi:inbox-outline"
+        title="Sin registros"
+        message="No hay registros disponibles."
+      />
     }
 
     <!-- Infinite Scroll -->

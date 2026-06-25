@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
@@ -27,6 +28,7 @@ import { PermisoForm } from "./permiso-form";
   selector: "app-leave-request-list-my",
   templateUrl: "./mis-permisos-listado.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     TagModule,

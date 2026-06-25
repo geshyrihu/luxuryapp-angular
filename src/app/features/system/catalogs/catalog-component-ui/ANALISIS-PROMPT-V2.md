@@ -143,7 +143,159 @@ Genera una matriz que cruce:
 |------------|:---:|:---:|:---:|:---:|
 | ... | ✅/⚠️/❌ | ✅/⚠️/❌ | Completo/Parcial/Faltante | Alta/Media/Baja |
 
-### 1.4 Recomendaciones de Priorización
+### 1.4 Auditoría de Cobertura Ionic Nativo
+
+Para la página `catalog-mobile/`, contrasta **todos los componentes Ionic disponibles** en `node_modules/@ionic/core/components/` contra los **realmente importados/usados** en `catalog-mobile/components/*.ts` y `shared/mobile-core-coverage.ts`.
+
+Genera una tabla por cada categoría listando cada componente Ionic nativo, indicando si está ✅ implementado, ⚠️ parcial o ❌ ausente:
+
+| Categoría | Componente Ionic | Implementado | Ubicación |
+|-----------|-----------------|:---:|----------|
+
+#### A) Estructura de Página (Layout)
+
+| Componente | Descripción |
+|-----------|-------------|
+| `ion-header` | Barra superior fija |
+| `ion-footer` | Barra inferior fija |
+| `ion-content` | Área de contenido scrollable |
+| `ion-toolbar` | Toolbar dentro de header/footer |
+| `ion-title` | Título dentro de toolbar |
+| `ion-buttons` | Contenedor de botones en toolbar |
+| `ion-back-button` | Botón de retroceso por defecto |
+| `ion-split-pane` | Panel dividido responsive |
+| `ion-app` | Contenedor raíz de la app |
+
+#### B) Navegación y Tabs
+
+| Componente | Descripción |
+|-----------|-------------|
+| `ion-tabs` | Contenedor de tabs |
+| `ion-tab-bar` | Barra de tabs inferior |
+| `ion-tab-button` | Botón individual de tab |
+| `ion-segment` | Segment control (tabs estilizados) |
+| `ion-segment-button` | Botón de segment |
+| `ion-segment-content` | Contenido de segment |
+| `ion-segment-view` | Vista de segment |
+| `ion-menu` | Menú lateral (drawer) |
+| `ion-menu-button` | Botón para abrir menú |
+| `ion-menu-toggle` | Toggle de menú |
+| `ion-nav` | Navegación stack |
+| `ion-nav-link` | Link de navegación |
+| `ion-router-outlet` | Router outlet nativo |
+
+#### C) Formularios y Entradas
+
+| Componente | Descripción |
+|-----------|-------------|
+| `ion-input` | Input de texto nativo |
+| `ion-textarea` | Área de texto nativa |
+| `ion-searchbar` | Barra de búsqueda Ionic |
+| `ion-select` | Select nativo |
+| `ion-select-modal` | Modal de selección |
+| `ion-select-popover` | Popover de selección |
+| `ion-select-option` | Opción de select |
+| `ion-checkbox` | Checkbox nativo |
+| `ion-radio` | Radio button nativo |
+| `ion-radio-group` | Grupo de radios |
+| `ion-toggle` | Toggle/switch nativo |
+| `ion-range` | Range slider nativo |
+| `ion-datetime` | Date/time picker nativo |
+| `ion-datetime-button` | Botón que dispara datetime |
+| `ion-picker` | Picker wheel |
+| `ion-picker-column` | Columna de picker |
+| `ion-picker-column-option` | Opción de picker column |
+| `ion-input-otp` | Input OTP (código de verificación) |
+| `ion-input-password-toggle` | Toggle de visibilidad de password |
+
+#### D) Feedback y Overlays
+
+| Componente | Descripción |
+|-----------|-------------|
+| `ion-alert` | Alerta/dialogo nativo |
+| `ion-action-sheet` | Action sheet bottom |
+| `ion-toast` | Toast notification |
+| `ion-loading` | Loading overlay |
+| `ion-modal` | Modal dialog |
+| `ion-popover` | Popover contextual |
+| `ion-spinner` | Spinner de carga |
+| `ion-progress-bar` | Barra de progreso |
+| `ion-skeleton-text` | Skeleton placeholder |
+| `ion-infinite-scroll` | Scroll infinito |
+| `ion-infinite-scroll-content` | Contenido de scroll infinito |
+
+#### E) Data Display
+
+| Componente | Descripción |
+|-----------|-------------|
+| `ion-card` | Card container |
+| `ion-card-header` | Header de card |
+| `ion-card-content` | Contenido de card |
+| `ion-card-title` | Título de card |
+| `ion-card-subtitle` | Subtítulo de card |
+| `ion-avatar` | Avatar circular |
+| `ion-badge` | Badge numérico |
+| `ion-chip` | Chip/tag |
+| `ion-icon` | Icono Ionic |
+| `ion-img` | Imagen optimizada |
+| `ion-thumbnail` | Thumbnail cuadrado |
+| `ion-text` | Texto con estilos |
+| `ion-note` | Nota/ texto secundario |
+| `ion-accordion` | Acordeón individual |
+| `ion-accordion-group` | Grupo de acordeones |
+| `ion-label` | Label de formulario |
+
+#### F) Listas y Gestos
+
+| Componente | Descripción |
+|-----------|-------------|
+| `ion-list` | Lista container |
+| `ion-list-header` | Header de lista |
+| `ion-item` | Item de lista |
+| `ion-item-divider` | Divisor de items |
+| `ion-item-group` | Grupo de items |
+| `ion-item-sliding` | Item con swipe actions |
+| `ion-item-options` | Contenedor de swipe options |
+| `ion-item-option` | Opción individual de swipe |
+| `ion-reorder` | Handle para reordenar |
+| `ion-reorder-group` | Grupo reordenable |
+| `ion-refresher` | Pull-to-refresh |
+| `ion-refresher-content` | Contenido del refresher |
+| `ion-ripple-effect` | Efecto ripple touch |
+
+#### G) FAB y Acciones
+
+| Componente | Descripción |
+|-----------|-------------|
+| `ion-fab` | Floating action button container |
+| `ion-fab-button` | FAB button |
+| `ion-fab-list` | Lista de FAB actions |
+| `ion-button` | Button nativo Ionic |
+| `ion-route` | Ruta interna |
+| `ion-route-redirect` | Redirección interna |
+| `ion-router` | Router interno |
+
+#### H) Grid y Layout
+
+| Componente | Descripción |
+|-----------|-------------|
+| `ion-grid` | Grid container |
+| `ion-row` | Fila de grid |
+| `ion-col` | Columna de grid |
+
+#### I) Componentes Actualmente Implementados (a modo de baseline)
+
+| Categoría | Componentes | Estado |
+|-----------|-------------|:------:|
+| Buttons | Uso de wrappers `custom-button-*` (web compilado, auto-detecta plataforma) | ✅ |
+| Inputs | Wrappers `custom-input-*-signal` (web compilado, auto-detecta plataforma) | ✅ |
+| Lists | `ion-list`, `ion-item`, `ion-item-divider`, `ion-label`, `ion-badge` | ⚠️ Parcial |
+| Data Display | `ion-avatar`, `ion-chip`, `ion-icon`, `ion-badge` | ⚠️ Parcial |
+| Feedback | `ion-spinner`, `ion-progress-bar` | ⚠️ Parcial |
+| Navigation | `ion-fab`, `ion-fab-button` | ❌ Mínimo |
+| Forms (nativos) | `ion-checkbox`, `ion-radio`, `ion-radio-group`, `ion-range`, `ion-toggle`, `ion-datetime`, `ion-select`, `ion-select-option` | ⚠️ Parcial |
+
+### 1.5 Recomendaciones de Priorización
 
 Usa el framework **RICE** (Reach, Impact, Confidence, Effort) o similar para priorizar los componentes faltantes según:
 
@@ -325,31 +477,54 @@ Estimación de esfuerzo por tarea
 
 ### 5.1 Inventario de Páginas vs Navegación
 
-Genera un mapeo completo entre las 10 categorías del menú de navegación (nav) de `catalog-component-ui` y sus fuentes de contenido:
+Genera un mapeo completo entre las 5 categorías del menú de navegación (nav) de `catalog-component-ui` y sus fuentes de contenido (nota: las rutas planas `/web`, `/mobile`, `/charts`, `/patterns`, `/layouts`, `/docs`, `/audit`, `/guia` se conservan como legacy, pero el menú las agrupa en 5 categorías):
 
-| # | Nav ID | Label | Fuente del Contenido | Directorio `pages/` | ¿Importado? |
-|---|--------|-------|---------------------|-------------------|:---:|
-| 1 | tokens | Tokens & Identidad | Inline / shared component | — | — |
-| 2 | web | Web (PrimeNG) | `CatalogWeb` | `pages/catalog-web/` | ✅ |
-| 3 | mobile | Mobile (Ionic) | `CatalogMobile` | `pages/catalog-mobile/` | ✅ |
-| 4 | charts | Gráficos | `CatalogCharts` | `pages/catalog-charts/` | ✅ |
-| 5 | core | Core Components | Inline | — | — |
-| 6 | patterns | Patrones UX | Inline | — | — |
-| 7 | docs | Estándar Documental | Inline | ~~`pages/catalog-documents/`~~ | ❌ Eliminado |
-| 8 | audit | Auditoría | Inline | — | — |
-| 9 | layouts | Layouts | `CatalogLayouts` | `pages/catalog-layouts/` | ✅ |
-| 10 | guia | Guía ERP | Inline | — | — |
+| # | Grupo Nav | Sub-secciones | Directorios `pages/` involucrados |
+|---|-----------|--------------|----------------------------------|
+| 1 | Tokens & Identidad | — | `catalog-tokens/`, `catalog-tokens-item/` |
+| 2 | Componentes | Web (PrimeNG), Mobile (Ionic), Gráficos | `catalog-web/`, `catalog-web-item/`, `catalog-mobile/`, `catalog-mobile-item/`, `catalog-charts/`, `catalog-charts-item/` |
+| 3 | Core Components | — | `catalog-core/`, `catalog-core-item/` |
+| 4 | Patrones y Layouts | Patrones UX, Layouts | `catalog-patterns/`, `catalog-patterns-item/`, `catalog-layouts/`, `catalog-layouts-item/` |
+| 5 | Guía y Estándares | Guía ERP, Estándar Documental, Auditoría | `catalog-guia/`, `catalog-guia-item/`, `catalog-docs/`, `catalog-docs-item/`, `catalog-audit/`, `catalog-audit-item/` |
 
 ### 5.2 Verificaciones
 
+#### 5.2.1 Análisis detallado por archivo de cada página
+
+Para **cada directorio** `pages/catalog-{x}/` existente, analiza **todos** sus archivos:
+
+- **`catalog-{x}.ts`**: componente, imports, dependencias, plataforma (web/mobile/ambas), si usa `standalone`, template y estilos asociados
+- **`catalog-{x}.html`**: template completo, componentes renderizados, directivas estructurales (`@if`, `@for`), data binding, slots/ng-content
+- **`catalog-{x}.scss`**: estilos, uso de `--ds-*` design tokens, valores hardcodeados, media queries, variables locales
+- **`components/`** (si existe): listar todos los sub-componentes, verificar imports y uso dentro de la página
+- **`index.ts`** (si existe): verificar que exporte correctamente el componente principal
+
+Para cada archivo encontrado, documenta:
+- Ruta completa y línea donde se define/importa cada elemento relevante
+- Si la página contiene lógica de plataforma (detección web vs mobile)
+- Si hay estilos inline vs hoja de estilos separada
+- Si usa componentes PrimeNG en página mobile o viceversa (cross-platform leak)
+
+#### 5.2.2 Verificación del patrón `*-item` (páginas item)
+
+Cada categoría tiene un segundo directorio `pages/catalog-{x}-item/` que normalmente contiene un componente contenedor para vista de detalle/ítem individual. Verifica:
+
+- [ ] ¿`catalog-{x}-item.ts` está correctamente importado y registrado?
+- [ ] ¿Cuál es su propósito vs la página principal (`catalog-{x}`)?
+- [ ] ¿Tiene template y estilos propios o es solo un re-export?
+- [ ] ¿Comparte componentes con su página principal?
+- [ ] ¿Hay duplicación de lógica entre `catalog-{x}` y `catalog-{x}-item`?
+
+#### 5.2.3 Verificaciones de importación y consistencia
+
 Para cada directorio `pages/` existente:
 
-- [ ] ¿Está importado en `catalog-component-ui.ts`?
-- [ ] ¿Está incluido en el `imports` array del @Component?
-- [ ] ¿Se renderiza en `catalog-component-ui.html` dentro del `@if` correspondiente?
+- [ ] ¿Está importado en `index.ts` raíz de `catalog-component-ui/`?
+- [ ] ¿Está incluido en el `imports` array del @Component del layout principal?
+- [ ] ¿Se renderiza en el template del layout dentro del `@if` / routing correspondiente?
 - [ ] ¿Sus sub-componentes (en `components/`) están correctamente importados y usados dentro de la página?
 - [ ] ¿Hay componentes huérfanos (en disco pero no importados)?
-- [ ] ¿Hay componentes duplicados (mismo contenido inline y en página)?
+- [ ] ¿Hay componentes duplicados (mismo contenido en página principal e item)?
 
 ### 5.3 Consistencia de Contenido
 
@@ -366,7 +541,7 @@ Verifica que cada página contenga al menos los componentes que su categoría de
 |-----------|----------------------------------|
 | Tokens & Identidad | Color palette, Typography scale |
 | Web (PrimeNG) | Todos los wrappers de PrimeNG (inputs, buttons, data, overlays, feedback) |
-| Mobile (Ionic) | Ionic buttons, inputs, feedback, navigation, lists, data, forms |
+| Mobile (Ionic) | **Todos los componentes Ionic nativos** listados en la sección 1.4 (A-I). No solo los 7 grupos actuales. Debe incluir estructura de página, navegación, tabs, segment, menú, overlays, gestos, pickers, OTP, skeleton, refresher, reorder, sliding items, grid, card, accordion, etc. |
 | Gráficos | Bar, Pie, Line, Doughnut, Radar charts |
 | Core Components | ActionMenu, AppIcon, StatusBadge, Loader, Wizard, EmptyState, etc. |
 | Patrones UX | Complex Card, Data Table Hybrid, Login Reference, Navigation Reference |
@@ -383,6 +558,74 @@ Si se encuentra algún desajuste:
 - **Página importada pero sin contenido**: eliminar o crear contenido
 - **Página duplicada vs inline**: consolidar (elegir uno, eliminar el otro)
 
+### 5.6 Verificación de Cobertura Ionic (Mobile Catalog)
+
+Para la página `catalog-mobile/`, verifica **exhaustivamente** qué componentes Ionic están cubiertos:
+
+#### 5.6.1 Inventario de imports Ionic
+
+Analiza todos los archivos en:
+- `pages/catalog-mobile/catalog-mobile.ts`
+- `pages/catalog-mobile/components/*/mobile-*.ts`
+- `pages/catalog-mobile-item/catalog-mobile-item.ts`
+- `shared/mobile-core-coverage.ts`
+
+Extrae la lista completa de imports de `@ionic/angular/standalone`. Luego contrasta contra los ~90+ componentes disponibles en `node_modules/@ionic/core/components/`.
+
+#### 5.6.2 Matriz de brecha (gap) por sub-componente
+
+Para **cada uno** de los componentes listados en 1.4.A a 1.4.H, genera una entrada:
+
+| Componente | ¿Importado? | ¿Renderizado en template? | ¿En página principal o item? | Severidad |
+|-----------|:-----------:|:------------------------:|:---------------------------:|:---------:|
+| `ion-header` | ❌ | ❌ | — | 🔴 Alta |
+| `ion-tabs` | ❌ | ❌ | — | 🔴 Alta |
+| ... | ❌ | ❌ | — | 🟡 Media |
+
+#### 5.6.3 Verificación de patrones mobile específicos
+
+- [ ] ¿Existe showcase de **pull-to-refresh** (`ion-refresher`)?
+- [ ] ¿Existe showcase de **swipe actions** (`ion-item-sliding`, `ion-item-options`, `ion-item-option`)?
+- [ ] ¿Existe showcase de **tab navigation** (`ion-tabs`, `ion-tab-bar`, `ion-tab-button`)?
+- [ ] ¿Existe showcase de **segment control** (`ion-segment`, `ion-segment-button`)?
+- [ ] ¿Existe showcase de **menú lateral** (`ion-menu`)?
+- [ ] ¿Existe showcase de **action sheet** (`ion-action-sheet`)?
+- [ ] ¿Existe showcase de **alert dialog** (`ion-alert`)?
+- [ ] ¿Existe showcase de **modal** (`ion-modal`)?
+- [ ] ¿Existe showcase de **toast** (`ion-toast`)?
+- [ ] ¿Existe showcase de **loading overlay** (`ion-loading`)?
+- [ ] ¿Existe showcase de **skeleton text** (`ion-skeleton-text`)?
+- [ ] ¿Existe showcase de **infinite scroll** (`ion-infinite-scroll`)?
+- [ ] ¿Existe showcase de **picker** (`ion-picker`, `ion-picker-column`)?
+- [ ] ¿Existe showcase de **OTP input** (`ion-input-otp`)?
+- [ ] ¿Existe showcase de **card** (`ion-card`, `ion-card-header`, `ion-card-content`, `ion-card-title`, `ion-card-subtitle`)?
+- [ ] ¿Existe showcase de **accordion** (`ion-accordion`, `ion-accordion-group`)?
+- [ ] ¿Existe showcase de **grid** (`ion-grid`, `ion-row`, `ion-col`)?
+- [ ] ¿Existe showcase de **searchbar** (`ion-searchbar`)?
+- [ ] ¿Existe showcase de **datetime button** (`ion-datetime-button`)?
+- [ ] ¿Existe showcase de **reorder** (`ion-reorder`, `ion-reorder-group`)?
+- [ ] ¿Existe showcase de **ripple effect** (`ion-ripple-effect`)?
+- [ ] ¿Existe showcase de **split pane** (`ion-split-pane`)?
+- [ ] ¿Existe showcase de **estructura de página completa** (`ion-header` + `ion-content` + `ion-footer`)?
+- [ ] ¿Existe showcase de **back button** (`ion-back-button`)?
+
+#### 5.6.4 Reporte de cobertura general
+
+Genera un resumen con:
+
+```
+Cobertura Ionic: X / ~95 componentes (Y%)
+  - Estructura:     X/9  (listado de faltantes)
+  - Navegación:     X/11 (listado de faltantes)
+  - Formularios:    X/17 (listado de faltantes)
+  - Feedback:       X/10 (listado de faltantes)
+  - Data Display:   X/15 (listado de faltantes)
+  - Listas/Gestos:  X/13 (listado de faltantes)
+  - FAB/Acciones:   X/7  (listado de faltantes)
+  - Grid:           X/3  (listado de faltantes)
+  - Implementados:  X/20 (listado actual)
+```
+
 ---
 
 REGLAS DE ANÁLISIS
@@ -394,3 +637,5 @@ Piensa enterprise: Los usuarios usan la app 8+ horas al día, la fatiga visual y
 Doble plataforma: Cada hallazgo debe considerar tanto PrimeNG (web) como Ionic (mobile)
 Luxury branding: Al ser una app "Luxury", la estética debe transmitir premium, sofisticación y confianza sin sacrificar usabilidad
 Comienza analizando primero los archivos en src/styles/ para establecer el baseline del sistema de diseño, luego procede al análisis de componentes en catalog-component-ui/.
+
+**Cobertura Ionic es una verificación OBLIGATORIA.** No omitir. La sección 1.4 y 5.6 deben ejecutarse siempre. La meta es alcanzar >80% de cobertura de componentes Ionic nativos en el catálogo mobile.

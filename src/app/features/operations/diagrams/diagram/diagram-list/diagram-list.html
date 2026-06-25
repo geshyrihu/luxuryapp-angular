@@ -20,7 +20,6 @@
           <custom-button
             label="Galería"
             iconClass="mdi:image-multiple"
-            [showLabelOnDesktop]="true"
             severity="secondary"
             variant="ghost-text"
             (clicked)="onOpenGallery()"
@@ -54,7 +53,6 @@
               ngbTooltip="Editar Propiedades"
               variant="text"
               severity="secondary"
-              [showLabelOnDesktop]="true"
               label="Propiedades"
             />
             <custom-button
@@ -63,7 +61,6 @@
               ngbTooltip="Abrir Editor Gráfico"
               variant="text"
               severity="info"
-              [showLabelOnDesktop]="true"
               label="Editor"
             />
             <custom-button
@@ -72,7 +69,6 @@
               ngbTooltip="Visualizar Diagrama"
               variant="text"
               severity="success"
-              [showLabelOnDesktop]="true"
               label="Ver"
             />
             <custom-button-delete (clicked)="onDeleteDiagram(diagram.id)" />
@@ -86,7 +82,14 @@
         En total hay {{ diagrams() ? diagrams().length : 0 }} diagramas.
       </div>
     </ng-template>
-  </p-table>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="3">
+          <app-empty-state icon="mdi:chart-tree" title="Sin diagramas" message="No hay diagramas registrados." />
+        </td>
+      </tr>
+    </ng-template>
+</p-table>
 </div>
 
 <app-data-view-mobile
@@ -108,22 +111,24 @@
         <p class="text-500">{{ diagram.updateAt | date:'dd/MM/yyyy HH:mm' }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <custom-button-edit (clicked)="onEditDiagram(diagram.id)" />
+        <ng-container actions>
+        <custom-button-edit (clicked)="onEditDiagram(diagram.id)"  label="Editar" [showLabelOnDesktop]="true"/>
         <custom-button
           iconClass="mdi:palette"
           (clicked)="onOpenEditor(diagram.id)"
           label="Editor"
           variant="text"
           severity="info"
-        />
+         [showLabelOnDesktop]="true"/>
         <custom-button
           iconClass="mdi:eye-outline"
           (clicked)="onViewDiagram(diagram.id)"
           label="Ver"
           variant="text"
           severity="success"
-        />
-        <custom-button-delete (confirmed)="onDeleteDiagram(diagram.id)" />
+         [showLabelOnDesktop]="true"/>
+        <custom-button-delete (confirmed)="onDeleteDiagram(diagram.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
+              </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

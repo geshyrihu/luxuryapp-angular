@@ -1,33 +1,66 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed, effect, inject, input, signal } from '@angular/core';
-import { SkeletonModule } from 'primeng/skeleton';
-import { TableModule } from 'primeng/table';
+import { CommonModule } from "@angular/common";
+import {
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  signal,
+} from "@angular/core";
+import { SkeletonModule } from "primeng/skeleton";
+import { TableModule } from "primeng/table";
 import type {
   IBaseAccountDto,
   IFinancialStatementDto,
-} from '../../../contabilidad-online/models/aspel-budget.interface';
-import { AccountingNumberPipe } from '../../../contabilidad-online/pipes/accounting-number.pipe';
-import { ContabilidadClienteService } from '../../services/contabilidad-cliente.service';
+} from "../../../contabilidad-online/models/aspel-budget.interface";
+import { AccountingNumberPipe } from "../../../contabilidad-online/pipes/accounting-number.pipe";
+import { ContabilidadClienteService } from "../../services/contabilidad-cliente.service";
 
 const MONTH_NAMES = [
-  'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-  'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
+  "Enero",
+  "Febrero",
+  "Marzo",
+  "Abril",
+  "Mayo",
+  "Junio",
+  "Julio",
+  "Agosto",
+  "Septiembre",
+  "Octubre",
+  "Noviembre",
+  "Diciembre",
 ];
 
 const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
-  'montoEnero', 'montoFebrero', 'montoMarzo', 'montoAbril',
-  'montoMayo', 'montoJunio', 'montoJulio', 'montoAgosto',
-  'montoSeptiembre', 'montoOctubre', 'montoNoviembre', 'montoDiciembre',
+  "montoEnero",
+  "montoFebrero",
+  "montoMarzo",
+  "montoAbril",
+  "montoMayo",
+  "montoJunio",
+  "montoJulio",
+  "montoAgosto",
+  "montoSeptiembre",
+  "montoOctubre",
+  "montoNoviembre",
+  "montoDiciembre",
 ];
 
 type ClientRow =
-  | { tipo: 'header'; descripcion: string }
-  | { tipo: 'item' | 'total-ingresos' | 'total-gastos' | 'diferencia'; descripcion: string; mes1: number; mes2: number; mes3: number; acum: number };
+  | { tipo: "header"; descripcion: string }
+  | {
+      tipo: "item" | "total-ingresos" | "total-gastos" | "diferencia";
+      descripcion: string;
+      mes1: number;
+      mes2: number;
+      mes3: number;
+      acum: number;
+    };
 
 @Component({
-  selector: 'app-estado-resultados-cliente',
+  selector: "app-estado-resultados-cliente",
   imports: [CommonModule, TableModule, SkeletonModule, AccountingNumberPipe],
-  templateUrl: './estado-resultados-cliente.html',
+  templateUrl: "./estado-resultados-cliente.html",
 })
 export class EstadoResultadosClienteComponent {
   private readonly svc = inject(ContabilidadClienteService);
@@ -44,7 +77,11 @@ export class EstadoResultadosClienteComponent {
   readonly monthHeaders = computed(() => {
     const idx = this.mesIdx();
     const wr = (i: number) => ((i % 12) + 12) % 12;
-    return [MONTH_NAMES[wr(idx - 2)], MONTH_NAMES[wr(idx - 1)], MONTH_NAMES[wr(idx)]];
+    return [
+      MONTH_NAMES[wr(idx - 2)],
+      MONTH_NAMES[wr(idx - 1)],
+      MONTH_NAMES[wr(idx)],
+    ];
   });
 
   readonly rows = computed<ClientRow[]>(() => {
@@ -59,7 +96,7 @@ export class EstadoResultadosClienteComponent {
     const gasRows: ClientRow[] = [];
 
     for (const clas of d.clasificaciones) {
-      const esIngreso = clas.naturaleza?.toUpperCase() === 'ACREEDORA';
+      const esIngreso = clas.naturaleza?.toUpperCase() === "ACREEDORA";
       const destino = esIngreso ? ingRows : gasRows;
 
       for (const mayor of clas.cuentasMayor ?? []) {
@@ -71,19 +108,56 @@ export class EstadoResultadosClienteComponent {
 
         if (!this.hasVisibleValues(m1, m2, m3, acum)) continue;
 
-        destino.push({ tipo: 'item', descripcion: mayor.descripcion, mes1: m1, mes2: m2, mes3: m3, acum });
-        if (esIngreso) { totIng[0] += m1; totIng[1] += m2; totIng[2] += m3; totIng[3] += acum; }
-        else { totGas[0] += m1; totGas[1] += m2; totGas[2] += m3; totGas[3] += acum; }
+        destino.push({
+          tipo: "item",
+          descripcion: mayor.descripcion,
+          mes1: m1,
+          mes2: m2,
+          mes3: m3,
+          acum,
+        });
+        if (esIngreso) {
+          totIng[0] += m1;
+          totIng[1] += m2;
+          totIng[2] += m3;
+          totIng[3] += acum;
+        } else {
+          totGas[0] += m1;
+          totGas[1] += m2;
+          totGas[2] += m3;
+          totGas[3] += acum;
+        }
       }
     }
 
-    result.push({ tipo: 'header', descripcion: 'INGRESOS' });
+    result.push({ tipo: "header", descripcion: "INGRESOS" });
     result.push(...ingRows);
-    result.push({ tipo: 'total-ingresos', descripcion: 'TOTAL DE INGRESOS', mes1: totIng[0], mes2: totIng[1], mes3: totIng[2], acum: totIng[3] });
-    result.push({ tipo: 'header', descripcion: 'GASTOS GENERALES' });
+    result.push({
+      tipo: "total-ingresos",
+      descripcion: "TOTAL DE INGRESOS",
+      mes1: totIng[0],
+      mes2: totIng[1],
+      mes3: totIng[2],
+      acum: totIng[3],
+    });
+    result.push({ tipo: "header", descripcion: "GASTOS GENERALES" });
     result.push(...gasRows);
-    result.push({ tipo: 'total-gastos', descripcion: 'TOTAL DE GASTOS GENERALES', mes1: totGas[0], mes2: totGas[1], mes3: totGas[2], acum: totGas[3] });
-    result.push({ tipo: 'diferencia', descripcion: 'RESULTADO DEL PERIODO', mes1: totIng[0] - totGas[0], mes2: totIng[1] - totGas[1], mes3: totIng[2] - totGas[2], acum: totIng[3] - totGas[3] });
+    result.push({
+      tipo: "total-gastos",
+      descripcion: "TOTAL DE GASTOS GENERALES",
+      mes1: totGas[0],
+      mes2: totGas[1],
+      mes3: totGas[2],
+      acum: totGas[3],
+    });
+    result.push({
+      tipo: "diferencia",
+      descripcion: "RESULTADO DEL PERIODO",
+      mes1: totIng[0] - totGas[0],
+      mes2: totIng[1] - totGas[1],
+      mes3: totIng[2] - totGas[2],
+      acum: totIng[3] - totGas[3],
+    });
 
     return result;
   });
@@ -108,7 +182,12 @@ export class EstadoResultadosClienteComponent {
     return (a[MONTH_KEYS[idx % 12]] as number) ?? 0;
   }
 
-  private hasVisibleValues(m1: number, m2: number, m3: number, acum: number): boolean {
+  private hasVisibleValues(
+    m1: number,
+    m2: number,
+    m3: number,
+    acum: number,
+  ): boolean {
     return m1 !== 0 || m2 !== 0 || m3 !== 0 || acum !== 0;
   }
 }

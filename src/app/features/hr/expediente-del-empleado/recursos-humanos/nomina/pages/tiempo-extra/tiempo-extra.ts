@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
@@ -24,6 +25,7 @@ import ModalTiempoExtraAdd from "./modal-tiempo-extra-add/modal-tiempo-extra-add
 @Component({
   selector: "app-tiempo-extra",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     TagModule,

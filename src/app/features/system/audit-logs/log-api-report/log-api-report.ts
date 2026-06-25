@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -41,6 +42,7 @@ interface LogEntry {
 @Component({
   selector: "app-log-api-report",
   imports: [
+    EmptyState,
     CommonModule,
     ReactiveFormsModule,
     TableModule,

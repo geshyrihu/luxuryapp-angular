@@ -97,18 +97,18 @@
               iconClass="mdi:account-group"
               label="Integrantes"
               variant="text"
-            />
+/>
             } @if (hasSuperUsuario()) {
             <custom-button-item
               (clicked)="SendReportPendingTicketGroupAsync(item)"
               iconClass="mdi:email-outline"
               label="Reporte"
               variant="text"
-            />
+/>
             }
             <custom-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-            />
+/>
             <custom-button
               [iconClass]="item.active ? 'mdi:lock' : 'mdi:lock-open'"
               (click)="onToggleStatus(item.id)"
@@ -116,8 +116,16 @@
               variant="text"
               [severity]="item.active ? 'warn' : 'success'"
             />
-            <custom-button-delete (confirmed)="onDelete(item.id)" />
+            <custom-button-delete (confirmed)="onDelete(item.id)"
+/>
           </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">
+          <app-empty-state icon="mdi:checkbox-multiple-outline" title="Sin tareas" message="No hay tareas registradas." />
         </td>
       </tr>
     </ng-template>
@@ -192,24 +200,25 @@
                 iconName="mail-outline"
                 label="Enviar por correo"
                 (clicked)="SendReportPendingTicketGroupAsync(item)"
-              />
+ [showLabelOnDesktop]="true"/>
               }
               <custom-button-edit
                 (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-              />
-              <custom-button-delete (confirmed)="onDelete(item.id)" />
+ label="Editar" [showLabelOnDesktop]="true"/>
+              <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
               @if (item.active) {
               <custom-button-item
                 iconName="lock-closed-outline"
                 label="Bloquear"
                 (clicked)="onToggleStatus(item.id)"
-              />
+ [showLabelOnDesktop]="true"/>
               } @if (!item.active) {
               <custom-button-item
                 iconName="lock-open-outline"
                 label="Desbloquear"
                 (clicked)="onToggleStatus(item.id)"
-              />
+ [showLabelOnDesktop]="true"/>
               }
             </ng-container>
           </app-action-menu>

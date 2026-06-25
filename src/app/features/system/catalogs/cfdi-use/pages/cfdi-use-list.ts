@@ -1,4 +1,5 @@
-﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { receiptOutline } from "ionicons/icons";
@@ -28,6 +29,7 @@ import { CfdiUseForm } from "./cfdi-use-form";
   selector: "app-cfdi-use-list",
   templateUrl: "./cfdi-use-list.html",
   imports: [
+    EmptyState,
     TableModule,
     CustomButtonEdit,
     CustomButtonDelete,

@@ -1,4 +1,5 @@
-﻿import { Component, computed, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -21,6 +22,7 @@ import { CatalogoRevisionesInspeccionForm } from "./catalogo-revisiones-inspecci
 @Component({
   selector: "app-catalogo-revisiones-inspeccion",
   imports: [
+    EmptyState,
     TableModule,
     PrimeNgCustomCaption,
     CustomButtonEdit,

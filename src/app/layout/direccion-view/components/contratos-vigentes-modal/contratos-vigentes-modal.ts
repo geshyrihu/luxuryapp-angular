@@ -7,11 +7,13 @@ import type {
   ContratosVigentesCustomerGroupDTO,
   ContratosVigentesResumenDTO,
 } from "../contratos-card/contratos-card.model";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 
 @Component({
   selector: "app-contratos-vigentes-modal",
   templateUrl: "./contratos-vigentes-modal.html",
-  imports: [CommonModule, TagModule, TooltipModule],
+  imports: [CommonModule, TagModule, TooltipModule, AppIcon],
+  styles: [`.text-ds-warning{color:var(--ds-warning)}.text-ds-success{color:var(--ds-success)}`],
 })
 export class ContratosVigentesModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);

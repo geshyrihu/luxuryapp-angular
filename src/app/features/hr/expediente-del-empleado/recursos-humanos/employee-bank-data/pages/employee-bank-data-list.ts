@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
@@ -26,6 +27,7 @@ import { EmployeeBankDataFormComponent } from "./employee-bank-data-form";
   templateUrl: "./employee-bank-data-list.html",
 
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     PrimeNgCustomCaption,

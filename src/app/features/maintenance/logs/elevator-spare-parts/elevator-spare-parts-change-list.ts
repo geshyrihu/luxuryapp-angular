@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
@@ -22,6 +23,7 @@ import { ElevatorSparePartsChangeForm } from "./elevator-spare-parts-change-form
   selector: "app-elevator-spare-parts-change-list",
   templateUrl: "./elevator-spare-parts-change-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     CustomButtonDelete,

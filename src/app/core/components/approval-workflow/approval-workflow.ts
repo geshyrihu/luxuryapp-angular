@@ -25,7 +25,7 @@ export interface ApprovalNode {
               <app-icon [icon]="statusIcon(node.status)" class="text-xs" />
             </div>
             @if (i < nodes().length - 1) {
-              <div class="approval-connector" [class.approval-connector-done]="node.status === 'approved'" />
+              <div class="approval-connector" [class.approval-connector-done]="node.status === 'approved'"></div>
             }
           </div>
           <div class="approval-node-card">

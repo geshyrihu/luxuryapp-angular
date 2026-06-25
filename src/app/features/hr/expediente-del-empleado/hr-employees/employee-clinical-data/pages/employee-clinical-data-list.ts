@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, input, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
@@ -20,6 +21,7 @@ import { EmployeeClinicalDataForm } from "./employee-clinical-data-form";
   selector: "employee-clinical-data-list",
   templateUrl: "./employee-clinical-data-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     PrimeNgCustomCaption,

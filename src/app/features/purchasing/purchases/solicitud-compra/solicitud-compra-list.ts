@@ -1,4 +1,5 @@
-﻿import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
@@ -37,6 +38,7 @@ import { PurchaseLinkManager } from "../purchase-link-manager/purchase-link-mana
   selector: "app-solicitud-compra-list",
   templateUrl: "./solicitud-compra-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     TagModule,

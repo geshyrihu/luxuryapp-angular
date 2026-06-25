@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 ﻿import { CommonModule, DecimalPipe } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -24,6 +25,7 @@ import { ProjectedExpensesForm } from "./projected-expenses-form";
   selector: "app-projected-expenses-list",
   templateUrl: "./projected-expenses-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     DecimalPipe,

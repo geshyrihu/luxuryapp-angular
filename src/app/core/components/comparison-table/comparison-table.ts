@@ -39,7 +39,7 @@ export interface ComparisonItem {
                   @if (col === highlightColumn() && showCheckmark()) {
                     <app-icon
                       icon="mdi:check-circle"
-                      class="text-green-600"
+                      style="color:var(--ds-success)"
                       style="font-size: 1.1rem"
                     />
                   }

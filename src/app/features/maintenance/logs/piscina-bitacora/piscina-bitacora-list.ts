@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
@@ -22,6 +23,7 @@ import { PiscinaBitacoraForm } from "./piscina-bitacora-form";
   selector: "app-piscina-bitacora-list",
   templateUrl: "./piscina-bitacora-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     DataViewMobile,

@@ -1,4 +1,5 @@
-﻿import { CommonModule, formatDate } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule, formatDate } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import * as FileSaver from "file-saver";
@@ -28,6 +29,7 @@ import { MedidorLecturaForm } from "./medidor-lectura-form";
   selector: "app-medidor-lectura-list",
   templateUrl: "./medidor-lectura-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     DataViewMobile,

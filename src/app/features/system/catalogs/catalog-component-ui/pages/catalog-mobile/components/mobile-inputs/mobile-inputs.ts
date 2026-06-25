@@ -1,108 +1,63 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
-import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
-import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
-import { CustomInputHour } from "src/app/core/components/inputs/web/custom-input-hour-signal";
-import { CustomInputMultiselectSignal } from "src/app/core/components/inputs/web/custom-input-multiselect-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
-import { CustomInputPassword } from "src/app/core/components/inputs/web/custom-input-password-signal";
-import { CustomInputSelectBool } from "src/app/core/components/inputs/web/custom-input-select-bool-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
+import {
+  IonInputText,
+  IonInputTextarea,
+  IonInputSearch,
+  IonInputPassword,
+  IonInputNumber,
+  IonInputCurrency,
+  IonInputDate,
+  IonInputTime,
+  IonInputSelect,
+  IonInputMultiselect,
+  IonInputSelectBool,
+  IonInputFile,
+  IonInputToggle,
+  IonInputCheckbox,
+} from "src/app/core/components/inputs/mobile";
 
 @Component({
   selector: "app-mobile-inputs",
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    CustomSearchInput,
-    CustomInputPassword,
-    CustomInputNumberSignal,
-    CustomInputCurrencySignal,
-    CustomInputDateSignal,
-    CustomInputHour,
-    CustomInputSelectSignal,
-    CustomInputMultiselectSignal,
-    CustomInputSelectBool,
-    CustomInputFile,
-    CustomInputSwitch,
-    CustomInputCheckSignal,
+    IonInputText,
+    IonInputTextarea,
+    IonInputSearch,
+    IonInputPassword,
+    IonInputNumber,
+    IonInputCurrency,
+    IonInputDate,
+    IonInputTime,
+    IonInputSelect,
+    IonInputMultiselect,
+    IonInputSelectBool,
+    IonInputFile,
+    IonInputToggle,
+    IonInputCheckbox,
   ],
   template: `
     <div class="mobile-card">
-      <div class="mobile-card-header">Inputs — auto-detectan plataforma (Ionic en mobile, PrimeNG en web)</div>
+      <div class="mobile-card-header">Inputs — Ionic nativos</div>
       <div class="mobile-card-body">
         <form [formGroup]="mobileForm">
-        <custom-input-text-signal
-          [control]="mobileForm.controls['nombre']"
-          label="Nombre"
-          placeholder="Tu nombre..."
-        />
-        <custom-input-textarea-signal
-          [control]="mobileForm.controls['comentarios']"
-          label="Comentarios"
-          placeholder="Notas..."
-        />
-        <custom-search-input-signal
-          placeholder="Buscar..."
-          (searchChange)="mobileForm.controls['buscar'].setValue($event)"
-        />
-        <custom-input-password-signal
-          [control]="mobileForm.controls['password']"
-          label="Contrasena"
-        />
-        <custom-input-number-signal
-          [control]="mobileForm.controls['edad']"
-          label="Edad"
-        />
-        <custom-input-currency-signal
-          [control]="mobileForm.controls['precio']"
-          label="Precio"
-        />
-        <custom-input-date-signal
-          [control]="mobileForm.controls['fecha']"
-          label="Fecha"
-        />
-        <custom-input-hour-signal
-          [control]="mobileForm.controls['hora']"
-          label="Hora"
-        />
-        <custom-input-select-signal
-          [control]="mobileForm.controls['categoria']"
-          [data]="options"
-          label="Categoria"
-        />
-        <custom-input-multiselect-signal
-          [control]="mobileForm.controls['roles']"
-          [options]="options"
-          label="Roles"
-        />
-        <custom-input-select-signal-bool
-          [control]="mobileForm.controls['activoBool']"
-          label="Estado"
-        />
-        <custom-input-file-signal
-          [control]="mobileForm.controls['archivo']"
-          label="Archivo"
-        />
-        <custom-input-switch-signal
-          [control]="mobileForm.controls['activo']"
-          label="Activar"
-          placeholder="Activar notificaciones"
-        />
-        <custom-input-check-signal
-          [control]="mobileForm.controls['terminos']"
-          placeholder="Aceptar Terminos"
-        />
-      </form>
+          <ion-input-text [control]="mobileForm.controls['nombre']" label="Nombre" placeholder="Tu nombre..." />
+          <ion-input-textarea [control]="mobileForm.controls['comentarios']" label="Comentarios" placeholder="Notas..." />
+          <ion-input-search placeholder="Buscar..." (searchChange)="mobileForm.controls['buscar'].setValue($event)" />
+          <ion-input-password [control]="mobileForm.controls['password']" label="Contraseña" />
+          <ion-input-number [control]="mobileForm.controls['edad']" label="Edad" />
+          <ion-input-currency [control]="mobileForm.controls['precio']" label="Precio" />
+          <ion-input-date [control]="mobileForm.controls['fecha']" label="Fecha" />
+          <ion-input-time [control]="mobileForm.controls['hora']" label="Hora" />
+          <ion-input-select [control]="mobileForm.controls['categoria']" [data]="options" label="Categoría" />
+          <ion-input-multiselect [control]="mobileForm.controls['roles']" [options]="options" label="Roles" />
+          <ion-input-select-bool [control]="mobileForm.controls['activoBool']" label="Estado" />
+          <ion-input-file [control]="mobileForm.controls['archivo']" label="Archivo" />
+          <ion-input-toggle [control]="mobileForm.controls['activo']" label="Activar" placeholder="Activar notificaciones" />
+          <ion-input-checkbox [control]="mobileForm.controls['terminos']" placeholder="Aceptar Términos" />
+        </form>
       </div>
     </div>
   `,
@@ -134,8 +89,8 @@ export class MobileInputs {
   });
 
   readonly options = [
-    { label: "Opcion 1", value: 1 },
-    { label: "Opcion 2", value: 2 },
-    { label: "Opcion 3", value: 3 },
+    { label: "Opción 1", value: 1 },
+    { label: "Opción 2", value: 2 },
+    { label: "Opción 3", value: 3 },
   ];
 }

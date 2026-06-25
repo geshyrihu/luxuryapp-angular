@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -25,6 +26,7 @@ import { TaskGroupCategoryForm } from "./task-group-category-form";
   selector: "app-task-group-category-list",
   templateUrl: "./task-group-category-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     CustomButtonEdit,

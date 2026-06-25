@@ -116,25 +116,34 @@
                 (clicked)="onToBlockAccount(item.id)"
                 iconClass="mdi:lock"
                 label="Bloquear"
-              />
+/>
               } @if (!item.active) {
               <custom-button-item
                 (clicked)="onToUnlockAccount(item.id)"
                 iconClass="mdi:lock-open"
                 label="Desbloquear"
-              />
+/>
               }
               <custom-button-item
                 (clicked)="onModalEditAccount(item.id, item.email)"
                 iconClass="mdi:account"
                 label="Permisos"
-              />
-              <custom-button-edit (clicked)="onModalForm(item.id, 'Editar')" />
-              <custom-button-delete (confirmed)="DeleteUserId(item.id)" />
+/>
+              <custom-button-edit (clicked)="onModalForm(item.id, 'Editar')"
+/>
+              <custom-button-delete (confirmed)="DeleteUserId(item.id)"
+/>
             </div>
           </td>
         </tr>
       </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="6">
+          <app-empty-state icon="mdi:account-group-outline" title="Sin usuarios" message="No hay usuarios registrados." />
+        </td>
+      </tr>
+    </ng-template>
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
       </ng-template>
@@ -190,20 +199,21 @@
   <!-- End Este bloque necesito agregarlo a data-view -->
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
-      <ion-avatar slot="start" (click)="onCardEmployee(item.id)">
-        <img
-          [src]="item.photoPath ? item.photoPath : 'assets/images/default-avatar.png'"
-          alt="User Avatar"
-        />
-      </ion-avatar>
-      <ion-label>
-        <h2 class="font-bold m-0">{{ item.fullName }}</h2>
-        <p class="text-sm m-0">
-          <span class="text-primary font-medium">{{ item.userName }}</span>
-          <span class="mx-1 text-400">|</span>
-          <span class="text-500 uppercase text-xs">{{ item.role }}</span>
+      <div slot="start" class="mobile-avatar-slot" (click)="onCardEmployee(item.id)">
+        @if (item.photoPath) {
+          <img [src]="item.photoPath" [alt]="item.fullName" class="mobile-avatar-img" />
+        } @else {
+          <app-icon icon="mdi:account-circle-outline" style="font-size:1.5rem;color:var(--ds-primary);"></app-icon>
+        }
+      </div>
+      <ion-label class="ion-text-wrap">
+        <h3 class="font-semibold m-0 text-color">{{ item.fullName }}</h3>
+        <p class="text-xs m-0 mt-1">
+          <span style="color:var(--ds-primary);" class="font-medium">{{ item.userName }}</span>
+          <span class="mx-1 text-color-secondary">·</span>
+          <span class="text-color-secondary uppercase">{{ item.role }}</span>
         </p>
-        <p class="text-sm m-0 text-600">{{ item.customer || "Sin Cliente" }}</p>
+        <p class="text-xs m-0 text-color-secondary">{{ item.customer || 'Sin Cliente' }}</p>
         <p class="text-xs m-0 text-500">
           <app-icon [icon]="'mdi:email-outline'" class="text-xs mr-1" />{{ item.email }}
         </p>
@@ -221,21 +231,23 @@
             (clicked)="onToBlockAccount(item.id)"
             iconName="lock-closed-outline"
             label="Bloquear"
-          />
+ [showLabelOnDesktop]="true"/>
           } @if (!item.active) {
           <custom-button-item
             (clicked)="onToUnlockAccount(item.id)"
             iconName="lock-open-outline"
             label="Desbloquear"
-          />
+ [showLabelOnDesktop]="true"/>
           }
           <custom-button-item
             (clicked)="onModalEditAccount(item.id, item.email)"
             iconName="person-outline"
             label="Permisos"
-          />
-          <custom-button-edit (clicked)="onModalForm(item.id, 'Editar')" />
-          <custom-button-delete (confirmed)="DeleteUserId(item.id)" />
+ [showLabelOnDesktop]="true"/>
+          <custom-button-edit (clicked)="onModalForm(item.id, 'Editar')"
+ label="Editar" [showLabelOnDesktop]="true"/>
+          <custom-button-delete (confirmed)="DeleteUserId(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
         </ng-container>
       </app-action-menu>
     </ion-item>

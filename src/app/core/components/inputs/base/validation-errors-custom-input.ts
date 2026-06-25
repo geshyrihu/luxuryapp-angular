@@ -11,7 +11,7 @@ import { AbstractControl, ReactiveFormsModule } from "@angular/forms";
   imports: [ReactiveFormsModule],
   template: `
     @if (shouldShowErrors()) {
-      <div class="text-red-500 mt-1">
+      <div class="mt-1" style="color:var(--ds-danger);font-size:var(--ds-font-size-help,0.8125rem)">
         @for (error of getErrors(); track error) {
           <small>{{ error }}</small>
         }

@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
@@ -14,6 +15,7 @@ import { IncidentWitnessFormComponent } from "./incident-witness-form";
 @Component({
   selector: "app-incident-witnesses",
   imports: [
+    EmptyState,
     TableModule,
     CustomButton,
     CustomButtonDelete,

@@ -121,24 +121,21 @@
                   <custom-button-item
                     iconClass="mdi:calendar"
                     label="Programar"
-                    [showLabelOnDesktop]="true"
                     (clicked)="onProgram(item.id)"
-                  />
+                   [showLabelOnDesktop]="true"/>
 
                   } @if (item.status !== "Completed") {
                   <custom-button-item
                     iconClass="mdi:lock"
                     label="Cerrar"
-                    [showLabelOnDesktop]="true"
                     (clicked)="onClosed(item.id)"
-                  />
+                   [showLabelOnDesktop]="true"/>
                   } @if (item.status === "Completed") {
                   <custom-button-item
                     iconClass="mdi:lock-open"
                     label="Re abrir"
-                    [showLabelOnDesktop]="true"
                     (clicked)="onReopen(item.id)"
-                  />
+                   [showLabelOnDesktop]="true"/>
                   } @if (item.status !== "Completed") {
                   <custom-button-edit
                     (clicked)="
@@ -148,8 +145,7 @@
                             ticketGroupId: item.ticketGroupId,
                           })
                         "
-                    [showLabelOnDesktop]="true"
-                  />
+                   label="Editar" [showLabelOnDesktop]="true"/>
 
                   }
                 </ng-container>
@@ -158,7 +154,14 @@
           </td>
         </tr>
       </ng-template>
-    </p-table>
+      <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="10">
+          <app-empty-state icon="mdi:checkbox-multiple-outline" title="Sin tareas" message="No hay tareas registradas." />
+        </td>
+      </tr>
+    </ng-template>
+</p-table>
     }
   </div>
 
@@ -282,33 +285,33 @@
                     iconClass="mdi:clipboard-text"
                     label="Seguimiento"
                     (clicked)="onFollowUp(item.id)"
-                  />
+                   [showLabelOnDesktop]="true"/>
                   @if (item.status !== "Completed") {
                   <custom-button-edit
                     (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-                  />
+                   label="Editar" [showLabelOnDesktop]="true"/>
                   <custom-button-item
                     iconClass="mdi:calendar"
                     label="Programar"
                     (clicked)="onProgram(item.id)"
-                  />
+                   [showLabelOnDesktop]="true"/>
                   <custom-button-item
                     iconClass="mdi:sync"
                     label="En proceso"
                     (clicked)="onProgress(item.id)"
-                  />
+                   [showLabelOnDesktop]="true"/>
                   } @if (item.status !== "Completed") {
                   <custom-button-item
                     iconClass="mdi:lock"
                     label="Cerrar"
                     (clicked)="onClosed(item.id)"
-                  />
+                   [showLabelOnDesktop]="true"/>
                   } @if (item.status === "Completed") {
                   <custom-button-item
                     iconClass="mdi:lock-open"
                     label="Re abrir"
                     (clicked)="onReopen(item.id)"
-                  />
+                   [showLabelOnDesktop]="true"/>
                   }
                 </ng-container>
               </app-action-menu>

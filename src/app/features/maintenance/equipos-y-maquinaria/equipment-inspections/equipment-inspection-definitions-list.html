@@ -86,11 +86,11 @@
     </tr>
   </ng-template>
 
-  <ng-template emptymessage>
-    <tr>
-      <td colspan="6" class="text-center text-500 py-4">
-        No hay definiciones de inspeccion registradas para este equipo.
-      </td>
-    </tr>
-  </ng-template>
+  <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="6">
+          <app-empty-state icon="mdi:clipboard-list-outline" title="Sin definiciones" message="No hay definiciones de inspección registradas." />
+        </td>
+      </tr>
+    </ng-template>
 </p-table>

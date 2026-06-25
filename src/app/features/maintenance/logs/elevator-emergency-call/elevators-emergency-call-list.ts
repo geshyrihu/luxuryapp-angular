@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -21,6 +22,7 @@ import { ElevatorsEmergencyCallForm } from "./elevators-emergency-call-form";
   selector: "app-elevators-emergency-call-list",
   templateUrl: "./elevators-emergency-call-list.html",
   imports: [
+    EmptyState,
     TableModule,
 
     PrimeNgCustomCaption,

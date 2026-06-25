@@ -35,7 +35,7 @@
           (clicked)="editarPeriodo()"
           styleClass="p-button-outlined p-button-primary w-full"
           label="Editar periodo"
-        />
+/>
       </div>
       <div class="col-12 md:col-2">
         <custom-button
@@ -44,7 +44,7 @@
           iconClass="mdi:file-excel text-success mr-2"
           label="Descargar excel"
           (clicked)="DownloadExcel()"
-        />
+/>
       </div>
     </div>
     <!-- Selecciona Periodo d ecedula -->
@@ -142,11 +142,18 @@
             pTooltip="Eliminar"
             styleClass="p-button-outlined p-button-danger"
             (confirmed)="onDelete(item.id)"
-          />
+/>
         </div>
       </td>
     </tr>
   </ng-template>
+  <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="12">
+          <app-empty-state icon="mdi:wallet-outline" title="Sin cédulas" message="No hay cédulas presupuestales registradas." />
+        </td>
+      </tr>
+    </ng-template>
 </p-table>
 }
 
@@ -171,7 +178,7 @@
           margin-left: 16px;
         "
       >
-        <app-icon icon="mdi:wallet-outline" style="font-size: 20px; color: #2563eb"></app-icon>
+        <app-icon icon="mdi:wallet-outline" style="font-size: 20px; color:var(--ds-primary)"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.descripcion }}</h3>
@@ -182,10 +189,13 @@
         </p>
       </ion-label>
       <app-action-menu slot="end">
+        <ng-container actions>
         <custom-button-edit
           (clicked)="onModalEditar({ id: item.id, title: 'Editar' })"
-        />
-        <custom-button-delete (confirmed)="onDelete(item.id)" />
+ label="Editar" [showLabelOnDesktop]="true"/>
+        <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
+              </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

@@ -1,4 +1,5 @@
-﻿import {
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import {
   Component,
   computed,
   inject,
@@ -27,6 +28,7 @@ import { EmployeeEmergencyContactForm } from "./employee-emergency-contact-form"
   selector: "employee-emergency-contact-list",
   templateUrl: "./employee-emergency-contact-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     TooltipModule,

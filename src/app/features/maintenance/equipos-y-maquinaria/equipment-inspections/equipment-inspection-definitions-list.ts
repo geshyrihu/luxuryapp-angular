@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, input, OnInit, signal } from "@angular/core";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
@@ -24,6 +25,7 @@ import { EquipmentInspectionService } from "./equipment-inspection.service";
   selector: "app-equipment-inspection-definitions-list",
   templateUrl: "./equipment-inspection-definitions-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     Tag,

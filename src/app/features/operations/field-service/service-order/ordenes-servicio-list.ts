@@ -1,4 +1,5 @@
-﻿import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, computed, effect, inject, signal } from "@angular/core";
@@ -42,6 +43,7 @@ import { OrdenesServicioListPdfService } from "./ordenes-servicio-list-pdf.servi
   selector: "app-ordenes-servicio-list",
   templateUrl: "./ordenes-servicio-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     CustomButtonDelete,
     CustomButtonEdit,

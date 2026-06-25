@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -16,6 +17,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
   selector: "app-fire-inspection-cycle-list",
   templateUrl: "./fire-inspection-cycle-list.html",
   imports: [
+    EmptyState,
     CommonModule, TableModule, DataViewMobile,
     CustomButtonItem,
     PrimeNgCustomCaption, PrimeNgCustomTableFooter, ActionMenu,

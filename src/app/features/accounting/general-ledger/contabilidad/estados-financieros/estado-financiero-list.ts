@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 ﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { CardModule } from "primeng/card";
@@ -26,6 +27,7 @@ import { AddFileEstadoFinanciero } from "./add-file-estado-financiero";
   selector: "app-estado-financiero-list",
   templateUrl: "./estado-financiero-list.html",
   imports: [
+    EmptyState,
     TableModule,
     CustomButton,
     NgbTooltipModule,

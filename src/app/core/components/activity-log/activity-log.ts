@@ -70,7 +70,8 @@ const ACTIVITY_COLORS: Record<string, string> = {
                 </div>
               </div>
             }
-          }
+          </div>
+        }
         } @else {
         @for (entry of entries(); track entry.id) {
           <div class="activity-entry" (click)="onEntryClick(entry)">

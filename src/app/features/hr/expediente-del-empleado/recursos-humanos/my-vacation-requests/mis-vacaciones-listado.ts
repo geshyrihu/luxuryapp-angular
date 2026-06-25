@@ -1,4 +1,5 @@
-﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { TableModule } from "primeng/table";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
@@ -26,6 +27,7 @@ import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-vi
   selector: "app-mis-vacaciones-listado",
   templateUrl: "./mis-vacaciones-listado.html",
   imports: [
+    EmptyState,
     TableModule,
     TagModule,
     CustomButton,

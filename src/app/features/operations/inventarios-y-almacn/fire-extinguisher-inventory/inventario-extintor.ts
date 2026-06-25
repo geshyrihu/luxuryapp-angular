@@ -1,4 +1,5 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonButton, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -41,6 +42,7 @@ import { InventarioExtintorQrService } from "./inventario-extintor-qr.service";
   selector: "app-inventario-extintor",
   templateUrl: "./inventario-extintor.html",
   imports: [
+    EmptyState,
     AppIcon,
     ImageModule,
     TableModule,

@@ -1,4 +1,5 @@
-﻿import { Component, computed, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, inject, signal } from "@angular/core";
 import {
   IonItem,
   IonItemDivider,
@@ -27,6 +28,7 @@ import { CategoriaAsuntoLegalForm } from "src/app/features/legal/asuntos-legales
   selector: "app-asunto-legal-lista",
   templateUrl: "./asunto-legal-lista.html",
   imports: [
+    EmptyState,
     CardModule,
     TableModule,
     NgbTooltipModule,

@@ -1,4 +1,5 @@
-﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { businessOutline } from "ionicons/icons";
@@ -25,6 +26,7 @@ import { IBankDTO } from "./bank.dto";
   selector: "app-bank-list",
   templateUrl: "./bank-list.html",
   imports: [
+    EmptyState,
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,

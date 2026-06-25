@@ -1,4 +1,5 @@
-﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -29,6 +30,7 @@ import { CustomerDataCompanyForm } from "./customer-data-company-form";
   selector: "app-customer-data-company-list",
   templateUrl: "./customer-data-company-list.html",
   imports: [
+    EmptyState,
     FormsModule,
     ReactiveFormsModule,
     TableModule,

@@ -1,4 +1,5 @@
-﻿import {
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import {
   Component,
   computed,
   effect,
@@ -36,6 +37,7 @@ import { DocumentoPersonalizadoForm } from "./documento-personalizado-form";
 @Component({
   selector: "app-documento-personalizado-lista",
   imports: [
+    EmptyState,
     TableModule,
     InputTextModule,
     ReactiveFormsModule,

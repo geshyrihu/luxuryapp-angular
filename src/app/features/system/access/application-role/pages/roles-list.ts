@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
@@ -23,6 +24,7 @@ import { RoleForm } from "./role-form";
 @Component({
   selector: "app-roles",
   imports: [
+    EmptyState,
     CommonModule,
     FormsModule,
     TableModule,

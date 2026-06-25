@@ -1,4 +1,5 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -20,6 +21,7 @@ import { FaqsFondeo } from "src/app/features/accounting/fondeos-y-reporteo/fundi
 @Component({
   selector: "app-funding-accounting-list",
   imports: [
+    EmptyState,
     TableModule,
     CustomButtonItem,
     PrimeNgCustomCaption,

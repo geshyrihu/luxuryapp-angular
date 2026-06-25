@@ -2,18 +2,10 @@
   <ng-template #content>
     <div class="flex flex-wrap align-items-end gap-3">
       <div class="flex-1">
-        <label class="block mb-2 font-medium">Estatus</label>
-        <p-select
-          [formControl]="statusControl"
-          [options]="[
-            { label: 'Pendiente',   value: 0 },
-            { label: 'En Proceso',  value: 1 },
-            { label: 'Concluido',   value: 2 },
-            { label: 'Cancelado',   value: 4 }
-          ]"
-          optionLabel="label"
-          optionValue="value"
-          fluid
+        <custom-input-select-signal
+          [control]="statusControl"
+          label="Estatus"
+          [data]="statusOptions"
         />
       </div>
       <div>

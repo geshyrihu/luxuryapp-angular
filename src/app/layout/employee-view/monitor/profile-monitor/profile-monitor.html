@@ -1,7 +1,7 @@
-<!-- Elemento que activa el Popover -->
+<!-- Elemento que activa el Drawer -->
 <div
   class="flex align-items-center cursor-pointer p-1 border-round-lg hover:bg-white-alpha-10 transition-colors"
-  (click)="profilePopover.toggle($event)"
+  (click)="profileDrawerVisible.set(true)"
 >
   <p-avatar
     [image]="profileImageUrl || 'assets/images/default-avatar.png'"
@@ -13,46 +13,48 @@
   <app-icon icon="mdi:chevron-down" class="text-white opacity-60" />
 </div>
 
-<!-- Popover de PrimeNG para el menú de perfil -->
-<p-popover #profilePopover [style]="{ width: '320px' }">
-  <div class="profile-dropdown-panel p-3">
-    <!-- Acciones del Usuario -->
-    <div class="flex flex-column gap-2">
-      <custom-button
-        label="Cambiar contraseña"
-        variant="text"
-        severity="secondary"
-        icon="mdi:account-key-outline"
-        [routerLink]="[profileRoute()]"
-        (clicked)="profilePopover.hide()"
-        [fluid]="true"
-        [showLabelOnDesktop]="true"
-        customClass="justify-content-start font-semibold text-lg px-2"
-      ></custom-button>
+<!-- Drawer lateral de PrimeNG para el menú de perfil -->
+<p-drawer
+  [(visible)]="profileDrawerVisible"
+  position="right"
+  header="Menú"
+  [style]="{ width: '320px' }"
+>
+  <div class="flex flex-column gap-2">
+    <custom-button
+      label="Cambiar contraseña"
+      variant="text"
+      severity="secondary"
+      icon="mdi:account-key-outline"
+      [routerLink]="[profileRoute()]"
+      (clicked)="profileDrawerVisible.set(false)"
+      [fluid]="true"
+      [showLabelOnDesktop]="true"
+      customClass="justify-content-start font-semibold text-lg px-2"
+    ></custom-button>
 
-      @if (updateService.isUpdateAvailable()) {
-      <custom-button
-        label="Actualizar Aplicación"
-        variant="text"
-        severity="info"
-        icon="mdi:update"
-        (clicked)="onUpdateClick(); profilePopover.hide()"
-        [fluid]="true"
-        [showLabelOnDesktop]="true"
-        customClass="justify-content-start font-semibold text-lg px-2"
-      ></custom-button>
-      }
+    @if (updateService.isUpdateAvailable()) {
+    <custom-button
+      label="Actualizar Aplicación"
+      variant="text"
+      severity="info"
+      icon="mdi:update"
+      (clicked)="onUpdateClick(); profileDrawerVisible.set(false)"
+      [fluid]="true"
+      [showLabelOnDesktop]="true"
+      customClass="justify-content-start font-semibold text-lg px-2"
+    ></custom-button>
+    }
 
-      <custom-button
-        label="Cerrar sesión"
-        variant="text"
-        severity="danger"
-        icon="mdi:logout"
-        (clicked)="logOut(); profilePopover.hide()"
-        [fluid]="true"
-        [showLabelOnDesktop]="true"
-        customClass="justify-content-start font-semibold text-lg px-2"
-      ></custom-button>
-    </div>
+    <custom-button
+      label="Cerrar sesión"
+      variant="text"
+      severity="danger"
+      icon="mdi:logout"
+      (clicked)="logOut(); profileDrawerVisible.set(false)"
+      [fluid]="true"
+      [showLabelOnDesktop]="true"
+      customClass="justify-content-start font-semibold text-lg px-2"
+    ></custom-button>
   </div>
-</p-popover>
+</p-drawer>

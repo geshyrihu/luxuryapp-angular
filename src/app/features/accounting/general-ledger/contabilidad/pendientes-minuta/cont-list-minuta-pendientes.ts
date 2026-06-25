@@ -13,6 +13,7 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -33,6 +34,7 @@ import { ContMinutaSeguimientos } from "./cont-minuta-seguimientos";
   templateUrl: "./minuta-pendientes-list.html",
   imports: [
     CommonModule,
+    EmptyState,
     ReactiveFormsModule,
     TableModule,
     CustomInputSelectSignal,

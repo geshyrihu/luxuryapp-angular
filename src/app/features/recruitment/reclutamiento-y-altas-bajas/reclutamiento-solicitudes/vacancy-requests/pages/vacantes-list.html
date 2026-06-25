@@ -41,17 +41,26 @@
       <td class="white-space-nowrap overflow-hidden text-overflow-ellipsis max-w-0" [title]="item.nameCandidate">{{ item.nameCandidate }}</td>
       <td class="no-print">
         <div class="flex gap-1">
-          <custom-button-edit (clicked)="onModalForm({ id: item.id })" />
+          <custom-button-edit (clicked)="onModalForm({ id: item.id })"
+/>
           <custom-button-item
             iconClass="mdi:information"
             label="Detalle del puesto"
             (clicked)="onModalDetail(item.workPositionId)"
-          />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+/>
+          <custom-button-delete (confirmed)="onDelete(item.id)"
+/>
         </div>
       </td>
     </tr>
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="9">
+          <app-empty-state icon="mdi:account-search-outline" title="Sin vacantes" message="No hay vacantes registradas." />
+        </td>
+      </tr>
+    </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -76,8 +85,12 @@
         <p>{{ item.status }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Vacante ' + item.applicationRoleName })" />
-        <custom-button-delete (confirmed)="onDelete(item.id)" />
+        <ng-container actions>
+        <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Vacante ' + item.applicationRoleName })"
+ label="Editar" [showLabelOnDesktop]="true"/>
+        <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
+              </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

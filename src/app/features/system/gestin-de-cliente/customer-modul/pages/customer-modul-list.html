@@ -114,12 +114,16 @@
       class="ion-no-padding"
       detail="true"
     >
-      <ion-avatar slot="start">
-        <img [src]="customer.photoPath" [alt]="customer.nameCustomer" />
-      </ion-avatar>
-      <ion-label>
-        <h2 class="font-normal m-0">{{ customer.nameCustomer }}</h2>
-        <p class="text-medium text-500 m-0">#{{ customer.numeroCliente }}</p>
+      <div slot="start" class="mobile-avatar-slot">
+        @if (customer.photoPath) {
+          <img [src]="customer.photoPath" [alt]="customer.nameCustomer" class="mobile-avatar-img" />
+        } @else {
+          <app-icon icon="mdi:domain" style="font-size:1.25rem;color:var(--ds-primary);"></app-icon>
+        }
+      </div>
+      <ion-label class="ion-text-wrap">
+        <h3 class="font-semibold m-0 text-color">{{ customer.nameCustomer }}</h3>
+        <p class="text-xs m-0 mt-1 text-color-secondary">#{{ customer.numeroCliente }}</p>
       </ion-label>
       <div slot="end" class="flex align-items-center mr-2">
         @if (customer.isAssigned) {

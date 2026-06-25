@@ -1,7 +1,22 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { FormsModule } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {
+  CustomInputTextSignal,
+  CustomInputPassword,
+  CustomInputNumberSignal,
+  CustomInputCurrencySignal,
+  CustomInputDateSignal,
+  CustomInputSelectSignal,
+  CustomInputMultiselectSignal,
+  CustomInputCheckSignal,
+  CustomInputSwitch,
+  CustomInputTextAreaSignal,
+  CustomInputSelectBool,
+  CustomInputDecimal,
+  CustomInputTime,
+} from "src/app/core/components/inputs/web";
 import { AccordionModule } from "primeng/accordion";
 import { BadgeModule } from "primeng/badge";
 import { BreadcrumbModule } from "primeng/breadcrumb";
@@ -77,6 +92,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
   toggleswitch: "ToggleSwitch",
   toolbar: "Toolbar",
   tooltip: "Tooltip",
+  custominputs: "Custom Inputs (Wrappers ERP)",
 };
 
 @Component({
@@ -84,6 +100,20 @@ const WEB_ITEM_LABELS: Record<string, string> = {
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
+    CustomInputTextSignal,
+    CustomInputPassword,
+    CustomInputNumberSignal,
+    CustomInputCurrencySignal,
+    CustomInputDateSignal,
+    CustomInputSelectSignal,
+    CustomInputMultiselectSignal,
+    CustomInputCheckSignal,
+    CustomInputSwitch,
+    CustomInputTextAreaSignal,
+    CustomInputSelectBool,
+    CustomInputDecimal,
+    CustomInputTime,
     AccordionModule,
     BadgeModule,
     BreadcrumbModule,
@@ -193,7 +223,8 @@ const WEB_ITEM_LABELS: Record<string, string> = {
             </div>
           </p-card>
           <div class="mt-3">
-            <p-card header="Action Buttons (Custom)">
+            <p-card header="Action Buttons (Custom) — custom-button-*">
+              <p class="text-sm text-secondary m-0 mb-3">Úsalos para acciones ERP: guardar, editar, eliminar, descargar, etc. Funcionan en web y mobile automáticamente.</p>
               <div class="flex flex-wrap gap-2">
                 <custom-button label="Genérico" />
                 <custom-button-add label="Crear" />
@@ -204,6 +235,74 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 <custom-button-download />
                 <custom-button-view-pdf />
                 <custom-button-send-email />
+              </div>
+            </p-card>
+          </div>
+
+          <div class="mt-3">
+            <p-card header="Icon Button con borde — patrón shell/layout">
+              <p class="text-sm text-secondary m-0 mb-3">
+                Para botones de shell (sidebar toggle, header actions) que requieren un aspecto específico con borde y tamaño fijo,
+                usa <code>&lt;button class="ds-icon-btn"&gt;</code> con tokens DS en el SCSS. No uses <code>p-button</code> —
+                sus variantes cromáticas entran en conflicto con el estilo propio del botón.
+              </p>
+
+              <!-- Ejemplo visual -->
+              <div class="flex align-items-center gap-3 mb-4">
+                <button type="button" class="ds-icon-btn-demo">
+                  <app-icon icon="mdi:menu" class="text-xl" />
+                </button>
+                <button type="button" class="ds-icon-btn-demo">
+                  <app-icon icon="mdi:bell" class="text-xl" />
+                </button>
+                <button type="button" class="ds-icon-btn-demo">
+                  <app-icon icon="mdi:magnify" class="text-xl" />
+                </button>
+                <button type="button" class="ds-icon-btn-demo" disabled>
+                  <app-icon icon="mdi:cog" class="text-xl" />
+                </button>
+              </div>
+
+              <!-- Código de referencia -->
+              <p-divider />
+              <p class="text-sm font-bold mb-2">Estructura</p>
+              <pre class="text-xs surface-ground p-3 border-round m-0" style="overflow-x:auto"><code>{{ iconBtnHtml }}</code></pre>
+              <p class="text-sm font-bold mt-3 mb-2">SCSS (con tokens DS)</p>
+              <pre class="text-xs surface-ground p-3 border-round m-0" style="overflow-x:auto"><code>{{ iconBtnScss }}</code></pre>
+
+              <p-divider />
+              <p class="text-sm font-bold mb-2">Regla de uso</p>
+              <div class="grid">
+                <div class="col-12 md:col-4">
+                  <div class="p-3 border-round surface-ground">
+                    <p class="text-xs font-bold text-green-600 m-0 mb-1">✅ USA &lt;button class="..."&gt; cuando:</p>
+                    <ul class="text-xs m-0 pl-3">
+                      <li>El botón tiene borde, tamaño y color propio (layout shell)</li>
+                      <li>Contiene <code>&lt;app-icon&gt;</code> o badge complejo</li>
+                      <li>Los estilos usan <code>--ds-*</code> tokens</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-12 md:col-4">
+                  <div class="p-3 border-round surface-ground">
+                    <p class="text-xs font-bold text-blue-600 m-0 mb-1">✅ USA &lt;p-button&gt; cuando:</p>
+                    <ul class="text-xs m-0 pl-3">
+                      <li>Botón de acción genérica en cualquier vista</li>
+                      <li>Necesitas severity (primary, danger, warn…)</li>
+                      <li>Botón de texto, outlined o icon-only estándar</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-12 md:col-4">
+                  <div class="p-3 border-round surface-ground">
+                    <p class="text-xs font-bold text-purple-600 m-0 mb-1">✅ USA &lt;custom-button-*&gt; cuando:</p>
+                    <ul class="text-xs m-0 pl-3">
+                      <li>Acción ERP (guardar, editar, eliminar, descargar…)</li>
+                      <li>Debe funcionar en web Y mobile automáticamente</li>
+                      <li>Es acción dentro de una tabla o formulario</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </p-card>
           </div>
@@ -421,19 +520,133 @@ const WEB_ITEM_LABELS: Record<string, string> = {
             </div>
           </p-card>
         }
+        @case ('custominputs') {
+          <p-card header="Custom Inputs — Wrappers ERP (horizontal layout)">
+            <p class="text-sm text-secondary mb-4 m-0">
+              Wrappers sobre PrimeNG con detección automática de plataforma (web/mobile), validación integrada y layout horizontal/vertical.
+            </p>
+            <form [formGroup]="customInputsForm" class="flex flex-column gap-1">
+              <custom-input-text-signal [control]="customInputsForm.controls['nombre']" label="Nombre completo" placeholder="Juan García" />
+              <custom-input-password [control]="customInputsForm.controls['password']" label="Contraseña" />
+              <custom-input-number-signal [control]="customInputsForm.controls['cantidad']" label="Cantidad" [min]="0" [max]="9999" />
+              <custom-input-currency-signal [control]="customInputsForm.controls['monto']" label="Monto (MXN)" />
+              <custom-input-decimal [control]="customInputsForm.controls['decimal']" label="Porcentaje (%)" />
+              <custom-input-date-signal [control]="customInputsForm.controls['fecha']" label="Fecha de evento" />
+              <custom-input-time [control]="customInputsForm.controls['hora']" label="Hora" />
+              <custom-input-select-signal [control]="customInputsForm.controls['area']" [data]="inputSelectOptions" label="Área" />
+              <custom-input-select-bool [control]="customInputsForm.controls['activo']" label="Estado" />
+              <custom-input-multiselect-signal [control]="customInputsForm.controls['roles']" [data]="inputSelectOptions" label="Roles" />
+              <custom-input-check-signal [control]="customInputsForm.controls['terminos']" placeholder="Acepto términos y condiciones" />
+              <custom-input-switch [control]="customInputsForm.controls['notificaciones']" label="Notificaciones push" />
+              <custom-input-text-area-signal [control]="customInputsForm.controls['notas']" label="Notas" placeholder="Escribe aquí..." />
+            </form>
+          </p-card>
+          <p-card header="Custom Inputs — Vertical layout (onlyInput)" styleClass="mt-3">
+            <div class="grid">
+              <div class="col-12 md:col-4">
+                <custom-input-text-signal [control]="customInputsForm.controls['nombre']" label="Nombre" [horizontal]="false" />
+              </div>
+              <div class="col-12 md:col-4">
+                <custom-input-currency-signal [control]="customInputsForm.controls['monto']" label="Monto" [horizontal]="false" />
+              </div>
+              <div class="col-12 md:col-4">
+                <custom-input-select-signal [control]="customInputsForm.controls['area']" [data]="inputSelectOptions" label="Área" [horizontal]="false" />
+              </div>
+            </div>
+          </p-card>
+        }
       }
     </section>
   `,
+  styles: [`
+    .ds-icon-btn-demo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      background: var(--ds-bg-surface, #fff);
+      border: 1px solid var(--ds-border, #e2e8f0);
+      border-radius: var(--ds-radius-md, 6px);
+      color: var(--ds-text-primary, #041b3c);
+      cursor: pointer;
+      transition: background-color 150ms ease, border-color 150ms ease;
+    }
+    .ds-icon-btn-demo:hover {
+      background-color: var(--ds-bg-sunken, #e8edff);
+      border-color: var(--ds-border-strong, #cbd5e1);
+    }
+    .ds-icon-btn-demo:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+  `],
   encapsulation: ViewEncapsulation.None,
 })
 export class CatalogWebItem {
   private route = inject(ActivatedRoute);
+  private fb = inject(FormBuilder);
   item = signal('');
   get label(): string { return WEB_ITEM_LABELS[this.item()] ?? this.item(); }
 
   constructor() {
     this.route.paramMap.subscribe(p => this.item.set(p.get('item') ?? ''));
   }
+
+  // Icon button demo
+  readonly iconBtnHtml = `<button type="button" class="mi-clase-boton" (click)="accion()">
+  <app-icon icon="mdi:menu" class="text-xl" />
+</button>`;
+
+  readonly iconBtnScss = `.mi-clase-boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: var(--ds-bg-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  color: var(--ds-text-primary);
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease;
+
+  &:hover {
+    background-color: var(--ds-bg-sunken);
+    border-color: var(--ds-border-strong);
+  }
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}`;
+
+  // Custom inputs form
+  readonly customInputsForm: FormGroup = this.fb.group({
+    nombre: ['Juan García'],
+    password: [''],
+    cantidad: [5],
+    monto: [12500],
+    decimal: [3.14],
+    fecha: [null],
+    hora: [null],
+    area: [null],
+    activo: [null],
+    roles: [[]],
+    terminos: [false],
+    notificaciones: [true],
+    notas: [''],
+  });
+
+  readonly inputSelectOptions = [
+    { label: 'Contabilidad', value: 1 },
+    { label: 'Operaciones', value: 2 },
+    { label: 'Recursos Humanos', value: 3 },
+    { label: 'TI', value: 4 },
+    { label: 'Dirección General', value: 5 },
+  ];
 
   // Shared state
   dialogVisible = signal(false);

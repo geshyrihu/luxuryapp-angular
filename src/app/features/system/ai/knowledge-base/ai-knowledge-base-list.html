@@ -63,13 +63,21 @@
         <div class="flex">
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Conocimiento' })"
-          />
-          <custom-button-delete (confirmed)="onDelete(item.id!)" />
+/>
+          <custom-button-delete (confirmed)="onDelete(item.id!)"
+/>
         </div>
       </td>
       <!-- Opciones -->
     </tr>
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="6">
+          <app-empty-state icon="mdi:brain" title="Sin artículos" message="No hay artículos de conocimiento registrados." />
+        </td>
+      </tr>
+    </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -84,6 +92,13 @@
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
+      >
+        <app-icon icon="mdi:brain" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+      </div>
       <ion-label>
         <h2 class="font-bold">{{ item.topic }}</h2>
         <p class="text-sm">
@@ -95,10 +110,13 @@
       </ion-label>
       <div slot="end">
         <app-action-menu>
+          <ng-container actions>
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-          />
-          <custom-button-delete (confirmed)="onDelete(item.id!)" />
+ label="Editar" [showLabelOnDesktop]="true"/>
+          <custom-button-delete (confirmed)="onDelete(item.id!)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
+                  </ng-container>
         </app-action-menu>
       </div>
     </ion-item>

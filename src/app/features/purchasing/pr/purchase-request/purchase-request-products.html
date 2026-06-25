@@ -19,8 +19,9 @@
           <ng-container actions>
             <custom-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-            />
-            <custom-button-delete (confirmed)="onDelete(item.id)" />
+ label="Editar" [showLabelOnDesktop]="true"/>
+            <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
           </ng-container>
         </app-action-menu>
       </td>
@@ -29,6 +30,13 @@
       <td>{{ item.unit }}</td>
     </tr>
   </ng-template>
+  <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4">
+          <app-empty-state icon="mdi:clipboard-list-outline" title="Sin solicitudes" message="No hay solicitudes de compra registradas." />
+        </td>
+      </tr>
+    </ng-template>
 </p-table>
 
 

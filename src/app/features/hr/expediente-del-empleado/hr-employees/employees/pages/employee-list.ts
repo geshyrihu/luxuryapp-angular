@@ -1,4 +1,5 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IonAvatar } from "@ionic/angular/standalone";
 import { AvatarModule } from "primeng/avatar";
@@ -25,6 +26,7 @@ import { CardEmployee } from "./card-employee";
   selector: "app-employee-list",
   templateUrl: "./employee-list.html",
   imports: [
+    EmptyState,
     TableModule,
     CustomBtnActiveDesactive,
     CustomButtonItem,

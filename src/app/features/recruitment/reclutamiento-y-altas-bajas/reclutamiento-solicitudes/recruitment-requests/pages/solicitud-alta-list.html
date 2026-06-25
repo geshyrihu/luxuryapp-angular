@@ -42,12 +42,21 @@
       </td>
       <td class="no-print">
         <div class="flex gap-1">
-          <custom-button-edit (clicked)="onModalForm(item)" />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <custom-button-edit (clicked)="onModalForm(item)"
+/>
+          <custom-button-delete (confirmed)="onDelete(item.id)"
+/>
         </div>
       </td>
     </tr>
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8">
+          <app-empty-state icon="mdi:account-plus-outline" title="Sin solicitudes" message="No hay solicitudes de alta registradas." />
+        </td>
+      </tr>
+    </ng-template>
   <ng-template pTemplate="paginatorleft">
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -72,8 +81,12 @@
         <p>{{ item.executionDate }} · {{ item.status }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <custom-button-edit (clicked)="onModalForm(item)" />
-        <custom-button-delete (confirmed)="onDelete(item.id)" />
+        <ng-container actions>
+        <custom-button-edit (clicked)="onModalForm(item)"
+ label="Editar" [showLabelOnDesktop]="true"/>
+        <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
+              </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

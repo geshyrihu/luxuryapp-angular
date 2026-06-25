@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { CommonModule, DatePipe } from "@angular/common";
 import {
   Component,
@@ -115,6 +116,7 @@ interface IJuntaMensualSessionDetail extends IJuntaMensualSessionListItem {
   selector: "app-juntas-mensuales-session",
   templateUrl: "./juntas-mensuales-session.html",
   imports: [
+    EmptyState,
     CommonModule,
     RouterModule,
     TableModule,

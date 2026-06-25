@@ -66,7 +66,14 @@
           </td>
         </tr>
       </ng-template>
-    </p-table>
+      <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">
+          <app-empty-state icon="mdi:clipboard-search-outline" title="Sin inspecciones" message="No hay inspecciones registradas." />
+        </td>
+      </tr>
+    </ng-template>
+</p-table>
   </div>
 
   <!-- 📱 INICIO: Componente adaptado para versión móvil -->
@@ -77,6 +84,13 @@
   >
     <ng-template #listItemTemplate let-item>
       <ion-item lines="full" class="ion-no-padding" detail="false">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
+      >
+        <app-icon icon="mdi:clipboard-search-outline" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+      </div>
         <ion-label>
           <div class="flex align-items-center">
             @if (item.isRealized) {
@@ -96,13 +110,13 @@
               label="Ver resultado"
               iconName="book-outline"
               [routerLink]="['/inspections/result', item.id]"
-            />
+ [showLabelOnDesktop]="true"/>
             }
             <custom-button-item
               label="Inspeccionar"
               iconName="chevron-forward-outline"
               [routerLink]="['/logbook/my-inspection', item.id]"
-            />
+ [showLabelOnDesktop]="true"/>
           </ng-container>
         </app-action-menu>
       </ion-item>

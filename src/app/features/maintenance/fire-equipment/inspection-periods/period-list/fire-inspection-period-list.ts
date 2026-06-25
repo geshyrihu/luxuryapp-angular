@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -36,6 +37,7 @@ const typeLabelMap: Record<string, string> = {
   selector: "app-fire-inspection-period-list",
   templateUrl: "./fire-inspection-period-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     DataViewMobile,

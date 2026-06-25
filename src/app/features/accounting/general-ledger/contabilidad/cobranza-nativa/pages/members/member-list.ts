@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 ﻿import { DatePipe } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { IonBadge, IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -27,6 +28,7 @@ import { PropertyMemberResponseDTO } from "../../models/property-member.dto";
 @Component({
   selector: "app-member-list",
   imports: [
+    EmptyState,
     TableModule,
     PrimeNgCustomCaption,
     CustomButton,

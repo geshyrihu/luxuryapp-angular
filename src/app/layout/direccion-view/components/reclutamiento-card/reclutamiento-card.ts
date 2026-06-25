@@ -7,6 +7,7 @@ import type { VacantesResumenDTO } from "./reclutamiento-card.model";
   selector: "app-reclutamiento-card",
   templateUrl: "./reclutamiento-card.html",
   imports: [CommonModule],
+  styles: [`.text-ds-danger{color:var(--ds-danger)}.text-ds-warning{color:var(--ds-warning)}`],
 })
 export class ReclutamientoCard implements OnInit {
   private apiResponseS = inject(ApiResponseService);

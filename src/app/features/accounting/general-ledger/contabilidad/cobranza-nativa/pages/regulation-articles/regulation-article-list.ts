@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 ﻿import { CurrencyPipe } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -25,6 +26,7 @@ import { RegulationArticleForm } from "./regulation-article-form";
 @Component({
   selector: "app-regulation-article-list",
   imports: [
+    EmptyState,
     TableModule,
     TagModule,
     PrimeNgCustomCaption,

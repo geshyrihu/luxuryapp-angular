@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -40,6 +41,7 @@ import { VacanteForm } from "../components/vacante-form";
   selector: "app-vacantes-list",
   templateUrl: "./vacantes-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     TagModule,

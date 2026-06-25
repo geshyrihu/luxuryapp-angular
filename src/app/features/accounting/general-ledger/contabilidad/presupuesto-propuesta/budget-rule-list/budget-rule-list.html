@@ -44,8 +44,9 @@
         <div class="flex justify-content-center">
           <custom-button-edit
             (clicked)="onModalForm({ id: Item.id, title: 'Editar Regla' })"
-          />
-          <custom-button-delete (confirmed)="onDelete(Item.id)" />
+/>
+          <custom-button-delete (confirmed)="onDelete(Item.id)"
+/>
         </div>
       </td>
     </tr>
@@ -81,10 +82,13 @@
         </p>
       </ion-label>
       <app-action-menu slot="end">
+        <ng-container actions>
         <custom-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar Regla' })"
-        />
-        <custom-button-delete (confirmed)="onDelete(item.id)" />
+ label="Editar" [showLabelOnDesktop]="true"/>
+        <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
+              </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

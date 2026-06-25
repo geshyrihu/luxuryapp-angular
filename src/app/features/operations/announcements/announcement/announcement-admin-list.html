@@ -50,7 +50,6 @@
             label="Filtrar"
             iconClass="mdi:magnify"
             variant="outlined"
-            [showLabelOnDesktop]="true"
           />
         </div>
       </div>
@@ -149,6 +148,13 @@
       <!-- Opciones -->
     </tr>
   </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="6">
+        <app-empty-state icon="mdi:bullhorn-outline" title="Sin comunicados" message="No hay comunicados registrados." />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -186,6 +192,13 @@
   </div>
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
+      >
+        <app-icon icon="mdi:bullhorn-outline" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+      </div>
       <ion-label>
         <div class="flex justify-content-between align-items-center mb-2">
           <h2 class="font-bold m-0 text-base">{{ item.title }}</h2>
@@ -228,26 +241,26 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-edit (clicked)="onModalForm(item)" />
-            <custom-button-delete (confirmed)="onDelete(item.id)" />
+            <custom-button-edit (clicked)="onModalForm(item)"  label="Editar" [showLabelOnDesktop]="true"/>
+            <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
 
             <custom-button-item
               (clicked)="onDownloadPdf(item.id)"
               iconName="document-text-outline"
               label="Descargar PDF"
-            />
+             [showLabelOnDesktop]="true"/>
 
             <custom-button-item
               (clicked)="onViewPreview(item.id)"
               iconName="book-outline"
               label="Vista previa"
-            />
+             [showLabelOnDesktop]="true"/>
 
             <custom-button-item
               [routerLink]="['/announcements/analytics', item.id]"
               iconName="bar-chart-outline"
               label="Analóticas"
-            />
+             [showLabelOnDesktop]="true"/>
           </ng-container>
         </app-action-menu>
       </div>

@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { DatePipe } from "@angular/common";
 import { Component, computed, inject, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
@@ -26,6 +27,7 @@ import { VaultSecretForm } from "./vault-secret-form";
   selector: "app-vault-secrets-list",
   templateUrl: "./vault-secrets-list.html",
   imports: [
+    EmptyState,
     DatePipe,
     TableModule,
     CustomButton,

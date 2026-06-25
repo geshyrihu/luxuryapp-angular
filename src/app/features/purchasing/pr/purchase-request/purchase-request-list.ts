@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, effect, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
@@ -32,6 +33,7 @@ import { PurchaseRequestForm } from "./purchase-request-form";
   selector: "app-purchase-request-list",
   templateUrl: "./purchase-request-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     RouterModule,
     TableModule,

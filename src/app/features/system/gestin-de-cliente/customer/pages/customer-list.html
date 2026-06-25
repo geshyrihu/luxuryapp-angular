@@ -77,6 +77,13 @@
       </td>
     </tr>
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">
+          <app-empty-state icon="mdi:domain" title="Sin clientes" message="No hay clientes registrados." />
+        </td>
+      </tr>
+    </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -101,59 +108,66 @@
     </div>
   </div>
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" class="ion-no-padding">
-      <ion-avatar slot="start">
-        <img [src]="item.photoPath" alt="Customer Photo" />
-      </ion-avatar>
-      <ion-label>
-        <h2 class="font-normal m-0">{{ item.nameCustomer }}</h2>
-        <p class="text-medium text-500 m-0">
-          {{ item.phoneOne }} - {{ item.phoneTwo }}
+    <ion-item lines="full" detail="false" class="ion-no-padding">
+
+      <!-- Logo / avatar del cliente -->
+      <div slot="start" class="customer-logo-slot">
+        @if (item.photoPath) {
+          <img [src]="item.photoPath" [alt]="item.nameCustomer" class="customer-logo-img" />
+        } @else {
+          <app-icon icon="mdi:domain" class="text-xl" style="color:var(--ds-primary);"></app-icon>
+        }
+      </div>
+
+      <ion-label class="ion-text-wrap">
+        <h3 class="font-semibold m-0 text-color">{{ item.nameCustomer }}</h3>
+        <p class="text-xs m-0 mt-1 text-color-secondary">
+          {{ item.phoneOne }}{{ item.phoneTwo ? ' · ' + item.phoneTwo : '' }}
         </p>
       </ion-label>
-      <div slot="end">
-        <app-action-menu>
+
+      <app-action-menu slot="end">
+        <ng-container actions>
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-          />
+           label="Editar" [showLabelOnDesktop]="true"/>
           <custom-button-item
-            iconName="image-outline"
-            label="Imógenes"
+            iconClass="mdi:image-multiple-outline"
+            ionicIcon="image-outline"
+            label="Imágenes"
             (clicked)="onUpdateImages(item.id)"
-          />
+           [showLabelOnDesktop]="true"/>
           <custom-button-item
-            iconName="location-outline"
+            iconClass="mdi:map-marker-outline"
+            ionicIcon="location-outline"
             label="Dirección"
             (clicked)="onUpdateAddress(item.id)"
-          />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
-        </app-action-menu>
-      </div>
+           [showLabelOnDesktop]="true"/>
+          <custom-button-delete
+            (confirmed)="onDelete(item.id)"
+           label="Eliminar" [showLabelOnDesktop]="true"/>
+        </ng-container>
+      </app-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>
 
 <style>
-  .img-40 {
-    width: auto !important;
-    height: 40px !important;
-    min-width: 40px;
-    max-width: 80px;
-    object-fit: contain !important;
-    background-color: var(--ds-bg-sunken, #f8fafc);
-    border-radius: 8px;
-  }
-  ion-avatar {
-    width: auto !important;
-    height: 40px !important;
-    max-width: 80px;
-    border-radius: 4px;
+  .customer-logo-slot {
+    width: 48px;
+    height: 40px;
+    margin: 0 10px 0 16px;
+    border-radius: var(--ds-radius-sm, 6px);
     overflow: hidden;
+    background: var(--ds-bg-sunken, #e8edff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
   }
-  ion-avatar img {
-    width: auto !important;
-    height: 100% !important;
-    object-fit: contain !important;
-    background-color: var(--ds-bg-sunken, #f8fafc);
+  .customer-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 </style>

@@ -5,11 +5,22 @@
     <tr>
       <th colspan="7" class="bg-surface-0 border-none p-3">
         <div class="flex align-items-center gap-2">
-          <custom-button-add (clicked)="onAddDetail()" [label]="title() | uppercase" size="sm" [ngbTooltip]="'Agregar pendiente a ' + title()" />
+          <custom-button-add
+            (clicked)="onAddDetail()"
+            [label]="title() | uppercase"
+            size="sm"
+            [ngbTooltip]="'Agregar pendiente a ' + title()"
+          />
           @if (details() && details().length > 0) {
-          <custom-button-confirm swalTitle="Confirmar" [swalText]="'Enviar Email a ' + title()"
-            [label]="'Enviar Email a ' + title()" [ngbTooltip]="'Enviar Email a ' + title()"
-            classButton="btn btn-sm btn-light" swalConfirmButtonText="Sí, enviar" (confirmed)="onSendAreaEmail()" />
+          <custom-button-confirm
+            swalTitle="Confirmar"
+            [swalText]="'Enviar Email a ' + title()"
+            [label]="'Enviar Email a ' + title()"
+            [ngbTooltip]="'Enviar Email a ' + title()"
+            classButton="btn btn-sm btn-light"
+            swalConfirmButtonText="Sí, enviar"
+            (confirmed)="onSendAreaEmail()"
+          />
           }
         </div>
       </th>
@@ -33,11 +44,17 @@
       <td>
         <div class="text-lg font-bold text-900 mb-2">
           <div class="flex align-items-center gap-2">
-            <p-tag [severity]="getStatusSeverity(detail.status)" [value]="getStatusEmoji(detail.status)" />
+            <p-tag
+              [severity]="getStatusSeverity(detail.status)"
+              [value]="getStatusEmoji(detail.status)"
+            />
             <span>{{ detail.title }}</span>
           </div>
         </div>
-        <div class="text-justify text-sm text-600 line-height-3" [innerHTML]="detail.requestService | sanitizeHtml"></div>
+        <div
+          class="text-justify text-sm text-600 line-height-3"
+          [innerHTML]="detail.requestService | sanitizeHtml"
+        ></div>
       </td>
       <td>
         <!-- Lista de seguimientos -->
@@ -51,10 +68,12 @@
               </div>
               <app-action-menu>
                 <ng-container actions>
-                  <custom-button-edit label="Editar" [showLabelOnDesktop]="true"
-                    (clicked)="onEditSeguimiento(detail.id, item.id)" />
-                  <custom-button-delete label="Eliminar" [showLabelOnDesktop]="true"
-                    (confirmed)="onDeleteSeguimiento(item.id)" />
+                  <custom-button-edit
+                    (clicked)="onEditSeguimiento(detail.id, item.id)"
+                   label="Editar" [showLabelOnDesktop]="true"/>
+                  <custom-button-delete
+                    (confirmed)="onDeleteSeguimiento(item.id)"
+                   label="Eliminar" [showLabelOnDesktop]="true"/>
                 </ng-container>
               </app-action-menu>
             </div>
@@ -66,12 +85,18 @@
         <!-- Acciones a nivel de detalle -->
         <app-action-menu>
           <ng-container actions>
-            <custom-button-item iconClass="mdi:clipboard-text" label="Seguimiento" [showLabelOnDesktop]="true"
-              (clicked)="onAddSeguimiento(detail.id)" />
+            <custom-button-item
+              iconClass="mdi:clipboard-text"
+              label="Seguimiento"
+              (clicked)="onAddSeguimiento(detail.id)"
+             [showLabelOnDesktop]="true"/>
 
-            <custom-button-edit label="Editar" [showLabelOnDesktop]="true" (clicked)="onEditDetail(detail.id)" />
-            <custom-button-delete label="Eliminar" [showLabelOnDesktop]="true"
-              (confirmed)="onDeleteDetail(detail.id)" />
+            <custom-button-edit
+              (clicked)="onEditDetail(detail.id)"
+             label="Editar" [showLabelOnDesktop]="true"/>
+            <custom-button-delete
+              (confirmed)="onDeleteDetail(detail.id)"
+             label="Eliminar" [showLabelOnDesktop]="true"/>
           </ng-container>
         </app-action-menu>
       </td>
@@ -79,7 +104,9 @@
   </ng-template>
   <ng-template emptymessage>
     <tr>
-      <td colspan="6" class="text-center p-4 text-500 font-medium italic">Sin registros para {{ title() }}.</td>
+      <td colspan="6" class="text-center p-4 text-500 font-medium italic">
+        Sin registros para {{ title() }}.
+      </td>
     </tr>
   </ng-template>
 </p-table>

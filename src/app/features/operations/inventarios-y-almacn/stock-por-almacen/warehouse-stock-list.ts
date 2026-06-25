@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonAvatar, IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -33,6 +34,7 @@ import { WarehouseStockEdit } from "./warehouse-stock-edit";
   selector: "app-warehouse-stock-list",
   templateUrl: "./warehouse-stock-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     PrimeNgCustomCaption,

@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -38,6 +39,7 @@ import { PurchaseLinkManager } from "../../po/purchase-link-manager/purchase-lin
   selector: "app-solicitud-compra-list",
   templateUrl: "./solicitud-compra-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     TagModule,

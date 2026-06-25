@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import {
   CdkDrag,
@@ -47,6 +48,7 @@ import { EmployeeProviderForm } from "src/app/features/purchasing/providers/prov
   templateUrl: "./staff-board.html",
   styleUrl: "./staff-board.scss",
   imports: [
+    EmptyState,
     TableModule,
     AvatarModule,
     TagModule,

@@ -205,12 +205,20 @@
           />
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Recepcion' })"
-          />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+/>
+          <custom-button-delete (confirmed)="onDelete(item.id)"
+/>
         </div>
       </td>
     </tr>
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="13">
+          <app-empty-state icon="mdi:water-pump" title="Sin recepciones" message="No hay recepciones de agua registradas." />
+        </td>
+      </tr>
+    </ng-template>
 
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
@@ -309,11 +317,15 @@
       </ion-label>
 
       <app-action-menu slot="end">
-        <custom-button-download (clicked)="onDownloadPdf(item)" />
+        <ng-container actions>
+        <custom-button-download (clicked)="onDownloadPdf(item)"
+ label="Descargar" [showLabelOnDesktop]="true"/>
         <custom-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar Recepcion' })"
-        />
-        <custom-button-delete (confirmed)="onDelete(item.id)" />
+ label="Editar" [showLabelOnDesktop]="true"/>
+        <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
+              </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

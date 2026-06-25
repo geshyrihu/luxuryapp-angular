@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -36,6 +37,7 @@ import { SolicitudAltaStatusForm } from "../components/solicitud-alta-status-for
   selector: "app-solicitud-alta-list",
   templateUrl: "./solicitud-alta-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     TagModule,

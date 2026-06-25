@@ -56,7 +56,7 @@
           [loading]="isProcessingUpload(item.id)"
           (clicked)="onUploadFile({ id: item.id, title: 'CARGAR ARCHIVO DE ESTADOS FINANCIEROS' })"
           [fluid]="true"
-        />
+/>
         } @else {
         <div class="flex align-items-center">
           <div class="flex-flex-grow-1-1">
@@ -95,7 +95,7 @@
           [loading]="isProcessingAuthorize(item.id)"
           (clicked)="onAuthorize(item.id)"
           [fluid]="true"
-        />
+/>
         } @else {
         <div class="flex align-items-center">
           <div class="flex-flex-grow-1-1">
@@ -133,7 +133,7 @@
                   title: 'ENVIAR A CONDOMINOS',
                 })"
           [disabled]="isProcessingSend(item.id)"
-        />
+/>
 
         } @else {
         <div class="flex align-items-center">
@@ -143,6 +143,13 @@
           </div>
         </div>
         } }
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="6">
+        <app-empty-state icon="mdi:chart-bar" title="Sin estados financieros" message="No hay estados financieros registrados." />
       </td>
     </tr>
   </ng-template>
@@ -161,6 +168,13 @@
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding" detail="false">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
+      >
+        <app-icon icon="mdi:chart-line" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+      </div>
       <ion-label>
         <div class="flex justify-content-between mb-1">
           <h2 class="font-bold m-0">{{ item.periodoExistente }}</h2>
@@ -230,7 +244,7 @@
                 title: 'CARGAR ARCHIVO DE ESTADOS FINANCIEROS'
               })
             "
-          />
+ [showLabelOnDesktop]="true"/>
           }
 
           <!-- 2. Acciones si hay archivo -->
@@ -242,7 +256,7 @@
             (clicked)="
                 viewPdf(item.nameFileEstadoFinanciero, 'Informe Financiero')
               "
-          />
+ [showLabelOnDesktop]="true"/>
           <!-- Actualizar (Si no autorizado ni enviado) -->
           @if (!item.personWhoAuthorized && !item.personWhoSend) {
           <custom-button-item
@@ -254,7 +268,7 @@
                   title: 'CARGAR ARCHIVO DE ESTADOS FINANCIEROS'
                 })
               "
-          />
+ [showLabelOnDesktop]="true"/>
           }
           <!-- Autorizar (Si no autorizado) -->
           @if (!item.personWhoAuthorized) {
@@ -262,7 +276,7 @@
             iconName="checkmark-outline"
             label="Autorizar"
             (clicked)="onAuthorize(item.id)"
-          />
+ [showLabelOnDesktop]="true"/>
           }
           <!-- Deshacer Autorización (Si autorizado y no enviado) -->
           @if (item.personWhoAuthorized && !item.personWhoSend) {
@@ -270,7 +284,7 @@
             iconName="arrow-back-outline"
             label="Deshacer Autorización"
             (clicked)="onDesauthorize(item.id)"
-          />
+ [showLabelOnDesktop]="true"/>
           }
           <!-- Enviar (Si autorizado y no enviado) -->
           @if (item.nameFileEstadoFinanciero && item.personWhoAuthorized &&
@@ -290,7 +304,7 @@
                 })
               "
             [disabled]="isProcessingSend(item.id)"
-          />
+ [showLabelOnDesktop]="true"/>
           } }
         </ng-container>
       </app-action-menu>

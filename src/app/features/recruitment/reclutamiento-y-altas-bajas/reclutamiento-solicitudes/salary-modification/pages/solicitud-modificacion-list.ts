@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -35,6 +36,7 @@ import { ModificacionSalarioForm } from "../components/modificacion-salario-form
   selector: "app-solicitud-modificacion-list",
   templateUrl: "./solicitud-modificacion-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     TagModule,

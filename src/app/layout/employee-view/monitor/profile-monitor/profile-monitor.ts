@@ -1,9 +1,9 @@
-import { Component, computed, effect, inject } from "@angular/core";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { AvatarModule } from "primeng/avatar";
 import { AvatarGroupModule } from "primeng/avatargroup";
-import { Popover, PopoverModule } from "primeng/popover";
+import { DrawerModule } from "primeng/drawer";
 import { InfoAccountAuthDTO } from "src/app/core/interfaces/auth-user-token.dto";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -21,16 +21,16 @@ import { UpdateService } from "src/app/core/services/update-pwa.service";
   imports: [
     RouterModule,
     FormsModule,
-    Popover,
+    DrawerModule,
     AvatarModule,
     AvatarGroupModule,
-    PopoverModule,
     CustomButton,
     AppIcon,
   ],
   templateUrl: "./profile-monitor.html",
 })
 export class ProfileMonitor {
+  public profileDrawerVisible = signal(false);
   updateService = inject(UpdateService);
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);

@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import {
   CdkDrag,
   CdkDragDrop,
@@ -47,6 +48,7 @@ import { CardEmployee } from "../employees/pages/card-employee";
   templateUrl: "./staff-board.html",
   styleUrl: "./staff-board.scss",
   imports: [
+    EmptyState,
     TableModule,
     AvatarModule,
     TagModule,

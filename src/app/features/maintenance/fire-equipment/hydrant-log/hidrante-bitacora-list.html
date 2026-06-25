@@ -55,6 +55,13 @@
       </td>
     </tr>
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="11">
+          <app-empty-state icon="mdi:pipe" title="Sin registros" message="No hay registros de bitácora de hidrantes." />
+        </td>
+      </tr>
+    </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -67,6 +74,13 @@
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="width:38px;height:38px;background:var(--ds-info-light,#e0f2fe);"
+      >
+        <app-icon icon="mdi:pipe" style="font-size:1.1rem;color:var(--ds-info);"></app-icon>
+      </div>
       <ion-label>
         <h3>{{ item.date | date:'dd-MMM-yy' }} {{ item.hour }}</h3>
         <p>{{ item.cabinetState }}</p>
@@ -81,8 +95,8 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })" />
-            <custom-button-delete (confirmed)="onDelete(item.id)" />
+            <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"  label="Editar" [showLabelOnDesktop]="true"/>
+            <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
           </ng-container>
         </app-action-menu>
       </div>

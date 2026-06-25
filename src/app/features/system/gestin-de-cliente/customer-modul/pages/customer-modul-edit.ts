@@ -7,7 +7,7 @@ import { checkmarkOutline, closeOutline } from "ionicons/icons";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
-import { InputTextModule } from "primeng/inputtext";
+import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { FormsModule } from "@angular/forms";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -38,7 +38,7 @@ interface CustomerModulListDTO {
     CommonModule,
     MessageModule,
     ProgressSpinnerModule,
-    InputTextModule,
+    CustomSearchInput,
     FormsModule,
     IonList,
     IonToggle,

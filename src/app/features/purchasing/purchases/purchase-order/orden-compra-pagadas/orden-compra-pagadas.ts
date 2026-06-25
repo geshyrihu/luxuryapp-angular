@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -28,6 +29,7 @@ import { OrdenCompra } from "../orden-compra";
   selector: "app-orden-compra-pagadas",
   templateUrl: "./orden-compra-pagadas.html",
   imports: [
+    EmptyState,
     CommonModule,
     ReactiveFormsModule,
     TableModule,

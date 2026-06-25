@@ -66,13 +66,21 @@
                         nombreProducto: item.nombreProducto,
                         almacenId: item.almacenId
                       })"
-              />
-              <custom-button-delete (confirmed)="onDelete(item.id)" />
+/>
+              <custom-button-delete (confirmed)="onDelete(item.id)"
+/>
             </div>
           </td>
           }
         </tr>
       </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">
+          <app-empty-state icon="mdi:package-up" title="Sin entradas" message="No hay entradas de producto registradas." />
+        </td>
+      </tr>
+    </ng-template>
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
       </ng-template>
@@ -87,6 +95,13 @@
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="width:38px;height:38px;background:var(--ds-success-light,#d1fae5);"
+      >
+        <app-icon icon="mdi:package-up" style="font-size:1.1rem;color:var(--ds-success);"></app-icon>
+      </div>
       <ion-label>
         <div class="flex flex-column">
           <h6 class="mb-0">{{ item.nombreProducto }}</h6>
@@ -110,8 +125,9 @@
                       nombreProducto: item.nombreProducto,
                       almacenId: item.almacenId
                     })"
-            />
-            <custom-button-delete (confirmed)="onDelete(item.id)" />
+ label="Editar" [showLabelOnDesktop]="true"/>
+            <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
           </ng-container>
         </app-action-menu>
       </div>

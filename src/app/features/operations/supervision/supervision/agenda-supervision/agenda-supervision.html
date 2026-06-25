@@ -182,8 +182,9 @@
             aspRoleS.hasRole(AspRole.SuperUsuario)) {
             <custom-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-            />
-            <custom-button-delete (confirmed)="onDelete(item.id)" />
+ label="Editar" [showLabelOnDesktop]="true"/>
+            <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
 
             }
           </ng-container>
@@ -191,9 +192,11 @@
       </td>
     </tr>
   </ng-template>
-  <ng-template emptymessage>
+  <ng-template pTemplate="emptymessage">
     <tr>
-      <td colspan="9">No Hay Registros.</td>
+      <td colspan="9">
+        <app-empty-state icon="mdi:calendar-clock-outline" title="Sin agenda" message="No hay eventos en la agenda de supervisión." />
+      </td>
     </tr>
   </ng-template>
   <ng-template #paginatorleft>

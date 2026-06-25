@@ -1,4 +1,5 @@
-﻿import { DatePipe } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { DatePipe } from "@angular/common";
 import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
@@ -22,6 +23,7 @@ import { WorkContractFormComponent } from "./work-contract-form";
   selector: "app-work-contract-list",
   templateUrl: "./work-contract-list.html",
   imports: [
+    EmptyState,
     DatePipe,
     TableModule,
     PrimeNgCustomCaption,

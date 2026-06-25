@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -25,6 +26,7 @@ import { LevelThreeAccountForm } from "./level-three-account-form";
   selector: "app-level-three-account-list",
   templateUrl: "./level-three-account-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     CustomButtonEdit,

@@ -51,13 +51,21 @@
         <div class="flex">
           <custom-button-edit
             (clicked)="onModalForm({ id: itm.id, title: 'Editar' })"
-          />
-          <custom-button-delete (confirmed)="onDelete(itm.id)" />
+/>
+          <custom-button-delete (confirmed)="onDelete(itm.id)"
+/>
         </div>
       </td>
     </tr>
     }
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4">
+          <app-empty-state icon="mdi:lightbulb-outline" title="Sin luminarias" message="No hay luminarias registradas." />
+        </td>
+      </tr>
+    </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -108,10 +116,13 @@
         <p>{{ itm.area }}</p>
       </ion-label>
       <app-action-menu slot="end">
+        <ng-container actions>
         <custom-button-edit
           (clicked)="onModalForm({ id: itm.id, title: 'Editar' })"
-        />
-        <custom-button-delete (confirmed)="onDelete(itm.id)" />
+ label="Editar" [showLabelOnDesktop]="true"/>
+        <custom-button-delete (confirmed)="onDelete(itm.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
+              </ng-container>
       </app-action-menu>
     </ion-item>
     }

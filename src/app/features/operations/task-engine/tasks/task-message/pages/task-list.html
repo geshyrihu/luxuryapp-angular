@@ -72,7 +72,6 @@
           variant="outlined"
           severity="secondary"
           size="small"
-          [showLabelOnDesktop]="true"
           (clicked)="onPendingBoard()"
         />
         <custom-button
@@ -81,7 +80,6 @@
           variant="outlined"
           severity="secondary"
           size="small"
-          [showLabelOnDesktop]="true"
           (clicked)="onPreviewClickedWorkPlan()"
         />
         <custom-button
@@ -90,7 +88,6 @@
           variant="outlined"
           severity="secondary"
           size="small"
-          [showLabelOnDesktop]="true"
           (clicked)="onPreviewWeeklyReport()"
         />
         <custom-button
@@ -98,7 +95,6 @@
           label="Enviar reporte"
           variant="outlined"
           size="small"
-          [showLabelOnDesktop]="true"
           [disabled]="wekklyIsNullOrEmpty()"
           (clicked)="onSendWeeklyReport()"
         />
@@ -108,7 +104,6 @@
           variant="outlined"
           severity="secondary"
           size="small"
-          [showLabelOnDesktop]="true"
           (clicked)="printReport()"
         />
       </div>
@@ -302,7 +297,7 @@
   <ng-template #body let-item let-rowIndex="rowIndex">
     <tr
       [pReorderableRow]="rowIndex"
-      [style.background-color]="item.priority === 'High' ? 'var(--brand-danger-bg)' : (item.daysDifference > 15 && !item.scheduledAt) ? 'var(--brand-warning-bg)' : null"
+      [style.background-color]="item.priority === 'High' ? 'var(--ds-danger-light)' : (item.daysDifference > 15 && !item.scheduledAt) ? 'var(--ds-warning-light)' : null"
       [class.task-link-source]="linkDragSourceId() === item.id"
       [class.task-link-target]="linkDragTargetId() === item.id"
       [class.task-chain-member]="chainedTaskIds().has(item.id)"
@@ -356,7 +351,7 @@
               <span
                 class="px-1 border-round text-xs font-semibold"
                 [style.background]="chainStepMap().get(item.id) === 1 ? 'rgba(16,185,129,0.15)' : 'rgba(147,51,234,0.15)'"
-                [style.color]="chainStepMap().get(item.id) === 1 ? '#059669' : '#7c3aed'"
+                [style.color]="chainStepMap().get(item.id) === 1 ? 'var(--ds-success)' : 'var(--ds-help)'"
                 [pTooltip]="'Secuencia: paso ' + chainStepMap().get(item.id)"
               >
                 Paso {{ chainStepMap().get(item.id) }}
@@ -507,42 +502,34 @@
               <custom-button-item
                 iconClass="mdi:calendar"
                 label="Programar"
-                [showLabelOnDesktop]="true"
                 (clicked)="onProgram(item.id)"
-              />
+               [showLabelOnDesktop]="true"/>
               @if (item.status !== 'Completed') {
               <custom-button-item
                 iconClass="mdi:lock"
                 label="Cerrar"
-                [showLabelOnDesktop]="true"
                 (clicked)="onClosed(item.id)"
-              />
+               [showLabelOnDesktop]="true"/>
               } @if (item.status !== 'InProgress') {
               <custom-button-item
                 iconClass="mdi:sync"
                 label="En proceso"
-                [showLabelOnDesktop]="true"
                 (clicked)="onProgress(item.id)"
-              />
+               [showLabelOnDesktop]="true"/>
               } @if (item.status === 'Completed') {
               <custom-button-item
                 iconClass="mdi:lock-open"
                 label="Reabrir"
-                [showLabelOnDesktop]="true"
                 (clicked)="onReopen(item.id)"
-              />
+               [showLabelOnDesktop]="true"/>
               }
               <custom-button-edit
-                label="Editar"
-                [showLabelOnDesktop]="true"
                 (clicked)="onModalForm(item)"
-              />
+               label="Editar" [showLabelOnDesktop]="true"/>
               @if (isSuperUser()) {
               <custom-button-delete
-                label="Eliminar"
-                [showLabelOnDesktop]="true"
                 (confirmed)="onDelete(item.id)"
-              />
+               label="Eliminar" [showLabelOnDesktop]="true"/>
               }
             </ng-container>
           </app-action-menu>
@@ -550,6 +537,13 @@
       </td>
     </tr>
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="17">
+          <app-empty-state icon="mdi:checkbox-multiple-outline" title="Sin tareas" message="No hay tareas registradas." />
+        </td>
+      </tr>
+    </ng-template>
 
   <ng-template #paginatorleft>
     <div class="flex align-items-center no-print">
@@ -680,7 +674,7 @@
       detail="false"
       lines="full"
       class="ion-no-padding"
-      [style.--background]="item.priority === 'High' ? 'var(--brand-danger-bg)' : (item.daysDifference > 15 && !item.scheduledAt) ? 'var(--brand-warning-bg)' : 'transparent'"
+      [style.--background]="item.priority === 'High' ? 'var(--ds-danger-light)' : (item.daysDifference > 15 && !item.scheduledAt) ? 'var(--ds-warning-light)' : 'transparent'"
     >
       <div
         slot="start"
@@ -706,7 +700,7 @@
             <span
               class="px-1 border-round text-xs font-semibold"
               [style.background]="chainStepMap().get(item.id) === 1 ? 'rgba(16,185,129,0.15)' : 'rgba(147,51,234,0.15)'"
-              [style.color]="chainStepMap().get(item.id) === 1 ? '#059669' : '#7c3aed'"
+              [style.color]="chainStepMap().get(item.id) === 1 ? 'var(--ds-success)' : 'var(--ds-help)'"
               >Paso {{ chainStepMap().get(item.id) }}</span
             >
             } @if (item.dependsOnTaskFolio) {
@@ -786,29 +780,29 @@
               iconName="calendar-outline"
               label="Programar"
               (clicked)="onProgram(item.id)"
-            />
+             [showLabelOnDesktop]="true"/>
             @if (item.status !== 'Completed') {
             <custom-button-item
               iconName="lock-closed-outline"
               label="Cerrar"
               (clicked)="onClosed(item.id)"
-            />
+             [showLabelOnDesktop]="true"/>
             } @if (item.status !== 'InProgress') {
             <custom-button-item
               iconName="sync-outline"
               label="En proceso"
               (clicked)="onProgress(item.id)"
-            />
+             [showLabelOnDesktop]="true"/>
             } @if (item.status === 'Completed') {
             <custom-button-item
               iconName="lock-open-outline"
               label="Reabrir"
               (clicked)="onReopen(item.id)"
-            />
+             [showLabelOnDesktop]="true"/>
             }
-            <custom-button-edit (clicked)="onModalForm(item)" />
+            <custom-button-edit (clicked)="onModalForm(item)"  label="Editar" [showLabelOnDesktop]="true"/>
             @if (isSuperUser()) {
-            <custom-button-delete (confirmed)="onDelete(item.id)" />
+            <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
             }
           </ng-container>
         </app-action-menu>
@@ -834,15 +828,15 @@
 
   <div class="print-legend">
     <span
-      ><span class="print-legend-dot" style="background: #dc2626"></span> No
+      ><span class="print-legend-dot" style="background:var(--ds-danger)"></span> No
       iniciado</span
     >
     <span
-      ><span class="print-legend-dot" style="background: #ea580c"></span> En
+      ><span class="print-legend-dot" style="background:var(--ds-warning)"></span> En
       proceso</span
     >
     <span
-      ><span class="print-legend-dot" style="background: #dc2626"></span>
+      ><span class="print-legend-dot" style="background:var(--ds-danger)"></span>
       Reabierto</span
     >
   </div>
@@ -919,7 +913,7 @@
           >
           <p class="print-followup">{{ item.lastFollowUp }}</p>
           } @else {
-          <span style="font-size: 7.5pt; color: #aaa">—</span>
+          <span style="font-size: 7.5pt; color:var(--ds-text-muted)">—</span>
           }
         </td>
       </tr>

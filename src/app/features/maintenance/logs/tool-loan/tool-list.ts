@@ -1,4 +1,5 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { IonAvatar, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { AvatarModule } from "primeng/avatar";
@@ -33,6 +34,7 @@ import { ToolForm } from "./tool-form";
   selector: "app-tool-list",
   templateUrl: "./tool-list.html",
   imports: [
+    EmptyState,
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,

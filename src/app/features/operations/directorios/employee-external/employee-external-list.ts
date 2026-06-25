@@ -1,4 +1,5 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IonAvatar, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
@@ -27,6 +28,7 @@ import { EmployeeExternalForm } from "./employee-external-form";
   selector: "app-employee-external-list",
   templateUrl: "./employee-external-list.html",
   imports: [
+    EmptyState,
     TableModule,
     CustomButtonEdit,
     CustomButtonItem,

@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -31,6 +32,7 @@ import { PropiedadesForm } from "./propiedades-form";
   selector: "app-propiedades-list",
   templateUrl: "./propiedades-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     CustomButtonEdit,

@@ -1,110 +1,72 @@
-import { Component, input } from "@angular/core";
-import {
-  IonButton,
-  IonContent,
-  IonIcon,
-  IonList,
-  IonPopover,
-} from "@ionic/angular/standalone";
+import { Component } from "@angular/core";
 import { addIcons } from "ionicons";
 import { ellipsisVertical } from "ionicons/icons";
 import { ButtonModule } from "primeng/button";
-import { PopoverModule } from "primeng/popover";
+import { Popover, PopoverModule } from "primeng/popover";
 
 /**
  * 🍔 ACTION MENU
  * -------------------------------------------------------------------------
- * Menú contextual versátil.
- * Se adapta como un camaleón: Popover de Ionic en móvil 📱, Popover de PrimeNG en escritorio 🖥️.
- * ¡Lo mejor de dos mundos!
+ * Menú contextual — usa p-popover (PrimeNG) para web Y mobile.
+ *
+ * Razón: ng-content dentro del ng-template de ion-popover no funciona con
+ * Angular content projection (lazy rendering vs. proyección en creación).
+ * p-popover con appendTo="body" resuelve correctamente en ambas plataformas.
+ *
+ * El popover se cierra automáticamente 60ms después de cualquier clic interno,
+ * dejando tiempo para que SweetAlert / AlertController abra encima.
  */
 @Component({
   selector: "app-action-menu",
-  imports: [
-    PopoverModule,
-    ButtonModule,
-    IonButton,
-    IonIcon,
-    IonPopover,
-    IonContent,
-    IonList,
-  ],
+  imports: [PopoverModule, ButtonModule],
   template: `
-    @if (mobileMode()) {
-      <!-- 📱 MODO MÓVIL (IONIC) -->
-      <ion-button fill="clear" (click)="presentPopover($event)">
-        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
-      </ion-button>
-      <ion-popover
-        [isOpen]="isOpen"
-        [event]="popoverEvent"
-        (didDismiss)="isOpen = false"
-        dismissOnSelect="true"
-        side="bottom"
-        alignment="end"
-      >
-        <ng-template>
-          <ion-content class="ion-no-padding">
-            <ion-list
-              lines="none"
-              class="ion-no-padding"
-              style="min-width: 150px;"
-            >
-              <ng-content></ng-content>
-            </ion-list>
-          </ion-content>
-        </ng-template>
-      </ion-popover>
-    } @else {
-      <!-- 🖥️ MODO ESCRITORIO (PRIMENG) -->
-      <div class="action-menu">
-        <button
-          pButton
-          type="button"
-          icon="icon icon-pi-ellipsis-v"
-          class="border-round-lg p-button-text action-menu-button"
-          (click)="popover.toggle($event)"
-        ></button>
+    <!-- ✅ p-popover para web Y mobile — ng-content funciona correctamente -->
+    <div class="action-menu">
+      <button
+        pButton
+        type="button"
+        icon="icon icon-pi-ellipsis-v"
+        class="border-round-lg p-button-text action-menu-button"
+        (click)="popover.toggle($event)"
+        aria-label="Opciones"
+      ></button>
 
-        <p-popover #popover appendTo="body">
-          <div class="menu-container">
-            <ng-content></ng-content>
-          </div>
-        </p-popover>
-      </div>
-    }
+      <p-popover #popover appendTo="body" styleClass="action-menu-popover">
+        <!-- 60ms: handler del botón hijo se ejecuta antes del hide -->
+        <div class="menu-container" (click)="closeMenu(popover)">
+          <ng-content></ng-content>
+        </div>
+      </p-popover>
+    </div>
   `,
-  styles: [
-    `
+  styles: [`
+    .menu-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 0.375rem;
+      min-width: 180px;
+    }
+    .menu-container ::ng-deep button {
+      width: 100%;
+      justify-content: flex-start;
+    }
+    /* Mobile: items más grandes para touch */
+    @media (max-width: 767px) {
       .menu-container {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        padding: 0.5rem;
-        min-width: 150px;
+        min-width: 200px;
+        gap: 0.125rem;
+        padding: 0.25rem;
       }
-
-      .menu-container ::ng-deep button {
-        width: 100%;
-        justify-content: flex-start;
-      }
-    `,
-  ],
+    }
+  `],
 })
 export class ActionMenu {
-  // <--- Inputs --->
-  mobileMode = input<boolean>(false);
-
-  isOpen = false;
-  popoverEvent: any;
-
   constructor() {
     addIcons({ ellipsisVertical });
   }
 
-  presentPopover(e: Event) {
-    e.stopPropagation();
-    this.popoverEvent = e;
-    this.isOpen = true;
+  closeMenu(popover: Popover): void {
+    setTimeout(() => popover?.hide(), 60);
   }
 }

@@ -43,18 +43,22 @@
       <!-- Opciones -->
       <td class="no-print text-center">
         <div class="flex justify-content-center">
-          <custom-button-edit (clicked)="onEdit(item.id)" />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <custom-button-edit (clicked)="onEdit(item.id)"
+/>
+          <custom-button-delete (confirmed)="onDelete(item.id)"
+/>
         </div>
       </td>
       <!-- Opciones -->
     </tr>
   </ng-template>
-  <ng-template emptymessage>
-    <tr>
-      <td colspan="6">No se encontraron plantillas.</td>
-    </tr>
-  </ng-template>
+  <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="6">
+          <app-empty-state icon="mdi:file-document-outline" title="Sin plantillas" message="No hay plantillas registradas." />
+        </td>
+      </tr>
+    </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -82,8 +86,12 @@
         </p>
       </ion-label>
       <app-action-menu slot="end">
-        <custom-button-edit (clicked)="onEdit(item.id)" />
-        <custom-button-delete (confirmed)="onDelete(item.id)" />
+        <ng-container actions>
+        <custom-button-edit (clicked)="onEdit(item.id)"
+ label="Editar" [showLabelOnDesktop]="true"/>
+        <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
+              </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

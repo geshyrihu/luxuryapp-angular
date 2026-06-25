@@ -14,7 +14,7 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
         <label class="field-label block mb-2">
           {{ label() }}
           @if (required()) {
-            <span class="text-red-400">*</span>
+            <span style="color:var(--ds-danger)">*</span>
           }
         </label>
       }

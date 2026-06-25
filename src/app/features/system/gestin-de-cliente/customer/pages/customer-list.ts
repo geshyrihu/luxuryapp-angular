@@ -1,11 +1,12 @@
-﻿import {
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import {
   Component,
   computed,
   inject,
   OnInit,
   signal,
 } from "@angular/core";
-import { IonAvatar } from "@ionic/angular/standalone";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { addIcons } from "ionicons";
 import {
@@ -44,6 +45,7 @@ import { CustomerImages } from "./customer-images";
   selector: "app-customer-list",
   templateUrl: "./customer-list.html",
   imports: [
+    EmptyState,
     TableModule,
     AvatarModule,
     NgbTooltipModule,
@@ -53,12 +55,10 @@ import { CustomerImages } from "./customer-images";
     CustomBtnActiveDesactive,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
+    AppIcon,
     DataViewMobile,
     ActionMenu,
-
-    IonAvatar,
     CustomBtnActiveDesactive,
-
     CustomButtonItem,
   ],
 })

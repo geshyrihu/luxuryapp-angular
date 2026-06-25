@@ -72,7 +72,7 @@
             <custom-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
               pTooltip="Este puesto requiere que se le asigne un rol"
-            />
+/>
           </div>
           } @else { {{ item.applicationRoleName }} }
         </td>
@@ -106,25 +106,26 @@
               iconClass="mdi:account-plus"
               label="Solicitar vacante"
               [pTooltip]="'Solicitar vacante'"
-            />
+/>
             }
             <custom-button-item
               (clicked)="onModalJobDescription(item.id, item.jobDescriptionId, item.applicationRoleName)"
               iconClass="mdi:book"
               label="Descripción"
               [pTooltip]="'Descripción de puesto'"
-            />
+/>
             <custom-button-item
               (clicked)="onModalHoursWorkPosition(item.id)"
               iconClass="mdi:clock-outline"
               label="Horarios"
               [pTooltip]="'Horarios de trabajo'"
-            />
+/>
             <custom-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
-            />
+/>
             @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
-            <custom-button-delete (confirmed)="onDelete(item.id)" />
+            <custom-button-delete (confirmed)="onDelete(item.id)"
+/>
             }
           </div>
         </td>
@@ -136,7 +137,14 @@
         Total: {{ data()?.length || 0 }} puestos de trabajo.
       </div>
     </ng-template>
-  </p-table>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">
+          <app-empty-state icon="mdi:briefcase-outline" title="Sin puestos" message="No hay puestos de trabajo registrados." />
+        </td>
+      </tr>
+    </ng-template>
+</p-table>
 </div>
 
 <!-- Mobile View -->
@@ -155,20 +163,17 @@
 
     <ng-template #listItemTemplate let-item>
       <ion-item lines="full" class="ion-no-padding">
-        <ion-avatar
+        <div
           slot="start"
+          class="mobile-avatar-slot"
           (click)="item.applicationUserPhoto ? onCardEmployee(item.applicationUserId) : null"
         >
           @if (item.applicationUserPhoto) {
-          <img [src]="item.applicationUserPhoto" />
+            <img [src]="item.applicationUserPhoto" [alt]="item.folio" class="mobile-avatar-img" />
           } @else {
-          <div
-            class="flex align-items-center justify-content-center h-full w-full surface-200 text-500"
-          >
-            <app-icon [icon]="'mdi:account'"></app-icon>
-          </div>
+            <app-icon icon="mdi:briefcase-outline" style="font-size:1.25rem;color:var(--ds-primary);"></app-icon>
           }
-        </ion-avatar>
+        </div>
 
         <ion-label>
           <div class="flex justify-content-between align-items-center mb-1">
@@ -198,29 +203,32 @@
         </ion-label>
 
         <app-action-menu slot="end">
+          <ng-container actions>
           @if (shouldShowVacancyRequest(item)) {
           <custom-button-item
             (clicked)="onModalSolicitudVacante(item.id)"
             iconName="person-add-outline"
             label="Solicitar vacante"
-          />
+ [showLabelOnDesktop]="true"/>
           }
           <custom-button-item
             (clicked)="onModalJobDescription(item.id, item.jobDescriptionId, item.applicationRoleName)"
             iconName="book-outline"
             label="Descripción"
-          />
+ [showLabelOnDesktop]="true"/>
           <custom-button-item
             (clicked)="onModalHoursWorkPosition(item.id)"
             iconName="time-outline"
             label="Horarios"
-          />
+ [showLabelOnDesktop]="true"/>
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-          />
+ label="Editar" [showLabelOnDesktop]="true"/>
           @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
           }
+                  </ng-container>
         </app-action-menu>
       </ion-item>
     </ng-template>

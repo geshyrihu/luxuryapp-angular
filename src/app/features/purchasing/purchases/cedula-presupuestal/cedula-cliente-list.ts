@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -32,6 +33,7 @@ import { PeriodoCedulaForm } from "./periodo-cedula-form";
   selector: "app-cedula-cliente-list",
   templateUrl: "./cedula-cliente-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     ReactiveFormsModule,
     TableModule,

@@ -1,15 +1,9 @@
-import { Component, input, output } from "@angular/core";
+import { Component, DestroyRef, effect, inject, input, output } from "@angular/core";
 import { RouterModule } from "@angular/router";
-// import { CustomButtonAdd } from "../buttons/custom-button-add";
 import { CustomButtonAdd } from "../buttons/web/custom-button-add";
 import { CustomSearchInput } from "../inputs/web/custom-search-input-signal";
+import { GlobalTableFilterService } from "src/app/core/services/global-table-filter.service";
 
-/**
- * 🎛️ PRIMENG CUSTOM CAPTION
- * -------------------------------------------------------------------------
- * Barra de herramientas estándar para tablas PrimeNG.
- * Incluye búsqueda y botón de agregar, adaptándose a móvil y escritorio.
- */
 @Component({
   selector: "primeng-custom-caption",
   templateUrl: "./primeng-custom-caption.html",
@@ -23,7 +17,9 @@ import { CustomSearchInput } from "../inputs/web/custom-search-input-signal";
   ],
 })
 export class PrimeNgCustomCaption {
-  // <--- Inputs --->
+  private globalFilter = inject(GlobalTableFilterService);
+  private destroyRef = inject(DestroyRef);
+
   dt = input<any>(undefined);
   showAdd = input<boolean>(true);
   label = input<string>("Agregar");
@@ -33,10 +29,20 @@ export class PrimeNgCustomCaption {
   showSearch = input<boolean>(true);
   noMargin = input<boolean>(false);
   noPadding = input<boolean>(false);
+  listenGlobalFilter = input<boolean>(true);
 
-  // <--- Outputs --->
   add = output<any>();
   search = output<string>();
+
+  constructor() {
+    effect(() => {
+      const term = this.globalFilter.filterTerm();
+      const table = this.dt();
+      if (this.listenGlobalFilter() && table && term !== undefined) {
+        table.filterGlobal(term, "contains");
+      }
+    });
+  }
 
   onAdd(data: any) {
     this.add.emit(data);

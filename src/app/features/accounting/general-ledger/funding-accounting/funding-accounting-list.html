@@ -16,7 +16,6 @@
       (clicked)="onFaqsFondeo()"
       iconClass="mdi:help-circle"
       label="Ayuda"
-      [showLabelOnDesktop]="true"
     />
   </ng-template>
   <ng-template #header>
@@ -88,9 +87,16 @@
             <custom-button-item
               (clicked)="onDetails(item.id)"
               label="🔍 Detalles"
-              />
+               [showLabelOnDesktop]="true"/>
             </ng-container>
           </app-action-menu> -->
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="7">
+        <app-empty-state icon="mdi:cash-multiple" title="Sin fondeos" message="No hay registros contables de fondeos." />
       </td>
     </tr>
   </ng-template>
@@ -111,7 +117,7 @@
         background:var(--ds-border); display:flex; align-items:center;
         justify-content:center; flex-shrink:0; margin-left:16px;
       ">
-        <app-icon icon="mdi:calculator" style="font-size:20px; color:#2563eb;"></app-icon>
+        <app-icon icon="mdi:calculator" style="font-size:20px; color:var(--ds-primary);"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.period }}</h3>

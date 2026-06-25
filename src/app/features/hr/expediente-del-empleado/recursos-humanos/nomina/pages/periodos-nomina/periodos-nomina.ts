@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { TagModule } from "primeng/tag";
@@ -23,6 +24,7 @@ import ModalDiasNoHabiles from "./modal-dias-no-habiles/modal-dias-no-habiles";
 @Component({
   selector: "app-periodos-nomina",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     TagModule,

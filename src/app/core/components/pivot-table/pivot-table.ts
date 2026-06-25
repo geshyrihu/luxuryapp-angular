@@ -1,5 +1,5 @@
-import { Component, input, computed, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { Component, computed, input, ViewEncapsulation } from "@angular/core";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 
 export interface PivotDimension {
@@ -41,23 +41,39 @@ export interface PivotValue {
             </tr>
           </thead>
           <tbody>
-            @for (row of rows(); track row.key) {
-              <tr [class]="'pivot-row-level-' + row.level" [class.pivot-row-expanded]="row.expanded">
+            @for (row of treeRows(); track row.key) {
+              <tr
+                [class]="'pivot-row-level-' + row.level"
+                [class.pivot-row-expanded]="row.expanded"
+              >
                 <td class="pivot-row-header" (click)="toggleRow(row)">
-                  <span class="pivot-indent" [style.paddingLeft.px]="row.level * 20"></span>
+                  <span
+                    class="pivot-indent"
+                    [style.paddingLeft.px]="row.level * 20"
+                  ></span>
                   @if (row.children?.length) {
-                    <app-icon [icon]="row.expanded ? 'mdi:chevron-down' : 'mdi:chevron-right'" class="text-xs" />
+                    <app-icon
+                      [icon]="
+                        row.expanded ? 'mdi:chevron-down' : 'mdi:chevron-right'
+                      "
+                      class="text-xs"
+                    />
                   } @else {
                     <span class="pivot-leaf-icon"></span>
                   }
                   <span class="pivot-row-label">{{ row.label }}</span>
                 </td>
                 @for (cell of row.cells; track cell.colKey) {
-                  <td class="pivot-cell" [class.pivot-cell-total]="cell.isTotal">
+                  <td
+                    class="pivot-cell"
+                    [class.pivot-cell-total]="cell.isTotal"
+                  >
                     {{ formatValue(cell.value) }}
                   </td>
                 }
-                <td class="pivot-total-cell">{{ formatValue(row.rowTotal) }}</td>
+                <td class="pivot-total-cell">
+                  {{ formatValue(row.rowTotal) }}
+                </td>
               </tr>
             }
           </tbody>
@@ -65,7 +81,9 @@ export interface PivotValue {
             <tr class="pivot-footer">
               <td class="pivot-row-header">Total general</td>
               @for (col of columnHeaders(); track col.key) {
-                <td class="pivot-cell pivot-cell-total">{{ formatValue(col.total) }}</td>
+                <td class="pivot-cell pivot-cell-total">
+                  {{ formatValue(col.total) }}
+                </td>
               }
               <td class="pivot-total-cell">{{ formatValue(grandTotal()) }}</td>
             </tr>
@@ -74,98 +92,100 @@ export interface PivotValue {
       </div>
     </div>
   `,
-  styles: [`
-    .pivot-root {
-      background: var(--ds-bg-surface, #fff);
-      border: 1px solid var(--ds-border, #e2e8f0);
-      border-radius: var(--ds-radius-lg, 8px);
-      overflow: hidden;
-    }
-    .pivot-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 1rem;
-      background: var(--ds-bg-elevated, #f4f5f8);
-      border-bottom: 1px solid var(--ds-border, #e2e8f0);
-      font-size: var(--ds-font-size-body, 0.9375rem);
-      color: var(--ds-text-primary);
-    }
-    .pivot-summary {
-      font-size: var(--ds-font-size-table, 0.875rem);
-      color: var(--ds-text-muted);
-    }
-    .pivot-table-wrapper {
-      overflow-x: auto;
-    }
-    .pivot-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: var(--ds-font-size-table, 0.875rem);
-    }
-    .pivot-table th,
-    .pivot-table td {
-      padding: 0.5rem 0.75rem;
-      border: 1px solid var(--ds-border, #e2e8f0);
-      text-align: right;
-      white-space: nowrap;
-    }
-    .pivot-corner {
-      background: var(--ds-bg-elevated, #f4f5f8);
-      min-width: 160px;
-    }
-    .pivot-col-header {
-      background: var(--ds-bg-elevated, #f4f5f8);
-      font-weight: var(--ds-font-weight-semibold, 600);
-      color: var(--ds-text-primary);
-      text-align: center;
-    }
-    .pivot-row-header {
-      text-align: left;
-      font-weight: var(--ds-font-weight-medium, 500);
-      color: var(--ds-text-primary);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-    .pivot-indent {
-      flex-shrink: 0;
-    }
-    .pivot-leaf-icon {
-      width: 1rem;
-      display: inline-block;
-    }
-    .pivot-row-label {
-      flex: 1;
-    }
-    .pivot-row-level-1 {
-      background: var(--ds-bg-elevated, #f4f5f8);
-    }
-    .pivot-row-level-1 .pivot-row-header {
-      padding-left: 0.5rem;
-    }
-    .pivot-cell {
-      color: var(--ds-text-primary);
-    }
-    .pivot-cell-total {
-      font-weight: var(--ds-font-weight-semibold, 600);
-      background: var(--ds-bg-sunken, #e8edff);
-    }
-    .pivot-total-col,
-    .pivot-total-cell {
-      font-weight: var(--ds-font-weight-bold, 700);
-      background: var(--ds-bg-elevated, #f4f5f8);
-    }
-    .pivot-footer .pivot-cell,
-    .pivot-footer .pivot-total-cell {
-      font-weight: var(--ds-font-weight-bold, 700);
-      border-top: 2px solid var(--ds-border-strong, #cbd5e1);
-    }
-    .pivot-row-expanded {
-      background: color-mix(in srgb, var(--ds-primary) 5%, transparent);
-    }
-  `],
+  styles: [
+    `
+      .pivot-root {
+        background: var(--ds-bg-surface, #fff);
+        border: 1px solid var(--ds-border, #e2e8f0);
+        border-radius: var(--ds-radius-lg, 8px);
+        overflow: hidden;
+      }
+      .pivot-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+        background: var(--ds-bg-elevated, #f4f5f8);
+        border-bottom: 1px solid var(--ds-border, #e2e8f0);
+        font-size: var(--ds-font-size-body, 0.9375rem);
+        color: var(--ds-text-primary);
+      }
+      .pivot-summary {
+        font-size: var(--ds-font-size-table, 0.875rem);
+        color: var(--ds-text-muted);
+      }
+      .pivot-table-wrapper {
+        overflow-x: auto;
+      }
+      .pivot-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: var(--ds-font-size-table, 0.875rem);
+      }
+      .pivot-table th,
+      .pivot-table td {
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--ds-border, #e2e8f0);
+        text-align: right;
+        white-space: nowrap;
+      }
+      .pivot-corner {
+        background: var(--ds-bg-elevated, #f4f5f8);
+        min-width: 160px;
+      }
+      .pivot-col-header {
+        background: var(--ds-bg-elevated, #f4f5f8);
+        font-weight: var(--ds-font-weight-semibold, 600);
+        color: var(--ds-text-primary);
+        text-align: center;
+      }
+      .pivot-row-header {
+        text-align: left;
+        font-weight: var(--ds-font-weight-medium, 500);
+        color: var(--ds-text-primary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+      .pivot-indent {
+        flex-shrink: 0;
+      }
+      .pivot-leaf-icon {
+        width: 1rem;
+        display: inline-block;
+      }
+      .pivot-row-label {
+        flex: 1;
+      }
+      .pivot-row-level-1 {
+        background: var(--ds-bg-elevated, #f4f5f8);
+      }
+      .pivot-row-level-1 .pivot-row-header {
+        padding-left: 0.5rem;
+      }
+      .pivot-cell {
+        color: var(--ds-text-primary);
+      }
+      .pivot-cell-total {
+        font-weight: var(--ds-font-weight-semibold, 600);
+        background: var(--ds-bg-sunken, #e8edff);
+      }
+      .pivot-total-col,
+      .pivot-total-cell {
+        font-weight: var(--ds-font-weight-bold, 700);
+        background: var(--ds-bg-elevated, #f4f5f8);
+      }
+      .pivot-footer .pivot-cell,
+      .pivot-footer .pivot-total-cell {
+        font-weight: var(--ds-font-weight-bold, 700);
+        border-top: 2px solid var(--ds-border-strong, #cbd5e1);
+      }
+      .pivot-row-expanded {
+        background: color-mix(in srgb, var(--ds-primary) 5%, transparent);
+      }
+    `,
+  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class PivotTable {
@@ -184,7 +204,7 @@ export class PivotTable {
   });
 
   columnHeaders = computed(() => this.aggCache().columns);
-  rows = computed(() => this.aggCache().tree);
+  treeRows = computed(() => this.aggCache().tree);
   grandTotal = computed(() => this.aggCache().grandTotal);
 
   summaryText = computed(() => {
@@ -205,7 +225,10 @@ export class PivotTable {
       case "percent":
         return `${(val * 100).toFixed(1)}%`;
       default:
-        return val.toLocaleString("es-MX", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+        return val.toLocaleString("es-MX", {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 2,
+        });
     }
   }
 
@@ -213,13 +236,24 @@ export class PivotTable {
     data: any[],
     rowDims: PivotDimension[],
     colDim: PivotDimension,
-    vals: PivotValue[]
+    vals: PivotValue[],
   ): { columns: any[]; tree: any[]; grandTotal: number } {
     const colGroups = this.groupBy(data, colDim.field);
     const colKeys = Object.keys(colGroups).sort();
 
-    const columns = colKeys.map((k) => ({ key: k, label: k, colspan: vals.length, total: 0 }));
-    if (columns.length === 0) columns.push({ key: "_empty", label: "(sin datos)", colspan: vals.length, total: 0 });
+    const columns = colKeys.map((k) => ({
+      key: k,
+      label: k,
+      colspan: vals.length,
+      total: 0,
+    }));
+    if (columns.length === 0)
+      columns.push({
+        key: "_empty",
+        label: "(sin datos)",
+        colspan: vals.length,
+        total: 0,
+      });
 
     const tree = this.buildTree(data, rowDims, 0, colKeys, vals, columns);
     const grandTotal = tree.reduce((s, r) => s + (r.rowTotal || 0), 0);
@@ -233,11 +267,13 @@ export class PivotTable {
     level: number,
     colKeys: string[],
     vals: PivotValue[],
-    columns: any[]
+    columns: any[],
   ): any[] {
     if (level >= rowDims.length) {
       const cells = colKeys.map((ck) => {
-        const match = data.find((d) => d[rowDims[rowDims.length - 1].field] === ck);
+        const match = data.find(
+          (d) => d[rowDims[rowDims.length - 1].field] === ck,
+        );
         const val = match ? this.aggregate([match], vals[0]) : 0;
         return { colKey: ck, value: val, isTotal: false };
       });
@@ -260,9 +296,19 @@ export class PivotTable {
     const result: any[] = [];
 
     for (const [key, group] of Object.entries(groups)) {
-      const children = this.buildTree(group as any[], rowDims, level + 1, colKeys, vals, columns);
+      const children = this.buildTree(
+        group as any[],
+        rowDims,
+        level + 1,
+        colKeys,
+        vals,
+        columns,
+      );
       const cells = colKeys.map((ck, ci) => {
-        const val = children.reduce((s, ch) => s + (ch.cells[ci]?.value || 0), 0);
+        const val = children.reduce(
+          (s, ch) => s + (ch.cells[ci]?.value || 0),
+          0,
+        );
         columns[ci].total += val;
         return { colKey: ck, value: val, isTotal: false };
       });
@@ -292,12 +338,18 @@ export class PivotTable {
   private aggregate(items: any[], value: PivotValue): number {
     const vals = items.map((i) => Number(i[value.field]) || 0);
     switch (value.aggregator) {
-      case "sum": return vals.reduce((a, b) => a + b, 0);
-      case "avg": return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : 0;
-      case "count": return vals.length;
-      case "min": return Math.min(...vals);
-      case "max": return Math.max(...vals);
-      default: return vals.reduce((a, b) => a + b, 0);
+      case "sum":
+        return vals.reduce((a, b) => a + b, 0);
+      case "avg":
+        return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : 0;
+      case "count":
+        return vals.length;
+      case "min":
+        return Math.min(...vals);
+      case "max":
+        return Math.max(...vals);
+      default:
+        return vals.reduce((a, b) => a + b, 0);
     }
   }
 }

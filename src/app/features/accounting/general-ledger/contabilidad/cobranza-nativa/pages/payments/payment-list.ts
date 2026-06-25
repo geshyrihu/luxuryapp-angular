@@ -9,6 +9,7 @@ import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -32,6 +33,7 @@ import { EPaymentMethod, EPaymentStatus } from "../../models/enums";
   selector: "app-payment-list",
   imports: [
     TableModule,
+    EmptyState,
     PrimeNgCustomCaption,
     CustomButtonEdit,
     CustomButtonDelete,

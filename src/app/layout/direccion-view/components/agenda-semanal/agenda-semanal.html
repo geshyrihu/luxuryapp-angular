@@ -93,7 +93,7 @@
         <span
           class="text-xs border-round px-2 py-1"
           [class.surface-300]="!dia.esHoy"
-          [style]="dia.esHoy ? 'background:rgba(255,255,255,0.2);color:#fff' : ''"
+          [class.agenda-hoy-badge]="dia.esHoy"
         >
           {{ dia.eventos.length }}
         </span>

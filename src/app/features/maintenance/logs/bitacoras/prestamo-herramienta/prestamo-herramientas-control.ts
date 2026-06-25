@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -26,6 +27,7 @@ import { PrestamoHerramientaFormControl } from "./prestamo-herramienta-form-cont
   selector: "app-prestamo-herramientas-control",
   templateUrl: "./prestamo-herramientas-control.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     CustomButtonDelete,

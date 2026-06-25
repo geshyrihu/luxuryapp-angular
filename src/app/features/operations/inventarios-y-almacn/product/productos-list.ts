@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import {
   Component,
   computed,
@@ -30,6 +31,7 @@ import { ProductosForm } from "./productos-form";
   selector: "app-productos-list",
   templateUrl: "./productos-list.html",
   imports: [
+    EmptyState,
     TableModule,
     CustomButtonEdit,
     CustomButtonDelete,

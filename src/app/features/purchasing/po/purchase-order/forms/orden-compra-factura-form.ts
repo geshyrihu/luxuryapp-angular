@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import {
   Component,
@@ -33,6 +34,7 @@ export interface IOrdenCompraFacturaForm {
   selector: "app-orden-compra-factura-form",
   templateUrl: "./orden-compra-factura-form.html",
   imports: [
+    EmptyState,
     CommonModule,
     ReactiveFormsModule,
     CardModule,

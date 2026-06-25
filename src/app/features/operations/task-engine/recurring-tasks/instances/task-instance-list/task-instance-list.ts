@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, OnInit, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
@@ -24,6 +25,7 @@ import { CompleteTaskForm } from "../complete-task-form/complete-task-form";
   selector: "app-task-instance-list",
   templateUrl: "./task-instance-list.html",
   imports: [
+    EmptyState,
     ActionMenu,
     CommonModule,
     CustomButton,

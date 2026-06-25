@@ -1,67 +1,53 @@
 ﻿import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import {
-  IonList,
-  IonItemDivider,
-  IonLabel,
-} from "@ionic/angular/standalone";
-
-import {
-  CustomBtnActiveDesactive,
-  CustomButtonAdd,
-  CustomButtonConfirm,
-  CustomButtonDelete,
-  CustomButtonDownload,
-  CustomButtonEdit,
-  CustomButtonItem,
-  CustomButtonSave,
-  CustomButtonSendEmail,
-  CustomButtonTracking,
-  CustomButtonViewPdf,
-} from "src/app/core/components/buttons/web";
+  IonButtonAdd,
+  IonButtonEdit,
+  IonButtonSave,
+  IonButtonDelete,
+  IonButtonConfirm,
+  IonButtonDownload,
+  IonButtonSendEmail,
+  IonButtonTracking,
+  IonButtonViewPdf,
+  IonButtonActiveDesactive,
+  IonButtonItem,
+} from "src/app/core/components/buttons/mobile";
 
 @Component({
   selector: "app-mobile-buttons",
   imports: [
     CommonModule,
-    IonList,
-    IonItemDivider,
-    IonLabel,
-    CustomBtnActiveDesactive,
-    CustomButtonAdd,
-    CustomButtonConfirm,
-    CustomButtonDelete,
-    CustomButtonDownload,
-    CustomButtonEdit,
-    CustomButtonItem,
-    CustomButtonSave,
-    CustomButtonSendEmail,
-    CustomButtonTracking,
-    CustomButtonViewPdf,
+    IonButtonAdd,
+    IonButtonEdit,
+    IonButtonSave,
+    IonButtonDelete,
+    IonButtonConfirm,
+    IonButtonDownload,
+    IonButtonSendEmail,
+    IonButtonTracking,
+    IonButtonViewPdf,
+    IonButtonActiveDesactive,
+    IonButtonItem,
   ],
   template: `
     <div class="mobile-card">
-      <div class="mobile-card-header">Ionic Custom Buttons</div>
+      <div class="mobile-card-header">Ionic Native Buttons</div>
       <div class="mobile-card-body">
-        <ion-list lines="none" class="bg-transparent">
-          <ion-item-divider class="bg-transparent"><ion-label class="text-xs text-500 font-bold uppercase">Acciones Principales</ion-label></ion-item-divider>
-          <custom-button-add label="Nuevo Registro" />
-          <custom-button-edit label="Editar Perfil" />
-          <custom-button-save label="Guardar" />
-          <custom-button-delete label="Borrar Datos" />
-
-          <ion-item-divider class="bg-transparent mt-3"><ion-label class="text-xs text-500 font-bold uppercase">Menú Contextual (Sliding/Action)</ion-label></ion-item-divider>
-          <custom-button-active-desactive [state]="true" />
-          <custom-button-active-desactive [state]="false" />
-          <custom-button-confirm label="Confirmar Acción" />
-          <custom-button-download />
-          <custom-button-send-email />
-          <custom-button-tracking />
-          <custom-button-view-pdf />
-
-          <ion-item-divider class="bg-transparent mt-3"><ion-label class="text-xs text-500 font-bold uppercase">Item Genérico</ion-label></ion-item-divider>
-          <custom-button-item icon="mdi:star" label="Destacar Elemento" />
-        </ion-list>
+        <div class="flex flex-column gap-2">
+          <ion-button-add label="Nuevo Registro" />
+          <ion-button-edit label="Editar Perfil" />
+          <ion-button-save label="Guardar" />
+          <ion-button-delete label="Borrar Datos" />
+          <ion-button-confirm label="Confirmar Acción" />
+          <ion-button-download />
+          <ion-button-send-email />
+          <ion-button-tracking [badgeCount]="3" [ticketId]="228" />
+          <ion-button-view-pdf url="https://example.com/demo.pdf" fileName="demo.pdf" />
+          <ion-button-item icon="mdi:star" label="Destacar Elemento" />
+          <ion-button-active-desactive [state]="true" />
+          <ion-button-active-desactive [state]="false" />
+        </div>
       </div>
     </div>
   `,

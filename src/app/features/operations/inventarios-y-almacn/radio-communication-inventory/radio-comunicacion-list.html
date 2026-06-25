@@ -14,11 +14,17 @@
     />
     <custom-button-download
       label="Descargar PDF"
-      [showLabelOnDesktop]="true"
       (clicked)="onDownloadPdf()"
       class="mt-1"
     />
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="10">
+          <app-empty-state icon="mdi:radio-handheld" title="Sin equipos" message="No hay equipos de comunicacion registrados." />
+        </td>
+      </tr>
+    </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -74,7 +80,7 @@
         background:var(--ds-border); display:flex; align-items:center;
         justify-content:center; flex-shrink:0; margin-left:16px;
       ">
-        <app-icon icon="mdi:radio" style="font-size:20px; color:#16a34a;"></app-icon>
+        <app-icon icon="mdi:radio" style="font-size:20px; color:var(--ds-success);"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.marca }} — {{ item.modelo }}</h3>
@@ -82,8 +88,10 @@
         <p>{{ item.applicationUser }} · {{ item.departament }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
-        <custom-button-delete (confirmed)="onDelete(item.id)" />
+        <ng-container actions>
+        <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })"  label="Editar" [showLabelOnDesktop]="true"/>
+        <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
+              </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

@@ -1,4 +1,5 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonButton, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -38,6 +39,7 @@ import { InventarioHidranteQrService } from "./inventario-hidrante-qr.service";
   selector: "app-inventario-hidrante",
   templateUrl: "./inventario-hidrante.html",
   imports: [
+    EmptyState,
     AppIcon,
     ImageModule,
     TableModule,

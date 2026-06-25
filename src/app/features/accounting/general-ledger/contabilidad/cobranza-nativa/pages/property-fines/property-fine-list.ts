@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 ﻿import { CurrencyPipe, DatePipe } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -35,6 +36,7 @@ type TagSeverity =
 @Component({
   selector: "app-property-fine-list",
   imports: [
+    EmptyState,
     TableModule,
     TagModule,
     PrimeNgCustomCaption,

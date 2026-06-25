@@ -12,6 +12,7 @@ import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
   selector: "app-contratos-card",
   templateUrl: "./contratos-card.html",
   imports: [CommonModule, ButtonModule, AppIcon],
+  styles: [`.text-ds-warning{color:var(--ds-warning)}.text-ds-success{color:var(--ds-success)}`],
 })
 export class ContratosCard implements OnInit {
   private apiResponseS = inject(ApiResponseService);

@@ -63,11 +63,25 @@
     <ng-template pTemplate="footer">
       <primeng-custom-table-footer [totalRecords]="items().length" />
     </ng-template>
-  </p-table>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">
+          <app-empty-state icon="mdi:gavel" title="Sin sanciones" message="No hay sanciones registradas." />
+        </td>
+      </tr>
+    </ng-template>
+</p-table>
 
   <app-data-view-mobile [dt]="dt" [data]="items()" [showAdd]="false">
     <ng-template #listItemTemplate let-item>
       <ion-item lines="full">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="width:38px;height:38px;background:var(--ds-danger-light,#ffdad6);"
+      >
+        <app-icon icon="mdi:gavel" style="font-size:1.1rem;color:var(--ds-danger);"></app-icon>
+      </div>
         <ion-label>
           <h2 class="font-bold">{{ item.sanctionTypeName }}</h2>
           <p class="text-sm text-500">
@@ -87,7 +101,7 @@
               label="Cambiar estatus"
               iconName="sync-outline"
               (clicked)="onChangeStatus(item)"
-            />
+ [showLabelOnDesktop]="true"/>
           </ng-container>
         </app-action-menu>
       </ion-item>

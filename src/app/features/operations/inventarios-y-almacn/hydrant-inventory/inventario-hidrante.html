@@ -55,6 +55,13 @@
       </td>
     </tr>
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="6">
+          <app-empty-state icon="mdi:pipe" title="Sin hidrantes" message="No hay hidrantes registrados." />
+        </td>
+      </tr>
+    </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -82,17 +89,19 @@
         background:var(--ds-border); display:flex; align-items:center;
         justify-content:center; flex-shrink:0; margin-left:16px;
       ">
-        <app-icon icon="mdi:water-outline" style="font-size:20px; color:#2563eb;"></app-icon>
+        <app-icon icon="mdi:water-outline" style="font-size:20px; color:var(--ds-primary);"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.localCode ? item.localCode + ' — ' : '' }}{{ item.hydrantType }}</h3>
         <p>{{ item.location }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <custom-button-item (clicked)="onViewHistory(item)" label="Historial" iconName="list-outline" />
-        <custom-button-download (clicked)="onDownloadQr(item)" label="QR" />
-        <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
-        <custom-button-delete (confirmed)="onDelete(item.id)" />
+        <ng-container actions>
+        <custom-button-item (clicked)="onViewHistory(item)" label="Historial" iconName="list-outline"  [showLabelOnDesktop]="true"/>
+        <custom-button-download (clicked)="onDownloadQr(item)" label="QR"  [showLabelOnDesktop]="true"/>
+        <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })"  label="Editar" [showLabelOnDesktop]="true"/>
+        <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
+              </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

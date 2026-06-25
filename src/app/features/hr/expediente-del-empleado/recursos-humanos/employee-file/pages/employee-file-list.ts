@@ -1,4 +1,5 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { TableModule } from "primeng/table";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
@@ -22,6 +23,7 @@ import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-vi
   selector: "app-employee-file-list",
   templateUrl: "./employee-file-list.html",
   imports: [
+    EmptyState,
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,

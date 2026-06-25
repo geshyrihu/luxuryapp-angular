@@ -287,11 +287,13 @@
             }
           </tr>
         </ng-template>
-        <ng-template emptymessage>
-          <tr>
-            <td colspan="7">Sin servicios de Mantenimiento.</td>
-          </tr>
-        </ng-template>
+        <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="13">
+          <app-empty-state icon="mdi:engine-outline" title="Sin equipos" message="No hay equipos registrados." />
+        </td>
+      </tr>
+    </ng-template>
       </p-table>
       } @else {
       <div class="text-center text-500 p-4 surface-100 border-round italic">
@@ -365,9 +367,13 @@
       </ng-template>
       <ng-template #listItemTemplate let-item>
         <ion-item lines="full" class="ion-no-padding">
-          <ion-avatar slot="start">
-            <img [src]="item.photoPath" alt="equipo" />
-          </ion-avatar>
+          <div slot="start" class="mobile-avatar-slot">
+        @if (item.photoPath) {
+          <img [src]="item.photoPath" [alt]="item.name" class="mobile-avatar-img" />
+        } @else {
+          <app-icon icon="mdi:engine-outline" style="font-size:1.25rem;color:var(--ds-primary);"></app-icon>
+        }
+      </div>
           <ion-label>
             <h2>{{ item.nameMachinery }}</h2>
             <h3>{{ item.equipoClasificacion }}</h3>

@@ -1,4 +1,5 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { folderOpenOutline, keyOutline } from "ionicons/icons";
@@ -24,6 +25,7 @@ import { InventarioLlaveForm } from "./inventario-llave-form";
   selector: "app-inventario-llaves-list",
   templateUrl: "./inventario-llaves-list.html",
   imports: [
+    EmptyState,
     TableModule,
     CustomButtonEdit,
     CustomButtonDelete,

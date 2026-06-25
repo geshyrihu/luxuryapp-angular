@@ -1,42 +1,25 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import {
-  IonCheckbox,
-  IonDatetime,
-  IonItem,
-  IonLabel,
-  IonRadio,
-  IonRadioGroup,
-  IonRange,
-  IonSelect,
-  IonSelectOption,
-  IonToggle,
-} from "@ionic/angular/standalone";
+import { IonButton, IonCheckbox, IonDatetime, IonInput, IonItem, IonLabel, IonRadio, IonRadioGroup, IonRange, IonSelect, IonSelectOption, IonTextarea, IonToggle } from "@ionic/angular/standalone";
 
 @Component({
   selector: "app-mobile-forms",
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    IonCheckbox,
-    IonDatetime,
-    IonItem,
-    IonLabel,
-    IonRadio,
-    IonRadioGroup,
-    IonRange,
-    IonSelect,
-    IonSelectOption,
-    IonToggle,
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, IonButton, IonCheckbox, IonDatetime, IonInput, IonItem, IonLabel, IonRadio, IonRadioGroup, IonRange, IonSelect, IonSelectOption, IonTextarea, IonToggle],
   template: `
     <div class="mobile-card">
       <div class="mobile-card-header">Mobile Form Patterns</div>
       <div class="mobile-card-body">
         <div class="flex flex-column gap-3">
+          <ion-item>
+            <ion-input label="Nombre" label-placement="floating" fill="outline" placeholder="Ingrese nombre"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-textarea label="Comentarios" label-placement="floating" fill="outline" rows="3" placeholder="Notas..."></ion-textarea>
+          </ion-item>
+
           <ion-item>
             <ion-checkbox slot="start"></ion-checkbox>
             <ion-label>Acepto términos y condiciones</ion-label>
@@ -71,6 +54,10 @@ import {
               <ion-select-option value="c">Opción C</ion-select-option>
             </ion-select>
           </ion-item>
+
+          <ion-button expand="block" type="submit" style="--border-radius:14px;margin-top:0.5rem;">
+            Enviar Formulario
+          </ion-button>
         </div>
       </div>
     </div>

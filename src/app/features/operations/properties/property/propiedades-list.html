@@ -39,13 +39,13 @@
           iconClass="mdi:upload"
           severity="success"
           (clicked)="fileInput.click()"
-        />
+/>
         <custom-button
           label="Descargar Plantilla"
           iconClass="mdi:download"
           severity="secondary"
           (clicked)="downloadTemplate()"
-        />
+/>
       </div>
       }
     </div>
@@ -119,17 +119,25 @@
             iconClass="mdi:account-group"
             label="Ocupantes"
             (clicked)="showOccupantsDialog(item)"
-          />
+/>
           @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Administrador, AspRole.SuperUsuario])) {
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-          />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+/>
+          <custom-button-delete (confirmed)="onDelete(item.id)"
+/>
           }
         </div>
       </td>
     </tr>
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="11">
+          <app-empty-state icon="mdi:home-city-outline" title="Sin propiedades" message="No hay propiedades registradas." />
+        </td>
+      </tr>
+    </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -144,6 +152,13 @@
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding" detail="false">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="width:38px;height:38px;background:var(--ds-info-light,#e0f2fe);"
+      >
+        <app-icon icon="mdi:home-city-outline" style="font-size:1.1rem;color:var(--ds-info);"></app-icon>
+      </div>
       <ion-label>
         <h2 class="font-normal m-0">{{ item.tower }} - {{ item.department }}</h2>
         <p>
@@ -164,8 +179,9 @@
         <ng-container actions>
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-          />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+ label="Editar" [showLabelOnDesktop]="true"/>
+          <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
         </ng-container>
       </app-action-menu>
     </ion-item>

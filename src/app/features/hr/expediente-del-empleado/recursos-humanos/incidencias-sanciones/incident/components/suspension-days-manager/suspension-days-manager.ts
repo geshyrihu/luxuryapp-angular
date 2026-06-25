@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { DatePipe } from "@angular/common";
 import {
   Component,
@@ -25,6 +26,7 @@ import {
 @Component({
   selector: "app-suspension-days-manager",
   imports: [
+    EmptyState,
     ReactiveFormsModule,
     TableModule,
     DatePipe,

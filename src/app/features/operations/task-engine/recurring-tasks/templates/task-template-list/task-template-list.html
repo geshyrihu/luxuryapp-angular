@@ -50,9 +50,11 @@
                 [iconClass]="'mdi:file-document-outline'"
                 label="Items"
                 (clicked)="onManageItems(template.id)"
-              />
-              <custom-button-edit (clicked)="showForm(template)" />
-              <custom-button-delete (confirmed)="onDelete(template.id)" />
+/>
+              <custom-button-edit (clicked)="showForm(template)"
+/>
+              <custom-button-delete (confirmed)="onDelete(template.id)"
+/>
             </div>
           </td>
         </tr>
@@ -62,7 +64,14 @@
           <td colspan="4">No se encontraron plantillas.</td>
         </tr>
       </ng-template>
-    </p-table>
+      <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4">
+          <app-empty-state icon="mdi:file-document-outline" title="Sin plantillas" message="No hay plantillas registradas." />
+        </td>
+      </tr>
+    </ng-template>
+</p-table>
     <!-- Mobile View -->
     <app-data-view-mobile
       [data]="data()"
@@ -81,17 +90,28 @@
       </div>
       <ng-template #listItemTemplate let-template>
         <ion-item lines="full" class="ion-no-padding" detail="false">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
+      >
+        <app-icon icon="mdi:file-document-outline" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+      </div>
           <ion-label>
             <h5 class="mb-2">{{ template.name }}</h5>
             <p class="text-sm text-600">Rol: {{ template.roleName }}</p>
           </ion-label>
           <app-action-menu slot="end">
+            <ng-container actions>
             <custom-button-item
               label="Administrar Items"
               (clicked)="onManageItems(template.id)"
-            />
-            <custom-button-item label="Editar" (clicked)="showForm(template)" />
-            <custom-button-delete (confirmed)="onDelete(template.id)" />
+ [showLabelOnDesktop]="true"/>
+            <custom-button-item label="Editar" (clicked)="showForm(template)"
+ [showLabelOnDesktop]="true"/>
+            <custom-button-delete (confirmed)="onDelete(template.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
+                      </ng-container>
           </app-action-menu>
         </ion-item>
       </ng-template>

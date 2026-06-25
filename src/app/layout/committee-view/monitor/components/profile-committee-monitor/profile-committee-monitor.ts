@@ -7,9 +7,10 @@ import { ConsoleLoggerService } from "src/app/core/services/console-logger.servi
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { ProfielService } from "src/app/core/services/profiel-service";
 import { UpdateService } from "src/app/core/services/update-pwa.service";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 @Component({
   selector: "app-profile-committee-monitor",
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, AppIcon],
   templateUrl: "./profile-committee-monitor.html",
 })
 export class ProfileCommitteeMonitor {

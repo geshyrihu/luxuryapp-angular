@@ -116,7 +116,7 @@ describe("presupuesto-web-aspel.shared", () => {
     ]);
   });
 
-  it("splits maintenance, extraordinarias and proyectos and applies exclusions", () => {
+  it("splits maintenance, extraordinarias and proyectos and keeps 607 under presupuesto", () => {
     const cuentas = [
       createAccount({
         codigo_Cuenta: "600-001-001",
@@ -145,7 +145,7 @@ describe("presupuesto-web-aspel.shared", () => {
         id: "1",
         customerId: "customer",
         ruleType: 1,
-        accountNumber: "607-001-001",
+        accountNumber: "600-999-999",
       },
     ];
 
@@ -153,6 +153,7 @@ describe("presupuesto-web-aspel.shared", () => {
 
     expect(result.mantenimiento.map((x) => x.codigo_Cuenta)).toEqual([
       "600-001-001",
+      "607-001-001",
     ]);
     expect(result.extraordinarias.map((x) => x.codigo_Cuenta)).toEqual([
       "605-001-001",

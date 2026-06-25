@@ -18,7 +18,6 @@
     />
     <custom-button-download
       label="Descargar PDF"
-      [showLabelOnDesktop]="true"
       iconClass="mdi:file-pdf-box"
       variant="outlined"
       severity="danger"
@@ -77,6 +76,13 @@
       </td>
     </tr>
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4">
+          <app-empty-state icon="mdi:tools" title="Sin préstamos" message="No hay préstamos de herramientas registrados." />
+        </td>
+      </tr>
+    </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -91,12 +97,9 @@
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding">
-      <ion-avatar slot="start">
-        <img
-          [src]="item.photoPath ? item.photoPath : 'assets/images/default-avatar.png'"
-          alt="Tool"
-        />
-      </ion-avatar>
+      <div slot="start" class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg" style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);">
+        <app-icon icon="mdi:tools" style="font-size:1.1rem;color:var(--ds-warning);"></app-icon>
+      </div>
 
       <ion-label>
         <h2 class="font-normal m-0">{{ item.nameTool }}</h2>
@@ -108,9 +111,9 @@
           <ng-container actions>
             <custom-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-            />
+             label="Editar" [showLabelOnDesktop]="true"/>
             @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
-            <custom-button-delete (confirmed)="onDelete(item.id)" />
+            <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
             }
           </ng-container>
         </app-action-menu>

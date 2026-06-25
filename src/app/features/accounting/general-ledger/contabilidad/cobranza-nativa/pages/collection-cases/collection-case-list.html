@@ -18,7 +18,7 @@
       severity="warn"
       [disabled]="escalating()"
       (clicked)="onEvaluateAndEscalate()"
-    />
+/>
   </div>
 
   <!-- Tabla desktop -->
@@ -77,16 +77,16 @@
           {{ item.activities.length }}
         </td>
         <td class="text-center">
-          <custom-button-edit (clicked)="openDetail(item)" />
+          <custom-button-edit (clicked)="openDetail(item)"
+/>
         </td>
       </tr>
     </ng-template>
 
     <ng-template pTemplate="emptymessage">
       <tr>
-        <td colspan="8" class="text-center p-4 text-500">
-          No hay casos de cobranza activos. Ejecuta la evaluacion para detectar
-          morosidad grave.
+        <td colspan="8">
+          <app-empty-state icon="mdi:cash-remove" title="Sin casos de cobranza" message="No hay casos activos. Ejecuta la evaluación para detectar morosidad grave." />
         </td>
       </tr>
     </ng-template>
@@ -117,7 +117,10 @@
           </p>
         </ion-label>
         <app-action-menu slot="end">
-          <custom-button-edit (clicked)="openDetail(item)" />
+          <ng-container actions>
+          <custom-button-edit (clicked)="openDetail(item)"
+ label="Editar" [showLabelOnDesktop]="true"/>
+                  </ng-container>
         </app-action-menu>
       </ion-item>
     </ng-template>

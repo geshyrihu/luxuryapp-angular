@@ -1,4 +1,5 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { colorPaletteOutline, folderOpenOutline } from "ionicons/icons";
@@ -25,6 +26,7 @@ import { InventarioPinturaForm } from "./inventario-pintura-form";
   selector: "app-inventario-pintura",
   templateUrl: "./inventario-pintura.html",
   imports: [
+    EmptyState,
     TableModule,
     ImageModule,
     CustomButtonEdit,

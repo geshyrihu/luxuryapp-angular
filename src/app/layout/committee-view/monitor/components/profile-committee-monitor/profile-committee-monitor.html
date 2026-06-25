@@ -1,7 +1,8 @@
 <li class="profile-nav onhover-dropdown px-0 py-0 m-0">
   <div class="flex profile-media-committee align-items-center" (click)="toggleMenu()">
     <img
-      class="b-r-8 img-40"
+      class="img-40"
+      style="border-radius:var(--ds-radius-lg,8px);"
       [src]="profileImageUrl || 'assets/images/default-avatar.png'"
       alt="Img"
     />
@@ -11,7 +12,7 @@
       </span>
       <p class="mb-0 font-outfit">
         {{ infoAccountAuthDTO?.position }}
-        <i class="icon icon-pi-chevron-down ms-1"></i>
+        <app-icon icon="mdi:chevron-down" class="ms-1 text-sm" />
       </p>
     </div>
   </div>
@@ -28,21 +29,21 @@
     </li>
     <li>
       <a [routerLink]="['/profile/update-user-profile']">
-        <i class="icon icon-pi-user m-2 txt-primary"></i>
+        <app-icon icon="mdi:account" class="m-2" style="color:var(--ds-primary);" />
         <span>Cambiar contraseña</span>
       </a>
     </li>
     @if (updateService.isUpdateAvailable()) {
     <li (click)="onUpdateClick()">
       <a>
-        <i class="icon icon-pi-sync m-2 txt-primary"></i>
+        <app-icon icon="mdi:sync" class="m-2" style="color:var(--ds-primary);" />
         <span>Actualizar</span>
       </a>
     </li>
     }
     <li (click)="logout()">
       <a>
-        <i class="icon icon-pi-sign-out m-2 txt-primary"></i>
+        <app-icon icon="mdi:logout" class="m-2" style="color:var(--ds-primary);" />
         <span>Cerrar sesión</span>
       </a>
     </li>

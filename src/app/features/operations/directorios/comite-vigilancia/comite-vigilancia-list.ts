@@ -1,4 +1,5 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -27,6 +28,7 @@ import { ComiteVigilanciaForm } from "./comite-vigilancia-form";
   templateUrl: "./comite-vigilancia-list.html",
   // Aóadido para Angular 20
   imports: [
+    EmptyState,
     TableModule,
     NgbTooltipModule,
     CustomButtonEdit,

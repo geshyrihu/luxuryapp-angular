@@ -20,17 +20,11 @@
   </div>
 
   <div class="flex align-items-center gap-2 w-full sm:w-auto">
-    <span class="p-input-icon-left flex-grow-1 sm:flex-grow-0">
-      <app-icon icon="mdi:magnify"></app-icon>
-      <input
-        pInputText
-        [value]="searchTerm()"
-        (input)="searchTerm.set($any($event.target).value)"
-        placeholder="Buscar servicio..."
-        class="p-inputtext-sm w-full"
-        style="padding-left: 2rem"
-      />
-    </span>
+    <custom-search-input-signal
+      placeholder="Buscar servicio..."
+      (searchChange)="searchTerm.set($event)"
+      class="flex-grow-1 sm:flex-grow-0"
+    />
     @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
     <custom-button-add
       label="Agregar"

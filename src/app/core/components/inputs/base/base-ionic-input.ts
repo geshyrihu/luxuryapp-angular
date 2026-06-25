@@ -19,7 +19,7 @@ import { BaseInputSignal } from "./base-input-signal";
             <label [for]="id()" class="field-label">
               {{ label() }}
               @if (isRequired()) {
-                <span class="text-red-400">*</span>
+                <span style="color:var(--ds-danger)">*</span>
               }
             </label>
           }

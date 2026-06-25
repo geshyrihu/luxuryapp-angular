@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
@@ -26,6 +27,7 @@ import ModalIncidenciaAdd from "./modal-incidencia-add/modal-incidencia-add";
 @Component({
   selector: "app-incidencias-nomina",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     TagModule,

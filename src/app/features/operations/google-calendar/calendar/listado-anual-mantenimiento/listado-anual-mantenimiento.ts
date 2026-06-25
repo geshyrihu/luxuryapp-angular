@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -32,6 +33,7 @@ const date = new Date();
   selector: "app-listado-anual-mantenimiento",
   templateUrl: "./listado-anual-mantenimiento.html",
   imports: [
+    EmptyState,
     ReactiveFormsModule,
     TableModule,
     SelectModule,

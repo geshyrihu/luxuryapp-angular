@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -23,6 +24,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
 @Component({
   selector: "app-diagram-list",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     CustomButton,

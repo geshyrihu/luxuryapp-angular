@@ -1,4 +1,5 @@
-﻿import {
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import {
   Component,
   computed,
   effect,
@@ -30,6 +31,7 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
   selector: "app-lista-plantilla-evaluacion",
   templateUrl: "./lista-plantilla-evaluacion.html",
   imports: [
+    EmptyState,
     TableModule,
     TagModule,
     PrimeNgCustomCaption,

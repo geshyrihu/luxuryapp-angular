@@ -1,4 +1,5 @@
-﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
@@ -27,6 +28,7 @@ import { TicketLegalSeguimientoSolicitudDetalle } from "./ticket-legal-seguimien
   selector: "app-ticket-legal-lista-cliente",
   templateUrl: "./ticket-legal-lista-cliente.html",
   imports: [
+    EmptyState,
     TableModule,
     TagModule,
     TooltipModule,

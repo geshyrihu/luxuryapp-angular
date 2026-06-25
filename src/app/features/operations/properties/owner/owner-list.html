@@ -24,7 +24,7 @@
           iconClass="mdi:file-excel"
           (clicked)="onExportExcel()"
           label="Exportar"
-        />
+/>
       </div>
     </div>
     <div class="grid">
@@ -92,14 +92,22 @@
           <ng-container actions>
             <custom-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-            />
-            <custom-button-delete (confirmed)="onDelete(item.id)" />
+ label="Editar" [showLabelOnDesktop]="true"/>
+            <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
           </ng-container>
         </app-action-menu>
       </td>
       }
     </tr>
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="9">
+          <app-empty-state icon="mdi:account-tie-outline" title="Sin propietarios" message="No hay propietarios registrados." />
+        </td>
+      </tr>
+    </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -125,7 +133,7 @@
           margin-left: 16px;
         "
       >
-        <app-icon icon="mdi:home-outline" style="font-size: 20px; color: #7c3aed"></app-icon>
+        <app-icon icon="mdi:home-outline" style="font-size: 20px; color:var(--ds-help)"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.habitant }}</h3>
@@ -135,8 +143,9 @@
       <app-action-menu slot="end">
         <custom-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-        />
-        <custom-button-delete (confirmed)="onDelete(item.id)" />
+ label="Editar" [showLabelOnDesktop]="true"/>
+        <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
       </app-action-menu>
     </ion-item>
   </ng-template>

@@ -106,7 +106,7 @@
         <p-selectButton 
           [options]="[
             { label: 'Presupuesto', value: 'presupuesto' },
-            { label: 'Extraordinarios y Proyectos', value: 'especiales' }
+            { label: 'Extraordinarios (605) y Proyectos (606)', value: 'especiales' }
           ]" 
           [ngModel]="activeTabValue()" 
           (ngModelChange)="activeTabValue.set($event)"
@@ -232,7 +232,7 @@
         <ion-label>Presupuesto</ion-label>
       </ion-segment-button>
       <ion-segment-button value="especiales">
-        <ion-label>Especiales</ion-label>
+        <ion-label>Esp. 605/606</ion-label>
       </ion-segment-button>
     </ion-segment>
 

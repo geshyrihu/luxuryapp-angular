@@ -30,7 +30,6 @@
           label="Agregar Puesto"
           severity="info"
           variant="outlined"
-          [showLabelOnDesktop]="true"
         />
         <custom-button
           (clicked)="showModalAddEmployee()"
@@ -38,7 +37,6 @@
           label="Agregar Empleado"
           severity="info"
           variant="outlined"
-          [showLabelOnDesktop]="true"
         />
         }
         <custom-button
@@ -47,7 +45,6 @@
           label="Inactivos"
           severity="info"
           variant="outlined"
-          [showLabelOnDesktop]="true"
         />
         <custom-button
           (clicked)="onOrgChart()"
@@ -55,7 +52,6 @@
           label="Organigrama"
           severity="info"
           variant="outlined"
-          [showLabelOnDesktop]="true"
         />
       </div>
     </div>
@@ -161,41 +157,37 @@
       <td>
         <div class="flex align-items-center">
           <app-action-menu>
+            <ng-container actions>
             @if (shouldShowVacancyRequest(item)) {
 
             <custom-button-item
-              [showLabelOnDesktop]="true"
               iconClass="mdi:receipt"
               label="Solicitar Vacante"
               (clicked)="onModalSolicitudVacante(item.id)"
-            />
+             [showLabelOnDesktop]="true"/>
             }
             <custom-button-item
-              [showLabelOnDesktop]="true"
               iconClass="mdi:clipboard-text"
               label="Descripción"
               (clicked)="onModalJobDescription(item.id, item.jobDescriptionId!, item.applicationRoleName)"
-            />
+             [showLabelOnDesktop]="true"/>
             <custom-button-item
-              [showLabelOnDesktop]="true"
               iconClass="mdi:clock-outline"
               label="Horarios"
               (clicked)="onModalHoursWorkPosition(item.id)"
-            />
+             [showLabelOnDesktop]="true"/>
             <custom-button-item
-              [showLabelOnDesktop]="true"
               label="Editar"
               iconClass="mdi:pencil"
               (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
-            />
+             [showLabelOnDesktop]="true"/>
 
             @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
             <custom-button-delete
-              label="Eliminar"
-              [showLabelOnDesktop]="true"
               (confirmed)="onDelete(item.id)"
-            />
+             label="Eliminar" [showLabelOnDesktop]="true"/>
             }
+                      </ng-container>
           </app-action-menu>
         </div>
       </td>
@@ -229,33 +221,32 @@
               >
             </div>
             <app-action-menu>
+              <ng-container actions>
               <custom-button-item
-                [showLabelOnDesktop]="true"
                 iconClass="mdi:account-edit"
                 label="Perfil"
                 pTooltip="Ir al perfil"
                 (clicked)="onShowEditEmpleado(item)"
-              />
+               [showLabelOnDesktop]="true"/>
               @if (aspRoleS.hasAny([ AspRole.SuperUsuario, AspRole.Legal,
               AspRole.CoordinacionLegal, AspRole.RecursosHumanos,
               AspRole.Reclutamiento ])) {
               <custom-button-item
-                [showLabelOnDesktop]="true"
                 iconClass="mdi:folder-open"
                 label="Expediente"
                 pTooltip="Ver expediente completo"
                 (clicked)="onGoToEmployeeFile(item)"
-              />
+               [showLabelOnDesktop]="true"/>
               }
               @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
               <custom-button-item
-                [showLabelOnDesktop]="true"
                 iconClass="mdi:logout"
                 label="Desvincular del puesto"
                 pTooltip="Desvincular del puesto"
                 (clicked)="onUnassignEmployee(item.id)"
-              />
+               [showLabelOnDesktop]="true"/>
               }
+                          </ng-container>
             </app-action-menu>
           </div>
           } @else {
@@ -309,6 +300,13 @@
       </td>
     </tr>
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">
+          <app-empty-state icon="mdi:account-multiple-outline" title="Sin personal" message="No hay personal registrado." />
+        </td>
+      </tr>
+    </ng-template>
 
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="positions()" />

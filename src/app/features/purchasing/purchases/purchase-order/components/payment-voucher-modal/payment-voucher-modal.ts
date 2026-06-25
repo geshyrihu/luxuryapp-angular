@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, inject, OnInit, signal } from "@angular/core";
@@ -12,6 +13,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 @Component({
   selector: "app-payment-voucher-modal",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     CustomButton,

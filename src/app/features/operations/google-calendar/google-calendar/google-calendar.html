@@ -96,7 +96,7 @@
               [noMargin]="true"
               customClass="p-button-sm p-button-outlined"
               (clicked)="onOpenAssemblyChecklist(item)"
-            />
+/>
             } @else {
             <span class="text-color-secondary">No aplica</span>
             }
@@ -129,13 +129,22 @@
           </td>
           @if (canManageItem(item)) {
           <td class="flex gap-2">
-            <custom-button-edit (clicked)="onModalForm(item.id)" />
-            <custom-button-delete (confirmed)="onDelete(item.id)" />
+            <custom-button-edit (clicked)="onModalForm(item.id)"
+/>
+            <custom-button-delete (confirmed)="onDelete(item.id)"
+/>
           </td>
           }
         </tr>
       </ng-template>
-    </p-table>
+      <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="11">
+          <app-empty-state icon="mdi:calendar-outline" title="Sin eventos" message="No hay eventos registrados." />
+        </td>
+      </tr>
+    </ng-template>
+</p-table>
 
     <app-data-view-mobile
       [data]="listData()"
@@ -146,6 +155,13 @@
     >
       <ng-template #listItemTemplate let-item>
         <ion-item lines="full">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
+      >
+        <app-icon icon="mdi:calendar-outline" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+      </div>
           <ion-label>
             <h2>{{ item.title }}</h2>
             <p>{{ item.subjectTypeName }} | {{ item.modalityName }}</p>
@@ -161,16 +177,20 @@
                 [noMargin]="true"
                 customClass="p-button-sm p-button-outlined"
                 (clicked)="onOpenAssemblyChecklist(item)"
-              />
+/>
             </div>
             }
           </ion-label>
           <div slot="end">
             <app-action-menu>
+              <ng-container actions>
               @if (canManageItem(item)) {
-              <custom-button-edit (clicked)="onModalForm(item.id)" />
-              <custom-button-delete (confirmed)="onDelete(item.id)" />
+              <custom-button-edit (clicked)="onModalForm(item.id)"
+ label="Editar" [showLabelOnDesktop]="true"/>
+              <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
               }
+                          </ng-container>
             </app-action-menu>
           </div>
         </ion-item>

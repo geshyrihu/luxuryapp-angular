@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
@@ -123,6 +124,7 @@ const tipoGastoIcons: { [key: number]: string } = {
     }
   `],
   imports: [
+    EmptyState,
     CommonModule,
     RouterModule,
     TableModule,

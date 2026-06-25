@@ -1,6 +1,6 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { AvatarModule } from "primeng/avatar";
-import { InputTextModule } from "primeng/inputtext";
+import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { TooltipModule } from "primeng/tooltip";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
@@ -22,7 +22,7 @@ import { TelefonosEmergenciaForm } from "./telefonos-emergencia-form";
     CustomButtonAdd,
     CustomButtonDelete,
     CustomButtonEdit,
-    InputTextModule,
+    CustomSearchInput,
     TooltipModule,
   ],
 })

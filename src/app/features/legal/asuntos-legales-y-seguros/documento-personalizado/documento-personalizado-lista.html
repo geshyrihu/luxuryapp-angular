@@ -38,7 +38,6 @@
           <td class="text-center text-break">{{ item.name }}</td>
           <td class="text-center">
             <custom-button-view-pdf
-              [showLabelOnDesktop]="true"
               [url]="item.path"
               fileName="Documento"
             />
@@ -58,6 +57,13 @@
           </td>
         </tr>
       </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">
+          <app-empty-state icon="mdi:file-document-outline" title="Sin documentos" message="No hay documentos personalizados registrados." />
+        </td>
+      </tr>
+    </ng-template>
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
       </ng-template>
@@ -76,15 +82,17 @@
         background:var(--ds-border); display:flex; align-items:center;
         justify-content:center; flex-shrink:0; margin-left:16px;
       ">
-        <app-icon icon="mdi:file-outline" style="font-size:20px; color:#7c3aed;"></app-icon>
+        <app-icon icon="mdi:file-outline" style="font-size:20px; color:var(--ds-help);"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.name }}</h3>
         <p>Folio: {{ item.folio }} ó {{ item.createAt }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
-        <custom-button-delete (confirmed)="onDelete(item.id)" />
+        <ng-container actions>
+        <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })"  label="Editar" [showLabelOnDesktop]="true"/>
+        <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
+              </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
@@ -25,6 +26,7 @@ import { IAsambleaChecklistTemplateDTO } from "./asamblea-checklist-template.dto
   selector: "app-asamblea-checklist-template-list",
   templateUrl: "./asamblea-checklist-template-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     TagModule,

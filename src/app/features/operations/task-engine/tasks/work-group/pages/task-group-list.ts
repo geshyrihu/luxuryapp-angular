@@ -1,4 +1,5 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
 import { addIcons } from "ionicons";
@@ -50,6 +51,7 @@ import { TaskGroupForm } from "./task-group-form";
   selector: "app-task-group-list",
   templateUrl: "./task-group-list.html",
   imports: [
+    EmptyState,
     NgbDropdownModule,
     DataViewModule,
     CardModule,

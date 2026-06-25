@@ -1,4 +1,5 @@
-﻿import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CommonModule } from "@angular/common";
 import { Component, inject, input, output } from "@angular/core";

@@ -1,4 +1,5 @@
-﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { DatePipe } from "@angular/common";
 import { TableModule } from "primeng/table";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
@@ -21,6 +22,7 @@ import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-vi
   selector: "app-contract-template-list",
   templateUrl: "./contract-template-list.html",
   imports: [
+    EmptyState,
     DatePipe,
     TableModule,
     PrimeNgCustomCaption,

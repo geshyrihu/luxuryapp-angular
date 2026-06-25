@@ -6,7 +6,7 @@
       <custom-button-add
         label="Agregar Medidor"
         (clicked)="modalAddEdit({ id: 0, title: 'Agregar Registro' })"
-      />
+/>
     </div>
     <div class="col-12 text-right mb-2"></div>
     @for (item of dataSignal(); track item) {
@@ -55,30 +55,30 @@
               <custom-button-edit
                 class="text-xl"
                 (clicked)="modalAddEdit({ id: item.id, title: 'Editar' })"
-              />
+/>
               <custom-button-delete
                 class="text-xl"
                 (confirmed)="onDelete(item.id)"
-              />
+/>
               <custom-button-item
                 iconClass="mdi:content-save"
                 label="Lecturas"
                 class="text-xl"
                 (clicked)="onGoToLecturas(item.id)"
-              />
+/>
               <custom-button-item
                 iconClass="mdi:chart-line"
                 label="Grófica"
                 class="text-xl"
                 (clicked)="onGoToGrafico(item.id)"
-              />
+/>
               <custom-button-item
                 iconClass="mdi:chart-bar"
                 label="Exportar a Excel"
                 class="text-xl"
                 (clicked)="exportExcel(item.id)"
                 severity="success"
-              />
+/>
             </div>
           </ng-template>
         </p-card>
@@ -117,23 +117,24 @@
             <ng-container actions>
               <custom-button-edit
                 (clicked)="modalAddEdit({ id: item.id, title: 'Editar' })"
-              />
-              <custom-button-delete (confirmed)="onDelete(item.id)" />
+ label="Editar" [showLabelOnDesktop]="true"/>
+              <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
               <custom-button-item
                 iconName="save-outline"
                 label="Lecturas"
                 (clicked)="onGoToLecturas(item.id)"
-              />
+ [showLabelOnDesktop]="true"/>
               <custom-button-item
                 iconName="trending-up-outline"
                 label="Grófica"
                 (clicked)="onGoToGrafico(item.id)"
-              />
+ [showLabelOnDesktop]="true"/>
               <custom-button-item
                 iconName="bar-chart-outline"
                 label="Exportar Excel"
                 (clicked)="exportExcel(item.id)"
-              />
+ [showLabelOnDesktop]="true"/>
             </ng-container>
           </app-action-menu>
         </div>

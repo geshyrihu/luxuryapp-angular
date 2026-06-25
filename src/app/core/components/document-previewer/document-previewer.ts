@@ -34,7 +34,7 @@ import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
             class="doc-previewer-iframe"
             [src]="src()"
             [title]="fileName()"
-          />
+          ></iframe>
         } @else {
           <div class="doc-previewer-empty">
             <app-icon icon="mdi:file-document-outline" class="text-4xl" />

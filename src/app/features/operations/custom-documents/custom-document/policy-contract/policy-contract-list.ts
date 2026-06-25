@@ -1,4 +1,5 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -26,6 +27,7 @@ import { PolicyContractForm } from "./policy-contract-form";
   selector: "app-policy-contract-list",
   templateUrl: "./policy-contract-list.html",
   imports: [
+    EmptyState,
     TableModule,
     TagModule,
     PrimeNgCustomCaption,

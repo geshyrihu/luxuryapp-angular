@@ -1,4 +1,5 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonButton, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -38,6 +39,7 @@ import { InventarioEstacionManualQrService } from "./inventario-estacion-manual-
   selector: "app-inventario-estacion-manual",
   templateUrl: "./inventario-estacion-manual.html",
   imports: [
+    EmptyState,
     AppIcon,
     ImageModule,
     TableModule,

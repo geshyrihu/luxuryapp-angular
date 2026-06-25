@@ -85,10 +85,18 @@
       </td>
       <td>{{ item.total | number: '1.2-2' }}</td>
       <td class="text-center">
-        <custom-button-edit (clicked)="onAddOrEdit(item.id)" />
+        <custom-button-edit (clicked)="onAddOrEdit(item.id)"
+/>
       </td>
     </tr>
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8">
+          <app-empty-state icon="mdi:cart-outline" title="Sin órdenes" message="No hay órdenes de compra registradas." />
+        </td>
+      </tr>
+    </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -115,7 +123,7 @@
           margin-left: 16px;
         "
       >
-        <app-icon icon="mdi:check-circle-outline" style="font-size: 20px; color: #16a34a"></app-icon>
+        <app-icon icon="mdi:check-circle-outline" style="font-size: 20px; color:var(--ds-success)"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.proveedor }}</h3>
@@ -126,7 +134,10 @@
         </p>
       </ion-label>
       <app-action-menu slot="end">
-        <custom-button-edit (clicked)="onAddOrEdit(item.id)" />
+        <ng-container actions>
+        <custom-button-edit (clicked)="onAddOrEdit(item.id)"
+ label="Editar" [showLabelOnDesktop]="true"/>
+              </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

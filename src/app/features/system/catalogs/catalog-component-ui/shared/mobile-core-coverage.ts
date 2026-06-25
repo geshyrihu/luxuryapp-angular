@@ -10,32 +10,34 @@ import {
 } from "@ionic/angular/standalone";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
-  CustomBtnActiveDesactive,
-  CustomButtonAdd,
-  CustomButtonConfirm,
-  CustomButtonDelete,
-  CustomButtonDownload,
-  CustomButtonEdit,
-  CustomButtonItem,
-  CustomButtonSave,
-  CustomButtonSendEmail,
-  CustomButtonTracking,
-  CustomButtonViewPdf,
-} from "src/app/core/components/buttons/web";
-import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
-import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
-import { CustomInputHour } from "src/app/core/components/inputs/web/custom-input-hour-signal";
-import { CustomInputMultiselectSignal } from "src/app/core/components/inputs/web/custom-input-multiselect-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
-import { CustomInputPassword } from "src/app/core/components/inputs/web/custom-input-password-signal";
-import { CustomInputSelectBool } from "src/app/core/components/inputs/web/custom-input-select-bool-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
+  IonButtonAdd,
+  IonButtonEdit,
+  IonButtonSave,
+  IonButtonDelete,
+  IonButtonConfirm,
+  IonButtonDownload,
+  IonButtonSendEmail,
+  IonButtonTracking,
+  IonButtonViewPdf,
+  IonButtonActiveDesactive,
+  IonButtonItem,
+} from "src/app/core/components/buttons/mobile";
+import {
+  IonInputText,
+  IonInputTextarea,
+  IonInputSearch,
+  IonInputPassword,
+  IonInputNumber,
+  IonInputCurrency,
+  IonInputDate,
+  IonInputTime,
+  IonInputSelect,
+  IonInputMultiselect,
+  IonInputSelectBool,
+  IonInputFile,
+  IonInputToggle,
+  IonInputCheckbox,
+} from "src/app/core/components/inputs/mobile";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 
 @Component({
@@ -47,33 +49,33 @@ import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-vi
     ActionMenu,
     DataViewMobile,
     IonBadge,
-    CustomBtnActiveDesactive,
-    CustomButtonAdd,
-    CustomButtonConfirm,
-    CustomButtonDelete,
-    CustomButtonDownload,
-    CustomButtonEdit,
-    CustomButtonItem,
-    CustomButtonSave,
-    CustomButtonSendEmail,
-    CustomButtonTracking,
-    CustomButtonViewPdf,
+    IonButtonAdd,
+    IonButtonEdit,
+    IonButtonSave,
+    IonButtonDelete,
+    IonButtonConfirm,
+    IonButtonDownload,
+    IonButtonSendEmail,
+    IonButtonTracking,
+    IonButtonViewPdf,
+    IonButtonActiveDesactive,
+    IonButtonItem,
     IonItem,
     IonItemDivider,
-    CustomInputCheckSignal,
-    CustomInputCurrencySignal,
-    CustomInputDateSignal,
-    CustomInputFile,
-    CustomInputHour,
-    CustomInputMultiselectSignal,
-    CustomInputNumberSignal,
-    CustomInputPassword,
-    CustomSearchInput,
-    CustomInputSelectBool,
-    CustomInputSelectSignal,
-    CustomInputSwitch,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
+    IonInputText,
+    IonInputTextarea,
+    IonInputSearch,
+    IonInputPassword,
+    IonInputNumber,
+    IonInputCurrency,
+    IonInputDate,
+    IonInputTime,
+    IonInputSelect,
+    IonInputMultiselect,
+    IonInputSelectBool,
+    IonInputFile,
+    IonInputToggle,
+    IonInputCheckbox,
     IonLabel,
     IonList,
   ],
@@ -132,8 +134,8 @@ import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-vi
 
                       <app-action-menu slot="end">
                         <ng-container actions>
-                          <custom-button-edit label="Editar" />
-                          <custom-button-delete label="Eliminar" />
+                          <ion-button-edit label="Editar" />
+                          <ion-button-delete label="Eliminar" />
                         </ng-container>
                       </app-action-menu>
                     </ion-item>
@@ -266,34 +268,33 @@ import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-vi
           <div class="mobile-block">
             <div class="mobile-block__label">Primary Actions</div>
             <div class="mobile-block__body">
-              <custom-button-add label="Nuevo registro" />
-              <custom-button-add label="FAB agregar" [fabMode]="true" />
-              <custom-button-edit label="Editar perfil" />
-              <custom-button-save label="Guardar cambios" [submitting]="false" />
-              <custom-button-confirm label="Confirmar accion" />
+              <ion-button-add label="Nuevo registro" />
+              <ion-button-edit label="Editar perfil" />
+              <ion-button-save label="Guardar cambios" />
+              <ion-button-confirm label="Confirmar acción" />
             </div>
           </div>
 
           <div class="mobile-block">
             <div class="mobile-block__label">Context And Utility</div>
             <div class="mobile-block__body">
-              <custom-button-delete label="Eliminar" />
-              <custom-button-download />
-              <custom-button-send-email />
-              <custom-button-tracking [badgeCount]="3" [ticketId]="228" />
-              <custom-button-view-pdf
-                [url]="'https://example.com/demo.pdf'"
-                [fileName]="'demo.pdf'"
+              <ion-button-delete label="Eliminar" />
+              <ion-button-download />
+              <ion-button-send-email />
+              <ion-button-tracking [badgeCount]="3" [ticketId]="228" />
+              <ion-button-view-pdf
+                url="https://example.com/demo.pdf"
+                fileName="demo.pdf"
               />
-              <custom-button-item icon="mdi:star" label="Destacar" />
+              <ion-button-item ionicIcon="star-outline" label="Destacar" />
             </div>
           </div>
 
           <div class="mobile-block">
             <div class="mobile-block__label">State Buttons</div>
             <div class="mobile-block__body">
-              <custom-button-active-desactive [state]="true" />
-              <custom-button-active-desactive [state]="false" />
+              <ion-button-active-desactive [state]="true" />
+              <ion-button-active-desactive [state]="false" />
             </div>
           </div>
         </div>
@@ -302,31 +303,30 @@ import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-vi
       <section class="mobile-panel">
         <div class="mobile-panel__header">
           <span class="mobile-panel__eyebrow">All Mobile Inputs</span>
-          <h4 class="mobile-panel__title">Captura, seleccion y adjuntos</h4>
+          <h4 class="mobile-panel__title">Captura, selección y adjuntos</h4>
         </div>
 
         <form [formGroup]="form" class="mobile-stack">
           <div class="mobile-block">
             <div class="mobile-block__label">Text And Search</div>
             <div class="mobile-block__body">
-              <custom-input-text-signal
+              <ion-input-text
                 [control]="form.controls['texto']"
                 label="Texto"
                 placeholder="Nombre"
               />
-              <custom-search-input-signal
+              <ion-input-search
                 placeholder="Buscar"
                 (searchChange)="form.controls['busqueda'].setValue($event)"
               />
-              <custom-input-password-signal
+              <ion-input-password
                 [control]="form.controls['password']"
-                label="Contrasena"
+                label="Contraseña"
                 placeholder="********"
               />
-              <custom-input-textarea-signal
+              <ion-input-textarea
                 [control]="form.controls['descripcion']"
                 label="Textarea"
-                [rows]="4"
               />
             </div>
           </div>
@@ -334,20 +334,20 @@ import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-vi
           <div class="mobile-block">
             <div class="mobile-block__label">Numeric And Date</div>
             <div class="mobile-block__body">
-              <custom-input-number-signal
+              <ion-input-number
                 [control]="form.controls['numero']"
-                label="Numero"
+                label="Número"
                 placeholder="0"
               />
-              <custom-input-currency-signal
+              <ion-input-currency
                 [control]="form.controls['monto']"
                 label="Monto"
               />
-              <custom-input-date-signal
+              <ion-input-date
                 [control]="form.controls['fecha']"
                 label="Fecha"
               />
-              <custom-input-hour-signal
+              <ion-input-time
                 [control]="form.controls['hora']"
                 label="Hora"
               />
@@ -357,17 +357,17 @@ import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-vi
           <div class="mobile-block">
             <div class="mobile-block__label">Selection</div>
             <div class="mobile-block__body">
-              <custom-input-select-signal
+              <ion-input-select
                 [control]="form.controls['categoria']"
                 label="Select"
                 [data]="options"
               />
-              <custom-input-multiselect-signal
+              <ion-input-multiselect
                 [control]="form.controls['multi']"
                 label="Multiselect"
                 [options]="options"
               />
-              <custom-input-select-signal-bool
+              <ion-input-select-bool
                 [control]="form.controls['estado']"
                 label="Activo/Inactivo"
               />
@@ -377,15 +377,15 @@ import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-vi
           <div class="mobile-block">
             <div class="mobile-block__label">Files And Toggles</div>
             <div class="mobile-block__body">
-              <custom-input-file-signal
+              <ion-input-file
                 [control]="form.controls['archivo']"
                 label="Archivo"
               />
-              <custom-input-check-signal
+              <ion-input-checkbox
                 [control]="form.controls['check']"
                 label="Checkbox"
               />
-              <custom-input-switch-signal
+              <ion-input-toggle
                 [control]="form.controls['toggle']"
                 label="Toggle"
               />
@@ -571,7 +571,7 @@ export class MobileCoreCoverage {
     texto: ["Usuario mobile"],
     busqueda: [""],
     password: ["12345678"],
-    descripcion: ["Componente mobile de demostracion."],
+    descripcion: ["Componente mobile de demostración."],
     numero: [10],
     monto: [889.4],
     fecha: ["2026-06-20"],
@@ -669,13 +669,13 @@ export class MobileCoreCoverage {
       id: 1,
       title: "Solicitud de compra",
       code: "SC-2026-041",
-      detail: "Pendiente de autorizacion por Gerencia",
+      detail: "Pendiente de autorización por Gerencia",
       badge: "Pendiente",
       badgeColor: "warning",
     },
     {
       id: 2,
-      title: "Bitacora de mantenimiento",
+      title: "Bitácora de mantenimiento",
       code: "BM-2026-118",
       detail: "Actualizada hace 25 minutos por Operaciones",
       badge: "Proceso",
@@ -683,7 +683,7 @@ export class MobileCoreCoverage {
     },
     {
       id: 3,
-      title: "Reporte de inspeccion",
+      title: "Reporte de inspección",
       code: "RI-2026-009",
       detail: "Cerrado y enviado al cliente",
       badge: "Cerrado",
@@ -695,7 +695,7 @@ export class MobileCoreCoverage {
     Hoy: [
       {
         id: 1,
-        title: "Recorrido de areas comunes",
+        title: "Recorrido de áreas comunes",
         module: "Operaciones",
         time: "09:00",
         status: "En curso",
@@ -710,10 +710,10 @@ export class MobileCoreCoverage {
         badgeColor: "warning",
       },
     ],
-    Manana: [
+    Mañana: [
       {
         id: 3,
-        title: "Cierre de auditoria interna",
+        title: "Cierre de auditoría interna",
         module: "Calidad",
         time: "08:15",
         status: "Programado",

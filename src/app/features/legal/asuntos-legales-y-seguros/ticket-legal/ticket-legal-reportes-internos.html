@@ -147,6 +147,13 @@
   <app-data-view-mobile [data]="[reportData()]" [showAdd]="false">
     <ng-template #listItemTemplate let-summaryData>
       <ion-item lines="full" class="ion-no-padding" detail="false">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
+      >
+        <app-icon icon="mdi:ticket-outline" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+      </div>
         <ion-label class="ion-text-wrap">
           <div class="flex justify-content-between align-items-center mb-2">
             <span>TICKET INICIAL</span>
@@ -198,6 +205,13 @@
   <app-data-view-mobile [data]="requestsAttended()" [showAdd]="false">
     <ng-template #listItemTemplate let-ticket let-rowIndex="rowIndex">
       <ion-item lines="full" class="ion-no-padding" detail="false">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
+      >
+        <app-icon icon="mdi:ticket-outline" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+      </div>
         <ion-label class="ion-text-wrap">
           <div class="flex justify-content-between">
             <h6 class="mb-1">#{{ rowIndex + 1 }} - {{ ticket.concepto }}</h6>
@@ -217,6 +231,13 @@
   <app-data-view-mobile [data]="requestsPending()" [showAdd]="false">
     <ng-template #listItemTemplate let-ticket let-rowIndex="rowIndex">
       <ion-item lines="full" class="ion-no-padding" detail="false">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
+      >
+        <app-icon icon="mdi:ticket-outline" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+      </div>
         <ion-label class="ion-text-wrap">
           <div class="flex justify-content-between">
             <h6 class="mb-1">Folio: {{ ticket.folio }}</h6>

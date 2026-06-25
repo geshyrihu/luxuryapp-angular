@@ -44,21 +44,21 @@
             (clicked)="onModalForm({ id: data.id, title: 'Editar' })"
             label="Editar"
             iconClass="icon icon-pi-pencil icon-italic txt-primary"
-          />
+ [showLabelOnDesktop]="true"/>
           <custom-button-item
             (clicked)="onModalForm({ id: data.id, title: 'Cotizar' })"
             label="Cotizar"
-          />
+ [showLabelOnDesktop]="true"/>
           <custom-button-item
             (clicked)="
                     onNavigatePage('purchase-request/comparison/' + data.id)
                   "
             label="Cuadro Comparativo"
-          />
+ [showLabelOnDesktop]="true"/>
           <custom-button-item
             (clicked)="onModalForm({ id: data.id, title: 'Crear Orden' })"
             label="Crear Orden"
-          />
+ [showLabelOnDesktop]="true"/>
           <custom-button-item
             (clicked)="
                     onModalAddProduct({
@@ -67,7 +67,7 @@
                     })
                   "
             label="Agregar productos"
-          />
+ [showLabelOnDesktop]="true"/>
           <div>
             @for (item of purchaseOrders; track item) {
             <p-tag

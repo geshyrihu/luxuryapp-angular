@@ -43,7 +43,7 @@
 
   @if (!hasCustomer()) {
     <div class="pc-card pc-empty">
-      <app-icon [icon]="'mdi:office-building'" class="text-4xl mb-3" style="color:#94a3b8"></app-icon>
+      <app-icon [icon]="'mdi:office-building'" class="text-4xl mb-3" style="color:var(--ds-text-muted)"></app-icon>
       <p class="m-0">Selecciona un condominio para generar el reporte.</p>
     </div>
   }
@@ -57,7 +57,7 @@
 
   @if (hasCustomer() && !loading() && !data()) {
     <div class="pc-card pc-empty">
-      <app-icon [icon]="'mdi:chart-bar'" class="text-4xl mb-3" style="color:#94a3b8"></app-icon>
+      <app-icon [icon]="'mdi:chart-bar'" class="text-4xl mb-3" style="color:var(--ds-text-muted)"></app-icon>
       <p class="m-0">No se encontraron datos para el periodo seleccionado.</p>
     </div>
   }
@@ -146,6 +146,13 @@
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="width:38px;height:38px;background:var(--ds-info-light,#e0f2fe);"
+      >
+        <app-icon icon="mdi:bank-transfer" style="font-size:1.1rem;color:var(--ds-info);"></app-icon>
+      </div>
       <ion-label class="ion-text-wrap">
         <h3 class="font-semibold m-0 text-color text-xs">
           {{ item.numeroCuenta }}

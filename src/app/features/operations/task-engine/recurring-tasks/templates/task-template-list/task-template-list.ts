@@ -1,4 +1,5 @@
-﻿import { Component, OnInit, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, OnInit, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
@@ -19,6 +20,7 @@ import { TaskTemplateForm } from "../task-template-form/task-template-form";
   selector: "app-task-template-list",
   templateUrl: "./task-template-list.html",
   imports: [
+    EmptyState,
     ActionMenu,
     CustomBtnActiveDesactive,
     CustomButtonDelete,

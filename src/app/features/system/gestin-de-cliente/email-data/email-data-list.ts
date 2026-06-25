@@ -1,4 +1,5 @@
-﻿import { Component, computed, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, inject, signal } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
@@ -22,6 +23,7 @@ import { EmailDataForm } from "./email-data-form";
   selector: "app-email-data-list",
   templateUrl: "./email-data-list.html",
   imports: [
+    EmptyState,
     TableModule,
     CustomButtonEdit,
     CustomButtonDelete,

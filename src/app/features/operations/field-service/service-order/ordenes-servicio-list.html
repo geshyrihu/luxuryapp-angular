@@ -36,13 +36,13 @@
         label="Reporte de órdenes"
         (click)="onNavigateToReport()"
         variant="outlined"
-      />
+/>
       <custom-button
         iconClass="mdi:table"
         label="Reporte por categoria"
         (click)="onNavigateToReportTabla()"
         variant="outlined"
-      />
+/>
       <div class="ml-auto">
         <primeng-custom-caption
           [title]="filtroEquiposValue | titlecase"
@@ -156,21 +156,21 @@
             label="Imprimir soporte"
             [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
             variant="outlined"
-          />
+/>
 
           <custom-button-item
             iconClass="mdi:image"
             label="Cargar imagen"
             (clicked)="onModalFormUploadImg(item.id)"
             variant="outlined"
-          />
+/>
 
           <custom-button-item
             iconClass="mdi:paperclip"
             label="Cargar documentos"
             (clicked)="onModalFormUploadDoc(item.id)"
             variant="outlined"
-          />
+/>
           <custom-button-edit
             (clicked)="onEdit({
                   id: item.id,
@@ -178,12 +178,20 @@
                   machineryId: item.machineryId,
                   providerId: item.providerId
                 })"
-          />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+/>
+          <custom-button-delete (confirmed)="onDelete(item.id)"
+/>
         </div>
       </td>
     </tr>
   </ng-template>
+  <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8">
+          <app-empty-state icon="mdi:wrench-outline" title="Sin ordenes" message="No hay ordenes de servicio registradas." />
+        </td>
+      </tr>
+    </ng-template>
 </p-table>
 
 <!-- ?? INICIO: Contenido visible solo en pantallas pequeóas (hasta md) -->
@@ -249,7 +257,7 @@
           (click)="onNavigateToReport()"
           variant="outlined"
           fullWidth="true"
-        />
+/>
       </div>
       <div class="mb-2">
         <custom-button-item
@@ -258,7 +266,7 @@
           (click)="onNavigateToReportTabla()"
           variant="outlined"
           fullWidth="true"
-        />
+/>
       </div>
 
       <!-- Contador Totales -->
@@ -274,6 +282,13 @@
   <!-- Lista de órdenes de servicio en formato de tarjeta -->
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="width:38px;height:38px;background:var(--ds-warning-light,#fef3c7);"
+      >
+        <app-icon icon="mdi:wrench-outline" style="font-size:1.1rem;color:var(--ds-warning);"></app-icon>
+      </div>
       <ion-label>
         <div class="flex justify-content-between align-items-center mb-1">
           <h2 class="font-bold m-0 text-base text-wrap">
@@ -320,20 +335,20 @@
               iconName="print-outline"
               label="Imprimir soporte"
               [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
-            />
+ [showLabelOnDesktop]="true"/>
 
             <custom-button-item
               iconName="image-outline"
               label="Cargar imagen"
               (clicked)="onModalFormUploadImg(item.id)"
-            />
+ [showLabelOnDesktop]="true"/>
 
             <custom-button-item
               iconName="ellipsis-horizontal-outline"
               label="Cargar documentos"
               (clicked)="onModalFormUploadDoc(item.id)"
               variant="outlined"
-            />
+ [showLabelOnDesktop]="true"/>
             <custom-button-edit
               (clicked)="onEdit({
                     id: item.id,
@@ -341,8 +356,9 @@
                     machineryId: item.machineryId,
                     providerId: item.providerId
                     })"
-            />
-            <custom-button-delete (confirmed)="onDelete(item.id)" />
+ label="Editar" [showLabelOnDesktop]="true"/>
+            <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
           </ng-container>
         </app-action-menu>
       </div>

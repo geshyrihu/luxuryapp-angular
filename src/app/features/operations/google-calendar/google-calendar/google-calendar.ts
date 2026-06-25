@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -66,6 +67,7 @@ interface IGoogleCalendarEventListItem {
   selector: "app-google-calendar",
   templateUrl: "./google-calendar.html",
   imports: [
+    EmptyState,
     CommonModule,
     FullCalendarModule,
     TableModule,

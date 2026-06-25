@@ -1,4 +1,5 @@
-﻿import { CommonModule, DatePipe } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule, DatePipe } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableLazyLoadEvent, TableModule } from "primeng/table";
@@ -23,6 +24,7 @@ import { PasswordForm } from "./password-form";
   selector: "app-password-list",
   templateUrl: "./password-list.html",
   imports: [
+    EmptyState,
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,

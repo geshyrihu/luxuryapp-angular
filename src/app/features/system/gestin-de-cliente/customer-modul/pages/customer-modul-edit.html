@@ -8,17 +8,11 @@
     </div>
 
     <!-- Buscador -->
-    <div class="p-input-icon-left flex-1 max-w-20rem">
-      <app-icon [icon]="'mdi:magnify'"></app-icon>
-      <input
-        pInputText
-        type="text"
-        [ngModel]="searchTerm()"
-        (ngModelChange)="searchTerm.set($event)"
-        placeholder="Buscar módulo o categoría..."
-        class="w-full p-inputtext-sm"
-      />
-    </div>
+    <custom-search-input-signal
+      placeholder="Buscar módulo o categoría..."
+      (searchChange)="searchTerm.set($event)"
+      class="flex-1 max-w-20rem"
+    />
   </div>
 
   @if (loading()) {
@@ -101,13 +95,10 @@
     <!-- Buscador Móvil -->
     <div class="p-input-icon-left w-full mb-3">
       <app-icon [icon]="'mdi:magnify'"></app-icon>
-      <input
-        pInputText
-        type="text"
-        [ngModel]="searchTerm()"
-        (ngModelChange)="searchTerm.set($event)"
+      <custom-search-input-signal
         placeholder="Filtrar módulos..."
-        class="w-full p-inputtext-sm"
+        (searchChange)="searchTerm.set($event)"
+        class="w-full"
       />
     </div>
 

@@ -41,15 +41,15 @@
                     inspectionCondominiumAssetId: item.inspectionCondominiumAssetId
                   })
                 "
-          />
+ label="Editar" [showLabelOnDesktop]="true"/>
           <custom-button-item
             [iconClass]="'mdi:plus'"
             label="Agregar Revisión"
             (clicked)="onModalAddRevision()"
-          />
+ [showLabelOnDesktop]="true"/>
           <custom-button-delete
             (confirmed)="onDeleteArea(item.inspectionCondominiumAssetId, data.amenities)"
-          />
+ label="Eliminar" [showLabelOnDesktop]="true"/>
         </ng-container>
       </app-action-menu>
     </li>
@@ -62,7 +62,7 @@
         <ng-container actions>
           <custom-button-delete
             (confirmed)="onDeleteReview(review.id, item.reviews)"
-          />
+ label="Eliminar" [showLabelOnDesktop]="true"/>
         </ng-container>
       </app-action-menu>
     </li>

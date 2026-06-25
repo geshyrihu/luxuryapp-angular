@@ -3,11 +3,13 @@ import { Component, inject, OnInit, signal } from "@angular/core";
 import { TooltipModule } from "primeng/tooltip";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import type { TareasLegalResumenDTO } from "./tareas-legal-card.model";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 
 @Component({
   selector: "app-tareas-legal-card",
   templateUrl: "./tareas-legal-card.html",
-  imports: [CommonModule, TooltipModule],
+  imports: [CommonModule, TooltipModule, AppIcon],
+  styles: [`.text-ds-danger{color:var(--ds-danger)}`],
 })
 export class TareasLegalCard implements OnInit {
   private apiResponseS = inject(ApiResponseService);

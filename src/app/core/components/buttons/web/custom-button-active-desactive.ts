@@ -11,6 +11,7 @@ import { BaseButton } from "../base/base-button";
 @Component({
   selector: "custom-button-active-desactive",
   imports: [CommonModule, TooltipModule, AppIcon, IonButton, IonIcon],
+  styles: [`.btn-state-on{color:var(--ds-success)}.btn-state-off{color:var(--ds-danger)}`],
   template: `
     @if (platform.isMobile()) {
       <ion-button
@@ -68,7 +69,7 @@ export class CustomBtnActiveDesactive extends BaseButton {
       ? `--border-radius:14px;--border-color:#94a3b8;--color:#64748b;--background:transparent;
          height:48px;font-weight:600;font-size:14px;`
       : `--border-radius:14px;--background:linear-gradient(135deg,var(--primary-400,#6687b3),var(--primary-500,#0b3164));
-         --color:#ffffff;--box-shadow:0 4px 14px rgba(21,94,192,0.3);height:48px;font-weight:700;font-size:14px;`,
+         --color:#ffffff;--box-shadow:0 4px 14px rgba(0,61,155,0.3);height:48px;font-weight:700;font-size:14px;`,
   );
 
   dynamicIconShellClass = computed(() =>
@@ -76,7 +77,7 @@ export class CustomBtnActiveDesactive extends BaseButton {
       "btn-icon-shell",
       "btn-icon-shell--soft",
       "btn-icon-shell--with-label",
-      this.state() ? "bg-white-alpha-20 text-green-700" : "bg-white-alpha-20 text-red-700",
+      this.state() ? "bg-white-alpha-20 btn-state-on" : "bg-white-alpha-20 btn-state-off",
     ].join(" "),
   );
 

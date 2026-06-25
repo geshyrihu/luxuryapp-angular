@@ -17,31 +17,26 @@
         <custom-button-download
           (clicked)="onDownloadPdf()"
           label="PDF"
-          [showLabelOnDesktop]="true"
         />
         <custom-button-download
           (clicked)="onDownloadAllQr()"
           label="QR"
           tooltip="Descargar todos los QR"
-          [showLabelOnDesktop]="true"
         />
         <custom-button
           (clicked)="onOpenScanner()"
           icon="pi pi-qrcode"
           tooltip="Escanear QR"
-          [showLabelOnDesktop]="true"
         />
         <custom-button
           (clicked)="onBulkExpiration()"
           icon="pi pi-calendar"
           tooltip="Actualizar fecha de vencimiento a todos"
-          [showLabelOnDesktop]="true"
         />
         <custom-button-item
           (clicked)="onViewPeriodos()"
           label="Periodos"
           tooltip="Configurar periodos de inspección"
-          [showLabelOnDesktop]="true"
         />
       </div>
       <primeng-custom-caption
@@ -103,6 +98,13 @@
       </td>
     </tr>
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="6">
+          <app-empty-state icon="mdi:fire-extinguisher" title="Sin extintores" message="No hay extintores registrados." />
+        </td>
+      </tr>
+    </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -159,7 +161,7 @@
           margin-left: 16px;
         "
       >
-        <app-icon icon="mdi:fire" style="font-size: 20px; color: #dc2626"></app-icon>
+        <app-icon icon="mdi:fire" style="font-size: 20px; color:var(--ds-danger)"></app-icon>
       </div>
       <ion-label>
         <h3>
@@ -169,17 +171,19 @@
         <p>{{ item.location }}</p>
       </ion-label>
       <app-action-menu slot="end">
+        <ng-container actions>
         <custom-button-item
           (clicked)="onViewHistory(item)"
           label="Historial"
           iconName="list-outline"
-        />
-        <custom-button-download (clicked)="onDownloadPdf()" label="PDF" />
-        <custom-button-download (clicked)="onDownloadQr(item)" label="QR" />
+         [showLabelOnDesktop]="true"/>
+        <custom-button-download (clicked)="onDownloadPdf()" label="PDF"  [showLabelOnDesktop]="true"/>
+        <custom-button-download (clicked)="onDownloadQr(item)" label="QR"  [showLabelOnDesktop]="true"/>
         <custom-button-edit
           (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-        />
-        <custom-button-delete (confirmed)="onDelete(item.id)" />
+         label="Editar" [showLabelOnDesktop]="true"/>
+        <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
+              </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

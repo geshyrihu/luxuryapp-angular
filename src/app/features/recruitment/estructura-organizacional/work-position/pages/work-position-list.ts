@@ -1,4 +1,5 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import {
   IonAvatar,
@@ -54,6 +55,7 @@ import { WorkPositionHours } from "./work-position-hours";
   selector: "app-work-position-list",
   templateUrl: "./work-position-list.html",
   imports: [
+    EmptyState,
     TableModule,
     AvatarModule,
     TagModule,

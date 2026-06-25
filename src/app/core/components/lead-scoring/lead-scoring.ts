@@ -22,7 +22,7 @@ export interface LeadScoreCategory {
             class="lead-scoring-total-fill"
             [style.width.%]="totalPercent"
             [style.background]="totalColor()"
-          />
+          ></div>
         </div>
       </div>
       @for (cat of categories(); track cat.label) {
@@ -36,7 +36,7 @@ export interface LeadScoreCategory {
               class="lead-scoring-bar-fill"
               [style.width.%]="(cat.score / cat.maxScore) * 100"
               [style.background]="cat.color || 'var(--ds-primary)'"
-            />
+            ></div>
           </div>
         </div>
       }

@@ -43,12 +43,21 @@
       </td>
       <td class="no-print">
         <div class="flex gap-1">
-          <custom-button-edit (clicked)="onModalForm({ id: item.id, title: item.employee })" />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <custom-button-edit (clicked)="onModalForm({ id: item.id, title: item.employee })"
+/>
+          <custom-button-delete (confirmed)="onDelete(item.id)"
+/>
         </div>
       </td>
     </tr>
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="10">
+          <app-empty-state icon="mdi:currency-usd" title="Sin solicitudes" message="No hay solicitudes de modificación salarial." />
+        </td>
+      </tr>
+    </ng-template>
   <ng-template pTemplate="paginatorleft">
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -73,8 +82,12 @@
         <p>{{ item.currentSalary }} → {{ item.finalSalary }} · {{ item.status }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <custom-button-edit (clicked)="onModalForm({ id: item.id, title: item.employee })" />
-        <custom-button-delete (confirmed)="onDelete(item.id)" />
+        <ng-container actions>
+        <custom-button-edit (clicked)="onModalForm({ id: item.id, title: item.employee })"
+ label="Editar" [showLabelOnDesktop]="true"/>
+        <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
+              </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

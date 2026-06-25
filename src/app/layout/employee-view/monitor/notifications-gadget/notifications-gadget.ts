@@ -1,11 +1,11 @@
 import { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router, RouterModule } from "@angular/router";
-import { BadgeModule } from "primeng/badge";
-import { ButtonModule } from "primeng/button";
-import { Popover, PopoverModule } from "primeng/popover";
+import { DrawerModule } from "primeng/drawer";
+import { OverlayBadge } from "primeng/overlaybadge";
 import { ScrollPanelModule } from "primeng/scrollpanel";
 import { TooltipModule } from "primeng/tooltip";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { SignalRService } from "src/app/core/services/signalr.service";
@@ -13,13 +13,14 @@ import { SignalRService } from "src/app/core/services/signalr.service";
   selector: "app-notifications-gadget",
   imports: [
     RouterModule,
-    BadgeModule,
-    PopoverModule,
-    ButtonModule,
+    AppIcon,
+    OverlayBadge,
+    DrawerModule,
     TooltipModule,
     ScrollPanelModule,
   ],
   templateUrl: "./notifications-gadget.html",
+  styleUrl: "./notifications-gadget.scss",
 })
 export class NotificationsGadget implements OnInit {
   // --- INYECCIÓN DE DEPENDENCIAS ---
@@ -29,6 +30,7 @@ export class NotificationsGadget implements OnInit {
   private destroyRef = inject(DestroyRef);
   private consoleLogger = inject(ConsoleLoggerService);
   // --- ESTADO DEL COMPONENTE CON SIGNALS ---
+  public drawerVisible = signal(false);
   public messageInNotRead = signal(0);
   public notifications = signal<any[]>([]);
 
@@ -64,8 +66,8 @@ export class NotificationsGadget implements OnInit {
       });
   }
 
-  markAsRead(notificationId: string, url: string, popover: Popover): void {
-    popover.hide(); // Ocultamos el popover directamente
+  markAsRead(notificationId: string, url: string): void {
+    this.drawerVisible.set(false);
     const urlApi = `Notifications/mark-as-read/${notificationId}`;
     this.apiResponseS.onGetItem(urlApi).then(() => {
       this.onLoadNotification();

@@ -48,7 +48,9 @@
       <!-- Design System Reference Menu — SuperUsuario only -->
       @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
       <div class="px-3 mb-2">
-        <span class="text-xs font-bold text-500 uppercase block">Design System</span>
+        <span class="text-xs font-bold text-500 uppercase block"
+          >Design System</span
+        >
       </div>
       <ul class="guide-menu-list mb-2">
         <ng-container
@@ -89,8 +91,13 @@
     @if(item.items && item.items.length > 0) {
     <div
       (click)="toggle(item)"
+      (keydown.enter)="toggle(item)"
+      (keydown.space)="toggle(item)"
+      role="button"
+      tabindex="0"
       class="menu-group-header"
       [class.expanded]="item.expanded"
+      [attr.aria-expanded]="item.expanded"
     >
       <div class="flex align-items-center overflow-hidden min-w-0">
         @if(item.icon) {

@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ConfirmationService } from "primeng/api";
@@ -25,6 +26,7 @@ import { AiKnowledgeBaseForm } from "./ai-knowledge-base-form";
   selector: "app-ai-knowledge-base-list",
   templateUrl: "./ai-knowledge-base-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     PrimeNgCustomCaption,

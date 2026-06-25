@@ -1,4 +1,5 @@
-﻿import { CommonModule, DatePipe } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule, DatePipe } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -21,6 +22,7 @@ import { EstacionManualBitacoraPdfService } from "./estacion-manual-bitacora-pdf
   selector: "app-estacion-manual-bitacora-list",
   templateUrl: "./estacion-manual-bitacora-list.html",
   imports: [
+    EmptyState,
     CommonModule, TableModule, DataViewMobile,
     CustomButtonDelete, CustomButtonDownload, CustomButtonEdit,
     PrimeNgCustomCaption, PrimeNgCustomTableFooter, ActionMenu,

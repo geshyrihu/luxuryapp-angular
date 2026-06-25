@@ -1,77 +1,78 @@
-<!-- Botón principal, actualizado con ócono de PrimeNG -->
-<p-button
-  (click)="op.toggle($event)"
-  styleClass="p-button-secondary p-button-text"
+<!-- Botón con el mismo aspecto que el sidebar-toggle — clase DS con tokens -->
+<button
+  type="button"
+  class="sidebar-toggle-btn ml-2"
+  (click)="drawerVisible.set(true)"
   pTooltip="Notificaciones"
   tooltipPosition="bottom"
-  size="small"
 >
-  <app-icon icon="mdi:bell-outline" class="text-lg" pBadge
-    [value]="messageInNotRead() > 0 ? messageInNotRead() : null"
+  <p-overlaybadge
+    [value]="messageInNotRead()"
     severity="danger"
-  ></app-icon>
-</p-button>
+    [badgeDisabled]="messageInNotRead() === 0"
+  >
+    <app-icon icon="mdi:bell" class="text-xl text-yellow-500"></app-icon>
+  </p-overlaybadge>
+</button>
 
-<!-- Popover de PrimeNG -->
-<p-popover #op [style]="{ width: '450px' }">
-  <ng-template #content>
-    <!-- Encabezado del Popover -->
-    <div
-      class="flex align-items-center justify-content-between px-3 pt-3 pb-2 border-bottom-1 surface-border"
-    >
-      <span class="font-bold text-lg">Notificaciones</span>
-    </div>
-
-    <!-- Contenedor con scroll para la lista -->
-    <p-scrollPanel [style]="{ width: '100%', height: '300px' }">
-      <!-- Lista de notificaciones -->
-      <div class="list-none p-0 m-0">
-        @for (notification of notifications(); track notification.id) {
-        <!-- Item de notificación -->
-        <div
-          class="flex align-items-start p-3 gap-3 cursor-pointer hover:surface-100 border-bottom-1 surface-border"
-          (click)="markAsRead(notification.id, notification.url, op)"
-          [class.surface-100]="!notification.isRead"
-          [class.font-semibold]="!notification.isRead"
-        >
-          <app-icon icon="mdi:bell-outline"  class="text-xl text-primary mt-1"></app-icon>
-          <div class="flex-flex-grow-1-1">
-            <p class="m-0 font-bold">{{ notification.title }}</p>
-            <p class="m-0 text-color-secondary text-sm">
-              {{ notification.message }}
-            </p>
-          </div>
+<!-- Drawer lateral de PrimeNG para notificaciones -->
+<p-drawer
+  [(visible)]="drawerVisible"
+  position="right"
+  [showCloseIcon]="true"
+  header="Notificaciones"
+  [style]="{ width: '450px' }"
+>
+  <!-- Contenedor con scroll para la lista -->
+  <p-scrollPanel [style]="{ width: '100%', height: 'calc(100vh - 120px)' }">
+    <!-- Lista de notificaciones -->
+    <div class="list-none p-0 m-0">
+      @for (notification of notifications(); track notification.id) {
+      <!-- Item de notificación -->
+      <div
+        class="flex align-items-start p-3 gap-3 cursor-pointer hover:surface-100 border-bottom-1 surface-border"
+        (click)="markAsRead(notification.id, notification.url)"
+        [class.surface-100]="!notification.isRead"
+        [class.font-semibold]="!notification.isRead"
+      >
+        <app-icon
+          icon="mdi:bell-outline"
+          class="text-xl text-primary mt-1"
+        ></app-icon>
+        <div class="flex-flex-grow-1-1">
+          <p class="m-0 font-bold">{{ notification.title }}</p>
+          <p class="m-0 text-color-secondary text-sm">
+            {{ notification.message }}
+          </p>
         </div>
-        } @empty {
-        <!-- Estado vacóo -->
-        <div
-          class="flex flex-column align-items-center justify-content-center text-center p-4 gap-3"
-          style="height: 300px"
-        >
-          <app-icon icon="mdi:inbox"  class="text-4xl text-color-secondary"></app-icon>
-          <span class="text-color-secondary"
-            >No tienes notificaciones nuevas.</span
-          >
-        </div>
-        }
       </div>
-    </p-scrollPanel>
+      } @empty {
+      <!-- Estado vacóo -->
+      <div
+        class="flex flex-column align-items-center justify-content-center text-center p-4 gap-3"
+        style="height: 300px"
+      >
+        <app-icon
+          icon="mdi:inbox"
+          class="text-4xl text-color-secondary"
+        ></app-icon>
+        <span class="text-color-secondary"
+          >No tienes notificaciones nuevas.</span
+        >
+      </div>
+      }
+    </div>
+  </p-scrollPanel>
 
-    <!-- Pie de pógina del Popover -->
-    <div class="text-center p-2 border-top-1 surface-border">
+  <!-- Pie del Drawer -->
+  <ng-template #footer>
+    <div class="text-center w-full">
       <p-button
         label="Ver todas las notificaciones"
         styleClass="p-button-link"
         [routerLink]="['/notifications']"
-        (click)="op.hide()"
+        (click)="drawerVisible.set(false)"
       />
     </div>
   </ng-template>
-</p-popover>
-
-
-
-
-
-
-
+</p-drawer>

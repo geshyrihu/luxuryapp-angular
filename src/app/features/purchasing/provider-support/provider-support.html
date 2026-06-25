@@ -72,13 +72,21 @@
         <div class="flex">
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-          />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+/>
+          <custom-button-delete (confirmed)="onDelete(item.id)"
+/>
         </div>
       </td>
       <!-- Opciones -->
     </tr>
   </ng-template>
+  <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">
+          <app-empty-state icon="mdi:store-outline" title="Sin proveedores" message="No hay proveedores registrados." />
+        </td>
+      </tr>
+    </ng-template>
 </p-table>
 
 <app-data-view-mobile
@@ -93,7 +101,7 @@
         background:var(--ds-surface-variant); display:flex; align-items:center;
         justify-content:center; flex-shrink:0; margin-left:16px;
       ">
-        <app-icon icon="mdi:account-outline" style="font-size:20px; color:#16a34a;"></app-icon>
+        <app-icon icon="mdi:account-outline" style="font-size:20px; color:var(--ds-success);"></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.fullName }}</h3>
@@ -101,8 +109,12 @@
         <p>{{ item.nameCustomer }}</p>
       </ion-label>
       <app-action-menu slot="end">
-        <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
-        <custom-button-delete (confirmed)="onDelete(item.id)" />
+        <ng-container actions>
+        <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+ label="Editar" [showLabelOnDesktop]="true"/>
+        <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
+              </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

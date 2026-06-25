@@ -51,7 +51,7 @@
               size="small"
               severity="warn"
               (clicked)="openDetail(item)"
-            />
+/>
           }
         </td>
       </tr>
@@ -59,8 +59,8 @@
 
     <ng-template pTemplate="emptymessage">
       <tr>
-        <td colspan="6" class="text-center p-4 text-500">
-          No hay solicitudes pendientes de aprobacion.
+        <td colspan="6">
+          <app-empty-state icon="mdi:inbox-check-outline" title="Sin pendientes" message="No hay solicitudes pendientes de aprobación." />
         </td>
       </tr>
     </ng-template>
@@ -87,7 +87,10 @@
       </ion-label>
       @if (item.status === EFinancialApprovalStatus.Pendiente) {
         <app-action-menu slot="end">
-          <custom-button-edit (clicked)="openDetail(item)" />
+          <ng-container actions>
+          <custom-button-edit (clicked)="openDetail(item)"
+ label="Editar" [showLabelOnDesktop]="true"/>
+                  </ng-container>
         </app-action-menu>
       }
     </ion-item>

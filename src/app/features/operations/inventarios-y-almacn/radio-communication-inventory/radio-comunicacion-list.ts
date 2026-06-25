@@ -1,4 +1,5 @@
-﻿import { DatePipe } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { DatePipe } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -26,6 +27,7 @@ import { RadioComunicacionForm } from "./radio-comunicacion-form";
   selector: "app-radio-comunicacion-list",
   templateUrl: "./radio-comunicacion-list.html",
   imports: [
+    EmptyState,
     TableModule,
     ImageModule,
     CustomButtonEdit,

@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -41,6 +42,7 @@ import { ProductReturn } from "./product-return";
   selector: "app-product-output-list",
   templateUrl: "./product-output-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     PrimeNgCustomTableFooter,

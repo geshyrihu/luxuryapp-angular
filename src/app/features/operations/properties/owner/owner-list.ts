@@ -1,4 +1,5 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { homeOutline } from "ionicons/icons";
@@ -31,6 +32,7 @@ import { OwnerForm } from "./owner-form";
   selector: "app-owner-list",
   templateUrl: "./owner-list.html",
   imports: [
+    EmptyState,
     TableModule,
     CustomButton,
     PrimeNgCustomCaption,

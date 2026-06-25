@@ -1,4 +1,5 @@
-﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -23,6 +24,7 @@ import { CatalogoDescripcionForm } from "src/app/features/system/entrega-recepci
   selector: "app-catalogo-descripcion-list",
   templateUrl: "./catalogo-descripcion-list.html",
   imports: [
+    EmptyState,
     TableModule,
     PrimeNgCustomCaption,
     DataViewMobile,

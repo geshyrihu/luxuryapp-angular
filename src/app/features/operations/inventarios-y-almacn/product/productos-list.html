@@ -77,13 +77,21 @@
           account_id ) {
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-          />
+/>
           }
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <custom-button-delete (confirmed)="onDelete(item.id)"
+/>
         </div>
       </td>
     </tr>
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="6">
+          <app-empty-state icon="mdi:package-variant-outline" title="Sin productos" message="No hay productos registrados." />
+        </td>
+      </tr>
+    </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="filteredDataSignal()" />
   </ng-template>
@@ -100,9 +108,9 @@
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
-      <ion-avatar slot="start">
-        <img [src]="item.urlImagen" alt="Product Image" />
-      </ion-avatar>
+      <div slot="start" class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg" style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);">
+        <app-icon icon="mdi:package-variant-outline" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+      </div>
       <ion-label>
         <h2 class="font-normal m-0">{{ item.nombreProducto }}</h2>
         <p class="text-medium text-500 m-0">
@@ -117,9 +125,10 @@
           account_id ) {
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-          />
+ label="Editar" [showLabelOnDesktop]="true"/>
           }
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
+          <custom-button-delete (confirmed)="onDelete(item.id)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
         </ng-container>
       </app-action-menu>
     </ion-item>

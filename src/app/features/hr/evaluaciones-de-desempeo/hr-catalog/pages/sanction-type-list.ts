@@ -1,4 +1,5 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
@@ -24,6 +25,7 @@ import { SanctionTypeForm } from "./sanction-type-form";
   selector: "app-sanction-type-list",
   templateUrl: "./sanction-type-list.html",
   imports: [
+    EmptyState,
     TableModule,
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,

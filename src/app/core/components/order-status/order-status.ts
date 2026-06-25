@@ -25,13 +25,13 @@ export interface OrderStatusStep {
               </div>
             } @else if (step.active) {
               <div class="order-step-dot order-step-current">
-                <div class="order-step-pulse" />
+                <div class="order-step-pulse"></div>
               </div>
             } @else {
-              <div class="order-step-dot order-step-pending" />
+              <div class="order-step-dot order-step-pending"></div>
             }
             @if (!vertical() && !$last) {
-              <div class="order-step-line" [class.order-step-line-filled]="step.completed" />
+              <div class="order-step-line" [class.order-step-line-filled]="step.completed"></div>
             }
           </div>
           <div class="order-step-content">
@@ -42,7 +42,7 @@ export interface OrderStatusStep {
           </div>
         </div>
         @if (vertical() && !$last) {
-          <div class="order-step-vline" [class.order-step-line-filled]="step.completed" />
+          <div class="order-step-vline" [class.order-step-line-filled]="step.completed"></div>
         }
       }
     </div>

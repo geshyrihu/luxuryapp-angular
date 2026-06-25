@@ -71,7 +71,6 @@
           (clicked)="onManageLinks()"
           severity="warn"
           size="sm"
-          [showLabelOnDesktop]="true"
         />
 
         <!-- Separador Visual -->
@@ -85,7 +84,6 @@
             [variant]="statusCompra() !== 1 ? 'outlined' : null"
             [severity]="statusCompra() === 1 ? 'primary' : 'secondary'"
             size="sm"
-            [showLabelOnDesktop]="true"
           />
           <custom-button
             label="Autorizadas"
@@ -94,7 +92,6 @@
             [variant]="statusCompra() !== 0 ? 'outlined' : null"
             [severity]="statusCompra() === 0 ? 'primary' : 'secondary'"
             size="sm"
-            [showLabelOnDesktop]="true"
           />
           <custom-button
             label="Pendientes"
@@ -103,7 +100,6 @@
             [variant]="statusCompra() !== 2 ? 'outlined' : null"
             [severity]="statusCompra() === 2 ? 'primary' : 'secondary'"
             size="sm"
-            [showLabelOnDesktop]="true"
           />
         </div>
       </div>
@@ -219,19 +215,18 @@
       }
       <td class="no-print oc-cell-actions text-center">
         <app-action-menu>
+          <ng-container actions>
           <custom-button-item
             iconClass="mdi:window-maximize"
             label="Editar en modal"
             (clicked)="onOrdenCompraModal(item.id)"
             variant="text"
-            [showLabelOnDesktop]="true"
-          />
+           [showLabelOnDesktop]="true"/>
           <custom-button-edit
             (clicked)="onAddOrEdit(item.id)"
             variant="text"
-            [showLabelOnDesktop]="true"
             label="Editar"
-          />
+           [showLabelOnDesktop]="true"/>
 
           @if (statusCompra() === 0) {
           <custom-button-item
@@ -239,26 +234,31 @@
             label="Solicitud de pago"
             (clicked)="onDownloadSolicitudPagoPdf(item.id)"
             variant="text"
-            [showLabelOnDesktop]="true"
-          />
+           [showLabelOnDesktop]="true"/>
           <custom-button-item
             iconClass="mdi:file-pdf-box"
             label="Orden de compra"
             (clicked)="onDownloadOrdenCompraPdf(item.id)"
             variant="text"
-            [showLabelOnDesktop]="true"
-          />
+           [showLabelOnDesktop]="true"/>
           }
           <custom-button-delete
             (confirmed)="onDelete(item.id)"
             variant="text"
-            [showLabelOnDesktop]="true"
             label="Eliminar"
-          />
+           [showLabelOnDesktop]="true"/>
+                  </ng-container>
         </app-action-menu>
       </td>
     </tr>
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="9">
+          <app-empty-state icon="mdi:cart-outline" title="Sin órdenes" message="No hay órdenes de compra registradas." />
+        </td>
+      </tr>
+    </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="data()" />
   </ng-template>
@@ -363,8 +363,10 @@
         </p>
       </ion-label>
       <app-action-menu slot="end">
-        <custom-button-edit (clicked)="onAddOrEdit(item.id)" />
-        <custom-button-delete (confirmed)="onDelete(item.id)" />
+        <ng-container actions>
+        <custom-button-edit (clicked)="onAddOrEdit(item.id)"  label="Editar" [showLabelOnDesktop]="true"/>
+        <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
+              </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

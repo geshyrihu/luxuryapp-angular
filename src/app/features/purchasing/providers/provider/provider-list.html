@@ -173,7 +173,7 @@
                 roles.SupervisionOperativa, roles.Legal, ]) && item.id != 109 ) {
                 <custom-button-edit
                   (clicked)="onModalForm({ id: item.providerId, title: 'Editar' })"
-                />
+/>
                 } @if (item.activo) {
                 <custom-button-item
                   iconClass="mdi:chart-bar"
@@ -181,19 +181,20 @@
                   (clicked)="showModalCalificarProveedor({ providerId: item.providerId, nameProvider: item.nameComercial })"
                 />
                 } @if (validateRole([roles.SuperUsuario])) {
-                <custom-button-delete (confirmed)="onDelete(item.providerId)" />
+                <custom-button-delete (confirmed)="onDelete(item.providerId)"
+/>
                 } @if (!item.activo && validateRole([roles.SuperUsuario])) {
                 <custom-button-item
                   (clicked)="onActivateProvider({ providerId: item.providerId, state: !item.activo })"
                   iconClass="mdi:check"
                   label="Activar"
-                />
+/>
                 } @if (item.activo && validateRole([roles.SuperUsuario])) {
                 <custom-button-item
                   (clicked)="onActivateProvider({ providerId: item.providerId, state: !item.activo })"
                   iconClass="mdi:ban"
                   label="Inactivar"
-                />
+/>
 
                 <custom-button-item
                   (clicked)="onConicidencias({ providerId: item.providerId, state: !item.activo })"
@@ -214,6 +215,13 @@
       </div>
     </div>
   </ng-template>
+  <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="3">
+          <app-empty-state icon="mdi:store-outline" title="Sin proveedores" message="No hay proveedores registrados." />
+        </td>
+      </tr>
+    </ng-template>
 </p-table>
 
 <app-data-view-mobile
@@ -235,10 +243,13 @@
         <p class="text-xs text-500">{{ item.phoneOne }}</p>
       </ion-label>
       <app-action-menu slot="end">
+        <ng-container actions>
         <custom-button-edit
           (clicked)="onModalForm({ id: item.providerId, title: 'Editar' })"
-        />
-        <custom-button-delete (confirmed)="onDelete(item.providerId)" />
+ label="Editar" [showLabelOnDesktop]="true"/>
+        <custom-button-delete (confirmed)="onDelete(item.providerId)"
+ label="Eliminar" [showLabelOnDesktop]="true"/>
+              </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

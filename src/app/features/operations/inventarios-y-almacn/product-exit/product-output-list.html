@@ -46,7 +46,6 @@
           <!-- Botón de Reporte (funcionalidad futura) -->
           <custom-button-download
             label="Generar Reporte"
-            [showLabelOnDesktop]="true"
             iconClass="mdi:file-excel"
             severity="success"
             (clicked)="onGenerateReport()"
@@ -136,6 +135,13 @@
         </td>
       </tr>
     </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">
+          <app-empty-state icon="mdi:package-down" title="Sin salidas" message="No hay salidas de producto registradas." />
+        </td>
+      </tr>
+    </ng-template>
     <ng-template #paginatorleft>
       <primeng-custom-table-footer [data]="dataSignal()" />
     </ng-template>
@@ -149,6 +155,13 @@
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="width:38px;height:38px;background:var(--ds-danger-light,#ffdad6);"
+      >
+        <app-icon icon="mdi:package-down" style="font-size:1.1rem;color:var(--ds-danger);"></app-icon>
+      </div>
       <ion-label>
         <div class="flex flex-column">
           <h6 class="mb-0">{{ item.producto }}</h6>
@@ -177,15 +190,15 @@
               "
               label="Editar"
               iconName="create-outline"
-            />
+             [showLabelOnDesktop]="true"/>
             }
             <custom-button-item
               (clicked)="onReturnProduct(item)"
               label="↩️ Devolver"
               [disabled]="item.cantidadDevuelta >= item.cantidad"
-            />
+             [showLabelOnDesktop]="true"/>
 
-            <custom-button-delete (confirmed)="onDelete(item.id)" />
+            <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
           </ng-container>
         </app-action-menu>
       </div>

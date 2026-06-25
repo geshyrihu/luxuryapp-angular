@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import {
@@ -96,6 +97,7 @@ interface Equipo {
   selector: "app-equipos-list",
   templateUrl: "./equipos-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     CardModule,
     TableModule,

@@ -8,20 +8,22 @@ import { MobileNavigation } from "../catalog-mobile/components/mobile-navigation
 import { MobileLists } from "../catalog-mobile/components/mobile-lists/mobile-lists";
 import { MobileData } from "../catalog-mobile/components/mobile-data/mobile-data";
 import { MobileForms } from "../catalog-mobile/components/mobile-forms/mobile-forms";
+import { MobileOverlays } from "../catalog-mobile/components/mobile-overlays/mobile-overlays";
 
 const MOBILE_LABELS: Record<string, string> = {
   buttons: "Mobile Buttons",
   inputs: "Mobile Inputs",
-  feedback: "Mobile Feedback",
-  navigation: "Mobile Navigation",
-  lists: "Mobile Lists",
-  data: "Mobile Data",
+  feedback: "Mobile Feedback & Skeleton",
+  navigation: "Mobile Navigation & Segment",
+  lists: "Mobile Lists & Reorder",
+  data: "Mobile Data, Accordion & Grid",
   forms: "Mobile Forms",
+  overlays: "Mobile Overlays (Alert / Toast / Action Sheet / Loading)",
 };
 
 @Component({
   selector: "app-catalog-mobile-item",
-  imports: [CommonModule, MobileButtons, MobileInputs, MobileFeedback, MobileNavigation, MobileLists, MobileData, MobileForms],
+  imports: [CommonModule, MobileButtons, MobileInputs, MobileFeedback, MobileNavigation, MobileLists, MobileData, MobileForms, MobileOverlays],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -35,6 +37,7 @@ const MOBILE_LABELS: Record<string, string> = {
         @case ('lists') { <app-mobile-lists /> }
         @case ('data') { <app-mobile-data /> }
         @case ('forms') { <app-mobile-forms /> }
+        @case ('overlays') { <app-mobile-overlays /> }
       }
     </section>
   `,

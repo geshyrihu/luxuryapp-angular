@@ -31,7 +31,6 @@
         <custom-button
           (clicked)="selectByQuincena(0)"
           label="Marcar 1ra Quincena"
-          [showLabelOnDesktop]="true"
           size="small"
           [severity]="isFirstQuincenaSelected() ? 'success' : 'secondary'"
           [outlined]="isFirstQuincenaSelected() ? 'success' : 'secondary'"
@@ -44,7 +43,6 @@
           iconClass="mdi:calendar"
           size="small"
           severity="success"
-          [showLabelOnDesktop]="true"
           [disabled]="!isGenerationParamsSelected() || !isFirstQuincenaSelected() || isFirstQuincenaGenerationBlocked()"
         />
 
@@ -58,7 +56,6 @@
           [severity]="isSecondQuincenaSelected() ? 'info' : 'secondary'"
           [outlined]="!isSecondQuincenaSelected()"
           [iconClass]="isSecondQuincenaSelected() ?'mdi:check' : 'mdi:close'"
-          [showLabelOnDesktop]="true"
         />
 
         <custom-button
@@ -67,7 +64,6 @@
           iconClass="mdi:calendar"
           size="small"
           severity="info"
-          [showLabelOnDesktop]="true"
           [disabled]="!isGenerationParamsSelected() || !isSecondQuincenaSelected() || isSecondQuincenaGenerationBlocked()"
         />
       </div>
@@ -93,7 +89,6 @@
             [iconClass]="selectedMonthName() === month.monthName ? 'mdi:check' : 'mdi:close'"
             customClass="w-full text-xs"
             size="small"
-            [showLabelOnDesktop]="true"
           />
         </div>
         }
@@ -391,12 +386,14 @@
           AspRole.SuperUsuario, ])() ) {
           <div slot="end">
             <app-action-menu>
+              <ng-container actions>
               <custom-button-edit
                 (clicked)="onModal({ id: item.id, title: 'Editar' })"
-              ></custom-button-edit>
+               label="Editar" [showLabelOnDesktop]="true"></custom-button-edit>
               <custom-button-delete
                 (confirmed)="onDelete(item.id)"
               ></custom-button-delete>
+                          </ng-container>
             </app-action-menu>
           </div>
           }

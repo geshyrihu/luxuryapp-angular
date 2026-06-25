@@ -1,4 +1,5 @@
-﻿import {
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import {
   Component,
   computed,
   inject,
@@ -43,6 +44,7 @@ import { MdEditAccount } from "./md-edit-account";
   selector: "app-application-user-list",
   templateUrl: "./application-user-list.html",
   imports: [
+    EmptyState,
     ReactiveFormsModule,
     TableModule,
     AvatarModule,

@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
@@ -19,6 +20,7 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 @Component({
   selector: "app-mis-inspecciones-lista",
   imports: [
+    EmptyState,
     ActionMenu,
     CardModule,
     NgbTooltipModule,

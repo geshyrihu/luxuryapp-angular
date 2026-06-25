@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 ﻿import { CurrencyPipe, DatePipe } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
@@ -24,6 +25,7 @@ import { CollectionCaseResponseDTO } from "../../models/collection-case.dto";
 @Component({
   selector: "app-collection-case-list",
   imports: [
+    EmptyState,
     TableModule,
     PrimeNgCustomCaption,
     CustomButton,

@@ -1,4 +1,5 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { IonAvatar } from "@ionic/angular/standalone";
 import { CardModule } from "primeng/card";
@@ -26,6 +27,7 @@ import { PiscinaForm } from "./piscina-form";
   selector: "app-piscina-list",
   templateUrl: "./piscina-list.html",
   imports: [
+    EmptyState,
     TableModule,
     ImageModule,
     RouterModule,

@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { addIcons } from "ionicons";
@@ -40,6 +41,7 @@ import { TicketLegalSeguimientoSolicitudDetalle } from "./ticket-legal-seguimien
   selector: "app-ticket-legal-lista",
   templateUrl: "./ticket-legal-lista.html",
   imports: [
+    EmptyState,
     CommonModule,
     FormsModule,
     TableModule,

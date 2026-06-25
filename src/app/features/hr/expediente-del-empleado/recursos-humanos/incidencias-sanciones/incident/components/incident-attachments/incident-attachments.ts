@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { DatePipe } from "@angular/common";
 import { Component, inject, input, signal } from "@angular/core";
@@ -19,6 +20,7 @@ const ALLOWED_TYPES = ["image/jpeg", "image/png", "application/pdf"];
 @Component({
   selector: "app-incident-attachments",
   imports: [
+    EmptyState,
     ReactiveFormsModule,
     FileUploadModule,
     TableModule,

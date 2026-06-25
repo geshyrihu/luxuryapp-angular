@@ -1,15 +1,12 @@
+import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
-  effect,
-  ElementRef,
   input,
   model,
   signal,
-  viewChild,
   ViewEncapsulation,
 } from "@angular/core";
-import { CommonModule } from "@angular/common";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 
 export interface TourStep {
@@ -26,7 +23,7 @@ export interface TourStep {
   imports: [CommonModule, AppIcon],
   template: `
     @if (visible()) {
-      <div class="tour-backdrop" (click)="skip()" />
+      <div class="tour-backdrop" (click)="skip()"></div>
 
       <div
         class="tour-popup"
@@ -43,7 +40,7 @@ export interface TourStep {
         <p class="tour-step-desc">{{ currentStep().description }}</p>
 
         @if (currentStep().target) {
-          <div class="tour-highlight" [style]="highlightStyle()" />
+          <div class="tour-highlight" [style]="highlightStyle()"></div>
         }
 
         <div class="tour-footer">
@@ -83,106 +80,110 @@ export interface TourStep {
       </div>
     }
   `,
-  styles: [`
-    .tour-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      z-index: 9000;
-    }
-    .tour-popup {
-      position: fixed;
-      z-index: 9001;
-      background: var(--ds-bg-surface, #ffffff);
-      border: 1px solid var(--ds-border, #e2e8f0);
-      border-radius: var(--ds-radius-xl, 12px);
-      box-shadow: var(--ds-shadow-xl);
-      padding: 1rem 1.25rem;
-      max-width: 380px;
-      width: calc(100vw - 2rem);
-    }
-    .tour-popup-center {
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .tour-header {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .tour-step-icon {
-      font-size: 1.25rem;
-      color: var(--ds-primary);
-    }
-    .tour-step-title {
-      font-size: var(--ds-font-size-body, 0.9375rem);
-      color: var(--ds-text-primary);
-    }
-    .tour-step-desc {
-      margin: 0 0 0.75rem;
-      font-size: var(--ds-font-size-table, 0.875rem);
-      color: var(--ds-text-secondary);
-      line-height: 1.5;
-    }
-    .tour-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .tour-dots {
-      display: flex;
-      gap: 0.375rem;
-    }
-    .tour-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--ds-border, #e2e8f0);
-      transition: background 0.2s;
-    }
-    .tour-dot-active {
-      background: var(--ds-primary);
-    }
-    .tour-actions {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-    }
-    .tour-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      padding: 0.375rem 0.75rem;
-      border-radius: var(--ds-radius-md, 6px);
-      font-size: var(--ds-font-size-table, 0.875rem);
-      cursor: pointer;
-      transition: all 0.12s;
-      border: none;
-    }
-    .tour-btn-ghost {
-      background: transparent;
-      color: var(--ds-text-secondary);
-    }
-    .tour-btn-ghost:hover {
-      background: var(--ds-bg-hover, #f0f4ff);
-    }
-    .tour-btn-primary {
-      background: var(--ds-primary);
-      color: #fff;
-    }
-    .tour-btn-primary:hover {
-      filter: brightness(1.08);
-    }
-    .tour-highlight {
-      position: fixed;
-      z-index: 9000;
-      pointer-events: none;
-      border-radius: var(--ds-radius-lg, 8px);
-      box-shadow: 0 0 0 4px var(--ds-primary), 0 0 0 9999px rgba(0, 0, 0, 0.45);
-    }
-  `],
+  styles: [
+    `
+      .tour-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 9000;
+      }
+      .tour-popup {
+        position: fixed;
+        z-index: 9001;
+        background: var(--ds-bg-surface, #ffffff);
+        border: 1px solid var(--ds-border, #e2e8f0);
+        border-radius: var(--ds-radius-xl, 12px);
+        box-shadow: var(--ds-shadow-xl);
+        padding: 1rem 1.25rem;
+        max-width: 380px;
+        width: calc(100vw - 2rem);
+      }
+      .tour-popup-center {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .tour-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .tour-step-icon {
+        font-size: 1.25rem;
+        color: var(--ds-primary);
+      }
+      .tour-step-title {
+        font-size: var(--ds-font-size-body, 0.9375rem);
+        color: var(--ds-text-primary);
+      }
+      .tour-step-desc {
+        margin: 0 0 0.75rem;
+        font-size: var(--ds-font-size-table, 0.875rem);
+        color: var(--ds-text-secondary);
+        line-height: 1.5;
+      }
+      .tour-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .tour-dots {
+        display: flex;
+        gap: 0.375rem;
+      }
+      .tour-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--ds-border, #e2e8f0);
+        transition: background 0.2s;
+      }
+      .tour-dot-active {
+        background: var(--ds-primary);
+      }
+      .tour-actions {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+      .tour-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.375rem 0.75rem;
+        border-radius: var(--ds-radius-md, 6px);
+        font-size: var(--ds-font-size-table, 0.875rem);
+        cursor: pointer;
+        transition: all 0.12s;
+        border: none;
+      }
+      .tour-btn-ghost {
+        background: transparent;
+        color: var(--ds-text-secondary);
+      }
+      .tour-btn-ghost:hover {
+        background: var(--ds-bg-hover, #f0f4ff);
+      }
+      .tour-btn-primary {
+        background: var(--ds-primary);
+        color: #fff;
+      }
+      .tour-btn-primary:hover {
+        filter: brightness(1.08);
+      }
+      .tour-highlight {
+        position: fixed;
+        z-index: 9000;
+        pointer-events: none;
+        border-radius: var(--ds-radius-lg, 8px);
+        box-shadow:
+          0 0 0 4px var(--ds-primary),
+          0 0 0 9999px rgba(0, 0, 0, 0.45);
+      }
+    `,
+  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class Tour {
@@ -191,7 +192,9 @@ export class Tour {
   visible = model(false);
   currentIndex = signal(0);
 
-  currentStep = computed(() => this.steps()[this.currentIndex()] || this.steps()[0]);
+  currentStep = computed(
+    () => this.steps()[this.currentIndex()] || this.steps()[0],
+  );
   isLast = computed(() => this.currentIndex() >= this.steps().length - 1);
 
   popupStyle = computed<Record<string, string>>(() => {

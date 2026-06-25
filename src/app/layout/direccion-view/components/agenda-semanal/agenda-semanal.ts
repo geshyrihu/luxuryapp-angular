@@ -17,6 +17,12 @@ import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
   selector: "app-agenda-semanal",
   templateUrl: "./agenda-semanal.html",
   imports: [CommonModule, ButtonModule, TagModule, TooltipModule, AppIcon],
+  styles: [`
+    .agenda-hoy-badge {
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--ds-text-inverse, #edf0ff);
+    }
+  `],
 })
 export class AgendaSemanal {
   private apiResponseS = inject(ApiResponseService);

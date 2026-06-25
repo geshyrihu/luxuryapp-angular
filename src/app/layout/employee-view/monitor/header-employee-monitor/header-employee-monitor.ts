@@ -37,13 +37,15 @@ import { ThemeService } from "src/app/core/services/theme.service";
 import { UpdateService } from "src/app/core/services/update-pwa.service";
 import { NotificationsGadget } from "../notifications-gadget/notifications-gadget";
 import { ProfileMonitor } from "../profile-monitor/profile-monitor";
+import { Search } from "../search/search";
 
 import * as htmlToImage from "html-to-image";
 import { DialogModule } from "primeng/dialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { AiService } from "src/app/core/services/ai.service";
-
+import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { SelectButtonModule } from "primeng/selectbutton";
+import { TextareaModule } from "primeng/textarea";
 
 @Component({
   selector: "app-header-employee-monitor",
@@ -54,13 +56,15 @@ import { SelectButtonModule } from "primeng/selectbutton";
     ButtonModule,
     CommonModule,
     DialogModule,
+    TextareaModule,
     FormsModule,
+    ReactiveFormsModule,
     NotificationsGadget,
     ProfileMonitor,
     ProgressSpinnerModule,
     RouterModule,
     SelectButtonModule,
-    // Search,
+    Search,
     SelectModule,
     ToolbarModule,
     TooltipModule,
@@ -114,7 +118,7 @@ export class HeaderEmployeeMonitor implements OnInit {
   public aiAnnouncementImageResult = signal<SafeUrl | null>(null);
   public aiAnnouncementPosterPoints = signal<string[]>([]);
   public isGeneratingImage = signal<boolean>(false);
-  public userIdea = signal<string>("");
+  public userIdeaControl = new FormControl<string>("");
   public aiAnnouncementResult = signal<{
     title: string;
     greeting: string;
@@ -349,15 +353,15 @@ export class HeaderEmployeeMonitor implements OnInit {
   }
 
   onAiAnnouncement() {
-    this.displayAiModal.set(true);
-    this.userIdea.set("");
+    setTimeout(() => this.displayAiModal.set(true));
+    this.userIdeaControl.reset("");
     this.aiAnnouncementResult.set(null);
     this.aiAnnouncementImageResult.set(null);
     this.aiAnnouncementPosterPoints.set([]);
   }
 
   async generateOfficialAnnouncement(mode: "text" | "poster") {
-    if (!this.userIdea() || !this.userIdea().trim()) return;
+    if (!this.userIdeaControl.value || !this.userIdeaControl.value.trim()) return;
 
     this.currentMode.set(mode);
 
@@ -366,7 +370,7 @@ export class HeaderEmployeeMonitor implements OnInit {
 
       if (mode === "text") {
         const enrichedIdea =
-          this.userIdea() +
+          (this.userIdeaControl.value || '') +
           "\n\nINSTRUCCIONES ESTRICTAS: El texto debe ser lo más corto y claro posible, estar fuertemente apoyado con emojis. Adopta un tono sumamente empático, asegurando que el condómino se sienta entendido, y enfocado siempre en el bien común y la convivencia.";
         const textResult =
           await this.aiService.generateOfficialAnnouncementDraft(
@@ -378,7 +382,7 @@ export class HeaderEmployeeMonitor implements OnInit {
       } else if (mode === "poster") {
         this.isGeneratingImage.set(true);
         const shortTitleIdea =
-          this.userIdea() +
+          (this.userIdeaControl.value || '') +
           "\n\nINSTRUCCIONES PARA INFOGRAFÍA (IGNORA REGLAS HTML ANTERIORES):\n" +
           "1. 'Title': Un título destacado y muy corto (máx 5 palabras).\n" +
           "2. 'Body': PROHIBIDO USAR TAGS HTML (<p>, <strong>, etc). Escribe SOLO 3 o 4 recomendaciones MUY CORTAS (máx 10 palabras cada una), separadas EXCLUSIVAMENTE por '|||'. Ejemplo estricto: 'Primera recomendación corta|||Segunda recomendación corta|||Tercera recomendación corta'.\n" +
@@ -430,7 +434,7 @@ CRITICAL RULE: DO NOT INCLUDE ANY TEXT, LETTERS, TYPOGRAPHY, WORDS, OR NUMBERS I
     try {
       // Configuramos html-to-image para asegurar fondos blancos y que cargue bien los logos
       const blobPromise = htmlToImage.toBlob(element, {
-        backgroundColor: "#ffffff",
+        backgroundColor: getComputedStyle(document.body).getPropertyValue('--ds-bg-surface').trim() || '#ffffff',
         pixelRatio: 2,
       });
 

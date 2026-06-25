@@ -1,4 +1,5 @@
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { bulbOutline, folderOpenOutline } from "ionicons/icons";
@@ -26,6 +27,7 @@ import { InventarioIluminacionForm } from "./inventario-iluminacion-form";
   selector: "app-inventario-iluminacion",
   templateUrl: "./inventario-iluminacion.html",
   imports: [
+    EmptyState,
     TableModule,
     ImageModule,
     CustomButtonEdit,

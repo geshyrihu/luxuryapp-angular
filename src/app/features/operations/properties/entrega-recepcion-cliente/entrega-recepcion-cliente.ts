@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -27,6 +28,7 @@ import { EntregaRecepcionClienteForm } from "src/app/features/operations/propert
   selector: "app-entrega-recepcion-cliente-lista",
   templateUrl: "./entrega-recepcion-cliente.html",
   imports: [
+    EmptyState,
     CustomButtonEdit,
     CustomButtonItem,
     CustomButtonDelete,

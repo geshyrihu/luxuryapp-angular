@@ -19,12 +19,14 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { CATALOGO_GASTOS_FIJOS_LIST_MODULES } from "./catalogo-gastos-fijos-list-moduls";
 
 @Component({
   selector: "app-catalogo-gastos-fijos-list",
   templateUrl: "./catalogo-gastos-fijos-list.html",
   imports: [
+    EmptyState,
     IonAccordion,
     IonAccordionGroup,
     ...CATALOGO_GASTOS_FIJOS_LIST_MODULES,

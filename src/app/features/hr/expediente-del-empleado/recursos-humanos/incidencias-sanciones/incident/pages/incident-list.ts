@@ -1,4 +1,5 @@
-﻿import { DatePipe } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { DatePipe } from "@angular/common";
 import {
   Component,
   computed,
@@ -40,6 +41,7 @@ import { IncidentResolveComponent } from "./incident-resolve";
   selector: "app-incident-list",
   templateUrl: "./incident-list.html",
   imports: [
+    EmptyState,
     DatePipe,
     TableModule,
     PrimeNgCustomCaption,

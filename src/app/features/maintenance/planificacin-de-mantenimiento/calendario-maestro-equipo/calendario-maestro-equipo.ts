@@ -1,3 +1,4 @@
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -19,6 +20,7 @@ import { CalendarioMaestroEquipoForm } from "./calendario-maestro-equipo-form";
   selector: "app-calendario-maestro-equipo",
   templateUrl: "./calendario-maestro-equipo.html",
   imports: [
+    EmptyState,
     TableModule,
     CustomButtonEdit,
     CustomButtonDelete,

@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -45,6 +46,7 @@ import { ProviderUse } from "./provider-use";
   selector: "app-provider-list",
   templateUrl: "./provider-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

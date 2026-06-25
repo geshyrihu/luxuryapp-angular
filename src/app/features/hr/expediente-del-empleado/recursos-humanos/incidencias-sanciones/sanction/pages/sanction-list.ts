@@ -1,4 +1,5 @@
-﻿import { Component, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, inject, signal } from "@angular/core";
 import { CommonModule, DatePipe } from "@angular/common";
 import { TableModule } from "primeng/table";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
@@ -19,6 +20,7 @@ import { SanctionFormComponent } from "./sanction-form";
   selector: "app-sanction-list",
   templateUrl: "./sanction-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     DatePipe,
     TableModule,

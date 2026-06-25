@@ -680,6 +680,345 @@ src/app/features/system/catalogs/catalog-component-ui/
 
 ---
 
+---
+
+## 📱 FASE 13 — BRECHAS POST-AUDITORÍA (Detectadas 2026-06-24)
+
+> Hallazgos tras re-auditoría del estado real del catálogo. Las fases 1-12 están completas a nivel de componentes en `core/components/`, pero el **catálogo DS visible** tiene brechas críticas.
+
+### 13.1 Expansión de MobileFeedback
+
+**Problema:** `mobile-feedback.ts` solo muestra `ion-spinner` + `ion-progress-bar` (2/10 componentes de la categoría Feedback & Overlays de Ionic).
+
+**Archivo:** `pages/catalog-mobile/components/mobile-feedback/mobile-feedback.ts`
+
+- [x] Agregar `ion-skeleton-text` — placeholders de carga declarativos
+- [x] Agregar `ion-infinite-scroll` + `ion-infinite-scroll-content` — scroll infinito con lista demo
+- [x] Mantener `ion-spinner` (todas las variantes: crescent, dots, lines, bubbles, circular, paused)
+- [x] Mantener `ion-progress-bar` (determinate + indeterminate)
+
+### 13.2 Nuevas secciones Mobile en el catálogo
+
+**Problema:** El catálogo mobile tiene 7 items. Los siguientes grupos de Ionic no tienen ninguna sección.
+
+#### 13.2.1 Agregar `ion-segment` a MobileNavigation
+
+**Archivo:** `pages/catalog-mobile/components/mobile-navigation/mobile-navigation.ts`
+- [x] Agregar showcase de `ion-segment` + `ion-segment-button` con 3 opciones
+- [x] Mantener: Tab Bar, Header con Back Button, FAB
+
+#### 13.2.2 Agregar `ion-accordion` y `ion-grid` a MobileData
+
+**Archivo:** `pages/catalog-mobile/components/mobile-data/mobile-data.ts`
+- [x] Agregar showcase de `ion-accordion-group` + `ion-accordion` (3 items expandibles)
+- [x] Agregar showcase de `ion-grid` + `ion-row` + `ion-col` (layout en columnas)
+- [x] Mantener: Avatar, Badge, Chip, Thumbnail List, Card
+
+#### 13.2.3 Crear `MobileOverlays` — NUEVO componente
+
+**Archivo:** `pages/catalog-mobile/components/mobile-overlays/mobile-overlays.ts`
+- [x] `ion-alert` — via `AlertController`
+- [x] `ion-action-sheet` — via `ActionSheetController`
+- [x] `ion-toast` — via `ToastController`
+- [x] `ion-loading` — via `LoadingController`
+- [x] Botones demo para cada overlay
+
+**Actualizar `catalog-mobile.ts`** — ✅ importar `MobileOverlays`
+**Actualizar `catalog-mobile-item.ts`** — ✅ agregar `case 'overlays'`
+**Actualizar `sidebar.ts`** — ✅ agregar entrada `{ label: "Overlays", icon: "mdi:layers-outline", routerLink: [...catalogBase, 'mobile', 'overlays'] }`
+
+### 13.3 Registrar componentes de Fases 6-10 en el catálogo DS
+
+**Problema:** ~60 componentes existen en `core/components/` pero son invisibles en el catálogo. No tienen sidebar entry, ni ruta, ni caso en `catalog-core-item.ts`.
+
+#### 13.3.1 Prioridad ALTA — agregar al catálogo Core
+
+| Componente | Item key | Sidebar label |
+|---|---|---|
+| `DataGrid` | `datagrid` | Data Grid |
+| `KpiCard` | `kpicard` | KPI Card |
+| `AvatarGroup` | `avatargroup` | Avatar Group |
+| `Timeline` | `timeline` | Timeline |
+| `Slider` | `slider` | Slider |
+| `Rating` | `rating` | Rating |
+| `PipelineCRM` | `pipelinecrm` | Pipeline CRM |
+| `TagInput` | `taginput` | Tag Input |
+| `StatCard` | `statcard` | Stat Card |
+| `SkeletonPresets` | `skeletonpresets` | Skeleton Presets |
+
+**Archivos a modificar:**
+- [x] `pages/catalog-core-item/catalog-core-item.ts` — agregar imports + casos `@switch`
+- [x] `layout/employee-view/monitor/sidebar/sidebar.ts` — agregar 10 entradas en `dsMenuItems > Core Components`
+
+#### 13.3.2 Prioridad MEDIA — segunda ronda ✅ COMPLETADA
+
+| Componente | Item key | Estado |
+|---|---|---|
+| `ComparisonTable` | `comparisontable` | ✅ |
+| `ActivityLog` | `activitylog` | ✅ |
+| `KanbanBoard` | `kanbanboard` | ✅ |
+| `TreeTable` | `treetable` | ✅ |
+| `ContextMenu` | `contextmenu` | ✅ |
+| `SplitPane` | `splitpane` | ✅ |
+| `CommandPalette` | `commandpalette` | ✅ |
+| `Tour` | `tour` | ✅ |
+| `Gauge` | `gauge` | ✅ |
+| `FunnelChart` | `funnelchart` | ✅ |
+
+> **NOTA:** `ChartWrapper` fue marcado como completado en Fase 7 pero **el archivo no existe** en `core/components/`. El `ChartModule` de PrimeNG cubre `p-chart` directamente. No requiere wrapper propio — eliminar de pendientes.
+
+#### 13.3.3 Prioridad BAJA ✅ COMPLETADA (25/29)
+
+| Componente | Item key | Estado |
+|---|---|---|
+| OtpInput | `otpinput` | ✅ |
+| ProfileCard | `profilecard` | ✅ |
+| ThemeSwitcher | `themeswitcher` | ✅ |
+| LangSelector | `langselector` | ✅ |
+| ColorPicker | `colorpicker` | ✅ |
+| TristateSwitch | `tristateswitch` | ✅ |
+| SignaturePad | `signaturepad` | ✅ |
+| QRCode | `qrcode` | ✅ |
+| BarcodeInput | `barcodeinput` | ✅ |
+| RealtimeIndicator | `realtimeindicator` | ✅ |
+| InventoryLevel | `inventorylevel` | ✅ |
+| LeadScoring | `leadscoring` | ✅ |
+| ApprovalWorkflow | `approvalworkflow` | ✅ |
+| OrderStatus | `orderstatus` | ✅ |
+| DocumentPreviewer | `documentpreviewer` | ✅ |
+| DashboardLayout | `dashboardlayout` | ✅ |
+| CommentThread | `commentthread` | ✅ |
+| EmailPreview | `emailpreview` | ✅ |
+| FormBuilder | `formbuilder` | ✅ |
+| PrintView | `printview` | ✅ |
+| Customer360 | `customer360` | ✅ |
+| Dock | `dock` | ✅ |
+| Heatmap | `heatmap` | ✅ |
+| Gantt | `gantt` | ✅ |
+| PivotTable | `pivottable` | ✅ |
+
+> **Omitidos (4):** FocusTrap (directive no visual), BarcodeScanner/ReceiptScanner/TerritoryMap (requieren cámara o mapa, mobile-only).
+
+### 13.4 Custom Inputs en catálogo Web ✅ COMPLETADA
+
+**Archivo:** `pages/catalog-web-item/catalog-web-item.ts`
+- [x] Agregar caso `@case ('custominputs')` — 13 inputs: texto, password, número, moneda, decimal, fecha, hora, select, selectBool, multiselect, checkbox, switch, textarea
+- [x] Showcase horizontal (ERP layout) + vertical (grid 3 columnas)
+- [x] Actualizar `sidebar.ts` Web (PrimeNG) con item `{ label: "Custom Inputs", routerLink: [...catalogBase, 'web', 'custominputs'] }`
+
+### 13.5 Commits Fase 13
+
+- [ ] `git commit -m "feat(ds): FASE 13 — catalog coverage complete (mobile overlays, 47 core components, custom inputs)"`
+
+---
+
+---
+
+## 📱 FASE 14 — REVISIÓN MOBILE: app-data-view-mobile (207 archivos)
+
+> **Iniciada:** 2026-06-25 · **Scope:** Vista móvil de todas las listas del ERP
+> **Modelo de referencia:** `customer-list.html` — patrón correcto documentado
+> **Referencia DS:** `INVENTARIO-DS-REVISION.md` → criterios B1m / B1m-img / B1m-slot / B1m-icon
+
+### Estado de la infraestructura (fixes globales aplicados)
+
+| Componente | Fix | Estado |
+|---|---|---|
+| `app-action-menu` | Migrado a `p-popover` único para web+mobile (ng-content inside ion-template no funciona) | ✅ |
+| `data-view-mobile.html` | Empty states → `app-empty-state`; bg header → `var(--ds-bg-surface)` | ✅ |
+| `data-view-mobile.ts` | `EmptyState` importado | ✅ |
+| `bank-list.html` | Modelo: icono leading DS + action-menu labels | ✅ |
+| `customer-list.html` | Modelo: logo+fallback, action-menu con labels, `image-outline` corregido | ✅ |
+
+---
+
+### Estadísticas actuales (2026-06-25)
+
+```
+207 archivos con app-data-view-mobile
+  Fase A — showLabelOnDesktop faltante en action-menu:  121 archivos ❌
+  Fase B — ion-item sin icono leading (slot="start"):   107 archivos ❌
+  Fase C — listas con imagen/avatar:                     ~42 archivos ⚠️
+  Fase D — ng-container actions (opcional/cosmético):    70 archivos ⬜
+```
+
+---
+
+### 14.A — Labels en action-menu (`[showLabelOnDesktop]="true"`) — 121 archivos
+
+> **Regla B1m:** Todos los `custom-button-*` dentro de `<app-action-menu>` deben tener `[showLabelOnDesktop]="true"` + `label="..."`. Sin esto, los botones solo muestran icono en la vista web del popover.
+
+**Patrón correcto:**
+```html
+<app-action-menu>
+  <ng-container actions>
+    <custom-button-edit label="Editar" [showLabelOnDesktop]="true" (clicked)="..." />
+    <custom-button-delete label="Eliminar" [showLabelOnDesktop]="true" (confirmed)="..." />
+  </ng-container>
+</app-action-menu>
+```
+
+**Script batch:** agregar `label` + `[showLabelOnDesktop]="true"` a `custom-button-edit` y `custom-button-delete` en todos los archivos que usen `app-action-menu` sin esta propiedad.
+
+- [x] Batch Python: `custom-button-edit` → añadir `label="Editar" [showLabelOnDesktop]="true"` ✅
+- [x] Batch Python: `custom-button-delete` → añadir `label="Eliminar" [showLabelOnDesktop]="true"` ✅
+- [x] Fix adicional: tags no-self-closing `</custom-button-edit>` en catalogo-gastos-fijos ✅
+- [x] Verificar: 0 archivos sin showLabelOnDesktop ✅ — 2026-06-25
+
+---
+
+### 14.B — Icono leading en `ion-item` (107 archivos sin `slot="start"`)
+
+> **Regla B1m-icon:** Cada `ion-item` en `listItemTemplate` debe tener un `div slot="start"` con icono representativo usando tokens DS.
+
+**Patrón correcto:**
+```html
+<ion-item lines="full" detail="false" class="ion-no-padding">
+
+  <!-- ✅ Icono leading con tokens DS -->
+  <div slot="start"
+       class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+       style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);">
+    <app-icon icon="mdi:ICONO-CONTEXTUAL"
+              style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+  </div>
+
+  <ion-label class="ion-text-wrap">
+    <h3 class="font-semibold m-0 text-color">{{ item.nombre }}</h3>
+    <p class="text-xs m-0 mt-1 text-color-secondary">{{ item.detalle }}</p>
+  </ion-label>
+
+  <app-action-menu slot="end"> ... </app-action-menu>
+</ion-item>
+```
+
+**Iconos por módulo (referencia rápida):**
+| Módulo | Icono sugerido |
+|--------|---------------|
+| Bancos | `mdi:bank-outline` |
+| Clientes | `mdi:domain` |
+| Empleados | `mdi:account-tie-outline` |
+| Proveedores | `mdi:store-outline` |
+| Órdenes de compra | `mdi:cart-outline` |
+| Solicitudes | `mdi:clipboard-list-outline` |
+| Facturas / Fondeos | `mdi:receipt-text-outline` |
+| Contratos | `mdi:file-sign` |
+| Incidencias | `mdi:alert-circle-outline` |
+| Vacaciones/Permisos | `mdi:calendar-check-outline` |
+| Mantenimiento | `mdi:wrench-outline` |
+| Inspecciones | `mdi:clipboard-search-outline` |
+| Asuntos legales | `mdi:scale-balance` |
+| Tickets | `mdi:ticket-outline` |
+| Tareas | `mdi:checkbox-multiple-outline` |
+| Reuniones/Minutas | `mdi:notebook-outline` |
+| Inventario | `mdi:package-variant-outline` |
+| Propiedades | `mdi:home-city-outline` |
+| Reportes | `mdi:chart-bar` |
+| Usuarios / Roles | `mdi:account-group-outline` |
+| Default | `mdi:format-list-bulleted` |
+
+**✅ COMPLETADA 2026-06-25 — 107 archivos actualizados via batch Python**
+
+**Por sub-módulo (checklist):**
+
+#### Accounting (44 archivos)
+- [x] `cobranza-nativa/` — charges, payments, members, properties, etc.
+- [ ] `cobranza-online/` — reports, analysis
+- [ ] `estados-financieros/`, `pendientes-minuta/`
+- [ ] `funding/`, `sat-funding/`, `funding-accounting/`
+- [ ] `catalogo-gastos-fijos/`, `espejo-aspel/`, `accounting-accounts/`
+
+#### Operations (63 archivos)
+- [ ] `announcements/`, `asambleas/`
+- [ ] `custom-documents/`
+- [ ] `diagrams/`, `directorios/`
+- [ ] `field-service/`
+- [ ] `google-calendar/`
+- [ ] `inspecciones-y-auditoria/`
+- [ ] `inventarios-y-almacen/`
+- [ ] `manuals/`
+- [ ] `meetings/` — minutas, seguimientos, presentaciones
+- [ ] `properties/`
+- [ ] `task-engine/` — tasks, templates, instances
+- [ ] `templates/`
+
+#### HR (18 archivos)
+- [ ] `evaluaciones-de-desempeno/`
+- [ ] `expediente-del-empleado/` — bank-data, clinical, emergency-contact, employees, etc.
+
+#### Purchasing (12 archivos)
+- [ ] `customer-provider/`, `po/`, `pr/`, `provider/`, `purchases/`
+
+#### Maintenance (16 archivos)
+- [ ] `equipos-y-maquinaria/`, `fire-equipment/`, `logs/`, `planificacion/`
+
+#### Legal & Recruitment (10 archivos)
+- [ ] `legal/asuntos-legales/`, `recruitment/`
+
+#### System (18 archivos)
+- [ ] `access/`, `ai/`, `audit-logs/`, `catalogs/`, `gestin-de-cliente/`
+
+---
+
+### 14.C — Listas con imagen/avatar (~42 archivos)
+
+> **Regla B1m-img:** NO usar `ion-avatar` para logos rectangulares. Usar `div slot="start"` con `<img>` + `@if` fallback para imágenes variables.
+
+**Patrón correcto (con imagen):**
+```html
+<div slot="start" class="mobile-img-slot">
+  @if (item.photoPath) {
+    <img [src]="item.photoPath" [alt]="item.nombre" class="mobile-img" />
+  } @else {
+    <app-icon icon="mdi:ICONO-FALLBACK" style="font-size:1.25rem;color:var(--ds-primary);"></app-icon>
+  }
+</div>
+```
+
+**CSS en el componente:**
+```css
+.mobile-img-slot {
+  width: 48px; height: 40px; margin: 0 10px 0 16px;
+  border-radius: var(--ds-radius-sm, 6px); overflow: hidden;
+  background: var(--ds-bg-sunken); display: flex;
+  align-items: center; justify-content: center; flex-shrink: 0;
+}
+.mobile-img { width: 100%; height: 100%; object-fit: contain; }
+```
+
+**Archivos prioritarios:**
+- [x] `customer-list.html` ✅ (modelo)
+- [x] `employee-list.html` ×2 → `div.mobile-avatar-slot` con `@if(photoPath)` fallback ✅
+- [x] `provider-list.html` ×2 → ya tenía `img+slot` correcto ✅
+- [x] `application-user-list.html` → initials avatar → `div.mobile-avatar-slot` ✅
+- [x] `customer-modul-list.html` → logo con fallback ✅
+- [x] `work-position-list.html` → foto responsable con fallback ✅
+- [x] 6 archivos de maintenance/operations → `div` con icono contextual ✅
+- [x] `announcement-analytics.html` / `user-activity-history.html` → iniciales en `div.mobile-avatar-slot` ✅
+- [x] CSS `.mobile-avatar-slot` / `.mobile-avatar-img` en `_global.scss` ✅
+- [x] `task-list.html` → `ion-avatar` sin slot (circular card) → excepción válida ✅
+**✅ COMPLETADA 2026-06-25 — 0 ion-avatar con slot=start restantes**
+
+---
+
+### 14.D — `ng-container actions` wrapper (70 archivos, cosmético)
+
+> Con la nueva implementación de `app-action-menu` (ng-content sin selector), el wrapper `ng-container actions` es **opcional** para funcionalidad, pero recomendado para organización de código.
+
+- [x] Batch Python: 70 archivos wrapeados con `<ng-container actions>` ✅
+- [x] Verificado: 160/160 archivos con app-action-menu → 100% con ng-container actions ✅
+**✅ COMPLETADA 2026-06-25**
+
+---
+
+### 14.5 Commits Fase 14
+
+- [ ] `git commit -m "feat(ds): FASE 14.A — action-menu showLabelOnDesktop batch fix (121 archivos)"`
+- [ ] `git commit -m "feat(ds): FASE 14.B — leading icons en ion-item listItemTemplate"`
+- [ ] `git commit -m "feat(ds): FASE 14.C — image/avatar mobile pattern correction"`
+
+---
+
 > **Pro tip:** Ejecuta `grep -rn "brand-" src/styles/` antes y después de la Fase 1 para verificar migración completa.
 > **Pro tip 2:** Usa `grep -rn "#c9a84c" src/` para encontrar todos los usos de Luxury Gold.
 > **Pro tip 3:** Consulta `AUDITORIA-COMPLETA.md` → Documento 5 para ver el detalle de cada hallazgo y su priorización RICE.

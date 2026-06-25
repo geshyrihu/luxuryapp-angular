@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -42,6 +43,7 @@ import { TemplatesForm } from "./templates-form";
   selector: "app-templates-list",
   templateUrl: "./templates-list.html",
   imports: [
+    EmptyState,
     CommonModule,
     TableModule,
     InputTextModule,

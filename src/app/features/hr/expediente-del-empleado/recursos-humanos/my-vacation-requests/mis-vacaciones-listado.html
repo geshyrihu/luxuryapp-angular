@@ -26,7 +26,6 @@
           iconClass="icon icon-pi-calendar"
           size="small"
           [fluid]="true"
-          [showLabelOnDesktop]="true"
           (clicked)="onNavSaldo()"
         />
       </div>
@@ -106,6 +105,13 @@
       </td>
     </tr>
   </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="6">
+          <app-empty-state icon="mdi:beach" title="Sin vacaciones" message="No hay solicitudes de vacaciones." />
+        </td>
+      </tr>
+    </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -118,6 +124,13 @@
   >
     <ng-template #listItemTemplate let-item>
       <ion-item lines="full">
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="width:38px;height:38px;background:var(--ds-info-light,#e0f2fe);"
+      >
+        <app-icon icon="mdi:beach" style="font-size:1.1rem;color:var(--ds-info);"></app-icon>
+      </div>
         <ion-label>
           <h2 class="font-bold">{{ item.requestDate }}</h2>
           <p class="text-sm text-500">{{ item.startDate }} — {{ item.endDate }}</p>
@@ -129,9 +142,9 @@
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-            <custom-button-item label="Ver Detalle" iconName="eye-outline" (clicked)="onDetail(item.id)" />
+            <custom-button-item label="Ver Detalle" iconName="eye-outline" (clicked)="onDetail(item.id)"  [showLabelOnDesktop]="true"/>
             @if (item.status === 'Pendiente') {
-              <custom-button-item label="Editar" iconName="create-outline" (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
+              <custom-button-item label="Editar" iconName="create-outline" (clicked)="onModalForm({ id: item.id, title: 'Editar' })"  [showLabelOnDesktop]="true"/>
             }
           </ng-container>
         </app-action-menu>

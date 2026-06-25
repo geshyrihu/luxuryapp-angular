@@ -1,4 +1,5 @@
-﻿import { Component, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { Component, effect, inject, signal } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
@@ -48,6 +49,7 @@ import { MinutaPdfService } from "./minuta-pdf.service";
   selector: "app-minutas-list",
   templateUrl: "./minutas-list.html",
   imports: [
+    EmptyState,
     TableModule,
     CustomButton,
     ButtonModule,

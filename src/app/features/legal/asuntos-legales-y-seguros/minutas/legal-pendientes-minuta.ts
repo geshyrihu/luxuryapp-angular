@@ -1,4 +1,5 @@
-﻿import { CommonModule } from "@angular/common";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -29,6 +30,7 @@ import { MinutaDetalleForm } from "src/app/features/operations/meetings/juntas-c
   selector: "app-legal-pendientes-minuta",
   templateUrl: "./legal-pendientes-minuta.html",
   imports: [
+    EmptyState,
     CustomButtonEdit,
     CustomButtonAdd,
     CommonModule,

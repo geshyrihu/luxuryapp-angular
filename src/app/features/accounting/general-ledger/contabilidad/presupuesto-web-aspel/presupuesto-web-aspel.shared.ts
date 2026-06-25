@@ -27,9 +27,7 @@ export function isCuentaExtraordinaria(
   codigoCuenta: string,
   _customerId: string,
 ): boolean {
-  return (
-    codigoCuenta.startsWith("605-") || codigoCuenta.startsWith("607-")
-  );
+  return codigoCuenta.startsWith("605-");
 }
 
 export function isCuentaProyecto(
