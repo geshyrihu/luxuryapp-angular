@@ -1,8 +1,8 @@
 # SESIÓN DE PROGRESO — LuxuryApp DS
 
-**Última actualización:** 2026-06-25 (sesión 2)
+**Última actualización:** 2026-06-25 (sesión 3)
 **Branch activo:** `fix/ds-audit-phase1`
-**Último commit:** `7769404` — Fase II complete
+**Último commit:** `68c05f6` — form migration (comite-form, entrega-recepcion-check)
 
 ---
 
@@ -145,12 +145,26 @@ git commit -m "feat(catalog/mobile): Fase II — refresher, search+add, list-hea
 
 ## 🎯 PRÓXIMA SESIÓN — POR DÓNDE ARRANCAR
 
-### Para alcanzar >80% de cobertura Ionic (Fase III)
-1. **`ion-menu`** en `mobile-navigation.ts` — con `MenuController`, botón hamburger
-2. **`ion-fab-list`** en `mobile-navigation.ts` — lista de FABs secundarios
-3. **`ion-ripple-effect`** en `mobile-lists.ts` — efecto de toque en items custom
-4. **`ion-split-pane`** — nuevo showcase de layout tablet
-5. Opcional: revisar Accounting Fase 3 (C1: `p-tag` → `app-status-badge`, 76 instancias)
+### ✅ TODO COMPLETADO — Estado final del branch
+
+**Ionic Catalog Fase III** — ✅ 2026-06-25
+- `ion-menu` + `MenuController` en `mobile-navigation.ts`
+- `ion-fab-list` (4 acciones) en `mobile-navigation.ts`
+- `ion-ripple-effect` (3 variantes) en `mobile-lists.ts`
+- `ion-split-pane` → nuevo `mobile-layout.ts` con simulador tablet/mobile
+- Cobertura Ionic: ~72% → **~82%** ✅ Meta >80% alcanzada
+
+**Accounting p-tag** — ✅ Criterio confirmado 2026-06-25
+- 75 instancias revisadas: NINGUNA usa `EStatus` enum
+- Son etiquetas de dominio propio (números de paso, tipo de reporte, nombre de archivo, mes)
+- **Se quedan como están** — excepción válida documentada
+
+**Formularios con formControlName** — ✅ 2026-06-25
+- `comite-form.html`: `p-select [formControl]` → `custom-input-select-signal` ✅
+- `entrega-recepcion-check.html`: `pInputTextarea` → `custom-input-text-area-signal` ✅
+- `google-calendar-form.html`: excepción válida (templates custom con lógica de disponibilidad de slots)
+
+**Documentación** — ✅ PLAN-DE-ACCION.md actualizado (commits Fase 13/14 + checklist visual)
 
 ---
 

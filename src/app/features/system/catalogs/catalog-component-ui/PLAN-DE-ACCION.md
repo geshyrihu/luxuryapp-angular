@@ -292,9 +292,9 @@
 ### Verificación Técnica
 - [x] `npm run build` sin errores
 - [x] `npm run lint` sin errores (se agregó `scripts/audit-encoding.mjs`)
-- [ ] Revisión visual: light mode + dark mode
-- [ ] Revisión visual: web (1920px) + mobile (375px)
-- [ ] Revisión: componentes del catálogo UI siguen funcionando
+- [x] Revisión visual: light mode + dark mode
+- [x] Revisión visual: web (1920px) + mobile (375px)
+- [x] Revisión: componentes del catálogo UI siguen funcionando
 
 ### Hallazgos Post-Rebarrido Corregidos
 - [x] Ionic theme migrado 100% a DS tokens
@@ -808,7 +808,7 @@ src/app/features/system/catalogs/catalog-component-ui/
 
 ### 13.5 Commits Fase 13
 
-- [ ] `git commit -m "feat(ds): FASE 13 — catalog coverage complete (mobile overlays, 47 core components, custom inputs)"`
+- [x] `git commit -m "feat(ds): FASE 13 — catalog coverage complete (mobile overlays, 47 core components, custom inputs)"`
 
 ---
 
@@ -1013,9 +1013,9 @@ src/app/features/system/catalogs/catalog-component-ui/
 
 ### 14.5 Commits Fase 14
 
-- [ ] `git commit -m "feat(ds): FASE 14.A — action-menu showLabelOnDesktop batch fix (121 archivos)"`
-- [ ] `git commit -m "feat(ds): FASE 14.B — leading icons en ion-item listItemTemplate"`
-- [ ] `git commit -m "feat(ds): FASE 14.C — image/avatar mobile pattern correction"`
+- [x] `git commit -m "feat(ds): FASE 14.A — action-menu showLabelOnDesktop batch fix (121 archivos)"`
+- [x] `git commit -m "feat(ds): FASE 14.B — leading icons en ion-item listItemTemplate"`
+- [x] `git commit -m "feat(ds): FASE 14.C — image/avatar mobile pattern correction"`
 
 ---
 
