@@ -1,4 +1,4 @@
-﻿import { Component, forwardRef } from "@angular/core";
+﻿import { Component, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { InputTextModule } from "primeng/inputtext";
 import { BaseInputSignal } from "../base/base-input-signal";
@@ -12,7 +12,12 @@ import { IonInputTime } from "../mobile/ion-input-time";
  */
 @Component({
   selector: "custom-input-time-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, InputTextModule, IonInputTime],
+  imports: [
+    BaseInputSignal,
+    ReactiveFormsModule,
+    InputTextModule,
+    IonInputTime,
+  ],
   template: `
     @if (platform.isMobile()) {
       <ion-input-time
@@ -58,4 +63,6 @@ import { IonInputTime } from "../mobile/ion-input-time";
     },
   ],
 })
-export class CustomInputTime extends BaseInputSignal {}
+export class CustomInputTime extends BaseInputSignal {
+  customClass = input<string>("");
+}

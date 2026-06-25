@@ -57,6 +57,7 @@ import { IonInputSelectBool } from "../mobile/ion-input-select-bool";
   ],
 })
 export class CustomInputSelectBool extends BaseInputSignal {
+  customClass = input<string>("");
 
   activeLabel = input<string>("Activo");
   inactiveLabel = input<string>("Inactivo");

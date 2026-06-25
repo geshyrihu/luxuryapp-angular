@@ -1,10 +1,73 @@
-<div class="p-4 fadein">
+<!-- ─── MOBILE (< md) ─────────────────────────────────────────── -->
+<div class="block md:hidden fadein">
+
+  <!-- Header compacto -->
+  <div class="flex align-items-center gap-3 px-3 py-3 border-bottom-1 surface-border">
+    <div class="flex align-items-center justify-content-center border-round-lg flex-shrink-0"
+         style="width:40px;height:40px;background:var(--ds-primary-50,#edf1ff);">
+      <app-icon icon="mdi:wallet" style="font-size:1.25rem;color:var(--ds-primary);"></app-icon>
+    </div>
+    <div>
+      <h2 class="font-bold m-0 text-color" style="font-size:1.1rem;">Cobranza Nativa</h2>
+      <p class="text-xs m-0 text-color-secondary">Sistema integral condominial</p>
+    </div>
+  </div>
+
+  <!-- KPIs compactos -->
+  <div class="px-3 py-2 flex flex-column gap-2">
+    @for (metric of heroMetrics; track metric.label) {
+      <div class="surface-card p-3 border-round-lg shadow-1 flex justify-content-between align-items-center border-left-3"
+           [class]="'border-' + (metric.tone === 'primary' ? 'primary' : metric.tone === 'success' ? 'success' : 'warning')">
+        <div>
+          <span class="block text-xs font-bold uppercase mb-1" style="color:var(--ds-text-secondary);">{{ metric.label }}</span>
+          <span class="text-xl font-bold text-900">{{ metric.value }}</span>
+        </div>
+        <app-icon [icon]="metric.icon" class="text-2xl text-400"></app-icon>
+      </div>
+    }
+  </div>
+
+  <!-- Módulos de navegación -->
+  @for (group of groups; track group.label) {
+    <ion-list>
+      <ion-item-divider class="px-3 py-2" style="background:var(--ds-bg-elevated,#f4f5f8);">
+        <div class="flex align-items-center gap-2">
+          <app-icon [icon]="group.icon" style="font-size:1rem;color:var(--ds-primary);"></app-icon>
+          <span class="text-xs font-bold uppercase" style="color:var(--ds-text-secondary);">{{ group.label }}</span>
+        </div>
+      </ion-item-divider>
+
+      @for (card of group.cards; track card.title) {
+        @if (card.route) {
+          <ion-item lines="full" detail="true" class="ion-no-padding"
+                    (click)="navigateTo(card.route)">
+            <div slot="start"
+                 class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+                 style="width:38px;height:38px;"
+                 [style.backgroundColor]="card.bgColor">
+              <app-icon [icon]="card.icon" style="font-size:1.1rem;" [style.color]="card.color ?? 'var(--ds-primary)'"></app-icon>
+            </div>
+            <ion-label class="ion-text-wrap">
+              <h3 class="font-semibold m-0 text-color">{{ card.title }}</h3>
+              <p class="text-xs m-0 mt-1 text-color-secondary">{{ card.description }}</p>
+            </ion-label>
+          </ion-item>
+        }
+      }
+    </ion-list>
+  }
+</div>
+
+<!-- ─── WEB (≥ md) ─────────────────────────────────────────────── -->
+<div class="hidden md:block fadein">
+<div class="p-4">
 
   <!-- Encabezado (Estilo Luxury Design System) -->
   <div class="mb-6">
     <div class="flex align-items-center gap-3 mb-2">
-      <div class="flex align-items-center justify-content-center bg-blue-50 dark:bg-blue-950/20 border-round-xl shadow-1" style="width: 56px; height: 56px">
-        <app-icon [icon]="'mdi:wallet'" class="text-3xl text-primary-600 dark:text-blue-300"></app-icon>
+      <div class="flex align-items-center justify-content-center border-round-xl shadow-1"
+           style="width:56px;height:56px;background:var(--ds-primary-50,#edf1ff);">
+        <app-icon icon="mdi:wallet" style="font-size:1.75rem;color:var(--ds-primary);"></app-icon>
       </div>
       <div>
         <h1 class="ds-heading text-3xl font-bold text-900 m-0">Cobranza Nativa</h1>
@@ -38,7 +101,7 @@
   @for (group of groups; track group.label) {
     <!-- Título del grupo (Estilo Luxury Design System) -->
     <div class="flex align-items-center gap-2 mb-4 mt-6">
-      <app-icon [icon]="group.icon" class="text-xl text-primary-600 dark:text-blue-300"></app-icon>
+      <app-icon [icon]="group.icon" style="font-size:1.25rem;color:var(--ds-primary);"></app-icon>
       <h2 class="ds-heading text-lg font-bold text-900 m-0 uppercase">
         {{ group.label }}
       </h2>
@@ -50,57 +113,51 @@
         <div class="col-12 sm:col-6 lg:col-3">
           <p-card
             styleClass="card card--interactive card--elevated h-full"
-            [style]="{'border-top': '3px solid ' + card.bgColor}"
+            [style]="{'border-top': '3px solid ' + card.color}"
             (click)="card.route ? navigateTo(card.route) : null"
           >
-            <!-- Header de la card -->
-            <div class="flex flex-column h-full">
-              <div class="flex align-items-center justify-content-between mb-3">
-                <div
-                  class="flex align-items-center justify-content-center border-round-lg text-2xl flex-shrink-0"
-                  style="width: 48px; height: 48px"
-                  [style.backgroundColor]="card.bgColor"
-                >
-                  <app-icon [icon]="card.icon" class="text-800"></app-icon>
+            <div class="flex flex-column gap-3">
+
+              <!-- Icono + indicadores (igual a master-dashboard) -->
+              <div class="flex align-items-center justify-content-between">
+                <div class="flex align-items-center justify-content-center border-round-lg flex-shrink-0"
+                     style="width:48px;height:48px;"
+                     [style.backgroundColor]="card.bgColor">
+                  <app-icon [icon]="card.icon" style="font-size:1.5rem;" [style.color]="card.color"></app-icon>
                 </div>
-                <div class="flex align-items-center gap-2">
+                <div class="flex align-items-center gap-1">
                   @if (card.pending) {
-                    <p-tag value="Hangfire" severity="warn" styleClass="text-xs" />
+                    <p-tag value="Pendiente" severity="warn" styleClass="text-xs" />
                   } @else if (!card.route) {
                     <p-tag value="Modal" severity="info" styleClass="text-xs" />
                   }
-                  <app-icon [icon]="'mdi:arrow-up-right'" class="text-400"></app-icon>
-                  <div class="border-left-1 surface-border h-2rem mx-1"></div>
-                  <button 
-                    class="p-link text-500 hover:text-700 transition-colors"
-                    [title]="isExpanded(card.title) ? 'Ocultar detalle' : 'Ver detalle técnico'"
-                    (click)="$event.stopPropagation(); toggleExpand(card.title)"
-                  >
-                    <app-icon [icon]="isExpanded(card.title) ? 'mdi:chevron-up' : 'mdi:chevron-down'" class="text-xl"></app-icon>
-                  </button>
+                  <app-icon icon="mdi:arrow-up-right" class="text-400"></app-icon>
                 </div>
               </div>
 
               <!-- Título y descripción -->
-              <div class="flex-1">
+              <div>
                 <h3 class="m-0 font-bold text-900 line-height-2 text-base">
                   {{ card.title }}
                 </h3>
-                <div class="flex flex-wrap gap-1 mt-2">
-                  @for (role of card.roles; track role) {
-                    <p-tag
-                      [value]="role"
-                      [severity]="roleTagSeverity(role)"
-                      styleClass="text-xs"
-                    />
-                  }
-                </div>
-                <p class="text-sm text-secondary m-0 mt-3 line-height-3">
+                <p class="text-sm text-secondary m-0 mt-2 line-height-3">
                   {{ card.description }}
                 </p>
               </div>
+            </div><!-- /gap-3 -->
 
-              <!-- Detalle expandible (Técnico) -->
+            <!-- Detalle expandible técnico (solo SuperAdmin) — oculto por defecto -->
+            <div (click)="$event.stopPropagation()">
+              <button
+                class="p-link text-xs text-color-secondary flex align-items-center gap-1 mt-2 hover:text-color"
+                (click)="toggleExpand(card.title)"
+              >
+                <app-icon [icon]="isExpanded(card.title) ? 'mdi:chevron-up' : 'mdi:information-outline'" style="font-size:0.85rem;"></app-icon>
+                <span>{{ isExpanded(card.title) ? 'Ocultar detalle' : 'Ver detalle técnico' }}</span>
+              </button>
+            </div>
+
+            <!-- Detalle expandible (Técnico) -->
               @if (isExpanded(card.title)) {
                 <div class="mt-4 p-3 border-round-lg bloque-advertencia" (click)="$event.stopPropagation()">
                   <div class="text-xs font-semibold text-900 uppercase mb-2 flex align-items-center">
@@ -147,17 +204,19 @@
                   }
                 </div>
               }
-            </div>
+            </div><!-- /expandible -->
           </p-card>
         </div>
       }
     </div>
   }
 
-  <!-- Footer CTA (Estilo Luxury Design System) -->
-  <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-950/20 border-round-xl border-1 border-primary-100 dark:border-blue-900/30 flex align-items-center gap-4">
-    <div class="bg-white dark:bg-blue-950 p-3 border-round-lg shadow-1 hidden sm:block">
-      <app-icon [icon]="'mdi:sitemap'" class="text-primary text-3xl"></app-icon>
+  <!-- Footer CTA -->
+  <div class="mt-6 p-4 border-round-xl border-1 surface-border flex align-items-center gap-4"
+       style="background:var(--ds-bg-elevated,#f4f5f8);">
+    <div class="p-3 border-round-lg shadow-1 hidden sm:block"
+         style="background:var(--ds-bg-surface,#fff);">
+      <app-icon icon="mdi:sitemap" style="font-size:1.75rem;color:var(--ds-primary);"></app-icon>
     </div>
     <div class="flex-1">
       <div class="font-bold text-900 text-lg mb-1">Entender la Arquitectura</div>
@@ -172,4 +231,5 @@
     />
   </div>
 
-</div>
+</div><!-- /p-4 web -->
+</div><!-- /hidden md:block web -->

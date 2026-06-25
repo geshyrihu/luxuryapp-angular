@@ -49,15 +49,20 @@
   <ng-template #listItemTemplate let-item>
     <ion-item
       [routerLink]="item.routerLink"
+      lines="full"
+      detail="true"
       class="ion-no-padding"
-      detail="false"
     >
-      <span slot="start" [class]="menuShellClass(item.group, true)">
-        <span [class]="menuTone(item.group).glyph" class="flex align-items-center justify-content-center w-full h-full">
+      <!-- Icono con márgenes DS -->
+      <span slot="start"
+            class="flex-shrink-0 ml-3 mr-2"
+            [ngClass]="menuShellClass(item.group, true)">
+        <span [class]="menuTone(item.group).glyph"
+              class="flex align-items-center justify-content-center w-full h-full">
           <app-icon [icon]="item.icon" class="text-base" />
         </span>
       </span>
-      <ion-label class="ds-mobile-label">{{ item.label }}</ion-label>
+      <ion-label class="ds-mobile-label ion-text-wrap">{{ item.label }}</ion-label>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>

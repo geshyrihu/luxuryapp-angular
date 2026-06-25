@@ -5,6 +5,7 @@ import { CardModule } from "primeng/card";
 import { TagModule } from "primeng/tag";
 import { ButtonModule } from "primeng/button";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { IonItem, IonItemDivider, IonLabel, IonList } from "@ionic/angular/standalone";
 import {
   HeroMetric,
   ProposedRole,
@@ -14,7 +15,8 @@ import { COBRANZA_GROUPS } from "./cobranza-nativa-groups.const";
 
 @Component({
   selector: "app-cobranza-nativa-dashboard",
-  imports: [CustomButton, TagModule, CardModule, AppIcon, ButtonModule],
+  imports: [CustomButton, TagModule, CardModule, AppIcon, ButtonModule,
+            IonList, IonItem, IonItemDivider, IonLabel],
   templateUrl: "./cobranza-nativa-dashboard.html",
   styleUrls: ["./cobranza-nativa-dashboard.scss"],
 })

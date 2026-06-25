@@ -2,13 +2,14 @@ import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { CardModule } from "primeng/card";
+import { IonItem, IonItemDivider, IonLabel, IonList } from "@ionic/angular/standalone";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { ContabilidadModuleGroup } from "./contabilidad-module.model";
 import { CONTABILIDAD_MODULES } from "./contabilidad-modules";
 
 @Component({
   selector: "app-master-dashboard",
-  imports: [CardModule, AppIcon],
+  imports: [CardModule, AppIcon, IonList, IonItem, IonItemDivider, IonLabel],
   templateUrl: "./master-dashboard.html",
 })
 export class MasterDashboard {

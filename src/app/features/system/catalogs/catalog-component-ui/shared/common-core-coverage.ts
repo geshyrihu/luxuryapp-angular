@@ -27,41 +27,62 @@ import { FeatureAnnouncementService } from "src/app/core/services/feature-announ
 import { GlobalErrorService } from "src/app/core/services/global-error.service";
 
 // --- Fase 9 — Segunda Ronda ---
-import { AppSlider } from "src/app/core/components/slider/slider";
-import { AppRating } from "src/app/core/components/rating/rating";
+import {
+  AppBottomNav,
+  type BottomNavItem,
+} from "src/app/core/components/bottom-nav/bottom-nav";
+import {
+  AppCommentThread,
+  type Comment,
+} from "src/app/core/components/comment-thread/comment-thread";
+import { AppContactCard } from "src/app/core/components/contact-card/contact-card";
+import {
+  AppCustomer360,
+  type Customer360Data,
+} from "src/app/core/components/customer-360/customer-360";
+import { AppEmailPreview } from "src/app/core/components/email-preview/email-preview";
+import { AppLangSelector } from "src/app/core/components/lang-selector/lang-selector";
 import { AppOtpInput } from "src/app/core/components/otp-input/otp-input";
-import { AppProfileCard } from "src/app/core/components/profile-card/profile-card";
-import { AppThemeSwitcher } from "src/app/core/components/theme-switcher/theme-switcher";
 import {
   AppPipelineCrm,
   type PipelineStage,
 } from "src/app/core/components/pipeline-crm/pipeline-crm";
-import { AppTagInput } from "src/app/core/components/tag-input/tag-input";
-import { AppContactCard } from "src/app/core/components/contact-card/contact-card";
-import { AppBottomNav, type BottomNavItem } from "src/app/core/components/bottom-nav/bottom-nav";
-import { AppTabBar, type TabBarItem } from "src/app/core/components/tab-bar/tab-bar";
-import { AppStatCard } from "src/app/core/components/stat-card/stat-card";
-import { AppCustomer360, type Customer360Data } from "src/app/core/components/customer-360/customer-360";
 import { AppPrintView } from "src/app/core/components/print-view/print-view";
-import { AppLangSelector } from "src/app/core/components/lang-selector/lang-selector";
-import { AppCommentThread, type Comment } from "src/app/core/components/comment-thread/comment-thread";
-import { AppEmailPreview } from "src/app/core/components/email-preview/email-preview";
+import { AppProfileCard } from "src/app/core/components/profile-card/profile-card";
+import { AppRating } from "src/app/core/components/rating/rating";
+import { AppSlider } from "src/app/core/components/slider/slider";
+import { AppStatCard } from "src/app/core/components/stat-card/stat-card";
+import {
+  AppTabBar,
+  type TabBarItem,
+} from "src/app/core/components/tab-bar/tab-bar";
+import { AppTagInput } from "src/app/core/components/tag-input/tag-input";
+import { AppThemeSwitcher } from "src/app/core/components/theme-switcher/theme-switcher";
 
 // --- Fase 9.3 ---
-import { AppColorPicker } from "src/app/core/components/color-picker/color-picker";
-import { AppTristateSwitch } from "src/app/core/components/tristate-switch/tristate-switch";
-import { AppDock } from "src/app/core/components/dock/dock";
-import { AppFormBuilder, type FormField } from "src/app/core/components/form-builder/form-builder";
-import { AppSignaturePad } from "src/app/core/components/signature-pad/signature-pad";
-import { AppQrCode } from "src/app/core/components/qr-code/qr-code";
-import { AppHeatmap, type HeatmapCell } from "src/app/core/components/heatmap/heatmap";
-import { AppRealtimeIndicator } from "src/app/core/components/realtime-indicator/realtime-indicator";
-import { AppInventoryLevel } from "src/app/core/components/inventory-level/inventory-level";
-import { AppReceiptScanner } from "src/app/core/components/receipt-scanner/receipt-scanner";
 import { AppBarcodeInput } from "src/app/core/components/barcode-input/barcode-input";
 import { AppBarcodeScanner } from "src/app/core/components/barcode-scanner/barcode-scanner";
-import { AppTerritoryMap, type Territory } from "src/app/core/components/territory-map/territory-map";
+import { AppColorPicker } from "src/app/core/components/color-picker/color-picker";
+import { AppDock } from "src/app/core/components/dock/dock";
+import {
+  AppFormBuilder,
+  type FormField,
+} from "src/app/core/components/form-builder/form-builder";
 import { AppGantt, type GanttTask } from "src/app/core/components/gantt/gantt";
+import {
+  AppHeatmap,
+  type HeatmapCell,
+} from "src/app/core/components/heatmap/heatmap";
+import { AppInventoryLevel } from "src/app/core/components/inventory-level/inventory-level";
+import { AppQrCode } from "src/app/core/components/qr-code/qr-code";
+import { AppRealtimeIndicator } from "src/app/core/components/realtime-indicator/realtime-indicator";
+import { AppReceiptScanner } from "src/app/core/components/receipt-scanner/receipt-scanner";
+import { AppSignaturePad } from "src/app/core/components/signature-pad/signature-pad";
+import {
+  AppTerritoryMap,
+  type Territory,
+} from "src/app/core/components/territory-map/territory-map";
+import { AppTristateSwitch } from "src/app/core/components/tristate-switch/tristate-switch";
 
 @Component({
   selector: "app-common-core-coverage",
@@ -296,7 +317,9 @@ import { AppGantt, type GanttTask } from "src/app/core/components/gantt/gantt";
 
       <div class="col-12">
         <p-divider align="center">
-          <span class="text-sm font-semibold text-color-secondary">Fase 9 — Segunda Ronda V2</span>
+          <span class="text-sm font-semibold text-color-secondary"
+            >Fase 9 — Segunda Ronda V2</span
+          >
         </p-divider>
       </div>
 
@@ -335,9 +358,20 @@ import { AppGantt, type GanttTask } from "src/app/core/components/gantt/gantt";
       <div class="col-12 lg:col-6">
         <p-card header="app-rating — Rating / Stars">
           <div class="flex flex-column gap-4">
-            <app-rating label="Satisfacción del cliente" [(value)]="ratingValue" />
-            <app-rating label="Evaluación de proveedor (3 estrellas)" [stars]="3" [(value)]="ratingShort" />
-            <app-rating label="Solo lectura" [readonly]="true" [(value)]="ratingReadonly" />
+            <app-rating
+              label="Satisfacción del cliente"
+              [(value)]="ratingValue"
+            />
+            <app-rating
+              label="Evaluación de proveedor (3 estrellas)"
+              [stars]="3"
+              [(value)]="ratingShort"
+            />
+            <app-rating
+              label="Solo lectura"
+              [readonly]="true"
+              [(value)]="ratingReadonly"
+            />
           </div>
         </p-card>
       </div>
@@ -393,7 +427,8 @@ import { AppGantt, type GanttTask } from "src/app/core/components/gantt/gantt";
             <app-theme-switcher />
             <span class="text-sm text-color-secondary">
               Aplica / remueve <code>body.theme-dark</code>. Persiste en
-              <code>localStorage</code>. Respeta <code>prefers-color-scheme</code>
+              <code>localStorage</code>. Respeta
+              <code>prefers-color-scheme</code>
               en la primera visita.
             </span>
           </div>
@@ -462,11 +497,20 @@ import { AppGantt, type GanttTask } from "src/app/core/components/gantt/gantt";
       <!-- Bottom Nav + Tab Bar -->
       <div class="col-12 lg:col-6">
         <p-card header="app-bottom-nav — Navegación móvil inferior">
-          <div class="surface-ground border-round overflow-hidden" style="max-width:375px; margin:0 auto;">
-            <div class="p-3 text-center text-sm text-color-secondary" style="height:80px;">
+          <div
+            class="surface-ground border-round overflow-hidden"
+            style="max-width:375px; margin:0 auto;"
+          >
+            <div
+              class="p-3 text-center text-sm text-color-secondary"
+              style="height:80px;"
+            >
               Contenido de la pantalla
             </div>
-            <app-bottom-nav [items]="bottomNavItems" [(activeId)]="activeBottomNav" />
+            <app-bottom-nav
+              [items]="bottomNavItems"
+              [(activeId)]="activeBottomNav"
+            />
           </div>
         </p-card>
       </div>
@@ -475,10 +519,16 @@ import { AppGantt, type GanttTask } from "src/app/core/components/gantt/gantt";
         <p-card header="app-tab-bar — Tabs de sección">
           <div class="flex flex-column gap-3">
             <app-tab-bar [tabs]="tabBarItems" [(activeId)]="activeTab" />
-            <div class="p-3 surface-ground border-round text-sm text-color-secondary">
+            <div
+              class="p-3 surface-ground border-round text-sm text-color-secondary"
+            >
               Panel activo: <strong>{{ activeTab }}</strong>
             </div>
-            <app-tab-bar [tabs]="tabBarItemsCompact" [(activeId)]="activeTabCompact" [compact]="true" />
+            <app-tab-bar
+              [tabs]="tabBarItemsCompact"
+              [(activeId)]="activeTabCompact"
+              [compact]="true"
+            />
           </div>
         </p-card>
       </div>
@@ -551,8 +601,14 @@ import { AppGantt, type GanttTask } from "src/app/core/components/gantt/gantt";
           <div class="flex flex-column gap-4">
             <app-lang-selector [(selectedCode)]="selectedLang" />
             <p-divider />
-            <app-print-view title="Reporte de Ventas" subtitle="Junio 2026" [showBorder]="false">
-              <div class="p-3 surface-ground border-round text-sm text-color-secondary">
+            <app-print-view
+              title="Reporte de Ventas"
+              subtitle="Junio 2026"
+              [showBorder]="false"
+            >
+              <div
+                class="p-3 surface-ground border-round text-sm text-color-secondary"
+              >
                 Contenido del reporte a imprimir (proyectado vía ng-content)
               </div>
             </app-print-view>
@@ -590,11 +646,27 @@ import { AppGantt, type GanttTask } from "src/app/core/components/gantt/gantt";
       <div class="col-12 lg:col-6">
         <p-card header="app-color-picker + app-tristate-switch">
           <div class="flex flex-column gap-4">
-            <app-color-picker label="Color de etiqueta" [(value)]="pickerColor" hint="Formato HEX" />
-            <app-color-picker label="Inline" [inline]="true" [(value)]="pickerColorInline" />
+            <app-color-picker
+              label="Color de etiqueta"
+              [(value)]="pickerColor"
+              hint="Formato HEX"
+            />
+            <app-color-picker
+              label="Inline"
+              [inline]="true"
+              [(value)]="pickerColorInline"
+            />
             <p-divider />
-            <app-tristate-switch label="Permiso heredado" [(value)]="tristateVal" hint="Ciclo: Activado → Heredado → Desactivado" />
-            <app-tristate-switch label="Notificaciones (deshabilitado)" [disabled]="true" [(value)]="tristateDisabled" />
+            <app-tristate-switch
+              label="Permiso heredado"
+              [(value)]="tristateVal"
+              hint="Ciclo: Activado → Heredado → Desactivado"
+            />
+            <app-tristate-switch
+              label="Notificaciones (deshabilitado)"
+              [disabled]="true"
+              [(value)]="tristateDisabled"
+            />
           </div>
         </p-card>
       </div>
@@ -634,7 +706,11 @@ import { AppGantt, type GanttTask } from "src/app/core/components/gantt/gantt";
             />
             <app-qr-code
               label="Contacto vCard"
-              data="BEGIN:VCARD\nVERSION:3.0\nFN:Ana Garcia\nORG:LuxuryApp\nEND:VCARD"
+              data="BEGIN:VCARD
+VERSION:3.0
+FN:Ana Garcia
+ORG:LuxuryApp
+END:VCARD"
               [size]="160"
               [allowDownload]="true"
             />
@@ -658,15 +734,37 @@ import { AppGantt, type GanttTask } from "src/app/core/components/gantt/gantt";
         <p-card header="app-realtime-indicator + app-inventory-level">
           <div class="flex flex-column gap-4">
             <div class="flex flex-column gap-2">
-              <app-realtime-indicator status="live" lastUpdate="hace 2s" [latencyMs]="42" />
+              <app-realtime-indicator
+                status="live"
+                lastUpdate="hace 2s"
+                [latencyMs]="42"
+              />
               <app-realtime-indicator status="paused" lastUpdate="hace 5min" />
               <app-realtime-indicator status="error" />
               <app-realtime-indicator status="connecting" />
             </div>
             <p-divider />
-            <app-inventory-level name="Cemento Portland" [current]="350" [max]="1000" sku="CEM-001" [reorderPoint]="200" />
-            <app-inventory-level name="Varilla 3/8" [current]="45" [max]="500" sku="VAR-038" [reorderPoint]="100" />
-            <app-inventory-level name="Pintura blanca" [current]="5" [max]="200" sku="PNT-BLC" [reorderPoint]="40" />
+            <app-inventory-level
+              name="Cemento Portland"
+              [current]="350"
+              [max]="1000"
+              sku="CEM-001"
+              [reorderPoint]="200"
+            />
+            <app-inventory-level
+              name="Varilla 3/8"
+              [current]="45"
+              [max]="500"
+              sku="VAR-038"
+              [reorderPoint]="100"
+            />
+            <app-inventory-level
+              name="Pintura blanca"
+              [current]="5"
+              [max]="200"
+              sku="PNT-BLC"
+              [reorderPoint]="40"
+            />
           </div>
         </p-card>
       </div>
@@ -815,41 +913,77 @@ export class CommonCoreCoverage {
   ratingReadonly: number | undefined = 5;
 
   otpValue = "";
-  otpPin   = "";
+  otpPin = "";
 
   // ── Fase 9.2 demo data ──────────────────────────────────────────────
   selectedTags: string[] = ["CRM", "Enterprise"];
   freeTags: string[] = [];
-  readonly tagSuggestions = ["CRM", "Enterprise", "VIP", "Prospect", "Caliente", "Frío", "Seguimiento", "Urgente"];
+  readonly tagSuggestions = [
+    "CRM",
+    "Enterprise",
+    "VIP",
+    "Prospect",
+    "Caliente",
+    "Frío",
+    "Seguimiento",
+    "Urgente",
+  ];
 
   readonly bottomNavItems: BottomNavItem[] = [
-    { id: "home",     icon: "mdi:home-outline",        activeIcon: "mdi:home",         label: "Inicio",       badge: 0 },
-    { id: "contacts", icon: "mdi:account-outline",     activeIcon: "mdi:account",      label: "Contactos" },
-    { id: "deals",    icon: "mdi:briefcase-outline",   activeIcon: "mdi:briefcase",    label: "Deals",        badge: 3 },
-    { id: "reports",  icon: "mdi:chart-bar",           label: "Reportes" },
-    { id: "profile",  icon: "mdi:account-circle-outline", activeIcon: "mdi:account-circle", label: "Perfil" },
+    {
+      id: "home",
+      icon: "mdi:home-outline",
+      activeIcon: "mdi:home",
+      label: "Inicio",
+      badge: 0,
+    },
+    {
+      id: "contacts",
+      icon: "mdi:account-outline",
+      activeIcon: "mdi:account",
+      label: "Contactos",
+    },
+    {
+      id: "deals",
+      icon: "mdi:briefcase-outline",
+      activeIcon: "mdi:briefcase",
+      label: "Deals",
+      badge: 3,
+    },
+    { id: "reports", icon: "mdi:chart-bar", label: "Reportes" },
+    {
+      id: "profile",
+      icon: "mdi:account-circle-outline",
+      activeIcon: "mdi:account-circle",
+      label: "Perfil",
+    },
   ];
   activeBottomNav = "home";
 
   readonly tabBarItems: TabBarItem[] = [
-    { id: "overview",  label: "Resumen",   icon: "mdi:view-dashboard-outline" },
-    { id: "activity",  label: "Actividad", icon: "mdi:history",               badge: 5 },
-    { id: "documents", label: "Docs",      icon: "mdi:file-multiple-outline" },
-    { id: "settings",  label: "Config",    icon: "mdi:cog-outline",           disabled: true },
+    { id: "overview", label: "Resumen", icon: "mdi:view-dashboard-outline" },
+    { id: "activity", label: "Actividad", icon: "mdi:history", badge: 5 },
+    { id: "documents", label: "Docs", icon: "mdi:file-multiple-outline" },
+    {
+      id: "settings",
+      label: "Config",
+      icon: "mdi:cog-outline",
+      disabled: true,
+    },
   ];
   activeTab = "overview";
 
   readonly tabBarItemsCompact: TabBarItem[] = [
-    { id: "all",     label: "Todos" },
-    { id: "open",    label: "Abiertos", badge: 8 },
-    { id: "closed",  label: "Cerrados" },
+    { id: "all", label: "Todos" },
+    { id: "open", label: "Abiertos", badge: 8 },
+    { id: "closed", label: "Cerrados" },
     { id: "pending", label: "Pendientes", badge: 2 },
   ];
   activeTabCompact = "open";
 
-  readonly sparkSales  = [820, 940, 880, 1050, 990, 1120, 1280];
-  readonly sparkLeads  = [91, 88, 95, 84, 79, 88, 84];
-  readonly sparkClose  = [28, 30, 29, 33, 31, 35, 34];
+  readonly sparkSales = [820, 940, 880, 1050, 990, 1120, 1280];
+  readonly sparkLeads = [91, 88, 95, 84, 79, 88, 84];
+  readonly sparkClose = [28, 30, 29, 33, 31, 35, 34];
   readonly sparkTicket = [155, 162, 170, 158, 175, 180, 188];
 
   readonly customer360: Customer360Data = {
@@ -864,14 +998,26 @@ export class CommonCoreCoverage {
     lastContact: "hace 2 días",
     nps: 9,
     recentActivity: [
-      { icon: "mdi:phone-outline",    text: "Llamada — propuesta Penthouse Santa Fe",  time: "hace 2 días" },
-      { icon: "mdi:email-outline",    text: "Email enviado con brochure actualizado",   time: "hace 4 días" },
-      { icon: "mdi:calendar-outline", text: "Reunión agendada para el 28 Jun",          time: "hace 1 semana" },
+      {
+        icon: "mdi:phone-outline",
+        text: "Llamada — propuesta Penthouse Santa Fe",
+        time: "hace 2 días",
+      },
+      {
+        icon: "mdi:email-outline",
+        text: "Email enviado con brochure actualizado",
+        time: "hace 4 días",
+      },
+      {
+        icon: "mdi:calendar-outline",
+        text: "Reunión agendada para el 28 Jun",
+        time: "hace 1 semana",
+      },
     ],
     deals: [
-      { title: "Penthouse Santa Fe",      stage: "Negociación", value: 1_200_000 },
-      { title: "Torre Reforma 360",       stage: "Propuesta",   value: 950_000 },
-      { title: "Residencial Pedregal II", stage: "Contacto",    value: 680_000 },
+      { title: "Penthouse Santa Fe", stage: "Negociación", value: 1_200_000 },
+      { title: "Torre Reforma 360", stage: "Propuesta", value: 950_000 },
+      { title: "Residencial Pedregal II", stage: "Contacto", value: 680_000 },
     ],
   };
 
@@ -883,7 +1029,10 @@ export class CommonCoreCoverage {
       authorName: "Laura Pérez",
       text: "Cliente muy interesado en el Penthouse. Solicita visita guiada la próxima semana.",
       timestamp: "hace 3 días",
-      reactions: [{ emoji: "👍", count: 2 }, { emoji: "📌", count: 1 }],
+      reactions: [
+        { emoji: "👍", count: 2 },
+        { emoji: "📌", count: 1 },
+      ],
     },
     {
       id: "c2",
@@ -921,7 +1070,11 @@ export class CommonCoreCoverage {
   `;
 
   onCommentSubmit(text: string): void {
-    this.messageService.add({ severity: "success", summary: "Comentario añadido", detail: text });
+    this.messageService.add({
+      severity: "success",
+      summary: "Comentario añadido",
+      detail: text,
+    });
   }
 
   readonly pipelineStages: PipelineStage[] = [
@@ -930,8 +1083,23 @@ export class CommonCoreCoverage {
       name: "Prospecto",
       color: "#737685",
       deals: [
-        { id: "d1", title: "Hotel Camino Real", company: "GHL Hotels", value: 450000, owner: "Ana García", daysInStage: 3, priority: "high" },
-        { id: "d2", title: "Torre Reforma 90", company: "Grupo Inmob.", value: 180000, owner: "Carlos R.", daysInStage: 8 },
+        {
+          id: "d1",
+          title: "Hotel Camino Real",
+          company: "GHL Hotels",
+          value: 450000,
+          owner: "Ana García",
+          daysInStage: 3,
+          priority: "high",
+        },
+        {
+          id: "d2",
+          title: "Torre Reforma 90",
+          company: "Grupo Inmob.",
+          value: 180000,
+          owner: "Carlos R.",
+          daysInStage: 8,
+        },
       ],
     },
     {
@@ -939,7 +1107,15 @@ export class CommonCoreCoverage {
       name: "Contacto",
       color: "#006477",
       deals: [
-        { id: "d3", title: "Residencial Pedregal", company: "Arq. Mendoza", value: 320000, owner: "Laura P.", daysInStage: 12, priority: "medium" },
+        {
+          id: "d3",
+          title: "Residencial Pedregal",
+          company: "Arq. Mendoza",
+          value: 320000,
+          owner: "Laura P.",
+          daysInStage: 12,
+          priority: "medium",
+        },
       ],
     },
     {
@@ -947,8 +1123,23 @@ export class CommonCoreCoverage {
       name: "Propuesta",
       color: "#003d9b",
       deals: [
-        { id: "d4", title: "Club Náutico Vallarta", company: "Marina Dev.", value: 900000, owner: "Ana García", daysInStage: 20, priority: "high" },
-        { id: "d5", title: "Departamentos Lomas", company: "Inmob. Lomas", value: 210000, owner: "Miguel T.", daysInStage: 5 },
+        {
+          id: "d4",
+          title: "Club Náutico Vallarta",
+          company: "Marina Dev.",
+          value: 900000,
+          owner: "Ana García",
+          daysInStage: 20,
+          priority: "high",
+        },
+        {
+          id: "d5",
+          title: "Departamentos Lomas",
+          company: "Inmob. Lomas",
+          value: 210000,
+          owner: "Miguel T.",
+          daysInStage: 5,
+        },
       ],
     },
     {
@@ -956,7 +1147,15 @@ export class CommonCoreCoverage {
       name: "Negociación",
       color: "#b45309",
       deals: [
-        { id: "d6", title: "Centro Corporativo Sur", company: "CorpDev MX", value: 1200000, owner: "Carlos R.", daysInStage: 18, priority: "high" },
+        {
+          id: "d6",
+          title: "Centro Corporativo Sur",
+          company: "CorpDev MX",
+          value: 1200000,
+          owner: "Carlos R.",
+          daysInStage: 18,
+          priority: "high",
+        },
       ],
     },
     {
@@ -964,67 +1163,210 @@ export class CommonCoreCoverage {
       name: "Cerrado",
       color: "#006837",
       deals: [
-        { id: "d7", title: "Penthouse Santa Fe", company: "Elite Props.", value: 560000, owner: "Laura P.", daysInStage: 2 },
+        {
+          id: "d7",
+          title: "Penthouse Santa Fe",
+          company: "Elite Props.",
+          value: 560000,
+          owner: "Laura P.",
+          daysInStage: 2,
+        },
       ],
     },
   ];
 
   // ── Fase 9.3 demo data ──────────────────────────────────────────────
-  pickerColor       = "003d9b";
+  pickerColor = "003d9b";
   pickerColorInline = "c9a84c";
-  tristateVal:      true | false | null = null;
+  tristateVal: true | false | null = null;
   tristateDisabled: true | false | null = true;
 
   readonly demoSchema: FormField[] = [
-    { key: "nombre",   type: "text",     label: "Nombre completo", required: true, colspan: 2 },
-    { key: "email",    type: "email",    label: "Correo electrónico", required: true },
-    { key: "empresa",  type: "text",     label: "Empresa" },
-    { key: "origen",   type: "select",   label: "Origen del lead", options: [{ label: "Web", value: "web" }, { label: "Referido", value: "ref" }, { label: "Evento", value: "event" }] },
-    { key: "monto",    type: "currency", label: "Presupuesto estimado" },
-    { key: "activo",   type: "switch",   label: "Lead activo", hint: "Desactiva para archivar" },
-    { key: "notas",    type: "textarea", label: "Notas", rows: 3, colspan: 2 },
+    {
+      key: "nombre",
+      type: "text",
+      label: "Nombre completo",
+      required: true,
+      colspan: 2,
+    },
+    {
+      key: "email",
+      type: "email",
+      label: "Correo electrónico",
+      required: true,
+    },
+    { key: "empresa", type: "text", label: "Empresa" },
+    {
+      key: "origen",
+      type: "select",
+      label: "Origen del lead",
+      options: [
+        { label: "Web", value: "web" },
+        { label: "Referido", value: "ref" },
+        { label: "Evento", value: "event" },
+      ],
+    },
+    { key: "monto", type: "currency", label: "Presupuesto estimado" },
+    {
+      key: "activo",
+      type: "switch",
+      label: "Lead activo",
+      hint: "Desactiva para archivar",
+    },
+    { key: "notas", type: "textarea", label: "Notas", rows: 3, colspan: 2 },
   ];
   demoFormValues = { activo: true, origen: "web" };
 
   onFormSubmit(vals: Record<string, unknown>): void {
-    this.messageService.add({ severity: "success", summary: "Formulario enviado", detail: JSON.stringify(vals).slice(0, 60) + "..." });
+    this.messageService.add({
+      severity: "success",
+      summary: "Formulario enviado",
+      detail: JSON.stringify(vals).slice(0, 60) + "...",
+    });
   }
 
   readonly heatmapData: HeatmapCell[] = (() => {
-    const days  = ["Lun", "Mar", "Mie", "Jue", "Vie"];
+    const days = ["Lun", "Mar", "Mie", "Jue", "Vie"];
     const hours = ["9am", "10am", "11am", "12pm", "1pm", "3pm", "4pm", "5pm"];
     const cells: HeatmapCell[] = [];
-    const seed = [8, 14, 22, 12, 6, 28, 18, 4, 20, 30, 10, 16, 24, 2, 26, 7, 15, 19, 11, 3, 27, 13, 21, 5, 17, 23, 9, 29, 1, 25, 0, 20, 8, 16, 4, 12, 28, 6, 22, 18];
+    const seed = [
+      8, 14, 22, 12, 6, 28, 18, 4, 20, 30, 10, 16, 24, 2, 26, 7, 15, 19, 11, 3,
+      27, 13, 21, 5, 17, 23, 9, 29, 1, 25, 0, 20, 8, 16, 4, 12, 28, 6, 22, 18,
+    ];
     let i = 0;
-    for (const row of hours) for (const col of days) cells.push({ row, col, value: seed[i++ % seed.length] });
+    for (const row of hours)
+      for (const col of days)
+        cells.push({ row, col, value: seed[i++ % seed.length] });
     return cells;
   })();
 
   onBarcodeSearch(code: string): void {
-    this.messageService.add({ severity: "info", summary: "Busqueda", detail: "Codigo: " + code });
+    this.messageService.add({
+      severity: "info",
+      summary: "Busqueda",
+      detail: "Codigo: " + code,
+    });
   }
 
   onBarcodeDetected(result: { value: string; format: string }): void {
-    this.messageService.add({ severity: "success", summary: "Detectado", detail: result.format + ": " + result.value });
+    this.messageService.add({
+      severity: "success",
+      summary: "Detectado",
+      detail: result.format + ": " + result.value,
+    });
   }
 
   readonly territories: Territory[] = [
-    { id: "t1", name: "CDMX Norte",   region: "Centro",    owner: "Ana Garcia",    accounts: 42, revenue: 1_850_000, target: 2_000_000, color: "#003d9b", active: true },
-    { id: "t2", name: "CDMX Sur",     region: "Centro",    owner: "Carlos Ruiz",   accounts: 38, revenue: 1_200_000, target: 1_500_000, color: "#006477", active: true },
-    { id: "t3", name: "Monterrey",    region: "Norte",     owner: "Laura Perez",   accounts: 55, revenue: 2_400_000, target: 2_200_000, color: "#006837", active: true },
-    { id: "t4", name: "Guadalajara",  region: "Occidente", owner: "Miguel Torres", accounts: 29, revenue: 980_000,  target: 1_300_000, color: "#b45309", active: true },
-    { id: "t5", name: "Bajio",        region: "Centro",    owner: "Diana Lopez",   accounts: 18, revenue: 450_000,  target: 800_000,  color: "#7c3aed", active: false },
+    {
+      id: "t1",
+      name: "CDMX Norte",
+      region: "Centro",
+      owner: "Ana Garcia",
+      accounts: 42,
+      revenue: 1_850_000,
+      target: 2_000_000,
+      color: "#003d9b",
+      active: true,
+    },
+    {
+      id: "t2",
+      name: "CDMX Sur",
+      region: "Centro",
+      owner: "Carlos Ruiz",
+      accounts: 38,
+      revenue: 1_200_000,
+      target: 1_500_000,
+      color: "#006477",
+      active: true,
+    },
+    {
+      id: "t3",
+      name: "Monterrey",
+      region: "Norte",
+      owner: "Laura Perez",
+      accounts: 55,
+      revenue: 2_400_000,
+      target: 2_200_000,
+      color: "#006837",
+      active: true,
+    },
+    {
+      id: "t4",
+      name: "Guadalajara",
+      region: "Occidente",
+      owner: "Miguel Torres",
+      accounts: 29,
+      revenue: 980_000,
+      target: 1_300_000,
+      color: "#b45309",
+      active: true,
+    },
+    {
+      id: "t5",
+      name: "Bajio",
+      region: "Centro",
+      owner: "Diana Lopez",
+      accounts: 18,
+      revenue: 450_000,
+      target: 800_000,
+      color: "#7c3aed",
+      active: false,
+    },
   ];
 
   readonly ganttTasks: GanttTask[] = (() => {
     const today = new Date();
-    const d = (offset: number) => { const x = new Date(today); x.setDate(x.getDate() + offset); return x; };
+    const d = (offset: number) => {
+      const x = new Date(today);
+      x.setDate(x.getDate() + offset);
+      return x;
+    };
     return [
-      { id: "g1", name: "Diagnostico inicial",   startDate: d(-10), endDate: d(-4),  progress: 100, color: "#006837", assignee: "Equipo A" },
-      { id: "g2", name: "Sustitucion bombas",     startDate: d(-6),  endDate: d(2),   progress: 70,  color: "#003d9b", assignee: "Equipo B" },
-      { id: "g3", name: "Revision electrica",     startDate: d(0),   endDate: d(6),   progress: 20,  color: "#006477", assignee: "Equipo A" },
-      { id: "g4", name: "Pintura fachada",        startDate: d(3),   endDate: d(12),  progress: 0,   color: "#b45309", assignee: "Contratista" },
-      { id: "g5", name: "Pruebas y entrega",      startDate: d(10),  endDate: d(15),  progress: 0,   color: "#7c3aed", assignee: "Supervision" },
+      {
+        id: "g1",
+        name: "Diagnostico inicial",
+        startDate: d(-10),
+        endDate: d(-4),
+        progress: 100,
+        color: "#006837",
+        assignee: "Equipo A",
+      },
+      {
+        id: "g2",
+        name: "Sustitucion bombas",
+        startDate: d(-6),
+        endDate: d(2),
+        progress: 70,
+        color: "#003d9b",
+        assignee: "Equipo B",
+      },
+      {
+        id: "g3",
+        name: "Revision electrica",
+        startDate: d(0),
+        endDate: d(6),
+        progress: 20,
+        color: "#006477",
+        assignee: "Equipo A",
+      },
+      {
+        id: "g4",
+        name: "Pintura fachada",
+        startDate: d(3),
+        endDate: d(12),
+        progress: 0,
+        color: "#b45309",
+        assignee: "Contratista",
+      },
+      {
+        id: "g5",
+        name: "Pruebas y entrega",
+        startDate: d(10),
+        endDate: d(15),
+        progress: 0,
+        color: "#7c3aed",
+        assignee: "Supervision",
+      },
     ];
   })();
 }

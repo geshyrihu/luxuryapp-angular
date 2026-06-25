@@ -76,6 +76,7 @@ import { IonInputDate } from "../mobile/ion-input-date";
 export class CustomInputDateSignal extends BaseInputSignal {
   disable = input<Date[]>([]);
   mode = input<"single" | "multiple" | "range">("single");
+  customClass = input<string>("");
   protected readonly spanishLocale = Spanish;
 
   override writeValue(value: any): void {

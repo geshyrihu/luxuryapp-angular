@@ -69,6 +69,7 @@ import { IonInputMultiselect } from "../mobile/ion-input-multiselect";
   ],
 })
 export class CustomInputMultiselectSignal extends BaseInputSignal {
+  customClass = input<string>("");
 
   selectionChange = output<any>();
   options = input<ISelectItem[]>([]);
