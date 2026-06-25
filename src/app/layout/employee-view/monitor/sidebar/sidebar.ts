@@ -230,6 +230,7 @@ export class Sidebar {
                 { label: "Data Table Hybrid", routerLink: [...this.catalogBase, 'patterns', 'datatablehybrid'] },
                 { label: "Login Reference", routerLink: [...this.catalogBase, 'patterns', 'loginreference'] },
                 { label: "Navigation Reference", routerLink: [...this.catalogBase, 'patterns', 'navigationreference'] },
+                { label: "Navigation Hub Page", icon: "mdi:view-dashboard-outline", routerLink: [...this.catalogBase, 'patterns', 'navhub'] },
               ],
             },
             {
