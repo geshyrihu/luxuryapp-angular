@@ -40,23 +40,28 @@ import {
   ],
   template: `
     <div class="mobile-card">
-      <div class="mobile-card-header">Inputs — Ionic nativos</div>
+      <div class="mobile-card-header">Custom Inputs — wrappers mobile (label flotante)</div>
       <div class="mobile-card-body">
-        <form [formGroup]="mobileForm">
-          <ion-input-text [control]="mobileForm.controls['nombre']" label="Nombre" placeholder="Tu nombre..." />
-          <ion-input-textarea [control]="mobileForm.controls['comentarios']" label="Comentarios" placeholder="Notas..." />
-          <ion-input-search placeholder="Buscar..." (searchChange)="mobileForm.controls['buscar'].setValue($event)" />
-          <ion-input-password [control]="mobileForm.controls['password']" label="Contraseña" />
-          <ion-input-number [control]="mobileForm.controls['edad']" label="Edad" />
-          <ion-input-currency [control]="mobileForm.controls['precio']" label="Precio" />
-          <ion-input-date [control]="mobileForm.controls['fecha']" label="Fecha" />
-          <ion-input-time [control]="mobileForm.controls['hora']" label="Hora" />
-          <ion-input-select [control]="mobileForm.controls['categoria']" [data]="options" label="Categoría" />
-          <ion-input-multiselect [control]="mobileForm.controls['roles']" [options]="options" label="Roles" />
-          <ion-input-select-bool [control]="mobileForm.controls['activoBool']" label="Estado" />
-          <ion-input-file [control]="mobileForm.controls['archivo']" label="Archivo" />
-          <ion-input-toggle [control]="mobileForm.controls['activo']" label="Activar" placeholder="Activar notificaciones" />
-          <ion-input-checkbox [control]="mobileForm.controls['terminos']" placeholder="Aceptar Términos" />
+        <form [formGroup]="mobileForm" class="flex flex-column gap-1">
+          <!-- [horizontal]="false" → label flotante sobre el input (estilo Material/Ionic moderno) -->
+          <ion-input-text     [control]="mobileForm.controls['nombre']"     label="Nombre"       placeholder="Tu nombre..."  [horizontal]="false" />
+          <ion-input-textarea [control]="mobileForm.controls['comentarios']" label="Comentarios" placeholder="Notas..."      [horizontal]="false" />
+          <ion-input-password [control]="mobileForm.controls['password']"   label="Contraseña"                               [horizontal]="false" />
+          <ion-input-number   [control]="mobileForm.controls['edad']"       label="Edad"                                     [horizontal]="false" />
+          <ion-input-currency [control]="mobileForm.controls['precio']"     label="Precio"                                   [horizontal]="false" />
+          <ion-input-date     [control]="mobileForm.controls['fecha']"      label="Fecha"                                    [horizontal]="false" />
+          <ion-input-time     [control]="mobileForm.controls['hora']"       label="Hora"                                     [horizontal]="false" />
+          <ion-input-select   [control]="mobileForm.controls['categoria']"  label="Categoría"   [data]="options"             [horizontal]="false" />
+          <ion-input-multiselect [control]="mobileForm.controls['roles']"   label="Roles"       [options]="options"          [horizontal]="false" />
+          <ion-input-select-bool [control]="mobileForm.controls['activoBool']" label="Estado"                               [horizontal]="false" />
+          <ion-input-file     [control]="mobileForm.controls['archivo']"    label="Archivo"                                  [horizontal]="false" />
+          <ion-input-toggle   [control]="mobileForm.controls['activo']"     label="Notificaciones push"                      [horizontal]="false" />
+          <ion-input-checkbox [control]="mobileForm.controls['terminos']"   placeholder="Acepto términos y condiciones" />
+
+          <!-- Buscador standalone (sin label, solo placeholder) -->
+          <div class="mt-2">
+            <ion-input-search placeholder="Buscar registros..." (searchChange)="mobileForm.controls['buscar'].setValue($event)" />
+          </div>
         </form>
       </div>
     </div>

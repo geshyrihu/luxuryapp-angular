@@ -67,15 +67,29 @@ import { IonBackButton, IonButtons, IonFab, IonFabButton, IonHeader, IonIcon, Io
 
         <div>
           <div class="font-bold text-sm mb-2">FAB (Floating Action Button)</div>
-          <div style="position:relative;height:80px;background:var(--ds-bg-elevated,#f4f5f8);border-radius:var(--ds-radius-lg,8px);padding:0.75rem;">
-            <p style="margin:0;font-size:var(--ds-font-size-table,0.875rem);color:var(--ds-text-muted);">
-              El Floating Action Button (FAB) se sitúa en la esquina inferior derecha.
+          <div style="position:relative;height:100px;background:var(--ds-bg-elevated,#f4f5f8);border-radius:var(--ds-radius-lg,8px);padding:0.75rem;">
+            <p class="text-xs text-color-secondary m-0 mb-1">
+              Acción primaria flotante — color primario de la entidad, ícono contextual.
             </p>
-            <ion-fab vertical="bottom" horizontal="end" style="position: absolute; bottom: 10px; right: 10px;">
-              <ion-fab-button size="small">
+            <p class="text-xs m-0" style="color:var(--ds-text-muted);">
+              <code>color="primary"</code> garantiza que use el color de la entidad activa.
+            </p>
+            <!-- FAB estándar: color primary + icono add -->
+            <ion-fab vertical="bottom" horizontal="end" style="position:absolute;bottom:10px;right:10px;">
+              <ion-fab-button color="primary">
                 <ion-icon name="add-outline"></ion-icon>
               </ion-fab-button>
             </ion-fab>
+          </div>
+
+          <div class="mt-3 p-3 surface-ground border-round text-xs">
+            <p class="font-bold m-0 mb-1">Regla DS — FAB:</p>
+            <ul class="m-0 pl-3 line-height-3">
+              <li><code>color="primary"</code> — usa el color primario de la entidad/cliente</li>
+              <li>Ícono: <code>add-outline</code> para crear, <code>pencil</code> para editar</li>
+              <li>Tamaño: default (56px) — visible y accesible</li>
+              <li>Posición: <code>vertical="bottom" horizontal="end"</code></li>
+            </ul>
           </div>
         </div>
       </div>
