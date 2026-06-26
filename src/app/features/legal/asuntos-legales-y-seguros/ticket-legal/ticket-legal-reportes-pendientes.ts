@@ -2,11 +2,13 @@ import { CommonModule, DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 @Component({
   selector: "app-ticket-legal-reportes-pendientes",
   templateUrl: "./ticket-legal-reportes-pendientes.html",
@@ -15,10 +17,11 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
     CardModule,
     TableModule,
     DatePipe,
+    AppIcon,
     DataViewMobile,
+    IonItem,
+    IonLabel,
     PrimeNgCustomCaption,
-
-
   ],
 })
 export class TicketLegalReportesPendientes implements OnInit {
