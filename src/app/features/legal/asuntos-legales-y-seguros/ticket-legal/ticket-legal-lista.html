@@ -1,5 +1,7 @@
 ﻿<div class="flex align-items-center gap-3 mb-3">
-  <label class="font-semibold text-sm text-600 white-space-nowrap">Filtrar por cliente:</label>
+  <label class="font-semibold text-sm text-600 white-space-nowrap"
+    >Filtrar por cliente:</label
+  >
   <p-select
     [options]="cb_customer()"
     optionLabel="label"
@@ -23,13 +25,27 @@
   [scrollHeight]="scrollHeight"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table hidden md:block"
+  styleClass="custom-table custom-table-fixed card hidden md:block"
 >
   <ng-template #caption>
     <primeng-custom-caption
       (add)="onModalForm({ id: '', title: 'AGREGAR TICKET LEGAL' })"
       [dt]="dt"
     />
+  </ng-template>
+  <ng-template #colgroup>
+    <colgroup>
+      <col class="table-col-8" />
+      <col class="table-col-12" />
+      <col class="table-col-8" />
+      <col class="table-col-30" />
+      <col class="table-col-12" />
+      <col class="table-col-10" />
+      <col class="table-col-10" />
+      <col class="table-col-3" />
+      <col class="table-col-5" />
+      <col class="table-col-2" />
+    </colgroup>
   </ng-template>
   <ng-template #header>
     <tr>
@@ -64,7 +80,8 @@
         <small>{{ item.description }}</small>
       </td>
       <td>
-        <app-icon [icon]="'mdi:account'" class="mr-2"></app-icon>{{ item.assignee }}
+        <app-icon [icon]="'mdi:account'" class="mr-2"></app-icon>{{
+        item.assignee }}
       </td>
       <td class="text-center">
         <p-tag
@@ -92,24 +109,28 @@
           [ticketId]="item.id"
           [badgeCount]="item.tracking"
           (clickTracking)="onModalSeguimiento($event)"
-/>
+        />
       </td>
       <td class="no-print">
         <div class="flex justify-content-center">
           <custom-button-edit
             (clicked)="onModalEdit({ id: item.id, title: 'EDITAR TICKET LEGAL' })"
-/>
+          />
         </div>
       </td>
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="9">
-          <app-empty-state icon="mdi:ticket-outline" title="Sin tickets" message="No hay tickets legales registrados." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="10">
+        <app-empty-state
+          icon="mdi:ticket-outline"
+          title="Sin tickets"
+          message="No hay tickets legales registrados."
+        />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -127,9 +148,16 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-primary-50, #edf1ff);
+        "
       >
-        <app-icon icon="mdi:ticket-outline" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+        <app-icon
+          icon="mdi:ticket-outline"
+          style="font-size: 1.1rem; color: var(--ds-primary)"
+        ></app-icon>
       </div>
       <ion-label>
         <div class="flex justify-content-between align-items-center mb-1">
@@ -138,7 +166,9 @@
           </p>
           <p class="font-normal m-0 text-xs text-right">{{ item.customer }}</p>
         </div>
-        <h2 class="text-sm font-semibold m-0 text-wrap mb-1">{{ item.title }}</h2>
+        <h2 class="text-sm font-semibold m-0 text-wrap mb-1">
+          {{ item.title }}
+        </h2>
         <div class="flex flex-wrap mt-1">
           <span
             class="text-xs"
@@ -147,12 +177,9 @@
             [class.text-green-500]="item.status === 2"
             [class.text-gray-500]="item.status === 4"
           >
-            {{
-              item.status === 0 ? 'PENDIENTE' :
-              item.status === 1 ? 'EN PROCESO' :
-              item.status === 2 ? 'CONCLUIDO' :
-              item.status === 4 ? 'CANCELADO' : ''
-            }}
+            {{ item.status === 0 ? 'PENDIENTE' : item.status === 1 ? 'EN
+            PROCESO' : item.status === 2 ? 'CONCLUIDO' : item.status === 4 ?
+            'CANCELADO' : '' }}
           </span>
         </div>
       </ion-label>
@@ -163,12 +190,14 @@
               iconName="clipboard-outline"
               label="Seguimiento"
               (clicked)="onModalSeguimiento({ ticketId: item.id, title: 'Seguimiento' })"
- [showLabelOnDesktop]="true"/>
+              [showLabelOnDesktop]="true"
+            />
             <custom-button-item
               iconName="refresh-outline"
               label="Status"
               (clicked)="onModalUpdateStatus({ id: item.id })"
- [showLabelOnDesktop]="true"/>
+              [showLabelOnDesktop]="true"
+            />
           </ng-container>
         </app-action-menu>
       </div>
