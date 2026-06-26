@@ -299,25 +299,24 @@
         <th class="text-center">{{ mes.substring(0, 3) | uppercase }}</th>
         }
         <!-- Columnas congeladas a la derecha: Cólculos y totales -->
-        <th pFrozenColumn alignFrozen="right" class="table-col-100px text-center">
+        <!-- Columnas congeladas a la derecha: Cálculos y totales -->
+        <th pFrozenColumn alignFrozen="right" class="table-col-100px" style="text-align:center;">
           PROM MENSUAL
         </th>
-        <th [hidden]="!showBaseBudgetMonthlyColumn()" pFrozenColumn alignFrozen="right" class="table-col-100px text-center">
+        <th [hidden]="!showBaseBudgetMonthlyColumn()" pFrozenColumn alignFrozen="right" class="table-col-100px" style="text-align:center;">
           PSTO (2025) MENSUAL
         </th>
-        <th [hidden]="!showBaseBudgetAnnualColumn()" pFrozenColumn alignFrozen="right" class="table-col-100px text-center">
+        <th [hidden]="!showBaseBudgetAnnualColumn()" pFrozenColumn alignFrozen="right" class="table-col-100px" style="text-align:center;">
           PSTO (2025) ANUAL
         </th>
-        <th pFrozenColumn alignFrozen="right" class="table-col-100px text-center">
+        <th pFrozenColumn alignFrozen="right" class="table-col-100px" style="text-align:center;">
           PSTO (2026) MENSUAL
         </th>
-        <th [hidden]="!showFiscalYearAnnualColumn()" pFrozenColumn alignFrozen="right" class="table-col-100px text-center">
+        <th [hidden]="!showFiscalYearAnnualColumn()" pFrozenColumn alignFrozen="right" class="table-col-100px" style="text-align:center;">
           PSTO (2026) ANUAL
         </th>
-        <th pFrozenColumn alignFrozen="right" class="table-col-100px text-center">DIF</th>
-        <th pFrozenColumn alignFrozen="right" class="table-col-100px text-center">
-          %
-        </th>
+        <th pFrozenColumn alignFrozen="right" class="table-col-100px" style="text-align:center;">DIF</th>
+        <th pFrozenColumn alignFrozen="right" class="table-col-100px" style="text-align:center;">%</th>
       </tr>
     </ng-template>
 
@@ -467,7 +466,8 @@
         <td
           pFrozenColumn
           alignFrozen="right"
-          class="table-col-100px numeric-column flex align-items-center justify-content-end"
+          class="table-col-100px"
+          style="display:flex;align-items:center;justify-content:flex-end;"
         >
           <custom-input-number-signal
             (blur)="updateProposalItem(item)"
@@ -489,7 +489,8 @@
           [hidden]="!showFiscalYearAnnualColumn()"
           pFrozenColumn
           alignFrozen="right"
-          class="table-col-100px text-right numeric-column"
+          class="table-col-100px"
+          style="text-align:right;"
         >
           {{item.proposedAmount * 12 | number: "1.0-0"}}
         </td>
