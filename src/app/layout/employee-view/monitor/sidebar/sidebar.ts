@@ -90,6 +90,7 @@ export class Sidebar {
               routerLink: [...this.catalogBase, 'web'],
               items: [
                 { label: "Accordion", routerLink: [...this.catalogBase, 'web', 'accordion'] },
+                { label: "Calendar", icon: "mdi:calendar-outline", routerLink: [...this.catalogBase, 'web', 'calendar'] },
                 { label: "Badge", routerLink: [...this.catalogBase, 'web', 'badge'] },
                 { label: "Breadcrumb", routerLink: [...this.catalogBase, 'web', 'breadcrumb'] },
                 { label: "Button", routerLink: [...this.catalogBase, 'web', 'button'] },

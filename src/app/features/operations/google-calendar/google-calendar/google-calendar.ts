@@ -16,6 +16,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
+import { TagModule } from "primeng/tag";
 import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
 import {
   CustomButtonDelete,
@@ -71,6 +72,7 @@ interface IGoogleCalendarEventListItem {
     CommonModule,
     FullCalendarModule,
     TableModule,
+    TagModule,
     PrimeNgCustomCaption,
     DataViewMobile,
     ActionMenu,
@@ -119,8 +121,8 @@ export class GoogleCalendar {
         start: this.parseBusinessDateTime(item.startAt),
         end: this.parseBusinessDateTime(item.endAt),
         allDay: false,
-        backgroundColor: canViewDetails ? "#163B74" : "#64748B",
-        borderColor: canViewDetails ? "#163B74" : "#64748B",
+        backgroundColor: canViewDetails ? "#003d9b" : "#94a3b8",
+        borderColor: canViewDetails ? "#003d9b" : "#94a3b8",
         textColor: "#FFFFFF",
         extendedProps: {
           item,
@@ -345,14 +347,12 @@ export class GoogleCalendar {
     return "Pendiente de sincronizar";
   }
 
-  getStatusClasses(item: IGoogleCalendarEventListItem) {
+  getStatusSeverity(item: IGoogleCalendarEventListItem): "success" | "info" | "warn" | "secondary" {
     const label = this.getStatusLabel(item);
-    return {
-      "bg-green-100 text-green-800": label === "Sincronizado con Google",
-      "bg-blue-100 text-blue-800": label === "Solo local (historico)",
-      "bg-orange-100 text-orange-800": label === "Solo local",
-      "bg-yellow-100 text-yellow-800": label === "Pendiente de sincronizar",
-    };
+    if (label === "Sincronizado con Google") return "success";
+    if (label === "Solo local (historico)") return "info";
+    if (label === "Solo local") return "warn";
+    return "secondary";
   }
 
   private openAssemblyChecklistDialog(sessionId: string) {

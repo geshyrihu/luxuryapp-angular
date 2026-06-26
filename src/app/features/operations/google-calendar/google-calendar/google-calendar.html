@@ -81,12 +81,10 @@
           <td>{{ formatBusinessDateTime(item.startAt) }}</td>
           <td class="text-center">{{ item.guestCount }}</td>
           <td>
-            <span
-              class="px-2 py-1 border-round text-sm"
-              [ngClass]="getStatusClasses(item)"
-            >
-              {{ getStatusLabel(item) }}
-            </span>
+            <p-tag
+              [value]="getStatusLabel(item)"
+              [severity]="getStatusSeverity(item)"
+            />
           </td>
           <td>
             @if (canOpenAssemblyChecklist(item)) {

@@ -116,6 +116,38 @@ import { IonAccordion, IonAccordionGroup, IonAvatar, IonBadge, IonCard, IonCardC
         </div>
 
         <div>
+          <div class="font-bold text-sm mb-2">Eventos de Calendario (patrón Google Calendar)</div>
+          <p class="text-xs text-secondary mb-2">
+            Lista de eventos usando <code>ion-item</code> + tonal color de estado.
+            Ícono primario = evento propio, gris = evento de otro condominio.
+          </p>
+          <ion-list lines="full" style="border:1px solid var(--ds-border,#e2e8f0);border-radius:12px;overflow:hidden;">
+            @for (ev of calendarEvents; track ev.id) {
+              <ion-item detail="false" class="ion-no-padding">
+                <div slot="start" class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+                     [style.background]="ev.own ? 'var(--ds-primary-50,#edf1ff)' : 'var(--ds-bg-elevated,#f4f5f8)'"
+                     style="width:38px;height:38px;">
+                  <ion-icon name="calendar-outline"
+                            [style.color]="ev.own ? 'var(--ds-primary)' : 'var(--ds-text-muted)'">
+                  </ion-icon>
+                </div>
+                <ion-label class="ion-text-wrap">
+                  <h3 class="font-semibold m-0">{{ ev.title }}</h3>
+                  <p class="text-xs m-0 mt-1" style="color:var(--ds-text-secondary);">{{ ev.date }} · {{ ev.guests }} invitados</p>
+                </ion-label>
+                <div slot="end" class="mr-3">
+                  <span class="status-chip"
+                        [style.background]="ev.statusBg"
+                        [style.color]="ev.statusColor">
+                    {{ ev.statusLabel }}
+                  </span>
+                </div>
+              </ion-item>
+            }
+          </ion-list>
+        </div>
+
+        <div>
           <div class="font-bold text-sm mb-2">Grid Layout (ion-grid)</div>
           <ion-grid style="border:1px solid var(--ds-border,#e2e8f0);border-radius:12px;overflow:hidden;padding:0.5rem;">
             <ion-row>
@@ -158,7 +190,15 @@ import { IonAccordion, IonAccordionGroup, IonAvatar, IonBadge, IonCard, IonCardC
     .mobile-card { background: var(--ds-bg-surface,#fff); border: 1px solid var(--ds-border,#e2e8f0); border-radius: var(--ds-radius-lg,8px); overflow: hidden; }
     .mobile-card-header { padding: 0.75rem 1rem; background: var(--ds-bg-elevated,#f4f5f8); font-weight: 600; font-size: var(--ds-font-size-body,0.9375rem); color: var(--ds-text-primary); border-bottom: 1px solid var(--ds-border,#e2e8f0); }
     .mobile-card-body { padding: 1rem; }
+    .status-chip { font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 99px; white-space: nowrap; }
   `],
   encapsulation: ViewEncapsulation.None,
 })
-export class MobileData {}
+export class MobileData {
+  readonly calendarEvents = [
+    { id: 1, title: "Junta Comité",       date: "10 Jun 19:00", guests: 4, own: true,  statusLabel: "Sincronizado",   statusBg: "var(--ds-success-light,#d1fae5)", statusColor: "var(--ds-success,#006837)" },
+    { id: 2, title: "Asamblea General",   date: "15 Jun 10:00", guests: 12, own: true,  statusLabel: "Local (hist.)",  statusBg: "var(--ds-info-light,#afecff)",   statusColor: "var(--ds-info,#006477)" },
+    { id: 3, title: "Reunión Proveedores",date: "20 Jun 09:00", guests: 2, own: false, statusLabel: "Solo local",      statusBg: "var(--ds-warning-light,#fef3c7)",statusColor: "var(--ds-warning,#b45309)" },
+    { id: 4, title: "Comité Finanzas",    date: "28 Jun 11:00", guests: 5, own: true,  statusLabel: "Pendiente sync", statusBg: "var(--ds-bg-elevated,#f4f5f8)",  statusColor: "var(--ds-text-secondary,#64748b)" },
+  ];
+}
