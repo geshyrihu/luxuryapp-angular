@@ -252,7 +252,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
   // Propiedades computadas para los botones de visibilidad de columnas
   get baseBudgetMonthlyButtonEmoji(): string {
-    return this.showBaseBudgetMonthlyColumn() ? "ðŸ‘ï¸" : "ðŸ™ˆ";
+    return this.showBaseBudgetMonthlyColumn() ? "👁️" : "🙈";
   }
 
   get baseBudgetMonthlyButtonLabel(): string {
@@ -264,7 +264,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   get baseBudgetAnnualButtonEmoji(): string {
-    return this.showBaseBudgetAnnualColumn() ? "ðŸ‘ï¸" : "ðŸ™ˆ";
+    return this.showBaseBudgetAnnualColumn() ? "👁️" : "🙈";
   }
 
   get baseBudgetAnnualButtonLabel(): string {
@@ -276,7 +276,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   get fiscalYearAnnualButtonEmoji(): string {
-    return this.showFiscalYearAnnualColumn() ? "ðŸ‘ï¸" : "ðŸ™ˆ";
+    return this.showFiscalYearAnnualColumn() ? "👁️" : "🙈";
   }
 
   get fiscalYearAnnualButtonLabel(): string {
@@ -286,7 +286,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   get projectedExpensesButtonEmoji(): string {
-    return this.showProjectedExpenses() ? "ðŸ‘ï¸" : "ðŸ™ˆ";
+    return this.showProjectedExpenses() ? "👁️" : "🙈";
   }
 
   get projectedExpensesButtonLabel(): string {

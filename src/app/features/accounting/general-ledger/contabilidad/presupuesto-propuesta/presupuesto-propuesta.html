@@ -299,67 +299,24 @@
         <th class="text-center">{{ mes.substring(0, 3) | uppercase }}</th>
         }
         <!-- Columnas congeladas a la derecha: Cólculos y totales -->
-        <th
-          pFrozenColumn
-          alignFrozen="right"
-          class="table-col-100px"
-          class="text-center"
-        >
+        <th pFrozenColumn alignFrozen="right" class="table-col-100px text-center">
           PROM MENSUAL
         </th>
-        <th
-          [hidden]="!showBaseBudgetMonthlyColumn()"
-          pFrozenColumn
-          alignFrozen="right"
-          class="table-col-100px"
-          class="text-center"
-        >
-          <!-- PSTO ({{ baseBudgetYear }}) MENSUAL -->
+        <th [hidden]="!showBaseBudgetMonthlyColumn()" pFrozenColumn alignFrozen="right" class="table-col-100px text-center">
           PSTO (2025) MENSUAL
         </th>
-        <th
-          [hidden]="!showBaseBudgetAnnualColumn()"
-          pFrozenColumn
-          alignFrozen="right"
-          class="table-col-100px"
-          class="text-center"
-        >
-          <!-- PSTO ({{ baseBudgetYear }}) ANUAL -->
+        <th [hidden]="!showBaseBudgetAnnualColumn()" pFrozenColumn alignFrozen="right" class="table-col-100px text-center">
           PSTO (2025) ANUAL
         </th>
-        <!-- Presupuesto del Año base -->
-        <th
-          pFrozenColumn
-          alignFrozen="right"
-          class="table-col-100px"
-          class="text-center"
-        >
-          <!-- PSTO ({{ fiscalYear }}) MENSUAL -->
+        <th pFrozenColumn alignFrozen="right" class="table-col-100px text-center">
           PSTO (2026) MENSUAL
-          <!-- Presupuesto del Año fiscal actual (propuesta) -->
         </th>
-        <th
-          [hidden]="!showFiscalYearAnnualColumn()"
-          pFrozenColumn
-          alignFrozen="right"
-          class="table-col-100px"
-          class="text-center"
-        >
-          <!-- PSTO ({{ fiscalYear }}) ANUAL -->
+        <th [hidden]="!showFiscalYearAnnualColumn()" pFrozenColumn alignFrozen="right" class="table-col-100px text-center">
           PSTO (2026) ANUAL
-          <!-- Presupuesto del Año fiscal actual (propuesta) ANUAL -->
         </th>
-        <!-- Aqui hay que agregar           PSTO ({{ fiscalYear }}) MENSUAL x 12 osea aanual
-   -->
-        <th pFrozenColumn alignFrozen="right" class="table-col-100px">DIF</th>
-        <th
-          pFrozenColumn
-          alignFrozen="right"
-          class="table-col-100px"
-          class="text-center"
-        >
+        <th pFrozenColumn alignFrozen="right" class="table-col-100px text-center">DIF</th>
+        <th pFrozenColumn alignFrozen="right" class="table-col-100px text-center">
           %
-          <!-- Porcentaje de cambio -->
         </th>
       </tr>
     </ng-template>
@@ -510,8 +467,7 @@
         <td
           pFrozenColumn
           alignFrozen="right"
-          class="table-col-100px"
-          class="numeric-column flex align-items-center justify-content-end"
+          class="table-col-100px numeric-column flex align-items-center justify-content-end"
         >
           <custom-input-number-signal
             (blur)="updateProposalItem(item)"
@@ -533,8 +489,7 @@
           [hidden]="!showFiscalYearAnnualColumn()"
           pFrozenColumn
           alignFrozen="right"
-          class="table-col-100px"
-          class="text-right numeric-column"
+          class="table-col-100px text-right numeric-column"
         >
           {{item.proposedAmount * 12 | number: "1.0-0"}}
         </td>
