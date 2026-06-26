@@ -18,6 +18,7 @@ import { SelectModule } from "primeng/select";
 import { Table, TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { Subscription } from "rxjs";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -57,6 +58,7 @@ import { ExcelExportService } from "./services/excel-export.service";
 @Component({
   selector: "app-presupuesto-propuesta",
   imports: [
+    AppIcon,
     CommonModule,
     CustomSearchInput,
     FormsModule,
@@ -251,48 +253,34 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   // --------------------------------------------------------------------------------
 
   // Propiedades computadas para los botones de visibilidad de columnas
-  get baseBudgetMonthlyButtonEmoji(): string {
-    return this.showBaseBudgetMonthlyColumn() ? "👁️" : "🙈";
+  get baseBudgetMonthlyButtonIcon(): string {
+    return this.showBaseBudgetMonthlyColumn() ? "mdi:eye-outline" : "mdi:eye-off-outline";
   }
-
   get baseBudgetMonthlyButtonLabel(): string {
-    return this.showBaseBudgetMonthlyColumn()
-      ? `Ocultar Mensual 2025`
-      : `Mostrar Mensual 2025`;
-    // ? `Ocultar Mensual ${this.baseBudgetYear}`
-    // : `Mostrar Mensual ${this.baseBudgetYear}`;
+    return this.showBaseBudgetMonthlyColumn() ? "Ocultar Mensual 2025" : "Mostrar Mensual 2025";
   }
 
-  get baseBudgetAnnualButtonEmoji(): string {
-    return this.showBaseBudgetAnnualColumn() ? "👁️" : "🙈";
+  get baseBudgetAnnualButtonIcon(): string {
+    return this.showBaseBudgetAnnualColumn() ? "mdi:eye-outline" : "mdi:eye-off-outline";
   }
-
   get baseBudgetAnnualButtonLabel(): string {
-    return this.showBaseBudgetAnnualColumn()
-      ? `Ocultar Anual 2025`
-      : `Mostrar Anual 2025`;
-    // ? `Ocultar Anual ${this.baseBudgetYear}`
-    // : `Mostrar Anual ${this.baseBudgetYear}`;
+    return this.showBaseBudgetAnnualColumn() ? "Ocultar Anual 2025" : "Mostrar Anual 2025";
   }
 
-  get fiscalYearAnnualButtonEmoji(): string {
-    return this.showFiscalYearAnnualColumn() ? "👁️" : "🙈";
+  get fiscalYearAnnualButtonIcon(): string {
+    return this.showFiscalYearAnnualColumn() ? "mdi:eye-outline" : "mdi:eye-off-outline";
   }
-
   get fiscalYearAnnualButtonLabel(): string {
     return this.showFiscalYearAnnualColumn()
       ? `Ocultar Anual ${this.fiscalYear}`
       : `Mostrar Anual ${this.fiscalYear}`;
   }
 
-  get projectedExpensesButtonEmoji(): string {
-    return this.showProjectedExpenses() ? "👁️" : "🙈";
+  get projectedExpensesButtonIcon(): string {
+    return this.showProjectedExpenses() ? "mdi:eye-outline" : "mdi:eye-off-outline";
   }
-
   get projectedExpensesButtonLabel(): string {
-    return this.showProjectedExpenses()
-      ? "Ocultar Proyección Gastos"
-      : "Mostrar Proyección Gastos";
+    return this.showProjectedExpenses() ? "Ocultar Proyección Gastos" : "Mostrar Proyección Gastos";
   }
 
   constructor() {

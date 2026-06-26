@@ -62,12 +62,8 @@
             (click)="showFeeComparisonModal()"
             class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover transition-colors transition-duration-150"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
-              >🏷️</span
-            >
-            <span class="text-xs text-center line-height-2 text-700"
-              >Cuotas (Fija)</span
-            >
+            <app-icon icon="mdi:tag-outline" class="mb-1" style="font-size:1.5rem;color:var(--ds-text-primary);"></app-icon>
+            <span class="text-xs text-center line-height-2 text-700">Cuotas (Fija)</span>
           </div>
         </div>
 
@@ -77,12 +73,8 @@
             (click)="showFeeComparisonByIndivisoModal()"
             class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover transition-colors transition-duration-150"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
-              >📊</span
-            >
-            <span class="text-xs text-center line-height-2 text-700"
-              >Cuotas (Indiviso)</span
-            >
+            <app-icon icon="mdi:chart-bar" class="mb-1" style="font-size:1.5rem;color:var(--ds-text-primary);"></app-icon>
+            <span class="text-xs text-center line-height-2 text-700">Cuotas (Indiviso)</span>
           </div>
         </div>
 
@@ -93,12 +85,8 @@
             [class.opacity-50]="currentProposal()?.status !== 'Borrador'"
             class="surface-card border-1 border-blue-200 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-blue-50 transition-colors transition-duration-150"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
-              >➕</span
-            >
-            <span class="text-xs text-center line-height-2 text-blue-700"
-              >Añadir Cuenta</span
-            >
+            <app-icon icon="mdi:plus-circle-outline" class="mb-1" style="font-size:1.5rem;color:var(--ds-primary);"></app-icon>
+            <span class="text-xs text-center line-height-2 text-blue-700">Añadir Cuenta</span>
           </div>
         </div>
 
@@ -109,12 +97,8 @@
             (click)="auditProposal()"
             class="bg-gray-900 border-1 border-gray-900 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-gray-800 transition-colors transition-duration-150"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
-              >🤖</span
-            >
-            <span class="text-xs text-center line-height-2 text-white"
-              >Auditoría IA</span
-            >
+            <app-icon icon="mdi:robot-outline" class="mb-1" style="font-size:1.5rem;color:#ffffff;"></app-icon>
+            <span class="text-xs text-center line-height-2 text-white">Auditoría IA</span>
           </div>
         </div>
 
@@ -125,12 +109,8 @@
             [class.opacity-50]="auditLoading || forecastLoading"
             class="bg-gray-900 border-1 border-gray-900 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-gray-800 transition-colors transition-duration-150"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
-              >📈</span
-            >
-            <span class="text-xs text-center line-height-2 text-white"
-              >Proyección 2026</span
-            >
+            <app-icon icon="mdi:chart-line" class="mb-1" style="font-size:1.5rem;color:#ffffff;"></app-icon>
+            <span class="text-xs text-center line-height-2 text-white">Proyección 2026</span>
           </div>
         </div>
 
@@ -140,12 +120,8 @@
             (click)="exportarResumenExcel()"
             class="surface-card border-1 border-green-300 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-green-50 transition-colors transition-duration-150"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
-              >📤</span
-            >
-            <span class="text-xs text-center line-height-2 text-green-700"
-              >Excel</span
-            >
+            <app-icon icon="mdi:microsoft-excel" class="mb-1" style="font-size:1.5rem;color:var(--ds-success,#006837);"></app-icon>
+            <span class="text-xs text-center line-height-2 text-green-700">Excel</span>
           </div>
         </div>
         }
@@ -156,12 +132,8 @@
             (click)="toggleBaseBudgetMonthlyColumn()"
             class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
-              >{{ baseBudgetMonthlyButtonEmoji }}</span
-            >
-            <span class="text-xs text-center line-height-2 text-700"
-              >{{ baseBudgetMonthlyButtonLabel }}</span
-            >
+            <app-icon [icon]="baseBudgetMonthlyButtonIcon" class="mb-1" style="font-size:1.5rem;color:var(--ds-text-primary);"></app-icon>
+            <span class="text-xs text-center line-height-2 text-700">{{ baseBudgetMonthlyButtonLabel }}</span>
           </div>
         </div>
 
@@ -170,12 +142,8 @@
             (click)="toggleBaseBudgetAnnualColumn()"
             class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
-              >{{ baseBudgetAnnualButtonEmoji }}</span
-            >
-            <span class="text-xs text-center line-height-2 text-700"
-              >{{ baseBudgetAnnualButtonLabel }}</span
-            >
+            <app-icon [icon]="baseBudgetAnnualButtonIcon" class="mb-1" style="font-size:1.5rem;color:var(--ds-text-primary);"></app-icon>
+            <span class="text-xs text-center line-height-2 text-700">{{ baseBudgetAnnualButtonLabel }}</span>
           </div>
         </div>
 
@@ -184,12 +152,8 @@
             (click)="toggleFiscalYearAnnualColumn()"
             class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
-              >{{ fiscalYearAnnualButtonEmoji }}</span
-            >
-            <span class="text-xs text-center line-height-2 text-700"
-              >{{ fiscalYearAnnualButtonLabel }}</span
-            >
+            <app-icon [icon]="fiscalYearAnnualButtonIcon" class="mb-1" style="font-size:1.5rem;color:var(--ds-text-primary);"></app-icon>
+            <span class="text-xs text-center line-height-2 text-700">{{ fiscalYearAnnualButtonLabel }}</span>
           </div>
         </div>
 
@@ -198,12 +162,8 @@
             (click)="toggleshowProjectedExpenses()"
             class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
-              >{{ projectedExpensesButtonEmoji }}</span
-            >
-            <span class="text-xs text-center line-height-2 text-700"
-              >{{ projectedExpensesButtonLabel }}</span
-            >
+            <app-icon [icon]="projectedExpensesButtonIcon" class="mb-1" style="font-size:1.5rem;color:var(--ds-text-primary);"></app-icon>
+            <span class="text-xs text-center line-height-2 text-700">{{ projectedExpensesButtonLabel }}</span>
           </div>
         </div>
 
@@ -213,12 +173,8 @@
             (click)="showProjectedExpensesModal()"
             class="surface-card border-1 border-orange-300 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-orange-50 transition-colors transition-duration-150"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
-              >⚙️</span
-            >
-            <span class="text-xs text-center line-height-2 text-orange-700"
-              >Admin Proyección</span
-            >
+            <app-icon icon="mdi:cog-outline" class="mb-1" style="font-size:1.5rem;color:var(--ds-warning,#b45309);"></app-icon>
+            <span class="text-xs text-center line-height-2 text-orange-700">Admin Proyección</span>
           </div>
         </div>
 
@@ -228,12 +184,8 @@
             (click)="showMaintenanceCalendarModal()"
             class="bg-gray-900 border-1 border-gray-900 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-gray-800 transition-colors transition-duration-150"
           >
-            <span class="emoji-icon mb-1" style="font-size: 1.25rem !important"
-              >📅</span
-            >
-            <span class="text-xs text-center line-height-2 text-white"
-              >Calendario Mtto</span
-            >
+            <app-icon icon="mdi:calendar-outline" class="mb-1" style="font-size:1.5rem;color:#ffffff;"></app-icon>
+            <span class="text-xs text-center line-height-2 text-white">Calendario Mtto</span>
           </div>
         </div>
       </div>
