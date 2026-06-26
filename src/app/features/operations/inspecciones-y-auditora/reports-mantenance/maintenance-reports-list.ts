@@ -9,6 +9,7 @@ import { documentTextOutline } from "ionicons/icons";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PageTitleReport } from "src/app/core/components/title-page-report/page-title-report";
@@ -32,6 +33,7 @@ import { MenuReportMaintenance } from "./menu-report-maintenance";
     PageTitleReport,
     CustomInputTextSignal,
     DataViewMobile,
+    EmptyState,
     IonItem,
     IonLabel,
   ],

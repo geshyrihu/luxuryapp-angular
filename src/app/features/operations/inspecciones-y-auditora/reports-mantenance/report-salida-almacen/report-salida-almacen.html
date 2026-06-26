@@ -5,6 +5,9 @@
   [scrollHeight]="scrollHeight"
   styleClass="custom-table card hidden md:block"
 >
+  <ng-template #caption>
+    <primeng-custom-caption title="SALIDA INSUMOS" [showAdd]="false" [showSearch]="false" />
+  </ng-template>
   <ng-template #body let-item>
     <tr pRowGroupHeader>
       <td colspan="4">

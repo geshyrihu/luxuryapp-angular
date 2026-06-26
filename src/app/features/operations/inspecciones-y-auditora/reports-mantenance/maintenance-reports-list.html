@@ -48,8 +48,15 @@
       <td class="text-center">
         <a [routerLink]="[item.route]">
           ver
-          <app-icon [icon]="'mdi:hand-point-right'" class="icon icon- icon-lg"></app-icon>
+          <app-icon [icon]="'mdi:hand-point-right'"></app-icon>
         </a>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="2">
+        <app-empty-state icon="mdi:file-document-outline" title="Sin reportes" message="No hay reportes disponibles para este periodo." />
       </td>
     </tr>
   </ng-template>

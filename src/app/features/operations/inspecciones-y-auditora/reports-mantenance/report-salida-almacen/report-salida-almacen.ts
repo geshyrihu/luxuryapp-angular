@@ -2,6 +2,7 @@ import { Component, computed, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PageTitleReportMaintenance } from "src/app/core/components/title-page-report-maintenance/page-title-report-maintenance";
 import {
   globalFilterFields,
@@ -16,7 +17,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 @Component({
   selector: "app-report-salida-almacen",
   templateUrl: "./report-salida-almacen.html",
-  imports: [TableModule, PageTitleReportMaintenance],
+  imports: [TableModule, PageTitleReportMaintenance, PrimeNgCustomCaption],
 })
 export class ReportSalidaAlmacen {
   apiResponseS = inject(ApiResponseService);

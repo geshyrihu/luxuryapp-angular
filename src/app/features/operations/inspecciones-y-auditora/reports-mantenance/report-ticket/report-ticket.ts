@@ -4,6 +4,7 @@ import { toSignal } from "@angular/core/rxjs-interop";
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PageTitleReportMaintenance } from "src/app/core/components/title-page-report-maintenance/page-title-report-maintenance";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -19,6 +20,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
     TableModule,
     AvatarModule,
     PageTitleReportMaintenance,
+    PrimeNgCustomCaption,
   ],
 })
 export class ReportTicket {

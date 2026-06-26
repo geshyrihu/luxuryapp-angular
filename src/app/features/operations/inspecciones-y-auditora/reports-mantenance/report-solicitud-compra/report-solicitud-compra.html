@@ -7,6 +7,9 @@
   [scrollHeight]="scrollHeight"
   styleClass="custom-table card hidden md:block"
 >
+  <ng-template #caption>
+    <primeng-custom-caption title="SOLICITUDES DE COMPRA" [showAdd]="false" [showSearch]="false" />
+  </ng-template>
   <ng-template #header>
     <tr>
       <th>#</th>
@@ -29,7 +32,7 @@
   </ng-template>
 </p-table>
 }
-<page-title-report-maintenance title="ORDENES DE COMPRA" />
+<page-title-report-maintenance title="ÓRDENES DE COMPRA" />
 @if (ordenesCompra()) {
 <p-table
   #dt
@@ -38,6 +41,9 @@
   [scrollHeight]="scrollHeight"
   styleClass="custom-table card hidden md:block"
 >
+  <ng-template #caption>
+    <primeng-custom-caption title="ÓRDENES DE COMPRA" [showAdd]="false" [showSearch]="false" />
+  </ng-template>
   <ng-template #header>
     <tr>
       <th>#</th>

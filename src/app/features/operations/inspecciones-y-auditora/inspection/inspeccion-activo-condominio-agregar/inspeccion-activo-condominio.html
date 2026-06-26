@@ -10,18 +10,12 @@
         [horizontal]="false"
       />
 
-      <div class="mb-3">
-        <label for="position">Posición</label>
-        <p-inputNumber
-          inputId="position"
-          [formControl]="form.controls.position"
-          placeholder="Posición del área"
-          mode="decimal"
-          [minFractionDigits]="0"
-          [maxFractionDigits]="0"
-          styleClass="w-full"
-        ></p-inputNumber>
-      </div>
+      <custom-input-number-signal
+        [control]="form.controls.position"
+        label="Posición"
+        placeholder="Posición del área"
+        [horizontal]="false"
+      />
 
       <div class="mb-3">
         <label>Revisiones</label>
@@ -32,7 +26,7 @@
             class="flex justify-content-between align-items-center border-1 surface-border border-round p-2 mb-2"
           >
             <span>{{ review.value.label }}</span>
-            <app-icon [icon]="'mdi:delete'" class="text-red-500 cursor-pointer" (click)="onRemoveReview(i)"></app-icon>
+            <app-icon [icon]="'mdi:delete'" class="cursor-pointer" style="color:var(--ds-danger);" (click)="onRemoveReview(i)"></app-icon>
           </div>
           } @if (reviewsControl.controls.length === 0) {
           <div class="text-color-secondary text-sm">

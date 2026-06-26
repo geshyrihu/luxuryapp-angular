@@ -8,7 +8,7 @@
   styleClass="custom-table card hidden md:block"
 >
   <ng-template #caption>
-    <div>TICKETS POR AREA</div>
+    <primeng-custom-caption title="TICKETS POR ÁREA" [showAdd]="false" [showSearch]="false" />
   </ng-template>
   <ng-template #header>
     <tr>
@@ -68,7 +68,7 @@
     </tr>
   </ng-template>
   <ng-template #caption>
-    <div>ASIGNACIÓN DE TICKETS</div>
+    <primeng-custom-caption title="ASIGNACIÓN DE TICKETS" [showAdd]="false" [showSearch]="false" />
   </ng-template>
   <ng-template #body let-rowData let-rowIndex="rowIndex">
     @if (!rowData.subgroup) {
@@ -96,7 +96,7 @@
   styleClass="custom-table card hidden md:block"
 >
   <ng-template #caption>
-    <div>TICKETS SOLICITADOS</div>
+    <primeng-custom-caption title="TICKETS SOLICITADOS" [showAdd]="false" [showSearch]="false" />
   </ng-template>
   <ng-template #header>
     <tr>
@@ -133,19 +133,13 @@
         </div>
       </td>
       <td class="text-center">
-        <span class="pointer h4 card-title badge text-primary p-1 w-25">
-          {{ item.solicitudes }}
-        </span>
+        <span class="font-bold" style="color:var(--ds-primary);">{{ item.solicitudes }}</span>
       </td>
       <td class="text-center">
-        <span class="pointer h4 card-title badge text-success p-1 w-25">
-          {{ item.atendidas }}
-        </span>
+        <span class="font-bold" style="color:var(--ds-success);">{{ item.atendidas }}</span>
       </td>
       <td class="text-center">
-        <span class="pointer h4 card-title badge text-danger p-1 w-25">
-          {{ item.pendientes }}
-        </span>
+        <span class="font-bold" style="color:var(--ds-danger);">{{ item.pendientes }}</span>
       </td>
     </tr>
   </ng-template>

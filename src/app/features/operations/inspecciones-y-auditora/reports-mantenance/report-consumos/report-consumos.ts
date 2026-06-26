@@ -13,6 +13,7 @@ import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom
 import { MultiAxisChart } from "src/app/core/components/charts/multi-axis-chart";
 import { CustomInputMultiselectSignal } from "src/app/core/components/inputs/web/custom-input-multiselect-signal";
 import { RangoCalendarioyyyymmdd } from "src/app/core/components/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
+import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
 import { PageTitleReportMaintenance } from "src/app/core/components/title-page-report-maintenance/page-title-report-maintenance";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { IMedidor } from "src/app/core/interfaces/medidor.interface";
@@ -88,6 +89,7 @@ interface IWeeklyExecutiveReport {
     RangoCalendarioyyyymmdd,
     CustomInputMultiselectSignal,
     CustomButtonDownload,
+    PrimeNgCustomCaption,
   ],
 })
 export class ReportConsumos {

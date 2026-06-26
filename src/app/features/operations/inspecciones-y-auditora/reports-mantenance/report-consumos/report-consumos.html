@@ -175,9 +175,11 @@
           [paginator]="true"
           [rows]="10"
           [rowsPerPageOptions]="[10, 25, 50]"
-          responsiveLayout="scroll"
-          styleClass="p-datatable-sm"
+          styleClass="custom-table"
         >
+          <ng-template #caption>
+            <primeng-custom-caption title="Detalle por medidor" [showAdd]="false" [showSearch]="false" />
+          </ng-template>
           <ng-template #header>
             <tr>
               <th>Categoria</th>
