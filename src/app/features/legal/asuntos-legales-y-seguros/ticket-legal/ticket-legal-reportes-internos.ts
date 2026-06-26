@@ -1,15 +1,34 @@
 import { CommonModule, DatePipe } from "@angular/common";
-import { Component, inject, OnInit, signal } from "@angular/core";
-import { CardModule } from "primeng/card";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { TagModule } from "primeng/tag";
 import { TableModule } from "primeng/table";
+import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { PageTitleReport } from "src/app/core/components/title-page-report/page-title-report";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { TaskDateRangeSelector } from "src/app/features/operations/task-engine/tasks/components/task-date-range-selector/task-date-range-selector";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 @Component({
   selector: "app-ticket-legal-reportes-internos",
   templateUrl: "./ticket-legal-reportes-internos.html",
-  imports: [CommonModule, TableModule, CardModule, TaskDateRangeSelector],
+  imports: [
+    CommonModule,
+    DatePipe,
+    TableModule,
+    TagModule,
+    AppIcon,
+    DataViewMobile,
+    EmptyState,
+    IonItem,
+    IonLabel,
+    PageTitleReport,
+    PrimeNgCustomCaption,
+    TaskDateRangeSelector,
+  ],
 })
 export class TicketLegalReportesInternos implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -32,6 +51,19 @@ export class TicketLegalReportesInternos implements OnInit {
   startDate = signal<string>("");
   endDate = signal<string>("");
   scrollHeight = this.tableScrollHeightS.scrollHeight;
+
+  kpiRows = computed(() => {
+    const d = this.reportData();
+    if (!d) return [];
+    return [
+      { icon: null,             iconColor: null,                   value: d.ticketsAlInicio,           label: "TICKET INICIAL" },
+      { icon: null,             iconColor: null,                   value: d.ticketsAlFinal,             label: "TICKET FINAL" },
+      { icon: "mdi:plus",       iconColor: "var(--ds-primary)",    value: d.ticketsEnRango,             label: "SOLICITUDES NUEVAS" },
+      { icon: "mdi:minus",      iconColor: "var(--ds-success)",    value: d.solicitudesAtendidas,       label: "SOLICITUDES ATENDIDAS" },
+      { icon: "mdi:equal",      iconColor: "var(--ds-warning)",    value: d.pendientesSoloDelPeriodo,   label: "SOLICITUDES PENDIENTES DEL PERIODO" },
+      { icon: "mdi:equal",      iconColor: "var(--ds-danger)",     value: d.pendientesAlFinal,          label: "SOLICITUDES PENDIENTES ACUMULADAS" },
+    ];
+  });
 
   async ngOnInit(): Promise<void> {
     // Calculate the start date as the first day of the previous month
