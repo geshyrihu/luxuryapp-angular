@@ -106,7 +106,7 @@ import { BaseInputSignal } from "./base-input-signal";
       ion-textarea.ion-focused,
       ion-select.ion-focused {
         --border-color: var(--ds-border-focus, #0b3164) !important;
-        --box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        --box-shadow: 0 0 0 3px color-mix(in srgb, var(--ds-border-focus) 20%, transparent);
         outline: none;
       }
       ion-input.ion-invalid.ion-touched,
@@ -117,7 +117,7 @@ import { BaseInputSignal } from "./base-input-signal";
       ion-input.ion-invalid.ion-focused,
       ion-textarea.ion-invalid.ion-focused,
       ion-select.ion-invalid.ion-focused {
-        --box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+        --box-shadow: 0 0 0 3px color-mix(in srgb, var(--ds-border-error) 20%, transparent);
       }
       ion-input.ion-disabled,
       ion-textarea.ion-disabled,

@@ -20,21 +20,9 @@ import {
 import { PlatformService } from "src/app/core/services/platform.service";
 import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
 
-/**
- * 🧱 BASE INPUT SIGNAL - El cimiento de tus formularios (Web/PrimeNG)
- * -------------------------------------------------------------------------
- * Componente base para todos los inputs (web PrimeNG + mobile Ionic).
- * Layout con label, field-content y errores de validación.
- * Los inputs en inputs/web/ extienden esta clase y detectan plataforma via this.platform.
- */
 @Component({
   selector: "base-input-signal",
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ValidationErrorsCustomInput,
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ValidationErrorsCustomInput],
   template: `
     @if (!hidden()) {
       @if (onlyInput()) {
@@ -42,68 +30,26 @@ import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
           <ng-content></ng-content>
         </div>
       } @else {
-        <div class="field" [class.field-horizontal]="horizontal()" [class.mb-0]="noMargin()">
-          @if (label()) {
-            <label [for]="platform.isMobile() ? null : id()" class="field-label">
-              {{ label() }}
-              @if (isRequired()) {
-                <span class="text-red-400">*</span>
-              }
-            </label>
-          }
-          <div class="field-content">
-            <ng-content></ng-content>
-            @if (description()) {
+        <div class="field" [class.mb-0]="noMargin()">
+          <ng-content></ng-content>
+          @if (description()) {
             <small class="block mt-1 text-500 line-height-2 italic px-1">
-              <app-icon [icon]="'mdi:information'" class="pi mr-1 text-xs"></app-icon>
               {{ description() }}
             </small>
-            }
-            <app-validation-errors-custom-input
-              [control]="control() || internalControl"
-              [placeholder]="label()"
-            />
-          </div>
+          }
+          <app-validation-errors-custom-input
+            [control]="control() || internalControl"
+            [placeholder]="label()"
+          />
         </div>
       }
     }
   `,
-  styles: [
-    `
-      .field {
-        margin-bottom: 1rem;
-      }
-      .field.mb-0 {
-        margin-bottom: 0 !important;
-      }
-      .field-horizontal {
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-        gap: 1rem;
-        align-items: start;
-      }
-      .field-label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-      }
-      .field-horizontal .field-label {
-        margin-bottom: 0;
-        padding-top: 0.5rem;
-      }
-      .field-content {
-        width: 100%;
-      }
-      .fluid {
-        width: 100%;
-      }
-      @media (max-width: 768px) {
-        .field-horizontal {
-          grid-template-columns: 1fr;
-        }
-      }
-    `,
-  ],
+  styles: [`
+    .field { margin-bottom: 1rem; }
+    .field.mb-0 { margin-bottom: 0 !important; }
+    .fluid { width: 100%; }
+  `],
 })
 export class BaseInputSignal implements ControlValueAccessor, OnInit {
   readonly platform = inject(PlatformService);
@@ -121,6 +67,11 @@ export class BaseInputSignal implements ControlValueAccessor, OnInit {
   noMargin = input<boolean>(false);
   description = input<string>("");
 
+  /** "small" cuando pantalla < 768 px — úsalo en [pSize] o [inputStyleClass] de cada input hijo. */
+  readonly mobileSize = computed<"small" | undefined>(
+    () => (this.platform.isMobile() ? "small" : undefined)
+  );
+
   @HostBinding("style.display") get display() {
     return this.hidden() ? "none" : null;
   }
@@ -132,11 +83,8 @@ export class BaseInputSignal implements ControlValueAccessor, OnInit {
       const isDisabled = this.disabled();
       const ctrl = this.control() || this.internalControl;
       if (ctrl) {
-        if (isDisabled) {
-          ctrl.disable({ emitEvent: false });
-        } else {
-          ctrl.enable({ emitEvent: false });
-        }
+        if (isDisabled) ctrl.disable({ emitEvent: false });
+        else ctrl.enable({ emitEvent: false });
       }
     });
   }
@@ -162,9 +110,7 @@ export class BaseInputSignal implements ControlValueAccessor, OnInit {
     if (!this.control()) {
       this.internalControl.valueChanges
         .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe((value) => {
-          this.onChange(value);
-        });
+        .subscribe((value) => { this.onChange(value); });
     }
   }
 
@@ -173,24 +119,12 @@ export class BaseInputSignal implements ControlValueAccessor, OnInit {
 
   writeValue(value: any): void {
     const ctrl = this.control() || this.internalControl;
-    if (ctrl && ctrl.value !== value) {
-      ctrl.setValue(value, { emitEvent: false });
-    }
+    if (ctrl && ctrl.value !== value) ctrl.setValue(value, { emitEvent: false });
   }
-
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-    this.onTouch = fn;
-  }
-
+  registerOnChange(fn: any): void { this.onChange = fn; }
+  registerOnTouched(fn: any): void { this.onTouch = fn; }
   setDisabledState(isDisabled: boolean): void {
-    if (isDisabled) {
-      this.internalControl.disable();
-    } else {
-      this.internalControl.enable();
-    }
+    if (isDisabled) this.internalControl.disable();
+    else this.internalControl.enable();
   }
 }

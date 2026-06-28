@@ -1,17 +1,30 @@
-import { Component, input, model, output, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { TableModule } from "primeng/table";
+import {
+  Component,
+  input,
+  model,
+  output,
+  ViewEncapsulation,
+} from "@angular/core";
+import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
+import { DatePickerModule } from "primeng/datepicker";
 import { InputTextModule } from "primeng/inputtext";
 import { SelectModule } from "primeng/select";
-import { DatePickerModule } from "primeng/datepicker";
-import { FormsModule } from "@angular/forms";
+import { TableModule } from "primeng/table";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 
 export interface DataGridColumn {
   field: string;
   header: string;
-  type?: "text" | "number" | "select" | "date" | "boolean" | "currency" | "icon";
+  type?:
+    | "text"
+    | "number"
+    | "select"
+    | "date"
+    | "boolean"
+    | "currency"
+    | "icon";
   editable?: boolean;
   sortable?: boolean;
   filterable?: boolean;
@@ -38,7 +51,9 @@ export interface DataGridColumn {
   template: `
     <div class="data-grid-root">
       @if (title() || globalFilter()) {
-        <div class="data-grid-toolbar flex align-items-center gap-2 flex-wrap mb-2">
+        <div
+          class="data-grid-toolbar flex align-items-center gap-2 flex-wrap mb-2"
+        >
           @if (title()) {
             <strong class="data-grid-title">{{ title() }}</strong>
           }
@@ -138,7 +153,12 @@ export interface DataGridColumn {
           </tr>
         </ng-template>
 
-        <ng-template pTemplate="body" let-row let-columns="columns" let-index="rowIndex">
+        <ng-template
+          pTemplate="body"
+          let-row
+          let-columns="columns"
+          let-index="rowIndex"
+        >
           <tr>
             @if (selectionMode() === "multiple") {
               <td>
@@ -173,8 +193,14 @@ export interface DataGridColumn {
                     {{ formatCurrency(row[col.field]) }}
                   } @else if (col.type === "boolean") {
                     <app-icon
-                      [icon]="row[col.field] ? 'mdi:check-circle' : 'mdi:close-circle'"
-                      [style.color]="row[col.field] ? 'var(--ds-success)' : 'var(--ds-text-muted)'"
+                      [icon]="
+                        row[col.field] ? 'mdi:check-circle' : 'mdi:close-circle'
+                      "
+                      [style.color]="
+                        row[col.field]
+                          ? 'var(--ds-success)'
+                          : 'var(--ds-text-muted)'
+                      "
                     />
                   } @else if (col.format) {
                     {{ col.format(row[col.field]) }}
@@ -211,7 +237,7 @@ export interface DataGridColumn {
           </tr>
         </ng-template>
 
-        <ng-template pTemplate="emptymessage">
+        <ng-template #emptymessage>
           <div class="p-4 text-center text-color-secondary">
             <app-icon icon="mdi:table-off" class="text-2xl mb-2" />
             <p class="text-sm m-0">{{ emptyMessage() }}</p>
@@ -220,18 +246,20 @@ export interface DataGridColumn {
       </p-table>
     </div>
   `,
-  styles: [`
-    .data-grid-root {
-      width: 100%;
-    }
-    .data-grid-toolbar {
-      padding: 0.5rem 0;
-    }
-    .data-grid-title {
-      font-size: var(--ds-font-size-section-title);
-      color: var(--ds-text-primary);
-    }
-  `],
+  styles: [
+    `
+      .data-grid-root {
+        width: 100%;
+      }
+      .data-grid-toolbar {
+        padding: 0.5rem 0;
+      }
+      .data-grid-title {
+        font-size: var(--ds-font-size-section-title);
+        color: var(--ds-text-primary);
+      }
+    `,
+  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class DataGrid {

@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import {
   Component,
   ElementRef,
@@ -8,7 +9,6 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from "@angular/core";
-import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
@@ -23,7 +23,14 @@ import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 @Component({
   selector: "app-barcode-input",
   standalone: true,
-  imports: [CommonModule, FormsModule, ButtonModule, InputTextModule, TooltipModule, AppIcon],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ButtonModule,
+    InputTextModule,
+    TooltipModule,
+    AppIcon,
+  ],
   template: `
     <div class="bi-root">
       @if (label()) {
@@ -81,35 +88,69 @@ import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
       }
     </div>
   `,
-  styles: [`
-    .bi-root { display: flex; flex-direction: column; gap: 0.35rem; }
-    .bi-label { font-size: var(--ds-font-size-label, 0.875rem); color: var(--ds-text-secondary); font-weight: 500; }
-    .bi-row { display: flex; gap: 0.375rem; }
-    .bi-input { flex: 1; font-family: var(--ds-font-family-mono, monospace); letter-spacing: 0.05em; }
-    .bi-scan-btn, .bi-search-btn { flex-shrink: 0; }
-    .bi-hidden { display: none; }
-    .bi-error { font-size: var(--ds-font-size-help, 0.8125rem); color: var(--ds-danger, #ba1a1a); }
-    .bi-hint  { font-size: var(--ds-font-size-help, 0.8125rem); color: var(--ds-text-muted); }
-  `],
+  styles: [
+    `
+      .bi-root {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+      .bi-label {
+        font-size: var(--ds-font-size-label, 0.875rem);
+        color: var(--ds-text-secondary);
+        font-weight: 500;
+      }
+      .bi-row {
+        display: flex;
+        gap: 0.375rem;
+      }
+      .bi-input {
+        flex: 1;
+        font-family: var(--ds-font-family-mono, monospace);
+        letter-spacing: 0.05em;
+      }
+      .bi-scan-btn,
+      .bi-search-btn {
+        flex-shrink: 0;
+      }
+      .bi-hidden {
+        display: none;
+      }
+      .bi-error {
+        font-size: var(--ds-font-size-help, 0.8125rem);
+        color: var(--ds-danger, #ba1a1a);
+      }
+      .bi-hint {
+        font-size: var(--ds-font-size-help, 0.8125rem);
+        color: var(--ds-text-muted);
+      }
+    `,
+  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class AppBarcodeInput {
   @ViewChild("cameraInput") cameraRef!: ElementRef<HTMLInputElement>;
 
-  value       = model<string>("");
-  label       = input<string>("");
-  hint        = input<string>("");
+  value = model<string>("");
+  label = input<string>("");
+  hint = input<string>("");
   placeholder = input<string>("Escanear o escribir código");
-  disabled    = input<boolean>(false);
-  showSearch  = input<boolean>(true);
-  formats     = input<string[]>(["qr_code", "ean_13", "ean_8", "code_128", "code_39"]);
+  disabled = input<boolean>(false);
+  showSearch = input<boolean>(true);
+  formats = input<string[]>([
+    "qr_code",
+    "ean_13",
+    "ean_8",
+    "code_128",
+    "code_39",
+  ]);
 
   valueChange = output<string>();
   barcodeFound = output<string>();
-  searched     = output<string>();
+  searched = output<string>();
 
   scanning = signal(false);
-  error    = signal<string>("");
+  error = signal<string>("");
 
   async scan(): Promise<void> {
     // Try BarcodeDetector API first (Chrome Android, Edge)
@@ -124,19 +165,33 @@ export class AppBarcodeInput {
   private async scanWithBarcodeDetector(): Promise<void> {
     this.scanning.set(true);
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: "environment" },
+      });
       const track = stream.getVideoTracks()[0];
 
       // ImageCapture and BarcodeDetector are experimental — declare locally
       type ImageCaptureAPI = { grabFrame: () => Promise<ImageBitmap> };
-      type BarcodeDetectorAPI = { detect: (src: ImageBitmap) => Promise<{ rawValue: string }[]> };
-      const IC  = (window as unknown as { ImageCapture: new (t: MediaStreamTrack) => ImageCaptureAPI }).ImageCapture;
-      const BD  = (window as unknown as { BarcodeDetector: new (opts: { formats: string[] }) => BarcodeDetectorAPI }).BarcodeDetector;
+      type BarcodeDetectorAPI = {
+        detect: (src: ImageBitmap) => Promise<{ rawValue: string }[]>;
+      };
+      const IC = (
+        window as unknown as {
+          ImageCapture: new (t: MediaStreamTrack) => ImageCaptureAPI;
+        }
+      ).ImageCapture;
+      const BD = (
+        window as unknown as {
+          BarcodeDetector: new (opts: {
+            formats: string[];
+          }) => BarcodeDetectorAPI;
+        }
+      ).BarcodeDetector;
 
-      const capture  = new IC(track);
-      const bitmap   = await capture.grabFrame();
+      const capture = new IC(track);
+      const bitmap = await capture.grabFrame();
       const detector = new BD({ formats: this.formats() });
-      const results  = await detector.detect(bitmap);
+      const results = await detector.detect(bitmap);
       track.stop();
       if (results.length > 0) {
         this.value.set(results[0].rawValue);
@@ -153,7 +208,9 @@ export class AppBarcodeInput {
 
   onCameraCapture(_event: Event): void {
     // In fallback mode, user selected image — we can't decode without BarcodeDetector
-    this.error.set("Detección automática no disponible en este dispositivo. Introduce el código manualmente.");
+    this.error.set(
+      "Detección automática no disponible en este dispositivo. Introduce el código manualmente.",
+    );
   }
 
   search(): void {

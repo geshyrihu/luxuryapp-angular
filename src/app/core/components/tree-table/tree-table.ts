@@ -1,8 +1,15 @@
-import { Component, computed, input, model, output, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { TreeTableModule } from "primeng/treetable";
+import {
+  Component,
+  computed,
+  input,
+  model,
+  output,
+  ViewEncapsulation,
+} from "@angular/core";
 import { TreeNode } from "primeng/api";
 import { ButtonModule } from "primeng/button";
+import { TreeTableModule } from "primeng/treetable";
 import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
 
 export interface TreeTableColumn {
@@ -72,7 +79,7 @@ export interface TreeTableColumn {
           <ng-content select="[caption]" />
         </ng-template>
 
-        <ng-template pTemplate="emptymessage">
+        <ng-template #emptymessage>
           <div class="p-4 text-center text-color-secondary">
             <app-icon icon="mdi:file-tree-outline" class="text-2xl mb-2" />
             <p class="text-sm m-0">{{ emptyMessage() }}</p>
@@ -91,26 +98,30 @@ export interface TreeTableColumn {
       </p-treeTable>
     </div>
   `,
-  styles: [`
-    .tree-table-root {
-      width: 100%;
-    }
-    .tree-table-header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.75rem 0;
-      font-size: var(--ds-font-size-section-title);
-      color: var(--ds-text-primary);
-    }
-  `],
+  styles: [
+    `
+      .tree-table-root {
+        width: 100%;
+      }
+      .tree-table-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 0;
+        font-size: var(--ds-font-size-section-title);
+        color: var(--ds-text-primary);
+      }
+    `,
+  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class TreeTable {
   nodes = input.required<TreeNode[]>();
   columns = input.required<TreeTableColumn[]>();
   dataKey = input<string>("data");
-  selectionMode = input<"single" | "multiple" | "checkbox" | undefined>(undefined);
+  selectionMode = input<"single" | "multiple" | "checkbox" | undefined>(
+    undefined,
+  );
   selection = model<any>(undefined);
   loading = input<boolean>(false);
   paginator = input<boolean>(false);
@@ -151,6 +162,6 @@ export class TreeTable {
     this.nodes().map((node) => ({
       ...node,
       icon: node.icon || "mdi:folder-outline",
-    }))
+    })),
   );
 }

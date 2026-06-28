@@ -25,7 +25,7 @@ import { Popover, PopoverModule } from "primeng/popover";
       <button
         pButton
         type="button"
-        icon="icon icon-pi-ellipsis-v"
+        icon="pi pi-ellipsis-v"
         class="border-round-lg p-button-text action-menu-button"
         (click)="popover.toggle($event)"
         aria-label="Opciones"

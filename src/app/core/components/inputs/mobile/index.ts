@@ -1,14 +1,42 @@
-﻿export { IonInputCheckbox } from "./ion-input-checkbox";
-export { IonInputCurrency } from "./ion-input-currency";
-export { IonInputDate } from "./ion-input-date";
-export { IonInputFile } from "./ion-input-file";
-export { IonInputMultiselect } from "./ion-input-multiselect";
-export { IonInputNumber } from "./ion-input-number";
-export { IonInputPassword } from "./ion-input-password";
-export { IonInputSearch } from "./ion-input-search";
-export { IonInputSelect } from "./ion-input-select";
-export { IonInputSelectBool } from "./ion-input-select-bool";
-export { IonInputText } from "./ion-input-text";
-export { IonInputTextarea } from "./ion-input-textarea";
-export { IonInputTime } from "./ion-input-time";
-export { IonInputToggle } from "./ion-input-toggle";
+export {
+  IonInputCheckbox
+} from "../../mobile/inputs/ion-input-checkbox";
+export {
+  IonInputCurrency
+} from "../../mobile/inputs/ion-input-currency";
+export {
+  IonInputDate
+} from "../../mobile/inputs/ion-input-date";
+export {
+  IonInputFile
+} from "../../mobile/inputs/ion-input-file";
+export {
+  IonInputMultiselect
+} from "../../mobile/inputs/ion-input-multiselect";
+export {
+  IonInputNumber
+} from "../../mobile/inputs/ion-input-number";
+export {
+  IonInputPassword
+} from "../../mobile/inputs/ion-input-password";
+export {
+  IonInputSearch
+} from "../../mobile/inputs/ion-input-search";
+export {
+  IonInputSelectBool
+} from "../../mobile/inputs/ion-input-select-bool";
+export {
+  IonInputSelect
+} from "../../mobile/inputs/ion-input-select";
+export {
+  IonInputText
+} from "../../mobile/inputs/ion-input-text";
+export {
+  IonInputTextarea
+} from "../../mobile/inputs/ion-input-textarea";
+export {
+  IonInputTime
+} from "../../mobile/inputs/ion-input-time";
+export {
+  IonInputToggle
+} from "../../mobile/inputs/ion-input-toggle";
