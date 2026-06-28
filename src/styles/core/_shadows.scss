@@ -1,8 +1,13 @@
-// ============================================================
-// _shadows.scss
-// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
-// Escala de sombras del sistema
-// ============================================================
+// ════════════════════════════════════════════════════════════════
+// 🌓 _shadows.scss — Sombras y Focus Rings
+// ════════════════════════════════════════════════════════════════
+// Único lugar donde se definen las sombras del sistema.
+// Expone `--ds-shadow-*` como CSS custom properties.
+//
+// 💡 Regla de oro: prefiere `--ds-shadow-sm` para tarjetas,
+//    `--ds-shadow-lg` para modales/toasts, `--ds-shadow-focus`
+//    para anillos de foco accesibles.
+// ════════════════════════════════════════════════════════════════
 
 // ── ESCALA DE SOMBRAS ─────────────────────────────────────────
 $shadow-none:   none                                                              !default;
@@ -15,7 +20,7 @@ $shadow-2xl:    0 25px 50px -12px rgba(0, 0, 0, 0.25)                           
 $shadow-inner:  inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)                            !default;
 
 // Sombra de focus ring (accesibilidad)
-$shadow-focus:        0 0 0 3px rgba(59, 130, 246, 0.35)   !default;
+$shadow-focus:        0 0 0 3px rgba(0, 5, 14, 0.35)   !default;
 $shadow-focus-danger: 0 0 0 3px rgba(239, 68, 68, 0.35)    !default;
 $shadow-focus-success:0 0 0 3px rgba(34, 197, 94, 0.35)    !default;
 
@@ -29,7 +34,9 @@ $shadow-focus-success:0 0 0 3px rgba(34, 197, 94, 0.35)    !default;
   --ds-shadow-xl:     #{$shadow-xl};
   --ds-shadow-2xl:    #{$shadow-2xl};
   --ds-shadow-inner:  #{$shadow-inner};
-  --ds-shadow-focus:  #{$shadow-focus};
+  --ds-shadow-focus:         #{$shadow-focus};
+  --ds-shadow-focus-danger:  #{$shadow-focus-danger};
+  --ds-shadow-focus-success: #{$shadow-focus-success};
 }
 
 

@@ -309,7 +309,7 @@
     &--active .form-wizard__step-indicator {
       background-color: var(--ds-primary);
       border-color: var(--ds-primary);
-      color: #fff;
+      color: var(--ds-primary-text);
     }
 
     &--active .form-wizard__step-label {
@@ -321,7 +321,7 @@
     &--completed .form-wizard__step-indicator {
       background-color: var(--ds-success);
       border-color: var(--ds-success);
-      color: #fff;
+      color: var(--ds-primary-text);
 
       &::before {
         content: "✓";
@@ -336,7 +336,7 @@
     &--error .form-wizard__step-indicator {
       background-color: var(--ds-danger);
       border-color: var(--ds-danger);
-      color: #fff;
+      color: var(--ds-primary-text);
 
       &::before {
         content: "✕";

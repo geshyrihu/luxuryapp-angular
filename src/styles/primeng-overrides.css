@@ -29,7 +29,7 @@
     font-size: var(--ds-font-size-body);
     font-weight: 500;
     border-radius: var(--ds-radius-btn);
-    transition: var(200ms ease);
+    transition: 200ms ease;
   }
 
   /* Botón primario - usar color de marca */
@@ -92,7 +92,7 @@
     font-size: var(--ds-font-size-body);
     border-radius: var(--ds-radius-input);
     border-color: var(--ds-border);
-    transition: var(100ms ease);
+    transition: 100ms ease;
   }
 
   .p-inputtext:hover {
@@ -159,7 +159,7 @@
 
   /* Filas de la tabla */
   .p-datatable .p-datatable-tbody > tr {
-    transition: var(100ms ease);
+    transition: 100ms ease;
   }
 
   .p-datatable .p-datatable-tbody > tr:hover {

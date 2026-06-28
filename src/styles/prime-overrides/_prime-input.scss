@@ -15,7 +15,9 @@ body {
   .p-textarea,
   .p-inputnumber-input,
   .p-password-input,
-  .p-datepicker-input {
+  .p-datepicker-input,
+  .p-select,
+  .p-multiselect {
     border-radius: var(--ds-radius-input, 4px);
     border-width: var(--ds-control-border-width, 1px);
     border-style: solid;
@@ -23,11 +25,13 @@ body {
     box-sizing: border-box;
   }
 
-  // pInputText keeps a 40px visual height, including the default border.
+  // Altura uniforme 40px para todos los controles de formulario.
   .p-inputtext,
   .p-inputnumber-input,
   .p-password-input,
-  .p-datepicker-input {
+  .p-datepicker-input,
+  .p-select,
+  .p-multiselect {
     height: 40px;
   }
 
@@ -46,6 +50,21 @@ body {
     --p-toggleswitch-width: 2rem;
     --p-toggleswitch-height: 1.1rem;
     --p-toggleswitch-handle-size: 0.8rem;
+  }
+
+  // Responsive border: 1px en mobile, 2px en desktop (ya definido en _variables.scss)
+  @media (max-width: 767px) {
+    .p-inputtext,
+    .p-textarea,
+    .p-inputnumber-input,
+    .p-password-input,
+    .p-datepicker-input,
+    .p-select,
+    .p-multiselect,
+    .p-checkbox-box,
+    .p-radiobutton-box {
+      border-width: 1px;
+    }
   }
 
   // Disabled state — italic + not-allowed cursor

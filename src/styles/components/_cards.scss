@@ -8,7 +8,7 @@
 
 .card {
   background-color: var(--ds-bg-surface);
-  border: 1px solid rgba(0, 0, 0, 0.07);
+  border: 1px solid var(--ds-border);
   border-radius: var(--ds-radius-card, 12px);
   box-shadow: var(--ds-shadow-sm);
   overflow: hidden;
@@ -35,7 +35,7 @@
   }
 
   // ── Borde oscuro (semi-negro, útil sobre fondo claro)
-  &--dark-border { border-color: rgba(0, 0, 0, 0.4); }
+  &--dark-border { border-color: var(--ds-border-strong); }
 
   // ── Seleccionada
   &--selected {
@@ -140,19 +140,19 @@
 }
 
 // ── VARIANTES SÓLIDAS ─────────────────────────────────────────
-.badge-primary  { @extend .badge; background-color: var(--ds-primary-light); color: var(--ds-primary); border-color: #bfdbfe; }
-.badge-success  { @extend .badge; background-color: var(--ds-success-light); color: var(--ds-success); border-color: #bbf7d0; }
-.badge-warning  { @extend .badge; background-color: var(--ds-warning-light); color: #92400e; border-color: #fde68a; }
-.badge-danger   { @extend .badge; background-color: var(--ds-danger-light);  color: var(--ds-danger);  border-color: #fecaca; }
-.badge-info     { @extend .badge; background-color: var(--ds-info-light);    color: var(--ds-info);    border-color: #a5f3fc; }
-.badge-neutral  { @extend .badge; background-color: #f4f4f5; color: #52525b; border-color: #e4e4e7; }
-.badge-secondary { @extend .badge; background-color: #f3f4f6; color: #4b5563; border-color: #d1d5db; }
+.badge-primary  { @extend .badge; background-color: var(--ds-primary-light); color: var(--ds-primary); }
+.badge-success  { @extend .badge; background-color: var(--ds-success-light); color: var(--ds-success); }
+.badge-warning  { @extend .badge; background-color: var(--ds-warning-light); color: var(--ds-warning); }
+.badge-danger   { @extend .badge; background-color: var(--ds-danger-light);  color: var(--ds-danger); }
+.badge-info     { @extend .badge; background-color: var(--ds-info-light);    color: var(--ds-info); }
+.badge-neutral  { @extend .badge; background-color: var(--ds-bg-sunken); color: var(--ds-text-secondary); border-color: var(--ds-border); }
+.badge-secondary { @extend .badge; background-color: var(--ds-bg-elevated); color: var(--ds-text-secondary); border-color: var(--ds-border); }
 
 // ── VARIANTES OUTLINE ─────────────────────────────────────────
 .badge-outline-primary { @extend .badge; background: transparent; color: var(--ds-primary); border-color: var(--ds-primary); }
 .badge-outline-danger  { @extend .badge; background: transparent; color: var(--ds-danger);  border-color: var(--ds-danger); }
 .badge-outline-success { @extend .badge; background: transparent; color: var(--ds-success); border-color: var(--ds-success); }
-.badge-outline-warning { @extend .badge; background: transparent; color: #92400e; border-color: var(--ds-warning); }
+.badge-outline-warning { @extend .badge; background: transparent; color: var(--ds-warning); border-color: var(--ds-warning); }
 
 // ── DOT BADGE (sin texto) ─────────────────────────────────────
 .badge-dot {
@@ -166,7 +166,7 @@
   &--success { background-color: var(--ds-success); }
   &--warning { background-color: var(--ds-warning); }
   &--danger  { background-color: var(--ds-danger);  }
-  &--neutral { background-color: #a1a1aa; }
+  &--neutral { background-color: var(--ds-text-muted); }
 }
 
 // ── TAG ───────────────────────────────────────────────────────
@@ -200,7 +200,7 @@
 
       &:hover {
         opacity: 1;
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color: var(--ds-bg-sunken);
       }
     }
   }

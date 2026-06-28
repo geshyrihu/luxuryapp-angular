@@ -4,8 +4,6 @@
    Extraídos de styles.scss (Phase 3 — Design System integration)
    ========================================================================== */
 
-@use 'core/colors' as c;
-
 /* =======================================
    PRIME PANELMENU (Sidebar)
    ======================================= */
@@ -157,7 +155,7 @@ body.theme-dark .p-panelmenu {
     height: 0.875rem;
     border-radius: 50%;
     border: 2px solid var(--sidebar-bg, #ffffff);
-    background-color: c.$success-500;
+    background-color: var(--ds-success);
   }
 }
 

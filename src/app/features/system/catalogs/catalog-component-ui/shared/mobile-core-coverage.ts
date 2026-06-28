@@ -39,6 +39,7 @@ import {
   CustomInputCheckSignal,
 } from "src/app/core/components/inputs/web";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
 
 @Component({
   selector: "app-mobile-core-coverage",
@@ -48,6 +49,7 @@ import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/
     ReactiveFormsModule,
     ActionMenu,
     DataViewMobile,
+    TapToTop,
     IonBadge,
     IonButtonAdd,
     IonButtonEdit,
@@ -881,6 +883,18 @@ import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/
             </div>
           </div>
         </div>
+      </section>
+
+      <section class="mobile-panel">
+        <div class="mobile-panel__header">
+          <span class="mobile-panel__eyebrow">Utilities</span>
+          <h4 class="mobile-panel__title">Componentes mobile vivos dentro del módulo</h4>
+          <p class="mobile-panel__copy">
+            Esta vista también monta utilidades reales del core. Haz scroll en la
+            página y el botón flotante aparecerá automáticamente.
+          </p>
+        </div>
+        <app-tap-to-top />
       </section>
     </div>
   `,

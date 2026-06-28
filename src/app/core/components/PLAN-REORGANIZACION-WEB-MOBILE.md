@@ -16,8 +16,8 @@
 - Evitar perder piezas ya limpias de DS durante la reorganizacion.
 
 ## Estado actual detectado
-- [x] `inputs/` ya tiene una separacion parcial: `web/`, `mobile/`, `base/`.
-- [ ] `buttons/` aun no tiene paridad completa entre `web/` y `mobile/`.
+- [x] `inputs/` ya tiene una separacion funcional en `web/`, `mobile/`, `base/`.
+- [x] `buttons/` ya tiene separacion funcional en `web/`, `mobile/`, `base/`.
 - [ ] Existen multiples componentes raiz fuera de una organizacion por plataforma:
   - `loader/`
   - `status-badge/`
@@ -84,7 +84,7 @@
 ## Hallazgos de Fase 1
 
 ### Estructura incompleta o inconsistente
-- [x] `buttons` tiene `web` y `base`, pero no `mobile`.
+- [x] `buttons` e `inputs` ya quedaron alineados con la estructura objetivo `base/web/mobile`.
 - [x] `inputs` es la familia mas cercana al objetivo final (`web/mobile/base`).
 - [x] Existen muchos componentes raiz que siguen fuera de una organizacion por plataforma.
 
@@ -178,16 +178,33 @@
 ### 3.1 Buttons
 - [x] Revisar estructura actual de `buttons/`.
 - [x] Completar separacion `web/` y `mobile/`. â€” **Ya existe**: `buttons/base/`, `buttons/web/`, `buttons/mobile/`.
-- [ ] Mover wrappers a `web/buttons/` y `mobile/buttons/`. â€” **Pendiente**: mover fisicamente romperia cientos de imports. La estructura actual ya separa por plataforma. Decidir si es necesario (cosmÃ©tico vs. funcional).
+- [x] Se decide **NO** mover `buttons/` bajo `core/components/web/` o `core/components/mobile/`. â€” La familia `buttons/` queda como API canonica y sus implementaciones viven en `base/`, `web/` y `mobile/`.
 - [x] Ajustar exports â€” `index.ts` ya existen y funcionan.
 - [x] Validar imports consumidores â€” build no reporta errores relacionados.
 
 ### 3.2 Inputs
 - [x] Revisar `inputs/` actual.
 - [x] Confirmar que `web/`, `mobile/` y `base/` esten consistentes. â€” **Ya existe**: `inputs/base/`, `inputs/web/`, `inputs/mobile/`.
-- [ ] Mover cualquier input mal ubicado. â€” **Pendiente**: mismo caso que buttons, mover fisicamente romperia cientos de imports.
+- [x] Se decide **NO** mover `inputs/` bajo `core/components/web/` o `core/components/mobile/`. â€” La familia `inputs/` queda como API canonica y sus implementaciones viven en `base/`, `web/` y `mobile/`.
 - [x] Ajustar barrels â€” ya existen.
 - [x] Validar imports consumidores â€” build no reporta errores relacionados.
+
+## Regla de importacion y gobierno
+- [x] Regla acordada para nuevas implementaciones:
+  - [x] `shared/` es para componentes transversales reutilizables sin sesgo claro de plataforma.
+  - [x] `mobile/` es para componentes mobile-first fuera de las familias `buttons` e `inputs`.
+  - [x] `web/` es para componentes web-first fuera de las familias `buttons` e `inputs`.
+  - [x] `buttons/` e `inputs/` permanecen como familias canonicas y no se reubican fisicamente a `core/components/web/*` ni `core/components/mobile/*`.
+- [x] Regla de consumo para features:
+  - [x] Si el componente pertenece a la familia `buttons`, importar desde `src/app/core/components/buttons/web`, `src/app/core/components/buttons/mobile` o `src/app/core/components/buttons/base`.
+  - [x] Si el componente pertenece a la familia `inputs`, importar desde `src/app/core/components/inputs/web`, `src/app/core/components/inputs/mobile` o `src/app/core/components/inputs/base`.
+  - [x] Si el componente es transversal, importar directo desde `src/app/core/components/shared/<componente>/<componente>`.
+  - [x] Si el componente es web-first y no es button/input, importar directo desde `src/app/core/components/web/<componente>/<componente>`.
+  - [x] Si el componente es mobile-first y no es button/input, importar directo desde `src/app/core/components/mobile/<componente>/<componente>`.
+- [x] Regla de transicion:
+  - [x] No crear nuevas rutas legacy en raiz.
+  - [x] No agregar nuevos re-exports en `core/components/` raiz.
+  - [x] Todo componente nuevo debe nacer ya clasificado en `shared/`, `web/`, `mobile/`, o dentro de `buttons/` / `inputs/`.
 
 ### 3.3 Componentes mobile-first
 - [x] Reubicar componentes claramente mobile a `mobile/`.

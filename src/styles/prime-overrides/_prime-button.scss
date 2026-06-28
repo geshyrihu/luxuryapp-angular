@@ -21,10 +21,10 @@
   // Primary variant
   --p-button-primary-background:         var(--ds-primary);
   --p-button-primary-border-color:       var(--ds-primary);
-  --p-button-primary-color:              #fff;
+  --p-button-primary-color: var(--ds-primary-text);
   --p-button-primary-hover-background:   var(--ds-primary-hover);
   --p-button-primary-hover-border-color: var(--ds-primary-hover);
-  --p-button-primary-active-background:  #1d4ed8;
+  --p-button-primary-active-background:  var(--ds-primary-active);
   --p-button-primary-focus-ring-color:   var(--ds-border-focus);
 }
 
@@ -59,13 +59,13 @@ body {
   }
 
   .p-button-secondary {
-    background-color: #f1f5f9;
-    border-color: #e2e8f0;
-    color: #334155;
+    background-color: var(--ds-bg-sunken);
+    border-color: var(--ds-border-strong);
+    color: var(--ds-text-primary);
 
     &:hover:not(:disabled) {
-      background-color: #e2e8f0;
-      border-color: #cbd5e1;
+      background-color: var(--ds-bg-elevated);
+      border-color: var(--ds-border-strong);
     }
   }
 

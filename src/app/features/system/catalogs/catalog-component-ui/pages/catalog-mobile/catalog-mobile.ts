@@ -12,6 +12,7 @@ import { MobileNavigation } from "./components/mobile-navigation/mobile-navigati
 import { MobileOverlays } from "./components/mobile-overlays/mobile-overlays";
 import { MobileLayout } from "./components/mobile-layout/mobile-layout";
 import { MobilePageStructure } from "./components/mobile-page-structure/mobile-page-structure";
+import { MobileUtilities } from "./components/mobile-utilities/mobile-utilities";
 
 @Component({
   selector: "app-catalog-mobile",
@@ -28,6 +29,7 @@ import { MobilePageStructure } from "./components/mobile-page-structure/mobile-p
     MobileOverlays,
     MobileLayout,
     MobilePageStructure,
+    MobileUtilities,
   ],
   template: `
     <div class="flex flex-column gap-4">
@@ -36,6 +38,18 @@ import { MobilePageStructure } from "./components/mobile-page-structure/mobile-p
 
       <!-- Componentes individuales adicionales -->
       <div class="grid">
+        <div class="col-12 lg:col-6">
+          <app-mobile-buttons />
+        </div>
+        <div class="col-12 lg:col-6">
+          <app-mobile-inputs />
+        </div>
+        <div class="col-12 lg:col-6">
+          <app-mobile-lists />
+        </div>
+        <div class="col-12 lg:col-6">
+          <app-mobile-utilities />
+        </div>
         <div class="col-12 lg:col-6">
           <app-mobile-feedback />
         </div>

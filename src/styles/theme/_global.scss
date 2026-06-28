@@ -44,8 +44,8 @@ body {
   left: 1rem;
   z-index: 999999;
   padding: 0.75rem 1.5rem;
-  background: var(--primary-500, #2563eb);
-  color: #ffffff;
+  background: var(--primary-500, #4e6077);
+  color: var(--ds-primary-text);
   font-weight: 600;
   font-size: 0.875rem;
   border-radius: 0 0 0.5rem 0.5rem;
@@ -54,14 +54,14 @@ body {
 
   &:focus {
     top: 0;
-    outline: 3px solid var(--primary-300, #93c5fd);
+    outline: 3px solid var(--primary-300, #95a8c2);
     outline-offset: 2px;
   }
 }
 
 /* ♿ Focus visible mejorado para todos los elementos interactivos (WCAG 2.4.7) */
 *:focus-visible {
-  outline: 2px solid var(--primary-400, #60a5fa);
+  outline: 2px solid var(--primary-400, #7587a0);
   outline-offset: 2px;
 }
 
@@ -165,7 +165,7 @@ i,
 /* Total - Azul corporativo opaco */
 .bg-status-total {
   background-color: var(--ds-info) !important;
-  color: #ffffff !important;
+  color: var(--ds-primary-text) !important;
   &:hover {
     background-color: var(--ds-info-hover) !important;
   }
@@ -174,7 +174,7 @@ i,
 /* Concluidos - Verde apagado */
 .bg-status-success {
   background-color: var(--ds-success) !important;
-  color: #ffffff !important;
+  color: var(--ds-primary-text) !important;
   &:hover {
     background-color: var(--ds-success-hover) !important;
   }
@@ -183,7 +183,7 @@ i,
 /* Pendientes - Naranja/Ámbar opaco */
 .bg-status-pending {
   background-color: var(--ds-warning) !important;
-  color: #ffffff !important;
+  color: var(--ds-primary-text) !important;
   &:hover {
     background-color: var(--ds-warning-hover) !important;
   }
@@ -192,7 +192,7 @@ i,
 /* No Autorizados - Púrpura/Morado opaco */
 .bg-status-rejected {
   background-color: var(--ds-help) !important;
-  color: #ffffff !important;
+  color: var(--ds-primary-text) !important;
   &:hover {
     background-color: var(--ds-help-hover) !important;
   }
@@ -245,11 +245,11 @@ i,
 .text-purple-400, .text-purple-500, .text-purple-600, .text-purple-700 { color: var(--ds-help) !important; }
 
 /* Background colors — semantic */
-.bg-green-50, .bg-green-100 { background-color: var(--ds-success-light) !important; }
-.bg-red-50, .bg-red-100 { background-color: var(--ds-danger-light) !important; }
-.bg-orange-50, .bg-orange-100 { background-color: var(--ds-warning-light) !important; }
-.bg-yellow-50, .bg-yellow-100 { background-color: var(--ds-warning-light) !important; }
-.bg-blue-50, .bg-blue-100 { background-color: var(--ds-info-light) !important; }
+.bg-green-50, .bg-green-100, tr.bg-green-50 > td, tr.bg-green-100 > td { background-color: var(--ds-success-light) !important; }
+.bg-red-50, .bg-red-100, tr.bg-red-50 > td, tr.bg-red-100 > td { background-color: var(--ds-danger-light) !important; }
+.bg-orange-50, .bg-orange-100, tr.bg-orange-50 > td, tr.bg-orange-100 > td { background-color: var(--ds-warning-light) !important; }
+.bg-yellow-50, .bg-yellow-100, tr.bg-yellow-50 > td, tr.bg-yellow-100 > td { background-color: var(--ds-warning-light) !important; }
+.bg-blue-50, .bg-blue-100, tr.bg-blue-50 > td, tr.bg-blue-100 > td { background-color: var(--ds-info-light) !important; }
 
 /* Medium/dark backgrounds map to DS semantic surfaces */
 .bg-green-200, .bg-green-300 { background-color: color-mix(in srgb, var(--ds-success) 20%, var(--ds-bg-surface)) !important; }

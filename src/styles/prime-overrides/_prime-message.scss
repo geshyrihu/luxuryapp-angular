@@ -15,29 +15,29 @@ body {
     // (se sobreescribe por severidad abajo)
   }
 
-  // Backgrounds más suaves — uno por severidad
+  // Backgrounds usando tokens DS — responden a dark mode automáticamente
   .p-message-success {
-    background-color: #f0fdf4 !important;
+    background-color: var(--ds-success-light) !important;
   }
 
   .p-message-info {
-    background-color: #f0f9ff !important;
+    background-color: var(--ds-info-light) !important;
   }
 
   .p-message-warn {
-    background-color: #fffbeb !important;
+    background-color: var(--ds-warning-light) !important;
   }
 
   .p-message-error {
-    background-color: #fef2f2 !important;
+    background-color: var(--ds-danger-light) !important;
   }
 
   .p-message-secondary {
-    background-color: #f8fafc !important;
-    border-left-color: #94a3b8 !important;
+    background-color: var(--ds-bg-sunken) !important;
+    border-left-color: var(--ds-text-secondary) !important;
   }
 
   .p-message-contrast {
-    border-left-color: #0f172a !important;
+    border-left-color: var(--ds-text-primary) !important;
   }
 }

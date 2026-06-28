@@ -93,7 +93,7 @@ $list-name: primary, secondary, success, warning, info, light, danger, dark;
   .bg-primary {
     &.active {
       h6 {
-        color: #fff;
+        color: var(--ds-primary-text);
       }
     }
   }

@@ -97,7 +97,7 @@
 
   &.is-loading::after {
     border-color: rgba(255, 255, 255, 0.3);
-    border-top-color: #fff;
+    border-top-color: var(--ds-primary-text);
   }
 }
 
@@ -122,7 +122,7 @@
 .btn-danger {
   @extend .btn;
   background-color: var(--ds-danger);
-  color: #ffffff;
+  color: var(--ds-primary-text);
   border-color: var(--ds-danger);
 
   &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
@@ -132,7 +132,7 @@
 
   &.is-loading::after {
     border-color: rgba(255, 255, 255, 0.3);
-    border-top-color: #fff;
+    border-top-color: var(--ds-primary-text);
   }
 }
 
@@ -140,7 +140,7 @@
 .btn-success {
   @extend .btn;
   background-color: var(--ds-success);
-  color: #ffffff;
+  color: var(--ds-primary-text);
   border-color: var(--ds-success);
 
   &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
@@ -153,7 +153,7 @@
 .btn-warning {
   @extend .btn;
   background-color: var(--ds-warning);
-  color: #ffffff;
+  color: var(--ds-primary-text);
   border-color: var(--ds-warning);
 
   &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
@@ -166,7 +166,7 @@
 .btn-info {
   @extend .btn;
   background-color: var(--ds-info);
-  color: #ffffff;
+  color: var(--ds-primary-text);
   border-color: var(--ds-info);
 
   &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
@@ -179,7 +179,7 @@
 .btn-help {
   @extend .btn;
   background-color: var(--ds-help);
-  color: #ffffff;
+  color: var(--ds-primary-text);
   border-color: var(--ds-help);
 
   &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
@@ -485,30 +485,6 @@
 
 .btn-warn {
   @extend .btn-warning;
-}
-
-.btn-help {
-  @extend .btn;
-  background-color: #7c3aed; // purple-600
-  color: #ffffff;
-  border-color: #7c3aed;
-
-  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
-    background-color: #6d28d9; // purple-700
-    border-color: #6d28d9;
-  }
-}
-
-.btn-contrast {
-  @extend .btn;
-  background-color: var(--ds-text-primary);
-  color: var(--ds-bg-surface);
-  border-color: var(--ds-text-primary);
-
-  &:hover:not(:disabled):not(.is-disabled):not(.is-loading) {
-    background-color: var(--ds-text-secondary);
-    border-color: var(--ds-text-secondary);
-  }
 }
 
 // ── MODIFICADOR: BOTÓN CIRCULAR (ícono sin texto) ────────────────────────────

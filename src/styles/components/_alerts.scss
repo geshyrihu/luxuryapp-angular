@@ -13,7 +13,7 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.45);
+  background-color: var(--ds-bg-overlay);
   backdrop-filter: blur(2px);
   z-index: 500;
   display: flex;
@@ -194,30 +194,30 @@
 // ── VARIANTES ─────────────────────────────────────────────────
 .alert-success {
   @extend .alert;
-  background-color: #f0fdf4;
-  border-color: #bbf7d0;
-  color: #15803d;
+  background-color: var(--ds-success-light);
+  border-color: var(--ds-success);
+  color: var(--ds-text-primary);
 }
 
 .alert-warning {
   @extend .alert;
-  background-color: #fffbeb;
-  border-color: #fde68a;
-  color: #92400e;
+  background-color: var(--ds-warning-light);
+  border-color: var(--ds-warning);
+  color: var(--ds-text-primary);
 }
 
 .alert-danger {
   @extend .alert;
-  background-color: #fef2f2;
-  border-color: #fecaca;
-  color: #b91c1c;
+  background-color: var(--ds-danger-light);
+  border-color: var(--ds-danger);
+  color: var(--ds-text-primary);
 }
 
 .alert-info {
   @extend .alert;
-  background-color: #ecfeff;
-  border-color: #a5f3fc;
-  color: #0e7490;
+  background-color: var(--ds-info-light);
+  border-color: var(--ds-info);
+  color: var(--ds-text-primary);
 }
 
 .alert-neutral {
@@ -311,9 +311,9 @@
   to   { width: 0%; }
 }
 
-.toast-success  { @extend .toast; background-color: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
-.toast-warning  { @extend .toast; background-color: #fffbeb; color: #92400e; border-color: #fde68a; }
-.toast-danger   { @extend .toast; background-color: #fef2f2; color: #b91c1c; border-color: #fecaca; }
+.toast-success  { @extend .toast; background-color: var(--ds-success-light); color: var(--ds-text-primary); border-color: var(--ds-success); }
+.toast-warning  { @extend .toast; background-color: var(--ds-warning-light); color: var(--ds-text-primary); border-color: var(--ds-warning); }
+.toast-danger   { @extend .toast; background-color: var(--ds-danger-light); color: var(--ds-text-primary); border-color: var(--ds-danger); }
 .toast-info     { @extend .toast; background-color: var(--ds-bg-surface); color: var(--ds-text-primary); border-color: var(--ds-border); box-shadow: var(--ds-shadow-xl); }
 
 

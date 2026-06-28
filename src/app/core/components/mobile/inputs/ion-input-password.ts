@@ -1,9 +1,9 @@
-﻿import { Component, computed, forwardRef, input, signal } from "@angular/core";
+import { Component, computed, forwardRef, input, signal } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonButton, IonIcon, IonInput } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { eyeOffOutline, eyeOutline } from "ionicons/icons";
-import { BaseIonicInput } from "../base/base-ionic-input";
+import { BaseIonicInput } from "../../inputs/base/base-ionic-input";
 
 @Component({
   selector: "ion-input-password",

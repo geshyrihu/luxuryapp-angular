@@ -1,25 +1,37 @@
-// ============================================================
-// _colors.scss
-// Design System | Angular 21 + PrimeNG 21 | SCSS Puro
-// Paleta de colores completa y semántica
-// ============================================================
+// ════════════════════════════════════════════════════════════════
+// 🎨 _colors.scss — La Fuente Única de Verdad
+// ════════════════════════════════════════════════════════════════
+// Aquí viven TODOS los valores de color del sistema.
+// Si necesitas un color que no está aquí: primero agréguelo aquí.
+// Ningún otro archivo debe declarar colores propios — todos deben
+// tomar estos valores mediante `var(--ds-*)` desde _variables.scss.
+//
+// 📐 Escalas: 50 (más claro) → 950 (más oscuro)
+// 🏷️  $primary  → Identidad de marca (Azul Institucional)
+// 🟢  $success  → Éxito / Completado
+// 🟠  $warning  → Advertencia / Pendiente
+// 🔴  $danger   → Error / Crítico
+// ℹ️  $info     → Informativo
+// 🆘  $help     → Ayuda / Soporte
+// ⚫  $contrast → Contraste extremo (blanco/negro)
+// ⬜  $neutral  → Grises neutros para fondos, bordes, textos
+// ════════════════════════════════════════════════════════════════
 
 // ── PALETA BASE ───────────────────────────────────────────────
 // Escala completa 50-950 para cada color
 
-// Primario (Azul corporativo — Corporate Integrity System / DESIGN.md)
-// Anchor points: primary-fixed #dae2ff · primary #003d9b · on-primary-fixed #001848
-$primary-50:   #edf1ff !default;  // surface-container-low
-$primary-100:  #dae2ff !default;  // primary-fixed
-$primary-200:  #b2c5ff !default;  // primary-fixed-dim / inverse-primary
-$primary-300:  #709bfe !default;
-$primary-400:  #285ab9 !default;  // secondary
-$primary-500:  #003d9b !default;  // PRIMARY — acción principal
-$primary-600:  #0040a2 !default;  // on-primary-fixed-variant
-$primary-700:  #003079 !default;
-$primary-800:  #001848 !default;  // on-primary-fixed
-$primary-900:  #000e2e !default;
-$primary-950:  #000818 !default;
+// Primario (Púrpura Institucional — Executive Precision)
+$primary-50:   #f8f4ff !default;
+$primary-100:  #e0d2ff !default;  // on-primary-container
+$primary-200:  #cfbcff !default;  // inverse-primary
+$primary-300:  #b69dff !default;
+$primary-400:  #8a73e0 !default;
+$primary-500:  #6750a4 !default;  // surface-tint / primary-container
+$primary-600:  #4f378a !default;  // color-primary
+$primary-700:  #3e2970 !default;
+$primary-800:  #2e1c56 !default;
+$primary-900:  #1e0f3c !default;
+$primary-950:  #0e0721 !default;
 
 // Secundario (Gris neutro cálido)
 $secondary-50:   #f8fafc !default;
@@ -34,18 +46,18 @@ $secondary-800:  #1e293b !default;
 $secondary-900:  #0f172a !default;
 $secondary-950:  #020617 !default;
 
-// Success (Verde)
-$success-50:   #f0fdf4 !default;
-$success-100:  #dcfce7 !default;
-$success-200:  #bbf7d0 !default;
-$success-300:  #86efac !default;
-$success-400:  #4ade80 !default;
-$success-500:  #22c55e !default;
-$success-600:  #16a34a !default;
-$success-700:  #15803d !default;
-$success-800:  #166534 !default;
-$success-900:  #14532d !default;
-$success-950:  #052e16 !default;
+// Success (Verde Corporativo — Esmeralda)
+$success-50:   #ecfdf5 !default;
+$success-100:  #d1fae5 !default;
+$success-200:  #a7f3d0 !default;
+$success-300:  #6ee7b7 !default;
+$success-400:  #34d399 !default;
+$success-500:  #10b981 !default;
+$success-600:  #059669 !default;
+$success-700:  #047857 !default;
+$success-800:  #065f46 !default;
+$success-900:  #064e3b !default;
+$success-950:  #022c22 !default;
 
 // Warning (Ámbar)
 $warning-50:   #fffbeb !default;
@@ -98,6 +110,19 @@ $help-700:  #6d28d9 !default;
 $help-800:  #5b21b6 !default;
 $help-900:  #4c1d95 !default;
 $help-950:  #2e1065 !default;
+
+// Terciario (Oro Corporativo — Executive Precision)
+$tertiary-50:   #fff9e6 !default;
+$tertiary-100:  #ffdf93 !default;  // tertiary-fixed
+$tertiary-200:  #e7c365 !default;  // tertiary-fixed-dim
+$tertiary-300:  #d4b05a !default;
+$tertiary-400:  #c9a74d !default;  // tertiary-container (gold)
+$tertiary-500:  #a88a3a !default;
+$tertiary-600:  #765b00 !default;  // tertiary
+$tertiary-700:  #5c4600 !default;
+$tertiary-800:  #503d00 !default;  // on-tertiary-container
+$tertiary-900:  #3d2e00 !default;
+$tertiary-950:  #241a00 !default;  // on-tertiary-fixed
 
 // Contrast (Negro/Blanco)
 $contrast-0:   #ffffff !default;
@@ -189,6 +214,67 @@ $color-contrast-text:      $neutral-0     !default;
 //   theme/_variables.scss -> --primary-50..950, --ds-*, --ion-*, --z-*
 //   prime-overrides/_prime-tokens.scss -> --p-* bridge de PrimeNG
 // Este archivo solo define SCSS variables para uso en componentes via @use.
+
+
+// ── DECISIONES VISUALES DE MARCA ─────────────────────────────
+// Estos NO son escalas de color — son elecciones puntuales de diseño
+// que se usan como tokens semánticos en _variables.scss.
+// Al estar aquí, cambiarlos propaga el cambio a toda la app.
+
+// Layout
+$sidebar-bg:          #ffffff !default;
+$header-bg:           #ffffff !default;
+$sidebar-bg-dark:     #1d3052 !default;
+$header-bg-dark:      #1d3052 !default;
+
+// Semánticos de estado (brand-level, no escala)
+$color-success-brand: #006837 !default;
+$color-success-bg:    #d1fae5 !default;
+$color-warning-brand: #b45309 !default;
+$color-warning-bg:    #fef3c7 !default;
+$color-danger-brand:  #ba1a1a !default;
+$color-danger-bg:     #ffdad6 !default;
+
+// Budget
+$color-budget-bg:     #fff3e0 !default;
+$color-budget-text:   inherit  !default;
+$color-budget-bg-dark:  #78350f !default;
+$color-budget-text-dark: #ffffff !default;
+
+// ── SUPERFICIES DARK MODE (PrimeNG) ─────────────────────────
+// Escala zinc/gris para dark surfaces de PrimeNG.
+// Excluida de la escala neutral porque solo aplica en dark mode.
+$surface-dark-0:   #09090b !default;
+$surface-dark-50:  #18181b !default;
+$surface-dark-100: #27272a !default;
+$surface-dark-200: #3f3f46 !default;
+$surface-dark-300: #52525b !default;
+$surface-dark-400: #71717a !default;
+$surface-dark-500: #a1a1aa !default;
+$surface-dark-600: #d4d4d8 !default;
+$surface-dark-700: #e4e4e7 !default;
+$surface-dark-800: #f4f4f5 !default;
+$surface-dark-900: #fafafa !default;
+$surface-dark-950: #ffffff !default;
+
+// ── SUPERFICIES M3 (Executive Precision) ──────────────────────
+$m3-surface:                    #fdf7ff !default;
+$m3-surface-dim:                #ded8e0 !default;
+$m3-surface-bright:             #fdf7ff !default;
+$m3-surface-container-lowest:   #ffffff !default;
+$m3-surface-container-low:      #f8f2fa !default;
+$m3-surface-container:          #f2ecf4 !default;
+$m3-surface-container-high:     #ece6ee !default;
+$m3-surface-container-highest:  #e6e0e9 !default;
+$m3-on-surface:                 #1d1b20 !default;
+$m3-on-surface-variant:         #494551 !default;
+$m3-inverse-surface:            #322f35 !default;
+$m3-inverse-on-surface:         #f5eff7 !default;
+$m3-outline:                    #7a7582 !default;
+$m3-outline-variant:            #cbc4d2 !default;
+$m3-surface-variant:            #e6e0e9 !default;
+$m3-background:                 #fdf7ff !default;
+$m3-on-background:              #1d1b20 !default;
 
 
 

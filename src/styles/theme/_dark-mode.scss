@@ -375,7 +375,7 @@
 
       &.p-highlight {
         background-color: var(--ds-primary);
-        color: #09090b;
+        color: var(--ds-on-primary);
       }
     }
 
@@ -442,7 +442,7 @@
   .p-password input:focus,
   .p-textarea:focus {
     border-color: var(--ds-primary);
-    box-shadow: 0 0 0 3px rgba(77, 159, 255, 0.25);
+    box-shadow: var(--ds-shadow-focus);
   }
 
   .p-multiselect.p-focus,
@@ -450,6 +450,6 @@
   .p-select.p-focus,
   .p-autocomplete.p-focus {
     border-color: var(--ds-primary);
-    box-shadow: 0 0 0 3px rgba(77, 159, 255, 0.25);
+    box-shadow: var(--ds-shadow-focus);
   }
 }

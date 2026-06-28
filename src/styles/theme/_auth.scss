@@ -1,6 +1,11 @@
-/* ==========================================================================
-   AUTHENTICATION STYLES (GLASSMORPHISM)
-   ========================================================================== */
+/* ═══════════════════════════════════════════════════════════════════════════
+   🔐 _auth.scss — Pantalla de Autenticación (Glassmorphism)
+   ═══════════════════════════════════════════════════════════════════════════
+   Diseño intencionalmente theme-independent: la tarjeta de login siempre
+   usa fondo semitransparente oscuro con texto blanco, sin importar el tema.
+   Los valores rgba están hardcodeados a propósito — son parte del efecto
+   glassmorphism y NO deben reemplazarse con variables del tema.
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 .glass-auth-card {
   /* Vista Móvil (Nativa): Sin bordes, sombras ni fondo cristal para integrarse con la pantalla completa */

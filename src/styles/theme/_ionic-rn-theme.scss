@@ -175,7 +175,7 @@ ion-button {
 // ── 8. ion-fab-button ─────────────────────────────────────────
 ion-fab-button {
   --border-radius: 16px;
-  --box-shadow: 0 4px 16px rgba(11, 49, 100, 0.35);
+  --box-shadow: 0 4px 16px rgba(0, 5, 14, 0.35);
 }
 
 // ── 9. ion-input / ion-textarea / ion-select ──────────────────
@@ -223,7 +223,7 @@ ion-select.ion-invalid.ion-touched {
 ion-input.ion-invalid.ion-focused,
 ion-textarea.ion-invalid.ion-focused,
 ion-select.ion-invalid.ion-focused {
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+  box-shadow: var(--ds-shadow-focus-danger);
 }
 
 ion-input.ion-disabled,
@@ -297,7 +297,25 @@ ion-spinner {
   color: var(--ds-primary);
 }
 
-// ── 16. DARK MODE ─────────────────────────────────────────────
+// ── 16. OVERLAYS DENTRO DE MODALES (z-index) ──────────────────
+// PrimeNG p-dialog usa z-index 10000+. Los overlays de Ionic deben
+// aparecer encima cuando se usan dentro de un modal PrimeNG.
+ion-action-sheet {
+  --z-index: 20001 !important;
+  z-index: 20001 !important;
+}
+
+ion-alert {
+  --z-index: 20001 !important;
+  z-index: 20001 !important;
+}
+
+ion-popover {
+  --z-index: 20001 !important;
+  z-index: 20001 !important;
+}
+
+// ── 17. DARK MODE ─────────────────────────────────────────────
 body.theme-dark {
   --ion-background-color: var(--ds-bg-page);
   --ion-background-color-rgb: 4, 27, 60;
@@ -363,7 +381,7 @@ body.theme-dark {
     --color: var(--ds-text-primary);
   }
   ion-fab-button {
-    --box-shadow: 0 4px 16px rgba(77, 159, 255, 0.35);
+    --box-shadow: 0 4px 16px rgba(181, 200, 227, 0.35);
   }
   ion-spinner {
     color: var(--ds-primary);

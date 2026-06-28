@@ -176,7 +176,7 @@
     &.is-active {
       background-color: var(--ds-primary);
       border-color: var(--ds-primary);
-      color: #fff;
+      color: var(--ds-primary-text);
     }
 
     &:disabled {

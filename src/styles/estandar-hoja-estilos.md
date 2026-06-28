@@ -1,18 +1,20 @@
 # 🎨 Sistema de Hojas de Estilo — LuxuryApp Frontend
 
-> Ruta: 📂 Documentación > 📱 Frontend > 🎨 Sistema de Hojas de Estilo
+> Ruta: 📂 `client/angular/src/styles/` > 🗂️ `estandar-hoja-estilos.md`
 
 ---
 
-📅 **Última Revisión:** Junio 2026  
-🛡️ **Estado:** Vigente  
+📅 **Última Revisión:** 27-jun-26  
+🛡️ **Estado:** ✅ Vigente  
 👤 **Responsable:** Equipo Frontend
 
 ---
 
 ## 📋 Resumen Ejecutivo
 
-El directorio `client/angular/src/styles/` contiene **todos los estilos globales, tokens de diseño, overrides de PrimeNG y componentes custom** de la aplicación LuxuryApp. Está estructurado en **6 subdirectorios y 2 archivos raíz** que se cargan desde `angular.json` y se importan mutuamente según una jerarquía de cascada predefinida.
+El directorio `client/angular/src/styles/` contiene **todos los estilos globales, tokens de diseño, overrides de PrimeNG y componentes custom** de la aplicación LuxuryApp. Está estructurado en **6 subdirectorios y 3 archivos raíz** (2 SCSS + `mypreset.ts`) que se cargan desde `angular.json` y se importan mutuamente según una jerarquía de cascada predefinida.
+
+> ✅ **Criterio de Éxito:** Al finalizar la lectura, entenderás qué archivo modificar según el tipo de cambio visual que necesites, y las reglas de cascada que garantizan consistencia.
 
 > ✅ **Criterio de Éxito:** Al finalizar la lectura, entenderás qué archivo modificar según el tipo de cambio visual que necesites, y las reglas de cascada que garantizan consistencia.
 
@@ -33,6 +35,11 @@ flowchart TD
     D --> H["theme/<br/>(Tema: global, dark, sidebar, auth, etc.)"]
     D --> I["custom/<br/>(Legacy: tables, print, avatars, etc.)"]
 
+    E --> J["core/_colors.scss<br/>⚠️ ÚNICA fuente de hex/rgba"]
+    J --> K["theme/_variables.scss<br/>Expone --primary-*, --secondary-*, --ds-*, --surface-dark-*"]
+    K --> L["mypreset.ts<br/>PrimeNG preset - solo var(--*)"]
+    L --> M["🧩 PrimeNG Components"]
+
     C -.->|"@layer primeng-brand<br/>gana sobre preset Lara"| F
 ```
 
@@ -50,13 +57,38 @@ flowchart TD
 
 ## 📁 Estructura de Archivos
 
-### 2️⃣ Archivos Raíz
+### 3️⃣ Archivos Raíz
 
 | Archivo | Líneas | Rol |
 |---------|--------|-----|
 | [`ds-entry.scss`](#ds-entryscss) | 43 | 🚀 Punto de entrada del Design System (DS). Usa `@use`. No incluye reset ni tipografía global. |
-| [`primeng-overrides.css`](#primeng-overridescss) | 319 | 🅿️ Overrides de marca para PrimeNG v21 dentro de `@layer primeng-brand`. Sin `!important` ni `::ng-deep`. |
-| [`styles.scss`](#stylesscss) | 107 | 📜 Hoja maestra legacy. Usa `@import`. Incluye reset, Ionic CSS, componentes custom y animaciones. |
+| [`primeng-overrides.css`](#primeng-overridescss) | ~319 | 🅿️ Overrides de marca para PrimeNG v21 dentro de `@layer primeng-brand`. Sin `!important` ni `::ng-deep`. |
+| [`styles.scss`](#stylesscss) | ~107 | 📜 Hoja maestra legacy. Usa `@import`. Incluye reset, Ionic CSS, componentes custom y animaciones. |
+| [`mypreset.ts`](#-mypreset-ts) | ~285 | 🅿️ **Preset PrimeNG** — define colores, surfaces y componentes del tema Lara. Solo referencia `var(--*)`, sin hex/rgba. |
+
+---
+
+## 🅿️ `mypreset.ts`
+
+`src/app/mypreset.ts` es el **preset personalizado de PrimeNG** que extiende Lara. Define la paleta primaria, surfaces, y componentes (tag, datatable, message) usando **solo `var(--*)`** — sin valores hex/rgba directos.
+
+```mermaid
+flowchart LR
+    A["core/_colors.scss"] -->|"#{c.$primary-*}"| B["theme/_variables.scss"]
+    B -->|"--primary-*, --secondary-*,<br/>--surface-dark-*, --success-500"| C["mypreset.ts"]
+    C -->|"var(--primary-*)"| D["🧩 PrimeNG"]
+```
+
+| Token en mypreset.ts | Fuente en _variables.scss | Fuente última en _colors.scss |
+|---------------------|---------------------------|-------------------------------|
+| `{primary.500}` | Referencia interna del preset | — |
+| `var(--secondary-50..950)` | `--secondary-*: #{c.$secondary-*}` | `$secondary-*` |
+| `var(--surface-dark-0..950)` | `--surface-dark-*: #{c.$surface-dark-*}` | `$surface-dark-*` |
+| `var(--success-400/500)` | `--success-*: #{c.$success-*}` | `$success-*` |
+| `var(--ds-primary-text)` | `--ds-primary-text: #ffffff` | `$neutral-0` |
+| `color-mix(in srgb, var(--success-500), transparent 88%)` | `--success-500: #{c.$success-500}` | `$success-500` |
+
+---
 
 ### 📂 Subdirectorios
 
@@ -66,7 +98,7 @@ flowchart TD
 | [`components/`](#-components) | 7 | 🧩 Componentes puros del DS (buttons, inputs, forms, cards, tables, alerts, dropdowns) |
 | [`prime-overrides/`](#-prime-overrides) | 9 | 🅿️ Overrides por componente PrimeNG (button, input, card, dialog, table, dropdown, tag, message, tokens) |
 | [`theme/`](#-theme) | 9 | 🌓 Estilos de tema (variables, global, dark-mode, sidebar, auth, toast, header-mobile, ionic, cdk) |
-| [`custom/`](#-custom) | 10 | 📦 Estilos legacy y específicos (avatars, list, custom-table, financial-tables, print, loader, utilities) |
+| [`custom/`](#-custom) | 7 | 📦 Estilos legacy y específicos (avatars, list, custom-table, financial-tables, print, utilities) |
 
 ---
 
@@ -162,7 +194,7 @@ Fuente única de verdad para **colores, tipografía, espaciado, bordes, sombras,
 | `_spacing.scss` | Escala base 4px (`$space-0` a `$space-48`), espaciado semántico para componentes (padding de botones, inputs, cards, modales). |
 | `_borders.scss` | Grosor de borde, border-radius (none → full), variables CSS `--ds-radius-*`. |
 | `_shadows.scss` | Escala de sombras (none → 2xl), focus rings, variables CSS `--ds-shadow-*`. |
-| `_variables.scss` | Punto de entrada unificado: importa todos los módulos core, define breakpoints, z-index, tamaños de componentes, opacidades. |
+| ~~`_variables.scss`~~ | ❌ Archivo huérfano (no importado por nada) — los módulos core se cargan individualmente desde `ds-entry.scss` |
 | `_functions.scss` | Funciones: `rem()`, `px()`, `alpha()`, `contrast-color()`, `space()`, `fluid-size()`, `depth-shadow()`. |
 | `_mixins.scss` | Mixins: `respond-to()` (responsive), `focus-ring()` (accesibilidad), `disabled-state()`, `loading-spinner()`, `skeleton()`, `truncate()`, `flex-center()`, `overlay-backdrop()`, `custom-scrollbar()`, `elevation()`, `color-variant()`. |
 
@@ -206,7 +238,7 @@ Cada archivo sobrescribe la apariencia de un componente PrimeNG v21 usando **tok
 
 | Archivo | Líneas | Contenido |
 |---------|--------|-----------|
-| `_variables.scss` | 507 | ⚙️ **Generador de CSS Custom Properties.** Exporta paletas `--primary-50..950`, `--help-*`, `--ds-*`, `--ion-*`, z-index, shadows, radii, fonts. Incluye **dark mode** (`body.theme-dark`). |
+| `_variables.scss` | ~518 | ⚙️ **Generador de CSS Custom Properties.** Exporta `--primary-50..950`, `--secondary-50..950`, `--surface-dark-0..950`, `--help-*`, `--contrast-*`, `--ds-*`, `--ion-*`, `--success-400/500`, `--warning-400/500`, `--danger-400/500`, `--info-400/500`, z-index, shadows, radii, fonts. **Dark mode** (`body.theme-dark`). Todos los valores referencian `#{c.$*}` desde `core/_colors.scss`. |
 | `_global.scss` | 205 | 🌐 Estilos base: control de scroll móvil, skip-link (WCAG), focus visible, layout Ionic (`ion-app`, `#main-content`), z-index de overlays, estados de badges, validación de formularios. |
 | `_dark-mode.scss` | 455 | 🌙 **Overrides globales dark mode** (unlayered). Cubre backgrounds hardcodeados, PrimeNG v16 compat, CDK drag, formularios, tabs, accordion, datatable, dropdowns, calendar, chips, tooltips. Neon glow en cards. |
 | `_sidebar.scss` | 364 | 📋 Sidebar: PrimeNG PanelMenu, guide menu custom, monitoreo de scroll, animaciones, breadcrumbs en toolbar. |
@@ -225,13 +257,9 @@ Cada archivo sobrescribe la apariencia de un componente PrimeNG v21 usando **tok
 | `_avatars.scss` | 146 | Avatares responsivos (img-100 a img-70), estados online/offline/dnd, grupos superpuestos. | ❌ No cubierto |
 | `_list.scss` | 212 | Listas Bootstrap-style: `list-group`, variantes de color, horizontal-list, scrollbar-wrapper. | ❌ No cubierto |
 | `_custom-table.scss` | 229 | Wrapper `p-datatable` con scroll vertical, colgroup de anchos, cabeceras navy con gradiente, filas con borde de estado. | ⚠️ Parcial |
-| `_custom-table copy.scss` | 90 | Versión anterior/deprecated de `_custom-table.scss`. | 🗑️ Posible dead code |
 | `_financial-tables.scss` | 736 | Tablas contables: `rf-*` (reporte financiero), `budget-*` (presupuesto), jerarquías (`fila-nivel-*`), espejo-aspel, vistas móviles. | ❌ No cubierto |
 | `_print.scss` | 524 | Estilos de impresión para reportes ejecutivos, estados financieros y manuales. Portada, tabla de tareas, layout reset. | ❌ No cubierto |
 | `_utilities.scss` | 17 | Utilidades `tracking-*` y alturas/anchos fijos. | ⚠️ Complemento PrimeFlex |
-| `_custom-prime-icons.scss` | 764 | Catálogo completo PrimeIcons como variables CSS `--pi-*` + mixin generador de clases `.icon-pi-*`. | ❌ No cubierto |
-| `_design-system-utilities.scss` | 1412 | Catálogo legacy de componentes (dead code donde DS gana). Clases ÚNICAS: `.input-text`, `.btn-luxury`, `.table-luxury`, `.page-title`, divisores, anchos de columna. | ⚠️ Dead code parcial |
-| `_loader.scss` | 54 | Loader animation y botón "tap-top" (scroll to top). | ❌ No cubierto |
 
 ---
 
@@ -246,7 +274,10 @@ flowchart TD
     A --> E["Estilo de tema<br/>(dark mode, layout, auth)"]
     A --> F["Estilo legacy/específico<br/>(impresión, tablas financieras)"]
 
-    B --> B1["core/_colors.scss o<br/>theme/_variables.scss"]
+    B --> B1["🔴 core/_colors.scss<br/>Único archivo con valores hex/rgba"]
+    B1 --> B2["theme/_variables.scss<br/>(expone #{c.$*} como --primary-*)"]
+    B2 --> B3["mypreset.ts (si afecta<br/>surface o tag del preset)"]
+
     C --> C1["¿Solución con tokens CSS?"]
     C1 -->|Sí| C2["prime-overrides/_prime-tokens.scss"]
     C1 -->|No| C3["prime-overrides/_prime-{componente}.scss"]
@@ -260,17 +291,24 @@ flowchart TD
 ## 📏 Convenios y Reglas
 
 > [!IMPORTANT]
-> ### Reglas de Cascada
+> ### 👑 Jerarquía de Colores (Estricta)
+> 1. **`core/_colors.scss`** = única fuente de verdad para valores hex/rgba
+> 2. **`theme/_variables.scss`** = puente que expone los valores como `--primary-*`, `--ds-*`, `--secondary-*`, `--surface-dark-*` referenciando `#{c.$*}`
+> 3. **`mypreset.ts`** = solo `var(--*)` y `{primary.*}` — **prohibido** hex/rgba
+> 4. **Todo otro `.scss`** = solo `var(--ds-*)`, `var(--primary-*)` — ni hex, ni rgba
+>
+> ### 🌊 Reglas de Cascada
 > 1. **DS gana sobre legacy:** `ds-entry.scss` se carga antes que `styles.scss`
 > 2. **`@layer primeng-brand`** tiene prioridad intermedia entre preset PrimeNG y utilidades
 > 3. **Unlayered gana sobre `@layer`** (usado en `_dark-mode.scss`)
 > 4. **`!important` prohibido** en `primeng-overrides.css`; permitido en `_dark-mode.scss` (unlayered) y legacy
 >
-> ### Reglas de Código
+> ### 📏 Reglas de Código
 > - **Prohibido `::ng-deep`** en estilos globales
 > - Preferir **variables CSS** (`--ds-*`, `--p-*`) sobre valores hardcodeados
 > - **`@use`** para nuevo código DS; **`@import`** solo en legacy (`styles.scss`)
 > - Archivos core con prefijo `_` (partials SCSS)
+> - **`color-mix()`** para opacidades basadas en variables CSS (ej. `color-mix(in srgb, var(--success-500), transparent 88%)`)
 
 ---
 
@@ -278,14 +316,62 @@ flowchart TD
 
 | Qué salió mal | Por qué | Qué decir al usuario |
 |---------------|---------|---------------------|
+| Cambié un color en `_colors.scss` pero no se refleja en PrimeNG | `mypreset.ts` tiene aún valores hardcodeados que no referencian `var(--*)` | Revisa `mypreset.ts` y reemplaza el hex/rgba por la variable CSS correspondiente |
 | El cambio no se ve reflejado | El estilo está siendo sobrescrito por otro archivo con mayor prioridad | Verifica si tu cambio está en el archivo correcto según el flujo de decisión. Si es un token, usa `core/`. Si es un override PrimeNG, usa `prime-overrides/`. |
 | Un componente PrimeNG se ve distinto a lo esperado | El override está en `primeng-overrides.css` (capa) pero otro estilo unlayered lo sobrescribe | Mueve el override a un archivo unlayered o aumenta especificidad. |
 | Dark mode no aplica a un componente | El componente tiene `background` hardcodeado que no está cubierto en `_dark-mode.scss` | Agrega el selector en `_dark-mode.scss` usando `--ds-*` tokens. |
+| `color-mix()` no funciona en el navegador | Navegador antiguo sin soporte CSS Color Level 4 | `color-mix()` está soportado desde Chrome 111+, Firefox 113+, Safari 16.2+ (2023). |
 | Error de compilación SCSS | Uso de `@import` dentro de un archivo que usa `@use` | No mezclar `@import` y `@use` en el mismo archivo. Migrar a `@use`. |
 
 ---
 
-> 💡 **Tip:** La mayoría de cambios visuales nuevos deben ir en `components/` si es un componente puro, o en `prime-overrides/` si afecta a PrimeNG. Solo tocar `theme/_variables.scss` para nuevos tokens del sistema.
+> 💡 **Tip:** Para cambiar un color en toda la app: editas `core/_colors.scss` y se propaga a `theme/_variables.scss` → `mypreset.ts` → PrimeNG. **Un solo archivo.** Para cambios de componente que no son de color, usa `components/` (custom) o `prime-overrides/` (PrimeNG).
+
+---
+
+## 🧹 Historial de Limpieza (27-jun-26)
+
+### 🗑️ Archivos Eliminados
+
+| Archivo | Líneas | Motivo |
+|---------|--------|--------|
+| `_custom-prime-icons.scss` | ~764 | Migrado a `<app-icon icon="mdi:xxx">` / `pi pi-xxx` |
+| `_design-system-utilities.scss` | ~1423 | Código muerto (no importado, duplicado con DS) |
+| `_loader.scss` | ~62 | Código muerto (no importado) |
+| `AUDIT-STYLES.md` | ~171 | Fusionado en `estandar-hoja-estilos.md` |
+
+### 📂 Archivos Huérfanos Detectados
+
+| Archivo | Líneas | Observación |
+|---------|--------|-------------|
+| `core/_variables.scss` | ~59 | No importado por ningún archivo — `ds-entry.scss` carga cada módulo core individualmente. Contiene breakpoints, z-index, tamaños. |
+
+### 🔄 Migraciones Realizadas
+
+| Migración | Archivos tocados | Estado |
+|-----------|-----------------|--------|
+| `icon-pi-*` → `app-icon` / `pi pi-*` | 14 HTML/TS | ✅ Completa |
+| Colores hardcodeados → `var(--ds-*)` | ~40 SCSS | ✅ Completa |
+| Focus shadows unificados → `var(--ds-shadow-focus*)` | 6 SCSS | ✅ Completa |
+| `#ffffff` → `var(--ds-primary-text)` | 8 SCSS | ✅ Completa |
+| `rgba(0,0,0,0.45)` → `var(--ds-bg-overlay)` | 3 SCSS | ✅ Completa |
+| Toast (28) y alerts (17) hardcodes → DS tokens | 2 SCSS | ✅ Completa |
+| `_variables.scss` limpio de duplicados | 1 SCSS | ✅ Completa |
+| **Decisiones de marca** (`$sidebar-bg`, `$success-color`, etc.) → `core/_colors.scss` | 2 SCSS | ✅ **27-jun** |
+| **`mypreset.ts`** — surfaces/tag/message dark sin hardcodes | 1 TS | ✅ **27-jun** |
+| Escala **`$surface-dark-*`** agregada + expuesta | 2 SCSS | ✅ **27-jun** |
+| **`--secondary-50..950`** expuesto como CSS vars | 1 SCSS | ✅ **27-jun** |
+| **`--success/warning/danger/info-400/500`** expuesto | 2 SCSS | ✅ **27-jun** |
+
+### 📌 Excepciones Documentadas
+
+| Archivo | Motivo |
+|---------|--------|
+| `_auth.scss` | Glassmorphism theme-independent — rgba intencionales |
+| `_financial-tables.scss` | Excluido por acuerdo (tablas contables) |
+| `_custom-table.scss` | Excluido por acuerdo (tablas financieras) |
+| `_print.scss` | Baja prioridad (solo impresión) |
+| `_utilities.scss` | Solo spacing/tipografía, sin color |
 
 ---
 

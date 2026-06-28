@@ -4,18 +4,15 @@
    ======================================== */
 
 .cdk-drag-preview {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  border: 1px dashed #ccc;
-  background-color: #fff;
+  box-shadow: var(--ds-shadow-md);
+  border: 1px dashed var(--ds-border);
+  background-color: var(--ds-bg-surface);
 }
 
 .cdk-drag-placeholder {
   opacity: 0;
 }
 
-.cdk-drag-animating {
-  transition: transform 250ms ease;
-}
 
 
 

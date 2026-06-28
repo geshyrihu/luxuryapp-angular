@@ -11,7 +11,7 @@
   --p-primary-color:              var(--ds-primary);
   --p-primary-contrast-color:     var(--ds-primary-text);
   --p-primary-hover-color:        var(--ds-primary-hover);
-  --p-primary-active-color:       #1d4ed8;
+  --p-primary-active-color:       var(--ds-primary-active);
 
   // Surface and backgrounds
   --p-surface-ground:             var(--ds-bg-page);
@@ -40,8 +40,8 @@
   --p-focus-ring-style:           solid;
 
   // Overlay/modal
-  --p-overlay-backdrop:           rgba(0, 0, 0, 0.45);
-  --p-mask-background:            rgba(0, 0, 0, 0.45);
+  --p-overlay-backdrop:           var(--ds-bg-overlay);
+  --p-mask-background:            var(--ds-bg-overlay);
 
   // Transitions
   --p-transition-duration:        150ms;

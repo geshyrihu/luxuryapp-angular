@@ -1,6 +1,16 @@
-/* ==========================================================================
-   MASTER STYLESHEET
-   ========================================================================== */
+/* ═══════════════════════════════════════════════════════════════════════════
+   📜 styles.scss — Hoja de Estilos Global
+   ═══════════════════════════════════════════════════════════════════════════
+   Carga en orden:
+     1. Variables y tokens del Design System
+     2. Reset base (box-sizing)
+     3. Utilidades y custom components
+     4. Ionic CSS Core (mobile)
+     5. Tema: global, toast, header, sidebar, auth, dark-mode
+     6. Componentes especiales: avatars, listas, tablas custom
+     7. Fonts (cargadas desde index.html)
+     8. Overrides: PrimeNG Image Preview, animaciones Iconify
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 /* 1. VARIABLES & TOKENS */
 @import "theme/variables";
@@ -13,7 +23,6 @@
 }
 
 /* 3. CUSTOM */
-@import "custom/custom-prime-icons";
 @import "custom/utilities";
 /* PrimeFlex se carga desde angular.json para utilidades de layout. */
 
@@ -60,14 +69,14 @@ body {
   font-family: var(--ds-font-family-document) !important;
   font-weight: 400 !important;
   font-size: 11pt !important;
-  color: #1a1a1a !important;
+  color: var(--ds-text-primary) !important;
 }
 .ql-editor h1,
 .ql-editor h2,
 .ql-editor h3 {
   font-family: var(--ds-font-family-document) !important;
   font-weight: 700 !important;
-  color: #1b3a6b !important;
+  color: var(--ds-primary) !important;
 }
 
 // button {

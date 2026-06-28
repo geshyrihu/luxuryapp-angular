@@ -299,7 +299,7 @@
   &.is-active {
     background-color: var(--ds-primary-light);
     color: var(--ds-primary);
-    border-color: #bfdbfe;
+    border-color: var(--ds-primary);
     font-weight: 600;
 
     .sidebar-menu-item__icon { color: var(--ds-primary); }

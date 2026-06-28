@@ -734,3 +734,19 @@
   color: var(--rf-result-ink);
   text-transform: uppercase;
 }
+
+// ── ALERTAS FINANCIERAS (Forecast) ────────────────────────
+// Clases de utilidad para resaltar filas completas en base a cálculos
+.fila-deficit > td {
+  background-color: rgba(239, 68, 68, 0.08) !important; /* Tinte muy sutil rojo */
+}
+.fila-deficit > td:first-child {
+  box-shadow: inset 4px 0 0 0 var(--ds-danger, #ef4444) !important; /* Borde izquierdo indicador */
+}
+
+.fila-alerta-incremento > td {
+  background-color: rgba(245, 158, 11, 0.08) !important; /* Tinte muy sutil naranja/amarillo */
+}
+.fila-alerta-incremento > td:first-child {
+  box-shadow: inset 4px 0 0 0 var(--ds-warning, #f59e0b) !important; /* Borde izquierdo indicador */
+}

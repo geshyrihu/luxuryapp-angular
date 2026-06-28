@@ -1,33 +1,28 @@
-// Archivo: src/styles/theme/_variables.scss
-// Genera todas las CSS custom properties del sistema (--primary-*, --ds-*, --ion-*, --z-*).
-// La paleta Sass primitiva vive en core/_colors.scss — fuente única de verdad.
+// ════════════════════════════════════════════════════════════════
+// 🏛️ _variables.scss — Temas y CSS Custom Properties
+// ════════════════════════════════════════════════════════════════
+// Traduce los valores de _colors.scss a CSS custom properties
+// accesibles globalmente como `var(--ds-*)`.
+//
+// 🌞 Modo claro (":root") → valores base de DESIGN.md
+// 🌙 Modo oscuro ("body.theme-dark") → derivados de inverse-*
+//
+// ⚠️  No declares colores nuevos aquí — agrégalos primero en
+//     core/_colors.scss como variable SCSS, luego expónela con #{...}
 
 @use "../core/colors" as c;
 
 // ===================================================================
-// 1. VARIABLES DE TEMA (no-paleta — específicas de este tema)
+// 1. CSS CUSTOM PROPERTIES — MODO CLARO
 // ===================================================================
-$sidebar-bg: #ffffff;
-$header-bg: #ffffff;
 
-// Semánticos con elección de marca (no están en la escala primitiva)
-$success-color: #006837; // verde profesional coherente con paleta fría
-$success-bg: #d1fae5;
-$warning-color: #b45309; // ámbar legible, no rojo
-$warning-bg: #fef3c7;
-$danger-color: #ba1a1a; // error del DESIGN.md
-$danger-bg: #ffdad6; // error-container del DESIGN.md
-
-// ===================================================================
-// 2. GENERACIÓN DE VARIABLES CSS
-// ===================================================================
 :root {
   // Altura del Topbar (Header Fijo)
   --topbar-height: 4rem;
 
   // Sidebar & Header Backgrounds
-  --sidebar-bg: #{$sidebar-bg};
-  --header-bg: #{$header-bg};
+  --sidebar-bg: #{c.$sidebar-bg};
+  --header-bg: #{c.$header-bg};
 
   // Paleta Primary expuesta como CSS Variables (desde core/_colors.scss)
   --primary-50: #{c.$primary-50};
@@ -41,6 +36,33 @@ $danger-bg: #ffdad6; // error-container del DESIGN.md
   --primary-800: #{c.$primary-800};
   --primary-900: #{c.$primary-900};
   --primary-950: #{c.$primary-950};
+
+  // Secondary scale (desde core/_colors.scss)
+  --secondary-50: #{c.$secondary-50};
+  --secondary-100: #{c.$secondary-100};
+  --secondary-200: #{c.$secondary-200};
+  --secondary-300: #{c.$secondary-300};
+  --secondary-400: #{c.$secondary-400};
+  --secondary-500: #{c.$secondary-500};
+  --secondary-600: #{c.$secondary-600};
+  --secondary-700: #{c.$secondary-700};
+  --secondary-800: #{c.$secondary-800};
+  --secondary-900: #{c.$secondary-900};
+  --secondary-950: #{c.$secondary-950};
+
+  // Dark surface scale (para PrimeNG dark mode, desde core/_colors.scss)
+  --surface-dark-0: #{c.$surface-dark-0};
+  --surface-dark-50: #{c.$surface-dark-50};
+  --surface-dark-100: #{c.$surface-dark-100};
+  --surface-dark-200: #{c.$surface-dark-200};
+  --surface-dark-300: #{c.$surface-dark-300};
+  --surface-dark-400: #{c.$surface-dark-400};
+  --surface-dark-500: #{c.$surface-dark-500};
+  --surface-dark-600: #{c.$surface-dark-600};
+  --surface-dark-700: #{c.$surface-dark-700};
+  --surface-dark-800: #{c.$surface-dark-800};
+  --surface-dark-900: #{c.$surface-dark-900};
+  --surface-dark-950: #{c.$surface-dark-950};
 
   // Paleta Help (desde core/_colors.scss)
   --help-50: #{c.$help-50};
@@ -72,10 +94,6 @@ $danger-bg: #ffdad6; // error-container del DESIGN.md
   --ds-contrast-text: #ffffff;
   --ds-contrast-light: #f1f5f9;
 
-  // Borders (brand bridge)
-  --ds-border: #e2e8f0;
-  --ds-border-strong: #cbd5e1;
-
   /* ── Task status colors ── */
   --task-not-started: var(--ds-danger);
   --task-in-progress: var(--ds-warning);
@@ -87,12 +105,12 @@ $danger-bg: #ffdad6; // error-container del DESIGN.md
   --task-reopened-tint: var(--ds-danger-light);
 
   // Colores semánticos (raw, para PrimeNG preset)
-  --success-color: #{$success-color};
-  --success-bg: #{$success-bg};
-  --warning-color: #{$warning-color};
-  --warning-bg: #{$warning-bg};
-  --danger-color: #{$danger-color};
-  --danger-bg: #{$danger-bg};
+  --success-color: #{c.$color-success-brand};
+  --success-bg: #{c.$color-success-bg};
+  --warning-color: #{c.$color-warning-brand};
+  --warning-bg: #{c.$color-warning-bg};
+  --danger-color: #{c.$color-danger-brand};
+  --danger-bg: #{c.$color-danger-bg};
 
   // ===================================================================
   // 3. MAPEO AUTOMÁTICO PARA IONIC
@@ -107,34 +125,34 @@ $danger-bg: #ffdad6; // error-container del DESIGN.md
   --ion-color-primary-tint: #{c.$primary-400};
 
   /** Success **/
-  --ion-color-success: #{$success-color};
+  --ion-color-success: #{c.$color-success-brand};
   --ion-color-success-rgb:
-    #{red($success-color)}, #{green($success-color)}, #{blue($success-color)};
-  --ion-color-success-contrast: #{$success-bg};
+    #{red(c.$color-success-brand)}, #{green(c.$color-success-brand)}, #{blue(c.$color-success-brand)};
+  --ion-color-success-contrast: #{c.$color-success-bg};
   --ion-color-success-contrast-rgb:
-    #{red($success-bg)}, #{green($success-bg)}, #{blue($success-bg)};
-  --ion-color-success-shade: #{darken($success-color, 10%)};
-  --ion-color-success-tint: #{lighten($success-color, 10%)};
+    #{red(c.$color-success-bg)}, #{green(c.$color-success-bg)}, #{blue(c.$color-success-bg)};
+  --ion-color-success-shade: #{darken(c.$color-success-brand, 10%)};
+  --ion-color-success-tint: #{lighten(c.$color-success-brand, 10%)};
 
   /** Warning **/
-  --ion-color-warning: #{$warning-color};
+  --ion-color-warning: #{c.$color-warning-brand};
   --ion-color-warning-rgb:
-    #{red($warning-color)}, #{green($warning-color)}, #{blue($warning-color)};
-  --ion-color-warning-contrast: #{$warning-bg};
+    #{red(c.$color-warning-brand)}, #{green(c.$color-warning-brand)}, #{blue(c.$color-warning-brand)};
+  --ion-color-warning-contrast: #{c.$color-warning-bg};
   --ion-color-warning-contrast-rgb:
-    #{red($warning-bg)}, #{green($warning-bg)}, #{blue($warning-bg)};
-  --ion-color-warning-shade: #{darken($warning-color, 10%)};
-  --ion-color-warning-tint: #{lighten($warning-color, 10%)};
+    #{red(c.$color-warning-bg)}, #{green(c.$color-warning-bg)}, #{blue(c.$color-warning-bg)};
+  --ion-color-warning-shade: #{darken(c.$color-warning-brand, 10%)};
+  --ion-color-warning-tint: #{lighten(c.$color-warning-brand, 10%)};
 
   /** Danger **/
-  --ion-color-danger: #{$danger-color};
+  --ion-color-danger: #{c.$color-danger-brand};
   --ion-color-danger-rgb:
-    #{red($danger-color)}, #{green($danger-color)}, #{blue($danger-color)};
-  --ion-color-danger-contrast: #{$danger-bg};
+    #{red(c.$color-danger-brand)}, #{green(c.$color-danger-brand)}, #{blue(c.$color-danger-brand)};
+  --ion-color-danger-contrast: #{c.$color-danger-bg};
   --ion-color-danger-contrast-rgb:
-    #{red($danger-bg)}, #{green($danger-bg)}, #{blue($danger-bg)};
-  --ion-color-danger-shade: #{darken($danger-color, 10%)};
-  --ion-color-danger-tint: #{lighten($danger-color, 10%)};
+    #{red(c.$color-danger-bg)}, #{green(c.$color-danger-bg)}, #{blue(c.$color-danger-bg)};
+  --ion-color-danger-shade: #{darken(c.$color-danger-brand, 10%)};
+  --ion-color-danger-tint: #{lighten(c.$color-danger-brand, 10%)};
 
   /** UI Colors **/
   --ion-color-light: #{c.$primary-100};
@@ -158,13 +176,6 @@ $danger-bg: #ffdad6; // error-container del DESIGN.md
   --ion-color-dark-contrast-rgb:
     #{red(c.$primary-50)}, #{green(c.$primary-50)}, #{blue(c.$primary-50)};
 
-  /** Backgrounds **/
-  --ion-background-color: #{c.$primary-50};
-  --ion-background-color-rgb:
-    #{red(c.$primary-50)}, #{green(c.$primary-50)}, #{blue(c.$primary-50)};
-  --ion-text-color: #{c.$primary-900};
-  --ion-text-color-rgb:
-    #{red(c.$primary-900)}, #{green(c.$primary-900)}, #{blue(c.$primary-900)};
 
   // ===================================================================
   // 4. SISTEMA CENTRALIZADO DE Z-INDEX
@@ -181,71 +192,108 @@ $danger-bg: #ffdad6; // error-container del DESIGN.md
   --z-loader: 999999;
 
   // Presupuesto
-  --ds-bg-budget: #fff3e0;
-  --ds-text-budget: inherit;
+  --ds-bg-budget: #{c.$color-budget-bg};
+  --ds-text-budget: #{c.$color-budget-text};
+
+  // Scale values — expuestos para mypreset.ts y usos directos
+  --success-400: #{c.$success-400};
+  --success-500: #{c.$success-500};
+  --info-400: #{c.$info-400};
+  --info-500: #{c.$info-500};
+  --warning-400: #{c.$warning-400};
+  --warning-500: #{c.$warning-500};
+  --danger-400: #{c.$danger-400};
+  --danger-500: #{c.$danger-500};
 
   // ── DESIGN SYSTEM TOKENS (--ds-*) ────────────────────────────────
 
-  // Primario
-  --ds-primary: var(--primary-500);
-  --ds-primary-hover: var(--primary-600);
-  --ds-primary-active: var(--primary-700);
+  // Primario — Executive Precision (desde core/_colors.scss)
+  --ds-primary: #{c.$primary-600};
+  --ds-on-primary: #{c.$neutral-0};
+  --ds-primary-container: #{c.$primary-500};
+  --ds-on-primary-container: #{c.$primary-100};
+  --ds-inverse-primary: #{c.$primary-200};
+
+  --ds-secondary: #{c.$secondary-600};
+  --ds-on-secondary: #{c.$neutral-0};
+  --ds-secondary-container: #{c.$secondary-100};
+  --ds-on-secondary-container: #{c.$secondary-700};
+
+  --ds-tertiary: #{c.$tertiary-600};
+  --ds-on-tertiary: #{c.$neutral-0};
+  --ds-tertiary-container: #{c.$tertiary-400};
+  --ds-on-tertiary-container: #{c.$tertiary-800};
+
+  --ds-error: #{c.$color-danger-brand};
+  --ds-on-error: #{c.$neutral-0};
+  --ds-error-container: #{c.$color-danger-bg};
+  --ds-on-error-container: #{c.$danger-800};
+
+  // Superficies — Executive Precision (desde core/_colors.scss)
+  --ds-surface: #{c.$m3-surface};
+  --ds-surface-dim: #{c.$m3-surface-dim};
+  --ds-surface-bright: #{c.$m3-surface-bright};
+  --ds-surface-container-lowest: #{c.$m3-surface-container-lowest};
+  --ds-surface-container-low: #{c.$m3-surface-container-low};
+  --ds-surface-container: #{c.$m3-surface-container};
+  --ds-surface-container-high: #{c.$m3-surface-container-high};
+  --ds-surface-container-highest: #{c.$m3-surface-container-highest};
+  --ds-on-surface: #{c.$m3-on-surface};
+  --ds-on-surface-variant: #{c.$m3-on-surface-variant};
+  --ds-inverse-surface: #{c.$m3-inverse-surface};
+  --ds-inverse-on-surface: #{c.$m3-inverse-on-surface};
+  --ds-surface-variant: #{c.$m3-surface-variant};
+
+  --ds-outline: #{c.$m3-outline};
+  --ds-outline-variant: #{c.$m3-outline-variant};
+  --ds-surface-tint: #{c.$primary-500};
+
+  --ds-background: #{c.$m3-background};
+  --ds-on-background: #{c.$m3-on-background};
+
+  // Fixed / Dim M3 tokens
+  --ds-primary-fixed: #{c.$primary-100};
+  --ds-primary-fixed-dim: #{c.$primary-200};
+  --ds-on-primary-fixed: #{c.$primary-900};
+  --ds-on-primary-fixed-variant: #{c.$primary-700};
+  --ds-secondary-fixed: #{c.$secondary-100};
+  --ds-secondary-fixed-dim: #{c.$secondary-200};
+  --ds-on-secondary-fixed: #{c.$secondary-900};
+  --ds-on-secondary-fixed-variant: #{c.$secondary-700};
+  --ds-tertiary-fixed: #{c.$tertiary-100};
+  --ds-tertiary-fixed-dim: #{c.$tertiary-200};
+  --ds-on-tertiary-fixed: #{c.$tertiary-950};
+  --ds-on-tertiary-fixed-variant: #{c.$tertiary-700};
+
+  // Interactive states (derived from primary scale)
+  --ds-primary-hover: #{c.$primary-700};
+  --ds-primary-active: #{c.$primary-800};
   --ds-primary-light: var(--primary-50);
-  --ds-primary-text: #ffffff;
+  --ds-primary-text: #{c.$neutral-0};
 
   // Semánticos
   --ds-success: var(--success-color);
-  --ds-success-hover: #005a2f;
+  --ds-success-hover: #{c.$success-700};
   --ds-success-light: var(--success-bg);
   --ds-warning: var(--warning-color);
-  --ds-warning-hover: #9a4208;
+  --ds-warning-hover: #{c.$warning-700};
   --ds-warning-light: var(--warning-bg);
   --ds-danger: var(--danger-color);
-  --ds-danger-hover: #9b1515;
+  --ds-danger-hover: #{c.$danger-700};
   --ds-danger-light: var(--danger-bg);
-  // info = teal corporativo (tertiary del DESIGN.md)
-  --ds-info: #006477;
-  --ds-info-hover: #004b59;
-  --ds-info-light: #afecff;
-
-  // Material 3 roles — alineados con DESIGN.md
-  --ds-primary-container: #{c.$primary-100}; // primary-fixed (azul claro)
-  --ds-on-primary-container: #c4d2ff; // on-primary-container
-  --ds-on-primary: #ffffff;
-
-  --ds-secondary: #{c.$primary-400}; // secondary
-  --ds-on-secondary: #ffffff;
-  --ds-secondary-container: #{c.$primary-300}; // secondary-container
-  --ds-on-secondary-container: #{c.$primary-800}; // on-secondary-container
-
-  --ds-tertiary: #004b59; // tertiary
-  --ds-on-tertiary: #ffffff;
-
-  --ds-error: var(--danger-color);
-  --ds-on-error: #ffffff;
-  --ds-error-container: var(--danger-bg); // #ffdad6
-  --ds-on-error-container: #93000a; // on-error-container
-
-  --ds-surface: #ffffff; // surface-container-lowest
-  --ds-on-surface: #041b3c; // on-surface
-  --ds-surface-variant: #{c.$primary-100}; // surface-variant
-  --ds-on-surface-variant: #434654; // on-surface-variant
-
-  --ds-outline: #737685; // outline
-  --ds-outline-variant: #c3c6d6; // outline-variant
-
-  --ds-background: #f9f9ff; // background
-  --ds-on-background: #041b3c; // on-background
+  --ds-info: #{c.$info-600};
+  --ds-info-hover: #{c.$info-700};
+  --ds-info-light: #{c.$info-50};
 
   // Identidad Luxury / Documental
-  --ds-luxury-gold: #c9a84c; /* ⚠️ Solo decorativo (bordes, fondos) — no usar para texto (<4.5:1) */
-  --ds-luxury-gold-hover: #ad8f3d;
-  --ds-luxury-gold-light: #fbf6e4;
-  --ds-luxury-gold-text: #b8953a; /* ✅ Accesible para texto (4.6:1 sobre blanco) */
-  --ds-document-neutral: #5b6778;
-  --ds-document-bg-muted: #f3f4f6;
-  --ds-document-ink: #041b3c;
-  --ds-document-surface: #ffffff;
+  --ds-luxury-gold: #{c.$tertiary-400};
+  --ds-luxury-gold-hover: #{c.$tertiary-300};
+  --ds-luxury-gold-light: #{c.$tertiary-50};
+  --ds-luxury-gold-text: #{c.$tertiary-500};
+  --ds-document-neutral: #{c.$neutral-500};
+  --ds-document-bg-muted: #{c.$secondary-50};
+  --ds-document-ink: #{c.$primary-900};
+  --ds-document-surface: #{c.$neutral-0};
 
   // Tipografía Documental
   --ds-font-family-document: "Hanken Grotesk", "Inter", sans-serif;
@@ -255,19 +303,19 @@ $danger-bg: #ffdad6; // error-container del DESIGN.md
   --ds-font-size-doc-code: 9.5pt;
 
   // Fondos — DESIGN.md surface tiers
-  --ds-bg-page: #f9f9ff; // background / surface
-  --ds-bg-surface: #ffffff; // surface-container-lowest
-  --ds-bg-elevated: #f1f3ff; // surface-container-low
-  --ds-bg-sunken: #e8edff; // surface-container
-  --ds-bg-overlay: rgba(4, 27, 60, 0.5);
+  --ds-bg-page: var(--ds-background);
+  --ds-bg-surface: var(--ds-surface-container-lowest);
+  --ds-bg-elevated: var(--ds-surface-container-low);
+  --ds-bg-sunken: var(--ds-surface-container);
+  --ds-bg-overlay: rgba(0, 0, 0, 0.5);
 
   // Texto — DESIGN.md on-surface roles
-  --ds-text-primary: #041b3c; // on-surface
-  --ds-text-secondary: #434654; // on-surface-variant
-  --ds-text-muted: #737685; // outline
-  --ds-text-inverse: #edf0ff; // inverse-on-surface
-  --ds-text-disabled: #c3c6d6; // outline-variant
-  --ds-text-link: var(--primary-500);
+  --ds-text-primary: var(--ds-on-surface);
+  --ds-text-secondary: var(--ds-on-surface-variant);
+  --ds-text-muted: var(--ds-outline);
+  --ds-text-inverse: var(--ds-inverse-on-surface);
+  --ds-text-disabled: var(--ds-outline-variant);
+  --ds-text-link: var(--ds-surface-tint);
 
   // Tipografía ERP — Hanken Grotesk (headlines) + Inter (body)
   --ds-font-family-base: "Inter", "Hanken Grotesk", sans-serif;
@@ -290,52 +338,19 @@ $danger-bg: #ffdad6; // error-container del DESIGN.md
   --ds-font-weight-bold: 700;
 
   // Bordes
-  --ds-border: #e2e8f0;
-  --ds-border-strong: #cbd5e1;
-  --ds-border-focus: var(--primary-500);
-  --ds-border-error: #ef4444;
-  --ds-border-success: #22c55e;
-  --ds-control-border-width: 1px;
+  --ds-border: #{c.$secondary-200};
+  --ds-border-strong: #{c.$secondary-300};
+  --ds-border-focus: var(--ds-surface-tint);
+  --ds-border-error: #{c.$danger-500};
+  --ds-border-success: #{c.$success-500};
+  --ds-control-border-width: 2px; /* desktop */
 
-  // Sombras
-  --ds-shadow-none: none;
-  --ds-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --ds-shadow-sm:
-    0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
-  --ds-shadow-md:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
-  --ds-shadow-lg:
-    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.06);
-  --ds-shadow-xl:
-    0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.06);
-  --ds-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  --ds-shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
-  --ds-shadow-focus: 0 0 0 3px rgba(11, 49, 100, 0.25);
-
-  // Border radius
-  --ds-radius-none: 0px;
-  --ds-radius-xs: 2px;
-  --ds-radius-sm: 4px;
-  --ds-radius-md: 6px; // 6px  — DEFAULT (unificado)
-  --ds-radius-lg: 8px; // 8px  — cards
-  --ds-radius-xl: 12px; // 12px — modals
-  --ds-radius-2xl: 16px; // 16px — overlays
-  --ds-radius-full: 9999px; // pills
-  --ds-radius-btn: 6px;
-  --ds-radius-input: 6px;
-  --ds-radius-card: 8px;
-  --ds-radius-badge: 9999px;
-  --ds-radius-modal: 12px;
-
-  // 💎 PrimeNG 21 Native Mapping (Bridge)
-  --p-primary-color: var(--ds-primary);
-  --p-primary-contrast-color: var(--ds-primary-text);
+  // 💎 PrimeNG 21 Native Mapping (Bridge) — valores no cubiertos por _prime-tokens.scss
   --p-content-border-radius: var(--ds-radius-md);
   --p-button-border-radius: var(--ds-radius-btn);
   --p-card-border-radius: var(--ds-radius-card);
-  --p-card-shadow: var(--ds-shadow-md);
+  --p-card-box-shadow: var(--ds-shadow-sm);
   --p-overlay-shadow: var(--ds-shadow-lg);
-  --p-focus-ring-color: var(--ds-shadow-focus);
 }
 
 // ===================================================================
@@ -343,16 +358,9 @@ $danger-bg: #ffdad6; // error-container del DESIGN.md
 // ===================================================================
 body.theme-dark {
   // Sidebar y topbar vuelven a navy oscuro en dark mode
-  --sidebar-bg: #1d3052;
-  --header-bg: #1d3052;
+  --sidebar-bg: #{c.$sidebar-bg-dark};
+  --header-bg: #{c.$header-bg-dark};
 
-  /** Ionic Backgrounds **/
-  --ion-background-color: #{c.$primary-900};
-  --ion-background-color-rgb:
-    #{red(c.$primary-900)}, #{green(c.$primary-900)}, #{blue(c.$primary-900)};
-  --ion-text-color: #{c.$primary-100};
-  --ion-text-color-rgb:
-    #{red(c.$primary-100)}, #{green(c.$primary-100)}, #{blue(c.$primary-100)};
 
   /** Ionic Step Colors **/
   --ion-background-color-step-50: #{c.$primary-950};
@@ -395,83 +403,97 @@ body.theme-dark {
   --ion-tab-bar-background: #{c.$primary-950};
 
   // Presupuesto
-  --ds-bg-budget: #78350f;
-  --ds-text-budget: #ffffff;
+  --ds-bg-budget: #{c.$color-budget-bg-dark};
+  --ds-text-budget: #{c.$color-budget-text-dark};
 
-  // ── DS TOKENS DARK — derivados de inverse-* del DESIGN.md ──────
-  --ds-bg-page: #041b3c;
-  --ds-bg-surface: #1d3052;
-  --ds-bg-elevated: #253e66;
-  --ds-bg-sunken: #030f24;
-  --ds-bg-overlay: rgba(4, 27, 60, 0.7);
+  // ── DS TOKENS DARK — derivados de DESIGN.md inverse-* ──────
+  --ds-bg-page: var(--ds-background);
+  --ds-bg-surface: var(--ds-surface-container-lowest);
+  --ds-bg-elevated: var(--ds-surface-container-low);
+  --ds-bg-sunken: var(--ds-surface-container);
+  --ds-bg-overlay: rgba(0, 0, 0, 0.7);
 
-  --ds-text-primary: #edf0ff; // inverse-on-surface
-  --ds-text-secondary: #{c.$primary-200}; // primary-fixed-dim
-  --ds-text-muted: #c3c6d6;
-  --ds-text-inverse: #041b3c;
-  --ds-text-disabled: #434654;
-  --ds-text-link: var(--primary-200);
+  --ds-text-primary: var(--ds-on-surface);
+  --ds-text-secondary: var(--ds-on-surface-variant);
+  --ds-text-muted: var(--ds-outline);
+  --ds-text-inverse: var(--ds-on-background);
+  --ds-text-disabled: var(--ds-outline-variant);
+  --ds-text-link: var(--ds-inverse-primary);
 
-  --ds-border: #434654;
-  --ds-border-strong: #737685;
-  --ds-border-focus: #{c.$primary-200}; // inverse-primary
-  --ds-border-error: #ffb4ab;
-  --ds-border-success: #6efab4;
+  --ds-border: var(--ds-outline-variant);
+  --ds-border-strong: var(--ds-outline);
+  --ds-border-focus: var(--ds-inverse-primary);
+  --ds-border-error: #{c.$danger-300};
+  --ds-border-success: #{c.$success-300};
 
-  --ds-primary: #{c.$primary-200}; // inverse-primary
+  --ds-primary: #{c.$primary-200};
   --ds-primary-hover: #{c.$primary-100};
-  --ds-primary-light: rgba(178, 197, 255, 0.15);
+  --ds-primary-active: #{c.$primary-300};
+  --ds-primary-light: color-mix(in srgb, #{c.$primary-200}, transparent 85%);
+  --ds-primary-text: #{c.$primary-900};
 
-  --ds-success: #6efab4;
-  --ds-success-hover: #9cf7ca;
-  --ds-success-light: rgba(110, 250, 180, 0.12);
-  --ds-warning: #ffd180;
-  --ds-warning-hover: #ffe0a8;
-  --ds-warning-light: rgba(251, 191, 36, 0.12);
-  --ds-danger: #f87171;
-  --ds-danger-hover: #fca5a5;
-  --ds-danger-light: rgba(248, 113, 113, 0.12);
-  --ds-info: #22d3ee;
-  --ds-info-hover: #67e8f9;
-  --ds-info-light: rgba(34, 211, 238, 0.12);
+  --ds-success: #{c.$success-300};
+  --ds-success-hover: #{c.$success-200};
+  --ds-success-light: color-mix(in srgb, #{c.$success-400}, transparent 88%);
+  --ds-warning: #{c.$warning-300};
+  --ds-warning-hover: #{c.$warning-200};
+  --ds-warning-light: color-mix(in srgb, #{c.$warning-400}, transparent 88%);
+  --ds-danger: #{c.$danger-300};
+  --ds-danger-hover: #{c.$danger-200};
+  --ds-danger-light: color-mix(in srgb, #{c.$danger-400}, transparent 88%);
+  --ds-info: #{c.$info-300};
+  --ds-info-hover: #{c.$info-200};
+  --ds-info-light: color-mix(in srgb, #{c.$info-400}, transparent 88%);
 
-  // Material 3 roles dark
-  --ds-primary-container: #092953;
-  --ds-on-primary-container: #dce7f3;
-  --ds-on-primary: #020811;
+  // Material 3 roles dark — invertidos
+  --ds-on-primary: #{c.$primary-900};
+  --ds-primary-container: #{c.$primary-800};
+  --ds-on-primary-container: #{c.$primary-200};
+  --ds-inverse-primary: #{c.$primary-600};
 
-  --ds-secondary: #94a3b8;
-  --ds-on-secondary: #0f172a;
-  --ds-secondary-container: #1e293b;
-  --ds-on-secondary-container: #e2e8f0;
+  --ds-secondary: #{c.$secondary-200};
+  --ds-on-secondary: #{c.$secondary-900};
+  --ds-secondary-container: #{c.$secondary-800};
+  --ds-on-secondary-container: #{c.$secondary-200};
 
-  --ds-tertiary: #14b8a6;
-  --ds-on-tertiary: #042f2e;
+  --ds-tertiary: #{c.$tertiary-200};
+  --ds-on-tertiary: #{c.$tertiary-900};
+  --ds-tertiary-container: #{c.$tertiary-800};
+  --ds-on-tertiary-container: #{c.$tertiary-200};
 
-  --ds-error: #f87171;
-  --ds-on-error: #450a0a;
-  --ds-error-container: #7f1616;
-  --ds-on-error-container: #fca5a5;
+  --ds-error: #{c.$danger-300};
+  --ds-on-error: #{c.$danger-900};
+  --ds-error-container: #{c.$danger-800};
+  --ds-on-error-container: #{c.$danger-200};
 
-  --ds-surface: #18181b;
-  --ds-on-surface: #f8fafc;
-  --ds-surface-variant: #27272a;
-  --ds-on-surface-variant: #94a3b8;
+  --ds-surface: #{c.$primary-950};
+  --ds-surface-dim: #{c.$primary-950};
+  --ds-surface-bright: #{c.$primary-900};
+  --ds-surface-container-lowest: #{c.$primary-950};
+  --ds-surface-container-low: #{c.$primary-900};
+  --ds-surface-container: #{c.$primary-800};
+  --ds-surface-container-high: #{c.$primary-700};
+  --ds-surface-container-highest: #{c.$primary-600};
+  --ds-on-surface: #{c.$primary-100};
+  --ds-on-surface-variant: #{c.$primary-300};
+  --ds-inverse-surface: #{c.$m3-surface};
+  --ds-inverse-on-surface: #{c.$m3-on-surface};
+  --ds-surface-variant: #{c.$primary-800};
 
-  --ds-outline: #52525b;
-  --ds-outline-variant: #3f3f46;
+  --ds-outline-variant: #{c.$primary-700};
+  --ds-surface-tint: #{c.$primary-200};
 
-  --ds-background: #09090b;
-  --ds-on-background: #f8fafc;
+  --ds-background: #{c.$primary-950};
+  --ds-on-background: #{c.$primary-100};
 
-  --ds-luxury-gold: #d8bd69; /* ⚠️ Solo decorativo */
-  --ds-luxury-gold-hover: #e5cd7f;
-  --ds-luxury-gold-light: rgba(201, 168, 76, 0.16);
-  --ds-luxury-gold-text: #d8bd69; /* ✅ Sobre fondo oscuro pasa AA (5.8:1) */
-  --ds-document-neutral: #a1a1aa;
-  --ds-document-bg-muted: #27272a;
-  --ds-document-ink: #fafafa;
-  --ds-document-surface: #18181b;
+  --ds-luxury-gold: #{c.$tertiary-200};
+  --ds-luxury-gold-hover: #{c.$tertiary-100};
+  --ds-luxury-gold-light: color-mix(in srgb, #{c.$tertiary-400}, transparent 84%);
+  --ds-luxury-gold-text: #{c.$tertiary-200};
+  --ds-document-neutral: #{c.$neutral-400};
+  --ds-document-bg-muted: #{c.$neutral-800};
+  --ds-document-ink: #{c.$neutral-100};
+  --ds-document-surface: #{c.$neutral-900};
 
   --ds-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
   --ds-shadow-sm:
@@ -483,25 +505,31 @@ body.theme-dark {
   --ds-shadow-xl:
     0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
   --ds-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-  --ds-shadow-focus: 0 0 0 3px rgba(77, 159, 255, 0.3);
+  --ds-shadow-focus: 0 0 0 3px color-mix(in srgb, #{c.$primary-200}, transparent 70%);
 
   // Neon glow tokens — dark mode
   --ds-glow-primary:
-    0 0 0 1px rgba(77, 159, 255, 0.45), 0 0 14px rgba(77, 159, 255, 0.2);
+    0 0 0 1px color-mix(in srgb, #{c.$primary-200}, transparent 55%),
+    0 0 14px color-mix(in srgb, #{c.$primary-200}, transparent 80%);
   --ds-glow-success:
-    0 0 0 1px rgba(74, 222, 128, 0.45), 0 0 14px rgba(74, 222, 128, 0.2);
+    0 0 0 1px color-mix(in srgb, #{c.$success-400}, transparent 55%),
+    0 0 14px color-mix(in srgb, #{c.$success-400}, transparent 80%);
   --ds-glow-danger:
-    0 0 0 1px rgba(248, 113, 113, 0.45), 0 0 14px rgba(248, 113, 113, 0.2);
+    0 0 0 1px color-mix(in srgb, #{c.$danger-400}, transparent 55%),
+    0 0 14px color-mix(in srgb, #{c.$danger-400}, transparent 80%);
   --ds-glow-warning:
-    0 0 0 1px rgba(251, 191, 36, 0.45), 0 0 14px rgba(251, 191, 36, 0.2);
+    0 0 0 1px color-mix(in srgb, #{c.$warning-400}, transparent 55%),
+    0 0 14px color-mix(in srgb, #{c.$warning-400}, transparent 80%);
   --ds-glow-info:
-    0 0 0 1px rgba(34, 211, 238, 0.45), 0 0 14px rgba(34, 211, 238, 0.2);
+    0 0 0 1px color-mix(in srgb, #{c.$info-400}, transparent 55%),
+    0 0 14px color-mix(in srgb, #{c.$info-400}, transparent 80%);
   --ds-glow-help:
-    0 0 0 1px rgba(196, 181, 253, 0.45), 0 0 14px rgba(196, 181, 253, 0.2);
+    0 0 0 1px color-mix(in srgb, #{c.$help-400}, transparent 55%),
+    0 0 14px color-mix(in srgb, #{c.$help-400}, transparent 80%);
 
   // 💎 PrimeNG 21 Dark Mapping
   --p-primary-color: var(--ds-primary);
-  --p-primary-contrast-color: var(--ds-text-inverse);
+  --p-primary-contrast-color: var(--ds-primary-text);
   --p-content-background: var(--ds-bg-surface);
   --p-content-border-color: var(--ds-border);
 }

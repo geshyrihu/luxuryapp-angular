@@ -9,7 +9,7 @@
 
 .p-toast .p-toast-message {
   border-width: 0 0 0 8px !important; /* Borde lateral más grueso */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important; /* Sombra más fuerte */
+  box-shadow: var(--ds-shadow-lg) !important;
   opacity: 1 !important;
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
@@ -42,45 +42,45 @@
 
 /* SUCCESS (Web) */
 .p-toast-message-success {
-  background: #f0fdf4 !important; /* Fondo muy claro */
-  border-left-color: #16a34a !important; /* Verde vibrante */
-  color: #14532d !important; /* Texto oscuro y legible */
+  background: var(--ds-success-light) !important;
+  border-left-color: var(--ds-success) !important;
+  color: var(--ds-text-primary) !important;
 
   .p-toast-message-icon {
-    color: #16a34a !important;
+    color: var(--ds-success) !important;
   }
 }
 
 /* ERROR (Web) */
 .p-toast-message-error {
-  background: #fef2f2 !important;
-  border-left-color: #dc2626 !important; /* Rojo vibrante */
-  color: #7f1d1d !important;
+  background: var(--ds-danger-light) !important;
+  border-left-color: var(--ds-danger) !important;
+  color: var(--ds-text-primary) !important;
 
   .p-toast-message-icon {
-    color: #dc2626 !important;
+    color: var(--ds-danger) !important;
   }
 }
 
 /* INFO (Web) */
 .p-toast-message-info {
-  background: #eff6ff !important;
-  border-left-color: #2563eb !important; /* Azul vibrante */
-  color: #1e3a8a !important;
+  background: var(--ds-info-light) !important;
+  border-left-color: var(--ds-info) !important;
+  color: var(--ds-text-primary) !important;
 
   .p-toast-message-icon {
-    color: #2563eb !important;
+    color: var(--ds-info) !important;
   }
 }
 
 /* WARN (Web) */
 .p-toast-message-warn {
-  background: #fffbeb !important;
-  border-left-color: #d97706 !important; /* Naranja fuerte */
-  color: #78350f !important;
+  background: var(--ds-warning-light) !important;
+  border-left-color: var(--ds-warning) !important;
+  color: var(--ds-text-primary) !important;
 
   .p-toast-message-icon {
-    color: #d97706 !important;
+    color: var(--ds-warning) !important;
   }
 }
 
@@ -90,7 +90,7 @@
 /* Estilos para el toast nativo de Ionic con la clase 'custom-mobile-toast' */
 
 ion-toast.custom-mobile-toast {
-  --box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --box-shadow: var(--ds-shadow-lg);
   --border-radius: 12px;
   --start-padding: 16px;
   --end-padding: 16px;
@@ -111,39 +111,39 @@ ion-toast.custom-mobile-toast {
 
   /* SUCCESS (Mobile) */
   &.ion-color-success {
-    --ion-color-base: #16a34a !important;
-    --ion-color-contrast: #ffffff !important;
-    --background: #16a34a !important; 
-    --color: #ffffff !important;
-    --button-color: #ffffff !important;
+    --ion-color-base: var(--ds-success) !important;
+    --ion-color-contrast: var(--ds-primary-text) !important;
+    --background: var(--ds-success) !important; 
+    --color: var(--ds-primary-text) !important;
+    --button-color: var(--ds-primary-text) !important;
   }
 
   /* ERROR (Mobile) */
   &.ion-color-danger {
-    --ion-color-base: #dc2626 !important;
-    --ion-color-contrast: #ffffff !important;
-    --background: #dc2626 !important;
-    --color: #ffffff !important;
-    --button-color: #ffffff !important;
+    --ion-color-base: var(--ds-danger) !important;
+    --ion-color-contrast: var(--ds-primary-text) !important;
+    --background: var(--ds-danger) !important;
+    --color: var(--ds-primary-text) !important;
+    --button-color: var(--ds-primary-text) !important;
   }
 
   /* WARN (Mobile) */
   &.ion-color-warning {
-    --ion-color-base: #d97706 !important;
-    --ion-color-contrast: #ffffff !important;
-    --background: #d97706 !important;
-    --color: #ffffff !important;
-    --button-color: #ffffff !important;
+    --ion-color-base: var(--ds-warning) !important;
+    --ion-color-contrast: var(--ds-primary-text) !important;
+    --background: var(--ds-warning) !important;
+    --color: var(--ds-primary-text) !important;
+    --button-color: var(--ds-primary-text) !important;
   }
 
   /* INFO / PRIMARY (Mobile) */
   &.ion-color-primary,
   &.ion-color-medium {
-    --ion-color-base: #2563eb !important;
-    --ion-color-contrast: #ffffff !important;
-    --background: #2563eb !important;
-    --color: #ffffff !important;
-    --button-color: #ffffff !important;
+    --ion-color-base: var(--ds-primary) !important;
+    --ion-color-contrast: var(--ds-primary-text) !important;
+    --background: var(--ds-primary) !important;
+    --color: var(--ds-primary-text) !important;
+    --button-color: var(--ds-primary-text) !important;
   }
 }
 
