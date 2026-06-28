@@ -2,69 +2,48 @@
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { InputNumberModule } from "primeng/inputnumber";
 import { BaseInputSignal } from "../base/base-input-signal";
-import { IonInputNumber } from "../mobile/ion-input-number";
 
 @Component({
   selector: "custom-input-number-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, InputNumberModule, IonInputNumber],
+  imports: [BaseInputSignal, ReactiveFormsModule, InputNumberModule],
   template: `
-    @if (platform.isMobile()) {
-      <ion-input-number
-        [control]="control()"
-        [label]="label()"
+    <base-input-signal
+      [control]="control() || internalControl"
+      [id]="id()"
+      [label]="label()"
+      [placeholder]="placeholder()"
+      [horizontal]="horizontal()"
+      [readonly]="readonly()"
+      [disabled]="disabled()"
+      [required]="requiredInput()"
+      [onlyInput]="onlyInput()"
+      [noMargin]="noMargin()"
+    >
+      <p-inputnumber
+        [inputId]="id()"
+        [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
-        [horizontal]="horizontal()"
         [readonly]="readonly()"
-        [required]="requiredInput()"
-        [noMargin]="noMargin()"
-        [description]="description()"
-        [hidden]="hidden()"
-        [min]="min()"
-        [max]="max()"
-        [step]="step()"
-        [customClass]="customClass()"
-        [size]="size()"
+        [attr.min]="min()"
+        [attr.max]="max()"
+        [attr.step]="step()"
+        [showButtons]="showButtons()"
+        [minFractionDigits]="minFractionDigits()"
+        [maxFractionDigits]="maxFractionDigits()"
+        [mode]="mode()"
+        [currency]="currency()"
+        [locale]="locale()"
+        [useGrouping]="useGrouping()"
+        [prefix]="prefix()"
+        [suffix]="suffix()"
         [showClear]="showClear()"
+        [inputStyleClass]="inputStyleClass()"
+        [invalid]="isInvalid()"
+        (onBlur)="blur.emit()"
+        (keydown.enter)="enter.emit()"
+        fluid
       />
-    } @else {
-      <base-input-signal
-        [control]="control() || internalControl"
-        [id]="id()"
-        [label]="label()"
-        [placeholder]="placeholder()"
-        [horizontal]="horizontal()"
-        [readonly]="readonly()"
-        [disabled]="disabled()"
-        [required]="requiredInput()"
-        [onlyInput]="onlyInput()"
-        [noMargin]="noMargin()"
-      >
-        <p-inputnumber
-          [inputId]="id()"
-          [formControl]="control() || internalControl"
-          [placeholder]="placeholder()"
-          [readonly]="readonly()"
-          [attr.min]="min()"
-          [attr.max]="max()"
-          [attr.step]="step()"
-          [showButtons]="showButtons()"
-          [minFractionDigits]="minFractionDigits()"
-          [maxFractionDigits]="maxFractionDigits()"
-          [mode]="mode()"
-          [currency]="currency()"
-          [locale]="locale()"
-          [useGrouping]="useGrouping()"
-          [prefix]="prefix()"
-          [suffix]="suffix()"
-          [showClear]="showClear()"
-          [inputStyleClass]="inputStyleClass()"
-          [invalid]="isInvalid()"
-          (onBlur)="blur.emit()"
-          (keydown.enter)="enter.emit()"
-          fluid
-        />
-      </base-input-signal>
-    }
+    </base-input-signal>
   `,
   providers: [
     {

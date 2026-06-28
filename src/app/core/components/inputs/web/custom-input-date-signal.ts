@@ -4,7 +4,6 @@ import { FlatpickrDirective } from "angularx-flatpickr";
 import { Spanish } from "flatpickr/dist/l10n/es";
 import { InputTextModule } from "primeng/inputtext";
 import { BaseInputSignal } from "../base/base-input-signal";
-import { IonInputDate } from "../mobile/ion-input-date";
 
 @Component({
   selector: "custom-input-date-signal",
@@ -13,57 +12,41 @@ import { IonInputDate } from "../mobile/ion-input-date";
     ReactiveFormsModule,
     FlatpickrDirective,
     InputTextModule,
-    IonInputDate,
   ],
   template: `
-    @if (platform.isMobile()) {
-      <ion-input-date
-        [control]="control()"
-        [label]="label()"
-        [placeholder]="placeholder()"
-        [horizontal]="horizontal()"
-        [readonly]="readonly()"
-        [required]="requiredInput()"
-        [noMargin]="noMargin()"
-        [description]="description()"
-        [hidden]="hidden()"
-        [customClass]="customClass()"
-      />
-    } @else {
-      <base-input-signal
-        [control]="control()"
+    <base-input-signal
+      [control]="control()"
+      [id]="id()"
+      [label]="label()"
+      [placeholder]="placeholder()"
+      [horizontal]="horizontal()"
+      [readonly]="readonly()"
+      [disabled]="disabled()"
+      [required]="requiredInput()"
+      [noMargin]="noMargin()"
+      [description]="description()"
+      [hidden]="hidden()"
+    >
+      <input
+        pInputText
+        mwlFlatpickr
+        type="text"
         [id]="id()"
-        [label]="label()"
+        [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
-        [horizontal]="horizontal()"
         [readonly]="readonly()"
         [disabled]="disabled()"
-        [required]="requiredInput()"
-        [noMargin]="noMargin()"
-        [description]="description()"
-        [hidden]="hidden()"
-      >
-        <input
-          pInputText
-          mwlFlatpickr
-          type="text"
-          [id]="id()"
-          [formControl]="control() || internalControl"
-          [placeholder]="placeholder()"
-          [readonly]="readonly()"
-          [disabled]="disabled()"
-          [disable]="disable()"
-          [mode]="mode()"
-          [locale]="spanishLocale"
-          [altInput]="true"
-          [altFormat]="'d/M/Y'"
-          [convertModelValue]="true"
-          [dateFormat]="'Y-m-d'"
-          [allowInput]="true"
-          fluid
-        />
-      </base-input-signal>
-    }
+        [disable]="disable()"
+        [mode]="mode()"
+        [locale]="spanishLocale"
+        [altInput]="true"
+        [altFormat]="'d/M/Y'"
+        [convertModelValue]="true"
+        [dateFormat]="'Y-m-d'"
+        [allowInput]="true"
+        fluid
+      />
+    </base-input-signal>
   `,
   providers: [
     {
@@ -76,7 +59,6 @@ import { IonInputDate } from "../mobile/ion-input-date";
 export class CustomInputDateSignal extends BaseInputSignal {
   disable = input<Date[]>([]);
   mode = input<"single" | "multiple" | "range">("single");
-  customClass = input<string>("");
   protected readonly spanishLocale = Spanish;
 
   override writeValue(value: any): void {

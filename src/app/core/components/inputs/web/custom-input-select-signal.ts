@@ -3,68 +3,46 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@a
 import { SelectModule } from "primeng/select";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { BaseInputSignal } from "../base/base-input-signal";
-import { IonInputSelect } from "../mobile/ion-input-select";
 
 @Component({
   selector: "custom-input-select-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, SelectModule, IonInputSelect],
+  imports: [BaseInputSignal, ReactiveFormsModule, SelectModule],
   template: `
-    @if (platform.isMobile()) {
-      <ion-input-select
-        [control]="control()"
-        [label]="label()"
+    <base-input-signal
+      [control]="control()"
+      [id]="id()"
+      [label]="label()"
+      [placeholder]="placeholder()"
+      [horizontal]="horizontal()"
+      [readonly]="readonly()"
+      [disabled]="disabled()"
+      [required]="requiredInput()"
+      [noMargin]="noMargin()"
+      [description]="description()"
+      [hidden]="hidden()"
+      [onlyInput]="onlyInput()"
+    >
+      <p-select
+        [options]="data()"
+        [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
-        [horizontal]="horizontal()"
+        [showClear]="showClear()"
+        [attr.disabled]="disabled() ? true : null"
         [readonly]="readonly()"
-        [required]="requiredInput()"
-        [noMargin]="noMargin()"
-        [description]="description()"
-        [hidden]="hidden()"
-        [data]="data()"
+        [inputId]="id()"
         [optionLabel]="optionLabel()"
         [optionValue]="optionValue()"
-        [showClear]="showClear()"
+        [dataKey]="optionValue()"
+        [class]="customClass()"
+        fluid
+        (onChange)="selectionChange.emit($event)"
+        appendTo="body"
         [filter]="filter()"
-        [customClass]="customClass()"
+        [filterBy]="filterBy()"
+        [invalid]="isInvalid()"
         [size]="size()"
       />
-    } @else {
-      <base-input-signal
-        [control]="control()"
-        [id]="id()"
-        [label]="label()"
-        [placeholder]="placeholder()"
-        [horizontal]="horizontal()"
-        [readonly]="readonly()"
-        [disabled]="disabled()"
-        [required]="requiredInput()"
-        [noMargin]="noMargin()"
-        [description]="description()"
-        [hidden]="hidden()"
-        [onlyInput]="onlyInput()"
-      >
-        <p-select
-          [options]="data()"
-          [formControl]="control() || internalControl"
-          [placeholder]="placeholder()"
-          [showClear]="showClear()"
-          [attr.disabled]="disabled() ? true : null"
-          [readonly]="readonly()"
-          [inputId]="id()"
-          [optionLabel]="optionLabel()"
-          [optionValue]="optionValue()"
-          [dataKey]="optionValue()"
-          [class]="customClass()"
-          fluid
-          (onChange)="selectionChange.emit($event)"
-          appendTo="body"
-          [filter]="filter()"
-          [filterBy]="filterBy()"
-          [invalid]="isInvalid()"
-          [size]="size()"
-        />
-      </base-input-signal>
-    }
+    </base-input-signal>
   `,
   providers: [
     {

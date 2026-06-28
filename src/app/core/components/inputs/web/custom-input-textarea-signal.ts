@@ -2,56 +2,39 @@
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { TextareaModule } from "primeng/textarea";
 import { BaseInputSignal } from "../base/base-input-signal";
-import { IonInputTextarea } from "../mobile/ion-input-textarea";
 
 @Component({
   selector: "custom-input-textarea-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, TextareaModule, IonInputTextarea],
+  imports: [BaseInputSignal, ReactiveFormsModule, TextareaModule],
   template: `
-    @if (platform.isMobile()) {
-      <ion-input-textarea
-        [control]="control()"
-        [label]="label()"
-        [placeholder]="placeholder()"
-        [horizontal]="horizontal()"
-        [readonly]="readonly()"
-        [required]="requiredInput()"
-        [noMargin]="noMargin()"
-        [description]="description()"
-        [hidden]="hidden()"
-        [rows]="rows()"
-        [customClass]="customClass()"
-      />
-    } @else {
-      <base-input-signal
-        [control]="control()"
+    <base-input-signal
+      [control]="control()"
+      [id]="id()"
+      [label]="label()"
+      [placeholder]="placeholder()"
+      [horizontal]="horizontal()"
+      [readonly]="readonly()"
+      [disabled]="disabled()"
+      [required]="requiredInput()"
+      [description]="description()"
+      [hidden]="hidden()"
+    >
+      <textarea
+        pTextarea
         [id]="id()"
-        [label]="label()"
+        [formControl]="control() || internalControl"
         [placeholder]="placeholder()"
-        [horizontal]="horizontal()"
         [readonly]="readonly()"
-        [disabled]="disabled()"
-        [required]="requiredInput()"
-        [description]="description()"
-        [hidden]="hidden()"
-      >
-        <textarea
-          pTextarea
-          [id]="id()"
-          [formControl]="control() || internalControl"
-          [placeholder]="placeholder()"
-          [readonly]="readonly()"
-          [rows]="rows()"
-          [cols]="cols()"
-          [maxlength]="maxLength()"
-          [autoResize]="!disableResize()"
-          [style]="{ resize: disableResize() ? 'none' : 'vertical' }"
-          [class]="customClass()"
-          [invalid]="isInvalid()"
-          [fluid]="fluid()"
-        ></textarea>
-      </base-input-signal>
-    }
+        [rows]="rows()"
+        [cols]="cols()"
+        [maxlength]="maxLength()"
+        [autoResize]="!disableResize()"
+        [style]="{ resize: disableResize() ? 'none' : 'vertical' }"
+        [class]="customClass()"
+        [invalid]="isInvalid()"
+        [fluid]="fluid()"
+      ></textarea>
+    </base-input-signal>
   `,
   providers: [
     {

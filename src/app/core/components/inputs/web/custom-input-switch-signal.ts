@@ -2,46 +2,33 @@
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { BaseInputSignal } from "../base/base-input-signal";
-import { IonInputToggle } from "../mobile/ion-input-toggle";
 
 @Component({
   selector: "custom-input-switch-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, ToggleSwitchModule, IonInputToggle],
+  imports: [BaseInputSignal, ReactiveFormsModule, ToggleSwitchModule],
   template: `
-    @if (platform.isMobile()) {
-      <ion-input-toggle
-        [control]="control()"
-        [label]="label()"
-        [placeholder]="placeholder()"
-        [horizontal]="horizontal()"
-        [disabled]="disabled()"
-        [required]="requiredInput()"
-        [hidden]="hidden()"
-      />
-    } @else {
-      <base-input-signal
-        [id]="id()"
-        [label]="label()"
-        [placeholder]="placeholder()"
-        [horizontal]="horizontal()"
-        [disabled]="disabled()"
-        [required]="requiredInput()"
-        [control]="control()"
-      >
-        <div style="display: flex; align-items: center; gap: 0.5rem;">
-          <p-toggleswitch
-            [inputId]="id()"
-            [formControl]="control() || internalControl"
-            (onChange)="onValueChange($event)"
-          />
-          @if (placeholder()) {
-            <label [for]="id()" style="cursor: pointer; margin: 0; font-size: 0.875rem;">
-              {{ placeholder() }}
-            </label>
-          }
-        </div>
-      </base-input-signal>
-    }
+    <base-input-signal
+      [id]="id()"
+      [label]="label()"
+      [placeholder]="placeholder()"
+      [horizontal]="horizontal()"
+      [disabled]="disabled()"
+      [required]="requiredInput()"
+      [control]="control()"
+    >
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <p-toggleswitch
+          [inputId]="id()"
+          [formControl]="control() || internalControl"
+          (onChange)="onValueChange($event)"
+        />
+        @if (placeholder()) {
+          <label [for]="id()" style="cursor: pointer; margin: 0; font-size: 0.875rem;">
+            {{ placeholder() }}
+          </label>
+        }
+      </div>
+    </base-input-signal>
   `,
   providers: [
     {

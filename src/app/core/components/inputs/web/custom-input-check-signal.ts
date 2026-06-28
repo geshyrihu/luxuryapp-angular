@@ -2,45 +2,32 @@
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
 import { BaseInputSignal } from "../base/base-input-signal";
-import { IonInputCheckbox } from "../mobile/ion-input-checkbox";
 
 @Component({
   selector: "custom-input-check-signal",
-  imports: [BaseInputSignal, ReactiveFormsModule, CheckboxModule, IonInputCheckbox],
+  imports: [BaseInputSignal, ReactiveFormsModule, CheckboxModule],
   template: `
-    @if (platform.isMobile()) {
-      <ion-input-checkbox
-        [control]="control()"
-        [label]="label()"
-        [placeholder]="placeholder()"
-        [horizontal]="horizontal()"
-        [disabled]="disabled()"
-        [required]="requiredInput()"
-        [hidden]="hidden()"
-      />
-    } @else {
-      <base-input-signal
-        [id]="id()"
-        [label]="label()"
-        [placeholder]="placeholder()"
-        [horizontal]="horizontal()"
-        [disabled]="disabled()"
-        [required]="requiredInput()"
-        [control]="control()"
-        [description]="description()"
-        [hidden]="hidden()"
-      >
-        <div class="checkbox-wrapper">
-          <p-checkbox
-            [inputId]="id()"
-            [formControl]="control() || internalControl"
-            [binary]="true"
-            (onChange)="onValueChange($event)"
-          />
-          <label [for]="id()" class="checkbox-label">{{ placeholder() }}</label>
-        </div>
-      </base-input-signal>
-    }
+    <base-input-signal
+      [id]="id()"
+      [label]="label()"
+      [placeholder]="placeholder()"
+      [horizontal]="horizontal()"
+      [disabled]="disabled()"
+      [required]="requiredInput()"
+      [control]="control()"
+      [description]="description()"
+      [hidden]="hidden()"
+    >
+      <div class="checkbox-wrapper">
+        <p-checkbox
+          [inputId]="id()"
+          [formControl]="control() || internalControl"
+          [binary]="true"
+          (onChange)="onValueChange($event)"
+        />
+        <label [for]="id()" class="checkbox-label">{{ placeholder() }}</label>
+      </div>
+    </base-input-signal>
   `,
   styles: [`
     .checkbox-wrapper {

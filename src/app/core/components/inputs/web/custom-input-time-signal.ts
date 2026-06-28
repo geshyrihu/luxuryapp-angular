@@ -1,8 +1,7 @@
-﻿import { Component, forwardRef, input } from "@angular/core";
+﻿import { Component, forwardRef } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { InputTextModule } from "primeng/inputtext";
 import { BaseInputSignal } from "../base/base-input-signal";
-import { IonInputTime } from "../mobile/ion-input-time";
 
 /**
  * ⏰ CUSTOM INPUT TIME
@@ -12,48 +11,28 @@ import { IonInputTime } from "../mobile/ion-input-time";
  */
 @Component({
   selector: "custom-input-time-signal",
-  imports: [
-    BaseInputSignal,
-    ReactiveFormsModule,
-    InputTextModule,
-    IonInputTime,
-  ],
+  imports: [BaseInputSignal, ReactiveFormsModule, InputTextModule],
   template: `
-    @if (platform.isMobile()) {
-      <ion-input-time
-        [control]="control()"
-        [label]="label()"
-        [placeholder]="placeholder()"
-        [horizontal]="horizontal()"
-        [readonly]="readonly()"
-        [required]="requiredInput()"
-        [noMargin]="noMargin()"
-        [description]="description()"
-        [hidden]="hidden()"
-        [customClass]="customClass()"
-      />
-    } @else {
-      <base-input-signal
-        [control]="control()"
+    <base-input-signal
+      [control]="control()"
+      [id]="id()"
+      [label]="label()"
+      [placeholder]="placeholder()"
+      [horizontal]="horizontal()"
+      [disabled]="disabled()"
+      [required]="requiredInput()"
+    >
+      <input
+        [formControl]="control() || internalControl"
+        pInputText
+        fluid
+        type="time"
         [id]="id()"
-        [label]="label()"
         [placeholder]="placeholder()"
-        [horizontal]="horizontal()"
-        [disabled]="disabled()"
-        [required]="requiredInput()"
-      >
-        <input
-          [formControl]="control() || internalControl"
-          pInputText
-          fluid
-          type="time"
-          [id]="id()"
-          [placeholder]="placeholder()"
-          fluid
-          appendTo="body"
-        />
-      </base-input-signal>
-    }
+        fluid
+        appendTo="body"
+      />
+    </base-input-signal>
   `,
   providers: [
     {
@@ -63,6 +42,4 @@ import { IonInputTime } from "../mobile/ion-input-time";
     },
   ],
 })
-export class CustomInputTime extends BaseInputSignal {
-  customClass = input<string>("");
-}
+export class CustomInputTime extends BaseInputSignal {}

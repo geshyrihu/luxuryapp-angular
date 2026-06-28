@@ -47,7 +47,7 @@ import { ValidationErrorsCustomInput } from "./validation-errors-custom-input";
             <label [for]="platform.isMobile() ? null : id()" class="field-label">
               {{ label() }}
               @if (isRequired()) {
-                <span style="color:var(--ds-danger)">*</span>
+                <span class="text-red-400">*</span>
               }
             </label>
           }
