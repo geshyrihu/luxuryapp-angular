@@ -17,7 +17,7 @@ import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-butt
 import { CustomButtonConfirm } from "src/app/core/components/buttons/web/custom-button-confirm";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { ButtonType } from "src/app/core/enums/button-type";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { IDestinatariosMailReporte } from "src/app/core/interfaces/destinatarios-mail-reporte.interface";

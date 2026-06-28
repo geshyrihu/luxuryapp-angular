@@ -32,8 +32,8 @@ import {
   IonSearchbar,
 } from "@ionic/angular/standalone";
 import { filter, map, startWith } from "rxjs";
-import { AppIcon } from "../app-icon/app-icon.component";
-import { EmptyState } from "../empty-state/empty-state";
+import { AppIcon } from "../../shared/app-icon/app-icon.component";
+import { EmptyState } from "../../shared/empty-state/empty-state";
 
 export interface IMobileBreadcrumbItem {
   icon?: string;
@@ -246,3 +246,4 @@ export class DataViewMobile implements OnInit {
     return obj ? Object.keys(obj) : [];
   }
 }
+

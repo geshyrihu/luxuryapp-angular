@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
@@ -15,7 +15,7 @@ import { DataViewModule } from "primeng/dataview";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import {
   CustomBtnActiveDesactive,
   CustomButtonDelete,
@@ -25,10 +25,10 @@ import {
 import {
   CustomButton,
 } from "src/app/core/components/buttons/web";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
-import { StatusBadge } from "src/app/core/components/status-badge/status-badge";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { StatusBadge } from "src/app/core/components/shared/status-badge/status-badge";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -221,3 +221,4 @@ export interface WorkGroupDTO {
   active: boolean;
   isLegalGroup: boolean;
 }
+

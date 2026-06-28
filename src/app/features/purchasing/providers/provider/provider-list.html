@@ -64,12 +64,18 @@
       >
         <div class="grid">
           <!-- Categoría y tipo -->
-          <div class="col-12 flex justify-content-between align-items-center mb-2">
+          <div
+            class="col-12 flex justify-content-between align-items-center mb-2"
+          >
             <div class="text-xs font-bold text-500 uppercase tracking-wider">
               {{ item.nivelAcceso }} | {{ item.tipoServicio }}
             </div>
-            <app-icon [icon]="'mdi:card-account-details'" class="cursor-pointer text-primary text-xl" pTooltip="Ver Ficha Técnica"
-              (click)="showModalCardProveedor(item)"></app-icon>
+            <app-icon
+              [icon]="'mdi:card-account-details'"
+              class="cursor-pointer text-primary text-xl"
+              pTooltip="Ver Ficha Técnica"
+              (click)="showModalCardProveedor(item)"
+            ></app-icon>
           </div>
 
           <!-- Calificaciones -->
@@ -120,13 +126,13 @@
                 style="width: 64px; height: 64px; object-fit: cover"
               />
               <div class="min-w-0">
-                <div class="font-bold text-lg text-900 truncate">{{ item.nameProvider }}</div>
+                <div class="font-bold text-lg text-900 truncate">
+                  {{ item.nameProvider }}
+                </div>
                 <div class="text-color-secondary text-sm truncate">
                   {{ item.nameComercial }}
                 </div>
-                <div class="text-500 text-xs mt-1">
-                  RFC: {{ item.rfc }}
-                </div>
+                <div class="text-500 text-xs mt-1">RFC: {{ item.rfc }}</div>
               </div>
             </div>
           </div>
@@ -146,9 +152,17 @@
               }
               <div class="flex flex-wrap gap-1 mt-1">
                 @if (item.sales) {
-                <p-tag value="Ventas" severity="secondary" styleClass="text-xs" />
+                <p-tag
+                  value="Ventas"
+                  severity="secondary"
+                  styleClass="text-xs"
+                />
                 } @if (item.repair) {
-                <p-tag value="Reparación" severity="secondary" styleClass="text-xs" />
+                <p-tag
+                  value="Reparación"
+                  severity="secondary"
+                  styleClass="text-xs"
+                />
                 }
               </div>
             </div>
@@ -156,7 +170,9 @@
 
           <!-- Acciones y Categorías -->
           <div class="col-12 mt-3 pt-3 border-top-1 surface-border">
-            <div class="flex flex-wrap align-items-center justify-content-between gap-3">
+            <div
+              class="flex flex-wrap align-items-center justify-content-between gap-3"
+            >
               <div class="flex flex-wrap gap-1">
                 @for (categoria of item.categorias; track $index) {
                 <p-tag
@@ -170,10 +186,11 @@
               <div class="flex align-items-center gap-1">
                 @if ( validateRole([ roles.Asistente, roles.JefeMantenimiento,
                 roles.Administrador, roles.SuperUsuario,
-                roles.SupervisionOperativa, roles.Legal, ]) && item.id != 109 ) {
+                roles.SupervisionOperativa, roles.Legal, ]) && item.id != 109 )
+                {
                 <custom-button-edit
                   (clicked)="onModalForm({ id: item.providerId, title: 'Editar' })"
-/>
+                />
                 } @if (item.activo) {
                 <custom-button-item
                   iconClass="mdi:chart-bar"
@@ -181,20 +198,19 @@
                   (clicked)="showModalCalificarProveedor({ providerId: item.providerId, nameProvider: item.nameComercial })"
                 />
                 } @if (validateRole([roles.SuperUsuario])) {
-                <custom-button-delete (confirmed)="onDelete(item.providerId)"
-/>
+                <custom-button-delete (confirmed)="onDelete(item.providerId)" />
                 } @if (!item.activo && validateRole([roles.SuperUsuario])) {
                 <custom-button-item
                   (clicked)="onActivateProvider({ providerId: item.providerId, state: !item.activo })"
                   iconClass="mdi:check"
                   label="Activar"
-/>
+                />
                 } @if (item.activo && validateRole([roles.SuperUsuario])) {
                 <custom-button-item
                   (clicked)="onActivateProvider({ providerId: item.providerId, state: !item.activo })"
                   iconClass="mdi:ban"
                   label="Inactivar"
-/>
+                />
 
                 <custom-button-item
                   (clicked)="onConicidencias({ providerId: item.providerId, state: !item.activo })"
@@ -215,13 +231,17 @@
       </div>
     </div>
   </ng-template>
-  <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="3">
-          <app-empty-state icon="mdi:store-outline" title="Sin proveedores" message="No hay proveedores registrados." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="3">
+        <app-empty-state
+          icon="mdi:store-outline"
+          title="Sin proveedores"
+          message="No hay proveedores registrados."
+        />
+      </td>
+    </tr>
+  </ng-template>
 </p-table>
 
 <app-data-view-mobile
@@ -235,21 +255,31 @@
         slot="start"
         class="w-3rem h-3rem border-round-lg bg-green-50 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <app-icon icon="mdi:store-outline" class="text-green-600 text-xl"></app-icon>
+        <app-icon
+          icon="mdi:store-outline"
+          class="text-green-600 text-xl"
+        ></app-icon>
       </div>
       <ion-label>
         <h3 class="font-bold text-900">{{ item.nameComercial }}</h3>
-        <p class="text-sm text-600">{{ item.nameProvider }} · {{ item.tipoServicio }}</p>
+        <p class="text-sm text-600">
+          {{ item.nameProvider }} · {{ item.tipoServicio }}
+        </p>
         <p class="text-xs text-500">{{ item.phoneOne }}</p>
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-        <custom-button-edit
-          (clicked)="onModalForm({ id: item.providerId, title: 'Editar' })"
- label="Editar" [showLabelOnDesktop]="true"/>
-        <custom-button-delete (confirmed)="onDelete(item.providerId)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
-              </ng-container>
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.providerId, title: 'Editar' })"
+            label="Editar"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-delete
+            (confirmed)="onDelete(item.providerId)"
+            label="Eliminar"
+            [showLabelOnDesktop]="true"
+          />
+        </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

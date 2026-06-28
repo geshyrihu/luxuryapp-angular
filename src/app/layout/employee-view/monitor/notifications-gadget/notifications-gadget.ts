@@ -5,7 +5,7 @@ import { DrawerModule } from "primeng/drawer";
 import { OverlayBadge } from "primeng/overlaybadge";
 import { ScrollPanelModule } from "primeng/scrollpanel";
 import { TooltipModule } from "primeng/tooltip";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ConsoleLoggerService } from "src/app/core/services/console-logger.service";
 import { SignalRService } from "src/app/core/services/signalr.service";

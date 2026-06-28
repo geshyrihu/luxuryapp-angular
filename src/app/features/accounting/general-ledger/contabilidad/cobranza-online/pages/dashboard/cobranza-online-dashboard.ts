@@ -8,8 +8,8 @@ import { InputIconModule } from "primeng/inputicon";
 import { InputTextModule } from "primeng/inputtext";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
-import { PieChart } from "src/app/core/components/charts/pie-chart";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { PieChart } from "src/app/core/components/web/charts/pie-chart";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -706,9 +706,9 @@ export class CobranzaOnlineDashboard {
 
   readonly saneamientoActual: CobranzaOnlineResumenItem[] = [
     {
-      titulo: "Resumen 401 desde cache local",
+      titulo: "Resumen 401 en vivo",
       descripcion:
-        "El dashboard ya consolida el bloque 401 con saldos locales al corte sin depender de llamadas live para renderizar la vista.",
+        "El dashboard consulta el bloque 401 en vivo sobre Aspel para renderizar el corte operativo actual.",
     },
     {
       titulo: "Drilldown por departamento",

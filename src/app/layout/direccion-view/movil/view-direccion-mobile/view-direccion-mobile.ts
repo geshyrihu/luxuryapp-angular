@@ -6,7 +6,7 @@ import {
   IonHeader,
   IonToolbar,
 } from "@ionic/angular/standalone";
-import { Loader } from "src/app/core/components/loader/loader";
+import { Loader } from "src/app/core/components/shared/loader/loader";
 import { HeaderCommitteeMobile } from "../../../shared/header-mobile/header-mobile";
 
 @Component({
@@ -36,3 +36,4 @@ import { HeaderCommitteeMobile } from "../../../shared/header-mobile/header-mobi
   ],
 })
 export class ViewDireccionMobile {}
+

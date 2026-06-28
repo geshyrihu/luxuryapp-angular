@@ -5,7 +5,7 @@ import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { environment } from "src/environments/environment";
 import { AppIcon } from "../app-icon/app-icon.component";
-import { ApiResponseService } from "../../services/api-response.service";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 /**
  * 📄 PDF VIEWER MODAL
@@ -65,3 +65,4 @@ export class PdfViewerModal implements OnInit, OnDestroy {
     document.body.removeChild(link);
   }
 }
+

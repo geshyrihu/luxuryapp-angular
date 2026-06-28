@@ -1,7 +1,9 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import * as ExcelJS from "exceljs";
+import { saveAs } from "file-saver";
 import { addIcons } from "ionicons";
 import {
   clipboardOutline,
@@ -12,14 +14,15 @@ import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { CustomButtonItem } from "src/app/core/components/buttons/web";
+import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonTracking } from "src/app/core/components/buttons/web/custom-button-tracking";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -51,6 +54,7 @@ import { TicketLegalSeguimientoSolicitudDetalle } from "./ticket-legal-seguimien
     PrimeNgCustomCaption,
     PrimeNgCustomTableFooter,
     CustomButtonEdit,
+    CustomButtonDownload,
     CustomButtonTracking,
     ActionMenu,
     DataViewMobile,
@@ -162,5 +166,90 @@ export class TicketLegalLista implements OnInit {
       "",
       this.dialogHandlerS.sizeLg,
     );
+  }
+
+  async exportToExcel() {
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet("Tickets Legales");
+
+    const STATUS_LABEL: Record<number, string> = {
+      0: "PENDIENTE",
+      1: "EN PROCESO",
+      2: "CONCLUIDO",
+      4: "CANCELADO",
+    };
+    // Paleta Office â€” discreta, bien en PowerPoint
+    const STATUS_COLOR: Record<number, string> = {
+      0: "FFED7D31", // naranja suave
+      1: "FF4472C4", // azul medio
+      2: "FF70AD47", // verde medio
+      4: "FFA6A6A6", // gris
+    };
+
+    const HEADER_BG = "FF1F3864"; // azul marino oscuro
+    const BORDER_COLOR = "FFD9D9D9";
+    const border = (color = BORDER_COLOR): ExcelJS.Border => ({ style: "thin", color: { argb: color } });
+    const allBorders = (color?: string): ExcelJS.Borders => ({
+      top: border(color), left: border(color), bottom: border(color), right: border(color),
+      diagonal: { style: undefined, color: undefined },
+    });
+
+    worksheet.columns = [
+      { header: "FOLIO",            key: "folio",          width: 10 },
+      { header: "FECHA SOLICITUD",  key: "requestDate",    width: 16 },
+      { header: "CLIENTE",          key: "customer",       width: 22 },
+      { header: "ASUNTO",           key: "title",          width: 40 },
+      { header: "RESPONSABLE",      key: "assignee",       width: 24 },
+      { header: "ESTATUS",          key: "status",         width: 14 },
+      { header: "FECHA CONCLUSIÃ“N", key: "completionDate", width: 18 },
+      { header: "DÃAS",             key: "dias",           width: 8  },
+    ];
+
+    // Encabezado
+    const headerRow = worksheet.getRow(1);
+    headerRow.eachCell((cell) => {
+      cell.font   = { bold: true, color: { argb: "FFFFFFFF" }, size: 11 };
+      cell.fill   = { type: "pattern", pattern: "solid", fgColor: { argb: HEADER_BG } };
+      cell.alignment = { vertical: "middle", horizontal: "center", wrapText: true };
+      cell.border = allBorders("FF1F3864");
+    });
+    headerRow.height = 28;
+
+    // Filas de datos
+    this.dataSignal().forEach((item) => {
+      const status: number = item.status ?? 0;
+      const row = worksheet.addRow({
+        folio:          item.folio,
+        requestDate:    item.requestDate,
+        customer:       item.customer,
+        title:          `${item.title ?? ""}${item.description ? "\n" + item.description : ""}`,
+        assignee:       item.assignee,
+        status:         STATUS_LABEL[status] ?? "â€”",
+        completionDate: item.completionDate ?? "",
+        dias:           item.diferenciaDias ?? "",
+      });
+
+      row.height = 22;
+
+      row.eachCell({ includeEmpty: true }, (cell, colIdx) => {
+        cell.alignment = { vertical: "middle", horizontal: colIdx === 6 ? "center" : "left", wrapText: true };
+        cell.border    = allBorders();
+        cell.font      = { size: 10 };
+      });
+
+      // Celda ESTATUS con color sÃ³lido + texto blanco
+      const statusCell = row.getCell("status");
+      statusCell.fill  = { type: "pattern", pattern: "solid", fgColor: { argb: STATUS_COLOR[status] ?? "FFA6A6A6" } };
+      statusCell.font  = { bold: true, color: { argb: "FFFFFFFF" }, size: 10 };
+
+      // DÃAS en rojo si supera 10
+      const diasVal = item.diferenciaDias ?? 0;
+      if (diasVal > 10) {
+        row.getCell("dias").font = { color: { argb: "FFC00000" }, bold: true, size: 10 };
+      }
+    });
+
+    const buffer = await workbook.xlsx.writeBuffer();
+    saveAs(new Blob([buffer]), `Tickets_Legales_${new Date().toISOString().slice(0, 10)}.xlsx`);
   }
 }

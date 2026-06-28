@@ -32,38 +32,56 @@
         <td>{{ item.addendumNumber }}</td>
         <td>{{ item.title }}</td>
         <td>
-          <span [class]="'badge ' + getAddendumTypeBadge(item.addendumType)">{{ item.addendumType }}</span>
+          <span [class]="'badge ' + getAddendumTypeBadge(item.addendumType)"
+            >{{ item.addendumType }}</span
+          >
         </td>
         <td class="text-center">
-          <span [class]="'badge ' + getStatusBadge(item.addendumStatus)">{{ item.addendumStatus }}</span>
+          <span [class]="'badge ' + getStatusBadge(item.addendumStatus)"
+            >{{ item.addendumStatus }}</span
+          >
         </td>
         <td>{{ item.effectiveDate | date:'dd/MM/yyyy' }}</td>
-        <td>{{ item.signedDate ? (item.signedDate | date:'dd/MM/yyyy') : '—' }}</td>
+        <td>
+          {{ item.signedDate ? (item.signedDate | date:'dd/MM/yyyy') : '—' }}
+        </td>
         <td class="text-center">
-          @if (item.addendumStatus === 'Borrador' || item.addendumStatus === 'Pendiente') {
-            <custom-button-item icon="mdi:login" title="Firmar" (click)="onSign(item)" />
-            <custom-button-edit (click)="onEdit(item)"
-/>
+          @if (item.addendumStatus === 'Borrador' || item.addendumStatus ===
+          'Pendiente') {
+          <custom-button-item
+            icon="mdi:login"
+            title="Firmar"
+            (click)="onSign(item)"
+          />
+          <custom-button-edit (click)="onEdit(item)" />
+          } @if (item.addendumStatus === 'Borrador' || item.addendumStatus ===
+          'Pendiente') {
+          <custom-button-item
+            icon="mdi:close-circle"
+            title="Cancelar"
+            severity="danger"
+            (click)="onCancel(item)"
+          />
           }
-          @if (item.addendumStatus === 'Borrador' || item.addendumStatus === 'Pendiente') {
-            <custom-button-item icon="mdi:close-circle" title="Cancelar" severity="danger" (click)="onCancel(item)" />
-          }
-          <custom-button-delete (click)="onDelete(item.id)"
-/>
+          <custom-button-delete (click)="onDelete(item.id)" />
         </td>
       </tr>
     </ng-template>
     <ng-template #footer>
       <primeng-custom-table-footer [data]="items()" />
     </ng-template>
-    <ng-template pTemplate="emptymessage">
+    <ng-template #emptymessage>
       <tr>
         <td colspan="7">
-          <app-empty-state icon="mdi:file-plus-outline" title="Sin addenda" message="No hay addendas registradas." />
+          <app-empty-state
+            icon="mdi:file-plus-outline"
+            title="Sin addenda"
+            message="No hay addendas registradas."
+          />
         </td>
       </tr>
     </ng-template>
-</p-table>
+  </p-table>
 
   <app-data-view-mobile
     [dt]="dt"
@@ -72,25 +90,42 @@
   >
     <ng-template #listItemTemplate let-item>
       <ion-item lines="full">
-      <div
-        slot="start"
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-warning-light,#fef3c7);"
-      >
-        <app-icon icon="mdi:file-sign" style="font-size:1.1rem;color:var(--ds-warning);"></app-icon>
-      </div>
+        <div
+          slot="start"
+          class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+          style="
+            width: 38px;
+            height: 38px;
+            background: var(--ds-warning-light, #fef3c7);
+          "
+        >
+          <app-icon
+            icon="mdi:file-sign"
+            style="font-size: 1.1rem; color: var(--ds-warning)"
+          ></app-icon>
+        </div>
         <ion-label>
-          <h2 class="font-bold">{{ item.addendumNumber }} — {{ item.title }}</h2>
+          <h2 class="font-bold">
+            {{ item.addendumNumber }} — {{ item.title }}
+          </h2>
           <p class="text-sm text-500">{{ item.addendumType }}</p>
-          <p class="text-sm text-500">Efectiva: {{ item.effectiveDate | date:'dd/MM/yyyy' }}</p>
+          <p class="text-sm text-500">
+            Efectiva: {{ item.effectiveDate | date:'dd/MM/yyyy' }}
+          </p>
           <p class="text-sm">
-            <span [class]="'badge ' + getStatusBadge(item.addendumStatus)">{{ item.addendumStatus }}</span>
+            <span [class]="'badge ' + getStatusBadge(item.addendumStatus)"
+              >{{ item.addendumStatus }}</span
+            >
           </p>
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-            <custom-button-item label="Editar" iconName="create-outline" (clicked)="onEdit(item)"
- [showLabelOnDesktop]="true"/>
+            <custom-button-item
+              label="Editar"
+              iconName="create-outline"
+              (clicked)="onEdit(item)"
+              [showLabelOnDesktop]="true"
+            />
           </ng-container>
         </app-action-menu>
       </ion-item>

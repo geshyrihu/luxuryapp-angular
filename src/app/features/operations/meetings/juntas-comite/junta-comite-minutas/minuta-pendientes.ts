@@ -3,7 +3,7 @@ import { Component, effect, inject, signal } from "@angular/core";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
-import { ReportHeader } from "src/app/core/components/report-header/report-header";
+import { ReportHeader } from "src/app/core/components/web/report-header/report-header";
 import {
   globalFilterFields,
   rowsPerPageOptions,

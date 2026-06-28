@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import {
   Component,
   computed,
@@ -10,13 +10,13 @@ import {
 import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -60,7 +60,7 @@ export class WarehouseList implements OnInit {
   aspRoleService = inject(AspRoleService);
   htmlPrintS = inject(HtmlPrintService);
 
-  // Declaración e inicialización de signals
+  // DeclaraciÃ³n e inicializaciÃ³n de signals
   dataSignal = signal<any[]>([]);
   loading = signal(false); // ? Added loading state
 
@@ -71,7 +71,7 @@ export class WarehouseList implements OnInit {
     EApplicationRole.Administrador,
     EApplicationRole.SuperUsuario,
   ]);
-  // El computed se mantiene, es genórico y funcionaró perfectamente
+  // El computed se mantiene, es genÃ³rico y funcionarÃ³ perfectamente
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
@@ -106,11 +106,11 @@ export class WarehouseList implements OnInit {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  // CAMBIO: El ID de un almacón es 'string', no 'number'
+  // CAMBIO: El ID de un almacÃ³n es 'string', no 'number'
   onDelete(id: string) {
-    // Usamos el servicio genórico para la petición DELETE
+    // Usamos el servicio genÃ³rico para la peticiÃ³n DELETE
     this.apiResponseS.onDelete(Endpoints.Almacen.delete(id)).then(() => {
-      // Actualizamos el signal localmente para una UI mós rópida
+      // Actualizamos el signal localmente para una UI mÃ³s rÃ³pida
       this.dataSignal.update((currentData) =>
         currentData.filter((item) => item.id !== id),
       );
@@ -118,16 +118,16 @@ export class WarehouseList implements OnInit {
   }
 
   onModalForm(data: any) {
-    // CAMBIO: Se pasa el componente correcto 'AlmacenAddOrEditComponent' al diálogo
+    // CAMBIO: Se pasa el componente correcto 'AlmacenAddOrEditComponent' al diÃ¡logo
     this.dialogHandlerS
       .openDialog(
         WarehouseForm,
         data,
-        data.title, // El Título se pasa en el objeto 'data'
+        data.title, // El TÃ­tulo se pasa en el objeto 'data'
         this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {
-        // Si el diálogo se cerró con un resultado exitoso, recargamos los datos
+        // Si el diÃ¡logo se cerrÃ³ con un resultado exitoso, recargamos los datos
         if (result) {
           this.onLoadData();
         }
@@ -135,7 +135,7 @@ export class WarehouseList implements OnInit {
   }
   onViewProducts(almacenId: string) {
     this.router.navigate(["/warehouse/products", almacenId]);
-    // Asegórate de que '/ruta-a-tu-inventario/stock' coincida con tu configuración de rutas
+    // AsegÃ³rate de que '/ruta-a-tu-inventario/stock' coincida con tu configuraciÃ³n de rutas
   }
 
   async onDownloadInventory(almacenId: string, warehouseName: string) {
@@ -164,7 +164,7 @@ export class WarehouseList implements OnInit {
       // Group by category
       const groups = sortedData.reduce(
         (acc, item) => {
-          const category = item.category || "SIN CATEGORÍA";
+          const category = item.category || "SIN CATEGORÃA";
           if (!acc[category]) acc[category] = [];
           acc[category].push(item);
           return acc;
@@ -216,7 +216,7 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, `INVENTARIO: ${warehouseName.toUpperCase()}`, `Almacén: ${warehouseName}`, generatedAt, "ALMACÉN")}
+  ${this.htmlPrintS.buildStandardHeader(logo, `INVENTARIO: ${warehouseName.toUpperCase()}`, `AlmacÃ©n: ${warehouseName}`, generatedAt, "ALMACÃ‰N")}
 
   <div class="body-doc">
     <table class="data-table">

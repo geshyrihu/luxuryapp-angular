@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -7,11 +7,11 @@ import { personOutline } from "ionicons/icons";
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { IProviderSupportList } from "src/app/core/interfaces/provider-support-list.interface";
@@ -44,11 +44,11 @@ export class ProviderSupport implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
-  // Declaración e inicialización de variables
+  // DeclaraciÃ³n e inicializaciÃ³n de variables
   dataSignal = signal<IProviderSupportList[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diÃ¡logo modal
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   constructor() {
@@ -59,7 +59,7 @@ export class ProviderSupport implements OnInit {
     // Cuando se inicia el componente, cargar los datos de los bancos
     this.onLoadData();
   }
-  // Función para cargar los datos
+  // FunciÃ³n para cargar los datos
   onLoadData() {
     this.apiResponseS
       .onGetList(Endpoints.ProviderSupport.getAll)
@@ -69,7 +69,7 @@ export class ProviderSupport implements OnInit {
   }
 
   //Modal Agregar o editar
-  // Función para abrir un cuadro de diálogo modal para agregar o editar información sobre un CustomerProvider
+  // FunciÃ³n para abrir un cuadro de diÃ¡logo modal para agregar o editar informaciÃ³n sobre un CustomerProvider
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(
@@ -82,7 +82,7 @@ export class ProviderSupport implements OnInit {
         if (result) this.onLoadData();
       });
   }
-  // Función para eliminar
+  // FunciÃ³n para eliminar
   onDelete(id: string) {
     this.apiResponseS
       .onDelete(Endpoints.ProviderSupport.delete(id))

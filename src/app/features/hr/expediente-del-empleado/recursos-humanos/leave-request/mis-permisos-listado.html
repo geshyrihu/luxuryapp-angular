@@ -74,7 +74,10 @@
       <td class="text-center">
         @if (item.attachmentPath) {
         <a [href]="item.attachmentPath" target="_blank" class="pointer">
-          <app-icon [icon]="'mdi:folder-arrow-down'" class="icon icon- icon-xl"></app-icon>
+          <app-icon
+            [icon]="'mdi:folder-arrow-down'"
+            class="icon icon- icon-xl"
+          ></app-icon>
         </a>
         }
       </td>
@@ -86,25 +89,28 @@
               onModalDetail({ id: item.id, title: 'Detalle de la Solicitud' })
             "
             label="🔍"
-/>
+          />
           @if (item.status != "Aprobada") {
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-/>
-          <custom-button-delete (confirmed)="onDelete(item.id)"
-/>
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
           }
         </div>
       </td>
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="7">
-          <app-empty-state icon="mdi:calendar-check-outline" title="Sin permisos" message="No hay permisos registrados." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="7">
+        <app-empty-state
+          icon="mdi:calendar-check-outline"
+          title="Sin permisos"
+          message="No hay permisos registrados."
+        />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -122,9 +128,16 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-success-light,#d1fae5);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-success-light, #d1fae5);
+        "
       >
-        <app-icon icon="mdi:calendar-check-outline" style="font-size:1.1rem;color:var(--ds-success);"></app-icon>
+        <app-icon
+          icon="mdi:calendar-check-outline"
+          style="font-size: 1.1rem; color: var(--ds-success)"
+        ></app-icon>
       </div>
       <ion-label>
         <h2 class="font-normal m-0">{{ item.requestTypeName }}</h2>
@@ -142,18 +155,16 @@
         <ng-container actions>
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
- label="Editar" [showLabelOnDesktop]="true"/>
-          <custom-button-delete (confirmed)="onDelete(item.id)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
+            label="Editar"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-delete
+            (confirmed)="onDelete(item.id)"
+            label="Eliminar"
+            [showLabelOnDesktop]="true"
+          />
         </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>
-
-
-
-
-
-
-

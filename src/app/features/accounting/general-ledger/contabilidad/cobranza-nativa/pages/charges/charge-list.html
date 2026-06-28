@@ -26,7 +26,7 @@
           size="small"
           (clicked)="openBulkImport()"
           customClass="ml-3"
-/>
+        />
       </div>
     </ng-template>
 
@@ -62,7 +62,11 @@
         </td>
         <td class="text-center">
           @if (item.generatedAutomatically) {
-          <app-icon [icon]="'mdi:lightning-bolt'" class="text-purple-600" title="Generado por sistema"></app-icon>
+          <app-icon
+            [icon]="'mdi:lightning-bolt'"
+            class="text-purple-600"
+            title="Generado por sistema"
+          ></app-icon>
           }
         </td>
         <td class="text-center">
@@ -79,19 +83,21 @@
         </td>
         <td class="text-center">
           <div class="flex justify-content-center">
-            <custom-button-edit (clicked)="onModalForm(item.id)"
-/>
-            <custom-button-delete (customClick)="onDelete(item)"
-/>
+            <custom-button-edit (clicked)="onModalForm(item.id)" />
+            <custom-button-delete (customClick)="onDelete(item)" />
           </div>
         </td>
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="emptymessage">
+    <ng-template #emptymessage>
       <tr>
         <td colspan="8">
-          <app-empty-state icon="mdi:cash-remove" title="Sin cargos" message="No hay cargos registrados para este período." />
+          <app-empty-state
+            icon="mdi:cash-remove"
+            title="Sin cargos"
+            message="No hay cargos registrados para este período."
+          />
         </td>
       </tr>
     </ng-template>
@@ -109,7 +115,10 @@
         slot="start"
         class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <app-icon icon="mdi:credit-card-outline" class="text-orange-600 text-xl"></app-icon>
+        <app-icon
+          icon="mdi:credit-card-outline"
+          class="text-orange-600 text-xl"
+        ></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.propertyFullName || 'N/A' }}</h3>
@@ -118,11 +127,17 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-        <custom-button-edit (clicked)="onModalForm(item.id)"
- label="Editar" [showLabelOnDesktop]="true"/>
-        <custom-button-delete (confirmed)="onDelete(item)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
-              </ng-container>
+          <custom-button-edit
+            (clicked)="onModalForm(item.id)"
+            label="Editar"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-delete
+            (confirmed)="onDelete(item)"
+            label="Eliminar"
+            [showLabelOnDesktop]="true"
+          />
+        </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

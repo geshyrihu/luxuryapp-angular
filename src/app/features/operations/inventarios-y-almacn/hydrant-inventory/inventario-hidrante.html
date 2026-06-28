@@ -14,12 +14,41 @@
   <ng-template #caption>
     <div class="flex justify-content-between align-items-center w-full">
       <div class="flex align-items-center gap-2">
-        <custom-button-item (clicked)="onOpenScanner()" icon="pi pi-qrcode" tooltip="Escanear QR" />
-        <custom-button-download (clicked)="onDownloadAllQr()" label="QR" tooltip="Descargar todos los QR" />
-        <custom-button-item (clicked)="onViewPeriodos()" label="Periodos" tooltip="Configurar periodos de inspección" [showLabelOnDesktop]="true" />
-        <custom-button-download (clicked)="downloadTemplate()" label="Plantilla" tooltip="Descargar plantilla Excel" [showLabelOnDesktop]="true" />
-        <custom-button-download (clicked)="fileInput.click()" label="Importar" tooltip="Importar desde Excel" [showLabelOnDesktop]="true" />
-        <input type="file" accept=".xlsx" style="display:none" #fileInput (change)="onImportExcel($event)" />
+        <custom-button-item
+          (clicked)="onOpenScanner()"
+          icon="pi pi-qrcode"
+          tooltip="Escanear QR"
+        />
+        <custom-button-download
+          (clicked)="onDownloadAllQr()"
+          label="QR"
+          tooltip="Descargar todos los QR"
+        />
+        <custom-button-item
+          (clicked)="onViewPeriodos()"
+          label="Periodos"
+          tooltip="Configurar periodos de inspección"
+          [showLabelOnDesktop]="true"
+        />
+        <custom-button-download
+          (clicked)="downloadTemplate()"
+          label="Plantilla"
+          tooltip="Descargar plantilla Excel"
+          [showLabelOnDesktop]="true"
+        />
+        <custom-button-download
+          (clicked)="fileInput.click()"
+          label="Importar"
+          tooltip="Importar desde Excel"
+          [showLabelOnDesktop]="true"
+        />
+        <input
+          type="file"
+          accept=".xlsx"
+          style="display: none"
+          #fileInput
+          (change)="onImportExcel($event)"
+        />
       </div>
       <primeng-custom-caption
         [title]="'Inventario de Hidrantes'"
@@ -31,37 +60,66 @@
   <ng-template #header>
     <tr>
       <th class="table-col-5">Foto</th>
-      <th class="table-col-15" pSortableColumn="localCode">Código <p-sortIcon field="localCode" /></th>
-      <th class="table-col-25" pSortableColumn="hydrantType">Tipo <p-sortIcon field="hydrantType" /></th>
-      <th class="table-col-15" pSortableColumn="cabinetNumber">Gabinete <p-sortIcon field="cabinetNumber" /></th>
-      <th class="table-col-25" pSortableColumn="location">Ubicación <p-sortIcon field="location" /></th>
+      <th class="table-col-15" pSortableColumn="localCode">
+        Código <p-sortIcon field="localCode" />
+      </th>
+      <th class="table-col-25" pSortableColumn="hydrantType">
+        Tipo <p-sortIcon field="hydrantType" />
+      </th>
+      <th class="table-col-15" pSortableColumn="cabinetNumber">
+        Gabinete <p-sortIcon field="cabinetNumber" />
+      </th>
+      <th class="table-col-25" pSortableColumn="location">
+        Ubicación <p-sortIcon field="location" />
+      </th>
       <th class="table-col-5"></th>
     </tr>
   </ng-template>
   <ng-template #body let-item>
     <tr>
-      <td><p-image [src]="item.photo" alt="." width="100" class="shadow-4" [preview]="true" /></td>
+      <td>
+        <p-image
+          [src]="item.photo"
+          alt="."
+          width="100"
+          class="shadow-4"
+          [preview]="true"
+        />
+      </td>
       <td><small>{{ item.localCode }}</small></td>
       <td><small>{{ item.hydrantType }}</small></td>
       <td><small>{{ item.cabinetNumber }}</small></td>
       <td><small>{{ item.location }}</small></td>
       <td>
         <div class="flex">
-          <custom-button-item (clicked)="onViewHistory(item)" tooltip="Ver historial de inspecciones" icon="pi pi-list" />
-          <custom-button-download (clicked)="onDownloadQr(item)" tooltip="Descargar QR" />
-          <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })" />
+          <custom-button-item
+            (clicked)="onViewHistory(item)"
+            tooltip="Ver historial de inspecciones"
+            icon="pi pi-list"
+          />
+          <custom-button-download
+            (clicked)="onDownloadQr(item)"
+            tooltip="Descargar QR"
+          />
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+          />
           <custom-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="6">
-          <app-empty-state icon="mdi:pipe" title="Sin hidrantes" message="No hay hidrantes registrados." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="6">
+        <app-empty-state
+          icon="mdi:pipe"
+          title="Sin hidrantes"
+          message="No hay hidrantes registrados."
+        />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -73,35 +131,77 @@
   (add)="onModalForm({ id: '', title: 'Nuevo Hidrante' })"
 >
   <div customFilters class="px-3 pb-2 flex flex-column gap-2">
-    <ion-button expand="block" fill="outline" color="primary" (click)="onOpenScanner()">
+    <ion-button
+      expand="block"
+      fill="outline"
+      color="primary"
+      (click)="onOpenScanner()"
+    >
       <app-icon icon="mdi:qrcode" slot="start"></app-icon>
       Escanear QR
     </ion-button>
-    <ion-button expand="block" fill="outline" color="secondary" (click)="onViewPeriodos()">
+    <ion-button
+      expand="block"
+      fill="outline"
+      color="secondary"
+      (click)="onViewPeriodos()"
+    >
       <app-icon icon="mdi:clock-outline" slot="start"></app-icon>
       Periodos de Inspección
     </ion-button>
   </div>
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
-      <div slot="start" style="
-        width:36px; height:36px; border-radius:10px;
-        background:var(--ds-border); display:flex; align-items:center;
-        justify-content:center; flex-shrink:0; margin-left:16px;
-      ">
-        <app-icon icon="mdi:water-outline" style="font-size:20px; color:var(--ds-primary);"></app-icon>
+      <div
+        slot="start"
+        style="
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          background: var(--ds-border);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-left: 16px;
+        "
+      >
+        <app-icon
+          icon="mdi:water-outline"
+          style="font-size: 20px; color: var(--ds-primary)"
+        ></app-icon>
       </div>
       <ion-label>
-        <h3>{{ item.localCode ? item.localCode + ' — ' : '' }}{{ item.hydrantType }}</h3>
+        <h3>
+          {{ item.localCode ? item.localCode + ' — ' : '' }}{{ item.hydrantType
+          }}
+        </h3>
         <p>{{ item.location }}</p>
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-        <custom-button-item (clicked)="onViewHistory(item)" label="Historial" iconName="list-outline"  [showLabelOnDesktop]="true"/>
-        <custom-button-download (clicked)="onDownloadQr(item)" label="QR"  [showLabelOnDesktop]="true"/>
-        <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })"  label="Editar" [showLabelOnDesktop]="true"/>
-        <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
-              </ng-container>
+          <custom-button-item
+            (clicked)="onViewHistory(item)"
+            label="Historial"
+            iconName="list-outline"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-download
+            (clicked)="onDownloadQr(item)"
+            label="QR"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            label="Editar"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-delete
+            (confirmed)="onDelete(item.id)"
+            label="Eliminar"
+            [showLabelOnDesktop]="true"
+          />
+        </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

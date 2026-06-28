@@ -1,7 +1,7 @@
 import { vi } from 'vitest';
 
 vi.mock('ng2-pdf-viewer', () => ({ PdfViewerModule: class {} }));
-vi.mock('src/app/core/components/pdf-viewer-modal/pdf-viewer-modal', () => ({
+vi.mock('src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal', () => ({
   PdfViewerModal: class {},
 }));
 
@@ -84,3 +84,4 @@ describe('ContractsPolicies', () => {
     expect(component.globalFilterFields()).toEqual(['name', 'value']);
   });
 });
+

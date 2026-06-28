@@ -1,15 +1,15 @@
-Ôªøimport { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { IonItem, IonLabel, IonText } from "@ionic/angular/standalone";
 import { TooltipModule } from "primeng/tooltip";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -91,7 +91,7 @@ export class ListaInspecciones {
       this.inspeccionesOriginalesSignal.set(result);
 
       const data: any[] = result;
-      // Extraer √°reas responsables del arreglo y eliminar duplicados
+      // Extraer ·reas responsables del arreglo y eliminar duplicados
       const areas = [...new Set(data.map((item) => item.areaResponsable))];
       this.areasResponsablesSignal.set(
         areas.map((area: string) => ({
@@ -108,7 +108,7 @@ export class ListaInspecciones {
     });
   }
 
-  // Funci√≥n para abrir un cuadro de di√°logo modal para agregar o editar o crear
+  // FunciÛn para abrir un cuadro de di·logo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(

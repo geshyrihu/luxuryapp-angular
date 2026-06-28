@@ -1,6 +1,20 @@
+/**
+ * ============================================================================
+ * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
+ * ============================================================================
+ * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
+ * FUNCIONAL y ESTABLE. 
+ * 
+ * Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
+ * sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
+ * 
+ * Por favor, NO rompan el código.
+ * ============================================================================
+ */
 import { CommonModule } from "@angular/common";
 import {
   Component,
+  computed,
   DestroyRef,
   effect,
   inject,
@@ -18,7 +32,7 @@ import { SelectModule } from "primeng/select";
 import { Table, TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { Subscription } from "rxjs";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -113,14 +127,16 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   showFiscalYearAnnualColumn = signal(true);
 
   showProjectedExpenses = signal(true);
+  /** Signal para controlar la visibilidad del modal de incrementos > 5% */
+  showHighIncreaseModal = signal(false);
 
   /** ID del cliente actual. */
   customerId: string = this.customerIdS.customerId();
   /** Año fiscal para el cual se estó generando la propuesta (normalmente el próximo Año). */
-  selectedFiscalYear: number = new Date().getFullYear() - 1;
+  selectedFiscalYear: number = new Date().getFullYear();
   fiscalYear: number = this.selectedFiscalYear;
   /** Año fiscal que se usa como base para comparaciones (normalmente el Año actual). */
-  baseBudgetYear: number = new Date().getFullYear();
+  baseBudgetYear: number = this.selectedFiscalYear - 1;
   /** Lista de años disponibles para la selección del Año fiscal. */
   availableYears: number[] = [];
 
@@ -135,6 +151,10 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   proposalItems = signal<BudgetProposalItemDTO[]>([]);
   /** Signal que almacena un Map de claves de items ejecutados a sus IDs de BudgetExecution para una bósqueda rópida. */
   projectedExpenseItems = signal<Map<string, string>>(new Map());
+  /** Signal computada con las partidas cuyo incremento es > 5% */
+  highIncreaseItems = computed(() => 
+    this.allProposalItems().filter(item => !item.esFilaAgrupadora && item.percentageIncrease > 5)
+  );
   /** Copia profunda de las partidas originales para comparar cambios y evitar llamadas innecesarias al API. */
   originalProposalItems: BudgetProposalItemDTO[] = [];
 
@@ -173,7 +193,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     this.dialogHandlerS.openDialog(
       BudgetAuditDialog,
       { items: this.proposalItems() },
-      "ðŸ¤– Reporte de Auditoróa Presupuestal",
+      "🤖 Reporte de Auditoría Presupuestal",
       this.dialogHandlerS.sizeMd, // Ajustar tamaño segón preferencia
     );
   }
@@ -190,7 +210,11 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     this.dialogHandlerS
       .openDialog<
         any[]
-      >(BudgetForecastDialog, { items: this.proposalItems(), inflationRate: this.inflationRate }, `ðŸ“ˆ Proyección Financiera Inteligente ${this.selectedFiscalYear}`, this.dialogHandlerS.sizeFull)
+      >(BudgetForecastDialog, { 
+        items: this.proposalItems(), 
+        inflationRate: this.inflationRate,
+        selectedMonthsForAvg: this.selectedMonthsForAvg()
+      }, `📈 Proyección Financiera Inteligente ${this.selectedFiscalYear}`, this.dialogHandlerS.sizeFull)
       .then((selectedItems: any[]) => {
         if (selectedItems && selectedItems.length > 0) {
           this.applyForecast(selectedItems);
@@ -257,14 +281,14 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     return this.showBaseBudgetMonthlyColumn() ? "mdi:eye-outline" : "mdi:eye-off-outline";
   }
   get baseBudgetMonthlyButtonLabel(): string {
-    return this.showBaseBudgetMonthlyColumn() ? "Ocultar Mensual 2025" : "Mostrar Mensual 2025";
+    return this.showBaseBudgetMonthlyColumn() ? `Ocultar Mensual ${this.baseBudgetYear}` : `Mostrar Mensual ${this.baseBudgetYear}`;
   }
 
   get baseBudgetAnnualButtonIcon(): string {
     return this.showBaseBudgetAnnualColumn() ? "mdi:eye-outline" : "mdi:eye-off-outline";
   }
   get baseBudgetAnnualButtonLabel(): string {
-    return this.showBaseBudgetAnnualColumn() ? "Ocultar Anual 2025" : "Mostrar Anual 2025";
+    return this.showBaseBudgetAnnualColumn() ? `Ocultar Anual ${this.baseBudgetYear}` : `Mostrar Anual ${this.baseBudgetYear}`;
   }
 
   get fiscalYearAnnualButtonIcon(): string {
@@ -330,6 +354,10 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     this.signalRService.stop();
   }
 
+  openHighIncreaseModal() {
+    this.showHighIncreaseModal.set(true);
+  }
+
   // --------------------------------------------------------------------------------
   // Carga de Datos y Manejo de Estado
   // --------------------------------------------------------------------------------
@@ -369,6 +397,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
           this.showProyectos = this.hasProyectos;
 
           this.applyFilters();
+          this.autoSelectMonthsWithExpenses(this.allProposalItems());
           this.errorMensaje = null;
 
           // Se une al grupo de SignalR para recibir actualizaciones en tiempo real.
@@ -405,8 +434,53 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
    * Se ejecuta cuando el usuario cambia el Año fiscal en el selector.
    * Actualiza el Año fiscal seleccionado y vuelve a cargar los datos.
    */
+  
+  /**
+   * Analiza todas las partidas para detectar hasta qué mes hay gastos reales (mayores a cero).
+   */
+  autoSelectMonthsWithExpenses(items: BudgetProposalItemDTO[]): void {
+    if (!items || items.length === 0) return;
+
+    const monthToExpensePropertyMap: { [key: string]: keyof BudgetProposalItemDTO } = {
+      enero: "gastoEnero",
+      febrero: "gastoFebrero",
+      marzo: "gastoMarzo",
+      abril: "gastoAbril",
+      mayo: "gastoMayo",
+      junio: "gastoJunio",
+      julio: "gastoJulio",
+      agosto: "gastoAgosto",
+      septiembre: "gastoSeptiembre",
+      octubre: "gastoOctubre",
+      noviembre: "gastoNoviembre",
+      diciembre: "gastoDiciembre",
+    };
+
+    let lastMonthWithExpenseIndex = -1;
+
+    for (let i = 0; i < this.months.length; i++) {
+      const monthName = this.months[i];
+      const expenseProperty = monthToExpensePropertyMap[monthName];
+
+      const hasExpense = items.some(
+        (item) => !item.esFilaAgrupadora && typeof item[expenseProperty] === "number" && (item[expenseProperty] as number) > 0
+      );
+
+      if (hasExpense) {
+        lastMonthWithExpenseIndex = i;
+      }
+    }
+
+    if (lastMonthWithExpenseIndex >= 0) {
+      this.selectedMonthsForAvg.set(this.months.slice(0, lastMonthWithExpenseIndex + 1));
+    } else {
+      this.selectedMonthsForAvg.set([...this.months]);
+    }
+  }
+
   onFiscalYearChange(): void {
     this.fiscalYear = this.selectedFiscalYear;
+    this.baseBudgetYear = this.selectedFiscalYear - 1;
     this.onLoadData();
   }
 

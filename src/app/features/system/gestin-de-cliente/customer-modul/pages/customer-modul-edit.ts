@@ -13,7 +13,7 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 
 interface ModuleGroup {
   groupTitle: string;

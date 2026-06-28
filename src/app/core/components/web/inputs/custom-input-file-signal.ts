@@ -3,7 +3,7 @@ import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { FileUploadModule } from "primeng/fileupload";
 import { CustomButtonDelete } from "../../buttons/web/custom-button-delete";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 // 📁 COMPONENTE DE INPUT DE ARCHIVO
 // Un componente para seleccionar archivos usando PrimeNG FileUpload.
 @Component({
@@ -157,3 +157,4 @@ export class CustomInputFile extends BaseInputSignal {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   }
 }
+

@@ -28,10 +28,14 @@
         </td>
       </tr>
     </ng-template>
-    <ng-template pTemplate="emptymessage">
+    <ng-template #emptymessage>
       <tr>
         <td colspan="3">
-          <app-empty-state icon="mdi:receipt-outline" title="Sin comprobantes" message="No hay comprobantes de pago." />
+          <app-empty-state
+            icon="mdi:receipt-outline"
+            title="Sin comprobantes"
+            message="No hay comprobantes de pago."
+          />
         </td>
       </tr>
     </ng-template>

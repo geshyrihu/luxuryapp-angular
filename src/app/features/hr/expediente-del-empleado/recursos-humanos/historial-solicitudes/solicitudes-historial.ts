@@ -14,10 +14,10 @@ import { TagModule } from "primeng/tag";
 import { firstValueFrom } from "rxjs";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {

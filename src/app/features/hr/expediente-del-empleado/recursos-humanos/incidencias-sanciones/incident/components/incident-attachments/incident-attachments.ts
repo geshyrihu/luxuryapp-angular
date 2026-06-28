@@ -1,5 +1,5 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { DatePipe } from "@angular/common";
 import { Component, inject, input, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -78,8 +78,8 @@ export class IncidentAttachmentsComponent {
     if (files.length > remaining) {
       this.swalS.fire({
         icon: "warning",
-        title: "Límite de archivos",
-        text: `Solo puedes agregar ${remaining} archivo(s) más.`,
+        title: "LÃ­mite de archivos",
+        text: `Solo puedes agregar ${remaining} archivo(s) mÃ¡s.`,
       });
       return;
     }
@@ -127,7 +127,7 @@ export class IncidentAttachmentsComponent {
 
     if (uploaded > 0) {
       this.swalS.success(
-        "Éxito",
+        "Ã‰xito",
         `${uploaded} archivo(s) adjuntado(s) correctamente.`,
       );
     }

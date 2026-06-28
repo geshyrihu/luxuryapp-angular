@@ -1,20 +1,21 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, OnInit, computed, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import {
   CustomButtonDelete,
   CustomButtonEdit,
 } from "src/app/core/components/buttons/web";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import {
   StatusBadge,
   ETypeEmpresa,
-} from "src/app/core/components/status-badge/status-badge";
+} from "src/app/core/components/shared/status-badge/status-badge";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -35,6 +36,7 @@ import { AspelCustomerEmpresaForm } from "./aspel-customer-empresa-form";
     CustomButtonDelete,
     CustomButtonEdit,
     DataViewMobile,
+    EmptyState,
     IonItem,
     IonLabel,
     PrimeNgCustomCaption,
@@ -98,3 +100,4 @@ export class AspelCustomerEmpresaList implements OnInit {
 function getGlobalFilterFields(data: void): any {
   throw new Error("Function not implemented.");
 }
+

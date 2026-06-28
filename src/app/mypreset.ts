@@ -112,7 +112,7 @@ const MyPreset = definePreset(Lara, {
       light: {
         primary: {
           color: "{primary.500}",
-          contrastColor: "#ffffff",
+          contrastColor: "var(--ds-primary-text)",
           hoverColor: "{primary.600}",
           activeColor: "{primary.700}",
         },
@@ -123,24 +123,24 @@ const MyPreset = definePreset(Lara, {
           focusColor: "{primary.800}",
         },
         surface: {
-          0: "#ffffff",
-          50: "#f8fafc",
-          100: "#f1f5f9",
-          200: "#e2e8f0",
-          300: "#cbd5e1",
-          400: "#94a3b8",
-          500: "#64748b",
-          600: "#475569",
-          700: "#334155",
-          800: "#1e293b",
-          900: "#0f172a",
-          950: "#020617",
+          0: "var(--secondary-50)",
+          50: "var(--secondary-50)",
+          100: "var(--secondary-100)",
+          200: "var(--secondary-200)",
+          300: "var(--secondary-300)",
+          400: "var(--secondary-400)",
+          500: "var(--secondary-500)",
+          600: "var(--secondary-600)",
+          700: "var(--secondary-700)",
+          800: "var(--secondary-800)",
+          900: "var(--secondary-900)",
+          950: "var(--secondary-950)",
         },
       },
       dark: {
         primary: {
           color: "{primary.400}",
-          contrastColor: "#ffffff",
+          contrastColor: "var(--ds-primary-text)",
           hoverColor: "{primary.300}",
           activeColor: "{primary.200}",
         },
@@ -151,18 +151,18 @@ const MyPreset = definePreset(Lara, {
           focusColor: "rgba(255,255,255,.87)",
         },
         surface: {
-          0: "#09090b",
-          50: "#18181b",
-          100: "#27272a",
-          200: "#3f3f46",
-          300: "#52525b",
-          400: "#71717a",
-          500: "#a1a1aa",
-          600: "#d4d4d8",
-          700: "#e4e4e7",
-          800: "#f4f4f5",
-          900: "#fafafa",
-          950: "#ffffff",
+          0: "var(--surface-dark-0)",
+          50: "var(--surface-dark-50)",
+          100: "var(--surface-dark-100)",
+          200: "var(--surface-dark-200)",
+          300: "var(--surface-dark-300)",
+          400: "var(--surface-dark-400)",
+          500: "var(--surface-dark-500)",
+          600: "var(--surface-dark-600)",
+          700: "var(--surface-dark-700)",
+          800: "var(--surface-dark-800)",
+          900: "var(--surface-dark-900)",
+          950: "var(--surface-dark-950)",
         },
       },
     },
@@ -190,16 +190,20 @@ const MyPreset = definePreset(Lara, {
         },
         dark: {
           success: {
-            background: "rgba(34, 197, 94, 0.12)",
-            color: "#4ade80",
+            background: "color-mix(in srgb, var(--success-500), transparent 88%)",
+            color: "var(--success-400)",
+          },
+          info: {
+            background: "color-mix(in srgb, var(--info-500), transparent 88%)",
+            color: "var(--info-400)",
           },
           warn: {
-            background: "rgba(245, 158, 11, 0.12)",
-            color: "#fbbf24",
+            background: "color-mix(in srgb, var(--warning-500), transparent 88%)",
+            color: "var(--warning-400)",
           },
           danger: {
-            background: "rgba(239, 68, 68, 0.12)",
-            color: "#f87171",
+            background: "color-mix(in srgb, var(--danger-500), transparent 88%)",
+            color: "var(--danger-400)",
           },
         },
       },
@@ -207,7 +211,7 @@ const MyPreset = definePreset(Lara, {
     datatable: {
       header: {
         background: "{primary.500}",
-        color: "#ffffff",
+        color: "var(--ds-primary-text)",
         borderColor: "{primary.500}",
       },
       row: {
@@ -227,7 +231,7 @@ const MyPreset = definePreset(Lara, {
             borderColor: "var(--success-color)", // Simplificado para usar el color principal
             color: "var(--success-color)",
             closeButton: {
-              hoverBackground: "#a7f3d0", // Este lo dejamos hardcoded o creamos var si lo usas mucho
+              hoverBackground: "color-mix(in srgb, var(--success-500), transparent 80%)",
             },
           },
           warn: {
@@ -235,7 +239,7 @@ const MyPreset = definePreset(Lara, {
             borderColor: "var(--warning-color)",
             color: "var(--warning-color)",
             closeButton: {
-              hoverBackground: "#fde68a",
+              hoverBackground: "color-mix(in srgb, var(--warning-500), transparent 80%)",
             },
           },
           error: {
@@ -243,33 +247,33 @@ const MyPreset = definePreset(Lara, {
             borderColor: "var(--danger-color)",
             color: "var(--danger-color)",
             closeButton: {
-              hoverBackground: "#fecaca",
+              hoverBackground: "color-mix(in srgb, var(--danger-500), transparent 80%)",
             },
           },
         },
         dark: {
           success: {
-            background: "rgba(34, 197, 94, 0.12)",
-            borderColor: "rgba(34, 197, 94, 0.35)",
-            color: "#4ade80",
+            background: "color-mix(in srgb, var(--success-500), transparent 88%)",
+            borderColor: "color-mix(in srgb, var(--success-500), transparent 65%)",
+            color: "var(--success-400)",
             closeButton: {
-              hoverBackground: "rgba(34, 197, 94, 0.2)",
+              hoverBackground: "color-mix(in srgb, var(--success-500), transparent 80%)",
             },
           },
           warn: {
-            background: "rgba(245, 158, 11, 0.12)",
-            borderColor: "rgba(245, 158, 11, 0.35)",
-            color: "#fbbf24",
+            background: "color-mix(in srgb, var(--warning-500), transparent 88%)",
+            borderColor: "color-mix(in srgb, var(--warning-500), transparent 65%)",
+            color: "var(--warning-400)",
             closeButton: {
-              hoverBackground: "rgba(245, 158, 11, 0.2)",
+              hoverBackground: "color-mix(in srgb, var(--warning-500), transparent 80%)",
             },
           },
           error: {
-            background: "rgba(239, 68, 68, 0.12)",
-            borderColor: "rgba(239, 68, 68, 0.35)",
-            color: "#f87171",
+            background: "color-mix(in srgb, var(--danger-500), transparent 88%)",
+            borderColor: "color-mix(in srgb, var(--danger-500), transparent 65%)",
+            color: "var(--danger-400)",
             closeButton: {
-              hoverBackground: "rgba(239, 68, 68, 0.2)",
+              hoverBackground: "color-mix(in srgb, var(--danger-500), transparent 80%)",
             },
           },
         },

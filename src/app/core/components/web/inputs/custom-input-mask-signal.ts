@@ -1,11 +1,11 @@
-﻿import { Component, forwardRef, input } from "@angular/core";
+import { Component, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
 import { InputTextModule } from "primeng/inputtext";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
-// 🎭 COMPONENTE DE INPUT CON MÁSCARA
-// Un componente para entradas de texto con formato de máscara.
+// ?? COMPONENTE DE INPUT CON M�SCARA
+// Un componente para entradas de texto con formato de m�scara.
 @Component({
   selector: "custom-input-mask-signal",
   imports: [
@@ -15,8 +15,8 @@ import { BaseInputSignal } from "../base/base-input-signal";
     InputTextModule,
   ],
   template: `
-    <!-- 🏗️ ESTRUCTURA BASE -->
-    <!-- Reutilizamos BaseInput para manejar la etiqueta, los errores y la disposición. -->
+    <!-- ??? ESTRUCTURA BASE -->
+    <!-- Reutilizamos BaseInput para manejar la etiqueta, los errores y la disposici�n. -->
     <base-input-signal
       [control]="control()"
       [id]="id()"
@@ -27,8 +27,8 @@ import { BaseInputSignal } from "../base/base-input-signal";
       [disabled]="disabled()"
       [required]="requiredInput()"
     >
-      <!-- 🚀 CONTENIDO PROYECTADO -->
-      <!-- Este es el input con máscara real que se inyectará en BaseInput. -->
+      <!-- ?? CONTENIDO PROYECTADO -->
+      <!-- Este es el input con m�scara real que se inyectar� en BaseInput. -->
       <input
         type="text"
         pInputText
@@ -59,3 +59,4 @@ export class CustomInputMaskSignal extends BaseInputSignal {
   validation = input<boolean>(true);
   dropSpecialCharacters = input<boolean>(true);
 }
+

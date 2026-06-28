@@ -32,12 +32,18 @@
         <td>{{ invoice.fechaFactura }}</td>
         <td>
           @if(invoice.pdfFile) {
-          <app-icon [icon]="'mdi:file-pdf-box'" class="text-red-500 text-xl"></app-icon>
+          <app-icon
+            [icon]="'mdi:file-pdf-box'"
+            class="text-red-500 text-xl"
+          ></app-icon>
           }
         </td>
         <td>
           @if(invoice.xmlFile) {
-          <app-icon [icon]="'mdi:file-document-outline'" class="text-blue-500 text-xl"></app-icon>
+          <app-icon
+            [icon]="'mdi:file-document-outline'"
+            class="text-blue-500 text-xl"
+          ></app-icon>
           }
         </td>
         <td>
@@ -48,10 +54,14 @@
         </td>
       </tr>
     </ng-template>
-    <ng-template pTemplate="emptymessage">
+    <ng-template #emptymessage>
       <tr>
         <td colspan="7">
-          <app-empty-state icon="mdi:file-invoice-outline" title="Sin facturas" message="No hay facturas registradas." />
+          <app-empty-state
+            icon="mdi:file-invoice-outline"
+            title="Sin facturas"
+            message="No hay facturas registradas."
+          />
         </td>
       </tr>
     </ng-template>
@@ -82,8 +92,8 @@
       />
       @if(isEditing()) {
       <small class="text-green-600 block mt-1"
-        ><app-icon [icon]="'mdi:check-circle'"></app-icon> Archivo actual conservado. Subir
-        nuevo para reemplazar.</small
+        ><app-icon [icon]="'mdi:check-circle'"></app-icon> Archivo actual
+        conservado. Subir nuevo para reemplazar.</small
       >
       }
     </div>
@@ -96,8 +106,8 @@
       />
       @if(isEditing()) {
       <small class="text-green-600 block mt-1"
-        ><app-icon [icon]="'mdi:check-circle'"></app-icon> Archivo actual conservado. Subir
-        nuevo para reemplazar.</small
+        ><app-icon [icon]="'mdi:check-circle'"></app-icon> Archivo actual
+        conservado. Subir nuevo para reemplazar.</small
       >
       }
     </div>

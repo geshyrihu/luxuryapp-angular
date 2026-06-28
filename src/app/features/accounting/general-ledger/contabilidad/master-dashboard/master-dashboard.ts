@@ -1,4 +1,4 @@
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { CardModule } from "primeng/card";

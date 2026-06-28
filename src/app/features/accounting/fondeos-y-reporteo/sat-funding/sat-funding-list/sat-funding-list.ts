@@ -6,8 +6,9 @@ import { addIcons } from "ionicons";
 import { cashOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { SatFundingDTO } from "src/app/core/interfaces/sat-funding.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -21,6 +22,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
     PrimeNgCustomCaption,
     CustomButton,
     DataViewMobile,
+    EmptyState,
     IonItem,
     IonLabel,
   ],

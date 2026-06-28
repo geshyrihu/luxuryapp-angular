@@ -1,5 +1,5 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
-﻿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
@@ -9,10 +9,10 @@ import {
   CustomButtonConfirm,
   CustomButtonItem,
 } from "src/app/core/components/buttons/web";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PdfViewerModal } from "src/app/core/components/pdf-viewer-modal/pdf-viewer-modal";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -54,7 +54,7 @@ export class EstadoFinancieroList {
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
-  // Signals para controlar el estado de procesamiento de cada acción
+  // Signals para controlar el estado de procesamiento de cada acciÃƒÂ³n
   processingUpload = signal<Set<string>>(new Set());
   processingAuthorize = signal<Set<string>>(new Set());
   processingDesauthorize = signal<Set<string>>(new Set());
@@ -74,7 +74,7 @@ export class EstadoFinancieroList {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  // Función para verificar si un botón está procesando
+  // FunciÃƒÂ³n para verificar si un botÃƒÂ³n estÃƒÂ¡ procesando
   isProcessingUpload(id: string): boolean {
     return this.processingUpload().has(id);
   }
@@ -91,7 +91,7 @@ export class EstadoFinancieroList {
     return this.processingSend().has(id);
   }
 
-  // Función para abrir un cuadro de diálogo modal para agregar el archivo
+  // FunciÃƒÂ³n para abrir un cuadro de diÃƒÂ¡logo modal para agregar el archivo
   onUploadFile(data: any) {
     if (this.isProcessingUpload(data.id)) return;
 
@@ -186,10 +186,11 @@ export class EstadoFinancieroList {
       { pdfSrc: url, fileName: fileName },
       fileName,
       this.dialogHandlerS.sizeFull,
-      true, // ← autoMaximize = true
+      true, // Ã¢â€ Â autoMaximize = true
     );
   }
 }
+
 
 
 

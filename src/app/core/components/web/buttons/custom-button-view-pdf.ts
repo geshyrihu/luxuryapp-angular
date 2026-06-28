@@ -5,10 +5,10 @@ import { addIcons } from "ionicons";
 import { chevronForwardOutline, documentOutline } from "ionicons/icons";
 import { TooltipModule } from "primeng/tooltip";
 import { PlatformService } from "src/app/core/services/platform.service";
-import { AppIcon } from "../../app-icon/app-icon.component";
+import { AppIcon } from "../../shared/app-icon/app-icon.component";
 import { DialogHandlerService } from "../../../services/dialog-handler.service";
-import { PdfViewerModal } from "../../pdf-viewer-modal/pdf-viewer-modal";
-import { BaseButton } from "../base/base-button";
+import { PdfViewerModal } from "../../shared/pdf-viewer-modal/pdf-viewer-modal";
+import { BaseButton } from "../../buttons/base/base-button";
 
 @Component({
   selector: "custom-button-view-pdf",
@@ -78,3 +78,5 @@ export class CustomButtonViewPdf extends BaseButton {
     );
   }
 }
+
+

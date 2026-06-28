@@ -29,7 +29,9 @@
 
   <!-- Loading -->
   @if (loading()) {
-  <div class="rf-card p-4 flex align-items-center text-color-secondary mb-4 gap-2">
+  <div
+    class="rf-card p-4 flex align-items-center text-color-secondary mb-4 gap-2"
+  >
     <app-icon [icon]="'mdi:spin'"></app-icon>
     <span>Consultando datos en Aspel...</span>
   </div>
@@ -66,10 +68,12 @@
       <ng-template pTemplate="body" let-row>
         <!-- Fila: encabezado de clasificación -->
         @if (row.tipo === "header") {
-        <tr class="rf-row-section"
-            [class.rf-row-section--activo]="row.clasificacionCodigo === '1'"
-            [class.rf-row-section--pasivo]="row.clasificacionCodigo === '2'"
-            [class.rf-row-section--capital]="row.clasificacionCodigo === '3'">
+        <tr
+          class="rf-row-section"
+          [class.rf-row-section--activo]="row.clasificacionCodigo === '1'"
+          [class.rf-row-section--pasivo]="row.clasificacionCodigo === '2'"
+          [class.rf-row-section--capital]="row.clasificacionCodigo === '3'"
+        >
           <td colspan="14" class="font-bold text-sm py-2 px-3">
             {{ row.descripcion }}
           </td>
@@ -103,7 +107,7 @@
         }
       </ng-template>
 
-      <ng-template pTemplate="emptymessage">
+      <ng-template #emptymessage>
         <tr>
           <td colspan="14" class="text-center py-4 text-color-secondary">
             Sin registros.

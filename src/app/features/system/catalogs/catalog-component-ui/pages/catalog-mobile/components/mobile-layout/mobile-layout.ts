@@ -21,6 +21,7 @@ import {
   menuOutline,
   settingsOutline,
 } from "ionicons/icons";
+import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-styles";
 
 @Component({
   selector: "app-mobile-layout",
@@ -160,59 +161,98 @@ import {
           </div>
         </div>
 
+        <!-- ─── PATRÓN: Bottom Tab Bar (ui-stiich Corporate Integrity) ─── -->
+        <div>
+          <div class="section-label">Bottom Tab Bar (ui-stiich)</div>
+          <p class="section-desc">
+            Barra de navegación inferior con íconos Material Symbols. Activo: Filled,
+            inactivo: Outline. Inspirado en <code>listado_de_contactos_modo_claro</code>.
+          </p>
+          <div class="stiich-tabbar">
+            <button class="stiich-tab" [class.stiich-tab--active]="activeTab() === 'chats'" (click)="activeTab.set('chats')">
+              <span class="material-symbols-outlined" [class.stiich-tab__icon--filled]="activeTab() === 'chats'">chat</span>
+              <span class="stiich-tab__label">Chats</span>
+            </button>
+            <button class="stiich-tab" [class.stiich-tab--active]="activeTab() === 'calls'" (click)="activeTab.set('calls')">
+              <span class="material-symbols-outlined" [class.stiich-tab__icon--filled]="activeTab() === 'calls'">call</span>
+              <span class="stiich-tab__label">Calls</span>
+            </button>
+            <button class="stiich-tab stiich-tab--center" [class.stiich-tab--active]="activeTab() === 'contacts'" (click)="activeTab.set('contacts')">
+              <span class="material-symbols-outlined" [class.stiich-tab__icon--filled]="activeTab() === 'contacts'" style="font-variation-settings:'FILL' 1;">contacts</span>
+              <span class="stiich-tab__label">Contacts</span>
+            </button>
+            <button class="stiich-tab" [class.stiich-tab--active]="activeTab() === 'settings'" (click)="activeTab.set('settings')">
+              <span class="material-symbols-outlined" [class.stiich-tab__icon--filled]="activeTab() === 'settings'">settings</span>
+              <span class="stiich-tab__label">Settings</span>
+            </button>
+            <button class="stiich-tab" [class.stiich-tab--active]="activeTab() === 'profile'" (click)="activeTab.set('profile')">
+              <span class="material-symbols-outlined" [class.stiich-tab__icon--filled]="activeTab() === 'profile'">person</span>
+              <span class="stiich-tab__label">Profile</span>
+            </button>
+          </div>
+          @if (activeTab() !== 'contacts') {
+            <p class="text-xs text-secondary mt-2">Tab activo: <strong>{{ activeTab() }}</strong></p>
+          }
+        </div>
+
       </div>
     </div>
   `,
-  styles: [`
-    .mobile-card { background: var(--ds-bg-surface,#fff); border: 1px solid var(--ds-border,#e2e8f0); border-radius: var(--ds-radius-lg,8px); overflow: hidden; }
-    .mobile-card-header { padding: 0.75rem 1rem; background: var(--ds-bg-elevated,#f4f5f8); font-weight: 600; font-size: var(--ds-font-size-body,0.9375rem); color: var(--ds-text-primary); border-bottom: 1px solid var(--ds-border,#e2e8f0); }
-    .mobile-card-body { padding: 1rem; }
-    .section-label { font-weight: 700; font-size: 0.8125rem; color: var(--ds-text-secondary,#64748b); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.25rem; }
-    .section-desc { font-size: 0.75rem; color: var(--ds-text-muted,#94a3b8); margin: 0 0 0.75rem 0; line-height: 1.4; }
-
+  styles: [MOBILE_SHOWCASE_STYLES, `
     /* Anatomy */
     .anatomy-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 1rem; }
     .anatomy-device-label { font-size: 0.7rem; color: var(--ds-text-muted); margin-bottom: 4px; }
-    .anatomy-device { border: 1px solid var(--ds-border,#e2e8f0); border-radius: 8px; overflow: hidden; font-size: 0.7rem; }
-    .anatomy-toolbar { background: var(--ion-color-primary,#003d9b); color: #fff; padding: 6px 8px; display: flex; align-items: center; gap: 6px; font-weight: 600; }
+    .anatomy-device { border: 1px solid var(--ds-border); border-radius: 8px; overflow: hidden; font-size: 0.7rem; }
+    .anatomy-toolbar { background: var(--ds-primary); color: var(--ds-on-primary); padding: 6px 8px; display: flex; align-items: center; gap: 6px; font-weight: 600; }
     .anatomy-hamburger { font-size: 1rem; }
     .anatomy-body { display: flex; }
-    .anatomy-content-only { flex: 1; padding: 8px; background: #fff; display: flex; flex-direction: column; gap: 4px; min-height: 70px; }
-    .anatomy-sidebar { width: 90px; background: var(--ds-bg-elevated,#f4f5f8); padding: 6px; border-right: 1px solid var(--ds-border,#e2e8f0); display: flex; flex-direction: column; gap: 4px; }
-    .anatomy-content-area { flex: 1; padding: 8px; background: #fff; display: flex; flex-direction: column; gap: 4px; }
-    .anatomy-tag { font-family: monospace; font-size: 0.65rem; color: var(--ds-primary,#003d9b); font-weight: 700; }
+    .anatomy-content-only { flex: 1; padding: 8px; background: var(--ds-bg-surface); display: flex; flex-direction: column; gap: 4px; min-height: 70px; }
+    .anatomy-sidebar { width: 90px; background: var(--ds-bg-elevated); padding: 6px; border-right: 1px solid var(--ds-border); display: flex; flex-direction: column; gap: 4px; }
+    .anatomy-content-area { flex: 1; padding: 8px; background: var(--ds-bg-surface); display: flex; flex-direction: column; gap: 4px; }
+    .anatomy-tag { font-family: monospace; font-size: 0.65rem; color: var(--ds-primary); font-weight: 700; }
     .anatomy-note { color: var(--ds-text-muted); margin: 0; line-height: 1.3; }
     .anatomy-menu-items { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
     .anatomy-menu-item { padding: 3px 4px; border-radius: 4px; font-size: 0.65rem; }
-    .active-item { background: var(--ds-primary-50,#edf1ff); color: var(--ds-primary,#003d9b); font-weight: 700; }
+    .active-item { background: var(--ds-primary-50, #edf1ff); color: var(--ds-primary); font-weight: 700; }
 
     /* Config table */
     .config-table { display: flex; flex-direction: column; gap: 4px; }
-    .config-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.75rem; padding: 4px 0; border-bottom: 1px solid var(--ds-border,#e2e8f0); }
-    .config-row code { font-size: 0.7rem; background: var(--ds-bg-sunken,#e8edff); padding: 1px 5px; border-radius: 4px; flex-shrink: 0; }
+    .config-row { display: flex; align-items: baseline; gap: 8px; font-size: 0.75rem; padding: 4px 0; border-bottom: 1px solid var(--ds-border); }
+    .config-row code { font-size: 0.7rem; background: var(--ds-bg-sunken, #efedef); padding: 1px 5px; border-radius: 4px; flex-shrink: 0; }
     .config-row span { color: var(--ds-text-secondary); }
 
     /* Code block */
-    .code-block { background: var(--ds-bg-sunken,#e8edff); border-radius: 8px; padding: 0.75rem; font-size: 0.7rem; font-family: monospace; line-height: 1.6; margin: 0; overflow-x: auto; color: var(--ds-text-primary); }
+    .code-block { background: var(--ds-bg-sunken,#efedef); border-radius: 8px; padding: 0.75rem; font-size: 0.7rem; font-family: monospace; line-height: 1.6; margin: 0; overflow-x: auto; color: var(--ds-text-primary); }
 
     /* Simulator */
     .toggle-row { display: flex; gap: 8px; margin-bottom: 0.75rem; }
-    .sim-btn { padding: 6px 14px; border-radius: 8px; border: 1px solid var(--ds-border,#e2e8f0); background: var(--ds-bg-surface,#fff); font-size: 0.75rem; cursor: pointer; transition: all 150ms; color: var(--ds-text-secondary); }
-    .sim-btn.active { background: var(--ds-primary,#003d9b); color: #fff; border-color: var(--ds-primary); }
-    .sim-frame { border: 1px solid var(--ds-border,#e2e8f0); border-radius: 8px; overflow: hidden; display: flex; min-height: 100px; transition: all 200ms; }
+    .sim-btn { padding: 6px 14px; border-radius: 8px; border: 1px solid var(--ds-border); background: var(--ds-bg-surface); font-size: 0.75rem; cursor: pointer; transition: all 150ms; color: var(--ds-text-secondary); }
+    .sim-btn.active { background: var(--ds-primary); color: var(--ds-on-primary); border-color: var(--ds-primary); }
+    .sim-frame { border: 1px solid var(--ds-border); border-radius: 8px; overflow: hidden; display: flex; min-height: 100px; transition: all 200ms; }
     .sim-tablet .sim-sidebar { display: flex; }
-    .sim-sidebar { display: none; width: 110px; background: var(--ds-bg-elevated,#f4f5f8); border-right: 1px solid var(--ds-border,#e2e8f0); padding: 8px; flex-direction: column; gap: 4px; }
+    .sim-sidebar { display: none; width: 110px; background: var(--ds-bg-elevated); border-right: 1px solid var(--ds-border); padding: 8px; flex-direction: column; gap: 4px; }
     .sim-nav-item { padding: 6px 8px; border-radius: 6px; font-size: 0.7rem; color: var(--ds-text-secondary); }
-    .sim-active { background: var(--ds-primary-50,#edf1ff); color: var(--ds-primary,#003d9b); font-weight: 700; }
+    .sim-active { background: var(--ds-primary-50, #edf1ff); color: var(--ds-primary); font-weight: 700; }
     .sim-content { flex: 1; display: flex; flex-direction: column; }
-    .sim-toolbar { background: var(--ion-color-primary,#003d9b); color: #fff; padding: 6px 10px; display: flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 600; }
+    .sim-toolbar { background: var(--ds-primary); color: var(--ds-on-primary); padding: 6px 10px; display: flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 600; }
     .sim-hamburger { font-size: 1rem; }
     .sim-body { padding: 12px; flex: 1; }
+
+    /* ─── Bottom Tab Bar (Corporate Integrity DS) ─── */
+    .stiich-tabbar { display: flex; align-items: center; background: var(--ds-bg-surface); border: 1px solid var(--ds-border-strong); border-radius: 0.75rem; overflow: hidden; height: 64px; }
+    .stiich-tab { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; border: none; background: transparent; cursor: pointer; padding: 6px 0; transition: all 150ms; color: var(--ds-text-secondary); font-family: inherit; }
+    .stiich-tab:hover { background: color-mix(in srgb, var(--ds-primary) 4%, transparent); }
+    .stiich-tab--active { color: var(--ds-primary-dark, var(--ds-primary)); }
+    .stiich-tab--center { background: var(--ds-bg-sunken); margin: 6px; border-radius: 0.5rem; }
+    .stiich-tab__icon--filled { font-variation-settings: 'FILL' 1; color: var(--ds-primary-dark, var(--ds-primary)); }
+    .stiich-tab__label { font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
   `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileLayout {
   tabletMode = signal(false);
+  activeTab = signal('contacts');
 
   constructor() {
     addIcons({ barChartOutline, homeOutline, menuOutline, settingsOutline });

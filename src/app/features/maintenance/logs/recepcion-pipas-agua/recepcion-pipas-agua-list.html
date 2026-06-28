@@ -28,7 +28,11 @@
             [routerLinkActiveOptions]="{ exact: true }"
             class="p-button p-button-sm p-button-outlined p-button-secondary no-underline"
           >
-            <app-icon [icon]="'mdi:format-list-bulleted'" class="mr-1"></app-icon> Registros
+            <app-icon
+              [icon]="'mdi:format-list-bulleted'"
+              class="mr-1"
+            ></app-icon>
+            Registros
           </a>
           <a
             routerLink="/logbook/water-truck-reception/reporte"
@@ -205,20 +209,23 @@
           />
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Recepcion' })"
-/>
-          <custom-button-delete (confirmed)="onDelete(item.id)"
-/>
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="13">
-          <app-empty-state icon="mdi:water-pump" title="Sin recepciones" message="No hay recepciones de agua registradas." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="13">
+        <app-empty-state
+          icon="mdi:water-pump"
+          title="Sin recepciones"
+          message="No hay recepciones de agua registradas."
+        />
+      </td>
+    </tr>
+  </ng-template>
 
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
@@ -238,7 +245,8 @@
         [routerLinkActiveOptions]="{ exact: true }"
         class="p-button p-button-sm p-button-outlined p-button-secondary no-underline flex-1 justify-content-center"
       >
-        <app-icon [icon]="'mdi:format-list-bulleted'" class="mr-1"></app-icon> Registros
+        <app-icon [icon]="'mdi:format-list-bulleted'" class="mr-1"></app-icon>
+        Registros
       </a>
       <a
         routerLink="/logbook/water-truck-reception/reporte"
@@ -272,7 +280,10 @@
           margin-left: 16px;
         "
       >
-        <app-icon icon="mdi:water-outline" style="font-size: 20px; color: var(--ds-info)"></app-icon>
+        <app-icon
+          icon="mdi:water-outline"
+          style="font-size: 20px; color: var(--ds-info)"
+        ></app-icon>
       </div>
 
       <ion-label>
@@ -318,14 +329,22 @@
 
       <app-action-menu slot="end">
         <ng-container actions>
-        <custom-button-download (clicked)="onDownloadPdf(item)"
- label="Descargar" [showLabelOnDesktop]="true"/>
-        <custom-button-edit
-          (clicked)="onModalForm({ id: item.id, title: 'Editar Recepcion' })"
- label="Editar" [showLabelOnDesktop]="true"/>
-        <custom-button-delete (confirmed)="onDelete(item.id)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
-              </ng-container>
+          <custom-button-download
+            (clicked)="onDownloadPdf(item)"
+            label="Descargar"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Recepcion' })"
+            label="Editar"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-delete
+            (confirmed)="onDelete(item.id)"
+            label="Eliminar"
+            [showLabelOnDesktop]="true"
+          />
+        </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

@@ -2,7 +2,7 @@ import { Component, effect, inject, input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SkeletonModule } from 'primeng/skeleton';
 import { TableModule } from 'primeng/table';
-import { AppIcon } from 'src/app/core/components/app-icon/app-icon.component';
+import { AppIcon } from 'src/app/core/components/shared/app-icon/app-icon.component';
 import { ContabilidadClienteService } from '../../services/contabilidad-cliente.service';
 import { IProyectosAprobadosDTO } from '../../../contabilidad-online/models/aspel-budget.interface';
 
@@ -52,3 +52,4 @@ export class ProyectosAprobadosClienteComponent {
     this.loading.set(false);
   }
 }
+

@@ -1,6 +1,6 @@
 import { Component, input, output, ViewEncapsulation } from "@angular/core";
 import { TooltipModule } from "primeng/tooltip";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 
 export enum EStatus {
   Pendiente = 0,

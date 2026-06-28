@@ -1,8 +1,8 @@
-Ôªøimport { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { TooltipModule } from "primeng/tooltip";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
@@ -33,7 +33,7 @@ export class DetallesInspeccion implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   data: any;
 
-  nombre: string = "Equipos electromec√°nicos";
+  nombre: string = "Equipos electromec·nicos";
   areaResponsable: string = "Mantenimiento";
   id: string = this.activatedRoute.snapshot.paramMap.get("id");
 
@@ -111,8 +111,8 @@ export class DetallesInspeccion implements OnInit {
   onModalAddRevision() {
     this.dialogHandlerS.openDialog(
       InspeccionAgregarRevision,
-      { title: "Agregar √°rea" },
-      "Agregar revisi√≥n",
+      { title: "Agregar ·rea" },
+      "Agregar revisiÛn",
       this.dialogHandlerS.sizeLg,
     );
   }

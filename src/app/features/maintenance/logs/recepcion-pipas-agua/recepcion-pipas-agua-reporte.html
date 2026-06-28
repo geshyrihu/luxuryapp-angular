@@ -277,12 +277,13 @@
       <td>
         @if (item.colaboradorMtto) {
         <small class="block"
-          ><app-icon [icon]="'mdi:wrench'" class="mr-1 text-400"></app-icon>{{ item.colaboradorMtto
-          }}</small
+          ><app-icon [icon]="'mdi:wrench'" class="mr-1 text-400"></app-icon>{{
+          item.colaboradorMtto }}</small
         >
         } @if (item.guardiaSeguridad) {
         <small class="text-500"
-          ><app-icon [icon]="'mdi:shield'" class="mr-1"></app-icon>{{ item.guardiaSeguridad }}</small
+          ><app-icon [icon]="'mdi:shield'" class="mr-1"></app-icon>{{
+          item.guardiaSeguridad }}</small
         >
         }
       </td>
@@ -291,5 +292,16 @@
 
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="8">
+        <app-empty-state
+          icon="mdi:water-outline"
+          title="Sin recepciones"
+          message="No hay recepciones de pipas de agua en el periodo seleccionado."
+        />
+      </td>
+    </tr>
   </ng-template>
 </p-table>

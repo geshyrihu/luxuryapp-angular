@@ -7,7 +7,7 @@ import {
 } from "@angular/forms";
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 import { Observable } from "rxjs";
 
 @Component({
@@ -109,3 +109,4 @@ export class CustomInputRemoteAutocomplete extends BaseInputSignal {
     this.filteredData.set([]);
   }
 }
+

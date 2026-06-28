@@ -18,7 +18,7 @@ import { ButtonModule } from "primeng/button";
 import { FileUploadModule } from "primeng/fileupload";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TagModule } from "primeng/tag";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import {
   CustomButtonDelete,
   CustomButtonSave,

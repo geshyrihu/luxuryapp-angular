@@ -13,6 +13,7 @@ import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/cust
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { EspejoAspelExtraordinarios } from "./espejo-aspel-extraordinarios";
 import { PresupuestoAspelEjercicioFiscal } from "./espejo-aspel-presupuesto";
+import { PresupuestoAspelExcelService } from "./presupuesto-aspel-excel.service";
 import { PresupuestoWebAspelService } from "./presupuesto-web-aspel.service";
 
 @Component({
@@ -32,7 +33,7 @@ import { PresupuestoWebAspelService } from "./presupuesto-web-aspel.service";
     MessageModule,
     SelectButtonModule,
   ],
-  providers: [PresupuestoWebAspelService],
+  providers: [PresupuestoWebAspelService, PresupuestoAspelExcelService],
 })
 export class PresupuestoWebAspelWrapper {
   activeTabValue = signal("presupuesto");
@@ -51,5 +52,13 @@ export class PresupuestoWebAspelWrapper {
 
   analyzeFinancialData() {
     this.presupuestoComp()?.analyzeFinancialData();
+  }
+
+  exportExcel(): void {
+    if (this.activeTabValue() === "presupuesto") {
+      this.presupuestoComp()?.exportExcel();
+    } else {
+      this.extraComp()?.exportExcel();
+    }
   }
 }

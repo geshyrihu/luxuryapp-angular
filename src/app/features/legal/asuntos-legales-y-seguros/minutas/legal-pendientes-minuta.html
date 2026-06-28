@@ -5,28 +5,28 @@
     [variant]="statusFiltro == 0 ? null : 'ghost-text'"
     size="sm"
     (clicked)="onFiltrarData(0)"
-/>
+  />
   <custom-button
     label="Concluidos"
     [severity]="statusFiltro == 1 ? 'primary' : 'secondary'"
     [variant]="statusFiltro == 1 ? null : 'ghost-text'"
     size="sm"
     (clicked)="onFiltrarData(1)"
-/>
+  />
   <custom-button
     label="No Autorizados"
     [severity]="statusFiltro == 2 ? 'primary' : 'secondary'"
     [variant]="statusFiltro == 2 ? null : 'ghost-text'"
     size="sm"
     (clicked)="onFiltrarData(2)"
-/>
+  />
   <custom-button
     label="Todos"
     [severity]="statusFiltro == 4 ? 'primary' : 'secondary'"
     [variant]="statusFiltro == 4 ? null : 'ghost-text'"
     size="sm"
     (clicked)="onFiltrarData(4)"
-/>
+  />
 </div>
 <!-- ðŸ–¥ï¸ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <p-table
@@ -40,34 +40,44 @@
   [scrollHeight]="scrollHeight"
   #dt
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table card hidden md:block"
+  styleClass="custom-table custom-table-fixed card hidden md:block"
 >
   <ng-template #caption>
     <primeng-custom-caption [title]="'Legal'" [showAdd]="false" [dt]="dt" />
   </ng-template>
+  <ng-template #colgroup>
+    <colgroup>
+      <col class="table-col-8" />
+      <col class="table-col-10" />
+      <col class="table-col-34" />
+      <col class="table-col-30" />
+      <col class="table-col-8" />
+      <col class="table-col-10" />
+    </colgroup>
+  </ng-template>
   <ng-template #header>
     <tr>
-      <th class="table-col-8" pSortableColumn="code">
+      <th pSortableColumn="code">
         FOLIO
         <p-sortIcon field="code" />
       </th>
-      <th style="width: 11%" pSortableColumn="cliente">
+      <th pSortableColumn="cliente">
         CLIENTE
         <p-sortIcon field="cliente" />
       </th>
-      <th class="table-col-30" pSortableColumn="fechaSolicitudFiltro">
+      <th pSortableColumn="fechaSolicitudFiltro">
         SOLICITUD
         <p-sortIcon field="fechaSolicitudFiltro" />
       </th>
-      <th class="table-col-35" pSortableColumn="pendiente">
+      <th pSortableColumn="pendiente">
         SEGUIMIENTO
         <p-sortIcon field="pendiente" />
       </th>
-      <th class="table-col-8" pSortableColumn="status">
+      <th pSortableColumn="status">
         ESTATUS
         <p-sortIcon field="status" />
       </th>
-      <th class="table-col-8 table-col-5">OP</th>
+      <th>OP</th>
     </tr>
   </ng-template>
   <ng-template #body let-item>
@@ -118,11 +128,13 @@
               (clicked)="onModalTodosSeguimientos(item.id)"
               label="Ver todos los seguimientos"
               iconClass="mdi:format-list-bulleted"
- [showLabelOnDesktop]="true"/>
+              [showLabelOnDesktop]="true"
+            />
             <custom-button-add
               (clicked)="onModalFormSeguimiento(item.id, 0)"
               label="Agregar Seguimiento"
- [showLabelOnDesktop]="true"/>
+              [showLabelOnDesktop]="true"
+            />
             <custom-button-edit
               (clicked)="
                 onModalFormMinutaDetalle({
@@ -132,20 +144,25 @@
               "
               label="Editar"
               iconClass="mdi:pencil"
- [showLabelOnDesktop]="true"/>
+              [showLabelOnDesktop]="true"
+            />
           </ng-container>
         </app-action-menu>
       </td>
       <!-- Opciones -->
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="6">
-          <app-empty-state icon="mdi:notebook-outline" title="Sin pendientes" message="No hay pendientes de minuta registrados." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="6">
+        <app-empty-state
+          icon="mdi:notebook-outline"
+          title="Sin pendientes"
+          message="No hay pendientes de minuta registrados."
+        />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -162,9 +179,16 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-warning-light,#fef3c7);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-warning-light, #fef3c7);
+        "
       >
-        <app-icon icon="mdi:clipboard-text-outline" style="font-size:1.1rem;color:var(--ds-warning);"></app-icon>
+        <app-icon
+          icon="mdi:clipboard-text-outline"
+          style="font-size: 1.1rem; color: var(--ds-warning)"
+        ></app-icon>
       </div>
       <ion-label>
         <p class="mt-0 mb-0">
@@ -217,11 +241,13 @@
             (clicked)="onModalTodosSeguimientos(item.id)"
             label="Ver todos los seguimientos"
             iconName="list-outline"
- [showLabelOnDesktop]="true"/>
+            [showLabelOnDesktop]="true"
+          />
           <custom-button-add
             label="Agregar Seguimiento"
             (clicked)="onModalFormSeguimiento(item.id, 0)"
- [showLabelOnDesktop]="true"/>
+            [showLabelOnDesktop]="true"
+          />
           <custom-button-edit
             label="Editar"
             iconClass="mdi:pencil"
@@ -231,7 +257,8 @@
                 header: 'Editar Asunto',
               })
             "
- [showLabelOnDesktop]="true"/>
+            [showLabelOnDesktop]="true"
+          />
         </ng-container>
       </app-action-menu>
     </ion-item>

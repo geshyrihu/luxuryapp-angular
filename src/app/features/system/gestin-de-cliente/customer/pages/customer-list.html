@@ -11,7 +11,9 @@
   styleClass="custom-table card hidden md:block"
 >
   <ng-template #caption>
-    <div class="flex flex-column md:flex-row md:align-items-center justify-content-end p-2 gap-2">
+    <div
+      class="flex flex-column md:flex-row md:align-items-center justify-content-end p-2 gap-2"
+    >
       <primeng-custom-caption
         (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
         [dt]="dt"
@@ -77,13 +79,17 @@
       </td>
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="5">
-          <app-empty-state icon="mdi:domain" title="Sin clientes" message="No hay clientes registrados." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="5">
+        <app-empty-state
+          icon="mdi:domain"
+          title="Sin clientes"
+          message="No hay clientes registrados."
+        />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -109,13 +115,20 @@
   </div>
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
-
       <!-- Logo / avatar del cliente -->
       <div slot="start" class="customer-logo-slot">
         @if (item.photoPath) {
-          <img [src]="item.photoPath" [alt]="item.nameCustomer" class="customer-logo-img" />
+        <img
+          [src]="item.photoPath"
+          [alt]="item.nameCustomer"
+          class="customer-logo-img"
+        />
         } @else {
-          <app-icon icon="mdi:domain" class="text-xl" style="color:var(--ds-primary);"></app-icon>
+        <app-icon
+          icon="mdi:domain"
+          class="text-xl"
+          style="color: var(--ds-primary)"
+        ></app-icon>
         }
       </div>
 
@@ -130,22 +143,28 @@
         <ng-container actions>
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-           label="Editar" [showLabelOnDesktop]="true"/>
+            label="Editar"
+            [showLabelOnDesktop]="true"
+          />
           <custom-button-item
             iconClass="mdi:image-multiple-outline"
             ionicIcon="image-outline"
             label="Imágenes"
             (clicked)="onUpdateImages(item.id)"
-           [showLabelOnDesktop]="true"/>
+            [showLabelOnDesktop]="true"
+          />
           <custom-button-item
             iconClass="mdi:map-marker-outline"
             ionicIcon="location-outline"
             label="Dirección"
             (clicked)="onUpdateAddress(item.id)"
-           [showLabelOnDesktop]="true"/>
+            [showLabelOnDesktop]="true"
+          />
           <custom-button-delete
             (confirmed)="onDelete(item.id)"
-           label="Eliminar" [showLabelOnDesktop]="true"/>
+            label="Eliminar"
+            [showLabelOnDesktop]="true"
+          />
         </ng-container>
       </app-action-menu>
     </ion-item>

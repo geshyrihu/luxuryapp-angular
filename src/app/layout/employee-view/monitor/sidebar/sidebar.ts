@@ -15,7 +15,7 @@ import { AvatarModule } from "primeng/avatar";
 import { DividerModule } from "primeng/divider";
 import { InputTextModule } from "primeng/inputtext";
 import { filter, map } from "rxjs/operators";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { IMenuItem, ISubMenuItem } from "src/app/core/interfaces/menu.model";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
@@ -134,6 +134,8 @@ export class Sidebar {
                 { label: "Data, Accordion & Grid", icon: "mdi:database-outline", routerLink: [...this.catalogBase, 'mobile', 'data'] },
                 { label: "Forms", icon: "mdi:form-dropdown", routerLink: [...this.catalogBase, 'mobile', 'forms'] },
                 { label: "Overlays", icon: "mdi:layers-outline", routerLink: [...this.catalogBase, 'mobile', 'overlays'] },
+                { label: "Layout", icon: "mdi:page-layout-sidebar-left", routerLink: [...this.catalogBase, 'mobile', 'layout'] },
+                { label: "Page Structure", icon: "mdi:page-layout-body", routerLink: [...this.catalogBase, 'mobile', 'page-structure'] },
               ],
             },
             {

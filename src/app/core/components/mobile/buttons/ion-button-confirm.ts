@@ -3,7 +3,7 @@ import { Component, inject, input, output } from "@angular/core";
 import { AlertController, IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { checkmarkOutline, chevronForwardOutline } from "ionicons/icons";
-import { BaseIonicButton } from "../base/base-ionic-button";
+import { BaseIonicButton } from "../../buttons/base/base-ionic-button";
 
 @Component({
   selector: "ion-button-confirm",
@@ -58,3 +58,4 @@ export class IonButtonConfirm extends BaseIonicButton {
     addIcons({ checkmarkOutline, chevronForwardOutline });
   }
 }
+

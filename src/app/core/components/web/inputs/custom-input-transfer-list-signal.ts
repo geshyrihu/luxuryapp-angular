@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, input, output, model } from "@angular/core";
 import { ButtonModule } from "primeng/button";
 import { PickListModule } from "primeng/picklist";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 
 @Component({

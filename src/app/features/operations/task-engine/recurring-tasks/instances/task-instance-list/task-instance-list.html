@@ -64,7 +64,7 @@
             [disabled]="task.status !== 1"
             confirmMessage="¿Estás seguro de reabrir esta tarea?"
             tooltip="Reabrir Tarea"
-/>
+          />
         </td>
       </tr>
     </ng-template>
@@ -79,14 +79,18 @@
         [emptyMessage]="'No hay tareas para esta fecha.'"
       />
     </ng-template>
-    <ng-template pTemplate="emptymessage">
+    <ng-template #emptymessage>
       <tr>
         <td colspan="5">
-          <app-empty-state icon="mdi:repeat" title="Sin instancias" message="No hay instancias de tareas." />
+          <app-empty-state
+            icon="mdi:repeat"
+            title="Sin instancias"
+            message="No hay instancias de tareas."
+          />
         </td>
       </tr>
     </ng-template>
-</p-table>
+  </p-table>
 
   <!-- Mobile View -->
   <app-data-view-mobile
@@ -97,13 +101,20 @@
   >
     <ng-template #listItemTemplate let-task>
       <ion-item lines="full" class="ion-no-padding" detail="false">
-      <div
-        slot="start"
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
-      >
-        <app-icon icon="mdi:repeat" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
-      </div>
+        <div
+          slot="start"
+          class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+          style="
+            width: 38px;
+            height: 38px;
+            background: var(--ds-primary-50, #edf1ff);
+          "
+        >
+          <app-icon
+            icon="mdi:repeat"
+            style="font-size: 1.1rem; color: var(--ds-primary)"
+          ></app-icon>
+        </div>
         <ion-label>
           <h5 class="mb-2">{{ task.title }}</h5>
           <p class="text-sm text-gray-500">
@@ -116,18 +127,20 @@
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-          <custom-button-item
-            label="Completar"
-            (clicked)="onCompleteTask(task)"
-            [disabled]="task.status === 1"
- [showLabelOnDesktop]="true"/>
-          <custom-button-confirm
-            label="Reabrir"
-            (confirmed)="onReopenTask(task.id)"
-            [disabled]="task.status !== 1"
-            confirmMessage="¿Estás seguro de reabrir esta tarea?"
- [showLabelOnDesktop]="true"/>
-                  </ng-container>
+            <custom-button-item
+              label="Completar"
+              (clicked)="onCompleteTask(task)"
+              [disabled]="task.status === 1"
+              [showLabelOnDesktop]="true"
+            />
+            <custom-button-confirm
+              label="Reabrir"
+              (confirmed)="onReopenTask(task.id)"
+              [disabled]="task.status !== 1"
+              confirmMessage="¿Estás seguro de reabrir esta tarea?"
+              [showLabelOnDesktop]="true"
+            />
+          </ng-container>
         </app-action-menu>
       </ion-item>
     </ng-template>

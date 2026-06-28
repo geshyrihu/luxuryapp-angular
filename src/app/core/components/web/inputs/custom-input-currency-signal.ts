@@ -2,7 +2,7 @@ import { Component, computed, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { FloatLabelModule } from "primeng/floatlabel";
 import { InputNumberModule } from "primeng/inputnumber";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
 @Component({
   selector: "custom-input-currency-signal",
@@ -72,3 +72,4 @@ export class CustomInputCurrencySignal extends BaseInputSignal {
     return classes.trim();
   });
 }
+

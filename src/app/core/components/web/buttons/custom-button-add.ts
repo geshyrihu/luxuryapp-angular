@@ -5,8 +5,8 @@ import { addIcons } from "ionicons";
 import { addOutline, chevronForwardOutline } from "ionicons/icons";
 import { TooltipModule } from "primeng/tooltip";
 import { PlatformService } from "src/app/core/services/platform.service";
-import { AppIcon } from "../../app-icon/app-icon.component";
-import { BaseButton } from "../base/base-button";
+import { AppIcon } from "../../shared/app-icon/app-icon.component";
+import { BaseButton } from "../../buttons/base/base-button";
 
 @Component({
   selector: "custom-button-add",
@@ -76,3 +76,5 @@ export class CustomButtonAdd extends BaseButton {
     addIcons({ addOutline, chevronForwardOutline });
   }
 }
+
+

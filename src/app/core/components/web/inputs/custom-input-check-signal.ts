@@ -1,7 +1,7 @@
-﻿import { Component, forwardRef, output } from "@angular/core";
+import { Component, forwardRef, output } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
 @Component({
   selector: "custom-input-check-signal",
@@ -68,3 +68,4 @@ export class CustomInputCheckSignal extends BaseInputSignal implements ControlVa
   override writeValue(obj: any): void { super.writeValue(obj); }
   override setDisabledState(isDisabled: boolean): void { super.setDisabledState(isDisabled); }
 }
+

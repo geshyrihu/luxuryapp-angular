@@ -8,31 +8,45 @@
       <div class="col-12 md:col-6 xl:col-2">
         <div class="rf-card p-3 h-full">
           <div class="text-color-secondary mb-2">Departamentos</div>
-          <div class="text-xl font-semibold">{{ d.totalCondominios | number:'1.0-0' }}</div>
+          <div class="text-xl font-semibold">
+            {{ d.totalCondominios | number:'1.0-0' }}
+          </div>
         </div>
       </div>
       <div class="col-12 md:col-6 xl:col-2">
         <div class="rf-card p-3 h-full">
           <div class="text-color-secondary mb-2">Total mtto mensual</div>
-          <div class="text-xl font-semibold">{{ d.cuotaMttoVigente | accountingNumber:'1.2-2' }}</div>
+          <div class="text-xl font-semibold">
+            {{ d.cuotaMttoVigente | accountingNumber:'1.2-2' }}
+          </div>
         </div>
       </div>
       <div class="col-12 md:col-6 xl:col-2">
         <div class="rf-card p-3 h-full">
-          <div class="text-color-secondary mb-2">Total extraordinaria mensual</div>
-          <div class="text-xl font-semibold">{{ d.cuotaExtraordinariaVigente | accountingNumber:'1.2-2' }}</div>
+          <div class="text-color-secondary mb-2">
+            Total extraordinaria mensual
+          </div>
+          <div class="text-xl font-semibold">
+            {{ d.cuotaExtraordinariaVigente | accountingNumber:'1.2-2' }}
+          </div>
         </div>
       </div>
       <div class="col-12 md:col-6 xl:col-2">
         <div class="rf-card p-3 h-full">
           <div class="text-color-secondary mb-2">Total a recaudar mensual</div>
-          <div class="text-xl font-semibold">{{ d.cuotaMensualTotal | accountingNumber:'1.2-2' }}</div>
+          <div class="text-xl font-semibold">
+            {{ d.cuotaMensualTotal | accountingNumber:'1.2-2' }}
+          </div>
         </div>
       </div>
       <div class="col-12 md:col-6 xl:col-2">
         <div class="rf-card p-3 h-full">
-          <div class="text-color-secondary mb-2 text-red-600">Arrastre de deuda</div>
-          <div class="text-xl font-semibold text-red-600">{{ d.totalSaldoAnterior | accountingNumber:'1.2-2' }}</div>
+          <div class="text-color-secondary mb-2 text-red-600">
+            Arrastre de deuda
+          </div>
+          <div class="text-xl font-semibold text-red-600">
+            {{ d.totalSaldoAnterior | accountingNumber:'1.2-2' }}
+          </div>
         </div>
       </div>
     </div>
@@ -52,24 +66,35 @@
             <tbody>
               <tr class="font-bold">
                 <td class="py-1">Cobranza perfecta (Mantenimiento)</td>
-                <td class="text-right font-mono">{{ d.cuotaMttoVigente | accountingNumber:'1.0-0' }}</td>
+                <td class="text-right font-mono">
+                  {{ d.cuotaMttoVigente | accountingNumber:'1.0-0' }}
+                </td>
                 <td class="text-right"></td>
               </tr>
               <tr class="font-bold">
                 <td class="py-1">Cobranza perfecta (Extraordinaria)</td>
-                <td class="text-right font-mono">{{ d.cuotaExtraordinariaVigente | accountingNumber:'1.0-0' }}</td>
+                <td class="text-right font-mono">
+                  {{ d.cuotaExtraordinariaVigente | accountingNumber:'1.0-0' }}
+                </td>
                 <td class="text-right"></td>
               </tr>
               <tr class="font-bold border-top-1 surface-border text-primary">
                 <td class="py-1">Total Cobranza Perfecta</td>
-                <td class="text-right font-mono text-primary">{{ d.cobranzaPerfecta | accountingNumber:'1.0-0' }}</td>
+                <td class="text-right font-mono text-primary">
+                  {{ d.cobranzaPerfecta | accountingNumber:'1.0-0' }}
+                </td>
                 <td class="text-right">100%</td>
               </tr>
             </tbody>
           </table>
           <div class="mt-4">
             <div style="position: relative; width: 100%; height: 280px">
-              <p-chart type="pie" [data]="chartData()!" [options]="chartOptions" style="width: 100%; height: 100%" />
+              <p-chart
+                type="pie"
+                [data]="chartData()!"
+                [options]="chartOptions"
+                style="width: 100%; height: 100%"
+              />
             </div>
           </div>
         </div>
@@ -77,8 +102,12 @@
 
       <div class="col-12 lg:col-6">
         <div class="rf-card p-4 h-full">
-          <div class="text-lg font-semibold mb-1 text-red-600">Deuda Condóminos (EF)</div>
-          <div class="text-color-secondary mb-3">Clasificación del saldo final por cuenta al corte consultado.</div>
+          <div class="text-lg font-semibold mb-1 text-red-600">
+            Deuda Condóminos (EF)
+          </div>
+          <div class="text-color-secondary mb-3">
+            Clasificación del saldo final por cuenta al corte consultado.
+          </div>
           <table class="rf-table">
             <thead>
               <tr class="border-bottom-1 surface-border">
@@ -90,27 +119,43 @@
             <tbody>
               <tr>
                 <td class="py-1">Cobranza judicial</td>
-                <td class="text-right font-mono">{{ d.totalJudicial | accountingNumber:'1.0-0' }}</td>
-                <td class="text-right text-500 text-xs">{{ pct(d.totalJudicial, d.totalDeuda) }}</td>
+                <td class="text-right font-mono">
+                  {{ d.totalJudicial | accountingNumber:'1.0-0' }}
+                </td>
+                <td class="text-right text-500 text-xs">
+                  {{ pct(d.totalJudicial, d.totalDeuda) }}
+                </td>
               </tr>
               <tr>
                 <td class="py-1">Morosos</td>
-                <td class="text-right font-mono">{{ d.totalMorosos | accountingNumber:'1.0-0' }}</td>
-                <td class="text-right text-500 text-xs">{{ pct(d.totalMorosos, d.totalDeuda) }}</td>
+                <td class="text-right font-mono">
+                  {{ d.totalMorosos | accountingNumber:'1.0-0' }}
+                </td>
+                <td class="text-right text-500 text-xs">
+                  {{ pct(d.totalMorosos, d.totalDeuda) }}
+                </td>
               </tr>
               <tr>
                 <td class="py-1">Deuda corriente</td>
-                <td class="text-right font-mono">{{ d.totalDeudaCorriente | accountingNumber:'1.0-0' }}</td>
-                <td class="text-right text-500 text-xs">{{ pct(d.totalDeudaCorriente, d.totalDeuda) }}</td>
+                <td class="text-right font-mono">
+                  {{ d.totalDeudaCorriente | accountingNumber:'1.0-0' }}
+                </td>
+                <td class="text-right text-500 text-xs">
+                  {{ pct(d.totalDeudaCorriente, d.totalDeuda) }}
+                </td>
               </tr>
               <tr class="font-bold border-top-1 surface-border">
                 <td class="pt-2">Total deuda</td>
-                <td class="text-right font-mono pt-2">{{ d.totalDeuda | accountingNumber:'1.0-0' }}</td>
+                <td class="text-right font-mono pt-2">
+                  {{ d.totalDeuda | accountingNumber:'1.0-0' }}
+                </td>
                 <td class="text-right pt-2">100%</td>
               </tr>
               <tr class="font-bold surface-ground">
                 <td class="py-1 text-blue-700">Saldo según balanza</td>
-                <td class="text-right font-mono text-blue-700">{{ d.saldoBalanza | accountingNumber:'1.0-0' }}</td>
+                <td class="text-right font-mono text-blue-700">
+                  {{ d.saldoBalanza | accountingNumber:'1.0-0' }}
+                </td>
                 <td></td>
               </tr>
             </tbody>
@@ -123,7 +168,9 @@
     </div>
 
     <div class="rf-card p-4 mb-4">
-      <div class="text-lg font-semibold mb-3">Resumen de deuda por condómino</div>
+      <div class="text-lg font-semibold mb-3">
+        Resumen de deuda por condómino
+      </div>
       <p-table
         [value]="summaryRows"
         styleClass="rf-prime-table p-datatable-sm p-datatable-striped"
@@ -145,15 +192,21 @@
               <!-- Numero de cuenta oculto en version cliente -->
               <div class="font-bold">{{ row.condomino }}</div>
             </td>
-            <td class="rf-td-number font-bold text-lg" [class.rf-neg]="row.saldo < 0">
-              {{ row.saldo === 0 ? '—' : (row.saldo | accountingNumber:'1.2-2') }}
+            <td
+              class="rf-td-number font-bold text-lg"
+              [class.rf-neg]="row.saldo < 0"
+            >
+              {{ row.saldo === 0 ? '—' : (row.saldo | accountingNumber:'1.2-2')
+              }}
             </td>
           </tr>
         </ng-template>
         <ng-template pTemplate="footer">
           <tr>
             <td class="text-right font-bold py-2">Total:</td>
-            <td class="rf-td-number font-bold border-top-1 surface-border text-primary text-xl py-2">
+            <td
+              class="rf-td-number font-bold border-top-1 surface-border text-primary text-xl py-2"
+            >
               {{ totalFilteredSaldo | accountingNumber:'1.2-2' }}
             </td>
           </tr>
@@ -162,10 +215,14 @@
     </div>
 
     <div class="rf-card p-4">
-      <div class="flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+      <div
+        class="flex align-items-center justify-content-between mb-3 flex-wrap gap-2"
+      >
         <div>
           <div class="text-lg font-semibold">Detalle por condómino</div>
-          <div class="text-color-secondary text-sm">Tabla base para auditar cómo se clasifica la cuenta al corte.</div>
+          <div class="text-color-secondary text-sm">
+            Tabla base para auditar cómo se clasifica la cuenta al corte.
+          </div>
         </div>
         <p-select
           [options]="classificationOptions"
@@ -186,11 +243,25 @@
       >
         <ng-template pTemplate="header">
           <tr>
-            <th style="min-width: 250px;">Condómino</th>
+            <th style="min-width: 250px">Condómino</th>
             @for (col of uniqueConcepts(); track col) {
-            <th class="text-right" style="width: 140px; min-width: 140px; max-width: 140px; word-wrap: break-word; white-space: normal;">{{ col }}</th>
+            <th
+              class="text-right"
+              style="
+                width: 140px;
+                min-width: 140px;
+                max-width: 140px;
+                word-wrap: break-word;
+                white-space: normal;
+              "
+            >
+              {{ col }}
+            </th>
             }
-            <th class="text-right text-primary font-bold" style="width: 140px; min-width: 140px;">
+            <th
+              class="text-right text-primary font-bold"
+              style="width: 140px; min-width: 140px"
+            >
               Saldo Final
             </th>
           </tr>
@@ -202,12 +273,16 @@
               <div class="font-bold">{{ row.condomino }}</div>
             </td>
             @for (col of uniqueConcepts(); track col) {
-            <td class="rf-td-number" style="width: 140px; min-width: 140px;">
+            <td class="rf-td-number" style="width: 140px; min-width: 140px">
               {{ getConceptBalance(row, col) === 0 ? '—' :
               (getConceptBalance(row, col) | accountingNumber) }}
             </td>
             }
-            <td class="rf-td-number font-bold" style="width: 140px; min-width: 140px;" [class.rf-neg]="row.saldo < 0">
+            <td
+              class="rf-td-number font-bold"
+              style="width: 140px; min-width: 140px"
+              [class.rf-neg]="row.saldo < 0"
+            >
               {{ row.saldo === 0 ? '—' : (row.saldo | accountingNumber:'1.2-2')
               }}
             </td>
@@ -217,17 +292,23 @@
           <tr>
             <td class="text-right font-bold py-2">Totales:</td>
             @for (col of uniqueConcepts(); track col) {
-            <td class="rf-td-number font-bold border-top-1 surface-border py-2 text-primary" style="width: 140px; min-width: 140px;">
+            <td
+              class="rf-td-number font-bold border-top-1 surface-border py-2 text-primary"
+              style="width: 140px; min-width: 140px"
+            >
               {{ getTotalConceptBalance(col) === 0 ? '—' :
               (getTotalConceptBalance(col) | accountingNumber) }}
             </td>
             }
-            <td class="rf-td-number font-bold border-top-1 surface-border text-primary text-lg py-2" style="width: 140px; min-width: 140px;">
+            <td
+              class="rf-td-number font-bold border-top-1 surface-border text-primary text-lg py-2"
+              style="width: 140px; min-width: 140px"
+            >
               {{ totalFilteredSaldo | accountingNumber:'1.2-2' }}
             </td>
           </tr>
         </ng-template>
-        <ng-template pTemplate="emptymessage">
+        <ng-template #emptymessage>
           <tr>
             <td colspan="10" class="text-center py-4 text-color-secondary">
               No hay condóminos en esta clasificación.
@@ -239,7 +320,10 @@
   </div>
 
   <!-- Debugger solicitado por el usuario -->
-  <div class="card mt-4 bg-gray-50 p-3 overflow-auto text-xs" style="max-height: 400px;">
+  <div
+    class="card mt-4 bg-gray-50 p-3 overflow-auto text-xs"
+    style="max-height: 400px"
+  >
     <h3 class="font-bold mb-2">DEBUG: Raw Data del Reporte (data() | json)</h3>
     <pre>{{ data() | json }}</pre>
   </div>

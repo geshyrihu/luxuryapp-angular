@@ -101,33 +101,36 @@
                 [iconClass]="'mdi:plus'"
                 label="Entrada"
                 (clicked)="onAddEntrada({ id: 0, idProducto: item.productoId, nombreProducto: item.producto, almacenId: item.almacenId })"
-/>
+              />
 
               <custom-button-item
                 iconClass="mdi:minus"
                 label="Salida"
                 (clicked)="onAddSalida({ id: 0, idInventarioProducto: item.id, idProducto: item.productoId, nombreProducto: item.producto, almacenId: item.almacenId })"
-/>
+              />
 
               <custom-button-edit
                 (clicked)="editProductos({ id: item.id, title: 'Editar' })"
-/>
+              />
               @if (item.existencia <= 0) {
-              <custom-button-delete (confirmed)="onDelete(item.id)"
-/>
+              <custom-button-delete (confirmed)="onDelete(item.id)" />
               }
             </div>
           </td>
         </tr>
       </ng-template>
-      <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="7">
-          <app-empty-state icon="mdi:warehouse" title="Sin inventario" message="No hay stock registrado." />
-        </td>
-      </tr>
-    </ng-template>
-</p-table>
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="7">
+            <app-empty-state
+              icon="mdi:warehouse"
+              title="Sin inventario"
+              message="No hay stock registrado."
+            />
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
   </div>
 </div>
 
@@ -148,8 +151,19 @@
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" class="ion-no-padding">
-      <div slot="start" class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg" style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);">
-        <app-icon icon="mdi:warehouse" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-primary-50, #edf1ff);
+        "
+      >
+        <app-icon
+          icon="mdi:warehouse"
+          style="font-size: 1.1rem; color: var(--ds-primary)"
+        ></app-icon>
       </div>
 
       <ion-label>
@@ -179,7 +193,8 @@
                   almacenId: item.almacenId
                 })
               "
- [showLabelOnDesktop]="true"/>
+              [showLabelOnDesktop]="true"
+            />
 
             <custom-button-item
               iconName="ellipsis-horizontal-outline"
@@ -193,14 +208,20 @@
                   almacenId: item.almacenId
                 })
               "
- [showLabelOnDesktop]="true"/>
+              [showLabelOnDesktop]="true"
+            />
 
             <custom-button-edit
               (clicked)="editProductos({ id: item.id, title: 'Editar' })"
- label="Editar" [showLabelOnDesktop]="true"/>
+              label="Editar"
+              [showLabelOnDesktop]="true"
+            />
             @if (item.existencia <= 0) {
-            <custom-button-delete (confirmed)="onDelete(item.id)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
+            <custom-button-delete
+              (confirmed)="onDelete(item.id)"
+              label="Eliminar"
+              [showLabelOnDesktop]="true"
+            />
             }
           </ng-container>
         </app-action-menu>

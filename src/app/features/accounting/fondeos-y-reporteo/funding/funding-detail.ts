@@ -1,4 +1,4 @@
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CommonModule, DecimalPipe, UpperCasePipe } from "@angular/common";
 import {
   Component,
@@ -23,7 +23,7 @@ import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { PdfViewerModal } from "src/app/core/components/pdf-viewer-modal/pdf-viewer-modal";
+import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -677,4 +677,5 @@ export class FundingDetail {
       });
   }
 }
+
 

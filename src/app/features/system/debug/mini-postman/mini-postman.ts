@@ -8,7 +8,7 @@ import { SelectModule } from "primeng/select";
 import { TabsModule } from "primeng/tabs";
 import { TextareaModule } from "primeng/textarea";
 import { TooltipModule } from "primeng/tooltip";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { lastValueFrom } from "rxjs";
 import { environment } from "src/environments/environment";
 

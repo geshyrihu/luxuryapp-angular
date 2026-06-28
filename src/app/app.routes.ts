@@ -1,5 +1,5 @@
 import { Routes } from "@angular/router";
-import { Loader } from "./core/components/loader/loader";
+import { Loader } from "./core/components/shared/loader/loader";
 import { authGuard } from "./core/guard/auth.guard";
 import { committeeGuard } from "./core/guard/committee.guard";
 import { direccionGuard } from "./core/guard/direccion.guard";
@@ -116,4 +116,5 @@ export const appRoutes: Routes = [
     redirectTo: "page404",
   },
 ];
+
 

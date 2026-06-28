@@ -1,8 +1,6 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import {
-  IonAvatar,
   IonButton,
   IonChip,
   IonItem,
@@ -34,9 +32,10 @@ import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/cu
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -62,7 +61,7 @@ import { ServiceHistoryMachinery } from "src/app/features/maintenance/equipos-y-
 import { BitacoraIndividual } from "src/app/features/maintenance/logs/maintenance-log/bitacora-individual";
 import { CalendarioMaestroReadonly } from "src/app/features/maintenance/planificacin-de-mantenimiento/maintenance-calendar-master/calendario-maestro-readonly";
 import { MantenimientoPreventivoForm } from "src/app/features/operations/google-calendar/calendar/mantenimiento-preventivo/mantenimiento-preventivo-form";
-// ... el resto de las importaciones de componentes y módulos ...
+// ... el resto de las importaciones de componentes y mÃ³dulos ...
 // ...
 
 // Interfaz para seguridad de tipos
@@ -116,7 +115,6 @@ interface Equipo {
     DataViewMobile,
     IonItem,
     IonLabel,
-    IonAvatar,
     IonButton,
     IonChip,
     Dialog,
@@ -145,7 +143,7 @@ export class EquiposList {
   calendarioGuiaVisible = signal(false);
   public AspRole = EApplicationRole;
 
-  // óCAMBIO CLAVE! La categoróa ahora es un signal interno.
+  // Ã³CAMBIO CLAVE! La categorÃ³a ahora es un signal interno.
   inventoryCategoryId = signal<number>(1);
 
   categories = [
@@ -165,7 +163,7 @@ export class EquiposList {
 
     // Manejo de valores undefined/0
     if (!categoryId || categoryId === 0) {
-      return "Equipos"; // Título por defecto
+      return "Equipos"; // TÃ­tulo por defecto
     }
 
     switch (categoryId) {
@@ -222,7 +220,7 @@ export class EquiposList {
       const categoryId = this.inventoryCategoryId();
       const state = this.stateFilter();
 
-      // Validación mós estricta para evitar llamadas con valores invólidos
+      // ValidaciÃ³n mÃ³s estricta para evitar llamadas con valores invÃ³lidos
       if (customerId && categoryId && categoryId > 0) {
         this.onLoadData(customerId, categoryId, state);
       }
@@ -302,7 +300,7 @@ export class EquiposList {
       // Group by system
       const groups = sortedData.reduce(
         (acc, item) => {
-          const system = item.equipoClasificacion || "SIN CLASIFICACIÓN";
+          const system = item.equipoClasificacion || "SIN CLASIFICACIÃ“N";
           if (!acc[system]) acc[system] = [];
           acc[system].push(item);
           return acc;
@@ -333,7 +331,7 @@ export class EquiposList {
               </td>
               <td style="background-color: ${bg}; padding: 10px; vertical-align: top;">
                 <div style="font-size: 14px; font-weight: bold; color: #333; margin-bottom: 4px;">${this.htmlPrintS.esc(item.nameMachinery || "Sin Nombre")}</div>
-                <div style="margin-bottom: 4px;"><span style="font-weight: bold;">Ubicación:</span> ${this.htmlPrintS.esc(item.ubication || "N/A")}</div>
+                <div style="margin-bottom: 4px;"><span style="font-weight: bold;">UbicaciÃ³n:</span> ${this.htmlPrintS.esc(item.ubication || "N/A")}</div>
                 <table style="width: 100%; border: none;">
                   <tr>
                     <td style="border: none; padding: 0;"><span style="font-weight: bold;">Marca:</span> ${this.htmlPrintS.esc(item.brand || "N/A")}</td>
@@ -394,7 +392,7 @@ ${this.htmlPrintS.getStandardCss()}
 
   // --- MANEJADORES DE EVENTOS (Refactorizados) ---
   onSelectState(value: number): void {
-    // óCAMBIO! Solo actualizamos el signal. El `effect` se encarga del resto.
+    // Ã³CAMBIO! Solo actualizamos el signal. El `effect` se encarga del resto.
     this.stateFilter.set(value);
   }
 
@@ -412,7 +410,7 @@ ${this.htmlPrintS.getStandardCss()}
     );
   }
 
-  // --- MóTODOS DE MODALES (Lógica de recarga actualizada) ---
+  // --- MÃ³TODOS DE MODALES (LÃ³gica de recarga actualizada) ---
   // Actualizamos las llamadas a onLoadData para que usen los valores actuales de los signals.
   private reloadDataAfterDialog(result: any) {
     if (result) {
@@ -429,7 +427,7 @@ ${this.htmlPrintS.getStandardCss()}
       .openDialog(
         FichaTecnicaActivo,
         data,
-        "Ficha Técnica",
+        "Ficha TÃ©cnica",
         this.dialogHandlerS.sizeFull,
       )
       .then((result) => this.reloadDataAfterDialog(result));
@@ -478,7 +476,7 @@ ${this.htmlPrintS.getStandardCss()}
         ActivosForm,
         {
           id: data.id,
-          paramId: this.inventoryCategoryId(), // Ahora captura correctamente el parómetro categoróa
+          paramId: this.inventoryCategoryId(), // Ahora captura correctamente el parÃ³metro categorÃ³a
           inventoryCategory: data.inventoryCategory,
         },
         data.title,

@@ -60,8 +60,7 @@
   </ng-template>
   <ng-template #colgroup>
     <colgroup>
-      <col class="table-col-8"
-/>
+      <col class="table-col-8" />
       <col class="table-col-8" />
       <col class="table-col-28" />
       <col class="table-col-40" />
@@ -142,25 +141,29 @@
             iconClass="mdi:comment"
             label="Seguimientos"
             (clicked)="onModalTodosSeguimientos(item.id)"
-/>
+          />
           <custom-button-item
             [iconClass]="'mdi:plus'"
             label="Agregar seguimiento"
             (clicked)="onModalFormSeguimiento(item.id, 0)"
-/>
+          />
           <custom-button-edit
             (clicked)="onModalFormMinutaDetalle({ id: item.id, title: 'Editar asunto', })"
-/>
+          />
         </div>
       </td>
 
       <!-- Opciones -->
     </tr>
   </ng-template>
-  <ng-template pTemplate="emptymessage">
+  <ng-template #emptymessage>
     <tr>
       <td colspan="8">
-        <app-empty-state icon="mdi:clipboard-text-outline" title="Sin pendientes" message="No hay pendientes de minuta registrados." />
+        <app-empty-state
+          icon="mdi:clipboard-text-outline"
+          title="Sin pendientes"
+          message="No hay pendientes de minuta registrados."
+        />
       </td>
     </tr>
   </ng-template>
@@ -180,7 +183,10 @@
         slot="start"
         class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <app-icon icon="mdi:alert-circle-outline" class="text-orange-600 text-xl"></app-icon>
+        <app-icon
+          icon="mdi:alert-circle-outline"
+          class="text-orange-600 text-xl"
+        ></app-icon>
       </div>
 
       <ion-label>
@@ -190,10 +196,12 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-        <custom-button-edit
-          (clicked)="onModalFormMinutaDetalle({ id: item.id, title: 'Editar asunto' })"
- label="Editar" [showLabelOnDesktop]="true"/>
-              </ng-container>
+          <custom-button-edit
+            (clicked)="onModalFormMinutaDetalle({ id: item.id, title: 'Editar asunto' })"
+            label="Editar"
+            [showLabelOnDesktop]="true"
+          />
+        </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

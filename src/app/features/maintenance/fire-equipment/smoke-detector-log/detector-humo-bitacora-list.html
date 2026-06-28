@@ -12,7 +12,12 @@
   <ng-template #caption>
     <div class="flex justify-content-between align-items-center w-full">
       <div class="flex align-items-center gap-2">
-        <custom-button-download (clicked)="onPdfReport()" label="PDF" tooltip="Reporte PDF por rango de fecha" [showLabelOnDesktop]="true" />
+        <custom-button-download
+          (clicked)="onPdfReport()"
+          label="PDF"
+          tooltip="Reporte PDF por rango de fecha"
+          [showLabelOnDesktop]="true"
+        />
       </div>
       <primeng-custom-caption
         (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
@@ -37,27 +42,68 @@
     <tr>
       <td>{{ item.date | date:'dd-MMM-yy' }}</td>
       <td class="text-center">{{ item.hour }}</td>
-      <td class="text-center"><i class="icon" [class]="item.noObstructions ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i></td>
-      <td class="text-center"><i class="icon" [class]="item.noContamination ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i></td>
-      <td class="text-center"><i class="icon" [class]="item.noPhysicalDamage ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i></td>
-      <td class="text-center"><i class="icon" [class]="item.ledStatusOk ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i></td>
-      <td class="text-center"><i class="icon" [class]="item.mountingSecure ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i></td>
+      <td class="text-center">
+        <app-icon
+          [icon]="item.noObstructions ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.noObstructions"
+          [class.text-red-600]="!item.noObstructions"
+        />
+      </td>
+      <td class="text-center">
+        <app-icon
+          [icon]="item.noContamination ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.noContamination"
+          [class.text-red-600]="!item.noContamination"
+        />
+      </td>
+      <td class="text-center">
+        <app-icon
+          [icon]="item.noPhysicalDamage ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.noPhysicalDamage"
+          [class.text-red-600]="!item.noPhysicalDamage"
+        />
+      </td>
+      <td class="text-center">
+        <app-icon
+          [icon]="item.ledStatusOk ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.ledStatusOk"
+          [class.text-red-600]="!item.ledStatusOk"
+        />
+      </td>
+      <td class="text-center">
+        <app-icon
+          [icon]="item.mountingSecure ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.mountingSecure"
+          [class.text-red-600]="!item.mountingSecure"
+        />
+      </td>
       <td><small>{{ item.observations }}</small></td>
       <td class="no-print">
         <div class="flex justify-content-center">
-          <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })" />
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
+          />
           <custom-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="9">
-          <app-empty-state icon="mdi:smoke-detector-outline" title="Sin registros" message="No hay registros de detectores de humo." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="9">
+        <app-empty-state
+          icon="mdi:smoke-detector-outline"
+          title="Sin registros"
+          message="No hay registros de detectores de humo."
+        />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -73,26 +119,57 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-warning-light,#fef3c7);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-warning-light, #fef3c7);
+        "
       >
-        <app-icon icon="mdi:smoke-detector-outline" style="font-size:1.1rem;color:var(--ds-warning);"></app-icon>
+        <app-icon
+          icon="mdi:smoke-detector-outline"
+          style="font-size: 1.1rem; color: var(--ds-warning)"
+        ></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.date | date:'dd-MMM-yy' }} {{ item.hour }}</h3>
-        @if (item.observations) { <p>{{ item.observations }}</p> }
+        @if (item.observations) {
+        <p>{{ item.observations }}</p>
+        }
         <div class="flex gap-2 mt-1">
-          <small [class]="item.noObstructions ? 'text-green-600' : 'text-red-600'">Sin Obstr.</small>
-          <small [class]="item.noContamination ? 'text-green-600' : 'text-red-600'">Sin Contam.</small>
-          <small [class]="item.noPhysicalDamage ? 'text-green-600' : 'text-red-600'">Sin Daños</small>
-          <small [class]="item.ledStatusOk ? 'text-green-600' : 'text-red-600'">LED Ok</small>
-          <small [class]="item.mountingSecure ? 'text-green-600' : 'text-red-600'">Montaje</small>
+          <small
+            [class]="item.noObstructions ? 'text-green-600' : 'text-red-600'"
+            >Sin Obstr.</small
+          >
+          <small
+            [class]="item.noContamination ? 'text-green-600' : 'text-red-600'"
+            >Sin Contam.</small
+          >
+          <small
+            [class]="item.noPhysicalDamage ? 'text-green-600' : 'text-red-600'"
+            >Sin Daños</small
+          >
+          <small [class]="item.ledStatusOk ? 'text-green-600' : 'text-red-600'"
+            >LED Ok</small
+          >
+          <small
+            [class]="item.mountingSecure ? 'text-green-600' : 'text-red-600'"
+            >Montaje</small
+          >
         </div>
       </ion-label>
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"  label="Editar" [showLabelOnDesktop]="true"/>
-            <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
+            <custom-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
+              label="Editar"
+              [showLabelOnDesktop]="true"
+            />
+            <custom-button-delete
+              (confirmed)="onDelete(item.id)"
+              label="Eliminar"
+              [showLabelOnDesktop]="true"
+            />
           </ng-container>
         </app-action-menu>
       </div>

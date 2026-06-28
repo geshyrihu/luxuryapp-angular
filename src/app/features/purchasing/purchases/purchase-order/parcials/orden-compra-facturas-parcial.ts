@@ -6,7 +6,7 @@ import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button"; // Nueva importación
-import { PdfViewerModal } from "src/app/core/components/pdf-viewer-modal/pdf-viewer-modal";
+import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -84,3 +84,4 @@ export class OrdenCompraFacturasParcial {
       });
   }
 }
+

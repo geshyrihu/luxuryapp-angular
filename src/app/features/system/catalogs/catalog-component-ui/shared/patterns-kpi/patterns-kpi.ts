@@ -1,4 +1,4 @@
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, input, signal, ViewEncapsulation } from "@angular/core";
 import { FormsModule, ReactiveFormsModule, FormGroup } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
@@ -19,12 +19,12 @@ import {
   CustomInputSelectSignal,
   CustomInputDateSignal,
 } from "src/app/core/components/inputs/web";
-import { StatusBadge, EStatus } from "src/app/core/components/status-badge/status-badge";
-import { ActionIconsGroupComponent } from "src/app/core/components/action-icons-group/action-icons-group.component";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { StatusBadge, EStatus } from "src/app/core/components/shared/status-badge/status-badge";
+import { ActionIconsGroupComponent } from "src/app/core/components/shared/action-icons-group/action-icons-group.component";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { IonIcon } from "@ionic/angular/standalone";
 
 @Component({
@@ -370,3 +370,4 @@ export class PatternsKpi {
     return item.id;
   }
 }
+

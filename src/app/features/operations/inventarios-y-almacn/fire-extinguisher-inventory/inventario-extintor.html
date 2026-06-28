@@ -14,10 +14,7 @@
   <ng-template #caption>
     <div class="flex justify-content-between align-items-center w-full">
       <div class="flex align-items-center gap-2">
-        <custom-button-download
-          (clicked)="onDownloadPdf()"
-          label="PDF"
-        />
+        <custom-button-download (clicked)="onDownloadPdf()" label="PDF" />
         <custom-button-download
           (clicked)="onDownloadAllQr()"
           label="QR"
@@ -98,13 +95,17 @@
       </td>
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="6">
-          <app-empty-state icon="mdi:fire-extinguisher" title="Sin extintores" message="No hay extintores registrados." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="6">
+        <app-empty-state
+          icon="mdi:fire-extinguisher"
+          title="Sin extintores"
+          message="No hay extintores registrados."
+        />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -161,7 +162,10 @@
           margin-left: 16px;
         "
       >
-        <app-icon icon="mdi:fire" style="font-size: 20px; color:var(--ds-danger)"></app-icon>
+        <app-icon
+          icon="mdi:fire"
+          style="font-size: 20px; color: var(--ds-danger)"
+        ></app-icon>
       </div>
       <ion-label>
         <h3>
@@ -172,18 +176,33 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-        <custom-button-item
-          (clicked)="onViewHistory(item)"
-          label="Historial"
-          iconName="list-outline"
-         [showLabelOnDesktop]="true"/>
-        <custom-button-download (clicked)="onDownloadPdf()" label="PDF"  [showLabelOnDesktop]="true"/>
-        <custom-button-download (clicked)="onDownloadQr(item)" label="QR"  [showLabelOnDesktop]="true"/>
-        <custom-button-edit
-          (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-         label="Editar" [showLabelOnDesktop]="true"/>
-        <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
-              </ng-container>
+          <custom-button-item
+            (clicked)="onViewHistory(item)"
+            label="Historial"
+            iconName="list-outline"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-download
+            (clicked)="onDownloadPdf()"
+            label="PDF"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-download
+            (clicked)="onDownloadQr(item)"
+            label="QR"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            label="Editar"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-delete
+            (confirmed)="onDelete(item.id)"
+            label="Eliminar"
+            [showLabelOnDesktop]="true"
+          />
+        </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

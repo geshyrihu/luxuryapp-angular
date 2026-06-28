@@ -4,7 +4,7 @@ import { IconFieldModule } from "primeng/iconfield";
 import { InputIconModule } from "primeng/inputicon";
 import { InputTextModule } from "primeng/inputtext";
 import { Table } from "primeng/table";
-import { AppIcon } from "../app-icon/app-icon.component";
+import { AppIcon } from "../../shared/app-icon/app-icon.component";
 
 /**
  * 🔍 GLOBAL FILTER
@@ -48,3 +48,4 @@ export class PrimeNgCustomGlobalFilter {
     }
   }
 }
+

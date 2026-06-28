@@ -1,5 +1,5 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { CommonModule } from "@angular/common";
@@ -11,11 +11,11 @@ import { AvatarModule } from "primeng/avatar";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,

@@ -14,11 +14,13 @@ import { WebNavigation } from "./components/web-navigation/web-navigation";
 import { WebOverlays } from "./components/web-overlays/web-overlays";
 import { WebProgress } from "./components/web-progress/web-progress";
 import { WebTables } from "./components/web-tables/web-tables";
+import { WebCoreCoverage } from "../../shared/web-core-coverage";
 
 @Component({
   selector: "app-catalog-web",
   imports: [
     CommonModule,
+    WebCoreCoverage,
     // Corto plazo (implementados sesión anterior)
     WebButtons,
     WebInputs,

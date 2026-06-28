@@ -1,10 +1,10 @@
-﻿import { Component, forwardRef, input } from "@angular/core";
+import { Component, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { InputTextModule } from "primeng/inputtext";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
 /**
- * 🗓️ CUSTOM INPUT MONTH
+ * ??? CUSTOM INPUT MONTH
  * -------------------------------------------------------------------------
  * Selector de mes nativo con esteroides.
  * Simple, directo y efectivo.
@@ -47,3 +47,4 @@ import { BaseInputSignal } from "../base/base-input-signal";
 export class CustomInputMonth extends BaseInputSignal {
   size = input<"small" | "large" | undefined>(undefined);
 }
+

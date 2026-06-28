@@ -190,8 +190,11 @@
             <p
               class="m-0 mb-3 font-semibold text-900 text-sm border-bottom-1 surface-border pb-2"
             >
-              <app-icon [icon]="'mdi:information'" class="text-primary mr-1"></app-icon> Como
-              interactuar con las tareas
+              <app-icon
+                [icon]="'mdi:information'"
+                class="text-primary mr-1"
+              ></app-icon>
+              Como interactuar con las tareas
             </p>
 
             <div class="flex flex-column gap-3">
@@ -201,7 +204,11 @@
                   class="flex-shrink-0 border-circle bg-primary-100 flex align-items-center justify-content-center"
                   style="width: 1.75rem; height: 1.75rem; margin-top: 1px"
                 >
-                  <app-icon [icon]="'mdi:menu'" class="text-primary" style="font-size: 0.75rem"></app-icon>
+                  <app-icon
+                    [icon]="'mdi:menu'"
+                    class="text-primary"
+                    style="font-size: 0.75rem"
+                  ></app-icon>
                 </span>
                 <div>
                   <p class="m-0 font-semibold text-800 text-xs">
@@ -222,17 +229,21 @@
                   class="flex-shrink-0 border-circle bg-purple-100 flex align-items-center justify-content-center"
                   style="width: 1.75rem; height: 1.75rem; margin-top: 1px"
                 >
-                  <app-icon [icon]="'mdi:link'" class="text-purple-600" style="font-size: 0.75rem"></app-icon>
+                  <app-icon
+                    [icon]="'mdi:link'"
+                    class="text-purple-600"
+                    style="font-size: 0.75rem"
+                  ></app-icon>
                 </span>
                 <div>
                   <p class="m-0 font-semibold text-800 text-xs">
                     Asignar predecesora
                   </p>
                   <p class="m-0 text-xs text-600 mt-1 line-height-3">
-                    Arrastra el icono <strong>&var(--ds-info);</strong> de una tarea y
-                    sueltalo sobre otra para marcarla como predecesora. La tarea
-                    arrastrada no puede iniciar hasta que la predecesora este
-                    completa.
+                    Arrastra el icono <strong>&var(--ds-info);</strong> de una
+                    tarea y sueltalo sobre otra para marcarla como predecesora.
+                    La tarea arrastrada no puede iniciar hasta que la
+                    predecesora este completa.
                   </p>
                   <p class="m-0 text-xs text-500 mt-1">
                     Click en <strong>&#8594; FOLIO</strong> para quitar la
@@ -247,7 +258,11 @@
                   class="flex-shrink-0 border-circle bg-orange-100 flex align-items-center justify-content-center"
                   style="width: 1.75rem; height: 1.75rem; margin-top: 1px"
                 >
-                  <app-icon [icon]="'mdi:sitemap'" class="text-orange-600" style="font-size: 0.75rem"></app-icon>
+                  <app-icon
+                    [icon]="'mdi:sitemap'"
+                    class="text-orange-600"
+                    style="font-size: 0.75rem"
+                  ></app-icon>
                 </span>
                 <div>
                   <p class="m-0 font-semibold text-800 text-xs">
@@ -255,9 +270,17 @@
                   </p>
                   <p class="m-0 text-xs text-600 mt-1 line-height-3">
                     Las tareas con el icono
-                    <app-icon [icon]="'mdi:sitemap'" class="text-primary" style="font-size: 0.7rem"></app-icon>
+                    <app-icon
+                      [icon]="'mdi:sitemap'"
+                      class="text-primary"
+                      style="font-size: 0.7rem"
+                    ></app-icon>
                     tienen subtareas. Las tareas con
-                    <app-icon [icon]="'mdi:arrow-down-bold'" class="text-400" style="font-size: 0.7rem"></app-icon>
+                    <app-icon
+                      [icon]="'mdi:arrow-down-bold'"
+                      class="text-400"
+                      style="font-size: 0.7rem"
+                    ></app-icon>
                     son hijas de otra. Al crear o editar una tarea puedes
                     asignarle una tarea padre.
                   </p>
@@ -311,13 +334,23 @@
     >
       <td class="text-center">
         <div class="flex align-items-center justify-content-center gap-1">
-          <app-icon [icon]="'mdi:menu'" class="cursor-move text-400" pReorderableRowHandle style="font-size: 0.85rem"></app-icon>
-          <app-icon [icon]="'mdi:link'" class="text-300 cursor-grab" draggable="true" [class.text-purple-500]="linkDragSourceId() === item.id"
+          <app-icon
+            [icon]="'mdi:menu'"
+            class="cursor-move text-400"
+            pReorderableRowHandle
+            style="font-size: 0.85rem"
+          ></app-icon>
+          <app-icon
+            [icon]="'mdi:link'"
+            class="text-300 cursor-grab"
+            draggable="true"
+            [class.text-purple-500]="linkDragSourceId() === item.id"
             style="font-size: 0.85rem"
             (dragstart)="onLinkDragStart($event, item.id)"
             (dragend)="onLinkDragEnd()"
             pTooltip="Arrastra sobre otra tarea para asignar predecesora"
-            tooltipPosition="top"></app-icon>
+            tooltipPosition="top"
+          ></app-icon>
         </div>
       </td>
       <td>
@@ -326,13 +359,21 @@
           [style.padding-left]="item.parentTaskId && !item.dependsOnTaskId ? '1.5rem' : (chainStepMap().get(item.id) ?? 1) > 1 ? ((Math.min(chainStepMap().get(item.id) - 1, 4) * 1.5) + 'rem') : '0'"
         >
           @if (item.parentTaskId) {
-          <app-icon [icon]="'mdi:arrow-down-bold'" class="text-400 flex-shrink-0 mr-1" style="font-size: 0.75rem; margin-top: 0.2rem"
+          <app-icon
+            [icon]="'mdi:arrow-down-bold'"
+            class="text-400 flex-shrink-0 mr-1"
+            style="font-size: 0.75rem; margin-top: 0.2rem"
             pTooltip="Tarea hija"
-            tooltipPosition="top"></app-icon>
+            tooltipPosition="top"
+          ></app-icon>
           } @if (item.hasSubTasks) {
-          <app-icon [icon]="'mdi:sitemap'" class="text-primary flex-shrink-0 mr-1" style="font-size: 0.75rem; margin-top: 0.2rem"
+          <app-icon
+            [icon]="'mdi:sitemap'"
+            class="text-primary flex-shrink-0 mr-1"
+            style="font-size: 0.75rem; margin-top: 0.2rem"
             pTooltip="Tiene subtareas"
-            tooltipPosition="top"></app-icon>
+            tooltipPosition="top"
+          ></app-icon>
           }
           <p-avatar
             (click)="onCardEmployee(item.creatorId)"
@@ -371,13 +412,27 @@
               class="m-0 font-semibold text-xs text-900 flex align-items-center gap-1"
             >
               @if (item.daysDifference > 15 && !item.scheduledAt) {
-              <app-icon [icon]="'mdi:clock-outline'" class="text-orange-600" pTooltip="Urgente: Más de 15 días sin programar"></app-icon>
+              <app-icon
+                [icon]="'mdi:clock-outline'"
+                class="text-orange-600"
+                pTooltip="Urgente: Más de 15 días sin programar"
+              ></app-icon>
               } @if (item.priority === 'High') {
-              <app-icon [icon]="'mdi:star-outline'" class="text-primary cursor-pointer" (click)="onUpdatePriority(item.id)" style="font-size: 0.8rem"
-                pTooltip="Alta prioridad - click para cambiar"></app-icon>
+              <app-icon
+                [icon]="'mdi:star-outline'"
+                class="text-primary cursor-pointer"
+                (click)="onUpdatePriority(item.id)"
+                style="font-size: 0.8rem"
+                pTooltip="Alta prioridad - click para cambiar"
+              ></app-icon>
               } @if (item.priority === 'Low') {
-              <app-icon [icon]="'mdi:alert'" class="text-red-500 cursor-pointer" (click)="onUpdatePriority(item.id)" style="font-size: 0.8rem"
-                pTooltip="Baja prioridad - click para cambiar"></app-icon>
+              <app-icon
+                [icon]="'mdi:alert'"
+                class="text-red-500 cursor-pointer"
+                (click)="onUpdatePriority(item.id)"
+                style="font-size: 0.8rem"
+                pTooltip="Baja prioridad - click para cambiar"
+              ></app-icon>
               } {{ item.title }}
             </p>
             <p
@@ -414,11 +469,13 @@
 
       <td>
         <p class="m-0 text-xs text-color-secondary">
-          <app-icon [icon]="'mdi:calendar'" class="mr-1"></app-icon>{{ item.scheduledAt }}
+          <app-icon [icon]="'mdi:calendar'" class="mr-1"></app-icon>{{
+          item.scheduledAt }}
         </p>
         @if (item.closedAtDate) {
         <p class="m-0 text-xs text-color-secondary mt-1">
-          <app-icon [icon]="'mdi:lock'" class="mr-1"></app-icon>{{ item.closedAtDate }}
+          <app-icon [icon]="'mdi:lock'" class="mr-1"></app-icon>{{
+          item.closedAtDate }}
         </p>
         }
       </td>
@@ -492,7 +549,10 @@
             class="cursor-pointer flex align-items-center gap-1 text-decoration-none"
             pTooltip="Seguimientos"
           >
-            <app-icon [icon]="'mdi:comment-multiple'" class="text-blue-500"></app-icon>
+            <app-icon
+              [icon]="'mdi:comment-multiple'"
+              class="text-blue-500"
+            ></app-icon>
             <span class="badge bg-info px-2 py-1 text-xs font-semibold">
               {{ item.ticketMessageFollowUp }}
             </span>
@@ -503,33 +563,41 @@
                 iconClass="mdi:calendar"
                 label="Programar"
                 (clicked)="onProgram(item.id)"
-               [showLabelOnDesktop]="true"/>
+                [showLabelOnDesktop]="true"
+              />
               @if (item.status !== 'Completed') {
               <custom-button-item
                 iconClass="mdi:lock"
                 label="Cerrar"
                 (clicked)="onClosed(item.id)"
-               [showLabelOnDesktop]="true"/>
+                [showLabelOnDesktop]="true"
+              />
               } @if (item.status !== 'InProgress') {
               <custom-button-item
                 iconClass="mdi:sync"
                 label="En proceso"
                 (clicked)="onProgress(item.id)"
-               [showLabelOnDesktop]="true"/>
+                [showLabelOnDesktop]="true"
+              />
               } @if (item.status === 'Completed') {
               <custom-button-item
                 iconClass="mdi:lock-open"
                 label="Reabrir"
                 (clicked)="onReopen(item.id)"
-               [showLabelOnDesktop]="true"/>
+                [showLabelOnDesktop]="true"
+              />
               }
               <custom-button-edit
                 (clicked)="onModalForm(item)"
-               label="Editar" [showLabelOnDesktop]="true"/>
+                label="Editar"
+                [showLabelOnDesktop]="true"
+              />
               @if (isSuperUser()) {
               <custom-button-delete
                 (confirmed)="onDelete(item.id)"
-               label="Eliminar" [showLabelOnDesktop]="true"/>
+                label="Eliminar"
+                [showLabelOnDesktop]="true"
+              />
               }
             </ng-container>
           </app-action-menu>
@@ -537,13 +605,17 @@
       </td>
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="17">
-          <app-empty-state icon="mdi:checkbox-multiple-outline" title="Sin tareas" message="No hay tareas registradas." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="17">
+        <app-empty-state
+          icon="mdi:checkbox-multiple-outline"
+          title="Sin tareas"
+          message="No hay tareas registradas."
+        />
+      </td>
+    </tr>
+  </ng-template>
 
   <ng-template #paginatorleft>
     <div class="flex align-items-center no-print">
@@ -608,7 +680,11 @@
             "
             (click)="onPendingBoard()"
           >
-            <app-icon icon="mdi:view-grid-outline" slot="start" style="font-size: 14px"></app-icon>
+            <app-icon
+              icon="mdi:view-grid-outline"
+              slot="start"
+              style="font-size: 14px"
+            ></app-icon>
             Tablero
           </ion-button>
         </ion-col>
@@ -625,7 +701,11 @@
             "
             (click)="onPreviewClickedWorkPlan()"
           >
-            <app-icon icon="mdi:clipboard-text-outline" slot="start" style="font-size: 14px"></app-icon>
+            <app-icon
+              icon="mdi:clipboard-text-outline"
+              slot="start"
+              style="font-size: 14px"
+            ></app-icon>
             Plan
           </ion-button>
         </ion-col>
@@ -642,7 +722,11 @@
             "
             (click)="onPreviewWeeklyReport()"
           >
-            <app-icon icon="mdi:eye-outline" slot="start" style="font-size: 14px"></app-icon>
+            <app-icon
+              icon="mdi:eye-outline"
+              slot="start"
+              style="font-size: 14px"
+            ></app-icon>
             Previa
           </ion-button>
         </ion-col>
@@ -660,7 +744,11 @@
             [disabled]="wekklyIsNullOrEmpty()"
             (click)="onSendWeeklyReport()"
           >
-            <app-icon icon="mdi:send-outline" slot="start" style="font-size: 14px"></app-icon>
+            <app-icon
+              icon="mdi:send-outline"
+              slot="start"
+              style="font-size: 14px"
+            ></app-icon>
             Reporte
           </ion-button>
         </ion-col>
@@ -695,7 +783,10 @@
             class="font-normal m-0 text-xs flex align-items-center gap-1 flex-wrap"
           >
             @if (item.priority === 'High') {
-            <app-icon [icon]="'mdi:star-outline'" class="text-warning mr-1"></app-icon>
+            <app-icon
+              [icon]="'mdi:star-outline'"
+              class="text-warning mr-1"
+            ></app-icon>
             } {{ item.folio }} @if (chainedTaskIds().has(item.id)) {
             <span
               class="px-1 border-round text-xs font-semibold"
@@ -708,7 +799,8 @@
               class="text-purple-500 text-xs cursor-pointer"
               (click)="onClearDependency(item.id)"
             >
-              <app-icon [icon]="'mdi:arrow-right'"></app-icon> {{ item.dependsOnTaskFolio }}
+              <app-icon [icon]="'mdi:arrow-right'"></app-icon> {{
+              item.dependsOnTaskFolio }}
             </span>
             }
           </p>
@@ -723,7 +815,10 @@
 
         <h2 class="text-sm font-normal m-0 text-wrap mb-1">
           @if (item.daysDifference > 15 && !item.scheduledAt) {
-          <app-icon [icon]="'mdi:clock-outline'" class="text-orange-600 mr-1"></app-icon>
+          <app-icon
+            [icon]="'mdi:clock-outline'"
+            class="text-orange-600 mr-1"
+          ></app-icon>
           } {{ item.title }}
         </h2>
         <p class="text-xs text-500 m-0 text-wrap truncate">
@@ -780,29 +875,41 @@
               iconName="calendar-outline"
               label="Programar"
               (clicked)="onProgram(item.id)"
-             [showLabelOnDesktop]="true"/>
+              [showLabelOnDesktop]="true"
+            />
             @if (item.status !== 'Completed') {
             <custom-button-item
               iconName="lock-closed-outline"
               label="Cerrar"
               (clicked)="onClosed(item.id)"
-             [showLabelOnDesktop]="true"/>
+              [showLabelOnDesktop]="true"
+            />
             } @if (item.status !== 'InProgress') {
             <custom-button-item
               iconName="sync-outline"
               label="En proceso"
               (clicked)="onProgress(item.id)"
-             [showLabelOnDesktop]="true"/>
+              [showLabelOnDesktop]="true"
+            />
             } @if (item.status === 'Completed') {
             <custom-button-item
               iconName="lock-open-outline"
               label="Reabrir"
               (clicked)="onReopen(item.id)"
-             [showLabelOnDesktop]="true"/>
+              [showLabelOnDesktop]="true"
+            />
             }
-            <custom-button-edit (clicked)="onModalForm(item)"  label="Editar" [showLabelOnDesktop]="true"/>
+            <custom-button-edit
+              (clicked)="onModalForm(item)"
+              label="Editar"
+              [showLabelOnDesktop]="true"
+            />
             @if (isSuperUser()) {
-            <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
+            <custom-button-delete
+              (confirmed)="onDelete(item.id)"
+              label="Eliminar"
+              [showLabelOnDesktop]="true"
+            />
             }
           </ng-container>
         </app-action-menu>
@@ -828,15 +935,24 @@
 
   <div class="print-legend">
     <span
-      ><span class="print-legend-dot" style="background:var(--ds-danger)"></span> No
-      iniciado</span
+      ><span
+        class="print-legend-dot"
+        style="background: var(--ds-danger)"
+      ></span>
+      No iniciado</span
     >
     <span
-      ><span class="print-legend-dot" style="background:var(--ds-warning)"></span> En
-      proceso</span
+      ><span
+        class="print-legend-dot"
+        style="background: var(--ds-warning)"
+      ></span>
+      En proceso</span
     >
     <span
-      ><span class="print-legend-dot" style="background:var(--ds-danger)"></span>
+      ><span
+        class="print-legend-dot"
+        style="background: var(--ds-danger)"
+      ></span>
       Reabierto</span
     >
   </div>
@@ -913,7 +1029,7 @@
           >
           <p class="print-followup">{{ item.lastFollowUp }}</p>
           } @else {
-          <span style="font-size: 7.5pt; color:var(--ds-text-muted)">—</span>
+          <span style="font-size: 7.5pt; color: var(--ds-text-muted)">—</span>
           }
         </td>
       </tr>

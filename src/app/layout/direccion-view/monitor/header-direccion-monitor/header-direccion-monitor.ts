@@ -87,8 +87,8 @@ export class HeaderDireccionMonitor implements OnInit {
   toggleTheme = () => this.themeService.toggleTheme();
   getThemeIcon = () =>
     this.themeService.getCurrentTheme() === "light"
-      ? "icon icon-pi-moon"
-      : "icon icon-pi-sun";
+      ? "pi pi-moon"
+      : "pi pi-sun";
   selectCustomer = (newId: string) =>
     this.customerIdS.setCustomerId(newId).subscribe();
 }

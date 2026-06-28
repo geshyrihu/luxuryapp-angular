@@ -74,9 +74,15 @@
       </td>
     </tr>
   </ng-template>
-  <ng-template emptymessage>
+  <ng-template #emptymessage>
     <tr>
-      <td colspan="6">Sin registros.</td>
+      <td colspan="7">
+        <app-empty-state
+          icon="mdi:clipboard-text-outline"
+          title="Sin registros"
+          message="No hay registros para esta area."
+        />
+      </td>
     </tr>
   </ng-template>
   <ng-template #paginatorleft>
@@ -84,10 +90,3 @@
   </ng-template>
 </p-table>
 }
-
-
-
-
-
-
-

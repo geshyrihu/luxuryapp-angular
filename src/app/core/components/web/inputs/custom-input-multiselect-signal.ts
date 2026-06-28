@@ -3,7 +3,7 @@ import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { FloatLabelModule } from "primeng/floatlabel";
 import { MultiSelectModule } from "primeng/multiselect";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
 @Component({
   selector: "custom-input-multiselect-signal",
@@ -76,3 +76,4 @@ export class CustomInputMultiselectSignal extends BaseInputSignal {
     return "";
   }
 }
+

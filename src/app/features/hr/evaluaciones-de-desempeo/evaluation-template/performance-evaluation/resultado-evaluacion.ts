@@ -8,7 +8,7 @@ import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
 import { TagModule } from "primeng/tag";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { PrimengRadarChart } from "src/app/core/components/charts/primeng-radar-chart";
+import { PrimengRadarChart } from "src/app/core/components/web/charts/primeng-radar-chart";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ChartGeneratorService } from "src/app/core/services/chart-generator.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";

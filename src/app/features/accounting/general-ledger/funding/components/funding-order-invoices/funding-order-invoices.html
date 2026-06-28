@@ -19,11 +19,15 @@
       </td>
     </tr>
   </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="3">
+        <app-empty-state
+          icon="mdi:file-document-outline"
+          title="Sin facturas"
+          message="No hay facturas asociadas a esta orden de compra."
+        />
+      </td>
+    </tr>
+  </ng-template>
 </p-table>
-
-
-
-
-
-
-

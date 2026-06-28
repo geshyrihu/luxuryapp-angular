@@ -1,19 +1,18 @@
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { IonAvatar } from "@ionic/angular/standalone";
 import { FlatpickrModule, provideFlatpickrDefaults } from "angularx-flatpickr";
 import { CardModule } from "primeng/card";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -41,11 +40,10 @@ import { DateService } from "src/app/core/services/date.service";
     CustomButton,
     CustomInputDateSignal,
     CustomInputSelectSignal,
-
-    IonAvatar,
     DataViewMobile,
     PrimeNgCustomCaption,
-   AppIcon],
+    AppIcon,
+  ],
   templateUrl: "./user-activity-history.html",
   providers: [
     provideFlatpickrDefaults({
@@ -121,7 +119,9 @@ export class UserActivityHistory implements OnInit {
         (c) => c.value === userCustomerId,
       )?.label;
       this.filterCustomerIdControl.setValue(userCustomerId);
-      this.customerOptions = [{ label: userCustomerName, value: userCustomerId }];
+      this.customerOptions = [
+        { label: userCustomerName, value: userCustomerId },
+      ];
     }
   }
 

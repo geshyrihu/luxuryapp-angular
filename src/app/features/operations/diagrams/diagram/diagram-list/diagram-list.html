@@ -44,7 +44,9 @@
     <ng-template #body let-diagram>
       <tr>
         <td class="font-medium text-700">{{ diagram.name }}</td>
-        <td class="text-500">{{ diagram.updateAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+        <td class="text-500">
+          {{ diagram.updateAt | date: 'dd/MM/yyyy HH:mm' }}
+        </td>
         <td>
           <div class="flex justify-content-center gap-2">
             <custom-button
@@ -78,18 +80,24 @@
     </ng-template>
 
     <ng-template #summary>
-      <div class="flex align-items-center justify-content-between text-500 italic">
+      <div
+        class="flex align-items-center justify-content-between text-500 italic"
+      >
         En total hay {{ diagrams() ? diagrams().length : 0 }} diagramas.
       </div>
     </ng-template>
-    <ng-template pTemplate="emptymessage">
+    <ng-template #emptymessage>
       <tr>
         <td colspan="3">
-          <app-empty-state icon="mdi:chart-tree" title="Sin diagramas" message="No hay diagramas registrados." />
+          <app-empty-state
+            icon="mdi:chart-tree"
+            title="Sin diagramas"
+            message="No hay diagramas registrados."
+          />
         </td>
       </tr>
     </ng-template>
-</p-table>
+  </p-table>
 </div>
 
 <app-data-view-mobile
@@ -102,9 +110,12 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center bg-green-50 border-round-md ml-3"
-        style="width: 40px; height: 40px; flex-shrink: 0;"
+        style="width: 40px; height: 40px; flex-shrink: 0"
       >
-        <app-icon icon="mdi:source-branch" class="text-2xl text-green-600"></app-icon>
+        <app-icon
+          icon="mdi:source-branch"
+          class="text-2xl text-green-600"
+        ></app-icon>
       </div>
       <ion-label class="ml-3">
         <h3 class="font-bold text-700">{{ diagram.name }}</h3>
@@ -112,23 +123,33 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-        <custom-button-edit (clicked)="onEditDiagram(diagram.id)"  label="Editar" [showLabelOnDesktop]="true"/>
-        <custom-button
-          iconClass="mdi:palette"
-          (clicked)="onOpenEditor(diagram.id)"
-          label="Editor"
-          variant="text"
-          severity="info"
-         [showLabelOnDesktop]="true"/>
-        <custom-button
-          iconClass="mdi:eye-outline"
-          (clicked)="onViewDiagram(diagram.id)"
-          label="Ver"
-          variant="text"
-          severity="success"
-         [showLabelOnDesktop]="true"/>
-        <custom-button-delete (confirmed)="onDeleteDiagram(diagram.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
-              </ng-container>
+          <custom-button-edit
+            (clicked)="onEditDiagram(diagram.id)"
+            label="Editar"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button
+            iconClass="mdi:palette"
+            (clicked)="onOpenEditor(diagram.id)"
+            label="Editor"
+            variant="text"
+            severity="info"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button
+            iconClass="mdi:eye-outline"
+            (clicked)="onViewDiagram(diagram.id)"
+            label="Ver"
+            variant="text"
+            severity="success"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-delete
+            (confirmed)="onDeleteDiagram(diagram.id)"
+            label="Eliminar"
+            [showLabelOnDesktop]="true"
+          />
+        </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

@@ -1,166 +1,245 @@
 <div class="flex flex-column gap-4">
   @if (loading()) {
-    <p-skeleton width="100%" height="20rem" />
+  <p-skeleton width="100%" height="20rem" />
   } @else if (data(); as reporte) {
-    <div class="surface-card border-round-xl border-1 surface-border shadow-1 p-0 xl:p-4 overflow-hidden">
-      <div class="text-center mb-4">
-        <h2 class="rf-panel-title text-2xl">PROYECTOS APROBADOS</h2>
-      </div>
+  <div
+    class="surface-card border-round-xl border-1 surface-border shadow-1 p-0 xl:p-4 overflow-hidden"
+  >
+    <div class="text-center mb-4">
+      <h2 class="rf-panel-title text-2xl">PROYECTOS APROBADOS</h2>
+    </div>
 
-      <!-- Card Total General -->
-      @if (reporte.totalGeneral; as total) {
-        <div class="rf-card p-4 mb-4 border-2 border-primary">
-          <div class="flex justify-content-between align-items-center mb-4 border-bottom-1 surface-border pb-3">
-            <span class="font-bold uppercase text-lg line-height-3 text-primary">
-              <app-icon [icon]="'mdi:chart-line'" class="mr-2"></app-icon>{{ total.descripcion }}
-            </span>
-            <span class="text-500 text-sm font-medium border-round surface-200 px-2 py-1">{{ total.numeroCuenta }}</span>
+    <!-- Card Total General -->
+    @if (reporte.totalGeneral; as total) {
+    <div class="rf-card p-4 mb-4 border-2 border-primary">
+      <div
+        class="flex justify-content-between align-items-center mb-4 border-bottom-1 surface-border pb-3"
+      >
+        <span class="font-bold uppercase text-lg line-height-3 text-primary">
+          <app-icon [icon]="'mdi:chart-line'" class="mr-2"></app-icon>{{
+          total.descripcion }}
+        </span>
+        <span
+          class="text-500 text-sm font-medium border-round surface-200 px-2 py-1"
+          >{{ total.numeroCuenta }}</span
+        >
+      </div>
+      <div class="grid">
+        <div class="col-12 md:col-4">
+          <div class="flex flex-column gap-1">
+            <span class="text-500 font-medium uppercase text-xs"
+              >Total a Cobrar</span
+            >
+            <span class="text-900 font-bold text-2xl"
+              >{{ total.totalACobrar | currency:'MXN':'symbol-narrow':'1.0-0'
+              }}</span
+            >
           </div>
-          <div class="grid">
-            <div class="col-12 md:col-4">
-              <div class="flex flex-column gap-1">
-                <span class="text-500 font-medium uppercase text-xs">Total a Cobrar</span>
-                <span class="text-900 font-bold text-2xl">{{ total.totalACobrar | currency:'MXN':'symbol-narrow':'1.0-0' }}</span>
-              </div>
+        </div>
+        <div class="col-12 md:col-4">
+          <div class="flex flex-column gap-1">
+            <span class="text-500 font-medium uppercase text-xs"
+              >Total Cobrado</span
+            >
+            <span class="text-green-600 font-bold text-2xl"
+              >{{ total.totalCobrado | currency:'MXN':'symbol-narrow':'1.0-0'
+              }}</span
+            >
+          </div>
+        </div>
+        <div class="col-12 md:col-4">
+          <div class="flex flex-column gap-1">
+            <span class="text-500 font-medium uppercase text-xs"
+              >Saldo Restante</span
+            >
+            <span class="font-bold text-2xl text-primary"
+              >{{ total.saldoRestante | currency:'MXN':'symbol-narrow':'1.0-0'
+              }}</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+
+    <!-- Resumen Cards Individuales -->
+    <p class="font-bold uppercase mb-3 text-sm" style="color: var(--rf-muted)">
+      Detalle por Proyecto
+    </p>
+    <div class="grid mb-4">
+      @for (proyecto of reporte.proyectos; track proyecto.numeroCuenta) {
+      <div class="col-12 md:col-6 xl:col-4">
+        <div
+          class="rf-card p-4 h-full"
+          style="border-top: 3px solid var(--rf-head)"
+        >
+          <div class="flex justify-content-between align-items-center mb-3">
+            <span class="text-900 font-bold uppercase text-sm line-height-3"
+              >{{ proyecto.descripcion }}</span
+            >
+            <span class="rf-td-cuenta">{{ proyecto.numeroCuenta }}</span>
+          </div>
+          <div class="flex flex-column gap-3">
+            <div class="flex justify-content-between">
+              <span class="text-500 font-medium">Total a Cobrar</span>
+              <span class="text-900 font-bold"
+                >{{ proyecto.totalACobrar |
+                currency:'MXN':'symbol-narrow':'1.0-0' }}</span
+              >
             </div>
-            <div class="col-12 md:col-4">
-              <div class="flex flex-column gap-1">
-                <span class="text-500 font-medium uppercase text-xs">Total Cobrado</span>
-                <span class="text-green-600 font-bold text-2xl">{{ total.totalCobrado | currency:'MXN':'symbol-narrow':'1.0-0' }}</span>
-              </div>
+            <div class="flex justify-content-between">
+              <span class="text-500 font-medium">Total Cobrado</span>
+              <span class="text-green-600 font-bold"
+                >{{ proyecto.totalCobrado |
+                currency:'MXN':'symbol-narrow':'1.0-0' }}</span
+              >
             </div>
-            <div class="col-12 md:col-4">
-              <div class="flex flex-column gap-1">
-                <span class="text-500 font-medium uppercase text-xs">Saldo Restante</span>
-                <span class="font-bold text-2xl text-primary">{{ total.saldoRestante | currency:'MXN':'symbol-narrow':'1.0-0' }}</span>
-              </div>
+            <div
+              class="flex justify-content-between border-top-1 surface-border pt-2"
+            >
+              <span class="text-500 font-medium">Saldo Restante</span>
+              <span class="font-bold text-primary"
+                >{{ proyecto.saldoRestante |
+                currency:'MXN':'symbol-narrow':'1.0-0' }}</span
+              >
             </div>
           </div>
         </div>
+      </div>
       }
+    </div>
 
-      <!-- Resumen Cards Individuales -->
-      <p class="font-bold uppercase mb-3 text-sm" style="color: var(--rf-muted);">Detalle por Proyecto</p>
-      <div class="grid mb-4">
-        @for (proyecto of reporte.proyectos; track proyecto.numeroCuenta) {
-          <div class="col-12 md:col-6 xl:col-4">
-            <div class="rf-card p-4 h-full" style="border-top: 3px solid var(--rf-head);">
-              <div class="flex justify-content-between align-items-center mb-3">
-                <span class="text-900 font-bold uppercase text-sm line-height-3">{{ proyecto.descripcion }}</span>
-                <span class="rf-td-cuenta">{{ proyecto.numeroCuenta }}</span>
+    <div class="rf-wrap">
+      <p-table
+        [value]="reporte.proyectos"
+        responsiveLayout="scroll"
+        styleClass="rf-prime-table p-datatable-sm"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th class="th-col-dark" style="min-width: 250px">CUENTA</th>
+            <th class="th-col-green">PRE-MEN</th>
+
+            @for (mes of mesesNombres; track mes) {
+            <th class="th-col-dark">{{ mes | uppercase }}</th>
+            }
+
+            <th class="th-col-blue-medium">ACUMULADO</th>
+            <th class="th-col-dark">%</th>
+            <th class="th-col-green">PRE-TOTAL</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-proyecto>
+          <tr class="rf-row-concepto">
+            <td class="rf-td-descripcion--item">
+              <div class="rf-td-cuenta">{{ proyecto.numeroCuenta }}</div>
+              <div class="font-bold text-sm uppercase">
+                {{ proyecto.descripcion }}
               </div>
-              <div class="flex flex-column gap-3">
-                <div class="flex justify-content-between">
-                  <span class="text-500 font-medium">Total a Cobrar</span>
-                  <span class="text-900 font-bold">{{ proyecto.totalACobrar | currency:'MXN':'symbol-narrow':'1.0-0' }}</span>
-                </div>
-                <div class="flex justify-content-between">
-                  <span class="text-500 font-medium">Total Cobrado</span>
-                  <span class="text-green-600 font-bold">{{ proyecto.totalCobrado | currency:'MXN':'symbol-narrow':'1.0-0' }}</span>
-                </div>
-                <div class="flex justify-content-between border-top-1 surface-border pt-2">
-                  <span class="text-500 font-medium">Saldo Restante</span>
-                  <span class="font-bold text-primary">{{ proyecto.saldoRestante | currency:'MXN':'symbol-narrow':'1.0-0' }}</span>
-                </div>
+            </td>
+
+            <td class="rf-td-number--total text-green-600">
+              {{ proyecto.presupuestoMensual > 0 ? (proyecto.presupuestoMensual
+              | number:'1.0-0') : '0' }}
+            </td>
+
+            @for (m of proyecto.meses; track m.mes) {
+            <td class="p-1" style="min-width: 80px">
+              <div
+                class="flex flex-column align-items-center justify-content-center h-full gap-1"
+              >
+                <span class="rf-td-cuenta text-xs">
+                  {{ m.presupuesto > 0 ? (m.presupuesto | number:'1.0-0') : '-'
+                  }}
+                </span>
+                <span
+                  class="text-sm font-bold"
+                  [class.rf-neg]="m.cargo > m.presupuesto && m.presupuesto > 0"
+                >
+                  {{ m.cargo > 0 ? (m.cargo | number:'1.0-0') : '-' }}
+                </span>
               </div>
-            </div>
-          </div>
+            </td>
+            }
+
+            <td class="rf-td-number--total">
+              {{ proyecto.ejecutadoAnual > 0 ? (proyecto.ejecutadoAnual |
+              number:'1.0-0') : '0' }}
+            </td>
+            <td class="rf-td-number">
+              {{ (proyecto.porcentajeAvance / 100) | percent:'1.0-0' }}
+            </td>
+            <td class="rf-td-number--total">
+              {{ proyecto.presupuestoAnual | number:'1.0-0' }}
+            </td>
+          </tr>
+        </ng-template>
+
+        @if (reporte.totalGeneral; as total) {
+        <ng-template pTemplate="footer">
+          <tr class="rf-row-result">
+            <td class="rf-td-descripcion">TOTAL GENERAL</td>
+            <td class="rf-td-number--total text-green-400">
+              {{ total.presupuestoMensual > 0 ? (total.presupuestoMensual |
+              number:'1.0-0') : '0' }}
+            </td>
+            @for (m of total.meses; track m.mes) {
+            <td class="p-1">
+              <div
+                class="flex flex-column align-items-center justify-content-center h-full gap-1"
+              >
+                <span
+                  class="rf-td-cuenta text-xs"
+                  style="color: var(--rf-muted)"
+                >
+                  {{ m.presupuesto > 0 ? (m.presupuesto | number:'1.0-0') : '-'
+                  }}
+                </span>
+                <span
+                  class="text-sm font-bold"
+                  [class.rf-neg]="m.cargo > m.presupuesto && m.presupuesto > 0"
+                >
+                  {{ m.cargo > 0 ? (m.cargo | number:'1.0-0') : '-' }}
+                </span>
+              </div>
+            </td>
+            }
+            <td class="rf-td-number--total">
+              {{ total.ejecutadoAnual > 0 ? (total.ejecutadoAnual |
+              number:'1.0-0') : '0' }}
+            </td>
+            <td class="rf-td-number--total">
+              {{ (total.porcentajeAvance / 100) | percent:'1.0-0' }}
+            </td>
+            <td class="rf-td-number--total">
+              {{ total.presupuestoAnual | number:'1.0-0' }}
+            </td>
+          </tr>
+        </ng-template>
         }
-      </div>
 
-      <div class="rf-wrap">
-        <p-table [value]="reporte.proyectos" responsiveLayout="scroll" styleClass="rf-prime-table p-datatable-sm">
-          <ng-template pTemplate="header">
-            <tr>
-              <th class="th-col-dark" style="min-width: 250px;">CUENTA</th>
-              <th class="th-col-green">PRE-MEN</th>
-
-              @for (mes of mesesNombres; track mes) {
-                <th class="th-col-dark">{{ mes | uppercase }}</th>
-              }
-
-              <th class="th-col-blue-medium">ACUMULADO</th>
-              <th class="th-col-dark">%</th>
-              <th class="th-col-green">PRE-TOTAL</th>
-            </tr>
-          </ng-template>
-
-          <ng-template pTemplate="body" let-proyecto>
-            <tr class="rf-row-concepto">
-              <td class="rf-td-descripcion--item">
-                <div class="rf-td-cuenta">{{ proyecto.numeroCuenta }}</div>
-                <div class="font-bold text-sm uppercase">{{ proyecto.descripcion }}</div>
-              </td>
-
-              <td class="rf-td-number--total text-green-600">
-                {{ proyecto.presupuestoMensual > 0 ? (proyecto.presupuestoMensual | number:'1.0-0') : '0' }}
-              </td>
-
-              @for (m of proyecto.meses; track m.mes) {
-                <td class="p-1" style="min-width: 80px;">
-                  <div class="flex flex-column align-items-center justify-content-center h-full gap-1">
-                    <span class="rf-td-cuenta text-xs">
-                      {{ m.presupuesto > 0 ? (m.presupuesto | number:'1.0-0') : '-' }}
-                    </span>
-                    <span class="text-sm font-bold" [class.rf-neg]="m.cargo > m.presupuesto && m.presupuesto > 0">
-                      {{ m.cargo > 0 ? (m.cargo | number:'1.0-0') : '-' }}
-                    </span>
-                  </div>
-                </td>
-              }
-
-              <td class="rf-td-number--total">
-                {{ proyecto.ejecutadoAnual > 0 ? (proyecto.ejecutadoAnual | number:'1.0-0') : '0' }}
-              </td>
-              <td class="rf-td-number">
-                {{ (proyecto.porcentajeAvance / 100) | percent:'1.0-0' }}
-              </td>
-              <td class="rf-td-number--total">
-                {{ proyecto.presupuestoAnual | number:'1.0-0' }}
-              </td>
-            </tr>
-          </ng-template>
-
-          @if (reporte.totalGeneral; as total) {
-            <ng-template pTemplate="footer">
-              <tr class="rf-row-result">
-                <td class="rf-td-descripcion">TOTAL GENERAL</td>
-                <td class="rf-td-number--total text-green-400">
-                  {{ total.presupuestoMensual > 0 ? (total.presupuestoMensual | number:'1.0-0') : '0' }}
-                </td>
-                @for (m of total.meses; track m.mes) {
-                  <td class="p-1">
-                    <div class="flex flex-column align-items-center justify-content-center h-full gap-1">
-                      <span class="rf-td-cuenta text-xs" style="color: var(--rf-muted);">
-                        {{ m.presupuesto > 0 ? (m.presupuesto | number:'1.0-0') : '-' }}
-                      </span>
-                      <span class="text-sm font-bold"
-                        [class.rf-neg]="m.cargo > m.presupuesto && m.presupuesto > 0">
-                        {{ m.cargo > 0 ? (m.cargo | number:'1.0-0') : '-' }}
-                      </span>
-                    </div>
-                  </td>
-                }
-                <td class="rf-td-number--total">{{ total.ejecutadoAnual > 0 ? (total.ejecutadoAnual | number:'1.0-0') : '0' }}</td>
-                <td class="rf-td-number--total">{{ (total.porcentajeAvance / 100) | percent:'1.0-0' }}</td>
-                <td class="rf-td-number--total">{{ total.presupuestoAnual | number:'1.0-0' }}</td>
-              </tr>
-            </ng-template>
-          }
-
-          <ng-template pTemplate="emptymessage">
-            <tr>
-              <td colspan="29" class="text-center p-4 text-color-secondary">No se encontraron proyectos aprobados (Cuentas 606 con presupuesto).</td>
-            </tr>
-          </ng-template>
-        </p-table>
-      </div>
+        <ng-template #emptymessage>
+          <tr>
+            <td colspan="29" class="text-center p-4 text-color-secondary">
+              No se encontraron proyectos aprobados (Cuentas 606 con
+              presupuesto).
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
     </div>
+  </div>
   } @else {
-    <div class="rf-card flex flex-column align-items-center py-8 text-color-secondary">
-      <app-icon [icon]="'mdi:file-excel'" class="text-5xl mb-4 opacity-50"></app-icon>
-      <p class="m-0 text-xl font-medium">No hay datos para mostrar</p>
-      <p class="mt-2 text-500">Verifique los parámetros seleccionados</p>
-    </div>
+  <div
+    class="rf-card flex flex-column align-items-center py-8 text-color-secondary"
+  >
+    <app-icon
+      [icon]="'mdi:file-excel'"
+      class="text-5xl mb-4 opacity-50"
+    ></app-icon>
+    <p class="m-0 text-xl font-medium">No hay datos para mostrar</p>
+    <p class="mt-2 text-500">Verifique los parámetros seleccionados</p>
+  </div>
   }
 </div>

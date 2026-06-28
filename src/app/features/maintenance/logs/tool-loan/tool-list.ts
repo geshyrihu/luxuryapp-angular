@@ -1,28 +1,28 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { IonAvatar, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { AvatarModule } from "primeng/avatar";
 import { BadgeModule } from "primeng/badge";
-import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
 import { ImageModule } from "primeng/image";
 import { SplitButtonModule } from "primeng/splitbutton";
 import { TableModule } from "primeng/table";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import {
   CustomButtonDelete,
   CustomButtonEdit,
 } from "src/app/core/components/buttons/web";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -50,7 +50,6 @@ import { ToolForm } from "./tool-form";
     ActionMenu,
     IonItem,
     IonLabel,
-    IonAvatar,
     CustomButtonDelete,
     CustomButtonEdit,
   ],
@@ -62,7 +61,7 @@ export class ToolList {
   public aspRoleS = inject(AspRoleService);
   public AspRole = EApplicationRole;
   // Enum para usar en la plantilla
-  // Señales
+  // SeÃ±ales
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => {
@@ -91,11 +90,15 @@ export class ToolList {
   }
 
   onDelete(id: any) {
-    this.apiResponseS.onDelete(Endpoints.Tools.delete(id)).then((result: boolean) => {
-      if (result) {
-        this.dataSignal.update((data) => data.filter((item) => item.id !== id));
-      }
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.Tools.delete(id))
+      .then((result: boolean) => {
+        if (result) {
+          this.dataSignal.update((data) =>
+            data.filter((item) => item.id !== id),
+          );
+        }
+      });
   }
 
   onModalForm(data: any) {
@@ -167,7 +170,7 @@ export class ToolList {
       // Group by category
       const groups = sortedData.reduce(
         (acc, item) => {
-          const category = item.category || "SIN CATEGORÍA";
+          const category = item.category || "SIN CATEGORÃA";
           if (!acc[category]) acc[category] = [];
           acc[category].push(item);
           return acc;
@@ -186,9 +189,9 @@ export class ToolList {
 
         groups[category].forEach((item, idx) => {
           const bg = idx % 2 === 0 ? "#ffffff" : "#f9fafb";
-          
-          const imgHtml = item.base64Image 
-            ? `<img src="${item.base64Image}" style="max-width:60px; max-height:60px; object-fit:contain;" />` 
+
+          const imgHtml = item.base64Image
+            ? `<img src="${item.base64Image}" style="max-width:60px; max-height:60px; object-fit:contain;" />`
             : `<div style="font-size: 8px; color: #999; margin-top:10px; text-align:center;">Sin Imagen</div>`;
 
           tableHtml += `
@@ -214,7 +217,7 @@ ${this.htmlPrintS.getStandardCss()}
   @page { margin: 10mm; }
   .container { max-width: 1000px; }
   .sistema-header { background-color: #eef2f7 !important; color: #003A62 !important; font-weight: bold; font-size: 14px; padding: 6px 10px !important; }
-  
+
   .data-table { width:100%; border-collapse:collapse; margin-bottom:16px; }
   .data-table th, .data-table td { padding:4px 8px; border-bottom:1px solid #EEEEEE; }
 </style>
@@ -229,7 +232,7 @@ ${this.htmlPrintS.getStandardCss()}
       </tbody>
     </table>
   </div>
-  
+
   ${this.htmlPrintS.buildStandardFooter(generatedAt)}
 </div>
 </body></html>`;

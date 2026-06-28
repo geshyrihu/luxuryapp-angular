@@ -38,20 +38,24 @@
             icon="trash"
             ngbTooltip="Eliminar"
             (confirmed)="onDelete(item.id)"
-/>
+          />
         </div>
       </td>
     </tr>
   </ng-template>
 
   @if (dataSignal().length === 0) {
-  <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="3">
-          <app-empty-state icon="mdi:medical-bag" title="Sin datos clínicos" message="No hay datos clínicos registrados." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="3">
+        <app-empty-state
+          icon="mdi:medical-bag"
+          title="Sin datos clínicos"
+          message="No hay datos clínicos registrados."
+        />
+      </td>
+    </tr>
+  </ng-template>
   }
 </p-table>
 
@@ -65,9 +69,16 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-danger-light,#ffdad6);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-danger-light, #ffdad6);
+        "
       >
-        <app-icon icon="mdi:medical-bag" style="font-size:1.1rem;color:var(--ds-danger);"></app-icon>
+        <app-icon
+          icon="mdi:medical-bag"
+          style="font-size: 1.1rem; color: var(--ds-danger)"
+        ></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.name }}</h3>
@@ -75,12 +86,17 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-        <custom-button-edit
-          (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Clinico' })"
- label="Editar" [showLabelOnDesktop]="true"/>
-        <custom-button-delete (confirmed)="onDelete(item.id)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
-              </ng-container>
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Registro Clinico' })"
+            label="Editar"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-delete
+            (confirmed)="onDelete(item.id)"
+            label="Eliminar"
+            [showLabelOnDesktop]="true"
+          />
+        </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

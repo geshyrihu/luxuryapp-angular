@@ -572,29 +572,4 @@ export const humanResourcesRoutes: Routes = [
     canActivate: [authGuard],
     data: { title: "Hoja de Incidencias", breadcrumb: "Hoja de Incidencias" },
   },
-  {
-    path: "incident-types",
-    loadComponent: () =>
-      import("src/app/features/hr/evaluaciones-de-desempeo/hr-catalog/pages/incident-type-list").then(
-        (m) => m.IncidentTypeList,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Tipos de Incidencia",
-      breadcrumb: "Tipos de Incidencia",
-    },
-  },
-  {
-    path: "sanction-types",
-    loadComponent: () =>
-      import("src/app/features/hr/evaluaciones-de-desempeo/hr-catalog/pages/sanction-type-list").then(
-        (m) => m.SanctionTypeList,
-      ),
-    canActivate: [authGuard],
-    data: {
-      title: "Tipos de Sanción",
-      breadcrumb: "Tipos de Sanción",
-    },
-  },
 ];
-

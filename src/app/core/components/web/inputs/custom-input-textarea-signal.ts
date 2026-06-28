@@ -2,7 +2,7 @@ import { Component, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { FloatLabelModule } from "primeng/floatlabel";
 import { TextareaModule } from "primeng/textarea";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
 @Component({
   selector: "custom-input-textarea-signal",
@@ -59,3 +59,4 @@ export class CustomInputTextAreaSignal extends BaseInputSignal {
   customClass = input<string>("");
   fluid = input<boolean>(true);
 }
+

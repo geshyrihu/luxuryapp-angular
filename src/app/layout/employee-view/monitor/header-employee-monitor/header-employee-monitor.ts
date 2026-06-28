@@ -24,7 +24,7 @@ import { SelectModule } from "primeng/select";
 import { ToolbarModule } from "primeng/toolbar";
 import { TooltipModule } from "primeng/tooltip";
 import { filter, map, startWith } from "rxjs";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -37,15 +37,14 @@ import { ThemeService } from "src/app/core/services/theme.service";
 import { UpdateService } from "src/app/core/services/update-pwa.service";
 import { NotificationsGadget } from "../notifications-gadget/notifications-gadget";
 import { ProfileMonitor } from "../profile-monitor/profile-monitor";
-import { Search } from "../search/search";
 
+import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import * as htmlToImage from "html-to-image";
 import { DialogModule } from "primeng/dialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
-import { AiService } from "src/app/core/services/ai.service";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TextareaModule } from "primeng/textarea";
+import { AiService } from "src/app/core/services/ai.service";
 
 @Component({
   selector: "app-header-employee-monitor",
@@ -64,7 +63,6 @@ import { TextareaModule } from "primeng/textarea";
     ProgressSpinnerModule,
     RouterModule,
     SelectButtonModule,
-    Search,
     SelectModule,
     ToolbarModule,
     TooltipModule,
@@ -333,7 +331,7 @@ export class HeaderEmployeeMonitor implements OnInit {
   };
 
   onBuilding = () => {
-    this.router.navigateByUrl("/operaciones/mi-edificio");
+    this.router.navigateByUrl("/operations/my-building");
   };
 
   onEmergencyPhones = () => {
@@ -361,7 +359,8 @@ export class HeaderEmployeeMonitor implements OnInit {
   }
 
   async generateOfficialAnnouncement(mode: "text" | "poster") {
-    if (!this.userIdeaControl.value || !this.userIdeaControl.value.trim()) return;
+    if (!this.userIdeaControl.value || !this.userIdeaControl.value.trim())
+      return;
 
     this.currentMode.set(mode);
 
@@ -370,7 +369,7 @@ export class HeaderEmployeeMonitor implements OnInit {
 
       if (mode === "text") {
         const enrichedIdea =
-          (this.userIdeaControl.value || '') +
+          (this.userIdeaControl.value || "") +
           "\n\nINSTRUCCIONES ESTRICTAS: El texto debe ser lo más corto y claro posible, estar fuertemente apoyado con emojis. Adopta un tono sumamente empático, asegurando que el condómino se sienta entendido, y enfocado siempre en el bien común y la convivencia.";
         const textResult =
           await this.aiService.generateOfficialAnnouncementDraft(
@@ -382,13 +381,13 @@ export class HeaderEmployeeMonitor implements OnInit {
       } else if (mode === "poster") {
         this.isGeneratingImage.set(true);
         const shortTitleIdea =
-          (this.userIdeaControl.value || '') +
+          (this.userIdeaControl.value || "") +
           "\n\nINSTRUCCIONES PARA INFOGRAFÍA (IGNORA REGLAS HTML ANTERIORES):\n" +
           "1. 'Title': Un título destacado y muy corto (máx 5 palabras).\n" +
           "2. 'Body': PROHIBIDO USAR TAGS HTML (<p>, <strong>, etc). Escribe SOLO 3 o 4 recomendaciones MUY CORTAS (máx 10 palabras cada una), separadas EXCLUSIVAMENTE por '|||'. Ejemplo estricto: 'Primera recomendación corta|||Segunda recomendación corta|||Tercera recomendación corta'.\n" +
           "3. 'CallToAction': Una instrucción final destacada sin HTML.\n" +
           "4. 'Greeting': Vacío.";
-        
+
         const textResult =
           await this.aiService.generateOfficialAnnouncementDraft(
             shortTitleIdea,
@@ -396,11 +395,14 @@ export class HeaderEmployeeMonitor implements OnInit {
           );
 
         // Limpiar HTML residual por si la IA ignora la instrucción
-        const cleanBody = textResult.body.replace(/<[^>]*>?/gm, '');
-        const points = cleanBody.split('|||').map(p => p.trim()).filter(p => p.length > 0);
+        const cleanBody = textResult.body.replace(/<[^>]*>?/gm, "");
+        const points = cleanBody
+          .split("|||")
+          .map((p) => p.trim())
+          .filter((p) => p.length > 0);
         this.aiAnnouncementPosterPoints.set(points);
 
-        const imagePrompt = `Purely visual background illustration or photography representing the concept of "${textResult.title}". 
+        const imagePrompt = `Purely visual background illustration or photography representing the concept of "${textResult.title}".
 Premium corporate luxury style, navy blue and gold tones, elegant layout.
 CRITICAL RULE: DO NOT INCLUDE ANY TEXT, LETTERS, TYPOGRAPHY, WORDS, OR NUMBERS IN THIS IMAGE. IT MUST BE 100% TEXT-FREE.`;
 
@@ -434,7 +436,10 @@ CRITICAL RULE: DO NOT INCLUDE ANY TEXT, LETTERS, TYPOGRAPHY, WORDS, OR NUMBERS I
     try {
       // Configuramos html-to-image para asegurar fondos blancos y que cargue bien los logos
       const blobPromise = htmlToImage.toBlob(element, {
-        backgroundColor: getComputedStyle(document.body).getPropertyValue('--ds-bg-surface').trim() || '#ffffff',
+        backgroundColor:
+          getComputedStyle(document.body)
+            .getPropertyValue("--ds-bg-surface")
+            .trim() || "#ffffff",
         pixelRatio: 2,
       });
 

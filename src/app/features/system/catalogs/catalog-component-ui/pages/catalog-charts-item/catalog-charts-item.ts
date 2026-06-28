@@ -47,10 +47,10 @@ export class CatalogChartsItem {
   private getStyle = (key: string, fallback: string) =>
     getComputedStyle(document.body).getPropertyValue(key).trim() || fallback;
 
-  primaryColor = this.getStyle('--ds-primary', '#0b3164');
+  primaryColor = this.getStyle('--ds-primary', '#00050e');
   secondaryColor = this.getStyle('--ds-secondary', '#64748b');
   tertiaryColor = this.getStyle('--ds-tertiary', '#0f766e');
-  warningColor = this.getStyle('--ds-warning', '#c9a84c');
+  warningColor = this.getStyle('--ds-warning', '#c9a74d');
 
   barData = {
     labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May'],

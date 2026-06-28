@@ -1,10 +1,14 @@
 <div class="presentation-shell py-2 px-0 md:py-3 md:px-0">
   @if (solicitudesSignal().length === 0) {
-  <div class="surface-card border-round-2xl border-1 surface-border p-5 text-center text-600">
+  <div
+    class="surface-card border-round-2xl border-1 surface-border p-5 text-center text-600"
+  >
     No hay solicitudes seleccionadas para mostrar en modo presentación.
   </div>
   } @else {
-  <div class="flex justify-content-end align-items-center gap-2 px-2 md:px-3 mb-2">
+  <div
+    class="flex justify-content-end align-items-center gap-2 px-2 md:px-3 mb-2"
+  >
     <custom-button
       iconClass="mdi:chevron-left"
       [showLabelOnDesktop]="false"
@@ -45,21 +49,30 @@
         <div class="p-3 md:p-4">
           <div class="grid align-items-start mb-4">
             <div class="col-12 lg:col-8">
-              <div class="presentation-kicker text-500 text-sm font-semibold mb-2">
+              <div
+                class="presentation-kicker text-500 text-sm font-semibold mb-2"
+              >
                 Matriz de importancia
               </div>
               <h2 class="text-2xl md:text-4xl line-height-2 m-0 text-900">
                 Resumen de solicitudes de compra
               </h2>
               <p class="text-700 text-lg line-height-3 mt-2 mb-0">
-                De la más urgente a la menos urgente, según el orden de presentación definido.
+                De la más urgente a la menos urgente, según el orden de
+                presentación definido.
               </p>
             </div>
             <div class="col-12 lg:col-4">
               <div class="surface-50 border-round-2xl p-3 h-full">
-                <div class="text-xs text-500 mb-1">Solicitudes consideradas</div>
-                <div class="text-3xl font-bold text-900 mb-3">{{ slide.rows.length }}</div>
-                <div class="text-xs text-500 mb-1">Costo total estimado con IVA</div>
+                <div class="text-xs text-500 mb-1">
+                  Solicitudes consideradas
+                </div>
+                <div class="text-3xl font-bold text-900 mb-3">
+                  {{ slide.rows.length }}
+                </div>
+                <div class="text-xs text-500 mb-1">
+                  Costo total estimado con IVA
+                </div>
                 <div class="text-xl font-semibold text-900">
                   {{ getSummaryTotal(slide.rows) | number : "1.0-0" }}
                 </div>
@@ -77,9 +90,13 @@
               <tr>
                 <th style="width: 4rem">N°</th>
                 <th style="width: 28rem">DESCRIPCION</th>
-                <th class="text-right" style="width: 12rem">COSTO TOTAL CON IVA</th>
+                <th class="text-right" style="width: 12rem">
+                  COSTO TOTAL CON IVA
+                </th>
                 <th style="width: 16rem">PARTIDA PRESUPUESTAL</th>
-                <th class="text-right" style="width: 12rem">DINERO DISPONIBLE</th>
+                <th class="text-right" style="width: 12rem">
+                  DINERO DISPONIBLE
+                </th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-row>
@@ -98,15 +115,16 @@
           </p-table>
         </div>
       </section>
-      } @else {
-      @let solicitud = slide;
+      } @else { @let solicitud = slide;
       <section class="presentation-slide">
         <div class="presentation-accent"></div>
 
         <div class="p-3 md:p-4">
           <div class="grid align-items-start mb-3">
             <div class="col-12 lg:col-7">
-              <div class="presentation-kicker text-500 text-sm font-semibold mb-2">
+              <div
+                class="presentation-kicker text-500 text-sm font-semibold mb-2"
+              >
                 Para donde y por que
               </div>
               <h2 class="text-2xl md:text-4xl line-height-2 m-0 text-900">
@@ -122,7 +140,9 @@
                 <div class="grid">
                   <div class="col-6 md:col-3 lg:col-6">
                     <div class="text-xs text-500 mb-1">Folio</div>
-                    <div class="text-lg font-semibold text-900">{{ solicitud.folio }}</div>
+                    <div class="text-lg font-semibold text-900">
+                      {{ solicitud.folio }}
+                    </div>
                   </div>
                   <div class="col-6 md:col-3 lg:col-6">
                     <div class="text-xs text-500 mb-1">Estado</div>
@@ -140,7 +160,8 @@
                   <div class="col-6 md:col-3 lg:col-6">
                     <div class="text-xs text-500 mb-1">Registro</div>
                     <div class="text-900">
-                      {{ solicitud.fechaAutorizacion }} {{ solicitud.horaAutorizacion }}
+                      {{ solicitud.fechaAutorizacion }} {{
+                      solicitud.horaAutorizacion }}
                     </div>
                   </div>
                   }
@@ -171,8 +192,12 @@
           </div>
 
           @if (isDenied(solicitud) && solicitud.motivoNoAutorizacion) {
-          <div class="surface-card border-1 border-red-200 bg-red-50 border-round-xl p-3 mb-4">
-            <div class="text-red-700 font-semibold mb-1">Motivo de no autorización</div>
+          <div
+            class="surface-card border-1 border-red-200 bg-red-50 border-round-xl p-3 mb-4"
+          >
+            <div class="text-red-700 font-semibold mb-1">
+              Motivo de no autorización
+            </div>
             <div class="text-700">{{ solicitud.motivoNoAutorizacion }}</div>
           </div>
           }
@@ -184,30 +209,44 @@
                 class="provider-card h-full"
                 [ngClass]="isBestProvider(provider.total, solicitud) ? 'bg-yellow-50 border-yellow-300' : ''"
               >
-                <div class="flex align-items-start justify-content-between gap-3 mb-3">
+                <div
+                  class="flex align-items-start justify-content-between gap-3 mb-3"
+                >
                   <div class="min-w-0">
-                    <div class="text-xs text-500 mb-1">Proveedor {{ provider.posicionCotizacion }}</div>
-                    <div class="text-xl font-semibold text-900 white-space-nowrap overflow-hidden text-overflow-ellipsis">
+                    <div class="text-xs text-500 mb-1">
+                      Proveedor {{ provider.posicionCotizacion }}
+                    </div>
+                    <div
+                      class="text-xl font-semibold text-900 white-space-nowrap overflow-hidden text-overflow-ellipsis"
+                    >
                       {{ provider.nameProvider }}
                     </div>
                   </div>
                   <div class="text-right flex-shrink-0">
                     <div class="text-xs text-500 mb-1">Total</div>
-                    <div class="font-bold text-900 text-xl">{{ provider.total | number : "1.0-0" }}</div>
+                    <div class="font-bold text-900 text-xl">
+                      {{ provider.total | number : "1.0-0" }}
+                    </div>
                   </div>
                 </div>
                 <div class="flex flex-wrap gap-3 text-sm">
                   <div class="provider-metric">
                     <div class="text-xs text-500 mb-1">Entrega</div>
-                    <div class="text-900 font-medium">{{ provider.entrega || "N/D" }}</div>
+                    <div class="text-900 font-medium">
+                      {{ provider.entrega || "N/D" }}
+                    </div>
                   </div>
                   <div class="provider-metric">
                     <div class="text-xs text-500 mb-1">Garantía</div>
-                    <div class="text-900 font-medium">{{ provider.garantia || "N/D" }}</div>
+                    <div class="text-900 font-medium">
+                      {{ provider.garantia || "N/D" }}
+                    </div>
                   </div>
                   <div class="flex-1 min-w-0">
                     <div class="text-xs text-500 mb-1">Pago</div>
-                    <div class="text-900 font-medium white-space-nowrap overflow-hidden text-overflow-ellipsis">
+                    <div
+                      class="text-900 font-medium white-space-nowrap overflow-hidden text-overflow-ellipsis"
+                    >
                       {{ provider.politicaPago || "N/D" }}
                     </div>
                   </div>
@@ -231,11 +270,15 @@
           </div>
 
           <div class="mb-4">
-            <div class="presentation-kicker text-500 text-sm font-semibold mb-3">
+            <div
+              class="presentation-kicker text-500 text-sm font-semibold mb-3"
+            >
               Evidencias
             </div>
             @if (solicitud.evidencias.length === 0) {
-            <div class="surface-card border-round-xl border-1 surface-border p-4 text-600">
+            <div
+              class="surface-card border-round-xl border-1 surface-border p-4 text-600"
+            >
               No hay evidencias cargadas para esta solicitud.
             </div>
             } @else {
@@ -264,7 +307,9 @@
           </div>
 
           <div class="mb-4">
-            <div class="presentation-kicker text-500 text-sm font-semibold mb-3">
+            <div
+              class="presentation-kicker text-500 text-sm font-semibold mb-3"
+            >
               Comparativo de productos
             </div>
             <p-table
@@ -285,16 +330,14 @@
                   >
                     {{ solicitud.providerSummaries[0].nameProvider }}
                   </th>
-                  }
-                  @if (solicitud.providerSummaries.length >= 2) {
+                  } @if (solicitud.providerSummaries.length >= 2) {
                   <th
                     class="text-right"
                     [style.width.%]="getProviderColumnWidth(solicitud.providerSummaries.length)"
                   >
                     {{ solicitud.providerSummaries[1].nameProvider }}
                   </th>
-                  }
-                  @if (solicitud.providerSummaries.length >= 3) {
+                  } @if (solicitud.providerSummaries.length >= 3) {
                   <th
                     class="text-right"
                     [style.width.%]="getProviderColumnWidth(solicitud.providerSummaries.length)"
@@ -306,10 +349,15 @@
               </ng-template>
               <ng-template pTemplate="body" let-item>
                 <tr>
-                  <td [class.font-semibold]="isOptimized(solicitud.id)" class="line-height-3">
+                  <td
+                    [class.font-semibold]="isOptimized(solicitud.id)"
+                    class="line-height-3"
+                  >
                     {{ item.producto }}
                   </td>
-                  <td class="text-right white-space-nowrap">{{ item.cantidad }}</td>
+                  <td class="text-right white-space-nowrap">
+                    {{ item.cantidad }}
+                  </td>
                   <td class="white-space-nowrap">{{ item.unidadMedida }}</td>
                   @if (solicitud.providerSummaries.length >= 1) {
                   <td
@@ -318,16 +366,14 @@
                   >
                     {{ item.total | number : "1.0-0" }}
                   </td>
-                  }
-                  @if (solicitud.providerSummaries.length >= 2) {
+                  } @if (solicitud.providerSummaries.length >= 2) {
                   <td
                     class="text-right white-space-nowrap"
                     [class.bg-yellow-100]="item.total2 > 0 && item.total2 <= (item.total || item.total2) && item.total2 <= (item.total3 || item.total2)"
                   >
                     {{ item.total2 | number : "1.0-0" }}
                   </td>
-                  }
-                  @if (solicitud.providerSummaries.length >= 3) {
+                  } @if (solicitud.providerSummaries.length >= 3) {
                   <td
                     class="text-right white-space-nowrap"
                     [class.bg-yellow-100]="item.total3 > 0 && item.total3 <= (item.total || item.total3) && item.total3 <= (item.total2 || item.total3)"
@@ -341,7 +387,9 @@
           </div>
 
           <div>
-            <div class="presentation-kicker text-500 text-sm font-semibold mb-3">
+            <div
+              class="presentation-kicker text-500 text-sm font-semibold mb-3"
+            >
               Presupuesto seleccionado
             </div>
             <p-table
@@ -367,15 +415,27 @@
                     <div class="font-semibold">{{ budget.accountNumber }}</div>
                     <div class="text-600">{{ budget.accountName }}</div>
                   </td>
-                  <td class="text-right white-space-nowrap">{{ budget.presupuestoMensual | number : "1.0-0" }}</td>
-                  <td class="text-right white-space-nowrap">{{ getBudgetAccumulated(budget) | number : "1.0-0" }}</td>
-                  <td class="text-right white-space-nowrap">{{ budget.porcentajeGastado | number : "1.0-0" }}%</td>
-                  <td class="text-right white-space-nowrap">{{ budget.presupuestoAnual | number : "1.0-0" }}</td>
-                  <td class="text-right white-space-nowrap">{{ budget.presupuestoRestante | number : "1.0-0" }}</td>
-                  <td class="text-right font-semibold white-space-nowrap">{{ budget.amount | number : "1.0-0" }}</td>
+                  <td class="text-right white-space-nowrap">
+                    {{ budget.presupuestoMensual | number : "1.0-0" }}
+                  </td>
+                  <td class="text-right white-space-nowrap">
+                    {{ getBudgetAccumulated(budget) | number : "1.0-0" }}
+                  </td>
+                  <td class="text-right white-space-nowrap">
+                    {{ budget.porcentajeGastado | number : "1.0-0" }}%
+                  </td>
+                  <td class="text-right white-space-nowrap">
+                    {{ budget.presupuestoAnual | number : "1.0-0" }}
+                  </td>
+                  <td class="text-right white-space-nowrap">
+                    {{ budget.presupuestoRestante | number : "1.0-0" }}
+                  </td>
+                  <td class="text-right font-semibold white-space-nowrap">
+                    {{ budget.amount | number : "1.0-0" }}
+                  </td>
                 </tr>
               </ng-template>
-              <ng-template pTemplate="emptymessage">
+              <ng-template #emptymessage>
                 <tr>
                   <td colspan="7" class="text-600">
                     No hay presupuesto seleccionado para esta solicitud.

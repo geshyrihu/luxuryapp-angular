@@ -9,7 +9,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { ReportHeader } from "src/app/core/components/report-header/report-header";
+import { ReportHeader } from "src/app/core/components/web/report-header/report-header";
 import { StripTagsPipe } from "src/app/core/pipes/StripTags.pipe";
 @Component({
   selector: "app-entrega-recepcion-instalaciones",

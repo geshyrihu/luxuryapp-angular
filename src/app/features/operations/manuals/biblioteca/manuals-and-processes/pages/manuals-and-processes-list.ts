@@ -1,13 +1,16 @@
 ﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import {
   CustomButtonDelete,
   CustomButtonEdit,
 } from "src/app/core/components/buttons/web";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -29,14 +32,9 @@ interface DeptGroup {
   config: DeptConfig;
 }
 
-import { IonItem, IonLabel } from "@ionic/angular/standalone";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-
 @Component({
   selector: "app-manuals-and-processes-list",
   templateUrl: "./manuals-and-processes-list.html",
-
   imports: [
     CommonModule,
     ButtonModule,
@@ -48,8 +46,6 @@ import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-vi
     DataViewMobile,
     IonItem,
     IonLabel,
-    CustomButtonEdit,
-    CustomButtonDelete,
     AppIcon,
   ],
 })
@@ -76,7 +72,7 @@ export class ManualsAndProcessesList implements OnInit {
   searchTerm = signal("");
 
   private readonly DEPT_CONFIG: Record<string, DeptConfig> = {
-    Administración: {
+    Administracion: {
       icon: "mdi:office-building",
       color: "#1e40af",
       bgColor: "#dbeafe",
@@ -94,12 +90,12 @@ export class ManualsAndProcessesList implements OnInit {
     },
     Limpieza: { icon: "mdi:star", color: "#065f46", bgColor: "#d1fae5" },
     Operaciones: { icon: "mdi:cog", color: "#1e3a8a", bgColor: "#e0e7ff" },
-    Jardinería: { icon: "mdi:sun-bright", color: "#15803d", bgColor: "#dcfce7" },
+    Jardineria: { icon: "mdi:sun-bright", color: "#15803d", bgColor: "#dcfce7" },
     Sistemas: { icon: "mdi:monitor", color: "#6d28d9", bgColor: "#f5f3ff" },
     Seguridad: { icon: "mdi:lock", color: "#dc2626", bgColor: "#fee2e2" },
     Constructora: { icon: "mdi:home", color: "#7c3aed", bgColor: "#ede9fe" },
-    Supervisión: { icon: "mdi:eye", color: "#0891b2", bgColor: "#cffafe" },
-    Dirección: { icon: "mdi:account", color: "#374151", bgColor: "#f3f4f6" },
+    Supervision: { icon: "mdi:eye", color: "#0891b2", bgColor: "#cffafe" },
+    Direccion: { icon: "mdi:account", color: "#374151", bgColor: "#f3f4f6" },
     "Recursos Humanos": {
       icon: "mdi:account-group",
       color: "#d97706",
@@ -110,14 +106,18 @@ export class ManualsAndProcessesList implements OnInit {
       color: "#0284c7",
       bgColor: "#e0f2fe",
     },
-    Recepción: { icon: "mdi:phone", color: "#047857", bgColor: "#d1fae5" },
-    Mensajería: {
+    Recepcion: { icon: "mdi:phone", color: "#047857", bgColor: "#d1fae5" },
+    Mensajeria: {
       icon: "mdi:email",
       color: "#0369a1",
       bgColor: "#e0f2fe",
     },
     Ludoteca: { icon: "mdi:heart", color: "#db2777", bgColor: "#fce7f3" },
-    "N/A": { icon: "mdi:minus-circle-outline", color: "#6b7280", bgColor: "#f3f4f6" },
+    "N/A": {
+      icon: "mdi:minus-circle-outline",
+      color: "#6b7280",
+      bgColor: "#f3f4f6",
+    },
   };
 
   private readonly DEFAULT_CONFIG: DeptConfig = {
@@ -125,6 +125,17 @@ export class ManualsAndProcessesList implements OnInit {
     color: "#6b7280",
     bgColor: "#f3f4f6",
   };
+
+  ngOnInit(): void {
+    this.onLoadData();
+  }
+
+  private normalizeDeptKey(value: string | null | undefined): string {
+    const normalized = (value || "N/A")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+    return normalized || "N/A";
+  }
 
   groupedData = computed<DeptGroup[]>(() => {
     const term = this.searchTerm().toLowerCase().trim();
@@ -144,13 +155,9 @@ export class ManualsAndProcessesList implements OnInit {
     return Array.from(map.entries()).map(([dept, manuals]) => ({
       dept,
       manuals,
-      config: this.DEPT_CONFIG[dept] ?? this.DEFAULT_CONFIG,
+      config: this.DEPT_CONFIG[this.normalizeDeptKey(dept)] ?? this.DEFAULT_CONFIG,
     }));
   });
-
-  ngOnInit(): void {
-    this.onLoadData();
-  }
 
   onLoadData() {
     this.loading.set(true);

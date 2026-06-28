@@ -3,7 +3,7 @@ import { Component, computed, input, output } from "@angular/core";
 import { IonButton, IonIcon } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { lockClosedOutline, lockOpenOutline } from "ionicons/icons";
-import { BaseIonicButton } from "../base/base-ionic-button";
+import { BaseIonicButton } from "../../buttons/base/base-ionic-button";
 
 @Component({
   selector: "ion-button-active-desactive",
@@ -52,3 +52,4 @@ export class IonButtonActiveDesactive extends BaseIonicButton {
     addIcons({ lockClosedOutline, lockOpenOutline });
   }
 }
+

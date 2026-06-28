@@ -7,7 +7,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";

@@ -51,21 +51,18 @@
       <!-- Opciones -->
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="3">
-          <app-empty-state icon="mdi:engine-outline" title="Sin equipos" message="No hay equipos registrados." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="3">
+        <app-empty-state
+          icon="mdi:engine-outline"
+          title="Sin equipos"
+          message="No hay equipos registrados."
+        />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
 </p-table>
-
-
-
-
-
-
-

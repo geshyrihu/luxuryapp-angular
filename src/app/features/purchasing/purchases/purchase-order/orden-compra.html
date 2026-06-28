@@ -28,11 +28,7 @@
     </p-message>
 
     @if (oc.folioSolicitudCompra && !oc.solicitudCompraId) {
-    <p-message
-      severity="warn"
-      icon="mdi:alert"
-      styleClass="mt-2 p-0 w-full"
-    >
+    <p-message severity="warn" icon="mdi:alert" styleClass="mt-2 p-0 w-full">
       <div class="flex align-items-center">
         <span
           >Esta orden tiene un folio de solicitud escrito
@@ -192,14 +188,18 @@
           </td>
         </tr>
       </ng-template>
-      <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="16">
-          <app-empty-state icon="mdi:cart-outline" title="Sin órdenes" message="No hay órdenes de compra registradas." />
-        </td>
-      </tr>
-    </ng-template>
-</p-table>
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="16">
+            <app-empty-state
+              icon="mdi:cart-outline"
+              title="Sin órdenes"
+              message="No hay órdenes de compra registradas."
+            />
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
   </div>
   }
 
@@ -267,9 +267,15 @@
           <span>PRODUCTO |</span>
           <!-- REFACTOR: Condición simplificada con `computed signal`. -->
           @if (canAddProducts()) {
-          <span (click)="onModalAgregarproducto()" class="pointer ml-1 text-white">
+          <span
+            (click)="onModalAgregarproducto()"
+            class="pointer ml-1 text-white"
+          >
             AGREGAR
-            <app-icon [icon]="'mdi:plus'" class="icon ml-1 text-white"></app-icon>
+            <app-icon
+              [icon]="'mdi:plus'"
+              class="icon ml-1 text-white"
+            ></app-icon>
           </span>
           }
         </div>

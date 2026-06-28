@@ -1,71 +1,5 @@
 <!-- Panel de Filtros -->
 <p-card>
-  <div class="hidden md:block">
-    <h5 class="text-lg mb-2">Filtros de Búsqueda</h5>
-    <div class="flex flex-wrap align-items-end gap-4">
-      <!-- Columna 1: Clientes -->
-      <div class="col-12 md:col-3">
-        <label for="Clientes">Clientes</label>
-        <custom-input-select-signal
-          [data]="customerOptions"
-          optionLabel="label"
-          optionValue="value"
-          placeholder="Seleccione un cliente"
-          [control]="filterCustomerIdControl"
-          customClass="w-full"
-          [horizontal]="false"
-          [filter]="true"
-        />
-      </div>
-
-      <!-- Columna 2: Tipo de Usuario -->
-      <div class="col-12 md:col-2">
-        <label for="Usuario">Tipo de Usuario</label>
-        <custom-input-select-signal
-          [data]="userTypeOptions"
-          optionLabel="label"
-          optionValue="value"
-          placeholder="Seleccione un tipo"
-          [control]="filterUserTypeControl"
-          customClass="w-full"
-          [horizontal]="false"
-          [filter]="true"
-        />
-      </div>
-
-      <!-- Columna 3: Rango de Fechas -->
-      <div class="col-12 md:col-3">
-        <label for="dateRangeFilter">Rango de Fechas</label>
-        <custom-input-date-signal
-          [control]="filterDateRangeControl"
-          mode="range"
-          dateFormat="Y-m-d"
-          altFormat="d/m/Y"
-          placeholder="Seleccione un rango"
-          [horizontal]="false"
-        />
-      </div>
-
-      <!-- Botón de Búsqueda -->
-      <div class="col-12 md:col-12 flex flex-column justify-content-end">
-        <div class="flex justify-content-end gap-2 mt-auto">
-          <span
-            [pTooltip]="isSearchDisabled ? 'Complete todos los filtros para buscar' : ''"
-            tooltipPosition="top"
-          >
-            <custom-button
-              label="Buscar"
-              styleClass="p-button p-button-primary w-full"
-              iconClass="mdi:magnify"
-              (clicked)="onLoadData(true)"
-              [disabled]="isSearchDisabled"
-            />
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- 🖥️ INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
   <div class="hidden md:block mt-3">
     <p-table
@@ -84,11 +18,69 @@
       [showCurrentPageReport]="true"
     >
       <ng-template #caption>
-        <primeng-custom-caption
-          [dt]="dt"
-          (search)="onSearch($event)"
-          [showAdd]="false"
-        />
+        <div class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round">
+          <div class="flex-grow-1">
+            <primeng-custom-caption
+              [dt]="dt"
+              (search)="onSearch($event)"
+              [showAdd]="false"
+              [noPadding]="true"
+              [noMargin]="true"
+            />
+          </div>
+          <div class="flex flex-column sm:flex-row align-items-center gap-2">
+            <div style="min-width: 200px">
+              <custom-input-select-signal
+                [data]="customerOptions"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Cliente"
+                [control]="filterCustomerIdControl"
+                customClass="w-full"
+                [horizontal]="false"
+                [filter]="true"
+                [noMargin]="true"
+              />
+            </div>
+            <div style="min-width: 180px">
+              <custom-input-select-signal
+                [data]="userTypeOptions"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Tipo de usuario"
+                [control]="filterUserTypeControl"
+                customClass="w-full"
+                [horizontal]="false"
+                [filter]="true"
+                [noMargin]="true"
+              />
+            </div>
+            <div style="min-width: 200px">
+              <custom-input-date-signal
+                [control]="filterDateRangeControl"
+                mode="range"
+                dateFormat="Y-m-d"
+                altFormat="d/m/Y"
+                placeholder="Rango de fecha"
+                [horizontal]="false"
+                [noMargin]="true"
+              />
+            </div>
+            <div class="flex flex-shrink-0">
+              <span
+                [pTooltip]="isSearchDisabled ? 'Complete todos los filtros para buscar' : ''"
+                tooltipPosition="top"
+              >
+                <custom-button
+                  label="Buscar"
+                  iconClass="mdi:magnify"
+                  (clicked)="onLoadData(true)"
+                  [disabled]="isSearchDisabled"
+                />
+              </span>
+            </div>
+          </div>
+        </div>
       </ng-template>
       <ng-template #header>
         <tr>

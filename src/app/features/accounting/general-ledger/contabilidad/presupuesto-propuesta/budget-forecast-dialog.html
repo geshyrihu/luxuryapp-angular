@@ -1,17 +1,29 @@
+<!--
+  ============================================================================
+  ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
+  ============================================================================
+  Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
+  FUNCIONAL y ESTABLE. 
+  
+  Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
+  sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
+  
+  Por favor, NO rompan el código.
+  ============================================================================
+-->
 @if (loading()) {
 <div class="flex align-items-center justify-content-center p-4">
   <app-icon [icon]="'mdi:spin'" class="text-4xl mr-3"></app-icon>
   <div class="text-lg">
-    Analizando patrones de gasto y calculando inflación
-    ({{inflationRate()}}%)...
+    Analizando patrones de gasto de los {{selectedMonthsForAvg().length}} meses seleccionados y calculando inflación ({{inflationRate()}}%)...
   </div>
 </div>
-} @if (!loading() && forecastData().length > 0) {
-<div>
-  <p class="mb-3 text-700">
-    La IA ha sugerido los siguientes montos mensuales basóndose en el
-    comportamiento histórico de cada cuenta. Revise y seleccione las que desea
-    aplicar.
+} 
+
+@if (!loading() && forecastData().length > 0) {
+<div class="flex flex-column h-full">
+  <p class="text-700 mb-3 mt-0">
+    La IA ha sugerido los siguientes montos mensuales. Revise y seleccione las que desea aplicar.
   </p>
 
   <p-table
@@ -22,7 +34,7 @@
     scrollHeight="400px"
     styleClass="p-datatable-sm p-datatable-striped"
   >
-    <ng-template #header>
+    <ng-template pTemplate="header">
       <tr>
         <th class="table-col-4rem">
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
@@ -30,17 +42,32 @@
         <th pSortableColumn="accountNumber">
           Cuenta <p-sortIcon field="accountNumber"></p-sortIcon>
         </th>
-        <th pSortableColumn="suggestedAmount">
+        <th pSortableColumn="currentAmount" class="text-right">
+          Psto Mensual Actual <p-sortIcon field="currentAmount"></p-sortIcon>
+        </th>
+        <th pSortableColumn="averageExpense" class="text-right">
+          Gasto Promedio ({{selectedMonthsForAvg().length}}m) <p-sortIcon field="averageExpense"></p-sortIcon>
+        </th>
+        <th pSortableColumn="suggestedAmount" class="text-right">
           Sugerido Mensual <p-sortIcon field="suggestedAmount"></p-sortIcon>
         </th>
         <th>Razonamiento IA</th>
       </tr>
     </ng-template>
-    <ng-template #body let-item>
+    <ng-template pTemplate="body" let-item>
       <tr>
         <td><p-tableCheckbox [value]="item"></p-tableCheckbox></td>
-        <td><span class="font-bold">{{item.accountNumber}}</span></td>
-        <td class="text-green-600 font-bold bg-green-50">
+        <td>
+          <div class="font-bold">{{item.accountNumber}}</div>
+          <div class="text-sm text-500">{{item.accountName}}</div>
+        </td>
+        <td class="text-right">
+          {{ item.currentAmount | currency:'$':'symbol':'1.0-0' }}
+        </td>
+        <td class="text-right font-bold text-blue-600 bg-blue-50">
+          {{ item.averageExpense | currency:'$':'symbol':'1.0-0' }}
+        </td>
+        <td class="text-right text-green-600 font-bold bg-green-50">
           {{ item.suggestedAmount | currency:'$':'symbol':'1.0-0' }}
         </td>
         <td class="text-sm font-italic text-600">{{ item.reasoning }}</td>
@@ -51,7 +78,7 @@
 
 <div class="flex justify-content-between align-items-center w-full mt-4">
   <div class="text-500 font-italic text-sm">
-    * Los montos se redondearon a centenas.
+    * Los montos sugeridos se redondearon a centenas.
   </div>
   <div>
     <custom-button

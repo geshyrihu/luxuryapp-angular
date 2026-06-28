@@ -121,7 +121,7 @@
 <!-- Modal para Comunicados de IA -->
 <p-dialog
   header="Generador de Comunicados IA"
-  [(visible)]="displayAiModal"
+  [visible]="displayAiModal()" (visibleChange)="displayAiModal.set($event)"
   [modal]="true"
   [style]="{ width: '800px', 'max-width': '95vw' }"
   [contentStyle]="{ 'max-height': '80vh', 'overflow-y': 'auto' }"
@@ -436,7 +436,7 @@
         icon="pi pi-refresh"
         severity="secondary"
         [text]="true"
-        (click)="userIdea.set(''); aiAnnouncementResult.set(null); aiAnnouncementImageResult.set(null)"
+        (click)="userIdeaControl.reset(''); aiAnnouncementResult.set(null); aiAnnouncementImageResult.set(null)"
       />
       <p-button
         label="Cerrar"
@@ -456,13 +456,13 @@
         icon="pi pi-face-smile"
         severity="secondary"
         (click)="generateOfficialAnnouncement('text')"
-        [disabled]="(userIdea() || '').trim().length === 0 || isGeneratingAnnouncement()"
+        [disabled]="!(userIdeaControl.value || '').trim() || isGeneratingAnnouncement()"
       />
       <!-- <p-button
         label="Póster Visual"
         icon="pi pi-image"
         (click)="generateOfficialAnnouncement('poster')"
-        [disabled]="(userIdea() || '').trim().length === 0 || isGeneratingAnnouncement()"
+        [disabled]="!(userIdeaControl.value || '').trim() || isGeneratingAnnouncement()"
       /> -->
       }
     </div>

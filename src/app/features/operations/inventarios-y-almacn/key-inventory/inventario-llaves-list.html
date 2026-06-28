@@ -54,13 +54,17 @@
       </td>
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="6">
-          <app-empty-state icon="mdi:key-outline" title="Sin llaves" message="No hay llaves registradas." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="6">
+        <app-empty-state
+          icon="mdi:key-outline"
+          title="Sin llaves"
+          message="No hay llaves registradas."
+        />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -72,9 +76,7 @@
   (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
 >
   <div customFilters style="padding: 4px 16px 8px">
-    <custom-button-download
-      (clicked)="onDownloadPdf()"
-    />
+    <custom-button-download (clicked)="onDownloadPdf()" />
   </div>
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
@@ -92,7 +94,10 @@
           margin-left: 16px;
         "
       >
-        <app-icon icon="mdi:key-outline" style="font-size: 20px; color:var(--ds-warning)"></app-icon>
+        <app-icon
+          icon="mdi:key-outline"
+          style="font-size: 20px; color: var(--ds-warning)"
+        ></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.descripcion }}</h3>
@@ -104,19 +109,18 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-        <custom-button-edit
-          (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-         label="Editar" [showLabelOnDesktop]="true"/>
-        <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
-              </ng-container>
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            label="Editar"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-delete
+            (confirmed)="onDelete(item.id)"
+            label="Eliminar"
+            [showLabelOnDesktop]="true"
+          />
+        </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>
 </app-data-view-mobile>
-
-
-
-
-
-
-

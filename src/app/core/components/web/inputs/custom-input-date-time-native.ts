@@ -10,7 +10,7 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { FlatpickrDirective } from "angularx-flatpickr";
 import { InputTextModule } from "primeng/inputtext";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
 @Component({
   selector: "custom-input-date-time-native",
@@ -109,3 +109,4 @@ export class CustomInputDateTimeNative implements OnInit {
     }
   }
 }
+

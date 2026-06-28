@@ -23,7 +23,7 @@ import { TagModule } from "primeng/tag";
 import { TextareaModule } from "primeng/textarea";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { ToolbarModule } from "primeng/toolbar";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 
 type TagSeverity = "success" | "info" | "warn" | "danger" | "secondary" | "contrast";
 
@@ -107,7 +107,7 @@ const GUIA_LABELS: Record<string, string> = {
           </div>
 
           <h3 class="text-xl font-bold mb-3">Identidad LuxuryApp ERP</h3>
-          <p-message severity="success" text="Diagnostico: la paleta actual es consistente para ERP corporativo. El azul #0b3164 es la firma principal y el gold #c9a84c es el acento premium documental." class="mb-4 block" />
+          <p-message severity="success" text="Diagnostico: la paleta actual es consistente para ERP corporativo. El azul #00050e es la firma principal y el gold #c9a74d es el acento premium documental." class="mb-4 block" />
           <div class="grid mb-4">
             @for (p of identityPillars; track p.title) {
             <div class="col-12 lg:col-4">
@@ -308,7 +308,7 @@ export class CatalogGuiaItem {
   ];
 
   readonly colorAssessment = [
-    { role: "Marca principal", current: "#0b3164 sobre blanco", verdict: "Consistente", recommendation: "Mantenerlo como azul corporativo.", severity: "success" as TagSeverity },
+    { role: "Marca principal", current: "#00050e sobre blanco", verdict: "Consistente", recommendation: "Mantenerlo como azul corporativo.", severity: "success" as TagSeverity },
     { role: "Sidebar y header", current: "#18181b", verdict: "Aceptable", recommendation: "Migrar a #020811 para alinear con primary-950.", severity: "info" as TagSeverity },
     { role: "Acento Luxury", current: "#C9A84C", verdict: "Adoptado como soporte", recommendation: "Usarlo en documentos, reportes y detalles premium.", severity: "warn" as TagSeverity },
     { role: "Warning", current: "#d97706 + #fef3c7", verdict: "Consistente", recommendation: "Ambar claro sobre fondo crema.", severity: "warn" as TagSeverity },

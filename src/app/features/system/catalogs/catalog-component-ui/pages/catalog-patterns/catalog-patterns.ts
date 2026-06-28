@@ -9,11 +9,11 @@ import { InputTextModule } from "primeng/inputtext";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TabsModule } from "primeng/tabs";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { ActionIconsGroupComponent } from "src/app/core/components/action-icons-group/action-icons-group.component";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
-import { EStatus, StatusBadge } from "src/app/core/components/status-badge/status-badge";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { ActionIconsGroupComponent } from "src/app/core/components/shared/action-icons-group/action-icons-group.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { EStatus, StatusBadge } from "src/app/core/components/shared/status-badge/status-badge";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { CustomButtonDelete, CustomButtonEdit } from "src/app/core/components/buttons/web";
 
 @Component({
@@ -96,7 +96,7 @@ import { CustomButtonDelete, CustomButtonEdit } from "src/app/core/components/bu
         <div class="col-12 lg:col-6">
           <p-card header="Login de Referencia">
             <p class="m-0 mb-3 text-sm text-color-secondary">
-              Vista de inicio de sesión como referencia de diseño. Demostración no funcional del flujo de autenticación.
+              Vista de inicio de sesiÃ³n como referencia de diseÃ±o. DemostraciÃ³n no funcional del flujo de autenticaciÃ³n.
             </p>
             <div class="surface-ground border-round p-4 flex flex-column gap-3" style="max-width: 400px">
               <div class="text-center mb-2">
@@ -104,23 +104,23 @@ import { CustomButtonDelete, CustomButtonEdit } from "src/app/core/components/bu
                   <app-icon [icon]="'bolt'" class="text-white text-2xl" />
                 </div>
                 <h3 class="m-0 text-lg font-bold">LuxuryApp</h3>
-                <span class="text-xs text-color-secondary">Sistema de Gestión Corporativa</span>
+                <span class="text-xs text-color-secondary">Sistema de GestiÃ³n Corporativa</span>
               </div>
-              <span class="font-medium text-sm">Correo electrónico</span>
+              <span class="font-medium text-sm">Correo electrÃ³nico</span>
               <input type="email" pInputText [(ngModel)]="loginForm.email" placeholder="admin@luxuryapp.com" class="w-full" />
-              <span class="font-medium text-sm">Contraseña</span>
-              <input type="password" pInputText [(ngModel)]="loginForm.password" placeholder="••••••••" class="w-full" />
+              <span class="font-medium text-sm">ContraseÃ±a</span>
+              <input type="password" pInputText [(ngModel)]="loginForm.password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" class="w-full" />
               <div class="flex align-items-center gap-2">
                 <p-checkbox [(ngModel)]="loginForm.remember" [binary]="true" inputId="remember" />
-                <label for="remember" class="font-normal text-sm">Recordar sesión</label>
+                <label for="remember" class="font-normal text-sm">Recordar sesiÃ³n</label>
               </div>
-              <p-button label="Iniciar Sesión" icon="mdi:login" styleClass="w-full" (onClick)="mockLogin()" />
+              <p-button label="Iniciar SesiÃ³n" icon="mdi:login" styleClass="w-full" (onClick)="mockLogin()" />
               @if (loginMessage()) {
               <p-message [severity]="loginMessage()!.includes('exitoso') ? 'success' : 'warn'" [text]="loginMessage()!" />
               }
               <p-divider></p-divider>
               <div class="flex justify-content-between text-sm">
-                <a class="cursor-pointer text-primary">¿Olvidaste tu contraseña?</a>
+                <a class="cursor-pointer text-primary">Â¿Olvidaste tu contraseÃ±a?</a>
                 <a class="cursor-pointer text-primary">Crear cuenta</a>
               </div>
             </div>
@@ -128,9 +128,9 @@ import { CustomButtonDelete, CustomButtonEdit } from "src/app/core/components/bu
         </div>
 
         <div class="col-12 lg:col-6">
-          <p-card header="Navegación de Referencia">
+          <p-card header="NavegaciÃ³n de Referencia">
             <p class="m-0 mb-3 text-sm text-color-secondary">
-              Patrones de navegación del admin template: sidebar, tabs y migas de pan (breadcrumbs).
+              Patrones de navegaciÃ³n del admin template: sidebar, tabs y migas de pan (breadcrumbs).
             </p>
             <div class="surface-ground border-round p-3 flex flex-column gap-3">
               <span class="font-medium text-sm">Breadcrumbs</span>
@@ -139,20 +139,20 @@ import { CustomButtonDelete, CustomButtonEdit } from "src/app/core/components/bu
                 <app-icon [icon]="'mdi:chevron-right'" class="text-xs" />
                 <a class="text-primary cursor-pointer">Sistema</a>
                 <app-icon [icon]="'mdi:chevron-right'" class="text-xs" />
-                <span class="text-color-secondary">Catálogo UI</span>
+                <span class="text-color-secondary">CatÃ¡logo UI</span>
               </nav>
               <p-divider></p-divider>
-              <span class="font-medium text-sm">Navegación por Tabs</span>
+              <span class="font-medium text-sm">NavegaciÃ³n por Tabs</span>
               <p-tabs value="0">
                 <p-tablist>
                   <p-tab value="0">Dashboard</p-tab>
                   <p-tab value="1">Reportes</p-tab>
-                  <p-tab value="2">Configuración</p-tab>
+                  <p-tab value="2">ConfiguraciÃ³n</p-tab>
                 </p-tablist>
                 <p-tabpanels>
                   <p-tabpanel value="0"><p class="m-0 text-sm text-color-secondary">Contenido del panel Dashboard.</p></p-tabpanel>
                   <p-tabpanel value="1"><p class="m-0 text-sm text-color-secondary">Contenido del panel Reportes.</p></p-tabpanel>
-                  <p-tabpanel value="2"><p class="m-0 text-sm text-color-secondary">Contenido del panel Configuración.</p></p-tabpanel>
+                  <p-tabpanel value="2"><p class="m-0 text-sm text-color-secondary">Contenido del panel ConfiguraciÃ³n.</p></p-tabpanel>
                 </p-tabpanels>
               </p-tabs>
             </div>
@@ -167,8 +167,8 @@ export class CatalogPatterns {
   EStatus = EStatus;
 
   readonly complexDataExample = [
-    { id: 1, name: "Medidor Eléctrico A1", folio: "E-1002", consumption: "120 kWh", status: EStatus.Concluido, icon: "mdi:flash-outline", color: "success" },
-    { id: 2, name: "Medidor Agua Central", folio: "W-2005", consumption: "45 m³", status: EStatus.Proceso, icon: "mdi:water-outline", color: "primary" },
+    { id: 1, name: "Medidor ElÃ©ctrico A1", folio: "E-1002", consumption: "120 kWh", status: EStatus.Concluido, icon: "mdi:flash-outline", color: "success" },
+    { id: 2, name: "Medidor Agua Central", folio: "W-2005", consumption: "45 mÂ³", status: EStatus.Proceso, icon: "mdi:water-outline", color: "primary" },
   ];
 
   loginForm = { email: "", password: "", remember: false };
@@ -179,6 +179,7 @@ export class CatalogPatterns {
       this.loginMessage.set("Completa ambos campos para continuar.");
       return;
     }
-    this.loginMessage.set(`Inicio de sesión exitoso (demo). Bienvenido, ${this.loginForm.email}`);
+    this.loginMessage.set(`Inicio de sesiÃ³n exitoso (demo). Bienvenido, ${this.loginForm.email}`);
   }
 }
+

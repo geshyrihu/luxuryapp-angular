@@ -1,3 +1,16 @@
+/**
+ * ============================================================================
+ * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
+ * ============================================================================
+ * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
+ * FUNCIONAL y ESTABLE. 
+ * 
+ * Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
+ * sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
+ * 
+ * Por favor, NO rompan el código.
+ * ============================================================================
+ */
 import { Injectable } from "@angular/core";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
@@ -22,284 +35,294 @@ export class ExcelExportService {
     const workbook = new ExcelJS.Workbook();
     const ws = workbook.addWorksheet("Resumen Presupuesto");
 
-    // --- ESTILOS REUTILIZABLES ---
-    const fontConsolas12 = { name: "Yu Gothic", size: 12 };
-    const fontConsolas13 = { name: "Yu Gothic", size: 13 };
-    const subtleBorderColor = "FFBDBDBD";
-    const border = {
-      top: { style: "thin" as const, color: { argb: subtleBorderColor } },
-      left: { style: "thin" as const, color: { argb: subtleBorderColor } },
-      bottom: { style: "thin" as const, color: { argb: subtleBorderColor } },
-      right: { style: "thin" as const, color: { argb: subtleBorderColor } },
-    };
-    const numberFormat = "#,##0";
-    const percentageFormat = "0%";
-    const evenRowFill = {
-      type: "pattern" as const,
-      pattern: "solid" as const,
-      fgColor: { argb: "FFF5F5F5" },
-    };
-    const groupRowFill = {
-      type: "pattern" as const,
-      pattern: "solid" as const,
-      fgColor: { argb: "FFE0E0E0" },
+    // ── ESTILOS BASE ──────────────────────────────────────────────────────────
+    const fontBase   = { name: "Yu Gothic", size: 10 };
+    const fontHeader = { name: "Yu Gothic", size: 11 };
+    // "#,##0" para positivos, igual para negativos, "-" para cero
+    const numFmt  = `#,##0;-#,##0;"-"`;
+    const pctFmt  = `0%;-0%;"-"`;
+    const bClr    = "FFBDBDBD";
+    const dotClr  = "FFCCCCCC";
+    const mkBorder = (bottom?: ExcelJS.BorderStyle): ExcelJS.Borders => ({
+      top:      { style: "thin",  color: { argb: bClr } },
+      left:     { style: "thin",  color: { argb: bClr } },
+      right:    { style: "thin",  color: { argb: bClr } },
+      bottom:   { style: bottom ?? "thin", color: { argb: bottom === "dotted" ? dotClr : bClr } },
+      diagonal: {},
+    });
+
+    const fillGroup  = { type: "pattern" as const, pattern: "solid" as const, fgColor: { argb: "FF2F5496" } };
+    const fillPsto   = { type: "pattern" as const, pattern: "solid" as const, fgColor: { argb: "FFD9E1F2" } };
+    const fillGasto  = { type: "pattern" as const, pattern: "solid" as const, fgColor: { argb: "FFFFFFFF" } };
+    const fillFooter = { type: "pattern" as const, pattern: "solid" as const, fgColor: { argb: "FF1F3864" } };
+    const fillFooterG= { type: "pattern" as const, pattern: "solid" as const, fgColor: { argb: "FF2F5496" } };
+
+    const applyNum = (cell: ExcelJS.Cell, bold = false, color = "FF1F1F1F", fill = fillGasto, isBottom = false) => {
+      cell.numFmt    = numFmt;
+      cell.font      = { ...fontBase, bold, color: { argb: color } };
+      cell.alignment = { vertical: "middle" as const, horizontal: "right" };
+      cell.fill      = fill;
+      cell.border    = mkBorder(isBottom ? undefined : "dotted");
     };
 
-    // --- DEFINICIÓN DE COLUMNAS ---
-    const columns: Partial<ExcelJS.Column>[] = [
-      {
-        header: "CUENTA",
-        key: "accountName",
-        width: 40,
-        style: {
-          font: fontConsolas12,
-          alignment: { vertical: "middle" as const },
-        },
-      },
+    // ── COLUMNAS ──────────────────────────────────────────────────────────────
+    // A (1)   : Número de cuenta
+    // B (2)   : Descripción
+    // C–N (3–14): 12 meses  →  presupuesto en fila-P, gasto en fila-G
+    // O (15)  : PSTO ACTUAL     — fila-P
+    // P (16)  : PROM GASTO      — fila-G  (=AVERAGE C:N de esa fila)
+    // Q (17)  : PSTO PROPUESTO  — fila-P
+    // R (18)  : DIF             — fila-P  (=Q-O)
+    // S (19)  : % CAMBIO        — fila-P
+    const TOTAL_COLS = 19;
+    ws.columns = [
+      { header: "CUENTA",       key: "num",           width: 14 },
+      { header: "DESCRIPCIÓN",  key: "desc",          width: 36 },
       ...meses.map((mes) => ({
         header: mes.substring(0, 3).toUpperCase(),
-        key: "gasto" + mes.charAt(0).toUpperCase() + mes.slice(1),
-        width: 15,
-        style: {
-          font: fontConsolas12,
-          numFmt: numberFormat,
-          alignment: { vertical: "middle" as const },
-        },
+        key:    `m_${mes}`,
+        width:  11,
       })),
-      {
-        header: "PRESUPUESTO ACTUAL (MENSUAL)",
-        key: "currentAmount",
-        width: 15,
-        style: {
-          font: fontConsolas12,
-          numFmt: numberFormat,
-          alignment: { vertical: "middle" as const },
-        },
-      },
-      {
-        header: "PROMEDIO MENSUAL GASTADO",
-        key: "promedioGasto",
-        width: 15,
-        style: {
-          font: fontConsolas12,
-          numFmt: numberFormat,
-          alignment: { vertical: "middle" as const },
-        },
-      },
-      {
-        header: `PSTO (${fiscalYear}) MENSUAL`,
-        key: "proposedAmount",
-        width: 15,
-        style: {
-          font: fontConsolas12,
-          numFmt: numberFormat,
-          alignment: { vertical: "middle" as const },
-        },
-      },
-      {
-        header: "DIF (FORMULADO)",
-        key: "dif",
-        width: 15,
-        style: {
-          font: fontConsolas12,
-          numFmt: numberFormat,
-          alignment: { vertical: "middle" as const },
-        },
-      },
-      {
-        header: "% CAMBIO (FORMULADO)",
-        key: "porcentajeCambio",
-        width: 15,
-        style: {
-          font: fontConsolas12,
-          numFmt: percentageFormat,
-          alignment: { vertical: "middle" as const },
-        },
-      },
+      { header: "PSTO ACTUAL",        key: "currentAmount",   width: 16 },
+      { header: "PROM GASTO",         key: "promedioGasto",   width: 16 },
+      { header: `PSTO ${fiscalYear}`, key: "proposedAmount",  width: 16 },
+      { header: "DIF",                key: "dif",             width: 14 },
+      { header: "% CAMBIO",           key: "pct",             width: 12 },
     ];
-    ws.columns = columns;
 
-    // --- CONFIGURACIÓN DE LA VISTA ---
-    ws.views = [{ state: "frozen", xSplit: 1, ySplit: 1 }];
-    const lastColumnLetter = String.fromCharCode(64 + ws.columns.length);
-    ws.autoFilter = `A1:${lastColumnLetter}1`;
+    // ── VISTA / AUTOFILTRO ────────────────────────────────────────────────────
+    ws.views = [{ state: "frozen", xSplit: 2, ySplit: 1 }]; // congela las 2 primeras columnas
+    ws.autoFilter = "A1:S1";
 
-    // --- FORMATO DE ENCABEZADOS ---
-    const headerRow = ws.getRow(1);
-    headerRow.height = 30;
-    headerRow.eachCell((cell) => {
-      cell.font = { ...fontConsolas13, bold: true };
-      cell.fill = {
-        type: "pattern",
-        pattern: "solid",
-        fgColor: { argb: "FFD3D3D3" },
-      };
-      cell.alignment = {
-        vertical: "middle",
-        horizontal: "center",
-        wrapText: true,
-      };
-      cell.border = border;
-    });
+    // ── ENCABEZADO ────────────────────────────────────────────────────────────
+    const hRow = ws.getRow(1);
+    hRow.height = 34;
+    for (let c = 1; c <= TOTAL_COLS; c++) {
+      const cell = hRow.getCell(c);
+      cell.font      = { ...fontHeader, bold: true, color: { argb: "FFFFFFFF" } };
+      cell.fill      = { type: "pattern", pattern: "solid", fgColor: { argb: "FF1F3864" } };
+      cell.alignment = { vertical: "middle", horizontal: "center", wrapText: true };
+      cell.border    = mkBorder();
+    }
 
-    // --- INSERCIÓN Y ESTILO DE DATOS ---
-    cuentas.forEach((item) => {
-      const isAgrupadora = !!item.esFilaAgrupadora;
-      const rowNumber = ws.rowCount + 1;
+    // ── ACUMULADORES PARA EL PIE ──────────────────────────────────────────────
+    const sumPsto: number[]  = new Array(12).fill(0);
+    const sumGasto: number[] = new Array(12).fill(0);
+    let sumCurrentAmt  = 0;
+    let sumProposedAmt = 0;
 
-      const rowData: any = { accountName: item.accountName };
-
-      meses.forEach((mes) => {
-        const key = "gasto" + mes.charAt(0).toUpperCase() + mes.slice(1);
-        rowData[key] = isAgrupadora ? null : Number(item[key]) || 0;
-      });
-
-      rowData.currentAmount = isAgrupadora
-        ? null
-        : Number(item.currentAmount) || 0;
-
-      if (isAgrupadora) {
-        rowData.promedioGasto = null;
-        rowData.proposedAmount = null;
-        rowData.dif = null;
-        rowData.porcentajeCambio = null;
-      } else {
-        const monthlyExpensesRange = `B${rowNumber}:M${rowNumber}`;
-        const currentAnnualCell = `N${rowNumber}`;
-        const proposedAnnualCell = `P${rowNumber}`;
-
-        rowData.promedioGasto = { formula: `AVERAGE(${monthlyExpensesRange})` };
-        rowData.proposedAmount = Number(item.proposedAmount) || 0;
-        rowData.dif = { formula: `${proposedAnnualCell}-${currentAnnualCell}` };
-        rowData.porcentajeCambio = {
-          formula: `IF(${currentAnnualCell}=0,IF(${proposedAnnualCell}>0,1,0),(${proposedAnnualCell}-${currentAnnualCell})/${currentAnnualCell})`,
-        };
-      }
-
-      const row = ws.addRow(rowData);
-      row.height = 20;
-
-      // Estilos de fila (agrupadora, alterno)
-      if (isAgrupadora) {
-        row.fill = groupRowFill;
-      } else if (rowNumber % 2 === 0) {
-        row.fill = evenRowFill;
-      }
-
-      row.eachCell({ includeEmpty: true }, (cell, colNumber) => {
-        cell.border = border;
-        const colDef = ws.columns[colNumber - 1];
-        if (isAgrupadora) {
-          cell.font = { ...fontConsolas12, bold: true };
-        }
-        if (colDef.numFmt && colDef.key !== "accountName") {
-          cell.alignment = { vertical: "middle" as const, horizontal: "right" };
-        }
-      });
-
-      if (!isAgrupadora) {
-        const proposedCell = row.getCell("proposedAmount");
-        proposedCell.protection = { locked: false };
-      }
-    });
-
-    const lastDataRowNumber = ws.rowCount;
-
-    // --- FORMATO CONDICIONAL ---
-    const difColumnLetter = "Q";
-    const percentColumnLetter = "R";
-
-    ws.addConditionalFormatting({
-      ref: `${difColumnLetter}2:${difColumnLetter}${lastDataRowNumber}`,
-      rules: [
-        {
-          type: "cellIs",
-          operator: "greaterThan",
-          formulae: [0],
-          style: { font: { color: { argb: "FFFF0000" }, bold: true } }, // Rojo
-          priority: 1,
-        },
-        {
-          type: "cellIs",
-          operator: "lessThan",
-          formulae: [0],
-          style: { font: { color: { argb: "FF008000" }, bold: true } }, // Verde
-          priority: 2,
-        },
-      ],
-    });
-    ws.addConditionalFormatting({
-      ref: `${percentColumnLetter}2:${percentColumnLetter}${lastDataRowNumber}`,
-      rules: [
-        {
-          type: "cellIs",
-          operator: "greaterThan",
-          formulae: [0],
-          style: { font: { color: { argb: "FFFF0000" }, bold: true } }, // Rojo
-          priority: 1,
-        },
-        {
-          type: "cellIs",
-          operator: "lessThan",
-          formulae: [0],
-          style: { font: { color: { argb: "FF008000" }, bold: true } }, // Verde
-          priority: 2,
-        },
-      ],
-    });
-
-    // --- FILA DE TOTALES ---
-    const footerRowData: any[] = ["TOTALES"];
-    ws.columns.forEach((column, index) => {
-      if (index > 0) {
-        const colLetter = String.fromCharCode(65 + index);
-        if (column.key === "porcentajeCambio") {
-          footerRowData.push(null);
-        } else {
-          footerRowData.push({
-            formula: `SUM(${colLetter}2:${colLetter}${lastDataRowNumber})`,
-          });
-        }
-      }
-    });
-
-    const footerRow = ws.addRow(footerRowData);
-    footerRow.height = 20;
-
-    const totalCurrentCell = `N${footerRow.number}`;
-    const totalProposedCell = `P${footerRow.number}`;
-    footerRow.getCell("porcentajeCambio").value = {
-      formula: `IF(${totalCurrentCell}=0,IF(${totalProposedCell}>0,1,0),(${totalProposedCell}-${totalCurrentCell})/${totalCurrentCell})`,
-    };
-
-    footerRow.eachCell({ includeEmpty: true }, (cell) => {
-      cell.font = {
-        ...fontConsolas13,
-        bold: true,
-        color: { argb: "FFFFFFFF" },
-      };
-      cell.fill = {
-        type: "pattern",
-        pattern: "solid",
-        fgColor: { argb: "FF245074" },
-      };
-      cell.border = {
-        ...border,
-        top: { style: "medium" as const, color: { argb: "FF757575" } },
-      };
+    // helper estilar celda numérica ya añadida al row
+    const styleCell = (
+      cell: ExcelJS.Cell,
+      fill: ExcelJS.Fill,
+      bold = false,
+      color = "FF1F1F1F",
+      border: ExcelJS.Borders = mkBorder(),
+      fmt = numFmt,
+    ) => {
+      cell.numFmt    = fmt;
+      cell.font      = { ...fontBase, bold, color: { argb: color } };
       cell.alignment = { vertical: "middle" as const, horizontal: "right" };
-    });
-    footerRow.getCell(1).alignment = {
-      vertical: "middle" as const,
-      horizontal: "left",
+      cell.fill      = fill;
+      cell.border    = border;
     };
 
-    // --- PROTECCIÓN Y DESCARGA ---
-    await ws.protect("luxury", {
-      selectLockedCells: true,
-      selectUnlockedCells: true,
+    // ── DATOS ─────────────────────────────────────────────────────────────────
+    cuentas.forEach((item) => {
+      const isGroup = !!item.esFilaAgrupadora;
+
+      if (isGroup) {
+        // Fila agrupadora: A+B combinadas
+        const rn  = ws.rowCount + 1;
+        const row = ws.addRow({ num: item.accountNumber, desc: item.accountName });
+        row.height = 22;
+        ws.mergeCells(rn, 1, rn, 2);
+        const nc = row.getCell("num");
+        nc.value     = item.accountName;
+        nc.font      = { ...fontBase, bold: true, color: { argb: "FFFFFFFF" } };
+        nc.alignment = { vertical: "middle", horizontal: "left", indent: 1 };
+        nc.fill      = fillGroup;
+        nc.border    = mkBorder();
+        for (let c = 2; c <= TOTAL_COLS; c++) {
+          row.getCell(c).fill   = fillGroup;
+          row.getCell(c).border = mkBorder();
+        }
+        return;
+      }
+
+      // Valores resumen
+      const curVal  = Number(item.currentAmount)  || 0;
+      const propVal = Number(item.proposedAmount) || 0;
+      sumCurrentAmt  += curVal;
+      sumProposedAmt += propVal;
+
+      // ── Fila PRESUPUESTO: usamos las keys de columna ──────────────────────
+      const pstoData: Record<string, any> = {
+        num:            item.accountNumber,
+        desc:           item.accountName,
+        currentAmount:  curVal,
+        proposedAmount: propVal,
+      };
+      meses.forEach((mes, i) => {
+        const k = "presupuesto" + mes.charAt(0).toUpperCase() + mes.slice(1);
+        const v = Number(item[k]) || 0;
+        pstoData[`m_${mes}`] = v;
+        sumPsto[i] += v;
+      });
+
+      const pRow  = ws.rowCount + 1;
+      const rowP  = ws.addRow(pstoData);
+      rowP.height = 17;
+
+      // A: número de cuenta
+      const cn = rowP.getCell("num");
+      cn.font      = { ...fontBase, bold: true, color: { argb: "FF1F3864" } };
+      cn.alignment = { vertical: "middle", horizontal: "left" };
+      cn.fill      = fillPsto;
+      cn.border    = mkBorder("dotted");
+
+      // B: descripción
+      const cd = rowP.getCell("desc");
+      cd.font      = { ...fontBase, color: { argb: "FF333333" } };
+      cd.alignment = { vertical: "middle", horizontal: "left", wrapText: true };
+      cd.fill      = fillPsto;
+      cd.border    = mkBorder("dotted");
+
+      // C–N: presupuesto mensual
+      meses.forEach((mes) => styleCell(rowP.getCell(`m_${mes}`), fillPsto, false, "FF404040", mkBorder("dotted")));
+
+      // O: PSTO ACTUAL
+      styleCell(rowP.getCell("currentAmount"), fillPsto, false, "FF404040", mkBorder("dotted"));
+
+      // P: vacío
+      rowP.getCell("promedioGasto").fill   = fillPsto;
+      rowP.getCell("promedioGasto").border = mkBorder("dotted");
+
+      // Q: PSTO PROPUESTO — editable
+      styleCell(rowP.getCell("proposedAmount"), fillPsto, true, "FF1F3864", mkBorder("dotted"));
+      rowP.getCell("proposedAmount").protection = { locked: false };
+
+      // R: DIF
+      const cDif = rowP.getCell("dif");
+      cDif.value = { formula: `Q${pRow}-O${pRow}` };
+      styleCell(cDif, fillPsto, true, "FF1F1F1F", mkBorder("dotted"));
+
+      // S: % CAMBIO
+      const cPct = rowP.getCell("pct");
+      cPct.value = { formula: `IF(O${pRow}=0,IF(Q${pRow}>0,1,0),(Q${pRow}-O${pRow})/O${pRow})` };
+      styleCell(cPct, fillPsto, true, "FF1F1F1F", mkBorder("dotted"), pctFmt);
+
+      // ── Fila GASTO: usamos las keys de columna ────────────────────────────
+      const gastoData: Record<string, any> = { num: null, desc: null };
+      meses.forEach((mes, i) => {
+        const gk  = "gasto"        + mes.charAt(0).toUpperCase() + mes.slice(1);
+        const pk  = "presupuesto"  + mes.charAt(0).toUpperCase() + mes.slice(1);
+        const val = Number(item[gk]) || 0;
+        gastoData[`m_${mes}`]        = val;
+        gastoData[`exc_${mes}`]      = val > 0 && (Number(item[pk]) || 0) > 0 && val > (Number(item[pk]) || 0);
+        sumGasto[i] += val;
+      });
+
+      const gRow  = ws.rowCount + 1;
+      const rowG  = ws.addRow(gastoData);
+      rowG.height = 17;
+
+      // A y B vacíos en fila gasto
+      rowG.getCell("num").fill   = fillGasto;
+      rowG.getCell("num").border = mkBorder();
+      rowG.getCell("desc").fill  = fillGasto;
+      rowG.getCell("desc").border = mkBorder();
+
+      // C–N: gasto mensual con rojo si excede
+      meses.forEach((mes) => {
+        const excede = !!gastoData[`exc_${mes}`];
+        styleCell(rowG.getCell(`m_${mes}`), fillGasto, excede, excede ? "FFC00000" : "FF1F1F1F");
+      });
+
+      // O: vacío
+      rowG.getCell("currentAmount").fill   = fillGasto;
+      rowG.getCell("currentAmount").border = mkBorder();
+
+      // P: PROM GASTO — fórmula AVERAGEIF ignorando ceros
+      const cProm = rowG.getCell("promedioGasto");
+      cProm.value = { formula: `IFERROR(AVERAGEIF(C${gRow}:N${gRow},"<>0"),0)` };
+      styleCell(cProm, fillGasto, false, "FF404040");
+
+      // Q, R, S vacíos
+      for (const k of ["proposedAmount", "dif", "pct"]) {
+        rowG.getCell(k).fill   = fillGasto;
+        rowG.getCell(k).border = mkBorder();
+      }
+
+      // ── Combinar A y B de las dos filas ──────────────────────────────────
+      ws.mergeCells(pRow, 1, gRow, 1);
+      ws.mergeCells(pRow, 2, gRow, 2);
+      ws.getCell(pRow, 1).alignment = { vertical: "middle", horizontal: "left" };
+      ws.getCell(pRow, 2).alignment = { vertical: "middle", horizontal: "left", wrapText: true };
+      ws.getCell(pRow, 1).border    = mkBorder();
+      ws.getCell(pRow, 2).border    = mkBorder();
     });
 
+    const lastData = ws.rowCount;
+
+    // ── FORMATO CONDICIONAL (DIF=R, %=S) ─────────────────────────────────────
+    const cfRules = [
+      { type: "cellIs" as const, operator: "greaterThan" as const, formulae: [0],
+        style: { font: { color: { argb: "FFC00000" }, bold: true } }, priority: 1 },
+      { type: "cellIs" as const, operator: "lessThan" as const, formulae: [0],
+        style: { font: { color: { argb: "FF375623" }, bold: true } }, priority: 2 },
+    ];
+    ws.addConditionalFormatting({ ref: `R2:R${lastData}`, rules: cfRules });
+    ws.addConditionalFormatting({ ref: `S2:S${lastData}`, rules: cfRules });
+
+    // ── PIE: TOTAL PRESUPUESTO ────────────────────────────────────────────────
+    const pstoFooterData: Record<string, any> = {
+      num: "TOTAL", desc: "PRESUPUESTO",
+      currentAmount: sumCurrentAmt, proposedAmount: sumProposedAmt,
+      dif: sumProposedAmt - sumCurrentAmt,
+      pct: sumCurrentAmt > 0 ? (sumProposedAmt - sumCurrentAmt) / sumCurrentAmt : 0,
+    };
+    meses.forEach((mes, i) => { pstoFooterData[`m_${mes}`] = sumPsto[i]; });
+
+    const fpRow = ws.addRow(pstoFooterData);
+    fpRow.height = 22;
+    ws.mergeCells(fpRow.number, 1, fpRow.number, 2);
+    fpRow.getCell(1).value     = "TOTAL PRESUPUESTO";
+    fpRow.getCell(1).alignment = { vertical: "middle", horizontal: "left" };
+    fpRow.getCell("pct").numFmt = pctFmt;
+    fpRow.eachCell({ includeEmpty: true }, (cell, ci) => {
+      cell.font      = { ...fontHeader, bold: true, color: { argb: "FFFFFFFF" } };
+      cell.fill      = fillFooter;
+      cell.border    = mkBorder();
+      cell.alignment = ci <= 2
+        ? { vertical: "middle", horizontal: "left" }
+        : { vertical: "middle", horizontal: "right" };
+      if (ci > 2) cell.numFmt = cell.numFmt || numFmt;
+    });
+
+    // ── PIE: TOTAL GASTO ─────────────────────────────────────────────────────
+    const gastoFooterData: Record<string, any> = {
+      num: "TOTAL", desc: "GASTO",
+      promedioGasto: sumGasto.reduce((s, v) => s + v, 0) / 12,
+    };
+    meses.forEach((mes, i) => { gastoFooterData[`m_${mes}`] = sumGasto[i]; });
+
+    const fgRow = ws.addRow(gastoFooterData);
+    fgRow.height = 22;
+    ws.mergeCells(fgRow.number, 1, fgRow.number, 2);
+    fgRow.getCell(1).value     = "TOTAL GASTO";
+    fgRow.getCell(1).alignment = { vertical: "middle", horizontal: "left" };
+    fgRow.eachCell({ includeEmpty: true }, (cell, ci) => {
+      cell.font      = { ...fontHeader, bold: true, color: { argb: "FFFFFFFF" } };
+      cell.fill      = fillFooterG;
+      cell.border    = mkBorder();
+      cell.alignment = ci <= 2
+        ? { vertical: "middle", horizontal: "left" }
+        : { vertical: "middle", horizontal: "right" };
+      if (ci > 2) cell.numFmt = numFmt;
+    });
+
+    // ── DESCARGA ──────────────────────────────────────────────────────────────
     const buffer = await workbook.xlsx.writeBuffer();
     saveAs(new Blob([buffer]), `ResumenPresupuesto${fiscalYear}.xlsx`);
   }

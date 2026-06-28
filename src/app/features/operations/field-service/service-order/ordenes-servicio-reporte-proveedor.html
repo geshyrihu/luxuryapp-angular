@@ -16,7 +16,10 @@
           [href]="item.document"
           class="pointer text-danger mr-1"
         >
-          <app-icon [icon]="'mdi:download'" class="icon icon- label-icon text-danger"></app-icon>
+          <app-icon
+            [icon]="'mdi:download'"
+            class="icon icon- label-icon text-danger"
+          ></app-icon>
           Pdf
         </a>
       </td>
@@ -31,18 +34,15 @@
       <!-- Opciones -->
     </tr>
   </ng-template>
-  <ng-template pTemplate="emptymessage">
+  <ng-template #emptymessage>
     <tr>
       <td colspan="7">
-        <app-empty-state icon="mdi:wrench-outline" title="Sin órdenes" message="No hay órdenes de servicio para este proveedor." />
+        <app-empty-state
+          icon="mdi:wrench-outline"
+          title="Sin órdenes"
+          message="No hay órdenes de servicio para este proveedor."
+        />
       </td>
     </tr>
   </ng-template>
 </p-table>
-
-
-
-
-
-
-

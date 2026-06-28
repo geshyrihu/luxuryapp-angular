@@ -1,16 +1,16 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IonAvatar } from "@ionic/angular/standalone";
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { CustomButtonItem } from "src/app/core/components/buttons/web";
 import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/custom-button-active-desactive";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { EDepartament } from "src/app/core/enums/EDepartament";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -52,22 +52,22 @@ export class EmployeeList {
   activo = signal<boolean>(true);
 
   readonly departamentLabels: Record<number, string> = {
-    [EDepartament.Administracion]: "Administración",
+    [EDepartament.Administracion]: "AdministraciÃ³n",
     [EDepartament.Legal]: "Legal",
     [EDepartament.Contabilidad]: "Contabilidad",
     [EDepartament.Mantenimiento]: "Mantenimiento",
     [EDepartament.Limpieza]: "Limpieza",
     [EDepartament.Operaciones]: "Operaciones",
-    [EDepartament.Jardineria]: "Jardinería",
+    [EDepartament.Jardineria]: "JardinerÃ­a",
     [EDepartament.Sistemas]: "Sistemas",
     [EDepartament.Seguridad]: "Seguridad",
     [EDepartament.Constructora]: "Constructora",
-    [EDepartament.Supervision]: "Supervisión",
-    [EDepartament.Direcciones]: "Dirección",
+    [EDepartament.Supervision]: "SupervisiÃ³n",
+    [EDepartament.Direcciones]: "DirecciÃ³n",
     [EDepartament.RecusrosHumanos]: "Recursos Humanos",
     [EDepartament.Reclutamiento]: "Reclutamiento",
-    [EDepartament.Recepcion]: "Recepción",
-    [EDepartament.Mensajeria]: "Mensajería",
+    [EDepartament.Recepcion]: "RecepciÃ³n",
+    [EDepartament.Mensajeria]: "MensajerÃ­a",
     [EDepartament.Ludoteca]: "Ludoteca",
     [EDepartament.NA]: "Sin Departamento",
   };

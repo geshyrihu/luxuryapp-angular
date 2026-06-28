@@ -1,4 +1,4 @@
-﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { MenuItem } from "primeng/api";
 import { DividerModule } from "primeng/divider";
@@ -6,14 +6,14 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { Menu, MenuModule } from "primeng/menu";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import {
   CustomButtonDelete,
   CustomButtonEdit,
 } from "src/app/core/components/buttons/web";
 import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -110,7 +110,7 @@ export class CalendarioMaestroLista implements OnInit {
     this.dialogHandlerS.openDialog(
       DatosServicioAddOrEdit,
       data,
-      "Información de servicio",
+      "Informaci�n de servicio",
       this.dialogHandlerS.sizeLg,
     );
   }

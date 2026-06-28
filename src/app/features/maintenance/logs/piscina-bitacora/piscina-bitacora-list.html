@@ -50,22 +50,28 @@
       <td class="text-center">{{ item.aplicationPhMas }}</td>
       <td class="text-center">{{ item.aplicationPhMenos }}</td>
       <td class="text-center">
-        <i
-          class="icon"
-          [class]="item.cepillado ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"
-        ></i>
+        <app-icon
+          [icon]="item.cepillado ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.cepillado"
+          [class.text-red-600]="!item.cepillado"
+        />
       </td>
       <td class="text-center">
-        <i
-          class="icon"
-          [class]="item.aspirado ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"
-        ></i>
+        <app-icon
+          [icon]="item.aspirado ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.aspirado"
+          [class.text-red-600]="!item.aspirado"
+        />
       </td>
       <td class="text-center">
-        <i
-          class="icon"
-          [class]="item.cenefas ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"
-        ></i>
+        <app-icon
+          [icon]="item.cenefas ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.cenefas"
+          [class.text-red-600]="!item.cenefas"
+        />
       </td>
 
       <!-- Opciones -->
@@ -74,21 +80,24 @@
         <div class="flex justify-content-center">
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-/>
-          <custom-button-delete (confirmed)="onDelete(item.id)"
-/>
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
       <!-- Opciones -->
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="13">
-          <app-empty-state icon="mdi:pool" title="Sin registros" message="No hay registros de piscina." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="13">
+        <app-empty-state
+          icon="mdi:pool"
+          title="Sin registros"
+          message="No hay registros de piscina."
+        />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -105,14 +114,24 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-info-light,#e0f2fe);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-info-light, #e0f2fe);
+        "
       >
-        <app-icon icon="mdi:pool" style="font-size:1.1rem;color:var(--ds-info);"></app-icon>
+        <app-icon
+          icon="mdi:pool"
+          style="font-size: 1.1rem; color: var(--ds-info)"
+        ></app-icon>
       </div>
       <ion-label>
         <div class="flex justify-content-between align-items-center mb-1">
           <h2 class="font-bold m-0 text-base">
-            <app-icon [icon]="'mdi:calendar'" class="mr-1 text-primary"></app-icon>
+            <app-icon
+              [icon]="'mdi:calendar'"
+              class="mr-1 text-primary"
+            ></app-icon>
             {{ item.dateString }}
           </h2>
         </div>
@@ -168,9 +187,14 @@
           <ng-container actions>
             <custom-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
- label="Editar" [showLabelOnDesktop]="true"/>
-            <custom-button-delete (confirmed)="onDelete(item.id)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
+              label="Editar"
+              [showLabelOnDesktop]="true"
+            />
+            <custom-button-delete
+              (confirmed)="onDelete(item.id)"
+              label="Eliminar"
+              [showLabelOnDesktop]="true"
+            />
           </ng-container>
         </app-action-menu>
       </div>

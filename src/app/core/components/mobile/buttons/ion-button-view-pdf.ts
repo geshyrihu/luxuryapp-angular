@@ -3,8 +3,8 @@ import { Component, inject, input } from "@angular/core";
 import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { chevronForwardOutline, documentOutline } from "ionicons/icons";
-import { BaseIonicButton } from "../base/base-ionic-button";
-import { PdfViewerModal } from "../../pdf-viewer-modal/pdf-viewer-modal";
+import { BaseIonicButton } from "../../buttons/base/base-ionic-button";
+import { PdfViewerModal } from "../../shared/pdf-viewer-modal/pdf-viewer-modal";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 
 @Component({
@@ -50,3 +50,5 @@ export class IonButtonViewPdf extends BaseIonicButton {
     addIcons({ documentOutline, chevronForwardOutline });
   }
 }
+
+

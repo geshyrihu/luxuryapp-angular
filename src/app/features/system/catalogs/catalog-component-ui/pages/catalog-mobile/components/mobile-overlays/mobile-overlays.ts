@@ -30,6 +30,7 @@ import {
   refreshOutline,
   warningOutline,
 } from "ionicons/icons";
+import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-styles";
 
 @Component({
   selector: "app-mobile-overlays",
@@ -183,11 +184,89 @@ import {
         </ion-content>
       </ng-template>
     </ion-modal>
+
+    <!-- ─── PATRÓN: Rating & Feedback (ui-stiich Corporate Integrity) ─── -->
+    <div class="stiich-section">
+      <div class="stiich-section__header">
+        <span class="stiich-section__eyebrow">Corporate Integrity</span>
+        <h4 class="stiich-section__title">Rating & Feedback — valoración y comentarios</h4>
+      </div>
+      <p class="stiich-section__desc">
+        Componente de valoración con estrellas, feedback rápido y campo de comentario.
+        Inspirado en <code>rating_y_feedback_modo_claro</code>.
+      </p>
+      <div class="stiich-rating-card">
+        <div class="stiich-rating-header">
+          <span class="material-symbols-outlined stiich-rating-header__icon">rate_review</span>
+          <span class="stiich-rating-header__title">Califica tu experiencia</span>
+        </div>
+        <div class="stiich-rating-body">
+          <div class="stiich-stars">
+            @for (s of [1,2,3,4,5]; track s) {
+              <button class="stiich-star" [class.stiich-star--filled]="s <= rating()" (click)="setRating(s)">
+                <span class="material-symbols-outlined stiich-star__icon">
+                  {{ s <= rating() ? 'star' : 'star' }}
+                </span>
+              </button>
+            }
+          </div>
+          <p class="stiich-rating-label">{{ ratingLabel() }}</p>
+
+          <div class="stiich-feedback-row">
+            <button class="stiich-feedback-btn" [class.stiich-feedback-btn--active]="feedback() === 'like'" (click)="feedback.set('like')">
+              <span class="material-symbols-outlined">thumb_up</span>
+              <span>Me gusta</span>
+            </button>
+            <button class="stiich-feedback-btn" [class.stiich-feedback-btn--active]="feedback() === 'dislike'" (click)="feedback.set('dislike')">
+              <span class="material-symbols-outlined">thumb_down</span>
+              <span>No me gusta</span>
+            </button>
+            <button class="stiich-feedback-btn" [class.stiich-feedback-btn--active]="feedback() === 'idea'" (click)="feedback.set('idea')">
+              <span class="material-symbols-outlined">lightbulb</span>
+              <span>Sugerencia</span>
+            </button>
+          </div>
+
+          @if (feedback()) {
+            <div class="stiich-comment-area">
+              <textarea class="stiich-textarea" placeholder="Cuéntanos más..." rows="3"></textarea>
+              <button class="stiich-btn-block stiich-btn-block--primary">Enviar feedback</button>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
   `,
-  styles: [`
-    .mobile-card { background: var(--ds-bg-surface,#fff); border: 1px solid var(--ds-border,#e2e8f0); border-radius: var(--ds-radius-lg,8px); overflow: hidden; }
-    .mobile-card-header { padding: 0.75rem 1rem; background: var(--ds-bg-elevated,#f4f5f8); font-weight: 600; font-size: var(--ds-font-size-body,0.9375rem); color: var(--ds-text-primary); border-bottom: 1px solid var(--ds-border,#e2e8f0); }
-    .mobile-card-body { padding: 1rem; }
+  styles: [MOBILE_SHOWCASE_STYLES, `
+    /* ═══════════════════════════════════════════════
+       Corporate Integrity DS — patrones ui-stiich
+       ═══════════════════════════════════════════════ */
+    .stiich-section { margin-top: 1.5rem; }
+    .stiich-section__header { margin-bottom: 0.25rem; }
+    .stiich-section__eyebrow { font-size: 0.65rem; font-weight: 700; color: var(--ds-primary); text-transform: uppercase; letter-spacing: 0.08em; }
+    .stiich-section__desc { font-size: 0.75rem; color: var(--ds-text-muted); margin: 0.25rem 0 0.75rem 0; line-height: 1.4; }
+
+    .stiich-rating-card { background: var(--ds-bg-surface); border: 1px solid var(--ds-border-strong); border-radius: 0.5rem; overflow: hidden; }
+    .stiich-rating-header { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem; background: var(--ds-bg-sunken); }
+    .stiich-rating-header__icon { font-size: 1.25rem; color: var(--ds-primary-dark, var(--ds-primary)); }
+    .stiich-rating-header__title { font-weight: 600; font-size: 0.8125rem; color: var(--ds-text-primary); }
+    .stiich-rating-body { padding: 1rem; display: flex; flex-direction: column; gap: 1rem; align-items: center; }
+    .stiich-stars { display: flex; gap: 0.25rem; }
+    .stiich-star { background: none; border: none; cursor: pointer; padding: 0; line-height: 1; }
+    .stiich-star__icon { font-size: 2rem; color: var(--ds-border-strong); font-variation-settings: 'FILL' 0; transition: all 150ms; }
+    .stiich-star--filled .stiich-star__icon { color: var(--ds-warning); font-variation-settings: 'FILL' 1; }
+    .stiich-rating-label { font-size: 0.875rem; font-weight: 600; color: var(--ds-text-primary); margin: 0; }
+    .stiich-feedback-row { display: flex; gap: 0.5rem; width: 100%; }
+    .stiich-feedback-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.375rem; padding: 0.625rem; border: 1px solid var(--ds-border-strong); border-radius: 0.5rem; background: var(--ds-bg-surface); cursor: pointer; font-size: 0.75rem; font-weight: 600; color: var(--ds-text-secondary); transition: all 150ms; font-family: inherit; }
+    .stiich-feedback-btn:hover { border-color: var(--ds-primary); color: var(--ds-primary); }
+    .stiich-feedback-btn--active { background: var(--ds-bg-sunken); border-color: var(--ds-primary); color: var(--ds-primary); }
+    .stiich-comment-area { width: 100%; display: flex; flex-direction: column; gap: 0.75rem; }
+    .stiich-textarea { width: 100%; border: 1px solid var(--ds-border-strong); border-radius: 0.5rem; padding: 0.75rem; font-size: 0.8125rem; font-family: inherit; resize: vertical; outline: none; }
+    .stiich-textarea:focus { border-color: var(--ds-primary); box-shadow: 0 0 0 2px color-mix(in srgb, var(--ds-primary) 15%, transparent); }
+    .stiich-btn-block { width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem; border: none; cursor: pointer; font-weight: 700; border-radius: 0.5rem; padding: 0.75rem; font-size: 0.875rem; font-family: inherit; transition: all 150ms; }
+    .stiich-btn-block--primary { background: var(--ds-primary); color: var(--ds-on-primary); }
+    .stiich-btn-block--primary:hover { background: var(--ds-primary-dark, var(--ds-primary)); }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
   `],
   encapsulation: ViewEncapsulation.None,
 })
@@ -199,6 +278,19 @@ export class MobileOverlays {
 
   modalOpen = signal(false);
   sheetOpen = signal(false);
+
+  // ─── Rating & Feedback ───
+  rating = signal(0);
+  feedback = signal<'like' | 'dislike' | 'idea' | ''>('');
+
+  ratingLabel(): string {
+    const labels = ['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+    return labels[this.rating()] || '';
+  }
+
+  setRating(value: number): void {
+    this.rating.set(value);
+  }
 
   constructor() {
     addIcons({

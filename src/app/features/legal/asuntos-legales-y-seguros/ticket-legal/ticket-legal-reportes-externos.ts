@@ -2,11 +2,11 @@ import { CommonModule, DatePipe } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PageTitleReport } from "src/app/core/components/title-page-report/page-title-report";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PageTitleReport } from "src/app/core/components/web/title-page-report/page-title-report";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -35,7 +35,7 @@ export class TicketLegalReportesExternos implements OnInit {
   datePipe = inject(DatePipe);
   tableScrollHeightS = inject(TableScrollHeightService);
 
-  // Declaración e inicialización de variables con signals
+  // DeclaraciÃ³n e inicializaciÃ³n de variables con signals
   reportData = signal<any>(null);
   requestsAttended = signal<any[]>([]);
   requestsPending = signal<any[]>([]);

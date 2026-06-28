@@ -32,8 +32,8 @@ import { RouterOutlet } from "@angular/router";
 import { MessageService } from "primeng/api";
 import { filter } from "rxjs/operators";
 // 🧩 Componentes globales que acompañan siempre a la app
-import { PrimeNgCustomToast } from "src/app/core/components/primeng-custom-toast/primeng-custom-toast";
-import { TapToTop } from "src/app/core/components/tap-to-top/tap-to-top";
+import { PrimeNgCustomToast } from "src/app/core/components/web/primeng-custom-toast/primeng-custom-toast";
+import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
 // 🛠️ Servicios esenciales (nivel App, no de sesión)
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { FeatureAnnouncementService } from "src/app/core/services/feature-announcement.service";

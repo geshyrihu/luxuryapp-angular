@@ -19,7 +19,7 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CATALOGO_GASTOS_FIJOS_LIST_MODULES } from "./catalogo-gastos-fijos-list-moduls";
 
 @Component({
@@ -205,7 +205,7 @@ export class CatalogoGastosFijosList {
   }
 
   onItemCheckChange(item: any, isChecked: boolean) {
-    // Actualizar el estado de la señal de forma inmutable para garantizar la reactividad
+    // Actualizar el estado de la seÃ±al de forma inmutable para garantizar la reactividad
     this.dataSignal.update((currentData) => {
       const itemToUpdate = currentData.find((i) => i.id === item.id);
       if (itemToUpdate) {
@@ -223,8 +223,8 @@ export class CatalogoGastosFijosList {
   updateItemSelectionOnApi(id: any, value: any) {
     const urlApi = `CatalogoGastosFijos/UpdateValidation/${id}/${value}`;
     this.apiResponseS.onGetListNotLoading(urlApi, null).then(() => {
-      // Opcional: se podría volver a llamar a updateSelectedItems aquí si hubiera alguna duda,
-      // pero ya se hace en el método que origina el cambio.
+      // Opcional: se podrÃ­a volver a llamar a updateSelectedItems aquÃ­ si hubiera alguna duda,
+      // pero ya se hace en el mÃ©todo que origina el cambio.
     });
   }
 
@@ -264,20 +264,20 @@ export class CatalogoGastosFijosList {
   }
 
   /**
-   * Alterna la selección de los ítems de una quincena específica (Toggle).
-   * No afecta a los ítems de otras quincenas.
+   * Alterna la selecciÃ³n de los Ã­tems de una quincena especÃ­fica (Toggle).
+   * No afecta a los Ã­tems de otras quincenas.
    * @param quincenaTarget 0 para 1ra Quincena, 1 para 2da Quincena
    */
   selectByQuincena(quincenaTarget: number) {
     this.dataSignal.update((currentData) => {
-      // 1. Filtrar los ítems que pertenecen a la quincena objetivo
+      // 1. Filtrar los Ã­tems que pertenecen a la quincena objetivo
       const targetItems = currentData.filter(
         (item: any) => item.quincena === quincenaTarget,
       );
 
       if (targetItems.length === 0) return currentData;
 
-      // 2. Verificar si todos los ítems de esa quincena ya están seleccionados
+      // 2. Verificar si todos los Ã­tems de esa quincena ya estÃ¡n seleccionados
       const allSelected = targetItems.every(
         (item: any) => item.crearOrdenCompra,
       );
@@ -298,10 +298,10 @@ export class CatalogoGastosFijosList {
       });
 
       if (paramsUpdated) {
-        // Notificar al usuario (side effect fuera del update idealmente, pero aceptable aquí)
-        // Nota: updateSelectedItems se llamará después
+        // Notificar al usuario (side effect fuera del update idealmente, pero aceptable aquÃ­)
+        // Nota: updateSelectedItems se llamarÃ¡ despuÃ©s
         this.customToastS.showInfo(
-          "Selección Actualizada",
+          "SelecciÃ³n Actualizada",
           `Se han ${newState ? "marcado" : "desmarcado"} los registros de la ${quincenaTarget === 0 ? "1ra" : "2da"
           } quincena.`,
         );
@@ -340,7 +340,7 @@ export class CatalogoGastosFijosList {
     if (!this.isGenerationParamsSelected()) {
       this.customToastS.showError(
         "Faltan Datos",
-        "Por favor, selecciona un Año y un Mes.",
+        "Por favor, selecciona un AÃ±o y un Mes.",
       );
       return;
     }
@@ -352,7 +352,7 @@ export class CatalogoGastosFijosList {
     if (!monthData || !monthData.quincenas[quincenaIndex]) {
       this.customToastS.showError(
         "Error",
-        "No se encontró el periodo para la quincena seleccionada.",
+        "No se encontrÃ³ el periodo para la quincena seleccionada.",
       );
       return;
     }
@@ -364,8 +364,8 @@ export class CatalogoGastosFijosList {
     this.apiResponseS.onPostNotLoading(urlApi, {}).then((result) => {
       if (result !== false) {
         this.customToastS.showSuccess(
-          `Generación Exitosa`,
-          `Órdenes de la ${quincenaIndex === 0 ? "1ra" : "2da"} quincena de ${this.selectedMonthName()} generadas.`,
+          `GeneraciÃ³n Exitosa`,
+          `Ã“rdenes de la ${quincenaIndex === 0 ? "1ra" : "2da"} quincena de ${this.selectedMonthName()} generadas.`,
         );
       }
     });

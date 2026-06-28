@@ -1,6 +1,6 @@
-ï»¿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { FormsModule } from "@angular/forms";
 import { BadgeModule } from "primeng/badge";
 import { ButtonModule } from "primeng/button";
@@ -616,8 +616,8 @@ export class DemoApp {
       selector: "custom-input-*-signal",
       source: "core/components/inputs/web",
       useCase: "Un solo componente detecta plataforma: PrimeNG en desktop, Ionic en mobile (<768px).",
-      preferredFor: "Todos los formularios â€” web y mobile. No importar Ionic raw en features.",
-      avoidWhen: "Nunca â€” estos reemplazan los antiguos ion-input-* eliminados.",
+      preferredFor: "Todos los formularios — web y mobile. No importar Ionic raw en features.",
+      avoidWhen: "Nunca — estos reemplazan los antiguos ion-input-* eliminados.",
       status: "Usar",
     },
     {

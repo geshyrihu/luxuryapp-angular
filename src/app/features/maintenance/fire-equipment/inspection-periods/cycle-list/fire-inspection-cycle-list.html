@@ -14,7 +14,9 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="periodName">Periodo <p-sortIcon field="periodName" /></th>
+      <th pSortableColumn="periodName">
+        Periodo <p-sortIcon field="periodName" />
+      </th>
       <th class="table-col-15">Inicio</th>
       <th class="table-col-15">Fin</th>
       <th class="table-col-10">Total</th>
@@ -34,18 +36,25 @@
       <td class="text-center">{{ item.completedItems }}</td>
       <td><span [class]="statusClass(item.status)">{{ item.status }}</span></td>
       <td>
-        <custom-button-item label="Detalle" (clicked)="onViewDetail(item.id)" tooltip="Ver detalle del ciclo"
-/>
+        <custom-button-item
+          label="Detalle"
+          (clicked)="onViewDetail(item.id)"
+          tooltip="Ver detalle del ciclo"
+        />
       </td>
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="8">
-          <app-empty-state icon="mdi:rotate-right" title="Sin ciclos" message="No hay ciclos de inspección registrados." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="8">
+        <app-empty-state
+          icon="mdi:rotate-right"
+          title="Sin ciclos"
+          message="No hay ciclos de inspección registrados."
+        />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -56,17 +65,31 @@
   [globalFilterFields]="globalFilterFields()"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" class="ion-no-padding" (click)="onViewDetail(item.id)">
+    <ion-item
+      lines="full"
+      class="ion-no-padding"
+      (click)="onViewDetail(item.id)"
+    >
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-danger-light,#ffdad6);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-danger-light, #ffdad6);
+        "
       >
-        <app-icon icon="mdi:fire-alert" style="font-size:1.1rem;color:var(--ds-danger);"></app-icon>
+        <app-icon
+          icon="mdi:fire-alert"
+          style="font-size: 1.1rem; color: var(--ds-danger)"
+        ></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.periodName }}</h3>
-        <p>{{ item.periodStart | date:'dd-MMM-yy' }} &mdash; {{ item.periodEnd | date:'dd-MMM-yy' }}</p>
+        <p>
+          {{ item.periodStart | date:'dd-MMM-yy' }} &mdash; {{ item.periodEnd |
+          date:'dd-MMM-yy' }}
+        </p>
         <p>
           <span [class]="statusClass(item.status)">{{ item.status }}</span>
           &bull; Pendientes: {{ item.pendingItems }}/{{ item.totalItems }}
@@ -75,8 +98,11 @@
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-item label="Ver Detalle" (clicked)="onViewDetail(item.id)"
- [showLabelOnDesktop]="true"/>
+            <custom-button-item
+              label="Ver Detalle"
+              (clicked)="onViewDetail(item.id)"
+              [showLabelOnDesktop]="true"
+            />
           </ng-container>
         </app-action-menu>
       </div>

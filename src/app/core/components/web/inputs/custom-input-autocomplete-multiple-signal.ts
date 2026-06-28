@@ -6,7 +6,7 @@ import {
 } from "@angular/forms";
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
 /**
  * 🏷️ CUSTOM INPUT AUTOCOMPLETE MULTIPLE
@@ -140,3 +140,4 @@ export class CustomInputAutoMultiple extends BaseInputSignal {
     this.propagar.emit([]);
   }
 }
+

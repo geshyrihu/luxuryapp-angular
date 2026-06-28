@@ -7,7 +7,7 @@ import {
 } from "@angular/forms";
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
 @Component({
   selector: "custom-input-autocomplete-signal",
@@ -102,6 +102,7 @@ export class CustomInputAutoComplete extends BaseInputSignal {
     this.propagar.emit(null);
   }
 }
+
 
 
 

@@ -32,11 +32,19 @@
     <!-- Encabezado de grupo: la propiedad -->
     <ng-template pTemplate="groupheader" let-row>
       <tr pRowGroupHeader>
-        <td [attr.colspan]="3 + periodColumns().length" class="surface-100 py-2 px-3">
+        <td
+          [attr.colspan]="3 + periodColumns().length"
+          class="surface-100 py-2 px-3"
+        >
           <div class="flex align-items-center gap-2">
-            <app-icon [icon]="'mdi:office-building'" class="text-primary"></app-icon>
+            <app-icon
+              [icon]="'mdi:office-building'"
+              class="text-primary"
+            ></app-icon>
             <span class="font-bold text-primary">{{ row.propertyName }}</span>
-            <span class="text-500 text-sm">&middot; Cta: {{ row.accountNumber }}</span>
+            <span class="text-500 text-sm"
+              >&middot; Cta: {{ row.accountNumber }}</span
+            >
             @if (row.indivisoPercentage) {
             <span class="text-xs text-purple-600 ml-2">
               Indiviso: {{ row.indivisoPercentage }}%
@@ -74,19 +82,22 @@
         <!-- Celdas dinámicas por mes -->
         @for (col of periodColumns(); track col.key) {
         <td class="text-right text-sm">
-          @if (periodsMap()[rowIndex][col.key] !== undefined) {
-            {{ periodsMap()[rowIndex][col.key] | currency:'MXN':'symbol-narrow':'1.2-2' }}
-          } @else {
-            <span class="text-200">—</span>
+          @if (periodsMap()[rowIndex][col.key] !== undefined) { {{
+          periodsMap()[rowIndex][col.key] |
+          currency:'MXN':'symbol-narrow':'1.2-2' }} } @else {
+          <span class="text-200">—</span>
           }
         </td>
         }
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="emptymessage">
+    <ng-template #emptymessage>
       <tr>
-        <td [attr.colspan]="3 + periodColumns().length" class="text-center p-4 text-500">
+        <td
+          [attr.colspan]="3 + periodColumns().length"
+          class="text-center p-4 text-500"
+        >
           No hay plantillas activas configuradas.
         </td>
       </tr>

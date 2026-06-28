@@ -25,7 +25,8 @@
           ])
         "
       />
-      @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Administrador, AspRole.SuperUsuario])) {
+      @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Administrador,
+      AspRole.SuperUsuario])) {
       <div>
         <input
           type="file"
@@ -39,13 +40,13 @@
           iconClass="mdi:upload"
           severity="success"
           (clicked)="fileInput.click()"
-/>
+        />
         <custom-button
           label="Descargar Plantilla"
           iconClass="mdi:download"
           severity="secondary"
           (clicked)="downloadTemplate()"
-/>
+        />
       </div>
       }
     </div>
@@ -92,7 +93,8 @@
         Moroso
         <p-sortIcon field="isDelinquent" />
       </th>
-      @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Administrador, AspRole.SuperUsuario])) {
+      @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Administrador,
+      AspRole.SuperUsuario])) {
       <th class="w-8rem text-small"></th>
       }
     </tr>
@@ -110,7 +112,10 @@
       <td><small>{{ item.storageUnit }}</small></td>
       <td class="text-center">
         @if (item.isDelinquent) {
-          <span class="badge bg-red-100 text-red-800 text-xs px-2 py-1 border-round">Moroso</span>
+        <span
+          class="badge bg-red-100 text-red-800 text-xs px-2 py-1 border-round"
+          >Moroso</span
+        >
         }
       </td>
       <td class="no-print">
@@ -119,25 +124,29 @@
             iconClass="mdi:account-group"
             label="Ocupantes"
             (clicked)="showOccupantsDialog(item)"
-/>
-          @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Administrador, AspRole.SuperUsuario])) {
+          />
+          @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Administrador,
+          AspRole.SuperUsuario])) {
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-/>
-          <custom-button-delete (confirmed)="onDelete(item.id)"
-/>
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
           }
         </div>
       </td>
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="11">
-          <app-empty-state icon="mdi:home-city-outline" title="Sin propiedades" message="No hay propiedades registradas." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="11">
+        <app-empty-state
+          icon="mdi:home-city-outline"
+          title="Sin propiedades"
+          message="No hay propiedades registradas."
+        />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -155,23 +164,33 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-info-light,#e0f2fe);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-info-light, #e0f2fe);
+        "
       >
-        <app-icon icon="mdi:home-city-outline" style="font-size:1.1rem;color:var(--ds-info);"></app-icon>
+        <app-icon
+          icon="mdi:home-city-outline"
+          style="font-size: 1.1rem; color: var(--ds-info)"
+        ></app-icon>
       </div>
       <ion-label>
-        <h2 class="font-normal m-0">{{ item.tower }} - {{ item.department }}</h2>
+        <h2 class="font-normal m-0">
+          {{ item.tower }} - {{ item.department }}
+        </h2>
         <p>
-          Cta: {{ item.accountNumber }}
-          @if (item.floor) { &middot; Piso: {{ item.floor }} }
-          @if (item.unitNumber) { &middot; Int: {{ item.unitNumber }} }
+          Cta: {{ item.accountNumber }} @if (item.floor) { &middot; Piso: {{
+          item.floor }} } @if (item.unitNumber) { &middot; Int: {{
+          item.unitNumber }} }
         </p>
         <p>
-          @if (item.areaM2) { Área: {{ item.areaM2 | number:'1.2-2' }} m² }
-          @if (item.indivisoPercentage) { &middot; Indiviso: {{ item.indivisoPercentage | percent:'1.2-5' }} }
+          @if (item.areaM2) { Área: {{ item.areaM2 | number:'1.2-2' }} m² } @if
+          (item.indivisoPercentage) { &middot; Indiviso: {{
+          item.indivisoPercentage | percent:'1.2-5' }} }
         </p>
         @if (item.isDelinquent) {
-          <p class="text-red-600 font-medium">Moroso</p>
+        <p class="text-red-600 font-medium">Moroso</p>
         }
       </ion-label>
 
@@ -179,9 +198,14 @@
         <ng-container actions>
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
- label="Editar" [showLabelOnDesktop]="true"/>
-          <custom-button-delete (confirmed)="onDelete(item.id)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
+            label="Editar"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-delete
+            (confirmed)="onDelete(item.id)"
+            label="Eliminar"
+            [showLabelOnDesktop]="true"
+          />
         </ng-container>
       </app-action-menu>
     </ion-item>

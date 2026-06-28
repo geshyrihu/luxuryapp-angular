@@ -15,7 +15,7 @@ import { MessageModule } from "primeng/message";
 import { SelectModule } from "primeng/select";
 import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
 import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { Touchspin } from "src/app/core/components/touchspin/touchspin";
+import { Touchspin } from "src/app/core/components/web/touchspin/touchspin";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";

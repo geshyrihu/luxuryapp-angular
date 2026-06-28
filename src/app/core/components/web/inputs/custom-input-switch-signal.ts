@@ -1,7 +1,7 @@
-﻿import { Component, forwardRef, output } from "@angular/core";
+import { Component, forwardRef, output } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
 @Component({
   selector: "custom-input-switch-signal",
@@ -49,3 +49,4 @@ export class CustomInputSwitch extends BaseInputSignal {
     this.switchChange.emit(newValue);
   }
 }
+

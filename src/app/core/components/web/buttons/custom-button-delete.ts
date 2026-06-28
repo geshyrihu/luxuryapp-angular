@@ -6,8 +6,8 @@ import { chevronForwardOutline, trashOutline } from "ionicons/icons";
 import { TooltipModule } from "primeng/tooltip";
 import Swal from "sweetalert2";
 import { PlatformService } from "src/app/core/services/platform.service";
-import { AppIcon } from "../../app-icon/app-icon.component";
-import { BaseButton } from "../base/base-button";
+import { AppIcon } from "../../shared/app-icon/app-icon.component";
+import { BaseButton } from "../../buttons/base/base-button";
 
 @Component({
   selector: "custom-button-delete",
@@ -101,3 +101,5 @@ export class CustomButtonDelete extends BaseButton {
     }
   }
 }
+
+

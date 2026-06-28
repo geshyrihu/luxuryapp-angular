@@ -28,10 +28,18 @@
   styleClass="custom-table custom-table-fixed card hidden md:block"
 >
   <ng-template #caption>
-    <primeng-custom-caption
-      (add)="onModalForm({ id: '', title: 'AGREGAR TICKET LEGAL' })"
-      [dt]="dt"
-    />
+    <div class="flex align-items-center justify-content-between gap-2">
+      <primeng-custom-caption
+        (add)="onModalForm({ id: '', title: 'AGREGAR TICKET LEGAL' })"
+        [dt]="dt"
+      />
+      <custom-button-download
+        label="Excel"
+        (clicked)="exportToExcel()"
+        pTooltip="Descargar Excel para PowerPoint"
+        tooltipPosition="bottom"
+      />
+    </div>
   </ng-template>
   <ng-template #colgroup>
     <colgroup>
@@ -120,7 +128,7 @@
       </td>
     </tr>
   </ng-template>
-  <ng-template pTemplate="emptymessage">
+  <ng-template #emptymessage>
     <tr>
       <td colspan="10">
         <app-empty-state

@@ -18,7 +18,9 @@
   styleClass="custom-table card hidden md:block"
 >
   <ng-template #caption>
-    <div class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-3">
+    <div
+      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-3"
+    >
       <div class="flex-grow-1">
         <primeng-custom-caption
           (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -94,20 +96,23 @@
         <div class="flex">
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Registro' })"
-/>
-          <custom-button-delete (confirmed)="onDelete(item.id)"
-/>
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="6">
-          <app-empty-state icon="mdi:domain" title="Sin clientes" message="No hay clientes registrados." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="6">
+        <app-empty-state
+          icon="mdi:domain"
+          title="Sin clientes"
+          message="No hay clientes registrados."
+        />
+      </td>
+    </tr>
+  </ng-template>
 
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="data()" />
@@ -138,9 +143,16 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-primary-50, #edf1ff);
+        "
       >
-        <app-icon icon="mdi:office-building-outline" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+        <app-icon
+          icon="mdi:office-building-outline"
+          style="font-size: 1.1rem; color: var(--ds-primary)"
+        ></app-icon>
       </div>
       <ion-label class="p-3">
         <div class="flex justify-content-between align-items-start mb-2">
@@ -164,9 +176,14 @@
         <ng-container actions>
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar Registro' })"
- label="Editar" [showLabelOnDesktop]="true"/>
-          <custom-button-delete (confirmed)="onDelete(item.id)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
+            label="Editar"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-delete
+            (confirmed)="onDelete(item.id)"
+            label="Eliminar"
+            [showLabelOnDesktop]="true"
+          />
         </ng-container>
       </app-action-menu>
     </ion-item>

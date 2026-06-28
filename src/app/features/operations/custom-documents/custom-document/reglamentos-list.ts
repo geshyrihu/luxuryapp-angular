@@ -1,4 +1,4 @@
-ï»¿import { Component, computed, effect, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
@@ -7,9 +7,9 @@ import { CustomButton } from "src/app/core/components/buttons/web/custom-button"
 import { TableModule } from "primeng/table";
 import { TextareaModule } from "primeng/textarea";
 import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
     globalFilterFields,
@@ -106,7 +106,7 @@ export class Reglamentos {
     } catch (error) {
       console.error(error);
       this.aiResponse.set(
-        "OcurriÃ³ un error al consultar el documento. Por favor intenta de nuevo.",
+        "Ocurrió un error al consultar el documento. Por favor intenta de nuevo.",
       );
     } finally {
       this.consultingDoc.set(false);
@@ -118,7 +118,7 @@ export class Reglamentos {
     this.apiResponseS
       .onPut(Endpoints.CustomDocuments.updateOrder, { documentIds })
       .then((result) => {
-        // Opcional: Mostrar una notificaciÃ³n de Ã³xito
+        // Opcional: Mostrar una notificación de óxito
       })
       .catch((error) => {
         // Opcional: Manejar el error y revertir el orden si es necesario

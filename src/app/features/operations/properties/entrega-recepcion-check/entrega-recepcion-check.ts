@@ -4,11 +4,10 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 
 // PrimeNG Modules
 import { AccordionModule } from "primeng/accordion";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 
 @Component({
   selector: "app-entrega-recepcion-check",
@@ -19,7 +18,6 @@ import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/cu
     TableModule,
     TagModule,
     SelectButtonModule,
-    CustomInputTextAreaSignal,
     CustomButton,
   ],
   templateUrl: "./entrega-recepcion-check.html",
@@ -505,22 +503,13 @@ export class EntregaRecepcionCheckComponent implements OnInit {
     ];
 
     // Add controls dynamically
-    this.auditModules = this.auditModules.map(module => ({
+    this.auditModules = this.auditModules.map((module) => ({
       ...module,
       items: module.items.map((item: any) => ({
         ...item,
         statusControl: new FormControl(item.status),
-        observationsControl: new FormControl(item.observations)
-      }))
+        observationsControl: new FormControl(item.observations),
+      })),
     }));
   }
 }
-
-
-
-
-
-
-
-
-

@@ -51,6 +51,17 @@
       <td>{{ item.phoneNumber }}</td>
     </tr>
   </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="5">
+        <app-empty-state
+          icon="mdi:account-group-outline"
+          title="Sin comités"
+          message="No hay miembros de comité registrados."
+        />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="flatData()" />
   </ng-template>
@@ -69,9 +80,16 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-primary-50, #edf1ff);
+        "
       >
-        <app-icon icon="mdi:account-group-outline" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+        <app-icon
+          icon="mdi:account-group-outline"
+          style="font-size: 1.1rem; color: var(--ds-primary)"
+        ></app-icon>
       </div>
       <ion-label>
         <h2 class="font-normal m-0">{{ item.fullName }}</h2>
@@ -84,10 +102,3 @@
     </ion-item>
   </ng-template>
 </app-data-view-mobile>
-
-
-
-
-
-
-

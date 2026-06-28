@@ -7,7 +7,7 @@ import {
 } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { alertCircleOutline, closeOutline } from "ionicons/icons";
-import { GlobalErrorService } from "../../services/global-error.service";
+import { GlobalErrorService } from "src/app/core/services/global-error.service";
 
 /**
  * 🚨 GLOBAL ERROR ALERT
@@ -94,3 +94,4 @@ export class GlobalErrorAlert implements OnInit, OnDestroy {
     // Al ser un servicio singleton, está bien por ahora.
   }
 }
+

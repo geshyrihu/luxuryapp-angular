@@ -70,10 +70,14 @@
                 <ng-container actions>
                   <custom-button-edit
                     (clicked)="onEditSeguimiento(detail.id, item.id)"
-                   label="Editar" [showLabelOnDesktop]="true"/>
+                    label="Editar"
+                    [showLabelOnDesktop]="true"
+                  />
                   <custom-button-delete
                     (confirmed)="onDeleteSeguimiento(item.id)"
-                   label="Eliminar" [showLabelOnDesktop]="true"/>
+                    label="Eliminar"
+                    [showLabelOnDesktop]="true"
+                  />
                 </ng-container>
               </app-action-menu>
             </div>
@@ -89,23 +93,32 @@
               iconClass="mdi:clipboard-text"
               label="Seguimiento"
               (clicked)="onAddSeguimiento(detail.id)"
-             [showLabelOnDesktop]="true"/>
+              [showLabelOnDesktop]="true"
+            />
 
             <custom-button-edit
               (clicked)="onEditDetail(detail.id)"
-             label="Editar" [showLabelOnDesktop]="true"/>
+              label="Editar"
+              [showLabelOnDesktop]="true"
+            />
             <custom-button-delete
               (confirmed)="onDeleteDetail(detail.id)"
-             label="Eliminar" [showLabelOnDesktop]="true"/>
+              label="Eliminar"
+              [showLabelOnDesktop]="true"
+            />
           </ng-container>
         </app-action-menu>
       </td>
     </tr>
   </ng-template>
-  <ng-template emptymessage>
+  <ng-template #emptymessage>
     <tr>
-      <td colspan="6" class="text-center p-4 text-500 font-medium italic">
-        Sin registros para {{ title() }}.
+      <td colspan="6">
+        <app-empty-state
+          icon="mdi:clipboard-text-outline"
+          [title]="'Sin registros'"
+          [message]="'Sin registros para ' + title() + '.'"
+        />
       </td>
     </tr>
   </ng-template>

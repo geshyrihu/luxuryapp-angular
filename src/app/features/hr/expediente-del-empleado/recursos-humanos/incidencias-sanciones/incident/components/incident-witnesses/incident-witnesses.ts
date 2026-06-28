@@ -1,5 +1,5 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
@@ -81,8 +81,8 @@ export class IncidentWitnessesComponent implements OnInit {
       .fire({
         icon: "question",
         title: "Eliminar testigo",
-        text: `¿Está seguro que desea eliminar a ${witness.fullName}?`,
-        confirmButtonText: "Sí, eliminar",
+        text: `Â¿EstÃ¡ seguro que desea eliminar a ${witness.fullName}?`,
+        confirmButtonText: "SÃ­, eliminar",
         showCancelButton: true,
         cancelButtonText: "Cancelar",
       })

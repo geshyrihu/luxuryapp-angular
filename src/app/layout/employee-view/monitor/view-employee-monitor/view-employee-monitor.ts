@@ -7,7 +7,7 @@ import {
   OnInit,
 } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
-import { Loader } from "src/app/core/components/loader/loader";
+import { Loader } from "src/app/core/components/shared/loader/loader";
 import { HidescrollnavService } from "src/app/core/services/hidescrollnav.service";
 import { LayoutService } from "src/app/core/services/layout.service";
 import { MenuService } from "src/app/core/services/menu.service";
@@ -63,3 +63,4 @@ export class ViewEmployeeMonitor implements OnInit, AfterViewInit {
     this.footerDark = false;
   }
 }
+

@@ -14,6 +14,7 @@ import {
   IonSkeletonText,
   IonSpinner,
 } from "@ionic/angular/standalone";
+import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-styles";
 
 @Component({
   selector: "app-mobile-feedback",
@@ -37,6 +38,47 @@ import {
     <div class="mobile-card">
       <div class="mobile-card-header">Feedback & Estado de carga</div>
       <div class="mobile-card-body flex flex-column gap-5">
+
+        <!-- ─── ALERT BANNERS ─── -->
+        <div>
+          <div class="font-bold text-sm mb-3">Alert Banners (DS patterns)</div>
+          <div class="flex flex-column gap-2">
+            <div class="ds-alert ds-alert--success">
+              <span class="material-symbols-outlined ds-alert__icon">check_circle</span>
+              <span class="ds-alert__text">System update successful. All files synced.</span>
+            </div>
+            <div class="ds-alert ds-alert--warning">
+              <span class="material-symbols-outlined ds-alert__icon">warning</span>
+              <span class="ds-alert__text">Storage is reaching 90% capacity.</span>
+            </div>
+            <div class="ds-alert ds-alert--error">
+              <span class="material-symbols-outlined ds-alert__icon">error</span>
+              <span class="ds-alert__text">Failed to upload attachment. Please retry.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── PROGRESS INDICATORS ─── -->
+        <div>
+          <div class="font-bold text-sm mb-3">Progress Indicators (DS)</div>
+          <div class="flex gap-4 align-items-start flex-wrap">
+            <div>
+              <span class="ds-progress-label">Linear</span>
+              <div class="ds-progress-track">
+                <div class="ds-progress-fill" style="width:65%;"></div>
+              </div>
+              <span class="text-xs text-secondary mt-1 block">65%</span>
+            </div>
+            <div>
+              <span class="ds-progress-label">Circular</span>
+              <svg viewBox="0 0 36 36" width="48" height="48">
+                <circle cx="18" cy="18" r="16" fill="none" stroke="#e0e3e5" stroke-width="3"/>
+                <circle cx="18" cy="18" r="16" fill="none" stroke="#00050e" stroke-width="3"
+                        stroke-dasharray="100" stroke-dashoffset="30" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
 
         <!-- Spinners -->
         <div>
@@ -163,10 +205,19 @@ import {
       </div>
     </div>
   `,
-  styles: [`
-    .mobile-card { background: var(--ds-bg-surface,#fff); border: 1px solid var(--ds-border,#e2e8f0); border-radius: var(--ds-radius-lg,8px); overflow: hidden; }
-    .mobile-card-header { padding: 0.75rem 1rem; background: var(--ds-bg-elevated,#f4f5f8); font-weight: 600; font-size: var(--ds-font-size-body,0.9375rem); color: var(--ds-text-primary); border-bottom: 1px solid var(--ds-border,#e2e8f0); }
-    .mobile-card-body { padding: 1rem; }
+  styles: [MOBILE_SHOWCASE_STYLES, `
+    .ds-alert { display:flex; align-items:center; gap:0.5rem; padding:0.65rem 0.75rem; border-radius:10px; font-size:0.82rem; }
+    .ds-alert--success { background:#e8f5e9; border:1px solid #a5d6a7; color:#1b5e20; }
+    .ds-alert--warning { background:#fffde7; border:1px solid #fff59d; color:#f57f17; }
+    .ds-alert--error { background:#ffdad6; border:1px solid #ef9a9a; color:#93000a; }
+    .ds-alert__icon { font-size:1.25rem; flex-shrink:0; }
+    .ds-alert--success .ds-alert__icon { color:#2e7d32; }
+    .ds-alert--warning .ds-alert__icon { color:#fbc02d; }
+    .ds-alert--error .ds-alert__icon { color:#ba1a1a; }
+    .ds-alert__text { line-height:1.4; }
+    .ds-progress-label { display:block; font-size:0.65rem; font-weight:600; color:var(--ds-text-secondary); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.35rem; }
+    .ds-progress-track { width:120px; height:8px; background:var(--ds-bg-elevated); border-radius:999px; overflow:hidden; }
+    .ds-progress-fill { height:100%; background:var(--ds-primary); border-radius:999px; }
   `],
   encapsulation: ViewEncapsulation.None,
 })

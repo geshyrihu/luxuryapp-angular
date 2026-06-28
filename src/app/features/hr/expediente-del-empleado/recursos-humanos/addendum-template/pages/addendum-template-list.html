@@ -34,9 +34,9 @@
         <td>{{ item.createdAt | date:'dd/MM/yyyy' }}</td>
         <td class="text-center">
           @if (item.isActive) {
-            <span class="badge badge-success">Activo</span>
+          <span class="badge badge-success">Activo</span>
           } @else {
-            <span class="badge badge-danger">Inactivo</span>
+          <span class="badge badge-danger">Inactivo</span>
           }
         </td>
         <td class="text-center">
@@ -44,24 +44,26 @@
             [icon]="item.isActive ? 'mdi:toggle-switch' : 'mdi:toggle-switch-off-outline'"
             (click)="onToggleActive(item)"
           />
-          <custom-button-edit (click)="onEdit(item)"
-/>
-          <custom-button-delete (click)="onDelete(item.id)"
-/>
+          <custom-button-edit (click)="onEdit(item)" />
+          <custom-button-delete (click)="onDelete(item.id)" />
         </td>
       </tr>
     </ng-template>
     <ng-template #footer>
       <primeng-custom-table-footer [data]="items()" />
     </ng-template>
-    <ng-template pTemplate="emptymessage">
+    <ng-template #emptymessage>
       <tr>
         <td colspan="6">
-          <app-empty-state icon="mdi:file-document-outline" title="Sin plantillas" message="No hay plantillas registradas." />
+          <app-empty-state
+            icon="mdi:file-document-outline"
+            title="Sin plantillas"
+            message="No hay plantillas registradas."
+          />
         </td>
       </tr>
     </ng-template>
-</p-table>
+  </p-table>
 
   <app-data-view-mobile
     [dt]="dt"
@@ -70,29 +72,44 @@
   >
     <ng-template #listItemTemplate let-item>
       <ion-item lines="full">
-      <div
-        slot="start"
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-info-light,#e0f2fe);"
-      >
-        <app-icon icon="mdi:file-plus-outline" style="font-size:1.1rem;color:var(--ds-info);"></app-icon>
-      </div>
+        <div
+          slot="start"
+          class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+          style="
+            width: 38px;
+            height: 38px;
+            background: var(--ds-info-light, #e0f2fe);
+          "
+        >
+          <app-icon
+            icon="mdi:file-plus-outline"
+            style="font-size: 1.1rem; color: var(--ds-info)"
+          ></app-icon>
+        </div>
         <ion-label>
           <h2 class="font-bold">{{ item.name }}</h2>
-          <p class="text-sm text-500">{{ item.addendumType }} · v{{ item.version }}</p>
-          <p class="text-sm text-500">{{ item.createdAt | date:'dd/MM/yyyy' }}</p>
+          <p class="text-sm text-500">
+            {{ item.addendumType }} · v{{ item.version }}
+          </p>
+          <p class="text-sm text-500">
+            {{ item.createdAt | date:'dd/MM/yyyy' }}
+          </p>
           <p class="text-sm">
             @if (item.isActive) {
-              <span class="badge badge-success">Activo</span>
+            <span class="badge badge-success">Activo</span>
             } @else {
-              <span class="badge badge-danger">Inactivo</span>
+            <span class="badge badge-danger">Inactivo</span>
             }
           </p>
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-            <custom-button-item label="Editar" iconName="create-outline" (clicked)="onEdit(item)"
- [showLabelOnDesktop]="true"/>
+            <custom-button-item
+              label="Editar"
+              iconName="create-outline"
+              (clicked)="onEdit(item)"
+              [showLabelOnDesktop]="true"
+            />
             <custom-button-item
               [label]="item.isActive ? 'Desactivar' : 'Activar'"
               iconName="toggle-outline"

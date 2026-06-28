@@ -3,7 +3,7 @@ import { AvatarModule } from "primeng/avatar";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { Mesanio } from "src/app/core/components/mesanio/mesanio";
+import { Mesanio } from "src/app/core/components/web/mesanio/mesanio";
 import {
   globalFilterFields,
   rowsPerPageOptions,

@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
@@ -7,15 +7,15 @@ import { addIcons } from "ionicons";
 import { waterOutline } from "ionicons/icons";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -151,13 +151,13 @@ export class RecepcionPipasAguaList {
 
     const photoDefs = [
       { label: "Pipa llena", url: item.fotoPipaLlenaUrl },
-      { label: "Pipa vacía", url: item.fotoPipaVaciaUrl },
-      { label: "Placas del camión", url: item.fotoPlacasUrl },
+      { label: "Pipa vacÃ­a", url: item.fotoPipaVaciaUrl },
+      { label: "Placas del camiÃ³n", url: item.fotoPlacasUrl },
       { label: "INE del chofer", url: item.fotoIneChoferUrl },
       { label: "Medidor antes", url: item.fotoMedidorAntesUrl },
-      { label: "Medidor después", url: item.fotoMedidorDespuesUrl },
+      { label: "Medidor despuÃ©s", url: item.fotoMedidorDespuesUrl },
       { label: "Nivel antes", url: item.fotoNivelAntesUrl },
-      { label: "Nivel después", url: item.fotoNivelDespuesUrl },
+      { label: "Nivel despuÃ©s", url: item.fotoNivelDespuesUrl },
       { label: "Nota", url: item.fotoNotaUrl },
     ];
 
@@ -195,23 +195,23 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, "Soporte de Recepción de Pipa de Agua", `Pipa: ${item.placasCamion}`, generatedAt, "MANTENIMIENTO")}
+  ${this.htmlPrintS.buildStandardHeader(logo, "Soporte de RecepciÃ³n de Pipa de Agua", `Pipa: ${item.placasCamion}`, generatedAt, "MANTENIMIENTO")}
 
   <div class="body-doc">
     <div class="section-title">Datos generales</div>
     <div class="data-grid">
       <div>
         <div class="data-item"><span class="data-label">Llegada:</span> ${fmtDate(item.horaLlegada)}</div>
-        <div class="data-item"><span class="data-label">Término:</span> ${fmtDate(item.horaTermino)}</div>
+        <div class="data-item"><span class="data-label">TÃ©rmino:</span> ${fmtDate(item.horaTermino)}</div>
         ${item.empresa ? `<div class="data-item"><span class="data-label">Empresa:</span> ${this.htmlPrintS.esc(item.empresa)}</div>` : ""}
         <div class="data-item"><span class="data-label">Placas:</span> ${this.htmlPrintS.esc(item.placasCamion)}</div>
         <div class="data-item"><span class="data-label">Capacidad pipa:</span> ${item.capacidadPipa?.toLocaleString("es-MX") ?? 0} L</div>
       </div>
       <div>
         <div class="data-item"><span class="data-label">Cisterna antes:</span> ${fmtNum(item.nivelCisternaAntes, 0)}%</div>
-        <div class="data-item"><span class="data-label">Cisterna después:</span> ${fmtNum(item.nivelCisternaDespues, 0)}%</div>
+        <div class="data-item"><span class="data-label">Cisterna despuÃ©s:</span> ${fmtNum(item.nivelCisternaDespues, 0)}%</div>
         <div class="data-item"><span class="data-label">Dif. cisterna:</span> ${fmtNum(item.nivelCisternaDespues - item.nivelCisternaAntes, 0)}%</div>
-        <div class="data-item"><span class="data-label">Costo m³:</span> $${fmtNum(item.costoMetroCubico, 2)}</div>
+        <div class="data-item"><span class="data-label">Costo mÂ³:</span> $${fmtNum(item.costoMetroCubico, 2)}</div>
       </div>
     </div>
 
@@ -221,7 +221,7 @@ ${this.htmlPrintS.getStandardCss()}
         <tr>
           <th>Medidor inicial</th>
           <th>Medidor final</th>
-          <th>m³ ingresados</th>
+          <th>mÂ³ ingresados</th>
         </tr>
       </thead>
       <tbody>
@@ -233,7 +233,7 @@ ${this.htmlPrintS.getStandardCss()}
       </tbody>
     </table>
 
-    <div class="section-title">Fotografías de evidencia</div>
+    <div class="section-title">FotografÃ­as de evidencia</div>
     <div class="photos-grid">
       ${loaded.map(photoCellHtml).join("")}
     </div>

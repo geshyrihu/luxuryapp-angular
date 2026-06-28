@@ -1,13 +1,13 @@
-ï»¿import { Component, effect, inject, signal } from "@angular/core";
+import { Component, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { warningOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
@@ -87,7 +87,7 @@ export default class LateFeePolicyList {
   onModalForm(id: string = "") {
     const data = {
       id,
-      title: id === "" ? "Nueva PolÃ­tica de Mora" : "Editar PolÃ­tica",
+      title: id === "" ? "Nueva Política de Mora" : "Editar Política",
       customerId: this.customerIdS.customerId(),
     };
     this.dialogHandlerS

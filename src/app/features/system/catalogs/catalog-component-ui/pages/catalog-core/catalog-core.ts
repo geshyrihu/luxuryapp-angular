@@ -7,21 +7,21 @@ import { DialogModule } from "primeng/dialog";
 import { DividerModule } from "primeng/divider";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { Loader } from "src/app/core/components/loader/loader";
-import { NotificationItem } from "src/app/core/components/notification-center/notification-center";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { StatusBadge, EStatus } from "src/app/core/components/status-badge/status-badge";
-import { WizardStep, Wizard } from "src/app/core/components/wizard/wizard";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { Loader } from "src/app/core/components/shared/loader/loader";
+import { NotificationItem } from "src/app/core/components/shared/notification-center/notification-center";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { StatusBadge, EStatus } from "src/app/core/components/shared/status-badge/status-badge";
+import { WizardStep, Wizard } from "src/app/core/components/shared/wizard/wizard";
 import { CommonCoreCoverage } from "../../shared/common-core-coverage";
 import { CustomButtonDelete, CustomButtonEdit } from "src/app/core/components/buttons/web";
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
-import { DateRange } from "src/app/core/components/date-range/date-range";
-import { NotificationCenter } from "src/app/core/components/notification-center/notification-center";
-import { ConfirmDialog } from "src/app/core/components/confirm-dialog/confirm-dialog";
-import { FileUpload } from "src/app/core/components/file-upload/file-upload";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { DateRange } from "src/app/core/components/shared/date-range/date-range";
+import { NotificationCenter } from "src/app/core/components/shared/notification-center/notification-center";
+import { ConfirmDialog } from "src/app/core/components/shared/confirm-dialog/confirm-dialog";
+import { FileUpload } from "src/app/core/components/shared/file-upload/file-upload";
 @Component({
   selector: "app-catalog-core",
   imports: [
@@ -61,7 +61,7 @@ import { FileUpload } from "src/app/core/components/file-upload/file-upload";
       <div class="grid">
 
         <div class="col-12 lg:col-6">
-          <p-card header="Navegación y UX Base">
+          <p-card header="NavegaciÃ³n y UX Base">
             <div class="flex flex-column gap-4">
               <div class="surface-ground p-3 border-round flex flex-column gap-3">
                 <h4 class="mt-0 mb-2 text-color-secondary">Status Badge</h4>
@@ -90,7 +90,7 @@ import { FileUpload } from "src/app/core/components/file-upload/file-upload";
         </div>
 
         <div class="col-12 lg:col-6">
-          <p-card header="Menús e Interacción">
+          <p-card header="MenÃºs e InteracciÃ³n">
             <div class="surface-ground p-3 border-round">
               <h4 class="mt-0 mb-3 text-color-secondary">Action Menu</h4>
               <app-action-menu>
@@ -139,9 +139,9 @@ import { FileUpload } from "src/app/core/components/file-upload/file-upload";
         <div class="col-12 lg:col-6">
           <p-card header="Confirm Dialog">
             <div class="surface-ground p-3 border-round flex flex-column align-items-center gap-3">
-              <p class="text-sm text-color-secondary m-0">Diálogo de confirmación con tipo danger.</p>
+              <p class="text-sm text-color-secondary m-0">DiÃ¡logo de confirmaciÃ³n con tipo danger.</p>
               <p-button
-                label="Abrir confirmación"
+                label="Abrir confirmaciÃ³n"
                 icon="mdi:alert-circle"
                 severity="danger"
                 (onClick)="confirmVisible.set(true)"
@@ -149,7 +149,7 @@ import { FileUpload } from "src/app/core/components/file-upload/file-upload";
               <app-confirm-dialog
                 [(visible)]="confirmVisible"
                 title="Eliminar registro"
-                message="¿Estás seguro de eliminar este registro? Esta acción no se puede deshacer."
+                message="Â¿EstÃ¡s seguro de eliminar este registro? Esta acciÃ³n no se puede deshacer."
                 type="danger"
                 confirmLabel="Eliminar"
               />
@@ -179,15 +179,15 @@ import { FileUpload } from "src/app/core/components/file-upload/file-upload";
               [(activeStep)]="wizardActiveStep"
             >
               <div step="1" class="flex flex-column gap-2 p-2">
-                <strong>Paso 1: Datos básicos</strong>
-                <p class="text-sm text-color-secondary m-0">Captura la información general del registro.</p>
+                <strong>Paso 1: Datos bÃ¡sicos</strong>
+                <p class="text-sm text-color-secondary m-0">Captura la informaciÃ³n general del registro.</p>
               </div>
               <div step="2" class="flex flex-column gap-2 p-2">
-                <strong>Paso 2: Revisión</strong>
+                <strong>Paso 2: RevisiÃ³n</strong>
                 <p class="text-sm text-color-secondary m-0">Verifica que los datos capturados sean correctos.</p>
               </div>
               <div step="3" class="flex flex-column gap-2 p-2">
-                <strong>Paso 3: Confirmación</strong>
+                <strong>Paso 3: ConfirmaciÃ³n</strong>
                 <p class="text-sm text-color-secondary m-0">Confirma el registro para completar el proceso.</p>
               </div>
             </app-wizard>
@@ -208,15 +208,16 @@ export class CatalogCore {
 
   readonly sampleNotifications: NotificationItem[] = [
     { id: "1", icon: "mdi:file-document", title: "Documento aprobado", description: "El documento PROC-ADMI-012 ha sido aprobado.", time: "Hace 5 min", read: false, severity: "success" },
-    { id: "2", icon: "mdi:alert", title: "Mantenimiento programado", description: "Corte de energía eléctrica el 25/06.", time: "Hace 2 h", read: false, severity: "warn" },
+    { id: "2", icon: "mdi:alert", title: "Mantenimiento programado", description: "Corte de energÃ­a elÃ©ctrica el 25/06.", time: "Hace 2 h", read: false, severity: "warn" },
     { id: "3", icon: "mdi:check-circle", title: "Reporte completado", description: "Reporte mensual de finanzas disponible.", time: "Hace 1 d", read: true, severity: "info" },
   ];
 
   readonly wizardSteps: WizardStep[] = [
     { value: 1, label: "Datos", icon: "mdi:file-document-outline" },
-    { value: 2, label: "Revisión", icon: "mdi:eye-outline" },
+    { value: 2, label: "RevisiÃ³n", icon: "mdi:eye-outline" },
     { value: 3, label: "Confirmar", icon: "mdi:check-circle-outline" },
   ];
 
   wizardActiveStep = signal(1);
 }
+

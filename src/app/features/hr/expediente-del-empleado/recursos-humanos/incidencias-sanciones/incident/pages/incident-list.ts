@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { DatePipe } from "@angular/common";
 import {
   Component,
@@ -14,8 +14,8 @@ import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
@@ -28,8 +28,8 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SwalService } from "src/app/core/services/swal.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import {
   IncidentDetailDTO,
   IncidentListDTO,
@@ -155,7 +155,7 @@ export class IncidentList implements OnInit {
     this.swalS
       .fire({
         title: "Cancelar Incidencia",
-        text: "Ingrese el motivo de cancelación:",
+        text: "Ingrese el motivo de cancelaciÃ³n:",
         input: "text",
         showCancelButton: true,
         confirmButtonText: "Cancelar Incidencia",
@@ -180,7 +180,7 @@ export class IncidentList implements OnInit {
       });
   }
 
-  /** Genera y descarga el acta administrativa para firma física. Persiste en disco y marca IsActGenerated. */
+  /** Genera y descarga el acta administrativa para firma fÃ­sica. Persiste en disco y marca IsActGenerated. */
   onGenerateAct(item: IncidentListDTO): void {
     const nombre = item.employeeName
       .toLowerCase()
@@ -217,7 +217,7 @@ export class IncidentList implements OnInit {
           if (result !== false) {
             this.toastS.showSuccess(
               "Acta guardada",
-              "El acta firmada se guardó correctamente.",
+              "El acta firmada se guardÃ³ correctamente.",
             );
             this.onLoadData();
           }

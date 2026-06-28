@@ -19,7 +19,7 @@
         (clicked)="onDownloadAll()"
         [showLabelOnDesktop]="false"
         label="Descargar Todas"
-        iconClass="icon icon-pi-download"
+        icon="mdi:download"
       />
     </div>
   </ng-template>
@@ -72,8 +72,7 @@
           <custom-button-item
             (clicked)="onDownloadIndividual(item.id, item.employeeName)"
             label="Descargar"
-            iconClass="mdi:upload"
-            iconClass="icon icon-pi-download"
+            icon="mdi:download"
           />
           <custom-button-delete (confirmed)="onDelete(item.id)" />
         </div>
@@ -81,13 +80,17 @@
       <!-- Opciones -->
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="7">
-          <app-empty-state icon="mdi:clipboard-check-outline" title="Sin evaluaciones" message="No hay evaluaciones registradas." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="7">
+        <app-empty-state
+          icon="mdi:clipboard-check-outline"
+          title="Sin evaluaciones"
+          message="No hay evaluaciones registradas."
+        />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -105,9 +108,16 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-primary-50, #edf1ff);
+        "
       >
-        <app-icon icon="mdi:clipboard-check-outline" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+        <app-icon
+          icon="mdi:clipboard-check-outline"
+          style="font-size: 1.1rem; color: var(--ds-primary)"
+        ></app-icon>
       </div>
       <ion-label>
         <h2 class="font-normal m-0">{{ item.employeeName }}</h2>
@@ -119,9 +129,14 @@
             (clicked)="onEdit(item.id)"
             label="Editar"
             iconName="create-outline"
-           [showLabelOnDesktop]="true"/>
+            [showLabelOnDesktop]="true"
+          />
 
-          <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
+          <custom-button-delete
+            (confirmed)="onDelete(item.id)"
+            label="Eliminar"
+            [showLabelOnDesktop]="true"
+          />
         </ng-container>
       </app-action-menu>
     </ion-item>

@@ -42,7 +42,12 @@
           <td>{{ item.title }}</td>
           <td class="text-center">
             @if (item.description && item.description.length > 0) {
-            <app-icon [icon]="'mdi:book'" class="icon-xl cursor-pointer" (click)="onModalViewDetail({ id: item.id })" pTooltip="Ver detalles"></app-icon>
+            <app-icon
+              [icon]="'mdi:book'"
+              class="icon-xl cursor-pointer"
+              (click)="onModalViewDetail({ id: item.id })"
+              pTooltip="Ver detalles"
+            ></app-icon>
             }
           </td>
           <td class="text-center">
@@ -71,17 +76,21 @@
               [ticketId]="item.id"
               [badgeCount]="item.tracking"
               (clickTracking)="onModalSeguimientoCliente({ ticketId: item.id, title: 'Seguimiento' })"
-/>
+            />
           </td>
         </tr>
       </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="9">
-          <app-empty-state icon="mdi:ticket-outline" title="Sin tickets" message="No hay tickets legales registrados." />
-        </td>
-      </tr>
-    </ng-template>
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="9">
+            <app-empty-state
+              icon="mdi:ticket-outline"
+              title="Sin tickets"
+              message="No hay tickets legales registrados."
+            />
+          </td>
+        </tr>
+      </ng-template>
       <ng-template #paginatorleft>
         <primeng-custom-table-footer [data]="dataSignal()" />
       </ng-template>
@@ -99,13 +108,20 @@
     >
       <ng-template #listItemTemplate let-item>
         <ion-item lines="full" class="ion-no-padding" detail="false">
-      <div
-        slot="start"
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
-      >
-        <app-icon icon="mdi:ticket-outline" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
-      </div>
+          <div
+            slot="start"
+            class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+            style="
+              width: 38px;
+              height: 38px;
+              background: var(--ds-primary-50, #edf1ff);
+            "
+          >
+            <app-icon
+              icon="mdi:ticket-outline"
+              style="font-size: 1.1rem; color: var(--ds-primary)"
+            ></app-icon>
+          </div>
           <ion-label>
             <div class="flex justify-content-between align-items-start mb-2">
               <div class="flex flex-column">
@@ -136,7 +152,9 @@
                 "
               />
               <div class="text-right">
-                <p class="m-0">Conclusión: {{ item.completionDate ?? "Pendiente" }}</p>
+                <p class="m-0">
+                  Conclusión: {{ item.completionDate ?? "Pendiente" }}
+                </p>
                 <p class="m-0 font-bold">Días: {{ item.diferenciaDias }}</p>
               </div>
             </div>
@@ -149,14 +167,18 @@
                 label="Ver detalles"
                 (clicked)="onModalViewDetail({ id: item.id })"
                 [disabled]="!item.description || item.description.length === 0"
- [showLabelOnDesktop]="true"/>
+                [showLabelOnDesktop]="true"
+              />
               <custom-button-item
                 iconName="ellipsis-horizontal-outline"
                 label="Seguimiento"
                 (clicked)="onModalSeguimientoCliente({ ticketId: item.id, title: 'Seguimiento' })"
               >
-                <p-badge [value]="item.tracking" severity="danger"
- [showLabelOnDesktop]="true"/>
+                <p-badge
+                  [value]="item.tracking"
+                  severity="danger"
+                  [showLabelOnDesktop]="true"
+                />
               </custom-button-item>
             </ng-container>
           </app-action-menu>

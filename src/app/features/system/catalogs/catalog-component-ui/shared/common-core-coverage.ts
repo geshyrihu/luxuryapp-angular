@@ -7,82 +7,82 @@ import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { BitacoraFiltroFechaForm } from "src/app/core/components/bitacora-filtro-fecha/bitacora-filtro-fecha-form";
-import { AdvancedPieChart } from "src/app/core/components/charts/advanced-pie-chart";
-import { MultiAxisChart } from "src/app/core/components/charts/multi-axis-chart";
-import { PrimengRadarChart } from "src/app/core/components/charts/primeng-radar-chart";
-import { GlobalErrorAlert } from "src/app/core/components/global-error-alert/global-error-alert";
-import { HeaderCustomer } from "src/app/core/components/header-customer/haeder-customer";
-import { Mesanio } from "src/app/core/components/mesanio/mesanio";
-import { PrimeNgCustomGlobalFilter } from "src/app/core/components/primeng-custom-global-filter/primeng-custom-global-filter";
-import { PrimeNgCustomToast } from "src/app/core/components/primeng-custom-toast/primeng-custom-toast";
-import { CalendarRange } from "src/app/core/components/rango-calendario-mes-anio/calendar-range";
-import { RangoCalendarioyyyymmdd } from "src/app/core/components/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
-import { ReportHeader } from "src/app/core/components/report-header/report-header";
-import { PageTitleReportMaintenance } from "src/app/core/components/title-page-report-maintenance/page-title-report-maintenance";
-import { PageTitleReport } from "src/app/core/components/title-page-report/page-title-report";
-import { CabeceraSolicitudPagoPdf } from "src/app/core/components/title-solicitud-pago-pdf/cabecera-solicitud-pago-pdf";
-import { Touchspin } from "src/app/core/components/touchspin/touchspin";
+import { BitacoraFiltroFechaForm } from "src/app/core/components/web/bitacora-filtro-fecha/bitacora-filtro-fecha-form";
+import { AdvancedPieChart } from "src/app/core/components/web/charts/advanced-pie-chart";
+import { MultiAxisChart } from "src/app/core/components/web/charts/multi-axis-chart";
+import { PrimengRadarChart } from "src/app/core/components/web/charts/primeng-radar-chart";
+import { GlobalErrorAlert } from "src/app/core/components/shared/global-error-alert/global-error-alert";
+import { HeaderCustomer } from "src/app/core/components/web/header-customer/haeder-customer";
+import { Mesanio } from "src/app/core/components/web/mesanio/mesanio";
+import { PrimeNgCustomGlobalFilter } from "src/app/core/components/web/primeng-custom-global-filter/primeng-custom-global-filter";
+import { PrimeNgCustomToast } from "src/app/core/components/web/primeng-custom-toast/primeng-custom-toast";
+import { CalendarRange } from "src/app/core/components/web/rango-calendario-mes-anio/calendar-range";
+import { RangoCalendarioyyyymmdd } from "src/app/core/components/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
+import { ReportHeader } from "src/app/core/components/web/report-header/report-header";
+import { PageTitleReportMaintenance } from "src/app/core/components/web/title-page-report-maintenance/page-title-report-maintenance";
+import { PageTitleReport } from "src/app/core/components/web/title-page-report/page-title-report";
+import { CabeceraSolicitudPagoPdf } from "src/app/core/components/web/title-solicitud-pago-pdf/cabecera-solicitud-pago-pdf";
+import { Touchspin } from "src/app/core/components/web/touchspin/touchspin";
 import { FeatureAnnouncementService } from "src/app/core/services/feature-announcement.service";
 import { GlobalErrorService } from "src/app/core/services/global-error.service";
 
-// --- Fase 9 — Segunda Ronda ---
+// --- Fase 9 â€” Segunda Ronda ---
 import {
   AppBottomNav,
   type BottomNavItem,
-} from "src/app/core/components/bottom-nav/bottom-nav";
+} from "src/app/core/components/shared/bottom-nav/bottom-nav";
 import {
   AppCommentThread,
   type Comment,
-} from "src/app/core/components/comment-thread/comment-thread";
-import { AppContactCard } from "src/app/core/components/contact-card/contact-card";
+} from "src/app/core/components/shared/comment-thread/comment-thread";
+import { AppContactCard } from "src/app/core/components/shared/contact-card/contact-card";
 import {
   AppCustomer360,
   type Customer360Data,
-} from "src/app/core/components/customer-360/customer-360";
-import { AppEmailPreview } from "src/app/core/components/email-preview/email-preview";
-import { AppLangSelector } from "src/app/core/components/lang-selector/lang-selector";
-import { AppOtpInput } from "src/app/core/components/otp-input/otp-input";
+} from "src/app/core/components/shared/customer-360/customer-360";
+import { AppEmailPreview } from "src/app/core/components/shared/email-preview/email-preview";
+import { AppLangSelector } from "src/app/core/components/shared/lang-selector/lang-selector";
+import { AppOtpInput } from "src/app/core/components/shared/otp-input/otp-input";
 import {
   AppPipelineCrm,
   type PipelineStage,
-} from "src/app/core/components/pipeline-crm/pipeline-crm";
-import { AppPrintView } from "src/app/core/components/print-view/print-view";
-import { AppProfileCard } from "src/app/core/components/profile-card/profile-card";
-import { AppRating } from "src/app/core/components/rating/rating";
-import { AppSlider } from "src/app/core/components/slider/slider";
-import { AppStatCard } from "src/app/core/components/stat-card/stat-card";
+} from "src/app/core/components/shared/pipeline-crm/pipeline-crm";
+import { AppPrintView } from "src/app/core/components/shared/print-view/print-view";
+import { AppProfileCard } from "src/app/core/components/shared/profile-card/profile-card";
+import { AppRating } from "src/app/core/components/shared/rating/rating";
+import { AppSlider } from "src/app/core/components/shared/slider/slider";
+import { AppStatCard } from "src/app/core/components/shared/stat-card/stat-card";
 import {
   AppTabBar,
   type TabBarItem,
-} from "src/app/core/components/tab-bar/tab-bar";
-import { AppTagInput } from "src/app/core/components/tag-input/tag-input";
-import { AppThemeSwitcher } from "src/app/core/components/theme-switcher/theme-switcher";
+} from "src/app/core/components/shared/tab-bar/tab-bar";
+import { AppTagInput } from "src/app/core/components/shared/tag-input/tag-input";
+import { AppThemeSwitcher } from "src/app/core/components/shared/theme-switcher/theme-switcher";
 
 // --- Fase 9.3 ---
-import { AppBarcodeInput } from "src/app/core/components/barcode-input/barcode-input";
-import { AppBarcodeScanner } from "src/app/core/components/barcode-scanner/barcode-scanner";
-import { AppColorPicker } from "src/app/core/components/color-picker/color-picker";
-import { AppDock } from "src/app/core/components/dock/dock";
+import { AppBarcodeInput } from "src/app/core/components/shared/barcode-input/barcode-input";
+import { AppBarcodeScanner } from "src/app/core/components/shared/barcode-scanner/barcode-scanner";
+import { AppColorPicker } from "src/app/core/components/shared/color-picker/color-picker";
+import { AppDock } from "src/app/core/components/shared/dock/dock";
 import {
   AppFormBuilder,
   type FormField,
-} from "src/app/core/components/form-builder/form-builder";
-import { AppGantt, type GanttTask } from "src/app/core/components/gantt/gantt";
+} from "src/app/core/components/shared/form-builder/form-builder";
+import { AppGantt, type GanttTask } from "src/app/core/components/shared/gantt/gantt";
 import {
   AppHeatmap,
   type HeatmapCell,
-} from "src/app/core/components/heatmap/heatmap";
-import { AppInventoryLevel } from "src/app/core/components/inventory-level/inventory-level";
-import { AppQrCode } from "src/app/core/components/qr-code/qr-code";
-import { AppRealtimeIndicator } from "src/app/core/components/realtime-indicator/realtime-indicator";
-import { AppReceiptScanner } from "src/app/core/components/receipt-scanner/receipt-scanner";
-import { AppSignaturePad } from "src/app/core/components/signature-pad/signature-pad";
+} from "src/app/core/components/shared/heatmap/heatmap";
+import { AppInventoryLevel } from "src/app/core/components/shared/inventory-level/inventory-level";
+import { AppQrCode } from "src/app/core/components/shared/qr-code/qr-code";
+import { AppRealtimeIndicator } from "src/app/core/components/shared/realtime-indicator/realtime-indicator";
+import { AppReceiptScanner } from "src/app/core/components/shared/receipt-scanner/receipt-scanner";
+import { AppSignaturePad } from "src/app/core/components/shared/signature-pad/signature-pad";
 import {
   AppTerritoryMap,
   type Territory,
-} from "src/app/core/components/territory-map/territory-map";
-import { AppTristateSwitch } from "src/app/core/components/tristate-switch/tristate-switch";
+} from "src/app/core/components/shared/territory-map/territory-map";
+import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switch/tristate-switch";
 
 @Component({
   selector: "app-common-core-coverage",
@@ -217,9 +217,9 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
             <div
               class="p-3 surface-ground border-round text-sm text-color-secondary"
             >
-              <code>app-whats-new</code> — se muestra vía signal
+              <code>app-whats-new</code> â€” se muestra vÃ­a signal
               <code>FeatureAnnouncementService.showDialog</code>. El componente
-              no se monta aquí para evitar auto-apertura en catálogo.
+              no se monta aquÃ­ para evitar auto-apertura en catÃ¡logo.
             </div>
           </div>
         </p-card>
@@ -274,9 +274,9 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
                 class="surface-ground border-round p-4 text-center text-sm text-color-secondary"
               >
                 <span class="block font-bold mb-1">app-pdf-viewer-modal</span>
-                Se abre vía <code>DynamicDialogService</code> con
+                Se abre vÃ­a <code>DynamicDialogService</code> con
                 <code>pdfSrc</code> real. No se monta inline para evitar
-                peticiones a rutas de demostración.
+                peticiones a rutas de demostraciÃ³n.
               </div>
             </div>
             <div class="col-12 xl:col-6">
@@ -286,7 +286,7 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
                 <span class="block font-bold mb-1"
                   >app-custom-input-upload-pdf-signal</span
                 >
-                Upload masivo de PDFs. Se abre vía
+                Upload masivo de PDFs. Se abre vÃ­a
                 <code>DynamicDialogService</code>, no como input de formulario
                 inline.
               </div>
@@ -311,21 +311,21 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
         </p-card>
       </div>
 
-      <!-- ═══════════════════════════════════════════════════════════════════
-           FASE 9 — SEGUNDA RONDA (ANALISIS-PROMPT-V2)
-      ═══════════════════════════════════════════════════════════════════════ -->
+      <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+           FASE 9 â€” SEGUNDA RONDA (ANALISIS-PROMPT-V2)
+      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 
       <div class="col-12">
         <p-divider align="center">
           <span class="text-sm font-semibold text-color-secondary"
-            >Fase 9 — Segunda Ronda V2</span
+            >Fase 9 â€” Segunda Ronda V2</span
           >
         </p-divider>
       </div>
 
       <!-- Slider -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-slider — Slider / Range slider">
+        <p-card header="app-slider â€” Slider / Range slider">
           <div class="flex flex-column gap-4">
             <app-slider
               label="Presupuesto mensual"
@@ -356,14 +356,14 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
 
       <!-- Rating -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-rating — Rating / Stars">
+        <p-card header="app-rating â€” Rating / Stars">
           <div class="flex flex-column gap-4">
             <app-rating
-              label="Satisfacción del cliente"
+              label="SatisfacciÃ³n del cliente"
               [(value)]="ratingValue"
             />
             <app-rating
-              label="Evaluación de proveedor (3 estrellas)"
+              label="EvaluaciÃ³n de proveedor (3 estrellas)"
               [stars]="3"
               [(value)]="ratingShort"
             />
@@ -378,16 +378,16 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
 
       <!-- OTP Input -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-otp-input — OTP / 2FA">
+        <p-card header="app-otp-input â€” OTP / 2FA">
           <div class="flex flex-column gap-4">
             <app-otp-input
-              label="Código de verificación (6 dígitos)"
-              hint="Ingresa el código que recibiste por SMS"
+              label="CÃ³digo de verificaciÃ³n (6 dÃ­gitos)"
+              hint="Ingresa el cÃ³digo que recibiste por SMS"
               [length]="6"
               [(value)]="otpValue"
             />
             <app-otp-input
-              label="PIN de operación (4 dígitos, enmascarado)"
+              label="PIN de operaciÃ³n (4 dÃ­gitos, enmascarado)"
               [length]="4"
               [mask]="true"
               [(value)]="otpPin"
@@ -398,10 +398,10 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
 
       <!-- Profile Card -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-profile-card — Tarjeta de contacto CRM">
+        <p-card header="app-profile-card â€” Tarjeta de contacto CRM">
           <div class="flex flex-column gap-3">
             <app-profile-card
-              name="Ana García Mendoza"
+              name="Ana GarcÃ­a Mendoza"
               role="Gerente de Ventas"
               email="ana.garcia@luxuryapp.mx"
               phone="+52 55 1234 5678"
@@ -411,7 +411,7 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
             />
             <app-profile-card
               name="Carlos Ruiz"
-              role="Director Técnico"
+              role="Director TÃ©cnico"
               company="Inmobiliaria Central"
               [compact]="true"
               [online]="false"
@@ -422,7 +422,7 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
 
       <!-- Theme Switcher -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-theme-switcher — Toggle Light / Dark">
+        <p-card header="app-theme-switcher â€” Toggle Light / Dark">
           <div class="flex align-items-center gap-3">
             <app-theme-switcher />
             <span class="text-sm text-color-secondary">
@@ -437,7 +437,7 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
 
       <!-- Pipeline CRM -->
       <div class="col-12">
-        <p-card header="app-pipeline-crm — Pipeline CRM / Deal Stages">
+        <p-card header="app-pipeline-crm â€” Pipeline CRM / Deal Stages">
           <app-pipeline-crm
             title="Pipeline Comercial"
             [stages]="pipelineStages"
@@ -445,11 +445,11 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
         </p-card>
       </div>
 
-      <!-- ───────── FASE 9.2 ───────── -->
+      <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€ FASE 9.2 â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
 
       <!-- Tag Input -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-tag-input — Tags con autocomplete">
+        <p-card header="app-tag-input â€” Tags con autocomplete">
           <div class="flex flex-column gap-4">
             <app-tag-input
               label="Etiquetas del lead"
@@ -467,10 +467,10 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
 
       <!-- Contact Card -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-contact-card — Tarjeta compacta CRM">
+        <p-card header="app-contact-card â€” Tarjeta compacta CRM">
           <div class="flex flex-column gap-2">
             <app-contact-card
-              name="Lucía Fernández Mora"
+              name="LucÃ­a FernÃ¡ndez Mora"
               role="CFO"
               company="Grupo Inmobiliario del Norte"
               email="lucia@ginorte.mx"
@@ -496,7 +496,7 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
 
       <!-- Bottom Nav + Tab Bar -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-bottom-nav — Navegación móvil inferior">
+        <p-card header="app-bottom-nav â€” NavegaciÃ³n mÃ³vil inferior">
           <div
             class="surface-ground border-round overflow-hidden"
             style="max-width:375px; margin:0 auto;"
@@ -516,7 +516,7 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
       </div>
 
       <div class="col-12 lg:col-6">
-        <p-card header="app-tab-bar — Tabs de sección">
+        <p-card header="app-tab-bar â€” Tabs de secciÃ³n">
           <div class="flex flex-column gap-3">
             <app-tab-bar [tabs]="tabBarItems" [(activeId)]="activeTab" />
             <div
@@ -535,7 +535,7 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
 
       <!-- Stat Cards con sparklines -->
       <div class="col-12">
-        <p-card header="app-stat-card — KPI con sparkline">
+        <p-card header="app-stat-card â€” KPI con sparkline">
           <div class="grid">
             <div class="col-12 sm:col-6 xl:col-3">
               <app-stat-card
@@ -554,7 +554,7 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
                 [value]="84"
                 icon="mdi:account-multiple-outline"
                 iconColor="var(--ds-info)"
-                iconBg="var(--ds-info-light, #afecff)"
+                iconBg="var(--ds-info-light, #cae6ff)"
                 [trend]="-3.2"
                 subtitle="esta semana"
                 [sparkline]="sparkLeads"
@@ -590,7 +590,7 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
 
       <!-- Customer 360 -->
       <div class="col-12 xl:col-8">
-        <p-card header="app-customer-360 — Vista 360 de cliente CRM">
+        <p-card header="app-customer-360 â€” Vista 360 de cliente CRM">
           <app-customer-360 [data]="customer360" />
         </p-card>
       </div>
@@ -609,7 +609,7 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
               <div
                 class="p-3 surface-ground border-round text-sm text-color-secondary"
               >
-                Contenido del reporte a imprimir (proyectado vía ng-content)
+                Contenido del reporte a imprimir (proyectado vÃ­a ng-content)
               </div>
             </app-print-view>
           </div>
@@ -618,7 +618,7 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
 
       <!-- Comment Thread -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-comment-thread — Notas colaborativas">
+        <p-card header="app-comment-thread â€” Notas colaborativas">
           <app-comment-thread
             title="Notas del deal"
             [comments]="demoComments"
@@ -629,18 +629,18 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
 
       <!-- Email Preview -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-email-preview — Vista previa de plantilla">
+        <p-card header="app-email-preview â€” Vista previa de plantilla">
           <app-email-preview
             from="CRM LuxuryApp &lt;crm@luxuryapp.mx&gt;"
             to="ana.garcia@cliente.mx"
-            subject="Propuesta comercial — Penthouse Santa Fe"
+            subject="Propuesta comercial â€” Penthouse Santa Fe"
             [tags]="['VIP', 'Seguimiento', 'Q2-2026']"
             [htmlContent]="demoEmailHtml"
           />
         </p-card>
       </div>
 
-      <!-- ───────── FASE 9.3 ───────── -->
+      <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€ FASE 9.3 â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
 
       <!-- Color picker + Tristate switch -->
       <div class="col-12 lg:col-6">
@@ -660,7 +660,7 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
             <app-tristate-switch
               label="Permiso heredado"
               [(value)]="tristateVal"
-              hint="Ciclo: Activado → Heredado → Desactivado"
+              hint="Ciclo: Activado â†’ Heredado â†’ Desactivado"
             />
             <app-tristate-switch
               label="Notificaciones (deshabilitado)"
@@ -673,7 +673,7 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
 
       <!-- Form builder -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-form-builder — Formulario dinámico desde schema">
+        <p-card header="app-form-builder â€” Formulario dinÃ¡mico desde schema">
           <app-form-builder
             title="Formulario de Lead"
             [schema]="demoSchema"
@@ -685,7 +685,7 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
 
       <!-- Signature pad + QR code -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-signature-pad — Captura de firma digital">
+        <p-card header="app-signature-pad â€” Captura de firma digital">
           <app-signature-pad
             label="Firma del responsable"
             hint="Dibuja con el mouse. Ctrl+click para confirmar."
@@ -696,7 +696,7 @@ import { AppTristateSwitch } from "src/app/core/components/tristate-switch/trist
       </div>
 
       <div class="col-12 lg:col-6">
-        <p-card header="app-qr-code — Generador de QR">
+        <p-card header="app-qr-code â€” Generador de QR">
           <div class="flex flex-wrap gap-4 justify-content-center">
             <app-qr-code
               label="Orden #ORD-2026-0421"
@@ -720,9 +720,9 @@ END:VCARD"
 
       <!-- Heatmap -->
       <div class="col-12 lg:col-8">
-        <p-card header="app-heatmap — Mapa de calor de actividad">
+        <p-card header="app-heatmap â€” Mapa de calor de actividad">
           <app-heatmap
-            title="Actividad de ventas por día y hora"
+            title="Actividad de ventas por dÃ­a y hora"
             [data]="heatmapData"
             [showValues]="true"
           />
@@ -771,7 +771,7 @@ END:VCARD"
 
       <!-- Scanners -->
       <div class="col-12 lg:col-4">
-        <p-card header="app-receipt-scanner — Captura de recibos">
+        <p-card header="app-receipt-scanner â€” Captura de recibos">
           <app-receipt-scanner
             accept="image/*,application/pdf"
             [maxMb]="10"
@@ -781,11 +781,11 @@ END:VCARD"
       </div>
 
       <div class="col-12 lg:col-4">
-        <p-card header="app-barcode-input — Lookup por código">
+        <p-card header="app-barcode-input â€” Lookup por cÃ³digo">
           <div class="flex flex-column gap-3">
             <app-barcode-input
               label="Buscar producto"
-              hint="Escanea o escribe el código de barras"
+              hint="Escanea o escribe el cÃ³digo de barras"
               (searched)="onBarcodeSearch($event)"
             />
           </div>
@@ -793,9 +793,9 @@ END:VCARD"
       </div>
 
       <div class="col-12 lg:col-4">
-        <p-card header="app-barcode-scanner — Escáner con cámara">
+        <p-card header="app-barcode-scanner â€” EscÃ¡ner con cÃ¡mara">
           <app-barcode-scanner
-            label="Escanear código"
+            label="Escanear cÃ³digo"
             [continuous]="false"
             (detected)="onBarcodeDetected($event)"
           />
@@ -804,9 +804,9 @@ END:VCARD"
 
       <!-- Territory map -->
       <div class="col-12">
-        <p-card header="app-territory-map — Territorios de ventas CRM">
+        <p-card header="app-territory-map â€” Territorios de ventas CRM">
           <app-territory-map
-            title="Territorios México"
+            title="Territorios MÃ©xico"
             [territories]="territories"
           />
         </p-card>
@@ -814,7 +814,7 @@ END:VCARD"
 
       <!-- Gantt -->
       <div class="col-12">
-        <p-card header="app-gantt — Diagrama de Gantt">
+        <p-card header="app-gantt â€” Diagrama de Gantt">
           <app-gantt
             title="Plan de Mantenimiento Q3-2026"
             [tasks]="ganttTasks"
@@ -835,7 +835,7 @@ export class CommonCoreCoverage {
 
   readonly inventory = [
     { name: "primeng-custom-global-filter", type: "Filtro" },
-    { name: "touchspin", type: "Control numérico" },
+    { name: "touchspin", type: "Control numÃ©rico" },
     { name: "page-title-report", type: "Header" },
     { name: "pdf-viewer-modal", type: "Modal PDF" },
   ];
@@ -848,7 +848,7 @@ export class CommonCoreCoverage {
 
   readonly advancedPieData = [
     { name: "Pagado", value: 62 },
-    { name: "En revisión", value: 21 },
+    { name: "En revisiÃ³n", value: 21 },
     { name: "Pendiente", value: 17 },
   ];
 
@@ -878,9 +878,9 @@ export class CommonCoreCoverage {
       {
         label: "Cobertura",
         data: [90, 72, 88, 81, 76, 84],
-        borderColor: "#0b3164",
-        backgroundColor: "rgba(11, 49, 100, 0.18)",
-        pointBackgroundColor: "#0b3164",
+        borderColor: "#00050e",
+        backgroundColor: "rgba(0, 5, 14, 0.18)",
+        pointBackgroundColor: "#00050e",
       },
     ],
   };
@@ -889,13 +889,13 @@ export class CommonCoreCoverage {
     this.messageService.add({
       severity: "success",
       summary: "Cobertura activa",
-      detail: "El wrapper PrimeNG Toast se está renderizando correctamente.",
+      detail: "El wrapper PrimeNG Toast se estÃ¡ renderizando correctamente.",
     });
   }
 
   showGlobalError() {
     this.globalErrorService.setGlobalError(
-      "Error de demostración emitido desde el catálogo de componentes.",
+      "Error de demostraciÃ³n emitido desde el catÃ¡logo de componentes.",
     );
   }
 
@@ -903,7 +903,7 @@ export class CommonCoreCoverage {
     this.featureAnnouncementService.showDialog.set(true);
   }
 
-  // ── Fase 9.1 demo data ──────────────────────────────────────────────
+  // â”€â”€ Fase 9.1 demo data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   sliderSingle = 25000;
   sliderRange: [number, number] = [200, 750];
   sliderDisabled = 7;
@@ -915,7 +915,7 @@ export class CommonCoreCoverage {
   otpValue = "";
   otpPin = "";
 
-  // ── Fase 9.2 demo data ──────────────────────────────────────────────
+  // â”€â”€ Fase 9.2 demo data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   selectedTags: string[] = ["CRM", "Enterprise"];
   freeTags: string[] = [];
   readonly tagSuggestions = [
@@ -924,7 +924,7 @@ export class CommonCoreCoverage {
     "VIP",
     "Prospect",
     "Caliente",
-    "Frío",
+    "FrÃ­o",
     "Seguimiento",
     "Urgente",
   ];
@@ -987,7 +987,7 @@ export class CommonCoreCoverage {
   readonly sparkTicket = [155, 162, 170, 158, 175, 180, 188];
 
   readonly customer360: Customer360Data = {
-    name: "Ana García Mendoza",
+    name: "Ana GarcÃ­a Mendoza",
     role: "Directora Comercial",
     company: "Grupo Inmobiliario del Norte SA de CV",
     email: "ana.garcia@ginorte.mx",
@@ -995,27 +995,27 @@ export class CommonCoreCoverage {
     tags: ["VIP", "Recurrente", "Q2"],
     totalRevenue: 3_850_000,
     openDeals: 4,
-    lastContact: "hace 2 días",
+    lastContact: "hace 2 dÃ­as",
     nps: 9,
     recentActivity: [
       {
         icon: "mdi:phone-outline",
-        text: "Llamada — propuesta Penthouse Santa Fe",
-        time: "hace 2 días",
+        text: "Llamada â€” propuesta Penthouse Santa Fe",
+        time: "hace 2 dÃ­as",
       },
       {
         icon: "mdi:email-outline",
         text: "Email enviado con brochure actualizado",
-        time: "hace 4 días",
+        time: "hace 4 dÃ­as",
       },
       {
         icon: "mdi:calendar-outline",
-        text: "Reunión agendada para el 28 Jun",
+        text: "ReuniÃ³n agendada para el 28 Jun",
         time: "hace 1 semana",
       },
     ],
     deals: [
-      { title: "Penthouse Santa Fe", stage: "Negociación", value: 1_200_000 },
+      { title: "Penthouse Santa Fe", stage: "NegociaciÃ³n", value: 1_200_000 },
       { title: "Torre Reforma 360", stage: "Propuesta", value: 950_000 },
       { title: "Residencial Pedregal II", stage: "Contacto", value: 680_000 },
     ],
@@ -1026,44 +1026,44 @@ export class CommonCoreCoverage {
   readonly demoComments: Comment[] = [
     {
       id: "c1",
-      authorName: "Laura Pérez",
-      text: "Cliente muy interesado en el Penthouse. Solicita visita guiada la próxima semana.",
-      timestamp: "hace 3 días",
+      authorName: "Laura PÃ©rez",
+      text: "Cliente muy interesado en el Penthouse. Solicita visita guiada la prÃ³xima semana.",
+      timestamp: "hace 3 dÃ­as",
       reactions: [
-        { emoji: "👍", count: 2 },
-        { emoji: "📌", count: 1 },
+        { emoji: "ðŸ‘", count: 2 },
+        { emoji: "ðŸ“Œ", count: 1 },
       ],
     },
     {
       id: "c2",
       authorName: "Carlos Ruiz",
-      text: "Revisé el expediente financiero. Califica para financiamiento sin aval.",
-      timestamp: "hace 1 día",
+      text: "RevisÃ© el expediente financiero. Califica para financiamiento sin aval.",
+      timestamp: "hace 1 dÃ­a",
       edited: true,
     },
   ];
 
   readonly demoEmailHtml = `
     <div style="max-width:600px;margin:0 auto;font-family:Arial,sans-serif;">
-      <div style="background:#003d9b;padding:24px;border-radius:8px 8px 0 0;">
+      <div style="background:#00050e;padding:24px;border-radius:8px 8px 0 0;">
         <h1 style="color:#fff;margin:0;font-size:20px;">LuxuryApp CRM</h1>
       </div>
       <div style="padding:24px;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 8px 8px;">
-        <p style="color:#041b3c;">Estimada <strong>Ana</strong>,</p>
-        <p style="color:#434654;line-height:1.6;">
-          Adjunto encontrará nuestra propuesta comercial actualizada para el
+        <p style="color:#1b1c1d;">Estimada <strong>Ana</strong>,</p>
+        <p style="color:#44474c;line-height:1.6;">
+          Adjunto encontrarÃ¡ nuestra propuesta comercial actualizada para el
           <strong>Penthouse Santa Fe</strong>. Incluye las modificaciones de
-          acabados que solicitó en nuestra última reunión.
+          acabados que solicitÃ³ en nuestra Ãºltima reuniÃ³n.
         </p>
-        <div style="background:#f9f9ff;border-radius:8px;padding:16px;margin:16px 0;">
-          <p style="margin:0;font-size:13px;color:#737685;">Valor de operación</p>
-          <p style="margin:4px 0 0;font-size:24px;font-weight:700;color:#003d9b;">$1,200,000 MXN</p>
+        <div style="background:#fbf9fb;border-radius:8px;padding:16px;margin:16px 0;">
+          <p style="margin:0;font-size:13px;color:#74777d;">Valor de operaciÃ³n</p>
+          <p style="margin:4px 0 0;font-size:24px;font-weight:700;color:#00050e;">$1,200,000 MXN</p>
         </div>
-        <a href="#" style="background:#003d9b;color:#fff;padding:12px 24px;border-radius:4px;text-decoration:none;display:inline-block;">
+        <a href="#" style="background:#00050e;color:#fff;padding:12px 24px;border-radius:4px;text-decoration:none;display:inline-block;">
           Ver propuesta completa
         </a>
-        <p style="color:#737685;font-size:12px;margin-top:24px;">
-          LuxuryApp CRM · Torre Corporativa, CDMX · crm@luxuryapp.mx
+        <p style="color:#74777d;font-size:12px;margin-top:24px;">
+          LuxuryApp CRM Â· Torre Corporativa, CDMX Â· crm@luxuryapp.mx
         </p>
       </div>
     </div>
@@ -1072,7 +1072,7 @@ export class CommonCoreCoverage {
   onCommentSubmit(text: string): void {
     this.messageService.add({
       severity: "success",
-      summary: "Comentario añadido",
+      summary: "Comentario aÃ±adido",
       detail: text,
     });
   }
@@ -1081,14 +1081,14 @@ export class CommonCoreCoverage {
     {
       id: "lead",
       name: "Prospecto",
-      color: "#737685",
+      color: "#74777d",
       deals: [
         {
           id: "d1",
           title: "Hotel Camino Real",
           company: "GHL Hotels",
           value: 450000,
-          owner: "Ana García",
+          owner: "Ana GarcÃ­a",
           daysInStage: 3,
           priority: "high",
         },
@@ -1105,7 +1105,7 @@ export class CommonCoreCoverage {
     {
       id: "contact",
       name: "Contacto",
-      color: "#006477",
+      color: "#002033",
       deals: [
         {
           id: "d3",
@@ -1121,14 +1121,14 @@ export class CommonCoreCoverage {
     {
       id: "proposal",
       name: "Propuesta",
-      color: "#003d9b",
+      color: "#00050e",
       deals: [
         {
           id: "d4",
-          title: "Club Náutico Vallarta",
+          title: "Club NÃ¡utico Vallarta",
           company: "Marina Dev.",
           value: 900000,
-          owner: "Ana García",
+          owner: "Ana GarcÃ­a",
           daysInStage: 20,
           priority: "high",
         },
@@ -1144,7 +1144,7 @@ export class CommonCoreCoverage {
     },
     {
       id: "negotiation",
-      name: "Negociación",
+      name: "NegociaciÃ³n",
       color: "#b45309",
       deals: [
         {
@@ -1175,9 +1175,9 @@ export class CommonCoreCoverage {
     },
   ];
 
-  // ── Fase 9.3 demo data ──────────────────────────────────────────────
-  pickerColor = "003d9b";
-  pickerColorInline = "c9a84c";
+  // â”€â”€ Fase 9.3 demo data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  pickerColor = "00050e";
+  pickerColorInline = "c9a74d";
   tristateVal: true | false | null = null;
   tristateDisabled: true | false | null = true;
 
@@ -1192,7 +1192,7 @@ export class CommonCoreCoverage {
     {
       key: "email",
       type: "email",
-      label: "Correo electrónico",
+      label: "Correo electrÃ³nico",
       required: true,
     },
     { key: "empresa", type: "text", label: "Empresa" },
@@ -1265,7 +1265,7 @@ export class CommonCoreCoverage {
       accounts: 42,
       revenue: 1_850_000,
       target: 2_000_000,
-      color: "#003d9b",
+      color: "#00050e",
       active: true,
     },
     {
@@ -1276,7 +1276,7 @@ export class CommonCoreCoverage {
       accounts: 38,
       revenue: 1_200_000,
       target: 1_500_000,
-      color: "#006477",
+      color: "#002033",
       active: true,
     },
     {
@@ -1337,7 +1337,7 @@ export class CommonCoreCoverage {
         startDate: d(-6),
         endDate: d(2),
         progress: 70,
-        color: "#003d9b",
+        color: "#00050e",
         assignee: "Equipo B",
       },
       {
@@ -1346,7 +1346,7 @@ export class CommonCoreCoverage {
         startDate: d(0),
         endDate: d(6),
         progress: 20,
-        color: "#006477",
+      color: "#002033",
         assignee: "Equipo A",
       },
       {
@@ -1370,3 +1370,4 @@ export class CommonCoreCoverage {
     ];
   })();
 }
+

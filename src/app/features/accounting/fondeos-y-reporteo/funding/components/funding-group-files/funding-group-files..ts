@@ -7,7 +7,7 @@ import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button"; // Added
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
-import { PdfViewerModal } from "src/app/core/components/pdf-viewer-modal/pdf-viewer-modal";
+import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 @Component({
@@ -165,3 +165,4 @@ export class FundingGroupFiles implements OnInit {
     this.ref.close();
   }
 }
+

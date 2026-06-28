@@ -1,3 +1,16 @@
+/**
+ * ============================================================================
+ * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
+ * ============================================================================
+ * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
+ * FUNCIONAL y ESTABLE. 
+ * 
+ * Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
+ * sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
+ * 
+ * Por favor, NO rompan el código.
+ * ============================================================================
+ */
 ﻿import { CommonModule } from "@angular/common";
 import { Component, OnInit, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -6,11 +19,11 @@ import { analyticsOutline } from "ionicons/icons";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ToastModule } from "primeng/toast";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";

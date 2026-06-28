@@ -78,6 +78,7 @@
             [src]="baseUrlImg + item.photoEmployee"
             alt=""
             class="border-round w-5rem h-auto"
+            onError="this.style.display='none'"
           />
         </td>
         <td>{{ item.nameEmployee }}</td>

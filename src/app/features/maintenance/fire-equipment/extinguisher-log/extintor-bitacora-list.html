@@ -12,7 +12,12 @@
   <ng-template #caption>
     <div class="flex justify-content-between align-items-center w-full">
       <div class="flex align-items-center gap-2">
-        <custom-button-download (clicked)="onPdfReport()" label="PDF" tooltip="Reporte PDF por rango de fecha" [showLabelOnDesktop]="true" />
+        <custom-button-download
+          (clicked)="onPdfReport()"
+          label="PDF"
+          tooltip="Reporte PDF por rango de fecha"
+          [showLabelOnDesktop]="true"
+        />
       </div>
       <primeng-custom-caption
         (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
@@ -37,33 +42,59 @@
       <td>{{ item.date | date:'dd-MMM-yy' }}</td>
       <td class="text-center">{{ item.hour }}</td>
       <td class="text-center">
-        <i class="icon" [class]="item.adequatePressure ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i>
+        <app-icon
+          [icon]="item.adequatePressure ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.adequatePressure"
+          [class.text-red-600]="!item.adequatePressure"
+        />
       </td>
       <td class="text-center">
-        <i class="icon" [class]="item.safetyPinOk ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i>
+        <app-icon
+          [icon]="item.safetyPinOk ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.safetyPinOk"
+          [class.text-red-600]="!item.safetyPinOk"
+        />
       </td>
       <td class="text-center">
-        <i class="icon" [class]="item.labelsOk ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i>
+        <app-icon
+          [icon]="item.labelsOk ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.labelsOk"
+          [class.text-red-600]="!item.labelsOk"
+        />
       </td>
       <td class="text-center">
-        <i class="icon" [class]="item.noPhysicalDamage ? 'icon-pi-check text-green-600 font-size-18' : 'icon-pi-times text-red-600 font-size-18'"></i>
+        <app-icon
+          [icon]="item.noPhysicalDamage ? 'mdi:check' : 'mdi:close'"
+          class="font-size-18"
+          [class.text-green-600]="item.noPhysicalDamage"
+          [class.text-red-600]="!item.noPhysicalDamage"
+        />
       </td>
       <td><small>{{ item.observations }}</small></td>
       <td class="no-print">
         <div class="flex justify-content-center">
-          <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })" />
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
+          />
           <custom-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="8">
-          <app-empty-state icon="mdi:fire-extinguisher" title="Sin registros" message="No hay registros de bitácora de extintores." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="8">
+        <app-empty-state
+          icon="mdi:fire-extinguisher"
+          title="Sin registros"
+          message="No hay registros de bitácora de extintores."
+        />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -79,27 +110,52 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-danger-light,#ffdad6);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-danger-light, #ffdad6);
+        "
       >
-        <app-icon icon="mdi:fire-extinguisher" style="font-size:1.1rem;color:var(--ds-danger);"></app-icon>
+        <app-icon
+          icon="mdi:fire-extinguisher"
+          style="font-size: 1.1rem; color: var(--ds-danger)"
+        ></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.date | date:'dd-MMM-yy' }} {{ item.hour }}</h3>
         @if (item.observations) {
-          <p>{{ item.observations }}</p>
+        <p>{{ item.observations }}</p>
         }
         <div class="flex gap-2 mt-1">
-          <small [class]="item.adequatePressure ? 'text-green-600' : 'text-red-600'">Presion</small>
-          <small [class]="item.safetyPinOk ? 'text-green-600' : 'text-red-600'">Seguro</small>
-          <small [class]="item.labelsOk ? 'text-green-600' : 'text-red-600'">Etiquetas</small>
-          <small [class]="item.noPhysicalDamage ? 'text-green-600' : 'text-red-600'">Sin Daños</small>
+          <small
+            [class]="item.adequatePressure ? 'text-green-600' : 'text-red-600'"
+            >Presion</small
+          >
+          <small [class]="item.safetyPinOk ? 'text-green-600' : 'text-red-600'"
+            >Seguro</small
+          >
+          <small [class]="item.labelsOk ? 'text-green-600' : 'text-red-600'"
+            >Etiquetas</small
+          >
+          <small
+            [class]="item.noPhysicalDamage ? 'text-green-600' : 'text-red-600'"
+            >Sin Daños</small
+          >
         </div>
       </ion-label>
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-            <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"  label="Editar" [showLabelOnDesktop]="true"/>
-            <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
+            <custom-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
+              label="Editar"
+              [showLabelOnDesktop]="true"
+            />
+            <custom-button-delete
+              (confirmed)="onDelete(item.id)"
+              label="Eliminar"
+              [showLabelOnDesktop]="true"
+            />
           </ng-container>
         </app-action-menu>
       </div>

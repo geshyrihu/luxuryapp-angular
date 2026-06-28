@@ -1,30 +1,23 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
-import {
-  Component,
-  computed,
-  inject,
-  OnInit,
-  signal,
-} from "@angular/core";
+import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { IonAvatar } from "@ionic/angular/standalone";
 import { AvatarModule } from "primeng/avatar";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { firstValueFrom } from "rxjs";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import {
   CustomBtnActiveDesactive,
   CustomButtonDelete,
   CustomButtonEdit,
   CustomButtonItem,
 } from "src/app/core/components/buttons/web";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
@@ -60,7 +53,6 @@ import { MdEditAccount } from "./md-edit-account";
     CardModule,
     CustomInputSelectSignal,
 
-    IonAvatar,
     CustomBtnActiveDesactive,
 
     CustomButtonItem,
@@ -77,7 +69,7 @@ export class ApplicationUserList implements OnInit {
   dataSignal = signal<IApplicationUserDTO[]>([]);
   filteredDataSignal = signal<IApplicationUserDTO[]>([]);
 
-  searchText: string = ""; // Para almacenar el texto de búsqueda
+  searchText: string = ""; // Para almacenar el texto de bÃºsqueda
   selectCustomerSignal = signal<ISelectItem[]>([]);
   cbTypePersonSignal = signal<ISelectItem[]>([]);
 
@@ -133,14 +125,14 @@ export class ApplicationUserList implements OnInit {
           this.dataSignal.set(result);
           this.filteredDataSignal.set(result);
 
-          // Agrupar customers únicos para el select
+          // Agrupar customers Ãºnicos para el select
           const uniqueCustomers = [
             ...new Set(result.map((item: any) => item.customer)),
           ];
 
           // Crear opciones para el select
           this.selectCustomerSignal.set([
-            { label: "Mostrar todos", value: "all" }, // Opción para mostrar todos
+            { label: "Mostrar todos", value: "all" }, // OpciÃ³n para mostrar todos
             ...uniqueCustomers.map(
               (customer): ISelectItem => ({
                 label: customer ? String(customer) : "Sin Cliente",
@@ -152,7 +144,7 @@ export class ApplicationUserList implements OnInit {
       });
   }
 
-  // Método para filtrar por cliente
+  // MÃ©todo para filtrar por cliente
   onSelectForCustomer(selectedValue: string) {
     if (selectedValue === "all") {
       // Si selecciona "Mostrar todos", mostrar todos los datos
@@ -208,7 +200,7 @@ export class ApplicationUserList implements OnInit {
         applicationUserId,
         email,
       },
-      "🔐 Cuenta de acceso",
+      "ðŸ” Cuenta de acceso",
       this.dialogHandlerS.sizeFull,
     );
   }
@@ -293,4 +285,3 @@ export class ApplicationUserList implements OnInit {
       });
   }
 }
-

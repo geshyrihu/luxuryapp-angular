@@ -6,7 +6,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CustomInputSelectSignal } from 'src/app/core/components/inputs/web/custom-input-select-signal';
 import { CustomInputTextAreaSignal } from 'src/app/core/components/inputs/web/custom-input-textarea-signal';
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 
 @Component({
   selector: 'app-ia-test',

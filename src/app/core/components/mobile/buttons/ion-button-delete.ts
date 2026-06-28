@@ -3,7 +3,7 @@ import { Component, inject, input, output } from "@angular/core";
 import { AlertController, IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { chevronForwardOutline, trashOutline } from "ionicons/icons";
-import { BaseIonicButton } from "../base/base-ionic-button";
+import { BaseIonicButton } from "../../buttons/base/base-ionic-button";
 
 @Component({
   selector: "ion-button-delete",
@@ -54,3 +54,4 @@ export class IonButtonDelete extends BaseIonicButton {
     addIcons({ trashOutline, chevronForwardOutline });
   }
 }
+

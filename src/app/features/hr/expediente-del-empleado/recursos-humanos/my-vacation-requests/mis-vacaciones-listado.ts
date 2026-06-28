@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { TableModule } from "primeng/table";
@@ -8,8 +8,8 @@ import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-b
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -21,8 +21,8 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { getStatusSeverity } from "src/app/features/hr/expediente-del-empleado/recursos-humanos/helpers/status-severity.helper";
 import { VacationRequestMyDTO } from "src/app/features/hr/expediente-del-empleado/recursos-humanos/interfaces/vacation-request.interface";
 import { VacacionesForm } from "./vacaciones-form";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 @Component({
   selector: "app-mis-vacaciones-listado",
   templateUrl: "./mis-vacaciones-listado.html",

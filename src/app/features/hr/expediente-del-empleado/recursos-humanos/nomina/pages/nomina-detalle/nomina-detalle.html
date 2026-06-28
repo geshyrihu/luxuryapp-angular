@@ -1,5 +1,8 @@
 @if (loading()) {
-<div class="flex justify-content-center align-items-center" style="min-height:200px">
+<div
+  class="flex justify-content-center align-items-center"
+  style="min-height: 200px"
+>
   <app-icon [icon]="'mdi:spin'" class="text-4xl text-primary"></app-icon>
 </div>
 } @else {
@@ -16,19 +19,25 @@
   <div class="col-6 md:col-3">
     <div class="card text-center p-3">
       <p class="text-xs text-500 m-0">Total Percepciones</p>
-      <p class="text-xl font-bold text-green-600 m-0">{{ r.totalPercepciones | currency: "MXN" : "symbol" : "1.2-2" }}</p>
+      <p class="text-xl font-bold text-green-600 m-0">
+        {{ r.totalPercepciones | currency: "MXN" : "symbol" : "1.2-2" }}
+      </p>
     </div>
   </div>
   <div class="col-6 md:col-3">
     <div class="card text-center p-3">
       <p class="text-xs text-500 m-0">Total Deducciones</p>
-      <p class="text-xl font-bold text-red-500 m-0">{{ r.totalDeducciones | currency: "MXN" : "symbol" : "1.2-2" }}</p>
+      <p class="text-xl font-bold text-red-500 m-0">
+        {{ r.totalDeducciones | currency: "MXN" : "symbol" : "1.2-2" }}
+      </p>
     </div>
   </div>
   <div class="col-6 md:col-3">
     <div class="card text-center p-3">
       <p class="text-xs text-500 m-0">Total Neto</p>
-      <p class="text-xl font-bold text-primary m-0">{{ r.totalNeto | currency: "MXN" : "symbol" : "1.2-2" }}</p>
+      <p class="text-xl font-bold text-primary m-0">
+        {{ r.totalNeto | currency: "MXN" : "symbol" : "1.2-2" }}
+      </p>
     </div>
   </div>
 </div>
@@ -64,7 +73,9 @@
   <ng-template #header>
     <tr>
       <th>#</th>
-      <th pSortableColumn="nombreCompleto">Empleado <p-sortIcon field="nombreCompleto" /></th>
+      <th pSortableColumn="nombreCompleto">
+        Empleado <p-sortIcon field="nombreCompleto" />
+      </th>
       <th>Puesto</th>
       <th class="text-right">Dias Trab.</th>
       <th class="text-right">Percepciones</th>
@@ -79,9 +90,15 @@
       <td>{{ item.nombreCompleto }}</td>
       <td>{{ item.puesto }}</td>
       <td class="text-right">{{ item.diasTrabajados }}</td>
-      <td class="text-right">{{ item.totalPercepciones | currency: "MXN" : "symbol" : "1.2-2" }}</td>
-      <td class="text-right">{{ item.totalDeducciones | currency: "MXN" : "symbol" : "1.2-2" }}</td>
-      <td class="text-right font-bold">{{ item.netoApagar | currency: "MXN" : "symbol" : "1.2-2" }}</td>
+      <td class="text-right">
+        {{ item.totalPercepciones | currency: "MXN" : "symbol" : "1.2-2" }}
+      </td>
+      <td class="text-right">
+        {{ item.totalDeducciones | currency: "MXN" : "symbol" : "1.2-2" }}
+      </td>
+      <td class="text-right font-bold">
+        {{ item.netoApagar | currency: "MXN" : "symbol" : "1.2-2" }}
+      </td>
       <td>
         <div class="flex gap-1">
           <custom-button-edit (clicked)="openEditar(item)" />
@@ -97,7 +114,15 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr><td colspan="8">Sin empleados en esta nomina.</td></tr>
+    <tr>
+      <td colspan="8">
+        <app-empty-state
+          icon="mdi:account-group-outline"
+          title="Sin empleados"
+          message="Sin empleados en esta nómina."
+        />
+      </td>
+    </tr>
   </ng-template>
 </p-table>
 
@@ -113,17 +138,33 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-success-light,#d1fae5);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-success-light, #d1fae5);
+        "
       >
-        <app-icon icon="mdi:currency-usd" style="font-size:1.1rem;color:var(--ds-success);"></app-icon>
+        <app-icon
+          icon="mdi:currency-usd"
+          style="font-size: 1.1rem; color: var(--ds-success)"
+        ></app-icon>
       </div>
       <ion-label>
         <h2 class="font-normal m-0">{{ item.nombreCompleto }}</h2>
         <p class="text-xs m-0">{{ item.puesto }}</p>
         <div class="flex gap-3 mt-1">
-          <span class="text-green-600 text-sm">+ {{ item.totalPercepciones | currency: "MXN" : "symbol" : "1.0-0" }}</span>
-          <span class="text-red-500 text-sm">- {{ item.totalDeducciones | currency: "MXN" : "symbol" : "1.0-0" }}</span>
-          <span class="font-bold text-primary text-sm">= {{ item.netoApagar | currency: "MXN" : "symbol" : "1.0-0" }}</span>
+          <span class="text-green-600 text-sm"
+            >+ {{ item.totalPercepciones | currency: "MXN" : "symbol" : "1.0-0"
+            }}</span
+          >
+          <span class="text-red-500 text-sm"
+            >- {{ item.totalDeducciones | currency: "MXN" : "symbol" : "1.0-0"
+            }}</span
+          >
+          <span class="font-bold text-primary text-sm"
+            >= {{ item.netoApagar | currency: "MXN" : "symbol" : "1.0-0"
+            }}</span
+          >
         </div>
       </ion-label>
       <div slot="end" class="flex gap-1">

@@ -1,7 +1,7 @@
 import { Component, DestroyRef, effect, inject, input, output } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { CustomButtonAdd } from "../buttons/web/custom-button-add";
-import { CustomSearchInput } from "../inputs/web/custom-search-input-signal";
+import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
+import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { GlobalTableFilterService } from "src/app/core/services/global-table-filter.service";
 
 @Component({
@@ -57,3 +57,4 @@ export class PrimeNgCustomCaption {
     }
   }
 }
+

@@ -135,10 +135,14 @@
         </td>
       </tr>
     </ng-template>
-    <ng-template pTemplate="emptymessage">
+    <ng-template #emptymessage>
       <tr>
         <td colspan="7">
-          <app-empty-state icon="mdi:package-down" title="Sin salidas" message="No hay salidas de producto registradas." />
+          <app-empty-state
+            icon="mdi:package-down"
+            title="Sin salidas"
+            message="No hay salidas de producto registradas."
+          />
         </td>
       </tr>
     </ng-template>
@@ -158,9 +162,16 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-danger-light,#ffdad6);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-danger-light, #ffdad6);
+        "
       >
-        <app-icon icon="mdi:package-down" style="font-size:1.1rem;color:var(--ds-danger);"></app-icon>
+        <app-icon
+          icon="mdi:package-down"
+          style="font-size: 1.1rem; color: var(--ds-danger)"
+        ></app-icon>
       </div>
       <ion-label>
         <div class="flex flex-column">
@@ -169,7 +180,8 @@
             {{ item.cantidad }} {{ item.unidadMedida }} - {{ item.quienUso }}
           </small>
           <small class="text-color-secondary">
-            Uso: {{ item.usoPrducto }} | {{ item.fechaSalida | date:'mediumDate':'UTC' }}
+            Uso: {{ item.usoPrducto }} | {{ item.fechaSalida |
+            date:'mediumDate':'UTC' }}
           </small>
         </div>
       </ion-label>
@@ -190,15 +202,21 @@
               "
               label="Editar"
               iconName="create-outline"
-             [showLabelOnDesktop]="true"/>
+              [showLabelOnDesktop]="true"
+            />
             }
             <custom-button-item
               (clicked)="onReturnProduct(item)"
               label="↩️ Devolver"
               [disabled]="item.cantidadDevuelta >= item.cantidad"
-             [showLabelOnDesktop]="true"/>
+              [showLabelOnDesktop]="true"
+            />
 
-            <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
+            <custom-button-delete
+              (confirmed)="onDelete(item.id)"
+              label="Eliminar"
+              [showLabelOnDesktop]="true"
+            />
           </ng-container>
         </app-action-menu>
       </div>

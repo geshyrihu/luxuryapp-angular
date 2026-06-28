@@ -15,11 +15,11 @@ import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { ActionIconsGroupComponent } from "src/app/core/components/action-icons-group/action-icons-group.component";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { ActionIconsGroupComponent } from "src/app/core/components/shared/action-icons-group/action-icons-group.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
@@ -277,26 +277,26 @@ export class UnifiedPendingDashboard {
   getModuleEmoji(module: string): string {
     switch (module.toLowerCase()) {
       case "tickets":
-        return "🎫";
+        return "ðŸŽ«";
       case "minutas":
-        return "📝";
+        return "ðŸ“";
       case "mantenimiento":
-        return "🔧";
+        return "ðŸ”§";
       case "legal":
-        return "⚖️";
+        return "âš–ï¸";
       case "polizas":
-        return "📄";
+        return "ðŸ“„";
       // Recruitment
       case "bajas":
-        return "📉";
+        return "ðŸ“‰";
       case "altas":
-        return "🚀";
+        return "ðŸš€";
       case "vacantes":
-        return "🪑";
+        return "ðŸª‘";
       case "modificaciones":
-        return "💰";
+        return "ðŸ’°";
       default:
-        return "📌";
+        return "ðŸ“Œ";
     }
   }
 
@@ -370,7 +370,7 @@ export class UnifiedPendingDashboard {
           .openDialog(
             ModificacionSalarioForm,
             { id: item.id },
-            "Modificación Salarial",
+            "ModificaciÃ³n Salarial",
             this.dialogHandlerS.sizeLg,
           )
           .then((res) => {
@@ -456,14 +456,14 @@ export class UnifiedPendingDashboard {
     try {
       const currentCustomerId = this.customerIdS.customerId();
 
-      // Validar si el cliente ha cambiado o si aún estamos cargando datos
+      // Validar si el cliente ha cambiado o si aÃºn estamos cargando datos
       if (
         this.loading() ||
         this.loadedCustomerId() !== currentCustomerId ||
         this.data().length === 0
       ) {
         this.swalService.fire({
-          title: "Dashboard en actualización",
+          title: "Dashboard en actualizaciÃ³n",
           text: "Estamos sincronizando los datos del cliente. Por favor intenta de nuevo en unos segundos.",
           icon: "info",
         });
@@ -489,7 +489,7 @@ export class UnifiedPendingDashboard {
 
       // 3. Mostrar resultado
       Swal.fire({
-        title: "📄 Informe Ejecutivo Diario",
+        title: "ðŸ“„ Informe Ejecutivo Diario",
         html: htmlResult,
         icon: "info",
         width: "100%",
@@ -502,8 +502,8 @@ export class UnifiedPendingDashboard {
     } catch (error) {
       console.error(error);
       this.swalService.error(
-        "Error de Análisis",
-        "No se pudo generar el informe. Por favor intenta más tarde.",
+        "Error de AnÃ¡lisis",
+        "No se pudo generar el informe. Por favor intenta mÃ¡s tarde.",
       );
     }
   }
@@ -525,7 +525,7 @@ export class UnifiedPendingDashboard {
       .catch((error) => {
         console.error(error);
         this.swalService.error(
-          "Error de Envío",
+          "Error de EnvÃ­o",
           "No se pudo enviar el reporte. Intenta nuevamente.",
         );
       });
@@ -538,7 +538,7 @@ export class UnifiedPendingDashboard {
   onVisionResult(analysis: string) {
     // En el dashboard solo mostramos el resultado
     Swal.fire({
-      title: "ðŸ‘ï¸ Diagnóstico Visual",
+      title: "Ã°Å¸â€˜ÂÃ¯Â¸Â DiagnÃ³stico Visual",
       text: analysis,
       icon: "info",
       width: "600px",

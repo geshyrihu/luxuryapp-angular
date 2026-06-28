@@ -36,7 +36,7 @@
               (clicked)="
                 onModalEditCategorie({ id: '', title: 'Agregar categoria' })
               "
-/>
+            />
           </div>
         </div>
       </ng-template>
@@ -59,10 +59,10 @@
                 (clicked)="
                   onModalEditCategorie({ id: category.id, title: 'Editar' })
                 "
-/>
+              />
               <custom-button-delete
                 (confirmed)="onDeleteCategorie(category.id)"
-/>
+              />
             </div>
           </td>
         </tr>
@@ -84,9 +84,14 @@
                   (clicked)="
                     onModalForm({ id: legalMatter.id, title: 'Editar' })
                   "
- label="Editar" [showLabelOnDesktop]="true"/>
-                <custom-button-delete (confirmed)="onDelete(legalMatter.id)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
+                  label="Editar"
+                  [showLabelOnDesktop]="true"
+                />
+                <custom-button-delete
+                  (confirmed)="onDelete(legalMatter.id)"
+                  label="Eliminar"
+                  [showLabelOnDesktop]="true"
+                />
               </ng-container>
             </app-action-menu>
           </td>
@@ -94,14 +99,18 @@
         </tr>
         }
       </ng-template>
-      <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="4">
-          <app-empty-state icon="mdi:scale-balance" title="Sin asuntos" message="No hay asuntos legales registrados." />
-        </td>
-      </tr>
-    </ng-template>
-</p-table>
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="4">
+            <app-empty-state
+              icon="mdi:scale-balance"
+              title="Sin asuntos"
+              message="No hay asuntos legales registrados."
+            />
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
   </div>
 </div>
 
@@ -116,7 +125,7 @@
       label="Agregar Categoría"
       icon="add-outline"
       customClass="w-full mb-2"
-/>
+    />
   </ng-container>
 
   <ng-template #listItemTemplate let-category>
@@ -124,9 +133,16 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-primary-50, #edf1ff);
+        "
       >
-        <app-icon icon="mdi:scale-balance" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+        <app-icon
+          icon="mdi:scale-balance"
+          style="font-size: 1.1rem; color: var(--ds-primary)"
+        ></app-icon>
       </div>
       <ion-item-divider sticky>
         <ion-label>
@@ -137,9 +153,10 @@
                 (clicked)="
                   onModalEditCategorie({ id: category.id, title: 'Editar' })
                 "
-/>
-              <custom-button-delete (confirmed)="onDeleteCategorie(category.id)"
-/>
+              />
+              <custom-button-delete
+                (confirmed)="onDeleteCategorie(category.id)"
+              />
             </div>
           </div>
         </ion-label>
@@ -158,9 +175,14 @@
             <ng-container actions>
               <custom-button-edit
                 (clicked)="onModalForm({ id: legalMatter.id, title: 'Editar' })"
- label="Editar" [showLabelOnDesktop]="true"/>
-              <custom-button-delete (confirmed)="onDelete(legalMatter.id)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
+                label="Editar"
+                [showLabelOnDesktop]="true"
+              />
+              <custom-button-delete
+                (confirmed)="onDelete(legalMatter.id)"
+                label="Eliminar"
+                [showLabelOnDesktop]="true"
+              />
             </ng-container>
           </app-action-menu>
         </div>

@@ -4,7 +4,7 @@ import { FlatpickrDirective } from "angularx-flatpickr";
 import { Spanish } from "flatpickr/dist/l10n/es";
 import { FloatLabelModule } from "primeng/floatlabel";
 import { InputTextModule } from "primeng/inputtext";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
 @Component({
   selector: "custom-input-date-signal",
@@ -76,3 +76,4 @@ export class CustomInputDateSignal extends BaseInputSignal {
     }
   }
 }
+

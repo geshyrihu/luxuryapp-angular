@@ -25,7 +25,7 @@ export class CatalogCharts {
   barChartData = computed(() => {
     const isDark = this.isDarkMode();
     const style = getComputedStyle(document.body);
-    const primaryColor = style.getPropertyValue('--ds-primary').trim() || (isDark ? "#3b82f6" : "#0b3164");
+    const primaryColor = style.getPropertyValue('--ds-primary').trim() || (isDark ? "#3b82f6" : "#00050e");
     return {
       labels: ["Ene", "Feb", "Mar", "Abr", "May"],
       datasets: [
@@ -45,7 +45,7 @@ export class CatalogCharts {
     const isDark = this.isDarkMode();
     const style = getComputedStyle(document.body);
     const successColor = style.getPropertyValue('--ds-success').trim() || (isDark ? "#10b981" : "#065f46");
-    const warningColor = style.getPropertyValue('--ds-warning').trim() || (isDark ? "#f59e0b" : "#c9a84c");
+    const warningColor = style.getPropertyValue('--ds-warning').trim() || (isDark ? "#f59e0b" : "#c9a74d");
     const dangerColor = style.getPropertyValue('--ds-error').trim() || (isDark ? "#ef4444" : "#991b1b");
     return [
       { name: "Completado", value: 300, color: successColor },
@@ -57,7 +57,7 @@ export class CatalogCharts {
   lineChartData = computed(() => {
     const isDark = this.isDarkMode();
     const style = getComputedStyle(document.body);
-    const primaryColor = style.getPropertyValue('--ds-primary').trim() || (isDark ? "#3b82f6" : "#0b3164");
+    const primaryColor = style.getPropertyValue('--ds-primary').trim() || (isDark ? "#3b82f6" : "#00050e");
     const secondaryColor = style.getPropertyValue('--ds-secondary').trim() || (isDark ? "#94a3b8" : "#64748b");
     
     return {
@@ -84,9 +84,9 @@ export class CatalogCharts {
   doughnutChartData = computed(() => {
     const isDark = this.isDarkMode();
     const style = getComputedStyle(document.body);
-    const color1 = style.getPropertyValue('--ds-primary').trim() || (isDark ? "#3b82f6" : "#0b3164");
+    const color1 = style.getPropertyValue('--ds-primary').trim() || (isDark ? "#3b82f6" : "#00050e");
     const color2 = style.getPropertyValue('--ds-tertiary').trim() || (isDark ? "#14b8a6" : "#0f766e");
-    const color3 = style.getPropertyValue('--ds-luxury-gold').trim() || (isDark ? "#d8bd69" : "#c9a84c");
+    const color3 = style.getPropertyValue('--ds-luxury-gold').trim() || (isDark ? "#d8bd69" : "#c9a74d");
 
     return {
       labels: ['Mantenimiento', 'Operaciones', 'Administración'],
@@ -104,7 +104,7 @@ export class CatalogCharts {
     const isDark = this.isDarkMode();
     const style = getComputedStyle(document.body);
     const primaryLight = style.getPropertyValue('--ds-primary-light').trim() || (isDark ? "rgba(59, 130, 246, 0.2)" : "rgba(11, 49, 100, 0.2)");
-    const primaryColor = style.getPropertyValue('--ds-primary').trim() || (isDark ? "#3b82f6" : "#0b3164");
+    const primaryColor = style.getPropertyValue('--ds-primary').trim() || (isDark ? "#3b82f6" : "#00050e");
 
     return {
       labels: ['Comida', 'Transporte', 'Vivienda', 'Servicios', 'Entretenimiento', 'Salud', 'Ahorro'],

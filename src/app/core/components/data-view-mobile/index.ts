@@ -1,1 +1,0 @@
-export { DataViewMobileComponent } from "../mobile/data-view-mobile/data-view-mobile";

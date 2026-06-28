@@ -18,60 +18,69 @@
       [showCurrentPageReport]="true"
     >
       <ng-template #caption>
-        <!-- Grid en una sola línea dentro del caption -->
-        <div class="flex align-items-center">
-          <!-- Búsqueda (ocupa el espacio restante) -->
-          <div class="flex-1">
+        <div
+          class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round"
+        >
+          <div class="flex-grow-1">
             <primeng-custom-caption
               [dt]="dt"
               (search)="onSearch($event)"
               [showAdd]="false"
+              [noPadding]="true"
+              [noMargin]="true"
             />
           </div>
-          <custom-button
-            label="Buscar"
-            styleClass="p-button p-button-primary"
-            iconClass="mdi:magnify"
-            (clicked)="onLoadData(true)"
-            [disabled]="isSearchDisabled"
-          />
-          <custom-input-select-signal
-            [data]="levelOptions"
-            optionLabel="label"
-            optionValue="value"
-            placeholder="Seleccione un nivel"
-            [control]="filterLevelControl"
-            customClass="w-full"
-            [horizontal]="false"
-            [filter]="true"
-          />
-          <custom-input-date-signal
-            [control]="filterDateRangeControl"
-            mode="range"
-            dateFormat="Y-m-d"
-            altFormat="d/m/Y"
-            placeholder="Seleccione un rango"
-            [horizontal]="false"
-          />
-          <!-- Botones de acción -->
-          <div class="flex flex-shrink-0">
-            <!-- Botón Refresh -->
-            <button
-              type="button"
-              class="p-button p-button-outlined p-button-sm"
-              pTooltip="Actualizar lista"
-              tooltipPosition="top"
-              (click)="onLoadData(true)"
-            >
-              <span class="text-lg">🔄</span>
-            </button>
-            <!-- Botón Eliminar -->
-            <custom-button-delete
-              label="Eliminar todos"
-              pTooltip="Eliminar todos los registros de logs"
-              (confirmed)="onDeleteAll()"
-              iconOnly
-            />
+          <div class="flex flex-column sm:flex-row align-items-center gap-2">
+            <div style="min-width: 200px">
+              <custom-input-select-signal
+                [data]="levelOptions"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Nivel"
+                [control]="filterLevelControl"
+                customClass="w-full"
+                [horizontal]="false"
+                [filter]="true"
+                [noMargin]="true"
+              />
+            </div>
+            <div style="min-width: 200px">
+              <custom-input-date-signal
+                [control]="filterDateRangeControl"
+                mode="range"
+                dateFormat="Y-m-d"
+                altFormat="d/m/Y"
+                placeholder="Rango de fecha"
+                [horizontal]="false"
+                [noMargin]="true"
+              />
+            </div>
+            <div class="flex flex-shrink-0 gap-2">
+              <custom-button
+                label="Buscar"
+                iconClass="mdi:magnify"
+                (clicked)="onLoadData(true)"
+                [disabled]="isSearchDisabled"
+              />
+              <button
+                type="button"
+                class="p-button p-button-outlined p-button-sm"
+                pTooltip="Actualizar lista"
+                tooltipPosition="top"
+                (click)="onLoadData(true)"
+              >
+                <app-icon [icon]="'mdi:refresh'" />
+              </button>
+              <button
+                type="button"
+                class="p-button p-button-outlined p-button-sm"
+                pTooltip="Eliminar todos"
+                tooltipPosition="top"
+                (click)="onDeleteAll()"
+              >
+                <app-icon [icon]="'mdi:delete-outline'" />
+              </button>
+            </div>
           </div>
         </div>
       </ng-template>
@@ -148,13 +157,17 @@
           </td>
         </tr>
       </ng-template>
-      <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="5">
-          <app-empty-state icon="mdi:file-chart-outline" title="Sin logs" message="No hay registros de log." />
-        </td>
-      </tr>
-    </ng-template>
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="5">
+            <app-empty-state
+              icon="mdi:file-chart-outline"
+              title="Sin logs"
+              message="No hay registros de log."
+            />
+          </td>
+        </tr>
+      </ng-template>
     </p-table>
   </div>
 
@@ -187,7 +200,8 @@
 
             @if (item.userName) {
             <p class="text-sm text-color-secondary m-0 mb-1">
-              <app-icon [icon]="'mdi:account'" class="mr-1 text-xs" /> {{ item.userName }}
+              <app-icon [icon]="'mdi:account'" class="mr-1 text-xs" /> {{
+              item.userName }}
             </p>
             }
 

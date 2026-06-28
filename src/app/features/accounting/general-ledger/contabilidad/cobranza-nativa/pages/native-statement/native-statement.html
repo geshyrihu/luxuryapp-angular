@@ -57,7 +57,10 @@
           <div
             class="w-3rem h-3rem bg-white-alpha-10 border-round-circle flex align-items-center justify-content-center"
           >
-            <app-icon [icon]="'mdi:wallet'" class="text-xl text-blue-300"></app-icon>
+            <app-icon
+              [icon]="'mdi:wallet'"
+              class="text-xl text-blue-300"
+            ></app-icon>
           </div>
         </div>
         <!-- Deuda Total -->
@@ -78,7 +81,10 @@
           <div
             class="w-3rem h-3rem bg-red-50 border-round-circle flex align-items-center justify-content-center"
           >
-            <app-icon [icon]="'mdi:arrow-up-right'" class="text-xl text-red-500"></app-icon>
+            <app-icon
+              [icon]="'mdi:arrow-up-right'"
+              class="text-xl text-red-500"
+            ></app-icon>
           </div>
         </div>
         <!-- Saldo a Favor -->
@@ -99,7 +105,10 @@
           <div
             class="w-3rem h-3rem bg-green-50 border-round-circle flex align-items-center justify-content-center"
           >
-            <app-icon [icon]="'mdi:arrow-down-left'" class="text-xl text-green-500"></app-icon>
+            <app-icon
+              [icon]="'mdi:arrow-down-left'"
+              class="text-xl text-green-500"
+            ></app-icon>
           </div>
         </div>
       </div>
@@ -163,7 +172,7 @@
               </td>
             </tr>
           </ng-template>
-          <ng-template pTemplate="emptymessage">
+          <ng-template #emptymessage>
             <tr>
               <td colspan="7" class="text-center p-8 text-500">
                 No hay movimientos registrados para esta propiedad.
@@ -275,7 +284,10 @@
     <div
       class="surface-card border-round-2xl border-1 border-dashed border-300 p-8 text-center mt-6"
     >
-      <app-icon [icon]="'mdi:receipt'" class="text-6xl text-300 mb-4"></app-icon>
+      <app-icon
+        [icon]="'mdi:receipt'"
+        class="text-6xl text-300 mb-4"
+      ></app-icon>
       <h3 class="text-lg font-medium text-900">Sin propiedad seleccionada</h3>
       <p class="text-500 mt-1">
         Busca y selecciona una propiedad para ver su historial de cuotas y

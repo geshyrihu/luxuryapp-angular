@@ -9,10 +9,10 @@ import { DividerModule } from "primeng/divider";
 import { OverlayBadgeModule } from "primeng/overlaybadge";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { ActionIconsGroupComponent } from "src/app/core/components/action-icons-group/action-icons-group.component";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
-import { EStatus, StatusBadge } from "src/app/core/components/status-badge/status-badge";
+import { ActionIconsGroupComponent } from "src/app/core/components/shared/action-icons-group/action-icons-group.component";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { EStatus, StatusBadge } from "src/app/core/components/shared/status-badge/status-badge";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 
@@ -42,10 +42,10 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
 
       <!-- Tags -->
       <div class="col-12">
-        <p-card header="Tags — p-tag">
+        <p-card header="Tags â€” p-tag">
           <div class="flex flex-column gap-4">
             <div>
-              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">Severities estándar</span>
+              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">Severities estÃ¡ndar</span>
               <div class="flex flex-wrap gap-2">
                 <p-tag value="Success"   severity="success"   />
                 <p-tag value="Info"      severity="info"      />
@@ -89,9 +89,9 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
         </p-card>
       </div>
 
-      <!-- Badges numéricos -->
+      <!-- Badges numÃ©ricos -->
       <div class="col-12 lg:col-6">
-        <p-card header="Badges numéricos — p-badge">
+        <p-card header="Badges numÃ©ricos â€” p-badge">
           <div class="flex flex-column gap-4">
             <div>
               <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">Standalone</span>
@@ -134,10 +134,10 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
 
       <!-- Chips -->
       <div class="col-12 lg:col-6">
-        <p-card header="Chips — p-chip">
+        <p-card header="Chips â€” p-chip">
           <div class="flex flex-column gap-4">
             <div>
-              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">Básicos</span>
+              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">BÃ¡sicos</span>
               <div class="flex flex-wrap gap-2">
                 <p-chip label="Angular" />
                 <p-chip label="PrimeNG" />
@@ -182,10 +182,10 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
 
       <!-- StatusBadge (custom) -->
       <div class="col-12 lg:col-6">
-        <p-card header="StatusBadge — Custom (app-status-badge)">
+        <p-card header="StatusBadge â€” Custom (app-status-badge)">
           <p class="m-0 mb-3 text-sm text-color-secondary">
             Componente propio que encapsula todos los estados del negocio ERP.
-            Usa <code>EStatus</code> — nunca hardcodees el texto del estado.
+            Usa <code>EStatus</code> â€” nunca hardcodees el texto del estado.
           </p>
           <div class="flex flex-wrap gap-2 mb-4">
             @for (s of estatuses; track s.value) {
@@ -206,10 +206,10 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
 
       <!-- ActionMenu & ActionIconsGroup -->
       <div class="col-12 lg:col-6">
-        <p-card header="Acciones Contextuales — app-action-menu / app-action-icons-group">
+        <p-card header="Acciones Contextuales â€” app-action-menu / app-action-icons-group">
           <p class="m-0 mb-3 text-sm text-color-secondary">
             Usa <strong>ActionIconsGroup</strong> cuando hay 1-2 acciones visibles.
-            Usa <strong>ActionMenu</strong> (popover) cuando hay 3 o más o son poco frecuentes.
+            Usa <strong>ActionMenu</strong> (popover) cuando hay 3 o mÃ¡s o son poco frecuentes.
           </p>
 
           <div class="flex flex-column gap-4">
@@ -236,15 +236,15 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
             <p-divider />
 
             <div>
-              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">Regla de decisión</span>
+              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">Regla de decisiÃ³n</span>
               <div class="flex flex-column gap-2 text-sm">
                 <div class="flex gap-2">
                   <app-icon icon="mdi:check-circle" style="color:var(--ds-success)" class="flex-shrink-0 mt-1" />
-                  <span><strong>1–2 acciones frecuentes</strong> → IconsGroup (visibles)</span>
+                  <span><strong>1â€“2 acciones frecuentes</strong> â†’ IconsGroup (visibles)</span>
                 </div>
                 <div class="flex gap-2">
                   <app-icon icon="mdi:check-circle" style="color:var(--ds-success)" class="flex-shrink-0 mt-1" />
-                  <span><strong>3+ acciones</strong> o poco frecuentes → ActionMenu</span>
+                  <span><strong>3+ acciones</strong> o poco frecuentes â†’ ActionMenu</span>
                 </div>
                 <div class="flex gap-2">
                   <app-icon icon="mdi:close-circle" style="color:var(--ds-danger)" class="flex-shrink-0 mt-1" />
@@ -273,7 +273,7 @@ export class WebBadges {
 
   readonly erpStates = [
     { label: "Aprobado",   severity: "success"   as const },
-    { label: "Revisión",   severity: "warn"      as const },
+    { label: "RevisiÃ³n",   severity: "warn"      as const },
     { label: "Rechazado",  severity: "danger"    as const },
     { label: "Borrador",   severity: "secondary" as const },
     { label: "En proceso", severity: "info"      as const },
@@ -281,3 +281,4 @@ export class WebBadges {
     { label: "Programado", severity: "secondary" as const },
   ];
 }
+

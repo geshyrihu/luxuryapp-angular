@@ -2,7 +2,7 @@ import { Component, forwardRef, input } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { FloatLabelModule } from "primeng/floatlabel";
 import { InputTextModule } from "primeng/inputtext";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
 @Component({
   selector: "custom-input-text-signal",
@@ -61,3 +61,4 @@ export class CustomInputTextSignal extends BaseInputSignal implements ControlVal
   override writeValue(obj: any): void { super.writeValue(obj); }
   override setDisabledState(isDisabled: boolean): void { super.setDisabledState(isDisabled); }
 }
+

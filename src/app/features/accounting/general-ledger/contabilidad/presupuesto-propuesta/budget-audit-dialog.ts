@@ -1,3 +1,16 @@
+/**
+ * ============================================================================
+ * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
+ * ============================================================================
+ * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
+ * FUNCIONAL y ESTABLE. 
+ * 
+ * Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
+ * sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
+ * 
+ * Por favor, NO rompan el código.
+ * ============================================================================
+ */
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
@@ -42,7 +55,7 @@ export class BudgetAuditDialog implements OnInit {
             ? Math.round(item.percentageIncrease)
             : 0;
           if (avgExpense === 0 && proposed === 0) return null;
-          return `- [${item.accountNumber}] ${item.accountName}: GastoProm2025=$${Math.round(avgExpense)}, Propuesta2026=$${Math.round(proposed)}, Inc=${diffPercent}%`;
+          return `- [${item.accountNumber}] ${item.accountName}: GastoProm${this.config.data?.items?.[0]?.BudgetProposal?.FiscalYear - 1 || new Date().getFullYear() - 1}=$${Math.round(avgExpense)}, Propuesta${this.config.data?.items?.[0]?.BudgetProposal?.FiscalYear || new Date().getFullYear()}=$${Math.round(proposed)}, Inc=${diffPercent}%`;
         })
         .filter(Boolean)
         .join("\n");

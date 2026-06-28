@@ -3,7 +3,7 @@ import { Component } from "@angular/core";
 import { IonButton, IonIcon } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { downloadOutline } from "ionicons/icons";
-import { BaseIonicButton } from "../base/base-ionic-button";
+import { BaseIonicButton } from "../../buttons/base/base-ionic-button";
 
 @Component({
   selector: "ion-button-download",
@@ -27,3 +27,4 @@ export class IonButtonDownload extends BaseIonicButton {
     addIcons({ downloadOutline });
   }
 }
+

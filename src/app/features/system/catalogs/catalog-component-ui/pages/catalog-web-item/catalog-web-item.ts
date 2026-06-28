@@ -42,7 +42,7 @@ import { TextareaModule } from "primeng/textarea";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { ToolbarModule } from "primeng/toolbar";
 import { TooltipModule } from "primeng/tooltip";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import {
   CustomButton,
   CustomButtonAdd,
@@ -806,44 +806,44 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           <div class="flex flex-column gap-4">
 
             <p-card header="FullCalendar — Integración Google Calendar">
-              <p class="text-sm m-0 mb-3" style="color:var(--ds-text-secondary);">
+              <p class="catalog-helper-text text-sm m-0 mb-3">
                 Usa <code>&#64;fullcalendar/angular</code> v6 con plugins
                 <code>dayGridPlugin</code> + <code>timeGridPlugin</code>.
-                Eventos propios en <strong style="color:var(--ds-primary)">--ds-primary (#003d9b)</strong>,
-                eventos de otros condominios en <strong style="color:var(--ds-text-muted)">gris (#94a3b8)</strong>.
+                Eventos propios en <strong class="catalog-token-primary">--ds-primary</strong>,
+                eventos de otros condominios en <strong class="catalog-token-muted">--ds-text-muted</strong>.
               </p>
-              <div style="height:500px;">
+              <div class="catalog-calendar-frame">
                 <full-calendar [options]="calendarDemoOptions" [events]="calendarDemoEvents" />
               </div>
             </p-card>
 
             <p-card header="Estados de sincronización — p-tag severity">
-              <p class="text-sm m-0 mb-3" style="color:var(--ds-text-secondary);">
+              <p class="catalog-helper-text text-sm m-0 mb-3">
                 Usar <code>p-tag [severity]</code> con la función <code>getStatusSeverity()</code>
                 en lugar de clases de color hardcodeadas.
               </p>
               <div class="flex flex-wrap gap-3">
                 <div class="flex align-items-center gap-2">
                   <p-tag value="Sincronizado con Google" severity="success" />
-                  <span class="text-sm" style="color:var(--ds-text-secondary);">success</span>
+                  <span class="catalog-helper-text text-sm">success</span>
                 </div>
                 <div class="flex align-items-center gap-2">
                   <p-tag value="Solo local (historico)" severity="info" />
-                  <span class="text-sm" style="color:var(--ds-text-secondary);">info</span>
+                  <span class="catalog-helper-text text-sm">info</span>
                 </div>
                 <div class="flex align-items-center gap-2">
                   <p-tag value="Solo local" severity="warn" />
-                  <span class="text-sm" style="color:var(--ds-text-secondary);">warn</span>
+                  <span class="catalog-helper-text text-sm">warn</span>
                 </div>
                 <div class="flex align-items-center gap-2">
                   <p-tag value="Pendiente de sincronizar" severity="secondary" />
-                  <span class="text-sm" style="color:var(--ds-text-secondary);">secondary</span>
+                  <span class="catalog-helper-text text-sm">secondary</span>
                 </div>
               </div>
             </p-card>
 
             <p-card header="Tabla de eventos — patrón ERP">
-              <p class="text-sm m-0 mb-3" style="color:var(--ds-text-secondary);">
+              <p class="catalog-helper-text text-sm m-0 mb-3">
                 Debajo del calendario: <code>p-table styleClass="custom-table"</code>
                 con paginación, búsqueda y botones de acción DS.
               </p>
@@ -883,22 +883,34 @@ const WEB_ITEM_LABELS: Record<string, string> = {
         width: 40px;
         height: 40px;
         padding: 0;
-        background: var(--ds-bg-surface, #fff);
-        border: 1px solid var(--ds-border, #e2e8f0);
-        border-radius: var(--ds-radius-md, 6px);
-        color: var(--ds-text-primary, #041b3c);
+        background: var(--ds-bg-surface);
+        border: 1px solid var(--ds-border);
+        border-radius: var(--ds-radius-md);
+        color: var(--ds-text-primary);
         cursor: pointer;
         transition:
           background-color 150ms ease,
           border-color 150ms ease;
       }
       .ds-icon-btn-demo:hover {
-        background-color: var(--ds-bg-sunken, #e8edff);
-        border-color: var(--ds-border-strong, #cbd5e1);
+        background-color: var(--ds-bg-sunken);
+        border-color: var(--ds-border-strong);
       }
       .ds-icon-btn-demo:disabled {
         opacity: 0.45;
         cursor: not-allowed;
+      }
+      .catalog-helper-text {
+        color: var(--ds-text-secondary);
+      }
+      .catalog-token-primary {
+        color: var(--ds-primary);
+      }
+      .catalog-token-muted {
+        color: var(--ds-text-muted);
+      }
+      .catalog-calendar-frame {
+        height: 500px;
       }
     `,
   ],
@@ -908,6 +920,9 @@ export class CatalogWebItem {
   private route = inject(ActivatedRoute);
   private fb = inject(FormBuilder);
   item = signal("");
+  private readonly calendarEventOwnColor = "var(--ds-primary)";
+  private readonly calendarEventExternalColor = "var(--ds-text-muted)";
+  private readonly calendarEventTextColor = "var(--ds-on-primary)";
   get label(): string {
     return WEB_ITEM_LABELS[this.item()] ?? this.item();
   }
@@ -1009,11 +1024,19 @@ export class CatalogWebItem {
   };
 
   readonly calendarDemoEvents: EventInput[] = [
-    { title: "Junta Comité", start: "2026-06-10T19:00", backgroundColor: "#003d9b", borderColor: "#003d9b", textColor: "#fff" },
-    { title: "Asamblea General", start: "2026-06-15T10:00", backgroundColor: "#003d9b", borderColor: "#003d9b", textColor: "#fff" },
-    { title: "Reunión Proveedores", start: "2026-06-20T09:00", backgroundColor: "#94a3b8", borderColor: "#94a3b8", textColor: "#fff" },
-    { title: "Revisión Mant.", start: "2026-06-25T14:00", backgroundColor: "#003d9b", borderColor: "#003d9b", textColor: "#fff" },
-    { title: "Comité Finanzas", start: "2026-06-28T11:00", backgroundColor: "#003d9b", borderColor: "#003d9b", textColor: "#fff" },
+    { title: "Junta Comité", start: "2026-06-10T19:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
+    { title: "Asamblea General", start: "2026-06-15T10:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
+    { title: "Reunión Proveedores", start: "2026-06-20T09:00", backgroundColor: this.calendarEventExternalColor, borderColor: this.calendarEventExternalColor, textColor: this.calendarEventTextColor },
+    { title: "Revisión Mant.", start: "2026-06-25T14:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
+    { title: "Comité Finanzas", start: "2026-06-28T11:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
+  ];
+
+  readonly calendarDemoEventsTokenized: EventInput[] = [
+    { title: "Junta ComitÃ©", start: "2026-06-10T19:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
+    { title: "Asamblea General", start: "2026-06-15T10:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
+    { title: "ReuniÃ³n Proveedores", start: "2026-06-20T09:00", backgroundColor: this.calendarEventExternalColor, borderColor: this.calendarEventExternalColor, textColor: this.calendarEventTextColor },
+    { title: "RevisiÃ³n Mant.", start: "2026-06-25T14:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
+    { title: "ComitÃ© Finanzas", start: "2026-06-28T11:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
   ];
 
   readonly calendarTableDemo = [

@@ -63,4 +63,15 @@
       </td>
     </tr>
   </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="7">
+        <app-empty-state
+          icon="mdi:wrench-outline"
+          title="Sin historial"
+          message="No hay servicios registrados para este equipo."
+        />
+      </td>
+    </tr>
+  </ng-template>
 </p-table>

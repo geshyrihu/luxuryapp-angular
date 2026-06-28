@@ -216,49 +216,58 @@
       <td class="no-print oc-cell-actions text-center">
         <app-action-menu>
           <ng-container actions>
-          <custom-button-item
-            iconClass="mdi:window-maximize"
-            label="Editar en modal"
-            (clicked)="onOrdenCompraModal(item.id)"
-            variant="text"
-           [showLabelOnDesktop]="true"/>
-          <custom-button-edit
-            (clicked)="onAddOrEdit(item.id)"
-            variant="text"
-            label="Editar"
-           [showLabelOnDesktop]="true"/>
+            <custom-button-item
+              iconClass="mdi:window-maximize"
+              label="Editar en modal"
+              (clicked)="onOrdenCompraModal(item.id)"
+              variant="text"
+              [showLabelOnDesktop]="true"
+            />
+            <custom-button-edit
+              (clicked)="onAddOrEdit(item.id)"
+              variant="text"
+              label="Editar"
+              [showLabelOnDesktop]="true"
+            />
 
-          @if (statusCompra() === 0) {
-          <custom-button-item
-            iconClass="mdi:currency-usd"
-            label="Solicitud de pago"
-            (clicked)="onDownloadSolicitudPagoPdf(item.id)"
-            variant="text"
-           [showLabelOnDesktop]="true"/>
-          <custom-button-item
-            iconClass="mdi:file-pdf-box"
-            label="Orden de compra"
-            (clicked)="onDownloadOrdenCompraPdf(item.id)"
-            variant="text"
-           [showLabelOnDesktop]="true"/>
-          }
-          <custom-button-delete
-            (confirmed)="onDelete(item.id)"
-            variant="text"
-            label="Eliminar"
-           [showLabelOnDesktop]="true"/>
-                  </ng-container>
+            @if (statusCompra() === 0) {
+            <custom-button-item
+              iconClass="mdi:currency-usd"
+              label="Solicitud de pago"
+              (clicked)="onDownloadSolicitudPagoPdf(item.id)"
+              variant="text"
+              [showLabelOnDesktop]="true"
+            />
+            <custom-button-item
+              iconClass="mdi:file-pdf-box"
+              label="Orden de compra"
+              (clicked)="onDownloadOrdenCompraPdf(item.id)"
+              variant="text"
+              [showLabelOnDesktop]="true"
+            />
+            }
+            <custom-button-delete
+              (confirmed)="onDelete(item.id)"
+              variant="text"
+              label="Eliminar"
+              [showLabelOnDesktop]="true"
+            />
+          </ng-container>
         </app-action-menu>
       </td>
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="9">
-          <app-empty-state icon="mdi:cart-outline" title="Sin órdenes" message="No hay órdenes de compra registradas." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="9">
+        <app-empty-state
+          icon="mdi:cart-outline"
+          title="Sin órdenes"
+          message="No hay órdenes de compra registradas."
+        />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="data()" />
   </ng-template>
@@ -352,7 +361,10 @@
           margin-left: 16px;
         "
       >
-        <app-icon [icon]="'mdi:shopping'" class="text-xl text-yellow-700"></app-icon>
+        <app-icon
+          [icon]="'mdi:shopping'"
+          class="text-xl text-yellow-700"
+        ></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.equipoOInstalacion }}</h3>
@@ -364,9 +376,17 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-        <custom-button-edit (clicked)="onAddOrEdit(item.id)"  label="Editar" [showLabelOnDesktop]="true"/>
-        <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
-              </ng-container>
+          <custom-button-edit
+            (clicked)="onAddOrEdit(item.id)"
+            label="Editar"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-delete
+            (confirmed)="onDelete(item.id)"
+            label="Eliminar"
+            [showLabelOnDesktop]="true"
+          />
+        </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

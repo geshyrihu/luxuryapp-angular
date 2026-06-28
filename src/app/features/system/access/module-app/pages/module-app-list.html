@@ -27,7 +27,8 @@
       <tr pRowGroupHeader>
         <td colspan="7" class="p-3">
           <span class="font-bold"
-            >{{ item.pathParent ? item.pathParent : "Módulos Principales" }}</span
+            >{{ item.pathParent ? item.pathParent : "Módulos Principales"
+            }}</span
           >
         </td>
       </tr>
@@ -85,17 +86,20 @@
           <div class="flex">
             <custom-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-/>
-            <custom-button-delete (confirmed)="onDelete(item.id)"
-/>
+            />
+            <custom-button-delete (confirmed)="onDelete(item.id)" />
           </div>
         </td>
       </tr>
     </ng-template>
-    <ng-template pTemplate="emptymessage">
+    <ng-template #emptymessage>
       <tr>
         <td colspan="8">
-          <app-empty-state icon="mdi:view-module-outline" title="Sin módulos" message="No hay módulos registrados." />
+          <app-empty-state
+            icon="mdi:view-module-outline"
+            title="Sin módulos"
+            message="No hay módulos registrados."
+          />
         </td>
       </tr>
     </ng-template>
@@ -114,8 +118,12 @@
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
-      <app-icon icon="mdi:cellphone" slot="start" [color]="item.viewMobil ? 'success' : 'medium'"
-        class="text-2xl"></app-icon>
+      <app-icon
+        icon="mdi:cellphone"
+        slot="start"
+        [color]="item.viewMobil ? 'success' : 'medium'"
+        class="text-2xl"
+      ></app-icon>
       <ion-label>
         <h2 class="font-normal m-0">{{ item.nameModule }}</h2>
         <p class="text-medium text-500 m-0">{{ item.label }}</p>
@@ -125,9 +133,14 @@
         <ng-container actions>
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
- label="Editar" [showLabelOnDesktop]="true"/>
-          <custom-button-delete (confirmed)="onDelete(item.id)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
+            label="Editar"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-delete
+            (confirmed)="onDelete(item.id)"
+            label="Eliminar"
+            [showLabelOnDesktop]="true"
+          />
         </ng-container>
       </app-action-menu>
     </ion-item>

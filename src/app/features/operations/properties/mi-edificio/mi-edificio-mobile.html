@@ -49,7 +49,7 @@
     @for (item of data().empleadosAdministracion; track $index) {
       <ion-item lines="full" detail="false">
         <ion-avatar slot="start">
-          <img [src]="baseUrlImg + item.photoEmployee" alt="" onError="this.src='assets/images/user/user.png'" />
+          <img [src]="baseUrlImg + item.photoEmployee" alt="" onError="this.style.display='none'" />
         </ion-avatar>
         <ion-label>
           <h2>{{ item.nameEmployee }}</h2>

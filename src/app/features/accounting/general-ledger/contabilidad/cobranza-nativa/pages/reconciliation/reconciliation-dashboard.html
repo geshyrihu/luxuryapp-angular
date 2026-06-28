@@ -1,19 +1,19 @@
 <div class="card p-0 md:p-4">
-
   <!-- Panel de accion -->
   <div class="p-3 mb-4 surface-50 border-round border-1 surface-border">
     <div class="flex align-items-start justify-content-between flex-wrap gap-3">
       <div>
         <div class="font-semibold mb-1">Bolsa de Pagos No Identificados</div>
         <div class="text-sm text-500 line-height-3 max-w-30rem">
-          Pagos registrados en el sistema que aun no han sido aplicados a ningun cargo.
-          La auto-conciliacion intenta cruzarlos automaticamente con saldos pendientes.
+          Pagos registrados en el sistema que aun no han sido aplicados a ningun
+          cargo. La auto-conciliacion intenta cruzarlos automaticamente con
+          saldos pendientes.
         </div>
         @if (lastResult() !== null) {
-          <div class="mt-2 text-sm text-green-700 font-medium">
-            <app-icon [icon]="'mdi:check-circle'" class="mr-1"></app-icon>
-            Ultima ejecucion: {{ lastResult() }} pagos conciliados.
-          </div>
+        <div class="mt-2 text-sm text-green-700 font-medium">
+          <app-icon [icon]="'mdi:check-circle'" class="mr-1"></app-icon>
+          Ultima ejecucion: {{ lastResult() }} pagos conciliados.
+        </div>
         }
       </div>
       <custom-button
@@ -56,18 +56,24 @@
 
     <ng-template pTemplate="body" let-pay>
       <tr>
-        <td class="text-center text-sm">{{ pay.paymentDate | date:'dd/MM/yyyy' }}</td>
+        <td class="text-center text-sm">
+          {{ pay.paymentDate | date:'dd/MM/yyyy' }}
+        </td>
         <td class="text-right font-bold text-orange-700">
           {{ pay.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}
         </td>
-        <td class="text-sm text-500">{{ pay.reference || 'Sin referencia' }}</td>
+        <td class="text-sm text-500">
+          {{ pay.reference || 'Sin referencia' }}
+        </td>
         <td class="text-center">
-          <span class="badge bg-yellow-100 text-yellow-800 text-xs">{{ pay.status }}</span>
+          <span class="badge bg-yellow-100 text-yellow-800 text-xs"
+            >{{ pay.status }}</span
+          >
         </td>
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="emptymessage">
+    <ng-template #emptymessage>
       <tr>
         <td colspan="4" class="text-center p-4 text-500">
           No hay pagos sin aplicar. Todos los pagos estan conciliados.
@@ -88,15 +94,19 @@
           slot="start"
           class="w-2rem h-2rem border-round-lg bg-orange-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
         >
-          <app-icon icon="mdi:source-merge" class="text-orange-600 text-xl"></app-icon>
+          <app-icon
+            icon="mdi:source-merge"
+            class="text-orange-600 text-xl"
+          ></app-icon>
         </div>
         <ion-label>
           <h3>{{ pay.amount | currency:'MXN':'symbol-narrow':'1.2-2' }}</h3>
-          <p>{{ pay.paymentDate | date:'dd/MM/yyyy' }} &middot; {{ pay.status }}</p>
+          <p>
+            {{ pay.paymentDate | date:'dd/MM/yyyy' }} &middot; {{ pay.status }}
+          </p>
           <p>{{ pay.reference || 'Sin referencia' }}</p>
         </ion-label>
       </ion-item>
     </ng-template>
   </app-data-view-mobile>
-
 </div>

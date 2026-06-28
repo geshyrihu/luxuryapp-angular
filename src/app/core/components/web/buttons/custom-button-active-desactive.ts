@@ -5,8 +5,8 @@ import { addIcons } from "ionicons";
 import { lockClosedOutline, lockOpenOutline } from "ionicons/icons";
 import { TooltipModule } from "primeng/tooltip";
 import { PlatformService } from "src/app/core/services/platform.service";
-import { AppIcon } from "../../app-icon/app-icon.component";
-import { BaseButton } from "../base/base-button";
+import { AppIcon } from "../../shared/app-icon/app-icon.component";
+import { BaseButton } from "../../buttons/base/base-button";
 
 @Component({
   selector: "custom-button-active-desactive",
@@ -95,3 +95,5 @@ export class CustomBtnActiveDesactive extends BaseButton {
     this.stateChange.emit(!this.state());
   }
 }
+
+

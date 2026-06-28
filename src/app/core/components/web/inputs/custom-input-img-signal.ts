@@ -9,7 +9,7 @@ import {
   ViewChild,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 @Component({
   selector: "custom-input-img-signal",
   imports: [ReactiveFormsModule, BaseInputSignal],
@@ -284,3 +284,4 @@ export class CustomInputImg implements OnChanges {
     });
   }
 }
+

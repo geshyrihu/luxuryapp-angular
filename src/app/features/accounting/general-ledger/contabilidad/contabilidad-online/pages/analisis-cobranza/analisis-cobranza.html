@@ -83,12 +83,16 @@
             <tbody>
               <tr class="font-bold">
                 <td class="py-1">Cobranza perfecta (Mantenimiento)</td>
-                <td class="text-right font-mono">{{ d.cuotaMttoVigente | accountingNumber:'1.0-0' }}</td>
+                <td class="text-right font-mono">
+                  {{ d.cuotaMttoVigente | accountingNumber:'1.0-0' }}
+                </td>
                 <td class="text-right"></td>
               </tr>
               <tr class="font-bold">
                 <td class="py-1">Cobranza perfecta (Extraordinaria)</td>
-                <td class="text-right font-mono">{{ d.cuotaExtraordinariaVigente | accountingNumber:'1.0-0' }}</td>
+                <td class="text-right font-mono">
+                  {{ d.cuotaExtraordinariaVigente | accountingNumber:'1.0-0' }}
+                </td>
                 <td class="text-right"></td>
               </tr>
               <tr class="font-bold border-top-1 surface-border text-primary">
@@ -184,7 +188,9 @@
     </div>
 
     <div class="rf-card p-4 mb-4">
-      <div class="text-lg font-semibold mb-3">Resumen de deuda por condómino</div>
+      <div class="text-lg font-semibold mb-3">
+        Resumen de deuda por condómino
+      </div>
       <p-table
         [value]="summaryRows"
         styleClass="rf-prime-table p-datatable-sm p-datatable-striped"
@@ -203,18 +209,26 @@
         <ng-template pTemplate="body" let-row>
           <tr>
             <td>
-              <div class="text-xs text-500 font-mono">{{ row.numeroCuenta }}</div>
+              <div class="text-xs text-500 font-mono">
+                {{ row.numeroCuenta }}
+              </div>
               <div class="font-bold">{{ row.condomino }}</div>
             </td>
-            <td class="rf-td-number font-bold text-lg" [class.rf-neg]="row.saldo < 0">
-              {{ row.saldo === 0 ? '—' : (row.saldo | accountingNumber:'1.2-2') }}
+            <td
+              class="rf-td-number font-bold text-lg"
+              [class.rf-neg]="row.saldo < 0"
+            >
+              {{ row.saldo === 0 ? '—' : (row.saldo | accountingNumber:'1.2-2')
+              }}
             </td>
           </tr>
         </ng-template>
         <ng-template pTemplate="footer">
           <tr>
             <td class="text-right font-bold py-2">Total:</td>
-            <td class="rf-td-number font-bold border-top-1 surface-border text-primary text-xl py-2">
+            <td
+              class="rf-td-number font-bold border-top-1 surface-border text-primary text-xl py-2"
+            >
               {{ totalFilteredSaldo | accountingNumber:'1.2-2' }}
             </td>
           </tr>
@@ -251,11 +265,25 @@
       >
         <ng-template pTemplate="header">
           <tr>
-            <th style="min-width: 250px;">Condómino</th>
+            <th style="min-width: 250px">Condómino</th>
             @for (col of uniqueConcepts(); track col) {
-            <th class="text-right" style="width: 140px; min-width: 140px; max-width: 140px; word-wrap: break-word; white-space: normal;">{{ col }}</th>
+            <th
+              class="text-right"
+              style="
+                width: 140px;
+                min-width: 140px;
+                max-width: 140px;
+                word-wrap: break-word;
+                white-space: normal;
+              "
+            >
+              {{ col }}
+            </th>
             }
-            <th class="text-right text-primary font-bold" style="width: 140px; min-width: 140px;">
+            <th
+              class="text-right text-primary font-bold"
+              style="width: 140px; min-width: 140px"
+            >
               Saldo Final
             </th>
           </tr>
@@ -263,16 +291,22 @@
         <ng-template pTemplate="body" let-row>
           <tr>
             <td class="rf-td-descripcion--item">
-              <div class="text-xs text-500 font-mono">{{ row.numeroCuenta }}</div>
+              <div class="text-xs text-500 font-mono">
+                {{ row.numeroCuenta }}
+              </div>
               <div class="font-bold">{{ row.condomino }}</div>
             </td>
             @for (col of uniqueConcepts(); track col) {
-            <td class="rf-td-number" style="width: 140px; min-width: 140px;">
+            <td class="rf-td-number" style="width: 140px; min-width: 140px">
               {{ getConceptBalance(row, col) === 0 ? '—' :
               (getConceptBalance(row, col) | accountingNumber) }}
             </td>
             }
-            <td class="rf-td-number font-bold" style="width: 140px; min-width: 140px;" [class.rf-neg]="row.saldo < 0">
+            <td
+              class="rf-td-number font-bold"
+              style="width: 140px; min-width: 140px"
+              [class.rf-neg]="row.saldo < 0"
+            >
               {{ row.saldo === 0 ? '—' : (row.saldo | accountingNumber:'1.2-2')
               }}
             </td>
@@ -283,20 +317,22 @@
             <td class="text-right font-bold py-2">Totales:</td>
             @for (col of uniqueConcepts(); track col) {
             <td
-              class="rf-td-number font-bold border-top-1 surface-border py-2 text-primary" style="width: 140px; min-width: 140px;"
+              class="rf-td-number font-bold border-top-1 surface-border py-2 text-primary"
+              style="width: 140px; min-width: 140px"
             >
               {{ getTotalConceptBalance(col) === 0 ? '—' :
               (getTotalConceptBalance(col) | accountingNumber) }}
             </td>
             }
             <td
-              class="rf-td-number font-bold border-top-1 surface-border text-primary text-lg py-2" style="width: 140px; min-width: 140px;"
+              class="rf-td-number font-bold border-top-1 surface-border text-primary text-lg py-2"
+              style="width: 140px; min-width: 140px"
             >
               {{ totalFilteredSaldo | accountingNumber:'1.2-2' }}
             </td>
           </tr>
         </ng-template>
-        <ng-template pTemplate="emptymessage">
+        <ng-template #emptymessage>
           <tr>
             <td colspan="10" class="text-center py-4 text-color-secondary">
               No hay condóminos en esta clasificación.
@@ -308,7 +344,10 @@
   </div>
 
   <!-- Debugger solicitado por el usuario -->
-  <div class="card mt-4 bg-gray-50 p-3 overflow-auto text-xs" style="max-height: 400px;">
+  <div
+    class="card mt-4 bg-gray-50 p-3 overflow-auto text-xs"
+    style="max-height: 400px"
+  >
     <h3 class="font-bold mb-2">DEBUG: Raw Data del Reporte (data() | json)</h3>
     <pre>{{ data() | json }}</pre>
   </div>

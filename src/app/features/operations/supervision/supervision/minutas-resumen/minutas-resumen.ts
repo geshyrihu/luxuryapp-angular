@@ -4,7 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { MultiSelectModule } from "primeng/multiselect";
 import { TableModule } from "primeng/table";
-import { Mesanio as MesAnio } from "src/app/core/components/mesanio/mesanio";
+import { Mesanio as MesAnio } from "src/app/core/components/web/mesanio/mesanio";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";

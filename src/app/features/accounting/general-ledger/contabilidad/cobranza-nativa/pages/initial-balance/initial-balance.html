@@ -112,7 +112,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="emptymessage">
+    <ng-template #emptymessage>
       <tr>
         <td colspan="4" class="text-center p-4 text-500">
           No hay propiedades registradas.
@@ -133,7 +133,10 @@
           slot="start"
           class="w-2rem h-2rem border-round-lg bg-yellow-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
         >
-          <app-icon icon="mdi:wallet-outline" class="text-yellow-600 text-xl"></app-icon>
+          <app-icon
+            icon="mdi:wallet-outline"
+            class="text-yellow-600 text-xl"
+          ></app-icon>
         </div>
         <ion-label>
           <h3>{{ row.propertyFullName }}</h3>

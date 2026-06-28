@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import {
   Component,
@@ -17,12 +17,12 @@ import { RatingModule } from "primeng/rating";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -80,13 +80,13 @@ export class ListProvider implements OnInit {
   dataSignal = signal<IBusquedaProveedor[]>([]);
   totalRecords: number = 0; // Total de registros para paginador
   AspRole = EApplicationRole;
-  // Configuración de paginación y filtro
-  rows: number = 30; // Registros por pógina
-  first: number = 0; // óndice del primer registro
-  page: number = 1; // Pógina actual
+  // ConfiguraciÃ³n de paginaciÃ³n y filtro
+  rows: number = 30; // Registros por pÃ³gina
+  first: number = 0; // Ã³ndice del primer registro
+  page: number = 1; // PÃ³gina actual
   searchTerm: string = ""; // Filtro global
 
-  // Opciones de paginación y filtro global para PrimeNG
+  // Opciones de paginaciÃ³n y filtro global para PrimeNG
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   mobileGlobalFilterFields = ["mobileSearchBlob"];
   mobileData = computed(() =>
@@ -100,11 +100,11 @@ export class ListProvider implements OnInit {
   loading = signal(true);
 
   // Propiedades que antes estaban en el caption y ahora necesita este componente
-  title: string = "Directorio de Proveedores"; // O el Título que prefieras
+  title: string = "Directorio de Proveedores"; // O el TÃ­tulo que prefieras
   label: string = "Agregar";
   rolAuth: boolean = false; // La inicializaremos en ngOnInit
 
-  // Referencia para diálogos
+  // Referencia para diÃ¡logos
   ref: DynamicDialogRef;
 
   // Opciones de filtro para tipo de servicio y nivel de acceso
@@ -115,16 +115,16 @@ export class ListProvider implements OnInit {
     { label: "Devoluciones", value: "Devoluciones" },
   ];
   nivelAccesos = [
-    { label: "Póblico", value: 0 },
+    { label: "PÃ³blico", value: 0 },
     { label: "Privado", value: 1 },
   ];
   selectedServiceTypeControl = new FormControl<string | null>(null);
   // selectedNivelAcceso: number = 0;
 
-  // Inicialización del componente
+  // InicializaciÃ³n del componente
   ngOnInit(): void {
     this.onLoadData();
-    // Inicializamos la variable para el botón de agregar
+    // Inicializamos la variable para el botÃ³n de agregar
     this.rolAuth = this.aspRoleS.hasAny([
       EApplicationRole.Asistente,
       EApplicationRole.JefeMantenimiento,
@@ -134,15 +134,15 @@ export class ListProvider implements OnInit {
     ]);
   }
 
-  // Validación de roles para mostrar/ocultar acciones
+  // ValidaciÃ³n de roles para mostrar/ocultar acciones
   validateRole(value: EApplicationRole[]): boolean {
     return this.aspRoleS.hasAny(value);
   }
 
-  // Este mótodo se llama cada vez que el usuario escribe en el buscador
+  // Este mÃ³todo se llama cada vez que el usuario escribe en el buscador
   applyGlobalFilter(filterValue: string) {
-    this.searchTerm = filterValue; // Actualizamos el término de bósqueda
-    this.first = 0; // Reiniciamos la paginación a la primera pógina
+    this.searchTerm = filterValue; // Actualizamos el tÃ©rmino de bÃ³squeda
+    this.first = 0; // Reiniciamos la paginaciÃ³n a la primera pÃ³gina
     this.page = 1;
     this.onLoadData(this.page, this.rows, this.searchTerm);
   }
@@ -153,7 +153,7 @@ export class ListProvider implements OnInit {
     });
   }
 
-  // Carga de datos con paginación y filtros
+  // Carga de datos con paginaciÃ³n y filtros
   onLoadData(
     page: number = 1,
     pageSize: number = this.rows,
@@ -181,7 +181,7 @@ export class ListProvider implements OnInit {
       });
   }
 
-  // Evento de paginación de PrimeNG
+  // Evento de paginaciÃ³n de PrimeNG
   loadDataLazy(event: any) {
     this.page = Math.floor(event.first / event.rows) + 1;
     this.rows = event.rows;
@@ -189,7 +189,7 @@ export class ListProvider implements OnInit {
     this.onLoadData(this.page, this.rows, this.searchTerm);
   }
 
-  // Aplica filtro global y reinicia la paginación
+  // Aplica filtro global y reinicia la paginaciÃ³n
   applyFilter() {
     this.first = 0;
     this.page = 1;
@@ -312,7 +312,7 @@ export class ListProvider implements OnInit {
       }
       if (key === "repair" && value) {
         pushToken("reparacion");
-        pushToken("reparación");
+        pushToken("reparaciÃ³n");
       }
     };
 

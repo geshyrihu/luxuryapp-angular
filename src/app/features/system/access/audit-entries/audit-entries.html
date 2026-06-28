@@ -1,0 +1,259 @@
+<p-card>
+  <!-- VISTA DE ESCRITORIO -->
+  <div class="hidden md:block mt-3">
+    <p-table
+      #dt
+      [value]="groupedData()"
+      [loading]="loading()"
+      [lazy]="true"
+      (onPage)="onPageChange($event)"
+      [totalRecords]="totalRecords()"
+      [paginator]="true"
+      [rows]="rows()"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [globalFilterFields]="globalFilterFields()"
+      styleClass="custom-table"
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      [showCurrentPageReport]="true"
+    >
+      <ng-template #caption>
+        <div
+          class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round"
+        >
+          <div class="flex-grow-1">
+            <primeng-custom-caption
+              [dt]="dt"
+              (search)="onSearch($event)"
+              [showAdd]="false"
+              [noPadding]="true"
+              [noMargin]="true"
+            />
+          </div>
+          <div class="flex flex-column sm:flex-row align-items-center gap-2">
+            <div style="min-width: 200px">
+              <custom-input-select-signal
+                [data]="operationOptions"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Operación"
+                [control]="filterOperationControl"
+                customClass="w-full"
+                [horizontal]="false"
+                [filter]="true"
+                [noMargin]="true"
+              />
+            </div>
+            <div style="min-width: 200px">
+              <custom-input-select-signal
+                [data]="entityOptions"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Entidad"
+                [control]="filterEntityControl"
+                customClass="w-full"
+                [horizontal]="false"
+                [filter]="true"
+                [noMargin]="true"
+              />
+            </div>
+            <div style="min-width: 200px">
+              <custom-input-date-signal
+                [control]="filterDateRangeControl"
+                mode="range"
+                dateFormat="Y-m-d"
+                altFormat="d/m/Y"
+                placeholder="Rango de fecha"
+                [horizontal]="false"
+                [noMargin]="true"
+              />
+            </div>
+            <div class="flex flex-shrink-0 gap-2">
+              <custom-button
+                label="Buscar"
+                iconClass="mdi:magnify"
+                (clicked)="onLoadData(true)"
+              />
+              <button
+                type="button"
+                class="p-button p-button-outlined p-button-sm"
+                pTooltip="Actualizar lista"
+                tooltipPosition="top"
+                (click)="onLoadData(true)"
+              >
+                <app-icon [icon]="'mdi:refresh'" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th style="width: 50px"></th>
+          <th pSortableColumn="changedAt">
+            Fecha <p-sortIcon field="changedAt" />
+          </th>
+          <th pSortableColumn="entityName">
+            Entidad <p-sortIcon field="entityName" />
+          </th>
+          <th pSortableColumn="operationType">
+            Operación <p-sortIcon field="operationType" />
+          </th>
+          <th pSortableColumn="userName">
+            Usuario <p-sortIcon field="userName" />
+          </th>
+          <th>Detalle</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>
+            @if (item.operationType === 'Update') {
+            <custom-button
+              iconClass="mdi:chevron-right"
+              variant="ghost-text"
+              size="sm"
+              (clicked)="toggleExpand(item)"
+              [customClass]="item.expanded ? 'rotate-90' : ''"
+            />
+            }
+          </td>
+          <td>{{ item.changedAt | date: 'dd/MM/yyyy h:mm:ss a' }}</td>
+          <td>{{ item.entityName }}</td>
+          <td>
+            <p-tag
+              [value]="item.operationType"
+              [severity]="getOperationSeverity(item.operationType)"
+            />
+          </td>
+          <td>{{ item.userName }}</td>
+          <td class="text-wrap max-w-400">
+            @if (item.operationType === 'Create') {
+              Creación de registro
+            } @else if (item.operationType === 'Delete') {
+              Eliminación de registro
+            } @else if (item.operationType === 'Update') {
+              {{ getGroupItems(item.groupKey!).length }} campo(s) modificado(s)
+            }
+          </td>
+        </tr>
+        @if (item.expanded && item.groupKey) {
+        <tr>
+          <td></td>
+          <td colspan="5" class="surface-section p-3">
+            <p-table
+              [value]="getGroupItems(item.groupKey!)"
+              styleClass="custom-table nested-table"
+            >
+              <ng-template #header>
+                <tr>
+                  <th>Propiedad</th>
+                  <th>Valor Anterior</th>
+                  <th>Valor Nuevo</th>
+                </tr>
+              </ng-template>
+              <ng-template #body let-prop>
+                <tr>
+                  <td><strong>{{ prop.propertyName }}</strong></td>
+                  <td class="text-color-secondary">
+                    {{ prop.oldValue || '(vacío)' }}
+                  </td>
+                  <td class="text-primary">{{ prop.newValue || '(vacío)' }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </td>
+        </tr>
+        }
+      </ng-template>
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="6">
+            <app-empty-state
+              icon="mdi:file-search-outline"
+              title="Sin cambios registrados"
+              message="No hay entradas de auditoría con los filtros actuales."
+            />
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <!-- VISTA MÓVIL -->
+  <div class="block md:hidden mt-3">
+    <app-data-view-mobile
+      [data]="groupedData()"
+      [globalFilterFields]="globalFilterFields()"
+      (search)="onSearch($event)"
+      [showAdd]="false"
+    >
+      <ng-template #listItemTemplate let-item>
+        <ion-item lines="full" class="ion-no-padding">
+          <ion-label>
+            <div class="flex justify-content-between align-items-center mb-1">
+              <div class="flex align-items-center gap-2">
+                <p-tag
+                  [value]="item.operationType"
+                  [severity]="getOperationSeverity(item.operationType)"
+                />
+                <h2 class="font-bold m-0 text-base">{{ item.entityName }}</h2>
+              </div>
+              <p class="text-medium text-500 m-0 text-sm">
+                <app-icon [icon]="'mdi:clock-outline'" class="mr-1 text-xs" />
+                {{ item.changedAt | date: "dd/MM/yyyy h:mm a" }}
+              </p>
+            </div>
+            <p class="text-sm text-color-secondary m-0 mb-1">
+              <app-icon [icon]="'mdi:account'" class="mr-1 text-xs" />
+              {{ item.userName }}
+            </p>
+            <p class="text-sm m-0 text-wrap">
+              @if (item.operationType === 'Create') { Creación de registro }
+              @else if (item.operationType === 'Delete') { Eliminación de
+              registro } @else if (item.operationType === 'Update') { {{
+              getGroupItems(item.groupKey!).length }} campo(s) modificado(s) }
+            </p>
+            @if (item.expanded && item.groupKey) {
+            <div class="mt-2 surface-ground p-2 border-round">
+              @for (prop of getGroupItems(item.groupKey!); track prop.id) {
+              <div class="flex flex-column mb-2">
+                <strong class="text-sm">{{ prop.propertyName }}</strong>
+                <div class="flex gap-2 text-xs">
+                  <span class="text-color-secondary flex-1">
+                    <span class="font-medium">Anterior:</span> {{ prop.oldValue
+                    || '(vacío)' }}
+                  </span>
+                  <span class="text-primary flex-1">
+                    <span class="font-medium">Nuevo:</span> {{ prop.newValue ||
+                    '(vacío)' }}
+                  </span>
+                </div>
+              </div>
+              }
+            </div>
+            } @if (item.operationType === 'Update') {
+            <custom-button
+              label="Ver cambios"
+              variant="ghost-text"
+              size="sm"
+              (clicked)="toggleExpand(item)"
+              [customClass]="'mt-1'"
+            />
+            }
+          </ion-label>
+        </ion-item>
+      </ng-template>
+    </app-data-view-mobile>
+
+    @if (data().length < totalRecords()) {
+    <custom-button
+      label="Cargar más"
+      severity="secondary"
+      [fluid]="true"
+      customClass="mt-3"
+      (clicked)="loadMore()"
+      [loading]="loading()"
+    />
+    }
+  </div>
+</p-card>

@@ -5,7 +5,7 @@ import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -14,6 +14,7 @@ import {
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
+import { PresupuestoAspelExcelService } from "./presupuesto-aspel-excel.service";
 import {
   AspelBudgetDTO,
   CuentaAspelTercerNivelDTO,
@@ -50,6 +51,7 @@ export class EspejoAspelExtraordinarios {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
+  private excelService = inject(PresupuestoAspelExcelService);
   sharedS = inject(PresupuestoWebAspelService);
 
   loading = signal(true);
@@ -144,7 +146,7 @@ export class EspejoAspelExtraordinarios {
     );
   }
 
-  private filterAccountsWithBudgetOrExpense(
+  filterAccountsWithBudgetOrExpense(
     cuentas: CuentaAspelTercerNivelDTO[],
   ): CuentaAspelTercerNivelDTO[] {
     const visibleLeafAccounts = cuentas.filter(
@@ -316,6 +318,17 @@ export class EspejoAspelExtraordinarios {
       },
       `HISTORIAL DE COMPRAS DE ${cuenta.descripcion_Cuenta}`,
       this.dialogHandlerS.sizeFull,
+    );
+  }
+
+  exportExcel(): void {
+    const ext  = this.filterAccountsWithBudgetOrExpense(this.allExtraordinarias());
+    const proj = this.filterAccountsWithBudgetOrExpense(this.allProyectos());
+    this.excelService.exportEspeciales(
+      ext,
+      proj,
+      this.sharedS.budgetData(),
+      this.sharedS.intYear(),
     );
   }
 

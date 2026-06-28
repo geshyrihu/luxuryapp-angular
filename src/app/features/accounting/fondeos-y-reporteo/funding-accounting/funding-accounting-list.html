@@ -79,7 +79,9 @@
       </td>
 
       <td class="no-print">
-        <app-icon [icon]="'mdi:arrow-right'" class="icon icon- icon-xl pointer"
+        <app-icon
+          [icon]="'mdi:arrow-right'"
+          class="icon icon- icon-xl pointer"
           (click)="onDetails(item.id)"
         ></app-icon>
         <!-- <app-action-menu>
@@ -90,6 +92,17 @@
                [showLabelOnDesktop]="true"/>
             </ng-container>
           </app-action-menu> -->
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="6">
+        <app-empty-state
+          icon="mdi:calculator"
+          title="Sin fondeos contables"
+          message="No hay registros contables de fondeos."
+        />
       </td>
     </tr>
   </ng-template>
@@ -104,13 +117,30 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ion-item lines="full" detail="false" class="ion-no-padding" (click)="onDetails(item.id)">
-      <div slot="start" style="
-        width:36px; height:36px; border-radius:10px;
-        background:var(--ds-border); display:flex; align-items:center;
-        justify-content:center; flex-shrink:0; margin-left:16px;
-      ">
-        <app-icon icon="mdi:calculator" style="font-size:20px; color:var(--ds-primary);"></app-icon>
+    <ion-item
+      lines="full"
+      detail="false"
+      class="ion-no-padding"
+      (click)="onDetails(item.id)"
+    >
+      <div
+        slot="start"
+        style="
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          background: var(--ds-border);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-left: 16px;
+        "
+      >
+        <app-icon
+          icon="mdi:calculator"
+          style="font-size: 20px; color: var(--ds-primary)"
+        ></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.period }}</h3>
@@ -120,10 +150,3 @@
     </ion-item>
   </ng-template>
 </app-data-view-mobile>
-
-
-
-
-
-
-

@@ -2,7 +2,7 @@ import { Component, computed, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { FloatLabelModule } from "primeng/floatlabel";
 import { PasswordModule } from "primeng/password";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
 @Component({
   selector: "custom-input-password-signal",
@@ -63,3 +63,4 @@ export class CustomInputPassword extends BaseInputSignal {
     return classes.trim();
   });
 }
+

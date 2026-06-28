@@ -18,7 +18,7 @@
       severity="warn"
       [disabled]="escalating()"
       (clicked)="onEvaluateAndEscalate()"
-/>
+    />
   </div>
 
   <!-- Tabla desktop -->
@@ -77,16 +77,19 @@
           {{ item.activities.length }}
         </td>
         <td class="text-center">
-          <custom-button-edit (clicked)="openDetail(item)"
-/>
+          <custom-button-edit (clicked)="openDetail(item)" />
         </td>
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="emptymessage">
+    <ng-template #emptymessage>
       <tr>
         <td colspan="8">
-          <app-empty-state icon="mdi:cash-remove" title="Sin casos de cobranza" message="No hay casos activos. Ejecuta la evaluación para detectar morosidad grave." />
+          <app-empty-state
+            icon="mdi:cash-remove"
+            title="Sin casos de cobranza"
+            message="No hay casos activos. Ejecuta la evaluación para detectar morosidad grave."
+          />
         </td>
       </tr>
     </ng-template>
@@ -104,7 +107,10 @@
           slot="start"
           class="w-2rem h-2rem border-round-lg bg-red-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
         >
-          <app-icon icon="mdi:alert-circle-outline" class="text-red-600 text-xl"></app-icon>
+          <app-icon
+            icon="mdi:alert-circle-outline"
+            class="text-red-600 text-xl"
+          ></app-icon>
         </div>
         <ion-label>
           <h3>{{ item.propertyName }}</h3>
@@ -118,9 +124,12 @@
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-          <custom-button-edit (clicked)="openDetail(item)"
- label="Editar" [showLabelOnDesktop]="true"/>
-                  </ng-container>
+            <custom-button-edit
+              (clicked)="openDetail(item)"
+              label="Editar"
+              [showLabelOnDesktop]="true"
+            />
+          </ng-container>
         </app-action-menu>
       </ion-item>
     </ng-template>

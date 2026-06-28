@@ -5,7 +5,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { TextareaModule } from "primeng/textarea";
 import { TooltipModule } from "primeng/tooltip";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { AiService } from "src/app/core/services/ai.service";
 import { SwalService } from "src/app/core/services/swal.service";
 

@@ -1,21 +1,21 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { IonAvatar, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import {
   CustomButtonDelete,
   CustomButtonEdit,
   CustomButtonItem,
 } from "src/app/core/components/buttons/web";
 import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/custom-button-active-desactive";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -40,7 +40,6 @@ import { EmployeeExternalForm } from "./employee-external-form";
     CustomBtnActiveDesactive,
     IonItem,
     IonLabel,
-    IonAvatar,
     CustomButtonDelete,
     CustomButtonEdit,
     CustomButtonItem,
@@ -62,13 +61,13 @@ export class EmployeeExternalList {
   getAllEmployeeActive: any = [];
   ref: DynamicDialogRef;
 
-  // óCAMBIO CLAVE! Reemplazamos ngOnInit con el constructor y un effect.
+  // Ã³CAMBIO CLAVE! Reemplazamos ngOnInit con el constructor y un effect.
   constructor() {
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) {
         // El effect se encarga de la carga inicial de datos
-        // tan pronto como el customerId estó disponible.
+        // tan pronto como el customerId estÃ³ disponible.
         this.onLoadData();
       }
     });
@@ -88,13 +87,13 @@ export class EmployeeExternalList {
         ),
       )
       .then((result: any) => {
-        console.log("🚀 ~ EmployeeExternalList ~ onLoadData ~ result:", result);
+        console.log("ðŸš€ ~ EmployeeExternalList ~ onLoadData ~ result:", result);
         return this.dataSignal.set(result);
       });
   }
 
   onModalForm(data: any) {
-    console.log("🚀 ~ EmployeeExternalList ~ onModalForm ~ data:", data);
+    console.log("ðŸš€ ~ EmployeeExternalList ~ onModalForm ~ data:", data);
     this.dialogHandlerS
       .openDialog(
         EmployeeExternalForm,
@@ -112,7 +111,7 @@ export class EmployeeExternalList {
       .openDialog(
         EmployeeExternalAppUser,
         { applicationUserId },
-        "Usuario de Aplicación",
+        "Usuario de AplicaciÃ³n",
         this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {
@@ -147,4 +146,3 @@ export class EmployeeExternalList {
     );
   }
 }
-

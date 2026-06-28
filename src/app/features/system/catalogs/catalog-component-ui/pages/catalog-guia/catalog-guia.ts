@@ -22,7 +22,7 @@ import { TagModule } from "primeng/tag";
 import { TextareaModule } from "primeng/textarea";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { ToolbarModule } from "primeng/toolbar";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 
 type TagSeverity = "success" | "info" | "warn" | "danger" | "secondary" | "contrast";
 
@@ -109,9 +109,9 @@ export class CatalogGuia {
   ];
 
   readonly colorAssessment = [
-    { role: "Marca principal", current: "#0b3164 sobre blanco", verdict: "Consistente", recommendation: "Mantenerlo como azul corporativo.", severity: "success" as TagSeverity },
+    { role: "Marca principal", current: "#00050e sobre blanco", verdict: "Consistente", recommendation: "Mantenerlo como azul corporativo.", severity: "success" as TagSeverity },
     { role: "Sidebar y header", current: "#18181b", verdict: "Aceptable", recommendation: "Migrar a #020811 para alinear con primary-950.", severity: "info" as TagSeverity },
-    { role: "Acento Luxury", current: "#C9A84C", verdict: "Adoptado como soporte", recommendation: "Usarlo en documentos, reportes y detalles premium.", severity: "warn" as TagSeverity },
+    { role: "Acento Luxury", current: "#C9A74D", verdict: "Adoptado como soporte", recommendation: "Usarlo en documentos, reportes y detalles premium.", severity: "warn" as TagSeverity },
     { role: "Warning", current: "#d97706 + #fef3c7", verdict: "Consistente", recommendation: "Ambar claro sobre fondo crema.", severity: "warn" as TagSeverity },
     { role: "Danger", current: "#991b1b + #fee2e2", verdict: "Consistente", recommendation: "Adecuado para acciones destructivas.", severity: "danger" as TagSeverity },
   ];

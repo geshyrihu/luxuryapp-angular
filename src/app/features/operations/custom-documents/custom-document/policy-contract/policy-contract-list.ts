@@ -1,17 +1,17 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import {
   CustomButtonDelete,
   CustomButtonEdit,
   CustomButtonViewPdf,
 } from "src/app/core/components/buttons/web";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
@@ -132,13 +132,13 @@ export class PolicyContractList {
   }
   getTagSeverity(tagLabel: string | null): "success" | "warn" | "danger" {
     if (tagLabel === "Vigente") {
-      return "success"; // Si no hay etiqueta, consideramos que está vigente
+      return "success"; // Si no hay etiqueta, consideramos que estÃ¡ vigente
     }
-    if (tagLabel === "Próximo a vencer") {
-      return "warn"; // Si no hay etiqueta, consideramos que está vigente
+    if (tagLabel === "PrÃ³ximo a vencer") {
+      return "warn"; // Si no hay etiqueta, consideramos que estÃ¡ vigente
     }
     if (tagLabel === "Vencido") {
-      return "danger"; // Si no hay etiqueta, consideramos que está vigente
+      return "danger"; // Si no hay etiqueta, consideramos que estÃ¡ vigente
     }
   }
 }

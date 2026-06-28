@@ -1,121 +1,125 @@
 ﻿<div class="card">
-<p-table
-  [globalFilterFields]="globalFilterFields()"
-  [paginator]="true"
-  [rows]="tablePrimeNgRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  [value]="dataSignal()"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight"
-  #dt
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  styleClass="custom-table hidden md:block"
->
-  <ng-template #caption>
-    <div class="flex align-items-center">
-      <div class="flex-flex-grow-1-1">
-        <primeng-custom-caption
-          (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-          [dt]="dt"
-        />
-      </div>
-      <div class="flex-none">
-        <custom-button
-          label="Saldo"
-          iconClass="icon icon-pi-calendar"
-          size="small"
-          [fluid]="true"
-          (clicked)="onNavSaldo()"
-        />
-      </div>
-    </div>
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th pSortableColumn="requestDate">
-        Fecha Solicitud
-        <p-sortIcon field="requestDate" />
-      </th>
-      <th pSortableColumn="startDate">
-        Periodo
-        <p-sortIcon field="startDate" />
-      </th>
-      <th pSortableColumn="requestedDays">
-        Días Solicitados
-        <p-sortIcon field="requestedDays" />
-      </th>
-      <th pSortableColumn="status">
-        Estado
-        <p-sortIcon field="status" />
-      </th>
-      <th>Aprobación</th>
-      <th class="no-print"></th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td>{{ item.requestDate }}</td>
-      <td>
-        <div>
-          <span>
-            <strong>Inicio:</strong>
-            {{ item.startDate }}
-          </span>
-          <br />
-          <span>
-            <strong>Fin:</strong>
-            {{ item.endDate }}
-          </span>
-        </div>
-      </td>
-      <td class="text-center">
-        <p-tag
-          severity="info"
-          [value]="item.requestedDays"
-          styleClass="text-base p-2"
-        />
-      </td>
-      <td>
-        <p-tag
-          [value]="item.status"
-          [severity]="getStatusSeverity(item.status)"
-        ></p-tag>
-      </td>
-      <td>
-        {{ item.approverFullName || "-" }}
-        <br />
-        @if (item.approvalDate) {
-        <span> {{ item.approvalDate }} </span>
-        }
-      </td>
-
-      <td class="no-print">
-        <div class="flex justify-content-end">
-          <!-- Botón Ver Detalle -->
-          <custom-button-item (clicked)="onDetail(item.id)" label="??" />
-
-          @if (item.status === "Pendiente") {
-          <custom-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+  <p-table
+    [globalFilterFields]="globalFilterFields()"
+    [paginator]="true"
+    [rows]="tablePrimeNgRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [showCurrentPageReport]="true"
+    [value]="dataSignal()"
+    [scrollable]="true"
+    [scrollHeight]="scrollHeight"
+    #dt
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    styleClass="custom-table hidden md:block"
+  >
+    <ng-template #caption>
+      <div class="flex align-items-center">
+        <div class="flex-flex-grow-1-1">
+          <primeng-custom-caption
+            (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+            [dt]="dt"
           />
-          <custom-button-delete (confirmed)="onDelete(item.id)" />
-          }
         </div>
-      </td>
-    </tr>
-  </ng-template>
-    <ng-template pTemplate="emptymessage">
+        <div class="flex-none">
+          <custom-button
+            label="Saldo"
+            icon="mdi:calendar"
+            size="small"
+            [fluid]="true"
+            (clicked)="onNavSaldo()"
+          />
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #header>
       <tr>
-        <td colspan="6">
-          <app-empty-state icon="mdi:beach" title="Sin vacaciones" message="No hay solicitudes de vacaciones." />
+        <th pSortableColumn="requestDate">
+          Fecha Solicitud
+          <p-sortIcon field="requestDate" />
+        </th>
+        <th pSortableColumn="startDate">
+          Periodo
+          <p-sortIcon field="startDate" />
+        </th>
+        <th pSortableColumn="requestedDays">
+          Días Solicitados
+          <p-sortIcon field="requestedDays" />
+        </th>
+        <th pSortableColumn="status">
+          Estado
+          <p-sortIcon field="status" />
+        </th>
+        <th>Aprobación</th>
+        <th class="no-print"></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td>{{ item.requestDate }}</td>
+        <td>
+          <div>
+            <span>
+              <strong>Inicio:</strong>
+              {{ item.startDate }}
+            </span>
+            <br />
+            <span>
+              <strong>Fin:</strong>
+              {{ item.endDate }}
+            </span>
+          </div>
+        </td>
+        <td class="text-center">
+          <p-tag
+            severity="info"
+            [value]="item.requestedDays"
+            styleClass="text-base p-2"
+          />
+        </td>
+        <td>
+          <p-tag
+            [value]="item.status"
+            [severity]="getStatusSeverity(item.status)"
+          ></p-tag>
+        </td>
+        <td>
+          {{ item.approverFullName || "-" }}
+          <br />
+          @if (item.approvalDate) {
+          <span> {{ item.approvalDate }} </span>
+          }
+        </td>
+
+        <td class="no-print">
+          <div class="flex justify-content-end">
+            <!-- Botón Ver Detalle -->
+            <custom-button-item (clicked)="onDetail(item.id)" label="??" />
+
+            @if (item.status === "Pendiente") {
+            <custom-button-edit
+              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            />
+            <custom-button-delete (confirmed)="onDelete(item.id)" />
+            }
+          </div>
         </td>
       </tr>
     </ng-template>
-  <ng-template #paginatorleft>
-    <primeng-custom-table-footer [data]="dataSignal()" />
-  </ng-template>
-</p-table>
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="6">
+          <app-empty-state
+            icon="mdi:beach"
+            title="Sin vacaciones"
+            message="No hay solicitudes de vacaciones."
+          />
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #paginatorleft>
+      <primeng-custom-table-footer [data]="dataSignal()" />
+    </ng-template>
+  </p-table>
 
   <app-data-view-mobile
     [dt]="dt"
@@ -124,27 +128,49 @@
   >
     <ng-template #listItemTemplate let-item>
       <ion-item lines="full">
-      <div
-        slot="start"
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-info-light,#e0f2fe);"
-      >
-        <app-icon icon="mdi:beach" style="font-size:1.1rem;color:var(--ds-info);"></app-icon>
-      </div>
+        <div
+          slot="start"
+          class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+          style="
+            width: 38px;
+            height: 38px;
+            background: var(--ds-info-light, #e0f2fe);
+          "
+        >
+          <app-icon
+            icon="mdi:beach"
+            style="font-size: 1.1rem; color: var(--ds-info)"
+          ></app-icon>
+        </div>
         <ion-label>
           <h2 class="font-bold">{{ item.requestDate }}</h2>
-          <p class="text-sm text-500">{{ item.startDate }} — {{ item.endDate }}</p>
+          <p class="text-sm text-500">
+            {{ item.startDate }} — {{ item.endDate }}
+          </p>
           <p class="text-sm text-500">Días: {{ item.requestedDays }}</p>
           <p class="text-sm">
-            <p-tag [value]="item.status" [severity]="getStatusSeverity(item.status)" />
+            <p-tag
+              [value]="item.status"
+              [severity]="getStatusSeverity(item.status)"
+            />
           </p>
           <p class="text-sm text-500">{{ item.approverFullName || '—' }}</p>
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-            <custom-button-item label="Ver Detalle" iconName="eye-outline" (clicked)="onDetail(item.id)"  [showLabelOnDesktop]="true"/>
+            <custom-button-item
+              label="Ver Detalle"
+              iconName="eye-outline"
+              (clicked)="onDetail(item.id)"
+              [showLabelOnDesktop]="true"
+            />
             @if (item.status === 'Pendiente') {
-              <custom-button-item label="Editar" iconName="create-outline" (clicked)="onModalForm({ id: item.id, title: 'Editar' })"  [showLabelOnDesktop]="true"/>
+            <custom-button-item
+              label="Editar"
+              iconName="create-outline"
+              (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+              [showLabelOnDesktop]="true"
+            />
             }
           </ng-container>
         </app-action-menu>

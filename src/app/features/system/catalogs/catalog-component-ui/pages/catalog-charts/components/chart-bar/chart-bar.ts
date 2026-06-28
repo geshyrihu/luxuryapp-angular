@@ -1,5 +1,5 @@
 import { Component, input } from "@angular/core";
-import { CustomBarChart } from "src/app/core/components/charts/custom-bar-chart";
+import { CustomBarChart } from "src/app/core/components/web/charts/custom-bar-chart";
 
 @Component({
   selector: "app-chart-bar",

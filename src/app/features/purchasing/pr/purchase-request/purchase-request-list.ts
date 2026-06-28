@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, effect, inject, signal } from "@angular/core";
@@ -8,14 +8,14 @@ import { addIcons } from "ionicons";
 import { cartOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   globalFilterFields,
@@ -57,7 +57,7 @@ export class PurchaseRequestList {
   customerIdS = inject(CustomerIdService);
   dialogHandlerS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
-  data = signal<any[]>([]); // ¡MEJORA! data también es un signal
+  data = signal<any[]>([]); // Â¡MEJORA! data tambiÃ©n es un signal
   public AspRole = EApplicationRole;
 
   globalFilterFields: string[] = [];
@@ -71,14 +71,14 @@ export class PurchaseRequestList {
 
   constructor() {
     addIcons({ cartOutline });
-    // --- MOTOR REACTIVO ÚNICO ---
+    // --- MOTOR REACTIVO ÃšNICO ---
     // Este effect ahora se ejecuta si `customerId` O `statusFilter` cambian.
     effect(() => {
       // 1. Leemos AMBOS signals de los que dependemos.
       const customerId: string = this.customerIdS.customerId();
       const status = this.statusFilter(); // Leemos el signal del filtro
 
-      // 2. Condición de seguridad.
+      // 2. CondiciÃ³n de seguridad.
       if (customerId) {
         // 3. Llamamos a la carga de datos con los valores actuales de los signals.
         this.onLoadData(customerId, status);
@@ -100,15 +100,15 @@ export class PurchaseRequestList {
     }
   }
   async onDelete(id: any) {
-    // ¡MEJORA! En lugar de filtrar localmente, recargamos desde el servidor
+    // Â¡MEJORA! En lugar de filtrar localmente, recargamos desde el servidor
     // para asegurar que la vista es 100% consistente con la base de datos.
     await this.apiResponseS.onDelete(Endpoints.PurchaseRequests.delete(id));
     this.onLoadData(this.customerIdS.customerId(), this.statusFilter());
   }
 
   onSelectStatus(status: number) {
-    // ¡CAMBIO CLAVE! La única responsabilidad de este método es actualizar el estado.
-    // Ya no llama a onLoadData. El `effect` se encargará de eso automáticamente.
+    // Â¡CAMBIO CLAVE! La Ãºnica responsabilidad de este mÃ©todo es actualizar el estado.
+    // Ya no llama a onLoadData. El `effect` se encargarÃ¡ de eso automÃ¡ticamente.
     this.statusFilter.set(status);
   }
 
@@ -122,7 +122,7 @@ export class PurchaseRequestList {
       )
       .then((result: boolean) => {
         if (result) {
-          // ¡MEJORA! Recargamos los datos usando los valores actuales de los signals.
+          // Â¡MEJORA! Recargamos los datos usando los valores actuales de los signals.
           this.onLoadData(this.customerIdS.customerId(), this.statusFilter());
         }
       });

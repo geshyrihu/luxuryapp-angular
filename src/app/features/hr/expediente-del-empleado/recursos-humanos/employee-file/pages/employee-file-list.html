@@ -64,7 +64,9 @@
         <td>{{ item.puesto || '—' }}</td>
         <td>{{ item.departamento || '—' }}</td>
         <td class="text-center">
-          <span [class]="'badge border-1 surface-border ' + getStatusBadge(item.isActive)">
+          <span
+            [class]="'badge border-1 surface-border ' + getStatusBadge(item.isActive)"
+          >
             {{ item.isActive ? 'Activo' : 'Inactivo' }}
           </span>
         </td>
@@ -73,14 +75,18 @@
             iconClass="mdi:folder-open"
             label="Ver Expediente"
             (click)="onViewFile(item)"
-/>
+          />
         </td>
       </tr>
     </ng-template>
-    <ng-template pTemplate="emptymessage">
+    <ng-template #emptymessage>
       <tr>
         <td colspan="7">
-          <app-empty-state icon="mdi:account-group-outline" title="Sin empleados" message="No hay empleados registrados." />
+          <app-empty-state
+            icon="mdi:account-group-outline"
+            title="Sin empleados"
+            message="No hay empleados registrados."
+          />
         </td>
       </tr>
     </ng-template>
@@ -90,35 +96,44 @@
     </ng-template>
   </p-table>
 
-  <app-data-view-mobile
-    [dt]="dt"
-    [data]="dataSignal()"
-    [showAdd]="false"
-  >
+  <app-data-view-mobile [dt]="dt" [data]="dataSignal()" [showAdd]="false">
     <ng-template #listItemTemplate let-item>
       <ion-item lines="full">
-      <div
-        slot="start"
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
-      >
-        <app-icon icon="mdi:folder-account-outline" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
-      </div>
+        <div
+          slot="start"
+          class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+          style="
+            width: 38px;
+            height: 38px;
+            background: var(--ds-primary-50, #edf1ff);
+          "
+        >
+          <app-icon
+            icon="mdi:folder-account-outline"
+            style="font-size: 1.1rem; color: var(--ds-primary)"
+          ></app-icon>
+        </div>
         <ion-label>
           <h2 class="font-bold">{{ item.fullName }}</h2>
           <p class="text-sm text-500">No. {{ item.numberEmployee ?? '—' }}</p>
           <p class="text-sm text-500">{{ item.puesto || '—' }}</p>
           <p class="text-sm text-500">{{ item.departamento || '—' }}</p>
           <p class="text-sm">
-            <span [class]="'badge border-1 surface-border ' + getStatusBadge(item.isActive)">
+            <span
+              [class]="'badge border-1 surface-border ' + getStatusBadge(item.isActive)"
+            >
               {{ item.isActive ? 'Activo' : 'Inactivo' }}
             </span>
           </p>
         </ion-label>
         <app-action-menu slot="end">
           <ng-container actions>
-            <custom-button-item label="Ver Expediente" iconName="folder-open-outline" (clicked)="onViewFile(item)"
- [showLabelOnDesktop]="true"/>
+            <custom-button-item
+              label="Ver Expediente"
+              iconName="folder-open-outline"
+              (clicked)="onViewFile(item)"
+              [showLabelOnDesktop]="true"
+            />
           </ng-container>
         </app-action-menu>
       </ion-item>

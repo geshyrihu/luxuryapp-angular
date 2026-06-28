@@ -16,7 +16,9 @@
   styleClass="custom-table hidden md:block"
 >
   <ng-template #caption>
-    <div class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round">
+    <div
+      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round"
+    >
       <div class="flex-grow-1">
         <primeng-custom-caption
           class="ocultar"
@@ -182,9 +184,14 @@
             aspRoleS.hasRole(AspRole.SuperUsuario)) {
             <custom-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
- label="Editar" [showLabelOnDesktop]="true"/>
-            <custom-button-delete (confirmed)="onDelete(item.id)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
+              label="Editar"
+              [showLabelOnDesktop]="true"
+            />
+            <custom-button-delete
+              (confirmed)="onDelete(item.id)"
+              label="Eliminar"
+              [showLabelOnDesktop]="true"
+            />
 
             }
           </ng-container>
@@ -192,10 +199,14 @@
       </td>
     </tr>
   </ng-template>
-  <ng-template pTemplate="emptymessage">
+  <ng-template #emptymessage>
     <tr>
       <td colspan="9">
-        <app-empty-state icon="mdi:calendar-clock-outline" title="Sin agenda" message="No hay eventos en la agenda de supervisión." />
+        <app-empty-state
+          icon="mdi:calendar-clock-outline"
+          title="Sin agenda"
+          message="No hay eventos en la agenda de supervisión."
+        />
       </td>
     </tr>
   </ng-template>

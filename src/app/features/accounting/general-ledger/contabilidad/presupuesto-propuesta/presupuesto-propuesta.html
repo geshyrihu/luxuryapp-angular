@@ -1,4 +1,17 @@
 <!--
+  ============================================================================
+  ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
+  ============================================================================
+  Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
+  FUNCIONAL y ESTABLE. 
+  
+  Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
+  sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
+  
+  Por favor, NO rompan el código.
+  ============================================================================
+-->
+<!--
   óHola, futuro yo o valiente colega que se atreve a explorar este código!
 
   Este componente es el corazón de la propuesta de presupuesto. Es una tabla compleja
@@ -17,7 +30,7 @@
     size="small"
     [(ngModel)]="selectedFiscalYear"
     [options]="availableYears"
-    (onChange)="onFiscalYearChange()"
+    (ngModelChange)="onFiscalYearChange()"
     placeholder="Año Fiscal"
   />
 </div> -->
@@ -44,7 +57,7 @@
     [value]="proposalItems()"
     [scrollable]="true"
     scrollDirection="both"
-    scrollHeight="flex"
+    scrollHeight="calc(100vh - 320px)"
     styleClass="financial-data-table budget-sticky-footer-table"
     [style]="{ 'min-width': '1800px' }"
     #dt
@@ -55,137 +68,230 @@
     -->
 
     <ng-template #caption>
-      <div class="grid p-2 align-items-stretch">
+      <div class="flex flex-row overflow-x-auto gap-2 p-2 align-items-stretch w-full" style="scrollbar-width: thin;">
         <!-- Cuotas (Fija) -->
-        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+        <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="showFeeComparisonModal()"
-            class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover transition-colors transition-duration-150"
+            class="bg-white shadow-1 hover:shadow-3 border-2 border-gray-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon icon="mdi:tag-outline" class="mb-1" style="font-size:1.5rem;color:var(--ds-text-primary);"></app-icon>
-            <span class="text-xs text-center line-height-2 text-700">Cuotas (Fija)</span>
+            <app-icon
+              icon="mdi:tag-outline"
+              class="mb-1"
+              style="font-size: 1.5rem; color: var(--ds-text-primary)"
+            ></app-icon>
+            <span class="text-xs text-center line-height-2 text-700"
+              >Cuotas (Fija)</span
+            >
           </div>
         </div>
 
         <!-- Cuotas (Indiviso) -->
-        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+        <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="showFeeComparisonByIndivisoModal()"
-            class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover transition-colors transition-duration-150"
+            class="bg-white shadow-1 hover:shadow-3 border-2 border-gray-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon icon="mdi:chart-bar" class="mb-1" style="font-size:1.5rem;color:var(--ds-text-primary);"></app-icon>
-            <span class="text-xs text-center line-height-2 text-700">Cuotas (Indiviso)</span>
+            <app-icon
+              icon="mdi:chart-bar"
+              class="mb-1"
+              style="font-size: 1.5rem; color: var(--ds-text-primary)"
+            ></app-icon>
+            <span class="text-xs text-center line-height-2 text-700"
+              >Cuotas (Indiviso)</span
+            >
           </div>
         </div>
 
         <!-- Añadir Cuenta -->
-        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+        <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="currentProposal()?.status === 'Borrador' && showAddAccountModal()"
             [class.opacity-50]="currentProposal()?.status !== 'Borrador'"
-            class="surface-card border-1 border-blue-200 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-blue-50 transition-colors transition-duration-150"
+            class="bg-blue-50 hover:bg-blue-100 shadow-1 hover:shadow-3 border-2 border-blue-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon icon="mdi:plus-circle-outline" class="mb-1" style="font-size:1.5rem;color:var(--ds-primary);"></app-icon>
-            <span class="text-xs text-center line-height-2 text-blue-700">Añadir Cuenta</span>
+            <app-icon
+              icon="mdi:plus-circle-outline"
+              class="mb-1"
+              style="font-size: 1.5rem; color: var(--ds-primary)"
+            ></app-icon>
+            <span class="text-xs text-center line-height-2 text-blue-700"
+              >Añadir Cuenta</span
+            >
           </div>
         </div>
 
         @if(aspRoleS.hasAny([aspRole.SuperUsuario])) {
         <!-- Auditoría IA -->
-        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+        <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="auditProposal()"
-            class="bg-gray-900 border-1 border-gray-900 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-gray-800 transition-colors transition-duration-150"
+            class="bg-indigo-50 hover:bg-indigo-100 shadow-1 hover:shadow-3 border-2 border-indigo-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon icon="mdi:robot-outline" class="mb-1" style="font-size:1.5rem;color:#ffffff;"></app-icon>
-            <span class="text-xs text-center line-height-2 text-white">Auditoría IA</span>
+            <app-icon
+              icon="mdi:robot-outline"
+              class="mb-1"
+              style="font-size: 1.5rem; color: #4338ca"
+            ></app-icon>
+            <span
+              class="text-xs text-center line-height-2 text-indigo-700 font-medium"
+              >Auditoría IA</span
+            >
           </div>
         </div>
 
-        <!-- Proyección 2026 -->
-        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+        <!-- Proyección {{ fiscalYear }} -->
+        <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="!(auditLoading || forecastLoading) && forecastProposal()"
             [class.opacity-50]="auditLoading || forecastLoading"
-            class="bg-gray-900 border-1 border-gray-900 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-gray-800 transition-colors transition-duration-150"
+            class="bg-indigo-50 hover:bg-indigo-100 shadow-1 hover:shadow-3 border-2 border-indigo-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon icon="mdi:chart-line" class="mb-1" style="font-size:1.5rem;color:#ffffff;"></app-icon>
-            <span class="text-xs text-center line-height-2 text-white">Proyección 2026</span>
+            <app-icon
+              icon="mdi:chart-line"
+              class="mb-1"
+              style="font-size: 1.5rem; color: #4338ca"
+            ></app-icon>
+            <span
+              class="text-xs text-center line-height-2 text-indigo-700 font-medium"
+              >Proyección {{ fiscalYear }}</span
+            >
+          </div>
+        </div>
+
+        <!-- Alertas > 5% -->
+        <div class="flex-shrink-0 w-8rem flex">
+          <div
+            (click)="openHighIncreaseModal()"
+            class="bg-orange-50 hover:bg-orange-100 shadow-1 hover:shadow-3 border-2 border-orange-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
+          >
+            <app-icon
+              icon="mdi:alert-decagram-outline"
+              class="mb-1"
+              style="font-size: 1.5rem; color: #ea580c"
+            ></app-icon>
+            <span
+              class="text-xs text-center line-height-2 text-orange-700 font-medium"
+              >Alertas > 5%</span
+            >
           </div>
         </div>
 
         <!-- Excel -->
-        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+        <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="exportarResumenExcel()"
-            class="surface-card border-1 border-green-300 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-green-50 transition-colors transition-duration-150"
+            class="bg-green-50 hover:bg-green-100 shadow-1 hover:shadow-3 border-2 border-green-300 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon icon="mdi:microsoft-excel" class="mb-1" style="font-size:1.5rem;color:var(--ds-success,#006837);"></app-icon>
-            <span class="text-xs text-center line-height-2 text-green-700">Excel</span>
+            <app-icon
+              icon="mdi:microsoft-excel"
+              class="mb-1"
+              style="font-size: 1.5rem; color: var(--ds-success, #006837)"
+            ></app-icon>
+            <span class="text-xs text-center line-height-2 text-green-700"
+              >Excel</span
+            >
           </div>
         </div>
         }
 
         <!-- Botones Dinámicos -->
-        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+        <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="toggleBaseBudgetMonthlyColumn()"
-            class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover"
+            class="bg-white shadow-1 hover:shadow-3 border-2 border-gray-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon [icon]="baseBudgetMonthlyButtonIcon" class="mb-1" style="font-size:1.5rem;color:var(--ds-text-primary);"></app-icon>
-            <span class="text-xs text-center line-height-2 text-700">{{ baseBudgetMonthlyButtonLabel }}</span>
+            <app-icon
+              [icon]="baseBudgetMonthlyButtonIcon"
+              class="mb-1"
+              style="font-size: 1.5rem; color: var(--ds-text-primary)"
+            ></app-icon>
+            <span class="text-xs text-center line-height-2 text-700"
+              >{{ baseBudgetMonthlyButtonLabel }}</span
+            >
           </div>
         </div>
 
-        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+        <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="toggleBaseBudgetAnnualColumn()"
-            class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover"
+            class="bg-white shadow-1 hover:shadow-3 border-2 border-gray-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon [icon]="baseBudgetAnnualButtonIcon" class="mb-1" style="font-size:1.5rem;color:var(--ds-text-primary);"></app-icon>
-            <span class="text-xs text-center line-height-2 text-700">{{ baseBudgetAnnualButtonLabel }}</span>
+            <app-icon
+              [icon]="baseBudgetAnnualButtonIcon"
+              class="mb-1"
+              style="font-size: 1.5rem; color: var(--ds-text-primary)"
+            ></app-icon>
+            <span class="text-xs text-center line-height-2 text-700"
+              >{{ baseBudgetAnnualButtonLabel }}</span
+            >
           </div>
         </div>
 
-        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+        <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="toggleFiscalYearAnnualColumn()"
-            class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover"
+            class="bg-white shadow-1 hover:shadow-3 border-2 border-gray-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon [icon]="fiscalYearAnnualButtonIcon" class="mb-1" style="font-size:1.5rem;color:var(--ds-text-primary);"></app-icon>
-            <span class="text-xs text-center line-height-2 text-700">{{ fiscalYearAnnualButtonLabel }}</span>
+            <app-icon
+              [icon]="fiscalYearAnnualButtonIcon"
+              class="mb-1"
+              style="font-size: 1.5rem; color: var(--ds-text-primary)"
+            ></app-icon>
+            <span class="text-xs text-center line-height-2 text-700"
+              >{{ fiscalYearAnnualButtonLabel }}</span
+            >
           </div>
         </div>
 
-        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+        <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="toggleshowProjectedExpenses()"
-            class="surface-card border-1 surface-border border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:surface-hover"
+            class="bg-white shadow-1 hover:shadow-3 border-2 border-gray-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon [icon]="projectedExpensesButtonIcon" class="mb-1" style="font-size:1.5rem;color:var(--ds-text-primary);"></app-icon>
-            <span class="text-xs text-center line-height-2 text-700">{{ projectedExpensesButtonLabel }}</span>
+            <app-icon
+              [icon]="projectedExpensesButtonIcon"
+              class="mb-1"
+              style="font-size: 1.5rem; color: var(--ds-text-primary)"
+            ></app-icon>
+            <span class="text-xs text-center line-height-2 text-700"
+              >{{ projectedExpensesButtonLabel }}</span
+            >
           </div>
         </div>
 
         <!-- Admin Proyección -->
-        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+        <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="showProjectedExpensesModal()"
-            class="surface-card border-1 border-orange-300 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-orange-50 transition-colors transition-duration-150"
+            class="bg-orange-50 hover:bg-orange-100 shadow-1 hover:shadow-3 border-2 border-orange-300 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon icon="mdi:cog-outline" class="mb-1" style="font-size:1.5rem;color:var(--ds-warning,#b45309);"></app-icon>
-            <span class="text-xs text-center line-height-2 text-orange-700">Admin Proyección</span>
+            <app-icon
+              icon="mdi:cog-outline"
+              class="mb-1"
+              style="font-size: 1.5rem; color: var(--ds-warning, #b45309)"
+            ></app-icon>
+            <span class="text-xs text-center line-height-2 text-orange-700"
+              >Admin Proyección</span
+            >
           </div>
         </div>
 
         <!-- Calendario Mtto -->
-        <div class="col-4 sm:col-3 md:col-2 xl:col-1 flex p-1">
+        <div class="flex-shrink-0 w-8rem flex">
           <div
             (click)="showMaintenanceCalendarModal()"
-            class="bg-gray-900 border-1 border-gray-900 border-round-md p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer hover:bg-gray-800 transition-colors transition-duration-150"
+            class="bg-indigo-50 hover:bg-indigo-100 shadow-1 hover:shadow-3 border-2 border-indigo-200 border-round-sm p-2 w-full flex flex-column align-items-center justify-content-center cursor-pointer transition-all transition-duration-200"
           >
-            <app-icon icon="mdi:calendar-outline" class="mb-1" style="font-size:1.5rem;color:#ffffff;"></app-icon>
-            <span class="text-xs text-center line-height-2 text-white">Calendario Mtto</span>
+            <app-icon
+              icon="mdi:calendar-outline"
+              class="mb-1"
+              style="font-size: 1.5rem; color: #4338ca"
+            ></app-icon>
+            <span
+              class="text-xs text-center line-height-2 text-indigo-700 font-medium"
+              >Calendario Mtto</span
+            >
           </div>
         </div>
       </div>
@@ -200,7 +306,7 @@
               size="small"
               [(ngModel)]="selectedFiscalYear"
               [options]="availableYears"
-              (onChange)="onFiscalYearChange()"
+              (ngModelChange)="onFiscalYearChange()"
               placeholder="Año"
             />
           </div>
@@ -219,6 +325,84 @@
           <custom-search-input-signal
             (searchChange)="dt.filterGlobal($event, 'contains')"
           />
+        </div>
+      </div>
+
+      <!-- Leyenda y Acotaciones -->
+      <div
+        class="mt-3 surface-ground border-round-md p-3 border-1 surface-border"
+      >
+        <div class="flex flex-wrap gap-4 align-items-center text-sm text-700">
+          <div class="font-semibold text-800 flex align-items-center gap-1">
+            <app-icon
+              icon="mdi:information-outline"
+              style="font-size: 1.2rem"
+            ></app-icon>
+            Guía Rápida:
+          </div>
+
+          <div
+            class="flex align-items-center gap-2"
+            pTooltip="La cuenta presenta un déficit en el presupuesto actual"
+          >
+            <span
+              class="w-1rem h-1rem border-round bg-red-100 border-2 border-red-300"
+            ></span>
+            <span>Déficit Presupuestal</span>
+          </div>
+
+          <div
+            class="flex align-items-center gap-2"
+            pTooltip="La propuesta supera en más de 10% al presupuesto actual"
+          >
+            <span
+              class="w-1rem h-1rem border-round bg-yellow-100 border-2 border-yellow-300"
+            ></span>
+            <span>Incremento > 10%</span>
+          </div>
+
+          <div
+            class="flex align-items-center gap-2"
+            pTooltip="Ver historial de compras asociadas a la cuenta"
+          >
+            <app-icon icon="mdi:cart-outline" class="text-blue-500"></app-icon>
+            <span>Historial Compras</span>
+          </div>
+
+          <div
+            class="flex align-items-center gap-2"
+            pTooltip="Ver histórico de movimientos contables"
+          >
+            <app-icon icon="mdi:history" class="text-indigo-500"></app-icon>
+            <span>Historial Partida</span>
+          </div>
+
+          <div
+            class="flex align-items-center gap-2"
+            pTooltip="Ver cotizaciones y documentos soporte"
+          >
+            <app-icon
+              icon="mdi:folder-outline"
+              class="text-orange-500"
+            ></app-icon>
+            <span>Documentos Soporte</span>
+          </div>
+
+          <div
+            class="flex align-items-center gap-2"
+            pTooltip="Diferencia positiva (aumento vs año anterior)"
+          >
+            <span class="text-red-700 font-bold">(+)</span>
+            <span>Aumento Presupuesto</span>
+          </div>
+
+          <div
+            class="flex align-items-center gap-2"
+            pTooltip="Diferencia negativa (ahorro vs año anterior)"
+          >
+            <span class="text-green-700 font-bold">(-)</span>
+            <span>Ahorro / Reducción</span>
+          </div>
         </div>
       </div>
     </ng-template>
@@ -252,23 +436,65 @@
         }
         <!-- Columnas congeladas a la derecha: Cólculos y totales -->
         <!-- Columnas congeladas a la derecha: Cálculos y totales -->
-        <th pFrozenColumn alignFrozen="right" class="table-col-100px" style="text-align:center;">
+        <th
+          pFrozenColumn
+          alignFrozen="right"
+          class="table-col-100px"
+          style="text-align: center"
+        >
           PROM MENSUAL
         </th>
-        <th [hidden]="!showBaseBudgetMonthlyColumn()" pFrozenColumn alignFrozen="right" class="table-col-100px" style="text-align:center;">
-          PSTO (2025) MENSUAL
+        <th
+          [hidden]="!showBaseBudgetMonthlyColumn()"
+          pFrozenColumn
+          alignFrozen="right"
+          class="table-col-100px"
+          style="text-align: center"
+        >
+          PSTO ({{ baseBudgetYear }}) MENSUAL
         </th>
-        <th [hidden]="!showBaseBudgetAnnualColumn()" pFrozenColumn alignFrozen="right" class="table-col-100px" style="text-align:center;">
-          PSTO (2025) ANUAL
+        <th
+          [hidden]="!showBaseBudgetAnnualColumn()"
+          pFrozenColumn
+          alignFrozen="right"
+          class="table-col-100px"
+          style="text-align: center"
+        >
+          PSTO ({{ baseBudgetYear }}) ANUAL
         </th>
-        <th pFrozenColumn alignFrozen="right" class="table-col-100px" style="text-align:center;">
-          PSTO (2026) MENSUAL
+        <th
+          pFrozenColumn
+          alignFrozen="right"
+          class="table-col-100px"
+          style="text-align: center"
+        >
+          PSTO ({{ fiscalYear }}) MENSUAL
         </th>
-        <th [hidden]="!showFiscalYearAnnualColumn()" pFrozenColumn alignFrozen="right" class="table-col-100px" style="text-align:center;">
-          PSTO (2026) ANUAL
+        <th
+          [hidden]="!showFiscalYearAnnualColumn()"
+          pFrozenColumn
+          alignFrozen="right"
+          class="table-col-100px"
+          style="text-align: center"
+        >
+          PSTO ({{ fiscalYear }}) ANUAL
         </th>
-        <th pFrozenColumn alignFrozen="right" class="table-col-100px" style="text-align:center;">DIF</th>
-        <th pFrozenColumn alignFrozen="right" class="table-col-100px" style="text-align:center;">%</th>
+        <th
+          pFrozenColumn
+          alignFrozen="right"
+          class="table-col-100px"
+          style="text-align: center"
+        >
+          DIF
+        </th>
+        <th
+          pFrozenColumn
+          alignFrozen="right"
+          class="table-col-100px"
+          style="text-align: center"
+        >
+          %
+        </th>
       </tr>
     </ng-template>
 
@@ -293,6 +519,8 @@
       <tr
         [class.fila-nivel-2-hoja]="item.nivelCuenta === 2 && !item.esFilaAgrupadora"
         [class.fila-nivel-3-hoja]="item.nivelCuenta === 3 && !item.esFilaAgrupadora"
+        [class.fila-deficit]="isDeficit(item)"
+        [class.fila-alerta-incremento]="isHighIncrease(item)"
       >
         <!-- [class.bg-red-100]="isDeficit(item)"
         [class.bg-yellow-100]="isHighIncrease(item)" -->
@@ -304,13 +532,21 @@
                 class="pointer mr-1 text-sm"
                 (click)="showPurchaseHistory(item)"
                 pTooltip="Historial de compras"
-                >🛒 |</span
+                ><app-icon
+                  icon="mdi:cart-outline"
+                  class="text-blue-500"
+                ></app-icon>
+                |</span
               >
               <span
                 class="pointer mr-1 text-sm"
                 (click)="showItemHistory(item)"
                 pTooltip="Historial de partidas"
-                >🕒 |</span
+                ><app-icon
+                  icon="mdi:history"
+                  class="text-indigo-500"
+                ></app-icon>
+                |</span
               >
               <span
                 class="pointer mr-1 text-sm"
@@ -419,7 +655,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="table-col-100px"
-          style="display:flex;align-items:center;justify-content:flex-end;"
+          style="display: flex; align-items: center; justify-content: flex-end"
         >
           <custom-input-number-signal
             (blur)="updateProposalItem(item)"
@@ -442,7 +678,7 @@
           pFrozenColumn
           alignFrozen="right"
           class="table-col-100px"
-          style="text-align:right;"
+          style="text-align: right"
         >
           {{item.proposedAmount * 12 | number: "1.0-0"}}
         </td>
@@ -667,3 +903,47 @@
   Este componente es un buen ejemplo de cómo usar las caracterósticas avanzadas de PrimeNG
   para crear interfaces de datos complejas. óQue la fuerza te acompaóe en tus refactorizaciones!
 -->
+
+
+<!-- Dialogo para Alertas > 5% -->
+<p-dialog
+  header="Análisis de Incrementos > 5%"
+  [visible]="showHighIncreaseModal()"
+  (visibleChange)="showHighIncreaseModal.set($event)"
+  [modal]="true"
+  [style]="{width: '80vw'}"
+  [maximizable]="true"
+  [draggable]="false"
+  [resizable]="false"
+  appendTo="body"
+>
+  <div class="p-3">
+    <p-table [value]="highIncreaseItems()" [scrollable]="true" scrollHeight="60vh" styleClass="p-datatable-sm p-datatable-striped">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Cuenta</th>
+          <th>Descripción</th>
+          <th class="text-right">Base Mensual</th>
+          <th class="text-right">Propuesta</th>
+          <th class="text-right">Diferencia ($)</th>
+          <th class="text-right">Incremento (%)</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td class="font-medium">{{item.accountNumber}}</td>
+          <td>{{item.accountName}}</td>
+          <td class="text-right">{{item.currentAmount | number:'1.0-0'}}</td>
+          <td class="text-right font-medium">{{item.proposedAmount | number:'1.0-0'}}</td>
+          <td class="text-right text-red-600 font-medium">{{item.difference | number:'1.0-0'}}</td>
+          <td class="text-right text-red-600 font-bold bg-red-50 border-round">{{item.percentageIncrease | number:'1.0-0'}}%</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="6" class="text-center p-4">No hay gastos con incremento mayor al 5%.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</p-dialog>

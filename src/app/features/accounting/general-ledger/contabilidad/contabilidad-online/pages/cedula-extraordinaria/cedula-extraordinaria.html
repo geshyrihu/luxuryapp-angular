@@ -1,7 +1,9 @@
-<div class="rf-shell fadein">
+<div class="fadein flex flex-column" style="min-height: 70vh">
   @if (showEspejo()) {
   <!-- Reutilizamos el componente exacto del módulo de Presupuestos -->
-  <app-espejo-aspel-extraordinarios />
+  <app-espejo-aspel-extraordinarios
+    class="flex-1 flex flex-column w-full h-full"
+  />
   } @else {
   <div class="rf-card p-4">
     <p-skeleton height="2rem" styleClass="mb-2" />
@@ -9,4 +11,3 @@
   </div>
   }
 </div>
-

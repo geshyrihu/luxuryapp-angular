@@ -1,8 +1,8 @@
-﻿import { Component, input, output } from "@angular/core";
+import { Component, input, output } from "@angular/core";
 import { IconFieldModule } from "primeng/iconfield";
 import { InputIconModule } from "primeng/inputicon";
 import { InputTextModule } from "primeng/inputtext";
-import { AppIcon } from "../../app-icon/app-icon.component";
+import { AppIcon } from "../../shared/app-icon/app-icon.component";
 
 @Component({
   selector: "custom-search-input-signal",
@@ -25,7 +25,7 @@ import { AppIcon } from "../../app-icon/app-icon.component";
   `,
 })
 export class CustomSearchInput {
-  placeholder = input<string>("Buscar aquí...");
+  placeholder = input<string>("Buscar aqu�...");
   disabled = input<boolean>(false);
 
   searchChange = output<string>();
@@ -34,3 +34,4 @@ export class CustomSearchInput {
     this.searchChange.emit((event.target as HTMLInputElement).value);
   }
 }
+

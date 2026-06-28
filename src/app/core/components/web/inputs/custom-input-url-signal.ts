@@ -1,13 +1,13 @@
-ï»¿import { Component, forwardRef, input } from "@angular/core";
+import { Component, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { InputTextModule } from "primeng/inputtext";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
 /**
- * ðŸ”— CUSTOM INPUT URL
+ * ?? CUSTOM INPUT URL
  * -------------------------------------------------------------------------
- * Input especÃ­fico para direcciones web.
- * Valida formato automÃ¡ticamente en mÃ³viles.
+ * Input específico para direcciones web.
+ * Valida formato automáticamente en móviles.
  */
 @Component({
   selector: "custom-input-url",
@@ -46,3 +46,4 @@ import { BaseInputSignal } from "../base/base-input-signal";
 export class CustomInputUrl extends BaseInputSignal {
   customClass = input<string>("");
 }
+

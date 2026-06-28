@@ -47,20 +47,23 @@
         <div class="flex">
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-/>
-          <custom-button-delete (confirmed)="onDelete(item.id)"
-/>
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
         </div>
       </td>
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="3">
-          <app-empty-state icon="mdi:receipt-text-outline" title="Sin usos CFDI" message="No hay usos de CFDI registrados." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="3">
+        <app-empty-state
+          icon="mdi:receipt-text-outline"
+          title="Sin usos CFDI"
+          message="No hay usos de CFDI registrados."
+        />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="dataSignal()" />
   </ng-template>
@@ -75,35 +78,43 @@
 >
   <ng-template #listItemTemplate let-item>
     <ion-item lines="full" detail="false" class="ion-no-padding">
-      
-      <div slot="start"
-           class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-           style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);">
-        <app-icon icon="mdi:receipt-text-outline" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+      <div
+        slot="start"
+        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-primary-50, #edf1ff);
+        "
+      >
+        <app-icon
+          icon="mdi:receipt-text-outline"
+          style="font-size: 1.1rem; color: var(--ds-primary)"
+        ></app-icon>
       </div>
 
       <!-- Jerarquía Visual -->
       <ion-label class="ion-text-wrap">
         <h3 class="font-semibold m-0 text-color">{{ item.codigo }}</h3>
-        <p class="text-xs m-0 mt-1 text-color-secondary">{{ item.descripcion }}</p>
+        <p class="text-xs m-0 mt-1 text-color-secondary">
+          {{ item.descripcion }}
+        </p>
       </ion-label>
 
       <app-action-menu slot="end">
         <ng-container actions>
-          <custom-button-edit (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
- label="Editar" [showLabelOnDesktop]="true"/>
-          <custom-button-delete (confirmed)="onDelete(item.id)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
+          <custom-button-edit
+            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
+            label="Editar"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-delete
+            (confirmed)="onDelete(item.id)"
+            label="Eliminar"
+            [showLabelOnDesktop]="true"
+          />
         </ng-container>
       </app-action-menu>
-
     </ion-item>
   </ng-template>
 </app-data-view-mobile>
-
-
-
-
-
-
-

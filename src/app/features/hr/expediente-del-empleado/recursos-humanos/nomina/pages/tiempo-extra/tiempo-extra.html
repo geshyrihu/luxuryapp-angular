@@ -27,14 +27,13 @@
   styleClass="card hidden md:block custom-table"
 >
   <ng-template #caption>
-    <primeng-custom-caption
-      [dt]="dt"
-      (add)="openAdd()"
-    />
+    <primeng-custom-caption [dt]="dt" (add)="openAdd()" />
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="nombreEmpleado">Empleado <p-sortIcon field="nombreEmpleado" /></th>
+      <th pSortableColumn="nombreEmpleado">
+        Empleado <p-sortIcon field="nombreEmpleado" />
+      </th>
       <th pSortableColumn="fecha">Fecha <p-sortIcon field="fecha" /></th>
       <th class="text-right">Hrs Simples</th>
       <th class="text-right">Hrs Dobles</th>
@@ -51,9 +50,15 @@
       <td>{{ item.fecha | date: "dd/MM/yyyy" : "UTC" }}</td>
       <td class="text-right">{{ item.horasSimples }}</td>
       <td class="text-right">{{ item.horasDobles }}</td>
-      <td class="text-right">{{ item.importeHorasSimples | currency: "MXN" : "symbol" : "1.2-2" }}</td>
-      <td class="text-right">{{ item.importeHorasDobles | currency: "MXN" : "symbol" : "1.2-2" }}</td>
-      <td class="text-right font-bold">{{ item.totalImporte | currency: "MXN" : "symbol" : "1.2-2" }}</td>
+      <td class="text-right">
+        {{ item.importeHorasSimples | currency: "MXN" : "symbol" : "1.2-2" }}
+      </td>
+      <td class="text-right">
+        {{ item.importeHorasDobles | currency: "MXN" : "symbol" : "1.2-2" }}
+      </td>
+      <td class="text-right font-bold">
+        {{ item.totalImporte | currency: "MXN" : "symbol" : "1.2-2" }}
+      </td>
       <td>
         <p-tag
           [severity]="item.aprobado ? 'success' : 'warn'"
@@ -77,13 +82,17 @@
       </td>
     </tr>
   </ng-template>
-  <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="9">
-          <app-empty-state icon="mdi:clock-plus-outline" title="Sin tiempo extra" message="No hay registros de tiempo extra." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="9">
+        <app-empty-state
+          icon="mdi:clock-plus-outline"
+          title="Sin tiempo extra"
+          message="No hay registros de tiempo extra."
+        />
+      </td>
+    </tr>
+  </ng-template>
 </p-table>
 
 <!-- Vista movil -->
@@ -98,16 +107,32 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-success-light,#d1fae5);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-success-light, #d1fae5);
+        "
       >
-        <app-icon icon="mdi:currency-usd" style="font-size:1.1rem;color:var(--ds-success);"></app-icon>
+        <app-icon
+          icon="mdi:currency-usd"
+          style="font-size: 1.1rem; color: var(--ds-success)"
+        ></app-icon>
       </div>
       <ion-label>
         <h2 class="font-normal m-0">{{ item.nombreEmpleado }}</h2>
-        <p class="text-xs m-0">{{ item.fecha | date: "dd/MM/yyyy" : "UTC" }} | {{ item.horasSimples + item.horasDobles }}h total</p>
+        <p class="text-xs m-0">
+          {{ item.fecha | date: "dd/MM/yyyy" : "UTC" }} | {{ item.horasSimples +
+          item.horasDobles }}h total
+        </p>
         <div class="flex align-items-center gap-2 mt-1">
-          <span class="font-bold">{{ item.totalImporte | currency: "MXN" : "symbol" : "1.2-2" }}</span>
-          <p-tag [severity]="item.aprobado ? 'success' : 'warn'" [value]="item.aprobado ? 'Aprobado' : 'Pendiente'" />
+          <span class="font-bold"
+            >{{ item.totalImporte | currency: "MXN" : "symbol" : "1.2-2"
+            }}</span
+          >
+          <p-tag
+            [severity]="item.aprobado ? 'success' : 'warn'"
+            [value]="item.aprobado ? 'Aprobado' : 'Pendiente'"
+          />
         </div>
       </ion-label>
       <div slot="end" class="flex gap-1">

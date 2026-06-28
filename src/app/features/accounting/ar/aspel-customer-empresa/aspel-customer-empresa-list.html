@@ -38,16 +38,29 @@
     <tr>
       <td>{{ item.customerName }}</td>
       <td>
-        <app-status-badge [status]="item.empresa" [isEmpresa]="true" [clickable]="false" />
+        <app-status-badge
+          [status]="item.empresa"
+          [isEmpresa]="true"
+          [clickable]="false"
+        />
       </td>
       <td>{{ item.customerIdAspelId }}</td>
       <td class="text-center">
         <div class="flex justify-content-center">
-          <custom-button-edit (clicked)="onModalForm(item)"
-/>
-          <custom-button-delete (confirmed)="onDelete(item.id)"
-/>
+          <custom-button-edit (clicked)="onModalForm(item)" />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
         </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="4">
+        <app-empty-state
+          icon="mdi:domain"
+          title="Sin configuraciones"
+          message="No hay configuraciones de cliente-empresa registradas."
+        />
       </td>
     </tr>
   </ng-template>
@@ -68,25 +81,44 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-primary-50,#edf1ff);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-primary-50, #edf1ff);
+        "
       >
-        <app-icon icon="mdi:domain" style="font-size:1.1rem;color:var(--ds-primary);"></app-icon>
+        <app-icon
+          icon="mdi:domain"
+          style="font-size: 1.1rem; color: var(--ds-primary)"
+        ></app-icon>
       </div>
       <ion-label>
         <h2>{{ item.customerName }}</h2>
         <div class="flex align-items-center gap-2 mt-1">
-          <app-status-badge [status]="item.empresa" [isEmpresa]="true" [clickable]="false" />
-          <span class="text-sm text-500">- ID Aspel: {{ item.customerIdAspelId }}</span>
+          <app-status-badge
+            [status]="item.empresa"
+            [isEmpresa]="true"
+            [clickable]="false"
+          />
+          <span class="text-sm text-500"
+            >- ID Aspel: {{ item.customerIdAspelId }}</span
+          >
         </div>
       </ion-label>
       <div slot="end">
         <app-action-menu>
           <ng-container actions>
-          <custom-button-edit (clicked)="onModalForm(item)"
- label="Editar" [showLabelOnDesktop]="true"/>
-          <custom-button-delete (clicked)="onDelete(item.id)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
-                  </ng-container>
+            <custom-button-edit
+              (clicked)="onModalForm(item)"
+              label="Editar"
+              [showLabelOnDesktop]="true"
+            />
+            <custom-button-delete
+              (clicked)="onDelete(item.id)"
+              label="Eliminar"
+              [showLabelOnDesktop]="true"
+            />
+          </ng-container>
         </app-action-menu>
       </div>
     </ion-item>

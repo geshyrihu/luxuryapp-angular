@@ -10,14 +10,14 @@ import { InputIconModule } from "primeng/inputicon";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { ActionIconsGroupComponent } from "src/app/core/components/action-icons-group/action-icons-group.component";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionIconsGroupComponent } from "src/app/core/components/shared/action-icons-group/action-icons-group.component";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
-import { EStatus, StatusBadge } from "src/app/core/components/status-badge/status-badge";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { EStatus, StatusBadge } from "src/app/core/components/shared/status-badge/status-badge";
 
 interface ErpRow {
   id: number;
@@ -60,10 +60,10 @@ interface ErpRow {
 
       <!-- Tabla completa ERP con caption + filtro + paginador -->
       <div class="col-12">
-        <p-card header="Tabla ERP — Caption, Filtro, Sort, Paginación y Responsiva">
+        <p-card header="Tabla ERP â€” Caption, Filtro, Sort, PaginaciÃ³n y Responsiva">
           <p class="m-0 mb-3 text-sm text-color-secondary">
-            Patrón estándar ERP: <code>primeng-custom-caption</code> + <code>p-table</code> en desktop
-            y <code>app-data-view-mobile</code> en móvil (<code>md:hidden</code>).
+            PatrÃ³n estÃ¡ndar ERP: <code>primeng-custom-caption</code> + <code>p-table</code> en desktop
+            y <code>app-data-view-mobile</code> en mÃ³vil (<code>md:hidden</code>).
           </p>
 
           <!-- Toolbar / Caption -->
@@ -137,7 +137,7 @@ interface ErpRow {
             </ng-template>
           </p-table>
 
-          <!-- Vista móvil -->
+          <!-- Vista mÃ³vil -->
           <app-data-view-mobile
             [data]="rows"
             [dt]="dt"
@@ -165,9 +165,9 @@ interface ErpRow {
         </p-card>
       </div>
 
-      <!-- Tabla con selección por checkbox -->
+      <!-- Tabla con selecciÃ³n por checkbox -->
       <div class="col-12 lg:col-6">
-        <p-card header="Tabla con Selección (checkbox)">
+        <p-card header="Tabla con SelecciÃ³n (checkbox)">
           <p class="m-0 mb-3 text-sm text-color-secondary">
             Muestra el conteo de seleccionados y activa las acciones masivas en el toolbar.
           </p>
@@ -214,7 +214,7 @@ interface ErpRow {
         <p-card header="Tabla con Row Expansion (detalle)">
           <p class="m-0 mb-3 text-sm text-color-secondary">
             Expande una fila para mostrar detalle sin navegar a otra vista.
-            Úsalo solo cuando el detalle es breve y consultivo.
+            Ãšsalo solo cuando el detalle es breve y consultivo.
           </p>
           <p-table
             [value]="rows"
@@ -270,14 +270,15 @@ interface ErpRow {
 })
 export class WebTables {
   readonly rows: ErpRow[] = [
-    { id: 1, folio: "ERP-001", nombre: "Solicitud de compra equipo TI",       depto: "Sistemas",        fecha: "2026-06-01", importe: 45000, status: EStatus.Pendiente,    detail: "Requiere aprobación de Dirección." },
+    { id: 1, folio: "ERP-001", nombre: "Solicitud de compra equipo TI",       depto: "Sistemas",        fecha: "2026-06-01", importe: 45000, status: EStatus.Pendiente,    detail: "Requiere aprobaciÃ³n de DirecciÃ³n." },
     { id: 2, folio: "ERP-002", nombre: "Mantenimiento preventivo elevadores",  depto: "Operaciones",     fecha: "2026-06-05", importe: 12800, status: EStatus.Proceso,      detail: "Proveedor asignado: TechElevadores SA." },
-    { id: 3, folio: "ERP-003", nombre: "Adquisición mobiliario administrativo",depto: "Administración",  fecha: "2026-06-10", importe: 89500, status: EStatus.Concluido,    detail: "Entregado y firmado en almacén." },
-    { id: 4, folio: "ERP-004", nombre: "Servicio de limpieza áreas comunes",   depto: "Servicios",       fecha: "2026-06-12", importe:  8500, status: EStatus.noAutorizado, detail: "Solicitud rechazada por política de techo." },
-    { id: 5, folio: "ERP-005", nombre: "Capacitación personal técnico",        depto: "Recursos Humanos",fecha: "2026-06-15", importe: 15000, status: EStatus.Proceso,      detail: "3 de 5 sesiones completadas." },
-    { id: 6, folio: "ERP-006", nombre: "Renovación de licencias de software",  depto: "Sistemas",        fecha: "2026-06-18", importe: 32000, status: EStatus.Pendiente,    detail: "Pendiente de cotización comparativa." },
+    { id: 3, folio: "ERP-003", nombre: "AdquisiciÃ³n mobiliario administrativo",depto: "AdministraciÃ³n",  fecha: "2026-06-10", importe: 89500, status: EStatus.Concluido,    detail: "Entregado y firmado en almacÃ©n." },
+    { id: 4, folio: "ERP-004", nombre: "Servicio de limpieza Ã¡reas comunes",   depto: "Servicios",       fecha: "2026-06-12", importe:  8500, status: EStatus.noAutorizado, detail: "Solicitud rechazada por polÃ­tica de techo." },
+    { id: 5, folio: "ERP-005", nombre: "CapacitaciÃ³n personal tÃ©cnico",        depto: "Recursos Humanos",fecha: "2026-06-15", importe: 15000, status: EStatus.Proceso,      detail: "3 de 5 sesiones completadas." },
+    { id: 6, folio: "ERP-006", nombre: "RenovaciÃ³n de licencias de software",  depto: "Sistemas",        fecha: "2026-06-18", importe: 32000, status: EStatus.Pendiente,    detail: "Pendiente de cotizaciÃ³n comparativa." },
   ];
 
   selectedRowsModel: ErpRow[] = [];
   selectedRows = signal<ErpRow[]>([]);
 }
+

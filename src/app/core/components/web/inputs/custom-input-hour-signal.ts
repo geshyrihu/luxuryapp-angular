@@ -1,9 +1,9 @@
-﻿import { Component, forwardRef, input } from "@angular/core";
+import { Component, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { FlatpickrDirective } from "angularx-flatpickr";
 import { Spanish } from "flatpickr/dist/l10n/es";
 import { InputTextModule } from "primeng/inputtext";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
 @Component({
   selector: "custom-input-hour-signal",
@@ -61,3 +61,4 @@ export class CustomInputHour extends BaseInputSignal {
     this.onTouch();
   }
 }
+

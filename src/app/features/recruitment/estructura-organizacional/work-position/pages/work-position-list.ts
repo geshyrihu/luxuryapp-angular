@@ -1,12 +1,6 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
-import {
-  IonAvatar,
-  IonBadge,
-  IonItem,
-  IonLabel,
-} from "@ionic/angular/standalone";
+import { IonBadge, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import {
   add,
@@ -22,15 +16,16 @@ import {
 import { AvatarModule } from "primeng/avatar";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import {
   CustomBtnActiveDesactive,
   CustomButtonDelete,
   CustomButtonEdit,
   CustomButtonItem,
 } from "src/app/core/components/buttons/web";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { DialogSize } from "src/app/core/enums/dialog-size";
 import {
@@ -66,7 +61,6 @@ import { WorkPositionHours } from "./work-position-hours";
     PrimeNgCustomCaption,
     ActionMenu,
     DataViewMobile,
-    IonAvatar,
     IonBadge,
     IonItem,
     IonLabel,
@@ -77,7 +71,7 @@ import { WorkPositionHours } from "./work-position-hours";
   ],
 })
 export class WorkPositionList {
-  // --- INYECCIÓN DE DEPENDENCIAS ---
+  // --- INYECCIÃ“N DE DEPENDENCIAS ---
   public authS = inject(AuthService);
   readonly apiS = inject(ApiResponseService);
   private dialogHandlerS = inject(DialogHandlerService);
@@ -179,7 +173,7 @@ export class WorkPositionList {
     await this.dialogHandlerS.openDialog(
       JobDescriptionForm,
       { id, jobDescriptionId },
-      "Descripción de puesto: " + roleName,
+      "DescripciÃ³n de puesto: " + roleName,
       DialogSize.md,
     );
   }
@@ -193,7 +187,7 @@ export class WorkPositionList {
     );
   }
 
-  /** Retorna true cuando el puesto no tiene rol asignado (requiere actualización). */
+  /** Retorna true cuando el puesto no tiene rol asignado (requiere actualizaciÃ³n). */
   necesitaActualizacion(item: IWorkPosition): boolean {
     return !item.applicationRoleName || item.applicationRoleName === "Asignar";
   }
@@ -206,20 +200,19 @@ export class WorkPositionList {
     ) {
       return true;
     }
-    // Lógica adicional de validación si es necesaria
+    // LÃ³gica adicional de validaciÃ³n si es necesaria
     return true;
   }
 
   onValidateShowTIcket(applicationRoleId: string): boolean {
-    // Lógica para mostrar ticket vigente
+    // LÃ³gica para mostrar ticket vigente
     return true;
   }
 
   shouldShowVacancyRequest(item: IWorkPosition): boolean {
     const isBlockingStatus =
       item.positionRequest?.status === 0 || // Pendiente
-      item.positionRequest?.status === 3;   // Proceso
+      item.positionRequest?.status === 3; // Proceso
     return !isBlockingStatus;
   }
 }
-

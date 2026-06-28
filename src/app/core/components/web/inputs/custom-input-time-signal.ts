@@ -2,7 +2,7 @@ import { Component, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { FloatLabelModule } from "primeng/floatlabel";
 import { InputTextModule } from "primeng/inputtext";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
 @Component({
   selector: "custom-input-time-signal",
@@ -44,3 +44,4 @@ import { BaseInputSignal } from "../base/base-input-signal";
 export class CustomInputTime extends BaseInputSignal {
   customClass = input<string>("");
 }
+

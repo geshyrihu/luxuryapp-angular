@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -6,11 +6,11 @@ import { storefrontOutline } from "ionicons/icons";
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -49,7 +49,7 @@ export class MisProveedores {
   loading = signal(true);
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diÃ¡logo modal
 
   // logica para el cambio de cliente
   customerId: string;
@@ -62,7 +62,7 @@ export class MisProveedores {
     });
   }
 
-  // Función para cargar los datos de los CustomerProviders
+  // FunciÃ³n para cargar los datos de los CustomerProviders
   onLoadData() {
     const urlApi = `CustomerProvider/${this.customerIdS.customerId()}`;
     this.apiResponseS
@@ -70,7 +70,7 @@ export class MisProveedores {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  // Función para abrir un cuadro de diálogo modal para agregar o editar información sobre un CustomerProvider
+  // FunciÃ³n para abrir un cuadro de diÃ¡logo modal para agregar o editar informaciÃ³n sobre un CustomerProvider
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(

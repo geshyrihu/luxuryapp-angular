@@ -3,7 +3,7 @@ import { Component, inject, OnInit, signal } from "@angular/core";
 import { TooltipModule } from "primeng/tooltip";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import type { TareasLegalResumenDTO } from "./tareas-legal-card.model";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-tareas-legal-card",

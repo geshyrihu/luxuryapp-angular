@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, computed, effect, inject, signal } from "@angular/core";
@@ -7,14 +7,14 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { ETipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 import {
   globalFilterFields,
@@ -37,9 +37,9 @@ const tipoGastoTitles: { [key: number]: string } = {
   [ETipoGasto.CajaChica]: "CAJA CHICA",
   [ETipoGasto.Extraordinario]: "GASTOS EXTRAORDINARIOS",
   [ETipoGasto.Devoluciones]: "DEVOLUCIONES",
-  [ETipoGasto.TarjetaDebito]: "TARJETA DE DÉBITO",
+  [ETipoGasto.TarjetaDebito]: "TARJETA DE DÃ‰BITO",
   [ETipoGasto.Proyectos]: "GASTOS DE PROYECTOS",
-  [ETipoGasto.Nomina]: "NÓMINA",
+  [ETipoGasto.Nomina]: "NÃ“MINA",
   [ETipoGasto.Impuestos]: "IMPUESTOS Y CONTRIBUCIONES",
 };
 
@@ -158,7 +158,7 @@ export class OrdenCompraList {
   tipoGasto = signal<number>(ETipoGasto.Fijo);
 
   customTitle = computed(() => {
-    return tipoGastoTitles[this.tipoGasto()] ?? "ÓRDENES DE COMPRA";
+    return tipoGastoTitles[this.tipoGasto()] ?? "Ã“RDENES DE COMPRA";
   });
 
   tiposDeGasto = Object.keys(ETipoGasto)
@@ -251,7 +251,7 @@ export class OrdenCompraList {
       .openDialog(
         PurchaseLinkManager,
         {},
-        "Gestión de Vínculos",
+        "GestiÃ³n de VÃ­nculos",
         this.dialogHandlerS.sizeLg,
       )
       .then((result) => {

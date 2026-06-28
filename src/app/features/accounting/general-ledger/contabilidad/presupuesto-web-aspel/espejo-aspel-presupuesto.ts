@@ -13,7 +13,7 @@ import { MessageModule } from "primeng/message";
 import { Table, TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -24,6 +24,7 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SwalService } from "src/app/core/services/swal.service";
+import { PresupuestoAspelExcelService } from "./presupuesto-aspel-excel.service";
 import Swal from "sweetalert2";
 import {
   AspelBudgetDTO,
@@ -61,6 +62,7 @@ export class PresupuestoAspelEjercicioFiscal {
   private dialogHandlerS = inject(DialogHandlerService);
   private aiService = inject(AiService);
   private swalService = inject(SwalService);
+  private excelService = inject(PresupuestoAspelExcelService);
   sharedS = inject(PresupuestoWebAspelService);
 
   onManageRules() {
@@ -465,6 +467,15 @@ export class PresupuestoAspelEjercicioFiscal {
     }
 
     return context;
+  }
+
+  exportExcel(): void {
+    const grouped = splitAspelAccounts(this.allCuentas(), this.customerIdS.customerId());
+    this.excelService.exportPresupuesto(
+      grouped.mantenimiento,
+      this.sharedS.budgetData(),
+      this.sharedS.intYear(),
+    );
   }
 
   isParentAccount(cuenta: CuentaAspelTercerNivelDTO): boolean {

@@ -13,7 +13,9 @@
   styleClass="custom-table custom-table-fixed card hidden md:block"
 >
   <ng-template #caption>
-    <div class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round">
+    <div
+      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round"
+    >
       <div class="flex-grow-1">
         <primeng-custom-caption
           (add)="onSolicitudCompra(0)"
@@ -174,13 +176,17 @@
       </td>
     </tr>
   </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="9">
-          <app-empty-state icon="mdi:clipboard-list-outline" title="Sin solicitudes" message="No hay solicitudes de compra registradas." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="9">
+        <app-empty-state
+          icon="mdi:clipboard-list-outline"
+          title="Sin solicitudes"
+          message="No hay solicitudes de compra registradas."
+        />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #paginatorleft>
     <primeng-custom-table-footer [data]="data()" />
   </ng-template>
@@ -220,7 +226,10 @@
           margin-left: 16px;
         "
       >
-        <app-icon icon="mdi:cart-outline" style="font-size: 20px; color:var(--ds-warning)"></app-icon>
+        <app-icon
+          icon="mdi:cart-outline"
+          style="font-size: 20px; color: var(--ds-warning)"
+        ></app-icon>
       </div>
       <ion-label>
         <h3>{{ item.equipoOInstalacion }}</h3>
@@ -229,9 +238,17 @@
       </ion-label>
       <app-action-menu slot="end">
         <ng-container actions>
-        <custom-button-edit (clicked)="onSolicitudCompra(item.id)"  label="Editar" [showLabelOnDesktop]="true"/>
-        <custom-button-delete (confirmed)="onDelete(item.id)"  label="Eliminar" [showLabelOnDesktop]="true"/>
-              </ng-container>
+          <custom-button-edit
+            (clicked)="onSolicitudCompra(item.id)"
+            label="Editar"
+            [showLabelOnDesktop]="true"
+          />
+          <custom-button-delete
+            (confirmed)="onDelete(item.id)"
+            label="Eliminar"
+            [showLabelOnDesktop]="true"
+          />
+        </ng-container>
       </app-action-menu>
     </ion-item>
   </ng-template>

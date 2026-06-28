@@ -12,8 +12,8 @@ import {
 import { AvatarModule } from "primeng/avatar";
 import { TableModule } from "primeng/table";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { CalendarRange } from "src/app/core/components/rango-calendario-mes-anio/calendar-range";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { CalendarRange } from "src/app/core/components/web/rango-calendario-mes-anio/calendar-range";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ButtonType } from "src/app/core/enums/button-type";
 import {

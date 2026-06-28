@@ -258,6 +258,13 @@ export const settingMenu = (aspRoleS: AspRoleService): ISettingsMenuItem[] => [
   {
     group: "Analisis y Registros",
     visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
+    label: "Auditoría de cambios",
+    routerLink: "/settings/audit-entries",
+    icon: "mdi:file-document-edit",
+  },
+  {
+    group: "Analisis y Registros",
+    visible: aspRoleS.hasRole(EApplicationRole.SuperUsuario),
     label: "Actividad",
     routerLink: "/settings/user-activity-history",
     icon: "mdi:chart-line",

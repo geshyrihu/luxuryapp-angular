@@ -5,8 +5,8 @@ import { FormsModule } from "@angular/forms";
 import { DatePickerModule } from "primeng/datepicker";
 import { TableModule } from "primeng/table";
 import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
   globalFilterFields,
   rowsPerPageOptions,

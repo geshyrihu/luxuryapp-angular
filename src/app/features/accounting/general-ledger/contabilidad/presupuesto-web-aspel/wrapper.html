@@ -172,6 +172,17 @@
             (clicked)="analyzeFinancialData()"
           />
           }
+
+          @if (sharedS.budgetData()) {
+          <custom-button
+            iconClass="mdi:microsoft-excel"
+            label="Excel"
+            ngbTooltip="Descargar reporte Excel con indicadores"
+            variant="outlined"
+            severity="success"
+            (clicked)="exportExcel()"
+          />
+          }
         </div>
       </div>
       }

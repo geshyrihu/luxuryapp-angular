@@ -1,12 +1,12 @@
-﻿import { Component, computed, forwardRef, input } from "@angular/core";
+import { Component, computed, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { SelectModule } from "primeng/select";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
 /**
- * ✨ CUSTOM INPUT NG SELECT (WRAPPER)
+ * ? CUSTOM INPUT NG SELECT (WRAPPER)
  * -------------------------------------------------------------------------
- * Un adaptador para aquellos que extrañan la API de ng-select.
+ * Un adaptador para aquellos que extra�an la API de ng-select.
  * Mapea 'items', 'bindLabel' y 'bindValue' a las propiedades de PrimeNG p-select.
  */
 @Component({
@@ -64,3 +64,4 @@ export class CustomInputNgSelect extends BaseInputSignal {
     return classes.trim();
   });
 }
+

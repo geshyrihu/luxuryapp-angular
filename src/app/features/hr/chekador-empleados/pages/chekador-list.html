@@ -15,8 +15,9 @@
 >
   <!-- ── Caption con filtros alineados (Patrón Compacto Flex) ─────────── -->
   <ng-template #caption>
-    <div class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round">
-
+    <div
+      class="flex flex-column md:flex-row md:align-items-center justify-content-between p-2 gap-2 surface-ground border-round"
+    >
       <!-- Izquierda: buscador global -->
       <div class="flex-grow-1">
         <primeng-custom-caption
@@ -28,10 +29,14 @@
       </div>
 
       <!-- Derecha: filtros de fecha, anomalía y acciones -->
-      <div class="flex flex-column sm:flex-row align-items-center gap-2 flex-wrap">
-
+      <div
+        class="flex flex-column sm:flex-row align-items-center gap-2 flex-wrap"
+      >
         <div class="flex align-items-center gap-2">
-          <label class="text-xs font-semibold text-color-secondary white-space-nowrap">DESDE</label>
+          <label
+            class="text-xs font-semibold text-color-secondary white-space-nowrap"
+            >DESDE</label
+          >
           <input
             pInputText
             type="date"
@@ -43,7 +48,10 @@
         </div>
 
         <div class="flex align-items-center gap-2">
-          <label class="text-xs font-semibold text-color-secondary white-space-nowrap">HASTA</label>
+          <label
+            class="text-xs font-semibold text-color-secondary white-space-nowrap"
+            >HASTA</label
+          >
           <input
             pInputText
             type="date"
@@ -61,7 +69,10 @@
             [binary]="true"
             inputId="soloAnomalias"
           />
-          <label for="soloAnomalias" class="text-sm cursor-pointer white-space-nowrap">
+          <label
+            for="soloAnomalias"
+            class="text-sm cursor-pointer white-space-nowrap"
+          >
             Solo anomalías
           </label>
         </div>
@@ -83,7 +94,6 @@
             (onClick)="onLimpiarFiltros()"
           />
         </div>
-
       </div>
     </div>
   </ng-template>
@@ -123,29 +133,29 @@
       <!-- Foto / Selfie -->
       <td class="text-center">
         @if (item.fotoUrl) {
-          <p-image
-            [src]="item.fotoUrl"
-            alt="Selfie"
-            width="48"
-            [preview]="true"
-            imageClass="border-round"
-          />
+        <p-image
+          [src]="item.fotoUrl"
+          alt="Selfie"
+          width="48"
+          [preview]="true"
+          imageClass="border-round"
+        />
         } @else {
-          <span class="text-color-secondary text-xs">Sin foto</span>
+        <span class="text-color-secondary text-xs">Sin foto</span>
         }
       </td>
 
       <!-- Distancia geofence -->
       <td class="text-center">
         @if (item.distanciaMetros !== null) {
-          <span
-            [class.text-red-500]="item.tipoAnomalia === 'GPS fuera de rango'"
-            [class.font-bold]="item.tipoAnomalia === 'GPS fuera de rango'"
-          >
-            {{ item.distanciaMetros | number: "1.0-0" }} m
-          </span>
+        <span
+          [class.text-red-500]="item.tipoAnomalia === 'GPS fuera de rango'"
+          [class.font-bold]="item.tipoAnomalia === 'GPS fuera de rango'"
+        >
+          {{ item.distanciaMetros | number: "1.0-0" }} m
+        </span>
         } @else {
-          <span class="text-color-secondary text-xs">—</span>
+        <span class="text-color-secondary text-xs">—</span>
         }
       </td>
 
@@ -157,57 +167,69 @@
       <!-- Badge anomalía -->
       <td class="text-center">
         @if (item.esAnomalia) {
-          <p-tag
-            [value]="item.tipoAnomalia ?? 'Anomalía'"
-            severity="danger"
-            [pTooltip]="item.notaAnomalia ?? ''"
-            tooltipPosition="top"
-          />
+        <p-tag
+          [value]="item.tipoAnomalia ?? 'Anomalía'"
+          severity="danger"
+          [pTooltip]="item.notaAnomalia ?? ''"
+          tooltipPosition="top"
+        />
         } @else {
-          <p-tag value="OK" severity="success" />
+        <p-tag value="OK" severity="success" />
         }
       </td>
 
       <!-- Estado revisión -->
       <td class="text-center">
         @if (item.estadoAnomalia) {
-          <p-tag
-            [value]="item.estadoAnomalia"
-            [severity]="getBadgeSeverity(item.estadoAnomalia)"
-          />
+        <p-tag
+          [value]="item.estadoAnomalia"
+          [severity]="getBadgeSeverity(item.estadoAnomalia)"
+        />
         } @else {
-          <span class="text-color-secondary text-xs">—</span>
+        <span class="text-color-secondary text-xs">—</span>
         }
       </td>
 
       <!-- Acciones RRHH -->
       <td class="text-center">
-        @if (item.esAnomalia && item.estadoAnomalia === 'Pendiente de revisión') {
-          <div class="flex gap-1 justify-content-center">
-            <p-button
-              icon="pi pi-check"
-              severity="success"
-              size="small"
-              [text]="true"
-              pTooltip="Aprobar"
-              tooltipPosition="top"
-              (onClick)="onAprobar(item)"
-            />
-            <p-button
-              icon="pi pi-times"
-              severity="danger"
-              size="small"
-              [text]="true"
-              pTooltip="Rechazar"
-              tooltipPosition="top"
-              (onClick)="onRechazar(item)"
-            />
-          </div>
+        @if (item.esAnomalia && item.estadoAnomalia === 'Pendiente de revisión')
+        {
+        <div class="flex gap-1 justify-content-center">
+          <p-button
+            icon="pi pi-check"
+            severity="success"
+            size="small"
+            [text]="true"
+            pTooltip="Aprobar"
+            tooltipPosition="top"
+            (onClick)="onAprobar(item)"
+          />
+          <p-button
+            icon="pi pi-times"
+            severity="danger"
+            size="small"
+            [text]="true"
+            pTooltip="Rechazar"
+            tooltipPosition="top"
+            (onClick)="onRechazar(item)"
+          />
+        </div>
         }
       </td>
     </tr>
   </ng-template>
 
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="10">
+        <app-empty-state
+          icon="mdi:clock-outline"
+          title="Sin registros"
+          message="No hay registros de checador para los filtros seleccionados."
+        />
+      </td>
+    </tr>
+  </ng-template>
   <ng-template #footer>
     <primeng-custom-table-footer [dt]="dt" />
   </ng-template>
@@ -226,42 +248,84 @@
   <div customFilters>
     <div class="px-4 py-2 flex flex-column gap-3">
       <div class="flex align-items-center gap-2">
-        <label class="text-xs font-semibold text-color-secondary" style="width:50px">DESDE</label>
-        <input pInputText type="date"
-          [ngModel]="filtroDesde()" (ngModelChange)="filtroDesde.set($event)"
-          class="p-inputtext-sm flex-1" />
+        <label
+          class="text-xs font-semibold text-color-secondary"
+          style="width: 50px"
+          >DESDE</label
+        >
+        <input
+          pInputText
+          type="date"
+          [ngModel]="filtroDesde()"
+          (ngModelChange)="filtroDesde.set($event)"
+          class="p-inputtext-sm flex-1"
+        />
       </div>
       <div class="flex align-items-center gap-2">
-        <label class="text-xs font-semibold text-color-secondary" style="width:50px">HASTA</label>
-        <input pInputText type="date"
-          [ngModel]="filtroHasta()" (ngModelChange)="filtroHasta.set($event)"
-          class="p-inputtext-sm flex-1" />
+        <label
+          class="text-xs font-semibold text-color-secondary"
+          style="width: 50px"
+          >HASTA</label
+        >
+        <input
+          pInputText
+          type="date"
+          [ngModel]="filtroHasta()"
+          (ngModelChange)="filtroHasta.set($event)"
+          class="p-inputtext-sm flex-1"
+        />
       </div>
       <div class="flex align-items-center gap-2">
-        <p-checkbox [ngModel]="filtroSoloAnomalias()"
+        <p-checkbox
+          [ngModel]="filtroSoloAnomalias()"
           (ngModelChange)="filtroSoloAnomalias.set($event)"
-          [binary]="true" inputId="soloAnomaliasMobile" />
-        <label for="soloAnomaliasMobile" class="text-sm cursor-pointer">Solo anomalías</label>
+          [binary]="true"
+          inputId="soloAnomaliasMobile"
+        />
+        <label for="soloAnomaliasMobile" class="text-sm cursor-pointer"
+          >Solo anomalías</label
+        >
       </div>
       <div class="flex gap-2">
-        <p-button label="Filtrar" icon="pi pi-filter" severity="primary" size="small"
-          [fluid]="true" (onClick)="onAplicarFiltros()" />
-        <p-button label="Limpiar" icon="pi pi-times" severity="secondary" [outlined]="true"
-          size="small" [fluid]="true" (onClick)="onLimpiarFiltros()" />
+        <p-button
+          label="Filtrar"
+          icon="pi pi-filter"
+          severity="primary"
+          size="small"
+          [fluid]="true"
+          (onClick)="onAplicarFiltros()"
+        />
+        <p-button
+          label="Limpiar"
+          icon="pi pi-times"
+          severity="secondary"
+          [outlined]="true"
+          size="small"
+          [fluid]="true"
+          (onClick)="onLimpiarFiltros()"
+        />
       </div>
     </div>
   </div>
 
   <ng-template #itemTemplate let-item>
-    <div class="p-3 border-bottom-1 border-200" [class.bg-red-50]="item.esAnomalia">
+    <div
+      class="p-3 border-bottom-1 border-200"
+      [class.bg-red-50]="item.esAnomalia"
+    >
       <div class="flex justify-content-between align-items-start mb-2">
         <div>
           <div class="font-bold text-sm">{{ item.nombreEmpleado }}</div>
           <div class="text-xs text-color-secondary">{{ item.tipo }}</div>
         </div>
         @if (item.fotoUrl) {
-          <p-image [src]="item.fotoUrl" alt="Selfie" width="40"
-            [preview]="true" imageClass="border-round" />
+        <p-image
+          [src]="item.fotoUrl"
+          alt="Selfie"
+          width="40"
+          [preview]="true"
+          imageClass="border-round"
+        />
         }
       </div>
       <div class="text-xs mb-1">
@@ -271,26 +335,42 @@
         <span class="font-semibold">IP: </span>{{ item.ipAddress ?? "—" }}
       </div>
       @if (item.distanciaMetros !== null) {
-        <div class="text-xs mb-1">
-          <span class="font-semibold">Distancia: </span>{{ item.distanciaMetros | number: "1.0-0" }} m
+      <div class="text-xs mb-1">
+        <span class="font-semibold">Distancia: </span>{{ item.distanciaMetros |
+        number: "1.0-0" }} m
+      </div>
+      } @if (item.esAnomalia) {
+      <div class="flex justify-content-between align-items-center mt-2">
+        <p-tag [value]="item.tipoAnomalia ?? 'Anomalía'" severity="danger" />
+        @if (item.estadoAnomalia === 'Pendiente de revisión') {
+        <div class="flex gap-1">
+          <p-button
+            icon="pi pi-check"
+            severity="success"
+            size="small"
+            [text]="true"
+            (onClick)="onAprobar(item)"
+          />
+          <p-button
+            icon="pi pi-times"
+            severity="danger"
+            size="small"
+            [text]="true"
+            (onClick)="onRechazar(item)"
+          />
         </div>
-      }
-      @if (item.esAnomalia) {
-        <div class="flex justify-content-between align-items-center mt-2">
-          <p-tag [value]="item.tipoAnomalia ?? 'Anomalía'" severity="danger" />
-          @if (item.estadoAnomalia === 'Pendiente de revisión') {
-            <div class="flex gap-1">
-              <p-button icon="pi pi-check" severity="success" size="small" [text]="true" (onClick)="onAprobar(item)" />
-              <p-button icon="pi pi-times" severity="danger" size="small" [text]="true" (onClick)="onRechazar(item)" />
-            </div>
-          } @else {
-            <p-tag [value]="item.estadoAnomalia ?? ''" [severity]="getBadgeSeverity(item.estadoAnomalia)" />
-          }
-        </div>
-        @if (item.notaAnomalia) {
-          <div class="text-xs mt-1 text-color-secondary italic">"{{ item.notaAnomalia }}"</div>
+        } @else {
+        <p-tag
+          [value]="item.estadoAnomalia ?? ''"
+          [severity]="getBadgeSeverity(item.estadoAnomalia)"
+        />
         }
-      }
+      </div>
+      @if (item.notaAnomalia) {
+      <div class="text-xs mt-1 text-color-secondary italic">
+        "{{ item.notaAnomalia }}"
+      </div>
+      } }
     </div>
   </ng-template>
 </app-data-view-mobile>

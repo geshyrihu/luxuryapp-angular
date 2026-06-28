@@ -3,7 +3,7 @@ import { IonicMocks } from 'src/app/core/testing/ionic-mocks';
 vi.mock('@ionic/angular/standalone', () => ({ ...IonicMocks }));
 vi.mock('@ionic/core', () => ({}));
 vi.mock('@ionic/core/components', () => ({}));
-vi.mock("src/app/core/components/pdf-viewer-modal/pdf-viewer-modal", () => ({
+vi.mock("src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal", () => ({
   PdfViewerModal: class {},
 }));
 vi.mock("heic2any", () => ({ default: vi.fn() }));
@@ -90,3 +90,4 @@ describe('DashboardPendingItems', () => {
     expect(component.visibleModules()).toContain('Polizas');
   });
 });
+

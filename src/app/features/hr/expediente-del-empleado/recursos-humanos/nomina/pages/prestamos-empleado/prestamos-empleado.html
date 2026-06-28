@@ -13,14 +13,13 @@
   styleClass="card hidden md:block custom-table"
 >
   <ng-template #caption>
-    <primeng-custom-caption
-      [dt]="dt"
-      (add)="openAdd()"
-    />
+    <primeng-custom-caption [dt]="dt" (add)="openAdd()" />
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="nombreEmpleado">Empleado <p-sortIcon field="nombreEmpleado" /></th>
+      <th pSortableColumn="nombreEmpleado">
+        Empleado <p-sortIcon field="nombreEmpleado" />
+      </th>
       <th class="text-right">Monto Total</th>
       <th class="text-right">Amortizacion</th>
       <th class="text-right">Saldo Pendiente</th>
@@ -36,23 +35,37 @@
           {{ item.nombreEmpleado }}
         </a>
       </td>
-      <td class="text-right">{{ item.montoTotal | currency: "MXN" : "symbol" : "1.2-2" }}</td>
-      <td class="text-right">{{ item.montoAmortizacion | currency: "MXN" : "symbol" : "1.2-2" }}</td>
-      <td class="text-right font-bold">{{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.2-2" }}</td>
+      <td class="text-right">
+        {{ item.montoTotal | currency: "MXN" : "symbol" : "1.2-2" }}
+      </td>
+      <td class="text-right">
+        {{ item.montoAmortizacion | currency: "MXN" : "symbol" : "1.2-2" }}
+      </td>
+      <td class="text-right font-bold">
+        {{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.2-2" }}
+      </td>
       <td style="min-width: 120px">
         <div class="flex align-items-center gap-2">
-          <div class="border-round overflow-hidden flex-1" style="height: 6px; background: var(--surface-200)">
+          <div
+            class="border-round overflow-hidden flex-1"
+            style="height: 6px; background: var(--surface-200)"
+          >
             <div
               class="border-round bg-primary"
               [style.width.%]="getProgreso(item)"
               style="height: 100%"
             ></div>
           </div>
-          <span class="text-xs">{{ item.pagosRealizados }}/{{ item.numeroPagos }}</span>
+          <span class="text-xs"
+            >{{ item.pagosRealizados }}/{{ item.numeroPagos }}</span
+          >
         </div>
       </td>
       <td>
-        <p-tag [severity]="getEstadoSeverity(item.estado)" [value]="item.estado" />
+        <p-tag
+          [severity]="getEstadoSeverity(item.estado)"
+          [value]="item.estado"
+        />
       </td>
       <td>
         <div class="flex gap-1">
@@ -70,13 +83,17 @@
       </td>
     </tr>
   </ng-template>
-  <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="7">
-          <app-empty-state icon="mdi:account-group-outline" title="Sin empleados" message="No hay empleados registrados." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="7">
+        <app-empty-state
+          icon="mdi:account-group-outline"
+          title="Sin empleados"
+          message="No hay empleados registrados."
+        />
+      </td>
+    </tr>
+  </ng-template>
 </p-table>
 
 <!-- Vista movil -->
@@ -91,25 +108,50 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-success-light,#d1fae5);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-success-light, #d1fae5);
+        "
       >
-        <app-icon icon="mdi:currency-usd" style="font-size:1.1rem;color:var(--ds-success);"></app-icon>
+        <app-icon
+          icon="mdi:currency-usd"
+          style="font-size: 1.1rem; color: var(--ds-success)"
+        ></app-icon>
       </div>
       <ion-label>
         <h2 class="font-normal m-0">{{ item.nombreEmpleado }}</h2>
         <p class="text-xs m-0">{{ item.motivo }}</p>
         <div class="flex align-items-center gap-2 mt-1">
-          <span class="font-bold">{{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.0-0" }}</span>
-          <p-tag [severity]="getEstadoSeverity(item.estado)" [value]="item.estado" />
+          <span class="font-bold"
+            >{{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.0-0"
+            }}</span
+          >
+          <p-tag
+            [severity]="getEstadoSeverity(item.estado)"
+            [value]="item.estado"
+          />
         </div>
         <div class="mt-1">
-          <div class="border-round overflow-hidden" style="height: 4px; background: var(--surface-200)">
-            <div class="border-round bg-primary" [style.width.%]="getProgreso(item)" style="height: 100%"></div>
+          <div
+            class="border-round overflow-hidden"
+            style="height: 4px; background: var(--surface-200)"
+          >
+            <div
+              class="border-round bg-primary"
+              [style.width.%]="getProgreso(item)"
+              style="height: 100%"
+            ></div>
           </div>
         </div>
       </ion-label>
       <div slot="end">
-        <custom-button iconClass="mdi:eye-outline" severity="info" variant="ghost-text" (clicked)="openDetalle(item)" />
+        <custom-button
+          iconClass="mdi:eye-outline"
+          severity="info"
+          variant="ghost-text"
+          (clicked)="openDetalle(item)"
+        />
       </div>
     </ion-item>
   </ng-template>

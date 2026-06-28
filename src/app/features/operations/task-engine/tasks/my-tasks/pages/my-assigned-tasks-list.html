@@ -151,7 +151,10 @@
                 pTooltip="Seguimientos"
                 tooltipPosition="top"
               >
-                <app-icon [icon]="'mdi:comment-multiple'" class="text-blue-500"></app-icon>
+                <app-icon
+                  [icon]="'mdi:comment-multiple'"
+                  class="text-blue-500"
+                ></app-icon>
                 <span class="badge bg-info px-2 py-1 text-xs font-semibold"
                   >{{ item.ticketMessageFollowUp }}</span
                 >
@@ -163,20 +166,23 @@
                     iconClass="mdi:calendar"
                     label="Programar"
                     (clicked)="onProgram(item.id)"
-                   [showLabelOnDesktop]="true"/>
+                    [showLabelOnDesktop]="true"
+                  />
 
                   } @if (item.status !== "Completed") {
                   <custom-button-item
                     iconClass="mdi:lock"
                     label="Cerrar"
                     (clicked)="onClosed(item.id)"
-                   [showLabelOnDesktop]="true"/>
+                    [showLabelOnDesktop]="true"
+                  />
                   } @if (item.status === "Completed") {
                   <custom-button-item
                     iconClass="mdi:lock-open"
                     label="Re abrir"
                     (clicked)="onReopen(item.id)"
-                   [showLabelOnDesktop]="true"/>
+                    [showLabelOnDesktop]="true"
+                  />
                   } @if (item.status !== "Completed") {
                   <custom-button-edit
                     (clicked)="
@@ -186,7 +192,9 @@
                             ticketGroupId: item.ticketGroupId,
                           })
                         "
-                   label="Editar" [showLabelOnDesktop]="true"/>
+                    label="Editar"
+                    [showLabelOnDesktop]="true"
+                  />
                   }
                 </ng-container>
               </app-action-menu>
@@ -194,14 +202,18 @@
           </td>
         </tr>
       </ng-template>
-      <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="19">
-          <app-empty-state icon="mdi:checkbox-multiple-outline" title="Sin tareas" message="No hay tareas registradas." />
-        </td>
-      </tr>
-    </ng-template>
-</p-table>
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="19">
+            <app-empty-state
+              icon="mdi:checkbox-multiple-outline"
+              title="Sin tareas"
+              message="No hay tareas registradas."
+            />
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
     }
   </div>
 
@@ -321,33 +333,40 @@
                     iconClass="mdi:clipboard-text"
                     label="Seguimiento"
                     (clicked)="onFollowUp(item.id)"
-                   [showLabelOnDesktop]="true"/>
+                    [showLabelOnDesktop]="true"
+                  />
                   @if (item.status !== "Completed") {
                   <custom-button-edit
                     (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-                   label="Editar" [showLabelOnDesktop]="true"/>
+                    label="Editar"
+                    [showLabelOnDesktop]="true"
+                  />
                   <custom-button-item
                     iconClass="mdi:calendar"
                     label="Programar"
                     (clicked)="onProgram(item.id)"
-                   [showLabelOnDesktop]="true"/>
+                    [showLabelOnDesktop]="true"
+                  />
                   <custom-button-item
                     iconClass="mdi:sync"
                     label="En proceso"
                     (clicked)="onProgress(item.id)"
-                   [showLabelOnDesktop]="true"/>
+                    [showLabelOnDesktop]="true"
+                  />
                   } @if (item.status !== "Completed") {
                   <custom-button-item
                     iconClass="mdi:lock"
                     label="Cerrar"
                     (clicked)="onClosed(item.id)"
-                   [showLabelOnDesktop]="true"/>
+                    [showLabelOnDesktop]="true"
+                  />
                   } @if (item.status === "Completed") {
                   <custom-button-item
                     iconClass="mdi:lock-open"
                     label="Re abrir"
                     (clicked)="onReopen(item.id)"
-                   [showLabelOnDesktop]="true"/>
+                    [showLabelOnDesktop]="true"
+                  />
                   }
                 </ng-container>
               </app-action-menu>
@@ -377,15 +396,24 @@
 
     <div class="print-legend">
       <span
-        ><span class="print-legend-dot" style="background:var(--ds-danger)"></span> No
-        iniciado</span
+        ><span
+          class="print-legend-dot"
+          style="background: var(--ds-danger)"
+        ></span>
+        No iniciado</span
       >
       <span
-        ><span class="print-legend-dot" style="background:var(--ds-warning)"></span> En
-        proceso</span
+        ><span
+          class="print-legend-dot"
+          style="background: var(--ds-warning)"
+        ></span>
+        En proceso</span
       >
       <span
-        ><span class="print-legend-dot" style="background:var(--ds-danger)"></span>
+        ><span
+          class="print-legend-dot"
+          style="background: var(--ds-danger)"
+        ></span>
         Reabierto</span
       >
     </div>
@@ -462,7 +490,7 @@
             >
             <p class="print-followup">{{ item.lastFollowUp }}</p>
             } @else {
-            <span style="font-size: 7.5pt; color:var(--ds-text-muted)">—</span>
+            <span style="font-size: 7.5pt; color: var(--ds-text-muted)">—</span>
             }
           </td>
         </tr>

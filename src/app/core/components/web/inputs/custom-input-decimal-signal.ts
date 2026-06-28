@@ -1,13 +1,13 @@
-ï»¿import { Component, computed, forwardRef, input } from "@angular/core";
+import { Component, computed, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { InputNumberModule } from "primeng/inputnumber";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
 /**
- * ðŸ”¢ CUSTOM INPUT DECIMAL
+ * ?? CUSTOM INPUT DECIMAL
  * -------------------------------------------------------------------------
- * Input numÃ©rico general con soporte para decimales.
- * Configurable para manejar prefijos, sufijos y agrupaciÃ³n.
+ * Input numérico general con soporte para decimales.
+ * Configurable para manejar prefijos, sufijos y agrupación.
  */
 @Component({
   selector: "custom-input-decimal-signal",
@@ -51,7 +51,7 @@ import { BaseInputSignal } from "../base/base-input-signal";
   ],
 })
 export class CustomInputDecimal extends BaseInputSignal {
-  // <--- Inputs EspecÃ­ficos --->
+  // <--- Inputs Específicos --->
   showButtons = input<boolean>(false);
   minFractionDigits = input<number>(0);
   maxFractionDigits = input<number>(4);
@@ -70,3 +70,4 @@ export class CustomInputDecimal extends BaseInputSignal {
     return classes.trim();
   });
 }
+

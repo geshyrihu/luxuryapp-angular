@@ -35,6 +35,7 @@ import {
   shareOutline,
   trashOutline,
 } from "ionicons/icons";
+import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-styles";
 
 @Component({
   selector: "app-mobile-navigation",
@@ -77,6 +78,48 @@ import {
     <div id="cat-nav-content" class="mobile-card">
       <div class="mobile-card-header">Navigation Patterns</div>
       <div class="mobile-card-body flex flex-column gap-5">
+
+        <!-- ─── HEADER VARIANTS (DS) ─── -->
+        <div>
+          <div class="section-label">Header Variants (DS)</div>
+          <p class="section-desc">Header small (close + title + more) y header medium (search + title).</p>
+          <div class="flex flex-column gap-2">
+            <div class="ds-header ds-header--small">
+              <span class="material-symbols-outlined ds-header__icon">arrow_back</span>
+              <span class="ds-header__title">Page Title</span>
+              <span class="material-symbols-outlined ds-header__icon">more_vert</span>
+            </div>
+            <div class="ds-header ds-header--medium">
+              <div class="ds-header__top-row">
+                <span class="material-symbols-outlined ds-header__icon">close</span>
+                <span class="material-symbols-outlined ds-header__icon">search</span>
+              </div>
+              <span class="ds-header__title ds-header__title--lg">Catalog Library</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── TAB BAR ─── -->
+        <div>
+          <div class="section-label">Tab Bar (DS)</div>
+          <p class="section-desc">Pestañas simples con línea de acento en la activa.</p>
+          <div class="ds-tab-bar">
+            <button class="ds-tab ds-tab--active">Overview</button>
+            <button class="ds-tab">Properties</button>
+            <button class="ds-tab">Usage</button>
+          </div>
+        </div>
+
+        <!-- ─── SEGMENTED CONTROL ─── -->
+        <div>
+          <div class="section-label">Segmented Control (DS)</div>
+          <p class="section-desc">Control segmentado tipo iOS.</p>
+          <div class="ds-segmented">
+            <button class="ds-segmented__btn ds-segmented__btn--active">Day</button>
+            <button class="ds-segmented__btn">Week</button>
+            <button class="ds-segmented__btn">Month</button>
+          </div>
+        </div>
 
         <!-- Segment -->
         <div>
@@ -203,17 +246,27 @@ import {
       </div>
     </div>
   `,
-  styles: [`
-    .mobile-card { background: var(--ds-bg-surface,#fff); border: 1px solid var(--ds-border,#e2e8f0); border-radius: var(--ds-radius-lg,8px); overflow: hidden; }
-    .mobile-card-header { padding: 0.75rem 1rem; background: var(--ds-bg-elevated,#f4f5f8); font-weight: 600; font-size: var(--ds-font-size-body,0.9375rem); color: var(--ds-text-primary); border-bottom: 1px solid var(--ds-border,#e2e8f0); }
-    .mobile-card-body { padding: 1rem; }
-    .section-label { font-weight: 700; font-size: 0.8125rem; color: var(--ds-text-secondary,#64748b); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.25rem; }
-    .section-desc { font-size: 0.75rem; color: var(--ds-text-muted,#94a3b8); margin: 0 0 0.75rem 0; line-height: 1.4; }
+  styles: [MOBILE_SHOWCASE_STYLES, `
+    .ds-header { border:1px solid var(--ds-border); border-radius:10px; overflow:hidden; }
+    .ds-header--small { display:flex; align-items:center; padding:0.65rem 0.85rem; background:var(--ds-bg-surface); gap:0.5rem; }
+    .ds-header--medium { display:flex; flex-direction:column; gap:0.25rem; padding:0.65rem 0.85rem; background:var(--ds-bg-surface); }
+    .ds-header__top-row { display:flex; justify-content:space-between; }
+    .ds-header__icon { font-size:1.35rem; color:var(--ds-text-secondary); cursor:pointer; }
+    .ds-header__title { font-size:1rem; font-weight:600; color:var(--ds-text-primary); flex:1; }
+    .ds-header__title--lg { font-size:1.35rem; font-weight:700; color:var(--ds-text-primary); }
+
+    .ds-tab-bar { display:flex; border:1px solid var(--ds-border); border-radius:10px; overflow:hidden; background:var(--ds-bg-surface); }
+    .ds-tab { flex:1; padding:0.65rem 0; text-align:center; border:none; background:transparent; font-size:0.82rem; font-weight:500; color:var(--ds-text-secondary); cursor:pointer; border-bottom:2px solid transparent; transition:all 150ms; font-family:inherit; }
+    .ds-tab--active { color:var(--ds-primary); border-bottom-color:var(--ds-primary); font-weight:600; }
+
+    .ds-segmented { display:flex; padding:4px; background:var(--ds-bg-elevated); border-radius:8px; max-width:320px; }
+    .ds-segmented__btn { flex:1; padding:0.4rem 0.75rem; border:none; border-radius:6px; background:transparent; font-size:0.82rem; font-weight:500; color:var(--ds-text-secondary); cursor:pointer; transition:all 150ms; font-family:inherit; }
+    .ds-segmented__btn--active { background:var(--ds-bg-surface); color:var(--ds-primary); font-weight:600; box-shadow:0 1px 3px color-mix(in srgb, var(--ds-text-primary) 10%, transparent); }
 
     .fab-demos { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .fab-demo-box { display: flex; flex-direction: column; gap: 0.25rem; }
     .fab-demo-label { font-size: 0.7rem; color: var(--ds-text-muted); }
-    .fab-demo-area { position: relative; height: 100px; background: var(--ds-bg-elevated,#f4f5f8); border-radius: 8px; border: 1px dashed var(--ds-border,#e2e8f0); }
+    .fab-demo-area { position: relative; height: 100px; background: var(--ds-bg-elevated); border-radius: 8px; border: 1px dashed var(--ds-border); }
   `],
   encapsulation: ViewEncapsulation.None,
 })

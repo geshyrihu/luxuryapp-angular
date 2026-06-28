@@ -1,16 +1,16 @@
-ï»¿import { Component, computed, forwardRef, input, output } from "@angular/core";
+import { Component, computed, forwardRef, input, output } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
 import { InputTextModule } from "primeng/inputtext";
 import { SelectModule } from "primeng/select";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
 /**
- * ðŸ”£ CUSTOM INPUT SELECT PREFIX
+ * ?? CUSTOM INPUT SELECT PREFIX
  * -------------------------------------------------------------------------
- * Input hÃ­brido: Select a la izquierda para categorÃ­a/prefijo y texto a la derecha.
- * Ideal para telÃ©fonos (+52 555-555) o documentos (DNI 12345678).
+ * Input híbrido: Select a la izquierda para categoría/prefijo y texto a la derecha.
+ * Ideal para teléfonos (+52 555-555) o documentos (DNI 12345678).
  */
 @Component({
   selector: "custom-input-select-signal-prefix",
@@ -115,3 +115,4 @@ export class CustomInputSelectPrefix extends BaseInputSignal {
     this.propagar.emit(event);
   }
 }
+

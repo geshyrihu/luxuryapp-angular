@@ -2,7 +2,7 @@ import { Component, computed, effect, inject, signal } from "@angular/core";
 import { AvatarModule } from "primeng/avatar";
 import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { TooltipModule } from "primeng/tooltip";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";

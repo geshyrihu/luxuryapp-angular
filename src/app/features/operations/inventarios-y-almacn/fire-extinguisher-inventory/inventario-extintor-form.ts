@@ -19,6 +19,7 @@ import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
+import { DateService } from "src/app/core/services/date.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 
 interface IInventarioExtintorForm {
@@ -53,6 +54,7 @@ export class InventarioExtintorForm implements OnInit {
   formB = inject(FormBuilder);
   ref = inject(DynamicDialogRef);
   enumSelectS = inject(EnumSelectService);
+  dateS = inject(DateService);
   submitting = signal(false);
 
   cb_extintor: ISelectItem[] = [];
@@ -100,7 +102,7 @@ export class InventarioExtintorForm implements OnInit {
     const urlApi = `InventarioExtintor/${this.id}`;
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.urlBaseImg = result.currentPhoto;
-      this.form.patchValue(result);
+      this.form.patchValue({ ...result, expirationDate: new Date(result.expirationDate) });
     });
   }
   onSubmit() {
@@ -127,7 +129,7 @@ export class InventarioExtintorForm implements OnInit {
     const formData = new FormData();
     formData.append("customerId", String(DTO.customerId));
     formData.append("extinguisherType", String(DTO.extinguisherType));
-    formData.append("expirationDate", String(DTO.expirationDate));
+    formData.append("expirationDate", this.dateS.getDateFormat(DTO.expirationDate));
     formData.append("location", String(DTO.location));
     formData.append("localCode", String(DTO.localCode));
     formData.append("applicationUserId", String(DTO.applicationUserId));

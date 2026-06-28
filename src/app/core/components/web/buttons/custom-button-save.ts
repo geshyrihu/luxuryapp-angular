@@ -5,9 +5,9 @@ import { addIcons } from "ionicons";
 import { saveOutline, syncOutline } from "ionicons/icons";
 import { TooltipModule } from "primeng/tooltip";
 import { PlatformService } from "src/app/core/services/platform.service";
-import { AppIcon } from "../../app-icon/app-icon.component";
+import { AppIcon } from "../../shared/app-icon/app-icon.component";
 import { ButtonType } from "../../../enums/button-type";
-import { BaseButton } from "../base/base-button";
+import { BaseButton } from "../../buttons/base/base-button";
 
 @Component({
   selector: "custom-button-save",
@@ -87,3 +87,5 @@ export class CustomButtonSave extends BaseButton {
     addIcons({ saveOutline, syncOutline });
   }
 }
+
+

@@ -27,4 +27,15 @@
       </td>
     </tr>
   </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="3">
+        <app-empty-state
+          icon="mdi:comment-off-outline"
+          title="Sin seguimientos"
+          message="No hay seguimientos registrados para esta minuta."
+        />
+      </td>
+    </tr>
+  </ng-template>
 </p-table>

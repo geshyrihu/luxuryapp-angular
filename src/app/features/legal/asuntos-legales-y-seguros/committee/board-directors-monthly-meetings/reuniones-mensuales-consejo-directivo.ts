@@ -8,8 +8,8 @@ import {
 import { addIcons } from "ionicons";
 import { folderOpenOutline, videocamOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
-import { PdfViewerModal } from "src/app/core/components/pdf-viewer-modal/pdf-viewer-modal";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { getIconForFileHelper } from "src/app/core/helpers/extension-file";
 import {
   globalFilterFields,
@@ -82,3 +82,4 @@ export class ReunionesMensualesConsejoDirectivo implements OnInit {
     );
   }
 }
+

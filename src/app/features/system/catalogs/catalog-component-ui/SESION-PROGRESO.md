@@ -1,171 +1,100 @@
 # SESIÓN DE PROGRESO — LuxuryApp DS
 
-**Última actualización:** 2026-06-25 (sesión 3)
-**Branch activo:** `fix/ds-audit-phase1`
-**Último commit:** `68c05f6` — form migration (comite-form, entrega-recepcion-check)
+**Inicia:** 2026-06-26 · Nueva etapa — Revisión manual componente por componente
+**Plan vigente:** `PLAN-DE-ACCION.md` (v2 — sin scripts batch)
+**Inventario maestro:** `features/INVENTARIO-COMPONENTES.csv`
 
 ---
 
-## ✅ COMPLETADO EN ESTA SESIÓN
+## 📊 PROGRESO GLOBAL
 
-### 1. INVENTARIO DS (INVENTARIO-DS-REVISION.md) — 100%
-- **10 fases revisadas** · 1,075 componentes auditados
-- Correcciones batch: tokens DS, empty-state, action-menu labels, iconos mobile
-- Ver: `INVENTARIO-DS-REVISION.md` para detalle completo
+| Métrica                           | Valor    |
+| --------------------------------- | -------- |
+| Total componentes con violaciones | **385**  |
+| Completados                       | **4**    |
+| Excepciones documentadas          | **8**    |
+| Hechos totales                    | **12**   |
+| Pendientes                        | **373**  |
+| **Avance**                        | **3.1%** |
 
-### 2. DS Catalog (catalog-component-ui) — 100%
-- 57 componentes nuevos registrados (Fases 6-13)
-- Catalog mobile completo: overlays, segment, accordion, grid, inputs
-- Web catalog: custom inputs section
-- Pattern nuevo: Navigation Hub Page (`/settings/ui-catalog/patterns/navhub`)
+### Por módulo
 
-### 3. Fase 14 — Mobile (app-data-view-mobile) — 100%
-- **14.A:** `[showLabelOnDesktop]="true"` + label en 123 action-menus
-- **14.B:** `div slot="start"` con ícono contextual DS en 107 listas
-- **14.C:** `ion-avatar` → `div.mobile-avatar-slot` con `@if` fallback (13 archivos)
-- **14.D:** `ng-container actions` wrapper en 70 archivos
-- CSS global: `.mobile-avatar-slot` / `.mobile-avatar-img` en `_global.scss`
-
-### 4. Fixes visuales dashboard
-- **cobranza-nativa-dashboard:** `getCardColor()` derivado de `bgColor` → borde visible
-- **master-dashboard:** separación web/mobile + `IonList/Item` imports
-- **settings-home web:** cards alineadas con master-dashboard (border-top, ícono izq, flecha)
-- **settings-home mobile:** `span` → `div slot="start"`, `[ngClass]` aditivo, márgenes ML-3
-
-### 5. Ionic Catalog — Fase I completada
-- **mobile-inputs.ts:** `[horizontal]="false"` → labels flotantes (no pegadas a la izquierda)
-- **mobile-navigation.ts:** FAB con `color="primary"` + tamaño default + docs
-- **mobile-forms.ts:** reescrito con Ionic 8 / Material 3 (`fill="outline"`, `label-placement="floating"`, controles modernos)
-
-### 6. Fixes de bugs
-- `customClass` faltante en 4 web inputs → agregado (`date`, `multiselect`, `select-bool`, `time`)
-- `cobranza-nativa-dashboard.html`: tag `</div>` huérfano eliminado
-- `cfdi-use-list.html`: `w-9 h-9` (PrimeFlex 75%) → `width:38px;height:38px` DS tokens
-- `activity-log.ts`, `tour.ts`, `order-status.ts`: `<div />` self-closing → `<div></div>`
+| Módulo      | Total | Hechos | Restan |
+| ----------- | :---: | :----: | :----: |
+| accounting  |  94   | **12** |   82   |
+| hr          |  49   | **0**  |   49   |
+| legal       |   9   | **0**  |   9    |
+| maintenance |  31   | **0**  |   31   |
+| operations  |  102  | **0**  |  102   |
+| purchasing  |  50   | **0**  |   50   |
+| recruitment |   8   | **0**  |   8    |
+| system      |  42   | **0**  |   42   |
 
 ---
 
-## ✅ IONIC CATALOG FASE II — COMPLETADA
+## ✅ COMPLETADO EN ESTA SESIÓN (2026-06-26)
 
-### mobile-overlays.ts — ✅ TERMINADO
-- ✅ `ion-modal` completo (pantalla completa + bottom sheet con breakpoints `[0, 0.4, 0.75]`)
-- ✅ Signals: `modalOpen`, `sheetOpen`
-- ✅ Imports: `IonModal`, `IonHeader`, `IonToolbar`, `IonTitle`, `IonContent`, `IonButtons`
+### Fase 0 — Inventario base
 
-### mobile-page-structure.ts — ✅ CREADO (nuevo componente)
-- ✅ Anatomía visual de página (ion-header / ion-content / ion-footer)
-- ✅ 3 demos en modal: básica, sub-toolbar, footer con acciones
-- ✅ Registrado en `catalog-mobile.ts`
+- [x] Generado `INVENTARIO-COMPONENTES.csv` — 385 componentes con violaciones
+- [x] Actualizado `PLAN-DE-ACCION.md` — nuevo enfoque manual sin scripts batch
+- [x] Archivado plan anterior → `PLAN-DE-ACCION-ARCHIVO.md`
 
-### mobile-forms.ts — ✅ AMPLIADO con controles avanzados
-- ✅ `ion-datetime-button` + `ion-datetime` en modal (`keepContentsMounted`, fecha + hora)
-- ✅ `ion-picker` inline (3 columnas: AM/PM, hora, minutos)
-- ✅ `ion-input-otp` (6 dígitos, `[(ngModel)]`)
+### Primer componente completado
+
+- [x] `ar/aspel-customer-empresa/aspel-customer-empresa-list.html`
+  - C3: agregado `#emptymessage` con `app-empty-state`
+  - A1: falso positivo — `#edf1ff` es fallback de `var(--ds-primary-50,...)`, no se tocó
+  - B1/I1/C1: 0 violaciones, sin cambios
 
 ---
 
-## 📋 PENDIENTE — IONIC CATALOG FASE II (resto)
+## 📋 PENDIENTE — PRÓXIMOS PASOS
 
-### Componentes Ionic que faltan en el catálogo
+### Por orden de ejecución
 
-| Componente | Categoría | Prioridad | Dónde agregar |
-|---|---|:---:|---|
-| `ion-modal` | Overlays | ✅ Hecho | `mobile-overlays.ts` |
-| `ion-content` + `ion-footer` | Page Structure | ✅ Hecho | `mobile-page-structure.ts` |
-| `ion-datetime-button` | Forms | ✅ Hecho | `mobile-forms.ts` |
-| `ion-picker` | Forms | ✅ Hecho | `mobile-forms.ts` |
-| `ion-input-otp` | Forms | ✅ Hecho | `mobile-forms.ts` |
-| `ion-refresher` | Feedback | ✅ Hecho | — |
-| `ion-list-header` + `ion-item-divider` | Lists | ✅ Hecho | — |
-| `ion-menu` | Navigation | 🟡 Media | `mobile-navigation.ts` — agregar sección |
-| `ion-fab-list` | Navigation | 🟢 Baja | `mobile-navigation.ts` |
-| `ion-ripple-effect` | Gestures | 🟢 Baja | `mobile-lists.ts` |
-| `ion-split-pane` | Layout | 🟢 Baja | Nuevo showcase |
-
-### Cobertura actual
-```
-Ionic coverage: ~68 / 95 componentes (~72%)
-  Fase II completa añadió: modal + page-structure + datetime-button + picker + input-otp
-  Meta: >80% cobertura — 1 sesión más alcanza el objetivo
-```
+1. Revisar y limpiar falsos positivos del CSV
+2. Empezar con accounting (más B1 + más C3)
+3. Seguir ciclo: abrir componente → corregir manualmente → build → lint → commit → marcar en CSV
 
 ---
 
-## 📋 PENDIENTE — GENERAL
+## 🔧 COMANDOS PARA RETOMAR
 
-### Accounting Fase 3 (pendientes menores)
-- **C1:** `p-tag` → `app-status-badge` para EStatus enum (76 instancias en accounting)
-- **B1:** 43 `p-button` en toolbars de accounting (review si son realmente violations)
-- Estos fueron marcados como aceptables en la auditoría — confirmar criterio
+```powershell
+# 1. Ver progreso desde el CSV
+$csv = Import-Csv "src/app/features/INVENTARIO-COMPONENTES.csv" -Delimiter ";"
+$total = ($csv | Measure-Object).Count
+$hechos = ($csv | Where-Object { $_.estado -eq "completado" } | Measure-Object).Count
+Write-Host "$hechos / $total completados"
 
-### Mobile views restantes (menores)
-- `comite-form.html` — `<p-select>` con formControlName → migración ReactiveForm compleja
-- `entrega-recepcion-check.html` — `pInputTextarea` con formControlName → mismo
-- `google-calendar-form.html` — `<p-select>` formControlName
+# 2. Ver pendientes ordenados por prioridad (top 10)
+$csv | Where-Object { $_.estado -eq "pendiente" } | Sort-Object { [int]$_.b1_count + [int]$_.i1_count + [int]$_.a1_count + [int]$_.c1_count } -Descending | Select-Object -First 10
 
-### Commit pendiente
-- Los cambios de Fase II mobile-lists + mobile-feedback están sin commitear
-- Ver: `git status` para ver archivos pendientes
+# 3. Ver módulo específico pendiente
+$csv | Where-Object { $_.modulo -eq "accounting" -and $_.estado -eq "pendiente" } | Select-Object -First 5
 
----
-
-## 🔧 COMANDOS RÁPIDOS PARA RETOMAR
-
-```bash
-# Ver estado del branch
-git log --oneline -10
-
-# Archivos sin commitear
-git status --short
-
-# Commitear lo pendiente de Fase II
-git add -A
-git commit -m "feat(catalog/mobile): Fase II — refresher, search+add, list-header, modal"
-
-# Ver el catálogo DS
-# localhost:4200/settings/ui-catalog/mobile/lists
-# localhost:4200/settings/ui-catalog/mobile/feedback
-# localhost:4200/settings/ui-catalog/patterns/navhub
+# 4. Estadísticas rápidas
+$csv | Group-Object estado | Select-Object Name, Count
 ```
 
 ---
 
 ## 📁 ARCHIVOS CLAVE
 
-| Archivo | Propósito |
-|---|---|
-| `INVENTARIO-DS-REVISION.md` | Auditoría DS completa (10 fases) |
-| `PLAN-DE-ACCION.md` | Plan original + Fases 1-14 |
-| `ANALISIS-PROMPT-V2.md` | Spec original del DS (referencia) |
-| `AUDITORIA-COMPLETA.md` | Hallazgos detallados de la auditoría |
-| `pages/catalog-mobile/components/` | Componentes del catálogo mobile |
-| `src/styles/theme/_global.scss` | CSS aliases globales (Tailwind → DS tokens) |
+| Archivo                               | Propósito                                                    |
+| ------------------------------------- | ------------------------------------------------------------ |
+| `PLAN-DE-ACCION.md`                   | Plan vigente — revisión manual, sin scripts batch            |
+| `PLAN-DE-ACCION-ARCHIVO.md`           | Plan anterior (Fases 1-14, con batch) — referencia histórica |
+| `features/INVENTARIO-COMPONENTES.csv` | **Inventario maestro** — cada fila = 1 componente a revisar  |
+| `INVENTARIO-DS-REVISION.md`           | Auditoría DS previa (1,075 componentes) — referencia         |
+| `AUDITORIA-COMPLETA.md`               | Hallazgos detallados de auditoría original                   |
+| `ANALISIS-PROMPT-V2.md`               | Spec original del DS                                         |
 
 ---
 
-## 🎯 PRÓXIMA SESIÓN — POR DÓNDE ARRANCAR
+## NOTAS
 
-### ✅ TODO COMPLETADO — Estado final del branch
-
-**Ionic Catalog Fase III** — ✅ 2026-06-25
-- `ion-menu` + `MenuController` en `mobile-navigation.ts`
-- `ion-fab-list` (4 acciones) en `mobile-navigation.ts`
-- `ion-ripple-effect` (3 variantes) en `mobile-lists.ts`
-- `ion-split-pane` → nuevo `mobile-layout.ts` con simulador tablet/mobile
-- Cobertura Ionic: ~72% → **~82%** ✅ Meta >80% alcanzada
-
-**Accounting p-tag** — ✅ Criterio confirmado 2026-06-25
-- 75 instancias revisadas: NINGUNA usa `EStatus` enum
-- Son etiquetas de dominio propio (números de paso, tipo de reporte, nombre de archivo, mes)
-- **Se quedan como están** — excepción válida documentada
-
-**Formularios con formControlName** — ✅ 2026-06-25
-- `comite-form.html`: `p-select [formControl]` → `custom-input-select-signal` ✅
-- `entrega-recepcion-check.html`: `pInputTextarea` → `custom-input-text-area-signal` ✅
-- `google-calendar-form.html`: excepción válida (templates custom con lógica de disponibilidad de slots)
-
-**Documentación** — ✅ PLAN-DE-ACCION.md actualizado (commits Fase 13/14 + checklist visual)
-
----
-
-*Generado automáticamente al final de la sesión 2026-06-25*
+- **Prohibido:** scripts batch, find & replace masivo, regex global
+- **Regla:** un componente a la vez, commit individual, build + lint después de cada uno
+- **Excepciones:** si un componente no se puede migrar, marcar como `excepcion` en CSV + documentar por qué

@@ -1,5 +1,5 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
@@ -12,13 +12,13 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { Subscription } from "rxjs";
 import { TooltipModule } from "primeng/tooltip";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
@@ -245,7 +245,7 @@ export class SolicitudCompraList {
       .openDialog(
         PurchaseLinkManager,
         {},
-        "Gestión de Vónculos",
+        "GestiÃ³n de VÃ³nculos",
         this.dialogHandlerS.sizeLg,
       )
       .then((result) => {
@@ -273,10 +273,10 @@ export class SolicitudCompraList {
   onUnlinkPurchaseOrder(ordenCompraId: string) {
     Swal.fire({
       title: "Confirmar",
-      text: "óEstá seguro de que desea desvincular esta orden de compra?",
+      text: "Ã³EstÃ¡ seguro de que desea desvincular esta orden de compra?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Sí, desvincular",
+      confirmButtonText: "SÃ­, desvincular",
       cancelButtonText: "Cancelar",
       customClass: {
         container: "my-swal-container",

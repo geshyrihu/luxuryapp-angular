@@ -19,15 +19,22 @@
 
   @if (reportData()) {
   <div class="card mb-4">
-    <p-table [value]="kpiRows()" styleClass="custom-table">
+    <p-table [value]="kpiRows()" styleClass="custom-table custom-table-fixed">
       <ng-template #caption>
         <primeng-custom-caption title="Resultado del Periodo" [showAdd]="false" />
       </ng-template>
+      <ng-template #colgroup>
+        <colgroup>
+          <col class="table-col-5" />
+          <col class="table-col-10" />
+          <col class="table-col-85" />
+        </colgroup>
+      </ng-template>
       <ng-template #header>
         <tr>
-          <th class="table-col-5 text-center"></th>
-          <th class="table-col-10 text-center">CANTIDAD</th>
-          <th class="table-col-85">CONCEPTO</th>
+          <th class="text-center"></th>
+          <th class="text-center">CANTIDAD</th>
+          <th>CONCEPTO</th>
         </tr>
       </ng-template>
       <ng-template #body let-row>
@@ -47,7 +54,14 @@
 
   @if (requestsAttended().length > 0) {
   <div class="card mb-4">
-    <p-table [value]="requestsAttended()" [scrollable]="true" [scrollHeight]="scrollHeight()" styleClass="custom-table">
+    <p-table [value]="requestsAttended()" [scrollable]="true" [scrollHeight]="scrollHeight()" styleClass="custom-table custom-table-fixed">
+      <ng-template #colgroup>
+        <colgroup>
+          <col class="table-col-5" />
+          <col class="table-col-15" />
+          <col class="table-col-80" />
+        </colgroup>
+      </ng-template>
       <ng-template #header>
         <tr>
           <th colspan="3" class="text-center">
@@ -56,9 +70,9 @@
           </th>
         </tr>
         <tr>
-          <th class="text-center table-col-5">Nó</th>
-          <th class="text-center table-col-15">SOLICITUDES</th>
-          <th class="table-col-80">CONCEPTO</th>
+          <th class="text-center">N°</th>
+          <th class="text-center">SOLICITUDES</th>
+          <th>CONCEPTO</th>
         </tr>
       </ng-template>
       <ng-template #body let-ticket let-rowIndex="rowIndex">
@@ -74,7 +88,18 @@
 
   @if (requestsPending().length > 0) {
   <div class="card mb-4">
-    <p-table [value]="requestsPending()" [scrollable]="true" [scrollHeight]="scrollHeight()" styleClass="custom-table">
+    <p-table [value]="requestsPending()" [scrollable]="true" [scrollHeight]="scrollHeight()" styleClass="custom-table custom-table-fixed">
+      <ng-template #colgroup>
+        <colgroup>
+          <col class="table-col-5" />
+          <col class="table-col-10" />
+          <col class="table-col-10" />
+          <col class="table-col-10" />
+          <col class="table-col-40" />
+          <col class="table-col-5" />
+          <col class="table-col-20" />
+        </colgroup>
+      </ng-template>
       <ng-template #header>
         <tr>
           <th colspan="7" class="text-center">
@@ -83,13 +108,13 @@
           </th>
         </tr>
         <tr>
-          <th class="text-center table-col-5">Nó</th>
-          <th class="text-center table-col-10">FOLIO</th>
-          <th class="text-center table-col-10">FECHA SOL.</th>
-          <th class="text-center table-col-10">CLIENTE</th>
-          <th class="text-center table-col-40">SOLICITUD</th>
-          <th class="text-center table-col-5">DÍAS</th>
-          <th class="text-center table-col-20">SEGUIMIENTO</th>
+          <th class="text-center">N°</th>
+          <th class="text-center">FOLIO</th>
+          <th class="text-center">FECHA SOL.</th>
+          <th class="text-center">CLIENTE</th>
+          <th class="text-center">SOLICITUD</th>
+          <th class="text-center">DÍAS</th>
+          <th class="text-center">SEGUIMIENTO</th>
         </tr>
       </ng-template>
       <ng-template #body let-ticket let-rowIndex="rowIndex">

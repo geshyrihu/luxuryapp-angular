@@ -2,7 +2,10 @@
   <!-- Header -->
   <div class="flex align-items-center justify-content-between mb-3">
     <div class="flex align-items-center">
-      <app-icon [icon]="'mdi:account-group'" class="text-xl text-primary mr-2"></app-icon>
+      <app-icon
+        [icon]="'mdi:account-group'"
+        class="text-xl text-primary mr-2"
+      ></app-icon>
       <h3 class="text-base font-semibold text-color m-0">Testigos</h3>
       <span class="text-sm text-color-secondary"
         >({{ witnesses().length }})</span
@@ -68,13 +71,17 @@
         </td>
       </tr>
     </ng-template>
-    <ng-template pTemplate="emptymessage">
+    <ng-template #emptymessage>
       <tr>
         <td colspan="5">
-          <app-empty-state icon="mdi:alert-circle-outline" title="Sin incidencias" message="No hay incidencias registradas." />
+          <app-empty-state
+            icon="mdi:alert-circle-outline"
+            title="Sin incidencias"
+            message="No hay incidencias registradas."
+          />
         </td>
       </tr>
     </ng-template>
-</p-table>
+  </p-table>
   }
 </div>

@@ -37,7 +37,9 @@
         </td>
         <td class="text-sm">{{ item.summary }}</td>
         <td class="text-sm font-medium">{{ item.requestedBy }}</td>
-        <td class="text-center text-sm">{{ item.requestedAt | date:'dd/MM/yyyy HH:mm' }}</td>
+        <td class="text-center text-sm">
+          {{ item.requestedAt | date:'dd/MM/yyyy HH:mm' }}
+        </td>
         <td class="text-center">
           <span class="badge text-xs" [class]="statusClass(item.status)">
             {{ statusLabel(item.status) }}
@@ -45,22 +47,26 @@
         </td>
         <td class="text-center">
           @if (item.status === EFinancialApprovalStatus.Pendiente) {
-            <custom-button
-              label="Revisar"
-              iconClass="mdi:eye-outline"
-              size="small"
-              severity="warn"
-              (clicked)="openDetail(item)"
-/>
+          <custom-button
+            label="Revisar"
+            iconClass="mdi:eye-outline"
+            size="small"
+            severity="warn"
+            (clicked)="openDetail(item)"
+          />
           }
         </td>
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="emptymessage">
+    <ng-template #emptymessage>
       <tr>
         <td colspan="6">
-          <app-empty-state icon="mdi:inbox-check-outline" title="Sin pendientes" message="No hay solicitudes pendientes de aprobación." />
+          <app-empty-state
+            icon="mdi:inbox-check-outline"
+            title="Sin pendientes"
+            message="No hay solicitudes pendientes de aprobación."
+          />
         </td>
       </tr>
     </ng-template>
@@ -78,20 +84,29 @@
         slot="start"
         class="w-2rem h-2rem border-round-lg bg-purple-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
       >
-        <app-icon icon="mdi:shield-check-outline" class="text-purple-600 text-xl"></app-icon>
+        <app-icon
+          icon="mdi:shield-check-outline"
+          class="text-purple-600 text-xl"
+        ></app-icon>
       </div>
       <ion-label>
         <h3>{{ operationLabel(item.operationType) }}</h3>
         <p>{{ item.summary }}</p>
-        <p>Por: {{ item.requestedBy }} &middot; {{ item.requestedAt | date:'dd/MM/yyyy' }}</p>
+        <p>
+          Por: {{ item.requestedBy }} &middot; {{ item.requestedAt |
+          date:'dd/MM/yyyy' }}
+        </p>
       </ion-label>
       @if (item.status === EFinancialApprovalStatus.Pendiente) {
-        <app-action-menu slot="end">
-          <ng-container actions>
-          <custom-button-edit (clicked)="openDetail(item)"
- label="Editar" [showLabelOnDesktop]="true"/>
-                  </ng-container>
-        </app-action-menu>
+      <app-action-menu slot="end">
+        <ng-container actions>
+          <custom-button-edit
+            (clicked)="openDetail(item)"
+            label="Editar"
+            [showLabelOnDesktop]="true"
+          />
+        </ng-container>
+      </app-action-menu>
       }
     </ion-item>
   </ng-template>

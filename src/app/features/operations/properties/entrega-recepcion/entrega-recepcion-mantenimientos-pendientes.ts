@@ -6,7 +6,7 @@ import {
 } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { ReportHeader } from "src/app/core/components/report-header/report-header";
+import { ReportHeader } from "src/app/core/components/web/report-header/report-header";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
 @Component({
   selector: "app-entrega-recepcion-mantenimientos-pendientes",

@@ -1,11 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, RouterModule } from "@angular/router";
-import { IonAvatar, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -20,7 +20,6 @@ import { IAnnouncementAnalyticsDTO } from "./announcement.model";
     DataViewMobile,
     IonItem,
     IonLabel,
-    IonAvatar,
     AppIcon,
   ],
   templateUrl: "./announcement-analytics.html",

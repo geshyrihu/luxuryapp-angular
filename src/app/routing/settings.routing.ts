@@ -297,6 +297,18 @@ export const settingsRoutes: Routes = [
     },
   },
   {
+    path: "audit-entries",
+    loadComponent: () =>
+      import("src/app/features/system/access/audit-entries/audit-entries").then(
+        (m) => m.AuditEntries,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Auditoría de cambios",
+      breadcrumb: "Auditoría de cambios",
+    },
+  },
+  {
     path: "user-activity-history",
     loadComponent: () =>
       import("src/app/features/system/audit-logs/user-activity-history/user-activity-history").then(
@@ -306,6 +318,30 @@ export const settingsRoutes: Routes = [
     data: {
       title: "Analisis de actividad",
       breadcrumb: "Analisis de actividad",
+    },
+  },
+  {
+    path: "incident-types",
+    loadComponent: () =>
+      import("src/app/features/hr/evaluaciones-de-desempeo/hr-catalog/pages/incident-type-list").then(
+        (m) => m.IncidentTypeList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Tipos de Incidencia",
+      breadcrumb: "Tipos de Incidencia",
+    },
+  },
+  {
+    path: "sanction-types",
+    loadComponent: () =>
+      import("src/app/features/hr/evaluaciones-de-desempeo/hr-catalog/pages/sanction-type-list").then(
+        (m) => m.SanctionTypeList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Tipos de Sanción",
+      breadcrumb: "Tipos de Sanción",
     },
   },
   {
@@ -368,6 +404,78 @@ export const settingsRoutes: Routes = [
     data: {
       title: "Mini Postman",
       breadcrumb: "Mini Postman",
+    },
+  },
+  {
+    path: "ticket-group-category",
+    loadComponent: () =>
+      import("src/app/features/operations/task-engine/tasks/work-group-categories/pages/task-group-category-list").then(
+        (m) => m.TaskGroupCategoryList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Categoría de Grupos de Tickets",
+      breadcrumb: "Categoría de Grupos de Tickets",
+    },
+  },
+  {
+    path: "asamblea-checklist-catalog",
+    loadComponent: () =>
+      import("src/app/features/operations/asambleas-y-planificacin/asamblea-checklist-template/asamblea-checklist-template-list").then(
+        (m) => m.AsambleaChecklistTemplateList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Catalogo de checklist de asamblea",
+      breadcrumb: "Catalogo checklist asamblea",
+    },
+  },
+  {
+    path: "juntas-mensuales-conciliacion",
+    loadComponent: () =>
+      import("src/app/features/operations/meetings/juntas-mensuales-backfill/juntas-mensuales-backfill").then(
+        (m) => m.JuntasMensualesBackfill,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Conciliacion de juntas mensuales",
+      breadcrumb: "Conciliacion de juntas mensuales",
+    },
+  },
+  {
+    path: "inspection-reviews-catalog",
+    loadComponent: () =>
+      import("src/app/features/operations/inspecciones-y-auditora/inspection/catalogo/catalogo-revisiones-inspeccion").then(
+        (m) => m.CatalogoRevisionesInspeccion,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Catalogo de inspecciones",
+      breadcrumb: "Catalogo de inspecciones",
+    },
+  },
+  {
+    path: "catalog-asset",
+    loadComponent: () =>
+      import("src/app/features/operations/inspecciones-y-auditora/inspection/catalogo/catalogo-activo-lista").then(
+        (m) => m.CatalogoActivoLista,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Catalogo de amenidades",
+      breadcrumb: "Catalogo de amenidades",
+    },
+  },
+  {
+    path: "entrega-recepcion-cliente",
+    loadComponent: () =>
+      import("src/app/features/operations/properties/delivery-reception-catalog/catalogo-descripcion-list").then(
+        (m) => m.CatalogoDescripcionList,
+      ),
+    canActivate: [authGuard],
+    data: {
+      title: "Entrega y Recepción",
+      breadcrumb: "Entrega y Recepción",
     },
   },
   {

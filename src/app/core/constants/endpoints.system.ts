@@ -179,6 +179,9 @@ export const EndpointsSystem = {
   // Sub-módulo: System-AuditLogs (Bitácoras y Auditoría)
   // ==========================================================================
 
+  AuditEntries: {
+    base: "AuditEntries",
+  },
   UserActivityHistory: {
     base: "UserActivityHistory",
   },

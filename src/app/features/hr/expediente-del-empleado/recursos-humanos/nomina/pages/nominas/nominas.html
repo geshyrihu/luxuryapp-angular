@@ -13,14 +13,13 @@
   styleClass="card hidden md:block custom-table"
 >
   <ng-template #caption>
-    <primeng-custom-caption
-      [dt]="dt"
-      (add)="openGenerar()"
-    />
+    <primeng-custom-caption [dt]="dt" (add)="openGenerar()" />
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="periodoDescripcion">Periodo <p-sortIcon field="periodoDescripcion" /></th>
+      <th pSortableColumn="periodoDescripcion">
+        Periodo <p-sortIcon field="periodoDescripcion" />
+      </th>
       <th>Estado</th>
       <th class="text-right">Empleados</th>
       <th class="text-right">Percepciones</th>
@@ -38,12 +37,21 @@
         </a>
       </td>
       <td>
-        <p-tag [severity]="getEstadoSeverity(item.estadoValue)" [value]="item.estado" />
+        <p-tag
+          [severity]="getEstadoSeverity(item.estadoValue)"
+          [value]="item.estado"
+        />
       </td>
       <td class="text-right">{{ item.totalEmpleados }}</td>
-      <td class="text-right">{{ item.totalPercepciones | currency: "MXN" : "symbol" : "1.2-2" }}</td>
-      <td class="text-right">{{ item.totalDeducciones | currency: "MXN" : "symbol" : "1.2-2" }}</td>
-      <td class="text-right font-bold">{{ item.totalNeto | currency: "MXN" : "symbol" : "1.2-2" }}</td>
+      <td class="text-right">
+        {{ item.totalPercepciones | currency: "MXN" : "symbol" : "1.2-2" }}
+      </td>
+      <td class="text-right">
+        {{ item.totalDeducciones | currency: "MXN" : "symbol" : "1.2-2" }}
+      </td>
+      <td class="text-right font-bold">
+        {{ item.totalNeto | currency: "MXN" : "symbol" : "1.2-2" }}
+      </td>
       <td>{{ item.aprobadoPor ?? "-" }}</td>
       <td>
         <div class="flex gap-1">
@@ -62,8 +70,7 @@
             pTooltip="Enviar a revision"
             (clicked)="cambiarEstado(item, 'enviar-revision')"
           />
-          }
-          @if (puedeAprobar(item.estadoValue)) {
+          } @if (puedeAprobar(item.estadoValue)) {
           <custom-button
             iconClass="mdi:check"
             severity="success"
@@ -71,8 +78,7 @@
             pTooltip="Aprobar nomina"
             (clicked)="cambiarEstado(item, 'aprobar')"
           />
-          }
-          @if (puedePagar(item.estadoValue)) {
+          } @if (puedePagar(item.estadoValue)) {
           <custom-button
             iconClass="mdi:dollar"
             severity="contrast"
@@ -80,8 +86,7 @@
             pTooltip="Marcar como pagada"
             (clicked)="cambiarEstado(item, 'marcar-pagada')"
           />
-          }
-          @if (puedeCerrar(item.estadoValue)) {
+          } @if (puedeCerrar(item.estadoValue)) {
           <custom-button
             iconClass="mdi:lock"
             severity="secondary"
@@ -95,7 +100,15 @@
     </tr>
   </ng-template>
   <ng-template #emptymessage>
-    <tr><td colspan="8">No hay nominas generadas para este cliente.</td></tr>
+    <tr>
+      <td colspan="8">
+        <app-empty-state
+          icon="mdi:file-document-outline"
+          title="Sin nóminas"
+          message="No hay nóminas generadas para este cliente."
+        />
+      </td>
+    </tr>
   </ng-template>
 </p-table>
 
@@ -111,16 +124,28 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-success-light,#d1fae5);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-success-light, #d1fae5);
+        "
       >
-        <app-icon icon="mdi:currency-usd" style="font-size:1.1rem;color:var(--ds-success);"></app-icon>
+        <app-icon
+          icon="mdi:currency-usd"
+          style="font-size: 1.1rem; color: var(--ds-success)"
+        ></app-icon>
       </div>
       <ion-label>
         <h2 class="font-normal m-0">{{ item.periodoDescripcion }}</h2>
         <p class="text-xs m-0">{{ item.totalEmpleados }} empleados</p>
         <div class="flex align-items-center gap-2 mt-1">
-          <p-tag [severity]="getEstadoSeverity(item.estadoValue)" [value]="item.estado" />
-          <span class="font-bold">{{ item.totalNeto | currency: "MXN" : "symbol" : "1.2-2" }}</span>
+          <p-tag
+            [severity]="getEstadoSeverity(item.estadoValue)"
+            [value]="item.estado"
+          />
+          <span class="font-bold"
+            >{{ item.totalNeto | currency: "MXN" : "symbol" : "1.2-2" }}</span
+          >
         </div>
       </ion-label>
       <div slot="end">

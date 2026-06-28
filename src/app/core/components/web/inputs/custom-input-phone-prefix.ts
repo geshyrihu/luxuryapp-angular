@@ -5,7 +5,7 @@ import {
   PHONE_PREFIXES,
   PhonePrefix,
 } from "src/app/core/data/phone-prefixes.data";
-import { BaseInputSignal } from "../base/base-input-signal";
+import { BaseInputSignal } from "../../inputs/base/base-input-signal";
 
 @Component({
   selector: "custom-input-phone-prefix",
@@ -61,3 +61,4 @@ import { BaseInputSignal } from "../base/base-input-signal";
 export class CustomInputPhonePrefix extends BaseInputSignal {
   readonly prefixes: PhonePrefix[] = PHONE_PREFIXES;
 }
+

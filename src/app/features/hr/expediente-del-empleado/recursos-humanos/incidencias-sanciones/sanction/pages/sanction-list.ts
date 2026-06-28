@@ -1,18 +1,18 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, inject, signal } from "@angular/core";
 import { CommonModule, DatePipe } from "@angular/common";
 import { TableModule } from "primeng/table";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { DialogSize } from "src/app/core/enums/dialog-size";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { tablePrimeNgRows, rowsPerPageOptions, globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { SanctionListDTO } from "../models/sanction.dto";
 import { SanctionFormComponent } from "./sanction-form";
 
@@ -54,11 +54,11 @@ export class SanctionList {
   }
 
   onCreate(incidentId: string): void {
-    this.dialogS.openDialog(SanctionFormComponent, { data: { incidentId } }, "Aplicar Sanción", DialogSize.lg).then(() => this.onLoadData());
+    this.dialogS.openDialog(SanctionFormComponent, { data: { incidentId } }, "Aplicar SanciÃ³n", DialogSize.lg).then(() => this.onLoadData());
   }
 
   onChangeStatus(item: SanctionListDTO): void {
-    this.dialogS.openDialog(SanctionFormComponent, { data: { id: item.id, changeStatus: true } }, "Cambiar Estatus de Sanción", DialogSize.sm).then(() => this.onLoadData());
+    this.dialogS.openDialog(SanctionFormComponent, { data: { id: item.id, changeStatus: true } }, "Cambiar Estatus de SanciÃ³n", DialogSize.sm).then(() => this.onLoadData());
   }
 
   getStatusBadge(status: string): string {

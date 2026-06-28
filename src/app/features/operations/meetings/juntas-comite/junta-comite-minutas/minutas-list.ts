@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, effect, inject, signal } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -10,7 +10,7 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import {
   CustomButtonConfirm,
   CustomButtonDelete,
@@ -18,9 +18,9 @@ import {
   CustomButtonItem,
 } from "src/app/core/components/buttons/web";
 import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { DataViewMobile } from "src/app/core/components/data-view-mobile/data-view-mobile";
-import { PrimeNgCustomCaption } from "src/app/core/components/primeng-custom-caption/primeng-custom-caption";
-import { PrimeNgCustomTableFooter } from "src/app/core/components/primeng-custom-table-footer/primeng-custom-table-footer";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
@@ -72,7 +72,7 @@ import { MinutaPdfService } from "./minuta-pdf.service";
   ],
 })
 export class MinutasList {
-  // --- Inyección de Dependencias ---
+  // --- InyecciÃ³n de Dependencias ---
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   authS = inject(AuthService);
@@ -87,10 +87,10 @@ export class MinutasList {
   ref: DynamicDialogRef;
   public AspRole = EApplicationRole;
 
-  /** Tipo de junta actual que se está mostrando ('Comité', 'Asamblea', etc.). */
+  /** Tipo de junta actual que se estÃ¡ mostrando ('ComitÃ©', 'Asamblea', etc.). */
   tipoJunta: number = 1;
 
-  /** Opciones de configuración para la tabla PrimeNG. */
+  /** Opciones de configuraciÃ³n para la tabla PrimeNG. */
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   scrollHeight: string = "calc(100vh - 300px)";
@@ -115,14 +115,14 @@ export class MinutasList {
   }
 
   /**
-   * Carga la lista de minutas desde la API segón el tipo de junta.
-   * @param tipoJunta El tipo de junta a cargar ('Comité', 'Asamblea', 'Operación').
+   * Carga la lista de minutas desde la API segÃ³n el tipo de junta.
+   * @param tipoJunta El tipo de junta a cargar ('ComitÃ©', 'Asamblea', 'OperaciÃ³n').
    */
   get tipoJuntaLabel(): string {
     const labels: Record<number, string> = {
-      0: "Comité",
+      0: "ComitÃ©",
       1: "Asamblea",
-      2: "Operación",
+      2: "OperaciÃ³n",
     };
     return labels[this.tipoJunta] ?? "";
   }
@@ -154,7 +154,7 @@ export class MinutasList {
   onDelete(id: string): void {
     this.apiResponseS.onDelete(Endpoints.Meetings.delete(id)).then((result: boolean) => {
       if (result) {
-        // Optimización: Eliminar el item del array local en lugar de recargar todo.
+        // OptimizaciÃ³n: Eliminar el item del array local en lugar de recargar todo.
         this.dataSignal.update((data) =>
           data.filter((meeting) => meeting.id !== id),
         );
@@ -163,7 +163,7 @@ export class MinutasList {
   }
 
   /**
-   * Envía la minuta por correo electrónico al Comité.
+   * EnvÃ­a la minuta por correo electrÃ³nico al ComitÃ©.
    * @param meetingId El ID de la minuta.
    */
   onSendEmailMeeting(meetingId: any): void {
@@ -172,7 +172,7 @@ export class MinutasList {
 
   /**
    * Abre el modal para agregar o editar una minuta.
-   * @param data Objeto con el ID de la minuta (0 para nuevo) y el título del modal.
+   * @param data Objeto con el ID de la minuta (0 para nuevo) y el tÃ­tulo del modal.
    */
   showModalAddOrEditMeeting(data: { id: string; title: string }): void {
     if (!data.id && this.tipoJunta !== 2) {
@@ -201,7 +201,7 @@ export class MinutasList {
   /**
    * Abre un modal que muestra una lista filtrada de asuntos de una minuta.
    * @param id El ID de la minuta.
-   * @param header El título para el modal.
+   * @param header El tÃ­tulo para el modal.
    * @param status El estatus por el cual filtrar los asuntos.
    */
   showModalAddOrEditMeetingDetails(
@@ -219,7 +219,7 @@ export class MinutasList {
 
   /**
    * Abre el modal para agregar o editar un detalle (asunto) de una minuta.
-   * Este método es llamado por el evento del componente hijo.
+   * Este mÃ©todo es llamado por el evento del componente hijo.
    * @param data El objeto de evento con los datos necesarios.
    */
   onModalFormMinutaDetalle(data: DetailEvent): void {
@@ -244,7 +244,7 @@ export class MinutasList {
     this.onGenerarMinutaPdf(id);
   }
 
-  /** Alias usado en la vista móvil. */
+  /** Alias usado en la vista mÃ³vil. */
   onGeneretePDF(id: any): void {
     this.onGenerarMinutaPdf(id);
   }
@@ -281,7 +281,7 @@ export class MinutasList {
 
 
   /**
-   * Navega a la pógina de resumen de una minuta.
+   * Navega a la pÃ³gina de resumen de una minuta.
    * @param id El ID de la minuta.
    */
   resumenMinuta(id: any): void {
@@ -289,9 +289,9 @@ export class MinutasList {
   }
 
   /**
-   * Envía un correo electrónico a los responsables de un área específica de una minuta.
+   * EnvÃ­a un correo electrÃ³nico a los responsables de un Ã¡rea especÃ­fica de una minuta.
    * @param id El ID de la minuta.
-   * @param eAreaMinutasDetalles El identificador numérico del área.
+   * @param eAreaMinutasDetalles El identificador numÃ©rico del Ã¡rea.
    */
   onSendEmail(id: any, eAreaMinutasDetalles: number): void {
     this.apiResponseS.onPost(
@@ -330,7 +330,7 @@ export class MinutasList {
    */
   onDeleteSeguimiento(id: any): void {
     this.apiResponseS.onDelete(Endpoints.MeetingDetailsTracking.delete(id)).then(() => {
-      // Optimización: Eliminar el seguimiento del array local.
+      // OptimizaciÃ³n: Eliminar el seguimiento del array local.
       this.dataSignal.update((data) => {
         data.forEach((meeting) => {
           ["contable", "operaciones", "legal"].forEach((area) => {
@@ -354,7 +354,7 @@ export class MinutasList {
    */
   onDeleteMeetingDetail(id: any): void {
     this.apiResponseS.onDelete(Endpoints.MeetingsDetails.delete(id)).then(() => {
-      // Optimización: Eliminar el detalle del array local.
+      // OptimizaciÃ³n: Eliminar el detalle del array local.
       this.dataSignal.update((data) => {
         data.forEach((meeting: any) => {
           meeting.contable =
@@ -366,8 +366,8 @@ export class MinutasList {
         });
         return data;
       });
-      // Podróamos recalcular los totales (issues, pending, etc.) localmente o hacer una recarga si es mós simple.
-      // Por simplicidad, una recarga puede ser aceptable aquó si los totales deben ser 100% precisos.
+      // PodrÃ³amos recalcular los totales (issues, pending, etc.) localmente o hacer una recarga si es mÃ³s simple.
+      // Por simplicidad, una recarga puede ser aceptable aquÃ³ si los totales deben ser 100% precisos.
       this.onLoadData(this.tipoJunta);
     });
   }

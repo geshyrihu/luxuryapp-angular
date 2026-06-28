@@ -114,7 +114,7 @@
           fileName="Poliza | Contrato"
           label="Ver documento"
           class="text-xl"
-/>
+        />
         }
       </td>
       <!-- Opciones -->
@@ -122,27 +122,30 @@
         <div class="flex">
           <custom-button-edit
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-/>
-          <custom-button-delete (confirmed)="onDelete(item.id)"
-/>
+          />
+          <custom-button-delete (confirmed)="onDelete(item.id)" />
           @if (item.document) {
           <custom-button-delete
             label="Eliminar documento"
             ngbTooltip="Eliminar documento"
             (confirmed)="onDeleteDocument(item.id)"
-/>
+          />
           }
         </div>
       </td>
     </tr>
   </ng-template>
-  <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="9">
-          <app-empty-state icon="mdi:file-sign" title="Sin contratos" message="No hay contratos registrados." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="9">
+        <app-empty-state
+          icon="mdi:file-sign"
+          title="Sin contratos"
+          message="No hay contratos registrados."
+        />
+      </td>
+    </tr>
+  </ng-template>
 </p-table>
 
 <app-data-view-mobile
@@ -157,9 +160,16 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-warning-light,#fef3c7);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-warning-light, #fef3c7);
+        "
       >
-        <app-icon icon="mdi:file-sign" style="font-size:1.1rem;color:var(--ds-warning);"></app-icon>
+        <app-icon
+          icon="mdi:file-sign"
+          style="font-size: 1.1rem; color: var(--ds-warning)"
+        ></app-icon>
       </div>
       <ion-label>
         <div class="flex justify-content-between align-items-center mb-1">
@@ -172,7 +182,8 @@
         </div>
         <p class="text-sm text-700 m-0 mb-1">{{ item.description }}</p>
         <p class="text-xs text-500 m-0">
-          <app-icon [icon]="'mdi:calendar'" class="mr-1"></app-icon> Inicio: {{ item.startDate }}
+          <app-icon [icon]="'mdi:calendar'" class="mr-1"></app-icon> Inicio: {{
+          item.startDate }}
         </p>
       </ion-label>
 
@@ -182,18 +193,26 @@
             <custom-button-view-pdf
               [url]="item.pathDocument"
               fileName="Poliza | Contrato"
- label="Ver PDF" [showLabelOnDesktop]="true"/>
+              label="Ver PDF"
+              [showLabelOnDesktop]="true"
+            />
             <custom-button-edit
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
- label="Editar" [showLabelOnDesktop]="true"/>
-            <custom-button-delete (confirmed)="onDelete(item.id)"
- label="Eliminar" [showLabelOnDesktop]="true"/>
+              label="Editar"
+              [showLabelOnDesktop]="true"
+            />
+            <custom-button-delete
+              (confirmed)="onDelete(item.id)"
+              label="Eliminar"
+              [showLabelOnDesktop]="true"
+            />
             @if (item.document) {
             <custom-button-delete
               label="Eliminar documento"
               ngbTooltip="Eliminar documento"
               (confirmed)="onDeleteDocument(item.id)"
- [showLabelOnDesktop]="true"/>
+              [showLabelOnDesktop]="true"
+            />
             }
           </ng-container>
         </app-action-menu>

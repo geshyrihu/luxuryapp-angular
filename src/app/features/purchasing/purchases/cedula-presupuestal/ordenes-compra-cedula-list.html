@@ -23,13 +23,26 @@
         <th>Total</th>
       </tr>
     </ng-template>
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="5">
+          <app-empty-state
+            icon="mdi:clipboard-text-outline"
+            title="Sin órdenes"
+            message="No hay órdenes de compra asociadas a esta cédula presupuestal."
+          />
+        </td>
+      </tr>
+    </ng-template>
     <ng-template #body let-item>
       <tr>
         <td>
           {{ item.folio }}
-          <app-icon [icon]="'mdi:hand-point-right'"ngbTooltip="Ver"
+          <app-icon
+            [icon]="'mdi:hand-point-right'"
+            ngbTooltip="Ver"
             placement="top"
-             class="icon icon- pointer"
+            class="icon icon- pointer"
             (click)="onOrdenCompraModal(item.ordenCompraId)"
           ></app-icon>
           <!-- {{ item.folio }} -->
@@ -68,13 +81,20 @@
         button
         detail="false"
       >
-      <div
-        slot="start"
-        class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-success-light,#d1fae5);"
-      >
-        <app-icon icon="mdi:wallet-outline" style="font-size:1.1rem;color:var(--ds-success);"></app-icon>
-      </div>
+        <div
+          slot="start"
+          class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
+          style="
+            width: 38px;
+            height: 38px;
+            background: var(--ds-success-light, #d1fae5);
+          "
+        >
+          <app-icon
+            icon="mdi:wallet-outline"
+            style="font-size: 1.1rem; color: var(--ds-success)"
+          ></app-icon>
+        </div>
         <ion-label class="ion-text-wrap my-1">
           <div class="flex justify-content-between align-items-center mb-1">
             <span class="text-xs font-bold text-500"
@@ -93,8 +113,7 @@
             >
           </div>
         </ion-label>
-        <app-icon icon="mdi:chevron-right" slot="end"
-          color="medium"></app-icon>
+        <app-icon icon="mdi:chevron-right" slot="end" color="medium"></app-icon>
       </ion-item>
     </ng-template>
   </app-data-view-mobile>

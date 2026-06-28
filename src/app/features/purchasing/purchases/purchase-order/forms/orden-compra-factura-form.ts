@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/empty-state/empty-state";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import {
   Component,
@@ -17,7 +17,7 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip"; // Added
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button"; // Nueva importación
+import { CustomButton } from "src/app/core/components/buttons/web/custom-button"; // Nueva importaciÃ³n
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit"; // Added
 import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
@@ -61,7 +61,7 @@ export class OrdenCompraFacturaForm implements OnInit {
 
   cb_tipos = [
     { label: "Egreso (Factura)", value: "I" },
-    { label: "Ingreso (Nota de Cródito)", value: "E" },
+    { label: "Ingreso (Nota de CrÃ³dito)", value: "E" },
   ];
 
   form: FormGroup<IOrdenCompraFacturaForm> =

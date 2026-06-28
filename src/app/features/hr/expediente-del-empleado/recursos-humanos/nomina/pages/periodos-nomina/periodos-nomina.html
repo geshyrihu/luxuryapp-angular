@@ -28,19 +28,20 @@
   styleClass="card hidden md:block custom-table"
 >
   <ng-template #caption>
-    <primeng-custom-caption
-      [dt]="dt"
-      (add)="openAdd()"
-    />
+    <primeng-custom-caption [dt]="dt" (add)="openAdd()" />
   </ng-template>
   <ng-template #header>
     <tr>
-      <th pSortableColumn="quincenaDisplay">Quincena <p-sortIcon field="quincenaDisplay" /></th>
+      <th pSortableColumn="quincenaDisplay">
+        Quincena <p-sortIcon field="quincenaDisplay" />
+      </th>
       <th pSortableColumn="anio">Año <p-sortIcon field="anio" /></th>
       <th>Inicio</th>
       <th>Fin</th>
       <th>Pago</th>
-      <th pSortableColumn="diasHabiles">Dias Habiles <p-sortIcon field="diasHabiles" /></th>
+      <th pSortableColumn="diasHabiles">
+        Dias Habiles <p-sortIcon field="diasHabiles" />
+      </th>
       <th>Estado</th>
       <th>Nominas</th>
       <th>Acciones</th>
@@ -52,10 +53,16 @@
       <td>{{ item.anio }}</td>
       <td>{{ item.fechaInicio | date: "dd/MM/yyyy" : "UTC" }}</td>
       <td>{{ item.fechaFin | date: "dd/MM/yyyy" : "UTC" }}</td>
-      <td>{{ item.fechaPago ? (item.fechaPago | date: "dd/MM/yyyy" : "UTC") : "-" }}</td>
+      <td>
+        {{ item.fechaPago ? (item.fechaPago | date: "dd/MM/yyyy" : "UTC") : "-"
+        }}
+      </td>
       <td>{{ item.diasHabiles }}</td>
       <td>
-        <p-tag [severity]="getEstadoSeverity(item.estado)" [value]="item.estado" />
+        <p-tag
+          [severity]="getEstadoSeverity(item.estado)"
+          [value]="item.estado"
+        />
       </td>
       <td>{{ item.totalNominas }}</td>
       <td>
@@ -73,13 +80,17 @@
       </td>
     </tr>
   </ng-template>
-  <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="9">
-          <app-empty-state icon="mdi:currency-usd" title="Sin registros" message="No hay registros de nómina." />
-        </td>
-      </tr>
-    </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="9">
+        <app-empty-state
+          icon="mdi:currency-usd"
+          title="Sin registros"
+          message="No hay registros de nómina."
+        />
+      </td>
+    </tr>
+  </ng-template>
 </p-table>
 
 <!-- Vista movil -->
@@ -94,17 +105,30 @@
       <div
         slot="start"
         class="flex align-items-center justify-content-center flex-shrink-0 ml-3 mr-2 border-round-lg"
-        style="width:38px;height:38px;background:var(--ds-success-light,#d1fae5);"
+        style="
+          width: 38px;
+          height: 38px;
+          background: var(--ds-success-light, #d1fae5);
+        "
       >
-        <app-icon icon="mdi:currency-usd" style="font-size:1.1rem;color:var(--ds-success);"></app-icon>
+        <app-icon
+          icon="mdi:currency-usd"
+          style="font-size: 1.1rem; color: var(--ds-success)"
+        ></app-icon>
       </div>
       <ion-label>
-        <h2 class="font-normal m-0">{{ item.quincenaDisplay }} {{ item.anio }}</h2>
+        <h2 class="font-normal m-0">
+          {{ item.quincenaDisplay }} {{ item.anio }}
+        </h2>
         <p class="text-xs m-0">
-          {{ item.fechaInicio | date: "dd/MM/yyyy" : "UTC" }} - {{ item.fechaFin | date: "dd/MM/yyyy" : "UTC" }}
+          {{ item.fechaInicio | date: "dd/MM/yyyy" : "UTC" }} - {{ item.fechaFin
+          | date: "dd/MM/yyyy" : "UTC" }}
         </p>
         <div class="flex align-items-center gap-2 mt-1">
-          <p-tag [severity]="getEstadoSeverity(item.estado)" [value]="item.estado" />
+          <p-tag
+            [severity]="getEstadoSeverity(item.estado)"
+            [value]="item.estado"
+          />
           <span class="text-xs">{{ item.diasHabiles }} dias habiles</span>
         </div>
       </ion-label>

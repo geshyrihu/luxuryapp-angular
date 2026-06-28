@@ -5,8 +5,8 @@ import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { SkeletonModule } from "primeng/skeleton";
 import { TagModule } from "primeng/tag";
-import { AppIcon } from "src/app/core/components/app-icon/app-icon.component";
-import { StatusBadge, EStatus } from "src/app/core/components/status-badge/status-badge";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { StatusBadge, EStatus } from "src/app/core/components/shared/status-badge/status-badge";
 
 @Component({
   selector: "app-web-cards",
@@ -208,3 +208,4 @@ export class WebCards {
     { title: "Acceso de contratista",    sub: "Aprobado por Dirección",          icon: "mdi:account-hard-hat",color: "var(--ds-success)", bg: "var(--ds-success-light)", tag: "Autorizado",  severity: "success"   as const },
   ];
 }
+

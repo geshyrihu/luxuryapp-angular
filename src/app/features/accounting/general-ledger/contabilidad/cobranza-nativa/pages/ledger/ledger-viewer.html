@@ -12,10 +12,18 @@
         />
       </div>
       <div class="field col-6 md:col-2">
-        <custom-input-date-signal label="Desde" [control]="fromCtrl" [noMargin]="true" />
+        <custom-input-date-signal
+          label="Desde"
+          [control]="fromCtrl"
+          [noMargin]="true"
+        />
       </div>
       <div class="field col-6 md:col-2">
-        <custom-input-date-signal label="Hasta" [control]="toCtrl" [noMargin]="true" />
+        <custom-input-date-signal
+          label="Hasta"
+          [control]="toCtrl"
+          [noMargin]="true"
+        />
       </div>
       <div class="field col-12 md:col-3">
         <custom-input-select-signal
@@ -101,7 +109,7 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="emptymessage">
+    <ng-template #emptymessage>
       <tr>
         <td colspan="6" class="text-center p-4 text-500">
           @if (!propertyIdCtrl.value) { Selecciona una propiedad para consultar
@@ -123,7 +131,10 @@
           slot="start"
           class="w-2rem h-2rem border-round-lg bg-blue-100 flex align-items-center justify-content-center flex-shrink-0 ml-3"
         >
-          <app-icon icon="mdi:format-list-bulleted" class="text-blue-600 text-xl"></app-icon>
+          <app-icon
+            icon="mdi:format-list-bulleted"
+            class="text-blue-600 text-xl"
+          ></app-icon>
         </div>
         <ion-label>
           <h3>{{ eventTypeLabel(entry.eventType) }}</h3>

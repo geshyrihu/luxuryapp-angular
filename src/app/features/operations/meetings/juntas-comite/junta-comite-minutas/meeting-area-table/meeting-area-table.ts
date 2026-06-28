@@ -1,9 +1,9 @@
-ï»¿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, input, output } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { ActionMenu } from "src/app/core/components/action-menu/action-menu";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
 import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
@@ -54,7 +54,7 @@ export class AreaDetailsTable {
   editSeguimiento = output<SeguimientoEvent>();
   deleteSeguimiento = output<number>();
 
-  // --- mÃ©todos para emitir eventos al componente padre ---
+  // --- métodos para emitir eventos al componente padre ---
 
   onAddDetail(): void {
     this.addDetail.emit({
@@ -99,7 +99,7 @@ export class AreaDetailsTable {
     this.deleteSeguimiento.emit(seguimientoId);
   }
 
-  // --- mÃ©todos de ayuda para la vista (Helpers) ---
+  // --- métodos de ayuda para la vista (Helpers) ---
 
   /** Devuelve la clase CSS para el badge de estatus. */
   /** Devuelve el severity de PrimeNG para el estatus. */
@@ -132,5 +132,5 @@ export class AreaDetailsTable {
     }
   }
 
-  // Elimina el mÃ©todo getStatusIcon ya que usamos emojis
+  // Elimina el método getStatusIcon ya que usamos emojis
 }
