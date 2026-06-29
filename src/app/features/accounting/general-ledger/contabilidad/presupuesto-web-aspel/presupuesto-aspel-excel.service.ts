@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+﻿import { Injectable } from "@angular/core";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import {
@@ -29,7 +29,7 @@ export class PresupuestoAspelExcelService {
     border:   "FFB0BEC5",
   };
 
-  // ─── PUBLIC API ───────────────────────────────────────────────────────────
+  // --- PUBLIC API -----------------------------------------------------------
 
   async exportPresupuesto(
     cuentas: CuentaAspelTercerNivelDTO[],
@@ -59,8 +59,8 @@ export class PresupuestoAspelExcelService {
     saveAs(new Blob([buffer]), `Gastos_Especiales_${year}.xlsx`);
   }
 
-  // ─── SHEET: PRESUPUESTO / PROYECTOS ──────────────────────────────────────
-  // 18 columnas: CUENTA | PRE-MEN | ENE…DIC | ACUMULADO | % | PRE-TOTAL | RESTANTE
+  // --- SHEET: PRESUPUESTO / PROYECTOS --------------------------------------
+  // 18 columnas: CUENTA | PRE-MEN | ENEóDIC | ACUMULADO | % | PRE-TOTAL | RESTANTE
 
   private buildMainSheet(
     wb: ExcelJS.Workbook,
@@ -87,7 +87,7 @@ export class PresupuestoAspelExcelService {
     const titleText =
       name === "Presupuesto"
         ? `PRESUPUESTO FISCAL ${year}${empresa ? "  |  " + empresa.toUpperCase() : ""}`
-        : `PROYECTOS (606) – EJERCICIO ${year}${empresa ? "  |  " + empresa.toUpperCase() : ""}`;
+        : `PROYECTOS (606) é EJERCICIO ${year}${empresa ? "  |  " + empresa.toUpperCase() : ""}`;
 
     this.addTitleRow(ws, titleText, lastCol, 1);
     this.addSubtitleRow(ws, lastCol, 2);
@@ -96,7 +96,7 @@ export class PresupuestoAspelExcelService {
     ws.views = [{ state: "frozen", xSplit: 1, ySplit: 3 }];
     ws.autoFilter = { from: "A3", to: `${lastCol}3` };
 
-    // ── Datos ──
+    // -- Datos --
     const DATA_START = 4;
     let evenIdx = 0;
 
@@ -126,7 +126,7 @@ export class PresupuestoAspelExcelService {
         const indent   = cuenta.nivel_Cuenta === 4 ? 6 : cuenta.nivel_Cuenta === 3 ? 4 : 2;
         const bLight   = this.borderLight();
 
-        // Fila 1 — PRESUPUESTO (pequeña, azul apagado)
+        // Fila 1 é PRESUPUESTO (pequeéa, azul apagado)
         const presupRow = ws.addRow([
           cuenta.descripcion_Cuenta,
           preMen,
@@ -148,7 +148,7 @@ export class PresupuestoAspelExcelService {
           }
         });
 
-        // Fila 2 — GASTO (principal, con indicadores)
+        // Fila 2 é GASTO (principal, con indicadores)
         const gastoRow = ws.addRow([
           cuenta.codigo_Cuenta,
           null,
@@ -182,7 +182,7 @@ export class PresupuestoAspelExcelService {
           const presup = getCuentaMonthValue(cuenta, m, "presup");
           if (gasto === 0) return;
           if (gasto < 0 || gasto > presup) {
-            const cell = gastoRow.getCell(3 + mi); // col C = índice 3
+            const cell = gastoRow.getCell(3 + mi); // col C = óndice 3
             cell.font = { name: "Yu Gothic", size: 10, bold: true, color: { argb: "FFCC0000" } };
             if (gasto > presup) {
               cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "FFFFF0F0" } };
@@ -194,7 +194,7 @@ export class PresupuestoAspelExcelService {
 
     const lastDataRow = ws.rowCount;
 
-    // ── Fila totales presupuesto ──
+    // -- Fila totales presupuesto --
     const leaves    = cuentas.filter(c => !c.esFilaAgrupadora);
     const tPreMen   = leaves.reduce((s, c) => s + (getPresupuestoBaseMensual(c) || 0), 0);
     const tAcum     = leaves.reduce((s, c) => s + this.sumAll(c, "monto"), 0);
@@ -221,7 +221,7 @@ export class PresupuestoAspelExcelService {
       }
     });
 
-    // ── Fila totales gasto ──
+    // -- Fila totales gasto --
     const totalRow = ws.addRow([
       "TOTALES",
       tPreMen || null,
@@ -247,9 +247,9 @@ export class PresupuestoAspelExcelService {
       }
     });
 
-    // ── Formato condicional ──
+    // -- Formato condicional --
     if (lastDataRow >= DATA_START) {
-      // % > 100 → rojo
+      // % > 100 ? rojo
       ws.addConditionalFormatting({
         ref: `P${DATA_START}:P${lastDataRow}`,
         rules: [{
@@ -257,7 +257,7 @@ export class PresupuestoAspelExcelService {
           style: { font: { color: { argb: "FFCC0000" }, bold: true } },
         }],
       });
-      // RESTANTE < 0 → rojo
+      // RESTANTE < 0 ? rojo
       ws.addConditionalFormatting({
         ref: `R${DATA_START}:R${lastDataRow}`,
         rules: [{
@@ -271,8 +271,8 @@ export class PresupuestoAspelExcelService {
     }
   }
 
-  // ─── SHEET: EXTRAORDINARIOS (605) ────────────────────────────────────────
-  // 14 columnas: CUENTA | ENE…DIC | ACUMULADO
+  // --- SHEET: EXTRAORDINARIOS (605) ----------------------------------------
+  // 14 columnas: CUENTA | ENEóDIC | ACUMULADO
 
   private buildExtSheet(
     wb: ExcelJS.Workbook,
@@ -291,7 +291,7 @@ export class PresupuestoAspelExcelService {
       { key: "acum", width: 13 },
     ];
 
-    this.addTitleRow(ws, `GASTOS EXTRAORDINARIOS (605) – ${year}${empresa ? "  |  " + empresa.toUpperCase() : ""}`, lastCol, 1);
+    this.addTitleRow(ws, `GASTOS EXTRAORDINARIOS (605) é ${year}${empresa ? "  |  " + empresa.toUpperCase() : ""}`, lastCol, 1);
     this.addSubtitleRow(ws, lastCol, 2);
     this.addHeaderRow(ws, ["CUENTA", ...ASPEL_MONTHS.map(m => m.substring(0, 3).toUpperCase()), "ACUMULADO"], 3);
 
@@ -335,7 +335,7 @@ export class PresupuestoAspelExcelService {
       }
     }
 
-    // ── Totales ──
+    // -- Totales --
     const leaves   = extraordinarias.filter(c => !c.esFilaAgrupadora);
     const totalRow = ws.addRow([
       "TOTALES",
@@ -356,7 +356,7 @@ export class PresupuestoAspelExcelService {
     });
   }
 
-  // ─── SHEET: RESUMEN EJECUTIVO ─────────────────────────────────────────────
+  // --- SHEET: RESUMEN EJECUTIVO ---------------------------------------------
 
   private buildResumen(
     wb: ExcelJS.Workbook,
@@ -377,7 +377,7 @@ export class PresupuestoAspelExcelService {
       { key: "e", width: 13 },
     ];
 
-    // ── Cabecera ──
+    // -- Cabecera --
     ws.addRow([`RESUMEN EJECUTIVO  |  EJERCICIO FISCAL ${year}`]);
     ws.mergeCells("A1:E1");
     ws.getRow(1).height = 28;
@@ -394,7 +394,7 @@ export class PresupuestoAspelExcelService {
     }
     ws.addRow([]);
 
-    // ── KPIs ──
+    // -- KPIs --
     const allLeaves = [
       ...cuentas.filter(c => !c.esFilaAgrupadora),
       ...extraordinarias.filter(c => !c.esFilaAgrupadora),
@@ -405,7 +405,7 @@ export class PresupuestoAspelExcelService {
     const pctEjercido      = totalPresupuesto > 0 ? totalGasto / totalPresupuesto : 0;
     const totalRestante    = totalPresupuesto - totalGasto;
 
-    this.addSectionHeader(ws, "INDICADORES CLAVE DE DESEMPEÑO", "A", "E");
+    this.addSectionHeader(ws, "INDICADORES CLAVE DE DESEMPEíO", "A", "E");
 
     const kpis: [string, number | null, string][] = [
       ["Presupuesto Total Anual",    totalPresupuesto, "#,##0"],
@@ -442,7 +442,7 @@ export class PresupuestoAspelExcelService {
 
     ws.addRow([]);
 
-    // ── Top 5 desviaciones ──
+    // -- Top 5 desviaciones --
     this.addSectionHeader(ws, "TOP 5 CUENTAS CON MAYOR SOBREGASTO", "A", "E");
     this.addSmallHeader(ws, ["CUENTA", "PRESUPUESTO", "GASTO", "EXCEDIDO", "% EXCEDIDO"]);
 
@@ -490,7 +490,7 @@ export class PresupuestoAspelExcelService {
 
     ws.addRow([]);
 
-    // ── Resumen por mes ──
+    // -- Resumen por mes --
     this.addSectionHeader(ws, "RESUMEN DE GASTOS POR MES", "A", "E");
     this.addSmallHeader(ws, ["MES", "PRESUPUESTO", "GASTO", "DIFERENCIA", "% EJERCIDO"]);
 
@@ -555,7 +555,7 @@ export class PresupuestoAspelExcelService {
     });
   }
 
-  // ─── HELPERS ──────────────────────────────────────────────────────────────
+  // --- HELPERS --------------------------------------------------------------
 
   private addTitleRow(ws: ExcelJS.Worksheet, text: string, lastCol: string, rowNum: number): void {
     ws.addRow([text]);

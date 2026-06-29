@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewChild, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ConfirmationService, MessageService } from "primeng/api";
@@ -17,8 +17,8 @@ import { TagModule } from "primeng/tag";
 import { ToastModule } from "primeng/toast";
 import { TooltipModule } from "primeng/tooltip";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 
 @Component({
   selector: "app-web-overlays",
@@ -54,7 +54,7 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
 
       <!-- ── Dialogs ──────────────────────────────────────────────── -->
       <div class="col-12">
-        <p-card header="Dialogs — p-dialog">
+        <p-card header="Dialogs â€” p-dialog">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Reserva los dialogs para decisiones breves (confirmar, editar un campo, ver un detalle).
             Si el usuario necesita capturar información extensa, navega a una pantalla dedicada.
@@ -123,7 +123,7 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
                 <app-icon icon="mdi:file-document-outline" class="text-3xl text-primary" />
                 <div>
                   <strong class="block">ERP-2026-042</strong>
-                  <span class="text-sm text-color-secondary">Solicitud de compra — Sistemas</span>
+                  <span class="text-sm text-color-secondary">Solicitud de compra â€” Sistemas</span>
                 </div>
                 <p-tag value="Pendiente" severity="warn" [rounded]="true" class="ml-auto" />
               </div>
@@ -183,13 +183,13 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
           </p-dialog>
 
           <!-- Dialog: Grande -->
-          <p-dialog header="Vista Completa — Solicitudes del Mes" [(visible)]="dialogs.large"
+          <p-dialog header="Vista Completa â€” Solicitudes del Mes" [(visible)]="dialogs.large"
                     [modal]="true" [maximizable]="true" [style]="{width: 'min(96vw, 64rem)'}" [draggable]="false">
             <div class="flex flex-column gap-3">
               <p-message severity="info" text="Este dialog es ideal para reportes de solo consulta. Para edición extensa, usa una vista dedicada." />
               <div class="surface-ground border-round p-4 text-center text-color-secondary">
                 <app-icon icon="mdi:table-large" class="text-5xl mb-3 block mx-auto" />
-                <span class="text-sm">Tabla completa ERP iría aquí — con paginación, filtros y export PDF.</span>
+                <span class="text-sm">Tabla completa ERP iría aquí â€” con paginación, filtros y export PDF.</span>
               </div>
             </div>
             <ng-template #footer>
@@ -202,7 +202,7 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
 
       <!-- ── Drawer (Side Panel) ─────────────────────────────────── -->
       <div class="col-12 lg:col-6">
-        <p-card header="Drawer — Panel lateral / inferior">
+        <p-card header="Drawer â€” Panel lateral / inferior">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Úsalo para filtros avanzados, detalles contextuales o navegación secundaria
             sin abandonar la vista actual.
@@ -252,8 +252,8 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
               <div class="p-3 surface-ground border-round flex align-items-center gap-3">
                 <app-icon icon="mdi:file-document-outline" class="text-2xl text-primary" />
                 <div>
-                  <strong class="block">ERP-2026-042 — Solicitud de compra</strong>
-                  <span class="text-color-secondary">Sistemas · $45,000 MXN</span>
+                  <strong class="block">ERP-2026-042 â€” Solicitud de compra</strong>
+                  <span class="text-color-secondary">Sistemas Â· $45,000 MXN</span>
                 </div>
                 <p-tag value="Pendiente" severity="warn" [rounded]="true" class="ml-auto" />
               </div>
@@ -287,7 +287,7 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
                     El importe máximo para aprobación directa por Supervisor es $50,000 MXN.
                     Solicitudes mayores requieren firma de Dirección.
                   </p>
-                  <p-tag value="Nivel 2 · Operaciones" severity="info" [rounded]="true" />
+                  <p-tag value="Nivel 2 Â· Operaciones" severity="info" [rounded]="true" />
                 </div>
               </p-popover>
             </div>
@@ -327,10 +327,10 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
 
       <!-- ── Tooltips ──────────────────────────────────────────────── -->
       <div class="col-12">
-        <p-card header="Tooltips — pTooltip">
+        <p-card header="Tooltips â€” pTooltip">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Los tooltips complementan icons y controles icónicos.
-            <strong>Nunca sustituyen labels en acciones críticas</strong> — un botón importante
+            <strong>Nunca sustituyen labels en acciones críticas</strong> â€” un botón importante
             debe tener label visible, no solo tooltip.
           </p>
 
@@ -411,7 +411,7 @@ export class WebOverlays {
   editObs  = "";
 
   readonly detailFields = [
-    { label: "Área",      value: "Sistemas" },
+    { label: "Ãrea",      value: "Sistemas" },
     { label: "Importe",   value: "$45,000" },
     { label: "Fecha",     value: "01/06/2026" },
     { label: "Solicitó",  value: "Carlos M." },
@@ -476,3 +476,4 @@ export class WebOverlays {
     this.msgSvc.add({ severity: "info", summary: label, life: 2000 });
   }
 }
+

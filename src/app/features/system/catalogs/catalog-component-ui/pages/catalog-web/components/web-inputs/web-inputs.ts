@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, ViewEncapsulation } from "@angular/core";
 import {
   FormBuilder,
@@ -35,7 +35,7 @@ import {
   CustomInputTime,
   CustomInputUrl,
   CustomSearchInput,
-} from "src/app/core/components/inputs/web";
+} from "src/app/core/components/web/inputs";
 
 @Component({
   selector: "app-web-inputs",
@@ -242,7 +242,7 @@ import {
       </p-card>
 
       <!-- Especiales -->
-      <p-card header="Especiales — Máscara, URL y Teléfono">
+      <p-card header="Especiales â€” Máscara, URL y Teléfono">
         <div class="grid">
           <div class="col-12 lg:col-4">
             <custom-input-mask-signal
@@ -298,7 +298,7 @@ import {
                 <span class="block font-semibold mb-1"
                   >app-custom-input-upload-pdf-signal</span
                 >
-                Componente de diálogo — se abre vía
+                Componente de diálogo â€” se abre vía
                 <code>DynamicDialogService</code>, no como input directo.
               </div>
             </div>
@@ -362,3 +362,4 @@ export class WebInputs {
     { label: "Opción 3", value: 3 },
   ];
 }
+

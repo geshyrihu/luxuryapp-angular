@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import {
   globalFilterFields,
@@ -9,7 +9,7 @@ import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 // DETALLE IMPORTANTE: Una interfaz para la estructura de los datos.
-// Esto es opcional pero hace el código mucho más robusto y fácil de leer.
+// Esto es opcional pero hace el código mucho mós robusto y fócil de leer.
 interface ActivoItem {
   photoPath: string;
   ubication: string;
@@ -30,18 +30,18 @@ interface ActivoGroup {
   templateUrl: "./reporte-completo-activos.html",
   imports: [SanitizeHtmlPipe, ProgressSpinnerModule],
 })
-// ¡CAMBIO! Ya no implementamos OnInit.
+// óCAMBIO! Ya no implementamos OnInit.
 export class ReporteCompletoActivos {
-  // --- INYECCIÓN DE DEPENDENCIAS (sin cambios) ---
+  // --- INYECCIóN DE DEPENDENCIAS (sin cambios) ---
   private customerIdS = inject(CustomerIdService);
   apiResponseS = inject(ApiResponseService);
   // --- ESTADO DEL COMPONENTE CON SIGNALS ---
 
-  // ¡CAMBIO CLAVE! `data` ahora es un signal. Mantenemos el nombre por convención.
+  // óCAMBIO CLAVE! `data` ahora es un signal. Mantenemos el nombre por convención.
   data = signal<ActivoGroup[]>([]);
   loading = signal(true);
 
-  // --- PROPIEDADES DE CONFIGURACIÓN (sin cambios) ---
+  // --- PROPIEDADES DE CONFIGURACIóN (sin cambios) ---
   globalFilterFields = computed(() => globalFilterFields(this.data()));
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();

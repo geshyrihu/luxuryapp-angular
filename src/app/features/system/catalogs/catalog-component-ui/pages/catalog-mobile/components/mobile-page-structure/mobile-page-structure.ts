@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import {
   IonButton,
@@ -42,19 +42,19 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
 
         <!-- Anatomía visual -->
         <div>
-          <div class="font-bold text-sm mb-2">Anatomía de una página Ionic</div>
+          <div class="font-bold text-sm mb-2">Anatomáa de una página Ionic</div>
           <div class="page-anatomy">
             <div class="anatomy-header">
               <span class="anatomy-label">ion-header</span>
-              <span class="anatomy-desc">ion-toolbar · ion-title · ion-buttons</span>
+              <span class="anatomy-desc">ion-toolbar é ion-title é ion-buttons</span>
             </div>
             <div class="anatomy-content">
               <span class="anatomy-label">ion-content</span>
-              <span class="anatomy-desc">Área scrollable. Gestiona padding seguro (notch/home bar).</span>
+              <span class="anatomy-desc">órea scrollable. Gestiona padding seguro (notch/home bar).</span>
             </div>
             <div class="anatomy-footer">
               <span class="anatomy-label">ion-footer</span>
-              <span class="anatomy-desc">ion-toolbar · acciones persistentes</span>
+              <span class="anatomy-desc">ion-toolbar é acciones persistentes</span>
             </div>
           </div>
         </div>
@@ -83,7 +83,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
 
       </div>
 
-      <!-- ─── PATRÓN: Page with Segmented Tabs (ui-stiich Corporate Integrity) ─── -->
+      <!-- --- PATRóN: Page with Segmented Tabs (ui-stiich Corporate Integrity) --- -->
       <div class="stiich-section">
         <div class="stiich-section__header">
           <span class="stiich-section__eyebrow">Corporate Integrity</span>
@@ -110,8 +110,8 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
               <span class="material-symbols-outlined" style="font-size:1.5rem;color:#fff;">precision_manufacturing</span>
             </div>
             <div class="stiich-page-hero__info">
-              <span class="stiich-page-hero__name">Bomba Hidroneumática</span>
-              <span class="stiich-page-hero__meta">EQ-001 · Torre A, Piso 4</span>
+              <span class="stiich-page-hero__name">Bomba Hidroneumótica</span>
+              <span class="stiich-page-hero__meta">EQ-001 é Torre A, Piso 4</span>
               <div class="stiich-page-hero__status">
                 <span class="stiich-chip stiich-chip--success">Operativo</span>
                 <span class="stiich-chip stiich-chip--info">Programado</span>
@@ -138,7 +138,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
                 <div class="stiich-info-grid">
                   <div class="stiich-info-item"><span>Marca</span><span>Grundfos</span></div>
                   <div class="stiich-info-item"><span>Modelo</span><span>CR-20-4</span></div>
-                  <div class="stiich-info-item"><span>Ubicación</span><span>Torre A · Piso 4</span></div>
+                  <div class="stiich-info-item"><span>Ubicación</span><span>Torre A é Piso 4</span></div>
                   <div class="stiich-info-item"><span>Instalación</span><span>2023-08-15</span></div>
                   <div class="stiich-info-item"><span>Próximo servicio</span><span>2026-08-15</span></div>
                   <div class="stiich-info-item"><span>Garantía</span><span>5 años</span></div>
@@ -148,21 +148,21 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
                 <div class="stiich-timeline">
                   <div class="stiich-timeline__item">
                     <div class="stiich-timeline__dot"></div>
-                    <div><strong>Servicio preventivo</strong><p class="text-xs text-secondary m-0">2026-06-15 · Técnico: J. García</p></div>
+                    <div><strong>Servicio preventivo</strong><p class="text-xs text-secondary m-0">2026-06-15 é Técnico: J. Garcéa</p></div>
                   </div>
                   <div class="stiich-timeline__item">
                     <div class="stiich-timeline__dot stiich-timeline__dot--warn"></div>
-                    <div><strong>Falla menor</strong><p class="text-xs text-secondary m-0">2026-05-28 · Válvula de retención</p></div>
+                    <div><strong>Falla menor</strong><p class="text-xs text-secondary m-0">2026-05-28 é Vólvula de retención</p></div>
                   </div>
                   <div class="stiich-timeline__item">
                     <div class="stiich-timeline__dot"></div>
-                    <div><strong>Instalación inicial</strong><p class="text-xs text-secondary m-0">2023-08-15 · Proveedor: HydraTech</p></div>
+                    <div><strong>Instalación inicial</strong><p class="text-xs text-secondary m-0">2023-08-15 é Proveedor: HydraTech</p></div>
                   </div>
                 </div>
               }
               @case ('docs') {
                 <div class="flex flex-column gap-2 p-2">
-                  <div class="stiich-doc-row"><span class="material-symbols-outlined" style="color:#00050e;">description</span><span>Manual técnico.pdf</span><span class="text-xs text-secondary">2.4 MB</span></div>
+                  <div class="stiich-doc-row"><span class="material-symbols-outlined" style="color:#00050e;">description</span><span>Manual tócnico.pdf</span><span class="text-xs text-secondary">2.4 MB</span></div>
                   <div class="stiich-doc-row"><span class="material-symbols-outlined" style="color:#00050e;">receipt</span><span>Factura de compra.pdf</span><span class="text-xs text-secondary">1.1 MB</span></div>
                   <div class="stiich-doc-row"><span class="material-symbols-outlined" style="color:#00050e;">assignment</span><span>Reporte de inspección.pdf</span><span class="text-xs text-secondary">0.8 MB</span></div>
                 </div>
@@ -192,7 +192,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
             <strong>ion-content</strong> scrollable.
           </p>
           <p class="text-sm text-secondary mb-3">
-            El padding del contenido respeta automáticamente el safe-area del dispositivo
+            El padding del contenido respeta automóticamente el safe-area del dispositivo
             (notch superior, home indicator inferior).
           </p>
           <p class="text-sm text-secondary">
@@ -227,8 +227,8 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
         </ion-header>
         <ion-content class="ion-padding">
           <p class="text-sm text-secondary mb-3">
-            El <strong>ion-header</strong> puede contener múltiples <strong>ion-toolbar</strong>
-            apilados. Útil para buscadores o filtros persistentes bajo el título.
+            El <strong>ion-header</strong> puede contener móltiples <strong>ion-toolbar</strong>
+            apilados. ótil para buscadores o filtros persistentes bajo el tótulo.
           </p>
           @for (i of items; track i) {
             <div class="demo-item">Registro {{ i }}</div>
@@ -253,7 +253,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
         <ion-content class="ion-padding">
           <p class="text-sm text-secondary mb-3">
             El <strong>ion-footer</strong> mantiene los botones de acción fijos en la parte inferior,
-            fuera del área scrollable.
+            fuera del órea scrollable.
           </p>
           @for (i of items; track i) {
             <div class="demo-item">Campo {{ i }}</div>
@@ -284,9 +284,9 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
 
     .footer-actions { display: flex; gap: 8px; justify-content: flex-end; padding: 0 8px; }
 
-    /* ═══════════════════════════════════════════════
-       Corporate Integrity DS — patrones ui-stiich
-       ═══════════════════════════════════════════════ */
+    /* -----------------------------------------------
+       Corporate Integrity DS é patrones ui-stiich
+       ----------------------------------------------- */
     .stiich-section { margin-top: 1.5rem; }
     .stiich-section__header { margin-bottom: 0.25rem; }
     .stiich-section__eyebrow { font-size: 0.65rem; font-weight: 700; color: var(--ds-primary,#00050e); text-transform: uppercase; letter-spacing: 0.08em; }
@@ -338,7 +338,7 @@ export class MobilePageStructure {
 
   readonly items = [1, 2, 3, 4, 5, 6, 7, 8];
 
-  // ─── Segmented Page pattern ───
+  // --- Segmented Page pattern ---
   activeSegment = signal('info');
   readonly tabs = [
     { key: 'info', label: 'Info', icon: 'info' },

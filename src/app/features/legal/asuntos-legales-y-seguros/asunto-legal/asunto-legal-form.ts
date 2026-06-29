@@ -1,10 +1,10 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -28,7 +28,7 @@ export class AsuntoLegalForm implements OnInit {
   id: string = "";
   submitting = signal(false);
 
-  // Signal para categoróas
+  // Signal para categorías
   cb_categories = signal<ISelectItem[]>([]);
 
   cb_resposanbles: ISelectItem[] = [
@@ -86,7 +86,7 @@ export class AsuntoLegalForm implements OnInit {
           : result.legalMatterCategoryId;
     }
 
-    // Buscar la categoróa completa
+    // Buscar la categoría completa
     const selectedCategory = legalMatterCategoryId
       ? this.cb_categories().find(
           (item) => item.value === legalMatterCategoryId,
@@ -101,7 +101,7 @@ export class AsuntoLegalForm implements OnInit {
   }
 
   saveCategorie = (item: ISelectItem) => {
-    // Si item es null, significa que es una categoróa nueva (texto libre)
+    // Si item es null, significa que es una categoría nueva (texto libre)
     if (item === null) {
       this.form.patchValue({
         legalMatterCategoryId: null,
@@ -136,3 +136,4 @@ export class AsuntoLegalForm implements OnInit {
     });
   }
 }
+

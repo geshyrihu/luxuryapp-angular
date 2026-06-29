@@ -1,12 +1,12 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, OnInit, inject } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 
 // PrimeNG
 import { MessageModule } from "primeng/message";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomInputFile } from "src/app/core/components/web/inputs/custom-input-file-signal";
 
 // Services
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -82,3 +82,4 @@ export default class BulkImportModal implements OnInit {
     this.ref.close(this.result && this.result.successCount > 0);
   }
 }
+

@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonList, IonToggle } from "@ionic/angular/standalone";
@@ -7,7 +7,7 @@ import { checkmarkOutline, closeOutline } from "ionicons/icons";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
-import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
+import { CustomSearchInput } from "src/app/core/components/web/inputs/custom-search-input-signal";
 import { FormsModule } from "@angular/forms";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -109,3 +109,4 @@ export class CustomerModulEdit implements OnInit {
     this.dataConnectorS.post(urlApi, data).subscribe();
   }
 }
+

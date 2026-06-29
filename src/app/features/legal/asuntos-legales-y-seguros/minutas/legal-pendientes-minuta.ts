@@ -1,14 +1,14 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonItem } from "src/app/core/components/buttons/web";
-import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButtonItem } from "src/app/core/components/web/buttons";
+import { CustomButtonAdd } from "src/app/core/components/web/buttons/custom-button-add";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -136,3 +136,4 @@ export class LegalPendientesMinuta implements OnInit {
     this.onLoadData();
   }
 }
+

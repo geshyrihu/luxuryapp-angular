@@ -1,11 +1,11 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ConfirmationService } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { EditorModule } from "primeng/editor";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -92,4 +92,5 @@ export class ServiceOrder implements OnInit {
       });
   }
 }
+
 

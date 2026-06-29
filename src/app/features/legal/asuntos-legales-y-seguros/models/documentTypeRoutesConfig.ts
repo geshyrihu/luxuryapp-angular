@@ -1,5 +1,5 @@
-import { EDocumentType } from "./document-type.enum";
-// Mapeo de EDocumentType a nombres de carpeta y títulos para las rutas
+﻿import { EDocumentType } from "./document-type.enum";
+// Mapeo de EDocumentType a nombres de carpeta y tótulos para las rutas
 
 export const documentTypeRoutesConfig = [
   // {

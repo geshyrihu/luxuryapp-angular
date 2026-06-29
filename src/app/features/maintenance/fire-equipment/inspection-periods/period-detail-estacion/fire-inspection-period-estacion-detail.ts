@@ -1,4 +1,4 @@
-import { CommonModule, Location } from "@angular/common";
+﻿import { CommonModule, Location } from "@angular/common";
 import { Component, computed, ElementRef, inject, OnDestroy, OnInit, signal, ViewChild } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -104,7 +104,7 @@ export class FireInspectionPeriodEstacionDetail implements OnInit, OnDestroy {
       return;
     }
     if (item.cycleStatus === "Realizada") {
-      if (!window.confirm("Este equipo ya fue inspeccionado. ¿Deseas actualizar los datos?")) return;
+      if (!window.confirm("Este equipo ya fue inspeccionado. óDeseas actualizar los datos?")) return;
     }
     await this.dialogHandlerS.openDialog(
       FireCycleInspectionEstacionForm,
@@ -127,18 +127,18 @@ export class FireInspectionPeriodEstacionDetail implements OnInit, OnDestroy {
 
   async startScan() {
     this.scanError.set("");
-    this.scanStatus.set("Iniciando cámara...");
+    this.scanStatus.set("Iniciando cómara...");
     this.scanning.set(true);
     try {
       this.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
       const video = this.videoEl.nativeElement;
       video.srcObject = this.stream;
       await video.play();
-      this.scanStatus.set("Apunta la cámara al código QR del equipo.");
+      this.scanStatus.set("Apunta la cómara al código QR del equipo.");
       this.scanLoop(video);
     } catch {
       this.scanning.set(false);
-      this.scanError.set("No se pudo acceder a la cámara. Verifica los permisos.");
+      this.scanError.set("No se pudo acceder a la cómara. Verifica los permisos.");
       this.scanStatus.set("");
     }
   }

@@ -1,8 +1,8 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { differenceInDays } from "date-fns"; // Utilidad para calcular la diferencia en días
 import { TableModule } from "primeng/table";
-import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
+import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -60,3 +60,4 @@ export class ContractsPolicies {
     return daysDifference <= 45;
   }
 }
+

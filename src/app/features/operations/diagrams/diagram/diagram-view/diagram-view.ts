@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   AfterViewInit,
   Component,
@@ -104,7 +104,7 @@ export class DiagramView implements OnInit, AfterViewInit {
   }
 
   loadViewerScript() {
-    // Si el script ya está cargado, lo reinicializamos
+    // Si el script ya esté cargado, lo reinicializamos
     if ((window as any).GraphViewer) {
       this.renderDiagram();
       return;

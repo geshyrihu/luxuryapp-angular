@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from "@angular/core";
+﻿import { Component, effect, inject, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -42,7 +42,7 @@ export class MiEdificio {
       .openDialog(
         FichaTecnicaActivo,
         data,
-        "Ficha Técnica",
+        "Ficha Tócnica",
         this.dialogHandlerS.sizeFull,
       )
       .then((result: boolean) => {

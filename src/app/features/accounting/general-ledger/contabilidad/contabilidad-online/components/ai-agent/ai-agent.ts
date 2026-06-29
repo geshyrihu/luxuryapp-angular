@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   inject,
@@ -58,21 +58,21 @@ export class AiAgentComponent {
     {
       role: "assistant",
       content:
-        "Hola, soy tu Auditor Contable IA. Estoy analizando el reporte actual. ¿En qué te puedo ayudar?",
+        "Hola, soy tu Auditor Contable IA. Estoy analizando el reporte actual. óEn quó te puedo ayudar?",
     },
   ]);
 
   suggestedQuestions = [
-    "¿Los estados financieros fueron elaborados bajo principios contables consistentes?",
-    "¿Existen variaciones significativas y cuáles son sus causas?",
-    "¿La balanza de comprobación concilia correctamente con el balance?",
-    "¿Se realizaron ajustes contables posteriores al cierre?",
-    "¿Cuál es el porcentaje de cobranza del periodo y cómo se compara?",
-    "¿Existen diferencias entre ingresos en bancos y contables?",
-    "¿Qué desviaciones presupuestales se presentaron y justificaciones?",
-    "¿Existen pagos duplicados o anticipos pendientes?",
-    "¿Las conciliaciones bancarias están actualizadas?",
-    "¿Existen partidas en tránsito mayores a 30 días?",
+    "óLos estados financieros fueron elaborados bajo principios contables consistentes?",
+    "óExisten variaciones significativas y cuóles son sus causas?",
+    "óLa balanza de comprobación concilia correctamente con el balance?",
+    "óSe realizaron ajustes contables posteriores al cierre?",
+    "óCuól es el porcentaje de cobranza del periodo y cómo se compara?",
+    "óExisten diferencias entre ingresos en bancos y contables?",
+    "óQuó desviaciones presupuestales se presentaron y justificaciones?",
+    "óExisten pagos duplicados o anticipos pendientes?",
+    "óLas conciliaciones bancarias estén actualizadas?",
+    "óExisten partidas en trónsito mayores a 30 días?",
   ];
 
   togglePanel() {
@@ -137,7 +137,7 @@ export class AiAgentComponent {
         {
           role: "assistant",
           content:
-            "Ocurrió un error al procesar tu pregunta. Por favor, intenta de nuevo más tarde.",
+            "Ocurrié un error al procesar tu pregunta. Por favor, intenta de nuevo mós tarde.",
         },
       ]);
     } finally {
@@ -183,13 +183,13 @@ export class AiAgentComponent {
       if (!played) {
         this.toastS.showError(
           "No se pudo reproducir",
-          "La respuesta se recibió, pero no fue posible generar el audio con ElevenLabs.",
+          "La respuesta se recibié, pero no fue posible generar el audio con ElevenLabs.",
         );
       }
     } catch {
       this.toastS.showError(
         "Error de audio",
-        "Ocurrió un problema al reproducir la respuesta con ElevenLabs.",
+        "Ocurrié un problema al reproducir la respuesta con ElevenLabs.",
       );
     } finally {
       this.speaking.set(false);

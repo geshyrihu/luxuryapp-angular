@@ -1,163 +1,224 @@
 ---
-name: Executive Precision
+name: ERP Premium · Deep Navy
 colors:
-  surface: "#fdf7ff"
-  surface-dim: "#ded8e0"
-  surface-bright: "#fdf7ff"
-  surface-container-lowest: "#ffffff"
-  surface-container-low: "#f8f2fa"
-  surface-container: "#f2ecf4"
-  surface-container-high: "#ece6ee"
-  surface-container-highest: "#e6e0e9"
-  on-surface: "#1d1b20"
-  on-surface-variant: "#494551"
-  inverse-surface: "#322f35"
-  inverse-on-surface: "#f5eff7"
-  outline: "#7a7582"
-  outline-variant: "#cbc4d2"
-  surface-tint: "#6750a4"
-  primary: "#4f378a"
-  on-primary: "#ffffff"
-  primary-container: "#6750a4"
-  on-primary-container: "#e0d2ff"
-  inverse-primary: "#cfbcff"
-  secondary: "#63597c"
-  on-secondary: "#ffffff"
-  secondary-container: "#e1d4fd"
-  on-secondary-container: "#645a7d"
-  tertiary: "#765b00"
-  on-tertiary: "#ffffff"
-  tertiary-container: "#c9a74d"
-  on-tertiary-container: "#503d00"
-  error: "#ba1a1a"
-  on-error: "#ffffff"
-  error-container: "#ffdad6"
-  on-error-container: "#93000a"
-  primary-fixed: "#e9ddff"
-  primary-fixed-dim: "#cfbcff"
-  on-primary-fixed: "#22005d"
-  on-primary-fixed-variant: "#4f378a"
-  secondary-fixed: "#e9ddff"
-  secondary-fixed-dim: "#cdc0e9"
-  on-secondary-fixed: "#1f1635"
-  on-secondary-fixed-variant: "#4b4263"
-  tertiary-fixed: "#ffdf93"
-  tertiary-fixed-dim: "#e7c365"
-  on-tertiary-fixed: "#241a00"
-  on-tertiary-fixed-variant: "#594400"
-  background: "#fdf7ff"
-  on-background: "#1d1b20"
-  surface-variant: "#e6e0e9"
+  # ─── PRIMARIO (Azul Profundo) ───
+  primary: "#1B365D"
+  on-primary: "#FFFFFF"
+  primary-dark: "#12243D"
+  primary-light: "#2A4D7C"
+  primary-container: "#E8EEF6"
+  on-primary-container: "#1B365D"
+
+  # ─── SECUNDARIO (Acentos) ───
+  secondary-gold: "#D4A74A"
+  on-secondary-gold: "#1B365D"
+  secondary-emerald: "#1E9B6D"
+  on-secondary-emerald: "#FFFFFF"
+  secondary-crimson: "#D34B4B"
+  on-secondary-crimson: "#FFFFFF"
+  secondary-cyan: "#4A90E2"
+  on-secondary-cyan: "#FFFFFF"
+
+  # ─── NEUTROS ───
+  surface: "#F8F9FC"
+  surface-card: "#FFFFFF"
+  surface-dim: "#E8EEF6"
+  on-surface: "#1A2634"
+  on-surface-secondary: "#5A6878"
+  on-surface-tertiary: "#9AACBB"
+  outline: "#E2E8F0"
+  outline-strong: "#C5D0DB"
+
+  # ─── ESTADOS (Feedback) ───
+  success: "#1E9B6D"
+  success-container: "#E6F7F0"
+  on-success-container: "#0D5E3F"
+
+  error: "#D34B4B"
+  error-container: "#FDE8E8"
+  on-error-container: "#8A1F1F"
+
+  warning: "#D4A74A"
+  warning-container: "#FCF3E0"
+  on-warning-container: "#7A5E15"
+
+  info: "#4A90E2"
+  info-container: "#E8EEF6"
+  on-info-container: "#1B365D"
+
+  # ─── SOMBRAS ───
+  shadow: "rgba(27, 54, 93, 0.15)"
+
 typography:
+  font-family: "Inter, -apple-system, BlinkMacSystemFont, sans-serif"
+
   display-lg:
-    fontFamily: Inter
     fontSize: 48px
     fontWeight: "700"
     lineHeight: 56px
-    letterSpacing: -0.02em
+    letterSpacing: "-0.02em"
+
+  display-md:
+    fontSize: 40px
+    fontWeight: "700"
+    lineHeight: 48px
+    letterSpacing: "-0.02em"
+
   headline-lg:
-    fontFamily: Inter
     fontSize: 32px
     fontWeight: "600"
     lineHeight: 40px
-    letterSpacing: -0.01em
-  headline-lg-mobile:
-    fontFamily: Inter
+    letterSpacing: "-0.01em"
+
+  headline-md:
     fontSize: 24px
     fontWeight: "600"
     lineHeight: 32px
-  title-md:
-    fontFamily: Inter
+    letterSpacing: "-0.01em"
+
+  title-lg:
     fontSize: 20px
     fontWeight: "600"
     lineHeight: 28px
+
+  title-md:
+    fontSize: 18px
+    fontWeight: "600"
+    lineHeight: 24px
+
   body-lg:
-    fontFamily: Inter
     fontSize: 16px
     fontWeight: "400"
     lineHeight: 24px
+
   body-md:
-    fontFamily: Inter
     fontSize: 14px
     fontWeight: "400"
     lineHeight: 20px
-  label-sm:
-    fontFamily: Inter
+
+  body-sm:
+    fontSize: 13px
+    fontWeight: "400"
+    lineHeight: 18px
+
+  label-lg:
+    fontSize: 14px
+    fontWeight: "500"
+    lineHeight: 20px
+    letterSpacing: "0.02em"
+
+  label-md:
     fontSize: 12px
     fontWeight: "500"
     lineHeight: 16px
-    letterSpacing: 0.05em
+    letterSpacing: "0.04em"
+
+  label-sm:
+    fontSize: 10px
+    fontWeight: "600"
+    lineHeight: 14px
+    letterSpacing: "0.06em"
+    textTransform: "uppercase"
+
 rounded:
-  sm: 0.125rem
-  DEFAULT: 0.25rem
-  md: 0.375rem
-  lg: 0.5rem
-  xl: 0.75rem
+  xs: 4px # 0.25rem — Botones, inputs
+  sm: 6px # 0.375rem
+  md: 8px # 0.5rem — Tarjetas, modales
+  lg: 12px # 0.75rem
+  xl: 16px # 1rem
   full: 9999px
+
 spacing:
   unit: 8px
   container-max-width: 1440px
   gutter: 24px
   margin-desktop: 40px
   margin-mobile: 16px
+  stack-xs: 4px
   stack-sm: 8px
   stack-md: 16px
-  stack-lg: 32px
+  stack-lg: 24px
+  stack-xl: 32px
+  stack-2xl: 48px
+
+elevation:
+  level-0: "none"
+  level-1: "0 1px 2px rgba(27,54,93,0.06)"
+  level-2: "0 2px 8px rgba(27,54,93,0.08)"
+  level-3: "0 4px 16px rgba(27,54,93,0.10)"
+  level-4: "0 8px 32px rgba(27,54,93,0.12)"
 ---
 
 ## Brand & Style
 
-The design system is engineered for high-stakes corporate environments where clarity, authority, and efficiency are paramount. The brand personality is "Institutional Modernism"—combining the stability of traditional corporate identities with the fluid, data-driven interfaces of modern SaaS.
+**ERP Premium · Deep Navy** is a design system engineered for high-stakes corporate environments where clarity, authority, and efficiency are paramount. The brand personality is "Institutional Modernism"—combining the stability of traditional corporate identities with the fluid, data-driven interfaces of modern SaaS.
 
 The aesthetic leans into **Minimalism** with a **Corporate Modern** execution. It prioritizes high-quality typography and strategic whitespace to reduce cognitive load for executive decision-makers. Visual interest is generated through precise geometry and a "Content-First" hierarchy, ensuring that data visualization and key performance indicators remain the focal point of every view.
 
+### Brand Pillars
+
+- **Trust** — Deep navy (`#1B365D`) conveys stability, security, and institutional authority.
+- **Precision** — Every spacing, type size, and color is mathematically grounded in an 8px grid.
+- **Clarity** — High contrast ratios (WCAG AA+ minimum) ensure legibility for all users.
+- **Efficiency** — Designed for dense data interfaces where information density is balanced with readability.
+
+---
+
 ## Colors
 
-This design system utilizes five distinct color themes to cater to different corporate sub-brands or functional modules. Each palette is anchored by a high-contrast Primary color used for navigation and brand presence, and a Secondary color for interactive elements and accents.
+This design system utilizes a **single authoritative primary palette** anchored by `#1B365D` (Deep Navy), supported by a curated set of accent colors for interaction and feedback.
 
-- **Surface Tones:** Backgrounds utilize very light desaturated tints of the primary hue (98-95% lightness) to maintain brand cohesion without sacrificing readability.
-- **Contrast:** A strict adherence to WCAG AAA standards (7:1) for all body text is required.
-- **Functional Colors:** Success (Emerald), Warning (Amber), and Error (Crimson) should be desaturated to align with the professional tone of the primary palettes.
+### Primary Palette (Deep Navy)
 
-## Typography
+The primary color is used for navigation bars, primary buttons, headers, and key UI anchors. Its dark value provides excellent contrast against white and light surfaces.
 
-**Inter** is the sole typeface for this design system to ensure maximum legibility across high-density data grids and complex dashboards.
+| Token               | Hex       | Usage                                                     |
+| :------------------ | :-------- | :-------------------------------------------------------- |
+| `primary`           | `#1B365D` | Primary buttons, headers, tab bars, active states         |
+| `primary-dark`      | `#12243D` | Pressed states, deep shadows, dark mode surfaces          |
+| `primary-light`     | `#2A4D7C` | Hover states, active borders, progress indicators         |
+| `primary-container` | `#E8EEF6` | Selected cell backgrounds, subtle badges, tinted surfaces |
+| `on-primary`        | `#FFFFFF` | All text and icons on primary backgrounds                 |
 
-- **Weight Strategy:** Use `SemiBold` (600) for section headings to provide a strong visual anchor. Use `Medium` (500) for UI labels to differentiate them from static body text.
-- **Letter Spacing:** Headlines utilize negative tracking (-1% to -2%) to appear tighter and more "editorial," while small labels use positive tracking (+5%) to maintain legibility at small scales.
-- **Scaling:** On mobile devices, Display and Headline sizes scale down by approximately 25% to avoid excessive line-wrapping in narrow viewports.
+**Contrast:** White text on `#1B365D` achieves a **9.5:1** contrast ratio (AAA).
 
-## Layout & Spacing
+---
 
-The design system follows a **Fixed-Fluid Hybrid Grid**. The content is housed within a 1440px max-width container, centered on the screen.
+### Secondary Palette (Accents)
 
-- **Grid:** A 12-column system is used for desktop, 8-column for tablet, and 4-column for mobile.
-- **Rhythm:** An 8px linear scale governs all spatial relationships.
-- **Density:** Executive interfaces should default to a "Comfortable" density (16px/24px padding), but data-heavy modules (like financial tables) may switch to a "Compact" density (8px/12px) to maximize information per screen.
-- **Reflow:** On mobile, sidebars collapse into bottom-navigation bars or "hamburger" menus, and multi-column forms reflow into a single vertical stack.
+Accent colors are used sparingly to draw attention to specific actions or statuses. They should never compete with the primary navy for dominance.
 
-## Elevation & Depth
+| Token               | Hex       | Usage                                                            |
+| :------------------ | :-------- | :--------------------------------------------------------------- |
+| `secondary-gold`    | `#D4A74A` | High-priority modules, VIP badges, premium features, key metrics |
+| `secondary-emerald` | `#1E9B6D` | Success states, "Save" / "Confirm" actions, positive trends      |
+| `secondary-crimson` | `#D34B4B` | Danger states, "Delete" / "Reject" actions, critical errors      |
+| `secondary-cyan`    | `#4A90E2` | Informational links, help icons, non-critical notifications      |
 
-Depth is conveyed through **Tonal Layers** rather than heavy shadows. This maintains the clean, "flat-modern" aesthetic favored in corporate software.
+**Gold on Navy:** The gold accent (`#D4A74A`) on `#1B365D` achieves a **6.8:1** contrast ratio and is the signature "premium" combination.
 
-- **Level 0 (Base):** The primary background color.
-- **Level 1 (Cards/Surface):** White or slightly off-white surfaces with a 1px border (#E0E0E0).
-- **Level 2 (Interaction):** A subtle, ultra-diffused shadow (Y: 4, Blur: 12, Opacity: 0.05) is applied only when an element is hovered or active.
-- **Outlines:** Use "Ghost Borders"—low-contrast (10-15% opacity) strokes—to define structure without creating visual noise.
+---
 
-## Shapes
+### Neutral Palette
 
-The shape language is **Soft (0.25rem)**. This provides a professional, "tailored" appearance that feels modern without being overly casual or "bubbly."
+Neutrals are subtly tinted with a cool blue undertone to maintain harmony with the primary navy.
 
-- **Buttons:** 4px (0.25rem) corner radius.
-- **Cards/Modals:** 8px (0.5rem) corner radius for larger containers.
-- **Form Inputs:** 4px (0.25rem) to match buttons, creating a unified horizontal line across forms.
+| Token                  | Hex       | Usage                                                 |
+| :--------------------- | :-------- | :---------------------------------------------------- |
+| `surface`              | `#F8F9FC` | Main application background (white with 2% blue)      |
+| `surface-card`         | `#FFFFFF` | Cards, modals, input fields, elevated surfaces        |
+| `surface-dim`          | `#E8EEF6` | Disabled surfaces, subtle section backgrounds         |
+| `on-surface`           | `#1A2634` | Primary text (headlines, body copy)                   |
+| `on-surface-secondary` | `#5A6878` | Secondary text (subtitles, placeholders, dates)       |
+| `on-surface-tertiary`  | `#9AACBB` | Tertiary text (disabled states, non-essential labels) |
+| `outline`              | `#E2E8F0` | Dividers, input borders, card strokes                 |
+| `outline-strong`       | `#C5D0DB` | Active input borders, focused states                  |
 
-## Components
+---
 
-- **Buttons:** Primary buttons use the palette's `Primary` color with white text. Secondary buttons use a "Ghost" style (Primary color border and text).
-- **Cards:** Used for grouping related data. Cards should have a 1px solid border with no shadow in their default state.
-- **Input Fields:** Use a floating label or top-aligned label. The "Active" state is indicated by a 2px bottom border or a full-border tint in the `Secondary` color.
-- **Data Tables:** Highly structured with `body-md` typography. Use zebra-striping (tinted at 2% opacity) for row readability.
-- **Chips:** Used for status indicators (e.g., "Pending," "Approved"). These use a desaturated background of the status color with high-contrast text.
-- **Navigation:** A persistent left-hand sidebar for desktop, utilizing the `Primary` color at 100% saturation for the background to anchor the application.
+### Feedback States (Containers)
+
+These container colors provide visual feedback without overwhelming the interface.
+
+| Token | Hex | Usage |
+| :

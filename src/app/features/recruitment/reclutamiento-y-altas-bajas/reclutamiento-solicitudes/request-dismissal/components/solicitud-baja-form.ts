@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
   AbstractControl,
@@ -12,13 +12,13 @@ import { Router } from "@angular/router";
 import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -387,3 +387,4 @@ export class SolicitudBajaForm implements OnInit {
     }
   }
 }
+

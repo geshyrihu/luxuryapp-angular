@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -7,8 +7,8 @@ import { TableModule } from "primeng/table";
 import {
   CustomButtonDelete,
   CustomButtonEdit,
-} from "src/app/core/components/buttons/web";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+} from "src/app/core/components/web/buttons";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -133,11 +133,11 @@ export class PropiedadesList {
     }
 
     Swal.fire({
-      title: "Confirmar ImportaciÃ³n",
-      text: "AsegÃ³rate de que el archivo utiliza el formato de la plantilla descargada. Ã³Deseas continuar?",
+      title: "Confirmar Importación",
+      text: "Asegórate de que el archivo utiliza el formato de la plantilla descargada. óDeseas continuar?",
       icon: "info",
       showCancelButton: true,
-      confirmButtonText: "SÃ­, importar",
+      confirmButtonText: "Sí, importar",
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -153,3 +153,4 @@ export class PropiedadesList {
     });
   }
 }
+

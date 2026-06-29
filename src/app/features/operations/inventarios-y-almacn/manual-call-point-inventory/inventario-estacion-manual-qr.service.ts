@@ -1,4 +1,4 @@
-import { Injectable, inject } from "@angular/core";
+﻿import { Injectable, inject } from "@angular/core";
 import QRCode from "qrcode";
 import { IInventarioEstacionManual } from "src/app/core/interfaces/inventario-estacion-manual.interface";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
@@ -68,7 +68,7 @@ export class InventarioEstacionManualQrService {
     return `<div class="label">
     <div class="yellow-stripe"></div>
     ${code}
-    <div class="label-title">ESTACIÓN MANUAL<br>${this.htmlPrintS.esc(item.stationType)}</div>
+    <div class="label-title">ESTACIóN MANUAL<br>${this.htmlPrintS.esc(item.stationType)}</div>
     <div class="label-location">${this.htmlPrintS.esc(item.location)}</div>
     <div class="label-qr"><img src="${qrDataUrl}" alt="QR"/></div>
     <div class="label-footer">Escanear para registrar inspección</div>

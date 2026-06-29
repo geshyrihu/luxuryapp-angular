@@ -1,10 +1,10 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { DatePipe } from "@angular/common";
 import { TableModule } from "primeng/table";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -73,3 +73,4 @@ export class ContractTemplateList implements OnInit {
     this.apiS.onDelete(Endpoints.HR.ContractTemplate.delete(id)).then(() => this.onLoadData());
   }
 }
+

@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import {
   FormArray,
   FormBuilder,
@@ -9,10 +9,10 @@ import {
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
-import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
+import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
+import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
+import { CustomSearchInput } from "src/app/core/components/web/inputs/custom-search-input-signal";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
   rowsPerPageOptions,
@@ -75,7 +75,7 @@ export class WarehouseStockAdd implements OnInit {
 
   // Configuración de paginación y filtro
   rows: number = 30; // Registros por página
-  first: number = 0; // Índice del primer registro
+  first: number = 0; // Ãndice del primer registro
   page: number = 1; // Página actual
   searchTerm: string = ""; // Filtro global
 
@@ -222,4 +222,5 @@ export class WarehouseStockAdd implements OnInit {
     }
   }
 }
+
 

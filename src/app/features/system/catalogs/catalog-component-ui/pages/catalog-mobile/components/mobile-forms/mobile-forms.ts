@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-styles";
@@ -32,7 +32,7 @@ import { checkmarkCircleOutline, keyOutline, timeOutline } from "ionicons/icons"
   imports: [CommonModule, FormsModule, ReactiveFormsModule, IonButton, IonCheckbox, IonDatetime, IonDatetimeButton, IonIcon, IonInput, IonInputOtp, IonLabel, IonModal, IonPicker, IonPickerColumn, IonPickerColumnOption, IonRadio, IonRadioGroup, IonRange, IonSelect, IonSelectOption, IonTextarea, IonToggle],
   template: `
     <div class="mobile-card">
-      <div class="mobile-card-header">Formulario nativo Ionic — Material Design moderno</div>
+      <div class="mobile-card-header">Formulario nativo Ionic é Material Design moderno</div>
       <div class="mobile-card-body">
         <div class="flex flex-column gap-3">
 
@@ -78,7 +78,7 @@ import { checkmarkCircleOutline, keyOutline, timeOutline } from "ionicons/icons"
 
           <!-- Checkbox: labelPlacement="end" (Ionic 8 moderno) -->
           <ion-checkbox labelPlacement="end" justify="start">
-            Acepto términos y condiciones
+            Acepto tórminos y condiciones
           </ion-checkbox>
 
           <!-- Radio group -->
@@ -157,12 +157,12 @@ import { checkmarkCircleOutline, keyOutline, timeOutline } from "ionicons/icons"
               <ion-icon name="key-outline" style="vertical-align:middle;margin-right:4px"></ion-icon>
               Código OTP (ion-input-otp)
             </p>
-            <p class="text-xs text-secondary mb-2">Entrada segmentada para códigos de verificación de 6 dígitos.</p>
+            <p class="text-xs text-secondary mb-2">Entrada segmentada para códigos de verificación de 6 dógitos.</p>
             <ion-input-otp [(ngModel)]="otpValue" [length]="6" type="number"></ion-input-otp>
-            <p class="text-xs text-secondary mt-1">Código ingresado: <strong>{{ otpValue || '—' }}</strong></p>
+            <p class="text-xs text-secondary mt-1">Código ingresado: <strong>{{ otpValue || 'é' }}</strong></p>
           </div>
 
-          <!-- Botón submit estándar -->
+          <!-- Botén submit esténdar -->
           <ion-button expand="block" color="primary" style="--border-radius:12px;margin-top:0.5rem;">
             <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
             Guardar
@@ -172,11 +172,11 @@ import { checkmarkCircleOutline, keyOutline, timeOutline } from "ionicons/icons"
       </div>
     </div>
 
-    <!-- ─── PATRÓN: Login (ui-stiich Corporate Integrity) ─── -->
+    <!-- --- PATRóN: Login (ui-stiich Corporate Integrity) --- -->
     <div class="stiich-section">
       <div class="stiich-section__header">
         <span class="stiich-section__eyebrow">Corporate Integrity</span>
-        <h4 class="stiich-section__title">Login Screen — inicio de sesión corporativo</h4>
+        <h4 class="stiich-section__title">Login Screen ó inicio de sesión corporativo</h4>
       </div>
       <p class="stiich-section__desc">
         Pantalla de login con glass card, formulario de credenciales y autenticación SSO.
@@ -204,7 +204,7 @@ import { checkmarkCircleOutline, keyOutline, timeOutline } from "ionicons/icons"
               <a class="stiich-field__forgot" href="javascript:void(0)">Forgot Password?</a>
             </div>
             <div class="stiich-field__input-wrap">
-              <input class="stiich-field__input" type="password" placeholder="••••••••" />
+              <input class="stiich-field__input" type="password" placeholder="óíóíóíóó" />
               <button class="stiich-field__pw-toggle">
                 <span class="material-symbols-outlined">visibility</span>
               </button>
@@ -244,9 +244,9 @@ import { checkmarkCircleOutline, keyOutline, timeOutline } from "ionicons/icons"
     </div>
   `,
   styles: [MOBILE_SHOWCASE_STYLES, `
-    /* ═══════════════════════════════════════════════
-       Corporate Integrity DS — patrones ui-stiich
-       ═══════════════════════════════════════════════ */
+    /* -----------------------------------------------
+       Corporate Integrity DS é patrones ui-stiich
+       ----------------------------------------------- */
     .stiich-section { margin-top: 1.5rem; }
     .stiich-section__header { margin-bottom: 0.25rem; }
     .stiich-section__eyebrow { font-size: 0.65rem; font-weight: 700; color: var(--ds-primary); text-transform: uppercase; letter-spacing: 0.08em; }

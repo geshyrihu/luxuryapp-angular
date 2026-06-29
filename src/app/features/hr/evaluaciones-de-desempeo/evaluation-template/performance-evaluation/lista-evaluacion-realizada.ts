@@ -9,9 +9,9 @@ import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-me
 import {
   CustomButtonDelete,
   CustomButtonItem,
-} from "src/app/core/components/buttons/web";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+} from "src/app/core/components/web/buttons";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -104,7 +104,7 @@ export class ListaEvaluacionRealizada {
   async onDownloadAll(): Promise<void> {
     this.customToastS.showInfo(
       "Generando PDFs",
-      "La descarga de mÃ³ltiples PDFs puede tardar y su navegador podrÃ³a solicitar permiso.",
+      "La descarga de móltiples PDFs puede tardar y su navegador podría solicitar permiso.",
     );
     const evaluations = this.dataSignal();
     for (const evalItem of evaluations) {
@@ -131,12 +131,12 @@ export class ListaEvaluacionRealizada {
       if (!evaluationResult) {
         this.customToastS.showError(
           "Error",
-          "No se encontrÃ³ el resultado de la evaluaciÃ³n para generar el PDF.",
+          "No se encontró el resultado de la evaluación para generar el PDF.",
         );
         return;
       }
 
-      // 1. Preparar datos para el grÃ¡fico
+      // 1. Preparar datos para el grÃƒ¡fico
       const labels = evaluationResult.categories.map((c: any) => c.name);
       const data = evaluationResult.categories.map((c: any) =>
         c.answers?.length > 0
@@ -148,7 +148,7 @@ export class ListaEvaluacionRealizada {
         datasets: [
           {
             data: data,
-            label: "Promedio por CategorÃ­a",
+            label: "Promedio por Categoría",
             backgroundColor: "rgba(54, 162, 235, 0.2)",
             borderColor: "rgb(54, 162, 235)",
             pointBackgroundColor: "rgb(54, 162, 235)",
@@ -164,7 +164,7 @@ export class ListaEvaluacionRealizada {
         },
       };
 
-      // 2. Generar imagen del grÃ¡fico de forma headless
+      // 2. Generar imagen del grÃƒ¡fico de forma headless
       const chartImage = await this.chartGeneratorS.generateRadarChartBase64(
         radarChartData,
         radarChartOptions,
@@ -187,7 +187,7 @@ export class ListaEvaluacionRealizada {
       console.error("Error al generar PDF individual:", error);
       this.customToastS.showError(
         "Error",
-        `FallÃ³ la descarga del PDF para ${employeeName}.`,
+        `Falló la descarga del PDF para ${employeeName}.`,
       );
     }
   }
@@ -270,12 +270,12 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, `EvaluaciÃ³n: ${evaluationResult.evaluationTemplateName}`, `Empleado: ${employeeName}`, generatedAt, "RECURSOS HUMANOS")}
+  ${this.htmlPrintS.buildStandardHeader(logo, `Evaluación: ${evaluationResult.evaluationTemplateName}`, `Empleado: ${employeeName}`, generatedAt, "RECURSOS HUMANOS")}
 
   <div class="body-doc page-break">
     <table style="width: 100%; margin-bottom: 20px;">
       <tr>
-        <td style="width: 33%;"><div class="info-title">Fecha de EvaluaciÃ³n:</div><div class="info-text">${formattedEvaluationDate}</div></td>
+        <td style="width: 33%;"><div class="info-title">Fecha de Evaluación:</div><div class="info-text">${formattedEvaluationDate}</div></td>
         <td style="width: 33%;">
           <div class="info-title">Empleado Evaluado:</div>
           <div class="info-text">${this.htmlPrintS.esc(evaluationResult.employeeName)}</div>
@@ -292,19 +292,19 @@ ${this.htmlPrintS.getStandardCss()}
     ${chartImage ? `<div style="text-align: center; margin: 10px 0;"><img src="${chartImage}" style="max-width: 500px; max-height: 250px;" /></div>` : ""}
 
     <div style="text-align: center; margin: 20px 0;">
-      <div style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">PuntuaciÃ³n Final</div>
+      <div style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">Puntuación Final</div>
       <div class="score-tag" style="background-color: ${getScoreTagColor()}">${this.htmlPrintS.esc(evaluationResult.finalScoreFormatted)}</div>
       <div style="font-size: 12px; color: #6c757d;">Promedio: ${evaluationResult.finalScore.toFixed(2)} / 5.00</div>
     </div>
 
-    <div style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">Resumen de DesempeÃ±o por CategorÃ­a</div>
+    <div style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">Resumen de Desempeño por Categoría</div>
     <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
       ${summaryTableHtml}
     </table>
   </div>
 
   <div class="body-doc">
-    <div style="font-size: 18px; font-weight: bold; background-color: #EEEEEE; padding: 5px; margin-bottom: 10px;">Detalle por CategorÃ­as</div>
+    <div style="font-size: 18px; font-weight: bold; background-color: #EEEEEE; padding: 5px; margin-bottom: 10px;">Detalle por Categorías</div>
     ${categoriesHtml}
   </div>
 
@@ -313,3 +313,4 @@ ${this.htmlPrintS.getStandardCss()}
 </body></html>`;
   }
 }
+

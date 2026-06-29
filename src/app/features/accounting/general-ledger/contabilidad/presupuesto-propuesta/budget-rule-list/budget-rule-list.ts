@@ -1,6 +1,6 @@
-/**
+﻿/**
  * ============================================================================
- * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
+ * âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
  * ============================================================================
  * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
  * FUNCIONAL y ESTABLE. 
@@ -11,7 +11,7 @@
  * Por favor, NO rompan el código.
  * ============================================================================
  */
-﻿import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Component, OnInit, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -20,8 +20,8 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ToastModule } from "primeng/toast";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -113,3 +113,4 @@ export class BudgetRuleList implements OnInit {
     return rowCustomerId ? "GLOBAL (Todas las empresas)" : "Solo esta empresa";
   }
 }
+

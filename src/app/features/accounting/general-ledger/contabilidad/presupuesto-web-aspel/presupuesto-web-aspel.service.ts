@@ -1,4 +1,4 @@
-import { Injectable, signal } from "@angular/core";
+﻿import { Injectable, signal } from "@angular/core";
 import { AspelBudgetDTO } from "../models/presupuesto-shared.models";
 import { ASPEL_AVAILABLE_YEARS, ASPEL_MONTHS } from "./presupuesto-web-aspel.shared";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -28,7 +28,7 @@ export class PresupuestoWebAspelService {
       updated = current.filter(m => m !== mes);
     } else {
       updated = [...current, mes];
-      // Mantener orden cronológico
+      // Mantener orden cronolígico
       updated = this.months.filter(m => updated.includes(m));
     }
     

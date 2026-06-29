@@ -1,14 +1,14 @@
-import { CommonModule } from "@angular/common";
+ï»¿import { CommonModule } from "@angular/common";
 import { Component, input, output } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
-import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
-import { CustomButtonConfirm } from "src/app/core/components/buttons/web/custom-button-confirm";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
+import { CustomButtonAdd } from "src/app/core/components/web/buttons/custom-button-add";
+import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
 import { SanitizeHtmlPipe } from "src/app/core/pipes/sanitize-html.pipe";
 // Definimos interfaces para los eventos de salida para mayor claridad y tipado
 export interface DetailEvent {
@@ -54,7 +54,7 @@ export class AreaDetailsTable {
   editSeguimiento = output<SeguimientoEvent>();
   deleteSeguimiento = output<number>();
 
-  // --- métodos para emitir eventos al componente padre ---
+  // --- mÃ©todos para emitir eventos al componente padre ---
 
   onAddDetail(): void {
     this.addDetail.emit({
@@ -99,7 +99,7 @@ export class AreaDetailsTable {
     this.deleteSeguimiento.emit(seguimientoId);
   }
 
-  // --- métodos de ayuda para la vista (Helpers) ---
+  // --- mÃ©todos de ayuda para la vista (Helpers) ---
 
   /** Devuelve la clase CSS para el badge de estatus. */
   /** Devuelve el severity de PrimeNG para el estatus. */
@@ -132,5 +132,6 @@ export class AreaDetailsTable {
     }
   }
 
-  // Elimina el método getStatusIcon ya que usamos emojis
+  // Elimina el mÃ©todo getStatusIcon ya que usamos emojis
 }
+

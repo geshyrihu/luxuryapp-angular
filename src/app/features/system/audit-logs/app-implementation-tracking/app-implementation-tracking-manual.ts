@@ -1,6 +1,6 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, signal } from "@angular/core";
-import { CustomButton } from "src/app/core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/web/buttons";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -49,3 +49,4 @@ export class AppImplementationTrackingManual {
       });
   }
 }
+

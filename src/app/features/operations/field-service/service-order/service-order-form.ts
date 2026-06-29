@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -8,13 +8,13 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
-import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
+import { CustomInputCurrencySignal } from "src/app/core/components/web/inputs/custom-input-currency-signal";
+import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
+import { CustomInputSwitch } from "src/app/core/components/web/inputs/custom-input-switch-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -273,3 +273,4 @@ export class ServiceOrderForm implements OnInit {
     });
   }
 }
+

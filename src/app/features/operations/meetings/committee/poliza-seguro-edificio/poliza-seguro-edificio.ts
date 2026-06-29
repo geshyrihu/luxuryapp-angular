@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import {
   IonItem,
@@ -16,7 +16,7 @@ import {
   warningOutline,
 } from "ionicons/icons";
 import { CardModule } from "primeng/card";
-import { CustomButtonViewPdf } from "src/app/core/components/buttons/web";
+import { CustomButtonViewPdf } from "src/app/core/components/web/buttons";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -76,4 +76,5 @@ export class PolizaSeguroEdificio {
     );
   }
 }
+
 

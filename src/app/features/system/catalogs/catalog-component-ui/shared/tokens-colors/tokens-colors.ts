@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, ViewEncapsulation } from "@angular/core";
 import { MessageService } from "primeng/api";
 import { CardModule } from "primeng/card";
@@ -39,7 +39,7 @@ interface TokenGroup {
   template: `
     <p-toast position="top-right" />
 
-    <!-- ── Material 3 Structural Roles ──────────────────────────── -->
+    <!-- -- Material 3 Structural Roles ---------------------------- -->
     <div class="mb-6">
       <h3 class="text-xl font-bold mb-1 border-bottom-1 border-300 pb-2">Roles Estructurales (Material 3)</h3>
       <p class="text-sm text-color-secondary mt-1 mb-4">
@@ -68,9 +68,9 @@ interface TokenGroup {
       </div>
     </div>
 
-    <!-- ── Semantic Operational Tokens ──────────────────────────── -->
+    <!-- -- Semantic Operational Tokens ---------------------------- -->
     <div class="mb-6">
-      <h3 class="text-xl font-bold mb-1 border-bottom-1 border-300 pb-2">Tokens Semánticos Operacionales</h3>
+      <h3 class="text-xl font-bold mb-1 border-bottom-1 border-300 pb-2">Tokens Semónticos Operacionales</h3>
       <p class="text-sm text-color-secondary mt-1 mb-4">
         Colores de uso directo en componentes: botones, badges, alertas y estados de negocio.
         Son la capa que PrimeNG y los custom components consumen via <code>--ds-*</code>.
@@ -80,7 +80,7 @@ interface TokenGroup {
         <div class="mb-4">
           <div class="flex align-items-center gap-2 mb-2">
             <span class="font-semibold text-sm uppercase text-color-secondary" style="letter-spacing:.06em">{{ group.titulo }}</span>
-            <span class="text-xs text-color-secondary">— {{ group.descripcion }}</span>
+            <span class="text-xs text-color-secondary">é {{ group.descripcion }}</span>
           </div>
           <div class="grid">
             @for (color of group.tokens; track color.token) {
@@ -106,7 +106,7 @@ interface TokenGroup {
       }
     </div>
 
-    <!-- ── Reglas de Elevación ────────────────────────────────────── -->
+    <!-- -- Reglas de Elevación -------------------------------------- -->
     <div class="mb-2">
       <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">Reglas de Elevación (Sombras)</h3>
       <div class="grid">
@@ -146,7 +146,7 @@ interface TokenGroup {
 export class TokensColors {
   private messageService = inject(MessageService);
 
-  // ── Material 3 structural roles ──────────────────────────────────
+  // -- Material 3 structural roles ----------------------------------
   readonly paleta: TokenColor[] = [
     { nombre: "Primary", token: "--ds-primary", uso: "Acción principal, navegación activa, foco." },
     { nombre: "On Primary", token: "--ds-on-primary", uso: "Texto/icono sobre superficie primaria." },
@@ -158,7 +158,7 @@ export class TokensColors {
     { nombre: "Secondary Container", token: "--ds-secondary-container", uso: "Fondos de menor prioridad, inactivos." },
     { nombre: "On Secondary Container", token: "--ds-on-secondary-container", uso: "Texto en contenedor secundario." },
 
-    { nombre: "Tertiary", token: "--ds-tertiary", uso: "Acento terciario: éxito alternativo, teal." },
+    { nombre: "Tertiary", token: "--ds-tertiary", uso: "Acento terciario: óxito alternativo, teal." },
     { nombre: "On Tertiary", token: "--ds-on-tertiary", uso: "Texto sobre elemento terciario." },
 
     { nombre: "Error / Danger", token: "--ds-error", uso: "Eliminación, estados bloqueantes, errores." },
@@ -168,29 +168,29 @@ export class TokensColors {
 
     { nombre: "Surface", token: "--ds-surface", uso: "Fondo de cards, modales y listas." },
     { nombre: "On Surface", token: "--ds-on-surface", uso: "Texto principal sobre superficie." },
-    { nombre: "Surface Variant", token: "--ds-surface-variant", uso: "Fondos de inputs o menús secundarios." },
+    { nombre: "Surface Variant", token: "--ds-surface-variant", uso: "Fondos de inputs o menís secundarios." },
     { nombre: "On Surface Variant", token: "--ds-on-surface-variant", uso: "Labels, iconos inactivos, texto ayuda." },
 
     { nombre: "Outline", token: "--ds-outline", uso: "Bordes de controles interactivos." },
     { nombre: "Outline Variant", token: "--ds-outline-variant", uso: "Divisores tenues entre secciones." },
 
     { nombre: "Background", token: "--ds-background", uso: "Fondo general de la aplicación." },
-    { nombre: "On Background", token: "--ds-on-background", uso: "Títulos principales fuera de cards." },
+    { nombre: "On Background", token: "--ds-on-background", uso: "Tótulos principales fuera de cards." },
   ];
 
-  // ── Semantic operational tokens (grouped) ───────────────────────
+  // -- Semantic operational tokens (grouped) -----------------------
   readonly semanticGroups: TokenGroup[] = [
     {
-      titulo: "Éxito",
-      descripcion: "Confirmaciones, métricas positivas, estados completados",
+      titulo: "óxito",
+      descripcion: "Confirmaciones, mótricas positivas, estados completados",
       tokens: [
-        { nombre: "Success", token: "--ds-success", uso: "Color de texto/icono en elementos de éxito." },
-        { nombre: "Success Light", token: "--ds-success-light", uso: "Fondo suave para banners y badges de éxito." },
+        { nombre: "Success", token: "--ds-success", uso: "Color de texto/icono en elementos de óxito." },
+        { nombre: "Success Light", token: "--ds-success-light", uso: "Fondo suave para banners y badges de óxito." },
       ],
     },
     {
       titulo: "Atención",
-      descripcion: "Pendientes, riesgos moderados, alertas no críticas",
+      descripcion: "Pendientes, riesgos moderados, alertas no cróticas",
       tokens: [
         { nombre: "Warning", token: "--ds-warning", uso: "Texto/icono en alertas y estados pendientes." },
         { nombre: "Warning Light", token: "--ds-warning-light", uso: "Fondo suave para alertas de atención." },
@@ -233,9 +233,9 @@ export class TokensColors {
     },
     {
       titulo: "Texto",
-      descripcion: "Jerarquía tipográfica por importancia",
+      descripcion: "Jerarquía tipogrófica por importancia",
       tokens: [
-        { nombre: "Text Primary", token: "--ds-text-primary", uso: "Cuerpo principal, títulos operativos." },
+        { nombre: "Text Primary", token: "--ds-text-primary", uso: "Cuerpo principal, tótulos operativos." },
         { nombre: "Text Secondary", token: "--ds-text-secondary", uso: "Labels, captions, texto de apoyo." },
         { nombre: "Text Muted", token: "--ds-text-muted", uso: "Metadatos, hints, placeholders." },
       ],
@@ -244,8 +244,8 @@ export class TokensColors {
       titulo: "Bordes",
       descripcion: "Separación visual de controles y superficies",
       tokens: [
-        { nombre: "Border", token: "--ds-border", uso: "Borde estándar de cards e inputs." },
-        { nombre: "Border Strong", token: "--ds-border-strong", uso: "Borde énfasis, divisores fuertes." },
+        { nombre: "Border", token: "--ds-border", uso: "Borde esténdar de cards e inputs." },
+        { nombre: "Border Strong", token: "--ds-border-strong", uso: "Borde ónfasis, divisores fuertes." },
       ],
     },
   ];
@@ -255,7 +255,7 @@ export class TokensColors {
       label: "Shadow SM",
       token: "--ds-shadow-sm",
       value: "0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px -1px rgba(0,0,0,0.06)",
-      uso: "Cards estándar, listas.",
+      uso: "Cards esténdar, listas.",
     },
     {
       label: "Shadow MD",

@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, input, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MessageModule } from "primeng/message";
@@ -90,7 +90,7 @@ export class EspejoAspelExtraordinarios {
 
   cargarDatos(customerId: string): void {
     if (!customerId || !this.sharedS.intYear()) {
-      this.handleError("Seleccione un cliente y un Año válidos");
+      this.handleError("Seleccione un cliente y un Año vólidos");
       return;
     }
 
@@ -127,7 +127,7 @@ export class EspejoAspelExtraordinarios {
         this.loading.set(false);
       })
       .catch(() => {
-        this.handleError("Ocurrió un error al cargar los gastos especiales.");
+        this.handleError("Ocurrié un error al cargar los gastos especiales.");
         this.loading.set(false);
       });
   }

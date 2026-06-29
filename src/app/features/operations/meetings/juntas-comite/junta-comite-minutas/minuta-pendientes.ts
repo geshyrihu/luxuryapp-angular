@@ -1,8 +1,8 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
-import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
+import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
 import { ReportHeader } from "src/app/core/components/web/report-header/report-header";
 import {
   globalFilterFields,
@@ -129,3 +129,4 @@ export class MinutaPendientes {
     );
   }
 }
+

@@ -1,10 +1,10 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, inject, input, output } from "@angular/core";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SolicitudCompraService } from "src/app/core/services/solicitud-compra.service";
@@ -50,6 +50,7 @@ export class SolicitudCompraDetalle {
     });
   }
 }
+
 
 
 

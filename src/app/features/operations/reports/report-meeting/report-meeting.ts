@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
@@ -32,7 +32,7 @@ export class ReportMeeting {
   meetingId: string = "";
   customerId: string = "";
 
-  // Utilizar signals para info de customer también si es necesario, o mantener propiedades si solo se leen
+  // Utilizar signals para info de customer tambión si es necesario, o mantener propiedades si solo se leen
   logoCustomer = signal("");
   nameCustomer = signal("");
 

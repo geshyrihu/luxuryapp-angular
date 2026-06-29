@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { CardModule } from "primeng/card";
@@ -7,8 +7,8 @@ import { DynamicDialogModule } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ToastModule } from "primeng/toast";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
@@ -134,3 +134,4 @@ export class AdminVacacionesBalance {
       });
   }
 }
+

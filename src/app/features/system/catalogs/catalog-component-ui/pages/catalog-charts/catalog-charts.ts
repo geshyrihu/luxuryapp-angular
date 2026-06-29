@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, input, ViewEncapsulation } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { ChartBar } from "./components/chart-bar/chart-bar";
@@ -30,7 +30,7 @@ export class CatalogCharts {
       labels: ["Ene", "Feb", "Mar", "Abr", "May"],
       datasets: [
         {
-          label: "Consumo Eléctrico",
+          label: "Consumo Elóctrico",
           data: [65, 59, 80, 81, 56],
           backgroundColor: primaryColor,
           fill: false,

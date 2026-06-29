@@ -12,7 +12,7 @@
 Limpiar deuda técnica acumulada en estilos, tokens y arquitectura de inputs.
 
 ### Completado
-- [x] Brand rebrand: Azul Institucional (`$primary-500: #4e6077`, primary: `#00050e`)
+- [x] Brand rebrand: ERP Premium · Deep Navy (`$primary-700: #1b365d`, primary: `#1b365d`)
 - [x] Paleta Sass centralizada en `core/_colors.scss` — sin redefinición en `_variables.scss`
 - [x] `--ds-border` duplicado eliminado
 - [x] Sidebar/Topbar white, menú items visibles, botón toggle TailAdmin

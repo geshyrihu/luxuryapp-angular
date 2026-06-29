@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AvatarModule } from "primeng/avatar";
@@ -6,8 +6,8 @@ import { ImageModule } from "primeng/image";
 import { SplitButtonModule } from "primeng/splitbutton";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
@@ -131,4 +131,5 @@ export class TaskReportWorkPlan implements OnInit {
     );
   }
 }
+
 

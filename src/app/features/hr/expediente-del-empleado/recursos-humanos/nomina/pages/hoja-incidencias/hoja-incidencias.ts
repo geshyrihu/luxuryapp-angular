@@ -1,9 +1,9 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Popover } from "primeng/popover";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -210,3 +210,4 @@ export default class HojaIncidencias {
     return `${employeeId}|${fecha.substring(0, 10)}`;
   }
 }
+

@@ -1,10 +1,10 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import {
@@ -94,3 +94,4 @@ export default class NominaDetalle {
     window.open(`/api/hr/nomina/${this.nominaId()}/exportar-excel`, "_blank");
   }
 }
+

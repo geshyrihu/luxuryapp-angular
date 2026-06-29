@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import {
   IonItem,
   IonLabel,
@@ -78,7 +78,7 @@ export class ReunionesMensualesConsejoDirectivo implements OnInit {
       { pdfSrc: url, fileName: fileName },
       fileName,
       this.dialogHandlerS.sizeFull,
-      true, // ← autoMaximize = true
+      true, // ? autoMaximize = true
     );
   }
 }

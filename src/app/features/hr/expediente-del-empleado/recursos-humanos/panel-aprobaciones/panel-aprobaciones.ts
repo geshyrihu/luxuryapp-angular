@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+﻿import { Component, inject, OnInit } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";

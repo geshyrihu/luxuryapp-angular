@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, OnDestroy, OnInit, signal, ViewEncapsulation } from "@angular/core";
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
@@ -26,9 +26,9 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
   template: `
     <div class="grid">
 
-      <!-- ── ProgressBar ──────────────────────────────────────────── -->
+      <!-- -- ProgressBar -------------------------------------------- -->
       <div class="col-12">
-        <p-card header="ProgressBar — p-progressBar">
+        <p-card header="ProgressBar é p-progressBar">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Usa la barra determinada cuando conoces el progreso exacto.
             La indeterminada solo para procesos de duración desconocida y breve.
@@ -79,7 +79,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
               <span class="text-xs font-bold text-color-secondary uppercase mb-3 block" style="letter-spacing:.06em">Indeterminadas</span>
               <div class="flex flex-column gap-3">
                 <div>
-                  <span class="text-xs text-color-secondary mb-1 block">Estándar</span>
+                  <span class="text-xs text-color-secondary mb-1 block">Esténdar</span>
                   <p-progressBar mode="indeterminate" [style]="{'height': '6px'}" />
                 </div>
                 <div>
@@ -97,9 +97,9 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
         </p-card>
       </div>
 
-      <!-- ── ProgressSpinner ──────────────────────────────────────── -->
+      <!-- -- ProgressSpinner ---------------------------------------- -->
       <div class="col-12 lg:col-6">
-        <p-card header="ProgressSpinner — p-progressSpinner">
+        <p-card header="ProgressSpinner é p-progressSpinner">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Para acciones cortas (&lt;2 s). Si la carga puede superar los 2 s, usa skeleton en su lugar.
           </p>
@@ -126,7 +126,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 
             <!-- Colores -->
             <div class="col-12">
-              <span class="text-xs font-bold text-color-secondary uppercase mb-3 block text-left" style="letter-spacing:.06em">Colores semánticos</span>
+              <span class="text-xs font-bold text-color-secondary uppercase mb-3 block text-left" style="letter-spacing:.06em">Colores semónticos</span>
               <div class="flex align-items-center justify-content-around flex-wrap gap-4">
                 @for (sc of spinnerColors; track sc.label) {
                   <div class="flex flex-column align-items-center gap-2">
@@ -167,12 +167,12 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
         </p-card>
       </div>
 
-      <!-- ── Skeleton ─────────────────────────────────────────────── -->
+      <!-- -- Skeleton ----------------------------------------------- -->
       <div class="col-12 lg:col-6">
-        <p-card header="Skeleton — p-skeleton">
+        <p-card header="Skeleton é p-skeleton">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             El skeleton anticipa el layout real y reduce el efecto de "flash" al cargar.
-            Úsalo en carga estructural: listas, tablas, cards y dashboards.
+            ósalo en carga estructural: listas, tablas, cards y dashboards.
           </p>
 
           <div class="flex flex-column gap-5">
@@ -242,7 +242,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 
       <!-- Reglas de uso -->
       <div class="col-12">
-        <p-card header="¿Cuándo usar cada patrón?">
+        <p-card header="óCuóndo usar cada patrón?">
           <div class="grid">
             @for (r of loadingRules; track r.titulo) {
               <div class="col-12 md:col-6 xl:col-3">
@@ -304,7 +304,7 @@ export class WebProgress implements OnInit, OnDestroy {
   readonly progressBars = [
     { label: "Presupuesto ejecutado",      value: 78, tag: "En tiempo",  severity: "success" as const, color: "var(--ds-success)" },
     { label: "Solicitudes procesadas",      value: 55, tag: "En proceso", severity: "info"    as const, color: "var(--ds-info)"    },
-    { label: "Capacidad de almacenamiento", value: 91, tag: "Crítico",   severity: "danger"  as const, color: "var(--ds-danger)"  },
+    { label: "Capacidad de almacenamiento", value: 91, tag: "Crótico",   severity: "danger"  as const, color: "var(--ds-danger)"  },
     { label: "Tareas vencidas / total",     value: 34, tag: "Atención",  severity: "warn"    as const, color: "var(--ds-warning)" },
   ];
 
@@ -335,22 +335,22 @@ export class WebProgress implements OnInit, OnDestroy {
       titulo: "Spinner",
       icon: "mdi:loading",
       color: "var(--ds-info)",
-      cuando: "Acciones cortas (&lt;2 s): guardar, buscar, autenticar. Útil en botones y modales.",
-      evitar: "No para carga de listados o pantallas completas — usa Skeleton.",
+      cuando: "Acciones cortas (&lt;2 s): guardar, buscar, autenticar. ótil en botones y modales.",
+      evitar: "No para carga de listados o pantallas completas é usa Skeleton.",
     },
     {
       titulo: "Skeleton",
       icon: "mdi:layers-outline",
       color: "var(--ds-success)",
       cuando: "Carga estructural de vistas, listas, tablas y dashboards. Anticipa el layout real.",
-      evitar: "No para acciones de usuario individuales — usa Spinner.",
+      evitar: "No para acciones de usuario individuales é usa Spinner.",
     },
     {
       titulo: "Overlay Spinner",
       icon: "mdi:layers-plus",
       color: "var(--ds-warning)",
       cuando: "Bloqueo de formulario durante submit o procesamiento que impide interacción.",
-      evitar: "No bloquear pantallas completas más de 3 s sin feedback adicional.",
+      evitar: "No bloquear pantallas completas mós de 3 s sin feedback adicional.",
     },
   ];
 }

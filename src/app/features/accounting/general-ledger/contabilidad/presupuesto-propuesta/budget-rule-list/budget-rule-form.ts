@@ -1,6 +1,6 @@
-/**
+﻿/**
  * ============================================================================
- * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
+ * âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
  * ============================================================================
  * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
  * FUNCIONAL y ESTABLE. 
@@ -20,9 +20,9 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import {
@@ -102,3 +102,4 @@ export class BudgetRuleForm implements OnInit {
     });
   }
 }
+

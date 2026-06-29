@@ -1,4 +1,4 @@
-import { AppIcon } from 'src/app/core/components/shared/app-icon/app-icon.component';
+﻿import { AppIcon } from 'src/app/core/components/shared/app-icon/app-icon.component';
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, input, signal } from "@angular/core";
 import { Router } from "@angular/router";
@@ -293,7 +293,7 @@ export class UnifiedPendingDashboardMobile {
 
       // 3. Mostrar resultado
       Swal.fire({
-        title: "📄 Informe Ejecutivo Diario",
+        title: "?? Informe Ejecutivo Diario",
         html: htmlResult,
         icon: "info",
         width: "100%", // Mobile width
@@ -307,7 +307,7 @@ export class UnifiedPendingDashboardMobile {
       console.error(error);
       this.swalService.error(
         "Error de Análisis",
-        "No se pudo generar el informe. Por favor intenta más tarde.",
+        "No se pudo generar el informe. Por favor intenta mós tarde.",
       );
     }
   }

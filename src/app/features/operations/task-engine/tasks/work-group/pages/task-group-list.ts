@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
@@ -21,10 +21,10 @@ import {
   CustomButtonDelete,
   CustomButtonEdit,
   CustomButtonItem,
-} from "src/app/core/components/buttons/web";
+} from "src/app/core/components/web/buttons";
 import {
   CustomButton,
-} from "src/app/core/components/buttons/web";
+} from "src/app/core/components/web/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -221,4 +221,5 @@ export interface WorkGroupDTO {
   active: boolean;
   isLegalGroup: boolean;
 }
+
 

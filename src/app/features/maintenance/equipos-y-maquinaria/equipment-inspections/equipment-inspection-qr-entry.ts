@@ -1,7 +1,7 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { EquipmentQrResolveDTO } from "./equipment-inspection.models";
 import { EquipmentInspectionExecutionForm } from "./equipment-inspection-execution-form";
 import { EquipmentInspectionService } from "./equipment-inspection.service";
@@ -50,4 +50,5 @@ export class EquipmentInspectionQrEntry implements OnInit {
     this.router.navigateByUrl("/inventory/areas-equipment");
   }
 }
+
 

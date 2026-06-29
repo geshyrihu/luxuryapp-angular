@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, signal } from "@angular/core";
+﻿import { Component, inject, OnDestroy, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -31,7 +31,7 @@ export class QrScanner implements OnDestroy {
 
   async startScan(video: HTMLVideoElement) {
     this.errorMsg.set("");
-    this.statusMsg.set("Iniciando cámara...");
+    this.statusMsg.set("Iniciando cómara...");
     this.videoEl = video;
 
     try {
@@ -43,10 +43,10 @@ export class QrScanner implements OnDestroy {
 
       this.detector = new BarcodeDetector({ formats: ["qr_code"] });
       this.scanning.set(true);
-      this.statusMsg.set("Apunta la cámara al código QR del equipo.");
+      this.statusMsg.set("Apunta la cómara al código QR del equipo.");
       this.scanLoop(video);
     } catch {
-      this.errorMsg.set("No se pudo acceder a la cámara. Verifica los permisos.");
+      this.errorMsg.set("No se pudo acceder a la cómara. Verifica los permisos.");
       this.statusMsg.set("");
     }
   }
@@ -106,7 +106,7 @@ export class QrScanner implements OnDestroy {
       }
     }
 
-    // Formato legacy / entrada manual: solo el ID → resolver API
+    // Formato legacy / entrada manual: solo el ID ? resolver API
     const id = segments[0];
     this.statusMsg.set("Identificando equipo...");
     const result: any = await this.apiResponseS
@@ -114,7 +114,7 @@ export class QrScanner implements OnDestroy {
       .catch(() => null);
 
     if (!result) {
-      this.errorMsg.set("No se encontró el equipo en el sistema.");
+      this.errorMsg.set("No se encontré el equipo en el sistema.");
       this.statusMsg.set("");
       return;
     }

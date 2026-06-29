@@ -1,4 +1,4 @@
-export interface IWorkPosition {
+﻿export interface IWorkPosition {
   id: string;
   folio: string;
   applicationRoleId: string;
@@ -10,7 +10,7 @@ export interface IWorkPosition {
   applicationUserId: string | null;
   applicationUser: string | null;
   applicationUserPhoto: string | null;
-  /** ID del registro Employee (Employee.Id) — para navegar al formulario de edición. */
+  /** ID del registro Employee (Employee.Id) é para navegar al formulario de edición. */
   employeeId: string | null;
   /** EDepartament como entero. Null si el puesto no tiene ApplicationRole asignado. */
   departament: number | null;

@@ -1,9 +1,9 @@
-import { SupervisionModuleGroup } from "./supervision-module.model";
+﻿import { SupervisionModuleGroup } from "./supervision-module.model";
 
 export const SUPERVISION_MODULES: SupervisionModuleGroup[] = [
-  // ─────────────────────────────────────────────────────────────
+  // -------------------------------------------------------------
   // AGENDA Y MINUTAS
-  // ─────────────────────────────────────────────────────────────
+  // -------------------------------------------------------------
   {
     label: "Agenda y Minutas",
     icon: "mdi:clipboard-text-clock",
@@ -34,9 +34,9 @@ export const SUPERVISION_MODULES: SupervisionModuleGroup[] = [
       },
     ],
   },
-  // ─────────────────────────────────────────────────────────────
+  // -------------------------------------------------------------
   // RESULTADOS Y REPORTES
-  // ─────────────────────────────────────────────────────────────
+  // -------------------------------------------------------------
   {
     label: "Resultados y Reportes",
     icon: "mdi:chart-bar",

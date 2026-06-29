@@ -1,4 +1,4 @@
-import {
+﻿import {
   Component,
   ElementRef,
   HostListener,
@@ -7,7 +7,7 @@ import {
   viewChild,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 
 @Component({
   selector: "app-digital-signature",
@@ -117,3 +117,4 @@ export class DigitalSignatureComponent {
     this.signatureSaved.emit(dataUrl);
   }
 }
+

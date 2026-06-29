@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+﻿import { Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
@@ -37,19 +37,19 @@ export class HRDashboard {
   }
 
   private readonly allGroups: HRModuleGroup[] = [
-    // ─────────────────────────────────────────────────────────────
+    // -------------------------------------------------------------
     // INCIDENCIAS Y SANCIONES
-    // ─────────────────────────────────────────────────────────────
+    // -------------------------------------------------------------
     {
       label: "Incidencias y Sanciones",
-      emoji: "⚠️",
+      emoji: "??",
       cards: [
         {
           title: "Incidencias Disciplinarias",
           description:
             "Registro y seguimiento de incidentes de conducta, desempeño, seguridad o cumplimiento.",
           route: "/recursos-humanos/incidents",
-          emoji: "⚠️",
+          emoji: "??",
           color: "#dc2626",
           bgColor: "#fee2e2",
           roles: [
@@ -64,9 +64,9 @@ export class HRDashboard {
         {
           title: "Dashboard de Incidencias",
           description:
-            "Métricas y análisis de incidencias: KPIs, gráficos por mes/tipo/severidad y ranking de empleados.",
+            "Mátricas y análisis de incidencias: KPIs, gróficos por mes/tipo/severidad y ranking de empleados.",
           route: "/recursos-humanos/incident-dashboard",
-          emoji: "📈",
+          emoji: "??",
           color: "#0f766e",
           bgColor: "#ccfbf1",
           roles: [
@@ -78,9 +78,9 @@ export class HRDashboard {
         {
           title: "Reportes de Incidencias",
           description:
-            "Reportes estadísticos consolidados de incidencias con filtros avanzados y exportación.",
+            "Reportes estadósticos consolidados de incidencias con filtros avanzados y exportación.",
           route: "/recursos-humanos/incident-reports",
-          emoji: "📊",
+          emoji: "??",
           color: "#0891b2",
           bgColor: "#cffafe",
           roles: [
@@ -93,7 +93,7 @@ export class HRDashboard {
           description:
             "Gestión de sanciones aplicadas con seguimiento, apelación y trazabilidad completa.",
           route: "/recursos-humanos/sanctions",
-          emoji: "🔒",
+          emoji: "??",
           color: "#7c2d12",
           bgColor: "#fed7aa",
           roles: [
@@ -106,19 +106,19 @@ export class HRDashboard {
       ],
     },
 
-    // ─────────────────────────────────────────────────────────────
+    // -------------------------------------------------------------
     // PERMISOS
-    // ─────────────────────────────────────────────────────────────
+    // -------------------------------------------------------------
     {
       label: "Permisos",
-      emoji: "🗓️",
+      emoji: "???",
       cards: [
         {
           title: "Mis Solicitudes de Permiso",
           description:
-            "Visualiza y gestiona tus solicitudes de permiso personal, médico o laboral.",
+            "Visualiza y gestiona tus solicitudes de permiso personal, módico o laboral.",
           route: "/recursos-humanos/my-requests",
-          emoji: "📬",
+          emoji: "??",
           color: "#0369a1",
           bgColor: "#e0f2fe",
           roles: [],
@@ -128,7 +128,7 @@ export class HRDashboard {
           description:
             "Panel de aprobación y rechazo de solicitudes de permiso del equipo a cargo.",
           route: "/recursos-humanos/approval",
-          emoji: "✅",
+          emoji: "?",
           color: "#15803d",
           bgColor: "#dcfce7",
           roles: [
@@ -143,19 +143,19 @@ export class HRDashboard {
       ],
     },
 
-    // ─────────────────────────────────────────────────────────────
+    // -------------------------------------------------------------
     // VACACIONES
-    // ─────────────────────────────────────────────────────────────
+    // -------------------------------------------------------------
     {
       label: "Vacaciones",
-      emoji: "🏖️",
+      emoji: "???",
       cards: [
         {
           title: "Mis Vacaciones",
           description:
             "Consulta tu historial de solicitudes de vacaciones y el estado de cada período.",
           route: "/recursos-humanos/my-vacations",
-          emoji: "🌴",
+          emoji: "??",
           color: "#0891b2",
           bgColor: "#cffafe",
           roles: [],
@@ -165,7 +165,7 @@ export class HRDashboard {
           description:
             "Visualiza tu saldo disponible de días de vacaciones y el historial de consumo.",
           route: "/recursos-humanos/saldo-vacaciones",
-          emoji: "📅",
+          emoji: "??",
           color: "#7c3aed",
           bgColor: "#ede9fe",
           roles: [],
@@ -175,7 +175,7 @@ export class HRDashboard {
           description:
             "Vista de calendario unificada con permisos y vacaciones de todo el equipo.",
           route: "/recursos-humanos/vacation-calendar",
-          emoji: "📆",
+          emoji: "??",
           color: "#0f766e",
           bgColor: "#ccfbf1",
           roles: [],
@@ -185,7 +185,7 @@ export class HRDashboard {
           description:
             "Consulta el historial completo de solicitudes de permisos y vacaciones.",
           route: "/recursos-humanos/requests-history",
-          emoji: "🗂️",
+          emoji: "???",
           color: "#92400e",
           bgColor: "#fef3c7",
           roles: [],
@@ -195,7 +195,7 @@ export class HRDashboard {
           description:
             "Registra períodos de vacaciones anteriores al sistema para completar el historial.",
           route: "/recursos-humanos/register-past-vacations",
-          emoji: "📥",
+          emoji: "??",
           color: "#6b7280",
           bgColor: "#f3f4f6",
           roles: [
@@ -209,7 +209,7 @@ export class HRDashboard {
           description:
             "Revisa el saldo e historial de vacaciones de cualquier empleado del cliente.",
           route: "/recursos-humanos/auditoria-vacaciones",
-          emoji: "🔍",
+          emoji: "??",
           color: "#1e40af",
           bgColor: "#dbeafe",
           roles: [
@@ -222,7 +222,7 @@ export class HRDashboard {
           description:
             "Ajuste y administración de saldos de vacaciones para todos los empleados.",
           route: "/recursos-humanos/admin-balances-vacaciones",
-          emoji: "⚙️",
+          emoji: "??",
           color: "#374151",
           bgColor: "#e5e7eb",
           roles: [EApplicationRole.SuperUsuario],
@@ -230,19 +230,19 @@ export class HRDashboard {
       ],
     },
 
-    // ─────────────────────────────────────────────────────────────
+    // -------------------------------------------------------------
     // CONTRATOS
-    // ─────────────────────────────────────────────────────────────
+    // -------------------------------------------------------------
     {
       label: "Contratos",
-      emoji: "📋",
+      emoji: "??",
       cards: [
         {
           title: "Contratos Laborales",
           description:
             "Gestión de contratos de trabajo, historial laboral y documentación contractual de empleados.",
           route: "/recursos-humanos/contracts",
-          emoji: "📋",
+          emoji: "??",
           color: "#1e40af",
           bgColor: "#dbeafe",
           roles: [
@@ -254,9 +254,9 @@ export class HRDashboard {
         {
           title: "Machotes de Contratos",
           description:
-            "Plantillas reutilizables para generación rápida de contratos con variables dinámicas.",
+            "Plantillas reutilizables para generación rópida de contratos con variables dinámicas.",
           route: "/recursos-humanos/contract-templates",
-          emoji: "📄",
+          emoji: "??",
           color: "#059669",
           bgColor: "#d1fae5",
           roles: [
@@ -269,7 +269,7 @@ export class HRDashboard {
           description:
             "Modificaciones formales a contratos existentes: salarios, puestos, extensiones y condiciones.",
           route: "/recursos-humanos/contract-addendums",
-          emoji: "✏️",
+          emoji: "??",
           color: "#7c3aed",
           bgColor: "#ede9fe",
           roles: [
@@ -281,9 +281,9 @@ export class HRDashboard {
         {
           title: "Machotes de Adendas",
           description:
-            "Plantillas estandarizadas para adendas de modificación salarial, cambio de puesto y más.",
+            "Plantillas estandarizadas para adendas de modificación salarial, cambio de puesto y mós.",
           route: "/recursos-humanos/addendum-templates",
-          emoji: "📝",
+          emoji: "??",
           color: "#ea580c",
           bgColor: "#ffedd5",
           roles: [
@@ -294,19 +294,19 @@ export class HRDashboard {
       ],
     },
 
-    // ─────────────────────────────────────────────────────────────
-    // CONFIGURACIÓN
-    // ─────────────────────────────────────────────────────────────
+    // -------------------------------------------------------------
+    // CONFIGURACIóN
+    // -------------------------------------------------------------
     {
       label: "Configuración",
-      emoji: "⚙️",
+      emoji: "??",
       cards: [
         {
           title: "Catálogos de RH",
           description:
             "Administración de tipos de incidencia y tipos de sanción del sistema.",
           route: "/settings/incident-types",
-          emoji: "📚",
+          emoji: "??",
           color: "#4338ca",
           bgColor: "#e0e7ff",
           roles: [
@@ -358,7 +358,7 @@ export class HRDashboard {
       [EApplicationRole.Almacenista]: "Almacenista",
       [EApplicationRole.Contador]: "Contador",
       [EApplicationRole.Cobranza]: "Cobranza",
-      [EApplicationRole.TecnicoMantenimiento]: "Técnico Mantenimiento",
+      [EApplicationRole.TecnicoMantenimiento]: "Tócnico Mantenimiento",
       [EApplicationRole.JardineriaInterna]: "Jardinería",
       [EApplicationRole.SeguridadInterna]: "Seguridad",
       [EApplicationRole.SupervisorObra]: "Supervisor Obra",

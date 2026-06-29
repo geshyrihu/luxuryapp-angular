@@ -1,4 +1,4 @@
-import { Injectable, inject } from "@angular/core";
+﻿import { Injectable, inject } from "@angular/core";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 interface AskAccountingAiDTO {
@@ -16,6 +16,6 @@ export class ContabilidadAiService {
 
     // Obteniendo respuesta en formato T directamente (o false si falla)
     const response = await this.apiS.onPost<string>(url, payload);
-    return response || "No se recibió respuesta de la IA.";
+    return response || "No se recibié respuesta de la IA.";
   }
 }

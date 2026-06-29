@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
@@ -21,23 +21,23 @@ import {
   IonButtonViewPdf,
   IonButtonActiveDesactive,
   IonButtonItem,
-} from "src/app/core/components/buttons/mobile";
+} from "src/app/core/components/mobile/buttons";
 import {
-  CustomInputTextSignal,
-  CustomInputTextAreaSignal,
-  CustomSearchInput,
-  CustomInputPassword,
-  CustomInputNumberSignal,
-  CustomInputCurrencySignal,
-  CustomInputDateSignal,
-  CustomInputTime,
-  CustomInputSelectSignal,
-  CustomInputMultiselectSignal,
-  CustomInputSelectBool,
-  CustomInputFile,
-  CustomInputSwitch,
-  CustomInputCheckSignal,
-} from "src/app/core/components/inputs/web";
+  IonInputCheckbox,
+  IonInputCurrency,
+  IonInputDate,
+  IonInputFile,
+  IonInputMultiselect,
+  IonInputNumber,
+  IonInputPassword,
+  IonInputSearch,
+  IonInputSelect,
+  IonInputSelectBool,
+  IonInputText,
+  IonInputTextarea,
+  IonInputTime,
+  IonInputToggle,
+} from "src/app/core/components/mobile/inputs";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
 
@@ -64,20 +64,20 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
     IonButtonItem,
     IonItem,
     IonItemDivider,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    CustomSearchInput,
-    CustomInputPassword,
-    CustomInputNumberSignal,
-    CustomInputCurrencySignal,
-    CustomInputDateSignal,
-    CustomInputTime,
-    CustomInputSelectSignal,
-    CustomInputMultiselectSignal,
-    CustomInputSelectBool,
-    CustomInputFile,
-    CustomInputSwitch,
-    CustomInputCheckSignal,
+    IonInputText,
+    IonInputTextarea,
+    IonInputSearch,
+    IonInputPassword,
+    IonInputNumber,
+    IonInputCurrency,
+    IonInputDate,
+    IonInputTime,
+    IonInputSelect,
+    IonInputMultiselect,
+    IonInputSelectBool,
+    IonInputFile,
+    IonInputToggle,
+    IonInputCheckbox,
     IonLabel,
     IonList,
   ],
@@ -95,10 +95,10 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
       <section class="mobile-panel mobile-panel--gallery">
         <div class="mobile-panel__header">
           <span class="mobile-panel__eyebrow">Target Views</span>
-          <h4 class="mobile-panel__title">Pantallas objetivo del catï¿½logo mobile</h4>
+          <h4 class="mobile-panel__title">Pantallas objetivo del catalogo mobile</h4>
           <p class="mobile-panel__copy">
-            La portada mobile ya no debe sentirse como una lista de controles. Debe enseï¿½ar
-            flujos completos listos para producto: acciones, tareas, navegaciï¿½n y operaciï¿½n.
+            La portada mobile ya no debe sentirse como una lista de controles. Debe ensenar
+            flujos completos listos para producto: acciones, tareas, navegacion y operacion.
           </p>
         </div>
 
@@ -116,11 +116,11 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
               <div class="mobile-phone__body">
                 <div class="mobile-phone__hero-card">
                   <div class="mobile-phone__hero-label">Corporate Flow</div>
-                  <strong>Solicitud de autorizaciï¿½n</strong>
+                  <strong>Solicitud de autorizacion</strong>
                   <span>Campos, CTA primario y acciones auxiliares dentro del mismo contexto.</span>
                 </div>
                 <div class="mobile-phone__cta-stack">
-                  <button class="mobile-phone__cta mobile-phone__cta--primary">Enviar aprobaciï¿½n</button>
+                  <button class="mobile-phone__cta mobile-phone__cta--primary">Enviar aprobacion</button>
                   <button class="mobile-phone__cta mobile-phone__cta--secondary">Guardar borrador</button>
                 </div>
                 <div class="mobile-phone__micro-stats">
@@ -312,7 +312,7 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
                           <ion-badge [color]="item.statusColor">{{ item.status }}</ion-badge>
                         </div>
                         <p class="mobile-list-meta">
-                          CLABE {{ item.clabe }} ï¿½ {{ item.currency }}
+                          CLABE {{ item.clabe }} - {{ item.currency }}
                         </p>
                       </ion-label>
 
@@ -350,7 +350,7 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
                           <ion-badge [color]="item.statusColor">{{ item.status }}</ion-badge>
                         </div>
                         <p class="mobile-list-meta">
-                          {{ item.code }} ï¿½ {{ item.currency }} ï¿½ {{ item.region }}
+                          {{ item.code }} - {{ item.currency }} - {{ item.region }}
                         </p>
                       </ion-label>
                     </ion-item>
@@ -431,7 +431,7 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
                       <strong class="mobile-list-title">{{ item.title }}</strong>
                       <ion-badge [color]="item.badgeColor">{{ item.status }}</ion-badge>
                     </div>
-                    <p class="mobile-list-meta">{{ item.module }} ï¿½ {{ item.time }}</p>
+                    <p class="mobile-list-meta">{{ item.module }} - {{ item.time }}</p>
                   </ion-label>
                 </ion-item>
                 }
@@ -505,8 +505,8 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
             <div class="mobile-block__body">
               <div class="ds-card ds-card--action">
                 <div class="ds-card__body">
-                  <h4 class="ds-card__title">Confirmaciï¿½n de Despliegue</h4>
-                  <p class="ds-card__desc">Se requiere autorizaciï¿½n jerï¿½rquica para proceder con el despliegue a producciï¿½n de la versiï¿½n 2.4.1.</p>
+                  <h4 class="ds-card__title">Confirmacion de despliegue</h4>
+                  <p class="ds-card__desc">Se requiere autorizacion jerarquica para proceder con el despliegue a produccion de la version 2.4.1.</p>
                 </div>
                 <div class="ds-card__actions">
                   <button class="ds-btn ds-btn--primary ds-btn--block">AUTORIZAR</button>
@@ -662,7 +662,7 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
               <ion-button-add label="Nuevo registro" />
               <ion-button-edit label="Editar perfil" />
               <ion-button-save label="Guardar cambios" />
-              <ion-button-confirm label="Confirmar acciï¿½n" />
+              <ion-button-confirm label="Confirmar accion" />
             </div>
           </div>
 
@@ -694,28 +694,28 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
       <section class="mobile-panel">
         <div class="mobile-panel__header">
           <span class="mobile-panel__eyebrow">All Mobile Inputs</span>
-          <h4 class="mobile-panel__title">Captura, selecciï¿½n y adjuntos</h4>
+          <h4 class="mobile-panel__title">Captura, seleccion y adjuntos</h4>
         </div>
 
         <form [formGroup]="form" class="mobile-stack">
           <div class="mobile-block">
             <div class="mobile-block__label">Text And Search</div>
             <div class="mobile-block__body">
-              <custom-input-text-signal
+              <ion-input-text
                 [control]="form.controls['texto']"
                 label="Texto"
                 placeholder="Nombre"
               />
-              <custom-search-input-signal
+              <ion-input-search
                 placeholder="Buscar"
-                (searchChange)="form.controls['busqueda'].setValue($event)"
+                [control]="form.controls['busqueda']" label="Buscar"
               />
-              <custom-input-password-signal
+              <ion-input-password
                 [control]="form.controls['password']"
-                label="Contraseï¿½a"
+                label="Password"
                 placeholder="********"
               />
-              <custom-input-textarea-signal
+              <ion-input-textarea
                 [control]="form.controls['descripcion']"
                 label="Textarea"
               />
@@ -725,20 +725,20 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
           <div class="mobile-block">
             <div class="mobile-block__label">Numeric And Date</div>
             <div class="mobile-block__body">
-              <custom-input-number-signal
+              <ion-input-number
                 [control]="form.controls['numero']"
-                label="Nï¿½mero"
+                label="Numero"
                 placeholder="0"
               />
-              <custom-input-currency-signal
+              <ion-input-currency
                 [control]="form.controls['monto']"
                 label="Monto"
               />
-              <custom-input-date-signal
+              <ion-input-date
                 [control]="form.controls['fecha']"
                 label="Fecha"
               />
-              <custom-input-time-signal
+              <ion-input-time
                 [control]="form.controls['hora']"
                 label="Hora"
               />
@@ -748,17 +748,17 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
           <div class="mobile-block">
             <div class="mobile-block__label">Selection</div>
             <div class="mobile-block__body">
-              <custom-input-select-signal
+              <ion-input-select
                 [control]="form.controls['categoria']"
                 label="Select"
                 [data]="options"
               />
-              <custom-input-multiselect-signal
+              <ion-input-multiselect
                 [control]="form.controls['multi']"
                 label="Multiselect"
                 [options]="options"
               />
-              <custom-input-select-signal-bool
+              <ion-input-select-bool
                 [control]="form.controls['estado']"
                 label="Activo/Inactivo"
               />
@@ -768,15 +768,15 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
           <div class="mobile-block">
             <div class="mobile-block__label">Files And Toggles</div>
             <div class="mobile-block__body">
-              <custom-input-file-signal
+              <ion-input-file
                 [control]="form.controls['archivo']"
                 label="Archivo"
               />
-              <custom-input-check-signal
+              <ion-input-checkbox
                 [control]="form.controls['check']"
                 placeholder="Checkbox"
               />
-              <custom-input-switch-signal
+              <ion-input-toggle
                 [control]="form.controls['toggle']"
                 placeholder="Toggle"
               />
@@ -868,7 +868,7 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
                 <input type="range" class="ds-slider" value="75">
                 <div class="ds-slider-row" style="margin-top:0.75rem;">
                   <span class="ds-slider-label">Price Range</span>
-                  <span class="ds-slider-value">$240 ï¿½ $860</span>
+                  <span class="ds-slider-value">$240 - $860</span>
                 </div>
                 <div class="ds-range-track">
                   <div class="ds-range-track__fill" style="left:20%;right:30%;"></div>
@@ -888,10 +888,10 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
       <section class="mobile-panel">
         <div class="mobile-panel__header">
           <span class="mobile-panel__eyebrow">Utilities</span>
-          <h4 class="mobile-panel__title">Componentes mobile vivos dentro del módulo</h4>
+          <h4 class="mobile-panel__title">Componentes mobile vivos dentro del modulo</h4>
           <p class="mobile-panel__copy">
-            Esta vista también monta utilidades reales del core. Haz scroll en la
-            página y el botón flotante aparecerá automáticamente.
+            Esta vista tambien monta utilidades reales del core. Haz scroll en la
+            pagina y el boton flotante aparecera automaticamente.
           </p>
         </div>
         <app-tap-to-top />
@@ -1531,7 +1531,7 @@ export class MobileCoreCoverage {
     texto: ["Usuario mobile"],
     busqueda: [""],
     password: ["12345678"],
-    descripcion: ["Componente mobile de demostraciï¿½n."],
+    descripcion: ["Componente mobile de demostracion."],
     numero: [10],
     monto: [889.4],
     fecha: ["2026-06-20"],
@@ -1629,13 +1629,13 @@ export class MobileCoreCoverage {
       id: 1,
       title: "Solicitud de compra",
       code: "SC-2026-041",
-      detail: "Pendiente de autorizaciï¿½n por Gerencia",
+      detail: "Pendiente de autorizacion por Gerencia",
       badge: "Pendiente",
       badgeColor: "warning",
     },
     {
       id: 2,
-      title: "Bitï¿½cora de mantenimiento",
+      title: "Bitacora de mantenimiento",
       code: "BM-2026-118",
       detail: "Actualizada hace 25 minutos por Operaciones",
       badge: "Proceso",
@@ -1643,7 +1643,7 @@ export class MobileCoreCoverage {
     },
     {
       id: 3,
-      title: "Reporte de inspecciï¿½n",
+      title: "Reporte de inspeccion",
       code: "RI-2026-009",
       detail: "Cerrado y enviado al cliente",
       badge: "Cerrado",
@@ -1655,7 +1655,7 @@ export class MobileCoreCoverage {
     Hoy: [
       {
         id: 1,
-        title: "Recorrido de ï¿½reas comunes",
+        title: "Recorrido de areas comunes",
         module: "Operaciones",
         time: "09:00",
         status: "En curso",
@@ -1682,3 +1682,8 @@ export class MobileCoreCoverage {
     ],
   };
 }
+
+
+
+
+

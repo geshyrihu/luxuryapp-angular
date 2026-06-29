@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -9,10 +9,10 @@ import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import {
   globalFilterFields,
@@ -34,7 +34,7 @@ interface AuditEntry {
   userName: string;
   changedAt: string;
   customerId: string | null;
-  /** Grupo lÃ³gico para expandir: mismo entityName + entityId + changedAt */
+  /** Grupo lógico para expandir: mismo entityName + entityId + changedAt */
   groupKey?: string;
   expanded?: boolean;
 }
@@ -229,3 +229,4 @@ export class AuditEntries implements OnInit {
     }
   }
 }
+

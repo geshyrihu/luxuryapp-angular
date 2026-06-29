@@ -1,4 +1,4 @@
-import {
+﻿import {
   Component,
   computed,
   effect,
@@ -18,10 +18,10 @@ import {
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
   rowsPerPageOptions,
@@ -165,7 +165,7 @@ export class ProductModalAdd implements OnInit, OnDestroy {
       })
       .catch((error) => {
         console.error("Error loading measurement units:", error);
-        this.cb_unidadMedida = []; // Asegurar que sea un array vacóo en caso de error
+        this.cb_unidadMedida = []; // Asegurar que sea un array vacío en caso de error
       });
   }
 
@@ -248,4 +248,5 @@ export class ProductModalAdd implements OnInit, OnDestroy {
     this.ref.close(true); // Cerrar con 'true' si quieres emitir un resultado.
   }
 }
+
 

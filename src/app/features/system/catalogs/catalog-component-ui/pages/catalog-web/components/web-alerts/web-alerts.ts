@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, ViewEncapsulation } from "@angular/core";
 import { MessageService } from "primeng/api";
 import { ButtonModule } from "primeng/button";
@@ -20,18 +20,18 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 
       <!-- Severities -->
       <div class="col-12">
-        <p-card header="Messages — Todos los Severities">
+        <p-card header="Messages é Todos los Severities">
           <p class="m-0 mb-3 text-sm text-color-secondary">
             Usa <code>p-message</code> para feedback contextual y persistente dentro de una vista.
             Reserva el toast para confirmaciones de acciones puntuales.
           </p>
           <div class="flex flex-column gap-3">
-            <p-message severity="success" text="Registro guardado correctamente. El folio ERP-2026-041 está disponible." />
+            <p-message severity="success" text="Registro guardado correctamente. El folio ERP-2026-041 esté disponible." />
             <p-message severity="info"    text="La sincronización puede tardar hasta 5 minutos. Puedes continuar trabajando." />
             <p-message severity="warn"    text="Faltan 3 documentos por validar antes de aprobar este proceso." />
             <p-message severity="error"   text="Sin permisos para aprobar este proceso. Contacta al administrador del sistema." />
             <p-message severity="secondary" text="Mensaje de referencia o contexto adicional de baja prioridad." />
-            <p-message severity="contrast"  text="Mensaje de contraste para alertas de máxima visibilidad." />
+            <p-message severity="contrast"  text="Mensaje de contraste para alertas de móxima visibilidad." />
           </div>
         </p-card>
       </div>
@@ -54,7 +54,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
       <div class="col-12 lg:col-6">
         <p-card header="Auto-dismiss vs. Sticky">
           <p class="m-0 mb-3 text-sm text-color-secondary">
-            <code>[life]="ms"</code> descarta el mensaje automáticamente.
+            <code>[life]="ms"</code> descarta el mensaje automóticamente.
             Sin <code>life</code>, el mensaje es sticky.
           </p>
           <div class="flex flex-column gap-3">
@@ -68,8 +68,8 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
       <div class="col-12">
         <p-card header="Toast Notifications">
           <p class="m-0 mb-3 text-sm text-color-secondary">
-            Flotan en pantalla y desaparecen automáticamente (4 s). Úsalos para confirmar acciones,
-            nunca para errores críticos bloqueantes que requieren decisión del usuario.
+            Flotan en pantalla y desaparecen automóticamente (4 s). ósalos para confirmar acciones,
+            nunca para errores cróticos bloqueantes que requieren decisión del usuario.
           </p>
           <div class="flex flex-wrap gap-2 mb-4 p-3 border-round surface-ground">
             <p-button label="Success" severity="success" icon="pi pi-check-circle" (onClick)="toast('success')" />
@@ -78,7 +78,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
             <p-button label="Error"   severity="danger"  icon="pi pi-times-circle" (onClick)="toast('error')" />
             <p-button label="Sticky" severity="secondary" [outlined]="true"
                       icon="pi pi-thumbtack" (onClick)="toastSticky()" />
-            <p-button label="Múltiples" severity="secondary" [outlined]="true"
+            <p-button label="Móltiples" severity="secondary" [outlined]="true"
                       icon="pi pi-bell" (onClick)="toastMultiple()" />
           </div>
 
@@ -106,7 +106,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
         <p-card header="Feedback de Validación Inline">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Coloca el <code>p-message</code> inmediatamente debajo del campo.
-            Un único mensaje por campo; no acumules varios errores en el mismo bloque.
+            Un ónico mensaje por campo; no acumules varios errores en el mismo bloque.
           </p>
           <div class="grid">
             <div class="col-12 md:col-4">
@@ -116,7 +116,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                 <app-icon icon="mdi:check-circle" style="color:var(--ds-success)" />
                 <span class="text-sm">usuario&#64;empresa.com</span>
               </div>
-              <p-message severity="success" text="Email válido y disponible." styleClass="mt-1 block" />
+              <p-message severity="success" text="Email vólido y disponible." styleClass="mt-1 block" />
             </div>
             <div class="col-12 md:col-4">
               <label class="block text-sm font-semibold mb-1">Campo con advertencia</label>
@@ -125,7 +125,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                 <app-icon icon="mdi:alert" style="color:var(--ds-warning)" />
                 <span class="text-sm">abc123</span>
               </div>
-              <p-message severity="warn" text="Contraseña débil. Agrega símbolos." styleClass="mt-1 block" />
+              <p-message severity="warn" text="Contraseña dóbil. Agrega sómbolos." styleClass="mt-1 block" />
             </div>
             <div class="col-12 md:col-4">
               <label class="block text-sm font-semibold mb-1">Campo con error</label>
@@ -134,7 +134,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                 <app-icon icon="mdi:close-circle" style="color:var(--ds-danger)" />
                 <span class="text-sm">no-es-un-email</span>
               </div>
-              <p-message severity="error" text="Formato de email inválido." styleClass="mt-1 block" />
+              <p-message severity="error" text="Formato de email invólido." styleClass="mt-1 block" />
             </div>
           </div>
         </p-card>
@@ -151,7 +151,7 @@ export class WebAlerts {
     { severity: "success", label: "Success",       icon: "mdi:check-circle",  color: "var(--ds-success)", bg: "var(--ds-success-light)", borderColor: "var(--ds-success)", when: "Operación completada, registro guardado, confirmación positiva." },
     { severity: "info",    label: "Info",           icon: "mdi:information",   color: "var(--ds-info)",    bg: "var(--ds-info-light)",    borderColor: "var(--ds-info)",    when: "Contexto adicional, proceso en curso, ayuda no bloqueante." },
     { severity: "warn",    label: "Warning",        icon: "mdi:alert",         color: "var(--ds-warning)", bg: "var(--ds-warning-light)", borderColor: "var(--ds-warning)", when: "Atención requerida, pendiente de revisión, riesgo moderado." },
-    { severity: "error",   label: "Error / Danger", icon: "mdi:close-circle",  color: "var(--ds-danger)",  bg: "var(--ds-danger-light)",  borderColor: "var(--ds-danger)",  when: "Error crítico, acción bloqueada, sin permisos, fallo del sistema." },
+    { severity: "error",   label: "Error / Danger", icon: "mdi:close-circle",  color: "var(--ds-danger)",  bg: "var(--ds-danger-light)",  borderColor: "var(--ds-danger)",  when: "Error crótico, acción bloqueada, sin permisos, fallo del sistema." },
   ];
 
   private readonly msgs: Record<string, { summary: string; detail: string }> = {

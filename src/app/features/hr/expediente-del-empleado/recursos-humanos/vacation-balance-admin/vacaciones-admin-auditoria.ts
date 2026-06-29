@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from "@angular/common";
+﻿import { CommonModule, DatePipe } from "@angular/common";
 import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
@@ -7,7 +7,7 @@ import { MessageModule } from "primeng/message";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -29,7 +29,7 @@ export interface VacationHistoryItemDTO {
 }
 
 /**
- * ?? Componente de Auditoróa Admin ó Balance de Vacaciones por Empleado.
+ * ?? Componente de Auditoría Admin ó Balance de Vacaciones por Empleado.
  *
  * Permite a SuperUsuario/RecursosHumanos seleccionar cualquier empleado del
  * cliente en sesión y revisar su balance y historial de solicitudes por periodo
@@ -229,4 +229,5 @@ export class VacacionesAdminAuditoria implements OnInit {
     return statusSeverityFn(status);
   }
 }
+
 

@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
@@ -9,10 +9,10 @@ import { gitBranchOutline } from "ionicons/icons";
 import { DialogService } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonAdd } from "src/app/core/components/web/buttons/custom-button-add";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -116,3 +116,4 @@ export class DiagramList implements OnInit {
     });
   }
 }
+

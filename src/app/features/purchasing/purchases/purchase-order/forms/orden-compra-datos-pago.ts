@@ -1,4 +1,4 @@
-import { Endpoints } from "src/app/core/constants/endpoints";
+﻿import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   ChangeDetectorRef,
   Component,
@@ -17,10 +17,10 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { TagModule } from "primeng/tag";
 import { lastValueFrom } from "rxjs";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -202,7 +202,7 @@ export class OrdenCompraDatosPago implements OnInit {
   }
 
   onSubmit() {
-    // Aquó podróas Añadir Validators.required al fundingPeriod y fundingYear
+    // Aquó podrías Añadir Validators.required al fundingPeriod y fundingYear
     // si ambos deben ser seleccionados al mismo tiempo.
     if (this.form.invalid) {
       Object.values(this.form.controls).forEach((control) => {
@@ -229,3 +229,4 @@ export class OrdenCompraDatosPago implements OnInit {
       .catch(() => this.submitting.set(false)); // Asegurarse de quitar el submitting en caso de error
   }
 }
+

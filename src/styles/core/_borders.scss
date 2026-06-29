@@ -33,8 +33,8 @@ $radius-full:   9999px  !default;   // completamente redondeado (pill)
   --ds-radius-full:  #{$radius-full};
 
   // Radius por defecto de componentes (alineado con _variables.scss)
-  --ds-radius-btn:   #{$radius-md};
-  --ds-radius-input: #{$radius-md};
+  --ds-radius-btn:   #{$radius-xs};
+  --ds-radius-input: #{$radius-xs};
   --ds-radius-card:  8px;
   --ds-radius-badge: #{$radius-full};
   --ds-radius-modal: 12px;

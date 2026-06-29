@@ -8,8 +8,8 @@ import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -44,11 +44,11 @@ export class ProviderSupport implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
-  // DeclaraciÃ³n e inicializaciÃ³n de variables
+  // Declaración e inicialización de variables
   dataSignal = signal<IProviderSupportList[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
-  ref: DynamicDialogRef; // Referencia a un cuadro de diÃ¡logo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diÃƒ¡logo modal
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   constructor() {
@@ -59,7 +59,7 @@ export class ProviderSupport implements OnInit {
     // Cuando se inicia el componente, cargar los datos de los bancos
     this.onLoadData();
   }
-  // FunciÃ³n para cargar los datos
+  // Función para cargar los datos
   onLoadData() {
     this.apiResponseS
       .onGetList(Endpoints.ProviderSupport.getAll)
@@ -69,7 +69,7 @@ export class ProviderSupport implements OnInit {
   }
 
   //Modal Agregar o editar
-  // FunciÃ³n para abrir un cuadro de diÃ¡logo modal para agregar o editar informaciÃ³n sobre un CustomerProvider
+  // Función para abrir un cuadro de diÃƒ¡logo modal para agregar o editar información sobre un CustomerProvider
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(
@@ -82,7 +82,7 @@ export class ProviderSupport implements OnInit {
         if (result) this.onLoadData();
       });
   }
-  // FunciÃ³n para eliminar
+  // Función para eliminar
   onDelete(id: string) {
     this.apiResponseS
       .onDelete(Endpoints.ProviderSupport.delete(id))
@@ -94,3 +94,4 @@ export class ProviderSupport implements OnInit {
       });
   }
 }
+

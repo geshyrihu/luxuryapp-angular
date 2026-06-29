@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
@@ -9,7 +9,7 @@ import {
 import { FileUploadModule } from "@iplab/ngx-file-upload";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { DividerModule } from "primeng/divider";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
@@ -19,11 +19,11 @@ import { ListboxModule } from "primeng/listbox";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { AiService } from "src/app/core/services/ai.service";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -388,3 +388,4 @@ export class AnnouncementAdminForm implements OnInit {
     });
   }
 }
+

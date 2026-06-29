@@ -1,12 +1,12 @@
-import { CommonModule } from "@angular/common";
+Ôªøimport { CommonModule } from "@angular/common";
 import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
@@ -33,7 +33,7 @@ export class DetallesInspeccion implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   data: any;
 
-  nombre: string = "Equipos electromec·nicos";
+  nombre: string = "Equipos electromec√≥nicos";
   areaResponsable: string = "Mantenimiento";
   id: string = this.activatedRoute.snapshot.paramMap.get("id");
 
@@ -111,10 +111,11 @@ export class DetallesInspeccion implements OnInit {
   onModalAddRevision() {
     this.dialogHandlerS.openDialog(
       InspeccionAgregarRevision,
-      { title: "Agregar ·rea" },
-      "Agregar revisiÛn",
+      { title: "Agregar √≥rea" },
+      "Agregar revisi√≥n",
       this.dialogHandlerS.sizeLg,
     );
   }
 }
+
 

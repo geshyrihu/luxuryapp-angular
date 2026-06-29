@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
@@ -10,8 +10,8 @@ import {
   CustomButtonDelete,
   CustomButtonEdit,
   CustomButtonItem,
-} from "src/app/core/components/buttons/web";
-import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/custom-button-active-desactive";
+} from "src/app/core/components/web/buttons";
+import { CustomBtnActiveDesactive } from "src/app/core/components/web/buttons/custom-button-active-desactive";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
@@ -61,13 +61,13 @@ export class EmployeeExternalList {
   getAllEmployeeActive: any = [];
   ref: DynamicDialogRef;
 
-  // Ã³CAMBIO CLAVE! Reemplazamos ngOnInit con el constructor y un effect.
+  // óCAMBIO CLAVE! Reemplazamos ngOnInit con el constructor y un effect.
   constructor() {
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) {
         // El effect se encarga de la carga inicial de datos
-        // tan pronto como el customerId estÃ³ disponible.
+        // tan pronto como el customerId estó disponible.
         this.onLoadData();
       }
     });
@@ -87,13 +87,13 @@ export class EmployeeExternalList {
         ),
       )
       .then((result: any) => {
-        console.log("ðŸš€ ~ EmployeeExternalList ~ onLoadData ~ result:", result);
+        console.log("🚀 ~ EmployeeExternalList ~ onLoadData ~ result:", result);
         return this.dataSignal.set(result);
       });
   }
 
   onModalForm(data: any) {
-    console.log("ðŸš€ ~ EmployeeExternalList ~ onModalForm ~ data:", data);
+    console.log("🚀 ~ EmployeeExternalList ~ onModalForm ~ data:", data);
     this.dialogHandlerS
       .openDialog(
         EmployeeExternalForm,
@@ -111,7 +111,7 @@ export class EmployeeExternalList {
       .openDialog(
         EmployeeExternalAppUser,
         { applicationUserId },
-        "Usuario de AplicaciÃ³n",
+        "Usuario de Aplicación",
         this.dialogHandlerS.sizeLg,
       )
       .then((result: boolean) => {
@@ -146,3 +146,4 @@ export class EmployeeExternalList {
     );
   }
 }
+

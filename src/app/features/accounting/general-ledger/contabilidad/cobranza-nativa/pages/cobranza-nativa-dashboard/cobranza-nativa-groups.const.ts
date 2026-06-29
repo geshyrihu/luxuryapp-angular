@@ -1,4 +1,4 @@
-import { CobranzaGroup } from "../../models/cobranza-nativa.model";
+﻿import { CobranzaGroup } from "../../models/cobranza-nativa.model";
 
 export const COBRANZA_GROUPS: CobranzaGroup[] = [
   {
@@ -502,7 +502,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           "Los casos se crean automaticamente cuando el job de escalada detecta deuda mayor a 90 dias. Tambien se pueden crear manualmente.",
       },
       {
-        title: "Artículos del Reglamento",
+        title: "Artóculos del Reglamento",
         description:
           "Catalogo de articulos del reglamento interno del condominio. Define los tipos de infraccion con su numero, texto oficial y monto de multa predeterminado.",
         route: "/cobranza-nativa/regulation-articles",
@@ -942,7 +942,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
             method: "POST",
             path: "/notifications/process?customerId={id}",
             description:
-              "Endpoint pendiente de implementar — solo se ejecuta via Hangfire por ahora",
+              "Endpoint pendiente de implementar é solo se ejecuta via Hangfire por ahora",
           },
         ],
         states: ["PreVencimiento", "DiaVencimiento", "Mora"],

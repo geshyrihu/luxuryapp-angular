@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit } from "@angular/core";
+﻿import { Component, inject, input, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
 import { PermissionDTO } from "src/app/core/interfaces/permission.dto";
@@ -36,7 +36,7 @@ export class EmployeePermissionApp implements OnInit {
     // Actualiza el campo correspondiente en el objeto de permiso
     permission[field] = checked;
 
-    // Aquí envías la solicitud para actualizar los permisos
+    // Aqué envéas la solicitud para actualizar los permisos
     this.apiResponseS.onPut(Endpoints.Permission.update(permission.id), permission, false);
   }
 }

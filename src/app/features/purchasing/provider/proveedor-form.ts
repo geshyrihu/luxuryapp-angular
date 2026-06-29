@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
   FormBuilder,
@@ -11,15 +11,15 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
 import { MultiSelectModule } from "primeng/multiselect";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
-import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
-import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
-import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
+import { CustomInputFile } from "src/app/core/components/web/inputs/custom-input-file-signal";
+import { CustomInputImg } from "src/app/core/components/web/inputs/custom-input-img-signal";
+import { CustomInputMaskSignal } from "src/app/core/components/web/inputs/custom-input-mask-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
+import { CustomInputSwitch } from "src/app/core/components/web/inputs/custom-input-switch-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -238,7 +238,7 @@ export class ProveedorForm implements OnInit {
       }
 
       if (key === "categorias" && Array.isArray(value)) {
-        // Caso especial para el array de categoróas
+        // Caso especial para el array de categorías
         value.forEach((category: any) => {
           formData.append("categorias", category.value);
         });
@@ -276,3 +276,4 @@ export class ProveedorForm implements OnInit {
     this.form.patchValue({ constanciaFiscal: file });
   }
 }
+

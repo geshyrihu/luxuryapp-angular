@@ -5,8 +5,8 @@ import { addIcons } from "ionicons";
 import { businessOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -45,7 +45,7 @@ export class BankList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
-  // DeclaraciÃ³n e inicializaciÃ³n de variables
+  // Declaración e inicialización de variables
   dataSignal = signal<IBankDTO[]>([]);
 
   /*
@@ -58,8 +58,8 @@ export class BankList implements OnInit {
   // Usar el servicio global para scrollHeight
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
-  // Â¡Esta es la magia!
-  // Se recalcularÃ¡ automÃ¡ticamente SOLO si dataSignal cambia.
+  // Ã‚¡Esta es la magia!
+  // Se recalcularÃƒ¡ automÃƒ¡ticamente SOLO si dataSignal cambia.
   readonly globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
@@ -96,7 +96,7 @@ export class BankList implements OnInit {
       });
   }
 
-  // FunciÃ³n para abrir un cuadro de diÃ¡logo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diÃƒ¡logo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(BankForm, data, data.title, this.dialogHandlerS.sizeLg)
@@ -107,3 +107,4 @@ export class BankList implements OnInit {
       });
   }
 }
+

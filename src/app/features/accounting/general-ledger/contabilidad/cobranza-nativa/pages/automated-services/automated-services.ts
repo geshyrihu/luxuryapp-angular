@@ -1,4 +1,4 @@
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { DatePipe } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -7,9 +7,9 @@ import { ISelectItem } from 'src/app/core/interfaces/select-Item.interface';
 import { ApiResponseService } from 'src/app/core/services/api-response.service';
 import { CustomerIdService } from 'src/app/core/services/customer-id.service';
 import { EnumSelectService } from 'src/app/core/services/enum-select.service';
-import { CustomButton } from 'src/app/core/components/buttons/web';
-import { CustomInputNumberSignal } from 'src/app/core/components/inputs/web/custom-input-number-signal';
-import { CustomInputSelectSignal } from 'src/app/core/components/inputs/web/custom-input-select-signal';
+import { CustomButton } from 'src/app/core/components/web/buttons';
+import { CustomInputNumberSignal } from 'src/app/core/components/web/inputs/custom-input-number-signal';
+import { CustomInputSelectSignal } from 'src/app/core/components/web/inputs/custom-input-select-signal';
 
 interface JobResult {
   jobName: string;
@@ -116,3 +116,4 @@ export default class AutomatedServices {
     return this.monthOptions().find((o) => o.value === m)?.label ?? String(m);
   }
 }
+

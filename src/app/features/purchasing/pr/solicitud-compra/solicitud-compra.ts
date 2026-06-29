@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -24,11 +24,11 @@ import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { firstValueFrom } from "rxjs";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -133,10 +133,10 @@ export class SolicitudCompra implements OnInit {
     );
   }
 
-  // Manejar productos aóadidos localmente antes de guardar cabecera
+  // Manejar productos añadidos localmente antes de guardar cabecera
   onAddedLocal(product: any) {
     this.tempProducts.update((prev) => [...prev, product]);
-    // Actualizamos visualmente la lista combinando lo local con lo que pudiera haber (que deberóa ser nada)
+    // Actualizamos visualmente la lista combinando lo local con lo que pudiera haber (que debería ser nada)
     this.SolicitudCompraDetalle = [...this.SolicitudCompraDetalle, product];
     this.cdr.detectChanges();
   }
@@ -345,3 +345,4 @@ export class SolicitudCompra implements OnInit {
       });
   }
 }
+

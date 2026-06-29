@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
@@ -16,10 +16,10 @@ import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { CustomButtonItem } from "src/app/core/components/buttons/web";
-import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButtonTracking } from "src/app/core/components/buttons/web/custom-button-tracking";
+import { CustomButtonItem } from "src/app/core/components/web/buttons";
+import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+import { CustomButtonTracking } from "src/app/core/components/web/buttons/custom-button-tracking";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -201,7 +201,7 @@ export class TicketLegalLista implements OnInit {
       { header: "ASUNTO",           key: "title",          width: 40 },
       { header: "RESPONSABLE",      key: "assignee",       width: 24 },
       { header: "ESTATUS",          key: "status",         width: 14 },
-      { header: "FECHA CONCLUSIÃ“N", key: "completionDate", width: 18 },
+      { header: "FECHA CONCLUSIÓN", key: "completionDate", width: 18 },
       { header: "DÃAS",             key: "dias",           width: 8  },
     ];
 
@@ -237,7 +237,7 @@ export class TicketLegalLista implements OnInit {
         cell.font      = { size: 10 };
       });
 
-      // Celda ESTATUS con color sÃ³lido + texto blanco
+      // Celda ESTATUS con color s  lido + texto blanco
       const statusCell = row.getCell("status");
       statusCell.fill  = { type: "pattern", pattern: "solid", fgColor: { argb: STATUS_COLOR[status] ?? "FFA6A6A6" } };
       statusCell.font  = { bold: true, color: { argb: "FFFFFFFF" }, size: 10 };
@@ -253,3 +253,4 @@ export class TicketLegalLista implements OnInit {
     saveAs(new Blob([buffer]), `Tickets_Legales_${new Date().toISOString().slice(0, 10)}.xlsx`);
   }
 }
+

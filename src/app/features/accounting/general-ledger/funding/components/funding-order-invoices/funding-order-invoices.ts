@@ -1,7 +1,7 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, inject, OnInit, signal } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
+import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 @Component({
@@ -35,4 +35,5 @@ export class FundingOrderInvoices implements OnInit {
     this.ref.close();
   }
 }
+
 

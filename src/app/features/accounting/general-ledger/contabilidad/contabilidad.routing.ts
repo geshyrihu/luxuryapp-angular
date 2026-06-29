@@ -1,4 +1,4 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 import { MasterDashboard } from "./master-dashboard/master-dashboard";
 

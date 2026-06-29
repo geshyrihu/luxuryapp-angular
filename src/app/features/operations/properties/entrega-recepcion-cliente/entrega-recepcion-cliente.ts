@@ -5,11 +5,11 @@ import { Router } from "@angular/router";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -51,22 +51,22 @@ export class EntregaRecepcionClienteLista {
   public AspRole = EApplicationRole;
   data = signal<any[]>([]);
   loading = signal(true);
-  // Â¡MEJORA! El departamento ahora es un signal.
+  // Ã‚¡MEJORA! El departamento ahora es un signal.
   departamento = signal<string>("");
 
-  // --- PROPIEDADES ESTÃ³TICAS (sin cambios) ---
+  // --- PROPIEDADES ESTóTICAS (sin cambios) ---
   globalFilterFields = computed(() => globalFilterFields(this.data()));
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   cb_departamento = [
     { value: "JURIDICO" },
-    { value: "ADMINISTRACIÃ“N Y FINANZAS" },
+    { value: "ADMINISTRACIÓN Y FINANZAS" },
     { value: "OPERACIONES Y MANTENIMIENTO" },
   ];
   ref: DynamicDialogRef;
 
   constructor() {
-    // 1. Ejecutamos la configuraciÃ³n Ãºnica para establecer el estado inicial del signal.
+    // 1. Ejecutamos la configuración única para establecer el estado inicial del signal.
     this.onValidarCargo();
 
     // 2. Creamos el effect que reacciona a TODOS los cambios de estado relevantes.
@@ -75,14 +75,14 @@ export class EntregaRecepcionClienteLista {
       const customerId: string = this.customerIdS.customerId();
       const depto = this.departamento();
 
-      // El effect se ejecutarÃ¡ si cambia el cliente O el departamento.
+      // El effect se ejecutarÃƒ¡ si cambia el cliente O el departamento.
       if (customerId && depto) {
         this.onLoadData();
       }
     });
   }
 
-  // Â¡MEJORA! Este mÃ©todo ahora solo establece el estado inicial del signal.
+  // Ã‚¡MEJORA! Este método ahora solo establece el estado inicial del signal.
   private onValidarCargo(): void {
     let initialDept = this.cb_departamento[0].value; // Valor por defecto
     if (this.aspRoleS.hasRole(EApplicationRole.Contador))
@@ -94,8 +94,8 @@ export class EntregaRecepcionClienteLista {
     this.departamento.set(initialDept);
   }
 
-  // Â¡MEJORA! Este mÃ©todo ahora es sÃºper simple. Solo actualiza el signal.
-  // El effect se encargarÃ¡ de llamar a onLoadData.
+  // Ã‚¡MEJORA! Este método ahora es súper simple. Solo actualiza el signal.
+  // El effect se encargarÃƒ¡ de llamar a onLoadData.
   onChangeDepartamento(departamento: string): void {
     this.departamento.set(departamento);
   }
@@ -104,7 +104,7 @@ export class EntregaRecepcionClienteLista {
     // * Peticion para generar los items de entrega recepcion (sin cambios)
     this.apiResponseS.onGetItem(Endpoints.EntregaRecepcionCliente.generateData);
 
-    // Â¡CORRECCIÃ“N! Leemos los valores de los signals con ()
+    // Ã‚¡CORRECCIÑN! Leemos los valores de los signals con ()
     const urlApi = Endpoints.EntregaRecepcionCliente.getByCustomerAndDepartment(
       this.customerIdS.customerId(),
       this.departamento(),
@@ -118,8 +118,8 @@ export class EntregaRecepcionClienteLista {
       .finally(() => {});
   }
 
-  // ... El resto de tus mÃ©todos (onModalForm, onValidarDocument, etc.) estÃ¡n bien.
-  // Siguen llamando a onLoadData() para recargar la lista despuÃ©s de una acciÃ³n, lo cual es correcto.
+  // ... El resto de tus métodos (onModalForm, onValidarDocument, etc.) estÃƒ¡n bien.
+  // Siguen llamando a onLoadData() para recargar la lista después de una acción, lo cual es correcto.
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(
@@ -166,3 +166,4 @@ export class EntregaRecepcionClienteLista {
     window.open(url, "_blank");
   }
 }
+

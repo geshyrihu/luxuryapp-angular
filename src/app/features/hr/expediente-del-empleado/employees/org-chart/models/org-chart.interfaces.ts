@@ -1,5 +1,5 @@
-/**
- * Interfaces para el organigrama jerárquico de puestos.
+﻿/**
+ * Interfaces para el organigrama jerírquico de puestos.
  */
 
 export const ORG_CHART_VIRTUAL_ROOT_ID = "0";

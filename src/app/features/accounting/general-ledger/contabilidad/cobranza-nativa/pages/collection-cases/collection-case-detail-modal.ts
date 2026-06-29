@@ -1,9 +1,9 @@
-import { CurrencyPipe, DatePipe } from '@angular/common';
+﻿import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { CustomButton } from 'src/app/core/components/buttons/web';
-import { CustomInputTextAreaSignal } from 'src/app/core/components/inputs/web/custom-input-textarea-signal';
+import { CustomButton } from 'src/app/core/components/web/buttons';
+import { CustomInputTextAreaSignal } from 'src/app/core/components/web/inputs/custom-input-textarea-signal';
 import { Endpoints } from 'src/app/core/constants/endpoints';
 import { ApiResponseService } from 'src/app/core/services/api-response.service';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -62,3 +62,4 @@ export default class CollectionCaseDetailModal implements OnInit {
     this.ref.close(false);
   }
 }
+

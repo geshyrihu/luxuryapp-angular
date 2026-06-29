@@ -10,10 +10,10 @@ import {
 } from "@angular/core";
 import { NonNullableFormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
-import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomButtonAdd } from "src/app/core/components/web/buttons/custom-button-add";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -63,12 +63,12 @@ export class SuspensionDaysManager implements OnInit {
     return new Date(`${isoStr.substring(0, 10)}T00:00:00`);
   }
 
-  /** Fechas ya registradas â€” para deshabilitar en el datepicker */
+  /** Fechas ya registradas Ã¢â‚¬â€ para deshabilitar en el datepicker */
   disabledDates = computed(() =>
     this.days().map((d) => this.parseLocalDate(String(d.suspensionDate))),
   );
 
-  /** Resumen legible de los dÃ­as registrados */
+  /** Resumen legible de los días registrados */
   daysFormatted = computed(() =>
     this.days()
       .map((d) =>
@@ -121,19 +121,19 @@ export class SuspensionDaysManager implements OnInit {
 
     if (sorted.length === 0) return;
 
-    // Validar lunes (1) y sÃ¡bado (6)
+    // Validar lunes (1) y sÃƒ¡bado (6)
     const invalidas = sorted.filter(
       (f) => f.getDay() === 1 || f.getDay() === 6,
     );
     if (invalidas.length > 0) {
       this.toastS.showWarn(
-        "DÃ­as no permitidos",
-        `Las suspensiones no aplican en lunes ni sÃ¡bado: ${invalidas.map((d) => d.toLocaleDateString("es-MX")).join(", ")}`,
+        "Días no permitidos",
+        `Las suspensiones no aplican en lunes ni sÃƒ¡bado: ${invalidas.map((d) => d.toLocaleDateString("es-MX")).join(", ")}`,
       );
       return;
     }
 
-    // Validar dÃ­as consecutivos (cuando hay mÃ¡s de 1)
+    // Validar días consecutivos (cuando hay mÃƒ¡s de 1)
     if (sorted.length > 1) {
       for (let i = 0; i < sorted.length - 1; i++) {
         const diffDias = Math.round(
@@ -141,20 +141,20 @@ export class SuspensionDaysManager implements OnInit {
         );
         if (diffDias === 1) {
           this.toastS.showWarn(
-            "DÃ­as consecutivos",
-            `Los dÃ­as de suspensiÃ³n no pueden ser consecutivos: ${sorted[i].toLocaleDateString("es-MX")} y ${sorted[i + 1].toLocaleDateString("es-MX")}`,
+            "Días consecutivos",
+            `Los días de suspensión no pueden ser consecutivos: ${sorted[i].toLocaleDateString("es-MX")} y ${sorted[i + 1].toLocaleDateString("es-MX")}`,
           );
           return;
         }
       }
     }
 
-    // Validar mÃ¡ximo 8 dÃ­as total
+    // Validar mÃƒ¡ximo 8 días total
     const totalActual = this.days().length;
     if (totalActual + sorted.length > 8) {
       this.toastS.showWarn(
-        "LÃ­mite excedido",
-        `No se pueden superar 8 dÃ­as de suspensiÃ³n. Registrados: ${totalActual}. Intentando agregar: ${sorted.length}.`,
+        "Límite excedido",
+        `No se pueden superar 8 días de suspensión. Registrados: ${totalActual}. Intentando agregar: ${sorted.length}.`,
       );
       return;
     }
@@ -202,3 +202,4 @@ export class SuspensionDaysManager implements OnInit {
       .then(() => this.loadDays());
   }
 }
+

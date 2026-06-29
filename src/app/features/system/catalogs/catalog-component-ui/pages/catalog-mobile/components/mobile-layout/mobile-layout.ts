@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import {
   IonContent,
@@ -40,23 +40,23 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
         <div>
           <div class="section-label">Comportamiento por pantalla</div>
           <p class="section-desc">
-            <code>ion-split-pane</code> muestra el menú lateral integrado en pantallas ≥768px
+            <code>ion-split-pane</code> muestra el mené lateral integrado en pantallas =768px
             y lo oculta en mobile (se abre con <code>ion-menu-button</code>).
           </p>
           <div class="anatomy-grid">
 
             <!-- Mobile -->
             <div>
-              <div class="anatomy-device-label">📱 Mobile (&lt;768px)</div>
+              <div class="anatomy-device-label">?? Mobile (&lt;768px)</div>
               <div class="anatomy-device anatomy-mobile">
                 <div class="anatomy-toolbar">
-                  <span class="anatomy-hamburger">≡</span>
+                  <span class="anatomy-hamburger">=</span>
                   <span>Página</span>
                 </div>
                 <div class="anatomy-body">
                   <div class="anatomy-content-only">
                     <span class="anatomy-tag">ion-content</span>
-                    <p class="anatomy-note">El menú se oculta.<br>Deslizar o ≡ para abrir.</p>
+                    <p class="anatomy-note">El mené se oculta.<br>Deslizar o = para abrir.</p>
                   </div>
                 </div>
               </div>
@@ -64,7 +64,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
 
             <!-- Tablet / Desktop -->
             <div>
-              <div class="anatomy-device-label">🖥️ Tablet / Desktop (≥768px)</div>
+              <div class="anatomy-device-label">??? Tablet / Desktop (=768px)</div>
               <div class="anatomy-device anatomy-tablet">
                 <div class="anatomy-toolbar">
                   <span>Página</span>
@@ -73,9 +73,9 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
                   <div class="anatomy-sidebar">
                     <span class="anatomy-tag">ion-menu</span>
                     <div class="anatomy-menu-items">
-                      <div class="anatomy-menu-item">🏠 Inicio</div>
-                      <div class="anatomy-menu-item active-item">📊 Reportes</div>
-                      <div class="anatomy-menu-item">⚙️ Config.</div>
+                      <div class="anatomy-menu-item">?? Inicio</div>
+                      <div class="anatomy-menu-item active-item">?? Reportes</div>
+                      <div class="anatomy-menu-item">?? Config.</div>
                     </div>
                   </div>
                   <div class="anatomy-content-area">
@@ -94,19 +94,19 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
           <div class="config-table">
             <div class="config-row">
               <code>when="md"</code>
-              <span>≥768px — tablet y desktop (por defecto)</span>
+              <span>=768px é tablet y desktop (por defecto)</span>
             </div>
             <div class="config-row">
               <code>when="lg"</code>
-              <span>≥992px — solo desktop</span>
+              <span>=992px é solo desktop</span>
             </div>
             <div class="config-row">
               <code>when="xs"</code>
-              <span>Siempre visible — no colapsa en mobile</span>
+              <span>Siempre visible é no colapsa en mobile</span>
             </div>
             <div class="config-row">
               <code>when="false"</code>
-              <span>Desactivado — siempre como drawer</span>
+              <span>Desactivado é siempre como drawer</span>
             </div>
           </div>
         </div>
@@ -131,41 +131,41 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
           <div class="section-label">Simulación</div>
           <p class="section-desc">Alterna entre vista mobile y tablet para ver cómo cambia el layout.</p>
           <div class="toggle-row">
-            <button class="sim-btn" [class.active]="!tabletMode()" (click)="tabletMode.set(false)">📱 Mobile</button>
-            <button class="sim-btn" [class.active]="tabletMode()" (click)="tabletMode.set(true)">🖥️ Tablet</button>
+            <button class="sim-btn" [class.active]="!tabletMode()" (click)="tabletMode.set(false)">?? Mobile</button>
+            <button class="sim-btn" [class.active]="tabletMode()" (click)="tabletMode.set(true)">??? Tablet</button>
           </div>
           <div class="sim-frame" [class.sim-tablet]="tabletMode()">
             @if (tabletMode()) {
               <div class="sim-sidebar">
-                <div class="sim-nav-item">🏠 Inicio</div>
-                <div class="sim-nav-item sim-active">📊 Reportes</div>
-                <div class="sim-nav-item">⚙️ Config.</div>
+                <div class="sim-nav-item">?? Inicio</div>
+                <div class="sim-nav-item sim-active">?? Reportes</div>
+                <div class="sim-nav-item">?? Config.</div>
               </div>
             }
             <div class="sim-content">
               @if (!tabletMode()) {
                 <div class="sim-toolbar">
-                  <span class="sim-hamburger">≡</span>
+                  <span class="sim-hamburger">=</span>
                   <span>Mi App</span>
                 </div>
               }
               <div class="sim-body">
                 <p class="text-sm text-secondary">Contenido principal</p>
                 @if (tabletMode()) {
-                  <p class="text-xs" style="color:var(--ds-success,#006837)">✅ Split pane activo — menú siempre visible</p>
+                  <p class="text-xs" style="color:var(--ds-success,#006837)">? Split pane activo é mené siempre visible</p>
                 } @else {
-                  <p class="text-xs" style="color:var(--ds-text-muted,#94a3b8)">Menú colapsado — toca ≡ para abrir</p>
+                  <p class="text-xs" style="color:var(--ds-text-muted,#94a3b8)">Mené colapsado é toca = para abrir</p>
                 }
               </div>
             </div>
           </div>
         </div>
 
-        <!-- ─── PATRÓN: Bottom Tab Bar (ui-stiich Corporate Integrity) ─── -->
+        <!-- --- PATRóN: Bottom Tab Bar (ui-stiich Corporate Integrity) --- -->
         <div>
           <div class="section-label">Bottom Tab Bar (ui-stiich)</div>
           <p class="section-desc">
-            Barra de navegación inferior con íconos Material Symbols. Activo: Filled,
+            Barra de navegación inferior con óconos Material Symbols. Activo: Filled,
             inactivo: Outline. Inspirado en <code>listado_de_contactos_modo_claro</code>.
           </p>
           <div class="stiich-tabbar">
@@ -238,7 +238,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
     .sim-hamburger { font-size: 1rem; }
     .sim-body { padding: 12px; flex: 1; }
 
-    /* ─── Bottom Tab Bar (Corporate Integrity DS) ─── */
+    /* --- Bottom Tab Bar (Corporate Integrity DS) --- */
     .stiich-tabbar { display: flex; align-items: center; background: var(--ds-bg-surface); border: 1px solid var(--ds-border-strong); border-radius: 0.75rem; overflow: hidden; height: 64px; }
     .stiich-tab { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; border: none; background: transparent; cursor: pointer; padding: 6px 0; transition: all 150ms; color: var(--ds-text-secondary); font-family: inherit; }
     .stiich-tab:hover { background: color-mix(in srgb, var(--ds-primary) 4%, transparent); }

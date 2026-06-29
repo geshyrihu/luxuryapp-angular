@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, OnDestroy, OnInit, signal } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -43,7 +43,7 @@ export class DiagramEditor implements OnInit, OnDestroy {
     // Configuración de Draw.io embed
     // proto=json indica que usaremos mensajes JSON para comunicarnos
     // spin=1 muestra un cargador
-    // embed=1 indica que está embebido
+    // embed=1 indica que esté embebido
     // ui=atlas es un tema moderno
     const baseUrl =
       "https://embed.diagrams.net/?embed=1&ui=atlas&spin=1&proto=json";
@@ -75,7 +75,7 @@ export class DiagramEditor implements OnInit, OnDestroy {
 
     switch (data.event) {
       case "init":
-        // El editor está listo, enviamos el contenido actual
+        // El editor esté listo, enviamos el contenido actual
         this.sendAction({
           action: "load",
           xml: this.diagram()?.content || "",
@@ -89,7 +89,7 @@ export class DiagramEditor implements OnInit, OnDestroy {
         break;
 
       case "exit":
-        // El usuario cerró el editor
+        // El usuario cerré el editor
         this.router.navigate(["/diagram"]);
         break;
     }
@@ -112,7 +112,7 @@ export class DiagramEditor implements OnInit, OnDestroy {
     if (!currentDiagram) return;
 
     // Solo enviamos los datos necesarios para la actualización del diagrama
-    // El backend se encargará de validar y actualizar solo estos campos si así lo definimos
+    // El backend se encargaré de validar y actualizar solo estos campos si asé lo definimos
     const body = {
       ...currentDiagram,
       content: xml,

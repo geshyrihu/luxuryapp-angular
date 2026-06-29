@@ -1,10 +1,10 @@
-import { Component, inject, OnInit } from "@angular/core";
+﻿import { Component, inject, OnInit } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ManualBalanceUpdateDto } from "../interfaces/manual-balance-update.dto";
 
@@ -78,3 +78,4 @@ export class AdminVacacionesEditModalComponent implements OnInit {
       });
   }
 }
+

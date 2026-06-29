@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import {
   Component,
   computed,
@@ -22,9 +22,9 @@ import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-me
 import {
   CustomBtnActiveDesactive,
   CustomButtonItem,
-} from "src/app/core/components/buttons/web";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+} from "src/app/core/components/web/buttons";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -67,7 +67,7 @@ export class CustomerList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   tableScrollHeightS = inject(TableScrollHeightService);
 
-  // DeclaraciÃ³n e inicializaciÃ³n de variables con Signals
+  // Declaración e inicialización de variables con Signals
   dataSignal = signal<ICustomerDTO[]>([]);
   loading = signal(true);
 
@@ -159,3 +159,4 @@ export class CustomerList implements OnInit {
     this.onLoadData();
   }
 }
+

@@ -1,13 +1,13 @@
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
-import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
+import { CustomSearchInput } from "src/app/core/components/web/inputs/custom-search-input-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ReportFilterService } from "../espejo-aspel-full/services/financial-report-filter.service";
@@ -226,3 +226,4 @@ export class AutitoriaCuentasAspel {
     });
   }
 }
+

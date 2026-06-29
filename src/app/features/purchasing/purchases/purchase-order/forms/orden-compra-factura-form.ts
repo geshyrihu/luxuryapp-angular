@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import {
   Component,
@@ -17,11 +17,11 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip"; // Added
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button"; // Nueva importaciÃ³n
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit"; // Added
-import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal"; // Added
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button"; // Nueva importación
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit"; // Added
+import { CustomInputFile } from "src/app/core/components/web/inputs/custom-input-file-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal"; // Added
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 export interface IOrdenCompraFacturaForm {
@@ -61,7 +61,7 @@ export class OrdenCompraFacturaForm implements OnInit {
 
   cb_tipos = [
     { label: "Egreso (Factura)", value: "I" },
-    { label: "Ingreso (Nota de CrÃ³dito)", value: "E" },
+    { label: "Ingreso (Nota de Cródito)", value: "E" },
   ];
 
   form: FormGroup<IOrdenCompraFacturaForm> =
@@ -198,3 +198,4 @@ export class OrdenCompraFacturaForm implements OnInit {
       });
   }
 }
+

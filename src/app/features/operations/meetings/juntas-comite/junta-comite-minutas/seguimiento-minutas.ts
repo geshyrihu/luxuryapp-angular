@@ -1,9 +1,9 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
@@ -131,3 +131,4 @@ export class SeguimientoMinuta {
     this.onLoadData(filtro);
   }
 }
+

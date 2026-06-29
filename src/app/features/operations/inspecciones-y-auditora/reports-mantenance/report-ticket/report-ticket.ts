@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { AvatarModule } from "primeng/avatar";
@@ -31,7 +31,7 @@ export class ReportTicket {
   PeriodMonthService = inject(PeriodMonthService);
   tableScrollHeightS = inject(TableScrollHeightService);
   dataSignal = signal<any[]>([]);
-  // Si estas otras también son datos para la UI, las podemos convertir a signals
+  // Si estas otras tambión son datos para la UI, las podemos convertir a signals
   dataResponsable = signal<any>(null);
   dataCargaTicket = signal<any>(null);
 

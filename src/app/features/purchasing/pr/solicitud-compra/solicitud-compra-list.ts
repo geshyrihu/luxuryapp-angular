@@ -12,9 +12,9 @@ import { TooltipModule } from "primeng/tooltip";
 import { Subscription } from "rxjs";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -253,7 +253,7 @@ export class SolicitudCompraList {
       .openDialog(
         PurchaseLinkManager,
         {},
-        "GestiÃ³n de VÃ³nculos",
+        "Gestión de Vónculos",
         this.dialogHandlerS.sizeLg,
       )
       .then((result) => {
@@ -281,10 +281,10 @@ export class SolicitudCompraList {
   onUnlinkPurchaseOrder(ordenCompraId: string) {
     Swal.fire({
       title: "Confirmar",
-      text: "Ã³EstÃ¡ seguro de que desea desvincular esta orden de compra?",
+      text: "óEstÃƒ¡ seguro de que desea desvincular esta orden de compra?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "SÃ­, desvincular",
+      confirmButtonText: "Sí, desvincular",
       cancelButtonText: "Cancelar",
       customClass: {
         container: "my-swal-container",
@@ -302,3 +302,4 @@ export class SolicitudCompraList {
     });
   }
 }
+

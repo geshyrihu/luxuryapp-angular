@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from "@angular/core";
+﻿import { Component, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
@@ -10,7 +10,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PageTitleReport } from "src/app/core/components/web/title-page-report/page-title-report";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -82,3 +82,4 @@ export class MaintenanceReports {
     this.menu.set(MenuReportMaintenance);
   }
 }
+

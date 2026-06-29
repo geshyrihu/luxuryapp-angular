@@ -1,10 +1,10 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
 import { CrudSubmitOptions, FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -139,6 +139,7 @@ export class ProviderSupportForm implements OnInit {
     FormHelper.submitCrud(options);
   }
 }
+
 
 
 

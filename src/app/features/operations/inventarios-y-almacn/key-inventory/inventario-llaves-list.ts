@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -6,9 +6,9 @@ import { folderOpenOutline, keyOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -114,7 +114,7 @@ export class InventarioLlavesList {
       const groups = sortedData.reduce(
         (acc, item) => {
           const classification =
-            item.equipoClasificacion || "SIN CLASIFICACIÃ“N";
+            item.equipoClasificacion || "SIN CLASIFICACIÓN";
           if (!acc[classification]) acc[classification] = [];
           acc[classification].push(item);
           return acc;
@@ -170,9 +170,9 @@ ${this.htmlPrintS.getStandardCss()}
     <table class="data-table">
       <thead>
         <tr>
-          <th>DescripciÃ³n</th>
+          <th>Descripción</th>
           <th>Marca</th>
-          <th style="width: 80px;">NÃºmero</th>
+          <th style="width: 80px;">Número</th>
           <th style="width: 80px;">Cant.</th>
         </tr>
       </thead>
@@ -194,3 +194,4 @@ ${this.htmlPrintS.getStandardCss()}
     }
   }
 }
+

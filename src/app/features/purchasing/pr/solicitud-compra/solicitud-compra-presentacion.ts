@@ -1,11 +1,11 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, effect, inject, signal, ViewChild } from "@angular/core";
 import { Carousel, CarouselModule } from "primeng/carousel";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
 import { EAutorizacionCuadroComparativo } from "src/app/core/enums/e-autorizacion-cuadro-comparativo.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -507,3 +507,4 @@ export class SolicitudCompraPresentacion {
     this.currentPage.set(nextPage);
   }
 }
+

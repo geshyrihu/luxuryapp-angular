@@ -1,6 +1,6 @@
-/**
+﻿/**
  * ============================================================================
- * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
+ * âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
  * ============================================================================
  * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
  * FUNCIONAL y ESTABLE. 
@@ -33,8 +33,8 @@ import { Table, TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { Subscription } from "rxjs";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
-import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
+import { CustomSearchInput } from "src/app/core/components/web/inputs/custom-search-input-signal";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
@@ -109,7 +109,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   dt = viewChild<Table>("dt");
 
   // --------------------------------------------------------------------------------
-  // Propiedades de Estado y Seóales (Signals)
+  // Propiedades de Estado y Señales (Signals)
   // --------------------------------------------------------------------------------
 
   /** Enum para referenciar los roles de usuario de forma segura. */
@@ -177,7 +177,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
   // ... inside class PresupuestoPropuesta
 
-  // Variables para Auditoróa IA y Forecast Eliminadas (Manejadas por dialogs)
+  // Variables para Auditoría IA y Forecast Eliminadas (Manejadas por dialogs)
   inflationRate: number = 5;
   // ...
 
@@ -193,7 +193,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     this.dialogHandlerS.openDialog(
       BudgetAuditDialog,
       { items: this.proposalItems() },
-      "🤖 Reporte de Auditoría Presupuestal",
+      "ðŸ¤– Reporte de Auditoría Presupuestal",
       this.dialogHandlerS.sizeMd, // Ajustar tamaño segón preferencia
     );
   }
@@ -250,7 +250,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   isDeficit(item: BudgetProposalItemDTO): boolean {
     if (item.esFilaAgrupadora) return false;
     const avgExpense = this.getAverageMonthlyExpense(item);
-    // Margen de tolerancia pequeóo (ej. $1) para evitar falsos positivos por redondeo
+    // Margen de tolerancia pequeño (ej. $1) para evitar falsos positivos por redondeo
     return item.proposedAmount < avgExpense - 1;
   }
 
@@ -826,7 +826,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
   /**
    * Guarda los cambios de una partida en el backend.
-   * Optimización: solo envóa la petición si el valor realmente ha cambiado.
+   * Optimización: solo envía la petición si el valor realmente ha cambiado.
    * @param item La partida a actualizar.
    */
   updateProposalItem(item: BudgetProposalItemDTO): void {
@@ -1270,7 +1270,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
   /**
    * Se ejecuta cuando el usuario selecciona cuentas en el modal `AddAccountModal`.
-   * Envía las nuevas cuentas al backend para ser aóadidas a la propuesta.
+   * Envía las nuevas cuentas al backend para ser añadidas a la propuesta.
    * @param accountNumbers Array de nómeros de cuenta a Añadir.
    */
   onAccountsSelected(accountNumbers: string[]): void {
@@ -1450,4 +1450,5 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       });
   }
 }
+
 

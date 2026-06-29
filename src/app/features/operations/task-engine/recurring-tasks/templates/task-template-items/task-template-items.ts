@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from "@angular/core";
+﻿import { Component, OnInit, inject, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
@@ -6,7 +6,7 @@ import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-me
 import {
   CustomButtonDelete,
   CustomButtonEdit,
-} from "src/app/core/components/buttons/web";
+} from "src/app/core/components/web/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -136,7 +136,7 @@ export class TaskTemplateItems implements OnInit {
     // Base frequency
     switch (freq) {
       case "DAILY":
-        humanReadable += `Cada ${interval} d�a${interval > 1 ? "s" : ""}`;
+        humanReadable += `Cada ${interval} día${interval > 1 ? "s" : ""}`;
         break;
       case "WEEKLY":
         humanReadable += `Cada ${interval} semana${interval > 1 ? "s" : ""}`;
@@ -150,7 +150,7 @@ export class TaskTemplateItems implements OnInit {
       case "MONTHLY":
         humanReadable += `Cada ${interval} mes${interval > 1 ? "es" : ""}`;
         if (rrule["BYMONTHDAY"]) {
-          humanReadable += ` el d�a ${rrule["BYMONTHDAY"]}`;
+          humanReadable += ` el día ${rrule["BYMONTHDAY"]}`;
         } else if (rrule["BYDAY"]) {
           // e.g., "BYDAY=1MO" (first Monday) or "-1FR" (last Friday)
           const byday = rrule["BYDAY"];
@@ -163,7 +163,7 @@ export class TaskTemplateItems implements OnInit {
         }
         break;
       case "YEARLY":
-        humanReadable += `Cada ${interval} A�o${interval > 1 ? "s" : ""}`;
+        humanReadable += `Cada ${interval} Año${interval > 1 ? "s" : ""}`;
         if (rrule["BYMONTH"] && rrule["BYMONTHDAY"]) {
           const month = parseInt(rrule["BYMONTH"], 10);
           humanReadable += ` el ${rrule["BYMONTHDAY"]} de ${this.getMonthName(
@@ -186,13 +186,13 @@ export class TaskTemplateItems implements OnInit {
       case "TU":
         return "Martes";
       case "WE":
-        return "Mi�rcoles";
+        return "Miórcoles";
       case "TH":
         return "Jueves";
       case "FR":
         return "Viernes";
       case "SA":
-        return "S�bado";
+        return "Sóbado";
       case "SU":
         return "Domingo";
       default:
@@ -211,7 +211,7 @@ export class TaskTemplateItems implements OnInit {
       case "4":
         return "cuarto";
       case "-1":
-        return "�ltimo";
+        return "óltimo";
       default:
         return position;
     }
@@ -235,4 +235,5 @@ export class TaskTemplateItems implements OnInit {
     return monthNames[month - 1] || month.toString();
   }
 }
+
 

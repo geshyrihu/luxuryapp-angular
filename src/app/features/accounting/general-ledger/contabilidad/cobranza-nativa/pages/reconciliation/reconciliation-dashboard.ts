@@ -1,10 +1,10 @@
-import { CurrencyPipe, DatePipe } from "@angular/common";
+﻿import { CurrencyPipe, DatePipe } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { gitMergeOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/web/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -80,3 +80,4 @@ export default class ReconciliationDashboard {
     }
   }
 }
+

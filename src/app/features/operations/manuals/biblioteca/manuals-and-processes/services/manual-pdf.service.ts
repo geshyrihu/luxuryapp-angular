@@ -1,4 +1,4 @@
-import { inject, Injectable } from "@angular/core";
+﻿import { inject, Injectable } from "@angular/core";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import type { IManualTemplateDetalleDTO } from "../models/manuals-and-processes.dto";
 import type { IManualPasoDTO } from "../models/manuals-and-processes.dto";
@@ -135,11 +135,11 @@ ${this.htmlPrintS.getStandardCss()}
 
   private periodicidad(m: IManualTemplateDetalleDTO): string {
     if (!m || m.periodicity === 0) return "A Demanda";
-    if (m.periodicity === 1) return "Única Vez";
+    if (m.periodicity === 1) return "ónica Vez";
     if (m.periodicity === 2) return "Diario";
     if (m.periodicity === 3) {
       if (m.executionDaysOfWeek?.length) {
-        const days = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+        const days = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Séb"];
         return `Semanal (${m.executionDaysOfWeek.map(d => days[d]).join(", ")})`;
       }
       return "Semanal";
@@ -147,8 +147,8 @@ ${this.htmlPrintS.getStandardCss()}
     if (m.periodicity === 4) {
       if (m.executionDayOfMonth) return `Mensual (Día ${m.executionDayOfMonth})`;
       if (m.executionWeekOfMonth && m.executionDaysOfWeek?.length) {
-        const weeks = ["1ra", "2da", "3ra", "4ta", "Última"];
-        const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+        const weeks = ["1ra", "2da", "3ra", "4ta", "óltima"];
+        const days = ["Domingo", "Lunes", "Martes", "Miórcoles", "Jueves", "Viernes", "Sóbado"];
         return `Mensual (${weeks[m.executionWeekOfMonth - 1] || "Semana"} semana, ${days[m.executionDaysOfWeek[0]]})`;
       }
       return "Mensual";

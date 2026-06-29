@@ -1,12 +1,12 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+ï»¿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { DialogModule } from "primeng/dialog";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { TableModule } from "primeng/table";
 import { TextareaModule } from "primeng/textarea";
-import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
+import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -106,7 +106,7 @@ export class Reglamentos {
     } catch (error) {
       console.error(error);
       this.aiResponse.set(
-        "Ocurrió un error al consultar el documento. Por favor intenta de nuevo.",
+        "OcurriÃ© un error al consultar el documento. Por favor intenta de nuevo.",
       );
     } finally {
       this.consultingDoc.set(false);
@@ -118,13 +118,14 @@ export class Reglamentos {
     this.apiResponseS
       .onPut(Endpoints.CustomDocuments.updateOrder, { documentIds })
       .then((result) => {
-        // Opcional: Mostrar una notificación de óxito
+        // Opcional: Mostrar una notificaciÃ³n de Ã³xito
       })
       .catch((error) => {
         // Opcional: Manejar el error y revertir el orden si es necesario
       });
   }
 }
+
 
 
 

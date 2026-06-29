@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+ï»¿import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { FormsModule } from "@angular/forms";
@@ -583,7 +583,7 @@ export class DemoApp {
     {
       family: "Botones web",
       selector: "custom-button-*",
-      source: "core/components/buttons/web",
+      source: "core/components/web/buttons",
       useCase: "Acciones estandarizadas en vistas Angular web/tablet/desktop.",
       preferredFor:
         "CRUD, acciones por fila, guardar, editar, eliminar, descargar y confirmar.",
@@ -593,7 +593,7 @@ export class DemoApp {
     {
       family: "Botones mobile",
       selector: "ion-button-*",
-      source: "core/components/buttons/web",
+      source: "core/components/web/buttons",
       useCase: "Acciones equivalentes optimizadas para render Ionic.",
       preferredFor:
         "Pantallas mobile, FAB, acciones tactiles y confirmaciones nativas.",
@@ -603,7 +603,7 @@ export class DemoApp {
     {
       family: "Inputs web signal",
       selector: "custom-input-*-signal",
-      source: "core/components/inputs/web",
+      source: "core/components/web/inputs",
       useCase:
         "Campos reutilizables con ControlValueAccessor y validacion integrada.",
       preferredFor:
@@ -614,10 +614,10 @@ export class DemoApp {
     {
       family: "Inputs unificados (web + mobile)",
       selector: "custom-input-*-signal",
-      source: "core/components/inputs/web",
+      source: "core/components/web/inputs",
       useCase: "Un solo componente detecta plataforma: PrimeNG en desktop, Ionic en mobile (<768px).",
-      preferredFor: "Todos los formularios — web y mobile. No importar Ionic raw en features.",
-      avoidWhen: "Nunca — estos reemplazan los antiguos ion-input-* eliminados.",
+      preferredFor: "Todos los formularios Ã© web y mobile. No importar Ionic raw en features.",
+      avoidWhen: "Nunca Ã© estos reemplazan los antiguos ion-input-* eliminados.",
       status: "Usar",
     },
     {
@@ -817,3 +817,4 @@ export class DemoApp {
     this.dialogVisible = true;
   }
 }
+

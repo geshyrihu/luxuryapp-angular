@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, input } from "@angular/core";
 import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
-import { BaseIonicButton } from "../../buttons/base/base-ionic-button";
+import { BaseIonicButton } from "../../shared/buttons/base/base-ionic-button";
 
 @Component({
   selector: "ion-button-item",
@@ -34,4 +34,5 @@ import { BaseIonicButton } from "../../buttons/base/base-ionic-button";
 export class IonButtonItem extends BaseIonicButton {
   ionicIcon = input<string>("");
 }
+
 

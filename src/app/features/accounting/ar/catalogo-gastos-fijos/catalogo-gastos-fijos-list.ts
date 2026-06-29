@@ -1,4 +1,4 @@
-import { AppIcon } from 'src/app/core/components/shared/app-icon/app-icon.component';
+﻿import { AppIcon } from 'src/app/core/components/shared/app-icon/app-icon.component';
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonAccordion, IonAccordionGroup } from "@ionic/angular/standalone";
@@ -222,7 +222,7 @@ export class CatalogoGastosFijosList {
   updateItemSelectionOnApi(id: any, value: any) {
     const urlApi = `CatalogoGastosFijos/UpdateValidation/${id}/${value}`;
     this.apiResponseS.onGetListNotLoading(urlApi, null).then(() => {
-      // Opcional: se podría volver a llamar a updateSelectedItems aquí si hubiera alguna duda,
+      // Opcional: se podría volver a llamar a updateSelectedItems aqué si hubiera alguna duda,
       // pero ya se hace en el método que origina el cambio.
     });
   }
@@ -263,20 +263,20 @@ export class CatalogoGastosFijosList {
   }
 
   /**
-   * Alterna la selección de los ítems de una quincena específica (Toggle).
-   * No afecta a los ítems de otras quincenas.
+   * Alterna la selección de los ótems de una quincena específica (Toggle).
+   * No afecta a los ótems de otras quincenas.
    * @param quincenaTarget 0 para 1ra Quincena, 1 para 2da Quincena
    */
   selectByQuincena(quincenaTarget: number) {
     this.dataSignal.update((currentData) => {
-      // 1. Filtrar los ítems que pertenecen a la quincena objetivo
+      // 1. Filtrar los ótems que pertenecen a la quincena objetivo
       const targetItems = currentData.filter(
         (item: any) => item.quincena === quincenaTarget,
       );
 
       if (targetItems.length === 0) return currentData;
 
-      // 2. Verificar si todos los ítems de esa quincena ya están seleccionados
+      // 2. Verificar si todos los ótems de esa quincena ya estén seleccionados
       const allSelected = targetItems.every(
         (item: any) => item.crearOrdenCompra,
       );
@@ -297,8 +297,8 @@ export class CatalogoGastosFijosList {
       });
 
       if (paramsUpdated) {
-        // Notificar al usuario (side effect fuera del update idealmente, pero aceptable aquí)
-        // Nota: updateSelectedItems se llamará después
+        // Notificar al usuario (side effect fuera del update idealmente, pero aceptable aqué)
+        // Nota: updateSelectedItems se llamaré después
         this.customToastS.showInfo(
           "Selección Actualizada",
           `Se han ${newState ? "marcado" : "desmarcado"} los registros de la ${quincenaTarget === 0 ? "1ra" : "2da"
@@ -351,7 +351,7 @@ export class CatalogoGastosFijosList {
     if (!monthData || !monthData.quincenas[quincenaIndex]) {
       this.customToastS.showError(
         "Error",
-        "No se encontró el periodo para la quincena seleccionada.",
+        "No se encontré el periodo para la quincena seleccionada.",
       );
       return;
     }
@@ -364,7 +364,7 @@ export class CatalogoGastosFijosList {
       if (result !== false) {
         this.customToastS.showSuccess(
           `Generación Exitosa`,
-          `Órdenes de la ${quincenaIndex === 0 ? "1ra" : "2da"} quincena de ${this.selectedMonthName()} generadas.`,
+          `órdenes de la ${quincenaIndex === 0 ? "1ra" : "2da"} quincena de ${this.selectedMonthName()} generadas.`,
         );
       }
     });

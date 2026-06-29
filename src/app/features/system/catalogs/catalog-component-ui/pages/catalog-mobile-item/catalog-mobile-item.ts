@@ -23,7 +23,17 @@ const MOBILE_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-mobile-item",
-  imports: [CommonModule, MobileButtons, MobileInputs, MobileFeedback, MobileNavigation, MobileLists, MobileData, MobileForms, MobileOverlays],
+  imports: [
+    CommonModule,
+    MobileButtons,
+    MobileInputs,
+    MobileFeedback,
+    MobileNavigation,
+    MobileLists,
+    MobileData,
+    MobileForms,
+    MobileOverlays,
+  ],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -45,10 +55,13 @@ const MOBILE_LABELS: Record<string, string> = {
 })
 export class CatalogMobileItem {
   private route = inject(ActivatedRoute);
-  item = signal('');
-  get label(): string { return MOBILE_LABELS[this.item()] ?? this.item(); }
+  item = signal("");
+
+  get label(): string {
+    return MOBILE_LABELS[this.item()] ?? this.item();
+  }
 
   constructor() {
-    this.route.paramMap.subscribe(p => this.item.set(p.get('item') ?? ''));
+    this.route.paramMap.subscribe((p) => this.item.set(p.get("item") ?? ""));
   }
 }

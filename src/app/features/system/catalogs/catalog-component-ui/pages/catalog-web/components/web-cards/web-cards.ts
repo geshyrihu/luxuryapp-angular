@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
@@ -17,7 +17,7 @@ import { StatusBadge, EStatus } from "src/app/core/components/shared/status-badg
 
       <!-- KPI Cards -->
       <div class="col-12">
-        <p-card header="KPI Cards — Métricas de Dashboard">
+        <p-card header="KPI Cards é Métricas de Dashboard">
           <div class="grid">
             @for (kpi of kpis; track kpi.label) {
               <div class="col-12 md:col-6 xl:col-3">
@@ -52,7 +52,7 @@ import { StatusBadge, EStatus } from "src/app/core/components/shared/status-badg
         <p-card header="Cards con Acento de Color">
           <p class="m-0 mb-3 text-sm text-color-secondary">
             El borde izquierdo comunica la severidad del contenido.
-            Úsalo en listas de items con estado o en paneles de resumen.
+            ósalo en listas de items con estado o en paneles de resumen.
           </p>
           <div class="flex flex-column gap-2">
             @for (c of accentCards; track c.severity) {
@@ -141,9 +141,9 @@ import { StatusBadge, EStatus } from "src/app/core/components/shared/status-badg
 
       <!-- Skeleton (loading state) -->
       <div class="col-12 lg:col-6">
-        <p-card header="Skeleton — Estado de Carga">
+        <p-card header="Skeleton é Estado de Carga">
           <p class="m-0 mb-3 text-sm text-color-secondary">
-            Muestra el skeleton cuando el contenido tarda más de 300 ms.
+            Muestra el skeleton cuando el contenido tarda mós de 300 ms.
             Anticipa el layout real para reducir el efecto de salto visual.
           </p>
           <div class="flex flex-column gap-4">
@@ -190,10 +190,10 @@ export class WebCards {
   ];
 
   readonly accentCards = [
-    { severity: EStatus.Concluido,    title: "Pago procesado correctamente",     subtitle: "Ref. PAG-2026-0412 · Finanzas",       icon: "mdi:check-circle",   color: "var(--ds-success)",  status: EStatus.Concluido    },
-    { severity: EStatus.Proceso,      title: "Revisión de contrato en curso",    subtitle: "Ref. CONT-2026-0089 · Legal",          icon: "mdi:file-search",    color: "var(--ds-warning)",  status: EStatus.Proceso      },
-    { severity: EStatus.Pendiente,    title: "Aprobación de presupuesto",        subtitle: "Ref. PRES-2026-0031 · Dirección",      icon: "mdi:clock-alert",    color: "var(--ds-info)",     status: EStatus.Pendiente    },
-    { severity: EStatus.noAutorizado, title: "Solicitud rechazada por política", subtitle: "Ref. SOL-2026-0218 · Administración",  icon: "mdi:close-circle",   color: "var(--ds-danger)",   status: EStatus.noAutorizado },
+    { severity: EStatus.Concluido,    title: "Pago procesado correctamente",     subtitle: "Ref. PAG-2026-0412 é Finanzas",       icon: "mdi:check-circle",   color: "var(--ds-success)",  status: EStatus.Concluido    },
+    { severity: EStatus.Proceso,      title: "Revisión de contrato en curso",    subtitle: "Ref. CONT-2026-0089 é Legal",          icon: "mdi:file-search",    color: "var(--ds-warning)",  status: EStatus.Proceso      },
+    { severity: EStatus.Pendiente,    title: "Aprobación de presupuesto",        subtitle: "Ref. PRES-2026-0031 ó Dirección",      icon: "mdi:clock-alert",    color: "var(--ds-info)",     status: EStatus.Pendiente    },
+    { severity: EStatus.noAutorizado, title: "Solicitud rechazada por política", subtitle: "Ref. SOL-2026-0218 ó Administración",  icon: "mdi:close-circle",   color: "var(--ds-danger)",   status: EStatus.noAutorizado },
   ];
 
   readonly cardListItems = [
@@ -204,7 +204,7 @@ export class WebCards {
 
   readonly horizontalCards = [
     { title: "Mantenimiento preventivo", sub: "Próxima revisión: 30 Jun 2026",  icon: "mdi:wrench",         color: "var(--ds-warning)", bg: "var(--ds-warning-light)", tag: "Programado",  severity: "warn"      as const },
-    { title: "Factura #INV-0089",        sub: "Vence el 15 Jul 2026 · $12,500", icon: "mdi:receipt",        color: "var(--ds-info)",    bg: "var(--ds-info-light)",    tag: "Pendiente",   severity: "info"      as const },
+    { title: "Factura #INV-0089",        sub: "Vence el 15 Jul 2026 é $12,500", icon: "mdi:receipt",        color: "var(--ds-info)",    bg: "var(--ds-info-light)",    tag: "Pendiente",   severity: "info"      as const },
     { title: "Acceso de contratista",    sub: "Aprobado por Dirección",          icon: "mdi:account-hard-hat",color: "var(--ds-success)", bg: "var(--ds-success-light)", tag: "Autorizado",  severity: "success"   as const },
   ];
 }

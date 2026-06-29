@@ -1,4 +1,4 @@
-import { Injectable, inject } from "@angular/core";
+﻿import { Injectable, inject } from "@angular/core";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
@@ -191,7 +191,7 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, "Catálogo Comparativo Aspel", `EJERCICIO ${year}`, generatedAt, "AUDITORÍA", `Empresa base: ${empresa}`)}
+  ${this.htmlPrintS.buildStandardHeader(logo, "Catálogo Comparativo Aspel", `EJERCICIO ${year}`, generatedAt, "AUDITORíA", `Empresa base: ${empresa}`)}
   
   <div class="body-doc">
     <div class="legend">

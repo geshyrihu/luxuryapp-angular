@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, input, signal, ViewEncapsulation } from "@angular/core";
 import { FormsModule, ReactiveFormsModule, FormGroup } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
@@ -14,11 +14,11 @@ import {
   CustomButtonEdit,
   CustomButtonDelete,
   CustomBtnActiveDesactive,
-} from "src/app/core/components/buttons/web";
+} from "src/app/core/components/web/buttons";
 import {
   CustomInputSelectSignal,
   CustomInputDateSignal,
-} from "src/app/core/components/inputs/web";
+} from "src/app/core/components/web/inputs";
 import { StatusBadge, EStatus } from "src/app/core/components/shared/status-badge/status-badge";
 import { ActionIconsGroupComponent } from "src/app/core/components/shared/action-icons-group/action-icons-group.component";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
@@ -357,7 +357,7 @@ export class PatternsKpi {
       id: 2,
       name: "Medidor Agua Central",
       folio: "W-2005",
-      consumption: "45 m³",
+      consumption: "45 mÂ³",
       status: EStatus.Proceso,
       icon: "mdi:water-outline",
       color: "primary",
@@ -370,4 +370,5 @@ export class PatternsKpi {
     return item.id;
   }
 }
+
 

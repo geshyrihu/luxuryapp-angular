@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import {
   FormArray,
@@ -12,12 +12,12 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { SelectModule } from "primeng/select";
 import { firstValueFrom } from "rxjs";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
+import { CustomInputSwitch } from "src/app/core/components/web/inputs/custom-input-switch-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ERecurrence } from "src/app/core/enums/e-recurrence.enum";
 import { EGoogleCalendarRecurrenceMode } from "src/app/core/enums/google-calendar-recurrence-mode.enum";
@@ -1482,3 +1482,4 @@ export class GoogleCalendarForm implements OnInit {
     return `${day}/${month}/${year}`;
   }
 }
+

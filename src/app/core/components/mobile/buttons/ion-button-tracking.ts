@@ -1,9 +1,9 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, input, output } from "@angular/core";
 import { IonBadge, IonButton, IonIcon } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { notificationsOutline } from "ionicons/icons";
-import { BaseIonicButton } from "../../buttons/base/base-ionic-button";
+import { BaseIonicButton } from "../../shared/buttons/base/base-ionic-button";
 
 @Component({
   selector: "ion-button-tracking",
@@ -48,4 +48,5 @@ export class IonButtonTracking extends BaseIonicButton {
     addIcons({ notificationsOutline });
   }
 }
+
 

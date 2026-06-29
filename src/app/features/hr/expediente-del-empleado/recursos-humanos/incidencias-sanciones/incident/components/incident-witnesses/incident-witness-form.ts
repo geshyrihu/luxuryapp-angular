@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormGroup,
@@ -7,13 +7,13 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
+import { CustomInputMaskSignal } from "src/app/core/components/web/inputs/custom-input-mask-signal";
 import {
   IncidentWitnessAddOrEditDTO,
   IncidentWitnessDetailDTO,
@@ -113,3 +113,4 @@ export class IncidentWitnessFormComponent implements OnInit {
     this.ref.close();
   }
 }
+

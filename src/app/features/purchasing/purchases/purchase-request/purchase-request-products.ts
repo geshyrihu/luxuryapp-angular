@@ -1,6 +1,6 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { CommonModule } from "@angular/common";
 import { Component, inject, input, output } from "@angular/core";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
@@ -34,7 +34,7 @@ export class PurchaseRequestProducts {
 
   onModalForm(item: any) {
     // Emitimos el objeto 'item' completo.
-    // El componente padre (PurchaseRequestDetailComponent) lo recibirÃ³.
+    // El componente padre (PurchaseRequestDetailComponent) lo recibiró.
     this.editProductRequest.emit(item);
   }
   onUpdateData() {
@@ -49,6 +49,7 @@ export class PurchaseRequestProducts {
       });
   }
 }
+
 
 
 

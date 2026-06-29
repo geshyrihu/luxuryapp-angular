@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+﻿import { Component, inject, OnInit } from "@angular/core";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -114,16 +114,16 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, "SOLICITUD DE COTIZACIÓN", `Folio: ${data.folio}<br>Fecha: ${requestDateStr}`, generatedAt, "")}
+  ${this.htmlPrintS.buildStandardHeader(logo, "SOLICITUD DE COTIZACIóN", `Folio: ${data.folio}<br>Fecha: ${requestDateStr}`, generatedAt, "")}
 
   <div class="body-doc">
-    <div class="subheader">DETALLE DE ARTÍCULOS / SERVICIOS</div>
+    <div class="subheader">DETALLE DE ARTóCULOS / SERVICIOS</div>
 
     <table class="items-table">
       <thead>
         <tr>
           <th style="text-align: center; width: 50px;">#</th>
-          <th>DESCRIPCIÓN</th>
+          <th>DESCRIPCIóN</th>
           <th style="text-align: center; width: 100px;">CANTIDAD</th>
           <th style="text-align: center; width: 100px;">UNIDAD</th>
         </tr>

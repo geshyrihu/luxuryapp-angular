@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -15,10 +15,10 @@ import { Router } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
-import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
+import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -419,4 +419,5 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
     }
   }
 }
+
 

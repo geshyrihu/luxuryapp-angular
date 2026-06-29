@@ -1,8 +1,8 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 
 export const COBRANZA_NATIVA_ROUTES: Routes = [
-  // Ruta raíz: /cobranza-nativa
+  // Ruta raóz: /cobranza-nativa
   {
     path: "",
     loadComponent: () =>
@@ -16,7 +16,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
     },
   },
 
-  // Dashboard de métricas
+  // Dashboard de mótricas
   {
     path: "dashboard",
     loadComponent: () =>
@@ -168,7 +168,7 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
         (m) => m.default,
       ),
     canActivate: [authGuard],
-    data: { title: "Artículos del Reglamento", breadcrumb: "Reglamento" },
+    data: { title: "Artóculos del Reglamento", breadcrumb: "Reglamento" },
   },
 
   // Multas reglamentarias

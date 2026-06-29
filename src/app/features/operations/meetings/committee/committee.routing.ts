@@ -1,4 +1,4 @@
-import { Routes } from "@angular/router";
+﻿import { Routes } from "@angular/router";
 import { authGuard } from "src/app/core/guard/auth.guard";
 import { documentTypeRoutesConfig } from "../../../legal/asuntos-legales-y-seguros/models/documentTypeRoutesConfig";
 // Definición del componente de detalle para reutilizar

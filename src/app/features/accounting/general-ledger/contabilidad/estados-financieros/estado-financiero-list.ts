@@ -1,14 +1,14 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import {
   CustomButtonConfirm,
   CustomButtonItem,
-} from "src/app/core/components/buttons/web";
+} from "src/app/core/components/web/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
@@ -54,7 +54,7 @@ export class EstadoFinancieroList {
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
-  // Signals para controlar el estado de procesamiento de cada acciÃƒÂ³n
+  // Signals para controlar el estado de procesamiento de cada acciÃƒÆ’Ã‚Â³n
   processingUpload = signal<Set<string>>(new Set());
   processingAuthorize = signal<Set<string>>(new Set());
   processingDesauthorize = signal<Set<string>>(new Set());
@@ -74,7 +74,7 @@ export class EstadoFinancieroList {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  // FunciÃƒÂ³n para verificar si un botÃƒÂ³n estÃƒÂ¡ procesando
+  // FunciÃƒÆ’Ã‚Â³n para verificar si un botÃƒÆ’Ã‚Â³n estÃƒÆ’Ã‚¡ procesando
   isProcessingUpload(id: string): boolean {
     return this.processingUpload().has(id);
   }
@@ -91,7 +91,7 @@ export class EstadoFinancieroList {
     return this.processingSend().has(id);
   }
 
-  // FunciÃƒÂ³n para abrir un cuadro de diÃƒÂ¡logo modal para agregar el archivo
+  // FunciÃƒÆ’Ã‚Â³n para abrir un cuadro de diÃƒÆ’Ã‚¡logo modal para agregar el archivo
   onUploadFile(data: any) {
     if (this.isProcessingUpload(data.id)) return;
 
@@ -186,10 +186,11 @@ export class EstadoFinancieroList {
       { pdfSrc: url, fileName: fileName },
       fileName,
       this.dialogHandlerS.sizeFull,
-      true, // Ã¢â€ Â autoMaximize = true
+      true, // ÃƒÂ¢Ã¢â‚¬Â Ã‚Â autoMaximize = true
     );
   }
 }
+
 
 
 

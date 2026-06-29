@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
@@ -30,7 +30,7 @@ interface EmptyState {
 
       <!-- Estados vacíos principales -->
       <div class="col-12">
-        <p-card header="Empty States — Todos los escenarios">
+        <p-card header="Empty States é Todos los escenarios">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Cada estado vacío debe explicar <strong>qué falta</strong> y ofrecer
             <strong>una acción concreta</strong> para continuar.
@@ -64,11 +64,11 @@ interface EmptyState {
         </p-card>
       </div>
 
-      <!-- Skeleton — Loading states -->
+      <!-- Skeleton é Loading states -->
       <div class="col-12 lg:col-6">
-        <p-card header="Skeleton — Estados de Carga">
+        <p-card header="Skeleton é Estados de Carga">
           <p class="m-0 mb-3 text-sm text-color-secondary">
-            Muestra skeleton cuando el contenido tarda más de 300 ms.
+            Muestra skeleton cuando el contenido tarda mós de 300 ms.
             Anticipa el layout real para reducir el salto visual (CLS).
           </p>
           <div class="flex flex-column gap-4">
@@ -131,7 +131,7 @@ interface EmptyState {
 
       <!-- Estados de error de sistema -->
       <div class="col-12 lg:col-6">
-        <p-card header="Error Pages — Referencia visual">
+        <p-card header="Error Pages é Referencia visual">
           <p class="m-0 mb-3 text-sm text-color-secondary">
             Páginas de error como referencia de diseño. Cada una incluye código HTTP,
             descripción humana y acción para recuperarse.
@@ -191,7 +191,7 @@ export class WebEmptyStates {
     {
       id: "no-search",
       titulo: "Sin resultados",
-      descripcion: "Tu búsqueda no coincide con ningún registro. Intenta con otros términos.",
+      descripcion: "Tu bósqueda no coincide con ningón registro. Intenta con otros tórminos.",
       icon: "mdi:magnify-remove-outline",
       color: "var(--ds-text-muted)",
       actionLabel: "Limpiar filtros",
@@ -212,8 +212,8 @@ export class WebEmptyStates {
     },
     {
       id: "error",
-      titulo: "Algo salió mal",
-      descripcion: "Error de conexión o del servidor. El equipo técnico fue notificado.",
+      titulo: "Algo salié mal",
+      descripcion: "Error de conexión o del servidor. El equipo tócnico fue notificado.",
       icon: "mdi:alert-circle-outline",
       color: "var(--ds-danger)",
       actionLabel: "Reintentar",
@@ -225,7 +225,7 @@ export class WebEmptyStates {
     {
       id: "coming-soon",
       titulo: "En desarrollo",
-      descripcion: "Este módulo estará disponible en la próxima actualización del sistema.",
+      descripcion: "Este médulo estaré disponible en la próxima actualización del sistema.",
       icon: "mdi:rocket-launch-outline",
       color: "var(--ds-primary)",
       actionLabel: "Notificarme",
@@ -237,7 +237,7 @@ export class WebEmptyStates {
     {
       id: "offline",
       titulo: "Sin conexión",
-      descripcion: "Revisa tu red. Los cambios se guardarán cuando vuelva la conexión.",
+      descripcion: "Revisa tu red. Los cambios se guardarón cuando vuelva la conexión.",
       icon: "mdi:wifi-off",
       color: "var(--ds-text-muted)",
       actionLabel: "Verificar conexión",
@@ -249,15 +249,15 @@ export class WebEmptyStates {
   readonly errorPages = [
     { code: "404", titulo: "Página no encontrada",     descripcion: "La ruta solicitada no existe en el sistema.",           color: "var(--ds-warning)", label: "Not Found",  severity: "warn"    as const },
     { code: "403", titulo: "Acceso denegado",          descripcion: "No tienes permisos para acceder a este recurso.",       color: "var(--ds-warning)", label: "Forbidden",  severity: "warn"    as const },
-    { code: "500", titulo: "Error del servidor",       descripcion: "Error interno. El equipo técnico fue notificado.",      color: "var(--ds-danger)",  label: "Server Error",severity: "danger"  as const },
-    { code: "503", titulo: "Servicio no disponible",   descripcion: "El servidor está en mantenimiento. Vuelve pronto.",     color: "var(--ds-danger)",  label: "Unavailable",severity: "danger"  as const },
+    { code: "500", titulo: "Error del servidor",       descripcion: "Error interno. El equipo tócnico fue notificado.",      color: "var(--ds-danger)",  label: "Server Error",severity: "danger"  as const },
+    { code: "503", titulo: "Servicio no disponible",   descripcion: "El servidor esté en mantenimiento. Vuelve pronto.",     color: "var(--ds-danger)",  label: "Unavailable",severity: "danger"  as const },
     { code: "401", titulo: "No autenticado",           descripcion: "Debes iniciar sesión para continuar.",                 color: "var(--ds-info)",    label: "Unauthorized",severity: "info"   as const },
   ];
 
   readonly rules = [
-    { titulo: "Explica qué falta",     icon: "mdi:information",     color: "var(--ds-info)",    descripcion: "El mensaje debe decir exactamente por qué la pantalla está vacía." },
+    { titulo: "Explica qué falta",     icon: "mdi:information",     color: "var(--ds-info)",    descripcion: "El mensaje debe decir exactamente por qué la pantalla esté vacéa." },
     { titulo: "Una acción concreta",   icon: "mdi:cursor-default-click", color: "var(--ds-primary)", descripcion: "Siempre incluye un CTA que ayude al usuario a resolver el estado." },
     { titulo: "Skeleton antes que spinner", icon: "mdi:layers",     color: "var(--ds-success)", descripcion: "Usa skeleton en carga estructural (cards, tablas). Spinner solo en acciones cortas." },
-    { titulo: "Nunca pantalla vacía",  icon: "mdi:close-circle",   color: "var(--ds-danger)",  descripcion: "Una pantalla en blanco sin contexto genera confusión y pérdida de confianza." },
+    { titulo: "Nunca pantalla vacía",  icon: "mdi:close-circle",   color: "var(--ds-danger)",  descripcion: "Una pantalla en blanco sin contexto genera confusión y pórdida de confianza." },
   ];
 }

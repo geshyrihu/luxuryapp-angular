@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { MessageService } from "primeng/api";
@@ -26,7 +26,7 @@ import { Touchspin } from "src/app/core/components/web/touchspin/touchspin";
 import { FeatureAnnouncementService } from "src/app/core/services/feature-announcement.service";
 import { GlobalErrorService } from "src/app/core/services/global-error.service";
 
-// --- Fase 9 â€” Segunda Ronda ---
+// --- Fase 9 - Segunda Ronda ---
 import {
   AppBottomNav,
   type BottomNavItem,
@@ -63,7 +63,6 @@ import { AppThemeSwitcher } from "src/app/core/components/shared/theme-switcher/
 import { AppBarcodeInput } from "src/app/core/components/shared/barcode-input/barcode-input";
 import { AppBarcodeScanner } from "src/app/core/components/shared/barcode-scanner/barcode-scanner";
 import { AppColorPicker } from "src/app/core/components/shared/color-picker/color-picker";
-import { AppDock } from "src/app/core/components/shared/dock/dock";
 import {
   AppFormBuilder,
   type FormField,
@@ -133,7 +132,6 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
     // Fase 9.3
     AppColorPicker,
     AppTristateSwitch,
-    AppDock,
     AppFormBuilder,
     AppSignaturePad,
     AppQrCode,
@@ -217,9 +215,9 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
             <div
               class="p-3 surface-ground border-round text-sm text-color-secondary"
             >
-              <code>app-whats-new</code> â€” se muestra vÃ­a signal
+              <code>app-whats-new</code> se muestra via signal
               <code>FeatureAnnouncementService.showDialog</code>. El componente
-              no se monta aquÃ­ para evitar auto-apertura en catÃ¡logo.
+              no se monta aqui para evitar auto-apertura en catalogo.
             </div>
           </div>
         </p-card>
@@ -274,9 +272,9 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
                 class="surface-ground border-round p-4 text-center text-sm text-color-secondary"
               >
                 <span class="block font-bold mb-1">app-pdf-viewer-modal</span>
-                Se abre vÃ­a <code>DynamicDialogService</code> con
+                Se abre via <code>DynamicDialogService</code> con
                 <code>pdfSrc</code> real. No se monta inline para evitar
-                peticiones a rutas de demostraciÃ³n.
+                peticiones a rutas de demostracion.
               </div>
             </div>
             <div class="col-12 xl:col-6">
@@ -286,7 +284,7 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
                 <span class="block font-bold mb-1"
                   >app-custom-input-upload-pdf-signal</span
                 >
-                Upload masivo de PDFs. Se abre vÃ­a
+                Upload masivo de PDFs. Se abre via
                 <code>DynamicDialogService</code>, no como input de formulario
                 inline.
               </div>
@@ -311,21 +309,20 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
         </p-card>
       </div>
 
-      <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-           FASE 9 â€” SEGUNDA RONDA (ANALISIS-PROMPT-V2)
-      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+      <!-- FASE 9 - SEGUNDA RONDA (ANALISIS-PROMPT-V2) -->
+      <div class="col-12">
 
       <div class="col-12">
         <p-divider align="center">
           <span class="text-sm font-semibold text-color-secondary"
-            >Fase 9 â€” Segunda Ronda V2</span
+            >Fase 9 - Segunda Ronda V2</span
           >
         </p-divider>
       </div>
 
       <!-- Slider -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-slider â€” Slider / Range slider">
+        <p-card header="app-slider - Slider / Range slider">
           <div class="flex flex-column gap-4">
             <app-slider
               label="Presupuesto mensual"
@@ -356,14 +353,14 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
 
       <!-- Rating -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-rating â€” Rating / Stars">
+        <p-card header="app-rating - Rating / Stars">
           <div class="flex flex-column gap-4">
             <app-rating
-              label="SatisfacciÃ³n del cliente"
+              label="Satisfaccion del cliente"
               [(value)]="ratingValue"
             />
             <app-rating
-              label="EvaluaciÃ³n de proveedor (3 estrellas)"
+              label="Evaluacion de proveedor (3 estrellas)"
               [stars]="3"
               [(value)]="ratingShort"
             />
@@ -378,16 +375,16 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
 
       <!-- OTP Input -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-otp-input â€” OTP / 2FA">
+        <p-card header="app-otp-input - OTP / 2FA">
           <div class="flex flex-column gap-4">
             <app-otp-input
-              label="CÃ³digo de verificaciÃ³n (6 dÃ­gitos)"
-              hint="Ingresa el cÃ³digo que recibiste por SMS"
+              label="Codigo de verificacion (6 digitos)"
+              hint="Ingresa el codigo que recibiste por SMS"
               [length]="6"
               [(value)]="otpValue"
             />
             <app-otp-input
-              label="PIN de operaciÃ³n (4 dÃ­gitos, enmascarado)"
+              label="PIN de operacion (4 digitos, enmascarado)"
               [length]="4"
               [mask]="true"
               [(value)]="otpPin"
@@ -398,10 +395,10 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
 
       <!-- Profile Card -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-profile-card â€” Tarjeta de contacto CRM">
+        <p-card header="app-profile-card - Tarjeta de contacto CRM">
           <div class="flex flex-column gap-3">
             <app-profile-card
-              name="Ana GarcÃ­a Mendoza"
+              name="Ana Garcia Mendoza"
               role="Gerente de Ventas"
               email="ana.garcia@luxuryapp.mx"
               phone="+52 55 1234 5678"
@@ -411,7 +408,7 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
             />
             <app-profile-card
               name="Carlos Ruiz"
-              role="Director TÃ©cnico"
+              role="Director Tecnico"
               company="Inmobiliaria Central"
               [compact]="true"
               [online]="false"
@@ -422,7 +419,7 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
 
       <!-- Theme Switcher -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-theme-switcher â€” Toggle Light / Dark">
+        <p-card header="app-theme-switcher - Toggle Light / Dark">
           <div class="flex align-items-center gap-3">
             <app-theme-switcher />
             <span class="text-sm text-color-secondary">
@@ -437,7 +434,7 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
 
       <!-- Pipeline CRM -->
       <div class="col-12">
-        <p-card header="app-pipeline-crm â€” Pipeline CRM / Deal Stages">
+        <p-card header="app-pipeline-crm - Pipeline CRM / Deal Stages">
           <app-pipeline-crm
             title="Pipeline Comercial"
             [stages]="pipelineStages"
@@ -445,11 +442,11 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
         </p-card>
       </div>
 
-      <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€ FASE 9.2 â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+      <!-- FASE 9.2 -->
 
       <!-- Tag Input -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-tag-input â€” Tags con autocomplete">
+        <p-card header="app-tag-input - Tags con autocomplete">
           <div class="flex flex-column gap-4">
             <app-tag-input
               label="Etiquetas del lead"
@@ -467,10 +464,10 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
 
       <!-- Contact Card -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-contact-card â€” Tarjeta compacta CRM">
+        <p-card header="app-contact-card - Tarjeta compacta CRM">
           <div class="flex flex-column gap-2">
             <app-contact-card
-              name="LucÃ­a FernÃ¡ndez Mora"
+              name="Lucia Fernandez Mora"
               role="CFO"
               company="Grupo Inmobiliario del Norte"
               email="lucia@ginorte.mx"
@@ -496,7 +493,7 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
 
       <!-- Bottom Nav + Tab Bar -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-bottom-nav â€” NavegaciÃ³n mÃ³vil inferior">
+        <p-card header="app-bottom-nav - Navegacion movil inferior">
           <div
             class="surface-ground border-round overflow-hidden"
             style="max-width:375px; margin:0 auto;"
@@ -516,7 +513,7 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
       </div>
 
       <div class="col-12 lg:col-6">
-        <p-card header="app-tab-bar â€” Tabs de secciÃ³n">
+        <p-card header="app-tab-bar - Tabs de seccion">
           <div class="flex flex-column gap-3">
             <app-tab-bar [tabs]="tabBarItems" [(activeId)]="activeTab" />
             <div
@@ -535,7 +532,7 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
 
       <!-- Stat Cards con sparklines -->
       <div class="col-12">
-        <p-card header="app-stat-card â€” KPI con sparkline">
+        <p-card header="app-stat-card - KPI con sparkline">
           <div class="grid">
             <div class="col-12 sm:col-6 xl:col-3">
               <app-stat-card
@@ -590,7 +587,7 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
 
       <!-- Customer 360 -->
       <div class="col-12 xl:col-8">
-        <p-card header="app-customer-360 â€” Vista 360 de cliente CRM">
+        <p-card header="app-customer-360 - Vista 360 de cliente CRM">
           <app-customer-360 [data]="customer360" />
         </p-card>
       </div>
@@ -609,7 +606,7 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
               <div
                 class="p-3 surface-ground border-round text-sm text-color-secondary"
               >
-                Contenido del reporte a imprimir (proyectado vÃ­a ng-content)
+                Contenido del reporte a imprimir (proyectado via ng-content)
               </div>
             </app-print-view>
           </div>
@@ -618,7 +615,7 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
 
       <!-- Comment Thread -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-comment-thread â€” Notas colaborativas">
+        <p-card header="app-comment-thread - Notas colaborativas">
           <app-comment-thread
             title="Notas del deal"
             [comments]="demoComments"
@@ -629,18 +626,18 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
 
       <!-- Email Preview -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-email-preview â€” Vista previa de plantilla">
+        <p-card header="app-email-preview - Vista previa de plantilla">
           <app-email-preview
             from="CRM LuxuryApp &lt;crm@luxuryapp.mx&gt;"
             to="ana.garcia@cliente.mx"
-            subject="Propuesta comercial â€” Penthouse Santa Fe"
+            subject="Propuesta comercial - Penthouse Santa Fe"
             [tags]="['VIP', 'Seguimiento', 'Q2-2026']"
             [htmlContent]="demoEmailHtml"
           />
         </p-card>
       </div>
 
-      <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€ FASE 9.3 â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+      <!-- FASE 9.3 -->
 
       <!-- Color picker + Tristate switch -->
       <div class="col-12 lg:col-6">
@@ -660,7 +657,7 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
             <app-tristate-switch
               label="Permiso heredado"
               [(value)]="tristateVal"
-              hint="Ciclo: Activado â†’ Heredado â†’ Desactivado"
+              hint="Ciclo: Activado -> Heredado -> Desactivado"
             />
             <app-tristate-switch
               label="Notificaciones (deshabilitado)"
@@ -673,7 +670,7 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
 
       <!-- Form builder -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-form-builder â€” Formulario dinÃ¡mico desde schema">
+        <p-card header="app-form-builder - Formulario dinamico desde schema">
           <app-form-builder
             title="Formulario de Lead"
             [schema]="demoSchema"
@@ -685,7 +682,7 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
 
       <!-- Signature pad + QR code -->
       <div class="col-12 lg:col-6">
-        <p-card header="app-signature-pad â€” Captura de firma digital">
+        <p-card header="app-signature-pad - Captura de firma digital">
           <app-signature-pad
             label="Firma del responsable"
             hint="Dibuja con el mouse. Ctrl+click para confirmar."
@@ -696,7 +693,7 @@ import { AppTristateSwitch } from "src/app/core/components/shared/tristate-switc
       </div>
 
       <div class="col-12 lg:col-6">
-        <p-card header="app-qr-code â€” Generador de QR">
+        <p-card header="app-qr-code - Generador de QR">
           <div class="flex flex-wrap gap-4 justify-content-center">
             <app-qr-code
               label="Orden #ORD-2026-0421"
@@ -720,9 +717,9 @@ END:VCARD"
 
       <!-- Heatmap -->
       <div class="col-12 lg:col-8">
-        <p-card header="app-heatmap â€” Mapa de calor de actividad">
+        <p-card header="app-heatmap - Mapa de calor de actividad">
           <app-heatmap
-            title="Actividad de ventas por dÃ­a y hora"
+            title="Actividad de ventas por dia y hora"
             [data]="heatmapData"
             [showValues]="true"
           />
@@ -771,7 +768,7 @@ END:VCARD"
 
       <!-- Scanners -->
       <div class="col-12 lg:col-4">
-        <p-card header="app-receipt-scanner â€” Captura de recibos">
+        <p-card header="app-receipt-scanner - Captura de recibos">
           <app-receipt-scanner
             accept="image/*,application/pdf"
             [maxMb]="10"
@@ -781,11 +778,11 @@ END:VCARD"
       </div>
 
       <div class="col-12 lg:col-4">
-        <p-card header="app-barcode-input â€” Lookup por cÃ³digo">
+        <p-card header="app-barcode-input - Lookup por codigo">
           <div class="flex flex-column gap-3">
             <app-barcode-input
               label="Buscar producto"
-              hint="Escanea o escribe el cÃ³digo de barras"
+              hint="Escanea o escribe el codigo de barras"
               (searched)="onBarcodeSearch($event)"
             />
           </div>
@@ -793,9 +790,9 @@ END:VCARD"
       </div>
 
       <div class="col-12 lg:col-4">
-        <p-card header="app-barcode-scanner â€” EscÃ¡ner con cÃ¡mara">
+        <p-card header="app-barcode-scanner - Escaner con camara">
           <app-barcode-scanner
-            label="Escanear cÃ³digo"
+            label="Escanear codigo"
             [continuous]="false"
             (detected)="onBarcodeDetected($event)"
           />
@@ -804,9 +801,9 @@ END:VCARD"
 
       <!-- Territory map -->
       <div class="col-12">
-        <p-card header="app-territory-map â€” Territorios de ventas CRM">
+        <p-card header="app-territory-map - Territorios de ventas CRM">
           <app-territory-map
-            title="Territorios MÃ©xico"
+            title="Territorios Mexico"
             [territories]="territories"
           />
         </p-card>
@@ -814,7 +811,7 @@ END:VCARD"
 
       <!-- Gantt -->
       <div class="col-12">
-        <p-card header="app-gantt â€” Diagrama de Gantt">
+        <p-card header="app-gantt - Diagrama de Gantt">
           <app-gantt
             title="Plan de Mantenimiento Q3-2026"
             [tasks]="ganttTasks"
@@ -835,7 +832,7 @@ export class CommonCoreCoverage {
 
   readonly inventory = [
     { name: "primeng-custom-global-filter", type: "Filtro" },
-    { name: "touchspin", type: "Control numÃ©rico" },
+    { name: "touchspin", type: "Control numerico" },
     { name: "page-title-report", type: "Header" },
     { name: "pdf-viewer-modal", type: "Modal PDF" },
   ];
@@ -848,7 +845,7 @@ export class CommonCoreCoverage {
 
   readonly advancedPieData = [
     { name: "Pagado", value: 62 },
-    { name: "En revisiÃ³n", value: 21 },
+    { name: "En revision", value: 21 },
     { name: "Pendiente", value: 17 },
   ];
 
@@ -889,13 +886,13 @@ export class CommonCoreCoverage {
     this.messageService.add({
       severity: "success",
       summary: "Cobertura activa",
-      detail: "El wrapper PrimeNG Toast se estÃ¡ renderizando correctamente.",
+      detail: "El wrapper PrimeNG Toast se esta renderizando correctamente.",
     });
   }
 
   showGlobalError() {
     this.globalErrorService.setGlobalError(
-      "Error de demostraciÃ³n emitido desde el catÃ¡logo de componentes.",
+      "Error de demostracion emitido desde el catalogo de componentes.",
     );
   }
 
@@ -903,7 +900,7 @@ export class CommonCoreCoverage {
     this.featureAnnouncementService.showDialog.set(true);
   }
 
-  // â”€â”€ Fase 9.1 demo data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // Fase 9.1 demo data
   sliderSingle = 25000;
   sliderRange: [number, number] = [200, 750];
   sliderDisabled = 7;
@@ -915,7 +912,7 @@ export class CommonCoreCoverage {
   otpValue = "";
   otpPin = "";
 
-  // â”€â”€ Fase 9.2 demo data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // Fase 9.2 demo data
   selectedTags: string[] = ["CRM", "Enterprise"];
   freeTags: string[] = [];
   readonly tagSuggestions = [
@@ -924,7 +921,7 @@ export class CommonCoreCoverage {
     "VIP",
     "Prospect",
     "Caliente",
-    "FrÃ­o",
+    "Frio",
     "Seguimiento",
     "Urgente",
   ];
@@ -987,7 +984,7 @@ export class CommonCoreCoverage {
   readonly sparkTicket = [155, 162, 170, 158, 175, 180, 188];
 
   readonly customer360: Customer360Data = {
-    name: "Ana GarcÃ­a Mendoza",
+    name: "Ana Garcia Mendoza",
     role: "Directora Comercial",
     company: "Grupo Inmobiliario del Norte SA de CV",
     email: "ana.garcia@ginorte.mx",
@@ -995,27 +992,27 @@ export class CommonCoreCoverage {
     tags: ["VIP", "Recurrente", "Q2"],
     totalRevenue: 3_850_000,
     openDeals: 4,
-    lastContact: "hace 2 dÃ­as",
+    lastContact: "hace 2 dias",
     nps: 9,
     recentActivity: [
       {
         icon: "mdi:phone-outline",
-        text: "Llamada â€” propuesta Penthouse Santa Fe",
-        time: "hace 2 dÃ­as",
+        text: "Llamada - propuesta Penthouse Santa Fe",
+        time: "hace 2 dias",
       },
       {
         icon: "mdi:email-outline",
         text: "Email enviado con brochure actualizado",
-        time: "hace 4 dÃ­as",
+        time: "hace 4 dias",
       },
       {
         icon: "mdi:calendar-outline",
-        text: "ReuniÃ³n agendada para el 28 Jun",
+        text: "Reunion agendada para el 28 Jun",
         time: "hace 1 semana",
       },
     ],
     deals: [
-      { title: "Penthouse Santa Fe", stage: "NegociaciÃ³n", value: 1_200_000 },
+      { title: "Penthouse Santa Fe", stage: "Negociacion", value: 1_200_000 },
       { title: "Torre Reforma 360", stage: "Propuesta", value: 950_000 },
       { title: "Residencial Pedregal II", stage: "Contacto", value: 680_000 },
     ],
@@ -1026,19 +1023,19 @@ export class CommonCoreCoverage {
   readonly demoComments: Comment[] = [
     {
       id: "c1",
-      authorName: "Laura PÃ©rez",
-      text: "Cliente muy interesado en el Penthouse. Solicita visita guiada la prÃ³xima semana.",
-      timestamp: "hace 3 dÃ­as",
+      authorName: "Laura Perez",
+      text: "Cliente muy interesado en el Penthouse. Solicita visita guiada la proxima semana.",
+      timestamp: "hace 3 dias",
       reactions: [
-        { emoji: "ðŸ‘", count: 2 },
-        { emoji: "ðŸ“Œ", count: 1 },
+        { emoji: ":thumbs_up:", count: 2 },
+        { emoji: ":memo:", count: 1 },
       ],
     },
     {
       id: "c2",
       authorName: "Carlos Ruiz",
-      text: "RevisÃ© el expediente financiero. Califica para financiamiento sin aval.",
-      timestamp: "hace 1 dÃ­a",
+      text: "Revise el expediente financiero. Califica para financiamiento sin aval.",
+      timestamp: "hace 1 dia",
       edited: true,
     },
   ];
@@ -1051,19 +1048,19 @@ export class CommonCoreCoverage {
       <div style="padding:24px;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 8px 8px;">
         <p style="color:#1b1c1d;">Estimada <strong>Ana</strong>,</p>
         <p style="color:#44474c;line-height:1.6;">
-          Adjunto encontrarÃ¡ nuestra propuesta comercial actualizada para el
+          Adjunto encontrara nuestra propuesta comercial actualizada para el
           <strong>Penthouse Santa Fe</strong>. Incluye las modificaciones de
-          acabados que solicitÃ³ en nuestra Ãºltima reuniÃ³n.
+          acabados que solicito en nuestra ultima reunion.
         </p>
         <div style="background:#fbf9fb;border-radius:8px;padding:16px;margin:16px 0;">
-          <p style="margin:0;font-size:13px;color:#74777d;">Valor de operaciÃ³n</p>
+          <p style="margin:0;font-size:13px;color:#74777d;">Valor de operacion</p>
           <p style="margin:4px 0 0;font-size:24px;font-weight:700;color:#00050e;">$1,200,000 MXN</p>
         </div>
         <a href="#" style="background:#00050e;color:#fff;padding:12px 24px;border-radius:4px;text-decoration:none;display:inline-block;">
           Ver propuesta completa
         </a>
         <p style="color:#74777d;font-size:12px;margin-top:24px;">
-          LuxuryApp CRM Â· Torre Corporativa, CDMX Â· crm@luxuryapp.mx
+          LuxuryApp CRM - Torre Corporativa, CDMX - crm@luxuryapp.mx
         </p>
       </div>
     </div>
@@ -1072,7 +1069,7 @@ export class CommonCoreCoverage {
   onCommentSubmit(text: string): void {
     this.messageService.add({
       severity: "success",
-      summary: "Comentario aÃ±adido",
+      summary: "Comentario anadido",
       detail: text,
     });
   }
@@ -1088,7 +1085,7 @@ export class CommonCoreCoverage {
           title: "Hotel Camino Real",
           company: "GHL Hotels",
           value: 450000,
-          owner: "Ana GarcÃ­a",
+          owner: "Ana Garcia",
           daysInStage: 3,
           priority: "high",
         },
@@ -1125,10 +1122,10 @@ export class CommonCoreCoverage {
       deals: [
         {
           id: "d4",
-          title: "Club NÃ¡utico Vallarta",
+          title: "Club Nautico Vallarta",
           company: "Marina Dev.",
           value: 900000,
-          owner: "Ana GarcÃ­a",
+          owner: "Ana Garcia",
           daysInStage: 20,
           priority: "high",
         },
@@ -1144,7 +1141,7 @@ export class CommonCoreCoverage {
     },
     {
       id: "negotiation",
-      name: "NegociaciÃ³n",
+      name: "Negociacion",
       color: "#b45309",
       deals: [
         {
@@ -1175,7 +1172,7 @@ export class CommonCoreCoverage {
     },
   ];
 
-  // â”€â”€ Fase 9.3 demo data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // Fase 9.3 demo data
   pickerColor = "00050e";
   pickerColorInline = "c9a74d";
   tristateVal: true | false | null = null;
@@ -1192,7 +1189,7 @@ export class CommonCoreCoverage {
     {
       key: "email",
       type: "email",
-      label: "Correo electrÃ³nico",
+      label: "Correo electronico",
       required: true,
     },
     { key: "empresa", type: "text", label: "Empresa" },

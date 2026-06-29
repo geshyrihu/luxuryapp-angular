@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal, viewChild } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { ConfirmationService } from "primeng/api";
@@ -11,7 +11,7 @@ import {
   CustomButtonAdd,
   CustomButtonDelete,
   CustomButtonEdit,
-} from "src/app/core/components/buttons/web";
+} from "src/app/core/components/web/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -107,3 +107,4 @@ export class ReportCatalog implements OnInit {
     this.cargar();
   }
 }
+

@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+﻿import { Injectable } from "@angular/core";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import { FundingDetailDTO } from "../../funding/model/funding-detail-dto";
@@ -71,7 +71,7 @@ export class FundingExcelExportService {
     ws.addRow([]);
 
     // --- SET COLUMN WIDTHS ---
-    ws.getColumn(1).width = 10; // N°
+    ws.getColumn(1).width = 10; // Né
     ws.getColumn(2).width = 45; // CONCEPTO
     ws.getColumn(3).width = 8; // Check
     ws.getColumn(4).width = 15; // FECHA
@@ -84,7 +84,7 @@ export class FundingExcelExportService {
 
     // --- DATA INSERTION ---
     const headers = [
-      "N°",
+      "Né",
       "CONCEPTO",
       "",
       "FECHA",
@@ -156,7 +156,7 @@ export class FundingExcelExportService {
 
           // colNumber is 1-based
           switch (colNumber) {
-            case 1: // N°
+            case 1: // Né
               cell.font = fontYuGothic8Bold;
               cell.alignment = { vertical: "middle", horizontal: "center" };
               break;
@@ -170,12 +170,12 @@ export class FundingExcelExportService {
               break;
             case 3: // Checkbox
               // ExcelJS does not support native visual checkbox controls.
-              // This creates a dropdown list in the cell where the user can select '✓' or leave it blank.
+              // This creates a dropdown list in the cell where the user can select '?' or leave it blank.
               // The user needs to click the cell and then the dropdown arrow to select.
               cell.dataValidation = {
                 type: "list",
                 allowBlank: true,
-                formulae: ['"✓, "'],
+                formulae: ['"?, "'],
               };
               cell.alignment = { vertical: "middle", horizontal: "center" };
               break;

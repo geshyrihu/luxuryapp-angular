@@ -1,4 +1,4 @@
-// Corresponde a announcementDTO en el backend
+﻿// Corresponde a announcementDTO en el backend
 export interface IAnnouncement {
   id: string;
   folio: string;

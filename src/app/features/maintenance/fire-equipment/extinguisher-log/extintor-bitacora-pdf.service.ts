@@ -1,4 +1,4 @@
-import { inject, Injectable } from "@angular/core";
+﻿import { inject, Injectable } from "@angular/core";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 
 @Injectable({ providedIn: "root" })
@@ -39,7 +39,7 @@ export class ExtintorBitacoraPdfService {
 
     const period =
       fromISO || toISO
-        ? `${fromISO ? this.fmtDate(fromISO) : "—"} al ${toISO ? this.fmtDate(toISO) : "—"}`
+        ? `${fromISO ? this.fmtDate(fromISO) : "é"} al ${toISO ? this.fmtDate(toISO) : "é"}`
         : "Todo el período";
 
     const rows = filtered
@@ -66,7 +66,7 @@ ${this.htmlPrintS.getStandardCss()}
   .tc { text-align:center; }
 </style>
 </head><body><div class="container">
-${this.htmlPrintS.buildStandardHeader(logo, "BITÁCORA DE EXTINTORES", "", generatedAt, "EXTINTOR", period)}
+${this.htmlPrintS.buildStandardHeader(logo, "BITóCORA DE EXTINTORES", "", generatedAt, "EXTINTOR", period)}
 <div class="body-doc">
   <table class="data-table">
     <thead><tr>

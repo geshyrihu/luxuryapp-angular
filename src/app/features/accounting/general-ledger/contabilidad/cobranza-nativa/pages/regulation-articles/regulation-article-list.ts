@@ -7,8 +7,8 @@ import { documentTextOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -77,7 +77,7 @@ export default class RegulationArticleList {
   onModalForm(id: string = "") {
     const data = {
       id,
-      title: id === "" ? "Nuevo ArtÃƒÂ­culo Reglamentario" : "Editar ArtÃƒÂ­culo",
+      title: id === "" ? "Nuevo Artículo Reglamentario" : "Editar Artículo",
       customerId: this.customerIdS.customerId(),
     };
     this.dialogHandlerS
@@ -104,3 +104,4 @@ export default class RegulationArticleList {
       });
   }
 }
+

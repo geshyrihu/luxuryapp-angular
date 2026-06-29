@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { IonAccordion, IonAccordionGroup, IonAvatar, IonBadge, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonChip, IonCol, IonGrid, IonIcon, IonItem, IonLabel, IonList, IonNote, IonRow, IonThumbnail } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -14,7 +14,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
       <div class="mobile-card-header">Data Display (Ionic)</div>
       <div class="mobile-card-body flex flex-column gap-4">
 
-        <!-- ─── CARDS ─── -->
+        <!-- --- CARDS --- -->
         <div>
           <div class="font-bold text-sm mb-2">Cards (DS patterns)</div>
           <div class="flex flex-column gap-3">
@@ -36,7 +36,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
               </div>
               <div>
                 <span class="ds-card__info-label">Próximo Evento</span>
-                <p class="text-sm m-0">Asamblea General · 15 Jun 10:00</p>
+                <p class="text-sm m-0">Asamblea General é 15 Jun 10:00</p>
               </div>
             </div>
             <!-- Metric Card (Bento style) -->
@@ -85,7 +85,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
           </div>
         </div>
 
-        <!-- ─── CHIPS ─── -->
+        <!-- --- CHIPS --- -->
         <div>
           <div class="font-bold text-sm mb-2">Chips (ion-chip)</div>
           <div class="flex align-items-center gap-2 flex-wrap">
@@ -101,7 +101,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
           </div>
         </div>
 
-        <!-- ─── AVATARS ─── -->
+        <!-- --- AVATARS --- -->
         <div>
           <div class="font-bold text-sm mb-2">Avatars (DS variants)</div>
           <div class="ds-avatar-bar">
@@ -120,7 +120,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
           </div>
         </div>
 
-        <!-- ─── THUMBNAIL LIST ─── -->
+        <!-- --- THUMBNAIL LIST --- -->
         <div>
           <div class="font-bold text-sm mb-2">Thumbnail List</div>
           <ion-list lines="full" style="border:1px solid var(--ds-border,#e2e8f0);border-radius:12px;overflow:hidden;">
@@ -130,7 +130,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
               </ion-thumbnail>
               <ion-label>
                 <strong>Documento 1</strong>
-                <ion-note>PDF • 2.3 MB</ion-note>
+                <ion-note>PDF é 2.3 MB</ion-note>
               </ion-label>
             </ion-item>
             <ion-item>
@@ -139,13 +139,13 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
               </ion-thumbnail>
               <ion-label>
                 <strong>Documento 2</strong>
-                <ion-note>PDF • 1.1 MB</ion-note>
+                <ion-note>PDF é 1.1 MB</ion-note>
               </ion-label>
             </ion-item>
           </ion-list>
         </div>
 
-        <!-- ─── ION-CARD ─── -->
+        <!-- --- ION-CARD --- -->
         <div>
           <div class="font-bold text-sm mb-2">ion-card</div>
           <ion-card style="margin:0;">
@@ -158,7 +158,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
                 <ion-badge color="primary" slot="end">Premium</ion-badge>
               </ion-item>
               <ion-item lines="full" style="--padding-start:0;">
-                <ion-label>Último Acceso</ion-label>
+                <ion-label>óltimo Acceso</ion-label>
                 <span class="text-xs text-secondary" slot="end">15 Jun 2026</span>
               </ion-item>
               <ion-item lines="none" style="--padding-start:0;">
@@ -169,7 +169,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
           </ion-card>
         </div>
 
-        <!-- ─── ACCORDION ─── -->
+        <!-- --- ACCORDION --- -->
         <div>
           <div class="font-bold text-sm mb-2">Accordion (ion-accordion-group)</div>
           <ion-accordion-group style="border:1px solid var(--ds-border,#e2e8f0);border-radius:12px;overflow:hidden;">
@@ -178,7 +178,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
                 <ion-label>Datos Generales</ion-label>
               </ion-item>
               <div slot="content" style="padding:0.75rem 1rem;">
-                <p class="text-sm m-0">Nombre: Juan García · RFC: GACJ800101ABC</p>
+                <p class="text-sm m-0">Nombre: Juan García ó RFC: GACJ800101ABC</p>
               </div>
             </ion-accordion>
             <ion-accordion value="second">
@@ -194,13 +194,13 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
                 <ion-label>Documentos</ion-label>
               </ion-item>
               <div slot="content" style="padding:0.75rem 1rem;">
-                <p class="text-sm m-0">INE · Constancia de situación fiscal · CURP</p>
+                <p class="text-sm m-0">INE é Constancia de situación fiscal ó CURP</p>
               </div>
             </ion-accordion>
           </ion-accordion-group>
         </div>
 
-        <!-- ─── CALENDAR EVENTS ─── -->
+        <!-- --- CALENDAR EVENTS --- -->
         <div>
           <div class="font-bold text-sm mb-2">Eventos de Calendario (patrón Google Calendar)</div>
           <p class="text-xs text-secondary mb-2">
@@ -218,7 +218,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
                 </div>
                 <ion-label class="ion-text-wrap">
                   <h3 class="font-semibold m-0">{{ ev.title }}</h3>
-                  <p class="text-xs m-0 mt-1" style="color:var(--ds-text-secondary);">{{ ev.date }} · {{ ev.guests }} invitados</p>
+                  <p class="text-xs m-0 mt-1" style="color:var(--ds-text-secondary);">{{ ev.date }} é {{ ev.guests }} invitados</p>
                 </ion-label>
                 <div slot="end" class="mr-3">
                   <span class="status-chip"
@@ -232,7 +232,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
           </ion-list>
         </div>
 
-        <!-- ─── GRID ─── -->
+        <!-- --- GRID --- -->
         <div>
           <div class="font-bold text-sm mb-2">Grid Layout (ion-grid)</div>
           <ion-grid style="border:1px solid var(--ds-border,#e2e8f0);border-radius:12px;overflow:hidden;padding:0.5rem;">

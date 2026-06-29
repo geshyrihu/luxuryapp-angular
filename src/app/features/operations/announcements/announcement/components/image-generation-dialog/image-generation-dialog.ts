@@ -1,8 +1,8 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { TextareaModule } from "primeng/textarea";
 import { TooltipModule } from "primeng/tooltip";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
@@ -65,17 +65,17 @@ export class ImageGenerationDialog {
     {
       label: "Luminoso",
       value: "bright, sunny, natural lighting",
-      emoji: "☀️",
+      emoji: "â˜€ï¸",
     },
     {
       label: "Elegante",
       value: "elegant, luxury, golden hour, warm tones",
-      emoji: "✨",
+      emoji: "âœ¨",
     },
     {
       label: "Profesional",
       value: "corporate, clean, white background, office",
-      emoji: "🏢",
+      emoji: "ðŸ¢",
     },
     { label: "Nocturno", value: "night, neon lights, dark mode", emoji: "🌙" },
   ];
@@ -211,6 +211,7 @@ export class ImageGenerationDialog {
     }
   }
 }
+
 
 
 

@@ -19,9 +19,9 @@ import {
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -139,3 +139,4 @@ export class TaskFollowup implements OnInit, OnDestroy {
     });
   }
 }
+

@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
@@ -36,7 +36,7 @@ interface NomenclaturaCampo {
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
-        <h2 class="text-3xl font-bold m-0">Estándar Documental LuxuryApp</h2>
+        <h2 class="text-3xl font-bold m-0">Esténdar Documental LuxuryApp</h2>
         <p class="text-secondary">
           Guía de gobierno para procedimientos, manuales e instructivos corporativos.
         </p>

@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -17,13 +17,13 @@ import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonItem } from "src/app/core/components/buttons/web";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button"; // Importar CustomButton
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButtonItem } from "src/app/core/components/web/buttons";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button"; // Importar CustomButton
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { SubirPdf } from "src/app/core/components/inputs/web/custom-input-upload-pdf-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { SubirPdf } from "src/app/core/components/web/inputs/custom-input-upload-pdf-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -47,7 +47,7 @@ import { OrdenesServicioListPdfService } from "./ordenes-servicio-list-pdf.servi
     CommonModule,
     CustomButtonDelete,
     CustomButtonEdit,
-    CustomButton, // AÃ±adir CustomButton a imports
+    CustomButton, // Añadir CustomButton a imports
     CustomButtonItem,
     DataViewMobile,
     ActionMenu,
@@ -75,7 +75,7 @@ export class OrdenesServicio {
   reporteOrdenesServicioService = inject(ReporteOrdenesServicioService);
   dateS = inject(DateService);
   dialogHandlerS = inject(DialogHandlerService);
-  periodMonthService = inject(PeriodMonthService); // Asegurarse de que estÃ© inyectado
+  periodMonthService = inject(PeriodMonthService); // Asegurarse de que esté inyectado
   pdfService = inject(OrdenesServicioListPdfService);
 
   mm: number;
@@ -118,7 +118,7 @@ export class OrdenesServicio {
   onReloadOrdenes(id: any, filtroEquiposValue: any) {
     this.filtroEquiposValue = filtroEquiposValue;
     this.filtroId = id;
-    this.periodMonthService.setPeriodo(this.fechaControl.value || ""); // Actualizar el servicio con la nueva fecha usando el mÃ©todo correcto
+    this.periodMonthService.setPeriodo(this.fechaControl.value || ""); // Actualizar el servicio con la nueva fecha usando el método correcto
 
     if (this.filtroId === 10) {
       this.onLoadPintura();
@@ -137,7 +137,7 @@ export class OrdenesServicio {
     this.fechaControl.setValue(initialFecha);
 
     this.reporteOrdenesServicioService.setDate(Date.now);
-    this.periodMonthService.setPeriodo(initialFecha); // Establecer fecha inicial en el servicio usando el mÃ©todo correcto
+    this.periodMonthService.setPeriodo(initialFecha); // Establecer fecha inicial en el servicio usando el método correcto
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) {
@@ -331,3 +331,4 @@ export class OrdenesServicio {
     this.route.navigate(["/tickets/ticket-messages", id, status, nameGroup]);
   }
 }
+

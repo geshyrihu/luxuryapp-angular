@@ -1,4 +1,4 @@
-import {
+﻿import {
   CommonModule,
   CurrencyPipe,
   DatePipe,
@@ -22,11 +22,11 @@ import {
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
 
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { CustomButton } from "src/app/core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/web/buttons";
 import { NativeStatementResponseDTO } from "../../models/native-statement.dto";
 
 @Component({
@@ -108,3 +108,4 @@ export class NativeStatement implements OnInit {
     window.print();
   }
 }
+

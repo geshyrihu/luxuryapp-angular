@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
@@ -94,7 +94,7 @@ export class CobranzaOnlineExclusions {
       return "Revisar: no existe match contra Property para este customer.";
     }
 
-    return "Incluida en el universo del mÃ³dulo";
+    return "Incluida en el universo del módulo";
   };
 
   constructor() {
@@ -141,7 +141,7 @@ export class CobranzaOnlineExclusions {
       accountName: row.accountName,
       isExcluded: checked,
       reason: checked
-        ? row.reason || "Excluida desde configuraciÃ³n de Cobranza Online."
+        ? row.reason || "Excluida desde configuración de Cobranza Online."
         : row.reason || "",
       notes: row.notes || "",
     };

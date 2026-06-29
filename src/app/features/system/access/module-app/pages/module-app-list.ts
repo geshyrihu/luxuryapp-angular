@@ -11,7 +11,7 @@ import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-me
 import {
   CustomButtonDelete,
   CustomButtonEdit,
-} from "src/app/core/components/buttons/web";
+} from "src/app/core/components/web/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -55,7 +55,7 @@ export class ModuleAppList {
     addIcons({ phonePortraitOutline });
   }
 
-  // DeclaraciÃ³n e inicializaciÃ³n de variables
+  // Declaración e inicialización de variables
   dataSignal = signal<IModuleAppDTO[]>([]);
 
   readonly tablePrimeNgRows: number = tablePrimeNgRows();
@@ -69,7 +69,7 @@ export class ModuleAppList {
   });
 
   loading = signal(true);
-  ref: DynamicDialogRef; // Referencia a un cuadro de diÃ¡logo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diÃƒ¡logo modal
 
   ngOnInit(): void {
     this.onLoadData();
@@ -106,7 +106,7 @@ export class ModuleAppList {
     });
   }
 
-  // FunciÃ³n para abrir un cuadro de diÃ¡logo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diÃƒ¡logo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(ModuleAppForm, data, data.title, this.dialogHandlerS.sizeLg)
@@ -115,3 +115,4 @@ export class ModuleAppList {
       });
   }
 }
+

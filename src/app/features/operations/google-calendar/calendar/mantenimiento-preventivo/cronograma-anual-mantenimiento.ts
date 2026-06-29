@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -24,7 +24,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
+import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { TooltipPlacement } from "src/app/core/enums/tooltip-placement";
 import {
@@ -96,14 +96,14 @@ export class CronogramaAnualMantenimiento {
   // Usamos la interfaz para el array de filtros
   filtroEquipos: FiltroEquipo[] = [
     { emoji: "📋", id: "", nombre: "todos" },
-    { emoji: "✨", id: 2, nombre: "amenidades" },
-    { emoji: "🏢", id: 8, nombre: "A. Comunes" },
-    { emoji: "📦", id: 7, nombre: "bodegas" },
-    { emoji: "⚙️", id: 1, nombre: "equipos" },
-    { emoji: "🏋️", id: 5, nombre: "gimnasio" },
+    { emoji: "âœ¨", id: 2, nombre: "amenidades" },
+    { emoji: "ðŸ¢", id: 8, nombre: "A. Comunes" },
+    { emoji: "ðŸ“¦", id: 7, nombre: "bodegas" },
+    { emoji: "âš™ï¸", id: 1, nombre: "equipos" },
+    { emoji: "ðŸ‹ï¸", id: 5, nombre: "gimnasio" },
     { emoji: "🔌", id: 6, nombre: "sistemas" },
-    { emoji: "🖌️", id: 9, nombre: "pintura" },
-    { emoji: "🪚", id: 11, nombre: "Carpinteria" },
+    { emoji: "ðŸ–Œï¸", id: 9, nombre: "pintura" },
+    { emoji: "ðŸªš", id: 11, nombre: "Carpinteria" },
   ];
 
   // Nombres de los meses
@@ -386,3 +386,4 @@ ${this.htmlPrintS.getStandardCss()}
     return index;
   }
 }
+

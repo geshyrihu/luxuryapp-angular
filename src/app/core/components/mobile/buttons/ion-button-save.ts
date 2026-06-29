@@ -1,9 +1,9 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, input, output } from "@angular/core";
 import { IonButton, IonIcon, IonSpinner } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { saveOutline, syncOutline } from "ionicons/icons";
-import { BaseIonicButton } from "../../buttons/base/base-ionic-button";
+import { BaseIonicButton } from "../../shared/buttons/base/base-ionic-button";
 
 @Component({
   selector: "ion-button-save",
@@ -51,4 +51,5 @@ export class IonButtonSave extends BaseIonicButton {
     addIcons({ saveOutline, syncOutline });
   }
 }
+
 

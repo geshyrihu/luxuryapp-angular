@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { FullCalendarModule } from "@fullcalendar/angular";
 import {
   CalendarOptions,

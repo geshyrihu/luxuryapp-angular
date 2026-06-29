@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { MenuItem } from "primeng/api";
 import { DividerModule } from "primeng/divider";
@@ -10,9 +10,9 @@ import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-me
 import {
   CustomButtonDelete,
   CustomButtonEdit,
-} from "src/app/core/components/buttons/web";
-import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
+} from "src/app/core/components/web/buttons";
+import { CustomButtonAdd } from "src/app/core/components/web/buttons/custom-button-add";
+import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -110,7 +110,7 @@ export class CalendarioMaestroLista implements OnInit {
     this.dialogHandlerS.openDialog(
       DatosServicioAddOrEdit,
       data,
-      "Informaci�n de servicio",
+      "Información de servicio",
       this.dialogHandlerS.sizeLg,
     );
   }
@@ -138,3 +138,4 @@ export class CalendarioMaestroLista implements OnInit {
       });
   }
 }
+

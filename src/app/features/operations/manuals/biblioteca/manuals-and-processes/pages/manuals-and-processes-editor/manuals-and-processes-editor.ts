@@ -1,4 +1,4 @@
-import {
+﻿import {
   CdkDragDrop,
   DragDropModule,
   moveItemInArray,
@@ -22,12 +22,12 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 import {
   CustomButtonDelete,
   CustomButtonSave,
-} from "src/app/core/components/buttons/web";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomInputMultiselectSignal } from "src/app/core/components/inputs/web/custom-input-multiselect-signal";
-import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+} from "src/app/core/components/web/buttons";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomInputMultiselectSignal } from "src/app/core/components/web/inputs/custom-input-multiselect-signal";
+import { CustomInputSwitch } from "src/app/core/components/web/inputs/custom-input-switch-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -628,3 +628,4 @@ export class ManualsAndProcessesEditor implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
 }
+

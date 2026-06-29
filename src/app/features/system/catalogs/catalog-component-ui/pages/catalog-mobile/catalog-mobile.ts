@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 
 import { MobileCoreCoverage } from "../../shared/mobile-core-coverage";
@@ -33,7 +33,7 @@ import { MobileUtilities } from "./components/mobile-utilities/mobile-utilities"
   ],
   template: `
     <div class="flex flex-column gap-4">
-      <!-- Showcase principal — DataView, Listas, Buttons e Inputs -->
+      <!-- Showcase principal é DataView, Listas, Buttons e Inputs -->
       <app-mobile-core-coverage />
 
       <!-- Componentes individuales adicionales -->

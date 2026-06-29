@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal, input } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
@@ -107,7 +107,7 @@ export class CedulaPresupuestal {
 
   /**
    * Construye el array de filas con tipos específicos para la tabla:
-   * - header: banda azul oscuro de título de sección
+   * - header: banda azul oscuro de tótulo de sección
    * - item: renglón de cuenta mayor
    * - total-seccion: total de un grupo (Gastos de Personal, etc.)
    * - gran-total: gran total de Gastos Generales
@@ -118,7 +118,7 @@ export class CedulaPresupuestal {
     const idx = this.filterS.mesIdx(); // 0-based
     if (!d) return [];
 
-    // Función auxiliar para ajuste circular de índice
+    // Función auxiliar para ajuste circular de óndice
     const wr = (i: number) => ((i % 12) + 12) % 12;
 
     // Obtiene el monto de un mes específico para una cuenta
@@ -213,7 +213,7 @@ export class CedulaPresupuestal {
       });
     };
 
-    // ─── BLOQUE 1: GASTOS GENERALES ───────────────────────────────────────────
+    // --- BLOQUE 1: GASTOS GENERALES -------------------------------------------
     let granTot = {
       presupMes: 0,
       oct: 0,
@@ -298,7 +298,7 @@ export class CedulaPresupuestal {
     );
     if (result) {
       this.data.set(result);
-      this.filterS.currentReportName.set("Cédula Presupuestal vs Gastos");
+      this.filterS.currentReportName.set("Códula Presupuestal vs Gastos");
       this.filterS.currentReportContext.set(JSON.stringify(result));
     }
     this.loading.set(false);

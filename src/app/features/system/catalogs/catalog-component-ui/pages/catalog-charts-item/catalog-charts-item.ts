@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { CardModule } from "primeng/card";
@@ -55,7 +55,7 @@ export class CatalogChartsItem {
   barData = {
     labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May'],
     datasets: [
-      { label: 'Consumo Eléctrico', data: [65, 59, 80, 81, 56], fill: false, borderColor: this.primaryColor, tension: 0.4 },
+      { label: 'Consumo Elóctrico', data: [65, 59, 80, 81, 56], fill: false, borderColor: this.primaryColor, tension: 0.4 },
     ],
   };
 

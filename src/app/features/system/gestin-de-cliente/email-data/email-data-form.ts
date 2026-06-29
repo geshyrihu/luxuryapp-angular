@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormControl,
@@ -6,11 +6,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { CustomButtonSendEmail } from "src/app/core/components/buttons/web/custom-button-send-email";
+import { CustomButtonSendEmail } from "src/app/core/components/web/buttons/custom-button-send-email";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { IEmailDataForm } from "src/app/core/interfaces/email-data-form.interface";
 import { FormHelper } from "src/app/core/helpers/form-helper";
@@ -103,6 +103,7 @@ export class EmailDataForm implements OnInit {
     });
   }
 }
+
 
 
 

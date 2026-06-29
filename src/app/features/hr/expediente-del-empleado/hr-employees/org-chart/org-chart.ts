@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +17,7 @@ import { TabsModule } from "primeng/tabs";
 import { TagModule } from "primeng/tag";
 import { ToastModule } from "primeng/toast";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -765,3 +765,4 @@ export class OrgChart {
     });
   }
 }
+

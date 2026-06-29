@@ -1,7 +1,7 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { CommonModule } from "@angular/common";
 import { InitialsAbbrPipe } from "src/app/core/pipes/initials-abbr.pipe";
 import { Component, computed, effect, inject, signal } from "@angular/core";
@@ -12,9 +12,9 @@ import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonAdd } from "src/app/core/components/buttons/web/custom-button-add";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonAdd } from "src/app/core/components/web/buttons/custom-button-add";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -261,4 +261,5 @@ export class MyAssignedTasksList {
     });
   }
 }
+
 

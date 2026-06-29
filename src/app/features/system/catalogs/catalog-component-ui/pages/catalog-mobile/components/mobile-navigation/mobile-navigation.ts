@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
 import {
   IonBackButton,
@@ -79,7 +79,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
       <div class="mobile-card-header">Navigation Patterns</div>
       <div class="mobile-card-body flex flex-column gap-5">
 
-        <!-- ─── HEADER VARIANTS (DS) ─── -->
+        <!-- --- HEADER VARIANTS (DS) --- -->
         <div>
           <div class="section-label">Header Variants (DS)</div>
           <p class="section-desc">Header small (close + title + more) y header medium (search + title).</p>
@@ -99,10 +99,10 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
           </div>
         </div>
 
-        <!-- ─── TAB BAR ─── -->
+        <!-- --- TAB BAR --- -->
         <div>
           <div class="section-label">Tab Bar (DS)</div>
-          <p class="section-desc">Pestañas simples con línea de acento en la activa.</p>
+          <p class="section-desc">Pestañas simples con lónea de acento en la activa.</p>
           <div class="ds-tab-bar">
             <button class="ds-tab ds-tab--active">Overview</button>
             <button class="ds-tab">Properties</button>
@@ -110,7 +110,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
           </div>
         </div>
 
-        <!-- ─── SEGMENTED CONTROL ─── -->
+        <!-- --- SEGMENTED CONTROL --- -->
         <div>
           <div class="section-label">Segmented Control (DS)</div>
           <p class="section-desc">Control segmentado tipo iOS.</p>
@@ -139,7 +139,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
         <!-- Tab Bar -->
         <div>
           <div class="section-label">Tab Bar (ion-tab-bar)</div>
-          <p class="section-desc">Navegación principal inferior. Máximo 5 tabs. Ícono + label obligatorios.</p>
+          <p class="section-desc">Navegación principal inferior. Móximo 5 tabs. ócono + label obligatorios.</p>
           <ion-tabs style="border:1px solid var(--ds-border,#e2e8f0);border-radius:12px;overflow:hidden;">
             <ion-tab-bar slot="bottom">
               <ion-tab-button tab="home">
@@ -161,11 +161,11 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
         <!-- Header con Back Button -->
         <div>
           <div class="section-label">Header con Back Button</div>
-          <p class="section-desc">Toolbar estándar de vista de detalle.</p>
+          <p class="section-desc">Toolbar esténdar de vista de detalle.</p>
           <ion-header style="position:relative;border:1px solid var(--ds-border,#e2e8f0);border-radius:12px;overflow:hidden;">
             <ion-toolbar>
               <ion-buttons slot="start">
-                <ion-back-button default-href="/" text="Atrás"></ion-back-button>
+                <ion-back-button default-href="/" text="Atrós"></ion-back-button>
               </ion-buttons>
               <ion-title>Detalle</ion-title>
               <ion-buttons slot="end">
@@ -177,17 +177,17 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
 
         <!-- ion-menu -->
         <div>
-          <div class="section-label">Menú lateral (ion-menu)</div>
+          <div class="section-label">Mené lateral (ion-menu)</div>
           <p class="section-desc">
             Se abre desde <code>ion-menu-button</code> o <code>MenuController.open()</code>.
             Soporta tipos <code>overlay</code>, <code>reveal</code> y <code>push</code>.
           </p>
           <ion-button size="small" color="secondary" (click)="openMenu()">
             <ion-icon name="menu-outline" slot="start"></ion-icon>
-            Abrir menú lateral
+            Abrir mené lateral
           </ion-button>
           <p class="text-xs text-secondary mt-1">
-            El ≡ del header de arriba también abre este mismo menú.
+            El = del header de arriba tambión abre este mismo mené.
           </p>
         </div>
 
@@ -213,7 +213,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
 
             <!-- FAB con lista -->
             <div class="fab-demo-box">
-              <span class="fab-demo-label">Con lista — toca el FAB</span>
+              <span class="fab-demo-label">Con lista é toca el FAB</span>
               <div class="fab-demo-area">
                 <ion-fab vertical="bottom" horizontal="end" style="position:absolute;bottom:10px;right:10px;">
                   <ion-fab-button color="primary">

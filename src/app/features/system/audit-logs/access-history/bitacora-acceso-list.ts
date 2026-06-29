@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
@@ -11,7 +11,7 @@ import {
 } from "@ionic/angular/standalone";
 import { AvatarModule } from "primeng/avatar";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { CalendarRange } from "src/app/core/components/web/rango-calendario-mes-anio/calendar-range";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -142,3 +142,4 @@ export class BitacoraAcceso {
       });
   }
 }
+

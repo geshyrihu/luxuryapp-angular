@@ -4,8 +4,8 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -41,7 +41,7 @@ export class CatalogoRevisionesInspeccion {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   tableScrollHeightS = inject(TableScrollHeightService);
-  // DeclaraciÃ³n e inicializaciÃ³n de variables
+  // Declaración e inicialización de variables
   dataSignal = signal<any>(null);
 
   /*
@@ -55,7 +55,7 @@ export class CatalogoRevisionesInspeccion {
   /*
   /PRIME NG TABLE OPTIONS
   */
-  ref: DynamicDialogRef; // Referencia a un cuadro de diÃ¡logo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diÃƒ¡logo modal
 
   ngOnInit(): void {
     this.onLoadData();
@@ -76,7 +76,7 @@ export class CatalogoRevisionesInspeccion {
     });
   }
 
-  // FunciÃ³n para abrir un cuadro de diÃ¡logo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diÃƒ¡logo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(
@@ -90,6 +90,7 @@ export class CatalogoRevisionesInspeccion {
       });
   }
 }
+
 
 
 

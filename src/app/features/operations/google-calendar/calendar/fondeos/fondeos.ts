@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
+﻿import { Component } from "@angular/core";
+import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
 @Component({
   selector: "app-fondeos",
   templateUrl: "./fondeos.html",
@@ -11,3 +11,4 @@ export class Fondeos {
     window.open(url, "_blank");
   }
 }
+

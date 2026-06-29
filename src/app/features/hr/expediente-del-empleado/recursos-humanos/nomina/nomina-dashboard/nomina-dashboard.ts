@@ -1,8 +1,8 @@
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Component, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 
 export type NominaRole =
   | "SuperUsuario"
@@ -394,3 +394,4 @@ export default class NominaDashboard {
     return map[role];
   }
 }
+

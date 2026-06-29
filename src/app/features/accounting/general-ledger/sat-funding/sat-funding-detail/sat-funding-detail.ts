@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, OnInit, inject, signal } from "@angular/core";
 import {
   FormBuilder,
@@ -11,15 +11,15 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 // PrimeNG Modules
 import { CardModule } from "primeng/card";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
 import { DialogModule } from "primeng/dialog";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButtonConfirm } from "src/app/core/components/buttons/web/custom-button-confirm";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import {
   BulkUpdateTipoGastoDTO,
   SatCfdiDTO,
@@ -164,3 +164,4 @@ export class SatFundingDetailComponent implements OnInit {
       });
   }
 }
+

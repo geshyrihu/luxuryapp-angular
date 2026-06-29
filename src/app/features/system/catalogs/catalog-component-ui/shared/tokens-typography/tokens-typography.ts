@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
@@ -10,11 +10,11 @@ import { MessageModule } from "primeng/message";
   standalone: true,
   imports: [CommonModule, TableModule, TagModule, CardModule, MessageModule],
   template: `
-    <!-- ── Escala de Encabezados ──────────────────────────────────── -->
+    <!-- -- Escala de Encabezados ------------------------------------ -->
     <div class="mb-6">
       <h3 class="text-xl font-bold mb-1 border-bottom-1 border-300 pb-2">Escala de Encabezados</h3>
       <p class="text-sm text-color-secondary mt-1 mb-4">
-        Familia base: <strong>Inter</strong> (headings: <strong>Hanken Grotesk</strong>). Usa un único nivel de heading por vista para mantener jerarquía clara.
+        Familia base: <strong>Inter</strong> (headings: <strong>Hanken Grotesk</strong>). Usa un ónico nivel de heading por vista para mantener jerarquía clara.
       </p>
       <div class="flex flex-column gap-3">
         @for (h of headings; track h.tag) {
@@ -37,9 +37,9 @@ import { MessageModule } from "primeng/message";
       </div>
     </div>
 
-    <!-- ── Escala ERP UI ─────────────────────────────────────────── -->
+    <!-- -- Escala ERP UI ------------------------------------------- -->
     <div class="mb-6">
-      <h3 class="text-xl font-bold mb-1 border-bottom-1 border-300 pb-2">Escala Tipográfica ERP</h3>
+      <h3 class="text-xl font-bold mb-1 border-bottom-1 border-300 pb-2">Escala Tipogrófica ERP</h3>
       <p class="text-sm text-color-secondary mt-1 mb-4">
         Tokens de tamaño de texto para cada contexto operativo. Un solo uso por nivel evita jerarquías rotas.
       </p>
@@ -70,9 +70,9 @@ import { MessageModule } from "primeng/message";
       </p-table>
     </div>
 
-    <!-- ── Familias Tipográficas ──────────────────────────────────── -->
+    <!-- -- Familias Tipogróficas ------------------------------------ -->
     <div class="mb-2">
-      <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">Familias Tipográficas</h3>
+      <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">Familias Tipogróficas</h3>
       <div class="grid">
         @for (f of families; track f.token) {
           <div class="col-12 md:col-6 xl:col-4">
@@ -102,27 +102,27 @@ import { MessageModule } from "primeng/message";
 })
 export class TokensTypography {
   readonly headings = [
-    { tag: "h1", size: "2rem",    weight: "700", token: "--ds-font-size-display",     ejemplo: "h1 · Display 32px — Portada de módulo o hero institucional" },
-    { tag: "h2", size: "1.75rem", weight: "700", token: "--ds-font-size-page-title",  ejemplo: "h2 · Page Title 28px — Título principal de vista" },
-    { tag: "h3", size: "1.25rem", weight: "600", token: "--ds-font-size-section-title", ejemplo: "h3 · Section Title 20px — Agrupación dentro de cards o paneles" },
-    { tag: "h4", size: "1rem",    weight: "600", token: "--ds-font-size-card-title",  ejemplo: "h4 · Card / Dialog 16px — Encabezado compacto" },
-    { tag: "p",  size: "0.9375rem", weight: "400", token: "--ds-font-size-body",      ejemplo: "p · Body 15px — Lectura operativa y párrafos breves" },
-    { tag: "label", size: "0.875rem", weight: "500", token: "--ds-font-size-label",   ejemplo: "label · 14px — Label persistente sobre controles" },
-    { tag: "small", size: "0.8125rem", weight: "400", token: "--ds-font-size-help",   ejemplo: "small · Help 13px — Hints, restricciones y validaciones" },
-    { tag: "micro", size: "0.75rem",  weight: "400", token: "--ds-font-size-micro",   ejemplo: "micro · 12px — Metadatos y badges secundarios" },
+    { tag: "h1", size: "2rem",    weight: "700", token: "--ds-font-size-display",     ejemplo: "h1 é Display 32px é Portada de médulo o hero institucional" },
+    { tag: "h2", size: "1.75rem", weight: "700", token: "--ds-font-size-page-title",  ejemplo: "h2 é Page Title 28px é Tétulo principal de vista" },
+    { tag: "h3", size: "1.25rem", weight: "600", token: "--ds-font-size-section-title", ejemplo: "h3 é Section Title 20px ó Agrupación dentro de cards o paneles" },
+    { tag: "h4", size: "1rem",    weight: "600", token: "--ds-font-size-card-title",  ejemplo: "h4 é Card / Dialog 16px é Encabezado compacto" },
+    { tag: "p",  size: "0.9375rem", weight: "400", token: "--ds-font-size-body",      ejemplo: "p é Body 15px é Lectura operativa y pórrafos breves" },
+    { tag: "label", size: "0.875rem", weight: "500", token: "--ds-font-size-label",   ejemplo: "label é 14px é Label persistente sobre controles" },
+    { tag: "small", size: "0.8125rem", weight: "400", token: "--ds-font-size-help",   ejemplo: "small é Help 13px é Hints, restricciones y validaciones" },
+    { tag: "micro", size: "0.75rem",  weight: "400", token: "--ds-font-size-micro",   ejemplo: "micro é 12px é Metadatos y badges secundarios" },
   ];
 
   readonly erpScale = [
     { role: "Display institucional", token: "--ds-font-size-display",       size: "32px",   usage: "Hero interno, portada de módulo, pantalla guía.", example: "Demo institucional" },
-    { role: "Título de página",      token: "--ds-font-size-page-title",    size: "28px",   usage: "Una vez por vista; describe la tarea operativa principal.", example: "Solicitudes de mantenimiento" },
-    { role: "Título de sección",     token: "--ds-font-size-section-title", size: "20px",   usage: "Agrupa información relacionada en cards o paneles.", example: "Datos generales" },
+    { role: "Tátulo de página",      token: "--ds-font-size-page-title",    size: "28px",   usage: "Una vez por vista; describe la tarea operativa principal.", example: "Solicitudes de mantenimiento" },
+    { role: "Tótulo de sección",     token: "--ds-font-size-section-title", size: "20px",   usage: "Agrupa información relacionada en cards o paneles.", example: "Datos generales" },
     { role: "Card / Dialog",         token: "--ds-font-size-card-title",    size: "16px",   usage: "Encabezados compactos en cards, dialogs y paneles.", example: "Resumen financiero" },
-    { role: "Texto operativo",       token: "--ds-font-size-body",          size: "15px",   usage: "Párrafos breves, instrucciones y lectura normal del ERP.", example: "Selecciona el área responsable" },
+    { role: "Texto operativo",       token: "--ds-font-size-body",          size: "15px",   usage: "Pórrafos breves, instrucciones y lectura normal del ERP.", example: "Selecciona el órea responsable" },
     { role: "Label",                 token: "--ds-font-size-label",         size: "14px",   usage: "Siempre visible sobre el campo; no sustituir por placeholder.", example: "Importe autorizado" },
-    { role: "Tabla y listas",        token: "--ds-font-size-table",         size: "14px",   usage: "Contenido compacto, alineado y fácil de comparar.", example: "ERP-2026-001 | Finanzas" },
-    { role: "Ayuda y validación",    token: "--ds-font-size-help",          size: "13px",   usage: "Hints, restricciones, validaciones y textos secundarios.", example: "Máx. 255 caracteres" },
-    { role: "KPI compacto",          token: "--ds-font-size-metric",        size: "24px",   usage: "Métricas de dashboard, valores destacados.", example: "$ 124,500" },
-    { role: "Micro / Badge",         token: "--ds-font-size-micro",         size: "12px",   usage: "Metadatos, versiones, timestamps y etiquetas pequeñas.", example: "v2.1 · 2026-04" },
+    { role: "Tabla y listas",        token: "--ds-font-size-table",         size: "14px",   usage: "Contenido compacto, alineado y fócil de comparar.", example: "ERP-2026-001 | Finanzas" },
+    { role: "Ayuda y validación",    token: "--ds-font-size-help",          size: "13px",   usage: "Hints, restricciones, validaciones y textos secundarios.", example: "Móx. 255 caracteres" },
+    { role: "KPI compacto",          token: "--ds-font-size-metric",        size: "24px",   usage: "Mótricas de dashboard, valores destacados.", example: "$ 124,500" },
+    { role: "Micro / Badge",         token: "--ds-font-size-micro",         size: "12px",   usage: "Metadatos, versiones, timestamps y etiquetas pequeñas.", example: "v2.1 é 2026-04" },
   ];
 
   readonly families = [

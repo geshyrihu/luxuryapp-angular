@@ -1,4 +1,4 @@
-// En algún archivo de utilidades o configuración en tu frontend (por ejemplo, document-types.ts)
+﻿// En algón archivo de utilidades o configuración en tu frontend (por ejemplo, document-types.ts)
 
 export enum EDocumentType {
   BuildingDocuments = 0,

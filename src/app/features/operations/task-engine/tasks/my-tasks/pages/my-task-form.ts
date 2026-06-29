@@ -1,15 +1,15 @@
-import { Component, inject, OnInit, signal, viewChild } from "@angular/core";
+﻿import { Component, inject, OnInit, signal, viewChild } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { AvatarModule } from "primeng/avatar";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputImg } from "src/app/core/components/web/inputs/custom-input-img-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -173,7 +173,7 @@ export class MyTaskForm implements OnInit {
             const formattedDate = new Date(value).toISOString().split("T")[0]; // Formato 'YYYY-MM-DD'
             formData.append(key, formattedDate);
           } else {
-            formData.append(key, ""); // Si no hay valor, se envóa como vacóo
+            formData.append(key, ""); // Si no hay valor, se envía como vacío
           }
         } else {
           // Verifica si el valor es null antes de agregarlo a FormData
@@ -199,3 +199,4 @@ export class MyTaskForm implements OnInit {
     }
   }
 }
+

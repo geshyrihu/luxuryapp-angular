@@ -1,4 +1,4 @@
-import { CurrencyPipe, DatePipe } from "@angular/common";
+﻿import { CurrencyPipe, DatePipe } from "@angular/common";
 import { HttpParams } from "@angular/common/http";
 import { Component, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -6,10 +6,10 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { listOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/web/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -173,3 +173,4 @@ export default class LedgerViewer {
     return "bg-yellow-100 text-yellow-800";
   }
 }
+

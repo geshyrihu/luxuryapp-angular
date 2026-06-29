@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import {
   IonItem,
   IonLabel,
@@ -41,7 +41,7 @@ export class InformesFinancierosConsejoDirectivo implements OnInit {
   rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   getIconForFile = getIconForFileHelper;
-  // Computed signal para los campos de búsqueda global, se actualiza automáticamente
+  // Computed signal para los campos de bósqueda global, se actualiza automóticamente
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
     // Solo calcula los campos si hay datos, para evitar errores
@@ -70,7 +70,7 @@ export class InformesFinancierosConsejoDirectivo implements OnInit {
     this.apiResponseS
       .onGetList(urlApi)
       .then((result: any) => {
-        // Asignamos el resultado al signal, lo que refrescará la vista
+        // Asignamos el resultado al signal, lo que refrescaré la vista
         this.dataSignal.set(result);
       })
       .finally(() => {
@@ -84,7 +84,7 @@ export class InformesFinancierosConsejoDirectivo implements OnInit {
       { pdfSrc: url, fileName: fileName },
       fileName,
       this.dialogHandlerS.sizeFull,
-      true, // ← autoMaximize = true
+      true, // ? autoMaximize = true
     );
   }
 }

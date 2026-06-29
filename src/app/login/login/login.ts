@@ -18,8 +18,8 @@ import {
   startWith,
   switchMap,
 } from "rxjs";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomInputCheckSignal } from "src/app/core/components/web/inputs/custom-input-check-signal";
 import { UserTokenDTO } from "src/app/core/interfaces/auth-user-token.dto";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -28,13 +28,43 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { LoaderService } from "src/app/core/services/loader.service";
 import { LoginSliderService } from "src/app/core/services/login-slider.service";
 import { SecurityService } from "src/app/core/services/security.service";
-import { CustomInputPassword } from "src/app/core/components/inputs/web/custom-input-password-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputPassword } from "src/app/core/components/web/inputs/custom-input-password-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 
 @Component({
   selector: "app-login",
 
   templateUrl: "./login.html",
+  styles: [`
+    .auth-dark-panel {
+      background: rgba(11, 49, 100, 0.4);
+      color: rgba(255, 255, 255, 0.95);
+    }
+    .auth-dark-panel ::ng-deep label,
+    .auth-dark-panel ::ng-deep h2,
+    .auth-dark-panel ::ng-deep p,
+    .auth-dark-panel ::ng-deep .text-900,
+    .auth-dark-panel ::ng-deep .text-700,
+    .auth-dark-panel ::ng-deep .text-600 {
+      color: rgba(255, 255, 255, 0.9) !important;
+    }
+    .auth-dark-panel ::ng-deep input {
+      background: rgba(255, 255, 255, 0.05) !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      color: white !important;
+    }
+    .auth-dark-panel ::ng-deep input::placeholder {
+      color: rgba(255, 255, 255, 0.5) !important;
+    }
+    .auth-dark-panel ::ng-deep .p-password i {
+      color: rgba(255, 255, 255, 0.7) !important;
+    }
+    .auth-dark-panel ::ng-deep .p-password-meter {
+      background: rgba(255, 255, 255, 0.2) !important;
+    }
+  `],
   animations: [
     trigger("slideAnimation", [
       transition(":enter", [
@@ -55,6 +85,7 @@ import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom
     CustomInputTextSignal,
     CustomInputPassword,
     NgOptimizedImage,
+    AppIcon,
   ],
 })
 export class LoginComponent implements OnInit {
@@ -245,3 +276,4 @@ export class LoginComponent implements OnInit {
     }
   }
 }
+

@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation, inject } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import {
@@ -16,7 +16,7 @@ import {
   IonInputTextarea,
   IonInputTime,
   IonInputToggle,
-} from "src/app/core/components/inputs/mobile";
+} from "src/app/core/components/mobile/inputs";
 import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-styles";
 
 @Component({
@@ -46,66 +46,40 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
         <div>
           <div class="section-label">Field states</div>
           <p class="section-desc">
-            Estados base para una interfaz mobile real: default, icono,
-            error, disabled y textarea.
+            Estados base para una interfaz mobile real: default, icono, error, disabled y textarea.
           </p>
           <div class="flex flex-column gap-3">
             <div class="ds-field">
               <label class="ds-field__label">Full Name</label>
-              <input
-                class="ds-field__input"
-                type="text"
-                placeholder="e.g. John Doe"
-              />
+              <input class="ds-field__input" type="text" placeholder="e.g. John Doe" />
             </div>
             <div class="ds-field">
               <label class="ds-field__label">Email Address</label>
               <div class="ds-field__icon-left">
                 <span class="material-symbols-outlined ds-field__icon">mail</span>
-                <input
-                  class="ds-field__input ds-field__input--icon"
-                  type="email"
-                  placeholder="name@company.com"
-                />
+                <input class="ds-field__input ds-field__input--icon" type="email" placeholder="name@company.com" />
               </div>
             </div>
             <div class="ds-field ds-field--error">
               <label class="ds-field__label">Password</label>
-              <input
-                class="ds-field__input ds-field__input--error"
-                type="password"
-                value="12345"
-              />
+              <input class="ds-field__input ds-field__input--error" type="password" value="12345" />
               <span class="material-symbols-outlined ds-field__error-icon">error</span>
               <span class="ds-field__error-text">Password is too short</span>
             </div>
             <div class="ds-field">
-              <label class="ds-field__label ds-field__label--disabled">
-                User ID (Read-only)
-              </label>
-              <input
-                class="ds-field__input ds-field__input--disabled"
-                type="text"
-                value="USR-99210-XB"
-                disabled
-              />
+              <label class="ds-field__label ds-field__label--disabled">User ID (Read-only)</label>
+              <input class="ds-field__input ds-field__input--disabled" type="text" value="USR-99210-XB" disabled />
             </div>
             <div class="ds-field">
               <label class="ds-field__label">Bio</label>
-              <textarea
-                class="ds-field__textarea"
-                placeholder="Tell us about yourself..."
-                rows="3"
-              ></textarea>
+              <textarea class="ds-field__textarea" placeholder="Tell us about yourself..." rows="3"></textarea>
             </div>
           </div>
         </div>
 
         <div>
           <div class="section-label">Buscador</div>
-          <p class="section-desc">
-            Input Ionic real para filtros y listados mobile.
-          </p>
+          <p class="section-desc">Input Ionic real para filtros y listados mobile.</p>
           <ion-input-search
             [control]="mobileForm.controls['buscar']"
             label="Buscar"
@@ -115,108 +89,57 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
         </div>
 
         <div>
-          <div class="section-label">Texto y contraseña</div>
+          <div class="section-label">Texto y password</div>
           <form [formGroup]="mobileForm" class="flex flex-column gap-1">
-            <ion-input-text
-              [control]="mobileForm.controls['nombre']"
-              label="Nombre"
-              placeholder="Tu nombre..."
-              [horizontal]="false"
-            />
-            <ion-input-password
-              [control]="mobileForm.controls['password']"
-              label="Contraseña"
-              placeholder="Escribe tu contraseña"
-              [horizontal]="false"
-            />
-            <ion-input-textarea
-              [control]="mobileForm.controls['comentarios']"
-              label="Comentarios"
-              placeholder="Notas..."
-              [horizontal]="false"
-            />
+            <ion-input-text [control]="mobileForm.controls['nombre']" label="Nombre" placeholder="Tu nombre..." [horizontal]="false" />
+            <ion-input-password [control]="mobileForm.controls['password']" label="Password" placeholder="Escribe tu password" [horizontal]="false" />
+            <ion-input-textarea [control]="mobileForm.controls['comentarios']" label="Comentarios" placeholder="Notas..." [horizontal]="false" />
           </form>
         </div>
 
         <div>
-          <div class="section-label">Numéricos</div>
+          <div class="section-label">Numericos</div>
           <form [formGroup]="mobileForm" class="flex flex-column gap-1">
-            <ion-input-number
-              [control]="mobileForm.controls['edad']"
-              label="Edad"
-              placeholder="18"
-              [horizontal]="false"
-            />
-            <ion-input-currency
-              [control]="mobileForm.controls['precio']"
-              label="Precio"
-              placeholder="$ 0.00"
-              [horizontal]="false"
-            />
+            <ion-input-number [control]="mobileForm.controls['edad']" label="Edad" placeholder="18" [horizontal]="false" />
+            <ion-input-currency [control]="mobileForm.controls['precio']" label="Precio" placeholder="$ 0.00" [horizontal]="false" />
           </form>
         </div>
 
         <div>
           <div class="section-label">Fecha y hora</div>
           <form [formGroup]="mobileForm" class="flex flex-column gap-1">
-            <ion-input-date
-              [control]="mobileForm.controls['fecha']"
-              label="Fecha"
-              [horizontal]="false"
-            />
-            <ion-input-time
-              [control]="mobileForm.controls['hora']"
-              label="Hora"
-              [horizontal]="false"
-            />
+            <ion-input-date [control]="mobileForm.controls['fecha']" label="Fecha" [horizontal]="false" />
+            <ion-input-time [control]="mobileForm.controls['hora']" label="Hora" [horizontal]="false" />
           </form>
         </div>
 
         <div>
-          <div class="section-label">Selección</div>
+          <div class="section-label">Seleccion</div>
           <form [formGroup]="mobileForm" class="flex flex-column gap-1">
             <ion-input-select
               [control]="mobileForm.controls['categoria']"
-              label="Categoría"
+              label="Categoria"
               [data]="options"
-              placeholder="Selecciona una categoría"
+              placeholder="Selecciona una categoria"
               [horizontal]="false"
             />
             <ion-input-multiselect
               [control]="mobileForm.controls['roles']"
               label="Roles"
               [options]="options"
-              placeholder="Selecciona uno o más roles"
+              placeholder="Selecciona uno o mas roles"
               [horizontal]="false"
             />
-            <ion-input-select-bool
-              [control]="mobileForm.controls['activoBool']"
-              label="Estado"
-              [horizontal]="false"
-            />
+            <ion-input-select-bool [control]="mobileForm.controls['activoBool']" label="Estado" [horizontal]="false" />
           </form>
         </div>
 
         <div>
           <div class="section-label">Toggle, checkbox y archivo</div>
           <form [formGroup]="mobileForm" class="flex flex-column gap-1">
-            <ion-input-toggle
-              [control]="mobileForm.controls['activo']"
-              label="Notificaciones push"
-              placeholder="Activar"
-              [horizontal]="false"
-            />
-            <ion-input-checkbox
-              [control]="mobileForm.controls['terminos']"
-              label="Términos"
-              placeholder="Acepto términos y condiciones"
-            />
-            <ion-input-file
-              [control]="mobileForm.controls['archivo']"
-              label="Adjuntar archivo"
-              chooseLabel="Seleccionar archivo"
-              [horizontal]="false"
-            />
+            <ion-input-toggle [control]="mobileForm.controls['activo']" label="Notificaciones push" placeholder="Activar" [horizontal]="false" />
+            <ion-input-checkbox [control]="mobileForm.controls['terminos']" label="Terminos" placeholder="Acepto terminos y condiciones" />
+            <ion-input-file [control]="mobileForm.controls['archivo']" label="Adjuntar archivo" chooseLabel="Seleccionar archivo" [horizontal]="false" />
           </form>
         </div>
       </div>
@@ -267,8 +190,9 @@ export class MobileInputs {
   });
 
   readonly options = [
-    { label: "Opción 1", value: 1 },
-    { label: "Opción 2", value: 2 },
-    { label: "Opción 3", value: 3 },
+    { label: "Opcion 1", value: 1 },
+    { label: "Opcion 2", value: 2 },
+    { label: "Opcion 3", value: 3 },
   ];
 }
+

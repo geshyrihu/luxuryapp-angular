@@ -1,9 +1,9 @@
-import { Component, computed, inject, signal } from "@angular/core";
+﻿import { Component, computed, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
-import { CustomButtonConfirm } from "src/app/core/components/buttons/web/custom-button-confirm";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
@@ -94,4 +94,5 @@ export class TaskReportWorkPlanPreview {
     );
   }
 }
+
 

@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, OnInit, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { TableModule } from "primeng/table";
@@ -7,8 +7,8 @@ import {
   CustomBtnActiveDesactive,
   CustomButtonDelete,
   CustomButtonItem,
-} from "src/app/core/components/buttons/web";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+} from "src/app/core/components/web/buttons";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { TaskTemplate } from "src/app/core/models/recurring-tasks/task-template.model";
@@ -112,3 +112,4 @@ export class TaskTemplateList implements OnInit {
       });
   }
 }
+

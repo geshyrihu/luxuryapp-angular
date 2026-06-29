@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -6,9 +6,9 @@ import { homeOutline } from "ionicons/icons";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -123,11 +123,11 @@ export class OwnerList {
 
       let comparisonResult;
 
-      // Si ambos son numÃ©ricos, los comparamos como enteros
+      // Si ambos son numéricos, los comparamos como enteros
       if (!isNaN(parseInt(xPart, 10)) && !isNaN(parseInt(yPart, 10))) {
         comparisonResult = parseInt(xPart, 10) - parseInt(yPart, 10);
       } else {
-        // Si no son numÃ©ricos, comparamos como cadenas
+        // Si no son numéricos, comparamos como cadenas
         comparisonResult = xPart.localeCompare(yPart);
       }
 
@@ -136,7 +136,8 @@ export class OwnerList {
       }
     }
 
-    // Si todos los elementos hasta ahora son iguales, el mÃ³s corto es menor
+    // Si todos los elementos hasta ahora son iguales, el mós corto es menor
     return xMatches.length - yMatches.length;
   }
 }
+

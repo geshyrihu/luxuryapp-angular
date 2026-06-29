@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule, DatePipe } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
@@ -6,9 +6,9 @@ import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { BitacoraFiltroFechaForm } from "src/app/core/components/web/bitacora-filtro-fecha/bitacora-filtro-fecha-form";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
-import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -86,7 +86,7 @@ export class DetectorHumoBitacoraList implements OnInit {
     const result = await this.dialogHandlerS.openDialog<{ from: Date; to: Date }>(
       BitacoraFiltroFechaForm,
       {},
-      "Reporte PDF â€” BitÃ¡cora Detectores de Humo",
+      "Reporte PDF Ã¢â‚¬â€ BitÃƒ¡cora Detectores de Humo",
       this.dialogHandlerS.sizeSm,
     );
     if (result)
@@ -106,3 +106,4 @@ export class DetectorHumoBitacoraList implements OnInit {
       });
   }
 }
+

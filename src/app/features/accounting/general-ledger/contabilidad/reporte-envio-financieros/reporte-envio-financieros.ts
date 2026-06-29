@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { SelectModule } from "primeng/select";
@@ -60,7 +60,7 @@ export class ReporteEnvioFinancieros implements OnInit {
   loading = signal(true);
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
-  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diólogo modal
 
   ngOnInit(): void {
     const currentYear = new Date().getFullYear();

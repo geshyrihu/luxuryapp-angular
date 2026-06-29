@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import {
   IonAvatar,
 
@@ -10,7 +10,7 @@ import {
 } from "@ionic/angular/standalone";
 import { AvatarModule } from "primeng/avatar";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TagModule } from "primeng/tag";
@@ -91,6 +91,7 @@ export class Cumpleanos implements OnInit {
       });
   }
 }
+
 
 
 

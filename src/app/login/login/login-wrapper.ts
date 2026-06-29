@@ -7,13 +7,25 @@ import { LoginMobile } from "./login-mobile";
   selector: "app-login-wrapper",
   imports: [LoginComponent, LoginMobile],
   template: `
-    @if (platform.isMobile()) {
-      <app-login-mobile />
-    } @else {
+    <!-- Vista Web Premium -->
+    <div class="hidden md:block h-full w-full">
       <app-login />
-    }
+    </div>
+
+    <!-- Vista Móvil Premium (Ionic) -->
+    <div class="flex md:hidden h-full w-full">
+      <app-login-mobile />
+    </div>
   `,
-  styles: [`:host { display: block; height: 100vh; width: 100vw; }`],
+  styles: [
+    `
+      :host {
+        display: block;
+        height: 100vh;
+        width: 100vw;
+      }
+    `,
+  ],
 })
 export class LoginWrapper {
   protected readonly platform = inject(PlatformService);

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+﻿import { Component, inject, OnInit } from "@angular/core";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CardModule } from "primeng/card";
@@ -253,7 +253,7 @@ ${this.htmlPrintS.getStandardCss()}
       <div>
         <div class="subheader" style="margin-top: 0;">DATOS DE LA SOLICITUD</div>
         <div class="info-text">Fecha: ${this.formatDateOnly(model.fechaSolicitud)}</div>
-        <div class="info-text">Área/Depto: ${this.htmlPrintS.esc(model.equipoOInstalacion || "N/A")}</div>
+        <div class="info-text">órea/Depto: ${this.htmlPrintS.esc(model.equipoOInstalacion || "N/A")}</div>
         <div class="info-text">Solicitante: ${this.htmlPrintS.esc(this.getSolicitanteDisplayName(model))}</div>
       </div>
       <div>
@@ -265,7 +265,7 @@ ${this.htmlPrintS.getStandardCss()}
       </div>
     </div>
 
-    <div class="subheader">JUSTIFICACIÓN DEL GASTO</div>
+    <div class="subheader">JUSTIFICACIóN DEL GASTO</div>
     <div class="justificacion">${this.htmlPrintS.esc(model.justificacionGasto || "N/A")}</div>
 
     <div class="subheader">DESGLOSE DE PAGO</div>

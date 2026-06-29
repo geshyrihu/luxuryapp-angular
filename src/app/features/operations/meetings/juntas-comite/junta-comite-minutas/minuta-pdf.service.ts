@@ -1,4 +1,4 @@
-import { Injectable, inject } from "@angular/core";
+﻿import { Injectable, inject } from "@angular/core";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 
 @Injectable({ providedIn: "root" })
@@ -61,7 +61,7 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, "MINUTA DE JUNTA", `MINUTA-${tipo.toUpperCase()}`, generatedAt, "ADMINISTRACIÓN", `Fecha de junta: ${dateLabel}`)}
+  ${this.htmlPrintS.buildStandardHeader(logo, "MINUTA DE JUNTA", `MINUTA-${tipo.toUpperCase()}`, generatedAt, "ADMINISTRACIóN", `Fecha de junta: ${dateLabel}`)}
   
   <div class="body-doc">
     <div class="subheader" style="margin-top:0;">ASISTENTES</div>

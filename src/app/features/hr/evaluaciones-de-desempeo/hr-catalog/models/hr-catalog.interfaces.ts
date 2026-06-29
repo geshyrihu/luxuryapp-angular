@@ -1,4 +1,4 @@
-// Tipos para formularios (envían valores técnicos del enum al backend)
+﻿// Tipos para formularios (envían valores tócnicos del enum al backend)
 export type EIncidentCategory = 'Conducta' | 'Desempeno' | 'Seguridad' | 'Asistencia' | 'Etica';
 export type ESeverityLevel = 'Low' | 'Moderate' | 'Medium' | 'High';
 export type ESanctionStatus = 'Activa' | 'Apelada' | 'Suspendida' | 'Cumplida' | 'Revocada';
@@ -23,7 +23,7 @@ export interface SanctionTypeListDTO {
   isActive: boolean;
 }
 
-// DTOs para crear/editar (envían valores técnicos del enum)
+// DTOs para crear/editar (envían valores tócnicos del enum)
 export interface IncidentTypeFormDTO {
   name: string;
   description?: string;
@@ -41,13 +41,13 @@ export interface SanctionTypeFormDTO {
   isActive: boolean;
 }
 
-// DTOs para edición (reciben valor numérico del enum del backend)
+// DTOs para edición (reciben valor numórico del enum del backend)
 export interface IncidentTypeDetailDTO {
   id: string;
   name: string;
   description?: string;
-  category: number; // Valor numérico del enum (ej: 0, 1, 2...)
-  defaultSeverity: number; // Valor numérico del enum (ej: 0, 1, 2...)
+  category: number; // Valor numórico del enum (ej: 0, 1, 2...)
+  defaultSeverity: number; // Valor numórico del enum (ej: 0, 1, 2...)
   isActive: boolean;
   createdAt: string;
 }
@@ -56,7 +56,7 @@ export interface SanctionTypeDetailDTO {
   id: string;
   name: string;
   description?: string;
-  severityLevel: number; // Valor numérico del enum (ej: 0, 1, 2...)
+  severityLevel: number; // Valor numórico del enum (ej: 0, 1, 2...)
   isTermination: boolean;
   requiresHRApproval: boolean;
   isActive: boolean;

@@ -1,4 +1,4 @@
-import { IonicMocks } from 'src/app/core/testing/ionic-mocks';
+﻿import { IonicMocks } from 'src/app/core/testing/ionic-mocks';
 
 vi.mock('@ionic/angular/standalone', () => ({ ...IonicMocks }));
 vi.mock('@ionic/core', () => ({}));
@@ -123,15 +123,15 @@ describe('UnifiedPendingDashboard', () => {
   });
 
   it('getModuleEmoji should return correct emoji', () => {
-    expect(component.getModuleEmoji('Tickets')).toBe('🎫');
-    expect(component.getModuleEmoji('Minutas')).toBe('📝');
-    expect(component.getModuleEmoji('Mantenimiento')).toBe('🔧');
-    expect(component.getModuleEmoji('Legal')).toBe('⚖️');
-    expect(component.getModuleEmoji('Polizas')).toBe('📄');
-    expect(component.getModuleEmoji('Bajas')).toBe('📉');
-    expect(component.getModuleEmoji('Altas')).toBe('🚀');
-    expect(component.getModuleEmoji('Vacantes')).toBe('🪑');
-    expect(component.getModuleEmoji('Modificaciones')).toBe('💰');
+    expect(component.getModuleEmoji('Tickets')).toBe('??');
+    expect(component.getModuleEmoji('Minutas')).toBe('??');
+    expect(component.getModuleEmoji('Mantenimiento')).toBe('??');
+    expect(component.getModuleEmoji('Legal')).toBe('??');
+    expect(component.getModuleEmoji('Polizas')).toBe('??');
+    expect(component.getModuleEmoji('Bajas')).toBe('??');
+    expect(component.getModuleEmoji('Altas')).toBe('??');
+    expect(component.getModuleEmoji('Vacantes')).toBe('??');
+    expect(component.getModuleEmoji('Modificaciones')).toBe('??');
   });
 
   it('getDaysSinceFollowup should return 0 for non-Tickets/Minutas', () => {

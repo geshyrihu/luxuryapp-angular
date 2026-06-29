@@ -1,8 +1,8 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, inject, OnInit, signal } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -52,3 +52,4 @@ export class OrdenesServicioFotos implements OnInit {
     await this.onLoadData();
   }
 }
+

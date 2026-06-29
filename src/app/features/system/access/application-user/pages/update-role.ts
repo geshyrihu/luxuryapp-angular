@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { FieldsetModule } from "primeng/fieldset";
@@ -102,7 +102,7 @@ export class UpdateRole implements OnInit {
         const groupedArray: GroupedRole[] = Array.from(grouped.entries())
           .map(([type, roles]) => ({
             groupName: roleTypeNames[type],
-            roles: roles.sort((a, b) => a.sortOrder - b.sortOrder), // <-- ¡Aquí la nueva ordenación!
+            roles: roles.sort((a, b) => a.sortOrder - b.sortOrder), // <-- óAquó la nueva ordenación!
             order: type, // Usar el valor del enum para ordenar
           }))
           .sort((a, b) => a.order - b.order);
@@ -127,7 +127,7 @@ export class UpdateRole implements OnInit {
           if (role.roleId === updatedRole.roleId) {
             return updatedRole; // El rol que acabamos de cambiar
           }
-          // Si el nuevo rol está seleccionado, deseleccionar todos los demás
+          // Si el nuevo rol esté seleccionado, deseleccionar todos los demós
           if (updatedRole.isSelected) {
             return { ...role, isSelected: false };
           }

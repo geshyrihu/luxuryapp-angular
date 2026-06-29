@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
 import { FullCalendarModule } from "@fullcalendar/angular";
 import { CalendarOptions, EventInput } from "@fullcalendar/core";
@@ -53,7 +53,7 @@ import {
   CustomButtonSave,
   CustomButtonSendEmail,
   CustomButtonViewPdf,
-} from "src/app/core/components/buttons/web";
+} from "src/app/core/components/web/buttons";
 import {
   CustomInputCheckSignal,
   CustomInputCurrencySignal,
@@ -62,7 +62,7 @@ import {
   CustomInputNumberSignal,
   CustomInputSelectSignal,
   CustomInputTextSignal,
-} from "src/app/core/components/inputs/web";
+} from "src/app/core/components/web/inputs";
 
 const WEB_ITEM_LABELS: Record<string, string> = {
   accordion: "Accordion",
@@ -164,7 +164,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
 
       @switch (item()) {
         @case ("accordion") {
-          <p-card header="Accordion — p-accordion">
+          <p-card header="Accordion - p-accordion">
             <p-accordion>
               <p-accordion-panel value="0">
                 <p-accordion-header>Sección 1</p-accordion-header>
@@ -194,7 +194,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("badge") {
-          <p-card header="Badge — p-badge">
+          <p-card header="Badge - p-badge">
             <div class="flex flex-wrap gap-3 align-items-center">
               <p-badge value="3" severity="danger" />
               <p-badge value="12" severity="warn" />
@@ -206,7 +206,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("breadcrumb") {
-          <p-card header="Breadcrumb — p-breadcrumb">
+          <p-card header="Breadcrumb - p-breadcrumb">
             <p-breadcrumb
               [model]="[
                 { label: 'Inicio' },
@@ -219,7 +219,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("button") {
-          <p-card header="Button — p-button">
+          <p-card header="Button - p-button">
             <div class="flex flex-wrap gap-2">
               <p-button label="Primary" />
               <p-button label="Secondary" severity="secondary" />
@@ -240,9 +240,9 @@ const WEB_ITEM_LABELS: Record<string, string> = {
             </div>
           </p-card>
           <div class="mt-3">
-            <p-card header="Action Buttons (Custom) — custom-button-*">
+            <p-card header="Action Buttons (Custom) - custom-button-*">
               <p class="text-sm text-secondary m-0 mb-3">
-                Úsalos para acciones ERP: guardar, editar, eliminar, descargar,
+                Usalos para acciones ERP: guardar, editar, eliminar, descargar,
                 etc. Funcionan en web y mobile automáticamente.
               </p>
               <div class="flex flex-wrap gap-2">
@@ -260,12 +260,12 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </div>
 
           <div class="mt-3">
-            <p-card header="Icon Button con borde — patrón shell/layout">
+            <p-card header="Icon Button con borde - patron shell/layout">
               <p class="text-sm text-secondary m-0 mb-3">
                 Para botones de shell (sidebar toggle, header actions) que
                 requieren un aspecto específico con borde y tamaño fijo, usa
                 <code>&lt;button class="ds-icon-btn"&gt;</code> con tokens DS en
-                el SCSS. No uses <code>p-button</code> — sus variantes
+                el SCSS. No uses <code>p-button</code> - sus variantes
                 cromáticas entran en conflicto con el estilo propio del botón.
               </p>
 
@@ -285,7 +285,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </button>
               </div>
 
-              <!-- Código de referencia -->
+              <!-- Codigo de referencia -->
               <p-divider />
               <p class="text-sm font-bold mb-2">Estructura</p>
               <pre
@@ -304,11 +304,11 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 <div class="col-12 md:col-4">
                   <div class="p-3 border-round surface-ground">
                     <p class="text-xs font-bold text-green-600 m-0 mb-1">
-                      ✅ USA &lt;button class="..."&gt; cuando:
+                      OK USA &lt;button class="..."&gt; cuando:
                     </p>
                     <ul class="text-xs m-0 pl-3">
                       <li>
-                        El botón tiene borde, tamaño y color propio (layout
+                        El boton tiene borde, tamano y color propio (layout
                         shell)
                       </li>
                       <li>
@@ -321,26 +321,26 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 <div class="col-12 md:col-4">
                   <div class="p-3 border-round surface-ground">
                     <p class="text-xs font-bold text-blue-600 m-0 mb-1">
-                      ✅ USA &lt;p-button&gt; cuando:
+                      OK USA &lt;p-button&gt; cuando:
                     </p>
                     <ul class="text-xs m-0 pl-3">
-                      <li>Botón de acción genérica en cualquier vista</li>
-                      <li>Necesitas severity (primary, danger, warn…)</li>
-                      <li>Botón de texto, outlined o icon-only estándar</li>
+                      <li>Boton de accion generica en cualquier vista</li>
+                      <li>Necesitas severity (primary, danger, warn...)</li>
+                      <li>Boton de texto, outlined o icon-only estandar</li>
                     </ul>
                   </div>
                 </div>
                 <div class="col-12 md:col-4">
                   <div class="p-3 border-round surface-ground">
                     <p class="text-xs font-bold text-purple-600 m-0 mb-1">
-                      ✅ USA &lt;custom-button-*&gt; cuando:
+                      OK USA &lt;custom-button-*&gt; cuando:
                     </p>
                     <ul class="text-xs m-0 pl-3">
                       <li>
-                        Acción ERP (guardar, editar, eliminar, descargar…)
+                        Accion ERP (guardar, editar, eliminar, descargar...)
                       </li>
-                      <li>Debe funcionar en web Y mobile automáticamente</li>
-                      <li>Es acción dentro de una tabla o formulario</li>
+                      <li>Debe funcionar en web Y mobile automaticamente</li>
+                      <li>Es accion dentro de una tabla o formulario</li>
                     </ul>
                   </div>
                 </div>
@@ -354,41 +354,41 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               <p-card header="Card Simple">
                 <p class="m-0">
                   Contenido de la card. Usa este componente para agrupar
-                  información relacionada.
+                  informacion relacionada.
                 </p>
               </p-card>
             </div>
             <div class="col-12 md:col-6">
-              <p-card header="Con Subheader" subheader="Subtítulo">
+              <p-card header="Con Subheader" subheader="Subtitulo">
                 <p class="m-0">Card con subheader y footer opcional.</p>
-                <ng-template #footer><p-button label="Acción" /></ng-template>
+                <ng-template #footer><p-button label="Accion" /></ng-template>
               </p-card>
             </div>
           </div>
         }
         @case ("checkbox") {
-          <p-card header="Checkbox — p-checkbox">
+          <p-card header="Checkbox - p-checkbox">
             <div class="flex flex-column gap-3">
               <div class="flex align-items-center gap-2">
                 <p-checkbox [binary]="true" inputId="chk1" /><label for="chk1"
-                  >Opción 1</label
+                  >Opcion 1</label
                 >
               </div>
               <div class="flex align-items-center gap-2">
                 <p-checkbox [binary]="true" inputId="chk2" /><label for="chk2"
-                  >Opción 2</label
+                  >Opcion 2</label
                 >
               </div>
               <div class="flex align-items-center gap-2">
                 <p-checkbox [binary]="true" inputId="chk3" /><label for="chk3"
-                  >Opción 3</label
+                  >Opcion 3</label
                 >
               </div>
             </div>
           </p-card>
         }
         @case ("datepicker") {
-          <p-card header="DatePicker — p-datepicker">
+          <p-card header="DatePicker - p-datepicker">
             <p-datepicker
               [(ngModel)]="dateVal"
               dateFormat="dd/mm/yy"
@@ -397,7 +397,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("dialog") {
-          <p-card header="Dialog — p-dialog">
+          <p-card header="Dialog - p-dialog">
             <p-button
               label="Abrir Dialog"
               (onClick)="dialogVisible.set(true)"
@@ -408,7 +408,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               [modal]="true"
               [style]="{ width: 'min(92vw,30rem)' }"
             >
-              <p>Contenido del dialog. Resérvalo para decisiones breves.</p>
+              <p>Contenido del dialog. Reservalo para decisiones breves.</p>
               <ng-template #footer
                 ><p-button label="Cerrar" (onClick)="dialogVisible.set(false)"
               /></ng-template>
@@ -416,7 +416,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("divider") {
-          <p-card header="Divider — p-divider">
+          <p-card header="Divider - p-divider">
             <p>Contenido superior</p>
             <p-divider />
             <p>Contenido inferior</p>
@@ -425,7 +425,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("inputnumber") {
-          <p-card header="InputNumber — p-inputnumber">
+          <p-card header="InputNumber - p-inputnumber">
             <div class="grid">
               <div class="col-6">
                 <p-inputnumber
@@ -449,7 +449,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("inputtext") {
-          <p-card header="InputText — p-inputtext">
+          <p-card header="InputText - p-inputtext">
             <div class="flex flex-column gap-3">
               <input
                 pInputText
@@ -464,19 +464,19 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("message") {
-          <p-card header="Message — p-message">
+          <p-card header="Message - p-message">
             <div class="flex flex-column gap-2">
               <p-message severity="info" text="Mensaje informativo" />
-              <p-message severity="success" text="Operación exitosa" />
+              <p-message severity="success" text="Operacion exitosa" />
               <p-message severity="warn" text="Advertencia" />
-              <p-message severity="error" text="Error crítico" />
+              <p-message severity="error" text="Error critico" />
               <p-message severity="secondary" text="Mensaje secundario" />
               <p-message severity="contrast" text="Contraste" />
             </div>
           </p-card>
         }
         @case ("multiselect") {
-          <p-card header="MultiSelect — p-multiselect">
+          <p-card header="MultiSelect - p-multiselect">
             <p-multiselect
               [options]="selectOptions"
               [(ngModel)]="multiVal"
@@ -488,7 +488,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("popover") {
-          <p-card header="Popover — p-popover">
+          <p-card header="Popover - p-popover">
             <p-button
               label="Abrir Popover"
               #popoverBtn
@@ -496,13 +496,13 @@ const WEB_ITEM_LABELS: Record<string, string> = {
             />
             <p-popover #popover
               ><div class="p-3">
-                Contenido del popover. Ideal para menús contextuales rápidos.
+                Contenido del popover. Ideal para menus contextuales rapidos.
               </div></p-popover
             >
           </p-card>
         }
         @case ("progressbar") {
-          <p-card header="ProgressBar — p-progressbar">
+          <p-card header="ProgressBar - p-progressbar">
             <p-progressBar [value]="75" />
             <p class="mt-3">
               <p-progressBar [value]="50" [showValue]="false" />
@@ -510,7 +510,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("progressspinner") {
-          <p-card header="ProgressSpinner — p-progressspinner">
+          <p-card header="ProgressSpinner - p-progressspinner">
             <div class="flex gap-3">
               <p-progressSpinner strokeWidth="4" />
               <p-progressSpinner strokeWidth="8" />
@@ -518,46 +518,46 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("radiobutton") {
-          <p-card header="RadioButton — p-radiobutton">
+          <p-card header="RadioButton - p-radiobutton">
             <div class="flex flex-column gap-2">
               <div class="flex align-items-center gap-2">
                 <p-radioButton
                   name="radio"
                   value="1"
                   [(ngModel)]="radioVal"
-                /><label>Opción 1</label>
+                /><label>Opcion 1</label>
               </div>
               <div class="flex align-items-center gap-2">
                 <p-radioButton
                   name="radio"
                   value="2"
                   [(ngModel)]="radioVal"
-                /><label>Opción 2</label>
+                /><label>Opcion 2</label>
               </div>
               <div class="flex align-items-center gap-2">
                 <p-radioButton
                   name="radio"
                   value="3"
                   [(ngModel)]="radioVal"
-                /><label>Opción 3</label>
+                /><label>Opcion 3</label>
               </div>
             </div>
           </p-card>
         }
         @case ("select") {
-          <p-card header="Select — p-select">
+          <p-card header="Select - p-select">
             <p-select
               [options]="selectOptions"
               [(ngModel)]="selectVal"
               optionLabel="label"
-              placeholder="Selecciona una opción"
+              placeholder="Selecciona una opcion"
               appendTo="body"
               class="w-full"
             />
           </p-card>
         }
         @case ("selectbutton") {
-          <p-card header="SelectButton — p-selectbutton">
+          <p-card header="SelectButton - p-selectbutton">
             <p-selectButton
               [options]="selectOptions"
               [(ngModel)]="selectBtnVal"
@@ -566,7 +566,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("skeleton") {
-          <p-card header="Skeleton — p-skeleton">
+          <p-card header="Skeleton - p-skeleton">
             <div class="flex flex-column gap-2">
               <p-skeleton width="100%" height="1rem" />
               <p-skeleton width="75%" height="1rem" />
@@ -582,7 +582,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("table") {
-          <p-card header="Table — p-table">
+          <p-card header="Table - p-table">
             <p-table [value]="tableData" styleClass="p-datatable-sm">
               <ng-template #header
                 ><tr>
@@ -604,7 +604,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("tabs") {
-          <p-card header="Tabs — p-tabs">
+          <p-card header="Tabs - p-tabs">
             <p-tabs value="0">
               <p-tablist>
                 <p-tab value="0">General</p-tab>
@@ -626,7 +626,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("tag") {
-          <p-card header="Tag — p-tag">
+          <p-card header="Tag - p-tag">
             <div class="flex flex-wrap gap-2">
               <p-tag value="Success" severity="success" />
               <p-tag value="Info" severity="info" />
@@ -638,7 +638,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("textarea") {
-          <p-card header="Textarea — p-textarea">
+          <p-card header="Textarea - p-textarea">
             <textarea
               pTextarea
               rows="4"
@@ -649,7 +649,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("toast") {
-          <p-card header="Toast — p-toast">
+          <p-card header="Toast - p-toast">
             <p-message
               severity="info"
               text="Las notificaciones Toast se muestran globalmente mediante MessageService. Inyecta MessageService y llama a add() con severity, summary y detail."
@@ -657,7 +657,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("toggleswitch") {
-          <p-card header="ToggleSwitch — p-toggleswitch">
+          <p-card header="ToggleSwitch - p-toggleswitch">
             <div class="flex align-items-center gap-3">
               <p-toggleSwitch [(ngModel)]="toggleVal" />
               <span>{{ toggleVal() ? "Activado" : "Desactivado" }}</span>
@@ -665,7 +665,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("toolbar") {
-          <p-card header="Toolbar — p-toolbar">
+          <p-card header="Toolbar - p-toolbar">
             <p-toolbar>
               <ng-template #start><strong>Toolbar Title</strong></ng-template>
               <ng-template #end>
@@ -682,7 +682,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("tooltip") {
-          <p-card header="Tooltip — p-tooltip">
+          <p-card header="Tooltip - p-tooltip">
             <div class="flex gap-3">
               <p-button
                 label="Hover me"
@@ -705,20 +705,20 @@ const WEB_ITEM_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("custominputs") {
-          <p-card header="Custom Inputs — Wrappers ERP (horizontal layout)">
+          <p-card header="Custom Inputs - Wrappers ERP (horizontal layout)">
             <p class="text-sm text-secondary mb-4 m-0">
-              Wrappers sobre PrimeNG con detección automática de plataforma
-              (web/mobile), validación integrada y layout horizontal/vertical.
+              Wrappers sobre PrimeNG con deteccion automatica de plataforma
+              (web/mobile), validacion integrada y layout horizontal/vertical.
             </p>
             <form [formGroup]="customInputsForm" class="flex flex-column gap-1">
               <custom-input-text-signal
                 [control]="customInputsForm.controls['nombre']"
                 label="Nombre completo"
-                placeholder="Juan García"
+                placeholder="Juan Garcia"
               />
               <custom-input-password
                 [control]="customInputsForm.controls['password']"
-                label="Contraseña"
+                label="Contrasena"
               />
               <custom-input-number-signal
                 [control]="customInputsForm.controls['cantidad']"
@@ -745,7 +745,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               <custom-input-select-signal
                 [control]="customInputsForm.controls['area']"
                 [data]="inputSelectOptions"
-                label="Área"
+                label="Area"
               />
               <custom-input-select-bool
                 [control]="customInputsForm.controls['activo']"
@@ -758,7 +758,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               />
               <custom-input-check-signal
                 [control]="customInputsForm.controls['terminos']"
-                placeholder="Acepto términos y condiciones"
+                placeholder="Acepto terminos y condiciones"
               />
               <custom-input-switch
                 [control]="customInputsForm.controls['notificaciones']"
@@ -767,12 +767,12 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               <custom-input-text-area-signal
                 [control]="customInputsForm.controls['notas']"
                 label="Notas"
-                placeholder="Escribe aquí..."
+                placeholder="Escribe aqui..."
               />
             </form>
           </p-card>
           <p-card
-            header="Custom Inputs — Vertical layout (onlyInput)"
+            header="Custom Inputs - Vertical layout (onlyInput)"
             styleClass="mt-3"
           >
             <div class="grid">
@@ -794,7 +794,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 <custom-input-select-signal
                   [control]="customInputsForm.controls['area']"
                   [data]="inputSelectOptions"
-                  label="Área"
+                  label="Area"
                   [horizontal]="false"
                 />
               </div>
@@ -805,7 +805,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
         @case ("calendar") {
           <div class="flex flex-column gap-4">
 
-            <p-card header="FullCalendar — Integración Google Calendar">
+            <p-card header="FullCalendar - Integracion Google Calendar">
               <p class="catalog-helper-text text-sm m-0 mb-3">
                 Usa <code>&#64;fullcalendar/angular</code> v6 con plugins
                 <code>dayGridPlugin</code> + <code>timeGridPlugin</code>.
@@ -817,9 +817,9 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               </div>
             </p-card>
 
-            <p-card header="Estados de sincronización — p-tag severity">
+            <p-card header="Estados de sincronizacion - p-tag severity">
               <p class="catalog-helper-text text-sm m-0 mb-3">
-                Usar <code>p-tag [severity]</code> con la función <code>getStatusSeverity()</code>
+                Usar <code>p-tag [severity]</code> con la funcion <code>getStatusSeverity()</code>
                 en lugar de clases de color hardcodeadas.
               </p>
               <div class="flex flex-wrap gap-3">
@@ -842,15 +842,15 @@ const WEB_ITEM_LABELS: Record<string, string> = {
               </div>
             </p-card>
 
-            <p-card header="Tabla de eventos — patrón ERP">
+            <p-card header="Tabla de eventos - patron ERP">
               <p class="catalog-helper-text text-sm m-0 mb-3">
                 Debajo del calendario: <code>p-table styleClass="custom-table"</code>
-                con paginación, búsqueda y botones de acción DS.
+                con paginacion, busqueda y botones de accion DS.
               </p>
               <p-table [value]="calendarTableDemo" styleClass="custom-table" [rows]="4">
                 <ng-template #header>
                   <tr>
-                    <th>TÍTULO</th>
+                    <th>TITULO</th>
                     <th>ASUNTO</th>
                     <th>INICIO</th>
                     <th>INVITADOS</th>
@@ -962,7 +962,7 @@ export class CatalogWebItem {
 
   // Custom inputs form
   readonly customInputsForm: FormGroup = this.fb.group({
-    nombre: ["Juan García"],
+    nombre: ["Juan Garcia"],
     password: [""],
     cantidad: [5],
     monto: [12500],
@@ -982,15 +982,15 @@ export class CatalogWebItem {
     { label: "Operaciones", value: 2 },
     { label: "Recursos Humanos", value: 3 },
     { label: "TI", value: 4 },
-    { label: "Dirección General", value: 5 },
+    { label: "Direccion General", value: 5 },
   ];
 
   // Shared state
   dialogVisible = signal(false);
   selectOptions = [
-    { label: "Opción 1", value: 1 },
-    { label: "Opción 2", value: 2 },
-    { label: "Opción 3", value: 3 },
+    { label: "Opcion 1", value: 1 },
+    { label: "Opcion 2", value: 2 },
+    { label: "Opcion 3", value: 3 },
   ];
   dateVal: Date | null = null;
   numVal = 50;
@@ -1008,7 +1008,7 @@ export class CatalogWebItem {
     { name: "Registro C", status: "Pendiente" },
   ];
 
-  // ─── Calendar demo ───
+  // Calendar demo
   readonly calendarDemoOptions: CalendarOptions = {
     plugins: [dayGridPlugin, timeGridPlugin],
     locale: "es",
@@ -1020,29 +1020,30 @@ export class CatalogWebItem {
     editable: false,
     selectable: false,
     headerToolbar: { left: "prev,next today", center: "title", right: "dayGridMonth,timeGridWeek,timeGridDay" },
-    buttonText: { today: "Hoy", month: "Mes", week: "Semana", day: "Día" },
+    buttonText: { today: "Hoy", month: "Mes", week: "Semana", day: "Dia" },
   };
 
   readonly calendarDemoEvents: EventInput[] = [
-    { title: "Junta Comité", start: "2026-06-10T19:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
+    { title: "Junta Comite", start: "2026-06-10T19:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
     { title: "Asamblea General", start: "2026-06-15T10:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
-    { title: "Reunión Proveedores", start: "2026-06-20T09:00", backgroundColor: this.calendarEventExternalColor, borderColor: this.calendarEventExternalColor, textColor: this.calendarEventTextColor },
-    { title: "Revisión Mant.", start: "2026-06-25T14:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
-    { title: "Comité Finanzas", start: "2026-06-28T11:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
+    { title: "Reunion Proveedores", start: "2026-06-20T09:00", backgroundColor: this.calendarEventExternalColor, borderColor: this.calendarEventExternalColor, textColor: this.calendarEventTextColor },
+    { title: "Revision Mant.", start: "2026-06-25T14:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
+    { title: "Comite Finanzas", start: "2026-06-28T11:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
   ];
 
   readonly calendarDemoEventsTokenized: EventInput[] = [
-    { title: "Junta ComitÃ©", start: "2026-06-10T19:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
+    { title: "Junta Comite", start: "2026-06-10T19:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
     { title: "Asamblea General", start: "2026-06-15T10:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
-    { title: "ReuniÃ³n Proveedores", start: "2026-06-20T09:00", backgroundColor: this.calendarEventExternalColor, borderColor: this.calendarEventExternalColor, textColor: this.calendarEventTextColor },
-    { title: "RevisiÃ³n Mant.", start: "2026-06-25T14:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
-    { title: "ComitÃ© Finanzas", start: "2026-06-28T11:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
+    { title: "Reunion Proveedores", start: "2026-06-20T09:00", backgroundColor: this.calendarEventExternalColor, borderColor: this.calendarEventExternalColor, textColor: this.calendarEventTextColor },
+    { title: "Revision Mant.", start: "2026-06-25T14:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
+    { title: "Comite Finanzas", start: "2026-06-28T11:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
   ];
 
   readonly calendarTableDemo = [
-    { title: "Junta Comité", subject: "Junta mensual", start: "10/06/2026 19:00", guests: 4, statusLabel: "Sincronizado con Google", severity: "success" },
+    { title: "Junta Comite", subject: "Junta mensual", start: "10/06/2026 19:00", guests: 4, statusLabel: "Sincronizado con Google", severity: "success" },
     { title: "Asamblea General", subject: "Asamblea", start: "15/06/2026 10:00", guests: 12, statusLabel: "Solo local (historico)", severity: "info" },
-    { title: "Reunión Proveedores", subject: "Reunión", start: "20/06/2026 09:00", guests: 2, statusLabel: "Solo local", severity: "warn" },
-    { title: "Comité Finanzas", subject: "Junta mensual", start: "28/06/2026 11:00", guests: 5, statusLabel: "Pendiente de sincronizar", severity: "secondary" },
+    { title: "Reunion Proveedores", subject: "Reunion", start: "20/06/2026 09:00", guests: 2, statusLabel: "Solo local", severity: "warn" },
+    { title: "Comite Finanzas", subject: "Junta mensual", start: "28/06/2026 11:00", guests: 5, statusLabel: "Pendiente de sincronizar", severity: "secondary" },
   ];
 }
+

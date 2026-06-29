@@ -1,11 +1,11 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { TableModule } from "primeng/table";
-import { CustomButtonViewPdf } from "src/app/core/components/buttons/web";
+import { CustomButtonViewPdf } from "src/app/core/components/web/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import {
   globalFilterFields,
@@ -66,3 +66,4 @@ export class PresentacionesJuntasComite implements OnInit {
   //   this.route.navigate(["documento/view-documento"]);
   // }
 }
+

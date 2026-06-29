@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -19,9 +19,9 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { PanelModule } from "primeng/panel";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { GlobalErrorService } from "src/app/core/services/global-error.service";
@@ -421,4 +421,5 @@ export class VacacionesForm implements OnInit {
     }
   }
 }
+
 

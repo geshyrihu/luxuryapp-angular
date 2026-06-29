@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, OnInit, inject, signal } from "@angular/core";
 import {
   FormBuilder,
@@ -8,12 +8,12 @@ import {
   Validators,
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
+import { CustomInputSwitch } from "src/app/core/components/web/inputs/custom-input-switch-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { ElevenLabsService } from "src/app/core/services/eleven-labs.service";
 import {
@@ -273,3 +273,4 @@ export class ElevenLabsSettingsComponent implements OnInit {
     );
   }
 }
+

@@ -1,4 +1,4 @@
-import { Injectable, inject } from "@angular/core";
+﻿import { Injectable, inject } from "@angular/core";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import {
   AspelCobranzaDetalleConcepto,
@@ -227,7 +227,7 @@ ${this.htmlPrintS.getStandardCss()}
     <div style="display:flex; justify-content:space-between; align-items:flex-start;">
       <div>
         <div class="titulo">ESTADO DE CUENTA</div>
-        <div class="meta" style="margin-bottom:12px;">Detalle cronológico de movimientos, cargos, abonos y saldo progresivo</div>
+        <div class="meta" style="margin-bottom:12px;">Detalle cronolígico de movimientos, cargos, abonos y saldo progresivo</div>
         
         <div class="info-grid">
           <span><strong>Cuenta:</strong> ${this.htmlPrintS.esc(data.numCta || "-")}</span>

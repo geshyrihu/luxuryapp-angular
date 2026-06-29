@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import {
   Component,
@@ -21,8 +21,8 @@ import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-me
 import {
   CustomButtonDelete,
   CustomButtonEdit,
-} from "src/app/core/components/buttons/web";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+} from "src/app/core/components/web/buttons";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
@@ -395,3 +395,4 @@ export class GoogleCalendar {
     return this.dateS.parseDate(normalized) ?? null;
   }
 }
+

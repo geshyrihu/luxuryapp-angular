@@ -1,7 +1,7 @@
-import { Component, computed, forwardRef, input } from "@angular/core";
+﻿import { Component, computed, forwardRef, input } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { IonInput } from "@ionic/angular/standalone";
-import { BaseIonicInput } from "../../inputs/base/base-ionic-input";
+import { BaseIonicInput } from "../../shared/inputs/base/base-ionic-input";
 
 @Component({
   selector: "ion-input-currency",
@@ -76,3 +76,4 @@ export class IonInputCurrency extends BaseIonicInput {
     this.onTouch = fn;
   }
 }
+

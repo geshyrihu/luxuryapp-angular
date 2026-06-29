@@ -1,11 +1,11 @@
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CommonModule } from "@angular/common";
 import { Component, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { AccordionModule } from "primeng/accordion";
 import { DividerModule } from "primeng/divider";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/web/buttons";
 
 interface RouteEntry {
   path: string;
@@ -296,3 +296,4 @@ export class ReportGuide {
   ]
 }`;
 }
+

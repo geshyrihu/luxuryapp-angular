@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
   IonAvatar,
@@ -32,7 +32,7 @@ import { AvatarModule } from "primeng/avatar";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/web/buttons";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -119,7 +119,7 @@ export class TaskView implements OnInit {
     this.apiResponseS
       .onGetItem(Endpoints.Tasks.view(this.id))
       .then((response: any) => {
-        // Manejo del Error NG0100 (ExpressionChanged) - Ver GEMINI.md §3.12
+        // Manejo del Error NG0100 (ExpressionChanged) - Ver GEMINI.md Â§3.12
         setTimeout(() => {
           this.ticket.set(response);
           if (response === null) {
@@ -223,3 +223,4 @@ export class TaskView implements OnInit {
     this.router.navigate(["/Tasks/messages", this.ticketGroupId]);
   }
 }
+

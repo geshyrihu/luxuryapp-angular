@@ -1,4 +1,4 @@
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+﻿import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ISettingsMenuItem } from "src/app/core/interfaces/menu.model";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 

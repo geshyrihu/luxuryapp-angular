@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject, OnInit } from "@angular/core";
+﻿import { ChangeDetectorRef, Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import {
   IonCard,
@@ -76,7 +76,7 @@ export class HomeComite implements OnInit {
       Record<string, string>
     >("File/comite-home-images");
     console.log(
-      "🚀 ~ BibliotecaConsejoDirectivo ~ loadImages ~ imageUrlMap:",
+      "?? ~ BibliotecaConsejoDirectivo ~ loadImages ~ imageUrlMap:",
       imageUrlMap,
     );
     if (imageUrlMap) {

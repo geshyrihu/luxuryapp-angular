@@ -1,4 +1,4 @@
-// ── Listado ───────────────────────────────────────────────────────────────────
+﻿// -- Listado -------------------------------------------------------------------
 
 export interface EmployeeFileSummaryDTO {
   id: string;
@@ -11,7 +11,7 @@ export interface EmployeeFileSummaryDTO {
   photoUrl?: string;
 }
 
-// ── Cabecera ──────────────────────────────────────────────────────────────────
+// -- Cabecera ------------------------------------------------------------------
 
 export interface EmployeeFileHeaderDTO {
   id: string;
@@ -27,7 +27,7 @@ export interface EmployeeFileHeaderDTO {
   photoUrl?: string;
 }
 
-// ── Tab 1: Datos personales ───────────────────────────────────────────────────
+// -- Tab 1: Datos personales ---------------------------------------------------
 
 export interface EmployeeFilePersonalDataDTO {
   firstName: string;
@@ -57,7 +57,7 @@ export interface EmployeeFilePersonalDataDTO {
   unitNumber: string;
 }
 
-// ── Tab 2: Contactos de emergencia ────────────────────────────────────────────
+// -- Tab 2: Contactos de emergencia --------------------------------------------
 
 export interface EmployeeFileEmergencyContactDTO {
   id: string;
@@ -67,7 +67,7 @@ export interface EmployeeFileEmergencyContactDTO {
   contactOfBeneficiary: string;
 }
 
-// ── Tab 3: Datos clínicos ─────────────────────────────────────────────────────
+// -- Tab 3: Datos clónicos -----------------------------------------------------
 
 export interface EmployeeFileClinicalDataDTO {
   id: string;
@@ -75,7 +75,7 @@ export interface EmployeeFileClinicalDataDTO {
   description: string;
 }
 
-// ── Tab 4: Datos bancarios ────────────────────────────────────────────────────
+// -- Tab 4: Datos bancarios ----------------------------------------------------
 
 export interface EmployeeFileBankDataDTO {
   id: string;
@@ -87,7 +87,7 @@ export interface EmployeeFileBankDataDTO {
   relacion?: string;
 }
 
-// ── Tab 5: Contratos ──────────────────────────────────────────────────────────
+// -- Tab 5: Contratos ----------------------------------------------------------
 
 export interface EmployeeFileContractDTO {
   id: string;
@@ -104,7 +104,7 @@ export interface EmployeeFileContractDTO {
   createdAt: string;
 }
 
-// ── Tab 6: Posición y salario ─────────────────────────────────────────────────
+// -- Tab 6: Posición y salario -------------------------------------------------
 
 export interface EmployeeFileSalaryModDTO {
   id: string;
@@ -144,7 +144,7 @@ export interface EmployeeFileWorkPositionDTO {
   salaryModifications: EmployeeFileSalaryModDTO[];
 }
 
-// ── Tab 7: Vacaciones y permisos ──────────────────────────────────────────────
+// -- Tab 7: Vacaciones y permisos ----------------------------------------------
 
 export interface EmployeeFileVacationDTO {
   id: string;
@@ -182,7 +182,7 @@ export interface EmployeeFileVacationsLeavesDTO {
   leaves: EmployeeFileLeaveDTO[];
 }
 
-// ── Tab 8: Incidencias ────────────────────────────────────────────────────────
+// -- Tab 8: Incidencias --------------------------------------------------------
 
 export interface EmployeeFileIncidentSanctionDTO {
   sanctionTypeName: string;
@@ -206,7 +206,7 @@ export interface EmployeeFileIncidentDTO {
   sanction?: EmployeeFileIncidentSanctionDTO;
 }
 
-// ── Tab 9: Evaluaciones ───────────────────────────────────────────────────────
+// -- Tab 9: Evaluaciones -------------------------------------------------------
 
 export interface EmployeeFileEvaluationDTO {
   id: string;
@@ -218,7 +218,7 @@ export interface EmployeeFileEvaluationDTO {
   finalComments?: string;
 }
 
-// ── Tab 10: Solicitudes ───────────────────────────────────────────────────────
+// -- Tab 10: Solicitudes -------------------------------------------------------
 
 export interface EmployeeFileRegisterRequestDTO {
   id: string;

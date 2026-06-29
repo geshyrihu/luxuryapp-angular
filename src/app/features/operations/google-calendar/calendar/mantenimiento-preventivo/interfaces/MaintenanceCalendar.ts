@@ -1,4 +1,4 @@
-// ✨ MEJORA: Definir interfaces para tus datos. ¡Adiós al 'any' inseguro!
+﻿// ? MEJORA: Definir interfaces para tus datos. óAdiós al 'any' inseguro!
 
 export interface MaintenanceCalendar {
   id: any;

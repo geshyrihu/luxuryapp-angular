@@ -1,4 +1,4 @@
-import { animate, style, transition, trigger } from "@angular/animations";
+﻿import { animate, style, transition, trigger } from "@angular/animations";
 import { CdkDragDrop } from "@angular/cdk/drag-drop";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import {
@@ -29,10 +29,10 @@ export interface IWarehouseForm {
  */
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { ReactiveFormsModule } from "@angular/forms";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CardModule } from "primeng/card";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 
@@ -66,7 +66,7 @@ export class WarehouseForm implements OnInit {
   customerIdS = inject(CustomerIdService);
   public aspRoleS = inject(AspRoleService);
   public AspRole = EApplicationRole;
-  // Seóales reactivas
+  // Señales reactivas
   submitting = signal(false); // Indica si se estó enviando el formulario
   id: string = ""; // ID del almacón (si es edición)
 
@@ -278,3 +278,4 @@ export class WarehouseForm implements OnInit {
     }
   }
 }
+

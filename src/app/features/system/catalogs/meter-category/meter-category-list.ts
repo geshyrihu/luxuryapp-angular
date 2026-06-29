@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
@@ -8,7 +8,7 @@ import { EmptyState } from "src/app/core/components/shared/empty-state/empty-sta
 import {
   CustomButtonDelete,
   CustomButtonEdit,
-} from "src/app/core/components/buttons/web";
+} from "src/app/core/components/web/buttons";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -95,3 +95,4 @@ export class MeterCategoryList implements OnInit {
       });
   }
 }
+

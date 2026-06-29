@@ -8,10 +8,10 @@ import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/
 import {
   CustomButtonDelete,
   CustomButtonEdit,
-} from "src/app/core/components/buttons/web";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+} from "src/app/core/components/web/buttons";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
+import { CustomSearchInput } from "src/app/core/components/web/inputs/custom-search-input-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -202,3 +202,4 @@ export class ManualsAndProcessesList implements OnInit {
       });
   }
 }
+

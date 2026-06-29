@@ -1,12 +1,12 @@
-/**
+﻿/**
  * ============================================================================
- * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
+ * ?? ADVERTENCIA CRóTICA / CRITICAL WARNING ??
  * ============================================================================
  * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
  * FUNCIONAL y ESTABLE. 
  * 
- * Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
- * sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
+ * Queda ESTRICTAMENTE PROHIBIDO modificar su lígica, estructura o flujos de IA
+ * sin antes consultar y obtener autorización explócita del Ing. Ricardo Marques.
  * 
  * Por favor, NO rompan el código.
  * ============================================================================
@@ -28,12 +28,12 @@ import { IndivisoFeeComparisonDTO } from "./models/indiviso-fee-comparison.model
         <p-card>
           <ng-template #content>
             <p class="text-600 flex items-center ">
-              Cálculo basado en el porcentaje de indiviso de cada propiedad.
+              Cólculo basado en el porcentaje de indiviso de cada propiedad.
               <span
                 class="text-xs font-semibold px-2 py-1 border-round bg-blue-100 text-blue-700"
                 title="Suma total de todos los porcentajes de indiviso"
               >
-                Σ Indiviso:
+                S Indiviso:
                 {{ data.totalIndivisoPercentage | number: "1.2-2" }}%
               </span>
             </p>

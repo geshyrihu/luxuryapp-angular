@@ -1,8 +1,8 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ConfirmationService } from "primeng/api";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/web/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -40,7 +40,7 @@ export class AccountingCatalog {
 
   // Señales
   groupedDataSignal = signal<GroupedAccountingCatalogDTO[]>([]);
-  // ✅ flattenedData con descripción del padre — listo para agrupar en p-table
+  // ✅ flattenedData con descripción del padre â€” listo para agrupar en p-table
   flattenedDataSignal = computed<AccountingCatalogWithParent[]>(() => {
     return this.groupedDataSignal()
       .flatMap((group) =>
@@ -54,7 +54,7 @@ export class AccountingCatalog {
       .sort((a, b) => (a.cuentaPadre || "").localeCompare(b.cuentaPadre || ""));
   });
 
-  // ✅ Datos agrupados para mobile (clave = "código — descripción")
+  // ✅ Datos agrupados para mobile (clave = "código â€” descripción")
   mobileGroupedData = computed<{ [key: string]: AccountingCatalogDTO[] }>(
     () => {
       const result: { [key: string]: AccountingCatalogDTO[] } = {};
@@ -131,3 +131,4 @@ export class AccountingCatalog {
     */
   }
 }
+

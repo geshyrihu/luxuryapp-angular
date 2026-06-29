@@ -1,6 +1,6 @@
-/**
+﻿/**
  * ============================================================================
- * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
+ * âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
  * ============================================================================
  * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
  * FUNCIONAL y ESTABLE. 
@@ -18,7 +18,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { AiService } from "src/app/core/services/ai.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { CustomButton } from "src/app/core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/web/buttons";
 import { BudgetProposalItemDTO } from "./models/budget-proposal.model";
 
 @Component({
@@ -139,3 +139,4 @@ export class BudgetForecastDialog implements OnInit {
     return expensesToAverage.length ? sum / expensesToAverage.length : 0;
   }
 }
+

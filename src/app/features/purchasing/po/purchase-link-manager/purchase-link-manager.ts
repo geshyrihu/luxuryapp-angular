@@ -1,4 +1,4 @@
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CdkDragDrop, DragDropModule } from "@angular/cdk/drag-drop";
 import { CommonModule } from "@angular/common";
 import {
@@ -16,8 +16,8 @@ import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -191,3 +191,4 @@ export class PurchaseLinkManager implements OnInit {
     this.ref.close(true);
   }
 }
+

@@ -43,7 +43,7 @@ export interface NotificationItem {
             <strong class="text-sm">Notificaciones</strong>
             @if (unreadCount() > 0) {
               <p-button
-                label="Marcar todo leÃ­do"
+                label="Marcar todo leído"
                 [link]="true"
                 size="small"
                 (onClick)="markAllRead.emit()"

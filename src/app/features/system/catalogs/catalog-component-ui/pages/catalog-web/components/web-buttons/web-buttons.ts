@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { BadgeModule } from "primeng/badge";
 import { ButtonModule } from "primeng/button";
@@ -19,7 +19,7 @@ import {
   CustomButtonSendEmail,
   CustomButtonTracking,
   CustomButtonViewPdf,
-} from "src/app/core/components/buttons/web";
+} from "src/app/core/components/web/buttons";
 
 @Component({
   selector: "app-web-buttons",
@@ -73,7 +73,7 @@ import {
       </p-card>
 
       <!-- Severidades Filled -->
-      <p-card header="PrimeNG — Severidades (Filled)">
+      <p-card header="PrimeNG â€” Severidades (Filled)">
         <p class="m-0 mb-3 text-sm text-color-secondary">
           Usa la severidad que coincida con el nivel semántico de la acción.
         </p>
@@ -89,10 +89,10 @@ import {
         </div>
       </p-card>
 
-      <!-- Botones con Íconos -->
-      <p-card header="Botones con Íconos">
+      <!-- Botones con Ãconos -->
+      <p-card header="Botones con Ãconos">
         <p class="m-0 mb-3 text-sm text-color-secondary">
-          Ícono izquierda (default), derecha con <code>iconPos="right"</code>, o solo ícono circular.
+          Ãcono izquierda (default), derecha con <code>iconPos="right"</code>, o solo ícono circular.
         </p>
         <div class="flex flex-wrap gap-2 mb-4">
           <p-button label="Guardar"    icon="pi pi-save" />
@@ -170,3 +170,4 @@ export class WebButtons {
     setTimeout(() => this.isLoading.set(false), 2000);
   }
 }
+

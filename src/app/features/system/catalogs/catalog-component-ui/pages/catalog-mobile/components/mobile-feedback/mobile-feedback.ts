@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import {
   IonAvatar,
@@ -39,7 +39,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
       <div class="mobile-card-header">Feedback & Estado de carga</div>
       <div class="mobile-card-body flex flex-column gap-5">
 
-        <!-- ─── ALERT BANNERS ─── -->
+        <!-- --- ALERT BANNERS --- -->
         <div>
           <div class="font-bold text-sm mb-3">Alert Banners (DS patterns)</div>
           <div class="flex flex-column gap-2">
@@ -58,7 +58,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
           </div>
         </div>
 
-        <!-- ─── PROGRESS INDICATORS ─── -->
+        <!-- --- PROGRESS INDICATORS --- -->
         <div>
           <div class="font-bold text-sm mb-3">Progress Indicators (DS)</div>
           <div class="flex gap-4 align-items-start flex-wrap">
@@ -120,7 +120,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
               <ion-progress-bar type="indeterminate"></ion-progress-bar>
             </div>
             <div>
-              <p class="text-xs text-secondary mb-1">Determinate — 65%</p>
+              <p class="text-xs text-secondary mb-1">Determinate é 65%</p>
               <ion-progress-bar type="determinate" [value]="0.65"></ion-progress-bar>
             </div>
             <div>
@@ -169,14 +169,14 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
             <ion-infinite-scroll (ionInfinite)="loadMore($event)" [disabled]="disableScroll()">
               <ion-infinite-scroll-content
                 loadingSpinner="crescent"
-                loadingText="Cargando más..."
+                loadingText="Cargando mós..."
               ></ion-infinite-scroll-content>
             </ion-infinite-scroll>
           </div>
-          <p class="text-xs text-secondary mt-1">{{ items().length }} items cargados — desplázate para cargar más.</p>
+          <p class="text-xs text-secondary mt-1">{{ items().length }} items cargados é desplézate para cargar mós.</p>
         </div>
 
-        <!-- ─── Pull-to-Refresh ─── -->
+        <!-- --- Pull-to-Refresh --- -->
         <div>
           <div class="font-bold text-sm mb-3">Pull-to-Refresh (ion-refresher)</div>
           <div style="height:160px;overflow-y:auto;border:1px solid var(--ds-border,#e2e8f0);border-radius:12px;position:relative;">
@@ -196,7 +196,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
               }
             </ion-list>
           </div>
-          <p class="text-xs text-secondary mt-1">Actualizado: {{ refreshCount() }}x — desliza hacia abajo para simular.</p>
+          <p class="text-xs text-secondary mt-1">Actualizado: {{ refreshCount() }}x é desliza hacia abajo para simular.</p>
           <ion-button size="small" fill="outline" (click)="simulateRefresh()" class="mt-2">
             Simular refresh
           </ion-button>
@@ -225,7 +225,7 @@ export class MobileFeedback {
   items = signal<string[]>(Array.from({ length: 10 }, (_, i) => `Elemento #${i + 1}`));
   disableScroll = signal(false);
 
-  // ─── Pull-to-Refresh ───
+  // --- Pull-to-Refresh ---
   refreshCount = signal(0);
   refreshItems = signal<string[]>(["Registro A", "Registro B", "Registro C"]);
 

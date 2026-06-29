@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { MenuItem } from "primeng/api";
 import { AccordionModule } from "primeng/accordion";
@@ -35,19 +35,19 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
   template: `
     <div class="grid">
 
-      <!-- ── Tabs ──────────────────────────────────────────────────── -->
+      <!-- -- Tabs ---------------------------------------------------- -->
       <div class="col-12">
-        <p-card header="Tabs — p-tabs">
+        <p-card header="Tabs é p-tabs">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Usa tabs para organizar contenido relacionado en la misma vista.
-            No uses más de 6 tabs visibles; si hay más, usa un menú desplegable o sección aparte.
+            No uses mós de 6 tabs visibles; si hay més, usa un mené desplegable o sección aparte.
           </p>
 
           <div class="grid">
 
-            <!-- Básicos -->
+            <!-- Bósicos -->
             <div class="col-12 lg:col-6">
-              <span class="text-xs font-bold text-color-secondary uppercase mb-3 block" style="letter-spacing:.06em">Básicos</span>
+              <span class="text-xs font-bold text-color-secondary uppercase mb-3 block" style="letter-spacing:.06em">Bósicos</span>
               <p-tabs value="0">
                 <p-tablist>
                   <p-tab value="0">General</p-tab>
@@ -58,7 +58,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                 <p-tabpanels>
                   <p-tabpanel value="0">
                     <div class="p-3 surface-ground border-round text-sm text-color-secondary">
-                      Información general del registro: nombre, área, responsable, fechas y prioridad.
+                      Información general del registro: nombre, órea, responsable, fechas y prioridad.
                     </div>
                   </p-tabpanel>
                   <p-tabpanel value="1">
@@ -133,9 +133,9 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
         </p-card>
       </div>
 
-      <!-- ── Accordion ─────────────────────────────────────────────── -->
+      <!-- -- Accordion ----------------------------------------------- -->
       <div class="col-12 lg:col-6">
-        <p-card header="Accordion — p-accordion">
+        <p-card header="Accordion é p-accordion">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Ideal para FAQs, secciones colapsables de formulario y agrupación de contenido secundario.
           </p>
@@ -165,7 +165,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
             </div>
 
             <div>
-              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">Múltiples paneles activos</span>
+              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">Móltiples paneles activos</span>
               <p-accordion [multiple]="true" [value]="['0']">
                 @for (panel of accordionPanels.slice(0, 3); track panel.value) {
                   <p-accordion-panel [value]="panel.value">
@@ -182,12 +182,12 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
         </p-card>
       </div>
 
-      <!-- ── Breadcrumb ──────────────────────────────────────────── -->
+      <!-- -- Breadcrumb -------------------------------------------- -->
       <div class="col-12 lg:col-6">
-        <p-card header="Breadcrumb — p-breadcrumb">
+        <p-card header="Breadcrumb é p-breadcrumb">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Orienta al usuario sobre su ubicación en la jerarquía de la aplicación.
-            El último ítem (página actual) va sin enlace ni cursor pointer.
+            El áltimo átem (página actual) va sin enlace ni cursor pointer.
           </p>
 
           <div class="flex flex-column gap-4">
@@ -203,9 +203,9 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
         </p-card>
       </div>
 
-      <!-- ── Stepper (Wizard) ────────────────────────────────────── -->
+      <!-- -- Stepper (Wizard) -------------------------------------- -->
       <div class="col-12">
-        <p-card header="Stepper — Wizard de pasos">
+        <p-card header="Stepper é Wizard de pasos">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Usa el stepper para flujos secuenciales obligatorios (alta de usuario, onboarding, flujo de aprobación).
             Cada paso debe ser completable de forma independiente.
@@ -288,9 +288,9 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                 <ng-template #content let-activateCallback="activateCallback">
                   <div class="p-4 surface-ground border-round flex flex-column align-items-center gap-3 text-center">
                     <app-icon icon="mdi:check-circle" class="text-5xl" style="color:var(--ds-success)" />
-                    <strong class="text-lg">¡Solicitud enviada correctamente!</strong>
+                    <strong class="text-lg">óSolicitud enviada correctamente!</strong>
                     <p class="m-0 text-sm text-color-secondary">
-                      El folio <strong>ERP-2026-042</strong> fue creado y notificado al área de Dirección para su aprobación.
+                      El folio <strong>ERP-2026-042</strong> fue creado y notificado al órea de Dirección para su aprobación.
                     </p>
                     <p-button label="Nueva solicitud" icon="mdi:plus"
                               (onClick)="activeStep.set(1)" />
@@ -325,9 +325,9 @@ export class WebNavigation {
   ].map((label, i) => ({ label, value: `t${i + 1}` }));
 
   readonly accordionPanels = [
-    { value: "0", header: "Datos Generales",   icon: "mdi:account",        tag: "Requerido",  tagSeverity: "danger"    as const, content: "Nombre, área responsable, prioridad y fechas. Estos campos son obligatorios para crear el registro." },
+    { value: "0", header: "Datos Generales",   icon: "mdi:account",        tag: "Requerido",  tagSeverity: "danger"    as const, content: "Nombre, órea responsable, prioridad y fechas. Estos campos son obligatorios para crear el registro." },
     { value: "1", header: "Información Financiera", icon: "mdi:currency-usd", tag: undefined, tagSeverity: undefined,             content: "Importe autorizado, partida presupuestal y moneda. Solo accesible para usuarios con rol Finanzas o superior." },
-    { value: "2", header: "Documentos Adjuntos", icon: "mdi:paperclip",     tag: "3 archivos", tagSeverity: "info"     as const, content: "Contratos, cotizaciones y documentos de soporte. Formatos aceptados: PDF, DOCX, XLSX (máx. 10 MB por archivo)." },
+    { value: "2", header: "Documentos Adjuntos", icon: "mdi:paperclip",     tag: "3 archivos", tagSeverity: "info"     as const, content: "Contratos, cotizaciones y documentos de soporte. Formatos aceptados: PDF, DOCX, XLSX (móx. 10 MB por archivo)." },
     { value: "3", header: "Historial y Auditoría", icon: "mdi:history",    tag: undefined,    tagSeverity: undefined,             content: "Registro inmutable de todos los cambios, aprobaciones y rechazos del ciclo de vida de este documento." },
   ];
 
@@ -345,7 +345,7 @@ export class WebNavigation {
       items: [
         { label: "Operaciones", command: () => {} },
         { label: "Mantenimiento", command: () => {} },
-        { label: "Órdenes de trabajo", command: () => {} },
+        { label: "órdenes de trabajo", command: () => {} },
         { label: "OT-2026-0089" },
       ] as MenuItem[],
     },
@@ -370,9 +370,9 @@ export class WebNavigation {
 
   readonly step1Fields = [
     { label: "Nombre",      value: "Solicitud de compra equipo TI" },
-    { label: "Área",        value: "Sistemas" },
+    { label: "órea",        value: "Sistemas" },
     { label: "Prioridad",   value: "Alta" },
-    { label: "Responsable", value: "Carlos Martínez" },
+    { label: "Responsable", value: "Carlos Martónez" },
   ];
 
   readonly step2Fields = [
@@ -385,6 +385,6 @@ export class WebNavigation {
   readonly step3Docs = [
     { name: "Cotización-Proveedor-A.pdf",  icon: "mdi:file-pdf-box", color: "var(--ds-danger)",  status: "Adjuntado", severity: "success"   as const },
     { name: "Cotización-Proveedor-B.pdf",  icon: "mdi:file-pdf-box", color: "var(--ds-danger)",  status: "Adjuntado", severity: "success"   as const },
-    { name: "Justificación-técnica.docx",  icon: "mdi:file-word-box",color: "var(--ds-info)",    status: "Pendiente", severity: "warn"      as const },
+    { name: "Justificación-tócnica.docx",  icon: "mdi:file-word-box",color: "var(--ds-info)",    status: "Pendiente", severity: "warn"      as const },
   ];
 }

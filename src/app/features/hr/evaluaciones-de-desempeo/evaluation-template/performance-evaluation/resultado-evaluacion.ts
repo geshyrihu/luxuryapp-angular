@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
@@ -7,7 +7,7 @@ import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { PrimengRadarChart } from "src/app/core/components/web/charts/primeng-radar-chart";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ChartGeneratorService } from "src/app/core/services/chart-generator.service";
@@ -276,3 +276,4 @@ ${this.htmlPrintS.getStandardCss()}
 </body></html>`;
   }
 }
+

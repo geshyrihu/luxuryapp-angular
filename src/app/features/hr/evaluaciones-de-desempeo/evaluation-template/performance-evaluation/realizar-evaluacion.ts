@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
     FormArray,
@@ -13,8 +13,8 @@ import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
 import { SelectModule } from "primeng/select";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Touchspin } from "src/app/core/components/web/touchspin/touchspin";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -129,7 +129,7 @@ export class RealizarEvaluacion implements OnInit {
       // 6. Verificar el estado final del formulario (usa getRawValue para ver los deshabilitados)
     } catch (error) {
       console.error("Falló la carga de la evaluación:", error);
-      // Aquó podróas mostrar una notificación al usuario
+      // Aquó podrías mostrar una notificación al usuario
     }
   }
 
@@ -290,6 +290,7 @@ export class RealizarEvaluacion implements OnInit {
     }
   }
 }
+
 
 
 

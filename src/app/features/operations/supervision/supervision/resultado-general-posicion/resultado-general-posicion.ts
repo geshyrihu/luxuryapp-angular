@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from "@angular/core";
+﻿import { Component, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { TableModule } from "primeng/table";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
@@ -27,7 +27,7 @@ export class ResultadoGeneralPosicion {
       // Reaccionar a cambios en el servicio de rango de fechas (asumiendo que tiene signals o usando effect si dispara cambios detectables)
       // Nota: Si fechas$ es observable, mejor usar toSignal.
       // Dado el código anterior: this.rangoCalendarioService.fechas$.subscribe
-      // Vamos a usar una estrategia híbrida si el servicio no expone signals aun, pero aqui usaremos toSignal con el observable.
+      // Vamos a usar una estrategia hóbrida si el servicio no expone signals aun, pero aqui usaremos toSignal con el observable.
       const fechas = this.fechasSignal();
       if (fechas) {
         this.onLoadData(fechas.fechaInicio, fechas.fechaFinal);

@@ -1,10 +1,10 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { SelectModule } from "primeng/select";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -111,7 +111,7 @@ export class InventoryEngineSystem {
   // Mótodo para filtrar los datos por sistema
   onFilterForSystem(system: string) {
     if (system === "") {
-      // Si el valor es vacóo, mostrar todos
+      // Si el valor es vacío, mostrar todos
       this.showAll();
     } else {
       // Filtra los datos basados en el sistema seleccionado
@@ -126,4 +126,5 @@ export class InventoryEngineSystem {
     this.filteredDataSignal.set([...this.dataSignal()]);
   }
 }
+
 

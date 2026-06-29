@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
 import {
   IonButton,
@@ -64,7 +64,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
         <!-- Action Sheet -->
         <div>
           <div class="font-bold text-sm mb-2">Action Sheet (ion-action-sheet)</div>
-          <p class="text-xs text-secondary mb-2">Menú de acciones emergente desde la parte inferior.</p>
+          <p class="text-xs text-secondary mb-2">Mené de acciones emergente desde la parte inferior.</p>
           <div class="flex gap-2 flex-wrap">
             <ion-button size="small" color="secondary" (click)="presentActionSheet()">
               <ion-icon name="list-outline" slot="start"></ion-icon>
@@ -84,7 +84,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
           <div class="flex gap-2 flex-wrap">
             <ion-button size="small" color="success" (click)="presentToast('success')">
               <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
-              Éxito
+              óxito
             </ion-button>
             <ion-button size="small" color="danger" (click)="presentToast('danger')">
               <ion-icon name="alert-circle-outline" slot="start"></ion-icon>
@@ -185,11 +185,11 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
       </ng-template>
     </ion-modal>
 
-    <!-- ─── PATRÓN: Rating & Feedback (ui-stiich Corporate Integrity) ─── -->
+    <!-- --- PATRóN: Rating & Feedback (ui-stiich Corporate Integrity) --- -->
     <div class="stiich-section">
       <div class="stiich-section__header">
         <span class="stiich-section__eyebrow">Corporate Integrity</span>
-        <h4 class="stiich-section__title">Rating & Feedback — valoración y comentarios</h4>
+        <h4 class="stiich-section__title">Rating & Feedback ó valoración y comentarios</h4>
       </div>
       <p class="stiich-section__desc">
         Componente de valoración con estrellas, feedback rápido y campo de comentario.
@@ -229,7 +229,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
 
           @if (feedback()) {
             <div class="stiich-comment-area">
-              <textarea class="stiich-textarea" placeholder="Cuéntanos más..." rows="3"></textarea>
+              <textarea class="stiich-textarea" placeholder="Cuóntanos mós..." rows="3"></textarea>
               <button class="stiich-btn-block stiich-btn-block--primary">Enviar feedback</button>
             </div>
           }
@@ -238,9 +238,9 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
     </div>
   `,
   styles: [MOBILE_SHOWCASE_STYLES, `
-    /* ═══════════════════════════════════════════════
-       Corporate Integrity DS — patrones ui-stiich
-       ═══════════════════════════════════════════════ */
+    /* -----------------------------------------------
+       Corporate Integrity DS é patrones ui-stiich
+       ----------------------------------------------- */
     .stiich-section { margin-top: 1.5rem; }
     .stiich-section__header { margin-bottom: 0.25rem; }
     .stiich-section__eyebrow { font-size: 0.65rem; font-weight: 700; color: var(--ds-primary); text-transform: uppercase; letter-spacing: 0.08em; }
@@ -279,7 +279,7 @@ export class MobileOverlays {
   modalOpen = signal(false);
   sheetOpen = signal(false);
 
-  // ─── Rating & Feedback ───
+  // --- Rating & Feedback ---
   rating = signal(0);
   feedback = signal<'like' | 'dislike' | 'idea' | ''>('');
 
@@ -310,9 +310,9 @@ export class MobileOverlays {
 
   async presentAlert(type: 'danger' | 'warning' | 'info'): Promise<void> {
     const configs = {
-      danger: { header: 'Confirmar eliminación', message: '¿Deseas eliminar este registro? Esta acción no se puede deshacer.', confirmText: 'Eliminar', confirmRole: 'destructive' },
-      warning: { header: 'Atención', message: 'Este proceso afectará múltiples registros. ¿Deseas continuar?', confirmText: 'Continuar', confirmRole: 'confirm' },
-      info: { header: 'Información', message: 'El proceso se ha programado y se ejecutará en los próximos minutos.', confirmText: 'Entendido', confirmRole: 'confirm' },
+      danger: { header: 'Confirmar eliminación', message: 'óDeseas eliminar este registro? Esta acción no se puede deshacer.', confirmText: 'Eliminar', confirmRole: 'destructive' },
+      warning: { header: 'Atención', message: 'Este proceso afectaré méltiples registros. óDeseas continuar?', confirmText: 'Continuar', confirmRole: 'confirm' },
+      info: { header: 'Información', message: 'El proceso se ha programado y se ejecutaré en los préximos minutos.', confirmText: 'Entendido', confirmRole: 'confirm' },
     };
     const cfg = configs[type];
     const alert = await this.alertCtrl.create({

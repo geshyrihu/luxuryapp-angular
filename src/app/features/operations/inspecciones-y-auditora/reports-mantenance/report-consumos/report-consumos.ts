@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
@@ -9,9 +9,9 @@ import {
 import * as FileSaver from "file-saver";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
-import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
+import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
 import { MultiAxisChart } from "src/app/core/components/web/charts/multi-axis-chart";
-import { CustomInputMultiselectSignal } from "src/app/core/components/inputs/web/custom-input-multiselect-signal";
+import { CustomInputMultiselectSignal } from "src/app/core/components/web/inputs/custom-input-multiselect-signal";
 import { RangoCalendarioyyyymmdd } from "src/app/core/components/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PageTitleReportMaintenance } from "src/app/core/components/web/title-page-report-maintenance/page-title-report-maintenance";
@@ -252,3 +252,4 @@ export class ReportConsumos {
     });
   }
 }
+

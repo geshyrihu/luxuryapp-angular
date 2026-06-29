@@ -1,12 +1,12 @@
-/**
+﻿/**
  * ============================================================================
- * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
+ * ?? ADVERTENCIA CRóTICA / CRITICAL WARNING ??
  * ============================================================================
  * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
  * FUNCIONAL y ESTABLE. 
  * 
- * Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
- * sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
+ * Queda ESTRICTAMENTE PROHIBIDO modificar su lígica, estructura o flujos de IA
+ * sin antes consultar y obtener autorización explócita del Ing. Ricardo Marques.
  * 
  * Por favor, NO rompan el código.
  * ============================================================================
@@ -35,7 +35,7 @@ export class ExcelExportService {
     const workbook = new ExcelJS.Workbook();
     const ws = workbook.addWorksheet("Resumen Presupuesto");
 
-    // ── ESTILOS BASE ──────────────────────────────────────────────────────────
+    // -- ESTILOS BASE ----------------------------------------------------------
     const fontBase   = { name: "Yu Gothic", size: 10 };
     const fontHeader = { name: "Yu Gothic", size: 11 };
     // "#,##0" para positivos, igual para negativos, "-" para cero
@@ -65,19 +65,19 @@ export class ExcelExportService {
       cell.border    = mkBorder(isBottom ? undefined : "dotted");
     };
 
-    // ── COLUMNAS ──────────────────────────────────────────────────────────────
+    // -- COLUMNAS --------------------------------------------------------------
     // A (1)   : Número de cuenta
     // B (2)   : Descripción
-    // C–N (3–14): 12 meses  →  presupuesto en fila-P, gasto en fila-G
-    // O (15)  : PSTO ACTUAL     — fila-P
-    // P (16)  : PROM GASTO      — fila-G  (=AVERAGE C:N de esa fila)
-    // Q (17)  : PSTO PROPUESTO  — fila-P
-    // R (18)  : DIF             — fila-P  (=Q-O)
-    // S (19)  : % CAMBIO        — fila-P
+    // CóN (3ó14): 12 meses  ?  presupuesto en fila-P, gasto en fila-G
+    // O (15)  : PSTO ACTUAL     é fila-P
+    // P (16)  : PROM GASTO      é fila-G  (=AVERAGE C:N de esa fila)
+    // Q (17)  : PSTO PROPUESTO  é fila-P
+    // R (18)  : DIF             é fila-P  (=Q-O)
+    // S (19)  : % CAMBIO        é fila-P
     const TOTAL_COLS = 19;
     ws.columns = [
       { header: "CUENTA",       key: "num",           width: 14 },
-      { header: "DESCRIPCIÓN",  key: "desc",          width: 36 },
+      { header: "DESCRIPCIóN",  key: "desc",          width: 36 },
       ...meses.map((mes) => ({
         header: mes.substring(0, 3).toUpperCase(),
         key:    `m_${mes}`,
@@ -90,11 +90,11 @@ export class ExcelExportService {
       { header: "% CAMBIO",           key: "pct",             width: 12 },
     ];
 
-    // ── VISTA / AUTOFILTRO ────────────────────────────────────────────────────
+    // -- VISTA / AUTOFILTRO ----------------------------------------------------
     ws.views = [{ state: "frozen", xSplit: 2, ySplit: 1 }]; // congela las 2 primeras columnas
     ws.autoFilter = "A1:S1";
 
-    // ── ENCABEZADO ────────────────────────────────────────────────────────────
+    // -- ENCABEZADO ------------------------------------------------------------
     const hRow = ws.getRow(1);
     hRow.height = 34;
     for (let c = 1; c <= TOTAL_COLS; c++) {
@@ -105,13 +105,13 @@ export class ExcelExportService {
       cell.border    = mkBorder();
     }
 
-    // ── ACUMULADORES PARA EL PIE ──────────────────────────────────────────────
+    // -- ACUMULADORES PARA EL PIE ----------------------------------------------
     const sumPsto: number[]  = new Array(12).fill(0);
     const sumGasto: number[] = new Array(12).fill(0);
     let sumCurrentAmt  = 0;
     let sumProposedAmt = 0;
 
-    // helper estilar celda numérica ya añadida al row
+    // helper estilar celda numórica ya añadida al row
     const styleCell = (
       cell: ExcelJS.Cell,
       fill: ExcelJS.Fill,
@@ -127,7 +127,7 @@ export class ExcelExportService {
       cell.border    = border;
     };
 
-    // ── DATOS ─────────────────────────────────────────────────────────────────
+    // -- DATOS -----------------------------------------------------------------
     cuentas.forEach((item) => {
       const isGroup = !!item.esFilaAgrupadora;
 
@@ -156,7 +156,7 @@ export class ExcelExportService {
       sumCurrentAmt  += curVal;
       sumProposedAmt += propVal;
 
-      // ── Fila PRESUPUESTO: usamos las keys de columna ──────────────────────
+      // -- Fila PRESUPUESTO: usamos las keys de columna ----------------------
       const pstoData: Record<string, any> = {
         num:            item.accountNumber,
         desc:           item.accountName,
@@ -188,7 +188,7 @@ export class ExcelExportService {
       cd.fill      = fillPsto;
       cd.border    = mkBorder("dotted");
 
-      // C–N: presupuesto mensual
+      // CóN: presupuesto mensual
       meses.forEach((mes) => styleCell(rowP.getCell(`m_${mes}`), fillPsto, false, "FF404040", mkBorder("dotted")));
 
       // O: PSTO ACTUAL
@@ -198,7 +198,7 @@ export class ExcelExportService {
       rowP.getCell("promedioGasto").fill   = fillPsto;
       rowP.getCell("promedioGasto").border = mkBorder("dotted");
 
-      // Q: PSTO PROPUESTO — editable
+      // Q: PSTO PROPUESTO é editable
       styleCell(rowP.getCell("proposedAmount"), fillPsto, true, "FF1F3864", mkBorder("dotted"));
       rowP.getCell("proposedAmount").protection = { locked: false };
 
@@ -212,7 +212,7 @@ export class ExcelExportService {
       cPct.value = { formula: `IF(O${pRow}=0,IF(Q${pRow}>0,1,0),(Q${pRow}-O${pRow})/O${pRow})` };
       styleCell(cPct, fillPsto, true, "FF1F1F1F", mkBorder("dotted"), pctFmt);
 
-      // ── Fila GASTO: usamos las keys de columna ────────────────────────────
+      // -- Fila GASTO: usamos las keys de columna ----------------------------
       const gastoData: Record<string, any> = { num: null, desc: null };
       meses.forEach((mes, i) => {
         const gk  = "gasto"        + mes.charAt(0).toUpperCase() + mes.slice(1);
@@ -233,7 +233,7 @@ export class ExcelExportService {
       rowG.getCell("desc").fill  = fillGasto;
       rowG.getCell("desc").border = mkBorder();
 
-      // C–N: gasto mensual con rojo si excede
+      // CóN: gasto mensual con rojo si excede
       meses.forEach((mes) => {
         const excede = !!gastoData[`exc_${mes}`];
         styleCell(rowG.getCell(`m_${mes}`), fillGasto, excede, excede ? "FFC00000" : "FF1F1F1F");
@@ -243,7 +243,7 @@ export class ExcelExportService {
       rowG.getCell("currentAmount").fill   = fillGasto;
       rowG.getCell("currentAmount").border = mkBorder();
 
-      // P: PROM GASTO — fórmula AVERAGEIF ignorando ceros
+      // P: PROM GASTO é férmula AVERAGEIF ignorando ceros
       const cProm = rowG.getCell("promedioGasto");
       cProm.value = { formula: `IFERROR(AVERAGEIF(C${gRow}:N${gRow},"<>0"),0)` };
       styleCell(cProm, fillGasto, false, "FF404040");
@@ -254,7 +254,7 @@ export class ExcelExportService {
         rowG.getCell(k).border = mkBorder();
       }
 
-      // ── Combinar A y B de las dos filas ──────────────────────────────────
+      // -- Combinar A y B de las dos filas ----------------------------------
       ws.mergeCells(pRow, 1, gRow, 1);
       ws.mergeCells(pRow, 2, gRow, 2);
       ws.getCell(pRow, 1).alignment = { vertical: "middle", horizontal: "left" };
@@ -265,7 +265,7 @@ export class ExcelExportService {
 
     const lastData = ws.rowCount;
 
-    // ── FORMATO CONDICIONAL (DIF=R, %=S) ─────────────────────────────────────
+    // -- FORMATO CONDICIONAL (DIF=R, %=S) -------------------------------------
     const cfRules = [
       { type: "cellIs" as const, operator: "greaterThan" as const, formulae: [0],
         style: { font: { color: { argb: "FFC00000" }, bold: true } }, priority: 1 },
@@ -275,7 +275,7 @@ export class ExcelExportService {
     ws.addConditionalFormatting({ ref: `R2:R${lastData}`, rules: cfRules });
     ws.addConditionalFormatting({ ref: `S2:S${lastData}`, rules: cfRules });
 
-    // ── PIE: TOTAL PRESUPUESTO ────────────────────────────────────────────────
+    // -- PIE: TOTAL PRESUPUESTO ------------------------------------------------
     const pstoFooterData: Record<string, any> = {
       num: "TOTAL", desc: "PRESUPUESTO",
       currentAmount: sumCurrentAmt, proposedAmount: sumProposedAmt,
@@ -300,7 +300,7 @@ export class ExcelExportService {
       if (ci > 2) cell.numFmt = cell.numFmt || numFmt;
     });
 
-    // ── PIE: TOTAL GASTO ─────────────────────────────────────────────────────
+    // -- PIE: TOTAL GASTO -----------------------------------------------------
     const gastoFooterData: Record<string, any> = {
       num: "TOTAL", desc: "GASTO",
       promedioGasto: sumGasto.reduce((s, v) => s + v, 0) / 12,
@@ -322,7 +322,7 @@ export class ExcelExportService {
       if (ci > 2) cell.numFmt = numFmt;
     });
 
-    // ── DESCARGA ──────────────────────────────────────────────────────────────
+    // -- DESCARGA --------------------------------------------------------------
     const buffer = await workbook.xlsx.writeBuffer();
     saveAs(new Blob([buffer]), `ResumenPresupuesto${fiscalYear}.xlsx`);
   }
@@ -345,7 +345,7 @@ export class ExcelExportService {
       { header: "Producto", key: "producto", width: 35, style: { font } },
       { header: "Cantidad", key: "cantidad", width: 12, style: { font, numFmt: "#,##0.##" } },
       { header: "Unidad de Medida", key: "unidadMedida", width: 18, style: { font } },
-      { header: "Recibió", key: "quienUso", width: 25, style: { font } },
+      { header: "Recibié", key: "quienUso", width: 25, style: { font } },
       { header: "Uso del Producto", key: "usoPrducto", width: 35, style: { font } },
       { header: "Cantidad Devuelta", key: "cantidadDevuelta", width: 18, style: { font, numFmt: "#,##0.##" } },
     ];
@@ -402,9 +402,9 @@ export class ExcelExportService {
       { header: "Propiedad", key: "property", width: 15, style: { font } },
       { header: "Habitante", key: "habitant", width: 15, style: { font } },
       { header: "Nombre Completo", key: "fullName", width: 40, style: { font } },
-      { header: "Teléfono Fijo", key: "fixedPhone", width: 15, style: { font } },
+      { header: "Telófono Fijo", key: "fixedPhone", width: 15, style: { font } },
       { header: "Extensión", key: "extencion", width: 10, style: { font } },
-      { header: "Teléfono", key: "phoneNumber", width: 15, style: { font } },
+      { header: "Telófono", key: "phoneNumber", width: 15, style: { font } },
       { header: "Email", key: "email", width: 35, style: { font } },
       { header: "Enviar Info", key: "enviarMails", width: 12, style: { font } },
     ];
@@ -437,7 +437,7 @@ export class ExcelExportService {
         extencion: item.extencion,
         phoneNumber: item.phoneNumber,
         email: item.email,
-        enviarMails: item.enviarMails ? "Sí" : "No",
+        enviarMails: item.enviarMails ? "Sé" : "No",
       });
       row.height = 18;
       if (index % 2 === 1) row.fill = evenFill;

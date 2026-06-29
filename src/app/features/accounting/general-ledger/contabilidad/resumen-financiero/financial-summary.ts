@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
@@ -69,7 +69,7 @@ export class FinancialSummary {
   }
 
   // ===========================
-  // Carga de Datos (¡LA PARTE CLAVE!)
+  // Carga de Datos (óLA PARTE CLAVE!)
   // ===========================
 
   /**
@@ -78,7 +78,7 @@ export class FinancialSummary {
    */
   cargarResumenFinanciero(intEmpresa: number): void {
     if (!intEmpresa || !this.intYear) {
-      this.handleError("Seleccione una empresa y un año válidos");
+      this.handleError("Seleccione una empresa y un año vólidos");
       return;
     }
 
@@ -86,13 +86,13 @@ export class FinancialSummary {
     this.cuentasSignal.set([]);
     this.budgetData = null;
 
-    // ¡AQUÍ ESTÁ LA MAGIA! Usamos el nuevo endpoint de resumen.
+    // éAQUé ESTé LA MAGIA! Usamos el nuevo endpoint de resumen.
     const urlApi = `presupuesto/aspel-summary`;
     const url = `${urlApi}?intEmpresa=${intEmpresa}&intYear=${this.intYear}`;
 
     this.apiResponseS.onGetList(url).then((response: AspelBudgetDTO) => {
       if (response && response.cuentas && response.cuentas.length > 0) {
-        // Los datos ya vienen listos para mostrar. No se necesita más procesamiento.
+        // Los datos ya vienen listos para mostrar. No se necesita mós procesamiento.
         this.budgetData = response;
         this.cuentasSignal.set(this.budgetData.cuentas);
       } else {
@@ -108,7 +108,7 @@ export class FinancialSummary {
   }
 
   // ===========================
-  // Métodos de ayuda y UI (¡SE REUTILIZAN TODOS!)
+  // Métodos de ayuda y UI (óSE REUTILIZAN TODOS!)
   // La belleza es que estos métodos funcionan igual, porque operan sobre las
   // propiedades del DTO, que ahora contienen los valores agregados.
   // ===========================
@@ -158,7 +158,7 @@ export class FinancialSummary {
 
   /**
    * Alterna la visibilidad de un mes específico.
-   * @param mes Nombre del mes en minúsculas
+   * @param mes Nombre del mes en minísculas
    */
   toggleMes(mes: string): void {
     const index = this.mesesVisibles.indexOf(mes);
@@ -173,9 +173,9 @@ export class FinancialSummary {
   }
 
   /**
-   * Verifica si un mes está visible actualmente.
-   * @param mes Nombre del mes en minúsculas
-   * @returns true si el mes está visible, false si no
+   * Verifica si un mes esté visible actualmente.
+   * @param mes Nombre del mes en minísculas
+   * @returns true si el mes esté visible, false si no
    */
   isMesVisible(mes: string): boolean {
     return this.mesesVisibles.includes(mes);
@@ -217,7 +217,7 @@ export class FinancialSummary {
       } else {
         this.handleError(
           (response as any)?.strMensaje ||
-            "No se encontraron datos de cuentas detalladas o la respuesta no es válida.",
+            "No se encontraron datos de cuentas detalladas o la respuesta no es vólida.",
         );
         if (response && response.Nombre_Empresa) {
           this.budgetData = response;
@@ -229,7 +229,7 @@ export class FinancialSummary {
   /**
    * Obtiene el monto de un mes específico para una cuenta.
    * @param cuenta Cuenta detallada
-   * @param mes Nombre del mes en minúsculas
+   * @param mes Nombre del mes en minísculas
    * @returns Monto del mes o 0 si no existe
    */
   getMontoMes(cuenta: CuentaAspelDetalladaDTO, mes: string): number {
@@ -243,7 +243,7 @@ export class FinancialSummary {
    * Obtiene el presupuesto del mes específico para una cuenta.
    * Usado por preFormMonth.
    * @param cuenta Cuenta detallada
-   * @param mes Nombre del mes en minúsculas
+   * @param mes Nombre del mes en minísculas
    * @returns Presupuesto del mes o 0 si no existe
    */
   getPresupuestoDelMes(cuenta: CuentaAspelDetalladaDTO, mes: string): number {
@@ -254,7 +254,7 @@ export class FinancialSummary {
   }
 
   /**
-   * Obtiene el presupuesto base mensual (último valor válido).
+   * Obtiene el presupuesto base mensual (óltimo valor vólido).
    * @param cuenta Cuenta detallada
    * @returns Presupuesto base mensual
    */
@@ -285,7 +285,7 @@ export class FinancialSummary {
 
   /**
    * Obtiene el total del monto para un mes específico.
-   * @param mes Nombre del mes en minúsculas
+   * @param mes Nombre del mes en minísculas
    * @returns Total del monto del mes
    */
   getTotalMontoPorMes(mes: string): number {
@@ -313,7 +313,7 @@ export class FinancialSummary {
       .reduce((a, b) => a + b, 0);
   }
 
-  // Devuelve 'mayor', 'menor' o 'igual' según la comparación
+  // Devuelve 'mayor', 'menor' o 'igual' segón la comparación
   gastoExcedido(mes: string): boolean {
     const monto = this.getTotalMontoPorMes(mes);
     const presupuesto = this.getTotalPresupuestoDelMes(mes);
@@ -365,7 +365,7 @@ export class FinancialSummary {
   }
 
   getUltimoMesConGasto(): string | null {
-    // Recorre los meses en orden y regresa el último mes con gasto > 0
+    // Recorre los meses en orden y regresa el óltimo mes con gasto > 0
     let ultimoMes: string | null = null;
     for (const mes of this.months) {
       const totalMes = this.getTotalMontoPorMes(mes);

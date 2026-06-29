@@ -1,10 +1,10 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TextareaModule } from "primeng/textarea";
 import { firstValueFrom } from "rxjs";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -84,3 +84,4 @@ export class SolicitudVacanteForm implements OnInit {
       });
   }
 }
+

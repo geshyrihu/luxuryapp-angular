@@ -17,131 +17,131 @@
 // ⬜  $neutral  → Grises neutros para fondos, bordes, textos
 // ════════════════════════════════════════════════════════════════
 
-// ── PALETA BASE ───────────────────────────────────────────────
+// ── PALETA BASE (ERP Premium · Deep Navy) ──────────────────────────────
 // Escala completa 50-950 para cada color
 
-// Primario (Púrpura Institucional — Executive Precision)
-$primary-50:   #f8f4ff !default;
-$primary-100:  #e0d2ff !default;  // on-primary-container
-$primary-200:  #cfbcff !default;  // inverse-primary
-$primary-300:  #b69dff !default;
-$primary-400:  #8a73e0 !default;
-$primary-500:  #6750a4 !default;  // surface-tint / primary-container
-$primary-600:  #4f378a !default;  // color-primary
-$primary-700:  #3e2970 !default;
-$primary-800:  #2e1c56 !default;
-$primary-900:  #1e0f3c !default;
-$primary-950:  #0e0721 !default;
+// Primario (Azul Profundo)
+$primary-50:   #f8f9fc !default;
+$primary-100:  #e8eef6 !default; // primary-container
+$primary-200:  #d1def0 !default;
+$primary-300:  #a6c2e3 !default;
+$primary-400:  #78a4d4 !default;
+$primary-500:  #4a90e2 !default; 
+$primary-600:  #2a4d7c !default; // primary-light
+$primary-700:  #1b365d !default; // primary
+$primary-800:  #12243d !default; // primary-dark
+$primary-900:  #0a1422 !default;
+$primary-950:  #050a11 !default;
 
-// Secundario (Gris neutro cálido)
-$secondary-50:   #f8fafc !default;
-$secondary-100:  #f1f5f9 !default;
-$secondary-200:  #e2e8f0 !default;
-$secondary-300:  #cbd5e1 !default;
-$secondary-400:  #94a3b8 !default;
-$secondary-500:  #64748b !default;
-$secondary-600:  #475569 !default;
-$secondary-700:  #334155 !default;
-$secondary-800:  #1e293b !default;
-$secondary-900:  #0f172a !default;
-$secondary-950:  #020617 !default;
+// Secundario (Neutros fríos)
+$secondary-50:   #f8f9fc !default; // surface
+$secondary-100:  #e8eef6 !default; // surface-dim
+$secondary-200:  #e2e8f0 !default; // outline
+$secondary-300:  #c5d0db !default; // outline-strong
+$secondary-400:  #9aacbb !default; // on-surface-tertiary
+$secondary-500:  #75899c !default;
+$secondary-600:  #5a6878 !default; // on-surface-secondary
+$secondary-700:  #3b4a59 !default;
+$secondary-800:  #1a2634 !default; // on-surface
+$secondary-900:  #0d141c !default;
+$secondary-950:  #060a0f !default;
 
-// Success (Verde Corporativo — Esmeralda)
-$success-50:   #ecfdf5 !default;
-$success-100:  #d1fae5 !default;
-$success-200:  #a7f3d0 !default;
-$success-300:  #6ee7b7 !default;
-$success-400:  #34d399 !default;
-$success-500:  #10b981 !default;
-$success-600:  #059669 !default;
-$success-700:  #047857 !default;
-$success-800:  #065f46 !default;
-$success-900:  #064e3b !default;
-$success-950:  #022c22 !default;
+// Success (Esmeralda)
+$success-50:   #f0fcf7 !default;
+$success-100:  #e6f7f0 !default; // success-container
+$success-200:  #bcf0d9 !default;
+$success-300:  #8ce3c1 !default;
+$success-400:  #53d4a6 !default;
+$success-500:  #2abf8e !default;
+$success-600:  #1e9b6d !default; // success / secondary-emerald
+$success-700:  #157a55 !default;
+$success-800:  #0d5e3f !default; // on-success-container
+$success-900:  #08402a !default;
+$success-950:  #042417 !default;
 
-// Warning (Ámbar)
-$warning-50:   #fffbeb !default;
-$warning-100:  #fef3c7 !default;
-$warning-200:  #fde68a !default;
-$warning-300:  #fcd34d !default;
-$warning-400:  #fbbf24 !default;
-$warning-500:  #f59e0b !default;
-$warning-600:  #d97706 !default;
-$warning-700:  #b45309 !default;
-$warning-800:  #92400e !default;
-$warning-900:  #78350f !default;
-$warning-950:  #451a03 !default;
+// Warning (Oro)
+$warning-50:   #fdfcf7 !default;
+$warning-100:  #fcf3e0 !default; // warning-container
+$warning-200:  #f8e5b6 !default;
+$warning-300:  #f3d58a !default;
+$warning-400:  #efc45d !default;
+$warning-500:  #e8b233 !default;
+$warning-600:  #d4a74a !default; // warning / secondary-gold
+$warning-700:  #a88132 !default;
+$warning-800:  #7a5e15 !default; // on-warning-container
+$warning-900:  #523c0b !default;
+$warning-950:  #2b1f04 !default;
 
-// Danger (Rojo)
-$danger-50:   #fef2f2 !default;
-$danger-100:  #fee2e2 !default;
-$danger-200:  #fecaca !default;
-$danger-300:  #fca5a5 !default;
-$danger-400:  #f87171 !default;
-$danger-500:  #ef4444 !default;
-$danger-600:  #dc2626 !default;
-$danger-700:  #b91c1c !default;
-$danger-800:  #991b1b !default;
-$danger-900:  #7f1d1d !default;
-$danger-950:  #450a0a !default;
+// Danger (Carmesí)
+$danger-50:   #fefafa !default;
+$danger-100:  #fde8e8 !default; // error-container
+$danger-200:  #fac7c7 !default;
+$danger-300:  #f5a3a3 !default;
+$danger-400:  #f07a7a !default;
+$danger-500:  #ea5454 !default;
+$danger-600:  #d34b4b !default; // error / secondary-crimson
+$danger-700:  #a63939 !default;
+$danger-800:  #8a1f1f !default; // on-error-container
+$danger-900:  #5c1111 !default;
+$danger-950:  #330707 !default;
 
 // Info (Cian)
-$info-50:   #ecfeff !default;
-$info-100:  #cffafe !default;
-$info-200:  #a5f3fc !default;
-$info-300:  #67e8f9 !default;
-$info-400:  #22d3ee !default;
-$info-500:  #06b6d4 !default;
-$info-600:  #0891b2 !default;
-$info-700:  #0e7490 !default;
-$info-800:  #155e75 !default;
-$info-900:  #164e63 !default;
-$info-950:  #083344 !default;
+$info-50:   #f4f9fe !default;
+$info-100:  #e8eef6 !default; // info-container
+$info-200:  #c2dbf6 !default;
+$info-300:  #9bc8f3 !default;
+$info-400:  #72b3ef !default;
+$info-500:  #4a90e2 !default; // info / secondary-cyan
+$info-600:  #3678c2 !default;
+$info-700:  #245fa1 !default;
+$info-800:  #1b365d !default; // on-info-container
+$info-900:  #0d223f !default;
+$info-950:  #061121 !default;
 
-// Help (Púrpura — Estándar PrimeNG)
-$help-50:   #f5f3ff !default;
-$help-100:  #ede9fe !default;
-$help-200:  #ddd6fe !default;
-$help-300:  #c4b5fd !default;
-$help-400:  #a78bfa !default;
-$help-500:  #8b5cf6 !default;
-$help-600:  #7c3aed !default;
-$help-700:  #6d28d9 !default;
-$help-800:  #5b21b6 !default;
-$help-900:  #4c1d95 !default;
-$help-950:  #2e1065 !default;
+// Help (Mismo que Info)
+$help-50:   $info-50 !default;
+$help-100:  $info-100 !default;
+$help-200:  $info-200 !default;
+$help-300:  $info-300 !default;
+$help-400:  $info-400 !default;
+$help-500:  $info-500 !default;
+$help-600:  $info-600 !default;
+$help-700:  $info-700 !default;
+$help-800:  $info-800 !default;
+$help-900:  $info-900 !default;
+$help-950:  $info-950 !default;
 
-// Terciario (Oro Corporativo — Executive Precision)
-$tertiary-50:   #fff9e6 !default;
-$tertiary-100:  #ffdf93 !default;  // tertiary-fixed
-$tertiary-200:  #e7c365 !default;  // tertiary-fixed-dim
-$tertiary-300:  #d4b05a !default;
-$tertiary-400:  #c9a74d !default;  // tertiary-container (gold)
-$tertiary-500:  #a88a3a !default;
-$tertiary-600:  #765b00 !default;  // tertiary
-$tertiary-700:  #5c4600 !default;
-$tertiary-800:  #503d00 !default;  // on-tertiary-container
-$tertiary-900:  #3d2e00 !default;
-$tertiary-950:  #241a00 !default;  // on-tertiary-fixed
+// Terciario (Cyan)
+$tertiary-50:   $info-50 !default;
+$tertiary-100:  $info-100 !default;
+$tertiary-200:  $info-200 !default;
+$tertiary-300:  $info-300 !default;
+$tertiary-400:  $info-400 !default;
+$tertiary-500:  $info-500 !default;
+$tertiary-600:  $info-600 !default;
+$tertiary-700:  $info-700 !default;
+$tertiary-800:  $info-800 !default;
+$tertiary-900:  $info-900 !default;
+$tertiary-950:  $info-950 !default;
 
 // Contrast (Negro/Blanco)
 $contrast-0:   #ffffff !default;
-$contrast-500: #18181b !default;
-$contrast-900: #000000 !default;
+$contrast-500: #1a2634 !default;
+$contrast-900: #0d141c !default;
 
-// Neutral (Escala de grises puros)
+// Neutral (Escala de grises)
 $neutral-0:    #ffffff !default;
-$neutral-50:   #fafafa !default;
-$neutral-100:  #f4f4f5 !default;
-$neutral-200:  #e4e4e7 !default;
-$neutral-300:  #d4d4d8 !default;
-$neutral-400:  #a1a1aa !default;
-$neutral-500:  #71717a !default;
-$neutral-600:  #52525b !default;
-$neutral-700:  #3f3f46 !default;
-$neutral-800:  #27272a !default;
-$neutral-900:  #18181b !default;
-$neutral-950:  #09090b !default;
+$neutral-50:   #f8f9fc !default;
+$neutral-100:  #e8eef6 !default;
+$neutral-200:  #e2e8f0 !default;
+$neutral-300:  #c5d0db !default;
+$neutral-400:  #9aacbb !default;
+$neutral-500:  #75899c !default;
+$neutral-600:  #5a6878 !default;
+$neutral-700:  #3b4a59 !default;
+$neutral-800:  #1a2634 !default;
+$neutral-900:  #0d141c !default;
+$neutral-950:  #060a0f !default;
 $neutral-1000: #000000 !default;
 
 // ── COLORES SEMÁNTICOS ────────────────────────────────────────
@@ -149,11 +149,11 @@ $neutral-1000: #000000 !default;
 // Se definen en _light.scss y _dark.scss como variables CSS
 
 // Texto
-$color-text-primary:    $secondary-900  !default;
-$color-text-secondary:  $secondary-600  !default;
-$color-text-muted:      $secondary-400  !default;
+$color-text-primary:    $neutral-800  !default;
+$color-text-secondary:  $neutral-600  !default;
+$color-text-muted:      $neutral-400  !default;
 $color-text-inverse:    $neutral-0      !default;
-$color-text-disabled:   $secondary-300  !default;
+$color-text-disabled:   $neutral-300  !default;
 $color-text-link:       $primary-600    !default;
 $color-text-link-hover: $primary-700    !default;
 
@@ -161,21 +161,21 @@ $color-text-link-hover: $primary-700    !default;
 $color-bg-page:       $neutral-50      !default;
 $color-bg-surface:    $neutral-0       !default;
 $color-bg-elevated:   $neutral-0       !default;
-$color-bg-sunken:     $secondary-50    !default;
-$color-bg-overlay:    rgba(#000, 0.5)  !default;
+$color-bg-sunken:     $neutral-100    !default;
+$color-bg-overlay:    rgba(27, 54, 93, 0.45)  !default;
 
 // Bordes
-$color-border-default: $secondary-200  !default;
-$color-border-strong:  $secondary-300  !default;
+$color-border-default: $neutral-200  !default;
+$color-border-strong:  $neutral-300  !default;
 $color-border-focus:   $primary-500    !default;
-$color-border-error:   $danger-500     !default;
-$color-border-success: $success-500    !default;
+$color-border-error:   $danger-600     !default;
+$color-border-success: $success-600    !default;
 
 // Estados interactivos — Primario
-$color-primary:            $primary-600   !default;
-$color-primary-hover:      $primary-700   !default;
-$color-primary-active:     $primary-800   !default;
-$color-primary-light:      $primary-50    !default;
+$color-primary:            $primary-700   !default;
+$color-primary-hover:      $primary-800   !default;
+$color-primary-active:     $primary-900   !default;
+$color-primary-light:      $primary-100    !default;
 $color-primary-text:       $neutral-0     !default;
 
 // Estados interactivos — Danger
@@ -224,16 +224,17 @@ $color-contrast-text:      $neutral-0     !default;
 // Layout
 $sidebar-bg:          #ffffff !default;
 $header-bg:           #ffffff !default;
-$sidebar-bg-dark:     #1d3052 !default;
-$header-bg-dark:      #1d3052 !default;
+$sidebar-bg-dark:     #12243d !default; // primary-dark
+$header-bg-dark:      #12243d !default; // primary-dark
 
 // Semánticos de estado (brand-level, no escala)
-$color-success-brand: #006837 !default;
-$color-success-bg:    #d1fae5 !default;
-$color-warning-brand: #b45309 !default;
-$color-warning-bg:    #fef3c7 !default;
-$color-danger-brand:  #ba1a1a !default;
-$color-danger-bg:     #ffdad6 !default;
+$color-success-brand: $success-600 !default;
+$color-success-bg:    $success-100 !default;
+$color-warning-brand: $warning-600 !default;
+$color-warning-bg:    $warning-100 !default;
+$color-danger-brand:  $danger-600 !default;
+$color-danger-bg:     $danger-100 !default;
+
 
 // Budget
 $color-budget-bg:     #fff3e0 !default;
@@ -257,24 +258,25 @@ $surface-dark-800: #f4f4f5 !default;
 $surface-dark-900: #fafafa !default;
 $surface-dark-950: #ffffff !default;
 
-// ── SUPERFICIES M3 (Executive Precision) ──────────────────────
-$m3-surface:                    #fdf7ff !default;
-$m3-surface-dim:                #ded8e0 !default;
-$m3-surface-bright:             #fdf7ff !default;
+// ── SUPERFICIES M3 (ERP Premium) ──────────────────────
+$m3-surface:                    #f8f9fc !default;
+$m3-surface-dim:                #e8eef6 !default;
+$m3-surface-bright:             #ffffff !default;
 $m3-surface-container-lowest:   #ffffff !default;
-$m3-surface-container-low:      #f8f2fa !default;
-$m3-surface-container:          #f2ecf4 !default;
-$m3-surface-container-high:     #ece6ee !default;
-$m3-surface-container-highest:  #e6e0e9 !default;
-$m3-on-surface:                 #1d1b20 !default;
-$m3-on-surface-variant:         #494551 !default;
-$m3-inverse-surface:            #322f35 !default;
-$m3-inverse-on-surface:         #f5eff7 !default;
-$m3-outline:                    #7a7582 !default;
-$m3-outline-variant:            #cbc4d2 !default;
-$m3-surface-variant:            #e6e0e9 !default;
-$m3-background:                 #fdf7ff !default;
-$m3-on-background:              #1d1b20 !default;
+$m3-surface-container-low:      #f8f9fc !default;
+$m3-surface-container:          #e8eef6 !default;
+$m3-surface-container-high:     #e2e8f0 !default;
+$m3-surface-container-highest:  #c5d0db !default;
+$m3-on-surface:                 #1a2634 !default;
+$m3-on-surface-variant:         #5a6878 !default;
+$m3-inverse-surface:            #12243d !default;
+$m3-inverse-on-surface:         #f8f9fc !default;
+$m3-outline:                    #e2e8f0 !default;
+$m3-outline-variant:            #c5d0db !default;
+$m3-surface-variant:            #e8eef6 !default;
+$m3-background:                 #f8f9fc !default;
+$m3-on-background:              #1a2634 !default;
+
 
 
 

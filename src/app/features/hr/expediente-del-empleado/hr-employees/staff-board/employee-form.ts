@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -55,10 +55,10 @@ export class EmployeeForm implements OnInit {
   nameEmployee = signal("");
   tienePermiso: boolean = true;
 
-  // 🎯 Sección activa
+  // ?? Sección activa
   activeSection: string = "principal";
 
-  // 📋 Items del menú
+  // ?? Items del mené
   menuItems: MenuItem[] = [];
 
   paramsSignal = toSignal(this.route.paramMap);
@@ -83,7 +83,7 @@ export class EmployeeForm implements OnInit {
           .then((result: any) => {
             this.nameEmployee.set(`${result.fullName} `);
           });
-        // Inicializar menú después de tener los datos
+        // Inicializar mené después de tener los datos
         this.initializeMenu();
       }
     });
@@ -220,7 +220,7 @@ export class EmployeeForm implements OnInit {
         ],
       },
 
-      // Solo acceso técnico / sistemas
+      // Solo acceso tócnico / sistemas
       {
         label: "Usuario app",
         icon: "mdi:key",

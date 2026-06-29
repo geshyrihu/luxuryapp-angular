@@ -1,4 +1,4 @@
-export type EInvestigationStatus = 'Reportado' | 'EnInvestigacion' | 'ResueltoSinSancion' | 'ResueltoConSancion' | 'Archivado';
+﻿export type EInvestigationStatus = 'Reportado' | 'EnInvestigacion' | 'ResueltoSinSancion' | 'ResueltoConSancion' | 'Archivado';
 export type ESeverityLevel = 'Low' | 'Moderate' | 'Medium' | 'High';
 export type EIncidentCategory = 'Conducta' | 'Desempeno' | 'Seguridad' | 'Asistencia' | 'Etica';
 
@@ -70,7 +70,7 @@ export interface IncidentCancelDTO {
   cancellationReason: string;
 }
 
-// ─── Adjuntos ────────────────────────────────────────────────────────────────
+// --- Adjuntos ----------------------------------------------------------------
 
 export interface IncidentAttachmentListDTO {
   id: string;
@@ -88,7 +88,7 @@ export interface IncidentAttachmentDetailDTO extends IncidentAttachmentListDTO {
   fileTypeValue: number;
 }
 
-// ─── Testigos ─────────────────────────────────────────────────────────────────
+// --- Testigos -----------------------------------------------------------------
 
 export interface IncidentWitnessListDTO {
   id: string;
@@ -111,7 +111,7 @@ export interface IncidentWitnessAddOrEditDTO {
   statement?: string;
 }
 
-// ─── Días de Suspensión ───────────────────────────────────────────────────────
+// --- Días de Suspensión -------------------------------------------------------
 
 export interface SuspensionDayDetailDTO {
   id: string;
@@ -127,7 +127,7 @@ export interface SuspensionDayAddDTO {
   notes?: string;
 }
 
-// ─── Dashboard ─────────────────────────────────────────────────────────────────
+// --- Dashboard -----------------------------------------------------------------
 
 export interface IncidentDashboardFilterDTO {
   startDate?: string;

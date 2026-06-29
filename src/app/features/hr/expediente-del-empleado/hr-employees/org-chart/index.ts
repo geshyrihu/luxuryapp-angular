@@ -1,5 +1,5 @@
-/**
- * Barrel export del módulo de organigrama jerárquico de puestos.
+﻿/**
+ * Barrel export del módulo de organigrama jerírquico de puestos.
  */
 
 // Componentes

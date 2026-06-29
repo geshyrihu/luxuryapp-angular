@@ -1,10 +1,10 @@
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CurrencyPipe, DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TableModule } from "primeng/table";
 import { TabsModule } from "primeng/tabs";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
+import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import {
@@ -197,3 +197,4 @@ export class EmployeeFileDetail implements OnInit {
     return map[status] ?? "bg-slate-100 text-slate-700";
   }
 }
+

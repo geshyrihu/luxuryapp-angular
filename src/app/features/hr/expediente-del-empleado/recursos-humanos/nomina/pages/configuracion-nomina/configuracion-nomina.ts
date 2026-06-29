@@ -1,11 +1,11 @@
-import { Component, OnInit, effect, inject, signal } from "@angular/core";
+﻿import { Component, OnInit, effect, inject, signal } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { FieldsetModule } from "primeng/fieldset";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputDecimal } from "src/app/core/components/inputs/web/custom-input-decimal-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputDecimal } from "src/app/core/components/web/inputs/custom-input-decimal-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -92,3 +92,4 @@ export default class ConfiguracionNomina implements OnInit {
     this.submitting.set(false);
   }
 }
+

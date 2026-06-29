@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, OnDestroy, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -71,7 +71,7 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
 
   private async openChecklistForEquipment(type: string, equipmentId: string, currentStatus: string) {
     if (currentStatus === "Realizada") {
-      if (!window.confirm("Este equipo ya fue inspeccionado. ¿Deseas actualizar los datos?")) return;
+      if (!window.confirm("Este equipo ya fue inspeccionado. óDeseas actualizar los datos?")) return;
     }
 
     const dialogs: Record<string, any> = {
@@ -102,16 +102,16 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
 
   async startScan(video: HTMLVideoElement) {
     this.scanError.set("");
-    this.scanStatus.set("Iniciando cámara...");
+    this.scanStatus.set("Iniciando cómara...");
     try {
       this.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
       video.srcObject = this.stream;
       await video.play();
       this.scanning.set(true);
-      this.scanStatus.set("Apunta la cámara al código QR del equipo.");
+      this.scanStatus.set("Apunta la cómara al código QR del equipo.");
       this.scanLoop(video);
     } catch {
-      this.scanError.set("No se pudo acceder a la cámara. Verifica los permisos.");
+      this.scanError.set("No se pudo acceder a la cómara. Verifica los permisos.");
       this.scanStatus.set("");
     }
   }
@@ -149,7 +149,7 @@ export class FireInspectionCycleDetail implements OnInit, OnDestroy {
         .onGetItem(`FireEquipment/resolve/${segments[0]}`)
         .catch(() => null);
       if (!result) {
-        this.scanError.set("No se encontró el equipo en el sistema.");
+        this.scanError.set("No se encontré el equipo en el sistema.");
         return;
       }
       const typeMap: Record<string, string> = {

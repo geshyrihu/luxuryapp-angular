@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   inject,
@@ -62,15 +62,15 @@ export class AiAgentExplicadorContabilidadOnlineComponent {
   ]);
 
   suggestedQuestions = [
-    "Explícame este reporte en palabras sencillas.",
-    "¿Qué me está diciendo este informe sobre la situación actual?",
-    "¿Cuáles son los rubros que más pesan en el resultado?",
-    "¿Qué variación importante se observa en este periodo?",
-    "¿Cómo debería interpretar el resultado final de este reporte?",
-    "Explícame qué significa este bloque dentro del informe.",
-    "Si se lo explicara a un administrador no contable, ¿cómo lo resumirías?",
-    "¿Qué lectura operativa harías de este reporte?",
-    "¿Qué datos llaman más la atención y cómo se entienden?",
+    "Explócame este reporte en palabras sencillas.",
+    "éQué me esté diciendo este informe sobre la situación actual?",
+    "óCuóles son los rubros que mós pesan en el resultado?",
+    "óQuó variación importante se observa en este periodo?",
+    "óCómo debería interpretar el resultado final de este reporte?",
+    "Explócame quó significa este bloque dentro del informe.",
+    "Si se lo explicara a un administrador no contable, ócómo lo resumirías?",
+    "óQuó lectura operativa harías de este reporte?",
+    "óQuó datos llaman mós la atención y cómo se entienden?",
     "Dame un resumen ejecutivo de este informe sin tecnicismos.",
   ];
 
@@ -136,7 +136,7 @@ export class AiAgentExplicadorContabilidadOnlineComponent {
         {
           role: "assistant",
           content:
-            "Ocurrió un error al procesar tu pregunta en el explicador de Contabilidad Online. Intenta nuevamente más tarde.",
+            "Ocurrié un error al procesar tu pregunta en el explicador de Contabilidad Online. Intenta nuevamente mós tarde.",
         },
       ]);
     } finally {
@@ -182,13 +182,13 @@ export class AiAgentExplicadorContabilidadOnlineComponent {
       if (!played) {
         this.toastS.showError(
           "No se pudo reproducir",
-          "La respuesta se recibió, pero no fue posible generar el audio con ElevenLabs.",
+          "La respuesta se recibié, pero no fue posible generar el audio con ElevenLabs.",
         );
       }
     } catch {
       this.toastS.showError(
         "Error de audio",
-        "Ocurrió un problema al reproducir la respuesta con ElevenLabs.",
+        "Ocurrié un problema al reproducir la respuesta con ElevenLabs.",
       );
     } finally {
       this.speaking.set(false);

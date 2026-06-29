@@ -1,9 +1,9 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, inject, signal } from "@angular/core";
 import { MessageService } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -49,6 +49,7 @@ export class OrdenesServicioReporteProveedor {
     });
   }
 }
+
 
 
 

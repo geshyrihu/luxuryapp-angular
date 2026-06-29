@@ -1,4 +1,4 @@
-import { DatePipe } from "@angular/common";
+﻿import { DatePipe } from "@angular/common";
 import { inject, Injectable } from "@angular/core";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -281,7 +281,7 @@ ${this.htmlPrintS.getStandardCss()}
       <div>
         <div class="subheader" style="margin-top: 0;">DATOS DE LA SOLICITUD</div>
         <div class="info-text">Fecha: ${this.formatDateOnly(model.fechaSolicitud)}</div>
-        <div class="info-text">Área/Depto: ${this.htmlPrintS.esc(model.equipoOInstalacion || "N/A")}</div>
+        <div class="info-text">órea/Depto: ${this.htmlPrintS.esc(model.equipoOInstalacion || "N/A")}</div>
         <div class="info-text">Solicitante: ${this.htmlPrintS.esc(this.getSolicitanteDisplayName(model))}</div>
       </div>
       <div>
@@ -293,7 +293,7 @@ ${this.htmlPrintS.getStandardCss()}
       </div>
     </div>
 
-    <div class="subheader">JUSTIFICACIÓN DEL GASTO</div>
+    <div class="subheader">JUSTIFICACIóN DEL GASTO</div>
     <div class="justificacion">${this.htmlPrintS.esc(model.justificacionGasto || "N/A")}</div>
 
     <div class="subheader">DESGLOSE DE PAGO</div>
@@ -434,8 +434,8 @@ ${this.htmlPrintS.getStandardCss()}
       </div>
       <div class="info-box">
         <div class="box-title">PROVEEDOR</div>
-        <div class="box-text">${this.htmlPrintS.esc(data.ordenCompraDatosPago?.providerName || "—")}</div>
-        <div class="box-text">${this.htmlPrintS.esc(data.ordenCompraDatosPago?.providerAdreess || "—")}</div>
+        <div class="box-text">${this.htmlPrintS.esc(data.ordenCompraDatosPago?.providerName || "é")}</div>
+        <div class="box-text">${this.htmlPrintS.esc(data.ordenCompraDatosPago?.providerAdreess || "é")}</div>
         <div class="box-text">Tel: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.providerPhoneOne || "")}</div>
       </div>
     </div>
@@ -462,9 +462,9 @@ ${this.htmlPrintS.getStandardCss()}
         
         <div class="obs-title">Datos Fiscales / Pago:</div>
         <div class="obs-text">
-          Uso CFDI: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.usoCFDI || "—")} | 
-          Forma: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.formaDePago || "—")} | 
-          Método: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.metodoDePago || "—")}
+          Uso CFDI: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.usoCFDI || "é")} | 
+          Forma: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.formaDePago || "é")} | 
+          Método: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.metodoDePago || "é")}
         </div>
 
         <div class="signature-line">

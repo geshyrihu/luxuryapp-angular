@@ -1,13 +1,13 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+﻿import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { FlatpickrDefaults } from 'angularx-flatpickr';
-import { CustomInputSelectSignal } from 'src/app/core/components/inputs/web/custom-input-select-signal';
-import { CustomInputNumberSignal } from 'src/app/core/components/inputs/web/custom-input-number-signal';
-import { CustomInputMaskSignal } from 'src/app/core/components/inputs/web/custom-input-mask-signal';
+import { CustomInputSelectSignal } from 'src/app/core/components/web/inputs/custom-input-select-signal';
+import { CustomInputNumberSignal } from 'src/app/core/components/web/inputs/custom-input-number-signal';
+import { CustomInputMaskSignal } from 'src/app/core/components/web/inputs/custom-input-mask-signal';
 import { CustomerForm } from './customer-form';
 
 describe('CustomerForm', () => {
@@ -47,3 +47,4 @@ describe('CustomerForm', () => {
     expect(component).toBeTruthy();
   });
 });
+

@@ -10,8 +10,8 @@ import { FormsModule } from "@angular/forms";
 import { InputOtpModule } from "primeng/inputotp";
 
 /**
- * AppOtpInput â€” Wrapper sobre p-inputotp para 2FA y confirmaciÃ³n de operaciones crÃ­ticas.
- * Emite `complete` cuando todos los dÃ­gitos estÃ¡n rellenos.
+ * AppOtpInput — Wrapper sobre p-inputotp para 2FA y confirmación de operaciones críticas.
+ * Emite `complete` cuando todos los dígitos están rellenos.
  */
 @Component({
   selector: "app-otp-input",

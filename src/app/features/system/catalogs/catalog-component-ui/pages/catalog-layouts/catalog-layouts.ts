@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
@@ -13,12 +13,12 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
   template: `
     <div class="grid">
 
-      <!-- ── Layouts de Página ─────────────────────────────────────── -->
+      <!-- -- Layouts de Página --------------------------------------- -->
       <div class="col-12">
-        <p-card header="Layouts de Página — Patrones ERP">
+        <p-card header="Layouts de Página á Patrones ERP">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Los 5 layouts base del ERP. Cada uno resuelve una clase distinta de tarea operativa.
-            Selecciona el layout según la <strong>densidad de información</strong> y el
+            Selecciona el layout segón la <strong>densidad de información</strong> y el
             <strong>flujo de trabajo</strong> del módulo.
           </p>
 
@@ -55,7 +55,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
         </p-card>
       </div>
 
-      <!-- ── Templates de mockup ────────────────────────────────────── -->
+      <!-- -- Templates de mockup -------------------------------------- -->
       <ng-template #fullWidthMockup>
         <div class="h-full flex flex-column" style="padding:8px;gap:6px">
           <div class="border-round" style="height:18px;background:var(--ds-primary);opacity:.9"></div>
@@ -64,11 +64,11 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
         </div>
       </ng-template>
 
-      <!-- ── Form Layouts ───────────────────────────────────────────── -->
+      <!-- -- Form Layouts --------------------------------------------- -->
       <div class="col-12">
-        <p-card header="Form Layouts — Organización de Campos">
+        <p-card header="Form Layouts ó Organización de Campos">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            Elige la densidad del formulario según el contexto: más columnas = más densidad
+            Elige la densidad del formulario segón el contexto: mós columnas = mós densidad
             pero mayor riesgo de errores de captura. En mobile siempre usa una columna.
           </p>
 
@@ -152,7 +152,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                   }
                 </div>
                 <p class="m-0 text-xs text-color-secondary mt-auto">
-                  Configuración, preferencias, formularios de búsqueda en línea.
+                  Configuración, preferencias, formularios de bósqueda en lónea.
                 </p>
               </div>
             </div>
@@ -161,11 +161,11 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
         </p-card>
       </div>
 
-      <!-- ── Dashboard Grid ─────────────────────────────────────────── -->
+      <!-- -- Dashboard Grid ------------------------------------------- -->
       <div class="col-12">
-        <p-card header="Dashboard Grid — Composición estándar ERP">
+        <p-card header="Dashboard Grid ó Composición estóndar ERP">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            Patrón de dashboard para módulos analíticos. Combina KPIs, gráficas y listados
+            Patrón de dashboard para módulos analóticos. Combina KPIs, gróficas y listados
             en una sola vista de alto nivel.
           </p>
 
@@ -176,7 +176,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
             <div class="flex align-items-center justify-content-between px-4 py-3 border-bottom-1 surface-border">
               <div>
                 <strong class="text-sm block">Dashboard Operativo</strong>
-                <span class="text-xs text-color-secondary">Junio 2026 · Actualizado hace 5 min</span>
+                <span class="text-xs text-color-secondary">Junio 2026 é Actualizado hace 5 min</span>
               </div>
               <div class="flex gap-2">
                 <div class="border-round px-3 py-1 text-xs surface-card border-1 border-round">Exportar</div>
@@ -224,7 +224,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
                 </div>
                 <div class="col-12 md:col-4">
                   <div class="surface-card border-1 border-round p-3 h-full">
-                    <strong class="text-xs text-color-secondary block mb-2">DISTRIBUCIÓN</strong>
+                    <strong class="text-xs text-color-secondary block mb-2">DISTRIBUCIóN</strong>
                     <!-- Fake pie -->
                     <div class="flex flex-column gap-2 mt-2">
                       @for (s of pieSlices; track s.label) {
@@ -245,8 +245,8 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
               <!-- Mini table -->
               <div class="surface-card border-1 border-round mt-3 overflow-hidden">
                 <div class="flex align-items-center justify-content-between px-3 py-2 surface-section border-bottom-1 surface-border">
-                  <strong class="text-xs">ÚLTIMAS SOLICITUDES</strong>
-                  <span class="text-xs text-primary cursor-pointer">Ver todas →</span>
+                  <strong class="text-xs">óLTIMAS SOLICITUDES</strong>
+                  <span class="text-xs text-primary cursor-pointer">Ver todas ?</span>
                 </div>
                 @for (row of miniTableRows; track row.folio) {
                   <div class="flex align-items-center gap-3 px-3 py-2 border-bottom-1 surface-border text-xs">
@@ -263,7 +263,7 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
         </p-card>
       </div>
 
-      <!-- ── Reglas de Layout ──────────────────────────────────────── -->
+      <!-- -- Reglas de Layout ---------------------------------------- -->
       <div class="col-12">
         <p-card header="Reglas Generales de Layout ERP">
           <div class="grid">
@@ -303,16 +303,16 @@ export class CatalogLayouts {
     {
       id: "sidebar-content",
       titulo: "Sidebar + Contenido",
-      tag: "Estándar",
+      tag: "Esténdar",
       tagSeverity: "info" as const,
-      descripcion: "Navegación lateral fija + área de contenido principal. Layout base del ERP para la mayoría de módulos.",
+      descripcion: "Navegación lateral fija + órea de contenido principal. Layout base del ERP para la mayoría de módulos.",
       uso: "Dashboard principal, navegación entre sub-módulos.",
       template: null,
       mockupColors: { sidebar: "var(--ds-primary)", content: "#f1f5f9" },
     },
     {
       id: "master-detail",
-      titulo: "Master–Detail",
+      titulo: "MasteróDetail",
       tag: "ERP Core",
       tagSeverity: "success" as const,
       descripcion: "Lista a la izquierda + detalle/formulario a la derecha. La selección en la lista actualiza el panel de detalle.",
@@ -343,10 +343,10 @@ export class CatalogLayouts {
   ];
 
   readonly dashboardKpis = [
-    { label: "Solicitudes",  value: "348",    trend: "↑ 12%", color: "var(--ds-primary)", trendColor: "var(--ds-success)" },
-    { label: "Aprobadas",    value: "271",    trend: "↑ 8%",  color: "var(--ds-success)", trendColor: "var(--ds-success)" },
-    { label: "Pendientes",   value: "54",     trend: "↓ 3%",  color: "var(--ds-warning)", trendColor: "var(--ds-danger)"  },
-    { label: "Monto total",  value: "$1.24M", trend: "↑ 22%", color: "var(--ds-info)",    trendColor: "var(--ds-success)" },
+    { label: "Solicitudes",  value: "348",    trend: "? 12%", color: "var(--ds-primary)", trendColor: "var(--ds-success)" },
+    { label: "Aprobadas",    value: "271",    trend: "? 8%",  color: "var(--ds-success)", trendColor: "var(--ds-success)" },
+    { label: "Pendientes",   value: "54",     trend: "? 3%",  color: "var(--ds-warning)", trendColor: "var(--ds-danger)"  },
+    { label: "Monto total",  value: "$1.24M", trend: "? 22%", color: "var(--ds-info)",    trendColor: "var(--ds-success)" },
   ];
 
   readonly chartBars = [65, 82, 45, 91, 73, 88, 55, 79, 68, 95, 71, 83];
@@ -368,10 +368,10 @@ export class CatalogLayouts {
 
   readonly layoutRules = [
     { titulo: "Grid de 12 columnas",   icon: "mdi:grid",           color: "var(--ds-primary)", descripcion: "Usa siempre PrimeFlex con col-12, md:col-6, lg:col-4. Nunca anchos en px para elementos del grid." },
-    { titulo: "Max-width de contenido",icon: "mdi:arrow-collapse-horizontal", color: "var(--ds-info)", descripcion: "En full-width, el contenido tiene max-width implícito del contenedor. En sidebar+content, el content ocupa el espacio restante." },
+    { titulo: "Max-width de contenido",icon: "mdi:arrow-collapse-horizontal", color: "var(--ds-info)", descripcion: "En full-width, el contenido tiene max-width implócito del contenedor. En sidebar+content, el content ocupa el espacio restante." },
     { titulo: "Espaciado consistente", icon: "mdi:arrow-expand-vertical", color: "var(--ds-success)", descripcion: "gap-4 entre bloques principales, gap-3 entre campos relacionados, gap-2 entre elementos inline." },
-    { titulo: "Mobile primero",        icon: "mdi:cellphone",       color: "var(--ds-warning)", descripcion: "Diseña para col-12 primero. Expande con md:col-6 y lg:col-4. Los formularios siempre apilan en mobile." },
+    { titulo: "Mobile primero",        icon: "mdi:cellphone",       color: "var(--ds-warning)", descripcion: "Diseía para col-12 primero. Expande con md:col-6 y lg:col-4. Los formularios siempre apilan en mobile." },
     { titulo: "Header fijo, no pegajoso", icon: "mdi:page-layout-header", color: "var(--ds-danger)", descripcion: "El header de la app es sticky. El contenido de la página hace scroll debajo. Nunca pongas sticky en elementos de contenido." },
-    { titulo: "Jerarquía de acciones", icon: "mdi:cursor-default-click", color: "var(--ds-primary)", descripcion: "Una acción primaria por vista. Las secundarias van a la derecha o en menú contextual. Danger siempre separado y confirmado." },
+    { titulo: "Jerarquía de acciones", icon: "mdi:cursor-default-click", color: "var(--ds-primary)", descripcion: "Una acción primaria por vista. Las secundarias van a la derecha o en mené contextual. Danger siempre separado y confirmado." },
   ];
 }

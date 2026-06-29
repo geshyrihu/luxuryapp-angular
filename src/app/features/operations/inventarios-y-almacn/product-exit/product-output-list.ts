@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import {
   Component,
@@ -11,19 +11,19 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { LazyLoadEvent } from "primeng/api";
-import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
+import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
 import { CardModule } from "primeng/card";
 import { DatePickerModule } from "primeng/datepicker";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 // import { Subscription } from "rxjs"; // Removed
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonItem } from "src/app/core/components/buttons/web";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButtonItem } from "src/app/core/components/web/buttons";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -64,7 +64,7 @@ import { ProductReturn } from "./product-return";
   providers: [PaginationService],
 })
 export class ProductOutputList implements OnInit, OnDestroy {
-  // InyecciÃ³n de Dependencias
+  // Inyección de Dependencias
   apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
@@ -95,7 +95,7 @@ export class ProductOutputList implements OnInit, OnDestroy {
   selectedDateControl = new FormControl<Date | null>(null);
   filterControl = new FormControl<string>("");
 
-  // ConfiguraciÃ³n de la tabla
+  // Configuración de la tabla
   // loading = signal(true); // Replaced by toSignal
   tablePrimeNgRows: number = tablePrimeNgRows();
   rowsPerPageOptions: number[] = rowsPerPageOptions();
@@ -216,6 +216,7 @@ export class ProductOutputList implements OnInit, OnDestroy {
     // this.subscriptions.unsubscribe(); // Removed
   }
 }
+
 
 
 

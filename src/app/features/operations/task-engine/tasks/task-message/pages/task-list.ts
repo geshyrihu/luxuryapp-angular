@@ -48,10 +48,10 @@ import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -77,7 +77,7 @@ import {
   CustomButtonDelete,
   CustomButtonEdit,
   CustomButtonItem,
-} from "src/app/core/components/buttons/web";
+} from "src/app/core/components/web/buttons";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { InitialsAbbrPipe } from "src/app/core/pipes/initials-abbr.pipe";
 import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
@@ -180,8 +180,8 @@ export class TaskList implements OnInit {
   readonly ticketGroupId: string =
     this.activatedRoute.snapshot.params.ticketGroupId;
 
-  // Task-list tiene caption doble (tÃ­tulo + filtros + leyenda) que suma ~170px
-  // adicionales al offset estÃ¡ndar del servicio (240px). Total: ~410px.
+  // Task-list tiene caption doble (título + filtros + leyenda) que suma ~170px
+  // adicionales al offset estÃƒ¡ndar del servicio (240px). Total: ~410px.
   private readonly TASK_LIST_OFFSET = 320;
   scrollHeight = signal<string>(this.calcScrollHeight());
 
@@ -468,12 +468,12 @@ export class TaskList implements OnInit {
   onProgress(id: string) {
     Swal.fire({
       title: "Confirmar",
-      text: "Se colocarÃ¡ el ticket en proceso",
+      text: "Se colocará el ticket en proceso",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#0d3b66",
       cancelButtonColor: "#9B1B30",
-      confirmButtonText: "SÃ­, en proceso!",
+      confirmButtonText: "Sí, en proceso!",
       cancelButtonText: "Cancelar",
     }).then((responseData) => {
       if (responseData.value) {
@@ -670,7 +670,7 @@ export class TaskList implements OnInit {
   }
 
   onRowReorder(event: { dragIndex: number; dropIndex: number }): void {
-    // PrimeNG mutates the value array before emitting Ã¢â‚¬â€ array already has new order.
+    // PrimeNG mutates the value array before emitting ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â array already has new order.
     // items[dropIndex] is the item the user dragged.
     let items = [...this.dataSignal().items];
 
@@ -684,9 +684,9 @@ export class TaskList implements OnInit {
       return;
     }
 
-    // BFS: collect ALL transitive dependents Ã¢â‚¬â€
-    //   Ã¢â‚¬Â¢ parentTaskId === currentId  (true child tasks)
-    //   Ã¢â‚¬Â¢ dependsOnTaskId === currentId  (successor in predecessor chain)
+    // BFS: collect ALL transitive dependents ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â
+    //   ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢ parentTaskId === currentId  (true child tasks)
+    //   ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢ dependsOnTaskId === currentId  (successor in predecessor chain)
     const dependentIds = new Set<string>();
     const queue = [movedItem.id];
     const visited = new Set<string>([movedItem.id]);
@@ -719,7 +719,7 @@ export class TaskList implements OnInit {
     );
   }
 
-  // Ã¢â€â‚¬Ã¢â€â‚¬ Chain step computation (visual Gantt-style ordering) Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+  // ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ Chain step computation (visual Gantt-style ordering) ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬
 
   readonly chainStepMap = computed(() => {
     const items = this.dataSignal().items;
@@ -758,7 +758,7 @@ export class TaskList implements OnInit {
     );
   });
 
-  // Ã¢â€â‚¬Ã¢â€â‚¬ Drag-to-link (asignaciÃ³n de predecesora por arrastre) Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+  // ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ Drag-to-link (asignación de predecesora por arrastre) ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬
 
   readonly linkDragSourceId = signal<string | null>(null);
   readonly linkDragTargetId = signal<string | null>(null);
@@ -837,3 +837,4 @@ export class TaskList implements OnInit {
     });
   }
 }
+

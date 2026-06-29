@@ -1,11 +1,11 @@
-import { Component, effect, inject, signal } from "@angular/core";
+﻿import { Component, effect, inject, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 // Definimos una interfaz para la respuesta de la API.
-// Esto es opcional pero MUY RECOMENDADO para tener un código más seguro y autocompletado.
+// Esto es opcional pero MUY RECOMENDADO para tener un código mós seguro y autocompletado.
 interface PendingMinutesResponse {
   pendings: any[];
   customer: any;
@@ -33,7 +33,7 @@ export class PendingMinutes {
 
   constructor() {
     // 3. Usamos `effect` para reaccionar a los cambios del cliente.
-    //    Este bloque se ejecutará automáticamente cuando el customerId cambie.
+    //    Este bloque se ejecutaré autométicamente cuando el customerId cambie.
     effect(() => {
       const currentCustomerId = this.customerIdS.customerId();
       if (currentCustomerId) {

@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
@@ -20,7 +20,7 @@ const PATTERNS_LABELS: Record<string, string> = {
   datatablehybrid: "Data Table Hybrid",
   loginreference: "Login Reference",
   navigationreference: "Navigation Reference",
-  navhub: "Navigation Hub Page (Estándar)",
+  navhub: "Navigation Hub Page (Esténdar)",
 };
 
 @Component({
@@ -49,7 +49,7 @@ const PATTERNS_LABELS: Record<string, string> = {
             <div
               class="surface-card shadow-1 border-round-lg border-left-3 border-primary p-3"
             >
-              <h3 class="m-0">Medidor Eléctrico A1</h3>
+              <h3 class="m-0">Medidor Elóctrico A1</h3>
               <div class="flex align-items-center gap-2 mb-3 mt-2">
                 <app-icon
                   icon="mdi:flash-outline"
@@ -122,14 +122,14 @@ const PATTERNS_LABELS: Record<string, string> = {
         }
 
         @case ("navhub") {
-          <!-- ──────────────────────────────────────────────────────────── -->
-          <!-- ESTÁNDAR: Navigation Hub Page                               -->
+          <!-- ------------------------------------------------------------ -->
+          <!-- ESTéNDAR: Navigation Hub Page                               -->
           <!-- Aplica a: settings-home, master-dashboard, cobranza-nativa  -->
-          <!-- ──────────────────────────────────────────────────────────── -->
+          <!-- ------------------------------------------------------------ -->
 
-          <p-card header="Navigation Hub Page — Estándar DS">
+          <p-card header="Navigation Hub Page é Esténdar DS">
             <p class="text-sm text-secondary m-0 mb-4">
-              Patrón para páginas de entrada a módulos del ERP. Consolida grupos
+              Patrón para póginas de entrada a módulos del ERP. Consolida grupos
               de navegación en cards visuales uniformes para web y lista
               agrupada para mobile.
             </p>
@@ -137,7 +137,7 @@ const PATTERNS_LABELS: Record<string, string> = {
 
             <!-- 1. Modelo de datos requerido -->
             <h3 class="text-base font-bold mb-2">
-              1. Modelo de datos — <code>DashboardCard</code>
+              1. Modelo de datos é <code>DashboardCard</code>
             </h3>
             <div
               class="surface-ground border-round p-3 mb-4 font-mono text-xs line-height-3"
@@ -149,7 +149,7 @@ const PATTERNS_LABELS: Record<string, string> = {
 
             <!-- 2. Demo visual: card web -->
             <h3 class="text-base font-bold mb-2">
-              2. Card web — patrón visual
+              2. Card web ó patrón visual
             </h3>
             <div class="grid mb-4">
               @for (card of navHubDemo; track card.title) {
@@ -192,17 +192,17 @@ const PATTERNS_LABELS: Record<string, string> = {
             </div>
 
             <!-- 3. Reglas -->
-            <h3 class="text-base font-bold mb-2">3. Reglas del estándar</h3>
+            <h3 class="text-base font-bold mb-2">3. Reglas del esténdar</h3>
             <div class="grid text-sm">
               <div class="col-12 md:col-6">
-                <p-card styleClass="border-round-lg p-2" header="✅ Web (≥ md)">
+                <p-card styleClass="border-round-lg p-2" header="? Web (= md)">
                   <ul class="m-0 pl-3 text-xs line-height-3">
                     <li>
                       <code>border-top: 3px solid card.color</code> (acento del
                       grupo)
                     </li>
                     <li>
-                      Ícono 44×44px con <code>card.bgColor</code> de fondo
+                      ócono 44ó44px con <code>card.bgColor</code> de fondo
                     </li>
                     <li>
                       <code>app-icon</code> con
@@ -216,16 +216,16 @@ const PATTERNS_LABELS: Record<string, string> = {
                     </li>
                     <li>
                       Grid:
-                      <code>col-2 xl · col-3 lg · col-4 md · col-6 sm</code>
+                      <code>col-2 xl é col-3 lg é col-4 md é col-6 sm</code>
                     </li>
-                    <li>Header de grupo: barra vertical + uppercase + línea</li>
+                    <li>Header de grupo: barra vertical + uppercase + lónea</li>
                   </ul>
                 </p-card>
               </div>
               <div class="col-12 md:col-6">
                 <p-card
                   styleClass="border-round-lg p-2"
-                  header="📱 Mobile (< md)"
+                  header="?? Mobile (< md)"
                 >
                   <ul class="m-0 pl-3 text-xs line-height-3">
                     <li>
@@ -233,12 +233,12 @@ const PATTERNS_LABELS: Record<string, string> = {
                       <code>ion-item-divider</code> por grupo
                     </li>
                     <li>
-                      <code>div slot="start"</code> — NUNCA <code>span</code> ni
+                      <code>div slot="start"</code> é NUNCA <code>span</code> ni
                       <code>ion-avatar</code>
                     </li>
-                    <li>Ícono 36-38px con <code>ml-3 mr-2</code></li>
+                    <li>ócono 36-38px con <code>ml-3 mr-2</code></li>
                     <li>
-                      <code>[ngClass]</code> para color (aditivo) — no
+                      <code>[ngClass]</code> para color (aditivo) é no
                       <code>[class]</code>
                     </li>
                     <li>
@@ -287,14 +287,14 @@ export class CatalogPatternsItem {
   email = "";
   password = "";
 
-  // ─── Navigation Hub Page demo data ───────────────────────────
+  // --- Navigation Hub Page demo data ---------------------------
   readonly navHubModel = `interface DashboardCard {
   title:       string;      // requerido
   description: string;      // requerido (puede ser '' si no aplica)
   route?:      string;      // undefined si abre modal
   icon:        string;      // MDI icon  e.g. "mdi:home"
   bgColor:     string;      // pastel hex  e.g. "#dbeafe"
-  color:       string;      // acento hex  e.g. "#1d4ed8"  ← REQUERIDO
+  color:       string;      // acento hex  e.g. "#1d4ed8"  ? REQUERIDO
 }
 
 interface DashboardGroup {

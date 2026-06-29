@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonBadge, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -22,7 +22,7 @@ import {
   CustomButtonDelete,
   CustomButtonEdit,
   CustomButtonItem,
-} from "src/app/core/components/buttons/web";
+} from "src/app/core/components/web/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
@@ -71,7 +71,7 @@ import { WorkPositionHours } from "./work-position-hours";
   ],
 })
 export class WorkPositionList {
-  // --- INYECCIÃ“N DE DEPENDENCIAS ---
+  // --- INYECCIÓN DE DEPENDENCIAS ---
   public authS = inject(AuthService);
   readonly apiS = inject(ApiResponseService);
   private dialogHandlerS = inject(DialogHandlerService);
@@ -173,7 +173,7 @@ export class WorkPositionList {
     await this.dialogHandlerS.openDialog(
       JobDescriptionForm,
       { id, jobDescriptionId },
-      "DescripciÃ³n de puesto: " + roleName,
+      "Descripción de puesto: " + roleName,
       DialogSize.md,
     );
   }
@@ -187,7 +187,7 @@ export class WorkPositionList {
     );
   }
 
-  /** Retorna true cuando el puesto no tiene rol asignado (requiere actualizaciÃ³n). */
+  /** Retorna true cuando el puesto no tiene rol asignado (requiere actualización). */
   necesitaActualizacion(item: IWorkPosition): boolean {
     return !item.applicationRoleName || item.applicationRoleName === "Asignar";
   }
@@ -200,12 +200,12 @@ export class WorkPositionList {
     ) {
       return true;
     }
-    // LÃ³gica adicional de validaciÃ³n si es necesaria
+    // Lógica adicional de validación si es necesaria
     return true;
   }
 
   onValidateShowTIcket(applicationRoleId: string): boolean {
-    // LÃ³gica para mostrar ticket vigente
+    // Lógica para mostrar ticket vigente
     return true;
   }
 
@@ -216,3 +216,4 @@ export class WorkPositionList {
     return !isBlockingStatus;
   }
 }
+

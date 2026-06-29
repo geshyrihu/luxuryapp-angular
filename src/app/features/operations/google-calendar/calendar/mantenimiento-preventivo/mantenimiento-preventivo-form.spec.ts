@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+﻿import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { vi } from 'vitest';
@@ -108,7 +108,7 @@ describe('MantenimientoPreventivoForm', () => {
   });
 
   it('saveMachineryId should patch form', () => {
-    const item = { value: 42, label: 'Máquina X' };
+    const item = { value: 42, label: 'Móquina X' };
     component.saveMachineryId(item);
     expect(component.form.get('machineryId')?.value).toBe(42);
     expect(component.form.get('machineryName')?.value).toBe(item);

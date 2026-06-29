@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -9,9 +9,9 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputCheckSignal } from "src/app/core/components/web/inputs/custom-input-check-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 export interface IOrdenCompraStatusForm {
@@ -165,7 +165,7 @@ export class OrdenCompraStatus implements OnInit {
 
   private createFormData(DTO: any): FormData {
     const formData = new FormData();
-    // Aóadimos solo los campos que el backend espera para el [FromForm]
+    // Añadimos solo los campos que el backend espera para el [FromForm]
     formData.append("sePago", DTO.sePago);
     formData.append("seRecibio", DTO.seRecibio);
     formData.append("recibidoPor", DTO.recibidoPor);
@@ -183,6 +183,7 @@ export class OrdenCompraStatus implements OnInit {
 
   // deleteFile method deprecated/removed as we use onDeleteInvoice now
 }
+
 
 
 

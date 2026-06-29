@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, signal, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
@@ -71,14 +71,14 @@ interface BloqueVisual {
         </div>
 
         <div class="col-12 mt-5">
-          <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">Checklist de Auditoría Rápida</h3>
+          <h3 class="text-xl font-bold mb-3 border-bottom-1 border-300 pb-2">Checklist de Auditoráa Rápida</h3>
           <p-card [styleClass]="puntajeAprobatorio() ? 'border-left-3 border-green-500 mb-4' : 'border-left-3 border-red-500 mb-4'">
             <div class="flex align-items-center gap-3">
               <div class="w-4rem h-4rem border-round-lg bg-primary text-white flex align-items-center justify-content-center text-2xl font-bold">
                 {{ puntajeChecklist() }}
               </div>
               <div>
-                <strong class="text-lg">{{ puntajeChecklist() }} / 15 ítems aprobados</strong>
+                <strong class="text-lg">{{ puntajeChecklist() }} / 15 ótems aprobados</strong>
                 <p class="m-0 text-secondary text-sm">
                   {{ puntajeAprobatorio() ? "Documento listo para publicación oficial." : "Requiere correcciones obligatorias antes de publicar." }}
                 </p>

@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, signal, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import {
@@ -134,13 +134,13 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
           </ion-list>
         </div>
       </div>
-      <!-- ─── PATRÓN: Lista con Buscador + Botón Agregar ─── -->
+      <!-- --- PATRóN: Lista con Buscador + Botón Agregar --- -->
       <div class="mt-4">
         <div class="font-bold text-sm mb-3">
-          Patrón: Buscador + Lista + Agregar (estándar ERP)
+          Patrón: Buscador + Lista + Agregar (esténdar ERP)
         </div>
 
-        <!-- Barra de búsqueda + botón -->
+        <!-- Barra de bósqueda + botón -->
         <div class="flex align-items-center gap-2 mb-2">
           <ion-searchbar
             [value]="searchTerm()"
@@ -247,7 +247,7 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
           </div>
           <div
             class="ripple-item ripple-success ion-activatable"
-            (click)="onRippleTap('éxito')"
+            (click)="onRippleTap('óxito')"
           >
             <span>Acción de confirmación</span>
             <ion-ripple-effect type="bounded"></ion-ripple-effect>
@@ -260,14 +260,14 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
         }
       </div>
 
-      <!-- ─── PATRÓN: Task List (ui-stiich Corporate Integrity) ─── -->
+      <!-- --- PATRóN: Task List (ui-stiich Corporate Integrity) --- -->
       <div class="stiich-section">
         <div class="stiich-section__header">
           <span class="stiich-section__eyebrow">Corporate Integrity</span>
-          <h4 class="stiich-section__title">Task List — listado de tareas</h4>
+          <h4 class="stiich-section__title">Task List é listado de tareas</h4>
         </div>
         <p class="stiich-section__desc">
-          Lista de tareas con prioridad, estado y fecha límite. Inspirado en
+          Lista de tareas con prioridad, estado y fecha lómite. Inspirado en
           <code>listado_de_tareas_modo_claro</code>.
         </p>
         <div class="stiich-card">
@@ -324,12 +324,12 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
         </div>
       </div>
 
-      <!-- ─── PATRÓN: Contacts Directory (ui-stiich Corporate Integrity) ─── -->
+      <!-- --- PATRóN: Contacts Directory (ui-stiich Corporate Integrity) --- -->
       <div class="stiich-section">
         <div class="stiich-section__header">
           <span class="stiich-section__eyebrow">Corporate Integrity</span>
           <h4 class="stiich-section__title">
-            Contacts Directory — listado de contactos
+            Contacts Directory é listado de contactos
           </h4>
         </div>
         <p class="stiich-section__desc">
@@ -416,9 +416,9 @@ import { MOBILE_SHOWCASE_STYLES } from "../../../../shared/mobile-showcase-style
         background: var(--ds-success-light, #d1fae5);
       }
 
-      /* ═══════════════════════════════════════════════
-         Corporate Integrity DS — patrones ui-stiich
-         ═══════════════════════════════════════════════ */
+      /* -----------------------------------------------
+         Corporate Integrity DS é patrones ui-stiich
+         ----------------------------------------------- */
       .stiich-section {
         margin-top: 1.5rem;
       }
@@ -680,11 +680,11 @@ export class MobileLists {
     event.detail.complete();
   }
 
-  // ─── Search + Add pattern ───
+  // --- Search + Add pattern ---
   searchTerm = signal<string>("");
 
   private readonly allItems = [
-    { id: 1, name: "Bomba Hidroneumática", code: "EQ-001", status: "Activo" },
+    { id: 1, name: "Bomba Hidroneumótica", code: "EQ-001", status: "Activo" },
     {
       id: 2,
       name: "Generador de Emergencia",
@@ -710,13 +710,13 @@ export class MobileLists {
     console.log("Agregar nuevo registro");
   }
 
-  // ─── Ripple demo ───
+  // --- Ripple demo ---
   lastRipple = signal<string>("");
   onRippleTap(label: string): void {
     this.lastRipple.set(label);
   }
 
-  // ─── Task List data ───
+  // --- Task List data ---
   tasks = signal<Task[]>([
     {
       id: 1,
@@ -727,7 +727,7 @@ export class MobileLists {
     },
     {
       id: 2,
-      title: "Revisión de bomba hidroneumática",
+      title: "Revisión de bomba hidroneumótica",
       priority: "medium",
       due: "2026-07-05",
       completed: false,
@@ -754,7 +754,7 @@ export class MobileLists {
     );
   }
 
-  // ─── Contacts Directory data ───
+  // --- Contacts Directory data ---
   contacts = [
     {
       id: 1,

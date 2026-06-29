@@ -1,4 +1,4 @@
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CommonModule, DecimalPipe, UpperCasePipe } from "@angular/common";
 import {
   Component,
@@ -21,8 +21,8 @@ import { SplitButtonModule } from "primeng/splitbutton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -61,15 +61,15 @@ const tipoGastoTitles: { [key: number]: string } = {
 };
 
 const tipoGastoEmojis: { [key: number]: string } = {
-  [ETipoGasto.Fijo]: "ðŸ ",
-  [ETipoGasto.Variable]: "ðŸ’¸",
-  [ETipoGasto.CajaChica]: "ðŸª™",
-  [ETipoGasto.Extraordinario]: "âœ¨",
-  [ETipoGasto.Devoluciones]: "â†©ï¸",
-  [ETipoGasto.TarjetaDebito]: "ðŸ’³",
-  [ETipoGasto.Proyectos]: "ðŸ—ï¸",
-  [ETipoGasto.Nomina]: "ðŸ‘¥",
-  [ETipoGasto.Impuestos]: "⚖️",
+  [ETipoGasto.Fijo]: "Ã°Å¸ÂÂ ",
+  [ETipoGasto.Variable]: "Ã°Å¸â€™Â¸",
+  [ETipoGasto.CajaChica]: "Ã°Å¸Âªâ„¢",
+  [ETipoGasto.Extraordinario]: "Ã¢Å“Â¨",
+  [ETipoGasto.Devoluciones]: "Ã¢â€ Â©Ã¯Â¸Â",
+  [ETipoGasto.TarjetaDebito]: "Ã°Å¸â€™Â³",
+  [ETipoGasto.Proyectos]: "Ã°Å¸Ââ€”Ã¯Â¸Â",
+  [ETipoGasto.Nomina]: "Ã°Å¸â€˜Â¥",
+  [ETipoGasto.Impuestos]: "âš–ï¸",
 };
 
 @Component({
@@ -206,7 +206,7 @@ export class FundingDetail {
     this.dialogHandlerS.openDialog(
       FundingGroupFiles,
       { grupo },
-      "ðŸ“‚ | Facturas y XML",
+      "Ã°Å¸â€œâ€š | Facturas y XML",
       this.dialogHandlerS.sizeFull,
       true,
     );
@@ -339,7 +339,7 @@ export class FundingDetail {
     const ordenId = orden.ordenCompraId;
 
     console.log(
-      `ðŸ” Actualizando estado de pago para OC ID: ${ordenId} a: ${nuevoEstado}`,
+      `Ã°Å¸â€Â Actualizando estado de pago para OC ID: ${ordenId} a: ${nuevoEstado}`,
     );
 
     // 1. Preparamos la URL y el cuerpo (body) para la petición PATCH.
@@ -428,7 +428,7 @@ export class FundingDetail {
 
   openCreateOrdenCompraWizard(tipoGasto?: ETipoGasto) {
     console.log(
-      "ðŸ” ~ FundingDetail ~ openCreateOrdenCompraWizard ~ tipoGasto:",
+      "Ã°Å¸â€Â ~ FundingDetail ~ openCreateOrdenCompraWizard ~ tipoGasto:",
       tipoGasto,
     );
     // Si no se proporciona tipoGasto, no abras el diálogo aón
@@ -677,5 +677,6 @@ export class FundingDetail {
       });
   }
 }
+
 
 

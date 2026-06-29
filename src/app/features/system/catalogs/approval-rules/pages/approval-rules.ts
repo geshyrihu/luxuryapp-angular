@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { SelectButtonModule } from "primeng/selectbutton";
@@ -6,7 +6,7 @@ import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
@@ -140,3 +140,4 @@ export class ApprovalRules implements OnInit {
       .finally(() => this.saving.set(false));
   }
 }
+

@@ -1,9 +1,9 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { TableModule } from "primeng/table";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -93,3 +93,4 @@ export class EmployeeFileList {
       : "bg-slate-100 text-slate-600 border-slate-200";
   }
 }
+

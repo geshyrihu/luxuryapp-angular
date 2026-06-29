@@ -1,7 +1,7 @@
-import { Component, inject, input, OnInit, signal } from "@angular/core";
+﻿import { Component, inject, input, OnInit, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { InputTextModule } from "primeng/inputtext";
-import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
+import { CustomInputImg } from "src/app/core/components/web/inputs/custom-input-img-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
@@ -64,3 +64,4 @@ export class EmployeeAvatarForm implements OnInit {
       });
   }
 }
+

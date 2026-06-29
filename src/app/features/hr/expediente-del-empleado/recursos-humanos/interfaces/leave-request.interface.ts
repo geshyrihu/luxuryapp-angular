@@ -1,4 +1,4 @@
-export enum EPaidStatus {
+﻿export enum EPaidStatus {
   ConGozedeSueldo = 0,
   SinGozedeSueldo = 1,
 }
@@ -9,7 +9,7 @@ export interface LeaveRequestDTO {
   requestTypeName: string;
   applicationUserId: string;
   employeeFullName: string;
-  startDate: string; // DateOnly → string en JSON ("2025-04-10")
+  startDate: string; // DateOnly ? string en JSON ("2025-04-10")
   endDate: string;
   startTime: string | null; // "09:00:00"
   endTime: string | null;

@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -22,11 +22,11 @@ import { MessageModule } from "primeng/message";
 import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -198,7 +198,7 @@ export class VacacionesPasadasRegistro implements OnInit {
     this.form.controls.dateRange.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((value) => {
-        console.log("ðŸ” [ValueChanges] dateRange:", value);
+        console.log("Ã°Å¸â€Â [ValueChanges] dateRange:", value);
         this.dateRangeSignal.set(value);
         this.form.updateValueAndValidity();
       });
@@ -211,7 +211,7 @@ export class VacacionesPasadasRegistro implements OnInit {
     this.dateRangeSignal.set(value);
     this.form.updateValueAndValidity();
     console.log(
-      "ðŸ” Estado Form tras selección:",
+      "Ã°Å¸â€Â Estado Form tras selección:",
       this.form.status,
       "Errores:",
       this.form.errors,
@@ -242,7 +242,7 @@ export class VacacionesPasadasRegistro implements OnInit {
     this.apiResponseS
       .onGetItem(`vacation-request-approvals/${employeeId}/balance`)
       .then((response: VacationBalanceDTO) => {
-        console.log("ðŸ” Balance Cargado:", response);
+        console.log("Ã°Å¸â€Â Balance Cargado:", response);
         this.balance.set(response);
         if (response) {
           const hireDate = new Date(response.employeeAdmissionDate);
@@ -257,7 +257,7 @@ export class VacacionesPasadasRegistro implements OnInit {
           }
 
           if (monthsOfService < 6) {
-            console.warn("âš ï¸ Empleado con menos de 6 meses");
+            console.warn("Ã¢Å¡Â Ã¯Â¸Â Empleado con menos de 6 meses");
             this.eligibilityStatus.set("not-yet-6-months");
             this.form.controls.dateRange.disable();
           } else if (response.seniorityYears < 1 && response.isAdvancePeriod) {
@@ -271,7 +271,7 @@ export class VacacionesPasadasRegistro implements OnInit {
             this.availableAdvanceDaysDisplay.set(null);
             this.form.controls.dateRange.enable();
           } else {
-            console.warn("âš ï¸ No elegible este Año");
+            console.warn("Ã¢Å¡Â Ã¯Â¸Â No elegible este Año");
             this.eligibilityStatus.set("not-eligible-this-year");
             this.form.controls.dateRange.disable();
           }
@@ -341,7 +341,7 @@ export class VacacionesPasadasRegistro implements OnInit {
       : balance.availableDays;
 
     console.log(
-      `ðŸ” Validando: Solicitados=${requestedDays}, Disponibles=${available}`,
+      `Ã°Å¸â€Â Validando: Solicitados=${requestedDays}, Disponibles=${available}`,
     );
 
     if (requestedDays > available) {
@@ -399,7 +399,7 @@ export class VacacionesPasadasRegistro implements OnInit {
           // Refrescamos los datos para que el usuario vea el cambio reflejado
           if (currentEmployeeId) {
             console.log(
-              "ðŸ” Refrescando datos para el empleado:",
+              "Ã°Å¸â€Â Refrescando datos para el empleado:",
               currentEmployeeId,
             );
             this.refreshBalance();
@@ -415,4 +415,5 @@ export class VacacionesPasadasRegistro implements OnInit {
       .finally(() => this.submitting.set(false));
   }
 }
+
 

@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -45,7 +45,7 @@ export class TaskMessageReportResumen {
     const startDateFormatted = event.startDate.toISOString(); // Formato: '2024-09-30T00:00:00.000Z'
     const endDateFormatted = event.endDate.toISOString(); // Formato: '2024-10-17T00:00:00.000Z'
 
-    // Aquí puedes usar las fechas seleccionadas para obtener el reporte de tickets
+    // Aqué puedes usar las fechas seleccionadas para obtener el reporte de tickets
     this.onLoadData(startDateFormatted, endDateFormatted);
   }
 }

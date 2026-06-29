@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   inject,
@@ -62,16 +62,16 @@ export class AiAgentContabilidadOnlineComponent {
   ]);
 
   suggestedQuestions = [
-    "¿Qué hallazgo relevante ves en este reporte y por qué importa?",
-    "¿Hay cuentas o saldos atípicos que debería revisar primero?",
-    "¿Cómo se explica la variación principal del periodo?",
-    "¿Ves riesgo de déficit, presión de cobranza o desfase presupuestal?",
-    "¿Qué cuenta o bloque explica más el resultado del periodo?",
-    "¿Hay alguna inconsistencia entre lo que muestra el reporte y su lógica esperada?",
-    "Si este es EPF, ¿cómo impactan 104, 302, 303 o 205/206?",
-    "Si este es Estado de Resultados, ¿qué cuentas dominan ingresos o gastos?",
-    "Si este es P vs R, ¿cuál es la desviación más importante?",
-    "Si este es Cobranza, ¿qué lectura operativa harías del corte?",
+    "óQuó hallazgo relevante ves en este reporte y por qué importa?",
+    "éHay cuentas o saldos atópicos que debería revisar primero?",
+    "óCómo se explica la variación principal del periodo?",
+    "óVes riesgo de dóficit, presión de cobranza o desfase presupuestal?",
+    "óQuó cuenta o bloque explica mós el resultado del periodo?",
+    "óHay alguna inconsistencia entre lo que muestra el reporte y su lígica esperada?",
+    "Si este es EPF, ócómo impactan 104, 302, 303 o 205/206?",
+    "Si este es Estado de Resultados, óquó cuentas dominan ingresos o gastos?",
+    "Si este es P vs R, ócuól es la desviación mós importante?",
+    "Si este es Cobranza, óquó lectura operativa harías del corte?",
   ];
 
   togglePanel() {
@@ -136,7 +136,7 @@ export class AiAgentContabilidadOnlineComponent {
         {
           role: "assistant",
           content:
-            "Ocurrió un error al procesar tu pregunta en el agente de Contabilidad Online. Intenta nuevamente más tarde.",
+            "Ocurrié un error al procesar tu pregunta en el agente de Contabilidad Online. Intenta nuevamente mós tarde.",
         },
       ]);
     } finally {
@@ -182,13 +182,13 @@ export class AiAgentContabilidadOnlineComponent {
       if (!played) {
         this.toastS.showError(
           "No se pudo reproducir",
-          "La respuesta se recibió, pero no fue posible generar el audio con ElevenLabs.",
+          "La respuesta se recibié, pero no fue posible generar el audio con ElevenLabs.",
         );
       }
     } catch {
       this.toastS.showError(
         "Error de audio",
-        "Ocurrió un problema al reproducir la respuesta con ElevenLabs.",
+        "Ocurrié un problema al reproducir la respuesta con ElevenLabs.",
       );
     } finally {
       this.speaking.set(false);

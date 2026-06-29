@@ -1,7 +1,7 @@
-import { Component, OnInit, output } from "@angular/core";
+﻿import { Component, OnInit, output } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { CustomButtonItem } from "src/app/core/components/buttons/web/custom-button-item";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
+import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
 import { DateRangeStorageService } from "../../services/date-range-storage.service";
 @Component({
   selector: "app-task-date-range-selector",
@@ -44,3 +44,4 @@ export class TaskDateRangeSelector implements OnInit {
     }
   }
 }
+

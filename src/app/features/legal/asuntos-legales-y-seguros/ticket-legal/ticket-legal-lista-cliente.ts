@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
@@ -6,8 +6,8 @@ import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { CustomButtonItem } from "src/app/core/components/buttons/web";
-import { CustomButtonTracking } from "src/app/core/components/buttons/web/custom-button-tracking";
+import { CustomButtonItem } from "src/app/core/components/web/buttons";
+import { CustomButtonTracking } from "src/app/core/components/web/buttons/custom-button-tracking";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
@@ -102,3 +102,4 @@ export class TicketLegalListaCliente implements OnInit {
     );
   }
 }
+

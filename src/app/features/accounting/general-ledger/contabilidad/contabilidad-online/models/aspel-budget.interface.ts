@@ -1,4 +1,4 @@
-// ── EPF (Estado de Posición Financiera) — DTO compacto ───────────────────────
+﻿// -- EPF (Estado de Posición Financiera) ó DTO compacto -----------------------
 
 /** Respuesta del endpoint balance-sheet/{customerId}/{year}/{mes} */
 export interface IEpfDTO {
@@ -22,7 +22,7 @@ export interface IEpfCuentaDTO {
   saldoCorte: number;
 }
 
-// ── Otros reportes financieros ────────────────────────────────────────────────
+// -- Otros reportes financieros ------------------------------------------------
 
 export interface IFinancialStatementDto {
   catalogo: string;
@@ -32,7 +32,7 @@ export interface IFinancialStatementDto {
   clasificaciones: IClasificacionCuentasDto[];
   cuentasObsoletas: IObsoleteAccountDto[];
   cuentasFaltantes: ICuentaFaltanteDto[];
-  /** Remanente acumulado del ejercicio por mes (índice 0=Enero…11=Dic). Replica @RAN de Aspel COI. */
+  /** Remanente acumulado del ejercicio por mes (óndice 0=Eneroó11=Dic). Replica @RAN de Aspel COI. */
   remanenteDelEjercicio: number[];
 }
 
@@ -121,7 +121,7 @@ export interface IObsoleteAccountDto {
   naturaleza: string;
 }
 
-// ── Análisis de Cobranza ─────────────────────────────────────────────────────
+// -- Análisis de Cobranza -----------------------------------------------------
 export interface IAnalisisCobranzaDto {
   nombreEmpresa: string;
   periodo: string;
@@ -277,7 +277,7 @@ export interface IReporteFinancieroFondoDto {
 
 export type AspelBudgetDTO = IBaseAccountDto;
 
-// ── Aspel Raw Data (Debug) ──────────────────────────────────────────────────
+// -- Aspel Raw Data (Debug) --------------------------------------------------
 
 export interface IAspelDatosCombinadosDTO {
   cuentas: IAspelCuentaDTO[];
@@ -376,7 +376,7 @@ export interface IAspelAuxiliarDTO {
   montoMov: number;
 }
 
-// ── Bancos e Inversiones ──────────────────────────────────────────────────────
+// -- Bancos e Inversiones ------------------------------------------------------
 
 export interface IBancosInversionesDto {
   nombreEmpresa: string;
@@ -438,7 +438,7 @@ export interface IProyectoMesDTO {
   cargo: number;
 }
 
-// ── Aspel Raw Data (Debug) ──────────────────────────────────────────────────
+// -- Aspel Raw Data (Debug) --------------------------------------------------
 
 export interface IAspelDatosCombinadosDTO {
   cuentas: IAspelCuentaDTO[];

@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import {
@@ -108,7 +108,7 @@ export class MinutasReunionesConsejoDirectivoDetalle implements OnInit {
         return "status-pendiente";
 
       case "en progreso":
-      case "proceso": // por si en los datos llega como “proceso”
+      case "proceso": // por si en los datos llega como óprocesoó
       case "doing":
         return "status-en-progreso";
 

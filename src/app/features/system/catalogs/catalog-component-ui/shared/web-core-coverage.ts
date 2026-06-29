@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
@@ -15,7 +15,7 @@ import {
   CustomButtonSendEmail,
   CustomButtonTracking,
   CustomButtonViewPdf,
-} from "src/app/core/components/buttons/web";
+} from "src/app/core/components/web/buttons";
 import {
   CustomInputAutoComplete,
   CustomInputAutoMultiple,
@@ -44,7 +44,7 @@ import {
   CustomInputTime,
   CustomInputUrl,
   CustomSearchInput,
-} from "src/app/core/components/inputs/web";
+} from "src/app/core/components/web/inputs";
 
 @Component({
   selector: "app-web-core-coverage",
@@ -495,7 +495,7 @@ import {
             </div>
             <div class="web-screen__table">
               <div class="web-screen__table-head">
-                <span>Área</span>
+                <span>Ãrea</span>
                 <span>Estado</span>
                 <span>Monto</span>
               </div>
@@ -956,3 +956,4 @@ export class WebCoreCoverage {
     { label: "Operador", value: 3 },
   ];
 }
+

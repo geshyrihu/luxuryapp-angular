@@ -1,5 +1,5 @@
-import { Component, output } from "@angular/core";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+﻿import { Component, output } from "@angular/core";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 @Component({
   selector: "app-task-report-actions",
   templateUrl: "./task-report-actions.html",
@@ -16,3 +16,4 @@ export class TaskReportActions {
     this.sendReportClicked.emit();
   }
 }
+

@@ -1,9 +1,9 @@
-import { Component, OnInit, effect, inject, signal } from "@angular/core";
+﻿import { Component, OnInit, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
 import { FieldsetModule } from "primeng/fieldset";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { CustomerTaskItemConfig } from "src/app/core/models/recurring-tasks/customer-task-item-config.model";
@@ -109,3 +109,4 @@ export class CustomerConfig implements OnInit {
     });
   }
 }
+

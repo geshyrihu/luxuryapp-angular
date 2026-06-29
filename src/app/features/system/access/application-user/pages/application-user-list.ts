@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { AvatarModule } from "primeng/avatar";
 import { CardModule } from "primeng/card";
@@ -12,10 +12,10 @@ import {
   CustomButtonDelete,
   CustomButtonEdit,
   CustomButtonItem,
-} from "src/app/core/components/buttons/web";
+} from "src/app/core/components/web/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -69,7 +69,7 @@ export class ApplicationUserList implements OnInit {
   dataSignal = signal<IApplicationUserDTO[]>([]);
   filteredDataSignal = signal<IApplicationUserDTO[]>([]);
 
-  searchText: string = ""; // Para almacenar el texto de bÃºsqueda
+  searchText: string = ""; // Para almacenar el texto de búsqueda
   selectCustomerSignal = signal<ISelectItem[]>([]);
   cbTypePersonSignal = signal<ISelectItem[]>([]);
 
@@ -125,14 +125,14 @@ export class ApplicationUserList implements OnInit {
           this.dataSignal.set(result);
           this.filteredDataSignal.set(result);
 
-          // Agrupar customers Ãºnicos para el select
+          // Agrupar customers únicos para el select
           const uniqueCustomers = [
             ...new Set(result.map((item: any) => item.customer)),
           ];
 
           // Crear opciones para el select
           this.selectCustomerSignal.set([
-            { label: "Mostrar todos", value: "all" }, // OpciÃ³n para mostrar todos
+            { label: "Mostrar todos", value: "all" }, // Opción para mostrar todos
             ...uniqueCustomers.map(
               (customer): ISelectItem => ({
                 label: customer ? String(customer) : "Sin Cliente",
@@ -144,7 +144,7 @@ export class ApplicationUserList implements OnInit {
       });
   }
 
-  // MÃ©todo para filtrar por cliente
+  // Método para filtrar por cliente
   onSelectForCustomer(selectedValue: string) {
     if (selectedValue === "all") {
       // Si selecciona "Mostrar todos", mostrar todos los datos
@@ -285,3 +285,4 @@ export class ApplicationUserList implements OnInit {
       });
   }
 }
+

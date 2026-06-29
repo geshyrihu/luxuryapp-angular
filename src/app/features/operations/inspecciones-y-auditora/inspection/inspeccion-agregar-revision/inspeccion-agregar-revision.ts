@@ -1,7 +1,7 @@
-import { Component } from "@angular/core";
+﻿import { Component } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 
 @Component({
   selector: "app-inspeccion-agregar-revision",
@@ -19,6 +19,7 @@ export class InspeccionAgregarRevision {
     { label: 'Funcionamiento w.c.', value: 'Funcionamiento w.c.' },
   ];
 }
+
 
 
 

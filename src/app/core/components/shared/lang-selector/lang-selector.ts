@@ -17,17 +17,17 @@ export interface Language {
 }
 
 export const DEFAULT_LANGUAGES: Language[] = [
-  { code: "es-MX", label: "EspaÃ±ol (MÃ©xico)", flag: "ðŸ‡²ðŸ‡½", locale: "es-MX" },
-  { code: "es-ES", label: "EspaÃ±ol (EspaÃ±a)", flag: "ðŸ‡ªðŸ‡¸", locale: "es-ES" },
-  { code: "en-US", label: "English (US)", flag: "ðŸ‡ºðŸ‡¸", locale: "en-US" },
-  { code: "en-GB", label: "English (UK)", flag: "ðŸ‡¬ðŸ‡§", locale: "en-GB" },
-  { code: "pt-BR", label: "PortuguÃªs (Brasil)", flag: "ðŸ‡§ðŸ‡·", locale: "pt-BR" },
-  { code: "fr-FR", label: "FranÃ§ais", flag: "ðŸ‡«ðŸ‡·", locale: "fr-FR" },
+  { code: "es-MX", label: "Español (México)", flag: "🇲🇽", locale: "es-MX" },
+  { code: "es-ES", label: "Español (España)", flag: "🇪🇸", locale: "es-ES" },
+  { code: "en-US", label: "English (US)", flag: "🇺🇸", locale: "en-US" },
+  { code: "en-GB", label: "English (UK)", flag: "🇬🇧", locale: "en-GB" },
+  { code: "pt-BR", label: "Português (Brasil)", flag: "🇧🇷", locale: "pt-BR" },
+  { code: "fr-FR", label: "Français", flag: "🇫🇷", locale: "fr-FR" },
 ];
 
 /**
- * AppLangSelector â€” Dropdown de selecciÃ³n de idioma/locale.
- * Emite `langChange` con el cÃ³digo del idioma seleccionado.
+ * AppLangSelector — Dropdown de selección de idioma/locale.
+ * Emite `langChange` con el código del idioma seleccionado.
  */
 @Component({
   selector: "app-lang-selector",
@@ -92,7 +92,7 @@ export const DEFAULT_LANGUAGES: Language[] = [
 export class AppLangSelector {
   selectedCode = model<string>("es-MX");
   languages = input<Language[]>(DEFAULT_LANGUAGES);
-  label = input<string>("Idioma / RegiÃ³n");
+  label = input<string>("Idioma / Región");
   placeholder = input<string>("Seleccionar idioma");
   showLabel = input<boolean>(true);
 

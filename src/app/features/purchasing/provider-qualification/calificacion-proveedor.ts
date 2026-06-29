@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -7,7 +7,7 @@ import {
 } from "@angular/forms";
 import { NgbRatingModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 @Component({
@@ -71,6 +71,7 @@ export class CalificacionProveedor implements OnInit {
     }
   }
 }
+
 
 
 

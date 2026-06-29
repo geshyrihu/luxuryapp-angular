@@ -1,4 +1,4 @@
-import { CurrencyPipe, NgClass } from "@angular/common";
+﻿import { CurrencyPipe, NgClass } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
@@ -25,7 +25,7 @@ export default class ChargeTemplateCoverage {
 
   dataSignal = signal<TemplateCoverageDTO[]>([]);
 
-  /** Columnas de periodo únicas ordenadas, extraídas de todos los registros */
+  /** Columnas de periodo ónicas ordenadas, extraódas de todos los registros */
   periodColumns = computed(() => {
     const keys = new Map<string, { label: string; year: number; month: number }>();
     for (const row of this.dataSignal()) {
@@ -39,7 +39,7 @@ export default class ChargeTemplateCoverage {
       .map(([key, v]) => ({ key, ...v }));
   });
 
-  /** Mapa precalculado: rowIndex → { periodKey → amount } */
+  /** Mapa precalculado: rowIndex ? { periodKey ? amount } */
   periodsMap = computed(() => {
     return this.dataSignal().map((row) => {
       const map: Record<string, number> = {};

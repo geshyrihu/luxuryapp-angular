@@ -1,8 +1,8 @@
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CommonModule, DecimalPipe } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -90,3 +90,4 @@ export default class CobranzaDashboard {
     return `${Math.round((value / this.maxFacturado()) * 100)}%`;
   }
 }
+

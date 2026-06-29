@@ -1,10 +1,10 @@
-import { CommonModule, formatDate } from "@angular/common";
+﻿import { CommonModule, formatDate } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import FileSaver from "file-saver";
 import { FormsModule } from "@angular/forms";
 import { DatePickerModule } from "primeng/datepicker";
 import { TableModule } from "primeng/table";
-import { CustomButtonDownload } from "src/app/core/components/buttons/web/custom-button-download";
+import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -168,7 +168,7 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, "Recepción de Pipas de Agua — Reporte", periodoLabel, generatedAt, "MANTENIMIENTO")}
+  ${this.htmlPrintS.buildStandardHeader(logo, "Recepción de Pipas de Agua â€” Reporte", periodoLabel, generatedAt, "MANTENIMIENTO")}
 
   <div class="body-doc">
     <div style="border-top: 2px solid #f59e0b; margin-bottom: 10px;"></div>
@@ -180,7 +180,7 @@ ${this.htmlPrintS.getStandardCss()}
           <div class="kmdi:value">${this.totalRecepciones()}</div>
         </div>
         <div class="kmdi:card">
-          <div class="kmdi:title">Total m³ descargados</div>
+          <div class="kmdi:title">Total mÂ³ descargados</div>
           <div class="kmdi:value blue">${Math.round(this.totalM3())}</div>
         </div>
       </div>
@@ -191,7 +191,7 @@ ${this.htmlPrintS.getStandardCss()}
           </thead>
           <tbody>
             <tr>
-              <td>Importe total (precio con IVA × m³)</td>
+              <td>Importe total (precio con IVA Ã— mÂ³)</td>
               <td style="text-align: right; font-weight: bold;">${fmtMoney(this.totalConIVA())}</td>
             </tr>
             <tr>
@@ -224,7 +224,7 @@ ${this.htmlPrintS.getStandardCss()}
           <th>Llegada / Término</th>
           <th style="text-align: center;">Cisterna ant → des</th>
           <th style="text-align: center;">Medidor ini → fin</th>
-          <th style="text-align: right;">m³</th>
+          <th style="text-align: right;">mÂ³</th>
           <th style="text-align: right;">Costo / Importe</th>
           <th>Personal</th>
         </tr>
@@ -262,8 +262,8 @@ ${this.htmlPrintS.getStandardCss()}
           "Dif. cisterna (%)": (item.nivelCisternaDespues ?? 0) - (item.nivelCisternaAntes ?? 0),
           "Medidor inicial": item.lecturaMedidorInicial,
           "Medidor final": item.lecturaMedidorFinal,
-          "m³ ingresados": m3,
-          "Costo m³": item.costoMetroCubico,
+          "mÂ³ ingresados": m3,
+          "Costo mÂ³": item.costoMetroCubico,
           "Importe (c/IVA)": (item.costoMetroCubico ?? 0) * m3,
           "Colaborador mtto": item.colaboradorMtto ?? "",
           "Guardia testigo": item.guardiaSeguridad ?? "",
@@ -282,3 +282,4 @@ ${this.htmlPrintS.getStandardCss()}
   }
 
 }
+

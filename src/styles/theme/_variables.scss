@@ -207,26 +207,28 @@
 
   // ── DESIGN SYSTEM TOKENS (--ds-*) ────────────────────────────────
 
-  // Primario — Executive Precision (desde core/_colors.scss)
-  --ds-primary: #{c.$primary-600};
+  // Primario — ERP Premium Deep Navy
+  --ds-primary: #{c.$primary-700};
   --ds-on-primary: #{c.$neutral-0};
-  --ds-primary-container: #{c.$primary-500};
-  --ds-on-primary-container: #{c.$primary-100};
-  --ds-inverse-primary: #{c.$primary-200};
+  --ds-primary-container: #{c.$primary-100};
+  --ds-on-primary-container: #{c.$primary-700};
+  --ds-inverse-primary: #{c.$primary-400};
 
-  --ds-secondary: #{c.$secondary-600};
-  --ds-on-secondary: #{c.$neutral-0};
-  --ds-secondary-container: #{c.$secondary-100};
-  --ds-on-secondary-container: #{c.$secondary-700};
+  // Secondary -> Gold (Accent)
+  --ds-secondary: #{c.$warning-600};
+  --ds-on-secondary: #{c.$primary-700};
+  --ds-secondary-container: #{c.$warning-100};
+  --ds-on-secondary-container: #{c.$warning-800};
 
-  --ds-tertiary: #{c.$tertiary-600};
+  // Tertiary -> Cyan (Accent)
+  --ds-tertiary: #{c.$info-500};
   --ds-on-tertiary: #{c.$neutral-0};
-  --ds-tertiary-container: #{c.$tertiary-400};
-  --ds-on-tertiary-container: #{c.$tertiary-800};
+  --ds-tertiary-container: #{c.$info-100};
+  --ds-on-tertiary-container: #{c.$primary-700};
 
-  --ds-error: #{c.$color-danger-brand};
+  --ds-error: #{c.$danger-600};
   --ds-on-error: #{c.$neutral-0};
-  --ds-error-container: #{c.$color-danger-bg};
+  --ds-error-container: #{c.$danger-100};
   --ds-on-error-container: #{c.$danger-800};
 
   // Superficies — Executive Precision (desde core/_colors.scss)
@@ -312,9 +314,9 @@
   // Texto — DESIGN.md on-surface roles
   --ds-text-primary: var(--ds-on-surface);
   --ds-text-secondary: var(--ds-on-surface-variant);
-  --ds-text-muted: var(--ds-outline);
+  --ds-text-muted: #{c.$neutral-500};
   --ds-text-inverse: var(--ds-inverse-on-surface);
-  --ds-text-disabled: var(--ds-outline-variant);
+  --ds-text-disabled: #{c.$neutral-400};
   --ds-text-link: var(--ds-surface-tint);
 
   // Tipografía ERP — Hanken Grotesk (headlines) + Inter (body)
@@ -415,9 +417,9 @@ body.theme-dark {
 
   --ds-text-primary: var(--ds-on-surface);
   --ds-text-secondary: var(--ds-on-surface-variant);
-  --ds-text-muted: var(--ds-outline);
+  --ds-text-muted: #{c.$neutral-400};
   --ds-text-inverse: var(--ds-on-background);
-  --ds-text-disabled: var(--ds-outline-variant);
+  --ds-text-disabled: #{c.$neutral-600};
   --ds-text-link: var(--ds-inverse-primary);
 
   --ds-border: var(--ds-outline-variant);

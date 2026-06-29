@@ -1,4 +1,4 @@
-import { inject, Injectable } from "@angular/core";
+﻿import { inject, Injectable } from "@angular/core";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 
 @Injectable({ providedIn: "root" })
@@ -39,7 +39,7 @@ export class HidranteBitacoraPdfService {
 
     const period =
       fromISO || toISO
-        ? `${fromISO ? this.fmtDate(fromISO) : "—"} al ${toISO ? this.fmtDate(toISO) : "—"}`
+        ? `${fromISO ? this.fmtDate(fromISO) : "é"} al ${toISO ? this.fmtDate(toISO) : "é"}`
         : "Todo el período";
 
     const rows = filtered
@@ -69,14 +69,14 @@ ${this.htmlPrintS.getStandardCss()}
   .tc { text-align:center; }
 </style>
 </head><body><div class="container">
-${this.htmlPrintS.buildStandardHeader(logo, "BITÁCORA DE HIDRANTES", "", generatedAt, "HIDRANTE", period)}
+${this.htmlPrintS.buildStandardHeader(logo, "BITóCORA DE HIDRANTES", "", generatedAt, "HIDRANTE", period)}
 <div class="body-doc">
   <table class="data-table">
     <thead><tr>
       <th>Fecha</th><th class="tc">Hora</th><th class="tc">Etiqueta</th>
       <th class="tc">Cristal</th><th class="tc">Llave</th>
       <th class="tc">Manguera</th><th class="tc">Chiflón</th>
-      <th class="tc">Válvula</th><th class="tc">Cerradura</th>
+      <th class="tc">Vólvula</th><th class="tc">Cerradura</th>
       <th>Estado Gabinete</th>
     </tr></thead>
     <tbody>${rows}</tbody>

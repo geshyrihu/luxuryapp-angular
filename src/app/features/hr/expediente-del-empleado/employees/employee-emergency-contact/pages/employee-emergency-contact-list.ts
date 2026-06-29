@@ -1,4 +1,4 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import {
   Component,
   computed,
@@ -19,8 +19,8 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { CommonModule } from "@angular/common";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonConfirm } from "src/app/core/components/buttons/web/custom-button-confirm";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EmployeeEmergencyContactForm } from "./employee-emergency-contact-form";
@@ -136,3 +136,4 @@ export class EmployeeEmergencyContactList implements OnInit {
       });
   }
 }
+

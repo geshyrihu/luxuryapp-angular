@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 
@@ -7,7 +7,7 @@ import { AccordionModule } from "primeng/accordion";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 
 @Component({
   selector: "app-entrega-recepcion-check",
@@ -513,3 +513,4 @@ export class EntregaRecepcionCheckComponent implements OnInit {
     }));
   }
 }
+

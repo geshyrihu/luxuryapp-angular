@@ -1,4 +1,4 @@
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import {
     CdkDragDrop,
     DragDropModule,
@@ -22,12 +22,12 @@ import { InputTextModule } from "primeng/inputtext";
 import { MessageModule } from "primeng/message";
 import { TooltipModule } from "primeng/tooltip";
 import { FieldsetModule } from "primeng/fieldset";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
-import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
+import { CustomInputCheckSignal } from "src/app/core/components/web/inputs/custom-input-check-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
@@ -277,7 +277,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
 
     if (hasDuplicates || hasOutOfRange) {
       console.warn(
-        `?? Problemas con los órdenes en categoróa ${categoryIndex + 1}`,
+        `?? Problemas con los órdenes en categoría ${categoryIndex + 1}`,
       );
     }
   }
@@ -298,6 +298,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
     });
   }
 }
+
 
 
 

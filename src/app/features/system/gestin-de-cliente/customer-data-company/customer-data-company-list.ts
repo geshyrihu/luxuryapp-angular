@@ -11,9 +11,9 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
 import {
   CustomButtonDelete,
   CustomButtonEdit,
-} from "src/app/core/components/buttons/web";
+} from "src/app/core/components/web/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -53,7 +53,7 @@ import { CustomerDataCompanyForm } from "./customer-data-company-form";
 export class CustomerDataCompanyList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
-  // DeclaraciÃ³n e inicializaciÃ³n de variables
+  // Declaración e inicialización de variables
   data = signal<CustomerDataCompanyDTO[]>([]);
   readonly globalFilterFields = signal<string[]>([
     "customer",
@@ -65,7 +65,7 @@ export class CustomerDataCompanyList implements OnInit {
   loading = signal(true);
   readonly tablePrimeNgRows: number = tablePrimeNgRows();
   readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
-  ref: DynamicDialogRef; // Referencia a un cuadro de diÃ¡logo modal
+  ref: DynamicDialogRef; // Referencia a un cuadro de diÃƒ¡logo modal
 
   groupingOptions = [
     { label: "Agrupar por Cliente", value: "numeroCliente" },
@@ -134,7 +134,7 @@ export class CustomerDataCompanyList implements OnInit {
       });
   }
 
-  // FunciÃ³n para abrir un cuadro de diÃ¡logo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diÃƒ¡logo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(
@@ -148,3 +148,4 @@ export class CustomerDataCompanyList implements OnInit {
       });
   }
 }
+

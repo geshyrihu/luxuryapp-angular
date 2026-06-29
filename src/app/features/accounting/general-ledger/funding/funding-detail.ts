@@ -1,4 +1,4 @@
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CommonModule, DecimalPipe, UpperCasePipe } from "@angular/common";
 import {
   Component,
@@ -21,8 +21,8 @@ import { SplitButtonModule } from "primeng/splitbutton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -61,15 +61,15 @@ const tipoGastoTitles: { [key: number]: string } = {
 };
 
 const tipoGastoEmojis: { [key: number]: string } = {
-  [ETipoGasto.Fijo]: "🏠",
-  [ETipoGasto.Variable]: "💸",
-  [ETipoGasto.CajaChica]: "🪙",
-  [ETipoGasto.Extraordinario]: "✨",
-  [ETipoGasto.Devoluciones]: "↩️",
-  [ETipoGasto.TarjetaDebito]: "💳",
-  [ETipoGasto.Proyectos]: "🏗️",
-  [ETipoGasto.Nomina]: "👥",
-  [ETipoGasto.Impuestos]: "⚖️",
+  [ETipoGasto.Fijo]: "ðŸ ",
+  [ETipoGasto.Variable]: "ðŸ’¸",
+  [ETipoGasto.CajaChica]: "ðŸª™",
+  [ETipoGasto.Extraordinario]: "âœ¨",
+  [ETipoGasto.Devoluciones]: "â†©ï¸",
+  [ETipoGasto.TarjetaDebito]: "ðŸ’³",
+  [ETipoGasto.Proyectos]: "ðŸ—ï¸",
+  [ETipoGasto.Nomina]: "ðŸ‘¥",
+  [ETipoGasto.Impuestos]: "âš–ï¸",
 };
 
 @Component({
@@ -206,7 +206,7 @@ export class FundingDetail {
     this.dialogHandlerS.openDialog(
       FundingGroupFiles,
       { grupo },
-      "📁 | Facturas y XML",
+      "ðŸ“ | Facturas y XML",
       this.dialogHandlerS.sizeFull,
       true,
     );
@@ -351,7 +351,7 @@ export class FundingDetail {
     this.apiResponseS.onPatch(urlApi, body).then((success) => {
       // 3. Manejamos el caso de error. Si la API falla, 'success' será false.
       if (!success) {
-        // CRÍTICO! Si la actualización falló en el backend,
+        // CRÃTICO! Si la actualización falló en el backend,
         // revertimos el cambio en la UI para que no mienta al usuario.
         console.error(
           `Falló la actualización para la OC ${ordenId}. Revertiendo el cambio en la UI.`,
@@ -689,4 +689,5 @@ export class FundingDetail {
       });
   }
 }
+
 

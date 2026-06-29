@@ -1,10 +1,10 @@
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Component, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { TagModule } from "primeng/tag";
 import { ButtonModule } from "primeng/button";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { IonItem, IonItemDivider, IonLabel, IonList } from "@ionic/angular/standalone";
 import {
   HeroMetric,
@@ -91,3 +91,4 @@ export default class CobranzaNativaDashboard {
     return map[role];
   }
 }
+

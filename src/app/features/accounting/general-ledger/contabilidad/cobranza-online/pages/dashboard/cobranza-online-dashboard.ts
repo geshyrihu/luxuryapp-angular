@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { ButtonModule } from "primeng/button";
@@ -699,7 +699,7 @@ export class CobranzaOnlineDashboard {
 
     return {
       title: movement.concept || movement.policyConcept || "Movimiento",
-      subtitle: `${movement.policyType} ${movement.policyNumber} · ${this.formatDate(movement.policyDate)}`,
+      subtitle: `${movement.policyType} ${movement.policyNumber} é ${this.formatDate(movement.policyDate)}`,
       amountLabel: this.formatCurrency(movement.amount),
     };
   });

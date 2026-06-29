@@ -1,6 +1,6 @@
-import { CommonModule, CurrencyPipe, DecimalPipe } from "@angular/common";
+﻿import { CommonModule, CurrencyPipe, DecimalPipe } from "@angular/common";
 import { Component, inject, signal } from "@angular/core";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
@@ -31,6 +31,7 @@ export class FundingPurchaseDetail {
     window.print();
   }
 }
+
 
 
 

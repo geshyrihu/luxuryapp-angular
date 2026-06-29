@@ -1,9 +1,9 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { chevronForwardOutline, createOutline } from "ionicons/icons";
-import { BaseIonicButton } from "../../buttons/base/base-ionic-button";
+import { BaseIonicButton } from "../../shared/buttons/base/base-ionic-button";
 
 @Component({
   selector: "ion-button-edit",
@@ -33,4 +33,5 @@ export class IonButtonEdit extends BaseIonicButton {
     addIcons({ createOutline, chevronForwardOutline });
   }
 }
+
 

@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from "@angular/common";
+﻿import { CommonModule, DatePipe } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { TagModule } from "primeng/tag";
 import { TableModule } from "primeng/table";
@@ -35,7 +35,7 @@ export class TicketLegalReportesInternos implements OnInit {
   datePipe = inject(DatePipe);
   tableScrollHeightS = inject(TableScrollHeightService);
 
-  // DeclaraciÃ³n e inicializaciÃ³n de variables con signals
+  // Declaración e inicialización de variables con signals
   data = signal<any>(null);
   reportData = signal<any>(null);
   requestsAttended = signal<any[]>([]);

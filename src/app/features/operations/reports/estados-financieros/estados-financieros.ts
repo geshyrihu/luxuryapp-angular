@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from "@angular/core";
+﻿import { Component, effect, inject, signal } from "@angular/core";
 import { TableModule } from "primeng/table";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -13,9 +13,9 @@ interface FinancialReportResponse {
   imports: [TableModule],
   templateUrl: "./estados-financieros.html",
 })
-// ¡CAMBIO! Ya no es necesario implementar OnInit.
+// óCAMBIO! Ya no es necesario implementar OnInit.
 export class EstadosFinancieros {
-  // --- INYECCIÓN DE DEPENDENCIAS (sin cambios) ---
+  // --- INYECCIóN DE DEPENDENCIAS (sin cambios) ---
   apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   tableScrollHeightS = inject(TableScrollHeightService);
@@ -25,9 +25,9 @@ export class EstadosFinancieros {
   loading = signal(true);
   scrollHeight = this.tableScrollHeightS.scrollHeight;
 
-  // 2. Un único signal para almacenar la respuesta completa de la API.
+  // 2. Un ónico signal para almacenar la respuesta completa de la API.
   //    Esto evita tener propiedades separadas (`data`, `customerData`) que podrían
-  //    desincronizarse y simplifica la lógica del template.
+  //    desincronizarse y simplifica la lígica del template.
   reportData = signal<FinancialReportResponse | null>(null);
 
   constructor() {
@@ -41,7 +41,7 @@ export class EstadosFinancieros {
     });
   }
 
-  // 4. El método de carga de datos, ahora más limpio con `async/await`.
+  // 4. El método de carga de datos, ahora mós limpio con `async/await`.
   async onLoadData(customerId: string) {
     this.reportData.set(null); // Reseteamos el estado para una nueva carga.
 
@@ -61,7 +61,7 @@ export class EstadosFinancieros {
     }
   }
 
-  // ¡OBSOLETO! El hook ngOnInit y las propiedades locales (`data`, `customerData`)
+  // óOBSOLETO! El hook ngOnInit y las propiedades locales (`data`, `customerData`)
   // ya no son necesarios gracias a la arquitectura reactiva con signals.
 }
 

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+﻿import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -190,8 +190,8 @@ ${this.htmlPrintS.getStandardCss()}
       </div>
       <div class="info-box">
         <div class="box-title">PROVEEDOR</div>
-        <div class="box-text">${this.htmlPrintS.esc(data.ordenCompraDatosPago?.providerName || "—")}</div>
-        <div class="box-text">${this.htmlPrintS.esc(data.ordenCompraDatosPago?.providerAdreess || "—")}</div>
+        <div class="box-text">${this.htmlPrintS.esc(data.ordenCompraDatosPago?.providerName || "é")}</div>
+        <div class="box-text">${this.htmlPrintS.esc(data.ordenCompraDatosPago?.providerAdreess || "é")}</div>
         <div class="box-text">Tel: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.providerPhoneOne || "")}</div>
       </div>
     </div>
@@ -218,9 +218,9 @@ ${this.htmlPrintS.getStandardCss()}
 
         <div class="obs-title">Datos Fiscales / Pago:</div>
         <div class="obs-text">
-          Uso CFDI: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.usoCFDI || "—")} |
-          Forma: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.formaDePago || "—")} |
-          Método: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.metodoDePago || "—")}
+          Uso CFDI: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.usoCFDI || "é")} |
+          Forma: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.formaDePago || "é")} |
+          Método: ${this.htmlPrintS.esc(data.ordenCompraDatosPago?.metodoDePago || "é")}
         </div>
 
         <div class="signature-line">

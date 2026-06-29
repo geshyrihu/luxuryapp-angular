@@ -13,9 +13,9 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -49,8 +49,8 @@ import { CategoriaAsuntoLegalForm } from "src/app/features/legal/asuntos-legales
 export class AsuntoLegalLista {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
-  ref: DynamicDialogRef; // Referencia a un cuadro de diÃ¡logo modal
-  // DeclaraciÃ³n e inicializaciÃ³n de variables
+  ref: DynamicDialogRef; // Referencia a un cuadro de diÃƒ¡logo modal
+  // Declaración e inicialización de variables
   dataSignal = signal<any[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   constructor() {
@@ -86,7 +86,7 @@ export class AsuntoLegalLista {
       });
   }
 
-  // FunciÃ³n para abrir un cuadro de diÃ¡logo modal para agregar o editar o crear
+  // Función para abrir un cuadro de diÃƒ¡logo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(AsuntoLegalForm, data, data.title, this.dialogHandlerS.sizeLg)
@@ -112,6 +112,7 @@ export class AsuntoLegalLista {
     });
   }
 }
+
 
 
 

@@ -1,4 +1,4 @@
-import { CommonModule, JsonPipe } from "@angular/common";
+﻿import { CommonModule, JsonPipe } from "@angular/common";
 import { Component, inject, signal } from "@angular/core";
 import { CardModule } from "primeng/card";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -47,7 +47,7 @@ export class UpdateDataBase {
         this.result.set(err.error || err);
         this.customToastS.showError(
           "Error",
-          "La migración general de COI Contabilidad falló.",
+          "La migración general de COI Contabilidad fallé.",
         );
         this.loading.set(false);
       });

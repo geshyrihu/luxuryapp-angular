@@ -1,12 +1,12 @@
-import { DatePipe } from "@angular/common";
+﻿import { DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomButton } from "src/app/core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/web/buttons";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { EFinancialApprovalOperationType } from "../../models/enums";
 import { FinancialApprovalResponseDTO } from "../../models/financial-approval.dto";
 
@@ -107,3 +107,4 @@ export default class ApprovalDetailModal implements OnInit {
     return labels[op] ?? String(op);
   }
 }
+

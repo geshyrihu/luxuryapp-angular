@@ -1,4 +1,4 @@
-import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
+﻿import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { Component, inject, OnInit, output } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import {
@@ -13,7 +13,7 @@ import {
   refreshOutline,
   settingsOutline,
 } from "ionicons/icons";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { TaskGroupService } from "../../task.service";
@@ -84,3 +84,4 @@ export class TaskStatus implements OnInit {
     return map[value] ?? "info";
   }
 }
+

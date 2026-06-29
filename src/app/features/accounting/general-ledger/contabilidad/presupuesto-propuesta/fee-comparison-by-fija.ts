@@ -1,12 +1,12 @@
-/**
+﻿/**
  * ============================================================================
- * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
+ * ?? ADVERTENCIA CRóTICA / CRITICAL WARNING ??
  * ============================================================================
  * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
  * FUNCIONAL y ESTABLE. 
  * 
- * Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
- * sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
+ * Queda ESTRICTAMENTE PROHIBIDO modificar su lígica, estructura o flujos de IA
+ * sin antes consultar y obtener autorización explócita del Ing. Ricardo Marques.
  * 
  * Por favor, NO rompan el código.
  * ============================================================================
@@ -19,7 +19,7 @@ import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-// Definimos la interfaz del DTO aquí mismo para simplicidad
+// Definimos la interfaz del DTO aqué mismo para simplicidad
 export interface IUniformFeeComparisonDTO {
   currentTotalBudget: number;
   newTotalBudget: number;

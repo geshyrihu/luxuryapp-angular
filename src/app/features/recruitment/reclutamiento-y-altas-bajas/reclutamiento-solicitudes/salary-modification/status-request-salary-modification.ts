@@ -1,10 +1,10 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, inject, OnInit, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { CardModule } from "primeng/card";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonConfirm } from "src/app/core/components/buttons/web/custom-button-confirm";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
@@ -87,6 +87,7 @@ export class StatusRequestSalaryModification implements OnInit {
       });
   }
 }
+
 
 
 

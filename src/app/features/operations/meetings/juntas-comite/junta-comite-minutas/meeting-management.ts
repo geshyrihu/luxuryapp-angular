@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { CardModule } from "primeng/card";
@@ -95,7 +95,7 @@ export class MeetingManagement implements OnInit {
   }
 
   onSendEmail(area: number): void {
-    // Lógica de envío de email (reutilizando la del componente anterior)
+    // Lígica de envío de email (reutilizando la del componente anterior)
     const customerId = this.meetingData()?.customerId;
     this.apiResponseS.onPost(
       Endpoints.Meetings.sendEmailResponsible(this.meetingId, customerId, area, "0"),

@@ -1,8 +1,8 @@
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { AvatarModule } from "primeng/avatar";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Mesanio } from "src/app/core/components/web/mesanio/mesanio";
 import {
   globalFilterFields,
@@ -69,6 +69,7 @@ export class ReporteTickets {
     return { solicitudes, atendidas, pendientes };
   }
 }
+
 
 
 

@@ -1,6 +1,6 @@
-/**
+﻿/**
  * ============================================================================
- * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
+ * âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
  * ============================================================================
  * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
  * FUNCIONAL y ESTABLE. 
@@ -13,7 +13,7 @@
  */
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { AiService } from "src/app/core/services/ai.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { BudgetProposalItemDTO } from "./models/budget-proposal.model";
@@ -116,3 +116,4 @@ export class BudgetAuditDialog implements OnInit {
     return expenses.length ? sum / expenses.length : 0;
   }
 }
+

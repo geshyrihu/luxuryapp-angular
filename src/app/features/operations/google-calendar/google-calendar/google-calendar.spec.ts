@@ -1,4 +1,4 @@
-import { signal } from "@angular/core";
+﻿import { signal } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { vi } from "vitest";
@@ -36,7 +36,7 @@ vi.mock("@ionic/angular/standalone", async () => {
   };
 });
 
-vi.mock("src/app/core/components/buttons/mobile", async () => {
+vi.mock("src/app/core/components/mobile/buttons", async () => {
   const mocks = await import("./ionic-mocks");
   return {
     IonButtonDelete: mocks.MockIonButtonDelete,
@@ -155,4 +155,5 @@ describe("GoogleCalendar", () => {
     expect(fixture.nativeElement.textContent).toContain("Google Calendar List");
   });
 });
+
 

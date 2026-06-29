@@ -1,4 +1,4 @@
-import { Injectable, inject } from "@angular/core";
+﻿import { Injectable, inject } from "@angular/core";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -75,7 +75,7 @@ ${this.htmlPrintS.getStandardCss()}
 </style>
 </head><body>
 <div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, "Reporte de Órdenes de Servicio", periodo, generatedAt, filterName)}
+  ${this.htmlPrintS.buildStandardHeader(logo, "Reporte de órdenes de Servicio", periodo, generatedAt, filterName)}
   <div class="body-doc">${tablesHtml}</div>
   ${this.htmlPrintS.buildStandardFooter(generatedAt)}
 </div>
@@ -187,7 +187,7 @@ ${this.htmlPrintS.getStandardCss()}
       if (item.serviceOrderImg && item.serviceOrderImg.length > 0) {
         imagesHtml = `
           <div class="mb-4 break-inside-avoid">
-            <h4 class="text-base font-bold text-900 border-bottom-1 pb-2 mb-3">Evidencia Fotográfica</h4>
+            <h4 class="text-base font-bold text-900 border-bottom-1 pb-2 mb-3">Evidencia Fotogrófica</h4>
             <div class="grid">
               ${item.serviceOrderImg.slice(0,4).map((img: string) => `
                 <div class="col-3 text-center">
@@ -211,8 +211,8 @@ ${this.htmlPrintS.getStandardCss()}
               <h2 class="text-lg font-bold text-900 mb-1">${this.htmlPrintS.esc(nameCustomer)}</h2>
               <p class="text-xs text-600 mb-1">${this.htmlPrintS.esc(address)}</p>
               <div class="flex text-xs text-700">
-                ${phoneOne ? `<span class="mr-2">📞 ${this.htmlPrintS.esc(phoneOne)}</span>` : ''}
-                ${phoneTwo ? `<span>📞 ${this.htmlPrintS.esc(phoneTwo)}</span>` : ''}
+                ${phoneOne ? `<span class="mr-2">?? ${this.htmlPrintS.esc(phoneOne)}</span>` : ''}
+                ${phoneTwo ? `<span>?? ${this.htmlPrintS.esc(phoneTwo)}</span>` : ''}
               </div>
             </div>
             <div class="col-4 text-right">
@@ -252,7 +252,7 @@ ${this.htmlPrintS.getStandardCss()}
               <div class="text-xs line-height-3 text-700">${item.activity || ''}</div>
             </div>
             <div class="col-6">
-              <h4 class="text-base font-bold text-900 border-bottom-1 pb-2 mb-2">Observaciones Técnicas</h4>
+              <h4 class="text-base font-bold text-900 border-bottom-1 pb-2 mb-2">Observaciones Tócnicas</h4>
               <div class="text-xs line-height-3 text-700">${item.observations || ''}</div>
             </div>
           </div>
@@ -264,21 +264,21 @@ ${this.htmlPrintS.getStandardCss()}
             <div class="grid text-xs">
               <div class="col-6">
                 <div class="flex align-items-center mb-2">
-                  <span class="mr-2 ${item.cumplimientoActividades ? 'text-green-600' : 'text-red-600'}">${item.cumplimientoActividades ? '✅' : '❌'}</span>
+                  <span class="mr-2 ${item.cumplimientoActividades ? 'text-green-600' : 'text-red-600'}">${item.cumplimientoActividades ? '?' : '?'}</span>
                   <span>Cumplimiento de actividades programadas</span>
                 </div>
                 <div class="flex align-items-center mb-2">
-                  <span class="mr-2 ${item.equiposOperando ? 'text-green-600' : 'text-red-600'}">${item.equiposOperando ? '✅' : '❌'}</span>
-                  <span>Equipos/áreas operando correctamente</span>
+                  <span class="mr-2 ${item.equiposOperando ? 'text-green-600' : 'text-red-600'}">${item.equiposOperando ? '?' : '?'}</span>
+                  <span>Equipos/óreas operando correctamente</span>
                 </div>
               </div>
               <div class="col-6">
                 <div class="flex align-items-center mb-2">
-                  <span class="mr-2 ${!item.ocacionoDanos ? 'text-green-600' : 'text-orange-600'}">${!item.ocacionoDanos ? '✅' : '⚠️'}</span>
-                  <span>Sin daños al área de trabajo</span>
+                  <span class="mr-2 ${!item.ocacionoDanos ? 'text-green-600' : 'text-orange-600'}">${!item.ocacionoDanos ? '?' : '??'}</span>
+                  <span>Sin daños al órea de trabajo</span>
                 </div>
                 <div class="flex align-items-center mb-2">
-                  <span class="mr-2 ${item.calidadTrabajos ? 'text-green-600' : 'text-red-600'}">${item.calidadTrabajos ? '✅' : '❌'}</span>
+                  <span class="mr-2 ${item.calidadTrabajos ? 'text-green-600' : 'text-red-600'}">${item.calidadTrabajos ? '?' : '?'}</span>
                   <span>Calidad de trabajos satisfactoria</span>
                 </div>
               </div>

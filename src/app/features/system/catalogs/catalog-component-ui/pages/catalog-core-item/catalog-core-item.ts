@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { MenuItem, TreeNode } from "primeng/api";
@@ -10,7 +10,7 @@ import { TagModule } from "primeng/tag";
 import {
   CustomButtonDelete,
   CustomButtonEdit,
-} from "src/app/core/components/buttons/web";
+} from "src/app/core/components/web/buttons";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import {
@@ -57,8 +57,7 @@ import {
   WizardStep,
 } from "src/app/core/components/shared/wizard/wizard";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
-import { CommonCoreCoverage } from "../../shared/common-core-coverage";
-// 13.3.3 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Prioridad Baja
+// 13.3.3 demos de prioridad baja
 import {
   ApprovalNode,
   ApprovalWorkflow,
@@ -221,7 +220,6 @@ const CORE_LABELS: Record<string, string> = {
     ConfirmDialog,
     FileUpload,
     Wizard,
-    CommonCoreCoverage,
     // 13.3.3
     DashboardLayout,
     DocumentPreviewer,
@@ -278,17 +276,17 @@ const CORE_LABELS: Record<string, string> = {
       </div>
       @switch (item()) {
         @case ("actionmenu") {
-          <p-card header="Action Menu ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â uso correcto en web">
+          <p-card header="Action Menu - uso correcto en web">
             <p class="text-sm text-secondary m-0 mb-3">
               Dentro de <code>app-action-menu</code> los botones muestran
               <strong>icono + label alineados</strong>. Siempre agrega
               <code>[showLabelOnDesktop]="true"</code> y un
-              <code>label</code> explÃƒÆ’Ã‚Â­cito.
+              <code>label</code> explícito.
             </p>
             <div class="flex gap-4">
               <div>
                 <p class="text-xs font-bold text-secondary mb-2">
-                  ÃƒÂ¢Ã…â€œÃ¢â‚¬Â¦ Correcto
+                  Correcto
                 </p>
                 <app-action-menu>
                   <ng-container actions>
@@ -305,7 +303,7 @@ const CORE_LABELS: Record<string, string> = {
               </div>
               <div>
                 <p class="text-xs font-bold text-secondary mb-2">
-                  ÃƒÂ¢Ã‚ÂÃ…â€™ Incorrecto (sin label)
+                  Incorrecto (sin label)
                 </p>
                 <app-action-menu>
                   <ng-container actions>
@@ -406,14 +404,14 @@ const CORE_LABELS: Record<string, string> = {
         @case ("confirmdialog") {
           <p-card header="Confirm Dialog">
             <p-button
-              label="Abrir confirmaciÃƒÆ’Ã‚Â³n"
+              label="Abrir confirmación"
               severity="danger"
               (onClick)="confirmVisible.set(true)"
             />
             <app-confirm-dialog
               [(visible)]="confirmVisible"
               title="Eliminar registro"
-              message="Ãƒâ€šÃ‚Â¿EstÃƒÆ’Ã‚Â¡s seguro?"
+              message="¿Estás seguro?"
               type="danger"
               confirmLabel="Eliminar"
             />
@@ -433,9 +431,9 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
 
-        <!-- ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ Fase 6-10 ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ -->
+        <!-- Fase 6-10 -->
         @case ("datagrid") {
-          <p-card header="Data Grid ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Editable + Sort + Filter">
+          <p-card header="Data Grid - Editable + Sort + Filter">
             <app-data-grid
               [data]="gridData"
               [columns]="gridColumns"
@@ -467,7 +465,7 @@ const CORE_LABELS: Record<string, string> = {
             </div>
             <div class="col-12 md:col-6 lg:col-3">
               <app-kpi-card
-                label="ConversiÃƒÆ’Ã‚Â³n"
+                label="Conversión"
                 [value]="68"
                 format="percent"
                 suffix="%"
@@ -487,21 +485,21 @@ const CORE_LABELS: Record<string, string> = {
           </div>
         }
         @case ("avatargroup") {
-          <p-card header="Avatar Group ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Stacked con overflow">
+          <p-card header="Avatar Group - Stacked con overflow">
             <div class="flex flex-column gap-4">
               <div>
-                <p class="text-sm font-bold mb-2">MÃƒÆ’Ã‚Â¡x. 4 visibles:</p>
+                <p class="text-sm font-bold mb-2">Máx. 4 visibles:</p>
                 <app-avatar-group [avatars]="avatarList" [maxVisible]="4" />
               </div>
               <div>
-                <p class="text-sm font-bold mb-2">MÃƒÆ’Ã‚Â¡x. 3 visibles:</p>
+                <p class="text-sm font-bold mb-2">Máx. 3 visibles:</p>
                 <app-avatar-group [avatars]="avatarList" [maxVisible]="3" />
               </div>
             </div>
           </p-card>
         }
         @case ("timeline") {
-          <p-card header="Timeline ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Eventos verticales">
+          <p-card header="Timeline - Eventos verticales">
             <app-timeline
               [events]="timelineEvents"
               align="left"
@@ -510,7 +508,7 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("slider") {
-          <p-card header="Slider ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Rango simple y doble">
+          <p-card header="Slider - Rango simple y doble">
             <div class="flex flex-column gap-4">
               <div>
                 <p class="text-sm font-bold mb-2">Simple:</p>
@@ -570,7 +568,7 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("pipelinecrm") {
-          <p-card header="Pipeline CRM ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Stages visuales">
+          <p-card header="Pipeline CRM - Stages visuales">
             <app-pipeline-crm
               title="Pipeline de Ventas Q3"
               [stages]="pipelineStages"
@@ -578,7 +576,7 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("taginput") {
-          <p-card header="Tag Input ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Autocomplete con chips">
+          <p-card header="Tag Input - Autocomplete con chips">
             <app-tag-input
               label="Etiquetas del proyecto"
               placeholder="Escribe para buscar..."
@@ -631,10 +629,10 @@ const CORE_LABELS: Record<string, string> = {
           </div>
         }
 
-        <!-- ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ 13.3.2 ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ -->
+        <!-- 13.3.2 -->
         @case ("comparisontable") {
           <p-card
-            header="Comparison Table ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Comparativa de features"
+            header="Comparison Table - Comparativa de features"
           >
             <app-comparison-table
               [items]="comparisonItems"
@@ -644,7 +642,7 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("activitylog") {
-          <p-card header="Activity Log ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Historial CRM">
+          <p-card header="Activity Log - Historial CRM">
             <app-activity-log
               title="Actividad del cliente"
               [entries]="activityEntries"
@@ -653,17 +651,17 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("kanbanboard") {
-          <p-card header="Kanban Board ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Tablero drag & drop">
+          <p-card header="Kanban Board - Tablero drag & drop">
             <app-kanban-board [stages]="kanbanStages" [showAddCard]="false" />
           </p-card>
         }
         @case ("treetable") {
-          <p-card header="Tree Table ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Tabla jerÃƒÆ’Ã‚Â¡rquica">
+          <p-card header="Tree Table - Tabla jerárquica">
             <app-tree-table [nodes]="treeNodes" [columns]="treeColumns" />
           </p-card>
         }
         @case ("contextmenu") {
-          <p-card header="Context Menu ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Click derecho">
+          <p-card header="Context Menu - Click derecho">
             <div class="flex flex-column gap-3">
               <p class="text-sm text-secondary m-0">
                 Haz clic derecho sobre el siguiente elemento:
@@ -673,9 +671,9 @@ const CORE_LABELS: Record<string, string> = {
                   class="border-round-lg p-4 text-center cursor-pointer"
                   style="border:2px dashed var(--ds-border-strong);background:var(--ds-bg-elevated);"
                 >
-                  <p class="m-0 font-bold">ÃƒÆ’Ã‚Ârea de contexto</p>
+                  <p class="m-0 font-bold">Ãrea de contexto</p>
                   <p class="m-0 text-xs text-secondary mt-1">
-                    Clic derecho aquÃƒÆ’Ã‚Â­
+                    Clic derecho aquí
                   </p>
                 </div>
               </app-context-menu>
@@ -684,7 +682,7 @@ const CORE_LABELS: Record<string, string> = {
         }
         @case ("splitpane") {
           <p-card
-            header="Split Pane ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Paneles redimensionables"
+            header="Split Pane - Paneles redimensionables"
           >
             <app-split-pane
               direction="horizontal"
@@ -711,17 +709,17 @@ const CORE_LABELS: Record<string, string> = {
               >
                 <p class="font-bold text-sm m-0">Panel derecho (detalle)</p>
                 <p class="text-sm text-secondary mt-2">
-                  Selecciona un elemento para ver su detalle aquÃƒÆ’Ã‚Â­.
+                  Selecciona un elemento para ver su detalle aquí.
                 </p>
               </div>
             </app-split-pane>
           </p-card>
         }
         @case ("commandpalette") {
-          <p-card header="Command Palette ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Ctrl+K">
+          <p-card header="Command Palette - Ctrl+K">
             <div class="flex flex-column gap-3">
               <p class="text-sm text-secondary m-0">
-                El Command Palette es un diÃƒÆ’Ã‚Â¡logo global. Haz clic para
+                El Command Palette es un diálogo global. Haz clic para
                 abrirlo:
               </p>
               <p-button
@@ -730,8 +728,8 @@ const CORE_LABELS: Record<string, string> = {
                 (onClick)="cmdPaletteVisible.set(true)"
               />
               <p class="text-xs text-secondary m-0">
-                TambiÃƒÆ’Ã‚Â©n puedes presionar <kbd>Ctrl+K</kbd> cuando el
-                diÃƒÆ’Ã‚Â¡logo estÃƒÆ’Ã‚Â© registrado.
+                También puedes presionar <kbd>Ctrl+K</kbd> cuando el
+                diálogo esté registrado.
               </p>
             </div>
             <app-command-palette
@@ -741,11 +739,11 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("tour") {
-          <p-card header="Tour / Onboarding ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Paso a paso">
+          <p-card header="Tour / Onboarding - Paso a paso">
             <div class="flex flex-column gap-3">
               <p class="text-sm text-secondary m-0">
                 Inicia el tour para ver el componente de onboarding en
-                acciÃƒÆ’Ã‚Â³n:
+                acción:
               </p>
               <p-button
                 label="Iniciar Tour"
@@ -759,21 +757,21 @@ const CORE_LABELS: Record<string, string> = {
         @case ("gauge") {
           <div class="grid">
             <div class="col-12 md:col-4">
-              <p-card header="CPU ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â 72%">
+              <p-card header="CPU - 72%">
                 <div class="flex justify-content-center">
                   <app-gauge [value]="72" [min]="0" [max]="100" [size]="140" />
                 </div>
               </p-card>
             </div>
             <div class="col-12 md:col-4">
-              <p-card header="OcupaciÃƒÆ’Ã‚Â³n ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â 45%">
+              <p-card header="Ocupación - 45%">
                 <div class="flex justify-content-center">
                   <app-gauge [value]="45" [min]="0" [max]="100" [size]="140" />
                 </div>
               </p-card>
             </div>
             <div class="col-12 md:col-4">
-              <p-card header="Temperatura ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â 88%">
+              <p-card header="Temperatura - 88%">
                 <div class="flex justify-content-center">
                   <app-gauge [value]="88" [min]="0" [max]="100" [size]="140" />
                 </div>
@@ -782,14 +780,14 @@ const CORE_LABELS: Record<string, string> = {
           </div>
         }
         @case ("funnelchart") {
-          <p-card header="Funnel Chart ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Pipeline de ventas">
+          <p-card header="Funnel Chart - Pipeline de ventas">
             <app-funnel-chart
               title="Embudo de Ventas Q3"
               [labels]="[
                 'Leads',
                 'Contactados',
                 'Propuesta',
-                'NegociaciÃƒÆ’Ã‚Â³n',
+                'Negociación',
                 'Cerrados',
               ]"
               [values]="[1200, 820, 430, 210, 95]"
@@ -797,20 +795,20 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
 
-        <!-- ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ 13.3.3 ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ -->
+        <!-- 13.3.3 -->
         @case ("otpinput") {
           <p-card
-            header="OTP Input ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â 2FA / VerificaciÃƒÆ’Ã‚Â³n"
+            header="OTP Input - 2FA / Verificación"
           >
             <div class="flex flex-column gap-4">
               <div>
                 <p class="text-sm font-bold mb-2">
-                  6 dÃƒÆ’Ã‚Â­gitos (predeterminado):
+                  6 dígitos (predeterminado):
                 </p>
                 <app-otp-input [(value)]="otpValue" />
                 <p class="text-xs text-secondary mt-1">
                   Valor:
-                  <strong>{{ otpValue() || "ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â" }}</strong>
+                  <strong>{{ otpValue() || "-" }}</strong>
                 </p>
               </div>
             </div>
@@ -820,7 +818,7 @@ const CORE_LABELS: Record<string, string> = {
           <div class="grid">
             <div class="col-12 md:col-6">
               <app-profile-card
-                name="Ana MartÃƒÆ’Ã‚Â­nez"
+                name="Ana Martínez"
                 role="Gerente de Ventas"
                 email="a.martinez@luxuryapp.mx"
                 phone="+52 55 1234 5678"
@@ -830,7 +828,7 @@ const CORE_LABELS: Record<string, string> = {
             <div class="col-12 md:col-6">
               <app-profile-card
                 name="Carlos Ruiz"
-                role="Director TÃƒÆ’Ã‚Â©cnico"
+                role="Director Técnico"
                 email="c.ruiz@luxuryapp.mx"
                 company="LuxuryApp Tech"
               />
@@ -839,7 +837,7 @@ const CORE_LABELS: Record<string, string> = {
         }
         @case ("themeswitcher") {
           <p-card
-            header="Theme Switcher ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Light / Dark / High Contrast"
+            header="Theme Switcher - Light / Dark / High Contrast"
           >
             <app-theme-switcher />
           </p-card>
@@ -853,7 +851,7 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("colorpicker") {
-          <p-card header="Color Picker ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Hex / RGB / HSB">
+          <p-card header="Color Picker - Hex / RGB / HSB">
             <div class="flex flex-column gap-4">
               <div>
                 <p class="text-sm font-bold mb-2">Inline:</p>
@@ -878,12 +876,12 @@ const CORE_LABELS: Record<string, string> = {
         }
         @case ("tristateswitch") {
           <p-card
-            header="Tristate Switch ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â SÃƒÆ’Ã‚Â­ / No / Indeterminado"
+            header="Tristate Switch - Sí / No / Indeterminado"
           >
             <div class="flex flex-column gap-3">
               <app-tristate-switch
                 [(value)]="tristateValue"
-                label="AutorizaciÃƒÆ’Ã‚Â³n del cliente"
+                label="Autorización del cliente"
               />
               <p class="text-xs text-secondary">
                 Estado:
@@ -891,24 +889,24 @@ const CORE_LABELS: Record<string, string> = {
                   tristateValue() === null
                     ? "Indeterminado"
                     : tristateValue()
-                      ? "SÃƒÆ’Ã‚Â­"
+                      ? "Sí"
                       : "No"
                 }}</strong>
               </p>
               <app-tristate-switch
                 [(value)]="tristateValue2"
-                label="RevisiÃƒÆ’Ã‚Â³n completada"
+                label="Revisión completada"
                 hint="Null = pendiente"
               />
             </div>
           </p-card>
         }
         @case ("signaturepad") {
-          <p-card header="Signature Pad ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Firma digital">
+          <p-card header="Signature Pad - Firma digital">
             <app-signature-pad
               label="Firma del cliente"
               hint="Dibuja tu firma con el mouse o dedo"
-              placeholder="Firma aquÃƒÆ’Ã‚Â­"
+              placeholder="Firma aquí"
             />
           </p-card>
         }
@@ -942,14 +940,14 @@ const CORE_LABELS: Record<string, string> = {
         }
         @case ("barcodeinput") {
           <p-card
-            header="Barcode / QR Input ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Escaneo + teclado"
+            header="Barcode / QR Input - Escaneo + teclado"
           >
             <app-barcode-input />
           </p-card>
         }
         @case ("realtimeindicator") {
           <p-card
-            header="Realtime Indicator ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Estado de conexiÃƒÆ’Ã‚Â³n live"
+            header="Realtime Indicator - Estado de conexión live"
           >
             <div class="flex flex-column gap-3">
               <app-realtime-indicator
@@ -995,14 +993,14 @@ const CORE_LABELS: Record<string, string> = {
         }
         @case ("leadscoring") {
           <p-card
-            header="Lead Scoring ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â PuntuaciÃƒÆ’Ã‚Â³n visual de lead CRM"
+            header="Lead Scoring - Puntuación visual de lead CRM"
           >
             <app-lead-scoring [categories]="leadCategories" />
           </p-card>
         }
         @case ("approvalworkflow") {
           <p-card
-            header="Approval Workflow ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Flujo de aprobaciÃƒÆ’Ã‚Â³n"
+            header="Approval Workflow - Flujo de aprobación"
           >
             <app-approval-workflow [nodes]="approvalNodes" />
           </p-card>
@@ -1022,7 +1020,7 @@ const CORE_LABELS: Record<string, string> = {
           </div>
         }
         @case ("documentpreviewer") {
-          <p-card header="Document Previewer ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â PDF inline">
+          <p-card header="Document Previewer - PDF inline">
             <app-document-previewer
               src="https://www.w3.org/WAI/WCAG21/wcag21.pdf"
               fileName="WCAG-2.1.pdf"
@@ -1031,13 +1029,13 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("dashboardlayout") {
-          <p-card header="Dashboard Layout ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Grid de widgets">
+          <p-card header="Dashboard Layout - Grid de widgets">
             <app-dashboard-layout [widgets]="dashWidgets" [columns]="3">
             </app-dashboard-layout>
           </p-card>
         }
         @case ("commentthread") {
-          <p-card header="Comment Thread ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Notas colaborativas">
+          <p-card header="Comment Thread - Notas colaborativas">
             <app-comment-thread
               title="Notas del expediente"
               [comments]="sampleComments"
@@ -1049,14 +1047,14 @@ const CORE_LABELS: Record<string, string> = {
             <app-email-preview
               from="sistema@luxuryapp.mx"
               to="cliente@empresa.com"
-              subject="ConfirmaciÃƒÆ’Ã‚Â³n de orden OC-2026-0892"
+              subject="Confirmación de orden OC-2026-0892"
               [htmlContent]="emailHtml"
             />
           </p-card>
         }
         @case ("formbuilder") {
           <p-card
-            header="Form Builder ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â JSON Schema dinÃƒÆ’Ã‚Â¡mico"
+            header="Form Builder - JSON Schema dinámico"
           >
             <app-form-builder
               title="Formulario generado desde schema"
@@ -1066,32 +1064,32 @@ const CORE_LABELS: Record<string, string> = {
         }
         @case ("printview") {
           <p-card
-            header="Print View ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Vista de impresiÃƒÆ’Ã‚Â³n"
+            header="Print View - Vista de impresión"
           >
             <app-print-view
-              title="Reporte de Gastos ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Junio 2026"
+              title="Reporte de Gastos - Junio 2026"
               subtitle="Departamento de Operaciones"
             >
               <p>
-                Contenido del reporte que se optimiza para impresiÃƒÆ’Ã‚Â³n con
+                Contenido del reporte que se optimiza para impresión con
                 CSS @media print.
               </p>
               <p>
-                Las ÃƒÆ’Ã‚Â¡reas de navegaciÃƒÆ’Ã‚Â³n y el sidebar quedan
-                ocultos automÃƒÆ’Ã‚Â¡ticamente.
+                Las áreas de navegación y el sidebar quedan
+                ocultos automáticamente.
               </p>
             </app-print-view>
           </p-card>
         }
         @case ("customer360") {
           <p-card
-            header="Customer 360 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Vista completa de cliente CRM"
+            header="Customer 360 - Vista completa de cliente CRM"
           >
             <app-customer-360 [data]="customer360Data" />
           </p-card>
         }
         @case ("dock") {
-          <p-card header="Dock ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â macOS-style app dock">
+          <p-card header="Dock - macOS-style app dock">
             <div
               style="position:relative;height:140px;background:var(--ds-bg-elevated);border-radius:var(--ds-radius-lg,8px);overflow:hidden;"
             >
@@ -1101,7 +1099,7 @@ const CORE_LABELS: Record<string, string> = {
         }
         @case ("heatmap") {
           <p-card
-            header="Heatmap ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Actividad por hora/dÃƒÆ’Ã‚Â­a"
+            header="Heatmap - Actividad por hora/día"
           >
             <app-heatmap
               title="Actividad semanal"
@@ -1111,16 +1109,16 @@ const CORE_LABELS: Record<string, string> = {
           </p-card>
         }
         @case ("gantt") {
-          <p-card header="Gantt Chart ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Cronograma de proyecto">
+          <p-card header="Gantt Chart - Cronograma de proyecto">
             <app-gantt title="Proyecto ERP Q3" [tasks]="ganttTasks" />
           </p-card>
         }
         @case ("pivottable") {
           <p-card
-            header="Pivot Table ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â AnÃƒÆ’Ã‚Â¡lisis multidimensional"
+            header="Pivot Table - Análisis multidimensional"
           >
             <app-pivot-table
-              title="Ventas por ÃƒÆ’Ã‚Â¡rea y mes"
+              title="Ventas por área y mes"
               [data]="pivotData"
               [rows]="pivotRows"
               [columns]="pivotColumns"
@@ -1155,8 +1153,8 @@ export class CatalogCoreItem {
   wizardActiveStep = signal(1);
 
   readonly groupedData = [
-    { section: "Hoy", title: "RevisiÃƒÆ’Ã‚Â³n", status: "Pendiente" },
-    { section: "MaÃƒÆ’Ã‚Â±ana", title: "Junta", status: "Urgente" },
+    { section: "Hoy", title: "Revisión", status: "Pendiente" },
+    { section: "Mañana", title: "Junta", status: "Urgente" },
   ];
 
   readonly sampleNotifications: NotificationItem[] = [
@@ -1173,11 +1171,11 @@ export class CatalogCoreItem {
 
   readonly wizardSteps: WizardStep[] = [
     { value: 1, label: "Datos", icon: "mdi:file-document-outline" },
-    { value: 2, label: "RevisiÃƒÆ’Ã‚Â³n", icon: "mdi:eye-outline" },
+    { value: 2, label: "Revisión", icon: "mdi:eye-outline" },
     { value: 3, label: "Confirmar", icon: "mdi:check-circle-outline" },
   ];
 
-  // ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ Fase 6-10 demo data ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬
+  // Fase 6-10 demo data
 
   readonly gridColumns: DataGridColumn[] = [
     {
@@ -1190,7 +1188,7 @@ export class CatalogCoreItem {
     },
     {
       field: "area",
-      header: "ÃƒÆ’Ã‚Ârea",
+      header: "Ãrea",
       type: "select",
       editable: true,
       sortable: true,
@@ -1213,14 +1211,14 @@ export class CatalogCoreItem {
   readonly gridData = [
     {
       id: 1,
-      nombre: "Juan GarcÃƒÆ’Ã‚Â­a",
+      nombre: "Juan García",
       area: "Contabilidad",
       monto: 45000,
       activo: true,
     },
     {
       id: 2,
-      nombre: "MarÃƒÆ’Ã‚Â­a LÃƒÆ’Ã‚Â³pez",
+      nombre: "María López",
       area: "Operaciones",
       monto: 38500,
       activo: true,
@@ -1228,7 +1226,7 @@ export class CatalogCoreItem {
     { id: 3, nombre: "Carlos Ruiz", area: "RH", monto: 52000, activo: false },
     {
       id: 4,
-      nombre: "Ana MartÃƒÆ’Ã‚Â­nez",
+      nombre: "Ana Martínez",
       area: "Contabilidad",
       monto: 61000,
       activo: true,
@@ -1242,7 +1240,7 @@ export class CatalogCoreItem {
     },
     {
       id: 6,
-      nombre: "Laura SÃƒÆ’Ã‚Â¡nchez",
+      nombre: "Laura Sánchez",
       area: "RH",
       monto: 47500,
       activo: false,
@@ -1250,47 +1248,47 @@ export class CatalogCoreItem {
   ];
 
   readonly avatarList: AvatarItem[] = [
-    { label: "JG", color: this.dsPrimary, tooltip: "Juan GarcÃƒÆ’Ã‚Â­a" },
+    { label: "JG", color: this.dsPrimary, tooltip: "Juan García" },
     {
       label: "ML",
       color: this.dsSuccess,
-      tooltip: "MarÃƒÆ’Ã‚Â­a LÃƒÆ’Ã‚Â³pez",
+      tooltip: "María López",
     },
     { label: "CR", color: this.dsWarning, tooltip: "Carlos Ruiz" },
-    { label: "AM", color: this.dsHelp, tooltip: "Ana MartÃƒÆ’Ã‚Â­nez" },
+    { label: "AM", color: this.dsHelp, tooltip: "Ana Martínez" },
     { label: "LT", color: this.dsDanger, tooltip: "Luis Torres" },
-    { label: "LS", color: this.dsInfo, tooltip: "Laura SÃƒÆ’Ã‚Â¡nchez" },
+    { label: "LS", color: this.dsInfo, tooltip: "Laura Sánchez" },
   ];
 
   readonly avatarListTokenized: AvatarItem[] = [
     {
       label: "JG",
       color: this.dsPrimary,
-      tooltip: "Juan GarcÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â­a",
+      tooltip: "Juan García",
     },
     {
       label: "ML",
       color: this.dsSuccess,
-      tooltip: "MarÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â­a LÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³pez",
+      tooltip: "María López",
     },
     { label: "CR", color: this.dsWarning, tooltip: "Carlos Ruiz" },
     {
       label: "AM",
       color: this.dsHelp,
-      tooltip: "Ana MartÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â­nez",
+      tooltip: "Ana Martínez",
     },
     { label: "LT", color: this.dsDanger, tooltip: "Luis Torres" },
     {
       label: "LS",
       color: this.dsInfo,
-      tooltip: "Laura SÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡nchez",
+      tooltip: "Laura Sánchez",
     },
   ];
 
   readonly timelineEvents: TimelineEvent[] = [
     {
       title: "Solicitud recibida",
-      description: "El cliente enviÃƒÆ’Ã‚Â³ la solicitud de compra.",
+      description: "El cliente envió la solicitud de compra.",
       date: "10 Jun 2026",
       icon: "mdi:inbox-arrow-down",
       color: "var(--ds-primary)",
@@ -1298,8 +1296,8 @@ export class CatalogCoreItem {
       badgeColor: "primary",
     },
     {
-      title: "RevisiÃƒÆ’Ã‚Â³n de crÃƒÆ’Ã‚Â©dito",
-      description: "ValidaciÃƒÆ’Ã‚Â³n aprobada por el ÃƒÆ’Ã‚Â¡rea financiera.",
+      title: "Revisión de crédito",
+      description: "Validación aprobada por el área financiera.",
       date: "12 Jun 2026",
       icon: "mdi:shield-check",
       color: "var(--ds-success)",
@@ -1372,7 +1370,7 @@ export class CatalogCoreItem {
     },
     {
       id: "negotiation",
-      name: "NegociaciÃƒÆ’Ã‚Â³n",
+      name: "Negociación",
       color: "var(--ds-primary)",
       deals: [
         {
@@ -1414,7 +1412,7 @@ export class CatalogCoreItem {
     "Dashboard",
   ];
 
-  // ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ 13.3.3 demo data ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬
+  // 13.3.3 demo data
 
   otpValue = signal<string>("");
   langCode = signal<string>("es-MX");
@@ -1450,23 +1448,23 @@ export class CatalogCoreItem {
       id: "1",
       label: "Solicitante",
       status: "approved",
-      assignee: "Juan GarcÃƒÆ’Ã‚Â­a",
+      assignee: "Juan García",
       date: "10 Jun 2026",
       comment: "Solicitud generada.",
     },
     {
       id: "2",
-      label: "Jefe de ÃƒÆ’Ã‚Ârea",
+      label: "Jefe de Ãrea",
       status: "approved",
-      assignee: "MarÃƒÆ’Ã‚Â­a LÃƒÆ’Ã‚Â³pez",
+      assignee: "María López",
       date: "11 Jun 2026",
     },
     { id: "3", label: "Finanzas", status: "pending", assignee: "Carlos Ruiz" },
     {
       id: "4",
-      label: "DirecciÃƒÆ’Ã‚Â³n",
+      label: "Dirección",
       status: "pending",
-      assignee: "Ana MartÃƒÆ’Ã‚Â­nez",
+      assignee: "Ana Martínez",
     },
   ];
 
@@ -1486,7 +1484,7 @@ export class CatalogCoreItem {
       icon: "mdi:check-circle",
     },
     {
-      label: "En trÃƒÆ’Ã‚Â¡nsito",
+      label: "En tránsito",
       date: "13 Jun 2026",
       completed: false,
       active: true,
@@ -1502,27 +1500,27 @@ export class CatalogCoreItem {
 
   readonly dashWidgets: DashboardWidget[] = [
     { id: "w1", title: "KPIs Generales", cols: 2, rows: 1 },
-    { id: "w2", title: "GrÃƒÆ’Ã‚Â¡fica de Ventas", cols: 1, rows: 1 },
+    { id: "w2", title: "Gráfica de Ventas", cols: 1, rows: 1 },
     { id: "w3", title: "Pipeline CRM", cols: 3, rows: 1 },
     { id: "w4", title: "Actividad Reciente", cols: 1, rows: 1 },
-    { id: "w5", title: "Inventario CrÃƒÆ’Ã‚Â­tico", cols: 2, rows: 1 },
+    { id: "w5", title: "Inventario Crítico", cols: 2, rows: 1 },
   ];
 
   readonly sampleComments = [
     {
       id: "1",
-      author: "Juan GarcÃƒÆ’Ã‚Â­a",
+      author: "Juan García",
       authorInitials: "JG",
       content:
-        "El cliente solicitÃƒÆ’Ã‚Â³ extensiÃƒÆ’Ã‚Â³n de plazo de pago a 45 dÃƒÆ’Ã‚Â­as.",
+        "El cliente solicitó extensión de plazo de pago a 45 días.",
       timestamp: new Date("2026-06-24T09:00:00"),
       read: true,
     },
     {
       id: "2",
-      author: "MarÃƒÆ’Ã‚Â­a LÃƒÆ’Ã‚Â³pez",
+      author: "María López",
       authorInitials: "ML",
-      content: "Confirmado con finanzas. Se aplicarÃƒÆ’Ã‚Â¡ a partir de julio.",
+      content: "Confirmado con finanzas. Se aplicará a partir de julio.",
       timestamp: new Date("2026-06-24T10:30:00"),
       read: false,
     },
@@ -1530,16 +1528,16 @@ export class CatalogCoreItem {
 
   readonly emailHtml = `
     <div style="font-family:var(--ds-font-family-base, sans-serif);max-width:600px;margin:0 auto;color:var(--ds-text-primary);">
-      <h2 style="color:var(--ds-primary);">ConfirmaciÃƒÆ’Ã‚Â³n de Orden</h2>
+      <h2 style="color:var(--ds-primary);">Confirmación de Orden</h2>
       <p>Estimado cliente,</p>
-      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y estÃƒÆ’Ã‚Â¡ en proceso de entrega.</p>
+      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y está en proceso de entrega.</p>
       <table style="width:100%;border-collapse:collapse;margin:16px 0;">
         <tr style="background:var(--ds-bg-elevated);"><th style="padding:8px;text-align:left;">Concepto</th><th style="padding:8px;text-align:right;">Monto</th></tr>
-        <tr><td style="padding:8px;">Material elÃƒÆ’Ã‚Â©ctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
+        <tr><td style="padding:8px;">Material eléctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
         <tr><td style="padding:8px;">Mano de obra</td><td style="padding:8px;text-align:right;">$12,500.00</td></tr>
         <tr style="font-weight:bold;"><td style="padding:8px;">Total</td><td style="padding:8px;text-align:right;">$57,500.00</td></tr>
       </table>
-      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP Ãƒâ€šÃ‚Â· sistema@luxuryapp.mx</p>
+      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP Â· sistema@luxuryapp.mx</p>
     </div>`;
 
   private resolvePrimaryColor(): string {
@@ -1557,16 +1555,16 @@ export class CatalogCoreItem {
 
   readonly emailHtmlTokenized = `
     <div style="font-family:var(--ds-font-family-base, sans-serif);max-width:600px;margin:0 auto;color:var(--ds-text-primary);">
-      <h2 style="color:var(--ds-primary);">ConfirmaciÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³n de Orden</h2>
+      <h2 style="color:var(--ds-primary);">Confirmación de Orden</h2>
       <p>Estimado cliente,</p>
-      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y estÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡ en proceso de entrega.</p>
+      <p>Su orden <strong>OC-2026-0892</strong> ha sido aprobada y está en proceso de entrega.</p>
       <table style="width:100%;border-collapse:collapse;margin:16px 0;">
         <tr style="background:var(--ds-bg-elevated);"><th style="padding:8px;text-align:left;">Concepto</th><th style="padding:8px;text-align:right;">Monto</th></tr>
-        <tr><td style="padding:8px;">Material elÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©ctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
+        <tr><td style="padding:8px;">Material eléctrico</td><td style="padding:8px;text-align:right;">$45,000.00</td></tr>
         <tr><td style="padding:8px;">Mano de obra</td><td style="padding:8px;text-align:right;">$12,500.00</td></tr>
         <tr style="font-weight:bold;"><td style="padding:8px;">Total</td><td style="padding:8px;text-align:right;">$57,500.00</td></tr>
       </table>
-      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· sistema@luxuryapp.mx</p>
+      <p style="color:var(--ds-text-secondary);font-size:12px;">LuxuryApp ERP Â· sistema@luxuryapp.mx</p>
     </div>`;
 
   readonly formSchema: FormField[] = [
@@ -1575,18 +1573,18 @@ export class CatalogCoreItem {
       type: "text",
       label: "Nombre completo",
       required: true,
-      placeholder: "Juan GarcÃƒÆ’Ã‚Â­a",
+      placeholder: "Juan García",
     },
     {
       key: "email",
       type: "email",
-      label: "Correo electrÃƒÆ’Ã‚Â³nico",
+      label: "Correo electrónico",
       required: true,
     },
     {
       key: "area",
       type: "select",
-      label: "ÃƒÆ’Ã‚Ârea",
+      label: "Ãrea",
       required: true,
       options: [
         { label: "Contabilidad", value: "cont" },
@@ -1617,7 +1615,7 @@ export class CatalogCoreItem {
     company: "GHR SA de CV",
     email: "contacto@ghr.mx",
     phone: "+52 55 9876 5432",
-    tags: ["Premium", "HotelerÃƒÆ’Ã‚Â­a", "CDMX"],
+    tags: ["Premium", "Hotelería", "CDMX"],
     totalRevenue: 2450000,
     openDeals: 3,
     lastContact: "24 Jun 2026",
@@ -1626,27 +1624,27 @@ export class CatalogCoreItem {
       {
         icon: "mdi:phone",
         text: "Llamada de seguimiento Q3",
-        time: "Hace 2 dÃƒÆ’Ã‚Â­as",
+        time: "Hace 2 días",
       },
       {
         icon: "mdi:email",
         text: "Propuesta enviada por email",
-        time: "Hace 5 dÃƒÆ’Ã‚Â­as",
+        time: "Hace 5 días",
       },
       {
         icon: "mdi:calendar",
-        text: "ReuniÃƒÆ’Ã‚Â³n de revisiÃƒÆ’Ã‚Â³n anual",
+        text: "Reunión de revisión anual",
         time: "Hace 2 sem.",
       },
     ],
     deals: [
       {
-        title: "RemodelaciÃƒÆ’Ã‚Â³n Lobby",
-        stage: "NegociaciÃƒÆ’Ã‚Â³n",
+        title: "Remodelación Lobby",
+        stage: "Negociación",
         value: 850000,
       },
       { title: "Mantenimiento anual", stage: "Propuesta", value: 420000 },
-      { title: "InstalaciÃƒÆ’Ã‚Â³n AC", stage: "Prospecto" },
+      { title: "Instalación AC", stage: "Prospecto" },
     ],
   };
 
@@ -1659,7 +1657,7 @@ export class CatalogCoreItem {
   ];
 
   readonly heatmapData: HeatmapCell[] = [
-    ...[["Lun", "Mar", "MiÃƒÆ’Ã‚Â©", "Jue", "Vie"]].flatMap((cols) =>
+    ...[["Lun", "Mar", "Mié", "Jue", "Vie"]].flatMap((cols) =>
       [
         "08:00",
         "09:00",
@@ -1686,8 +1684,8 @@ export class CatalogCoreItem {
   readonly ganttTasks: GanttTask[] = [
     {
       id: "g1",
-      name: "DiseÃƒÆ’Ã‚Â±o de arquitectura",
-      group: "PlanificaciÃƒÆ’Ã‚Â³n",
+      name: "Diseño de arquitectura",
+      group: "Planificación",
       startDate: new Date("2026-07-01"),
       endDate: new Date("2026-07-07"),
       progress: 100,
@@ -1727,7 +1725,7 @@ export class CatalogCoreItem {
     },
     {
       id: "g5",
-      name: "Despliegue producciÃƒÆ’Ã‚Â³n",
+      name: "Despliegue producción",
       group: "Deploy",
       startDate: new Date("2026-08-06"),
       endDate: new Date("2026-08-08"),
@@ -1748,7 +1746,7 @@ export class CatalogCoreItem {
   ];
 
   readonly pivotRows: PivotDimension[] = [
-    { field: "area", label: "ÃƒÆ’Ã‚Ârea", sort: "asc" },
+    { field: "area", label: "Ãrea", sort: "asc" },
   ];
   readonly pivotColumns: PivotDimension = { field: "mes", label: "Mes" };
   readonly pivotValues: PivotValue[] = [
@@ -1761,7 +1759,7 @@ export class CatalogCoreItem {
     },
   ];
 
-  // ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ 13.3.2 demo data ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬
+  // 13.3.2 demo data
 
   readonly comparisonItems: ComparisonItem[] = [
     {
@@ -1787,8 +1785,8 @@ export class CatalogCoreItem {
       id: "1",
       type: "call",
       title: "Llamada con el cliente",
-      description: "Se discutiÃƒÆ’Ã‚Â³ el presupuesto para Q3.",
-      user: "Juan GarcÃƒÆ’Ã‚Â­a",
+      description: "Se discutió el presupuesto para Q3.",
+      user: "Juan García",
       timestamp: new Date("2026-06-24T10:00:00"),
     },
     {
@@ -1796,14 +1794,14 @@ export class CatalogCoreItem {
       type: "email",
       title: "Propuesta enviada",
       description: "Propuesta comercial por $120,000 MXN.",
-      user: "MarÃƒÆ’Ã‚Â­a LÃƒÆ’Ã‚Â³pez",
+      user: "María López",
       timestamp: new Date("2026-06-23T15:30:00"),
     },
     {
       id: "3",
       type: "meeting",
-      title: "ReuniÃƒÆ’Ã‚Â³n de seguimiento",
-      description: "RevisiÃƒÆ’Ã‚Â³n de avances del proyecto.",
+      title: "Reunión de seguimiento",
+      description: "Revisión de avances del proyecto.",
       user: "Carlos Ruiz",
       timestamp: new Date("2026-06-22T09:00:00"),
     },
@@ -1812,14 +1810,14 @@ export class CatalogCoreItem {
       type: "note",
       title: "Nota interna",
       description: "El cliente solicita entrega antes del 30 de junio.",
-      user: "Ana MartÃƒÆ’Ã‚Â­nez",
+      user: "Ana Martínez",
       timestamp: new Date("2026-06-21T17:00:00"),
     },
     {
       id: "5",
       type: "approval",
-      title: "AprobaciÃƒÆ’Ã‚Â³n de crÃƒÆ’Ã‚Â©dito",
-      description: "Aprobado por el ÃƒÆ’Ã‚Â¡rea financiera.",
+      title: "Aprobación de crédito",
+      description: "Aprobado por el área financiera.",
       user: "Sistema",
       timestamp: new Date("2026-06-20T12:00:00"),
     },
@@ -1833,7 +1831,7 @@ export class CatalogCoreItem {
       cards: [
         {
           id: "k1",
-          title: "Actualizar documentaciÃƒÆ’Ã‚Â³n",
+          title: "Actualizar documentación",
           stage: "todo",
           priority: "low",
           tags: ["docs"],
@@ -1854,7 +1852,7 @@ export class CatalogCoreItem {
       cards: [
         {
           id: "k3",
-          title: "IntegraciÃƒÆ’Ã‚Â³n con SAT",
+          title: "Integración con SAT",
           stage: "in-progress",
           priority: "high",
           assignee: "JG",
@@ -1864,7 +1862,7 @@ export class CatalogCoreItem {
     },
     {
       id: "review",
-      title: "RevisiÃƒÆ’Ã‚Â³n",
+      title: "Revisión",
       color: "var(--ds-info)",
       cards: [
         {
@@ -1883,7 +1881,7 @@ export class CatalogCoreItem {
       cards: [
         {
           id: "k5",
-          title: "MigraciÃƒÆ’Ã‚Â³n de base de datos",
+          title: "Migración de base de datos",
           stage: "done",
           priority: "critical",
           assignee: "CR",
@@ -1995,7 +1993,7 @@ export class CatalogCoreItem {
     },
     {
       id: "settings",
-      label: "ConfiguraciÃƒÆ’Ã‚Â³n",
+      label: "Configuración",
       description: "Abrir preferencias del sistema",
       icon: "mdi:cog",
       category: "Sistema",
@@ -2007,32 +2005,33 @@ export class CatalogCoreItem {
   tourVisible = signal(false);
   readonly tourSteps: TourStep[] = [
     {
-      title: "Ãƒâ€šÃ‚Â¡Bienvenido al sistema!",
+      title: "¡Bienvenido al sistema!",
       description:
-        "Este tour te guiarÃƒÆ’Ã‚Â¡ por las funciones principales. Puedes navegar con los botones o presionar Escape para salir.",
+        "Este tour te guiará por las funciones principales. Puedes navegar con los botones o presionar Escape para salir.",
       icon: "mdi:hand-wave",
       position: "center",
     },
     {
-      title: "MenÃƒÆ’Ã‚Âº lateral",
+      title: "Menú lateral",
       description:
-        "AquÃƒÆ’Ã‚Â­ encontrarÃƒÆ’Ã‚Â¡s todos los mÃƒÆ’Ã‚Â³dulos del ERP organizados por ÃƒÆ’Ã‚Â¡rea.",
+        "Aquí encontrarás todos los módulos del ERP organizados por área.",
       icon: "mdi:menu",
       position: "center",
     },
     {
       title: "Design System",
       description:
-        "El catÃƒÆ’Ã‚Â¡logo de componentes estÃƒÆ’Ã‚Â¡ disponible para SuperUsuarios en el menÃƒÆ’Ã‚Âº lateral.",
+        "El catálogo de componentes está disponible para SuperUsuarios en el menú lateral.",
       icon: "mdi:palette",
       position: "center",
     },
     {
-      title: "Ãƒâ€šÃ‚Â¡Listo!",
+      title: "¡Listo!",
       description:
-        "Ya conoces lo bÃƒÆ’Ã‚Â¡sico. Si necesitas ayuda, usa el Command Palette con Ctrl+K.",
+        "Ya conoces lo básico. Si necesitas ayuda, usa el Command Palette con Ctrl+K.",
       icon: "mdi:check-circle",
       position: "center",
     },
   ];
 }
+

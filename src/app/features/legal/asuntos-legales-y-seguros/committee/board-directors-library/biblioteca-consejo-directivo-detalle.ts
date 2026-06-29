@@ -1,4 +1,4 @@
-import {
+﻿import {
   Component,
   computed,
   effect,
@@ -13,9 +13,9 @@ import { addIcons } from "ionicons";
 import { documentTextOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
+import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
+import { CustomSearchInput } from "src/app/core/components/web/inputs/custom-search-input-signal";
 import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -151,5 +151,6 @@ export class BibliotecaConsejoDirectivoDetalle implements OnInit {
     );
   }
 }
+
 
 

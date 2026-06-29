@@ -1,6 +1,6 @@
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
@@ -8,7 +8,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { MultiSelectModule } from "primeng/multiselect";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { RangoCalendarioyyyymmdd } from "src/app/core/components/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
@@ -73,7 +73,7 @@ export class AgendaSupervision implements OnInit {
     this.rangoCalendarioService.fechaFinalDateFull,
   );
   applicationUserId = this.authS.applicationUserId;
-  depto: string = "SUPERVISIÃƒÂ³N DE OPERACIONES";
+  depto: string = "SUPERVISIóN DE OPERACIONES";
   nombre: string =
     this.authS.infoUserAuth.firstName + " " + this.authS.infoUserAuth.lastName;
   semana: string = this.fechaInicial + " a " + this.fechaFinal;
@@ -139,6 +139,7 @@ export class AgendaSupervision implements OnInit {
       });
   }
 }
+
 
 
 

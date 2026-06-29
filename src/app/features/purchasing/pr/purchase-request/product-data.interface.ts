@@ -1,9 +1,9 @@
-/**
+﻿/**
  * Interfaz para el tipo de dato esperado en la tabla de este componente.
  * Define la estructura de un producto que se puede agregar.
  */
 export interface IProductData {
-  // Define aquí los campos que esperas para cada 'rowItem'
+  // Define aqué los campos que esperas para cada 'rowItem'
   // Ejemplo basado en tu plantilla:
   productid: any;
   urlImagen: string;

@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -10,7 +10,7 @@ import {
   CustomButtonDelete,
   CustomButtonEdit,
   CustomButtonItem,
-} from "src/app/core/components/buttons/web";
+} from "src/app/core/components/web/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
@@ -59,7 +59,7 @@ export class WarehouseStockList {
   route = inject(ActivatedRoute);
   public aspRoleS = inject(AspRoleService);
   public AspRole = EApplicationRole;
-  // SeÃ³ales
+  // Señales
   dataSignal = signal<any[]>([]);
   almacenIdFromRoute: string | null = null;
 
@@ -211,3 +211,4 @@ export class WarehouseStockList {
     );
   }
 }
+

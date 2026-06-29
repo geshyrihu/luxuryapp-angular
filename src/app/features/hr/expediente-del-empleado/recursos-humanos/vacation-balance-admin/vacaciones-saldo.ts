@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from "@angular/common";
+﻿import { CommonModule, DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
@@ -6,7 +6,7 @@ import { MessageModule } from "primeng/message";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 // Alias para evitar colisión de nombres con el mótodo de instancia onGetSeverity.
@@ -251,7 +251,7 @@ export class VacacionesSaldo implements OnInit {
   }
 
   /**
-   * ?? Evalóa si debe mostrarse el banner de recordatorio de vacaciones próximas a vencer.
+   * ?? Evalía si debe mostrarse el banner de recordatorio de vacaciones próximas a vencer.
    *
    * **Condiciones para mostrar el banner (RN-012):**
    * 1. El empleado tiene días de vacaciones disponibles (saldo > 0).
@@ -305,4 +305,5 @@ export class VacacionesSaldo implements OnInit {
     }
   }
 }
+
 

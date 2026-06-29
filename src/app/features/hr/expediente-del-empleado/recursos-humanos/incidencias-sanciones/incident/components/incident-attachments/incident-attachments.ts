@@ -5,8 +5,8 @@ import { Component, inject, input, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ImageCompressionService } from "src/app/core/services/image-compression.service";
@@ -78,8 +78,8 @@ export class IncidentAttachmentsComponent {
     if (files.length > remaining) {
       this.swalS.fire({
         icon: "warning",
-        title: "LÃ­mite de archivos",
-        text: `Solo puedes agregar ${remaining} archivo(s) mÃ¡s.`,
+        title: "Límite de archivos",
+        text: `Solo puedes agregar ${remaining} archivo(s) mÃƒ¡s.`,
       });
       return;
     }
@@ -127,7 +127,7 @@ export class IncidentAttachmentsComponent {
 
     if (uploaded > 0) {
       this.swalS.success(
-        "Ã‰xito",
+        "Éxito",
         `${uploaded} archivo(s) adjuntado(s) correctamente.`,
       );
     }
@@ -155,3 +155,4 @@ export class IncidentAttachmentsComponent {
     return "mdi:file-document-outline text-primary";
   }
 }
+

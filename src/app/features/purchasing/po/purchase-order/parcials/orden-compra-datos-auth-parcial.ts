@@ -1,4 +1,4 @@
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import {
   Component,
   computed,
@@ -34,7 +34,7 @@ export class OrdenCompraDatosAuthParcial {
       return {
         disabled: true,
         reason: "already_authorized",
-        message: "La orden ya está autorizada",
+        message: "La orden ya esté autorizada",
       };
     }
 
@@ -61,7 +61,7 @@ export class OrdenCompraDatosAuthParcial {
   public isAuthorizationDisabled: Signal<boolean> = computed(
     () => this.authorizationStatus().disabled,
   );
-  // // REFACTOR: Se crea una `computed signal` para la lógica del botón de autorizar.
+  // // REFACTOR: Se crea una `computed signal` para la lígica del botín de autorizar.
   // // Esto resuelve el bucle infinito porque solo se recalcula cuando uno de los
   // // signals de los que depende (`totalOrdenCompra` o `totalPorCubrir`) cambia su valor.
   // public isAuthorizationDisabled: Signal<boolean> = computed(() => {
@@ -70,7 +70,7 @@ export class OrdenCompraDatosAuthParcial {
   //   const totalPorCubrir = this.ordenCompraService.totalPorCubrir();
 
   //   // El botón se deshabilita si:
-  //   // 1. Ya está 'Autorizado'.
+  //   // 1. Ya esté 'Autorizado'.
   //   // 2. El total de la orden de compra es cero o menos (no hay nada que pagar).
   //   // 3. Queda un monto por cubrir del presupuesto.
   //   return status === "Autorizado" || totalOC <= 0 || totalPorCubrir > 0;
@@ -91,7 +91,7 @@ export class OrdenCompraDatosAuthParcial {
   }
 
   // REFACTOR: Los getters `hayMontoParaPagar` y `totalParaCubrir` se han eliminado.
-  // Su lógica ahora vive dentro de la `computed signal` `isAuthorizationDisabled`.
+  // Su lígica ahora vive dentro de la `computed signal` `isAuthorizationDisabled`.
 }
 
 

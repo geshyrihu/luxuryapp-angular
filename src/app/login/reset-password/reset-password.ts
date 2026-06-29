@@ -11,13 +11,14 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
 import { MessageModule } from "primeng/message";
 import { catchError, finalize, Subject, throwError } from "rxjs";
-import { CustomInputPassword } from "src/app/core/components/inputs/web/custom-input-password-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomInputPasswordSignal } from "src/app/core/components/web/inputs/custom-input-password-signal";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
 import { LoginSliderService } from "src/app/core/services/login-slider.service";
 import Swal from "sweetalert2";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 
 interface IResetPasswordForm {
   newPassword: FormControl<string>;
@@ -29,77 +30,89 @@ interface IResetPasswordForm {
   imports: [
     ReactiveFormsModule,
     MessageModule,
-    CustomInputPassword,
+    CustomInputPasswordSignal,
     CustomButton,
     RouterModule,
+    AppIcon,
   ],
   template: `
-    <!-- Contenedor principal similar al login -->
-    <div class="relative w-full overflow-hidden min-h-screen bg-black-alpha-90">
-      <!-- Carrusel de imágenes de fondo -->
-      <div class="absolute top-0 left-0 w-full h-full z-10">
+    <!-- Contenedor principal de la página de restablecer contraseña (Split Layout) -->
+    <div class="relative flex h-screen w-full overflow-hidden surface-ground">
+      <!-- =============================== -->
+      <!-- 1. FULL SCREEN BACKGROUND IMAGE -->
+      <!-- =============================== -->
+      <div class="absolute top-0 left-0 w-full h-full z-0 bg-black-alpha-90">
         @for (image of visibleImages(); track image) {
           <div
             class="absolute top-0 left-0 w-full h-full"
             [@slideAnimation]
             [style.background-image]="'url(' + image + ')'"
-            style="background-size: cover; background-position: center"
+            style="background-size: cover; background-position: center; opacity: 0.9;"
           ></div>
         }
-        <div class="absolute top-0 left-0 w-full h-full bg-black-alpha-80 md:bg-black-alpha-60"></div>
+        <div class="absolute top-0 left-0 w-full h-full" style="background: linear-gradient(135deg, rgba(27, 54, 93, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%);"></div>
       </div>
 
-      <!-- Contenido centrado -->
-      <div
-        class="relative z-20 flex align-items-center justify-content-center w-full min-h-screen fadeinup animation-duration-500"
-      >
-        <div
-          class="w-full flex flex-column justify-content-center overflow-hidden glass-auth-card max-w-30rem"
-        >
-          <form
-            class="w-full px-4 py-6 md:p-5"
-            [formGroup]="form"
-            (ngSubmit)="onSubmit()"
-          >
-            <!-- Logo -->
-            <div class="text-center mb-5">
-              <img
-                class="mx-auto mb-3 w-13rem h-auto"
-                src="assets/images/login/LBG-blanco.png"
-                alt="Logo LuxuryApp"
+      <!-- =============================== -->
+      <!-- 2. CONTENT (OVER BACKGROUND)    -->
+      <!-- =============================== -->
+      <div class="relative z-10 flex w-full h-full">
+
+      <!-- Lado Izquierdo: Formulario -->
+      <div class="w-full lg:w-5 flex flex-column align-items-center justify-content-center relative px-4 md:px-6 py-8 z-20 shadow-8 auth-dark-panel">
+        
+        <!-- Barra superior dorada (Accent) -->
+        <div class="absolute top-0 left-0 w-full h-1rem" style="background-color: var(--ds-secondary);"></div>
+
+        <div class="w-full max-w-25rem relative z-10 fadein animation-duration-500">
+          
+          <!-- Logo y Bienvenida -->
+          <div class="text-center mb-6">
+            <img
+              class="mx-auto mb-4 w-12rem md:w-15rem h-auto drop-shadow-md"
+              src="assets/images/login/LBG-blanco.png"
+              alt="Logo Luxury Building Group"
+              width="240"
+              height="92"
+            />
+            <h2 class="text-2xl md:text-3xl font-bold mb-2 tracking-tight">Restablecer Contraseña</h2>
+            @if (email()) {
+              <p class="text-base m-0 font-light">Para: {{ email() }}</p>
+            }
+          </div>
+
+          <!-- Formulario -->
+          <form class="flex flex-column gap-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+            
+            <div class="p-fluid">
+              <custom-input-password-signal
+                [control]="form.controls.newPassword"
+                [horizontal]="false"
+                formControlName="newPassword"
+                id="new-password-global"
+                label="Nueva Contraseña"
+                placeholder="••••••••"
+                [showStrengthIndicator]="true"
+                [noMargin]="true"
+                customClass="h-3rem text-lg"
               />
-              <h4 class="mb-1 text-2xl font-bold tracking-tight">Restablecer Contraseña</h4>
-              @if (email()) {
-                <p class="font-medium text-sm text-600">Para: {{ email() }}</p>
-              }
             </div>
 
-            <!-- Campos -->
-            <custom-input-password-signal
-              class="mb-3 block"
-              [control]="form.controls.newPassword"
-              [horizontal]="false"
-              formControlName="newPassword"
-              label="Nueva Contraseña"
-              placeholder="********"
-              [showStrengthIndicator]="true"
-              size="large"
-            />
+            <div class="p-fluid">
+              <custom-input-password-signal
+                [control]="form.controls.confirmPassword"
+                [horizontal]="false"
+                formControlName="confirmPassword"
+                id="confirm-password-global"
+                label="Confirmar Contraseña"
+                placeholder="••••••••"
+                [noMargin]="true"
+                customClass="h-3rem text-lg"
+              />
+            </div>
 
-            <custom-input-password-signal
-              class="mb-3 block"
-              [control]="form.controls.confirmPassword"
-              [horizontal]="false"
-              formControlName="confirmPassword"
-              label="Confirmar Contraseña"
-              placeholder="********"
-              size="large"
-            />
-
-            <!-- Botón -->
-            <div class="mt-5">
+            <div class="mt-4">
               <custom-button
-                customClass="w-full border-round overflow-hidden"
                 type="submit"
                 label="CAMBIAR CONTRASEÑA"
                 [loading]="submitting()"
@@ -107,33 +120,84 @@ interface IResetPasswordForm {
                 icon="mdi:lock-reset"
                 [fluid]="true"
                 [showLabelOnDesktop]="true"
+                severity="warning"
+                customClass="w-full shadow-4"
               ></custom-button>
             </div>
 
             <!-- Mensaje Error -->
             @if (errorMessage()) {
-              <div class="mt-4 fadein animation-duration-300">
-                <p-message
-                  severity="error"
-                  [text]="errorMessage()"
-                  styleClass="w-full shadow-1"
-                ></p-message>
+              <div class="mt-3 fadein animation-duration-300">
+                <div class="flex align-items-center p-3 border-round border-1 border-red-300 bg-red-50 text-red-800 shadow-1">
+                  <app-icon icon="mdi:alert-circle-outline" class="text-xl mr-3"></app-icon>
+                  <span class="text-sm font-medium">{{ errorMessage() }}</span>
+                </div>
               </div>
             }
 
-            <div class="text-center mt-4">
-              <a
-                [routerLink]="['/auth/login']"
-                class="font-semibold text-sm text-primary transition-colors hover:text-white"
-              >
+            <div class="flex align-items-center justify-content-center mt-2">
+              <a [routerLink]="['/auth/login']" class="font-semibold text-sm transition-colors" style="color: var(--ds-secondary); text-decoration: none;">
                 Volver al Login
               </a>
             </div>
           </form>
         </div>
+        
+        <!-- Footer / Copyright -->
+        <div class="absolute bottom-0 left-0 w-full text-center pb-4 text-400 text-xs">
+          &copy; 2026 Luxury Building Group. Todos los derechos reservados.
+        </div>
+      </div>
+
+      <!-- Lado Derecho: Imagen y Branding (Oculto en pantallas pequeñas, visible en lg) -->
+      <div class="hidden lg:flex lg:w-7 relative align-items-center justify-content-center">
+        
+        <!-- Contenido Branding Flotante -->
+        <div class="relative z-10 text-white max-w-30rem text-center fadein animation-duration-1000">
+          <div class="mb-5 inline-flex align-items-center justify-content-center w-5rem h-5rem border-circle shadow-6" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2);">
+            <app-icon icon="mdi:star" class="text-4xl" style="color: var(--ds-secondary);"></app-icon>
+          </div>
+          <h1 class="text-6xl font-bold mb-4 line-height-2 text-white drop-shadow-lg">
+            Excelencia <br />
+            <span style="color: var(--ds-secondary);">Inmobiliaria</span>
+          </h1>
+          <p class="text-xl line-height-3 text-200 mt-4 px-4 font-light drop-shadow-md">
+            Gestiona recursos, proyectos y operaciones con la suite tecnológica definitiva diseñada para líderes de la industria.
+          </p>
+        </div>
+      </div>
       </div>
     </div>
   `,
+  styles: [`
+    :host { display: block; height: 100vh; width: 100vw; }
+    .auth-dark-panel {
+      background: rgba(11, 49, 100, 0.4);
+      color: rgba(255, 255, 255, 0.95);
+    }
+    .auth-dark-panel ::ng-deep label,
+    .auth-dark-panel ::ng-deep h2,
+    .auth-dark-panel ::ng-deep p,
+    .auth-dark-panel ::ng-deep .text-900,
+    .auth-dark-panel ::ng-deep .text-700,
+    .auth-dark-panel ::ng-deep .text-600 {
+      color: rgba(255, 255, 255, 0.9) !important;
+    }
+    .auth-dark-panel ::ng-deep input {
+      background: rgba(255, 255, 255, 0.05) !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      color: white !important;
+    }
+    .auth-dark-panel ::ng-deep input::placeholder {
+      color: rgba(255, 255, 255, 0.5) !important;
+    }
+    .auth-dark-panel ::ng-deep .p-password i {
+      color: rgba(255, 255, 255, 0.7) !important;
+    }
+    .auth-dark-panel ::ng-deep .p-password-meter {
+      background: rgba(255, 255, 255, 0.2) !important;
+    }
+  `],
   animations: [
     trigger("slideAnimation", [
       transition(":enter", [
@@ -144,16 +208,6 @@ interface IResetPasswordForm {
         animate("1500ms ease-in-out", style({ opacity: 0 })),
       ]),
     ]),
-  ],
-  styles: [
-    `
-      :host {
-        display: block;
-        height: 100vh;
-        width: 100vw;
-      }
-
-    `,
   ],
 })
 export class ResetPassword implements OnInit, OnDestroy {
@@ -191,7 +245,7 @@ export class ResetPassword implements OnInit, OnDestroy {
     this.email.set(this.route.snapshot.queryParamMap.get("email") || "");
 
     if (!this.token()) {
-      this.errorMessage.set("Enlace invólido o expirado.");
+      this.errorMessage.set("Enlace inválido o expirado.");
     }
 
     // this.initializeSlider(); // Handled by signal
@@ -254,7 +308,7 @@ export class ResetPassword implements OnInit, OnDestroy {
         next: () => {
           Swal.fire({
             icon: "success",
-            title: "óóxito!",
+            title: "Éxito",
             text: "Tu contraseña ha sido actualizada. Ahora puedes iniciar sesión.",
             confirmButtonText: "Ir a Login",
           }).then(() => {

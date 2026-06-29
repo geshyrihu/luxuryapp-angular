@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Component, inject, OnInit, signal } from "@angular/core";
+import { toSignal } from "@angular/core/rxjs-interop";
 import {
   FormBuilder,
   FormGroup,
@@ -10,98 +11,102 @@ import { Router } from "@angular/router";
 import {
   IonApp,
   IonButton,
-  IonButtons,
   IonContent,
-  IonHeader,
-  IonIcon,
-  IonInput,
-  IonItem,
   IonSpinner,
-  IonText,
-  IonTitle,
-  IonToolbar,
 } from "@ionic/angular/standalone";
-import { addIcons } from "ionicons";
-import { arrowBack } from "ionicons/icons";
 import { catchError, finalize, throwError } from "rxjs";
+import { IonInputText } from "src/app/core/components/mobile/inputs/ion-input-text";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
+import { LoginSliderService } from "src/app/core/services/login-slider.service";
+
 @Component({
   selector: "app-recovery-mobile",
   imports: [
     ReactiveFormsModule,
     IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
-    IonButtons,
     IonButton,
-    IonIcon,
-    IonItem,
-    IonInput,
-    IonText,
     IonSpinner,
     IonApp,
+    IonInputText,
   ],
   template: `
     <ion-app>
-      <ion-header>
-        <ion-toolbar color="primary">
-          <ion-buttons slot="start">
-            <ion-button (click)="goBack()">
-              <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
-            </ion-button>
-          </ion-buttons>
-          <ion-title>Recuperar Contraseña</ion-title>
-        </ion-toolbar>
-      </ion-header>
+      <ion-content fullscreen>
+        <!-- Fondo Premium -->
+        <div class="lm-bg">
+          @for (image of sliderImages(); track image) {
+            <div
+              class="absolute top-0 left-0 w-full h-full"
+              [style.background-image]="'url(' + image + ')'"
+              style="background-size: cover; background-position: center; opacity: 0.9;"
+            ></div>
+          }
+          <div class="lm-overlay"></div>
+        </div>
 
-      <ion-content class="ion-padding">
-        <div
-          class="flex flex-column align-items-center justify-content-center h-full"
-        >
-          <p class="text-center text-medium mb-4">
-            Ingresa tu correo electrónico y te enviaremos instrucciones para
-            restablecer tu contraseña.
-          </p>
+        <div class="lm-container">
+          <!-- Logo Header -->
+          <div
+            class="lm-header flex-1 flex flex-column align-items-center justify-content-center fadein animation-duration-1000"
+          >
+            <img
+              src="assets/images/login/LBG-blanco.png"
+              alt="Logo Luxury Building Group"
+              class="lm-logo drop-shadow-lg"
+            />
+          </div>
 
-          <form [formGroup]="form" (ngSubmit)="onSubmit()" class="w-full">
-            <ion-item class="mb-4">
-              <ion-input
+          <!-- Bottom Sheet Card -->
+          <div class="lm-card shadow-8 fadeinup animation-duration-500">
+            <h2 class="lm-title">Recuperar Contraseña</h2>
+            <p class="lm-subtitle mb-4">
+              Ingresa tu correo electrónico y te enviaremos instrucciones.
+            </p>
+
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="lm-form">
+              <ion-input-text
+                [control]="form.controls['email']"
                 label="Correo Electrónico"
-                labelPlacement="floating"
-                formControlName="email"
-                type="email"
                 placeholder="ejemplo@correo.com"
-              ></ion-input>
-            </ion-item>
+              />
 
-            @if (errorMessage) {
-              <ion-text color="danger" class="block text-center mb-3">
-                <p>{{ errorMessage }}</p>
-              </ion-text>
-            }
-
-            @if (successMessage) {
-              <ion-text color="success" class="block text-center mb-3">
-                <p>{{ successMessage }}</p>
-              </ion-text>
-            }
-
-            <ion-button
-              expand="block"
-              type="submit"
-              [disabled]="form.invalid || submitting() || countdown > 0"
-              class="mb-3"
-            >
-              @if (submitting()) {
-                <ion-spinner name="crescent"></ion-spinner>
-              } @else if (countdown > 0) {
-                Reintentar en {{ countdown }}s
-              } @else {
-                Enviar Instrucciones
+              @if (errorMessage) {
+                <div
+                  class="p-3 border-round border-1 border-red-300 bg-red-50 text-red-800 shadow-1 mt-2 flex align-items-center"
+                >
+                  <span class="text-sm font-medium">{{ errorMessage }}</span>
+                </div>
               }
-            </ion-button>
-          </form>
+
+              @if (successMessage) {
+                <div
+                  class="p-3 border-round border-1 border-green-300 bg-green-50 text-green-800 shadow-1 mt-2 flex align-items-center"
+                >
+                  <span class="text-sm font-medium">{{ successMessage }}</span>
+                </div>
+              }
+
+              <div class="lm-btn-wrapper mt-4">
+                <ion-button
+                  expand="block"
+                  type="submit"
+                  [disabled]="form.invalid || submitting() || countdown > 0"
+                >
+                  @if (submitting()) {
+                    <ion-spinner name="crescent"></ion-spinner>
+                  } @else if (countdown > 0) {
+                    Reintentar en {{ countdown }}s
+                  } @else {
+                    Enviar Instrucciones
+                  }
+                </ion-button>
+              </div>
+
+              <div class="lm-links mt-4">
+                <a (click)="goBack()" class="lm-link"> Volver al Login </a>
+              </div>
+            </form>
+          </div>
         </div>
       </ion-content>
     </ion-app>
@@ -110,13 +115,154 @@ import { DataConnectorService } from "src/app/core/services/data-connector.servi
     `
       :host {
         display: block;
-        height: 100%;
-        width: 100%;
+        height: 100vh;
+        width: 100vw;
       }
-      ion-app {
-        position: relative;
+
+      ion-content {
+        --background: var(--ds-primary);
+      }
+
+      .lm-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
+        background-color: var(--ds-primary);
+        overflow: hidden;
+      }
+
+      .lm-glow-1 {
+        position: absolute;
+        top: -10%;
+        left: -20%;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(
+          circle,
+          var(--ds-secondary) 0%,
+          transparent 70%
+        );
+        opacity: 0.15;
+        filter: blur(50px);
+      }
+
+      .lm-glow-2 {
+        position: absolute;
+        bottom: 20%;
+        right: -20%;
+        width: 250px;
+        height: 250px;
+        background: radial-gradient(
+          circle,
+          var(--ds-tertiary) 0%,
+          transparent 70%
+        );
+        opacity: 0.15;
+        filter: blur(40px);
+      }
+
+      .lm-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          180deg,
+          rgba(27, 54, 93, 0.4) 0%,
+          rgba(27, 54, 93, 1) 100%
+        );
+      }
+
+      .lm-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        z-index: 10;
+      }
+
+      .lm-header {
+        padding-top: 3rem;
+        padding-bottom: 2rem;
+      }
+
+      .lm-logo {
+        width: 180px;
+        height: auto;
+      }
+
+      .lm-card {
+        background: var(--ds-surface-bright, #ffffff);
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
+        padding: 2.5rem 1.5rem 3.5rem 1.5rem;
+        flex-shrink: 0;
+      }
+
+      .lm-title {
+        color: var(--ds-primary);
+        font-size: 1.75rem;
+        font-weight: 800;
+        margin: 0 0 0.5rem;
+        letter-spacing: -0.5px;
+      }
+
+      .lm-subtitle {
+        color: var(--ds-on-surface-variant);
+        font-size: 1rem;
+        margin: 0;
+      }
+
+      .lm-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      .lm-form ::ng-deep ion-input {
+        background-color: var(--ds-surface) !important;
+        border: 1px solid var(--ds-outline-variant) !important;
+        --background: var(--ds-surface) !important;
+        --color: var(--ds-on-surface) !important;
+        --padding-start: 1rem !important;
+        --padding-end: 1rem !important;
+      }
+      .lm-form ::ng-deep ion-input.ion-focused {
+        border-color: var(--ds-primary) !important;
+        box-shadow: 0 0 0 3px
+          color-mix(in srgb, var(--ds-primary), transparent 85%) !important;
+      }
+      .lm-form ::ng-deep .field-label {
+        color: var(--ds-on-surface-variant);
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .lm-btn-wrapper ::ng-deep ion-button {
+        --background: var(--ds-secondary);
+        --background-activated: var(--ds-secondary-hover);
+        --color: var(--ds-on-secondary);
+        --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        height: 54px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+      }
+
+      .lm-links {
+        text-align: center;
+      }
+
+      .lm-link {
+        color: var(--ds-primary);
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
       }
     `,
   ],
@@ -125,15 +271,18 @@ export class RecoveryMobile implements OnInit {
   private fb = inject(FormBuilder);
   private dataConnectorS = inject(DataConnectorService);
   private router = inject(Router);
+  private loginSliderService = inject(LoginSliderService);
+
+  readonly sliderImages = toSignal(this.loginSliderService.getVisibleImages$(), {
+    initialValue: [],
+  });
   form: FormGroup;
   submitting = signal(false);
   errorMessage = "";
   successMessage = "";
   countdown = 0;
 
-  constructor() {
-    addIcons({ arrowBack });
-  }
+  constructor() {}
 
   ngOnInit() {
     this.form = this.fb.group({

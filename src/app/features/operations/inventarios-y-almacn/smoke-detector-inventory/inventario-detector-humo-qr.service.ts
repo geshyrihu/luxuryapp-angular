@@ -1,4 +1,4 @@
-import { Injectable, inject } from "@angular/core";
+﻿import { Injectable, inject } from "@angular/core";
 import QRCode from "qrcode";
 import { IInventarioDetectorHumo } from "src/app/core/interfaces/inventario-detector-humo.interface";
 import { HtmlPrintService } from "src/app/core/services/html-print.service";

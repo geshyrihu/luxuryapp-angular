@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
 import {
   FormBuilder,
@@ -10,17 +10,17 @@ import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
-import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
-import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
-import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
-import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
-import { CustomInputMultiselectSignal } from "src/app/core/components/inputs/web/custom-input-multiselect-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
-import { CustomInputPassword } from "src/app/core/components/inputs/web/custom-input-password-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
-import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputCheckSignal } from "src/app/core/components/web/inputs/custom-input-check-signal";
+import { CustomInputCurrencySignal } from "src/app/core/components/web/inputs/custom-input-currency-signal";
+import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
+import { CustomInputFile } from "src/app/core/components/web/inputs/custom-input-file-signal";
+import { CustomInputMultiselectSignal } from "src/app/core/components/web/inputs/custom-input-multiselect-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
+import { CustomInputPassword } from "src/app/core/components/web/inputs/custom-input-password-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
+import { CustomInputSwitch } from "src/app/core/components/web/inputs/custom-input-switch-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
+import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 
 @Component({
   selector: "app-web-forms",
@@ -49,7 +49,7 @@ import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom
 
       <!-- Formulario de solicitud ERP (patrón estándar) -->
       <div class="col-12">
-        <p-card header="Formulario ERP — Solicitud Operativa">
+        <p-card header="Formulario ERP â€” Solicitud Operativa">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Patrón estándar: labels persistentes (<code>custom-input-*</code>),
             grid PrimeFlex, validación visible y acciones Cancelar → Guardar al final.
@@ -68,7 +68,7 @@ import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom
             <div class="field col-12 md:col-6 xl:col-4">
               <custom-input-select-signal
                 [control]="form.controls['area']"
-                label="Área responsable *"
+                label="Ãrea responsable *"
                 [data]="areas"
                 placeholder="Selecciona área"
               />
@@ -191,7 +191,7 @@ import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom
             <custom-input-password-signal
               [control]="loginForm.controls['password']"
               label="Contraseña"
-              placeholder="••••••••"
+              placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
               [showStrengthIndicator]="true"
             />
             @if (loginForm.controls['email'].invalid && loginForm.controls['email'].touched) {
@@ -206,7 +206,7 @@ import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom
       <div class="col-12 lg:col-6">
         <p-card header="Estados de Validación Explícitos">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            Haz clic en «Mostrar errores» para ver todos los estados de validación activos.
+            Haz clic en Â«Mostrar erroresÂ» para ver todos los estados de validación activos.
           </p>
           <form [formGroup]="validationShowcase" class="flex flex-column gap-3">
             <custom-input-text-signal
@@ -315,3 +315,4 @@ export class WebForms {
     });
   }
 }
+

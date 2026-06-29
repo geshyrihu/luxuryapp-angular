@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from "@angular/common";
+﻿import { CommonModule, DatePipe } from "@angular/common";
 import { ChangeDetectorRef, Component, inject, OnInit } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
@@ -68,7 +68,7 @@ import { ApprovalInfoService } from "./approval-info.service";
           <div class="mb-4">
             <div class="flex items-center mb-2">
               <app-icon [icon]="'mdi:history'" class="text-xl"></app-icon>
-              <h5 class="mb-0 font-semibold">Historial (últimos 3 meses)</h5>
+              <h5 class="mb-0 font-semibold">Historial (óltimos 3 meses)</h5>
             </div>
             <p class="text-600">
               El empleado ha solicitado

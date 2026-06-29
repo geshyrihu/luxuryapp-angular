@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, signal, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { FormsModule } from "@angular/forms";
@@ -64,7 +64,7 @@ export class CatalogAuditItem {
   }
 
   readonly bloques = [
-    { titulo: "Advertencia", icono: "mdi:alert", descripcion: "Riesgo físico, legal o económico." },
+    { titulo: "Advertencia", icono: "mdi:alert", descripcion: "Riesgo fósico, legal o económico." },
     { titulo: "Nota", icono: "mdi:information", descripcion: "Información complementaria." },
   ];
 

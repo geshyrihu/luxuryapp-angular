@@ -1,9 +1,9 @@
-import { Component, computed, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button"; // Nueva importación
-import { CustomButtonConfirm } from "src/app/core/components/buttons/web/custom-button-confirm";
-import { SubirPdf } from "src/app/core/components/inputs/web/custom-input-upload-pdf-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button"; // Nueva importación
+import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
+import { SubirPdf } from "src/app/core/components/web/inputs/custom-input-upload-pdf-signal";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -69,3 +69,4 @@ export class ActivosDocumentos implements OnInit {
       });
   }
 }
+

@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -6,7 +6,7 @@ import { ButtonModule } from "primeng/button";
 import { ImageModule } from "primeng/image";
 import { TagModule } from "primeng/tag";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/buttons/web";
+import { CustomButton } from "src/app/core/components/web/buttons";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -211,13 +211,13 @@ export class ManualsAndProcessesDetail implements OnInit {
   noteEmoji(tipoNota: number): string {
     switch (tipoNota) {
       case 1:
-        return "ℹ️";
+        return "â„¹ï¸";
       case 2:
-        return "⚠️";
+        return "âš ï¸";
       case 3:
         return "✅";
       default:
-        return "•";
+        return "â€¢";
     }
   }
 
@@ -275,3 +275,4 @@ export class ManualsAndProcessesDetail implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
 }
+

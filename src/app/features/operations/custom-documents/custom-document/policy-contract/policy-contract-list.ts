@@ -9,7 +9,7 @@ import {
   CustomButtonDelete,
   CustomButtonEdit,
   CustomButtonViewPdf,
-} from "src/app/core/components/buttons/web";
+} from "src/app/core/components/web/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -21,7 +21,7 @@ import {
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
-import { CustomBtnActiveDesactive } from "src/app/core/components/buttons/web/custom-button-active-desactive";
+import { CustomBtnActiveDesactive } from "src/app/core/components/web/buttons/custom-button-active-desactive";
 import { PolicyContractForm } from "./policy-contract-form";
 @Component({
   selector: "app-policy-contract-list",
@@ -132,13 +132,14 @@ export class PolicyContractList {
   }
   getTagSeverity(tagLabel: string | null): "success" | "warn" | "danger" {
     if (tagLabel === "Vigente") {
-      return "success"; // Si no hay etiqueta, consideramos que estÃ¡ vigente
+      return "success"; // Si no hay etiqueta, consideramos que estÃƒ¡ vigente
     }
-    if (tagLabel === "PrÃ³ximo a vencer") {
-      return "warn"; // Si no hay etiqueta, consideramos que estÃ¡ vigente
+    if (tagLabel === "Próximo a vencer") {
+      return "warn"; // Si no hay etiqueta, consideramos que estÃƒ¡ vigente
     }
     if (tagLabel === "Vencido") {
-      return "danger"; // Si no hay etiqueta, consideramos que estÃ¡ vigente
+      return "danger"; // Si no hay etiqueta, consideramos que estÃƒ¡ vigente
     }
   }
 }
+

@@ -1,10 +1,10 @@
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+﻿import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ContabilidadModuleGroup } from "./contabilidad-module.model";
 
 export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
-  // ─────────────────────────────────────────────────────────────
+  // -------------------------------------------------------------
   // CONTABILIDAD GENERAL
-  // ─────────────────────────────────────────────────────────────
+  // -------------------------------------------------------------
   {
     label: "Contabilidad General",
     icon: "mdi:chart-bar",
@@ -91,9 +91,9 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
       },
     ],
   },
-  // ─────────────────────────────────────────────────────────────
+  // -------------------------------------------------------------
   // CONTABILIDAD PRESUPUESTAL
-  // ─────────────────────────────────────────────────────────────
+  // -------------------------------------------------------------
   {
     label: "Espejo Contabilidad Presupuestal",
     icon: "mdi:chart-bar",
@@ -149,9 +149,9 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
     ],
   },
 
-  // ─────────────────────────────────────────────────────────────
+  // -------------------------------------------------------------
   // COBRANZA
-  // ─────────────────────────────────────────────────────────────
+  // -------------------------------------------------------------
   {
     label: "Cobranza",
     icon: "mdi:wallet",

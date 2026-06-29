@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { AvatarModule } from "primeng/avatar";
 import { BadgeModule } from "primeng/badge";
@@ -9,12 +9,15 @@ import { DividerModule } from "primeng/divider";
 import { OverlayBadgeModule } from "primeng/overlaybadge";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
-import { ActionIconsGroupComponent } from "src/app/core/components/shared/action-icons-group/action-icons-group.component";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { ActionIconsGroupComponent } from "src/app/core/components/shared/action-icons-group/action-icons-group.component";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { EStatus, StatusBadge } from "src/app/core/components/shared/status-badge/status-badge";
-import { CustomButtonDelete } from "src/app/core/components/buttons/web/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-button-edit";
+import {
+  EStatus,
+  StatusBadge,
+} from "src/app/core/components/shared/status-badge/status-badge";
 
 @Component({
   selector: "app-web-badges",
@@ -39,49 +42,91 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
   ],
   template: `
     <div class="grid">
-
-      <!-- Tags -->
       <div class="col-12">
-        <p-card header="Tags â€” p-tag">
+        <p-card header="Tags - p-tag">
           <div class="flex flex-column gap-4">
             <div>
-              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">Severities estÃ¡ndar</span>
+              <span
+                class="text-xs font-bold text-color-secondary uppercase mb-2 block"
+                style="letter-spacing: 0.06em"
+              >
+                Severities estándar
+              </span>
               <div class="flex flex-wrap gap-2">
-                <p-tag value="Success"   severity="success"   />
-                <p-tag value="Info"      severity="info"      />
-                <p-tag value="Warning"   severity="warn"      />
-                <p-tag value="Danger"    severity="danger"    />
+                <p-tag value="Success" severity="success" />
+                <p-tag value="Info" severity="info" />
+                <p-tag value="Warning" severity="warn" />
+                <p-tag value="Danger" severity="danger" />
                 <p-tag value="Secondary" severity="secondary" />
-                <p-tag value="Contrast"  severity="contrast"  />
+                <p-tag value="Contrast" severity="contrast" />
               </div>
             </div>
 
             <div>
-              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">Rounded</span>
+              <span
+                class="text-xs font-bold text-color-secondary uppercase mb-2 block"
+                style="letter-spacing: 0.06em"
+              >
+                Rounded
+              </span>
               <div class="flex flex-wrap gap-2">
-                <p-tag value="Success"   severity="success"   [rounded]="true" />
-                <p-tag value="Info"      severity="info"      [rounded]="true" />
-                <p-tag value="Warning"   severity="warn"      [rounded]="true" />
-                <p-tag value="Danger"    severity="danger"    [rounded]="true" />
+                <p-tag value="Success" severity="success" [rounded]="true" />
+                <p-tag value="Info" severity="info" [rounded]="true" />
+                <p-tag value="Warning" severity="warn" [rounded]="true" />
+                <p-tag value="Danger" severity="danger" [rounded]="true" />
                 <p-tag value="Secondary" severity="secondary" [rounded]="true" />
               </div>
             </div>
 
             <div>
-              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">Con icono</span>
+              <span
+                class="text-xs font-bold text-color-secondary uppercase mb-2 block"
+                style="letter-spacing: 0.06em"
+              >
+                Con icono
+              </span>
               <div class="flex flex-wrap gap-2">
-                <p-tag value="Guardado"    severity="success" icon="mdi:check"        [rounded]="true" />
-                <p-tag value="Sincronizar" severity="info"    icon="mdi:sync"         [rounded]="true" />
-                <p-tag value="Pendiente"   severity="warn"    icon="mdi:clock-outline" [rounded]="true" />
-                <p-tag value="Bloqueado"   severity="danger"  icon="mdi:lock"         [rounded]="true" />
+                <p-tag
+                  value="Guardado"
+                  severity="success"
+                  icon="mdi:check"
+                  [rounded]="true"
+                />
+                <p-tag
+                  value="Sincronizar"
+                  severity="info"
+                  icon="mdi:sync"
+                  [rounded]="true"
+                />
+                <p-tag
+                  value="Pendiente"
+                  severity="warn"
+                  icon="mdi:clock-outline"
+                  [rounded]="true"
+                />
+                <p-tag
+                  value="Bloqueado"
+                  severity="danger"
+                  icon="mdi:lock"
+                  [rounded]="true"
+                />
               </div>
             </div>
 
             <div>
-              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">Valores de negocio ERP (ejemplos)</span>
+              <span
+                class="text-xs font-bold text-color-secondary uppercase mb-2 block"
+                style="letter-spacing: 0.06em"
+              >
+                Valores de negocio ERP (ejemplos)
+              </span>
               <div class="flex flex-wrap gap-2">
                 @for (s of erpStates; track s.label) {
-                  <p-tag [value]="s.label" [severity]="s.severity" [rounded]="true" />
+                  <p-tag
+                    [value]="s.label"
+                    [severity]="s.severity"
+                    [rounded]="true"
+                  />
                 }
               </div>
             </div>
@@ -89,33 +134,65 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
         </p-card>
       </div>
 
-      <!-- Badges numÃ©ricos -->
       <div class="col-12 lg:col-6">
-        <p-card header="Badges numÃ©ricos â€” p-badge">
+        <p-card header="Badges numéricos - p-badge">
           <div class="flex flex-column gap-4">
             <div>
-              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">Standalone</span>
+              <span
+                class="text-xs font-bold text-color-secondary uppercase mb-2 block"
+                style="letter-spacing: 0.06em"
+              >
+                Standalone
+              </span>
               <div class="flex flex-wrap gap-3 align-items-center">
                 <p-badge value="2" />
-                <p-badge value="8"  severity="success" />
-                <p-badge value="4"  severity="warn"    />
-                <p-badge value="12" severity="danger"  />
-                <p-badge value="99+" severity="info"   />
+                <p-badge value="8" severity="success" />
+                <p-badge value="4" severity="warn" />
+                <p-badge value="12" severity="danger" />
+                <p-badge value="99+" severity="info" />
                 <p-badge severity="danger" />
               </div>
             </div>
 
             <div>
-              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">Sobre botones</span>
+              <span
+                class="text-xs font-bold text-color-secondary uppercase mb-2 block"
+                style="letter-spacing: 0.06em"
+              >
+                Sobre botones
+              </span>
               <div class="flex flex-wrap gap-2 align-items-center">
-                <p-button label="Bandeja"    badge="5"  badgeSeverity="danger"  icon="mdi:inbox" />
-                <p-button label="Notif."     badge="12" badgeSeverity="warn"    icon="mdi:bell" severity="secondary" />
-                <p-button label="Pendientes" badge="3"  badgeSeverity="success" icon="mdi:checkbox-marked" severity="secondary" [outlined]="true" />
+                <p-button
+                  label="Bandeja"
+                  badge="5"
+                  badgeSeverity="danger"
+                  icon="mdi:inbox"
+                />
+                <p-button
+                  label="Notif."
+                  badge="12"
+                  badgeSeverity="warn"
+                  icon="mdi:bell"
+                  severity="secondary"
+                />
+                <p-button
+                  label="Pendientes"
+                  badge="3"
+                  badgeSeverity="success"
+                  icon="mdi:checkbox-marked"
+                  severity="secondary"
+                  [outlined]="true"
+                />
               </div>
             </div>
 
             <div>
-              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">Overlay badge (sobre icono)</span>
+              <span
+                class="text-xs font-bold text-color-secondary uppercase mb-2 block"
+                style="letter-spacing: 0.06em"
+              >
+                Overlay badge (sobre icono)
+              </span>
               <div class="flex flex-wrap gap-4 align-items-center">
                 <p-overlay-badge value="3" severity="danger">
                   <app-icon icon="mdi:bell" class="text-3xl text-color" />
@@ -132,60 +209,82 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
         </p-card>
       </div>
 
-      <!-- Chips -->
       <div class="col-12 lg:col-6">
-        <p-card header="Chips â€” p-chip">
+        <p-card header="Chips - p-chip">
           <div class="flex flex-column gap-4">
             <div>
-              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">BÃ¡sicos</span>
+              <span
+                class="text-xs font-bold text-color-secondary uppercase mb-2 block"
+                style="letter-spacing: 0.06em"
+              >
+                Básicos
+              </span>
               <div class="flex flex-wrap gap-2">
                 <p-chip label="Angular" />
                 <p-chip label="PrimeNG" />
-                <p-chip label="Ionic"   />
+                <p-chip label="Ionic" />
                 <p-chip label="TypeScript" />
               </div>
             </div>
 
             <div>
-              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">Con icono</span>
+              <span
+                class="text-xs font-bold text-color-secondary uppercase mb-2 block"
+                style="letter-spacing: 0.06em"
+              >
+                Con icono
+              </span>
               <div class="flex flex-wrap gap-2">
                 <p-chip label="Administrador" icon="mdi:account-circle" />
-                <p-chip label="Activo"        icon="mdi:check-circle"   />
-                <p-chip label="Mantenimiento" icon="mdi:wrench"         />
+                <p-chip label="Activo" icon="mdi:check-circle" />
+                <p-chip label="Mantenimiento" icon="mdi:wrench" />
               </div>
             </div>
 
             <div>
-              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">Con avatar</span>
+              <span
+                class="text-xs font-bold text-color-secondary uppercase mb-2 block"
+                style="letter-spacing: 0.06em"
+              >
+                Con avatar
+              </span>
               <div class="flex flex-wrap gap-2">
                 <p-chip label="Carlos M.">
                   <p-avatar label="CM" size="normal" shape="circle" />
                 </p-chip>
                 <p-chip label="Ana R.">
-                  <p-avatar label="AR" size="normal" shape="circle"
-                            style="background:var(--ds-success-light);color:var(--ds-success)" />
+                  <p-avatar
+                    label="AR"
+                    size="normal"
+                    shape="circle"
+                    style="background: var(--ds-success-light); color: var(--ds-success)"
+                  />
                 </p-chip>
               </div>
             </div>
 
             <div>
-              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">Removibles</span>
+              <span
+                class="text-xs font-bold text-color-secondary uppercase mb-2 block"
+                style="letter-spacing: 0.06em"
+              >
+                Removibles
+              </span>
               <div class="flex flex-wrap gap-2">
-                <p-chip label="Finanzas"    [removable]="true" />
+                <p-chip label="Finanzas" [removable]="true" />
                 <p-chip label="Operaciones" [removable]="true" />
-                <p-chip label="Sistemas"    [removable]="true" />
+                <p-chip label="Sistemas" [removable]="true" />
               </div>
             </div>
           </div>
         </p-card>
       </div>
 
-      <!-- StatusBadge (custom) -->
       <div class="col-12 lg:col-6">
-        <p-card header="StatusBadge â€” Custom (app-status-badge)">
+        <p-card header="StatusBadge - Custom (app-status-badge)">
           <p class="m-0 mb-3 text-sm text-color-secondary">
             Componente propio que encapsula todos los estados del negocio ERP.
-            Usa <code>EStatus</code> â€” nunca hardcodees el texto del estado.
+            Usa <code>EStatus</code> - nunca hardcodees el texto del estado.
           </p>
           <div class="flex flex-wrap gap-2 mb-4">
             @for (s of estatuses; track s.value) {
@@ -197,24 +296,31 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
             @for (s of estatuses; track s.value) {
               <div class="flex align-items-center gap-3">
                 <app-status-badge [status]="s.value" />
-                <code class="text-xs text-color-secondary">EStatus.{{ s.name }}</code>
+                <code class="text-xs text-color-secondary"
+                  >EStatus.{{ s.name }}</code
+                >
               </div>
             }
           </div>
         </p-card>
       </div>
 
-      <!-- ActionMenu & ActionIconsGroup -->
       <div class="col-12 lg:col-6">
-        <p-card header="Acciones Contextuales â€” app-action-menu / app-action-icons-group">
+        <p-card header="Acciones Contextuales - app-action-menu / app-action-icons-group">
           <p class="m-0 mb-3 text-sm text-color-secondary">
-            Usa <strong>ActionIconsGroup</strong> cuando hay 1-2 acciones visibles.
-            Usa <strong>ActionMenu</strong> (popover) cuando hay 3 o mÃ¡s o son poco frecuentes.
+            Usa <strong>ActionIconsGroup</strong> cuando hay 1-2 acciones
+            visibles. Usa <strong>ActionMenu</strong> (popover) cuando hay 3 o
+            más o son poco frecuentes.
           </p>
 
           <div class="flex flex-column gap-4">
             <div>
-              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">ActionIconsGroup (iconos directos)</span>
+              <span
+                class="text-xs font-bold text-color-secondary uppercase mb-2 block"
+                style="letter-spacing: 0.06em"
+              >
+                ActionIconsGroup (iconos directos)
+              </span>
               <app-action-icons-group>
                 <custom-button-edit label="" />
                 <custom-button-delete label="" />
@@ -224,38 +330,76 @@ import { CustomButtonEdit } from "src/app/core/components/buttons/web/custom-but
             <p-divider />
 
             <div>
-              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">ActionMenu (popover)</span>
+              <span
+                class="text-xs font-bold text-color-secondary uppercase mb-2 block"
+                style="letter-spacing: 0.06em"
+              >
+                ActionMenu (popover)
+              </span>
               <app-action-menu [mobileMode]="false">
-                <p-button label="Ver Detalle" icon="mdi:magnify"      [text]="true" />
-                <p-button label="Exportar PDF" icon="mdi:file-pdf-box" [text]="true" />
-                <p-button label="Duplicar"    icon="mdi:content-copy" [text]="true" severity="secondary" />
-                <p-button label="Eliminar"    icon="mdi:delete"       [text]="true" severity="danger" />
+                <p-button label="Ver Detalle" icon="mdi:magnify" [text]="true" />
+                <p-button
+                  label="Exportar PDF"
+                  icon="mdi:file-pdf-box"
+                  [text]="true"
+                />
+                <p-button
+                  label="Duplicar"
+                  icon="mdi:content-copy"
+                  [text]="true"
+                  severity="secondary"
+                />
+                <p-button
+                  label="Eliminar"
+                  icon="mdi:delete"
+                  [text]="true"
+                  severity="danger"
+                />
               </app-action-menu>
             </div>
 
             <p-divider />
 
             <div>
-              <span class="text-xs font-bold text-color-secondary uppercase mb-2 block" style="letter-spacing:.06em">Regla de decisiÃ³n</span>
+              <span
+                class="text-xs font-bold text-color-secondary uppercase mb-2 block"
+                style="letter-spacing: 0.06em"
+              >
+                Regla de decisión
+              </span>
               <div class="flex flex-column gap-2 text-sm">
                 <div class="flex gap-2">
-                  <app-icon icon="mdi:check-circle" style="color:var(--ds-success)" class="flex-shrink-0 mt-1" />
-                  <span><strong>1â€“2 acciones frecuentes</strong> â†’ IconsGroup (visibles)</span>
+                  <app-icon
+                    icon="mdi:check-circle"
+                    style="color: var(--ds-success)"
+                    class="flex-shrink-0 mt-1"
+                  />
+                  <span><strong>1-2 acciones frecuentes</strong> -> IconsGroup (visibles)</span>
                 </div>
                 <div class="flex gap-2">
-                  <app-icon icon="mdi:check-circle" style="color:var(--ds-success)" class="flex-shrink-0 mt-1" />
-                  <span><strong>3+ acciones</strong> o poco frecuentes â†’ ActionMenu</span>
+                  <app-icon
+                    icon="mdi:check-circle"
+                    style="color: var(--ds-success)"
+                    class="flex-shrink-0 mt-1"
+                  />
+                  <span><strong>3+ acciones</strong> o poco frecuentes -> ActionMenu</span>
                 </div>
                 <div class="flex gap-2">
-                  <app-icon icon="mdi:close-circle" style="color:var(--ds-danger)" class="flex-shrink-0 mt-1" />
-                  <span><strong>Nunca</strong> poner 4+ botones visibles en una fila de tabla.</span>
+                  <app-icon
+                    icon="mdi:close-circle"
+                    style="color: var(--ds-danger)"
+                    class="flex-shrink-0 mt-1"
+                  />
+                  <span
+                    ><strong>Nunca</strong> poner 4+ botones visibles en una fila
+                    de tabla.</span
+                  >
                 </div>
               </div>
             </div>
           </div>
         </p-card>
       </div>
-
     </div>
   `,
   encapsulation: ViewEncapsulation.None,
@@ -264,20 +408,20 @@ export class WebBadges {
   readonly EStatus = EStatus;
 
   readonly estatuses = [
-    { value: EStatus.Pendiente,    name: "Pendiente"    },
-    { value: EStatus.Proceso,      name: "Proceso"      },
-    { value: EStatus.Concluido,    name: "Concluido"    },
+    { value: EStatus.Pendiente, name: "Pendiente" },
+    { value: EStatus.Proceso, name: "Proceso" },
+    { value: EStatus.Concluido, name: "Concluido" },
     { value: EStatus.noAutorizado, name: "noAutorizado" },
-    { value: EStatus.Cancelado,    name: "Cancelado"    },
+    { value: EStatus.Cancelado, name: "Cancelado" },
   ];
 
   readonly erpStates = [
-    { label: "Aprobado",   severity: "success"   as const },
-    { label: "RevisiÃ³n",   severity: "warn"      as const },
-    { label: "Rechazado",  severity: "danger"    as const },
-    { label: "Borrador",   severity: "secondary" as const },
-    { label: "En proceso", severity: "info"      as const },
-    { label: "Urgente",    severity: "danger"    as const },
+    { label: "Aprobado", severity: "success" as const },
+    { label: "Revisión", severity: "warn" as const },
+    { label: "Rechazado", severity: "danger" as const },
+    { label: "Borrador", severity: "secondary" as const },
+    { label: "En proceso", severity: "info" as const },
+    { label: "Urgente", severity: "danger" as const },
     { label: "Programado", severity: "secondary" as const },
   ];
 }

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -8,8 +8,8 @@ import {
 import { ButtonModule } from "primeng/button";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { FileUploadModule } from "primeng/fileupload";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button"; // Nueva importación
-import { CustomButtonSave } from "src/app/core/components/buttons/web/custom-button-save";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button"; // Nueva importación
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 
@@ -101,6 +101,7 @@ export class PresentacionJuntaComiteForm implements OnInit {
     this.form.patchValue({ archivo: null });
   }
 }
+
 
 
 

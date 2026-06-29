@@ -1,7 +1,7 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
@@ -135,3 +135,4 @@ export class CatalogReplica {
     this.loading.set(false);
   }
 }
+

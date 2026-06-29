@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -7,8 +7,8 @@ import {
   output,
 } from "@angular/core";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/buttons/web/custom-button";
-import { CustomButtonViewPdf } from "src/app/core/components/buttons/web/custom-button-view-pdf";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -20,7 +20,7 @@ import { TableScrollHeightService } from "src/app/core/services/table-scroll-hei
 import { ApprovalPanelRequest } from "../interfaces/approval.interface";
 
 /**
- * ✨ COMPONENTE GENÉRICO PARA PANELES DE APROBACIÓN ✨
+ * âœ¨ COMPONENTE GENÉRICO PARA PANELES DE APROBACIÓN âœ¨
  *
  * Basado en el estándar de tablas del proyecto (Referencia: BankList).
  * Utiliza Signal Inputs para una reactividad óptima.
@@ -156,3 +156,4 @@ export class GenericApprovalPanel {
     this.viewDetail.emit(request);
   }
 }
+
