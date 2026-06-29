@@ -8,12 +8,12 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputCheckSignal } from "src/app/core/components/web/inputs/custom-input-check-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -106,4 +106,3 @@ export class BitacoraMantenimientoForm implements OnInit {
     });
   }
 }
-

@@ -18,11 +18,12 @@ import {
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
@@ -33,7 +34,6 @@ import { AuthService } from "src/app/core/services/auth.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { PaginationService } from "src/app/core/services/pagination.service"; // Importar el nuevo servicio
 import { TarjetaProducto } from "src/app/features/operations/inventarios-y-almacn/product/tarjeta-producto";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { IProductData } from "./product-data.interface";
 /**
  * Componente modal para agregar productos a una solicitud de compra.
@@ -147,7 +147,9 @@ export class ProductModalAdd implements OnInit, OnDestroy {
     this.solicitudCompraId = this.config.data.solicitudCompraId;
 
     // Inicializar el servicio de paginación
-    const apiUrl = Endpoints.PurchaseRequestDetails.addProductList(this.solicitudCompraId);
+    const apiUrl = Endpoints.PurchaseRequestDetails.addProductList(
+      this.solicitudCompraId,
+    );
     this.paginationService.initialize(apiUrl, this.tablePrimeNgRows);
 
     // Cargar los datos iniciales
@@ -248,5 +250,3 @@ export class ProductModalAdd implements OnInit, OnDestroy {
     this.ref.close(true); // Cerrar con 'true' si quieres emitir un resultado.
   }
 }
-
-

@@ -21,11 +21,12 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 
 import { AvatarModule } from "primeng/avatar";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   rowsPerPageOptions,
   tablePrimeNgRows,
@@ -36,7 +37,6 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { PaginationService } from "src/app/core/services/pagination.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
 import { TarjetaProducto } from "src/app/features/operations/inventarios-y-almacn/product/tarjeta-producto";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { IProductData } from "./product-data.interface";
 @Component({
   selector: "app-purchase-request-add-product-form",
@@ -119,7 +119,9 @@ export class PurchaseRequestAddProductForm implements OnInit, OnDestroy {
     this.purchaseRequestId = this.config.data.purchaseRequestId;
 
     // Inicializar el servicio de paginación
-    const apiUrl = Endpoints.PurchaseRequests.addProductList(this.purchaseRequestId);
+    const apiUrl = Endpoints.PurchaseRequests.addProductList(
+      this.purchaseRequestId,
+    );
     this.paginationService.initialize(apiUrl, this.tablePrimeNgRows);
 
     // Suscribirse a los observables del servicio de paginación
@@ -234,5 +236,3 @@ export class PurchaseRequestAddProductForm implements OnInit, OnDestroy {
     this.ref.close(true); // Cerrar con 'true' si quieres emitir un resultado.
   }
 }
-
-

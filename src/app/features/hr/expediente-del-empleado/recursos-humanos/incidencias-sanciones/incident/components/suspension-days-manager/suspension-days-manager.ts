@@ -1,4 +1,3 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { DatePipe } from "@angular/common";
 import {
   Component,
@@ -10,10 +9,11 @@ import {
 } from "@angular/core";
 import { NonNullableFormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { TableModule } from "primeng/table";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CustomButtonAdd } from "src/app/core/components/web/buttons/custom-button-add";
 import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -114,7 +114,11 @@ export class SuspensionDaysManager implements OnInit {
         .sort((a: Date, b: Date) => a.getTime() - b.getTime());
     } else {
       sorted = (rawValue as any[])
-        .map((f: any) => (f instanceof Date ? f : new Date(`${String(f).substring(0, 10)}T00:00:00`)))
+        .map((f: any) =>
+          f instanceof Date
+            ? f
+            : new Date(`${String(f).substring(0, 10)}T00:00:00`),
+        )
         .filter((d: Date) => !isNaN(d.getTime()))
         .sort((a: Date, b: Date) => a.getTime() - b.getTime());
     }
@@ -202,4 +206,3 @@ export class SuspensionDaysManager implements OnInit {
       .then(() => this.loadDays());
   }
 }
-

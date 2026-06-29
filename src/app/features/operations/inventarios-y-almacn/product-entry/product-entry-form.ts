@@ -10,18 +10,18 @@ import {
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IProductEntryForm {
   id: FormControl<string>;
@@ -212,4 +212,3 @@ export class ProductEntryForm implements OnInit {
     });
   }
 }
-

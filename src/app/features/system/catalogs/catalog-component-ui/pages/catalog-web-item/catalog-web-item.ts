@@ -1,10 +1,5 @@
 ﻿import { CommonModule } from "@angular/common";
 import { Component, inject, signal, ViewEncapsulation } from "@angular/core";
-import { FullCalendarModule } from "@fullcalendar/angular";
-import { CalendarOptions, EventInput } from "@fullcalendar/core";
-import esLocale from "@fullcalendar/core/locales/es";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
 import {
   FormBuilder,
   FormGroup,
@@ -12,6 +7,11 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
+import { FullCalendarModule } from "@fullcalendar/angular";
+import { CalendarOptions, EventInput } from "@fullcalendar/core";
+import esLocale from "@fullcalendar/core/locales/es";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
 import { AccordionModule } from "primeng/accordion";
 import { BadgeModule } from "primeng/badge";
 import { BreadcrumbModule } from "primeng/breadcrumb";
@@ -42,6 +42,15 @@ import { TextareaModule } from "primeng/textarea";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { ToolbarModule } from "primeng/toolbar";
 import { TooltipModule } from "primeng/tooltip";
+import {
+  CustomInputCheckSignal,
+  CustomInputCurrencySignal,
+  CustomInputDateSignal,
+  CustomInputMultiselectSignal,
+  CustomInputNumberSignal,
+  CustomInputSelectSignal,
+  CustomInputTextSignal,
+} from "src/app/core/components/inputs/web";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import {
   CustomButton,
@@ -54,15 +63,6 @@ import {
   CustomButtonSendEmail,
   CustomButtonViewPdf,
 } from "src/app/core/components/web/buttons";
-import {
-  CustomInputCheckSignal,
-  CustomInputCurrencySignal,
-  CustomInputDateSignal,
-  CustomInputMultiselectSignal,
-  CustomInputNumberSignal,
-  CustomInputSelectSignal,
-  CustomInputTextSignal,
-} from "src/app/core/components/web/inputs";
 
 const WEB_ITEM_LABELS: Record<string, string> = {
   accordion: "Accordion",
@@ -804,22 +804,27 @@ const WEB_ITEM_LABELS: Record<string, string> = {
 
         @case ("calendar") {
           <div class="flex flex-column gap-4">
-
             <p-card header="FullCalendar - Integracion Google Calendar">
               <p class="catalog-helper-text text-sm m-0 mb-3">
                 Usa <code>&#64;fullcalendar/angular</code> v6 con plugins
                 <code>dayGridPlugin</code> + <code>timeGridPlugin</code>.
-                Eventos propios en <strong class="catalog-token-primary">--ds-primary</strong>,
-                eventos de otros condominios en <strong class="catalog-token-muted">--ds-text-muted</strong>.
+                Eventos propios en
+                <strong class="catalog-token-primary">--ds-primary</strong>,
+                eventos de otros condominios en
+                <strong class="catalog-token-muted">--ds-text-muted</strong>.
               </p>
               <div class="catalog-calendar-frame">
-                <full-calendar [options]="calendarDemoOptions" [events]="calendarDemoEvents" />
+                <full-calendar
+                  [options]="calendarDemoOptions"
+                  [events]="calendarDemoEvents"
+                />
               </div>
             </p-card>
 
             <p-card header="Estados de sincronizacion - p-tag severity">
               <p class="catalog-helper-text text-sm m-0 mb-3">
-                Usar <code>p-tag [severity]</code> con la funcion <code>getStatusSeverity()</code>
+                Usar <code>p-tag [severity]</code> con la funcion
+                <code>getStatusSeverity()</code>
                 en lugar de clases de color hardcodeadas.
               </p>
               <div class="flex flex-wrap gap-3">
@@ -836,7 +841,10 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <span class="catalog-helper-text text-sm">warn</span>
                 </div>
                 <div class="flex align-items-center gap-2">
-                  <p-tag value="Pendiente de sincronizar" severity="secondary" />
+                  <p-tag
+                    value="Pendiente de sincronizar"
+                    severity="secondary"
+                  />
                   <span class="catalog-helper-text text-sm">secondary</span>
                 </div>
               </div>
@@ -844,10 +852,15 @@ const WEB_ITEM_LABELS: Record<string, string> = {
 
             <p-card header="Tabla de eventos - patron ERP">
               <p class="catalog-helper-text text-sm m-0 mb-3">
-                Debajo del calendario: <code>p-table styleClass="custom-table"</code>
+                Debajo del calendario:
+                <code>p-table styleClass="custom-table"</code>
                 con paginacion, busqueda y botones de accion DS.
               </p>
-              <p-table [value]="calendarTableDemo" styleClass="custom-table" [rows]="4">
+              <p-table
+                [value]="calendarTableDemo"
+                styleClass="custom-table"
+                [rows]="4"
+              >
                 <ng-template #header>
                   <tr>
                     <th>TITULO</th>
@@ -863,12 +876,16 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     <td>{{ item.subject }}</td>
                     <td>{{ item.start }}</td>
                     <td class="text-center">{{ item.guests }}</td>
-                    <td><p-tag [value]="item.statusLabel" [severity]="item.severity" /></td>
+                    <td>
+                      <p-tag
+                        [value]="item.statusLabel"
+                        [severity]="item.severity"
+                      />
+                    </td>
                   </tr>
                 </ng-template>
               </p-table>
             </p-card>
-
           </div>
         }
       }
@@ -1019,31 +1036,122 @@ export class CatalogWebItem {
     nowIndicator: true,
     editable: false,
     selectable: false,
-    headerToolbar: { left: "prev,next today", center: "title", right: "dayGridMonth,timeGridWeek,timeGridDay" },
+    headerToolbar: {
+      left: "prev,next today",
+      center: "title",
+      right: "dayGridMonth,timeGridWeek,timeGridDay",
+    },
     buttonText: { today: "Hoy", month: "Mes", week: "Semana", day: "Dia" },
   };
 
   readonly calendarDemoEvents: EventInput[] = [
-    { title: "Junta Comite", start: "2026-06-10T19:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
-    { title: "Asamblea General", start: "2026-06-15T10:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
-    { title: "Reunion Proveedores", start: "2026-06-20T09:00", backgroundColor: this.calendarEventExternalColor, borderColor: this.calendarEventExternalColor, textColor: this.calendarEventTextColor },
-    { title: "Revision Mant.", start: "2026-06-25T14:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
-    { title: "Comite Finanzas", start: "2026-06-28T11:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
+    {
+      title: "Junta Comite",
+      start: "2026-06-10T19:00",
+      backgroundColor: this.calendarEventOwnColor,
+      borderColor: this.calendarEventOwnColor,
+      textColor: this.calendarEventTextColor,
+    },
+    {
+      title: "Asamblea General",
+      start: "2026-06-15T10:00",
+      backgroundColor: this.calendarEventOwnColor,
+      borderColor: this.calendarEventOwnColor,
+      textColor: this.calendarEventTextColor,
+    },
+    {
+      title: "Reunion Proveedores",
+      start: "2026-06-20T09:00",
+      backgroundColor: this.calendarEventExternalColor,
+      borderColor: this.calendarEventExternalColor,
+      textColor: this.calendarEventTextColor,
+    },
+    {
+      title: "Revision Mant.",
+      start: "2026-06-25T14:00",
+      backgroundColor: this.calendarEventOwnColor,
+      borderColor: this.calendarEventOwnColor,
+      textColor: this.calendarEventTextColor,
+    },
+    {
+      title: "Comite Finanzas",
+      start: "2026-06-28T11:00",
+      backgroundColor: this.calendarEventOwnColor,
+      borderColor: this.calendarEventOwnColor,
+      textColor: this.calendarEventTextColor,
+    },
   ];
 
   readonly calendarDemoEventsTokenized: EventInput[] = [
-    { title: "Junta Comite", start: "2026-06-10T19:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
-    { title: "Asamblea General", start: "2026-06-15T10:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
-    { title: "Reunion Proveedores", start: "2026-06-20T09:00", backgroundColor: this.calendarEventExternalColor, borderColor: this.calendarEventExternalColor, textColor: this.calendarEventTextColor },
-    { title: "Revision Mant.", start: "2026-06-25T14:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
-    { title: "Comite Finanzas", start: "2026-06-28T11:00", backgroundColor: this.calendarEventOwnColor, borderColor: this.calendarEventOwnColor, textColor: this.calendarEventTextColor },
+    {
+      title: "Junta Comite",
+      start: "2026-06-10T19:00",
+      backgroundColor: this.calendarEventOwnColor,
+      borderColor: this.calendarEventOwnColor,
+      textColor: this.calendarEventTextColor,
+    },
+    {
+      title: "Asamblea General",
+      start: "2026-06-15T10:00",
+      backgroundColor: this.calendarEventOwnColor,
+      borderColor: this.calendarEventOwnColor,
+      textColor: this.calendarEventTextColor,
+    },
+    {
+      title: "Reunion Proveedores",
+      start: "2026-06-20T09:00",
+      backgroundColor: this.calendarEventExternalColor,
+      borderColor: this.calendarEventExternalColor,
+      textColor: this.calendarEventTextColor,
+    },
+    {
+      title: "Revision Mant.",
+      start: "2026-06-25T14:00",
+      backgroundColor: this.calendarEventOwnColor,
+      borderColor: this.calendarEventOwnColor,
+      textColor: this.calendarEventTextColor,
+    },
+    {
+      title: "Comite Finanzas",
+      start: "2026-06-28T11:00",
+      backgroundColor: this.calendarEventOwnColor,
+      borderColor: this.calendarEventOwnColor,
+      textColor: this.calendarEventTextColor,
+    },
   ];
 
   readonly calendarTableDemo = [
-    { title: "Junta Comite", subject: "Junta mensual", start: "10/06/2026 19:00", guests: 4, statusLabel: "Sincronizado con Google", severity: "success" },
-    { title: "Asamblea General", subject: "Asamblea", start: "15/06/2026 10:00", guests: 12, statusLabel: "Solo local (historico)", severity: "info" },
-    { title: "Reunion Proveedores", subject: "Reunion", start: "20/06/2026 09:00", guests: 2, statusLabel: "Solo local", severity: "warn" },
-    { title: "Comite Finanzas", subject: "Junta mensual", start: "28/06/2026 11:00", guests: 5, statusLabel: "Pendiente de sincronizar", severity: "secondary" },
+    {
+      title: "Junta Comite",
+      subject: "Junta mensual",
+      start: "10/06/2026 19:00",
+      guests: 4,
+      statusLabel: "Sincronizado con Google",
+      severity: "success",
+    },
+    {
+      title: "Asamblea General",
+      subject: "Asamblea",
+      start: "15/06/2026 10:00",
+      guests: 12,
+      statusLabel: "Solo local (historico)",
+      severity: "info",
+    },
+    {
+      title: "Reunion Proveedores",
+      subject: "Reunion",
+      start: "20/06/2026 09:00",
+      guests: 2,
+      statusLabel: "Solo local",
+      severity: "warn",
+    },
+    {
+      title: "Comite Finanzas",
+      subject: "Junta mensual",
+      start: "28/06/2026 11:00",
+      guests: 5,
+      statusLabel: "Pendiente de sincronizar",
+      severity: "secondary",
+    },
   ];
 }
-

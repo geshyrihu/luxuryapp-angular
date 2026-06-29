@@ -8,20 +8,20 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
+import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputImg } from "src/app/core/components/web/inputs/custom-input-img-signal";
-import { CustomInputMaskSignal } from "src/app/core/components/web/inputs/custom-input-mask-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ICustomerForm } from "src/app/core/interfaces/customer-form.interface";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
-import { ICustomerAddOrEditDTO, ICustomerDTO } from "../models/customer.dto";
-import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ICustomerAddOrEditDTO } from "../models/customer.dto";
 
 interface ICustomerFormGroup {
   id: FormControl<string | null>;
@@ -133,11 +133,16 @@ export class CustomerForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: !this.id ? Endpoints.Customers.create : Endpoints.Customers.update(this.id),
+      endpoint: !this.id
+        ? Endpoints.Customers.create
+        : Endpoints.Customers.update(this.id),
       method: !this.id ? "POST" : "PUT",
       ref: this.ref,
       submitting: this.submitting,
-      transformPayload: () => this.createFormData(this.form.getRawValue() as unknown as ICustomerForm)
+      transformPayload: () =>
+        this.createFormData(
+          this.form.getRawValue() as unknown as ICustomerForm,
+        ),
     });
   }
 
@@ -164,4 +169,3 @@ export class CustomerForm implements OnInit {
     return formData;
   }
 }
-

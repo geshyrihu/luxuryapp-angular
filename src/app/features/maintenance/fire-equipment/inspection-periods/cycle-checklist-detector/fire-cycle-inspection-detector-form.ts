@@ -1,9 +1,14 @@
 ﻿import { Component, inject, OnInit, signal } from "@angular/core";
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputCheckSignal } from "src/app/core/components/web/inputs/custom-input-check-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -11,7 +16,12 @@ import { AuthService } from "src/app/core/services/auth.service";
 @Component({
   selector: "app-fire-cycle-inspection-detector-form",
   templateUrl: "./fire-cycle-inspection-detector-form.html",
-  imports: [ReactiveFormsModule, CustomButtonSave, CustomInputCheckSignal, CustomInputTextAreaSignal],
+  imports: [
+    ReactiveFormsModule,
+    CustomButtonSave,
+    CustomInputCheckSignal,
+    CustomInputTextAreaSignal,
+  ],
 })
 export class FireCycleInspectionDetectorForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -32,20 +42,30 @@ export class FireCycleInspectionDetectorForm implements OnInit {
     ledStatusOk: new FormControl(false, { nonNullable: true }),
     mountingSecure: new FormControl(false, { nonNullable: true }),
     observations: new FormControl<string | null>(null),
-    applicationUserId: new FormControl(this.authS.applicationUserId, { nonNullable: true, validators: [Validators.required] }),
+    applicationUserId: new FormControl(this.authS.applicationUserId, {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
   });
 
   ngOnInit(): void {
     this.cycleId = this.config.data?.cycleId ?? "";
     this.equipmentId = this.config.data?.equipmentId ?? "";
-    this.form.patchValue({ fireInspectionCycleId: this.cycleId, detectorId: this.equipmentId });
+    this.form.patchValue({
+      fireInspectionCycleId: this.cycleId,
+      detectorId: this.equipmentId,
+    });
     this.onLoadExisting();
   }
 
   onLoadExisting() {
     this.apiResponseS
-      .onGetItem(`FireCycleInspection/detector/${this.cycleId}/${this.equipmentId}`)
-      .then((result: any) => { if (result) this.form.patchValue(result); });
+      .onGetItem(
+        `FireCycleInspection/detector/${this.cycleId}/${this.equipmentId}`,
+      )
+      .then((result: any) => {
+        if (result) this.form.patchValue(result);
+      });
   }
 
   async onSubmit() {
@@ -60,4 +80,3 @@ export class FireCycleInspectionDetectorForm implements OnInit {
     });
   }
 }
-

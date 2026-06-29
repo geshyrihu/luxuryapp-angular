@@ -1,14 +1,14 @@
 ﻿import { Component, computed, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { CustomButtonTracking } from "src/app/core/components/web/buttons/custom-button-tracking";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ImageModule } from "primeng/image";
 import { MenuModule } from "primeng/menu";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
-import { CustomInputSwitch } from "src/app/core/components/web/inputs/custom-input-switch-signal";
+import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
+import { CustomButtonTracking } from "src/app/core/components/web/buttons/custom-button-tracking";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -101,12 +101,12 @@ export class TaskMessageOperationReport {
         ),
       )
       .then((result: any) => {
-      const data = result.map((item: any) => ({
-        ...item,
-        isRelevantControl: new FormControl(item.isRelevant),
-      }));
-      this.dataSignal.set(data);
-    });
+        const data = result.map((item: any) => ({
+          ...item,
+          isRelevantControl: new FormControl(item.isRelevant),
+        }));
+        this.dataSignal.set(data);
+      });
   }
 
   onDateRangeSelected(event: { startDate: Date; endDate: Date }) {
@@ -168,9 +168,11 @@ export class TaskMessageOperationReport {
 
   // Actualizar si el item es relevante o no
   onUpdateStateTicket(item: any) {
-    this.apiResponseS.onGetItem(Endpoints.Tasks.updateRelevanceLegacy(item.id)).then(() => {
-      // this.customToastService.onShowSuccess();
-    });
+    this.apiResponseS
+      .onGetItem(Endpoints.Tasks.updateRelevanceLegacy(item.id))
+      .then(() => {
+        // this.customToastService.onShowSuccess();
+      });
   }
   onFollowUp(id: string) {
     this.dialogHandlerS
@@ -203,5 +205,3 @@ export class TaskMessageOperationReport {
       });
   }
 }
-
-

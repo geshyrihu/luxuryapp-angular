@@ -1,13 +1,13 @@
-﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CommonModule } from "@angular/common";
-import { SharedModule } from "primeng/api";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { SharedModule } from "primeng/api";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
+import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomSearchInput } from "src/app/core/components/web/inputs/custom-search-input-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -28,7 +28,8 @@ import { ReportFilterService } from "./services/financial-report-filter.service"
     CustomButton,
     CustomSearchInput,
     SharedModule,
-   AppIcon],
+    AppIcon,
+  ],
   templateUrl: "./espejo-aspel-full.html",
 })
 export class EspejoAspelFull {
@@ -177,7 +178,10 @@ export class EspejoAspelFull {
       const resultado = new Map<string, IEspejoFilaTabla[]>();
 
       for (const [codigo, filas] of base) {
-        const maxDisponible = Math.max(...this.getNivelesDisponibles(codigo), 3);
+        const maxDisponible = Math.max(
+          ...this.getNivelesDisponibles(codigo),
+          3,
+        );
         const nivelMax = nivelesVisibles[codigo] ?? maxDisponible;
         const texto = (busquedas[codigo] ?? "").toLowerCase().trim();
         let filtradas = filas;
@@ -320,7 +324,10 @@ export class EspejoAspelFull {
     this.loading.set(true);
     // Cedemos el hilo principal para que el navegador pueda dibujar el spinner
     setTimeout(() => {
-      this.nivelVisiblePorGrupo.update((prev) => ({ ...prev, [codigo]: nivel }));
+      this.nivelVisiblePorGrupo.update((prev) => ({
+        ...prev,
+        [codigo]: nivel,
+      }));
       // Damos un pequeño respiro para que Angular procese los miles de filas antes de quitar el spinner
       setTimeout(() => {
         this.loading.set(false);
@@ -331,14 +338,17 @@ export class EspejoAspelFull {
   getNivelesDisponibles(codigo: string): number[] {
     const filas = this.filasPorGrupo().get(codigo) ?? [];
     const niveles: number[] = [1];
-    
+
     let hasN2 = filas.some((f) => f.nivel === 2);
     let hasN3 = filas.some((f) => f.nivel === 3);
     let hasN4 = filas.some((f) => f.nivel === 4);
 
-    // Si la empresa usa máscara de 4 niveles (ej: 401-000-000-000), 
+    // Si la empresa usa máscara de 4 niveles (ej: 401-000-000-000),
     // habilitamos los 4 botones por coherencia con la estructura de Aspel.
-    if (!hasN4 && filas.some((f) => f.numCta && f.numCta.split('-').length === 4)) {
+    if (
+      !hasN4 &&
+      filas.some((f) => f.numCta && f.numCta.split("-").length === 4)
+    ) {
       hasN2 = true;
       hasN3 = true;
       hasN4 = true;
@@ -347,7 +357,7 @@ export class EspejoAspelFull {
     if (hasN2) niveles.push(2);
     if (hasN3) niveles.push(3);
     if (hasN4) niveles.push(4);
-    
+
     return niveles;
   }
 
@@ -366,4 +376,3 @@ export class EspejoAspelFull {
     }).format(val);
   }
 }
-

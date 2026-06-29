@@ -6,12 +6,12 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
 import { MessageModule } from "primeng/message";
 import { lastValueFrom } from "rxjs";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -173,4 +173,3 @@ export class WorkPositionForm implements OnInit {
     });
   }
 }
-

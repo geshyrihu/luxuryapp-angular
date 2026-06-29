@@ -12,20 +12,20 @@ import { FormsModule } from "@angular/forms";
 import { AvatarModule } from "primeng/avatar";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { CustomInputDecimal } from "src/app/core/components/inputs/web/custom-input-decimal-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
 import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
-import { CustomInputDecimal } from "src/app/core/components/web/inputs/custom-input-decimal-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields as getGlobalFilterFields,
   rowsPerPageOptions,
   tablePrimeNgRows,
 } from "src/app/core/helpers/table-primeng-option";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 @Component({
@@ -88,9 +88,11 @@ export class GastoFijoServicios implements OnInit {
   }
 
   deleteProductoAgregado(id: any) {
-    this.apiResponseS.onDelete(Endpoints.CatalogoGastosFijosDetalles.delete(id)).then(() => {
-      this.onLoadProductsAgregados();
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.CatalogoGastosFijosDetalles.delete(id))
+      .then(() => {
+        this.onLoadProductsAgregados();
+      });
   }
   onLoadProducts() {
     const urlApi =
@@ -110,12 +112,14 @@ export class GastoFijoServicios implements OnInit {
 
     item.catalogoGastosFijosId = this.catalogoGastosFijosId;
 
-    this.apiResponseS.onPost(Endpoints.CatalogoGastosFijosDetalles.base, item).then(() => {
-      this.mensajeError = false;
-      this.onLoadProducts();
-      this.onLoadProductsAgregados();
-      this.cdr.detectChanges(); // Update view after successful submission
-    });
+    this.apiResponseS
+      .onPost(Endpoints.CatalogoGastosFijosDetalles.base, item)
+      .then(() => {
+        this.mensajeError = false;
+        this.onLoadProducts();
+        this.onLoadProductsAgregados();
+        this.cdr.detectChanges(); // Update view after successful submission
+      });
   }
 
   onUpdateProductoAgregado(item: any) {
@@ -129,4 +133,3 @@ export class GastoFijoServicios implements OnInit {
       });
   }
 }
-

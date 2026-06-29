@@ -8,8 +8,8 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -29,12 +29,12 @@ export interface IWarehouseForm {
  */
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { ReactiveFormsModule } from "@angular/forms";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CardModule } from "primeng/card";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 
 @Component({
   selector: "app-warehouse-form",
@@ -145,22 +145,24 @@ export class WarehouseForm implements OnInit {
    * Carga los datos del almacón cuando se estó en modo edición.
    */
   onLoadData() {
-    this.apiResponseS.onGetItem(Endpoints.Almacen.getById(this.id)).then((result: any) => {
-      // Llenamos los campos bósicos del formulario
-      this.form.patchValue(result);
+    this.apiResponseS
+      .onGetItem(Endpoints.Almacen.getById(this.id))
+      .then((result: any) => {
+        // Llenamos los campos bósicos del formulario
+        this.form.patchValue(result);
 
-      // Separamos usuarios disponibles y asignados segón los datos cargados
-      const assignedIds = result.responsablesIds || [];
-      this.assignedUsers = this.allUsers.filter((u) =>
-        assignedIds.includes(u.value),
-      );
-      this.availableUsers = this.allUsers.filter(
-        (u) => !assignedIds.includes(u.value),
-      );
+        // Separamos usuarios disponibles y asignados segón los datos cargados
+        const assignedIds = result.responsablesIds || [];
+        this.assignedUsers = this.allUsers.filter((u) =>
+          assignedIds.includes(u.value),
+        );
+        this.availableUsers = this.allUsers.filter(
+          (u) => !assignedIds.includes(u.value),
+        );
 
-      // Actualizamos el formControl con los IDs correctos
-      this.form.patchValue({ responsablesIds: assignedIds });
-    });
+        // Actualizamos el formControl con los IDs correctos
+        this.form.patchValue({ responsablesIds: assignedIds });
+      });
   }
 
   /**
@@ -181,7 +183,8 @@ export class WarehouseForm implements OnInit {
 
     try {
       const warehouseId = this.id;
-      const finalId = savedWarehouse?.id || savedWarehouse?.data?.id || warehouseId;
+      const finalId =
+        savedWarehouse?.id || savedWarehouse?.data?.id || warehouseId;
 
       if (this.isAdmin() && finalId) {
         const DTO = {
@@ -278,4 +281,3 @@ export class WarehouseForm implements OnInit {
     }
   }
 }
-

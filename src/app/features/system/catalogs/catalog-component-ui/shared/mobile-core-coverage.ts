@@ -8,20 +8,6 @@ import {
   IonLabel,
   IonList,
 } from "@ionic/angular/standalone";
-import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import {
-  IonButtonAdd,
-  IonButtonEdit,
-  IonButtonSave,
-  IonButtonDelete,
-  IonButtonConfirm,
-  IonButtonDownload,
-  IonButtonSendEmail,
-  IonButtonTracking,
-  IonButtonViewPdf,
-  IonButtonActiveDesactive,
-  IonButtonItem,
-} from "src/app/core/components/mobile/buttons";
 import {
   IonInputCheckbox,
   IonInputCurrency,
@@ -37,7 +23,21 @@ import {
   IonInputTextarea,
   IonInputTime,
   IonInputToggle,
-} from "src/app/core/components/mobile/inputs";
+} from "src/app/core/components/inputs/mobile";
+import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import {
+  IonButtonActiveDesactive,
+  IonButtonAdd,
+  IonButtonConfirm,
+  IonButtonDelete,
+  IonButtonDownload,
+  IonButtonEdit,
+  IonButtonItem,
+  IonButtonSave,
+  IonButtonSendEmail,
+  IonButtonTracking,
+  IonButtonViewPdf,
+} from "src/app/core/components/mobile/buttons";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
 
@@ -95,10 +95,13 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
       <section class="mobile-panel mobile-panel--gallery">
         <div class="mobile-panel__header">
           <span class="mobile-panel__eyebrow">Target Views</span>
-          <h4 class="mobile-panel__title">Pantallas objetivo del catalogo mobile</h4>
+          <h4 class="mobile-panel__title">
+            Pantallas objetivo del catalogo mobile
+          </h4>
           <p class="mobile-panel__copy">
-            La portada mobile ya no debe sentirse como una lista de controles. Debe ensenar
-            flujos completos listos para producto: acciones, tareas, navegacion y operacion.
+            La portada mobile ya no debe sentirse como una lista de controles.
+            Debe ensenar flujos completos listos para producto: acciones,
+            tareas, navegacion y operacion.
           </p>
         </div>
 
@@ -117,11 +120,20 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
                 <div class="mobile-phone__hero-card">
                   <div class="mobile-phone__hero-label">Corporate Flow</div>
                   <strong>Solicitud de autorizacion</strong>
-                  <span>Campos, CTA primario y acciones auxiliares dentro del mismo contexto.</span>
+                  <span
+                    >Campos, CTA primario y acciones auxiliares dentro del mismo
+                    contexto.</span
+                  >
                 </div>
                 <div class="mobile-phone__cta-stack">
-                  <button class="mobile-phone__cta mobile-phone__cta--primary">Enviar aprobacion</button>
-                  <button class="mobile-phone__cta mobile-phone__cta--secondary">Guardar borrador</button>
+                  <button class="mobile-phone__cta mobile-phone__cta--primary">
+                    Enviar aprobacion
+                  </button>
+                  <button
+                    class="mobile-phone__cta mobile-phone__cta--secondary"
+                  >
+                    Guardar borrador
+                  </button>
                 </div>
                 <div class="mobile-phone__micro-stats">
                   <div class="mobile-phone__micro-stat">
@@ -163,7 +175,9 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
                     <span>Urgentes</span>
                     <strong>12</strong>
                   </div>
-                  <div class="mobile-phone__stat-card mobile-phone__stat-card--accent">
+                  <div
+                    class="mobile-phone__stat-card mobile-phone__stat-card--accent"
+                  >
                     <span>Completadas</span>
                     <strong>48</strong>
                   </div>
@@ -179,7 +193,9 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
                   </div>
                   <div class="mobile-phone__task-row">
                     <span>Actualizar checklist</span>
-                    <span class="mobile-phone__pill mobile-phone__pill--muted">Media</span>
+                    <span class="mobile-phone__pill mobile-phone__pill--muted"
+                      >Media</span
+                    >
                   </div>
                 </div>
                 <div class="mobile-phone__mini-list">
@@ -200,7 +216,9 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
             <div class="mobile-phone__screen mobile-phone__screen--dark">
               <div class="mobile-phone__topbar mobile-phone__topbar--dark">
                 <span class="mobile-phone__title">Operational view</span>
-                <span class="mobile-phone__badge mobile-phone__badge--dark">Live</span>
+                <span class="mobile-phone__badge mobile-phone__badge--dark"
+                  >Live</span
+                >
               </div>
               <div class="mobile-phone__body">
                 <div class="mobile-phone__dark-panel">
@@ -246,16 +264,23 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
               </div>
               <div class="mobile-phone__body">
                 <div class="mobile-phone__tabs">
-                  <span class="mobile-phone__tab mobile-phone__tab--active">Overview</span>
+                  <span class="mobile-phone__tab mobile-phone__tab--active"
+                    >Overview</span
+                  >
                   <span class="mobile-phone__tab">Security</span>
                   <span class="mobile-phone__tab">History</span>
                 </div>
                 <div class="mobile-phone__nav-card">
                   <strong>Infrastructure dashboard</strong>
-                  <span>Tabs, breadcrumbs suaves y acciones contextuales dentro de la misma vista.</span>
+                  <span
+                    >Tabs, breadcrumbs suaves y acciones contextuales dentro de
+                    la misma vista.</span
+                  >
                 </div>
                 <div class="mobile-phone__tabs mobile-phone__tabs--subtle">
-                  <span class="mobile-phone__tab mobile-phone__tab--active">Systems</span>
+                  <span class="mobile-phone__tab mobile-phone__tab--active"
+                    >Systems</span
+                  >
                   <span class="mobile-phone__tab">Policies</span>
                 </div>
                 <div class="mobile-phone__mini-list">
@@ -277,7 +302,9 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
       <section class="mobile-panel">
         <div class="mobile-panel__header">
           <span class="mobile-panel__eyebrow">Data View Mobile</span>
-          <h4 class="mobile-panel__title">Casos de uso completos tipo bank-list</h4>
+          <h4 class="mobile-panel__title">
+            Casos de uso completos tipo bank-list
+          </h4>
         </div>
 
         <div class="mobile-stack">
@@ -300,16 +327,24 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
                   </div>
 
                   <ng-template #listItemTemplate let-item>
-                    <ion-item lines="full" detail="false" class="ion-no-padding">
+                    <ion-item
+                      lines="full"
+                      detail="false"
+                      class="ion-no-padding"
+                    >
                       <ion-label class="ion-text-wrap">
                         <div class="mobile-list-row">
                           <div>
-                            <strong class="mobile-list-title">{{ item.shortName }}</strong>
+                            <strong class="mobile-list-title">{{
+                              item.shortName
+                            }}</strong>
                             <div class="mobile-list-subtitle">
                               {{ item.code }} - {{ item.largeName }}
                             </div>
                           </div>
-                          <ion-badge [color]="item.statusColor">{{ item.status }}</ion-badge>
+                          <ion-badge [color]="item.statusColor">{{
+                            item.status
+                          }}</ion-badge>
                         </div>
                         <p class="mobile-list-meta">
                           CLABE {{ item.clabe }} - {{ item.currency }}
@@ -343,14 +378,23 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
                   [trackByProperty]="'id'"
                 >
                   <ng-template #listItemTemplate let-item>
-                    <ion-item lines="full" detail="false" class="ion-no-padding">
+                    <ion-item
+                      lines="full"
+                      detail="false"
+                      class="ion-no-padding"
+                    >
                       <ion-label class="ion-text-wrap">
                         <div class="mobile-list-row">
-                          <strong class="mobile-list-title">{{ item.shortName }}</strong>
-                          <ion-badge [color]="item.statusColor">{{ item.status }}</ion-badge>
+                          <strong class="mobile-list-title">{{
+                            item.shortName
+                          }}</strong>
+                          <ion-badge [color]="item.statusColor">{{
+                            item.status
+                          }}</ion-badge>
                         </div>
                         <p class="mobile-list-meta">
-                          {{ item.code }} - {{ item.currency }} - {{ item.region }}
+                          {{ item.code }} - {{ item.currency }} -
+                          {{ item.region }}
                         </p>
                       </ion-label>
                     </ion-item>
@@ -399,18 +443,24 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
             <div class="mobile-block__body">
               <ion-list lines="full" class="mobile-list-shell">
                 @for (item of masterList; track item.id) {
-                <ion-item detail="false">
-                  <ion-label class="ion-text-wrap">
-                    <div class="mobile-list-row">
-                      <div>
-                        <strong class="mobile-list-title">{{ item.title }}</strong>
-                        <div class="mobile-list-subtitle">{{ item.code }}</div>
+                  <ion-item detail="false">
+                    <ion-label class="ion-text-wrap">
+                      <div class="mobile-list-row">
+                        <div>
+                          <strong class="mobile-list-title">{{
+                            item.title
+                          }}</strong>
+                          <div class="mobile-list-subtitle">
+                            {{ item.code }}
+                          </div>
+                        </div>
+                        <ion-badge [color]="item.badgeColor">{{
+                          item.badge
+                        }}</ion-badge>
                       </div>
-                      <ion-badge [color]="item.badgeColor">{{ item.badge }}</ion-badge>
-                    </div>
-                    <p class="mobile-list-meta">{{ item.detail }}</p>
-                  </ion-label>
-                </ion-item>
+                      <p class="mobile-list-meta">{{ item.detail }}</p>
+                    </ion-label>
+                  </ion-item>
                 }
               </ion-list>
             </div>
@@ -421,20 +471,26 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
             <div class="mobile-block__body">
               <ion-list lines="none" class="mobile-list-shell">
                 @for (group of groupedList | keyvalue; track group.key) {
-                <ion-item-divider sticky="true">
-                  <ion-label>{{ group.key }}</ion-label>
-                </ion-item-divider>
-                @for (item of group.value; track item.id) {
-                <ion-item detail="false">
-                  <ion-label class="ion-text-wrap">
-                    <div class="mobile-list-row">
-                      <strong class="mobile-list-title">{{ item.title }}</strong>
-                      <ion-badge [color]="item.badgeColor">{{ item.status }}</ion-badge>
-                    </div>
-                    <p class="mobile-list-meta">{{ item.module }} - {{ item.time }}</p>
-                  </ion-label>
-                </ion-item>
-                }
+                  <ion-item-divider sticky="true">
+                    <ion-label>{{ group.key }}</ion-label>
+                  </ion-item-divider>
+                  @for (item of group.value; track item.id) {
+                    <ion-item detail="false">
+                      <ion-label class="ion-text-wrap">
+                        <div class="mobile-list-row">
+                          <strong class="mobile-list-title">{{
+                            item.title
+                          }}</strong>
+                          <ion-badge [color]="item.badgeColor">{{
+                            item.status
+                          }}</ion-badge>
+                        </div>
+                        <p class="mobile-list-meta">
+                          {{ item.module }} - {{ item.time }}
+                        </p>
+                      </ion-label>
+                    </ion-item>
+                  }
                 }
               </ion-list>
             </div>
@@ -454,13 +510,23 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
             <div class="mobile-block__label">Standard Card</div>
             <div class="mobile-block__body">
               <div class="ds-card ds-card--image">
-                <div class="ds-card__img" style="height:140px;background:linear-gradient(135deg,#00050e,#00050e);border-radius:12px 12px 0 0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:2rem;font-weight:700;">Project Aurora</div>
+                <div
+                  class="ds-card__img"
+                  style="height:140px;background:linear-gradient(135deg,#00050e,#00050e);border-radius:12px 12px 0 0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:2rem;font-weight:700;"
+                >
+                  Project Aurora
+                </div>
                 <div class="ds-card__body">
                   <div class="ds-card__row">
                     <h4 class="ds-card__title">Project Aurora</h4>
-                    <span class="material-symbols-outlined ds-icon-btn">more_vert</span>
+                    <span class="material-symbols-outlined ds-icon-btn"
+                      >more_vert</span
+                    >
                   </div>
-                  <p class="ds-card__desc">Streamlined data analytics dashboard for enterprise cloud infrastructures.</p>
+                  <p class="ds-card__desc">
+                    Streamlined data analytics dashboard for enterprise cloud
+                    infrastructures.
+                  </p>
                   <div class="ds-card__tags">
                     <span class="ds-chip ds-chip--primary">Active</span>
                     <span class="ds-chip ds-chip--outline">v2.4.0</span>
@@ -475,14 +541,23 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
             <div class="mobile-block__body">
               <div class="ds-card ds-card--profile">
                 <div class="ds-avatar ds-avatar--lg">
-                  <div class="ds-avatar__img" style="background:linear-gradient(135deg,#bad7ff,#b5c8e3);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.25rem;">SJ</div>
-                  <span class="ds-avatar__status ds-avatar__status--online"></span>
+                  <div
+                    class="ds-avatar__img"
+                    style="background:linear-gradient(135deg,#bad7ff,#b5c8e3);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.25rem;"
+                  >
+                    SJ
+                  </div>
+                  <span
+                    class="ds-avatar__status ds-avatar__status--online"
+                  ></span>
                 </div>
                 <div class="ds-card__profile-info">
                   <h4 class="ds-card__title">Sarah Jenkins</h4>
                   <p class="ds-card__desc">Senior UI Designer</p>
                 </div>
-                <button class="ds-btn ds-btn--primary ds-btn--sm">Follow</button>
+                <button class="ds-btn ds-btn--primary ds-btn--sm">
+                  Follow
+                </button>
               </div>
             </div>
           </div>
@@ -491,10 +566,15 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
             <div class="mobile-block__label">Info Card (Accent Left)</div>
             <div class="mobile-block__body">
               <div class="ds-card ds-card--info">
-                <span class="material-symbols-outlined ds-card__info-icon">info</span>
+                <span class="material-symbols-outlined ds-card__info-icon"
+                  >info</span
+                >
                 <div>
                   <span class="ds-card__info-label">System Update</span>
-                  <p class="ds-card__desc">Memory optimization will be performed at 02:00 AM UTC. Expect minor latency.</p>
+                  <p class="ds-card__desc">
+                    Memory optimization will be performed at 02:00 AM UTC.
+                    Expect minor latency.
+                  </p>
                 </div>
               </div>
             </div>
@@ -506,11 +586,18 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
               <div class="ds-card ds-card--action">
                 <div class="ds-card__body">
                   <h4 class="ds-card__title">Confirmacion de despliegue</h4>
-                  <p class="ds-card__desc">Se requiere autorizacion jerarquica para proceder con el despliegue a produccion de la version 2.4.1.</p>
+                  <p class="ds-card__desc">
+                    Se requiere autorizacion jerarquica para proceder con el
+                    despliegue a produccion de la version 2.4.1.
+                  </p>
                 </div>
                 <div class="ds-card__actions">
-                  <button class="ds-btn ds-btn--primary ds-btn--block">AUTORIZAR</button>
-                  <button class="ds-btn ds-btn--outline ds-btn--block">REVISAR</button>
+                  <button class="ds-btn ds-btn--primary ds-btn--block">
+                    AUTORIZAR
+                  </button>
+                  <button class="ds-btn ds-btn--outline ds-btn--block">
+                    REVISAR
+                  </button>
                 </div>
               </div>
             </div>
@@ -521,12 +608,16 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
             <div class="mobile-block__body">
               <div class="ds-metric-grid">
                 <div class="ds-metric">
-                  <span class="material-symbols-outlined ds-metric__icon">verified_user</span>
+                  <span class="material-symbols-outlined ds-metric__icon"
+                    >verified_user</span
+                  >
                   <span class="ds-metric__label">Status</span>
                   <span class="ds-metric__value">Secure</span>
                 </div>
                 <div class="ds-metric ds-metric--accent">
-                  <span class="material-symbols-outlined ds-metric__icon">bolt</span>
+                  <span class="material-symbols-outlined ds-metric__icon"
+                    >bolt</span
+                  >
                   <span class="ds-metric__label">Up-time</span>
                   <span class="ds-metric__value">99.98%</span>
                 </div>
@@ -548,15 +639,21 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
             <div class="mobile-block__body">
               <div class="ds-chip-row">
                 <span class="ds-chip ds-chip--selected">
-                  <span class="material-symbols-outlined ds-chip__icon">check</span>
+                  <span class="material-symbols-outlined ds-chip__icon"
+                    >check</span
+                  >
                   Selected
                 </span>
                 <span class="ds-chip ds-chip--input">
                   Design
-                  <span class="material-symbols-outlined ds-chip__close">close</span>
+                  <span class="material-symbols-outlined ds-chip__close"
+                    >close</span
+                  >
                 </span>
                 <span class="ds-chip ds-chip--suggestion">
-                  <span class="material-symbols-outlined ds-chip__icon">add</span>
+                  <span class="material-symbols-outlined ds-chip__icon"
+                    >add</span
+                  >
                   Explore
                 </span>
               </div>
@@ -575,7 +672,9 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
                   <span class="ds-badge-dot"></span>
                 </div>
                 <span class="ds-badge-label">In Progress</span>
-                <span class="ds-badge-label ds-badge-label--high">High Priority</span>
+                <span class="ds-badge-label ds-badge-label--high"
+                  >High Priority</span
+                >
               </div>
             </div>
           </div>
@@ -584,16 +683,40 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
             <div class="mobile-block__body">
               <div class="ds-avatar-row">
                 <div class="ds-avatar">
-                  <div class="ds-avatar__img" style="background:linear-gradient(135deg,#bad7ff,#b5c8e3);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;">SJ</div>
-                  <span class="ds-avatar__status ds-avatar__status--online"></span>
+                  <div
+                    class="ds-avatar__img"
+                    style="background:linear-gradient(135deg,#bad7ff,#b5c8e3);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;"
+                  >
+                    SJ
+                  </div>
+                  <span
+                    class="ds-avatar__status ds-avatar__status--online"
+                  ></span>
                 </div>
                 <div class="ds-avatar ds-avatar--md">
-                  <div class="ds-avatar__img" style="background:#e9e7e9;display:flex;align-items:center;justify-content:center;color:#00050e;font-weight:700;border-radius:10px;">JD</div>
+                  <div
+                    class="ds-avatar__img"
+                    style="background:#e9e7e9;display:flex;align-items:center;justify-content:center;color:#00050e;font-weight:700;border-radius:10px;"
+                  >
+                    JD
+                  </div>
                 </div>
                 <div class="ds-avatar-stack">
-                  <div class="ds-avatar__img ds-avatar-stack__item" style="background:#e4e2e4;display:flex;align-items:center;justify-content:center;color:#00050e;font-weight:600;font-size:0.75rem;width:32px;height:32px;border-radius:50%;border:2px solid #fff;">A</div>
-                  <div class="ds-avatar__img ds-avatar-stack__item" style="background:#b5c8e3;display:flex;align-items:center;justify-content:center;color:#081d30;font-weight:600;font-size:0.75rem;width:32px;height:32px;border-radius:50%;border:2px solid #fff;">B</div>
-                  <div class="ds-avatar-stack__item ds-avatar-stack__more">+4</div>
+                  <div
+                    class="ds-avatar__img ds-avatar-stack__item"
+                    style="background:#e4e2e4;display:flex;align-items:center;justify-content:center;color:#00050e;font-weight:600;font-size:0.75rem;width:32px;height:32px;border-radius:50%;border:2px solid #fff;"
+                  >
+                    A
+                  </div>
+                  <div
+                    class="ds-avatar__img ds-avatar-stack__item"
+                    style="background:#b5c8e3;display:flex;align-items:center;justify-content:center;color:#081d30;font-weight:600;font-size:0.75rem;width:32px;height:32px;border-radius:50%;border:2px solid #fff;"
+                  >
+                    B
+                  </div>
+                  <div class="ds-avatar-stack__item ds-avatar-stack__more">
+                    +4
+                  </div>
                 </div>
               </div>
             </div>
@@ -612,16 +735,28 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
             <div class="mobile-block__label">Alert Banners</div>
             <div class="mobile-block__body">
               <div class="ds-alert ds-alert--success">
-                <span class="material-symbols-outlined ds-alert__icon">check_circle</span>
-                <span class="ds-alert__text">System update successful. All files synced.</span>
+                <span class="material-symbols-outlined ds-alert__icon"
+                  >check_circle</span
+                >
+                <span class="ds-alert__text"
+                  >System update successful. All files synced.</span
+                >
               </div>
               <div class="ds-alert ds-alert--warning">
-                <span class="material-symbols-outlined ds-alert__icon">warning</span>
-                <span class="ds-alert__text">Storage is reaching 90% capacity.</span>
+                <span class="material-symbols-outlined ds-alert__icon"
+                  >warning</span
+                >
+                <span class="ds-alert__text"
+                  >Storage is reaching 90% capacity.</span
+                >
               </div>
               <div class="ds-alert ds-alert--error">
-                <span class="material-symbols-outlined ds-alert__icon">error</span>
-                <span class="ds-alert__text">Failed to upload attachment. Please retry.</span>
+                <span class="material-symbols-outlined ds-alert__icon"
+                  >error</span
+                >
+                <span class="ds-alert__text"
+                  >Failed to upload attachment. Please retry.</span
+                >
               </div>
             </div>
           </div>
@@ -637,9 +772,31 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
                 </div>
                 <div>
                   <span class="ds-progress-label">Circular</span>
-                  <svg class="ds-progress-circle" viewBox="0 0 36 36" width="48" height="48">
-                    <circle class="ds-progress-circle__bg" cx="18" cy="18" r="16" fill="none" stroke-width="3"/>
-                    <circle class="ds-progress-circle__fg" cx="18" cy="18" r="16" fill="none" stroke-width="3" stroke-dasharray="100" stroke-dashoffset="30" stroke-linecap="round"/>
+                  <svg
+                    class="ds-progress-circle"
+                    viewBox="0 0 36 36"
+                    width="48"
+                    height="48"
+                  >
+                    <circle
+                      class="ds-progress-circle__bg"
+                      cx="18"
+                      cy="18"
+                      r="16"
+                      fill="none"
+                      stroke-width="3"
+                    />
+                    <circle
+                      class="ds-progress-circle__fg"
+                      cx="18"
+                      cy="18"
+                      r="16"
+                      fill="none"
+                      stroke-width="3"
+                      stroke-dasharray="100"
+                      stroke-dashoffset="30"
+                      stroke-linecap="round"
+                    />
                   </svg>
                 </div>
               </div>
@@ -708,7 +865,8 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
               />
               <ion-input-search
                 placeholder="Buscar"
-                [control]="form.controls['busqueda']" label="Buscar"
+                [control]="form.controls['busqueda']"
+                label="Buscar"
               />
               <ion-input-password
                 [control]="form.controls['password']"
@@ -738,10 +896,7 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
                 [control]="form.controls['fecha']"
                 label="Fecha"
               />
-              <ion-input-time
-                [control]="form.controls['hora']"
-                label="Hora"
-              />
+              <ion-input-time [control]="form.controls['hora']" label="Hora" />
             </div>
           </div>
 
@@ -789,7 +944,9 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
       <section class="mobile-panel">
         <div class="mobile-panel__header">
           <span class="mobile-panel__eyebrow">Selection Controls</span>
-          <h4 class="mobile-panel__title">Switches, radios, checkboxes y sliders</h4>
+          <h4 class="mobile-panel__title">
+            Switches, radios, checkboxes y sliders
+          </h4>
         </div>
         <div class="mobile-stack">
           <div class="mobile-block">
@@ -798,14 +955,16 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
               <div class="ds-switch-row">
                 <span class="ds-switch-label">Enable Notifications</span>
                 <label class="ds-switch">
-                  <input type="checkbox" checked class="ds-switch__input">
+                  <input type="checkbox" checked class="ds-switch__input" />
                   <span class="ds-switch__slider"></span>
                 </label>
               </div>
               <div class="ds-switch-row">
-                <span class="ds-switch-label ds-switch-label--muted">Dark Mode</span>
+                <span class="ds-switch-label ds-switch-label--muted"
+                  >Dark Mode</span
+                >
                 <label class="ds-switch">
-                  <input type="checkbox" class="ds-switch__input">
+                  <input type="checkbox" class="ds-switch__input" />
                   <span class="ds-switch__slider"></span>
                 </label>
               </div>
@@ -817,21 +976,30 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
               <div class="ds-selection-grid">
                 <div>
                   <label class="ds-checkbox">
-                    <input type="checkbox" checked class="ds-checkbox__input">
+                    <input type="checkbox" checked class="ds-checkbox__input" />
                     <span class="ds-checkbox__label">Option A</span>
                   </label>
                   <label class="ds-checkbox">
-                    <input type="checkbox" class="ds-checkbox__input">
+                    <input type="checkbox" class="ds-checkbox__input" />
                     <span class="ds-checkbox__label">Option B</span>
                   </label>
                 </div>
                 <div>
                   <label class="ds-radio">
-                    <input type="radio" name="v_radio" checked class="ds-radio__input">
+                    <input
+                      type="radio"
+                      name="v_radio"
+                      checked
+                      class="ds-radio__input"
+                    />
                     <span class="ds-radio__label">Daily</span>
                   </label>
                   <label class="ds-radio">
-                    <input type="radio" name="v_radio" class="ds-radio__input">
+                    <input
+                      type="radio"
+                      name="v_radio"
+                      class="ds-radio__input"
+                    />
                     <span class="ds-radio__label">Weekly</span>
                   </label>
                 </div>
@@ -843,15 +1011,20 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
             <div class="mobile-block__body">
               <div class="ds-radio-row">
                 <label class="ds-radio ds-radio--inline">
-                  <input type="radio" name="h_radio" class="ds-radio__input">
+                  <input type="radio" name="h_radio" class="ds-radio__input" />
                   <span class="ds-radio__label">Yes</span>
                 </label>
                 <label class="ds-radio ds-radio--inline">
-                  <input type="radio" name="h_radio" checked class="ds-radio__input">
+                  <input
+                    type="radio"
+                    name="h_radio"
+                    checked
+                    class="ds-radio__input"
+                  />
                   <span class="ds-radio__label">No</span>
                 </label>
                 <label class="ds-radio ds-radio--inline">
-                  <input type="radio" name="h_radio" class="ds-radio__input">
+                  <input type="radio" name="h_radio" class="ds-radio__input" />
                   <span class="ds-radio__label">Maybe</span>
                 </label>
               </div>
@@ -865,13 +1038,16 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
                   <span class="ds-slider-label">Volume</span>
                   <span class="ds-slider-value">75%</span>
                 </div>
-                <input type="range" class="ds-slider" value="75">
+                <input type="range" class="ds-slider" value="75" />
                 <div class="ds-slider-row" style="margin-top:0.75rem;">
                   <span class="ds-slider-label">Price Range</span>
                   <span class="ds-slider-value">$240 - $860</span>
                 </div>
                 <div class="ds-range-track">
-                  <div class="ds-range-track__fill" style="left:20%;right:30%;"></div>
+                  <div
+                    class="ds-range-track__fill"
+                    style="left:20%;right:30%;"
+                  ></div>
                   <div class="ds-range-thumb" style="left:20%;"></div>
                   <div class="ds-range-thumb" style="left:70%;"></div>
                 </div>
@@ -888,10 +1064,12 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
       <section class="mobile-panel">
         <div class="mobile-panel__header">
           <span class="mobile-panel__eyebrow">Utilities</span>
-          <h4 class="mobile-panel__title">Componentes mobile vivos dentro del modulo</h4>
+          <h4 class="mobile-panel__title">
+            Componentes mobile vivos dentro del modulo
+          </h4>
           <p class="mobile-panel__copy">
-            Esta vista tambien monta utilidades reales del core. Haz scroll en la
-            pagina y el boton flotante aparecera automaticamente.
+            Esta vista tambien monta utilidades reales del core. Haz scroll en
+            la pagina y el boton flotante aparecera automaticamente.
           </p>
         </div>
         <app-tap-to-top />
@@ -950,15 +1128,16 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
       }
 
       .mobile-panel {
-        background:
-          linear-gradient(
-            180deg,
-            color-mix(in srgb, var(--ds-bg-surface) 98%, transparent),
-            color-mix(in srgb, var(--ds-bg-elevated) 98%, transparent)
-          );
-        border: 1px solid color-mix(in srgb, var(--ds-text-primary) 8%, transparent);
+        background: linear-gradient(
+          180deg,
+          color-mix(in srgb, var(--ds-bg-surface) 98%, transparent),
+          color-mix(in srgb, var(--ds-bg-elevated) 98%, transparent)
+        );
+        border: 1px solid
+          color-mix(in srgb, var(--ds-text-primary) 8%, transparent);
         border-radius: 1.35rem;
-        box-shadow: 0 18px 40px color-mix(in srgb, var(--ds-text-primary) 8%, transparent);
+        box-shadow: 0 18px 40px
+          color-mix(in srgb, var(--ds-text-primary) 8%, transparent);
         padding: 1rem;
       }
 
@@ -985,9 +1164,11 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
       .mobile-phone {
         padding: 0.75rem;
         background: color-mix(in srgb, var(--ds-bg-surface) 96%, transparent);
-        border: 1px solid color-mix(in srgb, var(--ds-text-primary) 10%, transparent);
+        border: 1px solid
+          color-mix(in srgb, var(--ds-text-primary) 10%, transparent);
         border-radius: 1.5rem;
-        box-shadow: 0 16px 36px color-mix(in srgb, var(--ds-text-primary) 8%, transparent);
+        box-shadow: 0 16px 36px
+          color-mix(in srgb, var(--ds-text-primary) 8%, transparent);
       }
 
       .mobile-phone__status {
@@ -1001,8 +1182,13 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
       }
 
       .mobile-phone__screen {
-        background: linear-gradient(180deg, var(--ds-bg-surface) 0%, var(--ds-bg-elevated) 100%);
-        border: 1px solid color-mix(in srgb, var(--ds-text-primary) 8%, transparent);
+        background: linear-gradient(
+          180deg,
+          var(--ds-bg-surface) 0%,
+          var(--ds-bg-elevated) 100%
+        );
+        border: 1px solid
+          color-mix(in srgb, var(--ds-text-primary) 8%, transparent);
         border-radius: 1.1rem;
         overflow: hidden;
         min-height: 22rem;
@@ -1017,8 +1203,13 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
         justify-content: space-between;
         align-items: center;
         padding: 0.9rem 1rem 0.75rem;
-        border-bottom: 1px solid color-mix(in srgb, var(--ds-text-primary) 8%, transparent);
-        background: color-mix(in srgb, var(--ds-bg-surface) 88%, var(--ds-bg-elevated));
+        border-bottom: 1px solid
+          color-mix(in srgb, var(--ds-text-primary) 8%, transparent);
+        background: color-mix(
+          in srgb,
+          var(--ds-bg-surface) 88%,
+          var(--ds-bg-elevated)
+        );
       }
 
       .mobile-phone__topbar--dark {
@@ -1065,8 +1256,13 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
         gap: 0.4rem;
         padding: 0.9rem;
         border-radius: 0.95rem;
-        background: color-mix(in srgb, var(--ds-bg-surface) 90%, var(--ds-bg-elevated));
-        border: 1px solid color-mix(in srgb, var(--ds-text-primary) 8%, transparent);
+        background: color-mix(
+          in srgb,
+          var(--ds-bg-surface) 90%,
+          var(--ds-bg-elevated)
+        );
+        border: 1px solid
+          color-mix(in srgb, var(--ds-text-primary) 8%, transparent);
       }
 
       .mobile-phone__hero-card strong,
@@ -1108,7 +1304,11 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
         gap: 0.2rem;
         padding: 0.7rem 0.75rem;
         border-radius: 0.8rem;
-        background: color-mix(in srgb, var(--ds-primary) 7%, var(--ds-bg-surface));
+        background: color-mix(
+          in srgb,
+          var(--ds-primary) 7%,
+          var(--ds-bg-surface)
+        );
         border: 1px solid color-mix(in srgb, var(--ds-primary) 12%, transparent);
       }
 
@@ -1155,7 +1355,11 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
         gap: 0.5rem;
         padding: 0.7rem 0.85rem;
         border-radius: 0.8rem;
-        background: color-mix(in srgb, var(--ds-bg-elevated) 82%, var(--ds-bg-surface));
+        background: color-mix(
+          in srgb,
+          var(--ds-bg-elevated) 82%,
+          var(--ds-bg-surface)
+        );
       }
 
       .mobile-phone__stats {
@@ -1170,8 +1374,13 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
         gap: 0.25rem;
         padding: 0.85rem;
         border-radius: 0.9rem;
-        background: color-mix(in srgb, var(--ds-bg-elevated) 92%, var(--ds-bg-surface));
-        border: 1px solid color-mix(in srgb, var(--ds-text-primary) 8%, transparent);
+        background: color-mix(
+          in srgb,
+          var(--ds-bg-elevated) 92%,
+          var(--ds-bg-surface)
+        );
+        border: 1px solid
+          color-mix(in srgb, var(--ds-text-primary) 8%, transparent);
       }
 
       .mobile-phone__stat-card span {
@@ -1287,7 +1496,11 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
       }
 
       .mobile-phone__tabs--subtle {
-        background: color-mix(in srgb, var(--ds-primary) 6%, var(--ds-bg-surface));
+        background: color-mix(
+          in srgb,
+          var(--ds-primary) 6%,
+          var(--ds-bg-surface)
+        );
       }
 
       .mobile-phone__tab {
@@ -1307,7 +1520,8 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
 
       .mobile-block {
         background: var(--ds-bg-elevated);
-        border: 1px solid color-mix(in srgb, var(--ds-text-secondary) 20%, transparent);
+        border: 1px solid
+          color-mix(in srgb, var(--ds-text-secondary) 20%, transparent);
         border-radius: 1rem;
         padding: 0.85rem;
       }
@@ -1333,9 +1547,14 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
         min-height: 26rem;
         max-height: 26rem;
         overflow: hidden;
-        border: 1px solid color-mix(in srgb, var(--ds-text-secondary) 22%, transparent);
+        border: 1px solid
+          color-mix(in srgb, var(--ds-text-secondary) 22%, transparent);
         border-radius: 1rem;
-        background: linear-gradient(180deg, var(--ds-bg-surface) 0%, var(--ds-bg-elevated) 100%);
+        background: linear-gradient(
+          180deg,
+          var(--ds-bg-surface) 0%,
+          var(--ds-bg-elevated) 100%
+        );
         box-shadow: inset 0 1px 0 color-mix(in srgb, white 90%, transparent);
       }
 
@@ -1405,121 +1624,573 @@ import { TapToTop } from "src/app/core/components/mobile/tap-to-top/tap-to-top";
       }
 
       /* -------------------- CARDS -------------------- */
-      .ds-card { background:#fff; border:1px solid #e2e8f0; border-radius:12px; overflow:hidden; }
-      .ds-card--image { box-shadow:0 2px 8px rgba(0,0,0,0.06); }
-      .ds-card__img { border-radius:12px 12px 0 0; }
-      .ds-card__body { padding:1rem; }
-      .ds-card__row { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.25rem; }
-      .ds-card__title { font-size:1rem; font-weight:600; color:#0f172a; margin:0; }
-      .ds-card__desc { font-size:0.82rem; color:#64748b; margin:0.25rem 0; line-height:1.5; }
-      .ds-card__tags { display:flex; gap:0.5rem; margin-top:0.75rem; }
-      .ds-card--profile { display:flex; align-items:center; gap:0.75rem; padding:1rem; background:#fff; border:1px solid #e2e8f0; border-radius:12px; }
-      .ds-card__profile-info { flex:1; }
-      .ds-card--info { display:flex; align-items:flex-start; gap:0.75rem; padding:1rem; background:#f5f3f5; border-left:4px solid #00050e; border-radius:8px; }
-      .ds-card__info-icon { color:#00050e; font-size:1.25rem; flex-shrink:0; margin-top:2px; }
-      .ds-card__info-label { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:#00050e; display:block; margin-bottom:2px; }
-      .ds-card--action { border:1px solid #e2e8f0; border-radius:12px; }
-      .ds-card__actions { display:flex; gap:0.5rem; padding:0.75rem 1rem; background:#f8fafc; border-top:1px solid #e2e8f0; }
-      .ds-metric-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; }
-      .ds-metric { background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:0.75rem; }
-      .ds-metric--accent { background:#00050e; border-color:#00050e; }
+      .ds-card {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .ds-card--image {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+      .ds-card__img {
+        border-radius: 12px 12px 0 0;
+      }
+      .ds-card__body {
+        padding: 1rem;
+      }
+      .ds-card__row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 0.25rem;
+      }
+      .ds-card__title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #0f172a;
+        margin: 0;
+      }
+      .ds-card__desc {
+        font-size: 0.82rem;
+        color: #64748b;
+        margin: 0.25rem 0;
+        line-height: 1.5;
+      }
+      .ds-card__tags {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+      }
+      .ds-card--profile {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+      }
+      .ds-card__profile-info {
+        flex: 1;
+      }
+      .ds-card--info {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 1rem;
+        background: #f5f3f5;
+        border-left: 4px solid #00050e;
+        border-radius: 8px;
+      }
+      .ds-card__info-icon {
+        color: #00050e;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .ds-card__info-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #00050e;
+        display: block;
+        margin-bottom: 2px;
+      }
+      .ds-card--action {
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+      }
+      .ds-card__actions {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        background: #f8fafc;
+        border-top: 1px solid #e2e8f0;
+      }
+      .ds-metric-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+      }
+      .ds-metric {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 0.75rem;
+      }
+      .ds-metric--accent {
+        background: #00050e;
+        border-color: #00050e;
+      }
       .ds-metric--accent .ds-metric__label,
-      .ds-metric--accent .ds-metric__value { color:#fff; }
-      .ds-metric--accent .ds-metric__icon { color:#b5c8e3; }
-      .ds-metric__icon { font-size:1.25rem; color:#00050e; display:block; margin-bottom:0.25rem; }
-      .ds-metric__label { font-size:0.65rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:#64748b; display:block; }
-      .ds-metric__value { font-size:1.1rem; font-weight:700; color:#0f172a; }
+      .ds-metric--accent .ds-metric__value {
+        color: #fff;
+      }
+      .ds-metric--accent .ds-metric__icon {
+        color: #b5c8e3;
+      }
+      .ds-metric__icon {
+        font-size: 1.25rem;
+        color: #00050e;
+        display: block;
+        margin-bottom: 0.25rem;
+      }
+      .ds-metric__label {
+        font-size: 0.65rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #64748b;
+        display: block;
+      }
+      .ds-metric__value {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #0f172a;
+      }
 
       /* -------------------- CHIPS -------------------- */
-      .ds-chip-row { display:flex; flex-wrap:wrap; gap:0.5rem; }
-      .ds-chip { display:inline-flex; align-items:center; gap:0.25rem; padding:0.35rem 0.75rem; border-radius:999px; font-size:0.78rem; font-weight:500; }
-      .ds-chip--selected { background:#e9e7e9; color:#00050e; }
-      .ds-chip--input { background:#f5f3f5; color:#0f172a; border:1px solid #c4c6cd; }
-      .ds-chip--suggestion { background:#fff; color:#00050e; border:1px solid #00050e; }
-      .ds-chip__icon, .ds-chip__close { font-size:1rem; }
-      .ds-chip__close { cursor:pointer; color:#64748b; }
+      .ds-chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .ds-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.35rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 500;
+      }
+      .ds-chip--selected {
+        background: #e9e7e9;
+        color: #00050e;
+      }
+      .ds-chip--input {
+        background: #f5f3f5;
+        color: #0f172a;
+        border: 1px solid #c4c6cd;
+      }
+      .ds-chip--suggestion {
+        background: #fff;
+        color: #00050e;
+        border: 1px solid #00050e;
+      }
+      .ds-chip__icon,
+      .ds-chip__close {
+        font-size: 1rem;
+      }
+      .ds-chip__close {
+        cursor: pointer;
+        color: #64748b;
+      }
 
       /* -------------------- BADGES -------------------- */
-      .ds-badge-row { display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap; }
-      .ds-badge-icon { position:relative; display:inline-flex; padding:0.5rem; background:#f5f3f5; border-radius:8px; }
-      .ds-badge-icon .material-symbols-outlined { font-size:1.25rem; color:#0f172a; }
-      .ds-badge-count { position:absolute; top:-4px; right:-4px; background:#ba1a1a; color:#fff; font-size:0.6rem; width:1.25rem; height:1.25rem; display:flex; align-items:center; justify-content:center; border-radius:50%; border:2px solid #fff; font-weight:700; }
-      .ds-badge-dot { position:absolute; top:4px; right:4px; width:0.5rem; height:0.5rem; background:#00050e; border-radius:50%; border:2px solid #fff; }
-      .ds-badge-label { padding:0.15rem 0.5rem; border-radius:4px; font-size:0.72rem; font-weight:600; background:#d0e1fb; color:#54647a; }
-      .ds-badge-label--high { background:#ffdad6; color:#93000a; }
+      .ds-badge-row {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .ds-badge-icon {
+        position: relative;
+        display: inline-flex;
+        padding: 0.5rem;
+        background: #f5f3f5;
+        border-radius: 8px;
+      }
+      .ds-badge-icon .material-symbols-outlined {
+        font-size: 1.25rem;
+        color: #0f172a;
+      }
+      .ds-badge-count {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        background: #ba1a1a;
+        color: #fff;
+        font-size: 0.6rem;
+        width: 1.25rem;
+        height: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        font-weight: 700;
+      }
+      .ds-badge-dot {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        width: 0.5rem;
+        height: 0.5rem;
+        background: #00050e;
+        border-radius: 50%;
+        border: 2px solid #fff;
+      }
+      .ds-badge-label {
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        background: #d0e1fb;
+        color: #54647a;
+      }
+      .ds-badge-label--high {
+        background: #ffdad6;
+        color: #93000a;
+      }
 
       /* -------------------- AVATARS -------------------- */
-      .ds-avatar-row { display:flex; align-items:flex-end; gap:0.75rem; }
-      .ds-avatar { position:relative; width:48px; height:48px; }
-      .ds-avatar--md { width:40px; height:40px; }
-      .ds-avatar__img { width:100%; height:100%; border-radius:50%; overflow:hidden; font-size:0.9rem; }
-      .ds-avatar__status { position:absolute; bottom:0; right:0; width:0.75rem; height:0.75rem; border-radius:50%; border:2px solid #fff; }
-      .ds-avatar__status--online { background:#22c55e; }
-      .ds-avatar-stack { display:flex; }
-      .ds-avatar-stack__item { margin-left:-8px; }
-      .ds-avatar-stack__item:first-child { margin-left:0; }
-      .ds-avatar-stack__more { width:32px; height:32px; border-radius:50%; background:#e0e3e5; border:2px solid #fff; display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:700; color:#424656; }
+      .ds-avatar-row {
+        display: flex;
+        align-items: flex-end;
+        gap: 0.75rem;
+      }
+      .ds-avatar {
+        position: relative;
+        width: 48px;
+        height: 48px;
+      }
+      .ds-avatar--md {
+        width: 40px;
+        height: 40px;
+      }
+      .ds-avatar__img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        overflow: hidden;
+        font-size: 0.9rem;
+      }
+      .ds-avatar__status {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 0.75rem;
+        height: 0.75rem;
+        border-radius: 50%;
+        border: 2px solid #fff;
+      }
+      .ds-avatar__status--online {
+        background: #22c55e;
+      }
+      .ds-avatar-stack {
+        display: flex;
+      }
+      .ds-avatar-stack__item {
+        margin-left: -8px;
+      }
+      .ds-avatar-stack__item:first-child {
+        margin-left: 0;
+      }
+      .ds-avatar-stack__more {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #e0e3e5;
+        border: 2px solid #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.65rem;
+        font-weight: 700;
+        color: #424656;
+      }
 
       /* -------------------- ALERTS -------------------- */
-      .ds-alert { display:flex; align-items:center; gap:0.5rem; padding:0.75rem; border-radius:10px; font-size:0.82rem; }
-      .ds-alert--success { background:#e8f5e9; border:1px solid #a5d6a7; color:#1b5e20; }
-      .ds-alert--warning { background:#fffde7; border:1px solid #fff59d; color:#f57f17; }
-      .ds-alert--error { background:#ffdad6; border:1px solid #ef9a9a; color:#93000a; }
-      .ds-alert__icon { font-size:1.25rem; flex-shrink:0; }
-      .ds-alert--success .ds-alert__icon { color:#2e7d32; }
-      .ds-alert--warning .ds-alert__icon { color:#fbc02d; }
-      .ds-alert--error .ds-alert__icon { color:#ba1a1a; }
-      .ds-alert__text { line-height:1.4; }
+      .ds-alert {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem;
+        border-radius: 10px;
+        font-size: 0.82rem;
+      }
+      .ds-alert--success {
+        background: #e8f5e9;
+        border: 1px solid #a5d6a7;
+        color: #1b5e20;
+      }
+      .ds-alert--warning {
+        background: #fffde7;
+        border: 1px solid #fff59d;
+        color: #f57f17;
+      }
+      .ds-alert--error {
+        background: #ffdad6;
+        border: 1px solid #ef9a9a;
+        color: #93000a;
+      }
+      .ds-alert__icon {
+        font-size: 1.25rem;
+        flex-shrink: 0;
+      }
+      .ds-alert--success .ds-alert__icon {
+        color: #2e7d32;
+      }
+      .ds-alert--warning .ds-alert__icon {
+        color: #fbc02d;
+      }
+      .ds-alert--error .ds-alert__icon {
+        color: #ba1a1a;
+      }
+      .ds-alert__text {
+        line-height: 1.4;
+      }
 
       /* -------------------- PROGRESS -------------------- */
-      .ds-progress-row { display:flex; gap:1.5rem; align-items:flex-start; }
-      .ds-progress-label { display:block; font-size:0.7rem; font-weight:600; color:#64748b; margin-bottom:0.35rem; text-transform:uppercase; letter-spacing:0.05em; }
-      .ds-progress-bar { width:100%; height:8px; background:#e0e3e5; border-radius:999px; overflow:hidden; min-width:100px; margin-top:0.25rem; }
-      .ds-progress-bar__fill { height:100%; background:#00050e; border-radius:999px; }
-      .ds-progress-circle { display:block; }
-      .ds-progress-circle__bg { stroke:#e0e3e5; }
-      .ds-progress-circle__fg { stroke:#00050e; }
+      .ds-progress-row {
+        display: flex;
+        gap: 1.5rem;
+        align-items: flex-start;
+      }
+      .ds-progress-label {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: #64748b;
+        margin-bottom: 0.35rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .ds-progress-bar {
+        width: 100%;
+        height: 8px;
+        background: #e0e3e5;
+        border-radius: 999px;
+        overflow: hidden;
+        min-width: 100px;
+        margin-top: 0.25rem;
+      }
+      .ds-progress-bar__fill {
+        height: 100%;
+        background: #00050e;
+        border-radius: 999px;
+      }
+      .ds-progress-circle {
+        display: block;
+      }
+      .ds-progress-circle__bg {
+        stroke: #e0e3e5;
+      }
+      .ds-progress-circle__fg {
+        stroke: #00050e;
+      }
 
       /* -------------------- SWITCHES -------------------- */
-      .ds-switch-row { display:flex; align-items:center; justify-content:space-between; }
-      .ds-switch-label { font-size:0.9rem; color:#0f172a; }
-      .ds-switch-label--muted { color:#94a3b8; }
-      .ds-switch { position:relative; display:inline-flex; width:44px; height:26px; cursor:pointer; }
-      .ds-switch__input { position:absolute; opacity:0; width:0; height:0; }
-      .ds-switch__slider { position:absolute; inset:0; background:#cbd5e1; border-radius:999px; transition:200ms; }
-      .ds-switch__slider::after { content:''; position:absolute; top:3px; left:3px; width:20px; height:20px; background:#fff; border-radius:50%; transition:200ms; }
-      .ds-switch__input:checked + .ds-switch__slider { background:#00050e; }
-      .ds-switch__input:checked + .ds-switch__slider::after { transform:translateX(18px); }
+      .ds-switch-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .ds-switch-label {
+        font-size: 0.9rem;
+        color: #0f172a;
+      }
+      .ds-switch-label--muted {
+        color: #94a3b8;
+      }
+      .ds-switch {
+        position: relative;
+        display: inline-flex;
+        width: 44px;
+        height: 26px;
+        cursor: pointer;
+      }
+      .ds-switch__input {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .ds-switch__slider {
+        position: absolute;
+        inset: 0;
+        background: #cbd5e1;
+        border-radius: 999px;
+        transition: 200ms;
+      }
+      .ds-switch__slider::after {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 20px;
+        height: 20px;
+        background: #fff;
+        border-radius: 50%;
+        transition: 200ms;
+      }
+      .ds-switch__input:checked + .ds-switch__slider {
+        background: #00050e;
+      }
+      .ds-switch__input:checked + .ds-switch__slider::after {
+        transform: translateX(18px);
+      }
 
       /* -------------------- CHECKBOXES & RADIOS -------------------- */
-      .ds-selection-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
-      .ds-checkbox, .ds-radio { display:flex; align-items:center; gap:0.5rem; cursor:pointer; margin-bottom:0.35rem; }
-      .ds-checkbox__input, .ds-radio__input { width:1.25rem; height:1.25rem; accent-color:#00050e; }
-      .ds-checkbox__label, .ds-radio__label { font-size:0.88rem; color:#0f172a; }
-      .ds-radio-row { display:flex; gap:1rem; }
-      .ds-radio--inline { margin-bottom:0; }
+      .ds-selection-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+      }
+      .ds-checkbox,
+      .ds-radio {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        margin-bottom: 0.35rem;
+      }
+      .ds-checkbox__input,
+      .ds-radio__input {
+        width: 1.25rem;
+        height: 1.25rem;
+        accent-color: #00050e;
+      }
+      .ds-checkbox__label,
+      .ds-radio__label {
+        font-size: 0.88rem;
+        color: #0f172a;
+      }
+      .ds-radio-row {
+        display: flex;
+        gap: 1rem;
+      }
+      .ds-radio--inline {
+        margin-bottom: 0;
+      }
 
       /* -------------------- SLIDERS -------------------- */
-      .ds-slider-box { background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:0.85rem; }
-      .ds-slider-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem; }
-      .ds-slider-label { font-size:0.8rem; color:#64748b; font-weight:500; }
-      .ds-slider-value { font-size:0.8rem; color:#00050e; font-weight:700; }
-      .ds-slider { width:100%; height:6px; appearance:none; background:#e0e3e5; border-radius:999px; outline:none; accent-color:#00050e; }
-      .ds-slider::-webkit-slider-thumb { appearance:none; width:20px; height:20px; border-radius:50%; background:#00050e; cursor:pointer; }
-      .ds-range-track { position:relative; height:6px; background:#e0e3e5; border-radius:999px; margin:0.75rem 0 0.35rem; }
-      .ds-range-track__fill { position:absolute; height:100%; background:#00050e; border-radius:999px; }
-      .ds-range-thumb { position:absolute; top:-8px; width:22px; height:22px; background:#fff; border:2px solid #00050e; border-radius:50%; transform:translateX(-50%); box-shadow:0 1px 4px rgba(0,0,0,0.15); }
-      .ds-range-labels { display:flex; justify-content:space-between; font-size:0.65rem; color:#94a3b8; font-weight:600; }
+      .ds-slider-box {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 0.85rem;
+      }
+      .ds-slider-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.35rem;
+      }
+      .ds-slider-label {
+        font-size: 0.8rem;
+        color: #64748b;
+        font-weight: 500;
+      }
+      .ds-slider-value {
+        font-size: 0.8rem;
+        color: #00050e;
+        font-weight: 700;
+      }
+      .ds-slider {
+        width: 100%;
+        height: 6px;
+        appearance: none;
+        background: #e0e3e5;
+        border-radius: 999px;
+        outline: none;
+        accent-color: #00050e;
+      }
+      .ds-slider::-webkit-slider-thumb {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #00050e;
+        cursor: pointer;
+      }
+      .ds-range-track {
+        position: relative;
+        height: 6px;
+        background: #e0e3e5;
+        border-radius: 999px;
+        margin: 0.75rem 0 0.35rem;
+      }
+      .ds-range-track__fill {
+        position: absolute;
+        height: 100%;
+        background: #00050e;
+        border-radius: 999px;
+      }
+      .ds-range-thumb {
+        position: absolute;
+        top: -8px;
+        width: 22px;
+        height: 22px;
+        background: #fff;
+        border: 2px solid #00050e;
+        border-radius: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+      }
+      .ds-range-labels {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.65rem;
+        color: #94a3b8;
+        font-weight: 600;
+      }
 
       /* -------------------- BUTTONS -------------------- */
-      .ds-btn { display:inline-flex; align-items:center; justify-content:center; border:none; cursor:pointer; font-family:inherit; transition:all 150ms; }
-      .ds-btn--primary { background:#00050e; color:#fff; border-radius:8px; padding:0.75rem 1.5rem; font-size:0.85rem; font-weight:600; }
-      .ds-btn--primary:hover { opacity:0.9; }
-      .ds-btn--outline { background:transparent; color:#00050e; border:1px solid #00050e; border-radius:8px; padding:0.75rem 1.5rem; font-size:0.85rem; font-weight:600; }
-      .ds-btn--sm { padding:0.4rem 0.85rem; font-size:0.78rem; border-radius:8px; }
-      .ds-btn--block { flex:1; }
-      .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; vertical-align:middle; }
-      .ds-icon-btn { cursor:pointer; color:#64748b; padding:4px; border-radius:4px; }
+      .ds-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 150ms;
+      }
+      .ds-btn--primary {
+        background: #00050e;
+        color: #fff;
+        border-radius: 8px;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+      .ds-btn--primary:hover {
+        opacity: 0.9;
+      }
+      .ds-btn--outline {
+        background: transparent;
+        color: #00050e;
+        border: 1px solid #00050e;
+        border-radius: 8px;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+      .ds-btn--sm {
+        padding: 0.4rem 0.85rem;
+        font-size: 0.78rem;
+        border-radius: 8px;
+      }
+      .ds-btn--block {
+        flex: 1;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      .ds-icon-btn {
+        cursor: pointer;
+        color: #64748b;
+        padding: 4px;
+        border-radius: 4px;
+      }
     `,
   ],
   encapsulation: ViewEncapsulation.None,
@@ -1682,8 +2353,3 @@ export class MobileCoreCoverage {
     ],
   };
 }
-
-
-
-
-

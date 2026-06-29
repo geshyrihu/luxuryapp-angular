@@ -2,8 +2,8 @@
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -41,14 +41,16 @@ export class MyTaskProgram implements OnInit {
   }
 
   onLoadData() {
-    this.apiResponseS.onGetItem(Endpoints.Tasks.programation(this.id)).then((result: any) => {
-      this.form.patchValue({
-        assigneeId: result.assigneeId || "", // Ensure string if null
-        scheduledDate: result.scheduledDate
-          ? (this.dateS.parseDate(result.scheduledDate) ?? new Date())
-          : new Date(),
+    this.apiResponseS
+      .onGetItem(Endpoints.Tasks.programation(this.id))
+      .then((result: any) => {
+        this.form.patchValue({
+          assigneeId: result.assigneeId || "", // Ensure string if null
+          scheduledDate: result.scheduledDate
+            ? (this.dateS.parseDate(result.scheduledDate) ?? new Date())
+            : new Date(),
+        });
       });
-    });
   }
   onSubmit() {
     if (!this.apiResponseS.validateForm(this.form)) return;
@@ -67,4 +69,3 @@ export class MyTaskProgram implements OnInit {
       });
   }
 }
-

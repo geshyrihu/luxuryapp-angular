@@ -8,19 +8,19 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputCurrencySignal } from "src/app/core/components/web/inputs/custom-input-currency-signal";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputSwitch } from "src/app/core/components/web/inputs/custom-input-switch-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IServiceOrderForm {
   id: FormControl<string | null>;
@@ -138,7 +138,9 @@ export class ServiceOrderForm implements OnInit {
 
   private async loadMachineries(): Promise<void> {
     const data = await this.apiResponseS.onGetSelectItem<ISelectItem[]>(
-      Endpoints.SelectItems.machineryActiveByCustomer(this.customerIdS.customerId()),
+      Endpoints.SelectItems.machineryActiveByCustomer(
+        this.customerIdS.customerId(),
+      ),
     );
     this.cb_machinery.set(data || []);
   }
@@ -158,15 +160,16 @@ export class ServiceOrderForm implements OnInit {
   }
 
   private async loadStatus(): Promise<void> {
-    const data = await this.apiResponseS.onGetEnumSelectItem(Endpoints.EnumSelectItems.status);
+    const data = await this.apiResponseS.onGetEnumSelectItem(
+      Endpoints.EnumSelectItems.status,
+    );
     this.cb_Status.set((data as ISelectItem[]) || []);
   }
 
   private async loadTypeMaintance(): Promise<void> {
-    const data =
-      await this.apiResponseS.onGetEnumSelectItem<ISelectItem[]>(
-        Endpoints.EnumSelectItems.typeMaintance,
-      );
+    const data = await this.apiResponseS.onGetEnumSelectItem<ISelectItem[]>(
+      Endpoints.EnumSelectItems.typeMaintance,
+    );
     this.cb_TypeMaintance.set(data || []);
   }
 
@@ -273,4 +276,3 @@ export class ServiceOrderForm implements OnInit {
     });
   }
 }
-

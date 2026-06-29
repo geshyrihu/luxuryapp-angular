@@ -2,12 +2,12 @@
  * ============================================================================
  * âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
  * ============================================================================
- * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
- * FUNCIONAL y ESTABLE. 
- * 
+ * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+ * FUNCIONAL y ESTABLE.
+ *
  * Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
  * sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
- * 
+ *
  * Por favor, NO rompan el código.
  * ============================================================================
  */
@@ -18,9 +18,9 @@ import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { RippleModule } from "primeng/ripple";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButton } from "src/app/core/components/web/buttons";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { IAvailableAccountDTO } from "./models/IAvailableAccountDto";
 
 interface ISearchForm {
@@ -133,4 +133,3 @@ export class AccountModalAdd implements OnInit {
     this.ref.close();
   }
 }
-

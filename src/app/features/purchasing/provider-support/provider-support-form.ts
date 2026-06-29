@@ -1,13 +1,22 @@
 ﻿import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CrudSubmitOptions, FormHelper } from "src/app/core/helpers/form-helper";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import {
+  CrudSubmitOptions,
+  FormHelper,
+} from "src/app/core/helpers/form-helper";
+import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
@@ -52,13 +61,22 @@ export class ProviderSupportForm implements OnInit {
 
   form: FormGroup<IProviderSupportForm> = this.formB.group({
     id: new FormControl({ value: "", disabled: true }),
-    applicationUserId: new FormControl("", { nonNullable: true, validators: [Validators.required] }),
+    applicationUserId: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
     applicationUser: new FormControl<string | null>(null),
-    providerId: new FormControl<number | null>(null, { validators: [Validators.required] }),
+    providerId: new FormControl<number | null>(null, {
+      validators: [Validators.required],
+    }),
     nameProvider: new FormControl<string | null>(null),
-    applicationRoleId: new FormControl<string | null>(null, { validators: [Validators.required] }),
+    applicationRoleId: new FormControl<string | null>(null, {
+      validators: [Validators.required],
+    }),
     applicationRoleName: new FormControl<string | null>(null),
-    customerId: new FormControl<string | null>(null, { validators: [Validators.required] }),
+    customerId: new FormControl<string | null>(null, {
+      validators: [Validators.required],
+    }),
     nameCustomer: new FormControl<string | null>(null),
   });
 
@@ -74,19 +92,41 @@ export class ProviderSupportForm implements OnInit {
   }
 
   async onLoadData(): Promise<void> {
-    const result: any = await this.apiResponseS.onGetItem(Endpoints.ProviderSupport.getById(this.id));
+    const result: any = await this.apiResponseS.onGetItem(
+      Endpoints.ProviderSupport.getById(this.id),
+    );
 
     // Extraer IDs
-    const providerId = typeof result.providerId === "object" ? result.providerId.value : result.providerId;
-    const applicationRoleId = typeof result.applicationRoleId === "object" ? result.applicationRoleId.value : result.applicationRoleId;
-    const applicationUserId = typeof result.applicationUserId === "object" ? result.applicationUserId.value : result.applicationUserId;
-    const customerId = typeof result.customerId === "object" ? result.customerId.value : result.customerId;
+    const providerId =
+      typeof result.providerId === "object"
+        ? result.providerId.value
+        : result.providerId;
+    const applicationRoleId =
+      typeof result.applicationRoleId === "object"
+        ? result.applicationRoleId.value
+        : result.applicationRoleId;
+    const applicationUserId =
+      typeof result.applicationUserId === "object"
+        ? result.applicationUserId.value
+        : result.applicationUserId;
+    const customerId =
+      typeof result.customerId === "object"
+        ? result.customerId.value
+        : result.customerId;
 
     // Buscar objetos completos
-    const selectedProvider = this.cb_providers().find((item) => item.value === providerId);
-    const selectedRole = this.cb_applicationRoles().find((item) => item.value === applicationRoleId);
-    const selectedUser = this.cb_applicationUserProvider().find((item) => item.value === applicationUserId);
-    const selectedCustomer = this.cb_customers().find((item) => item.value === customerId);
+    const selectedProvider = this.cb_providers().find(
+      (item) => item.value === providerId,
+    );
+    const selectedRole = this.cb_applicationRoles().find(
+      (item) => item.value === applicationRoleId,
+    );
+    const selectedUser = this.cb_applicationUserProvider().find(
+      (item) => item.value === applicationUserId,
+    );
+    const selectedCustomer = this.cb_customers().find(
+      (item) => item.value === customerId,
+    );
 
     this.form.patchValue({
       ...result,
@@ -102,9 +142,15 @@ export class ProviderSupportForm implements OnInit {
 
   async onLoadSelectItem(): Promise<void> {
     const [providers, applicationRoles, users, customers] = await Promise.all([
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>(`providers/${this.customerIdS.customerId()}`),
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>("application-roles-to-administrator"),
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>("ApplicationUserProvider"),
+      this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+        `providers/${this.customerIdS.customerId()}`,
+      ),
+      this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+        "application-roles-to-administrator",
+      ),
+      this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+        "ApplicationUserProvider",
+      ),
       this.apiResponseS.onGetSelectItem<ISelectItem[]>("customers-active"),
     ]);
 
@@ -114,10 +160,26 @@ export class ProviderSupportForm implements OnInit {
     this.cb_customers.set(customers as ISelectItem[]);
   }
 
-  saveProviderId = (item: ISelectItem) => this.form.patchValue({ providerId: item?.value, nameProvider: item?.label });
-  saveApplicationRoleId = (item: ISelectItem) => this.form.patchValue({ applicationRoleId: item?.value, applicationRoleName: item?.label });
-  saveApplicationUserId = (item: ISelectItem) => this.form.patchValue({ applicationUserId: item?.value, applicationUser: item?.label });
-  saveCustomerId = (item: ISelectItem) => this.form.patchValue({ customerId: item?.value, nameCustomer: item?.label });
+  saveProviderId = (item: ISelectItem) =>
+    this.form.patchValue({
+      providerId: item?.value,
+      nameProvider: item?.label,
+    });
+  saveApplicationRoleId = (item: ISelectItem) =>
+    this.form.patchValue({
+      applicationRoleId: item?.value,
+      applicationRoleName: item?.label,
+    });
+  saveApplicationUserId = (item: ISelectItem) =>
+    this.form.patchValue({
+      applicationUserId: item?.value,
+      applicationUser: item?.label,
+    });
+  saveCustomerId = (item: ISelectItem) =>
+    this.form.patchValue({
+      customerId: item?.value,
+      nameCustomer: item?.label,
+    });
 
   onSubmit() {
     const options: CrudSubmitOptions = {
@@ -139,13 +201,3 @@ export class ProviderSupportForm implements OnInit {
     FormHelper.submitCrud(options);
   }
 }
-
-
-
-
-
-
-
-
-
-

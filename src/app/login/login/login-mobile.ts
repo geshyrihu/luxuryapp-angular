@@ -15,10 +15,15 @@ import {
   Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
-import { IonApp, IonButton, IonContent, IonSpinner } from "@ionic/angular/standalone";
+import {
+  IonApp,
+  IonButton,
+  IonContent,
+  IonSpinner,
+} from "@ionic/angular/standalone";
 import { catchError, finalize, of, switchMap } from "rxjs";
-import { IonInputPassword } from "src/app/core/components/mobile/inputs/ion-input-password";
-import { IonInputText } from "src/app/core/components/mobile/inputs/ion-input-text";
+import { IonInputPassword } from "src/app/core/components/inputs/mobile/ion-input-password";
+import { IonInputText } from "src/app/core/components/inputs/mobile/ion-input-text";
 import { UserTokenDTO } from "src/app/core/interfaces/auth-user-token.dto";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -89,7 +94,9 @@ import { SecurityService } from "src/app/core/services/security.service";
               />
 
               @if (errorMessage()) {
-                <div class="p-3 border-round border-1 border-red-300 bg-red-50 text-red-800 shadow-1 mt-2 flex align-items-center">
+                <div
+                  class="p-3 border-round border-1 border-red-300 bg-red-50 text-red-800 shadow-1 mt-2 flex align-items-center"
+                >
                   <span class="text-sm font-medium">{{ errorMessage() }}</span>
                 </div>
               }
@@ -291,10 +298,13 @@ export class LoginMobile implements OnInit {
   public aspRoleS = inject(AspRoleService);
   private loginSliderService = inject(LoginSliderService);
 
-  readonly sliderImages = toSignal(this.loginSliderService.getVisibleImages$(), {
-    initialValue: [],
-  });
-  
+  readonly sliderImages = toSignal(
+    this.loginSliderService.getVisibleImages$(),
+    {
+      initialValue: [],
+    },
+  );
+
   readonly loading = signal(false);
   readonly errorMessage = signal("");
 

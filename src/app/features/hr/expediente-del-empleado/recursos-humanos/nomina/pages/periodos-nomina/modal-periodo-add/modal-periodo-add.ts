@@ -1,10 +1,10 @@
 ﻿import { Component, OnInit, inject, signal } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -43,12 +43,12 @@ export default class ModalPeriodoAdd implements OnInit {
   item = signal<PeriodoNominaDTO | null>(null);
 
   form = this.fb.nonNullable.group({
-    quincena:    [1, Validators.required],
-    mes:         [new Date().getMonth() + 1, Validators.required],
-    anio:        [this.anioActual, [Validators.required, Validators.min(2020)]],
+    quincena: [1, Validators.required],
+    mes: [new Date().getMonth() + 1, Validators.required],
+    anio: [this.anioActual, [Validators.required, Validators.min(2020)]],
     fechaInicio: ["" as string, Validators.required],
-    fechaFin:    ["" as string, Validators.required],
-    fechaPago:   ["" as string],
+    fechaFin: ["" as string, Validators.required],
+    fechaPago: ["" as string],
   });
 
   ngOnInit(): void {
@@ -56,12 +56,12 @@ export default class ModalPeriodoAdd implements OnInit {
     if (data) {
       this.item.set(data);
       this.form.patchValue({
-        quincena:    data.quincena,
-        mes:         data.mes,
-        anio:        data.anio,
+        quincena: data.quincena,
+        mes: data.mes,
+        anio: data.anio,
         fechaInicio: data.fechaInicio ? data.fechaInicio.substring(0, 10) : "",
-        fechaFin:    data.fechaFin ? data.fechaFin.substring(0, 10) : "",
-        fechaPago:   data.fechaPago ? data.fechaPago.substring(0, 10) : "",
+        fechaFin: data.fechaFin ? data.fechaFin.substring(0, 10) : "",
+        fechaPago: data.fechaPago ? data.fechaPago.substring(0, 10) : "",
       });
     }
   }
@@ -75,7 +75,9 @@ export default class ModalPeriodoAdd implements OnInit {
       const dto: PeriodoNominaCreateDTO = {
         customerId,
         ...this.form.getRawValue(),
-        fechaInicio: this.dateS.getDateFormat(this.form.controls.fechaInicio.value),
+        fechaInicio: this.dateS.getDateFormat(
+          this.form.controls.fechaInicio.value,
+        ),
         fechaFin: this.dateS.getDateFormat(this.form.controls.fechaFin.value),
         fechaPago: this.form.controls.fechaPago.value
           ? this.dateS.getDateFormat(this.form.controls.fechaPago.value)
@@ -84,21 +86,28 @@ export default class ModalPeriodoAdd implements OnInit {
       this.submitting.set(true);
       this.apiResponseS
         .onPost("hr/nomina/periodos", dto)
-        .then((r) => { if (r) this.ref.close(true); })
+        .then((r) => {
+          if (r) this.ref.close(true);
+        })
         .finally(() => this.submitting.set(false));
     } else {
       const v = this.form.getRawValue();
       const dto: PeriodoNominaUpdateDTO = {
-        fechaInicio: v.fechaInicio ? this.dateS.getDateFormat(v.fechaInicio) : undefined,
-        fechaFin:    v.fechaFin ? this.dateS.getDateFormat(v.fechaFin) : undefined,
-        fechaPago:   v.fechaPago ? this.dateS.getDateFormat(v.fechaPago) : undefined,
+        fechaInicio: v.fechaInicio
+          ? this.dateS.getDateFormat(v.fechaInicio)
+          : undefined,
+        fechaFin: v.fechaFin ? this.dateS.getDateFormat(v.fechaFin) : undefined,
+        fechaPago: v.fechaPago
+          ? this.dateS.getDateFormat(v.fechaPago)
+          : undefined,
       };
       this.submitting.set(true);
       this.apiResponseS
         .onPut(`hr/nomina/periodos/${existing.id}`, dto)
-        .then((r) => { if (r) this.ref.close(true); })
+        .then((r) => {
+          if (r) this.ref.close(true);
+        })
         .finally(() => this.submitting.set(false));
     }
   }
 }
-

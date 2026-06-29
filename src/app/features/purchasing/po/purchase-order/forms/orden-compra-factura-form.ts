@@ -1,5 +1,4 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   inject,
@@ -17,11 +16,12 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip"; // Added
+import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal"; // Added
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button"; // Nueva importación
 import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit"; // Added
-import { CustomInputFile } from "src/app/core/components/web/inputs/custom-input-file-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal"; // Added
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 export interface IOrdenCompraFacturaForm {
@@ -139,7 +139,10 @@ export class OrdenCompraFacturaForm implements OnInit {
     formData.append("TipoComprobante", tipo);
 
     this.apiResponseS
-      .onPut(Endpoints.OrdenCompraStatus.updateInvoice(this.editingInvoiceId), formData)
+      .onPut(
+        Endpoints.OrdenCompraStatus.updateInvoice(this.editingInvoiceId),
+        formData,
+      )
       .then((result: any) => {
         this.facturas.update((values) => {
           const index = values.findIndex((x) => x.id === this.editingInvoiceId);
@@ -170,7 +173,10 @@ export class OrdenCompraFacturaForm implements OnInit {
     formData.append("TipoComprobante", tipo);
 
     this.apiResponseS
-      .onPost(Endpoints.PurchaseOrders.uploadInvoice(this.ordenCompraId), formData)
+      .onPost(
+        Endpoints.PurchaseOrders.uploadInvoice(this.ordenCompraId),
+        formData,
+      )
       .then((result: any) => {
         this.facturas.update((values) => [...values, result]);
 
@@ -198,4 +204,3 @@ export class OrdenCompraFacturaForm implements OnInit {
       });
   }
 }
-

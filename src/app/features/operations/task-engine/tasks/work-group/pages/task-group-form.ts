@@ -10,9 +10,9 @@ import {
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TagModule } from "primeng/tag";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   CrudSubmitOptions,
@@ -81,21 +81,21 @@ export class TaskGroupForm implements OnInit {
   }
 
   onLoadData() {
-    this.apiS.onGetItem<any>(Endpoints.TaskGroups.getById(this.id())).then((result) => {
-      if (result) this.form.patchValue(result);
-    });
+    this.apiS
+      .onGetItem<any>(Endpoints.TaskGroups.getById(this.id()))
+      .then((result) => {
+        if (result) this.form.patchValue(result);
+      });
   }
 
   onLoadTaskGroupCategory() {
     this.apiS
-      .onGetSelectItem<ISelectItem[]>(
-        Endpoints.TaskGroupCategories.selectByCustomer(
-          this.customerIdS.customerId(),
-        ),
-      )
+      .onGetSelectItem<
+        ISelectItem[]
+      >(Endpoints.TaskGroupCategories.selectByCustomer(this.customerIdS.customerId()))
       .then((result) => {
-      this.cb_TaskGroupCategory.set(result ?? []);
-    });
+        this.cb_TaskGroupCategory.set(result ?? []);
+      });
   }
 
   onSubmit() {
@@ -110,4 +110,3 @@ export class TaskGroupForm implements OnInit {
     FormHelper.submitCrud(options);
   }
 }
-

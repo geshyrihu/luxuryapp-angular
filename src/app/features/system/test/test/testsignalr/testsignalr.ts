@@ -1,10 +1,10 @@
 ﻿import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { CardModule } from "primeng/card";
+import { CustomInputAutoMultiple } from "src/app/core/components/inputs/web/custom-input-autocomplete-multiple-signal";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomInputAutoMultiple } from "src/app/core/components/web/inputs/custom-input-autocomplete-multiple-signal";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -112,4 +112,3 @@ export class Testsignalr implements OnInit {
     console.log(result);
   }
 }
-

@@ -6,15 +6,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { CustomButtonSendEmail } from "src/app/core/components/web/buttons/custom-button-send-email";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
-import { IEmailDataForm } from "src/app/core/interfaces/email-data-form.interface";
-import { FormHelper } from "src/app/core/helpers/form-helper";
+import { CustomButtonSendEmail } from "src/app/core/components/web/buttons/custom-button-send-email";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { FormHelper } from "src/app/core/helpers/form-helper";
+import { IEmailDataForm } from "src/app/core/interfaces/email-data-form.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -97,19 +97,11 @@ export class EmailDataForm implements OnInit {
 
   TestEmail(): void {
     this.submitting.set(true);
-    this.apiResponseS.onPost(Endpoints.EmailData.sendTestEmail(this.id), null).then((result: any) => {
-      this.testEmailMessage.set(result.message);
-      this.submitting.set(false);
-    });
+    this.apiResponseS
+      .onPost(Endpoints.EmailData.sendTestEmail(this.id), null)
+      .then((result: any) => {
+        this.testEmailMessage.set(result.message);
+        this.submitting.set(false);
+      });
   }
 }
-
-
-
-
-
-
-
-
-
-

@@ -7,8 +7,8 @@ import {
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { FileUploadModule } from "primeng/fileupload";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { TaskInstance } from "src/app/core/models/recurring-tasks/task-instance.model";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
@@ -66,4 +66,3 @@ export class CompleteTaskForm implements OnInit {
       .finally(() => this.submitting.set(false));
   }
 }
-

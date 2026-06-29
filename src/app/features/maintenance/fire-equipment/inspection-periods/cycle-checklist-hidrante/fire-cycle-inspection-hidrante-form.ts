@@ -1,21 +1,32 @@
 ﻿import { Component, inject, OnInit, signal } from "@angular/core";
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { firstValueFrom } from "rxjs";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputCheckSignal } from "src/app/core/components/web/inputs/custom-input-check-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { firstValueFrom } from "rxjs";
 
 @Component({
   selector: "app-fire-cycle-inspection-hidrante-form",
   templateUrl: "./fire-cycle-inspection-hidrante-form.html",
-  imports: [ReactiveFormsModule, CustomButtonSave, CustomInputCheckSignal, CustomInputSelectSignal, CustomInputTextAreaSignal],
+  imports: [
+    ReactiveFormsModule,
+    CustomButtonSave,
+    CustomInputCheckSignal,
+    CustomInputSelectSignal,
+    CustomInputTextAreaSignal,
+  ],
 })
 export class FireCycleInspectionHidranteForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -39,23 +50,37 @@ export class FireCycleInspectionHidranteForm implements OnInit {
     nozzlePresent: new FormControl(false, { nonNullable: true }),
     valveOperational: new FormControl(false, { nonNullable: true }),
     lockOk: new FormControl(false, { nonNullable: true }),
-    cabinetState: new FormControl<any>(null, { validators: [Validators.required] }),
+    cabinetState: new FormControl<any>(null, {
+      validators: [Validators.required],
+    }),
     observations: new FormControl<string | null>(null),
-    applicationUserId: new FormControl(this.authS.applicationUserId, { nonNullable: true, validators: [Validators.required] }),
+    applicationUserId: new FormControl(this.authS.applicationUserId, {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
   });
 
   async ngOnInit() {
     this.cycleId = this.config.data?.cycleId ?? "";
     this.equipmentId = this.config.data?.equipmentId ?? "";
-    this.form.patchValue({ fireInspectionCycleId: this.cycleId, hydrantId: this.equipmentId });
-    this.cb_cabinetStates = await firstValueFrom(this.enumSelectS.cabinetState());
+    this.form.patchValue({
+      fireInspectionCycleId: this.cycleId,
+      hydrantId: this.equipmentId,
+    });
+    this.cb_cabinetStates = await firstValueFrom(
+      this.enumSelectS.cabinetState(),
+    );
     this.onLoadExisting();
   }
 
   onLoadExisting() {
     this.apiResponseS
-      .onGetItem(`FireCycleInspection/hidrante/${this.cycleId}/${this.equipmentId}`)
-      .then((result: any) => { if (result) this.form.patchValue(result); });
+      .onGetItem(
+        `FireCycleInspection/hidrante/${this.cycleId}/${this.equipmentId}`,
+      )
+      .then((result: any) => {
+        if (result) this.form.patchValue(result);
+      });
   }
 
   async onSubmit() {
@@ -70,4 +95,3 @@ export class FireCycleInspectionHidranteForm implements OnInit {
     });
   }
 }
-

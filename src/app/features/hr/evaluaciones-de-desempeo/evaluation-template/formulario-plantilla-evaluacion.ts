@@ -1,33 +1,33 @@
-﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import {
-    CdkDragDrop,
-    DragDropModule,
-    moveItemInArray,
+﻿import {
+  CdkDragDrop,
+  DragDropModule,
+  moveItemInArray,
 } from "@angular/cdk/drag-drop";
 import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
-    AbstractControl,
-    FormArray,
-    FormControl,
-    FormGroup,
-    FormsModule,
-    ReactiveFormsModule,
-    Validators,
+  AbstractControl,
+  FormArray,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { FieldsetModule } from "primeng/fieldset";
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
 import { InputTextModule } from "primeng/inputtext";
 import { MessageModule } from "primeng/message";
 import { TooltipModule } from "primeng/tooltip";
-import { FieldsetModule } from "primeng/fieldset";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputCheckSignal } from "src/app/core/components/web/inputs/custom-input-check-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
@@ -63,7 +63,8 @@ interface ICategoryForm {
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
-   AppIcon],
+    AppIcon,
+  ],
 })
 export class FormularioPlantillaEvaluacion implements OnInit {
   // Inyección de dependencias
@@ -91,19 +92,19 @@ export class FormularioPlantillaEvaluacion implements OnInit {
     }),
     categories: new FormArray<FormGroup<ICategoryForm>>([]),
   });
-  
+
   paramsSignal = toSignal(this.activatedRoute.paramMap);
 
   constructor() {
     effect(() => {
-        const params = this.paramsSignal();
-        if (params) {
-            this.id = params.get("id");
-            this.isEditMode = !!this.id;
-            if (this.id) {
-                this.onLoadData();
-            }
+      const params = this.paramsSignal();
+      if (params) {
+        this.id = params.get("id");
+        this.isEditMode = !!this.id;
+        if (this.id) {
+          this.onLoadData();
         }
+      }
     });
   }
 
@@ -298,13 +299,3 @@ export class FormularioPlantillaEvaluacion implements OnInit {
     });
   }
 }
-
-
-
-
-
-
-
-
-
-

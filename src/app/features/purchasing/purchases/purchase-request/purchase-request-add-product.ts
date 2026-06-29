@@ -1,5 +1,4 @@
 ﻿import { CommonModule } from "@angular/common";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   Component,
   OnInit,
@@ -17,13 +16,14 @@ import {
 } from "@angular/forms";
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { FluidModule } from "primeng/fluid";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IPurchaseRequestAddProductForm {
   id: FormControl<string | null>;
@@ -63,14 +63,17 @@ export class PurchaseRequestAddProduct implements OnInit {
   updateData = output<void>();
 
   constructor() {
-    effect(() => {
-      const product = this.productDataToEdit();
-      if (product) {
-        this.loadProductForEdit(product);
-      } else {
-        this.resetForm();
-      }
-    }, { allowSignalWrites: true });
+    effect(
+      () => {
+        const product = this.productDataToEdit();
+        if (product) {
+          this.loadProductForEdit(product);
+        } else {
+          this.resetForm();
+        }
+      },
+      { allowSignalWrites: true },
+    );
   }
 
   // Definición estricta del formulario con new FormGroup
@@ -216,4 +219,3 @@ export class PurchaseRequestAddProduct implements OnInit {
     }
   }
 }
-

@@ -7,10 +7,10 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 
@@ -89,16 +89,13 @@ export class JuntaMensualSessionRescheduleForm implements OnInit {
 
     this.submitting.set(true);
     this.apiResponseS
-      .onPut(
-        `JuntaMensualSession/${this.id()}/reschedule`,
-        {
-          startAt,
-          endAt,
-          modality: raw.modality,
-          location: raw.location ?? "",
-          description: raw.description ?? "",
-        },
-      )
+      .onPut(`JuntaMensualSession/${this.id()}/reschedule`, {
+        startAt,
+        endAt,
+        modality: raw.modality,
+        location: raw.location ?? "",
+        description: raw.description ?? "",
+      })
       .then((result) => {
         if (result) {
           this.ref.close(true);
@@ -163,4 +160,3 @@ export class JuntaMensualSessionRescheduleForm implements OnInit {
     return isNaN(parsed.getTime()) ? null : parsed;
   }
 }
-

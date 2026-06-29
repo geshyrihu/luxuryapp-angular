@@ -4,13 +4,13 @@ import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { IonItem, IonLabel, IonText } from "@ionic/angular/standalone";
 import { TooltipModule } from "primeng/tooltip";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -86,26 +86,30 @@ export class ListaInspecciones {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList(Endpoints.Inspections.listByCustomer(this.customerIdS.customerId()))
+      .onGetList(
+        Endpoints.Inspections.listByCustomer(this.customerIdS.customerId()),
+      )
       .then((result: any) => {
-      this.inspeccionesOriginalesSignal.set(result);
+        this.inspeccionesOriginalesSignal.set(result);
 
-      const data: any[] = result;
-      // Extraer óreas responsables del arreglo y eliminar duplicados
-      const areas = [...new Set(data.map((item) => item.areaResponsable))];
-      this.areasResponsablesSignal.set(
-        areas.map((area: string) => ({
-          label: area,
-          value: area,
-        })),
-      );
-    });
+        const data: any[] = result;
+        // Extraer óreas responsables del arreglo y eliminar duplicados
+        const areas = [...new Set(data.map((item) => item.areaResponsable))];
+        this.areasResponsablesSignal.set(
+          areas.map((area: string) => ({
+            label: area,
+            value: area,
+          })),
+        );
+      });
   }
 
   onDelete(id: string) {
-    this.apiResponseS.onDelete(Endpoints.Inspections.delete(id)).then((result) => {
-      if (result) this.onLoadData();
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.Inspections.delete(id))
+      .then((result) => {
+        if (result) this.onLoadData();
+      });
   }
 
   // Función para abrir un cuadro de diólogo modal para agregar o editar o crear
@@ -122,4 +126,3 @@ export class ListaInspecciones {
       });
   }
 }
-

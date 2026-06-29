@@ -1,19 +1,15 @@
 ﻿import { CommonModule } from "@angular/common";
 import { Component, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-} from "@angular/forms";
+import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import * as FileSaver from "file-saver";
 import { CardModule } from "primeng/card";
 import { TableModule } from "primeng/table";
+import { CustomInputMultiselectSignal } from "src/app/core/components/inputs/web/custom-input-multiselect-signal";
 import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
 import { MultiAxisChart } from "src/app/core/components/web/charts/multi-axis-chart";
-import { CustomInputMultiselectSignal } from "src/app/core/components/web/inputs/custom-input-multiselect-signal";
-import { RangoCalendarioyyyymmdd } from "src/app/core/components/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { RangoCalendarioyyyymmdd } from "src/app/core/components/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import { PageTitleReportMaintenance } from "src/app/core/components/web/title-page-report-maintenance/page-title-report-maintenance";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { IMedidor } from "src/app/core/interfaces/medidor.interface";
@@ -252,4 +248,3 @@ export class ReportConsumos {
     });
   }
 }
-

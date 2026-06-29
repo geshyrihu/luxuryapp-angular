@@ -1,10 +1,15 @@
 ﻿import { Component, inject, input, OnInit, signal } from "@angular/core";
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { FormHelper } from "src/app/core/helpers/form-helper";
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
 import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 @Component({
@@ -29,7 +34,9 @@ export class ComiteForm implements OnInit {
   submitting = signal(false);
 
   form = new FormGroup({
-    comiteparticipante: new FormControl<string | null>(null, [Validators.required]),
+    comiteparticipante: new FormControl<string | null>(null, [
+      Validators.required,
+    ]),
   });
 
   get comiteparticipante() {
@@ -42,18 +49,26 @@ export class ComiteForm implements OnInit {
   }
 
   onLoadCB() {
-    this.apiResponseS.onGetSelectItem(
-      Endpoints.MeetingComite.listCandidates(this.customerIdS.customerId(), this.meetingId()),
-    ).then((result: any) => {
-      this.cb_ParticipantComite.set(result);
-    });
+    this.apiResponseS
+      .onGetSelectItem(
+        Endpoints.MeetingComite.listCandidates(
+          this.customerIdS.customerId(),
+          this.meetingId(),
+        ),
+      )
+      .then((result: any) => {
+        this.cb_ParticipantComite.set(result);
+      });
   }
 
   async onSubmit() {
     const result = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.MeetingComite.addParticipant(this.meetingId(), this.comiteparticipante.value),
+      endpoint: Endpoints.MeetingComite.addParticipant(
+        this.meetingId(),
+        this.comiteparticipante.value,
+      ),
       method: "POST",
       submitting: this.submitting,
       closeOnSuccess: false,
@@ -68,18 +83,19 @@ export class ComiteForm implements OnInit {
   }
 
   onDelete(idParticipant: number): void {
-    this.apiResponseS.onDelete(Endpoints.MeetingComite.delete(idParticipant)).then(() => {
-      this.onLoadData();
-      this.onLoadCB();
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.MeetingComite.delete(idParticipant))
+      .then(() => {
+        this.onLoadData();
+        this.onLoadCB();
+      });
   }
 
   onLoadData() {
-    this.apiResponseS.onGetList(
-      Endpoints.MeetingComite.participants(this.meetingId()),
-    ).then((result: any) => {
-      this.listaParticipantesComite.set(result);
-    });
+    this.apiResponseS
+      .onGetList(Endpoints.MeetingComite.participants(this.meetingId()))
+      .then((result: any) => {
+        this.listaParticipantesComite.set(result);
+      });
   }
 }
-

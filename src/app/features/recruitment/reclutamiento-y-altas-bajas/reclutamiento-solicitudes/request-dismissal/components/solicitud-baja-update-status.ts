@@ -7,8 +7,8 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 // Assuming EStatus enum is available globally or imported
 // For this example, I'll define it here based on the C# enum.
@@ -73,4 +73,3 @@ export class SolicitudBajaUpdateStatus implements OnInit {
       });
   }
 }
-

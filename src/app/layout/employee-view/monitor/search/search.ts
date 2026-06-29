@@ -1,5 +1,5 @@
 ﻿import { Component, inject } from "@angular/core";
-import { CustomSearchInput } from "src/app/core/components/web/inputs/custom-search-input-signal";
+import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { GlobalTableFilterService } from "src/app/core/services/global-table-filter.service";
 
 @Component({
@@ -19,4 +19,3 @@ export class Search {
     this.globalFilter.setFilter(value);
   }
 }
-

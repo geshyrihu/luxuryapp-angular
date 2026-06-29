@@ -8,9 +8,9 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   CrudSubmitOptions,
@@ -89,8 +89,8 @@ export class TaskGroupCategoryForm implements OnInit {
     this.apiResponseS
       .onGetItem(Endpoints.TaskGroupCategories.getById(this.id))
       .then((result: any) => {
-      this.form.patchValue(result);
-    });
+        this.form.patchValue(result);
+      });
   }
 
   onSubmit() {
@@ -105,4 +105,3 @@ export class TaskGroupCategoryForm implements OnInit {
     FormHelper.submitCrud(options);
   }
 }
-

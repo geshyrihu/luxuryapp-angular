@@ -8,10 +8,10 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -232,10 +232,7 @@ export class InspeccionActivoCondominioEditar implements OnInit {
     };
 
     this.apiResponseS
-      .onPut(
-        Endpoints.InspectionCondominiumAssets.update(payload.id!),
-        payload,
-      )
+      .onPut(Endpoints.InspectionCondominiumAssets.update(payload.id!), payload)
       .then((result: boolean) => {
         if (result) {
           this.ref.close(true);
@@ -245,4 +242,3 @@ export class InspeccionActivoCondominioEditar implements OnInit {
       });
   }
 }
-

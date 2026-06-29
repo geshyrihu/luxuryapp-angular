@@ -1,5 +1,4 @@
-﻿import { Endpoints } from "src/app/core/constants/endpoints";
-import {
+﻿import {
   Component,
   computed,
   inject,
@@ -20,11 +19,12 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputNumberModule } from "primeng/inputnumber";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
+import { Endpoints } from "src/app/core/constants/endpoints";
 
 import { CommonModule } from "@angular/common";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -142,7 +142,9 @@ export class OrdenCompraDetalleAddProducto implements OnInit, OnDestroy {
     }
     this.loading.set(true);
 
-    const urlApi = Endpoints.PurchaseOrderDetails.addProductToOrder(this.ordenCompraId);
+    const urlApi = Endpoints.PurchaseOrderDetails.addProductToOrder(
+      this.ordenCompraId,
+    );
     const httpParams = {
       page: this.page,
       recordsNumber: this.rows,
@@ -291,5 +293,3 @@ export class OrdenCompraDetalleAddProducto implements OnInit, OnDestroy {
     this.ref.close(true);
   }
 }
-
-

@@ -15,7 +15,8 @@ import {
   IonSpinner,
 } from "@ionic/angular/standalone";
 import { catchError, finalize, throwError } from "rxjs";
-import { IonInputText } from "src/app/core/components/mobile/inputs/ion-input-text";
+// import { IonInputText } from "src/app/core/components/inputs/mobile/ion-input-text";
+import { IonInputText } from "src/app/core/components/inputs/mobile/ion-input-text";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
 import { LoginSliderService } from "src/app/core/services/login-slider.service";
 
@@ -273,9 +274,12 @@ export class RecoveryMobile implements OnInit {
   private router = inject(Router);
   private loginSliderService = inject(LoginSliderService);
 
-  readonly sliderImages = toSignal(this.loginSliderService.getVisibleImages$(), {
-    initialValue: [],
-  });
+  readonly sliderImages = toSignal(
+    this.loginSliderService.getVisibleImages$(),
+    {
+      initialValue: [],
+    },
+  );
   form: FormGroup;
   submitting = signal(false);
   errorMessage = "";

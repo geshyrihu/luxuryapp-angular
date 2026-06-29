@@ -9,13 +9,13 @@ import {
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 // PrimeNG Modules
 // Project components & services
-import { CustomInputCurrencySignal } from "src/app/core/components/web/inputs/custom-input-currency-signal";
-import { CustomInputDecimal } from "src/app/core/components/web/inputs/custom-input-decimal-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
+import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
+import { CustomInputDecimal } from "src/app/core/components/inputs/web/custom-input-decimal-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomButton } from "src/app/core/components/web/buttons";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomButton } from "src/app/core/components/web/buttons";
 export interface IOrdenCompraDetalleCompForm {
   productoId: FormControl<string | null>;
   productName: FormControl<string | null>;
@@ -104,4 +104,3 @@ export class OrdenCompraDetalleForm implements OnInit {
     this.ref.close();
   }
 }
-

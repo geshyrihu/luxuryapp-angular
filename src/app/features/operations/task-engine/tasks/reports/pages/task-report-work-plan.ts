@@ -6,8 +6,8 @@ import { ImageModule } from "primeng/image";
 import { SplitButtonModule } from "primeng/splitbutton";
 import { TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
@@ -70,24 +70,24 @@ export class TaskReportWorkPlan implements OnInit {
     this.apiResponseS
       .onGetList(Endpoints.TaskWorkPlans.pending(this.customerIdS.customerId()))
       .then((result: any) => {
-      this.dataSignal.set(result);
-      this.originalData = JSON.parse(JSON.stringify(result)); // Copia profunda
-      const uniqueResponsibles = Array.from(
-        new Map(
-          this.originalData.map((item) => [item.assigneeId, item]),
-        ).values(),
-      );
+        this.dataSignal.set(result);
+        this.originalData = JSON.parse(JSON.stringify(result)); // Copia profunda
+        const uniqueResponsibles = Array.from(
+          new Map(
+            this.originalData.map((item) => [item.assigneeId, item]),
+          ).values(),
+        );
 
-      this.cb_assignee = uniqueResponsibles.map((item: any) => ({
-        value: item.assigneeId,
-        label: item.assignee,
-      }));
+        this.cb_assignee = uniqueResponsibles.map((item: any) => ({
+          value: item.assigneeId,
+          label: item.assignee,
+        }));
 
-      this.cb_assignee.push({
-        value: null,
-        label: "Mostrar todos",
+        this.cb_assignee.push({
+          value: null,
+          label: "Mostrar todos",
+        });
       });
-    });
   }
 
   onResponsibleChange(event: any) {
@@ -131,5 +131,3 @@ export class TaskReportWorkPlan implements OnInit {
     );
   }
 }
-
-

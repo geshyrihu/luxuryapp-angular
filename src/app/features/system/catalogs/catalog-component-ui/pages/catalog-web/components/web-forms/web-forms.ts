@@ -10,17 +10,17 @@ import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
-import { CustomInputCheckSignal } from "src/app/core/components/web/inputs/custom-input-check-signal";
-import { CustomInputCurrencySignal } from "src/app/core/components/web/inputs/custom-input-currency-signal";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputFile } from "src/app/core/components/web/inputs/custom-input-file-signal";
-import { CustomInputMultiselectSignal } from "src/app/core/components/web/inputs/custom-input-multiselect-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputPassword } from "src/app/core/components/web/inputs/custom-input-password-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputSwitch } from "src/app/core/components/web/inputs/custom-input-switch-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
+import { CustomInputMultiselectSignal } from "src/app/core/components/inputs/web/custom-input-multiselect-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputPassword } from "src/app/core/components/inputs/web/custom-input-password-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 
 @Component({
   selector: "app-web-forms",
@@ -46,17 +46,16 @@ import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom
   ],
   template: `
     <div class="grid">
-
       <!-- Formulario de solicitud ERP (patrón estándar) -->
       <div class="col-12">
         <p-card header="Formulario ERP â€” Solicitud Operativa">
           <p class="m-0 mb-4 text-sm text-color-secondary">
             Patrón estándar: labels persistentes (<code>custom-input-*</code>),
-            grid PrimeFlex, validación visible y acciones Cancelar → Guardar al final.
+            grid PrimeFlex, validación visible y acciones Cancelar → Guardar al
+            final.
           </p>
 
           <form [formGroup]="form" class="formgrid grid">
-
             <div class="field col-12 md:col-6 xl:col-4">
               <custom-input-text-signal
                 [control]="form.controls['nombre']"
@@ -148,7 +147,6 @@ import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom
                 label="Documento de soporte"
               />
             </div>
-
           </form>
 
           @if (submitted() && form.invalid) {
@@ -170,8 +168,18 @@ import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom
 
           <p-divider />
           <div class="flex justify-content-end gap-2">
-            <p-button label="Cancelar"        severity="secondary" [outlined]="true" icon="mdi:close" (onClick)="reset()" />
-            <p-button label="Guardar solicitud" icon="mdi:content-save"               (onClick)="submit()" />
+            <p-button
+              label="Cancelar"
+              severity="secondary"
+              [outlined]="true"
+              icon="mdi:close"
+              (onClick)="reset()"
+            />
+            <p-button
+              label="Guardar solicitud"
+              icon="mdi:content-save"
+              (onClick)="submit()"
+            />
           </div>
         </p-card>
       </div>
@@ -194,10 +202,21 @@ import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom
               placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
               [showStrengthIndicator]="true"
             />
-            @if (loginForm.controls['email'].invalid && loginForm.controls['email'].touched) {
-              <p-message severity="error" text="Ingresa un correo electrónico válido." />
+            @if (
+              loginForm.controls["email"].invalid &&
+              loginForm.controls["email"].touched
+            ) {
+              <p-message
+                severity="error"
+                text="Ingresa un correo electrónico válido."
+              />
             }
-            <p-button label="Iniciar sesión" icon="mdi:login" styleClass="w-full" (onClick)="loginForm.markAllAsTouched()" />
+            <p-button
+              label="Iniciar sesión"
+              icon="mdi:login"
+              styleClass="w-full"
+              (onClick)="loginForm.markAllAsTouched()"
+            />
           </form>
         </p-card>
       </div>
@@ -206,7 +225,8 @@ import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom
       <div class="col-12 lg:col-6">
         <p-card header="Estados de Validación Explícitos">
           <p class="m-0 mb-4 text-sm text-color-secondary">
-            Haz clic en Â«Mostrar erroresÂ» para ver todos los estados de validación activos.
+            Haz clic en Â«Mostrar erroresÂ» para ver todos los estados de
+            validación activos.
           </p>
           <form [formGroup]="validationShowcase" class="flex flex-column gap-3">
             <custom-input-text-signal
@@ -237,7 +257,6 @@ import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom
           />
         </p-card>
       </div>
-
     </div>
   `,
   encapsulation: ViewEncapsulation.None,
@@ -246,55 +265,55 @@ export class WebForms {
   private fb = inject(FormBuilder);
 
   submitted = signal(false);
-  saved     = signal(false);
+  saved = signal(false);
 
   form: FormGroup = this.fb.group({
-    nombre:          ["Torre Administrativa", Validators.required],
-    area:            [1, Validators.required],
-    prioridad:       [2],
-    importe:         [125000],
-    cantidad:        [1],
+    nombre: ["Torre Administrativa", Validators.required],
+    area: [1, Validators.required],
+    prioridad: [2],
+    importe: [125000],
+    cantidad: [1],
     fechaCompromiso: [new Date(2026, 6, 15)],
-    fechaVencimiento:[new Date(2026, 8, 30)],
-    modulos:         [[1, 3]],
-    activo:          [true],
-    urgente:         [false],
-    descripcion:     ["Descripción breve, accionable y sin lenguaje ambiguo."],
-    archivo:         [null],
+    fechaVencimiento: [new Date(2026, 8, 30)],
+    modulos: [[1, 3]],
+    activo: [true],
+    urgente: [false],
+    descripcion: ["Descripción breve, accionable y sin lenguaje ambiguo."],
+    archivo: [null],
   });
 
   loginForm: FormGroup = this.fb.group({
-    email:    ["", [Validators.required, Validators.email]],
+    email: ["", [Validators.required, Validators.email]],
     password: ["", Validators.required],
   });
 
   validationShowcase: FormGroup = this.fb.group({
     requerido: ["", Validators.required],
     minLength: ["ab", [Validators.required, Validators.minLength(5)]],
-    rango:     [5,   [Validators.min(10), Validators.max(100)]],
+    rango: [5, [Validators.min(10), Validators.max(100)]],
   });
 
   readonly areas = [
-    { label: "Administración",   value: 1 },
-    { label: "Operaciones",      value: 2 },
-    { label: "Finanzas",         value: 3 },
+    { label: "Administración", value: 1 },
+    { label: "Operaciones", value: 2 },
+    { label: "Finanzas", value: 3 },
     { label: "Recursos Humanos", value: 4 },
-    { label: "Sistemas",         value: 5 },
+    { label: "Sistemas", value: 5 },
   ];
 
   readonly prioridades = [
-    { label: "Baja",   value: 1 },
-    { label: "Media",  value: 2 },
-    { label: "Alta",   value: 3 },
-    { label: "Urgente",value: 4 },
+    { label: "Baja", value: 1 },
+    { label: "Media", value: 2 },
+    { label: "Alta", value: 3 },
+    { label: "Urgente", value: 4 },
   ];
 
   readonly modulos = [
     { label: "Cuentas por cobrar", value: 1 },
-    { label: "Mantenimiento",      value: 2 },
-    { label: "Compras",            value: 3 },
-    { label: "Biblioteca",         value: 4 },
-    { label: "RRHH",               value: 5 },
+    { label: "Mantenimiento", value: 2 },
+    { label: "Compras", value: 3 },
+    { label: "Biblioteca", value: 4 },
+    { label: "RRHH", value: 5 },
   ];
 
   submit() {
@@ -311,8 +330,10 @@ export class WebForms {
     this.submitted.set(false);
     this.saved.set(false);
     this.form.reset({
-      activo: true, urgente: false, cantidad: 1, importe: 0,
+      activo: true,
+      urgente: false,
+      cantidad: 1,
+      importe: 0,
     });
   }
 }
-

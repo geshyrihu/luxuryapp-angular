@@ -15,12 +15,12 @@ import { CreateChargeDTO, UpdateChargeDTO } from "../../models/charge.dto";
 import { EChargeStatus, EChargeType } from "../../models/enums";
 
 // Custom Inputs
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputCheckSignal } from "src/app/core/components/web/inputs/custom-input-check-signal";
-import { CustomInputCurrencySignal } from "src/app/core/components/web/inputs/custom-input-currency-signal";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 
 interface IChargeForm {
   propertyId: FormControl<string>;
@@ -146,12 +146,17 @@ export class ChargeForm implements OnInit {
 
   async loadTemplates() {
     const res = await this.apiResponseS.onGetItem<any[]>(
-      Endpoints.AccountingCoi.NativeCollection.Templates.customer(this.customerId),
+      Endpoints.AccountingCoi.NativeCollection.Templates.customer(
+        this.customerId,
+      ),
     );
-    if (res) this.templatesOptions.set(res.map((t) => ({
-      label: `${t.name} - ${t.amount}`,
-      value: t.id,
-    })));
+    if (res)
+      this.templatesOptions.set(
+        res.map((t) => ({
+          label: `${t.name} - ${t.amount}`,
+          value: t.id,
+        })),
+      );
   }
 
   async loadData() {
@@ -160,7 +165,8 @@ export class ChargeForm implements OnInit {
     );
     if (res) {
       if (res.dueDate) res.dueDate = this.dateS.parseDate(res.dueDate);
-      if (res.periodStart) res.periodStart = this.dateS.parseDate(res.periodStart);
+      if (res.periodStart)
+        res.periodStart = this.dateS.parseDate(res.periodStart);
       if (res.periodEnd) res.periodEnd = this.dateS.parseDate(res.periodEnd);
       if (res.discountDeadline)
         res.discountDeadline = this.dateS.parseDate(res.discountDeadline);
@@ -175,7 +181,11 @@ export class ChargeForm implements OnInit {
         if (!this.statusOptions.some((o) => o.value === res.status)) {
           this.statusOptions = [
             ...this.statusOptions,
-            { label: res.status === EChargeStatus.Pagado ? "Pagado" : "Pago Parcial", value: res.status },
+            {
+              label:
+                res.status === EChargeStatus.Pagado ? "Pagado" : "Pago Parcial",
+              value: res.status,
+            },
           ];
         }
       }
@@ -210,4 +220,3 @@ export class ChargeForm implements OnInit {
     });
   }
 }
-

@@ -1,4 +1,3 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import {
   Component,
   computed,
@@ -46,12 +45,13 @@ import { PopoverModule } from "primeng/popover";
 import { TableModule } from "primeng/table";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { TooltipModule } from "primeng/tooltip";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -837,4 +837,3 @@ export class TaskList implements OnInit {
     });
   }
 }
-

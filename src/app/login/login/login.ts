@@ -1,7 +1,14 @@
 import { animate, style, transition, trigger } from "@angular/animations";
-import { HttpErrorResponse } from "@angular/common/http";
 import { NgOptimizedImage } from "@angular/common";
-import { Component, computed, DestroyRef, inject, OnInit, signal } from "@angular/core";
+import { HttpErrorResponse } from "@angular/common/http";
+import {
+  Component,
+  computed,
+  DestroyRef,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import {
   FormBuilder,
@@ -11,15 +18,11 @@ import {
 } from "@angular/forms";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { MessageModule } from "primeng/message";
-import {
-  catchError,
-  finalize,
-  of,
-  startWith,
-  switchMap,
-} from "rxjs";
+import { catchError, finalize, of, startWith, switchMap } from "rxjs";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { CustomInputPassword } from "src/app/core/components/inputs/web/custom-input-password-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomInputCheckSignal } from "src/app/core/components/web/inputs/custom-input-check-signal";
 import { UserTokenDTO } from "src/app/core/interfaces/auth-user-token.dto";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -28,8 +31,6 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { LoaderService } from "src/app/core/services/loader.service";
 import { LoginSliderService } from "src/app/core/services/login-slider.service";
 import { SecurityService } from "src/app/core/services/security.service";
-import { CustomInputPassword } from "src/app/core/components/web/inputs/custom-input-password-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 
@@ -37,34 +38,36 @@ import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.compon
   selector: "app-login",
 
   templateUrl: "./login.html",
-  styles: [`
-    .auth-dark-panel {
-      background: rgba(11, 49, 100, 0.4);
-      color: rgba(255, 255, 255, 0.95);
-    }
-    .auth-dark-panel ::ng-deep label,
-    .auth-dark-panel ::ng-deep h2,
-    .auth-dark-panel ::ng-deep p,
-    .auth-dark-panel ::ng-deep .text-900,
-    .auth-dark-panel ::ng-deep .text-700,
-    .auth-dark-panel ::ng-deep .text-600 {
-      color: rgba(255, 255, 255, 0.9) !important;
-    }
-    .auth-dark-panel ::ng-deep input {
-      background: rgba(255, 255, 255, 0.05) !important;
-      border: 1px solid rgba(255, 255, 255, 0.2) !important;
-      color: white !important;
-    }
-    .auth-dark-panel ::ng-deep input::placeholder {
-      color: rgba(255, 255, 255, 0.5) !important;
-    }
-    .auth-dark-panel ::ng-deep .p-password i {
-      color: rgba(255, 255, 255, 0.7) !important;
-    }
-    .auth-dark-panel ::ng-deep .p-password-meter {
-      background: rgba(255, 255, 255, 0.2) !important;
-    }
-  `],
+  styles: [
+    `
+      .auth-dark-panel {
+        background: rgba(11, 49, 100, 0.4);
+        color: rgba(255, 255, 255, 0.95);
+      }
+      .auth-dark-panel ::ng-deep label,
+      .auth-dark-panel ::ng-deep h2,
+      .auth-dark-panel ::ng-deep p,
+      .auth-dark-panel ::ng-deep .text-900,
+      .auth-dark-panel ::ng-deep .text-700,
+      .auth-dark-panel ::ng-deep .text-600 {
+        color: rgba(255, 255, 255, 0.9) !important;
+      }
+      .auth-dark-panel ::ng-deep input {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        color: white !important;
+      }
+      .auth-dark-panel ::ng-deep input::placeholder {
+        color: rgba(255, 255, 255, 0.5) !important;
+      }
+      .auth-dark-panel ::ng-deep .p-password i {
+        color: rgba(255, 255, 255, 0.7) !important;
+      }
+      .auth-dark-panel ::ng-deep .p-password-meter {
+        background: rgba(255, 255, 255, 0.2) !important;
+      }
+    `,
+  ],
   animations: [
     trigger("slideAnimation", [
       transition(":enter", [
@@ -140,7 +143,6 @@ export class LoginComponent implements OnInit {
     );
   }
 
-
   showPassword() {
     this.show = !this.show;
   }
@@ -215,11 +217,7 @@ export class LoginComponent implements OnInit {
         finalize(() => {
           this.loading.set(false);
           this.loaderService.hide();
-          this.consoleLogger.custom(
-            "",
-            "#9E9E9E",
-            "[Login] Spinner finalizo.",
-          );
+          this.consoleLogger.custom("", "#9E9E9E", "[Login] Spinner finalizo.");
         }),
         takeUntilDestroyed(this.destroyRef),
       )
@@ -268,12 +266,19 @@ export class LoginComponent implements OnInit {
       const password = this.loginForm.get("password")?.value;
       if (username) localStorage.setItem("savedUsername", username);
       if (password) localStorage.setItem("savedPassword", password);
-      this.consoleLogger.custom("", "#FF9800", "[Login] Credenciales guardadas");
+      this.consoleLogger.custom(
+        "",
+        "#FF9800",
+        "[Login] Credenciales guardadas",
+      );
     } else {
       localStorage.removeItem("savedUsername");
       localStorage.removeItem("savedPassword");
-      this.consoleLogger.custom("", "#9E9E9E", "[Login] Datos guardados eliminados");
+      this.consoleLogger.custom(
+        "",
+        "#9E9E9E",
+        "[Login] Datos guardados eliminados",
+      );
     }
   }
 }
-

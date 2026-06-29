@@ -1,5 +1,4 @@
 ﻿import { Component, inject, OnInit, signal } from "@angular/core";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   FormControl,
   FormGroup,
@@ -8,17 +7,18 @@ import {
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ETipoGasto } from "src/app/core/enums/tipo-gasto.enum";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DateService } from "src/app/core/services/date.service";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-create-orden-compra",
@@ -120,7 +120,11 @@ export class CreateOrdenCompra implements OnInit {
   async onSubmit() {
     const isNew = !this.ordenCompraId;
     const urlApi = isNew
-      ? Endpoints.PurchaseOrders.create(this.providerId(), this.posicionCotizacion, this.solicitudCompraId)
+      ? Endpoints.PurchaseOrders.create(
+          this.providerId(),
+          this.posicionCotizacion,
+          this.solicitudCompraId,
+        )
       : Endpoints.PurchaseOrders.update(this.ordenCompraId);
 
     const result = await FormHelper.submitCrud({
@@ -141,13 +145,3 @@ export class CreateOrdenCompra implements OnInit {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-

@@ -1,12 +1,13 @@
 ﻿import { Component, OnInit, computed, inject, signal } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputDecimal } from "src/app/core/components/inputs/web/custom-input-decimal-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputDecimal } from "src/app/core/components/web/inputs/custom-input-decimal-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -15,7 +16,6 @@ import {
   TiempoExtraDTO,
   TiempoExtraUpdateDTO,
 } from "../../../interfaces/tiempo-extra.interface";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-modal-tiempo-extra-add",
@@ -43,14 +43,21 @@ export default class ModalTiempoExtraAdd implements OnInit {
   form = this.fb.nonNullable.group({
     employeeId: ["", Validators.required],
     employeeName: ["", Validators.required],
-    fecha:         ["", Validators.required],
-    horasSimples:  [0, [Validators.required, Validators.min(0), Validators.max(9)]],
-    horasDobles:   [0, [Validators.required, Validators.min(0)]],
+    fecha: ["", Validators.required],
+    horasSimples: [
+      0,
+      [Validators.required, Validators.min(0), Validators.max(9)],
+    ],
+    horasDobles: [0, [Validators.required, Validators.min(0)]],
     observaciones: [""],
   });
 
-  readonly horasSimples = computed(() => Number(this.form.controls["horasSimples"].value) || 0);
-  readonly horasDobles  = computed(() => Number(this.form.controls["horasDobles"].value)  || 0);
+  readonly horasSimples = computed(
+    () => Number(this.form.controls["horasSimples"].value) || 0,
+  );
+  readonly horasDobles = computed(
+    () => Number(this.form.controls["horasDobles"].value) || 0,
+  );
 
   async ngOnInit(): Promise<void> {
     const customerId = this.customerIdS.customerId();
@@ -65,16 +72,18 @@ export default class ModalTiempoExtraAdd implements OnInit {
       this.form.patchValue({
         employeeId: data.employeeId,
         employeeName: data.nombreEmpleado,
-        fecha:         data.fecha.substring(0, 10),
-        horasSimples:  data.horasSimples,
-        horasDobles:   data.horasDobles,
+        fecha: data.fecha.substring(0, 10),
+        horasSimples: data.horasSimples,
+        horasDobles: data.horasDobles,
         observaciones: data.observaciones,
       });
     } else {
       const employeeId: string = this.config.data?.employeeId ?? "";
       if (employeeId) {
         this.form.patchValue({ employeeId });
-        const selected = this.employees().find((item) => item.value === employeeId);
+        const selected = this.employees().find(
+          (item) => item.value === employeeId,
+        );
         if (selected) {
           this.form.patchValue({ employeeName: selected.label ?? "" });
         }
@@ -103,7 +112,8 @@ export default class ModalTiempoExtraAdd implements OnInit {
       submitting: this.submitting,
       transformPayload: (v) => {
         if (!existing) {
-          const periodoNominaId: string = this.config.data?.periodoNominaId ?? "";
+          const periodoNominaId: string =
+            this.config.data?.periodoNominaId ?? "";
           return {
             periodoNominaId,
             employeeId: v.employeeId,
@@ -124,4 +134,3 @@ export default class ModalTiempoExtraAdd implements OnInit {
     });
   }
 }
-

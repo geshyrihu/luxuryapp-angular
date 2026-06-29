@@ -12,12 +12,12 @@ import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonAdd } from "src/app/core/components/web/buttons/custom-button-add";
 import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ButtonType } from "src/app/core/enums/button-type";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { IDestinatariosMailReporte } from "src/app/core/interfaces/destinatarios-mail-reporte.interface";
@@ -186,4 +186,3 @@ export class SendOperationReport {
     this.destinatariosAdicionales.splice(indexArr, 1);
   }
 }
-

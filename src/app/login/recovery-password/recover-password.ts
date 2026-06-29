@@ -12,8 +12,8 @@ import {
 import { RouterModule } from "@angular/router";
 import { MessageModule } from "primeng/message";
 import { catchError, finalize, Subject, throwError } from "rxjs";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
 import { LoginSliderService } from "src/app/core/services/login-slider.service";
@@ -47,28 +47,30 @@ interface IRecoverPasswordForm {
     RouterModule,
     AppIcon,
   ],
-  styles: [`
-    .auth-dark-panel {
-      background: rgba(11, 49, 100, 0.4);
-      color: rgba(255, 255, 255, 0.95);
-    }
-    .auth-dark-panel ::ng-deep label,
-    .auth-dark-panel ::ng-deep h2,
-    .auth-dark-panel ::ng-deep p,
-    .auth-dark-panel ::ng-deep .text-900,
-    .auth-dark-panel ::ng-deep .text-700,
-    .auth-dark-panel ::ng-deep .text-600 {
-      color: rgba(255, 255, 255, 0.9) !important;
-    }
-    .auth-dark-panel ::ng-deep input {
-      background: rgba(255, 255, 255, 0.05) !important;
-      border: 1px solid rgba(255, 255, 255, 0.2) !important;
-      color: white !important;
-    }
-    .auth-dark-panel ::ng-deep input::placeholder {
-      color: rgba(255, 255, 255, 0.5) !important;
-    }
-  `],
+  styles: [
+    `
+      .auth-dark-panel {
+        background: rgba(11, 49, 100, 0.4);
+        color: rgba(255, 255, 255, 0.95);
+      }
+      .auth-dark-panel ::ng-deep label,
+      .auth-dark-panel ::ng-deep h2,
+      .auth-dark-panel ::ng-deep p,
+      .auth-dark-panel ::ng-deep .text-900,
+      .auth-dark-panel ::ng-deep .text-700,
+      .auth-dark-panel ::ng-deep .text-600 {
+        color: rgba(255, 255, 255, 0.9) !important;
+      }
+      .auth-dark-panel ::ng-deep input {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        color: white !important;
+      }
+      .auth-dark-panel ::ng-deep input::placeholder {
+        color: rgba(255, 255, 255, 0.5) !important;
+      }
+    `,
+  ],
 })
 export class RecoverPassword implements OnInit, OnDestroy {
   apiResponseS = inject(ApiResponseService);

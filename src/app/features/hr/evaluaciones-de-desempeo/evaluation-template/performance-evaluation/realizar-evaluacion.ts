@@ -1,20 +1,20 @@
 ﻿import { Component, effect, inject, OnInit, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import {
-    FormArray,
-    FormBuilder,
-    FormControl,
-    FormGroup,
-    ReactiveFormsModule,
-    Validators,
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { DividerModule } from "primeng/divider";
 import { MessageModule } from "primeng/message";
 import { SelectModule } from "primeng/select";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Touchspin } from "src/app/core/components/web/touchspin/touchspin";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -66,19 +66,19 @@ export class RealizarEvaluacion implements OnInit {
     const employee = this.employees.find((emp) => emp.value === evaluatedId);
     return employee ? employee.label : "Empleado Desconocido";
   }
-  
+
   paramsSignal = toSignal(this.activatedRoute.paramMap);
 
   constructor() {
     effect(() => {
-        if (this.paramsSignal()) {
-            const params = this.paramsSignal()!;
-            const id = params.get("id");
-            if (id) {
-                this.isEditMode = true;
-                this.loadEvaluationData(id);
-            }
+      if (this.paramsSignal()) {
+        const params = this.paramsSignal()!;
+        const id = params.get("id");
+        if (id) {
+          this.isEditMode = true;
+          this.loadEvaluationData(id);
         }
+      }
     });
   }
 
@@ -290,13 +290,3 @@ export class RealizarEvaluacion implements OnInit {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-

@@ -7,10 +7,10 @@ import {
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { ETipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -50,7 +50,10 @@ export class CreateOrdenCompraFueraFondeo implements OnInit {
   providerId = signal<string>("");
 
   cb_providers = signal<ISelectItem[]>([]);
-  providerControl = new FormControl<ISelectItem | null>(null, Validators.required);
+  providerControl = new FormControl<ISelectItem | null>(
+    null,
+    Validators.required,
+  );
 
   tiposDeGasto: ISelectItem[] = Object.keys(ETipoGasto)
     .filter((key) => !isNaN(Number(ETipoGasto[key])))
@@ -89,7 +92,8 @@ export class CreateOrdenCompraFueraFondeo implements OnInit {
   };
 
   onSubmit(): void {
-    if (!this.apiResponseS.validateForm(this.form) || !this.providerId()) return;
+    if (!this.apiResponseS.validateForm(this.form) || !this.providerId())
+      return;
 
     this.submitting.set(true);
 
@@ -105,4 +109,3 @@ export class CreateOrdenCompraFueraFondeo implements OnInit {
       });
   }
 }
-

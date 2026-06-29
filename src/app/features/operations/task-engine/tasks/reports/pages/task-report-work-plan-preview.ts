@@ -2,10 +2,10 @@
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -94,5 +94,3 @@ export class TaskReportWorkPlanPreview {
     );
   }
 }
-
-

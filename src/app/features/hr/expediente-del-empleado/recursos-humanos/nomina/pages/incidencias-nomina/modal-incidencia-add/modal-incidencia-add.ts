@@ -1,15 +1,16 @@
 ﻿import { Component, OnInit, computed, inject, signal } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputDecimal } from "src/app/core/components/inputs/web/custom-input-decimal-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputDecimal } from "src/app/core/components/web/inputs/custom-input-decimal-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -18,7 +19,6 @@ import {
   TIPO_INCAPACIDAD_OPTIONS,
   TIPO_INCIDENCIA_OPTIONS,
 } from "../../../interfaces/incidencia-nomina.interface";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-modal-incidencia-add",
@@ -49,22 +49,24 @@ export default class ModalIncidenciaAdd implements OnInit {
   submitting = signal(false);
 
   form = this.fb.nonNullable.group({
-    employeeId:         [""],
-    employeeName:       ["", Validators.required],
-    periodoNominaId:    ["", Validators.required],
-    tipoIncidencia:     [0, Validators.required],
-    fecha:              ["", Validators.required],
-    diasAfectados:      [1, [Validators.required, Validators.min(0)]],
-    minutosRetardo:     [0, [Validators.required, Validators.min(0)]],
-    numeroFolioImss:    [""],
-    tipoIncapacidad:    [null as number | null],
+    employeeId: [""],
+    employeeName: ["", Validators.required],
+    periodoNominaId: ["", Validators.required],
+    tipoIncidencia: [0, Validators.required],
+    fecha: ["", Validators.required],
+    diasAfectados: [1, [Validators.required, Validators.min(0)]],
+    minutosRetardo: [0, [Validators.required, Validators.min(0)]],
+    numeroFolioImss: [""],
+    tipoIncapacidad: [null as number | null],
     porcentajePagoImss: [null as number | null],
-    observaciones:      [""],
+    observaciones: [""],
   });
 
-  readonly tipoIncidencia = computed(() => this.form.controls["tipoIncidencia"].value);
+  readonly tipoIncidencia = computed(
+    () => this.form.controls["tipoIncidencia"].value,
+  );
 
-  readonly esRetardo    = computed(() => [1, 2].includes(this.tipoIncidencia()));
+  readonly esRetardo = computed(() => [1, 2].includes(this.tipoIncidencia()));
   readonly esIncapacidad = computed(() => this.tipoIncidencia() === 3);
 
   async ngOnInit(): Promise<void> {
@@ -79,7 +81,9 @@ export default class ModalIncidenciaAdd implements OnInit {
     this.employees.set(employees ?? []);
 
     if (employeeId) {
-      const selected = this.employees().find((item) => item.value === employeeId);
+      const selected = this.employees().find(
+        (item) => item.value === employeeId,
+      );
       if (selected) {
         this.form.patchValue({
           employeeName: selected.label ?? "",
@@ -120,4 +124,3 @@ export default class ModalIncidenciaAdd implements OnInit {
     });
   }
 }
-

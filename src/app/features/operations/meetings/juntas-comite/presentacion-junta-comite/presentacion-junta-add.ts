@@ -6,10 +6,10 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTime } from "src/app/core/components/inputs/web/custom-input-time-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputTime } from "src/app/core/components/web/inputs/custom-input-time-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -64,14 +64,16 @@ export class PresentacionJuntaAdd implements OnInit {
   }
 
   onLoadData() {
-    this.apiResponseS.onGetItem(Endpoints.PresentacionJuntaComite.getById(this.id)).then((result: any) => {
-      result.fechaCorrespondiente = this.dateS.getDateFormat(
-        result.fechaCorrespondiente,
-      );
-      result.fechaJunta = this.dateS.getDateFormat(result.fechaJunta);
-      result.horaJunta = this.normalizeTime(result.horaJunta);
-      this.form.patchValue(result);
-    });
+    this.apiResponseS
+      .onGetItem(Endpoints.PresentacionJuntaComite.getById(this.id))
+      .then((result: any) => {
+        result.fechaCorrespondiente = this.dateS.getDateFormat(
+          result.fechaCorrespondiente,
+        );
+        result.fechaJunta = this.dateS.getDateFormat(result.fechaJunta);
+        result.horaJunta = this.normalizeTime(result.horaJunta);
+        this.form.patchValue(result);
+      });
   }
 
   onSubmit() {
@@ -103,13 +105,3 @@ export class PresentacionJuntaAdd implements OnInit {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-

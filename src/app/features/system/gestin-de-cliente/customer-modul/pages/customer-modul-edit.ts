@@ -1,5 +1,6 @@
 ﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { IonList, IonToggle } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -7,13 +8,12 @@ import { checkmarkOutline, closeOutline } from "ionicons/icons";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
-import { CustomSearchInput } from "src/app/core/components/web/inputs/custom-search-input-signal";
-import { FormsModule } from "@angular/forms";
+import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DataConnectorService } from "src/app/core/services/data-connector.service";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 
 interface ModuleGroup {
   groupTitle: string;
@@ -56,18 +56,21 @@ export class CustomerModulEdit implements OnInit {
 
   allData = signal<ModuleGroup[]>([]);
   searchTerm = signal("");
-  
+
   filteredGroupedData = computed(() => {
     const term = this.searchTerm().toLowerCase().trim();
     if (!term) return this.allData();
 
-    return this.allData().map(group => ({
-      ...group,
-      items: group.items.filter(item => 
-        item.moduleAppName.toLowerCase().includes(term) || 
-        group.groupTitle.toLowerCase().includes(term)
-      )
-    })).filter(group => group.items.length > 0);
+    return this.allData()
+      .map((group) => ({
+        ...group,
+        items: group.items.filter(
+          (item) =>
+            item.moduleAppName.toLowerCase().includes(term) ||
+            group.groupTitle.toLowerCase().includes(term),
+        ),
+      }))
+      .filter((group) => group.items.length > 0);
   });
 
   loading = signal(true);
@@ -109,4 +112,3 @@ export class CustomerModulEdit implements OnInit {
     this.dataConnectorS.post(urlApi, data).subscribe();
   }
 }
-

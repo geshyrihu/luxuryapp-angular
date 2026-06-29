@@ -19,15 +19,15 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { PanelModule } from "primeng/panel";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { GlobalErrorService } from "src/app/core/services/global-error.service";
 import { VacationBalanceDTO } from "src/app/features/hr/expediente-del-empleado/recursos-humanos/interfaces/vacation-balance.interface";
 import { VacationRequestMyDTO } from "../interfaces/vacation-request.interface";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface HolidayResponseDTO {
   fecha: string;
@@ -220,7 +220,9 @@ export class VacacionesForm implements OnInit {
           if (!requestData) return;
           this.form.patchValue(requestData);
           if (requestData.startDate)
-            this.startDateSignal.set(this.dateS.parseDate(requestData.startDate));
+            this.startDateSignal.set(
+              this.dateS.parseDate(requestData.startDate),
+            );
           if (requestData.endDate)
             this.endDateSignal.set(this.dateS.parseDate(requestData.endDate));
         });
@@ -421,5 +423,3 @@ export class VacacionesForm implements OnInit {
     }
   }
 }
-
-

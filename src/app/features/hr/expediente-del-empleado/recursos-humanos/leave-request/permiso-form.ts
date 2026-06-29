@@ -3,19 +3,19 @@ import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomInputTime } from "src/app/core/components/inputs/web/custom-input-time-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputFile } from "src/app/core/components/web/inputs/custom-input-file-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
-import { CustomInputTime } from "src/app/core/components/web/inputs/custom-input-time-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { SelectedFile } from "src/app/core/interfaces/selected-file";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { LeaveRequestMyDTO } from "src/app/features/hr/expediente-del-empleado/recursos-humanos/interfaces/leave-request.interface";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface LeaveRequestEditDTO {
   leaveType: number;
@@ -72,7 +72,9 @@ export class PermisoForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem<LeaveRequestEditDTO>(Endpoints.HR.LeaveRequest.getById(this.id))
+      .onGetItem<LeaveRequestEditDTO>(
+        Endpoints.HR.LeaveRequest.getById(this.id),
+      )
       .then((result) => {
         if (!result) return;
         this.form.patchValue(result);
@@ -99,10 +101,7 @@ export class PermisoForm implements OnInit {
           if (this.id && request.id === this.id) {
             return;
           }
-          if (
-            request.status === "Rejected" ||
-            request.status === "Cancelled"
-          ) {
+          if (request.status === "Rejected" || request.status === "Cancelled") {
             return;
           }
 
@@ -224,5 +223,3 @@ export class PermisoForm implements OnInit {
     });
   }
 }
-
-

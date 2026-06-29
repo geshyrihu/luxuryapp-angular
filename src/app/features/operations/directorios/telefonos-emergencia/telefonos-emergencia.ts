@@ -1,7 +1,7 @@
 ﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { AvatarModule } from "primeng/avatar";
-import { CustomSearchInput } from "src/app/core/components/web/inputs/custom-search-input-signal";
 import { TooltipModule } from "primeng/tooltip";
+import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CustomButtonAdd } from "src/app/core/components/web/buttons/custom-button-add";
 import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
@@ -81,4 +81,3 @@ export class TelefonosEmergencia {
       });
   }
 }
-

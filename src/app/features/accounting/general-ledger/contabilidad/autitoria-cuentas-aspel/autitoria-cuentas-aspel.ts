@@ -1,13 +1,13 @@
-﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
+import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
-import { CustomSearchInput } from "src/app/core/components/web/inputs/custom-search-input-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { ReportFilterService } from "../espejo-aspel-full/services/financial-report-filter.service";
@@ -30,7 +30,8 @@ import {
     CustomButton,
     CustomButtonDownload,
     CustomSearchInput,
-   AppIcon],
+    AppIcon,
+  ],
   templateUrl: "./autitoria-cuentas-aspel.html",
 })
 export class AutitoriaCuentasAspel {
@@ -49,9 +50,7 @@ export class AutitoriaCuentasAspel {
     { label: "Cobranza", value: "Cobranza" },
   ];
 
-  readonly customers = computed(
-    () => this.rawData()?.customers ?? [],
-  );
+  readonly customers = computed(() => this.rawData()?.customers ?? []);
 
   readonly customerColumns = computed(() =>
     this.customers().filter((customer) => customer.estatus === "OK"),
@@ -157,7 +156,8 @@ export class AutitoriaCuentasAspel {
   }
 
   getPresenceTitle(presencia?: IAutitoriaCuentaAspelPresenciaDTO): string {
-    if (!presencia || !presencia.presente) return "No existe la cuenta en este customer";
+    if (!presencia || !presencia.presente)
+      return "No existe la cuenta en este customer";
     if (!presencia.estructuraValida) {
       return `La cuenta existe, pero difiere en: ${presencia.camposConDiferencia.join(", ")}`;
     }
@@ -226,4 +226,3 @@ export class AutitoriaCuentasAspel {
     });
   }
 }
-

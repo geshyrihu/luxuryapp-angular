@@ -6,9 +6,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputMaskSignal } from "src/app/core/components/web/inputs/custom-input-mask-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -65,7 +65,9 @@ export class EmployeePrincipalDataForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(Endpoints.EmployeeInternal.principalData(this.applicationUserId()))
+      .onGetItem(
+        Endpoints.EmployeeInternal.principalData(this.applicationUserId()),
+      )
       .then((result: any) => {
         this.form.patchValue(result);
       });
@@ -77,7 +79,9 @@ export class EmployeePrincipalDataForm implements OnInit {
     this.submitting.set(true);
     this.apiResponseS
       .onPut(
-        Endpoints.EmployeeInternal.updatePrincipalData(this.applicationUserId()),
+        Endpoints.EmployeeInternal.updatePrincipalData(
+          this.applicationUserId(),
+        ),
         this.form.value,
       )
       .then(() => {
@@ -85,4 +89,3 @@ export class EmployeePrincipalDataForm implements OnInit {
       });
   }
 }
-

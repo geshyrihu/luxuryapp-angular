@@ -1,16 +1,16 @@
-﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { DatePipe } from "@angular/common";
+﻿import { DatePipe } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { lockClosedOutline, lockOpenOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
-import { CustomButton } from "src/app/core/components/web/buttons";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { CustomButton } from "src/app/core/components/web/buttons";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import {
@@ -38,7 +38,8 @@ import { PeriodClosureResponseDTO } from "../../models/period-closure.dto";
     CustomInputTextSignal,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
-   AppIcon],
+    AppIcon,
+  ],
   templateUrl: "./period-closure-dashboard.html",
 })
 export default class PeriodClosureDashboard {
@@ -163,4 +164,3 @@ export default class PeriodClosureDashboard {
     );
   }
 }
-

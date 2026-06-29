@@ -1,13 +1,14 @@
 ﻿import { Component, OnInit, inject, signal } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputDecimal } from "src/app/core/components/inputs/web/custom-input-decimal-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputDecimal } from "src/app/core/components/web/inputs/custom-input-decimal-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -15,7 +16,6 @@ import {
   NUMERO_PAGOS_OPTIONS,
   PrestamoEmpleadoCreateDTO,
 } from "../../../interfaces/prestamo-empleado.interface";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-modal-prestamo-add",
@@ -41,12 +41,12 @@ export default class ModalPrestamoAdd implements OnInit {
   submitting = signal(false);
 
   form = this.fb.nonNullable.group({
-    employeeId:   [""],
+    employeeId: [""],
     employeeName: ["", Validators.required],
-    montoTotal:   [0, [Validators.required, Validators.min(1)]],
-    numeroPagos:  [1, Validators.required],
-    motivo:       ["", [Validators.required, Validators.minLength(5)]],
-    observaciones:[""],
+    montoTotal: [0, [Validators.required, Validators.min(1)]],
+    numeroPagos: [1, Validators.required],
+    motivo: ["", [Validators.required, Validators.minLength(5)]],
+    observaciones: [""],
   });
 
   async ngOnInit(): Promise<void> {
@@ -85,4 +85,3 @@ export default class ModalPrestamoAdd implements OnInit {
     });
   }
 }
-

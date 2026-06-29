@@ -12,10 +12,10 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { IPropertyOccupant } from "src/app/core/interfaces/property-occupant.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
@@ -198,4 +198,3 @@ export class PropertyOccupantManager implements OnInit {
     this.ref.close(true);
   }
 }
-

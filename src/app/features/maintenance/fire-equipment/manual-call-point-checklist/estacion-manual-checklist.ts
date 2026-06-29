@@ -1,16 +1,22 @@
 ﻿import { Component, inject, OnInit, signal } from "@angular/core";
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputTime } from "src/app/core/components/inputs/web/custom-input-time-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputCheckSignal } from "src/app/core/components/web/inputs/custom-input-check-signal";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputTime } from "src/app/core/components/web/inputs/custom-input-time-signal";
+// D:\repos\luxuryapp-api\client\angular\src\app\core\components\inputs\web\custom-input-autocomplete-multiple-signal.ts
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { DateService } from "src/app/core/services/date.service";
-import { CustomInputTextAreaSignal } from "../../../../core/components/web/inputs";
 
 interface IEstacionManualChecklistForm {
   id: FormControl<string | null>;
@@ -31,9 +37,12 @@ interface IEstacionManualChecklistForm {
   selector: "app-estacion-manual-checklist",
   templateUrl: "./estacion-manual-checklist.html",
   imports: [
-    ReactiveFormsModule, CustomButtonSave,
-    CustomInputCheckSignal, CustomInputDateSignal,
-    CustomInputTextAreaSignal, CustomInputTime,
+    ReactiveFormsModule,
+    CustomButtonSave,
+    CustomInputCheckSignal,
+    CustomInputDateSignal,
+    CustomInputTextAreaSignal,
+    CustomInputTime,
   ],
 })
 export class EstacionManualChecklist implements OnInit {
@@ -49,32 +58,46 @@ export class EstacionManualChecklist implements OnInit {
   id = "";
   stationId = "";
 
-  form: FormGroup<IEstacionManualChecklistForm> = new FormGroup<IEstacionManualChecklistForm>({
-    id: new FormControl({ value: null, disabled: true }),
-    stationId: new FormControl(null),
-    date: new FormControl<any>(this.dateS.getDateNow(), { nonNullable: true, validators: [Validators.required] }),
-    hour: new FormControl(this.dateS.getHoraNow(new Date()), { nonNullable: true, validators: [Validators.required] }),
-    accessibleAndVisible: new FormControl(false, { nonNullable: true }),
-    housingOk: new FormControl(false, { nonNullable: true }),
-    leverOk: new FormControl(false, { nonNullable: true }),
-    glassIntact: new FormControl(false, { nonNullable: true }),
-    mountingSecure: new FormControl(false, { nonNullable: true }),
-    signageOk: new FormControl(false, { nonNullable: true }),
-    observations: new FormControl(null),
-    applicationUserId: new FormControl(this.authS.applicationUserId, { nonNullable: true }),
-  });
+  form: FormGroup<IEstacionManualChecklistForm> =
+    new FormGroup<IEstacionManualChecklistForm>({
+      id: new FormControl({ value: null, disabled: true }),
+      stationId: new FormControl(null),
+      date: new FormControl<any>(this.dateS.getDateNow(), {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+      hour: new FormControl(this.dateS.getHoraNow(new Date()), {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+      accessibleAndVisible: new FormControl(false, { nonNullable: true }),
+      housingOk: new FormControl(false, { nonNullable: true }),
+      leverOk: new FormControl(false, { nonNullable: true }),
+      glassIntact: new FormControl(false, { nonNullable: true }),
+      mountingSecure: new FormControl(false, { nonNullable: true }),
+      signageOk: new FormControl(false, { nonNullable: true }),
+      observations: new FormControl(null),
+      applicationUserId: new FormControl(this.authS.applicationUserId, {
+        nonNullable: true,
+      }),
+    });
 
   ngOnInit(): void {
     this.id = this.dialogConfig?.data?.id ?? "";
-    this.stationId = this.dialogConfig?.data?.stationId ?? this.rutaActiva.snapshot.params["id"] ?? "";
+    this.stationId =
+      this.dialogConfig?.data?.stationId ??
+      this.rutaActiva.snapshot.params["id"] ??
+      "";
     this.form.patchValue({ stationId: this.stationId });
     if (this.id) this.onLoadData();
   }
 
   onLoadData() {
-    this.apiResponseS.onGetItem(`BitacoraEstacionManual/${this.id}`).then((result: any) => {
-      this.form.patchValue(result);
-    });
+    this.apiResponseS
+      .onGetItem(`BitacoraEstacionManual/${this.id}`)
+      .then((result: any) => {
+        this.form.patchValue(result);
+      });
   }
 
   async onSubmit() {
@@ -98,4 +121,3 @@ export class EstacionManualChecklist implements OnInit {
     }
   }
 }
-

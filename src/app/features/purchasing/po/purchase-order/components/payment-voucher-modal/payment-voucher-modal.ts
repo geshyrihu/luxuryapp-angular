@@ -1,13 +1,13 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { CommonModule } from "@angular/common";
-import { Endpoints } from "src/app/core/constants/endpoints";
+﻿import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomInputFile } from "src/app/core/components/web/inputs/custom-input-file-signal";
-import { PdfViewerModal } from "src/app/core/components/shared/pdf-viewer-modal/pdf-viewer-modal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 @Component({
@@ -51,7 +51,10 @@ export class PaymentVoucherModal implements OnInit {
     formData.append("file", this.file);
 
     this.apiResponseS
-      .onPost(Endpoints.PurchaseOrderPaymentVouchers.upload(this.ordenCompraId), formData)
+      .onPost(
+        Endpoints.PurchaseOrderPaymentVouchers.upload(this.ordenCompraId),
+        formData,
+      )
       .then((res: any) => {
         this.comprobantes.update((list) => [...list, res]);
         this.file = null;
@@ -61,9 +64,11 @@ export class PaymentVoucherModal implements OnInit {
   }
 
   onDelete(id: string) {
-    this.apiResponseS.onDelete(Endpoints.PurchaseOrderPaymentVouchers.delete(id)).then(() => {
-      this.comprobantes.update((list) => list.filter((x) => x.id !== id));
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.PurchaseOrderPaymentVouchers.delete(id))
+      .then(() => {
+        this.comprobantes.update((list) => list.filter((x) => x.id !== id));
+      });
   }
 
   viewFile(url: string, name: string) {
@@ -84,5 +89,3 @@ export class PaymentVoucherModal implements OnInit {
     this.ref.close(this.comprobantes());
   }
 }
-
-

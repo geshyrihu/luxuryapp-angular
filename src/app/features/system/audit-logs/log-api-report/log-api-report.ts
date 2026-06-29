@@ -1,4 +1,3 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -7,14 +6,15 @@ import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -218,4 +218,3 @@ export class LogApiReport implements OnInit {
     }
   }
 }
-

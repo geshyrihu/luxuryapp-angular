@@ -6,16 +6,16 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TableModule } from "primeng/table";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-task-group-participant",
@@ -120,7 +120,10 @@ export class TaskGroupParticipant implements OnInit, OnDestroy {
     const result = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: this.id === "" ? Endpoints.TaskGroupParticipants.base : Endpoints.TaskGroupParticipants.update(this.id),
+      endpoint:
+        this.id === ""
+          ? Endpoints.TaskGroupParticipants.base
+          : Endpoints.TaskGroupParticipants.update(this.id),
       method: this.id === "" ? "POST" : "PUT",
       submitting: this.submitting,
       closeOnSuccess: false,
@@ -187,4 +190,3 @@ export class TaskGroupParticipant implements OnInit, OnDestroy {
     this.ref.close(true);
   }
 }
-

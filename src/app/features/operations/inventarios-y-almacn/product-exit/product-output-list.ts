@@ -1,5 +1,4 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
 import {
   Component,
   computed,
@@ -11,19 +10,20 @@ import {
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { LazyLoadEvent } from "primeng/api";
-import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
 import { CardModule } from "primeng/card";
 import { DatePickerModule } from "primeng/datepicker";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
 // import { Subscription } from "rxjs"; // Removed
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { CustomButtonItem } from "src/app/core/components/web/buttons";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
@@ -55,7 +55,6 @@ import { ProductReturn } from "./product-return";
     CardModule,
     CustomButtonDownload,
     CustomButton,
-
 
     DatePickerModule,
 
@@ -160,14 +159,22 @@ export class ProductOutputList implements OnInit, OnDestroy {
       const year = this.selectedDateControl.value.getFullYear();
       url += `&month=${month}&year=${year}`;
 
-      const monthName = this.selectedDateControl.value.toLocaleString("es-MX", { month: "long" });
+      const monthName = this.selectedDateControl.value.toLocaleString("es-MX", {
+        month: "long",
+      });
       reportName = `ReporteSalidas-${monthName.charAt(0).toUpperCase() + monthName.slice(1)}-${year}.xlsx`;
     }
 
-    const response = await this.apiResponseS.onGetPaged<{ items: any[]; totalRecords: number }>(url);
+    const response = await this.apiResponseS.onGetPaged<{
+      items: any[];
+      totalRecords: number;
+    }>(url);
     if (!response?.data?.items?.length) return;
 
-    await this.excelExportS.exportSalidaProductos(response.data.items, reportName);
+    await this.excelExportS.exportSalidaProductos(
+      response.data.items,
+      reportName,
+    );
   }
 
   onDelete(id: any): void {
@@ -216,14 +223,3 @@ export class ProductOutputList implements OnInit, OnDestroy {
     // this.subscriptions.unsubscribe(); // Removed
   }
 }
-
-
-
-
-
-
-
-
-
-
-

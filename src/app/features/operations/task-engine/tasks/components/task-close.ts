@@ -8,15 +8,15 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputImg } from "src/app/core/components/web/inputs/custom-input-img-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   CrudSubmitOptions,
   FormHelper,
 } from "src/app/core/helpers/form-helper";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -81,20 +81,24 @@ export class TaskClose implements OnInit {
   }
 
   onLoadData() {
-    this.apiResponseS.onGetItem(Endpoints.Tasks.getByClosed(this.id)).then((result: any) => {
-      this.form.patchValue(result);
-      this.form.controls.closedById.setValue(this.authS.applicationUserId);
-      this.form.controls.customerId.setValue(this.customerIdS.customerId());
+    this.apiResponseS
+      .onGetItem(Endpoints.Tasks.getByClosed(this.id))
+      .then((result: any) => {
+        this.form.patchValue(result);
+        this.form.controls.closedById.setValue(this.authS.applicationUserId);
+        this.form.controls.customerId.setValue(this.customerIdS.customerId());
 
-      // Si las imógenes existen, carga las vistas previas
-      if (result.beforeWorkPreview) {
-        this.form.controls.beforeWorkPreview.setValue(result.beforeWorkPreview);
-      }
+        // Si las imógenes existen, carga las vistas previas
+        if (result.beforeWorkPreview) {
+          this.form.controls.beforeWorkPreview.setValue(
+            result.beforeWorkPreview,
+          );
+        }
 
-      if (result.afterWorkPreview) {
-        this.form.controls.afterWorkPreview.setValue(result.afterWorkPreview);
-      }
-    });
+        if (result.afterWorkPreview) {
+          this.form.controls.afterWorkPreview.setValue(result.afterWorkPreview);
+        }
+      });
   }
 
   // Para manejar las imógenes 'BeforeWork' y 'AfterWork'
@@ -161,4 +165,3 @@ export class TaskClose implements OnInit {
     FormHelper.submitCrud(options);
   }
 }
-

@@ -18,16 +18,16 @@ import { ButtonModule } from "primeng/button";
 import { FileUploadModule } from "primeng/fileupload";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TagModule } from "primeng/tag";
+import { CustomInputMultiselectSignal } from "src/app/core/components/inputs/web/custom-input-multiselect-signal";
+import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import {
   CustomButtonDelete,
   CustomButtonSave,
 } from "src/app/core/components/web/buttons";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomInputMultiselectSignal } from "src/app/core/components/web/inputs/custom-input-multiselect-signal";
-import { CustomInputSwitch } from "src/app/core/components/web/inputs/custom-input-switch-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -186,8 +186,8 @@ export class ManualsAndProcessesEditor implements OnInit {
       .onGetSelectItem<ISelectItem[]>("roles-for-announcements")
       .then((res) => {
         const groupedRoles = (res || []).reduce((acc: any[], curr) => {
-          const groupName = curr.group || 'Otros';
-          let groupObj = acc.find(g => g.label === groupName);
+          const groupName = curr.group || "Otros";
+          let groupObj = acc.find((g) => g.label === groupName);
           if (!groupObj) {
             groupObj = { label: groupName, items: [] };
             acc.push(groupObj);
@@ -628,4 +628,3 @@ export class ManualsAndProcessesEditor implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
 }
-

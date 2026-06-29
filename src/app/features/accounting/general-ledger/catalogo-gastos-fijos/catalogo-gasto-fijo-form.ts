@@ -19,12 +19,13 @@ import { ActivatedRoute } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -32,7 +33,6 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { GastoFijoPresupuesto } from "src/app/features/accounting/budgeting/expense-catalog-budget/gasto-fijo-presupuesto";
 import { GastoFijoServicios } from "src/app/features/accounting/budgeting/expense-catalog-detail/gasto-fijo-servicios";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface ICatalogoGastoFijoForm {
   id: FormControl<string>;
@@ -314,5 +314,3 @@ export interface CatalogoGastosFijosDetalleAddOrEditDTO {
   // Campos adicionales para visualización
   productoDescription?: string;
 }
-
-

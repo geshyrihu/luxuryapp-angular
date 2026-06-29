@@ -7,14 +7,15 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButton } from "src/app/core/components/web/buttons";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputCheckSignal } from "src/app/core/components/web/inputs/custom-input-check-signal";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputMaskSignal } from "src/app/core/components/web/inputs/custom-input-mask-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
@@ -24,7 +25,6 @@ import {
   CreatePropertyMemberDTO,
   UpdatePropertyMemberDTO,
 } from "../../models/property-member.dto";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 // ETypePerson.Client = 2
 const E_TYPE_PERSON_CLIENT = 2;
@@ -171,7 +171,9 @@ export default class MemberForm implements OnInit {
       form: this.memberForm,
       api: this.apiResponseS,
       endpoint: this.id
-        ? Endpoints.AccountingCoi.NativeCollection.PropertyMembers.update(this.id)
+        ? Endpoints.AccountingCoi.NativeCollection.PropertyMembers.update(
+            this.id,
+          )
         : Endpoints.AccountingCoi.NativeCollection.PropertyMembers.create,
       method: this.id ? "PUT" : "POST",
       ref: this.ref,
@@ -202,4 +204,3 @@ export default class MemberForm implements OnInit {
     });
   }
 }
-

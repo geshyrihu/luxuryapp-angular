@@ -15,9 +15,9 @@ import { DividerModule } from "primeng/divider";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { EAutorizacionCuadroComparativo } from "src/app/core/enums/e-autorizacion-cuadro-comparativo.enum";
 import { TooltipPlacement } from "src/app/core/enums/tooltip-placement";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -856,4 +856,3 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       });
   }
 }
-

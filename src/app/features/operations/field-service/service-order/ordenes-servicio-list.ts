@@ -1,7 +1,4 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CommonModule } from "@angular/common";
-import { Endpoints } from "src/app/core/constants/endpoints";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
@@ -16,15 +13,18 @@ import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { SubirPdf } from "src/app/core/components/inputs/web/custom-input-upload-pdf-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CustomButtonItem } from "src/app/core/components/web/buttons";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button"; // Importar CustomButton
 import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
 import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { SubirPdf } from "src/app/core/components/web/inputs/custom-input-upload-pdf-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { globalFilterFields } from "src/app/core/helpers/table-primeng-option";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -34,10 +34,10 @@ import { DialogHandlerService } from "src/app/core/services/dialog-handler.servi
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
 import { ReporteOrdenesServicioService } from "src/app/core/services/reporte-ordenes-servicio.service";
 import { OrdenesServicioFotos } from "./ordenes-servicio-fotos";
+import { OrdenesServicioListPdfService } from "./ordenes-servicio-list-pdf.service";
 import { OrdenesServicioReporteProveedor } from "./ordenes-servicio-reporte-proveedor";
 import { ServiceOrderForm } from "./service-order-form";
 import { UploadImgForm } from "./upload-img-form";
-import { OrdenesServicioListPdfService } from "./ordenes-servicio-list-pdf.service";
 
 @Component({
   selector: "app-ordenes-servicio-list",
@@ -158,7 +158,11 @@ export class OrdenesServicio {
   onNavigateToReportTabla() {
     const converToDate = this.parseFechaControl();
     const fechaFormateada = this.dateS.getDateFormat(converToDate);
-    this.pdfService.downloadReporteTablaCategoria(this.dataSignal(), fechaFormateada, this.filtroEquiposValue);
+    this.pdfService.downloadReporteTablaCategoria(
+      this.dataSignal(),
+      fechaFormateada,
+      this.filtroEquiposValue,
+    );
   }
 
   onModalFormUploadImg(id: any) {
@@ -220,7 +224,9 @@ export class OrdenesServicio {
   }
 
   private parseFechaControl(): Date {
-    const [year, month] = (this.fechaControl.value || "").split("-").map(Number);
+    const [year, month] = (this.fechaControl.value || "")
+      .split("-")
+      .map(Number);
     return new Date(year, month - 1, 1);
   }
 
@@ -331,4 +337,3 @@ export class OrdenesServicio {
     this.route.navigate(["/tickets/ticket-messages", id, status, nameGroup]);
   }
 }
-

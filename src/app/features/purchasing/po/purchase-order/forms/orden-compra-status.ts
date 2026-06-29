@@ -9,9 +9,9 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputCheckSignal } from "src/app/core/components/web/inputs/custom-input-check-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 export interface IOrdenCompraStatusForm {
@@ -38,7 +38,7 @@ export interface IOrdenCompraStatusForm {
     CustomInputTextSignal,
     CustomButtonSave,
     TableModule,
-    ],
+  ],
 })
 export class OrdenCompraStatus implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -108,7 +108,10 @@ export class OrdenCompraStatus implements OnInit {
 
     // Update only status fields (booleans)
     this.apiResponseS
-      .onPut(Endpoints.OrdenCompraStatus.update(this.ordenCompraStatus.id), formData)
+      .onPut(
+        Endpoints.OrdenCompraStatus.update(this.ordenCompraStatus.id),
+        formData,
+      )
       .then((result: any) => {
         this.ordenCompraStatus = result;
         this.form.patchValue(result);
@@ -133,7 +136,10 @@ export class OrdenCompraStatus implements OnInit {
     if (xml) formData.append("xmlFile", xml);
 
     this.apiResponseS
-      .onPost(Endpoints.PurchaseOrders.uploadInvoice(this.ordenCompraId), formData)
+      .onPost(
+        Endpoints.PurchaseOrders.uploadInvoice(this.ordenCompraId),
+        formData,
+      )
       .then((result: any) => {
         // Result should be the new Invoice object.
         // We need to refresh the list.
@@ -183,13 +189,3 @@ export class OrdenCompraStatus implements OnInit {
 
   // deleteFile method deprecated/removed as we use onDeleteInvoice now
 }
-
-
-
-
-
-
-
-
-
-

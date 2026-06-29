@@ -35,7 +35,7 @@ import {
   CustomInputTime,
   CustomInputUrl,
   CustomSearchInput,
-} from "src/app/core/components/web/inputs";
+} from "src/app/core/components/inputs/web";
 
 @Component({
   selector: "app-web-inputs",
@@ -362,4 +362,3 @@ export class WebInputs {
     { label: "Opción 3", value: 3 },
   ];
 }
-

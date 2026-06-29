@@ -9,10 +9,10 @@ import {
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputFile } from "src/app/core/components/web/inputs/custom-input-file-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -85,12 +85,12 @@ export class DocumentoPersonalizadoForm implements OnInit {
     this.apiResponseS
       .onGetItem(Endpoints.CustomDocuments.getById(this.id))
       .then((result: any) => {
-      this.form.patchValue({
-        id: result.id,
-        name: result.name,
-        createAt: this.dateS.parseDate(result.createAt) ?? new Date(),
+        this.form.patchValue({
+          id: result.id,
+          name: result.name,
+          createAt: this.dateS.parseDate(result.createAt) ?? new Date(),
+        });
       });
-    });
   }
   onSubmit() {
     if (!this.apiResponseS.validateForm(this.form)) return;
@@ -143,4 +143,3 @@ export class DocumentoPersonalizadoForm implements OnInit {
     return formData;
   }
 }
-

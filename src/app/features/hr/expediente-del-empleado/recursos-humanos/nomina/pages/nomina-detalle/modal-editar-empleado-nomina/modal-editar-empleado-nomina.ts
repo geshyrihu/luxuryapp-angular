@@ -1,10 +1,10 @@
 ﻿import { Component, OnInit, inject, signal } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputDecimal } from "src/app/core/components/inputs/web/custom-input-decimal-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputDecimal } from "src/app/core/components/web/inputs/custom-input-decimal-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -35,20 +35,20 @@ export default class ModalEditarEmpleadoNomina implements OnInit {
   detalleId = signal<string>("");
 
   form = this.fb.nonNullable.group({
-    diasTrabajados:       [0, [Validators.required, Validators.min(0)]],
-    diasAusentes:         [0, [Validators.required, Validators.min(0)]],
-    diasIncapacidad:      [0, [Validators.required, Validators.min(0)]],
-    diasVacaciones:       [0, [Validators.required, Validators.min(0)]],
-    diasPermisoConGoce:   [0, [Validators.required, Validators.min(0)]],
-    diasPermisoSinGoce:   [0, [Validators.required, Validators.min(0)]],
-    domingosTrabajados:   [0, [Validators.required, Validators.min(0)]],
-    tiempoExtraImporte:   [0, [Validators.required, Validators.min(0)]],
-    compensacion:         [0, [Validators.required, Validators.min(0)]],
-    otrasPercepciones:    [0, [Validators.required, Validators.min(0)]],
-    cuotaImss:            [0, [Validators.required, Validators.min(0)]],
-    isr:                  [0, [Validators.required, Validators.min(0)]],
-    otrasDeducciones:     [0, [Validators.required, Validators.min(0)]],
-    observaciones:        [""],
+    diasTrabajados: [0, [Validators.required, Validators.min(0)]],
+    diasAusentes: [0, [Validators.required, Validators.min(0)]],
+    diasIncapacidad: [0, [Validators.required, Validators.min(0)]],
+    diasVacaciones: [0, [Validators.required, Validators.min(0)]],
+    diasPermisoConGoce: [0, [Validators.required, Validators.min(0)]],
+    diasPermisoSinGoce: [0, [Validators.required, Validators.min(0)]],
+    domingosTrabajados: [0, [Validators.required, Validators.min(0)]],
+    tiempoExtraImporte: [0, [Validators.required, Validators.min(0)]],
+    compensacion: [0, [Validators.required, Validators.min(0)]],
+    otrasPercepciones: [0, [Validators.required, Validators.min(0)]],
+    cuotaImss: [0, [Validators.required, Validators.min(0)]],
+    isr: [0, [Validators.required, Validators.min(0)]],
+    otrasDeducciones: [0, [Validators.required, Validators.min(0)]],
+    observaciones: [""],
   });
 
   ngOnInit(): void {
@@ -58,20 +58,20 @@ export default class ModalEditarEmpleadoNomina implements OnInit {
     this.detalleId.set(item.id);
 
     this.form.patchValue({
-      diasTrabajados:     item.diasTrabajados,
-      diasAusentes:       item.diasAusentes,
-      diasIncapacidad:    item.diasIncapacidad,
-      diasVacaciones:     item.diasVacaciones,
+      diasTrabajados: item.diasTrabajados,
+      diasAusentes: item.diasAusentes,
+      diasIncapacidad: item.diasIncapacidad,
+      diasVacaciones: item.diasVacaciones,
       diasPermisoConGoce: item.diasPermisoConGoce,
       diasPermisoSinGoce: item.diasPermisoSinGoce,
       domingosTrabajados: item.domingosTrabajados,
       tiempoExtraImporte: item.tiempoExtraImporte,
-      compensacion:       item.compensacion,
-      otrasPercepciones:  item.otrasPercepciones,
-      cuotaImss:          item.cuotaImss,
-      isr:                item.isr,
-      otrasDeducciones:   item.otrasDeducciones,
-      observaciones:      item.observaciones,
+      compensacion: item.compensacion,
+      otrasPercepciones: item.otrasPercepciones,
+      cuotaImss: item.cuotaImss,
+      isr: item.isr,
+      otrasDeducciones: item.otrasDeducciones,
+      observaciones: item.observaciones,
     });
   }
 
@@ -79,7 +79,10 @@ export default class ModalEditarEmpleadoNomina implements OnInit {
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.HR.Nomina.Encabezado.updateDetalle(this.nominaId(), this.detalleId()),
+      endpoint: Endpoints.HR.Nomina.Encabezado.updateDetalle(
+        this.nominaId(),
+        this.detalleId(),
+      ),
       method: "PUT",
       ref: this.ref,
       submitting: this.submitting,
@@ -87,4 +90,3 @@ export default class ModalEditarEmpleadoNomina implements OnInit {
     });
   }
 }
-

@@ -6,7 +6,8 @@ import { MultiSelectModule } from "primeng/multiselect";
 import { ProgressBarModule } from "primeng/progressbar";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomButton } from "src/app/core/components/web/buttons";
 import { Mesanio } from "src/app/core/components/web/mesanio/mesanio";
 import {
   globalFilterFields,
@@ -18,7 +19,6 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { PeriodMonthService } from "src/app/core/services/periodo-month.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { CustomButton } from "src/app/core/components/web/buttons";
 @Component({
   selector: "app-resultado-general-dashboard",
   templateUrl: "./resultado-general-dashboard.html",
@@ -138,4 +138,3 @@ export class ResultadoGeneralDashboard implements OnInit {
     return color;
   }
 }
-

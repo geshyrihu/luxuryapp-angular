@@ -1,12 +1,17 @@
 ﻿import { Component, inject, input, OnInit, signal } from "@angular/core";
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { FormHelper } from "src/app/core/helpers/form-helper";
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { InputTextModule } from "primeng/inputtext";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
 import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-invited-form",
@@ -44,7 +49,10 @@ export class InvitedForm implements OnInit {
     const result = await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.MeetingInvitado.addParticipant(this.meetingId(), this.invitado.value),
+      endpoint: Endpoints.MeetingInvitado.addParticipant(
+        this.meetingId(),
+        this.invitado.value,
+      ),
       method: "POST",
       submitting: this.submitting,
       closeOnSuccess: false,
@@ -58,26 +66,18 @@ export class InvitedForm implements OnInit {
   }
 
   onDelete(idParticipant: number): void {
-    this.apiResponseS.onDelete(Endpoints.MeetingInvitado.delete(idParticipant)).then(() => {
-      this.onLoadData();
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.MeetingInvitado.delete(idParticipant))
+      .then(() => {
+        this.onLoadData();
+      });
   }
 
   onLoadData() {
-    this.apiResponseS.onGetList(
-      Endpoints.MeetingInvitado.participants(this.meetingId()),
-    ).then((result: any) => {
-      this.listaInvitados.set(result);
-    });
+    this.apiResponseS
+      .onGetList(Endpoints.MeetingInvitado.participants(this.meetingId()))
+      .then((result: any) => {
+        this.listaInvitados.set(result);
+      });
   }
 }
-
-
-
-
-
-
-
-
-
-

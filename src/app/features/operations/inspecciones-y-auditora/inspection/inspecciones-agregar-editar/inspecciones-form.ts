@@ -10,14 +10,14 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputCheckSignal } from "src/app/core/components/web/inputs/custom-input-check-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 
@@ -130,29 +130,31 @@ export class InspeccionesForm implements OnInit {
   }
 
   onLoadData() {
-    this.apiResponseS.onGetItem(Endpoints.Inspections.getById(this.id)).then((result: any) => {
-      this.form.patchValue(result);
+    this.apiResponseS
+      .onGetItem(Endpoints.Inspections.getById(this.id))
+      .then((result: any) => {
+        this.form.patchValue(result);
 
-      this.weeklyDays.clear();
-      // Reset days form
-      this.daysForm.reset();
+        this.weeklyDays.clear();
+        // Reset days form
+        this.daysForm.reset();
 
-      if (result.frequency === "weekly" && result.weeklyDays?.length) {
-        // Populate FormArray
-        result.weeklyDays.forEach((day: number) => {
-          this.weeklyDays.push(new FormControl(day));
-          // Populate Checkboxes
-          const dayObj = this.weekDays.find((d) => d.value === day);
-          if (dayObj) {
-            this.daysForm.controls[dayObj.key].setValue(true, {
-              emitEvent: false,
-            });
-          }
-        });
-      }
+        if (result.frequency === "weekly" && result.weeklyDays?.length) {
+          // Populate FormArray
+          result.weeklyDays.forEach((day: number) => {
+            this.weeklyDays.push(new FormControl(day));
+            // Populate Checkboxes
+            const dayObj = this.weekDays.find((d) => d.value === day);
+            if (dayObj) {
+              this.daysForm.controls[dayObj.key].setValue(true, {
+                emitEvent: false,
+              });
+            }
+          });
+        }
 
-      this.onValidateFrequency(result.frequency);
-    });
+        this.onValidateFrequency(result.frequency);
+      });
   }
 
   onValidateFrequency(frequency: string) {
@@ -205,12 +207,11 @@ export class InspeccionesForm implements OnInit {
     this.apiResponseS
       .onGetEnumSelectItem(Endpoints.EnumSelectItems.departament)
       .then((result: any) => {
-      this.cb_departament.set(result);
-    });
+        this.cb_departament.set(result);
+      });
   }
 
   getDayControl(key: string): FormControl {
     return this.daysForm.get(key) as FormControl;
   }
 }
-

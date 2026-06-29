@@ -8,15 +8,15 @@ import {
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputMaskSignal } from "src/app/core/components/web/inputs/custom-input-mask-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -127,7 +127,9 @@ export class OwnerForm implements OnInit {
   }
 
   async getImem(): Promise<void> {
-    const result: any = await this.apiResponseS.onGetItem(Endpoints.Owner.getById(this.id));
+    const result: any = await this.apiResponseS.onGetItem(
+      Endpoints.Owner.getById(this.id),
+    );
 
     // Extraer propertyId
     const propertyId =
@@ -180,4 +182,3 @@ export class OwnerForm implements OnInit {
     });
   }
 }
-

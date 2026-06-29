@@ -1,6 +1,4 @@
-﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { Endpoints } from "src/app/core/constants/endpoints";
-import {
+﻿import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -25,11 +23,14 @@ import { ProgressBarModule } from "primeng/progressbar";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
 import { firstValueFrom } from "rxjs";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -43,7 +44,6 @@ import { SolicitudCompraDetalle } from "src/app/features/purchasing/pr/solicitud
 import { PurchaseLinkManager } from "../purchase-link-manager/purchase-link-manager";
 import { ProductAdd } from "./product-add";
 import { ProductModalAdd } from "./product-modal-add";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 export interface ISolicitudCompraForm {
   id: FormControl<string | null>;
@@ -76,7 +76,8 @@ export interface ISolicitudCompraForm {
     CustomButton,
     DividerModule,
     BadgeModule,
-   AppIcon],
+    AppIcon,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SolicitudCompra implements OnInit {
@@ -226,7 +227,10 @@ export class SolicitudCompra implements OnInit {
 
         for (const product of this.tempProducts()) {
           product.solicitudCompraId = this.id;
-          await this.apiResponseS.onPost(Endpoints.PurchaseRequestDetails.create, product);
+          await this.apiResponseS.onPost(
+            Endpoints.PurchaseRequestDetails.create,
+            product,
+          );
         }
 
         this.tempProducts.set([]);
@@ -341,5 +345,3 @@ export class SolicitudCompra implements OnInit {
       });
   }
 }
-
-

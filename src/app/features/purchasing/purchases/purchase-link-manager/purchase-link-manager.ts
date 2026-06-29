@@ -1,5 +1,4 @@
-﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CdkDragDrop, DragDropModule } from "@angular/cdk/drag-drop";
+﻿import { CdkDragDrop, DragDropModule } from "@angular/cdk/drag-drop";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -16,8 +15,9 @@ import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -36,7 +36,8 @@ import { CustomerIdService } from "src/app/core/services/customer-id.service";
     TooltipModule,
     DragDropModule,
     SelectButtonModule,
-   AppIcon],
+    AppIcon,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PurchaseLinkManager implements OnInit {
@@ -118,7 +119,10 @@ export class PurchaseLinkManager implements OnInit {
     this.loadingSolicitudes.set(true);
     this.apiResponseS
       .onGetList(
-        Endpoints.PurchaseRequests.listSolicitudCompraByCustomerAndStatus(this.customerIdS.customerId(), this.statusSC()),
+        Endpoints.PurchaseRequests.listSolicitudCompraByCustomerAndStatus(
+          this.customerIdS.customerId(),
+          this.statusSC(),
+        ),
       )
       .then((result: any) => {
         this.solicitudes.set(result || []);
@@ -141,7 +145,10 @@ export class PurchaseLinkManager implements OnInit {
   onLink(ordenCompraId: string, solicitudCompraId: string) {
     this.apiResponseS
       .onPut(
-        Endpoints.PurchaseOrders.linkToRequest(ordenCompraId, solicitudCompraId),
+        Endpoints.PurchaseOrders.linkToRequest(
+          ordenCompraId,
+          solicitudCompraId,
+        ),
         {},
       )
       .then((success) => {
@@ -191,4 +198,3 @@ export class PurchaseLinkManager implements OnInit {
     this.ref.close(true);
   }
 }
-

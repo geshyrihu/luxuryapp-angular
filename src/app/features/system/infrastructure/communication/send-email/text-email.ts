@@ -1,7 +1,7 @@
 ﻿import { Component, inject } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSendEmail } from "src/app/core/components/web/buttons/custom-button-send-email";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 @Component({
   selector: "app-text-email",
@@ -34,13 +34,3 @@ export class TextEmail {
       });
   }
 }
-
-
-
-
-
-
-
-
-
-

@@ -5,8 +5,8 @@ import { Endpoints } from "src/app/core/constants/endpoints";
 
 // PrimeNG
 import { MessageModule } from "primeng/message";
+import { CustomInputFile } from "src/app/core/components/inputs/web/custom-input-file-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomInputFile } from "src/app/core/components/web/inputs/custom-input-file-signal";
 
 // Services
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -56,7 +56,9 @@ export default class BulkImportModal implements OnInit {
     this.result = null;
 
     const res = await this.apiResponseS.onPostFile<BulkImportResult>(
-      Endpoints.AccountingCoi.NativeCollection.Charges.bulkImportSaldoInicial(this.customerId),
+      Endpoints.AccountingCoi.NativeCollection.Charges.bulkImportSaldoInicial(
+        this.customerId,
+      ),
       formData,
     );
 
@@ -82,4 +84,3 @@ export default class BulkImportModal implements OnInit {
     this.ref.close(this.result && this.result.successCount > 0);
   }
 }
-

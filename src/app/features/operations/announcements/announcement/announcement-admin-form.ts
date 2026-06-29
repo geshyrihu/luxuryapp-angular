@@ -9,28 +9,26 @@ import {
 import { FileUploadModule } from "@iplab/ngx-file-upload";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { DividerModule } from "primeng/divider";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import {
-  DynamicDialogConfig,
-  DynamicDialogRef,
-} from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { EditorModule } from "primeng/editor";
 import { ListboxModule } from "primeng/listbox";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { Endpoints } from "src/app/core/constants/endpoints";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { AiService } from "src/app/core/services/ai.service";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
-import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { DateService } from "src/app/core/services/date.service";
+import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { SwalService } from "src/app/core/services/swal.service";
 import {
   IAnnouncement,
@@ -39,7 +37,6 @@ import {
   IRole,
 } from "./announcement.model";
 import { ImageGenerationDialog } from "./components/image-generation-dialog/image-generation-dialog";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-announcement-admin-form",
@@ -388,4 +385,3 @@ export class AnnouncementAdminForm implements OnInit {
     });
   }
 }
-

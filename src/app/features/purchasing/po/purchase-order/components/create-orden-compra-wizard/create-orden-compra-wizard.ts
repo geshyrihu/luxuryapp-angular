@@ -1,5 +1,4 @@
 ﻿import { CommonModule } from "@angular/common";
-import { Endpoints } from "src/app/core/constants/endpoints";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormArray,
@@ -10,6 +9,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { Endpoints } from "src/app/core/constants/endpoints";
 // PrimeNG Modules
 import { MenuItem } from "primeng/api";
 import { AutoCompleteModule } from "primeng/autocomplete";
@@ -25,9 +25,10 @@ import { TagModule } from "primeng/tag"; // Added
 import { firstValueFrom } from "rxjs";
 
 // Project specific services and components
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomButton } from "src/app/core/components/web/buttons";
 import { ETipoGasto } from "src/app/core/enums/tipo-gasto.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -35,7 +36,6 @@ import { CustomToastService } from "src/app/core/services/custom-toast.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service"; // Added
-import { CustomButton } from "src/app/core/components/web/buttons";
 import { OrdenCompraDetalleForm } from "../orden-compra-detalle-form/orden-compra-detalle-form";
 const tipoGastoTitles: { [key: number]: string } = {
   [ETipoGasto.Fijo]: "GASTOS FIJOS",
@@ -267,7 +267,9 @@ export class CreateOrdenCompraWizard implements OnInit {
     if (customerId) {
       // Changed from !== 0 to truthy check (non-empty string)
       this.apiResponseS
-        .onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.providers(customerId))
+        .onGetSelectItem<
+          ISelectItem[]
+        >(Endpoints.SelectItems.providers(customerId))
         .then((data) => this.cb_providers.set(data));
     }
     this.apiResponseS
@@ -668,4 +670,3 @@ export class CreateOrdenCompraWizard implements OnInit {
       });
   }
 }
-

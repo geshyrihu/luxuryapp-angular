@@ -1,18 +1,24 @@
-﻿import { CurrencyPipe, DatePipe } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { CustomButton } from 'src/app/core/components/web/buttons';
-import { CustomInputTextAreaSignal } from 'src/app/core/components/web/inputs/custom-input-textarea-signal';
-import { Endpoints } from 'src/app/core/constants/endpoints';
-import { ApiResponseService } from 'src/app/core/services/api-response.service';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { CollectionCaseResponseDTO } from '../../models/collection-case.dto';
+﻿import { CurrencyPipe, DatePipe } from "@angular/common";
+import { Component, inject, OnInit, signal } from "@angular/core";
+import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomButton } from "src/app/core/components/web/buttons";
+import { Endpoints } from "src/app/core/constants/endpoints";
+import { ApiResponseService } from "src/app/core/services/api-response.service";
+import { AuthService } from "src/app/core/services/auth.service";
+import { CollectionCaseResponseDTO } from "../../models/collection-case.dto";
 
 @Component({
-  selector: 'app-collection-case-detail-modal',
-  imports: [ReactiveFormsModule, CustomButton, CustomInputTextAreaSignal, DatePipe, CurrencyPipe],
-  templateUrl: './collection-case-detail-modal.html',
+  selector: "app-collection-case-detail-modal",
+  imports: [
+    ReactiveFormsModule,
+    CustomButton,
+    CustomInputTextAreaSignal,
+    DatePipe,
+    CurrencyPipe,
+  ],
+  templateUrl: "./collection-case-detail-modal.html",
 })
 export default class CollectionCaseDetailModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -23,7 +29,7 @@ export default class CollectionCaseDetailModal implements OnInit {
   item = signal<CollectionCaseResponseDTO | null>(null);
   submitting = signal(false);
 
-  notesCtrl = new FormControl('', {
+  notesCtrl = new FormControl("", {
     nonNullable: true,
     validators: [Validators.required, Validators.maxLength(500)],
   });
@@ -33,7 +39,7 @@ export default class CollectionCaseDetailModal implements OnInit {
   }
 
   get actorName(): string {
-    return this.authS.infoUserAuth?.fullName ?? 'operador';
+    return this.authS.infoUserAuth?.fullName ?? "operador";
   }
 
   async onLogActivity() {
@@ -46,11 +52,13 @@ export default class CollectionCaseDetailModal implements OnInit {
     this.submitting.set(true);
     try {
       const ok = await this.apiResponseS.onPost(
-        Endpoints.AccountingCoi.NativeCollection.CollectionCases.logActivity(item.id),
+        Endpoints.AccountingCoi.NativeCollection.CollectionCases.logActivity(
+          item.id,
+        ),
         { caseId: item.id, notes: this.notesCtrl.value, promisedDate: null },
       );
       if (ok) {
-        this.notesCtrl.reset('');
+        this.notesCtrl.reset("");
         this.ref.close(true);
       }
     } finally {
@@ -62,4 +70,3 @@ export default class CollectionCaseDetailModal implements OnInit {
     this.ref.close(false);
   }
 }
-

@@ -2,12 +2,12 @@
  * ============================================================================
  * âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
  * ============================================================================
- * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
- * FUNCIONAL y ESTABLE. 
- * 
+ * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+ * FUNCIONAL y ESTABLE.
+ *
  * Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
  * sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
- * 
+ *
  * Por favor, NO rompan el código.
  * ============================================================================
  */
@@ -20,9 +20,9 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import {
@@ -94,12 +94,26 @@ export class BudgetRuleForm implements OnInit {
       ref: this.ref,
       submitting: this.submitting,
       transformPayload: () => {
-        const { id: _, customerId, ruleType, accountNumber, accountName } = this.form.value;
+        const {
+          id: _,
+          customerId,
+          ruleType,
+          accountNumber,
+          accountName,
+        } = this.form.value;
         return this.id
-          ? ({ ruleType, accountNumber, accountName } as BudgetAccountRuleUpdateDTO)
-          : ({ customerId, ruleType, accountNumber, accountName } as BudgetAccountRuleCreateDTO);
+          ? ({
+              ruleType,
+              accountNumber,
+              accountName,
+            } as BudgetAccountRuleUpdateDTO)
+          : ({
+              customerId,
+              ruleType,
+              accountNumber,
+              accountName,
+            } as BudgetAccountRuleCreateDTO);
       },
     });
   }
 }
-

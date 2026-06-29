@@ -8,13 +8,13 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
@@ -108,24 +108,25 @@ export class PropiedadesForm implements OnInit {
     });
   }
   onLoadData() {
-    this.apiResponseS.onGetItem(Endpoints.Properties.getById(this.id)).then((result: any) => {
-      if (!result) return;
-      this.isDelinquent = result.isDelinquent ?? false;
-      this.delinquentSince = result.delinquentSince ?? null;
-      this.form.patchValue(result);
-    });
+    this.apiResponseS
+      .onGetItem(Endpoints.Properties.getById(this.id))
+      .then((result: any) => {
+        if (!result) return;
+        this.isDelinquent = result.isDelinquent ?? false;
+        this.delinquentSince = result.delinquentSince ?? null;
+        this.form.patchValue(result);
+      });
   }
 
   private onLoadCuentasCoi() {
     const customerId = this.customerIdS.customerId();
     const year = new Date().getFullYear();
     this.apiResponseS
-      .onGetList<ISelectItem[]>(
-        `aspel-cobranza/accounts-select?customerId=${customerId}&year=${year}`,
-      )
+      .onGetList<
+        ISelectItem[]
+      >(`aspel-cobranza/accounts-select?customerId=${customerId}&year=${year}`)
       .then((result) => {
         this.cuentasCoi.set(result ?? []);
       });
   }
 }
-

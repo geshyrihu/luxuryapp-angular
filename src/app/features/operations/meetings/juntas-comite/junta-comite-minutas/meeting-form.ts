@@ -7,13 +7,14 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTime } from "src/app/core/components/inputs/web/custom-input-time-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { CustomInputTime } from "src/app/core/components/web/inputs/custom-input-time-signal";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -22,7 +23,6 @@ import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { AdministrationFormList } from "./administration-form-list";
 import { ComiteForm } from "./comite-form";
 import { InvitedForm } from "./invited-form";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IMeetingForm {
   id: FormControl<string | null>;
@@ -125,7 +125,7 @@ export class MeetingForm implements OnInit {
       ref: this.ref,
       submitting: this.submitting,
       closeOnSuccess: false,
-      transformPayload: () => payload
+      transformPayload: () => payload,
     });
 
     if (result) {
@@ -138,10 +138,11 @@ export class MeetingForm implements OnInit {
   }
 
   onLoadData() {
-    this.apiResponseS.onGetItem(Endpoints.Meetings.getById(this.id)).then((result: any) => {
-      result.time = this.normalizeTime(result.time);
-      this.form.patchValue(result);
-    });
+    this.apiResponseS
+      .onGetItem(Endpoints.Meetings.getById(this.id))
+      .then((result: any) => {
+        result.time = this.normalizeTime(result.time);
+        this.form.patchValue(result);
+      });
   }
 }
-

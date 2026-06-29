@@ -5,9 +5,9 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 import saveAs from "file-saver";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -127,10 +127,7 @@ export class IncidentReport {
           const blob = new Blob([resp], {
             type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
           });
-          saveAs(
-            blob,
-            `incidencias_${this.dateS.getDateNow()}.xlsx`,
-          );
+          saveAs(blob, `incidencias_${this.dateS.getDateNow()}.xlsx`);
         },
         error: () =>
           this.toastS.showError("Error", "No se pudo generar el reporte."),
@@ -147,4 +144,3 @@ export class IncidentReport {
     return map[severity] ?? "badge-neutral";
   }
 }
-

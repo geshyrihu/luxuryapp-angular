@@ -3,9 +3,9 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { ImageModule } from "primeng/image";
 import { TooltipModule } from "primeng/tooltip";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -38,7 +38,9 @@ export class ListaInformeInspeccion implements OnInit {
   dateControl = new FormControl<string>("");
 
   ngOnInit(): void {
-    this.dateControl.setValue(this.dateS.getDateFormat(new Date()), { emitEvent: false });
+    this.dateControl.setValue(this.dateS.getDateFormat(new Date()), {
+      emitEvent: false,
+    });
     this.onLoadInspectionReport();
   }
 
@@ -61,9 +63,9 @@ export class ListaInformeInspeccion implements OnInit {
 
   onLoadInspectionReport(): void {
     this.apiResponseS
-      .onGetSelectItem<ISelectItem[]>(
-        Endpoints.CustomerInspections.selectByCustomer(this.customerIdS.customerId()),
-      )
+      .onGetSelectItem<
+        ISelectItem[]
+      >(Endpoints.CustomerInspections.selectByCustomer(this.customerIdS.customerId()))
       .then((result: any) => this.inspectionResultSignal.set(result));
   }
 
@@ -77,4 +79,3 @@ export class ListaInformeInspeccion implements OnInit {
       .then((data: any) => this.inspeccionPdfS.generarReporte(data, nombre));
   }
 }
-

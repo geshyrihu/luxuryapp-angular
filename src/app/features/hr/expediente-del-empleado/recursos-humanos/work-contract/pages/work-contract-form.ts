@@ -5,11 +5,11 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputCurrencySignal } from "src/app/core/components/web/inputs/custom-input-currency-signal";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -19,7 +19,6 @@ import {
   EContractType,
   WorkContractAddOrEditDTO,
   WorkContractDetailDTO,
-  WorkContractListDTO,
 } from "../models/work-contract.dto";
 
 interface IWorkContractForm {
@@ -69,7 +68,8 @@ export class WorkContractFormComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    const data = this.config.data?.item as Partial<WorkContractDetailDTO> | null;
+    const data = this.config.data
+      ?.item as Partial<WorkContractDetailDTO> | null;
     const empId = this.config.data?.employeeId as string;
     this.item.set(data);
     this.isEdit.set(!!data);
@@ -122,4 +122,3 @@ export class WorkContractFormComponent implements OnInit {
     this.ref.close();
   }
 }
-

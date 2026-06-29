@@ -1,8 +1,8 @@
 ﻿import { Component, inject } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 @Component({
   selector: "app-rejection-reason-prompt",
   imports: [ReactiveFormsModule, CustomInputTextAreaSignal, CustomButton],
@@ -19,12 +19,3 @@ export class MotivoRechazoFormulario {
     this.ref.close(data);
   }
 }
-
-
-
-
-
-
-
-
-

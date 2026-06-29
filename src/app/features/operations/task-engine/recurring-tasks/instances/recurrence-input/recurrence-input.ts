@@ -23,7 +23,7 @@ import { InputNumberModule } from "primeng/inputnumber";
 import { RadioButtonModule } from "primeng/radiobutton";
 import { SelectModule } from "primeng/select";
 
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 
 interface RecurrenceFrequency {
   label: string;
@@ -322,4 +322,3 @@ export class RecurrenceInput implements OnInit, ControlValueAccessor {
     return freq ? this.frequencyLabels[freq] || "" : "";
   }
 }
-

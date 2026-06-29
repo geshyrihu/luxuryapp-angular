@@ -5,23 +5,19 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputSwitch } from "src/app/core/components/web/inputs/custom-input-switch-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import { SanctionTypeListDTO } from "src/app/features/hr/evaluaciones-de-desempeo/hr-catalog/models/hr-catalog.interfaces";
-import {
-  ESanctionStatus,
-  SanctionAddOrEditDTO,
-  SanctionChangeStatusDTO,
-} from "../models/sanction.dto";
+import { ESanctionStatus } from "../models/sanction.dto";
 
 interface ISanctionForm {
   incidentId: import("@angular/forms").FormControl<string>;
@@ -157,5 +153,3 @@ export class SanctionFormComponent {
     this.ref.close();
   }
 }
-
-

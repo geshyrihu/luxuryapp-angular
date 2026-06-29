@@ -1,11 +1,11 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
-import { CommonModule } from "@angular/common";
+﻿import { CommonModule } from "@angular/common";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { CardModule } from "primeng/card";
 import { ChartModule } from "primeng/chart";
 import { TableModule } from "primeng/table";
-import { CardModule } from "primeng/card";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import {
@@ -33,7 +33,7 @@ export class IncidentDashboardComponent implements OnInit {
   dashboard = signal<IncidentDashboardDTO | null>(null);
 
   startDateCtrl = new FormControl<string | null>(null);
-  endDateCtrl   = new FormControl<string | null>(null);
+  endDateCtrl = new FormControl<string | null>(null);
 
   barChartData = signal<any>(null);
   pieChartData = signal<any>(null);
@@ -167,4 +167,3 @@ export class IncidentDashboardComponent implements OnInit {
     this.loadDashboard();
   }
 }
-

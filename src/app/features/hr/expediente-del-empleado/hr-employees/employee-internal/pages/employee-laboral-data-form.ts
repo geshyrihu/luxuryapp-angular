@@ -8,19 +8,19 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { firstValueFrom } from "rxjs";
+import { CustomInputCurrencySignal } from "src/app/core/components/inputs/web/custom-input-currency-signal";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputCurrencySignal } from "src/app/core/components/web/inputs/custom-input-currency-signal";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
-import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { DateService } from "src/app/core/services/date.service";
+import { EnumSelectService } from "src/app/core/services/enum-select.service";
 // import { EmployeeAddOrEditService } from './employee-form.service';
 
 import { IEmployeeLaboralDataForm } from "../models/employee-laboral-data-form.interface";
@@ -82,7 +82,10 @@ export class EmployeeLaboralDataForm implements OnInit {
     salary: new FormControl<number | null>(null, {
       validators: [Validators.required],
     }),
-    dailySalary: new FormControl<number | null>({ value: null, disabled: true }),
+    dailySalary: new FormControl<number | null>({
+      value: null,
+      disabled: true,
+    }),
     educationLevel: new FormControl<number | null>(null, {
       validators: [Validators.required],
     }),
@@ -116,7 +119,9 @@ export class EmployeeLaboralDataForm implements OnInit {
   }
   onLoadData() {
     this.apiResponseS
-      .onGetItem(Endpoints.EmployeeInternal.laboralData(this.applicationUserId()))
+      .onGetItem(
+        Endpoints.EmployeeInternal.laboralData(this.applicationUserId()),
+      )
       .then((result: any) => {
         this.form.patchValue(result);
         if (result.salary) {
@@ -147,4 +152,3 @@ export class EmployeeLaboralDataForm implements OnInit {
       });
   }
 }
-

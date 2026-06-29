@@ -9,13 +9,13 @@ import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -96,7 +96,7 @@ export class SolicitudModificacionSalarioForm implements OnInit {
           if (lastIndex !== -1) {
             const roleName = selected.label.substring(lastIndex + 1).trim();
             const role = this.cb_applicationRole().find(
-              (r) => r.label.trim().toLowerCase() === roleName.toLowerCase()
+              (r) => r.label.trim().toLowerCase() === roleName.toLowerCase(),
             );
             if (role) {
               this.form.patchValue({
@@ -155,7 +155,8 @@ export class SolicitudModificacionSalarioForm implements OnInit {
       ...result,
       currentSalary: result.sueldoActual,
       applicationRoleCurrentId,
-      applicationRoleCurrent: result.applicationRoleCurrent || selectedApplicationRole?.label || null,
+      applicationRoleCurrent:
+        result.applicationRoleCurrent || selectedApplicationRole?.label || null,
     });
 
     return result;
@@ -220,8 +221,14 @@ export class SolicitudModificacionSalarioForm implements OnInit {
 
     // Agregar campos del formulario
     formData.append("employeeId", formValue.employeeId);
-    formData.append("sueldoActual", formValue.currentSalary ? String(formValue.currentSalary) : "0");
-    formData.append("currentSalary", formValue.currentSalary ? String(formValue.currentSalary) : "0");
+    formData.append(
+      "sueldoActual",
+      formValue.currentSalary ? String(formValue.currentSalary) : "0",
+    );
+    formData.append(
+      "currentSalary",
+      formValue.currentSalary ? String(formValue.currentSalary) : "0",
+    );
     formData.append(
       "applicationRoleCurrent",
       formValue.applicationRoleCurrent || "",
@@ -236,8 +243,16 @@ export class SolicitudModificacionSalarioForm implements OnInit {
     );
     formData.append("applicationRoleNew", formValue.applicationRoleNew || "");
     formData.append("employeeName", formValue.employeeName);
-    formData.append("finalSalary", formValue.finalSalary !== null && formValue.finalSalary !== undefined ? String(formValue.finalSalary) : "0");
-    formData.append("workPositionId", formValue.workPositionId || String(this.workPositionId));
+    formData.append(
+      "finalSalary",
+      formValue.finalSalary !== null && formValue.finalSalary !== undefined
+        ? String(formValue.finalSalary)
+        : "0",
+    );
+    formData.append(
+      "workPositionId",
+      formValue.workPositionId || String(this.workPositionId),
+    );
     formData.append(
       "executionDate",
       this.dateS.getDateFormat(formValue.executionDate as Date),
@@ -254,4 +269,3 @@ export class SolicitudModificacionSalarioForm implements OnInit {
     return formData;
   }
 }
-

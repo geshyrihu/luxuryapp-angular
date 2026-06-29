@@ -6,7 +6,7 @@ import { MessageModule } from "primeng/message";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 // Alias para evitar colisión de nombres con el mótodo de instancia onGetSeverity.
@@ -305,5 +305,3 @@ export class VacacionesSaldo implements OnInit {
     }
   }
 }
-
-

@@ -9,12 +9,12 @@ import {
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
 import { CardModule } from "primeng/card";
 import { firstValueFrom } from "rxjs";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputMaskSignal } from "src/app/core/components/web/inputs/custom-input-mask-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ECountry } from "src/app/core/enums/paises.enum";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -183,4 +183,3 @@ export class EmployeePersonalDataForm implements OnInit {
       });
   }
 }
-

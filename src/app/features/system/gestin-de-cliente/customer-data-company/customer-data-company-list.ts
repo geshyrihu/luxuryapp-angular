@@ -1,4 +1,3 @@
-import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -6,14 +5,15 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 import { SelectModule } from "primeng/select";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import {
   CustomButtonDelete,
   CustomButtonEdit,
 } from "src/app/core/components/web/buttons";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -148,4 +148,3 @@ export class CustomerDataCompanyList implements OnInit {
       });
   }
 }
-

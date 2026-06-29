@@ -2,7 +2,7 @@
 import { FormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { MessageModule } from "primeng/message";
-import { CustomSearchInput } from "src/app/core/components/web/inputs/custom-search-input-signal";
+import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { HighlightPipe } from "src/app/core/pipes/highlight.pipe";
 @Component({
   selector: "app-faqs-fondeo",
@@ -100,4 +100,3 @@ export class FaqsFondeo {
     },
   ];
 }
-

@@ -9,9 +9,9 @@
 // import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 // import { Endpoints } from "src/app/core/constants/endpoints";
 // import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-// import { CustomInputMaskSignal } from "src/app/core/components/web/inputs/custom-input-mask-signal";
-// import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-// import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+// import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
+// import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+// import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 // import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 // interface IPropertyForm {
@@ -100,4 +100,3 @@
 //     }
 //   }
 // }
-

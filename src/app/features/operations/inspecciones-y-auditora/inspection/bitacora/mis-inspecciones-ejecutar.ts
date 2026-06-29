@@ -16,9 +16,9 @@ import { TableModule } from "primeng/table";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { TooltipModule } from "primeng/tooltip";
 import { map } from "rxjs";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import { Endpoints } from "src/app/core/constants/endpoints";
@@ -121,7 +121,9 @@ export class MisInspeccionesEjecutar implements OnInit {
 
   onLoadData(customerInspectionId: string): void {
     this.apiResponseS
-      .onGetList(Endpoints.InspectionResults.getByIdForExecution(customerInspectionId))
+      .onGetList(
+        Endpoints.InspectionResults.getByIdForExecution(customerInspectionId),
+      )
       .then((response: any) => {
         const processedData = response.map((area: any) => ({
           ...area,
@@ -200,5 +202,3 @@ export class MisInspeccionesEjecutar implements OnInit {
       });
   }
 }
-
-

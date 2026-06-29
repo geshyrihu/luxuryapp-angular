@@ -6,14 +6,14 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputDecimal } from "src/app/core/components/inputs/web/custom-input-decimal-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
-import { CustomInputDecimal } from "src/app/core/components/web/inputs/custom-input-decimal-signal";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import {
   CreatePropertyFineDTO,
   RegulationArticleResponseDTO,
@@ -82,21 +82,28 @@ export class PropertyFineForm implements OnInit {
   }
 
   private async loadSelectData() {
-    const props = await this.apiResponseS.onGetItem<{ label: string; value: string }[]>(
-      Endpoints.SelectItems.properties(this.customerId),
-    );
+    const props = await this.apiResponseS.onGetItem<
+      { label: string; value: string }[]
+    >(Endpoints.SelectItems.properties(this.customerId));
     if (props) {
       this.properties.set(props);
     }
 
-    const arts = await this.apiResponseS.onGetItem<RegulationArticleResponseDTO[]>(
-      Endpoints.AccountingCoi.NativeCollection.RegulationArticles.byCustomer(this.customerId),
+    const arts = await this.apiResponseS.onGetItem<
+      RegulationArticleResponseDTO[]
+    >(
+      Endpoints.AccountingCoi.NativeCollection.RegulationArticles.byCustomer(
+        this.customerId,
+      ),
     );
     if (arts) {
       this.articles.set(
         arts
           .filter((a) => a.isActive)
-          .map((a) => ({ label: `${a.articleNumber} — ${a.title}`, value: a.id })),
+          .map((a) => ({
+            label: `${a.articleNumber} — ${a.title}`,
+            value: a.id,
+          })),
       );
     }
   }
@@ -120,9 +127,12 @@ export class PropertyFineForm implements OnInit {
         const { propertyId, ...common } = this.form.getRawValue();
         return this.id
           ? ({ id: this.id, ...common } as UpdatePropertyFineDTO)
-          : ({ customerId: this.customerId, propertyId, ...common } as CreatePropertyFineDTO);
+          : ({
+              customerId: this.customerId,
+              propertyId,
+              ...common,
+            } as CreatePropertyFineDTO);
       },
     });
   }
 }
-

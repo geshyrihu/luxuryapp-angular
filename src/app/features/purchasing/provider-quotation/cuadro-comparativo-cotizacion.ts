@@ -10,15 +10,15 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { debounceTime } from "rxjs";
 import { Router } from "@angular/router";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
+import { debounceTime } from "rxjs";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonViewPdf } from "src/app/core/components/web/buttons/custom-button-view-pdf";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
@@ -190,7 +190,9 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
     if (!this.cotizacionProveedor?.id) return;
 
     this.apiResponseS
-      .onDelete(`CotizacionProveedor/remove-file/${this.cotizacionProveedor.id}`)
+      .onDelete(
+        `CotizacionProveedor/remove-file/${this.cotizacionProveedor.id}`,
+      )
       .then((success) => {
         if (success) {
           this.customToastService.showSuccess(
@@ -342,7 +344,10 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
   }
 
   getTotalSubtotal(): number {
-    if (!this.solicitudCompraDetalle || this.solicitudCompraDetalle.length === 0) {
+    if (
+      !this.solicitudCompraDetalle ||
+      this.solicitudCompraDetalle.length === 0
+    ) {
       return 0;
     }
 
@@ -368,7 +373,10 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
   }
 
   getTotalIva(): number {
-    if (!this.solicitudCompraDetalle || this.solicitudCompraDetalle.length === 0) {
+    if (
+      !this.solicitudCompraDetalle ||
+      this.solicitudCompraDetalle.length === 0
+    ) {
       return 0;
     }
 
@@ -394,7 +402,10 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
   }
 
   getTotalGeneral(): number {
-    if (!this.solicitudCompraDetalle || this.solicitudCompraDetalle.length === 0) {
+    if (
+      !this.solicitudCompraDetalle ||
+      this.solicitudCompraDetalle.length === 0
+    ) {
       return 0;
     }
 
@@ -419,5 +430,3 @@ export class CuadroComparativoCotizacion implements OnInit, OnDestroy {
     }
   }
 }
-
-

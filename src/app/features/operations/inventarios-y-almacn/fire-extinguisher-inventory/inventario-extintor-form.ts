@@ -9,12 +9,12 @@ import {
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
+import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputImg } from "src/app/core/components/web/inputs/custom-input-img-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputMaskSignal } from "src/app/core/components/web/inputs/custom-input-mask-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -77,7 +77,10 @@ export class InventarioExtintorForm implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    localCode: new FormControl("", { nonNullable: true, validators: [Validators.required] }),
+    localCode: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
     photo: new FormControl<string | File>("", { nonNullable: true }),
     applicationUserId: new FormControl<string | null>(
       this.authS.applicationUserId,
@@ -90,7 +93,9 @@ export class InventarioExtintorForm implements OnInit {
   }
 
   async ngOnInit() {
-    this.cb_extintor = await firstValueFrom(this.enumSelectS.extinguisherType());
+    this.cb_extintor = await firstValueFrom(
+      this.enumSelectS.extinguisherType(),
+    );
     this.id = this.config.data.id;
     if (this.id) {
       this.onLoadData();
@@ -102,7 +107,10 @@ export class InventarioExtintorForm implements OnInit {
     const urlApi = `InventarioExtintor/${this.id}`;
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.urlBaseImg = result.currentPhoto;
-      this.form.patchValue({ ...result, expirationDate: new Date(result.expirationDate) });
+      this.form.patchValue({
+        ...result,
+        expirationDate: new Date(result.expirationDate),
+      });
     });
   }
   onSubmit() {
@@ -129,7 +137,10 @@ export class InventarioExtintorForm implements OnInit {
     const formData = new FormData();
     formData.append("customerId", String(DTO.customerId));
     formData.append("extinguisherType", String(DTO.extinguisherType));
-    formData.append("expirationDate", this.dateS.getDateFormat(DTO.expirationDate));
+    formData.append(
+      "expirationDate",
+      this.dateS.getDateFormat(DTO.expirationDate),
+    );
     formData.append("location", String(DTO.location));
     formData.append("localCode", String(DTO.localCode));
     formData.append("applicationUserId", String(DTO.applicationUserId));
@@ -139,4 +150,3 @@ export class InventarioExtintorForm implements OnInit {
     return formData;
   }
 }
-

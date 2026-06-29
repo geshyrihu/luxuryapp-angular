@@ -1,16 +1,22 @@
 ﻿import { Component, inject, OnInit, signal } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { SelectModule } from "primeng/select";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface ILegalEditarForm {
   id: FormControl<string>;
@@ -53,12 +59,24 @@ export class TicketLegalEditar implements OnInit {
   cb_application_user_responsible = signal<ISelectItem[]>([]);
 
   form: FormGroup<ILegalEditarForm> = this.formB.group({
-    id: new FormControl<string>({ value: "", disabled: true }, { nonNullable: true }),
+    id: new FormControl<string>(
+      { value: "", disabled: true },
+      { nonNullable: true },
+    ),
     ticketGroupId: new FormControl<string>("", { nonNullable: true }),
-    customerId: new FormControl<string>("", { nonNullable: true, validators: [Validators.required] }),
-    applicationUserId: new FormControl<string>(this.authService.applicationUserId, { nonNullable: true }),
+    customerId: new FormControl<string>("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    applicationUserId: new FormControl<string>(
+      this.authService.applicationUserId,
+      { nonNullable: true },
+    ),
     creatorId: new FormControl<string>("", { nonNullable: true }),
-    title: new FormControl<string>("", { nonNullable: true, validators: [Validators.required] }),
+    title: new FormControl<string>("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
     description: new FormControl<string>("", { nonNullable: true }),
     documentCloud: new FormControl<boolean>(false, { nonNullable: true }),
     documentEmail: new FormControl<boolean>(false, { nonNullable: true }),
@@ -72,12 +90,19 @@ export class TicketLegalEditar implements OnInit {
 
     const LEGAL_WORK_GROUP_ID = "019df32f-4945-71c5-8fd0-ab574ea412cd";
     const [legalMatters, participants] = await Promise.all([
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>(Endpoints.TaskLegal.selectForAddTicket),
-      this.apiResponseS.onGetList(Endpoints.TaskGroupParticipants.listByGroup(LEGAL_WORK_GROUP_ID)),
+      this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+        Endpoints.TaskLegal.selectForAddTicket,
+      ),
+      this.apiResponseS.onGetList(
+        Endpoints.TaskGroupParticipants.listByGroup(LEGAL_WORK_GROUP_ID),
+      ),
     ]);
     this.cb_legal_matter.set(legalMatters as ISelectItem[]);
     this.cb_application_user_responsible.set(
-      ((participants as any[]) ?? []).map(p => ({ value: p.applicationUserId, label: p.applicationUser }))
+      ((participants as any[]) ?? []).map((p) => ({
+        value: p.applicationUserId,
+        label: p.applicationUser,
+      })),
     );
 
     if (this.id) {
@@ -86,7 +111,9 @@ export class TicketLegalEditar implements OnInit {
   }
 
   async onLoadData(): Promise<void> {
-    const result: any = await this.apiResponseS.onGetItem(Endpoints.Tasks.getById(this.id));
+    const result: any = await this.apiResponseS.onGetItem(
+      Endpoints.Tasks.getById(this.id),
+    );
     this.form.patchValue({
       ticketGroupId: result.ticketGroupId,
       customerId: result.customerId,
@@ -106,7 +133,10 @@ export class TicketLegalEditar implements OnInit {
   };
 
   saveAssignee = (item: ISelectItem) => {
-    this.form.patchValue({ assigneeId: String(item?.value), assignee: item?.label });
+    this.form.patchValue({
+      assigneeId: String(item?.value),
+      assignee: item?.label,
+    });
   };
 
   async onSubmit(): Promise<void> {
@@ -134,4 +164,3 @@ export class TicketLegalEditar implements OnInit {
     });
   }
 }
-

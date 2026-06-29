@@ -1,5 +1,5 @@
-﻿import { Component, inject, OnInit, signal } from "@angular/core";
-import { CurrencyPipe, DatePipe } from "@angular/common";
+﻿import { CurrencyPipe, DatePipe } from "@angular/common";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -7,12 +7,15 @@ import {
   Validators,
 } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { IssueFineChargeDTO, PropertyFineResponseDTO } from "../../models/property-fine.dto";
+import {
+  IssueFineChargeDTO,
+  PropertyFineResponseDTO,
+} from "../../models/property-fine.dto";
 
 @Component({
   selector: "app-issue-fine-charge-form",
@@ -48,7 +51,8 @@ export class IssueFineChargeForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: Endpoints.AccountingCoi.NativeCollection.PropertyFines.issueCharge,
+      endpoint:
+        Endpoints.AccountingCoi.NativeCollection.PropertyFines.issueCharge,
       id: "",
       ref: this.ref,
       submitting: this.submitting,
@@ -59,4 +63,3 @@ export class IssueFineChargeForm implements OnInit {
     });
   }
 }
-

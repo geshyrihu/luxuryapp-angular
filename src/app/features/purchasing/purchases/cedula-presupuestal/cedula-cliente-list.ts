@@ -1,6 +1,4 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { CommonModule } from "@angular/common";
-import { Endpoints } from "src/app/core/constants/endpoints";
+﻿import { CommonModule } from "@angular/common";
 import { Component, computed, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { IonIcon, IonItem, IonLabel } from "@ionic/angular/standalone";
@@ -9,14 +7,16 @@ import { walletOutline } from "ionicons/icons";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
 import { TooltipModule } from "primeng/tooltip";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
-import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
-import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonConfirm } from "src/app/core/components/web/buttons/custom-button-confirm";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
+import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
+import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import {
   globalFilterFields,
   rowsPerPageOptions,
@@ -87,7 +87,11 @@ export class CedulaClienteList implements OnInit {
 
   onLoadCedulas() {
     this.apiResponseS
-      .onGetSelectItem(Endpoints.SelectItems.periodoPresupuestals(this.customerIdS.customerId()))
+      .onGetSelectItem(
+        Endpoints.SelectItems.periodoPresupuestals(
+          this.customerIdS.customerId(),
+        ),
+      )
       .then((result: any) => {
         this.cb_cedulas = result;
       });
@@ -171,4 +175,3 @@ export class CedulaClienteList implements OnInit {
     );
   }
 }
-

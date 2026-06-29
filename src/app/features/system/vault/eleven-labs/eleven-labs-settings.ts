@@ -8,19 +8,19 @@ import {
   Validators,
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputSwitch } from "src/app/core/components/web/inputs/custom-input-switch-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
-import { ElevenLabsService } from "src/app/core/services/eleven-labs.service";
 import {
   ElevenLabsSettingsService,
   ElevenLabsSubscriptionStatus,
   ElevenLabsVoiceOption,
 } from "src/app/core/services/eleven-labs-settings.service";
+import { ElevenLabsService } from "src/app/core/services/eleven-labs.service";
 
 interface ElevenLabsSettingsForm {
   voiceId: FormControl<string>;
@@ -255,7 +255,9 @@ export class ElevenLabsSettingsComponent implements OnInit {
   }
 
   private updateSelectedVoicePreview(voiceId: string): void {
-    const selectedVoice = this.voices().find((voice) => voice.voiceId === voiceId);
+    const selectedVoice = this.voices().find(
+      (voice) => voice.voiceId === voiceId,
+    );
     if (!selectedVoice) {
       this.selectedVoicePreview.set("");
       return;
@@ -273,4 +275,3 @@ export class ElevenLabsSettingsComponent implements OnInit {
     );
   }
 }
-

@@ -19,15 +19,15 @@ import {
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButtonDelete } from "src/app/core/components/web/buttons";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AspRoleService } from "src/app/core/services/asp-role.service";
 import { AuthService } from "src/app/core/services/auth.service";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 interface ITicketMessageFollowupForm {
   id: FormControl<string>;
   ticketMessageId: FormControl<string>;
@@ -57,7 +57,9 @@ export class TaskFollowup implements OnInit, OnDestroy {
   private formB = inject(FormBuilder);
   private ref = inject(DynamicDialogRef);
 
-  readonly isSuperUser = this.aspRoleS.roleSignal(EApplicationRole.SuperUsuario);
+  readonly isSuperUser = this.aspRoleS.roleSignal(
+    EApplicationRole.SuperUsuario,
+  );
   description = signal<any[]>([]);
   submitting = signal(false);
 
@@ -102,10 +104,12 @@ export class TaskFollowup implements OnInit, OnDestroy {
 
   onCargaListaseguimientos() {
     this.apiResponseS
-      .onGetList(Endpoints.TaskFollowUps.listByTicketMessage(this.ticketMessageId))
+      .onGetList(
+        Endpoints.TaskFollowUps.listByTicketMessage(this.ticketMessageId),
+      )
       .then((result: any) => {
-      this.description.set(result || []);
-    });
+        this.description.set(result || []);
+      });
   }
 
   async onSubmit() {
@@ -124,9 +128,11 @@ export class TaskFollowup implements OnInit, OnDestroy {
     }
   }
   onDelete(id: string): void {
-    this.apiResponseS.onDelete(Endpoints.TaskFollowUps.delete(id)).then((ok) => {
-      if (ok) this.onCargaListaseguimientos();
-    });
+    this.apiResponseS
+      .onDelete(Endpoints.TaskFollowUps.delete(id))
+      .then((ok) => {
+        if (ok) this.onCargaListaseguimientos();
+      });
   }
 
   ngOnDestroy(): void {
@@ -135,8 +141,9 @@ export class TaskFollowup implements OnInit, OnDestroy {
     this.ref.close({
       count: items.length,
       lastFollowUp: latest?.description ?? null,
-      lastFollowUpDate: latest ? (latest.createdAt as string).split(' ')[0] : null,
+      lastFollowUpDate: latest
+        ? (latest.createdAt as string).split(" ")[0]
+        : null,
     });
   }
 }
-

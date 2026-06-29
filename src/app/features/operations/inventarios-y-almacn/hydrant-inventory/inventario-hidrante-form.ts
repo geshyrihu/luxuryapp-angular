@@ -1,13 +1,19 @@
 ﻿import { Component, inject, OnInit, signal } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
+import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
+import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputImg } from "src/app/core/components/web/inputs/custom-input-img-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputMaskSignal } from "src/app/core/components/web/inputs/custom-input-mask-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -28,7 +34,15 @@ interface IInventarioHidranteForm {
 @Component({
   selector: "app-inventario-hidrante-form",
   templateUrl: "./inventario-hidrante-form.html",
-  imports: [ReactiveFormsModule, CardModule, CustomInputTextSignal, CustomInputMaskSignal, CustomInputSelectSignal, CustomInputImg, CustomButtonSave],
+  imports: [
+    ReactiveFormsModule,
+    CardModule,
+    CustomInputTextSignal,
+    CustomInputMaskSignal,
+    CustomInputSelectSignal,
+    CustomInputImg,
+    CustomButtonSave,
+  ],
 })
 export class InventarioHidranteForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -47,13 +61,25 @@ export class InventarioHidranteForm implements OnInit {
 
   form: FormGroup<IInventarioHidranteForm> = this.formB.group({
     id: new FormControl("", { nonNullable: true }),
-    customerId: new FormControl<string | null>(this.customerIdS.customerId(), { validators: [Validators.required] }),
-    hydrantType: new FormControl<number | null>(null, { validators: [Validators.required] }),
+    customerId: new FormControl<string | null>(this.customerIdS.customerId(), {
+      validators: [Validators.required],
+    }),
+    hydrantType: new FormControl<number | null>(null, {
+      validators: [Validators.required],
+    }),
     cabinetNumber: new FormControl<string | null>(null),
-    location: new FormControl("", { nonNullable: true, validators: [Validators.required] }),
-    localCode: new FormControl("", { nonNullable: true, validators: [Validators.required] }),
+    location: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    localCode: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
     photo: new FormControl<string | File>("", { nonNullable: true }),
-    applicationUserId: new FormControl<string | null>(this.authS.applicationUserId),
+    applicationUserId: new FormControl<string | null>(
+      this.authS.applicationUserId,
+    ),
   });
 
   uploadFile(file: any) {
@@ -72,10 +98,12 @@ export class InventarioHidranteForm implements OnInit {
   }
 
   onLoadData() {
-    this.apiResponseS.onGetItem(`InventarioHidrante/${this.id}`).then((result: any) => {
-      this.urlBaseImg = result.currentPhoto;
-      this.form.patchValue(result);
-    });
+    this.apiResponseS
+      .onGetItem(`InventarioHidrante/${this.id}`)
+      .then((result: any) => {
+        this.urlBaseImg = result.currentPhoto;
+        this.form.patchValue(result);
+      });
   }
 
   onSubmit() {
@@ -83,11 +111,17 @@ export class InventarioHidranteForm implements OnInit {
     const formData = this.createFormData(this.form.getRawValue());
     this.submitting.set(true);
     if (!this.id) {
-      this.apiResponseS.onPost("InventarioHidrante", formData)
-        .then((result: boolean) => { result ? this.ref.close(true) : this.submitting.set(false); });
+      this.apiResponseS
+        .onPost("InventarioHidrante", formData)
+        .then((result: boolean) => {
+          result ? this.ref.close(true) : this.submitting.set(false);
+        });
     } else {
-      this.apiResponseS.onPut(`InventarioHidrante/${this.id}`, formData)
-        .then((result: boolean) => { result ? this.ref.close(true) : this.submitting.set(false); });
+      this.apiResponseS
+        .onPut(`InventarioHidrante/${this.id}`, formData)
+        .then((result: boolean) => {
+          result ? this.ref.close(true) : this.submitting.set(false);
+        });
     }
   }
 
@@ -96,11 +130,11 @@ export class InventarioHidranteForm implements OnInit {
     formData.append("customerId", String(DTO.customerId));
     formData.append("hydrantType", String(DTO.hydrantType));
     formData.append("location", String(DTO.location));
-    if (DTO.cabinetNumber) formData.append("cabinetNumber", String(DTO.cabinetNumber));
+    if (DTO.cabinetNumber)
+      formData.append("cabinetNumber", String(DTO.cabinetNumber));
     formData.append("localCode", String(DTO.localCode));
     formData.append("applicationUserId", String(DTO.applicationUserId));
     if (DTO.photo) formData.append("photo", DTO.photo);
     return formData;
   }
 }
-

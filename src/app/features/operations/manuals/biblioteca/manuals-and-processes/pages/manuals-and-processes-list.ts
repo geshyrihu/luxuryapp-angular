@@ -4,14 +4,14 @@ import { Router } from "@angular/router";
 import { IonItem, IonLabel } from "@ionic/angular/standalone";
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
+import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import {
   CustomButtonDelete,
   CustomButtonEdit,
 } from "src/app/core/components/web/buttons";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
-import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomSearchInput } from "src/app/core/components/web/inputs/custom-search-input-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
@@ -90,7 +90,11 @@ export class ManualsAndProcessesList implements OnInit {
     },
     Limpieza: { icon: "mdi:star", color: "#065f46", bgColor: "#d1fae5" },
     Operaciones: { icon: "mdi:cog", color: "#1e3a8a", bgColor: "#e0e7ff" },
-    Jardineria: { icon: "mdi:sun-bright", color: "#15803d", bgColor: "#dcfce7" },
+    Jardineria: {
+      icon: "mdi:sun-bright",
+      color: "#15803d",
+      bgColor: "#dcfce7",
+    },
     Sistemas: { icon: "mdi:monitor", color: "#6d28d9", bgColor: "#f5f3ff" },
     Seguridad: { icon: "mdi:lock", color: "#dc2626", bgColor: "#fee2e2" },
     Constructora: { icon: "mdi:home", color: "#7c3aed", bgColor: "#ede9fe" },
@@ -155,7 +159,8 @@ export class ManualsAndProcessesList implements OnInit {
     return Array.from(map.entries()).map(([dept, manuals]) => ({
       dept,
       manuals,
-      config: this.DEPT_CONFIG[this.normalizeDeptKey(dept)] ?? this.DEFAULT_CONFIG,
+      config:
+        this.DEPT_CONFIG[this.normalizeDeptKey(dept)] ?? this.DEFAULT_CONFIG,
     }));
   });
 
@@ -202,4 +207,3 @@ export class ManualsAndProcessesList implements OnInit {
       });
   }
 }
-

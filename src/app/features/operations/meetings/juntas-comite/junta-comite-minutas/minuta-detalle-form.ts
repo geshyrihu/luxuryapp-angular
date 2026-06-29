@@ -7,26 +7,23 @@ import {
   Validators,
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
-import {
-  DynamicDialogConfig,
-  DynamicDialogRef,
-} from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
-import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
+import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { DateService } from "src/app/core/services/date.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { MeetingSeguimientoEdit } from "./meeting-seguimiento-edit";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface IMinutaDetalleForm {
   id: FormControl<string | null>;
@@ -112,21 +109,23 @@ export class MinutaDetalleForm implements OnInit {
   }
 
   onLoadData() {
-    this.apiResponseS.onGetItem(Endpoints.MeetingsDetails.getById(this.id())).then((result: any) => {
-      // Clean HTML from requestService if present
-      let content = result.requestService || "";
-      if (content) {
-        content = content.replace(/<[^>]*>|&nbsp;/g, "");
-      }
-      result.requestService = content;
+    this.apiResponseS
+      .onGetItem(Endpoints.MeetingsDetails.getById(this.id()))
+      .then((result: any) => {
+        // Clean HTML from requestService if present
+        let content = result.requestService || "";
+        if (content) {
+          content = content.replace(/<[^>]*>|&nbsp;/g, "");
+        }
+        result.requestService = content;
 
-      this.form.patchValue(result);
-      if (result.deliveryDate) {
-        this.form.controls.deliveryDate.setValue(
-          this.dateS.parseDate(result.deliveryDate),
-        );
-      }
-    });
+        this.form.patchValue(result);
+        if (result.deliveryDate) {
+          this.form.controls.deliveryDate.setValue(
+            this.dateS.parseDate(result.deliveryDate),
+          );
+        }
+      });
   }
 
   openFollowUp() {
@@ -155,8 +154,7 @@ export class MinutaDetalleForm implements OnInit {
           normalizedPayload.id = "00000000-0000-0000-0000-000000000000";
         }
         return normalizedPayload;
-      }
+      },
     });
   }
 }
-

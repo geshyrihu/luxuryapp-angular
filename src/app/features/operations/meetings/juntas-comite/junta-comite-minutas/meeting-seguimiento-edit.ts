@@ -7,10 +7,10 @@ import {
 } from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -67,10 +67,12 @@ export class MeetingSeguimientoEdit implements OnInit {
   }
 
   onLoadData() {
-    this.apiResponseS.onGetItem(Endpoints.MeetingDetailsTracking.getById(this.id)).then((result: any) => {
-      result.fecha = this.dateS.getDateFormat(result.fecha);
-      this.form.patchValue(result);
-    });
+    this.apiResponseS
+      .onGetItem(Endpoints.MeetingDetailsTracking.getById(this.id))
+      .then((result: any) => {
+        result.fecha = this.dateS.getDateFormat(result.fecha);
+        this.form.patchValue(result);
+      });
   }
 
   onSubmit() {
@@ -99,13 +101,3 @@ export class MeetingSeguimientoEdit implements OnInit {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-

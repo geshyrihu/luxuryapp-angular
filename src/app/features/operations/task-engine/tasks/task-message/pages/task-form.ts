@@ -1,5 +1,4 @@
-﻿import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { Component, inject, OnInit, signal } from "@angular/core";
+﻿import { Component, inject, OnInit, signal } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -13,24 +12,25 @@ import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { FileUploadModule } from "primeng/fileupload";
 import { firstValueFrom } from "rxjs";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputCheckSignal } from "src/app/core/components/web/inputs/custom-input-check-signal";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
-import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { CustomToastService } from "src/app/core/services/custom-toast.service";
+import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
 import { TaskGroupService } from "src/app/features/operations/task-engine/tasks/task.service";
 import { TaskFollowup } from "../../task-follow-up/pages/task-followup";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 interface ITaskMessageForm {
   id: FormControl<string>;
@@ -53,8 +53,8 @@ interface ITaskMessageForm {
   dependsOnTaskId: FormControl<string | null>;
 }
 
-import { DateService } from "src/app/core/services/date.service";
 import heic2any from "heic2any";
+import { DateService } from "src/app/core/services/date.service";
 
 @Component({
   selector: "app-task-form",
@@ -72,7 +72,8 @@ import heic2any from "heic2any";
     CustomButtonSave,
     CustomButton,
     CustomInputCheckSignal,
-   AppIcon],
+    AppIcon,
+  ],
 })
 export class TaskForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -160,7 +161,7 @@ export class TaskForm implements OnInit {
         let ticketGroupId = String(this.config.data.ticketGroupId);
         // Garantizar que la capitalización (casing) coincida exactamente con la opción cargada
         const exactMatch = this.cb_ticket_group().find(
-          (g) => String(g.value).toLowerCase() === ticketGroupId.toLowerCase()
+          (g) => String(g.value).toLowerCase() === ticketGroupId.toLowerCase(),
         );
         if (exactMatch) ticketGroupId = String(exactMatch.value);
 
@@ -202,9 +203,14 @@ export class TaskForm implements OnInit {
 
   async onLoadUsers(ticketGroupId: string): Promise<void> {
     const [users, predecessors] = await Promise.all([
-      this.apiResponseS.onGetList<ISelectItem[]>(Endpoints.Tasks.participants(ticketGroupId)),
       this.apiResponseS.onGetList<ISelectItem[]>(
-        Endpoints.Tasks.availablePredecessors(ticketGroupId, this.id || undefined),
+        Endpoints.Tasks.participants(ticketGroupId),
+      ),
+      this.apiResponseS.onGetList<ISelectItem[]>(
+        Endpoints.Tasks.availablePredecessors(
+          ticketGroupId,
+          this.id || undefined,
+        ),
       ),
     ]);
     this.cb_application_user.set(users as ISelectItem[]);
@@ -227,12 +233,16 @@ export class TaskForm implements OnInit {
 
     // Buscar el usuario asignado completo
     const selectedAssignee = assigneeId
-      ? this.cb_application_user().find((item) => String(item.value) === assigneeId)
+      ? this.cb_application_user().find(
+          (item) => String(item.value) === assigneeId,
+        )
       : null;
 
     this.form.patchValue({
       ...result,
-      ticketGroupId: String(result.ticketGroupId || this.form.value.ticketGroupId),
+      ticketGroupId: String(
+        result.ticketGroupId || this.form.value.ticketGroupId,
+      ),
       applicationUserId: this.authS.applicationUserId,
       assigneeId,
       assignee: selectedAssignee ? selectedAssignee.label : "",
@@ -255,7 +265,10 @@ export class TaskForm implements OnInit {
   processingBeforeWork = signal(false);
   processingAfterWork = signal(false);
 
-  async onFileChange(file: File | null, fieldName: "beforeWork" | "afterWork"): Promise<void> {
+  async onFileChange(
+    file: File | null,
+    fieldName: "beforeWork" | "afterWork",
+  ): Promise<void> {
     if (!file) {
       this.form.get(fieldName)?.setValue(null);
       if (fieldName === "beforeWork") this.beforeWorkPreview.set(null);
@@ -264,8 +277,10 @@ export class TaskForm implements OnInit {
     }
 
     const allowed = ["image/jpeg", "image/png", "image/webp"];
-    const isHeic = /\.(heic|heif)$/i.test(file.name) ||
-                   file.type === "image/heic" || file.type === "image/heif";
+    const isHeic =
+      /\.(heic|heif)$/i.test(file.name) ||
+      file.type === "image/heic" ||
+      file.type === "image/heif";
 
     if (!isHeic && !allowed.includes(file.type)) {
       this.customToastS.showError(
@@ -275,9 +290,10 @@ export class TaskForm implements OnInit {
       return;
     }
 
-    const processingSignal = fieldName === "beforeWork"
-      ? this.processingBeforeWork
-      : this.processingAfterWork;
+    const processingSignal =
+      fieldName === "beforeWork"
+        ? this.processingBeforeWork
+        : this.processingAfterWork;
 
     processingSignal.set(true);
     try {
@@ -287,28 +303,41 @@ export class TaskForm implements OnInit {
         try {
           // Convertir explícitamente a Blob puro a través de arrayBuffer para evitar problemas de compatibilidad de la clase File con heic2any
           const buffer = await file.arrayBuffer();
-          const heicBlob = new Blob([buffer], { type: file.type || "image/heic" });
-          
+          const heicBlob = new Blob([buffer], {
+            type: file.type || "image/heic",
+          });
+
           const convertedBlob = await heic2any({
             blob: heicBlob,
             toType: "image/jpeg",
-            quality: 0.9
+            quality: 0.9,
           });
-          const resultBlob = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
+          const resultBlob = Array.isArray(convertedBlob)
+            ? convertedBlob[0]
+            : convertedBlob;
           const newFileName = file.name.replace(/\.(heic|heif)$/i, ".jpg");
-          fileToProcess = new File([resultBlob], newFileName, { type: "image/jpeg" });
+          fileToProcess = new File([resultBlob], newFileName, {
+            type: "image/jpeg",
+          });
         } catch (heicError) {
-          console.warn("heic2any falló al analizar el archivo, intentando como fallback nativo...", heicError);
-          // Si falla, fileToProcess sigue siendo el archivo original. 
+          console.warn(
+            "heic2any falló al analizar el archivo, intentando como fallback nativo...",
+            heicError,
+          );
+          // Si falla, fileToProcess sigue siendo el archivo original.
           // En navegadores como Safari puede funcionar nativamente, o si era un JPG renombrado.
         }
       }
 
-      const processed = await this.compressToMaxSize(fileToProcess, 2 * 1024 * 1024);
+      const processed = await this.compressToMaxSize(
+        fileToProcess,
+        2 * 1024 * 1024,
+      );
       this.form.get(fieldName)?.setValue(processed);
       const reader = new FileReader();
       reader.onload = () => {
-        if (fieldName === "beforeWork") this.beforeWorkPreview.set(reader.result as string);
+        if (fieldName === "beforeWork")
+          this.beforeWorkPreview.set(reader.result as string);
         else this.afterWorkPreview.set(reader.result as string);
       };
       reader.readAsDataURL(processed);
@@ -350,20 +379,30 @@ export class TaskForm implements OnInit {
         const outName = `${baseName}.jpg`;
 
         const tryQuality = (quality: number) => {
-          canvas.toBlob((blob) => {
-            if (!blob) { reject(new Error("Canvas toBlob failed")); return; }
-            if (blob.size <= maxBytes || quality <= 0.1) {
-              resolve(new File([blob], outName, { type: "image/jpeg" }));
-            } else {
-              tryQuality(+(quality - 0.1).toFixed(1));
-            }
-          }, "image/jpeg", quality);
+          canvas.toBlob(
+            (blob) => {
+              if (!blob) {
+                reject(new Error("Canvas toBlob failed"));
+                return;
+              }
+              if (blob.size <= maxBytes || quality <= 0.1) {
+                resolve(new File([blob], outName, { type: "image/jpeg" }));
+              } else {
+                tryQuality(+(quality - 0.1).toFixed(1));
+              }
+            },
+            "image/jpeg",
+            quality,
+          );
         };
 
         tryQuality(0.9);
       };
 
-      img.onerror = () => { URL.revokeObjectURL(url); reject(new Error("Image load failed")); };
+      img.onerror = () => {
+        URL.revokeObjectURL(url);
+        reject(new Error("Image load failed"));
+      };
       img.src = url;
     });
   }
@@ -387,7 +426,7 @@ export class TaskForm implements OnInit {
 
   onLegalMatterChange(value: any) {
     const selectedMatter = this.cb_legal_matter().find(
-      (item) => String(item.value) === String(value)
+      (item) => String(item.value) === String(value),
     );
     this.form.patchValue({
       title: selectedMatter ? selectedMatter.label : "",
@@ -397,7 +436,7 @@ export class TaskForm implements OnInit {
 
   onAssigneeChange(value: any) {
     const selectedAssignee = this.cb_application_user().find(
-      (item) => String(item.value) === String(value)
+      (item) => String(item.value) === String(value),
     );
     this.form.patchValue({
       assigneeId: value ? String(value) : "",
@@ -426,7 +465,10 @@ export class TaskForm implements OnInit {
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: this.id === "" ? Endpoints.Tasks.create : Endpoints.Tasks.update(this.id),
+      endpoint:
+        this.id === ""
+          ? Endpoints.Tasks.create
+          : Endpoints.Tasks.update(this.id),
       method: this.id === "" ? "POST" : "PUT",
       ref: this.ref,
       submitting: this.submitting,
@@ -458,5 +500,3 @@ export class TaskForm implements OnInit {
     });
   }
 }
-
-

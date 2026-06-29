@@ -3,19 +3,19 @@ import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { TableModule } from "primeng/table";
 import { TagModule } from "primeng/tag";
+import { CustomInputDateSignal } from "src/app/core/components/inputs/web/custom-input-date-signal";
+import { CustomInputSwitch } from "src/app/core/components/inputs/web/custom-input-switch-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputDateSignal } from "src/app/core/components/web/inputs/custom-input-date-signal";
-import { CustomInputSwitch } from "src/app/core/components/web/inputs/custom-input-switch-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { DateService } from "src/app/core/services/date.service";
 import {
   DiasNoHabilesCreateDTO,
   DiasNoHabilesDTO,
 } from "../../../interfaces/periodo-nomina.interface";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-modal-dias-no-habiles",
@@ -72,10 +72,11 @@ export default class ModalDiasNoHabiles implements OnInit {
       method: "POST",
       submitting: this.submitting,
       closeOnSuccess: false,
-      transformPayload: (v) => ({
-        ...v,
-        fecha: this.dateS.getDateFormat(v.fecha),
-      } as DiasNoHabilesCreateDTO),
+      transformPayload: (v) =>
+        ({
+          ...v,
+          fecha: this.dateS.getDateFormat(v.fecha),
+        }) as DiasNoHabilesCreateDTO,
     });
 
     if (result) {
@@ -92,4 +93,3 @@ export default class ModalDiasNoHabiles implements OnInit {
     if (result) await this.loadDias(periodoId);
   }
 }
-

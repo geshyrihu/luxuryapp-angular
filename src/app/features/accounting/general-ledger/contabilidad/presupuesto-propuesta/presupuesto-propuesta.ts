@@ -2,12 +2,12 @@
  * ============================================================================
  * âš ï¸ ADVERTENCIA CRÃTICA / CRITICAL WARNING âš ï¸
  * ============================================================================
- * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100% 
- * FUNCIONAL y ESTABLE. 
- * 
+ * Este módulo (Presupuesto Propuesta y sus modales) se encuentra 100%
+ * FUNCIONAL y ESTABLE.
+ *
  * Queda ESTRICTAMENTE PROHIBIDO modificar su lógica, estructura o flujos de IA
  * sin antes consultar y obtener autorización explícita del Ing. Ricardo Marques.
- * 
+ *
  * Por favor, NO rompan el código.
  * ============================================================================
  */
@@ -32,9 +32,9 @@ import { SelectModule } from "primeng/select";
 import { Table, TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { Subscription } from "rxjs";
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomSearchInput } from "src/app/core/components/inputs/web/custom-search-input-signal";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomSearchInput } from "src/app/core/components/web/inputs/custom-search-input-signal";
 import { EApplicationRole } from "src/app/core/enums/asp-net-roles.enum";
 import {
   rowsPerPageOptions,
@@ -152,8 +152,10 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   /** Signal que almacena un Map de claves de items ejecutados a sus IDs de BudgetExecution para una bósqueda rópida. */
   projectedExpenseItems = signal<Map<string, string>>(new Map());
   /** Signal computada con las partidas cuyo incremento es > 5% */
-  highIncreaseItems = computed(() => 
-    this.allProposalItems().filter(item => !item.esFilaAgrupadora && item.percentageIncrease > 5)
+  highIncreaseItems = computed(() =>
+    this.allProposalItems().filter(
+      (item) => !item.esFilaAgrupadora && item.percentageIncrease > 5,
+    ),
   );
   /** Copia profunda de las partidas originales para comparar cambios y evitar llamadas innecesarias al API. */
   originalProposalItems: BudgetProposalItemDTO[] = [];
@@ -208,13 +210,16 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     }
 
     this.dialogHandlerS
-      .openDialog<
-        any[]
-      >(BudgetForecastDialog, { 
-        items: this.proposalItems(), 
-        inflationRate: this.inflationRate,
-        selectedMonthsForAvg: this.selectedMonthsForAvg()
-      }, `📈 Proyección Financiera Inteligente ${this.selectedFiscalYear}`, this.dialogHandlerS.sizeFull)
+      .openDialog<any[]>(
+        BudgetForecastDialog,
+        {
+          items: this.proposalItems(),
+          inflationRate: this.inflationRate,
+          selectedMonthsForAvg: this.selectedMonthsForAvg(),
+        },
+        `📈 Proyección Financiera Inteligente ${this.selectedFiscalYear}`,
+        this.dialogHandlerS.sizeFull,
+      )
       .then((selectedItems: any[]) => {
         if (selectedItems && selectedItems.length > 0) {
           this.applyForecast(selectedItems);
@@ -278,21 +283,31 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
 
   // Propiedades computadas para los botones de visibilidad de columnas
   get baseBudgetMonthlyButtonIcon(): string {
-    return this.showBaseBudgetMonthlyColumn() ? "mdi:eye-outline" : "mdi:eye-off-outline";
+    return this.showBaseBudgetMonthlyColumn()
+      ? "mdi:eye-outline"
+      : "mdi:eye-off-outline";
   }
   get baseBudgetMonthlyButtonLabel(): string {
-    return this.showBaseBudgetMonthlyColumn() ? `Ocultar Mensual ${this.baseBudgetYear}` : `Mostrar Mensual ${this.baseBudgetYear}`;
+    return this.showBaseBudgetMonthlyColumn()
+      ? `Ocultar Mensual ${this.baseBudgetYear}`
+      : `Mostrar Mensual ${this.baseBudgetYear}`;
   }
 
   get baseBudgetAnnualButtonIcon(): string {
-    return this.showBaseBudgetAnnualColumn() ? "mdi:eye-outline" : "mdi:eye-off-outline";
+    return this.showBaseBudgetAnnualColumn()
+      ? "mdi:eye-outline"
+      : "mdi:eye-off-outline";
   }
   get baseBudgetAnnualButtonLabel(): string {
-    return this.showBaseBudgetAnnualColumn() ? `Ocultar Anual ${this.baseBudgetYear}` : `Mostrar Anual ${this.baseBudgetYear}`;
+    return this.showBaseBudgetAnnualColumn()
+      ? `Ocultar Anual ${this.baseBudgetYear}`
+      : `Mostrar Anual ${this.baseBudgetYear}`;
   }
 
   get fiscalYearAnnualButtonIcon(): string {
-    return this.showFiscalYearAnnualColumn() ? "mdi:eye-outline" : "mdi:eye-off-outline";
+    return this.showFiscalYearAnnualColumn()
+      ? "mdi:eye-outline"
+      : "mdi:eye-off-outline";
   }
   get fiscalYearAnnualButtonLabel(): string {
     return this.showFiscalYearAnnualColumn()
@@ -301,10 +316,14 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
   }
 
   get projectedExpensesButtonIcon(): string {
-    return this.showProjectedExpenses() ? "mdi:eye-outline" : "mdi:eye-off-outline";
+    return this.showProjectedExpenses()
+      ? "mdi:eye-outline"
+      : "mdi:eye-off-outline";
   }
   get projectedExpensesButtonLabel(): string {
-    return this.showProjectedExpenses() ? "Ocultar Proyección Gastos" : "Mostrar Proyección Gastos";
+    return this.showProjectedExpenses()
+      ? "Ocultar Proyección Gastos"
+      : "Mostrar Proyección Gastos";
   }
 
   constructor() {
@@ -434,14 +453,16 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
    * Se ejecuta cuando el usuario cambia el Año fiscal en el selector.
    * Actualiza el Año fiscal seleccionado y vuelve a cargar los datos.
    */
-  
+
   /**
    * Analiza todas las partidas para detectar hasta qué mes hay gastos reales (mayores a cero).
    */
   autoSelectMonthsWithExpenses(items: BudgetProposalItemDTO[]): void {
     if (!items || items.length === 0) return;
 
-    const monthToExpensePropertyMap: { [key: string]: keyof BudgetProposalItemDTO } = {
+    const monthToExpensePropertyMap: {
+      [key: string]: keyof BudgetProposalItemDTO;
+    } = {
       enero: "gastoEnero",
       febrero: "gastoFebrero",
       marzo: "gastoMarzo",
@@ -463,7 +484,10 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       const expenseProperty = monthToExpensePropertyMap[monthName];
 
       const hasExpense = items.some(
-        (item) => !item.esFilaAgrupadora && typeof item[expenseProperty] === "number" && (item[expenseProperty] as number) > 0
+        (item) =>
+          !item.esFilaAgrupadora &&
+          typeof item[expenseProperty] === "number" &&
+          (item[expenseProperty] as number) > 0,
       );
 
       if (hasExpense) {
@@ -472,7 +496,9 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     }
 
     if (lastMonthWithExpenseIndex >= 0) {
-      this.selectedMonthsForAvg.set(this.months.slice(0, lastMonthWithExpenseIndex + 1));
+      this.selectedMonthsForAvg.set(
+        this.months.slice(0, lastMonthWithExpenseIndex + 1),
+      );
     } else {
       this.selectedMonthsForAvg.set([...this.months]);
     }
@@ -1450,5 +1476,3 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       });
   }
 }
-
-

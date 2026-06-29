@@ -1,11 +1,20 @@
 ﻿import { Component, inject, OnInit, signal } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
-import { CrudSubmitOptions, FormHelper } from "src/app/core/helpers/form-helper";
+import {
+  CrudSubmitOptions,
+  FormHelper,
+} from "src/app/core/helpers/form-helper";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 interface IMeterCategoryForm {
@@ -28,19 +37,22 @@ export class MeterCategoryForm implements OnInit {
   private formB = inject(FormBuilder);
   private config = inject(DynamicDialogConfig);
   private ref = inject(DynamicDialogRef);
-  
+
   submitting = signal(false);
   id: string = "";
 
   form: FormGroup<IMeterCategoryForm> = this.formB.group({
     id: new FormControl({ value: "", disabled: true }),
-    nombreMedidorCategoria: new FormControl("", { nonNullable: true, validators: [Validators.required] }),
+    nombreMedidorCategoria: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
   });
 
   ngOnInit(): void {
     this.id = this.config.data.id;
     if (this.id !== "") this.onLoadData();
-    
+
     // Sync Id
     this.form.controls.id.setValue(this.id);
   }
@@ -65,13 +77,3 @@ export class MeterCategoryForm implements OnInit {
     FormHelper.submitCrud(options);
   }
 }
-
-
-
-
-
-
-
-
-
-

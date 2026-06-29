@@ -1,12 +1,17 @@
 ﻿import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { firstValueFrom } from "rxjs";
+import { CustomInputMaskSignal } from "src/app/core/components/inputs/web/custom-input-mask-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputMaskSignal } from "src/app/core/components/web/inputs/custom-input-mask-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
@@ -53,7 +58,11 @@ export class EmployeeBankDataForm implements OnInit {
     }),
     bankKey: new FormControl<string>("", {
       nonNullable: true,
-      validators: [Validators.required, Validators.minLength(18), Validators.maxLength(18)],
+      validators: [
+        Validators.required,
+        Validators.minLength(18),
+        Validators.maxLength(18),
+      ],
     }),
     nameContact: new FormControl<string>("", {
       nonNullable: true,
@@ -80,7 +89,9 @@ export class EmployeeBankDataForm implements OnInit {
 
   async onLoadCombos() {
     const [banks, relations] = await Promise.all([
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.bank),
+      this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+        Endpoints.SelectItems.bank,
+      ),
       firstValueFrom(this.enumSelectS.relationEmployee()),
     ]);
 
@@ -111,4 +122,3 @@ export class EmployeeBankDataForm implements OnInit {
     });
   }
 }
-

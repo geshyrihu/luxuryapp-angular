@@ -1,19 +1,24 @@
 ﻿import { Component, inject, OnInit, signal } from "@angular/core";
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { CardModule } from "primeng/card";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { DialogModule } from "primeng/dialog";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { TextareaModule } from "primeng/textarea";
+import { CustomInputCheckSignal } from "src/app/core/components/inputs/web/custom-input-check-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputCheckSignal } from "src/app/core/components/web/inputs/custom-input-check-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { AiService } from "src/app/core/services/ai.service";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 @Component({
   selector: "app-job-description-form",
@@ -82,7 +87,9 @@ export class JobDescriptionForm implements OnInit {
 
   async onLoadData() {
     // Sincronizado con kebab-case
-    const result = await this.apiS.onGetItem<any>(`job-descriptions/${this.id()}`);
+    const result = await this.apiS.onGetItem<any>(
+      `job-descriptions/${this.id()}`,
+    );
     if (result) {
       this.form.patchValue(result);
     }
@@ -98,7 +105,7 @@ export class JobDescriptionForm implements OnInit {
     try {
       const proposal = await this.aiS.generateJobDescription(
         this.applicationRoleName(),
-        this.customInstructions
+        this.customInstructions,
       );
       if (proposal) {
         this.form.patchValue({
@@ -129,7 +136,7 @@ export class JobDescriptionForm implements OnInit {
     try {
       const analysis = await this.aiS.analyzeJobDescription(
         description,
-        this.applicationRoleName()
+        this.applicationRoleName(),
       );
       if (analysis) {
         this.analysisResult.set(analysis);
@@ -146,12 +153,10 @@ export class JobDescriptionForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiS,
-      endpoint: 'job-descriptions',
+      endpoint: "job-descriptions",
       id: this.id(),
       ref: this.ref,
       submitting: this.submitting,
     });
   }
 }
-
-

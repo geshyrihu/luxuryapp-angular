@@ -1,16 +1,21 @@
 ﻿import { Component, inject, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CardModule } from "primeng/card";
-import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { Endpoints } from "src/app/core/constants/endpoints";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 
 @Component({
   selector: "app-ticket-legal-actualizar-estado",
   templateUrl: "./ticket-legal-actualizar-estado.html",
-  imports: [ReactiveFormsModule, CardModule, CustomInputSelectSignal, CustomButton],
+  imports: [
+    ReactiveFormsModule,
+    CardModule,
+    CustomInputSelectSignal,
+    CustomButton,
+  ],
 })
 export class TicketLegalActualizarEstado implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -21,10 +26,10 @@ export class TicketLegalActualizarEstado implements OnInit {
   id = this.config.data.id;
 
   readonly statusOptions = [
-    { label: 'Pendiente',  value: 0 },
-    { label: 'En Proceso', value: 1 },
-    { label: 'Concluido',  value: 2 },
-    { label: 'Cancelado',  value: 4 },
+    { label: "Pendiente", value: 0 },
+    { label: "En Proceso", value: 1 },
+    { label: "Concluido", value: 2 },
+    { label: "Cancelado", value: 4 },
   ];
 
   ngOnInit() {
@@ -38,7 +43,9 @@ export class TicketLegalActualizarEstado implements OnInit {
   onSubmit() {
     this.loading.set(true);
     this.apiResponseS
-      .onPatch(Endpoints.Tasks.updateStatus(this.id), { status: this.statusControl.value })
+      .onPatch(Endpoints.Tasks.updateStatus(this.id), {
+        status: this.statusControl.value,
+      })
       .then((result: any) => {
         if (result) {
           this.ref.close(true);
@@ -48,4 +55,3 @@ export class TicketLegalActualizarEstado implements OnInit {
       });
   }
 }
-

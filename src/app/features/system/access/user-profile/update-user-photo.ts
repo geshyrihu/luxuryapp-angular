@@ -1,7 +1,13 @@
-﻿import { Component, ElementRef, inject, OnInit, ViewChild } from "@angular/core";
+﻿import {
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
-import { CustomInputImg } from "src/app/core/components/web/inputs/custom-input-img-signal";
+import { CustomInputImg } from "src/app/core/components/inputs/web/custom-input-img-signal";
 import { InfoAccountAuthDTO } from "src/app/core/interfaces/auth-user-token.dto";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -71,4 +77,3 @@ export class UpdateUserPhotoComponent implements OnInit {
       });
   }
 }
-

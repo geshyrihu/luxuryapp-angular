@@ -1,5 +1,4 @@
-﻿import { Endpoints } from "src/app/core/constants/endpoints";
-import {
+﻿import {
   ChangeDetectorRef,
   Component,
   inject,
@@ -17,10 +16,11 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MessageModule } from "primeng/message";
 import { TagModule } from "primeng/tag";
 import { lastValueFrom } from "rxjs";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextSignal } from "src/app/core/components/inputs/web/custom-input-text-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextSignal } from "src/app/core/components/web/inputs/custom-input-text-signal";
+import { Endpoints } from "src/app/core/constants/endpoints";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -115,7 +115,10 @@ export class OrdenCompraDatosPago implements OnInit {
 
     this.apiResponseS
       .onGetItem<any>(
-        Endpoints.Providers.getByIdAndCustomer(item.value, this.customerIdS.customerId()),
+        Endpoints.Providers.getByIdAndCustomer(
+          item.value,
+          this.customerIdS.customerId(),
+        ),
       )
       .then((provider) => {
         if (provider) {
@@ -135,9 +138,15 @@ export class OrdenCompraDatosPago implements OnInit {
       this.apiResponseS.onGetSelectItem<ISelectItem[]>(
         Endpoints.SelectItems.providers(this.customerIdS.customerId()),
       ),
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.paymentMethod),
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.useCFDI),
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.wayToPay),
+      this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+        Endpoints.SelectItems.paymentMethod,
+      ),
+      this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+        Endpoints.SelectItems.useCFDI,
+      ),
+      this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+        Endpoints.SelectItems.wayToPay,
+      ),
       lastValueFrom(this.enumSelectS.onLoadEnumList("ETipoGasto")),
       lastValueFrom(this.enumSelectS.onLoadEnumList("EFundingPeriod", false)),
     ];
@@ -222,11 +231,13 @@ export class OrdenCompraDatosPago implements OnInit {
     };
 
     this.apiResponseS
-      .onPut(Endpoints.PurchaseOrderPaymentData.update(this.ordenCompraDatosPagoId), model)
+      .onPut(
+        Endpoints.PurchaseOrderPaymentData.update(this.ordenCompraDatosPagoId),
+        model,
+      )
       .then((result: boolean) => {
         result ? this.ref.close(true) : this.submitting.set(false);
       })
       .catch(() => this.submitting.set(false)); // Asegurarse de quitar el submitting en caso de error
   }
 }
-

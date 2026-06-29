@@ -1,16 +1,15 @@
 ﻿import { Component, OnInit, effect, inject, signal } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormGroup, FormsModule } from "@angular/forms";
 import { CheckboxModule } from "primeng/checkbox";
 import { FieldsetModule } from "primeng/fieldset";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { CustomerTaskItemConfig } from "src/app/core/models/recurring-tasks/customer-task-item-config.model";
 import { TaskTemplate } from "src/app/core/models/recurring-tasks/task-template.model";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
-import { FormHelper } from "src/app/core/helpers/form-helper";
-import { FormGroup } from "@angular/forms";
 @Component({
   selector: "app-customer-config",
   templateUrl: "./customer-config.html",
@@ -50,10 +49,9 @@ export class CustomerConfig implements OnInit {
   }
 
   async loadCustomers() {
-    const response =
-      await this.apiResponseS.onGetSelectItem<ISelectItem[]>(
-        Endpoints.SelectItems.customersActive,
-      );
+    const response = await this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+      Endpoints.SelectItems.customersActive,
+    );
     this.customers.set(response || []);
   }
 
@@ -109,4 +107,3 @@ export class CustomerConfig implements OnInit {
     });
   }
 }
-

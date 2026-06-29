@@ -1,5 +1,4 @@
-﻿import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
-import { Component, computed, effect, inject, signal } from "@angular/core";
+﻿import { Component, computed, effect, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { IonButton, IonItem, IonLabel } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -14,12 +13,14 @@ import {
 import { ImageModule } from "primeng/image";
 import { TableModule } from "primeng/table";
 import { ActionMenu } from "src/app/core/components/mobile/action-menu/action-menu";
+import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "src/app/core/components/shared/app-icon/app-icon.component";
+import { EmptyState } from "src/app/core/components/shared/empty-state/empty-state";
+import { CustomButton } from "src/app/core/components/web/buttons";
 import { CustomButtonDelete } from "src/app/core/components/web/buttons/custom-button-delete";
 import { CustomButtonDownload } from "src/app/core/components/web/buttons/custom-button-download";
 import { CustomButtonEdit } from "src/app/core/components/web/buttons/custom-button-edit";
 import { CustomButtonItem } from "src/app/core/components/web/buttons/custom-button-item";
-import { DataViewMobile } from "src/app/core/components/mobile/data-view-mobile/data-view-mobile";
 import { PrimeNgCustomCaption } from "src/app/core/components/web/primeng-custom-caption/primeng-custom-caption";
 import { PrimeNgCustomTableFooter } from "src/app/core/components/web/primeng-custom-table-footer/primeng-custom-table-footer";
 import {
@@ -32,7 +33,6 @@ import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { CustomerIdService } from "src/app/core/services/customer-id.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TableScrollHeightService } from "src/app/core/services/table-scroll-height.service";
-import { CustomButton } from "../../../../core/components/web/buttons";
 import { InventarioExtintorBulkDateForm } from "./inventario-extintor-bulk-date-form";
 import { InventarioExtintorForm } from "./inventario-extintor-form";
 import { InventarioExtintorPdfService } from "./inventario-extintor-pdf.service";
@@ -165,4 +165,3 @@ export class InventarioExtintor {
       });
   }
 }
-

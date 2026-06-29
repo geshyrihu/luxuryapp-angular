@@ -10,18 +10,18 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Endpoints } from "src/app/core/constants/endpoints";
 
 // Custom Inputs
+import { CustomInputNumberSignal } from "src/app/core/components/inputs/web/custom-input-number-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputNumberSignal } from "src/app/core/components/web/inputs/custom-input-number-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
 
 // Services
+import { CustomButton } from "src/app/core/components/web/buttons";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { EnumSelectService } from "src/app/core/services/enum-select.service";
-import { CustomButton } from "src/app/core/components/web/buttons";
-import { EBillingMode } from "../../models/enums";
 import { UpsertBillingConfigDTO } from "../../models/billing-config.dto";
-import { FormHelper } from "src/app/core/helpers/form-helper";
+import { EBillingMode } from "../../models/enums";
 
 @Component({
   selector: "app-billing-config-modal",
@@ -49,7 +49,9 @@ export default class BillingConfigModal implements OnInit {
   billingModeOptions = signal<ISelectItem[]>([]);
 
   constructor() {
-    this.enumSelectS.billingMode().subscribe((opts) => this.billingModeOptions.set(opts));
+    this.enumSelectS
+      .billingMode()
+      .subscribe((opts) => this.billingModeOptions.set(opts));
   }
 
   ngOnInit(): void {
@@ -95,13 +97,14 @@ export default class BillingConfigModal implements OnInit {
       method: "POST",
       ref: this.ref,
       submitting: this.submitting,
-      transformPayload: (value) => ({
-        customerId: this.customerId,
-        billingMode: value.billingMode,
-        defaultDueDays: value.defaultDueDays,
-        graceDays: value.graceDays,
-        globalLateFeePercentage: value.globalLateFeePercentage,
-      } as UpsertBillingConfigDTO),
+      transformPayload: (value) =>
+        ({
+          customerId: this.customerId,
+          billingMode: value.billingMode,
+          defaultDueDays: value.defaultDueDays,
+          graceDays: value.graceDays,
+          globalLateFeePercentage: value.globalLateFeePercentage,
+        }) as UpsertBillingConfigDTO,
     });
   }
 
@@ -109,4 +112,3 @@ export default class BillingConfigModal implements OnInit {
     this.ref.close(false);
   }
 }
-

@@ -1,19 +1,25 @@
 ﻿import { Component, inject, OnInit, signal } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
 import { CardModule } from "primeng/card";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { CustomInputAutoComplete } from "src/app/core/components/inputs/web/custom-input-autocomplete-signal";
+import { CustomInputSelectSignal } from "src/app/core/components/inputs/web/custom-input-select-signal";
+import { CustomInputTextAreaSignal } from "src/app/core/components/inputs/web/custom-input-textarea-signal";
 import { CustomButton } from "src/app/core/components/web/buttons/custom-button";
 import { CustomButtonSave } from "src/app/core/components/web/buttons/custom-button-save";
-import { CustomInputAutoComplete } from "src/app/core/components/web/inputs/custom-input-autocomplete-signal";
-import { CustomInputSelectSignal } from "src/app/core/components/web/inputs/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "src/app/core/components/web/inputs/custom-input-textarea-signal";
 import { Endpoints } from "src/app/core/constants/endpoints";
+import { FormHelper } from "src/app/core/helpers/form-helper";
 import { ISelectItem } from "src/app/core/interfaces/select-Item.interface";
 import { ApiResponseService } from "src/app/core/services/api-response.service";
 import { AuthService } from "src/app/core/services/auth.service";
 import { DialogHandlerService } from "src/app/core/services/dialog-handler.service";
 import { TicketLegalSeguimiento } from "./ticket-legal-seguimiento";
-import { FormHelper } from "src/app/core/helpers/form-helper";
 
 // ID del WorkGroup Legal global — constante de dominio
 const LEGAL_WORK_GROUP_ID = "019df32f-4945-71c5-8fd0-ab574ea412cd";
@@ -64,14 +70,30 @@ export class TicketLegalForm implements OnInit {
   cb_responsible = signal<ISelectItem[]>([]);
 
   form: FormGroup<ILegalTaskForm> = this.formB.group({
-    id: new FormControl<string>({ value: "", disabled: true }, { nonNullable: true }),
-    ticketGroupId: new FormControl<string>(LEGAL_WORK_GROUP_ID, { nonNullable: true }),
-    customerId: new FormControl<string>("", { nonNullable: true, validators: [Validators.required] }),
-    creatorId: new FormControl<string>(this.authService.applicationUserId, { nonNullable: true }),
-    applicationUserId: new FormControl<string>(this.authService.applicationUserId, { nonNullable: true }),
+    id: new FormControl<string>(
+      { value: "", disabled: true },
+      { nonNullable: true },
+    ),
+    ticketGroupId: new FormControl<string>(LEGAL_WORK_GROUP_ID, {
+      nonNullable: true,
+    }),
+    customerId: new FormControl<string>("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    creatorId: new FormControl<string>(this.authService.applicationUserId, {
+      nonNullable: true,
+    }),
+    applicationUserId: new FormControl<string>(
+      this.authService.applicationUserId,
+      { nonNullable: true },
+    ),
     assigneeId: new FormControl<string | null>(null),
     assignee: new FormControl<string>("", { nonNullable: true }),
-    title: new FormControl<string>("", { nonNullable: true, validators: [Validators.required] }),
+    title: new FormControl<string>("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
     description: new FormControl<string>("", { nonNullable: true }),
     isInternal: new FormControl<boolean | null>(null),
     documentCloud: new FormControl<boolean>(false, { nonNullable: true }),
@@ -92,19 +114,30 @@ export class TicketLegalForm implements OnInit {
 
   async onLoadSelectItems(): Promise<void> {
     const [legalMatters, customers, participants] = await Promise.all([
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>(Endpoints.TaskLegal.selectForAddTicket),
-      this.apiResponseS.onGetSelectItem<ISelectItem[]>(Endpoints.SelectItems.customersActiveNameShort),
-      this.apiResponseS.onGetList(Endpoints.TaskGroupParticipants.listByGroup(LEGAL_WORK_GROUP_ID)),
+      this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+        Endpoints.TaskLegal.selectForAddTicket,
+      ),
+      this.apiResponseS.onGetSelectItem<ISelectItem[]>(
+        Endpoints.SelectItems.customersActiveNameShort,
+      ),
+      this.apiResponseS.onGetList(
+        Endpoints.TaskGroupParticipants.listByGroup(LEGAL_WORK_GROUP_ID),
+      ),
     ]);
     this.cb_legal_matter.set(legalMatters as ISelectItem[]);
     this.cb_customer.set(customers as ISelectItem[]);
     this.cb_responsible.set(
-      ((participants as any[]) ?? []).map(p => ({ value: p.applicationUserId, label: p.applicationUser }))
+      ((participants as any[]) ?? []).map((p) => ({
+        value: p.applicationUserId,
+        label: p.applicationUser,
+      })),
     );
   }
 
   async onLoadData(): Promise<void> {
-    const result: any = await this.apiResponseS.onGetItem(Endpoints.Tasks.getById(this.id));
+    const result: any = await this.apiResponseS.onGetItem(
+      Endpoints.Tasks.getById(this.id),
+    );
     this.form.patchValue({
       customerId: result.customerId,
       title: result.title,
@@ -122,7 +155,10 @@ export class TicketLegalForm implements OnInit {
   };
 
   saveAssignee = (item: ISelectItem) => {
-    this.form.patchValue({ assigneeId: String(item?.value), assignee: item?.label });
+    this.form.patchValue({
+      assigneeId: String(item?.value),
+      assignee: item?.label,
+    });
   };
 
   onOpenSeguimiento() {
@@ -138,7 +174,10 @@ export class TicketLegalForm implements OnInit {
     await FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint: this.id === "" ? Endpoints.Tasks.create : Endpoints.Tasks.update(this.id),
+      endpoint:
+        this.id === ""
+          ? Endpoints.Tasks.create
+          : Endpoints.Tasks.update(this.id),
       method: this.id === "" ? "POST" : "PUT",
       ref: this.ref,
       submitting: this.submitting,
@@ -152,7 +191,8 @@ export class TicketLegalForm implements OnInit {
         formData.append("title", raw.title);
         formData.append("description", raw.description);
         formData.append("priority", String(raw.priority));
-        if (raw.isInternal !== null) formData.append("isInternal", String(raw.isInternal));
+        if (raw.isInternal !== null)
+          formData.append("isInternal", String(raw.isInternal));
         formData.append("documentCloud", String(raw.documentCloud));
         formData.append("documentEmail", String(raw.documentEmail));
         return formData;
@@ -160,4 +200,3 @@ export class TicketLegalForm implements OnInit {
     });
   }
 }
-
